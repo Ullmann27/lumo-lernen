@@ -1,0 +1,73 @@
+name: Build Android Debug APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Unpack uploaded Flutter ZIP if present
+        run: |
+          ZIP_FILE=""
+          if ls *.zip >/dev/null 2>&1; then
+            ZIP_FILE=$(ls *.zip | head -n 1)
+            echo "Found ZIP: $ZIP_FILE"
+            mkdir -p /tmp/lumo_unpack
+            unzip -o "$ZIP_FILE" -d /tmp/lumo_unpack
+            if [ -d "/tmp/lumo_unpack/lumo_lernen_flutter" ]; then
+              cp -R /tmp/lumo_unpack/lumo_lernen_flutter/. .
+            else
+              cp -R /tmp/lumo_unpack/. .
+            fi
+          else
+            echo "No ZIP found. Building repository contents directly."
+          fi
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Create Android platform if missing
+        run: |
+          if [ ! -d "android" ]; then
+            flutter create --platforms=android .
+          fi
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Analyze project
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build debug APK
+        run: flutter build apk --debug
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-lernen-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
