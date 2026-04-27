@@ -25,7 +25,7 @@ jobs:
       - name: Flutter version
         run: flutter --version
 
-      - name: Generate Lumo Lernen MVP
+      - name: Generate modern Lumo Lernen app
         run: |
           if [ ! -f pubspec.yaml ]; then
             flutter create --platforms=android --project-name lumo_lernen .
@@ -43,180 +43,384 @@ jobs:
                 debugShowCheckedModeBanner: false,
                 title: 'Lumo Lernen',
                 theme: ThemeData(
-                  colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+                  colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
                   useMaterial3: true,
+                  fontFamily: 'Roboto',
                 ),
-                home: const LumoHome(),
+                home: const LumoRoot(),
               );
             }
           }
 
-          class LumoHome extends StatefulWidget {
-            const LumoHome({super.key});
-            @override
-            State<LumoHome> createState() => _LumoHomeState();
+          class Exercise {
+            const Exercise(this.prompt, this.answer, this.choices, this.skill, this.reason, this.steps);
+            final String prompt;
+            final int answer;
+            final List<int> choices;
+            final String skill;
+            final String reason;
+            final List<String> steps;
           }
 
-          class _LumoHomeState extends State<LumoHome> {
+          const exercises = [
+            Exercise('18 - 5 = ?', 13, [12, 13, 14], 'Subtraktion bis 20', 'Minusrechnen wird kurz wiederholt, weil Rückwärtszählen Übung braucht.', ['Starte bei 18.', 'Gehe 5 Schritte zurück.', 'Du landest bei 13.']),
+            Exercise('12 + 7 = ?', 19, [18, 19, 20], 'Addition bis 20', 'Plusaufgaben stärken sicheres Weiterzählen.', ['Starte bei 12.', 'Zähle 7 weiter.', 'Das Ergebnis ist 19.']),
+            Exercise('2, 4, 6, ?', 8, [7, 8, 10], 'Zahlenreihe', 'Muster helfen beim Rechnen und Denken.', ['Das Muster ist +2.', 'Nach 6 kommt 8.', 'Die Reihe lautet 2, 4, 6, 8.']),
+          ];
+
+          class LumoRoot extends StatefulWidget {
+            const LumoRoot({super.key});
+            @override
+            State<LumoRoot> createState() => _LumoRootState();
+          }
+
+          class _LumoRootState extends State<LumoRoot> {
+            bool intro = true;
             int page = 0;
-            int stars = 12;
+            int stars = 18;
+            int xp = 80;
             int wrong = 0;
-            String note = 'Heute reicht eine kleine Mission.';
-            final titles = const [
-              'Home', 'Lernen', 'Lumo-Agent', 'Erkennen', 'Check',
-              'Bonus', 'Eltern', 'Memory', 'Schutz'
-            ];
+            int task = 0;
+            int testStep = 0;
+            int testScore = 0;
+            String mood = 'greet';
+            String message = 'Hallo, ich bin Lumo. Heute reicht eine kleine Mission.';
+            final agentController = TextEditingController();
+            final recognitionController = TextEditingController(text: '18 - 5');
+            final titles = const ['Home', 'Lernen', 'Schularbeit', 'Lumo-Agent', 'Erkennen', 'Check', 'Bonus', 'Eltern', 'Memory', 'Schutz'];
+
+            @override
+            void dispose() {
+              agentController.dispose();
+              recognitionController.dispose();
+              super.dispose();
+            }
+
+            int get level => (xp ~/ 100) + 1;
 
             @override
             Widget build(BuildContext context) {
+              if (intro) return _introScreen();
               final wide = MediaQuery.sizeOf(context).width >= 700;
               return Scaffold(
                 body: SafeArea(
                   child: Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0xfffff3cf), Color(0xffe8fff6)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xfffff0d7), Color(0xffecfff7), Color(0xffeaf4ff)],
                       ),
                     ),
-                    child: wide ? _wide() : _mobile(),
+                    child: wide ? _wideLayout() : _mobileLayout(),
                   ),
                 ),
                 bottomNavigationBar: wide ? null : NavigationBar(
                   selectedIndex: page > 4 ? 0 : page,
                   onDestinationSelected: (value) => setState(() => page = value),
                   destinations: const [
-                    NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-                    NavigationDestination(icon: Icon(Icons.menu_book), label: 'Lernen'),
-                    NavigationDestination(icon: Icon(Icons.chat), label: 'Lumo'),
-                    NavigationDestination(icon: Icon(Icons.document_scanner), label: 'Erkennen'),
-                    NavigationDestination(icon: Icon(Icons.psychology), label: 'Check'),
+                    NavigationDestination(icon: Icon(Icons.home_rounded), label: 'Home'),
+                    NavigationDestination(icon: Icon(Icons.menu_book_rounded), label: 'Lernen'),
+                    NavigationDestination(icon: Icon(Icons.assignment_rounded), label: 'Test'),
+                    NavigationDestination(icon: Icon(Icons.chat_bubble_rounded), label: 'Lumo'),
+                    NavigationDestination(icon: Icon(Icons.document_scanner_rounded), label: 'Erkennen'),
                   ],
                 ),
               );
             }
 
-            Widget _wide() => Row(
-              children: [
-                NavigationRail(
-                  selectedIndex: page,
-                  onDestinationSelected: (value) => setState(() => page = value),
-                  labelType: NavigationRailLabelType.all,
-                  destinations: const [
-                    NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
-                    NavigationRailDestination(icon: Icon(Icons.menu_book), label: Text('Lernen')),
-                    NavigationRailDestination(icon: Icon(Icons.chat), label: Text('Lumo')),
-                    NavigationRailDestination(icon: Icon(Icons.document_scanner), label: Text('Erkennen')),
-                    NavigationRailDestination(icon: Icon(Icons.psychology), label: Text('Check')),
-                    NavigationRailDestination(icon: Icon(Icons.card_giftcard), label: Text('Bonus')),
-                    NavigationRailDestination(icon: Icon(Icons.family_restroom), label: Text('Eltern')),
-                    NavigationRailDestination(icon: Icon(Icons.park), label: Text('Memory')),
-                    NavigationRailDestination(icon: Icon(Icons.shield), label: Text('Schutz')),
-                  ],
+            Widget _introScreen() => Scaffold(
+              body: Container(
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(center: Alignment.topCenter, radius: 1.2, colors: [Color(0xffffd68a), Color(0xfffff7e8), Color(0xffdbfff2)]),
                 ),
-                Expanded(child: _content()),
-                SizedBox(width: 260, child: _sidePanel()),
-              ],
+                child: SafeArea(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const LumoFox(mood: 'jump', size: 190),
+                          const SizedBox(height: 20),
+                          const Text('Lumo Lernen', textAlign: TextAlign.center, style: TextStyle(fontSize: 42, fontWeight: FontWeight.w900, letterSpacing: -1.4)),
+                          const Text('Der sichere Lernfuchs für Volksschule 1. und 2. Klasse', textAlign: TextAlign.center, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+                          const SizedBox(height: 20),
+                          Wrap(alignment: WrapAlignment.center, spacing: 8, runSpacing: 8, children: const [
+                            Chip(label: Text('Mathe')),
+                            Chip(label: Text('Deutsch')),
+                            Chip(label: Text('Schularbeit')),
+                            Chip(label: Text('Kindersicher')),
+                          ]),
+                          const SizedBox(height: 28),
+                          FilledButton.icon(
+                            icon: const Icon(Icons.auto_awesome_rounded),
+                            label: const Text('Intro starten'),
+                            onPressed: () => setState(() {
+                              intro = false;
+                              mood = 'greet';
+                              message = 'Willkommen im Lernzimmer.';
+                            }),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             );
 
-            Widget _mobile() => _content();
-
-            Widget _content() => ListView(
-              padding: const EdgeInsets.all(16),
-              children: [
-                _card(Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(titles[page], style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900)),
-                    const SizedBox(height: 8),
-                    Text(note),
-                    const SizedBox(height: 16),
-                    if (page == 0) _home(),
-                    if (page == 1) _learn(),
-                    if (page == 2) _agent(),
-                    if (page == 3) _recognition(),
-                    if (page == 4) _check(),
-                    if (page == 5) _bonus(),
-                    if (page == 6) _parent(),
-                    if (page == 7) _memory(),
-                    if (page == 8) _privacy(),
-                  ],
-                )),
-              ],
-            );
-
-            Widget _card(Widget child) => Card(
-              elevation: 8,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-              child: Padding(padding: const EdgeInsets.all(18), child: child),
-            );
-
-            Widget _sidePanel() => _card(Column(
-              children: [
-                const Icon(Icons.pets, size: 90, color: Colors.orange),
-                Text('★ $stars', style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w900)),
-                Text(note, textAlign: TextAlign.center),
-              ],
-            ));
-
-            Widget _home() => Wrap(spacing: 8, runSpacing: 8, children: [
-              ElevatedButton(onPressed: () => setState(() => page = 1), child: const Text('Mission starten')),
-              ElevatedButton(onPressed: () => setState(() => page = 3), child: const Text('Aufgabe erkennen')),
-              ElevatedButton(onPressed: () => setState(() => page = 2), child: const Text('Lumo fragen')),
-              ElevatedButton(onPressed: () => setState(() => page = 5), child: const Text('Bonuszimmer')),
+            Widget _wideLayout() => Row(children: [
+              NavigationRail(
+                selectedIndex: page,
+                onDestinationSelected: (value) => setState(() => page = value),
+                labelType: NavigationRailLabelType.all,
+                destinations: const [
+                  NavigationRailDestination(icon: Icon(Icons.home_rounded), label: Text('Home')),
+                  NavigationRailDestination(icon: Icon(Icons.menu_book_rounded), label: Text('Lernen')),
+                  NavigationRailDestination(icon: Icon(Icons.assignment_rounded), label: Text('Test')),
+                  NavigationRailDestination(icon: Icon(Icons.chat_bubble_rounded), label: Text('Lumo')),
+                  NavigationRailDestination(icon: Icon(Icons.document_scanner_rounded), label: Text('Erkennen')),
+                  NavigationRailDestination(icon: Icon(Icons.psychology_rounded), label: Text('Check')),
+                  NavigationRailDestination(icon: Icon(Icons.card_giftcard_rounded), label: Text('Bonus')),
+                  NavigationRailDestination(icon: Icon(Icons.family_restroom_rounded), label: Text('Eltern')),
+                  NavigationRailDestination(icon: Icon(Icons.park_rounded), label: Text('Memory')),
+                  NavigationRailDestination(icon: Icon(Icons.shield_rounded), label: Text('Schutz')),
+                ],
+              ),
+              Expanded(child: _content()),
+              SizedBox(width: 310, child: _sidePanel()),
             ]);
 
-            Widget _learn() => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Widget _mobileLayout() => _content();
+
+            Widget _content() => ListView(
+              padding: const EdgeInsets.all(18),
               children: [
-                const Text('18 - 5 = ?', style: TextStyle(fontSize: 38, fontWeight: FontWeight.w900)),
-                Text('Fehlversuche: $wrong/3'),
-                const Text('Warum empfiehlt Lumo das? Subtraktion bis 20 braucht kurze Wiederholung.'),
-                Wrap(spacing: 8, children: [12, 13, 14].map((number) => ElevatedButton(
-                  onPressed: () => _answer(number),
-                  child: Text('$number', style: const TextStyle(fontSize: 24)),
-                )).toList()),
-                if (wrong >= 3) const Text('Schritt 1: Starte bei 18. Schritt 2: Gehe 5 zurück. Ergebnis: 13.'),
+                _glass(Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Row(children: [
+                    Expanded(child: Text(titles[page], style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w900, letterSpacing: -1))),
+                    _pill('★ $stars'),
+                    const SizedBox(width: 8),
+                    _pill('Level $level'),
+                  ]),
+                  const SizedBox(height: 8),
+                  Text(message, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 18),
+                  _screen(),
+                ])),
               ],
             );
 
-            void _answer(int number) {
+            Widget _screen() {
+              switch (page) {
+                case 1: return _learning();
+                case 2: return _testMode();
+                case 3: return _agent();
+                case 4: return _recognition();
+                case 5: return _check();
+                case 6: return _bonus();
+                case 7: return _parent();
+                case 8: return _memory();
+                case 9: return _privacy();
+                default: return _home();
+              }
+            }
+
+            Widget _glass(Widget child) => Card(
+              elevation: 14,
+              color: Colors.white.withOpacity(.78),
+              shadowColor: Colors.deepOrange.withOpacity(.18),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
+              child: Padding(padding: const EdgeInsets.all(22), child: child),
+            );
+
+            Widget _pill(String text) => Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(color: Colors.orange.shade100, borderRadius: BorderRadius.circular(99)),
+              child: Text(text, style: const TextStyle(fontWeight: FontWeight.w900)),
+            );
+
+            Widget _menuCard(String title, String subtitle, IconData icon, int target, Color color) => InkWell(
+              onTap: () => setState(() => page = target),
+              borderRadius: BorderRadius.circular(26),
+              child: Container(
+                width: 220,
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(color: color.withOpacity(.22), borderRadius: BorderRadius.circular(26), border: Border.all(color: Colors.white)),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Icon(icon, size: 34, color: color),
+                  const SizedBox(height: 10),
+                  Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+                  Text(subtitle, style: const TextStyle(fontWeight: FontWeight.w600)),
+                ]),
+              ),
+            );
+
+            Widget _home() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(children: const [LumoFox(mood: 'greet', size: 110), SizedBox(width: 14), Expanded(child: Text('Willkommen im modernen Lumo-Lernzimmer. Wähle eine Mission.', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)))]),
+              const SizedBox(height: 18),
+              Wrap(spacing: 12, runSpacing: 12, children: [
+                _menuCard('Endlos lernen', '1. und 2. Klasse', Icons.menu_book_rounded, 1, Colors.orange),
+                _menuCard('Schularbeit', 'Test-Simulation', Icons.assignment_rounded, 2, Colors.blue),
+                _menuCard('Lumo fragen', 'sicherer KI-Freund', Icons.chat_bubble_rounded, 3, Colors.green),
+                _menuCard('Aufgabe erkennen', 'Mathe und Deutsch', Icons.document_scanner_rounded, 4, Colors.purple),
+                _menuCard('Bonuszimmer', 'Sterne und Gutscheine', Icons.card_giftcard_rounded, 6, Colors.pink),
+                _menuCard('Elternbereich', 'Warum empfiehlt Lumo das?', Icons.family_restroom_rounded, 7, Colors.teal),
+              ]),
+            ]);
+
+            Widget _learning() {
+              final ex = exercises[task % exercises.length];
+              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(ex.skill, style: TextStyle(color: Colors.orange.shade800, fontWeight: FontWeight.w900)),
+                const SizedBox(height: 6),
+                Text(ex.prompt, style: const TextStyle(fontSize: 44, fontWeight: FontWeight.w900)),
+                Text('Fehlversuche: $wrong/3', style: const TextStyle(fontWeight: FontWeight.w800)),
+                const SizedBox(height: 8),
+                Text('Warum empfiehlt Lumo das? ${ex.reason}'),
+                const SizedBox(height: 14),
+                Wrap(spacing: 10, children: ex.choices.map((n) => FilledButton.tonal(onPressed: () => _answer(n), child: Text('$n', style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w900)))).toList()),
+                const SizedBox(height: 12),
+                if (wrong >= 3) ...ex.steps.map((s) => ListTile(leading: const Icon(Icons.check_circle_rounded), title: Text(s))),
+                Row(children: [
+                  TextButton.icon(onPressed: () => _speak('Ich zeige dir den ersten Schritt.'), icon: const Icon(Icons.volume_up_rounded), label: const Text('Stimme testen')),
+                  TextButton.icon(onPressed: () => setState(() { task++; wrong = 0; message = 'Neue Aufgabe bereit.'; }), icon: const Icon(Icons.arrow_forward_rounded), label: const Text('Nächste Aufgabe')),
+                ]),
+              ]);
+            }
+
+            void _answer(int n) {
+              final ex = exercises[task % exercises.length];
               setState(() {
-                if (number == 13) {
+                if (n == ex.answer) {
                   stars += 3;
+                  xp += 20;
                   wrong = 0;
-                  note = 'Fuchsstark! Richtig.';
+                  mood = 'celebrate';
+                  message = 'Fuchsstark! Richtig gelöst.';
                 } else {
-                  wrong += 1;
-                  note = wrong >= 3 ? 'Ich erkläre es ruhig Schritt für Schritt.' : 'Fast. Das ist kein Problem.';
+                  wrong++;
+                  mood = wrong >= 3 ? 'explain' : 'comfort';
+                  message = wrong >= 3 ? 'Nach drei Versuchen helfe ich Schritt für Schritt.' : 'Fast. Das ist kein Problem.';
                 }
               });
             }
 
-            Widget _agent() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text('Sicherer Agent: keine privaten Daten, keine Treffen, keine offenen Internetantworten.'),
-              ElevatedButton(onPressed: () => setState(() => note = 'Wir machen es Schritt für Schritt.'), child: const Text('Lernhilfe')),
-              ElevatedButton(onPressed: () => setState(() => note = 'Bitte frag Mama, Papa oder einen vertrauten Erwachsenen.'), child: const Text('Private Daten testen')),
+            Widget _testMode() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              const Text('Schularbeit-Simulation', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+              const Text('Ohne Druck. Keine Hilfe während der Frage. Auswertung danach.'),
+              const SizedBox(height: 14),
+              Text('Frage ${testStep + 1}/5: ${testStep.isEven ? '7 + 6 = ?' : '15 - 7 = ?'}', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+              Wrap(spacing: 8, children: [8, 12, 13, 14].map((n) => OutlinedButton(onPressed: () => setState(() { if ((testStep.isEven && n == 13) || (!testStep.isEven && n == 8)) testScore++; testStep = (testStep + 1).clamp(0, 4); message = 'Testfrage gespeichert.'; }), child: Text('$n'))).toList()),
+              const SizedBox(height: 12),
+              Text('Zwischenstand: $testScore richtige Antworten'),
+              FilledButton(onPressed: () => setState(() => message = 'Bericht: kurze 7-Minuten-Serie empfohlen.'), child: const Text('Elternbericht anzeigen')),
             ]);
+
+            Widget _agent() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              const Text('Lumo ist kein offener Chat. Er fragt nicht nach Adresse, Schule, Passwort oder Kontakten.'),
+              TextField(controller: agentController, decoration: const InputDecoration(labelText: 'Frage an Lumo')),
+              const SizedBox(height: 10),
+              Wrap(spacing: 8, children: ['lernen', 'mut', 'pause', 'geschichte'].map((c) => ActionChip(label: Text(c), onPressed: () { agentController.text = c; _agentReply(); })).toList()),
+              FilledButton.icon(onPressed: _agentReply, icon: const Icon(Icons.send_rounded), label: const Text('Antwort')),
+            ]);
+
+            void _agentReply() {
+              final q = agentController.text.toLowerCase();
+              setState(() {
+                if (RegExp('adresse|telefon|schule|passwort|geheim|wohn').hasMatch(q)) {
+                  message = 'Das musst du mir nicht sagen. Frag bitte Mama, Papa oder einen vertrauten Erwachsenen.';
+                  mood = 'comfort';
+                } else if (RegExp('angst|traurig|weh|verletzt|weinen').hasMatch(q)) {
+                  message = 'Das klingt schwer. Bitte sag es einem vertrauten Erwachsenen. Ich mache mit dir nur einen ruhigen Lernschritt.';
+                  mood = 'comfort';
+                } else {
+                  message = 'Wir machen es Schritt für Schritt. Ich zeige dir den Anfang.';
+                  mood = 'explain';
+                }
+              });
+            }
 
             Widget _recognition() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text('Erkennt: 12+7, 18-5, Zahlenreihen, Reime und Noten.'),
-              ElevatedButton(onPressed: () => setState(() => note = 'Subtraktion erkannt. Confidence 93%.'), child: const Text('18 - 5 erkennen')),
+              TextField(controller: recognitionController, decoration: const InputDecoration(labelText: 'Aufgabe eingeben')),
+              FilledButton.icon(onPressed: _recognize, icon: const Icon(Icons.search_rounded), label: const Text('Erkennen')),
+              Wrap(spacing: 8, children: ['12 + 7', '18 - 5', '2, 4, 6, ?', 'Was reimt sich auf Haus?', 'Neue Note Mathe 2'].map((e) => ActionChip(label: Text(e), onPressed: () => setState(() => recognitionController.text = e))).toList()),
             ]);
 
-            Widget _check() => const Text('Kognitiver Lern-Check: Kein IQ-Test. Nur Förderprofil. Zahlenreihen stark, Merkaufgaben üben.');
-            Widget _bonus() => Text('Sterne: $stars. Gutscheine: 1 Eis, Familienfilm, Extra-Geschichte. Demo-PIN 1234.');
-            Widget _parent() => const Text('Warum empfiehlt Lumo das? Weil Subtraktion bis 20 kurze Wiederholung braucht.');
-            Widget _memory() => const Text('MemoryGraph speichert Skills, Hilfen, Fortschritt und wirksame Erklärarten.');
-            Widget _privacy() => const Text('Keine Werbung. Kein offener Kinder-Chat. Foto und Mikrofon nur mit Elternfreigabe.');
+            void _recognize() {
+              final q = recognitionController.text.toLowerCase();
+              setState(() {
+                if (RegExp(r'\d+\s*\+\s*\d+').hasMatch(q)) message = 'Addition erkannt. Confidence 94%.';
+                else if (RegExp(r'\d+\s*-\s*\d+').hasMatch(q)) message = 'Subtraktion erkannt. Confidence 93%.';
+                else if (q.contains('reimt')) message = 'Deutsch-Reimaufgabe erkannt. Elternprüfung optional.';
+                else if (q.contains('note')) message = 'Noteneintrag erkannt. Elternprüfung nötig.';
+                else message = 'Unsicher. Bitte Elternprüfung nutzen.';
+                mood = 'point';
+              });
+            }
+
+            Widget _check() => const Text('Kognitiver Lern-Check: Kein IQ-Test. Keine Diagnose. Zahlenreihen stark. Muster gut. Merkaufgaben mit 4 Symbolen noch üben.');
+            Widget _bonus() => Text('Sterne: $stars. Level: $level. Gutscheine: 1 Eis, Familienfilm, Extra-Geschichte, Schwimmen. Einlösen nur mit Eltern-PIN 1234.');
+            Widget _parent() => const Text('Warum empfiehlt Lumo das? Im Bereich Subtraktion bis 20 zeigt sich Wiederholungsbedarf. Empfohlen wird eine 5-Tage-Serie mit 7 Minuten.');
+            Widget _memory() => const Text('MemoryGraph: speichert Skills, Fehlerarten, Hilfestrategien, gelernte Strategien und Verlauf. Nicht gespeichert werden flüchtige Animationen.');
+            Widget _privacy() => const Text('Datenschutz: keine Werbung, keine Standortdaten, keine offenen Chats. Foto, Mikrofon, Stimme, Cloud, Export und Löschung nur mit Elternfreigabe.');
+
+            void _speak(String text) {
+              setState(() {
+                message = 'Lumo sagt: $text';
+                mood = 'speak';
+              });
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Debug-Stimme: $text')));
+            }
+
+            Widget _sidePanel() => _glass(Column(children: [
+              LumoFox(mood: mood, size: 130),
+              Text('★ $stars', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+              Text('Level $level', style: const TextStyle(fontWeight: FontWeight.w900)),
+              const SizedBox(height: 10),
+              Text(message, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w700)),
+            ]));
+          }
+
+          class LumoFox extends StatefulWidget {
+            const LumoFox({super.key, required this.mood, required this.size});
+            final String mood;
+            final double size;
+            @override
+            State<LumoFox> createState() => _LumoFoxState();
+          }
+
+          class _LumoFoxState extends State<LumoFox> with SingleTickerProviderStateMixin {
+            late final AnimationController controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1100))..repeat(reverse: true);
+            @override
+            void dispose() { controller.dispose(); super.dispose(); }
+            @override
+            Widget build(BuildContext context) {
+              final jump = widget.mood == 'celebrate' || widget.mood == 'jump';
+              return AnimatedBuilder(animation: controller, builder: (context, child) {
+                final y = jump ? -18 * controller.value : -5 * controller.value;
+                return Transform.translate(offset: Offset(0, y), child: child);
+              }, child: SizedBox(width: widget.size, height: widget.size, child: Stack(alignment: Alignment.center, children: [
+                Positioned(bottom: widget.size * .08, child: Container(width: widget.size * .55, height: widget.size * .08, decoration: BoxDecoration(color: Colors.brown.withOpacity(.16), borderRadius: BorderRadius.circular(99)))),
+                Positioned(bottom: widget.size * .18, child: Container(width: widget.size * .42, height: widget.size * .45, decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.orange.shade300, Colors.deepOrange]), borderRadius: BorderRadius.circular(widget.size * .18)))),
+                Positioned(top: widget.size * .18, child: Container(width: widget.size * .54, height: widget.size * .46, decoration: BoxDecoration(color: Colors.orange.shade400, borderRadius: BorderRadius.circular(widget.size * .2)))),
+                Positioned(top: widget.size * .07, left: widget.size * .25, child: Transform.rotate(angle: -.35, child: Container(width: widget.size * .15, height: widget.size * .28, decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(99))))),
+                Positioned(top: widget.size * .07, right: widget.size * .25, child: Transform.rotate(angle: .35, child: Container(width: widget.size * .15, height: widget.size * .28, decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(99))))),
+                Positioned(top: widget.size * .39, left: widget.size * .36, child: CircleAvatar(radius: widget.size * .035, backgroundColor: Colors.black87)),
+                Positioned(top: widget.size * .39, right: widget.size * .36, child: CircleAvatar(radius: widget.size * .035, backgroundColor: Colors.black87)),
+                Positioned(top: widget.size * .48, child: Container(width: widget.size * .24, height: widget.size * .15, decoration: BoxDecoration(color: Colors.white.withOpacity(.88), borderRadius: BorderRadius.circular(99)))),
+              ])));
+            }
           }
           DART
           cat > test/widget_test.dart <<'DART'
           import 'package:flutter_test/flutter_test.dart';
           import 'package:lumo_lernen/main.dart';
           void main() {
-            testWidgets('Lumo Lernen starts', (tester) async {
+            testWidgets('Lumo intro starts', (tester) async {
               await tester.pumpWidget(const LumoApp());
-              expect(find.text('Home'), findsWidgets);
+              expect(find.text('Lumo Lernen'), findsWidgets);
             });
           }
           DART
