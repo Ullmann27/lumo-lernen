@@ -116,7 +116,7 @@ class RecognitionEngine {
     'baum': ['Raum', 'Traum', 'Schaum', 'Kaum'],
     'kind': ['Wind', 'blind', 'Rind', 'findet'],
     'schule': ['Stühle', 'Kühle', 'Mühle'],
-    'buch': ['Tuch', 'Fluch', 'Brauch', 'Fach'],
-    'tag': ['lag', 'Sag', 'mag', 'pfleg'],
+    'buch': ['Tuch', 'Fluch', 'Besuch', 'Geruch'],
+    'tag': ['lag', 'Sag', 'mag', 'Schlag'],
   };
 }
