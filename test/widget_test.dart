@@ -5,6 +5,6 @@ void main() {
   testWidgets('Lumo app boots', (tester) async {
     await tester.pumpWidget(const LumoApp());
     expect(find.text('Lumo Lernen'), findsOneWidget);
-    expect(find.text('Zur Lernwelt'), findsOneWidget);
+    expect(find.text('Intro überspringen'), findsOneWidget);
   });
 }
