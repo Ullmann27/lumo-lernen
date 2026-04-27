@@ -114,9 +114,9 @@ class RecognitionEngine {
     'ball': ['Stall', 'Hall', 'Schall', 'Tal'],
     'hund': ['bunt', 'rund', 'Mund', 'Stund'],
     'baum': ['Raum', 'Traum', 'Schaum', 'Kaum'],
-    'kind': ['Wind', 'blind', 'Rind', 'findt'],
+    'kind': ['Wind', 'blind', 'Rind', 'findet'],
     'schule': ['Stühle', 'Kühle', 'Mühle'],
     'buch': ['Tuch', 'Fluch', 'Brauch', 'Fach'],
-    'tag': ['lag', 'Sag', 'mag', 'pflag'],
+    'tag': ['lag', 'Sag', 'mag', 'pfleg'],
   };
 }
