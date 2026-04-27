@@ -4,6 +4,7 @@ import 'package:video_player/video_player.dart';
 import 'core/school_exercise_generator.dart';
 import 'core/lumo_companion_agent.dart';
 import 'widgets/drawing_pad.dart';
+import 'widgets/premium_lumo_ui.dart';
 
 void main() => runApp(const LumoApp());
 
@@ -86,34 +87,39 @@ class _IntroVideoScreenState extends State<IntroVideoScreen> {
   Widget build(BuildContext context) {
     final c = controller;
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: RadialGradient(
-            center: Alignment.topCenter,
-            radius: 1.2,
-            colors: <Color>[Color(0xffffd68a), Color(0xfffff7e8), Color(0xffdbfff2)],
-          ),
-        ),
-        child: SafeArea(
-          child: Stack(
-            children: <Widget>[
-              Center(
-                child: ready && c != null && c.value.isInitialized
-                    ? AspectRatio(aspectRatio: c.value.aspectRatio, child: VideoPlayer(c))
-                    : _FallbackIntro(failed: failed),
+      body: Stack(
+        children: <Widget>[
+          Container(
+            decoration: const BoxDecoration(
+              gradient: RadialGradient(
+                center: Alignment.topCenter,
+                radius: 1.2,
+                colors: <Color>[Color(0xffffd68a), Color(0xfffff7e8), Color(0xffdbfff2)],
               ),
-              Positioned(
-                right: 16,
-                bottom: 16,
-                child: FilledButton.tonalIcon(
-                  icon: const Icon(Icons.skip_next_rounded),
-                  label: const Text('Intro überspringen'),
-                  onPressed: widget.onDone,
+            ),
+          ),
+          const PremiumBackdrop(),
+          SafeArea(
+            child: Stack(
+              children: <Widget>[
+                Center(
+                  child: ready && c != null && c.value.isInitialized
+                      ? AspectRatio(aspectRatio: c.value.aspectRatio, child: VideoPlayer(c))
+                      : _FallbackIntro(failed: failed),
                 ),
-              ),
-            ],
+                Positioned(
+                  right: 16,
+                  bottom: 16,
+                  child: FilledButton.tonalIcon(
+                    icon: const Icon(Icons.skip_next_rounded),
+                    label: const Text('Intro überspringen'),
+                    onPressed: widget.onDone,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -171,7 +177,7 @@ class _LumoHomeState extends State<LumoHome> {
   late LumoTask currentTask;
 
   int get level => xp ~/ 100 + 1;
-  double get progress => ((xp % 100) / 100).clamp(0, 1);
+  double get progress => ((xp % 100) / 100).clamp(0, 1).toDouble();
 
   @override
   void initState() {
@@ -191,11 +197,16 @@ class _LumoHomeState extends State<LumoHome> {
     final wide = MediaQuery.sizeOf(context).width >= 700;
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: <Color>[Color(0xfffff0d7), Color(0xfffffaf4), Color(0xffe8fff6), Color(0xffeaf4ff)]),
-          ),
-          child: wide ? _wideLayout() : Stack(children: <Widget>[_content(), _floatingLumo()]),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: <Color>[Color(0xfffff0d7), Color(0xfffffaf4), Color(0xffe8fff6), Color(0xffeaf4ff)]),
+              ),
+            ),
+            const PremiumBackdrop(),
+            wide ? _wideLayout() : Stack(children: <Widget>[_content(), _floatingLumo()]),
+          ],
         ),
       ),
       bottomNavigationBar: wide ? null : NavigationBar(
@@ -269,7 +280,7 @@ class _LumoHomeState extends State<LumoHome> {
 
   Widget _content() {
     return ListView(padding: const EdgeInsets.fromLTRB(18, 18, 18, 110), children: <Widget>[
-      _card(Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      GlassPanel(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
         Row(children: <Widget>[
           Expanded(child: Text(_title, style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w900, color: Color(0xff1f163a)))),
           _pill('★ $stars'),
@@ -305,68 +316,47 @@ class _LumoHomeState extends State<LumoHome> {
         _ => _home(),
       };
 
-  Widget _card(Widget child) => Container(decoration: _glassDecoration(), padding: const EdgeInsets.all(22), child: child);
+  Widget _card(Widget child) => GlassPanel(child: child);
   Widget _pill(String text) => Container(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8), decoration: BoxDecoration(color: Colors.orange.shade100, borderRadius: BorderRadius.circular(99), boxShadow: _softShadow), child: Text(text, style: const TextStyle(fontWeight: FontWeight.w900)));
   BoxDecoration _glassDecoration() => BoxDecoration(color: Colors.white.withOpacity(.78), borderRadius: BorderRadius.circular(34), border: Border.all(color: Colors.white.withOpacity(.75)), boxShadow: _softShadow);
   List<BoxShadow> get _softShadow => <BoxShadow>[BoxShadow(color: Colors.deepOrange.withOpacity(.10), blurRadius: 22, offset: const Offset(0, 12))];
 
   Widget _home() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Container(
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(gradient: const LinearGradient(colors: <Color>[Color(0xffffd58a), Color(0xfffff2ce)]), borderRadius: BorderRadius.circular(30), boxShadow: _softShadow),
-        child: Row(children: <Widget>[
-          const LumoFox(size: 112, mood: 'greet'),
-          const SizedBox(width: 14),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-            const Text('Heute reicht eine kleine Mission.', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Color(0xff3a220c))),
-            const SizedBox(height: 6),
-            Text(agent.nextSuggestion(practice), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-            const SizedBox(height: 10),
-            FilledButton.icon(onPressed: () => setState(() { mode = LumoMode.practice; currentTask = _newTask(); }), icon: const Icon(Icons.play_arrow_rounded), label: const Text('Mission starten')),
-          ])),
-        ]),
+      PremiumHeroBanner(
+        title: 'Heute reicht eine kleine Mission.',
+        subtitle: agent.nextSuggestion(practice),
+        actionLabel: 'Mission starten',
+        lumo: const LumoFox(size: 112, mood: 'greet'),
+        onAction: () => setState(() { mode = LumoMode.practice; currentTask = _newTask(); }),
       ),
       const SizedBox(height: 18),
       Wrap(spacing: 12, runSpacing: 12, children: <Widget>[
-        _premiumTile('Zahleninsel', 'Mathe mit Punkten und Zahlenstrahl', Icons.calculate_rounded, Colors.orange, () { subject = 'Mathematik'; lessonUnit = 'Alle'; mode = LumoMode.practice; currentTask = _newTask(); }),
-        _premiumTile('Buchstabenwald', 'Deutsch, Silben, Reime, Sätze', Icons.menu_book_rounded, Colors.purple, () { subject = 'Deutsch'; lessonUnit = 'Alle'; mode = LumoMode.practice; currentTask = _newTask(); }),
-        _premiumTile('Schreib-Zaubertisch', 'Finger schreiben im Heftfeld', Icons.draw_rounded, Colors.teal, () { subject = 'Schreiben'; lessonUnit = 'Alle'; mode = LumoMode.practice; currentTask = _newTask(); }),
-        _premiumTile('Schularbeit', 'Gemischter Test mit Note', Icons.assignment_rounded, Colors.blue, () { mode = LumoMode.test; _startTest(); }),
-        _premiumTile('Lumo-KI', 'Sicherer Lernfreund', Icons.smart_toy_rounded, Colors.deepOrange, () { mode = LumoMode.coach; }),
-        _premiumTile('Lernprofil', 'Plan aus Fehlern und Erfolgen', Icons.analytics_rounded, Colors.brown, () { mode = LumoMode.profile; }),
+        LearningWorldCard(title: 'Zahleninsel', subtitle: 'Mathe mit Punkten und Zahlenstrahl', icon: Icons.calculate_rounded, color: Colors.orange, badge: 'Mathe', onTap: () => setState(() { subject = 'Mathematik'; lessonUnit = 'Alle'; mode = LumoMode.practice; currentTask = _newTask(); })),
+        LearningWorldCard(title: 'Buchstabenwald', subtitle: 'Deutsch, Silben, Reime, Sätze', icon: Icons.menu_book_rounded, color: Colors.purple, badge: 'Deutsch', onTap: () => setState(() { subject = 'Deutsch'; lessonUnit = 'Alle'; mode = LumoMode.practice; currentTask = _newTask(); })),
+        LearningWorldCard(title: 'Schreib-Zaubertisch', subtitle: 'Finger schreiben im Heftfeld', icon: Icons.draw_rounded, color: Colors.teal, badge: 'Touch', onTap: () => setState(() { subject = 'Schreiben'; lessonUnit = 'Alle'; mode = LumoMode.practice; currentTask = _newTask(); })),
+        LearningWorldCard(title: 'Schularbeit', subtitle: 'Gemischter Test mit Note', icon: Icons.assignment_rounded, color: Colors.blue, badge: 'Test', onTap: () => setState(() { mode = LumoMode.test; _startTest(); })),
+        LearningWorldCard(title: 'Lumo-KI', subtitle: 'Sicherer Lernfreund', icon: Icons.smart_toy_rounded, color: Colors.deepOrange, badge: 'Offline', onTap: () => setState(() { mode = LumoMode.coach; })),
+        LearningWorldCard(title: 'Lernprofil', subtitle: 'Plan aus Fehlern und Erfolgen', icon: Icons.analytics_rounded, color: Colors.brown, badge: 'Profil', onTap: () => setState(() { mode = LumoMode.profile; })),
       ]),
       const SizedBox(height: 16),
       _progressPanel(),
     ]);
   }
 
-  Widget _premiumTile(String title, String sub, IconData icon, Color color, VoidCallback target) {
-    return InkWell(
-      onTap: () => setState(target),
-      borderRadius: BorderRadius.circular(28),
-      child: Container(
-        width: 240,
-        height: 145,
-        padding: const EdgeInsets.all(17),
-        decoration: BoxDecoration(color: color.withOpacity(.18), borderRadius: BorderRadius.circular(28), border: Border.all(color: color.withOpacity(.18)), boxShadow: _softShadow),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-          CircleAvatar(backgroundColor: Colors.white, child: Icon(icon, color: color)),
-          const Spacer(),
-          Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
-          Text(sub, style: const TextStyle(fontWeight: FontWeight.w600)),
-        ]),
-      ),
-    );
-  }
-
   Widget _progressPanel() {
-    return Container(
+    return GlassPanel(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: Colors.white.withOpacity(.62), borderRadius: BorderRadius.circular(28)),
+      radius: 28,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
         const Text('Lernwelt-Status', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
-        const SizedBox(height: 10),
+        const SizedBox(height: 12),
+        Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+          PremiumStatCard(title: 'Sterne', value: '$stars', icon: Icons.star_rounded, color: Colors.amber),
+          PremiumStatCard(title: 'Level', value: '$level', icon: Icons.workspace_premium_rounded, color: Colors.deepOrange),
+          PremiumStatCard(title: 'Letzte Note', value: lastGrade == 0 ? '-' : '$lastGrade', icon: Icons.school_rounded, color: Colors.blue),
+        ]),
+        const SizedBox(height: 14),
         LinearProgressIndicator(value: progress, minHeight: 12, borderRadius: BorderRadius.circular(99), color: Colors.deepOrange, backgroundColor: Colors.deepOrange.withOpacity(.12)),
         const SizedBox(height: 10),
         Text('XP bis zum nächsten Level: ${(progress * 100).round()} %'),
@@ -385,7 +375,7 @@ class _LumoHomeState extends State<LumoHome> {
   Widget _subjectBlock(String title, List<String> units) {
     final colors = <Color>[Colors.orange, Colors.purple, Colors.teal, Colors.blue, Colors.green, Colors.deepOrange, Colors.brown];
     final color = colors[title.length % colors.length];
-    return Container(margin: const EdgeInsets.only(bottom: 14), padding: const EdgeInsets.all(16), decoration: BoxDecoration(color: color.withOpacity(.12), borderRadius: BorderRadius.circular(28), border: Border.all(color: color.withOpacity(.18))), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+    return Container(margin: const EdgeInsets.only(bottom: 14), padding: const EdgeInsets.all(16), decoration: BoxDecoration(color: color.withOpacity(.12), borderRadius: BorderRadius.circular(28), border: Border.all(color: color.withOpacity(.18)), boxShadow: _softShadow), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(title, style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
       const SizedBox(height: 8),
       Wrap(spacing: 8, runSpacing: 8, children: units.map((unit) => ActionChip(label: Text(unit), avatar: Icon(Icons.auto_awesome, size: 16, color: color), onPressed: () => setState(() { subject = title; lessonUnit = unit; currentTask = _newTask(); mode = LumoMode.practice; message = '$title: $unit gestartet.'; }))).toList()),
@@ -463,7 +453,7 @@ class _LumoHomeState extends State<LumoHome> {
 
   Widget _scan() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[const Text('Scan-Simulation: Text aus einer Schularbeit eingeben.'), const TextField(maxLines: 3, decoration: InputDecoration(hintText: 'z.B. Minus falsch, A schreiben unsicher')), FilledButton(onPressed: () => setState(() { practice['Minus bis 20'] = (practice['Minus bis 20'] ?? 0) + 1; practice['Buchstaben'] = (practice['Buchstaben'] ?? 0) + 1; mode = LumoMode.profile; message = agent.nextSuggestion(practice); }), child: const Text('Analysieren'))]);
   Widget _profile() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[const Text('Analyseprofil', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)), Text('Sicher gelöst: $solved'), Text('Mehr üben: $practice'), Text('Letzte Note: ${lastGrade == 0 ? 'noch keine' : lastGrade}'), Text(agent.nextSuggestion(practice))]);
-  Widget _sidePanel() => Container(margin: const EdgeInsets.fromLTRB(0, 14, 14, 14), child: _card(Column(children: <Widget>[LumoFox(size: 150, mood: foxMood), Text('★ $stars', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), Text('Level $level'), const SizedBox(height: 8), LinearProgressIndicator(value: progress, minHeight: 9, borderRadius: BorderRadius.circular(99)), const SizedBox(height: 12), Text(message, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w800))])));
+  Widget _sidePanel() => Container(margin: const EdgeInsets.fromLTRB(0, 14, 14, 14), child: GlassPanel(child: Column(children: <Widget>[LumoFox(size: 150, mood: foxMood), Text('★ $stars', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), Text('Level $level'), const SizedBox(height: 8), LinearProgressIndicator(value: progress, minHeight: 9, borderRadius: BorderRadius.circular(99)), const SizedBox(height: 12), Text(message, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w800))])));
 
   Widget _floatingLumo() => Positioned(right: 10, bottom: 10, child: IgnorePointer(child: Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: Colors.white.withOpacity(.76), borderRadius: BorderRadius.circular(28), boxShadow: _softShadow), child: LumoFox(size: 78, mood: foxMood))));
 }
