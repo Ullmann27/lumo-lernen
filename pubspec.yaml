@@ -1,7 +1,7 @@
 name: lumo_lernen
 description: Lumo Lernen Flutter Android App
 publish_to: none
-version: 0.4.0+4
+version: 0.6.0+6
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  video_player: ^2.9.2
+  shared_preferences: ^2.3.3
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +19,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/videos/
