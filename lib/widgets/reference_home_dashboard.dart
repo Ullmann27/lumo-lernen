@@ -1,0 +1,147 @@
+import 'package:flutter/material.dart';
+
+class ReferenceHomeDashboard extends StatelessWidget {
+  const ReferenceHomeDashboard({
+    super.key,
+    required this.stars,
+    required this.xp,
+    required this.level,
+    required this.progress,
+    required this.lumo,
+    required this.onMath,
+    required this.onGerman,
+    required this.onEnglish,
+    required this.onPractice,
+    required this.onTest,
+    required this.onSchoolwork,
+    required this.onPhoto,
+    required this.onContinue,
+    required this.onProfile,
+  });
+
+  final int stars;
+  final int xp;
+  final int level;
+  final int progress;
+  final Widget lumo;
+  final VoidCallback onMath;
+  final VoidCallback onGerman;
+  final VoidCallback onEnglish;
+  final VoidCallback onPractice;
+  final VoidCallback onTest;
+  final VoidCallback onSchoolwork;
+  final VoidCallback onPhoto;
+  final VoidCallback onContinue;
+  final VoidCallback onProfile;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(14),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xfffffbf4),
+          borderRadius: BorderRadius.circular(34),
+          boxShadow: [BoxShadow(color: Colors.black.withOpacity(.10), blurRadius: 34, offset: const Offset(0, 18))],
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Row(children: [_sidebar(), Expanded(child: _main()), _rightPanel()]),
+      ),
+    );
+  }
+
+  Widget _sidebar() => Container(
+        width: 190,
+        color: const Color(0xfffff6ec),
+        padding: const EdgeInsets.fromLTRB(26, 28, 18, 24),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Text('Lumo\nLernen', style: TextStyle(fontSize: 29, height: .9, fontWeight: FontWeight.w900, color: Color(0xffff6d00))),
+          const SizedBox(height: 34),
+          _nav(Icons.home_rounded, 'Start', true, () {}),
+          _nav(Icons.school_rounded, 'Lernen', false, onMath),
+          _nav(Icons.edit_rounded, 'Übungen', false, onPractice),
+          _nav(Icons.bar_chart_rounded, 'Fortschritt', false, onProfile),
+          _nav(Icons.star_rounded, 'Belohnungen', false, () {}),
+          _nav(Icons.person_rounded, 'Profil', false, onProfile),
+          const Spacer(),
+          InkWell(
+            onTap: onProfile,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: _box(22, Colors.white.withOpacity(.88)),
+              child: const Row(children: [CircleAvatar(radius: 18, backgroundColor: Color(0xffffd4a4), child: Text('🦊')), SizedBox(width: 10), Expanded(child: Text('Lena\nKlasse 2', style: TextStyle(fontWeight: FontWeight.w800, height: 1.1))), Icon(Icons.chevron_right_rounded)]),
+            ),
+          ),
+        ]),
+      );
+
+  Widget _main() => SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(34, 28, 28, 28),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Text('Hallo, Lena! 👋', style: TextStyle(fontSize: 34, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 4),
+          const Text('Bereit für ein neues Lernabenteuer?', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Color(0xff6c625c))),
+          const SizedBox(height: 24),
+          Wrap(spacing: 16, runSpacing: 16, children: [
+            _stat('Sterne', '$stars /50', Icons.star_rounded, const Color(0xffa855f7)),
+            _stat('XP Punkte', '$xp', Icons.workspace_premium_rounded, const Color(0xffffb000)),
+            _stat('Level', '$level Einsteiger', Icons.diamond_rounded, const Color(0xff14b8a6)),
+            _stat('Lernfortschritt', '$progress%', Icons.donut_large_rounded, const Color(0xff3b82f6)),
+          ]),
+          const SizedBox(height: 30),
+          const Text('Was möchtest du lernen?', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 16),
+          LayoutBuilder(builder: (context, c) {
+            final w = c.maxWidth >= 780 ? (c.maxWidth - 32) / 3 : (c.maxWidth - 16) / 2;
+            return Wrap(spacing: 16, runSpacing: 16, children: [
+              _card(w, 'Mathematik', 'Zahlen, Rechnen,\nGeometrie & mehr', 'Weiterlernen', Icons.calculate_rounded, '1²', const Color(0xfffff1c4), const Color(0xffff8a00), onMath),
+              _card(w, 'Deutsch', 'Lesen, Schreiben,\nGrammatik', 'Weiterlernen', Icons.menu_book_rounded, 'A', const Color(0xfff7e5ff), const Color(0xff8b5cf6), onGerman),
+              _card(w, 'Englisch', 'Wörter, Sätze,\nVerstehen', 'Weiterlernen', Icons.language_rounded, 'Hi!', const Color(0xffe3fff6), const Color(0xff14b8a6), onEnglish),
+              _card(w, 'Übung', 'Interaktive Übungen\nund Spiele', 'Üben', Icons.edit_rounded, '★', const Color(0xffffe2df), const Color(0xffff6b6b), onPractice),
+              _card(w, 'Test', 'Teste dein Wissen\nund sammle Sterne', 'Test starten', Icons.assignment_turned_in_rounded, '✓', const Color(0xffe4f0ff), const Color(0xff3b82f6), onTest),
+              _card(w, 'Schularbeit', 'Gemischter Test\nmit Note', 'Starten', Icons.description_rounded, 'A+', const Color(0xfffff0c9), const Color(0xffff9b21), onSchoolwork),
+            ]);
+          }),
+          const SizedBox(height: 16),
+          LayoutBuilder(builder: (context, c) {
+            final w = c.maxWidth >= 780 ? (c.maxWidth - 16) / 2 : c.maxWidth;
+            return Wrap(spacing: 16, runSpacing: 16, children: [
+              _wide(w, 'Aufgabe fotografieren', 'Mach ein Foto deiner Aufgabe\nund lass dir helfen!', 'Foto machen', Icons.photo_camera_rounded, const Color(0xfff3d7ff), const Color(0xffa855f7), onPhoto),
+              _wide(w, 'Weiterlernen', 'Setze da weiter, wo du\naufgehört hast', 'Anzeigen', Icons.play_circle_rounded, const Color(0xffdffaf2), const Color(0xff14b8a6), onContinue),
+            ]);
+          }),
+        ]),
+      );
+
+  Widget _rightPanel() => Container(
+        width: 380,
+        padding: const EdgeInsets.fromLTRB(0, 16, 20, 16),
+        child: Container(
+          decoration: BoxDecoration(gradient: const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xffffcf91), Color(0xffffe7bd)]), borderRadius: BorderRadius.circular(34), boxShadow: _shadow, border: Border.all(color: Colors.white70, width: 2)),
+          padding: const EdgeInsets.all(22),
+          child: Column(children: [
+            Container(padding: const EdgeInsets.all(18), decoration: _box(28, Colors.white.withOpacity(.85)), child: const Text('Hallo!\nWomit wollen wir\nheute lernen?', style: TextStyle(fontSize: 22, height: 1.18, fontWeight: FontWeight.w700))),
+            Expanded(child: Center(child: lumo)),
+            Container(padding: const EdgeInsets.all(18), decoration: _box(28, Colors.white.withOpacity(.70)), child: const Row(children: [Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [Text('Tagesziel', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)), SizedBox(height: 6), Text('Schließe 3 Aktivitäten ab'), SizedBox(height: 10), Row(children: [Icon(Icons.check_circle_rounded, color: Color(0xff59c76f)), SizedBox(width: 8), Icon(Icons.check_circle_rounded, color: Color(0xff59c76f)), SizedBox(width: 8), CircleAvatar(radius: 13, backgroundColor: Colors.white, child: Text('3'))])])), CircleAvatar(radius: 34, backgroundColor: Color(0xfffff1c4), child: Text('🎁', style: TextStyle(fontSize: 28)))])),
+          ]),
+        ),
+      );
+
+  Widget _nav(IconData icon, String label, bool selected, VoidCallback tap) => Padding(padding: const EdgeInsets.only(bottom: 16), child: InkWell(onTap: tap, borderRadius: BorderRadius.circular(22), child: Container(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12), decoration: BoxDecoration(color: selected ? const Color(0xffffefe1) : Colors.transparent, borderRadius: BorderRadius.circular(22), boxShadow: selected ? _shadow : null), child: Row(children: [Container(width: 42, height: 42, decoration: _box(15, Colors.white), child: Icon(icon, color: selected ? const Color(0xffff7a1a) : const Color(0xff8e7d74))), const SizedBox(width: 12), Expanded(child: Text(label, style: TextStyle(fontWeight: FontWeight.w800, color: selected ? const Color(0xffff6d00) : const Color(0xff5f5650))))]))));
+
+  Widget _stat(String title, String value, IconData icon, Color color) => Container(width: 170, height: 108, padding: const EdgeInsets.all(14), decoration: _box(22, Colors.white.withOpacity(.84)), child: Row(children: [Icon(icon, color: color, size: 36), const SizedBox(width: 12), Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: color, fontWeight: FontWeight.w900, fontSize: 12)), Text(value, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w900)), const SizedBox(height: 6), ClipRRect(borderRadius: BorderRadius.circular(99), child: LinearProgressIndicator(value: .55, minHeight: 7, color: color, backgroundColor: color.withOpacity(.13)))]))]));
+
+  Widget _card(double width, String title, String sub, String cta, IconData icon, String art, Color color, Color accent, VoidCallback tap) => InkWell(onTap: tap, borderRadius: BorderRadius.circular(28), child: Container(width: width.clamp(210, 330).toDouble(), height: 160, padding: const EdgeInsets.all(18), decoration: _box(28, color), child: Stack(children: [Positioned(right: 8, bottom: 2, child: Text(art, style: TextStyle(fontSize: 50, color: accent.withOpacity(.80), fontWeight: FontWeight.w900))), Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Row(children: [CircleAvatar(radius: 18, backgroundColor: Colors.white, child: Icon(icon, color: accent, size: 20)), const SizedBox(width: 10), Expanded(child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900, color: accent.darken())))]), const SizedBox(height: 10), Text(sub, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 13, height: 1.15, fontWeight: FontWeight.w700, color: Color(0xff655c55))), const Spacer(), _small(cta, accent)])])));
+
+  Widget _wide(double width, String title, String sub, String button, IconData icon, Color color, Color accent, VoidCallback tap) => InkWell(onTap: tap, borderRadius: BorderRadius.circular(28), child: Container(width: width, height: 150, padding: const EdgeInsets.all(18), decoration: _box(28, color), child: Stack(children: [Positioned(right: 18, bottom: 8, child: Icon(icon, size: 72, color: accent.withOpacity(.58))), Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Row(children: [CircleAvatar(radius: 18, backgroundColor: Colors.white, child: Icon(icon, color: accent, size: 20)), const SizedBox(width: 10), Expanded(child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: accent.darken())))]), const SizedBox(height: 10), Text(sub, style: const TextStyle(fontSize: 13, height: 1.15, fontWeight: FontWeight.w700, color: Color(0xff655c55))), const Spacer(), _small(button, accent)])])));
+
+  Widget _small(String label, Color color) => Container(padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9), decoration: BoxDecoration(color: Colors.white.withOpacity(.75), borderRadius: BorderRadius.circular(99)), child: Row(mainAxisSize: MainAxisSize.min, children: [Text(label, style: TextStyle(fontWeight: FontWeight.w900, color: color.darken())), const SizedBox(width: 4), Icon(Icons.arrow_forward_rounded, size: 16, color: color.darken())]));
+
+  BoxDecoration _box(double radius, Color color) => BoxDecoration(color: color, borderRadius: BorderRadius.circular(radius), border: Border.all(color: Colors.white.withOpacity(.70)), boxShadow: _shadow);
+}
+
+extension _ColorX on Color {
+  Color darken([double amount = .22]) => HSLColor.fromColor(this).withLightness((HSLColor.fromColor(this).lightness - amount).clamp(0.0, 1.0)).toColor();
+}
+
+final List<BoxShadow> _shadow = [BoxShadow(color: Colors.deepOrange.withOpacity(.10), blurRadius: 20, offset: const Offset(0, 10)), BoxShadow(color: Colors.black.withOpacity(.04), blurRadius: 14, offset: const Offset(0, 4))];
