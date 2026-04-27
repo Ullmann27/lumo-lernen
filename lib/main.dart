@@ -4,6 +4,7 @@ import 'package:video_player/video_player.dart';
 import 'core/lumo_companion_agent.dart';
 import 'core/school_exercise_generator.dart';
 import 'widgets/drawing_pad.dart';
+import 'widgets/embedded_lumo_fox.dart';
 import 'widgets/reference_home_dashboard.dart';
 
 void main() => runApp(const LumoApp());
@@ -176,7 +177,7 @@ class _LumoHomeState extends State<LumoHome> {
 
   @override
   Widget build(BuildContext context) {
-    final wide = MediaQuery.sizeOf(context).width >= 900;
+    final wide = MediaQuery.sizeOf(context).width >= 760;
     if (wide && mode == LumoMode.home) {
       return Scaffold(
         body: SafeArea(
@@ -185,7 +186,7 @@ class _LumoHomeState extends State<LumoHome> {
             xp: xp,
             level: level,
             progress: progressPercent,
-            lumo: const LumoFox(size: 265, mood: 'greet'),
+            lumo: const LumoFox(size: 230, mood: 'greet'),
             onMath: () => setState(() => _startSubject('Mathematik')),
             onGerman: () => setState(() => _startSubject('Deutsch')),
             onEnglish: () => setState(() => _startSubject('Englisch')),
@@ -369,23 +370,15 @@ class _LumoFoxState extends State<LumoFox> with SingleTickerProviderStateMixin {
     return AnimatedBuilder(
       animation: controller,
       builder: (context, child) => Transform.translate(offset: Offset(0, jump ? -18 * controller.value : -5 * controller.value), child: Transform.scale(scale: 1 + (jump ? .035 : .012) * controller.value, child: child)),
-      child: SizedBox(width: widget.size, height: widget.size * 1.25, child: Image.asset(lumoFoxAsset, fit: BoxFit.contain, errorBuilder: (_, __, ___) => _FallbackFox(size: widget.size))),
+      child: SizedBox(
+        width: widget.size,
+        height: widget.size * 1.42,
+        child: Image.asset(
+          lumoFoxAsset,
+          fit: BoxFit.contain,
+          errorBuilder: (_, __, ___) => EmbeddedLumoFox(size: widget.size),
+        ),
+      ),
     );
   }
-}
-
-class _FallbackFox extends StatelessWidget {
-  const _FallbackFox({required this.size});
-  final double size;
-  @override
-  Widget build(BuildContext context) => SizedBox(width: size, height: size, child: Stack(alignment: Alignment.center, children: [
-        Positioned(bottom: size * .10, child: Container(width: size * .55, height: size * .08, decoration: BoxDecoration(color: Colors.brown.withOpacity(.16), borderRadius: BorderRadius.circular(99)))),
-        Positioned(bottom: size * .18, child: Container(width: size * .42, height: size * .45, decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.orange.shade300, Colors.deepOrange]), borderRadius: BorderRadius.circular(size * .18)))),
-        Positioned(top: size * .18, child: Container(width: size * .54, height: size * .46, decoration: BoxDecoration(color: Colors.orange.shade400, borderRadius: BorderRadius.circular(size * .20)))),
-        Positioned(top: size * .07, left: size * .25, child: Transform.rotate(angle: -.35, child: Container(width: size * .15, height: size * .28, decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(99))))),
-        Positioned(top: size * .07, right: size * .25, child: Transform.rotate(angle: .35, child: Container(width: size * .15, height: size * .28, decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(99))))),
-        Positioned(top: size * .39, left: size * .36, child: CircleAvatar(radius: size * .035, backgroundColor: Colors.black87)),
-        Positioned(top: size * .39, right: size * .36, child: CircleAvatar(radius: size * .035, backgroundColor: Colors.black87)),
-        Positioned(top: size * .48, child: Container(width: size * .24, height: size * .15, decoration: BoxDecoration(color: Colors.white.withOpacity(.88), borderRadius: BorderRadius.circular(99)))),
-      ]));
 }
