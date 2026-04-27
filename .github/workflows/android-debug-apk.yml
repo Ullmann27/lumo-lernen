@@ -3,43 +3,21 @@ name: Build Android Debug APK
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Unpack uploaded Flutter ZIP if present
-        run: |
-          ZIP_FILE=""
-          if ls *.zip >/dev/null 2>&1; then
-            ZIP_FILE=$(ls *.zip | head -n 1)
-            echo "Found ZIP: $ZIP_FILE"
-            mkdir -p /tmp/lumo_unpack
-            unzip -o "$ZIP_FILE" -d /tmp/lumo_unpack
-            if [ -d "/tmp/lumo_unpack/lumo_lernen_flutter" ]; then
-              cp -R /tmp/lumo_unpack/lumo_lernen_flutter/. .
-            else
-              cp -R /tmp/lumo_unpack/. .
-            fi
-          else
-            echo "No ZIP found. Building repository contents directly."
-          fi
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "17"
+          java-version: '17'
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
@@ -47,26 +25,59 @@ jobs:
       - name: Flutter version
         run: flutter --version
 
-      - name: Create Android platform if missing
+      - name: Prepare Flutter project
         run: |
-          if [ ! -d "android" ]; then
-            flutter create --platforms=android .
+          if [ ! -f pubspec.yaml ]; then
+            flutter create --platforms=android --project-name lumo_lernen .
+            cat > lib/main.dart <<'DART'
+          import 'package:flutter/material.dart';
+          void main() => runApp(const LumoApp());
+          class LumoApp extends StatelessWidget {
+            const LumoApp({super.key});
+            @override Widget build(BuildContext context) => MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Lumo Lernen',
+              theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange), useMaterial3: true),
+              home: const LumoHome(),
+            );
+          }
+          class LumoHome extends StatefulWidget { const LumoHome({super.key}); @override State<LumoHome> createState()=>_LumoHomeState(); }
+          class _LumoHomeState extends State<LumoHome> {
+            int stars=12; int page=0; String msg='Heute reicht eine kleine Mission.';
+            final pages=['Home','Lernen','Lumo-Agent','Erkennen','Check','Bonus','Eltern','Memory','Schutz'];
+            @override Widget build(BuildContext context){
+              final wide=MediaQuery.sizeOf(context).width>700;
+              return Scaffold(
+                body: Row(children:[if(wide) NavigationRail(selectedIndex: page,onDestinationSelected:(v)=>setState(()=>page=v),labelType:NavigationRailLabelType.all,destinations: const [
+                  NavigationRailDestination(icon:Icon(Icons.home),label:Text('Home')),NavigationRailDestination(icon:Icon(Icons.menu_book),label:Text('Lernen')),NavigationRailDestination(icon:Icon(Icons.chat),label:Text('Lumo')),NavigationRailDestination(icon:Icon(Icons.document_scanner),label:Text('Erkennen')),NavigationRailDestination(icon:Icon(Icons.psychology),label:Text('Check')),NavigationRailDestination(icon:Icon(Icons.card_giftcard),label:Text('Bonus')),NavigationRailDestination(icon:Icon(Icons.family_restroom),label:Text('Eltern')),NavigationRailDestination(icon:Icon(Icons.park),label:Text('Memory')),NavigationRailDestination(icon:Icon(Icons.shield),label:Text('Schutz'))]),Expanded(child:_screen()), if(wide) SizedBox(width:260,child:_panel())]),
+                bottomNavigationBar: wide?null:NavigationBar(selectedIndex: page>4?0:page,onDestinationSelected:(v)=>setState(()=>page=v),destinations: const [NavigationDestination(icon:Icon(Icons.home),label:'Home'),NavigationDestination(icon:Icon(Icons.menu_book),label:'Lernen'),NavigationDestination(icon:Icon(Icons.chat),label:'Lumo'),NavigationDestination(icon:Icon(Icons.document_scanner),label:'Erkennen'),NavigationDestination(icon:Icon(Icons.psychology),label:'Check')]),
+              );
+            }
+            Widget _screen()=>Container(decoration:const BoxDecoration(gradient:LinearGradient(colors:[Color(0xfffff3cf),Color(0xffe8fff6)])),child:ListView(padding:const EdgeInsets.all(16),children:[_card(Column(crossAxisAlignment:CrossAxisAlignment.start,children:[Text(pages[page],style:const TextStyle(fontSize:32,fontWeight:FontWeight.w900)),const SizedBox(height:8),Text(msg),const SizedBox(height:12),if(page==1)_learn(),if(page==2)_agent(),if(page==3)_recognize(),if(page==5)_bonus(),if(page==6)const Text('Warum empfiehlt Lumo das? Subtraktion bis 20 braucht kurze Wiederholung.'),if(page==7)const Text('MemoryGraph: Skills, Hilfen und Fortschritt werden pädagogisch gespeichert.'),if(page==8)const Text('Keine Werbung. Kein offener Kinder-Chat. Foto und Mikrofon nur mit Elternfreigabe.'),if(page==0)Wrap(spacing:8,children:[ElevatedButton(onPressed:()=>setState(()=>page=1),child:const Text('Mission starten')),ElevatedButton(onPressed:()=>setState(()=>page=3),child:const Text('Aufgabe erkennen')),ElevatedButton(onPressed:()=>setState(()=>page=2),child:const Text('Lumo fragen'))])]))]));
+            Widget _panel()=>_card(Column(children:[const Icon(Icons.pets,size:90,color:Colors.orange),Text('★ $stars',style:const TextStyle(fontSize:26,fontWeight:FontWeight.w900)),Text(msg,textAlign:TextAlign.center)]));
+            Widget _card(Widget child)=>Card(elevation:8,shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(28)),child:Padding(padding:const EdgeInsets.all(18),child:child));
+            Widget _learn()=>Column(children:[const Text('18 - 5 = ?',style:TextStyle(fontSize:38,fontWeight:FontWeight.w900)),Wrap(spacing:8,children:[12,13,14].map((n)=>ElevatedButton(onPressed:(){setState((){ if(n==13){stars+=3;msg='Fuchsstark! Richtig.';} else {msg='Fast. Nach drei Versuchen helfe ich ruhig Schritt für Schritt.';}});},child:Text('$n',style:const TextStyle(fontSize:24)))).toList())]);
+            Widget _agent()=>Column(children:[const Text('Sicherer Agent: keine privaten Daten, keine Treffen, keine offenen Internetantworten.'),ElevatedButton(onPressed:()=>setState(()=>msg='Wir machen es Schritt für Schritt.'),child:const Text('Lernhilfe'))]);
+            Widget _recognize()=>Column(children:[const Text('Erkennt: 12+7, 18-5, 2,4,6,?, Reime und Noten.'),ElevatedButton(onPressed:()=>setState(()=>msg='Subtraktion erkannt. Confidence 93%.'),child:const Text('18 - 5 erkennen'))]);
+            Widget _bonus()=>Column(children:[Text('Sterne: $stars'),const Text('Gutscheine: 1 Eis, Familienfilm, Extra-Geschichte. Demo-PIN 1234.')]);
+          }
+          DART
           fi
+          if [ ! -d android ]; then flutter create --platforms=android .; fi
 
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Analyze project
+      - name: Analyze
         run: flutter analyze
 
-      - name: Run tests
+      - name: Test
         run: flutter test
 
       - name: Build debug APK
         run: flutter build apk --debug
 
-      - name: Upload debug APK
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: lumo-lernen-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
