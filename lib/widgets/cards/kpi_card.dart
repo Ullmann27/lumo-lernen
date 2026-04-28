@@ -1,56 +1,160 @@
 import 'package:flutter/material.dart';
-import '../../app/lumo_design_tokens.dart';
-import '../common/lumo_surface_card.dart';
+import '../../app/app_theme.dart';
 
 class KpiCard extends StatelessWidget {
   const KpiCard({
     super.key,
-    required this.icon,
     required this.label,
     required this.value,
-    required this.accentColor,
-    this.subtitle,
-    this.progress,
-    this.useCircular = false,
+    required this.sub,
+    required this.icon,
+    required this.accent,
+    required this.percent,
   });
 
-  final Widget icon;
   final String label;
   final String value;
-  final String? subtitle;
-  final Color accentColor;
-  final double? progress;
-  final bool useCircular;
+  final String sub;    // e.g. "/50" or "Einsteiger" or "Diese Woche"
+  final String icon;   // emoji
+  final Color accent;
+  final double percent;
 
   @override
   Widget build(BuildContext context) {
-    final normalizedProgress = progress?.clamp(0.0, 1.0).toDouble();
-    return LumoSurfaceCard(
-      width: 168,
-      height: 104,
-      radius: LumoRadius.kpi,
-      padding: const EdgeInsets.all(14),
-      shadowColor: accentColor,
-      color: Colors.white.withOpacity(.86),
+    return Container(
+      width: 190,
+      padding: const EdgeInsets.all(16),
+      decoration: lumoCard(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Top row: label + icon
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                label,
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w900,
+                  color: accent,
+                  letterSpacing: .3,
+                ),
+              ),
+              const Spacer(),
+              Text(icon, style: const TextStyle(fontSize: 22)),
+            ],
+          ),
+          const SizedBox(height: 6),
+          // Value row
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                value,
+                style: LumoTextStyles.kpiValue,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                sub,
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  color: LumoColors.ink300,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          // Progress bar
+          ClipRRect(
+            borderRadius: BorderRadius.circular(LumoRadius.pill),
+            child: LinearProgressIndicator(
+              value: percent.clamp(0.0, 1.0),
+              minHeight: 7,
+              color: accent,
+              backgroundColor: accent.withOpacity(.14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Lernfortschritt mit Donut-Ring statt Balken
+class KpiCircularCard extends StatelessWidget {
+  const KpiCircularCard({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.sub,
+    required this.accent,
+    required this.percent,
+  });
+
+  final String label;
+  final String value;
+  final String sub;
+  final Color accent;
+  final double percent;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 190,
+      padding: const EdgeInsets.all(16),
+      decoration: lumoCard(),
       child: Row(
         children: [
-          SizedBox(width: 34, height: 34, child: Center(child: icon)),
+          // Donut ring
+          SizedBox(
+            width: 60,
+            height: 60,
+            child: Stack(alignment: Alignment.center, children: [
+              CircularProgressIndicator(
+                value: percent.clamp(0.0, 1.0),
+                strokeWidth: 7,
+                color: accent,
+                backgroundColor: accent.withOpacity(.14),
+                strokeCap: StrokeCap.round,
+              ),
+              Text(
+                value,
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w900,
+                  color: accent,
+                ),
+              ),
+            ]),
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.kpiLabel.copyWith(color: accentColor)),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w900,
+                    color: accent,
+                  ),
+                ),
                 const SizedBox(height: 2),
-                Text(value, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.kpiValue),
-                if (subtitle != null) Text(subtitle!, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w700, color: LumoColors.mutedText)),
-                if (normalizedProgress != null) ...[
-                  const SizedBox(height: 8),
-                  useCircular
-                      ? SizedBox(width: 24, height: 24, child: CircularProgressIndicator(value: normalizedProgress, strokeWidth: 4, color: accentColor, backgroundColor: accentColor.withOpacity(.13)))
-                      : ClipRRect(borderRadius: BorderRadius.circular(LumoRadius.pill), child: LinearProgressIndicator(value: normalizedProgress, minHeight: 7, color: accentColor, backgroundColor: accentColor.withOpacity(.13))),
-                ],
+                Text(
+                  value,
+                  style: LumoTextStyles.kpiValue.copyWith(fontSize: 26),
+                ),
+                Text(sub, style: LumoTextStyles.caption),
               ],
             ),
           ),

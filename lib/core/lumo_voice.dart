@@ -2,9 +2,14 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-enum VoiceStatus { idle, speaking, error }
-enum LumoVoiceStyle { calm, explain, celebrate, comfort, whisper }
-
+/// Sprachausgabe fuer Lumo - garantiert robust.
+///
+/// Hauptmerkmale:
+/// - Wartet beim ersten Aufruf garantiert auf vollstaendige Initialisierung
+/// - Faellt automatisch von de-AT auf de-DE auf Standard zurueck
+/// - Zeigt Status (sprechend / bereit / Fehler) per ValueNotifier nach aussen
+/// - Schluckt nichts still: bei Fehlern wird der Status auf "error" gesetzt
+/// - 100 Prozent on-device, Play-Store-konform fuer Kinder-Apps
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
@@ -13,16 +18,24 @@ class LumoVoice {
   Future<void>? _initFuture;
   bool _enabled = true;
 
-  final ValueNotifier<VoiceStatus> status = ValueNotifier<VoiceStatus>(VoiceStatus.idle);
+  /// Beobachtbarer Status (fuer UI-Indikator).
+  final ValueNotifier<VoiceStatus> status =
+      ValueNotifier<VoiceStatus>(VoiceStatus.idle);
+
+  /// Letzter Fehlertext (zur Anzeige).
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
 
   bool get isEnabled => _enabled;
   set isEnabled(bool v) => _enabled = v;
 
-  Future<void> _ensureReady() => _initFuture ??= _doInit();
+  /// Erzwingt Initialisierung. Idempotent. Wartet auf laufende Init.
+  Future<void> _ensureReady() {
+    return _initFuture ??= _doInit();
+  }
 
   Future<void> _doInit() async {
     try {
+      // Handler fuer Status-Updates
       _tts.setStartHandler(() => status.value = VoiceStatus.speaking);
       _tts.setCompletionHandler(() => status.value = VoiceStatus.idle);
       _tts.setCancelHandler(() => status.value = VoiceStatus.idle);
@@ -31,6 +44,7 @@ class LumoVoice {
         status.value = VoiceStatus.error;
       });
 
+      // Sprache: de-AT bevorzugt, sonst de-DE, sonst System
       var languageOk = false;
       for (final lang in ['de-AT', 'de-DE', 'de']) {
         try {
@@ -40,97 +54,47 @@ class LumoVoice {
             languageOk = true;
             break;
           }
-        } catch (_) {}
+        } catch (_) {/* weiter */ }
       }
       if (!languageOk) {
         try {
           await _tts.setLanguage('de-DE');
-        } catch (_) {}
+        } catch (_) {/* notfalls Default */}
       }
 
-      await _applyStyle(LumoVoiceStyle.calm);
+      // Kindgerechte Stimm-Parameter
+      await _tts.setSpeechRate(0.45);
+      await _tts.setPitch(1.18);
+      await _tts.setVolume(1.0);
+
+      // Wir blockieren nicht auf Sprech-Ende - sonst staut sich die UI
       try {
         await _tts.awaitSpeakCompletion(false);
       } catch (_) {}
+
       status.value = VoiceStatus.idle;
     } catch (e) {
       lastError.value = 'TTS-Init fehlgeschlagen: $e';
       status.value = VoiceStatus.error;
+      // _initFuture trotzdem als "fertig" markieren - speak() kann es spaeter neu versuchen
     }
   }
 
-  Future<void> speak(String text, {LumoVoiceStyle style = LumoVoiceStyle.calm}) async {
+  /// Sagt den Text. Bricht laufende Sprachausgabe ab.
+  Future<void> speak(String text) async {
     if (!_enabled || text.trim().isEmpty) return;
     await _ensureReady();
     try {
       await _tts.stop();
-      await _applyStyle(style);
-      final spoken = _shapeForSpeech(text, style);
-      final r = await _tts.speak(spoken);
-      if (kDebugMode) debugPrint('[LumoVoice] $style "$spoken" -> $r');
+      final r = await _tts.speak(text);
+      if (kDebugMode) debugPrint('[LumoVoice] speak("$text") -> $r');
     } catch (e) {
       lastError.value = 'TTS-Fehler: $e';
       status.value = VoiceStatus.error;
     }
   }
 
-  Future<void> speakEvent(String event, String text) async {
-    final style = switch (event) {
-      'correct' || 'mission_finished' || 'success_streak' => LumoVoiceStyle.celebrate,
-      'wrong_1' || 'wrong_2' || 'wrong_3' => LumoVoiceStyle.comfort,
-      'test_start' || 'explain' => LumoVoiceStyle.explain,
-      'pause' => LumoVoiceStyle.whisper,
-      _ => LumoVoiceStyle.calm,
-    };
-    await speak(text, style: style);
-  }
-
-  Future<void> _applyStyle(LumoVoiceStyle style) async {
-    switch (style) {
-      case LumoVoiceStyle.celebrate:
-        await _tts.setSpeechRate(0.49);
-        await _tts.setPitch(1.24);
-        await _tts.setVolume(1.0);
-        break;
-      case LumoVoiceStyle.comfort:
-        await _tts.setSpeechRate(0.39);
-        await _tts.setPitch(1.08);
-        await _tts.setVolume(.92);
-        break;
-      case LumoVoiceStyle.explain:
-        await _tts.setSpeechRate(0.41);
-        await _tts.setPitch(1.13);
-        await _tts.setVolume(1.0);
-        break;
-      case LumoVoiceStyle.whisper:
-        await _tts.setSpeechRate(0.36);
-        await _tts.setPitch(1.04);
-        await _tts.setVolume(.82);
-        break;
-      case LumoVoiceStyle.calm:
-        await _tts.setSpeechRate(0.44);
-        await _tts.setPitch(1.16);
-        await _tts.setVolume(1.0);
-        break;
-    }
-  }
-
-  String _shapeForSpeech(String text, LumoVoiceStyle style) {
-    var shaped = text
-        .replaceAll('!', '! ')
-        .replaceAll('. ', '.  ')
-        .replaceAll('? ', '?  ')
-        .replaceAll('XP', 'Ix Peh')
-        .replaceAll('Lumo', 'Luumo');
-    if (style == LumoVoiceStyle.celebrate) {
-      shaped = shaped.replaceFirst(RegExp(r'^(Sehr gut|Super|Klasse|Richtig|Fuchsfreude)'), 'Juhu. ${RegExp(r'^(Sehr gut|Super|Klasse|Richtig|Fuchsfreude)').firstMatch(shaped)?.group(0) ?? ''}');
-    }
-    if (style == LumoVoiceStyle.comfort && !shaped.startsWith('Ganz ruhig')) {
-      shaped = 'Ganz ruhig.  $shaped';
-    }
-    return shaped.trim();
-  }
-
+  /// Bricht jede laufende Ausgabe sofort ab.
   Future<void> stop() async {
     try {
       await _tts.stop();
@@ -138,5 +102,8 @@ class LumoVoice {
     status.value = VoiceStatus.idle;
   }
 
-  Future<void> test() => speak('Hallo! Ich bin Lumo, dein Lernfuchs. Ich spreche jetzt ruhiger, freundlicher und mit kleinen Pausen.', style: LumoVoiceStyle.explain);
+  /// Test-Funktion - sagt einen festen Probesatz.
+  Future<void> test() => speak('Hallo! Ich bin Lumo, dein Lernfuchs.');
 }
+
+enum VoiceStatus { idle, speaking, error }

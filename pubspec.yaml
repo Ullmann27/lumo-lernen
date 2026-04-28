@@ -1,7 +1,7 @@
 name: lumo_lernen
 description: Lumo Lernen - Lern-App fuer Volksschulkinder (1. und 2. Klasse Oesterreich)
 publish_to: none
-version: 0.7.0+8
+version: 0.8.0+9
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -9,21 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # Intro-Video (lokales Asset, kein Streaming)
-  video_player: ^2.9.2
-
-  # Lokale Speicherung von Fortschritt - kein Cloud-Sync, COPPA/DSGVO-freundlich
   shared_preferences: ^2.3.3
-
-  # Sprachausgabe - on-device TTS, keine Daten verlassen das Geraet
   flutter_tts: ^4.2.0
-
-  # Kamera und Galerie ueber System-UI - nutzt OS-Permission-Dialog
   image_picker: ^1.1.2
-
-  # On-Device Texterkennung (TensorFlow Lite Modell laeuft lokal)
-  # Kein Cloud-Upload, geeignet fuer "Designed for Families"
   google_mlkit_text_recognition: ^0.13.0
 
 dev_dependencies:
