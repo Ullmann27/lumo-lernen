@@ -67,18 +67,26 @@ class PixelReferenceHome extends StatelessWidget {
     required double height,
     required VoidCallback onTap,
   }) {
-    return Positioned.fill(
-      child: FractionallySizedBox(
-        alignment: Alignment.topLeft,
-        widthFactor: width,
-        heightFactor: height,
-        child: Padding(
-          padding: EdgeInsets.only(left: left * 1000, top: top * 1000),
-          child: GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: onTap,
-            child: const SizedBox.expand(),
-          ),
+    return Positioned(
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      child: LayoutBuilder(
+        builder: (context, constraints) => Stack(
+          children: [
+            Positioned(
+              left: constraints.maxWidth * left,
+              top: constraints.maxHeight * top,
+              width: constraints.maxWidth * width,
+              height: constraints.maxHeight * height,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: onTap,
+                child: const SizedBox.expand(),
+              ),
+            ),
+          ],
         ),
       ),
     );
