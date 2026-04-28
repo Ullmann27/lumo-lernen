@@ -9,7 +9,6 @@ import 'widgets/embedded_lumo_fox.dart';
 import 'widgets/free_lumo_fox.dart';
 import 'widgets/parental_gate.dart';
 import 'widgets/profile_screen.dart';
-import 'widgets/reference_home_dashboard.dart';
 import 'widgets/scan_screen.dart';
 import 'widgets/stable_lumo_shell.dart';
 
@@ -214,17 +213,14 @@ class _LumoHomeState extends State<LumoHome> {
 
   void _goHome() {
     mode = LumoMode.home;
-    message = 'Was moechtest du als erstes machen?';
+    message = 'Hallo! Womit wollen wir heute lernen?';
     foxMood = 'greet';
   }
 
   int get _activeIndex {
     if (mode == LumoMode.lesson) return 1;
-    if (mode == LumoMode.practice || mode == LumoMode.coach) return 2;
-    if (mode == LumoMode.test) return 3;
-    if (mode == LumoMode.scan) return 4;
     if (mode == LumoMode.profile) return 5;
-    return 0;
+    return mode == LumoMode.home ? 0 : 2;
   }
 
   Widget _lumoWidget(double size) => FreeLumoFox(
@@ -236,31 +232,6 @@ class _LumoHomeState extends State<LumoHome> {
 
   @override
   Widget build(BuildContext context) {
-    final wide = MediaQuery.sizeOf(context).width >= 760;
-    if (wide && mode == LumoMode.home) {
-      return Scaffold(
-        body: SafeArea(
-          child: ReferenceHomeDashboard(
-            stars: stars,
-            xp: xp,
-            level: level,
-            progress: progressPercent,
-            lumo: _lumoWidget(240),
-            onMath: () => setState(() => _startSubject('Mathematik')),
-            onGerman: () => setState(() => _startSubject('Deutsch')),
-            onEnglish: () => setState(() => _startSubject('Englisch')),
-            onPractice: () => setState(_startPractice),
-            onTest: () => setState(_startTest),
-            onSchoolwork: () => setState(_startTest),
-            onPhoto: () => setState(() => mode = LumoMode.scan),
-            onContinue: () => setState(_startPractice),
-            onProfile: _openProfileSecured,
-            onTestVoice: _testVoice,
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
       body: SafeArea(
         child: StableLumoShell(
@@ -268,7 +239,7 @@ class _LumoHomeState extends State<LumoHome> {
           title: _title,
           subtitle: message,
           body: _screen(),
-          lumo: _lumoWidget(205),
+          lumo: _lumoWidget(235),
           stars: stars,
           xp: xp,
           level: level,
@@ -287,12 +258,12 @@ class _LumoHomeState extends State<LumoHome> {
 
   String get _title {
     if (mode == LumoMode.lesson) return 'Unterricht';
-    if (mode == LumoMode.practice) return 'Übung';
+    if (mode == LumoMode.practice) return 'Was möchtest du lernen?';
     if (mode == LumoMode.test) return 'Test';
     if (mode == LumoMode.coach) return 'Lumo-KI';
     if (mode == LumoMode.scan) return 'Aufgabe fotografieren';
     if (mode == LumoMode.profile) return 'Profil';
-    return 'Home';
+    return 'Was möchtest du lernen?';
   }
 
   Widget _screen() {
@@ -302,23 +273,47 @@ class _LumoHomeState extends State<LumoHome> {
     if (mode == LumoMode.coach) return _coach();
     if (mode == LumoMode.scan) return _scan();
     if (mode == LumoMode.profile) return _profile();
-    return _mobileHome();
+    return _homeGrid();
   }
 
-  Widget _mobileHome() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('Hallo, Lena! Bereit fuer ein neues Lernabenteuer?', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
-        const SizedBox(height: 14),
-        Wrap(spacing: 12, runSpacing: 12, children: [
-          _homeButton('Mathematik', Icons.calculate_rounded, Colors.orange, () => _startSubject('Mathematik')),
-          _homeButton('Deutsch', Icons.menu_book_rounded, Colors.purple, () => _startSubject('Deutsch')),
-          _homeButton('Englisch', Icons.language_rounded, Colors.teal, () => _startSubject('Englisch')),
-          _homeButton('Test', Icons.assignment_rounded, Colors.blue, _startTest),
-          _homeButton('Foto', Icons.camera_alt_rounded, Colors.deepPurple, () => mode = LumoMode.scan),
-          _homeButton('Profil', Icons.analytics_rounded, Colors.brown, () => mode = LumoMode.profile),
-        ]),
+  Widget _homeGrid() => Wrap(spacing: 16, runSpacing: 16, children: [
+        _learningCard('Mathematik', 'Zahlen, Rechnen,\nGeometrie & mehr', '1²', const Color(0xffff8700), () => _startSubject('Mathematik')),
+        _learningCard('Deutsch', 'Lesen, Schreiben,\nGrammatik', 'A', const Color(0xff8b5cf6), () => _startSubject('Deutsch')),
+        _learningCard('Englisch', 'Wörter, Sätze,\nVerstehen', 'Hi!', const Color(0xff10a894), () => _startSubject('Englisch')),
+        _learningCard('Übung', 'Interaktive Übungen\nund Spiele', '🎮', const Color(0xffff625d), _startPractice),
+        _learningCard('Test', 'Teste dein Wissen\nund sammle Sterne', '📋', const Color(0xff3a86e8), _startTest),
+        _learningCard('Schularbeit', 'Gemischter Test\nmit Note', 'A+', const Color(0xffff9800), _startTest),
+        _learningCard('Aufgabe fotografieren', 'Mach ein Foto deiner Aufgabe\nund lass dir helfen!', '📷', const Color(0xff9c55e8), () => mode = LumoMode.scan, wide: true),
+        _learningCard('Weiterlernen', 'Setze da weiter, wo du\naufgehört hast', '📖', const Color(0xff08a892), _startPractice, wide: true),
       ]);
 
-  Widget _homeButton(String t, IconData i, Color c, VoidCallback tap) => InkWell(onTap: () => setState(tap), child: Container(width: 160, height: 130, padding: const EdgeInsets.all(16), decoration: _box(c.withOpacity(.16)), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Icon(i, color: c, size: 34), const Spacer(), Text(t, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900))])));
+  Widget _learningCard(String title, String sub, String object, Color accent, VoidCallback tap, {bool wide = false}) {
+    return InkWell(
+      onTap: () => setState(tap),
+      borderRadius: BorderRadius.circular(30),
+      child: Container(
+        width: wide ? 330 : 245,
+        height: wide ? 145 : 165,
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [accent.withOpacity(.15), Colors.white.withOpacity(.86)], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Colors.white.withOpacity(.78), width: 1.2),
+          boxShadow: [BoxShadow(color: accent.withOpacity(.18), blurRadius: 22, offset: const Offset(0, 13))],
+        ),
+        child: Stack(children: [
+          Positioned(right: 4, bottom: 0, child: Text(object, style: TextStyle(fontSize: object.length > 2 ? 34 : 45, fontWeight: FontWeight.w900, color: accent, shadows: const [Shadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4))]))),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: accent)),
+            const SizedBox(height: 8),
+            Text(sub, style: const TextStyle(fontSize: 13, height: 1.15, fontWeight: FontWeight.w700, color: Color(0xff635850))),
+            const Spacer(),
+            Container(padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9), decoration: BoxDecoration(color: Colors.white.withOpacity(.74), borderRadius: BorderRadius.circular(99)), child: Text('Weiterlernen →', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: accent))),
+          ]),
+        ]),
+      ),
+    );
+  }
 
   Widget _lesson() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Wrap(spacing: 8, children: [
