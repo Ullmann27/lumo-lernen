@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app/app_shell.dart';
+import 'app/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,29 +21,7 @@ class LumoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Lumo Lernen',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Nunito',
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFFF7A2F),
-          brightness: Brightness.light,
-        ),
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFFFF6EE),
-        filledButtonTheme: FilledButtonThemeData(
-          style: FilledButton.styleFrom(
-            backgroundColor: const Color(0xFFFF7A2F),
-            foregroundColor: Colors.white,
-            textStyle: const TextStyle(
-              fontFamily: 'Nunito',
-              fontWeight: FontWeight.w900,
-              fontSize: 14,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(99),
-            ),
-          ),
-        ),
-      ),
+      theme: LumoAppTheme.light(),
       home: const AppShell(),
     );
   }
