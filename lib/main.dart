@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'app/app_theme.dart';
 import 'core/lumo_companion_agent.dart';
 import 'core/lumo_voice.dart';
 import 'core/school_exercise_generator.dart';
@@ -28,7 +29,7 @@ class LumoApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Lumo Lernen',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
+      theme: LumoAppTheme.light(),
       home: const RootScreen(),
     );
   }
