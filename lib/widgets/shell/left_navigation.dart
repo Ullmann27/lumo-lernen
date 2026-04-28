@@ -13,12 +13,18 @@ class LeftNavigation extends StatelessWidget {
   final ValueChanged<LumoSection> onSelect;
 
   static const _items = [
-    _NavItem(LumoSection.home,     Icons.home_rounded,        'Start'),
-    _NavItem(LumoSection.learn,    Icons.school_rounded,      'Lernen'),
-    _NavItem(LumoSection.exercises,Icons.edit_rounded,        'Übungen'),
-    _NavItem(LumoSection.progress, Icons.bar_chart_rounded,   'Fortschritt'),
-    _NavItem(LumoSection.rewards,  Icons.star_rounded,        'Belohnungen'),
-    _NavItem(LumoSection.profile,  Icons.person_rounded,      'Profil'),
+    _NavItem(LumoSection.home, Icons.home_rounded, 'Start'),
+    _NavItem(LumoSection.learn, Icons.school_rounded, 'Lernen'),
+    _NavItem(LumoSection.exercises, Icons.edit_rounded, 'Übungen'),
+    _NavItem(LumoSection.tests, Icons.assignment_turned_in_rounded, 'Test'),
+    _NavItem(LumoSection.schoolwork, Icons.description_rounded, 'Schularbeit'),
+    _NavItem(LumoSection.scanner, Icons.photo_camera_rounded, 'Foto'),
+    _NavItem(LumoSection.missions, Icons.flag_rounded, 'Missionen'),
+    _NavItem(LumoSection.progress, Icons.bar_chart_rounded, 'Fortschritt'),
+    _NavItem(LumoSection.rewards, Icons.star_rounded, 'Belohnungen'),
+    _NavItem(LumoSection.agent, Icons.smart_toy_rounded, 'Lumo-KI'),
+    _NavItem(LumoSection.profile, Icons.person_rounded, 'Profil'),
+    _NavItem(LumoSection.settings, Icons.settings_rounded, 'Eltern'),
   ];
 
   @override
@@ -32,81 +38,45 @@ class LeftNavigation extends StatelessWidget {
           topRight: Radius.circular(LumoRadius.xl),
           bottomRight: Radius.circular(LumoRadius.xl),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x12000000),
-            blurRadius: 24,
-            offset: Offset(8, 0),
-          ),
-        ],
+        boxShadow: [BoxShadow(color: Color(0x12000000), blurRadius: 24, offset: Offset(8, 0))],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 28),
-          // ── Logo ──────────────────────────────────────────
+          const SizedBox(height: 22),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(children: [
-              const Text(
-                'Lumo',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  color: LumoColors.orange,
-                  height: 1.0,
-                ),
-              ),
+              const Text('Lumo', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoColors.orange, height: 1.0)),
               const SizedBox(width: 4),
               Container(
                 width: 14,
                 height: 14,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [LumoColors.gold, LumoColors.orange],
-                  ),
+                  gradient: const LinearGradient(colors: [LumoColors.gold, LumoColors.orange]),
                   shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: LumoColors.gold.withOpacity(.5),
-                      blurRadius: 8,
-                    ),
-                  ],
+                  boxShadow: [BoxShadow(color: LumoColors.gold.withOpacity(.5), blurRadius: 8)],
                 ),
               ),
             ]),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, bottom: 28),
-            child: const Text(
-              'Lernen',
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 24,
-                fontWeight: FontWeight.w900,
-                color: LumoColors.orange,
-                height: 1.1,
+          const Padding(
+            padding: EdgeInsets.only(left: 20, bottom: 16),
+            child: Text('Lernen', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoColors.orange, height: 1.1)),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Column(
+                children: _items
+                    .map((item) => _NavPill(item: item, isActive: item.section == active, onTap: () => onSelect(item.section)))
+                    .toList(),
               ),
             ),
           ),
-
-          // ── Nav Items ─────────────────────────────────────
-          ..._items.map((item) => _NavPill(
-                item: item,
-                isActive: item.section == active,
-                onTap: () => onSelect(item.section),
-              )),
-
-          const Spacer(),
-
-          // ── Profile Chip ──────────────────────────────────
-          _ProfileChip(
-            name: 'Lena',
-            grade: 'Klasse 2',
-            onTap: () => onSelect(LumoSection.profile),
-          ),
-          const SizedBox(height: 20),
+          _ProfileChip(name: 'Lena', grade: 'Klasse 2', onTap: () => onSelect(LumoSection.profile)),
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -121,11 +91,7 @@ class _NavItem {
 }
 
 class _NavPill extends StatelessWidget {
-  const _NavPill({
-    required this.item,
-    required this.isActive,
-    required this.onTap,
-  });
+  const _NavPill({required this.item, required this.isActive, required this.onTap});
   final _NavItem item;
   final bool isActive;
   final VoidCallback onTap;
@@ -139,13 +105,9 @@ class _NavPill extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeInOut,
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
           decoration: BoxDecoration(
-            gradient: isActive
-                ? const LinearGradient(
-                    colors: [LumoColors.orange, LumoColors.orangeLight],
-                  )
-                : null,
+            gradient: isActive ? const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]) : null,
             color: isActive ? null : Colors.transparent,
             borderRadius: BorderRadius.circular(LumoRadius.pill),
             boxShadow: isActive ? LumoShadow.pill : [],
@@ -153,28 +115,22 @@ class _NavPill extends StatelessWidget {
           child: Row(children: [
             AnimatedContainer(
               duration: const Duration(milliseconds: 220),
-              width: 34,
-              height: 34,
+              width: 32,
+              height: 32,
               decoration: BoxDecoration(
-                color: isActive
-                    ? Colors.white.withOpacity(.25)
-                    : LumoColors.orangeSurface,
+                color: isActive ? Colors.white.withOpacity(.25) : LumoColors.orangeSurface,
                 borderRadius: BorderRadius.circular(LumoRadius.sm),
               ),
-              child: Icon(
-                item.icon,
-                color: isActive ? Colors.white : LumoColors.orange,
-                size: 20,
-              ),
+              child: Icon(item.icon, color: isActive ? Colors.white : LumoColors.orange, size: 19),
             ),
             const SizedBox(width: 10),
-            Text(
-              item.label,
-              style: isActive
-                  ? LumoTextStyles.navItemActive
-                  : LumoTextStyles.navItem.copyWith(
-                      color: LumoColors.ink700,
-                    ),
+            Expanded(
+              child: Text(
+                item.label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: isActive ? LumoTextStyles.navItemActive : LumoTextStyles.navItem.copyWith(color: LumoColors.ink700),
+              ),
             ),
           ]),
         ),
@@ -184,11 +140,7 @@ class _NavPill extends StatelessWidget {
 }
 
 class _ProfileChip extends StatelessWidget {
-  const _ProfileChip({
-    required this.name,
-    required this.grade,
-    required this.onTap,
-  });
+  const _ProfileChip({required this.name, required this.grade, required this.onTap});
   final String name;
   final String grade;
   final VoidCallback onTap;
@@ -203,62 +155,26 @@ class _ProfileChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: LumoColors.orangeSurface,
           borderRadius: BorderRadius.circular(LumoRadius.lg),
-          border: Border.all(
-            color: LumoColors.orange.withOpacity(.15),
-          ),
+          border: Border.all(color: LumoColors.orange.withOpacity(.15)),
         ),
         child: Row(children: [
           Container(
             width: 38,
             height: 38,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [LumoColors.orange, LumoColors.orangeLight],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight], begin: Alignment.topLeft, end: Alignment.bottomRight),
               shape: BoxShape.circle,
             ),
-            child: Center(
-              child: Text(
-                name[0],
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 18,
-                ),
-              ),
-            ),
+            child: Center(child: Text(name[0], style: const TextStyle(fontFamily: 'Nunito', color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18))),
           ),
           const SizedBox(width: 10),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.w900,
-                    fontSize: 14,
-                    color: LumoColors.ink900,
-                  ),
-                ),
-                Text(
-                  grade,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: LumoTextStyles.caption,
-                ),
-              ],
-            ),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+              Text(name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 14, color: LumoColors.ink900)),
+              Text(grade, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.caption),
+            ]),
           ),
-          const Icon(Icons.chevron_right_rounded,
-              size: 18, color: LumoColors.ink300),
+          const Icon(Icons.chevron_right_rounded, size: 18, color: LumoColors.ink300),
         ]),
       ),
     );
