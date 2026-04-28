@@ -121,15 +121,57 @@ class ReferenceHomeDashboard extends StatelessWidget {
       );
 
   Widget _rightPanel() => Container(
-        width: 310,
+        width: 250,
         padding: const EdgeInsets.fromLTRB(0, 12, 14, 12),
         child: Container(
-          decoration: BoxDecoration(gradient: const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xffffcf91), Color(0xffffe7bd)]), borderRadius: BorderRadius.circular(34), boxShadow: _shadow, border: Border.all(color: Colors.white70, width: 2)),
-          padding: const EdgeInsets.all(18),
-          child: Column(children: [
-            Container(padding: const EdgeInsets.all(16), decoration: _box(28, Colors.white.withOpacity(.85)), child: const Text('Hallo!\nWomit wollen wir\nheute lernen?', style: TextStyle(fontSize: 20, height: 1.14, fontWeight: FontWeight.w800))),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFFFF3E0), Color(0xFFFFE0B2)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(32),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFFFCC80).withOpacity(0.4),
+                blurRadius: 24,
+                spreadRadius: 4,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          padding: const EdgeInsets.all(20),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 12, offset: const Offset(0, 4))],
+              ),
+              child: const Text('Hallo!\nWomit wollen wir\nheute lernen?', style: TextStyle(fontSize: 14, color: Color(0xFF333333), fontWeight: FontWeight.w800), textAlign: TextAlign.center),
+            ),
+            const SizedBox(height: 16),
             Expanded(child: Center(child: lumo)),
-            Container(padding: const EdgeInsets.all(16), decoration: _box(28, Colors.white.withOpacity(.70)), child: const Row(children: [Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [Text('Tagesziel', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)), SizedBox(height: 5), Text('Schließe 3 Aktivitäten ab', maxLines: 1, overflow: TextOverflow.ellipsis), SizedBox(height: 8), Row(children: [Icon(Icons.check_circle_rounded, color: Color(0xff59c76f)), SizedBox(width: 6), Icon(Icons.check_circle_rounded, color: Color(0xff59c76f)), SizedBox(width: 6), CircleAvatar(radius: 12, backgroundColor: Colors.white, child: Text('3'))])])), CircleAvatar(radius: 30, backgroundColor: Color(0xfffff1c4), child: Text('🎁', style: TextStyle(fontSize: 24)))])),
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.85),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8, offset: const Offset(0, 4))],
+              ),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+                Text('Tagesziel', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF333333))),
+                SizedBox(height: 4),
+                Text('Schließe 3 Aktivitäten ab', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12, color: Color(0xFF888888))),
+                SizedBox(height: 10),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  Row(children: [Icon(Icons.check_circle, color: Colors.green, size: 20), SizedBox(width: 4), Icon(Icons.check_circle, color: Colors.green, size: 20), SizedBox(width: 4), Icon(Icons.circle_outlined, color: Color(0xFFCCCCCC), size: 20)]),
+                  Text('3', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF555555))),
+                  Text('🎁', style: TextStyle(fontSize: 20)),
+                ]),
+              ]),
+            ),
           ]),
         ),
       );
