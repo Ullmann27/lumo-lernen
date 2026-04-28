@@ -2,13 +2,21 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'core/lumo_companion_agent.dart';
+import 'core/lumo_voice.dart';
 import 'core/school_exercise_generator.dart';
 import 'widgets/drawing_pad.dart';
 import 'widgets/embedded_lumo_fox.dart';
+import 'widgets/free_lumo_fox.dart';
+import 'widgets/parental_gate.dart';
 import 'widgets/profile_screen.dart';
 import 'widgets/reference_home_dashboard.dart';
+import 'widgets/scan_screen.dart';
 
-void main() => runApp(const LumoApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // TTS lazy-init beim ersten speak()-Aufruf - kein Block beim Start
+  runApp(const LumoApp());
+}
 
 const String introVideoAsset = 'assets/videos/lumo_intro.mp4';
 const String lumoFoxAsset = 'assets/images/lumo_fox.png';
@@ -148,6 +156,16 @@ class _LumoHomeState extends State<LumoHome> {
   void initState() {
     super.initState();
     currentTask = _newTask();
+    // Begruessung leicht verzoegert sprechen
+    Timer(const Duration(milliseconds: 1200), () {
+      if (mounted) LumoVoice.instance.speak('Hallo Lena! Womit wollen wir heute lernen?');
+    });
+  }
+
+  Future<void> _openProfileSecured() async {
+    final ok = await ParentalGate.show(context);
+    if (!mounted) return;
+    if (ok) setState(() => mode = LumoMode.profile);
   }
 
   LumoTask _newTask() {
@@ -187,7 +205,17 @@ class _LumoHomeState extends State<LumoHome> {
             xp: xp,
             level: level,
             progress: progressPercent,
-            lumo: const LumoFox(size: 230, mood: 'greet'),
+            lumo: FreeLumoFox(
+              size: 240,
+              mood: foxMood,
+              message: message,
+              onTap: () {
+                LumoVoice.instance.speak(message);
+                setState(() {
+                  foxMood = foxMood == 'celebrate' ? 'greet' : 'celebrate';
+                });
+              },
+            ),
             onMath: () => setState(() => _startSubject('Mathematik')),
             onGerman: () => setState(() => _startSubject('Deutsch')),
             onEnglish: () => setState(() => _startSubject('Englisch')),
@@ -196,7 +224,7 @@ class _LumoHomeState extends State<LumoHome> {
             onSchoolwork: () => setState(_startTest),
             onPhoto: () => setState(() => mode = LumoMode.scan),
             onContinue: () => setState(() { mode = LumoMode.practice; currentTask = _newTask(); }),
-            onProfile: () => setState(() => mode = LumoMode.profile),
+            onProfile: _openProfileSecured,
           ),
         ),
       );
@@ -275,7 +303,18 @@ class _LumoHomeState extends State<LumoHome> {
   }
 
   Widget _mobileHome() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: const [LumoFox(size: 120, mood: 'greet'), SizedBox(width: 12), Expanded(child: Text('Hallo, Lena! Bereit für ein neues Lernabenteuer?', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)))]),
+        Row(children: [
+          SizedBox(
+            width: 110, height: 150,
+            child: FreeLumoFox(
+              size: 130,
+              mood: foxMood,
+              onTap: () => LumoVoice.instance.speak(message),
+            ),
+          ),
+          const SizedBox(width: 12),
+          const Expanded(child: Text('Hallo, Lena! Bereit fuer ein neues Lernabenteuer?', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900))),
+        ]),
         const SizedBox(height: 14),
         Wrap(spacing: 12, runSpacing: 12, children: [
           _homeButton('Mathematik', Icons.calculate_rounded, Colors.orange, () => _startSubject('Mathematik')),
@@ -316,9 +355,11 @@ class _LumoHomeState extends State<LumoHome> {
   void _answerPractice(LumoTask task, String option) {
     if (option == task.answer) {
       setState(() { stars += 3; xp += 20; errors = 0; foxMood = 'celebrate'; solved[task.unit] = (solved[task.unit] ?? 0) + 1; message = agent.reactToEvent('correct', practice: practice); });
+      LumoVoice.instance.speak(message);
       Timer(const Duration(milliseconds: 850), () => setState(() { currentTask = _newTask(); foxMood = 'greet'; }));
     } else {
       setState(() { errors++; practice[task.unit] = (practice[task.unit] ?? 0) + 1; foxMood = 'comfort'; message = agent.reactToEvent(errors >= 3 ? 'wrong_3' : 'wrong_1', practice: practice); if (errors >= 3) currentTask = _newTask(); });
+      LumoVoice.instance.speak(message);
     }
   }
 
@@ -344,7 +385,21 @@ class _LumoHomeState extends State<LumoHome> {
     return Column(children: [TextField(controller: c, decoration: const InputDecoration(labelText: 'Frag Lumo etwas zum Lernen')), const SizedBox(height: 10), FilledButton(onPressed: () => setState(() => message = agent.answerChild(c.text)), child: const Text('Lumo antworten lassen')), Text(message)]);
   }
 
-  Widget _scan() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [const Text('Scan-Simulation'), const TextField(maxLines: 3), FilledButton(onPressed: () => setState(() { practice['Minus bis 20'] = (practice['Minus bis 20'] ?? 0) + 1; mode = LumoMode.profile; }), child: const Text('Analysieren'))]);
+  Widget _scan() => ScanScreen(
+        onCancel: () => setState(() => mode = LumoMode.home),
+        onTextDetected: (text) {
+          setState(() {
+            message = text.length > 200
+                ? 'Ich hab das gelesen. Lass uns die Aufgabe gemeinsam loesen!'
+                : 'Ich hab das gelesen: "$text"';
+            foxMood = 'celebrate';
+            mode = LumoMode.coach;
+          });
+          LumoVoice.instance.speak(
+            'Super, ich habe deine Aufgabe gelesen. Lass uns gemeinsam ueben.',
+          );
+        },
+      );
   Widget _profile() => ProfileScreen(
         stars: stars,
         xp: xp,
@@ -355,8 +410,35 @@ class _LumoHomeState extends State<LumoHome> {
         lastGrade: lastGrade,
       );
 
-  Widget _lumoPanel() => Container(width: 320, margin: const EdgeInsets.all(14), child: _glass(Column(children: [LumoFox(size: 190, mood: foxMood), Text('★ $stars', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), Text(message, textAlign: TextAlign.center)])));
-  Widget _floatingLumo() => Positioned(right: 10, bottom: 10, child: IgnorePointer(child: Container(padding: const EdgeInsets.all(8), decoration: _box(Colors.white.withOpacity(.8)), child: LumoFox(size: 90, mood: foxMood))));
+  Widget _lumoPanel() => Container(
+        width: 320,
+        margin: const EdgeInsets.all(14),
+        child: _glass(Column(children: [
+          FreeLumoFox(
+            size: 200,
+            mood: foxMood,
+            onTap: () => LumoVoice.instance.speak(message),
+          ),
+          const SizedBox(height: 8),
+          Text('★ $stars',
+              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+          Text(message, textAlign: TextAlign.center),
+        ])),
+      );
+  Widget _floatingLumo() => Positioned(
+        right: 8,
+        bottom: 8,
+        child: SizedBox(
+          width: 120,
+          height: 160,
+          child: FreeLumoFox(
+            size: 130,
+            mood: foxMood,
+            autoDrift: false,
+            onTap: () => LumoVoice.instance.speak(message),
+          ),
+        ),
+      );
   Widget _glass(Widget child) => Container(decoration: _box(Colors.white.withOpacity(.82)), padding: const EdgeInsets.all(22), child: child);
   BoxDecoration _box(Color color) => BoxDecoration(color: color, borderRadius: BorderRadius.circular(28), border: Border.all(color: Colors.white70), boxShadow: [BoxShadow(color: Colors.deepOrange.withOpacity(.10), blurRadius: 22, offset: const Offset(0, 12))]);
 }
