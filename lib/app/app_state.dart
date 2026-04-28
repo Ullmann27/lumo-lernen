@@ -1,7 +1,20 @@
 import 'package:flutter/foundation.dart';
 
 /// Welcher Bereich aktiv ist (Menüpunkt links)
-enum LumoSection { home, learn, exercises, progress, rewards, profile, scanner }
+enum LumoSection {
+  home,
+  learn,
+  exercises,
+  tests,
+  schoolwork,
+  scanner,
+  missions,
+  progress,
+  rewards,
+  agent,
+  profile,
+  settings,
+}
 
 /// Was Lumo gerade tut (steuert Animation + Sprechblase)
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
@@ -38,9 +51,8 @@ class LumoSessionState {
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
-  int get progressPercent => ((solved.values.fold(0, (a, b) => a + b) / 30) * 100)
-      .round().clamp(0, 100);
-  int get weeklyProgress => 62; // TODO: persist weekly
+  int get progressPercent => ((solved.values.fold(0, (a, b) => a + b) / 30) * 100).round().clamp(0, 100);
+  int get weeklyProgress => 62;
 
   LumoSessionState copyWith({
     LumoSection? section,
@@ -85,22 +97,32 @@ class LumoAppState extends ChangeNotifier {
 
   void setSection(LumoSection section) {
     final messages = {
-      LumoSection.home:     'Hallo!\nWomit wollen wir\nheute lernen?',
-      LumoSection.learn:    'Was möchtest\ndu heute\nlernen?',
-      LumoSection.exercises:'Los gehts!\nÜbe fleißig –\ndu schaffst das!',
-      LumoSection.progress: 'Schau wie weit\ndu schon\ngekommen bist!',
-      LumoSection.rewards:  'Du hast so viel\nverdient –\nschau mal!',
-      LumoSection.profile:  'Das bist du –\nsuperstark!',
-      LumoSection.scanner:  'Mach ein Foto\ndeiner Aufgabe –\nich helfe dir!',
+      LumoSection.home: 'Hallo!\nWomit wollen wir\nheute lernen?',
+      LumoSection.learn: 'Such dir ein\nFach aus. Ich\nbegleite dich!',
+      LumoSection.exercises: 'Los gehts!\nEine kleine Übung\nreicht schon.',
+      LumoSection.tests: 'Testmodus.\nRuhig lesen,\ndann antworten.',
+      LumoSection.schoolwork: 'Wie in der\nSchule – nur\nfreundlicher.',
+      LumoSection.scanner: 'Mach ein Foto\ndeiner Aufgabe.\nIch helfe dir!',
+      LumoSection.missions: 'Deine Missionen\nwarten schon.\nStarten wir?',
+      LumoSection.progress: 'Schau mal,\nwie weit du\nschon bist!',
+      LumoSection.rewards: 'Du hast dir\nBelohnungen\nverdient!',
+      LumoSection.agent: 'Frag mich etwas.\nIch erkläre es\nkindgerecht.',
+      LumoSection.profile: 'Das ist dein\nLernprofil.\nSuper stark!',
+      LumoSection.settings: 'Hier stellen\nEltern alles\nsicher ein.',
     };
     final moods = {
-      LumoSection.home:     LumoMood.greet,
-      LumoSection.learn:    LumoMood.point,
-      LumoSection.exercises:LumoMood.wave,
+      LumoSection.home: LumoMood.greet,
+      LumoSection.learn: LumoMood.point,
+      LumoSection.exercises: LumoMood.wave,
+      LumoSection.tests: LumoMood.think,
+      LumoSection.schoolwork: LumoMood.think,
+      LumoSection.scanner: LumoMood.point,
+      LumoSection.missions: LumoMood.celebrate,
       LumoSection.progress: LumoMood.think,
-      LumoSection.rewards:  LumoMood.celebrate,
-      LumoSection.profile:  LumoMood.idle,
-      LumoSection.scanner:  LumoMood.point,
+      LumoSection.rewards: LumoMood.celebrate,
+      LumoSection.agent: LumoMood.greet,
+      LumoSection.profile: LumoMood.idle,
+      LumoSection.settings: LumoMood.idle,
     };
     update(_state.copyWith(
       section: section,
@@ -112,13 +134,20 @@ class LumoAppState extends ChangeNotifier {
   void correctAnswer(String unit) {
     final newSolved = Map<String, int>.from(_state.solved);
     newSolved[unit] = (newSolved[unit] ?? 0) + 1;
+    final variants = [
+      'Juhu!\nDas war richtig.\nWeiter so! ⭐',
+      'Stark gedacht!\nDu hast es\ngeschafft!',
+      'Super!\nDein Lernweg\nwird stärker.',
+      'Klasse!\nIch merke mir,\nwas gut klappt.',
+    ];
+    final msg = variants[DateTime.now().millisecond % variants.length];
     update(_state.copyWith(
       stars: _state.stars + 3,
       xp: _state.xp + 20,
       solved: newSolved,
       practiceErrors: 0,
       mood: LumoMood.celebrate,
-      lumoMessage: 'Super gemacht!\nDu bist der\nHammer! ⭐',
+      lumoMessage: msg,
     ));
   }
 
@@ -131,8 +160,8 @@ class LumoAppState extends ChangeNotifier {
       practiceErrors: errors,
       mood: errors >= 3 ? LumoMood.comfort : LumoMood.think,
       lumoMessage: errors >= 3
-          ? 'Nicht so schlimm!\nZusammen schaffen\nwir das!'
-          : 'Hmm, fast!\nNoch einmal\nprobieren?',
+          ? 'Ganz ruhig.\nIch zeige dir\nden Weg.'
+          : 'Fast!\nWir schauen\nnochmal hin.',
     ));
   }
 }
