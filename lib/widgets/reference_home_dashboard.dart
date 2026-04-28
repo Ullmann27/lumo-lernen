@@ -17,6 +17,16 @@ class ReferenceHomeDashboard extends StatelessWidget {
     required this.onPhoto,
     required this.onContinue,
     required this.onProfile,
+    this.onStartTour,
+    this.onTestVoice,
+    this.mathKey,
+    this.germanKey,
+    this.englishKey,
+    this.practiceKey,
+    this.testKey,
+    this.schoolworkKey,
+    this.photoKey,
+    this.continueKey,
   });
 
   final int stars;
@@ -33,6 +43,16 @@ class ReferenceHomeDashboard extends StatelessWidget {
   final VoidCallback onPhoto;
   final VoidCallback onContinue;
   final VoidCallback onProfile;
+  final VoidCallback? onStartTour;
+  final VoidCallback? onTestVoice;
+  final GlobalKey? mathKey;
+  final GlobalKey? germanKey;
+  final GlobalKey? englishKey;
+  final GlobalKey? practiceKey;
+  final GlobalKey? testKey;
+  final GlobalKey? schoolworkKey;
+  final GlobalKey? photoKey;
+  final GlobalKey? continueKey;
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +95,16 @@ class ReferenceHomeDashboard extends StatelessWidget {
                     onSchoolwork: onSchoolwork,
                     onPhoto: onPhoto,
                     onContinue: onContinue,
+                    onStartTour: onStartTour,
+                    onTestVoice: onTestVoice,
+                    mathKey: mathKey,
+                    germanKey: germanKey,
+                    englishKey: englishKey,
+                    practiceKey: practiceKey,
+                    testKey: testKey,
+                    schoolworkKey: schoolworkKey,
+                    photoKey: photoKey,
+                    continueKey: continueKey,
                   ),
                 ),
               ),
@@ -200,6 +230,16 @@ class _CenterDashboard extends StatelessWidget {
     required this.onSchoolwork,
     required this.onPhoto,
     required this.onContinue,
+    this.onStartTour,
+    this.onTestVoice,
+    this.mathKey,
+    this.germanKey,
+    this.englishKey,
+    this.practiceKey,
+    this.testKey,
+    this.schoolworkKey,
+    this.photoKey,
+    this.continueKey,
   });
 
   final int stars;
@@ -214,6 +254,16 @@ class _CenterDashboard extends StatelessWidget {
   final VoidCallback onSchoolwork;
   final VoidCallback onPhoto;
   final VoidCallback onContinue;
+  final VoidCallback? onStartTour;
+  final VoidCallback? onTestVoice;
+  final GlobalKey? mathKey;
+  final GlobalKey? germanKey;
+  final GlobalKey? englishKey;
+  final GlobalKey? practiceKey;
+  final GlobalKey? testKey;
+  final GlobalKey? schoolworkKey;
+  final GlobalKey? photoKey;
+  final GlobalKey? continueKey;
 
   @override
   Widget build(BuildContext context) {
@@ -224,9 +274,40 @@ class _CenterDashboard extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Hallo, Lena! 👋', style: TextStyle(fontSize: 34, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
-            const SizedBox(height: 5),
-            const Text('Bereit für ein neues Lernabenteuer?', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color(0xff766a61))),
+            Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Hallo, Lena! 👋',
+                        style: TextStyle(
+                            fontSize: 34,
+                            fontWeight: FontWeight.w900,
+                            color: Color(0xff2d2621))),
+                    SizedBox(height: 5),
+                    Text('Bereit für ein neues Lernabenteuer?',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xff766a61))),
+                  ],
+                ),
+              ),
+              if (onTestVoice != null)
+                IconButton.filledTonal(
+                  tooltip: 'Stimme testen',
+                  onPressed: onTestVoice,
+                  icon: const Icon(Icons.volume_up_rounded),
+                ),
+              if (onStartTour != null) ...[
+                const SizedBox(width: 8),
+                FilledButton.icon(
+                  onPressed: onStartTour,
+                  icon: const Icon(Icons.tour_rounded),
+                  label: const Text('Lumo führt mich'),
+                ),
+              ],
+            ]),
             const SizedBox(height: 24),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -249,12 +330,12 @@ class _CenterDashboard extends StatelessWidget {
               spacing: 16,
               runSpacing: 16,
               children: [
-                _LearningCard(width: cardW, title: 'Mathematik', sub: 'Zahlen, Rechnen,\nGeometrie & mehr', cta: 'Weiterlernen', object: '1²', icon: Icons.calculate_rounded, colors: const [Color(0xfffff4bd), Color(0xffffdfa2)], accent: const Color(0xffff8700), onTap: onMath),
-                _LearningCard(width: cardW, title: 'Deutsch', sub: 'Lesen, Schreiben,\nGrammatik', cta: 'Weiterlernen', object: 'A', icon: Icons.menu_book_rounded, colors: const [Color(0xffffe8fb), Color(0xfff0dcff)], accent: const Color(0xff8b5cf6), onTap: onGerman),
-                _LearningCard(width: cardW, title: 'Englisch', sub: 'Wörter, Sätze,\nVerstehen', cta: 'Weiterlernen', object: 'Hi!', icon: Icons.language_rounded, colors: const [Color(0xffdffff6), Color(0xffc8f5ed)], accent: const Color(0xff10a894), onTap: onEnglish),
-                _LearningCard(width: cardW, title: 'Übung', sub: 'Interaktive Übungen\nund Spiele', cta: 'Üben', object: '🎮', icon: Icons.edit_rounded, colors: const [Color(0xffffe6e2), Color(0xffffd2ce)], accent: const Color(0xffff625d), onTap: onPractice),
-                _LearningCard(width: cardW, title: 'Test', sub: 'Teste dein Wissen\nund sammle Sterne', cta: 'Test starten', object: '📋', icon: Icons.assignment_turned_in_rounded, colors: const [Color(0xffeaf3ff), Color(0xffdbeaff)], accent: const Color(0xff3a86e8), onTap: onTest),
-                _LearningCard(width: cardW, title: 'Schularbeit', sub: 'Gemischter Test\nmit Note', cta: 'Starten', object: 'A+', icon: Icons.description_rounded, colors: const [Color(0xfffff2c9), Color(0xffffe0a8)], accent: const Color(0xffff9800), onTap: onSchoolwork),
+                Container(key: mathKey,       child: _LearningCard(width: cardW, title: 'Mathematik', sub: 'Zahlen, Rechnen,\nGeometrie & mehr', cta: 'Weiterlernen', object: '1²', icon: Icons.calculate_rounded, colors: const [Color(0xfffff4bd), Color(0xffffdfa2)], accent: const Color(0xffff8700), onTap: onMath)),
+                Container(key: germanKey,     child: _LearningCard(width: cardW, title: 'Deutsch', sub: 'Lesen, Schreiben,\nGrammatik', cta: 'Weiterlernen', object: 'A', icon: Icons.menu_book_rounded, colors: const [Color(0xffffe8fb), Color(0xfff0dcff)], accent: const Color(0xff8b5cf6), onTap: onGerman)),
+                Container(key: englishKey,    child: _LearningCard(width: cardW, title: 'Englisch', sub: 'Wörter, Sätze,\nVerstehen', cta: 'Weiterlernen', object: 'Hi!', icon: Icons.language_rounded, colors: const [Color(0xffdffff6), Color(0xffc8f5ed)], accent: const Color(0xff10a894), onTap: onEnglish)),
+                Container(key: practiceKey,   child: _LearningCard(width: cardW, title: 'Übung', sub: 'Interaktive Übungen\nund Spiele', cta: 'Üben', object: '🎮', icon: Icons.edit_rounded, colors: const [Color(0xffffe6e2), Color(0xffffd2ce)], accent: const Color(0xffff625d), onTap: onPractice)),
+                Container(key: testKey,       child: _LearningCard(width: cardW, title: 'Test', sub: 'Teste dein Wissen\nund sammle Sterne', cta: 'Test starten', object: '📋', icon: Icons.assignment_turned_in_rounded, colors: const [Color(0xffeaf3ff), Color(0xffdbeaff)], accent: const Color(0xff3a86e8), onTap: onTest)),
+                Container(key: schoolworkKey, child: _LearningCard(width: cardW, title: 'Schularbeit', sub: 'Gemischter Test\nmit Note', cta: 'Starten', object: 'A+', icon: Icons.description_rounded, colors: const [Color(0xfffff2c9), Color(0xffffe0a8)], accent: const Color(0xffff9800), onTap: onSchoolwork)),
               ],
             ),
             const SizedBox(height: 16),
@@ -262,8 +343,8 @@ class _CenterDashboard extends StatelessWidget {
               spacing: 16,
               runSpacing: 16,
               children: [
-                _WideLearningCard(width: wideW, title: 'Aufgabe fotografieren', sub: 'Mach ein Foto deiner Aufgabe\nund lass dir helfen!', cta: 'Foto machen', object: '📷', icon: Icons.photo_camera_rounded, colors: const [Color(0xffffe8ff), Color(0xfff2d7ff)], accent: const Color(0xff9c55e8), onTap: onPhoto),
-                _WideLearningCard(width: wideW, title: 'Weiterlernen', sub: 'Setze da weiter, wo du\naufgehört hast', cta: 'Anzeigen', object: '📖', icon: Icons.play_circle_rounded, colors: const [Color(0xffe5fff6), Color(0xffcffff0)], accent: const Color(0xff08a892), onTap: onContinue),
+                Container(key: photoKey,    child: _WideLearningCard(width: wideW, title: 'Aufgabe fotografieren', sub: 'Mach ein Foto deiner Aufgabe\nund lass dir helfen!', cta: 'Foto machen', object: '📷', icon: Icons.photo_camera_rounded, colors: const [Color(0xffffe8ff), Color(0xfff2d7ff)], accent: const Color(0xff9c55e8), onTap: onPhoto)),
+                Container(key: continueKey, child: _WideLearningCard(width: wideW, title: 'Weiterlernen', sub: 'Setze da weiter, wo du\naufgehört hast', cta: 'Anzeigen', object: '📖', icon: Icons.play_circle_rounded, colors: const [Color(0xffe5fff6), Color(0xffcffff0)], accent: const Color(0xff08a892), onTap: onContinue)),
               ],
             ),
           ],

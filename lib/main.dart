@@ -149,6 +149,22 @@ class _LumoHomeState extends State<LumoHome> {
   final List<LumoTask> testTasks = [];
   late LumoTask currentTask;
 
+  // Tour-Keys
+  final _mathKey = GlobalKey();
+  final _germanKey = GlobalKey();
+  final _englishKey = GlobalKey();
+  final _practiceKey = GlobalKey();
+  final _testKey = GlobalKey();
+  final _schoolworkKey = GlobalKey();
+  final _photoKey = GlobalKey();
+  final _continueKey = GlobalKey();
+
+  // Tour-State (wenn aktiv: Fuchs als Overlay positioniert)
+  bool _tourActive = false;
+  Offset? _tourFoxPos;
+  FoxFacing _tourFoxFacing = FoxFacing.right;
+  Offset? _tourPointer;
+
   int get level => xp ~/ 400 + 1;
   int get progressPercent => ((xp % 1000) / 10).round().clamp(1, 99);
 
@@ -156,10 +172,78 @@ class _LumoHomeState extends State<LumoHome> {
   void initState() {
     super.initState();
     currentTask = _newTask();
-    // Begruessung leicht verzoegert sprechen
-    Timer(const Duration(milliseconds: 1200), () {
-      if (mounted) LumoVoice.instance.speak('Hallo Lena! Womit wollen wir heute lernen?');
+    // TTS so frueh wie moeglich initialisieren, dann Begruessung sprechen
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 600));
+      if (!mounted) return;
+      await LumoVoice.instance.speak(
+        'Hallo Lena! Schoen, dass du da bist. Womit wollen wir heute lernen?',
+      );
     });
+  }
+
+  Future<void> _testVoice() async {
+    await LumoVoice.instance.test();
+  }
+
+  Future<void> _startGuidedTour() async {
+    if (_tourActive) return;
+    setState(() => _tourActive = true);
+
+    final steps = <_TourStepData>[
+      _TourStepData(_mathKey,
+          'Hier kannst du Mathematik ueben. Plus, Minus und Geometrie.', 'point'),
+      _TourStepData(_germanKey,
+          'Hier lesen und schreiben wir gemeinsam.', 'point'),
+      _TourStepData(_englishKey,
+          'Englische Woerter und kleine Saetze findest du hier.', 'point'),
+      _TourStepData(_practiceKey,
+          'Spiele und lustige Uebungen warten hier auf dich.', 'celebrate'),
+      _TourStepData(_testKey,
+          'Wenn du fit bist, mach hier einen Test und sammle Sterne.', 'point'),
+      _TourStepData(_schoolworkKey,
+          'Eine Schularbeit kannst du hier ueben - du bekommst sogar eine Note.', 'think'),
+      _TourStepData(_photoKey,
+          'Schau, hier kannst du deine Hausaufgabe fotografieren - ich helfe dir damit.', 'wave'),
+      _TourStepData(_continueKey,
+          'Und hier machst du da weiter, wo du gestern aufgehoert hast.', 'greet'),
+    ];
+
+    Offset lastPos = Offset.zero;
+    for (final step in steps) {
+      if (!_tourActive || !mounted) break;
+      final ctx = step.key.currentContext;
+      if (ctx == null) continue;
+      final box = ctx.findRenderObject() as RenderBox?;
+      if (box == null || !box.attached) continue;
+      final tl = box.localToGlobal(Offset.zero);
+      final center = tl + Offset(box.size.width / 2, box.size.height / 2);
+      // Fuchs neben dem Element platzieren (rechts daneben)
+      final foxPos = Offset(tl.dx + box.size.width + 20, center.dy - 80);
+      final facing = foxPos.dx < lastPos.dx ? FoxFacing.left : FoxFacing.right;
+
+      setState(() {
+        _tourFoxPos = foxPos;
+        _tourFoxFacing = facing;
+        _tourPointer = center;
+        message = step.message;
+        foxMood = step.mood;
+      });
+      LumoVoice.instance.speak(step.message);
+      lastPos = foxPos;
+      await Future.delayed(const Duration(milliseconds: 4500));
+    }
+
+    if (mounted) {
+      setState(() {
+        _tourActive = false;
+        _tourFoxPos = null;
+        _tourPointer = null;
+        message = 'Was moechtest du als erstes machen?';
+        foxMood = 'greet';
+      });
+      LumoVoice.instance.speak('Was moechtest du als erstes machen?');
+    }
   }
 
   Future<void> _openProfileSecured() async {
@@ -200,7 +284,8 @@ class _LumoHomeState extends State<LumoHome> {
     if (wide && mode == LumoMode.home) {
       return Scaffold(
         body: SafeArea(
-          child: ReferenceHomeDashboard(
+          child: Stack(children: [
+            ReferenceHomeDashboard(
             stars: stars,
             xp: xp,
             level: level,
@@ -208,7 +293,8 @@ class _LumoHomeState extends State<LumoHome> {
             lumo: FreeLumoFox(
               size: 240,
               mood: foxMood,
-              message: message,
+              message: _tourActive ? null : message,
+              autoDrift: !_tourActive,
               onTap: () {
                 LumoVoice.instance.speak(message);
                 setState(() {
@@ -225,7 +311,47 @@ class _LumoHomeState extends State<LumoHome> {
             onPhoto: () => setState(() => mode = LumoMode.scan),
             onContinue: () => setState(() { mode = LumoMode.practice; currentTask = _newTask(); }),
             onProfile: _openProfileSecured,
+            onStartTour: _startGuidedTour,
+            onTestVoice: _testVoice,
+            mathKey: _mathKey,
+            germanKey: _germanKey,
+            englishKey: _englishKey,
+            practiceKey: _practiceKey,
+            testKey: _testKey,
+            schoolworkKey: _schoolworkKey,
+            photoKey: _photoKey,
+            continueKey: _continueKey,
           ),
+          // Tour-Overlay: Fuchs als globaler, frei beweglicher Charakter
+          if (_tourActive && _tourFoxPos != null)
+            Positioned(
+              left: _tourFoxPos!.dx - 80,
+              top: _tourFoxPos!.dy - 80,
+              child: IgnorePointer(
+                ignoring: false,
+                child: SizedBox(
+                  width: 160, height: 220,
+                  child: FreeLumoFox(
+                    size: 200,
+                    mood: foxMood,
+                    facing: _tourFoxFacing,
+                    message: message,
+                    autoDrift: false,
+                    draggable: false,
+                  ),
+                ),
+              ),
+            ),
+          // Pointer-Highlight auf das Tour-Ziel
+          if (_tourActive && _tourPointer != null)
+            Positioned(
+              left: _tourPointer!.dx - 60,
+              top: _tourPointer!.dy - 60,
+              child: IgnorePointer(
+                child: _TourPointerRing(),
+              ),
+            ),
+          ]),
         ),
       );
     }
@@ -470,6 +596,64 @@ class _LumoFoxState extends State<LumoFox> with SingleTickerProviderStateMixin {
           errorBuilder: (_, __, ___) => EmbeddedLumoFox(size: widget.size),
         ),
       ),
+    );
+  }
+}
+
+class _TourStepData {
+  const _TourStepData(this.key, this.message, this.mood);
+  final GlobalKey key;
+  final String message;
+  final String mood;
+}
+
+/// Pulsierender Ring der das Tour-Ziel hervorhebt
+class _TourPointerRing extends StatefulWidget {
+  @override
+  State<_TourPointerRing> createState() => _TourPointerRingState();
+}
+
+class _TourPointerRingState extends State<_TourPointerRing>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 1300))
+        ..repeat();
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _ctrl,
+      builder: (_, __) {
+        final scale = 1 + 0.20 * _ctrl.value;
+        final opacity = 1 - _ctrl.value;
+        return Transform.scale(
+          scale: scale,
+          child: Opacity(
+            opacity: opacity.clamp(0.0, 1.0),
+            child: Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: const Color(0xffff7a2f), width: 4),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xffff7a2f).withOpacity(0.4),
+                    blurRadius: 20,
+                    spreadRadius: 4,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

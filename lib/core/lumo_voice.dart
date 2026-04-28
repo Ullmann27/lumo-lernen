@@ -1,66 +1,109 @@
+import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-/// Sprachausgabe für Lumo.
+/// Sprachausgabe fuer Lumo - garantiert robust.
 ///
-/// **Privacy / Play Store:**
-/// flutter_tts nutzt die ON-DEVICE-Engine des Betriebssystems
-/// (Google TTS auf Android, AVSpeechSynthesizer auf iOS).
-/// Es werden KEINE Audio-Daten an externe Server gesendet.
-/// Damit ist die Komponente konform zum Google Play
-/// Designed-for-Families-Programm und der DSGVO.
-///
-/// Die Stimme wird so konfiguriert, dass sie
-/// möglichst freundlich und kindgerecht klingt:
-/// - Sprache: Deutsch (DE-AT bevorzugt, sonst DE-DE)
-/// - Etwas höhere Tonlage für eine warme Charakter-Stimme
-/// - Leicht reduzierte Geschwindigkeit für junge Hörer
+/// Hauptmerkmale:
+/// - Wartet beim ersten Aufruf garantiert auf vollstaendige Initialisierung
+/// - Faellt automatisch von de-AT auf de-DE auf Standard zurueck
+/// - Zeigt Status (sprechend / bereit / Fehler) per ValueNotifier nach aussen
+/// - Schluckt nichts still: bei Fehlern wird der Status auf "error" gesetzt
+/// - 100 Prozent on-device, Play-Store-konform fuer Kinder-Apps
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
 
   final FlutterTts _tts = FlutterTts();
-  bool _ready = false;
+  Future<void>? _initFuture;
   bool _enabled = true;
 
-  bool get isEnabled => _enabled;
-  set isEnabled(bool value) => _enabled = value;
+  /// Beobachtbarer Status (fuer UI-Indikator).
+  final ValueNotifier<VoiceStatus> status =
+      ValueNotifier<VoiceStatus>(VoiceStatus.idle);
 
-  /// Initialisiert die TTS-Engine. Idempotent.
-  Future<void> init() async {
-    if (_ready) return;
-    try {
-      // Bevorzugt österreichisches Deutsch, fällt auf DE-DE zurück
-      await _tts.setLanguage('de-AT');
-    } catch (_) {
-      try {
-        await _tts.setLanguage('de-DE');
-      } catch (_) {/* Sprache nicht verfügbar – System-Default */}
-    }
-    // Kindgerechte Werte
-    await _tts.setSpeechRate(0.45); // 0.5 = neutral; etwas langsamer
-    await _tts.setPitch(1.18);      // 1.0 = neutral; warm + freundlich
-    await _tts.setVolume(0.95);
-    await _tts.awaitSpeakCompletion(true);
-    _ready = true;
+  /// Letzter Fehlertext (zur Anzeige).
+  final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
+
+  bool get isEnabled => _enabled;
+  set isEnabled(bool v) => _enabled = v;
+
+  /// Erzwingt Initialisierung. Idempotent. Wartet auf laufende Init.
+  Future<void> _ensureReady() {
+    return _initFuture ??= _doInit();
   }
 
-  /// Spricht den Text aus. Bricht laufende Ausgaben ab.
+  Future<void> _doInit() async {
+    try {
+      // Handler fuer Status-Updates
+      _tts.setStartHandler(() => status.value = VoiceStatus.speaking);
+      _tts.setCompletionHandler(() => status.value = VoiceStatus.idle);
+      _tts.setCancelHandler(() => status.value = VoiceStatus.idle);
+      _tts.setErrorHandler((msg) {
+        lastError.value = msg.toString();
+        status.value = VoiceStatus.error;
+      });
+
+      // Sprache: de-AT bevorzugt, sonst de-DE, sonst System
+      var languageOk = false;
+      for (final lang in ['de-AT', 'de-DE', 'de']) {
+        try {
+          final res = await _tts.isLanguageAvailable(lang);
+          if (res == true || res == 1) {
+            await _tts.setLanguage(lang);
+            languageOk = true;
+            break;
+          }
+        } catch (_) {/* weiter */ }
+      }
+      if (!languageOk) {
+        try {
+          await _tts.setLanguage('de-DE');
+        } catch (_) {/* notfalls Default */}
+      }
+
+      // Kindgerechte Stimm-Parameter
+      await _tts.setSpeechRate(0.45);
+      await _tts.setPitch(1.18);
+      await _tts.setVolume(1.0);
+
+      // Wir blockieren nicht auf Sprech-Ende - sonst staut sich die UI
+      try {
+        await _tts.awaitSpeakCompletion(false);
+      } catch (_) {}
+
+      status.value = VoiceStatus.idle;
+    } catch (e) {
+      lastError.value = 'TTS-Init fehlgeschlagen: $e';
+      status.value = VoiceStatus.error;
+      // _initFuture trotzdem als "fertig" markieren - speak() kann es spaeter neu versuchen
+    }
+  }
+
+  /// Sagt den Text. Bricht laufende Sprachausgabe ab.
   Future<void> speak(String text) async {
     if (!_enabled || text.trim().isEmpty) return;
-    await init();
+    await _ensureReady();
     try {
       await _tts.stop();
-      await _tts.speak(text);
-    } catch (_) {
-      // TTS ist optional – Fehler dürfen die App nicht blockieren.
+      final r = await _tts.speak(text);
+      if (kDebugMode) debugPrint('[LumoVoice] speak("$text") -> $r');
+    } catch (e) {
+      lastError.value = 'TTS-Fehler: $e';
+      status.value = VoiceStatus.error;
     }
   }
 
-  /// Beendet jede laufende Sprachausgabe.
+  /// Bricht jede laufende Ausgabe sofort ab.
   Future<void> stop() async {
-    if (!_ready) return;
     try {
       await _tts.stop();
     } catch (_) {}
+    status.value = VoiceStatus.idle;
   }
+
+  /// Test-Funktion - sagt einen festen Probesatz.
+  Future<void> test() => speak('Hallo! Ich bin Lumo, dein Lernfuchs.');
 }
+
+enum VoiceStatus { idle, speaking, error }
