@@ -4,6 +4,24 @@ class EmbeddedLumoFox extends StatelessWidget {
   const EmbeddedLumoFox({super.key, required this.size});
   final double size;
 
+  static const String jpgAssetPath = 'assets/images/lumo_fox.jpg';
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      jpgAssetPath,
+      width: size,
+      height: size * 1.42,
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) => _SafeFoxPlaceholder(size: size),
+    );
+  }
+}
+
+class _SafeFoxPlaceholder extends StatelessWidget {
+  const _SafeFoxPlaceholder({required this.size});
+  final double size;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,9 +43,9 @@ class EmbeddedLumoFox extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Text('🦊', style: TextStyle(fontSize: 80)),
           SizedBox(height: 12),
           Text(
