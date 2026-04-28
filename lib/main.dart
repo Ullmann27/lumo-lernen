@@ -11,10 +11,10 @@ import 'widgets/parental_gate.dart';
 import 'widgets/profile_screen.dart';
 import 'widgets/reference_home_dashboard.dart';
 import 'widgets/scan_screen.dart';
+import 'widgets/stable_lumo_shell.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // TTS lazy-init beim ersten speak()-Aufruf - kein Block beim Start
   runApp(const LumoApp());
 }
 
@@ -142,28 +142,11 @@ class _LumoHomeState extends State<LumoHome> {
   bool testFinished = false;
   String message = 'Hallo! Womit wollen wir heute lernen?';
   String foxMood = 'greet';
-  String? picked;
   final Map<String, int> solved = {};
   final Map<String, int> practice = {};
   final Set<String> usedUnits = {};
   final List<LumoTask> testTasks = [];
   late LumoTask currentTask;
-
-  // Tour-Keys
-  final _mathKey = GlobalKey();
-  final _germanKey = GlobalKey();
-  final _englishKey = GlobalKey();
-  final _practiceKey = GlobalKey();
-  final _testKey = GlobalKey();
-  final _schoolworkKey = GlobalKey();
-  final _photoKey = GlobalKey();
-  final _continueKey = GlobalKey();
-
-  // Tour-State (wenn aktiv: Fuchs als Overlay positioniert)
-  bool _tourActive = false;
-  Offset? _tourFoxPos;
-  FoxFacing _tourFoxFacing = FoxFacing.right;
-  Offset? _tourPointer;
 
   int get level => xp ~/ 400 + 1;
   int get progressPercent => ((xp % 1000) / 10).round().clamp(1, 99);
@@ -172,79 +155,14 @@ class _LumoHomeState extends State<LumoHome> {
   void initState() {
     super.initState();
     currentTask = _newTask();
-    // TTS so frueh wie moeglich initialisieren, dann Begruessung sprechen
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 600));
       if (!mounted) return;
-      await LumoVoice.instance.speak(
-        'Hallo Lena! Schoen, dass du da bist. Womit wollen wir heute lernen?',
-      );
+      await LumoVoice.instance.speak('Hallo Lena! Schoen, dass du da bist. Womit wollen wir heute lernen?');
     });
   }
 
-  Future<void> _testVoice() async {
-    await LumoVoice.instance.test();
-  }
-
-  Future<void> _startGuidedTour() async {
-    if (_tourActive) return;
-    setState(() => _tourActive = true);
-
-    final steps = <_TourStepData>[
-      _TourStepData(_mathKey,
-          'Hier kannst du Mathematik ueben. Plus, Minus und Geometrie.', 'point'),
-      _TourStepData(_germanKey,
-          'Hier lesen und schreiben wir gemeinsam.', 'point'),
-      _TourStepData(_englishKey,
-          'Englische Woerter und kleine Saetze findest du hier.', 'point'),
-      _TourStepData(_practiceKey,
-          'Spiele und lustige Uebungen warten hier auf dich.', 'celebrate'),
-      _TourStepData(_testKey,
-          'Wenn du fit bist, mach hier einen Test und sammle Sterne.', 'point'),
-      _TourStepData(_schoolworkKey,
-          'Eine Schularbeit kannst du hier ueben - du bekommst sogar eine Note.', 'think'),
-      _TourStepData(_photoKey,
-          'Schau, hier kannst du deine Hausaufgabe fotografieren - ich helfe dir damit.', 'wave'),
-      _TourStepData(_continueKey,
-          'Und hier machst du da weiter, wo du gestern aufgehoert hast.', 'greet'),
-    ];
-
-    Offset lastPos = Offset.zero;
-    for (final step in steps) {
-      if (!_tourActive || !mounted) break;
-      final ctx = step.key.currentContext;
-      if (ctx == null) continue;
-      final box = ctx.findRenderObject() as RenderBox?;
-      if (box == null || !box.attached) continue;
-      final tl = box.localToGlobal(Offset.zero);
-      final center = tl + Offset(box.size.width / 2, box.size.height / 2);
-      // Fuchs neben dem Element platzieren (rechts daneben)
-      final foxPos = Offset(tl.dx + box.size.width + 20, center.dy - 80);
-      final facing = foxPos.dx < lastPos.dx ? FoxFacing.left : FoxFacing.right;
-
-      setState(() {
-        _tourFoxPos = foxPos;
-        _tourFoxFacing = facing;
-        _tourPointer = center;
-        message = step.message;
-        foxMood = step.mood;
-      });
-      LumoVoice.instance.speak(step.message);
-      lastPos = foxPos;
-      await Future.delayed(const Duration(milliseconds: 4500));
-    }
-
-    if (mounted) {
-      setState(() {
-        _tourActive = false;
-        _tourFoxPos = null;
-        _tourPointer = null;
-        message = 'Was moechtest du als erstes machen?';
-        foxMood = 'greet';
-      });
-      LumoVoice.instance.speak('Was moechtest du als erstes machen?');
-    }
-  }
+  Future<void> _testVoice() async => LumoVoice.instance.test();
 
   Future<void> _openProfileSecured() async {
     final ok = await ParentalGate.show(context);
@@ -264,6 +182,21 @@ class _LumoHomeState extends State<LumoHome> {
     lessonUnit = 'Alle';
     mode = LumoMode.practice;
     currentTask = _newTask();
+    message = 'Ich suche dir passende Aufgaben in $s aus.';
+    foxMood = 'point';
+  }
+
+  void _startLesson() {
+    mode = LumoMode.lesson;
+    message = 'Such dir ein Fach und ein Thema aus. Ich begleite dich.';
+    foxMood = 'greet';
+  }
+
+  void _startPractice() {
+    mode = LumoMode.practice;
+    currentTask = _newTask();
+    message = agent.reactToEvent('mission_start', practice: practice);
+    foxMood = 'greet';
   }
 
   void _startTest() {
@@ -273,10 +206,33 @@ class _LumoHomeState extends State<LumoHome> {
     testScore = 0;
     testQuestion = 0;
     testFinished = false;
-    picked = null;
     mode = LumoMode.test;
     message = agent.reactToEvent('test_start', practice: practice);
+    foxMood = 'think';
+    LumoVoice.instance.speak(message);
   }
+
+  void _goHome() {
+    mode = LumoMode.home;
+    message = 'Was moechtest du als erstes machen?';
+    foxMood = 'greet';
+  }
+
+  int get _activeIndex {
+    if (mode == LumoMode.lesson) return 1;
+    if (mode == LumoMode.practice || mode == LumoMode.coach) return 2;
+    if (mode == LumoMode.test) return 3;
+    if (mode == LumoMode.scan) return 4;
+    if (mode == LumoMode.profile) return 5;
+    return 0;
+  }
+
+  Widget _lumoWidget(double size) => FreeLumoFox(
+        size: size,
+        mood: foxMood,
+        message: message,
+        onTap: () => LumoVoice.instance.speak(message),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -284,129 +240,50 @@ class _LumoHomeState extends State<LumoHome> {
     if (wide && mode == LumoMode.home) {
       return Scaffold(
         body: SafeArea(
-          child: Stack(children: [
-            ReferenceHomeDashboard(
+          child: ReferenceHomeDashboard(
             stars: stars,
             xp: xp,
             level: level,
             progress: progressPercent,
-            lumo: FreeLumoFox(
-              size: 240,
-              mood: foxMood,
-              message: _tourActive ? null : message,
-              autoDrift: !_tourActive,
-              onTap: () {
-                LumoVoice.instance.speak(message);
-                setState(() {
-                  foxMood = foxMood == 'celebrate' ? 'greet' : 'celebrate';
-                });
-              },
-            ),
+            lumo: _lumoWidget(240),
             onMath: () => setState(() => _startSubject('Mathematik')),
             onGerman: () => setState(() => _startSubject('Deutsch')),
             onEnglish: () => setState(() => _startSubject('Englisch')),
-            onPractice: () => setState(() { mode = LumoMode.practice; currentTask = _newTask(); }),
+            onPractice: () => setState(_startPractice),
             onTest: () => setState(_startTest),
             onSchoolwork: () => setState(_startTest),
             onPhoto: () => setState(() => mode = LumoMode.scan),
-            onContinue: () => setState(() { mode = LumoMode.practice; currentTask = _newTask(); }),
+            onContinue: () => setState(_startPractice),
             onProfile: _openProfileSecured,
-            onStartTour: _startGuidedTour,
             onTestVoice: _testVoice,
-            mathKey: _mathKey,
-            germanKey: _germanKey,
-            englishKey: _englishKey,
-            practiceKey: _practiceKey,
-            testKey: _testKey,
-            schoolworkKey: _schoolworkKey,
-            photoKey: _photoKey,
-            continueKey: _continueKey,
           ),
-          // Tour-Overlay: Fuchs als globaler, frei beweglicher Charakter
-          if (_tourActive && _tourFoxPos != null)
-            Positioned(
-              left: _tourFoxPos!.dx - 80,
-              top: _tourFoxPos!.dy - 80,
-              child: IgnorePointer(
-                ignoring: false,
-                child: SizedBox(
-                  width: 160, height: 220,
-                  child: FreeLumoFox(
-                    size: 200,
-                    mood: foxMood,
-                    facing: _tourFoxFacing,
-                    message: message,
-                    autoDrift: false,
-                    draggable: false,
-                  ),
-                ),
-              ),
-            ),
-          // Pointer-Highlight auf das Tour-Ziel
-          if (_tourActive && _tourPointer != null)
-            Positioned(
-              left: _tourPointer!.dx - 60,
-              top: _tourPointer!.dy - 60,
-              child: IgnorePointer(
-                child: _TourPointerRing(),
-              ),
-            ),
-          ]),
         ),
       );
     }
 
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          decoration: const BoxDecoration(gradient: LinearGradient(colors: [Color(0xfffff0d7), Color(0xfffffaf4), Color(0xffe8fff6)])),
-          child: Stack(children: [
-            Row(children: [if (wide) _rail(), Expanded(child: _page()), if (wide) _lumoPanel()]),
-            if (!wide) _floatingLumo(),
-          ]),
+        child: StableLumoShell(
+          activeIndex: _activeIndex,
+          title: _title,
+          subtitle: message,
+          body: _screen(),
+          lumo: _lumoWidget(205),
+          stars: stars,
+          xp: xp,
+          level: level,
+          progress: progressPercent,
+          onHome: () => setState(_goHome),
+          onLearn: () => setState(_startLesson),
+          onPractice: () => setState(_startPractice),
+          onTest: () => setState(_startTest),
+          onScan: () => setState(() => mode = LumoMode.scan),
+          onProfile: _openProfileSecured,
+          onVoice: _testVoice,
         ),
-      ),
-      bottomNavigationBar: wide ? null : NavigationBar(
-        selectedIndex: _navIndex,
-        onDestinationSelected: _selectNav,
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_rounded), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.school_rounded), label: 'Lernen'),
-          NavigationDestination(icon: Icon(Icons.assignment_rounded), label: 'Test'),
-          NavigationDestination(icon: Icon(Icons.draw_rounded), label: 'Übung'),
-          NavigationDestination(icon: Icon(Icons.analytics_rounded), label: 'Profil'),
-        ],
       ),
     );
   }
-
-  int get _navIndex {
-    if (mode == LumoMode.lesson) return 1;
-    if (mode == LumoMode.test) return 2;
-    if (mode == LumoMode.practice) return 3;
-    if (mode == LumoMode.profile) return 4;
-    return 0;
-  }
-
-  void _selectNav(int i) => setState(() {
-        mode = [LumoMode.home, LumoMode.lesson, LumoMode.test, LumoMode.practice, LumoMode.profile][i];
-        if (mode == LumoMode.test) _startTest();
-      });
-
-  Widget _rail() => NavigationRail(
-        selectedIndex: _navIndex,
-        onDestinationSelected: _selectNav,
-        labelType: NavigationRailLabelType.all,
-        destinations: const [
-          NavigationRailDestination(icon: Icon(Icons.home_rounded), label: Text('Home')),
-          NavigationRailDestination(icon: Icon(Icons.school_rounded), label: Text('Lernen')),
-          NavigationRailDestination(icon: Icon(Icons.assignment_rounded), label: Text('Test')),
-          NavigationRailDestination(icon: Icon(Icons.draw_rounded), label: Text('Übung')),
-          NavigationRailDestination(icon: Icon(Icons.analytics_rounded), label: Text('Profil')),
-        ],
-      );
-
-  Widget _page() => ListView(padding: const EdgeInsets.all(18), children: [_glass(Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(_title, style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w900)), Text(message, style: const TextStyle(fontWeight: FontWeight.w700)), const SizedBox(height: 16), _screen()]))]);
 
   String get _title {
     if (mode == LumoMode.lesson) return 'Unterricht';
@@ -429,18 +306,7 @@ class _LumoHomeState extends State<LumoHome> {
   }
 
   Widget _mobileHome() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          SizedBox(
-            width: 110, height: 150,
-            child: FreeLumoFox(
-              size: 130,
-              mood: foxMood,
-              onTap: () => LumoVoice.instance.speak(message),
-            ),
-          ),
-          const SizedBox(width: 12),
-          const Expanded(child: Text('Hallo, Lena! Bereit fuer ein neues Lernabenteuer?', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900))),
-        ]),
+        const Text('Hallo, Lena! Bereit fuer ein neues Lernabenteuer?', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
         const SizedBox(height: 14),
         Wrap(spacing: 12, runSpacing: 12, children: [
           _homeButton('Mathematik', Icons.calculate_rounded, Colors.orange, () => _startSubject('Mathematik')),
@@ -455,9 +321,16 @@ class _LumoHomeState extends State<LumoHome> {
   Widget _homeButton(String t, IconData i, Color c, VoidCallback tap) => InkWell(onTap: () => setState(tap), child: Container(width: 160, height: 130, padding: const EdgeInsets.all(16), decoration: _box(c.withOpacity(.16)), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Icon(i, color: c, size: 34), const Spacer(), Text(t, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900))])));
 
   Widget _lesson() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Wrap(spacing: 8, children: [ChoiceChip(label: const Text('1. Klasse'), selected: grade == 1, onSelected: (_) => setState(() { grade = 1; currentTask = _newTask(); })), ChoiceChip(label: const Text('2. Klasse'), selected: grade == 2, onSelected: (_) => setState(() { grade = 2; currentTask = _newTask(); }))]),
+        Wrap(spacing: 8, children: [
+          ChoiceChip(label: const Text('1. Klasse'), selected: grade == 1, onSelected: (_) => setState(() { grade = 1; currentTask = _newTask(); })),
+          ChoiceChip(label: const Text('2. Klasse'), selected: grade == 2, onSelected: (_) => setState(() { grade = 2; currentTask = _newTask(); })),
+        ]),
         const SizedBox(height: 12),
-        ...Curriculum.subjects.entries.map((e) => Padding(padding: const EdgeInsets.only(bottom: 12), child: _glass(Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(e.key, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900)), const SizedBox(height: 8), Wrap(spacing: 8, runSpacing: 8, children: e.value.map((u) => ActionChip(label: Text(u), onPressed: () => setState(() { subject = e.key; lessonUnit = u; currentTask = _newTask(); mode = LumoMode.practice; }))).toList())])))),
+        ...Curriculum.subjects.entries.map((e) => Padding(padding: const EdgeInsets.only(bottom: 12), child: _glass(Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(e.key, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 8),
+          Wrap(spacing: 8, runSpacing: 8, children: e.value.map((u) => ActionChip(label: Text(u), onPressed: () => setState(() { subject = e.key; lessonUnit = u; currentTask = _newTask(); mode = LumoMode.practice; message = 'Wir ueben jetzt $u.'; }))).toList()),
+        ])))),
       ]);
 
   Widget _taskView(LumoTask task, bool test) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -490,7 +363,7 @@ class _LumoHomeState extends State<LumoHome> {
   }
 
   Widget _test() {
-    if (testFinished) return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [const CircularProgressIndicator(), const SizedBox(height: 14), Text('Test fertig', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), Text('Punkte: $testScore / ${testTasks.length}'), Text('Note: $lastGrade', style: const TextStyle(fontSize: 42, fontWeight: FontWeight.w900, color: Colors.deepOrange)), FilledButton(onPressed: () => setState(() => mode = LumoMode.profile), child: const Text('Zum Profil'))]);
+    if (testFinished) return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [const CircularProgressIndicator(), const SizedBox(height: 14), const Text('Test fertig', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), Text('Punkte: $testScore / ${testTasks.length}'), Text('Note: $lastGrade', style: const TextStyle(fontSize: 42, fontWeight: FontWeight.w900, color: Colors.deepOrange)), FilledButton(onPressed: () => setState(() => mode = LumoMode.profile), child: const Text('Zum Profil'))]);
     final task = testTasks.isEmpty ? currentTask : testTasks[testQuestion.clamp(0, testTasks.length - 1)];
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Aufgabe ${testQuestion + 1}/${testTasks.isEmpty ? 10 : testTasks.length}', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900)), _taskView(task, true)]);
   }
@@ -503,68 +376,26 @@ class _LumoHomeState extends State<LumoHome> {
           testFinished = true;
           final p = testTasks.isEmpty ? 0.0 : testScore / testTasks.length;
           lastGrade = p >= .9 ? 1 : p >= .8 ? 2 : p >= .65 ? 3 : p >= .5 ? 4 : 5;
+          message = agent.reactToEvent('test_finished', practice: practice);
+          LumoVoice.instance.speak(message);
         }
       });
 
   Widget _coach() {
     final c = TextEditingController();
-    return Column(children: [TextField(controller: c, decoration: const InputDecoration(labelText: 'Frag Lumo etwas zum Lernen')), const SizedBox(height: 10), FilledButton(onPressed: () => setState(() => message = agent.answerChild(c.text)), child: const Text('Lumo antworten lassen')), Text(message)]);
+    return Column(children: [TextField(controller: c, decoration: const InputDecoration(labelText: 'Frag Lumo etwas zum Lernen')), const SizedBox(height: 10), FilledButton(onPressed: () => setState(() { message = agent.answerChild(c.text); LumoVoice.instance.speak(message); }), child: const Text('Lumo antworten lassen')), Text(message)]);
   }
 
   Widget _scan() => ScanScreen(
-        onCancel: () => setState(() => mode = LumoMode.home),
+        onCancel: () => setState(_goHome),
         onTextDetected: (text) {
-          setState(() {
-            message = text.length > 200
-                ? 'Ich hab das gelesen. Lass uns die Aufgabe gemeinsam loesen!'
-                : 'Ich hab das gelesen: "$text"';
-            foxMood = 'celebrate';
-            mode = LumoMode.coach;
-          });
-          LumoVoice.instance.speak(
-            'Super, ich habe deine Aufgabe gelesen. Lass uns gemeinsam ueben.',
-          );
+          setState(() { message = text.length > 200 ? 'Ich hab das gelesen. Lass uns die Aufgabe gemeinsam loesen!' : 'Ich hab das gelesen: "$text"'; foxMood = 'celebrate'; mode = LumoMode.coach; });
+          LumoVoice.instance.speak('Super, ich habe deine Aufgabe gelesen. Lass uns gemeinsam ueben.');
         },
       );
-  Widget _profile() => ProfileScreen(
-        stars: stars,
-        xp: xp,
-        level: level,
-        progress: progressPercent,
-        solved: solved,
-        practice: practice,
-        lastGrade: lastGrade,
-      );
 
-  Widget _lumoPanel() => Container(
-        width: 320,
-        margin: const EdgeInsets.all(14),
-        child: _glass(Column(children: [
-          FreeLumoFox(
-            size: 200,
-            mood: foxMood,
-            onTap: () => LumoVoice.instance.speak(message),
-          ),
-          const SizedBox(height: 8),
-          Text('★ $stars',
-              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
-          Text(message, textAlign: TextAlign.center),
-        ])),
-      );
-  Widget _floatingLumo() => Positioned(
-        right: 8,
-        bottom: 8,
-        child: SizedBox(
-          width: 120,
-          height: 160,
-          child: FreeLumoFox(
-            size: 130,
-            mood: foxMood,
-            autoDrift: false,
-            onTap: () => LumoVoice.instance.speak(message),
-          ),
-        ),
-      );
+  Widget _profile() => ProfileScreen(stars: stars, xp: xp, level: level, progress: progressPercent, solved: solved, practice: practice, lastGrade: lastGrade);
+
   Widget _glass(Widget child) => Container(decoration: _box(Colors.white.withOpacity(.82)), padding: const EdgeInsets.all(22), child: child);
   BoxDecoration _box(Color color) => BoxDecoration(color: color, borderRadius: BorderRadius.circular(28), border: Border.all(color: Colors.white70), boxShadow: [BoxShadow(color: Colors.deepOrange.withOpacity(.10), blurRadius: 22, offset: const Offset(0, 12))]);
 }
@@ -584,76 +415,6 @@ class _LumoFoxState extends State<LumoFox> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final jump = widget.mood == 'celebrate' || widget.mood == 'jump';
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (context, child) => Transform.translate(offset: Offset(0, jump ? -18 * controller.value : -5 * controller.value), child: Transform.scale(scale: 1 + (jump ? .035 : .012) * controller.value, child: child)),
-      child: SizedBox(
-        width: widget.size,
-        height: widget.size * 1.42,
-        child: Image.asset(
-          lumoFoxAsset,
-          fit: BoxFit.contain,
-          errorBuilder: (_, __, ___) => EmbeddedLumoFox(size: widget.size),
-        ),
-      ),
-    );
-  }
-}
-
-class _TourStepData {
-  const _TourStepData(this.key, this.message, this.mood);
-  final GlobalKey key;
-  final String message;
-  final String mood;
-}
-
-/// Pulsierender Ring der das Tour-Ziel hervorhebt
-class _TourPointerRing extends StatefulWidget {
-  @override
-  State<_TourPointerRing> createState() => _TourPointerRingState();
-}
-
-class _TourPointerRingState extends State<_TourPointerRing>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _ctrl =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 1300))
-        ..repeat();
-
-  @override
-  void dispose() {
-    _ctrl.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _ctrl,
-      builder: (_, __) {
-        final scale = 1 + 0.20 * _ctrl.value;
-        final opacity = 1 - _ctrl.value;
-        return Transform.scale(
-          scale: scale,
-          child: Opacity(
-            opacity: opacity.clamp(0.0, 1.0),
-            child: Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xffff7a2f), width: 4),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xffff7a2f).withOpacity(0.4),
-                    blurRadius: 20,
-                    spreadRadius: 4,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    return AnimatedBuilder(animation: controller, builder: (context, child) => Transform.translate(offset: Offset(0, jump ? -18 * controller.value : -5 * controller.value), child: Transform.scale(scale: 1 + (jump ? .035 : .012) * controller.value, child: child)), child: SizedBox(width: widget.size, height: widget.size * 1.42, child: Image.asset(lumoFoxAsset, fit: BoxFit.contain, errorBuilder: (_, __, ___) => EmbeddedLumoFox(size: widget.size))));
   }
 }
