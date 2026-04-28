@@ -5,6 +5,7 @@ import 'core/lumo_companion_agent.dart';
 import 'core/school_exercise_generator.dart';
 import 'widgets/drawing_pad.dart';
 import 'widgets/embedded_lumo_fox.dart';
+import 'widgets/profile_screen.dart';
 import 'widgets/reference_home_dashboard.dart';
 
 void main() => runApp(const LumoApp());
@@ -344,7 +345,15 @@ class _LumoHomeState extends State<LumoHome> {
   }
 
   Widget _scan() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [const Text('Scan-Simulation'), const TextField(maxLines: 3), FilledButton(onPressed: () => setState(() { practice['Minus bis 20'] = (practice['Minus bis 20'] ?? 0) + 1; mode = LumoMode.profile; }), child: const Text('Analysieren'))]);
-  Widget _profile() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Sterne: $stars'), Text('XP: $xp'), Text('Gelöst: $solved'), Text('Mehr üben: $practice'), Text('Letzte Note: ${lastGrade == 0 ? 'noch keine' : lastGrade}')]);
+  Widget _profile() => ProfileScreen(
+        stars: stars,
+        xp: xp,
+        level: level,
+        progress: progressPercent,
+        solved: solved,
+        practice: practice,
+        lastGrade: lastGrade,
+      );
 
   Widget _lumoPanel() => Container(width: 320, margin: const EdgeInsets.all(14), child: _glass(Column(children: [LumoFox(size: 190, mood: foxMood), Text('★ $stars', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), Text(message, textAlign: TextAlign.center)])));
   Widget _floatingLumo() => Positioned(right: 10, bottom: 10, child: IgnorePointer(child: Container(padding: const EdgeInsets.all(8), decoration: _box(Colors.white.withOpacity(.8)), child: LumoFox(size: 90, mood: foxMood))));
