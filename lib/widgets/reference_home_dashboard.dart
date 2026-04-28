@@ -163,9 +163,9 @@ class _NavItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: selected
               ? BoxDecoration(
-                  gradient: const LinearGradient(colors: [Color(0xfffff1df), Color(0xffffe6c8)]),
+                  gradient: const LinearGradient(colors: [Color(0xffff7a1a), Color(0xffff9a4e)]),
                   borderRadius: BorderRadius.circular(24),
-                  boxShadow: [BoxShadow(color: Colors.orange.withOpacity(.18), blurRadius: 22, offset: const Offset(0, 10))],
+                  boxShadow: [BoxShadow(color: Colors.orange.withOpacity(.32), blurRadius: 18, offset: const Offset(0, 8))],
                 )
               : null,
           child: Row(
@@ -173,11 +173,11 @@ class _NavItem extends StatelessWidget {
               Container(
                 width: 40,
                 height: 40,
-                decoration: _softBox(15, Colors.white.withOpacity(.94)),
-                child: Icon(icon, color: color, size: 23),
+                decoration: _softBox(15, selected ? Colors.white.withOpacity(.25) : Colors.white.withOpacity(.94)),
+                child: Icon(icon, color: selected ? Colors.white : color, size: 23),
               ),
               const SizedBox(width: 12),
-              Expanded(child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: selected ? const Color(0xffff6d00) : const Color(0xff655b54)))),
+              Expanded(child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: selected ? Colors.white : const Color(0xff655b54)))),
             ],
           ),
         ),
@@ -232,13 +232,13 @@ class _CenterDashboard extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _KpiCard(title: 'Sterne', value: '$stars /50', icon: '⭐', color: const Color(0xffb455f6), percent: .48),
+                  _KpiCard(title: 'Sterne', value: '$stars /50', icon: '⭐', color: const Color(0xffb455f6), percent: stars / 50),
                   const SizedBox(width: 16),
-                  _KpiCard(title: 'XP Punkte', value: '$xp', icon: '🏅', color: const Color(0xffffb000), percent: .62),
+                  _KpiCard(title: 'XP Punkte', value: '$xp', icon: '🏅', color: const Color(0xffffb000), percent: (xp % 1000) / 1000),
                   const SizedBox(width: 16),
                   _KpiCard(title: 'Level', value: '$level Einsteiger', icon: '💎', color: const Color(0xff12bfa6), percent: .70),
                   const SizedBox(width: 16),
-                  _KpiCard(title: 'Lernfortschritt', value: '$progress%', icon: '🌊', color: const Color(0xff3b8dff), percent: progress / 100),
+                  _CircularKpiCard(title: 'Lernfortschritt', value: '$progress%', subtitle: 'Diese Woche', color: const Color(0xff3b8dff), percent: progress / 100),
                 ],
               ),
             ),
@@ -284,23 +284,98 @@ class _KpiCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 168,
-      height: 104,
-      padding: const EdgeInsets.all(14),
-      decoration: _softBox(24, Colors.white.withOpacity(.86)),
+      width: 178,
+      height: 112,
+      padding: const EdgeInsets.fromLTRB(16, 14, 14, 14),
+      decoration: _softBox(26, Colors.white.withOpacity(.92)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(icon, style: const TextStyle(
+                fontSize: 34,
+                shadows: [Shadow(color: Colors.black12, blurRadius: 10, offset: Offset(0, 4))],
+              )),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(title, maxLines: 1, overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: color)),
+                    const SizedBox(height: 1),
+                    Text(value, maxLines: 1, overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 26, height: 1.05, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(99),
+            child: LinearProgressIndicator(
+              value: percent.clamp(0.0, 1.0),
+              minHeight: 7,
+              color: color,
+              backgroundColor: color.withOpacity(.13),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Lernfortschritt-Karte mit Kreis-Fortschrittsanzeige (wie im Screenshot)
+class _CircularKpiCard extends StatelessWidget {
+  const _CircularKpiCard({required this.title, required this.value, required this.subtitle, required this.color, required this.percent});
+  final String title;
+  final String value;
+  final String subtitle;
+  final Color color;
+  final double percent;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 178,
+      height: 112,
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+      decoration: _softBox(26, Colors.white.withOpacity(.92)),
       child: Row(
         children: [
-          Text(icon, style: const TextStyle(fontSize: 31, shadows: [Shadow(color: Colors.black12, blurRadius: 9, offset: Offset(0, 4))])),
+          // Donut ring
+          SizedBox(
+            width: 56, height: 56,
+            child: Stack(alignment: Alignment.center, children: [
+              CircularProgressIndicator(
+                value: percent.clamp(0.0, 1.0),
+                strokeWidth: 6.5,
+                color: color,
+                backgroundColor: color.withOpacity(.13),
+                strokeCap: StrokeCap.round,
+              ),
+              Text(value,
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: color)),
+            ]),
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: color)),
-                Text(value, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
-                const SizedBox(height: 8),
-                ClipRRect(borderRadius: BorderRadius.circular(99), child: LinearProgressIndicator(value: percent.clamp(0, 1), minHeight: 7, color: color, backgroundColor: color.withOpacity(.13))),
+                Text(title, maxLines: 1, overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: color)),
+                const SizedBox(height: 2),
+                Text(value,
+                    style: const TextStyle(fontSize: 26, height: 1.05, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
+                Text(subtitle,
+                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Color(0xff9ca3af))),
               ],
             ),
           ),
