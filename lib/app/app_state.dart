@@ -37,6 +37,9 @@ class LumoSessionState {
     this.solved = const {},
     this.weakSkills = const {},
     this.settings = const AppSettings(),
+    this.learningRecommendationText,
+    this.learningRecommendationSubject,
+    this.learningRecommendationUnit,
   });
 
   LumoSection section;
@@ -53,6 +56,9 @@ class LumoSessionState {
   Map<String, int> solved;
   Map<String, int> weakSkills;
   AppSettings settings;
+  String? learningRecommendationText;
+  String? learningRecommendationSubject;
+  String? learningRecommendationUnit;
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
@@ -74,6 +80,9 @@ class LumoSessionState {
     Map<String, int>? solved,
     Map<String, int>? weakSkills,
     AppSettings? settings,
+    String? learningRecommendationText,
+    String? learningRecommendationSubject,
+    String? learningRecommendationUnit,
   }) {
     return LumoSessionState(
       section: section ?? this.section,
@@ -90,6 +99,9 @@ class LumoSessionState {
       solved: solved ?? this.solved,
       weakSkills: weakSkills ?? this.weakSkills,
       settings: settings ?? this.settings,
+      learningRecommendationText: learningRecommendationText ?? this.learningRecommendationText,
+      learningRecommendationSubject: learningRecommendationSubject ?? this.learningRecommendationSubject,
+      learningRecommendationUnit: learningRecommendationUnit ?? this.learningRecommendationUnit,
     );
   }
 }
@@ -98,29 +110,20 @@ class LumoAppState extends ChangeNotifier {
   LumoSessionState _state = LumoSessionState();
   LumoSessionState get state => _state;
 
-  // ── Phase 3: Lernprofil-Engine ──────────────────────────────
-  // Die Engine speichert lokal pro Skill (Subject + Unit) den Fortschritt
-  // des Kindes. Sie wird einmal beim App-Start geladen und schreibt danach
-  // bei jeder beantworteten Aufgabe automatisch in den lokalen Speicher.
   final LearningProfileEngine _learningProfile = LearningProfileEngine();
   bool _learningProfileLoaded = false;
 
-  /// Zugriff auf die Engine fuer Eltern-Dashboard-Auswertungen.
-  /// Nicht direkt fuer UI-Manipulation gedacht.
   LearningProfileEngine get learningProfile => _learningProfile;
   bool get learningProfileLoaded => _learningProfileLoaded;
 
-  /// Laedt die Lerndaten vom lokalen Speicher.
-  /// Wird von der AppShell beim Start aufgerufen, parallel zu den Settings.
   Future<void> loadLearningProfile() async {
     if (_learningProfileLoaded) return;
     await _learningProfile.load();
     _learningProfileLoaded = true;
+    _syncLearningRecommendation();
     notifyListeners();
   }
 
-  /// Erfasst eine beantwortete Uebung.
-  /// Aufruf erfolgt aus dem Uebungs-Widget, parallel zu correctAnswer/wrongAnswer.
   Future<void> recordLearningAnswer({
     required String subject,
     required String unit,
@@ -128,8 +131,6 @@ class LumoAppState extends ChangeNotifier {
     bool hintUsed = false,
   }) async {
     if (!_learningProfileLoaded) {
-      // Engine ist noch nicht geladen. Wir versuchen es nachzuladen, damit
-      // die Antwort nicht verloren geht.
       await _learningProfile.load();
       _learningProfileLoaded = true;
     }
@@ -139,13 +140,10 @@ class LumoAppState extends ChangeNotifier {
       isCorrect: correct,
       hintUsed: hintUsed,
     );
-    // Wir loesen einen Listener-Notify aus, damit Widgets die Empfehlungen
-    // anzeigen koennten. Der eigentliche Session-State bleibt unveraendert.
+    _syncLearningRecommendation();
     notifyListeners();
   }
 
-  /// Liefert die wichtigste aktuelle Empfehlung — oder null, wenn noch nicht
-  /// genug Daten vorliegen.
   Recommendation? topLearningRecommendation() {
     if (!_learningProfileLoaded) return null;
     return _learningProfile.topRecommendation(
@@ -153,25 +151,30 @@ class LumoAppState extends ChangeNotifier {
     );
   }
 
-  /// Anzahl der heute richtig beantworteten Aufgaben.
+  void _syncLearningRecommendation() {
+    final recommendation = topLearningRecommendation();
+    if (recommendation == null) return;
+    _state = _state.copyWith(
+      learningRecommendationText: recommendation.message,
+      learningRecommendationSubject: recommendation.subject,
+      learningRecommendationUnit: recommendation.unit,
+    );
+  }
+
   int learningDailyDone() =>
       _learningProfileLoaded ? _learningProfile.dailyDone() : 0;
 
-  /// Aktuelle Tagesserie in Tagen.
   int learningStreakDays() =>
       _learningProfileLoaded ? _learningProfile.currentStreakDays() : 0;
 
-  /// Schwaechen-Uebersicht fuer den Eltern-Bereich.
   Map<String, List<String>> learningWeaknessesBySubject() =>
       _learningProfileLoaded
           ? _learningProfile.weaknessesBySubject()
           : <String, List<String>>{};
 
-  /// Zugriff auf die rohen SkillRecords fuer Statistiken.
   Map<String, SkillRecord> learningSkills() =>
       _learningProfileLoaded ? _learningProfile.skills : <String, SkillRecord>{};
 
-  /// Setzt alle Lerndaten zurueck. Nur Eltern-PIN-geschuetzt aufrufen.
   Future<void> resetLearningProfile() async {
     await _learningProfile.reset();
     notifyListeners();
@@ -184,6 +187,7 @@ class LumoAppState extends ChangeNotifier {
 
   void updateSettings(AppSettings settings) {
     _state = _state.copyWith(settings: settings);
+    _syncLearningRecommendation();
     notifyListeners();
   }
 
