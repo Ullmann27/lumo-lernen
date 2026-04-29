@@ -57,7 +57,7 @@ class _LearningContentState extends State<LearningContent> {
     } else {
       widget.appState.wrongAnswer(_task.unit);
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: false);
-      LumoVoice.instance.speak('Fast! Die richtige Antwort wäre ${_task.answer}.');
+      LumoVoice.instance.speak('Die richtige Antwort wäre ${_task.answer}.');
     }
   }
 
@@ -78,51 +78,55 @@ class _LearningContentState extends State<LearningContent> {
     final chip = st.subject == 'Alle'
         ? 'Klasse ${st.grade} • gemischt'
         : '${st.subject} • ${st.unit == 'Alle' ? 'alle Themen' : st.unit}';
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(26, 26, 20, 26),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
-              Text('Übung', style: TextStyle(fontFamily: 'Nunito', fontSize: 0)),
-            ]),
-          ),
-        ]),
-        Row(children: [
-          Expanded(
+    return LayoutBuilder(builder: (context, constraints) {
+      final compact = constraints.maxWidth < 560;
+      return SingleChildScrollView(
+        padding: EdgeInsets.all(compact ? 14 : 26),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 780),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 32, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
-              const Text('Arbeite wie im Heft.\nRuhig lesen, dann erst antworten.', style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w700, color: LumoColors.ink500, height: 1.35)),
+              Row(children: [
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.05)),
+                    const SizedBox(height: 8),
+                    const Text('Arbeite wie im Heft. Ruhig lesen, dann erst antworten.', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w800, color: LumoColors.ink500, height: 1.35)),
+                  ]),
+                ),
+                Container(
+                  decoration: BoxDecoration(color: LumoColors.orangeSurface, shape: BoxShape.circle, boxShadow: [BoxShadow(color: LumoColors.orange.withOpacity(.20), blurRadius: 14, offset: const Offset(0, 6))]),
+                  child: IconButton(icon: const Icon(Icons.volume_up_rounded, color: LumoColors.orange, size: 26), onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}')),
+                ),
+              ]),
+              const SizedBox(height: 22),
+              _ProgressHeader(current: _questionNum, total: _totalQuestions, subject: chip),
+              const SizedBox(height: 22),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(compact ? 22 : 30),
+                decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF4BD), Color(0xFFFFF8DC)], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(_task.subject, style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13)),
+                  const SizedBox(height: 10),
+                  Text(_task.prompt, style: TextStyle(fontFamily: 'Nunito', fontSize: compact ? 30 : 40, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.12)),
+                  const SizedBox(height: 18),
+                  _NumberAid(task: _task, picked: _picked, answered: _answered),
+                ]),
+              ),
+              const SizedBox(height: 24),
+              Text('Wähle die richtige Antwort:', style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 14)),
+              const SizedBox(height: 14),
+              _ChoiceGrid(task: _task, picked: _picked, answered: _answered, onTap: _answer),
+              if (_answered && _picked != null) ...[
+                const SizedBox(height: 22),
+                _ExplanationCard(correct: _picked == _task.answer, explanation: _task.explanation, correctAnswer: _task.answer, onNext: _nextQuestion),
+              ],
             ]),
           ),
-          Container(
-            decoration: BoxDecoration(color: LumoColors.orangeSurface, shape: BoxShape.circle, boxShadow: [BoxShadow(color: LumoColors.orange.withOpacity(.20), blurRadius: 14, offset: const Offset(0, 6))]),
-            child: IconButton(icon: const Icon(Icons.volume_up_rounded, color: LumoColors.orange, size: 26), onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}')),
-          ),
-        ]),
-        const SizedBox(height: 22),
-        _ProgressHeader(current: _questionNum, total: _totalQuestions, subject: chip),
-        const SizedBox(height: 22),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(24),
-          decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF4BD), Color(0xFFFFF8DC)], begin: Alignment.topLeft, end: Alignment.bottomRight)),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(_task.subject, style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
-            const SizedBox(height: 8),
-            Text(_task.prompt, style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.2)),
-          ]),
         ),
-        const SizedBox(height: 22),
-        Text('Wähle die richtige Antwort:', style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 13)),
-        const SizedBox(height: 12),
-        Wrap(spacing: 12, runSpacing: 12, children: _task.choices.map((c) => _ChoiceChip(label: c, picked: _picked, correct: _task.answer, answered: _answered, onTap: _answer)).toList()),
-        if (_answered && _picked != null) ...[
-          const SizedBox(height: 22),
-          _ExplanationCard(correct: _picked == _task.answer, explanation: _task.explanation, correctAnswer: _task.answer, onNext: _nextQuestion),
-        ],
-      ]),
-    );
+      );
+    });
   }
 }
 
@@ -135,22 +139,82 @@ class _ProgressHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
       decoration: lumoCard(),
-      child: Row(children: [
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Aufgabe $current / $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
-          const SizedBox(height: 6),
-          ClipRRect(borderRadius: BorderRadius.circular(LumoRadius.pill), child: LinearProgressIndicator(value: current / total, minHeight: 8, color: LumoColors.orange, backgroundColor: LumoColors.orange.withOpacity(.14))),
-        ])),
-        const SizedBox(width: 14),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.pill), border: Border.all(color: LumoColors.orange.withOpacity(.2))),
-          child: Text(subject, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.orange), maxLines: 1, overflow: TextOverflow.ellipsis),
-        ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          Expanded(
+            child: Text('Aufgabe $current von $total', maxLines: 1, softWrap: false, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 19, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+          ),
+          const SizedBox(width: 10),
+          Flexible(
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 230),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+              decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.pill), border: Border.all(color: LumoColors.orange.withOpacity(.2))),
+              child: Text(subject, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange), maxLines: 1, softWrap: false, overflow: TextOverflow.ellipsis),
+            ),
+          ),
+        ]),
+        const SizedBox(height: 12),
+        ClipRRect(borderRadius: BorderRadius.circular(LumoRadius.pill), child: LinearProgressIndicator(value: current / total, minHeight: 8, color: LumoColors.orange, backgroundColor: LumoColors.orange.withOpacity(.14))),
       ]),
     );
+  }
+}
+
+class _NumberAid extends StatelessWidget {
+  const _NumberAid({required this.task, required this.picked, required this.answered});
+  final LumoTask task;
+  final String? picked;
+  final bool answered;
+
+  @override
+  Widget build(BuildContext context) {
+    final numbers = task.choices.map(int.tryParse).whereType<int>().toList()..sort();
+    final answer = int.tryParse(task.answer);
+    if (numbers.length < 3 || answer == null) return const SizedBox.shrink();
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(color: Colors.white.withOpacity(.72), borderRadius: BorderRadius.circular(LumoRadius.lg), border: Border.all(color: Colors.white.withOpacity(.9), width: 1.4)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const Text('Zahlenhilfe', style: TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink500)),
+        const SizedBox(height: 14),
+        Stack(alignment: Alignment.center, children: [
+          Container(height: 6, decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.18), borderRadius: BorderRadius.circular(LumoRadius.pill))),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: numbers.map((n) {
+            final selected = picked == '$n';
+            final correct = answered && n == answer;
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              width: selected || correct ? 42 : 34,
+              height: selected || correct ? 42 : 34,
+              decoration: BoxDecoration(color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : Colors.white, shape: BoxShape.circle, border: Border.all(color: correct ? const Color(0xFF22C55E) : LumoColors.orange.withOpacity(.55), width: 2), boxShadow: selected || correct ? LumoShadow.pill : []),
+              child: Center(child: Text('$n', style: TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900, color: selected || correct ? Colors.white : LumoColors.ink900))),
+            );
+          }).toList()),
+        ]),
+      ]),
+    );
+  }
+}
+
+class _ChoiceGrid extends StatelessWidget {
+  const _ChoiceGrid({required this.task, required this.picked, required this.answered, required this.onTap});
+  final LumoTask task;
+  final String? picked;
+  final bool answered;
+  final ValueChanged<String> onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      final compact = constraints.maxWidth < 460;
+      final itemWidth = compact ? constraints.maxWidth : (constraints.maxWidth - 24) / 3;
+      return Wrap(spacing: 12, runSpacing: 12, children: task.choices.map((c) => SizedBox(width: itemWidth, child: _ChoiceChip(label: c, picked: picked, correct: task.answer, answered: answered, onTap: onTap))).toList());
+    });
   }
 }
 
@@ -200,12 +264,12 @@ class _ChoiceChipState extends State<_ChoiceChip> {
         onTap: () => widget.onTap(widget.label),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 160),
-          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
           decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(LumoRadius.pill), border: Border.all(color: border, width: 2), boxShadow: !widget.answered && _hovered ? LumoShadow.pill : []),
-          child: Row(mainAxisSize: MainAxisSize.min, children: [
-            if (widget.answered && isCorrect) const Padding(padding: EdgeInsets.only(right: 6), child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 18)),
-            if (widget.answered && isPicked && !isCorrect) const Padding(padding: EdgeInsets.only(right: 6), child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 18)),
-            Text(widget.label, style: TextStyle(fontFamily: 'Nunito', fontSize: 20, fontWeight: FontWeight.w900, color: textColor)),
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            if (widget.answered && isCorrect) const Padding(padding: EdgeInsets.only(right: 7), child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 20)),
+            if (widget.answered && isPicked && !isCorrect) const Padding(padding: EdgeInsets.only(right: 7), child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 20)),
+            Flexible(child: Text(widget.label, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: textColor))),
           ]),
         ),
       ),
@@ -229,7 +293,7 @@ class _ExplanationCard extends StatelessWidget {
         Row(children: [
           Icon(correct ? Icons.celebration_rounded : Icons.lightbulb_rounded, color: correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B), size: 26),
           const SizedBox(width: 10),
-          Text(correct ? 'Super gemacht! ⭐' : 'Fast – nicht aufgeben!', style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F))),
+          Expanded(child: Text(correct ? 'Super gemacht! ⭐' : 'Nicht aufgeben!', style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F)))),
         ]),
         const SizedBox(height: 8),
         Text(explanation, style: LumoTextStyles.body.copyWith(color: correct ? const Color(0xFF166534) : const Color(0xFF92400E))),
