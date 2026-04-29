@@ -2,14 +2,14 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-/// Sprachausgabe fuer Lumo - garantiert robust.
+/// Zentrales Voice-System fuer Lumo.
 ///
-/// Hauptmerkmale:
-/// - Wartet beim ersten Aufruf garantiert auf vollstaendige Initialisierung
-/// - Faellt automatisch von de-AT auf de-DE auf Standard zurueck
-/// - Zeigt Status (sprechend / bereit / Fehler) per ValueNotifier nach aussen
-/// - Schluckt nichts still: bei Fehlern wird der Status auf "error" gesetzt
-/// - 100 Prozent on-device, Play-Store-konform fuer Kinder-Apps
+/// Ziel:
+/// - deutlich weniger robotisch
+/// - kindgerechter, waermer, ruhiger
+/// - beste verfuegbare deutsche Stimme automatisch waehlen
+/// - emotionale Sprechmodi statt immer gleicher TTS-Ausgabe
+/// - stabiler Fallback ohne neue Build-Risiken
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
@@ -17,25 +17,25 @@ class LumoVoice {
   final FlutterTts _tts = FlutterTts();
   Future<void>? _initFuture;
   bool _enabled = true;
+  bool _voiceSelected = false;
+  String? _selectedVoiceName;
+  String? _selectedLocale;
 
-  /// Beobachtbarer Status (fuer UI-Indikator).
-  final ValueNotifier<VoiceStatus> status =
-      ValueNotifier<VoiceStatus>(VoiceStatus.idle);
-
-  /// Letzter Fehlertext (zur Anzeige).
+  final ValueNotifier<VoiceStatus> status = ValueNotifier<VoiceStatus>(VoiceStatus.idle);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
 
   bool get isEnabled => _enabled;
   set isEnabled(bool v) => _enabled = v;
 
-  /// Erzwingt Initialisierung. Idempotent. Wartet auf laufende Init.
+  String? get selectedVoiceName => _selectedVoiceName;
+  String? get selectedLocale => _selectedLocale;
+
   Future<void> _ensureReady() {
     return _initFuture ??= _doInit();
   }
 
   Future<void> _doInit() async {
     try {
-      // Handler fuer Status-Updates
       _tts.setStartHandler(() => status.value = VoiceStatus.speaking);
       _tts.setCompletionHandler(() => status.value = VoiceStatus.idle);
       _tts.setCancelHandler(() => status.value = VoiceStatus.idle);
@@ -44,30 +44,10 @@ class LumoVoice {
         status.value = VoiceStatus.error;
       });
 
-      // Sprache: de-AT bevorzugt, sonst de-DE, sonst System
-      var languageOk = false;
-      for (final lang in ['de-AT', 'de-DE', 'de']) {
-        try {
-          final res = await _tts.isLanguageAvailable(lang);
-          if (res == true || res == 1) {
-            await _tts.setLanguage(lang);
-            languageOk = true;
-            break;
-          }
-        } catch (_) {/* weiter */ }
-      }
-      if (!languageOk) {
-        try {
-          await _tts.setLanguage('de-DE');
-        } catch (_) {/* notfalls Default */}
-      }
+      await _selectBestGermanVoice();
+      await _applyStyle(VoiceStyle.warm);
 
-      // Kindgerechte Stimm-Parameter
-      await _tts.setSpeechRate(0.45);
-      await _tts.setPitch(1.18);
-      await _tts.setVolume(1.0);
-
-      // Wir blockieren nicht auf Sprech-Ende - sonst staut sich die UI
+      // Fuer normale UI-Nutzung blockieren wir nicht auf das Ende der Ausgabe.
       try {
         await _tts.awaitSpeakCompletion(false);
       } catch (_) {}
@@ -76,25 +56,178 @@ class LumoVoice {
     } catch (e) {
       lastError.value = 'TTS-Init fehlgeschlagen: $e';
       status.value = VoiceStatus.error;
-      // _initFuture trotzdem als "fertig" markieren - speak() kann es spaeter neu versuchen
     }
   }
 
-  /// Sagt den Text. Bricht laufende Sprachausgabe ab.
-  Future<void> speak(String text) async {
+  Future<void> _selectBestGermanVoice() async {
+    if (_voiceSelected) return;
+
+    final fallbackLanguages = <String>['de-AT', 'de-DE', 'de'];
+
+    try {
+      final rawVoices = await _tts.getVoices;
+      final voices = _normaliseVoices(rawVoices);
+      final germanVoices = voices.where(_isGermanVoice).toList();
+
+      if (germanVoices.isNotEmpty) {
+        germanVoices.sort((a, b) => _scoreVoice(b).compareTo(_scoreVoice(a)));
+        final best = germanVoices.first;
+        final name = best['name'];
+        final locale = best['locale'];
+
+        if (name != null && locale != null) {
+          await _tts.setVoice({'name': name, 'locale': locale});
+          _selectedVoiceName = name;
+          _selectedLocale = locale;
+          _voiceSelected = true;
+          return;
+        }
+      }
+    } catch (e) {
+      if (kDebugMode) debugPrint('[LumoVoice] Voice scan failed: $e');
+    }
+
+    for (final lang in fallbackLanguages) {
+      try {
+        final available = await _tts.isLanguageAvailable(lang);
+        if (available == true || available == 1) {
+          await _tts.setLanguage(lang);
+          _selectedLocale = lang;
+          _voiceSelected = true;
+          return;
+        }
+      } catch (_) {}
+    }
+
+    try {
+      await _tts.setLanguage('de-DE');
+      _selectedLocale = 'de-DE';
+    } catch (_) {}
+    _voiceSelected = true;
+  }
+
+  List<Map<String, String>> _normaliseVoices(dynamic rawVoices) {
+    if (rawVoices is! List) return const <Map<String, String>>[];
+    return rawVoices.map<Map<String, String>?>((voice) {
+      if (voice is Map) {
+        final name = (voice['name'] ?? voice['voice'] ?? '').toString();
+        final locale = (voice['locale'] ?? voice['language'] ?? '').toString();
+        if (name.isEmpty && locale.isEmpty) return null;
+        return <String, String>{'name': name, 'locale': locale};
+      }
+      return null;
+    }).whereType<Map<String, String>>().toList();
+  }
+
+  bool _isGermanVoice(Map<String, String> voice) {
+    final locale = (voice['locale'] ?? '').toLowerCase();
+    final name = (voice['name'] ?? '').toLowerCase();
+    return locale.startsWith('de') || name.contains('german') || name.contains('deutsch');
+  }
+
+  int _scoreVoice(Map<String, String> voice) {
+    final name = (voice['name'] ?? '').toLowerCase();
+    final locale = (voice['locale'] ?? '').toLowerCase();
+    var score = 0;
+
+    if (locale == 'de-at') score += 120;
+    if (locale == 'de-de') score += 100;
+    if (locale.startsWith('de')) score += 80;
+
+    if (name.contains('google')) score += 45;
+    if (name.contains('neural')) score += 45;
+    if (name.contains('natural')) score += 40;
+    if (name.contains('enhanced')) score += 35;
+    if (name.contains('premium')) score += 30;
+    if (name.contains('female')) score += 22;
+    if (name.contains('frau')) score += 22;
+    if (name.contains('anna')) score += 18;
+    if (name.contains('marlene')) score += 18;
+    if (name.contains('katja')) score += 18;
+    if (name.contains('vicki')) score += 18;
+
+    if (name.contains('network')) score -= 15;
+    if (name.contains('compact')) score -= 20;
+    if (name.contains('default')) score -= 8;
+
+    return score;
+  }
+
+  Future<void> _applyStyle(VoiceStyle style) async {
+    switch (style) {
+      case VoiceStyle.greeting:
+        await _set(rate: 0.36, pitch: 1.04, volume: 1.0);
+        break;
+      case VoiceStyle.explain:
+        await _set(rate: 0.34, pitch: 0.98, volume: 1.0);
+        break;
+      case VoiceStyle.celebrate:
+        await _set(rate: 0.42, pitch: 1.10, volume: 1.0);
+        break;
+      case VoiceStyle.comfort:
+        await _set(rate: 0.31, pitch: 0.95, volume: 0.96);
+        break;
+      case VoiceStyle.question:
+        await _set(rate: 0.35, pitch: 1.02, volume: 1.0);
+        break;
+      case VoiceStyle.warm:
+        await _set(rate: 0.35, pitch: 1.00, volume: 1.0);
+        break;
+    }
+  }
+
+  Future<void> _set({required double rate, required double pitch, required double volume}) async {
+    await _tts.setSpeechRate(rate);
+    await _tts.setPitch(pitch);
+    await _tts.setVolume(volume);
+  }
+
+  Future<void> speak(String text, {VoiceStyle style = VoiceStyle.warm}) async {
     if (!_enabled || text.trim().isEmpty) return;
     await _ensureReady();
     try {
       await _tts.stop();
-      final r = await _tts.speak(text);
-      if (kDebugMode) debugPrint('[LumoVoice] speak("$text") -> $r');
+      await _applyStyle(style);
+      final prepared = _prepareHumanText(text, style);
+      final result = await _tts.speak(prepared);
+      if (kDebugMode) {
+        debugPrint('[LumoVoice] voice=$_selectedVoiceName locale=$_selectedLocale style=$style -> $result');
+      }
     } catch (e) {
       lastError.value = 'TTS-Fehler: $e';
       status.value = VoiceStatus.error;
     }
   }
 
-  /// Bricht jede laufende Ausgabe sofort ab.
+  String _prepareHumanText(String input, VoiceStyle style) {
+    var text = input
+        .replaceAll('\n', '. ')
+        .replaceAll('  ', ' ')
+        .replaceAll('⭐', '')
+        .replaceAll('🚀', '')
+        .replaceAll('🦊', 'Lumo')
+        .trim();
+
+    while (text.contains('..')) {
+      text = text.replaceAll('..', '.');
+    }
+
+    switch (style) {
+      case VoiceStyle.greeting:
+        return 'Hallo. $text';
+      case VoiceStyle.celebrate:
+        return 'Juhu! $text';
+      case VoiceStyle.comfort:
+        return 'Ganz ruhig. $text';
+      case VoiceStyle.question:
+        return '$text. Was denkst du?';
+      case VoiceStyle.explain:
+        return text;
+      case VoiceStyle.warm:
+        return text;
+    }
+  }
+
   Future<void> stop() async {
     try {
       await _tts.stop();
@@ -102,8 +235,12 @@ class LumoVoice {
     status.value = VoiceStatus.idle;
   }
 
-  /// Test-Funktion - sagt einen festen Probesatz.
-  Future<void> test() => speak('Hallo! Ich bin Lumo, dein Lernfuchs.');
+  Future<void> test() => speak(
+        'Hallo! Ich bin Lumo, dein Lernfuchs. Ich spreche jetzt ruhiger, freundlicher und menschlicher.',
+        style: VoiceStyle.greeting,
+      );
 }
+
+enum VoiceStyle { warm, greeting, explain, celebrate, comfort, question }
 
 enum VoiceStatus { idle, speaking, error }
