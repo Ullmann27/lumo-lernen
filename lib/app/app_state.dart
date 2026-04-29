@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '../core/app_settings.dart';
 
 enum LumoSection {
   home,
@@ -32,6 +33,7 @@ class LumoSessionState {
     this.practiceErrors = 0,
     this.solved = const {},
     this.weakSkills = const {},
+    this.settings = const AppSettings(),
   });
 
   LumoSection section;
@@ -47,6 +49,7 @@ class LumoSessionState {
   int practiceErrors;
   Map<String, int> solved;
   Map<String, int> weakSkills;
+  AppSettings settings;
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
@@ -67,6 +70,7 @@ class LumoSessionState {
     int? practiceErrors,
     Map<String, int>? solved,
     Map<String, int>? weakSkills,
+    AppSettings? settings,
   }) {
     return LumoSessionState(
       section: section ?? this.section,
@@ -82,6 +86,7 @@ class LumoSessionState {
       practiceErrors: practiceErrors ?? this.practiceErrors,
       solved: solved ?? this.solved,
       weakSkills: weakSkills ?? this.weakSkills,
+      settings: settings ?? this.settings,
     );
   }
 }
@@ -92,6 +97,11 @@ class LumoAppState extends ChangeNotifier {
 
   void update(LumoSessionState next) {
     _state = next;
+    notifyListeners();
+  }
+
+  void updateSettings(AppSettings settings) {
+    _state = _state.copyWith(settings: settings);
     notifyListeners();
   }
 
