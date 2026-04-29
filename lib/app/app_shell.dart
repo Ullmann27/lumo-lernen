@@ -3,6 +3,7 @@ import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import '../widgets/shell/lumo_stage_panel.dart';
+import '../widgets/effects/mesh_gradient_bg.dart';
 import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
 import '../widgets/scan_screen.dart';
@@ -130,12 +131,7 @@ class _AppShellState extends State<AppShell>
                     child: ClipRRect(
                       borderRadius:
                           BorderRadius.circular(LumoRadius.xl),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: LumoColors.appBg,
-                          borderRadius:
-                              BorderRadius.circular(LumoRadius.xl),
-                        ),
+                      child: MeshGradientBackground(
                         child: FadeTransition(
                           opacity: _fadeCtrl,
                           child: _buildContent(),

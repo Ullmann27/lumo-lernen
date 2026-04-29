@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_voice.dart';
+import '../../services/feedback_orchestrator.dart';
 
 class LearningContent extends StatefulWidget {
   const LearningContent({
@@ -24,6 +25,10 @@ class _LearningContentState extends State<LearningContent> {
   bool _answered = false;
   int _questionNum = 1;
   final int _totalQuestions = 10;
+  final Map<String, GlobalKey> _choiceKeys = {};
+
+  GlobalKey _keyForChoice(String choice) =>
+      _choiceKeys.putIfAbsent(choice, () => GlobalKey());
 
   @override
   void initState() {
@@ -53,14 +58,34 @@ class _LearningContentState extends State<LearningContent> {
       _answered = true;
     });
 
+    // Tap-Origin = Mittelpunkt des Chips (für Effekte)
+    final origin = _resolveChoiceOrigin(choice);
+
     if (choice == _task.answer) {
       widget.appState.correctAnswer(_task.unit);
+      // EFFEKT-PAKET: Konfetti + Stern-Burst + XP-Float
+      FeedbackOrchestrator.celebrate(context, origin: origin, xpAmount: 20);
       LumoVoice.instance.speak('Super! Das war richtig!');
-      Timer(const Duration(milliseconds: 1100), _nextQuestion);
+      Timer(const Duration(milliseconds: 1400), _nextQuestion);
     } else {
       widget.appState.wrongAnswer(_task.unit);
+      FeedbackOrchestrator.wrong(context, origin: origin);
       LumoVoice.instance.speak('Fast! Die richtige Antwort wäre ${_task.answer}.');
     }
+  }
+
+  Offset _resolveChoiceOrigin(String choice) {
+    final key = _choiceKeys[choice];
+    final ctx = key?.currentContext;
+    if (ctx != null) {
+      final box = ctx.findRenderObject() as RenderBox?;
+      if (box != null && box.attached) {
+        final tl = box.localToGlobal(Offset.zero);
+        return tl + Offset(box.size.width / 2, box.size.height / 2);
+      }
+    }
+    final size = MediaQuery.sizeOf(context);
+    return Offset(size.width / 2, size.height / 2);
   }
 
   void _nextQuestion() {
@@ -72,6 +97,7 @@ class _LearningContentState extends State<LearningContent> {
       _task = _nextTask();
       _picked = null;
       _answered = false;
+      _choiceKeys.clear(); // neue Keys für neue Choices
     });
   }
 
@@ -179,6 +205,7 @@ class _LearningContentState extends State<LearningContent> {
             spacing: 12,
             runSpacing: 12,
             children: _task.choices.map((c) => _ChoiceChip(
+              key: _keyForChoice(c),
               label: c,
               picked: _picked,
               correct: _task.answer,

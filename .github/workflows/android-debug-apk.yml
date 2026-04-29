@@ -60,6 +60,23 @@ jobs:
             fi
           done
 
+      - name: Download Nunito font (Google Fonts)
+        run: |
+          mkdir -p assets/fonts
+          BASE="https://github.com/google/fonts/raw/main/ofl/nunito/static"
+          for FILE in Nunito-Regular.ttf Nunito-Bold.ttf Nunito-ExtraBold.ttf Nunito-Black.ttf; do
+            if [ ! -f "assets/fonts/$FILE" ]; then
+              echo "Downloading $FILE..."
+              curl -sSL "$BASE/$FILE" -o "assets/fonts/$FILE"
+              # Verify it's actually a TTF (starts with magic bytes 00 01 00 00 OR "OTTO" OR "true")
+              if ! file "assets/fonts/$FILE" | grep -qiE "TrueType|OpenType|font"; then
+                echo "WARN: $FILE download failed, trying jsdelivr CDN..."
+                curl -sSL "https://cdn.jsdelivr.net/gh/google/fonts/ofl/nunito/static/$FILE" -o "assets/fonts/$FILE"
+              fi
+            fi
+            ls -la "assets/fonts/$FILE"
+          done
+
       - name: Get dependencies
         run: flutter pub get
 
