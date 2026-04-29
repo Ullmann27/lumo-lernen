@@ -98,8 +98,8 @@ class _MeshPainter extends CustomPainter {
       final paint = Paint()
         ..shader = RadialGradient(
           colors: [
-            colors[i % colors.length].withValues(alpha: 0.85),
-            colors[i % colors.length].withValues(alpha: 0.0),
+            colors[i % colors.length].withOpacity(0.85),
+            colors[i % colors.length].withOpacity(0.0),
           ],
           stops: const [0.0, 1.0],
         ).createShader(Rect.fromCircle(

@@ -72,21 +72,21 @@ class LumoShadow {
   LumoShadow._();
 
   static List<BoxShadow> card = [
-    BoxShadow(color: const Color(0xFFFFB96B).withValues(alpha: .18), blurRadius: 28, offset: const Offset(0, 12)),
-    BoxShadow(color: Colors.white.withValues(alpha: .90), blurRadius: 8, offset: const Offset(-3, -3)),
+    BoxShadow(color: const Color(0xFFFFB96B).withOpacity(.18), blurRadius: 28, offset: const Offset(0, 12)),
+    BoxShadow(color: Colors.white.withOpacity(.90), blurRadius: 8, offset: const Offset(-3, -3)),
   ];
 
   static List<BoxShadow> pill = [
-    BoxShadow(color: const Color(0xFFFF7A2F).withValues(alpha: .28), blurRadius: 18, offset: const Offset(0, 8)),
+    BoxShadow(color: const Color(0xFFFF7A2F).withOpacity(.28), blurRadius: 18, offset: const Offset(0, 8)),
   ];
 
   static List<BoxShadow> stage = [
-    BoxShadow(color: const Color(0xFFFFB96B).withValues(alpha: .22), blurRadius: 40, offset: const Offset(0, 20)),
+    BoxShadow(color: const Color(0xFFFFB96B).withOpacity(.22), blurRadius: 40, offset: const Offset(0, 20)),
   ];
 
   static List<BoxShadow> hologram(Color color) => [
-    BoxShadow(color: color.withValues(alpha: .24), blurRadius: 28, offset: const Offset(0, 12)),
-    BoxShadow(color: Colors.white.withValues(alpha: .58), blurRadius: 14, offset: const Offset(-4, -5)),
+    BoxShadow(color: color.withOpacity(.24), blurRadius: 28, offset: const Offset(0, 12)),
+    BoxShadow(color: Colors.white.withOpacity(.58), blurRadius: 14, offset: const Offset(-4, -5)),
   ];
 }
 
@@ -142,7 +142,7 @@ class LumoAppTheme {
         ),
       ),
       cardTheme: CardThemeData(
-        color: Colors.white.withValues(alpha: .82),
+        color: Colors.white.withOpacity(.82),
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.xl)),
@@ -154,9 +154,9 @@ class LumoAppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.white.withValues(alpha: .82),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(LumoRadius.lg), borderSide: BorderSide(color: Colors.white.withValues(alpha: .75))),
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(LumoRadius.lg), borderSide: BorderSide(color: Colors.white.withValues(alpha: .75))),
+        fillColor: Colors.white.withOpacity(.82),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(LumoRadius.lg), borderSide: BorderSide(color: Colors.white.withOpacity(.75))),
+        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(LumoRadius.lg), borderSide: BorderSide(color: Colors.white.withOpacity(.75))),
         focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(LumoRadius.lg), borderSide: const BorderSide(color: LumoColors.orange, width: 1.4)),
       ),
     );
@@ -174,7 +174,7 @@ BoxDecoration lumoCard({
     color: color ?? LumoColors.cardBg,
     gradient: gradient,
     borderRadius: BorderRadius.circular(radius),
-    border: border ?? Border.all(color: Colors.white.withValues(alpha: .75), width: 1.2),
+    border: border ?? Border.all(color: Colors.white.withOpacity(.75), width: 1.2),
     boxShadow: shadow ?? LumoShadow.card,
   );
 }

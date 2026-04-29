@@ -138,7 +138,7 @@ class _LearningContentState extends State<LearningContent> {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: LumoColors.orange.withValues(alpha: .20),
+                    color: LumoColors.orange.withOpacity(.20),
                     blurRadius: 14,
                     offset: const Offset(0, 6),
                   ),
@@ -251,7 +251,7 @@ class _ProgressHeader extends StatelessWidget {
                   value: current / total,
                   minHeight: 8,
                   color: LumoColors.orange,
-                  backgroundColor: LumoColors.orange.withValues(alpha: .14),
+                  backgroundColor: LumoColors.orange.withOpacity(.14),
                 ),
               ),
             ],
@@ -263,7 +263,7 @@ class _ProgressHeader extends StatelessWidget {
           decoration: BoxDecoration(
             color: LumoColors.orangeSurface,
             borderRadius: BorderRadius.circular(LumoRadius.pill),
-            border: Border.all(color: LumoColors.orange.withValues(alpha: .2)),
+            border: Border.all(color: LumoColors.orange.withOpacity(.2)),
           ),
           child: Text(
             subject == 'Alle' ? '1. Klasse • Mathematik' : subject,
