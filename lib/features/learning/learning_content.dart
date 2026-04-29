@@ -4,7 +4,6 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_voice.dart';
-import '../../services/feedback_orchestrator.dart';
 
 class LearningContent extends StatefulWidget {
   const LearningContent({
@@ -25,10 +24,6 @@ class _LearningContentState extends State<LearningContent> {
   bool _answered = false;
   int _questionNum = 1;
   final int _totalQuestions = 10;
-  final Map<String, GlobalKey> _choiceKeys = {};
-
-  GlobalKey _keyForChoice(String choice) =>
-      _choiceKeys.putIfAbsent(choice, () => GlobalKey());
 
   @override
   void initState() {
@@ -58,42 +53,25 @@ class _LearningContentState extends State<LearningContent> {
       _answered = true;
     });
 
-    final origin = _resolveChoiceOrigin(choice);
-
     if (choice == _task.answer) {
       widget.appState.correctAnswer(_task.unit);
-      FeedbackOrchestrator.celebrate(context, origin: origin, xpAmount: 20);
       LumoVoice.instance.speak('Super! Das war richtig!');
-      Timer(const Duration(milliseconds: 1400), _nextQuestion);
+      Timer(const Duration(milliseconds: 1100), _nextQuestion);
     } else {
       widget.appState.wrongAnswer(_task.unit);
-      FeedbackOrchestrator.wrong(context, origin: origin);
       LumoVoice.instance.speak('Fast! Die richtige Antwort wäre ${_task.answer}.');
     }
-  }
-
-  Offset _resolveChoiceOrigin(String choice) {
-    final key = _choiceKeys[choice];
-    final ctx = key?.currentContext;
-    if (ctx != null) {
-      final box = ctx.findRenderObject() as RenderBox?;
-      if (box != null && box.attached) {
-        final tl = box.localToGlobal(Offset.zero);
-        return tl + Offset(box.size.width / 2, box.size.height / 2);
-      }
-    }
-    final size = MediaQuery.sizeOf(context);
-    return Offset(size.width / 2, size.height / 2);
   }
 
   void _nextQuestion() {
     if (!mounted) return;
     setState(() {
-      _questionNum = (_questionNum < _totalQuestions) ? _questionNum + 1 : 1;
+      _questionNum = (_questionNum < _totalQuestions)
+          ? _questionNum + 1
+          : 1;
       _task = _nextTask();
       _picked = null;
       _answered = false;
-      _choiceKeys.clear();
     });
   }
 
@@ -105,6 +83,8 @@ class _LearningContentState extends State<LearningContent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
+          // ── Header ────────────────────────────────────────
           Row(children: [
             Expanded(
               child: Column(
@@ -132,6 +112,7 @@ class _LearningContentState extends State<LearningContent> {
                 ],
               ),
             ),
+            // Voice button
             Container(
               decoration: BoxDecoration(
                 color: LumoColors.orangeSurface,
@@ -147,17 +128,22 @@ class _LearningContentState extends State<LearningContent> {
               child: IconButton(
                 icon: const Icon(Icons.volume_up_rounded,
                     color: LumoColors.orange, size: 26),
-                onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}'),
+                onPressed: () => LumoVoice.instance.speak(
+                    'Aufgabe ${_task.prompt}'),
               ),
             ),
           ]),
           const SizedBox(height: 22),
+
+          // ── Progress ──────────────────────────────────────
           _ProgressHeader(
             current: _questionNum,
             total: _totalQuestions,
             subject: st.subject,
           ),
           const SizedBox(height: 22),
+
+          // ── Task prompt ───────────────────────────────────
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(24),
@@ -180,11 +166,12 @@ class _LearningContentState extends State<LearningContent> {
             ),
           ),
           const SizedBox(height: 22),
+
+          // ── Answer Choices ────────────────────────────────
           Text(
             'Wähle die richtige Antwort:',
             style: LumoTextStyles.label.copyWith(
-              color: LumoColors.ink500,
-              fontSize: 13,
+              color: LumoColors.ink500, fontSize: 13,
             ),
           ),
           const SizedBox(height: 12),
@@ -192,7 +179,6 @@ class _LearningContentState extends State<LearningContent> {
             spacing: 12,
             runSpacing: 12,
             children: _task.choices.map((c) => _ChoiceChip(
-              key: _keyForChoice(c),
               label: c,
               picked: _picked,
               correct: _task.answer,
@@ -200,6 +186,8 @@ class _LearningContentState extends State<LearningContent> {
               onTap: _answer,
             )).toList(),
           ),
+
+          // ── Explanation (after answer) ────────────────────
           if (_answered && _picked != null) ...[
             const SizedBox(height: 22),
             _ExplanationCard(
@@ -263,7 +251,9 @@ class _ProgressHeader extends StatelessWidget {
           decoration: BoxDecoration(
             color: LumoColors.orangeSurface,
             borderRadius: BorderRadius.circular(LumoRadius.pill),
-            border: Border.all(color: LumoColors.orange.withOpacity(.2)),
+            border: Border.all(
+              color: LumoColors.orange.withOpacity(.2),
+            ),
           ),
           child: Text(
             subject == 'Alle' ? '1. Klasse • Mathematik' : subject,
@@ -284,7 +274,6 @@ class _ProgressHeader extends StatelessWidget {
 
 class _ChoiceChip extends StatefulWidget {
   const _ChoiceChip({
-    super.key,
     required this.label,
     required this.picked,
     required this.correct,
@@ -343,7 +332,9 @@ class _ChoiceChipState extends State<_ChoiceChip> {
             color: bg,
             borderRadius: BorderRadius.circular(LumoRadius.pill),
             border: Border.all(color: border, width: 2),
-            boxShadow: !widget.answered && _hovered ? LumoShadow.pill : [],
+            boxShadow: !widget.answered && _hovered
+                ? LumoShadow.pill
+                : [],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -407,8 +398,12 @@ class _ExplanationCard extends StatelessWidget {
         children: [
           Row(children: [
             Icon(
-              correct ? Icons.celebration_rounded : Icons.lightbulb_rounded,
-              color: correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B),
+              correct
+                  ? Icons.celebration_rounded
+                  : Icons.lightbulb_rounded,
+              color: correct
+                  ? const Color(0xFF22C55E)
+                  : const Color(0xFFF59E0B),
               size: 26,
             ),
             const SizedBox(width: 10),
@@ -418,7 +413,9 @@ class _ExplanationCard extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 17,
                 fontWeight: FontWeight.w900,
-                color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F),
+                color: correct
+                    ? const Color(0xFF14532D)
+                    : const Color(0xFF78350F),
               ),
             ),
           ]),
@@ -426,7 +423,9 @@ class _ExplanationCard extends StatelessWidget {
           Text(
             explanation,
             style: LumoTextStyles.body.copyWith(
-              color: correct ? const Color(0xFF166534) : const Color(0xFF92400E),
+              color: correct
+                  ? const Color(0xFF166534)
+                  : const Color(0xFF92400E),
             ),
           ),
           const SizedBox(height: 14),
@@ -435,9 +434,12 @@ class _ExplanationCard extends StatelessWidget {
             child: GestureDetector(
               onTap: onNext,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 22, vertical: 12),
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+                  gradient: const LinearGradient(
+                    colors: [LumoColors.orange, LumoColors.orangeLight],
+                  ),
                   borderRadius: BorderRadius.circular(LumoRadius.pill),
                   boxShadow: LumoShadow.pill,
                 ),

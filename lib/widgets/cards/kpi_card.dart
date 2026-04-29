@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
-import '../effects/animated_counter.dart';
 
 class KpiCard extends StatelessWidget {
   const KpiCard({
@@ -49,12 +48,15 @@ class KpiCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 6),
-          // Value row — Counter-Animation falls Zahl, sonst statisch
+          // Value row
           Row(
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
-              _maybeCounter(value, LumoTextStyles.kpiValue),
+              Text(
+                value,
+                style: LumoTextStyles.kpiValue,
+              ),
               const SizedBox(width: 4),
               Text(
                 sub,
@@ -81,16 +83,6 @@ class KpiCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  /// Wenn der Wert eine reine Zahl ist → animierter Counter,
-  /// sonst statischer Text.
-  Widget _maybeCounter(String text, TextStyle style) {
-    final n = int.tryParse(text);
-    if (n != null) {
-      return AnimatedCounter(value: n, style: style);
-    }
-    return Text(text, style: style);
   }
 }
 
