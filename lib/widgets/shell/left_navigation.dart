@@ -30,6 +30,7 @@ class LeftNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final active = appState.state.section;
+    final childName = appState.state.childName.trim().isEmpty ? 'Kind' : appState.state.childName.trim();
     return Container(
       width: 200,
       decoration: const BoxDecoration(
@@ -69,13 +70,11 @@ class LeftNavigation extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.only(bottom: 12),
               child: Column(
-                children: _items
-                    .map((item) => _NavPill(item: item, isActive: item.section == active, onTap: () => onSelect(item.section)))
-                    .toList(),
+                children: _items.map((item) => _NavPill(item: item, isActive: item.section == active, onTap: () => onSelect(item.section))).toList(),
               ),
             ),
           ),
-          _ProfileChip(name: 'Lena', grade: 'Klasse 2', onTap: () => onSelect(LumoSection.profile)),
+          _ProfileChip(name: childName, grade: 'Klasse ${appState.state.grade}', onTap: () => onSelect(LumoSection.profile)),
           const SizedBox(height: 16),
         ],
       ),
@@ -147,6 +146,7 @@ class _ProfileChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final initial = name.trim().isEmpty ? 'K' : name.trim().characters.first.toUpperCase();
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -165,7 +165,7 @@ class _ProfileChip extends StatelessWidget {
               gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight], begin: Alignment.topLeft, end: Alignment.bottomRight),
               shape: BoxShape.circle,
             ),
-            child: Center(child: Text(name[0], style: const TextStyle(fontFamily: 'Nunito', color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18))),
+            child: Center(child: Text(initial, style: const TextStyle(fontFamily: 'Nunito', color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18))),
           ),
           const SizedBox(width: 10),
           Expanded(
