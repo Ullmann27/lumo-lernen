@@ -9,16 +9,12 @@ import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
 import '../core/lumo_voice.dart';
+import '../core/user_profile.dart';
 
-/// AppShell - persistente 3-Spalten-Struktur.
-///
-/// STRUKTUR (nie verändern):
-///   [LeftNav 200px] [MainContent flex] [LumoStage 320px]
-///
-/// Navigation ändert nur den MainContent-Slot.
-/// Linke Spalte und rechte Bühne bleiben IMMER sichtbar.
 class AppShell extends StatefulWidget {
-  const AppShell({super.key});
+  const AppShell({super.key, this.profile});
+
+  final UserProfile? profile;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -28,12 +24,23 @@ class _AppShellState extends State<AppShell>
     with SingleTickerProviderStateMixin {
   final _appState = LumoAppState();
 
-  // Content fade animation
   late final AnimationController _fadeCtrl = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 260),
     value: 1.0,
   );
+
+  @override
+  void initState() {
+    super.initState();
+    final profile = widget.profile;
+    if (profile != null) {
+      _appState.update(_appState.state.copyWith(
+        grade: profile.grade,
+        lumoMessage: 'Hallo ${profile.name}!\nWomit wollen wir\nheute lernen?',
+      ));
+    }
+  }
 
   @override
   void dispose() {
@@ -44,14 +51,10 @@ class _AppShellState extends State<AppShell>
 
   void _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
-
-    // Profile needs parental gate
     if (section == LumoSection.profile) {
       final ok = await ParentalGate.show(context);
       if (!mounted || !ok) return;
     }
-
-    // Fade out → update → fade in
     await _fadeCtrl.reverse();
     _appState.setSection(section);
     LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
@@ -62,10 +65,7 @@ class _AppShellState extends State<AppShell>
     final section = _appState.state.section;
     switch (section) {
       case LumoSection.home:
-        return HomeContent(
-          appState: _appState,
-          onSection: _navigateTo,
-        );
+        return HomeContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.learn:
       case LumoSection.exercises:
         return LearningContent(appState: _appState);
@@ -76,8 +76,7 @@ class _AppShellState extends State<AppShell>
               lumoMessage: 'Ich hab die\nAufgabe gelesen!\nLos gehts!',
               mood: LumoMood.celebrate,
             ));
-            LumoVoice.instance.speak(
-                'Super! Ich habe deine Aufgabe gelesen. Lass uns gemeinsam üben.');
+            LumoVoice.instance.speak('Super! Ich habe deine Aufgabe gelesen. Lass uns gemeinsam üben.');
             _navigateTo(LumoSection.exercises);
           },
           onCancel: () => _navigateTo(LumoSection.home),
@@ -113,48 +112,24 @@ class _AppShellState extends State<AppShell>
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-
-                  // ╔══════════════════════════════╗
-                  // ║  A. LINKE NAVIGATION (fixed) ║
-                  // ╚══════════════════════════════╝
-                  LeftNavigation(
-                    appState: _appState,
-                    onSelect: _navigateTo,
-                  ),
+                  LeftNavigation(appState: _appState, onSelect: _navigateTo),
                   const SizedBox(width: 10),
-
-                  // ╔══════════════════════════════════╗
-                  // ║  B. MITTLERER CONTENT (flexible) ║
-                  // ╚══════════════════════════════════╝
                   Expanded(
                     child: ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(LumoRadius.xl),
+                      borderRadius: BorderRadius.circular(LumoRadius.xl),
                       child: Container(
                         decoration: BoxDecoration(
                           color: LumoColors.appBg,
-                          borderRadius:
-                              BorderRadius.circular(LumoRadius.xl),
+                          borderRadius: BorderRadius.circular(LumoRadius.xl),
                         ),
-                        child: FadeTransition(
-                          opacity: _fadeCtrl,
-                          child: _buildContent(),
-                        ),
+                        child: FadeTransition(opacity: _fadeCtrl, child: _buildContent()),
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
-
-                  // ╔══════════════════════════════╗
-                  // ║  C. LUMO BÜHNE (fixed 320px) ║
-                  // ╚══════════════════════════════╝
                   LumoStagePanel(
                     appState: _appState,
-                    onFoxTap: () {
-                      LumoVoice.instance.speak(
-                        _appState.state.lumoMessage.replaceAll('\n', ' '),
-                      );
-                    },
+                    onFoxTap: () => LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' ')),
                   ),
                 ],
               ),
@@ -172,9 +147,12 @@ class _PlaceholderContent extends StatelessWidget {
 
   String get _title {
     switch (section) {
-      case LumoSection.progress:  return 'Fortschritt';
-      case LumoSection.rewards:   return 'Belohnungen';
-      default: return section.name;
+      case LumoSection.progress:
+        return 'Fortschritt';
+      case LumoSection.rewards:
+        return 'Belohnungen';
+      default:
+        return section.name;
     }
   }
 
@@ -185,27 +163,13 @@ class _PlaceholderContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(_title,
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 34,
-                fontWeight: FontWeight.w900,
-                color: LumoColors.ink900,
-              )),
+          Text(_title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
           const SizedBox(height: 14),
           Container(
             height: 300,
             decoration: lumoCard(),
-            child: Center(
-              child: Text(
-                'Kommt bald! 🚀',
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 26,
-                  fontWeight: FontWeight.w900,
-                  color: LumoColors.ink300,
-                ),
-              ),
+            child: const Center(
+              child: Text('Kommt bald! 🚀', style: TextStyle(fontFamily: 'Nunito', fontSize: 26, fontWeight: FontWeight.w900, color: LumoColors.ink300)),
             ),
           ),
         ],
