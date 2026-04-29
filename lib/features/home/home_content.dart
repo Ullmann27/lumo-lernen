@@ -21,7 +21,7 @@ class HomeContent extends StatelessWidget {
 
     void onHover(bool entered, Color accent, String hint) {
       if (entered) {
-        appState.focusCard(accent.value, hint);
+        appState.focusCard(accent, hint);
       } else {
         appState.unfocusCard();
       }

@@ -81,9 +81,9 @@ class _ScanScreenState extends State<ScanScreen> {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: Colors.white.withOpacity(.7)),
+        border: Border.all(color: Colors.white.withValues(alpha: .7)),
         boxShadow: [
-          BoxShadow(color: Colors.deepOrange.withOpacity(.10), blurRadius: 24, offset: const Offset(0, 14)),
+          BoxShadow(color: Colors.deepOrange.withValues(alpha: .10), blurRadius: 24, offset: const Offset(0, 14)),
         ],
       ),
       child: SingleChildScrollView(

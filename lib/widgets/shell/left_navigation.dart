@@ -55,7 +55,7 @@ class LeftNavigation extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(colors: [LumoColors.gold, LumoColors.orange]),
                   shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: LumoColors.gold.withOpacity(.5), blurRadius: 8)],
+                  boxShadow: [BoxShadow(color: LumoColors.gold.withValues(alpha: .5), blurRadius: 8)],
                 ),
               ),
             ]),
@@ -118,7 +118,7 @@ class _NavPill extends StatelessWidget {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: isActive ? Colors.white.withOpacity(.25) : LumoColors.orangeSurface,
+                color: isActive ? Colors.white.withValues(alpha: .25) : LumoColors.orangeSurface,
                 borderRadius: BorderRadius.circular(LumoRadius.sm),
               ),
               child: Icon(item.icon, color: isActive ? Colors.white : LumoColors.orange, size: 19),
@@ -155,7 +155,7 @@ class _ProfileChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: LumoColors.orangeSurface,
           borderRadius: BorderRadius.circular(LumoRadius.lg),
-          border: Border.all(color: LumoColors.orange.withOpacity(.15)),
+          border: Border.all(color: LumoColors.orange.withValues(alpha: .15)),
         ),
         child: Row(children: [
           Container(

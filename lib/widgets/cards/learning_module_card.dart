@@ -87,13 +87,13 @@ class _LearningModuleCardState extends State<LearningModuleCard> {
             ),
             borderRadius: BorderRadius.circular(LumoRadius.xl),
             border: Border.all(
-              color: Colors.white.withOpacity(_hovered ? .95 : .75),
+              color: Colors.white.withValues(alpha: _hovered ? .95 : .75),
               width: 1.5,
             ),
             boxShadow: [
               // Akzent-Glow (heftiger bei Hover, kleiner bei Press)
               BoxShadow(
-                color: widget.accent.withOpacity(
+                color: widget.accent.withValues(alpha: 
                   _pressed ? .10 : (_hovered ? .28 : .14),
                 ),
                 blurRadius: _pressed ? 14 : (_hovered ? 36 : 22),
@@ -101,7 +101,7 @@ class _LearningModuleCardState extends State<LearningModuleCard> {
               ),
               // Lichthighlight oben links
               BoxShadow(
-                color: Colors.white.withOpacity(.80),
+                color: Colors.white.withValues(alpha: .80),
                 blurRadius: 8,
                 offset: const Offset(-3, -3),
               ),
@@ -130,7 +130,7 @@ class _LearningModuleCardState extends State<LearningModuleCard> {
                         fontSize: 70,
                         shadows: [
                           Shadow(
-                            color: widget.accent.withOpacity(.30),
+                            color: widget.accent.withValues(alpha: .30),
                             blurRadius: 22,
                             offset: const Offset(0, 8),
                           ),
@@ -151,12 +151,12 @@ class _LearningModuleCardState extends State<LearningModuleCard> {
                           width: 36,
                           height: 36,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(.75),
+                            color: Colors.white.withValues(alpha: .75),
                             borderRadius:
                                 BorderRadius.circular(LumoRadius.sm),
                             boxShadow: [
                               BoxShadow(
-                                color: widget.accent.withOpacity(.20),
+                                color: widget.accent.withValues(alpha: .20),
                                 blurRadius: 10,
                               ),
                             ],
@@ -233,7 +233,7 @@ class _CtaButton extends StatelessWidget {
         vertical: 6,
       ),
       decoration: BoxDecoration(
-        color: active ? Colors.white.withOpacity(.55) : Colors.transparent,
+        color: active ? Colors.white.withValues(alpha: .55) : Colors.transparent,
         borderRadius: BorderRadius.circular(LumoRadius.pill),
       ),
       child: Row(
@@ -335,19 +335,19 @@ class _WideModuleCardState extends State<WideModuleCard> {
             ),
             borderRadius: BorderRadius.circular(LumoRadius.xl),
             border: Border.all(
-              color: Colors.white.withOpacity(_hovered ? .95 : .75),
+              color: Colors.white.withValues(alpha: _hovered ? .95 : .75),
               width: 1.5,
             ),
             boxShadow: [
               BoxShadow(
-                color: widget.accent.withOpacity(
+                color: widget.accent.withValues(alpha: 
                   _pressed ? .10 : (_hovered ? .26 : .14),
                 ),
                 blurRadius: _pressed ? 14 : (_hovered ? 32 : 22),
                 offset: Offset(0, _pressed ? 4 : (_hovered ? 14 : 10)),
               ),
               BoxShadow(
-                color: Colors.white.withOpacity(.80),
+                color: Colors.white.withValues(alpha: .80),
                 blurRadius: 8,
                 offset: const Offset(-3, -3),
               ),
@@ -373,7 +373,7 @@ class _WideModuleCardState extends State<WideModuleCard> {
                         fontSize: 80,
                         shadows: [
                           Shadow(
-                            color: widget.accent.withOpacity(.28),
+                            color: widget.accent.withValues(alpha: .28),
                             blurRadius: 22,
                             offset: const Offset(0, 8),
                           ),
@@ -392,7 +392,7 @@ class _WideModuleCardState extends State<WideModuleCard> {
                           width: 36,
                           height: 36,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(.75),
+                            color: Colors.white.withValues(alpha: .75),
                             borderRadius:
                                 BorderRadius.circular(LumoRadius.sm),
                           ),

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 /// Welcher Bereich aktiv ist (Menüpunkt links)
@@ -52,7 +53,7 @@ class LumoSessionState {
 
   /// Wenn das Kind über eine Karte hovert/tippt - überschreibt die Aura-Farbe.
   /// `null` = Lumo nutzt seine Standard-Mood-Farbe.
-  int? focusedAccent;
+  Color? focusedAccent;
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
@@ -72,7 +73,7 @@ class LumoSessionState {
     int? practiceErrors,
     Map<String, int>? solved,
     Map<String, int>? weakSkills,
-    int? focusedAccent,
+    Color? focusedAccent,
     bool clearFocusedAccent = false,
   }) {
     return LumoSessionState(
@@ -174,9 +175,9 @@ class LumoAppState extends ChangeNotifier {
   }
 
   /// Lumo schaut zu einer Karte und übernimmt deren Akzentfarbe für die Aura.
-  void focusCard(int accentArgb, String? hint) {
+  void focusCard(Color accent, String? hint) {
     update(_state.copyWith(
-      focusedAccent: accentArgb,
+      focusedAccent: accent,
       mood: LumoMood.point,
       lumoMessage: hint ?? _state.lumoMessage,
     ));

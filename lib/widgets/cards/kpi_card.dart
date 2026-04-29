@@ -75,7 +75,7 @@ class KpiCard extends StatelessWidget {
               value: percent.clamp(0.0, 1.0),
               minHeight: 7,
               color: accent,
-              backgroundColor: accent.withOpacity(.14),
+              backgroundColor: accent.withValues(alpha: .14),
             ),
           ),
         ],
@@ -128,7 +128,7 @@ class KpiCircularCard extends StatelessWidget {
                 value: percent.clamp(0.0, 1.0),
                 strokeWidth: 7,
                 color: accent,
-                backgroundColor: accent.withOpacity(.14),
+                backgroundColor: accent.withValues(alpha: .14),
                 strokeCap: StrokeCap.round,
               ),
               Text(

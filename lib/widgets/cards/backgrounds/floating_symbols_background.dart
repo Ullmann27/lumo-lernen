@@ -159,7 +159,7 @@ class _FloatingPainter extends CustomPainter {
             fontFamily: 'Nunito',
             fontWeight: FontWeight.w900,
             fontSize: f.size,
-            color: color.withOpacity(opacity),
+            color: color.withValues(alpha: opacity),
             // shadows entfernt — Performance + nicht nötig durch Color-Tinting
           ),
         ),

@@ -119,7 +119,7 @@ class _StarBurstPainter extends CustomPainter {
     if (opacity <= 0.01) return;
 
     final paint = Paint()
-      ..color = color.withOpacity(opacity)
+      ..color = color.withValues(alpha: opacity)
       ..style = PaintingStyle.fill;
 
     for (final angle in angles) {

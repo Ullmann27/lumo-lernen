@@ -109,7 +109,7 @@ class _XpFloatState extends State<XpFloat>
                   borderRadius: BorderRadius.circular(LumoRadius.pill),
                   boxShadow: [
                     BoxShadow(
-                      color: widget.color.withOpacity(.45),
+                      color: widget.color.withValues(alpha: .45),
                       blurRadius: 18,
                       offset: const Offset(0, 6),
                     ),

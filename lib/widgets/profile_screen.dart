@@ -136,10 +136,10 @@ class _ProfileHeroCard extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: Colors.white.withOpacity(.72), width: 1.5),
+        border: Border.all(color: Colors.white.withValues(alpha: .72), width: 1.5),
         boxShadow: [
-          BoxShadow(color: const Color(0xffffb96b).withOpacity(.30), blurRadius: 28, offset: const Offset(0, 12)),
-          BoxShadow(color: Colors.white.withOpacity(.90), blurRadius: 8, offset: const Offset(-4, -4)),
+          BoxShadow(color: const Color(0xffffb96b).withValues(alpha: .30), blurRadius: 28, offset: const Offset(0, 12)),
+          BoxShadow(color: Colors.white.withValues(alpha: .90), blurRadius: 8, offset: const Offset(-4, -4)),
         ],
       ),
       child: Row(
@@ -151,7 +151,7 @@ class _ProfileHeroCard extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: const LinearGradient(colors: [Color(0xffff9a5c), Color(0xffff6d00)]),
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: const Color(0xffff6d00).withOpacity(.35), blurRadius: 20, offset: const Offset(0, 8))],
+              boxShadow: [BoxShadow(color: const Color(0xffff6d00).withValues(alpha: .35), blurRadius: 20, offset: const Offset(0, 8))],
             ),
             child: const Center(child: Text('🦊', style: TextStyle(fontSize: 36))),
           ),
@@ -199,7 +199,7 @@ class _LevelBadge extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: const LinearGradient(colors: [Color(0xffff7a2f), Color(0xffff9a5c)]),
         borderRadius: BorderRadius.circular(99),
-        boxShadow: [BoxShadow(color: const Color(0xffff7a2f).withOpacity(.35), blurRadius: 10, offset: const Offset(0, 4))],
+        boxShadow: [BoxShadow(color: const Color(0xffff7a2f).withValues(alpha: .35), blurRadius: 10, offset: const Offset(0, 4))],
       ),
       child: Text('Level $level Einsteiger',
           style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: Colors.white)),
@@ -215,9 +215,9 @@ class _ClassBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.70),
+        color: Colors.white.withValues(alpha: .70),
         borderRadius: BorderRadius.circular(99),
-        border: Border.all(color: Colors.white.withOpacity(.80)),
+        border: Border.all(color: Colors.white.withValues(alpha: .80)),
       ),
       child: const Text('Klasse 2',
           style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xff766a61))),
@@ -263,12 +263,12 @@ class _MiniStatCard extends StatelessWidget {
       width: 155,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.86),
+        color: Colors.white.withValues(alpha: .86),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white.withOpacity(.76)),
+        border: Border.all(color: Colors.white.withValues(alpha: .76)),
         boxShadow: [
-          BoxShadow(color: color.withOpacity(.12), blurRadius: 18, offset: const Offset(0, 10)),
-          BoxShadow(color: Colors.white.withOpacity(.75), blurRadius: 8, offset: const Offset(-3, -3)),
+          BoxShadow(color: color.withValues(alpha: .12), blurRadius: 18, offset: const Offset(0, 10)),
+          BoxShadow(color: Colors.white.withValues(alpha: .75), blurRadius: 8, offset: const Offset(-3, -3)),
         ],
       ),
       child: Column(
@@ -280,7 +280,7 @@ class _MiniStatCard extends StatelessWidget {
             const Spacer(),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-              decoration: BoxDecoration(color: color.withOpacity(.14), borderRadius: BorderRadius.circular(99)),
+              decoration: BoxDecoration(color: color.withValues(alpha: .14), borderRadius: BorderRadius.circular(99)),
               child: Text(label, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w900, color: color)),
             ),
           ]),
@@ -294,7 +294,7 @@ class _MiniStatCard extends StatelessWidget {
               value: percent.clamp(0.0, 1.0),
               minHeight: 7,
               color: color,
-              backgroundColor: color.withOpacity(.13),
+              backgroundColor: color.withValues(alpha: .13),
             ),
           ),
         ],
@@ -335,19 +335,19 @@ class _SubjectProgressBars extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.82),
+              color: Colors.white.withValues(alpha: .82),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.white.withOpacity(.76)),
+              border: Border.all(color: Colors.white.withValues(alpha: .76)),
               boxShadow: [
-                BoxShadow(color: meta.$2.withOpacity(.10), blurRadius: 16, offset: const Offset(0, 8)),
-                BoxShadow(color: Colors.white.withOpacity(.75), blurRadius: 6, offset: const Offset(-2, -2)),
+                BoxShadow(color: meta.$2.withValues(alpha: .10), blurRadius: 16, offset: const Offset(0, 8)),
+                BoxShadow(color: Colors.white.withValues(alpha: .75), blurRadius: 6, offset: const Offset(-2, -2)),
               ],
             ),
             child: Row(children: [
               Container(
                 width: 42, height: 42,
                 decoration: BoxDecoration(
-                  color: meta.$2.withOpacity(.14),
+                  color: meta.$2.withValues(alpha: .14),
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: Center(child: Text(meta.$1, style: const TextStyle(fontSize: 20))),
@@ -368,7 +368,7 @@ class _SubjectProgressBars extends StatelessWidget {
                       value: percent,
                       minHeight: 8,
                       color: meta.$2,
-                      backgroundColor: meta.$2.withOpacity(.13),
+                      backgroundColor: meta.$2.withValues(alpha: .13),
                     ),
                   ),
                 ]),
@@ -414,22 +414,22 @@ class _TestGradeCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [_color.withOpacity(.12), _color.withOpacity(.04)],
+          colors: [_color.withValues(alpha: .12), _color.withValues(alpha: .04)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: _color.withOpacity(.28), width: 1.5),
-        boxShadow: [BoxShadow(color: _color.withOpacity(.12), blurRadius: 18, offset: const Offset(0, 8))],
+        border: Border.all(color: _color.withValues(alpha: .28), width: 1.5),
+        boxShadow: [BoxShadow(color: _color.withValues(alpha: .12), blurRadius: 18, offset: const Offset(0, 8))],
       ),
       child: Row(children: [
         // Grade badge
         Container(
           width: 66, height: 66,
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [_color.withOpacity(.28), _color.withOpacity(.12)]),
+            gradient: LinearGradient(colors: [_color.withValues(alpha: .28), _color.withValues(alpha: .12)]),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: _color.withOpacity(.35)),
+            border: Border.all(color: _color.withValues(alpha: .35)),
           ),
           child: Center(
             child: Text(_gradeText,
@@ -472,8 +472,8 @@ class _PracticeAreasList extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: const LinearGradient(colors: [Color(0xffffe8d6), Color(0xffffd6ba)]),
           borderRadius: BorderRadius.circular(99),
-          border: Border.all(color: const Color(0xffffb96b).withOpacity(.4)),
-          boxShadow: [BoxShadow(color: const Color(0xffff8700).withOpacity(.12), blurRadius: 10, offset: const Offset(0, 4))],
+          border: Border.all(color: const Color(0xffffb96b).withValues(alpha: .4)),
+          boxShadow: [BoxShadow(color: const Color(0xffff8700).withValues(alpha: .12), blurRadius: 10, offset: const Offset(0, 4))],
         ),
         child: Row(mainAxisSize: MainAxisSize.min, children: [
           const Text('💪', style: TextStyle(fontSize: 13)),
@@ -484,7 +484,7 @@ class _PracticeAreasList extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
             decoration: BoxDecoration(
-              color: const Color(0xffff8700).withOpacity(.2),
+              color: const Color(0xffff8700).withValues(alpha: .2),
               borderRadius: BorderRadius.circular(99),
             ),
             child: Text('${e.value}×',
@@ -554,16 +554,16 @@ class _AchievBadge extends StatelessWidget {
       width: 138,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: unlocked ? Colors.white.withOpacity(.90) : Colors.white.withOpacity(.45),
+        color: unlocked ? Colors.white.withValues(alpha: .90) : Colors.white.withValues(alpha: .45),
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
           color: unlocked
-              ? const Color(0xffffb96b).withOpacity(.45)
-              : Colors.grey.withOpacity(.18),
+              ? const Color(0xffffb96b).withValues(alpha: .45)
+              : Colors.grey.withValues(alpha: .18),
           width: 1.2,
         ),
         boxShadow: unlocked
-            ? [BoxShadow(color: const Color(0xffffb96b).withOpacity(.22), blurRadius: 16, offset: const Offset(0, 8))]
+            ? [BoxShadow(color: const Color(0xffffb96b).withValues(alpha: .22), blurRadius: 16, offset: const Offset(0, 8))]
             : [],
       ),
       child: Column(

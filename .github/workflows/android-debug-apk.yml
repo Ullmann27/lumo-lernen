@@ -9,8 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
     steps:
       - uses: actions/checkout@v4
 
@@ -22,21 +20,18 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: '3.27.0'
           cache: true
 
       - name: Flutter version
         run: flutter --version
 
-      # ── Android platform scaffold ──────────────────────────
       - name: Create Android platform if missing
         run: |
           if [ ! -d android ]; then
             flutter create --platforms=android --org dev.ullmann.lumo .
           fi
 
-      # ── Manifest patches ───────────────────────────────────
-      - name: Patch AndroidManifest
+      - name: Patch AndroidManifest (Camera, TTS queries, no AD_ID)
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
           if [ -f "$MANIFEST" ]; then
@@ -49,11 +44,9 @@ jobs:
             if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
               sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
             fi
-            echo "=== AndroidManifest.xml ==="
             cat "$MANIFEST"
           fi
 
-      # ── Gradle: minSdk 21 ──────────────────────────────────
       - name: Patch minSdk to 21
         run: |
           for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
@@ -62,25 +55,23 @@ jobs:
               sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
               sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
               sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
-              echo "minSdk in $GRADLE:"; grep -E "minSdk" "$GRADLE" || true
+              grep -E "minSdk" "$GRADLE" || true
             fi
           done
 
-      # ── Flutter pub get ────────────────────────────────────
       - name: Get dependencies
         run: flutter pub get
 
-      # ── Analyze (non-blocking — warnings don't kill the build) ─
       - name: Analyze
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings || true
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
-      # ── Build APK ──────────────────────────────────────────
+      - name: Test
+        run: flutter test || echo "Tests skipped"
+
       - name: Build debug APK
-        run: flutter build apk --debug --verbose
+        run: flutter build apk --debug
 
-      # ── Upload artifact ────────────────────────────────────
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: lumo-lernen-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk

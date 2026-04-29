@@ -129,7 +129,7 @@ class _ParentalGateState extends State<ParentalGate> {
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.18),
+            color: Colors.black.withValues(alpha: .18),
             blurRadius: 28,
             offset: const Offset(0, 14),
           ),
@@ -150,7 +150,7 @@ class _ParentalGateState extends State<ParentalGate> {
                 borderRadius: BorderRadius.circular(14),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xffff7a2f).withOpacity(.3),
+                    color: const Color(0xffff7a2f).withValues(alpha: .3),
                     blurRadius: 12,
                     offset: const Offset(0, 6),
                   ),

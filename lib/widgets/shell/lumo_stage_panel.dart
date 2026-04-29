@@ -47,7 +47,7 @@ class _LumoStagePanelState extends State<LumoStagePanel>
 
   Color get _auraColor {
     final accent = widget.appState.state.focusedAccent;
-    if (accent != null) return Color(accent);
+    if (accent != null) return accent;
     switch (widget.appState.state.mood) {
       case LumoMood.celebrate: return LumoColors.gold;
       case LumoMood.comfort:   return LumoColors.blue;
@@ -69,7 +69,7 @@ class _LumoStagePanelState extends State<LumoStagePanel>
           end: Alignment.bottomCenter,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.xl),
-        border: Border.all(color: Colors.white.withOpacity(.6), width: 1.5),
+        border: Border.all(color: Colors.white.withValues(alpha: .6), width: 1.5),
         boxShadow: LumoShadow.stage,
       ),
       child: Column(
@@ -119,7 +119,7 @@ class _LumoStagePanelState extends State<LumoStagePanel>
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: _auraColor.withOpacity(.28 * aura),
+                                    color: _auraColor.withValues(alpha: .28 * aura),
                                     blurRadius: 60,
                                     spreadRadius: 20,
                                   ),
@@ -135,7 +135,7 @@ class _LumoStagePanelState extends State<LumoStagePanel>
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(99),
                                   gradient: RadialGradient(colors: [
-                                    Colors.black.withOpacity(.16),
+                                    Colors.black.withValues(alpha: .16),
                                     Colors.transparent,
                                   ]),
                                 ),
@@ -188,12 +188,12 @@ class _SpeechBubble extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.92),
+        color: Colors.white.withValues(alpha: .92),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(color: Colors.white, width: 2),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -229,12 +229,12 @@ class _DailyGoalCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.78),
+        color: Colors.white.withValues(alpha: .78),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(color: Colors.white, width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: LumoColors.orange.withOpacity(.10),
+            color: LumoColors.orange.withValues(alpha: .10),
             blurRadius: 14,
             offset: const Offset(0, 6),
           ),
@@ -268,7 +268,7 @@ class _DailyGoalCard extends StatelessWidget {
               value: (stars / 50).clamp(0.0, 1.0),
               minHeight: 6,
               color: LumoColors.orange,
-              backgroundColor: LumoColors.orange.withOpacity(.14),
+              backgroundColor: LumoColors.orange.withValues(alpha: .14),
             ),
           ),
         ],
