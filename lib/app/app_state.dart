@@ -34,6 +34,7 @@ class LumoSessionState {
     this.practiceErrors = 0,
     this.solved = const {},
     this.weakSkills = const {},
+    this.focusedAccent,
   });
 
   LumoSection section;
@@ -48,6 +49,10 @@ class LumoSessionState {
   int practiceErrors;
   Map<String, int> solved;
   Map<String, int> weakSkills;
+
+  /// Wenn das Kind über eine Karte hovert/tippt - überschreibt die Aura-Farbe.
+  /// `null` = Lumo nutzt seine Standard-Mood-Farbe.
+  int? focusedAccent;
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
@@ -67,6 +72,8 @@ class LumoSessionState {
     int? practiceErrors,
     Map<String, int>? solved,
     Map<String, int>? weakSkills,
+    int? focusedAccent,
+    bool clearFocusedAccent = false,
   }) {
     return LumoSessionState(
       section: section ?? this.section,
@@ -81,6 +88,7 @@ class LumoSessionState {
       practiceErrors: practiceErrors ?? this.practiceErrors,
       solved: solved ?? this.solved,
       weakSkills: weakSkills ?? this.weakSkills,
+      focusedAccent: clearFocusedAccent ? null : (focusedAccent ?? this.focusedAccent),
     );
   }
 }
@@ -162,6 +170,23 @@ class LumoAppState extends ChangeNotifier {
       lumoMessage: errors >= 3
           ? 'Ganz ruhig.\nIch zeige dir\nden Weg.'
           : 'Fast!\nWir schauen\nnochmal hin.',
+    ));
+  }
+
+  /// Lumo schaut zu einer Karte und übernimmt deren Akzentfarbe für die Aura.
+  void focusCard(int accentArgb, String? hint) {
+    update(_state.copyWith(
+      focusedAccent: accentArgb,
+      mood: LumoMood.point,
+      lumoMessage: hint ?? _state.lumoMessage,
+    ));
+  }
+
+  /// Hebt den Karten-Fokus auf.
+  void unfocusCard() {
+    update(_state.copyWith(
+      clearFocusedAccent: true,
+      mood: LumoMood.greet,
     ));
   }
 }

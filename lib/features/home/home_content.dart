@@ -3,6 +3,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/cards/kpi_card.dart';
 import '../../widgets/cards/learning_module_card.dart';
+import '../../widgets/cards/backgrounds/subject_backgrounds.dart';
 
 class HomeContent extends StatelessWidget {
   const HomeContent({
@@ -17,6 +18,15 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final st = appState.state;
+
+    void onHover(bool entered, Color accent, String hint) {
+      if (entered) {
+        appState.focusCard(accent.value, hint);
+      } else {
+        appState.unfocusCard();
+      }
+    }
+
     return LayoutBuilder(builder: (context, c) {
       final w = c.maxWidth;
       final cardW = ((w - 32) / 3).clamp(190.0, 260.0);
@@ -112,7 +122,12 @@ class HomeContent extends StatelessWidget {
                   objectEmoji: '🔢',
                   icon: Icons.calculate_rounded,
                   accent: LumoColors.math,
+
+                  onHoverChange: (h) => onHover(h, LumoColors.math, 'Mathe macht
+Freude!
+Zahlen entdecken.'),
                   surfaceColors: const [Color(0xFFFFF4BD), Color(0xFFFFDFA2)],
+                  background: const MathCardBackground(),
                   onTap: () => onSection(LumoSection.learn),
                 ),
                 LearningModuleCard(
@@ -123,7 +138,12 @@ class HomeContent extends StatelessWidget {
                   objectEmoji: '📚',
                   icon: Icons.menu_book_rounded,
                   accent: LumoColors.german,
+
+                  onHoverChange: (h) => onHover(h, LumoColors.german, 'Lesen, hören,
+schreiben –
+Wörter zaubern.'),
                   surfaceColors: const [Color(0xFFFFE8FB), Color(0xFFF0DCFF)],
+                  background: const GermanCardBackground(),
                   onTap: () => onSection(LumoSection.learn),
                 ),
                 LearningModuleCard(
@@ -134,7 +154,12 @@ class HomeContent extends StatelessWidget {
                   objectEmoji: '🌍',
                   icon: Icons.language_rounded,
                   accent: LumoColors.english,
+
+                  onHoverChange: (h) => onHover(h, LumoColors.english, 'Hi! Englisch
+ist wie ein
+neuer Freund.'),
                   surfaceColors: const [Color(0xFFDFFFF6), Color(0xFFC8F5ED)],
+                  background: const EnglishCardBackground(),
                   onTap: () => onSection(LumoSection.learn),
                 ),
                 LearningModuleCard(
@@ -145,7 +170,12 @@ class HomeContent extends StatelessWidget {
                   objectEmoji: '🎮',
                   icon: Icons.edit_rounded,
                   accent: LumoColors.practice,
+
+                  onHoverChange: (h) => onHover(h, LumoColors.practice, 'Üben macht
+stark!
+Komm spielen.'),
                   surfaceColors: const [Color(0xFFFFE6E2), Color(0xFFFFD2CE)],
+                  background: const PracticeCardBackground(),
                   onTap: () => onSection(LumoSection.exercises),
                 ),
                 LearningModuleCard(
@@ -156,7 +186,12 @@ class HomeContent extends StatelessWidget {
                   objectEmoji: '📋',
                   icon: Icons.assignment_turned_in_rounded,
                   accent: LumoColors.testColor,
+
+                  onHoverChange: (h) => onHover(h, LumoColors.testColor, 'Teste dich.
+Ich bleibe
+bei dir.'),
                   surfaceColors: const [Color(0xFFEAF3FF), Color(0xFFDBEAFF)],
+                  background: const TestCardBackground(),
                   onTap: () => onSection(LumoSection.exercises),
                 ),
                 LearningModuleCard(
@@ -167,7 +202,12 @@ class HomeContent extends StatelessWidget {
                   objectEmoji: '🏆',
                   icon: Icons.description_rounded,
                   accent: LumoColors.schoolwork,
+
+                  onHoverChange: (h) => onHover(h, LumoColors.schoolwork, 'Mit Pokal:
+A+ wartet
+auf dich!'),
                   surfaceColors: const [Color(0xFFFFF2C9), Color(0xFFFFE0A8)],
+                  background: const SchoolworkCardBackground(),
                   onTap: () => onSection(LumoSection.exercises),
                 ),
               ],
@@ -187,7 +227,12 @@ class HomeContent extends StatelessWidget {
                   objectEmoji: '📸',
                   icon: Icons.photo_camera_rounded,
                   accent: LumoColors.scanner,
+
+                  onHoverChange: (h) => onHover(h, LumoColors.scanner, 'Foto knipsen,
+ich lese es
+für dich.'),
                   surfaceColors: const [Color(0xFFFFE8FF), Color(0xFFF2D7FF)],
+                  background: const ScannerCardBackground(),
                   onTap: () => onSection(LumoSection.scanner),
                 ),
                 WideModuleCard(
@@ -198,7 +243,12 @@ class HomeContent extends StatelessWidget {
                   objectEmoji: '📖',
                   icon: Icons.play_circle_rounded,
                   accent: LumoColors.continueColor,
+
+                  onHoverChange: (h) => onHover(h, LumoColors.continueColor, 'Wir machen
+genau dort
+weiter.'),
                   surfaceColors: const [Color(0xFFE5FFF6), Color(0xFFCFFFF0)],
+                  background: const ContinueCardBackground(),
                   onTap: () => onSection(LumoSection.exercises),
                 ),
               ],

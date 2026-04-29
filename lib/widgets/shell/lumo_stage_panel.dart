@@ -46,6 +46,8 @@ class _LumoStagePanelState extends State<LumoStagePanel>
   }
 
   Color get _auraColor {
+    final accent = widget.appState.state.focusedAccent;
+    if (accent != null) return Color(accent);
     switch (widget.appState.state.mood) {
       case LumoMood.celebrate: return LumoColors.gold;
       case LumoMood.comfort:   return LumoColors.blue;

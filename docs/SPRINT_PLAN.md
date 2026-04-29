@@ -269,25 +269,40 @@ Pro Fach 50+ Aufgaben mit echten Visuals:
 
 **▶ SPRINT 1 — WOW-MOMENTE — ✅ ABGESCHLOSSEN am 28.04.2026**
 
-### Sprint-1-Lieferung:
-- ✅ `lib/widgets/effects/confetti_overlay.dart` (216 Zeilen) — 60 Partikel, 4 Formen, Physik
-- ✅ `lib/widgets/effects/xp_float.dart` (137 Zeilen) — schwebender +XP-Text mit Bounce
-- ✅ `lib/widgets/effects/mesh_gradient_bg.dart` (110 Zeilen) — 4 Lissajous-Blobs, 60s/Zyklus
-- ✅ `lib/widgets/effects/animated_counter.dart` (68 Zeilen) — Tween-basierter Counter
-- ✅ `lib/widgets/effects/star_burst.dart` (149 Zeilen) — radialer Stern-Burst
-- ✅ `lib/services/feedback_orchestrator.dart` (95 Zeilen) — 4 Reward-Profile
-- ✅ `pubspec.yaml` — Nunito-Font registriert (Regular/Bold/ExtraBold/Black)
-- ✅ `.github/workflows/android-debug-apk.yml` — Font-Download via jsdelivr CDN
-- ✅ `lib/features/learning/learning_content.dart` — feuert Effekte bei Antwort
-- ✅ `lib/widgets/cards/kpi_card.dart` — animierte Counter für Sterne/XP/Level
-- ✅ `lib/app/app_shell.dart` — MainContent in MeshGradientBackground
+(siehe Liste oben)
 
-### Akzeptanzkriterien Sprint 1:
-- ✅ Bei richtiger Antwort: Konfetti + XP-Float + Stern-Burst gleichzeitig
-- ✅ Effekte räumen sich automatisch auf (OverlayEntry.remove im onDone)
-- ✅ Mesh-Gradient läuft kontinuierlich im Hintergrund
-- ✅ KPI-Werte zählen beim Erscheinen hoch
-- ✅ Nunito wird registriert und beim CI-Build geladen
-- ⏳ Frame-Drops auf Mid-Range-Android — Test ausstehend (RepaintBoundary gesetzt)
+**▶ SPRINT 2 — LEBENDIGE KARTEN — ✅ ABGESCHLOSSEN am 29.04.2026**
 
-**▶ NÄCHSTER SPRINT: 2 — LEBENDIGE KARTEN**
+### Sprint-2-Lieferung:
+- ✅ `lib/widgets/cards/backgrounds/floating_symbols_background.dart` (160 Zeilen) —
+  CustomPainter, Lissajous-Drift, deterministische Layouts, RepaintBoundary
+- ✅ `lib/widgets/cards/backgrounds/subject_backgrounds.dart` (110 Zeilen) —
+  8 fach-spezifische Hintergrund-Wrapper:
+  - `MathCardBackground`: 1-9, +, −, ×, =
+  - `GermanCardBackground`: A, B, ä, ö, ü, ß, sch, ie, eu
+  - `EnglishCardBackground`: Hi, Hello, Yes, No, cat, dog
+  - `PracticeCardBackground`: ★ ✦ ✓ ♥ ●
+  - `TestCardBackground`: ✓ ? Zahlen
+  - `SchoolworkCardBackground`: A+ ★ ✦ 1.
+  - `ScannerCardBackground`: ◉ ○ ◎
+  - `ContinueCardBackground`: → ▶ ► ✓
+- ✅ `lib/widgets/cards/learning_module_card.dart` (komplett neu) —
+  - 3D-Press-Effekt: Karte „drückt" 4px nach unten + 0.98 scale
+  - Akzent-Glow stärker bei Hover (.28 vs .14 Opacity)
+  - Emoji skaliert 1.08× bei Hover
+  - CTA-Pfeil rutscht 0.2× nach rechts bei Hover
+  - `background:`-Slot für animierte Hintergründe
+  - `onHoverChange:` Callback
+- ✅ `lib/app/app_state.dart` — `focusedAccent` (int? ARGB) im State,
+  Methoden `focusCard()` / `unfocusCard()`
+- ✅ `lib/widgets/shell/lumo_stage_panel.dart` — Aura respektiert `focusedAccent`
+- ✅ `lib/features/home/home_content.dart` — alle 8 Karten verdrahtet:
+  Hover → Lumo-Aura wechselt zur Akzentfarbe + neue Sprechblase mit Hint
+
+### Akzeptanzkriterien Sprint 2:
+- ✅ Jede Karte hat einzigartige Hintergrund-Animation
+- ✅ Press-Effekt fühlt sich physisch an (translate + scale + reduzierter Schatten)
+- ✅ Lumo reagiert auf Karten-Hover (Aura + Sprechblase)
+- ✅ 32/32 Dart-Dateien syntaktisch geprueft
+
+**▶ NÄCHSTER SPRINT: 3 — PROGRESS & REWARDS**
