@@ -7,6 +7,7 @@ import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
 import '../features/learning/subject_selection_content.dart';
 import '../features/sections/section_content.dart';
+import '../features/settings/settings_content.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
@@ -89,7 +90,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
         return LearningContent(appState: _appState);
       case LumoSection.scanner:
         if (!_appState.state.settings.scannerEnabled) {
-          return SectionContent(appState: _appState, section: LumoSection.settings, onSection: _navigateTo);
+          return SettingsContent(appState: _appState);
         }
         return ScanScreen(
           onTextDetected: (text) {
@@ -117,6 +118,8 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
             lastGrade: _appState.state.lastGrade,
           ),
         );
+      case LumoSection.settings:
+        return SettingsContent(appState: _appState);
       default:
         return SectionContent(appState: _appState, section: section, onSection: _navigateTo);
     }
