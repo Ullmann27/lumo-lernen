@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 import '../core/app_settings.dart';
+import '../core/learning_profile_engine.dart';
+import '../core/progress_repository.dart';
+import '../core/recommendation_engine.dart';
 
 enum LumoSection {
   home,
@@ -94,6 +97,85 @@ class LumoSessionState {
 class LumoAppState extends ChangeNotifier {
   LumoSessionState _state = LumoSessionState();
   LumoSessionState get state => _state;
+
+  // ── Phase 3: Lernprofil-Engine ──────────────────────────────
+  // Die Engine speichert lokal pro Skill (Subject + Unit) den Fortschritt
+  // des Kindes. Sie wird einmal beim App-Start geladen und schreibt danach
+  // bei jeder beantworteten Aufgabe automatisch in den lokalen Speicher.
+  final LearningProfileEngine _learningProfile = LearningProfileEngine();
+  bool _learningProfileLoaded = false;
+
+  /// Zugriff auf die Engine fuer Eltern-Dashboard-Auswertungen.
+  /// Nicht direkt fuer UI-Manipulation gedacht.
+  LearningProfileEngine get learningProfile => _learningProfile;
+  bool get learningProfileLoaded => _learningProfileLoaded;
+
+  /// Laedt die Lerndaten vom lokalen Speicher.
+  /// Wird von der AppShell beim Start aufgerufen, parallel zu den Settings.
+  Future<void> loadLearningProfile() async {
+    if (_learningProfileLoaded) return;
+    await _learningProfile.load();
+    _learningProfileLoaded = true;
+    notifyListeners();
+  }
+
+  /// Erfasst eine beantwortete Uebung.
+  /// Aufruf erfolgt aus dem Uebungs-Widget, parallel zu correctAnswer/wrongAnswer.
+  Future<void> recordLearningAnswer({
+    required String subject,
+    required String unit,
+    required bool correct,
+    bool hintUsed = false,
+  }) async {
+    if (!_learningProfileLoaded) {
+      // Engine ist noch nicht geladen. Wir versuchen es nachzuladen, damit
+      // die Antwort nicht verloren geht.
+      await _learningProfile.load();
+      _learningProfileLoaded = true;
+    }
+    await _learningProfile.recordAnswer(
+      subject: subject,
+      unit: unit,
+      isCorrect: correct,
+      hintUsed: hintUsed,
+    );
+    // Wir loesen einen Listener-Notify aus, damit Widgets die Empfehlungen
+    // anzeigen koennten. Der eigentliche Session-State bleibt unveraendert.
+    notifyListeners();
+  }
+
+  /// Liefert die wichtigste aktuelle Empfehlung — oder null, wenn noch nicht
+  /// genug Daten vorliegen.
+  Recommendation? topLearningRecommendation() {
+    if (!_learningProfileLoaded) return null;
+    return _learningProfile.topRecommendation(
+      dailyGoalTarget: _state.settings.dailyGoal,
+    );
+  }
+
+  /// Anzahl der heute richtig beantworteten Aufgaben.
+  int learningDailyDone() =>
+      _learningProfileLoaded ? _learningProfile.dailyDone() : 0;
+
+  /// Aktuelle Tagesserie in Tagen.
+  int learningStreakDays() =>
+      _learningProfileLoaded ? _learningProfile.currentStreakDays() : 0;
+
+  /// Schwaechen-Uebersicht fuer den Eltern-Bereich.
+  Map<String, List<String>> learningWeaknessesBySubject() =>
+      _learningProfileLoaded
+          ? _learningProfile.weaknessesBySubject()
+          : <String, List<String>>{};
+
+  /// Zugriff auf die rohen SkillRecords fuer Statistiken.
+  Map<String, SkillRecord> learningSkills() =>
+      _learningProfileLoaded ? _learningProfile.skills : <String, SkillRecord>{};
+
+  /// Setzt alle Lerndaten zurueck. Nur Eltern-PIN-geschuetzt aufrufen.
+  Future<void> resetLearningProfile() async {
+    await _learningProfile.reset();
+    notifyListeners();
+  }
 
   void update(LumoSessionState next) {
     _state = next;

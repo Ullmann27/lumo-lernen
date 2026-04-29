@@ -55,6 +55,15 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       rate: settings.voiceRate,
       pitch: settings.voicePitch,
     );
+    // Phase 3: Lernprofil parallel laden (offline, lokal, kein Cloud-Aufruf).
+    // Fehler werden geschluckt, damit ein beschaedigter Speicher nicht den
+    // App-Start blockiert. Bei Fehler bleibt _learningProfileLoaded false und
+    // wird beim ersten recordAnswer nachgeladen.
+    try {
+      await _appState.loadLearningProfile();
+    } catch (_) {
+      // ignorieren — Engine arbeitet beim ersten Schreibversuch nach.
+    }
   }
 
   @override
