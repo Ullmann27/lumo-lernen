@@ -18,6 +18,8 @@ class LumoVoice {
   Future<void>? _initFuture;
   bool _enabled = true;
   bool _voiceSelected = false;
+  double _rateFactor = 1.0;
+  double _pitchOffset = 0.0;
   String? _selectedVoiceName;
   String? _selectedLocale;
 
@@ -29,6 +31,15 @@ class LumoVoice {
 
   String? get selectedVoiceName => _selectedVoiceName;
   String? get selectedLocale => _selectedLocale;
+
+  Future<void> configure({bool? enabled, double? rate, double? pitch}) async {
+    if (enabled != null) _enabled = enabled;
+    if (rate != null) _rateFactor = (rate / 0.35).clamp(0.70, 1.55).toDouble();
+    if (pitch != null) _pitchOffset = (pitch - 1.0).clamp(-0.20, 0.20).toDouble();
+    if (_initFuture != null) {
+      await _applyStyle(VoiceStyle.warm);
+    }
+  }
 
   Future<void> _ensureReady() {
     return _initFuture ??= _doInit();
@@ -47,7 +58,6 @@ class LumoVoice {
       await _selectBestGermanVoice();
       await _applyStyle(VoiceStyle.warm);
 
-      // Fuer normale UI-Nutzung blockieren wir nicht auf das Ende der Ausgabe.
       try {
         await _tts.awaitSpeakCompletion(false);
       } catch (_) {}
@@ -177,8 +187,8 @@ class LumoVoice {
   }
 
   Future<void> _set({required double rate, required double pitch, required double volume}) async {
-    await _tts.setSpeechRate(rate);
-    await _tts.setPitch(pitch);
+    await _tts.setSpeechRate((rate * _rateFactor).clamp(0.25, 0.60).toDouble());
+    await _tts.setPitch((pitch + _pitchOffset).clamp(0.80, 1.25).toDouble());
     await _tts.setVolume(volume);
   }
 
