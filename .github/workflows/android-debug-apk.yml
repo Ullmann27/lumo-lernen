@@ -31,23 +31,23 @@ jobs:
             flutter create --platforms=android --org dev.ullmann.lumo .
           fi
 
-      - name: Patch AndroidManifest (Camera permission, no AD_ID for kids, TTS visibility)
+      - name: Patch AndroidManifest safely
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
           if [ -f "$MANIFEST" ]; then
-            sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
+            if ! grep -q "xmlns:tools" "$MANIFEST"; then
+              sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
+            fi
             if ! grep -q "android.permission.CAMERA" "$MANIFEST"; then
               sed -i '/<manifest /a \    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-feature android:name="android.hardware.camera" android:required="false"/>\n    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>' "$MANIFEST"
             fi
-            # flutter_tts on Android 11+ requires <queries> for TTS engine discovery
             if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
               sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
             fi
-            echo "--- Patched AndroidManifest.xml ---"
             cat "$MANIFEST"
           fi
 
-      - name: Patch build.gradle for minSdk 21 (ML Kit requirement)
+      - name: Patch Android build files for ML Kit compatibility
         run: |
           for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
             if [ -f "$GRADLE" ]; then
@@ -55,26 +55,8 @@ jobs:
               sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
               sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
               sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
-              echo "--- minSdk in $GRADLE ---"
               grep -E "minSdk" "$GRADLE" || true
             fi
-          done
-
-      - name: Download Nunito font (Google Fonts)
-        run: |
-          mkdir -p assets/fonts
-          BASE="https://github.com/google/fonts/raw/main/ofl/nunito/static"
-          for FILE in Nunito-Regular.ttf Nunito-Bold.ttf Nunito-ExtraBold.ttf Nunito-Black.ttf; do
-            if [ ! -f "assets/fonts/$FILE" ]; then
-              echo "Downloading $FILE..."
-              curl -sSL "$BASE/$FILE" -o "assets/fonts/$FILE"
-              # Verify it's actually a TTF (starts with magic bytes 00 01 00 00 OR "OTTO" OR "true")
-              if ! file "assets/fonts/$FILE" | grep -qiE "TrueType|OpenType|font"; then
-                echo "WARN: $FILE download failed, trying jsdelivr CDN..."
-                curl -sSL "https://cdn.jsdelivr.net/gh/google/fonts/ofl/nunito/static/$FILE" -o "assets/fonts/$FILE"
-              fi
-            fi
-            ls -la "assets/fonts/$FILE"
           done
 
       - name: Get dependencies
