@@ -123,9 +123,7 @@ class HomeContent extends StatelessWidget {
                   icon: Icons.calculate_rounded,
                   accent: LumoColors.math,
 
-                  onHoverChange: (h) => onHover(h, LumoColors.math, 'Mathe macht
-Freude!
-Zahlen entdecken.'),
+                  onHoverChange: (h) => onHover(h, LumoColors.math, 'Mathe macht\nFreude!\nZahlen entdecken.'),
                   surfaceColors: const [Color(0xFFFFF4BD), Color(0xFFFFDFA2)],
                   background: const MathCardBackground(),
                   onTap: () => onSection(LumoSection.learn),
@@ -139,9 +137,7 @@ Zahlen entdecken.'),
                   icon: Icons.menu_book_rounded,
                   accent: LumoColors.german,
 
-                  onHoverChange: (h) => onHover(h, LumoColors.german, 'Lesen, hören,
-schreiben –
-Wörter zaubern.'),
+                  onHoverChange: (h) => onHover(h, LumoColors.german, 'Lesen, hören,\nschreiben –\nWörter zaubern.'),
                   surfaceColors: const [Color(0xFFFFE8FB), Color(0xFFF0DCFF)],
                   background: const GermanCardBackground(),
                   onTap: () => onSection(LumoSection.learn),
@@ -155,9 +151,7 @@ Wörter zaubern.'),
                   icon: Icons.language_rounded,
                   accent: LumoColors.english,
 
-                  onHoverChange: (h) => onHover(h, LumoColors.english, 'Hi! Englisch
-ist wie ein
-neuer Freund.'),
+                  onHoverChange: (h) => onHover(h, LumoColors.english, 'Hi! Englisch\nist wie ein\nneuer Freund.'),
                   surfaceColors: const [Color(0xFFDFFFF6), Color(0xFFC8F5ED)],
                   background: const EnglishCardBackground(),
                   onTap: () => onSection(LumoSection.learn),
@@ -171,9 +165,7 @@ neuer Freund.'),
                   icon: Icons.edit_rounded,
                   accent: LumoColors.practice,
 
-                  onHoverChange: (h) => onHover(h, LumoColors.practice, 'Üben macht
-stark!
-Komm spielen.'),
+                  onHoverChange: (h) => onHover(h, LumoColors.practice, 'Üben macht\nstark!\nKomm spielen.'),
                   surfaceColors: const [Color(0xFFFFE6E2), Color(0xFFFFD2CE)],
                   background: const PracticeCardBackground(),
                   onTap: () => onSection(LumoSection.exercises),
@@ -187,9 +179,7 @@ Komm spielen.'),
                   icon: Icons.assignment_turned_in_rounded,
                   accent: LumoColors.testColor,
 
-                  onHoverChange: (h) => onHover(h, LumoColors.testColor, 'Teste dich.
-Ich bleibe
-bei dir.'),
+                  onHoverChange: (h) => onHover(h, LumoColors.testColor, 'Teste dich.\nIch bleibe\nbei dir.'),
                   surfaceColors: const [Color(0xFFEAF3FF), Color(0xFFDBEAFF)],
                   background: const TestCardBackground(),
                   onTap: () => onSection(LumoSection.exercises),
@@ -203,9 +193,7 @@ bei dir.'),
                   icon: Icons.description_rounded,
                   accent: LumoColors.schoolwork,
 
-                  onHoverChange: (h) => onHover(h, LumoColors.schoolwork, 'Mit Pokal:
-A+ wartet
-auf dich!'),
+                  onHoverChange: (h) => onHover(h, LumoColors.schoolwork, 'Mit Pokal:\nA+ wartet\nauf dich!'),
                   surfaceColors: const [Color(0xFFFFF2C9), Color(0xFFFFE0A8)],
                   background: const SchoolworkCardBackground(),
                   onTap: () => onSection(LumoSection.exercises),
@@ -228,9 +216,7 @@ auf dich!'),
                   icon: Icons.photo_camera_rounded,
                   accent: LumoColors.scanner,
 
-                  onHoverChange: (h) => onHover(h, LumoColors.scanner, 'Foto knipsen,
-ich lese es
-für dich.'),
+                  onHoverChange: (h) => onHover(h, LumoColors.scanner, 'Foto knipsen,\nich lese es\nfür dich.'),
                   surfaceColors: const [Color(0xFFFFE8FF), Color(0xFFF2D7FF)],
                   background: const ScannerCardBackground(),
                   onTap: () => onSection(LumoSection.scanner),
@@ -244,9 +230,7 @@ für dich.'),
                   icon: Icons.play_circle_rounded,
                   accent: LumoColors.continueColor,
 
-                  onHoverChange: (h) => onHover(h, LumoColors.continueColor, 'Wir machen
-genau dort
-weiter.'),
+                  onHoverChange: (h) => onHover(h, LumoColors.continueColor, 'Wir machen\ngenau dort\nweiter.'),
                   surfaceColors: const [Color(0xFFE5FFF6), Color(0xFFCFFFF0)],
                   background: const ContinueCardBackground(),
                   onTap: () => onSection(LumoSection.exercises),
