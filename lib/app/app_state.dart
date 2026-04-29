@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 
-/// Welcher Bereich aktiv ist (Menüpunkt links)
 enum LumoSection {
   home,
   learn,
@@ -16,13 +15,12 @@ enum LumoSection {
   settings,
 }
 
-/// Was Lumo gerade tut (steuert Animation + Sprechblase)
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 
-/// Einzelne Lern-Session
 class LumoSessionState {
   LumoSessionState({
     this.section = LumoSection.home,
+    this.childName = 'Lena',
     this.grade = 1,
     this.subject = 'Alle',
     this.unit = 'Alle',
@@ -37,6 +35,7 @@ class LumoSessionState {
   });
 
   LumoSection section;
+  String childName;
   int grade;
   String subject;
   String unit;
@@ -56,6 +55,7 @@ class LumoSessionState {
 
   LumoSessionState copyWith({
     LumoSection? section,
+    String? childName,
     int? grade,
     String? subject,
     String? unit,
@@ -70,6 +70,7 @@ class LumoSessionState {
   }) {
     return LumoSessionState(
       section: section ?? this.section,
+      childName: childName ?? this.childName,
       grade: grade ?? this.grade,
       subject: subject ?? this.subject,
       unit: unit ?? this.unit,
@@ -85,7 +86,6 @@ class LumoSessionState {
   }
 }
 
-/// Zentraler StateNotifier – alle Widgets hören hier zu
 class LumoAppState extends ChangeNotifier {
   LumoSessionState _state = LumoSessionState();
   LumoSessionState get state => _state;
