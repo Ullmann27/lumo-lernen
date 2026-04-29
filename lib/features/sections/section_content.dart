@@ -3,16 +3,16 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 
 class SectionContent extends StatelessWidget {
-  const SectionContent({
-    super.key,
-    required this.appState,
-    required this.section,
-    required this.onSection,
-  });
+  const SectionContent({super.key, required this.appState, required this.section, required this.onSection});
 
   final LumoAppState appState;
   final LumoSection section;
   final ValueChanged<LumoSection> onSection;
+
+  void _startSession({required String subject, String unit = 'Alle', required String message}) {
+    appState.update(appState.state.copyWith(subject: subject, unit: unit, mood: LumoMood.point, lumoMessage: message));
+    onSection(LumoSection.exercises);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,10 @@ class SectionContent extends StatelessWidget {
           emoji: '📋',
           accent: LumoColors.testColor,
           cards: [
-            _ActionData('Mini-Test', '5 schnelle Aufgaben zum Aufwärmen.', 'Starten', Icons.flash_on_rounded, () => onSection(LumoSection.exercises)),
-            _ActionData('Fach-Test', 'Wähle ein Fach und sammle Sterne.', 'Üben', Icons.school_rounded, () => onSection(LumoSection.learn)),
-            _ActionData('Wiederholung', 'Übe Themen, die noch schwer waren.', 'Los', Icons.refresh_rounded, () => onSection(LumoSection.exercises)),
+            _ActionData('Mini-Test', '5 schnelle gemischte Aufgaben zum Aufwärmen.', 'Starten', Icons.flash_on_rounded, () => _startSession(subject: 'Alle', message: 'Mini-Test\nist bereit.\nDu schaffst das!')),
+            _ActionData('Mathe-Test', 'Rechnen, Zahlen und kleine Denkaufgaben.', 'Starten', Icons.calculate_rounded, () => _startSession(subject: 'Mathematik', message: 'Mathe-Test\nist bereit.\nRuhig rechnen.')),
+            _ActionData('Deutsch-Test', 'Lesen, Wörter und Satzverständnis.', 'Starten', Icons.menu_book_rounded, () => _startSession(subject: 'Deutsch', message: 'Deutsch-Test\nist bereit.\nLangsam lesen.')),
+            _ActionData('Schwächen-Test', 'Lumo übt stärker, was noch schwer war.', 'Los', Icons.psychology_rounded, () => _startSession(subject: 'Alle', message: 'Ich wähle\npassende Aufgaben\nfür dich.')),
           ],
         );
       case LumoSection.schoolwork:
@@ -36,38 +37,32 @@ class SectionContent extends StatelessWidget {
           emoji: '🏆',
           accent: LumoColors.schoolwork,
           cards: [
-            _ActionData('Gemischter Test', 'Mathe, Deutsch und Lesen gemischt.', 'Starten', Icons.assignment_rounded, () => onSection(LumoSection.exercises)),
-            _ActionData('Mit Note üben', 'Am Ende bekommst du eine freundliche Einschätzung.', 'Starten', Icons.workspace_premium_rounded, () => onSection(LumoSection.tests)),
-            _ActionData('Schwächen üben', 'Lumo sucht die passenden Wiederholungen aus.', 'Üben', Icons.psychology_rounded, () => onSection(LumoSection.exercises)),
+            _ActionData('Gemischter Test', 'Mathe, Deutsch, Lesen und Sachunterricht gemischt.', 'Starten', Icons.assignment_rounded, () => _startSession(subject: 'Alle', message: 'Gemischte\nSchularbeit\nstartet jetzt.')),
+            _ActionData('Mathe-Schularbeit', 'Rechnen, Geld, Uhrzeit und Zahlen.', 'Starten', Icons.calculate_rounded, () => _startSession(subject: 'Mathematik', message: 'Mathe-Training\nwie Schularbeit.')),
+            _ActionData('Deutsch-Schularbeit', 'Lesen, Schreiben und Rechtschreibung.', 'Starten', Icons.edit_document, () => _startSession(subject: 'Deutsch', message: 'Deutsch-Training\nwie Schularbeit.')),
+            _ActionData('Schnelle Wiederholung', 'Kurzer Mix zum Festigen.', 'Üben', Icons.refresh_rounded, () => _startSession(subject: 'Alle', message: 'Kurze\nWiederholung\nstartet.')),
           ],
         );
       case LumoSection.missions:
-        return _MissionsPage(onSection: onSection);
+        return _MissionsPage(onSection: onSection, startSession: _startSession);
       case LumoSection.progress:
         return _ProgressPage(appState: appState);
       case LumoSection.rewards:
         return _RewardsPage(appState: appState, onSection: onSection);
       case LumoSection.agent:
-        return _AgentPage(appState: appState, onSection: onSection);
+        return _AgentPage(appState: appState, onSection: onSection, startSession: _startSession);
       case LumoSection.settings:
-        return _SettingsPage();
+        return _SettingsPage(appState: appState);
       default:
-        return _ActionPage(
-          title: section.name,
-          subtitle: 'Dieser Bereich wird vorbereitet.',
-          emoji: '✨',
-          accent: LumoColors.orange,
-          cards: [
-            _ActionData('Zurück zum Start', 'Gehe zurück zur Übersicht.', 'Start', Icons.home_rounded, () => onSection(LumoSection.home)),
-          ],
-        );
+        return _ActionPage(title: section.name, subtitle: 'Dieser Bereich wird vorbereitet.', emoji: '✨', accent: LumoColors.orange, cards: [
+          _ActionData('Zurück zum Start', 'Gehe zurück zur Übersicht.', 'Start', Icons.home_rounded, () => onSection(LumoSection.home)),
+        ]);
     }
   }
 }
 
 class _ActionPage extends StatelessWidget {
   const _ActionPage({required this.title, required this.subtitle, required this.emoji, required this.accent, required this.cards});
-
   final String title;
   final String subtitle;
   final String emoji;
@@ -155,8 +150,9 @@ class _ActionCard extends StatelessWidget {
 }
 
 class _MissionsPage extends StatelessWidget {
-  const _MissionsPage({required this.onSection});
+  const _MissionsPage({required this.onSection, required this.startSession});
   final ValueChanged<LumoSection> onSection;
+  final void Function({required String subject, String unit, required String message}) startSession;
 
   @override
   Widget build(BuildContext context) {
@@ -166,10 +162,12 @@ class _MissionsPage extends StatelessWidget {
       emoji: '🚩',
       accent: LumoColors.orange,
       cards: [
-        _ActionData('3 Aufgaben lösen', 'Schließe drei einfache Aufgaben ab.', 'Mission starten', Icons.check_circle_rounded, () => onSection(LumoSection.exercises)),
-        _ActionData('Mathe-Insel', 'Zahlen und Plus/Minus üben.', 'Starten', Icons.calculate_rounded, () => onSection(LumoSection.learn)),
-        _ActionData('Lesemut', 'Deutsch lesen und Wörter erkennen.', 'Starten', Icons.menu_book_rounded, () => onSection(LumoSection.learn)),
+        _ActionData('3 Aufgaben lösen', 'Schließe drei einfache Aufgaben ab.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Mission:\n3 Aufgaben\nlösen!')),
+        _ActionData('Mathe-Insel', 'Zahlen und Plus/Minus üben.', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: 'Plus bis 20', message: 'Mathe-Insel\nstartet jetzt.')),
+        _ActionData('Lesemut', 'Deutsch lesen und Wörter erkennen.', 'Starten', Icons.menu_book_rounded, () => startSession(subject: 'Lesen', message: 'Lesemut\nstartet jetzt.')),
         _ActionData('Foto-Hilfe', 'Fotografiere eine Aufgabe und lass dir helfen.', 'Foto', Icons.photo_camera_rounded, () => onSection(LumoSection.scanner)),
+        _ActionData('Englisch-Start', 'Farben, Tiere und Begrüßung.', 'Starten', Icons.language_rounded, () => startSession(subject: 'Englisch', message: 'Englisch\nstartet jetzt.')),
+        _ActionData('Sachforscher', 'Tiere, Pflanzen und Wetter.', 'Starten', Icons.eco_rounded, () => startSession(subject: 'Sachunterricht', message: 'Sachforscher\nMission startet.')),
       ],
     );
   }
@@ -185,7 +183,7 @@ class _ProgressPage extends StatelessWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(26),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        _Header(title: 'Fortschritt', subtitle: 'Hier sieht das Kind, was schon gut klappt.', emoji: '📊', accent: LumoColors.teal),
+        _Header(title: 'Fortschritt', subtitle: '${st.childName}, hier siehst du, was schon gut klappt.', emoji: '📊', accent: LumoColors.teal),
         const SizedBox(height: 18),
         Wrap(spacing: 14, runSpacing: 14, children: [
           _ProgressTile(label: 'Sterne', value: '${st.stars}', percent: (st.stars / 50).clamp(0.0, 1.0), color: LumoColors.purple, icon: '⭐'),
@@ -193,6 +191,16 @@ class _ProgressPage extends StatelessWidget {
           _ProgressTile(label: 'Level', value: '${st.level}', percent: st.levelXpPercent / 100, color: LumoColors.teal, icon: '💎'),
           _ProgressTile(label: 'Woche', value: '${st.weeklyProgress}%', percent: st.weeklyProgress / 100, color: LumoColors.blue, icon: '📘'),
         ]),
+        const SizedBox(height: 18),
+        Container(
+          padding: const EdgeInsets.all(18),
+          decoration: lumoCard(),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('Aktuelle Lernrichtung', style: LumoTextStyles.heading3),
+            const SizedBox(height: 8),
+            Text('Fach: ${st.subject}\nThema: ${st.unit}\nKlasse: ${st.grade}', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+          ]),
+        ),
       ]),
     );
   }
@@ -241,6 +249,8 @@ class _RewardsPage extends StatelessWidget {
           _Badge(label: 'Mathe-Mut', emoji: '🔢', unlocked: stars >= 10),
           _Badge(label: 'Lesefuchs', emoji: '📚', unlocked: stars >= 20),
           _Badge(label: 'Super-Lumo', emoji: '🦊', unlocked: stars >= 30),
+          _Badge(label: 'Englisch-Held', emoji: '🌍', unlocked: stars >= 35),
+          _Badge(label: 'Sachforscher', emoji: '🌱', unlocked: stars >= 40),
         ]),
         const SizedBox(height: 18),
         FilledButton.icon(onPressed: () => onSection(LumoSection.missions), icon: const Icon(Icons.flag_rounded), label: const Text('Neue Mission holen')),
@@ -273,9 +283,10 @@ class _Badge extends StatelessWidget {
 }
 
 class _AgentPage extends StatefulWidget {
-  const _AgentPage({required this.appState, required this.onSection});
+  const _AgentPage({required this.appState, required this.onSection, required this.startSession});
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
+  final void Function({required String subject, String unit, required String message}) startSession;
 
   @override
   State<_AgentPage> createState() => _AgentPageState();
@@ -300,6 +311,8 @@ class _AgentPageState extends State<_AgentPage> {
         _answer = 'Bei Minus nimmst du etwas weg. Beispiel: 7 - 2 bedeutet: von 7 bleiben nach dem Wegnehmen 5 übrig.';
       } else if (q.contains('lesen') || q.contains('deutsch')) {
         _answer = 'Lies langsam Silbe für Silbe. Wenn ein Wort schwer ist, teile es in kleine Teile.';
+      } else if (q.contains('englisch')) {
+        _answer = 'Englisch lernst du am besten mit kleinen Wörtern. Starte mit Farben, Zahlen und Tieren.';
       } else {
         _answer = 'Gute Frage! Ich helfe dir Schritt für Schritt. Wähle am besten auch ein Fach aus, dann üben wir passend weiter.';
       }
@@ -320,7 +333,12 @@ class _AgentPageState extends State<_AgentPage> {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             TextField(controller: _controller, decoration: const InputDecoration(labelText: 'Deine Frage an Lumo', hintText: 'z.B. Wie rechne ich Plus?')),
             const SizedBox(height: 12),
-            FilledButton.icon(onPressed: _ask, icon: const Icon(Icons.send_rounded), label: const Text('Lumo fragen')),
+            Wrap(spacing: 10, runSpacing: 10, children: [
+              FilledButton.icon(onPressed: _ask, icon: const Icon(Icons.send_rounded), label: const Text('Lumo fragen')),
+              OutlinedButton(onPressed: () => widget.startSession(subject: 'Mathematik', message: 'Mathe\nüben wir jetzt.'), child: const Text('Mathe üben')),
+              OutlinedButton(onPressed: () => widget.startSession(subject: 'Deutsch', message: 'Deutsch\nüben wir jetzt.'), child: const Text('Deutsch üben')),
+              OutlinedButton(onPressed: () => widget.startSession(subject: 'Alle', message: 'Gemischt\nüben wir jetzt.'), child: const Text('Gemischt üben')),
+            ]),
             const SizedBox(height: 16),
             Text(_answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
           ]),
@@ -331,8 +349,12 @@ class _AgentPageState extends State<_AgentPage> {
 }
 
 class _SettingsPage extends StatelessWidget {
+  const _SettingsPage({required this.appState});
+  final LumoAppState appState;
+
   @override
   Widget build(BuildContext context) {
+    final st = appState.state;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(26),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -341,10 +363,10 @@ class _SettingsPage extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(18),
           decoration: lumoCard(),
-          child: const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('Aktiv:', style: LumoTextStyles.heading3),
-            SizedBox(height: 8),
-            Text('• Lokales Kinderprofil\n• Alters- und Klassenlogik\n• Sicherer Offline-Lumo-Helfer\n• Foto-Review ohne Online-Upload', style: LumoTextStyles.body),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('Aktiv:', style: LumoTextStyles.heading3),
+            const SizedBox(height: 8),
+            Text('• Profil: ${st.childName}, Klasse ${st.grade}\n• Lokales Kinderprofil\n• Alters- und Klassenlogik\n• Sicherer Offline-Lumo-Helfer\n• Foto-Review ohne Online-Upload', style: LumoTextStyles.body),
           ]),
         ),
       ]),
