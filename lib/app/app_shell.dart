@@ -5,6 +5,7 @@ import '../widgets/shell/left_navigation.dart';
 import '../widgets/shell/lumo_stage_panel.dart';
 import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
+import '../features/learning/subject_selection_content.dart';
 import '../features/sections/section_content.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
@@ -68,6 +69,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       case LumoSection.home:
         return HomeContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.learn:
+        return SubjectSelectionContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.exercises:
         return LearningContent(appState: _appState);
       case LumoSection.scanner:
@@ -96,11 +98,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
           ),
         );
       default:
-        return SectionContent(
-          appState: _appState,
-          section: section,
-          onSection: _navigateTo,
-        );
+        return SectionContent(appState: _appState, section: section, onSection: _navigateTo);
     }
   }
 
@@ -123,10 +121,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(LumoRadius.xl),
                       child: Container(
-                        decoration: BoxDecoration(
-                          color: LumoColors.appBg,
-                          borderRadius: BorderRadius.circular(LumoRadius.xl),
-                        ),
+                        decoration: BoxDecoration(color: LumoColors.appBg, borderRadius: BorderRadius.circular(LumoRadius.xl)),
                         child: FadeTransition(opacity: _fadeCtrl, child: _buildContent()),
                       ),
                     ),
