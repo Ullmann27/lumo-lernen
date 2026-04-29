@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/lumo_companion_engine.dart';
+import '../../core/lumo_speech_listener.dart';
+import '../../core/lumo_voice.dart';
 
 class SectionContent extends StatelessWidget {
   const SectionContent({super.key, required this.appState, required this.section, required this.onSection});
@@ -294,56 +297,149 @@ class _AgentPage extends StatefulWidget {
 
 class _AgentPageState extends State<_AgentPage> {
   final _controller = TextEditingController();
-  String _answer = 'Frag mich etwas zu Mathe, Deutsch oder Lernen. Ich antworte einfach und freundlich.';
+  final _engine = const LumoCompanionEngine();
+  final _speech = LumoSpeechListener();
+  String _answer = 'Frag mich etwas oder drücke auf das Mikrofon. Ich höre zu und antworte freundlich.';
+  String _heardText = '';
+  LumoReply? _lastReply;
+
+  @override
+  void initState() {
+    super.initState();
+    _speech.initialize();
+  }
 
   @override
   void dispose() {
+    _speech.dispose();
     _controller.dispose();
     super.dispose();
   }
 
-  void _ask() {
-    final q = _controller.text.trim().toLowerCase();
+  void _ask([String? raw]) {
+    final question = (raw ?? _controller.text).trim();
+    final reply = _engine.answer(input: question, state: widget.appState.state);
     setState(() {
-      if (q.contains('plus') || q.contains('+') || q.contains('mathe')) {
-        _answer = 'Bei Plus zählst du beide Mengen zusammen. Beispiel: 3 + 2 bedeutet: erst 3, dann noch 2 dazu. Das ergibt 5.';
-      } else if (q.contains('minus') || q.contains('-')) {
-        _answer = 'Bei Minus nimmst du etwas weg. Beispiel: 7 - 2 bedeutet: von 7 bleiben nach dem Wegnehmen 5 übrig.';
-      } else if (q.contains('lesen') || q.contains('deutsch')) {
-        _answer = 'Lies langsam Silbe für Silbe. Wenn ein Wort schwer ist, teile es in kleine Teile.';
-      } else if (q.contains('englisch')) {
-        _answer = 'Englisch lernst du am besten mit kleinen Wörtern. Starte mit Farben, Zahlen und Tieren.';
-      } else {
-        _answer = 'Gute Frage! Ich helfe dir Schritt für Schritt. Wähle am besten auch ein Fach aus, dann üben wir passend weiter.';
-      }
+      _answer = reply.text;
+      _lastReply = reply;
+      if (question.isNotEmpty) _controller.text = question;
     });
-    widget.appState.update(widget.appState.state.copyWith(lumoMessage: _answer, mood: LumoMood.think));
+    widget.appState.update(widget.appState.state.copyWith(
+      lumoMessage: reply.text,
+      mood: reply.mood,
+      subject: reply.suggestedSubject ?? widget.appState.state.subject,
+      unit: reply.suggestedUnit ?? widget.appState.state.unit,
+    ));
+    LumoVoice.instance.speak(reply.text, style: _voiceStyleFor(reply.mood));
+  }
+
+  VoiceStyle _voiceStyleFor(LumoMood mood) {
+    switch (mood) {
+      case LumoMood.celebrate:
+        return VoiceStyle.celebrate;
+      case LumoMood.comfort:
+        return VoiceStyle.comfort;
+      case LumoMood.think:
+        return VoiceStyle.explain;
+      case LumoMood.point:
+        return VoiceStyle.question;
+      case LumoMood.greet:
+      case LumoMood.wave:
+      case LumoMood.idle:
+        return VoiceStyle.greeting;
+    }
+  }
+
+  Future<void> _toggleMic() async {
+    if (_speech.listening) {
+      await _speech.stopListening();
+      if (_speech.lastWords.trim().isNotEmpty) _ask(_speech.lastWords);
+      return;
+    }
+    setState(() {
+      _heardText = '';
+      _answer = 'Ich höre zu. Sprich langsam und deutlich.';
+    });
+    await _speech.startListening(onResult: (words) {
+      if (!mounted) return;
+      setState(() {
+        _heardText = words;
+        _controller.text = words;
+      });
+    });
+  }
+
+  void _startSuggested() {
+    final reply = _lastReply;
+    if (reply == null) return;
+    if (reply.suggestedSection == LumoSection.scanner) {
+      widget.onSection(LumoSection.scanner);
+      return;
+    }
+    if (reply.suggestedSection == LumoSection.tests) {
+      widget.onSection(LumoSection.tests);
+      return;
+    }
+    widget.startSession(
+      subject: reply.suggestedSubject ?? widget.appState.state.subject,
+      unit: reply.suggestedUnit ?? widget.appState.state.unit,
+      message: 'Ich starte\ndie passende\nÜbung für dich.',
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(26),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        _Header(title: 'Lumo-KI', subtitle: 'Ein sicherer Lernfreund mit einfachen Antworten.', emoji: '🤖', accent: LumoColors.orange),
-        const SizedBox(height: 18),
-        Container(
-          padding: const EdgeInsets.all(18),
-          decoration: lumoCard(),
+    return AnimatedBuilder(
+      animation: _speech,
+      builder: (context, _) {
+        final canStart = _lastReply?.suggestedSection != null || _lastReply?.suggestedSubject != null;
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(26),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            TextField(controller: _controller, decoration: const InputDecoration(labelText: 'Deine Frage an Lumo', hintText: 'z.B. Wie rechne ich Plus?')),
-            const SizedBox(height: 12),
-            Wrap(spacing: 10, runSpacing: 10, children: [
-              FilledButton.icon(onPressed: _ask, icon: const Icon(Icons.send_rounded), label: const Text('Lumo fragen')),
-              OutlinedButton(onPressed: () => widget.startSession(subject: 'Mathematik', message: 'Mathe\nüben wir jetzt.'), child: const Text('Mathe üben')),
-              OutlinedButton(onPressed: () => widget.startSession(subject: 'Deutsch', message: 'Deutsch\nüben wir jetzt.'), child: const Text('Deutsch üben')),
-              OutlinedButton(onPressed: () => widget.startSession(subject: 'Alle', message: 'Gemischt\nüben wir jetzt.'), child: const Text('Gemischt üben')),
-            ]),
-            const SizedBox(height: 16),
-            Text(_answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+            _Header(title: 'Lumo-KI', subtitle: 'Sprich mit Lumo. Er hört zu, antwortet und kann passende Übungen starten.', emoji: '🎙️', accent: LumoColors.orange),
+            const SizedBox(height: 18),
+            Container(
+              padding: const EdgeInsets.all(18),
+              decoration: lumoCard(),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                TextField(
+                  controller: _controller,
+                  minLines: 1,
+                  maxLines: 3,
+                  decoration: const InputDecoration(labelText: 'Deine Frage an Lumo', hintText: 'z.B. Wie rechne ich Plus?'),
+                ),
+                const SizedBox(height: 12),
+                Wrap(spacing: 10, runSpacing: 10, children: [
+                  FilledButton.icon(onPressed: () => _ask(), icon: const Icon(Icons.send_rounded), label: const Text('Lumo fragen')),
+                  FilledButton.icon(
+                    onPressed: _toggleMic,
+                    icon: Icon(_speech.listening ? Icons.stop_rounded : Icons.mic_rounded),
+                    label: Text(_speech.listening ? 'Stopp' : 'Mit Lumo sprechen'),
+                  ),
+                  if (canStart) OutlinedButton.icon(onPressed: _startSuggested, icon: const Icon(Icons.play_arrow_rounded), label: const Text('Passende Übung starten')),
+                  OutlinedButton(onPressed: () => widget.startSession(subject: 'Mathematik', message: 'Mathe\nüben wir jetzt.'), child: const Text('Mathe üben')),
+                  OutlinedButton(onPressed: () => widget.startSession(subject: 'Deutsch', message: 'Deutsch\nüben wir jetzt.'), child: const Text('Deutsch üben')),
+                  OutlinedButton(onPressed: () => widget.startSession(subject: 'Alle', message: 'Gemischt\nüben wir jetzt.'), child: const Text('Gemischt üben')),
+                ]),
+                const SizedBox(height: 16),
+                if (_speech.listening || _heardText.isNotEmpty)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)),
+                    child: Text(_speech.listening ? 'Ich höre: ${_heardText.isEmpty ? '...' : _heardText}' : 'Gehört: $_heardText', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+                  ),
+                if (_speech.error != null) ...[
+                  const SizedBox(height: 10),
+                  Text('Mikrofon-Hinweis: ${_speech.error}', style: LumoTextStyles.caption.copyWith(color: Colors.redAccent)),
+                ],
+                const SizedBox(height: 16),
+                Text(_answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+              ]),
+            ),
           ]),
-        ),
-      ]),
+        );
+      },
     );
   }
 }
@@ -366,7 +462,7 @@ class _SettingsPage extends StatelessWidget {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const Text('Aktiv:', style: LumoTextStyles.heading3),
             const SizedBox(height: 8),
-            Text('• Profil: ${st.childName}, Klasse ${st.grade}\n• Lokales Kinderprofil\n• Alters- und Klassenlogik\n• Sicherer Offline-Lumo-Helfer\n• Foto-Review ohne Online-Upload', style: LumoTextStyles.body),
+            Text('• Profil: ${st.childName}, Klasse ${st.grade}\n• Lokales Kinderprofil\n• Alters- und Klassenlogik\n• Sicherer Offline-Lumo-Helfer\n• Mikrofon nur lokal für Spracheingabe\n• Foto-Review ohne Online-Upload', style: LumoTextStyles.body),
           ]),
         ),
       ]),
