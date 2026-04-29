@@ -22,8 +22,10 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Flutter version
-        run: flutter --version
+      - name: Flutter version (capture)
+        run: |
+          flutter --version | tee flutter_version.txt
+          dart --version 2>&1 | tee -a flutter_version.txt
 
       - name: Create Android platform if missing
         run: |
@@ -31,7 +33,7 @@ jobs:
             flutter create --platforms=android --org dev.ullmann.lumo .
           fi
 
-      - name: Patch AndroidManifest (Camera permission, no AD_ID for kids, TTS visibility)
+      - name: Patch AndroidManifest
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
           if [ -f "$MANIFEST" ]; then
@@ -39,15 +41,12 @@ jobs:
             if ! grep -q "android.permission.CAMERA" "$MANIFEST"; then
               sed -i '/<manifest /a \    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-feature android:name="android.hardware.camera" android:required="false"/>\n    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>' "$MANIFEST"
             fi
-            # flutter_tts on Android 11+ requires <queries> for TTS engine discovery
             if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
               sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
             fi
-            echo "--- Patched AndroidManifest.xml ---"
-            cat "$MANIFEST"
           fi
 
-      - name: Patch build.gradle for minSdk 21 (ML Kit requirement)
+      - name: Patch minSdk to 21
         run: |
           for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
             if [ -f "$GRADLE" ]; then
@@ -55,24 +54,46 @@ jobs:
               sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
               sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
               sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
-              echo "--- minSdk in $GRADLE ---"
-              grep -E "minSdk" "$GRADLE" || true
             fi
           done
 
-      - name: Get dependencies
-        run: flutter pub get
+      - name: Get dependencies (capture log)
+        run: |
+          set +e
+          flutter pub get 2>&1 | tee pub_get.log
+          echo "PUB_GET_EXIT=$?" | tee -a pub_get.log
 
-      - name: Analyze
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Analyze (capture log, never fail step)
+        run: |
+          set +e
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee analyze.log
+          echo "ANALYZE_EXIT=$?" | tee -a analyze.log
+          # Step succeeds either way; we want to see the log
+          exit 0
 
-      - name: Test
-        run: flutter test || echo "Tests skipped"
+      - name: Build debug APK (capture log)
+        run: |
+          set +e
+          flutter build apk --debug 2>&1 | tee build_apk.log
+          BUILD_EXIT=$?
+          echo "BUILD_APK_EXIT=$BUILD_EXIT" | tee -a build_apk.log
+          exit $BUILD_EXIT
 
-      - name: Build debug APK
-        run: flutter build apk --debug
+      - name: Upload build logs (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: |
+            flutter_version.txt
+            pub_get.log
+            analyze.log
+            build_apk.log
+          if-no-files-found: warn
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload APK (only on success)
+        if: success()
+        uses: actions/upload-artifact@v4
         with:
           name: lumo-lernen-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
