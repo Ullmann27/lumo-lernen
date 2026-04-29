@@ -7,10 +7,12 @@ class LeftNavigation extends StatelessWidget {
     super.key,
     required this.appState,
     required this.onSelect,
+    this.width = 200,
   });
 
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSelect;
+  final double width;
 
   static const _items = [
     _NavItem(LumoSection.home, Icons.home_rounded, 'Start'),
@@ -32,7 +34,7 @@ class LeftNavigation extends StatelessWidget {
     final active = appState.state.section;
     final childName = appState.state.childName.trim().isEmpty ? 'Kind' : appState.state.childName.trim();
     return Container(
-      width: 200,
+      width: width,
       decoration: const BoxDecoration(
         color: LumoColors.leftNavBg,
         borderRadius: BorderRadius.only(
