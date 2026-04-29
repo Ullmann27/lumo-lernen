@@ -36,6 +36,7 @@ class _AppShellState extends State<AppShell>
     final profile = widget.profile;
     if (profile != null) {
       _appState.update(_appState.state.copyWith(
+        childName: profile.name,
         grade: profile.grade,
         lumoMessage: 'Hallo ${profile.name}!\nWomit wollen wir\nheute lernen?',
       ));
