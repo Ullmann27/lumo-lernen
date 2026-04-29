@@ -11,6 +11,7 @@ import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
 import '../core/lumo_voice.dart';
+import '../core/settings_repository.dart';
 import '../core/user_profile.dart';
 
 class AppShell extends StatefulWidget {
@@ -42,6 +43,17 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
         lumoMessage: 'Hallo ${profile.name}!\nWomit wollen wir\nheute lernen?',
       ));
     }
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    final settings = await SettingsRepository.load();
+    _appState.updateSettings(settings);
+    await LumoVoice.instance.configure(
+      enabled: settings.voiceEnabled,
+      rate: settings.voiceRate,
+      pitch: settings.voicePitch,
+    );
   }
 
   @override
@@ -53,13 +65,16 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
 
   void _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
-    if (section == LumoSection.profile) {
+    if (section == LumoSection.profile || section == LumoSection.settings) {
       final ok = await ParentalGate.show(context);
       if (!mounted || !ok) return;
     }
     await _fadeCtrl.reverse();
     _appState.setSection(section);
-    LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
+    final settings = _appState.state.settings;
+    if (settings.voiceEnabled && settings.autoReadEnabled) {
+      LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
+    }
     if (mounted) await _fadeCtrl.forward();
   }
 
@@ -73,13 +88,18 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       case LumoSection.exercises:
         return LearningContent(appState: _appState);
       case LumoSection.scanner:
+        if (!_appState.state.settings.scannerEnabled) {
+          return SectionContent(appState: _appState, section: LumoSection.settings, onSection: _navigateTo);
+        }
         return ScanScreen(
           onTextDetected: (text) {
             _appState.update(_appState.state.copyWith(
               lumoMessage: 'Ich hab die\nAufgabe gelesen!\nLos gehts!',
               mood: LumoMood.celebrate,
             ));
-            LumoVoice.instance.speak('Super! Ich habe deine Aufgabe gelesen. Lass uns gemeinsam üben.');
+            if (_appState.state.settings.voiceEnabled) {
+              LumoVoice.instance.speak('Super! Ich habe deine Aufgabe gelesen. Lass uns gemeinsam üben.');
+            }
             _navigateTo(LumoSection.exercises);
           },
           onCancel: () => _navigateTo(LumoSection.home),
@@ -129,7 +149,11 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                   const SizedBox(width: 10),
                   LumoStagePanel(
                     appState: _appState,
-                    onFoxTap: () => LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' ')),
+                    onFoxTap: () {
+                      if (_appState.state.settings.voiceEnabled) {
+                        LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
+                      }
+                    },
                   ),
                 ],
               ),
