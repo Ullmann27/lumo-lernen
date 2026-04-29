@@ -6,11 +6,7 @@ import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_voice.dart';
 
 class LearningContent extends StatefulWidget {
-  const LearningContent({
-    super.key,
-    required this.appState,
-  });
-
+  const LearningContent({super.key, required this.appState});
   final LumoAppState appState;
 
   @override
@@ -52,12 +48,15 @@ class _LearningContentState extends State<LearningContent> {
       _answered = true;
     });
 
-    if (choice == _task.answer) {
+    final correct = choice == _task.answer;
+    if (correct) {
       widget.appState.correctAnswer(_task.unit);
+      widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: false);
       LumoVoice.instance.speak('Super! Das war richtig!');
       Timer(const Duration(milliseconds: 1100), _nextQuestion);
     } else {
       widget.appState.wrongAnswer(_task.unit);
+      widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: false);
       LumoVoice.instance.speak('Fast! Die richtige Antwort wäre ${_task.answer}.');
     }
   }
@@ -76,50 +75,53 @@ class _LearningContentState extends State<LearningContent> {
   Widget build(BuildContext context) {
     final st = widget.appState.state;
     final title = st.subject == 'Alle' ? 'Gemischte Übung' : st.subject;
-    final chip = st.subject == 'Alle' ? 'Klasse ${st.grade} • gemischt' : '${st.subject} • ${st.unit == 'Alle' ? 'alle Themen' : st.unit}';
+    final chip = st.subject == 'Alle'
+        ? 'Klasse ${st.grade} • gemischt'
+        : '${st.subject} • ${st.unit == 'Alle' ? 'alle Themen' : st.unit}';
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(26, 26, 20, 26),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 32, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
-                  const Text('Arbeite wie im Heft.\nRuhig lesen, dann erst antworten.', style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w700, color: LumoColors.ink500, height: 1.35)),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(color: LumoColors.orangeSurface, shape: BoxShape.circle, boxShadow: [BoxShadow(color: LumoColors.orange.withOpacity(.20), blurRadius: 14, offset: const Offset(0, 6))]),
-              child: IconButton(icon: const Icon(Icons.volume_up_rounded, color: LumoColors.orange, size: 26), onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}')),
-            ),
-          ]),
-          const SizedBox(height: 22),
-          _ProgressHeader(current: _questionNum, total: _totalQuestions, subject: chip),
-          const SizedBox(height: 22),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(24),
-            decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF4BD), Color(0xFFFFF8DC)], begin: Alignment.topLeft, end: Alignment.bottomRight)),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(_task.subject, style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
-              const SizedBox(height: 8),
-              Text(_task.prompt, style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.2)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+              Text('Übung', style: TextStyle(fontFamily: 'Nunito', fontSize: 0)),
             ]),
           ),
+        ]),
+        Row(children: [
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 32, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+              const Text('Arbeite wie im Heft.\nRuhig lesen, dann erst antworten.', style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w700, color: LumoColors.ink500, height: 1.35)),
+            ]),
+          ),
+          Container(
+            decoration: BoxDecoration(color: LumoColors.orangeSurface, shape: BoxShape.circle, boxShadow: [BoxShadow(color: LumoColors.orange.withOpacity(.20), blurRadius: 14, offset: const Offset(0, 6))]),
+            child: IconButton(icon: const Icon(Icons.volume_up_rounded, color: LumoColors.orange, size: 26), onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}')),
+          ),
+        ]),
+        const SizedBox(height: 22),
+        _ProgressHeader(current: _questionNum, total: _totalQuestions, subject: chip),
+        const SizedBox(height: 22),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(24),
+          decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF4BD), Color(0xFFFFF8DC)], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(_task.subject, style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
+            const SizedBox(height: 8),
+            Text(_task.prompt, style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.2)),
+          ]),
+        ),
+        const SizedBox(height: 22),
+        Text('Wähle die richtige Antwort:', style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 13)),
+        const SizedBox(height: 12),
+        Wrap(spacing: 12, runSpacing: 12, children: _task.choices.map((c) => _ChoiceChip(label: c, picked: _picked, correct: _task.answer, answered: _answered, onTap: _answer)).toList()),
+        if (_answered && _picked != null) ...[
           const SizedBox(height: 22),
-          Text('Wähle die richtige Antwort:', style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 13)),
-          const SizedBox(height: 12),
-          Wrap(spacing: 12, runSpacing: 12, children: _task.choices.map((c) => _ChoiceChip(label: c, picked: _picked, correct: _task.answer, answered: _answered, onTap: _answer)).toList()),
-          if (_answered && _picked != null) ...[
-            const SizedBox(height: 22),
-            _ExplanationCard(correct: _picked == _task.answer, explanation: _task.explanation, correctAnswer: _task.answer, onNext: _nextQuestion),
-          ],
+          _ExplanationCard(correct: _picked == _task.answer, explanation: _task.explanation, correctAnswer: _task.answer, onNext: _nextQuestion),
         ],
-      ),
+      ]),
     );
   }
 }
@@ -136,13 +138,11 @@ class _ProgressHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: lumoCard(),
       child: Row(children: [
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('Aufgabe $current / $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
-            const SizedBox(height: 6),
-            ClipRRect(borderRadius: BorderRadius.circular(LumoRadius.pill), child: LinearProgressIndicator(value: current / total, minHeight: 8, color: LumoColors.orange, backgroundColor: LumoColors.orange.withOpacity(.14))),
-          ]),
-        ),
+        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text('Aufgabe $current / $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+          const SizedBox(height: 6),
+          ClipRRect(borderRadius: BorderRadius.circular(LumoRadius.pill), child: LinearProgressIndicator(value: current / total, minHeight: 8, color: LumoColors.orange, backgroundColor: LumoColors.orange.withOpacity(.14))),
+        ])),
         const SizedBox(width: 14),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -173,9 +173,9 @@ class _ChoiceChipState extends State<_ChoiceChip> {
   Widget build(BuildContext context) {
     final isCorrect = widget.label == widget.correct;
     final isPicked = widget.label == widget.picked;
-    Color bg;
-    Color border;
-    Color textColor;
+    final Color bg;
+    final Color border;
+    final Color textColor;
     if (!widget.answered) {
       bg = _hovered ? LumoColors.orangeSurface : Colors.white;
       border = _hovered ? LumoColors.orange : LumoColors.ink100;
