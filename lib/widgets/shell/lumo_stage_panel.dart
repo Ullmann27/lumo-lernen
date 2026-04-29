@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../fox/lumo_living_avatar.dart';
 
 class LumoStagePanel extends StatefulWidget {
   const LumoStagePanel({
@@ -88,73 +89,18 @@ class _LumoStagePanelState extends State<LumoStagePanel>
                 _hop.forward(from: 0);
                 widget.onFoxTap();
               },
-              child: AnimatedBuilder(
-                animation: Listenable.merge([_breath, _sway, _aura, _hop]),
-                builder: (context, _) {
-                  final breathScale = 1 + 0.022 * _breath.value;
-                  final swayRot = math.sin(_sway.value * math.pi * 2) * 0.018;
-                  final hopY = -math.sin(_hop.value * math.pi) * 22;
-                  final aura = 0.5 + 0.5 * _aura.value;
-
+              child: Builder(
+                builder: (context) {
                   final facing = (st.section == LumoSection.exercises ||
                       st.section == LumoSection.scanner)
                       ? -1.0 : 1.0;
 
-                  return Transform.translate(
-                    offset: Offset(0, hopY),
-                    child: Transform.rotate(
-                      angle: swayRot,
-                      child: Transform.scale(
-                        scale: breathScale,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            // Aura glow
-                            Container(
-                              width: 180,
-                              height: 180,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: _auraColor.withOpacity(.28 * aura),
-                                    blurRadius: 60,
-                                    spreadRadius: 20,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            // Shadow
-                            Positioned(
-                              bottom: 8,
-                              child: Container(
-                                width: 100,
-                                height: 14,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(99),
-                                  gradient: RadialGradient(colors: [
-                                    Colors.black.withOpacity(.16),
-                                    Colors.transparent,
-                                  ]),
-                                ),
-                              ),
-                            ),
-                            // Fox
-                            Transform(
-                              transform: Matrix4.identity()
-                                ..scale(facing, 1.0),
-                              alignment: Alignment.center,
-                              child: Image.asset(
-                                'assets/images/lumo_fox.png',
-                                height: 230,
-                                fit: BoxFit.contain,
-                                errorBuilder: (_, __, ___) => _FallbackFox(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  // Use living avatar - it has its own breath/sway/aura
+                  return LumoLivingAvatar(
+                    appState: widget.appState,
+                    onTap: widget.onFoxTap,
+                    height: 230,
+                    facing: facing,
                   );
                 },
               ),
