@@ -5,6 +5,7 @@ import '../widgets/shell/left_navigation.dart';
 import '../widgets/shell/lumo_stage_panel.dart';
 import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
+import '../features/sections/section_content.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
@@ -20,8 +21,7 @@ class AppShell extends StatefulWidget {
   State<AppShell> createState() => _AppShellState();
 }
 
-class _AppShellState extends State<AppShell>
-    with SingleTickerProviderStateMixin {
+class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin {
   final _appState = LumoAppState();
 
   late final AnimationController _fadeCtrl = AnimationController(
@@ -96,7 +96,11 @@ class _AppShellState extends State<AppShell>
           ),
         );
       default:
-        return _PlaceholderContent(section: section);
+        return SectionContent(
+          appState: _appState,
+          section: section,
+          onSection: _navigateTo,
+        );
     }
   }
 
@@ -138,43 +142,6 @@ class _AppShellState extends State<AppShell>
           ),
         );
       },
-    );
-  }
-}
-
-class _PlaceholderContent extends StatelessWidget {
-  const _PlaceholderContent({required this.section});
-  final LumoSection section;
-
-  String get _title {
-    switch (section) {
-      case LumoSection.progress:
-        return 'Fortschritt';
-      case LumoSection.rewards:
-        return 'Belohnungen';
-      default:
-        return section.name;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(26),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(_title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
-          const SizedBox(height: 14),
-          Container(
-            height: 300,
-            decoration: lumoCard(),
-            child: const Center(
-              child: Text('Kommt bald! 🚀', style: TextStyle(fontFamily: 'Nunito', fontSize: 26, fontWeight: FontWeight.w900, color: LumoColors.ink300)),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
