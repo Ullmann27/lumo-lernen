@@ -306,7 +306,9 @@ class _AgentPageState extends State<_AgentPage> {
   @override
   void initState() {
     super.initState();
-    _speech.initialize();
+    if (widget.appState.state.settings.microphoneEnabled) {
+      _speech.initialize();
+    }
   }
 
   @override
@@ -330,7 +332,9 @@ class _AgentPageState extends State<_AgentPage> {
       subject: reply.suggestedSubject ?? widget.appState.state.subject,
       unit: reply.suggestedUnit ?? widget.appState.state.unit,
     ));
-    LumoVoice.instance.speak(reply.text, style: _voiceStyleFor(reply.mood));
+    if (widget.appState.state.settings.voiceEnabled) {
+      LumoVoice.instance.speak(reply.text, style: _voiceStyleFor(reply.mood));
+    }
   }
 
   VoiceStyle _voiceStyleFor(LumoMood mood) {
@@ -351,6 +355,12 @@ class _AgentPageState extends State<_AgentPage> {
   }
 
   Future<void> _toggleMic() async {
+    if (!widget.appState.state.settings.microphoneEnabled) {
+      setState(() {
+        _answer = 'Das Mikrofon ist im Elternbereich ausgeschaltet.';
+      });
+      return;
+    }
     if (_speech.listening) {
       await _speech.stopListening();
       if (_speech.lastWords.trim().isNotEmpty) _ask(_speech.lastWords);
@@ -393,6 +403,7 @@ class _AgentPageState extends State<_AgentPage> {
       animation: _speech,
       builder: (context, _) {
         final canStart = _lastReply?.suggestedSection != null || _lastReply?.suggestedSubject != null;
+        final micEnabled = widget.appState.state.settings.microphoneEnabled;
         return SingleChildScrollView(
           padding: const EdgeInsets.all(26),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -412,9 +423,9 @@ class _AgentPageState extends State<_AgentPage> {
                 Wrap(spacing: 10, runSpacing: 10, children: [
                   FilledButton.icon(onPressed: () => _ask(), icon: const Icon(Icons.send_rounded), label: const Text('Lumo fragen')),
                   FilledButton.icon(
-                    onPressed: _toggleMic,
+                    onPressed: micEnabled ? _toggleMic : null,
                     icon: Icon(_speech.listening ? Icons.stop_rounded : Icons.mic_rounded),
-                    label: Text(_speech.listening ? 'Stopp' : 'Mit Lumo sprechen'),
+                    label: Text(micEnabled ? (_speech.listening ? 'Stopp' : 'Mit Lumo sprechen') : 'Mikrofon aus'),
                   ),
                   if (canStart) OutlinedButton.icon(onPressed: _startSuggested, icon: const Icon(Icons.play_arrow_rounded), label: const Text('Passende Übung starten')),
                   OutlinedButton(onPressed: () => widget.startSession(subject: 'Mathematik', message: 'Mathe\nüben wir jetzt.'), child: const Text('Mathe üben')),
@@ -422,6 +433,13 @@ class _AgentPageState extends State<_AgentPage> {
                   OutlinedButton(onPressed: () => widget.startSession(subject: 'Alle', message: 'Gemischt\nüben wir jetzt.'), child: const Text('Gemischt üben')),
                 ]),
                 const SizedBox(height: 16),
+                if (!micEnabled)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)),
+                    child: Text('Mikrofon ist im Elternbereich deaktiviert.', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+                  ),
                 if (_speech.listening || _heardText.isNotEmpty)
                   Container(
                     width: double.infinity,
