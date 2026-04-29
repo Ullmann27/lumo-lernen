@@ -1,7 +1,7 @@
 name: lumo_lernen
 description: Lumo Lernen - Lern-App fuer Volksschulkinder (1. und 2. Klasse Oesterreich)
 publish_to: none
-version: 0.9.0+11
+version: 0.9.0+12
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -12,7 +12,9 @@ dependencies:
   shared_preferences: ^2.3.3
   flutter_tts: ^4.2.0
   image_picker: ^1.1.2
-  google_mlkit_text_recognition: ^0.13.0
+  # OCR bleibt als Service vorbereitet. ML Kit wird erst wieder aktiviert,
+  # wenn der Android-APK-Build stabil gruen ist.
+  # google_mlkit_text_recognition: ^0.13.0
 
 dev_dependencies:
   flutter_test:
