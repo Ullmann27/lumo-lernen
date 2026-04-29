@@ -55,15 +55,9 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       rate: settings.voiceRate,
       pitch: settings.voicePitch,
     );
-    // Phase 3: Lernprofil parallel laden (offline, lokal, kein Cloud-Aufruf).
-    // Fehler werden geschluckt, damit ein beschaedigter Speicher nicht den
-    // App-Start blockiert. Bei Fehler bleibt _learningProfileLoaded false und
-    // wird beim ersten recordAnswer nachgeladen.
     try {
       await _appState.loadLearningProfile();
-    } catch (_) {
-      // ignorieren — Engine arbeitet beim ersten Schreibversuch nach.
-    }
+    } catch (_) {}
   }
 
   @override
@@ -142,33 +136,47 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
         return Scaffold(
           backgroundColor: LumoColors.appBg,
           body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  LeftNavigation(appState: _appState, onSelect: _navigateTo),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(LumoRadius.xl),
-                      child: Container(
-                        decoration: BoxDecoration(color: LumoColors.appBg, borderRadius: BorderRadius.circular(LumoRadius.xl)),
-                        child: FadeTransition(opacity: _fadeCtrl, child: _buildContent()),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final width = constraints.maxWidth;
+                final showNav = width >= 720;
+                final showStage = width >= 1120;
+                final navWidth = width < 980 ? 176.0 : 200.0;
+                final gap = width < 980 ? 8.0 : 10.0;
+
+                return Padding(
+                  padding: EdgeInsets.all(width < 720 ? 6 : 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (showNav) ...[
+                        LeftNavigation(appState: _appState, onSelect: _navigateTo, width: navWidth),
+                        SizedBox(width: gap),
+                      ],
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(LumoRadius.xl),
+                          child: Container(
+                            decoration: BoxDecoration(color: LumoColors.appBg, borderRadius: BorderRadius.circular(LumoRadius.xl)),
+                            child: FadeTransition(opacity: _fadeCtrl, child: _buildContent()),
+                          ),
+                        ),
                       ),
-                    ),
+                      if (showStage) ...[
+                        SizedBox(width: gap),
+                        LumoStagePanel(
+                          appState: _appState,
+                          onFoxTap: () {
+                            if (_appState.state.settings.voiceEnabled) {
+                              LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
+                            }
+                          },
+                        ),
+                      ],
+                    ],
                   ),
-                  const SizedBox(width: 10),
-                  LumoStagePanel(
-                    appState: _appState,
-                    onFoxTap: () {
-                      if (_appState.state.settings.voiceEnabled) {
-                        LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
-                      }
-                    },
-                  ),
-                ],
-              ),
+                );
+              },
             ),
           ),
         );
