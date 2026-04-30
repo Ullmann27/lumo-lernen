@@ -16,32 +16,33 @@ class LegacyLumoTaskAdapter {
     required int difficulty,
     DateTime? now,
   }) {
+    final fixedTask = _sanitizeTask(task);
     final generatedAt = now ?? DateTime.now();
-    final subject = _subject(task.subject);
-    final taskType = task.handwriting ? TaskType.writingCanvas : _taskType(task.visual);
-    final visualType = _visual(task.visual, handwriting: task.handwriting);
-    final correctAnswer = _payload(task.answer);
+    final subject = _subject(fixedTask.subject);
+    final taskType = fixedTask.handwriting ? TaskType.writingCanvas : _taskType(fixedTask.visual);
+    final visualType = _visual(fixedTask.visual, handwriting: fixedTask.handwriting);
+    final correctAnswer = _payload(fixedTask.answer);
 
-    final rawSeed = '${task.id}|$childId|${task.prompt}|${task.answer}';
+    final rawSeed = '${fixedTask.id}|$childId|${fixedTask.prompt}|${fixedTask.answer}';
     final seedHash = SeedMemoryService.stableSeedHash(rawSeed);
 
     return TaskInstance(
       taskInstanceId: 'legacy_${SeedMemoryService.stableSeedHash('$rawSeed|${generatedAt.microsecondsSinceEpoch}')}',
-      templateId: 'legacy.${task.subject}.${task.unit}',
+      templateId: 'legacy.${fixedTask.subject}.${fixedTask.unit}',
       childId: childId,
       seedHash: seedHash,
       subject: subject,
-      skillId: SkillId('legacy.${task.subject}.${task.unit}'.toLowerCase().replaceAll(' ', '_')),
+      skillId: SkillId('legacy.${fixedTask.subject}.${fixedTask.unit}'.toLowerCase().replaceAll(' ', '_')),
       taskType: taskType,
       difficulty: difficulty,
       parameters: <String, Object?>{
-        'legacyId': task.id,
-        'unit': task.unit,
-        'visual': task.visual,
-        if (task.handwriting) 'symbol': _extractWritingSymbol(task.prompt),
+        'legacyId': fixedTask.id,
+        'unit': fixedTask.unit,
+        'visual': fixedTask.visual,
+        if (fixedTask.handwriting) 'symbol': _extractWritingSymbol(fixedTask.prompt),
       },
-      prompt: task.prompt,
-      options: task.choices
+      prompt: fixedTask.prompt,
+      options: fixedTask.choices
           .map((choice) => AnswerOption(
                 id: choice,
                 label: choice,
@@ -51,16 +52,150 @@ class LegacyLumoTaskAdapter {
       correctAnswer: correctAnswer,
       visualPayload: VisualPayload(
         type: visualType,
-        data: _visualData(task),
+        data: _visualData(fixedTask),
       ),
       helpPayload: HelpPayload(
-        level: _helpLevel(task),
-        shortHint: task.explanation,
-        guidedSteps: _guidedSteps(task),
+        level: _helpLevel(fixedTask),
+        shortHint: fixedTask.explanation,
+        guidedSteps: _guidedSteps(fixedTask),
       ),
       generatedAt: generatedAt,
     );
   }
+
+  /// Sicherheitsnetz fuer alte Generator-Aufgaben:
+  /// - falsche Endlaut-Aufgaben werden korrigiert,
+  /// - Antwortkarten werden eindeutig gemacht,
+  /// - Rechtschreibkarten bekommen keine nur-gross/klein-duplizierten Woerter,
+  /// - Bild-Wort-Aufgaben behalten genau eine richtige Antwort.
+  LumoTask _sanitizeTask(LumoTask task) {
+    var answer = task.answer;
+    var choices = List<String>.from(task.choices);
+    var explanation = task.explanation;
+
+    final endingMatch = RegExp(r'endet\s+mit\s+([A-Za-zÄÖÜäöüß])\?', caseSensitive: false).firstMatch(task.prompt);
+    if (endingMatch != null) {
+      final ending = (endingMatch.group(1) ?? '').toLowerCase();
+      final normalizedAnswer = _normalizeWord(answer);
+      final hasValidAnswer = normalizedAnswer.endsWith(ending);
+      final validChoices = choices.where((choice) => _normalizeWord(choice).endsWith(ending)).toList(growable: false);
+      if (!hasValidAnswer || validChoices.length != 1) {
+        answer = _wordEndingWith(ending);
+        choices = <String>[answer, ..._wordsNotEndingWith(ending, count: 3)];
+        explanation = 'Sprich jedes Wort langsam. Nur $answer endet mit $ending.';
+      }
+    }
+
+    if (task.subject == 'Rechtschreibung' && task.unit == 'Haeufige Woerter') {
+      choices = _spellingChoicesFor(answer);
+    }
+
+    if (task.unit == 'Wortende') {
+      choices = _singleCorrectEndingChoices(answer, task.prompt, choices);
+    }
+
+    if (task.unit == 'Wort-Bild schreiben') {
+      choices = _distinctChoices(answer, fallbackPool: const <String>['Haus', 'Fuchs', 'Sonne', 'Rose', 'Apfel', 'Ball', 'Igel']);
+    } else {
+      choices = _distinctChoices(answer, fallbackPool: _fallbackChoicesFor(answer));
+    }
+
+    return LumoTask(
+      id: task.id,
+      grade: task.grade,
+      subject: task.subject,
+      unit: task.unit,
+      prompt: task.prompt,
+      choices: choices,
+      answer: answer,
+      explanation: explanation,
+      handwriting: task.handwriting,
+      visual: task.visual,
+      difficulty: task.difficulty,
+      missionTag: task.missionTag,
+    );
+  }
+
+  List<String> _singleCorrectEndingChoices(String answer, String prompt, List<String> choices) {
+    final match = RegExp(r'endet\s+mit\s+([A-Za-zÄÖÜäöüß])\?', caseSensitive: false).firstMatch(prompt);
+    if (match == null) return choices;
+    final ending = (match.group(1) ?? '').toLowerCase();
+    final correct = _normalizeWord(answer).endsWith(ending) ? answer : _wordEndingWith(ending);
+    return <String>[correct, ..._wordsNotEndingWith(ending, count: 4)];
+  }
+
+  List<String> _distinctChoices(String answer, {required List<String> fallbackPool, int targetCount = 3}) {
+    final result = <String>[];
+    void add(String value) {
+      final normalized = _normalizeChoice(value);
+      if (normalized.isEmpty) return;
+      if (result.any((item) => _normalizeChoice(item) == normalized)) return;
+      result.add(value);
+    }
+
+    add(answer);
+    for (final choice in fallbackPool) {
+      if (result.length >= targetCount) break;
+      add(choice);
+    }
+    while (result.length < targetCount) {
+      add('$answer ${result.length + 1}');
+    }
+    return result;
+  }
+
+  List<String> _fallbackChoicesFor(String answer) {
+    final n = int.tryParse(answer.replaceAll(RegExp(r'[^0-9-]'), ''));
+    if (n != null) return <String>['$n', '${n + 1}', '${n == 0 ? 2 : n - 1}', '${n + 2}'];
+    return <String>[answer, 'Haus', 'Sonne', 'Ball', 'Fuchs', 'Mama', 'Igel'];
+  }
+
+  List<String> _spellingChoicesFor(String correct) {
+    final lower = correct.toLowerCase();
+    final distractors = switch (lower) {
+      'und' => const <String>['unt', 'un'],
+      'ist' => const <String>['is', 'isst'],
+      'mama' => const <String>['Mamma', 'Moma'],
+      'papa' => const <String>['Pappa', 'Pupa'],
+      'haus' => const <String>['Hauß', 'Has'],
+      'ball' => const <String>['Bal', 'Bahl'],
+      'sonne' => const <String>['Sone', 'Sonne Sonne'],
+      'spielen' => const <String>['spilen', 'schpielen'],
+      'kommen' => const <String>['komen', 'komenn'],
+      'schule' => const <String>['Schuhle', 'schule'],
+      'freund' => const <String>['Froind', 'Freunt'],
+      'heute' => const <String>['hoite', 'heude'],
+      'klein' => const <String>['kline', 'Klein'],
+      'gross' => const <String>['gros', 'grohs'],
+      _ => <String>['${correct}e', '${correct}n'],
+    };
+    return _distinctChoices(correct, fallbackPool: <String>[correct, ...distractors, 'Haus', 'Sonne', 'Ball']);
+  }
+
+  String _wordEndingWith(String ending) {
+    final bank = <String, List<String>>{
+      't': <String>['Stift', 'Hut', 'Boot', 'Brot', 'Blatt'],
+      'd': <String>['Hund', 'Kind', 'Mond', 'Rad'],
+      's': <String>['Haus', 'Fuchs', 'Glas', 'Bus'],
+      'e': <String>['Hase', 'Rose', 'Sonne', 'Lampe'],
+      'n': <String>['Banane', 'Kaninchen', 'Ofen'],
+      'l': <String>['Ball', 'Igel', 'Apfel'],
+    };
+    final words = bank[ending] ?? <String>['Stift'];
+    return words.first;
+  }
+
+  List<String> _wordsNotEndingWith(String ending, {required int count}) {
+    final bank = <String>['Hase', 'Mama', 'Sonne', 'Rose', 'Apfel', 'Fuchs', 'Ball', 'Igel', 'Schule', 'Banane'];
+    return bank
+        .where((word) => !_normalizeWord(word).endsWith(ending))
+        .take(count)
+        .toList(growable: false);
+  }
+
+  String _normalizeChoice(String value) => value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+
+  String _normalizeWord(String value) => value.toLowerCase().replaceAll(RegExp(r'[^a-zäöüß]'), '');
 
   LearningSubject _subject(String value) {
     return switch (value) {
@@ -243,10 +378,21 @@ class LegacyLumoTaskAdapter {
   }
 
   String _extractWritingSymbol(String prompt) {
-    final letter = RegExp(r'\b([A-Z])\b').firstMatch(prompt);
-    if (letter != null) return letter.group(1)!;
-    final number = RegExp(r'\b(\d{1,2})\b').firstMatch(prompt);
+    final word = RegExp(r'Schreibe\s+das\s+Wort:\s*(.+)$', caseSensitive: false).firstMatch(prompt);
+    if (word != null) return word.group(1)!.trim();
+
+    final copySentence = RegExp(r'Schreibe:\s*(.+)$', caseSensitive: false).firstMatch(prompt);
+    if (copySentence != null) return copySentence.group(1)!.trim();
+
+    final traceLetter = RegExp(r'(?:Buchstaben|grosses|großes)\s+([A-ZÄÖÜ])\b', caseSensitive: false).firstMatch(prompt);
+    if (traceLetter != null) return traceLetter.group(1)!.toUpperCase();
+
+    final number = RegExp(r'Zahl\s+(\d{1,2})', caseSensitive: false).firstMatch(prompt);
     if (number != null) return number.group(1)!;
+
+    final singleLetter = RegExp(r'\b([A-ZÄÖÜ])\b').firstMatch(prompt);
+    if (singleLetter != null) return singleLetter.group(1)!;
+
     return 'A';
   }
 }
