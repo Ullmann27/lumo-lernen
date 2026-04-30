@@ -40,7 +40,9 @@ jobs:
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
           if [ -f "$MANIFEST" ]; then
-            sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
+            if ! grep -q "xmlns:tools=" "$MANIFEST"; then
+              sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
+            fi
             if ! grep -q "android.permission.CAMERA" "$MANIFEST"; then
               sed -i '/<manifest /a \    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-feature android:name="android.hardware.camera" android:required="false"/>\n    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>' "$MANIFEST"
             fi
@@ -66,24 +68,37 @@ jobs:
       - name: Get dependencies (capture log)
         run: |
           set +e
+          set -o pipefail
           flutter pub get 2>&1 | tee pub_get.log
-          echo "PUB_GET_EXIT=$?" | tee -a pub_get.log
+          PUB_GET_EXIT=${PIPESTATUS[0]}
+          set +o pipefail
+          echo "PUB_GET_EXIT=$PUB_GET_EXIT" | tee -a pub_get.log
+          exit $PUB_GET_EXIT
 
       - name: Analyze (capture log, never fail step)
         run: |
           set +e
+          set -o pipefail
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee analyze.log
-          echo "ANALYZE_EXIT=$?" | tee -a analyze.log
+          ANALYZE_EXIT=${PIPESTATUS[0]}
+          set +o pipefail
+          echo "ANALYZE_EXIT=$ANALYZE_EXIT" | tee -a analyze.log
           exit 0
 
       - name: Build debug APK (capture log)
         run: |
           set +e
+          set -o pipefail
           flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER" 2>&1 | tee build_apk.log
-          BUILD_EXIT=$?
+          BUILD_EXIT=${PIPESTATUS[0]}
+          set +o pipefail
           echo "BUILD_APK_EXIT=$BUILD_EXIT" | tee -a build_apk.log
           echo "APK files after build:" | tee -a build_apk.log
           find build -type f -name "*.apk" -print | tee -a build_apk.log || true
+          if [ "$BUILD_EXIT" -ne 0 ]; then
+            echo "Flutter build failed. Last 120 build log lines:" | tee -a build_apk.log
+            tail -n 120 build_apk.log || true
+          fi
           exit $BUILD_EXIT
 
       - name: Prepare direct APK download
@@ -99,7 +114,7 @@ jobs:
           fi
           if [ -z "$APK_PATH" ] || [ ! -f "$APK_PATH" ]; then
             echo "No APK file found after successful build. Directory snapshot:" | tee -a build_apk.log
-            find build -maxdepth 6 -type f | sort | tee -a build_apk.log || true
+            find build -maxdepth 8 -type f | sort | tee -a build_apk.log || true
             exit 1
           fi
           echo "Using APK: $APK_PATH" | tee -a build_apk.log
@@ -141,16 +156,17 @@ jobs:
 
       - name: Publish direct latest APK release
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release delete lumo-lernen-debug-latest --yes || true
           git tag -f lumo-lernen-debug-latest "$GITHUB_SHA"
-          git push -f origin lumo-lernen-debug-latest
+          git push -f origin lumo-lernen-debug-latest || true
           gh release create lumo-lernen-debug-latest \
             dist/Lumo-Lernen-latest.apk \
             dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk \
             dist/update-info.txt \
             --title "Lumo Lernen Debug Latest" \
             --notes "Automatischer Debug-Build aus Commit ${GITHUB_SHA}. Am Handy die APK direkt oeffnen. Android zeigt Aktualisieren, wenn Paketname und Signatur passen." \
-            --prerelease
+            --prerelease || true
