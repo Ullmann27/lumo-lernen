@@ -4,7 +4,9 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_voice.dart';
+import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
+import '../../domain/learning/reward_engine.dart';
 import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/adaptive_task_renderer.dart';
 
@@ -19,11 +21,17 @@ class LearningContent extends StatefulWidget {
 class _LearningContentState extends State<LearningContent> {
   final _factory = ExerciseFactory();
   final _adapter = const LegacyLumoTaskAdapter();
+  final _resultHandler = const SkillStateUpdater();
+  final _rewardEngine = const RewardEngine();
+  final Map<String, SkillState> _skillStates = <String, SkillState>{};
 
   late LumoTask _task;
   late TaskInstance _taskInstance;
+  DateTime _taskStartedAt = DateTime.now();
   bool _answered = false;
   bool? _lastCorrect;
+  RewardDelta? _lastRewardDelta;
+  SkillState? _lastSkillState;
   int _questionNum = 1;
   final int _totalQuestions = 10;
 
@@ -43,8 +51,11 @@ class _LearningContentState extends State<LearningContent> {
       childId: _childId,
       difficulty: widget.appState.state.grade,
     );
+    _taskStartedAt = DateTime.now();
     _answered = false;
     _lastCorrect = null;
+    _lastRewardDelta = null;
+    _lastSkillState = null;
     if (resetCounter) _questionNum = 1;
   }
 
@@ -67,19 +78,65 @@ class _LearningContentState extends State<LearningContent> {
 
   void _answerAdaptive(AdaptiveTaskAnswer answer) {
     if (_answered) return;
-    _completeAnswer(correct: answer.correct, hintUsed: false);
+    _completeAnswer(
+      correct: answer.correct,
+      hintUsed: false,
+      answerGiven: answer.answer,
+    );
   }
 
   void _answerWriting(WritingTaskResult result) {
     if (_answered) return;
     final correctEnough = result.evaluation.overallScore >= .55;
-    _completeAnswer(correct: correctEnough, hintUsed: result.evaluation.overallScore < .75);
+    _completeAnswer(
+      correct: correctEnough,
+      hintUsed: result.evaluation.overallScore < .75,
+      answerGiven: 'writing:${result.evaluation.overallScore.toStringAsFixed(2)}',
+      handwritingScore: result.evaluation.overallScore,
+    );
   }
 
-  void _completeAnswer({required bool correct, required bool hintUsed}) {
+  void _completeAnswer({
+    required bool correct,
+    required bool hintUsed,
+    required Object answerGiven,
+    double? handwritingScore,
+  }) {
+    final before = _skillStates[_taskInstance.skillId.value] ??
+        SkillState(
+          childId: _childId,
+          skillId: _taskInstance.skillId,
+          currentDifficulty: widget.appState.state.grade,
+          masteryScore: .20,
+          repetitionNeed: .50,
+        );
+
+    final responseTimeMs = DateTime.now().difference(_taskStartedAt).inMilliseconds;
+    final result = TaskResult(
+      taskInstanceId: _taskInstance.taskInstanceId,
+      childId: _childId,
+      skillId: _taskInstance.skillId,
+      correct: correct,
+      responseTimeMs: responseTimeMs,
+      helpUsed: hintUsed,
+      detectedErrorTypes: correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven),
+      handwritingScore: handwritingScore,
+      frustrationSignal: !correct && responseTimeMs > 18000,
+    );
+    final after = _resultHandler.applyResult(before: before, result: result);
+    final rewardDelta = _rewardEngine.calculateTaskReward(
+      result: result,
+      before: before,
+      after: after,
+    );
+
+    _skillStates[_taskInstance.skillId.value] = after;
+
     setState(() {
       _answered = true;
       _lastCorrect = correct;
+      _lastRewardDelta = rewardDelta;
+      _lastSkillState = after;
     });
 
     if (correct) {
@@ -92,6 +149,23 @@ class _LearningContentState extends State<LearningContent> {
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: hintUsed);
       LumoVoice.instance.speak('Fast. Wir schauen nochmal hin.');
     }
+  }
+
+  List<ErrorType> _legacyErrorTypes(Object answerGiven) {
+    if (_task.subject == 'Mathematik') {
+      final given = int.tryParse('$answerGiven'.replaceAll(RegExp(r'[^0-9-]'), ''));
+      final expected = int.tryParse('${_taskInstance.correctAnswer}'.replaceAll(RegExp(r'[^0-9-]'), ''));
+      if (given != null && expected != null && (given - expected).abs() == 1) {
+        return const <ErrorType>[ErrorType.countingError];
+      }
+      if (_task.prompt.contains('+') || _task.prompt.contains('-')) {
+        return const <ErrorType>[ErrorType.plusMinusConfusion];
+      }
+      return const <ErrorType>[ErrorType.quantityError];
+    }
+    if (_task.unit.toLowerCase().contains('silben')) return const <ErrorType>[ErrorType.syllableCountWrong];
+    if (_task.unit.toLowerCase().contains('laut')) return const <ErrorType>[ErrorType.soundMisread];
+    return const <ErrorType>[ErrorType.conceptConfusion];
   }
 
   void _nextQuestion() {
@@ -155,6 +229,8 @@ class _LearningContentState extends State<LearningContent> {
                   correct: _lastCorrect!,
                   explanation: _task.explanation,
                   correctAnswer: '${_taskInstance.correctAnswer}',
+                  rewardDelta: _lastRewardDelta,
+                  skillState: _lastSkillState,
                   onNext: _nextQuestion,
                 ),
               ],
@@ -216,14 +292,26 @@ class _ProgressHeader extends StatelessWidget {
 }
 
 class _ExplanationCard extends StatelessWidget {
-  const _ExplanationCard({required this.correct, required this.explanation, required this.correctAnswer, required this.onNext});
+  const _ExplanationCard({
+    required this.correct,
+    required this.explanation,
+    required this.correctAnswer,
+    required this.onNext,
+    this.rewardDelta,
+    this.skillState,
+  });
+
   final bool correct;
   final String explanation;
   final String correctAnswer;
   final VoidCallback onNext;
+  final RewardDelta? rewardDelta;
+  final SkillState? skillState;
 
   @override
   Widget build(BuildContext context) {
+    final reward = rewardDelta;
+    final skill = skillState;
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: lumoCard(
@@ -252,6 +340,14 @@ class _ExplanationCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text('Richtige Antwort: $correctAnswer', style: LumoTextStyles.body.copyWith(color: const Color(0xFF92400E), fontWeight: FontWeight.w900)),
         ],
+        if (reward != null) ...[
+          const SizedBox(height: 12),
+          Wrap(spacing: 8, runSpacing: 8, children: [
+            _InfoPill(text: '+${reward.stars} Sterne'),
+            _InfoPill(text: '+${reward.xp} XP'),
+            if (skill != null) _InfoPill(text: 'Können ${(skill.masteryScore * 100).round()}%'),
+          ]),
+        ],
         const SizedBox(height: 14),
         Align(
           alignment: Alignment.centerRight,
@@ -265,6 +361,27 @@ class _ExplanationCard extends StatelessWidget {
           ),
         ),
       ]),
+    );
+  }
+}
+
+class _InfoPill extends StatelessWidget {
+  const _InfoPill({required this.text});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(.72),
+        borderRadius: BorderRadius.circular(LumoRadius.pill),
+        border: Border.all(color: LumoColors.orange.withOpacity(.18)),
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700),
+      ),
     );
   }
 }
