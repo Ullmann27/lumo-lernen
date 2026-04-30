@@ -106,12 +106,12 @@ class _ReadingContentState extends State<ReadingContent> {
           StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte.', words: <WordToken>[]),
         ],
       );
-      return const ReadingSessionProgress(
+      return ReadingSessionProgress(
         story: story,
         currentSentenceIndex: 0,
         attemptNumber: 1,
-        problemWords: <String>[],
-        completedSentenceIds: <String>[],
+        problemWords: const <String>[],
+        completedSentenceIds: const <String>[],
       );
     }
     return progress;
