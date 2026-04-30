@@ -29,6 +29,16 @@ class SectionContent extends StatelessWidget {
     onSection(LumoSection.exercises);
   }
 
+  void _startReading() {
+    appState.update(appState.state.copyWith(
+      subject: 'Lesen',
+      unit: 'Aktives Lesen',
+      mood: LumoMood.think,
+      lumoMessage: 'Ich höre dir\nbeim Lesen zu.\nSatz für Satz.',
+    ));
+    onSection(LumoSection.reading);
+  }
+
   @override
   Widget build(BuildContext context) {
     switch (section) {
@@ -59,17 +69,18 @@ class SectionContent extends StatelessWidget {
           ],
         );
       case LumoSection.missions:
-        return _MissionsPage(appState: appState, onSection: onSection, startSession: _startSession);
+        return _MissionsPage(appState: appState, onSection: onSection, startSession: _startSession, startReading: _startReading);
       case LumoSection.progress:
         return _ProgressPage(appState: appState);
       case LumoSection.rewards:
         return _RewardsPage(appState: appState, onSection: onSection);
       case LumoSection.agent:
-        return _AgentPage(appState: appState, onSection: onSection, startSession: _startSession);
+        return _AgentPage(appState: appState, onSection: onSection, startSession: _startSession, startReading: _startReading);
       case LumoSection.settings:
         return _SettingsPage(appState: appState);
       default:
         return _ActionPage(title: section.name, subtitle: 'Dieser Bereich wird vorbereitet.', emoji: '✨', accent: LumoColors.orange, cards: [
+          _ActionData('Aktiv lesen', 'Lumo hört beim Lesen Satz für Satz zu.', 'Lesen', Icons.record_voice_over_rounded, _startReading),
           _ActionData('Zurück zum Start', 'Gehe zurück zur Übersicht.', 'Start', Icons.home_rounded, () => onSection(LumoSection.home)),
         ]);
     }
@@ -169,6 +180,7 @@ class _MissionsPage extends StatelessWidget {
     required this.appState,
     required this.onSection,
     required this.startSession,
+    required this.startReading,
   });
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
@@ -178,13 +190,13 @@ class _MissionsPage extends StatelessWidget {
     required String message,
     LumoSessionKind sessionKind,
   }) startSession;
+  final VoidCallback startReading;
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.fromLTRB(22, 22, 22, 22),
       children: [
-        // Hervorgehobene Nachhilfe-Einheit am Anfang
         TutoringFlowCard(
           appState: appState,
           onStartTutoring: () => startSession(
@@ -194,7 +206,8 @@ class _MissionsPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 22),
-        // Bestehende Missionen darunter
+        _ReadingMissionCard(onTap: startReading),
+        const SizedBox(height: 22),
         const Text(
           'Tagesmissionen',
           style: TextStyle(
@@ -229,11 +242,50 @@ class _MissionsPage extends StatelessWidget {
   List<_ActionData> _missionCards() => [
         _ActionData('3 Aufgaben lösen', 'Schließe drei einfache Aufgaben ab.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Mission:\n3 Aufgaben\nlösen!')),
         _ActionData('Mathe-Insel', 'Zahlen und Plus/Minus üben.', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: 'Plus bis 20', message: 'Mathe-Insel\nstartet jetzt.')),
-        _ActionData('Lesemut', 'Deutsch lesen und Wörter erkennen.', 'Starten', Icons.menu_book_rounded, () => startSession(subject: 'Lesen', message: 'Lesemut\nstartet jetzt.')),
+        _ActionData('Lesemut', 'Lumo hört beim Lesen aktiv zu.', 'Starten', Icons.record_voice_over_rounded, startReading),
         _ActionData('Foto-Hilfe', 'Fotografiere eine Aufgabe und lass dir helfen.', 'Foto', Icons.photo_camera_rounded, () => onSection(LumoSection.scanner)),
         _ActionData('Englisch-Start', 'Farben, Tiere und Begrüßung.', 'Starten', Icons.language_rounded, () => startSession(subject: 'Englisch', message: 'Englisch\nstartet jetzt.')),
         _ActionData('Sachforscher', 'Tiere, Pflanzen und Wetter.', 'Starten', Icons.eco_rounded, () => startSession(subject: 'Sachunterricht', message: 'Sachforscher\nMission startet.')),
       ];
+}
+
+class _ReadingMissionCard extends StatelessWidget {
+  const _ReadingMissionCard({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(18),
+        decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFEFF6FF), Color(0xFFFFF7ED)])),
+        child: Row(children: [
+          Container(
+            width: 62,
+            height: 62,
+            decoration: BoxDecoration(color: Colors.white.withOpacity(.86), borderRadius: BorderRadius.circular(LumoRadius.lg)),
+            child: const Center(child: Text('📖', style: TextStyle(fontSize: 34))),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('Aktiv lesen mit Lumo', style: LumoTextStyles.heading2.copyWith(color: LumoColors.blue)),
+              const SizedBox(height: 5),
+              Text('Lumo hört Satz für Satz zu, hilft bei Fehlern und merkt sich Übungswörter.', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+            ]),
+          ),
+          const SizedBox(width: 10),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(color: LumoColors.blue, borderRadius: BorderRadius.circular(LumoRadius.pill)),
+            child: const Text('Lesen', style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: Colors.white)),
+          ),
+        ]),
+      ),
+    );
+  }
 }
 
 class _ProgressPage extends StatelessWidget {
@@ -346,10 +398,11 @@ class _Badge extends StatelessWidget {
 }
 
 class _AgentPage extends StatefulWidget {
-  const _AgentPage({required this.appState, required this.onSection, required this.startSession});
+  const _AgentPage({required this.appState, required this.onSection, required this.startSession, required this.startReading});
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
   final void Function({required String subject, String unit, required String message}) startSession;
+  final VoidCallback startReading;
 
   @override
   State<_AgentPage> createState() => _AgentPageState();
@@ -488,6 +541,7 @@ class _AgentPageState extends State<_AgentPage> {
                     label: Text(micEnabled ? (_speech.listening ? 'Stopp' : 'Mit Lumo sprechen') : 'Mikrofon aus'),
                   ),
                   if (canStart) OutlinedButton.icon(onPressed: _startSuggested, icon: const Icon(Icons.play_arrow_rounded), label: const Text('Passende Übung starten')),
+                  OutlinedButton.icon(onPressed: widget.startReading, icon: const Icon(Icons.record_voice_over_rounded), label: const Text('Aktiv lesen')),
                   OutlinedButton(onPressed: () => widget.startSession(subject: 'Mathematik', message: 'Mathe\nüben wir jetzt.'), child: const Text('Mathe üben')),
                   OutlinedButton(onPressed: () => widget.startSession(subject: 'Deutsch', message: 'Deutsch\nüben wir jetzt.'), child: const Text('Deutsch üben')),
                   OutlinedButton(onPressed: () => widget.startSession(subject: 'Alle', message: 'Gemischt\nüben wir jetzt.'), child: const Text('Gemischt üben')),
