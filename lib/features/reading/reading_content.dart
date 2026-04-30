@@ -27,6 +27,7 @@ class _ReadingContentState extends State<ReadingContent> {
   late ReadingSessionProgress _progress;
   late String _readingSessionId;
   String _lastTranscript = '';
+  String _processedTranscript = '';
   String _lumoLine = 'Bereit? Lumo hoert dir Satz fuer Satz zu.';
   double? _lastScore;
   int _interventionCount = 0;
@@ -79,12 +80,19 @@ class _ReadingContentState extends State<ReadingContent> {
     }
     setState(() {
       _lastTranscript = '';
+      _processedTranscript = '';
       _lumoLine = 'Ich hoere zu. Lies den markierten Satz.';
     });
-    await _speech.startListening(onResult: (words) {
-      if (!mounted) return;
-      setState(() => _lastTranscript = words);
-    });
+    await _speech.startListening(
+      onResult: (words) {
+        if (!mounted) return;
+        setState(() => _lastTranscript = words);
+      },
+      onFinalResult: (words) {
+        if (!mounted) return;
+        _processTranscript(words);
+      },
+    );
   }
 
   void _processTranscript(String transcript) {
@@ -93,11 +101,14 @@ class _ReadingContentState extends State<ReadingContent> {
       setState(() => _lumoLine = 'Ich habe noch nichts gehoert. Tippe nochmal auf Mikrofon und lies langsam.');
       return;
     }
+    if (_processedTranscript == text) return;
+    _processedTranscript = text;
     final result = _monitor.processSentence(childId: _childId, progress: _progress, transcript: text);
     final action = result.decision.primary;
     if (!result.analysis.correctEnough) _interventionCount++;
 
     setState(() {
+      _lastTranscript = text;
       _progress = result.nextProgress;
       _lastScore = result.analysis.alignmentScore;
       _lumoLine = _progress.isComplete
@@ -306,8 +317,7 @@ class _SyllableWord extends StatelessWidget {
         color: problem ? LumoColors.goldSurface : Colors.transparent,
         borderRadius: BorderRadius.circular(LumoRadius.sm),
         border: problem ? Border.all(color: LumoColors.gold.withOpacity(.35)) : null,
-      ),
-      child: RichText(
+      ),n      child: RichText(
         text: TextSpan(
           children: word.syllables.asMap().entries.map((entry) {
             return TextSpan(
