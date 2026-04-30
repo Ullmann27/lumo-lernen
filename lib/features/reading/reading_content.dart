@@ -317,7 +317,8 @@ class _SyllableWord extends StatelessWidget {
         color: problem ? LumoColors.goldSurface : Colors.transparent,
         borderRadius: BorderRadius.circular(LumoRadius.sm),
         border: problem ? Border.all(color: LumoColors.gold.withOpacity(.35)) : null,
-      ),n      child: RichText(
+      ),
+      child: RichText(
         text: TextSpan(
           children: word.syllables.asMap().entries.map((entry) {
             return TextSpan(
