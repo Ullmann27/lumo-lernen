@@ -16,31 +16,43 @@ class SubjectSelectionContent extends StatelessWidget {
   static const _subjects = <_SubjectInfo>[
     _SubjectInfo('Mathematik', '🔢', LumoColors.math, 'Zahlen, Rechnen, Formen'),
     _SubjectInfo('Deutsch', '📚', LumoColors.german, 'Lesen, Wörter, Sätze'),
-    _SubjectInfo('Lesen', '📖', LumoColors.blue, 'Wörter und Texte verstehen'),
+    _SubjectInfo('Lesen', '📖', LumoColors.blue, 'Laut vorlesen, Lumo hört zu'),
     _SubjectInfo('Rechtschreibung', '✏️', LumoColors.practice, 'Wörter richtig schreiben'),
     _SubjectInfo('Schreiben', '📝', LumoColors.scanner, 'Finger schreiben und nachspuren'),
     _SubjectInfo('Englisch', '🌍', LumoColors.english, 'Farben, Tiere, Wörter'),
     _SubjectInfo('Sachunterricht', '🌱', LumoColors.teal, 'Welt, Tiere, Wetter'),
   ];
 
+  bool _isActiveReading(String subject, [String? unit]) {
+    final s = subject.trim().toLowerCase();
+    final u = unit?.trim().toLowerCase() ?? '';
+    return s == 'lesen' || u == 'aktives lesen' || u == 'vorlesen';
+  }
+
   void _startSubject(_SubjectInfo subject) {
+    final activeReading = _isActiveReading(subject.title);
     appState.update(appState.state.copyWith(
       subject: subject.title,
-      unit: 'Alle',
-      mood: LumoMood.point,
-      lumoMessage: '${subject.title}\nist bereit.\nStarten wir!',
+      unit: activeReading ? 'Aktives Lesen' : 'Alle',
+      mood: activeReading ? LumoMood.think : LumoMood.point,
+      lumoMessage: activeReading
+          ? 'Lies laut vor.\nIch höre dir zu\nund helfe freundlich.'
+          : '${subject.title}\nist bereit.\nStarten wir!',
     ));
-    onSection(LumoSection.exercises);
+    onSection(activeReading ? LumoSection.reading : LumoSection.exercises);
   }
 
   void _startUnit(String subject, String unit) {
+    final activeReading = _isActiveReading(subject, unit);
     appState.update(appState.state.copyWith(
       subject: subject,
-      unit: unit,
-      mood: LumoMood.point,
-      lumoMessage: '$unit\nüben wir jetzt\ngemeinsam.',
+      unit: activeReading ? 'Aktives Lesen' : unit,
+      mood: activeReading ? LumoMood.think : LumoMood.point,
+      lumoMessage: activeReading
+          ? 'Lies den Satz\nlaut vor.\nIch höre zu.'
+          : '$unit\nüben wir jetzt\ngemeinsam.',
     ));
-    onSection(LumoSection.exercises);
+    onSection(activeReading ? LumoSection.reading : LumoSection.exercises);
   }
 
   @override
@@ -131,7 +143,7 @@ class _SubjectCard extends StatelessWidget {
           const SizedBox(height: 10),
           Expanded(child: Text(info.subtitle, style: LumoTextStyles.cardSub, maxLines: 2, overflow: TextOverflow.ellipsis)),
           Row(mainAxisSize: MainAxisSize.min, children: [
-            Text('Starten', style: LumoTextStyles.cta.copyWith(color: info.color)),
+            Text(info.title == 'Lesen' ? 'Vorlesen' : 'Starten', style: LumoTextStyles.cta.copyWith(color: info.color)),
             const SizedBox(width: 4),
             Icon(Icons.arrow_forward_rounded, color: info.color, size: 15),
           ]),
