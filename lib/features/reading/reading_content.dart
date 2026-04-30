@@ -48,6 +48,7 @@ class _ReadingContentState extends State<ReadingContent> {
       _speech.initialize();
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
       LumoVoice.instance.speak('Wir lesen jetzt ${story.title}. Lies den ersten Satz langsam vor.');
       _persistReadingProgress(latestScore: 0);
     });
@@ -72,6 +73,7 @@ class _ReadingContentState extends State<ReadingContent> {
     }
     if (_speech.listening) {
       await _speech.stopListening();
+      if (!mounted) return;
       _processTranscript(_speech.lastWords);
       return;
     }
@@ -93,29 +95,24 @@ class _ReadingContentState extends State<ReadingContent> {
     }
     final result = _monitor.processSentence(childId: _childId, progress: _progress, transcript: text);
     final action = result.decision.primary;
-    final nextIndex = result.nextProgress.currentSentenceIndex;
-    final done = result.analysis.correctEnough && nextIndex == _progress.currentSentenceIndex && _progress.currentSentenceIndex >= _progress.story.sentences.length - 1;
     if (!result.analysis.correctEnough) _interventionCount++;
 
     setState(() {
       _progress = result.nextProgress;
       _lastScore = result.analysis.alignmentScore;
-      _lumoLine = action.message;
-      if (result.analysis.correctEnough && _progress.completedSentenceIds.length >= _progress.story.sentences.length) {
-        _finished = true;
-        _lumoLine = 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Saetze und Uebungswoerter.';
-      } else if (done) {
-        _finished = true;
-      }
+      _lumoLine = _progress.isComplete
+          ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Saetze und Uebungswoerter.'
+          : action.message;
+      _finished = _progress.isComplete;
     });
 
     _persistReadingProgress(latestScore: result.analysis.alignmentScore);
 
     widget.appState.update(widget.appState.state.copyWith(
-      mood: _moodFor(action.tone),
+      mood: _progress.isComplete ? LumoMood.celebrate : _moodFor(action.tone),
       lumoMessage: _lumoLine,
     ));
-    LumoVoice.instance.speak(action.message);
+    LumoVoice.instance.speak(_lumoLine);
   }
 
   Future<void> _persistReadingProgress({required double latestScore}) async {
@@ -238,15 +235,17 @@ class _StoryProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final safeTotal = total <= 0 ? 1 : total;
+    final safeCurrent = current.clamp(0, safeTotal).toInt();
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: lumoCard(),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('Satz $current von $total gelesen', style: LumoTextStyles.heading3),
+        Text('Satz $safeCurrent von $total gelesen', style: LumoTextStyles.heading3),
         const SizedBox(height: 10),
         ClipRRect(
           borderRadius: BorderRadius.circular(LumoRadius.pill),
-          child: LinearProgressIndicator(value: total == 0 ? 0 : current / total, minHeight: 8, color: LumoColors.orange, backgroundColor: LumoColors.orange.withOpacity(.14)),
+          child: LinearProgressIndicator(value: safeCurrent / safeTotal, minHeight: 8, color: LumoColors.orange, backgroundColor: LumoColors.orange.withOpacity(.14)),
         ),
       ]),
     );
