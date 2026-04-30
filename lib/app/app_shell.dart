@@ -139,6 +139,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final width = constraints.maxWidth;
+                final mobile = width < 720;
                 final showNav = width >= 720;
                 final showStage = width >= 860;
                 final compactStage = width < 1120;
@@ -146,8 +147,28 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                 final stageWidth = compactStage ? 238.0 : 320.0;
                 final gap = width < 980 ? 6.0 : 10.0;
 
+                if (mobile) {
+                  return Column(children: [
+                    _MobileLumoHeader(appState: _appState, onFoxTap: () {
+                      if (_appState.state.settings.voiceEnabled) {
+                        LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
+                      }
+                    }),
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(LumoRadius.lg),
+                        child: FadeTransition(opacity: _fadeCtrl, child: _buildContent()),
+                      ),
+                    ),
+                    _MobileBottomNavigation(
+                      active: _appState.state.section,
+                      onSelect: _navigateTo,
+                    ),
+                  ]);
+                }
+
                 return Padding(
-                  padding: EdgeInsets.all(width < 720 ? 6 : 10),
+                  padding: const EdgeInsets.all(10),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -187,4 +208,133 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       },
     );
   }
+}
+
+class _MobileLumoHeader extends StatelessWidget {
+  const _MobileLumoHeader({required this.appState, required this.onFoxTap});
+
+  final LumoAppState appState;
+  final VoidCallback onFoxTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final st = appState.state;
+    return Container(
+      margin: const EdgeInsets.fromLTRB(8, 6, 8, 6),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(colors: [LumoColors.stageBg1, LumoColors.stageBg2]),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: Colors.white.withOpacity(.72)),
+        boxShadow: LumoShadow.card,
+      ),
+      child: Row(children: [
+        GestureDetector(
+          onTap: onFoxTap,
+          child: Container(
+            width: 52,
+            height: 52,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+            ),
+            child: const Center(child: Text('🦊', style: TextStyle(fontSize: 28))),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+            Text(
+              st.childName,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.ink900),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              st.lumoMessage.replaceAll('\n', ' '),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink600, height: 1.2),
+            ),
+          ]),
+        ),
+        const SizedBox(width: 8),
+        Column(mainAxisSize: MainAxisSize.min, children: [
+          Text('⭐ ${st.stars}', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700)),
+          Text('Lv ${st.level}', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange)),
+        ]),
+      ]),
+    );
+  }
+}
+
+class _MobileBottomNavigation extends StatelessWidget {
+  const _MobileBottomNavigation({required this.active, required this.onSelect});
+
+  final LumoSection active;
+  final ValueChanged<LumoSection> onSelect;
+
+  static const _items = <_MobileNavItem>[
+    _MobileNavItem(LumoSection.home, Icons.home_rounded, 'Start'),
+    _MobileNavItem(LumoSection.learn, Icons.school_rounded, 'Lernen'),
+    _MobileNavItem(LumoSection.exercises, Icons.edit_rounded, 'Üben'),
+    _MobileNavItem(LumoSection.tests, Icons.assignment_turned_in_rounded, 'Test'),
+    _MobileNavItem(LumoSection.agent, Icons.smart_toy_rounded, 'Lumo'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 7),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(.95),
+        borderRadius: BorderRadius.circular(LumoRadius.pill),
+        border: Border.all(color: LumoColors.orange.withOpacity(.14)),
+        boxShadow: LumoShadow.card,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: _items.map((item) {
+          final selected = item.section == active;
+          return Expanded(
+            child: GestureDetector(
+              onTap: () => onSelect(item.section),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                decoration: BoxDecoration(
+                  color: selected ? LumoColors.orangeSurface : Colors.transparent,
+                  borderRadius: BorderRadius.circular(LumoRadius.pill),
+                ),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Icon(item.icon, size: 20, color: selected ? LumoColors.orange : LumoColors.ink400),
+                  const SizedBox(height: 2),
+                  Text(
+                    item.label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 10,
+                      fontWeight: FontWeight.w900,
+                      color: selected ? LumoColors.orange : LumoColors.ink500,
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
+class _MobileNavItem {
+  const _MobileNavItem(this.section, this.icon, this.label);
+  final LumoSection section;
+  final IconData icon;
+  final String label;
 }
