@@ -141,7 +141,9 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                 final width = constraints.maxWidth;
                 final showNav = width >= 720;
                 final showStage = width >= 860;
+                final compactStage = width < 1120;
                 final navWidth = width < 980 ? 160.0 : 200.0;
+                final stageWidth = compactStage ? 238.0 : 320.0;
                 final gap = width < 980 ? 6.0 : 10.0;
 
                 return Padding(
@@ -166,6 +168,8 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                         SizedBox(width: gap),
                         LumoStagePanel(
                           appState: _appState,
+                          panelWidth: stageWidth,
+                          compact: compactStage,
                           onFoxTap: () {
                             if (_appState.state.settings.voiceEnabled) {
                               LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
