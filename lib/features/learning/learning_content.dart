@@ -9,6 +9,7 @@ import '../../domain/learning/lumo_learning_domain.dart';
 import '../../domain/learning/reward_engine.dart';
 import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/adaptive_task_renderer.dart';
+import 'renderers/writing_task_renderer.dart';
 
 class LearningContent extends StatefulWidget {
   const LearningContent({super.key, required this.appState});
