@@ -50,6 +50,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
 
   Future<void> _loadSettings() async {
     final settings = await SettingsRepository.load();
+    if (!mounted) return;
     _appState.updateSettings(settings);
     await LumoVoice.instance.configure(
       enabled: settings.voiceEnabled,
@@ -58,7 +59,9 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     );
     try {
       await _appState.loadLearningProfile();
-    } catch (_) {}
+    } catch (_) {
+      // Learning profile is non-critical. The app must still start.
+    }
   }
 
   @override
@@ -68,19 +71,27 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     super.dispose();
   }
 
-  void _navigateTo(LumoSection section) async {
+  Future<void> _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
     if (section == LumoSection.profile || section == LumoSection.settings) {
       final ok = await ParentalGate.show(context);
       if (!mounted || !ok) return;
     }
+    if (!mounted) return;
     await _fadeCtrl.reverse();
+    if (!mounted) return;
     _appState.setSection(section);
     final settings = _appState.state.settings;
     if (settings.voiceEnabled && settings.autoReadEnabled) {
       LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
     }
     if (mounted) await _fadeCtrl.forward();
+  }
+
+  Future<void> _openParentSettings() async {
+    final ok = await ParentalGate.show(context);
+    if (!mounted || !ok) return;
+    await _navigateTo(LumoSection.settings);
   }
 
   Widget _buildContent() {
@@ -96,7 +107,13 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
         return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
       case LumoSection.scanner:
         if (!_appState.state.settings.scannerEnabled) {
-          return SettingsContent(appState: _appState);
+          return _FeatureDisabledContent(
+            title: 'Foto-Hilfe ist ausgeschaltet',
+            message: 'Diese Funktion kann nur im Elternbereich wieder aktiviert werden.',
+            icon: Icons.no_photography_rounded,
+            onBack: () => _navigateTo(LumoSection.home),
+            onParentSettings: _openParentSettings,
+          );
         }
         return ScanScreen(
           onTextDetected: (text) {
@@ -209,6 +226,55 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
           ),
         );
       },
+    );
+  }
+}
+
+class _FeatureDisabledContent extends StatelessWidget {
+  const _FeatureDisabledContent({
+    required this.title,
+    required this.message,
+    required this.icon,
+    required this.onBack,
+    required this.onParentSettings,
+  });
+
+  final String title;
+  final String message;
+  final IconData icon;
+  final VoidCallback onBack;
+  final VoidCallback onParentSettings;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 560),
+          child: Container(
+            padding: const EdgeInsets.all(22),
+            decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF8ED), Color(0xFFFFFFFF)])),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Container(
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)),
+                child: Icon(icon, color: LumoColors.orange, size: 34),
+              ),
+              const SizedBox(height: 14),
+              Text(title, textAlign: TextAlign.center, style: LumoTextStyles.heading2),
+              const SizedBox(height: 8),
+              Text(message, textAlign: TextAlign.center, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+              const SizedBox(height: 18),
+              Wrap(alignment: WrapAlignment.center, spacing: 10, runSpacing: 10, children: [
+                FilledButton.icon(onPressed: onBack, icon: const Icon(Icons.home_rounded), label: const Text('Zurück')),
+                OutlinedButton.icon(onPressed: onParentSettings, icon: const Icon(Icons.lock_rounded), label: const Text('Elternbereich')),
+              ]),
+            ]),
+          ),
+        ),
+      ),
     );
   }
 }
