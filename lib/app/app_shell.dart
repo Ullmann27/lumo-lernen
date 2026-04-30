@@ -71,6 +71,13 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     super.dispose();
   }
 
+  bool _isReadingMode() {
+    final st = _appState.state;
+    final subject = st.subject.trim().toLowerCase();
+    final unit = st.unit.trim().toLowerCase();
+    return subject == 'lesen' || unit == 'aktives lesen' || unit == 'vorlesen';
+  }
+
   Future<void> _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
     if (section == LumoSection.profile || section == LumoSection.settings) {
@@ -102,6 +109,9 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       case LumoSection.learn:
         return SubjectSelectionContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.exercises:
+        if (_isReadingMode()) {
+          return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
+        }
         return LearningContent(appState: _appState);
       case LumoSection.reading:
         return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
