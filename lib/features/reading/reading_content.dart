@@ -291,7 +291,7 @@ class _ReadingContentState extends State<ReadingContent> {
       _lastTranscript = text;
       // PAEDAGOGISCHER FIX: wenn der Satz wechselt, Auto-Flag zuruecksetzen
       // damit Eltern-Auto-Modus beim naechsten Satz wieder einmal helfen darf.
-      if (adjustedProgress.currentIndex != progress.currentIndex) {
+      if (adjustedProgress.currentSentenceIndex != progress.currentSentenceIndex) {
         _autoStartedThisSentence = false;
       }
       _showNotHeardHint = false;
