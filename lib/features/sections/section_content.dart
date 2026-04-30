@@ -6,6 +6,13 @@ import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
 import '../tutoring/tutoring_flow_card.dart';
 
+typedef _StartSession = void Function({
+  required String subject,
+  String? unit,
+  required String message,
+  LumoSessionKind? sessionKind,
+});
+
 class SectionContent extends StatelessWidget {
   const SectionContent({super.key, required this.appState, required this.section, required this.onSection});
 
@@ -15,16 +22,16 @@ class SectionContent extends StatelessWidget {
 
   void _startSession({
     required String subject,
-    String unit = 'Alle',
+    String? unit,
     required String message,
-    LumoSessionKind sessionKind = LumoSessionKind.quickPractice,
+    LumoSessionKind? sessionKind,
   }) {
     appState.update(appState.state.copyWith(
       subject: subject,
-      unit: unit,
+      unit: unit ?? 'Alle',
       mood: LumoMood.point,
       lumoMessage: message,
-      sessionKind: sessionKind,
+      sessionKind: sessionKind ?? LumoSessionKind.quickPractice,
     ));
     onSection(LumoSection.exercises);
   }
@@ -184,12 +191,7 @@ class _MissionsPage extends StatelessWidget {
   });
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
-  final void Function({
-    required String subject,
-    String unit,
-    required String message,
-    LumoSessionKind sessionKind,
-  }) startSession;
+  final _StartSession startSession;
   final VoidCallback startReading;
 
   @override
@@ -401,7 +403,7 @@ class _AgentPage extends StatefulWidget {
   const _AgentPage({required this.appState, required this.onSection, required this.startSession, required this.startReading});
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
-  final void Function({required String subject, String unit, required String message}) startSession;
+  final _StartSession startSession;
   final VoidCallback startReading;
 
   @override
