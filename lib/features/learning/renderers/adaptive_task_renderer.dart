@@ -140,7 +140,8 @@ class _OptionGrid extends StatelessWidget {
               isPicked: isPicked,
               isCorrect: isCorrect,
               answered: answered,
-              onTap: () => onPick(option),n            ),
+              onTap: () => onPick(option),
+            ),
           );
         }).toList(),
       );
