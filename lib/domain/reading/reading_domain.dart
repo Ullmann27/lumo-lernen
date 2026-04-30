@@ -84,6 +84,7 @@ class ReadingSessionProgress {
     required this.attemptNumber,
     required this.problemWords,
     required this.completedSentenceIds,
+    this.isComplete = false,
   });
 
   final Story story;
@@ -91,14 +92,22 @@ class ReadingSessionProgress {
   final int attemptNumber;
   final List<String> problemWords;
   final List<String> completedSentenceIds;
+  final bool isComplete;
 
-  StorySentence get currentSentence => story.sentences[currentSentenceIndex.clamp(0, story.sentences.length - 1)];
+  StorySentence get currentSentence {
+    if (story.sentences.isEmpty) {
+      return const StorySentence(id: 'empty', index: 0, text: 'Keine Geschichte geladen.', words: <WordToken>[]);
+    }
+    final safeIndex = currentSentenceIndex.clamp(0, story.sentences.length - 1).toInt();
+    return story.sentences[safeIndex];
+  }
 
   ReadingSessionProgress copyWith({
     int? currentSentenceIndex,
     int? attemptNumber,
     List<String>? problemWords,
     List<String>? completedSentenceIds,
+    bool? isComplete,
   }) {
     return ReadingSessionProgress(
       story: story,
@@ -106,6 +115,7 @@ class ReadingSessionProgress {
       attemptNumber: attemptNumber ?? this.attemptNumber,
       problemWords: problemWords ?? this.problemWords,
       completedSentenceIds: completedSentenceIds ?? this.completedSentenceIds,
+      isComplete: isComplete ?? this.isComplete,
     );
   }
 }
@@ -120,7 +130,7 @@ class StoryEngine {
 
   Story _markProblemWords(Story story, List<String> weakWords) {
     if (weakWords.isEmpty) return story;
-    final lower = weakWords.map((w) => w.toLowerCase()).toSet();
+    final lower = weakWords.map(_normalize).toSet();
     return Story(
       id: story.id,
       title: story.title,
@@ -195,7 +205,7 @@ class SyllableWordColorizer {
   const SyllableWordColorizer();
 
   List<WordToken> tokenize(String text, {List<String> problemWords = const <String>[]}) {
-    final problemSet = problemWords.map((w) => w.toLowerCase()).toSet();
+    final problemSet = problemWords.map(_normalize).toSet();
     return text
         .split(RegExp(r'\s+'))
         .where((word) => word.trim().isNotEmpty)
@@ -308,14 +318,23 @@ class ReadingMonitor {
       },
     ));
 
+    final completed = <String>{...progress.completedSentenceIds};
+    if (analysis.correctEnough && sentence.id != 'empty') completed.add(sentence.id);
+
+    final isNowComplete = progress.story.sentences.isEmpty || completed.length >= progress.story.sentences.length;
+    final nextIndex = isNowComplete
+        ? progress.currentSentenceIndex
+        : (progress.currentSentenceIndex + 1).clamp(0, progress.story.sentences.length - 1).toInt();
+
     final nextProgress = analysis.correctEnough
         ? progress.copyWith(
-            currentSentenceIndex: (progress.currentSentenceIndex + 1).clamp(0, progress.story.sentences.length - 1).toInt(),
+            currentSentenceIndex: nextIndex,
             attemptNumber: 1,
-            completedSentenceIds: <String>[...progress.completedSentenceIds, sentence.id],
+            completedSentenceIds: completed.toList(growable: false),
+            isComplete: isNowComplete,
           )
         : progress.copyWith(
-            attemptNumber: progress.attemptNumber + 1,
+            attemptNumber: (progress.attemptNumber + 1).clamp(1, 4).toInt(),
             problemWords: analysis.problemWord == null ? progress.problemWords : <String>{...progress.problemWords, analysis.problemWord!}.toList(growable: false),
           );
 
