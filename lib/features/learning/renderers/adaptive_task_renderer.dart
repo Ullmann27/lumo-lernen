@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'writing_task_renderer.dart';
 
 class AdaptiveTaskAnswer {
@@ -51,10 +52,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(18),
         decoration: lumoCard(
           gradient: const LinearGradient(
-            colors: [Color(0xFFFFF4BD), Color(0xFFFFF8DC)],
+            colors: [Color(0xFFFFF8ED), Color(0xFFFFFEFA)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -69,7 +70,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             task.prompt,
             style: const TextStyle(
               fontFamily: 'Nunito',
-              fontSize: 34,
+              fontSize: 30,
               fontWeight: FontWeight.w900,
               color: LumoColors.ink900,
               height: 1.12,
@@ -243,41 +244,8 @@ class _AdaptiveVisual extends StatelessWidget {
       VisualType.numberLine => _NumberLineVisual(task: task, picked: picked, answered: answered),
       VisualType.shape => _ShapeVisual(task: task, picked: picked, answered: answered),
       VisualType.syllables => _SyllableVisual(task: task),
-      _ => const SizedBox.shrink(),
+      _ => _SchoolbookFallbackVisual(task: task),
     };
-  }
-}
-
-class _VisualCard extends StatelessWidget {
-  const _VisualCard({required this.title, required this.child});
-
-  final String title;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.72),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: Colors.white.withOpacity(.9), width: 1.4),
-      ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 13,
-            fontWeight: FontWeight.w900,
-            color: LumoColors.ink500,
-          ),
-        ),
-        const SizedBox(height: 14),
-        child,
-      ]),
-    );
   }
 }
 
@@ -293,8 +261,24 @@ class _DotsVisual extends StatelessWidget {
     final left = _readInt(data['left']) ?? _readInt(data['start']) ?? 0;
     final right = _readInt(data['right']) ?? _readInt(data['takeAway']) ?? 0;
 
-    return _VisualCard(
-      title: operation == 'subtraction' ? 'Wegnehmen-Bild' : 'Lege-Bild',
+    if (operation == 'subtraction' && left > 10 && right > 0) {
+      return SchoolbookTaskCard(
+        title: 'Rechne wie im Heft',
+        subtitle: 'Erst bis zur 10, dann den Rest wegnehmen.',
+        ribbonLabel: 'Minus',
+        helperText: 'Lumo zeigt dir den gleichen Denkweg wie am Arbeitsblatt: Kugeln anschauen, bis zur 10 wegstreichen, dann fertig rechnen.',
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          TwentyFrameVisual(start: left, takeAway: right),
+          const SizedBox(height: 16),
+          NumberLineJumpVisual(start: left, takeAway: right),
+        ]),
+      );
+    }
+
+    return SchoolbookTaskCard(
+      title: operation == 'subtraction' ? 'Wegnehmen-Bild' : 'Mengenbild',
+      subtitle: operation == 'subtraction' ? 'Streiche weg und zähle, was bleibt.' : 'Lege beide Mengen zusammen.',
+      ribbonLabel: operation == 'subtraction' ? '−' : '+',
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Expanded(child: _DotGroup(count: left, fadedAfter: operation == 'subtraction' ? right : 0)),
         if (operation == 'addition') ...[
@@ -351,8 +335,11 @@ class _TenOnesVisual extends StatelessWidget {
     final data = task.visualPayload.data;
     final tens = (_readInt(data['tens']) ?? 0).clamp(0, 9).toInt();
     final ones = (_readInt(data['ones']) ?? 0).clamp(0, 9).toInt();
-    return _VisualCard(
+    final target = tens * 10 + ones;
+    return SchoolbookTaskCard(
       title: 'Zehner und Einer',
+      subtitle: 'Wie im Stellenwert-Heft: Stangen sind Zehner, Punkte sind Einer.',
+      ribbonLabel: '$target',
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Wrap(
           spacing: 8,
@@ -390,6 +377,18 @@ class _NumberLineVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final data = task.visualPayload.data;
+    final start = _readInt(data['start']);
+    final takeAway = _readInt(data['takeAway']);
+    if (start != null && takeAway != null && start > 10 && takeAway > 0) {
+      return SchoolbookTaskCard(
+        title: 'Zahlenstrahl-Sprung',
+        subtitle: 'Ein großer Minus-Sprung wird in zwei kleine Sprünge geteilt.',
+        ribbonLabel: '0–20',
+        child: NumberLineJumpVisual(start: start, takeAway: takeAway),
+      );
+    }
+
     final numbers = task.options
         .map((option) => _readInt(option.payload ?? option.label))
         .whereType<int>()
@@ -400,8 +399,10 @@ class _NumberLineVisual extends StatelessWidget {
     if (numbers.length < 2 || answer == null) return const SizedBox.shrink();
     final pickedNumber = picked == null ? null : _readInt(picked);
 
-    return _VisualCard(
+    return SchoolbookTaskCard(
       title: 'Zahlenstrahl',
+      subtitle: 'Suche die Zahl auf der Linie.',
+      ribbonLabel: 'Linie',
       child: Stack(alignment: Alignment.center, children: [
         Container(height: 6, decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.18), borderRadius: BorderRadius.circular(LumoRadius.pill))),
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: numbers.map((number) {
@@ -443,8 +444,10 @@ class _ShapeVisual extends StatelessWidget {
       'Quadrat': Icons.crop_square_rounded,
       'Rechteck': Icons.rectangle_outlined,
     };
-    return _VisualCard(
+    return SchoolbookTaskCard(
       title: 'Formenhilfe',
+      subtitle: 'Schau genau: Welche Form passt?',
+      ribbonLabel: 'Form',
       child: Wrap(
         spacing: 10,
         runSpacing: 10,
@@ -479,14 +482,53 @@ class _SyllableVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final word = task.visualPayload.data['word']?.toString() ?? task.parameters['word']?.toString() ?? '';
-    return _VisualCard(
+    return SchoolbookTaskCard(
       title: 'Silbenhilfe',
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(word, style: const TextStyle(fontFamily: 'Nunito', fontSize: 28, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
-        const SizedBox(height: 8),
-        const Text('Klatsche das Wort langsam mit.', style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink500)),
-      ]),
+      subtitle: 'Klatsche das Wort langsam mit.',
+      ribbonLabel: 'Silben',
+      accentColor: LumoColors.purple,
+      child: WritingLineBox(placeholder: word.isEmpty ? 'Wort langsam sprechen' : word, cells: word.isEmpty ? 5 : word.length.clamp(3, 10).toInt()),
     );
+  }
+}
+
+class _SchoolbookFallbackVisual extends StatelessWidget {
+  const _SchoolbookFallbackVisual({required this.task});
+
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final prompt = task.prompt;
+    final minus = RegExp(r'(\d+)\s*-\s*(\d+)').firstMatch(prompt);
+    final plus = RegExp(r'(\d+)\s*\+\s*(\d+)').firstMatch(prompt);
+    if (minus != null) {
+      final start = int.tryParse(minus.group(1) ?? '') ?? 0;
+      final takeAway = int.tryParse(minus.group(2) ?? '') ?? 0;
+      if (start > 10 && takeAway > 0) {
+        return SchoolbookTaskCard(
+          title: 'Minus über die 10',
+          subtitle: 'So wie im Heft: erst bis zur 10, dann weiter.',
+          ribbonLabel: '10',
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            TwentyFrameVisual(start: start, takeAway: takeAway),
+            const SizedBox(height: 16),
+            NumberLineJumpVisual(start: start, takeAway: takeAway),
+          ]),
+        );
+      }
+    }
+    if (plus != null) {
+      final left = int.tryParse(plus.group(1) ?? '') ?? 0;
+      final right = int.tryParse(plus.group(2) ?? '') ?? 0;
+      return SchoolbookTaskCard(
+        title: 'Blitzlicht',
+        subtitle: 'Kurz rechnen, ruhig bleiben.',
+        ribbonLabel: '+',
+        child: BlitzlichtGrid(items: <String>['$left + $right = ?', '${left + 1} + $right = ?', '$left + ${right + 1} = ?'], columns: 1),
+      );
+    }
+    return const SizedBox.shrink();
   }
 }
 
