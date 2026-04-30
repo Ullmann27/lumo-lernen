@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
@@ -28,12 +29,17 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
   final _evaluator = const WritingEvaluator();
   final List<Stroke> _strokes = <Stroke>[];
   Stroke? _activeStroke;
+  int? _activePointer;
   DateTime? _startedAt;
 
   void _startStroke(PointerDownEvent event, Size size) {
-    _startedAt ??= DateTime.now();
+    if (_activePointer != null) return;
     final point = _pointFromEvent(event.localPosition, size, event.pressure);
+    if (point == null) return;
+
+    _startedAt ??= DateTime.now();
     setState(() {
+      _activePointer = event.pointer;
       _activeStroke = Stroke(
         id: 'stroke_${DateTime.now().microsecondsSinceEpoch}',
         points: <StrokePoint>[point],
@@ -42,22 +48,29 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
   }
 
   void _appendPoint(PointerMoveEvent event, Size size) {
+    if (_activePointer != event.pointer) return;
     final active = _activeStroke;
     if (active == null) return;
-    final next = <StrokePoint>[
-      ...active.points,
-      _pointFromEvent(event.localPosition, size, event.pressure),
-    ];
+    final point = _pointFromEvent(event.localPosition, size, event.pressure);
+    if (point == null) return;
+    if (active.points.isNotEmpty && _distance(active.points.last, point) < .65) return;
+    if (active.points.isNotEmpty && _distance(active.points.last, point) > 32) {
+      _finishStroke();
+      return;
+    }
+
+    final next = <StrokePoint>[...active.points, point];
     setState(() => _activeStroke = Stroke(id: active.id, points: next));
   }
 
   void _finishStroke() {
     final active = _activeStroke;
     if (active == null) return;
-    final smoothed = _smoother.smooth(active);
+    final smoothed = active.points.length >= 2 ? _smoother.smooth(active) : active;
     setState(() {
-      _strokes.add(smoothed);
+      if (smoothed.points.length >= 2) _strokes.add(smoothed);
       _activeStroke = null;
+      _activePointer = null;
     });
     widget.onChanged?.call(List<Stroke>.unmodifiable(_strokes));
     _emitEvaluation();
@@ -74,6 +87,7 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     setState(() {
       _strokes.clear();
       _activeStroke = null;
+      _activePointer = null;
       _startedAt = null;
     });
     widget.onChanged?.call(const <Stroke>[]);
@@ -96,7 +110,11 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     );
   }
 
-  StrokePoint _pointFromEvent(Offset localPosition, Size size, double pressure) {
+  StrokePoint? _pointFromEvent(Offset localPosition, Size size, double pressure) {
+    if (size.width <= 0 || size.height <= 0) return null;
+    if (localPosition.dx < 0 || localPosition.dy < 0 || localPosition.dx > size.width || localPosition.dy > size.height) {
+      return null;
+    }
     final x = (localPosition.dx / size.width * widget.template.viewBoxWidth)
         .clamp(0.0, widget.template.viewBoxWidth);
     final y = (localPosition.dy / size.height * widget.template.viewBoxHeight)
@@ -109,10 +127,18 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     );
   }
 
+  double _distance(StrokePoint a, StrokePoint b) {
+    final dx = a.x - b.x;
+    final dy = a.y - b.y;
+    return math.sqrt(dx * dx + dy * dy);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       LayoutBuilder(builder: (context, constraints) {
+        final width = constraints.maxWidth <= 0 ? 1.0 : constraints.maxWidth;
+        final size = Size(width, widget.height);
         return Container(
           height: widget.height,
           width: double.infinity,
@@ -131,16 +157,15 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.xl - 2),
             child: Listener(
-              onPointerDown: (event) => _startStroke(
-                event,
-                Size(constraints.maxWidth, widget.height),
-              ),
-              onPointerMove: (event) => _appendPoint(
-                event,
-                Size(constraints.maxWidth, widget.height),
-              ),
-              onPointerUp: (_) => _finishStroke(),
-              onPointerCancel: (_) => _finishStroke(),
+              behavior: HitTestBehavior.opaque,
+              onPointerDown: (event) => _startStroke(event, size),
+              onPointerMove: (event) => _appendPoint(event, size),
+              onPointerUp: (event) {
+                if (_activePointer == event.pointer) _finishStroke();
+              },
+              onPointerCancel: (event) {
+                if (_activePointer == event.pointer) _finishStroke();
+              },
               child: CustomPaint(
                 painter: _WritingCanvasPainter(
                   template: widget.template,
@@ -273,11 +298,13 @@ class _WritingCanvasPainter extends CustomPainter {
       ..color = LumoColors.orange
       ..strokeWidth = 8
       ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
 
     for (final stroke in strokes) {
       if (stroke.points.length < 2) continue;
-      final path = Path()..moveTo(_mapPoint(stroke.points.first, size).dx, _mapPoint(stroke.points.first, size).dy);
+      final first = _mapPoint(stroke.points.first, size);
+      final path = Path()..moveTo(first.dx, first.dy);
       for (var i = 1; i < stroke.points.length; i++) {
         final point = _mapPoint(stroke.points[i], size);
         path.lineTo(point.dx, point.dy);
