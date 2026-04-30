@@ -5,6 +5,7 @@ enum ReadingAttemptOutcome {
   retryBecauseRecognitionWasUnclear,
   retryBecauseReadingNeedsPractice,
   confirmedProblemWord,
+  controlledContinueAfterMaxAttempts,
 }
 
 class ReadingSentenceAttempt {
@@ -47,14 +48,16 @@ class ReadingAttemptDecision {
 
   bool get shouldCountAsIntervention =>
       outcome == ReadingAttemptOutcome.retryBecauseReadingNeedsPractice ||
-      outcome == ReadingAttemptOutcome.confirmedProblemWord;
+      outcome == ReadingAttemptOutcome.confirmedProblemWord ||
+      outcome == ReadingAttemptOutcome.controlledContinueAfterMaxAttempts;
 
   bool get shouldKeepSameAttempt => outcome == ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear;
+  bool get shouldAdvanceControlled => outcome == ReadingAttemptOutcome.controlledContinueAfterMaxAttempts;
 }
 
 class ReadingAttemptLedger {
   final Map<String, List<ReadingSentenceAttempt>> _attemptsBySentence = <String, List<ReadingSentenceAttempt>>{};
-  final Set<String> _completedSentenceIds = <String>{};
+  final Set<String> _correctedSentenceIds = <String>{};
 
   ReadingAttemptDecision recordAnalysis({
     required StorySentence sentence,
@@ -77,7 +80,7 @@ class ReadingAttemptLedger {
     attempts.add(attempt);
 
     if (analysis.correctEnough) {
-      _completedSentenceIds.add(sentence.id);
+      _correctedSentenceIds.add(sentence.id);
       return const ReadingAttemptDecision(
         outcome: ReadingAttemptOutcome.accepted,
         childMessage: 'Gut gelesen. Jetzt kommt der naechste Satz. Lies ihn laut vor.',
@@ -92,6 +95,17 @@ class ReadingAttemptLedger {
     }
 
     final confirmed = _confirmedProblemWordFor(sentence.id);
+    if (attemptNumber >= 3) {
+      final word = confirmed ?? analysis.problemWord;
+      return ReadingAttemptDecision(
+        outcome: ReadingAttemptOutcome.controlledContinueAfterMaxAttempts,
+        confirmedProblemWord: word,
+        childMessage: word == null
+            ? 'Wir gehen jetzt ruhig weiter. Diesen Satz ueben wir spaeter noch einmal.'
+            : 'Wir gehen jetzt ruhig weiter. Das Wort "$word" merkt sich Lumo fuer spaeter.',
+      );
+    }
+
     if (confirmed != null) {
       return ReadingAttemptDecision(
         outcome: ReadingAttemptOutcome.confirmedProblemWord,
@@ -127,7 +141,7 @@ class ReadingAttemptLedger {
   List<String> get persistentProblemWords {
     final words = <String>{};
     for (final entry in _attemptsBySentence.entries) {
-      if (_completedSentenceIds.contains(entry.key)) continue;
+      if (_correctedSentenceIds.contains(entry.key)) continue;
       final confirmed = _confirmedProblemWordFor(entry.key);
       if (confirmed != null) words.add(confirmed);
     }
@@ -142,7 +156,7 @@ class ReadingAttemptLedger {
       .length;
 
   String? _confirmedProblemWordFor(String sentenceId) {
-    if (_completedSentenceIds.contains(sentenceId)) return null;
+    if (_correctedSentenceIds.contains(sentenceId)) return null;
     final attempts = _attemptsBySentence[sentenceId] ?? const <ReadingSentenceAttempt>[];
     final counts = <String, int>{};
     for (final attempt in attempts.where((attempt) => attempt.reliableReadingProblem)) {
