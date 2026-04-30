@@ -29,17 +29,14 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
   final _evaluator = const WritingEvaluator();
   final List<Stroke> _strokes = <Stroke>[];
   Stroke? _activeStroke;
-  int? _activePointer;
   DateTime? _startedAt;
 
-  void _startStroke(PointerDownEvent event, Size size) {
-    if (_activePointer != null) return;
-    final point = _pointFromEvent(event.localPosition, size, event.pressure);
+  void _startStroke(Offset localPosition, Size size) {
+    final point = _pointFromLocalPosition(localPosition, size);
     if (point == null) return;
 
     _startedAt ??= DateTime.now();
     setState(() {
-      _activePointer = event.pointer;
       _activeStroke = Stroke(
         id: 'stroke_${DateTime.now().microsecondsSinceEpoch}',
         points: <StrokePoint>[point],
@@ -47,11 +44,10 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     });
   }
 
-  void _appendPoint(PointerMoveEvent event, Size size) {
-    if (_activePointer != event.pointer) return;
+  void _appendPoint(Offset localPosition, Size size) {
     final active = _activeStroke;
     if (active == null) return;
-    final point = _pointFromEvent(event.localPosition, size, event.pressure);
+    final point = _pointFromLocalPosition(localPosition, size);
     if (point == null) return;
     if (active.points.isNotEmpty && _distance(active.points.last, point) < .65) return;
     if (active.points.isNotEmpty && _distance(active.points.last, point) > 32) {
@@ -70,7 +66,6 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     setState(() {
       if (smoothed.points.length >= 2) _strokes.add(smoothed);
       _activeStroke = null;
-      _activePointer = null;
     });
     widget.onChanged?.call(List<Stroke>.unmodifiable(_strokes));
     _emitEvaluation();
@@ -87,7 +82,6 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     setState(() {
       _strokes.clear();
       _activeStroke = null;
-      _activePointer = null;
       _startedAt = null;
     });
     widget.onChanged?.call(const <Stroke>[]);
@@ -110,7 +104,7 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     );
   }
 
-  StrokePoint? _pointFromEvent(Offset localPosition, Size size, double pressure) {
+  StrokePoint? _pointFromLocalPosition(Offset localPosition, Size size) {
     if (size.width <= 0 || size.height <= 0) return null;
     if (localPosition.dx < 0 || localPosition.dy < 0 || localPosition.dx > size.width || localPosition.dy > size.height) {
       return null;
@@ -123,7 +117,7 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
       x: x,
       y: y,
       timestampMs: DateTime.now().millisecondsSinceEpoch,
-      pressure: pressure <= 0 ? 1 : pressure,
+      pressure: 1,
     );
   }
 
@@ -156,16 +150,13 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.xl - 2),
-            child: Listener(
+            child: GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onPointerDown: (event) => _startStroke(event, size),
-              onPointerMove: (event) => _appendPoint(event, size),
-              onPointerUp: (event) {
-                if (_activePointer == event.pointer) _finishStroke();
-              },
-              onPointerCancel: (event) {
-                if (_activePointer == event.pointer) _finishStroke();
-              },
+              dragStartBehavior: DragStartBehavior.down,
+              onPanStart: (details) => _startStroke(details.localPosition, size),
+              onPanUpdate: (details) => _appendPoint(details.localPosition, size),
+              onPanEnd: (_) => _finishStroke(),
+              onPanCancel: _finishStroke,
               child: CustomPaint(
                 painter: _WritingCanvasPainter(
                   template: widget.template,
