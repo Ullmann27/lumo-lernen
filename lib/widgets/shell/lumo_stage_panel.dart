@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
@@ -9,58 +8,40 @@ class LumoStagePanel extends StatefulWidget {
     super.key,
     required this.appState,
     required this.onFoxTap,
+    this.panelWidth = 320,
+    this.compact = false,
   });
 
   final LumoAppState appState;
   final VoidCallback onFoxTap;
+  final double panelWidth;
+  final bool compact;
 
   @override
   State<LumoStagePanel> createState() => _LumoStagePanelState();
 }
 
 class _LumoStagePanelState extends State<LumoStagePanel>
-    with TickerProviderStateMixin {
-
-  late final AnimationController _breath = AnimationController(
-    vsync: this, duration: const Duration(milliseconds: 1800),
-  )..repeat(reverse: true);
-
-  late final AnimationController _sway = AnimationController(
-    vsync: this, duration: const Duration(milliseconds: 5000),
-  )..repeat(reverse: true);
-
-  late final AnimationController _aura = AnimationController(
-    vsync: this, duration: const Duration(milliseconds: 2200),
-  )..repeat(reverse: true);
-
+    with SingleTickerProviderStateMixin {
   late final AnimationController _hop = AnimationController(
-    vsync: this, duration: const Duration(milliseconds: 480),
+    vsync: this,
+    duration: const Duration(milliseconds: 480),
   );
 
   @override
   void dispose() {
-    _breath.dispose();
-    _sway.dispose();
-    _aura.dispose();
     _hop.dispose();
     super.dispose();
-  }
-
-  Color get _auraColor {
-    switch (widget.appState.state.mood) {
-      case LumoMood.celebrate: return LumoColors.gold;
-      case LumoMood.comfort:   return LumoColors.blue;
-      case LumoMood.think:     return LumoColors.purple;
-      case LumoMood.wave:      return LumoColors.teal;
-      default:                 return LumoColors.orange;
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     final st = widget.appState.state;
+    final compact = widget.compact;
+    final foxHeight = compact ? 178.0 : 230.0;
+
     return Container(
-      width: 320,
+      width: widget.panelWidth,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [LumoColors.stageBg1, LumoColors.stageBg2],
@@ -73,16 +54,12 @@ class _LumoStagePanelState extends State<LumoStagePanel>
       ),
       child: Column(
         children: [
-          const SizedBox(height: 24),
-
-          // ── Speech Bubble ────────────────────────────────
+          SizedBox(height: compact ? 14 : 24),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: _SpeechBubble(text: st.lumoMessage),
+            padding: EdgeInsets.symmetric(horizontal: compact ? 10 : 16),
+            child: _SpeechBubble(text: st.lumoMessage, compact: compact),
           ),
-          const SizedBox(height: 16),
-
-          // ── Lumo Fox Stage ───────────────────────────────
+          SizedBox(height: compact ? 10 : 16),
           Expanded(
             child: GestureDetector(
               onTap: () {
@@ -92,28 +69,28 @@ class _LumoStagePanelState extends State<LumoStagePanel>
               child: Builder(
                 builder: (context) {
                   final facing = (st.section == LumoSection.exercises ||
-                      st.section == LumoSection.scanner)
-                      ? -1.0 : 1.0;
-
-                  // Use living avatar - it has its own breath/sway/aura
-                  return LumoLivingAvatar(
-                    appState: widget.appState,
-                    onTap: widget.onFoxTap,
-                    height: 230,
-                    facing: facing,
+                          st.section == LumoSection.scanner)
+                      ? -1.0
+                      : 1.0;
+                  return Center(
+                    child: LumoLivingAvatar(
+                      appState: widget.appState,
+                      onTap: widget.onFoxTap,
+                      height: foxHeight,
+                      facing: facing,
+                    ),
                   );
                 },
               ),
             ),
           ),
-
-          // ── Daily Goal Card ──────────────────────────────
           Padding(
-            padding: const EdgeInsets.all(14),
+            padding: EdgeInsets.all(compact ? 10 : 14),
             child: _DailyGoalCard(
               stars: st.stars,
               xp: st.xp,
               level: st.level,
+              compact: compact,
             ),
           ),
         ],
@@ -123,17 +100,21 @@ class _LumoStagePanelState extends State<LumoStagePanel>
 }
 
 class _SpeechBubble extends StatelessWidget {
-  const _SpeechBubble({required this.text});
+  const _SpeechBubble({required this.text, required this.compact});
   final String text;
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: EdgeInsets.symmetric(
+        horizontal: compact ? 12 : 16,
+        vertical: compact ? 11 : 14,
+      ),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(.92),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        borderRadius: BorderRadius.circular(compact ? LumoRadius.md : LumoRadius.lg),
         border: Border.all(color: Colors.white, width: 2),
         boxShadow: [
           BoxShadow(
@@ -146,12 +127,14 @@ class _SpeechBubble extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: const TextStyle(
+        maxLines: compact ? 4 : null,
+        overflow: compact ? TextOverflow.ellipsis : TextOverflow.visible,
+        style: TextStyle(
           fontFamily: 'Nunito',
-          fontSize: 15,
+          fontSize: compact ? 13 : 15,
           fontWeight: FontWeight.w900,
           color: LumoColors.ink900,
-          height: 1.35,
+          height: 1.3,
         ),
       ),
     );
@@ -163,18 +146,21 @@ class _DailyGoalCard extends StatelessWidget {
     required this.stars,
     required this.xp,
     required this.level,
+    required this.compact,
   });
+
   final int stars;
   final int xp;
   final int level;
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: EdgeInsets.all(compact ? 10 : 14),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(.78),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        borderRadius: BorderRadius.circular(compact ? LumoRadius.md : LumoRadius.lg),
         border: Border.all(color: Colors.white, width: 1.5),
         boxShadow: [
           BoxShadow(
@@ -187,30 +173,31 @@ class _DailyGoalCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Lernstand',
             style: TextStyle(
               fontFamily: 'Nunito',
-              fontSize: 14,
+              fontSize: compact ? 12 : 14,
               fontWeight: FontWeight.w900,
               color: LumoColors.ink900,
             ),
           ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          SizedBox(height: compact ? 6 : 8),
+          Wrap(
+            spacing: compact ? 8 : 14,
+            runSpacing: 6,
             children: [
-              _Stat(emoji: '⭐', value: '$stars'),
-              _Stat(emoji: '🏅', value: 'XP $xp'),
-              _Stat(emoji: '💎', value: 'Level $level'),
+              _Stat(label: 'Sterne', value: '$stars', compact: compact),
+              _Stat(label: 'XP', value: '$xp', compact: compact),
+              _Stat(label: 'Level', value: '$level', compact: compact),
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: compact ? 7 : 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.pill),
             child: LinearProgressIndicator(
               value: (stars / 50).clamp(0.0, 1.0),
-              minHeight: 6,
+              minHeight: compact ? 5 : 6,
               color: LumoColors.orange,
               backgroundColor: LumoColors.orange.withOpacity(.14),
             ),
@@ -222,44 +209,31 @@ class _DailyGoalCard extends StatelessWidget {
 }
 
 class _Stat extends StatelessWidget {
-  const _Stat({required this.emoji, required this.value});
-  final String emoji;
+  const _Stat({required this.label, required this.value, required this.compact});
+
+  final String label;
   final String value;
+  final bool compact;
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(mainAxisSize: MainAxisSize.min, children: [
-      Text(emoji, style: const TextStyle(fontSize: 14)),
-      const SizedBox(width: 4),
-      Text(
-        value,
-        style: const TextStyle(
-          fontFamily: 'Nunito',
-          fontSize: 13,
-          fontWeight: FontWeight.w900,
-          color: LumoColors.ink700,
-        ),
-      ),
-    ]);
-  }
-}
-
-class _FallbackFox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 160,
-      height: 200,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [LumoColors.orange, LumoColors.orangeLight],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(LumoRadius.xl),
+      padding: EdgeInsets.symmetric(
+        horizontal: compact ? 8 : 10,
+        vertical: compact ? 5 : 6,
       ),
-      child: const Center(
-        child: Text('🦊', style: TextStyle(fontSize: 80)),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(.62),
+        borderRadius: BorderRadius.circular(LumoRadius.pill),
+      ),
+      child: Text(
+        '$label $value',
+        style: TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: compact ? 10 : 12,
+          fontWeight: FontWeight.w900,
+          color: LumoColors.ink700,
+        ),
       ),
     );
   }
