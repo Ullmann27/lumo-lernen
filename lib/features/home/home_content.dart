@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/app_update_service.dart';
+import '../../core/reading_progress_repository.dart';
+import '../../domain/analysis/daily_recommendation_engine.dart';
+import '../../domain/analysis/lumo_analysis_domain.dart';
 import '../../widgets/cards/kpi_card.dart';
 import '../../widgets/cards/learning_module_card.dart';
 
@@ -46,6 +49,8 @@ class HomeContent extends StatelessWidget {
                 )),
             const SizedBox(height: 16),
             const _UpdateCheckerCard(),
+            const SizedBox(height: 16),
+            _DailyPlanCard(appState: appState, onSection: onSection),
             const SizedBox(height: 22),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -88,6 +93,121 @@ class HomeContent extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class _DailyPlanCard extends StatefulWidget {
+  const _DailyPlanCard({required this.appState, required this.onSection});
+
+  final LumoAppState appState;
+  final ValueChanged<LumoSection> onSection;
+
+  @override
+  State<_DailyPlanCard> createState() => _DailyPlanCardState();
+}
+
+class _DailyPlanCardState extends State<_DailyPlanCard> {
+  final _readingRepo = ReadingProgressRepository();
+  final _engine = const DailyRecommendationEngine();
+  late Future<DailyRecommendationPlan> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = _buildPlan();
+  }
+
+  Future<DailyRecommendationPlan> _buildPlan() async {
+    if (!widget.appState.learningProfileLoaded) {
+      try {
+        await widget.appState.loadLearningProfile();
+      } catch (_) {}
+    }
+    final reading = await _readingRepo.loadReadingSummaries();
+    return _engine.buildPlan(
+      childId: 'local_${widget.appState.state.childName.toLowerCase()}_${widget.appState.state.grade}',
+      skills: widget.appState.learningSkills(),
+      readingSummaries: reading,
+      dailyGoalTarget: widget.appState.state.settings.dailyGoal,
+    );
+  }
+
+  void _startBlock(DailyRecommendationBlock block) {
+    widget.appState.update(widget.appState.state.copyWith(
+      subject: block.subject,
+      unit: block.unit,
+      mood: LumoMood.point,
+      lumoMessage: block.description,
+      sessionKind: block.kind == RecommendationKind.tutoring ? LumoSessionKind.tutoring : LumoSessionKind.quickPractice,
+    ));
+    if (block.kind == RecommendationKind.reading) {
+      widget.onSection(LumoSection.reading);
+    } else {
+      widget.onSection(LumoSection.exercises);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<DailyRecommendationPlan>(
+      future: _future,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: lumoCard(),
+            child: const Text('Lumo erstellt deinen Tagesplan …', style: LumoTextStyles.heading3),
+          );
+        }
+        final plan = snapshot.data!;
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(18),
+          decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFEFF6FF), Color(0xFFFFF7ED)])),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              Container(width: 52, height: 52, decoration: BoxDecoration(color: Colors.white.withOpacity(.84), borderRadius: BorderRadius.circular(LumoRadius.lg)), child: const Center(child: Text('🦊', style: TextStyle(fontSize: 30)))),
+              const SizedBox(width: 12),
+              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(plan.headline, style: LumoTextStyles.heading2),
+                const SizedBox(height: 4),
+                Text(plan.lumoMessage, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+              ])),
+              Container(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8), decoration: BoxDecoration(color: Colors.white.withOpacity(.76), borderRadius: BorderRadius.circular(LumoRadius.pill)), child: Text('${plan.totalMinutes} Min.', style: LumoTextStyles.label.copyWith(color: LumoColors.orange))),
+            ]),
+            const SizedBox(height: 14),
+            Wrap(spacing: 10, runSpacing: 10, children: plan.blocks.map((block) {
+              return GestureDetector(
+                onTap: () => _startBlock(block),
+                child: Container(
+                  width: 220,
+                  padding: const EdgeInsets.all(13),
+                  decoration: BoxDecoration(color: Colors.white.withOpacity(.82), borderRadius: BorderRadius.circular(LumoRadius.lg), border: Border.all(color: LumoColors.orange.withOpacity(.16))),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(block.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.heading3.copyWith(color: _colorFor(block.kind))),
+                    const SizedBox(height: 5),
+                    Text(block.description, maxLines: 3, overflow: TextOverflow.ellipsis, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700)),
+                    const SizedBox(height: 8),
+                    Text('Starten →', style: LumoTextStyles.cta.copyWith(color: _colorFor(block.kind))),
+                  ]),
+                ),
+              );
+            }).toList()),
+          ]),
+        );
+      },
+    );
+  }
+
+  Color _colorFor(RecommendationKind kind) {
+    return switch (kind) {
+      RecommendationKind.reading => LumoColors.blue,
+      RecommendationKind.tutoring => LumoColors.purple,
+      RecommendationKind.success => LumoColors.teal,
+      RecommendationKind.review => LumoColors.gold,
+      RecommendationKind.practice => LumoColors.orange,
+    };
   }
 }
 
