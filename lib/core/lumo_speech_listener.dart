@@ -42,7 +42,10 @@ class LumoSpeechListener extends ChangeNotifier {
     }
   }
 
-  Future<void> startListening({ValueChanged<String>? onResult}) async {
+  Future<void> startListening({
+    ValueChanged<String>? onResult,
+    ValueChanged<String>? onFinalResult,
+  }) async {
     final ok = await initialize();
     if (!ok) return;
     _lastWords = '';
@@ -61,6 +64,9 @@ class LumoSpeechListener extends ChangeNotifier {
         onResult?.call(_lastWords);
         if (result.finalResult) {
           _listening = false;
+          if (_lastWords.trim().isNotEmpty) {
+            onFinalResult?.call(_lastWords);
+          }
         }
         notifyListeners();
       },
