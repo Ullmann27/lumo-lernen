@@ -140,9 +140,9 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
               builder: (context, constraints) {
                 final width = constraints.maxWidth;
                 final showNav = width >= 720;
-                final showStage = width >= 1120;
-                final navWidth = width < 980 ? 176.0 : 200.0;
-                final gap = width < 980 ? 8.0 : 10.0;
+                final showStage = width >= 860;
+                final navWidth = width < 980 ? 160.0 : 200.0;
+                final gap = width < 980 ? 6.0 : 10.0;
 
                 return Padding(
                   padding: EdgeInsets.all(width < 720 ? 6 : 10),
