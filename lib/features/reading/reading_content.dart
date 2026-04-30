@@ -37,7 +37,9 @@ class _ReadingContentState extends State<ReadingContent> {
   double? _lastScore;
   int _interventionCount = 0;
   bool _finished = false;
-  bool _autoListening = true;
+  bool _autoListening = false;
+  bool _autoStartedThisSentence = false;
+  bool _showNotHeardHint = false;
   bool _processing = false;
   bool _loadingStory = true;
   Timer? _listenTimer;
@@ -75,7 +77,10 @@ class _ReadingContentState extends State<ReadingContent> {
     if (widget.appState.state.settings.microphoneEnabled) {
       _speech.initialize();
     }
-    await _speakThenListen('Wir lesen jetzt ${story.title}. Lies den ersten Satz langsam vor.');
+    await _speakThenListen(
+      'Wir lesen jetzt ${story.title}. Wenn du bereit bist, '
+      'drueck auf das Mikrofon und lies den Satz vor.',
+    );
     await _persistReadingProgress(latestScore: 0);
   }
 
@@ -126,10 +131,16 @@ class _ReadingContentState extends State<ReadingContent> {
       lumoMessage: message,
     ));
     await LumoVoice.instance.speak(message);
-    if (!mounted || _finished || !_autoListening) return;
-    final delayMs = (message.length * 55).clamp(850, 2600).toInt();
+    if (!mounted || _finished) return;
+    // PAEDAGOGISCHER FIX: Mikrofon startet NUR automatisch wenn:
+    //   - Eltern-Auto-Modus ist explizit aktiv
+    //   - UND fuer diesen Satz wurde noch nicht automatisch gestartet
+    // Damit gibt es keine Endlosschleife mehr nach no_match.
+    if (!_autoListening || _autoStartedThisSentence) return;
+    final delayMs = (message.length * 55).clamp(1500, 3000).toInt();
     _listenTimer = Timer(Duration(milliseconds: delayMs), () {
       if (!mounted || _finished || _speech.listening) return;
+      _autoStartedThisSentence = true;
       _startListening(auto: true);
     });
   }
@@ -139,7 +150,11 @@ class _ReadingContentState extends State<ReadingContent> {
       await _speech.stopListening();
       return;
     }
-    _autoListening = true;
+    // PAEDAGOGISCHER FIX: manueller Tap aktiviert KEIN Auto-Listening,
+    // nur einen einzelnen Aufnahme-Versuch. Auto bleibt was Eltern entscheiden.
+    setState(() {
+      _showNotHeardHint = false;
+    });
     await _startListening(auto: false);
   }
 
@@ -213,24 +228,35 @@ class _ReadingContentState extends State<ReadingContent> {
       _processTranscript(_lastTranscript);
       return;
     }
+    // PAEDAGOGISCHER FIX:
+    //  - kein Lesefehler speichern (bei reinen Erkennungsfehlern)
+    //  - kein Problemwort speichern
+    //  - KEIN automatischer Re-Listen-Loop
+    //  - kindgerechte Bitte, manuell erneut zu starten
+    const calm = 'Ich habe dich nicht gut gehoert. Das war kein Fehler. '
+        'Druck nochmal auf das Mikrofon, wenn du bereit bist.';
+    setState(() {
+      _lastScore = null;
+      _lumoLine = calm;
+      _showNotHeardHint = true;
+      // Auto-Modus nach no_match deaktivieren, um Pingpong zu verhindern
+      _autoListening = false;
+    });
     if (progress != null) {
-      final decision = _attemptLedger.recordNoSpeech(
+      // Nur Ledger-Bookkeeping: noSpeech wird gezaehlt, aber ohne
+      // Lesefehler oder Problemwort zu erzeugen. Dafuer ist
+      // recordNoSpeech zustaendig.
+      _attemptLedger.recordNoSpeech(
         sentence: progress.currentSentence,
         attemptNumber: progress.attemptNumber,
       );
-      setState(() {
-        _lastScore = null;
-        _progress = progress.copyWith(problemWords: _attemptLedger.persistentProblemWords);
-        _lumoLine = decision.childMessage;
-      });
-      _speakThenListen(decision.childMessage);
-      return;
     }
-    setState(() {
-      _lastScore = null;
-      _lumoLine = 'Ich habe dich nicht gut verstanden. Wir zaehlen das nicht als Fehler.';
-    });
-    _speakThenListen('Ich habe dich nicht gut verstanden. Wir versuchen denselben Satz noch einmal langsam.');
+    widget.appState.update(widget.appState.state.copyWith(
+      mood: LumoMood.comfort,
+      lumoMessage: calm,
+    ));
+    // Sanft sprechen, aber NICHT mehr automatisch zuhoeren.
+    LumoVoice.instance.speak(calm);
   }
 
   void _processTranscript(String transcript) {
@@ -263,6 +289,12 @@ class _ReadingContentState extends State<ReadingContent> {
 
     setState(() {
       _lastTranscript = text;
+      // PAEDAGOGISCHER FIX: wenn der Satz wechselt, Auto-Flag zuruecksetzen
+      // damit Eltern-Auto-Modus beim naechsten Satz wieder einmal helfen darf.
+      if (adjustedProgress.currentIndex != progress.currentIndex) {
+        _autoStartedThisSentence = false;
+      }
+      _showNotHeardHint = false;
       _progress = adjustedProgress;
       _lastScore = result.analysis.alignmentScore;
       _lumoLine = adjustedProgress.isComplete
@@ -288,11 +320,21 @@ class _ReadingContentState extends State<ReadingContent> {
 
     LumoVoice.instance.speak(nextMessage).whenComplete(() {
       _processing = false;
-      if (!mounted || _finished || !_autoListening) return;
-      final delayMs = (nextMessage.length * 55).clamp(850, 2600).toInt();
+      if (!mounted || _finished) return;
+      // PAEDAGOGISCHER FIX:
+      //  - kein Re-Listen wenn Auto-Modus aus (Standard)
+      //  - kein Re-Listen wenn fuer diesen Satz schon einmal automatisch
+      //    gestartet wurde (verhindert Endlosschleife bei wiederholten
+      //    no_match-Versuchen)
+      //  - mindestens 3 Sekunden Ruhe vor Re-Listen
+      if (!_autoListening || _autoStartedThisSentence) return;
+      final delayMs = (nextMessage.length * 55).clamp(3000, 5000).toInt();
       _listenTimer?.cancel();
       _listenTimer = Timer(Duration(milliseconds: delayMs), () {
-        if (mounted && !_finished && !_speech.listening) _startListening(auto: true);
+        if (mounted && !_finished && !_speech.listening) {
+          _autoStartedThisSentence = true;
+          _startListening(auto: true);
+        }
       });
     });
   }
@@ -398,8 +440,12 @@ class _ReadingContentState extends State<ReadingContent> {
                   lastTranscript: _lastTranscript,
                   error: _speech.error,
                   autoListening: _autoListening,
+                  showNotHeardHint: _showNotHeardHint,
                   onTap: _finished ? null : _toggleListening,
-                  onAutoToggle: (value) => setState(() => _autoListening = value),
+                  onAutoToggle: (value) => setState(() {
+                    _autoListening = value;
+                    _autoStartedThisSentence = false;
+                  }),
                 ),
                 if (progress.problemWords.isNotEmpty) ...[
                   const SizedBox(height: 14),
@@ -588,6 +634,7 @@ class _MicrophonePanel extends StatelessWidget {
     required this.lastTranscript,
     required this.error,
     required this.autoListening,
+    required this.showNotHeardHint,
     required this.onTap,
     required this.onAutoToggle,
   });
@@ -597,52 +644,109 @@ class _MicrophonePanel extends StatelessWidget {
   final String lastTranscript;
   final String? error;
   final bool autoListening;
+  final bool showNotHeardHint;
   final VoidCallback? onTap;
   final ValueChanged<bool> onAutoToggle;
 
   @override
   Widget build(BuildContext context) {
+    // Drei klare Zustaende fuer die Karte:
+    //   listening      -> "Ich hoere zu ..."
+    //   showNotHeardHint -> "Nicht verstanden"
+    //   sonst           -> "Bereit"
+    final String headline;
+    final String subline;
+    final Color accent;
+    if (!enabled) {
+      headline = 'Mikrofon ausgeschaltet';
+      subline = 'Im Elternbereich kann das Mikrofon eingeschaltet werden.';
+      accent = LumoColors.ink500;
+    } else if (listening) {
+      headline = 'Ich höre zu …';
+      subline = 'Lies den Satz ruhig bis zum Ende.';
+      accent = LumoColors.teal;
+    } else if (showNotHeardHint) {
+      headline = 'Ich habe dich nicht gut gehört.';
+      subline = 'Das war kein Fehler. Drück nochmal auf das Mikrofon, '
+          'wenn du bereit bist.';
+      accent = LumoColors.purple;
+    } else {
+      headline = 'Bereit zum Lesen';
+      subline = 'Drück auf das Mikrofon, wenn du bereit bist.';
+      accent = LumoColors.orange;
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: lumoCard(),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Expanded(
-            child: Text(
-              enabled ? (listening ? 'Lumo hoert zu …' : 'Lumo startet das Mikrofon automatisch') : 'Mikrofon im Elternbereich ausgeschaltet',
-              style: LumoTextStyles.heading3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(headline, style: LumoTextStyles.heading3.copyWith(color: accent)),
+                const SizedBox(height: 4),
+                Text(
+                  subline,
+                  style: LumoTextStyles.body.copyWith(color: LumoColors.ink500),
+                ),
+              ],
             ),
           ),
+          const SizedBox(width: 12),
           GestureDetector(
             onTap: enabled ? onTap : null,
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 160),
-              width: 58,
-              height: 58,
+              duration: const Duration(milliseconds: 200),
+              width: 72,
+              height: 72,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: listening ? LumoColors.practice : LumoColors.orange,
-                boxShadow: LumoShadow.pill,
+                color: !enabled
+                    ? LumoColors.ink300
+                    : listening
+                        ? LumoColors.practice
+                        : LumoColors.orange,
+                boxShadow: enabled ? LumoShadow.pill : null,
               ),
-              child: Icon(listening ? Icons.stop_rounded : Icons.mic_rounded, color: Colors.white, size: 30),
+              child: Icon(
+                listening ? Icons.stop_rounded : Icons.mic_rounded,
+                color: Colors.white,
+                size: 36,
+              ),
             ),
           ),
         ]),
-        const SizedBox(height: 10),
+        const SizedBox(height: 14),
+        // Eltern-Auto-Modus weiterhin moeglich, aber pro Satz max. 1 Versuch
         SwitchListTile.adaptive(
           contentPadding: EdgeInsets.zero,
           value: autoListening,
           onChanged: enabled ? onAutoToggle : null,
-          title: const Text('Automatisch zuhoeren', style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
-          subtitle: const Text('Lumo startet nach seiner Ansage selbst das Mikrofon.', style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w700)),
+          title: const Text(
+            'Eltern: Automatisch zuhören',
+            style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900),
+          ),
+          subtitle: const Text(
+            'Pro Satz höchstens ein automatischer Versuch. '
+            'Bei Stille bleibt das Mikrofon aus.',
+            style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w700),
+          ),
         ),
         if (lastTranscript.isNotEmpty) ...[
-          const SizedBox(height: 10),
-          Text('Gehoert: $lastTranscript', style: LumoTextStyles.body.copyWith(color: LumoColors.ink600)),
+          const SizedBox(height: 6),
+          Text(
+            'Gehört: $lastTranscript',
+            style: LumoTextStyles.body.copyWith(color: LumoColors.ink600),
+          ),
         ],
         if (error != null && error != 'error_no_match') ...[
           const SizedBox(height: 8),
-          Text('Mikrofon-Hinweis: $error', style: LumoTextStyles.caption.copyWith(color: LumoColors.practice)),
+          Text(
+            'Mikrofon-Hinweis: $error',
+            style: LumoTextStyles.caption.copyWith(color: LumoColors.practice),
+          ),
         ],
       ]),
     );
