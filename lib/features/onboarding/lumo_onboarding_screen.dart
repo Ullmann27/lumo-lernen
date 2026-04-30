@@ -42,11 +42,13 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final isCompact = width < 720;
     return Scaffold(
       backgroundColor: LumoColors.appBg,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(18),
+          padding: EdgeInsets.all(isCompact ? 12 : 18),
           child: Container(
             width: double.infinity,
             decoration: lumoCard(
@@ -56,27 +58,60 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                 end: Alignment.bottomRight,
               ),
             ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.all(28),
-                    child: _buildStep(),
+            child: isCompact
+                ? _buildCompactLayout()
+                : Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Padding(
+                          padding: const EdgeInsets.all(28),
+                          child: AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 280),
+                            child: KeyedSubtree(
+                              key: ValueKey(_step),
+                              child: _buildStep(),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: _LumoIntroStage(step: _step),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: _LumoIntroStage(step: _step),
-                  ),
-                ),
-              ],
-            ),
           ),
         ),
       ),
+    );
+  }
+
+  /// Mobile-Layout: kompakter Lumo-Header oben, Step-Inhalt darunter,
+  /// scrollbar fuer kleine Bildschirme.
+  Widget _buildCompactLayout() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: _LumoIntroHeaderCompact(step: _step),
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 280),
+              child: KeyedSubtree(
+                key: ValueKey(_step),
+                child: _buildStep(),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -209,6 +244,62 @@ class _SelectPill extends StatelessWidget {
           boxShadow: selected ? LumoShadow.pill : LumoShadow.card,
         ),
         child: Text(label, style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, color: selected ? Colors.white : LumoColors.ink700)),
+      ),
+    );
+  }
+}
+
+class _LumoIntroHeaderCompact extends StatelessWidget {
+  const _LumoIntroHeaderCompact({required this.step});
+  final int step;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = switch (step) {
+      0 => 'Hallo! Ich bin Lumo.',
+      1 => 'Wie darf ich dich nennen?',
+      2 => 'Ich passe die Erklärung an dich an.',
+      _ => 'Jetzt wähle ich den richtigen Stoff.',
+    };
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [LumoColors.stageBg1, LumoColors.stageBg2],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: Colors.white.withOpacity(.8), width: 1.4),
+        boxShadow: LumoShadow.stage,
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/images/lumo_fox.png',
+            height: 78,
+            fit: BoxFit.contain,
+            errorBuilder: (_, __, ___) =>
+                const Text('🦊', style: TextStyle(fontSize: 56)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 240),
+              child: Text(
+                text,
+                key: ValueKey(step),
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900,
+                  color: LumoColors.ink900,
+                  height: 1.25,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
