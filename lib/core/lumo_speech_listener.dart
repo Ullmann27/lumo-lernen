@@ -7,8 +7,11 @@ class LumoSpeechListener extends ChangeNotifier {
   bool _available = false;
   bool _initialized = false;
   bool _listening = false;
+  bool _finalDelivered = false;
   String _lastWords = '';
   String? _error;
+  ValueChanged<String>? _activeFinalCallback;
+  VoidCallback? _activeNoMatchCallback;
 
   bool get available => _available;
   bool get initialized => _initialized;
@@ -21,12 +24,21 @@ class LumoSpeechListener extends ChangeNotifier {
     try {
       _available = await _speech.initialize(
         onStatus: (status) {
+          final wasListening = _listening;
           _listening = status == 'listening';
+          if (wasListening && !_listening && _lastWords.trim().isNotEmpty) {
+            _deliverFinal(_lastWords);
+          }
           notifyListeners();
         },
         onError: (error) {
           _error = error.errorMsg;
           _listening = false;
+          if (_lastWords.trim().isNotEmpty) {
+            _deliverFinal(_lastWords);
+          } else if (_isNoMatchError(error.errorMsg)) {
+            _activeNoMatchCallback?.call();
+          }
           notifyListeners();
         },
       );
@@ -45,32 +57,53 @@ class LumoSpeechListener extends ChangeNotifier {
   Future<void> startListening({
     ValueChanged<String>? onResult,
     ValueChanged<String>? onFinalResult,
+    VoidCallback? onNoMatch,
   }) async {
     final ok = await initialize();
     if (!ok) return;
     _lastWords = '';
     _error = null;
+    _finalDelivered = false;
+    _activeFinalCallback = onFinalResult;
+    _activeNoMatchCallback = onNoMatch;
     _listening = true;
     notifyListeners();
 
     await _speech.listen(
       localeId: 'de_AT',
       listenMode: stt.ListenMode.confirmation,
-      listenFor: const Duration(seconds: 8),
-      pauseFor: const Duration(seconds: 2),
+      listenFor: const Duration(seconds: 9),
+      pauseFor: const Duration(milliseconds: 1200),
       partialResults: true,
       onResult: (result) {
         _lastWords = result.recognizedWords;
         onResult?.call(_lastWords);
         if (result.finalResult) {
           _listening = false;
-          if (_lastWords.trim().isNotEmpty) {
-            onFinalResult?.call(_lastWords);
-          }
+          _deliverFinal(_lastWords);
+          _stopSilently();
         }
         notifyListeners();
       },
     );
+  }
+
+  void _deliverFinal(String words) {
+    final text = words.trim();
+    if (_finalDelivered || text.isEmpty) return;
+    _finalDelivered = true;
+    _activeFinalCallback?.call(text);
+  }
+
+  bool _isNoMatchError(String value) {
+    final normalized = value.toLowerCase();
+    return normalized.contains('no_match') || normalized.contains('no match');
+  }
+
+  Future<void> _stopSilently() async {
+    try {
+      await _speech.stop();
+    } catch (_) {}
   }
 
   Future<void> stopListening() async {
@@ -78,6 +111,7 @@ class LumoSpeechListener extends ChangeNotifier {
       await _speech.stop();
     } catch (_) {}
     _listening = false;
+    if (_lastWords.trim().isNotEmpty) _deliverFinal(_lastWords);
     notifyListeners();
   }
 
