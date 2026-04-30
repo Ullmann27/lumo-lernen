@@ -45,12 +45,17 @@ class ReadingProgressRepository {
     final existing = current.where((item) => item.id == id).firstOrNull;
     final previousCompleted = existing?.completedSentences ?? 0;
     final previousScore = existing?.averageAlignmentScore ?? 0;
-    final totalCompletedForAverage = (previousCompleted + 1).clamp(1, 9999).toInt();
-    final average = previousCompleted == 0
-        ? latestAlignmentScore
-        : ((previousScore * previousCompleted) + latestAlignmentScore) / totalCompletedForAverage;
+    final hasNewRealReadingScore = completedSentences > previousCompleted || latestAlignmentScore > 0;
+    final totalCompletedForAverage = hasNewRealReadingScore ? (previousCompleted + 1).clamp(1, 9999).toInt() : previousCompleted;
+    final average = !hasNewRealReadingScore
+        ? previousScore
+        : previousCompleted == 0
+            ? latestAlignmentScore
+            : ((previousScore * previousCompleted) + latestAlignmentScore) / totalCompletedForAverage;
     final now = DateTime.now();
-    final mergedWords = <String>{...?existing?.problemWords, ...problemWords}.toList(growable: false);
+    final mergedWords = <String>{...?existing?.problemWords, ...problemWords}
+        .where((value) => value.trim().isNotEmpty)
+        .toList(growable: false);
     final summary = ReadingAnalysisSummary(
       id: id,
       childId: childId,
