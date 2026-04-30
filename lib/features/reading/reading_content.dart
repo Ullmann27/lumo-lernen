@@ -8,6 +8,7 @@ import '../../core/lumo_voice.dart';
 import '../../core/reading_progress_repository.dart';
 import '../../core/reading_story_memory_repository.dart';
 import '../../domain/agent/lumo_agent_domain.dart';
+import '../../domain/reading/reading_attempt_history.dart';
 import '../../domain/reading/reading_domain.dart';
 
 class ReadingContent extends StatefulWidget {
@@ -26,6 +27,7 @@ class _ReadingContentState extends State<ReadingContent> {
   final _speech = LumoSpeechListener();
   final _readingRepo = ReadingProgressRepository();
   final _storyMemoryRepo = ReadingStoryMemoryRepository();
+  final _attemptLedger = ReadingAttemptLedger();
 
   ReadingSessionProgress? _progress;
   late String _readingSessionId;
@@ -206,8 +208,22 @@ class _ReadingContentState extends State<ReadingContent> {
   }
 
   void _handleNoMatch() {
+    final progress = _progress;
     if (_lastTranscript.trim().isNotEmpty) {
       _processTranscript(_lastTranscript);
+      return;
+    }
+    if (progress != null) {
+      final decision = _attemptLedger.recordNoSpeech(
+        sentence: progress.currentSentence,
+        attemptNumber: progress.attemptNumber,
+      );
+      setState(() {
+        _lastScore = null;
+        _progress = progress.copyWith(problemWords: _attemptLedger.persistentProblemWords);
+        _lumoLine = decision.childMessage;
+      });
+      _speakThenListen(decision.childMessage);
       return;
     }
     setState(() {
@@ -228,34 +244,45 @@ class _ReadingContentState extends State<ReadingContent> {
     if (_processedTranscript == text || _processing) return;
     _processedTranscript = text;
     _processing = true;
+
     final result = _monitor.processSentence(childId: _childId, progress: progress, transcript: text);
-    final action = result.decision.primary;
-    if (!result.analysis.correctEnough && result.analysis.problemWord != null && progress.attemptNumber >= 2) {
+    final attemptDecision = _attemptLedger.recordAnalysis(
+      sentence: progress.currentSentence,
+      attemptNumber: progress.attemptNumber,
+      analysis: result.analysis,
+    );
+    final adjustedProgress = attemptDecision.shouldKeepSameAttempt
+        ? progress.copyWith(problemWords: _attemptLedger.persistentProblemWords)
+        : result.nextProgress.copyWith(problemWords: _attemptLedger.persistentProblemWords);
+
+    if (attemptDecision.shouldCountAsIntervention) {
       _interventionCount++;
     }
 
     setState(() {
       _lastTranscript = text;
-      _progress = result.nextProgress;
+      _progress = adjustedProgress;
       _lastScore = result.analysis.alignmentScore;
-      _lumoLine = result.nextProgress.isComplete
+      _lumoLine = adjustedProgress.isComplete
           ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Saetze und Uebungswoerter.'
-          : action.message;
-      _finished = result.nextProgress.isComplete;
+          : attemptDecision.childMessage;
+      _finished = adjustedProgress.isComplete;
     });
 
     _persistReadingProgress(latestScore: result.analysis.alignmentScore);
 
     widget.appState.update(widget.appState.state.copyWith(
-      mood: result.nextProgress.isComplete ? LumoMood.celebrate : _moodFor(action.tone),
+      mood: adjustedProgress.isComplete
+          ? LumoMood.celebrate
+          : attemptDecision.outcome == ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear
+              ? LumoMood.comfort
+              : _moodFor(result.decision.primary.tone),
       lumoMessage: _lumoLine,
     ));
 
-    final nextMessage = result.nextProgress.isComplete
+    final nextMessage = adjustedProgress.isComplete
         ? _lumoLine
-        : result.analysis.correctEnough
-            ? 'Gut gelesen. Jetzt kommt der naechste Satz. Lies ihn laut vor.'
-            : _lumoLine;
+        : attemptDecision.childMessage;
 
     LumoVoice.instance.speak(nextMessage).whenComplete(() {
       _processing = false;
@@ -279,7 +306,7 @@ class _ReadingContentState extends State<ReadingContent> {
       totalSentences: progress.story.sentences.length,
       latestAlignmentScore: latestScore,
       interventionCount: _interventionCount,
-      problemWords: progress.problemWords,
+      problemWords: _attemptLedger.persistentProblemWords,
     );
   }
 
