@@ -82,20 +82,36 @@ jobs:
           flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER" 2>&1 | tee build_apk.log
           BUILD_EXIT=$?
           echo "BUILD_APK_EXIT=$BUILD_EXIT" | tee -a build_apk.log
+          echo "APK files after build:" | tee -a build_apk.log
+          find build -type f -name "*.apk" -print | tee -a build_apk.log || true
           exit $BUILD_EXIT
 
       - name: Prepare direct APK download
         if: success()
         run: |
+          set -e
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-debug.apk dist/Lumo-Lernen-latest.apk
-          cp build/app/outputs/flutter-apk/app-debug.apk "dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk"
+          APK_PATH=""
+          if [ -f "build/app/outputs/flutter-apk/app-debug.apk" ]; then
+            APK_PATH="build/app/outputs/flutter-apk/app-debug.apk"
+          else
+            APK_PATH="$(find build -type f -name "*.apk" | sort | head -n 1)"
+          fi
+          if [ -z "$APK_PATH" ] || [ ! -f "$APK_PATH" ]; then
+            echo "No APK file found after successful build. Directory snapshot:" | tee -a build_apk.log
+            find build -maxdepth 6 -type f | sort | tee -a build_apk.log || true
+            exit 1
+          fi
+          echo "Using APK: $APK_PATH" | tee -a build_apk.log
+          cp "$APK_PATH" dist/Lumo-Lernen-latest.apk
+          cp "$APK_PATH" "dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk"
           cat > dist/update-info.txt <<EOF
           Lumo Lernen Debug APK
           Commit: ${GITHUB_SHA}
           Build number: ${GITHUB_RUN_NUMBER}
           Branch: ${GITHUB_REF_NAME}
-          
+          Source APK: ${APK_PATH}
+
           Am Handy diese APK oeffnen. Android aktualisiert die vorhandene App,
           wenn Paketname und Signatur zur installierten App passen.
           EOF
