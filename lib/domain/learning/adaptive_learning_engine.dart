@@ -57,7 +57,7 @@ class AdaptiveTaskSelector {
 
   int _daysSince(DateTime? value, DateTime now) {
     if (value == null) return 30;
-    return now.difference(value).inDays.clamp(0, 365);
+    return now.difference(value).inDays.clamp(0, 365).toInt();
   }
 }
 
@@ -70,7 +70,7 @@ class DifficultyEngine {
     int minDifficulty = 1,
     int maxDifficulty = 6,
   }) {
-    var target = skill.currentDifficulty.clamp(minDifficulty, maxDifficulty);
+    var target = skill.currentDifficulty.clamp(minDifficulty, maxDifficulty).toInt();
 
     if (skill.consecutiveCorrect >= 3 && skill.masteryScore >= 0.78 && skill.helpCount <= skill.attempts * 0.25) {
       target += 1;
@@ -88,7 +88,7 @@ class DifficultyEngine {
       target += skill.masteryScore >= 0.75 ? 1 : 0;
     }
 
-    target = target.clamp(minDifficulty, maxDifficulty);
+    target = target.clamp(minDifficulty, maxDifficulty).toInt();
     return DifficultyWindow(
       min: max(minDifficulty, target - 1),
       target: target,
@@ -221,7 +221,7 @@ class SkillStateUpdater {
     var next = state.currentDifficulty;
     if (state.consecutiveCorrect >= 3 && state.masteryScore >= 0.78) next += 1;
     if (state.consecutiveWrong >= 2 || state.frustrationSignals >= 3) next -= 1;
-    return next.clamp(1, 6);
+    return next.clamp(1, 6).toInt();
   }
 }
 
