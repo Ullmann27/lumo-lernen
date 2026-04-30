@@ -25,6 +25,11 @@ class _LearningContentState extends State<LearningContent> {
   final _resultHandler = const SkillStateUpdater();
   final _rewardEngine = const RewardEngine();
   final Map<String, SkillState> _skillStates = <String, SkillState>{};
+  final List<String> _recentTaskKeys = <String>[];
+  final List<String> _recentUnits = <String>[];
+
+  static const int _recentTaskMemory = 36;
+  static const int _recentUnitMemory = 6;
 
   late LumoTask _task;
   late TaskInstance _taskInstance;
@@ -47,6 +52,7 @@ class _LearningContentState extends State<LearningContent> {
 
   void _loadNextTask({bool resetCounter = false}) {
     _task = _nextTask();
+    _rememberTask(_task);
     _taskInstance = _adapter.toTaskInstance(
       task: _task,
       childId: _childId,
@@ -68,14 +74,47 @@ class _LearningContentState extends State<LearningContent> {
 
   LumoTask _nextTask() {
     final st = widget.appState.state;
-    return _factory.next(
+    final avoidUnits = st.unit == 'Alle' ? _recentUnits.toSet() : <String>{};
+    LumoTask? fallback;
+
+    for (var attempt = 0; attempt < 28; attempt++) {
+      final task = _factory.next(
+        grade: st.grade,
+        subject: st.subject,
+        unit: st.unit == 'Alle' ? 'Alle' : st.unit,
+        weakSkills: st.weakSkills,
+        avoidUnits: attempt < 16 ? avoidUnits : const <String>{},
+      );
+      fallback ??= task;
+      final key = _taskKey(task);
+      if (!_recentTaskKeys.contains(key)) return task;
+    }
+
+    return fallback ?? _factory.next(
       grade: st.grade,
       subject: st.subject,
       unit: st.unit == 'Alle' ? 'Alle' : st.unit,
       weakSkills: st.weakSkills,
-      avoidUnits: {},
+      avoidUnits: const <String>{},
     );
   }
+
+  void _rememberTask(LumoTask task) {
+    final key = _taskKey(task);
+    _recentTaskKeys.remove(key);
+    _recentTaskKeys.add(key);
+    while (_recentTaskKeys.length > _recentTaskMemory) {
+      _recentTaskKeys.removeAt(0);
+    }
+
+    _recentUnits.remove(task.unit);
+    _recentUnits.add(task.unit);
+    while (_recentUnits.length > _recentUnitMemory) {
+      _recentUnits.removeAt(0);
+    }
+  }
+
+  String _taskKey(LumoTask task) => '${task.subject}|${task.unit}|${task.prompt}|${task.answer}';
 
   void _answerAdaptive(AdaptiveTaskAnswer answer) {
     if (_answered) return;
