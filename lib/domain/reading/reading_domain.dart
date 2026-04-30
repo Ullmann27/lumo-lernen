@@ -125,11 +125,117 @@ class ReadingSessionProgress {
 class StoryEngine {
   const StoryEngine();
 
+  static const int estimatedVariantCount = 23040;
+
   Story pickStory({required int grade, List<String> weakWords = const <String>[]}) {
-    final pool = grade <= 1 ? _gradeOneStories : _gradeTwoStories;
-    final nowKey = DateTime.now().day + DateTime.now().month + DateTime.now().year;
-    final story = pool[nowKey % pool.length];
+    final seed = DateTime.now().microsecondsSinceEpoch ^ (grade * 7919) ^ weakWords.join('|').hashCode;
+    final story = _generateStory(grade: grade, seed: seed);
     return _markProblemWords(story, weakWords);
+  }
+
+  Story _generateStory({required int grade, required int seed}) {
+    final random = math.Random(seed);
+    final topic = _topics[random.nextInt(_topics.length)];
+    final hero = _heroes[random.nextInt(_heroes.length)];
+    final helper = _helpers[random.nextInt(_helpers.length)];
+    final place = _places[random.nextInt(_places.length)];
+    final action = _actions[random.nextInt(_actions.length)];
+    final object = topic.objects[random.nextInt(topic.objects.length)];
+    final observation = topic.observations[random.nextInt(topic.observations.length)];
+    final fact = topic.facts[random.nextInt(topic.facts.length)];
+    final safeRule = topic.safeRules[random.nextInt(topic.safeRules.length)];
+    final feeling = _feelings[random.nextInt(_feelings.length)];
+    final ending = _endings[random.nextInt(_endings.length)];
+    final title = '${topic.title}: $object';
+
+    final lines = grade <= 1
+        ? _gradeOneLines(
+            hero: hero,
+            helper: helper,
+            place: place,
+            action: action,
+            object: object,
+            observation: observation,
+            fact: fact,
+            safeRule: safeRule,
+            feeling: feeling,
+            ending: ending,
+          )
+        : _gradeTwoLines(
+            hero: hero,
+            helper: helper,
+            place: place,
+            action: action,
+            object: object,
+            observation: observation,
+            fact: fact,
+            safeRule: safeRule,
+            feeling: feeling,
+            ending: ending,
+          );
+
+    return Story(
+      id: 'generated.${grade}.${seed.abs()}',
+      title: title,
+      grade: grade,
+      level: grade <= 1 ? 1 : 2,
+      targetSkills: <String>['reading.fluency', 'reading.sentences', topic.skill],
+      sentences: _sentences(lines),
+    );
+  }
+
+  List<String> _gradeOneLines({
+    required String hero,
+    required String helper,
+    required String place,
+    required String action,
+    required String object,
+    required String observation,
+    required String fact,
+    required String safeRule,
+    required String feeling,
+    required String ending,
+  }) {
+    return <String>[
+      '$hero geht mit $helper zum $place.',
+      'Dort sieht $hero $object.',
+      '$hero schaut ganz genau hin.',
+      observation,
+      fact,
+      '$helper sagt: Lies langsam weiter.',
+      safeRule,
+      '$hero bleibt $feeling und liest den Satz nochmal.',
+      ending,
+    ];
+  }
+
+  List<String> _gradeTwoLines({
+    required String hero,
+    required String helper,
+    required String place,
+    required String action,
+    required String object,
+    required String observation,
+    required String fact,
+    required String safeRule,
+    required String feeling,
+    required String ending,
+  }) {
+    return <String>[
+      '$hero und $helper gehen heute zum $place.',
+      'Sie wollen etwas Neues lernen.',
+      'Auf dem Weg entdeckt $hero $object.',
+      '$helper bleibt stehen und beobachtet es ruhig.',
+      observation,
+      fact,
+      '$hero liest den Satz langsam und deutlich.',
+      'Dann erklaert $helper das neue Wissen mit eigenen Worten.',
+      safeRule,
+      '$hero ist $feeling, aber er bleibt ruhig.',
+      'Beim zweiten Lesen klingt der Satz schon fluessiger.',
+      action,
+      ending,
+    ];
   }
 
   Story _markProblemWords(Story story, List<String> weakWords) {
@@ -158,108 +264,6 @@ class StoryEngine {
     );
   }
 
-  static final List<Story> _gradeOneStories = <Story>[
-    Story(
-      id: 'story.fox_school.1',
-      title: 'Lumo geht zur Schule',
-      grade: 1,
-      level: 1,
-      targetSkills: const <String>['reading.sentences', 'reading.syllables', 'reading.fluency'],
-      sentences: _sentences(<String>[
-        'Lumo steht am Morgen auf.',
-        'Er nimmt seine Tasche mit.',
-        'In der Schule liest er ein Wort.',
-        'Das Wort ist lang, aber Lumo bleibt ruhig.',
-        'Dann liest er den Satz noch einmal.',
-        'Jetzt klappt es schon viel besser.',
-        'Lumo freut sich und lernt weiter.',
-      ]),
-    ),
-    Story(
-      id: 'story.nature_leaf.1',
-      title: 'Das Blatt am Baum',
-      grade: 1,
-      level: 1,
-      targetSkills: const <String>['reading.sentences', 'science.nature', 'reading.fluency'],
-      sentences: _sentences(<String>[
-        'Mia findet ein gruenes Blatt.',
-        'Das Blatt haengt an einem Baum.',
-        'Der Baum braucht Licht und Wasser.',
-        'Im Blatt macht die Pflanze ihre Nahrung.',
-        'Lumo schaut genau hin.',
-        'Natur kann man lesen und sehen.',
-        'Mia sammelt nur Blätter vom Boden.',
-      ]),
-    ),
-    Story(
-      id: 'story.bee_flower.1',
-      title: 'Die Biene und die Blume',
-      grade: 1,
-      level: 1,
-      targetSkills: const <String>['reading.sentences', 'science.animals', 'reading.expression'],
-      sentences: _sentences(<String>[
-        'Eine Biene fliegt zur Blume.',
-        'Sie sucht suessen Nektar.',
-        'Dabei nimmt sie Pollen mit.',
-        'Pollen hilft neuen Blumen beim Wachsen.',
-        'Lumo bleibt leise stehen.',
-        'Er stoert die kleine Biene nicht.',
-        'So hilft die Biene der Natur.',
-      ]),
-    ),
-  ];
-
-  static final List<Story> _gradeTwoStories = <Story>[
-    Story(
-      id: 'story.forest_math.2',
-      title: 'Die Beeren im Wald',
-      grade: 2,
-      level: 2,
-      targetSkills: const <String>['reading.fluency', 'math.word_problem', 'science.nature'],
-      sentences: _sentences(<String>[
-        'Lumo sammelt Beeren im Wald.',
-        'Zuerst findet er zehn rote Beeren.',
-        'Dann kommen noch fuenf blaue Beeren dazu.',
-        'Lumo zaehlt langsam und macht keinen Stress.',
-        'Nicht jede Beere darf man essen.',
-        'Man fragt vorher einen Erwachsenen.',
-        'Am Ende teilt er die sicheren Beeren mit Mia.',
-      ]),
-    ),
-    Story(
-      id: 'story.water_cycle.2',
-      title: 'Der kleine Wassertropfen',
-      grade: 2,
-      level: 2,
-      targetSkills: const <String>['reading.fluency', 'science.weather', 'science.water_cycle'],
-      sentences: _sentences(<String>[
-        'Ein Tropfen liegt auf einem Blatt.',
-        'Die Sonne macht ihn warm.',
-        'Der Tropfen steigt als Dampf nach oben.',
-        'Oben wird es kuehler.',
-        'Viele Tropfen bilden eine Wolke.',
-        'Spaeter faellt Regen auf die Erde.',
-        'So reist Wasser immer wieder im Kreis.',
-      ]),
-    ),
-    Story(
-      id: 'story.hedgehog_winter.2',
-      title: 'Der Igel im Herbst',
-      grade: 2,
-      level: 2,
-      targetSkills: const <String>['reading.fluency', 'science.animals', 'science.seasons'],
-      sentences: _sentences(<String>[
-        'Im Herbst sucht der Igel Futter.',
-        'Er frisst sich ein kleines Polster an.',
-        'Bald wird es draussen kalt.',
-        'Der Igel baut ein Nest aus Laub.',
-        'Dort schlaeft er im Winter viel.',
-        'Man nennt das Winterschlaf.',
-        'Lumo laesst das Nest in Ruhe.',
-      ]),
-    ),
-  ];
-
   static List<StorySentence> _sentences(List<String> lines) {
     return List<StorySentence>.generate(lines.length, (index) {
       final text = lines[index];
@@ -275,6 +279,226 @@ class StoryEngine {
       );
     });
   }
+
+  static const List<String> _heroes = <String>['Lumo', 'Mia', 'Alina', 'Ben', 'Lina', 'Emil', 'Nora', 'Leo'];
+  static const List<String> _helpers = <String>['Lumo', 'Mia', 'Oma', 'Papa', 'Mama', 'Frau Hase'];
+  static const List<String> _places = <String>['Schulgarten', 'Wald', 'Teich', 'Park', 'Bauernhof', 'Klassenraum', 'Wiesenrand', 'Fensterbrett'];
+  static const List<String> _feelings = <String>['mutig', 'ruhig', 'neugierig', 'stolz', 'konzentriert', 'geduldig'];
+  static const List<String> _actions = <String>[
+    'Danach malt das Kind ein kleines Bild dazu.',
+    'Danach zaehlen sie drei wichtige Dinge auf.',
+    'Danach erklaeren sie die Idee noch einmal.',
+    'Danach suchen sie ein passendes Wort im Text.',
+    'Danach klatschen sie die Silben langsam mit.',
+    'Danach lesen sie den schwersten Satz noch einmal.',
+  ];
+  static const List<String> _endings = <String>[
+    'Am Ende weiss das Kind wieder ein bisschen mehr.',
+    'Am Ende freut sich Lumo ueber das gute Lesen.',
+    'Am Ende merkt sich Lumo das neue Wissen.',
+    'Am Ende sagt Lumo: Lernen braucht Zeit.',
+    'Am Ende ist der Text geschafft.',
+    'Am Ende fuehlt sich der Satz leichter an.',
+    'Am Ende wird aus Lesen neues Wissen.',
+    'Am Ende ist das Kind stolz auf sich.',
+  ];
+
+  static const List<_ReadingTopic> _topics = <_ReadingTopic>[
+    _ReadingTopic(
+      title: 'Naturwissen',
+      skill: 'science.nature',
+      objects: <String>['ein gruenes Blatt', 'eine kleine Wurzel', 'einen starken Baum', 'eine gelbe Blume'],
+      observations: <String>[
+        'Das Blatt hat feine Linien.',
+        'Die Wurzel haelt die Pflanze fest.',
+        'Der Baum hat Rinde und viele Aeste.',
+        'Die Blume dreht sich zum Licht.',
+      ],
+      facts: <String>[
+        'Pflanzen brauchen Licht, Wasser und Luft.',
+        'Wurzeln holen Wasser aus der Erde.',
+        'Baeume geben vielen Tieren ein Zuhause.',
+        'Aus manchen Blueten werden spaeter Samen.',
+      ],
+      safeRules: <String>[
+        'Man reisst keine Pflanze ohne Grund aus.',
+        'Man schaut genau, aber man zerstoert nichts.',
+        'Man sammelt nur Dinge, die schon am Boden liegen.',
+      ],
+    ),
+    _ReadingTopic(
+      title: 'Tierwissen',
+      skill: 'science.animals',
+      objects: <String>['eine Biene', 'einen Igel', 'einen Regenwurm', 'einen Marienkaefer'],
+      observations: <String>[
+        'Die Biene fliegt von Blume zu Blume.',
+        'Der Igel schnuppert am Laub.',
+        'Der Regenwurm bewegt sich durch die Erde.',
+        'Der Marienkaefer krabbelt langsam weiter.',
+      ],
+      facts: <String>[
+        'Bienen tragen Pollen weiter.',
+        'Igel suchen im Herbst viel Futter.',
+        'Regenwuermer lockern den Boden.',
+        'Marienkaefer fressen kleine Blattlaeuse.',
+      ],
+      safeRules: <String>[
+        'Man fasst kleine Tiere nur sehr vorsichtig an.',
+        'Man laesst wilde Tiere in Ruhe.',
+        'Man beobachtet Tiere leise und mit Abstand.',
+      ],
+    ),
+    _ReadingTopic(
+      title: 'Wetterwissen',
+      skill: 'science.weather',
+      objects: <String>['eine Wolke', 'einen Regentropfen', 'einen Sonnenstrahl', 'einen kalten Wind'],
+      observations: <String>[
+        'Die Wolke zieht langsam weiter.',
+        'Der Regentropfen liegt auf dem Blatt.',
+        'Der Sonnenstrahl macht den Stein warm.',
+        'Der Wind bewegt die Blaetter.',
+      ],
+      facts: <String>[
+        'Wolken bestehen aus vielen kleinen Tropfen.',
+        'Regen hilft den Pflanzen beim Wachsen.',
+        'Die Sonne gibt Licht und Waerme.',
+        'Wind ist bewegte Luft.',
+      ],
+      safeRules: <String>[
+        'Bei Gewitter geht man ins Haus.',
+        'Bei starker Sonne braucht man Schutz.',
+        'Bei Regen achtet man auf rutschige Wege.',
+      ],
+    ),
+    _ReadingTopic(
+      title: 'Koerperwissen',
+      skill: 'science.body',
+      objects: <String>['seine Hand', 'sein Ohr', 'sein Auge', 'seinen Atem'],
+      observations: <String>[
+        'Die Hand kann greifen und fuehlen.',
+        'Das Ohr hoert laute und leise Toene.',
+        'Das Auge sieht Farben und Formen.',
+        'Der Atem geht langsam ein und aus.',
+      ],
+      facts: <String>[
+        'Haende helfen beim Schreiben und Bauen.',
+        'Ohren helfen beim Zuhoeren.',
+        'Augen brauchen Pausen beim Lesen.',
+        'Ruhiges Atmen hilft beim Konzentrieren.',
+      ],
+      safeRules: <String>[
+        'Man waescht die Haende vor dem Essen.',
+        'Man schuetzt die Augen vor hellem Licht.',
+        'Man hoert auf den Koerper, wenn er Pause braucht.',
+      ],
+    ),
+    _ReadingTopic(
+      title: 'Wasserwissen',
+      skill: 'science.water',
+      objects: <String>['einen Bach', 'einen Tropfen', 'eine Pfuetze', 'eine kleine Quelle'],
+      observations: <String>[
+        'Der Bach fliesst ueber Steine.',
+        'Der Tropfen glaenzt im Licht.',
+        'Die Pfuetze wird in der Sonne kleiner.',
+        'Aus der Quelle kommt klares Wasser.',
+      ],
+      facts: <String>[
+        'Wasser kann fliessen, gefrieren und verdampfen.',
+        'Alle Menschen, Tiere und Pflanzen brauchen Wasser.',
+        'Die Sonne kann Wasser langsam verdunsten lassen.',
+        'Sauberes Wasser ist wichtig fuer das Leben.',
+      ],
+      safeRules: <String>[
+        'Man trinkt nur Wasser, das sicher sauber ist.',
+        'Am Wasser passt man gut auf.',
+        'Man verschwendet Wasser nicht.',
+      ],
+    ),
+    _ReadingTopic(
+      title: 'Alltagswissen',
+      skill: 'science.daily_life',
+      objects: <String>['eine Brotdose', 'einen Schulweg', 'ein Verkehrsschild', 'einen Stundenplan'],
+      observations: <String>[
+        'Die Brotdose ist ordentlich gepackt.',
+        'Der Schulweg hat helle Streifen auf der Strasse.',
+        'Das Verkehrsschild hat eine klare Form.',
+        'Der Stundenplan zeigt den Tag.',
+      ],
+      facts: <String>[
+        'Ein Plan hilft beim Erinnern.',
+        'Verkehrsschilder helfen allen Menschen.',
+        'Ordnung macht den Morgen leichter.',
+        'Pausen helfen beim Lernen.',
+      ],
+      safeRules: <String>[
+        'Auf dem Schulweg schaut man links und rechts.',
+        'Man bleibt an der Ampel stehen.',
+        'Man fragt, wenn man sich nicht sicher ist.',
+      ],
+    ),
+    _ReadingTopic(
+      title: 'Zahlenwissen',
+      skill: 'math.word_problem',
+      objects: <String>['fuenf Kastanien', 'zehn Beeren', 'drei Federn', 'acht kleine Steine'],
+      observations: <String>[
+        'Die Dinge liegen in einer Reihe.',
+        'Man kann sie gut zaehlen.',
+        'Erst sind es wenige, dann werden es mehr.',
+        'Zwei Dinge liegen etwas weiter weg.',
+      ],
+      facts: <String>[
+        'Beim Zaehlen hilft langsames Zeigen.',
+        'Eine Reihe macht Mengen sichtbar.',
+        'Zehn Dinge kann man gut in zwei Gruppen teilen.',
+        'Rechnen beginnt oft mit genauem Schauen.',
+      ],
+      safeRules: <String>[
+        'Man zaehlt ruhig und ohne Hektik.',
+        'Bei Fehlern faengt man freundlich nochmal an.',
+        'Man kann Dinge ordnen, bevor man rechnet.',
+      ],
+    ),
+    _ReadingTopic(
+      title: 'Weltraumwissen',
+      skill: 'science.space',
+      objects: <String>['den Mond', 'einen hellen Stern', 'die Erde', 'eine kleine Rakete'],
+      observations: <String>[
+        'Der Mond leuchtet am Abend.',
+        'Der Stern sieht wie ein kleiner Punkt aus.',
+        'Die Erde ist unser Zuhause.',
+        'Die Rakete zeigt nach oben.',
+      ],
+      facts: <String>[
+        'Der Mond kreist um die Erde.',
+        'Sterne sind sehr weit weg.',
+        'Die Erde dreht sich jeden Tag.',
+        'Im Weltall gibt es keinen normalen Wind.',
+      ],
+      safeRules: <String>[
+        'Beim Schauen in den Himmel achtet man auf den Weg.',
+        'In die Sonne schaut man nie direkt.',
+        'Fragen machen Wissenschaft spannend.',
+      ],
+    ),
+  ];
+}
+
+class _ReadingTopic {
+  const _ReadingTopic({
+    required this.title,
+    required this.skill,
+    required this.objects,
+    required this.observations,
+    required this.facts,
+    required this.safeRules,
+  });
+
+  final String title;
+  final String skill;
+  final List<String> objects;
+  final List<String> observations;
+  final List<String> facts;
+  final List<String> safeRules;
 }
 
 class SyllableWordColorizer {
