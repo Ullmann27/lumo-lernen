@@ -120,7 +120,7 @@ class AppUpdateService {
   Uri? _trustedUri(String? raw) {
     if (raw == null || raw.trim().isEmpty) return null;
     final uri = Uri.tryParse(raw.trim());
-    if (uri == null || !uri.hasScheme) return null;
+    if (uri == null || uri.scheme.isEmpty) return null;
     final host = uri.host.toLowerCase();
     final allowed = host == 'github.com' || host.endsWith('.github.com') || host == 'objects.githubusercontent.com';
     if (!allowed) return null;
