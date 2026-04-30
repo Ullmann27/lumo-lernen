@@ -6,6 +6,7 @@ import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
+import '../../domain/learning/lumo_learning_feedback_engine.dart';
 import '../../domain/learning/reward_engine.dart';
 import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/adaptive_task_renderer.dart';
@@ -24,12 +25,14 @@ class _LearningContentState extends State<LearningContent> {
   final _adapter = const LegacyLumoTaskAdapter();
   final _resultHandler = const SkillStateUpdater();
   final _rewardEngine = const RewardEngine();
+  final _feedbackEngine = LumoLearningFeedbackEngine();
   final Map<String, SkillState> _skillStates = <String, SkillState>{};
   final List<String> _recentTaskKeys = <String>[];
   final List<String> _recentUnits = <String>[];
+  final Set<String> _sessionTaskKeys = <String>{};
 
-  static const int _recentTaskMemory = 36;
-  static const int _recentUnitMemory = 6;
+  static const int _recentTaskMemory = 80;
+  static const int _recentUnitMemory = 10;
 
   late LumoTask _task;
   late TaskInstance _taskInstance;
@@ -38,10 +41,9 @@ class _LearningContentState extends State<LearningContent> {
   bool? _lastCorrect;
   RewardDelta? _lastRewardDelta;
   SkillState? _lastSkillState;
+  LumoFeedbackTurn? _lastFeedback;
   int _questionNum = 1;
 
-  /// Anzahl Fragen pro Session, abgeleitet aus dem aktuellen sessionKind.
-  /// quickPractice=10, exerciseSet=20, test=10, schoolwork=30, tutoring=8
   int get _totalQuestions {
     switch (widget.appState.state.sessionKind) {
       case LumoSessionKind.quickPractice: return 10;
@@ -52,8 +54,6 @@ class _LearningContentState extends State<LearningContent> {
     }
   }
 
-  /// Hilfe ist im Schularbeit-Modus deaktiviert (echte Pruefung),
-  /// im Test-Modus reduziert, in allen anderen Modi voll verfuegbar.
   bool get _allowHelp =>
       widget.appState.state.sessionKind != LumoSessionKind.schoolwork;
 
@@ -71,13 +71,13 @@ class _LearningContentState extends State<LearningContent> {
       case LumoSessionKind.quickPractice:
         return 'Arbeite wie im Heft. Ruhig lesen, dann erst antworten.';
       case LumoSessionKind.exerciseSet:
-        return 'Wir machen heute zwanzig Aufgaben. Du schaffst das gut.';
+        return 'Wir machen heute zwanzig Aufgaben. Ich merke mir, was dir gut gelingt.';
       case LumoSessionKind.test:
         return 'Testmodus. Lies ruhig und antworte selbst.';
       case LumoSessionKind.schoolwork:
         return 'Wie eine echte Schularbeit. Ich gebe heute keine Hilfe.';
       case LumoSessionKind.tutoring:
-        return 'Nachhilfe. Wir gehen Schritt für Schritt zusammen durch.';
+        return 'Nachhilfe. Ich schaue genau, welcher Schritt dir hilft.';
     }
   }
 
@@ -94,6 +94,7 @@ class _LearningContentState extends State<LearningContent> {
     _lastCorrect = null;
     _lastRewardDelta = null;
     _lastSkillState = null;
+    _lastFeedback = null;
     if (resetCounter) _questionNum = 1;
   }
 
@@ -108,17 +109,17 @@ class _LearningContentState extends State<LearningContent> {
     final avoidUnits = st.unit == 'Alle' ? _recentUnits.toSet() : <String>{};
     LumoTask? fallback;
 
-    for (var attempt = 0; attempt < 28; attempt++) {
+    for (var attempt = 0; attempt < 64; attempt++) {
       final task = _factory.next(
         grade: st.grade,
         subject: st.subject,
         unit: st.unit == 'Alle' ? 'Alle' : st.unit,
         weakSkills: st.weakSkills,
-        avoidUnits: attempt < 16 ? avoidUnits : const <String>{},
+        avoidUnits: attempt < 32 ? avoidUnits : const <String>{},
       );
       fallback ??= task;
       final key = _taskKey(task);
-      if (!_recentTaskKeys.contains(key)) return task;
+      if (!_recentTaskKeys.contains(key) && !_sessionTaskKeys.contains(key)) return task;
     }
 
     return fallback ?? _factory.next(
@@ -132,6 +133,7 @@ class _LearningContentState extends State<LearningContent> {
 
   void _rememberTask(LumoTask task) {
     final key = _taskKey(task);
+    _sessionTaskKeys.add(key);
     _recentTaskKeys.remove(key);
     _recentTaskKeys.add(key);
     while (_recentTaskKeys.length > _recentTaskMemory) {
@@ -151,7 +153,7 @@ class _LearningContentState extends State<LearningContent> {
     if (_answered) return;
     _completeAnswer(
       correct: answer.correct,
-      hintUsed: false,
+      hintUsed: !_allowHelp ? false : false,
       answerGiven: answer.answer,
     );
   }
@@ -161,7 +163,7 @@ class _LearningContentState extends State<LearningContent> {
     final correctEnough = result.evaluation.overallScore >= .55;
     _completeAnswer(
       correct: correctEnough,
-      hintUsed: result.evaluation.overallScore < .75,
+      hintUsed: _allowHelp && result.evaluation.overallScore < .75,
       answerGiven: 'writing:${result.evaluation.overallScore.toStringAsFixed(2)}',
       handwritingScore: result.evaluation.overallScore,
     );
@@ -183,6 +185,7 @@ class _LearningContentState extends State<LearningContent> {
         );
 
     final responseTimeMs = DateTime.now().difference(_taskStartedAt).inMilliseconds;
+    final errorTypes = correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven);
     final result = TaskResult(
       taskInstanceId: _taskInstance.taskInstanceId,
       childId: _childId,
@@ -190,7 +193,7 @@ class _LearningContentState extends State<LearningContent> {
       correct: correct,
       responseTimeMs: responseTimeMs,
       helpUsed: hintUsed,
-      detectedErrorTypes: correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven),
+      detectedErrorTypes: errorTypes,
       handwritingScore: handwritingScore,
       frustrationSignal: !correct && responseTimeMs > 18000,
     );
@@ -199,6 +202,28 @@ class _LearningContentState extends State<LearningContent> {
       result: result,
       before: before,
       after: after,
+      mode: _learningModeForSession,
+      completedSession: _questionNum >= _totalQuestions,
+    );
+
+    final feedback = _feedbackEngine.record(
+      LumoInteractionEvent(
+        subject: _task.subject,
+        unit: _task.unit,
+        prompt: _task.prompt,
+        correctAnswer: _taskInstance.correctAnswer,
+        givenAnswer: answerGiven,
+        correct: correct,
+        helpUsed: hintUsed,
+        responseTimeMs: responseTimeMs,
+        errorTypes: errorTypes,
+        masteryBefore: before.masteryScore,
+        masteryAfter: after.masteryScore,
+        taskIndex: _questionNum,
+        totalTasks: _totalQuestions,
+        sessionKind: widget.appState.state.sessionKind.name,
+        handwritingScore: handwritingScore,
+      ),
     );
 
     _skillStates[_taskInstance.skillId.value] = after;
@@ -208,17 +233,32 @@ class _LearningContentState extends State<LearningContent> {
       _lastCorrect = correct;
       _lastRewardDelta = rewardDelta;
       _lastSkillState = after;
+      _lastFeedback = feedback;
     });
 
     if (correct) {
       widget.appState.correctAnswer(_task.unit);
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: hintUsed);
-      LumoVoice.instance.speak('Super! Das war richtig!');
-      Timer(const Duration(milliseconds: 1100), _nextQuestion);
+      LumoVoice.instance.speak(feedback.spokenText);
+      Timer(Duration(milliseconds: feedback.autoAdvanceDelayMs), _nextQuestion);
     } else {
       widget.appState.wrongAnswer(_task.unit);
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: hintUsed);
-      LumoVoice.instance.speak('Fast. Wir schauen nochmal hin.');
+      LumoVoice.instance.speak(feedback.spokenText);
+    }
+  }
+
+  LearningMode get _learningModeForSession {
+    switch (widget.appState.state.sessionKind) {
+      case LumoSessionKind.quickPractice:
+      case LumoSessionKind.exerciseSet:
+        return LearningMode.practice;
+      case LumoSessionKind.test:
+        return LearningMode.subjectTest;
+      case LumoSessionKind.schoolwork:
+        return LearningMode.exam;
+      case LumoSessionKind.tutoring:
+        return LearningMode.tutoring;
     }
   }
 
@@ -235,14 +275,17 @@ class _LearningContentState extends State<LearningContent> {
       return const <ErrorType>[ErrorType.quantityError];
     }
     if (_task.unit.toLowerCase().contains('silben')) return const <ErrorType>[ErrorType.syllableCountWrong];
-    if (_task.unit.toLowerCase().contains('laut')) return const <ErrorType>[ErrorType.soundMisread];
+    if (_task.unit.toLowerCase().contains('laut') || _task.unit.toLowerCase().contains('st oder sp')) return const <ErrorType>[ErrorType.soundMisread];
+    if (_task.unit.toLowerCase().contains('schreiben') || _task.unit.toLowerCase().contains('mehrzahl')) return const <ErrorType>[ErrorType.wordShapeNotRecognized];
     return const <ErrorType>[ErrorType.conceptConfusion];
   }
 
   void _nextQuestion() {
     if (!mounted) return;
     setState(() {
-      _questionNum = (_questionNum < _totalQuestions) ? _questionNum + 1 : 1;
+      final nextQuestion = _questionNum < _totalQuestions ? _questionNum + 1 : 1;
+      if (nextQuestion == 1) _sessionTaskKeys.clear();
+      _questionNum = nextQuestion;
       _loadNextTask(resetCounter: false);
     });
   }
@@ -302,6 +345,7 @@ class _LearningContentState extends State<LearningContent> {
                   correctAnswer: '${_taskInstance.correctAnswer}',
                   rewardDelta: _lastRewardDelta,
                   skillState: _lastSkillState,
+                  feedback: _lastFeedback,
                   onNext: _nextQuestion,
                 ),
               ],
@@ -370,6 +414,7 @@ class _ExplanationCard extends StatelessWidget {
     required this.onNext,
     this.rewardDelta,
     this.skillState,
+    this.feedback,
   });
 
   final bool correct;
@@ -378,11 +423,13 @@ class _ExplanationCard extends StatelessWidget {
   final VoidCallback onNext;
   final RewardDelta? rewardDelta;
   final SkillState? skillState;
+  final LumoFeedbackTurn? feedback;
 
   @override
   Widget build(BuildContext context) {
     final reward = rewardDelta;
     final skill = skillState;
+    final fb = feedback;
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: lumoCard(
@@ -400,15 +447,20 @@ class _ExplanationCard extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              correct ? 'Super gemacht!' : 'Nicht aufgeben!',
+              fb?.title ?? (correct ? 'Super gemacht!' : 'Nicht aufgeben!'),
               style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F)),
             ),
           ),
         ]),
         const SizedBox(height: 8),
-        Text(explanation, style: LumoTextStyles.body.copyWith(color: correct ? const Color(0xFF166534) : const Color(0xFF92400E))),
+        Text(
+          fb?.cardMessage ?? explanation,
+          style: LumoTextStyles.body.copyWith(color: correct ? const Color(0xFF166534) : const Color(0xFF92400E)),
+        ),
+        const SizedBox(height: 8),
+        _LearningTipBox(text: fb?.learningTip ?? explanation, correct: correct),
         if (!correct) ...[
-          const SizedBox(height: 6),
+          const SizedBox(height: 8),
           Text('Richtige Antwort: $correctAnswer', style: LumoTextStyles.body.copyWith(color: const Color(0xFF92400E), fontWeight: FontWeight.w900)),
         ],
         if (reward != null) ...[
@@ -416,6 +468,8 @@ class _ExplanationCard extends StatelessWidget {
           Wrap(spacing: 8, runSpacing: 8, children: [
             _InfoPill(text: '+${reward.stars} Sterne'),
             _InfoPill(text: '+${reward.xp} XP'),
+            if (fb != null) _InfoPill(text: fb.rewardLabel),
+            if (fb?.badgeLabel != null) _InfoPill(text: fb!.badgeLabel!),
             if (skill != null) _InfoPill(text: 'Können ${(skill.masteryScore * 100).round()}%'),
           ]),
         ],
@@ -429,6 +483,36 @@ class _ExplanationCard extends StatelessWidget {
               decoration: BoxDecoration(gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]), borderRadius: BorderRadius.circular(LumoRadius.pill), boxShadow: LumoShadow.pill),
               child: const Text('Weiter →', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white)),
             ),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+class _LearningTipBox extends StatelessWidget {
+  const _LearningTipBox({required this.text, required this.correct});
+
+  final String text;
+  final bool correct;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(.72),
+        borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(color: (correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B)).withOpacity(.22)),
+      ),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Icon(Icons.psychology_rounded, color: correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B), size: 20),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            text,
+            style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink700, height: 1.28),
           ),
         ),
       ]),
