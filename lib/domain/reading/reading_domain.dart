@@ -11,6 +11,7 @@ class Story {
     required this.level,
     required this.sentences,
     required this.targetSkills,
+    this.signature = '',
   });
 
   final String id;
@@ -19,6 +20,7 @@ class Story {
   final int level;
   final List<StorySentence> sentences;
   final List<String> targetSkills;
+  final String signature;
 }
 
 class StorySentence {
@@ -127,25 +129,61 @@ class StoryEngine {
 
   static const int estimatedVariantCount = 23040;
 
-  Story pickStory({required int grade, List<String> weakWords = const <String>[]}) {
-    final seed = DateTime.now().microsecondsSinceEpoch ^ (grade * 7919) ^ weakWords.join('|').hashCode;
-    final story = _generateStory(grade: grade, seed: seed);
-    return _markProblemWords(story, weakWords);
+  Story pickStory({
+    required int grade,
+    List<String> weakWords = const <String>[],
+    Set<String> avoidSignatures = const <String>{},
+  }) {
+    final baseSeed = DateTime.now().microsecondsSinceEpoch ^ (grade * 7919) ^ weakWords.join('|').hashCode;
+    Story? fallback;
+    for (var attempt = 0; attempt < 80; attempt++) {
+      final story = _generateStory(grade: grade, seed: baseSeed + attempt * 104729);
+      fallback ??= story;
+      if (!avoidSignatures.contains(story.signature)) {
+        return _markProblemWords(story, weakWords);
+      }
+    }
+    return _markProblemWords(fallback!, weakWords);
   }
 
   Story _generateStory({required int grade, required int seed}) {
     final random = math.Random(seed);
-    final topic = _topics[random.nextInt(_topics.length)];
-    final hero = _heroes[random.nextInt(_heroes.length)];
-    final helper = _helpers[random.nextInt(_helpers.length)];
-    final place = _places[random.nextInt(_places.length)];
-    final action = _actions[random.nextInt(_actions.length)];
-    final object = topic.objects[random.nextInt(topic.objects.length)];
-    final observation = topic.observations[random.nextInt(topic.observations.length)];
-    final fact = topic.facts[random.nextInt(topic.facts.length)];
-    final safeRule = topic.safeRules[random.nextInt(topic.safeRules.length)];
-    final feeling = _feelings[random.nextInt(_feelings.length)];
-    final ending = _endings[random.nextInt(_endings.length)];
+    final topicIndex = random.nextInt(_topics.length);
+    final heroIndex = random.nextInt(_heroes.length);
+    final helperIndex = random.nextInt(_helpers.length);
+    final placeIndex = random.nextInt(_places.length);
+    final actionIndex = random.nextInt(_actions.length);
+    final topic = _topics[topicIndex];
+    final objectIndex = random.nextInt(topic.objects.length);
+    final observationIndex = random.nextInt(topic.observations.length);
+    final factIndex = random.nextInt(topic.facts.length);
+    final safeRuleIndex = random.nextInt(topic.safeRules.length);
+    final feelingIndex = random.nextInt(_feelings.length);
+    final endingIndex = random.nextInt(_endings.length);
+    final hero = _heroes[heroIndex];
+    final helper = _helpers[helperIndex];
+    final place = _places[placeIndex];
+    final action = _actions[actionIndex];
+    final object = topic.objects[objectIndex];
+    final observation = topic.observations[observationIndex];
+    final fact = topic.facts[factIndex];
+    final safeRule = topic.safeRules[safeRuleIndex];
+    final feeling = _feelings[feelingIndex];
+    final ending = _endings[endingIndex];
+    final signature = [
+      grade,
+      topicIndex,
+      heroIndex,
+      helperIndex,
+      placeIndex,
+      objectIndex,
+      observationIndex,
+      factIndex,
+      safeRuleIndex,
+      feelingIndex,
+      actionIndex,
+      endingIndex,
+    ].join('.');
     final title = '${topic.title}: $object';
 
     final lines = grade <= 1
@@ -175,12 +213,13 @@ class StoryEngine {
           );
 
     return Story(
-      id: 'generated.${grade}.${seed.abs()}',
+      id: 'generated.$signature',
       title: title,
       grade: grade,
       level: grade <= 1 ? 1 : 2,
       targetSkills: <String>['reading.fluency', 'reading.sentences', topic.skill],
       sentences: _sentences(lines),
+      signature: signature,
     );
   }
 
@@ -247,6 +286,7 @@ class StoryEngine {
       grade: story.grade,
       level: story.level,
       targetSkills: story.targetSkills,
+      signature: story.signature,
       sentences: story.sentences.map((sentence) {
         return StorySentence(
           id: sentence.id,
