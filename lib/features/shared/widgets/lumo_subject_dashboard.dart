@@ -13,21 +13,6 @@ import 'lumo_subject_tile.dart';
 /// Komponiert Hero-Header, Level-Streifen, Tagesmission, grossen CTA-Button,
 /// Themenkarten-Grid und Motivations-Karte zu einer kompletten scrollbaren
 /// Lernseite.
-///
-/// Verwendung:
-/// ```
-/// LumoSubjectDashboard(
-///   appState: appState,
-///   subject: 'Deutsch',
-///   subjectAccent: 'mit Lumo',
-///   subtitle: 'Lerne spielerisch mit deinem Fuchs-Freund!',
-///   greeting: 'Weiter so, du bist spitze!',
-///   lumoMessage: 'Super! Heute üben wir neue Wörter und Sätze!',
-///   ctaLabel: 'Deutsch Aufgabe starten',
-///   onCtaPressed: () => startSession(...),
-///   topicTiles: [...],
-/// )
-/// ```
 class LumoSubjectDashboard extends StatelessWidget {
   const LumoSubjectDashboard({
     super.key,
@@ -71,57 +56,63 @@ class LumoSubjectDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final st = appState.state;
-    final width = MediaQuery.of(context).size.width;
-    final tileColumns = width < 480 ? 1 : 2;
 
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(14, 14, 14, 24),
-      physics: const BouncingScrollPhysics(),
-      children: [
-        LumoHeroHeader(
-          childName: st.childName,
-          title: subject,
-          titleAccent: subjectAccent,
-          subtitle: subtitle,
-          greeting: greeting,
-          lumoMessage: lumoMessage,
-          stars: st.stars,
-          streakDays: 7,
-          accent: headerAccent,
-        ),
-        const SizedBox(height: 12),
-        LumoLevelStrip(
-          level: st.level,
-          currentXp: st.xp % 1200,
-          xpForNextLevel: 1200,
-          accent: headerAccent,
-        ),
-        const SizedBox(height: 10),
-        LumoDailyMissionCard(
-          title: dailyMissionTitle,
-          subtitle: dailyMissionSubtitle,
-          progressDone: dailyMissionDone,
-          progressTotal: dailyMissionTotal,
-          rewardStars: dailyMissionRewardStars,
-          rewardXp: dailyMissionRewardXp,
-          accent: headerAccent,
-        ),
-        const SizedBox(height: 16),
-        LumoBigCtaButton(
-          label: ctaLabel,
-          onPressed: onCtaPressed,
-          color: headerAccent,
-        ),
-        const SizedBox(height: 18),
-        // Topic tiles grid
-        _TileGrid(tiles: topicTiles, columns: tileColumns),
-        const SizedBox(height: 14),
-        LumoEncourageCard(
-          childName: st.childName,
-          message: encourageMessage,
-          accent: headerAccent,
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final availableWidth = constraints.maxWidth.isFinite
+            ? constraints.maxWidth
+            : MediaQuery.of(context).size.width;
+        final tileColumns = availableWidth < 560 ? 1 : 2;
+
+        return ListView(
+          padding: const EdgeInsets.fromLTRB(14, 14, 14, 24),
+          physics: const BouncingScrollPhysics(),
+          children: [
+            LumoHeroHeader(
+              childName: st.childName,
+              title: subject,
+              titleAccent: subjectAccent,
+              subtitle: subtitle,
+              greeting: greeting,
+              lumoMessage: lumoMessage,
+              stars: st.stars,
+              streakDays: 7,
+              accent: headerAccent,
+            ),
+            const SizedBox(height: 12),
+            LumoLevelStrip(
+              level: st.level,
+              currentXp: st.xp % 1200,
+              xpForNextLevel: 1200,
+              accent: headerAccent,
+            ),
+            const SizedBox(height: 10),
+            LumoDailyMissionCard(
+              title: dailyMissionTitle,
+              subtitle: dailyMissionSubtitle,
+              progressDone: dailyMissionDone,
+              progressTotal: dailyMissionTotal,
+              rewardStars: dailyMissionRewardStars,
+              rewardXp: dailyMissionRewardXp,
+              accent: headerAccent,
+            ),
+            const SizedBox(height: 16),
+            LumoBigCtaButton(
+              label: ctaLabel,
+              onPressed: onCtaPressed,
+              color: headerAccent,
+            ),
+            const SizedBox(height: 18),
+            _TileGrid(tiles: topicTiles, columns: tileColumns),
+            const SizedBox(height: 14),
+            LumoEncourageCard(
+              childName: st.childName,
+              message: encourageMessage,
+              accent: headerAccent,
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -133,7 +124,7 @@ class _TileGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (columns == 1) {
+    if (columns <= 1) {
       return Column(
         children: tiles
             .map((t) => Padding(
@@ -143,6 +134,7 @@ class _TileGrid extends StatelessWidget {
             .toList(),
       );
     }
+
     final rows = <Widget>[];
     for (int i = 0; i < tiles.length; i += 2) {
       final left = tiles[i];
@@ -150,7 +142,7 @@ class _TileGrid extends StatelessWidget {
       rows.add(Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(child: left),
             const SizedBox(width: 10),
