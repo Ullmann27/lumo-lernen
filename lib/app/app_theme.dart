@@ -53,7 +53,9 @@ class LumoColors {
 
   static const ink900       = Color(0xFF1F1713);
   static const ink700       = Color(0xFF3D342C);
+  static const ink600       = Color(0xFF5A4E45);
   static const ink500       = Color(0xFF766A61);
+  static const ink400       = Color(0xFF948B82);
   static const ink300       = Color(0xFFB0A89F);
   static const ink100       = Color(0xFFEDE8E4);
 }
