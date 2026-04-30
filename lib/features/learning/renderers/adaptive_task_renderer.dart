@@ -140,8 +140,7 @@ class _OptionGrid extends StatelessWidget {
               isPicked: isPicked,
               isCorrect: isCorrect,
               answered: answered,
-              onTap: () => onPick(option),
-            ),
+              onTap: () => onPick(option),n            ),
           );
         }).toList(),
       );
@@ -499,6 +498,65 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final visual = task.parameters['visual']?.toString() ?? '';
+    final data = task.visualPayload.data;
+
+    if (visual == 'number_house') {
+      final target = _readInt(data['target']) ?? _readInt(task.correctAnswer) ?? 10;
+      final left = _readInt(data['left']) ?? 0;
+      final right = _readInt(data['right']) ?? _readInt(task.correctAnswer) ?? 0;
+      return SchoolbookTaskCard(
+        title: 'Rechenhaus',
+        subtitle: 'Die Dachzahl ist das Ganze. Die Zimmer ergeben zusammen das Dach.',
+        ribbonLabel: '$target',
+        helperText: 'Schau zuerst auf das Dach. Dann suchst du die Partnerzahl zu $left.',
+        child: NumberHouseVisual(
+          target: target,
+          rows: <List<int>>[
+            <int>[left, right],
+            <int>[(left + 1).clamp(0, target).toInt(), (target - left - 1).clamp(0, target).toInt()],
+            <int>[0, target],
+          ],
+          missingIndex: 1,
+        ),
+      );
+    }
+
+    if (visual == 'sound_choice') {
+      final word = data['word']?.toString() ?? task.prompt.replaceFirst('St oder Sp?', '').trim();
+      return SchoolbookTaskCard(
+        title: 'St oder Sp?',
+        subtitle: 'Sprich den Anfang langsam und hoere genau hin.',
+        ribbonLabel: 'Laut',
+        accentColor: LumoColors.purple,
+        child: SoundChoiceCard(word: word, choices: const <String>['St', 'Sp']),
+      );
+    }
+
+    if (visual == 'writing_line') {
+      final target = data['target']?.toString() ?? '${task.correctAnswer}';
+      final word = data['word']?.toString() ?? target;
+      final icon = data['icon']?.toString();
+      return SchoolbookTaskCard(
+        title: icon == null ? 'Schreib wie im Heft' : 'Bild und Wort',
+        subtitle: icon == null ? 'Lies genau und schreibe das passende Wort.' : 'Schau das Bild an und finde das passende Wort.',
+        ribbonLabel: icon ?? 'Wort',
+        accentColor: LumoColors.purple,
+        child: WritingLineBox(placeholder: word, cells: target.length.clamp(3, 10).toInt()),
+      );
+    }
+
+    if (visual == 'blitz_grid') {
+      final rawItems = data['items'];
+      final items = rawItems is List ? rawItems.map((item) => item.toString()).toList(growable: false) : <String>[task.prompt.replaceFirst('Blitzlicht:', '').replaceAll('?', '').trim()];
+      return SchoolbookTaskCard(
+        title: 'Blitzlicht',
+        subtitle: 'Kurze Aufgaben, ruhig rechnen, dann antworten.',
+        ribbonLabel: 'Tempo',
+        child: BlitzlichtGrid(items: items, columns: 1),
+      );
+    }
+
     final prompt = task.prompt;
     final minus = RegExp(r'(\d+)\s*-\s*(\d+)').firstMatch(prompt);
     final plus = RegExp(r'(\d+)\s*\+\s*(\d+)').firstMatch(prompt);
