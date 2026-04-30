@@ -5,7 +5,6 @@ import '../widgets/shell/left_navigation.dart';
 import '../widgets/shell/lumo_stage_panel.dart';
 import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
-import '../features/learning/subject_selection_content.dart';
 import '../features/reading/reading_content.dart';
 import '../features/sections/section_content.dart';
 import '../features/settings/settings_content.dart';
@@ -59,9 +58,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     );
     try {
       await _appState.loadLearningProfile();
-    } catch (_) {
-      // Learning profile is non-critical. The app must still start.
-    }
+    } catch (_) {}
   }
 
   @override
@@ -107,7 +104,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       case LumoSection.home:
         return HomeContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.learn:
-        return SubjectSelectionContent(appState: _appState, onSection: _navigateTo);
+        return SectionContent(appState: _appState, section: LumoSection.learn, onSection: _navigateTo);
       case LumoSection.exercises:
         if (_isReadingMode()) {
           return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
@@ -190,10 +187,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                         child: FadeTransition(opacity: _fadeCtrl, child: _buildContent()),
                       ),
                     ),
-                    _MobileBottomNavigation(
-                      active: _appState.state.section,
-                      onSelect: _navigateTo,
-                    ),
+                    _MobileBottomNavigation(active: _appState.state.section, onSelect: _navigateTo),
                   ]);
                 }
 
@@ -323,19 +317,9 @@ class _MobileLumoHeader extends StatelessWidget {
         const SizedBox(width: 10),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-            Text(
-              st.childName,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.ink900),
-            ),
+            Text(st.childName, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
             const SizedBox(height: 2),
-            Text(
-              st.lumoMessage.replaceAll('\n', ' '),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink600, height: 1.2),
-            ),
+            Text(st.lumoMessage.replaceAll('\n', ' '), maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink600, height: 1.2)),
           ]),
         ),
         const SizedBox(width: 8),
@@ -356,10 +340,10 @@ class _MobileBottomNavigation extends StatelessWidget {
 
   static const _items = <_MobileNavItem>[
     _MobileNavItem(LumoSection.home, Icons.home_rounded, 'Start'),
-    _MobileNavItem(LumoSection.learn, Icons.school_rounded, 'Lernen'),
-    _MobileNavItem(LumoSection.exercises, Icons.edit_rounded, 'Üben'),
-    _MobileNavItem(LumoSection.tests, Icons.assignment_turned_in_rounded, 'Test'),
-    _MobileNavItem(LumoSection.agent, Icons.smart_toy_rounded, 'Lumo'),
+    _MobileNavItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
+    _MobileNavItem(LumoSection.missions, Icons.track_changes_rounded, 'Missionen'),
+    _MobileNavItem(LumoSection.rewards, Icons.card_giftcard_rounded, 'Belohnung'),
+    _MobileNavItem(LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
   ];
 
   @override
@@ -368,9 +352,9 @@ class _MobileBottomNavigation extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 7),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.95),
+        color: Colors.white.withOpacity(.97),
         borderRadius: BorderRadius.circular(LumoRadius.pill),
-        border: Border.all(color: LumoColors.orange.withOpacity(.14)),
+        border: Border.all(color: LumoColors.orange.withOpacity(.18)),
         boxShadow: LumoShadow.card,
       ),
       child: Row(
@@ -383,24 +367,11 @@ class _MobileBottomNavigation extends StatelessWidget {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
                 padding: const EdgeInsets.symmetric(vertical: 7),
-                decoration: BoxDecoration(
-                  color: selected ? LumoColors.orangeSurface : Colors.transparent,
-                  borderRadius: BorderRadius.circular(LumoRadius.pill),
-                ),
+                decoration: BoxDecoration(color: selected ? LumoColors.orangeSurface : Colors.transparent, borderRadius: BorderRadius.circular(LumoRadius.pill)),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Icon(item.icon, size: 20, color: selected ? LumoColors.orange : LumoColors.ink400),
                   const SizedBox(height: 2),
-                  Text(
-                    item.label,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 10,
-                      fontWeight: FontWeight.w900,
-                      color: selected ? LumoColors.orange : LumoColors.ink500,
-                    ),
-                  ),
+                  Text(item.label, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w900, color: selected ? LumoColors.orange : LumoColors.ink500)),
                 ]),
               ),
             ),
