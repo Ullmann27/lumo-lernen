@@ -50,6 +50,9 @@ class Curriculum {
       'Vergleichen',
       'Gerade und ungerade',
       'Zahlen zerlegen',
+      'Minus ueber 10',
+      'Rechenhaeuser',
+      'Blitzlicht',
     ],
     'Deutsch': <String>[
       'Anfangslaute',
@@ -64,6 +67,9 @@ class Curriculum {
       'Tunwoerter',
       'Wiewoerter',
       'Satz bauen',
+      'St oder Sp',
+      'Einzahl und Mehrzahl',
+      'Wort-Bild schreiben',
     ],
     'Rechtschreibung': <String>[
       'Haeufige Woerter',
@@ -72,6 +78,7 @@ class Curriculum {
       'Dehnungen',
       'Satzzeichen',
       'Wortende',
+      'St oder Sp',
     ],
     'Schreiben': <String>[
       'Buchstaben nachspuren',
@@ -171,7 +178,7 @@ class ExerciseFactory {
         if (subject.value.contains(weakUnit.first.key)) return subject.key;
       }
     }
-    final base = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Englisch', 'Sachunterricht', 'Schreiben'];
+    final base = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Sachunterricht', 'Schreiben'];
     return base[_random.nextInt(base.length)];
   }
 
@@ -213,6 +220,15 @@ class ExerciseFactory {
 
   LumoTask _math(int grade, String unit) {
     final maxSmall = grade == 1 ? 10 : 20;
+    if (unit == 'Minus ueber 10') {
+      return _minusBridgeTen(grade, unit);
+    }
+    if (unit == 'Rechenhaeuser') {
+      return _numberHouse(grade, unit);
+    }
+    if (unit == 'Blitzlicht') {
+      return _blitzlicht(grade, unit);
+    }
     if (unit.contains('Plus')) {
       final max = unit.contains('100') ? 100 : unit.contains('20') ? 20 : maxSmall;
       final a = 1 + _random.nextInt(max ~/ 2);
@@ -221,6 +237,9 @@ class ExerciseFactory {
       return _choiceTask('mathe', grade, 'Mathematik', unit, '$a + $b = ?', answer.toString(), 'Lege zuerst $a. Lege dann $b dazu. Zaehle zusammen: $answer.', visual: 'dots');
     }
     if (unit.contains('Minus')) {
+      if (unit.contains('20') && _random.nextDouble() < .65) {
+        return _minusBridgeTen(grade, unit);
+      }
       final max = unit.contains('100') ? 100 : unit.contains('20') ? 20 : maxSmall;
       final a = 2 + _random.nextInt(max - 1);
       final b = 1 + _random.nextInt(a - 1);
@@ -243,7 +262,7 @@ class ExerciseFactory {
       final ones = _random.nextInt(10);
       final n = tens * 10 + ones;
       final askTens = _random.nextBool();
-      return _choiceTask('zehner', grade, 'Mathematik', unit, askTens ? 'Wie viele Zehner hat $n?' : 'Wie viele Einer hat $n?', askTens ? '$tens' : '$ones', '$n besteht aus $tens Zehnern und $ones Einern.');
+      return _choiceTask('zehner', grade, 'Mathematik', unit, askTens ? 'Wie viele Zehner hat $n?' : 'Wie viele Einer hat $n?', askTens ? '$tens' : '$ones', '$n besteht aus $tens Zehnern und $ones Einern.', visual: 'ten_ones');
     }
     if (unit == 'Verdoppeln und Halbieren') {
       final n = 1 + _random.nextInt(10);
@@ -277,18 +296,70 @@ class ExerciseFactory {
       return _choiceTask('gerade', grade, 'Mathematik', unit, 'Ist $n gerade oder ungerade?', ans, 'Gerade Zahlen kann man in zwei gleiche Gruppen teilen.');
     }
     if (unit == 'Zahlen zerlegen') {
-      final n = 5 + _random.nextInt(15);
-      final a = 1 + _random.nextInt(n - 1);
-      return _choiceTask('zerlegen', grade, 'Mathematik', unit, '$n = $a + ?', '${n - a}', 'Suche die fehlende Zahl, damit zusammen $n entsteht.');
+      return _numberHouse(grade, unit);
     }
     final apples = 2 + _random.nextInt(8);
     final more = 1 + _random.nextInt(6);
     return _choiceTask('text', grade, 'Mathematik', 'Textaufgaben', 'Lumo hat $apples Sterne und bekommt $more dazu. Wie viele Sterne hat er?', '${apples + more}', 'Das ist eine Plusgeschichte: $apples + $more = ${apples + more}.');
   }
 
+  LumoTask _minusBridgeTen(int grade, String unit) {
+    final start = 11 + _random.nextInt(9);
+    final toTen = start - 10;
+    final rest = 1 + _random.nextInt(9 - toTen);
+    final takeAway = toTen + rest;
+    final answer = start - takeAway;
+    return _choiceTask(
+      'minus10',
+      grade,
+      'Mathematik',
+      unit,
+      '$start - $takeAway = ?',
+      '$answer',
+      'Rechne wie im Heft: Erst $toTen weg bis zur 10. Dann noch $rest weg. Also $start - $toTen - $rest = $answer.',
+      visual: 'line',
+    );
+  }
+
+  LumoTask _numberHouse(int grade, String unit) {
+    final target = grade == 1 ? 5 + _random.nextInt(6) : 10 + _random.nextInt(11);
+    final left = _random.nextInt(target + 1);
+    final answer = target - left;
+    return _choiceTask(
+      'haus',
+      grade,
+      'Mathematik',
+      unit,
+      'Rechenhaus $target: $left + ? = $target',
+      '$answer',
+      'Das Dach sagt $target. Im Zimmer steht $left. Die fehlende Zahl ist $answer, denn $left + $answer = $target.',
+      visual: 'number_house',
+    );
+  }
+
+  LumoTask _blitzlicht(int grade, String unit) {
+    final a = 10 + _random.nextInt(10);
+    final b = 1 + _random.nextInt(9);
+    final minus = _random.nextBool();
+    final answer = minus ? a - b : a + b;
+    return _choiceTask(
+      'blitz',
+      grade,
+      'Mathematik',
+      unit,
+      'Blitzlicht: ${minus ? '$a - $b' : '$a + $b'} = ?',
+      '$answer',
+      'Blitzlicht heisst: kurz schauen, ruhig rechnen, dann antworten.',
+      visual: 'blitz_grid',
+    );
+  }
+
   LumoTask _german(int grade, String unit) {
     const words = <String>['Mama', 'Mond', 'Sonne', 'Ball', 'Fuchs', 'Haus', 'Rose', 'Apfel', 'Schule', 'Banane', 'Igel', 'Lampe'];
     final word = words[_random.nextInt(words.length)];
+    if (unit == 'St oder Sp') return _stOrSp(grade, 'Deutsch');
+    if (unit == 'Einzahl und Mehrzahl') return _pluralTask(grade, 'Deutsch');
+    if (unit == 'Wort-Bild schreiben') return _wordImageWriting(grade);
     if (unit == 'Anfangslaute') {
       final first = word.substring(0, 1).toUpperCase();
       return _choiceTask('laut', grade, 'Deutsch', unit, 'Mit welchem Laut beginnt $word?', first, 'Sprich $word langsam. Der erste Laut ist $first.');
@@ -333,6 +404,7 @@ class ExerciseFactory {
   }
 
   LumoTask _spelling(int grade, String unit) {
+    if (unit == 'St oder Sp') return _stOrSp(grade, 'Rechtschreibung');
     final words = grade == 1 ? <String>['und', 'ist', 'Mama', 'Papa', 'Haus', 'Ball', 'Sonne'] : <String>['spielen', 'kommen', 'Schule', 'Freund', 'heute', 'klein', 'gross'];
     final correct = words[_random.nextInt(words.length)];
     if (unit == 'Gross und klein') {
@@ -351,6 +423,76 @@ class ExerciseFactory {
     }
     final wrong = correct.toLowerCase();
     return _choiceTask('wort', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', correct, 'Schau jeden Buchstaben langsam an.', customChoices: <String>[correct, wrong, '${correct}e']);
+  }
+
+  LumoTask _stOrSp(int grade, String subject) {
+    final data = <String, String>{
+      'Stern': 'St',
+      'Storch': 'St',
+      'Stift': 'St',
+      'Stein': 'St',
+      'Spiegel': 'Sp',
+      'Spinne': 'Sp',
+      'Sport': 'Sp',
+      'Spaten': 'Sp',
+    };
+    final entry = data.entries.elementAt(_random.nextInt(data.length));
+    return _choiceTask(
+      'stsp',
+      grade,
+      subject,
+      'St oder Sp',
+      'St oder Sp? ${entry.key}',
+      entry.value,
+      'Sprich den Anfang langsam. Hoerst du St oder Sp?',
+      visual: 'sound_choice',
+      customChoices: const <String>['St', 'Sp'],
+    );
+  }
+
+  LumoTask _pluralTask(int grade, String subject) {
+    final data = <String, String>{
+      'Schwan': 'Schwaene',
+      'Glas': 'Glaeser',
+      'Haus': 'Haeuser',
+      'Kind': 'Kinder',
+      'Blume': 'Blumen',
+      'Ball': 'Baelle',
+    };
+    final entry = data.entries.elementAt(_random.nextInt(data.length));
+    return _choiceTask(
+      'plural',
+      grade,
+      subject,
+      'Einzahl und Mehrzahl',
+      'Aus 1 mach 2: ${entry.key} -> ?',
+      entry.value,
+      'Aus einem Wort fuer eins wird ein Wort fuer mehrere. Sprich beide Woerter langsam.',
+      visual: 'writing_line',
+      customChoices: <String>[entry.value, entry.key, '${entry.key}e'],
+    );
+  }
+
+  LumoTask _wordImageWriting(int grade) {
+    final data = <String, String>{
+      '🏠': 'Haus',
+      '🦊': 'Fuchs',
+      '☀️': 'Sonne',
+      '🌹': 'Rose',
+      '🍎': 'Apfel',
+    };
+    final entry = data.entries.elementAt(_random.nextInt(data.length));
+    return _choiceTask(
+      'bildwort',
+      grade,
+      'Deutsch',
+      'Wort-Bild schreiben',
+      'Welches Wort passt zum Bild ${entry.key}?',
+      entry.value,
+      'Schau das Bild an und lies das passende Wort langsam.',
+      visual: 'writing_line',
+      customChoices: <String>[entry.value, 'Haus', 'Ball', 'Sonne']..removeWhere((value) => value == entry.value && false),
+    );
   }
 
   LumoTask _writing(int grade, String unit) {
@@ -411,9 +553,20 @@ class ExerciseFactory {
   }
 
   LumoTask _choiceTask(String prefix, int grade, String subject, String unit, String prompt, String answer, String explanation, {String visual = 'auto', List<String>? customChoices}) {
-    final choices = customChoices ?? _choices(answer);
+    final choices = customChoices == null ? _choices(answer) : _normalizedChoices(answer, customChoices);
     choices.shuffle(_random);
     return LumoTask(id: _id(prefix), grade: grade, subject: subject, unit: unit, prompt: prompt, choices: choices, answer: answer, explanation: explanation, visual: visual, difficulty: grade);
+  }
+
+  List<String> _normalizedChoices(String answer, List<String> customChoices) {
+    final set = <String>{answer, ...customChoices};
+    final pool = <String>['St', 'Sp', 'Haus', 'Fuchs', 'Sonne', 'Schwaene', 'Glaeser', 'Kinder', '10', '7', '8'];
+    var index = 0;
+    while (set.length < 3 && index < pool.length) {
+      set.add(pool[index]);
+      index++;
+    }
+    return set.take(4).toList(growable: true);
   }
 
   List<String> _choices(String answer) {
