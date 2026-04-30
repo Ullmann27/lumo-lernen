@@ -21,6 +21,22 @@ enum LumoSection {
 
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 
+/// Modus einer aktuell laufenden Lern-Session. Steuert Fragenanzahl,
+/// Hilfeverhalten und Wiederholungs-Logik im LearningContent.
+///
+///   - quickPractice  : 10 Fragen, mit Hilfe (Standard wenn nichts gesetzt)
+///   - exerciseSet    : 20 Fragen, mit Hilfe
+///   - test           : 10 Fragen, weniger Hilfe, Mood "think"
+///   - schoolwork     : 30 Fragen, keine Hilfe, strukturierter Ablauf
+///   - tutoring       :  8 Schritte, geführte Nachhilfe mit max. Hilfe
+enum LumoSessionKind {
+  quickPractice,
+  exerciseSet,
+  test,
+  schoolwork,
+  tutoring,
+}
+
 class LumoSessionState {
   LumoSessionState({
     this.section = LumoSection.home,
@@ -40,6 +56,7 @@ class LumoSessionState {
     this.learningRecommendationText,
     this.learningRecommendationSubject,
     this.learningRecommendationUnit,
+    this.sessionKind = LumoSessionKind.quickPractice,
   });
 
   LumoSection section;
@@ -59,6 +76,7 @@ class LumoSessionState {
   String? learningRecommendationText;
   String? learningRecommendationSubject;
   String? learningRecommendationUnit;
+  LumoSessionKind sessionKind;
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
@@ -83,6 +101,7 @@ class LumoSessionState {
     String? learningRecommendationText,
     String? learningRecommendationSubject,
     String? learningRecommendationUnit,
+    LumoSessionKind? sessionKind,
   }) {
     return LumoSessionState(
       section: section ?? this.section,
@@ -102,6 +121,7 @@ class LumoSessionState {
       learningRecommendationText: learningRecommendationText ?? this.learningRecommendationText,
       learningRecommendationSubject: learningRecommendationSubject ?? this.learningRecommendationSubject,
       learningRecommendationUnit: learningRecommendationUnit ?? this.learningRecommendationUnit,
+      sessionKind: sessionKind ?? this.sessionKind,
     );
   }
 }

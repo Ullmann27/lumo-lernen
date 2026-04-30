@@ -12,8 +12,19 @@ class SectionContent extends StatelessWidget {
   final LumoSection section;
   final ValueChanged<LumoSection> onSection;
 
-  void _startSession({required String subject, String unit = 'Alle', required String message}) {
-    appState.update(appState.state.copyWith(subject: subject, unit: unit, mood: LumoMood.point, lumoMessage: message));
+  void _startSession({
+    required String subject,
+    String unit = 'Alle',
+    required String message,
+    LumoSessionKind sessionKind = LumoSessionKind.quickPractice,
+  }) {
+    appState.update(appState.state.copyWith(
+      subject: subject,
+      unit: unit,
+      mood: LumoMood.point,
+      lumoMessage: message,
+      sessionKind: sessionKind,
+    ));
     onSection(LumoSection.exercises);
   }
 
@@ -27,10 +38,10 @@ class SectionContent extends StatelessWidget {
           emoji: '📋',
           accent: LumoColors.testColor,
           cards: [
-            _ActionData('Mini-Test', '5 schnelle gemischte Aufgaben zum Aufwärmen.', 'Starten', Icons.flash_on_rounded, () => _startSession(subject: 'Alle', message: 'Mini-Test\nist bereit.\nDu schaffst das!')),
-            _ActionData('Mathe-Test', 'Rechnen, Zahlen und kleine Denkaufgaben.', 'Starten', Icons.calculate_rounded, () => _startSession(subject: 'Mathematik', message: 'Mathe-Test\nist bereit.\nRuhig rechnen.')),
-            _ActionData('Deutsch-Test', 'Lesen, Wörter und Satzverständnis.', 'Starten', Icons.menu_book_rounded, () => _startSession(subject: 'Deutsch', message: 'Deutsch-Test\nist bereit.\nLangsam lesen.')),
-            _ActionData('Schwächen-Test', 'Lumo übt stärker, was noch schwer war.', 'Los', Icons.psychology_rounded, () => _startSession(subject: 'Alle', message: 'Ich wähle\npassende Aufgaben\nfür dich.')),
+            _ActionData('Mini-Test', '10 gemischte Aufgaben zum Aufwärmen.', 'Starten', Icons.flash_on_rounded, () => _startSession(subject: 'Alle', message: 'Mini-Test\nist bereit.\nDu schaffst das!', sessionKind: LumoSessionKind.test)),
+            _ActionData('Mathe-Test', 'Rechnen, Zahlen und kleine Denkaufgaben.', 'Starten', Icons.calculate_rounded, () => _startSession(subject: 'Mathematik', message: 'Mathe-Test\nist bereit.\nRuhig rechnen.', sessionKind: LumoSessionKind.test)),
+            _ActionData('Deutsch-Test', 'Lesen, Wörter und Satzverständnis.', 'Starten', Icons.menu_book_rounded, () => _startSession(subject: 'Deutsch', message: 'Deutsch-Test\nist bereit.\nLangsam lesen.', sessionKind: LumoSessionKind.test)),
+            _ActionData('Schwächen-Test', 'Lumo übt stärker, was noch schwer war.', 'Los', Icons.psychology_rounded, () => _startSession(subject: 'Alle', message: 'Ich wähle\npassende Aufgaben\nfür dich.', sessionKind: LumoSessionKind.test)),
           ],
         );
       case LumoSection.schoolwork:
@@ -40,10 +51,10 @@ class SectionContent extends StatelessWidget {
           emoji: '🏆',
           accent: LumoColors.schoolwork,
           cards: [
-            _ActionData('Gemischter Test', 'Mathe, Deutsch, Lesen und Sachunterricht gemischt.', 'Starten', Icons.assignment_rounded, () => _startSession(subject: 'Alle', message: 'Gemischte\nSchularbeit\nstartet jetzt.')),
-            _ActionData('Mathe-Schularbeit', 'Rechnen, Geld, Uhrzeit und Zahlen.', 'Starten', Icons.calculate_rounded, () => _startSession(subject: 'Mathematik', message: 'Mathe-Training\nwie Schularbeit.')),
-            _ActionData('Deutsch-Schularbeit', 'Lesen, Schreiben und Rechtschreibung.', 'Starten', Icons.edit_document, () => _startSession(subject: 'Deutsch', message: 'Deutsch-Training\nwie Schularbeit.')),
-            _ActionData('Schnelle Wiederholung', 'Kurzer Mix zum Festigen.', 'Üben', Icons.refresh_rounded, () => _startSession(subject: 'Alle', message: 'Kurze\nWiederholung\nstartet.')),
+            _ActionData('Gemischter Test', '30 Aufgaben aus Mathe, Deutsch und Sachunterricht.', 'Starten', Icons.assignment_rounded, () => _startSession(subject: 'Alle', message: 'Gemischte\nSchularbeit\nstartet jetzt.', sessionKind: LumoSessionKind.schoolwork)),
+            _ActionData('Mathe-Schularbeit', '30 Aufgaben Rechnen, Geld, Uhrzeit und Zahlen.', 'Starten', Icons.calculate_rounded, () => _startSession(subject: 'Mathematik', message: 'Mathe-Training\nwie Schularbeit.', sessionKind: LumoSessionKind.schoolwork)),
+            _ActionData('Deutsch-Schularbeit', '30 Aufgaben Lesen, Schreiben und Rechtschreibung.', 'Starten', Icons.edit_document, () => _startSession(subject: 'Deutsch', message: 'Deutsch-Training\nwie Schularbeit.', sessionKind: LumoSessionKind.schoolwork)),
+            _ActionData('Schnelle Wiederholung', '20 Aufgaben gemischt zum Festigen.', 'Üben', Icons.refresh_rounded, () => _startSession(subject: 'Alle', message: 'Wiederholung\nstartet.', sessionKind: LumoSessionKind.exerciseSet)),
           ],
         );
       case LumoSection.missions:

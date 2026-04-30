@@ -39,15 +39,46 @@ class _LearningContentState extends State<LearningContent> {
   RewardDelta? _lastRewardDelta;
   SkillState? _lastSkillState;
   int _questionNum = 1;
-  final int _totalQuestions = 10;
+
+  /// Anzahl Fragen pro Session, abgeleitet aus dem aktuellen sessionKind.
+  /// quickPractice=10, exerciseSet=20, test=10, schoolwork=30, tutoring=8
+  int get _totalQuestions {
+    switch (widget.appState.state.sessionKind) {
+      case LumoSessionKind.quickPractice: return 10;
+      case LumoSessionKind.exerciseSet:   return 20;
+      case LumoSessionKind.test:          return 10;
+      case LumoSessionKind.schoolwork:    return 30;
+      case LumoSessionKind.tutoring:      return 8;
+    }
+  }
+
+  /// Hilfe ist im Schularbeit-Modus deaktiviert (echte Pruefung),
+  /// im Test-Modus reduziert, in allen anderen Modi voll verfuegbar.
+  bool get _allowHelp =>
+      widget.appState.state.sessionKind != LumoSessionKind.schoolwork;
 
   @override
   void initState() {
     super.initState();
     _loadNextTask(resetCounter: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      LumoVoice.instance.speak('Arbeite wie im Heft. Ruhig lesen, dann erst antworten.');
+      LumoVoice.instance.speak(_welcomeForKind);
     });
+  }
+
+  String get _welcomeForKind {
+    switch (widget.appState.state.sessionKind) {
+      case LumoSessionKind.quickPractice:
+        return 'Arbeite wie im Heft. Ruhig lesen, dann erst antworten.';
+      case LumoSessionKind.exerciseSet:
+        return 'Wir machen heute zwanzig Aufgaben. Du schaffst das gut.';
+      case LumoSessionKind.test:
+        return 'Testmodus. Lies ruhig und antworte selbst.';
+      case LumoSessionKind.schoolwork:
+        return 'Wie eine echte Schularbeit. Ich gebe heute keine Hilfe.';
+      case LumoSessionKind.tutoring:
+        return 'Nachhilfe. Wir gehen Schritt für Schritt zusammen durch.';
+    }
   }
 
   void _loadNextTask({bool resetCounter = false}) {
@@ -240,9 +271,9 @@ class _LearningContentState extends State<LearningContent> {
                       style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.05),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      'Arbeite wie im Heft. Ruhig lesen, dann erst antworten.',
-                      style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w800, color: LumoColors.ink500, height: 1.35),
+                    Text(
+                      _welcomeForKind,
+                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w800, color: LumoColors.ink500, height: 1.35),
                     ),
                   ]),
                 ),
