@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
@@ -32,6 +33,9 @@ class _ReadingContentState extends State<ReadingContent> {
   double? _lastScore;
   int _interventionCount = 0;
   bool _finished = false;
+  bool _autoListening = true;
+  bool _processing = false;
+  Timer? _listenTimer;
 
   @override
   void initState() {
@@ -50,13 +54,15 @@ class _ReadingContentState extends State<ReadingContent> {
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      LumoVoice.instance.speak('Wir lesen jetzt ${story.title}. Lies den ersten Satz langsam vor.');
+      _speakThenListen('Wir lesen jetzt ${story.title}. Lies den ersten Satz langsam vor.');
       _persistReadingProgress(latestScore: 0);
     });
   }
 
   @override
   void dispose() {
+    _listenTimer?.cancel();
+    _speech.cancel();
     _speech.dispose();
     super.dispose();
   }
@@ -67,45 +73,120 @@ class _ReadingContentState extends State<ReadingContent> {
     return 'local_${safeName}_${st.grade}';
   }
 
+  Future<void> _speakThenListen(String message) async {
+    _listenTimer?.cancel();
+    setState(() => _lumoLine = message);
+    widget.appState.update(widget.appState.state.copyWith(
+      mood: LumoMood.point,
+      lumoMessage: message,
+    ));
+    await LumoVoice.instance.speak(message);
+    if (!mounted || _finished || !_autoListening) return;
+    final delayMs = (message.length * 55).clamp(850, 2600).toInt();
+    _listenTimer = Timer(Duration(milliseconds: delayMs), () {
+      if (!mounted || _finished || _speech.listening) return;
+      _startListening(auto: true);
+    });
+  }
+
   Future<void> _toggleListening() async {
+    if (_speech.listening) {
+      await _speech.stopListening();
+      return;
+    }
+    _autoListening = true;
+    await _startListening(auto: false);
+  }
+
+  Future<void> _startListening({required bool auto}) async {
     if (!widget.appState.state.settings.microphoneEnabled) {
       setState(() => _lumoLine = 'Das Mikrofon ist im Elternbereich ausgeschaltet.');
       return;
     }
-    if (_speech.listening) {
-      await _speech.stopListening();
-      if (!mounted) return;
-      _processTranscript(_speech.lastWords);
-      return;
-    }
+    if (_finished || _processing || _speech.listening) return;
+
     setState(() {
       _lastTranscript = '';
       _processedTranscript = '';
-      _lumoLine = 'Ich hoere zu. Lies den markierten Satz.';
+      _lumoLine = auto ? 'Ich hoere jetzt zu. Lies den markierten Satz.' : 'Ich hoere zu. Lies den markierten Satz.';
     });
+
     await _speech.startListening(
       onResult: (words) {
         if (!mounted) return;
         setState(() => _lastTranscript = words);
+        if (_looksLikeSentenceComplete(words)) {
+          _speech.stopListening();
+        }
       },
       onFinalResult: (words) {
         if (!mounted) return;
         _processTranscript(words);
       },
+      onNoMatch: () {
+        if (!mounted) return;
+        _handleNoMatch();
+      },
     );
+  }
+
+  bool _looksLikeSentenceComplete(String words) {
+    final spoken = _normalizeTokens(words);
+    final expected = _normalizeTokens(_progress.currentSentence.text);
+    if (spoken.isEmpty || expected.isEmpty) return false;
+    final lastExpected = expected.last;
+    final containsLastWord = spoken.contains(lastExpected) || _similarTokenExists(lastExpected, spoken);
+    final enoughWords = spoken.length >= (expected.length - 1).clamp(1, expected.length);
+    return containsLastWord && enoughWords;
+  }
+
+  bool _similarTokenExists(String expected, List<String> spoken) {
+    return spoken.any((token) {
+      if (token == expected) return true;
+      if (expected == 'lumo' && <String>{'limo', 'luna', 'luno', 'lumos', 'lu'}.contains(token)) return true;
+      return token.length > 3 && expected.length > 3 && token.substring(0, 2) == expected.substring(0, 2);
+    });
+  }
+
+  List<String> _normalizeTokens(String value) {
+    return value
+        .toLowerCase()
+        .replaceAll('ü', 'ue')
+        .replaceAll('ö', 'oe')
+        .replaceAll('ä', 'ae')
+        .replaceAll('ß', 'ss')
+        .replaceAll(RegExp(r'[^a-z\s]'), '')
+        .split(RegExp(r'\s+'))
+        .where((token) => token.isNotEmpty)
+        .toList(growable: false);
+  }
+
+  void _handleNoMatch() {
+    if (_lastTranscript.trim().isNotEmpty) {
+      _processTranscript(_lastTranscript);
+      return;
+    }
+    setState(() {
+      _lastScore = null;
+      _lumoLine = 'Ich habe dich nicht gut verstanden. Wir zaehlen das nicht als Fehler.';
+    });
+    _speakThenListen('Ich habe dich nicht gut verstanden. Wir versuchen denselben Satz noch einmal langsam.');
   }
 
   void _processTranscript(String transcript) {
     final text = transcript.trim();
     if (text.isEmpty) {
-      setState(() => _lumoLine = 'Ich habe noch nichts gehoert. Tippe nochmal auf Mikrofon und lies langsam.');
+      _handleNoMatch();
       return;
     }
-    if (_processedTranscript == text) return;
+    if (_processedTranscript == text || _processing) return;
     _processedTranscript = text;
+    _processing = true;
     final result = _monitor.processSentence(childId: _childId, progress: _progress, transcript: text);
     final action = result.decision.primary;
-    if (!result.analysis.correctEnough) _interventionCount++;
+    if (!result.analysis.correctEnough && result.analysis.problemWord != null && _progress.attemptNumber >= 2) {
+      _interventionCount++;
+    }
 
     setState(() {
       _lastTranscript = text;
@@ -123,7 +204,22 @@ class _ReadingContentState extends State<ReadingContent> {
       mood: _progress.isComplete ? LumoMood.celebrate : _moodFor(action.tone),
       lumoMessage: _lumoLine,
     ));
-    LumoVoice.instance.speak(_lumoLine);
+
+    final nextMessage = _progress.isComplete
+        ? _lumoLine
+        : result.analysis.correctEnough
+            ? 'Gut gelesen. Jetzt kommt der naechste Satz. Lies ihn laut vor.'
+            : _lumoLine;
+
+    LumoVoice.instance.speak(nextMessage).whenComplete(() {
+      _processing = false;
+      if (!mounted || _finished || !_autoListening) return;
+      final delayMs = (nextMessage.length * 55).clamp(850, 2600).toInt();
+      _listenTimer?.cancel();
+      _listenTimer = Timer(Duration(milliseconds: delayMs), () {
+        if (mounted && !_finished && !_speech.listening) _startListening(auto: true);
+      });
+    });
   }
 
   Future<void> _persistReadingProgress({required double latestScore}) async {
@@ -185,7 +281,9 @@ class _ReadingContentState extends State<ReadingContent> {
                   enabled: widget.appState.state.settings.microphoneEnabled,
                   lastTranscript: _lastTranscript,
                   error: _speech.error,
+                  autoListening: _autoListening,
                   onTap: _finished ? null : _toggleListening,
+                  onAutoToggle: (value) => setState(() => _autoListening = value),
                 ),
                 if (_progress.problemWords.isNotEmpty) ...[
                   const SizedBox(height: 14),
@@ -368,13 +466,23 @@ class _ActiveSentenceCard extends StatelessWidget {
 }
 
 class _MicrophonePanel extends StatelessWidget {
-  const _MicrophonePanel({required this.listening, required this.enabled, required this.lastTranscript, required this.error, required this.onTap});
+  const _MicrophonePanel({
+    required this.listening,
+    required this.enabled,
+    required this.lastTranscript,
+    required this.error,
+    required this.autoListening,
+    required this.onTap,
+    required this.onAutoToggle,
+  });
 
   final bool listening;
   final bool enabled;
   final String lastTranscript;
   final String? error;
+  final bool autoListening;
   final VoidCallback? onTap;
+  final ValueChanged<bool> onAutoToggle;
 
   @override
   Widget build(BuildContext context) {
@@ -385,7 +493,7 @@ class _MicrophonePanel extends StatelessWidget {
         Row(children: [
           Expanded(
             child: Text(
-              enabled ? (listening ? 'Lumo hoert zu …' : 'Tippe und lies den Satz vor') : 'Mikrofon im Elternbereich ausgeschaltet',
+              enabled ? (listening ? 'Lumo hoert zu …' : 'Lumo startet das Mikrofon automatisch') : 'Mikrofon im Elternbereich ausgeschaltet',
               style: LumoTextStyles.heading3,
             ),
           ),
@@ -404,11 +512,19 @@ class _MicrophonePanel extends StatelessWidget {
             ),
           ),
         ]),
+        const SizedBox(height: 10),
+        SwitchListTile.adaptive(
+          contentPadding: EdgeInsets.zero,
+          value: autoListening,
+          onChanged: enabled ? onAutoToggle : null,
+          title: const Text('Automatisch zuhoeren', style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+          subtitle: const Text('Lumo startet nach seiner Ansage selbst das Mikrofon.', style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w700)),
+        ),
         if (lastTranscript.isNotEmpty) ...[
           const SizedBox(height: 10),
           Text('Gehoert: $lastTranscript', style: LumoTextStyles.body.copyWith(color: LumoColors.ink600)),
         ],
-        if (error != null) ...[
+        if (error != null && error != 'error_no_match') ...[
           const SizedBox(height: 8),
           Text('Mikrofon-Hinweis: $error', style: LumoTextStyles.caption.copyWith(color: LumoColors.practice)),
         ],
