@@ -4,6 +4,7 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../tutoring/tutoring_flow_card.dart';
 
 class SectionContent extends StatelessWidget {
   const SectionContent({super.key, required this.appState, required this.section, required this.onSection});
@@ -58,7 +59,7 @@ class SectionContent extends StatelessWidget {
           ],
         );
       case LumoSection.missions:
-        return _MissionsPage(onSection: onSection, startSession: _startSession);
+        return _MissionsPage(appState: appState, onSection: onSection, startSession: _startSession);
       case LumoSection.progress:
         return _ProgressPage(appState: appState);
       case LumoSection.rewards:
@@ -164,27 +165,75 @@ class _ActionCard extends StatelessWidget {
 }
 
 class _MissionsPage extends StatelessWidget {
-  const _MissionsPage({required this.onSection, required this.startSession});
+  const _MissionsPage({
+    required this.appState,
+    required this.onSection,
+    required this.startSession,
+  });
+  final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
-  final void Function({required String subject, String unit, required String message}) startSession;
+  final void Function({
+    required String subject,
+    String unit,
+    required String message,
+    LumoSessionKind sessionKind,
+  }) startSession;
 
   @override
   Widget build(BuildContext context) {
-    return _ActionPage(
-      title: 'Missionen',
-      subtitle: 'Kleine Ziele, die ein Kind sofort erledigen kann.',
-      emoji: '🚩',
-      accent: LumoColors.orange,
-      cards: [
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(22, 22, 22, 22),
+      children: [
+        // Hervorgehobene Nachhilfe-Einheit am Anfang
+        TutoringFlowCard(
+          appState: appState,
+          onStartTutoring: () => startSession(
+            subject: 'Alle',
+            message: 'Lumo-Nachhilfe\nstartet jetzt.\nWir machen das\nzusammen.',
+            sessionKind: LumoSessionKind.tutoring,
+          ),
+        ),
+        const SizedBox(height: 22),
+        // Bestehende Missionen darunter
+        const Text(
+          'Tagesmissionen',
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 22,
+            fontWeight: FontWeight.w900,
+            color: LumoColors.ink900,
+          ),
+        ),
+        const SizedBox(height: 4),
+        const Text(
+          'Kleine Ziele, die ein Kind sofort erledigen kann.',
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+            color: LumoColors.ink500,
+          ),
+        ),
+        const SizedBox(height: 14),
+        Wrap(
+          spacing: 14,
+          runSpacing: 14,
+          children: _missionCards()
+              .map((card) => _ActionCard(data: card, accent: LumoColors.orange))
+              .toList(),
+        ),
+      ],
+    );
+  }
+
+  List<_ActionData> _missionCards() => [
         _ActionData('3 Aufgaben lösen', 'Schließe drei einfache Aufgaben ab.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Mission:\n3 Aufgaben\nlösen!')),
         _ActionData('Mathe-Insel', 'Zahlen und Plus/Minus üben.', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: 'Plus bis 20', message: 'Mathe-Insel\nstartet jetzt.')),
         _ActionData('Lesemut', 'Deutsch lesen und Wörter erkennen.', 'Starten', Icons.menu_book_rounded, () => startSession(subject: 'Lesen', message: 'Lesemut\nstartet jetzt.')),
         _ActionData('Foto-Hilfe', 'Fotografiere eine Aufgabe und lass dir helfen.', 'Foto', Icons.photo_camera_rounded, () => onSection(LumoSection.scanner)),
         _ActionData('Englisch-Start', 'Farben, Tiere und Begrüßung.', 'Starten', Icons.language_rounded, () => startSession(subject: 'Englisch', message: 'Englisch\nstartet jetzt.')),
         _ActionData('Sachforscher', 'Tiere, Pflanzen und Wetter.', 'Starten', Icons.eco_rounded, () => startSession(subject: 'Sachunterricht', message: 'Sachforscher\nMission startet.')),
-      ],
-    );
-  }
+      ];
 }
 
 class _ProgressPage extends StatelessWidget {
