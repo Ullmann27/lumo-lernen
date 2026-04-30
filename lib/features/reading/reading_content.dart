@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/reading_progress_repository.dart';
 import '../../domain/agent/lumo_agent_domain.dart';
 import '../../domain/reading/reading_domain.dart';
 
@@ -21,17 +22,21 @@ class _ReadingContentState extends State<ReadingContent> {
   final _storyEngine = const StoryEngine();
   final _monitor = ReadingMonitor();
   final _speech = LumoSpeechListener();
+  final _readingRepo = ReadingProgressRepository();
 
   late ReadingSessionProgress _progress;
+  late String _readingSessionId;
   String _lastTranscript = '';
   String _lumoLine = 'Bereit? Lumo hoert dir Satz fuer Satz zu.';
   double? _lastScore;
+  int _interventionCount = 0;
   bool _finished = false;
 
   @override
   void initState() {
     super.initState();
     final story = _storyEngine.pickStory(grade: widget.appState.state.grade);
+    _readingSessionId = 'reading_${story.id}_${DateTime.now().millisecondsSinceEpoch}';
     _progress = ReadingSessionProgress(
       story: story,
       currentSentenceIndex: 0,
@@ -44,6 +49,7 @@ class _ReadingContentState extends State<ReadingContent> {
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       LumoVoice.instance.speak('Wir lesen jetzt ${story.title}. Lies den ersten Satz langsam vor.');
+      _persistReadingProgress(latestScore: 0);
     });
   }
 
@@ -89,6 +95,7 @@ class _ReadingContentState extends State<ReadingContent> {
     final action = result.decision.primary;
     final nextIndex = result.nextProgress.currentSentenceIndex;
     final done = result.analysis.correctEnough && nextIndex == _progress.currentSentenceIndex && _progress.currentSentenceIndex >= _progress.story.sentences.length - 1;
+    if (!result.analysis.correctEnough) _interventionCount++;
 
     setState(() {
       _progress = result.nextProgress;
@@ -102,11 +109,26 @@ class _ReadingContentState extends State<ReadingContent> {
       }
     });
 
+    _persistReadingProgress(latestScore: result.analysis.alignmentScore);
+
     widget.appState.update(widget.appState.state.copyWith(
       mood: _moodFor(action.tone),
       lumoMessage: _lumoLine,
     ));
     LumoVoice.instance.speak(action.message);
+  }
+
+  Future<void> _persistReadingProgress({required double latestScore}) async {
+    await _readingRepo.updateLatest(
+      id: _readingSessionId,
+      childId: _childId,
+      storyTitle: _progress.story.title,
+      completedSentences: _progress.completedSentenceIds.length,
+      totalSentences: _progress.story.sentences.length,
+      latestAlignmentScore: latestScore,
+      interventionCount: _interventionCount,
+      problemWords: _progress.problemWords,
+    );
   }
 
   LumoMood _moodFor(AgentTone tone) {
