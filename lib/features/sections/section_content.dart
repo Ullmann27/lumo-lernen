@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../shared/widgets/lumo_subject_dashboard.dart';
+import '../shared/widgets/lumo_subject_tile.dart';
 import '../tutoring/tutoring_flow_card.dart';
 
 typedef _StartSession = void Function({
@@ -49,6 +52,97 @@ class SectionContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (section) {
+      case LumoSection.learn:
+        return LumoSubjectDashboard(
+          appState: appState,
+          subject: 'Deutsch',
+          subjectAccent: 'mit Lumo',
+          subtitle: 'Lerne spielerisch mit deinem Fuchs-Freund!',
+          greeting: 'Weiter so, du bist spitze!',
+          lumoMessage: 'Super! Heute\nüben wir neue Wörter\nund Sätze!',
+          ctaLabel: 'Deutsch Aufgabe starten',
+          onCtaPressed: () => _startSession(
+            subject: 'Deutsch',
+            unit: 'Alle Themen',
+            message: 'Deutsch startet.\nLies ruhig und\nantworte dann.',
+            sessionKind: LumoSessionKind.quickPractice,
+          ),
+          headerAccent: LumoColors.purple,
+          dailyMissionTitle: 'Tägliche Mission',
+          dailyMissionSubtitle: '3 Deutsch-Aufgaben abschließen',
+          dailyMissionDone: 2,
+          dailyMissionTotal: 3,
+          dailyMissionRewardStars: 10,
+          dailyMissionRewardXp: 50,
+          topicTiles: [
+            LumoSubjectTile(
+              title: 'Wörter lesen',
+              subtitle: 'Lies Wörter und sammle Sterne!',
+              iconEmoji: '📖',
+              illustrationEmoji: '📚',
+              accent: LumoColors.purple,
+              level: 3,
+              starsCollected: 12,
+              starsTotal: 20,
+              onTap: () => _startSession(subject: 'Deutsch', unit: 'Wörter lesen', message: 'Wir lesen\nWörter mit Lumo.', sessionKind: LumoSessionKind.quickPractice),
+            ),
+            LumoSubjectTile(
+              title: 'Buchstaben finden',
+              subtitle: 'Finde die richtigen Buchstaben!',
+              iconEmoji: '🔤',
+              illustrationEmoji: '🔎',
+              accent: LumoColors.teal,
+              level: 2,
+              starsCollected: 8,
+              starsTotal: 20,
+              onTap: () => _startSession(subject: 'Deutsch', unit: 'Buchstaben finden', message: 'Buchstaben\nfinden wir jetzt.', sessionKind: LumoSessionKind.quickPractice),
+            ),
+            LumoSubjectTile(
+              title: 'Reime erkennen',
+              subtitle: 'Klingen die Wörter gleich? Finde Reime!',
+              iconEmoji: '🎵',
+              illustrationEmoji: '🐱',
+              accent: LumoColors.practice,
+              level: 2,
+              starsCollected: 6,
+              starsTotal: 20,
+              onTap: () => _startSession(subject: 'Deutsch', unit: 'Reime erkennen', message: 'Wir suchen\nReime.', sessionKind: LumoSessionKind.quickPractice),
+            ),
+            LumoSubjectTile(
+              title: 'Satz bilden',
+              subtitle: 'Setze Wörter in die richtige Reihenfolge!',
+              iconEmoji: '💬',
+              illustrationEmoji: '🧩',
+              accent: LumoColors.blue,
+              level: 3,
+              starsCollected: 14,
+              starsTotal: 20,
+              onTap: () => _startSession(subject: 'Deutsch', unit: 'Satz bilden', message: 'Wir bauen\neinen Satz.', sessionKind: LumoSessionKind.quickPractice),
+            ),
+            LumoSubjectTile(
+              title: 'Schreiben üben',
+              subtitle: 'Buchstaben und Wörter sauber schreiben.',
+              iconEmoji: '✏️',
+              illustrationEmoji: 'A',
+              accent: LumoColors.orange,
+              level: 2,
+              starsCollected: 9,
+              starsTotal: 20,
+              onTap: () => _startSession(subject: 'Deutsch', unit: 'Schreiben üben', message: 'Wir schreiben\nmit ruhiger Hand.', sessionKind: LumoSessionKind.quickPractice),
+            ),
+            LumoSubjectTile(
+              title: 'Silben klatschen',
+              subtitle: 'Klatsche Wörter in Silben mit.',
+              iconEmoji: '👏',
+              illustrationEmoji: '🔴🔵',
+              accent: LumoColors.gold,
+              level: 2,
+              starsCollected: 7,
+              starsTotal: 20,
+              onTap: () => _startSession(subject: 'Deutsch', unit: 'Silben klatschen', message: 'Wir klatschen\nSilben.', sessionKind: LumoSessionKind.quickPractice),
+            ),
+          ],
+        );
       case LumoSection.tests:
         return _ActionPage(
           title: 'Test',
