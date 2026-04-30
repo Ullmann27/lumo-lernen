@@ -46,16 +46,27 @@ class ReadingProgressRepository {
     final previousCompleted = existing?.completedSentences ?? 0;
     final previousScore = existing?.averageAlignmentScore ?? 0;
     final hasNewRealReadingScore = completedSentences > previousCompleted || latestAlignmentScore > 0;
-    final totalCompletedForAverage = hasNewRealReadingScore ? (previousCompleted + 1).clamp(1, 9999).toInt() : previousCompleted;
-    final average = !hasNewRealReadingScore
-        ? previousScore
-        : previousCompleted == 0
-            ? latestAlignmentScore
-            : ((previousScore * previousCompleted) + latestAlignmentScore) / totalCompletedForAverage;
+
+    double average = previousScore;
+    if (hasNewRealReadingScore) {
+      if (previousCompleted <= 0) {
+        average = latestAlignmentScore;
+      } else {
+        average = ((previousScore * previousCompleted) + latestAlignmentScore) / (previousCompleted + 1);
+      }
+    }
+
+    final mergedWordSet = <String>{};
+    for (final word in existing?.problemWords ?? const <String>[]) {
+      final clean = word.trim();
+      if (clean.isNotEmpty) mergedWordSet.add(clean);
+    }
+    for (final word in problemWords) {
+      final clean = word.trim();
+      if (clean.isNotEmpty) mergedWordSet.add(clean);
+    }
+
     final now = DateTime.now();
-    final mergedWords = <String>{...?existing?.problemWords, ...problemWords}
-        .where((value) => value.trim().isNotEmpty)
-        .toList(growable: false);
     final summary = ReadingAnalysisSummary(
       id: id,
       childId: childId,
@@ -66,7 +77,7 @@ class ReadingProgressRepository {
       totalSentences: totalSentences,
       averageAlignmentScore: average.clamp(0.0, 1.0).toDouble(),
       interventionCount: interventionCount,
-      problemWords: mergedWords,
+      problemWords: mergedWordSet.toList(growable: false),
     );
     await saveReadingSummary(summary);
   }
