@@ -2,13 +2,30 @@
 
 Diese Regeln sind verbindlich, wenn Claude an diesem Repository arbeitet.
 
+## Wichtigste Übergabe-Datei
+
+Claude Code muss zuerst diese Projektübergabe lesen:
+
+```text
+docs/CLAUDE_CODE_HANDOVER_AND_NEXT_STEPS.md
+```
+
+Dort steht konkret:
+
+- was zuletzt gemacht wurde,
+- welche Dateien relevant sind,
+- welche Fehler Heinz in der App gesehen hat,
+- welche Aufgaben als nächstes abzuarbeiten sind,
+- welche Designrichtung gewünscht ist,
+- welche Build- und Sicherheitsregeln gelten.
+
 ## Ziel
 
-Der Android-Build muss zuerst wieder gruen werden. Bis dahin sind nur kleine Reparatur-Commits erlaubt.
+Der Android-Build muss zuerst gruen sein. Wenn GitHub Actions oder `flutter build apk --debug` rot ist, sind nur kleine Reparatur-Commits erlaubt.
 
 ## Aktueller Zustand
 
-Der Build ist nach UI- und Feature-Aenderungen fehlgeschlagen. Deshalb gilt jetzt Stabilitaet vor neuen Features.
+Die App ist eine Flutter-/Android-first Kinderlern-App mit stabiler Lumo-Shell, Lernmodus, Übungen, Tests, aktivem Lesen, Writing-Canvas, Elternbereich, Rewards, Tagesplan, ParentReport und Update-Service. Mehrere Features wurden zuletzt eingebaut. Deshalb gilt: erst Stabilität, dann Aufgabenqualität, dann Designausbau.
 
 ## Claude darf NICHT mehr
 
@@ -22,14 +39,17 @@ Der Build ist nach UI- und Feature-Aenderungen fehlgeschlagen. Deshalb gilt jetz
 8. Keine neuen Hauptseiten, die linke Navigation oder rechte Lumo-Buehne ersetzen.
 9. Keine Standard-Flutter-Optik als Ersatz fuer das Lumo-Design.
 10. Keine halb kopierten oder syntaktisch unvollstaendigen Dart-Dateien committen.
+11. Keine geschuetzten Schulbuchseiten oder Verlaglayouts 1:1 kopieren.
+12. Keine Designarbeit fortsetzen, wenn der Build rot ist.
 
 ## Shell-Regel
 
 Die Lumo-App bleibt immer in dieser Struktur:
 
-- linke Navigation sichtbar
-- mittlerer Inhalt wechselt
-- rechte Lumo-Buehne sichtbar
+- linke Navigation sichtbar,
+- mittlerer Inhalt wechselt,
+- rechte Lumo-Buehne sichtbar,
+- auf normalen Handys responsive mobile Shell.
 
 Nur die mittlere Content-Zone darf sich je Bereich aendern.
 
@@ -43,15 +63,34 @@ Vor jedem Commit pruefen:
 - Wenn ein Widget mit `key:` genutzt wird, hat es `super.key`?
 - Sind alle Asset-Pfade vorhanden?
 - Ist `pubspec.yaml` gueltig?
+- Gibt es keine falschen Enum-Werte oder Theme-Tokens?
 
 ## Arbeitsreihenfolge ab jetzt
 
 1. Erst Compile-Fehler reparieren.
 2. Dann Android-Build reparieren.
-3. Dann Overflow/Layout-Fehler reparieren.
-4. Erst danach Design weiter verbessern.
-5. Erst danach OCR wieder aktivieren.
+3. Dann Aufgabenqualität Deutsch/Rechtschreibung prüfen.
+4. Dann Writing-Canvas und Schreibziel synchronisieren.
+5. Dann Wiederholungslogik verbessern.
+6. Dann Overflow/Layout-Fehler reparieren.
+7. Erst danach Design weiter verbessern.
+8. Erst danach OCR/ML Kit wieder aktivieren.
+
+## Aktuelle Schwerpunktdateien
+
+```text
+lib/core/school_exercise_generator.dart
+lib/features/learning/adapters/legacy_lumo_task_adapter.dart
+lib/features/learning/learning_content.dart
+lib/features/learning/renderers/adaptive_task_renderer.dart
+lib/features/learning/renderers/writing_task_renderer.dart
+lib/features/learning/widgets/lumo_writing_canvas.dart
+lib/domain/writing/expanded_writing_template_repository.dart
+lib/app/app_shell.dart
+lib/app/app_state.dart
+lib/app/app_theme.dart
+```
 
 ## Commit-Regel
 
-Ein Commit darf nur eine klare Sache reparieren. Wenn GitHub Actions rot ist, darf Claude keine neuen Features bauen, sondern muss zuerst den ersten Buildfehler reparieren.
+Ein Commit darf nur eine klare Sache reparieren oder verbessern. Wenn GitHub Actions rot ist, darf Claude keine neuen Features bauen, sondern muss zuerst den ersten Buildfehler reparieren.
