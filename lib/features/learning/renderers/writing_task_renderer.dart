@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../../domain/writing/expanded_writing_template_repository.dart';
 import '../../../domain/writing/writing_domain.dart';
 import '../widgets/lumo_writing_canvas.dart';
 
@@ -32,7 +33,7 @@ class WritingTaskRenderer extends StatefulWidget {
 }
 
 class _WritingTaskRendererState extends State<WritingTaskRenderer> {
-  final _templates = const WritingTemplateRepository();
+  final _templates = const ExpandedWritingTemplateRepository();
   List<Stroke> _strokes = const <Stroke>[];
   WritingEvaluation? _evaluation;
 
@@ -43,7 +44,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
 
   @override
   Widget build(BuildContext context) {
-    final template = _templates.find(_symbol) ?? _templates.find('A')!;
+    final template = _templates.findOrFallback(_symbol);
     final evaluation = _evaluation;
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -71,6 +72,16 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
               fontWeight: FontWeight.w900,
               color: LumoColors.ink900,
               height: 1.12,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Ziel: ${template.symbol}',
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 16,
+              fontWeight: FontWeight.w900,
+              color: LumoColors.orange,
             ),
           ),
           const SizedBox(height: 16),
