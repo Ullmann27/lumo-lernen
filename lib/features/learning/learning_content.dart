@@ -109,14 +109,19 @@ class _LearningContentState extends State<LearningContent> {
     final avoidUnits = st.unit == 'Alle' ? _recentUnits.toSet() : <String>{};
     LumoTask? fallback;
 
-    for (var attempt = 0; attempt < 64; attempt++) {
+    for (var attempt = 0; attempt < 80; attempt++) {
       final task = _factory.next(
         grade: st.grade,
         subject: st.subject,
         unit: st.unit == 'Alle' ? 'Alle' : st.unit,
         weakSkills: st.weakSkills,
-        avoidUnits: attempt < 32 ? avoidUnits : const <String>{},
+        avoidUnits: attempt < 40 ? avoidUnits : const <String>{},
       );
+
+      // Lesen ist ein aktiver Vorlese-/Zuhörmodus. Passive Lesen-Quizfragen
+      // dürfen im Übungsrenderer nicht mehr auftauchen.
+      if (_isPassiveReadingQuiz(task)) continue;
+
       fallback ??= task;
       final key = _taskKey(task);
       if (!_recentTaskKeys.contains(key) && !_sessionTaskKeys.contains(key)) return task;
@@ -124,11 +129,15 @@ class _LearningContentState extends State<LearningContent> {
 
     return fallback ?? _factory.next(
       grade: st.grade,
-      subject: st.subject,
-      unit: st.unit == 'Alle' ? 'Alle' : st.unit,
+      subject: st.subject == 'Lesen' ? 'Deutsch' : st.subject,
+      unit: st.unit == 'Alle' || st.subject == 'Lesen' ? 'Alle' : st.unit,
       weakSkills: st.weakSkills,
       avoidUnits: const <String>{},
     );
+  }
+
+  bool _isPassiveReadingQuiz(LumoTask task) {
+    return task.subject.trim().toLowerCase() == 'lesen' && !task.handwriting;
   }
 
   void _rememberTask(LumoTask task) {
@@ -147,7 +156,22 @@ class _LearningContentState extends State<LearningContent> {
     }
   }
 
-  String _taskKey(LumoTask task) => '${task.subject}|${task.unit}|${task.prompt}|${task.answer}';
+  String _taskKey(LumoTask task) {
+    final normalizedChoices = task.choices
+        .map((choice) => choice.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' '))
+        .toList(growable: false)
+      ..sort();
+    return <String>[
+      task.subject.trim().toLowerCase(),
+      task.unit.trim().toLowerCase(),
+      task.prompt.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' '),
+      task.answer.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' '),
+      task.visual,
+      task.handwriting ? 'handwriting' : 'choice',
+      task.difficulty.toString(),
+      normalizedChoices.join(','),
+    ].join('|');
+  }
 
   void _answerAdaptive(AdaptiveTaskAnswer answer) {
     if (_answered) return;
