@@ -4,6 +4,7 @@ import '../../app/app_theme.dart';
 import '../../core/app_settings.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/settings_repository.dart';
+import 'parent_report_card.dart';
 
 class SettingsContent extends StatefulWidget {
   const SettingsContent({super.key, required this.appState});
@@ -51,6 +52,8 @@ class _SettingsContentState extends State<SettingsContent> {
           emoji: '⚙️',
           accent: LumoColors.ink700,
         ),
+        const SizedBox(height: 18),
+        ParentReportCard(appState: widget.appState),
         const SizedBox(height: 18),
         Wrap(spacing: 14, runSpacing: 14, children: [
           _InfoCard(
