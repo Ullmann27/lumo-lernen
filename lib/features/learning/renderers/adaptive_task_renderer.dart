@@ -317,12 +317,14 @@ class _DotGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final safeCount = count.clamp(0, 24).toInt();
+    final safeFadedAfter = fadedAfter.clamp(0, safeCount).toInt();
     return Wrap(
       alignment: WrapAlignment.center,
       spacing: 6,
       runSpacing: 6,
-      children: List.generate(count.clamp(0, 24), (index) {
-        final faded = fadedAfter > 0 && index < fadedAfter;
+      children: List.generate(safeCount, (index) {
+        final faded = safeFadedAfter > 0 && index < safeFadedAfter;
         return Container(
           width: 16,
           height: 16,
@@ -347,15 +349,15 @@ class _TenOnesVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final tens = _readInt(data['tens']) ?? 0;
-    final ones = _readInt(data['ones']) ?? 0;
+    final tens = (_readInt(data['tens']) ?? 0).clamp(0, 9).toInt();
+    final ones = (_readInt(data['ones']) ?? 0).clamp(0, 9).toInt();
     return _VisualCard(
       title: 'Zehner und Einer',
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: List.generate(tens.clamp(0, 9), (_) => Container(
+          children: List.generate(tens, (_) => Container(
                 width: 18,
                 height: 72,
                 decoration: BoxDecoration(
@@ -368,7 +370,7 @@ class _TenOnesVisual extends StatelessWidget {
         Wrap(
           spacing: 6,
           runSpacing: 6,
-          children: List.generate(ones.clamp(0, 9), (_) => Container(
+          children: List.generate(ones, (_) => Container(
                 width: 16,
                 height: 16,
                 decoration: BoxDecoration(color: LumoColors.gold.withOpacity(.85), shape: BoxShape.circle),
