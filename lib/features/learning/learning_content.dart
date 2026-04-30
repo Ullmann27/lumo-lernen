@@ -84,7 +84,7 @@ class _LearningContentState extends State<LearningContent> {
         padding: EdgeInsets.all(compact ? 14 : 26),
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 780),
+            constraints: const BoxConstraints(maxWidth: 820),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
                 Expanded(
@@ -111,7 +111,7 @@ class _LearningContentState extends State<LearningContent> {
                   const SizedBox(height: 10),
                   Text(_task.prompt, style: TextStyle(fontFamily: 'Nunito', fontSize: compact ? 30 : 40, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.12)),
                   const SizedBox(height: 18),
-                  _NumberAid(task: _task, picked: _picked, answered: _answered),
+                  _TaskVisual(task: _task, picked: _picked, answered: _answered),
                 ]),
               ),
               const SizedBox(height: 24),
@@ -164,41 +164,228 @@ class _ProgressHeader extends StatelessWidget {
   }
 }
 
-class _NumberAid extends StatelessWidget {
-  const _NumberAid({required this.task, required this.picked, required this.answered});
+class _TaskVisual extends StatelessWidget {
+  const _TaskVisual({required this.task, required this.picked, required this.answered});
   final LumoTask task;
   final String? picked;
   final bool answered;
 
   @override
   Widget build(BuildContext context) {
-    final numbers = task.choices.map(int.tryParse).whereType<int>().toList()..sort();
-    final answer = int.tryParse(task.answer);
-    if (numbers.length < 3 || answer == null) return const SizedBox.shrink();
+    if (task.visual == 'shape') {
+      return _ShapeAid(task: task, picked: picked, answered: answered);
+    }
+    if (task.visual == 'sequence') {
+      return _SequenceAid(task: task, picked: picked, answered: answered);
+    }
+    if (task.visual == 'dots') {
+      final plus = _ParsedPlus.fromPrompt(task.prompt);
+      if (plus != null && plus.total <= 20) {
+        return _DotGroupsAid(left: plus.left, right: plus.right, answered: answered);
+      }
+    }
+    return _NumberLineAid(task: task, picked: picked, answered: answered);
+  }
+}
+
+class _DotGroupsAid extends StatelessWidget {
+  const _DotGroupsAid({required this.left, required this.right, required this.answered});
+  final int left;
+  final int right;
+  final bool answered;
+
+  @override
+  Widget build(BuildContext context) {
+    return _VisualCard(
+      title: 'Lege-Bild',
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(child: _DotGroup(label: '$left', count: left)),
+          const Padding(
+            padding: EdgeInsets.only(top: 19),
+            child: Text('+', style: TextStyle(fontFamily: 'Nunito', fontSize: 28, fontWeight: FontWeight.w900, color: LumoColors.orange)),
+          ),
+          Expanded(child: _DotGroup(label: '$right', count: right)),
+        ]),
+        if (answered) ...[
+          const SizedBox(height: 12),
+          Text('Zusammen sind es ${left + right}.', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w900)),
+        ],
+      ]),
+    );
+  }
+}
+
+class _DotGroup extends StatelessWidget {
+  const _DotGroup({required this.label, required this.count});
+  final String label;
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final safeCount = count < 0 ? 0 : (count > 20 ? 20 : count);
+    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      Text(label, style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: LumoColors.ink700)),
+      const SizedBox(height: 8),
+      Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 6,
+        runSpacing: 6,
+        children: List.generate(safeCount, (_) => Container(width: 16, height: 16, decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.82), shape: BoxShape.circle, boxShadow: [BoxShadow(color: LumoColors.orange.withOpacity(.18), blurRadius: 8, offset: const Offset(0, 3))]))),
+      ),
+    ]);
+  }
+}
+
+class _NumberLineAid extends StatelessWidget {
+  const _NumberLineAid({required this.task, required this.picked, required this.answered});
+  final LumoTask task;
+  final String? picked;
+  final bool answered;
+
+  @override
+  Widget build(BuildContext context) {
+    final numbers = task.choices.map(_readInt).whereType<int>().toSet().toList()..sort();
+    final answer = _readInt(task.answer);
+    if (numbers.length < 2 || answer == null) return const SizedBox.shrink();
+    final pickedNumber = picked == null ? null : _readInt(picked!);
+    return _VisualCard(
+      title: task.visual == 'line' ? 'Zahlenstrahl' : 'Zahlenhilfe',
+      child: Stack(alignment: Alignment.center, children: [
+        Container(height: 6, decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.18), borderRadius: BorderRadius.circular(LumoRadius.pill))),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: numbers.map((n) {
+          final selected = pickedNumber == n;
+          final correct = answered && n == answer;
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
+            width: selected || correct ? 42 : 34,
+            height: selected || correct ? 42 : 34,
+            decoration: BoxDecoration(color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : Colors.white, shape: BoxShape.circle, border: Border.all(color: correct ? const Color(0xFF22C55E) : LumoColors.orange.withOpacity(.55), width: 2), boxShadow: selected || correct ? LumoShadow.pill : []),
+            child: Center(child: Text('$n', style: TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900, color: selected || correct ? Colors.white : LumoColors.ink900))),
+          );
+        }).toList()),
+      ]),
+    );
+  }
+}
+
+class _SequenceAid extends StatelessWidget {
+  const _SequenceAid({required this.task, required this.picked, required this.answered});
+  final LumoTask task;
+  final String? picked;
+  final bool answered;
+
+  @override
+  Widget build(BuildContext context) {
+    final parts = RegExp(r'-?\d+').allMatches(task.prompt).map((m) => m.group(0)!).toList();
+    if (parts.length < 2) return _NumberLineAid(task: task, picked: picked, answered: answered);
+    return _VisualCard(
+      title: 'Zahlenreihe',
+      child: Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          ...parts.map((p) => _SequenceBox(text: p, active: false)),
+          _SequenceBox(text: '?', active: true),
+        ],
+      ),
+    );
+  }
+}
+
+class _SequenceBox extends StatelessWidget {
+  const _SequenceBox({required this.text, required this.active});
+  final String text;
+  final bool active;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 54,
+      height: 46,
+      decoration: BoxDecoration(color: active ? LumoColors.orangeSurface : Colors.white, borderRadius: BorderRadius.circular(LumoRadius.md), border: Border.all(color: active ? LumoColors.orange : LumoColors.ink100, width: 2)),
+      child: Center(child: Text(text, style: TextStyle(fontFamily: 'Nunito', fontSize: 20, fontWeight: FontWeight.w900, color: active ? LumoColors.orange : LumoColors.ink900))),
+    );
+  }
+}
+
+class _ShapeAid extends StatelessWidget {
+  const _ShapeAid({required this.task, required this.picked, required this.answered});
+  final LumoTask task;
+  final String? picked;
+  final bool answered;
+
+  @override
+  Widget build(BuildContext context) {
+    const shapes = <String, IconData>{
+      'Dreieck': Icons.change_history_rounded,
+      'Kreis': Icons.radio_button_unchecked_rounded,
+      'Quadrat': Icons.crop_square_rounded,
+    };
+    return _VisualCard(
+      title: 'Formenhilfe',
+      child: Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: shapes.entries.map((entry) {
+          final selected = picked == entry.key;
+          final correct = answered && task.answer == entry.key;
+          return Container(
+            width: 104,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+            decoration: BoxDecoration(color: correct ? const Color(0xFFDCFCE7) : selected ? LumoColors.orangeSurface : Colors.white, borderRadius: BorderRadius.circular(LumoRadius.lg), border: Border.all(color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : LumoColors.ink100, width: 2)),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Icon(entry.value, size: 34, color: correct ? const Color(0xFF22C55E) : LumoColors.orange),
+              const SizedBox(height: 6),
+              Text(entry.key, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700)),
+            ]),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
+class _VisualCard extends StatelessWidget {
+  const _VisualCard({required this.title, required this.child});
+  final String title;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(color: Colors.white.withOpacity(.72), borderRadius: BorderRadius.circular(LumoRadius.lg), border: Border.all(color: Colors.white.withOpacity(.9), width: 1.4)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('Zahlenhilfe', style: TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink500)),
+        Text(title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink500)),
         const SizedBox(height: 14),
-        Stack(alignment: Alignment.center, children: [
-          Container(height: 6, decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.18), borderRadius: BorderRadius.circular(LumoRadius.pill))),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: numbers.map((n) {
-            final selected = picked == '$n';
-            final correct = answered && n == answer;
-            return AnimatedContainer(
-              duration: const Duration(milliseconds: 180),
-              width: selected || correct ? 42 : 34,
-              height: selected || correct ? 42 : 34,
-              decoration: BoxDecoration(color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : Colors.white, shape: BoxShape.circle, border: Border.all(color: correct ? const Color(0xFF22C55E) : LumoColors.orange.withOpacity(.55), width: 2), boxShadow: selected || correct ? LumoShadow.pill : []),
-              child: Center(child: Text('$n', style: TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900, color: selected || correct ? Colors.white : LumoColors.ink900))),
-            );
-          }).toList()),
-        ]),
+        child,
       ]),
     );
   }
+}
+
+class _ParsedPlus {
+  const _ParsedPlus(this.left, this.right);
+  final int left;
+  final int right;
+  int get total => left + right;
+
+  static _ParsedPlus? fromPrompt(String prompt) {
+    final match = RegExp(r'(\d+)\s*\+\s*(\d+)').firstMatch(prompt);
+    if (match == null) return null;
+    final left = int.tryParse(match.group(1) ?? '');
+    final right = int.tryParse(match.group(2) ?? '');
+    if (left == null || right == null) return null;
+    return _ParsedPlus(left, right);
+  }
+}
+
+int? _readInt(String value) {
+  final match = RegExp(r'-?\d+').firstMatch(value);
+  if (match == null) return null;
+  return int.tryParse(match.group(0)!);
 }
 
 class _ChoiceGrid extends StatelessWidget {
@@ -293,7 +480,7 @@ class _ExplanationCard extends StatelessWidget {
         Row(children: [
           Icon(correct ? Icons.celebration_rounded : Icons.lightbulb_rounded, color: correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B), size: 26),
           const SizedBox(width: 10),
-          Expanded(child: Text(correct ? 'Super gemacht! ⭐' : 'Nicht aufgeben!', style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F)))),
+          Expanded(child: Text(correct ? 'Super gemacht!' : 'Nicht aufgeben!', style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F)))),
         ]),
         const SizedBox(height: 8),
         Text(explanation, style: LumoTextStyles.body.copyWith(color: correct ? const Color(0xFF166534) : const Color(0xFF92400E))),
