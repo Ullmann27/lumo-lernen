@@ -251,9 +251,11 @@ class _ReadingContentState extends State<ReadingContent> {
       attemptNumber: progress.attemptNumber,
       analysis: result.analysis,
     );
-    final adjustedProgress = attemptDecision.shouldKeepSameAttempt
-        ? progress.copyWith(problemWords: _attemptLedger.persistentProblemWords)
-        : result.nextProgress.copyWith(problemWords: _attemptLedger.persistentProblemWords);
+    final adjustedProgress = _progressAfterDecision(
+      previous: progress,
+      monitorProgress: result.nextProgress,
+      decision: attemptDecision,
+    );
 
     if (attemptDecision.shouldCountAsIntervention) {
       _interventionCount++;
@@ -295,6 +297,36 @@ class _ReadingContentState extends State<ReadingContent> {
     });
   }
 
+  ReadingSessionProgress _progressAfterDecision({
+    required ReadingSessionProgress previous,
+    required ReadingSessionProgress monitorProgress,
+    required ReadingAttemptDecision decision,
+  }) {
+    if (decision.shouldKeepSameAttempt) {
+      return previous.copyWith(problemWords: _attemptLedger.persistentProblemWords);
+    }
+    if (!decision.shouldAdvanceControlled) {
+      return monitorProgress.copyWith(problemWords: _attemptLedger.persistentProblemWords);
+    }
+
+    final completed = <String>{...previous.completedSentenceIds, previous.currentSentence.id};
+    final isComplete = completed.length >= previous.story.sentences.length;
+    final nextIndex = isComplete
+        ? previous.currentSentenceIndex
+        : (previous.currentSentenceIndex + 1).clamp(0, previous.story.sentences.length - 1).toInt();
+    final words = <String>{..._attemptLedger.persistentProblemWords};
+    final confirmed = decision.confirmedProblemWord;
+    if (confirmed != null && confirmed.trim().isNotEmpty) words.add(confirmed.trim().toLowerCase());
+
+    return previous.copyWith(
+      currentSentenceIndex: nextIndex,
+      attemptNumber: 1,
+      completedSentenceIds: completed.toList(growable: false),
+      problemWords: words.toList(growable: false),
+      isComplete: isComplete,
+    );
+  }
+
   Future<void> _persistReadingProgress({required double latestScore}) async {
     final progress = _progress;
     if (progress == null) return;
@@ -306,7 +338,7 @@ class _ReadingContentState extends State<ReadingContent> {
       totalSentences: progress.story.sentences.length,
       latestAlignmentScore: latestScore,
       interventionCount: _interventionCount,
-      problemWords: _attemptLedger.persistentProblemWords,
+      problemWords: progress.problemWords,
     );
   }
 
