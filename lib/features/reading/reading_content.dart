@@ -6,6 +6,7 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/reading_progress_repository.dart';
+import '../../core/reading_story_memory_repository.dart';
 import '../../domain/agent/lumo_agent_domain.dart';
 import '../../domain/reading/reading_domain.dart';
 
@@ -24,8 +25,9 @@ class _ReadingContentState extends State<ReadingContent> {
   final _monitor = ReadingMonitor();
   final _speech = LumoSpeechListener();
   final _readingRepo = ReadingProgressRepository();
+  final _storyMemoryRepo = ReadingStoryMemoryRepository();
 
-  late ReadingSessionProgress _progress;
+  ReadingSessionProgress? _progress;
   late String _readingSessionId;
   String _lastTranscript = '';
   String _processedTranscript = '';
@@ -35,28 +37,44 @@ class _ReadingContentState extends State<ReadingContent> {
   bool _finished = false;
   bool _autoListening = true;
   bool _processing = false;
+  bool _loadingStory = true;
   Timer? _listenTimer;
 
   @override
   void initState() {
     super.initState();
-    final story = _storyEngine.pickStory(grade: widget.appState.state.grade);
-    _readingSessionId = 'reading_${story.id}_${DateTime.now().millisecondsSinceEpoch}';
-    _progress = ReadingSessionProgress(
-      story: story,
-      currentSentenceIndex: 0,
-      attemptNumber: 1,
-      problemWords: const <String>[],
-      completedSentenceIds: const <String>[],
+    _prepareStorySession();
+  }
+
+  Future<void> _prepareStorySession() async {
+    final grade = widget.appState.state.grade;
+    final childId = _childId;
+    final recentSignatures = await _storyMemoryRepo.loadRecent(childId: childId, grade: grade);
+    final story = _storyEngine.pickStory(
+      grade: grade,
+      weakWords: const <String>[],
+      avoidSignatures: recentSignatures.toSet(),
     );
+    await _storyMemoryRepo.remember(childId: childId, grade: grade, signature: story.signature);
+    if (!mounted) return;
+
+    _readingSessionId = 'reading_${story.id}_${DateTime.now().millisecondsSinceEpoch}';
+    setState(() {
+      _progress = ReadingSessionProgress(
+        story: story,
+        currentSentenceIndex: 0,
+        attemptNumber: 1,
+        problemWords: const <String>[],
+        completedSentenceIds: const <String>[],
+      );
+      _loadingStory = false;
+    });
+
     if (widget.appState.state.settings.microphoneEnabled) {
       _speech.initialize();
     }
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      _speakThenListen('Wir lesen jetzt ${story.title}. Lies den ersten Satz langsam vor.');
-      _persistReadingProgress(latestScore: 0);
-    });
+    await _speakThenListen('Wir lesen jetzt ${story.title}. Lies den ersten Satz langsam vor.');
+    await _persistReadingProgress(latestScore: 0);
   }
 
   @override
@@ -73,7 +91,32 @@ class _ReadingContentState extends State<ReadingContent> {
     return 'local_${safeName}_${st.grade}';
   }
 
+  ReadingSessionProgress get _safeProgress {
+    final progress = _progress;
+    if (progress == null) {
+      final story = const Story(
+        id: 'loading',
+        title: 'Lade Lesetext',
+        grade: 1,
+        level: 1,
+        targetSkills: <String>['reading.loading'],
+        sentences: <StorySentence>[
+          StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte.', words: <WordToken>[]),
+        ],
+      );
+      return const ReadingSessionProgress(
+        story: story,
+        currentSentenceIndex: 0,
+        attemptNumber: 1,
+        problemWords: <String>[],
+        completedSentenceIds: <String>[],
+      );
+    }
+    return progress;
+  }
+
   Future<void> _speakThenListen(String message) async {
+    if (_loadingStory) return;
     _listenTimer?.cancel();
     setState(() => _lumoLine = message);
     widget.appState.update(widget.appState.state.copyWith(
@@ -99,6 +142,7 @@ class _ReadingContentState extends State<ReadingContent> {
   }
 
   Future<void> _startListening({required bool auto}) async {
+    if (_progress == null) return;
     if (!widget.appState.state.settings.microphoneEnabled) {
       setState(() => _lumoLine = 'Das Mikrofon ist im Elternbereich ausgeschaltet.');
       return;
@@ -132,7 +176,7 @@ class _ReadingContentState extends State<ReadingContent> {
 
   bool _looksLikeSentenceComplete(String words) {
     final spoken = _normalizeTokens(words);
-    final expected = _normalizeTokens(_progress.currentSentence.text);
+    final expected = _normalizeTokens(_safeProgress.currentSentence.text);
     if (spoken.isEmpty || expected.isEmpty) return false;
     final lastExpected = expected.last;
     final containsLastWord = spoken.contains(lastExpected) || _similarTokenExists(lastExpected, spoken);
@@ -174,6 +218,8 @@ class _ReadingContentState extends State<ReadingContent> {
   }
 
   void _processTranscript(String transcript) {
+    final progress = _progress;
+    if (progress == null) return;
     final text = transcript.trim();
     if (text.isEmpty) {
       _handleNoMatch();
@@ -182,9 +228,9 @@ class _ReadingContentState extends State<ReadingContent> {
     if (_processedTranscript == text || _processing) return;
     _processedTranscript = text;
     _processing = true;
-    final result = _monitor.processSentence(childId: _childId, progress: _progress, transcript: text);
+    final result = _monitor.processSentence(childId: _childId, progress: progress, transcript: text);
     final action = result.decision.primary;
-    if (!result.analysis.correctEnough && result.analysis.problemWord != null && _progress.attemptNumber >= 2) {
+    if (!result.analysis.correctEnough && result.analysis.problemWord != null && progress.attemptNumber >= 2) {
       _interventionCount++;
     }
 
@@ -192,20 +238,20 @@ class _ReadingContentState extends State<ReadingContent> {
       _lastTranscript = text;
       _progress = result.nextProgress;
       _lastScore = result.analysis.alignmentScore;
-      _lumoLine = _progress.isComplete
+      _lumoLine = result.nextProgress.isComplete
           ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Saetze und Uebungswoerter.'
           : action.message;
-      _finished = _progress.isComplete;
+      _finished = result.nextProgress.isComplete;
     });
 
     _persistReadingProgress(latestScore: result.analysis.alignmentScore);
 
     widget.appState.update(widget.appState.state.copyWith(
-      mood: _progress.isComplete ? LumoMood.celebrate : _moodFor(action.tone),
+      mood: result.nextProgress.isComplete ? LumoMood.celebrate : _moodFor(action.tone),
       lumoMessage: _lumoLine,
     ));
 
-    final nextMessage = _progress.isComplete
+    final nextMessage = result.nextProgress.isComplete
         ? _lumoLine
         : result.analysis.correctEnough
             ? 'Gut gelesen. Jetzt kommt der naechste Satz. Lies ihn laut vor.'
@@ -223,15 +269,17 @@ class _ReadingContentState extends State<ReadingContent> {
   }
 
   Future<void> _persistReadingProgress({required double latestScore}) async {
+    final progress = _progress;
+    if (progress == null) return;
     await _readingRepo.updateLatest(
       id: _readingSessionId,
       childId: _childId,
-      storyTitle: _progress.story.title,
-      completedSentences: _progress.completedSentenceIds.length,
-      totalSentences: _progress.story.sentences.length,
+      storyTitle: progress.story.title,
+      completedSentences: progress.completedSentenceIds.length,
+      totalSentences: progress.story.sentences.length,
       latestAlignmentScore: latestScore,
       interventionCount: _interventionCount,
-      problemWords: _progress.problemWords,
+      problemWords: progress.problemWords,
     );
   }
 
@@ -251,8 +299,17 @@ class _ReadingContentState extends State<ReadingContent> {
     return AnimatedBuilder(
       animation: _speech,
       builder: (context, _) {
-        final story = _progress.story;
-        final sentence = _progress.currentSentence;
+        if (_loadingStory) {
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(32),
+              child: CircularProgressIndicator(color: LumoColors.orange),
+            ),
+          );
+        }
+        final progress = _safeProgress;
+        final story = progress.story;
+        final sentence = progress.currentSentence;
         return SingleChildScrollView(
           padding: const EdgeInsets.all(22),
           child: Center(
@@ -261,17 +318,17 @@ class _ReadingContentState extends State<ReadingContent> {
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 _ReadingHeader(title: story.title, onBack: widget.onBack),
                 const SizedBox(height: 16),
-                _StoryProgressBar(current: _progress.completedSentenceIds.length, total: story.sentences.length),
+                _StoryProgressBar(current: progress.completedSentenceIds.length, total: story.sentences.length),
                 const SizedBox(height: 18),
                 _StoryTextCard(
                   story: story,
-                  currentIndex: _progress.currentSentenceIndex,
-                  problemWords: _progress.problemWords,
+                  currentIndex: progress.currentSentenceIndex,
+                  problemWords: progress.problemWords,
                 ),
                 const SizedBox(height: 16),
                 _ActiveSentenceCard(
                   sentence: sentence,
-                  attemptNumber: _progress.attemptNumber,
+                  attemptNumber: progress.attemptNumber,
                   lastScore: _lastScore,
                   lumoLine: _lumoLine,
                 ),
@@ -285,9 +342,9 @@ class _ReadingContentState extends State<ReadingContent> {
                   onTap: _finished ? null : _toggleListening,
                   onAutoToggle: (value) => setState(() => _autoListening = value),
                 ),
-                if (_progress.problemWords.isNotEmpty) ...[
+                if (progress.problemWords.isNotEmpty) ...[
                   const SizedBox(height: 14),
-                  _ProblemWordsCard(words: _progress.problemWords),
+                  _ProblemWordsCard(words: progress.problemWords),
                 ],
                 if (_finished) ...[
                   const SizedBox(height: 18),
