@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/app_update_service.dart';
 import '../../widgets/cards/kpi_card.dart';
 import '../../widgets/cards/learning_module_card.dart';
 
@@ -43,6 +44,8 @@ class HomeContent extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                   color: LumoColors.ink500,
                 )),
+            const SizedBox(height: 16),
+            const _UpdateCheckerCard(),
             const SizedBox(height: 22),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -85,5 +88,118 @@ class HomeContent extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class _UpdateCheckerCard extends StatefulWidget {
+  const _UpdateCheckerCard();
+
+  @override
+  State<_UpdateCheckerCard> createState() => _UpdateCheckerCardState();
+}
+
+class _UpdateCheckerCardState extends State<_UpdateCheckerCard> {
+  final _service = const AppUpdateService();
+  late Future<AppUpdateInfo> _future;
+  bool _dismissed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = _service.checkLatest();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_dismissed) return const SizedBox.shrink();
+    return FutureBuilder<AppUpdateInfo>(
+      future: _future,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return _UpdateShell(
+            icon: Icons.sync_rounded,
+            title: 'Lumo prüft Updates …',
+            message: 'Ich schaue kurz, ob eine neue APK bereitsteht.',
+            actionLabel: null,
+            onAction: null,
+            onClose: () => setState(() => _dismissed = true),
+          );
+        }
+        final info = snapshot.data;
+        if (info == null || !info.available || !info.hasUsableDownload) {
+          return const SizedBox.shrink();
+        }
+        return _UpdateShell(
+          icon: Icons.system_update_alt_rounded,
+          title: 'Neue Lumo-Version verfügbar',
+          message: 'Tippe auf „Update laden“. Danach fragt Android: App aktualisieren?',
+          actionLabel: 'Update laden',
+          onAction: () => _service.openUpdate(info),
+          onClose: () => setState(() => _dismissed = true),
+        );
+      },
+    );
+  }
+}
+
+class _UpdateShell extends StatelessWidget {
+  const _UpdateShell({
+    required this.icon,
+    required this.title,
+    required this.message,
+    required this.actionLabel,
+    required this.onAction,
+    required this.onClose,
+  });
+
+  final IconData icon;
+  final String title;
+  final String message;
+  final String? actionLabel;
+  final VoidCallback? onAction;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(colors: [Color(0xFFEFF6FF), Color(0xFFFFF7ED)]),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: LumoColors.orange.withOpacity(.18)),
+        boxShadow: LumoShadow.card,
+      ),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        Container(
+          width: 44,
+          height: 44,
+          decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+          child: Icon(icon, color: LumoColors.orange, size: 24),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+            const SizedBox(height: 3),
+            Text(message, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink600, height: 1.25)),
+          ]),
+        ),
+        const SizedBox(width: 8),
+        if (actionLabel != null && onAction != null)
+          GestureDetector(
+            onTap: onAction,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+              decoration: BoxDecoration(
+                color: LumoColors.orange,
+                borderRadius: BorderRadius.circular(LumoRadius.pill),
+              ),
+              child: Text(actionLabel!, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: Colors.white)),
+            ),
+          ),
+        IconButton(onPressed: onClose, icon: const Icon(Icons.close_rounded, color: LumoColors.ink400)),
+      ]),
+    );
   }
 }
