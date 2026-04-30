@@ -71,9 +71,9 @@ class LumoSpeechListener extends ChangeNotifier {
 
     await _speech.listen(
       localeId: 'de_AT',
-      listenMode: stt.ListenMode.confirmation,
-      listenFor: const Duration(seconds: 9),
-      pauseFor: const Duration(milliseconds: 1200),
+      listenMode: stt.ListenMode.dictation,
+      listenFor: const Duration(seconds: 22),
+      pauseFor: const Duration(seconds: 4),
       partialResults: true,
       onResult: (result) {
         _lastWords = result.recognizedWords;
