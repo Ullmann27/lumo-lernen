@@ -49,42 +49,27 @@ class AppUpdateService {
       final body = await response.transform(utf8.decoder).join();
 
       if (response.statusCode < 200 || response.statusCode >= 300) {
-        return AppUpdateInfo(
-          available: false,
-          currentBuildNumber: currentBuildNumber,
-          latestBuildNumber: currentBuildNumber,
-          releaseUrl: fallbackReleaseUrl,
-          apkUrl: Uri(),
-          releaseName: 'Lumo Lernen Debug Latest',
-          commitSha: '',
-          error: 'Update-Pruefung nicht erreichbar (${response.statusCode}).',
-        );
+        return _fallbackInfo(error: 'Update-Pruefung nicht erreichbar (${response.statusCode}).');
       }
 
-      final jsonMap = jsonDecode(body) as Map<String, dynamic>;
-      final assets = (jsonMap['assets'] as List<dynamic>? ?? const <dynamic>[])
+      final decoded = jsonDecode(body);
+      if (decoded is! Map<String, dynamic>) {
+        return _fallbackInfo(error: 'Update-Antwort konnte nicht gelesen werden.');
+      }
+
+      final assets = (decoded['assets'] as List<dynamic>? ?? const <dynamic>[])
           .whereType<Map<String, dynamic>>()
           .toList(growable: false);
-      final apkAsset = assets.cast<Map<String, dynamic>?>().firstWhere(
-            (asset) => (asset?['name']?.toString() ?? '') == 'Lumo-Lernen-latest.apk',
-            orElse: () => assets.cast<Map<String, dynamic>?>().firstWhere(
-                  (asset) => (asset?['name']?.toString() ?? '').endsWith('.apk'),
-                  orElse: () => null,
-                ),
-          );
-      final notesAsset = assets.cast<Map<String, dynamic>?>().firstWhere(
-            (asset) => (asset?['name']?.toString() ?? '') == 'update-info.txt',
-            orElse: () => null,
-          );
+      final apkAsset = _findPreferredApkAsset(assets);
 
-      final releaseName = jsonMap['name']?.toString() ?? 'Lumo Lernen Debug Latest';
-      final commitSha = jsonMap['target_commitish']?.toString() ?? '';
-      final releaseUrl = Uri.tryParse(jsonMap['html_url']?.toString() ?? '') ?? fallbackReleaseUrl;
-      final apkUrl = Uri.tryParse(apkAsset?['browser_download_url']?.toString() ?? '') ?? Uri();
-      final latestBuild = _extractBuildNumber(apkAsset?['name']?.toString(), notesAsset?['browser_download_url']?.toString());
+      final releaseName = decoded['name']?.toString() ?? 'Lumo Lernen Debug Latest';
+      final commitSha = decoded['target_commitish']?.toString() ?? '';
+      final releaseUrl = _trustedUri(decoded['html_url']?.toString()) ?? fallbackReleaseUrl;
+      final apkUrl = _trustedUri(apkAsset?['browser_download_url']?.toString()) ?? Uri();
+      final latestBuild = _extractLatestBuildNumber(assets);
 
       return AppUpdateInfo(
-        available: latestBuild > currentBuildNumber || apkUrl.toString().isNotEmpty,
+        available: latestBuild > currentBuildNumber && apkUrl.toString().isNotEmpty,
         currentBuildNumber: currentBuildNumber,
         latestBuildNumber: latestBuild,
         releaseUrl: releaseUrl,
@@ -93,36 +78,58 @@ class AppUpdateService {
         commitSha: commitSha,
       );
     } catch (error) {
-      return AppUpdateInfo(
-        available: false,
-        currentBuildNumber: currentBuildNumber,
-        latestBuildNumber: currentBuildNumber,
-        releaseUrl: fallbackReleaseUrl,
-        apkUrl: Uri(),
-        releaseName: 'Lumo Lernen Debug Latest',
-        commitSha: '',
-        error: 'Update-Pruefung fehlgeschlagen: $error',
-      );
+      return _fallbackInfo(error: 'Update-Pruefung fehlgeschlagen: $error');
     } finally {
       client.close(force: true);
     }
   }
 
-  int _extractBuildNumber(String? apkName, String? notesUrl) {
-    final apkMatch = RegExp(r'debug-(\d+)\.apk').firstMatch(apkName ?? '');
-    if (apkMatch != null) return int.tryParse(apkMatch.group(1) ?? '') ?? currentBuildNumber;
-    final notesMatch = RegExp(r'(\d+)').allMatches(notesUrl ?? '').lastOrNull;
-    if (notesMatch != null) return int.tryParse(notesMatch.group(1) ?? '') ?? currentBuildNumber;
-    return currentBuildNumber + 1;
+  AppUpdateInfo _fallbackInfo({String? error}) {
+    return AppUpdateInfo(
+      available: false,
+      currentBuildNumber: currentBuildNumber,
+      latestBuildNumber: currentBuildNumber,
+      releaseUrl: fallbackReleaseUrl,
+      apkUrl: Uri(),
+      releaseName: 'Lumo Lernen Debug Latest',
+      commitSha: '',
+      error: error,
+    );
+  }
+
+  Map<String, dynamic>? _findPreferredApkAsset(List<Map<String, dynamic>> assets) {
+    final direct = assets.where((asset) => asset['name']?.toString() == 'Lumo-Lernen-latest.apk');
+    if (direct.isNotEmpty) return direct.first;
+    final apks = assets.where((asset) => (asset['name']?.toString() ?? '').endsWith('.apk'));
+    if (apks.isEmpty) return null;
+    return apks.first;
+  }
+
+  int _extractLatestBuildNumber(List<Map<String, dynamic>> assets) {
+    var latest = currentBuildNumber;
+    for (final asset in assets) {
+      final name = asset['name']?.toString() ?? '';
+      final match = RegExp(r'debug-(\d+)\.apk').firstMatch(name);
+      if (match == null) continue;
+      final parsed = int.tryParse(match.group(1) ?? '');
+      if (parsed != null && parsed > latest) latest = parsed;
+    }
+    return latest;
+  }
+
+  Uri? _trustedUri(String? raw) {
+    if (raw == null || raw.trim().isEmpty) return null;
+    final uri = Uri.tryParse(raw.trim());
+    if (uri == null || !uri.hasScheme) return null;
+    final host = uri.host.toLowerCase();
+    final allowed = host == 'github.com' || host.endsWith('.github.com') || host == 'objects.githubusercontent.com';
+    if (!allowed) return null;
+    return uri;
   }
 
   Future<bool> openUpdate(AppUpdateInfo info) async {
     final url = info.hasUsableDownload ? info.apkUrl : info.releaseUrl;
-    if (url.toString().isEmpty) return false;
+    if (url.toString().isEmpty || _trustedUri(url.toString()) == null) return false;
     return launchUrl(url, mode: LaunchMode.externalApplication);
   }
-}
-
-extension _LastOrNullExtension<T> on Iterable<T> {
-  T? get lastOrNull => isEmpty ? null : last;
 }
