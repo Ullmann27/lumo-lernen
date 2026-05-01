@@ -2,6 +2,8 @@ import 'ai_task_cache.dart';
 import 'app_settings.dart';
 import 'learning_profile_engine.dart';
 import 'lumo_ai_proxy_client.dart';
+import 'school_exercise_generator.dart';
+import 'task_quality_guard.dart';
 
 /// Nachhilfelehrer-Service.
 ///
@@ -28,6 +30,7 @@ class AiTutorService {
   static const int _refillThreshold = 5; // unter 5 unverbraucht -> nachladen
   static const int _batchSize = 12;
   static const Duration _minRefillGap = Duration(hours: 6);
+  static const TaskQualityGuard _guard = TaskQualityGuard();
 
   /// Generiert bei Bedarf einen Aufgaben-Vorrat fuer das Subject.
   /// Fire-and-forget aufrufbar - kein Crash bei Fehler.
@@ -64,21 +67,44 @@ class AiTutorService {
       count: _batchSize,
       childName: childName,
     );
-    if (drafts.isEmpty) {
+    final safeDrafts = drafts
+        .where((draft) => _guard.validate(_probeTask(draft, grade, subject, unitsForSubject)))
+        .toList(growable: false);
+    if (safeDrafts.isEmpty) {
       return const AiTutorRefillResult(skipped: false, reason: 'batch_empty', generated: 0);
     }
     await _cache.saveBatch(
       childId: childId,
       subject: subject,
-      drafts: drafts,
+      drafts: safeDrafts,
     );
     final freshAfter = await _cache.freshCount(childId: childId, subject: subject);
     return AiTutorRefillResult(
       skipped: false,
       reason: 'refilled',
-      generated: drafts.length,
+      generated: safeDrafts.length,
       freshAfter: freshAfter,
       focusedUnits: unitsForSubject,
+    );
+  }
+
+  static LumoTask _probeTask(
+    LumoAiTaskDraft draft,
+    int grade,
+    String subject,
+    List<String> focusedUnits,
+  ) {
+    return LumoTask(
+      id: 'ai_probe',
+      grade: grade,
+      subject: subject,
+      unit: focusedUnits.isEmpty ? 'KI Nachhilfe' : focusedUnits.first,
+      prompt: draft.prompt,
+      answer: draft.answer,
+      choices: draft.choices,
+      explanation: draft.explanation.isEmpty ? 'Lumo erklärt dir das gleich Schritt für Schritt.' : draft.explanation,
+      visual: draft.visual,
+      difficulty: grade,
     );
   }
 
