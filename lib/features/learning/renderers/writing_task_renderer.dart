@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../core/writing_target_parser.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../domain/writing/expanded_writing_template_repository.dart';
 import '../../../domain/writing/writing_domain.dart';
@@ -40,7 +41,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
   String get _target {
     final raw = widget.task.visualPayload.data['symbol'] ??
         widget.task.parameters['symbol'] ??
-        _extractWritingTarget(widget.task.prompt);
+        WritingTargetParser.parse(widget.task.prompt);
     final value = raw?.toString().trim();
     return value == null || value.isEmpty ? 'A' : value;
   }
@@ -173,21 +174,6 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         ),
       ),
     ]);
-  }
-
-  String _extractWritingTarget(String prompt) {
-    final patterns = <RegExp>[
-      RegExp(r'Schreibe\s+das\s+Wort:\s*(.+)$', caseSensitive: false),
-      RegExp(r'Schreibe\s+die\s+Zahl\s+(\d{1,2})', caseSensitive: false),
-      RegExp(r'Schreibe:\s*(.+)$', caseSensitive: false),
-    ];
-    for (final pattern in patterns) {
-      final match = pattern.firstMatch(prompt);
-      final value = match?.group(1)?.trim();
-      if (value != null && value.isNotEmpty) return value;
-    }
-    final letter = RegExp(r'\b([A-ZÄÖÜ])\b').firstMatch(prompt);
-    return letter?.group(1) ?? 'A';
   }
 }
 
