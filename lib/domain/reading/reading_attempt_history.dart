@@ -58,6 +58,7 @@ class ReadingAttemptDecision {
 class ReadingAttemptLedger {
   final Map<String, List<ReadingSentenceAttempt>> _attemptsBySentence = <String, List<ReadingSentenceAttempt>>{};
   final Set<String> _correctedSentenceIds = <String>{};
+  final Set<String> _clearedProblemWords = <String>{};
 
   ReadingAttemptDecision recordAnalysis({
     required StorySentence sentence,
@@ -81,9 +82,13 @@ class ReadingAttemptLedger {
 
     if (analysis.correctEnough) {
       _correctedSentenceIds.add(sentence.id);
+      for (final previous in attempts) {
+        final word = previous.problemWord?.trim().toLowerCase();
+        if (word != null && word.isNotEmpty) _clearedProblemWords.add(word);
+      }
       return const ReadingAttemptDecision(
         outcome: ReadingAttemptOutcome.accepted,
-        childMessage: 'Gut gelesen. Jetzt kommt der naechste Satz. Lies ihn laut vor.',
+        childMessage: 'Gut gelesen. Der Satz ist jetzt richtig. Jetzt kommt der naechste Satz.',
       );
     }
 
@@ -110,13 +115,16 @@ class ReadingAttemptLedger {
       return ReadingAttemptDecision(
         outcome: ReadingAttemptOutcome.confirmedProblemWord,
         confirmedProblemWord: confirmed,
-        childMessage: 'Das Wort "$confirmed" ueben wir kurz. Lies den ganzen Satz nochmal langsam.',
+        childMessage: 'Stopp, kleiner Lesefuchs. Das Wort "$confirmed" lesen wir langsam: $confirmed. Lies den Satz ab dort nochmal.',
       );
     }
 
-    return const ReadingAttemptDecision(
+    final word = analysis.problemWord;
+    return ReadingAttemptDecision(
       outcome: ReadingAttemptOutcome.retryBecauseReadingNeedsPractice,
-      childMessage: 'Fast. Lies den Satz noch einmal langsam und deutlich. Ich hoere wieder zu.',
+      childMessage: word == null
+          ? 'Fast. Lies den Satz noch einmal langsam und deutlich.'
+          : 'Fast. Schau auf das Wort "$word". Lumo liest es vor: $word. Dann lies den Satz nochmal.',
     );
   }
 
@@ -143,7 +151,7 @@ class ReadingAttemptLedger {
     for (final entry in _attemptsBySentence.entries) {
       if (_correctedSentenceIds.contains(entry.key)) continue;
       final confirmed = _confirmedProblemWordFor(entry.key);
-      if (confirmed != null) words.add(confirmed);
+      if (confirmed != null && !_clearedProblemWords.contains(confirmed)) words.add(confirmed);
     }
     return words.toList(growable: false);
   }
@@ -161,6 +169,7 @@ class ReadingAttemptLedger {
     final counts = <String, int>{};
     for (final attempt in attempts.where((attempt) => attempt.reliableReadingProblem)) {
       final word = attempt.problemWord!.trim().toLowerCase();
+      if (_clearedProblemWords.contains(word)) continue;
       counts[word] = (counts[word] ?? 0) + 1;
     }
     for (final entry in counts.entries) {
