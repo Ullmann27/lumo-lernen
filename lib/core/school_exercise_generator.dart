@@ -575,19 +575,64 @@ class ExerciseFactory {
   }
 
   LumoTask _science(int grade, String unit) {
-    final questions = <String, Map<String, String>>{
-      'Tiere': <String, String>{'Welches Tier legt Eier?': 'Huhn', 'Welches Tier lebt im Wasser?': 'Fisch'},
-      'Pflanzen': <String, String>{'Was braucht eine Pflanze zum Wachsen?': 'Wasser', 'Was ist meist gruen an der Pflanze?': 'Blatt'},
-      'Jahreszeiten': <String, String>{'Wann faellt oft Schnee?': 'Winter', 'Wann bluehen viele Blumen?': 'Fruehling'},
-      'Körper': <String, String>{'Womit sehen wir?': 'Augen', 'Womit hören wir?': 'Ohren'},
-      'Verkehr': <String, String>{'Bei welcher Ampelfarbe darf man gehen?': 'Gruen'},
-      'Wetter': <String, String>{'Was faellt aus Wolken?': 'Regen'},
-      'Familie und Gemeinschaft': <String, String>{'Was sagt man, wenn man Hilfe bekommt?': 'Danke'},
-      'Zeit und Kalender': <String, String>{'Welcher Tag kommt nach Montag?': 'Dienstag'},
+    // Pro Frage definieren wir explizit Distraktoren, damit nicht aus
+    // dem generischen Pool Quatsch wie 'Mama' oder 'Hund' bei
+    // 'Womit hoeren wir?' kommt. Distraktoren bleiben thematisch.
+    final questions = <String, Map<String, _ScienceQa>>{
+      'Tiere': <String, _ScienceQa>{
+        'Welches Tier legt Eier?': const _ScienceQa('Huhn', ['Huhn', 'Hund', 'Pferd']),
+        'Welches Tier lebt im Wasser?': const _ScienceQa('Fisch', ['Fisch', 'Katze', 'Vogel']),
+        'Welches Tier macht Honig?': const _ScienceQa('Biene', ['Biene', 'Marienkäfer', 'Schmetterling']),
+        'Welches Tier hat einen Rüssel?': const _ScienceQa('Elefant', ['Elefant', 'Pferd', 'Bär']),
+      },
+      'Pflanzen': <String, _ScienceQa>{
+        'Was braucht eine Pflanze zum Wachsen?': const _ScienceQa('Wasser', ['Wasser', 'Schokolade', 'Stein']),
+        'Was ist meist grün an der Pflanze?': const _ScienceQa('Blatt', ['Blatt', 'Wurzel', 'Blüte']),
+        'Wo wachsen die meisten Pflanzen?': const _ScienceQa('Erde', ['Erde', 'Wasser', 'Luft']),
+      },
+      'Jahreszeiten': <String, _ScienceQa>{
+        'Wann fällt oft Schnee?': const _ScienceQa('Winter', ['Winter', 'Sommer', 'Frühling']),
+        'Wann blühen viele Blumen?': const _ScienceQa('Frühling', ['Frühling', 'Herbst', 'Winter']),
+        'Wann fallen Blätter von den Bäumen?': const _ScienceQa('Herbst', ['Herbst', 'Sommer', 'Winter']),
+      },
+      'Körper': <String, _ScienceQa>{
+        'Womit sehen wir?': const _ScienceQa('Augen', ['Augen', 'Ohren', 'Hände']),
+        'Womit hören wir?': const _ScienceQa('Ohren', ['Ohren', 'Augen', 'Nase']),
+        'Womit riechen wir?': const _ScienceQa('Nase', ['Nase', 'Mund', 'Augen']),
+        'Womit schmecken wir?': const _ScienceQa('Zunge', ['Zunge', 'Hand', 'Fuß']),
+      },
+      'Verkehr': <String, _ScienceQa>{
+        'Bei welcher Ampelfarbe darf man gehen?': const _ScienceQa('Grün', ['Grün', 'Rot', 'Gelb']),
+        'Was tragen Radfahrer auf dem Kopf?': const _ScienceQa('Helm', ['Helm', 'Hut', 'Mütze']),
+      },
+      'Wetter': <String, _ScienceQa>{
+        'Was fällt aus Wolken?': const _ScienceQa('Regen', ['Regen', 'Sand', 'Steine']),
+        'Was leuchtet am Himmel und gibt Wärme?': const _ScienceQa('Sonne', ['Sonne', 'Mond', 'Stern']),
+        'Was sieht man am Himmel nach Regen?': const _ScienceQa('Regenbogen', ['Regenbogen', 'Stern', 'Schatten']),
+      },
+      'Familie und Gemeinschaft': <String, _ScienceQa>{
+        'Was sagt man, wenn man Hilfe bekommt?': const _ScienceQa('Danke', ['Danke', 'Tschüss', 'Stopp']),
+        'Wie nennt man die Schwester der Mama?': const _ScienceQa('Tante', ['Tante', 'Cousine', 'Oma']),
+      },
+      'Zeit und Kalender': <String, _ScienceQa>{
+        'Welcher Tag kommt nach Montag?': const _ScienceQa('Dienstag', ['Dienstag', 'Sonntag', 'Freitag']),
+        'Wie viele Tage hat eine Woche?': const _ScienceQa('7', ['7', '5', '10']),
+        'Welche Jahreszeit kommt nach Sommer?': const _ScienceQa('Herbst', ['Herbst', 'Frühling', 'Winter']),
+      },
     };
     final map = questions[unit] ?? questions['Tiere']!;
     final entry = map.entries.elementAt(_random.nextInt(map.length));
-    return _choiceTask('sach', grade, 'Sachunterricht', unit, entry.key, entry.value, 'Denke an deinen Alltag und waehle die passende Antwort.');
+    return _choiceTask(
+      'sach',
+      grade,
+      'Sachunterricht',
+      unit,
+      entry.key,
+      entry.value.answer,
+      'Denke an deinen Alltag und wähle die passende Antwort.',
+      customChoices: entry.value.choices,
+      visual: 'auto',
+    );
   }
 
   LumoTask _choiceTask(String prefix, int grade, String subject, String unit, String prompt, String answer, String explanation, {String visual = 'auto', List<String>? customChoices}) {
@@ -654,4 +699,11 @@ class _SatzbauVariant {
   final String correct;
   final String wrong1;
   final String wrong2;
+}
+
+/// Sachunterricht-Antwort: korrekte Antwort + thematische Distraktoren.
+class _ScienceQa {
+  const _ScienceQa(this.answer, this.choices);
+  final String answer;
+  final List<String> choices;
 }
