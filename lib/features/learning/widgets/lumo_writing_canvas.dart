@@ -124,15 +124,23 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
       finishedAt: DateTime.now(),
     );
     widget.onEvaluated?.call(
-      _isFreeWordMode ? _evaluateFreeWord(attempt) : _evaluator.evaluate(template: widget.template, attempt: attempt),
+      _useLooseEvaluation
+          ? _evaluateLooseWriting(attempt)
+          : _evaluator.evaluate(template: widget.template, attempt: attempt),
     );
   }
 
   bool get _isFreeWordMode => widget.mode == WritingMode.free && widget.template.strokes.isEmpty;
 
-  WritingEvaluation _evaluateFreeWord(WritingAttempt attempt) {
-    final strokeCount = attempt.strokes.where((stroke) => stroke.points.length >= 2).length;
-    if (strokeCount == 0) {
+  bool get _useLooseEvaluation {
+    final target = widget.template.symbol.trim();
+    if (_isFreeWordMode) return true;
+    return RegExp(r'^[A-ZÄÖÜ0-9]{1,2}$').hasMatch(target);
+  }
+
+  WritingEvaluation _evaluateLooseWriting(WritingAttempt attempt) {
+    final usableStrokes = attempt.strokes.where((stroke) => stroke.points.length >= 2).toList(growable: false);
+    if (usableStrokes.isEmpty) {
       return const WritingEvaluation(
         overallScore: 0,
         startPointScore: 0,
@@ -143,29 +151,46 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
         mirrored: false,
         incomplete: true,
         hints: <WritingHint>[
-          WritingHint(type: WritingHintType.incomplete, message: 'Schreibe das Wort auf die Linien.'),
+          WritingHint(type: WritingHintType.incomplete, message: 'Schreibe langsam auf die Linien.'),
         ],
       );
     }
+
     final expectedLetters = widget.template.symbol.replaceAll(RegExp(r'[^A-Za-zÄÖÜäöüß0-9]'), '').length.clamp(1, 12);
-    final coverage = (strokeCount / expectedLetters).clamp(0.35, 1.0).toDouble();
-    final score = (.55 + coverage * .35).clamp(0.0, 1.0).toDouble();
+    final strokeCoverage = (usableStrokes.length / expectedLetters).clamp(0.25, 1.0).toDouble();
+    final boundsCoverage = _boundsCoverage(usableStrokes).clamp(0.20, 1.0).toDouble();
+    final score = (.35 + strokeCoverage * .30 + boundsCoverage * .35).clamp(0.0, 1.0).toDouble();
+
     return WritingEvaluation(
       overallScore: score,
       startPointScore: 1,
       directionScore: score,
-      coverageScore: coverage,
+      coverageScore: boundsCoverage,
       pathDistanceScore: score,
       strokeOrderScore: 1,
       mirrored: false,
-      incomplete: strokeCount < 1,
+      incomplete: score < .45,
       hints: <WritingHint>[
         WritingHint(
           type: WritingHintType.coverage,
-          message: score >= .72 ? 'Gut. Du hast das Wort geschrieben.' : 'Schreibe alle Buchstaben langsam fertig.',
+          message: score >= .72
+              ? 'Gut. Du hast das Ziel sauber geschrieben.'
+              : 'Schreibe größer und langsam über die Vorlage.',
         ),
       ],
     );
+  }
+
+  double _boundsCoverage(List<Stroke> strokes) {
+    final points = strokes.expand((stroke) => stroke.points).toList(growable: false);
+    if (points.isEmpty) return 0;
+    final minX = points.map((p) => p.x).reduce(math.min);
+    final maxX = points.map((p) => p.x).reduce(math.max);
+    final minY = points.map((p) => p.y).reduce(math.min);
+    final maxY = points.map((p) => p.y).reduce(math.max);
+    final width = ((maxX - minX) / widget.template.viewBoxWidth).clamp(0.0, 1.0);
+    final height = ((maxY - minY) / widget.template.viewBoxHeight).clamp(0.0, 1.0);
+    return ((width + height) / 2).toDouble();
   }
 
   StrokePoint? _pointFromLocalPosition(Offset localPosition, Size size) {
@@ -335,22 +360,32 @@ class _WritingCanvasPainter extends CustomPainter {
   }
 
   void _drawTemplate(Canvas canvas, Size size) {
-    final guidePaint = Paint()
-      ..color = mode == WritingMode.guided
-          ? LumoColors.orange.withOpacity(.34)
-          : LumoColors.ink300.withOpacity(.22)
-      ..strokeWidth = mode == WritingMode.guided ? 18 : 14
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-
-    final startPaint = Paint()..color = LumoColors.orange.withOpacity(.75);
-
-    for (final stroke in template.strokes) {
-      final start = _map(stroke.startX, stroke.startY, size);
-      final end = _map(stroke.endX, stroke.endY, size);
-      canvas.drawLine(start, end, guidePaint);
-      canvas.drawCircle(start, 6, startPaint);
-    }
+    final symbol = template.symbol.trim().isEmpty ? 'A' : template.symbol.trim();
+    final symbolLength = symbol.replaceAll(RegExp(r'\s+'), '').length.clamp(1, 12);
+    final fontSize = symbolLength <= 1
+        ? size.height * .72
+        : symbolLength <= 2
+            ? size.height * .56
+            : size.height * .30;
+    final painter = TextPainter(
+      text: TextSpan(
+        text: symbol,
+        style: TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: fontSize,
+          fontWeight: FontWeight.w900,
+          color: (mode == WritingMode.guided ? LumoColors.orange : LumoColors.ink900).withOpacity(.13),
+          height: 1,
+        ),
+      ),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout(maxWidth: size.width * .92);
+    final offset = Offset(
+      (size.width - painter.width) / 2,
+      (size.height - painter.height) / 2,
+    );
+    painter.paint(canvas, offset);
   }
 
   void _drawChildStrokes(Canvas canvas, Size size) {
