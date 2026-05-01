@@ -124,12 +124,14 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
             _QuestionInput(controller: _controller, loading: _loading, onAsk: _ask),
             const SizedBox(height: 14),
             Wrap(spacing: 8, runSpacing: 8, children: [
-              _QuickChip(label: 'Erklär mir 7 + 5', onTap: () => _quickAsk('Erklär mir 7 plus 5 in kleinen Schritten.')),
-              _QuickChip(label: 'Hilf mir bei Deutsch', onTap: () => _quickAsk('Hilf mir bei einem deutschen Satz.')),
-              _QuickChip(label: 'Lies mit mir', onTap: () => _quickAsk('Schlag mir eine kurze Geschichte zum Lesen vor.')),
-              _QuickChip(label: 'Englisch üben', onTap: () => _quickAsk('Übe mit mir drei einfache englische Wörter.')),
-              _QuickChip(label: 'Erzähl mir etwas über Tiere', onTap: () => _quickAsk('Erzähl mir etwas Kurzes über ein interessantes Tier.')),
-              _QuickChip(label: 'Gib mir einen Tipp', onTap: () => _quickAsk('Gib mir einen kleinen Lerntipp.')),
+              _QuickChip(label: '🧮 Mathehilfe', onTap: () => _quickAsk('Erklär mir 7 plus 5 in kleinen Schritten, bitte mit Beispiel.')),
+              _QuickChip(label: '📖 Deutschhilfe', onTap: () => _quickAsk('Hilf mir bei einem deutschen Satz und erklär ihn kurz.')),
+              _QuickChip(label: '🦊 Lies mit mir', onTap: () => _quickAsk('Erzähl mir eine kurze Geschichte zum Lesen, mit drei Sätzen.')),
+              _QuickChip(label: '🐝 Tiere', onTap: () => _quickAsk('Erzähl mir etwas Kurzes über ein interessantes Tier, kindgerecht.')),
+              _QuickChip(label: '🌍 Sachunterricht', onTap: () => _quickAsk('Erzähl mir eine spannende Sache aus dem Sachunterricht.')),
+              _QuickChip(label: '🎈 Englisch', onTap: () => _quickAsk('Übe mit mir drei einfache englische Wörter und übersetze sie.')),
+              _QuickChip(label: '😊 Witz erzählen', onTap: () => _quickAsk('Erzähl mir bitte einen kindgerechten Witz.')),
+              _QuickChip(label: '💡 Lerntipp', onTap: () => _quickAsk('Gib mir einen kleinen Lerntipp für heute.')),
             ]),
           ]),
         ),
@@ -214,8 +216,26 @@ class _AnswerBubble extends StatelessWidget {
   final bool blocked;
   final String source;
 
+  String get _friendlySource {
+    switch (source) {
+      case 'proxy':
+        return 'ChatGPT über Lumo-Proxy';
+      case 'local_companion':
+        return 'Lumo (lokal)';
+      case 'proxy_timeout':
+        return 'Lumo (Server schlief)';
+      case 'proxy_error':
+        return 'Lumo (Server-Fehler)';
+      case 'local_policy':
+        return 'Lumo (Schutzfilter)';
+      default:
+        return source.isEmpty ? 'Lumo' : source;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final showAnswer = answer.trim().isNotEmpty;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 180),
       width: double.infinity,
@@ -231,13 +251,22 @@ class _AnswerBubble extends StatelessWidget {
         Row(children: [
           Icon(blocked ? Icons.front_hand_rounded : Icons.chat_bubble_rounded, color: blocked ? LumoColors.orange : LumoColors.blue),
           const SizedBox(width: 8),
-          Expanded(child: Text('Lumo antwortet', style: LumoTextStyles.heading3)),
+          Expanded(child: Text(loading ? 'Lumo denkt nach …' : 'Lumo antwortet', style: LumoTextStyles.heading3)),
           if (loading) const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: LumoColors.orange)),
         ]),
         const SizedBox(height: 10),
-        Text(answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800, height: 1.35)),
-        const SizedBox(height: 10),
-        Text('Quelle: $source', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink400)),
+        if (showAnswer) ...[
+          Text(answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800, height: 1.35)),
+          const SizedBox(height: 10),
+          Text(
+            _friendlySource,
+            style: LumoTextStyles.caption.copyWith(color: LumoColors.ink400),
+          ),
+        ] else
+          Text(
+            loading ? 'Ich überlege gerade. Das dauert nicht lange.' : 'Stell mir gerne eine Frage. Wir bleiben bei Schul-, Lern- und Kinderthemen.',
+            style: LumoTextStyles.body.copyWith(color: LumoColors.ink600, fontWeight: FontWeight.w700, height: 1.35),
+          ),
       ]),
     );
   }
