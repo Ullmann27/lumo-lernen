@@ -126,8 +126,10 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
             Wrap(spacing: 8, runSpacing: 8, children: [
               _QuickChip(label: 'Erklär mir 7 + 5', onTap: () => _quickAsk('Erklär mir 7 plus 5 in kleinen Schritten.')),
               _QuickChip(label: 'Hilf mir bei Deutsch', onTap: () => _quickAsk('Hilf mir bei einem deutschen Satz.')),
+              _QuickChip(label: 'Lies mit mir', onTap: () => _quickAsk('Schlag mir eine kurze Geschichte zum Lesen vor.')),
               _QuickChip(label: 'Englisch üben', onTap: () => _quickAsk('Übe mit mir drei einfache englische Wörter.')),
-              _QuickChip(label: 'Naturfrage', onTap: () => _quickAsk('Erzähl mir etwas Kurzes über Bienen.')),
+              _QuickChip(label: 'Erzähl mir etwas über Tiere', onTap: () => _quickAsk('Erzähl mir etwas Kurzes über ein interessantes Tier.')),
+              _QuickChip(label: 'Gib mir einen Tipp', onTap: () => _quickAsk('Gib mir einen kleinen Lerntipp.')),
             ]),
           ]),
         ),
@@ -145,12 +147,16 @@ class _AgentHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = proxyReady ? 'Lumo-KI ist bereit' : 'Lumo hilft lokal';
-    final subtitle = proxyReady
-        ? 'Der Elternbereich hat den kindergesicherten KI-Proxy freigegeben.'
+    final title = proxyReady
+        ? 'Lumo-KI mit ChatGPT'
         : enabled
-            ? 'Der KI-Schalter ist aktiv, aber die Proxy-URL fehlt oder ist ungültig.'
-            : 'Die erweiterte KI ist ausgeschaltet. Lumo nutzt nur lokale Lernhilfe.';
+            ? 'Lumo hilft lokal weiter'
+            : 'Interne Lumo-KI';
+    final subtitle = proxyReady
+        ? 'Verbunden über sicheren Eltern-Proxy. Antworten kommen von ChatGPT.'
+        : enabled
+            ? 'Der Server schläft vielleicht oder ist nicht erreichbar. Lumo bleibt bei dir.'
+            : 'Es wird keine Cloud verwendet. Lumo nutzt nur die lokale Lernhilfe.';
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF7ED), Color(0xFFEFF6FF)])),
