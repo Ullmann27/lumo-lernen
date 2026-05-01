@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: lumo-ai-proxy
+    runtime: node
+    plan: free
+    rootDir: server/lumo-ai-proxy
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: ALLOWED_ORIGIN
+        value: "*"
+      - key: OPENAI_API_KEY
+        sync: false
