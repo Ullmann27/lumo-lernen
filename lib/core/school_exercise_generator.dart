@@ -419,7 +419,16 @@ class ExerciseFactory {
       return _choiceTask('doppel', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', 'kommen', 'Bei kommen hoerst du kurz o, darum mm.', customChoices: <String>['komen', 'kommen', 'komenn']);
     }
     if (unit == 'Wortende') {
-      return _choiceTask('ende', grade, 'Rechtschreibung', unit, 'Welches Wort endet mit t?', 'Hund', 'Sprich das Wort langsam bis zum letzten Laut.', customChoices: <String>['Hund', 'Hase', 'Mama']);
+      return _choiceTask(
+        'ende',
+        grade,
+        'Rechtschreibung',
+        unit,
+        'Welches Wort endet mit t?',
+        'Brot',
+        'Sprich das Wort langsam bis zum letzten Laut. Brot endet mit t.',
+        customChoices: <String>['Brot', 'Hund', 'Mama'],
+      );
     }
     final wrong = correct.toLowerCase();
     return _choiceTask('wort', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', correct, 'Schau jeden Buchstaben langsam an.', customChoices: <String>[correct, wrong, '${correct}e']);
