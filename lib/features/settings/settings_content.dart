@@ -354,9 +354,11 @@ class _ProxyUrlFieldState extends State<_ProxyUrlField> {
         labelText: 'Proxy-URL',
         hintText: 'https://dein-lumo-server.example.com',
         helperText: widget.enabled ? 'Nur die eigene Proxy-Adresse eintragen, nie einen API-Key.' : 'Erst den KI-Server-Schalter aktivieren.',
+        helperMaxLines: 3,
         border: const OutlineInputBorder(),
         prefixIcon: const Icon(Icons.dns_rounded),
       ),
+      style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w800),
     );
   }
 }
