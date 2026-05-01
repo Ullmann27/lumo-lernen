@@ -166,22 +166,28 @@ class LumoVoice {
   Future<void> _applyStyle(VoiceStyle style) async {
     switch (style) {
       case VoiceStyle.greeting:
-        await _set(rate: 0.36, pitch: 1.04, volume: 1.0);
+        await _set(rate: 0.34, pitch: 1.05, volume: 1.0);
         break;
       case VoiceStyle.explain:
-        await _set(rate: 0.34, pitch: 0.98, volume: 1.0);
+        // Etwas langsamer als vorher (0.34 -> 0.32) und Pitch etwas
+        // freundlicher (0.98 -> 1.00). Wirkt weniger technisch.
+        await _set(rate: 0.32, pitch: 1.00, volume: 1.0);
         break;
       case VoiceStyle.celebrate:
         await _set(rate: 0.42, pitch: 1.10, volume: 1.0);
         break;
       case VoiceStyle.comfort:
-        await _set(rate: 0.31, pitch: 0.95, volume: 0.96);
+        // Bei Verstaendnisproblemen besonders ruhig und warm.
+        await _set(rate: 0.30, pitch: 0.98, volume: 0.96);
         break;
       case VoiceStyle.question:
-        await _set(rate: 0.35, pitch: 1.02, volume: 1.0);
+        await _set(rate: 0.34, pitch: 1.04, volume: 1.0);
         break;
       case VoiceStyle.warm:
-        await _set(rate: 0.35, pitch: 1.00, volume: 1.0);
+        // Standard-Lese-Modus: leicht langsamer (0.35 -> 0.33) und
+        // waermerer Pitch (1.00 -> 1.03). Klingt freundlicher,
+        // weniger Roboter, kindgerecht.
+        await _set(rate: 0.33, pitch: 1.03, volume: 1.0);
         break;
     }
   }
