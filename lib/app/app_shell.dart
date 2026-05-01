@@ -3,6 +3,7 @@ import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import '../widgets/shell/lumo_stage_panel.dart';
+import '../features/agent/lumo_agent_content.dart';
 import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
 import '../features/reading/reading_content.dart';
@@ -112,6 +113,8 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
         return LearningContent(appState: _appState);
       case LumoSection.reading:
         return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
+      case LumoSection.agent:
+        return LumoAgentContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.scanner:
         if (!_appState.state.settings.scannerEnabled) {
           return _FeatureDisabledContent(
