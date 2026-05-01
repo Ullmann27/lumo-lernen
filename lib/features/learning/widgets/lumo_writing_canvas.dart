@@ -31,6 +31,25 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
   final List<Stroke> _strokes = <Stroke>[];
   Stroke? _activeStroke;
   DateTime? _startedAt;
+  ScrollHoldController? _scrollHold;
+
+  @override
+  void dispose() {
+    _releaseParentScroll();
+    super.dispose();
+  }
+
+  void _holdParentScroll() {
+    if (_scrollHold != null) return;
+    final scrollable = Scrollable.maybeOf(context);
+    _scrollHold = scrollable?.position.hold(() {});
+  }
+
+  void _releaseParentScroll() {
+    final hold = _scrollHold;
+    _scrollHold = null;
+    hold?.cancel();
+  }
 
   void _startStroke(Offset localPosition, Size size) {
     final point = _pointFromLocalPosition(localPosition, size);
@@ -62,12 +81,16 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
 
   void _finishStroke() {
     final active = _activeStroke;
-    if (active == null) return;
+    if (active == null) {
+      _releaseParentScroll();
+      return;
+    }
     final smoothed = active.points.length >= 2 ? _smoother.smooth(active) : active;
     setState(() {
       if (smoothed.points.length >= 2) _strokes.add(smoothed);
       _activeStroke = null;
     });
+    _releaseParentScroll();
     widget.onChanged?.call(List<Stroke>.unmodifiable(_strokes));
     _emitEvaluation();
   }
@@ -101,7 +124,47 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
       finishedAt: DateTime.now(),
     );
     widget.onEvaluated?.call(
-      _evaluator.evaluate(template: widget.template, attempt: attempt),
+      _isFreeWordMode ? _evaluateFreeWord(attempt) : _evaluator.evaluate(template: widget.template, attempt: attempt),
+    );
+  }
+
+  bool get _isFreeWordMode => widget.mode == WritingMode.free && widget.template.strokes.isEmpty;
+
+  WritingEvaluation _evaluateFreeWord(WritingAttempt attempt) {
+    final strokeCount = attempt.strokes.where((stroke) => stroke.points.length >= 2).length;
+    if (strokeCount == 0) {
+      return const WritingEvaluation(
+        overallScore: 0,
+        startPointScore: 0,
+        directionScore: 0,
+        coverageScore: 0,
+        pathDistanceScore: 0,
+        strokeOrderScore: 0,
+        mirrored: false,
+        incomplete: true,
+        hints: <WritingHint>[
+          WritingHint(type: WritingHintType.incomplete, message: 'Schreibe das Wort auf die Linien.'),
+        ],
+      );
+    }
+    final expectedLetters = widget.template.symbol.replaceAll(RegExp(r'[^A-Za-zÄÖÜäöüß0-9]'), '').length.clamp(1, 12);
+    final coverage = (strokeCount / expectedLetters).clamp(0.35, 1.0).toDouble();
+    final score = (.55 + coverage * .35).clamp(0.0, 1.0).toDouble();
+    return WritingEvaluation(
+      overallScore: score,
+      startPointScore: 1,
+      directionScore: score,
+      coverageScore: coverage,
+      pathDistanceScore: score,
+      strokeOrderScore: 1,
+      mirrored: false,
+      incomplete: strokeCount < 1,
+      hints: <WritingHint>[
+        WritingHint(
+          type: WritingHintType.coverage,
+          message: score >= .72 ? 'Gut. Du hast das Wort geschrieben.' : 'Schreibe alle Buchstaben langsam fertig.',
+        ),
+      ],
     );
   }
 
@@ -151,22 +214,27 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.xl - 2),
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              dragStartBehavior: DragStartBehavior.down,
-              onPanStart: (details) => _startStroke(details.localPosition, size),
-              onPanUpdate: (details) => _appendPoint(details.localPosition, size),
-              onPanEnd: (_) => _finishStroke(),
-              onPanCancel: _finishStroke,
-              child: CustomPaint(
-                painter: _WritingCanvasPainter(
-                  template: widget.template,
-                  mode: widget.mode,
-                  strokes: _activeStroke == null
-                      ? _strokes
-                      : <Stroke>[..._strokes, _activeStroke!],
+            child: Listener(
+              onPointerDown: (_) => _holdParentScroll(),
+              onPointerUp: (_) => _releaseParentScroll(),
+              onPointerCancel: (_) => _releaseParentScroll(),
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                dragStartBehavior: DragStartBehavior.down,
+                onPanStart: (details) => _startStroke(details.localPosition, size),
+                onPanUpdate: (details) => _appendPoint(details.localPosition, size),
+                onPanEnd: (_) => _finishStroke(),
+                onPanCancel: _finishStroke,
+                child: CustomPaint(
+                  painter: _WritingCanvasPainter(
+                    template: widget.template,
+                    mode: widget.mode,
+                    strokes: _activeStroke == null
+                        ? _strokes
+                        : <Stroke>[..._strokes, _activeStroke!],
+                  ),
+                  child: const SizedBox.expand(),
                 ),
-                child: const SizedBox.expand(),
               ),
             ),
           ),
