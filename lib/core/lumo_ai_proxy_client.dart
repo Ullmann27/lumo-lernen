@@ -9,6 +9,7 @@ class LumoAiProxyClient {
   const LumoAiProxyClient();
 
   static const Duration _timeout = Duration(seconds: 12);
+  static const Duration _batchTimeout = Duration(seconds: 30);
 
   bool isConfigured(AppSettings settings) {
     return settings.aiProxyEnabled && _validatedBaseUri(settings.aiProxyUrl) != null;
@@ -220,6 +221,77 @@ class LumoAiProxyClient {
       client.close(force: true);
     }
   }
+  Uri _tasksEndpoint(Uri baseUri) {
+    final normalizedPath = baseUri.path.endsWith('/')
+        ? '${baseUri.path}tasks'
+        : baseUri.path.isEmpty
+            ? '/tasks'
+            : '${baseUri.path}/tasks';
+    return baseUri.replace(path: normalizedPath, query: '');
+  }
+
+  /// Fordert eine Charge KI-generierter Aufgaben vom Proxy an.
+  ///
+  /// units = Schwaechen aus dem Lernprofil (LearningProfileEngine).
+  /// Der Server gibt eine bereits sicher gefilterte Liste zurueck.
+  /// Eine zweite Pruefung erfolgt in Flutter via TaskQualityGuard.
+  ///
+  /// Bei Fehler oder ausgeschaltetem Proxy: leere Liste, kein Crash.
+  Future<List<LumoAiTaskDraft>> fetchTaskBatch({
+    required AppSettings settings,
+    required String subject,
+    required int grade,
+    required List<String> units,
+    int count = 10,
+    String? childName,
+  }) async {
+    if (!settings.aiProxyEnabled) return const <LumoAiTaskDraft>[];
+    final baseUri = _validatedBaseUri(settings.aiProxyUrl);
+    if (baseUri == null) return const <LumoAiTaskDraft>[];
+
+    final endpoint = _tasksEndpoint(baseUri);
+    final client = HttpClient()..connectionTimeout = _batchTimeout;
+    try {
+      final request = await client.postUrl(endpoint).timeout(_batchTimeout);
+      request.headers.contentType = ContentType.json;
+      request.headers.set(HttpHeaders.acceptHeader, 'application/json');
+      final payload = <String, dynamic>{
+        'subject': subject,
+        'grade': grade,
+        'units': units.take(6).toList(growable: false),
+        'count': count.clamp(3, 20),
+        if (childName != null && childName.isNotEmpty) 'childName': childName,
+      };
+      request.write(jsonEncode(payload));
+      final response = await request.close().timeout(_batchTimeout);
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return const <LumoAiTaskDraft>[];
+      }
+      final raw = await response.transform(utf8.decoder).join().timeout(_batchTimeout);
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map) return const <LumoAiTaskDraft>[];
+      final list = decoded['tasks'];
+      if (list is! List) return const <LumoAiTaskDraft>[];
+      final out = <LumoAiTaskDraft>[];
+      for (final item in list) {
+        if (item is! Map) continue;
+        final draft = LumoAiTaskDraft.tryFrom(item);
+        if (draft == null) continue;
+        // Lokale Safety-Pruefung als zweite Linie
+        final inputSafety = LumoChildSafetyFilter.inspect(draft.prompt);
+        final answerSafety = LumoChildSafetyFilter.inspect(draft.answer);
+        if (!inputSafety.allowed || !answerSafety.allowed) continue;
+        out.add(draft);
+      }
+      return out;
+    } on TimeoutException {
+      return const <LumoAiTaskDraft>[];
+    } catch (_) {
+      return const <LumoAiTaskDraft>[];
+    } finally {
+      client.close(force: true);
+    }
+  }
 }
 
 class LumoAiHealthStatus {
@@ -323,5 +395,69 @@ class LumoChildSafetyFilter {
       default:
         return 'Lass uns über ein sicheres Kinderthema sprechen.';
     }
+  }
+}
+
+/// Eine vom Lumo-Proxy gelieferte Aufgabe (Roh-Entwurf).
+///
+/// Dieser Typ ist absichtlich KEIN LumoTask. Er wird vom Cache
+/// gespeichert, bei Verwendung in einen LumoTask konvertiert und
+/// zusaetzlich vom TaskQualityGuard validiert.
+class LumoAiTaskDraft {
+  const LumoAiTaskDraft({
+    required this.prompt,
+    required this.answer,
+    required this.choices,
+    required this.explanation,
+    required this.visual,
+  });
+
+  final String prompt;
+  final String answer;
+  final List<String> choices;
+  final String explanation;
+  final String visual;
+
+  static LumoAiTaskDraft? tryFrom(Map raw) {
+    final prompt = (raw['prompt'] as String?)?.trim() ?? '';
+    final answer = (raw['answer'] as String?)?.trim() ?? '';
+    final explanation = (raw['explanation'] as String?)?.trim() ?? '';
+    final visual = (raw['visual'] as String?)?.trim() ?? 'auto';
+    final choicesRaw = raw['choices'];
+    if (prompt.isEmpty || answer.isEmpty) return null;
+    if (choicesRaw is! List || choicesRaw.length < 2) return null;
+    final choices = <String>[];
+    for (final c in choicesRaw) {
+      final v = c?.toString().trim() ?? '';
+      if (v.isEmpty) continue;
+      choices.add(v);
+    }
+    if (choices.length < 2) return null;
+    if (!choices.any((c) => c.toLowerCase() == answer.toLowerCase())) return null;
+    return LumoAiTaskDraft(
+      prompt: prompt,
+      answer: answer,
+      choices: choices,
+      explanation: explanation,
+      visual: visual,
+    );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'prompt': prompt,
+        'answer': answer,
+        'choices': choices,
+        'explanation': explanation,
+        'visual': visual,
+      };
+
+  factory LumoAiTaskDraft.fromJson(Map<String, dynamic> json) {
+    return LumoAiTaskDraft(
+      prompt: json['prompt'] as String? ?? '',
+      answer: json['answer'] as String? ?? '',
+      choices: (json['choices'] as List?)?.map((e) => e.toString()).toList(growable: false) ?? const <String>[],
+      explanation: json['explanation'] as String? ?? '',
+      visual: json['visual'] as String? ?? 'auto',
+    );
   }
 }

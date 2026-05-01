@@ -129,6 +129,120 @@ async function callOpenAi({ message, history, childProfile }) {
   return { reply: trimmedReply, blocked: false, ruleId: null };
 }
 
+/// Generiert eine Charge kindgerechter Aufgaben.
+///
+/// Eingabe: subject, grade, units (Schwaechen aus dem Profil), count (max 20).
+/// Ausgabe: Array aus Aufgaben mit prompt, answer, choices, explanation, visual.
+///
+/// JSON-Mode der OpenAI-API garantiert valides JSON.
+/// Wir akzeptieren nur Aufgaben, die strukturell valide sind.
+/// Inhaltliche Pruefung erfolgt zusaetzlich im Flutter via TaskQualityGuard.
+async function generateTaskBatch({ subject, grade, units, count, childName }) {
+  const safeCount = Math.max(3, Math.min(Number(count) || 10, 20));
+  const safeUnits = Array.isArray(units) ? units.slice(0, 6).map(String) : [];
+  const unitText = safeUnits.length > 0
+    ? `Konzentriere dich auf diese Schwaechen-Themen: ${safeUnits.join(', ')}.`
+    : 'Mische saubere Standard-Themen fuer diese Klasse.';
+
+  const systemPrompt = [
+    'Du bist Lumo, ein Lehrer fuer die Volksschule.',
+    'Erzeuge Lernaufgaben fuer ein Kind im genannten Profil.',
+    'Aufgaben muessen kindgerecht, fachlich richtig und eindeutig loesbar sein.',
+    'Genau eine richtige Antwort. Distraktoren sind plausibel und wirklich falsch.',
+    'Antwort muss in choices enthalten sein.',
+    'Keine Politik, keine Gewalt, keine Religion, keine privaten Daten.',
+    'Antworte AUSSCHLIESSLICH als JSON: {"tasks":[{"prompt":"...","answer":"...","choices":["..","..",".."],"explanation":"...","visual":"emoji_or_dots"}, ...]}',
+  ].join('\n');
+
+  const userPrompt = [
+    `Subject: ${subject}`,
+    `Klasse: ${grade}`,
+    `Anzahl: ${safeCount}`,
+    `Kindname: ${childName || 'Kind'}`,
+    unitText,
+    'Regeln je Subject:',
+    '- Mathematik: Zahlen passend zur Klasse, plus/minus/zaehlen/halbieren/verdoppeln.',
+    '- Deutsch: Reime, Anfangslaut, Endlaut, Artikel, Tunwort, Namenswort, Silben.',
+    'Erklaerung in 1-2 kurzen Saetzen, kindgerecht.',
+    'Visual-Feld: einer von {dots, line, sequence, ten_ones, syllables, auto, emoji}.',
+    'Antworte NUR mit dem JSON-Objekt, keine Marktdown-Codeblocks.',
+  ].join('\n');
+
+  const payload = {
+    model,
+    response_format: { type: 'json_object' },
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt },
+    ],
+    temperature: 0.7,
+    max_tokens: 1500,
+  };
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 25000);
+  let response;
+  try {
+    response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${openAiApiKey}`,
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+
+  if (!response.ok) {
+    console.warn(`[lumo-ai-proxy] OpenAI batch returned ${response.status}`);
+    throw new Error(`openai_${response.status}`);
+  }
+
+  const data = await response.json();
+  const raw = data?.choices?.[0]?.message?.content?.trim();
+  if (!raw) throw new Error('empty_batch_reply');
+
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (_) {
+    throw new Error('batch_json_parse_failed');
+  }
+
+  const list = Array.isArray(parsed?.tasks) ? parsed.tasks : [];
+  const cleaned = [];
+  for (const item of list) {
+    if (!item || typeof item !== 'object') continue;
+    const prompt = String(item.prompt || '').trim();
+    const answer = String(item.answer || '').trim();
+    const explanation = String(item.explanation || '').trim();
+    const choicesRaw = Array.isArray(item.choices) ? item.choices : [];
+    const choices = choicesRaw
+      .map((c) => String(c || '').trim())
+      .filter((c) => c.length > 0)
+      .slice(0, 5);
+    if (!prompt || !answer || choices.length < 2) continue;
+    if (!choices.some((c) => c.toLowerCase() === answer.toLowerCase())) continue;
+    // Safety: Prompt + Antwort gegen Filter pruefen
+    const ps = inspectChildSafety(prompt);
+    const as = inspectChildSafety(answer);
+    if (!ps.allowed || !as.allowed) continue;
+    cleaned.push({
+      prompt: prompt.slice(0, 220),
+      answer: answer.slice(0, 60),
+      choices: choices.map((c) => c.slice(0, 60)),
+      explanation: explanation.slice(0, 200),
+      visual: String(item.visual || 'auto').slice(0, 30),
+    });
+    if (cleaned.length >= safeCount) break;
+  }
+
+  return cleaned;
+}
+
 const server = createServer(async (req, res) => {
   if (req.method === 'OPTIONS') {
     return json(res, 204, {});
@@ -140,6 +254,33 @@ const server = createServer(async (req, res) => {
       service: 'lumo-ai-proxy',
       openAiConfigured: Boolean(openAiApiKey),
     });
+  }
+
+  if (req.method === 'POST' && req.url === '/tasks') {
+    if (!openAiApiKey) {
+      return json(res, 503, { error: 'openai_key_missing', tasks: [] });
+    }
+    try {
+      const body = await readJson(req);
+      const subject = String(body.subject || '').trim();
+      const grade = Number(body.grade) || 1;
+      const count = Number(body.count) || 10;
+      const units = Array.isArray(body.units) ? body.units : [];
+      const childName = String(body.childName || '').slice(0, 60);
+      if (!subject) return json(res, 400, { error: 'subject_missing', tasks: [] });
+      const tasks = await generateTaskBatch({ subject, grade, units, count, childName });
+      return json(res, 200, {
+        tasks,
+        count: tasks.length,
+        source: 'openai_batch',
+      });
+    } catch (error) {
+      console.warn(`[lumo-ai-proxy] /tasks failed: ${String(error?.message || error).slice(0, 80)}`);
+      return json(res, 500, {
+        error: 'batch_generation_failed',
+        tasks: [],
+      });
+    }
   }
 
   if (req.method !== 'POST' || req.url !== '/chat') {
