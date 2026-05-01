@@ -568,28 +568,51 @@ class ExerciseFactory {
   }
 
   List<String> _normalizedChoices(String answer, List<String> customChoices) {
-    final set = <String>{answer, ...customChoices};
+    final out = <String>[];
+    final seen = <String>{};
+    for (final value in <String>[answer, ...customChoices]) {
+      final v = value.trim();
+      if (v.isEmpty) continue;
+      final norm = v.toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+      if (seen.add(norm)) out.add(v);
+    }
     final pool = <String>['St', 'Sp', 'Haus', 'Fuchs', 'Sonne', 'Schwaene', 'Glaeser', 'Kinder', '10', '7', '8'];
     var index = 0;
-    while (set.length < 3 && index < pool.length) {
-      set.add(pool[index]);
+    while (out.length < 3 && index < pool.length) {
+      final candidate = pool[index];
+      final norm = candidate.toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+      if (seen.add(norm)) out.add(candidate);
       index++;
     }
-    return set.take(4).toList(growable: true);
+    return out.take(4).toList(growable: true);
   }
 
   List<String> _choices(String answer) {
     final number = int.tryParse(answer.replaceAll(RegExp(r'[^0-9-]'), ''));
     if (number != null) {
-      final set = <String>{answer, '${number + 1}', '${(number - 1).clamp(0, 999)}'};
-      while (set.length < 3) set.add('${number + 2 + set.length}');
-      return set.toList();
+      final out = <String>[];
+      final seen = <String>{};
+      for (final value in <String>[answer, '${number + 1}', '${(number - 1).clamp(0, 999)}']) {
+        if (seen.add(value)) out.add(value);
+      }
+      var step = 2;
+      while (out.length < 3 && step < 20) {
+        final candidate = '${number + step}';
+        if (seen.add(candidate)) out.add(candidate);
+        step++;
+      }
+      return out;
     }
     final pool = <String>['Katze', 'Hund', 'Haus', 'Blau', 'Rot', 'eins', 'zwei', 'lesen', 'laufen', 'Fuchs', 'Wasser', 'Winter', 'Gruen', 'Maus', 'Dreieck', 'Kreis', 'Mama', 'Papa'];
-    final set = <String>{answer};
-    while (set.length < 3) {
-      set.add(pool[_random.nextInt(pool.length)]);
+    final out = <String>[answer];
+    final seen = <String>{answer.trim().toLowerCase()};
+    var safety = 0;
+    while (out.length < 3 && safety < 60) {
+      final candidate = pool[_random.nextInt(pool.length)];
+      final norm = candidate.trim().toLowerCase();
+      if (seen.add(norm)) out.add(candidate);
+      safety++;
     }
-    return set.toList();
+    return out;
   }
 }
