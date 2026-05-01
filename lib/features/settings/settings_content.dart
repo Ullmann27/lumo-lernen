@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/ai_task_cache.dart';
 import '../../core/app_settings.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_voice.dart';
@@ -21,7 +22,17 @@ class _SettingsContentState extends State<SettingsContent> {
   bool _saving = false;
   bool _checkingHealth = false;
   LumoAiHealthStatus? _lastHealth;
+  int _aiStatsRevision = 0;
   static const LumoAiProxyClient _proxyClient = LumoAiProxyClient();
+  static const AiTaskCache _aiTaskCache = AiTaskCache();
+
+  String get _childId {
+    final st = widget.appState.state;
+    final safeName = st.childName.trim().isEmpty
+        ? 'kind'
+        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    return 'local_${safeName}_${st.grade}';
+  }
 
   Future<void> _save(AppSettings next) async {
     setState(() {
@@ -55,6 +66,17 @@ class _SettingsContentState extends State<SettingsContent> {
       _checkingHealth = false;
       _lastHealth = result;
     });
+  }
+
+  Future<void> _clearAiTaskCache() async {
+    for (final subject in _AiTutorStatsPanel.subjects) {
+      await _aiTaskCache.clear(childId: _childId, subject: subject);
+    }
+    if (!mounted) return;
+    setState(() => _aiStatsRevision++);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('KI-Aufgaben-Vorrat wurde geleert.')),
+    );
   }
 
   @override
@@ -155,6 +177,13 @@ class _SettingsContentState extends State<SettingsContent> {
             const SizedBox(height: 8),
             _HealthStatusBadge(status: _lastHealth!),
           ],
+          const SizedBox(height: 12),
+          _AiTutorStatsPanel(
+            key: ValueKey(_aiStatsRevision),
+            childId: _childId,
+            enabled: _settings.aiProxyEnabled,
+            onClear: _clearAiTaskCache,
+          ),
           const SizedBox(height: 10),
           _AiSafetyNotice(enabled: _settings.aiProxyEnabled, url: _settings.aiProxyUrl),
         ]),
@@ -305,6 +334,161 @@ class _ProxyUrlFieldState extends State<_ProxyUrlField> {
         prefixIcon: const Icon(Icons.dns_rounded),
       ),
     );
+  }
+}
+
+class _AiTutorStatsPanel extends StatelessWidget {
+  const _AiTutorStatsPanel({
+    super.key,
+    required this.childId,
+    required this.enabled,
+    required this.onClear,
+  });
+
+  static const subjects = <String>['Mathematik', 'Deutsch', 'Sachunterricht'];
+  static const AiTaskCache _cache = AiTaskCache();
+
+  final String childId;
+  final bool enabled;
+  final Future<void> Function() onClear;
+
+  Future<_AiTutorStats> _load() async {
+    var freshTotal = 0;
+    var generatedToday = 0;
+    DateTime? newest;
+    final freshBySubject = <String, int>{};
+    for (final subject in subjects) {
+      final fresh = await _cache.freshCount(childId: childId, subject: subject);
+      final last = await _cache.lastGeneratedAt(childId: childId, subject: subject);
+      freshBySubject[subject] = fresh;
+      freshTotal += fresh;
+      if (last != null) {
+        final now = DateTime.now();
+        if (last.year == now.year && last.month == now.month && last.day == now.day) {
+          generatedToday++;
+        }
+        if (newest == null || last.isAfter(newest)) newest = last;
+      }
+    }
+    return _AiTutorStats(
+      freshTotal: freshTotal,
+      generatedToday: generatedToday,
+      newestGeneration: newest,
+      freshBySubject: freshBySubject,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<_AiTutorStats>(
+      future: _load(),
+      builder: (context, snapshot) {
+        final data = snapshot.data;
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(.72),
+            borderRadius: BorderRadius.circular(LumoRadius.md),
+            border: Border.all(color: LumoColors.orange.withOpacity(.18)),
+          ),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              const Icon(Icons.psychology_alt_rounded, color: LumoColors.orange, size: 22),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'KI-Aufgaben-Vorrat',
+                  style: LumoTextStyles.caption.copyWith(
+                    color: LumoColors.ink900,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ]),
+            const SizedBox(height: 8),
+            if (snapshot.connectionState == ConnectionState.waiting && data == null)
+              Text('Lade KI-Status ...', style: LumoTextStyles.caption)
+            else ...[
+              _AiStatLine(label: 'KI-Schalter', value: enabled ? 'aktiv' : 'aus'),
+              _AiStatLine(label: 'Aufgaben im Vorrat', value: '${data?.freshTotal ?? 0}'),
+              _AiStatLine(label: 'Heute generierte Fächer', value: '${data?.generatedToday ?? 0}'),
+              _AiStatLine(label: 'Letzte Generierung', value: data?.newestLabel ?? 'noch keine'),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: subjects.map((subject) {
+                  final count = data?.freshBySubject[subject] ?? 0;
+                  return Chip(
+                    visualDensity: VisualDensity.compact,
+                    label: Text('$subject: $count'),
+                  );
+                }).toList(growable: false),
+              ),
+              const SizedBox(height: 8),
+              OutlinedButton.icon(
+                onPressed: data == null || data.freshTotal == 0 ? null : onClear,
+                icon: const Icon(Icons.delete_outline_rounded, size: 18),
+                label: const Text('KI-Cache leeren'),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Nur Eltern sehen diesen Bereich. Der API-Key bleibt ausschließlich auf dem Proxy-Server.',
+                style: LumoTextStyles.caption.copyWith(color: LumoColors.ink500),
+              ),
+            ],
+          ]),
+        );
+      },
+    );
+  }
+}
+
+class _AiStatLine extends StatelessWidget {
+  const _AiStatLine({required this.label, required this.value});
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Row(children: [
+        Expanded(child: Text(label, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700))),
+        const SizedBox(width: 12),
+        Text(value, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w900)),
+      ]),
+    );
+  }
+}
+
+class _AiTutorStats {
+  const _AiTutorStats({
+    required this.freshTotal,
+    required this.generatedToday,
+    required this.newestGeneration,
+    required this.freshBySubject,
+  });
+
+  final int freshTotal;
+  final int generatedToday;
+  final DateTime? newestGeneration;
+  final Map<String, int> freshBySubject;
+
+  String get newestLabel {
+    final value = newestGeneration;
+    if (value == null) return 'noch keine';
+    final now = DateTime.now();
+    if (value.year == now.year && value.month == now.month && value.day == now.day) {
+      final hh = value.hour.toString().padLeft(2, '0');
+      final mm = value.minute.toString().padLeft(2, '0');
+      return 'heute $hh:$mm';
+    }
+    final dd = value.day.toString().padLeft(2, '0');
+    final mo = value.month.toString().padLeft(2, '0');
+    return '$dd.$mo.${value.year}';
   }
 }
 
