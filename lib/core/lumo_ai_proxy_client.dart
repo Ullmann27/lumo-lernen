@@ -8,7 +8,7 @@ import 'app_settings.dart';
 class LumoAiProxyClient {
   const LumoAiProxyClient();
 
-  static const Duration _timeout = Duration(seconds: 12);
+  static const Duration _timeout = Duration(seconds: 18);
   static const Duration _batchTimeout = Duration(seconds: 30);
 
   bool isConfigured(AppSettings settings) {
