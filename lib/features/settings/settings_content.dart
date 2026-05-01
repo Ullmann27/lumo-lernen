@@ -64,7 +64,12 @@ class _SettingsContentState extends State<SettingsContent> {
           _InfoCard(
             title: 'Datenschutz',
             emoji: '🛡️',
-            lines: const ['Offline-first', 'Mikrofon lokal am Gerät', 'Keine Cloud-KI aktiv', 'Keine Werbung'],
+            lines: [
+              'Offline-first',
+              'Mikrofon nur bei aktiver Nutzung',
+              _settings.aiProxyEnabled ? 'Lumo-KI-Server durch Eltern freigegeben' : 'Keine Cloud-KI aktiv',
+              'Keine Werbung',
+            ],
           ),
         ]),
         const SizedBox(height: 18),
@@ -93,6 +98,23 @@ class _SettingsContentState extends State<SettingsContent> {
           _SwitchRow(title: 'Mikrofon erlauben', subtitle: 'Kind darf mit Lumo sprechen.', value: _settings.microphoneEnabled, onChanged: (v) => _save(_settings.copyWith(microphoneEnabled: v))),
           _SwitchRow(title: 'Scanner erlauben', subtitle: 'Foto- und Aufgabenhilfe aktivieren.', value: _settings.scannerEnabled, onChanged: (v) => _save(_settings.copyWith(scannerEnabled: v))),
           _SwitchRow(title: 'Ton-Effekte', subtitle: 'Vorbereitung für spätere Klick- und Belohnungstöne.', value: _settings.soundEnabled, onChanged: (v) => _save(_settings.copyWith(soundEnabled: v))),
+        ]),
+        const SizedBox(height: 14),
+        _SettingsCard(title: 'Lumo-KI Testserver', children: [
+          _SwitchRow(
+            title: 'Lumo-KI-Server erlauben',
+            subtitle: 'Nur aktivieren, wenn ein eigener kindergesicherter Proxy-Server läuft. Kein API-Key wird in der App gespeichert.',
+            value: _settings.aiProxyEnabled,
+            onChanged: (v) => _save(_settings.copyWith(aiProxyEnabled: v)),
+          ),
+          const SizedBox(height: 10),
+          _ProxyUrlField(
+            initialValue: _settings.aiProxyUrl,
+            enabled: _settings.aiProxyEnabled,
+            onSubmitted: (value) => _save(_settings.copyWith(aiProxyUrl: value.trim())),
+          ),
+          const SizedBox(height: 10),
+          _AiSafetyNotice(enabled: _settings.aiProxyEnabled, url: _settings.aiProxyUrl),
         ]),
         const SizedBox(height: 14),
         _SettingsCard(title: 'Barrierefreiheit', children: [
@@ -192,6 +214,81 @@ class _SwitchRow extends StatelessWidget {
       subtitle: Text(subtitle, style: LumoTextStyles.caption),
       value: value,
       onChanged: onChanged,
+    );
+  }
+}
+
+class _ProxyUrlField extends StatefulWidget {
+  const _ProxyUrlField({required this.initialValue, required this.enabled, required this.onSubmitted});
+
+  final String initialValue;
+  final bool enabled;
+  final ValueChanged<String> onSubmitted;
+
+  @override
+  State<_ProxyUrlField> createState() => _ProxyUrlFieldState();
+}
+
+class _ProxyUrlFieldState extends State<_ProxyUrlField> {
+  late final TextEditingController _controller = TextEditingController(text: widget.initialValue);
+
+  @override
+  void didUpdateWidget(covariant _ProxyUrlField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialValue != widget.initialValue && _controller.text != widget.initialValue) {
+      _controller.text = widget.initialValue;
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: _controller,
+      enabled: widget.enabled,
+      keyboardType: TextInputType.url,
+      textInputAction: TextInputAction.done,
+      onSubmitted: widget.onSubmitted,
+      onEditingComplete: () => widget.onSubmitted(_controller.text),
+      decoration: InputDecoration(
+        labelText: 'Proxy-URL',
+        hintText: 'https://dein-lumo-server.example.com',
+        helperText: widget.enabled ? 'Nur die eigene Proxy-Adresse eintragen, nie einen API-Key.' : 'Erst den KI-Server-Schalter aktivieren.',
+        border: const OutlineInputBorder(),
+        prefixIcon: const Icon(Icons.dns_rounded),
+      ),
+    );
+  }
+}
+
+class _AiSafetyNotice extends StatelessWidget {
+  const _AiSafetyNotice({required this.enabled, required this.url});
+
+  final bool enabled;
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    final valid = Uri.tryParse(url)?.hasAbsolutePath == true || Uri.tryParse(url)?.host.isNotEmpty == true;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: enabled ? LumoColors.orangeSurface : LumoColors.ink100.withOpacity(.45),
+        borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(color: enabled ? LumoColors.orange.withOpacity(.22) : LumoColors.ink300.withOpacity(.20)),
+      ),
+      child: Text(
+        enabled
+            ? 'Aktiv: Lumo darf nur über den eigenen kindergesicherten Proxy antworten. Status der URL: ${valid ? 'eingetragen' : 'fehlt oder ungültig'}.'
+            : 'Aus: Lumo nutzt nur die lokale Lernhilfe. Es wird keine externe KI kontaktiert.',
+        style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800),
+      ),
     );
   }
 }
