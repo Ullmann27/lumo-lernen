@@ -169,6 +169,20 @@ class LumoAiProxyClient {
       request.headers.set(HttpHeaders.acceptHeader, 'application/json');
       final response = await request.close().timeout(_timeout);
       if (response.statusCode < 200 || response.statusCode >= 300) {
+        if (response.statusCode == 404) {
+          return LumoAiHealthStatus(
+            reachable: false,
+            openAiConfigured: false,
+            message: 'Server-Service antwortet, aber der Pfad /health fehlt. Bitte im Eltern-Bereich prüfen: ist der Render-Service deployed und gestartet? URL: $baseUri',
+          );
+        }
+        if (response.statusCode >= 500) {
+          return LumoAiHealthStatus(
+            reachable: false,
+            openAiConfigured: false,
+            message: 'Server hat einen Fehler (Code ${response.statusCode}). Bitte später erneut prüfen. Lumo bleibt lokal aktiv.',
+          );
+        }
         return LumoAiHealthStatus(
           reachable: false,
           openAiConfigured: false,
