@@ -30,6 +30,7 @@ class _LearningContentState extends State<LearningContent> {
   final List<String> _recentTaskKeys = <String>[];
   final List<String> _recentUnits = <String>[];
   final Set<String> _sessionTaskKeys = <String>{};
+  String? _lastTaskKey;
 
   static const int _recentTaskMemory = 80;
   static const int _recentUnitMemory = 10;
@@ -124,6 +125,8 @@ class _LearningContentState extends State<LearningContent> {
 
       fallback ??= task;
       final key = _taskKey(task);
+      // Direkte Wiederholung verhindern: gleicher key wie zuletzt -> weiter ziehen
+      if (_lastTaskKey != null && _lastTaskKey == key) continue;
       if (!_recentTaskKeys.contains(key) && !_sessionTaskKeys.contains(key)) return task;
     }
 
@@ -175,6 +178,7 @@ class _LearningContentState extends State<LearningContent> {
 
   void _rememberTask(LumoTask task) {
     final key = _taskKey(task);
+    _lastTaskKey = key;
     _sessionTaskKeys.add(key);
     _recentTaskKeys.remove(key);
     _recentTaskKeys.add(key);
