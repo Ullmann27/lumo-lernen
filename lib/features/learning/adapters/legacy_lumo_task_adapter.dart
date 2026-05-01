@@ -1,6 +1,7 @@
 import '../../../core/safe_fallback_pool.dart';
 import '../../../core/school_exercise_generator.dart';
 import '../../../core/task_quality_guard.dart';
+import '../../../core/writing_target_parser.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../domain/learning/seed_memory_service.dart';
 
@@ -45,7 +46,7 @@ class LegacyLumoTaskAdapter {
         'legacyId': fixedTask.id,
         'unit': fixedTask.unit,
         'visual': fixedTask.visual,
-        if (fixedTask.handwriting) 'symbol': _extractWritingSymbol(fixedTask.prompt),
+        if (fixedTask.handwriting) 'symbol': WritingTargetParser.parse(fixedTask.prompt),
       },
       prompt: fixedTask.prompt,
       options: fixedTask.choices
@@ -265,7 +266,7 @@ class LegacyLumoTaskAdapter {
 
   Map<String, Object?> _visualData(LumoTask task) {
     if (task.handwriting) {
-      return <String, Object?>{'symbol': _extractWritingSymbol(task.prompt)};
+      return <String, Object?>{'symbol': WritingTargetParser.parse(task.prompt)};
     }
 
     if (task.visual == 'number_house') {
@@ -401,24 +402,5 @@ class LegacyLumoTaskAdapter {
 
   int _payloadInt(String value) {
     return int.tryParse(value.replaceAll(RegExp(r'[^0-9-]'), '')) ?? 0;
-  }
-
-  String _extractWritingSymbol(String prompt) {
-    final word = RegExp(r'Schreibe\s+das\s+Wort:\s*(.+)$', caseSensitive: false).firstMatch(prompt);
-    if (word != null) return word.group(1)!.trim();
-
-    final copySentence = RegExp(r'Schreibe:\s*(.+)$', caseSensitive: false).firstMatch(prompt);
-    if (copySentence != null) return copySentence.group(1)!.trim();
-
-    final traceLetter = RegExp(r'(?:Buchstaben|grosses|großes)\s+([A-ZÄÖÜ])\b', caseSensitive: false).firstMatch(prompt);
-    if (traceLetter != null) return traceLetter.group(1)!.toUpperCase();
-
-    final number = RegExp(r'Zahl\s+(\d{1,2})', caseSensitive: false).firstMatch(prompt);
-    if (number != null) return number.group(1)!;
-
-    final singleLetter = RegExp(r'\b([A-ZÄÖÜ])\b').firstMatch(prompt);
-    if (singleLetter != null) return singleLetter.group(1)!;
-
-    return 'A';
   }
 }
