@@ -229,7 +229,7 @@ class _AnswerBubble extends StatelessWidget {
           if (loading) const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: LumoColors.orange)),
         ]),
         const SizedBox(height: 10),
-        Text(answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink800, fontWeight: FontWeight.w800, height: 1.35)),
+        Text(answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800, height: 1.35)),
         const SizedBox(height: 10),
         Text('Quelle: $source', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink400)),
       ]),
