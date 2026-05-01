@@ -193,7 +193,7 @@ class LumoChildSafetyFilter {
   static LumoSafetyDecision inspect(String value) {
     final text = value.toLowerCase();
     for (final entry in _blockedTerms.entries) {
-      if (entry.value.any(text.contains)) {
+      if (entry.value.any((term) => text.contains(term))) {
         return LumoSafetyDecision(
           allowed: false,
           ruleId: entry.key,
