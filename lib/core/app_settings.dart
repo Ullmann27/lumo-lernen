@@ -1,4 +1,11 @@
 class AppSettings {
+  /// Standard-Basis-URL fuer den Lumo-AI-Proxy.
+  /// Diese URL ist oeffentlich und enthaelt keine Geheimnisse.
+  /// Der OpenAI-API-Key liegt ausschliesslich auf dem Render-Server.
+  /// Eltern duerfen die URL aendern, aber sie ist standardmaessig
+  /// vorausgefuellt, damit Heinz sie nicht jedes Mal eintragen muss.
+  static const String defaultAiProxyUrl = 'https://lumo-ai-proxy.onrender.com';
+
   const AppSettings({
     this.parentPin = '2468',
     this.dailyGoal = 3,
@@ -8,7 +15,7 @@ class AppSettings {
     this.microphoneEnabled = true,
     this.scannerEnabled = true,
     this.aiProxyEnabled = false,
-    this.aiProxyUrl = '',
+    this.aiProxyUrl = defaultAiProxyUrl,
     this.reduceAnimations = false,
     this.largeText = false,
     this.calmMode = false,
@@ -120,12 +127,46 @@ class AppSettings {
   }
 
   static String _safeProxyUrl(dynamic value) {
-    final raw = value?.toString().trim() ?? '';
-    if (raw.isEmpty) return '';
-    final uri = Uri.tryParse(raw);
-    if (uri == null || !uri.hasScheme || uri.host.isEmpty) return '';
-    if (uri.scheme != 'https' && uri.scheme != 'http') return '';
-    return raw;
+    return sanitizeProxyUrl(value?.toString());
+  }
+
+  /// Public Helper, den die Settings-UI beim Eingeben aufrufen kann,
+  /// damit eine Eltern-Eingabe sofort korrekt gespeichert wird:
+  ///   - leer/ungueltig -> defaultAiProxyUrl
+  ///   - /health, /chat oder Trailing-Slash am Ende -> entfernt
+  static String sanitizeProxyUrl(String? raw) {
+    final trimmed = raw?.trim() ?? '';
+    if (trimmed.isEmpty) return defaultAiProxyUrl;
+    final uri = Uri.tryParse(trimmed);
+    if (uri == null || !uri.hasScheme || uri.host.isEmpty) return defaultAiProxyUrl;
+    if (uri.scheme != 'https' && uri.scheme != 'http') return defaultAiProxyUrl;
+    return _stripWellKnownPaths(trimmed);
+  }
+
+  /// Entfernt bekannte Endpunkt-Pfade aus einer Benutzer-URL,
+  /// damit die App nur die Basis-URL speichert.
+  ///
+  /// Wenn Eltern versehentlich die /health-URL eintragen, wird das
+  /// auf die Basis bereinigt - sonst wuerde /health spaeter doppelt
+  /// als Chat-URL verwendet.
+  /// Wenn Eltern /chat eintragen, wird das ebenfalls weggeschnitten,
+  /// damit der Client nicht /chat/chat anhaengt.
+  ///
+  /// Trailing slashes werden ebenfalls entfernt.
+  static String _stripWellKnownPaths(String raw) {
+    var out = raw;
+    // Wiederholt anwenden, falls /chat/health oder aehnlicher Unsinn drinsteckt
+    var changed = true;
+    while (changed) {
+      changed = false;
+      for (final suffix in const <String>['/health', '/chat', '/']) {
+        if (out.endsWith(suffix) && out.length > suffix.length) {
+          out = out.substring(0, out.length - suffix.length);
+          changed = true;
+        }
+      }
+    }
+    return out;
   }
 }
 

@@ -122,9 +122,9 @@ class LumoAiProxyClient {
   }
 
   Uri? _validatedBaseUri(String raw) {
-    final trimmed = raw.trim();
-    if (trimmed.isEmpty) return null;
-    final uri = Uri.tryParse(trimmed);
+    // Use central sanitizer first - strips /health, /chat, trailing slash
+    final clean = AppSettings.sanitizeProxyUrl(raw);
+    final uri = Uri.tryParse(clean);
     if (uri == null || !uri.hasScheme || uri.host.isEmpty) return null;
     if (uri.scheme != 'https' && uri.scheme != 'http') return null;
     return uri;
@@ -138,6 +138,102 @@ class LumoAiProxyClient {
             : '${baseUri.path}/chat';
     return baseUri.replace(path: normalizedPath, query: '');
   }
+
+  Uri _healthEndpoint(Uri baseUri) {
+    final normalizedPath = baseUri.path.endsWith('/')
+        ? '${baseUri.path}health'
+        : baseUri.path.isEmpty
+            ? '/health'
+            : '${baseUri.path}/health';
+    return baseUri.replace(path: normalizedPath, query: '');
+  }
+
+  /// Prueft ob der Proxy-Server erreichbar ist und OpenAI konfiguriert hat.
+  ///
+  /// Sendet KEINE Kinderdaten, KEINE Chat-History, nur ein einfaches GET.
+  /// Wird vom Elternbereich als "Server pruefen"-Button aufgerufen.
+  Future<LumoAiHealthStatus> checkHealth(String rawUrl) async {
+    final baseUri = _validatedBaseUri(rawUrl);
+    if (baseUri == null) {
+      return const LumoAiHealthStatus(
+        reachable: false,
+        openAiConfigured: false,
+        message: 'Die URL sieht nicht richtig aus. Bitte korrekte https-Adresse eintragen.',
+      );
+    }
+    final endpoint = _healthEndpoint(baseUri);
+    final client = HttpClient()..connectionTimeout = _timeout;
+    try {
+      final request = await client.getUrl(endpoint).timeout(_timeout);
+      request.headers.set(HttpHeaders.acceptHeader, 'application/json');
+      final response = await request.close().timeout(_timeout);
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return LumoAiHealthStatus(
+          reachable: false,
+          openAiConfigured: false,
+          message: 'Server gerade nicht erreichbar (Code ${response.statusCode}). Lumo bleibt lokal aktiv.',
+        );
+      }
+      final raw = await response.transform(utf8.decoder).join().timeout(_timeout);
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map) {
+        return const LumoAiHealthStatus(
+          reachable: true,
+          openAiConfigured: false,
+          message: 'Server antwortet, aber das Format ist unklar.',
+        );
+      }
+      final ok = decoded['ok'] == true;
+      final openAi = decoded['openAiConfigured'] == true;
+      if (ok && openAi) {
+        return const LumoAiHealthStatus(
+          reachable: true,
+          openAiConfigured: true,
+          message: 'Server erreichbar. OpenAI ist verbunden.',
+        );
+      }
+      if (ok && !openAi) {
+        return const LumoAiHealthStatus(
+          reachable: true,
+          openAiConfigured: false,
+          message: 'Server erreichbar, aber OpenAI-Schluessel fehlt am Server.',
+        );
+      }
+      return const LumoAiHealthStatus(
+        reachable: true,
+        openAiConfigured: false,
+        message: 'Server antwortet, aber meldet einen Fehler.',
+      );
+    } on TimeoutException {
+      return const LumoAiHealthStatus(
+        reachable: false,
+        openAiConfigured: false,
+        message: 'Server schlaeft vielleicht oder antwortet zu langsam. Lumo bleibt lokal aktiv.',
+      );
+    } catch (_) {
+      return const LumoAiHealthStatus(
+        reachable: false,
+        openAiConfigured: false,
+        message: 'Server gerade nicht erreichbar. Lumo bleibt lokal aktiv.',
+      );
+    } finally {
+      client.close(force: true);
+    }
+  }
+}
+
+class LumoAiHealthStatus {
+  const LumoAiHealthStatus({
+    required this.reachable,
+    required this.openAiConfigured,
+    required this.message,
+  });
+
+  final bool reachable;
+  final bool openAiConfigured;
+  final String message;
+
+  bool get fullyOk => reachable && openAiConfigured;
 }
 
 class LumoAiProxyResponse {

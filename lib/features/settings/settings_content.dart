@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/app_settings.dart';
+import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/settings_repository.dart';
 import 'parent_report_card.dart';
@@ -18,6 +19,9 @@ class SettingsContent extends StatefulWidget {
 class _SettingsContentState extends State<SettingsContent> {
   late AppSettings _settings = widget.appState.state.settings;
   bool _saving = false;
+  bool _checkingHealth = false;
+  LumoAiHealthStatus? _lastHealth;
+  static const LumoAiProxyClient _proxyClient = LumoAiProxyClient();
 
   Future<void> _save(AppSettings next) async {
     setState(() {
@@ -38,6 +42,19 @@ class _SettingsContentState extends State<SettingsContent> {
     const defaults = AppSettings();
     await SettingsRepository.save(defaults);
     await _save(defaults);
+  }
+
+  Future<void> _runHealthCheck() async {
+    setState(() {
+      _checkingHealth = true;
+      _lastHealth = null;
+    });
+    final result = await _proxyClient.checkHealth(_settings.aiProxyUrl);
+    if (!mounted) return;
+    setState(() {
+      _checkingHealth = false;
+      _lastHealth = result;
+    });
   }
 
   @override
@@ -111,8 +128,33 @@ class _SettingsContentState extends State<SettingsContent> {
           _ProxyUrlField(
             initialValue: _settings.aiProxyUrl,
             enabled: _settings.aiProxyEnabled,
-            onSubmitted: (value) => _save(_settings.copyWith(aiProxyUrl: value.trim())),
+            onSubmitted: (value) => _save(_settings.copyWith(aiProxyUrl: AppSettings.sanitizeProxyUrl(value))),
           ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              OutlinedButton.icon(
+                onPressed: _settings.aiProxyUrl == AppSettings.defaultAiProxyUrl
+                    ? null
+                    : () => _save(_settings.copyWith(aiProxyUrl: AppSettings.defaultAiProxyUrl)),
+                icon: const Icon(Icons.restore_rounded, size: 18),
+                label: const Text('Standard wiederherstellen'),
+              ),
+              FilledButton.icon(
+                onPressed: _checkingHealth ? null : _runHealthCheck,
+                icon: _checkingHealth
+                    ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
+                    : const Icon(Icons.health_and_safety_rounded, size: 18),
+                label: Text(_checkingHealth ? 'Pruefe ...' : 'Server pruefen'),
+              ),
+            ],
+          ),
+          if (_lastHealth != null) ...[
+            const SizedBox(height: 8),
+            _HealthStatusBadge(status: _lastHealth!),
+          ],
           const SizedBox(height: 10),
           _AiSafetyNotice(enabled: _settings.aiProxyEnabled, url: _settings.aiProxyUrl),
         ]),
@@ -341,5 +383,57 @@ class _ModeSelector extends StatelessWidget {
         onSelected: (_) => onChanged(mode),
       )).toList()),
     ]);
+  }
+}
+
+class _HealthStatusBadge extends StatelessWidget {
+  const _HealthStatusBadge({required this.status});
+
+  final LumoAiHealthStatus status;
+
+  @override
+  Widget build(BuildContext context) {
+    final Color bg;
+    final Color fg;
+    final IconData icon;
+    if (status.fullyOk) {
+      bg = const Color(0xFFD9F4D9);
+      fg = const Color(0xFF1F6F1F);
+      icon = Icons.check_circle_rounded;
+    } else if (status.reachable) {
+      bg = const Color(0xFFFFF3CC);
+      fg = const Color(0xFF8A5A00);
+      icon = Icons.warning_amber_rounded;
+    } else {
+      bg = const Color(0xFFFFE0E0);
+      fg = const Color(0xFF8A1F1F);
+      icon = Icons.cloud_off_rounded;
+    }
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: fg, size: 22),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              status.message,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w800,
+                color: fg,
+                fontSize: 13,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
