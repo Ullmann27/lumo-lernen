@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
@@ -36,6 +37,8 @@ class _ReadingContentState extends State<ReadingContent> {
   String _lumoLine = 'Bereit? Lumo hoert dir Satz fuer Satz zu.';
   double? _lastScore;
   int _interventionCount = 0;
+  int _activeWordIndex = 0;
+  String? _liveProblemWord;
   bool _finished = false;
   bool _showNotHeardHint = false;
   bool _processing = false;
@@ -69,6 +72,8 @@ class _ReadingContentState extends State<ReadingContent> {
         problemWords: const <String>[],
         completedSentenceIds: const <String>[],
       );
+      _activeWordIndex = 0;
+      _liveProblemWord = null;
       _loadingStory = false;
     });
 
@@ -151,13 +156,21 @@ class _ReadingContentState extends State<ReadingContent> {
     setState(() {
       _lastTranscript = '';
       _processedTranscript = '';
+      _activeWordIndex = 0;
+      _liveProblemWord = null;
       _lumoLine = 'Ich hoere zu. Lies den Satz ruhig bis zum Ende.';
     });
 
     await _speech.startListening(
       onResult: (words) {
         if (!mounted) return;
-        setState(() => _lastTranscript = words);
+        final sentence = _safeProgress.currentSentence;
+        final live = _liveReadingPosition(sentence: sentence, transcript: words);
+        setState(() {
+          _lastTranscript = words;
+          _activeWordIndex = live.activeIndex;
+          _liveProblemWord = live.problemWord;
+        });
         if (_looksLikeSentenceComplete(words)) {
           _speech.stopListening();
         }
@@ -189,6 +202,63 @@ class _ReadingContentState extends State<ReadingContent> {
       if (expected == 'lumo' && <String>{'limo', 'luna', 'luno', 'lumos', 'lu'}.contains(token)) return true;
       return token.length > 3 && expected.length > 3 && token.substring(0, 2) == expected.substring(0, 2);
     });
+  }
+
+  _LiveReadingPosition _liveReadingPosition({required StorySentence sentence, required String transcript}) {
+    final expected = _normalizeTokens(sentence.text);
+    final spoken = _normalizeTokens(transcript);
+    if (expected.isEmpty || spoken.isEmpty) return const _LiveReadingPosition(activeIndex: 0);
+
+    var expectedIndex = 0;
+    String? problemWord;
+    for (final spokenToken in spoken) {
+      if (expectedIndex >= expected.length) break;
+      final expectedToken = expected[expectedIndex];
+      final score = _tokenSimilarity(expectedToken, spokenToken);
+      if (expectedToken == spokenToken || _isLumoVariant(expectedToken, spokenToken) || score >= .58) {
+        expectedIndex++;
+        continue;
+      }
+      if (score < .34) {
+        problemWord = expectedToken;
+        break;
+      }
+    }
+
+    final active = expectedIndex.clamp(0, expected.length - 1).toInt();
+    return _LiveReadingPosition(activeIndex: active, problemWord: problemWord);
+  }
+
+  double _tokenSimilarity(String a, String b) {
+    if (a == b) return 1;
+    if (a.isEmpty || b.isEmpty) return 0;
+    final distance = _levenshtein(a, b);
+    final longest = a.length > b.length ? a.length : b.length;
+    return (1 - distance / longest).clamp(0.0, 1.0).toDouble();
+  }
+
+  bool _isLumoVariant(String expected, String spoken) {
+    if (expected != 'lumo') return false;
+    const variants = <String>{'lumo', 'limo', 'loma', 'luna', 'luno', 'loom', 'lumen', 'lumos', 'humo', 'lu'};
+    return variants.contains(spoken) || _tokenSimilarity(expected, spoken) >= .50;
+  }
+
+  int _levenshtein(String a, String b) {
+    final previous = List<int>.generate(b.length + 1, (index) => index);
+    final current = List<int>.filled(b.length + 1, 0);
+    for (var i = 0; i < a.length; i++) {
+      current[0] = i + 1;
+      for (var j = 0; j < b.length; j++) {
+        final insertCost = current[j] + 1;
+        final deleteCost = previous[j + 1] + 1;
+        final replaceCost = previous[j] + (a[i] == b[j] ? 0 : 1);
+        current[j + 1] = math.min(math.min(insertCost, deleteCost), replaceCost);
+      }
+      for (var j = 0; j < previous.length; j++) {
+        previous[j] = current[j];
+      }
+    }
+    return previous[b.length];
   }
 
   List<String> _normalizeTokens(String value) {
@@ -254,6 +324,14 @@ class _ReadingContentState extends State<ReadingContent> {
       _showNotHeardHint = false;
       _progress = adjustedProgress;
       _lastScore = result.analysis.alignmentScore;
+      if (adjustedProgress.currentSentenceIndex != progress.currentSentenceIndex || adjustedProgress.isComplete) {
+        _activeWordIndex = 0;
+        _liveProblemWord = null;
+      } else {
+        final live = _liveReadingPosition(sentence: progress.currentSentence, transcript: text);
+        _activeWordIndex = live.activeIndex;
+        _liveProblemWord = result.analysis.problemWord ?? live.problemWord;
+      }
       _lumoLine = adjustedProgress.isComplete
           ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Saetze und Uebungswoerter.'
           : attemptDecision.childMessage;
@@ -359,9 +437,24 @@ class _ReadingContentState extends State<ReadingContent> {
                 const SizedBox(height: 16),
                 _StoryProgressBar(current: progress.completedSentenceIds.length, total: story.sentences.length),
                 const SizedBox(height: 18),
-                _StoryTextCard(story: story, currentIndex: progress.currentSentenceIndex, problemWords: progress.problemWords),
+                _StoryTextCard(
+                  story: story,
+                  currentIndex: progress.currentSentenceIndex,
+                  activeWordIndex: _activeWordIndex,
+                  liveProblemWord: _liveProblemWord,
+                  listening: _speech.listening,
+                  problemWords: progress.problemWords,
+                ),
                 const SizedBox(height: 16),
-                _ActiveSentenceCard(sentence: sentence, attemptNumber: progress.attemptNumber, lastScore: _lastScore, lumoLine: _lumoLine),
+                _ActiveSentenceCard(
+                  sentence: sentence,
+                  attemptNumber: progress.attemptNumber,
+                  lastScore: _lastScore,
+                  lumoLine: _lumoLine,
+                  activeWordIndex: _activeWordIndex,
+                  liveProblemWord: _liveProblemWord,
+                  listening: _speech.listening,
+                ),
                 const SizedBox(height: 14),
                 _MicrophonePanel(
                   listening: _speech.listening,
@@ -386,6 +479,13 @@ class _ReadingContentState extends State<ReadingContent> {
       },
     );
   }
+}
+
+class _LiveReadingPosition {
+  const _LiveReadingPosition({required this.activeIndex, this.problemWord});
+
+  final int activeIndex;
+  final String? problemWord;
 }
 
 class _ReadingHeader extends StatelessWidget {
@@ -443,15 +543,26 @@ class _StoryProgressBar extends StatelessWidget {
 }
 
 class _StoryTextCard extends StatelessWidget {
-  const _StoryTextCard({required this.story, required this.currentIndex, required this.problemWords});
+  const _StoryTextCard({
+    required this.story,
+    required this.currentIndex,
+    required this.activeWordIndex,
+    required this.liveProblemWord,
+    required this.listening,
+    required this.problemWords,
+  });
 
   final Story story;
   final int currentIndex;
+  final int activeWordIndex;
+  final String? liveProblemWord;
+  final bool listening;
   final List<String> problemWords;
 
   @override
   Widget build(BuildContext context) {
     final problemSet = problemWords.map((w) => w.toLowerCase()).toSet();
+    final liveProblem = liveProblemWord?.toLowerCase();
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(18),
@@ -466,9 +577,17 @@ class _StoryTextCard extends StatelessWidget {
             child: Wrap(
               spacing: 5,
               runSpacing: 5,
-              children: sentence.words.map((word) {
-                final isProblem = problemSet.contains(word.text.toLowerCase().replaceAll(RegExp(r'[^a-zäöüß]'), '')) || word.isProblemWord;
-                return _SyllableWord(word: word, active: sentence.index == currentIndex, problem: isProblem);
+              children: sentence.words.asMap().entries.map((entry) {
+                final normalized = entry.value.text.toLowerCase().replaceAll(RegExp(r'[^a-zäöüß]'), '');
+                final isProblem = problemSet.contains(normalized) || normalized == liveProblem || entry.value.isProblemWord;
+                final isCurrent = sentence.index == currentIndex && entry.key == activeWordIndex;
+                return _SyllableWord(
+                  word: entry.value,
+                  active: sentence.index == currentIndex,
+                  current: isCurrent,
+                  listening: listening,
+                  problem: isProblem,
+                );
               }).toList(),
             ),
           ),
@@ -479,20 +598,41 @@ class _StoryTextCard extends StatelessWidget {
 }
 
 class _SyllableWord extends StatelessWidget {
-  const _SyllableWord({required this.word, required this.active, required this.problem});
+  const _SyllableWord({
+    required this.word,
+    required this.active,
+    required this.current,
+    required this.listening,
+    required this.problem,
+  });
 
   final WordToken word;
   final bool active;
+  final bool current;
+  final bool listening;
   final bool problem;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: problem ? 4 : 0, vertical: 2),
+    final highlight = current && active;
+    final bg = problem
+        ? LumoColors.goldSurface
+        : highlight
+            ? Colors.white
+            : Colors.transparent;
+    final border = problem
+        ? Border.all(color: LumoColors.gold.withOpacity(.48), width: 1.4)
+        : highlight
+            ? Border.all(color: listening ? LumoColors.teal : LumoColors.orange, width: 2)
+            : null;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 120),
+      padding: EdgeInsets.symmetric(horizontal: highlight || problem ? 8 : 0, vertical: highlight || problem ? 5 : 2),
       decoration: BoxDecoration(
-        color: problem ? LumoColors.goldSurface : Colors.transparent,
+        color: bg,
         borderRadius: BorderRadius.circular(LumoRadius.sm),
-        border: problem ? Border.all(color: LumoColors.gold.withOpacity(.35)) : null,
+        border: border,
+        boxShadow: highlight ? [BoxShadow(color: LumoColors.orange.withOpacity(.16), blurRadius: 10, offset: const Offset(0, 4))] : null,
       ),
       child: RichText(
         text: TextSpan(
@@ -501,10 +641,16 @@ class _SyllableWord extends StatelessWidget {
               text: entry.value,
               style: TextStyle(
                 fontFamily: 'Nunito',
-                fontSize: active ? 22 : 18,
+                fontSize: highlight ? 25 : active ? 22 : 18,
                 fontWeight: FontWeight.w900,
-                color: entry.key.isEven ? LumoColors.blue : LumoColors.practice,
-                decoration: active ? TextDecoration.underline : TextDecoration.none,
+                color: problem
+                    ? LumoColors.orange
+                    : highlight
+                        ? LumoColors.ink900
+                        : entry.key.isEven
+                            ? LumoColors.blue
+                            : LumoColors.practice,
+                decoration: active && !highlight ? TextDecoration.underline : TextDecoration.none,
               ),
             );
           }).toList(),
@@ -515,12 +661,23 @@ class _SyllableWord extends StatelessWidget {
 }
 
 class _ActiveSentenceCard extends StatelessWidget {
-  const _ActiveSentenceCard({required this.sentence, required this.attemptNumber, required this.lastScore, required this.lumoLine});
+  const _ActiveSentenceCard({
+    required this.sentence,
+    required this.attemptNumber,
+    required this.lastScore,
+    required this.lumoLine,
+    required this.activeWordIndex,
+    required this.liveProblemWord,
+    required this.listening,
+  });
 
   final StorySentence sentence;
   final int attemptNumber;
   final double? lastScore;
   final String lumoLine;
+  final int activeWordIndex;
+  final String? liveProblemWord;
+  final bool listening;
 
   @override
   Widget build(BuildContext context) {
@@ -531,7 +688,15 @@ class _ActiveSentenceCard extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text('Jetzt lesen · Versuch ${attemptNumber.clamp(1, 3)} von 3', style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
         const SizedBox(height: 8),
-        Text(sentence.text, style: const TextStyle(fontFamily: 'Nunito', fontSize: 27, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.25)),
+        Wrap(
+          spacing: 7,
+          runSpacing: 7,
+          children: sentence.words.asMap().entries.map((entry) {
+            final normalized = entry.value.text.toLowerCase().replaceAll(RegExp(r'[^a-zäöüß]'), '');
+            final problem = liveProblemWord != null && normalized == liveProblemWord!.toLowerCase();
+            return _SentenceWordChip(word: entry.value.text, active: entry.key == activeWordIndex, problem: problem, listening: listening);
+          }).toList(),
+        ),
         const SizedBox(height: 12),
         Text(lumoLine, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w900)),
         if (lastScore != null) ...[
@@ -539,6 +704,39 @@ class _ActiveSentenceCard extends StatelessWidget {
           Text('Lesesicherheit: ${(lastScore! * 100).round()}%', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink500)),
         ],
       ]),
+    );
+  }
+}
+
+class _SentenceWordChip extends StatelessWidget {
+  const _SentenceWordChip({required this.word, required this.active, required this.problem, required this.listening});
+
+  final String word;
+  final bool active;
+  final bool problem;
+  final bool listening;
+
+  @override
+  Widget build(BuildContext context) {
+    final accent = problem ? LumoColors.orange : listening ? LumoColors.teal : LumoColors.orange;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 120),
+      padding: EdgeInsets.symmetric(horizontal: active || problem ? 10 : 0, vertical: active || problem ? 6 : 0),
+      decoration: BoxDecoration(
+        color: active || problem ? accent.withOpacity(.10) : Colors.transparent,
+        borderRadius: BorderRadius.circular(LumoRadius.sm),
+        border: active || problem ? Border.all(color: accent.withOpacity(.55), width: 1.6) : null,
+      ),
+      child: Text(
+        word,
+        style: TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: active ? 29 : 27,
+          fontWeight: FontWeight.w900,
+          color: problem ? LumoColors.orange : LumoColors.ink900,
+          height: 1.18,
+        ),
+      ),
     );
   }
 }
