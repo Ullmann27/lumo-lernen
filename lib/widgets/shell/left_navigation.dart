@@ -7,7 +7,7 @@ class LeftNavigation extends StatelessWidget {
     super.key,
     required this.appState,
     required this.onSelect,
-    this.width = 200,
+    this.width = 230,
   });
 
   final LumoAppState appState;
@@ -18,7 +18,7 @@ class LeftNavigation extends StatelessWidget {
     _NavItem(LumoSection.home, Icons.home_rounded, 'Start'),
     _NavItem(LumoSection.learn, Icons.school_rounded, 'Lernen'),
     _NavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesemodus'),
-    _NavItem(LumoSection.exercises, Icons.edit_rounded, 'Uebungen'),
+    _NavItem(LumoSection.exercises, Icons.edit_rounded, 'Übungen'),
     _NavItem(LumoSection.tests, Icons.assignment_turned_in_rounded, 'Test'),
     _NavItem(LumoSection.schoolwork, Icons.description_rounded, 'Schularbeit'),
     _NavItem(LumoSection.scanner, Icons.photo_camera_rounded, 'Foto'),
@@ -34,6 +34,7 @@ class LeftNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final active = appState.state.section;
     final childName = appState.state.childName.trim().isEmpty ? 'Kind' : appState.state.childName.trim();
+    final iconOnly = width < 180;
     return Container(
       width: width,
       decoration: const BoxDecoration(
@@ -49,10 +50,12 @@ class LeftNavigation extends StatelessWidget {
         children: [
           const SizedBox(height: 22),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: iconOnly ? 14 : 20),
             child: Row(children: [
-              const Text('Lumo', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoColors.orange, height: 1.0)),
-              const SizedBox(width: 4),
+              if (!iconOnly) ...[
+                const Text('Lumo', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoColors.orange, height: 1.0)),
+                const SizedBox(width: 4),
+              ],
               Container(
                 width: 14,
                 height: 14,
@@ -64,20 +67,23 @@ class LeftNavigation extends StatelessWidget {
               ),
             ]),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20, bottom: 16),
-            child: Text('Lernen', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoColors.orange, height: 1.1)),
-          ),
+          if (!iconOnly)
+            const Padding(
+              padding: EdgeInsets.only(left: 20, bottom: 16),
+              child: Text('Lernen', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoColors.orange, height: 1.1)),
+            )
+          else
+            const SizedBox(height: 16),
           Expanded(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.only(bottom: 12),
               child: Column(
-                children: _items.map((item) => _NavPill(item: item, isActive: item.section == active, onTap: () => onSelect(item.section))).toList(),
+                children: _items.map((item) => _NavPill(item: item, isActive: item.section == active, iconOnly: iconOnly, onTap: () => onSelect(item.section))).toList(),
               ),
             ),
           ),
-          _ProfileChip(name: childName, grade: 'Klasse ${appState.state.grade}', onTap: () => onSelect(LumoSection.profile)),
+          _ProfileChip(name: childName, grade: 'Klasse ${appState.state.grade}', iconOnly: iconOnly, onTap: () => onSelect(LumoSection.profile)),
           const SizedBox(height: 16),
         ],
       ),
@@ -93,28 +99,29 @@ class _NavItem {
 }
 
 class _NavPill extends StatelessWidget {
-  const _NavPill({required this.item, required this.isActive, required this.onTap});
+  const _NavPill({required this.item, required this.isActive, required this.iconOnly, required this.onTap});
   final _NavItem item;
   final bool isActive;
+  final bool iconOnly;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+    final pill = Padding(
+      padding: EdgeInsets.symmetric(horizontal: iconOnly ? 9 : 14, vertical: 3),
       child: GestureDetector(
         onTap: onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeInOut,
-          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+          padding: EdgeInsets.symmetric(horizontal: iconOnly ? 10 : 13, vertical: 9),
           decoration: BoxDecoration(
             gradient: isActive ? const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]) : null,
             color: isActive ? null : Colors.transparent,
             borderRadius: BorderRadius.circular(LumoRadius.pill),
             boxShadow: isActive ? LumoShadow.pill : [],
           ),
-          child: Row(children: [
+          child: Row(mainAxisAlignment: iconOnly ? MainAxisAlignment.center : MainAxisAlignment.start, children: [
             AnimatedContainer(
               duration: const Duration(milliseconds: 220),
               width: 32,
@@ -125,42 +132,47 @@ class _NavPill extends StatelessWidget {
               ),
               child: Icon(item.icon, color: isActive ? Colors.white : LumoColors.orange, size: 19),
             ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                item.label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: isActive ? LumoTextStyles.navItemActive : LumoTextStyles.navItem.copyWith(color: LumoColors.ink700),
+            if (!iconOnly) ...[
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  item.label,
+                  maxLines: 1,
+                  softWrap: false,
+                  overflow: TextOverflow.visible,
+                  style: isActive ? LumoTextStyles.navItemActive : LumoTextStyles.navItem.copyWith(color: LumoColors.ink700),
+                ),
               ),
-            ),
+            ],
           ]),
         ),
       ),
     );
+    return iconOnly ? Tooltip(message: item.label, child: pill) : pill;
   }
 }
 
 class _ProfileChip extends StatelessWidget {
-  const _ProfileChip({required this.name, required this.grade, required this.onTap});
+  const _ProfileChip({required this.name, required this.grade, required this.iconOnly, required this.onTap});
   final String name;
   final String grade;
+  final bool iconOnly;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final initial = name.trim().isEmpty ? 'K' : name.trim().characters.first.toUpperCase();
-    return GestureDetector(
+    final chip = GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 14),
+        margin: EdgeInsets.symmetric(horizontal: iconOnly ? 9 : 14),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: LumoColors.orangeSurface,
           borderRadius: BorderRadius.circular(LumoRadius.lg),
           border: Border.all(color: LumoColors.orange.withOpacity(.15)),
         ),
-        child: Row(children: [
+        child: Row(mainAxisAlignment: iconOnly ? MainAxisAlignment.center : MainAxisAlignment.start, children: [
           Container(
             width: 38,
             height: 38,
@@ -170,16 +182,19 @@ class _ProfileChip extends StatelessWidget {
             ),
             child: Center(child: Text(initial, style: const TextStyle(fontFamily: 'Nunito', color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18))),
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-              Text(name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 14, color: LumoColors.ink900)),
-              Text(grade, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.caption),
-            ]),
-          ),
-          const Icon(Icons.chevron_right_rounded, size: 18, color: LumoColors.ink300),
+          if (!iconOnly) ...[
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+                Text(name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 14, color: LumoColors.ink900)),
+                Text(grade, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.caption),
+              ]),
+            ),
+            const Icon(Icons.chevron_right_rounded, size: 18, color: LumoColors.ink300),
+          ],
         ]),
       ),
     );
+    return iconOnly ? Tooltip(message: '$name · $grade', child: chip) : chip;
   }
 }
