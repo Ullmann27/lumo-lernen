@@ -1,3 +1,4 @@
+import '../../../core/safe_fallback_pool.dart';
 import '../../../core/school_exercise_generator.dart';
 import '../../../core/task_quality_guard.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
@@ -12,6 +13,8 @@ class LegacyLumoTaskAdapter {
   const LegacyLumoTaskAdapter();
 
   static const _qualityGuard = TaskQualityGuard();
+  static const _fallbackPool = SafeFallbackPool();
+  static int _fallbackCounter = 0;
 
   TaskInstance toTaskInstance({
     required LumoTask task,
@@ -76,31 +79,11 @@ class LegacyLumoTaskAdapter {
 
   LumoTask _safeFallbackTask(LumoTask task) {
     if (task.handwriting) return task;
-    if (task.subject == 'Mathematik') {
-      return LumoTask(
-        id: task.id,
-        grade: task.grade,
-        subject: task.subject,
-        unit: task.unit,
-        prompt: '2 + 1 = ?',
-        choices: const <String>['3', '2', '4'],
-        answer: '3',
-        explanation: '2 + 1 = 3.',
-        visual: 'dots',
-        difficulty: task.difficulty,
-        missionTag: task.missionTag,
-      );
-    }
-    return LumoTask(
-      id: task.id,
+    return _fallbackPool.pick(
+      subject: task.subject == 'Mathematik' ? 'Mathematik' : 'Deutsch',
       grade: task.grade,
-      subject: task.subject,
+      counter: _fallbackCounter++,
       unit: task.unit,
-      prompt: 'Welches Wort endet mit t?',
-      choices: const <String>['Brot', 'Hund', 'Mama'],
-      answer: 'Brot',
-      explanation: 'Sprich jedes Wort langsam. Nur Brot endet mit t.',
-      visual: task.visual,
       difficulty: task.difficulty,
       missionTag: task.missionTag,
     );
