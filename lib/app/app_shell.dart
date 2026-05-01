@@ -341,8 +341,8 @@ class _MobileBottomNavigation extends StatelessWidget {
   static const _items = <_MobileNavItem>[
     _MobileNavItem(LumoSection.home, Icons.home_rounded, 'Start'),
     _MobileNavItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
+    _MobileNavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesen'),
     _MobileNavItem(LumoSection.missions, Icons.track_changes_rounded, 'Missionen'),
-    _MobileNavItem(LumoSection.rewards, Icons.card_giftcard_rounded, 'Belohnung'),
     _MobileNavItem(LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
   ];
 
