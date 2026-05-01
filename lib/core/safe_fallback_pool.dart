@@ -32,7 +32,7 @@ class SafeFallbackPool {
       explanation: entry.explanation,
       visual: entry.visual,
       difficulty: difficulty,
-      missionTag: missionTag,
+      missionTag: missionTag ?? 'fallback',
     );
   }
 
