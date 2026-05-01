@@ -106,20 +106,20 @@ class _LearningContentState extends State<LearningContent> {
 
   LumoTask _nextTask() {
     final st = widget.appState.state;
-    final avoidUnits = st.unit == 'Alle' ? _recentUnits.toSet() : <String>{};
+    final factorySubject = _factorySubjectFor(st.subject, st.unit);
+    final factoryUnit = _factoryUnitFor(st.subject, st.unit);
+    final avoidUnits = factoryUnit == 'Alle' ? _recentUnits.toSet() : <String>{};
     LumoTask? fallback;
 
     for (var attempt = 0; attempt < 80; attempt++) {
       final task = _factory.next(
         grade: st.grade,
-        subject: st.subject,
-        unit: st.unit == 'Alle' ? 'Alle' : st.unit,
+        subject: factorySubject,
+        unit: factoryUnit,
         weakSkills: st.weakSkills,
         avoidUnits: attempt < 40 ? avoidUnits : const <String>{},
       );
 
-      // Lesen ist ein aktiver Vorlese-/Zuhörmodus. Passive Lesen-Quizfragen
-      // dürfen im Übungsrenderer nicht mehr auftauchen.
       if (_isPassiveReadingQuiz(task)) continue;
 
       fallback ??= task;
@@ -129,11 +129,44 @@ class _LearningContentState extends State<LearningContent> {
 
     return fallback ?? _factory.next(
       grade: st.grade,
-      subject: st.subject == 'Lesen' ? 'Deutsch' : st.subject,
-      unit: st.unit == 'Alle' || st.subject == 'Lesen' ? 'Alle' : st.unit,
+      subject: factorySubject == 'Lesen' ? 'Deutsch' : factorySubject,
+      unit: factoryUnit == 'Aktives Lesen' ? 'Satz verstehen' : factoryUnit,
       weakSkills: st.weakSkills,
       avoidUnits: const <String>{},
     );
+  }
+
+  String _factorySubjectFor(String subject, String unit) {
+    final normalizedUnit = unit.trim().toLowerCase();
+    if (normalizedUnit == 'schreiben üben' || normalizedUnit == 'schreiben ueben') {
+      return 'Schreiben';
+    }
+    if (normalizedUnit == 'aktives lesen' || normalizedUnit == 'vorlesen') {
+      return 'Lesen';
+    }
+    return subject == 'Alle Themen' ? 'Alle' : subject;
+  }
+
+  String _factoryUnitFor(String subject, String unit) {
+    final normalized = unit.trim().toLowerCase();
+    if (normalized.isEmpty || normalized == 'alle themen') return 'Alle';
+
+    const aliases = <String, String>{
+      'wörter lesen': 'Satz verstehen',
+      'woerter lesen': 'Satz verstehen',
+      'buchstaben finden': 'Anfangslaute',
+      'reime erkennen': 'Reime',
+      'satz bilden': 'Satz bauen',
+      'schreiben üben': 'Buchstaben nachspuren',
+      'schreiben ueben': 'Buchstaben nachspuren',
+      'silben klatschen': 'Silben',
+      'mengen zählen': 'Plus bis 10',
+      'mengen zaehlen': 'Plus bis 10',
+      'rechenhaus': 'Rechenhaeuser',
+      'zahlenstrahl': 'Zahlenreihe',
+      'zwanzigerfeld': 'Zehner und Einer',
+    };
+    return aliases[normalized] ?? unit;
   }
 
   bool _isPassiveReadingQuiz(LumoTask task) {
