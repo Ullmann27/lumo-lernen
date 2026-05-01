@@ -198,7 +198,7 @@ class _WordTargetStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final letters = word.characters.toList(growable: false);
+    final letters = word.split('');
     return Wrap(
       spacing: 6,
       runSpacing: 6,
