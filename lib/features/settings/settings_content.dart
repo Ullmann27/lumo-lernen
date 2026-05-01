@@ -69,6 +69,30 @@ class _SettingsContentState extends State<SettingsContent> {
   }
 
   Future<void> _clearAiTaskCache() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text('Vorrat wirklich leeren?'),
+        content: const Text(
+          'Lumo verliert den vorbereiteten Aufgaben-Vorrat. '
+          'Beim nächsten Lernen wird ein neuer Vorrat erstellt. '
+          'Das kann eine kurze Wartezeit verursachen.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Abbrechen'),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(backgroundColor: LumoColors.orange),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('Vorrat leeren'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
     for (final subject in _AiTutorStatsPanel.subjects) {
       await _aiTaskCache.clear(childId: _childId, subject: subject);
     }
@@ -500,20 +524,52 @@ class _AiSafetyNotice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final valid = Uri.tryParse(url)?.hasAbsolutePath == true || Uri.tryParse(url)?.host.isNotEmpty == true;
+    final headline = enabled
+        ? 'KI ist freigegeben'
+        : 'KI ist ausgeschaltet';
+    final subline = enabled
+        ? 'Lumo darf Antworten über den eigenen kindergesicherten Server holen. Es werden keine API-Schlüssel in der App gespeichert.'
+        : 'Lumo nutzt nur die lokale Lernhilfe. Es werden keine Anfragen an externe Server gesendet.';
+    final iconColor = enabled ? LumoColors.orange : LumoColors.ink500;
+    final iconData = enabled ? Icons.shield_rounded : Icons.shield_outlined;
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: enabled ? LumoColors.orangeSurface : LumoColors.ink100.withOpacity(.45),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: enabled ? LumoColors.orange.withOpacity(.22) : LumoColors.ink300.withOpacity(.20)),
       ),
-      child: Text(
-        enabled
-            ? 'Aktiv: Lumo darf nur über den eigenen kindergesicherten Proxy antworten. Status der URL: ${valid ? 'eingetragen' : 'fehlt oder ungültig'}.'
-            : 'Aus: Lumo nutzt nur die lokale Lernhilfe. Es wird keine externe KI kontaktiert.',
-        style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(iconData, color: iconColor, size: 22),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  headline,
+                  style: LumoTextStyles.caption.copyWith(
+                    color: LumoColors.ink800,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  subline,
+                  style: LumoTextStyles.caption.copyWith(
+                    color: LumoColors.ink600,
+                    fontWeight: FontWeight.w700,
+                    height: 1.35,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
