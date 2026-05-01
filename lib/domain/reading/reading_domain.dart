@@ -549,11 +549,18 @@ class SyllableWordColorizer {
     return text
         .split(RegExp(r'\s+'))
         .where((word) => word.trim().isNotEmpty)
-        .map((word) => WordToken(
-              text: word,
-              syllables: simpleSyllables(word),
-              isProblemWord: problemSet.contains(_normalize(word)),
-            ))
+        .map((word) {
+          // Anzeige-Wort: Satzzeichen am Ende entfernen, damit das Kind
+          // 'Garten' sieht und nicht 'Garten.'. Auch Anfuehrungszeichen
+          // und Klammern, die haeufig anhaengen.
+          final display = word.replaceAll(RegExp(r'^["\(\[]+|[.,!?;:"\)\]]+$'), '');
+          final visible = display.isEmpty ? word : display;
+          return WordToken(
+            text: visible,
+            syllables: simpleSyllables(visible),
+            isProblemWord: problemSet.contains(_normalize(visible)),
+          );
+        })
         .toList(growable: false);
   }
 
