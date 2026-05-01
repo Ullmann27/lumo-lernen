@@ -1,4 +1,5 @@
 import '../../../core/school_exercise_generator.dart';
+import '../../../core/task_quality_guard.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../domain/learning/seed_memory_service.dart';
 
@@ -10,13 +11,15 @@ import '../../../domain/learning/seed_memory_service.dart';
 class LegacyLumoTaskAdapter {
   const LegacyLumoTaskAdapter();
 
+  static const _qualityGuard = TaskQualityGuard();
+
   TaskInstance toTaskInstance({
     required LumoTask task,
     required String childId,
     required int difficulty,
     DateTime? now,
   }) {
-    final fixedTask = _sanitizeTask(task);
+    final fixedTask = _qualityCheckedTask(task);
     final generatedAt = now ?? DateTime.now();
     final subject = _subject(fixedTask.subject);
     final taskType = fixedTask.handwriting ? TaskType.writingCanvas : _taskType(fixedTask.visual);
@@ -60,6 +63,46 @@ class LegacyLumoTaskAdapter {
         guidedSteps: _guidedSteps(fixedTask),
       ),
       generatedAt: generatedAt,
+    );
+  }
+
+  LumoTask _qualityCheckedTask(LumoTask task) {
+    final sanitized = _sanitizeTask(task);
+    if (_qualityGuard.validate(sanitized)) return sanitized;
+    final fallback = _safeFallbackTask(sanitized);
+    final repaired = _sanitizeTask(fallback);
+    return _qualityGuard.validate(repaired) ? repaired : fallback;
+  }
+
+  LumoTask _safeFallbackTask(LumoTask task) {
+    if (task.handwriting) return task;
+    if (task.subject == 'Mathematik') {
+      return LumoTask(
+        id: task.id,
+        grade: task.grade,
+        subject: task.subject,
+        unit: task.unit,
+        prompt: '2 + 1 = ?',
+        choices: const <String>['3', '2', '4'],
+        answer: '3',
+        explanation: '2 + 1 = 3.',
+        visual: 'dots',
+        difficulty: task.difficulty,
+        missionTag: task.missionTag,
+      );
+    }
+    return LumoTask(
+      id: task.id,
+      grade: task.grade,
+      subject: task.subject,
+      unit: task.unit,
+      prompt: 'Welches Wort endet mit t?',
+      choices: const <String>['Brot', 'Hund', 'Mama'],
+      answer: 'Brot',
+      explanation: 'Sprich jedes Wort langsam. Nur Brot endet mit t.',
+      visual: task.visual,
+      difficulty: task.difficulty,
+      missionTag: task.missionTag,
     );
   }
 
