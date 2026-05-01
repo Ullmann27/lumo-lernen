@@ -37,14 +37,42 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
   List<Stroke> _strokes = const <Stroke>[];
   WritingEvaluation? _evaluation;
 
-  String get _symbol {
-    final raw = widget.task.visualPayload.data['symbol'] ?? widget.task.parameters['symbol'];
-    return raw?.toString() ?? 'A';
+  String get _target {
+    final raw = widget.task.visualPayload.data['symbol'] ??
+        widget.task.parameters['symbol'] ??
+        _extractWritingTarget(widget.task.prompt);
+    final value = raw?.toString().trim();
+    return value == null || value.isEmpty ? 'A' : value;
+  }
+
+  bool get _isWordTarget {
+    final target = _target.trim();
+    if (RegExp(r'^\d{1,2}$').hasMatch(target)) return false;
+    final lettersOnly = target.replaceAll(RegExp(r'[^A-Za-zÄÖÜäöüß]'), '');
+    return lettersOnly.length > 1;
+  }
+
+  WritingTemplate get _template {
+    if (_isWordTarget) {
+      return WritingTemplate(
+        symbol: _target,
+        grade: 1,
+        viewBoxWidth: 100,
+        viewBoxHeight: 100,
+        strokes: const <WritingTemplateStroke>[],
+      );
+    }
+    return _templates.findOrFallback(_target);
+  }
+
+  WritingMode get _mode {
+    if (_isWordTarget) return WritingMode.free;
+    return widget.task.helpPayload.level >= 2 ? WritingMode.guided : WritingMode.trace;
   }
 
   @override
   Widget build(BuildContext context) {
-    final template = _templates.findOrFallback(_symbol);
+    final template = _template;
     final evaluation = _evaluation;
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -60,7 +88,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
-            'Schreibaufgabe',
+            _isWordTarget ? 'Schreibwort' : 'Schreibaufgabe',
             style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13),
           ),
           const SizedBox(height: 8),
@@ -76,7 +104,9 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Ziel: ${template.symbol}',
+            _isWordTarget
+                ? 'Zielwort: ${template.symbol}'
+                : 'Ziel: ${template.symbol}',
             style: const TextStyle(
               fontFamily: 'Nunito',
               fontSize: 16,
@@ -84,17 +114,26 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
               color: LumoColors.orange,
             ),
           ),
+          if (_isWordTarget) ...[
+            const SizedBox(height: 8),
+            _WordTargetStrip(word: template.symbol),
+            const SizedBox(height: 8),
+            Text(
+              'Schreibe das ganze Wort frei auf die Linien. Keine A-Vorlage wird angezeigt.',
+              style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800),
+            ),
+          ],
           const SizedBox(height: 16),
           LumoWritingCanvas(
             template: template,
-            mode: widget.task.helpPayload.level >= 2 ? WritingMode.guided : WritingMode.trace,
+            mode: _mode,
             onChanged: (strokes) => _strokes = strokes,
             onEvaluated: (next) => setState(() => _evaluation = next),
           ),
         ]),
       ),
       const SizedBox(height: 14),
-      if (evaluation != null) _WritingFeedbackCard(evaluation: evaluation),
+      if (evaluation != null) _WritingFeedbackCard(evaluation: evaluation, wordMode: _isWordTarget),
       const SizedBox(height: 14),
       Align(
         alignment: Alignment.centerRight,
@@ -135,12 +174,64 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
       ),
     ]);
   }
+
+  String _extractWritingTarget(String prompt) {
+    final patterns = <RegExp>[
+      RegExp(r'Schreibe\s+das\s+Wort:\s*(.+)$', caseSensitive: false),
+      RegExp(r'Schreibe\s+die\s+Zahl\s+(\d{1,2})', caseSensitive: false),
+      RegExp(r'Schreibe:\s*(.+)$', caseSensitive: false),
+    ];
+    for (final pattern in patterns) {
+      final match = pattern.firstMatch(prompt);
+      final value = match?.group(1)?.trim();
+      if (value != null && value.isNotEmpty) return value;
+    }
+    final letter = RegExp(r'\b([A-ZÄÖÜ])\b').firstMatch(prompt);
+    return letter?.group(1) ?? 'A';
+  }
+}
+
+class _WordTargetStrip extends StatelessWidget {
+  const _WordTargetStrip({required this.word});
+
+  final String word;
+
+  @override
+  Widget build(BuildContext context) {
+    final letters = word.characters.toList(growable: false);
+    return Wrap(
+      spacing: 6,
+      runSpacing: 6,
+      children: letters
+          .map((letter) => Container(
+                width: 38,
+                height: 42,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(LumoRadius.sm),
+                  border: Border.all(color: LumoColors.orange.withOpacity(.28), width: 1.4),
+                ),
+                child: Text(
+                  letter,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 21,
+                    fontWeight: FontWeight.w900,
+                    color: LumoColors.ink900,
+                  ),
+                ),
+              ))
+          .toList(),
+    );
+  }
 }
 
 class _WritingFeedbackCard extends StatelessWidget {
-  const _WritingFeedbackCard({required this.evaluation});
+  const _WritingFeedbackCard({required this.evaluation, this.wordMode = false});
 
   final WritingEvaluation evaluation;
+  final bool wordMode;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +261,7 @@ class _WritingFeedbackCard extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              'Zeichenqualitaet $scorePercent%',
+              wordMode ? 'Wort geschrieben $scorePercent%' : 'Zeichenqualitaet $scorePercent%',
               style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 16,
