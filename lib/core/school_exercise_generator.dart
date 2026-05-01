@@ -378,29 +378,58 @@ class ExerciseFactory {
       return _choiceTask('silben', grade, 'Deutsch', unit, 'Wie viele Silben hat ${entry.key}?', '${entry.value}', 'Sprich das Wort langsam und klatsche jeden Teil.', visual: 'syllables');
     }
     if (unit == 'Reime') {
-      final pairs = <String, String>{'Haus': 'Maus', 'Ball': 'Fall', 'Hase': 'Nase', 'Sonne': 'Tonne', 'Kanne': 'Tanne'};
+      final pairs = <String, String>{'Haus': 'Maus', 'Ball': 'Fall', 'Hase': 'Nase', 'Sonne': 'Tonne', 'Kanne': 'Tanne', 'Maus': 'Haus', 'Stein': 'Bein', 'Hut': 'Mut'};
       final entry = pairs.entries.elementAt(_random.nextInt(pairs.length));
-      return _choiceTask('reim', grade, 'Deutsch', unit, 'Was reimt sich auf ${entry.key}?', entry.value, 'Reimwoerter klingen am Ende gleich.');
+      // Reim-Distraktoren: zwei nicht-reimende Substantive
+      const nonRhymes = <String>['Hund', 'Auto', 'Schule', 'Brot', 'Kind'];
+      final distractors = (List<String>.from(nonRhymes)..shuffle(_random)).take(2).toList();
+      return _choiceTask('reim', grade, 'Deutsch', unit, 'Was reimt sich auf ${entry.key}?', entry.value, 'Reimwörter klingen am Ende gleich.', customChoices: <String>[entry.value, ...distractors]);
     }
     if (unit == 'Artikel') {
-      final articles = <String, String>{'Haus': 'das', 'Sonne': 'die', 'Ball': 'der', 'Blume': 'die', 'Kind': 'das', 'Fuchs': 'der'};
+      final articles = <String, String>{'Haus': 'das', 'Sonne': 'die', 'Ball': 'der', 'Blume': 'die', 'Kind': 'das', 'Fuchs': 'der', 'Buch': 'das', 'Maus': 'die', 'Hund': 'der'};
       final entry = articles.entries.elementAt(_random.nextInt(articles.length));
-      return _choiceTask('artikel', grade, 'Deutsch', unit, 'Welcher Artikel passt zu ${entry.key}?', entry.value, 'Sprich den Artikel mit dem Wort zusammen.');
+      // Artikel-Distraktoren sind IMMER die anderen zwei Artikel
+      return _choiceTask('artikel', grade, 'Deutsch', unit, 'Welcher Artikel passt zu ${entry.key}?', entry.value, 'Sprich den Artikel mit dem Wort zusammen.', customChoices: const <String>['der', 'die', 'das']);
     }
     if (unit == 'Tunwoerter') {
-      final verbs = <String>['laufen', 'malen', 'lesen', 'springen', 'essen'];
+      final verbs = <String>['laufen', 'malen', 'lesen', 'springen', 'essen', 'singen', 'lachen', 'spielen', 'tanzen', 'schreiben'];
       final verb = verbs[_random.nextInt(verbs.length)];
-      return _choiceTask('verb', grade, 'Deutsch', unit, 'Welches Wort ist ein Tunwort?', verb, 'Ein Tunwort sagt, was jemand macht.');
+      // Distraktoren MUESSEN Nicht-Verben sein: Hauptwoerter und Adjektive
+      const nonVerbs = <String>['Hund', 'Haus', 'rot', 'Mama', 'Sonne', 'klein', 'Schule', 'gelb'];
+      final distractors = (List<String>.from(nonVerbs)..shuffle(_random)).take(2).toList();
+      return _choiceTask('verb', grade, 'Deutsch', unit, 'Welches Wort ist ein Tunwort?', verb, 'Ein Tunwort sagt, was jemand macht.', customChoices: <String>[verb, ...distractors]);
     }
     if (unit == 'Wiewoerter') {
-      final adj = <String>['gross', 'klein', 'warm', 'schnell', 'weich'];
+      final adj = <String>['groß', 'klein', 'warm', 'schnell', 'weich', 'kalt', 'hell', 'dunkel', 'schön', 'leise'];
       final answer = adj[_random.nextInt(adj.length)];
-      return _choiceTask('adjektiv', grade, 'Deutsch', unit, 'Welches Wort beschreibt, wie etwas ist?', answer, 'Ein Wiewort beschreibt eine Eigenschaft.');
+      // Distraktoren MUESSEN Nicht-Adjektive sein
+      const nonAdj = <String>['Hund', 'Schule', 'lesen', 'Mama', 'Brot', 'malen', 'Auto', 'tanzen'];
+      final distractors = (List<String>.from(nonAdj)..shuffle(_random)).take(2).toList();
+      return _choiceTask('adjektiv', grade, 'Deutsch', unit, 'Welches Wort beschreibt, wie etwas ist?', answer, 'Ein Wiewort beschreibt eine Eigenschaft.', customChoices: <String>[answer, ...distractors]);
     }
     if (unit == 'Satz bauen') {
-      return _choiceTask('satzbau', grade, 'Deutsch', unit, 'Welcher Satz ist richtig?', 'Der Fuchs liest.', 'Ein Satz beginnt gross und endet mit einem Punkt.', customChoices: <String>['Der Fuchs liest.', 'liest der Fuchs', 'Fuchs der liest']);
+      // Mehrere Varianten, damit keine direkte Wiederholung entsteht.
+      // Distraktoren sind WIRKLICHE Satz-Alternativen (falsche Reihenfolge),
+      // nicht zusammenhanglose Wörter wie 'Haus' oder 'Sonne'.
+      const variants = <_SatzbauVariant>[
+        _SatzbauVariant('Der Fuchs liest.', 'liest der Fuchs', 'Fuchs der liest'),
+        _SatzbauVariant('Die Sonne scheint.', 'scheint die Sonne', 'Sonne die scheint'),
+        _SatzbauVariant('Das Kind spielt.', 'spielt das Kind', 'Kind das spielt'),
+        _SatzbauVariant('Mama kocht Suppe.', 'kocht Mama Suppe', 'Suppe Mama kocht'),
+        _SatzbauVariant('Lumo lernt fleißig.', 'lernt Lumo fleißig', 'fleißig Lumo lernt'),
+        _SatzbauVariant('Der Hund bellt laut.', 'bellt laut der Hund', 'laut bellt Hund der'),
+      ];
+      final v = variants[_random.nextInt(variants.length)];
+      return _choiceTask('satzbau', grade, 'Deutsch', unit, 'Welcher Satz ist richtig?', v.correct, 'Ein Satz beginnt groß und endet mit einem Punkt.', customChoices: <String>[v.correct, v.wrong1, v.wrong2]);
     }
-    return _choiceTask('satz', grade, 'Deutsch', 'Satz verstehen', 'Der Fuchs liest ein Buch. Was macht der Fuchs?', 'lesen', 'Suche im Satz das Tunwort.');
+    if (unit == 'Namenswoerter' || unit == 'Hauptwoerter') {
+      const nouns = <String>['Hund', 'Haus', 'Schule', 'Sonne', 'Buch', 'Auto', 'Kind', 'Lampe'];
+      const nonNouns = <String>['lesen', 'rot', 'malen', 'klein', 'tanzen', 'schnell', 'springen', 'warm'];
+      final noun = nouns[_random.nextInt(nouns.length)];
+      final distractors = (List<String>.from(nonNouns)..shuffle(_random)).take(2).toList();
+      return _choiceTask('nomen', grade, 'Deutsch', unit, 'Welches Wort ist ein Namenswort?', noun, 'Namenswörter sind Dinge, Personen oder Tiere und werden groß geschrieben.', customChoices: <String>[noun, ...distractors]);
+    }
+    return _choiceTask('satz', grade, 'Deutsch', 'Satz verstehen', 'Der Fuchs liest ein Buch. Was macht der Fuchs?', 'lesen', 'Suche im Satz das Tunwort.', customChoices: const <String>['lesen', 'Fuchs', 'Buch']);
   }
 
   LumoTask _spelling(int grade, String unit) {
@@ -615,4 +644,14 @@ class ExerciseFactory {
     }
     return out;
   }
+}
+
+/// Hilfs-Datentyp fuer Satzbau-Aufgaben:
+/// Ein korrekter Satz und zwei Varianten mit falscher Wortreihenfolge.
+/// Distraktoren sind echte Satz-Alternativen, keine Fueller wie 'Haus'.
+class _SatzbauVariant {
+  const _SatzbauVariant(this.correct, this.wrong1, this.wrong2);
+  final String correct;
+  final String wrong1;
+  final String wrong2;
 }
