@@ -17,14 +17,15 @@ class LeftNavigation extends StatelessWidget {
   static const _items = [
     _NavItem(LumoSection.home, Icons.home_rounded, 'Start'),
     _NavItem(LumoSection.learn, Icons.school_rounded, 'Lernen'),
-    _NavItem(LumoSection.exercises, Icons.edit_rounded, 'Übungen'),
+    _NavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesemodus'),
+    _NavItem(LumoSection.exercises, Icons.edit_rounded, 'Uebungen'),
     _NavItem(LumoSection.tests, Icons.assignment_turned_in_rounded, 'Test'),
     _NavItem(LumoSection.schoolwork, Icons.description_rounded, 'Schularbeit'),
     _NavItem(LumoSection.scanner, Icons.photo_camera_rounded, 'Foto'),
     _NavItem(LumoSection.missions, Icons.flag_rounded, 'Missionen'),
     _NavItem(LumoSection.progress, Icons.bar_chart_rounded, 'Fortschritt'),
     _NavItem(LumoSection.rewards, Icons.star_rounded, 'Belohnungen'),
-    _NavItem(LumoSection.agent, Icons.smart_toy_rounded, 'Lumo-KI'),
+    _NavItem(LumoSection.agent, Icons.smart_toy_rounded, 'Lumo'),
     _NavItem(LumoSection.profile, Icons.person_rounded, 'Profil'),
     _NavItem(LumoSection.settings, Icons.settings_rounded, 'Eltern'),
   ];
