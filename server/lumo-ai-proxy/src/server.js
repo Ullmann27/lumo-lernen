@@ -84,17 +84,29 @@ async function callOpenAi({ message, history, childProfile }) {
     max_tokens: 420,
   };
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      authorization: `Bearer ${openAiApiKey}`,
-    },
-    body: JSON.stringify(payload),
-  });
+  // Timeout-Schutz, damit das Mobile-App nicht ewig haengt.
+  // Wir loggen NICHT den Inhalt der Anfrage (Kindersicherheit).
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  let response;
+  try {
+    response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${openAiApiKey}`,
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!response.ok) {
     const errorText = await response.text().catch(() => '');
+    // Nur Status-Code im Log, keine Nachrichteninhalte (Kinderschutz).
+    console.warn(`[lumo-ai-proxy] OpenAI returned ${response.status}`);
     throw new Error(`openai_${response.status}_${errorText.slice(0, 120)}`);
   }
 
@@ -102,7 +114,10 @@ async function callOpenAi({ message, history, childProfile }) {
   const reply = data?.choices?.[0]?.message?.content?.trim();
   if (!reply) throw new Error('empty_model_reply');
 
-  const outputSafety = inspectChildSafety(reply);
+  // Antwort-Laenge zusaetzlich begrenzen, falls Modell zu redselig wird.
+  const trimmedReply = reply.length > 800 ? `${reply.slice(0, 800).trimEnd()} ...` : reply;
+
+  const outputSafety = inspectChildSafety(trimmedReply);
   if (!outputSafety.allowed) {
     return {
       reply: `${outputSafety.redirect} Soll ich dir eine leichte Schulfrage stellen?`,
@@ -111,7 +126,7 @@ async function callOpenAi({ message, history, childProfile }) {
     };
   }
 
-  return { reply, blocked: false, ruleId: null };
+  return { reply: trimmedReply, blocked: false, ruleId: null };
 }
 
 const server = createServer(async (req, res) => {
@@ -148,8 +163,16 @@ const server = createServer(async (req, res) => {
     }
 
     if (!openAiApiKey) {
+      // Heinz-Auftrag: bei fehlendem Key explizit 503 statt stiller Fallback,
+      // damit der Flutter-Client klar erkennt: Server da, aber nicht voll
+      // einsatzbereit. Antwort enthaelt trotzdem freundlichen Text fuer
+      // den Fall dass die Mobile App den Body trotz 503 anzeigt.
       const local = fallbackReply(message);
-      return json(res, 200, { ...local, source: 'local_fallback_no_key' });
+      return json(res, 503, {
+        ...local,
+        source: 'local_fallback_no_key',
+        error: 'openai_key_missing',
+      });
     }
 
     const result = await callOpenAi({

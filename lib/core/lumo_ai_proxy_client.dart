@@ -278,12 +278,14 @@ class LumoChildSafetyFilter {
   const LumoChildSafetyFilter._();
 
   static const Map<String, List<String>> _blockedTerms = <String, List<String>>{
-    'sexual_content': <String>['sex', 'porno', 'pornografie', 'nackt', 'nacktbilder', 'onlyfans', 'vergewaltigung'],
-    'violence_war_weapons': <String>['krieg', 'waffe', 'messer', 'pistole', 'bombe', 'töten', 'toeten', 'mord', 'blut', 'folter', 'anschlag'],
-    'self_harm': <String>['ich will sterben', 'mich umbringen', 'suizid', 'selbstmord', 'ritzen', 'mir weh tun'],
-    'politics_extremism': <String>['partei', 'wahlkampf', 'hitler', 'nazi', 'terror', 'extremismus', 'propaganda'],
-    'drugs_alcohol': <String>['drogen', 'kiffen', 'kokain', 'heroin', 'alkohol trinken', 'betrunken', 'zigarette', 'vape'],
-    'private_data': <String>['adresse', 'telefonnummer', 'passwort', 'bankkarte', 'kreditkarte', 'pin code'],
+    'sexual_content': <String>['sex', 'porno', 'pornografie', 'nackt', 'nacktheit', 'nacktbilder', 'onlyfans', 'vergewaltigung', 'erektion', 'masturbation'],
+    'violence_war_weapons': <String>['krieg', 'gewalt', 'waffe', 'messer', 'pistole', 'gewehr', 'bombe', 'töten', 'toeten', 'mord', 'blut', 'folter', 'anschlag', 'erschießen', 'erschiessen', 'pruegeln', 'prügeln'],
+    'self_harm': <String>['ich will sterben', 'mich umbringen', 'suizid', 'selbstmord', 'ritzen', 'mir weh tun', 'mich verletzen'],
+    'politics_extremism': <String>['partei', 'wahlkampf', 'hitler', 'nazi', 'terror', 'terrorist', 'extremismus', 'propaganda', 'rassismus'],
+    'hate_speech': <String>['ich hasse alle', 'auslaender raus', 'ausländer raus', 'sind dumm', 'minderwertig'],
+    'drugs_alcohol': <String>['drogen', 'kiffen', 'kokain', 'heroin', 'cannabis', 'alkohol trinken', 'betrunken', 'zigarette', 'vape', 'e-zigarette'],
+    'private_data': <String>['adresse', 'telefonnummer', 'handynummer', 'passwort', 'bankkarte', 'kreditkarte', 'pin code'],
+    'stranger_danger': <String>['will mich treffen', 'wir treffen uns heimlich', 'sag es deinen eltern nicht', 'sag es niemandem', 'unser geheimnis', 'ich darf nicht reden'],
   };
 
   static LumoSafetyDecision inspect(String value) {
@@ -304,6 +306,8 @@ class LumoChildSafetyFilter {
     switch (ruleId) {
       case 'self_harm':
         return 'Das klingt sehr ernst. Bitte sag sofort einem Erwachsenen in deiner Nähe Bescheid.';
+      case 'stranger_danger':
+        return 'Das ist wichtig. Erzähl bitte sofort einem Erwachsenen in deiner Familie davon. Du musst kein Geheimnis behalten, das dich unwohl fühlen lässt.';
       case 'private_data':
         return 'Private Daten bleiben geheim. Teile nie Adresse, Passwort oder Telefonnummer.';
       case 'violence_war_weapons':
@@ -312,6 +316,8 @@ class LumoChildSafetyFilter {
         return 'Darüber spreche ich mit Kindern nicht.';
       case 'politics_extremism':
         return 'Darüber reden wir hier nicht. Ich kann dir aber eine Schulfrage oder ein Naturthema erklären.';
+      case 'hate_speech':
+        return 'So reden wir nicht über andere Menschen. Lass uns über etwas Positives oder eine Lernfrage sprechen.';
       case 'drugs_alcohol':
         return 'Das ist kein Kinderthema. Lass uns über gesunde Gewohnheiten oder Lernen sprechen.';
       default:
