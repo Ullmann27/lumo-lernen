@@ -26,6 +26,8 @@ class LumoHeroHeader extends StatelessWidget {
     required this.streakDays,
     this.accent = LumoColors.orange,
     this.heroIllustrationAsset = 'assets/images/lumo_fox.png',
+    this.backgroundImageAsset = 'assets/images/lumo_classroom_header.png',
+    this.showBackgroundImage = true,
   });
 
   final String childName;
@@ -38,6 +40,8 @@ class LumoHeroHeader extends StatelessWidget {
   final int streakDays;
   final Color accent;
   final String heroIllustrationAsset;
+  final String backgroundImageAsset;
+  final bool showBackgroundImage;
 
   @override
   Widget build(BuildContext context) {
@@ -49,61 +53,95 @@ class LumoHeroHeader extends StatelessWidget {
         final isCompact = availableWidth < 520;
         final veryCompact = availableWidth < 390;
 
-        return Container(
-          padding: EdgeInsets.fromLTRB(20, 18, 20, isCompact ? 18 : 22),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFFFFF8EE), Color(0xFFFFE4C0)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(28),
-            border: Border.all(color: Colors.white.withOpacity(0.85), width: 1.6),
-            boxShadow: [
-              BoxShadow(
-                color: accent.withOpacity(0.18),
-                blurRadius: 32,
-                offset: const Offset(0, 14),
-                spreadRadius: -6,
-              ),
-              BoxShadow(
-                color: const Color(0xFF3D342C).withOpacity(0.06),
-                blurRadius: 18,
-                offset: const Offset(0, 6),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(28),
+          child: Stack(
             children: [
-              _TopBar(
-                childName: childName,
-                greeting: greeting,
-                stars: stars,
-                streakDays: streakDays,
-                accent: accent,
-                asset: heroIllustrationAsset,
-                compact: veryCompact,
-              ),
-              const SizedBox(height: 14),
-              if (isCompact)
-                _CompactHeroBody(
-                  title: title,
-                  titleAccent: titleAccent,
-                  subtitle: subtitle,
-                  asset: heroIllustrationAsset,
-                  message: lumoMessage,
-                  accent: accent,
-                )
-              else
-                _WideHeroBody(
-                  title: title,
+              if (showBackgroundImage)
+                Positioned.fill(
+                  child: Image.asset(
+                    backgroundImageAsset,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const SizedBox.shrink(),
+                  ),
+                ),
+              if (showBackgroundImage)
+                Positioned.fill(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          const Color(0xFFFFF8EE).withOpacity(0.78),
+                          const Color(0xFFFFE4C0).withOpacity(0.92),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                  ),
+                ),
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 18, 20, isCompact ? 18 : 22),
+                decoration: BoxDecoration(
+                  gradient: showBackgroundImage
+                      ? null
+                      : const LinearGradient(
+                          colors: [Color(0xFFFFF8EE), Color(0xFFFFE4C0)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                  borderRadius: BorderRadius.circular(28),
+                  border: Border.all(color: Colors.white.withOpacity(0.85), width: 1.6),
+                  boxShadow: [
+                    BoxShadow(
+                      color: accent.withOpacity(0.18),
+                      blurRadius: 32,
+                      offset: const Offset(0, 14),
+                      spreadRadius: -6,
+                    ),
+                    BoxShadow(
+                      color: const Color(0xFF3D342C).withOpacity(0.06),
+                      blurRadius: 18,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _TopBar(
+                      childName: childName,
+                      greeting: greeting,
+                      stars: stars,
+                      streakDays: streakDays,
+                      accent: accent,
+                      asset: heroIllustrationAsset,
+                      compact: veryCompact,
+                    ),
+                    const SizedBox(height: 14),
+                    if (isCompact)
+                      _CompactHeroBody(
+                        title: title,
+                        titleAccent: titleAccent,
+                        subtitle: subtitle,
+                        asset: heroIllustrationAsset,
+                        message: lumoMessage,
+                        accent: accent,
+                      )
+                    else
+                      _WideHeroBody(
+                        title: title,
                   titleAccent: titleAccent,
                   subtitle: subtitle,
                   asset: heroIllustrationAsset,
                   message: lumoMessage,
                   accent: accent,
                 ),
+            ],
+          ),
+              ),
             ],
           ),
         );
