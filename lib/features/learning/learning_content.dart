@@ -2,6 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/ai_task_cache.dart';
+import '../../core/ai_tutor_service.dart';
+import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
@@ -31,6 +34,11 @@ class _LearningContentState extends State<LearningContent> {
   final List<String> _recentUnits = <String>[];
   final Set<String> _sessionTaskKeys = <String>{};
   String? _lastTaskKey;
+
+  // Nachhilfelehrer: KI-generierte Aufgaben aus Cache, basierend auf Schwaechen
+  static const AiTutorService _tutor = AiTutorService();
+  static const AiTaskCache _aiCache = AiTaskCache();
+  final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
 
   static const int _recentTaskMemory = 80;
   static const int _recentUnitMemory = 10;
@@ -65,6 +73,53 @@ class _LearningContentState extends State<LearningContent> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       LumoVoice.instance.speak(_welcomeForKind);
     });
+    // Nachhilfelehrer-Hook (fire and forget):
+    //   1. KI-Aufgaben aus Cache laden (kostenlos, lokal)
+    //   2. Wenn Cache niedrig und KI freigegeben: vom Server nachfuellen
+    _hydrateAiQueueAndMaybeRefill();
+  }
+
+  Future<void> _hydrateAiQueueAndMaybeRefill() async {
+    final st = widget.appState.state;
+    final subject = _aiSubjectName(st.subject);
+    if (subject == null) return;
+    final fresh = await _aiCache.loadFresh(childId: _childId, subject: subject);
+    if (mounted) {
+      setState(() {
+        _aiDraftQueue
+          ..clear()
+          ..addAll(fresh);
+      });
+    }
+    // Refill bei Bedarf - laeuft asynchron, kein Block
+    final result = await _tutor.refillIfNeeded(
+      settings: st.settings,
+      profile: widget.appState.learningProfile,
+      childId: _childId,
+      childName: st.childName,
+      grade: st.grade,
+      subject: subject,
+    );
+    if (!mounted) return;
+    if (!result.skipped && result.generated > 0) {
+      // Neue Drafts in die Queue uebernehmen
+      final updated = await _aiCache.loadFresh(childId: _childId, subject: subject);
+      if (!mounted) return;
+      setState(() {
+        _aiDraftQueue
+          ..clear()
+          ..addAll(updated);
+      });
+    }
+  }
+
+  /// Mappt App-Subject-Bezeichnungen auf Cache/Server-Schluessel.
+  /// Null bedeutet: kein KI-Vorrat fuer dieses Subject.
+  String? _aiSubjectName(String stateSubject) {
+    final s = stateSubject.trim();
+    if (s == 'Mathematik' || s == 'Mathe') return 'Mathematik';
+    if (s == 'Deutsch') return 'Deutsch';
+    return null; // Lesen/Schreiben/Mixed -> Standard-Generator
   }
 
   String get _welcomeForKind {
@@ -109,6 +164,23 @@ class _LearningContentState extends State<LearningContent> {
     final st = widget.appState.state;
     final factorySubject = _factorySubjectFor(st.subject, st.unit);
     final factoryUnit = _factoryUnitFor(st.subject, st.unit);
+
+    // Nachhilfelehrer-Bypass: wenn KI-Vorrat vorhanden ist und das
+    // Subject Mathe oder Deutsch ist, bevorzuge eine KI-Aufgabe.
+    // Kein Crash bei Validierungs-Problemen - dann faellt es einfach
+    // auf den Standard-Generator zurueck.
+    final aiSubject = _aiSubjectName(st.subject);
+    if (aiSubject != null && _aiDraftQueue.isNotEmpty) {
+      final draft = _aiDraftQueue.removeAt(0);
+      // Cache-Markierung im Hintergrund
+      _aiCache.markConsumed(childId: _childId, subject: aiSubject, prompt: draft.prompt);
+      final aiTask = _draftToLumoTask(draft, st.grade, factorySubject, factoryUnit);
+      if (aiTask != null) {
+        return aiTask;
+      }
+      // sonst weiter mit Standard-Generator
+    }
+
     final avoidUnits = factoryUnit == 'Alle' ? _recentUnits.toSet() : <String>{};
     LumoTask? fallback;
 
@@ -136,6 +208,28 @@ class _LearningContentState extends State<LearningContent> {
       unit: factoryUnit == 'Aktives Lesen' ? 'Satz verstehen' : factoryUnit,
       weakSkills: st.weakSkills,
       avoidUnits: const <String>{},
+    );
+  }
+
+  /// Wandelt einen vom Server gelieferten Draft in einen LumoTask um.
+  /// Liefert null wenn die Pflichtfelder nicht passen.
+  LumoTask? _draftToLumoTask(LumoAiTaskDraft draft, int grade, String subject, String unit) {
+    if (draft.prompt.trim().isEmpty || draft.answer.trim().isEmpty) return null;
+    if (draft.choices.length < 2) return null;
+    if (!draft.choices.any((c) => c.trim().toLowerCase() == draft.answer.trim().toLowerCase())) {
+      return null;
+    }
+    return LumoTask(
+      id: 'ai_${DateTime.now().microsecondsSinceEpoch}',
+      grade: grade,
+      subject: subject == 'Alle' ? 'Mathematik' : subject,
+      unit: unit == 'Alle' ? 'KI Nachhilfe' : unit,
+      prompt: draft.prompt,
+      answer: draft.answer,
+      choices: draft.choices,
+      explanation: draft.explanation.isEmpty ? 'Lumo erklärt dir das gleich Schritt für Schritt.' : draft.explanation,
+      visual: draft.visual,
+      difficulty: grade,
     );
   }
 
