@@ -7,6 +7,8 @@ class AppSettings {
     this.autoReadEnabled = true,
     this.microphoneEnabled = true,
     this.scannerEnabled = true,
+    this.aiProxyEnabled = false,
+    this.aiProxyUrl = '',
     this.reduceAnimations = false,
     this.largeText = false,
     this.calmMode = false,
@@ -22,6 +24,8 @@ class AppSettings {
   final bool autoReadEnabled;
   final bool microphoneEnabled;
   final bool scannerEnabled;
+  final bool aiProxyEnabled;
+  final String aiProxyUrl;
   final bool reduceAnimations;
   final bool largeText;
   final bool calmMode;
@@ -37,6 +41,8 @@ class AppSettings {
     bool? autoReadEnabled,
     bool? microphoneEnabled,
     bool? scannerEnabled,
+    bool? aiProxyEnabled,
+    String? aiProxyUrl,
     bool? reduceAnimations,
     bool? largeText,
     bool? calmMode,
@@ -52,6 +58,8 @@ class AppSettings {
       autoReadEnabled: autoReadEnabled ?? this.autoReadEnabled,
       microphoneEnabled: microphoneEnabled ?? this.microphoneEnabled,
       scannerEnabled: scannerEnabled ?? this.scannerEnabled,
+      aiProxyEnabled: aiProxyEnabled ?? this.aiProxyEnabled,
+      aiProxyUrl: aiProxyUrl ?? this.aiProxyUrl,
       reduceAnimations: reduceAnimations ?? this.reduceAnimations,
       largeText: largeText ?? this.largeText,
       calmMode: calmMode ?? this.calmMode,
@@ -69,6 +77,8 @@ class AppSettings {
         'autoReadEnabled': autoReadEnabled,
         'microphoneEnabled': microphoneEnabled,
         'scannerEnabled': scannerEnabled,
+        'aiProxyEnabled': aiProxyEnabled,
+        'aiProxyUrl': aiProxyUrl,
         'reduceAnimations': reduceAnimations,
         'largeText': largeText,
         'calmMode': calmMode,
@@ -86,6 +96,8 @@ class AppSettings {
       autoReadEnabled: json['autoReadEnabled'] as bool? ?? true,
       microphoneEnabled: json['microphoneEnabled'] as bool? ?? true,
       scannerEnabled: json['scannerEnabled'] as bool? ?? true,
+      aiProxyEnabled: json['aiProxyEnabled'] as bool? ?? false,
+      aiProxyUrl: _safeProxyUrl(json['aiProxyUrl']),
       reduceAnimations: json['reduceAnimations'] as bool? ?? false,
       largeText: json['largeText'] as bool? ?? false,
       calmMode: json['calmMode'] as bool? ?? false,
@@ -105,6 +117,15 @@ class AppSettings {
     final parsed = value is num ? value.toDouble() : double.tryParse(value?.toString() ?? '');
     if (parsed == null) return fallback;
     return parsed.clamp(min, max).toDouble();
+  }
+
+  static String _safeProxyUrl(dynamic value) {
+    final raw = value?.toString().trim() ?? '';
+    if (raw.isEmpty) return '';
+    final uri = Uri.tryParse(raw);
+    if (uri == null || !uri.hasScheme || uri.host.isEmpty) return '';
+    if (uri.scheme != 'https' && uri.scheme != 'http') return '';
+    return raw;
   }
 }
 
