@@ -108,7 +108,7 @@ class _ReadingContentState extends State<ReadingContent> {
         level: 1,
         targetSkills: <String>['reading.loading'],
         sentences: <StorySentence>[
-          StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neü Geschichte.', words: <WordToken>[]),
+          StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte.', words: <WordToken>[]),
         ],
       );
       return ReadingSessionProgress(

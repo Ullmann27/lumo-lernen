@@ -89,7 +89,7 @@ class Curriculum {
     ],
     'Lesen': <String>[
       'Woerter lesen',
-      'Saetze lesen',
+      'Sätze lesen',
       'Lesesinn',
       'Bild und Wort',
       'Reihenfolge',
@@ -101,13 +101,13 @@ class Curriculum {
       'Schulsachen',
       'Begruessung',
       'Familie',
-      'Koerper',
+      'Körper',
     ],
     'Sachunterricht': <String>[
       'Tiere',
       'Pflanzen',
       'Jahreszeiten',
-      'Koerper',
+      'Körper',
       'Verkehr',
       'Wetter',
       'Familie und Gemeinschaft',
@@ -268,7 +268,7 @@ class ExerciseFactory {
       final n = 1 + _random.nextInt(10);
       if (_random.nextBool()) return _choiceTask('doppelt', grade, 'Mathematik', unit, 'Was ist das Doppelte von $n?', '${n * 2}', 'Doppelt bedeutet: $n + $n = ${n * 2}.');
       final even = (1 + _random.nextInt(10)) * 2;
-      return _choiceTask('halb', grade, 'Mathematik', unit, 'Was ist die Haelfte von $even?', '${even ~/ 2}', 'Halbieren bedeutet in zwei gleich grosse Teile teilen.');
+      return _choiceTask('halb', grade, 'Mathematik', unit, 'Was ist die Hälfte von $even?', '${even ~/ 2}', 'Halbieren bedeutet in zwei gleich große Teile teilen.');
     }
     if (unit == 'Geometrie Formen') {
       final shapes = <String, String>{'Welche Form hat 3 Ecken?': 'Dreieck', 'Welche Form ist ganz rund?': 'Kreis', 'Welche Form hat 4 gleich lange Seiten?': 'Quadrat'};
@@ -370,7 +370,7 @@ class ExerciseFactory {
     }
     if (unit == 'Buchstaben') {
       final letter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[_random.nextInt(26)];
-      return LumoTask(id: _id('buchstabe'), grade: grade, subject: 'Deutsch', unit: unit, prompt: 'Zeichne ein grosses $letter.', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Ziehe den Buchstaben langsam mit dem Finger nach.', handwriting: true, visual: 'writing');
+      return LumoTask(id: _id('buchstabe'), grade: grade, subject: 'Deutsch', unit: unit, prompt: 'Zeichne ein großes $letter.', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Ziehe den Buchstaben langsam mit dem Finger nach.', handwriting: true, visual: 'writing');
     }
     if (unit == 'Silben') {
       final items = <String, int>{'Banane': 3, 'Mama': 2, 'Schokolade': 4, 'Fuchs': 1, 'Tomate': 3, 'Elefant': 3, 'Schule': 2, 'Rakete': 3};
@@ -562,12 +562,12 @@ class ExerciseFactory {
   LumoTask _english(int grade, String unit) {
     final data = <String, Map<String, String>>{
       'Farben': <String, String>{'red': 'Rot', 'blue': 'Blau', 'green': 'Gruen', 'yellow': 'Gelb'},
-      'Zahlen': <String, String>{'one': 'eins', 'two': 'zwei', 'three': 'drei', 'four': 'vier', 'five': 'fuenf'},
+      'Zahlen': <String, String>{'one': 'eins', 'two': 'zwei', 'three': 'drei', 'four': 'vier', 'five': 'fünf'},
       'Tiere': <String, String>{'cat': 'Katze', 'dog': 'Hund', 'fox': 'Fuchs', 'bird': 'Vogel'},
       'Schulsachen': <String, String>{'book': 'Buch', 'pen': 'Stift', 'bag': 'Tasche'},
       'Begruessung': <String, String>{'hello': 'Hallo', 'bye': 'Tschuess', 'good morning': 'Guten Morgen'},
       'Familie': <String, String>{'mum': 'Mama', 'dad': 'Papa', 'sister': 'Schwester'},
-      'Koerper': <String, String>{'hand': 'Hand', 'foot': 'Fuss', 'eye': 'Auge'},
+      'Körper': <String, String>{'hand': 'Hand', 'foot': 'Fuss', 'eye': 'Auge'},
     };
     final map = data[unit] ?? data['Tiere']!;
     final entry = map.entries.elementAt(_random.nextInt(map.length));
@@ -579,7 +579,7 @@ class ExerciseFactory {
       'Tiere': <String, String>{'Welches Tier legt Eier?': 'Huhn', 'Welches Tier lebt im Wasser?': 'Fisch'},
       'Pflanzen': <String, String>{'Was braucht eine Pflanze zum Wachsen?': 'Wasser', 'Was ist meist gruen an der Pflanze?': 'Blatt'},
       'Jahreszeiten': <String, String>{'Wann faellt oft Schnee?': 'Winter', 'Wann bluehen viele Blumen?': 'Fruehling'},
-      'Koerper': <String, String>{'Womit sehen wir?': 'Augen', 'Womit hoeren wir?': 'Ohren'},
+      'Körper': <String, String>{'Womit sehen wir?': 'Augen', 'Womit hören wir?': 'Ohren'},
       'Verkehr': <String, String>{'Bei welcher Ampelfarbe darf man gehen?': 'Gruen'},
       'Wetter': <String, String>{'Was faellt aus Wolken?': 'Regen'},
       'Familie und Gemeinschaft': <String, String>{'Was sagt man, wenn man Hilfe bekommt?': 'Danke'},
