@@ -149,6 +149,8 @@ class LumoAiProxyClient {
     return baseUri.replace(path: normalizedPath, query: '');
   }
 
+  Uri _rootEndpoint(Uri baseUri) => baseUri.replace(path: '', query: '');
+
   /// Prueft ob der Proxy-Server erreichbar ist und OpenAI konfiguriert hat.
   ///
   /// Sendet KEINE Kinderdaten, KEINE Chat-History, nur ein einfaches GET.
@@ -165,60 +167,39 @@ class LumoAiProxyClient {
     final endpoint = _healthEndpoint(baseUri);
     final client = HttpClient()..connectionTimeout = _timeout;
     try {
-      final request = await client.getUrl(endpoint).timeout(_timeout);
-      request.headers.set(HttpHeaders.acceptHeader, 'application/json');
-      final response = await request.close().timeout(_timeout);
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        if (response.statusCode == 404) {
+      final primary = await _getHealthStatus(client, endpoint);
+      if (primary.statusCode == 404) {
+        final root = await _getHealthStatus(client, _rootEndpoint(baseUri));
+        final rootStatus = _statusFromHealthJson(root.rawBody, fallbackPrefix: 'Root-Adresse erreichbar.');
+        if (rootStatus != null) return rootStatus;
+      }
+      if (primary.statusCode < 200 || primary.statusCode >= 300) {
+        if (primary.statusCode == 404) {
           return LumoAiHealthStatus(
             reachable: false,
             openAiConfigured: false,
-            message: 'Server-Service antwortet, aber der Pfad /health fehlt. Bitte im Eltern-Bereich prüfen: ist der Render-Service deployed und gestartet? URL: $baseUri',
+            message: 'Server-Service antwortet, aber /health und Root-Health sind nicht lesbar. Bitte Render-Deploy prüfen. URL: $baseUri',
           );
         }
-        if (response.statusCode >= 500) {
+        if (primary.statusCode >= 500) {
           return LumoAiHealthStatus(
             reachable: false,
             openAiConfigured: false,
-            message: 'Server hat einen Fehler (Code ${response.statusCode}). Bitte später erneut prüfen. Lumo bleibt lokal aktiv.',
+            message: 'Server hat einen Fehler (Code ${primary.statusCode}). Bitte später erneut prüfen. Lumo bleibt lokal aktiv.',
           );
         }
         return LumoAiHealthStatus(
           reachable: false,
           openAiConfigured: false,
-          message: 'Server gerade nicht erreichbar (Code ${response.statusCode}). Lumo bleibt lokal aktiv.',
+          message: 'Server gerade nicht erreichbar (Code ${primary.statusCode}). Lumo bleibt lokal aktiv.',
         );
       }
-      final raw = await response.transform(utf8.decoder).join().timeout(_timeout);
-      final decoded = jsonDecode(raw);
-      if (decoded is! Map) {
-        return const LumoAiHealthStatus(
-          reachable: true,
-          openAiConfigured: false,
-          message: 'Server antwortet, aber das Format ist unklar.',
-        );
-      }
-      final ok = decoded['ok'] == true;
-      final openAi = decoded['openAiConfigured'] == true;
-      if (ok && openAi) {
-        return const LumoAiHealthStatus(
-          reachable: true,
-          openAiConfigured: true,
-          message: 'Server erreichbar. OpenAI ist verbunden.',
-        );
-      }
-      if (ok && !openAi) {
-        return const LumoAiHealthStatus(
-          reachable: true,
-          openAiConfigured: false,
-          message: 'Server erreichbar, aber OpenAI-Schluessel fehlt am Server.',
-        );
-      }
-      return const LumoAiHealthStatus(
-        reachable: true,
-        openAiConfigured: false,
-        message: 'Server antwortet, aber meldet einen Fehler.',
-      );
+      return _statusFromHealthJson(primary.rawBody) ??
+          const LumoAiHealthStatus(
+            reachable: true,
+            openAiConfigured: false,
+            message: 'Server antwortet, aber das Format ist unklar.',
+          );
     } on TimeoutException {
       return const LumoAiHealthStatus(
         reachable: false,
@@ -235,6 +216,42 @@ class LumoAiProxyClient {
       client.close(force: true);
     }
   }
+
+  Future<_HealthHttpResult> _getHealthStatus(HttpClient client, Uri endpoint) async {
+    final request = await client.getUrl(endpoint).timeout(_timeout);
+    request.headers.set(HttpHeaders.acceptHeader, 'application/json');
+    final response = await request.close().timeout(_timeout);
+    final raw = await response.transform(utf8.decoder).join().timeout(_timeout);
+    return _HealthHttpResult(statusCode: response.statusCode, rawBody: raw);
+  }
+
+  LumoAiHealthStatus? _statusFromHealthJson(String raw, {String? fallbackPrefix}) {
+    final decoded = jsonDecode(raw);
+    if (decoded is! Map) return null;
+    final ok = decoded['ok'] == true;
+    final openAi = decoded['openAiConfigured'] == true;
+    final prefix = fallbackPrefix == null ? '' : '$fallbackPrefix ';
+    if (ok && openAi) {
+      return LumoAiHealthStatus(
+        reachable: true,
+        openAiConfigured: true,
+        message: '${prefix}Server erreichbar. OpenAI ist verbunden.',
+      );
+    }
+    if (ok && !openAi) {
+      return LumoAiHealthStatus(
+        reachable: true,
+        openAiConfigured: false,
+        message: '${prefix}Server erreichbar, aber OpenAI-Schluessel fehlt am Server.',
+      );
+    }
+    return LumoAiHealthStatus(
+      reachable: true,
+      openAiConfigured: false,
+      message: '${prefix}Server antwortet, aber meldet einen Fehler.',
+    );
+  }
+
   Uri _tasksEndpoint(Uri baseUri) {
     final normalizedPath = baseUri.path.endsWith('/')
         ? '${baseUri.path}tasks'
@@ -306,6 +323,13 @@ class LumoAiProxyClient {
       client.close(force: true);
     }
   }
+}
+
+class _HealthHttpResult {
+  const _HealthHttpResult({required this.statusCode, required this.rawBody});
+
+  final int statusCode;
+  final String rawBody;
 }
 
 class LumoAiHealthStatus {
