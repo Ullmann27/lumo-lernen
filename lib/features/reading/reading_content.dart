@@ -34,7 +34,7 @@ class _ReadingContentState extends State<ReadingContent> {
   late String _readingSessionId;
   String _lastTranscript = '';
   String _processedTranscript = '';
-  String _lumoLine = 'Bereit? Lumo hoert dir Satz fuer Satz zu.';
+  String _lumoLine = 'Bereit? Lumo hört dir Satz für Satz zu.';
   double? _lastScore;
   int _interventionCount = 0;
   int _activeWordIndex = 0;
@@ -80,7 +80,7 @@ class _ReadingContentState extends State<ReadingContent> {
     if (widget.appState.state.settings.microphoneEnabled) {
       _speech.initialize();
     }
-    await _speakOnly('Wir lesen jetzt ${story.title}. Wenn du bereit bist, drueck auf das Mikrofon und lies den Satz vor.');
+    await _speakOnly('Wir lesen jetzt ${story.title}. Wenn du bereit bist, drück auf das Mikrofon und lies den Satz vor.');
     await _persistReadingProgress(latestScore: 0);
   }
 
@@ -108,7 +108,7 @@ class _ReadingContentState extends State<ReadingContent> {
         level: 1,
         targetSkills: <String>['reading.loading'],
         sentences: <StorySentence>[
-          StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte.', words: <WordToken>[]),
+          StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neü Geschichte.', words: <WordToken>[]),
         ],
       );
       return ReadingSessionProgress(
@@ -158,7 +158,7 @@ class _ReadingContentState extends State<ReadingContent> {
       _processedTranscript = '';
       _activeWordIndex = 0;
       _liveProblemWord = null;
-      _lumoLine = 'Ich hoere zu. Lies den Satz ruhig bis zum Ende.';
+      _lumoLine = 'Ich höre zu. Lies den Satz ruhig bis zum Ende.';
     });
 
     await _speech.startListening(
@@ -264,9 +264,9 @@ class _ReadingContentState extends State<ReadingContent> {
   List<String> _normalizeTokens(String value) {
     return value
         .toLowerCase()
-        .replaceAll('ü', 'ue')
-        .replaceAll('ö', 'oe')
-        .replaceAll('ä', 'ae')
+        .replaceAll('ü', 'ü')
+        .replaceAll('ö', 'ö')
+        .replaceAll('ä', 'ä')
         .replaceAll('ß', 'ss')
         .replaceAll(RegExp(r'[^a-z\s]'), '')
         .split(RegExp(r'\s+'))
@@ -279,7 +279,7 @@ class _ReadingContentState extends State<ReadingContent> {
       _processTranscript(_lastTranscript);
       return;
     }
-    const calm = 'Ich habe dich nicht gut gehoert. Das war kein Fehler. Drueck nochmal auf das Mikrofon, wenn du bereit bist.';
+    const calm = 'Ich habe dich nicht gut gehört. Das war kein Fehler. Drück nochmal auf das Mikrofon, wenn du bereit bist.';
     setState(() {
       _lastScore = null;
       _lumoLine = calm;
@@ -333,7 +333,7 @@ class _ReadingContentState extends State<ReadingContent> {
         _liveProblemWord = result.analysis.problemWord ?? live.problemWord;
       }
       _lumoLine = adjustedProgress.isComplete
-          ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Saetze und Uebungswoerter.'
+          ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Sätze und Übungswörter.'
           : attemptDecision.childMessage;
       _finished = adjustedProgress.isComplete;
     });
@@ -508,7 +508,7 @@ class _ReadingHeader extends StatelessWidget {
             const SizedBox(height: 3),
             Text(title, style: LumoTextStyles.heading2),
             const SizedBox(height: 4),
-            Text('Lumo hoert Satz fuer Satz zu und hilft sofort freundlich.', style: LumoTextStyles.body.copyWith(fontSize: 13)),
+            Text('Lumo hört Satz für Satz zu und hilft sofort freundlich.', style: LumoTextStyles.body.copyWith(fontSize: 13)),
           ]),
         ),
         IconButton(onPressed: onBack, icon: const Icon(Icons.close_rounded, color: LumoColors.ink500)),
@@ -833,7 +833,7 @@ class _ProblemWordsCard extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFFBEB), Color(0xFFFFFFFF)])),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('Uebungswoerter fuer spaeter', style: LumoTextStyles.heading3),
+        const Text('Übungswörter für später', style: LumoTextStyles.heading3),
         const SizedBox(height: 8),
         Wrap(spacing: 8, runSpacing: 8, children: words.map((word) {
           return Container(
@@ -860,9 +860,9 @@ class _FinishedReadingCard extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const Text('Leserunde geschafft!', style: TextStyle(fontFamily: 'Nunito', fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF14532D))),
         const SizedBox(height: 8),
-        Text('Lumo hat deine Saetze und Uebungswoerter gespeichert. Morgen kann daraus eine neue Empfehlung entstehen.', style: LumoTextStyles.body.copyWith(color: const Color(0xFF166534))),
+        Text('Lumo hat deine Sätze und Übungswörter gespeichert. Morgen kann daraus eine neue Empfehlung entstehen.', style: LumoTextStyles.body.copyWith(color: const Color(0xFF166534))),
         const SizedBox(height: 12),
-        FilledButton.icon(onPressed: onBack, icon: const Icon(Icons.home_rounded), label: const Text('Zurueck')),
+        FilledButton.icon(onPressed: onBack, icon: const Icon(Icons.home_rounded), label: const Text('Zurück')),
       ]),
     );
   }
