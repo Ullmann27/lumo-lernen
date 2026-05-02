@@ -257,6 +257,7 @@ const server = createServer(async (req, res) => {
   }
 
   if (req.method === 'POST' && req.url === '/tasks') {
+    console.log(`[lumo-ai-proxy] /tasks request received at ${new Date().toISOString()}`);
     if (!openAiApiKey) {
       return json(res, 503, { error: 'openai_key_missing', tasks: [] });
     }
@@ -269,6 +270,7 @@ const server = createServer(async (req, res) => {
       const childName = String(body.childName || '').slice(0, 60);
       if (!subject) return json(res, 400, { error: 'subject_missing', tasks: [] });
       const tasks = await generateTaskBatch({ subject, grade, units, count, childName });
+      console.log(`[lumo-ai-proxy] /tasks ok: subject=${subject} grade=${grade} returned=${tasks.length}`);
       return json(res, 200, {
         tasks,
         count: tasks.length,
@@ -286,6 +288,8 @@ const server = createServer(async (req, res) => {
   if (req.method !== 'POST' || req.url !== '/chat') {
     return json(res, 404, { error: 'not_found' });
   }
+
+  console.log(`[lumo-ai-proxy] /chat request received at ${new Date().toISOString()}`);
 
   try {
     const body = await readJson(req);
@@ -321,8 +325,10 @@ const server = createServer(async (req, res) => {
       history: body.history,
       childProfile: body.childProfile,
     });
+    console.log(`[lumo-ai-proxy] /chat ok: blocked=${Boolean(result.blocked)} replyLength=${(result.reply || '').length}`);
     return json(res, 200, { ...result, source: 'openai_proxy' });
   } catch (error) {
+    console.warn(`[lumo-ai-proxy] /chat failed: ${String(error?.message || error).slice(0, 80)}`);
     return json(res, 500, {
       error: 'proxy_error',
       reply: 'Ich kann gerade nicht mit dem KI-Server sprechen. Wir können trotzdem Mathe, Deutsch oder Lesen üben.',
