@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'primary_school_word_data.dart';
+
 class LumoTask {
   const LumoTask({
     required this.id,
@@ -118,6 +120,7 @@ class Curriculum {
 
 class ExerciseFactory {
   ExerciseFactory({int? seed}) : _random = Random(seed);
+
   final Random _random;
   int _serial = 0;
 
@@ -129,9 +132,14 @@ class ExerciseFactory {
     Set<String> avoidUnits = const <String>{},
   }) {
     final chosenSubject = _chooseSubject(subject, weakSkills);
-    final units = Curriculum.subjects[chosenSubject] ?? Curriculum.subjects['Mathematik']!;
-    final candidateUnits = unit == 'Alle' ? units.where((u) => !avoidUnits.contains(u)).toList() : <String>[unit];
-    final chosenUnit = candidateUnits.isEmpty ? units[_random.nextInt(units.length)] : _weightedUnit(candidateUnits, weakSkills);
+    final units =
+        Curriculum.subjects[chosenSubject] ?? Curriculum.subjects['Mathematik']!;
+    final candidateUnits = unit == 'Alle'
+        ? units.where((u) => !avoidUnits.contains(u)).toList()
+        : <String>[unit];
+    final chosenUnit = candidateUnits.isEmpty
+        ? units[_random.nextInt(units.length)]
+        : _weightedUnit(candidateUnits, weakSkills);
     return _build(grade: grade, subject: chosenSubject, unit: chosenUnit);
   }
 
@@ -144,7 +152,12 @@ class ExerciseFactory {
     final tasks = <LumoTask>[];
     final usedUnits = <String>{};
     for (var i = 0; i < count; i++) {
-      final task = next(grade: grade, subject: subject, weakSkills: weakSkills, avoidUnits: usedUnits);
+      final task = next(
+        grade: grade,
+        subject: subject,
+        weakSkills: weakSkills,
+        avoidUnits: usedUnits,
+      );
       tasks.add(task);
       usedUnits.add(task.unit);
       if (usedUnits.length > 12) usedUnits.clear();
@@ -157,12 +170,28 @@ class ExerciseFactory {
     required Map<String, int> weakSkills,
     int count = 14,
   }) {
-    final subjects = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Englisch', 'Sachunterricht', 'Schreiben'];
+    final subjects = <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Rechtschreibung',
+      'Englisch',
+      'Sachunterricht',
+      'Schreiben',
+    ];
     final tasks = <LumoTask>[];
     final avoid = <String>{};
     for (var i = 0; i < count; i++) {
-      final subject = i < subjects.length ? subjects[i] : subjects[_random.nextInt(subjects.length)];
-      tasks.add(next(grade: grade, subject: subject, weakSkills: weakSkills, avoidUnits: avoid));
+      final subject =
+          i < subjects.length ? subjects[i] : subjects[_random.nextInt(subjects.length)];
+      tasks.add(
+        next(
+          grade: grade,
+          subject: subject,
+          weakSkills: weakSkills,
+          avoidUnits: avoid,
+        ),
+      );
       avoid.add(tasks.last.unit);
       if (avoid.length > 10) avoid.clear();
     }
@@ -173,12 +202,20 @@ class ExerciseFactory {
   String _chooseSubject(String requested, Map<String, int> weakSkills) {
     if (requested != 'Alle') return requested;
     if (weakSkills.isNotEmpty && _random.nextDouble() < .60) {
-      final weakUnit = weakSkills.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+      final weakUnit = weakSkills.entries.toList()
+        ..sort((a, b) => b.value.compareTo(a.value));
       for (final subject in Curriculum.subjects.entries) {
         if (subject.value.contains(weakUnit.first.key)) return subject.key;
       }
     }
-    final base = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Sachunterricht', 'Schreiben'];
+    final base = <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Rechtschreibung',
+      'Sachunterricht',
+      'Schreiben',
+    ];
     return base[_random.nextInt(base.length)];
   }
 
@@ -194,7 +231,11 @@ class ExerciseFactory {
     return weighted[_random.nextInt(weighted.length)];
   }
 
-  LumoTask _build({required int grade, required String subject, required String unit}) {
+  LumoTask _build({
+    required int grade,
+    required String subject,
+    required String unit,
+  }) {
     _serial++;
     switch (subject) {
       case 'Mathematik':
@@ -216,91 +257,230 @@ class ExerciseFactory {
     }
   }
 
-  String _id(String prefix) => '$prefix-${DateTime.now().microsecondsSinceEpoch}-$_serial-${_random.nextInt(99999)}';
+  String _id(String prefix) =>
+      '$prefix-${DateTime.now().microsecondsSinceEpoch}-$_serial-${_random.nextInt(99999)}';
 
   LumoTask _math(int grade, String unit) {
     final maxSmall = grade == 1 ? 10 : 20;
-    if (unit == 'Minus ueber 10') {
-      return _minusBridgeTen(grade, unit);
-    }
-    if (unit == 'Rechenhaeuser') {
-      return _numberHouse(grade, unit);
-    }
-    if (unit == 'Blitzlicht') {
-      return _blitzlicht(grade, unit);
-    }
+    if (unit == 'Minus ueber 10') return _minusBridgeTen(grade, unit);
+    if (unit == 'Rechenhaeuser') return _numberHouse(grade, unit);
+    if (unit == 'Blitzlicht') return _blitzlicht(grade, unit);
+
     if (unit.contains('Plus')) {
-      final max = unit.contains('100') ? 100 : unit.contains('20') ? 20 : maxSmall;
+      final max = unit.contains('100')
+          ? 100
+          : unit.contains('20')
+              ? 20
+              : maxSmall;
       final a = 1 + _random.nextInt(max ~/ 2);
       final b = 1 + _random.nextInt(max - a);
       final answer = a + b;
-      return _choiceTask('mathe', grade, 'Mathematik', unit, '$a + $b = ?', answer.toString(), 'Lege zuerst $a. Lege dann $b dazu. Zaehle zusammen: $answer.', visual: 'dots');
+      return _choiceTask(
+        'mathe',
+        grade,
+        'Mathematik',
+        unit,
+        '$a + $b = ?',
+        '$answer',
+        'Lege zuerst $a. Lege dann $b dazu. Zaehle zusammen: $answer.',
+        visual: 'dots',
+      );
     }
+
     if (unit.contains('Minus')) {
       if (unit.contains('20') && _random.nextDouble() < .65) {
         return _minusBridgeTen(grade, unit);
       }
-      final max = unit.contains('100') ? 100 : unit.contains('20') ? 20 : maxSmall;
+      final max = unit.contains('100')
+          ? 100
+          : unit.contains('20')
+              ? 20
+              : maxSmall;
       final a = 2 + _random.nextInt(max - 1);
       final b = 1 + _random.nextInt(a - 1);
       final answer = a - b;
-      return _choiceTask('mathe', grade, 'Mathematik', unit, '$a - $b = ?', answer.toString(), 'Starte bei $a und gehe $b Schritte zurueck. Du landest bei $answer.', visual: 'line');
+      return _choiceTask(
+        'mathe',
+        grade,
+        'Mathematik',
+        unit,
+        '$a - $b = ?',
+        '$answer',
+        'Starte bei $a und gehe $b Schritte zurueck. Du landest bei $answer.',
+        visual: 'line',
+      );
     }
+
     if (unit == 'Zahlenreihe') {
       final start = _random.nextInt(12) + 1;
       final step = <int>[2, 3, 5, 10][_random.nextInt(4)];
       final answer = start + step * 3;
-      return _choiceTask('reihe', grade, 'Mathematik', unit, '$start, ${start + step}, ${start + step * 2}, ?', answer.toString(), 'Die Reihe springt immer um $step weiter.', visual: 'sequence');
+      return _choiceTask(
+        'reihe',
+        grade,
+        'Mathematik',
+        unit,
+        '$start, ${start + step}, ${start + step * 2}, ?',
+        '$answer',
+        'Die Reihe springt immer um $step weiter.',
+        visual: 'sequence',
+      );
     }
+
     if (unit == 'Nachbarzahlen') {
       final n = 2 + _random.nextInt(grade == 1 ? 18 : 98);
       final before = _random.nextBool();
-      return _choiceTask('nachbar', grade, 'Mathematik', unit, before ? 'Welche Zahl kommt direkt vor $n?' : 'Welche Zahl kommt direkt nach $n?', before ? '${n - 1}' : '${n + 1}', before ? 'Zaehle einen Schritt zurueck: ${n - 1}.' : 'Zaehle einen Schritt weiter: ${n + 1}.');
+      return _choiceTask(
+        'nachbar',
+        grade,
+        'Mathematik',
+        unit,
+        before
+            ? 'Welche Zahl kommt direkt vor $n?'
+            : 'Welche Zahl kommt direkt nach $n?',
+        before ? '${n - 1}' : '${n + 1}',
+        before
+            ? 'Zaehle einen Schritt zurueck: ${n - 1}.'
+            : 'Zaehle einen Schritt weiter: ${n + 1}.',
+      );
     }
+
     if (unit == 'Zehner und Einer') {
       final tens = 1 + _random.nextInt(9);
       final ones = _random.nextInt(10);
       final n = tens * 10 + ones;
       final askTens = _random.nextBool();
-      return _choiceTask('zehner', grade, 'Mathematik', unit, askTens ? 'Wie viele Zehner hat $n?' : 'Wie viele Einer hat $n?', askTens ? '$tens' : '$ones', '$n besteht aus $tens Zehnern und $ones Einern.', visual: 'ten_ones');
+      return _choiceTask(
+        'zehner',
+        grade,
+        'Mathematik',
+        unit,
+        askTens ? 'Wie viele Zehner hat $n?' : 'Wie viele Einer hat $n?',
+        askTens ? '$tens' : '$ones',
+        '$n besteht aus $tens Zehnern und $ones Einern.',
+        visual: 'ten_ones',
+      );
     }
+
     if (unit == 'Verdoppeln und Halbieren') {
       final n = 1 + _random.nextInt(10);
-      if (_random.nextBool()) return _choiceTask('doppelt', grade, 'Mathematik', unit, 'Was ist das Doppelte von $n?', '${n * 2}', 'Doppelt bedeutet: $n + $n = ${n * 2}.');
+      if (_random.nextBool()) {
+        return _choiceTask(
+          'doppelt',
+          grade,
+          'Mathematik',
+          unit,
+          'Was ist das Doppelte von $n?',
+          '${n * 2}',
+          'Doppelt bedeutet: $n + $n = ${n * 2}.',
+        );
+      }
       final even = (1 + _random.nextInt(10)) * 2;
-      return _choiceTask('halb', grade, 'Mathematik', unit, 'Was ist die Hälfte von $even?', '${even ~/ 2}', 'Halbieren bedeutet in zwei gleich große Teile teilen.');
+      return _choiceTask(
+        'halb',
+        grade,
+        'Mathematik',
+        unit,
+        'Was ist die Hälfte von $even?',
+        '${even ~/ 2}',
+        'Halbieren bedeutet in zwei gleich große Teile teilen.',
+      );
     }
+
     if (unit == 'Geometrie Formen') {
-      final shapes = <String, String>{'Welche Form hat 3 Ecken?': 'Dreieck', 'Welche Form ist ganz rund?': 'Kreis', 'Welche Form hat 4 gleich lange Seiten?': 'Quadrat'};
+      final shapes = <String, String>{
+        'Welche Form hat 3 Ecken?': 'Dreieck',
+        'Welche Form ist ganz rund?': 'Kreis',
+        'Welche Form hat 4 gleich lange Seiten?': 'Quadrat',
+      };
       final entry = shapes.entries.elementAt(_random.nextInt(shapes.length));
-      return _choiceTask('form', grade, 'Mathematik', unit, entry.key, entry.value, 'Schau auf Ecken und Seiten der Form.', visual: 'shape');
+      return _choiceTask(
+        'form',
+        grade,
+        'Mathematik',
+        unit,
+        entry.key,
+        entry.value,
+        'Schau auf Ecken und Seiten der Form.',
+        visual: 'shape',
+      );
     }
+
     if (unit == 'Uhrzeit') {
       final hour = 1 + _random.nextInt(11);
-      return _choiceTask('uhr', grade, 'Mathematik', unit, 'Der kleine Zeiger steht auf $hour. Wie viel Uhr ist es?', '$hour Uhr', 'Der kleine Zeiger zeigt die Stunde.');
+      return _choiceTask(
+        'uhr',
+        grade,
+        'Mathematik',
+        unit,
+        'Der kleine Zeiger steht auf $hour. Wie viel Uhr ist es?',
+        '$hour Uhr',
+        'Der kleine Zeiger zeigt die Stunde.',
+      );
     }
+
     if (unit == 'Geld') {
       final a = 1 + _random.nextInt(8);
       final b = 1 + _random.nextInt(8);
-      return _choiceTask('geld', grade, 'Mathematik', unit, 'Du hast $a Euro und bekommst $b Euro dazu. Wie viel hast du?', '${a + b} Euro', 'Rechne $a + $b = ${a + b}.');
+      return _choiceTask(
+        'geld',
+        grade,
+        'Mathematik',
+        unit,
+        'Du hast $a Euro und bekommst $b Euro dazu. Wie viel hast du?',
+        '${a + b} Euro',
+        'Rechne $a + $b = ${a + b}.',
+      );
     }
+
     if (unit == 'Vergleichen') {
       final a = 1 + _random.nextInt(99);
       final b = 1 + _random.nextInt(99);
-      final ans = a > b ? '>' : a < b ? '<' : '=';
-      return _choiceTask('vergleich', grade, 'Mathematik', unit, 'Welches Zeichen passt? $a ? $b', ans, 'Vergleiche zuerst die groessere Zahl.');
+      final ans = a > b
+          ? '>'
+          : a < b
+              ? '<'
+              : '=';
+      return _choiceTask(
+        'vergleich',
+        grade,
+        'Mathematik',
+        unit,
+        'Welches Zeichen passt? $a ? $b',
+        ans,
+        'Vergleiche zuerst die groessere Zahl.',
+        customChoices: const <String>['<', '>', '='],
+      );
     }
+
     if (unit == 'Gerade und ungerade') {
       final n = 1 + _random.nextInt(50);
       final ans = n.isEven ? 'gerade' : 'ungerade';
-      return _choiceTask('gerade', grade, 'Mathematik', unit, 'Ist $n gerade oder ungerade?', ans, 'Gerade Zahlen kann man in zwei gleiche Gruppen teilen.');
+      return _choiceTask(
+        'gerade',
+        grade,
+        'Mathematik',
+        unit,
+        'Ist $n gerade oder ungerade?',
+        ans,
+        'Gerade Zahlen kann man in zwei gleiche Gruppen teilen.',
+        customChoices: const <String>['gerade', 'ungerade'],
+      );
     }
-    if (unit == 'Zahlen zerlegen') {
-      return _numberHouse(grade, unit);
-    }
+
+    if (unit == 'Zahlen zerlegen') return _numberHouse(grade, unit);
+
     final apples = 2 + _random.nextInt(8);
     final more = 1 + _random.nextInt(6);
-    return _choiceTask('text', grade, 'Mathematik', 'Textaufgaben', 'Lumo hat $apples Sterne und bekommt $more dazu. Wie viele Sterne hat er?', '${apples + more}', 'Das ist eine Plusgeschichte: $apples + $more = ${apples + more}.');
+    return _choiceTask(
+      'text',
+      grade,
+      'Mathematik',
+      'Textaufgaben',
+      'Lumo hat $apples Sterne und bekommt $more dazu. Wie viele Sterne hat er?',
+      '${apples + more}',
+      'Das ist eine Plusgeschichte: $apples + $more = ${apples + more}.',
+    );
   }
 
   LumoTask _minusBridgeTen(int grade, String unit) {
@@ -355,97 +535,295 @@ class ExerciseFactory {
   }
 
   LumoTask _german(int grade, String unit) {
-    const words = <String>['Mama', 'Mond', 'Sonne', 'Ball', 'Fuchs', 'Haus', 'Rose', 'Apfel', 'Schule', 'Banane', 'Igel', 'Lampe'];
-    final word = words[_random.nextInt(words.length)];
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Deutsch');
     if (unit == 'Einzahl und Mehrzahl') return _pluralTask(grade, 'Deutsch');
     if (unit == 'Wort-Bild schreiben') return _wordImageWriting(grade);
+
     if (unit == 'Anfangslaute') {
+      final word = PrimarySchoolWordData.firstSoundWordForGrade(
+            grade,
+            seed: _serial + _random.nextInt(9999),
+          ) ??
+          PrimarySchoolWordData.nounForGrade(grade, _serial);
       final first = word.substring(0, 1).toUpperCase();
-      return _choiceTask('laut', grade, 'Deutsch', unit, 'Mit welchem Laut beginnt $word?', first, 'Sprich $word langsam. Der erste Laut ist $first.');
+      return _choiceTask(
+        'laut',
+        grade,
+        'Deutsch',
+        unit,
+        'Mit welchem Laut beginnt $word?',
+        first,
+        'Sprich $word langsam. Der erste Laut ist $first.',
+        customChoices: _soundChoices(first, uppercase: true),
+      );
     }
+
     if (unit == 'Endlaute') {
+      final word = PrimarySchoolWordData.endSoundWordForGrade(
+            grade,
+            seed: _serial + _random.nextInt(9999),
+          ) ??
+          PrimarySchoolWordData.nounForGrade(grade, _serial);
       final last = word.substring(word.length - 1).toLowerCase();
-      return _choiceTask('endlaut', grade, 'Deutsch', unit, 'Mit welchem Laut endet $word?', last, 'Sprich $word langsam. Der letzte Laut ist $last.');
+      return _choiceTask(
+        'endlaut',
+        grade,
+        'Deutsch',
+        unit,
+        'Mit welchem Laut endet $word?',
+        last,
+        'Sprich $word langsam. Der letzte Laut ist $last.',
+        customChoices: _soundChoices(last, uppercase: false),
+      );
     }
+
     if (unit == 'Buchstaben') {
       final letter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[_random.nextInt(26)];
-      return LumoTask(id: _id('buchstabe'), grade: grade, subject: 'Deutsch', unit: unit, prompt: 'Zeichne ein großes $letter.', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Ziehe den Buchstaben langsam mit dem Finger nach.', handwriting: true, visual: 'writing');
+      return LumoTask(
+        id: _id('buchstabe'),
+        grade: grade,
+        subject: 'Deutsch',
+        unit: unit,
+        prompt: 'Zeichne ein großes $letter.',
+        choices: const <String>['Fertig'],
+        answer: 'Fertig',
+        explanation: 'Ziehe den Buchstaben langsam mit dem Finger nach.',
+        handwriting: true,
+        visual: 'writing',
+      );
     }
+
     if (unit == 'Silben') {
-      final items = <String, int>{'Banane': 3, 'Mama': 2, 'Schokolade': 4, 'Fuchs': 1, 'Tomate': 3, 'Elefant': 3, 'Schule': 2, 'Rakete': 3};
-      final entry = items.entries.elementAt(_random.nextInt(items.length));
-      return _choiceTask('silben', grade, 'Deutsch', unit, 'Wie viele Silben hat ${entry.key}?', '${entry.value}', 'Sprich das Wort langsam und klatsche jeden Teil.', visual: 'syllables');
+      final word = _wordWithSyllablesForGrade(grade);
+      final syllables = PrimarySchoolWordData.syllablesFor(word) ?? <String>[word];
+      final answer = '${syllables.length}';
+      return _choiceTask(
+        'silben',
+        grade,
+        'Deutsch',
+        unit,
+        'Wie viele Silben hat $word?',
+        answer,
+        'Sprich das Wort langsam und klatsche jeden Teil.',
+        visual: 'syllables',
+        customChoices: _numberChoices(syllables.length, min: 1, max: 5),
+      );
     }
+
     if (unit == 'Reime') {
-      final pairs = <String, String>{'Haus': 'Maus', 'Ball': 'Fall', 'Hase': 'Nase', 'Sonne': 'Tonne', 'Kanne': 'Tanne', 'Maus': 'Haus', 'Stein': 'Bein', 'Hut': 'Mut'};
-      final entry = pairs.entries.elementAt(_random.nextInt(pairs.length));
-      // Reim-Distraktoren: zwei nicht-reimende Substantive
-      const nonRhymes = <String>['Hund', 'Auto', 'Schule', 'Brot', 'Kind'];
-      final distractors = (List<String>.from(nonRhymes)..shuffle(_random)).take(2).toList();
-      return _choiceTask('reim', grade, 'Deutsch', unit, 'Was reimt sich auf ${entry.key}?', entry.value, 'Reimwörter klingen am Ende gleich.', customChoices: <String>[entry.value, ...distractors]);
+      final pair = PrimarySchoolWordData.rhymePairForSeed(
+        _serial + _random.nextInt(9999),
+      );
+      final questionWord = pair.first;
+      final answer = pair.last;
+      final distractors = _pickDistinct(
+        PrimarySchoolWordData.nounsForGrade(grade),
+        count: 2,
+        exclude: <String>{questionWord, answer},
+      );
+      return _choiceTask(
+        'reim',
+        grade,
+        'Deutsch',
+        unit,
+        'Was reimt sich auf $questionWord?',
+        answer,
+        'Reimwörter klingen am Ende gleich.',
+        customChoices: <String>[answer, ...distractors],
+      );
     }
+
     if (unit == 'Artikel') {
-      final articles = <String, String>{'Haus': 'das', 'Sonne': 'die', 'Ball': 'der', 'Blume': 'die', 'Kind': 'das', 'Fuchs': 'der', 'Buch': 'das', 'Maus': 'die', 'Hund': 'der'};
-      final entry = articles.entries.elementAt(_random.nextInt(articles.length));
-      // Artikel-Distraktoren sind IMMER die anderen zwei Artikel
-      return _choiceTask('artikel', grade, 'Deutsch', unit, 'Welcher Artikel passt zu ${entry.key}?', entry.value, 'Sprich den Artikel mit dem Wort zusammen.', customChoices: const <String>['der', 'die', 'das']);
+      final words = PrimarySchoolWordData.articles.keys.toList();
+      final word = words[(_serial + _random.nextInt(9999)) % words.length];
+      final answer = PrimarySchoolWordData.articleFor(word) ?? 'der';
+      return _choiceTask(
+        'artikel',
+        grade,
+        'Deutsch',
+        unit,
+        'Welcher Artikel passt zu $word?',
+        answer,
+        'Sprich den Artikel mit dem Wort zusammen.',
+        customChoices: const <String>['der', 'die', 'das'],
+      );
     }
+
     if (unit == 'Tunwoerter') {
-      final verbs = <String>['laufen', 'malen', 'lesen', 'springen', 'essen', 'singen', 'lachen', 'spielen', 'tanzen', 'schreiben'];
-      final verb = verbs[_random.nextInt(verbs.length)];
-      // Distraktoren MUESSEN Nicht-Verben sein: Hauptwoerter und Adjektive
-      const nonVerbs = <String>['Hund', 'Haus', 'rot', 'Mama', 'Sonne', 'klein', 'Schule', 'gelb'];
-      final distractors = (List<String>.from(nonVerbs)..shuffle(_random)).take(2).toList();
-      return _choiceTask('verb', grade, 'Deutsch', unit, 'Welches Wort ist ein Tunwort?', verb, 'Ein Tunwort sagt, was jemand macht.', customChoices: <String>[verb, ...distractors]);
+      final answer = PrimarySchoolWordData.verbForSeed(
+        _serial + _random.nextInt(9999),
+      );
+      final distractors = _pickDistinct(
+        <String>[
+          ...PrimarySchoolWordData.nounsForGrade(grade),
+          ...PrimarySchoolWordData.adjectives,
+        ],
+        count: 2,
+        exclude: <String>{answer},
+      );
+      return _choiceTask(
+        'verb',
+        grade,
+        'Deutsch',
+        unit,
+        'Welches Wort ist ein Tunwort?',
+        answer,
+        'Ein Tunwort sagt, was jemand macht.',
+        customChoices: <String>[answer, ...distractors],
+      );
     }
+
     if (unit == 'Wiewoerter') {
-      final adj = <String>['groß', 'klein', 'warm', 'schnell', 'weich', 'kalt', 'hell', 'dunkel', 'schön', 'leise'];
-      final answer = adj[_random.nextInt(adj.length)];
-      // Distraktoren MUESSEN Nicht-Adjektive sein
-      const nonAdj = <String>['Hund', 'Schule', 'lesen', 'Mama', 'Brot', 'malen', 'Auto', 'tanzen'];
-      final distractors = (List<String>.from(nonAdj)..shuffle(_random)).take(2).toList();
-      return _choiceTask('adjektiv', grade, 'Deutsch', unit, 'Welches Wort beschreibt, wie etwas ist?', answer, 'Ein Wiewort beschreibt eine Eigenschaft.', customChoices: <String>[answer, ...distractors]);
+      final answer = PrimarySchoolWordData.adjectiveForSeed(
+        _serial + _random.nextInt(9999),
+      );
+      final distractors = _pickDistinct(
+        <String>[
+          ...PrimarySchoolWordData.nounsForGrade(grade),
+          ...PrimarySchoolWordData.verbs,
+        ],
+        count: 2,
+        exclude: <String>{answer},
+      );
+      return _choiceTask(
+        'adjektiv',
+        grade,
+        'Deutsch',
+        unit,
+        'Welches Wort beschreibt, wie etwas ist?',
+        answer,
+        'Ein Wiewort beschreibt eine Eigenschaft.',
+        customChoices: <String>[answer, ...distractors],
+      );
     }
+
     if (unit == 'Satz bauen') {
-      // Mehrere Varianten, damit keine direkte Wiederholung entsteht.
-      // Distraktoren sind WIRKLICHE Satz-Alternativen (falsche Reihenfolge),
-      // nicht zusammenhanglose Wörter wie 'Haus' oder 'Sonne'.
-      const variants = <_SatzbauVariant>[
-        _SatzbauVariant('Der Fuchs liest.', 'liest der Fuchs', 'Fuchs der liest'),
-        _SatzbauVariant('Die Sonne scheint.', 'scheint die Sonne', 'Sonne die scheint'),
-        _SatzbauVariant('Das Kind spielt.', 'spielt das Kind', 'Kind das spielt'),
-        _SatzbauVariant('Mama kocht Suppe.', 'kocht Mama Suppe', 'Suppe Mama kocht'),
-        _SatzbauVariant('Lumo lernt fleißig.', 'lernt Lumo fleißig', 'fleißig Lumo lernt'),
-        _SatzbauVariant('Der Hund bellt laut.', 'bellt laut der Hund', 'laut bellt Hund der'),
-      ];
-      final v = variants[_random.nextInt(variants.length)];
-      return _choiceTask('satzbau', grade, 'Deutsch', unit, 'Welcher Satz ist richtig?', v.correct, 'Ein Satz beginnt groß und endet mit einem Punkt.', customChoices: <String>[v.correct, v.wrong1, v.wrong2]);
+      final noun = PrimarySchoolWordData.nounForGrade(
+        grade,
+        _serial + _random.nextInt(9999),
+      );
+      final article = PrimarySchoolWordData.articleFor(noun) ?? 'das';
+      final verb = PrimarySchoolWordData.verbForSeed(
+        _serial + _random.nextInt(9999),
+      );
+      final correct = '${_capitalize(article)} $noun $verb.';
+      return _choiceTask(
+        'satzbau',
+        grade,
+        'Deutsch',
+        unit,
+        'Welcher Satz ist richtig?',
+        correct,
+        'Ein Satz beginnt groß und endet mit einem Punkt.',
+        customChoices: <String>[
+          correct,
+          '$verb $article $noun',
+          '$noun $article $verb',
+        ],
+      );
     }
-    if (unit == 'Namenswoerter' || unit == 'Hauptwoerter') {
-      const nouns = <String>['Hund', 'Haus', 'Schule', 'Sonne', 'Buch', 'Auto', 'Kind', 'Lampe'];
-      const nonNouns = <String>['lesen', 'rot', 'malen', 'klein', 'tanzen', 'schnell', 'springen', 'warm'];
-      final noun = nouns[_random.nextInt(nouns.length)];
-      final distractors = (List<String>.from(nonNouns)..shuffle(_random)).take(2).toList();
-      return _choiceTask('nomen', grade, 'Deutsch', unit, 'Welches Wort ist ein Namenswort?', noun, 'Namenswörter sind Dinge, Personen oder Tiere und werden groß geschrieben.', customChoices: <String>[noun, ...distractors]);
+
+    if (unit == 'Namenwoerter' ||
+        unit == 'Namenswoerter' ||
+        unit == 'Hauptwoerter') {
+      final answer = PrimarySchoolWordData.nounForGrade(
+        grade,
+        _serial + _random.nextInt(9999),
+      );
+      final distractors = _pickDistinct(
+        <String>[
+          ...PrimarySchoolWordData.verbs,
+          ...PrimarySchoolWordData.adjectives,
+        ],
+        count: 2,
+        exclude: <String>{answer},
+      );
+      return _choiceTask(
+        'nomen',
+        grade,
+        'Deutsch',
+        unit,
+        'Welches Wort ist ein Namenswort?',
+        answer,
+        'Namenswörter sind Dinge, Personen oder Tiere und werden groß geschrieben.',
+        customChoices: <String>[answer, ...distractors],
+      );
     }
-    return _choiceTask('satz', grade, 'Deutsch', 'Satz verstehen', 'Der Fuchs liest ein Buch. Was macht der Fuchs?', 'lesen', 'Suche im Satz das Tunwort.', customChoices: const <String>['lesen', 'Fuchs', 'Buch']);
+
+    return _sentenceUnderstanding(grade, unit);
+  }
+
+  LumoTask _sentenceUnderstanding(int grade, String unit) {
+    final noun = PrimarySchoolWordData.nounForGrade(
+      grade,
+      _serial + _random.nextInt(9999),
+    );
+    final article = PrimarySchoolWordData.articleFor(noun) ?? 'das';
+    final verb = PrimarySchoolWordData.verbForSeed(
+      _serial + _random.nextInt(9999),
+    );
+    final adjective = PrimarySchoolWordData.adjectiveForSeed(
+      _serial + _random.nextInt(9999),
+    );
+    final distractors = _pickDistinct(
+      <String>[noun, adjective, ...PrimarySchoolWordData.nounsForGrade(grade)],
+      count: 2,
+      exclude: <String>{verb},
+    );
+    final sentence = '${_capitalize(article)} $noun $verb $adjective.';
+    return _choiceTask(
+      'satz',
+      grade,
+      'Deutsch',
+      unit == 'Wortschatz' ? 'Wortschatz' : 'Satz verstehen',
+      '$sentence Was macht $article $noun?',
+      verb,
+      'Suche im Satz das Tunwort.',
+      customChoices: <String>[verb, ...distractors],
+    );
   }
 
   LumoTask _spelling(int grade, String unit) {
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Rechtschreibung');
-    final words = grade == 1 ? <String>['und', 'ist', 'Mama', 'Papa', 'Haus', 'Ball', 'Sonne'] : <String>['spielen', 'kommen', 'Schule', 'Freund', 'heute', 'klein', 'gross'];
+    final words = grade == 1
+        ? <String>['und', 'ist', 'Mama', 'Papa', 'Haus', 'Ball', 'Sonne']
+        : <String>['spielen', 'kommen', 'Schule', 'Freund', 'heute', 'klein', 'gross'];
     final correct = words[_random.nextInt(words.length)];
     if (unit == 'Gross und klein') {
-      final nouns = <String>['Haus', 'Kind', 'Fuchs', 'Schule', 'Blume'];
-      final noun = nouns[_random.nextInt(nouns.length)];
-      return _choiceTask('gross', grade, 'Rechtschreibung', unit, 'Wie schreibt man das Namenwort richtig?', noun, 'Namenwoerter schreibt man gross.');
+      final noun = PrimarySchoolWordData.nounForGrade(grade, _serial);
+      return _choiceTask(
+        'gross',
+        grade,
+        'Rechtschreibung',
+        unit,
+        'Wie schreibt man das Namenwort richtig?',
+        noun,
+        'Namenwoerter schreibt man gross.',
+      );
     }
     if (unit == 'Satzzeichen') {
-      return _choiceTask('punkt', grade, 'Rechtschreibung', unit, 'Welches Zeichen kommt am Ende von: Lumo liest', '.', 'Ein Aussagesatz endet mit einem Punkt.');
+      return _choiceTask(
+        'punkt',
+        grade,
+        'Rechtschreibung',
+        unit,
+        'Welches Zeichen kommt am Ende von: Lumo liest',
+        '.',
+        'Ein Aussagesatz endet mit einem Punkt.',
+        customChoices: const <String>['.', '?', '!'],
+      );
     }
     if (unit == 'Doppelmitlaut') {
-      return _choiceTask('doppel', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', 'kommen', 'Bei kommen hoerst du kurz o, darum mm.', customChoices: <String>['komen', 'kommen', 'komenn']);
+      return _choiceTask(
+        'doppel',
+        grade,
+        'Rechtschreibung',
+        unit,
+        'Welche Schreibweise ist richtig?',
+        'kommen',
+        'Bei kommen hoerst du kurz o, darum mm.',
+        customChoices: const <String>['komen', 'kommen', 'komenn'],
+      );
     }
     if (unit == 'Wortende') {
       return _choiceTask(
@@ -456,15 +834,23 @@ class ExerciseFactory {
         'Welches Wort endet mit t?',
         'Brot',
         'Sprich das Wort langsam bis zum letzten Laut. Brot endet mit t.',
-        customChoices: <String>['Brot', 'Hund', 'Mama'],
+        customChoices: const <String>['Brot', 'Rose', 'Maus'],
       );
     }
-    final wrong = correct.toLowerCase();
-    return _choiceTask('wort', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', correct, 'Schau jeden Buchstaben langsam an.', customChoices: <String>[correct, wrong, '${correct}e']);
+    return _choiceTask(
+      'wort',
+      grade,
+      'Rechtschreibung',
+      unit,
+      'Welche Schreibweise ist richtig?',
+      correct,
+      'Schau jeden Buchstaben langsam an.',
+      customChoices: <String>[correct, correct.toLowerCase(), '${correct}e'],
+    );
   }
 
   LumoTask _stOrSp(int grade, String subject) {
-    final data = <String, String>{
+    const data = <String, String>{
       'Stern': 'St',
       'Storch': 'St',
       'Stift': 'St',
@@ -489,7 +875,7 @@ class ExerciseFactory {
   }
 
   LumoTask _pluralTask(int grade, String subject) {
-    final data = <String, String>{
+    const data = <String, String>{
       'Schwan': 'Schwaene',
       'Glas': 'Glaeser',
       'Haus': 'Haeuser',
@@ -512,7 +898,7 @@ class ExerciseFactory {
   }
 
   LumoTask _wordImageWriting(int grade) {
-    final data = <String, String>{
+    const data = <String, String>{
       '🏠': 'Haus',
       '🦊': 'Fuchs',
       '☀️': 'Sonne',
@@ -520,6 +906,11 @@ class ExerciseFactory {
       '🍎': 'Apfel',
     };
     final entry = data.entries.elementAt(_random.nextInt(data.length));
+    final choices = _pickDistinct(
+      PrimarySchoolWordData.nounsForGrade(grade),
+      count: 3,
+      exclude: <String>{entry.value},
+    );
     return _choiceTask(
       'bildwort',
       grade,
@@ -529,7 +920,7 @@ class ExerciseFactory {
       entry.value,
       'Schau das Bild an und lies das passende Wort langsam.',
       visual: 'writing_line',
-      customChoices: <String>[entry.value, 'Haus', 'Ball', 'Sonne']..removeWhere((value) => value == entry.value && false),
+      customChoices: <String>[entry.value, ...choices.take(2)],
     );
   }
 
@@ -537,173 +928,272 @@ class ExerciseFactory {
     final letters = <String>['A', 'M', 'O', 'S', 'L', 'E', 'F', 'B', 'N', 'T'];
     final letter = letters[_random.nextInt(letters.length)];
     if (unit == 'Wort schreiben') {
-      final words = <String>['Mama', 'Lumo', 'Haus', 'Sonne', 'Fuchs'];
-      final word = words[_random.nextInt(words.length)];
-      return LumoTask(id: _id('schreiben'), grade: grade, subject: 'Schreiben', unit: unit, prompt: 'Schreibe das Wort: $word', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Schreibe langsam Buchstabe fuer Buchstabe.', handwriting: true, visual: 'writing');
+      final word = PrimarySchoolWordData.nounForGrade(grade, _serial);
+      return LumoTask(
+        id: _id('schreiben'),
+        grade: grade,
+        subject: 'Schreiben',
+        unit: unit,
+        prompt: 'Schreibe das Wort: $word',
+        choices: const <String>['Fertig'],
+        answer: 'Fertig',
+        explanation: 'Schreibe langsam Buchstabe fuer Buchstabe.',
+        handwriting: true,
+        visual: 'writing',
+      );
     }
     if (unit == 'Zahlen schreiben') {
       final n = _random.nextInt(10);
-      return LumoTask(id: _id('zahlspur'), grade: grade, subject: 'Schreiben', unit: unit, prompt: 'Schreibe die Zahl $n.', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Ziehe die Zahl ruhig mit dem Finger.', handwriting: true, visual: 'writing');
+      return LumoTask(
+        id: _id('zahlspur'),
+        grade: grade,
+        subject: 'Schreiben',
+        unit: unit,
+        prompt: 'Schreibe die Zahl $n.',
+        choices: const <String>['Fertig'],
+        answer: 'Fertig',
+        explanation: 'Ziehe die Zahl ruhig mit dem Finger.',
+        handwriting: true,
+        visual: 'writing',
+      );
     }
     if (unit == 'Satz abschreiben') {
-      return LumoTask(id: _id('satzspur'), grade: grade, subject: 'Schreiben', unit: unit, prompt: 'Schreibe: Lumo lernt.', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Schreibe Wort fuer Wort langsam ab.', handwriting: true, visual: 'writing');
+      return LumoTask(
+        id: _id('satzspur'),
+        grade: grade,
+        subject: 'Schreiben',
+        unit: unit,
+        prompt: 'Schreibe: Lumo lernt.',
+        choices: const <String>['Fertig'],
+        answer: 'Fertig',
+        explanation: 'Schreibe Wort fuer Wort langsam ab.',
+        handwriting: true,
+        visual: 'writing',
+      );
     }
-    return LumoTask(id: _id('spur'), grade: grade, subject: 'Schreiben', unit: unit, prompt: 'Spure den Buchstaben $letter nach.', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Beginne oben und fahre langsam die Form nach.', handwriting: true, visual: 'writing');
+    return LumoTask(
+      id: _id('spur'),
+      grade: grade,
+      subject: 'Schreiben',
+      unit: unit,
+      prompt: 'Zeichne ein großes $letter.',
+      choices: const <String>['Fertig'],
+      answer: 'Fertig',
+      explanation: 'Ziehe die Linie langsam und ruhig nach.',
+      handwriting: true,
+      visual: 'writing',
+    );
   }
 
   LumoTask _reading(int grade, String unit) {
-    if (unit == 'Bild und Wort') return _choiceTask('bildwort', grade, 'Lesen', unit, 'Welches Wort passt zum Tier 🦊?', 'Fuchs', 'Das Bild zeigt einen Fuchs.');
-    if (unit == 'Reihenfolge') return _choiceTask('folge', grade, 'Lesen', unit, 'Was kommt zuerst: Schuhe anziehen oder hinausgehen?', 'Schuhe anziehen', 'Ueberlege, was im Alltag zuerst passiert.');
-    final sentences = <String, String>{'Lumo malt einen Stern.': 'malt', 'Der Hund rennt.': 'rennt', 'Mia liest.': 'liest', 'Oma backt Kuchen.': 'backt'};
-    final entry = sentences.entries.elementAt(_random.nextInt(sentences.length));
-    return _choiceTask('lesen', grade, 'Lesen', unit, '${entry.key} Was passiert?', entry.value, 'Lies den Satz langsam und suche, was getan wird.');
+    final noun = PrimarySchoolWordData.nounForGrade(
+      grade,
+      _serial + _random.nextInt(9999),
+    );
+    final article = PrimarySchoolWordData.articleFor(noun) ?? 'das';
+    final verb = PrimarySchoolWordData.verbForSeed(_serial + _random.nextInt(9999));
+
+    if (unit == 'Woerter lesen' || unit == 'Bild und Wort') {
+      return _choiceTask(
+        'lesenwort',
+        grade,
+        'Lesen',
+        unit,
+        'Lies das Wort: $noun',
+        noun,
+        'Schau jeden Buchstaben an und lies langsam.',
+        customChoices: <String>[
+          noun,
+          ..._pickDistinct(
+            PrimarySchoolWordData.nounsForGrade(grade),
+            count: 2,
+            exclude: <String>{noun},
+          ),
+        ],
+      );
+    }
+
+    if (unit == 'Reihenfolge') {
+      final correct = '${_capitalize(article)} $noun $verb.';
+      return _choiceTask(
+        'reihenfolge',
+        grade,
+        'Lesen',
+        unit,
+        'Welche Reihenfolge ergibt einen Satz?',
+        correct,
+        'Ein Satz hat eine sinnvolle Reihenfolge.',
+        customChoices: <String>[correct, '$verb $article $noun', '$noun $verb $article'],
+      );
+    }
+
+    final sentence = '${_capitalize(article)} $noun $verb.';
+    return _choiceTask(
+      'lesesinn',
+      grade,
+      'Lesen',
+      unit,
+      '$sentence Was passiert im Satz?',
+      verb,
+      'Lies den Satz noch einmal und suche das Tunwort.',
+      customChoices: <String>[verb, noun, article],
+    );
   }
 
   LumoTask _english(int grade, String unit) {
-    final data = <String, Map<String, String>>{
-      'Farben': <String, String>{'red': 'Rot', 'blue': 'Blau', 'green': 'Gruen', 'yellow': 'Gelb'},
-      'Zahlen': <String, String>{'one': 'eins', 'two': 'zwei', 'three': 'drei', 'four': 'vier', 'five': 'fünf'},
-      'Tiere': <String, String>{'cat': 'Katze', 'dog': 'Hund', 'fox': 'Fuchs', 'bird': 'Vogel'},
-      'Schulsachen': <String, String>{'book': 'Buch', 'pen': 'Stift', 'bag': 'Tasche'},
-      'Begruessung': <String, String>{'hello': 'Hallo', 'bye': 'Tschuess', 'good morning': 'Guten Morgen'},
-      'Familie': <String, String>{'mum': 'Mama', 'dad': 'Papa', 'sister': 'Schwester'},
-      'Körper': <String, String>{'hand': 'Hand', 'foot': 'Fuss', 'eye': 'Auge'},
+    const data = <String, Map<String, String>>{
+      'Farben': <String, String>{'red': 'rot', 'blue': 'blau', 'green': 'gruen'},
+      'Zahlen': <String, String>{'one': 'eins', 'two': 'zwei', 'three': 'drei'},
+      'Tiere': <String, String>{'dog': 'Hund', 'cat': 'Katze', 'bird': 'Vogel'},
+      'Schulsachen': <String, String>{'pen': 'Stift', 'book': 'Buch', 'bag': 'Tasche'},
+      'Begruessung': <String, String>{'hello': 'hallo', 'bye': 'tschüss', 'thanks': 'danke'},
+      'Familie': <String, String>{'mum': 'Mama', 'dad': 'Papa', 'child': 'Kind'},
+      'Körper': <String, String>{'hand': 'Hand', 'foot': 'Fuß', 'head': 'Kopf'},
     };
-    final map = data[unit] ?? data['Tiere']!;
-    final entry = map.entries.elementAt(_random.nextInt(map.length));
-    return _choiceTask('englisch', grade, 'Englisch', unit, 'Was heisst ${entry.key}?', entry.value, '${entry.key} bedeutet ${entry.value}.', visual: 'english');
+    final bank = data[unit] ?? data['Farben']!;
+    final entry = bank.entries.elementAt(_random.nextInt(bank.length));
+    return _choiceTask(
+      'englisch',
+      grade,
+      'Englisch',
+      unit,
+      'Was bedeutet ${entry.key}?',
+      entry.value,
+      'Lies das englische Wort und denke an die Bedeutung.',
+      customChoices: <String>[entry.value, ...bank.values.where((v) => v != entry.value).take(2)],
+    );
   }
 
   LumoTask _science(int grade, String unit) {
-    // Pro Frage definieren wir explizit Distraktoren, damit nicht aus
-    // dem generischen Pool Quatsch wie 'Mama' oder 'Hund' bei
-    // 'Womit hoeren wir?' kommt. Distraktoren bleiben thematisch.
-    final questions = <String, Map<String, _ScienceQa>>{
-      'Tiere': <String, _ScienceQa>{
-        'Welches Tier legt Eier?': const _ScienceQa('Huhn', ['Huhn', 'Hund', 'Pferd']),
-        'Welches Tier lebt im Wasser?': const _ScienceQa('Fisch', ['Fisch', 'Katze', 'Vogel']),
-        'Welches Tier macht Honig?': const _ScienceQa('Biene', ['Biene', 'Marienkäfer', 'Schmetterling']),
-        'Welches Tier hat einen Rüssel?': const _ScienceQa('Elefant', ['Elefant', 'Pferd', 'Bär']),
-      },
-      'Pflanzen': <String, _ScienceQa>{
-        'Was braucht eine Pflanze zum Wachsen?': const _ScienceQa('Wasser', ['Wasser', 'Schokolade', 'Stein']),
-        'Was ist meist grün an der Pflanze?': const _ScienceQa('Blatt', ['Blatt', 'Wurzel', 'Blüte']),
-        'Wo wachsen die meisten Pflanzen?': const _ScienceQa('Erde', ['Erde', 'Wasser', 'Luft']),
-      },
-      'Jahreszeiten': <String, _ScienceQa>{
-        'Wann fällt oft Schnee?': const _ScienceQa('Winter', ['Winter', 'Sommer', 'Frühling']),
-        'Wann blühen viele Blumen?': const _ScienceQa('Frühling', ['Frühling', 'Herbst', 'Winter']),
-        'Wann fallen Blätter von den Bäumen?': const _ScienceQa('Herbst', ['Herbst', 'Sommer', 'Winter']),
-      },
-      'Körper': <String, _ScienceQa>{
-        'Womit sehen wir?': const _ScienceQa('Augen', ['Augen', 'Ohren', 'Hände']),
-        'Womit hören wir?': const _ScienceQa('Ohren', ['Ohren', 'Augen', 'Nase']),
-        'Womit riechen wir?': const _ScienceQa('Nase', ['Nase', 'Mund', 'Augen']),
-        'Womit schmecken wir?': const _ScienceQa('Zunge', ['Zunge', 'Hand', 'Fuß']),
-      },
-      'Verkehr': <String, _ScienceQa>{
-        'Bei welcher Ampelfarbe darf man gehen?': const _ScienceQa('Grün', ['Grün', 'Rot', 'Gelb']),
-        'Was tragen Radfahrer auf dem Kopf?': const _ScienceQa('Helm', ['Helm', 'Hut', 'Mütze']),
-      },
-      'Wetter': <String, _ScienceQa>{
-        'Was fällt aus Wolken?': const _ScienceQa('Regen', ['Regen', 'Sand', 'Steine']),
-        'Was leuchtet am Himmel und gibt Wärme?': const _ScienceQa('Sonne', ['Sonne', 'Mond', 'Stern']),
-        'Was sieht man am Himmel nach Regen?': const _ScienceQa('Regenbogen', ['Regenbogen', 'Stern', 'Schatten']),
-      },
-      'Familie und Gemeinschaft': <String, _ScienceQa>{
-        'Was sagt man, wenn man Hilfe bekommt?': const _ScienceQa('Danke', ['Danke', 'Tschüss', 'Stopp']),
-        'Wie nennt man die Schwester der Mama?': const _ScienceQa('Tante', ['Tante', 'Cousine', 'Oma']),
-      },
-      'Zeit und Kalender': <String, _ScienceQa>{
-        'Welcher Tag kommt nach Montag?': const _ScienceQa('Dienstag', ['Dienstag', 'Sonntag', 'Freitag']),
-        'Wie viele Tage hat eine Woche?': const _ScienceQa('7', ['7', '5', '10']),
-        'Welche Jahreszeit kommt nach Sommer?': const _ScienceQa('Herbst', ['Herbst', 'Frühling', 'Winter']),
-      },
+    final questions = <String, Map<String, String>>{
+      'Tiere': <String, String>{'Welches Tier kann fliegen?': 'Vogel'},
+      'Pflanzen': <String, String>{'Was braucht eine Pflanze zum Wachsen?': 'Wasser'},
+      'Jahreszeiten': <String, String>{'Wann schmilzt oft der Schnee?': 'Fruehling'},
+      'Körper': <String, String>{'Womit hoerst du?': 'Ohren'},
+      'Verkehr': <String, String>{'Bei welcher Farbe bleibst du stehen?': 'Rot'},
+      'Wetter': <String, String>{'Was faellt aus einer Wolke?': 'Regen'},
+      'Familie und Gemeinschaft': <String, String>{'Was hilft in der Gruppe?': 'teilen'},
+      'Zeit und Kalender': <String, String>{'Was kommt nach Montag?': 'Dienstag'},
     };
-    final map = questions[unit] ?? questions['Tiere']!;
-    final entry = map.entries.elementAt(_random.nextInt(map.length));
+    final bank = questions[unit] ?? questions['Tiere']!;
+    final entry = bank.entries.first;
     return _choiceTask(
       'sach',
       grade,
       'Sachunterricht',
       unit,
       entry.key,
-      entry.value.answer,
-      'Denke an deinen Alltag und wähle die passende Antwort.',
-      customChoices: entry.value.choices,
-      visual: 'auto',
+      entry.value,
+      'Denke an Alltag und Schule.',
+      customChoices: <String>[entry.value, 'Sonne', 'Stift'],
     );
   }
 
-  LumoTask _choiceTask(String prefix, int grade, String subject, String unit, String prompt, String answer, String explanation, {String visual = 'auto', List<String>? customChoices}) {
-    final choices = customChoices == null ? _choices(answer) : _normalizedChoices(answer, customChoices);
+  LumoTask _choiceTask(
+    String prefix,
+    int grade,
+    String subject,
+    String unit,
+    String prompt,
+    String answer,
+    String explanation, {
+    String visual = 'auto',
+    List<String>? customChoices,
+  }) {
+    final choices = customChoices == null
+        ? _numericOrWordChoices(answer)
+        : _distinctChoices(<String>[answer, ...customChoices]);
     choices.shuffle(_random);
-    return LumoTask(id: _id(prefix), grade: grade, subject: subject, unit: unit, prompt: prompt, choices: choices, answer: answer, explanation: explanation, visual: visual, difficulty: grade);
+    return LumoTask(
+      id: _id(prefix),
+      grade: grade,
+      subject: subject,
+      unit: unit,
+      prompt: prompt,
+      choices: choices,
+      answer: answer,
+      explanation: explanation,
+      visual: visual,
+    );
   }
 
-  List<String> _normalizedChoices(String answer, List<String> customChoices) {
-    final out = <String>[];
-    final seen = <String>{};
-    for (final value in <String>[answer, ...customChoices]) {
-      final v = value.trim();
-      if (v.isEmpty) continue;
-      final norm = v.toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
-      if (seen.add(norm)) out.add(v);
-    }
-    final pool = <String>['St', 'Sp', 'Haus', 'Fuchs', 'Sonne', 'Schwaene', 'Glaeser', 'Kinder', '10', '7', '8'];
-    var index = 0;
-    while (out.length < 3 && index < pool.length) {
-      final candidate = pool[index];
-      final norm = candidate.toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
-      if (seen.add(norm)) out.add(candidate);
-      index++;
-    }
-    return out.take(4).toList(growable: true);
+  List<String> _numericOrWordChoices(String answer) {
+    final n = int.tryParse(answer.replaceAll(RegExp(r'[^0-9-]'), ''));
+    if (n != null) return _numberChoices(n);
+    return _distinctChoices(<String>[answer, 'Blume', 'Kerze', 'Biene']);
   }
 
-  List<String> _choices(String answer) {
-    final number = int.tryParse(answer.replaceAll(RegExp(r'[^0-9-]'), ''));
-    if (number != null) {
-      final out = <String>[];
-      final seen = <String>{};
-      for (final value in <String>[answer, '${number + 1}', '${(number - 1).clamp(0, 999)}']) {
-        if (seen.add(value)) out.add(value);
-      }
-      var step = 2;
-      while (out.length < 3 && step < 20) {
-        final candidate = '${number + step}';
-        if (seen.add(candidate)) out.add(candidate);
-        step++;
-      }
-      return out;
+  List<String> _numberChoices(int answer, {int min = 0, int max = 120}) {
+    final values = <String>{'$answer'};
+    for (final delta in <int>[1, -1, 2, -2, 3]) {
+      if (values.length >= 3) break;
+      final value = (answer + delta).clamp(min, max).toInt();
+      values.add('$value');
     }
-    final pool = <String>['Katze', 'Hund', 'Haus', 'Blau', 'Rot', 'eins', 'zwei', 'lesen', 'laufen', 'Fuchs', 'Wasser', 'Winter', 'Gruen', 'Maus', 'Dreieck', 'Kreis', 'Mama', 'Papa'];
-    final out = <String>[answer];
-    final seen = <String>{answer.trim().toLowerCase()};
-    var safety = 0;
-    while (out.length < 3 && safety < 60) {
-      final candidate = pool[_random.nextInt(pool.length)];
-      final norm = candidate.trim().toLowerCase();
-      if (seen.add(norm)) out.add(candidate);
-      safety++;
+    return values.toList();
+  }
+
+  List<String> _soundChoices(String answer, {required bool uppercase}) {
+    final bank = uppercase
+        ? const <String>['A', 'B', 'D', 'F', 'K', 'L', 'M', 'R', 'S', 'T']
+        : const <String>['a', 'e', 'l', 'n', 'r', 's', 't', 'd', 'm', 'f'];
+    return _distinctChoices(<String>[answer, ...bank]).take(3).toList();
+  }
+
+  List<String> _distinctChoices(List<String> values) {
+    final result = <String>[];
+    for (final value in values) {
+      final normalized = value.trim().toLowerCase();
+      if (normalized.isEmpty) continue;
+      if (result.any((item) => item.trim().toLowerCase() == normalized)) continue;
+      result.add(value);
+      if (result.length >= 4) break;
     }
-    return out;
+    while (result.length < 3) {
+      result.add('Antwort ${result.length + 1}');
+    }
+    return result;
+  }
+
+  List<String> _pickDistinct(
+    List<String> pool, {
+    required int count,
+    Set<String> exclude = const <String>{},
+  }) {
+    final normalizedExclude = exclude.map((e) => e.toLowerCase()).toSet();
+    final shuffled = List<String>.from(pool)..shuffle(_random);
+    final result = <String>[];
+    for (final item in shuffled) {
+      if (result.length >= count) break;
+      if (normalizedExclude.contains(item.toLowerCase())) continue;
+      if (result.any((existing) => existing.toLowerCase() == item.toLowerCase())) {
+        continue;
+      }
+      result.add(item);
+    }
+    return result;
+  }
+
+  String _wordWithSyllablesForGrade(int grade) {
+    final words = List<String>.from(PrimarySchoolWordData.nounsForGrade(grade))
+      ..shuffle(_random);
+    for (final word in words) {
+      final syllables = PrimarySchoolWordData.syllablesFor(word);
+      if (syllables != null && syllables.isNotEmpty) return word;
+    }
+    return PrimarySchoolWordData.nounForGrade(grade, _serial);
+  }
+
+  String _capitalize(String value) {
+    if (value.isEmpty) return value;
+    return value.substring(0, 1).toUpperCase() + value.substring(1);
   }
 }
 
-/// Hilfs-Datentyp fuer Satzbau-Aufgaben:
-/// Ein korrekter Satz und zwei Varianten mit falscher Wortreihenfolge.
-/// Distraktoren sind echte Satz-Alternativen, keine Fueller wie 'Haus'.
 class _SatzbauVariant {
   const _SatzbauVariant(this.correct, this.wrong1, this.wrong2);
+
   final String correct;
   final String wrong1;
   final String wrong2;
-}
-
-/// Sachunterricht-Antwort: korrekte Antwort + thematische Distraktoren.
-class _ScienceQa {
-  const _ScienceQa(this.answer, this.choices);
-  final String answer;
-  final List<String> choices;
 }
