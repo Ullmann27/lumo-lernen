@@ -18,10 +18,22 @@ class SettingsContent extends StatefulWidget {
 }
 
 class _SettingsContentState extends State<SettingsContent> {
+  /// Diagnose-Versionslabel. Heinz sieht sofort, ob er die neue
+  /// APK installiert hat. Bei jedem groesseren Health-Fix
+  /// hochzaehlen.
+  static const String _aiDiagnosticsVersion = 'KI-Health-Client v4 (root-slash + diagnostics + smoketest)';
+
   late AppSettings _settings = widget.appState.state.settings;
   bool _saving = false;
   bool _checkingHealth = false;
+  bool _runningSmokeTest = false;
   LumoAiHealthStatus? _lastHealth;
+  LumoAiSmokeTestResult? _lastSmokeTest;
+  /// Live-URL aus dem Eingabefeld. Wird bei jedem Tastendruck
+  /// aktualisiert, damit "Server pruefen" gegen die wirklich
+  /// sichtbare URL prueft, auch wenn Heinz noch nicht
+  /// gespeichert/Enter gedrueckt hat.
+  String _currentUrlInField = '';
   int _aiStatsRevision = 0;
   static const LumoAiProxyClient _proxyClient = LumoAiProxyClient();
   static const AiTaskCache _aiTaskCache = AiTaskCache();
@@ -29,6 +41,7 @@ class _SettingsContentState extends State<SettingsContent> {
   @override
   void initState() {
     super.initState();
+    _currentUrlInField = _settings.aiProxyUrl;
     // Render-Warmup: Beim Oeffnen des Elternbereichs schon den
     // Server anstossen, damit "Server pruefen" gleich gruen wird
     // statt 30s zu warten. Fire-and-forget, kein State-Update.
@@ -67,15 +80,45 @@ class _SettingsContentState extends State<SettingsContent> {
   }
 
   Future<void> _runHealthCheck() async {
+    // Aktuellen Live-Wert aus dem Eingabefeld lesen, NICHT den
+    // gespeicherten _settings.aiProxyUrl. Heinz kann die URL
+    // geaendert haben ohne Submit/Speichern.
+    final candidateUrl = _currentUrlInField.trim().isEmpty
+        ? _settings.aiProxyUrl
+        : _currentUrlInField.trim();
+    final sanitized = AppSettings.sanitizeProxyUrl(candidateUrl);
+
+    // Wenn die geprueften URL anders ist als die gespeicherte,
+    // speichern wir sie zuerst, damit der Check auch in spaeteren
+    // Sessions die richtige URL nutzt.
+    if (sanitized != _settings.aiProxyUrl) {
+      await _save(_settings.copyWith(aiProxyUrl: sanitized));
+    }
+
     setState(() {
       _checkingHealth = true;
       _lastHealth = null;
     });
-    final result = await _proxyClient.checkHealth(_settings.aiProxyUrl);
+    final result = await _proxyClient.checkHealth(sanitized);
     if (!mounted) return;
     setState(() {
       _checkingHealth = false;
       _lastHealth = result;
+    });
+  }
+
+  Future<void> _runSmokeTest() async {
+    // Eltern-Smoke-Test gegen /chat. Sendet neutrale Test-Nachricht
+    // ohne Kinderdaten. Verwendet aktuelle gespeicherte Settings.
+    setState(() {
+      _runningSmokeTest = true;
+      _lastSmokeTest = null;
+    });
+    final result = await _proxyClient.parentSmokeTest(_settings);
+    if (!mounted) return;
+    setState(() {
+      _runningSmokeTest = false;
+      _lastSmokeTest = result;
     });
   }
 
@@ -186,6 +229,7 @@ class _SettingsContentState extends State<SettingsContent> {
             initialValue: _settings.aiProxyUrl,
             enabled: _settings.aiProxyEnabled,
             onSubmitted: (value) => _save(_settings.copyWith(aiProxyUrl: AppSettings.sanitizeProxyUrl(value))),
+            onChanged: (value) => _currentUrlInField = value,
           ),
           const SizedBox(height: 8),
           Wrap(
@@ -206,12 +250,27 @@ class _SettingsContentState extends State<SettingsContent> {
                     : const Icon(Icons.health_and_safety_rounded, size: 18),
                 label: Text(_checkingHealth ? 'Server wacht auf …' : 'Server prüfen'),
               ),
+              OutlinedButton.icon(
+                onPressed: (_runningSmokeTest || !_settings.aiProxyEnabled) ? null : _runSmokeTest,
+                icon: _runningSmokeTest
+                    ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
+                    : const Icon(Icons.chat_bubble_outline_rounded, size: 18),
+                label: Text(_runningSmokeTest ? 'Sende Test …' : 'KI-Testantwort prüfen'),
+              ),
             ],
           ),
           if (_lastHealth != null) ...[
             const SizedBox(height: 8),
             _HealthStatusBadge(status: _lastHealth!),
+            const SizedBox(height: 8),
+            _HealthDiagnosticsCard(status: _lastHealth!),
           ],
+          if (_lastSmokeTest != null) ...[
+            const SizedBox(height: 8),
+            _SmokeTestResultCard(result: _lastSmokeTest!),
+          ],
+          const SizedBox(height: 8),
+          _DiagnosticsVersionLabel(version: _aiDiagnosticsVersion),
           const SizedBox(height: 12),
           _AiTutorStatsPanel(
             key: ValueKey(_aiStatsRevision),
@@ -325,11 +384,17 @@ class _SwitchRow extends StatelessWidget {
 }
 
 class _ProxyUrlField extends StatefulWidget {
-  const _ProxyUrlField({required this.initialValue, required this.enabled, required this.onSubmitted});
+  const _ProxyUrlField({
+    required this.initialValue,
+    required this.enabled,
+    required this.onSubmitted,
+    this.onChanged,
+  });
 
   final String initialValue;
   final bool enabled;
   final ValueChanged<String> onSubmitted;
+  final ValueChanged<String>? onChanged;
 
   @override
   State<_ProxyUrlField> createState() => _ProxyUrlFieldState();
@@ -359,6 +424,7 @@ class _ProxyUrlFieldState extends State<_ProxyUrlField> {
       enabled: widget.enabled,
       keyboardType: TextInputType.url,
       textInputAction: TextInputAction.done,
+      onChanged: widget.onChanged,
       onSubmitted: widget.onSubmitted,
       onEditingComplete: () => widget.onSubmitted(_controller.text),
       decoration: InputDecoration(
@@ -686,6 +752,166 @@ class _HealthStatusBadge extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Eltern-Diagnose unter dem Health-Badge. Zeigt technische
+/// Details zur letzten Gesundheitsprüfung. Niemals API-Key,
+/// niemals Kinderdaten.
+class _HealthDiagnosticsCard extends StatelessWidget {
+  const _HealthDiagnosticsCard({required this.status});
+
+  final LumoAiHealthStatus status;
+
+  @override
+  Widget build(BuildContext context) {
+    final lines = <_DiagLine>[
+      _DiagLine('reachable', status.reachable.toString()),
+      _DiagLine('openAiConfigured', status.openAiConfigured.toString()),
+      _DiagLine('fullyOk', status.fullyOk.toString()),
+      if (status.statusCode != null) _DiagLine('HTTP', status.statusCode.toString()),
+      if (status.endpoint != null) _DiagLine('endpoint', status.endpoint!),
+      if (status.checkedUrl != null) _DiagLine('URL', status.checkedUrl!),
+      if (status.service != null) _DiagLine('service', status.service!),
+      if (status.rawBodySnippet != null) _DiagLine('raw', status.rawBodySnippet!),
+    ];
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF1F4F8),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Diagnose (Eltern)',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w800,
+              fontSize: 12,
+              color: Color(0xFF334155),
+            ),
+          ),
+          const SizedBox(height: 6),
+          ...lines.map((l) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 1),
+                child: RichText(
+                  text: TextSpan(
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 11,
+                      color: Color(0xFF334155),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: '${l.label}: ',
+                        style: const TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                      TextSpan(text: l.value),
+                    ],
+                  ),
+                ),
+              )),
+        ],
+      ),
+    );
+  }
+}
+
+class _DiagLine {
+  const _DiagLine(this.label, this.value);
+  final String label;
+  final String value;
+}
+
+class _SmokeTestResultCard extends StatelessWidget {
+  const _SmokeTestResultCard({required this.result});
+
+  final LumoAiSmokeTestResult result;
+
+  @override
+  Widget build(BuildContext context) {
+    final ok = result.success;
+    final bg = ok ? const Color(0xFFD9F4D9) : const Color(0xFFFFE0E0);
+    final fg = ok ? const Color(0xFF1F6F1F) : const Color(0xFF8A1F1F);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                ok ? Icons.check_circle_rounded : Icons.error_rounded,
+                color: fg,
+                size: 20,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                ok ? 'KI-Test erfolgreich' : 'KI-Test fehlgeschlagen',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900,
+                  color: fg,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'HTTP ${result.statusCode} · source: ${result.source}',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w700,
+              fontSize: 11,
+              color: fg,
+            ),
+          ),
+          if (result.replySnippet.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(
+              'Antwort: ${result.replySnippet}',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                color: fg,
+                fontStyle: ok ? FontStyle.normal : FontStyle.italic,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _DiagnosticsVersionLabel extends StatelessWidget {
+  const _DiagnosticsVersionLabel({required this.version});
+
+  final String version;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        version,
+        style: const TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: 10,
+          color: Color(0xFF94A3B8),
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
