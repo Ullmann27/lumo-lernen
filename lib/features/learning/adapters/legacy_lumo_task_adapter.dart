@@ -1,3 +1,4 @@
+import '../../../core/primary_school_word_data.dart';
 import '../../../core/safe_fallback_pool.dart';
 import '../../../core/school_exercise_generator.dart';
 import '../../../core/task_quality_guard.dart';
@@ -269,6 +270,9 @@ class LegacyLumoTaskAdapter {
       return <String, Object?>{'symbol': WritingTargetParser.parse(task.prompt)};
     }
 
+    final soundTask = _basicSoundTaskData(task);
+    if (soundTask != null) return soundTask;
+
     if (task.visual == 'number_house') {
       return _numberHouseData(task);
     }
@@ -311,10 +315,39 @@ class LegacyLumoTaskAdapter {
 
     if (task.visual == 'syllables') {
       final match = RegExp(r'hat\s+([^?]+)\?').firstMatch(task.prompt);
-      return <String, Object?>{'word': match?.group(1)?.trim()};
+      final word = match?.group(1)?.trim();
+      final syllables = word == null ? null : PrimarySchoolWordData.syllablesFor(word);
+      return <String, Object?>{
+        'word': word,
+        if (syllables != null) 'syllables': syllables,
+      };
     }
 
     return const <String, Object?>{};
+  }
+
+  Map<String, Object?>? _basicSoundTaskData(LumoTask task) {
+    if (task.unit == 'Anfangslaute') {
+      final match = RegExp(r'Mit welchem Laut beginnt\s+(.+?)\?').firstMatch(task.prompt);
+      final word = match?.group(1)?.trim();
+      if (word == null || word.isEmpty) return null;
+      return <String, Object?>{
+        'word': word,
+        'highlight': 'start',
+        'sound': task.answer,
+      };
+    }
+    if (task.unit == 'Endlaute') {
+      final match = RegExp(r'Mit welchem Laut endet\s+(.+?)\?').firstMatch(task.prompt);
+      final word = match?.group(1)?.trim();
+      if (word == null || word.isEmpty) return null;
+      return <String, Object?>{
+        'word': word,
+        'highlight': 'end',
+        'sound': task.answer,
+      };
+    }
+    return null;
   }
 
   Map<String, Object?> _numberHouseData(LumoTask task) {
