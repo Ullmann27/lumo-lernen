@@ -37,7 +37,7 @@ class StarEconomyRepository {
       totalXp: totalXp,
       level: StarLevelCurve.levelForStars(totalStars),
       todayRegularStars: todayRegularStars,
-      todayRemainingRegularStars: (maxRegularStarsPerDay - todayRegularStars).clamp(0, maxRegularStarsPerDay),
+      todayRemainingRegularStars: _clampInt(maxRegularStarsPerDay - todayRegularStars, 0, maxRegularStarsPerDay),
       entries: entries,
     );
   }
@@ -57,10 +57,10 @@ class StarEconomyRepository {
   }) async {
     final createdAt = now ?? DateTime.now();
     final snapshot = await load(childId: childId);
-    final sanitizedRequest = requestedStars.clamp(0, 500);
+    final sanitizedRequest = _clampInt(requestedStars, 0, 500);
     final grantedStars = allowBeyondDailyCap
         ? sanitizedRequest
-        : sanitizedRequest.clamp(0, snapshot.todayRemainingRegularStars);
+        : _clampInt(sanitizedRequest, 0, snapshot.todayRemainingRegularStars);
 
     if (grantedStars == 0 && xp <= 0) {
       return StarGrantResult(
@@ -75,7 +75,7 @@ class StarEconomyRepository {
     final entry = StarLedgerEntry(
       id: 'star_${createdAt.microsecondsSinceEpoch}',
       stars: grantedStars,
-      xp: xp.clamp(0, 1000),
+      xp: _clampInt(xp, 0, 1000),
       reason: reason,
       source: source,
       createdAt: createdAt,
@@ -133,6 +133,12 @@ class StarEconomyRepository {
     } catch (_) {
       return const <StarLedgerEntry>[];
     }
+  }
+
+  int _clampInt(int value, int min, int max) {
+    if (value < min) return min;
+    if (value > max) return max;
+    return value;
   }
 }
 
@@ -215,7 +221,7 @@ class StarLedgerEntry {
     }
     final createdAt = DateTime.tryParse(createdRaw);
     if (createdAt == null) return null;
-    final reason = StarRewardReason.values.where((value) => value.name == reasonRaw).firstOrNull;
+    final reason = _reasonByName(reasonRaw);
     if (reason == null) return null;
     return StarLedgerEntry(
       id: id,
@@ -226,6 +232,13 @@ class StarLedgerEntry {
       createdAt: createdAt,
       allowBeyondDailyCap: json['allowBeyondDailyCap'] == true,
     );
+  }
+
+  static StarRewardReason? _reasonByName(String name) {
+    for (final value in StarRewardReason.values) {
+      if (value.name == name) return value;
+    }
+    return null;
   }
 }
 
