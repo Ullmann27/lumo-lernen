@@ -37,8 +37,8 @@ class HomeContent extends StatelessWidget {
       appState: appState,
       subject: 'Hallo',
       subjectAccent: '$childName!',
-      subtitle: 'Was moechtest du heute lernen?',
-      greeting: 'Schoen, dass du da bist!',
+      subtitle: 'Was möchtest du heute lernen?',
+      greeting: 'Schön, dass du da bist!',
       lumoMessage: 'Heute warten\nspannende Aufgaben\nauf dich!',
       ctaLabel: 'Aufgabe starten',
       onCtaPressed: () => _startPractice(
@@ -47,17 +47,17 @@ class HomeContent extends StatelessWidget {
         message: 'Ich suche dir\neine passende Aufgabe\naus.',
       ),
       headerAccent: LumoColors.orange,
-      dailyMissionTitle: 'Taegliche Mission',
+      dailyMissionTitle: 'Tägliche Mission',
       dailyMissionSubtitle: 'Starte heute eine Lernrunde',
       dailyMissionDone: 1,
       dailyMissionTotal: 3,
       dailyMissionRewardStars: 10,
       dailyMissionRewardXp: 50,
-      encourageMessage: 'Du machst grossartige Fortschritte! Heute wartet eine neue Lernmission auf dich.',
+      encourageMessage: 'Du machst großartige Fortschritte! Heute wartet eine neue Lernmission auf dich.',
       topicTiles: [
         LumoSubjectTile(
           title: 'Mathe mit Lumo',
-          subtitle: 'Rechnen, Zaehlen und Knobeln',
+          subtitle: 'Rechnen, Zählen und Knobeln',
           iconEmoji: 'M',
           illustrationEmoji: '+',
           accent: LumoColors.math,
@@ -67,12 +67,12 @@ class HomeContent extends StatelessWidget {
           onTap: () => _startPractice(
             subject: 'Mathematik',
             unit: 'Alle',
-            message: 'Mathe startet.\nRuhig zaehlen,\ndann antworten.',
+            message: 'Mathe startet.\nRuhig zählen,\ndann antworten.',
           ),
         ),
         LumoSubjectTile(
           title: 'Deutsch mit Lumo',
-          subtitle: 'Lesen, Schreiben, Woerter entdecken',
+          subtitle: 'Lesen, Schreiben, Wörter entdecken',
           iconEmoji: 'D',
           illustrationEmoji: 'ABC',
           accent: LumoColors.purple,
@@ -95,7 +95,7 @@ class HomeContent extends StatelessWidget {
               subject: 'Lesen',
               unit: 'Aktives Lesen',
               mood: LumoMood.think,
-              lumoMessage: 'Ich hoere dir\nbeim Lesen zu.\nSatz fuer Satz.',
+              lumoMessage: 'Ich höre dir\nbeim Lesen zu.\nSatz für Satz.',
             ));
             onSection(LumoSection.reading);
           },
