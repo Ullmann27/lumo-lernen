@@ -8,8 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class RecentTaskRepository {
   const RecentTaskRepository();
 
-  static const int _maxTaskKeys = 80;
-  static const int _maxUnits = 10;
+  static const int maxTaskKeys = 150;
+  static const int maxUnits = 16;
   static const String _separator = '|';
 
   Future<List<String>> loadTaskKeys({
@@ -34,7 +34,7 @@ class RecentTaskRepository {
     required List<String> keys,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    final trimmed = _trim(keys, _maxTaskKeys);
+    final trimmed = _trim(keys, maxTaskKeys);
     await prefs.setString(_taskKey(childId, subject), _encode(trimmed));
   }
 
@@ -44,13 +44,22 @@ class RecentTaskRepository {
     required List<String> units,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    final trimmed = _trim(units, _maxUnits);
+    final trimmed = _trim(units, maxUnits);
     await prefs.setString(_unitKey(childId, subject), _encode(trimmed));
   }
 
   List<String> _trim(List<String> values, int maxLength) {
-    if (values.length <= maxLength) return List<String>.from(values);
-    return values.sublist(values.length - maxLength);
+    final seen = <String>{};
+    final reversed = <String>[];
+    for (final raw in values.reversed) {
+      final value = raw.trim();
+      if (value.isEmpty) continue;
+      final normalized = value.toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+      if (seen.add(normalized)) reversed.add(value);
+    }
+    final unique = reversed.reversed.toList(growable: false);
+    if (unique.length <= maxLength) return unique;
+    return unique.sublist(unique.length - maxLength);
   }
 
   String _taskKey(String childId, String subject) =>
