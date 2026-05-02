@@ -565,7 +565,7 @@ class _AiSafetyNotice extends StatelessWidget {
                 Text(
                   headline,
                   style: LumoTextStyles.caption.copyWith(
-                    color: LumoColors.ink800,
+                    color: LumoColors.ink900,
                     fontWeight: FontWeight.w900,
                     fontSize: 14,
                   ),
