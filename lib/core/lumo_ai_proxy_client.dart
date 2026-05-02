@@ -50,10 +50,37 @@ class LumoAiProxyClient {
       );
     }
 
+    // Erster Versuch mit normalem Timeout (warm)
+    final firstAttempt = await _runChatAttempt(baseUri, text, history, state, _timeout);
+    if (firstAttempt != null) return firstAttempt;
+
+    // Bei Timeout/Reset: Server schlaeft moeglicherweise. Render Free Tier
+    // braucht 20-50s zum Aufwachen. Zweiter Versuch mit Cold-Start-Geduld.
+    final secondAttempt = await _runChatAttempt(baseUri, text, history, state, _coldStartTimeout, isRetry: true);
+    if (secondAttempt != null) return secondAttempt;
+
+    // Beide Versuche fehlgeschlagen -> echtes Server-Problem
+    return const LumoAiProxyResponse(
+      reply: 'Der Lumo-KI-Server antwortet auch nach längerem Warten nicht. Lumo hilft dir lokal weiter.',
+      blocked: false,
+      source: 'proxy_unreachable',
+    );
+  }
+
+  /// Einzelner Chat-Versuch. Liefert null nur bei TimeoutException
+  /// oder Verbindungsfehler (retry-faehig). Sonst Antwort.
+  Future<LumoAiProxyResponse?> _runChatAttempt(
+    Uri baseUri,
+    String text,
+    List<LumoAiChatTurn> history,
+    LumoSessionState state,
+    Duration timeout, {
+    bool isRetry = false,
+  }) async {
     final endpoint = _chatEndpoint(baseUri);
-    final client = HttpClient()..connectionTimeout = _timeout;
+    final client = HttpClient()..connectionTimeout = timeout;
     try {
-      final request = await client.postUrl(endpoint).timeout(_timeout);
+      final request = await client.postUrl(endpoint).timeout(timeout);
       request.headers.contentType = ContentType.json;
       request.headers.set(HttpHeaders.acceptHeader, 'application/json');
       final payload = <String, dynamic>{
@@ -66,8 +93,8 @@ class LumoAiProxyClient {
       };
       request.write(jsonEncode(payload));
 
-      final response = await request.close().timeout(_timeout);
-      final raw = await response.transform(utf8.decoder).join().timeout(_timeout);
+      final response = await request.close().timeout(timeout);
+      final raw = await response.transform(utf8.decoder).join().timeout(timeout);
       if (response.statusCode < 200 || response.statusCode >= 300) {
         return LumoAiProxyResponse(
           reply: 'Der Lumo-KI-Server antwortet gerade nicht. Wir üben ohne Cloud weiter.',
@@ -104,17 +131,15 @@ class LumoAiProxyClient {
         reply: reply,
         blocked: decoded['blocked'] as bool? ?? false,
         ruleId: decoded['ruleId'] as String?,
-        source: decoded['source'] as String? ?? 'proxy',
+        source: decoded['source'] as String? ?? (isRetry ? 'proxy_retry' : 'proxy'),
       );
     } on TimeoutException {
-      return const LumoAiProxyResponse(
-        reply: 'Der Lumo-KI-Server braucht zu lange. Ich bleibe bei dir und helfe lokal weiter.',
-        blocked: false,
-        source: 'proxy_timeout',
-      );
+      return null; // -> Retry-Signal an ask()
+    } on SocketException {
+      return null; // -> Retry-Signal an ask()
     } catch (_) {
       return const LumoAiProxyResponse(
-        reply: 'Ich kann den Lumo-KI-Server gerade nicht erreichen. Wir üben sicher offline weiter.',
+        reply: 'Verbindung zum KI-Server nicht möglich. Lumo hilft dir lokal weiter.',
         blocked: false,
         source: 'proxy_error',
       );
@@ -338,10 +363,46 @@ class LumoAiProxyClient {
     final baseUri = _validatedBaseUri(settings.aiProxyUrl);
     if (baseUri == null) return const <LumoAiTaskDraft>[];
 
+    // Erster Versuch (warm)
+    final firstAttempt = await _runTaskBatchAttempt(
+      baseUri: baseUri,
+      subject: subject,
+      grade: grade,
+      units: units,
+      count: count,
+      childName: childName,
+      timeout: _batchTimeout,
+    );
+    if (firstAttempt != null) return firstAttempt;
+
+    // Zweiter Versuch mit Cold-Start-Geduld
+    final secondAttempt = await _runTaskBatchAttempt(
+      baseUri: baseUri,
+      subject: subject,
+      grade: grade,
+      units: units,
+      count: count,
+      childName: childName,
+      timeout: _coldStartTimeout,
+    );
+    return secondAttempt ?? const <LumoAiTaskDraft>[];
+  }
+
+  /// Einzelner Batch-Versuch. Liefert null bei Timeout/Reset (retry-fähig),
+  /// sonst die Liste (auch wenn leer).
+  Future<List<LumoAiTaskDraft>?> _runTaskBatchAttempt({
+    required Uri baseUri,
+    required String subject,
+    required int grade,
+    required List<String> units,
+    required int count,
+    String? childName,
+    required Duration timeout,
+  }) async {
     final endpoint = _tasksEndpoint(baseUri);
-    final client = HttpClient()..connectionTimeout = _batchTimeout;
+    final client = HttpClient()..connectionTimeout = timeout;
     try {
-      final request = await client.postUrl(endpoint).timeout(_batchTimeout);
+      final request = await client.postUrl(endpoint).timeout(timeout);
       request.headers.contentType = ContentType.json;
       request.headers.set(HttpHeaders.acceptHeader, 'application/json');
       final payload = <String, dynamic>{
@@ -352,11 +413,11 @@ class LumoAiProxyClient {
         if (childName != null && childName.isNotEmpty) 'childName': childName,
       };
       request.write(jsonEncode(payload));
-      final response = await request.close().timeout(_batchTimeout);
+      final response = await request.close().timeout(timeout);
       if (response.statusCode < 200 || response.statusCode >= 300) {
         return const <LumoAiTaskDraft>[];
       }
-      final raw = await response.transform(utf8.decoder).join().timeout(_batchTimeout);
+      final raw = await response.transform(utf8.decoder).join().timeout(timeout);
       final decoded = jsonDecode(raw);
       if (decoded is! Map) return const <LumoAiTaskDraft>[];
       final list = decoded['tasks'];
@@ -374,7 +435,9 @@ class LumoAiProxyClient {
       }
       return out;
     } on TimeoutException {
-      return const <LumoAiTaskDraft>[];
+      return null; // Retry-Signal
+    } on SocketException {
+      return null; // Retry-Signal
     } catch (_) {
       return const <LumoAiTaskDraft>[];
     } finally {

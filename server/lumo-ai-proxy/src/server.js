@@ -331,6 +331,28 @@ const server = createServer(async (req, res) => {
   }
 });
 
-server.listen(port, () => {
-  console.log(`Lumo AI proxy listening on http://localhost:${port}`);
+// Auf Render und in Cloud-Containern MUSS der Server explizit auf 0.0.0.0
+// lauschen, sonst nimmt der Loadbalancer keine Verbindungen an. Ohne diesen
+// Bind-Host kann der externe Health-Check 404/Timeout liefern obwohl der
+// Service oben ist.
+server.listen(port, '0.0.0.0', () => {
+  console.log(`Lumo AI proxy listening on 0.0.0.0:${port}`);
 });
+
+// Graceful shutdown fuer Render. Ohne diesen Handler wird der Service hart
+// abgebrochen und der naechste Request bekommt 502/504, bis Render den
+// Container neu startet. Mit SIGTERM-Handler fahren wir sauber runter.
+function shutdown(signal) {
+  console.log(`[lumo-ai-proxy] ${signal} received, closing server`);
+  server.close((err) => {
+    if (err) {
+      console.error('[lumo-ai-proxy] server close error', err);
+      process.exit(1);
+    }
+    process.exit(0);
+  });
+  // Hard-Stop nach 10s falls aktive Requests haengen
+  setTimeout(() => process.exit(0), 10000).unref();
+}
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));
