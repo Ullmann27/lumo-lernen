@@ -21,7 +21,7 @@ class DailyRecommendationEngine {
       final weak = weakSkills.first;
       blocks.add(DailyRecommendationBlock(
         title: 'Foerderblock: ${weak.unit}',
-        description: 'Kurz und ruhig ueben. Lumo nimmt zuerst einen leichteren Schritt.',
+        description: 'Kurz und ruhig üben. Lumo nimmt zuerst einen leichteren Schritt.',
         subject: weak.subject,
         unit: weak.unit,
         minutes: 6,
@@ -45,7 +45,7 @@ class DailyRecommendationEngine {
       blocks.add(DailyRecommendationBlock(
         title: 'Lesefuchs-Runde',
         description: words == null || words.isEmpty
-            ? 'Eine kurze Geschichte Satz fuer Satz lesen.'
+            ? 'Eine kurze Geschichte Satz für Satz lesen.'
             : 'Problemwoerter wiederholen: $words.',
         subject: 'Lesen',
         unit: 'Aktives Lesen',
@@ -102,7 +102,7 @@ class DailyRecommendationEngine {
       return 'Morgen machen wir zuerst den wackeligen Schritt kleiner. Danach kommt etwas, das du schon gut kannst.';
     }
     if (latestReading != null && latestReading.problemWords.isNotEmpty) {
-      return 'Morgen lesen wir kurz weiter und ueben deine schwierigen Woerter ganz ruhig.';
+      return 'Morgen lesen wir kurz weiter und üben deine schwierigen Wörter ganz ruhig.';
     }
     return 'Morgen starten wir kurz, freundlich und mit einer Aufgabe, die zu dir passt.';
   }
@@ -172,7 +172,7 @@ class ParentReportEngine {
       strengths: strengths.isEmpty ? const <String>['Leserunde begonnen'] : strengths,
       weaknesses: weaknesses,
       errorPatterns: latest.problemWords,
-      recommendedAction: latest.problemWords.isEmpty ? 'Weiter kurze Saetze lesen.' : 'Problemwoerter erneut in einer kurzen Geschichte ueben.',
+      recommendedAction: latest.problemWords.isEmpty ? 'Weiter kurze Sätze lesen.' : 'Problemwörter erneut in einer kurzen Geschichte üben.',
       priority: latest.problemWords.isEmpty ? 40 : 90,
     );
   }

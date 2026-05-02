@@ -181,7 +181,7 @@ class LumoCompanionEngine {
 
     if (_containsAny(q, ['belohnung', 'stern', 'xp', 'level'])) {
       return const LumoReply(
-        text: 'Du bekommst Sterne und XP fuer Lernen, Dranbleiben und besser werden. Nicht nur fuer perfekte Antworten.',
+        text: 'Du bekommst Sterne und XP für Lernen, Dranbleiben und besser werden. Nicht nur für perfekte Antworten.',
         mood: LumoMood.celebrate,
         suggestedSection: LumoSection.rewards,
       );

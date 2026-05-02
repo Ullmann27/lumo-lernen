@@ -83,7 +83,7 @@ class TutoringSessionPlanner {
       skillId: safeFocus.first.skillId,
       helpLevel: 2,
       title: 'Kurzer Start mit Lumo',
-      instruction: 'Lumo erklaert: Wir ueben heute nur kleine Schritte. Kein Druck.',
+      instruction: 'Lumo erklärt: Wir üben heute nur kleine Schritte. Kein Druck.',
       durationSeconds: 25,
     ));
 
@@ -198,7 +198,7 @@ class TutoringSessionPlanner {
     if (value.contains('subtraction')) return 'Minus heisst: Erst ist eine Menge da, dann geht etwas weg.';
     if (value.contains('addition')) return 'Plus heisst: Zwei Mengen kommen zusammen.';
     if (value.contains('place_value')) return 'Zehner sind Stangen, Einer sind einzelne Punkte.';
-    if (value.contains('syllable')) return 'Silben hoerst du, wenn du ein Wort langsam klatschst.';
+    if (value.contains('syllable')) return 'Silben hörst du, wenn du ein Wort langsam klatschst.';
     if (value.contains('letter')) return 'Beim Schreiben zaehlen Startpunkt, Richtung und ganze Form.';
     return 'Wir machen das Thema in kleinen Schritten und mit Hilfe.';
   }

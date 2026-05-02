@@ -104,7 +104,7 @@ class LumoMissionEngine {
         LumoMission(
           id: 'smart-repeat-${weakest.hashCode}-g$grade',
           title: 'Lumo-Wiederholung',
-          subtitle: 'Wir ueben etwas, das bald leichter wird',
+          subtitle: 'Wir üben etwas, das bald leichter wird',
           subject: _subjectForUnit(weakest),
           targetUnit: weakest,
           minutes: 7,

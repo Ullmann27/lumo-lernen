@@ -544,7 +544,7 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
       final word = data['word']?.toString() ?? task.prompt.replaceFirst('St oder Sp?', '').trim();
       return SchoolbookTaskCard(
         title: 'St oder Sp?',
-        subtitle: 'Sprich den Anfang langsam und hoere genau hin.',
+        subtitle: 'Sprich den Anfang langsam und höre genau hin.',
         ribbonLabel: 'Laut',
         accentColor: LumoColors.purple,
         child: SoundChoiceCard(word: word, choices: const <String>['St', 'Sp']),

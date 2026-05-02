@@ -339,7 +339,7 @@ class TutorDialoguePlanner {
       subject: subject,
       skillId: skill,
       helpLevel: helpLevel,
-      pedagogicGoal: 'kurz antworten und naechsten sinnvollen Lernschritt anbieten',
+      pedagogicGoal: 'kurz antworten und nächsten sinnvollen Lernschritt anbieten',
       visualAction: VisualActionType.foxThink,
       shouldGenerateTask: intent.intent == CompanionIntent.asksForNextTask,
       maxWords: 34,
@@ -387,7 +387,7 @@ class LumoResponseGenerator {
         'Gut, dass du es sagst. Dann erklaere ich anders: erst schauen, dann zaehlen, dann antworten.',
         'Wir nehmen eine leichtere Aufgabe. Du musst nicht raten, ich fuehre dich.',
       ];
-      return LumoResponse(text: lines[variant], tone: LumoTone.tutoring, visualAction: plan.visualAction, followUpPrompt: 'Bereit fuer eine Mini-Aufgabe?');
+      return LumoResponse(text: lines[variant], tone: LumoTone.tutoring, visualAction: plan.visualAction, followUpPrompt: 'Bereit für eine Mini-Aufgabe?');
     }
 
     if (plan.intent == CompanionIntent.wantsToPlay) {
@@ -401,10 +401,10 @@ class LumoResponseGenerator {
     }
 
     final lines = <String>[
-      'Ich hoere dich. Wir machen den naechsten Schritt ganz ruhig.',
+      'Ich höre dich. Wir machen den nächsten Schritt ganz ruhig.',
       'Okay. Ich passe die Aufgabe an dich an.',
       'Verstanden. Ich schaue, was dir jetzt am besten hilft.',
-      'Gut gesagt. Dann waehle ich eine passende Aufgabe fuer dich.',
+      'Gut gesagt. Dann wähle ich eine passende Aufgabe für dich.',
     ];
     return LumoResponse(text: lines[variant], tone: plan.tone, visualAction: plan.visualAction);
   }

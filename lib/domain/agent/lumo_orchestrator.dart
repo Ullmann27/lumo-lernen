@@ -143,7 +143,7 @@ class InterventionEngine {
           message: memory.pickFresh('reading.ok.$sentence', const <String>[
             'Gut gelesen. Lies jetzt hier weiter.',
             'Das war ruhig und klar. Weiter geht es mit dem naechsten Satz.',
-            'Sehr gut. Lumo bleibt dabei und hoert weiter zu.',
+            'Sehr gut. Lumo bleibt dabei und hört weiter zu.',
           ]),
         ),
       );

@@ -8,19 +8,19 @@ class LumoCompanionAgent {
       case 'idle':
         return 'Ich habe eine Idee: Wir machen eine 10-Minuten-Mission. Ich suche passende Aufgaben aus.';
       case 'mission_start':
-        return 'Super. Ich bleibe bei dir und gebe dir immer nur den naechsten kleinen Schritt.';
+        return 'Super. Ich bleibe bei dir und gebe dir immer nur den nächsten kleinen Schritt.';
       case 'mission_finished':
         return 'Mission geschafft. Ich speichere, was gut geklappt hat, und was wir noch leichter machen.';
       case 'correct':
         return 'Fuchsstark. Ich gebe dir gleich eine neue passende Aufgabe.';
       case 'success_streak':
-        return 'Du bist gerade richtig gut im Fluss. Ich mache die naechste Aufgabe ein kleines bisschen spannender.';
+        return 'Du bist gerade richtig gut im Fluss. Ich mache die nächste Aufgabe ein kleines bisschen spannender.';
       case 'wrong_1':
         return 'Fast. Das ist kein Problem. Wir schauen es gemeinsam an.';
       case 'wrong_2':
         return 'Du musst nicht schnell sein. Ich zeige dir einen ruhigeren Weg.';
       case 'wrong_3':
-        return 'Nach drei Versuchen helfe ich dir ganz ruhig Schritt fuer Schritt.';
+        return 'Nach drei Versuchen helfe ich dir ganz ruhig Schritt für Schritt.';
       case 'test_start':
         return 'Arbeite wie im Heft. Ruhig lesen, dann erst antworten.';
       case 'test_finished':
@@ -38,7 +38,7 @@ class LumoCompanionAgent {
     }
     final entries = practice.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
     final unit = entries.first.key;
-    return 'Ich haette eine gute Idee: Wir ueben $unit in kleinen Schritten, ohne Druck.';
+    return 'Ich hätte eine gute Idee: Wir üben $unit in kleinen Schritten, ohne Druck.';
   }
 
   String explainTask({required String subject, required String unit, required String prompt, required String answer}) {
@@ -64,7 +64,7 @@ class LumoCompanionAgent {
       return 'Hoere auf das Wort und verbinde es mit einem Bild im Kopf. So merkt man sich Englisch leichter.';
     }
     if (subject == 'Schreiben') {
-      return 'Schreibe langsam. Es geht nicht um schnell, sondern um schoene ruhige Bewegungen.';
+      return 'Schreibe langsam. Es geht nicht um schnell, sondern um schöne ruhige Bewegungen.';
     }
     return 'Ich helfe dir mit einem kleinen Schritt. Wir machen die Aufgabe ruhig zusammen.';
   }
@@ -94,13 +94,13 @@ class LumoCompanionAgent {
       return 'Silben findest du gut mit Klatschen. Ba-na-ne hat drei Klatscher.';
     }
     if (lower.contains('reim')) {
-      return 'Reime hoeren am Ende gleich. Haus und Maus passen zusammen.';
+      return 'Reime hören am Ende gleich. Haus und Maus passen zusammen.';
     }
     if (lower.contains('englisch')) {
-      return 'Englisch ueben wir mit kleinen Wortbildern. Ein Wort, ein Bild, eine Wiederholung.';
+      return 'Englisch üben wir mit kleinen Wortbildern. Ein Wort, ein Bild, eine Wiederholung.';
     }
     if (lower.contains('hilfe') || lower.contains('versteh')) {
-      return 'Wir machen es Schritt fuer Schritt. Ich zeige dir zuerst den Anfang.';
+      return 'Wir machen es Schritt für Schritt. Ich zeige dir zuerst den Anfang.';
     }
     if (lower.contains('pause') || lower.contains('muede')) {
       return 'Gute Idee. Eine kurze Pause kann dem Kopf helfen. Danach machen wir eine Mini-Aufgabe.';
