@@ -12,10 +12,18 @@ function json(res, status, payload) {
     'content-type': 'application/json; charset=utf-8',
     'cache-control': 'no-store',
     'access-control-allow-origin': process.env.ALLOWED_ORIGIN || '*',
-    'access-control-allow-methods': 'POST, OPTIONS',
+    'access-control-allow-methods': 'GET, POST, OPTIONS',
     'access-control-allow-headers': 'content-type, x-lumo-parent-token',
   });
   res.end(body);
+}
+
+function healthPayload() {
+  return {
+    ok: true,
+    service: 'lumo-ai-proxy',
+    openAiConfigured: Boolean(openAiApiKey),
+  };
 }
 
 function readJson(req) {
@@ -248,12 +256,8 @@ const server = createServer(async (req, res) => {
     return json(res, 204, {});
   }
 
-  if (req.method === 'GET' && req.url === '/health') {
-    return json(res, 200, {
-      ok: true,
-      service: 'lumo-ai-proxy',
-      openAiConfigured: Boolean(openAiApiKey),
-    });
+  if (req.method === 'GET' && (req.url === '/' || req.url === '/health')) {
+    return json(res, 200, healthPayload());
   }
 
   if (req.method === 'POST' && req.url === '/tasks') {
