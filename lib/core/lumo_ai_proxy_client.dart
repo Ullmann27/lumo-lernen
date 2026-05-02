@@ -290,7 +290,7 @@ class LumoAiProxyClient {
     final isLumoProxy = service.contains('lumo') && service.contains('proxy');
     final prefix = fallbackPrefix == null ? '' : '$fallbackPrefix ';
 
-    if (ok && openAi) {
+    if ((ok && openAi) || (isLumoProxy && openAi)) {
       return LumoAiHealthStatus(
         reachable: true,
         openAiConfigured: true,
