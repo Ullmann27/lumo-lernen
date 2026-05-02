@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'primary_school_word_data.dart';
+
 class LumoTask {
   const LumoTask({
     required this.id,
@@ -355,16 +357,16 @@ class ExerciseFactory {
   }
 
   LumoTask _german(int grade, String unit) {
-    const words = <String>['Mama', 'Mond', 'Sonne', 'Ball', 'Fuchs', 'Haus', 'Rose', 'Apfel', 'Schule', 'Banane', 'Igel', 'Lampe'];
-    final word = words[_random.nextInt(words.length)];
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Deutsch');
     if (unit == 'Einzahl und Mehrzahl') return _pluralTask(grade, 'Deutsch');
     if (unit == 'Wort-Bild schreiben') return _wordImageWriting(grade);
     if (unit == 'Anfangslaute') {
+      final word = PrimarySchoolWordData.firstSoundWordForGrade(grade, seed: _serial + _random.nextInt(9999)) ?? PrimarySchoolWordData.nounForGrade(grade, _serial);
       final first = word.substring(0, 1).toUpperCase();
       return _choiceTask('laut', grade, 'Deutsch', unit, 'Mit welchem Laut beginnt $word?', first, 'Sprich $word langsam. Der erste Laut ist $first.');
     }
     if (unit == 'Endlaute') {
+      final word = PrimarySchoolWordData.endSoundWordForGrade(grade, seed: _serial + _random.nextInt(9999)) ?? PrimarySchoolWordData.nounForGrade(grade, _serial);
       final last = word.substring(word.length - 1).toLowerCase();
       return _choiceTask('endlaut', grade, 'Deutsch', unit, 'Mit welchem Laut endet $word?', last, 'Sprich $word langsam. Der letzte Laut ist $last.');
     }
@@ -373,63 +375,50 @@ class ExerciseFactory {
       return LumoTask(id: _id('buchstabe'), grade: grade, subject: 'Deutsch', unit: unit, prompt: 'Zeichne ein großes $letter.', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Ziehe den Buchstaben langsam mit dem Finger nach.', handwriting: true, visual: 'writing');
     }
     if (unit == 'Silben') {
-      final items = <String, int>{'Banane': 3, 'Mama': 2, 'Schokolade': 4, 'Fuchs': 1, 'Tomate': 3, 'Elefant': 3, 'Schule': 2, 'Rakete': 3};
-      final entry = items.entries.elementAt(_random.nextInt(items.length));
-      return _choiceTask('silben', grade, 'Deutsch', unit, 'Wie viele Silben hat ${entry.key}?', '${entry.value}', 'Sprich das Wort langsam und klatsche jeden Teil.', visual: 'syllables');
+      final word = _wordWithSyllablesForGrade(grade);
+      final syllables = PrimarySchoolWordData.syllablesFor(word) ?? <String>[word];
+      return _choiceTask('silben', grade, 'Deutsch', unit, 'Wie viele Silben hat $word?', '${syllables.length}', 'Sprich das Wort langsam und klatsche jeden Teil.', visual: 'syllables');
     }
     if (unit == 'Reime') {
-      final pairs = <String, String>{'Haus': 'Maus', 'Ball': 'Fall', 'Hase': 'Nase', 'Sonne': 'Tonne', 'Kanne': 'Tanne', 'Maus': 'Haus', 'Stein': 'Bein', 'Hut': 'Mut'};
-      final entry = pairs.entries.elementAt(_random.nextInt(pairs.length));
-      // Reim-Distraktoren: zwei nicht-reimende Substantive
-      const nonRhymes = <String>['Hund', 'Auto', 'Schule', 'Brot', 'Kind'];
-      final distractors = (List<String>.from(nonRhymes)..shuffle(_random)).take(2).toList();
-      return _choiceTask('reim', grade, 'Deutsch', unit, 'Was reimt sich auf ${entry.key}?', entry.value, 'Reimwörter klingen am Ende gleich.', customChoices: <String>[entry.value, ...distractors]);
+      final pair = PrimarySchoolWordData.rhymePairForSeed(_serial + _random.nextInt(9999));
+      final questionWord = pair.first;
+      final answer = pair.last;
+      final distractors = _wordDataDistractors(PrimarySchoolWordData.nounsForGrade(grade), <String>{questionWord, answer}, 2);
+      return _choiceTask('reim', grade, 'Deutsch', unit, 'Was reimt sich auf $questionWord?', answer, 'Reimwörter klingen am Ende gleich.', customChoices: <String>[answer, ...distractors]);
     }
     if (unit == 'Artikel') {
-      final articles = <String, String>{'Haus': 'das', 'Sonne': 'die', 'Ball': 'der', 'Blume': 'die', 'Kind': 'das', 'Fuchs': 'der', 'Buch': 'das', 'Maus': 'die', 'Hund': 'der'};
-      final entry = articles.entries.elementAt(_random.nextInt(articles.length));
-      // Artikel-Distraktoren sind IMMER die anderen zwei Artikel
-      return _choiceTask('artikel', grade, 'Deutsch', unit, 'Welcher Artikel passt zu ${entry.key}?', entry.value, 'Sprich den Artikel mit dem Wort zusammen.', customChoices: const <String>['der', 'die', 'das']);
+      final words = PrimarySchoolWordData.articles.keys.toList();
+      final word = words[(_serial + _random.nextInt(9999)) % words.length];
+      final answer = PrimarySchoolWordData.articleFor(word) ?? 'der';
+      return _choiceTask('artikel', grade, 'Deutsch', unit, 'Welcher Artikel passt zu $word?', answer, 'Sprich den Artikel mit dem Wort zusammen.', customChoices: const <String>['der', 'die', 'das']);
     }
     if (unit == 'Tunwoerter') {
-      final verbs = <String>['laufen', 'malen', 'lesen', 'springen', 'essen', 'singen', 'lachen', 'spielen', 'tanzen', 'schreiben'];
-      final verb = verbs[_random.nextInt(verbs.length)];
-      // Distraktoren MUESSEN Nicht-Verben sein: Hauptwoerter und Adjektive
-      const nonVerbs = <String>['Hund', 'Haus', 'rot', 'Mama', 'Sonne', 'klein', 'Schule', 'gelb'];
-      final distractors = (List<String>.from(nonVerbs)..shuffle(_random)).take(2).toList();
-      return _choiceTask('verb', grade, 'Deutsch', unit, 'Welches Wort ist ein Tunwort?', verb, 'Ein Tunwort sagt, was jemand macht.', customChoices: <String>[verb, ...distractors]);
+      final answer = PrimarySchoolWordData.verbForSeed(_serial + _random.nextInt(9999));
+      final distractors = _wordDataDistractors(<String>[...PrimarySchoolWordData.nounsForGrade(grade), ...PrimarySchoolWordData.adjectives], <String>{answer}, 2);
+      return _choiceTask('verb', grade, 'Deutsch', unit, 'Welches Wort ist ein Tunwort?', answer, 'Ein Tunwort sagt, was jemand macht.', customChoices: <String>[answer, ...distractors]);
     }
     if (unit == 'Wiewoerter') {
-      final adj = <String>['groß', 'klein', 'warm', 'schnell', 'weich', 'kalt', 'hell', 'dunkel', 'schön', 'leise'];
-      final answer = adj[_random.nextInt(adj.length)];
-      // Distraktoren MUESSEN Nicht-Adjektive sein
-      const nonAdj = <String>['Hund', 'Schule', 'lesen', 'Mama', 'Brot', 'malen', 'Auto', 'tanzen'];
-      final distractors = (List<String>.from(nonAdj)..shuffle(_random)).take(2).toList();
+      final answer = PrimarySchoolWordData.adjectiveForSeed(_serial + _random.nextInt(9999));
+      final distractors = _wordDataDistractors(<String>[...PrimarySchoolWordData.nounsForGrade(grade), ...PrimarySchoolWordData.verbs], <String>{answer}, 2);
       return _choiceTask('adjektiv', grade, 'Deutsch', unit, 'Welches Wort beschreibt, wie etwas ist?', answer, 'Ein Wiewort beschreibt eine Eigenschaft.', customChoices: <String>[answer, ...distractors]);
     }
     if (unit == 'Satz bauen') {
-      // Mehrere Varianten, damit keine direkte Wiederholung entsteht.
-      // Distraktoren sind WIRKLICHE Satz-Alternativen (falsche Reihenfolge),
-      // nicht zusammenhanglose Wörter wie 'Haus' oder 'Sonne'.
-      const variants = <_SatzbauVariant>[
-        _SatzbauVariant('Der Fuchs liest.', 'liest der Fuchs', 'Fuchs der liest'),
-        _SatzbauVariant('Die Sonne scheint.', 'scheint die Sonne', 'Sonne die scheint'),
-        _SatzbauVariant('Das Kind spielt.', 'spielt das Kind', 'Kind das spielt'),
-        _SatzbauVariant('Mama kocht Suppe.', 'kocht Mama Suppe', 'Suppe Mama kocht'),
-        _SatzbauVariant('Lumo lernt fleißig.', 'lernt Lumo fleißig', 'fleißig Lumo lernt'),
-        _SatzbauVariant('Der Hund bellt laut.', 'bellt laut der Hund', 'laut bellt Hund der'),
-      ];
-      final v = variants[_random.nextInt(variants.length)];
-      return _choiceTask('satzbau', grade, 'Deutsch', unit, 'Welcher Satz ist richtig?', v.correct, 'Ein Satz beginnt groß und endet mit einem Punkt.', customChoices: <String>[v.correct, v.wrong1, v.wrong2]);
+      final noun = PrimarySchoolWordData.nounForGrade(grade, _serial + _random.nextInt(9999));
+      final article = PrimarySchoolWordData.articleFor(noun) ?? 'das';
+      final verb = PrimarySchoolWordData.verbForSeed(_serial + _random.nextInt(9999));
+      final correct = '${_capitalize(article)} $noun $verb.';
+      return _choiceTask('satzbau', grade, 'Deutsch', unit, 'Welcher Satz ist richtig?', correct, 'Ein Satz beginnt groß und endet mit einem Punkt.', customChoices: <String>[correct, '$verb $article $noun', '$noun $article $verb']);
     }
-    if (unit == 'Namenswoerter' || unit == 'Hauptwoerter') {
-      const nouns = <String>['Hund', 'Haus', 'Schule', 'Sonne', 'Buch', 'Auto', 'Kind', 'Lampe'];
-      const nonNouns = <String>['lesen', 'rot', 'malen', 'klein', 'tanzen', 'schnell', 'springen', 'warm'];
-      final noun = nouns[_random.nextInt(nouns.length)];
-      final distractors = (List<String>.from(nonNouns)..shuffle(_random)).take(2).toList();
-      return _choiceTask('nomen', grade, 'Deutsch', unit, 'Welches Wort ist ein Namenswort?', noun, 'Namenswörter sind Dinge, Personen oder Tiere und werden groß geschrieben.', customChoices: <String>[noun, ...distractors]);
+    if (unit == 'Namenwoerter' || unit == 'Namenswoerter' || unit == 'Hauptwoerter') {
+      final answer = PrimarySchoolWordData.nounForGrade(grade, _serial + _random.nextInt(9999));
+      final distractors = _wordDataDistractors(<String>[...PrimarySchoolWordData.verbs, ...PrimarySchoolWordData.adjectives], <String>{answer}, 2);
+      return _choiceTask('nomen', grade, 'Deutsch', unit, 'Welches Wort ist ein Namenswort?', answer, 'Namenswörter sind Dinge, Personen oder Tiere und werden groß geschrieben.', customChoices: <String>[answer, ...distractors]);
     }
-    return _choiceTask('satz', grade, 'Deutsch', 'Satz verstehen', 'Der Fuchs liest ein Buch. Was macht der Fuchs?', 'lesen', 'Suche im Satz das Tunwort.', customChoices: const <String>['lesen', 'Fuchs', 'Buch']);
+    final noun = PrimarySchoolWordData.nounForGrade(grade, _serial + _random.nextInt(9999));
+    final article = PrimarySchoolWordData.articleFor(noun) ?? 'das';
+    final verb = PrimarySchoolWordData.verbForSeed(_serial + _random.nextInt(9999));
+    final distractors = _wordDataDistractors(PrimarySchoolWordData.nounsForGrade(grade), <String>{verb, noun}, 2);
+    return _choiceTask('satz', grade, 'Deutsch', unit == 'Wortschatz' ? 'Wortschatz' : 'Satz verstehen', '${_capitalize(article)} $noun $verb. Was macht $article $noun?', verb, 'Suche im Satz das Tunwort.', customChoices: <String>[verb, ...distractors]);
   }
 
   LumoTask _spelling(int grade, String unit) {
@@ -575,9 +564,6 @@ class ExerciseFactory {
   }
 
   LumoTask _science(int grade, String unit) {
-    // Pro Frage definieren wir explizit Distraktoren, damit nicht aus
-    // dem generischen Pool Quatsch wie 'Mama' oder 'Hund' bei
-    // 'Womit hoeren wir?' kommt. Distraktoren bleiben thematisch.
     final questions = <String, Map<String, _ScienceQa>>{
       'Tiere': <String, _ScienceQa>{
         'Welches Tier legt Eier?': const _ScienceQa('Huhn', ['Huhn', 'Hund', 'Pferd']),
@@ -688,6 +674,34 @@ class ExerciseFactory {
       safety++;
     }
     return out;
+  }
+
+  List<String> _wordDataDistractors(List<String> pool, Set<String> exclude, int count) {
+    final result = <String>[];
+    final blocked = exclude.map((e) => e.trim().toLowerCase()).toSet();
+    final shuffled = List<String>.from(pool)..shuffle(_random);
+    for (final candidate in shuffled) {
+      if (result.length >= count) break;
+      final normalized = candidate.trim().toLowerCase();
+      if (blocked.contains(normalized)) continue;
+      if (result.any((item) => item.trim().toLowerCase() == normalized)) continue;
+      result.add(candidate);
+    }
+    return result;
+  }
+
+  String _wordWithSyllablesForGrade(int grade) {
+    final words = List<String>.from(PrimarySchoolWordData.nounsForGrade(grade))..shuffle(_random);
+    for (final word in words) {
+      final syllables = PrimarySchoolWordData.syllablesFor(word);
+      if (syllables != null && syllables.isNotEmpty) return word;
+    }
+    return PrimarySchoolWordData.nounForGrade(grade, _serial);
+  }
+
+  String _capitalize(String value) {
+    if (value.isEmpty) return value;
+    return value.substring(0, 1).toUpperCase() + value.substring(1);
   }
 }
 
