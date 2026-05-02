@@ -5,6 +5,8 @@ import '../../app/app_theme.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
+import '../../core/lumo_tutor_contracts.dart';
+import '../../core/lumo_tutor_engine.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/task_quality_guard.dart';
 import '../../core/recent_task_repository.dart';
@@ -42,6 +44,7 @@ class _LearningContentState extends State<LearningContent> {
   static const AiTaskCache _aiCache = AiTaskCache();
   static const TaskQualityGuard _taskQualityGuard = TaskQualityGuard();
   static const RecentTaskRepository _recentRepo = RecentTaskRepository();
+  static const LumoTutorEngine _localTutorEngine = LumoTutorEngine();
   final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
 
   static const int _recentTaskMemory = 80;
@@ -56,6 +59,8 @@ class _LearningContentState extends State<LearningContent> {
   SkillState? _lastSkillState;
   LumoFeedbackTurn? _lastFeedback;
   int _questionNum = 1;
+  int _attemptCount = 0;
+  String? _tutorHint;
 
   int get _totalQuestions {
     switch (widget.appState.state.sessionKind) {
@@ -163,6 +168,23 @@ class _LearningContentState extends State<LearningContent> {
     return null; // Lesen/Schreiben/Mixed -> Standard-Generator
   }
 
+  LumoTutorSubject _tutorSubjectFor(String subject) {
+    final normalized = subject.trim().toLowerCase();
+    if (normalized.contains('mathe')) return LumoTutorSubject.mathematik;
+    if (normalized.contains('deutsch') || normalized.contains('rechtschreibung') || normalized.contains('schreiben')) {
+      return LumoTutorSubject.deutsch;
+    }
+    if (normalized.contains('lesen')) return LumoTutorSubject.lesen;
+    if (normalized.contains('englisch')) return LumoTutorSubject.englisch;
+    return LumoTutorSubject.sachunterricht;
+  }
+
+  String get _childFirstName {
+    final name = widget.appState.state.childName.trim();
+    if (name.isEmpty) return 'Kind';
+    return name.split(RegExp(r'\s+')).first;
+  }
+
   String get _welcomeForKind {
     switch (widget.appState.state.sessionKind) {
       case LumoSessionKind.quickPractice:
@@ -192,7 +214,11 @@ class _LearningContentState extends State<LearningContent> {
     _lastRewardDelta = null;
     _lastSkillState = null;
     _lastFeedback = null;
-    if (resetCounter) _questionNum = 1;
+    _tutorHint = null;
+    if (resetCounter) {
+      _questionNum = 1;
+      _attemptCount = 0;
+    }
   }
 
   String get _childId {
@@ -380,6 +406,35 @@ class _LearningContentState extends State<LearningContent> {
     );
   }
 
+  String? _buildTutorHint(Object answerGiven, List<ErrorType> errorTypes) {
+    if (!_allowHelp || _attemptCount < 3) return null;
+    final helpLevel = _localTutorEngine.decideHelpLevel(
+      attemptCount: _attemptCount,
+      hasRepeatedWeakness: false,
+      premiumEnabled: true,
+    );
+    final mode = _localTutorEngine.decideMode(
+      attemptCount: _attemptCount,
+      hasRepeatedWeakness: false,
+      isTestReview: widget.appState.state.sessionKind == LumoSessionKind.test,
+    );
+    final request = LumoTutorRequest(
+      mode: mode,
+      subject: _tutorSubjectFor(_task.subject),
+      grade: widget.appState.state.grade,
+      unit: _task.unit,
+      helpLevel: helpLevel,
+      childFirstName: _childFirstName,
+      currentPrompt: _task.prompt,
+      childAnswer: '$answerGiven',
+      correctAnswer: '${_taskInstance.correctAnswer}',
+      attemptCount: _attemptCount,
+      weaknessTags: errorTypes.map((type) => type.name).toList(growable: false),
+    );
+    final response = _localTutorEngine.buildLocalFallback(request);
+    return response.shortHint ?? response.explanation ?? response.speech;
+  }
+
   void _completeAnswer({
     required bool correct,
     required bool hintUsed,
@@ -397,6 +452,12 @@ class _LearningContentState extends State<LearningContent> {
 
     final responseTimeMs = DateTime.now().difference(_taskStartedAt).inMilliseconds;
     final errorTypes = correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven);
+    if (correct) {
+      _attemptCount = 0;
+    } else if (_allowHelp) {
+      _attemptCount++;
+    }
+    final nextTutorHint = correct ? null : _buildTutorHint(answerGiven, errorTypes);
     final result = TaskResult(
       taskInstanceId: _taskInstance.taskInstanceId,
       childId: _childId,
@@ -445,6 +506,7 @@ class _LearningContentState extends State<LearningContent> {
       _lastRewardDelta = rewardDelta;
       _lastSkillState = after;
       _lastFeedback = feedback;
+      _tutorHint = nextTutorHint;
     });
 
     if (correct) {
@@ -495,7 +557,10 @@ class _LearningContentState extends State<LearningContent> {
     if (!mounted) return;
     setState(() {
       final nextQuestion = _questionNum < _totalQuestions ? _questionNum + 1 : 1;
-      if (nextQuestion == 1) _sessionTaskKeys.clear();
+      if (nextQuestion == 1) {
+        _sessionTaskKeys.clear();
+        _attemptCount = 0;
+      }
       _questionNum = nextQuestion;
       _loadNextTask(resetCounter: false);
     });
@@ -541,6 +606,10 @@ class _LearningContentState extends State<LearningContent> {
               ]),
               const SizedBox(height: 22),
               _ProgressHeader(current: _questionNum, total: _totalQuestions, subject: chip),
+              if (_tutorHint != null) ...[
+                const SizedBox(height: 14),
+                _TutorHintBanner(text: _tutorHint!),
+              ],
               const SizedBox(height: 22),
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 280),
@@ -580,6 +649,53 @@ class _LearningContentState extends State<LearningContent> {
         ),
       );
     });
+  }
+}
+
+class _TutorHintBanner extends StatelessWidget {
+  const _TutorHintBanner({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF7D6),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30)),
+        boxShadow: LumoShadow.card,
+      ),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          width: 34,
+          height: 34,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(.82),
+            shape: BoxShape.circle,
+            border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.22)),
+          ),
+          child: const Text('🦊', style: TextStyle(fontSize: 19)),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text(
+              'Lumo erklärt',
+              style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F)),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              text,
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.28),
+            ),
+          ]),
+        ),
+      ]),
+    );
   }
 }
 
