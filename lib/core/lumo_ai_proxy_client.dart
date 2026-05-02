@@ -200,13 +200,16 @@ class LumoAiProxyClient {
   }) async {
     final client = HttpClient()..connectionTimeout = timeout;
     try {
-      final endpoint = _healthEndpoint(baseUri);
-      final primary = await _getHealthStatus(client, endpoint, timeout);
-      if (primary.statusCode == 404) {
-        final root = await _getHealthStatus(client, _rootEndpoint(baseUri), timeout);
-        final rootStatus = _statusFromHealthJson(root.rawBody, fallbackPrefix: 'Root-Adresse erreichbar.');
-        if (rootStatus != null) return rootStatus;
-      }
+      final root = await _getHealthStatus(client, _rootEndpoint(baseUri), timeout);
+      final rootStatus = _statusFromHealthJson(root.rawBody, fallbackPrefix: 'Root-Adresse erreichbar.');
+      if (rootStatus?.fullyOk == true) return rootStatus;
+
+      final primary = await _getHealthStatus(client, _healthEndpoint(baseUri), timeout);
+      final healthStatus = _statusFromHealthJson(primary.rawBody);
+      if (healthStatus != null) return healthStatus;
+
+      if (rootStatus != null) return rootStatus;
+
       if (primary.statusCode < 200 || primary.statusCode >= 300) {
         if (primary.statusCode == 404) {
           return LumoAiHealthStatus(
@@ -228,12 +231,11 @@ class LumoAiProxyClient {
           message: 'Server gerade nicht erreichbar (Code ${primary.statusCode}). Lumo bleibt lokal aktiv.',
         );
       }
-      return _statusFromHealthJson(primary.rawBody) ??
-          const LumoAiHealthStatus(
-            reachable: true,
-            openAiConfigured: false,
-            message: 'Server antwortet, aber das Format ist unklar.',
-          );
+      return const LumoAiHealthStatus(
+        reachable: true,
+        openAiConfigured: false,
+        message: 'Server antwortet, aber das Format ist unklar.',
+      );
     } on TimeoutException {
       return null;
     } catch (_) {
@@ -254,7 +256,7 @@ class LumoAiProxyClient {
     final client = HttpClient()..connectionTimeout = const Duration(seconds: 4);
     () async {
       try {
-        final endpoint = _healthEndpoint(baseUri);
+        final endpoint = _rootEndpoint(baseUri);
         final request = await client.getUrl(endpoint).timeout(const Duration(seconds: 4));
         final response = await request.close().timeout(const Duration(seconds: 4));
         await response.drain<void>();
