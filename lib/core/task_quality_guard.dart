@@ -38,11 +38,28 @@ class TaskQualityGuard {
     if (!isFreeAnswer) {
       if (!_containsChoice(choices, answer)) issues.add('answer_not_in_choices');
       if (_hasDuplicateChoices(choices)) issues.add('duplicate_choices');
+      issues.addAll(_choiceOverlapProblems(answer, choices));
       issues.addAll(_phonicsProblems(task.prompt, answer, choices));
       issues.addAll(_numericProblems(task.prompt, answer, choices));
       issues.addAll(_germanCategoryProblems(task.prompt, answer, choices));
     }
 
+    return issues;
+  }
+
+  List<String> _choiceOverlapProblems(String answer, List<String> choices) {
+    final issues = <String>[];
+    final normalizedAnswer = _normalizeChoice(answer);
+    for (final choice in choices) {
+      final normalizedChoice = _normalizeChoice(choice);
+      if (normalizedChoice == normalizedAnswer) continue;
+      if (normalizedAnswer.length >= 3 && normalizedChoice.contains(normalizedAnswer)) {
+        issues.add('answer_embedded_in_distractor');
+      }
+      if (normalizedChoice.length >= 3 && normalizedAnswer.contains(normalizedChoice)) {
+        issues.add('distractor_embedded_in_answer');
+      }
+    }
     return issues;
   }
 
@@ -70,6 +87,8 @@ class TaskQualityGuard {
       if (base.length >= 2) {
         final tail = base.substring(base.length - 2);
         if (!_normalizeWord(answer).endsWith(tail)) issues.add('answer_does_not_rhyme_basically');
+        final matching = choices.where((c) => _normalizeWord(c).endsWith(tail)).length;
+        if (matching != 1) issues.add('rhyme_not_exactly_one_choice');
       }
     }
 
