@@ -28,6 +28,17 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
   bool _blocked = false;
 
   @override
+  void initState() {
+    super.initState();
+    // Render-Warmup: Wenn KI freigegeben ist, Server bereits beim
+    // Oeffnen anstossen. Dann ist der erste Chat warm und Heinz
+    // sieht keinen 30s-Cold-Start.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _proxy.warmup(widget.appState.state.settings);
+    });
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();

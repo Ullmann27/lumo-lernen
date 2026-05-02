@@ -9,6 +9,7 @@ class LumoAiProxyClient {
   const LumoAiProxyClient();
 
   static const Duration _timeout = Duration(seconds: 18);
+  static const Duration _coldStartTimeout = Duration(seconds: 45);
   static const Duration _batchTimeout = Duration(seconds: 30);
 
   bool isConfigured(AppSettings settings) {
@@ -155,6 +156,17 @@ class LumoAiProxyClient {
   ///
   /// Sendet KEINE Kinderdaten, KEINE Chat-History, nur ein einfaches GET.
   /// Wird vom Elternbereich als "Server pruefen"-Button aufgerufen.
+  ///
+  /// COLD-START-LOGIK:
+  /// Render Free Tier schlaeft nach 15 Minuten Inaktivitaet ein. Beim
+  /// ersten Aufruf braucht der Server 20-50 Sekunden zum Aufwachen.
+  /// Wenn der erste Versuch in einen Timeout laeuft (12s), starten wir
+  /// einen zweiten Versuch mit 45s Geduld. Damit sieht Heinz einen
+  /// gruenen Status, wenn der Server prinzipiell laeuft.
+  ///
+  /// Erst wenn auch der zweite Versuch scheitert, melden wir
+  /// "Server schlaeft" - dann ist tatsaechlich etwas kaputt oder
+  /// die Render-Instanz ist suspended.
   Future<LumoAiHealthStatus> checkHealth(String rawUrl) async {
     final baseUri = _validatedBaseUri(rawUrl);
     if (baseUri == null) {
@@ -164,12 +176,36 @@ class LumoAiProxyClient {
         message: 'Die URL sieht nicht richtig aus. Bitte korrekte https-Adresse eintragen.',
       );
     }
-    final endpoint = _healthEndpoint(baseUri);
-    final client = HttpClient()..connectionTimeout = _timeout;
+
+    // Erster Versuch mit normalem Timeout
+    final firstAttempt = await _runHealthAttempt(baseUri, _timeout);
+    if (firstAttempt != null) return firstAttempt;
+
+    // Bei null = Timeout. Render schlaeft moeglicherweise.
+    // Zweiter Versuch mit Cold-Start-Geduld.
+    final secondAttempt = await _runHealthAttempt(baseUri, _coldStartTimeout, isRetry: true);
+    if (secondAttempt != null) return secondAttempt;
+
+    // Beide Versuche fehlgeschlagen.
+    return const LumoAiHealthStatus(
+      reachable: false,
+      openAiConfigured: false,
+      message: 'Server antwortet auch nach längerem Warten nicht. Bitte Render-Service prüfen. Lumo bleibt lokal aktiv.',
+    );
+  }
+
+  /// Einzelner Health-Versuch. Null bei TimeoutException, sonst Status.
+  Future<LumoAiHealthStatus?> _runHealthAttempt(
+    Uri baseUri,
+    Duration timeout, {
+    bool isRetry = false,
+  }) async {
+    final client = HttpClient()..connectionTimeout = timeout;
     try {
-      final primary = await _getHealthStatus(client, endpoint);
+      final endpoint = _healthEndpoint(baseUri);
+      final primary = await _getHealthStatus(client, endpoint, timeout);
       if (primary.statusCode == 404) {
-        final root = await _getHealthStatus(client, _rootEndpoint(baseUri));
+        final root = await _getHealthStatus(client, _rootEndpoint(baseUri), timeout);
         final rootStatus = _statusFromHealthJson(root.rawBody, fallbackPrefix: 'Root-Adresse erreichbar.');
         if (rootStatus != null) return rootStatus;
       }
@@ -201,11 +237,7 @@ class LumoAiProxyClient {
             message: 'Server antwortet, aber das Format ist unklar.',
           );
     } on TimeoutException {
-      return const LumoAiHealthStatus(
-        reachable: false,
-        openAiConfigured: false,
-        message: 'Server schlaeft vielleicht oder antwortet zu langsam. Lumo bleibt lokal aktiv.',
-      );
+      return null; // Signal an checkHealth: Retry-fähig
     } catch (_) {
       return const LumoAiHealthStatus(
         reachable: false,
@@ -217,11 +249,37 @@ class LumoAiProxyClient {
     }
   }
 
-  Future<_HealthHttpResult> _getHealthStatus(HttpClient client, Uri endpoint) async {
-    final request = await client.getUrl(endpoint).timeout(_timeout);
+  /// Sendet einen "Wakeup-Ping" ohne auf Antwort zu warten.
+  /// Wird beim Oeffnen des Agent- oder Lern-Screens aufgerufen,
+  /// damit der Render-Server bereits aufwacht, bevor das Kind eine
+  /// Frage stellt. Fire-and-forget. Kein State-Update. Kein Crash.
+  void warmup(AppSettings settings) {
+    if (!settings.aiProxyEnabled) return;
+    final baseUri = _validatedBaseUri(settings.aiProxyUrl);
+    if (baseUri == null) return;
+    // Kurzes Timeout - wir wollen nur den Server anstossen, nicht warten.
+    final client = HttpClient()..connectionTimeout = const Duration(seconds: 4);
+    () async {
+      try {
+        final endpoint = _healthEndpoint(baseUri);
+        final request = await client
+            .getUrl(endpoint)
+            .timeout(const Duration(seconds: 4));
+        final response = await request.close().timeout(const Duration(seconds: 4));
+        await response.drain<void>();
+      } catch (_) {
+        // Egal - wir wollten nur kitzeln.
+      } finally {
+        client.close(force: true);
+      }
+    }();
+  }
+
+  Future<_HealthHttpResult> _getHealthStatus(HttpClient client, Uri endpoint, Duration timeout) async {
+    final request = await client.getUrl(endpoint).timeout(timeout);
     request.headers.set(HttpHeaders.acceptHeader, 'application/json');
-    final response = await request.close().timeout(_timeout);
-    final raw = await response.transform(utf8.decoder).join().timeout(_timeout);
+    final response = await request.close().timeout(timeout);
+    final raw = await response.transform(utf8.decoder).join().timeout(timeout);
     return _HealthHttpResult(statusCode: response.statusCode, rawBody: raw);
   }
 

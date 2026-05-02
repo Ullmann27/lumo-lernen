@@ -26,6 +26,17 @@ class _SettingsContentState extends State<SettingsContent> {
   static const LumoAiProxyClient _proxyClient = LumoAiProxyClient();
   static const AiTaskCache _aiTaskCache = AiTaskCache();
 
+  @override
+  void initState() {
+    super.initState();
+    // Render-Warmup: Beim Oeffnen des Elternbereichs schon den
+    // Server anstossen, damit "Server pruefen" gleich gruen wird
+    // statt 30s zu warten. Fire-and-forget, kein State-Update.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _proxyClient.warmup(_settings);
+    });
+  }
+
   String get _childId {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
@@ -193,7 +204,7 @@ class _SettingsContentState extends State<SettingsContent> {
                 icon: _checkingHealth
                     ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
                     : const Icon(Icons.health_and_safety_rounded, size: 18),
-                label: Text(_checkingHealth ? 'Pruefe ...' : 'Server pruefen'),
+                label: Text(_checkingHealth ? 'Server wacht auf …' : 'Server prüfen'),
               ),
             ],
           ),
