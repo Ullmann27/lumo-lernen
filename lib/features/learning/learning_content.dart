@@ -7,6 +7,7 @@ import '../../core/ai_tutor_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/task_quality_guard.dart';
+import '../../core/recent_task_repository.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
@@ -40,6 +41,7 @@ class _LearningContentState extends State<LearningContent> {
   static const AiTutorService _tutor = AiTutorService();
   static const AiTaskCache _aiCache = AiTaskCache();
   static const TaskQualityGuard _taskQualityGuard = TaskQualityGuard();
+  static const RecentTaskRepository _recentRepo = RecentTaskRepository();
   final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
 
   static const int _recentTaskMemory = 80;
@@ -75,10 +77,47 @@ class _LearningContentState extends State<LearningContent> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       LumoVoice.instance.speak(_welcomeForKind);
     });
+    // Persistente Wiederholungsvermeidung nachladen, ohne den ersten Frame zu blockieren.
+    _hydrateRecent();
     // Nachhilfelehrer-Hook (fire and forget):
     //   1. KI-Aufgaben aus Cache laden (kostenlos, lokal)
     //   2. Wenn Cache niedrig und KI freigegeben: vom Server nachfuellen
     _hydrateAiQueueAndMaybeRefill();
+  }
+
+  Future<void> _hydrateRecent() async {
+    final st = widget.appState.state;
+    final childId = _childId;
+    final subject = st.subject;
+    final keys = await _recentRepo.loadTaskKeys(childId: childId, subject: subject);
+    final units = await _recentRepo.loadUnits(childId: childId, subject: subject);
+    if (!mounted) return;
+    setState(() {
+      final currentKeys = List<String>.from(_recentTaskKeys);
+      final currentUnits = List<String>.from(_recentUnits);
+
+      _recentTaskKeys
+        ..clear()
+        ..addAll(keys);
+      for (final key in currentKeys) {
+        _recentTaskKeys.remove(key);
+        _recentTaskKeys.add(key);
+      }
+      while (_recentTaskKeys.length > _recentTaskMemory) {
+        _recentTaskKeys.removeAt(0);
+      }
+
+      _recentUnits
+        ..clear()
+        ..addAll(units);
+      for (final unit in currentUnits) {
+        _recentUnits.remove(unit);
+        _recentUnits.add(unit);
+      }
+      while (_recentUnits.length > _recentUnitMemory) {
+        _recentUnits.removeAt(0);
+      }
+    });
   }
 
   Future<void> _hydrateAiQueueAndMaybeRefill() async {
@@ -291,6 +330,17 @@ class _LearningContentState extends State<LearningContent> {
     while (_recentUnits.length > _recentUnitMemory) {
       _recentUnits.removeAt(0);
     }
+
+    _recentRepo.saveTaskKeys(
+      childId: _childId,
+      subject: widget.appState.state.subject,
+      keys: List<String>.from(_recentTaskKeys),
+    ).ignore();
+    _recentRepo.saveUnits(
+      childId: _childId,
+      subject: widget.appState.state.subject,
+      units: List<String>.from(_recentUnits),
+    ).ignore();
   }
 
   String _taskKey(LumoTask task) {
