@@ -54,7 +54,7 @@ function fallbackReply(message) {
   const safety = inspectChildSafety(message);
   if (!safety.allowed) {
     return {
-      reply: `${safety.redirect} Moechtest du lieber Mathe, Deutsch, Lesen oder Natur ueben?`,
+      reply: `${safety.redirect} Möchtest du lieber Mathe, Deutsch, Lesen oder Natur üben?`,
       blocked: true,
       ruleId: safety.ruleId,
     };
@@ -296,7 +296,7 @@ const server = createServer(async (req, res) => {
     const inputSafety = inspectChildSafety(message);
     if (!inputSafety.allowed) {
       return json(res, 200, {
-        reply: `${inputSafety.redirect} Moechtest du eine Deutsch-, Mathe- oder Naturfrage ueben?`,
+        reply: `${inputSafety.redirect} Möchtest du eine Deutsch-, Mathe- oder Naturfrage üben?`,
         blocked: true,
         ruleId: inputSafety.ruleId,
         source: 'local_policy',
@@ -325,7 +325,7 @@ const server = createServer(async (req, res) => {
   } catch (error) {
     return json(res, 500, {
       error: 'proxy_error',
-      reply: 'Ich kann gerade nicht mit dem KI-Server sprechen. Wir koennen trotzdem Mathe, Deutsch oder Lesen ueben.',
+      reply: 'Ich kann gerade nicht mit dem KI-Server sprechen. Wir können trotzdem Mathe, Deutsch oder Lesen üben.',
       detail: process.env.NODE_ENV === 'development' ? String(error?.message || error) : undefined,
     });
   }
