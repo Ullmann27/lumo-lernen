@@ -6,6 +6,7 @@ import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/school_exercise_generator.dart';
+import '../../core/task_quality_guard.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
@@ -38,6 +39,7 @@ class _LearningContentState extends State<LearningContent> {
   // Nachhilfelehrer: KI-generierte Aufgaben aus Cache, basierend auf Schwaechen
   static const AiTutorService _tutor = AiTutorService();
   static const AiTaskCache _aiCache = AiTaskCache();
+  static const TaskQualityGuard _taskQualityGuard = TaskQualityGuard();
   final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
 
   static const int _recentTaskMemory = 80;
@@ -212,14 +214,15 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   /// Wandelt einen vom Server gelieferten Draft in einen LumoTask um.
-  /// Liefert null wenn die Pflichtfelder nicht passen.
+  /// Liefert null wenn die Pflichtfelder nicht passen oder der TaskQualityGuard
+  /// die Aufgabe als fachlich/strukturell unsicher bewertet.
   LumoTask? _draftToLumoTask(LumoAiTaskDraft draft, int grade, String subject, String unit) {
     if (draft.prompt.trim().isEmpty || draft.answer.trim().isEmpty) return null;
     if (draft.choices.length < 2) return null;
     if (!draft.choices.any((c) => c.trim().toLowerCase() == draft.answer.trim().toLowerCase())) {
       return null;
     }
-    return LumoTask(
+    final probe = LumoTask(
       id: 'ai_${DateTime.now().microsecondsSinceEpoch}',
       grade: grade,
       subject: subject == 'Alle' ? 'Mathematik' : subject,
@@ -230,7 +233,10 @@ class _LearningContentState extends State<LearningContent> {
       explanation: draft.explanation.isEmpty ? 'Lumo erklärt dir das gleich Schritt für Schritt.' : draft.explanation,
       visual: draft.visual,
       difficulty: grade,
+      missionTag: 'ai_cache',
     );
+    if (!_taskQualityGuard.validate(probe)) return null;
+    return probe;
   }
 
   String _factorySubjectFor(String subject, String unit) {
