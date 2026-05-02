@@ -542,11 +542,26 @@ class _LearningContentState extends State<LearningContent> {
               const SizedBox(height: 22),
               _ProgressHeader(current: _questionNum, total: _totalQuestions, subject: chip),
               const SizedBox(height: 22),
-              AdaptiveTaskRenderer(
-                key: ValueKey(_taskInstance.taskInstanceId),
-                task: _taskInstance,
-                onAnswered: _answerAdaptive,
-                onWritingSubmitted: _answerWriting,
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 280),
+                switchInCurve: Curves.easeOutCubic,
+                switchOutCurve: Curves.easeInCubic,
+                transitionBuilder: (child, animation) {
+                  final slide = Tween<Offset>(
+                    begin: const Offset(0.05, 0.04),
+                    end: Offset.zero,
+                  ).animate(animation);
+                  return FadeTransition(
+                    opacity: animation,
+                    child: SlideTransition(position: slide, child: child),
+                  );
+                },
+                child: AdaptiveTaskRenderer(
+                  key: ValueKey(_taskInstance.taskInstanceId),
+                  task: _taskInstance,
+                  onAnswered: _answerAdaptive,
+                  onWritingSubmitted: _answerWriting,
+                ),
               ),
               if (_answered && _lastCorrect != null) ...[
                 const SizedBox(height: 22),
