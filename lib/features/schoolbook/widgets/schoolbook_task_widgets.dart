@@ -686,3 +686,312 @@ class _NumberLineJumpPainter extends CustomPainter {
     return oldDelegate.start != start || oldDelegate.via != via || oldDelegate.result != result || oldDelegate.firstJump != firstJump || oldDelegate.secondJump != secondJump;
   }
 }
+
+/// Silbenchips: zerlegt ein Wort in Silben und zeigt sie als
+/// freundliche Karten ("Ba" | "na" | "ne") mit Trenner-Bogen.
+///
+/// Wenn keine Silbenliste vorgegeben ist, wird heuristisch zerlegt:
+/// Vokal-Konsonant-Vokal-Schnitte (na-na, Ba-na-ne).
+/// Es ist absichtlich eine sanfte Naeherung, kein Linguistik-Modell.
+class SyllableChipRow extends StatelessWidget {
+  const SyllableChipRow({
+    super.key,
+    required this.word,
+    this.syllables,
+    this.accentColor = LumoColors.purple,
+  });
+
+  final String word;
+  final List<String>? syllables;
+  final Color accentColor;
+
+  List<String> _split(String w) {
+    if (w.isEmpty) return const <String>[];
+    const vowels = 'aeiouäöüAEIOUÄÖÜ';
+    final out = <String>[];
+    final buffer = StringBuffer();
+    for (var i = 0; i < w.length; i++) {
+      buffer.write(w[i]);
+      final isVowel = vowels.contains(w[i]);
+      if (isVowel && i + 2 < w.length) {
+        final nextNext = w[i + 2];
+        if (vowels.contains(nextNext)) {
+          // Schnitt nach Vokal-Konsonant: na | na -> na | nas
+          out.add(buffer.toString());
+          buffer.clear();
+          buffer.write(w[i + 1]);
+          i++;
+        }
+      }
+    }
+    if (buffer.isNotEmpty) out.add(buffer.toString());
+    if (out.isEmpty) out.add(w);
+    return out;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final parts = (syllables != null && syllables!.isNotEmpty) ? syllables! : _split(word);
+    final children = <Widget>[];
+    for (var i = 0; i < parts.length; i++) {
+      children.add(_SyllableChip(text: parts[i], color: accentColor));
+      if (i != parts.length - 1) {
+        children.add(_SyllableConnector(color: accentColor));
+      }
+    }
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 6,
+      runSpacing: 8,
+      children: children,
+    );
+  }
+}
+
+class _SyllableChip extends StatelessWidget {
+  const _SyllableChip({required this.text, required this.color});
+  final String text;
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: color.withOpacity(.12),
+        borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(color: color.withOpacity(.32), width: 1.4),
+      ),
+      child: Text(
+        text,
+        style: LumoTextStyles.heading3.copyWith(color: color, fontWeight: FontWeight.w900),
+      ),
+    );
+  }
+}
+
+class _SyllableConnector extends StatelessWidget {
+  const _SyllableConnector({required this.color});
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 16,
+      height: 4,
+      decoration: BoxDecoration(
+        color: color.withOpacity(.4),
+        borderRadius: BorderRadius.circular(2),
+      ),
+    );
+  }
+}
+
+/// Wortkartenreihe fuer Saetze: einzelne Woerter werden als
+/// Karten gezeigt, das Kind sieht visuell die Bausteine eines
+/// Satzes statt eines fortlaufenden Textes.
+class WordCardRow extends StatelessWidget {
+  const WordCardRow({
+    super.key,
+    required this.words,
+    this.accentColor = LumoColors.blue,
+    this.highlightIndex,
+  });
+
+  final List<String> words;
+  final Color accentColor;
+  final int? highlightIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: List.generate(words.length, (index) {
+        final isHighlight = highlightIndex == index;
+        final color = isHighlight ? accentColor : LumoColors.ink500;
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(
+            color: isHighlight ? color.withOpacity(.12) : Colors.white,
+            borderRadius: BorderRadius.circular(LumoRadius.sm),
+            border: Border.all(
+              color: isHighlight ? color.withOpacity(.55) : LumoColors.ink100,
+              width: isHighlight ? 1.6 : 1.2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(.04),
+                blurRadius: 6,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Text(
+            words[index],
+            style: LumoTextStyles.heading3.copyWith(
+              color: isHighlight ? color : LumoColors.ink700,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+        );
+      }),
+    );
+  }
+}
+
+/// Hervorhebung des Anfangs- oder Endlauts in einem Wort.
+/// Beispiel: "Sonne" mit highlight=2 (start) zeigt "So" farbig + "nne" grau.
+class SoundHighlightWord extends StatelessWidget {
+  const SoundHighlightWord({
+    super.key,
+    required this.word,
+    required this.highlight,
+    this.color = LumoColors.orange,
+  });
+
+  /// 'start' oder 'end'
+  final String highlight;
+  final String word;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    if (word.isEmpty) {
+      return Text('—', style: LumoTextStyles.heading2);
+    }
+    final cutLen = (word.length / 3).ceil().clamp(1, word.length).toInt();
+    String highlighted;
+    String rest;
+    if (highlight == 'end') {
+      rest = word.substring(0, word.length - cutLen);
+      highlighted = word.substring(word.length - cutLen);
+    } else {
+      highlighted = word.substring(0, cutLen);
+      rest = word.substring(cutLen);
+    }
+    final parts = <InlineSpan>[
+      if (highlight != 'end')
+        TextSpan(
+          text: highlighted,
+          style: LumoTextStyles.heading1.copyWith(color: color, fontWeight: FontWeight.w900),
+        ),
+      TextSpan(
+        text: rest,
+        style: LumoTextStyles.heading1.copyWith(color: LumoColors.ink500, fontWeight: FontWeight.w900),
+      ),
+      if (highlight == 'end')
+        TextSpan(
+          text: highlighted,
+          style: LumoTextStyles.heading1.copyWith(color: color, fontWeight: FontWeight.w900),
+        ),
+    ];
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(children: parts),
+    );
+  }
+}
+
+/// Mengenanzeige als Punkt-Plättchen für Plus/Minus/Zählen.
+/// Ein Container mit zwei Mengen, die durch ein Operator-Zeichen
+/// verbunden sind. Optisch wie Wendeplättchen-Streifen.
+class QuantityDotsVisual extends StatelessWidget {
+  const QuantityDotsVisual({
+    super.key,
+    required this.left,
+    required this.operator,
+    required this.right,
+    this.colorLeft = LumoColors.orange,
+    this.colorRight = LumoColors.purple,
+  });
+
+  final int left;
+  final int right;
+
+  /// '+' oder '-'
+  final String operator;
+  final Color colorLeft;
+  final Color colorRight;
+
+  @override
+  Widget build(BuildContext context) {
+    final safeLeft = left.clamp(0, 20).toInt();
+    final safeRight = right.clamp(0, 20).toInt();
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      alignment: WrapAlignment.center,
+      spacing: 12,
+      runSpacing: 8,
+      children: [
+        _DotsCluster(count: safeLeft, color: colorLeft),
+        Text(
+          operator,
+          style: LumoTextStyles.heading1.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w900, fontSize: 32),
+        ),
+        _DotsCluster(count: safeRight, color: colorRight, struck: operator == '-'),
+      ],
+    );
+  }
+}
+
+class _DotsCluster extends StatelessWidget {
+  const _DotsCluster({required this.count, required this.color, this.struck = false});
+  final int count;
+  final Color color;
+  final bool struck;
+
+  @override
+  Widget build(BuildContext context) {
+    if (count == 0) {
+      return Container(
+        width: 80,
+        height: 56,
+        decoration: BoxDecoration(
+          color: LumoColors.ink100.withOpacity(.4),
+          borderRadius: BorderRadius.circular(LumoRadius.sm),
+          border: Border.all(color: LumoColors.ink300, style: BorderStyle.solid, width: 1.0),
+        ),
+        alignment: Alignment.center,
+        child: Text('0', style: LumoTextStyles.heading3.copyWith(color: LumoColors.ink400)),
+      );
+    }
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: color.withOpacity(.08),
+        borderRadius: BorderRadius.circular(LumoRadius.sm),
+        border: Border.all(color: color.withOpacity(.3)),
+      ),
+      child: Wrap(
+        spacing: 4,
+        runSpacing: 4,
+        children: List.generate(count, (i) {
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 18,
+                height: 18,
+                decoration: BoxDecoration(
+                  color: color,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(color: color.withOpacity(.30), blurRadius: 4, offset: const Offset(0, 1)),
+                  ],
+                ),
+              ),
+              if (struck)
+                Container(
+                  width: 22,
+                  height: 2,
+                  decoration: BoxDecoration(
+                    color: LumoColors.ink700,
+                    borderRadius: BorderRadius.circular(1),
+                  ),
+                ),
+            ],
+          );
+        }),
+      ),
+    );
+  }
+}
