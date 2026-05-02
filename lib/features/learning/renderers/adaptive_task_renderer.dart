@@ -482,12 +482,29 @@ class _SyllableVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final word = task.visualPayload.data['word']?.toString() ?? task.parameters['word']?.toString() ?? '';
+    final rawSyllables = task.visualPayload.data['syllables'];
+    final syllables = rawSyllables is List
+        ? rawSyllables.map((e) => e.toString()).toList(growable: false)
+        : null;
     return SchoolbookTaskCard(
-      title: 'Silbenhilfe',
-      subtitle: 'Klatsche das Wort langsam mit.',
+      title: 'Silben klatschen',
+      subtitle: 'Sprich das Wort langsam und klatsche bei jeder Silbe.',
       ribbonLabel: 'Silben',
       accentColor: LumoColors.purple,
-      child: WritingLineBox(placeholder: word.isEmpty ? 'Wort langsam sprechen' : word, cells: word.isEmpty ? 5 : word.length.clamp(3, 10).toInt()),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        if (word.isNotEmpty) ...[
+          Text(
+            word,
+            style: LumoTextStyles.heading2.copyWith(color: LumoColors.ink900),
+          ),
+          const SizedBox(height: 12),
+        ],
+        SyllableChipRow(
+          word: word.isEmpty ? 'Wort' : word,
+          syllables: syllables,
+          accentColor: LumoColors.purple,
+        ),
+      ]),
     );
   }
 }
@@ -580,6 +597,16 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     if (plus != null) {
       final left = int.tryParse(plus.group(1) ?? '') ?? 0;
       final right = int.tryParse(plus.group(2) ?? '') ?? 0;
+      // Bei kleinen Zahlen (<= 10) zeigen wir Mengenpunkte mit Operator,
+      // damit Klasse 1 die Mengen wirklich sehen kann.
+      if (left > 0 && right > 0 && left <= 10 && right <= 10) {
+        return SchoolbookTaskCard(
+          title: 'Plus rechnen',
+          subtitle: 'Zähle die Plättchen und addiere sie zusammen.',
+          ribbonLabel: '+',
+          child: QuantityDotsVisual(left: left, operator: '+', right: right),
+        );
+      }
       return SchoolbookTaskCard(
         title: 'Blitzlicht',
         subtitle: 'Kurz rechnen, ruhig bleiben.',
@@ -587,6 +614,47 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
         child: BlitzlichtGrid(items: <String>['$left + $right = ?', '${left + 1} + $right = ?', '$left + ${right + 1} = ?'], columns: 1),
       );
     }
+
+    // Deutsch: Satz-Aufgaben werden in Wortkarten zerlegt
+    final unitFromParams = task.parameters['unit']?.toString() ?? '';
+    if (task.subject == LearningSubject.deutsch && unitFromParams == 'Satz bauen' && task.correctAnswer is String) {
+      final correctSentence = task.correctAnswer.toString();
+      final words = correctSentence
+          .replaceAll('.', '')
+          .replaceAll('?', '')
+          .replaceAll('!', '')
+          .split(RegExp(r'\s+'))
+          .where((w) => w.isNotEmpty)
+          .toList(growable: false);
+      if (words.length >= 2) {
+        return SchoolbookTaskCard(
+          title: 'Satz aus Wortkarten',
+          subtitle: 'So sieht der richtige Satz aus. Nun finde ihn unten.',
+          ribbonLabel: 'Satz',
+          accentColor: LumoColors.blue,
+          child: WordCardRow(words: words, accentColor: LumoColors.blue),
+        );
+      }
+    }
+
+    // Deutsch: Anfangs- oder Endlaut-Aufgaben
+    if (task.subject == LearningSubject.deutsch &&
+        (unitFromParams.startsWith('Anfangslaut') || unitFromParams.startsWith('Endlaut'))) {
+      final word = task.visualPayload.data['word']?.toString() ??
+          task.parameters['word']?.toString() ??
+          task.correctAnswer.toString();
+      final highlight = unitFromParams.startsWith('End') ? 'end' : 'start';
+      return SchoolbookTaskCard(
+        title: highlight == 'end' ? 'Endlaut hören' : 'Anfangslaut hören',
+        subtitle: highlight == 'end'
+            ? 'Sprich das Wort und höre genau auf den letzten Laut.'
+            : 'Sprich das Wort und höre genau auf den ersten Laut.',
+        ribbonLabel: 'Laut',
+        accentColor: LumoColors.purple,
+        child: SoundHighlightWord(word: word, highlight: highlight, color: LumoColors.purple),
+      );
+    }
+
     return const SizedBox.shrink();
   }
 }
