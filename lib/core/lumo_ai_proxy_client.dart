@@ -50,16 +50,12 @@ class LumoAiProxyClient {
       );
     }
 
-    // Erster Versuch mit normalem Timeout (warm)
     final firstAttempt = await _runChatAttempt(baseUri, text, history, state, _timeout);
     if (firstAttempt != null) return firstAttempt;
 
-    // Bei Timeout/Reset: Server schlaeft moeglicherweise. Render Free Tier
-    // braucht 20-50s zum Aufwachen. Zweiter Versuch mit Cold-Start-Geduld.
     final secondAttempt = await _runChatAttempt(baseUri, text, history, state, _coldStartTimeout, isRetry: true);
     if (secondAttempt != null) return secondAttempt;
 
-    // Beide Versuche fehlgeschlagen -> echtes Server-Problem
     return const LumoAiProxyResponse(
       reply: 'Der Lumo-KI-Server antwortet auch nach längerem Warten nicht. Lumo hilft dir lokal weiter.',
       blocked: false,
@@ -67,8 +63,6 @@ class LumoAiProxyClient {
     );
   }
 
-  /// Einzelner Chat-Versuch. Liefert null nur bei TimeoutException
-  /// oder Verbindungsfehler (retry-faehig). Sonst Antwort.
   Future<LumoAiProxyResponse?> _runChatAttempt(
     Uri baseUri,
     String text,
@@ -134,9 +128,9 @@ class LumoAiProxyClient {
         source: decoded['source'] as String? ?? (isRetry ? 'proxy_retry' : 'proxy'),
       );
     } on TimeoutException {
-      return null; // -> Retry-Signal an ask()
+      return null;
     } on SocketException {
-      return null; // -> Retry-Signal an ask()
+      return null;
     } catch (_) {
       return const LumoAiProxyResponse(
         reply: 'Verbindung zum KI-Server nicht möglich. Lumo hilft dir lokal weiter.',
@@ -149,7 +143,6 @@ class LumoAiProxyClient {
   }
 
   Uri? _validatedBaseUri(String raw) {
-    // Use central sanitizer first - strips /health, /chat, trailing slash
     final clean = AppSettings.sanitizeProxyUrl(raw);
     final uri = Uri.tryParse(clean);
     if (uri == null || !uri.hasScheme || uri.host.isEmpty) return null;
@@ -177,21 +170,6 @@ class LumoAiProxyClient {
 
   Uri _rootEndpoint(Uri baseUri) => baseUri.replace(path: '', query: '');
 
-  /// Prueft ob der Proxy-Server erreichbar ist und OpenAI konfiguriert hat.
-  ///
-  /// Sendet KEINE Kinderdaten, KEINE Chat-History, nur ein einfaches GET.
-  /// Wird vom Elternbereich als "Server pruefen"-Button aufgerufen.
-  ///
-  /// COLD-START-LOGIK:
-  /// Render Free Tier schlaeft nach 15 Minuten Inaktivitaet ein. Beim
-  /// ersten Aufruf braucht der Server 20-50 Sekunden zum Aufwachen.
-  /// Wenn der erste Versuch in einen Timeout laeuft (12s), starten wir
-  /// einen zweiten Versuch mit 45s Geduld. Damit sieht Heinz einen
-  /// gruenen Status, wenn der Server prinzipiell laeuft.
-  ///
-  /// Erst wenn auch der zweite Versuch scheitert, melden wir
-  /// "Server schlaeft" - dann ist tatsaechlich etwas kaputt oder
-  /// die Render-Instanz ist suspended.
   Future<LumoAiHealthStatus> checkHealth(String rawUrl) async {
     final baseUri = _validatedBaseUri(rawUrl);
     if (baseUri == null) {
@@ -202,16 +180,12 @@ class LumoAiProxyClient {
       );
     }
 
-    // Erster Versuch mit normalem Timeout
     final firstAttempt = await _runHealthAttempt(baseUri, _timeout);
     if (firstAttempt != null) return firstAttempt;
 
-    // Bei null = Timeout. Render schlaeft moeglicherweise.
-    // Zweiter Versuch mit Cold-Start-Geduld.
     final secondAttempt = await _runHealthAttempt(baseUri, _coldStartTimeout, isRetry: true);
     if (secondAttempt != null) return secondAttempt;
 
-    // Beide Versuche fehlgeschlagen.
     return const LumoAiHealthStatus(
       reachable: false,
       openAiConfigured: false,
@@ -219,7 +193,6 @@ class LumoAiProxyClient {
     );
   }
 
-  /// Einzelner Health-Versuch. Null bei TimeoutException, sonst Status.
   Future<LumoAiHealthStatus?> _runHealthAttempt(
     Uri baseUri,
     Duration timeout, {
@@ -262,7 +235,7 @@ class LumoAiProxyClient {
             message: 'Server antwortet, aber das Format ist unklar.',
           );
     } on TimeoutException {
-      return null; // Signal an checkHealth: Retry-fähig
+      return null;
     } catch (_) {
       return const LumoAiHealthStatus(
         reachable: false,
@@ -274,26 +247,19 @@ class LumoAiProxyClient {
     }
   }
 
-  /// Sendet einen "Wakeup-Ping" ohne auf Antwort zu warten.
-  /// Wird beim Oeffnen des Agent- oder Lern-Screens aufgerufen,
-  /// damit der Render-Server bereits aufwacht, bevor das Kind eine
-  /// Frage stellt. Fire-and-forget. Kein State-Update. Kein Crash.
   void warmup(AppSettings settings) {
     if (!settings.aiProxyEnabled) return;
     final baseUri = _validatedBaseUri(settings.aiProxyUrl);
     if (baseUri == null) return;
-    // Kurzes Timeout - wir wollen nur den Server anstossen, nicht warten.
     final client = HttpClient()..connectionTimeout = const Duration(seconds: 4);
     () async {
       try {
         final endpoint = _healthEndpoint(baseUri);
-        final request = await client
-            .getUrl(endpoint)
-            .timeout(const Duration(seconds: 4));
+        final request = await client.getUrl(endpoint).timeout(const Duration(seconds: 4));
         final response = await request.close().timeout(const Duration(seconds: 4));
         await response.drain<void>();
       } catch (_) {
-        // Egal - wir wollten nur kitzeln.
+        // Wakeup ist best-effort.
       } finally {
         client.close(force: true);
       }
@@ -309,11 +275,19 @@ class LumoAiProxyClient {
   }
 
   LumoAiHealthStatus? _statusFromHealthJson(String raw, {String? fallbackPrefix}) {
-    final decoded = jsonDecode(raw);
-    if (decoded is! Map) return null;
-    final ok = decoded['ok'] == true;
-    final openAi = decoded['openAiConfigured'] == true;
+    final decoded = _tryDecodeHealthJson(raw);
+    if (decoded == null) return null;
+    final ok = _truthy(decoded['ok']) || _truthy(decoded['healthy']) || _truthy(decoded['ready']);
+    final openAi = _truthy(decoded['openAiConfigured']) ||
+        _truthy(decoded['openAIConfigured']) ||
+        _truthy(decoded['openaiConfigured']) ||
+        _truthy(decoded['open_ai_configured']) ||
+        _truthy(decoded['openai']) ||
+        _truthy(decoded['configured']);
+    final service = decoded['service']?.toString().toLowerCase() ?? '';
+    final isLumoProxy = service.contains('lumo') && service.contains('proxy');
     final prefix = fallbackPrefix == null ? '' : '$fallbackPrefix ';
+
     if (ok && openAi) {
       return LumoAiHealthStatus(
         reachable: true,
@@ -321,11 +295,18 @@ class LumoAiProxyClient {
         message: '${prefix}Server erreichbar. OpenAI ist verbunden.',
       );
     }
+    if (ok && isLumoProxy && !decoded.containsKey('openAiConfigured')) {
+      return LumoAiHealthStatus(
+        reachable: true,
+        openAiConfigured: false,
+        message: '${prefix}Server erreichbar. OpenAI-Status ist unklar.',
+      );
+    }
     if (ok && !openAi) {
       return LumoAiHealthStatus(
         reachable: true,
         openAiConfigured: false,
-        message: '${prefix}Server erreichbar, aber OpenAI-Schluessel fehlt am Server.',
+        message: '${prefix}Server erreichbar, aber OpenAI-Schlüssel fehlt am Server.',
       );
     }
     return LumoAiHealthStatus(
@@ -333,6 +314,23 @@ class LumoAiProxyClient {
       openAiConfigured: false,
       message: '${prefix}Server antwortet, aber meldet einen Fehler.',
     );
+  }
+
+  Map<String, Object?>? _tryDecodeHealthJson(String raw) {
+    try {
+      final decoded = jsonDecode(raw.trim());
+      if (decoded is! Map) return null;
+      return Map<String, Object?>.from(decoded);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  bool _truthy(Object? value) {
+    if (value == true) return true;
+    if (value is num) return value != 0;
+    final text = value?.toString().trim().toLowerCase();
+    return text == 'true' || text == '1' || text == 'yes' || text == 'ok';
   }
 
   Uri _tasksEndpoint(Uri baseUri) {
@@ -344,13 +342,6 @@ class LumoAiProxyClient {
     return baseUri.replace(path: normalizedPath, query: '');
   }
 
-  /// Fordert eine Charge KI-generierter Aufgaben vom Proxy an.
-  ///
-  /// units = Schwaechen aus dem Lernprofil (LearningProfileEngine).
-  /// Der Server gibt eine bereits sicher gefilterte Liste zurueck.
-  /// Eine zweite Pruefung erfolgt in Flutter via TaskQualityGuard.
-  ///
-  /// Bei Fehler oder ausgeschaltetem Proxy: leere Liste, kein Crash.
   Future<List<LumoAiTaskDraft>> fetchTaskBatch({
     required AppSettings settings,
     required String subject,
@@ -363,7 +354,6 @@ class LumoAiProxyClient {
     final baseUri = _validatedBaseUri(settings.aiProxyUrl);
     if (baseUri == null) return const <LumoAiTaskDraft>[];
 
-    // Erster Versuch (warm)
     final firstAttempt = await _runTaskBatchAttempt(
       baseUri: baseUri,
       subject: subject,
@@ -375,7 +365,6 @@ class LumoAiProxyClient {
     );
     if (firstAttempt != null) return firstAttempt;
 
-    // Zweiter Versuch mit Cold-Start-Geduld
     final secondAttempt = await _runTaskBatchAttempt(
       baseUri: baseUri,
       subject: subject,
@@ -388,8 +377,6 @@ class LumoAiProxyClient {
     return secondAttempt ?? const <LumoAiTaskDraft>[];
   }
 
-  /// Einzelner Batch-Versuch. Liefert null bei Timeout/Reset (retry-fähig),
-  /// sonst die Liste (auch wenn leer).
   Future<List<LumoAiTaskDraft>?> _runTaskBatchAttempt({
     required Uri baseUri,
     required String subject,
@@ -427,7 +414,6 @@ class LumoAiProxyClient {
         if (item is! Map) continue;
         final draft = LumoAiTaskDraft.tryFrom(item);
         if (draft == null) continue;
-        // Lokale Safety-Pruefung als zweite Linie
         final inputSafety = LumoChildSafetyFilter.inspect(draft.prompt);
         final answerSafety = LumoChildSafetyFilter.inspect(draft.answer);
         if (!inputSafety.allowed || !answerSafety.allowed) continue;
@@ -435,9 +421,9 @@ class LumoAiProxyClient {
       }
       return out;
     } on TimeoutException {
-      return null; // Retry-Signal
+      return null;
     } on SocketException {
-      return null; // Retry-Signal
+      return null;
     } catch (_) {
       return const <LumoAiTaskDraft>[];
     } finally {
@@ -557,11 +543,6 @@ class LumoChildSafetyFilter {
   }
 }
 
-/// Eine vom Lumo-Proxy gelieferte Aufgabe (Roh-Entwurf).
-///
-/// Dieser Typ ist absichtlich KEIN LumoTask. Er wird vom Cache
-/// gespeichert, bei Verwendung in einen LumoTask konvertiert und
-/// zusaetzlich vom TaskQualityGuard validiert.
 class LumoAiTaskDraft {
   const LumoAiTaskDraft({
     required this.prompt,
