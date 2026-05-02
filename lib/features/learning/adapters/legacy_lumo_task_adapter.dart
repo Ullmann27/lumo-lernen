@@ -95,7 +95,10 @@ class LegacyLumoTaskAdapter {
   /// - falsche Endlaut-Aufgaben werden korrigiert,
   /// - Antwortkarten werden eindeutig gemacht,
   /// - Rechtschreibkarten bekommen keine nur-gross/klein-duplizierten Woerter,
-  /// - Bild-Wort-Aufgaben behalten genau eine richtige Antwort.
+  /// - Bild-Wort-Aufgaben behalten genau eine richtige Antwort,
+  /// - generische Dauer-Distraktoren wie Auto/Sonne/Haus werden reduziert,
+  /// - Antwortkarten werden rotiert, damit die richtige Antwort nicht immer
+  ///   an derselben Stelle steht.
   LumoTask _sanitizeTask(LumoTask task) {
     var answer = task.answer;
     var choices = List<String>.from(task.choices);
@@ -123,12 +126,14 @@ class LegacyLumoTaskAdapter {
     }
 
     if (task.unit == 'Wort-Bild schreiben') {
-      choices = _distinctChoices(answer, fallbackPool: const <String>['Haus', 'Fuchs', 'Sonne', 'Rose', 'Apfel', 'Ball', 'Igel']);
+      choices = _distinctChoices(answer, fallbackPool: const <String>['Blume', 'Rose', 'Apfel', 'Biene', 'Kerze', 'Igel']);
     } else {
       choices = _distinctChoices(answer, fallbackPool: _fallbackChoicesFor(answer));
     }
 
-    return LumoTask(
+    choices = _rotateChoices(choices, '${task.id}|${task.prompt}|$answer');
+
+    final repaired = LumoTask(
       id: task.id,
       grade: task.grade,
       subject: task.subject,
@@ -139,6 +144,193 @@ class LegacyLumoTaskAdapter {
       explanation: explanation,
       handwriting: task.handwriting,
       visual: task.visual,
+      difficulty: task.difficulty,
+      missionTag: task.missionTag,
+    );
+    return _variedTask(repaired);
+  }
+
+  LumoTask _variedTask(LumoTask task) {
+    if (task.handwriting) return task;
+    final prompt = task.prompt.toLowerCase();
+
+    if (prompt.contains('welcher satz ist richtig')) {
+      return _sentenceVariant(task);
+    }
+    if (prompt.contains('der fuchs liest ein buch')) {
+      return _readingActionVariant(task);
+    }
+    if (prompt.contains('welches wort ist ein namenswort') || prompt.contains('welches wort ist ein hauptwort')) {
+      return _nounVariant(task);
+    }
+    if (prompt.contains('welches wort ist ein tunwort')) {
+      return _verbVariant(task);
+    }
+    if (prompt.contains('beschreibt, wie') || prompt.contains('welches wort ist ein wiewort')) {
+      return _adjectiveVariant(task);
+    }
+    if (prompt.contains('reimt sich auf') && _containsOverusedText('${task.prompt} ${task.answer} ${task.choices.join(' ')}')) {
+      return _rhymeVariant(task);
+    }
+    if ((task.unit == 'Anfangslaute' || task.unit == 'Endlaute') && _containsOverusedText(task.prompt)) {
+      return _soundVariant(task);
+    }
+
+    return _replaceOverusedDistractors(task);
+  }
+
+  LumoTask _sentenceVariant(LumoTask task) {
+    const variants = <List<String>>[
+      <String>['Die Katze schläft.', 'schläft die Katze', 'Katze die schläft'],
+      <String>['Der Igel trinkt.', 'trinkt der Igel', 'Igel der trinkt'],
+      <String>['Die Biene fliegt.', 'fliegt die Biene', 'Biene die fliegt'],
+      <String>['Das Kind malt.', 'malt das Kind', 'Kind das malt'],
+      <String>['Oma liest leise.', 'liest leise Oma', 'leise Oma liest'],
+      <String>['Der Vogel singt.', 'singt der Vogel', 'Vogel der singt'],
+      <String>['Lumo zählt Sterne.', 'zählt Lumo Sterne', 'Sterne Lumo zählt'],
+    ];
+    final v = variants[_varietyIndex(task, variants.length)];
+    return _copyTask(
+      task,
+      prompt: 'Welcher Satz ist richtig?',
+      answer: v[0],
+      choices: _rotateChoices(<String>[v[0], v[1], v[2]], '${task.id}|satz'),
+      explanation: 'Ein Satz beginnt groß und endet mit einem Punkt.',
+    );
+  }
+
+  LumoTask _readingActionVariant(LumoTask task) {
+    const variants = <List<String>>[
+      <String>['Die Katze schläft auf der Decke. Was macht die Katze?', 'schlafen', 'Katze', 'Decke'],
+      <String>['Oma backt einen Kuchen. Was macht Oma?', 'backen', 'Oma', 'Kuchen'],
+      <String>['Der Igel trinkt Wasser. Was macht der Igel?', 'trinken', 'Igel', 'Wasser'],
+      <String>['Das Kind malt ein Bild. Was macht das Kind?', 'malen', 'Kind', 'Bild'],
+      <String>['Der Vogel singt im Baum. Was macht der Vogel?', 'singen', 'Vogel', 'Baum'],
+    ];
+    final v = variants[_varietyIndex(task, variants.length)];
+    return _copyTask(
+      task,
+      prompt: v[0],
+      answer: v[1],
+      choices: _rotateChoices(<String>[v[1], v[2], v[3]], '${task.id}|leseaktion'),
+      explanation: 'Suche im Satz das Tunwort.',
+    );
+  }
+
+  LumoTask _nounVariant(LumoTask task) {
+    const nouns = <String>['Baum', 'Blume', 'Katze', 'Maus', 'Apfel', 'Rose', 'Buch', 'Lampe', 'Biene', 'Kerze', 'Wolke', 'Tasche'];
+    const distractors = <String>['lesen', 'rot', 'malen', 'klein', 'tanzen', 'schnell', 'springen', 'warm', 'laufen', 'leise'];
+    final answer = nouns[_varietyIndex(task, nouns.length)];
+    final offset = _varietyIndex(task, distractors.length);
+    final wrong = <String>[
+      distractors[offset],
+      distractors[(offset + 3) % distractors.length],
+    ];
+    return _copyTask(
+      task,
+      answer: answer,
+      choices: _rotateChoices(<String>[answer, ...wrong], '${task.id}|nomen'),
+      explanation: 'Namenswörter sind Dinge, Personen oder Tiere und werden groß geschrieben.',
+    );
+  }
+
+  LumoTask _verbVariant(LumoTask task) {
+    const verbs = <String>['laufen', 'malen', 'lesen', 'springen', 'singen', 'lachen', 'spielen', 'tanzen', 'schreiben', 'rechnen'];
+    const distractors = <String>['Blume', 'Kerze', 'leise', 'Biene', 'Wolke', 'klein', 'Apfel', 'Rose'];
+    final answer = verbs[_varietyIndex(task, verbs.length)];
+    final offset = _varietyIndex(task, distractors.length);
+    return _copyTask(
+      task,
+      answer: answer,
+      choices: _rotateChoices(<String>[answer, distractors[offset], distractors[(offset + 2) % distractors.length]], '${task.id}|verb'),
+      explanation: 'Ein Tunwort sagt, was jemand macht.',
+    );
+  }
+
+  LumoTask _adjectiveVariant(LumoTask task) {
+    const adjectives = <String>['groß', 'klein', 'warm', 'schnell', 'weich', 'kalt', 'hell', 'dunkel', 'schön', 'leise', 'rund', 'langsam'];
+    const distractors = <String>['Blume', 'Kerze', 'lesen', 'Biene', 'Apfel', 'malen', 'Rose', 'tanzen'];
+    final answer = adjectives[_varietyIndex(task, adjectives.length)];
+    final offset = _varietyIndex(task, distractors.length);
+    return _copyTask(
+      task,
+      answer: answer,
+      choices: _rotateChoices(<String>[answer, distractors[offset], distractors[(offset + 2) % distractors.length]], '${task.id}|adjektiv'),
+      explanation: 'Ein Wiewort beschreibt eine Eigenschaft.',
+    );
+  }
+
+  LumoTask _rhymeVariant(LumoTask task) {
+    const pairs = <List<String>>[
+      <String>['Hase', 'Nase', 'Blume', 'Kerze'],
+      <String>['Ball', 'Fall', 'Biene', 'Rose'],
+      <String>['Kanne', 'Tanne', 'Apfel', 'Wolke'],
+      <String>['Stein', 'Bein', 'Blume', 'Tasche'],
+      <String>['Hut', 'Mut', 'Kerze', 'Biene'],
+    ];
+    final v = pairs[_varietyIndex(task, pairs.length)];
+    return _copyTask(
+      task,
+      prompt: 'Was reimt sich auf ${v[0]}?',
+      answer: v[1],
+      choices: _rotateChoices(<String>[v[1], v[2], v[3]], '${task.id}|reim'),
+      explanation: 'Reimwörter klingen am Ende gleich.',
+    );
+  }
+
+  LumoTask _soundVariant(LumoTask task) {
+    const startWords = <String>['Tasse', 'Lampe', 'Igel', 'Nase', 'Rose', 'Kerze', 'Wolke', 'Biene'];
+    const endWords = <String>['Brot', 'Rad', 'Glas', 'Rose', 'Apfel', 'Garten', 'Stift', 'Blatt'];
+    final isEnd = task.unit == 'Endlaute';
+    final words = isEnd ? endWords : startWords;
+    final word = words[_varietyIndex(task, words.length)];
+    final answer = isEnd ? word.substring(word.length - 1).toLowerCase() : word.substring(0, 1).toUpperCase();
+    return _copyTask(
+      task,
+      prompt: isEnd ? 'Mit welchem Laut endet $word?' : 'Mit welchem Laut beginnt $word?',
+      answer: answer,
+      choices: _rotateChoices(_soundChoices(answer), '${task.id}|laut'),
+      explanation: isEnd ? 'Sprich $word langsam. Der letzte Laut ist $answer.' : 'Sprich $word langsam. Der erste Laut ist $answer.',
+    );
+  }
+
+  LumoTask _replaceOverusedDistractors(LumoTask task) {
+    if (!_containsOverusedText(task.choices.join(' '))) return task;
+    final targetCount = task.choices.length.clamp(3, 5).toInt();
+    final result = <String>[task.answer];
+    for (final choice in task.choices) {
+      if (_normalizeChoice(choice) == _normalizeChoice(task.answer)) continue;
+      if (_isOverused(choice)) continue;
+      if (result.length >= targetCount) break;
+      if (!result.any((item) => _normalizeChoice(item) == _normalizeChoice(choice))) result.add(choice);
+    }
+    for (final choice in _fallbackChoicesFor(task.answer)) {
+      if (result.length >= targetCount) break;
+      if (_isOverused(choice)) continue;
+      if (!result.any((item) => _normalizeChoice(item) == _normalizeChoice(choice))) result.add(choice);
+    }
+    return _copyTask(task, choices: _rotateChoices(result, '${task.id}|generic-clean'));
+  }
+
+  LumoTask _copyTask(
+    LumoTask task, {
+    String? prompt,
+    String? answer,
+    List<String>? choices,
+    String? explanation,
+    String? visual,
+  }) {
+    return LumoTask(
+      id: task.id,
+      grade: task.grade,
+      subject: task.subject,
+      unit: task.unit,
+      prompt: prompt ?? task.prompt,
+      choices: choices ?? task.choices,
+      answer: answer ?? task.answer,
+      explanation: explanation ?? task.explanation,
+      handwriting: task.handwriting,
+      visual: visual ?? task.visual,
       difficulty: task.difficulty,
       missionTag: task.missionTag,
     );
@@ -172,10 +364,47 @@ class LegacyLumoTaskAdapter {
     return result;
   }
 
+  List<String> _rotateChoices(List<String> choices, String seed) {
+    if (choices.length < 2) return choices;
+    final offset = (seed.hashCode & 0x7fffffff) % choices.length;
+    return <String>[...choices.skip(offset), ...choices.take(offset)];
+  }
+
+  int _varietyIndex(LumoTask task, int length) {
+    if (length <= 1) return 0;
+    return ('${task.id}|${task.prompt}|${task.answer}'.hashCode & 0x7fffffff) % length;
+  }
+
+  bool _containsOverusedText(String value) {
+    final normalized = _normalizeChoice(value);
+    return _overusedWords.any((word) => RegExp('(^|\\s)$word(\\s|4)').hasMatch(normalized));
+  }
+
+  bool _isOverused(String value) => _overusedWords.contains(_normalizeChoice(value));
+
+  static const Set<String> _overusedWords = <String>{
+    'auto',
+    'sonne',
+    'haus',
+    'mama',
+    'hund',
+    'fuchs',
+  };
+
+  List<String> _soundChoices(String answer) {
+    const bank = <String>['A', 'B', 'E', 'I', 'K', 'L', 'N', 'R', 'T', 'W'];
+    final result = <String>[answer];
+    for (final item in bank) {
+      if (result.length >= 3) break;
+      if (_normalizeChoice(item) != _normalizeChoice(answer)) result.add(item);
+    }
+    return result;
+  }
+
   List<String> _fallbackChoicesFor(String answer) {
     final n = int.tryParse(answer.replaceAll(RegExp(r'[^0-9-]'), ''));
     if (n != null) return <String>['$n', '${n + 1}', '${n == 0 ? 2 : n - 1}', '${n + 2}'];
-    return <String>[answer, 'Haus', 'Sonne', 'Ball', 'Fuchs', 'Mama', 'Igel'];
+    return <String>[answer, 'Blume', 'Kerze', 'Biene', 'Wolke', 'Baum', 'Katze', 'Apfel', 'Rose', 'Igel'];
   }
 
   List<String> _spellingChoicesFor(String correct) {
@@ -197,24 +426,24 @@ class LegacyLumoTaskAdapter {
       'gross' => const <String>['gros', 'grohs'],
       _ => <String>['${correct}e', '${correct}n'],
     };
-    return _distinctChoices(correct, fallbackPool: <String>[correct, ...distractors, 'Haus', 'Sonne', 'Ball']);
+    return _distinctChoices(correct, fallbackPool: <String>[correct, ...distractors, 'Blume', 'Kerze', 'Biene']);
   }
 
   String _wordEndingWith(String ending) {
     final bank = <String, List<String>>{
       't': <String>['Stift', 'Hut', 'Boot', 'Brot', 'Blatt'],
-      'd': <String>['Hund', 'Kind', 'Mond', 'Rad'],
-      's': <String>['Haus', 'Fuchs', 'Glas', 'Bus'],
-      'e': <String>['Hase', 'Rose', 'Sonne', 'Lampe'],
-      'n': <String>['Banane', 'Kaninchen', 'Ofen'],
-      'l': <String>['Ball', 'Igel', 'Apfel'],
+      'd': <String>['Rad', 'Wald', 'Bild', 'Kind'],
+      's': <String>['Glas', 'Bus', 'Reis'],
+      'e': <String>['Hase', 'Rose', 'Lampe', 'Blume', 'Tasse'],
+      'n': <String>['Banane', 'Kaninchen', 'Ofen', 'Garten'],
+      'l': <String>['Apfel', 'Igel', 'Pinsel'],
     };
     final words = bank[ending] ?? <String>['Stift'];
     return words.first;
   }
 
   List<String> _wordsNotEndingWith(String ending, {required int count}) {
-    final bank = <String>['Hase', 'Mama', 'Sonne', 'Rose', 'Apfel', 'Fuchs', 'Ball', 'Igel', 'Schule', 'Banane'];
+    final bank = <String>['Hase', 'Rose', 'Apfel', 'Igel', 'Schule', 'Banane', 'Blume', 'Kerze', 'Biene', 'Wolke', 'Tasche', 'Garten'];
     return bank
         .where((word) => !_normalizeWord(word).endsWith(ending))
         .take(count)
