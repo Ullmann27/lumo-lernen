@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
@@ -21,27 +24,198 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
   final LumoAiProxyClient _proxy = const LumoAiProxyClient();
   final LumoCompanionEngine _localEngine = const LumoCompanionEngine();
   final List<LumoAiChatTurn> _history = <LumoAiChatTurn>[];
+  final stt.SpeechToText _speech = stt.SpeechToText();
 
   bool _loading = false;
+  bool _speechReady = false;
+  bool _speechListening = false;
+  bool _speechInitStarted = false;
   String _answer = 'Ich bin Lumo. Frag mich etwas zu Mathe, Deutsch, Lesen, Englisch, Sachunterricht, Natur oder einer Geschichte.';
   String _source = 'local_ready';
+  String _liveSpeech = '';
+  String? _speechLocale;
+  String? _speechError;
   bool _blocked = false;
 
   @override
   void initState() {
     super.initState();
     // Render-Warmup: Wenn KI freigegeben ist, Server bereits beim
-    // Oeffnen anstossen. Dann ist der erste Chat warm und Heinz
+    // Öffnen anstoßen. Dann ist der erste Chat warm und Heinz
     // sieht keinen 30s-Cold-Start.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _proxy.warmup(widget.appState.state.settings);
+      if (widget.appState.state.settings.microphoneEnabled) {
+        unawaited(_ensureSpeechReady());
+      }
     });
   }
 
   @override
   void dispose() {
+    unawaited(_speech.stop());
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<void> _ensureSpeechReady() async {
+    if (_speechReady || _speechInitStarted) return;
+    _speechInitStarted = true;
+    try {
+      final available = await _speech.initialize(
+        debugLogging: false,
+        onStatus: (status) {
+          if (!mounted) return;
+          final normalized = status.toLowerCase();
+          if (normalized == 'listening') {
+            setState(() => _speechListening = true);
+          }
+          if (normalized == 'done' || normalized == 'notlistening') {
+            setState(() => _speechListening = false);
+          }
+        },
+        onError: (error) {
+          if (!mounted) return;
+          setState(() {
+            _speechListening = false;
+            _speechError = 'Spracherkennung: ${error.errorMsg}';
+          });
+        },
+      );
+
+      if (!available) {
+        if (!mounted) return;
+        setState(() {
+          _speechReady = false;
+          _speechError = 'Spracherkennung ist auf diesem Gerät nicht verfügbar.';
+        });
+        return;
+      }
+
+      final locales = await _speech.locales();
+      final bestLocale = _bestGermanLocaleId(locales);
+      if (!mounted) return;
+      setState(() {
+        _speechReady = true;
+        _speechLocale = bestLocale;
+        _speechError = null;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _speechReady = false;
+        _speechError = 'Mikrofon konnte nicht gestartet werden: $e';
+      });
+    } finally {
+      _speechInitStarted = false;
+    }
+  }
+
+  String? _bestGermanLocaleId(List<dynamic> locales) {
+    if (locales.isEmpty) return null;
+    final ranked = List<dynamic>.from(locales);
+    ranked.sort((a, b) => _speechLocaleScore(b).compareTo(_speechLocaleScore(a)));
+    final best = ranked.first;
+    final id = _localeId(best);
+    return id.isEmpty ? null : id;
+  }
+
+  int _speechLocaleScore(dynamic locale) {
+    final id = _localeId(locale).toLowerCase().replaceAll('_', '-');
+    final name = _localeName(locale).toLowerCase();
+    var score = 0;
+    if (id == 'de-at') score += 140;
+    if (id == 'de-de') score += 130;
+    if (id.startsWith('de-at')) score += 120;
+    if (id.startsWith('de-de')) score += 115;
+    if (id.startsWith('de')) score += 90;
+    if (name.contains('österreich') || name.contains('austria')) score += 30;
+    if (name.contains('deutsch') || name.contains('german')) score += 20;
+    return score;
+  }
+
+  String _localeId(dynamic locale) {
+    try {
+      return (locale.localeId ?? '').toString();
+    } catch (_) {
+      return '';
+    }
+  }
+
+  String _localeName(dynamic locale) {
+    try {
+      return (locale.name ?? '').toString();
+    } catch (_) {
+      return '';
+    }
+  }
+
+  Future<void> _startVoiceQuestion() async {
+    if (_loading || _speechListening) return;
+    final settings = widget.appState.state.settings;
+    if (!settings.microphoneEnabled) {
+      setState(() => _speechError = 'Mikrofon ist im Elternbereich ausgeschaltet.');
+      return;
+    }
+
+    await LumoVoice.instance.stop();
+    await _ensureSpeechReady();
+    if (!_speechReady) return;
+
+    setState(() {
+      _liveSpeech = '';
+      _speechError = null;
+      _speechListening = true;
+    });
+
+    try {
+      await _speech.listen(
+        localeId: _speechLocale,
+        listenFor: const Duration(seconds: 35),
+        pauseFor: const Duration(seconds: 4),
+        partialResults: true,
+        cancelOnError: true,
+        listenMode: stt.ListenMode.confirmation,
+        onResult: (result) {
+          if (!mounted) return;
+          final words = result.recognizedWords.trim();
+          setState(() {
+            _liveSpeech = words;
+            if (words.isNotEmpty) _controller.text = words;
+          });
+          if (result.finalResult && words.isNotEmpty) {
+            unawaited(_finishVoiceQuestion(words));
+          }
+        },
+      );
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _speechListening = false;
+        _speechError = 'Sprachaufnahme konnte nicht starten: $e';
+      });
+    }
+  }
+
+  Future<void> _finishVoiceQuestion(String words) async {
+    try {
+      await _speech.stop();
+    } catch (_) {}
+    if (!mounted) return;
+    setState(() => _speechListening = false);
+    await _ask(words);
+  }
+
+  Future<void> _stopVoiceQuestion() async {
+    try {
+      await _speech.stop();
+    } catch (_) {}
+    if (!mounted) return;
+    final words = _liveSpeech.trim().isNotEmpty ? _liveSpeech.trim() : _controller.text.trim();
+    setState(() => _speechListening = false);
+    if (words.isNotEmpty && !_loading) {
+      await _ask(words);
+    }
   }
 
   Future<void> _ask([String? raw]) async {
@@ -70,6 +244,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
         _source = response.source;
         _blocked = response.blocked;
         _loading = false;
+        _liveSpeech = '';
       });
       _applyReply(response.reply, blocked: response.blocked);
       return;
@@ -83,6 +258,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
       _source = 'local_companion';
       _blocked = false;
       _loading = false;
+      _liveSpeech = '';
     });
     widget.appState.update(widget.appState.state.copyWith(
       lumoMessage: local.text,
@@ -91,7 +267,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
       unit: local.suggestedUnit ?? widget.appState.state.unit,
     ));
     if (widget.appState.state.settings.voiceEnabled) {
-      LumoVoice.instance.speak(local.text);
+      unawaited(LumoVoice.instance.speak(local.text, style: VoiceStyle.explain));
     }
   }
 
@@ -110,7 +286,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
       mood: blocked ? LumoMood.comfort : LumoMood.greet,
     ));
     if (widget.appState.state.settings.voiceEnabled) {
-      LumoVoice.instance.speak(reply);
+      unawaited(LumoVoice.instance.speak(reply, style: blocked ? VoiceStyle.comfort : VoiceStyle.explain));
     }
   }
 
@@ -130,9 +306,28 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
             const SizedBox(height: 16),
             _SafetyFrame(proxyReady: proxyReady),
             const SizedBox(height: 16),
-            _AnswerBubble(answer: _answer, loading: _loading, blocked: _blocked, source: _source),
+            _AnswerBubble(
+              answer: _answer,
+              loading: _loading,
+              blocked: _blocked,
+              source: _source,
+              onSpeak: () => LumoVoice.instance.speak(_answer, style: _blocked ? VoiceStyle.comfort : VoiceStyle.explain),
+              onStop: LumoVoice.instance.stop,
+            ),
             const SizedBox(height: 16),
-            _QuestionInput(controller: _controller, loading: _loading, onAsk: _ask),
+            _QuestionInput(
+              controller: _controller,
+              loading: _loading,
+              microphoneEnabled: settings.microphoneEnabled,
+              speechReady: _speechReady,
+              listening: _speechListening,
+              liveSpeech: _liveSpeech,
+              speechLocale: _speechLocale,
+              speechError: _speechError,
+              onAsk: _ask,
+              onMic: _startVoiceQuestion,
+              onStopMic: _stopVoiceQuestion,
+            ),
             const SizedBox(height: 14),
             Wrap(spacing: 8, runSpacing: 8, children: [
               _QuickChip(label: '🧮 Mathehilfe', onTap: () => _quickAsk('Erklär mir 7 plus 5 in kleinen Schritten, bitte mit Beispiel.')),
@@ -220,12 +415,21 @@ class _SafetyFrame extends StatelessWidget {
 }
 
 class _AnswerBubble extends StatelessWidget {
-  const _AnswerBubble({required this.answer, required this.loading, required this.blocked, required this.source});
+  const _AnswerBubble({
+    required this.answer,
+    required this.loading,
+    required this.blocked,
+    required this.source,
+    required this.onSpeak,
+    required this.onStop,
+  });
 
   final String answer;
   final bool loading;
   final bool blocked;
   final String source;
+  final VoidCallback onSpeak;
+  final VoidCallback onStop;
 
   String get _friendlySource {
     switch (source) {
@@ -269,9 +473,23 @@ class _AnswerBubble extends StatelessWidget {
         if (showAnswer) ...[
           Text(answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800, height: 1.35)),
           const SizedBox(height: 10),
-          Text(
-            _friendlySource,
-            style: LumoTextStyles.caption.copyWith(color: LumoColors.ink400),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Text(_friendlySource, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink400)),
+              OutlinedButton.icon(
+                onPressed: loading ? null : onSpeak,
+                icon: const Icon(Icons.volume_up_rounded, size: 18),
+                label: const Text('Vorlesen'),
+              ),
+              OutlinedButton.icon(
+                onPressed: onStop,
+                icon: const Icon(Icons.stop_circle_rounded, size: 18),
+                label: const Text('Stopp'),
+              ),
+            ],
           ),
         ] else
           Text(
@@ -284,38 +502,81 @@ class _AnswerBubble extends StatelessWidget {
 }
 
 class _QuestionInput extends StatelessWidget {
-  const _QuestionInput({required this.controller, required this.loading, required this.onAsk});
+  const _QuestionInput({
+    required this.controller,
+    required this.loading,
+    required this.microphoneEnabled,
+    required this.speechReady,
+    required this.listening,
+    required this.liveSpeech,
+    required this.speechLocale,
+    required this.speechError,
+    required this.onAsk,
+    required this.onMic,
+    required this.onStopMic,
+  });
 
   final TextEditingController controller;
   final bool loading;
+  final bool microphoneEnabled;
+  final bool speechReady;
+  final bool listening;
+  final String liveSpeech;
+  final String? speechLocale;
+  final String? speechError;
   final ValueChanged<String?> onAsk;
+  final VoidCallback onMic;
+  final VoidCallback onStopMic;
 
   @override
   Widget build(BuildContext context) {
+    final micLabel = listening ? 'Zuhören …' : 'Sprechen';
+    final micIcon = listening ? Icons.graphic_eq_rounded : Icons.mic_rounded;
+    final statusText = listening
+        ? (liveSpeech.trim().isEmpty ? 'Sprich jetzt. Lumo sendet die Frage automatisch.' : 'Erkannt: $liveSpeech')
+        : microphoneEnabled
+            ? 'Spracherkennung: ${speechReady ? (speechLocale ?? 'Deutsch') : 'wird vorbereitet'}'
+            : 'Mikrofon ist im Elternbereich ausgeschaltet.';
+
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: lumoCard(),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-        Expanded(
-          child: TextField(
-            controller: controller,
-            minLines: 1,
-            maxLines: 4,
-            textInputAction: TextInputAction.send,
-            onSubmitted: loading ? null : (value) => onAsk(value),
-            decoration: const InputDecoration(
-              labelText: 'Frag Lumo',
-              hintText: 'Zum Beispiel: Erklär mir 12 minus 5.',
-              border: OutlineInputBorder(),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          Expanded(
+            child: TextField(
+              controller: controller,
+              minLines: 1,
+              maxLines: 4,
+              textInputAction: TextInputAction.send,
+              onSubmitted: loading ? null : (value) => onAsk(value),
+              decoration: const InputDecoration(
+                labelText: 'Frag Lumo',
+                hintText: 'Zum Beispiel: Erklär mir 12 minus 5.',
+                border: OutlineInputBorder(),
+              ),
             ),
           ),
-        ),
-        const SizedBox(width: 10),
-        FilledButton.icon(
-          onPressed: loading ? null : () => onAsk(controller.text),
-          icon: const Icon(Icons.send_rounded),
-          label: const Text('Senden'),
-        ),
+          const SizedBox(width: 10),
+          FilledButton.icon(
+            onPressed: loading ? null : () => onAsk(controller.text),
+            icon: const Icon(Icons.send_rounded),
+            label: const Text('Senden'),
+          ),
+        ]),
+        const SizedBox(height: 10),
+        Wrap(spacing: 8, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
+          FilledButton.icon(
+            onPressed: loading || !microphoneEnabled ? null : (listening ? onStopMic : onMic),
+            icon: Icon(micIcon),
+            label: Text(micLabel),
+          ),
+          Text(statusText, style: LumoTextStyles.caption.copyWith(color: listening ? LumoColors.orange : LumoColors.ink500, fontWeight: FontWeight.w800)),
+        ]),
+        if (speechError != null) ...[
+          const SizedBox(height: 6),
+          Text(speechError!, style: LumoTextStyles.caption.copyWith(color: Colors.redAccent, fontWeight: FontWeight.w800)),
+        ],
       ]),
     );
   }
