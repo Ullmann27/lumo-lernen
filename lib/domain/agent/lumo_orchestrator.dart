@@ -134,17 +134,21 @@ class InterventionEngine {
     final attempt = (event.payload['attemptNumber'] as int?) ?? 1;
     final sentence = event.payload['sentence']?.toString() ?? 'diesen Satz';
     final word = event.payload['word']?.toString();
+    final score = (event.payload['alignmentScore'] as num?)?.toDouble() ?? 0.0;
 
     if (event.correct == true) {
       return AgentDecision(
         primary: AgentAction(
           type: AgentActionType.continueFlow,
           tone: AgentTone.warm,
-          message: memory.pickFresh('reading.ok.$sentence', const <String>[
-            'Gut gelesen. Lies jetzt hier weiter.',
-            'Das war ruhig und klar. Weiter geht es mit dem naechsten Satz.',
-            'Sehr gut. Lumo bleibt dabei und hört weiter zu.',
+          // Bewusst nicht mehr: "Der Satz ist richtig". Die Geräte-Spracherkennung
+          // kann sich irren. Lumo bestätigt daher vorsichtiger und beobachtet weiter.
+          message: memory.pickFresh('reading.ok.$sentence.$score', const <String>[
+            'Ich habe den Satz gut erkannt. Lies jetzt hier weiter.',
+            'Das klang ruhig und klar. Weiter geht es mit dem naechsten Satz.',
+            'Sehr gut drangeblieben. Lumo hoert beim naechsten Satz wieder genau zu.',
           ]),
+          payload: <String, Object?>{'alignmentScore': score},
         ),
       );
     }
@@ -155,7 +159,7 @@ class InterventionEngine {
           type: AgentActionType.repeatSentence,
           tone: AgentTone.coaching,
           message: word == null
-              ? 'Stopp, kleiner Lesefuchs. Lies diesen Satz bitte noch einmal langsam.'
+              ? 'Stopp, kleiner Lesefuchs. Lies diesen Satz bitte noch einmal langsam Wort fuer Wort.'
               : 'Stopp, kleiner Lesefuchs. Das Wort "$word" schauen wir nochmal an. Lies ab dort erneut.',
           payload: <String, Object?>{'repeat': sentence, 'attemptNumber': attempt + 1},
         ),
@@ -168,8 +172,8 @@ class InterventionEngine {
           type: AgentActionType.showSyllables,
           tone: AgentTone.calming,
           message: word == null
-              ? 'Ich mache den Satz leichter und markiere die Silben. Dann liest du ihn nochmal.'
-              : 'Ich teile "$word" in Silben. Danach probierst du es noch einmal.',
+              ? 'Ich mache den Satz leichter. Wir lesen ihn langsam in kleinen Wortschritten.'
+              : 'Ich teile "$word" in kleine Teile. Hoer kurz zu, dann probierst du es noch einmal.',
           payload: <String, Object?>{'repeat': sentence, 'attemptNumber': 3, if (word != null) 'word': word},
         ),
       );
@@ -182,7 +186,7 @@ class InterventionEngine {
         message: word == null
             ? 'Wir gehen kontrolliert weiter. Ich merke mir diesen Satz fuer spaeter.'
             : 'Wir gehen weiter. Ich merke mir "$word" als Uebungswort fuer spaeter.',
-        payload: <String, Object?>{'storeProblemWord': word, 'repeatLater': true},
+        payload: <String, Object?>{'storeProblemWord': word, 'repeatLater': true, 'alignmentScore': score},
       ),
       memoryTags: <String>[if (word != null) 'problem_word:$word'],
     );
