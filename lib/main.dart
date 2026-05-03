@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'app/app_shell.dart';
 import 'app/app_theme.dart';
 import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
 import 'features/onboarding/lumo_onboarding_screen.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations(const <DeviceOrientation>[
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
     DeviceOrientation.portraitUp,
@@ -35,7 +36,13 @@ class _LumoAppState extends State<LumoApp> {
   }
 
   Future<void> _load() async {
-    final profile = await _repo.loadProfile();
+    UserProfile? profile;
+    try {
+      profile = await _repo.loadProfile();
+    } catch (_) {
+      // Beschädigte lokale Daten dürfen den App-Start nie blockieren.
+      profile = null;
+    }
     if (!mounted) return;
     setState(() {
       _profile = profile;
@@ -44,9 +51,14 @@ class _LumoAppState extends State<LumoApp> {
   }
 
   Future<void> _finishOnboarding(UserProfile profile) async {
-    await _repo.saveProfile(profile);
+    final cleanProfile = profile.normalized();
+    try {
+      await _repo.saveProfile(cleanProfile);
+    } catch (_) {
+      // Auch wenn Speichern fehlschlägt, darf das Kind nicht im Onboarding hängen bleiben.
+    }
     if (!mounted) return;
-    setState(() => _profile = profile);
+    setState(() => _profile = cleanProfile);
   }
 
   @override
