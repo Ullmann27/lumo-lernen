@@ -88,7 +88,7 @@ class ReadingAttemptLedger {
       }
       return const ReadingAttemptDecision(
         outcome: ReadingAttemptOutcome.accepted,
-        childMessage: 'Gut gelesen. Der Satz ist jetzt richtig. Jetzt kommt der naechste Satz.',
+        childMessage: 'Ich habe den Satz gut erkannt. Wir lesen jetzt ruhig weiter.',
       );
     }
 
@@ -175,6 +175,10 @@ class ReadingAttemptLedger {
     for (final entry in counts.entries) {
       if (entry.value >= 2) return entry.key;
     }
+    // Nach drei Versuchen reicht ein wiederholt plausibler Einzelfehler,
+    // damit Lumo das Wort in die Leseschwaechen aufnimmt.
+    final reliable = attempts.where((attempt) => attempt.reliableReadingProblem).toList(growable: false);
+    if (reliable.length >= 2) return reliable.last.problemWord?.trim().toLowerCase();
     return null;
   }
 
@@ -184,7 +188,9 @@ class ReadingAttemptLedger {
     if (spokenTokens.isEmpty) return true;
     if (analysis.correctEnough) return false;
     if (spokenTokens.length <= 1 && expectedTokens.length >= 3) return true;
-    if (analysis.alignmentScore < .24) return true;
+    if (analysis.alignmentScore < .20) return true;
+    // Wenn die Analyse ein konkretes Problemwort hat, ist das nicht nur Mikrofonrauschen.
+    if (analysis.problemWord != null && analysis.problemWord!.trim().isNotEmpty && analysis.alignmentScore >= .28) return false;
     if (analysis.problemWord == null && analysis.events.isEmpty) return true;
     return false;
   }
