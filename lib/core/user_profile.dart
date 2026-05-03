@@ -15,6 +15,21 @@ class UserProfile {
   final DateTime createdAt;
   final DateTime lastActiveAt;
 
+  UserProfile normalized() {
+    final cleanName = name.trim().isEmpty ? 'Kind' : name.trim();
+    final cleanAge = age.clamp(5, 12).toInt();
+    final cleanGrade = grade.clamp(1, 4).toInt();
+    final cleanId = id.trim().isEmpty ? 'local_${cleanName.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_')}' : id.trim();
+    return UserProfile(
+      id: cleanId,
+      name: cleanName,
+      age: cleanAge,
+      grade: cleanGrade,
+      createdAt: createdAt,
+      lastActiveAt: lastActiveAt,
+    );
+  }
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
@@ -25,14 +40,15 @@ class UserProfile {
       };
 
   factory UserProfile.fromJson(Map<String, dynamic> json) {
-    return UserProfile(
+    final profile = UserProfile(
       id: json['id'] as String? ?? 'local',
       name: json['name'] as String? ?? 'Kind',
-      age: (json['age'] as num?)?.toInt() ?? 7,
-      grade: (json['grade'] as num?)?.toInt() ?? 1,
+      age: (json['age'] as num?)?.toInt() ?? int.tryParse(json['age']?.toString() ?? '') ?? 7,
+      grade: (json['grade'] as num?)?.toInt() ?? int.tryParse(json['grade']?.toString() ?? '') ?? 1,
       createdAt: DateTime.tryParse(json['createdAt'] as String? ?? '') ?? DateTime.now(),
       lastActiveAt: DateTime.tryParse(json['lastActiveAt'] as String? ?? '') ?? DateTime.now(),
     );
+    return profile.normalized();
   }
 
   UserProfile copyWith({
@@ -48,6 +64,6 @@ class UserProfile {
       grade: grade ?? this.grade,
       createdAt: createdAt,
       lastActiveAt: lastActiveAt ?? this.lastActiveAt,
-    );
+    ).normalized();
   }
 }
