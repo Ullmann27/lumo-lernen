@@ -12,6 +12,9 @@
 class PrimarySchoolWordData {
   const PrimarySchoolWordData._();
 
+  static const int _recentChoiceMemory = 8;
+  static final Map<String, List<String>> _recentChoicesByBucket = <String, List<String>>{};
+
   static const Map<String, List<String>> syllables = <String, List<String>>{
     // Klasse 1: einfache, häufige Wörter
     'Mama': <String>['Ma', 'ma'],
@@ -211,26 +214,79 @@ class PrimarySchoolWordData {
 
   static String nounForGrade(int grade, int seed) {
     final words = nounsForGrade(grade);
-    return words[_positiveIndex(seed, words.length)];
+    return _pickAvoidingRecent('noun_g$grade', words, seed);
   }
 
-  static String verbForSeed(int seed) => verbs[_positiveIndex(seed, verbs.length)];
+  static String verbForSeed(int seed) => _pickAvoidingRecent('verb', verbs, seed);
 
-  static String adjectiveForSeed(int seed) => adjectives[_positiveIndex(seed, adjectives.length)];
+  static String adjectiveForSeed(int seed) => _pickAvoidingRecent('adjective', adjectives, seed);
 
-  static List<String> rhymePairForSeed(int seed) => rhymePairs[_positiveIndex(seed, rhymePairs.length)];
+  static List<String> rhymePairForSeed(int seed) {
+    final pair = _pickPairAvoidingRecent('rhyme_pair', rhymePairs, seed);
+    _rememberChoice('rhyme_word', pair.first);
+    _rememberChoice('rhyme_word', pair.last);
+    return pair;
+  }
 
   static String? firstSoundWordForGrade(int grade, {int seed = 0}) {
     if (startSoundWordsGrade1.isEmpty) return null;
-    return startSoundWordsGrade1[_positiveIndex(seed + grade, startSoundWordsGrade1.length)];
+    return _pickAvoidingRecent('first_sound_g$grade', startSoundWordsGrade1, seed + grade);
   }
 
   static String? endSoundWordForGrade(int grade, {int seed = 0}) {
     if (endSoundWordsGrade1.isEmpty) return null;
-    return endSoundWordsGrade1[_positiveIndex(seed + grade, endSoundWordsGrade1.length)];
+    return _pickAvoidingRecent('end_sound_g$grade', endSoundWordsGrade1, seed + grade);
   }
 
   static String? articleFor(String word) => articles[_normalizeKey(word)];
+
+  /// Test- und Session-Hook: leert nur lokale Auswahlhistorie.
+  /// Keine Schülerdaten, keine Persistenz.
+  static void resetSessionVariety() {
+    _recentChoicesByBucket.clear();
+  }
+
+  static String _pickAvoidingRecent(String bucket, List<String> values, int seed) {
+    if (values.isEmpty) return '';
+    final recent = _recentChoicesByBucket[bucket] ?? const <String>[];
+    for (var offset = 0; offset < values.length; offset++) {
+      final index = _positiveIndex(seed + offset * 7, values.length);
+      final candidate = values[index];
+      if (!recent.contains(candidate)) {
+        _rememberChoice(bucket, candidate);
+        return candidate;
+      }
+    }
+    final fallback = values[_positiveIndex(seed, values.length)];
+    _rememberChoice(bucket, fallback);
+    return fallback;
+  }
+
+  static List<String> _pickPairAvoidingRecent(String bucket, List<List<String>> values, int seed) {
+    if (values.isEmpty) return const <String>['Haus', 'Maus'];
+    final recent = _recentChoicesByBucket[bucket] ?? const <String>[];
+    for (var offset = 0; offset < values.length; offset++) {
+      final index = _positiveIndex(seed + offset * 5, values.length);
+      final pair = values[index];
+      final key = pair.join('|');
+      if (!recent.contains(key)) {
+        _rememberChoice(bucket, key);
+        return pair;
+      }
+    }
+    final fallback = values[_positiveIndex(seed, values.length)];
+    _rememberChoice(bucket, fallback.join('|'));
+    return fallback;
+  }
+
+  static void _rememberChoice(String bucket, String value) {
+    final recent = _recentChoicesByBucket.putIfAbsent(bucket, () => <String>[]);
+    recent.remove(value);
+    recent.add(value);
+    while (recent.length > _recentChoiceMemory) {
+      recent.removeAt(0);
+    }
+  }
 
   static int _positiveIndex(int seed, int length) {
     if (length <= 1) return 0;
