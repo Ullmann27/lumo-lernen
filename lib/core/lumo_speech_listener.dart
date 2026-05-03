@@ -10,6 +10,7 @@ class LumoSpeechListener extends ChangeNotifier {
   bool _finalDelivered = false;
   String _lastWords = '';
   String? _error;
+  String? _bestLocaleId;
   ValueChanged<String>? _activeFinalCallback;
   VoidCallback? _activeNoMatchCallback;
 
@@ -18,14 +19,17 @@ class LumoSpeechListener extends ChangeNotifier {
   bool get listening => _listening;
   String get lastWords => _lastWords;
   String? get error => _error;
+  String? get bestLocaleId => _bestLocaleId;
 
   Future<bool> initialize() async {
     if (_initialized) return _available;
     try {
       _available = await _speech.initialize(
+        debugLogging: false,
         onStatus: (status) {
+          final normalized = status.toLowerCase();
           final wasListening = _listening;
-          _listening = status == 'listening';
+          _listening = normalized == 'listening';
           if (wasListening && !_listening && _lastWords.trim().isNotEmpty) {
             _deliverFinal(_lastWords);
           }
@@ -42,6 +46,9 @@ class LumoSpeechListener extends ChangeNotifier {
           notifyListeners();
         },
       );
+      if (_available) {
+        _bestLocaleId = await _bestGermanLocale();
+      }
       _initialized = true;
       notifyListeners();
       return _available;
@@ -52,6 +59,32 @@ class LumoSpeechListener extends ChangeNotifier {
       notifyListeners();
       return false;
     }
+  }
+
+  Future<String?> _bestGermanLocale() async {
+    try {
+      final locales = await _speech.locales();
+      if (locales.isEmpty) return 'de_AT';
+      final ranked = List<stt.LocaleName>.from(locales);
+      ranked.sort((a, b) => _localeScore(b).compareTo(_localeScore(a)));
+      return ranked.first.localeId;
+    } catch (_) {
+      return 'de_AT';
+    }
+  }
+
+  int _localeScore(stt.LocaleName locale) {
+    final id = locale.localeId.toLowerCase().replaceAll('_', '-');
+    final name = locale.name.toLowerCase();
+    var score = 0;
+    if (id == 'de-at') score += 160;
+    if (id == 'de-de') score += 150;
+    if (id.startsWith('de-at')) score += 140;
+    if (id.startsWith('de-de')) score += 130;
+    if (id.startsWith('de')) score += 100;
+    if (name.contains('österreich') || name.contains('austria')) score += 30;
+    if (name.contains('deutsch') || name.contains('german')) score += 20;
+    return score;
   }
 
   Future<void> startListening({
@@ -70,11 +103,12 @@ class LumoSpeechListener extends ChangeNotifier {
     notifyListeners();
 
     await _speech.listen(
-      localeId: 'de_AT',
+      localeId: _bestLocaleId ?? 'de_AT',
       listenMode: stt.ListenMode.dictation,
-      listenFor: const Duration(seconds: 22),
-      pauseFor: const Duration(seconds: 4),
+      listenFor: const Duration(seconds: 32),
+      pauseFor: const Duration(seconds: 3),
       partialResults: true,
+      cancelOnError: false,
       onResult: (result) {
         _lastWords = result.recognizedWords;
         onResult?.call(_lastWords);
