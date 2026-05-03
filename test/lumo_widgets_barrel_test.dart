@@ -9,26 +9,33 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: Column(
-            children: <Widget>[
-              const LumoModernCard(child: Text('Card')),
-              LumoPrimaryCta(label: 'Start', onPressed: () => tapped = true),
-              const LumoStatPill(value: '24', label: 'Sterne'),
-              const LumoMissionCard(
-                title: 'Mission',
-                description: 'Drei Aufgaben lösen',
-                progress: .5,
-                progressLabel: '1 / 2',
-              ),
-              LumoSubjectCard(
-                title: 'Deutsch',
-                description: 'Wörter üben',
-                progress: .4,
-                progressLabel: '8 / 20',
-                accentColor: Colors.orange,
-                onTap: () {},
-              ),
-            ],
+          body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                const LumoModernCard(child: Text('Card')),
+                LumoPrimaryCta(label: 'Start', onPressed: () => tapped = true),
+                const LumoStatPill(value: '24', label: 'Sterne'),
+                const LumoMissionCard(
+                  title: 'Mission',
+                  description: 'Drei Aufgaben lösen',
+                  progress: .5,
+                  progressLabel: '1 / 2',
+                ),
+                LumoSubjectCard(
+                  title: 'Deutsch',
+                  description: 'Wörter üben',
+                  progress: .4,
+                  progressLabel: '8 / 20',
+                  accentColor: Colors.orange,
+                  onTap: () {},
+                ),
+                const LumoVoiceBubble(
+                  message: 'Frag Lumo mit deiner Stimme.',
+                  statusLabel: 'Bereit',
+                  onMicPressed: null,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -39,6 +46,7 @@ void main() {
     expect(find.text('24'), findsOneWidget);
     expect(find.text('Mission'), findsOneWidget);
     expect(find.text('Deutsch'), findsOneWidget);
+    expect(find.text('Frag Lumo mit deiner Stimme.'), findsOneWidget);
 
     await tester.tap(find.text('Start'));
     await tester.pumpAndSettle();
