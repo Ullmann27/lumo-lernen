@@ -7,7 +7,8 @@ import 'school_exercise_generator.dart';
 /// - Antwort liegt immer in choices.
 /// - Keine doppelten Antwortkarten.
 /// - Rechtschreibung nutzt echte Schreibvarianten, keine fremden korrekten Wörter.
-/// - Englisch und Sachunterricht fallen nicht mehr auf Deutsch zurück.
+/// - Englisch und Sachunterricht fallen nicht mehr pauschal auf Deutsch zurück.
+/// - Wenn ein alter Adapter nur Deutsch weitergibt, wird das Fach aus der Unit rekonstruiert.
 class SafeFallbackPool {
   const SafeFallbackPool();
 
@@ -19,7 +20,7 @@ class SafeFallbackPool {
     required int difficulty,
     String? missionTag,
   }) {
-    final normalizedSubject = _normalizeSubject(subject);
+    final normalizedSubject = _normalizeSubject(subject, unit: unit);
     final pool = _poolFor(normalizedSubject, grade);
     final entry = pool[counter % pool.length];
     return LumoTask(
@@ -37,14 +38,40 @@ class SafeFallbackPool {
     );
   }
 
-  String _normalizeSubject(String subject) {
+  String _normalizeSubject(String subject, {required String unit}) {
     return switch (subject) {
       'Mathematik' => 'Mathematik',
       'Englisch' => 'Englisch',
       'Sachunterricht' => 'Sachunterricht',
-      'Lesen' || 'Schreiben' || 'Rechtschreibung' || 'Deutsch' => subject,
-      _ => 'Deutsch',
+      // LegacyLumoTaskAdapter used to pass Deutsch for every non-math fallback.
+      // Keep the app safe by restoring obvious English/Sachunterricht units here.
+      'Deutsch' || 'Lesen' || 'Schreiben' || 'Rechtschreibung' => _subjectFromUnitOrDefault(subject, unit),
+      _ => _subjectFromUnitOrDefault('Deutsch', unit),
     };
+  }
+
+  String _subjectFromUnitOrDefault(String fallbackSubject, String unit) {
+    final normalizedUnit = unit.trim().toLowerCase();
+
+    const englishUnits = <String>{
+      'farben',
+      'zahlen',
+      'schulsachen',
+      'begruessung',
+      'begrüßung',
+    };
+    const scienceUnits = <String>{
+      'pflanzen',
+      'jahreszeiten',
+      'verkehr',
+      'wetter',
+      'zeit und kalender',
+      'familie und gemeinschaft',
+    };
+
+    if (englishUnits.contains(normalizedUnit)) return 'Englisch';
+    if (scienceUnits.contains(normalizedUnit)) return 'Sachunterricht';
+    return fallbackSubject;
   }
 
   List<_Fb> _poolFor(String subject, int grade) {
