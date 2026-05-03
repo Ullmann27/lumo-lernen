@@ -68,6 +68,10 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Run task quality tests
+        run: |
+          flutter test test/task_quality_guard_spelling_test.dart test/safe_fallback_pool_test.dart
+
       - name: Analyze without blocking APK build
         run: flutter analyze --no-fatal-infos --no-fatal-warnings || true
 
