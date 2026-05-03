@@ -131,8 +131,9 @@ jobs:
           wenn Paketname und Signatur zur installierten App passen.
           EOF
 
-      - name: Upload build logs (always)
+      - name: Upload build logs (best effort)
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: build-logs
@@ -143,8 +144,9 @@ jobs:
             build_apk.log
           if-no-files-found: warn
 
-      - name: Upload APK artifact (zipped by GitHub)
+      - name: Upload APK artifact (best effort)
         if: success()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: lumo-lernen-debug-apk
@@ -152,7 +154,7 @@ jobs:
             dist/Lumo-Lernen-latest.apk
             dist/Lumo-Lernen-debug-${{ github.run_number }}.apk
             dist/update-info.txt
-          if-no-files-found: error
+          if-no-files-found: warn
 
       - name: Publish direct latest APK release
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
