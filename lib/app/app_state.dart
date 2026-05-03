@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
+
 import '../core/app_settings.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
+import '../core/scanned_work_analysis.dart';
 
 enum LumoSection {
   home,
@@ -22,14 +24,6 @@ enum LumoSection {
 
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 
-/// Modus einer aktuell laufenden Lern-Session. Steuert Fragenanzahl,
-/// Hilfeverhalten und Wiederholungs-Logik im LearningContent.
-///
-///   - quickPractice  : 10 Fragen, mit Hilfe (Standard wenn nichts gesetzt)
-///   - exerciseSet    : 20 Fragen, mit Hilfe
-///   - test           : 10 Fragen, weniger Hilfe, Mood "think"
-///   - schoolwork     : 30 Fragen, keine Hilfe, strukturierter Ablauf
-///   - tutoring       :  8 Schritte, geführte Nachhilfe mit max. Hilfe
 enum LumoSessionKind {
   quickPractice,
   exerciseSet,
@@ -58,6 +52,7 @@ class LumoSessionState {
     this.learningRecommendationSubject,
     this.learningRecommendationUnit,
     this.sessionKind = LumoSessionKind.quickPractice,
+    this.lastScanAnalysis,
   });
 
   LumoSection section;
@@ -78,6 +73,7 @@ class LumoSessionState {
   String? learningRecommendationSubject;
   String? learningRecommendationUnit;
   LumoSessionKind sessionKind;
+  ScannedWorkAnalysis? lastScanAnalysis;
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
@@ -103,6 +99,7 @@ class LumoSessionState {
     String? learningRecommendationSubject,
     String? learningRecommendationUnit,
     LumoSessionKind? sessionKind,
+    ScannedWorkAnalysis? lastScanAnalysis,
   }) {
     return LumoSessionState(
       section: section ?? this.section,
@@ -123,6 +120,7 @@ class LumoSessionState {
       learningRecommendationSubject: learningRecommendationSubject ?? this.learningRecommendationSubject,
       learningRecommendationUnit: learningRecommendationUnit ?? this.learningRecommendationUnit,
       sessionKind: sessionKind ?? this.sessionKind,
+      lastScanAnalysis: lastScanAnalysis ?? this.lastScanAnalysis,
     );
   }
 }
@@ -132,6 +130,7 @@ class LumoAppState extends ChangeNotifier {
   LumoSessionState get state => _state;
 
   final LearningProfileEngine _learningProfile = LearningProfileEngine();
+  final ScannedWorkAnalysisEngine _scanAnalysis = const ScannedWorkAnalysisEngine();
   bool _learningProfileLoaded = false;
 
   LearningProfileEngine get learningProfile => _learningProfile;
@@ -165,6 +164,53 @@ class LumoAppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<ScannedWorkAnalysis> analyzeScannedWork(String rawText) async {
+    if (!_learningProfileLoaded) {
+      await _learningProfile.load();
+      _learningProfileLoaded = true;
+    }
+    final analysis = _scanAnalysis.analyze(
+      rawText: rawText,
+      grade: _state.grade,
+      existingSkills: _learningProfile.skills,
+    );
+
+    final newWeak = Map<String, int>.from(_state.weakSkills);
+    for (final unit in analysis.weakUnits) {
+      newWeak[unit] = (newWeak[unit] ?? 0) + 1;
+      await _learningProfile.recordAnswer(
+        subject: analysis.nextPracticeSubject,
+        unit: unit,
+        isCorrect: false,
+        hintUsed: false,
+      );
+    }
+    for (final unit in analysis.strengthUnits) {
+      await _learningProfile.recordAnswer(
+        subject: analysis.nextPracticeSubject,
+        unit: unit,
+        isCorrect: true,
+        hintUsed: false,
+      );
+    }
+
+    _syncLearningRecommendation();
+    _state = _state.copyWith(
+      section: LumoSection.exercises,
+      subject: analysis.nextPracticeSubject,
+      unit: analysis.nextPracticeUnit,
+      weakSkills: newWeak,
+      mood: analysis.hasWeaknesses ? LumoMood.comfort : LumoMood.point,
+      lumoMessage: analysis.childSummary,
+      sessionKind: analysis.workType == ScannedWorkType.schoolwork || analysis.workType == ScannedWorkType.test
+          ? LumoSessionKind.test
+          : LumoSessionKind.quickPractice,
+      lastScanAnalysis: analysis,
+    );
+    notifyListeners();
+    return analysis;
+  }
+
   Recommendation? topLearningRecommendation() {
     if (!_learningProfileLoaded) return null;
     return _learningProfile.topRecommendation(
@@ -182,19 +228,13 @@ class LumoAppState extends ChangeNotifier {
     );
   }
 
-  int learningDailyDone() =>
-      _learningProfileLoaded ? _learningProfile.dailyDone() : 0;
+  int learningDailyDone() => _learningProfileLoaded ? _learningProfile.dailyDone() : 0;
 
-  int learningStreakDays() =>
-      _learningProfileLoaded ? _learningProfile.currentStreakDays() : 0;
+  int learningStreakDays() => _learningProfileLoaded ? _learningProfile.currentStreakDays() : 0;
 
-  Map<String, List<String>> learningWeaknessesBySubject() =>
-      _learningProfileLoaded
-          ? _learningProfile.weaknessesBySubject()
-          : <String, List<String>>{};
+  Map<String, List<String>> learningWeaknessesBySubject() => _learningProfileLoaded ? _learningProfile.weaknessesBySubject() : <String, List<String>>{};
 
-  Map<String, SkillRecord> learningSkills() =>
-      _learningProfileLoaded ? _learningProfile.skills : <String, SkillRecord>{};
+  Map<String, SkillRecord> learningSkills() => _learningProfileLoaded ? _learningProfile.skills : <String, SkillRecord>{};
 
   Future<void> resetLearningProfile() async {
     await _learningProfile.reset();
@@ -278,9 +318,7 @@ class LumoAppState extends ChangeNotifier {
       weakSkills: newWeak,
       practiceErrors: errors,
       mood: errors >= 3 ? LumoMood.comfort : LumoMood.think,
-      lumoMessage: errors >= 3
-          ? 'Ganz ruhig.\nIch zeige dir\nden Weg.'
-          : 'Fast!\nWir schauen\nnochmal hin.',
+      lumoMessage: errors >= 3 ? 'Ganz ruhig.\nIch zeige dir\nden Weg.' : 'Fast!\nWir schauen\nnochmal hin.',
     ));
   }
 }
