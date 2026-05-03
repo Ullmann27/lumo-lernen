@@ -99,6 +99,25 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     await _navigateTo(LumoSection.settings);
   }
 
+  Future<void> _handleScannedText(String text) async {
+    if (!mounted) return;
+    _appState.update(_appState.state.copyWith(
+      lumoMessage: 'Ich analysiere\ndeine Aufgabe\nkurz und ruhig.',
+      mood: LumoMood.think,
+    ));
+
+    final analysis = await _appState.analyzeScannedWork(text);
+    if (!mounted) return;
+
+    if (_appState.state.settings.voiceEnabled) {
+      LumoVoice.instance.speak(analysis.childSummary, style: analysis.hasWeaknesses ? VoiceStyle.comfort : VoiceStyle.explain);
+    }
+
+    await _fadeCtrl.reverse();
+    if (!mounted) return;
+    if (mounted) await _fadeCtrl.forward();
+  }
+
   Widget _buildContent() {
     final section = _appState.state.section;
     switch (section) {
@@ -126,16 +145,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
           );
         }
         return ScanScreen(
-          onTextDetected: (text) {
-            _appState.update(_appState.state.copyWith(
-              lumoMessage: 'Ich hab die\nAufgabe gelesen!\nLos gehts!',
-              mood: LumoMood.celebrate,
-            ));
-            if (_appState.state.settings.voiceEnabled) {
-              LumoVoice.instance.speak('Super! Ich habe deine Aufgabe gelesen. Lass uns gemeinsam üben.');
-            }
-            _navigateTo(LumoSection.exercises);
-          },
+          onTextDetected: _handleScannedText,
           onCancel: () => _navigateTo(LumoSection.home),
         );
       case LumoSection.profile:
