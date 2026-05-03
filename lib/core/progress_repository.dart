@@ -1,20 +1,8 @@
 import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
-///
-/// Datenstruktur (alles JSON in SharedPreferences):
-///   - lumo_progress_skills    Map skillId -> SkillRecord
-///   - lumo_progress_daily     Map yyyy-mm-dd -> int (richtige Antworten)
-///   - lumo_progress_last      Map subject -> last skillId/unit
-///
-/// SkillRecord enthält:
-///   - correct, wrong, hintCount
-///   - lastSeen
-///   - currentStreak (consecutive correct)
-///   - currentMisses (consecutive wrong)
-///   - difficulty 1..5
-///
 /// Offline-first. Keine Cloud. Kein Tracking.
 class ProgressRepository {
   static const _skillsKey = 'lumo_progress_skills';
@@ -24,54 +12,106 @@ class ProgressRepository {
   Future<Map<String, SkillRecord>> loadSkills() async {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_skillsKey);
-    if (raw == null || raw.isEmpty) return {};
+    if (raw == null || raw.trim().isEmpty) return <String, SkillRecord>{};
     try {
-      final data = jsonDecode(raw) as Map<String, dynamic>;
-      return data.map((k, v) =>
-          MapEntry(k, SkillRecord.fromJson(v as Map<String, dynamic>)));
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map) {
+        await prefs.remove(_skillsKey);
+        return <String, SkillRecord>{};
+      }
+      final out = <String, SkillRecord>{};
+      decoded.forEach((key, value) {
+        if (value is! Map) return;
+        final record = SkillRecord.fromJson(Map<String, dynamic>.from(value)).normalized();
+        out[record.skillId] = record;
+      });
+      await saveSkills(out);
+      return out;
     } catch (_) {
-      return {};
+      await prefs.remove(_skillsKey);
+      return <String, SkillRecord>{};
     }
   }
 
   Future<void> saveSkills(Map<String, SkillRecord> skills) async {
     final prefs = await SharedPreferences.getInstance();
-    final data = skills.map((k, v) => MapEntry(k, v.toJson()));
+    final data = <String, Map<String, dynamic>>{};
+    for (final entry in skills.entries) {
+      final record = entry.value.normalized();
+      data[record.skillId] = record.toJson();
+    }
     await prefs.setString(_skillsKey, jsonEncode(data));
   }
 
   Future<Map<String, int>> loadDaily() async {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_dailyKey);
-    if (raw == null || raw.isEmpty) return {};
+    if (raw == null || raw.trim().isEmpty) return <String, int>{};
     try {
-      final data = jsonDecode(raw) as Map<String, dynamic>;
-      return data.map((k, v) => MapEntry(k, (v as num).toInt()));
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map) {
+        await prefs.remove(_dailyKey);
+        return <String, int>{};
+      }
+      final out = <String, int>{};
+      decoded.forEach((key, value) {
+        final textKey = key.toString();
+        if (!RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(textKey)) return;
+        final count = value is num ? value.toInt() : int.tryParse(value?.toString() ?? '') ?? 0;
+        out[textKey] = count.clamp(0, 500).toInt();
+      });
+      await saveDaily(out);
+      return out;
     } catch (_) {
-      return {};
+      await prefs.remove(_dailyKey);
+      return <String, int>{};
     }
   }
 
   Future<void> saveDaily(Map<String, int> daily) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_dailyKey, jsonEncode(daily));
+    final clean = <String, int>{};
+    daily.forEach((key, value) {
+      if (RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(key)) {
+        clean[key] = value.clamp(0, 500).toInt();
+      }
+    });
+    await prefs.setString(_dailyKey, jsonEncode(clean));
   }
 
   Future<Map<String, String>> loadLastTopics() async {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_lastKey);
-    if (raw == null || raw.isEmpty) return {};
+    if (raw == null || raw.trim().isEmpty) return <String, String>{};
     try {
-      final data = jsonDecode(raw) as Map<String, dynamic>;
-      return data.map((k, v) => MapEntry(k, v.toString()));
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map) {
+        await prefs.remove(_lastKey);
+        return <String, String>{};
+      }
+      final out = <String, String>{};
+      decoded.forEach((key, value) {
+        final k = key.toString().trim();
+        final v = value?.toString().trim() ?? '';
+        if (k.isNotEmpty && v.isNotEmpty) out[k] = v;
+      });
+      await saveLastTopics(out);
+      return out;
     } catch (_) {
-      return {};
+      await prefs.remove(_lastKey);
+      return <String, String>{};
     }
   }
 
   Future<void> saveLastTopics(Map<String, String> last) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_lastKey, jsonEncode(last));
+    final clean = <String, String>{};
+    last.forEach((key, value) {
+      final k = key.trim();
+      final v = value.trim();
+      if (k.isNotEmpty && v.isNotEmpty) clean[k] = v;
+    });
+    await prefs.setString(_lastKey, jsonEncode(clean));
   }
 
   Future<void> resetAll() async {
@@ -105,18 +145,12 @@ class SkillRecord {
   int hintCount;
   int currentStreak;
   int currentMisses;
-
-  /// Schwierigkeitsstufe von 1 (sehr leicht) bis 5 (Herausforderung).
   int difficulty;
   DateTime lastSeen;
 
   int get attempts => correct + wrong;
-
-  /// Trefferquote 0.0 bis 1.0. Bei null Versuchen 0.0.
   double get accuracy => attempts == 0 ? 0.0 : correct / attempts;
 
-  /// Mastery 0..100 — gewichtet nach Trefferquote, Versuchen und aktueller
-  /// Streak. So wirken viele saubere Versuche stärker als Glückstreffer.
   int get mastery {
     if (attempts == 0) return 0;
     final base = accuracy * 100;
@@ -125,15 +159,30 @@ class SkillRecord {
     return (base * 0.8 + volumeBonus + streakBonus).clamp(0, 100).toInt();
   }
 
-  /// Schwächen-Indikator: hoch, wenn fehlerquote hoch und mastery niedrig.
-  /// Werte: 0.0 (kein Problem) bis 1.0 (klare Schwäche).
   double get weaknessScore {
     if (attempts < 3) return 0.0;
     final errorRate = wrong / attempts;
     final mastery01 = mastery / 100.0;
-    final missesFactor = (currentMisses.clamp(0, 5) / 5);
-    return (errorRate * 0.5 + (1.0 - mastery01) * 0.3 + missesFactor * 0.2)
-        .clamp(0.0, 1.0);
+    final missesFactor = currentMisses.clamp(0, 5) / 5;
+    return (errorRate * 0.5 + (1.0 - mastery01) * 0.3 + missesFactor * 0.2).clamp(0.0, 1.0);
+  }
+
+  SkillRecord normalized() {
+    final cleanSubject = subject.trim().isEmpty ? 'Mathematik' : subject.trim();
+    final cleanUnit = unit.trim().isEmpty ? 'Allgemein' : unit.trim();
+    final cleanSkillId = skillId.trim().isEmpty || skillId == 'unknown' ? makeId(cleanSubject, cleanUnit) : skillId.trim();
+    return SkillRecord(
+      skillId: cleanSkillId,
+      subject: cleanSubject,
+      unit: cleanUnit,
+      correct: correct.clamp(0, 10000).toInt(),
+      wrong: wrong.clamp(0, 10000).toInt(),
+      hintCount: hintCount.clamp(0, 10000).toInt(),
+      currentStreak: currentStreak.clamp(0, 1000).toInt(),
+      currentMisses: currentMisses.clamp(0, 1000).toInt(),
+      difficulty: difficulty.clamp(1, 5).toInt(),
+      lastSeen: lastSeen,
+    );
   }
 
   Map<String, dynamic> toJson() => {
@@ -149,21 +198,21 @@ class SkillRecord {
         'lastSeen': lastSeen.toIso8601String(),
       };
 
-  factory SkillRecord.fromJson(Map<String, dynamic> json) => SkillRecord(
-        skillId: json['skillId'] as String? ?? 'unknown',
-        subject: json['subject'] as String? ?? 'Mathematik',
-        unit: json['unit'] as String? ?? 'Allgemein',
-        correct: (json['correct'] as num?)?.toInt() ?? 0,
-        wrong: (json['wrong'] as num?)?.toInt() ?? 0,
-        hintCount: (json['hintCount'] as num?)?.toInt() ?? 0,
-        currentStreak: (json['currentStreak'] as num?)?.toInt() ?? 0,
-        currentMisses: (json['currentMisses'] as num?)?.toInt() ?? 0,
-        difficulty: (json['difficulty'] as num?)?.toInt() ?? 1,
-        lastSeen: DateTime.tryParse(json['lastSeen'] as String? ?? '') ??
-            DateTime.now(),
-      );
+  factory SkillRecord.fromJson(Map<String, dynamic> json) {
+    final record = SkillRecord(
+      skillId: json['skillId'] as String? ?? 'unknown',
+      subject: json['subject'] as String? ?? 'Mathematik',
+      unit: json['unit'] as String? ?? 'Allgemein',
+      correct: (json['correct'] as num?)?.toInt() ?? int.tryParse(json['correct']?.toString() ?? '') ?? 0,
+      wrong: (json['wrong'] as num?)?.toInt() ?? int.tryParse(json['wrong']?.toString() ?? '') ?? 0,
+      hintCount: (json['hintCount'] as num?)?.toInt() ?? int.tryParse(json['hintCount']?.toString() ?? '') ?? 0,
+      currentStreak: (json['currentStreak'] as num?)?.toInt() ?? int.tryParse(json['currentStreak']?.toString() ?? '') ?? 0,
+      currentMisses: (json['currentMisses'] as num?)?.toInt() ?? int.tryParse(json['currentMisses']?.toString() ?? '') ?? 0,
+      difficulty: (json['difficulty'] as num?)?.toInt() ?? int.tryParse(json['difficulty']?.toString() ?? '') ?? 1,
+      lastSeen: DateTime.tryParse(json['lastSeen'] as String? ?? '') ?? DateTime.now(),
+    );
+    return record.normalized();
+  }
 
-  /// Generiert eine konsistente skillId aus subject + unit.
-  static String makeId(String subject, String unit) =>
-      '${subject.toLowerCase()}::${unit.toLowerCase()}';
+  static String makeId(String subject, String unit) => '${subject.toLowerCase()}::${unit.toLowerCase()}';
 }
