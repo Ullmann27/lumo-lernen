@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'app_settings.dart';
 
 class SettingsRepository {
@@ -11,11 +13,24 @@ class SettingsRepository {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_key);
       if (raw == null || raw.trim().isEmpty) return const AppSettings();
-      final json = jsonDecode(raw);
-      if (json is Map<String, dynamic>) return AppSettings.fromJson(json);
-      if (json is Map) return AppSettings.fromJson(Map<String, dynamic>.from(json));
+      final decoded = jsonDecode(raw);
+      if (decoded is Map<String, dynamic>) {
+        final settings = AppSettings.fromJson(decoded);
+        await prefs.setString(_key, jsonEncode(settings.toJson()));
+        return settings;
+      }
+      if (decoded is Map) {
+        final settings = AppSettings.fromJson(Map<String, dynamic>.from(decoded));
+        await prefs.setString(_key, jsonEncode(settings.toJson()));
+        return settings;
+      }
+      await prefs.remove(_key);
       return const AppSettings();
     } catch (_) {
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.remove(_key);
+      } catch (_) {}
       return const AppSettings();
     }
   }
