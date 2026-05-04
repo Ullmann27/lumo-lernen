@@ -13,6 +13,7 @@ import '../../core/reading_story_memory_repository.dart';
 import '../../domain/agent/lumo_agent_domain.dart';
 import '../../domain/reading/reading_attempt_history.dart';
 import '../../domain/reading/reading_domain.dart';
+import 'widgets/reading_active_sentence_view.dart';
 
 class ReadingContent extends StatefulWidget {
   const ReadingContent({super.key, required this.appState, required this.onBack});
@@ -701,14 +702,11 @@ class _ActiveSentenceCard extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text('Jetzt lesen · Versuch ${attemptNumber.clamp(1, 3)} von 3', style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
         const SizedBox(height: 8),
-        Wrap(
-          spacing: 7,
-          runSpacing: 7,
-          children: sentence.words.asMap().entries.map((entry) {
-            final normalized = entry.value.text.toLowerCase().replaceAll(RegExp(r'[^a-zäöüß]'), '');
-            final problem = liveProblemWord != null && normalized == liveProblemWord!.toLowerCase();
-            return _SentenceWordChip(word: entry.value.text, active: entry.key == activeWordIndex, problem: problem, listening: listening);
-          }).toList(),
+        ReadingActiveSentenceView(
+          sentence: sentence,
+          activeWordIndex: activeWordIndex,
+          problemWord: liveProblemWord,
+          listening: listening,
         ),
         const SizedBox(height: 12),
         Text(lumoLine, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w900)),
@@ -717,39 +715,6 @@ class _ActiveSentenceCard extends StatelessWidget {
           Text('Lesesicherheit: ${(lastScore! * 100).round()}%', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink500)),
         ],
       ]),
-    );
-  }
-}
-
-class _SentenceWordChip extends StatelessWidget {
-  const _SentenceWordChip({required this.word, required this.active, required this.problem, required this.listening});
-
-  final String word;
-  final bool active;
-  final bool problem;
-  final bool listening;
-
-  @override
-  Widget build(BuildContext context) {
-    final accent = problem ? LumoColors.orange : listening ? LumoColors.teal : LumoColors.orange;
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 120),
-      padding: EdgeInsets.symmetric(horizontal: active || problem ? 10 : 0, vertical: active || problem ? 6 : 0),
-      decoration: BoxDecoration(
-        color: active || problem ? accent.withOpacity(.10) : Colors.transparent,
-        borderRadius: BorderRadius.circular(LumoRadius.sm),
-        border: active || problem ? Border.all(color: accent.withOpacity(.55), width: 1.6) : null,
-      ),
-      child: Text(
-        word,
-        style: TextStyle(
-          fontFamily: 'Nunito',
-          fontSize: active ? 29 : 27,
-          fontWeight: FontWeight.w900,
-          color: problem ? LumoColors.orange : LumoColors.ink900,
-          height: 1.18,
-        ),
-      ),
     );
   }
 }
