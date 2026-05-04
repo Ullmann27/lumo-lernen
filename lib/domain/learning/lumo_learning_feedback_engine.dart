@@ -71,7 +71,7 @@ class LumoLearningFeedbackEngine {
   String _titleFor(LumoInteractionEvent event, LumoFeedbackTone tone) {
     return switch (tone) {
       LumoFeedbackTone.handwriting => event.correct ? 'Sauber gezeichnet!' : 'Die Form braucht noch Ruhe',
-      LumoFeedbackTone.rescue => 'Wir machen es kleiner',
+      LumoFeedbackTone.rescue => 'Lumo hilft Schritt für Schritt',
       LumoFeedbackTone.coaching => 'Guter Versuch',
       LumoFeedbackTone.streak => 'Du bist im Lauf!',
       LumoFeedbackTone.improvement => 'Das wird besser!',
@@ -96,9 +96,9 @@ class LumoLearningFeedbackEngine {
               'Wir üben das nochmal kleiner. Deine Hand darf langsam und sauber fahren.',
             ],
       LumoFeedbackTone.rescue => <String>[
-        'Stopp, kein Stress. Ich sehe, dass $unit gerade schwer ist. Wir nehmen gleich einen kleineren Schritt.',
-        'Das ist ein Übe-Signal, kein Fehler-Drama. Lumo zeigt dir den Denkweg nochmal einfacher.',
-        'Dein Gehirn braucht hier noch eine Brücke. Wir gehen langsam: schauen, teilen, dann antworten.',
+        'Stopp, kein Stress. Ich helfe dir wie ein Lehrer: Lies die Aufgabe nochmal langsam, suche zuerst die wichtige Zahl oder das wichtige Wort und mache nur den ersten Schritt.',
+        'Das war jetzt zweimal schwer. Das ist ein Übe-Signal. Wir machen es kleiner: erst anschauen, dann teilen, dann die Antwort prüfen.',
+        'Lumo bremst kurz mit dir. Zeige mit dem Finger auf die Aufgabe, sprich den ersten Schritt leise mit und versuche es danach nochmal ruhig.',
       ],
       LumoFeedbackTone.coaching => <String>[
         'Fast. Ich glaube, der Fehler ist beim Zwischenschritt passiert. Wir schauen direkt auf den Weg.',
@@ -164,7 +164,7 @@ class LumoLearningFeedbackEngine {
       tips.add('Lerntipp: Beim Schreiben langsam starten, Richtung halten und die Form ganz fertig machen.');
     }
     if (_wrongStreak >= 2) {
-      tips.add('Lerntipp: Jetzt kommt eine leichtere Erklärung. Erst verstehen, dann wieder schneller werden.');
+      tips.add('Lerntipp: Lumo hilft jetzt wie ein Lehrer: Aufgabe anschauen, wichtigen Teil finden, ersten Schritt langsam machen.');
     }
     if (_helpCount >= 3 && event.correct) {
       tips.add('Lerntipp: Hilfe benutzen ist erlaubt. Ziel ist, dass du den nächsten Schritt selbst erkennst.');
