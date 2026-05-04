@@ -30,7 +30,6 @@ jobs:
         run: |
           python3 <<'PY'
           from pathlib import Path
-          import re
 
           path = Path('lib/features/agent/lumo_agent_content.dart')
           text = path.read_text(encoding='utf-8')
@@ -72,19 +71,10 @@ jobs:
           ])
 
           if 'guard.blockedMessageFor(LumoAiLearningArea.chat)' not in text:
-              pattern = (
-                  r"(?P<block>\n\s*final settings = widget\.appState\.state\.settings;\s*\n"
-                  r"\s*setState\(\(\) \{\s*\n"
-                  r"\s*_loading = true;\s*\n"
-                  r"\s*_blocked = false;\s*\n"
-                  r"\s*_answer = ['\"]Ich denke kurz nach \.\.\.['\"];\s*\n"
-                  r"\s*\}\);\s*\n)"
-              )
-              match = re.search(pattern, text, flags=re.MULTILINE)
-              if not match:
-                  fail('Patch failed: could not find _ask loading setState block')
-              insert_at = match.end('block')
-              text = text[:insert_at] + guard_block + text[insert_at:]
+              anchor = '    if (_proxy.isConfigured(settings)) {\n'
+              if text.count(anchor) != 1:
+                  fail(f'Patch failed: proxy guard anchor count={text.count(anchor)}')
+              text = text.replace(anchor, guard_block + '\n' + anchor, 1)
 
           if text == original:
               fail('Patch failed: file unchanged')
