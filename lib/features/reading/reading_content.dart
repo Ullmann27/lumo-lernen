@@ -14,6 +14,7 @@ import '../../domain/agent/lumo_agent_domain.dart';
 import '../../domain/reading/reading_attempt_history.dart';
 import '../../domain/reading/reading_domain.dart';
 import 'widgets/reading_active_sentence_view.dart';
+import 'widgets/reading_problem_word_trainer.dart';
 
 class ReadingContent extends StatefulWidget {
   const ReadingContent({super.key, required this.appState, required this.onBack});
@@ -478,9 +479,12 @@ class _ReadingContentState extends State<ReadingContent> {
                   showNotHeardHint: _showNotHeardHint,
                   onTap: _finished ? null : _toggleListening,
                 ),
-                if (progress.problemWords.isNotEmpty) ...[
+                if (progress.problemWords.isNotEmpty || _liveProblemWord != null) ...[
                   const SizedBox(height: 14),
-                  _ProblemWordsCard(words: progress.problemWords),
+                  ReadingProblemWordTrainer(
+                    words: progress.problemWords,
+                    activeProblemWord: _liveProblemWord,
+                  ),
                 ],
                 if (_finished) ...[
                   const SizedBox(height: 18),
@@ -795,31 +799,6 @@ class _MicrophonePanel extends StatelessWidget {
           const SizedBox(height: 8),
           Text('Mikrofon-Hinweis: $error', style: LumoTextStyles.caption.copyWith(color: LumoColors.practice)),
         ],
-      ]),
-    );
-  }
-}
-
-class _ProblemWordsCard extends StatelessWidget {
-  const _ProblemWordsCard({required this.words});
-
-  final List<String> words;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFFBEB), Color(0xFFFFFFFF)])),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('Übungswörter für später', style: LumoTextStyles.heading3),
-        const SizedBox(height: 8),
-        Wrap(spacing: 8, runSpacing: 8, children: words.map((word) {
-          return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(LumoRadius.pill), border: Border.all(color: LumoColors.gold.withOpacity(.35))),
-            child: Text(word, style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink700)),
-          );
-        }).toList()),
       ]),
     );
   }
