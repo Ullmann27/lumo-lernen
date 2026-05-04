@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/lumo_ai_learning_access.dart';
+import '../../core/lumo_ai_learning_policy_bridge.dart';
 import '../../core/reading_progress_repository.dart';
+import '../../core/settings_repository.dart';
 import '../../domain/analysis/daily_recommendation_engine.dart';
 import '../../domain/analysis/lumo_analysis_domain.dart';
+import '../parents/widgets/lumo_ai_policy_selector.dart';
 
 class ParentReportCard extends StatefulWidget {
   const ParentReportCard({super.key, required this.appState});
@@ -40,6 +44,15 @@ class _ParentReportCardState extends State<ParentReportCard> {
     );
   }
 
+  Future<void> _saveAiMode(LumoAiLearningMode mode) async {
+    final next = widget.appState.state.settings.copyWith(
+      aiLearningMode: mode.toAppAiLearningMode(),
+    );
+    widget.appState.updateSettings(next);
+    await SettingsRepository.save(next);
+    if (mounted) setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ParentReportSummary>(
@@ -54,6 +67,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
           );
         }
         final report = snapshot.data!;
+        final settings = widget.appState.state.settings;
         return Container(
           width: double.infinity,
           padding: const EdgeInsets.all(18),
@@ -81,6 +95,11 @@ class _ParentReportCardState extends State<ParentReportCard> {
               _SubjectReportMini(block: report.math, color: LumoColors.math),
               _SubjectReportMini(block: report.german, color: LumoColors.german),
             ]),
+            const SizedBox(height: 14),
+            LumoAiPolicySelector(
+              currentMode: settings.lumoAiLearningMode,
+              onModeChanged: _saveAiMode,
+            ),
             const SizedBox(height: 14),
             Text('Nächste sinnvolle Schritte', style: LumoTextStyles.heading3),
             const SizedBox(height: 8),
