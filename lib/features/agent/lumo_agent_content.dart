@@ -6,6 +6,8 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_ai_proxy_client.dart';
+import '../../core/lumo_ai_learning_access.dart';
+import '../../core/lumo_ai_policy_guard.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_voice.dart';
 
@@ -229,6 +231,22 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
       _blocked = false;
       _answer = 'Ich denke kurz nach ...';
     });
+
+
+    final guard = const LumoAiPolicyGuard();
+    if (!guard.allows(settings, LumoAiLearningArea.chat)) {
+      final blockedMessage = guard.blockedMessageFor(LumoAiLearningArea.chat);
+      _remember(question, blockedMessage);
+      setState(() {
+        _answer = blockedMessage;
+        _source = 'parent_policy';
+        _blocked = true;
+        _loading = false;
+        _liveSpeech = '';
+      });
+      _applyReply(blockedMessage, blocked: true);
+      return;
+    }
 
     if (_proxy.isConfigured(settings)) {
       final response = await _proxy.ask(
