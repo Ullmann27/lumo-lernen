@@ -1,0 +1,213 @@
+name: Apply Smart Ears Patch
+
+on:
+  push:
+    branches:
+      - chore-smart-ears-patcher
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  apply-smart-ears-patch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create patch branch
+        run: |
+          git checkout -B feat-reading-analyzer-integration origin/main
+
+      - name: Patch reading_content.dart
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/features/reading/reading_content.dart')
+          text = path.read_text(encoding='utf-8')
+          original = text
+
+          def replace_once(haystack: str, needle: str, replacement: str, label: str) -> str:
+              count = haystack.count(needle)
+              if count != 1:
+                  raise SystemExit(f'Patch failed: expected exactly one match for {label}, found {count}')
+              return haystack.replace(needle, replacement, 1)
+
+          # Imports.
+          if "import '../../core/reading_text_cleaner.dart';" not in text:
+              text = replace_once(
+                  text,
+                  "import '../../core/lumo_voice.dart';\n",
+                  "import '../../core/lumo_voice.dart';\nimport '../../core/reading_text_cleaner.dart';\n",
+                  'ReadingTextCleaner import',
+              )
+          if "import '../../core/reading_v2_pronunciation_analyzer.dart';" not in text:
+              text = replace_once(
+                  text,
+                  "import '../../core/reading_progress_repository.dart';\n",
+                  "import '../../core/reading_progress_repository.dart';\nimport '../../core/reading_v2_pronunciation_analyzer.dart';\n",
+                  'ReadingV2PronunciationAnalyzer import',
+              )
+
+          # State fields.
+          text = replace_once(
+              text,
+              "  final _storyEngine = const StoryEngine();\n  final _monitor = ReadingMonitor();\n",
+              "  final _storyEngine = const StoryEngine();\n"
+              "  final _textCleaner = const ReadingTextCleaner();\n"
+              "  final _monitor = ReadingMonitor(\n"
+              "    analyzer: const ReadingV2PronunciationAnalyzer(),\n"
+              "  );\n",
+              'state monitor fields',
+          )
+
+          marker = "  final _attemptLedger = ReadingAttemptLedger();\n"
+          if '_unclearReadingMessage' not in text:
+              text = replace_once(
+                  text,
+                  marker,
+                  marker
+                  + "\n"
+                  + "  static const String _unclearReadingMessage =\n"
+                  + "      'Ich habe dich nicht gut verstanden. Das war kein Fehler. Lies bitte nochmal langsam.';\n",
+                  'unclear message constant',
+              )
+
+          # Loading fallback: remove period from visible placeholder sentence.
+          text = text.replace(
+              "StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte.', words: <WordToken>[]),",
+              "StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte', words: <WordToken>[]),",
+              1,
+          )
+
+          # Story cleaning.
+          text = replace_once(
+              text,
+              "    final story = _storyEngine.pickStory(\n"
+              "      grade: grade,\n"
+              "      weakWords: const <String>[],\n"
+              "      avoidSignatures: recentSignatures.toSet(),\n"
+              "    );\n"
+              "    await _storyMemoryRepo.remember(childId: childId, grade: grade, signature: story.signature);\n",
+              "    final rawStory = _storyEngine.pickStory(\n"
+              "      grade: grade,\n"
+              "      weakWords: const <String>[],\n"
+              "      avoidSignatures: recentSignatures.toSet(),\n"
+              "    );\n"
+              "    final story = _textCleaner.cleanStory(rawStory);\n"
+              "    await _storyMemoryRepo.remember(childId: childId, grade: grade, signature: story.signature);\n",
+              'story cleaning block',
+          )
+
+          # No-match feedback.
+          text = replace_once(
+              text,
+              "    const calm = 'Ich habe dich nicht gut gehört. Das war kein Fehler. Drück nochmal auf das Mikrofon, wenn du bereit bist.';\n",
+              "    const calm = _unclearReadingMessage;\n",
+              'no match calm message',
+          )
+
+          # Introduce childMessage after attempt decision.
+          decision_block = (
+              "    final adjustedProgress = _progressAfterDecision(\n"
+              "      previous: progress,\n"
+              "      monitorProgress: result.nextProgress,\n"
+              "      decision: attemptDecision,\n"
+              "    );\n\n"
+              "    if (attemptDecision.shouldCountAsIntervention) {\n"
+          )
+          replacement_block = (
+              "    final adjustedProgress = _progressAfterDecision(\n"
+              "      previous: progress,\n"
+              "      monitorProgress: result.nextProgress,\n"
+              "      decision: attemptDecision,\n"
+              "    );\n"
+              "    final childMessage =\n"
+              "        attemptDecision.outcome == ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear\n"
+              "            ? _unclearReadingMessage\n"
+              "            : attemptDecision.childMessage;\n\n"
+              "    if (attemptDecision.shouldCountAsIntervention) {\n"
+          )
+          if 'final childMessage =' not in text:
+              text = replace_once(text, decision_block, replacement_block, 'childMessage injection')
+
+          # Replace feedback usages in _processTranscript only.
+          text = replace_once(
+              text,
+              "      _lumoLine = adjustedProgress.isComplete\n"
+              "          ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Sätze und Übungswörter.'\n"
+              "          : attemptDecision.childMessage;\n",
+              "      _lumoLine = adjustedProgress.isComplete\n"
+              "          ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Sätze und Übungswörter.'\n"
+              "          : childMessage;\n",
+              'lumoLine child message',
+          )
+          text = replace_once(
+              text,
+              "    final nextMessage = adjustedProgress.isComplete ? _lumoLine : attemptDecision.childMessage;\n",
+              "    final nextMessage = adjustedProgress.isComplete ? _lumoLine : childMessage;\n",
+              'nextMessage child message',
+          )
+
+          if text == original:
+              raise SystemExit('Patch failed: file unchanged')
+
+          required = [
+              "import '../../core/reading_text_cleaner.dart';",
+              "import '../../core/reading_v2_pronunciation_analyzer.dart';",
+              "final _textCleaner = const ReadingTextCleaner();",
+              "analyzer: const ReadingV2PronunciationAnalyzer(),",
+              "static const String _unclearReadingMessage",
+              "final rawStory = _storyEngine.pickStory(",
+              "final story = _textCleaner.cleanStory(rawStory);",
+              "const calm = _unclearReadingMessage;",
+              "final childMessage =",
+              "final nextMessage = adjustedProgress.isComplete ? _lumoLine : childMessage;",
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit(f'Patch verification failed. Missing: {missing}')
+          if text.count('final childMessage =') != 1:
+              raise SystemExit(f'Patch verification failed: childMessage declarations = {text.count("final childMessage =")}')
+          if text.count('final nextMessage =') != 1:
+              raise SystemExit(f'Patch verification failed: nextMessage declarations = {text.count("final nextMessage =")}')
+
+          path.write_text(text, encoding='utf-8')
+          print('Smart Ears patch applied successfully.')
+          PY
+
+      - name: Show patch summary
+        run: |
+          git diff -- lib/features/reading/reading_content.dart
+
+      - name: Commit and push patch branch
+        run: |
+          if git diff --quiet -- lib/features/reading/reading_content.dart; then
+            echo "No reading_content.dart changes detected."
+            exit 1
+          fi
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/features/reading/reading_content.dart
+          git commit -m "feat(reading): integrate analyzer 2 and text cleaner"
+          git push --force-with-lease origin feat-reading-analyzer-integration
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base main \
+            --head feat-reading-analyzer-integration \
+            --title "Integrate reading analyzer 2 and text cleaner" \
+            --body "Applies the Smart Ears patch to reading_content.dart: wires ReadingV2PronunciationAnalyzer, cleans generated stories through ReadingTextCleaner, removes the loading sentence period, and routes unclear speech feedback to the child-safe retry message. Generated by the CI patcher workflow." \
+          || gh pr edit feat-reading-analyzer-integration \
+            --title "Integrate reading analyzer 2 and text cleaner" \
+            --body "Applies the Smart Ears patch to reading_content.dart: wires ReadingV2PronunciationAnalyzer, cleans generated stories through ReadingTextCleaner, removes the loading sentence period, and routes unclear speech feedback to the child-safe retry message. Generated by the CI patcher workflow."
