@@ -1,0 +1,45 @@
+name: Main Apply Integrated AI Tutor
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/main_apply_integrated_ai_tutor.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-integrated-ai-tutor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat-integrated-ai-tutor
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Rebase feature branch on main
+        run: |
+          git fetch origin main feat-integrated-ai-tutor
+          cp .github/scripts/apply_integrated_ai_tutor.py /tmp/apply_integrated_ai_tutor.py
+          git checkout -B feat-integrated-ai-tutor origin/main
+          mkdir -p .github/scripts
+          cp /tmp/apply_integrated_ai_tutor.py .github/scripts/apply_integrated_ai_tutor.py
+
+      - name: Apply integrated tutor patch
+        run: python3 .github/scripts/apply_integrated_ai_tutor.py
+
+      - name: Format patched Dart files
+        run: dart format lib/core/lumo_ai_proxy_client.dart lib/features/learning/learning_content.dart lib/features/learning/renderers/adaptive_task_renderer.dart
+
+      - name: Commit and push feature branch
+        run: |
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/core/lumo_ai_proxy_client.dart lib/features/learning/learning_content.dart lib/features/learning/renderers/adaptive_task_renderer.dart .github/scripts/apply_integrated_ai_tutor.py
+          git commit -m "feat(learning): integrate live AI tutor"
+          git push --force origin feat-integrated-ai-tutor
