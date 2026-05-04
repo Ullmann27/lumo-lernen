@@ -1,0 +1,118 @@
+name: Apply Chat Guard Patch
+
+on:
+  push:
+    branches:
+      - chore-chat-guard-patcher
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  apply-chat-guard-patch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create patch branch
+        run: |
+          git fetch origin main
+          git checkout -B feat-chat-enforce-ai-policy origin/main
+
+      - name: Patch lumo_agent_content.dart
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/features/agent/lumo_agent_content.dart')
+          text = path.read_text(encoding='utf-8')
+          original = text
+
+          def fail(message: str) -> None:
+              raise SystemExit(message)
+
+          def add_after_once(source: str, anchor: str, addition: str, label: str) -> str:
+              if addition.strip() in source:
+                  return source
+              count = source.count(anchor)
+              if count != 1:
+                  fail(f'Patch failed: {label} anchor count={count}')
+              return source.replace(anchor, anchor + addition, 1)
+
+          text = add_after_once(
+              text,
+              "import '../../core/lumo_ai_proxy_client.dart';\n",
+              "import '../../core/lumo_ai_learning_access.dart';\nimport '../../core/lumo_ai_policy_guard.dart';\n",
+              'guard imports',
+          )
+
+          guard_block = """\n    final guard = const LumoAiPolicyGuard();\n    if (!guard.allows(settings, LumoAiLearningArea.chat)) {\n      final blockedMessage = guard.blockedMessageFor(LumoAiLearningArea.chat);\n      _remember(question, blockedMessage);\n      setState(() {\n        _answer = blockedMessage;\n        _source = 'parent_policy';\n        _blocked = true;\n        _loading = false;\n        _liveSpeech = '';\n      });\n      _applyReply(blockedMessage, blocked: true);\n      return;\n    }\n"""
+
+          if 'guard.blockedMessageFor(LumoAiLearningArea.chat)' not in text:
+              anchor = """    final settings = widget.appState.state.settings;\n    setState(() {\n      _loading = true;\n      _blocked = false;\n      _answer = 'Ich denke kurz nach ...';\n    });\n"""
+              replacement = """    final settings = widget.appState.state.settings;\n    setState(() {\n      _loading = true;\n      _blocked = false;\n      _answer = 'Ich denke kurz nach ...';\n    });\n""" + guard_block
+              count = text.count(anchor)
+              if count != 1:
+                  fail(f'Patch failed: ask settings block count={count}')
+              text = text.replace(anchor, replacement, 1)
+
+          if text == original:
+              fail('Patch failed: file unchanged')
+
+          required = [
+              "import '../../core/lumo_ai_learning_access.dart';",
+              "import '../../core/lumo_ai_policy_guard.dart';",
+              'const LumoAiPolicyGuard()',
+              'guard.allows(settings, LumoAiLearningArea.chat)',
+              'guard.blockedMessageFor(LumoAiLearningArea.chat)',
+              "_source = 'parent_policy';",
+              '_applyReply(blockedMessage, blocked: true);',
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              fail(f'Patch verification failed. Missing: {missing}')
+          if text.count('guard.blockedMessageFor(LumoAiLearningArea.chat)') != 1:
+              fail('Patch verification failed: duplicate chat blockedMessage guard')
+
+          path.write_text(text, encoding='utf-8')
+          print('Chat AI policy guard patch applied successfully.')
+          PY
+
+      - name: Show patch summary
+        run: |
+          git diff -- lib/features/agent/lumo_agent_content.dart
+
+      - name: Commit and push patch branch
+        run: |
+          if git diff --quiet -- lib/features/agent/lumo_agent_content.dart; then
+            echo "No chat guard changes detected."
+            exit 1
+          fi
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/features/agent/lumo_agent_content.dart
+          git commit -m "feat(chat): enforce AI policy guard"
+          git push --force origin feat-chat-enforce-ai-policy
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh pr view feat-chat-enforce-ai-policy --base main >/dev/null 2>&1; then
+            gh pr edit feat-chat-enforce-ai-policy \
+              --title "Enforce AI policy guard in chat" \
+              --body "Blocks chat sends before proxy access when the parent AI policy does not allow chat. Adds a local Lumo response using LumoAiPolicyGuard.blockedMessageFor(chat). Generated by CI patcher."
+          else
+            gh pr create \
+              --base main \
+              --head feat-chat-enforce-ai-policy \
+              --title "Enforce AI policy guard in chat" \
+              --body "Blocks chat sends before proxy access when the parent AI policy does not allow chat. Adds a local Lumo response using LumoAiPolicyGuard.blockedMessageFor(chat). Generated by CI patcher."
+          fi
