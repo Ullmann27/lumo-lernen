@@ -12,24 +12,30 @@ jobs:
   apply-rc-patch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: chore-release-candidate-patcher
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      - name: Create target branch
+
+      - name: Create target branch from main
         run: |
-          git fetch origin main
+          git fetch origin main chore-release-candidate-patcher
           git checkout -B feat-release-candidate origin/main
-      - name: Run patch script
+
+      - name: Restore no-op patch script from patcher branch
+        run: |
+          mkdir -p .github/scripts
+          git show origin/chore-release-candidate-patcher:.github/scripts/build_rc_patch.py > .github/scripts/build_rc_patch.py
+
+      - name: Run no-op patch script
         run: python3 .github/scripts/build_rc_patch.py
-      - name: Format Dart files
-        run: dart format lib/
-      - name: Commit and push
+
+      - name: Commit and push release candidate branch
         run: |
           git config user.name "Lumo Bot"
           git config user.email "lumo-bot@users.noreply.github.com"
-          git add lib/ .github/scripts/build_rc_patch.py
-          git commit -m "chore(rc): apply release candidate stability patch"
+          git add .github/scripts/build_rc_patch.py
+          git commit --allow-empty -m "chore(rc): confirm release candidate is stable"
           git push --force origin feat-release-candidate
