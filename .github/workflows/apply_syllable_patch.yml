@@ -1,0 +1,115 @@
+name: Apply Syllable UI Patch
+
+on:
+  push:
+    branches:
+      - chore-syllable-ui-patcher
+
+permissions:
+  contents: write
+
+jobs:
+  apply-syllable-ui-patch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create patch branch
+        run: |
+          git fetch origin main
+          git checkout -B feat-reading-active-sentence-view origin/main
+
+      - name: Patch reading_content.dart
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('lib/features/reading/reading_content.dart')
+          text = path.read_text(encoding='utf-8')
+          original = text
+
+          def fail(message: str) -> None:
+              raise SystemExit(message)
+
+          def require_once(pattern: str, label: str) -> re.Match[str]:
+              matches = list(re.finditer(pattern, text, flags=re.DOTALL))
+              if len(matches) != 1:
+                  fail(f'Patch failed: {label} expected one match, found {len(matches)}')
+              return matches[0]
+
+          if "import 'widgets/reading_active_sentence_view.dart';" not in text:
+              anchor = "import '../../domain/reading/reading_domain.dart';\n"
+              if text.count(anchor) != 1:
+                  fail(f'Patch failed: import anchor count={text.count(anchor)}')
+              text = text.replace(anchor, anchor + "import 'widgets/reading_active_sentence_view.dart';\n", 1)
+
+          wrap_pattern = r"        Wrap\(\n\s*spacing: 7,\n\s*runSpacing: 7,\n\s*children: sentence\.words\.asMap\(\)\.entries\.map\(\(entry\) \{\n.*?\n\s*\}\)\.toList\(\),\n\s*\),"
+          require_once(wrap_pattern, 'active sentence Wrap block')
+          text = re.sub(
+              wrap_pattern,
+              "        ReadingActiveSentenceView(\n"
+              "          sentence: sentence,\n"
+              "          activeWordIndex: activeWordIndex,\n"
+              "          problemWord: liveProblemWord,\n"
+              "          listening: listening,\n"
+              "        ),",
+              text,
+              count=1,
+              flags=re.DOTALL,
+          )
+
+          chip_pattern = r"\nclass _SentenceWordChip extends StatelessWidget \{\n\s*const _SentenceWordChip\(\{required this\.word, required this\.active, required this\.problem, required this\.listening\}\);\n.*?\n\}\n\nclass _MicrophonePanel extends StatelessWidget"
+          require_once(chip_pattern, '_SentenceWordChip class')
+          text = re.sub(
+              chip_pattern,
+              "\nclass _MicrophonePanel extends StatelessWidget",
+              text,
+              count=1,
+              flags=re.DOTALL,
+          )
+
+          if text == original:
+              fail('Patch failed: file unchanged')
+
+          required = [
+              "import 'widgets/reading_active_sentence_view.dart';",
+              'ReadingActiveSentenceView(',
+              'sentence: sentence,',
+              'activeWordIndex: activeWordIndex,',
+              'problemWord: liveProblemWord,',
+              'listening: listening,',
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              fail(f'Patch verification failed. Missing: {missing}')
+          if 'class _SentenceWordChip extends StatelessWidget' in text:
+              fail('Patch verification failed: obsolete _SentenceWordChip still exists')
+          if text.count('ReadingActiveSentenceView(') != 1:
+              fail(f'Patch verification failed: ReadingActiveSentenceView count={text.count("ReadingActiveSentenceView(")}')
+
+          path.write_text(text, encoding='utf-8')
+          print('Syllable UI patch applied successfully.')
+          PY
+
+      - name: Show patch summary
+        run: |
+          git diff -- lib/features/reading/reading_content.dart
+
+      - name: Commit and push patch branch
+        run: |
+          if git diff --quiet -- lib/features/reading/reading_content.dart; then
+            echo "No reading_content.dart changes detected."
+            exit 1
+          fi
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/features/reading/reading_content.dart
+          git commit -m "feat(reading): connect active sentence syllable view"
+          git push --force origin feat-reading-active-sentence-view
