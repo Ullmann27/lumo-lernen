@@ -1,0 +1,272 @@
+name: Apply Problem Word Trainer Patch
+
+on:
+  push:
+    branches:
+      - chore-problem-word-trainer
+
+permissions:
+  contents: write
+
+jobs:
+  apply-problem-word-trainer-patch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create patch branch
+        run: |
+          git fetch origin main
+          git checkout -B feat-reading-problem-word-trainer origin/main
+
+      - name: Create ReadingProblemWordTrainer widget
+        run: |
+          mkdir -p lib/features/reading/widgets
+          cat > lib/features/reading/widgets/reading_problem_word_trainer.dart <<'DART'
+          import 'package:flutter/material.dart';
+
+          import '../../../app/app_theme.dart';
+          import '../../shared/widgets/lumo_modern_card.dart';
+          import 'reading_syllable_chip.dart';
+
+          class ReadingProblemWordTrainer extends StatelessWidget {
+            const ReadingProblemWordTrainer({
+              super.key,
+              required this.words,
+              this.activeProblemWord,
+            });
+
+            final List<String> words;
+            final String? activeProblemWord;
+
+            @override
+            Widget build(BuildContext context) {
+              final activeWord = _clean(activeProblemWord);
+              final uniqueWords = _uniqueCleanWords(words);
+              final hasFocusWord = activeWord.isNotEmpty;
+              final visibleWords = hasFocusWord
+                  ? <String>[activeWord, ...uniqueWords.where((word) => word != activeWord)]
+                  : uniqueWords;
+
+              if (visibleWords.isEmpty) return const SizedBox.shrink();
+
+              return LumoModernCard(
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: 48,
+                          height: 48,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: hasFocusWord ? LumoColors.orangeSurface : LumoColors.goldSurface,
+                            borderRadius: BorderRadius.circular(LumoRadius.md),
+                          ),
+                          child: Text(hasFocusWord ? '🦊' : '⭐', style: const TextStyle(fontSize: 26)),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                hasFocusWord ? 'Lass uns das Wort kurz üben!' : 'Übungswörter für später',
+                                style: LumoTextStyles.heading3.copyWith(color: LumoColors.ink900),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                hasFocusWord
+                                    ? 'Schau mal, so teilen wir das Wort:'
+                                    : 'Diese Wörter merkt sich Lumo und übt sie wieder mit dir.',
+                                style: LumoTextStyles.body.copyWith(color: LumoColors.ink600),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 14),
+                    if (hasFocusWord)
+                      _FocusedProblemWord(word: activeWord)
+                    else
+                      _ProblemWordWrap(words: visibleWords),
+                    if (hasFocusWord && visibleWords.length > 1) ...<Widget>[
+                      const SizedBox(height: 14),
+                      Text('Auch diese Wörter üben wir später:', style: LumoTextStyles.label.copyWith(color: LumoColors.ink600)),
+                      const SizedBox(height: 8),
+                      _ProblemWordWrap(words: visibleWords.skip(1).toList(growable: false)),
+                    ],
+                  ],
+                ),
+              );
+            }
+
+            static String _clean(String? value) {
+              return (value ?? '')
+                  .trim()
+                  .replaceAll(RegExp(r'^["„“\(\[]+|[.,!?;:"„“\)\]]+$'), '')
+                  .trim();
+            }
+
+            static List<String> _uniqueCleanWords(List<String> values) {
+              final seen = <String>{};
+              final result = <String>[];
+              for (final raw in values) {
+                final word = _clean(raw);
+                if (word.isEmpty) continue;
+                final key = word.toLowerCase();
+                if (seen.add(key)) result.add(word);
+              }
+              return result;
+            }
+          }
+
+          class _FocusedProblemWord extends StatelessWidget {
+            const _FocusedProblemWord({required this.word});
+
+            final String word;
+
+            @override
+            Widget build(BuildContext context) {
+              final parts = _syllables(word);
+              return Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(LumoRadius.lg),
+                  border: Border.all(color: LumoColors.orange.withOpacity(.22)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ReadingSyllableChip(parts: parts, active: true, problem: true),
+                    const SizedBox(height: 12),
+                    Text('1. Sag zuerst: ${parts.first}', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w900)),
+                    if (parts.length > 1) ...<Widget>[
+                      const SizedBox(height: 4),
+                      Text('2. Dann: ${parts.skip(1).join('-')}', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w900)),
+                    ],
+                    const SizedBox(height: 4),
+                    Text('3. Jetzt zusammen: $word', style: LumoTextStyles.body.copyWith(color: LumoColors.orange, fontWeight: FontWeight.w900)),
+                  ],
+                ),
+              );
+            }
+          }
+
+          class _ProblemWordWrap extends StatelessWidget {
+            const _ProblemWordWrap({required this.words});
+
+            final List<String> words;
+
+            @override
+            Widget build(BuildContext context) {
+              return Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: words.map((word) {
+                  return ReadingSyllableChip(parts: _syllables(word), problem: true);
+                }).toList(growable: false),
+              );
+            }
+          }
+
+          List<String> _syllables(String word) {
+            final cleaned = word.replaceAll(RegExp(r'[^A-Za-zÄÖÜäöüß]'), '');
+            if (cleaned.isEmpty) return <String>[word];
+            if (cleaned.length <= 3) return <String>[cleaned];
+
+            final parts = <String>[];
+            final buffer = StringBuffer();
+            const vowels = 'aeiouäöüyAEIOUÄÖÜY';
+            for (var i = 0; i < cleaned.length; i++) {
+              buffer.write(cleaned[i]);
+              final isVowel = vowels.contains(cleaned[i]);
+              final nextIsConsonant = i + 1 < cleaned.length && !vowels.contains(cleaned[i + 1]);
+              if (isVowel && nextIsConsonant && buffer.length >= 2 && i < cleaned.length - 2) {
+                parts.add(buffer.toString());
+                buffer.clear();
+              }
+            }
+            if (buffer.isNotEmpty) parts.add(buffer.toString());
+            return parts.isEmpty ? <String>[cleaned] : parts;
+          }
+          DART
+
+      - name: Patch reading_content.dart
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('lib/features/reading/reading_content.dart')
+          text = path.read_text(encoding='utf-8')
+          original = text
+
+          def fail(message: str) -> None:
+              raise SystemExit(message)
+
+          if "import 'widgets/reading_problem_word_trainer.dart';" not in text:
+              anchor = "import 'widgets/reading_active_sentence_view.dart';\n"
+              if text.count(anchor) != 1:
+                  fail(f'Patch failed: trainer import anchor count={text.count(anchor)}')
+              text = text.replace(anchor, anchor + "import 'widgets/reading_problem_word_trainer.dart';\n", 1)
+
+          call_pattern = r"                if \(progress\.problemWords\.isNotEmpty\) \.\.\.\[\n\s*const SizedBox\(height: 14\),\n\s*_ProblemWordsCard\(words: progress\.problemWords\),\n\s*\],"
+          replacement = "                if (progress.problemWords.isNotEmpty || _liveProblemWord != null) ...[\n                  const SizedBox(height: 14),\n                  ReadingProblemWordTrainer(\n                    words: progress.problemWords,\n                    activeProblemWord: _liveProblemWord,\n                  ),\n                ],"
+          text, count = re.subn(call_pattern, replacement, text, count=1, flags=re.DOTALL)
+          if count != 1:
+              fail(f'Patch failed: _ProblemWordsCard call replacement count={count}')
+
+          class_pattern = r"\nclass _ProblemWordsCard extends StatelessWidget \{\n\s*const _ProblemWordsCard\(\{required this\.words\}\);\n.*?\n\}\n\nclass _FinishedReadingCard extends StatelessWidget"
+          text, count = re.subn(class_pattern, "\nclass _FinishedReadingCard extends StatelessWidget", text, count=1, flags=re.DOTALL)
+          if count != 1:
+              fail(f'Patch failed: _ProblemWordsCard class removal count={count}')
+
+          if text == original:
+              fail('Patch failed: reading_content.dart unchanged')
+
+          required = [
+              "import 'widgets/reading_problem_word_trainer.dart';",
+              'ReadingProblemWordTrainer(',
+              'words: progress.problemWords,',
+              'activeProblemWord: _liveProblemWord,',
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              fail(f'Patch verification failed. Missing: {missing}')
+          if '_ProblemWordsCard' in text:
+              fail('Patch verification failed: obsolete _ProblemWordsCard still exists')
+          if text.count('ReadingProblemWordTrainer(') != 1:
+              fail(f'Patch verification failed: trainer count={text.count("ReadingProblemWordTrainer(")}')
+
+          path.write_text(text, encoding='utf-8')
+          print('Problem word trainer integration applied successfully.')
+          PY
+
+      - name: Show patch summary
+        run: |
+          git diff -- lib/features/reading/reading_content.dart lib/features/reading/widgets/reading_problem_word_trainer.dart
+
+      - name: Commit and push patch branch
+        run: |
+          if git diff --quiet -- lib/features/reading/reading_content.dart lib/features/reading/widgets/reading_problem_word_trainer.dart; then
+            echo "No trainer changes detected."
+            exit 1
+          fi
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/features/reading/reading_content.dart lib/features/reading/widgets/reading_problem_word_trainer.dart
+          git commit -m "feat(reading): add problem word trainer"
+          git push --force origin feat-reading-problem-word-trainer
