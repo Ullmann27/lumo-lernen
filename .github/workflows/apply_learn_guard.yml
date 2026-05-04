@@ -1,0 +1,126 @@
+name: Apply Learn Guard Patch
+
+on:
+  push:
+    branches:
+      - chore-learn-guard-patcher
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  apply-learn-guard-patch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create patch branch
+        run: |
+          git fetch origin main
+          git checkout -B feat-learn-enforce-ai-policy origin/main
+
+      - name: Patch learning_content.dart
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/features/learning/learning_content.dart')
+          text = path.read_text(encoding='utf-8')
+          original = text
+
+          def fail(message: str) -> None:
+              raise SystemExit(message)
+
+          def add_after_once(source: str, anchor: str, addition: str, label: str) -> str:
+              if addition.strip() in source:
+                  return source
+              count = source.count(anchor)
+              if count != 1:
+                  fail(f'Patch failed: {label} anchor count={count}')
+              return source.replace(anchor, anchor + addition, 1)
+
+          text = add_after_once(
+              text,
+              "import '../../core/lumo_ai_proxy_client.dart';\n",
+              "import '../../core/lumo_ai_learning_access.dart';\nimport '../../core/lumo_ai_policy_guard.dart';\n",
+              'learn guard imports',
+          )
+
+          if 'static const LumoAiPolicyGuard _aiPolicyGuard' not in text:
+              anchor = "  static const LumoTutorEngine _localTutorEngine = LumoTutorEngine();\n"
+              addition = "  static const LumoAiPolicyGuard _aiPolicyGuard = LumoAiPolicyGuard();\n"
+              text = add_after_once(text, anchor, addition, 'learn guard field')
+
+          hydrate_anchor = """    final st = widget.appState.state;\n    final subject = _aiSubjectName(st.subject);\n    if (subject == null) return;\n"""
+          hydrate_guard = """    final st = widget.appState.state;\n    final subject = _aiSubjectName(st.subject);\n    if (subject == null) return;\n    if (!_aiPolicyGuard.allows(st.settings, LumoAiLearningArea.taskHelp)) {\n      if (mounted && _aiDraftQueue.isNotEmpty) {\n        setState(() => _aiDraftQueue.clear());\n      }\n      return;\n    }\n"""
+          if 'LumoAiLearningArea.taskHelp)) {' not in text:
+              count = text.count(hydrate_anchor)
+              if count != 1:
+                  fail(f'Patch failed: hydrate guard anchor count={count}')
+              text = text.replace(hydrate_anchor, hydrate_guard, 1)
+
+          draft_anchor = """    final aiSubject = _aiSubjectName(st.subject);\n    if (aiSubject != null && _aiDraftQueue.isNotEmpty) {\n"""
+          draft_guard = """    final aiSubject = _aiSubjectName(st.subject);\n    final aiTaskHelpAllowed = _aiPolicyGuard.allows(st.settings, LumoAiLearningArea.taskHelp);\n    if (aiSubject != null && aiTaskHelpAllowed && _aiDraftQueue.isNotEmpty) {\n"""
+          if 'final aiTaskHelpAllowed = _aiPolicyGuard.allows(st.settings, LumoAiLearningArea.taskHelp);' not in text:
+              count = text.count(draft_anchor)
+              if count != 1:
+                  fail(f'Patch failed: AI draft guard anchor count={count}')
+              text = text.replace(draft_anchor, draft_guard, 1)
+
+          if text == original:
+              fail('Patch failed: learning_content.dart unchanged')
+
+          required = [
+              "import '../../core/lumo_ai_learning_access.dart';",
+              "import '../../core/lumo_ai_policy_guard.dart';",
+              'static const LumoAiPolicyGuard _aiPolicyGuard = LumoAiPolicyGuard();',
+              '_aiPolicyGuard.allows(st.settings, LumoAiLearningArea.taskHelp)',
+              'final aiTaskHelpAllowed = _aiPolicyGuard.allows(st.settings, LumoAiLearningArea.taskHelp);',
+              'aiSubject != null && aiTaskHelpAllowed && _aiDraftQueue.isNotEmpty',
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              fail(f'Patch verification failed. Missing: {missing}')
+
+          path.write_text(text, encoding='utf-8')
+          print('Learning AI policy guard patch applied successfully.')
+          PY
+
+      - name: Show patch summary
+        run: |
+          git diff -- lib/features/learning/learning_content.dart
+
+      - name: Commit and push patch branch
+        run: |
+          if git diff --quiet -- lib/features/learning/learning_content.dart; then
+            echo "No learn guard changes detected."
+            exit 1
+          fi
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/features/learning/learning_content.dart
+          git commit -m "feat(learn): enforce AI policy guard"
+          git push --force origin feat-learn-enforce-ai-policy
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh pr view feat-learn-enforce-ai-policy --base main >/dev/null 2>&1; then
+            gh pr edit feat-learn-enforce-ai-policy \
+              --title "Enforce AI policy guard in learning" \
+              --body "Blocks AI-generated task queue usage and external tutor refill when the parent policy does not allow task help. Local standard task generation and local feedback remain available. Generated by CI patcher."
+          else
+            gh pr create \
+              --base main \
+              --head feat-learn-enforce-ai-policy \
+              --title "Enforce AI policy guard in learning" \
+              --body "Blocks AI-generated task queue usage and external tutor refill when the parent policy does not allow task help. Local standard task generation and local feedback remain available. Generated by CI patcher."
+          fi
