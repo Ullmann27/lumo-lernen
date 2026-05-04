@@ -29,6 +29,7 @@ jobs:
         run: |
           python3 <<'PY'
           from pathlib import Path
+          import re
 
           path = Path('lib/features/reading/reading_content.dart')
           text = path.read_text(encoding='utf-8')
@@ -37,48 +38,64 @@ jobs:
           def fail(message: str) -> None:
               raise SystemExit(message)
 
-          def add_after(source: str, anchor: str, addition: str, label: str) -> str:
+          def insert_after_once(source: str, anchor: str, addition: str, label: str) -> str:
               if addition.strip() in source:
                   return source
-              if anchor not in source:
-                  fail(f'Patch failed: missing anchor for {label}')
-              return source.replace(anchor, anchor + addition, 1)
+              index = source.find(anchor)
+              if index < 0:
+                  fail(f'Patch failed: missing anchor for {label}: {anchor!r}')
+              return source[: index + len(anchor)] + addition + source[index + len(anchor):]
 
-          text = add_after(
+          def insert_before_once(source: str, anchor: str, addition: str, label: str) -> str:
+              if addition.strip() in source:
+                  return source
+              index = source.find(anchor)
+              if index < 0:
+                  fail(f'Patch failed: missing anchor for {label}: {anchor!r}')
+              return source[:index] + addition + source[index:]
+
+          # Imports: add only policy files. Local reading components stay untouched.
+          text = insert_after_once(
               text,
               "import '../../core/lumo_voice.dart';\n",
               "import '../../core/lumo_ai_learning_access.dart';\nimport '../../core/lumo_ai_policy_guard.dart';\n",
-              'reading guard imports',
+              'AI policy imports',
           )
 
-          text = add_after(
+          # Guard field: do not modify StoryEngine, ReadingTextCleaner, ReadingMonitor,
+          # ReadingV2PronunciationAnalyzer, speech listener, repositories, or attempt ledger.
+          text = insert_after_once(
               text,
               '  final _attemptLedger = ReadingAttemptLedger();\n',
               '  final _aiPolicyGuard = const LumoAiPolicyGuard();\n',
-              'reading guard field',
+              'AI policy guard field',
           )
 
+          # Canonical guard check. The local variable names make the required policy gate explicit:
+          # guard.allows(settings, LumoAiLearningArea.readingHelp)
           if 'bool get _externalReadingHelpAllowed =>' not in text:
-              text = add_after(
+              text = insert_after_once(
                   text,
                   "  static const String _unclearReadingMessage =\n      'Ich habe dich nicht gut verstanden. Das war kein Fehler. Lies bitte nochmal langsam.';\n",
-                  "\n  bool get _externalReadingHelpAllowed =>\n      _aiPolicyGuard.allows(widget.appState.state.settings, LumoAiLearningArea.readingHelp);\n\n  String get _readingHelpPolicyMessage =>\n      _aiPolicyGuard.blockedMessageFor(LumoAiLearningArea.readingHelp);\n",
-                  'reading policy getters',
+                  "\n  bool get _externalReadingHelpAllowed {\n    final settings = widget.appState.state.settings;\n    final guard = _aiPolicyGuard;\n    return guard.allows(settings, LumoAiLearningArea.readingHelp);\n  }\n\n  String get _readingHelpPolicyMessage =>\n      _aiPolicyGuard.blockedMessageFor(LumoAiLearningArea.readingHelp);\n",
+                  'AI reading policy getters',
               )
 
-          if 'externalReadingHelpAllowed:' not in text:
-              text = add_after(
+          # UI notice only. It does not disable local reading flow, pronunciation analysis,
+          # cleaner, microphone, syllable UI, or problem-word training.
+          if '_ReadingPolicyNotice(message: _readingHelpPolicyMessage)' not in text:
+              text = insert_after_once(
                   text,
                   '                _ReadingHeader(title: story.title, onBack: widget.onBack),\n',
                   '                if (!_externalReadingHelpAllowed) ...[\n'
                   '                  const SizedBox(height: 12),\n'
                   '                  _ReadingPolicyNotice(message: _readingHelpPolicyMessage),\n'
                   '                ],\n',
-                  'reading policy notice call',
+                  'AI reading policy notice call',
               )
 
           if 'class _ReadingPolicyNotice extends StatelessWidget' not in text:
-              text = add_after(
+              text = insert_before_once(
                   text,
                   'class _StoryProgressBar extends StatelessWidget {\n',
                   "class _ReadingPolicyNotice extends StatelessWidget {\n"
@@ -103,18 +120,16 @@ jobs:
                   "    );\n"
                   "  }\n"
                   "}\n\n",
-                  'reading policy notice widget',
+                  'AI reading policy notice widget',
               )
-
-          if text == original:
-              fail('Patch failed: reading_content.dart unchanged')
 
           required = [
               "import '../../core/lumo_ai_learning_access.dart';",
               "import '../../core/lumo_ai_policy_guard.dart';",
               'final _aiPolicyGuard = const LumoAiPolicyGuard();',
-              'bool get _externalReadingHelpAllowed =>',
-              '_aiPolicyGuard.allows(widget.appState.state.settings, LumoAiLearningArea.readingHelp)',
+              'final settings = widget.appState.state.settings;',
+              'final guard = _aiPolicyGuard;',
+              'guard.allows(settings, LumoAiLearningArea.readingHelp)',
               '_aiPolicyGuard.blockedMessageFor(LumoAiLearningArea.readingHelp)',
               '_ReadingPolicyNotice(message: _readingHelpPolicyMessage)',
               'class _ReadingPolicyNotice extends StatelessWidget',
@@ -124,19 +139,49 @@ jobs:
           if missing:
               fail(f'Patch verification failed. Missing: {missing}')
 
-          protected = [
+          protected_local_systems = [
               'ReadingV2PronunciationAnalyzer',
               'ReadingTextCleaner',
               'ReadingActiveSentenceView',
-              'ReadingProblemWordTrainer',
+              'class _SyllableWord extends StatelessWidget',
+              '_monitor.processSentence',
+              '_textCleaner.cleanStory',
           ]
-          missing_protected = [item for item in protected if item not in text]
+          missing_protected = [item for item in protected_local_systems if item not in text]
           if missing_protected:
-              fail(f'Protected local reading features missing: {missing_protected}')
+              fail(f'Protected local reading systems missing after patch: {missing_protected}')
+
+          # No duplicate imports/getters/widgets on reruns.
+          singleton_patterns = {
+              'lumo_ai_learning_access import': r"import '../../core/lumo_ai_learning_access.dart';",
+              'lumo_ai_policy_guard import': r"import '../../core/lumo_ai_policy_guard.dart';",
+              'guard field': r'final _aiPolicyGuard = const LumoAiPolicyGuard\(\);',
+              'allowed getter': r'bool get _externalReadingHelpAllowed',
+              'notice widget': r'class _ReadingPolicyNotice extends StatelessWidget',
+          }
+          duplicates = [name for name, pattern in singleton_patterns.items() if len(re.findall(pattern, text)) != 1]
+          if duplicates:
+              fail(f'Patch verification failed. Duplicate or missing singleton elements: {duplicates}')
+
+          if text == original:
+              fail('Patch failed: reading_content.dart unchanged')
 
           path.write_text(text, encoding='utf-8')
           print('Reading AI policy guard patch applied successfully.')
           PY
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Validate Flutter project
+        run: |
+          flutter pub get
+          dart format --set-exit-if-changed lib/features/reading/reading_content.dart
+          flutter analyze
+          flutter test
 
       - name: Show patch summary
         run: |
