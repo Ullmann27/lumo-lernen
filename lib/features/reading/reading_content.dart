@@ -6,7 +6,9 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/reading_text_cleaner.dart';
 import '../../core/reading_progress_repository.dart';
+import '../../core/reading_v2_pronunciation_analyzer.dart';
 import '../../core/reading_story_memory_repository.dart';
 import '../../domain/agent/lumo_agent_domain.dart';
 import '../../domain/reading/reading_attempt_history.dart';
@@ -24,11 +26,17 @@ class ReadingContent extends StatefulWidget {
 
 class _ReadingContentState extends State<ReadingContent> {
   final _storyEngine = const StoryEngine();
-  final _monitor = ReadingMonitor();
+  final _textCleaner = const ReadingTextCleaner();
+  final _monitor = ReadingMonitor(
+    analyzer: const ReadingV2PronunciationAnalyzer(),
+  );
   final _speech = LumoSpeechListener();
   final _readingRepo = ReadingProgressRepository();
   final _storyMemoryRepo = ReadingStoryMemoryRepository();
   final _attemptLedger = ReadingAttemptLedger();
+
+  static const String _unclearReadingMessage =
+      'Ich habe dich nicht gut verstanden. Das war kein Fehler. Lies bitte nochmal langsam.';
 
   ReadingSessionProgress? _progress;
   late String _readingSessionId;
@@ -55,11 +63,12 @@ class _ReadingContentState extends State<ReadingContent> {
     final grade = widget.appState.state.grade;
     final childId = _childId;
     final recentSignatures = await _storyMemoryRepo.loadRecent(childId: childId, grade: grade);
-    final story = _storyEngine.pickStory(
+    final rawStory = _storyEngine.pickStory(
       grade: grade,
       weakWords: const <String>[],
       avoidSignatures: recentSignatures.toSet(),
     );
+    final story = _textCleaner.cleanStory(rawStory);
     await _storyMemoryRepo.remember(childId: childId, grade: grade, signature: story.signature);
     if (!mounted) return;
 
@@ -108,7 +117,7 @@ class _ReadingContentState extends State<ReadingContent> {
         level: 1,
         targetSkills: <String>['reading.loading'],
         sentences: <StorySentence>[
-          StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte.', words: <WordToken>[]),
+          StorySentence(id: 'loading.s1', index: 0, text: 'Lumo sucht eine neue Geschichte', words: <WordToken>[]),
         ],
       );
       return ReadingSessionProgress(
@@ -279,7 +288,7 @@ class _ReadingContentState extends State<ReadingContent> {
       _processTranscript(_lastTranscript);
       return;
     }
-    const calm = 'Ich habe dich nicht gut gehört. Das war kein Fehler. Drück nochmal auf das Mikrofon, wenn du bereit bist.';
+    const calm = _unclearReadingMessage;
     setState(() {
       _lastScore = null;
       _lumoLine = calm;
@@ -314,6 +323,10 @@ class _ReadingContentState extends State<ReadingContent> {
       monitorProgress: result.nextProgress,
       decision: attemptDecision,
     );
+    final childMessage =
+        attemptDecision.outcome == ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear
+            ? _unclearReadingMessage
+            : attemptDecision.childMessage;
 
     if (attemptDecision.shouldCountAsIntervention) {
       _interventionCount++;
@@ -334,7 +347,7 @@ class _ReadingContentState extends State<ReadingContent> {
       }
       _lumoLine = adjustedProgress.isComplete
           ? 'Geschafft! Du hast die Geschichte gelesen. Lumo merkt sich deine starken Sätze und Übungswörter.'
-          : attemptDecision.childMessage;
+          : childMessage;
       _finished = adjustedProgress.isComplete;
     });
 
@@ -349,7 +362,7 @@ class _ReadingContentState extends State<ReadingContent> {
       lumoMessage: _lumoLine,
     ));
 
-    final nextMessage = adjustedProgress.isComplete ? _lumoLine : attemptDecision.childMessage;
+    final nextMessage = adjustedProgress.isComplete ? _lumoLine : childMessage;
     LumoVoice.instance.speak(nextMessage).whenComplete(() {
       _processing = false;
     });
