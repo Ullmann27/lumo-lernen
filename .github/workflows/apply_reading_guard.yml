@@ -1,0 +1,155 @@
+name: Apply Reading Guard Patch
+
+on:
+  push:
+    branches:
+      - chore-reading-guard-patcher
+
+permissions:
+  contents: write
+
+jobs:
+  apply-reading-guard-patch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create patch branch
+        run: |
+          git fetch origin main
+          git checkout -B feat-reading-enforce-ai-policy origin/main
+
+      - name: Patch reading_content.dart
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/features/reading/reading_content.dart')
+          text = path.read_text(encoding='utf-8')
+          original = text
+
+          def fail(message: str) -> None:
+              raise SystemExit(message)
+
+          def add_after(source: str, anchor: str, addition: str, label: str) -> str:
+              if addition.strip() in source:
+                  return source
+              if anchor not in source:
+                  fail(f'Patch failed: missing anchor for {label}')
+              return source.replace(anchor, anchor + addition, 1)
+
+          text = add_after(
+              text,
+              "import '../../core/lumo_voice.dart';\n",
+              "import '../../core/lumo_ai_learning_access.dart';\nimport '../../core/lumo_ai_policy_guard.dart';\n",
+              'reading guard imports',
+          )
+
+          text = add_after(
+              text,
+              '  final _attemptLedger = ReadingAttemptLedger();\n',
+              '  final _aiPolicyGuard = const LumoAiPolicyGuard();\n',
+              'reading guard field',
+          )
+
+          if 'bool get _externalReadingHelpAllowed =>' not in text:
+              text = add_after(
+                  text,
+                  "  static const String _unclearReadingMessage =\n      'Ich habe dich nicht gut verstanden. Das war kein Fehler. Lies bitte nochmal langsam.';\n",
+                  "\n  bool get _externalReadingHelpAllowed =>\n      _aiPolicyGuard.allows(widget.appState.state.settings, LumoAiLearningArea.readingHelp);\n\n  String get _readingHelpPolicyMessage =>\n      _aiPolicyGuard.blockedMessageFor(LumoAiLearningArea.readingHelp);\n",
+                  'reading policy getters',
+              )
+
+          if 'externalReadingHelpAllowed:' not in text:
+              text = add_after(
+                  text,
+                  '                _ReadingHeader(title: story.title, onBack: widget.onBack),\n',
+                  '                if (!_externalReadingHelpAllowed) ...[\n'
+                  '                  const SizedBox(height: 12),\n'
+                  '                  _ReadingPolicyNotice(message: _readingHelpPolicyMessage),\n'
+                  '                ],\n',
+                  'reading policy notice call',
+              )
+
+          if 'class _ReadingPolicyNotice extends StatelessWidget' not in text:
+              text = add_after(
+                  text,
+                  'class _StoryProgressBar extends StatelessWidget {\n',
+                  "class _ReadingPolicyNotice extends StatelessWidget {\n"
+                  "  const _ReadingPolicyNotice({required this.message});\n\n"
+                  "  final String message;\n\n"
+                  "  @override\n"
+                  "  Widget build(BuildContext context) {\n"
+                  "    return Container(\n"
+                  "      width: double.infinity,\n"
+                  "      padding: const EdgeInsets.all(14),\n"
+                  "      decoration: lumoCard(color: const Color(0xFFFFFBEB)),\n"
+                  "      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [\n"
+                  "        const Icon(Icons.lock_rounded, color: LumoColors.orange),\n"
+                  "        const SizedBox(width: 10),\n"
+                  "        Expanded(\n"
+                  "          child: Text(\n"
+                  "            '$message Lokales Mitlesen, Silben, Aussprache-Analyse und Problemworttraining bleiben aktiv.',\n"
+                  "            style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800),\n"
+                  "          ),\n"
+                  "        ),\n"
+                  "      ]),\n"
+                  "    );\n"
+                  "  }\n"
+                  "}\n\n",
+                  'reading policy notice widget',
+              )
+
+          if text == original:
+              fail('Patch failed: reading_content.dart unchanged')
+
+          required = [
+              "import '../../core/lumo_ai_learning_access.dart';",
+              "import '../../core/lumo_ai_policy_guard.dart';",
+              'final _aiPolicyGuard = const LumoAiPolicyGuard();',
+              'bool get _externalReadingHelpAllowed =>',
+              '_aiPolicyGuard.allows(widget.appState.state.settings, LumoAiLearningArea.readingHelp)',
+              '_aiPolicyGuard.blockedMessageFor(LumoAiLearningArea.readingHelp)',
+              '_ReadingPolicyNotice(message: _readingHelpPolicyMessage)',
+              'class _ReadingPolicyNotice extends StatelessWidget',
+              'Lokales Mitlesen, Silben, Aussprache-Analyse und Problemworttraining bleiben aktiv.',
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              fail(f'Patch verification failed. Missing: {missing}')
+
+          protected = [
+              'ReadingV2PronunciationAnalyzer',
+              'ReadingTextCleaner',
+              'ReadingActiveSentenceView',
+              'ReadingProblemWordTrainer',
+          ]
+          missing_protected = [item for item in protected if item not in text]
+          if missing_protected:
+              fail(f'Protected local reading features missing: {missing_protected}')
+
+          path.write_text(text, encoding='utf-8')
+          print('Reading AI policy guard patch applied successfully.')
+          PY
+
+      - name: Show patch summary
+        run: |
+          git diff -- lib/features/reading/reading_content.dart
+
+      - name: Commit and push patch branch
+        run: |
+          if git diff --quiet -- lib/features/reading/reading_content.dart; then
+            echo "No reading guard changes detected."
+            exit 1
+          fi
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/features/reading/reading_content.dart
+          git commit -m "feat(reading): enforce AI policy guard"
+          git push --force origin feat-reading-enforce-ai-policy
