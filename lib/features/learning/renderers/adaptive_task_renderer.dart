@@ -63,7 +63,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             _subjectLabel(task.subject),
-            style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13),
+            style: LumoTextStyles.label
+                .copyWith(color: LumoColors.orange, fontSize: 13),
           ),
           const SizedBox(height: 10),
           Text(
@@ -83,7 +84,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       const SizedBox(height: 18),
       Text(
         'Wähle die richtige Antwort:',
-        style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 14),
+        style: LumoTextStyles.label
+            .copyWith(color: LumoColors.ink500, fontSize: 14),
       ),
       const SizedBox(height: 12),
       _OptionGrid(
@@ -114,7 +116,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
 }
 
 class _OptionGrid extends StatelessWidget {
-  const _OptionGrid({required this.task, required this.picked, required this.onPick});
+  const _OptionGrid(
+      {required this.task, required this.picked, required this.onPick});
 
   final TaskInstance task;
   final Object? picked;
@@ -124,7 +127,8 @@ class _OptionGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 460;
-      final itemWidth = compact ? constraints.maxWidth : (constraints.maxWidth - 24) / 3;
+      final itemWidth =
+          compact ? constraints.maxWidth : (constraints.maxWidth - 24) / 3;
       return Wrap(
         spacing: 12,
         runSpacing: 12,
@@ -202,12 +206,14 @@ class _AnswerButton extends StatelessWidget {
           if (answered && isCorrect)
             const Padding(
               padding: EdgeInsets.only(right: 7),
-              child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 20),
+              child: Icon(Icons.check_circle_rounded,
+                  color: Color(0xFF22C55E), size: 20),
             ),
           if (answered && isPicked && !isCorrect)
             const Padding(
               padding: EdgeInsets.only(right: 7),
-              child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 20),
+              child: Icon(Icons.cancel_rounded,
+                  color: Color(0xFFF43F5E), size: 20),
             ),
           Flexible(
             child: Text(
@@ -230,7 +236,8 @@ class _AnswerButton extends StatelessWidget {
 }
 
 class _AdaptiveVisual extends StatelessWidget {
-  const _AdaptiveVisual({required this.task, required this.picked, required this.answered});
+  const _AdaptiveVisual(
+      {required this.task, required this.picked, required this.answered});
 
   final TaskInstance task;
   final Object? picked;
@@ -241,8 +248,10 @@ class _AdaptiveVisual extends StatelessWidget {
     return switch (task.visualPayload.type) {
       VisualType.dots => _DotsVisual(task: task),
       VisualType.tenOnes => _TenOnesVisual(task: task),
-      VisualType.numberLine => _NumberLineVisual(task: task, picked: picked, answered: answered),
-      VisualType.shape => _ShapeVisual(task: task, picked: picked, answered: answered),
+      VisualType.numberLine =>
+        _NumberLineVisual(task: task, picked: picked, answered: answered),
+      VisualType.shape =>
+        _ShapeVisual(task: task, picked: picked, answered: answered),
       VisualType.syllables => _SyllableVisual(task: task),
       _ => _SchoolbookFallbackVisual(task: task),
     };
@@ -257,16 +266,28 @@ class _DotsVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final operation = data['operation']?.toString() ?? 'addition';
-    final left = _readInt(data['left']) ?? _readInt(data['start']) ?? 0;
-    final right = _readInt(data['right']) ?? _readInt(data['takeAway']) ?? 0;
+    final parsed = _ArithmeticPrompt.tryParse(task.prompt);
+    final operation =
+        data['operation']?.toString() ?? parsed?.operation ?? 'addition';
+    final left = _readInt(data['left']) ??
+        _readInt(data['first']) ??
+        _readInt(data['start']) ??
+        parsed?.left ??
+        0;
+    final right = _readInt(data['right']) ??
+        _readInt(data['second']) ??
+        _readInt(data['takeAway']) ??
+        _readInt(data['remove']) ??
+        parsed?.right ??
+        0;
 
     if (operation == 'subtraction' && left > 10 && right > 0) {
       return SchoolbookTaskCard(
         title: 'Rechne wie im Heft',
         subtitle: 'Erst bis zur 10, dann den Rest wegnehmen.',
         ribbonLabel: 'Minus',
-        helperText: 'Lumo zeigt dir den gleichen Denkweg wie am Arbeitsblatt: Kugeln anschauen, bis zur 10 wegstreichen, dann fertig rechnen.',
+        helperText:
+            'Lumo zeigt dir den gleichen Denkweg wie am Arbeitsblatt: Kugeln anschauen, bis zur 10 wegstreichen, dann fertig rechnen.',
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           TwentyFrameVisual(start: left, takeAway: right),
           const SizedBox(height: 16),
@@ -277,14 +298,24 @@ class _DotsVisual extends StatelessWidget {
 
     return SchoolbookTaskCard(
       title: operation == 'subtraction' ? 'Wegnehmen-Bild' : 'Mengenbild',
-      subtitle: operation == 'subtraction' ? 'Streiche weg und zähle, was bleibt.' : 'Lege beide Mengen zusammen.',
+      subtitle: operation == 'subtraction'
+          ? 'Streiche weg und zähle, was bleibt.'
+          : 'Lege beide Mengen zusammen.',
       ribbonLabel: operation == 'subtraction' ? '−' : '+',
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Expanded(child: _DotGroup(count: left, fadedAfter: operation == 'subtraction' ? right : 0)),
+        Expanded(
+            child: _DotGroup(
+                count: left,
+                fadedAfter: operation == 'subtraction' ? right : 0)),
         if (operation == 'addition') ...[
           const Padding(
             padding: EdgeInsets.only(top: 20),
-            child: Text('+', style: TextStyle(fontFamily: 'Nunito', fontSize: 28, fontWeight: FontWeight.w900, color: LumoColors.orange)),
+            child: Text('+',
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 28,
+                    fontWeight: FontWeight.w900,
+                    color: LumoColors.orange)),
           ),
           Expanded(child: _DotGroup(count: right)),
         ],
@@ -313,11 +344,17 @@ class _DotGroup extends StatelessWidget {
           width: 16,
           height: 16,
           decoration: BoxDecoration(
-            color: faded ? LumoColors.ink300.withOpacity(.28) : LumoColors.orange.withOpacity(.82),
+            color: faded
+                ? LumoColors.ink300.withOpacity(.28)
+                : LumoColors.orange.withOpacity(.82),
             shape: BoxShape.circle,
           ),
           child: faded
-              ? Center(child: Container(width: 14, height: 2, color: LumoColors.ink500.withOpacity(.45)))
+              ? Center(
+                  child: Container(
+                      width: 14,
+                      height: 2,
+                      color: LumoColors.ink500.withOpacity(.45)))
               : null,
         );
       }),
@@ -338,30 +375,37 @@ class _TenOnesVisual extends StatelessWidget {
     final target = tens * 10 + ones;
     return SchoolbookTaskCard(
       title: 'Zehner und Einer',
-      subtitle: 'Wie im Stellenwert-Heft: Stangen sind Zehner, Punkte sind Einer.',
+      subtitle:
+          'Wie im Stellenwert-Heft: Stangen sind Zehner, Punkte sind Einer.',
       ribbonLabel: '$target',
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: List.generate(tens, (_) => Container(
-                width: 18,
-                height: 72,
-                decoration: BoxDecoration(
-                  color: LumoColors.orange.withOpacity(.78),
-                  borderRadius: BorderRadius.circular(LumoRadius.sm),
-                ),
-              )),
+          children: List.generate(
+              tens,
+              (_) => Container(
+                    width: 18,
+                    height: 72,
+                    decoration: BoxDecoration(
+                      color: LumoColors.orange.withOpacity(.78),
+                      borderRadius: BorderRadius.circular(LumoRadius.sm),
+                    ),
+                  )),
         ),
         const SizedBox(height: 12),
         Wrap(
           spacing: 6,
           runSpacing: 6,
-          children: List.generate(ones, (_) => Container(
-                width: 16,
-                height: 16,
-                decoration: BoxDecoration(color: LumoColors.gold.withOpacity(.85), shape: BoxShape.circle),
-              )),
+          children: List.generate(
+              ones,
+              (_) => Container(
+                    width: 16,
+                    height: 16,
+                    decoration: BoxDecoration(
+                        color: LumoColors.gold.withOpacity(.85),
+                        shape: BoxShape.circle),
+                  )),
         ),
       ]),
     );
@@ -369,7 +413,8 @@ class _TenOnesVisual extends StatelessWidget {
 }
 
 class _NumberLineVisual extends StatelessWidget {
-  const _NumberLineVisual({required this.task, required this.picked, required this.answered});
+  const _NumberLineVisual(
+      {required this.task, required this.picked, required this.answered});
 
   final TaskInstance task;
   final Object? picked;
@@ -383,7 +428,8 @@ class _NumberLineVisual extends StatelessWidget {
     if (start != null && takeAway != null && start > 10 && takeAway > 0) {
       return SchoolbookTaskCard(
         title: 'Zahlenstrahl-Sprung',
-        subtitle: 'Ein großer Minus-Sprung wird in zwei kleine Sprünge geteilt.',
+        subtitle:
+            'Ein großer Minus-Sprung wird in zwei kleine Sprünge geteilt.',
         ribbonLabel: '0–20',
         child: NumberLineJumpVisual(start: start, takeAway: takeAway),
       );
@@ -404,33 +450,54 @@ class _NumberLineVisual extends StatelessWidget {
       subtitle: 'Suche die Zahl auf der Linie.',
       ribbonLabel: 'Linie',
       child: Stack(alignment: Alignment.center, children: [
-        Container(height: 6, decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.18), borderRadius: BorderRadius.circular(LumoRadius.pill))),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: numbers.map((number) {
-          final selected = pickedNumber == number;
-          final correct = answered && number == answer;
-          return Container(
-            width: selected || correct ? 42 : 34,
-            height: selected || correct ? 42 : 34,
+        Container(
+            height: 6,
             decoration: BoxDecoration(
-              color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : Colors.white,
-              shape: BoxShape.circle,
-              border: Border.all(color: correct ? const Color(0xFF22C55E) : LumoColors.orange.withOpacity(.55), width: 2),
-            ),
-            child: Center(
-              child: Text(
-                '$number',
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: correct || selected ? Colors.white : LumoColors.ink900),
-              ),
-            ),
-          );
-        }).toList()),
+                color: LumoColors.orange.withOpacity(.18),
+                borderRadius: BorderRadius.circular(LumoRadius.pill))),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: numbers.map((number) {
+              final selected = pickedNumber == number;
+              final correct = answered && number == answer;
+              return Container(
+                width: selected || correct ? 42 : 34,
+                height: selected || correct ? 42 : 34,
+                decoration: BoxDecoration(
+                  color: correct
+                      ? const Color(0xFF22C55E)
+                      : selected
+                          ? LumoColors.orange
+                          : Colors.white,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      color: correct
+                          ? const Color(0xFF22C55E)
+                          : LumoColors.orange.withOpacity(.55),
+                      width: 2),
+                ),
+                child: Center(
+                  child: Text(
+                    '$number',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900,
+                        color: correct || selected
+                            ? Colors.white
+                            : LumoColors.ink900),
+                  ),
+                ),
+              );
+            }).toList()),
       ]),
     );
   }
 }
 
 class _ShapeVisual extends StatelessWidget {
-  const _ShapeVisual({required this.task, required this.picked, required this.answered});
+  const _ShapeVisual(
+      {required this.task, required this.picked, required this.answered});
 
   final TaskInstance task;
   final Object? picked;
@@ -458,14 +525,34 @@ class _ShapeVisual extends StatelessWidget {
             width: 104,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
             decoration: BoxDecoration(
-              color: correct ? const Color(0xFFDCFCE7) : selected ? LumoColors.orangeSurface : Colors.white,
+              color: correct
+                  ? const Color(0xFFDCFCE7)
+                  : selected
+                      ? LumoColors.orangeSurface
+                      : Colors.white,
               borderRadius: BorderRadius.circular(LumoRadius.lg),
-              border: Border.all(color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : LumoColors.ink100, width: 2),
+              border: Border.all(
+                  color: correct
+                      ? const Color(0xFF22C55E)
+                      : selected
+                          ? LumoColors.orange
+                          : LumoColors.ink100,
+                  width: 2),
             ),
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Icon(entry.value, size: 34, color: correct ? const Color(0xFF22C55E) : LumoColors.orange),
+              Icon(entry.value,
+                  size: 34,
+                  color: correct ? const Color(0xFF22C55E) : LumoColors.orange),
               const SizedBox(height: 6),
-              Text(entry.key, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700)),
+              Text(entry.key,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                      color: LumoColors.ink700)),
             ]),
           );
         }).toList(),
@@ -481,7 +568,9 @@ class _SyllableVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final word = task.visualPayload.data['word']?.toString() ?? task.parameters['word']?.toString() ?? '';
+    final word = task.visualPayload.data['word']?.toString() ??
+        task.parameters['word']?.toString() ??
+        '';
     final rawSyllables = task.visualPayload.data['syllables'];
     final syllables = rawSyllables is List
         ? rawSyllables.map((e) => e.toString()).toList(growable: false)
@@ -520,19 +609,26 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     final data = task.visualPayload.data;
 
     if (visual == 'number_house') {
-      final target = _readInt(data['target']) ?? _readInt(task.correctAnswer) ?? 10;
+      final target =
+          _readInt(data['target']) ?? _readInt(task.correctAnswer) ?? 10;
       final left = _readInt(data['left']) ?? 0;
-      final right = _readInt(data['right']) ?? _readInt(task.correctAnswer) ?? 0;
+      final right =
+          _readInt(data['right']) ?? _readInt(task.correctAnswer) ?? 0;
       return SchoolbookTaskCard(
         title: 'Rechenhaus',
-        subtitle: 'Die Dachzahl ist das Ganze. Die Zimmer ergeben zusammen das Dach.',
+        subtitle:
+            'Die Dachzahl ist das Ganze. Die Zimmer ergeben zusammen das Dach.',
         ribbonLabel: '$target',
-        helperText: 'Schau zuerst auf das Dach. Dann suchst du die Partnerzahl zu $left.',
+        helperText:
+            'Schau zuerst auf das Dach. Dann suchst du die Partnerzahl zu $left.',
         child: NumberHouseVisual(
           target: target,
           rows: <List<int>>[
             <int>[left, right],
-            <int>[(left + 1).clamp(0, target).toInt(), (target - left - 1).clamp(0, target).toInt()],
+            <int>[
+              (left + 1).clamp(0, target).toInt(),
+              (target - left - 1).clamp(0, target).toInt()
+            ],
             <int>[0, target],
           ],
           missingIndex: 1,
@@ -541,7 +637,8 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     }
 
     if (visual == 'sound_choice') {
-      final word = data['word']?.toString() ?? task.prompt.replaceFirst('St oder Sp?', '').trim();
+      final word = data['word']?.toString() ??
+          task.prompt.replaceFirst('St oder Sp?', '').trim();
       return SchoolbookTaskCard(
         title: 'St oder Sp?',
         subtitle: 'Sprich den Anfang langsam und höre genau hin.',
@@ -557,16 +654,26 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
       final icon = data['icon']?.toString();
       return SchoolbookTaskCard(
         title: icon == null ? 'Schreib wie im Heft' : 'Bild und Wort',
-        subtitle: icon == null ? 'Lies genau und schreibe das passende Wort.' : 'Schau das Bild an und finde das passende Wort.',
+        subtitle: icon == null
+            ? 'Lies genau und schreibe das passende Wort.'
+            : 'Schau das Bild an und finde das passende Wort.',
         ribbonLabel: icon ?? 'Wort',
         accentColor: LumoColors.purple,
-        child: WritingLineBox(placeholder: word, cells: target.length.clamp(3, 10).toInt()),
+        child: WritingLineBox(
+            placeholder: word, cells: target.length.clamp(3, 10).toInt()),
       );
     }
 
     if (visual == 'blitz_grid') {
       final rawItems = data['items'];
-      final items = rawItems is List ? rawItems.map((item) => item.toString()).toList(growable: false) : <String>[task.prompt.replaceFirst('Blitzlicht:', '').replaceAll('?', '').trim()];
+      final items = rawItems is List
+          ? rawItems.map((item) => item.toString()).toList(growable: false)
+          : <String>[
+              task.prompt
+                  .replaceFirst('Blitzlicht:', '')
+                  .replaceAll('?', '')
+                  .trim()
+            ];
       return SchoolbookTaskCard(
         title: 'Blitzlicht',
         subtitle: 'Kurze Aufgaben, ruhig rechnen, dann antworten.',
@@ -586,7 +693,8 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
           title: 'Minus über die 10',
           subtitle: 'So wie im Heft: erst bis zur 10, dann weiter.',
           ribbonLabel: '10',
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             TwentyFrameVisual(start: start, takeAway: takeAway),
             const SizedBox(height: 16),
             NumberLineJumpVisual(start: start, takeAway: takeAway),
@@ -611,13 +719,19 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
         title: 'Blitzlicht',
         subtitle: 'Kurz rechnen, ruhig bleiben.',
         ribbonLabel: '+',
-        child: BlitzlichtGrid(items: <String>['$left + $right = ?', '${left + 1} + $right = ?', '$left + ${right + 1} = ?'], columns: 1),
+        child: BlitzlichtGrid(items: <String>[
+          '$left + $right = ?',
+          '${left + 1} + $right = ?',
+          '$left + ${right + 1} = ?'
+        ], columns: 1),
       );
     }
 
     // Deutsch: Satz-Aufgaben werden in Wortkarten zerlegt
     final unitFromParams = task.parameters['unit']?.toString() ?? '';
-    if (task.subject == LearningSubject.deutsch && unitFromParams == 'Satz bauen' && task.correctAnswer is String) {
+    if (task.subject == LearningSubject.deutsch &&
+        unitFromParams == 'Satz bauen' &&
+        task.correctAnswer is String) {
       final correctSentence = task.correctAnswer.toString();
       final words = correctSentence
           .replaceAll('.', '')
@@ -639,7 +753,8 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
 
     // Deutsch: Anfangs- oder Endlaut-Aufgaben
     if (task.subject == LearningSubject.deutsch &&
-        (unitFromParams.startsWith('Anfangslaut') || unitFromParams.startsWith('Endlaut'))) {
+        (unitFromParams.startsWith('Anfangslaut') ||
+            unitFromParams.startsWith('Endlaut'))) {
       final word = task.visualPayload.data['word']?.toString() ??
           task.parameters['word']?.toString() ??
           task.correctAnswer.toString();
@@ -651,11 +766,67 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
             : 'Sprich das Wort und höre genau auf den ersten Laut.',
         ribbonLabel: 'Laut',
         accentColor: LumoColors.purple,
-        child: SoundHighlightWord(word: word, highlight: highlight, color: LumoColors.purple),
+        child: SoundHighlightWord(
+            word: word, highlight: highlight, color: LumoColors.purple),
       );
     }
 
+    final parsedArithmetic = _ArithmeticPrompt.tryParse(task.prompt);
+    if (parsedArithmetic != null) {
+      return _DotsVisual(task: task);
+    }
+
     return const SizedBox.shrink();
+  }
+}
+
+class _ArithmeticPrompt {
+  const _ArithmeticPrompt(
+      {required this.operation, required this.left, required this.right});
+
+  final String operation;
+  final int left;
+  final int right;
+
+  static _ArithmeticPrompt? tryParse(String prompt) {
+    final plus =
+        RegExp(r'(\d+)\s*(?:\+|plus|und)\s*(\d+)', caseSensitive: false)
+            .firstMatch(prompt);
+    if (plus != null) {
+      return _ArithmeticPrompt(
+        operation: 'addition',
+        left: int.tryParse(plus.group(1) ?? '') ?? 0,
+        right: int.tryParse(plus.group(2) ?? '') ?? 0,
+      );
+    }
+    final minus =
+        RegExp(r'(\d+)\s*(?:-|minus|weg)\s*(\d+)', caseSensitive: false)
+            .firstMatch(prompt);
+    if (minus != null) {
+      return _ArithmeticPrompt(
+        operation: 'subtraction',
+        left: int.tryParse(minus.group(1) ?? '') ?? 0,
+        right: int.tryParse(minus.group(2) ?? '') ?? 0,
+      );
+    }
+    final numbers = RegExp(r'\d+')
+        .allMatches(prompt)
+        .map((match) => int.tryParse(match.group(0) ?? ''))
+        .whereType<int>()
+        .toList(growable: false);
+    if (numbers.length >= 2) {
+      final lower = prompt.toLowerCase();
+      final subtraction = lower.contains('minus') ||
+          lower.contains('weg') ||
+          lower.contains('bleiben') ||
+          lower.contains('wegnehmen');
+      return _ArithmeticPrompt(
+        operation: subtraction ? 'subtraction' : 'addition',
+        left: numbers[0],
+        right: numbers[1],
+      );
+    }
+    return null;
   }
 }
 
