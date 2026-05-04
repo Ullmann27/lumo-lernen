@@ -15,6 +15,7 @@ class AppSettings {
     this.microphoneEnabled = true,
     this.scannerEnabled = true,
     this.aiProxyEnabled = false,
+    this.aiLearningMode = AiLearningMode.chatOnly,
     this.aiProxyUrl = defaultAiProxyUrl,
     this.reduceAnimations = false,
     this.largeText = false,
@@ -32,6 +33,7 @@ class AppSettings {
   final bool microphoneEnabled;
   final bool scannerEnabled;
   final bool aiProxyEnabled;
+  final AiLearningMode aiLearningMode;
   final String aiProxyUrl;
   final bool reduceAnimations;
   final bool largeText;
@@ -49,6 +51,7 @@ class AppSettings {
     bool? microphoneEnabled,
     bool? scannerEnabled,
     bool? aiProxyEnabled,
+    AiLearningMode? aiLearningMode,
     String? aiProxyUrl,
     bool? reduceAnimations,
     bool? largeText,
@@ -66,6 +69,7 @@ class AppSettings {
       microphoneEnabled: microphoneEnabled ?? this.microphoneEnabled,
       scannerEnabled: scannerEnabled ?? this.scannerEnabled,
       aiProxyEnabled: aiProxyEnabled ?? this.aiProxyEnabled,
+      aiLearningMode: aiLearningMode ?? this.aiLearningMode,
       aiProxyUrl: aiProxyUrl ?? this.aiProxyUrl,
       reduceAnimations: reduceAnimations ?? this.reduceAnimations,
       largeText: largeText ?? this.largeText,
@@ -85,6 +89,7 @@ class AppSettings {
         'microphoneEnabled': microphoneEnabled,
         'scannerEnabled': scannerEnabled,
         'aiProxyEnabled': aiProxyEnabled,
+        'aiLearningMode': aiLearningMode.name,
         'aiProxyUrl': aiProxyUrl,
         'reduceAnimations': reduceAnimations,
         'largeText': largeText,
@@ -104,6 +109,7 @@ class AppSettings {
       microphoneEnabled: json['microphoneEnabled'] as bool? ?? true,
       scannerEnabled: json['scannerEnabled'] as bool? ?? true,
       aiProxyEnabled: json['aiProxyEnabled'] as bool? ?? false,
+      aiLearningMode: AiLearningModeX.fromName(json['aiLearningMode'] as String?),
       aiProxyUrl: _safeProxyUrl(json['aiProxyUrl']),
       reduceAnimations: json['reduceAnimations'] as bool? ?? false,
       largeText: json['largeText'] as bool? ?? false,
@@ -167,6 +173,43 @@ class AppSettings {
       }
     }
     return out;
+  }
+}
+
+enum AiLearningMode { chatOnly, learningHelp, readingHelp, fullCoach }
+
+extension AiLearningModeX on AiLearningMode {
+  static AiLearningMode fromName(String? name) {
+    return AiLearningMode.values.firstWhere(
+      (mode) => mode.name == name,
+      orElse: () => AiLearningMode.chatOnly,
+    );
+  }
+
+  String get label {
+    switch (this) {
+      case AiLearningMode.chatOnly:
+        return 'Nur KI-Chat';
+      case AiLearningMode.learningHelp:
+        return 'Chat und Aufgabenhilfe';
+      case AiLearningMode.readingHelp:
+        return 'Chat und Lesehilfe';
+      case AiLearningMode.fullCoach:
+        return 'Voller Lumo-Coach';
+    }
+  }
+
+  String get description {
+    switch (this) {
+      case AiLearningMode.chatOnly:
+        return 'Die KI antwortet nur im Chat-Modus.';
+      case AiLearningMode.learningHelp:
+        return 'Die KI darf Aufgaben kindgerecht erklaeren.';
+      case AiLearningMode.readingHelp:
+        return 'Die KI darf beim Lesen ruhig coachen.';
+      case AiLearningMode.fullCoach:
+        return 'Die KI darf Chat, Aufgaben, Lesen, Tests und Scanner unterstuetzen.';
+    }
   }
 }
 
