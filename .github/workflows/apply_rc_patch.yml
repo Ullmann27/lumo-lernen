@@ -1,0 +1,35 @@
+name: Apply Release Candidate Patch
+
+on:
+  push:
+    branches:
+      - chore-release-candidate-patcher
+
+permissions:
+  contents: write
+
+jobs:
+  apply-rc-patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - name: Create target branch
+        run: |
+          git fetch origin main
+          git checkout -B feat-release-candidate origin/main
+      - name: Run patch script
+        run: python3 .github/scripts/build_rc_patch.py
+      - name: Format Dart files
+        run: dart format lib/
+      - name: Commit and push
+        run: |
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/ .github/scripts/build_rc_patch.py
+          git commit -m "chore(rc): apply release candidate stability patch"
+          git push --force origin feat-release-candidate
