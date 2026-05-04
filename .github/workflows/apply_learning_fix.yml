@@ -1,0 +1,155 @@
+name: Apply Learning UI and Tutor Fix
+
+on:
+  push:
+    branches:
+      - fix-learning-ui-and-tutor
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-learning-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create target branch
+        run: |
+          git fetch origin main
+          git checkout -B feat-learning-fix origin/main
+
+      - name: Patch learning UI and tutor logic
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          learning = Path('lib/features/learning/learning_content.dart')
+          renderer = Path('lib/features/learning/renderers/adaptive_task_renderer.dart')
+
+          l = learning.read_text(encoding='utf-8')
+          r = renderer.read_text(encoding='utf-8')
+          original_l = l
+          original_r = r
+
+          old_threshold = '    if (!_allowHelp || _attemptCount < 3) return null;'
+          new_threshold = '    if (!_allowHelp || _attemptCount < 2) return null;'
+          if old_threshold not in l and new_threshold not in l:
+              raise SystemExit('Tutor threshold anchor missing')
+          l = l.replace(old_threshold, new_threshold, 1)
+
+          old_mode = """    final mode = _localTutorEngine.decideMode(
+      attemptCount: _attemptCount,
+      hasRepeatedWeakness: false,
+      isTestReview: widget.appState.state.sessionKind == LumoSessionKind.test,
+    );"""
+          new_mode = """    final isTestLikeSession =
+        widget.appState.state.sessionKind == LumoSessionKind.test ||
+            widget.appState.state.sessionKind == LumoSessionKind.schoolwork;
+    final mode = _localTutorEngine.decideMode(
+      attemptCount: _attemptCount,
+      hasRepeatedWeakness: false,
+      isTestReview: isTestLikeSession,
+    );"""
+          if old_mode not in l and 'final isTestLikeSession =' not in l:
+              raise SystemExit('Tutor mode anchor missing')
+          l = l.replace(old_mode, new_mode, 1)
+
+          old_dots_header = """    final data = task.visualPayload.data;
+    final operation = data['operation']?.toString() ?? 'addition';
+    final left = _readInt(data['left']) ?? _readInt(data['start']) ?? 0;
+    final right = _readInt(data['right']) ?? _readInt(data['takeAway']) ?? 0;"""
+          new_dots_header = """    final data = task.visualPayload.data;
+    final parsed = _ArithmeticPrompt.tryParse(task.prompt);
+    final operation = data['operation']?.toString() ?? parsed?.operation ?? 'addition';
+    final left = _readInt(data['left']) ??
+        _readInt(data['first']) ??
+        _readInt(data['start']) ??
+        parsed?.left ??
+        0;
+    final right = _readInt(data['right']) ??
+        _readInt(data['second']) ??
+        _readInt(data['takeAway']) ??
+        _readInt(data['remove']) ??
+        parsed?.right ??
+        0;"""
+          if old_dots_header not in r and '_ArithmeticPrompt.tryParse(task.prompt)' not in r:
+              raise SystemExit('Dots visual anchor missing')
+          r = r.replace(old_dots_header, new_dots_header, 1)
+
+          helper_anchor = """int? _readInt(Object? value) {
+  if (value == null) return null;"""
+          helper_code = """class _ArithmeticPrompt {
+  const _ArithmeticPrompt({required this.operation, required this.left, required this.right});
+
+  final String operation;
+  final int left;
+  final int right;
+
+  static _ArithmeticPrompt? tryParse(String prompt) {
+    final plus = RegExp(r'(\\d+)\\s*(?:\\+|plus|und)\\s*(\\d+)', caseSensitive: false).firstMatch(prompt);
+    if (plus != null) {
+      return _ArithmeticPrompt(
+        operation: 'addition',
+        left: int.tryParse(plus.group(1) ?? '') ?? 0,
+        right: int.tryParse(plus.group(2) ?? '') ?? 0,
+      );
+    }
+    final minus = RegExp(r'(\\d+)\\s*(?:-|minus|weg)\\s*(\\d+)', caseSensitive: false).firstMatch(prompt);
+    if (minus != null) {
+      return _ArithmeticPrompt(
+        operation: 'subtraction',
+        left: int.tryParse(minus.group(1) ?? '') ?? 0,
+        right: int.tryParse(minus.group(2) ?? '') ?? 0,
+      );
+    }
+    final numbers = RegExp(r'\\d+').allMatches(prompt).map((match) => int.tryParse(match.group(0) ?? '')).whereType<int>().toList(growable: false);
+    if (numbers.length >= 2) {
+      final lower = prompt.toLowerCase();
+      final isSubtraction = lower.contains('weg') || lower.contains('minus') || lower.contains('bleiben');
+      return _ArithmeticPrompt(
+        operation: isSubtraction ? 'subtraction' : 'addition',
+        left: numbers[0],
+        right: numbers[1],
+      );
+    }
+    return null;
+  }
+}
+
+"""
+          if 'class _ArithmeticPrompt' not in r:
+              if helper_anchor not in r:
+                  raise SystemExit('Arithmetic helper anchor missing')
+              r = r.replace(helper_anchor, helper_code + helper_anchor, 1)
+
+          for item in [new_threshold, 'final isTestLikeSession =']:
+              if item not in l:
+                  raise SystemExit('Learning patch verification failed: ' + item)
+          for item in ['_ArithmeticPrompt.tryParse(task.prompt)', 'class _ArithmeticPrompt', '_DotGroup(count: left', '_DotGroup(count: right']:
+              if item not in r:
+                  raise SystemExit('Renderer patch verification failed: ' + item)
+          if l == original_l and r == original_r:
+              raise SystemExit('No learning fix changes produced')
+
+          learning.write_text(l, encoding='utf-8')
+          renderer.write_text(r, encoding='utf-8')
+          print('Learning UI and tutor patch applied')
+          PY
+
+      - name: Format patched Dart files
+        run: dart format lib/features/learning/learning_content.dart lib/features/learning/renderers/adaptive_task_renderer.dart
+
+      - name: Commit and push target branch
+        run: |
+          git config user.name "Lumo Bot"
+          git config user.email "lumo-bot@users.noreply.github.com"
+          git add lib/features/learning/learning_content.dart lib/features/learning/renderers/adaptive_task_renderer.dart
+          git commit -m "fix(learning): restore quantity visuals and second-error tutor"
+          git push --force origin feat-learning-fix
