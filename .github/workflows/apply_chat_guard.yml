@@ -53,22 +53,23 @@ jobs:
               'chat guard imports',
           )
 
-          guard_block = """
-    final guard = const LumoAiPolicyGuard();
-    if (!guard.allows(settings, LumoAiLearningArea.chat)) {
-      final blockedMessage = guard.blockedMessageFor(LumoAiLearningArea.chat);
-      _remember(question, blockedMessage);
-      setState(() {
-        _answer = blockedMessage;
-        _source = 'parent_policy';
-        _blocked = true;
-        _loading = false;
-        _liveSpeech = '';
-      });
-      _applyReply(blockedMessage, blocked: true);
-      return;
-    }
-"""
+          guard_block = ''.join([
+              '\n',
+              '    final guard = const LumoAiPolicyGuard();\n',
+              '    if (!guard.allows(settings, LumoAiLearningArea.chat)) {\n',
+              '      final blockedMessage = guard.blockedMessageFor(LumoAiLearningArea.chat);\n',
+              '      _remember(question, blockedMessage);\n',
+              '      setState(() {\n',
+              '        _answer = blockedMessage;\n',
+              "        _source = 'parent_policy';\n",
+              '        _blocked = true;\n',
+              '        _loading = false;\n',
+              "        _liveSpeech = '';\n",
+              '      });\n',
+              '      _applyReply(blockedMessage, blocked: true);\n',
+              '      return;\n',
+              '    }\n',
+          ])
 
           if 'guard.blockedMessageFor(LumoAiLearningArea.chat)' not in text:
               pattern = (
