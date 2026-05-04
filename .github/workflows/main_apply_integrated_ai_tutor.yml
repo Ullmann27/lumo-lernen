@@ -22,8 +22,22 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
+      - name: Set up Flutter and Dart
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Verify patch tools
+        run: |
+          set -e
+          python3 --version
+          flutter --version
+          dart --version
+
       - name: Rebase feature branch on main
         run: |
+          set -e
           git fetch origin main feat-integrated-ai-tutor
           cp .github/scripts/apply_integrated_ai_tutor.py /tmp/apply_integrated_ai_tutor.py
           git checkout -B feat-integrated-ai-tutor origin/main
@@ -33,13 +47,21 @@ jobs:
       - name: Apply integrated tutor patch
         run: python3 .github/scripts/apply_integrated_ai_tutor.py
 
+      - name: Get dependencies
+        run: flutter pub get
+
       - name: Format patched Dart files
         run: dart format lib/core/lumo_ai_proxy_client.dart lib/features/learning/learning_content.dart lib/features/learning/renderers/adaptive_task_renderer.dart
 
       - name: Commit and push feature branch
         run: |
+          set -e
           git config user.name "Lumo Bot"
           git config user.email "lumo-bot@users.noreply.github.com"
           git add lib/core/lumo_ai_proxy_client.dart lib/features/learning/learning_content.dart lib/features/learning/renderers/adaptive_task_renderer.dart .github/scripts/apply_integrated_ai_tutor.py
-          git commit -m "feat(learning): integrate live AI tutor"
+          if git diff --cached --quiet; then
+            echo "No patch changes to commit. Feature branch is already up to date."
+          else
+            git commit -m "feat(learning): integrate live AI tutor"
+          fi
           git push --force origin feat-integrated-ai-tutor
