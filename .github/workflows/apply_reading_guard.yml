@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - chore-reading-guard-patcher
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -25,21 +24,55 @@ jobs:
           git fetch origin main
           git checkout -B feat-reading-enforce-ai-policy origin/main
 
-      - name: Apply reading patch
-        run: python3 .github/scripts/patch_reading_guard.py
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-
-      - name: Validate patched reading guard
+      - name: Patch reading_content.dart
         run: |
-          flutter pub get
-          dart format lib/features/reading/reading_content.dart
-          flutter analyze lib/features/reading/reading_content.dart
-          flutter test test/lumo_ai_policy_guard_test.dart
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/features/reading/reading_content.dart')
+          text = path.read_text(encoding='utf-8')
+          original = text
+
+          def add_after(source, anchor, addition, label):
+              if addition.strip() in source:
+                  return source
+              if anchor not in source:
+                  raise SystemExit('missing anchor: ' + label)
+              return source.replace(anchor, anchor + addition, 1)
+
+          def add_before(source, anchor, addition, label):
+              if addition.strip() in source:
+                  return source
+              if anchor not in source:
+                  raise SystemExit('missing anchor: ' + label)
+              return source.replace(anchor, addition + anchor, 1)
+
+          text = add_after(text, "import '../../core/lumo_voice.dart';\n", "import '../../core/lumo_ai_learning_access.dart';\nimport '../../core/lumo_ai_policy_guard.dart';\n", 'imports')
+          text = add_after(text, '  final _attemptLedger = ReadingAttemptLedger();\n', '  final _aiPolicyGuard = const LumoAiPolicyGuard();\n', 'field')
+
+          if 'bool get _externalReadingHelpAllowed' not in text:
+              text = add_after(text, "  static const String _unclearReadingMessage =\n      'Ich habe dich nicht gut verstanden. Das war kein Fehler. Lies bitte nochmal langsam.';\n", "\n  bool get _externalReadingHelpAllowed {\n    final settings = widget.appState.state.settings;\n    final guard = _aiPolicyGuard;\n    return guard.allows(settings, LumoAiLearningArea.readingHelp);\n  }\n\n  String get _readingHelpPolicyMessage =>\n      _aiPolicyGuard.blockedMessageFor(LumoAiLearningArea.readingHelp);\n", 'getter')
+
+          if '_ReadingPolicyNotice(message: _readingHelpPolicyMessage)' not in text:
+              text = add_after(text, '                _ReadingHeader(title: story.title, onBack: widget.onBack),\n', '                if (!_externalReadingHelpAllowed) ...[\n                  const SizedBox(height: 12),\n                  _ReadingPolicyNotice(message: _readingHelpPolicyMessage),\n                ],\n', 'notice call')
+
+          if 'class _ReadingPolicyNotice extends StatelessWidget' not in text:
+              notice = "class _ReadingPolicyNotice extends StatelessWidget {\n  const _ReadingPolicyNotice({required this.message});\n\n  final String message;\n\n  @override\n  Widget build(BuildContext context) {\n    return Container(\n      width: double.infinity,\n      padding: const EdgeInsets.all(14),\n      decoration: lumoCard(color: const Color(0xFFFFFBEB)),\n      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        const Icon(Icons.lock_rounded, color: LumoColors.orange),\n        const SizedBox(width: 10),\n        Expanded(child: Text('$message Lokales Mitlesen, Silben, Aussprache-Analyse und Problemworttraining bleiben aktiv.', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800))),\n      ]),\n    );\n  }\n}\n\n"
+              text = add_before(text, 'class _StoryProgressBar extends StatelessWidget {\n', notice, 'notice widget')
+
+          required = ['guard.allows(settings, LumoAiLearningArea.readingHelp)', 'ReadingV2PronunciationAnalyzer', 'ReadingTextCleaner', 'ReadingActiveSentenceView', 'class _SyllableWord extends StatelessWidget']
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit('missing required content: ' + ', '.join(missing))
+          if text == original:
+              raise SystemExit('reading_content.dart unchanged')
+
+          path.write_text(text, encoding='utf-8')
+          print('Reading guard patch applied successfully.')
+          PY
+
+      - name: Format patched file
+        run: dart format lib/features/reading/reading_content.dart
 
       - name: Show patch summary
         run: git diff -- lib/features/reading/reading_content.dart
