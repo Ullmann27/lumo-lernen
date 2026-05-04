@@ -5,6 +5,8 @@ import '../../app/app_theme.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
+import '../../core/lumo_ai_learning_access.dart';
+import '../../core/lumo_ai_policy_guard.dart';
 import '../../core/lumo_tutor_contracts.dart';
 import '../../core/lumo_tutor_engine.dart';
 import '../../core/school_exercise_generator.dart';
@@ -45,6 +47,7 @@ class _LearningContentState extends State<LearningContent> {
   static const TaskQualityGuard _taskQualityGuard = TaskQualityGuard();
   static const RecentTaskRepository _recentRepo = RecentTaskRepository();
   static const LumoTutorEngine _localTutorEngine = LumoTutorEngine();
+  static const LumoAiPolicyGuard _aiPolicyGuard = LumoAiPolicyGuard();
   final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
 
   static const int _recentTaskMemory = 80;
@@ -129,6 +132,12 @@ class _LearningContentState extends State<LearningContent> {
     final st = widget.appState.state;
     final subject = _aiSubjectName(st.subject);
     if (subject == null) return;
+    if (!_aiPolicyGuard.allows(st.settings, LumoAiLearningArea.taskHelp)) {
+      if (mounted && _aiDraftQueue.isNotEmpty) {
+        setState(() => _aiDraftQueue.clear());
+      }
+      return;
+    }
     final fresh = await _aiCache.loadFresh(childId: _childId, subject: subject);
     if (mounted) {
       setState(() {
@@ -237,7 +246,8 @@ class _LearningContentState extends State<LearningContent> {
     // Kein Crash bei Validierungs-Problemen - dann faellt es einfach
     // auf den Standard-Generator zurueck.
     final aiSubject = _aiSubjectName(st.subject);
-    if (aiSubject != null && _aiDraftQueue.isNotEmpty) {
+    final aiTaskHelpAllowed = _aiPolicyGuard.allows(st.settings, LumoAiLearningArea.taskHelp);
+    if (aiSubject != null && aiTaskHelpAllowed && _aiDraftQueue.isNotEmpty) {
       final draft = _aiDraftQueue.removeAt(0);
       // Cache-Markierung im Hintergrund
       _aiCache.markConsumed(childId: _childId, subject: aiSubject, prompt: draft.prompt);
