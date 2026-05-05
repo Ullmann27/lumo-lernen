@@ -59,21 +59,20 @@ class AiTaskCache {
   }) async {
     if (drafts.isEmpty) return;
     final all = await _loadAll(childId: childId, subject: subject);
-    // Verbrauchte zuerst einkuerzen
     final consumed = all.where((e) => e.consumed).toList();
     final keepConsumed = consumed.length > _keepHistory
         ? consumed.sublist(consumed.length - _keepHistory)
         : consumed;
     final fresh = all.where((e) => !e.consumed).toList();
-    // Neue Drafts dranhaengen, Duplikate (gleicher prompt) raus
     final existingPrompts = <String>{
       ...keepConsumed.map((e) => e.draft.prompt.toLowerCase()),
       ...fresh.map((e) => e.draft.prompt.toLowerCase()),
     };
     for (final d in drafts) {
-      if (existingPrompts.contains(d.prompt.toLowerCase())) continue;
-      fresh.add(_CachedDraft(draft: d, consumed: false));
-      existingPrompts.add(d.prompt.toLowerCase());
+      final repaired = _repairVisualMathDraft(d);
+      if (existingPrompts.contains(repaired.prompt.toLowerCase())) continue;
+      fresh.add(_CachedDraft(draft: repaired, consumed: false));
+      existingPrompts.add(repaired.prompt.toLowerCase());
     }
     final all2 = [...keepConsumed, ...fresh];
     await _persistAll(childId: childId, subject: subject, entries: all2);
@@ -137,7 +136,7 @@ class AiTaskCache {
         if (item is! Map) continue;
         final draftJson = item['draft'];
         if (draftJson is! Map) continue;
-        final draft = LumoAiTaskDraft.fromJson(Map<String, dynamic>.from(draftJson));
+        final draft = _repairVisualMathDraft(LumoAiTaskDraft.fromJson(Map<String, dynamic>.from(draftJson)));
         if (draft.prompt.isEmpty || draft.answer.isEmpty) continue;
         out.add(_CachedDraft(
           draft: draft,
@@ -148,6 +147,39 @@ class AiTaskCache {
     } catch (_) {
       return <_CachedDraft>[];
     }
+  }
+
+  LumoAiTaskDraft _repairVisualMathDraft(LumoAiTaskDraft draft) {
+    final visual = draft.visual.trim().toLowerCase();
+    if (visual != 'dots' && visual != 'line') return draft;
+    if (RegExp(r'\d+\s*[+\-]\s*\d+').hasMatch(draft.prompt)) return draft;
+
+    final numbers = RegExp(r'\d+')
+        .allMatches(draft.prompt)
+        .map((m) => int.tryParse(m.group(0) ?? ''))
+        .whereType<int>()
+        .toList(growable: false);
+    if (numbers.length < 2) return draft;
+
+    final answer = int.tryParse(draft.answer.replaceAll(RegExp(r'[^0-9-]'), ''));
+    if (answer == null) return draft;
+
+    final left = numbers[0];
+    final right = numbers[1];
+    final lower = draft.prompt.toLowerCase();
+    final isMinus = lower.contains('weg') || lower.contains('weniger') || lower.contains('verliert') || lower.contains('gibt') || lower.contains('minus');
+    final computed = isMinus ? left - right : left + right;
+    if (computed != answer) return draft;
+
+    final op = isMinus ? '-' : '+';
+    final repairedPrompt = '${draft.prompt.trim()}\n\nRechenbild: $left $op $right = ?';
+    return LumoAiTaskDraft(
+      prompt: repairedPrompt,
+      answer: draft.answer,
+      choices: draft.choices,
+      explanation: draft.explanation,
+      visual: isMinus ? 'line' : 'dots',
+    );
   }
 
   Future<void> _persistAll({
