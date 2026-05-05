@@ -3,7 +3,7 @@ name: Build Android Debug APK
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ main, fix-v0.3.1-core-stabilization ]
   pull_request:
 
 permissions:
@@ -105,12 +105,21 @@ jobs:
           Branch: ${GITHUB_REF_NAME}
           Source APK: ${APK_PATH}
 
-          Direkter Download:
+          Direkter Download, wenn der Build auf main laeuft:
           https://github.com/${GITHUB_REPOSITORY}/releases/download/lumo-lernen-debug-latest/Lumo-Lernen-latest.apk
 
+          Auf Branch-Builds die APK unten bei GitHub Actions unter Artifacts herunterladen.
           Am Handy diese APK oeffnen. Android aktualisiert die vorhandene App,
           wenn Paketname und Signatur zur installierten App passen.
           EOF
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Lumo-Lernen-debug-apk
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Publish direct latest APK release
         if: success() && github.ref == 'refs/heads/main'
