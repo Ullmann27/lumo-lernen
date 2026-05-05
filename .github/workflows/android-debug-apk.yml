@@ -36,6 +36,24 @@ jobs:
             flutter create --platforms=android --org dev.ullmann.lumo .
           fi
 
+      - name: Patch AndroidManifest safely
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          if [ -f "$MANIFEST" ]; then
+            if ! grep -q "xmlns:tools=" "$MANIFEST"; then
+              sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
+            fi
+            if ! grep -q "android.permission.CAMERA" "$MANIFEST"; then
+              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-feature android:name="android.hardware.camera" android:required="false"/>' "$MANIFEST"
+            fi
+            if ! grep -q "android.permission.RECORD_AUDIO" "$MANIFEST"; then
+              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.RECORD_AUDIO"/>' "$MANIFEST"
+            fi
+            if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
+              sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
+            fi
+          fi
+
       - name: Patch minSdk to 21
         run: |
           for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
