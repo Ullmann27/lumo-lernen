@@ -7,7 +7,7 @@ on:
   pull_request:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -95,3 +95,15 @@ jobs:
           path: dist/*
           if-no-files-found: error
           retention-days: 1
+
+      - name: Publish APK release download
+        if: success() && github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          RELEASE_TAG="lumo-lernen-debug-latest"
+          if ! gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" --title "Lumo Lernen Debug Latest" --notes "Automatischer Debug-Build fuer die Handy-Installation." --prerelease
+          fi
+          gh release upload "$RELEASE_TAG" dist/Lumo-Lernen-latest.apk "dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk" dist/SHA256SUMS.txt --clobber
