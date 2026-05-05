@@ -6,31 +6,9 @@ import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/scanned_work_analysis.dart';
 
-enum LumoSection {
-  home,
-  learn,
-  exercises,
-  reading,
-  tests,
-  schoolwork,
-  scanner,
-  missions,
-  progress,
-  rewards,
-  agent,
-  profile,
-  settings,
-}
-
+enum LumoSection { home, learn, exercises, reading, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings }
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
-
-enum LumoSessionKind {
-  quickPractice,
-  exerciseSet,
-  test,
-  schoolwork,
-  tutoring,
-}
+enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
 
 class LumoSessionState {
   LumoSessionState({
@@ -100,29 +78,27 @@ class LumoSessionState {
     String? learningRecommendationUnit,
     LumoSessionKind? sessionKind,
     ScannedWorkAnalysis? lastScanAnalysis,
-  }) {
-    return LumoSessionState(
-      section: section ?? this.section,
-      childName: childName ?? this.childName,
-      grade: grade ?? this.grade,
-      subject: subject ?? this.subject,
-      unit: unit ?? this.unit,
-      stars: stars ?? this.stars,
-      xp: xp ?? this.xp,
-      lastGrade: lastGrade ?? this.lastGrade,
-      mood: mood ?? this.mood,
-      lumoMessage: lumoMessage ?? this.lumoMessage,
-      practiceErrors: practiceErrors ?? this.practiceErrors,
-      solved: solved ?? this.solved,
-      weakSkills: weakSkills ?? this.weakSkills,
-      settings: settings ?? this.settings,
-      learningRecommendationText: learningRecommendationText ?? this.learningRecommendationText,
-      learningRecommendationSubject: learningRecommendationSubject ?? this.learningRecommendationSubject,
-      learningRecommendationUnit: learningRecommendationUnit ?? this.learningRecommendationUnit,
-      sessionKind: sessionKind ?? this.sessionKind,
-      lastScanAnalysis: lastScanAnalysis ?? this.lastScanAnalysis,
-    );
-  }
+  }) => LumoSessionState(
+        section: section ?? this.section,
+        childName: childName ?? this.childName,
+        grade: grade ?? this.grade,
+        subject: subject ?? this.subject,
+        unit: unit ?? this.unit,
+        stars: stars ?? this.stars,
+        xp: xp ?? this.xp,
+        lastGrade: lastGrade ?? this.lastGrade,
+        mood: mood ?? this.mood,
+        lumoMessage: lumoMessage ?? this.lumoMessage,
+        practiceErrors: practiceErrors ?? this.practiceErrors,
+        solved: solved ?? this.solved,
+        weakSkills: weakSkills ?? this.weakSkills,
+        settings: settings ?? this.settings,
+        learningRecommendationText: learningRecommendationText ?? this.learningRecommendationText,
+        learningRecommendationSubject: learningRecommendationSubject ?? this.learningRecommendationSubject,
+        learningRecommendationUnit: learningRecommendationUnit ?? this.learningRecommendationUnit,
+        sessionKind: sessionKind ?? this.sessionKind,
+        lastScanAnalysis: lastScanAnalysis ?? this.lastScanAnalysis,
+      );
 }
 
 class LumoAppState extends ChangeNotifier {
@@ -132,91 +108,76 @@ class LumoAppState extends ChangeNotifier {
   final LearningProfileEngine _learningProfile = LearningProfileEngine();
   final ScannedWorkAnalysisEngine _scanAnalysis = const ScannedWorkAnalysisEngine();
   bool _learningProfileLoaded = false;
+  bool _disposed = false;
 
   LearningProfileEngine get learningProfile => _learningProfile;
   bool get learningProfileLoaded => _learningProfileLoaded;
 
-  Future<void> loadLearningProfile() async {
-    if (_learningProfileLoaded) return;
-    await _learningProfile.load();
-    _learningProfileLoaded = true;
-    _syncLearningRecommendation();
-    notifyListeners();
+  void _safeNotify() {
+    if (!_disposed) notifyListeners();
   }
 
-  Future<void> recordLearningAnswer({
-    required String subject,
-    required String unit,
-    required bool correct,
-    bool hintUsed = false,
-  }) async {
-    if (!_learningProfileLoaded) {
+  Future<void> loadLearningProfile() async {
+    if (_learningProfileLoaded || _disposed) return;
+    try {
       await _learningProfile.load();
+      if (_disposed) return;
       _learningProfileLoaded = true;
+      _syncLearningRecommendation();
+    } catch (_) {
+      if (_disposed) return;
+      _state = _state.copyWith(mood: LumoMood.comfort, lumoMessage: 'Ich starte sicher.\nGleich geht es weiter.');
     }
-    await _learningProfile.recordAnswer(
-      subject: subject,
-      unit: unit,
-      isCorrect: correct,
-      hintUsed: hintUsed,
-    );
-    _syncLearningRecommendation();
-    notifyListeners();
+    _safeNotify();
+  }
+
+  Future<void> recordLearningAnswer({required String subject, required String unit, required bool correct, bool hintUsed = false}) async {
+    if (_disposed) return;
+    try {
+      if (!_learningProfileLoaded) {
+        await _learningProfile.load();
+        _learningProfileLoaded = true;
+      }
+      await _learningProfile.recordAnswer(subject: subject, unit: unit, isCorrect: correct, hintUsed: hintUsed);
+      _syncLearningRecommendation();
+      _safeNotify();
+    } catch (_) {}
   }
 
   Future<ScannedWorkAnalysis> analyzeScannedWork(String rawText) async {
     if (!_learningProfileLoaded) {
-      await _learningProfile.load();
-      _learningProfileLoaded = true;
+      try {
+        await _learningProfile.load();
+        _learningProfileLoaded = true;
+      } catch (_) {}
     }
     final analysis = _scanAnalysis.analyze(
       rawText: rawText,
       grade: _state.grade,
-      existingSkills: _learningProfile.skills,
+      existingSkills: _learningProfileLoaded ? _learningProfile.skills : <String, SkillRecord>{},
     );
-
     final newWeak = Map<String, int>.from(_state.weakSkills);
     for (final unit in analysis.weakUnits) {
       newWeak[unit] = (newWeak[unit] ?? 0) + 1;
-      await _learningProfile.recordAnswer(
-        subject: analysis.nextPracticeSubject,
-        unit: unit,
-        isCorrect: false,
-        hintUsed: false,
-      );
+      await recordLearningAnswer(subject: analysis.nextPracticeSubject, unit: unit, correct: false);
     }
     for (final unit in analysis.strengthUnits) {
-      await _learningProfile.recordAnswer(
-        subject: analysis.nextPracticeSubject,
-        unit: unit,
-        isCorrect: true,
-        hintUsed: false,
-      );
+      await recordLearningAnswer(subject: analysis.nextPracticeSubject, unit: unit, correct: true);
     }
-
-    _syncLearningRecommendation();
-    _state = _state.copyWith(
+    update(_state.copyWith(
       section: LumoSection.exercises,
       subject: analysis.nextPracticeSubject,
       unit: analysis.nextPracticeUnit,
       weakSkills: newWeak,
       mood: analysis.hasWeaknesses ? LumoMood.comfort : LumoMood.point,
       lumoMessage: analysis.childSummary,
-      sessionKind: analysis.workType == ScannedWorkType.schoolwork || analysis.workType == ScannedWorkType.test
-          ? LumoSessionKind.test
-          : LumoSessionKind.quickPractice,
+      sessionKind: analysis.workType == ScannedWorkType.schoolwork || analysis.workType == ScannedWorkType.test ? LumoSessionKind.test : LumoSessionKind.quickPractice,
       lastScanAnalysis: analysis,
-    );
-    notifyListeners();
+    ));
     return analysis;
   }
 
-  Recommendation? topLearningRecommendation() {
-    if (!_learningProfileLoaded) return null;
-    return _learningProfile.topRecommendation(
-      dailyGoalTarget: _state.settings.dailyGoal,
-    );
-  }
+  Recommendation? topLearningRecommendation() => _learningProfileLoaded ? _learningProfile.topRecommendation(dailyGoalTarget: _state.settings.dailyGoal) : null;
 
   void _syncLearningRecommendation() {
     final recommendation = topLearningRecommendation();
@@ -229,31 +190,31 @@ class LumoAppState extends ChangeNotifier {
   }
 
   int learningDailyDone() => _learningProfileLoaded ? _learningProfile.dailyDone() : 0;
-
   int learningStreakDays() => _learningProfileLoaded ? _learningProfile.currentStreakDays() : 0;
-
   Map<String, List<String>> learningWeaknessesBySubject() => _learningProfileLoaded ? _learningProfile.weaknessesBySubject() : <String, List<String>>{};
-
   Map<String, SkillRecord> learningSkills() => _learningProfileLoaded ? _learningProfile.skills : <String, SkillRecord>{};
 
   Future<void> resetLearningProfile() async {
-    await _learningProfile.reset();
-    notifyListeners();
+    try {
+      await _learningProfile.reset();
+    } catch (_) {}
+    _safeNotify();
   }
 
   void update(LumoSessionState next) {
+    if (_disposed) return;
     _state = next;
-    notifyListeners();
+    _safeNotify();
   }
 
   void updateSettings(AppSettings settings) {
     _state = _state.copyWith(settings: settings);
     _syncLearningRecommendation();
-    notifyListeners();
+    _safeNotify();
   }
 
   void setSection(LumoSection section) {
-    final messages = {
+    final messages = <LumoSection, String>{
       LumoSection.home: 'Hallo!\nWomit wollen wir\nheute lernen?',
       LumoSection.learn: 'Such dir ein\nFach aus. Ich\nbegleite dich!',
       LumoSection.exercises: 'Los gehts!\nEine kleine Übung\nreicht schon.',
@@ -268,7 +229,7 @@ class LumoAppState extends ChangeNotifier {
       LumoSection.profile: 'Das ist dein\nLernprofil.\nSuper stark!',
       LumoSection.settings: 'Hier stellen\nEltern alles\nsicher ein.',
     };
-    final moods = {
+    final moods = <LumoSection, LumoMood>{
       LumoSection.home: LumoMood.greet,
       LumoSection.learn: LumoMood.point,
       LumoSection.exercises: LumoMood.wave,
@@ -283,42 +244,30 @@ class LumoAppState extends ChangeNotifier {
       LumoSection.profile: LumoMood.idle,
       LumoSection.settings: LumoMood.idle,
     };
-    update(_state.copyWith(
-      section: section,
-      mood: moods[section] ?? LumoMood.greet,
-      lumoMessage: messages[section] ?? _state.lumoMessage,
-    ));
+    update(_state.copyWith(section: section, mood: moods[section], lumoMessage: messages[section]));
   }
 
   void correctAnswer(String unit) {
-    final newSolved = Map<String, int>.from(_state.solved);
-    newSolved[unit] = (newSolved[unit] ?? 0) + 1;
-    final variants = [
-      'Juhu!\nDas war richtig.\nWeiter so! ⭐',
-      'Stark gedacht!\nDu hast es\ngeschafft!',
-      'Super!\nDein Lernweg\nwird stärker.',
-      'Klasse!\nIch merke mir,\nwas gut klappt.',
-    ];
-    final msg = variants[DateTime.now().millisecond % variants.length];
-    update(_state.copyWith(
-      stars: _state.stars + 3,
-      xp: _state.xp + 20,
-      solved: newSolved,
-      practiceErrors: 0,
-      mood: LumoMood.celebrate,
-      lumoMessage: msg,
-    ));
+    final solved = Map<String, int>.from(_state.solved);
+    solved[unit] = (solved[unit] ?? 0) + 1;
+    update(_state.copyWith(stars: _state.stars + 3, xp: _state.xp + 20, solved: solved, practiceErrors: 0, mood: LumoMood.celebrate, lumoMessage: 'Juhu!\nDas war richtig.\nWeiter so! ⭐'));
   }
 
   void wrongAnswer(String unit) {
-    final newWeak = Map<String, int>.from(_state.weakSkills);
-    newWeak[unit] = (newWeak[unit] ?? 0) + 1;
+    final weak = Map<String, int>.from(_state.weakSkills);
+    weak[unit] = (weak[unit] ?? 0) + 1;
     final errors = _state.practiceErrors + 1;
     update(_state.copyWith(
-      weakSkills: newWeak,
+      weakSkills: weak,
       practiceErrors: errors,
-      mood: errors >= 3 ? LumoMood.comfort : LumoMood.think,
-      lumoMessage: errors >= 3 ? 'Ganz ruhig.\nIch zeige dir\nden Weg.' : 'Fast!\nWir schauen\nnochmal hin.',
+      mood: errors >= 2 ? LumoMood.comfort : LumoMood.think,
+      lumoMessage: errors >= 2 ? 'Ganz ruhig.\nIch zeige dir\nden Weg.' : 'Fast!\nWir schauen\nnochmal hin.',
     ));
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }
