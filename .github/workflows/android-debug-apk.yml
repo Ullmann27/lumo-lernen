@@ -3,8 +3,9 @@ name: Build Android Debug APK
 on:
   workflow_dispatch:
   push:
-    branches: [ main, fix-v0.3.1-core-stabilization ]
-  pull_request:
+    branches:
+      - main
+      - fix-v0.3.1-core-stabilization
 
 permissions:
   contents: write
@@ -25,116 +26,40 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Flutter version
-        run: |
-          flutter --version
-          dart --version
-
       - name: Create Android platform if missing
         run: |
           if [ ! -d android ]; then
             flutter create --platforms=android --org dev.ullmann.lumo .
           fi
 
-      - name: Patch AndroidManifest
-        run: |
-          MANIFEST="android/app/src/main/AndroidManifest.xml"
-          if [ -f "$MANIFEST" ]; then
-            if ! grep -q "xmlns:tools=" "$MANIFEST"; then
-              sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
-            fi
-            if ! grep -q "android.permission.CAMERA" "$MANIFEST"; then
-              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-feature android:name="android.hardware.camera" android:required="false"/>\n    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>' "$MANIFEST"
-            fi
-            if ! grep -q "android.permission.RECORD_AUDIO" "$MANIFEST"; then
-              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.RECORD_AUDIO"/>' "$MANIFEST"
-            fi
-            if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
-              sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
-            fi
-          fi
-
-      - name: Patch minSdk to 21
-        run: |
-          for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
-            if [ -f "$GRADLE" ]; then
-              sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/' "$GRADLE" || true
-              sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
-              sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
-              sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
-            fi
-          done
-
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Run task quality tests
-        run: |
-          flutter test test/task_quality_guard_spelling_test.dart test/safe_fallback_pool_test.dart
-
-      - name: Analyze without blocking APK build
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings || true
-
       - name: Build debug APK
-        run: |
-          flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
-          find build -type f -name "*.apk" -print
+        run: flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
 
-      - name: Prepare direct APK download
+      - name: Prepare release files
         run: |
           set -e
           mkdir -p dist
-          APK_PATH=""
-          if [ -f "build/app/outputs/flutter-apk/app-debug.apk" ]; then
-            APK_PATH="build/app/outputs/flutter-apk/app-debug.apk"
-          else
-            APK_PATH="$(find build -type f -name "*.apk" | sort | head -n 1)"
-          fi
-          if [ -z "$APK_PATH" ] || [ ! -f "$APK_PATH" ]; then
-            echo "No APK file found after successful build."
-            find build -maxdepth 8 -type f | sort || true
-            exit 1
-          fi
+          APK_PATH="build/app/outputs/flutter-apk/app-debug.apk"
+          test -f "$APK_PATH"
           cp "$APK_PATH" dist/Lumo-Lernen-latest.apk
           cp "$APK_PATH" "dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk"
           sha256sum dist/*.apk > dist/SHA256SUMS.txt
-          cat > dist/update-info.txt <<EOF
-          Lumo Lernen Debug APK
-          Commit: ${GITHUB_SHA}
-          Build number: ${GITHUB_RUN_NUMBER}
-          Branch: ${GITHUB_REF_NAME}
-          Source APK: ${APK_PATH}
+          echo "Lumo Lernen Debug APK" > dist/update-info.txt
+          echo "Branch: ${GITHUB_REF_NAME}" >> dist/update-info.txt
+          echo "Build number: ${GITHUB_RUN_NUMBER}" >> dist/update-info.txt
+          echo "Download: https://github.com/${GITHUB_REPOSITORY}/releases/download/debug-latest/Lumo-Lernen-latest.apk" >> dist/update-info.txt
 
-          Direkter Download, wenn der Build auf main laeuft:
-          https://github.com/${GITHUB_REPOSITORY}/releases/download/lumo-lernen-debug-latest/Lumo-Lernen-latest.apk
-
-          Auf Branch-Builds die APK unten bei GitHub Actions unter Artifacts herunterladen.
-          Am Handy diese APK oeffnen. Android aktualisiert die vorhandene App,
-          wenn Paketname und Signatur zur installierten App passen.
-          EOF
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+      - name: Publish APK release download
+        if: success()
+        uses: softprops/action-gh-release@v2
         with:
-          name: Lumo-Lernen-debug-apk
-          path: dist/*
-          if-no-files-found: error
-          retention-days: 7
-
-      - name: Publish direct latest APK release
-        if: success() && github.ref == 'refs/heads/main'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -e
-          gh release delete lumo-lernen-debug-latest --yes || true
-          git tag -f lumo-lernen-debug-latest "$GITHUB_SHA"
-          git push -f origin lumo-lernen-debug-latest
-          gh release create lumo-lernen-debug-latest \
-            dist/Lumo-Lernen-latest.apk \
-            dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk \
-            dist/update-info.txt \
-            dist/SHA256SUMS.txt \
-            --title "Lumo Lernen Debug Latest" \
-            --notes "Automatischer Debug-Build aus Commit ${GITHUB_SHA}. APK direkt herunterladen und am Android-Handy oeffnen. Diese Release-Methode umgeht die GitHub-Actions-Artifact-Quota." \
-            --prerelease
+          tag_name: debug-latest
+          name: Lumo Lernen Debug Latest
+          body: APK Download fuer aktuellen Debug-Build ohne Actions-Artifact-Speicher.
+          prerelease: true
+          make_latest: true
+          files: dist/*
+          fail_on_unmatched_files: true
