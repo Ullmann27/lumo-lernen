@@ -6,6 +6,7 @@ import '../widgets/shell/lumo_stage_panel.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
+import '../features/learning/scanned_task_practice_content.dart';
 import '../features/reading/reading_content.dart';
 import '../features/sections/section_content.dart';
 import '../features/settings/settings_content.dart';
@@ -13,6 +14,8 @@ import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
 import '../core/lumo_voice.dart';
+import '../core/scanned_task_fallback_policy.dart';
+import '../core/scanned_work_task_fallback.dart';
 import '../core/settings_repository.dart';
 import '../core/user_profile.dart';
 
@@ -27,6 +30,7 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin {
   final _appState = LumoAppState();
+  RecognizedTaskFallback? _recognizedTaskFallback;
 
   late final AnimationController _fadeCtrl = AnimationController(
     vsync: this,
@@ -78,6 +82,9 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
 
   Future<void> _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
+    if (section != LumoSection.exercises) {
+      _recognizedTaskFallback = null;
+    }
     if (section == LumoSection.profile || section == LumoSection.settings) {
       final ok = await ParentalGate.show(context);
       if (!mounted || !ok) return;
@@ -107,15 +114,40 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     ));
 
     final analysis = await _appState.analyzeScannedWork(text);
+    final fallback = analysis.buildRecognizedTaskFallback(grade: _appState.state.grade);
     if (!mounted) return;
 
+    setState(() => _recognizedTaskFallback = fallback);
+
+    final scanMessage = fallback.requiresParentReview
+        ? 'Ich bin beim Lesen nicht sicher. Ein Elternteil soll diese Aufgabe kurz prüfen.'
+        : fallback.route == RecognizedTaskRoute.multipleChoice
+            ? 'Ich habe daraus eine lösbare Aufgabe gemacht. Wähle eine Antwort.'
+            : 'Ich habe daraus eine offene Aufgabe gemacht. Schreib deine Antwort hinein.';
+
+    _appState.update(_appState.state.copyWith(
+      section: LumoSection.exercises,
+      subject: fallback.subject,
+      unit: fallback.unit,
+      mood: fallback.requiresParentReview ? LumoMood.comfort : LumoMood.point,
+      lumoMessage: scanMessage,
+    ));
+
     if (_appState.state.settings.voiceEnabled) {
-      LumoVoice.instance.speak(analysis.childSummary, style: analysis.hasWeaknesses ? VoiceStyle.comfort : VoiceStyle.explain);
+      LumoVoice.instance.speak(
+        fallback.requiresParentReview ? scanMessage : analysis.childSummary,
+        style: fallback.requiresParentReview ? VoiceStyle.comfort : VoiceStyle.explain,
+      );
     }
 
     await _fadeCtrl.reverse();
     if (!mounted) return;
     if (mounted) await _fadeCtrl.forward();
+  }
+
+  void _finishRecognizedTask() {
+    setState(() => _recognizedTaskFallback = null);
+    _appState.setSection(LumoSection.home);
   }
 
   Widget _buildContent() {
@@ -126,6 +158,14 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       case LumoSection.learn:
         return SectionContent(appState: _appState, section: LumoSection.learn, onSection: _navigateTo);
       case LumoSection.exercises:
+        final recognized = _recognizedTaskFallback;
+        if (recognized != null) {
+          return ScannedTaskPracticeContent(
+            fallback: recognized,
+            appState: _appState,
+            onDone: _finishRecognizedTask,
+          );
+        }
         if (_isReadingMode()) {
           return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
         }
