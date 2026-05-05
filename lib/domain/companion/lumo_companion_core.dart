@@ -11,6 +11,7 @@ enum ChildInputType {
 enum CompanionIntent {
   greeting,
   wantsHelp,
+  needsClarification,
   doesNotUnderstand,
   asksForExplanation,
   asksForNextTask,
@@ -211,6 +212,9 @@ class LumoIntentDetector {
   IntentDetectionResult detect(String text) {
     final t = _normalize(text);
     if (t.isEmpty) return const IntentDetectionResult(intent: CompanionIntent.offTopic, confidence: .30);
+    if (_isIsolatedHelp(t)) {
+      return const IntentDetectionResult(intent: CompanionIntent.needsClarification, confidence: .94);
+    }
     if (_containsAny(t, const ['hallo', 'hi', 'servus', 'guten morgen'])) {
       return const IntentDetectionResult(intent: CompanionIntent.greeting, confidence: .86);
     }
@@ -233,6 +237,7 @@ class LumoIntentDetector {
   }
 
   String _normalize(String value) => value.trim().toLowerCase();
+  bool _isIsolatedHelp(String value) => RegExp(r'^(bitte\s+)?(hilf(e)?|hilfe|help|brauch(e)?\s+hilfe|ich\s+brauch(e)?\s+hilfe)[.!?]*$').hasMatch(value);
   bool _containsAny(String value, List<String> needles) => needles.any(value.contains);
 }
 
@@ -275,7 +280,7 @@ class LumoSafetyGuard {
         redirectMessage: 'Das ist etwas Privates. Bitte frag einen Erwachsenen. Wir koennen hier weiter lernen.',
       );
     }
-    if (_containsAny(t, const ['angst', 'weh tun', 'verletzen', 'hilfe zuhause'])) {
+    if (_containsAny(t, const ['angst', 'weh tun', 'wehgetan', 'verletzt', 'verletzen', 'allein zuhause', 'hilfe zuhause'])) {
       return const SafetyDecision(
         allowed: false,
         riskLevel: SafetyRiskLevel.parentNeeded,
@@ -300,6 +305,22 @@ class TutorDialoguePlanner {
     final helpLevel = _helpLevel(context, emotion.emotion, intent.intent);
     final subject = context.activeSubject ?? LearningSubject.mathematik;
     final skill = context.activeSkill ?? (context.memory.weakSkills.isEmpty ? null : context.memory.weakSkills.first);
+
+    if (intent.intent == CompanionIntent.needsClarification) {
+      return TutorDialoguePlan(
+        intent: intent.intent,
+        emotion: emotion.emotion,
+        tone: LumoTone.calm,
+        subject: subject,
+        skillId: skill,
+        helpLevel: 0,
+        pedagogicGoal: 'sicher klären, ob Lernhilfe oder Wohlbefinden gemeint ist',
+        visualAction: VisualActionType.foxThink,
+        shouldGenerateTask: false,
+        shouldStartTutoring: false,
+        maxWords: 22,
+      );
+    }
 
     if (intent.intent == CompanionIntent.wantsToPlay) {
       return TutorDialoguePlan(
@@ -369,6 +390,14 @@ class LumoResponseGenerator {
   LumoResponse generate({required TutorDialoguePlan plan, required ChildLearningMemory memory}) {
     final name = memory.childName.isEmpty ? 'du' : memory.childName;
     final variant = DateTime.now().millisecond % 4;
+
+    if (plan.intent == CompanionIntent.needsClarification) {
+      return const LumoResponse(
+        text: 'Wobei brauchst du Hilfe? Geht es um eine Aufgabe oder fühlst du dich nicht gut?',
+        tone: LumoTone.calm,
+        visualAction: VisualActionType.foxThink,
+      );
+    }
 
     if (plan.intent == CompanionIntent.greeting) {
       final lines = <String>[
