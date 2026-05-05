@@ -32,6 +32,9 @@ jobs:
             flutter create --platforms=android --org dev.ullmann.lumo .
           fi
 
+      - name: Patch Android voice permissions
+        run: bash scripts/patch_android_voice_manifest.sh
+
       - name: Get dependencies
         run: flutter pub get
 
