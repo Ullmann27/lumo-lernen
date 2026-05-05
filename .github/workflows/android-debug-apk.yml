@@ -7,7 +7,7 @@ on:
   pull_request:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -65,8 +65,8 @@ jobs:
             fi
           done
 
-      - name: Get dependencies
-        run: flutter pub get
+      - name: Repair guard
+        run: bash scripts/lumo_repair_guard.sh
 
       - name: Build debug APK
         run: |
@@ -86,23 +86,4 @@ jobs:
           cp "$APK_PATH" dist/Lumo-Lernen-latest.apk
           cp "$APK_PATH" "dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk"
           sha256sum dist/*.apk > dist/SHA256SUMS.txt
-
-      - name: Upload APK artifact
-        continue-on-error: true
-        uses: actions/upload-artifact@v4
-        with:
-          name: Lumo-Lernen-debug-apk
-          path: dist/*
-          if-no-files-found: error
-          retention-days: 1
-
-      - name: Publish APK release download
-        continue-on-error: true
-        if: success() && github.ref == 'refs/heads/main'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          set -e
-          RELEASE_TAG="lumo-lernen-debug-latest"
-          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || gh release create "$RELEASE_TAG" --title "Lumo Lernen Debug Latest" --notes "Automatischer Debug-Build fuer die Handy-Installation." --prerelease
-          gh release upload "$RELEASE_TAG" dist/Lumo-Lernen-latest.apk "dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk" dist/SHA256SUMS.txt --clobber
+          echo "APK collected locally in dist. Artifact upload is disabled to avoid GitHub storage quota failures."
