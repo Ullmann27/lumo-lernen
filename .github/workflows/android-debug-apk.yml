@@ -25,11 +25,35 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Flutter version
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Create Android platform if missing
+        run: |
+          if [ ! -d android ]; then
+            flutter create --platforms=android --org dev.ullmann.lumo .
+          fi
+
+      - name: Patch minSdk to 21
+        run: |
+          for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
+            if [ -f "$GRADLE" ]; then
+              sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/' "$GRADLE" || true
+              sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
+              sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
+              sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
+            fi
+          done
+
       - name: Get dependencies
         run: flutter pub get
 
       - name: Build debug APK
-        run: flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
+        run: |
+          flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
+          find build -type f -name "*.apk" -print
 
       - name: Collect APK files
         run: |
