@@ -39,7 +39,9 @@ class LumoSessionState {
     this.grade = 1,
     this.subject = 'Alle',
     this.unit = 'Alle',
-    this.stars = 24,
+    int? stars,
+    int? totalEarnedStars,
+    int? spendableStars,
     this.xp = 840,
     this.lastGrade = 0,
     this.mood = LumoMood.greet,
@@ -53,14 +55,16 @@ class LumoSessionState {
     this.learningRecommendationUnit,
     this.sessionKind = LumoSessionKind.quickPractice,
     this.lastScanAnalysis,
-  });
+  })  : totalEarnedStars = totalEarnedStars ?? _migratedStars(stars),
+        spendableStars = spendableStars ?? _migratedStars(stars);
 
   LumoSection section;
   String childName;
   int grade;
   String subject;
   String unit;
-  int stars;
+  int totalEarnedStars;
+  int spendableStars;
   int xp;
   int lastGrade;
   LumoMood mood;
@@ -75,6 +79,13 @@ class LumoSessionState {
   LumoSessionKind sessionKind;
   ScannedWorkAnalysis? lastScanAnalysis;
 
+  static int _migratedStars(int? legacyStars) {
+    final value = legacyStars ?? 24;
+    return value < 0 ? 0 : value;
+  }
+
+  /// Legacy/UI compatibility: visible child currency is spendable stars.
+  int get stars => spendableStars;
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
   int get progressPercent => ((solved.values.fold(0, (a, b) => a + b) / 30) * 100).round().clamp(0, 100);
@@ -87,6 +98,8 @@ class LumoSessionState {
     String? subject,
     String? unit,
     int? stars,
+    int? totalEarnedStars,
+    int? spendableStars,
     int? xp,
     int? lastGrade,
     LumoMood? mood,
@@ -101,13 +114,15 @@ class LumoSessionState {
     LumoSessionKind? sessionKind,
     ScannedWorkAnalysis? lastScanAnalysis,
   }) {
+    final legacyStars = stars;
     return LumoSessionState(
       section: section ?? this.section,
       childName: childName ?? this.childName,
       grade: grade ?? this.grade,
       subject: subject ?? this.subject,
       unit: unit ?? this.unit,
-      stars: stars ?? this.stars,
+      totalEarnedStars: totalEarnedStars ?? (legacyStars ?? this.totalEarnedStars),
+      spendableStars: spendableStars ?? (legacyStars ?? this.spendableStars),
       xp: xp ?? this.xp,
       lastGrade: lastGrade ?? this.lastGrade,
       mood: mood ?? this.mood,
@@ -301,13 +316,37 @@ class LumoAppState extends ChangeNotifier {
     ];
     final msg = variants[DateTime.now().millisecond % variants.length];
     update(_state.copyWith(
-      stars: _state.stars + 3,
+      totalEarnedStars: _state.totalEarnedStars + 3,
+      spendableStars: _state.spendableStars + 3,
       xp: _state.xp + 20,
       solved: newSolved,
       practiceErrors: 0,
       mood: LumoMood.celebrate,
       lumoMessage: msg,
     ));
+  }
+
+  bool spendStars(int amount) {
+    if (amount <= 0) {
+      update(_state.copyWith(
+        mood: LumoMood.comfort,
+        lumoMessage: 'Diese Sterne-Zahl\nkann ich nicht\neinlösen.',
+      ));
+      return false;
+    }
+    if (_state.spendableStars < amount) {
+      update(_state.copyWith(
+        mood: LumoMood.comfort,
+        lumoMessage: 'Noch nicht genug\nSterne. Sammle\nnoch ein paar!',
+      ));
+      return false;
+    }
+    update(_state.copyWith(
+      spendableStars: _state.spendableStars - amount,
+      mood: LumoMood.celebrate,
+      lumoMessage: 'Gutschein bereit!\nDeine Reise bleibt\nerhalten.',
+    ));
+    return true;
   }
 
   void wrongAnswer(String unit) {
