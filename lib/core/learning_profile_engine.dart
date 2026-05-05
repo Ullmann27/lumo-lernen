@@ -2,26 +2,20 @@ import 'progress_repository.dart';
 import 'recommendation_engine.dart';
 import 'weakness_detection_engine.dart';
 
-/// Zentraler Lern-Engine-Service, der den Fortschritt eines Kindes verwaltet.
-///
-/// Diese Engine ist der einzige Schreib-Pfad für Lernfortschritt. Sie
-/// koordiniert:
-///
-///   - ProgressRepository (lokale Persistenz)
-///   - WeaknessDetectionEngine (Erkennung schwacher Themen)
-///   - RecommendationEngine (kindgerechte Empfehlungen)
-///
-/// Verwendung im App-State:
-///
-///     final engine = LearningProfileEngine();
-///     await engine.load();
-///     await engine.recordAnswer(
-///       subject: 'Mathematik',
-///       unit: 'Plus bis 20',
-///       isCorrect: true,
-///       hintUsed: false,
-///     );
-///     final hint = engine.lumoMessage(dailyGoalDone: 3, dailyGoalTarget: 5);
+class LearningHintRecord {
+  const LearningHintRecord({
+    required this.subject,
+    required this.unit,
+    required this.createdAt,
+  });
+
+  final String subject;
+  final String unit;
+  final DateTime createdAt;
+
+  String get skillId => SkillRecord.makeId(subject, unit);
+}
+
 class LearningProfileEngine {
   LearningProfileEngine({
     ProgressRepository? repository,
@@ -38,14 +32,15 @@ class LearningProfileEngine {
   Map<String, SkillRecord> _skills = {};
   Map<String, int> _daily = {};
   Map<String, String> _lastTopics = {};
+  final List<LearningHintRecord> _hintHistory = <LearningHintRecord>[];
   bool _loaded = false;
 
   bool get isLoaded => _loaded;
   Map<String, SkillRecord> get skills => Map.unmodifiable(_skills);
   Map<String, int> get daily => Map.unmodifiable(_daily);
   Map<String, String> get lastTopics => Map.unmodifiable(_lastTopics);
+  List<LearningHintRecord> get hintHistory => List.unmodifiable(_hintHistory);
 
-  /// Lädt alle Daten aus dem lokalen Speicher.
   Future<void> load() async {
     _skills = await _repo.loadSkills();
     _daily = await _repo.loadDaily();
@@ -53,8 +48,6 @@ class LearningProfileEngine {
     _loaded = true;
   }
 
-  /// Erfasst eine beantwortete Aufgabe und schreibt sofort weg.
-  /// Liefert den aktualisierten SkillRecord zurück.
   Future<SkillRecord> recordAnswer({
     required String subject,
     required String unit,
@@ -62,8 +55,7 @@ class LearningProfileEngine {
     bool hintUsed = false,
   }) async {
     final id = SkillRecord.makeId(subject, unit);
-    final existing = _skills[id] ??
-        SkillRecord(skillId: id, subject: subject, unit: unit);
+    final existing = _skills[id] ?? SkillRecord(skillId: id, subject: subject, unit: unit);
 
     if (isCorrect) {
       existing.correct++;
@@ -92,10 +84,31 @@ class LearningProfileEngine {
     return existing;
   }
 
-  /// Anzahl heute richtig beantworteter Aufgaben.
+  Future<SkillRecord> recordHintRequested({
+    required String subject,
+    required String unit,
+  }) async {
+    final id = SkillRecord.makeId(subject, unit);
+    final existing = _skills[id] ?? SkillRecord(skillId: id, subject: subject, unit: unit);
+
+    existing.hintCount++;
+    existing.lastSeen = DateTime.now();
+    existing.difficulty = _detector.suggestDifficulty(existing);
+
+    _skills[id] = existing;
+    _lastTopics[subject] = unit;
+    _hintHistory.add(LearningHintRecord(
+      subject: subject,
+      unit: unit,
+      createdAt: existing.lastSeen,
+    ));
+
+    await _persist();
+    return existing;
+  }
+
   int dailyDone() => _daily[_todayKey()] ?? 0;
 
-  /// Streak: aufeinanderfolgende Tage mit mindestens einer richtigen Antwort.
   int currentStreakDays() {
     var streak = 0;
     var d = DateTime.now();
@@ -111,7 +124,6 @@ class LearningProfileEngine {
     return streak;
   }
 
-  /// Liefert die wichtigste aktuelle Empfehlung.
   Recommendation? topRecommendation({
     int dailyGoalTarget = 5,
   }) =>
@@ -121,27 +133,22 @@ class LearningProfileEngine {
         dailyGoalTarget: dailyGoalTarget,
       );
 
-  /// Liefert eine Lumo-Sprechtext-Variante. Wenn nichts spezifisches
-  /// vorliegt, gibt eine motivierende Default-Nachricht zurück.
   String lumoMessage({int dailyGoalTarget = 5}) {
     final r = topRecommendation(dailyGoalTarget: dailyGoalTarget);
     if (r != null) return r.message;
     return 'Schön, dass du da bist! Womit wollen wir starten?';
   }
 
-  /// Gibt eine Schwächen-Übersicht für den Eltern-Bereich.
-  Map<String, List<String>> weaknessesBySubject() =>
-      _detector.weaknessesBySubject(_skills);
+  Map<String, List<String>> weaknessesBySubject() => _detector.weaknessesBySubject(_skills);
 
-  /// Setzt alle Lerndaten zurück. Nur Eltern-PIN-geschützt aufrufen.
   Future<void> reset() async {
     await _repo.resetAll();
     _skills = {};
     _daily = {};
     _lastTopics = {};
+    _hintHistory.clear();
   }
 
-  // ── interne helpers ───────────────────────────────────────
   Future<void> _persist() async {
     await _repo.saveSkills(_skills);
     await _repo.saveDaily(_daily);
