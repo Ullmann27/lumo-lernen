@@ -7,6 +7,7 @@ import '../../core/ai_tutor_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_tutor_contracts.dart';
 import '../../core/lumo_tutor_engine.dart';
+import '../../core/lumo_visual_aid_service.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/task_quality_guard.dart';
 import '../../core/recent_task_repository.dart';
@@ -46,6 +47,10 @@ class _LearningContentState extends State<LearningContent> {
   static const TaskQualityGuard _taskQualityGuard = TaskQualityGuard();
   static const RecentTaskRepository _recentRepo = RecentTaskRepository();
   static const LumoTutorEngine _localTutorEngine = LumoTutorEngine();
+  // Visuelle Hilfe als 4. Eskalations-Stufe (nach 5+ Fehlversuchen).
+  // Nutzt nur den lokalen Pfad (kein Cloud-Aufruf, keine Credit-Kosten),
+  // weil das fuer Heinz' Toechter im taeglichen Lernen ausreicht.
+  static const LumoVisualAidService _visualAidService = LumoVisualAidService();
   // Vermeidet sichtbare Wiederholungen ueber den exakten Aufgaben-Key
   // hinaus: gleiche Antwort, gleiches Prompt-Muster, gleiche Schluesselwoerter.
   // So sehen Heinz' Toechter nicht 5x in Folge "1+2", "2+1", "1+3" usw.
@@ -66,6 +71,9 @@ class _LearningContentState extends State<LearningContent> {
   int _questionNum = 1;
   int _attemptCount = 0;
   String? _tutorHint;
+  // Bildhilfe-Karte als 4. Hilfsstufe nach 5+ Fehlversuchen.
+  // Nur lokal generiert, kein Cloud-Aufruf.
+  LumoVisualAid? _visualAid;
 
   int get _totalQuestions {
     switch (widget.appState.state.sessionKind) {
@@ -220,6 +228,7 @@ class _LearningContentState extends State<LearningContent> {
     _lastSkillState = null;
     _lastFeedback = null;
     _tutorHint = null;
+    _visualAid = null;
     if (resetCounter) {
       _questionNum = 1;
       _attemptCount = 0;
@@ -458,6 +467,31 @@ class _LearningContentState extends State<LearningContent> {
     return response.shortHint ?? response.explanation ?? response.speech;
   }
 
+  /// Laedt die lokale Bildhilfe asynchron und setzt sie via setState.
+  /// Wird ausgeloest wenn das Kind nach 5+ Versuchen immer noch falsch
+  /// liegt - dann zeigt Lumo eine bildliche Erklaerung mit Schritten.
+  /// Kein Cloud-Aufruf, keine Credit-Kosten.
+  Future<void> _loadVisualAid() async {
+    try {
+      final aid = await _visualAidService.buildAid(
+        task: _task,
+        grade: widget.appState.state.grade,
+        attemptCount: _attemptCount,
+        // settings sind nur fuer den Cloud-Pfad relevant. Wir uebergeben
+        // bewusst die aktuellen Settings - shouldUsePaidImage prueft
+        // intern ob der Cloud-Pfad freigegeben ist. Default: nein.
+        settings: widget.appState.state.settings,
+        childId: _childId,
+        childName: _childFirstName,
+        childRequestedImage: false,
+      );
+      if (!mounted) return;
+      setState(() => _visualAid = aid);
+    } catch (_) {
+      // Bildhilfe ist optional. Wenn sie nicht laedt, gehts ohne weiter.
+    }
+  }
+
   void _completeAnswer({
     required bool correct,
     required bool hintUsed,
@@ -481,6 +515,12 @@ class _LearningContentState extends State<LearningContent> {
       _attemptCount++;
     }
     final nextTutorHint = correct ? null : _buildTutorHint(answerGiven, errorTypes);
+    // 4. Eskalations-Stufe: nach 5+ Fehlversuchen lokale Bildhilfe nachladen.
+    // Asynchron, damit die UI sofort reagiert. Setzt _visualAid via setState
+    // sobald fertig. Cloud-Aufruf ist explizit ausgeschlossen.
+    if (!correct && _allowHelp && _attemptCount >= 5 && _visualAid == null) {
+      unawaited(_loadVisualAid());
+    }
     final result = TaskResult(
       taskInstanceId: _taskInstance.taskInstanceId,
       childId: _childId,
@@ -633,6 +673,10 @@ class _LearningContentState extends State<LearningContent> {
                 const SizedBox(height: 14),
                 _TutorHintBanner(text: _tutorHint!),
               ],
+              if (_visualAid != null) ...[
+                const SizedBox(height: 14),
+                _VisualAidCard(aid: _visualAid!),
+              ],
               const SizedBox(height: 22),
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 280),
@@ -717,6 +761,98 @@ class _TutorHintBanner extends StatelessWidget {
             ),
           ]),
         ),
+      ]),
+    );
+  }
+}
+
+/// Bildhilfe-Karte als 4. Hilfsstufe nach 5+ Fehlversuchen.
+/// Zeigt Lumo's Erklaerung mit visuellen Schritten (Emoji-basiert),
+/// damit Heinz' Toechter die Aufgabe wirklich verstehen koennen.
+/// Kein Cloud-Image, alles lokal generiert.
+class _VisualAidCard extends StatelessWidget {
+  const _VisualAidCard({required this.aid});
+
+  final LumoVisualAid aid;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEEF2FF),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: const Color(0xFF6366F1).withOpacity(.30)),
+        boxShadow: LumoShadow.card,
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(.92),
+              shape: BoxShape.circle,
+              border: Border.all(color: const Color(0xFF6366F1).withOpacity(.30)),
+            ),
+            child: const Text('🎨', style: TextStyle(fontSize: 22)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              const Text(
+                'Lumo zeigt es dir',
+                style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF4338CA)),
+              ),
+              Text(
+                aid.title,
+                style: const TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900, color: Color(0xFF1E1B4B)),
+              ),
+            ]),
+          ),
+        ]),
+        const SizedBox(height: 12),
+        Text(
+          aid.explanation,
+          style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w700, color: LumoColors.ink700, height: 1.4),
+        ),
+        if (aid.steps.isNotEmpty) ...[
+          const SizedBox(height: 14),
+          ...aid.steps.asMap().entries.map((entry) => Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Container(
+                    width: 28,
+                    height: 28,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF6366F1).withOpacity(.18),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      '${entry.key + 1}',
+                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Color(0xFF4338CA)),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(
+                        entry.value.visual,
+                        style: const TextStyle(fontSize: 22, height: 1.2),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        entry.value.caption,
+                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w700, color: LumoColors.ink700, height: 1.3),
+                      ),
+                    ]),
+                  ),
+                ]),
+              )),
+        ],
       ]),
     );
   }
