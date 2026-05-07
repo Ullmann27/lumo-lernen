@@ -69,7 +69,7 @@ class LumoDidacticTaskStyles {
       domain: LumoLearningDomain.german,
       action: LumoLearningAction.hearSound,
       visualType: 'sound_card',
-      explanationCue: 'Sprich das Wort langsam und hoere genau hin.',
+      explanationCue: 'Sprich das Wort langsam und höre genau hin.',
       difficultyStep: 1,
     ),
     LumoDidacticTaskStyle(
@@ -83,7 +83,7 @@ class LumoDidacticTaskStyles {
       domain: LumoLearningDomain.german,
       action: LumoLearningAction.clapSyllables,
       visualType: 'syllable_colors',
-      explanationCue: 'Klatsche fuer jede Silbe einmal.',
+      explanationCue: 'Klatsche für jede Silbe einmal.',
       difficultyStep: 2,
     ),
     LumoDidacticTaskStyle(
@@ -97,7 +97,7 @@ class LumoDidacticTaskStyles {
       domain: LumoLearningDomain.german,
       action: LumoLearningAction.writeWord,
       visualType: 'writing_line',
-      explanationCue: 'Schreibe langsam Silbe fuer Silbe.',
+      explanationCue: 'Schreibe langsam Silbe für Silbe.',
       difficultyStep: 3,
     ),
     LumoDidacticTaskStyle(

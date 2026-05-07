@@ -106,7 +106,7 @@ class ReadingAttemptLedger {
         outcome: ReadingAttemptOutcome.controlledContinueAfterMaxAttempts,
         confirmedProblemWord: word,
         childMessage: word == null
-            ? 'Wir gehen jetzt ruhig weiter. Diesen Satz ueben wir spaeter noch einmal.'
+            ? 'Wir gehen jetzt ruhig weiter. Diesen Satz üben wir später noch einmal.'
             : 'Wir gehen jetzt ruhig weiter. Das Wort "$word" merkt sich Lumo fuer spaeter.',
       );
     }

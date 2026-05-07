@@ -40,7 +40,7 @@ class LumoOrchestrator {
         type: AgentActionType.continueFlow,
         tone: AgentTone.warm,
         message: memory.pickFresh('continue.${event.type}', const <String>[
-          'Ich begleite dich Schritt fuer Schritt.',
+          'Ich begleite dich Schritt für Schritt.',
           'Wir bleiben ruhig und machen weiter.',
           'Lumo schaut mit und merkt sich, was dir hilft.',
         ]),
@@ -64,7 +64,7 @@ class LumoOrchestrator {
       return AgentDecision(
         primary: action,
         secondary: const <AgentAction>[
-          AgentAction(type: AgentActionType.grantReward, tone: AgentTone.celebrating, message: 'Belohnung fuer richtiges Arbeiten und Dranbleiben.'),
+          AgentAction(type: AgentActionType.grantReward, tone: AgentTone.celebrating, message: 'Belohnung für richtiges Arbeiten und Dranbleiben.'),
         ],
       );
     }
@@ -74,8 +74,8 @@ class LumoOrchestrator {
             type: AgentActionType.reduceDifficulty,
             tone: AgentTone.calming,
             message: memory.pickFresh('rescue.${event.unit}', const <String>[
-              'Ich mache den naechsten Schritt kleiner. Erst verstehen, dann weiter.',
-              'Das ist ein Hinweis fuer Lumo: Wir brauchen eine klarere Hilfe.',
+              'Ich mache den nächsten Schritt kleiner. Erst verstehen, dann weiter.',
+              'Das ist ein Hinweis für Lumo: Wir brauchen eine klarere Hilfe.',
               'Kein Stress. Ich zeige dir den Weg mit einem einfacheren Bild.',
             ]),
           )
@@ -85,7 +85,7 @@ class LumoOrchestrator {
             message: memory.pickFresh('hint.${event.unit}', const <String>[
               'Fast. Ein Zwischenschritt ist verrutscht.',
               'Guter Versuch. Wir schauen auf das Zeichen und den ersten Schritt.',
-              'Noch nicht richtig, aber jetzt weiss Lumo genauer, was wir ueben.',
+              'Noch nicht richtig, aber jetzt weiß Lumo genauer, was wir üben.',
             ]),
           );
 
@@ -103,7 +103,7 @@ class LumoOrchestrator {
           type: AgentActionType.continueFlow,
           tone: AgentTone.warm,
           message: memory.pickFresh('tutor.ok.${event.unit}', const <String>[
-            'Der Schritt sitzt besser. Wir nehmen den naechsten kleinen Schritt.',
+            'Der Schritt sitzt besser. Wir nehmen den nächsten kleinen Schritt.',
             'Gut. Du hast nicht geraten, sondern den Weg erkannt.',
             'Das war ein Versteh-Schritt. Genau darum geht es in der Nachhilfe.',
           ]),
@@ -145,8 +145,8 @@ class InterventionEngine {
           // kann sich irren. Lumo bestätigt daher vorsichtiger und beobachtet weiter.
           message: memory.pickFresh('reading.ok.$sentence.$score', const <String>[
             'Ich habe den Satz gut erkannt. Lies jetzt hier weiter.',
-            'Das klang ruhig und klar. Weiter geht es mit dem naechsten Satz.',
-            'Sehr gut drangeblieben. Lumo hoert beim naechsten Satz wieder genau zu.',
+            'Das klang ruhig und klar. Weiter geht es mit dem nächsten Satz.',
+            'Sehr gut drangeblieben. Lumo hört beim nächsten Satz wieder genau zu.',
           ]),
           payload: <String, Object?>{'alignmentScore': score},
         ),
@@ -159,7 +159,7 @@ class InterventionEngine {
           type: AgentActionType.repeatSentence,
           tone: AgentTone.coaching,
           message: word == null
-              ? 'Stopp, kleiner Lesefuchs. Lies diesen Satz bitte noch einmal langsam Wort fuer Wort.'
+              ? 'Stopp, kleiner Lesefuchs. Lies diesen Satz bitte noch einmal langsam Wort für Wort.'
               : 'Stopp, kleiner Lesefuchs. Das Wort "$word" schauen wir nochmal an. Lies ab dort erneut.',
           payload: <String, Object?>{'repeat': sentence, 'attemptNumber': attempt + 1},
         ),
@@ -184,7 +184,7 @@ class InterventionEngine {
         type: AgentActionType.continueFlow,
         tone: AgentTone.calming,
         message: word == null
-            ? 'Wir gehen kontrolliert weiter. Ich merke mir diesen Satz fuer spaeter.'
+            ? 'Wir gehen kontrolliert weiter. Ich merke mir diesen Satz für später.'
             : 'Wir gehen weiter. Ich merke mir "$word" als Uebungswort fuer spaeter.',
         payload: <String, Object?>{'storeProblemWord': word, 'repeatLater': true, 'alignmentScore': score},
       ),
