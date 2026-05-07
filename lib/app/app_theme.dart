@@ -90,6 +90,19 @@ class LumoShadow {
     BoxShadow(color: color.withOpacity(.24), blurRadius: 28, offset: const Offset(0, 12)),
     BoxShadow(color: Colors.white.withOpacity(.58), blurRadius: 14, offset: const Offset(-4, -5)),
   ];
+
+  /// Sanfte Hilfe-Karte: warmer Schatten, leicht angehoben.
+  /// Fuer Tutor-Hints und Visual-Aids - signalisiert: hier ist Hilfe.
+  static List<BoxShadow> help(Color tint) => [
+    BoxShadow(color: tint.withOpacity(.20), blurRadius: 24, offset: const Offset(0, 10)),
+    BoxShadow(color: Colors.white.withOpacity(.70), blurRadius: 6, offset: const Offset(-2, -2)),
+  ];
+
+  /// Erfolg-Glow: leuchtender goldener Schein bei richtigen Antworten.
+  static List<BoxShadow> success = [
+    BoxShadow(color: const Color(0xFF34D399).withOpacity(.30), blurRadius: 32, offset: const Offset(0, 14)),
+    BoxShadow(color: const Color(0xFFFFE08A).withOpacity(.45), blurRadius: 16, offset: const Offset(0, 6)),
+  ];
 }
 
 class LumoTextStyles {

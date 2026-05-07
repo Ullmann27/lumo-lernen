@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../app/app_design.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
@@ -719,49 +720,121 @@ class _LearningContentState extends State<LearningContent> {
   }
 }
 
-class _TutorHintBanner extends StatelessWidget {
+class _TutorHintBanner extends StatefulWidget {
   const _TutorHintBanner({required this.text});
 
   final String text;
 
   @override
+  State<_TutorHintBanner> createState() => _TutorHintBannerState();
+}
+
+class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 480),
+  )..forward();
+
+  late final Animation<double> _fade = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeOutQuart,
+  );
+  late final Animation<Offset> _slide = Tween<Offset>(
+    begin: const Offset(0, .12),
+    end: Offset.zero,
+  ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF7D6),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30)),
-        boxShadow: LumoShadow.card,
-      ),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Container(
-          width: 34,
-          height: 34,
-          alignment: Alignment.center,
+    return FadeTransition(
+      opacity: _fade,
+      child: SlideTransition(
+        position: _slide,
+        child: Container(
+          width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.82),
-            shape: BoxShape.circle,
-            border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.22)),
+            gradient: LumoGradients.peachComfort,
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.32), width: 1.4),
+            boxShadow: LumoShadow.help(const Color(0xFFFFB96B)),
           ),
-          child: const Text('🦊', style: TextStyle(fontSize: 19)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              // Akzent-Linie links als visueller Anker
+              Container(
+                width: 5,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 14, 16, 14),
+                  child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    // Lumo-Avatar mit doppeltem Glow
+                    Container(
+                      width: 42,
+                      height: 42,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        gradient: const RadialGradient(
+                          colors: [Color(0xFFFFFFFF), Color(0xFFFFF7E6)],
+                          radius: .9,
+                        ),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30), width: 1.5),
+                        boxShadow: [
+                          BoxShadow(color: const Color(0xFFFFB800).withOpacity(.30), blurRadius: 12, offset: const Offset(0, 4)),
+                        ],
+                      ),
+                      child: const Text('🦊', style: TextStyle(fontSize: 22)),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Row(children: [
+                          const Text(
+                            'Lumo erklärt',
+                            style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F), letterSpacing: .2),
+                          ),
+                          const SizedBox(width: 6),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFF59E0B).withOpacity(.18),
+                              borderRadius: BorderRadius.circular(LumoRadius.pill),
+                            ),
+                            child: const Text(
+                              'Tipp',
+                              style: TextStyle(fontFamily: 'Nunito', fontSize: 9, fontWeight: FontWeight.w900, color: Color(0xFF92400E), letterSpacing: .6),
+                            ),
+                          ),
+                        ]),
+                        const SizedBox(height: 5),
+                        Text(
+                          widget.text,
+                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.32),
+                        ),
+                      ]),
+                    ),
+                  ]),
+                ),
+              ),
+            ]),
+          ),
         ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text(
-              'Lumo erklärt',
-              style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F)),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              text,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.28),
-            ),
-          ]),
-        ),
-      ]),
+      ),
     );
   }
 }
@@ -770,90 +843,256 @@ class _TutorHintBanner extends StatelessWidget {
 /// Zeigt Lumo's Erklaerung mit visuellen Schritten (Emoji-basiert),
 /// damit Heinz' Toechter die Aufgabe wirklich verstehen koennen.
 /// Kein Cloud-Image, alles lokal generiert.
-class _VisualAidCard extends StatelessWidget {
+class _VisualAidCard extends StatefulWidget {
   const _VisualAidCard({required this.aid});
 
   final LumoVisualAid aid;
 
   @override
+  State<_VisualAidCard> createState() => _VisualAidCardState();
+}
+
+class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 720),
+  )..forward();
+
+  late final Animation<double> _headerFade = CurvedAnimation(
+    parent: _controller,
+    curve: const Interval(0.0, .4, curve: Curves.easeOutQuart),
+  );
+
+  late final Animation<double> _bodyFade = CurvedAnimation(
+    parent: _controller,
+    curve: const Interval(.2, .7, curve: Curves.easeOutQuart),
+  );
+
+  Animation<double> _stepFade(int index) {
+    final start = (.35 + index * .12).clamp(0.0, .92);
+    final end = (start + .25).clamp(start + .05, 1.0);
+    return CurvedAnimation(
+      parent: _controller,
+      curve: Interval(start, end, curve: Curves.easeOutBack),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final steps = widget.aid.steps;
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFEEF2FF),
+        gradient: LumoGradients.visualCool,
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFF6366F1).withOpacity(.30)),
-        boxShadow: LumoShadow.card,
+        border: Border.all(color: const Color(0xFF6366F1).withOpacity(.32), width: 1.4),
+        boxShadow: LumoShadow.help(const Color(0xFF6366F1)),
       ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Container(
-            width: 40,
-            height: 40,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.92),
-              shape: BoxShape.circle,
-              border: Border.all(color: const Color(0xFF6366F1).withOpacity(.30)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        child: Stack(children: [
+          // Dekorativer Hintergrund-Glow oben rechts
+          Positioned(
+            top: -40,
+            right: -40,
+            child: IgnorePointer(
+              ignoring: true,
+              child: Container(
+                width: 160,
+                height: 160,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      const Color(0xFFA5B4FC).withOpacity(.45),
+                      const Color(0xFFA5B4FC).withOpacity(0),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            child: const Text('🎨', style: TextStyle(fontSize: 22)),
           ),
-          const SizedBox(width: 12),
-          Expanded(
+          // Akzent-Linie links
+          Positioned(
+            left: 0, top: 0, bottom: 0,
+            child: Container(
+              width: 5,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 18, 18, 20),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text(
-                'Lumo zeigt es dir',
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF4338CA)),
-              ),
-              Text(
-                aid.title,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900, color: Color(0xFF1E1B4B)),
-              ),
-            ]),
-          ),
-        ]),
-        const SizedBox(height: 12),
-        Text(
-          aid.explanation,
-          style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w700, color: LumoColors.ink700, height: 1.4),
-        ),
-        if (aid.steps.isNotEmpty) ...[
-          const SizedBox(height: 14),
-          ...aid.steps.asMap().entries.map((entry) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              // HEADER mit großem Avatar
+              FadeTransition(
+                opacity: _headerFade,
+                child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
                   Container(
-                    width: 28,
-                    height: 28,
+                    width: 48,
+                    height: 48,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF6366F1).withOpacity(.18),
+                      gradient: const RadialGradient(
+                        colors: [Color(0xFFFFFFFF), Color(0xFFEEF2FF)],
+                        radius: .9,
+                      ),
                       shape: BoxShape.circle,
+                      border: Border.all(color: const Color(0xFF6366F1).withOpacity(.40), width: 1.6),
+                      boxShadow: [
+                        BoxShadow(color: const Color(0xFF6366F1).withOpacity(.32), blurRadius: 14, offset: const Offset(0, 5)),
+                      ],
                     ),
-                    child: Text(
-                      '${entry.key + 1}',
-                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Color(0xFF4338CA)),
-                    ),
+                    child: const Text('🎨', style: TextStyle(fontSize: 26)),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 14),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Row(children: [
+                        const Text(
+                          'Lumo zeigt es dir',
+                          style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xFF4338CA), letterSpacing: .8),
+                        ),
+                        const SizedBox(width: 6),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF6366F1).withOpacity(.20),
+                            borderRadius: BorderRadius.circular(LumoRadius.pill),
+                          ),
+                          child: const Text(
+                            'BILD-HILFE',
+                            style: TextStyle(fontFamily: 'Nunito', fontSize: 8, fontWeight: FontWeight.w900, color: Color(0xFF312E81), letterSpacing: .8),
+                          ),
+                        ),
+                      ]),
+                      const SizedBox(height: 3),
                       Text(
-                        entry.value.visual,
-                        style: const TextStyle(fontSize: 22, height: 1.2),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        entry.value.caption,
-                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w700, color: LumoColors.ink700, height: 1.3),
+                        widget.aid.title,
+                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF1E1B4B), height: 1.15),
                       ),
                     ]),
                   ),
                 ]),
-              )),
-        ],
-      ]),
+              ),
+              const SizedBox(height: 14),
+              // ERKLAERUNG
+              FadeTransition(
+                opacity: _bodyFade,
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(.62),
+                    borderRadius: BorderRadius.circular(LumoRadius.md),
+                    border: Border.all(color: Colors.white.withOpacity(.85), width: 1.0),
+                  ),
+                  child: Text(
+                    widget.aid.explanation,
+                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: Color(0xFF1E1B4B), height: 1.4),
+                  ),
+                ),
+              ),
+              if (steps.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                ...steps.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final step = entry.value;
+                  final isLast = index == steps.length - 1;
+                  return ScaleTransition(
+                    scale: _stepFade(index),
+                    alignment: Alignment.centerLeft,
+                    child: FadeTransition(
+                      opacity: _stepFade(index),
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: isLast ? 0 : 12),
+                        child: IntrinsicHeight(
+                          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                            // Step-Nummer + Verbindungslinie
+                            Column(children: [
+                              Container(
+                                width: 32,
+                                height: 32,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                                  ),
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(color: const Color(0xFF6366F1).withOpacity(.36), blurRadius: 8, offset: const Offset(0, 3)),
+                                  ],
+                                ),
+                                child: Text(
+                                  '${index + 1}',
+                                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Colors.white),
+                                ),
+                              ),
+                              if (!isLast)
+                                Expanded(
+                                  child: Container(
+                                    width: 2,
+                                    margin: const EdgeInsets.symmetric(vertical: 2),
+                                    color: const Color(0xFF6366F1).withOpacity(.30),
+                                  ),
+                                ),
+                            ]),
+                            const SizedBox(width: 12),
+                            // Step-Inhalt als kleine Karte
+                            Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.fromLTRB(14, 10, 14, 12),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(.85),
+                                  borderRadius: BorderRadius.circular(LumoRadius.md),
+                                  border: Border.all(color: const Color(0xFF6366F1).withOpacity(.18), width: 1.0),
+                                  boxShadow: [
+                                    BoxShadow(color: const Color(0xFF6366F1).withOpacity(.08), blurRadius: 8, offset: const Offset(0, 3)),
+                                  ],
+                                ),
+                                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                  // Visual gross und mittig, das ist der Kernpunkt
+                                  Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 4),
+                                      child: Text(
+                                        step.visual,
+                                        style: const TextStyle(fontSize: 28, height: 1.2, letterSpacing: 2),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    step.caption,
+                                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: Color(0xFF1E1B4B), height: 1.3),
+                                  ),
+                                ]),
+                              ),
+                            ),
+                          ]),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ],
+            ]),
+          ),
+        ]),
+      ),
     );
   }
 }
@@ -866,48 +1105,100 @@ class _ProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final progress = (current / total).clamp(0.0, 1.0);
+    final percent = (progress * 100).round();
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(18),
       decoration: lumoCard(),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Expanded(
+          // Animierte Aufgaben-Nummer
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              boxShadow: [
+                BoxShadow(color: LumoColors.orange.withOpacity(.30), blurRadius: 8, offset: const Offset(0, 3)),
+              ],
+            ),
             child: Text(
-              'Aufgabe $current von $total',
+              '$current',
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900, color: Colors.white, height: 1.0),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            'von $total',
+            style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink500),
+          ),
+          const Spacer(),
+          // Subject-Chip mit dezentem Schatten
+          Container(
+            constraints: const BoxConstraints(maxWidth: 220),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+            decoration: BoxDecoration(
+              color: LumoColors.orangeSurface,
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              border: Border.all(color: LumoColors.orange.withOpacity(.24)),
+              boxShadow: [
+                BoxShadow(color: LumoColors.orange.withOpacity(.10), blurRadius: 6, offset: const Offset(0, 2)),
+              ],
+            ),
+            child: Text(
+              subject,
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2),
               maxLines: 1,
               softWrap: false,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 19, fontWeight: FontWeight.w900, color: LumoColors.ink900),
             ),
           ),
-          const SizedBox(width: 10),
-          Flexible(
+        ]),
+        const SizedBox(height: 14),
+        // Progress mit Prozent-Bubble der mitläuft
+        Stack(clipBehavior: Clip.none, children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(LumoRadius.pill),
+            child: TweenAnimationBuilder<double>(
+              duration: const Duration(milliseconds: 480),
+              curve: Curves.easeOutCubic,
+              tween: Tween<double>(begin: 0.0, end: progress),
+              builder: (context, animatedProgress, _) => LinearProgressIndicator(
+                value: animatedProgress,
+                minHeight: 10,
+                color: LumoColors.orange,
+                backgroundColor: LumoColors.orange.withOpacity(.14),
+              ),
+            ),
+          ),
+          // Prozent-Bubble der über der Linie sitzt
+          Positioned(
+            top: -2,
+            right: 0,
             child: Container(
-              constraints: const BoxConstraints(maxWidth: 230),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-              decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.pill), border: Border.all(color: LumoColors.orange.withOpacity(.2))),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(LumoRadius.pill),
+                border: Border.all(color: LumoColors.orange.withOpacity(.32), width: 1.2),
+                boxShadow: [
+                  BoxShadow(color: LumoColors.orange.withOpacity(.18), blurRadius: 4, offset: const Offset(0, 2)),
+                ],
+              ),
               child: Text(
-                subject,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange),
-                maxLines: 1,
-                softWrap: false,
-                overflow: TextOverflow.ellipsis,
+                '$percent%',
+                style: const TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2),
               ),
             ),
           ),
         ]),
-        const SizedBox(height: 12),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(LumoRadius.pill),
-          child: LinearProgressIndicator(value: current / total, minHeight: 8, color: LumoColors.orange, backgroundColor: LumoColors.orange.withOpacity(.14)),
-        ),
       ]),
     );
   }
 }
 
-class _ExplanationCard extends StatelessWidget {
+class _ExplanationCard extends StatefulWidget {
   const _ExplanationCard({
     required this.correct,
     required this.explanation,
@@ -927,66 +1218,199 @@ class _ExplanationCard extends StatelessWidget {
   final LumoFeedbackTurn? feedback;
 
   @override
+  State<_ExplanationCard> createState() => _ExplanationCardState();
+}
+
+class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 540),
+  )..forward();
+
+  late final Animation<double> _scale = Tween<double>(begin: .92, end: 1.0).animate(
+    CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
+  );
+
+  late final Animation<double> _fade = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeOutQuart,
+  );
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final reward = rewardDelta;
-    final skill = skillState;
-    final fb = feedback;
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: lumoCard(
-        gradient: LinearGradient(
-          colors: correct
-              ? [const Color(0xFFDCFCE7), const Color(0xFFF0FFF4)]
-              : [const Color(0xFFFFE4E6), const Color(0xFFFFF1F2)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+    final reward = widget.rewardDelta;
+    final skill = widget.skillState;
+    final fb = widget.feedback;
+    final correct = widget.correct;
+    return FadeTransition(
+      opacity: _fade,
+      child: ScaleTransition(
+        scale: _scale,
+        alignment: Alignment.topCenter,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(LumoRadius.xl),
+            gradient: correct ? LumoGradients.successFresh : LumoGradients.peachComfort,
+            border: Border.all(
+              color: (correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B)).withOpacity(.32),
+              width: 1.4,
+            ),
+            boxShadow: correct ? LumoShadow.success : LumoShadow.help(const Color(0xFFFB923C)),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(LumoRadius.xl),
+            child: Stack(children: [
+              // Dekorativer Glow oben rechts
+              Positioned(
+                top: -50,
+                right: -40,
+                child: IgnorePointer(
+                  ignoring: true,
+                  child: Container(
+                    width: 180,
+                    height: 180,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          (correct ? const Color(0xFF34D399) : const Color(0xFFFB923C)).withOpacity(.32),
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              // Konfetti-Sterne dezent bei Erfolg
+              if (correct) ...const [
+                Positioned(top: 14, right: 70, child: Text('✨', style: TextStyle(fontSize: 14))),
+                Positioned(top: 38, right: 24, child: Text('⭐', style: TextStyle(fontSize: 16))),
+                Positioned(top: 62, right: 56, child: Text('✨', style: TextStyle(fontSize: 12))),
+              ],
+              Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                    Container(
+                      width: 46,
+                      height: 46,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        gradient: RadialGradient(
+                          colors: [
+                            Colors.white,
+                            (correct ? const Color(0xFFD1FAE5) : const Color(0xFFFEF3C7)),
+                          ],
+                          radius: .9,
+                        ),
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: (correct ? const Color(0xFF34D399) : const Color(0xFFF59E0B)).withOpacity(.32),
+                            blurRadius: 14,
+                            offset: const Offset(0, 5),
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        correct ? '🎉' : '💪',
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        fb?.title ?? (correct ? 'Super gemacht!' : 'Nicht aufgeben!'),
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 19,
+                          fontWeight: FontWeight.w900,
+                          color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F),
+                          height: 1.15,
+                        ),
+                      ),
+                    ),
+                  ]),
+                  const SizedBox(height: 12),
+                  Text(
+                    fb?.cardMessage ?? widget.explanation,
+                    style: LumoTextStyles.body.copyWith(
+                      color: correct ? const Color(0xFF166534) : const Color(0xFF92400E),
+                      fontWeight: FontWeight.w800,
+                      fontSize: 14,
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  _LearningTipBox(text: fb?.learningTip ?? widget.explanation, correct: correct),
+                  if (!correct) ...[
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(.85),
+                        borderRadius: BorderRadius.circular(LumoRadius.sm),
+                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30), width: 1.0),
+                      ),
+                      child: Row(children: [
+                        const Text('✓', style: TextStyle(fontSize: 16, color: Color(0xFF15803D), fontWeight: FontWeight.w900)),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            'Richtige Antwort: ${widget.correctAnswer}',
+                            style: const TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w900,
+                              color: Color(0xFF92400E),
+                            ),
+                          ),
+                        ),
+                      ]),
+                    ),
+                  ],
+                  if (reward != null) ...[
+                    const SizedBox(height: 14),
+                    Wrap(spacing: 8, runSpacing: 8, children: [
+                      _InfoPill(text: '+${reward.stars} Sterne'),
+                      _InfoPill(text: '+${reward.xp} XP'),
+                      if (fb != null) _InfoPill(text: fb.rewardLabel),
+                      if (fb?.badgeLabel != null) _InfoPill(text: fb!.badgeLabel!),
+                      if (skill != null) _InfoPill(text: 'Können ${(skill.masteryScore * 100).round()}%'),
+                    ]),
+                  ],
+                  const SizedBox(height: 16),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: widget.onNext,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 13),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+                          borderRadius: BorderRadius.circular(LumoRadius.pill),
+                          boxShadow: LumoShadow.pill,
+                        ),
+                        child: const Row(mainAxisSize: MainAxisSize.min, children: [
+                          Text('Weiter', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white)),
+                          SizedBox(width: 6),
+                          Text('→', style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: Colors.white)),
+                        ]),
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
+            ]),
+          ),
         ),
       ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Icon(correct ? Icons.celebration_rounded : Icons.lightbulb_rounded, color: correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B), size: 26),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              fb?.title ?? (correct ? 'Super gemacht!' : 'Nicht aufgeben!'),
-              style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F)),
-            ),
-          ),
-        ]),
-        const SizedBox(height: 8),
-        Text(
-          fb?.cardMessage ?? explanation,
-          style: LumoTextStyles.body.copyWith(color: correct ? const Color(0xFF166534) : const Color(0xFF92400E)),
-        ),
-        const SizedBox(height: 8),
-        _LearningTipBox(text: fb?.learningTip ?? explanation, correct: correct),
-        if (!correct) ...[
-          const SizedBox(height: 8),
-          Text('Richtige Antwort: $correctAnswer', style: LumoTextStyles.body.copyWith(color: const Color(0xFF92400E), fontWeight: FontWeight.w900)),
-        ],
-        if (reward != null) ...[
-          const SizedBox(height: 12),
-          Wrap(spacing: 8, runSpacing: 8, children: [
-            _InfoPill(text: '+${reward.stars} Sterne'),
-            _InfoPill(text: '+${reward.xp} XP'),
-            if (fb != null) _InfoPill(text: fb.rewardLabel),
-            if (fb?.badgeLabel != null) _InfoPill(text: fb!.badgeLabel!),
-            if (skill != null) _InfoPill(text: 'Können ${(skill.masteryScore * 100).round()}%'),
-          ]),
-        ],
-        const SizedBox(height: 14),
-        Align(
-          alignment: Alignment.centerRight,
-          child: GestureDetector(
-            onTap: onNext,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
-              decoration: BoxDecoration(gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]), borderRadius: BorderRadius.circular(LumoRadius.pill), boxShadow: LumoShadow.pill),
-              child: const Text('Weiter →', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white)),
-            ),
-          ),
-        ),
-      ]),
     );
   }
 }
@@ -1025,19 +1449,52 @@ class _InfoPill extends StatelessWidget {
   const _InfoPill({required this.text});
   final String text;
 
+  /// Erkennt typische Reward-Texte und zeigt passendes Emoji vorne dran.
+  /// Macht die kleinen Pillen sofort lesbar.
+  String get _emoji {
+    final lower = text.toLowerCase();
+    if (lower.contains('stern')) return '⭐';
+    if (lower.contains('xp')) return '⚡';
+    if (lower.contains('können') || lower.contains('koennen')) return '📈';
+    if (lower.contains('badge') || lower.contains('abzeichen')) return '🏅';
+    if (lower.contains('streak')) return '🔥';
+    if (lower.contains('level')) return '🎖️';
+    return '';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final em = _emoji;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.72),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.white.withOpacity(.95), Colors.white.withOpacity(.78)],
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.pill),
-        border: Border.all(color: LumoColors.orange.withOpacity(.18)),
+        border: Border.all(color: LumoColors.orange.withOpacity(.22)),
+        boxShadow: [
+          BoxShadow(color: LumoColors.orange.withOpacity(.12), blurRadius: 8, offset: const Offset(0, 3)),
+        ],
       ),
-      child: Text(
-        text,
-        style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700),
-      ),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        if (em.isNotEmpty) ...[
+          Text(em, style: const TextStyle(fontSize: 13)),
+          const SizedBox(width: 5),
+        ],
+        Text(
+          text,
+          style: const TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 12,
+            fontWeight: FontWeight.w900,
+            color: LumoColors.ink700,
+            letterSpacing: .1,
+          ),
+        ),
+      ]),
     );
   }
 }

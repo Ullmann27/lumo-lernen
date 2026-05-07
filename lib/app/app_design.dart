@@ -80,6 +80,41 @@ class LumoGradients {
     end: Alignment.bottomRight,
     colors: [Color(0xFFDFEFFF), Color(0xFFA8D0F5)],
   );
+
+  /// Sonnenuntergang-Verlauf fuer Hilfe-Karten (Tutor-Hint).
+  static const LinearGradient sunsetWarm = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFFFFFBEB), Color(0xFFFFF3D6)],
+  );
+
+  /// Indigo-Verlauf fuer Visual-Aid-Karten als 4. Hilfsstufe.
+  static const LinearGradient visualCool = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFFEEF2FF), Color(0xFFE0E7FF)],
+  );
+
+  /// Frische Mint-Wiese fuer Erfolgs-Karten bei richtiger Antwort.
+  static const LinearGradient successFresh = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFFD1FAE5), Color(0xFFA7F3D0)],
+  );
+
+  /// Sanfter Pfirsich fuer "Mut machen"-Momente nach falscher Antwort.
+  static const LinearGradient peachComfort = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFFFEF3C7), Color(0xFFFED7AA)],
+  );
+
+  /// Lumo-Brand-Verlauf: warmes Orange zum Pfirsich.
+  static const LinearGradient lumoBrand = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFFFF7A2F), Color(0xFFFFB96B)],
+  );
 }
 
 /// Eine wiederverwendbare warme Karte. Folgt der Lumo-Designsprache:
