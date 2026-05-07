@@ -10,6 +10,7 @@ import '../../core/lumo_tutor_engine.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/task_quality_guard.dart';
 import '../../core/recent_task_repository.dart';
+import '../../core/session_variety_guard.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
@@ -45,6 +46,10 @@ class _LearningContentState extends State<LearningContent> {
   static const TaskQualityGuard _taskQualityGuard = TaskQualityGuard();
   static const RecentTaskRepository _recentRepo = RecentTaskRepository();
   static const LumoTutorEngine _localTutorEngine = LumoTutorEngine();
+  // Vermeidet sichtbare Wiederholungen ueber den exakten Aufgaben-Key
+  // hinaus: gleiche Antwort, gleiches Prompt-Muster, gleiche Schluesselwoerter.
+  // So sehen Heinz' Toechter nicht 5x in Folge "1+2", "2+1", "1+3" usw.
+  final SessionVarietyGuard _varietyGuard = SessionVarietyGuard();
   final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
 
   static const int _recentTaskMemory = 80;
@@ -250,6 +255,7 @@ class _LearningContentState extends State<LearningContent> {
 
     final avoidUnits = factoryUnit == 'Alle' ? _recentUnits.toSet() : <String>{};
     LumoTask? fallback;
+    LumoTask? relaxedFallback;
 
     for (var attempt = 0; attempt < 80; attempt++) {
       final task = _factory.next(
@@ -266,10 +272,23 @@ class _LearningContentState extends State<LearningContent> {
       final key = _taskKey(task);
       // Direkte Wiederholung verhindern: gleicher key wie zuletzt -> weiter ziehen
       if (_lastTaskKey != null && _lastTaskKey == key) continue;
-      if (!_recentTaskKeys.contains(key) && !_sessionTaskKeys.contains(key)) return task;
+      if (_recentTaskKeys.contains(key) || _sessionTaskKeys.contains(key)) continue;
+
+      // SessionVarietyGuard: prueft auch Antwort-/Muster-/Wort-Wiederholung,
+      // nicht nur den exakten Aufgaben-Key. Bei strikter Pruefung erst.
+      if (_varietyGuard.allows(task, relaxed: false)) {
+        return task;
+      }
+      // Falls strikt nicht passt, merken wir uns den ersten Treffer der
+      // wenigstens beim relaxed-Check durchkommt.
+      relaxedFallback ??= _varietyGuard.allows(task, relaxed: true) ? task : null;
     }
 
-    return fallback ?? _factory.next(
+    // Fallback-Reihenfolge:
+    //   1. relaxed-Variante (anderes Muster, evtl. gleiches Wort)
+    //   2. allgemeiner Fallback aus dem ersten Versuch
+    //   3. komplett neuer Generator-Aufruf ohne Vermeidungs-Set
+    return relaxedFallback ?? fallback ?? _factory.next(
       grade: st.grade,
       subject: factorySubject == 'Lesen' ? 'Deutsch' : factorySubject,
       unit: factoryUnit == 'Aktives Lesen' ? 'Satz verstehen' : factoryUnit,
@@ -350,6 +369,10 @@ class _LearningContentState extends State<LearningContent> {
     while (_recentTaskKeys.length > _recentTaskMemory) {
       _recentTaskKeys.removeAt(0);
     }
+
+    // Variety-Guard merkt sich die Aufgabe ueber den exakten Key hinaus
+    // (Antwort, Prompt-Muster, Schluesselwoerter).
+    _varietyGuard.remember(task);
 
     _recentUnits.remove(task.unit);
     _recentUnits.add(task.unit);
