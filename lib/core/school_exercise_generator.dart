@@ -363,16 +363,170 @@ class ExerciseFactory {
     if (unit == 'Anfangslaute') {
       final word = PrimarySchoolWordData.firstSoundWordForGrade(grade, seed: _serial + _random.nextInt(9999)) ?? PrimarySchoolWordData.nounForGrade(grade, _serial);
       final first = word.substring(0, 1).toUpperCase();
-      return _choiceTask('laut', grade, 'Deutsch', unit, 'Mit welchem Laut beginnt $word?', first, 'Sprich $word langsam. Der erste Laut ist $first.');
+      // Distraktoren aus aehnlich aussehenden/klingenden Buchstaben:
+      // Vermeidet Quatsch-Distraktoren wie 'Katze' oder 'Hund'.
+      final letterDistractors = _confusableLetters(first, upper: true);
+      return _choiceTask(
+        'laut',
+        grade,
+        'Deutsch',
+        unit,
+        'Mit welchem Laut beginnt $word?',
+        first,
+        'Sprich $word langsam. Der erste Laut ist $first.',
+        customChoices: <String>[first, ...letterDistractors],
+      );
     }
     if (unit == 'Endlaute') {
       final word = PrimarySchoolWordData.endSoundWordForGrade(grade, seed: _serial + _random.nextInt(9999)) ?? PrimarySchoolWordData.nounForGrade(grade, _serial);
       final last = word.substring(word.length - 1).toLowerCase();
-      return _choiceTask('endlaut', grade, 'Deutsch', unit, 'Mit welchem Laut endet $word?', last, 'Sprich $word langsam. Der letzte Laut ist $last.');
+      final letterDistractors = _confusableLetters(last, upper: false);
+      return _choiceTask(
+        'endlaut',
+        grade,
+        'Deutsch',
+        unit,
+        'Mit welchem Laut endet $word?',
+        last,
+        'Sprich $word langsam. Der letzte Laut ist $last.',
+        customChoices: <String>[last, ...letterDistractors],
+      );
     }
     if (unit == 'Buchstaben') {
-      final letter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[_random.nextInt(26)];
-      return LumoTask(id: _id('buchstabe'), grade: grade, subject: 'Deutsch', unit: unit, prompt: 'Zeichne ein großes $letter.', choices: const <String>['Fertig'], answer: 'Fertig', explanation: 'Ziehe den Buchstaben langsam mit dem Finger nach.', handwriting: true, visual: 'writing');
+      // 4 Aufgaben-Varianten in Rotation, deterministisch via _serial.
+      // So sieht das Kind nicht 10x in Folge "Zeichne X" sondern abwechselnd
+      // Schreib-, Erkennungs-, Zaehlcat- und Reihenfolge-Aufgaben.
+      final variantSeed = _serial + _random.nextInt(9999);
+      final variant = variantSeed % 4;
+      final letter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[variantSeed.abs() % 26];
+      final lower = letter.toLowerCase();
+      switch (variant) {
+        case 0:
+          // Schreib-Aufgabe (war schon da, aber jetzt Varianz drumherum)
+          return LumoTask(
+            id: _id('buchstabe-schreib'),
+            grade: grade,
+            subject: 'Deutsch',
+            unit: unit,
+            prompt: 'Zeichne ein großes $letter.',
+            choices: const <String>['Fertig'],
+            answer: 'Fertig',
+            explanation: 'Ziehe den Buchstaben langsam mit dem Finger nach.',
+            handwriting: true,
+            visual: 'writing',
+          );
+        case 1:
+          // Anfangsbuchstabe-Erkennung
+          final words = PrimarySchoolWordData.nounsForGrade(grade)
+              .where((w) => w.toUpperCase().startsWith(letter))
+              .toList();
+          if (words.isNotEmpty) {
+            final answer = words[variantSeed.abs() % words.length];
+            final distractors = _wordDataDistractors(
+              PrimarySchoolWordData.nounsForGrade(grade)
+                  .where((w) => !w.toUpperCase().startsWith(letter))
+                  .toList(),
+              <String>{answer},
+              2,
+            );
+            return _choiceTask(
+              'buchstabe-anfang',
+              grade,
+              'Deutsch',
+              unit,
+              'Welches Wort beginnt mit dem Buchstaben $letter?',
+              answer,
+              '$letter steht am Anfang von $answer.',
+              customChoices: <String>[answer, ...distractors],
+            );
+          }
+          // Fallback: Gross/Klein-Erkennung
+          return _choiceTask(
+            'buchstabe-paar',
+            grade,
+            'Deutsch',
+            unit,
+            'Welcher kleine Buchstabe gehört zu $letter?',
+            lower,
+            '$letter und $lower sind dasselbe Buchstaben-Paar.',
+            customChoices: <String>[lower, _otherLowerLetter(lower, 0), _otherLowerLetter(lower, 1)],
+          );
+        case 2:
+          // Vor/Nach im Alphabet
+          final idx = letter.codeUnitAt(0) - 65;
+          final next = idx < 25 ? String.fromCharCode(65 + idx + 1) : 'Z';
+          final prev = idx > 0 ? String.fromCharCode(65 + idx - 1) : 'A';
+          // Frage abwechselnd nach vorher/nachher
+          final askNext = (variantSeed % 2) == 0 && idx < 25;
+          if (askNext) {
+            return _choiceTask(
+              'buchstabe-vor',
+              grade,
+              'Deutsch',
+              unit,
+              'Welcher Buchstabe kommt nach $letter?',
+              next,
+              'Im Alphabet folgt nach $letter der Buchstabe $next.',
+              customChoices: <String>[next, prev, _otherUpperLetter(letter)],
+            );
+          }
+          if (idx > 0) {
+            return _choiceTask(
+              'buchstabe-vor',
+              grade,
+              'Deutsch',
+              unit,
+              'Welcher Buchstabe kommt vor $letter?',
+              prev,
+              'Im Alphabet kommt vor $letter der Buchstabe $prev.',
+              customChoices: <String>[prev, next, _otherUpperLetter(letter)],
+            );
+          }
+          return _choiceTask(
+            'buchstabe-vor',
+            grade,
+            'Deutsch',
+            unit,
+            'Welcher Buchstabe kommt nach $letter?',
+            next,
+            'Im Alphabet folgt nach $letter der Buchstabe $next.',
+            customChoices: <String>[next, _otherUpperLetter(letter), _otherUpperLetter(next)],
+          );
+        default:
+          // Wieviele dieses Buchstaben in einem Wort?
+          final pool = PrimarySchoolWordData.nounsForGrade(grade);
+          final wordWithLetter = pool.firstWhere(
+            (w) => w.toUpperCase().contains(letter),
+            orElse: () => pool[variantSeed.abs() % pool.length],
+          );
+          final count = letter == letter.toUpperCase()
+              ? wordWithLetter.toUpperCase().split(letter).length - 1
+              : 0;
+          if (count > 0) {
+            return _choiceTask(
+              'buchstabe-zaehlen',
+              grade,
+              'Deutsch',
+              unit,
+              'Wie oft kommt der Buchstabe $letter in „$wordWithLetter" vor?',
+              '$count',
+              'Zähle in $wordWithLetter genau jeden $letter.',
+            );
+          }
+          // Fallback Schreib-Aufgabe
+          return LumoTask(
+            id: _id('buchstabe-fallback'),
+            grade: grade,
+            subject: 'Deutsch',
+            unit: unit,
+            prompt: 'Zeichne ein großes $letter.',
+            choices: const <String>['Fertig'],
+            answer: 'Fertig',
+            explanation: 'Ziehe den Buchstaben langsam mit dem Finger nach.',
+            handwriting: true,
+            visual: 'writing',
+          );
+      }
     }
     if (unit == 'Silben') {
       final word = _wordWithSyllablesForGrade(grade);
@@ -663,12 +817,25 @@ class ExerciseFactory {
       }
       return out;
     }
-    final pool = <String>['Katze', 'Hund', 'Haus', 'Blau', 'Rot', 'eins', 'zwei', 'lesen', 'laufen', 'Fuchs', 'Wasser', 'Winter', 'Gruen', 'Maus', 'Dreieck', 'Kreis', 'Mama', 'Papa'];
+    // Fuer Buchstaben-Antworten: andere Buchstaben (nicht Wort-Quatsch).
+    if (answer.length == 1 && RegExp(r'[A-Za-zÄÖÜäöü]').hasMatch(answer)) {
+      final isUpper = answer == answer.toUpperCase();
+      final distractors = _confusableLetters(answer, upper: isUpper);
+      return <String>[answer, ...distractors];
+    }
+    // Fuer Wort-Antworten: Pool aus PrimarySchoolWordData (gross + abwechslungsreich)
+    // statt 18 hartkodierten Woertern.
+    final dataPool = <String>[
+      ...PrimarySchoolWordData.nounsForGrade(1),
+      ...PrimarySchoolWordData.nounsForGrade(2),
+      ...PrimarySchoolWordData.verbs,
+      ...PrimarySchoolWordData.adjectives,
+    ];
     final out = <String>[answer];
     final seen = <String>{answer.trim().toLowerCase()};
     var safety = 0;
-    while (out.length < 3 && safety < 60) {
-      final candidate = pool[_random.nextInt(pool.length)];
+    while (out.length < 3 && safety < 80) {
+      final candidate = dataPool[_random.nextInt(dataPool.length)];
       final norm = candidate.trim().toLowerCase();
       if (seen.add(norm)) out.add(candidate);
       safety++;
@@ -702,6 +869,58 @@ class ExerciseFactory {
   String _capitalize(String value) {
     if (value.isEmpty) return value;
     return value.substring(0, 1).toUpperCase() + value.substring(1);
+  }
+
+  /// Liefert 2 verwechselbare Buchstaben fuer den gegebenen.
+  /// Beispiel: B → [P, D] (klingen aehnlich), M → [N, W] (sehen aehnlich).
+  /// Padagogisch sinnvolle Distraktoren statt Wort-Quatsch.
+  List<String> _confusableLetters(String letter, {required bool upper}) {
+    const groups = <String, List<String>>{
+      'A': ['O', 'E'],
+      'B': ['P', 'D'],
+      'C': ['G', 'K'],
+      'D': ['B', 'P'],
+      'E': ['F', 'I'],
+      'F': ['E', 'T'],
+      'G': ['K', 'C'],
+      'H': ['N', 'M'],
+      'I': ['L', 'J'],
+      'J': ['I', 'G'],
+      'K': ['G', 'C'],
+      'L': ['I', 'T'],
+      'M': ['N', 'W'],
+      'N': ['M', 'H'],
+      'O': ['U', 'A'],
+      'P': ['B', 'D'],
+      'Q': ['O', 'P'],
+      'R': ['B', 'P'],
+      'S': ['Z', 'C'],
+      'T': ['L', 'F'],
+      'U': ['O', 'V'],
+      'V': ['F', 'W'],
+      'W': ['M', 'V'],
+      'X': ['Y', 'K'],
+      'Y': ['I', 'J'],
+      'Z': ['S', 'X'],
+    };
+    final upperLetter = letter.toUpperCase();
+    final list = groups[upperLetter] ?? const <String>['M', 'N'];
+    if (upper) return list;
+    return list.map((l) => l.toLowerCase()).toList();
+  }
+
+  /// Liefert einen anderen Kleinbuchstaben als den gegebenen, fuer Pair-Quizzes.
+  String _otherLowerLetter(String letter, int variant) {
+    const pool = ['a', 'e', 'm', 'n', 'r', 's', 't', 'b', 'd', 'p'];
+    final filtered = pool.where((l) => l != letter).toList();
+    return filtered[variant.abs() % filtered.length];
+  }
+
+  /// Liefert einen anderen Großbuchstaben als den gegebenen.
+  String _otherUpperLetter(String letter) {
+    const pool = ['A', 'B', 'C', 'D', 'E', 'F', 'L', 'M', 'N', 'P', 'R', 'S', 'T'];
+    final filtered = pool.where((l) => l != letter.toUpperCase()).toList();
+    return filtered[_random.nextInt(filtered.length)];
   }
 }
 
