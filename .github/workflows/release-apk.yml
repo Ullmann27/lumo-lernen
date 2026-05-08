@@ -109,7 +109,25 @@ jobs:
           echo "short_sha=$SHORT_SHA" >> "$GITHUB_OUTPUT"
           ls -la dist/
 
+      # Backup-Pfad 1: GitHub Actions Artifact.
+      # Heinz findet die APK auch wenn der Release-Step fehlschlaegt:
+      # https://github.com/Ullmann27/lumo-lernen/actions
+      # -> Workflow-Run aufrufen -> Artifact 'lumo-apk-{run}' herunterladen
+      - name: Upload APK as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-apk-${{ github.run_number }}
+          path: dist/
+          retention-days: 30
+          if-no-files-found: error
+
+      # Backup-Pfad 2: GitHub Release.
+      # Permanent-Link unter https://github.com/Ullmann27/lumo-lernen/releases
+      # continue-on-error damit Workflow gruen bleibt selbst wenn Release-API
+      # blockt (Repo-Settings, Branch-Protection etc.).
       - name: Publish GitHub Release
+        id: publish_release
+        continue-on-error: true
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
@@ -120,26 +138,50 @@ jobs:
             Commit: `${{ github.sha }}`
             Build-Datum: ${{ github.event.head_commit.timestamp }}
 
-            ### Direkter Download
+            ## Direkter Download
+
             Auf dem Handy bitte **Lumo-Lernen-latest.apk** antippen.
 
-            Vorab: in den Android-Einstellungen unter
-            **Apps -> Spezieller Zugriff -> Unbekannte Apps installieren**
-            den Browser oder Datei-Manager freigeben, mit dem du die APK
-            herunterlaedst.
+            Vorab in Android: **Einstellungen -> Apps -> Spezieller Zugriff
+            -> Unbekannte Apps installieren** den Browser freigeben.
 
-            ### Versionierung
-            Der Dateiname **Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk**
-            zeigt Build-Nummer und Commit-Hash, damit du jederzeit
-            weisst, welche Version installiert ist.
+            ## Versionierung
 
-            SHA256-Pruefsummen liegen in `SHA256SUMS.txt` bei.
+            Der Dateiname zeigt Build-Nummer und Commit-Hash:
+            **Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk**
+
+            SHA256-Pruefsummen in `SHA256SUMS.txt`.
           draft: false
           prerelease: false
-          fail_on_unmatched_files: true
+          fail_on_unmatched_files: false
+          make_latest: 'true'
           files: |
             dist/Lumo-Lernen-latest.apk
             dist/Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk
             dist/SHA256SUMS.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release-Status zusammenfassen
+        if: always()
+        run: |
+          echo "═══════════════════════════════════════════════════"
+          echo "BUILD #${{ github.run_number }} ABGESCHLOSSEN"
+          echo "═══════════════════════════════════════════════════"
+          echo ""
+          echo "📦 ARTIFACT (immer verfuegbar):"
+          echo "   https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo "   -> Artifacts -> lumo-apk-${{ github.run_number }}"
+          echo ""
+          if [ "${{ steps.publish_release.outcome }}" = "success" ]; then
+            echo "🚀 RELEASE (Direkt-Download):"
+            echo "   https://github.com/${{ github.repository }}/releases/tag/build-${{ github.run_number }}"
+            echo "   oder immer die neueste:"
+            echo "   https://github.com/${{ github.repository }}/releases/latest"
+          else
+            echo "⚠️  RELEASE-Schritt hat nicht funktioniert."
+            echo "   Aber das Artifact oben ist verfuegbar."
+            echo "   Pruefe Repo-Settings -> Actions -> Workflow permissions:"
+            echo "   muss 'Read and write' sein."
+          fi
+          echo ""
