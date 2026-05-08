@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
@@ -669,7 +670,12 @@ class _LearningContentState extends State<LearningContent> {
                 ),
               ]),
               const SizedBox(height: 22),
-              _ProgressHeader(current: _questionNum, total: _totalQuestions, subject: chip),
+              _LumoJourneyMap(
+                currentStep: _questionNum,
+                totalSteps: _totalQuestions,
+                subject: chip,
+                lastWasCorrect: _answered ? _lastCorrect : null,
+              ),
               if (_tutorHint != null) ...[
                 const SizedBox(height: 14),
                 _TutorHintBanner(text: _tutorHint!),
@@ -1095,6 +1101,402 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
       ),
     );
   }
+}
+
+/// 3D-Lernkarte mit Lumo-Fuchs der von Station zu Station huepft.
+/// Inspiriert von Golf-Apps und Duolingo - Heinz' Toechter sehen
+/// ihren Fortschritt visuell als Reise auf einem Pfad.
+///
+/// Pfad-Layout: 8-12 Stationen entlang einer geschwungenen Kurve mit
+/// Perspektive (kleinere Stationen hinten, groesser vorne).
+class _LumoJourneyMap extends StatefulWidget {
+  const _LumoJourneyMap({
+    required this.currentStep,
+    required this.totalSteps,
+    required this.subject,
+    required this.lastWasCorrect,
+  });
+
+  final int currentStep;
+  final int totalSteps;
+  final String subject;
+  /// null = noch nicht beantwortet
+  /// true  = Lumo huepft mit Freude-Animation
+  /// false = Lumo schwankt sanft (kein Drama)
+  final bool? lastWasCorrect;
+
+  @override
+  State<_LumoJourneyMap> createState() => _LumoJourneyMapState();
+}
+
+class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderStateMixin {
+  late final AnimationController _hopController = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 700),
+  );
+  late final AnimationController _idleController = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 2400),
+  )..repeat(reverse: true);
+
+  @override
+  void didUpdateWidget(covariant _LumoJourneyMap old) {
+    super.didUpdateWidget(old);
+    // Wenn Lumo zur naechsten Station kommt: Hop-Animation triggern
+    if (old.currentStep != widget.currentStep) {
+      _hopController.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _hopController.dispose();
+    _idleController.dispose();
+    super.dispose();
+  }
+
+  /// Liefert die x/y-Koordinaten einer Station auf dem geschwungenen Pfad.
+  /// 0..1 normalisiert. Geschwungene S-Kurve fuer Tiefe-Effekt.
+  Offset _stationOffset(int step, int total, double width, double height) {
+    final t = (step / (total - 1).clamp(1, double.infinity)).clamp(0.0, 1.0);
+    // X laeuft von links unten nach rechts oben mit S-Schwung
+    final x = 0.10 + 0.80 * t + 0.12 * (math.sin(t * math.pi * 2));
+    // Y: oben (hinten) bei spaeten Stationen, unten (vorne) bei fruehen
+    final y = 0.85 - 0.65 * t;
+    return Offset(x * width, y * height);
+  }
+
+  /// Skalierung fuer 3D-Tiefe: vorne groesser, hinten kleiner.
+  double _stationScale(int step, int total) {
+    final t = (step / (total - 1).clamp(1, double.infinity)).clamp(0.0, 1.0);
+    return 1.0 - 0.40 * t;
+  }
+
+  /// Symbol fuer eine Station - rotiert je nach Position fuer Abwechslung.
+  String _stationEmoji(int step, int total) {
+    if (step == total - 1) return '🏆'; // Ziel
+    const symbols = ['🌟', '🎯', '🎨', '📚', '✏️', '🎵', '🌈', '🦋', '🍀', '⭐', '🎁'];
+    return symbols[step % symbols.length];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final total = widget.totalSteps.clamp(2, 20);
+    final progress = (widget.currentStep / total).clamp(0.0, 1.0);
+    final percent = (progress * 100).round();
+    return Container(
+      width: double.infinity,
+      decoration: lumoCard(
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFFFFFBF0), Color(0xFFFFE5C7)],
+        ),
+      ),
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        // HEADER mit Fortschritt
+        Row(children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              boxShadow: [
+                BoxShadow(color: LumoColors.orange.withOpacity(.32), blurRadius: 8, offset: const Offset(0, 3)),
+              ],
+            ),
+            child: Text(
+              'Station ${widget.currentStep}',
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: .3),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text('von $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink500)),
+          const Spacer(),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              border: Border.all(color: LumoColors.orange.withOpacity(.30), width: 1.2),
+            ),
+            child: Text(
+              '$percent%',
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2),
+            ),
+          ),
+        ]),
+        const SizedBox(height: 10),
+        // SUBJECT-CHIP klein und subtil
+        Text(
+          widget.subject,
+          style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoColors.ink500, letterSpacing: .3),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 8),
+        // 3D-PFAD mit Lumo
+        AspectRatio(
+          aspectRatio: 2.4,
+          child: LayoutBuilder(builder: (context, constraints) {
+            final w = constraints.maxWidth;
+            final h = constraints.maxHeight;
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(LumoRadius.lg),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFFE0F2FE), // Himmel oben (hinten)
+                      Color(0xFFFFF3E0), // Wiese unten (vorne)
+                    ],
+                  ),
+                ),
+                child: AnimatedBuilder(
+                  animation: Listenable.merge([_hopController, _idleController]),
+                  builder: (context, _) => CustomPaint(
+                    painter: _JourneyPainter(
+                      total: total,
+                      currentStep: widget.currentStep,
+                      hopProgress: _hopController.value,
+                      idlePulse: _idleController.value,
+                      stationOffset: _stationOffset,
+                      stationScale: _stationScale,
+                      stationEmoji: _stationEmoji,
+                      lastWasCorrect: widget.lastWasCorrect,
+                    ),
+                    size: Size(w, h),
+                  ),
+                ),
+              ),
+            );
+          }),
+        ),
+        const SizedBox(height: 8),
+        // Progress-Balken als zusaetzliche Lese-Hilfe
+        Stack(clipBehavior: Clip.none, children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(LumoRadius.pill),
+            child: TweenAnimationBuilder<double>(
+              duration: const Duration(milliseconds: 480),
+              curve: Curves.easeOutCubic,
+              tween: Tween<double>(begin: 0.0, end: progress),
+              builder: (context, animatedProgress, _) => LinearProgressIndicator(
+                value: animatedProgress,
+                minHeight: 6,
+                color: LumoColors.orange,
+                backgroundColor: LumoColors.orange.withOpacity(.14),
+              ),
+            ),
+          ),
+        ]),
+      ]),
+    );
+  }
+}
+
+/// CustomPainter fuer die 3D-Lernreise.
+/// Zeichnet:
+///   - Geschwungenen Pfad (gepunktet bis aktuelle Station, danach gestrichelt)
+///   - Stationen als Kreise mit Schatten und Symbol
+///   - Lumo-Fuchs an der aktuellen Position mit Hop-Bewegung
+class _JourneyPainter extends CustomPainter {
+  _JourneyPainter({
+    required this.total,
+    required this.currentStep,
+    required this.hopProgress,
+    required this.idlePulse,
+    required this.stationOffset,
+    required this.stationScale,
+    required this.stationEmoji,
+    required this.lastWasCorrect,
+  });
+
+  final int total;
+  final int currentStep;
+  final double hopProgress;
+  final double idlePulse;
+  final Offset Function(int, int, double, double) stationOffset;
+  final double Function(int, int) stationScale;
+  final String Function(int, int) stationEmoji;
+  final bool? lastWasCorrect;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+
+    // PFAD ZEICHNEN - geschwungene Linie zwischen allen Stationen
+    final pathDone = Path();
+    final pathTodo = Path();
+    Offset? prev;
+    for (var i = 0; i < total; i++) {
+      final pos = stationOffset(i, total, w, h);
+      if (i == 0) {
+        pathDone.moveTo(pos.dx, pos.dy);
+        pathTodo.moveTo(pos.dx, pos.dy);
+      } else {
+        // Bezier-Kurve fuer weichen Schwung
+        final ctrl = Offset((prev!.dx + pos.dx) / 2, (prev.dy + pos.dy) / 2 + 8);
+        if (i < currentStep) {
+          pathDone.quadraticBezierTo(ctrl.dx, ctrl.dy, pos.dx, pos.dy);
+        }
+        if (i >= currentStep - 1) {
+          pathTodo.quadraticBezierTo(ctrl.dx, ctrl.dy, pos.dx, pos.dy);
+        }
+      }
+      prev = pos;
+    }
+
+    // Done-Pfad: dick und orange
+    final donePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 4.5
+      ..strokeCap = StrokeCap.round
+      ..shader = const LinearGradient(
+        colors: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
+      ).createShader(Rect.fromLTWH(0, 0, w, h));
+    canvas.drawPath(pathDone, donePaint);
+
+    // Todo-Pfad: gestrichelt und blass
+    final todoPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.5
+      ..strokeCap = StrokeCap.round
+      ..color = const Color(0xFFFF7A2F).withOpacity(.30);
+    _drawDashedPath(canvas, pathTodo, todoPaint);
+
+    // STATIONEN ZEICHNEN
+    for (var i = 0; i < total; i++) {
+      final pos = stationOffset(i, total, w, h);
+      final scale = stationScale(i, total);
+      final isPast = i < currentStep - 1;
+      final isCurrent = i == currentStep - 1;
+      final isFuture = i >= currentStep;
+      final isFinal = i == total - 1;
+      final r = (isFinal ? 22 : 16) * scale;
+
+      // Schatten unter Station
+      canvas.drawCircle(
+        pos.translate(0, r * 0.8),
+        r * 0.7,
+        Paint()..color = Colors.black.withOpacity(.10),
+      );
+
+      // Station-Kreis
+      Color fillColor;
+      if (isPast) {
+        fillColor = const Color(0xFF22C55E); // Mint - geschafft
+      } else if (isCurrent) {
+        fillColor = const Color(0xFFFF7A2F); // Orange - aktiv
+      } else {
+        fillColor = Colors.white;
+      }
+      canvas.drawCircle(
+        pos,
+        r,
+        Paint()..color = fillColor,
+      );
+      // Border
+      canvas.drawCircle(
+        pos,
+        r,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2.4
+          ..color = isPast
+              ? const Color(0xFF15803D)
+              : isCurrent
+                  ? const Color(0xFFC2410C)
+                  : const Color(0xFFFCD34D),
+      );
+
+      // Pulse fuer current
+      if (isCurrent) {
+        final pulse = 1.0 + idlePulse * 0.30;
+        canvas.drawCircle(
+          pos,
+          r * pulse,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2.0
+            ..color = const Color(0xFFFF7A2F).withOpacity(.40 * (1 - idlePulse)),
+        );
+      }
+
+      // Symbol
+      final symbol = isPast
+          ? '✓'
+          : isFinal && isFuture
+              ? '🏆'
+              : stationEmoji(i, total);
+      final tp = TextPainter(
+        text: TextSpan(
+          text: symbol,
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: r * 1.0,
+            fontWeight: FontWeight.w900,
+            color: isPast ? Colors.white : Colors.black,
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      tp.paint(canvas, pos.translate(-tp.width / 2, -tp.height / 2));
+    }
+
+    // LUMO-FUCHS an aktueller Position mit Hop-Animation
+    final lumoStation = (currentStep - 1).clamp(0, total - 1);
+    final lumoBase = stationOffset(lumoStation, total, w, h);
+    // Hop: parabel-foermige Bewegung nach oben waehrend hopProgress 0 -> 1
+    final hopHeight = lastWasCorrect == false
+        ? 4.0 // bei falsch nur leichtes Schwanken
+        : 18.0;
+    final hopY = -4 * hopHeight * hopProgress * (1 - hopProgress);
+    // Idle wackeln: leichte Bewegung wenn nicht gerade gehoppt wird
+    final idleY = hopProgress > 0.95 || hopProgress < 0.05
+        ? math.sin(idlePulse * math.pi * 2) * 1.5
+        : 0.0;
+    final lumoPos = lumoBase.translate(0, hopY + idleY - 22);
+    // Lumo-Schatten
+    canvas.drawCircle(
+      lumoBase.translate(0, -2),
+      11,
+      Paint()..color = Colors.black.withOpacity(.18 - hopProgress * .12),
+    );
+    // Lumo selbst (Fuchs-Emoji)
+    final lumoTp = TextPainter(
+      text: const TextSpan(
+        text: '🦊',
+        style: TextStyle(fontSize: 28),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    lumoTp.paint(canvas, lumoPos.translate(-lumoTp.width / 2, -lumoTp.height / 2));
+  }
+
+  void _drawDashedPath(Canvas canvas, Path path, Paint paint) {
+    const dashLen = 6.0;
+    const gapLen = 4.0;
+    for (final metric in path.computeMetrics()) {
+      var distance = 0.0;
+      while (distance < metric.length) {
+        final next = (distance + dashLen).clamp(0, metric.length).toDouble();
+        canvas.drawPath(metric.extractPath(distance, next), paint);
+        distance = next + gapLen;
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(_JourneyPainter old) =>
+      old.currentStep != currentStep ||
+      old.hopProgress != hopProgress ||
+      old.idlePulse != idlePulse ||
+      old.lastWasCorrect != lastWasCorrect;
 }
 
 class _ProgressHeader extends StatelessWidget {
