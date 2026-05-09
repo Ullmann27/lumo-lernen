@@ -41,7 +41,7 @@ class _LearningContentState extends State<LearningContent> {
   final List<String> _recentTaskKeys = <String>[];
   final List<String> _recentUnits = <String>[];
   final Set<String> _sessionTaskKeys = <String>{};
-  String? _lastTaskKey;
+  Set<String> _lastTaskMarkers = <String>{};
 
   // Nachhilfelehrer: KI-generierte Aufgaben aus Cache, basierend auf Schwaechen
   static const AiTutorService _tutor = AiTutorService();
@@ -59,7 +59,7 @@ class _LearningContentState extends State<LearningContent> {
   final SessionVarietyGuard _varietyGuard = SessionVarietyGuard();
   final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
 
-  static const int _recentTaskMemory = 80;
+  static const int _recentTaskMemory = RecentTaskRepository.maxTaskKeys;
   static const int _recentUnitMemory = 10;
 
   late LumoTask _task;
@@ -253,20 +253,23 @@ class _LearningContentState extends State<LearningContent> {
     // Kein Crash bei Validierungs-Problemen - dann faellt es einfach
     // auf den Standard-Generator zurueck.
     final aiSubject = _aiSubjectName(st.subject);
+    LumoTask? relaxedFallback;
     if (aiSubject != null && _aiDraftQueue.isNotEmpty) {
-      final draft = _aiDraftQueue.removeAt(0);
-      // Cache-Markierung im Hintergrund
-      _aiCache.markConsumed(childId: _childId, subject: aiSubject, prompt: draft.prompt);
-      final aiTask = _draftToLumoTask(draft, st.grade, factorySubject, factoryUnit);
-      if (aiTask != null) {
-        return aiTask;
+      while (_aiDraftQueue.isNotEmpty) {
+        final draft = _aiDraftQueue.removeAt(0);
+        // Cache-Markierung im Hintergrund
+        _aiCache.markConsumed(childId: _childId, subject: aiSubject, prompt: draft.prompt);
+        final aiTask = _draftToLumoTask(draft, st.grade, factorySubject, factoryUnit);
+        if (aiTask == null) continue;
+        if (_canUseTask(aiTask, relaxed: false)) return aiTask;
+        relaxedFallback ??= _canUseTask(aiTask, relaxed: true) ? aiTask : null;
       }
-      // sonst weiter mit Standard-Generator
+      // Wenn der KI-Vorrat nur Wiederholungen enthaelt, ziehen wir lieber
+      // lokal weiter, statt dem Kind direkt wieder dieselbe Aufgabe zu zeigen.
     }
 
     final avoidUnits = factoryUnit == 'Alle' ? _recentUnits.toSet() : <String>{};
     LumoTask? fallback;
-    LumoTask? relaxedFallback;
 
     for (var attempt = 0; attempt < 80; attempt++) {
       final task = _factory.next(
@@ -279,11 +282,11 @@ class _LearningContentState extends State<LearningContent> {
 
       if (_isPassiveReadingQuiz(task)) continue;
 
-      fallback ??= task;
-      final key = _taskKey(task);
-      // Direkte Wiederholung verhindern: gleicher key wie zuletzt -> weiter ziehen
-      if (_lastTaskKey != null && _lastTaskKey == key) continue;
-      if (_recentTaskKeys.contains(key) || _sessionTaskKeys.contains(key)) continue;
+      if (!_wasRecentlySeen(task)) fallback ??= task;
+
+      // Direkte und persistierte Wiederholungen verhindern: gleicher Task
+      // oder gleiche Aufgaben-Familie -> weiter ziehen.
+      if (_wasRecentlySeen(task)) continue;
 
       // SessionVarietyGuard: prueft auch Antwort-/Muster-/Wort-Wiederholung,
       // nicht nur den exakten Aufgaben-Key. Bei strikter Pruefung erst.
@@ -372,11 +375,13 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   void _rememberTask(LumoTask task) {
-    final key = _taskKey(task);
-    _lastTaskKey = key;
-    _sessionTaskKeys.add(key);
-    _recentTaskKeys.remove(key);
-    _recentTaskKeys.add(key);
+    final markers = _taskMemoryKeys(task);
+    _lastTaskMarkers = markers.toSet();
+    _sessionTaskKeys.addAll(markers);
+    for (final marker in markers) {
+      _recentTaskKeys.remove(marker);
+      _recentTaskKeys.add(marker);
+    }
     while (_recentTaskKeys.length > _recentTaskMemory) {
       _recentTaskKeys.removeAt(0);
     }
@@ -403,22 +408,20 @@ class _LearningContentState extends State<LearningContent> {
     ).ignore();
   }
 
-  String _taskKey(LumoTask task) {
-    final normalizedChoices = task.choices
-        .map((choice) => choice.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' '))
-        .toList(growable: false)
-      ..sort();
-    return <String>[
-      task.subject.trim().toLowerCase(),
-      task.unit.trim().toLowerCase(),
-      task.prompt.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' '),
-      task.answer.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' '),
-      task.visual,
-      task.handwriting ? 'handwriting' : 'choice',
-      task.difficulty.toString(),
-      normalizedChoices.join(','),
-    ].join('|');
+  bool _canUseTask(LumoTask task, {required bool relaxed}) {
+    if (_wasRecentlySeen(task)) return false;
+    return _varietyGuard.allows(task, relaxed: relaxed);
   }
+
+  bool _wasRecentlySeen(LumoTask task) {
+    final markers = _taskMemoryKeys(task);
+    return markers.any((marker) =>
+        _lastTaskMarkers.contains(marker) ||
+        _sessionTaskKeys.contains(marker) ||
+        _recentTaskKeys.contains(marker));
+  }
+
+  List<String> _taskMemoryKeys(LumoTask task) => _varietyGuard.taskMemoryKeys(task);
 
   void _answerAdaptive(AdaptiveTaskAnswer answer) {
     if (_answered) return;
@@ -623,7 +626,6 @@ class _LearningContentState extends State<LearningContent> {
     setState(() {
       final nextQuestion = _questionNum < _totalQuestions ? _questionNum + 1 : 1;
       if (nextQuestion == 1) {
-        _sessionTaskKeys.clear();
         _attemptCount = 0;
       }
       _questionNum = nextQuestion;

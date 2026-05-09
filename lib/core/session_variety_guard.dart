@@ -1,4 +1,5 @@
 import 'school_exercise_generator.dart';
+import 'writing_target_parser.dart';
 
 /// Lightweight in-memory guard for one learning session.
 ///
@@ -77,9 +78,33 @@ class SessionVarietyGuard {
       _normalize(task.prompt),
       _normalize(task.answer),
       _normalize(task.visual),
+      _normalize(task.missionTag),
       task.handwriting ? 'handwriting' : 'choice',
       task.difficulty.toString(),
+      task.handwriting ? _normalize(WritingTargetParser.parse(task.prompt)) : '',
       choices.join(','),
+    ].join('|');
+  }
+
+  /// Stable, separator-safe markers that can be persisted between app starts.
+  ///
+  /// The exact marker blocks identical tasks. The family marker blocks near
+  /// repeats such as the same normalized prompt pattern plus answer, even when
+  /// choice order or generated IDs differ.
+  List<String> taskMemoryKeys(LumoTask task) => <String>[
+        'task-${_stableHash(taskKey(task))}',
+        'family-${_stableHash(taskFamilyKey(task))}',
+      ];
+
+  String taskFamilyKey(LumoTask task) {
+    return <String>[
+      _normalize(task.subject),
+      _normalize(task.unit),
+      promptPattern(task.prompt),
+      _normalize(task.answer),
+      _normalize(task.visual),
+      _normalize(task.missionTag),
+      task.handwriting ? _normalize(WritingTargetParser.parse(task.prompt)) : '',
     ].join('|');
   }
 
@@ -111,6 +136,15 @@ class SessionVarietyGuard {
     while (list.length > maxLength) {
       list.removeAt(0);
     }
+  }
+
+  String _stableHash(String value) {
+    var hash = 0x811c9dc5;
+    for (final codeUnit in value.codeUnits) {
+      hash ^= codeUnit;
+      hash = (hash * 0x01000193) & 0xffffffff;
+    }
+    return hash.toRadixString(16).padLeft(8, '0');
   }
 
   String _normalize(String value) {

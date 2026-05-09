@@ -7,7 +7,8 @@ class GermanTaskTemplates {
   static const List<GermanTaskTemplate> templates = <GermanTaskTemplate>[
     GermanTaskTemplate(id: 'g1_letter_sound', grade: 1, unit: 'Buchstaben-Lautierung', kind: GermanTemplateKind.letterSound, promptPattern: 'laut-zu-buchstabe'),
     GermanTaskTemplate(id: 'g1_rhyme', grade: 1, unit: 'Reime', kind: GermanTemplateKind.rhymeRecognition, promptPattern: 'echter-reim'),
-    GermanTaskTemplate(id: 'g1_start_sound', grade: 1, unit: 'Anfangslaute', kind: GermanTemplateKind.startSound, promptPattern: 'gleicher-anlaut'),
+    GermanTaskTemplate(id: 'g1_start_sound', grade: 1, unit: 'Anfangslaute', kind: GermanTemplateKind.startSound, promptPattern: 'anlaut-hoeren'),
+    GermanTaskTemplate(id: 'g1_end_sound', grade: 1, unit: 'Endlaute', kind: GermanTemplateKind.endSound, promptPattern: 'endlaut-hoeren'),
     GermanTaskTemplate(id: 'g1_word_image', grade: 1, unit: 'Wort-Bild-Zuordnung', kind: GermanTemplateKind.wordImage, promptPattern: 'wort-bild'),
     GermanTaskTemplate(id: 'g1_sentence_order', grade: 1, unit: 'Erste Sätze', kind: GermanTemplateKind.sentenceOrder, promptPattern: 'satzstellung-einfach'),
     GermanTaskTemplate(id: 'g1_syllables', grade: 1, unit: 'Silben', kind: GermanTemplateKind.syllables, promptPattern: 'silben-klatschen'),
@@ -54,7 +55,7 @@ class GermanTaskTemplates {
 
   static const Map<String, List<String>> _legacyUnitAliases = <String, List<String>>{
     'Anfangslaute': <String>['Anfangslaute', 'Buchstaben-Lautierung'],
-    'Endlaute': <String>['Anfangslaute'],
+    'Endlaute': <String>['Endlaute'],
     'Buchstaben': <String>['Buchstaben-Lautierung'],
     'Wortschatz': <String>['Oberbegriffe', 'Synonyme', 'Gegenteile'],
     'Satz verstehen': <String>['Erste Sätze', 'Satzglieder'],
@@ -89,9 +90,12 @@ class GermanTaskTemplate {
         return _choice('Was reimt sich auf ${pair.first}?', pair.last, <String>[pair.last, ...distractors], 'Reimwörter klingen am Ende gleich.', 'rhyme');
       case GermanTemplateKind.startSound:
         final word = PrimarySchoolWordData.firstSoundWordForGrade(grade, seed: seed) ?? 'Apfel';
-        final first = word.substring(0, 1).toUpperCase();
-        final distractors = _confusableLetters(first);
-        return _choice('Welches Wort beginnt mit demselben Laut wie $word?', word, <String>[word, ..._nouns(seed + 5, grade, except: <String>{word}).where((w) => !w.toUpperCase().startsWith(first)).take(3)], 'Höre auf den ersten Laut: $first.', 'sound');
+        final first = _firstLetterSound(word);
+        return _choice('Mit welchem Laut beginnt $word?', first, _letterChoices(first, seed), 'Sprich $word langsam. Der erste Laut ist $first.', 'sound');
+      case GermanTemplateKind.endSound:
+        final word = PrimarySchoolWordData.endSoundWordForGrade(grade, seed: seed) ?? 'Stift';
+        final last = _lastLetterSound(word);
+        return _choice('Mit welchem Laut endet $word?', last, _letterChoices(last, seed + 11), 'Sprich $word langsam. Der letzte Laut ist $last.', 'sound');
       case GermanTemplateKind.wordImage:
         final word = PrimarySchoolWordData.nounForGrade(grade, seed);
         return _choice('Welches Wort passt zum Bild: ${_emojiFor(word)}?', word, <String>[word, ..._nouns(seed + 3, grade, except: <String>{word}).take(3)], 'Verbinde das Bild mit dem passenden Namenwort.', 'word_image');
@@ -163,6 +167,28 @@ class GermanTaskTemplate {
     }
   }
 
+
+  String _firstLetterSound(String word) => _lettersOnly(word).isEmpty ? '' : _lettersOnly(word).substring(0, 1).toUpperCase();
+
+  String _lastLetterSound(String word) {
+    final cleaned = _lettersOnly(word);
+    return cleaned.isEmpty ? '' : cleaned.substring(cleaned.length - 1).toLowerCase();
+  }
+
+  List<String> _letterChoices(String answer, int seed) {
+    const bank = <String>['A', 'B', 'D', 'E', 'F', 'I', 'K', 'L', 'M', 'N', 'R', 'S', 'T', 'W'];
+    final normalized = answer.toLowerCase();
+    final result = <String>[answer];
+    for (var i = 0; result.length < 4 && i < bank.length; i++) {
+      final candidate = bank[_positive(seed + i * 5, bank.length)];
+      if (candidate.toLowerCase() != normalized && !result.any((item) => item.toLowerCase() == candidate.toLowerCase())) {
+        result.add(candidate);
+      }
+    }
+    return result;
+  }
+
+  String _lettersOnly(String value) => value.toLowerCase().replaceAll(RegExp(r'[^a-zäöüß]'), '');
   GermanConcreteTask _choice(String prompt, String answer, List<String> rawChoices, String explanation, String visual) {
     final choices = <String>[answer];
     for (final choice in rawChoices) {
@@ -202,6 +228,7 @@ enum GermanTemplateKind {
   letterSound,
   rhymeRecognition,
   startSound,
+  endSound,
   wordImage,
   sentenceOrder,
   syllables,
@@ -450,20 +477,6 @@ String _emojiFor(String word) {
   if (lower.contains('buch')) return '📘';
   if (lower.contains('ball')) return '⚽';
   return '🖼️';
-}
-
-List<String> _confusableLetters(String letter) {
-  const map = <String, List<String>>{
-    'A': <String>['O', 'E', 'U'],
-    'B': <String>['P', 'D', 'R'],
-    'D': <String>['T', 'B', 'P'],
-    'F': <String>['W', 'V', 'S'],
-    'G': <String>['K', 'C', 'J'],
-    'M': <String>['N', 'W', 'B'],
-    'S': <String>['Z', 'F', 'Sch'],
-    'Sch': <String>['S', 'Sp', 'Ch'],
-  };
-  return map[letter] ?? const <String>['A', 'M', 'S'];
 }
 
 String _cap(String value) => value.isEmpty ? value : value.substring(0, 1).toUpperCase() + value.substring(1);

@@ -245,7 +245,7 @@ class ExerciseFactory {
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Rechtschreibung');
     if (unit == 'Gross und klein') {
       final noun = PrimarySchoolWordData.nounForGrade(grade, _serial + _random.nextInt(9999));
-      return _choiceTask('gross', grade, 'Rechtschreibung', unit, 'Wie schreibt man das Namenwort richtig?', noun, 'Namenwörter schreibt man groß.');
+      return _choiceTask('gross', grade, 'Rechtschreibung', unit, 'Wie schreibt man das Namenwort richtig?', noun, 'Namenwörter schreibt man groß.', customChoices: <String>[noun, noun.toLowerCase(), _decapitalize(noun)]);
     }
     if (unit == 'Satzzeichen') {
       return _choiceTask('punkt', grade, 'Rechtschreibung', unit, 'Welches Zeichen kommt am Ende von: Lumo liest', '.', 'Ein Aussagesatz endet mit einem Punkt.', customChoices: const <String>['.', '?', '!']);
@@ -254,7 +254,7 @@ class ExerciseFactory {
       return _choiceTask('doppel', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', 'kommen', 'Bei kommen hörst du ein kurzes o, darum mm.', customChoices: const <String>['komen', 'kommen', 'komenn']);
     }
     final word = PrimarySchoolWordData.nounForGrade(grade, _serial + _random.nextInt(9999));
-    return _choiceTask('wort', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', word, 'Schau jeden Buchstaben langsam an.', customChoices: <String>[word, word.toLowerCase(), '${word}e']);
+    return _choiceTask('wort', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', word, 'Schau jeden Buchstaben langsam an.', customChoices: _spellingChoicesFor(word));
   }
 
   LumoTask _stOrSp(int grade, String subject) {
@@ -306,7 +306,7 @@ class ExerciseFactory {
     final choices = <String>[answer];
     final source = customChoices ?? <String>[answer, '0', '1', '2', '3'];
     for (final choice in source) {
-      if (choice.trim().isNotEmpty && choice != answer && !choices.contains(choice)) choices.add(choice);
+      if (choice.trim().isNotEmpty && _normalizeChoice(choice) != _normalizeChoice(answer) && !choices.any((item) => _normalizeChoice(item) == _normalizeChoice(choice))) choices.add(choice);
       if (choices.length == 4) break;
     }
     if (_looksNumeric(answer)) {
@@ -314,7 +314,7 @@ class ExerciseFactory {
       if (value != null) {
         for (final offset in <int>[1, -1, 2, -2, 5, -5]) {
           final candidate = '${value + offset}';
-          if (!choices.contains(candidate) && value + offset >= 0) choices.add(candidate);
+          if (!choices.any((item) => _normalizeChoice(item) == _normalizeChoice(candidate)) && value + offset >= 0) choices.add(candidate);
           if (choices.length == 4) break;
         }
       }
@@ -322,7 +322,7 @@ class ExerciseFactory {
     final fallback = <String>['ja', 'nein', 'vielleicht', 'anderes'];
     for (final item in fallback) {
       if (choices.length >= 3) break;
-      if (!choices.contains(item)) choices.add(item);
+      if (!choices.any((choice) => _normalizeChoice(choice) == _normalizeChoice(item))) choices.add(item);
     }
     return _shuffledChoices(choices);
   }
@@ -330,15 +330,61 @@ class ExerciseFactory {
   List<String> _shuffledChoices(List<String> choices) {
     final unique = <String>[];
     for (final choice in choices) {
-      if (choice.trim().isNotEmpty && !unique.contains(choice)) unique.add(choice);
+      if (choice.trim().isNotEmpty && !unique.any((item) => _normalizeChoice(item) == _normalizeChoice(choice))) unique.add(choice);
     }
     unique.shuffle(_random);
     return unique;
   }
 
+  List<String> _spellingChoicesFor(String correct) {
+    final lower = correct.toLowerCase();
+    final distractors = switch (lower) {
+      'und' => const <String>['unt', 'un'],
+      'ist' => const <String>['is', 'isst'],
+      'mama' => const <String>['Mamma', 'Moma'],
+      'papa' => const <String>['Pappa', 'Pupa'],
+      'haus' => const <String>['Hauß', 'Has'],
+      'ball' => const <String>['Bal', 'Bahl'],
+      'sonne' => const <String>['Sone', 'Sonnee'],
+      'spielen' => const <String>['spilen', 'schpielen'],
+      'kommen' => const <String>['komen', 'komenn'],
+      'schule' => const <String>['Schuhle', 'Schulee'],
+      'freund' => const <String>['Froind', 'Freunt'],
+      'heute' => const <String>['hoite', 'heude'],
+      'klein' => const <String>['kline', 'kleinn'],
+      'groß' || 'gross' => const <String>['gros', 'grohs'],
+      _ => <String>[_dropLastLetter(correct), '${correct}e', '${correct}n'],
+    };
+    return _distinctChoices(correct, <String>[correct, ...distractors], targetCount: 3);
+  }
+
+  List<String> _distinctChoices(String answer, List<String> candidates, {required int targetCount}) {
+    final result = <String>[];
+    void add(String value) {
+      if (value.trim().isEmpty) return;
+      if (result.any((item) => _normalizeChoice(item) == _normalizeChoice(value))) return;
+      result.add(value);
+    }
+
+    add(answer);
+    for (final candidate in candidates) {
+      if (result.length >= targetCount) break;
+      add(candidate);
+    }
+    for (final candidate in <String>['${answer}e', '${answer}n', '${answer}m']) {
+      if (result.length >= targetCount) break;
+      add(candidate);
+    }
+    return result;
+  }
+
+  String _dropLastLetter(String value) => value.length <= 1 ? '$value?' : value.substring(0, value.length - 1);
+
   bool _looksNumeric(String value) => RegExp(r'^-?\d+').hasMatch(value);
   int _positive(int seed, int length) => length <= 1 ? 0 : (seed & 0x7fffffff) % length;
   String _capitalize(String value) => value.isEmpty ? value : value.substring(0, 1).toUpperCase() + value.substring(1);
+  String _decapitalize(String value) => value.isEmpty ? value : value.substring(0, 1).toLowerCase() + value.substring(1);
+  String _normalizeChoice(String value) => value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 }
 
 class _ScienceQuestion {

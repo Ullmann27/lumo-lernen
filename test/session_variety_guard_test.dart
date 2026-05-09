@@ -68,6 +68,81 @@ void main() {
       );
     });
 
+    test('builds separator-safe persistent markers for exact and family repeats', () {
+      final guard = SessionVarietyGuard();
+      final first = task(
+        prompt: 'Lumo hat 12 Sterne und bekommt 3 dazu.',
+        answer: '15',
+        choices: const <String>['15', '14', '16'],
+        unit: 'Plus bis 20',
+      );
+      final nearRepeat = task(
+        prompt: 'Lumo hat 7 Blumen und bekommt 2 dazu.',
+        answer: '15',
+        choices: const <String>['16', '15', '14'],
+        unit: 'Plus bis 20',
+      );
+
+      final firstKeys = guard.taskMemoryKeys(first);
+      final repeatKeys = guard.taskMemoryKeys(nearRepeat);
+
+      expect(firstKeys, hasLength(2));
+      expect(firstKeys.every((key) => !key.contains('|')), isTrue);
+      expect(firstKeys.first, startsWith('task-'));
+      expect(firstKeys.last, startsWith('family-'));
+      expect(firstKeys.first, isNot(repeatKeys.first));
+      expect(firstKeys.last, repeatKeys.last);
+    });
+
+    test('task key includes mission tag and writing target', () {
+      final guard = SessionVarietyGuard();
+      final normal = task(
+        prompt: 'Schreibe: Mama',
+        choices: const <String>['Fertig'],
+        answer: 'Fertig',
+      );
+      final handwriting = LumoTask(
+        id: 'write-id',
+        grade: 1,
+        subject: 'Schreiben',
+        unit: 'Wort schreiben',
+        prompt: 'Schreibe: Mama',
+        choices: const <String>['Fertig'],
+        answer: 'Fertig',
+        explanation: 'Test',
+        handwriting: true,
+        missionTag: 'writing-a',
+      );
+      final otherTarget = LumoTask(
+        id: 'write-id',
+        grade: 1,
+        subject: 'Schreiben',
+        unit: 'Wort schreiben',
+        prompt: 'Schreibe: Papa',
+        choices: const <String>['Fertig'],
+        answer: 'Fertig',
+        explanation: 'Test',
+        handwriting: true,
+        missionTag: 'writing-a',
+      );
+      final otherMission = LumoTask(
+        id: 'write-id',
+        grade: 1,
+        subject: 'Schreiben',
+        unit: 'Wort schreiben',
+        prompt: 'Schreibe: Mama',
+        choices: const <String>['Fertig'],
+        answer: 'Fertig',
+        explanation: 'Test',
+        handwriting: true,
+        missionTag: 'writing-b',
+      );
+
+      expect(guard.taskKey(normal), isNot(guard.taskKey(handwriting)));
+      expect(guard.taskKey(handwriting), isNot(guard.taskKey(otherTarget)));
+      expect(guard.taskKey(handwriting), isNot(guard.taskKey(otherMission)));
+    });
+
     test('reset clears remembered session state', () {
       final guard = SessionVarietyGuard();
       final first = task();

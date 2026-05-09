@@ -1,3 +1,4 @@
+import 'primary_school_word_data.dart';
 import 'school_exercise_generator.dart';
 
 /// Deterministic quality gate for generated school tasks.
@@ -50,6 +51,8 @@ class TaskQualityGuard {
 
     issues.addAll(_numericProblems(prompt, answer, choices));
     issues.addAll(_soundProblems(prompt, answer, choices));
+    issues.addAll(_rhymeProblems(prompt, answer, choices));
+    issues.addAll(_syllableProblems(prompt, answer, choices));
     issues.addAll(_spellingProblems(prompt, answer, choices));
     issues.addAll(_wordClassProblems(prompt, answer, choices));
 
@@ -77,27 +80,78 @@ class TaskQualityGuard {
 
   List<String> _soundProblems(String prompt, String answer, List<String> choices) {
     final issues = <String>[];
-    final end = RegExp(r'endet\s+mit\s+([A-Za-zÄÖÜäöüß])\?', caseSensitive: false).firstMatch(prompt);
-    if (end != null) {
-      final sound = _word(end.group(1) ?? '');
+    final wordEnding = RegExp(r'Welches\s+Wort\s+endet\s+mit\s+([A-Za-zÄÖÜäöüß])\?', caseSensitive: false).firstMatch(prompt);
+    if (wordEnding != null) {
+      final sound = _word(wordEnding.group(1) ?? '');
       final matching = choices.where((c) => _word(c).endsWith(sound)).length;
       if (!_word(answer).endsWith(sound)) issues.add('answer_wrong_ending');
       if (matching != 1) issues.add('ending_not_exactly_one_choice');
     }
 
-    final start = RegExp(r'beginnt\s+(.+?)\s+mit\s+([A-Za-zÄÖÜäöüß])\?', caseSensitive: false).firstMatch(prompt);
-    if (start != null) {
-      final sound = _word(start.group(2) ?? '');
+    final wordBeginning = RegExp(r'Welches\s+Wort\s+beginnt\s+mit\s+([A-Za-zÄÖÜäöüß])\?', caseSensitive: false).firstMatch(prompt);
+    if (wordBeginning != null) {
+      final sound = _word(wordBeginning.group(1) ?? '');
       final matching = choices.where((c) => _word(c).startsWith(sound)).length;
       if (!_word(answer).startsWith(sound)) issues.add('answer_wrong_beginning');
       if (matching != 1) issues.add('beginning_not_exactly_one_choice');
     }
 
+    final letterStart = RegExp(r'Mit\s+welchem\s+Laut\s+beginnt\s+(.+?)\?', caseSensitive: false).firstMatch(prompt);
+    if (letterStart != null) {
+      final word = _word(letterStart.group(1) ?? '');
+      final expected = word.isEmpty ? '' : word.substring(0, 1);
+      if (_word(answer) != expected) issues.add('answer_wrong_initial_sound');
+      if (choices.where((c) => _word(c) == expected).length != 1) issues.add('initial_sound_not_exactly_one_choice');
+    }
+
+    final letterEnd = RegExp(r'Mit\s+welchem\s+Laut\s+endet\s+(.+?)\?', caseSensitive: false).firstMatch(prompt);
+    if (letterEnd != null) {
+      final word = _word(letterEnd.group(1) ?? '');
+      final expected = word.isEmpty ? '' : word.substring(word.length - 1);
+      if (_word(answer) != expected) issues.add('answer_wrong_final_sound');
+      if (choices.where((c) => _word(c) == expected).length != 1) issues.add('final_sound_not_exactly_one_choice');
+    }
+
     if (RegExp(r'Welcher\s+Artikel\s+passt', caseSensitive: false).hasMatch(prompt)) {
       if (!_articles.contains(_choice(answer))) issues.add('article_answer_invalid');
       if (choices.where((c) => _articles.contains(_choice(c))).length < 2) issues.add('article_choices_incomplete');
+      final nounMatch = RegExp(r'passt\s+zu\s+(.+?)\?', caseSensitive: false).firstMatch(prompt);
+      final noun = nounMatch == null ? '' : _stripPunctuation(nounMatch.group(1) ?? '');
+      final expected = PrimarySchoolWordData.articleFor(noun);
+      if (expected != null && _choice(answer) != expected) issues.add('article_answer_wrong_for_noun');
+      if (expected != null && choices.where((c) => _choice(c) == expected).length != 1) issues.add('article_not_exactly_one_correct_choice');
     }
 
+    return issues;
+  }
+
+
+  List<String> _rhymeProblems(String prompt, String answer, List<String> choices) {
+    final match = RegExp(r'Was\s+reimt\s+sich\s+auf\s+(.+?)\?', caseSensitive: false).firstMatch(prompt);
+    if (match == null) return const <String>[];
+    final base = _stripPunctuation(match.group(1) ?? '');
+    final expected = _knownRhymePartner(base);
+    if (expected == null) return const <String>[];
+    final issues = <String>[];
+    if (_choice(answer) != _choice(expected)) issues.add('rhyme_answer_not_known_partner');
+    if (choices.where((c) => _choice(c) == _choice(expected)).length != 1) {
+      issues.add('rhyme_not_exactly_one_known_partner');
+    }
+    return issues;
+  }
+
+  List<String> _syllableProblems(String prompt, String answer, List<String> choices) {
+    final match = RegExp(r'Wie\s+viele\s+Silben\s+hat\s+(.+?)\?', caseSensitive: false).firstMatch(prompt);
+    if (match == null) return const <String>[];
+    final word = _stripPunctuation(match.group(1) ?? '');
+    final syllables = PrimarySchoolWordData.syllablesFor(word);
+    if (syllables == null) return const <String>[];
+    final expected = syllables.length;
+    final issues = <String>[];
+    if (_extractInt(answer) != expected) issues.add('syllable_answer_wrong_count');
+    if (choices.where((c) => _extractInt(c) == expected).length != 1) {
+      issues.add('syllable_not_exactly_one_correct_choice');
+    }
     return issues;
   }
 
@@ -132,19 +186,19 @@ class TaskQualityGuard {
       if (!_isCorrectSentence(answer)) issues.add('answer_not_correct_sentence_like');
       if (!choices.every(_isSentencePart)) issues.add('sentence_choices_not_sentence_like');
     }
-    if (lower.contains('namenswort') || lower.contains('nomen') || lower.contains('hauptwort')) {
-      if (!_nouns.contains(a)) issues.add('nomen_answer_not_known_noun');
-      if (!choices.where((c) => _choice(c) != a).any((c) => _verbs.contains(_choice(c)) || _adjectives.contains(_choice(c)))) {
+    if (lower.contains('welches wort ist ein namenswort') || lower.contains('welches wort ist ein namenwort') || lower.contains('welches wort ist ein nomen') || lower.contains('welches wort ist ein hauptwort')) {
+      if (!_isKnownNoun(answer)) issues.add('nomen_answer_not_known_noun');
+      if (!choices.where((c) => _choice(c) != a).any((c) => _isKnownVerb(c) || _isKnownAdjective(c))) {
         issues.add('nomen_choices_missing_wordclass_distractor');
       }
     }
-    if (lower.contains('tunwort') || lower.contains('verb')) {
-      if (!_verbs.contains(a)) issues.add('verb_answer_not_known_verb');
-      if (choices.every((c) => _verbs.contains(_choice(c)))) issues.add('verb_choices_not_contrasting_wordclasses');
+    if (lower.contains('welches wort ist ein tunwort') || lower.contains('welches wort ist ein verb')) {
+      if (!_isKnownVerb(answer)) issues.add('verb_answer_not_known_verb');
+      if (choices.every(_isKnownVerb)) issues.add('verb_choices_not_contrasting_wordclasses');
     }
-    if (lower.contains('wiewort') || lower.contains('beschreibt, wie') || lower.contains('eigenschaft')) {
-      if (!_adjectives.contains(a)) issues.add('adjective_answer_not_known_adjective');
-      if (choices.every((c) => _adjectives.contains(_choice(c)))) issues.add('adjective_choices_not_contrasting_wordclasses');
+    if (lower.contains('welches wort ist ein wiewort') || lower.contains('welches wort beschreibt, wie') || lower.contains('welches wort ist eine eigenschaft')) {
+      if (!_isKnownAdjective(answer)) issues.add('adjective_answer_not_known_adjective');
+      if (choices.every(_isKnownAdjective)) issues.add('adjective_choices_not_contrasting_wordclasses');
     }
 
     return issues;
@@ -165,6 +219,32 @@ class TaskQualityGuard {
     if (after != null) return (int.tryParse(after.group(1) ?? '') ?? 0) + 1;
     return null;
   }
+
+  bool _isKnownNoun(String value) => _nouns.contains(_choice(value)) || _wordType(value) == WordType.noun;
+
+  bool _isKnownVerb(String value) => _verbs.contains(_choice(value)) || _wordType(value) == WordType.verb;
+
+  bool _isKnownAdjective(String value) => _adjectives.contains(_choice(value)) || _wordType(value) == WordType.adjective;
+
+  WordType? _wordType(String value) {
+    final normalized = _choice(value);
+    for (final entry in PrimarySchoolWordData.dictionary.values) {
+      if (_choice(entry.word) == normalized) return entry.wordType;
+    }
+    return null;
+  }
+
+  String? _knownRhymePartner(String word) {
+    final normalized = _choice(word);
+    for (final pair in PrimarySchoolWordData.rhymePairs) {
+      if (pair.length < 2) continue;
+      if (_choice(pair.first) == normalized) return pair.last;
+      if (_choice(pair.last) == normalized) return pair.first;
+    }
+    return null;
+  }
+
+  String _stripPunctuation(String value) => value.trim().replaceAll(RegExp(r'[„“".:;!,]+$'), '').trim();
 
   bool _containsChoice(List<String> choices, String answer) => choices.any((c) => _choice(c) == _choice(answer));
 

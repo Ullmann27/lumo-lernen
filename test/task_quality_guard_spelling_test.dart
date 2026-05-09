@@ -82,4 +82,51 @@ void main() {
 
     expect(guard.validate(task), isTrue);
   });
+
+  test('rejects observed wrong end-sound task with Hund as t answer', () {
+    const task = LumoTask(
+      id: 'bad_end_sound_hund',
+      grade: 1,
+      subject: 'Deutsch',
+      unit: 'Endlaute',
+      prompt: 'Welches Wort endet mit t?',
+      choices: <String>['Hase', 'Mama', 'Hund'],
+      answer: 'Hund',
+      explanation: 'Sprich jedes Wort langsam.',
+    );
+
+    expect(guard.validate(task), isFalse);
+    expect(guard.problems(task), contains('answer_wrong_ending'));
+  });
+
+  test('accepts generated final-sound letter question', () {
+    const task = LumoTask(
+      id: 'good_final_sound',
+      grade: 1,
+      subject: 'Deutsch',
+      unit: 'Endlaute',
+      prompt: 'Mit welchem Laut endet Stift?',
+      choices: <String>['t', 'A', 'B'],
+      answer: 't',
+      explanation: 'Sprich Stift langsam. Der letzte Laut ist t.',
+    );
+
+    expect(guard.validate(task), isTrue);
+  });
+
+  test('rejects wrong article for known noun', () {
+    const task = LumoTask(
+      id: 'bad_article',
+      grade: 1,
+      subject: 'Deutsch',
+      unit: 'Artikel',
+      prompt: 'Welcher Artikel passt zu Schule?',
+      choices: <String>['der', 'die', 'das'],
+      answer: 'der',
+      explanation: 'Sprich Artikel und Wort zusammen.',
+    );
+
+    expect(guard.validate(task), isFalse);
+    expect(guard.problems(task), contains('article_answer_wrong_for_noun'));
+  });
 }
