@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
+import 'lumo_child_speech_normalizer.dart';
+
 /// Zentrales Voice-System fuer Lumo.
 ///
 /// Ziel:
@@ -216,7 +218,12 @@ class LumoVoice {
   }
 
   String _prepareHumanText(String input, VoiceStyle style) {
-    var text = input
+    // Erst Mathezeichen, Geld, Uhrzeit, Brueche, Emojis schoener machen.
+    // LumoChildSpeechNormalizer.forSpeech() macht aus '3 + 4 = ?' einen
+    // natuerlichen Satz: 'drei plus vier. Was kommt heraus?'
+    final beautified = LumoChildSpeechNormalizer.forSpeech(input);
+
+    var text = beautified
         .replaceAll('\n', '. ')
         .replaceAll('  ', ' ')
         .replaceAll('⭐', '')
