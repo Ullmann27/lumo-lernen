@@ -109,25 +109,21 @@ jobs:
           echo "short_sha=$SHORT_SHA" >> "$GITHUB_OUTPUT"
           ls -la dist/
 
-      # Backup-Pfad 1: GitHub Actions Artifact.
-      # Heinz findet die APK auch wenn der Release-Step fehlschlaegt:
-      # https://github.com/Ullmann27/lumo-lernen/actions
-      # -> Workflow-Run aufrufen -> Artifact 'lumo-apk-{run}' herunterladen
-      - name: Upload APK as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: lumo-apk-${{ github.run_number }}
-          path: dist/
-          retention-days: 30
-          if-no-files-found: error
+      # Quota-Hinweis: GitHub Actions Artifact wurde entfernt.
+      # Heinz' Repo hat die Artifact-Quota erreicht
+      # ('Failed to CreateArtifact: Artifact storage quota has been hit').
+      # Dieser Step blockierte den ganzen Workflow.
+      #
+      # Stattdessen: GitHub Release ist der einzige Ausgabepfad.
+      # Permanent-Link, kein Quota-Limit, public oder per Token zugaenglich.
 
-      # Backup-Pfad 2: GitHub Release.
+      # Hauptpfad: GitHub Release
       # Permanent-Link unter https://github.com/Ullmann27/lumo-lernen/releases
-      # continue-on-error damit Workflow gruen bleibt selbst wenn Release-API
-      # blockt (Repo-Settings, Branch-Protection etc.).
+      # OHNE continue-on-error: dieser Step MUSS funktionieren, weil er
+      # der einzige Auslieferungs-Pfad ist. Wenn er rot wird, sieht Heinz
+      # das sofort.
       - name: Publish GitHub Release
         id: publish_release
-        continue-on-error: true
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
@@ -169,19 +165,26 @@ jobs:
           echo "BUILD #${{ github.run_number }} ABGESCHLOSSEN"
           echo "═══════════════════════════════════════════════════"
           echo ""
-          echo "📦 ARTIFACT (immer verfuegbar):"
-          echo "   https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          echo "   -> Artifacts -> lumo-apk-${{ github.run_number }}"
-          echo ""
           if [ "${{ steps.publish_release.outcome }}" = "success" ]; then
-            echo "🚀 RELEASE (Direkt-Download):"
+            echo "🚀 RELEASE PUBLIZIERT:"
+            echo ""
+            echo "   Direkt zum neuen Build:"
             echo "   https://github.com/${{ github.repository }}/releases/tag/build-${{ github.run_number }}"
-            echo "   oder immer die neueste:"
+            echo ""
+            echo "   Immer aktuell:"
             echo "   https://github.com/${{ github.repository }}/releases/latest"
+            echo ""
+            echo "   APK-Dateien im Release:"
+            echo "     - Lumo-Lernen-latest.apk"
+            echo "     - Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk"
           else
-            echo "⚠️  RELEASE-Schritt hat nicht funktioniert."
-            echo "   Aber das Artifact oben ist verfuegbar."
-            echo "   Pruefe Repo-Settings -> Actions -> Workflow permissions:"
-            echo "   muss 'Read and write' sein."
+            echo "❌ RELEASE-Schritt hat NICHT funktioniert."
+            echo ""
+            echo "   Wahrscheinliche Ursache:"
+            echo "   Repo-Settings -> Actions -> General -> Workflow permissions"
+            echo "   muss 'Read and write permissions' sein."
+            echo ""
+            echo "   Direkter Settings-Link:"
+            echo "   https://github.com/${{ github.repository }}/settings/actions"
           fi
-          echo ""
+          echo "═══════════════════════════════════════════════════"

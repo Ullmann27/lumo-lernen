@@ -1,9 +1,20 @@
 name: Build Android Debug APK Artifact
 
+# QUOTA-HINWEIS: Dieser Workflow wurde frueher automatisch bei
+# jedem Push auf main ausgeloest. Heinz' Repo hat die Artifact-Quota
+# erreicht ('Failed to CreateArtifact: Artifact storage quota
+# has been hit'). Daher ist der Push-Trigger entfernt.
+#
+# Hauptpfad fuer Heinz' APK ist jetzt release-apk.yml -> GitHub Release:
+#   https://github.com/Ullmann27/lumo-lernen/releases/latest
+#
+# Dieser Workflow laesst sich nur noch MANUELL ausloesen, wenn die
+# Artifact-Quota wieder frei ist (laut GitHub alle 6-12 Stunden):
+#   GitHub -> Actions -> Build Android Debug APK Artifact
+#   -> Run workflow
+
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
 
 permissions:
   contents: read
