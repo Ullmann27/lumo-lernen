@@ -490,6 +490,22 @@ class LegacyLumoTaskAdapter {
       'sound_choice' => VisualType.none,
       'writing_line' => VisualType.none,
       'blitz_grid' => VisualType.none,
+      // Heinz' neue Templates (Mai 2026):
+      'number_line' => VisualType.numberLine,
+      'quantity_compare' => VisualType.quantityCompare,
+      'clock' => VisualType.clock,
+      'money_coins' => VisualType.money,
+      'shape_choice' => VisualType.shape,
+      'fraction_pizza' => VisualType.fractionPizza,
+      'bar_chart' => VisualType.barChart,
+      // Deutsch:
+      'rhyme_bubble' => VisualType.rhymeBubble,
+      'syllable_clap' => VisualType.syllableClap,
+      'word_family_tree' => VisualType.wordFamilyTree,
+      'sentence_blocks' => VisualType.sentenceBlocks,
+      'word_type_color' => VisualType.wordTypeColor,
+      'article_cards' => VisualType.articleCards,
+      'letters' => VisualType.none,
       _ => VisualType.none,
     };
   }

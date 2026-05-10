@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
+import 'lumo_premium_visuals.dart';
 import 'writing_task_renderer.dart';
 
 class AdaptiveTaskAnswer {
@@ -335,6 +336,18 @@ class _AdaptiveVisual extends StatelessWidget {
       VisualType.numberLine => _NumberLineVisual(task: task, picked: picked, solved: solved),
       VisualType.shape => _ShapeVisual(task: task, picked: picked, solved: solved),
       VisualType.syllables => _SyllableVisual(task: task),
+      // Heinz' neue Visuals (Mai 2026):
+      VisualType.quantityCompare => QuantityCompareVisual(task: task),
+      VisualType.clock => ClockFaceVisual(task: task),
+      VisualType.money => MoneyCoinsVisual(task: task),
+      VisualType.fractionPizza => FractionPizzaVisual(task: task),
+      VisualType.barChart => BarChartMiniVisual(task: task),
+      VisualType.rhymeBubble => RhymeBubbleVisual(task: task),
+      VisualType.syllableClap => SyllableClapVisual(task: task),
+      VisualType.wordFamilyTree => WordFamilyTreeVisual(task: task),
+      VisualType.sentenceBlocks => SentenceBlocksVisual(task: task),
+      VisualType.wordTypeColor => WordTypeColorVisual(task: task),
+      VisualType.articleCards => ArticleCardsVisual(task: task),
       _ => _SchoolbookFallbackVisual(task: task),
     };
   }

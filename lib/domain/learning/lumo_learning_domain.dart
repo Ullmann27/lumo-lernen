@@ -41,6 +41,16 @@ enum VisualType {
   money,
   syllables,
   writingPath,
+  // Neu fuer Heinz' erweiterte Templates (Mai 2026):
+  quantityCompare,
+  fractionPizza,
+  barChart,
+  rhymeBubble,
+  syllableClap,
+  wordFamilyTree,
+  sentenceBlocks,
+  wordTypeColor,
+  articleCards,
 }
 
 enum ErrorType {
