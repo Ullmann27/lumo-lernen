@@ -30,16 +30,29 @@ class LumoDailyMissionCard extends StatelessWidget {
       builder: (context, constraints) {
         final compact = constraints.maxWidth.isFinite && constraints.maxWidth < 500;
         return Container(
-          padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: const Color(0xFFF0E0CC)),
+            gradient: LinearGradient(
+              colors: [
+                Colors.white,
+                accent.withOpacity(0.06),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: accent.withOpacity(0.20), width: 1.4),
             boxShadow: [
               BoxShadow(
-                color: accent.withOpacity(0.10),
-                blurRadius: 18,
-                offset: const Offset(0, 6),
+                color: accent.withOpacity(0.18),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
+                spreadRadius: -3,
+              ),
+              BoxShadow(
+                color: Colors.white.withOpacity(0.65),
+                blurRadius: 6,
+                offset: const Offset(-2, -2),
                 spreadRadius: -2,
               ),
             ],
@@ -81,32 +94,84 @@ class _MissionMain extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 42,
-          height: 42,
-          decoration: BoxDecoration(color: const Color(0xFFFFE8DC), borderRadius: BorderRadius.circular(12)),
-          child: const Center(child: Text('🎯', style: TextStyle(fontSize: 22))),
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFFF7A2F).withOpacity(0.45),
+                blurRadius: 12,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: const Center(
+            child: Text(
+              '🎯',
+              style: TextStyle(fontSize: 26, height: 1.0),
+            ),
+          ),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 14),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
-              const SizedBox(height: 2),
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w900,
+                  color: LumoColors.ink900,
+                  letterSpacing: 0.1,
+                ),
+              ),
+              const SizedBox(height: 3),
               Row(
                 children: [
                   Expanded(
-                    child: Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoColors.ink500)),
+                    child: Text(
+                      subtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: LumoColors.ink500,
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(color: accent.withOpacity(0.12), borderRadius: BorderRadius.circular(99)),
-                    child: Text('$progressDone / $progressTotal', style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: accent)),
+                    padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: accent.withOpacity(0.16),
+                      borderRadius: BorderRadius.circular(99),
+                      border: Border.all(color: accent.withOpacity(0.30), width: 1.0),
+                    ),
+                    child: Text(
+                      '$progressDone / $progressTotal',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 11,
+                        fontWeight: FontWeight.w900,
+                        color: accent,
+                      ),
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 8),
               ClipRRect(
                 borderRadius: BorderRadius.circular(99),
                 child: TweenAnimationBuilder<double>(
@@ -115,7 +180,7 @@ class _MissionMain extends StatelessWidget {
                   curve: Curves.easeOutCubic,
                   builder: (context, v, _) => LinearProgressIndicator(
                     value: v,
-                    minHeight: 6,
+                    minHeight: 8,
                     backgroundColor: const Color(0xFFFFEFE0),
                     valueColor: AlwaysStoppedAnimation(accent),
                   ),
