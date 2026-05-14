@@ -3,6 +3,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/app_settings.dart';
+import '../../core/app_update_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/settings_repository.dart';
@@ -28,6 +29,10 @@ class _SettingsContentState extends State<SettingsContent> {
   bool _checkingHealth = false;
   bool _runningSmokeTest = false;
   LumoAiHealthStatus? _lastHealth;
+  // Update-Check-Status (Codex hat AppUpdateService gebaut, jetzt verdrahtet)
+  AppUpdateInfo? _updateInfo;
+  bool _checkingUpdate = false;
+  String? _updateError;
   LumoAiSmokeTestResult? _lastSmokeTest;
   /// Live-URL aus dem Eingabefeld. Wird bei jedem Tastendruck
   /// aktualisiert, damit "Server pruefen" gegen die wirklich
@@ -157,6 +162,43 @@ class _SettingsContentState extends State<SettingsContent> {
     );
   }
 
+  /// Manuelle Pruefung ob ein neueres Lumo-Lernen Release verfuegbar ist.
+  /// Greift auf AppUpdateService zu (von Codex gebaut), der nur
+  /// vertrauenswuerdige github.com URLs zulaesst.
+  Future<void> _checkForUpdate() async {
+    if (_checkingUpdate) return;
+    setState(() {
+      _checkingUpdate = true;
+      _updateError = null;
+    });
+    try {
+      final service = const AppUpdateService();
+      final info = await service.checkLatest();
+      if (!mounted) return;
+      setState(() {
+        _updateInfo = info;
+        _updateError = info.error;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _updateError = 'Update-Pruefung fehlgeschlagen: $e');
+    } finally {
+      if (mounted) setState(() => _checkingUpdate = false);
+    }
+  }
+
+  Future<void> _openUpdate() async {
+    final info = _updateInfo;
+    if (info == null) return;
+    final ok = await const AppUpdateService().openUpdate(info);
+    if (!mounted) return;
+    if (!ok) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Download konnte nicht geoeffnet werden.')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = widget.appState.state;
@@ -168,6 +210,14 @@ class _SettingsContentState extends State<SettingsContent> {
           subtitle: 'Sichere Einstellungen für ${state.childName}, Klasse ${state.grade}.',
           emoji: '⚙️',
           accent: LumoColors.ink700,
+        ),
+        const SizedBox(height: 18),
+        _AppUpdateCard(
+          info: _updateInfo,
+          checking: _checkingUpdate,
+          error: _updateError,
+          onCheck: _checkForUpdate,
+          onDownload: _openUpdate,
         ),
         const SizedBox(height: 18),
         ParentReportCard(appState: widget.appState),
@@ -912,6 +962,183 @@ class _DiagnosticsVersionLabel extends StatelessWidget {
           color: Color(0xFF94A3B8),
           fontWeight: FontWeight.w700,
         ),
+      ),
+    );
+  }
+}
+
+/// Premium-Update-Karte oben im Elternbereich.
+/// Codex hat AppUpdateService gebaut, diese Karte zeigt das Ergebnis an
+/// und ermoeglicht manuellen Check + direkten Download.
+class _AppUpdateCard extends StatelessWidget {
+  const _AppUpdateCard({
+    required this.info,
+    required this.checking,
+    required this.error,
+    required this.onCheck,
+    required this.onDownload,
+  });
+
+  final AppUpdateInfo? info;
+  final bool checking;
+  final String? error;
+  final VoidCallback onCheck;
+  final VoidCallback onDownload;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasUpdate = info?.available == true;
+    // Wenn Update verfuegbar: gruener Akzent. Sonst: orange wie der Rest.
+    final accent = hasUpdate ? const Color(0xFF22C55E) : LumoColors.orange;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.white,
+            accent.withOpacity(0.06),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: accent.withOpacity(0.22), width: 1.4),
+        boxShadow: [
+          BoxShadow(
+            color: accent.withOpacity(0.16),
+            blurRadius: 18,
+            offset: const Offset(0, 6),
+            spreadRadius: -3,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: hasUpdate
+                        ? const [Color(0xFF34D399), Color(0xFF10B981)]
+                        : const [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [
+                    BoxShadow(color: accent.withOpacity(0.35), blurRadius: 10, offset: const Offset(0, 4)),
+                  ],
+                ),
+                child: Text(
+                  hasUpdate ? '🎁' : '📦',
+                  style: const TextStyle(fontSize: 22),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      hasUpdate ? 'Neue Version verfügbar' : 'App-Version',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900,
+                        color: LumoColors.ink900,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      info == null
+                          ? 'Aktuell: Build ${AppUpdateService.currentBuildNumber} (${AppUpdateService.currentVersionName})'
+                          : hasUpdate
+                              ? 'Build ${info!.latestBuildNumber} ist neuer als deine Build ${info!.currentBuildNumber}.'
+                              : 'Du hast die neueste Version (Build ${info!.currentBuildNumber}).',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: LumoColors.ink500,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          if (error != null) ...[
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFEF2F2),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: const Color(0xFFFCA5A5)),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('⚠️', style: TextStyle(fontSize: 14)),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      error!,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFFB91C1C),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              if (hasUpdate)
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: onDownload,
+                    style: FilledButton.styleFrom(
+                      backgroundColor: accent,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    icon: const Icon(Icons.download_rounded, size: 18),
+                    label: const Text('Herunterladen'),
+                  ),
+                ),
+              if (hasUpdate) const SizedBox(width: 10),
+              Expanded(
+                flex: hasUpdate ? 0 : 1,
+                child: OutlinedButton.icon(
+                  onPressed: checking ? null : onCheck,
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    side: BorderSide(color: accent.withOpacity(0.40)),
+                  ),
+                  icon: checking
+                      ? const SizedBox(
+                          width: 14,
+                          height: 14,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.refresh_rounded, size: 18),
+                  label: Text(checking ? 'Prüfe…' : 'Auf Update prüfen'),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

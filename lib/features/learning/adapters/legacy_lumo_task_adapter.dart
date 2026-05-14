@@ -568,6 +568,100 @@ class LegacyLumoTaskAdapter {
       };
     }
 
+    // Heinz' neue Visuals (Mai 2026): jeweils Daten aus Prompt extrahieren,
+    // damit die Visuals nicht auf 12:00 / 1/2 / leeres Diagramm zurueckfallen.
+
+    if (task.visual == 'clock') {
+      // Stunde X und Minute Y im Prompt? -> Datenpunkt
+      final hourMin = RegExp(r'Stunde\s+(\d{1,2}).*?Minute\s+(\d{1,2})').firstMatch(task.prompt);
+      if (hourMin != null) {
+        return <String, Object?>{
+          'hour': int.tryParse(hourMin.group(1)!) ?? 12,
+          'minute': int.tryParse(hourMin.group(2)!) ?? 0,
+        };
+      }
+      // Alternativ Antwortmuster "7:30 Uhr" oder "07:30"
+      final answerTime = RegExp(r'(\d{1,2}):(\d{2})').firstMatch(task.answer);
+      if (answerTime != null) {
+        return <String, Object?>{
+          'hour': int.tryParse(answerTime.group(1)!) ?? 12,
+          'minute': int.tryParse(answerTime.group(2)!) ?? 0,
+        };
+      }
+      return const <String, Object?>{};
+    }
+
+    if (task.visual == 'fraction_pizza') {
+      // 1/2 im Prompt oder in der Antwort
+      final fracInPrompt = RegExp(r'(\d+)\s*/\s*(\d+)').firstMatch(task.prompt);
+      if (fracInPrompt != null) {
+        return <String, Object?>{
+          'numerator': int.tryParse(fracInPrompt.group(1)!) ?? 1,
+          'denominator': int.tryParse(fracInPrompt.group(2)!) ?? 2,
+        };
+      }
+      // "Was ist die Hälfte von 8?" -> 1/2
+      if (task.prompt.toLowerCase().contains('hälfte') || task.prompt.toLowerCase().contains('haelfte')) {
+        return <String, Object?>{'numerator': 1, 'denominator': 2};
+      }
+      if (task.prompt.toLowerCase().contains('viertel')) {
+        return <String, Object?>{'numerator': 1, 'denominator': 4};
+      }
+      if (task.prompt.toLowerCase().contains('drittel')) {
+        return <String, Object?>{'numerator': 1, 'denominator': 3};
+      }
+      return const <String, Object?>{};
+    }
+
+    if (task.visual == 'money_coins' || task.visual == 'money' || task.visual == 'money_change') {
+      // Euro-Betrag im Prompt
+      final euro = RegExp(r'(\d+)\s*(?:[.,](\d{1,2}))?\s*€').firstMatch(task.prompt);
+      if (euro != null) {
+        final e = int.tryParse(euro.group(1)!) ?? 0;
+        final c = int.tryParse(euro.group(2) ?? '0') ?? 0;
+        return <String, Object?>{'cents': e * 100 + c, 'amount': e * 100 + c};
+      }
+      return const <String, Object?>{};
+    }
+
+    if (task.visual == 'quantity_compare' || task.visual == 'quantity') {
+      // Zwei Zahlen im Prompt vergleichen
+      final nums = RegExp(r'\d+').allMatches(task.prompt).map((m) => int.parse(m.group(0)!)).toList();
+      if (nums.length >= 2) {
+        return <String, Object?>{'left': nums[0], 'right': nums[1]};
+      }
+      return const <String, Object?>{};
+    }
+
+    if (task.visual == 'rhyme_bubble') {
+      // Wort aus "reimt sich auf X" oder "auf X"
+      final match = RegExp(r'(?:reimt sich auf|auf|wie)\s+(\w+)', caseSensitive: false).firstMatch(task.prompt);
+      final word = match?.group(1)?.trim();
+      return <String, Object?>{
+        if (word != null) 'word': word,
+      };
+    }
+
+    if (task.visual == 'syllable_clap') {
+      // Aus 'Wie viele Silben hat X?'
+      final match = RegExp(r'hat\s+([A-Za-zÄÖÜäöüß]+)').firstMatch(task.prompt);
+      final word = match?.group(1)?.trim();
+      final syllables = word == null ? null : PrimarySchoolWordData.syllablesFor(word);
+      return <String, Object?>{
+        if (word != null) 'word': word,
+        if (syllables != null) 'syllables': syllables,
+      };
+    }
+
+    if (task.visual == 'word_family_tree') {
+      // "Welche Wörter gehören zu fahren?"
+      final match = RegExp(r'zu\s+([A-Za-zÄÖÜäöüß]+)').firstMatch(task.prompt);
+      final root = match?.group(1)?.trim();
+      return <String, Object?>{
+        if (root != null) 'root': root,
+      };
+    }
+
     return const <String, Object?>{};
   }
 

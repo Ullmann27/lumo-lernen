@@ -398,9 +398,11 @@ class BarChartMiniVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
     final raw = data['bars'];
-    final bars = raw is List
+    final extracted = raw is List
         ? raw.map((e) => _readInt(e) ?? 0).toList(growable: false)
         : _digitsFromPrompt(task.prompt);
+    // Fallback wenn keine Daten: kleines Demo-Diagramm zeigen statt leere Karte.
+    final bars = extracted.isEmpty ? <int>[3, 5, 2, 4] : extracted;
     final maxValue = bars.fold<int>(1, (a, b) => b > a ? b : a);
     final colors = <Color>[
       const Color(0xFFFF7A2F),
