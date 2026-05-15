@@ -35,7 +35,7 @@ class WritingTaskRenderer extends StatefulWidget {
 
 class _WritingTaskRendererState extends State<WritingTaskRenderer> {
   final _templates = const ExpandedWritingTemplateRepository();
-  List<Stroke> _strokes = const <Stroke>[];
+  List<Stroke> _strokes = <Stroke>[];
   WritingEvaluation? _evaluation;
 
   String get _target {
@@ -125,11 +125,20 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
             ),
           ],
           const SizedBox(height: 16),
-          LumoWritingCanvas(
+          // Statt inline-Canvas: Tipp-Karte die ein Vollbild-Modal oeffnet.
+          // Verhindert den Scroll-Konflikt: im Modal gibt es keinen Scroll
+          // dahinter, das Kind kann frei zeichnen.
+          _CanvasLaunchCard(
             template: template,
             mode: _mode,
-            onChanged: (strokes) => _strokes = strokes,
-            onEvaluated: (next) => setState(() => _evaluation = next),
+            existingStrokes: _strokes,
+            onResult: (strokes, evaluation) {
+              if (!mounted) return;
+              setState(() {
+                _strokes = strokes;
+                _evaluation = evaluation;
+              });
+            },
           ),
         ]),
       ),
@@ -273,6 +282,260 @@ class _WritingFeedbackCard extends StatelessWidget {
           ),
         ),
       ]),
+    );
+  }
+}
+
+/// Tipp-Karte die ein Vollbild-Schreib-Modal oeffnet.
+/// Loest den Scroll-Konflikt: solange das Modal offen ist, gibt es
+/// keinen Scroll dahinter, das Kind kann frei zeichnen - horizontal
+/// wie vertikal - ohne dass der Bildschirm wegspringt.
+class _CanvasLaunchCard extends StatelessWidget {
+  const _CanvasLaunchCard({
+    required this.template,
+    required this.mode,
+    required this.existingStrokes,
+    required this.onResult,
+  });
+
+  final WritingTemplate template;
+  final WritingMode mode;
+  final List<Stroke> existingStrokes;
+  final void Function(List<Stroke> strokes, WritingEvaluation? evaluation) onResult;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasStrokes = existingStrokes.isNotEmpty;
+    return GestureDetector(
+      onTap: () => _openModal(context),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: hasStrokes
+                ? const [Color(0xFFDCFCE7), Color(0xFFBBF7D0)]
+                : const [Color(0xFFFFF8DC), Color(0xFFFFE08A)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(LumoRadius.lg),
+          border: Border.all(
+            color: hasStrokes ? const Color(0xFF22C55E) : LumoColors.orange,
+            width: 1.6,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: (hasStrokes ? const Color(0xFF22C55E) : LumoColors.orange).withOpacity(0.25),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+              spreadRadius: -3,
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 56,
+              height: 56,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFFF7A2F).withOpacity(0.4),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Text(
+                hasStrokes ? '✏️' : '✋',
+                style: const TextStyle(fontSize: 28, height: 1.0),
+              ),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    hasStrokes ? 'Schreiben fertig?' : 'Hier tippen zum Schreiben',
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 17,
+                      fontWeight: FontWeight.w900,
+                      color: LumoColors.ink900,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    hasStrokes
+                        ? 'Antippen um nachzubessern oder zu bestätigen.'
+                        : 'Großer Mal-Bildschirm öffnet sich.',
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: LumoColors.ink500,
+                      height: 1.3,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.arrow_forward_rounded, color: LumoColors.orange, size: 28),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openModal(BuildContext context) async {
+    final result = await Navigator.of(context).push<_WritingModalResult>(
+      MaterialPageRoute<_WritingModalResult>(
+        fullscreenDialog: true,
+        builder: (_) => _WritingFullscreenModal(
+          template: template,
+          mode: mode,
+          initialStrokes: existingStrokes,
+        ),
+      ),
+    );
+    if (result != null) {
+      onResult(result.strokes, result.evaluation);
+    }
+  }
+}
+
+class _WritingModalResult {
+  const _WritingModalResult({required this.strokes, required this.evaluation});
+  final List<Stroke> strokes;
+  final WritingEvaluation? evaluation;
+}
+
+/// Vollbild-Schreib-Modal.
+/// Kein Scroll dahinter, also keine Konflikte mit Pan-Gesten.
+/// Das Kind kann frei in beide Richtungen zeichnen.
+class _WritingFullscreenModal extends StatefulWidget {
+  const _WritingFullscreenModal({
+    required this.template,
+    required this.mode,
+    required this.initialStrokes,
+  });
+
+  final WritingTemplate template;
+  final WritingMode mode;
+  final List<Stroke> initialStrokes;
+
+  @override
+  State<_WritingFullscreenModal> createState() => _WritingFullscreenModalState();
+}
+
+class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
+  List<Stroke> _strokes = <Stroke>[];
+  WritingEvaluation? _evaluation;
+
+  @override
+  void initState() {
+    super.initState();
+    _strokes = List<Stroke>.from(widget.initialStrokes);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFFFFBF0),
+      appBar: AppBar(
+        backgroundColor: LumoColors.orange,
+        foregroundColor: Colors.white,
+        title: Text(
+          'Schreibe: ${widget.template.symbol}',
+          style: const TextStyle(
+            fontFamily: 'Nunito',
+            fontWeight: FontWeight.w900,
+            fontSize: 18,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop<_WritingModalResult>(
+              _WritingModalResult(strokes: _strokes, evaluation: _evaluation),
+            ),
+            child: const Text(
+              'Fertig',
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(LumoRadius.md),
+                  border: Border.all(color: LumoColors.orange.withOpacity(0.4), width: 1.4),
+                ),
+                child: Row(
+                  children: [
+                    const Text('✏️', style: TextStyle(fontSize: 24)),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        'Schreibe "${widget.template.symbol}". Du kannst frei zeichnen, der Bildschirm bewegt sich nicht mehr.',
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: LumoColors.ink700,
+                          height: 1.35,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 14),
+              // Canvas mit grossem Bereich. Keine Scroll-Konflikte mehr,
+              // weil das Modal keinen aeusseren Scroll hat.
+              Expanded(
+                child: LayoutBuilder(
+                  builder: (ctx, constraints) {
+                    final available = constraints.maxHeight.isFinite
+                        ? constraints.maxHeight
+                        : 460.0;
+                    // 70px Puffer fuer Zurueck/Neustart-Buttons + Spacer
+                    final canvasHeight = (available - 70).clamp(220.0, 1200.0);
+                    return LumoWritingCanvas(
+                      template: widget.template,
+                      mode: widget.mode,
+                      height: canvasHeight,
+                      onChanged: (strokes) => _strokes = strokes,
+                      onEvaluated: (next) => setState(() => _evaluation = next),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
