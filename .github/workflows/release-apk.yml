@@ -86,7 +86,14 @@ jobs:
 
       - name: Build debug APK
         run: |
-          flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
+          # Build-Nummer und Version-Name werden via --dart-define an die App weitergegeben.
+          # AppUpdateService liest currentBuildNumber aus int.fromEnvironment('LUMO_BUILD_NUMBER').
+          # Damit kennt jede installierte APK ihre eigene Build-Nummer und kann sich mit
+          # github.com/releases/latest vergleichen.
+          flutter build apk --debug \
+            --build-number "$GITHUB_RUN_NUMBER" \
+            --dart-define=LUMO_BUILD_NUMBER="$GITHUB_RUN_NUMBER" \
+            --dart-define=LUMO_VERSION_NAME=0.9.0
           find build -type f -name "*.apk" -print
 
       - name: Prepare APK for release

@@ -33,6 +33,37 @@ void main() {
       }
     });
 
+    test('no template ever produces technical "answer_N" filler choices', () {
+      // D-Fix: _smartFallback hat das alte 'answer_2'/'answer_3'-Padding ersetzt.
+      // Diese Stress-Iteration sucht ueber alle Templates und 50 Seeds.
+      for (final template in MathTaskTemplates.templates) {
+        for (var seed = 1; seed <= 50; seed++) {
+          final task = template.concretize(seed * 13);
+          for (final choice in task.choices) {
+            expect(
+              choice.contains('_'),
+              isFalse,
+              reason: 'Technische Filler-Choice "$choice" in ${template.id} seed $seed',
+            );
+          }
+        }
+      }
+    });
+
+    test('no template produces duplicate choices over many seeds', () {
+      // D-Fix Regression-Test: stresstest fuer Duplicate-Choices.
+      for (final template in MathTaskTemplates.templates) {
+        for (var seed = 1; seed <= 100; seed++) {
+          final task = template.concretize(seed * 7);
+          expect(
+            task.choices.toSet().length,
+            equals(task.choices.length),
+            reason: 'Doppelte Choice in ${template.id} seed $seed: ${task.choices}',
+          );
+        }
+      }
+    });
+
     test('grade 1 generated numeric answers are age-appropriate and non-negative', () {
       final factory = ExerciseFactory(seed: 11);
       for (var i = 0; i < 60; i++) {
