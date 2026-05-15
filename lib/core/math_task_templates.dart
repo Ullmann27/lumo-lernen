@@ -237,8 +237,13 @@ class MathTaskTemplate {
       if (choice != answer && !choices.contains(choice)) choices.add(choice);
       if (choices.length == 4) break;
     }
+    // Wenn weniger als 3 Choices: paedagogisch sinnvolle Padding-Werte hinzufuegen.
+    // Vorher: 'answer_2', 'answer_3' (sah technisch und kaputt aus fuer Kinder).
+    // Nachher: bei Zahl-Antworten naheliegende Nachbarzahlen, sonst sinnvolle Alternativen.
     while (choices.length < 3) {
-      choices.add('${answer}_${choices.length}');
+      final fallback = _smartFallback(answer, choices);
+      if (fallback == null) break;
+      choices.add(fallback);
     }
     return MathConcreteTask(
       unit: unit,
@@ -250,6 +255,30 @@ class MathTaskTemplate {
       difficulty: grade,
       promptPattern: promptPattern,
     );
+  }
+
+  /// Findet eine sinnvolle Padding-Antwort, die noch nicht in choices ist.
+  /// Bei Zahlen: Nachbar-Zahlen. Bei Worten: einfache Alternativen.
+  String? _smartFallback(String answer, List<String> existing) {
+    // Versuche die Antwort als Zahl zu parsen (mit oder ohne Einheit)
+    final intMatch = RegExp(r'^-?\d+').firstMatch(answer);
+    if (intMatch != null) {
+      final base = int.tryParse(intMatch.group(0)!) ?? 0;
+      final suffix = answer.substring(intMatch.end);
+      for (final delta in const <int>[1, -1, 2, -2, 3, -3, 5, 10]) {
+        final candidate = '${base + delta}$suffix';
+        if (base + delta < 0) continue;
+        if (!existing.contains(candidate) && candidate != answer) {
+          return candidate;
+        }
+      }
+    }
+    // Wort-Fallbacks: einfache Pool-Alternativen
+    const wordPool = <String>['ja', 'nein', 'gleich', 'mehr', 'weniger', 'links', 'rechts'];
+    for (final w in wordPool) {
+      if (!existing.contains(w) && w != answer) return w;
+    }
+    return null;
   }
 }
 

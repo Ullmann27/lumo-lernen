@@ -56,6 +56,12 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
     final progress = widget.starsTotal > 0
         ? (widget.starsCollected / widget.starsTotal).clamp(0.0, 1.0)
         : 0.0;
+    // Auf sehr kleinen Geraeten (z.B. 320dp Width) wird die Karte sonst zu eng.
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isCompact = screenWidth < 360;
+    final illustrationSize = isCompact ? 52.0 : 60.0;
+    final illustrationFont = isCompact ? 24.0 : 28.0;
+    final subtitleMaxLines = isCompact ? 2 : 3;
     return GestureDetector(
       onTapDown: (_) => setState(() => _pressed = true),
       onTapUp: (_) => setState(() => _pressed = false),
@@ -155,7 +161,7 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                   Expanded(
                     child: Text(
                       widget.subtitle,
-                      maxLines: 3,
+                      maxLines: subtitleMaxLines,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontFamily: 'Nunito',
@@ -169,8 +175,8 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                   const SizedBox(width: 8),
                   // Illustration auf weichem Pastell-Kreis
                   Container(
-                    width: 60,
-                    height: 60,
+                    width: illustrationSize,
+                    height: illustrationSize,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       gradient: RadialGradient(
@@ -192,7 +198,7 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                     child: Text(
                       widget.illustrationEmoji,
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: illustrationFont,
                         fontWeight: FontWeight.w900,
                         color: widget.accent,
                         height: 1.0,

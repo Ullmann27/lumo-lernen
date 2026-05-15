@@ -614,8 +614,8 @@ class LegacyLumoTaskAdapter {
     }
 
     if (task.visual == 'money_coins' || task.visual == 'money' || task.visual == 'money_change') {
-      // Euro-Betrag im Prompt
-      final euro = RegExp(r'(\d+)\s*(?:[.,](\d{1,2}))?\s*€').firstMatch(task.prompt);
+      // Euro-Betrag im Prompt - akzeptiert '1,50€', '1,50 Euro', '1.50 EUR'
+      final euro = RegExp(r'(\d+)\s*(?:[.,](\d{1,2}))?\s*(?:€|Euro|EUR)', caseSensitive: false).firstMatch(task.prompt);
       if (euro != null) {
         final e = int.tryParse(euro.group(1)!) ?? 0;
         final c = int.tryParse(euro.group(2) ?? '0') ?? 0;
@@ -634,11 +634,12 @@ class LegacyLumoTaskAdapter {
     }
 
     if (task.visual == 'rhyme_bubble') {
-      // Wort aus "reimt sich auf X" oder "auf X"
-      final match = RegExp(r'(?:reimt sich auf|auf|wie)\s+(\w+)', caseSensitive: false).firstMatch(task.prompt);
+      // Wort aus "reimt sich auf X" - NUR diese Formulierung erlauben,
+      // damit 'auf das Bild schauen' nicht 'das' als Reim-Wort extrahiert.
+      final match = RegExp(r'reimt sich auf\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false).firstMatch(task.prompt);
       final word = match?.group(1)?.trim();
       return <String, Object?>{
-        if (word != null) 'word': word,
+        if (word != null && word.isNotEmpty) 'word': word,
       };
     }
 

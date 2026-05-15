@@ -167,6 +167,7 @@ class _SettingsContentState extends State<SettingsContent> {
   /// vertrauenswuerdige github.com URLs zulaesst.
   Future<void> _checkForUpdate() async {
     if (_checkingUpdate) return;
+    if (!mounted) return;
     setState(() {
       _checkingUpdate = true;
       _updateError = null;

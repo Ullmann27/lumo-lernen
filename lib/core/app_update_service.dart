@@ -30,8 +30,13 @@ class AppUpdateInfo {
 class AppUpdateService {
   const AppUpdateService();
 
-  static const int currentBuildNumber = 9;
-  static const String currentVersionName = '0.8.0';
+  /// Build-Nummer wird zur Compile-Zeit ueber --dart-define gesetzt.
+  /// Der Release-Workflow uebergibt:
+  ///   flutter build apk --dart-define=LUMO_BUILD_NUMBER=$GITHUB_RUN_NUMBER
+  ///                     --dart-define=LUMO_VERSION_NAME=0.8.0
+  /// Default 0 / '0.0.0' damit Dev-Builds als 'aelter als alles' gelten.
+  static const int currentBuildNumber = int.fromEnvironment('LUMO_BUILD_NUMBER', defaultValue: 0);
+  static const String currentVersionName = String.fromEnvironment('LUMO_VERSION_NAME', defaultValue: '0.0.0');
   static final Uri latestReleaseApi = Uri.parse(
     'https://api.github.com/repos/Ullmann27/lumo-lernen/releases/tags/lumo-lernen-debug-latest',
   );
@@ -40,12 +45,36 @@ class AppUpdateService {
   );
 
   Future<AppUpdateInfo> checkLatest() async {
+    // Manuelles Redirect-Following: jedes Redirect-Ziel wird gegen die
+    // Whitelist geprueft. Damit kann ein boeswillig manipulierter
+    // 302-Location-Header NICHT auf eine fremde Domain umleiten.
     final client = HttpClient()..connectionTimeout = const Duration(seconds: 8);
+    client.autoUncompress = true;
     try {
       final request = await client.getUrl(latestReleaseApi);
+      request.followRedirects = false;
       request.headers.set(HttpHeaders.acceptHeader, 'application/vnd.github+json');
       request.headers.set(HttpHeaders.userAgentHeader, 'Lumo-Lernen-App-Update-Checker');
-      final response = await request.close().timeout(const Duration(seconds: 12));
+      HttpClientResponse response = await request.close().timeout(const Duration(seconds: 12));
+
+      // Bis zu 3 Redirects manuell folgen, jedes Mal Whitelist pruefen.
+      var redirectCount = 0;
+      while (response.isRedirect && redirectCount < 3) {
+        final location = response.headers.value(HttpHeaders.locationHeader);
+        if (location == null) break;
+        final redirectTarget = _trustedUri(location);
+        if (redirectTarget == null) {
+          return _fallbackInfo(error: 'Update-Pruefung blockiert: unsicheres Redirect-Ziel.');
+        }
+        await response.drain<void>();
+        final nextRequest = await client.getUrl(redirectTarget);
+        nextRequest.followRedirects = false;
+        nextRequest.headers.set(HttpHeaders.acceptHeader, 'application/vnd.github+json');
+        nextRequest.headers.set(HttpHeaders.userAgentHeader, 'Lumo-Lernen-App-Update-Checker');
+        response = await nextRequest.close().timeout(const Duration(seconds: 12));
+        redirectCount++;
+      }
+
       final body = await response.transform(utf8.decoder).join();
 
       if (response.statusCode < 200 || response.statusCode >= 300) {

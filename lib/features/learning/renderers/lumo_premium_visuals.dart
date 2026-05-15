@@ -27,6 +27,16 @@ List<int> _digitsFromPrompt(String prompt) {
   return regex.allMatches(prompt).map((m) => int.parse(m.group(0)!)).toList(growable: false);
 }
 
+/// Sichere Extraktion des letzten Worts aus einem Prompt.
+/// Crash-frei bei leerem oder reinem Whitespace.
+String _safeLastWord(String prompt) {
+  final trimmed = prompt.trim();
+  if (trimmed.isEmpty) return '';
+  final words = trimmed.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList(growable: false);
+  if (words.isEmpty) return '';
+  return words.last;
+}
+
 /// Premium-Hintergrund fuer Visual-Karten.
 BoxDecoration _stageDecoration(Color tint) => BoxDecoration(
       gradient: LinearGradient(
@@ -401,8 +411,29 @@ class BarChartMiniVisual extends StatelessWidget {
     final extracted = raw is List
         ? raw.map((e) => _readInt(e) ?? 0).toList(growable: false)
         : _digitsFromPrompt(task.prompt);
-    // Fallback wenn keine Daten: kleines Demo-Diagramm zeigen statt leere Karte.
-    final bars = extracted.isEmpty ? <int>[3, 5, 2, 4] : extracted;
+    // Bei leerem Datensatz Mini-Hinweis statt erfundene Demo-Werte zeigen.
+    // Demo-Werte wuerden die Aufgabe verfaelschen.
+    if (extracted.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
+        decoration: _stageDecoration(LumoColors.blue),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Text('📊', style: TextStyle(fontSize: 36)),
+              SizedBox(height: 8),
+              Text(
+                'Schau die Aufgabe an und überlege die Zahlen.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w700, color: LumoColors.ink500),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    final bars = extracted;
     final maxValue = bars.fold<int>(1, (a, b) => b > a ? b : a);
     final colors = <Color>[
       const Color(0xFFFF7A2F),
@@ -476,7 +507,9 @@ class RhymeBubbleVisual extends StatelessWidget {
     final rhymes = raw is List
         ? raw.map((e) => e.toString()).toList(growable: false)
         : <String>[];
-    final word = data['word']?.toString() ?? task.parameters['word']?.toString() ?? task.prompt.split(' ').last;
+    // Sicheres Wort-Extraktion: leerer Prompt -> leerer String, kein Crash
+    final fromPayload = data['word']?.toString() ?? task.parameters['word']?.toString();
+    final word = fromPayload ?? _safeLastWord(task.prompt);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: _stageDecoration(LumoColors.purple),
