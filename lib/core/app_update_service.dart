@@ -37,11 +37,15 @@ class AppUpdateService {
   /// Default 0 / '0.0.0' damit Dev-Builds als 'aelter als alles' gelten.
   static const int currentBuildNumber = int.fromEnvironment('LUMO_BUILD_NUMBER', defaultValue: 0);
   static const String currentVersionName = String.fromEnvironment('LUMO_VERSION_NAME', defaultValue: '0.0.0');
+  /// GitHub-API fuer das neueste Release.
+  /// /releases/latest ist robust gegen Tag-Umbenennungen und
+  /// funktioniert auch wenn der Workflow andere Tag-Namen vergibt.
+  /// Vorher: /releases/tags/lumo-lernen-debug-latest -> 404 wenn Tag nicht existiert.
   static final Uri latestReleaseApi = Uri.parse(
-    'https://api.github.com/repos/Ullmann27/lumo-lernen/releases/tags/lumo-lernen-debug-latest',
+    'https://api.github.com/repos/Ullmann27/lumo-lernen/releases/latest',
   );
   static final Uri fallbackReleaseUrl = Uri.parse(
-    'https://github.com/Ullmann27/lumo-lernen/releases/tag/lumo-lernen-debug-latest',
+    'https://github.com/Ullmann27/lumo-lernen/releases/latest',
   );
 
   Future<AppUpdateInfo> checkLatest() async {

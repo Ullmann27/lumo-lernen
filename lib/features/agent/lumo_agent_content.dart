@@ -87,7 +87,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
         if (!mounted) return;
         setState(() {
           _speechReady = false;
-          _speechError = 'Spracherkennung ist auf diesem Gerät nicht verfügbar.';
+          _speechError = 'Mikrofon klappt auf diesem Gerät nicht. Du kannst Lumo aber tippen.';
         });
         return;
       }
@@ -435,6 +435,8 @@ class _AnswerBubble extends StatelessWidget {
     switch (source) {
       case 'proxy':
         return 'ChatGPT über Lumo-Proxy';
+      case 'local_ready':
+        return 'Lumo (bereit)';
       case 'local_companion':
         return 'Lumo (lokal)';
       case 'proxy_timeout':
@@ -444,7 +446,8 @@ class _AnswerBubble extends StatelessWidget {
       case 'local_policy':
         return 'Lumo (Schutzfilter)';
       default:
-        return source.isEmpty ? 'Lumo' : source;
+        // Niemals interne Codes anzeigen - immer kindgerechter Fallback.
+        return 'Lumo';
     }
   }
 
@@ -574,8 +577,30 @@ class _QuestionInput extends StatelessWidget {
           Text(statusText, style: LumoTextStyles.caption.copyWith(color: listening ? LumoColors.orange : LumoColors.ink500, fontWeight: FontWeight.w800)),
         ]),
         if (speechError != null) ...[
-          const SizedBox(height: 6),
-          Text(speechError!, style: LumoTextStyles.caption.copyWith(color: Colors.redAccent, fontWeight: FontWeight.w800)),
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF7ED),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: const Color(0xFFFFD9B3), width: 1.0),
+            ),
+            child: Row(
+              children: [
+                const Text('🎤', style: TextStyle(fontSize: 14)),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    speechError!,
+                    style: LumoTextStyles.caption.copyWith(
+                      color: const Color(0xFF92400E),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ]),
     );

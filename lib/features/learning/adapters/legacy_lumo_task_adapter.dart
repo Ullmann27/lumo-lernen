@@ -128,7 +128,27 @@ class LegacyLumoTaskAdapter {
     if (task.unit == 'Wort-Bild schreiben') {
       choices = _distinctChoices(answer, fallbackPool: const <String>['Blume', 'Rose', 'Apfel', 'Biene', 'Kerze', 'Igel']);
     } else {
-      choices = _distinctChoices(answer, fallbackPool: _fallbackChoicesFor(answer));
+      // KRITISCH: Wenn das Template bereits sinnvolle Choices liefert
+      // (z.B. Geometrie ['Dreieck','Kreis','Quadrat','Rechteck','Oval']),
+      // dann diese BEHALTEN und nur Lucken mit Kategorie-passenden
+      // Distraktoren fuellen. Vorher wurden Form-Antworten durch
+      // 'Blume'/'Kerze' ersetzt - kompletter Quatsch fuer Geometrie.
+      final templateChoices = choices.where((c) => _normalizeChoice(c).isNotEmpty).toList();
+      // Sicherstellen dass die richtige Antwort in den Choices ist.
+      if (!templateChoices.any((c) => _normalizeChoice(c) == _normalizeChoice(answer))) {
+        templateChoices.insert(0, answer);
+      }
+      if (templateChoices.length >= 3) {
+        // Template hat genug gute Choices - alle behalten, deduplizieren.
+        choices = _distinctChoices(answer, fallbackPool: templateChoices);
+      } else {
+        // Template hat zu wenig Choices - mit Kategorie-Pool auffuellen.
+        final pool = <String>[
+          ...templateChoices,
+          ..._fallbackChoicesFor(answer),
+        ];
+        choices = _distinctChoices(answer, fallbackPool: pool);
+      }
     }
 
     choices = _rotateChoices(choices, '${task.id}|${task.prompt}|$answer');
@@ -404,7 +424,58 @@ class LegacyLumoTaskAdapter {
   List<String> _fallbackChoicesFor(String answer) {
     final n = int.tryParse(answer.replaceAll(RegExp(r'[^0-9-]'), ''));
     if (n != null) return <String>['$n', '${n + 1}', '${n == 0 ? 2 : n - 1}', '${n + 2}'];
+    // Kategorie-bewusste Distraktoren: erst pruefen, ob die Antwort
+    // zu einer bekannten Kategorie gehoert (Form, Farbe, Tier, etc).
+    // Dann NUR Distraktoren aus derselben Kategorie liefern.
+    // Vorher kamen 'Blume'/'Kerze' als Antworten bei Geometrie-Aufgaben - kaputt.
+    final category = _categoryOfAnswer(answer);
+    if (category != null) return <String>[answer, ...category];
+    // Fallback: gemischter Wort-Pool fuer komplett unbekannte Antworten.
     return <String>[answer, 'Blume', 'Kerze', 'Biene', 'Wolke', 'Baum', 'Katze', 'Apfel', 'Rose', 'Igel'];
+  }
+
+  /// Erkennt die semantische Kategorie der Antwort und liefert passende
+  /// Distraktoren aus derselben Kategorie zurueck.
+  /// Verhindert dass z.B. bei 'Kreis' (Geometrie) 'Blume' als Antwort kommt.
+  List<String>? _categoryOfAnswer(String answer) {
+    final a = answer.trim();
+    // Geometrische Formen
+    const shapes = <String>['Dreieck', 'Kreis', 'Quadrat', 'Rechteck', 'Oval', 'Stern', 'Raute', 'Pentagon', 'Sechseck'];
+    if (shapes.contains(a)) return shapes.where((s) => s != a).take(3).toList();
+    // Farben
+    const colors = <String>['Rot', 'Blau', 'Gruen', 'Grün', 'Gelb', 'Orange', 'Lila', 'Schwarz', 'Weiss', 'Weiß'];
+    if (colors.contains(a)) return colors.where((s) => s != a).take(3).toList();
+    // Wochentage
+    const weekdays = <String>['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+    if (weekdays.contains(a)) return weekdays.where((s) => s != a).take(3).toList();
+    // Monate
+    const months = <String>['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+    if (months.contains(a)) return months.where((s) => s != a).take(3).toList();
+    // Jahreszeiten
+    const seasons = <String>['Frühling', 'Sommer', 'Herbst', 'Winter'];
+    if (seasons.contains(a)) return seasons.where((s) => s != a).take(3).toList();
+    // Tiere
+    const animals = <String>['Hund', 'Katze', 'Maus', 'Hase', 'Igel', 'Biene', 'Vogel', 'Fisch', 'Pferd', 'Kuh', 'Schaf', 'Ente'];
+    if (animals.contains(a)) return animals.where((s) => s != a).take(3).toList();
+    // Pflanzen
+    const plants = <String>['Blume', 'Rose', 'Tulpe', 'Baum', 'Strauch', 'Gras', 'Apfel'];
+    if (plants.contains(a)) return plants.where((s) => s != a).take(3).toList();
+    // Wortarten
+    const wordTypes = <String>['Nomen', 'Verb', 'Adjektiv', 'Artikel', 'Pronomen'];
+    if (wordTypes.contains(a)) return wordTypes.where((s) => s != a).take(3).toList();
+    // Artikel
+    const articles = <String>['der', 'die', 'das'];
+    if (articles.contains(a.toLowerCase())) return articles.where((s) => s != a.toLowerCase()).take(2).toList();
+    // Ja/Nein-Fragen
+    const yesno = <String>['ja', 'nein', 'vielleicht'];
+    if (yesno.contains(a.toLowerCase())) return yesno.where((s) => s != a.toLowerCase()).toList();
+    // Vergleich
+    const compare = <String>['mehr', 'weniger', 'gleich', 'gleich viel'];
+    if (compare.contains(a.toLowerCase())) return compare.where((s) => s != a.toLowerCase()).take(2).toList();
+    // Richtung
+    const direction = <String>['links', 'rechts', 'oben', 'unten', 'gerade'];
+    if (direction.contains(a.toLowerCase())) return direction.where((s) => s != a.toLowerCase()).take(3).toList();
+    return null;
   }
 
   List<String> _spellingChoicesFor(String correct) {

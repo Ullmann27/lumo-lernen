@@ -561,40 +561,156 @@ class _ShapeVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const shapes = <String, IconData>{
-      'Dreieck': Icons.change_history_rounded,
-      'Kreis': Icons.radio_button_unchecked_rounded,
-      'Quadrat': Icons.crop_square_rounded,
-      'Rechteck': Icons.rectangle_outlined,
+    // Premium-Formen mit echtem CustomPainter statt nur Material-Icon.
+    // Jede Form bekommt eigene Farbe + Schatten + Verlauf.
+    const shapes = <String, _ShapeKind>{
+      'Dreieck': _ShapeKind.triangle,
+      'Kreis': _ShapeKind.circle,
+      'Quadrat': _ShapeKind.square,
+      'Rechteck': _ShapeKind.rectangle,
+    };
+    const colors = <String, Color>{
+      'Dreieck': Color(0xFFFFB800),
+      'Kreis': Color(0xFF60A5FA),
+      'Quadrat': Color(0xFFF472B6),
+      'Rechteck': Color(0xFF34D399),
     };
     return SchoolbookTaskCard(
       title: 'Formenhilfe',
       subtitle: 'Schau genau: Welche Form passt?',
       ribbonLabel: 'Form',
       child: Wrap(
-        spacing: 10,
-        runSpacing: 10,
+        spacing: 12,
+        runSpacing: 12,
+        alignment: WrapAlignment.center,
         children: shapes.entries.map((entry) {
           final selected = '$picked' == entry.key;
           final correct = solved && '${task.correctAnswer}' == entry.key;
+          final shapeColor = colors[entry.key] ?? LumoColors.orange;
           return Container(
-            width: 104,
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+            width: 110,
+            padding: const EdgeInsets.fromLTRB(10, 14, 10, 12),
             decoration: BoxDecoration(
-              color: correct ? const Color(0xFFDCFCE7) : selected ? LumoColors.orangeSurface : Colors.white,
+              gradient: LinearGradient(
+                colors: correct
+                    ? const [Color(0xFFDCFCE7), Colors.white]
+                    : selected
+                        ? [LumoColors.orangeSurface, Colors.white]
+                        : [Colors.white, shapeColor.withOpacity(0.06)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
               borderRadius: BorderRadius.circular(LumoRadius.lg),
-              border: Border.all(color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : LumoColors.ink100, width: 2),
+              border: Border.all(
+                color: correct
+                    ? const Color(0xFF22C55E)
+                    : selected
+                        ? LumoColors.orange
+                        : shapeColor.withOpacity(0.25),
+                width: 2,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: shapeColor.withOpacity(0.20),
+                  blurRadius: 12,
+                  offset: const Offset(0, 5),
+                  spreadRadius: -2,
+                ),
+              ],
             ),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Icon(entry.value, size: 34, color: correct ? const Color(0xFF22C55E) : LumoColors.orange),
-              const SizedBox(height: 6),
-              Text(entry.key, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700)),
-            ]),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: CustomPaint(
+                    painter: _ShapePainter(
+                      kind: entry.value,
+                      color: correct ? const Color(0xFF22C55E) : shapeColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  entry.key,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w900,
+                    color: LumoColors.ink900,
+                  ),
+                ),
+              ],
+            ),
           );
         }).toList(),
       ),
     );
   }
+}
+
+enum _ShapeKind { triangle, circle, square, rectangle }
+
+class _ShapePainter extends CustomPainter {
+  _ShapePainter({required this.kind, required this.color});
+  final _ShapeKind kind;
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+    final paint = Paint()
+      ..shader = LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [color, color.withOpacity(0.65)],
+      ).createShader(Rect.fromLTWH(0, 0, w, h));
+    final stroke = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.6
+      ..color = color.withOpacity(0.85)
+      ..strokeJoin = StrokeJoin.round;
+
+    switch (kind) {
+      case _ShapeKind.triangle:
+        final path = Path()
+          ..moveTo(w / 2, h * 0.10)
+          ..lineTo(w * 0.90, h * 0.88)
+          ..lineTo(w * 0.10, h * 0.88)
+          ..close();
+        canvas.drawPath(path, paint);
+        canvas.drawPath(path, stroke);
+        break;
+      case _ShapeKind.circle:
+        canvas.drawCircle(Offset(w / 2, h / 2), w * 0.40, paint);
+        canvas.drawCircle(Offset(w / 2, h / 2), w * 0.40, stroke);
+        break;
+      case _ShapeKind.square:
+        final rect = RRect.fromRectAndRadius(
+          Rect.fromLTWH(w * 0.14, h * 0.14, w * 0.72, h * 0.72),
+          const Radius.circular(6),
+        );
+        canvas.drawRRect(rect, paint);
+        canvas.drawRRect(rect, stroke);
+        break;
+      case _ShapeKind.rectangle:
+        final rect = RRect.fromRectAndRadius(
+          Rect.fromLTWH(w * 0.08, h * 0.25, w * 0.84, h * 0.50),
+          const Radius.circular(6),
+        );
+        canvas.drawRRect(rect, paint);
+        canvas.drawRRect(rect, stroke);
+        break;
+    }
+  }
+
+  @override
+  bool shouldRepaint(_ShapePainter old) => old.kind != kind || old.color != color;
 }
 
 class _SyllableVisual extends StatelessWidget {
