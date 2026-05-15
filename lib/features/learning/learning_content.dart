@@ -77,6 +77,12 @@ class _LearningContentState extends State<LearningContent> {
   // Nur lokal generiert, kein Cloud-Aufruf.
   LumoVisualAid? _visualAid;
 
+  // KI-Hilfe vom Cloud-Tutor (optional, nur wenn aiProxyEnabled).
+  // Heinz' Wunsch: pro Bereich zugeschnittener KI-Helfer mit echtem Kontext.
+  final LumoAiProxyClient _aiProxy = const LumoAiProxyClient();
+  String? _aiHelpReply;
+  bool _aiHelpLoading = false;
+
   int get _totalQuestions {
     switch (widget.appState.state.sessionKind) {
       case LumoSessionKind.quickPractice: return 10;
@@ -231,9 +237,73 @@ class _LearningContentState extends State<LearningContent> {
     _lastFeedback = null;
     _tutorHint = null;
     _visualAid = null;
+    _aiHelpReply = null;
+    _aiHelpLoading = false;
     if (resetCounter) {
       _questionNum = 1;
       _attemptCount = 0;
+    }
+  }
+
+  /// Holt KI-Hilfe vom Cloud-Tutor fuer die aktuelle Aufgabe.
+  /// Heinz' Wunsch: pro Bereich zugeschnittener Helfer.
+  /// Wenn aiProxyEnabled = false: lokaler Hinweis wird gezeigt.
+  Future<void> _askAiTutor() async {
+    if (_aiHelpLoading) return;
+    if (!mounted) return;
+    setState(() => _aiHelpLoading = true);
+    try {
+      // Bereich basierend auf Subject und Unit waehlen.
+      final subject = _task.subject;
+      final context = _aiContextForSubject(subject);
+      // Konkrete Frage an Lumo: "Hilf mir bei dieser Aufgabe".
+      final question = 'Aufgabe: "${_task.prompt}" '
+          'Mein bisheriger Versuch: ${_attemptCount > 0 ? 'noch nicht richtig' : 'noch keiner'}. '
+          'Bitte gib mir EINEN kleinen Tipp, ohne die Loesung zu verraten.';
+      final response = await _aiProxy.ask(
+        settings: widget.appState.state.settings,
+        state: widget.appState.state,
+        message: question,
+        context: context,
+        extras: <String, Object?>{
+          'unit': _task.unit,
+          'attempt': _attemptCount,
+          'visual': _task.visual,
+        },
+      );
+      if (!mounted) return;
+      setState(() {
+        _aiHelpReply = response.reply;
+        _aiHelpLoading = false;
+      });
+      // Antwort gleich vorlesen, damit auch nicht-lesende Kinder es hoeren.
+      if (widget.appState.state.settings.voiceEnabled) {
+        unawaited(LumoVoice.instance.speak(response.reply, style: VoiceStyle.explain));
+      }
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _aiHelpReply = 'Lumo konnte gerade keine Hilfe geben. Versuche es nochmal.';
+        _aiHelpLoading = false;
+      });
+    }
+  }
+
+  LumoAiContext _aiContextForSubject(String subject) {
+    switch (subject.toLowerCase()) {
+      case 'mathematik':
+      case 'mathe':
+        return LumoAiContext.mathCoach;
+      case 'deutsch':
+      case 'rechtschreibung':
+        return LumoAiContext.writingHelper;
+      case 'lesen':
+        return LumoAiContext.readingBuddy;
+      case 'sachunterricht':
+      case 'natur':
+        return LumoAiContext.scienceExplorer;
+      default:
+        return LumoAiContext.learningTutor;
     }
   }
 
@@ -685,6 +755,23 @@ class _LearningContentState extends State<LearningContent> {
               if (_visualAid != null) ...[
                 const SizedBox(height: 14),
                 _VisualAidCard(aid: _visualAid!),
+              ],
+              // KI-Hilfe-Button: nur sichtbar wenn aiProxyEnabled.
+              // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
+              if (widget.appState.state.settings.aiProxyEnabled && !_answered) ...[
+                const SizedBox(height: 12),
+                _AiHelpButton(
+                  loading: _aiHelpLoading,
+                  onTap: _askAiTutor,
+                  subject: _task.subject,
+                ),
+              ],
+              if (_aiHelpReply != null) ...[
+                const SizedBox(height: 12),
+                _AiHelpBubble(
+                  text: _aiHelpReply!,
+                  onSpeak: () => LumoVoice.instance.speak(_aiHelpReply!, style: VoiceStyle.explain),
+                ),
               ],
               const SizedBox(height: 22),
               AnimatedSwitcher(
@@ -1899,6 +1986,185 @@ class _InfoPill extends StatelessWidget {
           ),
         ),
       ]),
+    );
+  }
+}
+
+/// Premium KI-Hilfe-Button. Sichtbar nur wenn aiProxyEnabled.
+/// Hat einen pulsierenden Glow + Sparkle-Icon.
+class _AiHelpButton extends StatefulWidget {
+  const _AiHelpButton({
+    required this.loading,
+    required this.onTap,
+    required this.subject,
+  });
+
+  final bool loading;
+  final VoidCallback onTap;
+  final String subject;
+
+  @override
+  State<_AiHelpButton> createState() => _AiHelpButtonState();
+}
+
+class _AiHelpButtonState extends State<_AiHelpButton> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    // Pro Fach eigene Farbe.
+    final color = switch (widget.subject.toLowerCase()) {
+      'mathematik' || 'mathe' => const Color(0xFFFF7A2F),
+      'deutsch' || 'rechtschreibung' => const Color(0xFF8B5CF6),
+      'lesen' => const Color(0xFFF472B6),
+      'sachunterricht' || 'natur' => const Color(0xFF10B981),
+      _ => const Color(0xFF60A5FA),
+    };
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapUp: (_) => setState(() => _pressed = false),
+      onTapCancel: () => setState(() => _pressed = false),
+      onTap: widget.loading ? null : widget.onTap,
+      child: AnimatedScale(
+        scale: _pressed ? 0.97 : 1.0,
+        duration: const Duration(milliseconds: 120),
+        curve: Curves.easeOutCubic,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [color, color.withOpacity(0.75)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            boxShadow: [
+              BoxShadow(
+                color: color.withOpacity(0.42),
+                blurRadius: 14,
+                offset: const Offset(0, 6),
+                spreadRadius: -2,
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (widget.loading)
+                const SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.4,
+                    color: Colors.white,
+                  ),
+                )
+              else
+                const Text('✨', style: TextStyle(fontSize: 20)),
+              const SizedBox(width: 8),
+              Text(
+                widget.loading ? 'Lumo denkt nach…' : 'Lumo, hilf mir',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                  letterSpacing: 0.2,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Antwort-Bubble fuer die KI-Hilfe.
+/// Lila Gradient + Sparkles + Vorlese-Button.
+class _AiHelpBubble extends StatelessWidget {
+  const _AiHelpBubble({required this.text, required this.onSpeak});
+  final String text;
+  final VoidCallback onSpeak;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFF5EFFF), Color(0xFFEDE9FE)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: const Color(0xFFC4B5FD), width: 1.4),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF8B5CF6).withOpacity(0.18),
+            blurRadius: 14,
+            offset: const Offset(0, 5),
+            spreadRadius: -3,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)],
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF8B5CF6).withOpacity(0.4),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: const Text('🦊', style: TextStyle(fontSize: 20)),
+              ),
+              const SizedBox(width: 10),
+              const Expanded(
+                child: Text(
+                  'Lumo sagt:',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF6D28D9),
+                    letterSpacing: 0.3,
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: onSpeak,
+                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF7C3AED)),
+                tooltip: 'Lumo vorlesen lassen',
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            text,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 14.5,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF1F2937),
+              height: 1.45,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

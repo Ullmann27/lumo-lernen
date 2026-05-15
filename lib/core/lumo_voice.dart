@@ -166,36 +166,39 @@ class LumoVoice {
   }
 
   Future<void> _applyStyle(VoiceStyle style) async {
+    // Heinz wollte schnellere Stimme. Alle Raten um ~25-35% erhoeht.
+    // Vorher waren die Werte zwischen 0.30-0.42 - zu langsam.
+    // Jetzt 0.46-0.60 - normales Sprechtempo, aber noch kindgerecht.
     switch (style) {
       case VoiceStyle.greeting:
-        await _set(rate: 0.34, pitch: 1.05, volume: 1.0);
+        await _set(rate: 0.50, pitch: 1.05, volume: 1.0);
         break;
       case VoiceStyle.explain:
-        // Etwas langsamer als vorher (0.34 -> 0.32) und Pitch etwas
-        // freundlicher (0.98 -> 1.00). Wirkt weniger technisch.
-        await _set(rate: 0.32, pitch: 1.00, volume: 1.0);
+        // Erklaer-Modus etwas langsamer als greeting, damit Kinder folgen koennen.
+        await _set(rate: 0.46, pitch: 1.00, volume: 1.0);
         break;
       case VoiceStyle.celebrate:
-        await _set(rate: 0.42, pitch: 1.10, volume: 1.0);
+        // Bei Erfolg: schnell und froh.
+        await _set(rate: 0.58, pitch: 1.10, volume: 1.0);
         break;
       case VoiceStyle.comfort:
-        // Bei Verstaendnisproblemen besonders ruhig und warm.
-        await _set(rate: 0.30, pitch: 0.98, volume: 0.96);
+        // Bei Problemen: ruhig aber nicht mehr so langsam wie vorher.
+        await _set(rate: 0.44, pitch: 0.98, volume: 0.96);
         break;
       case VoiceStyle.question:
-        await _set(rate: 0.34, pitch: 1.04, volume: 1.0);
+        await _set(rate: 0.50, pitch: 1.04, volume: 1.0);
         break;
       case VoiceStyle.warm:
-        // Standard-Lese-Modus: leicht langsamer (0.35 -> 0.33) und
-        // waermerer Pitch (1.00 -> 1.03). Klingt freundlicher,
-        // weniger Roboter, kindgerecht.
-        await _set(rate: 0.33, pitch: 1.03, volume: 1.0);
+        // Standard-Lese-Modus: natuerliches Sprechtempo.
+        await _set(rate: 0.50, pitch: 1.03, volume: 1.0);
         break;
     }
   }
 
   Future<void> _set({required double rate, required double pitch, required double volume}) async {
-    await _tts.setSpeechRate((rate * _rateFactor).clamp(0.25, 0.60).toDouble());
+    // Clamp-Obergrenze von 0.60 auf 0.85 erhoeht, damit schnellere Raten
+    // ueberhaupt durchkommen. Untergrenze 0.30 reicht fuer comfort-Modus.
+    await _tts.setSpeechRate((rate * _rateFactor).clamp(0.30, 0.85).toDouble());
     await _tts.setPitch((pitch + _pitchOffset).clamp(0.80, 1.25).toDouble());
     await _tts.setVolume(volume);
   }

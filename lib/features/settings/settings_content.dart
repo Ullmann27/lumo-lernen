@@ -33,6 +33,12 @@ class _SettingsContentState extends State<SettingsContent> {
   AppUpdateInfo? _updateInfo;
   bool _checkingUpdate = false;
   String? _updateError;
+
+  // KI-Eltern-Berater: spricht mit Eltern, NICHT mit Kind.
+  // Mehr fachlich, mit paedagogischen Vorschlaegen.
+  final LumoAiProxyClient _aiProxy = const LumoAiProxyClient();
+  String? _aiAdvisorReply;
+  bool _aiAdvisorLoading = false;
   LumoAiSmokeTestResult? _lastSmokeTest;
   /// Live-URL aus dem Eingabefeld. Wird bei jedem Tastendruck
   /// aktualisiert, damit "Server pruefen" gegen die wirklich
@@ -200,6 +206,36 @@ class _SettingsContentState extends State<SettingsContent> {
     }
   }
 
+  /// Fragt den Eltern-Berater nach paedagogischen Tipps zum Kind.
+  /// Nutzt LumoAiContext.parentAdvisor - andere Persona als beim Kind-Chat.
+  Future<void> _askParentAdvisor(String question) async {
+    if (_aiAdvisorLoading || question.trim().isEmpty) return;
+    if (!mounted) return;
+    setState(() {
+      _aiAdvisorLoading = true;
+      _aiAdvisorReply = null;
+    });
+    try {
+      final response = await _aiProxy.ask(
+        settings: widget.appState.state.settings,
+        state: widget.appState.state,
+        message: question,
+        context: LumoAiContext.parentAdvisor,
+      );
+      if (!mounted) return;
+      setState(() {
+        _aiAdvisorReply = response.reply;
+        _aiAdvisorLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _aiAdvisorReply = 'Der Berater ist gerade nicht erreichbar. Bitte spaeter erneut.';
+        _aiAdvisorLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = widget.appState.state;
@@ -222,6 +258,14 @@ class _SettingsContentState extends State<SettingsContent> {
         ),
         const SizedBox(height: 18),
         ParentReportCard(appState: widget.appState),
+        if (_settings.aiProxyEnabled) ...[
+          const SizedBox(height: 18),
+          _AiParentAdvisorCard(
+            askingLoading: _aiAdvisorLoading,
+            reply: _aiAdvisorReply,
+            onAsk: _askParentAdvisor,
+          ),
+        ],
         const SizedBox(height: 18),
         Wrap(spacing: 14, runSpacing: 14, children: [
           _InfoCard(
@@ -1208,6 +1252,220 @@ class _AppUpdateCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// KI-Eltern-Berater Karte.
+/// Eltern koennen Lumo nach paedagogischen Tipps fragen.
+/// Andere Persona als der Kind-Chat: fachlicher, mit Foerdervorschlaegen.
+class _AiParentAdvisorCard extends StatefulWidget {
+  const _AiParentAdvisorCard({
+    required this.askingLoading,
+    required this.reply,
+    required this.onAsk,
+  });
+
+  final bool askingLoading;
+  final String? reply;
+  final ValueChanged<String> onAsk;
+
+  @override
+  State<_AiParentAdvisorCard> createState() => _AiParentAdvisorCardState();
+}
+
+class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final quickQuestions = <String>[
+      'Wie kann ich mein Kind beim Lesen unterstuetzen?',
+      'Was bedeutet die aktuelle Schwaeche in Mathe?',
+      'Wie motiviere ich mein Kind ohne Druck?',
+      'Welche Uebungen helfen bei Rechtschreibung?',
+    ];
+    return Container(
+      padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFF0F9FF), Color(0xFFE0F2FE)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: const Color(0xFF7DD3FC), width: 1.4),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF0EA5E9).withOpacity(0.15),
+            blurRadius: 18,
+            offset: const Offset(0, 6),
+            spreadRadius: -3,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF38BDF8), Color(0xFF0EA5E9)],
+                  ),
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF0EA5E9).withOpacity(0.4),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: const Text('🧑‍🏫', style: TextStyle(fontSize: 22)),
+              ),
+              const SizedBox(width: 12),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Lumo Eltern-Berater',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Color(0xFF0C4A6E),
+                      ),
+                    ),
+                    Text(
+                      'Tipps zur Foerderung deines Kindes',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF075985),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: quickQuestions.map((q) => _QuickQuestionChip(
+              text: q,
+              onTap: widget.askingLoading ? null : () => widget.onAsk(q),
+            )).toList(growable: false),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _controller,
+                  enabled: !widget.askingLoading,
+                  decoration: const InputDecoration(
+                    hintText: 'Eigene Frage stellen…',
+                    border: OutlineInputBorder(borderSide: BorderSide.none),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  ),
+                  onSubmitted: (txt) {
+                    if (txt.trim().isNotEmpty) widget.onAsk(txt);
+                  },
+                ),
+              ),
+              const SizedBox(width: 8),
+              FilledButton(
+                onPressed: widget.askingLoading
+                    ? null
+                    : () {
+                        final txt = _controller.text.trim();
+                        if (txt.isNotEmpty) widget.onAsk(txt);
+                      },
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFF0EA5E9),
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                ),
+                child: widget.askingLoading
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                      )
+                    : const Icon(Icons.send_rounded, size: 18),
+              ),
+            ],
+          ),
+          if (widget.reply != null) ...[
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: const Color(0xFF7DD3FC), width: 1),
+              ),
+              child: Text(
+                widget.reply!,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 13.5,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF0F172A),
+                  height: 1.45,
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _QuickQuestionChip extends StatelessWidget {
+  const _QuickQuestionChip({required this.text, this.onTap});
+  final String text;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(99),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(99),
+          border: Border.all(color: const Color(0xFF7DD3FC), width: 1),
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 11.5,
+            fontWeight: FontWeight.w800,
+            color: Color(0xFF0C4A6E),
+          ),
+        ),
       ),
     );
   }

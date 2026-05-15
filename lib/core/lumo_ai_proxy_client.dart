@@ -21,6 +21,8 @@ class LumoAiProxyClient {
     required LumoSessionState state,
     required String message,
     List<LumoAiChatTurn> history = const <LumoAiChatTurn>[],
+    LumoAiContext context = LumoAiContext.companion,
+    Map<String, Object?>? extras,
   }) async {
     final text = message.trim();
     if (text.isEmpty) {
@@ -50,10 +52,10 @@ class LumoAiProxyClient {
       );
     }
 
-    final firstAttempt = await _runChatAttempt(baseUri, text, history, state, _timeout);
+    final firstAttempt = await _runChatAttempt(baseUri, text, history, state, _timeout, context: context, extras: extras);
     if (firstAttempt != null) return firstAttempt;
 
-    final secondAttempt = await _runChatAttempt(baseUri, text, history, state, _coldStartTimeout, isRetry: true);
+    final secondAttempt = await _runChatAttempt(baseUri, text, history, state, _coldStartTimeout, isRetry: true, context: context, extras: extras);
     if (secondAttempt != null) return secondAttempt;
 
     return const LumoAiProxyResponse(
@@ -70,6 +72,8 @@ class LumoAiProxyClient {
     LumoSessionState state,
     Duration timeout, {
     bool isRetry = false,
+    LumoAiContext context = LumoAiContext.companion,
+    Map<String, Object?>? extras,
   }) async {
     final endpoint = _chatEndpoint(baseUri);
     final client = HttpClient()..connectionTimeout = timeout;
@@ -84,6 +88,11 @@ class LumoAiProxyClient {
           'grade': state.grade,
         },
         'history': history.take(8).map((turn) => turn.toJson()).toList(growable: false),
+        // Bereichs-Kontext: der Proxy kennt jetzt aus welchem Modul
+        // die Anfrage kommt und kann ein angepasstes System-Prompt waehlen.
+        'context': context.key,
+        'persona': context.personaHint,
+        if (extras != null && extras.isNotEmpty) 'extras': extras,
       };
       request.write(jsonEncode(payload));
 
@@ -774,4 +783,55 @@ class LumoAiTaskDraft {
       visual: json['visual'] as String? ?? 'auto',
     );
   }
+}
+
+/// Bereichs-Kontext fuer KI-Anfragen.
+/// Wird mit jedem Request mitgeschickt und ermoeglicht dem Proxy,
+/// das passende System-Prompt + die passende Persona zu waehlen.
+enum LumoAiContext {
+  /// Allgemeiner Lumo-Chat (Standard).
+  companion(
+    'companion',
+    'Du bist Lumo, ein freundlicher fuchsfoermiger Lernbegleiter fuer ein Volksschulkind in Oesterreich. Antworte kurz, warm, immer auf Deutsch. Keine fremden Sprachen. Keine sensiblen Themen.',
+  ),
+
+  /// Lern-Tutor: hilft konkret bei Aufgaben, ohne die Loesung zu verraten.
+  learningTutor(
+    'learning_tutor',
+    'Du bist Lumo der Lern-Tutor. Das Kind braucht Hilfe bei einer Aufgabe. Gib NIE die Loesung. Stelle stattdessen 1 leichte Lenk-Frage oder zeige einen kleinen Schritt. Maximal 2 Saetze. Oesterreichisches Deutsch.',
+  ),
+
+  /// Lese-Buddy: hilft beim Lesen, erklaert Woerter kindgerecht.
+  readingBuddy(
+    'reading_buddy',
+    'Du bist Lumo der Lese-Buddy. Das Kind liest gerade einen Text. Wenn es nach einem Wort fragt: erklaere es in EINEM einfachen Satz, kindgerecht. Wenn unsicher: ermutige es, langsam zu lesen.',
+  ),
+
+  /// Schreib-Assistent: hilft beim Schreiben/Rechtschreibung.
+  writingHelper(
+    'writing_helper',
+    'Du bist Lumo der Schreib-Helfer. Das Kind schreibt gerade. Hilf bei der Rechtschreibung kurz und kindgerecht. Bei Geschichten: gib 1 Idee, kein ganzes Werk.',
+  ),
+
+  /// Mathe-Coach: erklaert Mathe-Konzepte mit Alltagsbeispielen.
+  mathCoach(
+    'math_coach',
+    'Du bist Lumo der Mathe-Coach. Erklaere Mathe-Konzepte mit Alltagsbeispielen aus Oesterreich (Aepfel, Semmeln, Schillingmuenzen, etc). Maximal 3 Saetze.',
+  ),
+
+  /// Sachunterricht: erklaert Welt-Wissen kindgerecht.
+  scienceExplorer(
+    'science_explorer',
+    'Du bist Lumo der Welt-Entdecker. Erklaere Sachunterricht-Themen kurz, mit einem WOW-Fakt. Maximal 3 Saetze, kindgerecht.',
+  ),
+
+  /// Eltern-Berater: spricht mit Eltern, NICHT mit Kind. Andere Sprache.
+  parentAdvisor(
+    'parent_advisor',
+    'Du sprichst jetzt mit einem Elternteil, nicht mit dem Kind. Du kannst paedagogische Tipps geben, Lernstand erklaeren, Foerdervorschlaege machen. Mehr fachlich, aber freundlich. Oesterreichisches Deutsch.',
+  );
+
+  const LumoAiContext(this.key, this.personaHint);
+  final String key;
+  final String personaHint;
 }
