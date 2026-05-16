@@ -4,6 +4,7 @@ import '../theme/app_theme.dart';
 import '../widgets/lumo_avatar.dart';
 import '../widgets/star_badge.dart';
 import '../services/reward_orchestrator.dart';
+import 'wwm_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -49,7 +50,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 28),
+              _buildWwmBanner(context),
+              const SizedBox(height: 24),
               _buildInfoCard(
                 context,
                 icon: Icons.tips_and_updates_rounded,
@@ -67,6 +70,65 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildWwmBanner(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (_) => const WwmScreen()),
+      ),
+      child: Container(
+        width: double.infinity,
+        padding:
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF0D1B2A), Color(0xFF1B3A5C)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(20),
+          border:
+              Border.all(color: const Color(0xFFC9A000), width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFFC9A000).withOpacity(0.25),
+              blurRadius: 14,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            const Text('🎮', style: TextStyle(fontSize: 40)),
+            const SizedBox(width: 16),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Wer wird Millionär?',
+                    style: TextStyle(
+                      color: Color(0xFFC9A000),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    '15 Fragen • 3 Joker • bis zu 1000 XP',
+                    style:
+                        TextStyle(color: Colors.white60, fontSize: 13),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right_rounded,
+                color: Color(0xFFC9A000), size: 30),
+          ],
         ),
       ),
     );
@@ -103,7 +165,8 @@ class HomeScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold, fontSize: 16)),
                   const SizedBox(height: 4),
                   Text(body,
-                      style: const TextStyle(fontSize: 14, color: Colors.black54)),
+                      style: const TextStyle(
+                          fontSize: 14, color: Colors.black54)),
                 ],
               ),
             ),

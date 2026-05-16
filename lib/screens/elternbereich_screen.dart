@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../services/reward_orchestrator.dart';
 import '../services/memory_graph.dart';
+import '../services/wwm_question_service.dart';
 
 class ElternbereichScreen extends StatefulWidget {
   const ElternbereichScreen({super.key});
@@ -116,6 +117,7 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
   Widget _buildDashboard() {
     final rewards = context.watch<RewardOrchestrator>();
     final memGraph = context.watch<MemoryGraph>();
+    final wwmService = context.read<WwmQuestionService>();
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -128,6 +130,8 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
               _buildStatCard('⭐', '${rewards.stars}', 'Sterne'),
               const SizedBox(width: 12),
               _buildStatCard('🏆', 'Level ${rewards.level}', '${rewards.xp} XP'),
+              const SizedBox(width: 12),
+              _buildStatCard('🤖', '${wwmService.apiCallCount}', 'KI-Spiele'),
             ],
           ),
           const SizedBox(height: 24),
