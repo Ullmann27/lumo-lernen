@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../app/app_design.dart';
@@ -19,6 +20,7 @@ import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
 import '../../domain/learning/lumo_learning_feedback_engine.dart';
 import '../../domain/learning/reward_engine.dart';
+import '../shared/widgets/lumo_premium_effects.dart';
 import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/adaptive_task_renderer.dart';
 import 'renderers/writing_task_renderer.dart';
@@ -76,6 +78,10 @@ class _LearningContentState extends State<LearningContent> {
   // Bildhilfe-Karte als 4. Hilfsstufe nach 5+ Fehlversuchen.
   // Nur lokal generiert, kein Cloud-Aufruf.
   LumoVisualAid? _visualAid;
+
+  // Konfetti-Trigger: jedes Hochzaehlen loest einen neuen Burst aus.
+  // Wird bei richtigen Antworten erhoeht.
+  int _confettiTrigger = 0;
 
   // KI-Hilfe vom Cloud-Tutor (optional, nur wenn aiProxyEnabled).
   // Heinz' Wunsch: pro Bereich zugeschnittener KI-Helfer mit echtem Kontext.
@@ -593,6 +599,10 @@ class _LearningContentState extends State<LearningContent> {
     final errorTypes = correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven);
     if (correct) {
       _attemptCount = 0;
+      // Heinz' Wunsch: Konfetti bei Erfolgen. Wird ueber Trigger-Int
+      // ausgeloest, damit der CustomPainter neu animiert.
+      _confettiTrigger++;
+      HapticFeedback.mediumImpact();
     } else if (_allowHelp) {
       _attemptCount++;
     }
@@ -720,12 +730,17 @@ class _LearningContentState extends State<LearningContent> {
 
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 560;
-      return SingleChildScrollView(
-        padding: EdgeInsets.all(compact ? 14 : 26),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 840),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      // Stack mit Confetti-Overlay: bei richtigen Antworten regnet es
+      // physikalisch korrektes Konfetti (Newton-Schwerkraft + Luftwiderstand)
+      // ueber den gesamten Inhalt.
+      return Stack(
+        children: [
+          SingleChildScrollView(
+            padding: EdgeInsets.all(compact ? 14 : 26),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 840),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -817,6 +832,12 @@ class _LearningContentState extends State<LearningContent> {
             ]),
           ),
         ),
+      ),
+          // Konfetti-Layer: feuert bei jeder richtigen Antwort.
+          Positioned.fill(
+            child: LumoConfettiBurst(trigger: _confettiTrigger),
+          ),
+        ],
       );
     });
   }

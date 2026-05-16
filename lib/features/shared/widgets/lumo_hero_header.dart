@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import 'lumo_premium_effects.dart';
 
 /// Premium-Hero-Header nach Referenzbild "Mathe mit Lumo" / "Deutsch mit Lumo".
 ///
@@ -458,14 +459,18 @@ class _LumoWithBubble extends StatelessWidget {
           Positioned(
             right: 0,
             bottom: 0,
-            child: Image.asset(
-              asset,
-              height: size,
-              fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) => SizedBox(
-                width: size,
+            child: LumoFloating(
+              amplitude: 4,
+              duration: const Duration(seconds: 4),
+              child: Image.asset(
+                asset,
                 height: size,
-                child: Center(child: Text('🦊', style: TextStyle(fontSize: size * 0.6))),
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => SizedBox(
+                  width: size,
+                  height: size,
+                  child: Center(child: Text('🦊', style: TextStyle(fontSize: size * 0.6))),
+                ),
               ),
             ),
           ),

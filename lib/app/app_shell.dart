@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
@@ -9,6 +10,7 @@ import '../features/learning/learning_content.dart';
 import '../features/reading/reading_content.dart';
 import '../features/sections/section_content.dart';
 import '../features/settings/settings_content.dart';
+import '../features/shared/widgets/lumo_premium_effects.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
@@ -315,16 +317,27 @@ class _MobileLumoHeader extends StatelessWidget {
         boxShadow: LumoShadow.card,
       ),
       child: Row(children: [
-        GestureDetector(
-          onTap: onFoxTap,
-          child: Container(
-            width: 52,
-            height: 52,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+        // Heinz' Premium-Sprung: Lumo schwebt sanft + pulsiert mit Glow.
+        // Tap startet Voice. Wirkt jetzt wie ein echter Begleiter.
+        LumoFloating(
+          amplitude: 3,
+          duration: const Duration(milliseconds: 2800),
+          child: LumoGlowPulse(
+            color: LumoColors.orange,
+            minBlur: 6,
+            maxBlur: 18,
+            child: GestureDetector(
+              onTap: onFoxTap,
+              child: Container(
+                width: 52,
+                height: 52,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+                ),
+                child: const Center(child: Text('🦊', style: TextStyle(fontSize: 28))),
+              ),
             ),
-            child: const Center(child: Text('🦊', style: TextStyle(fontSize: 28))),
           ),
         ),
         const SizedBox(width: 10),
@@ -365,10 +378,28 @@ class _MobileBottomNavigation extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 7),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.97),
+        // Premium-Look: leichter Gradient statt einfaches Weiss.
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFFFFF), Color(0xFFFFFBF0)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.pill),
-        border: Border.all(color: LumoColors.orange.withOpacity(.18)),
-        boxShadow: LumoShadow.card,
+        border: Border.all(color: LumoColors.orange.withOpacity(.25), width: 1.4),
+        boxShadow: [
+          BoxShadow(
+            color: LumoColors.orange.withOpacity(0.18),
+            blurRadius: 20,
+            offset: const Offset(0, 6),
+            spreadRadius: -4,
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+            spreadRadius: -2,
+          ),
+        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -376,16 +407,64 @@ class _MobileBottomNavigation extends StatelessWidget {
           final selected = item.section == active;
           return Expanded(
             child: GestureDetector(
-              onTap: () => onSelect(item.section),
+              onTap: () {
+                HapticFeedback.selectionClick();
+                onSelect(item.section);
+              },
+              behavior: HitTestBehavior.opaque,
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 180),
-                padding: const EdgeInsets.symmetric(vertical: 7),
-                decoration: BoxDecoration(color: selected ? LumoColors.orangeSurface : Colors.transparent, borderRadius: BorderRadius.circular(LumoRadius.pill)),
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Icon(item.icon, size: 20, color: selected ? LumoColors.orange : LumoColors.ink400),
-                  const SizedBox(height: 2),
-                  Text(item.label, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w900, color: selected ? LumoColors.orange : LumoColors.ink500)),
-                ]),
+                duration: const Duration(milliseconds: 280),
+                curve: Curves.easeOutCubic,
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                margin: const EdgeInsets.symmetric(horizontal: 2),
+                decoration: BoxDecoration(
+                  gradient: selected
+                      ? const LinearGradient(
+                          colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        )
+                      : null,
+                  borderRadius: BorderRadius.circular(LumoRadius.pill),
+                  boxShadow: selected
+                      ? [
+                          BoxShadow(
+                            color: LumoColors.orange.withOpacity(0.5),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                            spreadRadius: -2,
+                          ),
+                        ]
+                      : null,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AnimatedScale(
+                      scale: selected ? 1.15 : 1.0,
+                      duration: const Duration(milliseconds: 280),
+                      curve: Curves.elasticOut,
+                      child: Icon(
+                        item.icon,
+                        size: 22,
+                        color: selected ? Colors.white : LumoColors.ink500,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      item.label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 10,
+                        fontWeight: FontWeight.w900,
+                        color: selected ? Colors.white : LumoColors.ink500,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

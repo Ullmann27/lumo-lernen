@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import 'lumo_premium_effects.dart';
 
 /// Themen-Karte nach Referenzbild "Deutsch mit Lumo".
 ///
@@ -49,8 +50,6 @@ class LumoSubjectTile extends StatefulWidget {
 }
 
 class _LumoSubjectTileState extends State<LumoSubjectTile> {
-  bool _pressed = false;
-
   @override
   Widget build(BuildContext context) {
     final progress = widget.starsTotal > 0
@@ -62,17 +61,13 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
     final illustrationSize = isCompact ? 52.0 : 60.0;
     final illustrationFont = isCompact ? 24.0 : 28.0;
     final subtitleMaxLines = isCompact ? 2 : 3;
-    return GestureDetector(
-      onTapDown: (_) => setState(() => _pressed = true),
-      onTapUp: (_) => setState(() => _pressed = false),
-      onTapCancel: () => setState(() => _pressed = false),
+    // Heinz' Premium-Sprung: 3D-Tilt-Effekt.
+    // Karte neigt sich subtil in Richtung Finger - loest WOW-Effekt aus.
+    return LumoTiltCard(
+      maxTilt: 0.06,
       onTap: widget.onTap,
-      child: AnimatedScale(
-        scale: _pressed ? 0.96 : 1.0,
-        duration: const Duration(milliseconds: 120),
-        curve: Curves.easeOutCubic,
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -274,7 +269,6 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
             ],
           ),
         ),
-      ),
     );
   }
 
