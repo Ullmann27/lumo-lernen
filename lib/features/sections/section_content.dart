@@ -5,6 +5,7 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../rewards/reward_shop_content.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
 import '../shared/widgets/lumo_subject_tile.dart';
 import '../tutoring/tutoring_flow_card.dart';
@@ -174,7 +175,7 @@ class SectionContent extends StatelessWidget {
       case LumoSection.progress:
         return _ProgressPage(appState: appState);
       case LumoSection.rewards:
-        return _RewardsPage(appState: appState, onSection: onSection);
+        return RewardShopContent(appState: appState);
       case LumoSection.agent:
         return _AgentPage(appState: appState, onSection: onSection, startSession: _startSession, startReading: _startReading);
       case LumoSection.settings:
