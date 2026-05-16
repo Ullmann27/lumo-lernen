@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../shared/widgets/lumo_living_world.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
 import '../shared/widgets/lumo_subject_tile.dart';
 
@@ -33,7 +34,11 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final childName = appState.state.childName.trim().isEmpty ? 'Lumo-Freund' : appState.state.childName.trim();
-    return LumoSubjectDashboard(
+    // Lumo's lebendige Welt als Hintergrund: reagiert auf Tageszeit,
+    // Jahreszeit und Lern-Fortschritt. Das, was diese App einzigartig macht.
+    return LumoLivingWorld(
+      starsEarned: appState.state.stars,
+      child: LumoSubjectDashboard(
       appState: appState,
       subject: 'Hallo',
       subjectAccent: '$childName!',
@@ -116,6 +121,7 @@ class HomeContent extends StatelessWidget {
           ),
         ),
       ],
+      ),
     );
   }
 }
