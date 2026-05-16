@@ -154,6 +154,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
         return SingleChildScrollView(
           padding: const EdgeInsets.all(22),
           child: ProfileScreen(
+            childName: _appState.state.childName,
             stars: _appState.state.stars,
             xp: _appState.state.xp,
             level: _appState.state.level,

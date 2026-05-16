@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/school_exercise_generator.dart';
+import '../features/shared/widgets/lumo_premium_effects.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  LUMO LERNEN — ProfileScreen
@@ -17,8 +18,10 @@ class ProfileScreen extends StatelessWidget {
     required this.solved,
     required this.practice,
     required this.lastGrade,
+    required this.childName,
   });
 
+  final String childName;
   final int stars;
   final int xp;
   final int level;
@@ -34,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _ProfileHeroCard(stars: stars, xp: xp, level: level, totalSolved: _totalSolved),
+        _ProfileHeroCard(stars: stars, xp: xp, level: level, totalSolved: _totalSolved, childName: childName),
         const SizedBox(height: 18),
 
         // ── Stats ──
@@ -119,7 +122,9 @@ class _ProfileHeroCard extends StatelessWidget {
     required this.xp,
     required this.level,
     required this.totalSolved,
+    required this.childName,
   });
+  final String childName;
   final int stars;
   final int xp;
   final int level;
@@ -127,6 +132,9 @@ class _ProfileHeroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Heinz-Bugfix: Profil-Name war "Lena" hardcoded.
+    // Jetzt: echter childName aus App-State (z.B. Alina, Zoe).
+    final displayName = childName.trim().isEmpty ? 'Lumo-Freund' : childName.trim();
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -144,24 +152,39 @@ class _ProfileHeroCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Avatar circle
-          Container(
-            width: 74,
-            height: 74,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [Color(0xffff9a5c), Color(0xffff6d00)]),
-              shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: const Color(0xffff6d00).withOpacity(.35), blurRadius: 20, offset: const Offset(0, 8))],
+          // Avatar circle - schwebt sanft mit Glow.
+          LumoFloating(
+            amplitude: 3,
+            duration: const Duration(seconds: 3),
+            child: LumoGlowPulse(
+              color: const Color(0xffff6d00),
+              minBlur: 12,
+              maxBlur: 26,
+              child: Container(
+                width: 74,
+                height: 74,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(colors: [Color(0xffff9a5c), Color(0xffff6d00)]),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xffff6d00).withOpacity(.45),
+                      blurRadius: 20,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
+                ),
+                child: const Center(child: Text('🦊', style: TextStyle(fontSize: 36))),
+              ),
             ),
-            child: const Center(child: Text('🦊', style: TextStyle(fontSize: 36))),
           ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Lena',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
+                Text(displayName,
+                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
                 const SizedBox(height: 4),
                 Wrap(
                   spacing: 8,
