@@ -8,8 +8,6 @@
 ///       Frage 15 -> grosser Coupon (Spielzeug, Lego)
 ///   - 3 Joker: 50:50, Publikum, Lumo-Anruf
 ///   - Falsche Antwort = zurueck auf letzte Schwelle
-///
-/// SKELETON von Claude Opus 4.7 - Codex implementiert die Logik.
 
 import 'package:flutter/foundation.dart';
 
@@ -17,9 +15,9 @@ import 'quiz_rewards.dart';
 
 /// Schwierigkeit einer Quiz-Frage.
 enum QuizDifficulty {
-  easy,   // Frage 1-4
-  medium, // Frage 5-9
-  hard,   // Frage 10-15
+  easy,
+  medium,
+  hard,
 }
 
 /// Joker-Typen wie bei "Wer wird Millionaer".
@@ -174,9 +172,7 @@ class QuizShowState {
   }
 }
 
-/// Engine fuer das Quiz-Spiel. Stateless, deterministisch.
-///
-/// CODEX: Implementiere die untenstehenden Methoden.
+/// Engine fuer das Quiz-Spiel. Stateless, deterministisch und UI-sicher.
 class QuizShowEngine {
   const QuizShowEngine();
 
@@ -185,9 +181,6 @@ class QuizShowEngine {
   static const List<int> safeSpotsAfterIndex = <int>[4, 9, 14];
 
   /// Startet ein neues Spiel mit 15 vorab generierten Fragen.
-  ///
-  /// CODEX TODO: Pruefe dass questions.length == 15 und alle Fragen valid sind.
-  /// Wirft assertion bei Fehler.
   QuizShowState start({required List<QuizQuestion> questions}) {
     assert(questions.length == 15, 'Quiz braucht GENAU 15 Fragen, bekam ${questions.length}');
     assert(questions.every((q) => q.isValid), 'Mindestens eine Frage ist invalid');
@@ -196,56 +189,123 @@ class QuizShowEngine {
 
   /// Kind waehlt eine Antwort-Option.
   /// Wenn bereits revealed: ignoriert.
-  ///
-  /// CODEX TODO: implementiere
   QuizShowState selectAnswer(QuizShowState s, int optionIndex) {
     if (s.revealed || s.gameOver) return s;
     if (optionIndex < 0 || optionIndex > 3) return s;
-    if (s.fiftyFiftyHiddenOptions.contains(optionIndex)) return s; // versteckte Option
+    if (s.fiftyFiftyHiddenOptions.contains(optionIndex)) return s;
     return s.copyWith(selectedOption: optionIndex);
   }
 
   /// Aufloesung der gewaehlten Antwort.
-  ///
-  /// CODEX TODO:
-  /// - Wenn richtig: revealed = true, gameOver bleibt false
-  /// - Wenn richtig UND aktueller Index ist Schwelle: Coupon ergaenzen
-  /// - Wenn richtig UND Index 14: won = true, gameOver = true
-  /// - Wenn falsch: revealed = true, gameOver = true, won = false
-  QuizShowState reveal(QuizShowState s, {required QuizCoupon Function(int milestoneLevel) drawCouponForMilestone}) {
-    throw UnimplementedError('CODEX: implementiere reveal()');
+  QuizShowState reveal(
+    QuizShowState s, {
+    required QuizCoupon Function(int milestoneLevel) drawCouponForMilestone,
+  }) {
+    if (s.revealed || s.gameOver || s.selectedOption == null) return s;
+
+    final question = s.currentQuestion;
+    final correct = s.selectedOption == question.correctIndex;
+    if (!correct) {
+      return s.copyWith(revealed: true, gameOver: true, won: false);
+    }
+
+    final earned = List<QuizCoupon>.from(s.earnedCoupons);
+    final milestone = safeSpotTierForIndex(s.currentQuestionIndex);
+    if (milestone > 0) {
+      earned.add(drawCouponForMilestone(milestone));
+    }
+
+    final completedAll = s.currentQuestionIndex >= s.questions.length - 1;
+    return s.copyWith(
+      revealed: true,
+      earnedCoupons: earned,
+      gameOver: completedAll,
+      won: completedAll,
+    );
   }
 
   /// Weiter zur naechsten Frage. Reset selection, fiftyFifty, audience, lumoHint.
-  ///
-  /// CODEX TODO:
-  /// - Wenn currentQuestionIndex < 14: increment + clear runde-spezifische felder
-  /// - Wenn currentQuestionIndex == 14: nichts tun (Spiel ist eh schon zu Ende)
   QuizShowState nextQuestion(QuizShowState s) {
-    throw UnimplementedError('CODEX: implementiere nextQuestion()');
+    if (s.gameOver || !s.revealed) return s;
+    if (s.currentQuestionIndex >= s.questions.length - 1) return s;
+    return s.copyWith(
+      currentQuestionIndex: s.currentQuestionIndex + 1,
+      revealed: false,
+      clearSelection: true,
+      clearFiftyFifty: true,
+      clearAudience: true,
+      clearLumoHint: true,
+    );
   }
 
   /// Joker einsetzen.
-  ///
-  /// CODEX TODO:
-  /// - 50:50: zufaellig 2 falsche Optionen versteckt setzen
-  /// - audience: zufaellige Verteilung wo richtige Option 60-85% bekommt
-  /// - callLumo: Hint aus current question oder generic anzeigen
-  /// - Setze usedJokers
-  /// - Wenn Joker schon used: return s unchanged
   QuizShowState useJoker(QuizShowState s, QuizJoker joker) {
-    throw UnimplementedError('CODEX: implementiere useJoker()');
+    if (s.revealed || s.gameOver || s.usedJokers.contains(joker)) return s;
+
+    final used = Set<QuizJoker>.from(s.usedJokers)..add(joker);
+    switch (joker) {
+      case QuizJoker.fiftyFifty:
+        final wrong = <int>[0, 1, 2, 3].where((i) => i != s.currentQuestion.correctIndex).toList();
+        final seed = _stableSeed('${s.currentQuestion.id}|5050');
+        wrong.sort((a, b) => ((a + seed) % 7).compareTo((b + seed) % 7));
+        return s.copyWith(
+          usedJokers: used,
+          fiftyFiftyHiddenOptions: wrong.take(2).toSet(),
+        );
+      case QuizJoker.audience:
+        return s.copyWith(
+          usedJokers: used,
+          audienceVotes: _audienceVotesFor(s.currentQuestion),
+        );
+      case QuizJoker.callLumo:
+        return s.copyWith(
+          usedJokers: used,
+          lumoHint: s.currentQuestion.hint ?? _genericHintFor(s.currentQuestion),
+        );
+    }
   }
 
   /// Gibt zurueck welcher Coupon-Tier nach diesem Frage-Index gesichert wird.
   /// Returns 0 wenn keine Schwelle.
   int safeSpotTierForIndex(int questionIndex) {
-    if (questionIndex == 4) return 1;   // kleine
-    if (questionIndex == 9) return 2;   // mittlere
-    if (questionIndex == 14) return 3;  // grosse
+    if (questionIndex == 4) return 1;
+    if (questionIndex == 9) return 2;
+    if (questionIndex == 14) return 3;
     return 0;
   }
 
   /// True wenn der aktuelle Frage-Index eine Schwelle ist.
   bool isAtSafeSpot(int questionIndex) => safeSpotTierForIndex(questionIndex) > 0;
+
+  List<int> _audienceVotesFor(QuizQuestion question) {
+    final seed = _stableSeed('${question.id}|audience');
+    final correctPercent = 64 + (seed % 18);
+    final remaining = 100 - correctPercent;
+    final wrong = <int>[0, 1, 2, 3].where((i) => i != question.correctIndex).toList();
+    wrong.sort((a, b) => ((a + seed) % 11).compareTo((b + seed) % 11));
+
+    final votes = List<int>.filled(4, 0);
+    votes[question.correctIndex] = correctPercent;
+    votes[wrong[0]] = remaining ~/ 2;
+    votes[wrong[1]] = remaining ~/ 3;
+    votes[wrong[2]] = 100 - votes.reduce((a, b) => a + b);
+    return votes;
+  }
+
+  String _genericHintFor(QuizQuestion question) {
+    return switch (question.subject.toLowerCase()) {
+      'mathe' => 'Rechne langsam. Erst die Zahlen anschauen, dann Schritt für Schritt lösen.',
+      'deutsch' => 'Lies die Frage laut. Achte auf Wortanfang, Wortende und Bedeutung.',
+      'sachunterricht' => 'Denk an das, was du aus Alltag, Natur und Schule kennst.',
+      _ => 'Schau dir jede Antwort ruhig an. Eine passt besser als die anderen.',
+    };
+  }
+
+  int _stableSeed(String value) {
+    var hash = 0;
+    for (final unit in value.codeUnits) {
+      hash = (hash * 31 + unit) & 0x7fffffff;
+    }
+    return hash;
+  }
 }
