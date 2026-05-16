@@ -7,6 +7,7 @@ import '../../core/app_update_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/settings_repository.dart';
+import '../rewards/test_photo_entry_card.dart';
 import 'parent_report_card.dart';
 
 class SettingsContent extends StatefulWidget {
@@ -258,6 +259,9 @@ class _SettingsContentState extends State<SettingsContent> {
         ),
         const SizedBox(height: 18),
         ParentReportCard(appState: widget.appState),
+        const SizedBox(height: 18),
+        // Heinz' Wunsch: Eltern fotografieren Test, Note rein, Punkte raus.
+        TestPhotoEntryCard(appState: widget.appState),
         if (_settings.aiProxyEnabled) ...[
           const SizedBox(height: 18),
           _AiParentAdvisorCard(
