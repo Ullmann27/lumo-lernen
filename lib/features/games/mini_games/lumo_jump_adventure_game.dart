@@ -967,9 +967,11 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
       // ── Spelunky-Garantie: Lücke mathematisch begrenzen ──────
       final rawGap = 60 + random.nextInt(80); // 60–140 px Basis
       final verifiedGap = rawGap.toDouble().clamp(50.0, _maxSafeGap);
-      assert(isJumpLogicallyPossible(verifiedGap),
-          'Gap $verifiedGap überschreitet max. Sprungweite!');
-      x += width + verifiedGap;
+      // Lücke immer auf sicheres Maximum begrenzen – auch in Release-Builds.
+      final safeGap = isJumpLogicallyPossible(verifiedGap)
+          ? verifiedGap
+          : _maxSafeGap;
+      x += width + safeGap;
       chunk++;
     }
 
