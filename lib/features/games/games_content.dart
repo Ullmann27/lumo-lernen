@@ -9,6 +9,7 @@ import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
+import 'mini_games/lumo_jump_adventure_game.dart';
 import 'mini_games/number_house_game.dart';
 import 'mini_games/stars_path_game.dart';
 
@@ -78,10 +79,15 @@ class _GamesContentState extends State<GamesContent> {
       case GameMiniType.starsPath:
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (_) => StarsPathGame(
-              appState: widget.appState,
-              level: level,
-            ),
+            builder: (_) => level.id == 1
+                ? LumoJumpAdventureGame(
+                    appState: widget.appState,
+                    level: level,
+                  )
+                : StarsPathGame(
+                    appState: widget.appState,
+                    level: level,
+                  ),
           ),
         );
       case GameMiniType.numberHouse:
