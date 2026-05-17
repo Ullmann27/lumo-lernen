@@ -20,7 +20,7 @@ class AppTheme {
         background: cream,
       ),
       scaffoldBackgroundColor: cream,
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -39,8 +39,16 @@ class AppTheme {
         ),
       ),
       textTheme: const TextTheme(
-        headlineLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF2D2D2D)),
-        headlineMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF2D2D2D)),
+        headlineLarge: TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF2D2D2D),
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF2D2D2D),
+        ),
         bodyLarge: TextStyle(fontSize: 18, color: Color(0xFF4A4A4A)),
         bodyMedium: TextStyle(fontSize: 16, color: Color(0xFF4A4A4A)),
       ),
