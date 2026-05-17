@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/school_exercise_generator.dart';
+import '../domain/learning/learning_dna.dart';
+import '../features/learning/learning_dna_card.dart';
 import '../features/shared/widgets/lumo_premium_effects.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -38,6 +40,14 @@ class ProfileScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _ProfileHeroCard(stars: stars, xp: xp, level: level, totalSolved: _totalSolved, childName: childName),
+        const SizedBox(height: 18),
+
+        // Phase 1 - kindgerechte Lern-DNA-Kurzfassung
+        _ChildDnaSlot(
+          childName: childName,
+          totalCorrect: _totalSolved,
+          stars: stars,
+        ),
         const SizedBox(height: 18),
 
         // ── Stats ──
@@ -635,5 +645,37 @@ class _AchievBadge extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/// Phase 1 - kindgerechte Lern-DNA-Kurzfassung im Profil.
+/// Approximiert die DNA aus den verfuegbaren Profile-Daten (kein Engine-Zugriff
+/// noetig, da ProfileScreen kein AppState bekommt).
+class _ChildDnaSlot extends StatelessWidget {
+  const _ChildDnaSlot({
+    required this.childName,
+    required this.totalCorrect,
+    required this.stars,
+  });
+  final String childName;
+  final int totalCorrect;
+  final int stars;
+
+  @override
+  Widget build(BuildContext context) {
+    // Minimal-DNA fuer Kind-Anzeige.
+    final dna = LearningDna(
+      childName: childName,
+      lastUpdated: DateTime.now(),
+      totalCorrect: totalCorrect,
+      totalIncorrect: 0,
+      nextRubric: totalCorrect < 5 ? '' : 'Plus bis 10 mit Zaehlbild',
+      strengths: totalCorrect >= 10
+          ? const <DnaSkillEntry>[
+              DnaSkillEntry(subject: 'Mathe', skillLabel: 'Plus bis 10', score: 0.8),
+            ]
+          : const <DnaSkillEntry>[],
+    );
+    return LearningDnaChildCard(dna: dna);
   }
 }

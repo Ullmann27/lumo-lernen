@@ -7,6 +7,9 @@ import '../../core/app_update_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/settings_repository.dart';
+import '../../domain/learning/learning_dna.dart';
+import '../../domain/learning/learning_dna_engine.dart';
+import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import 'parent_report_card.dart';
 
@@ -259,6 +262,9 @@ class _SettingsContentState extends State<SettingsContent> {
         ),
         const SizedBox(height: 18),
         ParentReportCard(appState: widget.appState),
+        const SizedBox(height: 18),
+        // Phase 1 - sichtbare Lern-DNA fuer Eltern
+        _DnaSettingsSlot(appState: widget.appState),
         const SizedBox(height: 18),
         // Heinz' Wunsch: Eltern fotografieren Test, Note rein, Punkte raus.
         TestPhotoEntryCard(appState: widget.appState),
@@ -1472,5 +1478,56 @@ class _QuickQuestionChip extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+/// Phase 1 - Eltern-Slot fuer die Lern-DNA-Karte.
+/// Berechnet die DNA bei jedem Aufruf neu aus dem App-State.
+class _DnaSettingsSlot extends StatelessWidget {
+  const _DnaSettingsSlot({required this.appState});
+
+  final LumoAppState appState;
+
+  @override
+  Widget build(BuildContext context) {
+    // DNA aus aktuellem State berechnen.
+    // Quellen: weakSkills, stars, xp, level, lastGrade, solved.
+    final dna = const LearningDnaEngine().compute(
+      state: appState.state,
+      // recentCorrect/Incorrect approximieren aus solved/weakSkills-Summe
+      recentCorrect: appState.state.solved.values.fold<int>(0, (sum, v) => sum + v),
+      recentIncorrect: appState.state.weakSkills.values.fold<int>(0, (sum, v) => sum + v),
+    );
+    if (dna.strengths.isEmpty && dna.weaknesses.isEmpty && dna.totalCorrect == 0) {
+      // Frueh-Phase: zeige Hinweis statt leere Karte.
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFAF5FF),
+          borderRadius: BorderRadius.circular(LumoRadius.lg),
+          border: Border.all(color: const Color(0xFFE9D5FF), width: 1.2),
+        ),
+        child: Row(
+          children: [
+            const Text('🧬', style: TextStyle(fontSize: 22)),
+            const SizedBox(width: 10),
+            const Expanded(
+              child: Text(
+                'Lumo Lern-DNA: noch keine Daten. Nach einigen Aufgaben '
+                'siehst du hier Staerken, Schwaechen und die naechste Empfehlung.',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF6D28D9),
+                  height: 1.4,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    return LearningDnaParentCard(dna: dna);
   }
 }
