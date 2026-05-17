@@ -711,7 +711,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text('Level geschafft!'),
         content: Text(
-            'Du hast $_totalEarnedStars Sterne gesammelt und ${ _resultStars()} Level-Sterne erhalten.'),
+            'Du hast $_totalEarnedStars Sterne gesammelt und ${_resultStars()} Level-Sterne erhalten.'),
         actions: [
           TextButton(
             onPressed: () {
@@ -921,6 +921,13 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
                             questionBlocks: _questionBlocks,
                             chest: _chest,
                             confettiTrigger: _confettiTrigger,
+                            // Vorberechnete Counts für shouldRepaint
+                            activeObstacleCount:
+                                _obstacles.where((o) => o.active).length,
+                            clearedBlockCount:
+                                _questionBlocks.where((b) => b.cleared).length,
+                            collectedStarCount:
+                                _stars.where((s) => s.collected).length,
                           ),
                         ),
                       ),
@@ -1127,6 +1134,9 @@ class _LumoJumpPainter extends CustomPainter {
     required this.questionBlocks,
     required this.chest,
     required this.confettiTrigger,
+    required this.activeObstacleCount,
+    required this.clearedBlockCount,
+    required this.collectedStarCount,
   });
 
   final double cameraX;
@@ -1138,6 +1148,10 @@ class _LumoJumpPainter extends CustomPainter {
   final List<_QuestionBlock> questionBlocks;
   final _Chest chest;
   final int confettiTrigger;
+  // Vorberechnete Counts für effizientes shouldRepaint
+  final int activeObstacleCount;
+  final int clearedBlockCount;
+  final int collectedStarCount;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -1282,24 +1296,15 @@ class _LumoJumpPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _LumoJumpPainter oldDelegate) {
-    // Exakte Prüfung relevanter Spielzustands-Felder:
-    // Statische Objekte (platforms, worldWidth) ändern sich nie → kein Check.
-    final activeObstacles = obstacles.where((o) => o.active).length;
-    final oldActiveObstacles =
-        oldDelegate.obstacles.where((o) => o.active).length;
-    final clearedBlocks = questionBlocks.where((b) => b.cleared).length;
-    final oldClearedBlocks =
-        oldDelegate.questionBlocks.where((b) => b.cleared).length;
-    final collectedStars = stars.where((s) => s.collected).length;
-    final oldCollectedStars = oldDelegate.stars.where((s) => s.collected).length;
-
+    // Exakte O(1)-Prüfung relevanter Spielzustands-Felder.
+    // Counts werden vom State vorberechnet übergeben – keine Iteration hier.
     return cameraX != oldDelegate.cameraX ||
         playerRect != oldDelegate.playerRect ||
         playerState != oldDelegate.playerState ||
         confettiTrigger != oldDelegate.confettiTrigger ||
-        clearedBlocks != oldClearedBlocks ||
-        collectedStars != oldCollectedStars ||
-        activeObstacles != oldActiveObstacles ||
+        clearedBlockCount != oldDelegate.clearedBlockCount ||
+        collectedStarCount != oldDelegate.collectedStarCount ||
+        activeObstacleCount != oldDelegate.activeObstacleCount ||
         chest.opened != oldDelegate.chest.opened;
   }
 }
