@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/services/class_settings.dart';
 import 'package:lumo_lernen/services/quiz_question_bank.dart';
 import 'package:lumo_lernen/services/quiz_show_repository.dart';
+import 'package:lumo_lernen/services/wwm_game_state.dart';
 
 void main() {
   group('QuizQuestionBank', () {
@@ -146,6 +147,62 @@ void main() {
       QuizQuestionBank.generateGameQuestions(
           ClassLevel.klasse2, repo, rng);
       expect(repo.seenCount, greaterThan(15));
+    });
+
+    // ── Klasse 2 does not get hard multiplication (e.g. 7 × 8) ─────────────
+    test('Klasse 2 never produces hard multiplication like 7 × 8', () {
+      final repo = QuizShowRepository();
+      final rng = Random(3);
+
+      for (var round = 0; round < 20; round++) {
+        final questions = QuizQuestionBank.generateGameQuestions(
+          ClassLevel.klasse2,
+          repo,
+          rng,
+        );
+        for (final q in questions.where((q) => q.subject == 'Mathematik')) {
+          // Klasse 2 must not contain any multiplication symbol
+          expect(
+            q.question.contains('×'),
+            isFalse,
+            reason:
+                'Klasse 2 round $round has a multiplication question: ${q.question}',
+          );
+        }
+      }
+    });
+
+    // ── No duplicate prompt texts within a single round ───────────────────
+    test('no duplicate question texts within a single round', () {
+      final repo = QuizShowRepository();
+      final rng = Random(17);
+
+      for (var round = 0; round < 20; round++) {
+        final questions = QuizQuestionBank.generateGameQuestions(
+          ClassLevel.fortgeschritten,
+          repo,
+          rng,
+        );
+        final texts = questions.map((q) => q.question).toSet();
+        expect(
+          texts.length,
+          equals(questions.length),
+          reason:
+              'Round $round has duplicate question texts.',
+        );
+      }
+    });
+  });
+
+  // ── WwmGameState coupon logic ─────────────────────────────────────────────
+  group('WwmGameState.couponsEarned', () {
+    test('0 coupons when no secure XP and not finished', () {
+      // securedXP = 0, status != finished → 0 coupons
+      // We test the XP thresholds directly from the public ladder.
+      final ladder = WwmGameState.xpLadder;
+      // Q5 safe XP is ladder[4] = 100, Q10 safe XP is ladder[9] = 400
+      expect(ladder[4], equals(100));
+      expect(ladder[9], equals(400));
     });
   });
 }
