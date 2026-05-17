@@ -79,13 +79,15 @@ class _StarsPathGameState extends State<StarsPathGame> {
     final uniqueKeys = <_TaskFingerprint>{};
     final tasks = <MathConcreteTask>[];
 
-    for (var i = 0; i < _totalTasks; i++) {
+    for (var taskIndex = 0; taskIndex < _totalTasks; taskIndex++) {
       MathConcreteTask? selected;
-      for (var attempt = 0; attempt < _maxUniquenessAttempts; attempt++) {
+      for (var uniquenessAttempt = 0;
+          uniquenessAttempt < _maxUniquenessAttempts;
+          uniquenessAttempt++) {
         final seed = widget.level.id * _seedLevelFactor +
-            i * _seedTaskStep +
-            attempt * _seedAttemptStep;
-        final unitSeed = seed * _seedUnitMultiplier + attempt;
+            taskIndex * _seedTaskStep +
+            uniquenessAttempt * _seedAttemptStep;
+        final unitSeed = seed * _seedUnitMultiplier + uniquenessAttempt;
         final unit = units[math.Random(unitSeed).nextInt(units.length)];
         final generated = MathTaskTemplates.generate(
           grade: grade,
@@ -108,10 +110,11 @@ class _StarsPathGameState extends State<StarsPathGame> {
               MathTaskTemplates.generate(
                 grade: grade,
                 unit: units.first,
-                seed: widget.level.id * _seedLevelFactor + i * _seedFallbackStep,
+                seed: widget.level.id * _seedLevelFactor +
+                    taskIndex * _seedFallbackStep,
               ),
               widget.level.id * _seedLevelFactor +
-                  i * _seedFallbackStep +
+                  taskIndex * _seedFallbackStep +
                   _seedShuffleOffset,
             ),
       );
