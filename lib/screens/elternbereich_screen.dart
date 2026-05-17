@@ -46,8 +46,9 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
         ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('Verstanden')),
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Verstanden'),
+          ),
         ],
       ),
     );
@@ -76,15 +77,21 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.family_restroom_rounded,
-                size: 80, color: Color(0xFF95D5B2)),
+            const Icon(
+              Icons.family_restroom_rounded,
+              size: 80,
+              color: Color(0xFF95D5B2),
+            ),
             const SizedBox(height: 24),
-            const Text('Elternbereich',
-                style:
-                    TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+            const Text(
+              'Elternbereich',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
-            const Text('Bitte gib den Eltern-PIN ein',
-                style: TextStyle(color: Colors.black54)),
+            const Text(
+              'Bitte gib den Eltern-PIN ein',
+              style: TextStyle(color: Colors.black54),
+            ),
             const SizedBox(height: 32),
             TextField(
               controller: _pinController,
@@ -96,7 +103,8 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
               decoration: InputDecoration(
                 labelText: 'PIN',
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16)),
+                  borderRadius: BorderRadius.circular(16),
+                ),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -107,8 +115,10 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
               child: const Text('Anmelden'),
             ),
             const SizedBox(height: 8),
-            const Text('Demo-PIN: 1234',
-                style: TextStyle(color: Colors.grey, fontSize: 12)),
+            const Text(
+              'Demo-PIN: 1234',
+              style: TextStyle(color: Colors.grey, fontSize: 12),
+            ),
           ],
         ),
       ),
@@ -136,26 +146,33 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
             ],
           ),
           const SizedBox(height: 24),
-          Text('Schwierigkeitsstufe',
-              style: Theme.of(context).textTheme.headlineMedium),
+          Text(
+            'Schwierigkeitsstufe',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
           const SizedBox(height: 12),
           _buildClassLevelPicker(),
           const SizedBox(height: 24),
-              style: Theme.of(context).textTheme.headlineMedium),
+          Text(
+            'Empfohlene Übungen',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
           const SizedBox(height: 12),
-          ...memGraph.weakSkills.map((skill) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Card(
-                  child: ListTile(
-                    title: Text(skill),
-                    subtitle: const Text('Lumo empfiehlt mehr Übung'),
-                    trailing: OutlinedButton(
-                      onPressed: () => _showWhyRecommended(skill),
-                      child: const Text('Warum?'),
-                    ),
+          ...memGraph.weakSkills.map(
+            (skill) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Card(
+                child: ListTile(
+                  title: Text(skill),
+                  subtitle: const Text('Lumo empfiehlt mehr Übung'),
+                  trailing: OutlinedButton(
+                    onPressed: () => _showWhyRecommended(skill),
+                    child: const Text('Warum?'),
                   ),
                 ),
-              )),
+              ),
+            ),
+          ),
           const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
@@ -188,23 +205,21 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
                     : AppTheme.softGreen.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(14),
                 border: Border.all(
-                  color: selected
-                      ? AppTheme.softGreen
-                      : Colors.transparent,
+                  color: selected ? AppTheme.softGreen : Colors.transparent,
                   width: 2,
                 ),
               ),
               child: Column(
                 children: [
-                  Text(lvl.emoji,
-                      style: const TextStyle(fontSize: 22)),
+                  Text(lvl.emoji, style: const TextStyle(fontSize: 22)),
                   const SizedBox(height: 4),
                   Text(
                     lvl.label,
                     style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                        color: selected ? Colors.white : Colors.black54),
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                      color: selected ? Colors.white : Colors.black54,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -225,11 +240,17 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
           child: Column(
             children: [
               Text(emoji, style: const TextStyle(fontSize: 32)),
-              Text(value,
-                  style: const TextStyle(
-                      fontSize: 22, fontWeight: FontWeight.bold)),
-              Text(label,
-                  style: const TextStyle(color: Colors.black54, fontSize: 12)),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                label,
+                style: const TextStyle(color: Colors.black54, fontSize: 12),
+              ),
             ],
           ),
         ),
