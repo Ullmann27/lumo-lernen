@@ -1291,7 +1291,7 @@ class _HudChip extends StatelessWidget {
           const SizedBox(width: 6),
           Text(label,
               style: const TextStyle(
-                  fontWeight: FontWeight.w800, color: LumoColors.ink800)),
+                  fontWeight: FontWeight.w800, color: LumoColors.ink700)),
         ],
       ),
     );
