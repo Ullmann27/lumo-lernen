@@ -61,9 +61,13 @@ class _RewardShopContentState extends State<RewardShopContent> {
   Future<void> _redeem(RewardItem item) async {
     if (_state == null) return;
     if (!_engine.canAfford(_state!, item)) return;
-    // Eltern-PIN bestaetigen (vereinfacht: zweimal antippen-Modal).
-    final confirmed = await _showParentConfirmation(item);
-    if (!confirmed || !mounted) return;
+    final requiresParentApproval =
+        item.parentApprovalRequired || item.isPremiumReward;
+    if (requiresParentApproval) {
+      // Eltern-PIN bestaetigen (vereinfacht: zweimal antippen-Modal).
+      final confirmed = await _showParentConfirmation(item);
+      if (!confirmed || !mounted) return;
+    }
     final next = _engine.redeem(_state!, item);
     if (next == null) return;
     setState(() => _state = next);
@@ -138,9 +142,11 @@ class _RewardShopContentState extends State<RewardShopContent> {
     final now = DateTime.now();
     final season = Season.fromDate(now);
     final available = _engine.availableRewards(now: now);
+    final microItems = available.where((r) => r.tier == RewardTier.micro).toList();
     final smallItems = available.where((r) => r.tier == RewardTier.small).toList();
     final mediumItems = available.where((r) => r.tier == RewardTier.medium).toList();
     final bigItems = available.where((r) => r.tier == RewardTier.big).toList();
+    final premiumItems = available.where((r) => r.tier == RewardTier.premium).toList();
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
@@ -153,6 +159,20 @@ class _RewardShopContentState extends State<RewardShopContent> {
           if (state.testPhotos.isNotEmpty) ...[
             _TestPhotoSummary(testPhotos: state.testPhotos),
             const SizedBox(height: 20),
+          ],
+          // Mini-Belohnungen
+          if (microItems.isNotEmpty) ...[
+            _SectionTitle(emoji: '🪄', title: 'Mini-Belohnungen', subtitle: 'Schnelle Belohnungen für kurze Lernrunden'),
+            const SizedBox(height: 10),
+            ...microItems.map((item) => Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: _RewardCard(
+                    item: item,
+                    canAfford: _engine.canAfford(state, item),
+                    onRedeem: () => _redeem(item),
+                  ),
+                )),
+            const SizedBox(height: 18),
           ],
           // Kleine Belohnungen
           if (smallItems.isNotEmpty) ...[
@@ -187,6 +207,20 @@ class _RewardShopContentState extends State<RewardShopContent> {
             _SectionTitle(emoji: '🏆', title: 'Große Geschenke', subtitle: 'Für richtig gute Noten'),
             const SizedBox(height: 10),
             ...bigItems.map((item) => Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: _RewardCard(
+                    item: item,
+                    canAfford: _engine.canAfford(state, item),
+                    onRedeem: () => _redeem(item),
+                  ),
+                )),
+            const SizedBox(height: 18),
+          ],
+          // Premium-Belohnungen
+          if (premiumItems.isNotEmpty) ...[
+            _SectionTitle(emoji: '👑', title: 'Premium-Belohnungen', subtitle: 'Nur mit Elternfreigabe einlösbar'),
+            const SizedBox(height: 10),
+            ...premiumItems.map((item) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: _RewardCard(
                     item: item,

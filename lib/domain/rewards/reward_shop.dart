@@ -347,8 +347,10 @@ class RewardShopState {
     bool clearGoal = false,
   }) {
     return RewardShopState(
-      availableStars: availableStars ?? this.availableStars,
-      availablePoints: availablePoints ?? this.availablePoints,
+      availableStars:
+          (availableStars ?? this.availableStars).clamp(0, 999999) as int,
+      availablePoints:
+          (availablePoints ?? this.availablePoints).clamp(0, 999999) as int,
       redeemed: redeemed ?? this.redeemed,
       testPhotos: testPhotos ?? this.testPhotos,
       approvalRequests: approvalRequests ?? this.approvalRequests,
@@ -368,8 +370,12 @@ class RewardShopState {
 
   factory RewardShopState.fromJson(Map<String, Object?> json) {
     return RewardShopState(
-      availableStars: (json['availableStars'] as num?)?.toInt() ?? 0,
-      availablePoints: (json['availablePoints'] as num?)?.toInt() ?? 0,
+      availableStars:
+          (((json['availableStars'] as num?)?.toInt() ?? 0).clamp(0, 999999))
+              as int,
+      availablePoints:
+          (((json['availablePoints'] as num?)?.toInt() ?? 0).clamp(0, 999999))
+              as int,
       redeemed: (json['redeemed'] as List?)
               ?.whereType<Map>()
               .map((m) =>
@@ -432,10 +438,10 @@ class RewardShopEngine {
     );
     return state.copyWith(
       availableStars: item.currency == RewardCurrency.stars
-          ? state.availableStars - item.cost
+          ? ((state.availableStars - item.cost).clamp(0, 999999) as int)
           : state.availableStars,
       availablePoints: item.currency == RewardCurrency.points
-          ? state.availablePoints - item.cost
+          ? ((state.availablePoints - item.cost).clamp(0, 999999) as int)
           : state.availablePoints,
       redeemed: <RedeemedReward>[...state.redeemed, entry],
     );
