@@ -7,16 +7,6 @@ import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
 import '../../../domain/games/game_level_model.dart';
 
-abstract class _JumpAssets {
-  static const lumoIdle = 'assets/images/lumo/lumo_idle.png';
-  static const lumoRun = 'assets/images/lumo/lumo_run.png';
-  static const lumoJump = 'assets/images/lumo/lumo_jump.png';
-  static const platform = 'assets/images/game/platform_mid.png';
-  static const star = 'assets/images/game/star_gold.png';
-  static const question = 'assets/images/game/question_block.png';
-  static const chest = 'assets/images/game/chest.png';
-}
-
 abstract class _Grid {
   static const tile = 64.0;
   static const half = 32.0;
@@ -192,7 +182,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> with Sing
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text('Lumo Jump: ${widget.level.title}', style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+        title: Text('Lumo Jump: ${widget.level.title}', style: const TextStyle(fontWeight: FontWeight.w900, color: LumoColors.ink900)),
       ),
       body: LayoutBuilder(builder: (context, c) {
         screenWidth = c.maxWidth;
