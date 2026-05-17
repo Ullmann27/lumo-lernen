@@ -61,7 +61,10 @@ abstract class GameTaskFactory {
     final mapped = _mathUnitByLevelId[level.id];
     if (mapped != null) return mapped;
     if (level.miniType == GameMiniType.numberPath) return 'Zahlenstrahl';
-    if (level.miniType == GameMiniType.mixedQuiz) return grade >= 3 ? 'Textaufgaben' : 'Plus bis 20';
+    if (level.miniType == GameMiniType.mixedQuiz) {
+      if (level.subject.toLowerCase() == 'deutsch') return 'Alle';
+      return grade >= 3 ? 'Textaufgaben' : 'Plus bis 20';
+    }
     if (grade >= 3) return 'Einmaleins';
     return grade >= 2 ? 'Plus bis 20' : 'Plus bis 10';
   }

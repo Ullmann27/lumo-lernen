@@ -74,8 +74,8 @@ class _GamesContentState extends State<GamesContent> {
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
-    // Bis eigene Screens fuer numberPath/wordForest/mixedQuiz fertig sind,
-    // nutzt die Spielewelt den adaptiven StarsPath-Runner als stabile Engine.
+    // TODO(games): Eigene Screens fuer numberPath/wordForest/mixedQuiz einfuehren.
+    // Bis dahin nutzt die Spielewelt den adaptiven StarsPath-Runner als stabile Engine.
     final screen = switch (level.miniType) {
       GameMiniType.numberHouse => NumberHouseGame(
           appState: widget.appState,
