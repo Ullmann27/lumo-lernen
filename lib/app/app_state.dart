@@ -6,7 +6,7 @@ import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/scanned_work_analysis.dart';
 
-enum LumoSection { home, learn, exercises, reading, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings }
+enum LumoSection { home, learn, exercises, reading, games, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings }
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
 
@@ -219,6 +219,7 @@ class LumoAppState extends ChangeNotifier {
       LumoSection.learn: 'Such dir ein\nFach aus. Ich\nbegleite dich!',
       LumoSection.exercises: 'Los gehts!\nEine kleine Übung\nreicht schon.',
       LumoSection.reading: 'Ich höre dir\nbeim Lesen zu.\nGanz ruhig!',
+      LumoSection.games: 'Lumos Spielewelt\nwartet auf dich.\nLos gehts!',
       LumoSection.tests: 'Testmodus.\nRuhig lesen,\ndann antworten.',
       LumoSection.schoolwork: 'Wie in der\nSchule – nur\nfreundlicher.',
       LumoSection.scanner: 'Mach ein Foto\ndeiner Aufgabe.\nIch helfe dir!',
@@ -234,6 +235,7 @@ class LumoAppState extends ChangeNotifier {
       LumoSection.learn: LumoMood.point,
       LumoSection.exercises: LumoMood.wave,
       LumoSection.reading: LumoMood.think,
+      LumoSection.games: LumoMood.celebrate,
       LumoSection.tests: LumoMood.think,
       LumoSection.schoolwork: LumoMood.think,
       LumoSection.scanner: LumoMood.point,

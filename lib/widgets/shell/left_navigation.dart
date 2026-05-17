@@ -18,6 +18,7 @@ class LeftNavigation extends StatelessWidget {
     _NavItem(LumoSection.home, Icons.home_rounded, 'Start'),
     _NavItem(LumoSection.learn, Icons.school_rounded, 'Lernen'),
     _NavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesemodus'),
+    _NavItem(LumoSection.games, Icons.sports_esports_rounded, 'Spiele'),
     _NavItem(LumoSection.exercises, Icons.edit_rounded, 'Übungen'),
     _NavItem(LumoSection.tests, Icons.assignment_turned_in_rounded, 'Test'),
     _NavItem(LumoSection.schoolwork, Icons.description_rounded, 'Schularbeit'),

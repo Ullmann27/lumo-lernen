@@ -5,6 +5,7 @@ import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import '../widgets/shell/lumo_stage_panel.dart';
 import '../features/agent/lumo_agent_content.dart';
+import '../features/games/games_screen.dart';
 import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
 import '../features/reading/reading_content.dart';
@@ -134,6 +135,8 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
         return LearningContent(appState: _appState);
       case LumoSection.reading:
         return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
+      case LumoSection.games:
+        return GamesScreen(appState: _appState);
       case LumoSection.agent:
         return LumoAgentContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.scanner:
@@ -369,7 +372,7 @@ class _MobileBottomNavigation extends StatelessWidget {
     _MobileNavItem(LumoSection.home, Icons.home_rounded, 'Start'),
     _MobileNavItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
     _MobileNavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesen'),
-    _MobileNavItem(LumoSection.missions, Icons.track_changes_rounded, 'Missionen'),
+    _MobileNavItem(LumoSection.games, Icons.sports_esports_rounded, 'Spiele'),
     _MobileNavItem(LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
   ];
 
