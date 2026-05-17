@@ -12,8 +12,10 @@ class GamesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final unlockedLevels = kInitialGameLevels.where((level) => level.unlocked).toList(growable: false);
-    final doneLevels = unlockedLevels.where((level) => level.stars >= kMinimumStarsForProgress).length;
+    final unlockedCount = kInitialGameLevels.where((level) => level.unlocked).length;
+    final doneLevels = kInitialGameLevels
+        .where((level) => level.unlocked && level.stars >= kMinimumStarsForProgress)
+        .length;
     return ListView(
       padding: const EdgeInsets.all(22),
       children: [
@@ -21,7 +23,7 @@ class GamesScreen extends StatelessWidget {
         const SizedBox(height: 16),
         _WeekPreviewCard(
           done: doneLevels,
-          total: unlockedLevels.isEmpty ? 1 : unlockedLevels.length,
+          total: unlockedCount == 0 ? 1 : unlockedCount,
         ),
         const SizedBox(height: 16),
         const LumoLevelMap(levels: kInitialGameLevels),

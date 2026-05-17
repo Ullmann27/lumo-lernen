@@ -14,6 +14,9 @@ class GameLevelModel {
   final int stars;
 }
 
+/// Mindeststerne fuer den Wochenfortschritt im Spiele-Preview.
+/// Ein Level zählt in der Vorschau als "geschafft", wenn es freigeschaltet
+/// ist und mindestens diese Sternzahl erreicht.
 const int kMinimumStarsForProgress = 2;
 
 const List<GameLevelModel> kInitialGameLevels = <GameLevelModel>[
