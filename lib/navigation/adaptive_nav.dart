@@ -8,6 +8,7 @@ import '../screens/bonus_screen.dart';
 import '../screens/elternbereich_screen.dart';
 import '../screens/memory_graph_screen.dart';
 import '../screens/datenschutz_screen.dart';
+import '../screens/wwm_screen.dart';
 import '../theme/app_theme.dart';
 
 class AdaptiveNav extends StatefulWidget {
@@ -23,6 +24,7 @@ class _AdaptiveNavState extends State<AdaptiveNav> {
   static const List<_NavItem> _navItems = [
     _NavItem(icon: Icons.home_rounded, label: 'Home'),
     _NavItem(icon: Icons.school_rounded, label: 'Lernen'),
+    _NavItem(icon: Icons.quiz_rounded, label: 'Quiz'),
     _NavItem(icon: Icons.smart_toy_rounded, label: 'Lumo'),
     _NavItem(icon: Icons.camera_alt_rounded, label: 'Erkennen'),
     _NavItem(icon: Icons.psychology_rounded, label: 'Lern-Check'),
@@ -35,6 +37,7 @@ class _AdaptiveNavState extends State<AdaptiveNav> {
   static final List<Widget> _screens = [
     const HomeScreen(),
     const LernenScreen(),
+    const WwmScreen(),
     const LumoAgentScreen(),
     const AufgabeErkennenScreen(),
     const KognitiverLernCheckScreen(),
