@@ -155,7 +155,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> {
 
       if (chunk % 2 == 1) {
         final blockX = x + width * 0.55;
-        questionBlocks.add(_QuestionBlock(Rect.fromLTWH(blockX, y - 70, 62, 62), askGerman: chunk.isEven));
+        questionBlocks.add(_QuestionBlock(Rect.fromLTWH(blockX, y - 70, 62, 62), askGerman: chunk % 4 == 1));
       }
 
       if (chunk % 3 == 0) {
@@ -247,7 +247,8 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> {
     _onGround = false;
     _coyoteTimer = 0;
     _jumpBufferTimer = 0;
-    if (airTime > 0) _statusHint = null;
+    _statusHint = null;
+    _coyoteTimer = math.min(coyoteTimeWindow, airTime * 0.18);
     HapticFeedback.mediumImpact();
   }
 
@@ -386,10 +387,11 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> {
                   Navigator.of(context).pop(true);
                   return;
                 }
+                final remaining = 3 - streak;
                 seed += 29;
                 task = _createMathTask(seed);
                 selected = null;
-                localSetState(() => feedback = 'Stark! Noch ${3 - streak} richtige Aufgabe(n).');
+                localSetState(() => feedback = 'Stark! Noch $remaining ${remaining == 1 ? 'richtige Aufgabe' : 'richtige Aufgaben'}.');
               } else {
                 streak = 0;
                 seed += 41;
