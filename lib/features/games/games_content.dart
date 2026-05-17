@@ -7,6 +7,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
+import '../../domain/games/game_level_playability.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import 'mini_games/number_house_game.dart';
@@ -34,6 +35,9 @@ class _GamesContentState extends State<GamesContent> {
   static const _repo = GameProgressRepository();
 
   Map<int, int> _stars = const <int, int>{};
+  List<GameLevelRuntime> _runtime = const <GameLevelRuntime>[];
+  int _totalStars = 0;
+  int _unlockedCount = 0;
   bool _loaded = false;
 
   String get _childId {
@@ -55,6 +59,9 @@ class _GamesContentState extends State<GamesContent> {
     if (!mounted) return;
     setState(() {
       _stars = s;
+      _runtime = _repo.buildRuntime(_stars);
+      _totalStars = _runtime.fold<int>(0, (sum, r) => sum + r.starsEarned);
+      _unlockedCount = _runtime.where((r) => !r.locked).length;
       _loaded = true;
     });
   }
@@ -74,8 +81,8 @@ class _GamesContentState extends State<GamesContent> {
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
-    switch (level.miniType) {
-      case GameMiniType.starsPath:
+    switch (GameLevelPlayability.routeFor(level)) {
+      case GamePlayRoute.starsPath:
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
             builder: (_) => StarsPathGame(
@@ -84,7 +91,7 @@ class _GamesContentState extends State<GamesContent> {
             ),
           ),
         );
-      case GameMiniType.numberHouse:
+      case GamePlayRoute.numberHouse:
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
             builder: (_) => NumberHouseGame(
@@ -93,17 +100,6 @@ class _GamesContentState extends State<GamesContent> {
             ),
           ),
         );
-      case GameMiniType.numberPath:
-      case GameMiniType.wordForest:
-      case GameMiniType.mixedQuiz:
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${level.miniType.germanLabel} - bald spielbar! Das Spiel kommt im naechsten Update.'),
-            backgroundColor: LumoColors.orange,
-            duration: const Duration(seconds: 2),
-          ),
-        );
-        return;
     }
     // Nach Rueckkehr: Fortschritt neu laden damit neue Sterne sichtbar sind.
     await _load();
@@ -111,13 +107,10 @@ class _GamesContentState extends State<GamesContent> {
 
   @override
   Widget build(BuildContext context) {
-    final runtime = _repo.buildRuntime(_stars);
-    final totalStars = runtime.fold<int>(0, (sum, r) => sum + r.starsEarned);
     final maxStars = GameLevelCatalog.levels.fold<int>(0, (s, l) => s + l.maxStars);
-    final unlockedCount = runtime.where((r) => !r.locked).length;
 
     return LumoLivingWorld(
-      starsEarned: totalStars,
+      starsEarned: _totalStars,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -146,16 +139,16 @@ class _GamesContentState extends State<GamesContent> {
                 slivers: [
                   SliverToBoxAdapter(
                     child: _HeaderStrip(
-                      totalStars: totalStars,
+                      totalStars: _totalStars,
                       maxStars: maxStars,
-                      unlockedCount: unlockedCount,
+                      unlockedCount: _unlockedCount,
                     ),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.fromLTRB(12, 8, 12, 32),
                     sliver: SliverToBoxAdapter(
                       child: _LevelMap(
-                        runtime: runtime,
+                        runtime: _runtime,
                         onTap: _onLevelTap,
                       ),
                     ),
