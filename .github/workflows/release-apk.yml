@@ -1,0 +1,197 @@
+name: Publish APK as Release
+
+# Veroeffentlicht den fertigen Debug-APK als GitHub-Release.
+# Damit hat Heinz einen permanenten direkten Download-Link,
+# unabhaengig von der Artifact-Storage-Quota.
+#
+# Auslöser:
+#   - manuell ueber "Run workflow"
+#   - automatisch nach jedem push auf main
+#
+# Release-Tag-Schema: build-{run_number}
+# APK-Dateiname: Lumo-Lernen-{run_number}-{short_sha}.apk
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter version
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Create Android platform if missing
+        run: |
+          if [ ! -d android ]; then
+            flutter create --platforms=android --org dev.ullmann.lumo .
+          fi
+
+      - name: Patch AndroidManifest safely
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          if [ -f "$MANIFEST" ]; then
+            if ! grep -q "xmlns:tools=" "$MANIFEST"; then
+              sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
+            fi
+            if ! grep -q "android.permission.CAMERA" "$MANIFEST"; then
+              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-feature android:name="android.hardware.camera" android:required="false"/>' "$MANIFEST"
+            fi
+            if ! grep -q "android.permission.RECORD_AUDIO" "$MANIFEST"; then
+              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.RECORD_AUDIO"/>' "$MANIFEST"
+            fi
+            if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
+              sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
+            fi
+          fi
+
+      - name: Patch minSdk to 21
+        run: |
+          for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
+            if [ -f "$GRADLE" ]; then
+              sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/' "$GRADLE" || true
+              sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
+              sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
+              sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
+            fi
+          done
+
+      - name: Repair guard
+        run: |
+          if [ -f scripts/lumo_repair_guard.sh ]; then
+            bash scripts/lumo_repair_guard.sh
+          fi
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build debug APK
+        run: |
+          # Build-Nummer und Version-Name werden via --dart-define an die App weitergegeben.
+          # AppUpdateService liest currentBuildNumber aus int.fromEnvironment('LUMO_BUILD_NUMBER').
+          # Damit kennt jede installierte APK ihre eigene Build-Nummer und kann sich mit
+          # github.com/releases/latest vergleichen.
+          flutter build apk --debug \
+            --build-number "$GITHUB_RUN_NUMBER" \
+            --dart-define=LUMO_BUILD_NUMBER="$GITHUB_RUN_NUMBER" \
+            --dart-define=LUMO_VERSION_NAME=0.9.0
+          find build -type f -name "*.apk" -print
+
+      - name: Prepare APK for release
+        id: prepare
+        run: |
+          set -e
+          mkdir -p dist
+          APK_PATH="build/app/outputs/flutter-apk/app-debug.apk"
+          if [ ! -f "$APK_PATH" ]; then
+            APK_PATH="$(find build -type f -name "*.apk" | sort | head -n 1)"
+          fi
+          test -n "$APK_PATH"
+          test -f "$APK_PATH"
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+          DEST="dist/Lumo-Lernen-${GITHUB_RUN_NUMBER}-${SHORT_SHA}.apk"
+          cp "$APK_PATH" "$DEST"
+          cp "$APK_PATH" "dist/Lumo-Lernen-latest.apk"
+          sha256sum dist/*.apk > dist/SHA256SUMS.txt
+          echo "apk_path=$DEST" >> "$GITHUB_OUTPUT"
+          echo "short_sha=$SHORT_SHA" >> "$GITHUB_OUTPUT"
+          ls -la dist/
+
+      # Quota-Hinweis: GitHub Actions Artifact wurde entfernt.
+      # Heinz' Repo hat die Artifact-Quota erreicht
+      # ('Failed to CreateArtifact: Artifact storage quota has been hit').
+      # Dieser Step blockierte den ganzen Workflow.
+      #
+      # Stattdessen: GitHub Release ist der einzige Ausgabepfad.
+      # Permanent-Link, kein Quota-Limit, public oder per Token zugaenglich.
+
+      # Hauptpfad: GitHub Release
+      # Permanent-Link unter https://github.com/Ullmann27/lumo-lernen/releases
+      # OHNE continue-on-error: dieser Step MUSS funktionieren, weil er
+      # der einzige Auslieferungs-Pfad ist. Wenn er rot wird, sieht Heinz
+      # das sofort.
+      - name: Publish GitHub Release
+        id: publish_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Lumo Lernen Build ${{ github.run_number }}
+          body: |
+            **Lumo Lernen — Debug Build #${{ github.run_number }}**
+
+            Commit: `${{ github.sha }}`
+            Build-Datum: ${{ github.event.head_commit.timestamp }}
+
+            ## Direkter Download
+
+            Auf dem Handy bitte **Lumo-Lernen-latest.apk** antippen.
+
+            Vorab in Android: **Einstellungen -> Apps -> Spezieller Zugriff
+            -> Unbekannte Apps installieren** den Browser freigeben.
+
+            ## Versionierung
+
+            Der Dateiname zeigt Build-Nummer und Commit-Hash:
+            **Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk**
+
+            SHA256-Pruefsummen in `SHA256SUMS.txt`.
+          draft: false
+          prerelease: false
+          fail_on_unmatched_files: false
+          make_latest: 'true'
+          files: |
+            dist/Lumo-Lernen-latest.apk
+            dist/Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk
+            dist/SHA256SUMS.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release-Status zusammenfassen
+        if: always()
+        run: |
+          echo "═══════════════════════════════════════════════════"
+          echo "BUILD #${{ github.run_number }} ABGESCHLOSSEN"
+          echo "═══════════════════════════════════════════════════"
+          echo ""
+          if [ "${{ steps.publish_release.outcome }}" = "success" ]; then
+            echo "🚀 RELEASE PUBLIZIERT:"
+            echo ""
+            echo "   Direkt zum neuen Build:"
+            echo "   https://github.com/${{ github.repository }}/releases/tag/build-${{ github.run_number }}"
+            echo ""
+            echo "   Immer aktuell:"
+            echo "   https://github.com/${{ github.repository }}/releases/latest"
+            echo ""
+            echo "   APK-Dateien im Release:"
+            echo "     - Lumo-Lernen-latest.apk"
+            echo "     - Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk"
+          else
+            echo "❌ RELEASE-Schritt hat NICHT funktioniert."
+            echo ""
+            echo "   Wahrscheinliche Ursache:"
+            echo "   Repo-Settings -> Actions -> General -> Workflow permissions"
+            echo "   muss 'Read and write permissions' sein."
+            echo ""
+            echo "   Direkter Settings-Link:"
+            echo "   https://github.com/${{ github.repository }}/settings/actions"
+          fi
+          echo "═══════════════════════════════════════════════════"
