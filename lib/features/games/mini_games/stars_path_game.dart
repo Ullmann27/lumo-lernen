@@ -42,6 +42,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
   static const _seedLevelFactor = 1000;
   static const _seedTaskStep = 97;
   static const _seedAttemptStep = 17;
+  static const _seedUnitMultiplier = 31;
   static const _seedFallbackStep = 31;
   static const _seedShuffleOffset = 41;
   static const _maxUniquenessAttempts = 12;
@@ -84,7 +85,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
         final seed = widget.level.id * _seedLevelFactor +
             i * _seedTaskStep +
             attempt * _seedAttemptStep;
-        final unitSeed = seed * 31 + attempt;
+        final unitSeed = seed * _seedUnitMultiplier + attempt;
         final unit = units[math.Random(unitSeed).nextInt(units.length)];
         final generated = MathTaskTemplates.generate(
           grade: grade,
@@ -161,9 +162,9 @@ class _StarsPathGameState extends State<StarsPathGame> {
     if (filtered.isNotEmpty) return filtered;
     if (available.isNotEmpty) return available;
     final templates = MathTaskTemplates.templates;
-    if (templates.isEmpty) return const <String>['Plus bis 10'];
-    final defaultUnit = templates.first.unit;
-    return <String>[defaultUnit];
+    return templates.isEmpty
+        ? const <String>['Plus bis 10']
+        : <String>[templates.first.unit];
   }
 
   void _selectOption(int idx) {
