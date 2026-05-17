@@ -25,11 +25,19 @@ class RewardDelta {
     required this.stars,
     required this.xp,
     this.reasons = const <RewardReason>[],
+    this.deductionAmount = 0,
+    this.deductionMessage,
   });
 
   final int stars;
   final int xp;
   final List<RewardReason> reasons;
+
+  /// Wie viele Sterne wurden abgezogen (positiver Wert).
+  final int deductionAmount;
+
+  /// Optionale motivierende Nachricht bei Abzug.
+  final String? deductionMessage;
 
   bool get isEmpty => stars == 0 && xp == 0 && reasons.isEmpty;
 }
@@ -55,7 +63,7 @@ class RewardState {
     final nextXp = xp + delta.xp;
     return RewardState(
       childId: childId,
-      stars: stars + delta.stars,
+      stars: (stars + delta.stars).clamp(0, 999999),
       xp: nextXp,
       level: _levelForXp(nextXp),
       badges: badges,
@@ -246,6 +254,36 @@ class RewardEngine {
       level: rewardState.level,
       badges: rewardState.badges,
       lastRewardAt: rewardState.lastRewardAt,
+    );
+  }
+
+  /// Sanfter Stern-Abzug bei falscher Antwort.
+  /// Nach Hinweis: kein Abzug.
+  /// Im Test-Modus: 2 Sterne Abzug.
+  /// Im Uebungs-Modus: 1 Stern beim ersten Versuch, sonst 0.
+  RewardDelta calculateWrongAnswerDeduction({
+    required bool firstAttempt,
+    required bool afterHint,
+    LearningMode mode = LearningMode.practice,
+  }) {
+    if (afterHint) return const RewardDelta(stars: 0, xp: 0);
+
+    final deduction = switch (mode) {
+      LearningMode.exam ||
+      LearningMode.subjectTest ||
+      LearningMode.blitzTest ||
+      LearningMode.weaknessTest =>
+        2,
+      _ => firstAttempt ? 1 : 0,
+    };
+
+    return RewardDelta(
+      stars: -deduction,
+      xp: 0,
+      deductionAmount: deduction,
+      deductionMessage: deduction > 0
+          ? 'Fast! Du verlierst nur $deduction ${deduction == 1 ? "Punkt" : "Punkte"}. Versuch\'s nochmal, du schaffst das! 💪'
+          : null,
     );
   }
 }
