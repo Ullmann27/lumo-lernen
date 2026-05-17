@@ -10,13 +10,14 @@ class LumoLevelMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const spacing = 14.0;
     return LayoutBuilder(
       builder: (context, constraints) {
         final compact = constraints.maxWidth < 760;
-        final itemWidth = compact ? constraints.maxWidth : (constraints.maxWidth - 14) / 2;
+        final itemWidth = compact ? constraints.maxWidth : (constraints.maxWidth - spacing) / 2;
         return Wrap(
-          spacing: 14,
-          runSpacing: 14,
+          spacing: spacing,
+          runSpacing: spacing,
           children: levels
               .map((level) => SizedBox(
                     width: itemWidth,
