@@ -242,13 +242,12 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> {
     if (!(_onGround || _coyoteTimer > 0)) return;
 
     final airTime = (_LumoJumpAdventureGameState.jumpPower.abs() / _LumoJumpAdventureGameState.gravity) * 2;
-    final maxBoostWindow = airTime * 0.35;
 
     _vy = -jumpPower;
     _onGround = false;
     _coyoteTimer = 0;
     _jumpBufferTimer = 0;
-    _statusHint = maxBoostWindow > 0 ? null : _statusHint;
+    if (airTime > 0) _statusHint = null;
     HapticFeedback.mediumImpact();
   }
 
@@ -973,11 +972,16 @@ class _LumoJumpPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _LumoJumpPainter oldDelegate) {
+    final oldClearedBlocks = oldDelegate.questionBlocks.where((b) => b.cleared).length;
+    final newClearedBlocks = questionBlocks.where((b) => b.cleared).length;
+    final oldCollectedStars = oldDelegate.stars.where((s) => s.collected).length;
+    final newCollectedStars = stars.where((s) => s.collected).length;
+
     return oldDelegate.cameraX != cameraX ||
         oldDelegate.playerRect != playerRect ||
         oldDelegate.confettiTrigger != confettiTrigger ||
-        oldDelegate.questionBlocks != questionBlocks ||
-        oldDelegate.stars != stars ||
+        oldClearedBlocks != newClearedBlocks ||
+        oldCollectedStars != newCollectedStars ||
         oldDelegate.chest.opened != chest.opened;
   }
 }
