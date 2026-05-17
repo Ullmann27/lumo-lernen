@@ -154,24 +154,34 @@ Regeln: Genau 4 Optionen pro Frage. "correct" gibt den Buchstaben A, B, C oder D
 
   List<WwmQuestion> _fallbackQuestions() {
     final rng = Random();
-    final exercises = List<Exercise>.from(ExerciseFactory.allExercises);
-    final questions = <WwmQuestion>[];
 
-    for (int i = 0; i < 15; i++) {
-      final exercise = exercises[i % exercises.length];
+    // Pick 5 random questions from each difficulty tier (no repeats within tier)
+    final easy = List<Exercise>.from(ExerciseFactory.easyExercises)
+      ..shuffle(rng);
+    final medium = List<Exercise>.from(ExerciseFactory.mediumExercises)
+      ..shuffle(rng);
+    final hard = List<Exercise>.from(ExerciseFactory.hardExercises)
+      ..shuffle(rng);
+
+    final selected = [
+      ...easy.take(5),
+      ...medium.take(5),
+      ...hard.take(5),
+    ];
+
+    return selected.map((exercise) {
       // Shuffle answer options while tracking the correct one
       final indexed = exercise.options.asMap().entries.toList()..shuffle(rng);
       final shuffledOptions = indexed.map((e) => e.value).toList();
       final correctIndex =
           shuffledOptions.indexOf(exercise.correctAnswer).clamp(0, 3);
-      questions.add(WwmQuestion(
+      return WwmQuestion(
         subject: exercise.subject,
         question: exercise.question,
         options: shuffledOptions,
         correctIndex: correctIndex,
         explanation: exercise.explanation,
-      ));
-    }
-    return questions;
+      );
+    }).toList();
   }
 }

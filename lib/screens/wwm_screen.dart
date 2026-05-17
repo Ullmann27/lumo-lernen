@@ -293,7 +293,21 @@ class _WwmScreenState extends State<WwmScreen> with TickerProviderStateMixin {
 
   // ── Question card ─────────────────────────────────────────────────────────
 
+  /// Returns true when [s] is predominantly emoji / non-Latin characters,
+  /// indicating a visual "Mengen" (quantity) display line.
+  bool _isEmojiLine(String s) {
+    if (s.trim().isEmpty) return false;
+    final runes = s.runes.toList();
+    final nonLatinCount = runes.where((r) => r > 0xFF).length;
+    return runes.isNotEmpty && nonLatinCount / runes.length > 0.4;
+  }
+
   Widget _buildQuestionCard(WwmQuestion q) {
+    // Split on '\n': if the last part is emoji-heavy, render it as a large
+    // visual "Mengen" block instead of plain small text.
+    final parts = q.question.split('\n');
+    final hasVisualLine = parts.length >= 2 && _isEmojiLine(parts.last);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
@@ -322,15 +336,44 @@ class _WwmScreenState extends State<WwmScreen> with TickerProviderStateMixin {
                   letterSpacing: 1.4),
             ),
             const SizedBox(height: 12),
-            Text(
-              q.question,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 21,
-                  fontWeight: FontWeight.bold,
-                  height: 1.35),
-              textAlign: TextAlign.center,
-            ),
+            if (hasVisualLine) ...[
+              // Question text (first line)
+              Text(
+                parts.first,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    height: 1.35),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 14),
+              // Emoji "Mengen" block rendered large and centred
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 10),
+                decoration: BoxDecoration(
+                  color: _gold.withOpacity(0.08),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: _gold.withOpacity(0.35)),
+                ),
+                child: Text(
+                  parts.last,
+                  style: const TextStyle(fontSize: 36, height: 1.5),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ] else
+              Text(
+                q.question,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold,
+                    height: 1.35),
+                textAlign: TextAlign.center,
+              ),
           ],
         ),
       ),
