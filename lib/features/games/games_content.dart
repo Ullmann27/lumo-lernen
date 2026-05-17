@@ -9,6 +9,7 @@ import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
+import 'mini_games/lumo_jump_adventure_game.dart';
 import 'mini_games/number_house_game.dart';
 import 'mini_games/stars_path_game.dart';
 
@@ -74,6 +75,18 @@ class _GamesContentState extends State<GamesContent> {
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
+    if (level.id == 1) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => LumoJumpAdventureGame(
+            appState: widget.appState,
+            level: level,
+          ),
+        ),
+      );
+      await _load();
+      return;
+    }
     switch (level.miniType) {
       case GameMiniType.starsPath:
         await Navigator.of(context).push(
