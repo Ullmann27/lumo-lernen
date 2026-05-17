@@ -26,7 +26,8 @@ abstract class GameTaskFactory {
     required int appGrade,
     required int seed,
   }) {
-    final normalizedGrade = math.max(level.gradeFloor, appGrade.clamp(1, 4) as int);
+    final clampedGrade = appGrade < 1 ? 1 : (appGrade > 4 ? 4 : appGrade);
+    final normalizedGrade = math.max(level.gradeFloor, clampedGrade);
     if (_usesGermanTemplates(level)) {
       final unit = resolveGermanUnit(level);
       final task = GermanTaskTemplates.generate(
@@ -100,7 +101,16 @@ abstract class GameTaskFactory {
     if (title.contains('synonym')) return 'Synonyme';
     if (title.contains('zeitform')) return 'Zeitformen';
     if (title.contains('satz')) return 'Satz bauen';
-    return 'Alle';
+    switch (level.gradeFloor) {
+      case 1:
+        return 'Anfangslaute';
+      case 2:
+        return 'Wortfamilien';
+      case 3:
+        return 'Wortarten';
+      default:
+        return 'Satz bauen';
+    }
   }
 
   static bool _usesGermanTemplates(GameLevel level) {

@@ -33,7 +33,11 @@ void main() {
         expect(task.prompt.trim(), isNotEmpty, reason: 'Level ${level.id}');
         expect(task.answer.trim(), isNotEmpty, reason: 'Level ${level.id}');
         expect(task.choices, contains(task.answer), reason: 'Level ${level.id}');
-        expect(task.choices.toSet().length, task.choices.length, reason: 'Level ${level.id}');
+        expect(
+          task.choices.toSet().length,
+          task.choices.length,
+          reason: 'Level ${level.id} has duplicate choices',
+        );
       }
     });
   });
