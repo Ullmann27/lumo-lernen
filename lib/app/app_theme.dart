@@ -52,6 +52,7 @@ class LumoColors {
   static const continueSurface=Color(0xFFE5FFF6);
 
   static const ink900       = Color(0xFF1F1713);
+  static const ink800       = ink700;
   static const ink700       = Color(0xFF3D342C);
   static const ink600       = Color(0xFF5A4E45);
   static const ink500       = Color(0xFF766A61);
