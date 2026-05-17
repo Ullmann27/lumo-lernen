@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../games/games_content.dart';
 import '../quiz/quiz_show_content.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
@@ -36,6 +37,14 @@ class HomeContent extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => QuizShowContent(appState: appState),
+      ),
+    );
+  }
+
+  void _openGames(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => GamesContent(appState: appState),
       ),
     );
   }
@@ -105,6 +114,17 @@ class HomeContent extends StatelessWidget {
             starsCollected: 0,
             starsTotal: 15,
             onTap: () => _openQuiz(context),
+          ),
+          LumoSubjectTile(
+            title: 'Lumo Spielewelt',
+            subtitle: '50 Level - Sterne sammeln und Abenteuer erleben',
+            iconEmoji: 'S',
+            illustrationEmoji: '🎮',
+            accent: LumoColors.orange,
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 150,
+            onTap: () => _openGames(context),
           ),
           LumoSubjectTile(
             title: 'Lesen mit Lumo',
