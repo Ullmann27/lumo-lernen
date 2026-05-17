@@ -1,9 +1,40 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
+import '../services/class_settings.dart';
 import '../services/learning_brain.dart';
 import '../services/exercise_factory.dart';
 import '../services/reward_orchestrator.dart';
+
+// ── Schulheft ruled-paper background ─────────────────────────────────────────
+
+class _RuledPaperPainter extends CustomPainter {
+  const _RuledPaperPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final linePaint = Paint()
+      ..color = const Color(0xFF90CAF9).withOpacity(0.45)
+      ..strokeWidth = 1.0;
+    const lineSpacing = 28.0;
+    const topOffset = 44.0;
+    for (double y = topOffset; y < size.height; y += lineSpacing) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), linePaint);
+    }
+    // Left margin red line
+    final marginPaint = Paint()
+      ..color = Colors.red.withOpacity(0.35)
+      ..strokeWidth = 1.5;
+    canvas.drawLine(
+        const Offset(36, 0), Offset(36, size.height), marginPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+// ── Main screen ───────────────────────────────────────────────────────────────
 
 class LernenScreen extends StatefulWidget {
   const LernenScreen({super.key});
@@ -14,10 +45,15 @@ class LernenScreen extends StatefulWidget {
 
 class _LernenScreenState extends State<LernenScreen>
     with SingleTickerProviderStateMixin {
-  late Exercise _currentExercise;
+  // Initialised with a placeholder; replaced in first addPostFrameCallback
+  Exercise _currentExercise = ExerciseFactory.allExercises.first;
   String? _selectedAnswer;
   bool? _isCorrect;
   bool _showExplanation = false;
+
+  // Track the last 8 question texts to avoid immediate repeats
+  final _recentQuestions = <String>{};
+  static const _recentCap = 8;
 
   late final AnimationController _feedbackController;
   late final Animation<double> _feedbackScale;
@@ -25,7 +61,6 @@ class _LernenScreenState extends State<LernenScreen>
   @override
   void initState() {
     super.initState();
-    _currentExercise = ExerciseFactory.nextExercise();
     _feedbackController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 400),
@@ -33,12 +68,41 @@ class _LernenScreenState extends State<LernenScreen>
     _feedbackScale = Tween<double>(begin: 0.7, end: 1.0).animate(
       CurvedAnimation(parent: _feedbackController, curve: Curves.elasticOut),
     );
+    // Defer reading context until after first build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadNext();
+    });
   }
 
   @override
   void dispose() {
     _feedbackController.dispose();
     super.dispose();
+  }
+
+  void _loadNext({bool followUp = false}) {
+    final brain = context.read<LearningBrain>();
+    final settings = context.read<ClassSettings>();
+    Exercise next;
+    if (followUp) {
+      next = brain.createFollowUpTask(_currentExercise);
+    } else {
+      next = ExerciseFactory.randomForLevel(
+        settings.level,
+        recentQuestions: _recentQuestions,
+      );
+    }
+    // Update recent set
+    _recentQuestions.add(next.question);
+    if (_recentQuestions.length > _recentCap) {
+      _recentQuestions.remove(_recentQuestions.first);
+    }
+    setState(() {
+      _currentExercise = next;
+      _selectedAnswer = null;
+      _isCorrect = null;
+      _showExplanation = false;
+    });
   }
 
   void _onAnswerSelected(String answer) {
@@ -60,18 +124,10 @@ class _LernenScreenState extends State<LernenScreen>
 
   void _nextExercise() {
     final brain = context.read<LearningBrain>();
-    setState(() {
-      if (_isCorrect == false && brain.wrongAttempts >= 3) {
-        _currentExercise = brain.createFollowUpTask(_currentExercise);
-        brain.resetWrongAttempts();
-      } else {
-        _currentExercise = ExerciseFactory.nextExercise();
-        if (_isCorrect == true) brain.resetWrongAttempts();
-      }
-      _selectedAnswer = null;
-      _isCorrect = null;
-      _showExplanation = false;
-    });
+    final followUp = _isCorrect == false && brain.wrongAttempts >= 3;
+    if (!followUp && _isCorrect == true) brain.resetWrongAttempts();
+    if (followUp) brain.resetWrongAttempts();
+    _loadNext(followUp: followUp);
   }
 
   @override
@@ -100,7 +156,7 @@ class _LernenScreenState extends State<LernenScreen>
                     const SizedBox(height: 16),
                     ScaleTransition(
                       scale: _feedbackScale,
-                      child: _buildFeedback(),
+                      child: _buildFeedback(brain),
                     ),
                   ],
                   if (_showExplanation) ...[
@@ -127,6 +183,7 @@ class _LernenScreenState extends State<LernenScreen>
   }
 
   Widget _buildHeader(BuildContext context, int livesLeft) {
+    final settings = context.watch<ClassSettings>();
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
@@ -156,6 +213,22 @@ class _LernenScreenState extends State<LernenScreen>
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(width: 10),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  '${settings.level.emoji} ${settings.level.label}',
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
               const Spacer(),
               Row(
                 children: List.generate(3, (i) {
@@ -178,47 +251,55 @@ class _LernenScreenState extends State<LernenScreen>
   Widget _buildQuestionCard() {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(28),
+      clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppTheme.lightBlue.withOpacity(0.4),
-            AppTheme.turquoise.withOpacity(0.2),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: const Color(0xFFFFFDE7), // light yellow – school notebook
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppTheme.turquoise.withOpacity(0.3)),
-      ),
-      child: Column(
-        children: [
-          Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            decoration: BoxDecoration(
-              color: AppTheme.turquoise.withOpacity(0.25),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Text(
-              _currentExercise.subject,
-              style: const TextStyle(
-                  fontSize: 13,
-                  color: Color(0xFF2A7A75),
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.5),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            _currentExercise.question,
-            style: const TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF2D2D2D)),
-            textAlign: TextAlign.center,
+        border: Border.all(color: const Color(0xFFBBDEFB), width: 1.5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.07),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
+      ),
+      child: CustomPaint(
+        painter: const _RuledPaperPainter(),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(44, 18, 20, 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  color: AppTheme.turquoise.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  _currentExercise.subject,
+                  style: const TextStyle(
+                      fontSize: 13,
+                      color: Color(0xFF2A7A75),
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.5),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Text(
+                _currentExercise.question,
+                style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF2D2D2D),
+                    height: 1.4),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -256,8 +337,19 @@ class _LernenScreenState extends State<LernenScreen>
     );
   }
 
-  Widget _buildFeedback() {
+  // Personalised feedback using LearningBrain wrong topics
+  Widget _buildFeedback(LearningBrain brain) {
     final correct = _isCorrect == true;
+    String message;
+    if (correct) {
+      message = 'Super gemacht! +10 XP 🎉';
+    } else if (brain.wrongTopics.isNotEmpty) {
+      final topic = brain.wrongTopics.last;
+      message = '💪 Noch nicht ganz – üben wir "$topic" zusammen!';
+    } else {
+      message = '💪 Nicht ganz – versuch es nochmal!';
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       decoration: BoxDecoration(
@@ -284,9 +376,7 @@ class _LernenScreenState extends State<LernenScreen>
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              correct
-                  ? 'Super gemacht! +10 XP'
-                  : 'Nicht ganz – versuch es nochmal!',
+              message,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -333,3 +423,4 @@ class _LernenScreenState extends State<LernenScreen>
     );
   }
 }
+

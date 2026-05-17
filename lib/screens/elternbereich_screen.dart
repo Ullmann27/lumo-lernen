@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
+import '../services/class_settings.dart';
 import '../services/reward_orchestrator.dart';
 import '../services/memory_graph.dart';
 import '../services/wwm_question_service.dart';
@@ -135,7 +136,11 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
             ],
           ),
           const SizedBox(height: 24),
-          Text('Empfohlene Themen',
+          Text('Schwierigkeitsstufe',
+              style: Theme.of(context).textTheme.headlineMedium),
+          const SizedBox(height: 12),
+          _buildClassLevelPicker(),
+          const SizedBox(height: 24),
               style: Theme.of(context).textTheme.headlineMedium),
           const SizedBox(height: 12),
           ...memGraph.weakSkills.map((skill) => Padding(
@@ -162,6 +167,52 @@ class _ElternbereichScreenState extends State<ElternbereichScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildClassLevelPicker() {
+    final settings = context.watch<ClassSettings>();
+    return Row(
+      children: ClassLevel.values.map((lvl) {
+        final selected = settings.level == lvl;
+        return Expanded(
+          child: GestureDetector(
+            onTap: () => settings.setLevel(lvl),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              margin: const EdgeInsets.only(right: 8),
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              decoration: BoxDecoration(
+                color: selected
+                    ? AppTheme.softGreen
+                    : AppTheme.softGreen.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  color: selected
+                      ? AppTheme.softGreen
+                      : Colors.transparent,
+                  width: 2,
+                ),
+              ),
+              child: Column(
+                children: [
+                  Text(lvl.emoji,
+                      style: const TextStyle(fontSize: 22)),
+                  const SizedBox(height: 4),
+                  Text(
+                    lvl.label,
+                    style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: selected ? Colors.white : Colors.black54),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }).toList(),
     );
   }
 

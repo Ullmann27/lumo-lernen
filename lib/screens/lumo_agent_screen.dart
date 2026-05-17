@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/lumo_avatar.dart';
 import '../services/companion_agent.dart';
+import '../services/learning_brain.dart';
 
 class LumoAgentScreen extends StatefulWidget {
   const LumoAgentScreen({super.key});
@@ -41,6 +42,8 @@ class _LumoAgentScreenState extends State<LumoAgentScreen> {
   @override
   Widget build(BuildContext context) {
     final agent = context.watch<CompanionAgent>();
+    // Attach brain so agent can personalise responses
+    agent.attachBrain(context.read<LearningBrain>());
     return Scaffold(
       backgroundColor: AppTheme.cream,
       body: Column(
@@ -120,9 +123,17 @@ class _LumoAgentScreenState extends State<LumoAgentScreen> {
                         ),
                       ),
                       const SizedBox(width: 5),
-                      const Text(
-                        'Immer für dich da',
-                        style: TextStyle(color: Colors.white70, fontSize: 12),
+                      Consumer<LearningBrain>(
+                        builder: (_, brain, __) {
+                          final hint = brain.wrongTopics.isNotEmpty
+                              ? 'Tipp: Üb noch "${brain.wrongTopics.last}"'
+                              : 'Immer für dich da';
+                          return Text(
+                            hint,
+                            style: const TextStyle(
+                                color: Colors.white70, fontSize: 12),
+                          );
+                        },
                       ),
                     ],
                   ),

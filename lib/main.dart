@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app.dart';
+import 'services/class_settings.dart';
 import 'services/learning_brain.dart';
 import 'services/reward_orchestrator.dart';
 import 'services/memory_graph.dart';
@@ -15,6 +16,7 @@ void main() async {
 
   final localStore = LocalStore();
   final wwmService = WwmQuestionService(localStore);
+  final classSettings = ClassSettings(localStore);
 
   runApp(
     MultiProvider(
@@ -26,6 +28,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => CompanionAgent()),
         Provider<WwmQuestionService>.value(value: wwmService),
         ChangeNotifierProvider(create: (_) => WwmGameState(wwmService)),
+        ChangeNotifierProvider<ClassSettings>.value(value: classSettings),
       ],
       child: const LumoLernenApp(),
     ),

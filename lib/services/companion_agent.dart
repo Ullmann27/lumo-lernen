@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'learning_brain.dart';
 
 class AgentMessage {
   final String text;
@@ -7,6 +8,8 @@ class AgentMessage {
 }
 
 class CompanionAgent extends ChangeNotifier {
+  LearningBrain? _brain;
+
   final List<AgentMessage> _messages = [
     const AgentMessage(
       text: 'Hallo! Ich bin Lumo 🦊 Ich helfe dir beim Lernen! Was möchtest du üben?',
@@ -16,14 +19,37 @@ class CompanionAgent extends ChangeNotifier {
 
   List<AgentMessage> get messages => List.unmodifiable(_messages);
 
+  /// Connect to LearningBrain so Lumo can give personalised hints.
+  void attachBrain(LearningBrain brain) {
+    _brain = brain;
+  }
+
   void handleInput(String input) {
     _messages.add(AgentMessage(text: input, isUser: true));
-    final response = _generateSafeResponse(input.toLowerCase());
+    final response = _generateResponse(input.toLowerCase());
     _messages.add(AgentMessage(text: response, isUser: false));
     notifyListeners();
   }
 
-  String _generateSafeResponse(String input) {
+  String _generateResponse(String input) {
+    // Personalised suggestion based on known weak topics
+    final weakTopics = _brain?.wrongTopics ?? [];
+
+    if (weakTopics.isNotEmpty &&
+        (input.contains('was') || input.contains('übe') ||
+            input.contains('hilfe') || input.contains('tipp'))) {
+      final topic = weakTopics.last;
+      return 'Lumo weiß, dass "$topic" noch etwas schwierig ist. '
+          'Ich empfehle dir, im "Lernen"-Bereich mehr "$topic"-Aufgaben zu üben! 🦊✨';
+    }
+    if (weakTopics.isNotEmpty && weakTopics.length >= 2) {
+      if (input.contains('schwach') || input.contains('schlecht') ||
+          input.contains('probleme')) {
+        return 'Ich sehe, bei "${weakTopics.join('" und "')}" üben wir noch. '
+            'Das schaffst du! 💪';
+      }
+    }
+
     if (input.contains('mathe') ||
         input.contains('rechnen') ||
         input.contains('+') ||
@@ -38,7 +64,8 @@ class CompanionAgent extends ChangeNotifier {
     if (input.contains('hilfe') ||
         input.contains('verstehe') ||
         input.contains('nicht')) {
-      return 'Kein Problem! Ich erkläre dir das Schritt für Schritt. Welche Aufgabe ist schwierig?';
+      return 'Kein Problem! Ich erkläre dir das Schritt für Schritt. '
+          'Welche Aufgabe ist schwierig?';
     }
     if (input.contains('hallo') ||
         input.contains('hi') ||
@@ -54,6 +81,13 @@ class CompanionAgent extends ChangeNotifier {
     if (input.length < 3) {
       return 'Hm, kannst du das etwas genauer sagen? 🦊';
     }
-    return 'Das ist eine tolle Frage! 🌟 Im Bereich "Lernen" kannst du passende Aufgaben finden. Soll ich dir eine zeigen?';
+
+    // Fallback: personalised if we know weak areas
+    if (weakTopics.isNotEmpty) {
+      return 'Das ist eine tolle Frage! 🌟 Übrigens: bei "${weakTopics.last}" '
+          'kannst du noch stärker werden. Soll ich dir helfen?';
+    }
+    return 'Das ist eine tolle Frage! 🌟 Im Bereich "Lernen" kannst du passende '
+        'Aufgaben finden. Soll ich dir eine zeigen?';
   }
 }

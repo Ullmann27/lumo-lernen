@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'class_settings.dart';
+
 class Exercise {
   final String subject;
   final String question;
@@ -469,6 +472,32 @@ class ExerciseFactory {
     final exercise = all[_index % all.length];
     _index++;
     return exercise;
+  }
+
+  /// Returns a random exercise for the given [level], excluding any exercise
+  /// whose question text appears in [recentQuestions]. If all candidates have
+  /// been recently shown, the exclusion is ignored.
+  static Exercise randomForLevel(
+    ClassLevel level, {
+    Set<String> recentQuestions = const {},
+  }) {
+    final pool = exercisesForLevel(level);
+    final candidates =
+        pool.where((e) => !recentQuestions.contains(e.question)).toList();
+    final source = candidates.isNotEmpty ? candidates : pool;
+    return source[Random().nextInt(source.length)];
+  }
+
+  /// Returns the exercise pool for [level].
+  static List<Exercise> exercisesForLevel(ClassLevel level) {
+    switch (level) {
+      case ClassLevel.klasse1:
+        return List.unmodifiable(_easyExercises);
+      case ClassLevel.klasse2:
+        return List.unmodifiable([..._easyExercises, ..._mediumExercises]);
+      case ClassLevel.fortgeschritten:
+        return allExercises;
+    }
   }
 
   static List<Exercise> get easyExercises => List.unmodifiable(_easyExercises);

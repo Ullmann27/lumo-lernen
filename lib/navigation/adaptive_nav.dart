@@ -9,6 +9,7 @@ import '../screens/elternbereich_screen.dart';
 import '../screens/memory_graph_screen.dart';
 import '../screens/datenschutz_screen.dart';
 import '../screens/wwm_screen.dart';
+import '../screens/wettbewerb_screen.dart';
 import '../theme/app_theme.dart';
 
 class AdaptiveNav extends StatefulWidget {
@@ -30,6 +31,7 @@ class _AdaptiveNavState extends State<AdaptiveNav> {
     _NavItem(icon: Icons.camera_alt_rounded, label: 'Erkennen'),
     _NavItem(icon: Icons.psychology_rounded, label: 'Lern-Check'),
     _NavItem(icon: Icons.card_giftcard_rounded, label: 'Bonus'),
+    _NavItem(icon: Icons.emoji_events_rounded, label: 'Wettbewerb'),
     _NavItem(icon: Icons.family_restroom_rounded, label: 'Eltern'),
     _NavItem(icon: Icons.account_tree_rounded, label: 'Lernbaum'),
     _NavItem(icon: Icons.security_rounded, label: 'Datenschutz'),
@@ -43,6 +45,7 @@ class _AdaptiveNavState extends State<AdaptiveNav> {
     const AufgabeErkennenScreen(),
     const KognitiverLernCheckScreen(),
     const BonusScreen(),
+    const WettbewerbScreen(),
     const ElternbereichScreen(),
     const MemoryGraphScreen(),
     const DatenschutzScreen(),
