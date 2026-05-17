@@ -9,6 +9,8 @@
 class WritingTargetParser {
   const WritingTargetParser._();
 
+  static final RegExp _trailingPunctuation = RegExp(r'[.!?]+$');
+
   static String parse(String prompt) {
     final word = RegExp(r'Schreibe\s+das\s+Wort\s*:?\s*(.+)$', caseSensitive: false).firstMatch(prompt);
     if (word != null) return _cleanWordTarget(word.group(1));
@@ -36,7 +38,7 @@ class WritingTargetParser {
 
   static String _cleanWordTarget(String? value) {
     final cleaned = _stripWrappingQuotes(
-      (value ?? '').trim().replaceAll(RegExp(r'[.!?]+$'), '').trim(),
+      (value ?? '').trim().replaceAll(_trailingPunctuation, ''),
     );
     return cleaned.isEmpty ? 'A' : cleaned;
   }
@@ -47,8 +49,7 @@ class WritingTargetParser {
   }
 
   static String _stripWrappingQuotes(String? value) {
-    return (value ?? '')
-        .trim()
+    return (value ?? '').trim()
         .replaceFirst(RegExp(r"""^[„"'‚]+"""), '')
         .replaceFirst(RegExp(r"""[“"'‘]+$"""), '')
         .trim();
