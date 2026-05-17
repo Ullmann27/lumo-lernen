@@ -2,24 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import 'game_level_model.dart';
+import 'lumo_level_map.dart';
 
 class GamesScreen extends StatelessWidget {
   const GamesScreen({super.key, required this.appState});
 
   final LumoAppState appState;
-  static const int _minimumStarsForCompletedLevel = 2;
-  static const List<_LevelData> _levels = <_LevelData>[
-    _LevelData(1, 'Sterne sammeln', 'Mengen bis 10', unlocked: true, stars: 3),
-    _LevelData(2, 'Sterne sammeln', 'Plus bis 10', unlocked: true, stars: 2),
-    _LevelData(3, 'Rechenhaus bauen', 'Zahlzerlegung', unlocked: true, stars: 1),
-    _LevelData(4, 'Zahlenweg', 'Zahlenfolge', unlocked: true, stars: 0),
-    _LevelData(5, 'Zahlenweg', 'Plus-Schritte', unlocked: true, stars: 0),
-    _LevelData(6, 'Wörterwald', 'Silben erkennen', unlocked: false, stars: 0),
-    _LevelData(7, 'Wörterwald', 'Wort-Bild', unlocked: false, stars: 0),
-    _LevelData(8, 'Rechenhaus bauen', 'Fehlende Zahl', unlocked: false, stars: 0),
-    _LevelData(9, 'Sterne sammeln', 'Minus bis 10', unlocked: false, stars: 0),
-    _LevelData(10, 'Lumo-Challenge', 'Gemischt', unlocked: false, stars: 0),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -29,26 +18,11 @@ class GamesScreen extends StatelessWidget {
         _GamesHeader(childName: appState.state.childName),
         const SizedBox(height: 16),
         _WeekPreviewCard(
-          done: _levels.where((level) => level.unlocked && level.stars >= _minimumStarsForCompletedLevel).length,
-          total: _levels.length,
+          done: kInitialGameLevels.where((level) => level.unlocked && level.stars >= kMinimumStarsForProgress).length,
+          total: kInitialGameLevels.length,
         ),
         const SizedBox(height: 16),
-        LayoutBuilder(
-          builder: (context, constraints) {
-            final compact = constraints.maxWidth < 760;
-            final itemWidth = compact ? constraints.maxWidth : (constraints.maxWidth - 14) / 2;
-            return Wrap(
-              spacing: 14,
-              runSpacing: 14,
-              children: _levels
-                  .map((level) => SizedBox(
-                        width: itemWidth,
-                        child: _LevelCard(level: level),
-                      ))
-                  .toList(),
-            );
-          },
-        ),
+        const LumoLevelMap(levels: kInitialGameLevels),
       ],
     );
   }
@@ -136,99 +110,4 @@ class _WeekPreviewCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class _LevelCard extends StatelessWidget {
-  const _LevelCard({required this.level});
-
-  final _LevelData level;
-
-  @override
-  Widget build(BuildContext context) {
-    final locked = !level.unlocked;
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 220),
-      padding: const EdgeInsets.all(14),
-      decoration: lumoCard(
-        color: locked ? const Color(0xFFF8F6F3) : Colors.white,
-        border: Border.all(
-          color: locked ? LumoColors.ink100 : LumoColors.orange.withOpacity(.22),
-          width: 1.2,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  color: locked ? LumoColors.ink100 : LumoColors.orangeSurface,
-                  borderRadius: BorderRadius.circular(LumoRadius.sm),
-                ),
-                child: Center(
-                  child: Text(
-                    '${level.number}',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontWeight: FontWeight.w900,
-                      fontSize: 15,
-                      color: locked ? LumoColors.ink500 : LumoColors.orange,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  level.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: LumoTextStyles.heading3.copyWith(color: locked ? LumoColors.ink500 : LumoColors.ink900),
-                ),
-              ),
-              Icon(locked ? Icons.lock_rounded : Icons.play_arrow_rounded, color: locked ? LumoColors.ink300 : LumoColors.orange),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Text(
-            level.subtitle,
-            style: LumoTextStyles.body.copyWith(color: locked ? LumoColors.ink400 : LumoColors.ink700),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: List.generate(3, (index) {
-              final filled = index < level.stars;
-              return Padding(
-                padding: EdgeInsets.only(right: index == 2 ? 0 : 4),
-                child: Icon(
-                  Icons.star_rounded,
-                  size: 18,
-                  color: filled ? LumoColors.gold : LumoColors.ink100,
-                ),
-              );
-            }),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LevelData {
-  const _LevelData(
-    this.number,
-    this.title,
-    this.subtitle, {
-    required this.unlocked,
-    required this.stars,
-  });
-
-  final int number;
-  final String title;
-  final String subtitle;
-  final bool unlocked;
-  final int stars;
 }
