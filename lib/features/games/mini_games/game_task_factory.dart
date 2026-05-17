@@ -26,7 +26,7 @@ abstract class GameTaskFactory {
     required int appGrade,
     required int seed,
   }) {
-    final clampedGrade = appGrade < 1 ? 1 : (appGrade > 4 ? 4 : appGrade);
+    final clampedGrade = math.max(1, math.min(4, appGrade));
     final normalizedGrade = math.max(level.gradeFloor, clampedGrade);
     if (_usesGermanTemplates(level)) {
       final unit = resolveGermanUnit(level);
@@ -58,49 +58,17 @@ abstract class GameTaskFactory {
   }
 
   static String resolveMathUnit(GameLevel level, {required int grade}) {
-    final title = level.title.toLowerCase();
-    if (level.miniType == GameMiniType.numberPath) {
-      if (title.contains('vergleich')) return 'Vergleichen';
-      return 'Zahlenstrahl';
-    }
-    if (title.contains('uhrzeit')) return 'Uhrzeit';
-    if (title.contains('einkaufen')) return 'Geld wechseln';
-    if (title.contains('schriftliches plus')) return 'Schriftliche Addition';
-    if (title.contains('schriftliches minus')) return 'Schriftliche Subtraktion';
-    if (title.contains('plus bis 100')) return 'Plus bis 100';
-    if (title.contains('minus bis 100')) return 'Minus bis 100';
-    if (title.contains('einmaleins')) return 'Einmaleins';
-    if (title.contains('verdoppeln') || title.contains('halbieren')) {
-      return 'Verdoppeln und Halbieren';
-    }
-    if (title.contains('textaufgabe') || title.contains('sach')) return 'Textaufgaben';
-    if (title.contains('minus bis 20')) return 'Minus bis 20';
-    if (title.contains('plus bis 20')) return 'Plus bis 20';
-    if (title.contains('minus')) return grade >= 2 ? 'Minus bis 20' : 'Minus bis 10';
-    if (title.contains('plus')) {
-      if (grade >= 3) return 'Plus bis 100';
-      return grade >= 2 ? 'Plus bis 20' : 'Plus bis 10';
-    }
+    final mapped = _mathUnitByLevelId[level.id];
+    if (mapped != null) return mapped;
+    if (level.miniType == GameMiniType.numberPath) return 'Zahlenstrahl';
+    if (level.miniType == GameMiniType.mixedQuiz) return grade >= 3 ? 'Textaufgaben' : 'Plus bis 20';
     if (grade >= 3) return 'Einmaleins';
     return grade >= 2 ? 'Plus bis 20' : 'Plus bis 10';
   }
 
   static String resolveGermanUnit(GameLevel level) {
-    final title = level.title.toLowerCase();
-    if (title.contains('anfangslaut')) return 'Anfangslaute';
-    if (title.contains('endlaut')) return 'Endlaute';
-    if (title.contains('silb')) return 'Silben';
-    if (title.contains('reim')) return 'Reime';
-    if (title.contains('wort und bild') || title.contains('wort-bild')) {
-      return 'Wort-Bild schreiben';
-    }
-    if (title.contains('artikel')) return 'Artikel';
-    if (title.contains('einzahl') || title.contains('mehrzahl')) return 'Einzahl und Mehrzahl';
-    if (title.contains('wortfamil')) return 'Wortfamilien';
-    if (title.contains('wortart')) return 'Wortarten';
-    if (title.contains('synonym')) return 'Synonyme';
-    if (title.contains('zeitform')) return 'Zeitformen';
-    if (title.contains('satz')) return 'Satz bauen';
+    final mapped = _germanUnitByLevelId[level.id];
+    if (mapped != null) return mapped;
     switch (level.gradeFloor) {
       case 1:
         return 'Anfangslaute';
@@ -118,4 +86,60 @@ abstract class GameTaskFactory {
     return level.miniType == GameMiniType.mixedQuiz &&
         level.subject.toLowerCase() == 'deutsch';
   }
+
+  static const Map<int, String> _mathUnitByLevelId = <int, String>{
+    1: 'Plus bis 10',
+    2: 'Mengenvergleich',
+    3: 'Plus bis 10',
+    4: 'Mengenvergleich',
+    5: 'Plus bis 10',
+    6: 'Mengenvergleich',
+    7: 'Plus bis 10',
+    8: 'Plus bis 10',
+    9: 'Plus bis 10',
+    10: 'Plus bis 10',
+    11: 'Minus bis 10',
+    12: 'Minus bis 10',
+    13: 'Zahlenstrahl',
+    14: 'Zahlenstrahl',
+    15: 'Plus bis 20',
+    16: 'Plus bis 20',
+    17: 'Minus bis 20',
+    18: 'Vergleichen',
+    19: 'Verdoppeln und Halbieren',
+    20: 'Minus bis 20',
+    31: 'Textaufgaben',
+    32: 'Uhrzeit',
+    33: 'Textaufgaben',
+    34: 'Vergleichen',
+    35: 'Textaufgaben',
+    36: 'Zahlenstrahl',
+    37: 'Verdoppeln und Halbieren',
+    39: 'Plus bis 100',
+    40: 'Textaufgaben',
+    41: 'Einmaleins',
+    42: 'Einmaleins',
+    45: 'Minus bis 100',
+    46: 'Einmaleins',
+    48: 'Schriftliche Addition',
+    49: 'Schriftliche Subtraktion',
+    50: 'Textaufgaben',
+  };
+
+  static const Map<int, String> _germanUnitByLevelId = <int, String>{
+    21: 'Anfangslaute',
+    22: 'Endlaute',
+    23: 'Silben',
+    24: 'Reime',
+    25: 'Wort-Bild schreiben',
+    26: 'Buchstaben-Lautierung',
+    27: 'Artikel',
+    28: 'Einzahl und Mehrzahl',
+    29: 'Wortfamilien',
+    30: 'Alle',
+    38: 'Wortarten',
+    43: 'Synonyme',
+    44: 'Zeitformen',
+    47: 'Satz bauen',
+  };
 }
