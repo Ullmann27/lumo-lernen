@@ -1,13 +1,11 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/game_progress_repository.dart';
-import '../../../core/math_task_templates.dart';
 import '../../../domain/games/game_level_model.dart';
+import 'game_task_factory.dart';
 import '../../shared/widgets/lumo_companion_avatar.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
 
@@ -48,7 +46,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
   int? _selectedOption;
   bool _revealed = false;
   int _confettiTrigger = 0;
-  late final List<MathConcreteTask> _tasks;
+  late final List<GameQuizTask> _tasks;
 
   String get _childId {
     final st = widget.appState.state;
@@ -61,21 +59,17 @@ class _StarsPathGameState extends State<StarsPathGame> {
   @override
   void initState() {
     super.initState();
-    // Generiere 5 Aufgaben passend zur Level-Klasse
-    final grade = math.max(widget.level.gradeFloor, widget.appState.state.grade);
-    _tasks = List<MathConcreteTask>.generate(_totalTasks, (i) {
+    _tasks = List<GameQuizTask>.generate(_totalTasks, (i) {
       final seed = widget.level.id * 1000 + i * 17;
-      // Klasse 1: Plus bis 10 / Minus bis 10 / Mengenvergleich
-      // Klasse 2: Plus bis 20 / Minus bis 20
-      String unit = 'Plus bis 10';
-      if (widget.level.title.toLowerCase().contains('minus')) unit = 'Minus bis 10';
-      if (widget.level.id >= 16) unit = 'Plus bis 20';
-      if (widget.level.id == 17) unit = 'Minus bis 20';
-      return MathTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
+      return GameTaskFactory.generate(
+        level: widget.level,
+        appGrade: widget.appState.state.grade,
+        seed: seed,
+      );
     });
   }
 
-  MathConcreteTask get _currentTask => _tasks[_currentIndex];
+  GameQuizTask get _currentTask => _tasks[_currentIndex];
 
   void _selectOption(int idx) {
     if (_revealed) return;
