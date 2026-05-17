@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'navigation/adaptive_nav.dart';
+import 'screens/splash_screen.dart';
 import 'theme/app_theme.dart';
 
 class LumoLernenApp extends StatelessWidget {
@@ -11,7 +11,7 @@ class LumoLernenApp extends StatelessWidget {
       title: 'Lumo Lernen',
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      home: const AdaptiveNav(),
+      home: const SplashScreen(),
     );
   }
 }
