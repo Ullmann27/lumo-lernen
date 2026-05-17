@@ -45,6 +45,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
   static const _seedFallbackStep = 31;
   static const _seedShuffleOffset = 41;
   static const _maxUniquenessAttempts = 12;
+  static const _advancedLevelStartId = 40;
   static const _repo = GameProgressRepository();
 
   int _currentIndex = 0;
@@ -90,10 +91,9 @@ class _StarsPathGameState extends State<StarsPathGame> {
           unit: unit,
           seed: seed,
         );
-        final shuffled = _withShuffledChoices(generated, seed + _seedShuffleOffset);
-        final key = '${shuffled.prompt}|${shuffled.answer}|${shuffled.choices.join('|')}';
+        final key = '${generated.prompt}|${generated.answer}|${generated.promptPattern}';
         if (uniqueKeys.add(key)) {
-          selected = shuffled;
+          selected = _withShuffledChoices(generated, seed + _seedShuffleOffset);
           break;
         }
       }
@@ -111,7 +111,8 @@ class _StarsPathGameState extends State<StarsPathGame> {
 
   MathConcreteTask _withShuffledChoices(MathConcreteTask task, int seed) {
     final shuffledChoices = List<String>.from(task.choices);
-    shuffledChoices.shuffle(math.Random(seed));
+    final random = math.Random(seed);
+    shuffledChoices.shuffle(random);
     return MathConcreteTask(
       unit: task.unit,
       prompt: task.prompt,
@@ -133,7 +134,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
     final title = widget.level.title.toLowerCase();
     final subject = widget.level.subject.toLowerCase();
 
-    if (widget.level.id >= 40 || widget.level.miniType == GameMiniType.mixedQuiz) {
+    if (widget.level.id >= _advancedLevelStartId || widget.level.miniType == GameMiniType.mixedQuiz) {
       preferred = <String>['Plus bis 20', 'Minus bis 20', 'Zahlenstrahl', 'Geld', 'Uhrzeit', 'Geometrie Formen'];
     } else if (widget.level.miniType == GameMiniType.numberPath || title.contains('zahlenweg') || title.contains('zahl')) {
       preferred = <String>['Zahlenstrahl', 'Vergleichen', 'Gerade und ungerade'];
