@@ -61,9 +61,8 @@ class _RewardShopContentState extends State<RewardShopContent> {
   Future<void> _redeem(RewardItem item) async {
     if (_state == null) return;
     if (!_engine.canAfford(_state!, item)) return;
-    final requiresParentApproval =
-        item.parentApprovalRequired || item.isPremiumReward;
-    if (requiresParentApproval) {
+    final needsApproval = item.parentApprovalRequired || item.isPremiumReward;
+    if (needsApproval) {
       // Eltern-PIN bestaetigen (vereinfacht: zweimal antippen-Modal).
       final confirmed = await _showParentConfirmation(item);
       if (!confirmed || !mounted) return;

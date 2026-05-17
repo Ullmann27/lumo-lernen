@@ -7,6 +7,9 @@
 
 import 'reward_catalog.dart';
 
+/// Sicherheitsobergrenze fuer persistierte Shop-Waehrungen.
+const int _maxRewardCurrency = 999999;
+
 /// Jahreszeiten - automatisch aus Datum bestimmt fuer passende Belohnungen.
 enum Season {
   spring,
@@ -348,9 +351,11 @@ class RewardShopState {
   }) {
     return RewardShopState(
       availableStars:
-          (availableStars ?? this.availableStars).clamp(0, 999999) as int,
+          (availableStars ?? this.availableStars)
+              .clamp(0, _maxRewardCurrency),
       availablePoints:
-          (availablePoints ?? this.availablePoints).clamp(0, 999999) as int,
+          (availablePoints ?? this.availablePoints)
+              .clamp(0, _maxRewardCurrency),
       redeemed: redeemed ?? this.redeemed,
       testPhotos: testPhotos ?? this.testPhotos,
       approvalRequests: approvalRequests ?? this.approvalRequests,
@@ -371,11 +376,11 @@ class RewardShopState {
   factory RewardShopState.fromJson(Map<String, Object?> json) {
     return RewardShopState(
       availableStars:
-          (((json['availableStars'] as num?)?.toInt() ?? 0).clamp(0, 999999))
-              as int,
+          ((json['availableStars'] as num?)?.toInt() ?? 0)
+              .clamp(0, _maxRewardCurrency),
       availablePoints:
-          (((json['availablePoints'] as num?)?.toInt() ?? 0).clamp(0, 999999))
-              as int,
+          ((json['availablePoints'] as num?)?.toInt() ?? 0)
+              .clamp(0, _maxRewardCurrency),
       redeemed: (json['redeemed'] as List?)
               ?.whereType<Map>()
               .map((m) =>
@@ -438,10 +443,10 @@ class RewardShopEngine {
     );
     return state.copyWith(
       availableStars: item.currency == RewardCurrency.stars
-          ? ((state.availableStars - item.cost).clamp(0, 999999) as int)
+          ? state.availableStars - item.cost
           : state.availableStars,
       availablePoints: item.currency == RewardCurrency.points
-          ? ((state.availablePoints - item.cost).clamp(0, 999999) as int)
+          ? state.availablePoints - item.cost
           : state.availablePoints,
       redeemed: <RedeemedReward>[...state.redeemed, entry],
     );
