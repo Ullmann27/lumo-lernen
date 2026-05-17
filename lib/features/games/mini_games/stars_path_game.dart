@@ -84,7 +84,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
         final seed = widget.level.id * _seedLevelFactor +
             i * _seedTaskStep +
             attempt * _seedAttemptStep;
-        final unit = units[(i + attempt) % units.length];
+        final unit = units[math.Random(seed ^ attempt).nextInt(units.length)];
         final generated = MathTaskTemplates.generate(
           grade: grade,
           unit: unit,
