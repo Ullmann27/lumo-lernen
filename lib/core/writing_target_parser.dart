@@ -38,13 +38,13 @@ class WritingTargetParser {
 
   static String _cleanWordTarget(String? value) {
     final cleaned = _stripWrappingQuotes(
-      (value ?? '').trim().replaceAll(_trailingPunctuation, ''),
+      (value ?? '').replaceAll(_trailingPunctuation, ''),
     );
     return cleaned.isEmpty ? 'A' : cleaned;
   }
 
   static String _cleanSentenceTarget(String? value) {
-    final cleaned = _stripWrappingQuotes(value).trim();
+    final cleaned = _stripWrappingQuotes(value);
     return cleaned.isEmpty ? 'A' : cleaned;
   }
 
