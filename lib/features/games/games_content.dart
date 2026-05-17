@@ -77,15 +77,18 @@ class _GamesContentState extends State<GamesContent> {
     final level = rt.level;
     // Level 1 startet das Lumo Jump Adventure
     if (level.id == 1) {
-      await Navigator.of(context).push(
-        MaterialPageRoute<void>(
+      final earnedStars = await Navigator.of(context).push<int>(
+        MaterialPageRoute<int>(
           builder: (_) => LumoJumpAdventureGame(
             appState: widget.appState,
             level: level,
           ),
         ),
       );
-      await _load();
+      // Fortschritt neu laden – Wallet wurde bereits im Spiel aktualisiert
+      if (earnedStars != null && earnedStars > 0) {
+        await _load();
+      }
       return;
     }
     switch (level.miniType) {

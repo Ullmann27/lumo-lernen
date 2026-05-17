@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
@@ -680,14 +679,16 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
   }
 
   Future<void> _finishLevel() async {
-    final stars = _resultStars();
+    _ticker.stop(); // Ticker anhalten, während Dialog gezeigt wird
+    final levelStars = _resultStars();
 
     await _repo.recordResult(
       childId: _childId,
       levelId: widget.level.id,
-      starsEarned: stars,
+      starsEarned: levelStars,
     );
 
+    // Wallet einmalig an globalen AppState übergeben
     if (!_walletTransferred) {
       _walletTransferred = true;
       final st = widget.appState.state;
@@ -706,23 +707,74 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     await showDialog<void>(
       context: context,
       barrierDismissible: false,
+      builder: (_) => _LevelCompleteDialog(
+        totalStars: _totalEarnedStars,
+        levelStars: levelStars,
+        onContinue: () => Navigator.of(context).pop(), // schließt nur Dialog
+      ),
+    );
+
+    if (!mounted) return;
+    // Spiel-Screen mit gesammelten Sternen beenden – Aufrufer fängt den Wert auf
+    Navigator.of(context).pop(_totalEarnedStars);
+  }
+
+  /// Abbruch-Bestätigung: Spieler kann zwischenspeichern oder fortsetzen.
+  Future<void> _confirmAbort() async {
+    _ticker.stop();
+    _paused = true;
+    final quit = await showDialog<bool>(
+      context: context,
       builder: (_) => AlertDialog(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text('Level geschafft!'),
+        backgroundColor: const Color(0xFFFFF7E6),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text(
+          'Spiel verlassen?',
+          style: TextStyle(fontWeight: FontWeight.w900),
+        ),
         content: Text(
-            'Du hast $_totalEarnedStars Sterne gesammelt und ${_resultStars()} Level-Sterne erhalten.'),
+          _totalEarnedStars > 0
+              ? 'Du hast bisher $_totalEarnedStars Sterne gesammelt.\nDiese werden trotzdem gespeichert!'
+              : 'Dein Fortschritt wird nicht gespeichert.',
+          style: const TextStyle(fontWeight: FontWeight.w700),
+        ),
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-            },
-            child: const Text('Zurück zur Karte'),
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Weiterspielen'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: LumoColors.orange,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+            ),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Verlassen',
+                style: TextStyle(fontWeight: FontWeight.w900)),
           ),
         ],
       ),
     );
+
+    if (!mounted) return;
+
+    if (quit == true) {
+      // Bereits verdiente Sterne ans Wallet übergeben, auch beim Abbruch
+      if (_totalEarnedStars > 0 && !_walletTransferred) {
+        _walletTransferred = true;
+        final st = widget.appState.state;
+        widget.appState.update(st.copyWith(
+          stars: st.stars + _totalEarnedStars,
+          xp: st.xp + (_totalEarnedStars * 2),
+        ));
+      }
+      Navigator.of(context).pop(_totalEarnedStars);
+    } else {
+      _paused = false;
+      _ticker.start();
+    }
   }
 
   void _resetAfterFall() {
@@ -875,7 +927,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
               TextStyle(fontWeight: FontWeight.w900, color: LumoColors.ink900),
         ),
         leading: IconButton(
-          onPressed: () => Navigator.of(context).maybePop(),
+          onPressed: _confirmAbort,
           icon: const Icon(Icons.arrow_back_rounded, color: LumoColors.ink700),
         ),
       ),
@@ -1088,6 +1140,135 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
 }
 
 // ── HUD-Chip ─────────────────────────────────────────────────────
+
+// ── Level-Abschluss-Dialog ────────────────────────────────────────
+// Polierter Exit im Lumo-Design: zeigt Sterne-Animation, Ergebnis
+// und leitet sanft zur Level-Map zurück.
+
+class _LevelCompleteDialog extends StatelessWidget {
+  const _LevelCompleteDialog({
+    required this.totalStars,
+    required this.levelStars,
+    required this.onContinue,
+  });
+
+  final int totalStars;
+  final int levelStars;
+  final VoidCallback onContinue;
+
+  @override
+  Widget build(BuildContext context) {
+    final headline = levelStars == 3
+        ? '⭐⭐⭐ Perfekt!'
+        : levelStars == 2
+            ? '⭐⭐ Super!'
+            : levelStars == 1
+                ? '⭐ Geschafft!'
+                : 'Level beendet';
+
+    return Dialog(
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 28, 24, 22),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Fuchs-Emoji als Stellvertreter-Avatar
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF0E8),
+                shape: BoxShape.circle,
+                border: Border.all(
+                    color: LumoColors.orange.withOpacity(0.4), width: 3),
+              ),
+              alignment: Alignment.center,
+              child: const Text('🦊',
+                  style: TextStyle(fontSize: 42)),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              headline,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+                fontSize: 26,
+                color: LumoColors.ink900,
+              ),
+            ),
+            const SizedBox(height: 6),
+            // Sterne-Anzeige
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List<Widget>.generate(3, (i) {
+                final earned = i < levelStars;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: Text(
+                    earned ? '⭐' : '☆',
+                    style: TextStyle(
+                        fontSize: 36,
+                        color: earned ? null : LumoColors.ink300),
+                  ),
+                );
+              }),
+            ),
+            const SizedBox(height: 14),
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF7E6),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.star_rounded,
+                      color: LumoColors.gold, size: 22),
+                  const SizedBox(width: 8),
+                  Text(
+                    '+$totalStars ${totalStars == 1 ? 'Stern' : 'Sterne'} ins Wallet',
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900,
+                      fontSize: 16,
+                      color: LumoColors.ink900,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: LumoColors.orange,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(LumoRadius.pill)),
+                  elevation: 0,
+                ),
+                onPressed: onContinue,
+                child: const Text(
+                  'Zurück zur Karte',
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class _HudChip extends StatelessWidget {
   const _HudChip({required this.label, required this.icon});
