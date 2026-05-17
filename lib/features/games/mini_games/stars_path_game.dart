@@ -61,21 +61,81 @@ class _StarsPathGameState extends State<StarsPathGame> {
   @override
   void initState() {
     super.initState();
-    // Generiere 5 Aufgaben passend zur Level-Klasse
-    final grade = math.max(widget.level.gradeFloor, widget.appState.state.grade);
-    _tasks = List<MathConcreteTask>.generate(_totalTasks, (i) {
-      final seed = widget.level.id * 1000 + i * 17;
-      // Klasse 1: Plus bis 10 / Minus bis 10 / Mengenvergleich
-      // Klasse 2: Plus bis 20 / Minus bis 20
-      String unit = 'Plus bis 10';
-      if (widget.level.title.toLowerCase().contains('minus')) unit = 'Minus bis 10';
-      if (widget.level.id >= 16) unit = 'Plus bis 20';
-      if (widget.level.id == 17) unit = 'Minus bis 20';
-      return MathTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
-    });
+    _tasks = _buildTasks();
   }
 
   MathConcreteTask get _currentTask => _tasks[_currentIndex];
+
+  List<MathConcreteTask> _buildTasks() {
+    final grade = math.max(widget.level.gradeFloor, widget.appState.state.grade);
+    final units = _unitsForLevel(grade);
+    final uniqueKeys = <String>{};
+    final tasks = <MathConcreteTask>[];
+
+    for (var i = 0; i < _totalTasks; i++) {
+      MathConcreteTask? selected;
+      for (var attempt = 0; attempt < 12; attempt++) {
+        final seed = widget.level.id * 1000 + i * 97 + attempt * 17;
+        final unit = units[(i + attempt) % units.length];
+        final generated = MathTaskTemplates.generate(
+          grade: grade,
+          unit: unit,
+          seed: seed,
+        );
+        final shuffled = _withShuffledChoices(generated, seed + 41);
+        final key = '${shuffled.prompt}|${shuffled.answer}|${shuffled.choices.join('|')}';
+        if (uniqueKeys.add(key)) {
+          selected = shuffled;
+          break;
+        }
+      }
+      tasks.add(selected ?? MathTaskTemplates.generate(grade: grade, unit: units.first, seed: widget.level.id * 1000 + i * 31));
+    }
+    return tasks;
+  }
+
+  MathConcreteTask _withShuffledChoices(MathConcreteTask task, int seed) {
+    final shuffledChoices = List<String>.from(task.choices);
+    shuffledChoices.shuffle(math.Random(seed));
+    return MathConcreteTask(
+      unit: task.unit,
+      prompt: task.prompt,
+      answer: task.answer,
+      choices: shuffledChoices,
+      explanation: task.explanation,
+      visual: task.visual,
+      difficulty: task.difficulty,
+      promptPattern: task.promptPattern,
+    );
+  }
+
+  List<String> _unitsForLevel(int grade) {
+    final available = MathTaskTemplates.templatesForGrade(grade)
+        .map((t) => t.unit)
+        .toSet()
+        .toList(growable: false);
+    List<String> preferred = const <String>['Plus bis 10'];
+    final title = widget.level.title.toLowerCase();
+    final subject = widget.level.subject.toLowerCase();
+
+    if (widget.level.id >= 40 || widget.level.miniType == GameMiniType.mixedQuiz) {
+      preferred = <String>['Plus bis 20', 'Minus bis 20', 'Zahlenstrahl', 'Geld', 'Uhrzeit', 'Geometrie Formen'];
+    } else if (widget.level.miniType == GameMiniType.numberPath || title.contains('zahlenweg') || title.contains('zahl')) {
+      preferred = <String>['Zahlenstrahl', 'Vergleichen', 'Gerade und ungerade'];
+    } else if (title.contains('minus')) {
+      preferred = <String>['Minus bis 10', 'Minus bis 20', 'Minus bis 100'];
+    } else if (title.contains('plus')) {
+      preferred = <String>['Plus bis 10', 'Plus bis 20', 'Plus bis 100'];
+    } else if (subject.contains('deutsch')) {
+      preferred = <String>['Zahl in Worten', 'Vergleichen'];
+    } else if (subject.contains('sach')) {
+      preferred = <String>['Zeit', 'Geometrie Formen', 'Geld'];
+    }
+
+    final filtered = preferred.where(available.contains).toList(growable: false);
+    if (filtered.isNotEmpty) return filtered;
+    return available.isNotEmpty ? available : const <String>['Plus bis 10'];
+  }
 
   void _selectOption(int idx) {
     if (_revealed) return;
