@@ -8,6 +8,7 @@ import '../features/agent/lumo_agent_content.dart';
 import '../features/home/home_content.dart';
 import '../features/learning/learning_content.dart';
 import '../features/reading/reading_content.dart';
+import '../features/shared/widgets/lumo_section_transition.dart';
 import '../features/sections/section_content.dart';
 import '../features/settings/settings_content.dart';
 import '../features/shared/widgets/lumo_premium_effects.dart';
@@ -200,7 +201,13 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                     Expanded(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(LumoRadius.lg),
-                        child: FadeTransition(opacity: _fadeCtrl, child: _buildContent()),
+                        child: FadeTransition(
+                          opacity: _fadeCtrl,
+                          child: LumoSectionTransition(
+                            sectionKey: _appState.state.section.name,
+                            child: _buildContent(),
+                          ),
+                        ),
                       ),
                     ),
                     _MobileBottomNavigation(active: _appState.state.section, onSelect: _navigateTo),
@@ -221,7 +228,13 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                           borderRadius: BorderRadius.circular(LumoRadius.xl),
                           child: Container(
                             decoration: BoxDecoration(color: LumoColors.appBg, borderRadius: BorderRadius.circular(LumoRadius.xl)),
-                            child: FadeTransition(opacity: _fadeCtrl, child: _buildContent()),
+                            child: FadeTransition(
+                              opacity: _fadeCtrl,
+                              child: LumoSectionTransition(
+                                sectionKey: _appState.state.section.name,
+                                child: _buildContent(),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -407,17 +420,18 @@ class _MobileBottomNavigation extends StatelessWidget {
         children: _items.map((item) {
           final selected = item.section == active;
           return Expanded(
-            child: GestureDetector(
-              onTap: () {
-                HapticFeedback.selectionClick();
-                onSelect(item.section);
-              },
-              behavior: HitTestBehavior.opaque,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 280),
-                curve: Curves.easeOutCubic,
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                margin: const EdgeInsets.symmetric(horizontal: 2),
+            child: LumoTapBounce(
+              child: GestureDetector(
+                onTap: () {
+                  HapticFeedback.selectionClick();
+                  onSelect(item.section);
+                },
+                behavior: HitTestBehavior.opaque,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 280),
+                  curve: Curves.easeOutCubic,
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  margin: const EdgeInsets.symmetric(horizontal: 2),
                 decoration: BoxDecoration(
                   gradient: selected
                       ? const LinearGradient(
@@ -466,6 +480,7 @@ class _MobileBottomNavigation extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
               ),
             ),
           );
