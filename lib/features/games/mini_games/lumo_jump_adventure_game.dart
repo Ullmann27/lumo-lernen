@@ -247,7 +247,6 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> {
 
     _vy = -jumpPower;
     _onGround = false;
-    _coyoteTimer = 0;
     _jumpBufferTimer = 0;
     _statusHint = null;
     _coyoteTimer = math.min(coyoteTimeWindow, airTime * coyoteExtensionFactor);
