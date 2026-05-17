@@ -14,7 +14,9 @@ name: Publish APK as Release
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - 'copilot/**'
 
 permissions:
   contents: write
@@ -134,12 +136,15 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: Lumo Lernen Build ${{ github.run_number }}
+          name: Lumo Lernen Build ${{ github.run_number }}${{ github.ref_name != 'main' && format(' [{0}]', github.ref_name) || '' }}
+          prerelease: ${{ github.ref_name != 'main' }}
           body: |
             **Lumo Lernen — Debug Build #${{ github.run_number }}**
 
+            Branch: `${{ github.ref_name }}`
             Commit: `${{ github.sha }}`
             Build-Datum: ${{ github.event.head_commit.timestamp }}
+            ${{ github.ref_name != 'main' && '> ⚠️ Dies ist ein Pre-Release vom Feature-Branch. Für die stabile Version bitte den `main`-Branch verwenden.' || '' }}
 
             ## Direkter Download
 
@@ -155,9 +160,8 @@ jobs:
 
             SHA256-Pruefsummen in `SHA256SUMS.txt`.
           draft: false
-          prerelease: false
           fail_on_unmatched_files: false
-          make_latest: 'true'
+          make_latest: ${{ github.ref_name == 'main' && 'true' || 'false' }}
           files: |
             dist/Lumo-Lernen-latest.apk
             dist/Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk
@@ -170,6 +174,7 @@ jobs:
         run: |
           echo "═══════════════════════════════════════════════════"
           echo "BUILD #${{ github.run_number }} ABGESCHLOSSEN"
+          echo "Branch: ${{ github.ref_name }}"
           echo "═══════════════════════════════════════════════════"
           echo ""
           if [ "${{ steps.publish_release.outcome }}" = "success" ]; then
@@ -178,8 +183,13 @@ jobs:
             echo "   Direkt zum neuen Build:"
             echo "   https://github.com/${{ github.repository }}/releases/tag/build-${{ github.run_number }}"
             echo ""
-            echo "   Immer aktuell:"
-            echo "   https://github.com/${{ github.repository }}/releases/latest"
+            if [ "${{ github.ref_name }}" = "main" ]; then
+              echo "   Immer aktuell (stable):"
+              echo "   https://github.com/${{ github.repository }}/releases/latest"
+            else
+              echo "   ⚠️  Dies ist ein Pre-Release (Feature-Branch: ${{ github.ref_name }})."
+              echo "   Stable Releases: https://github.com/${{ github.repository }}/releases/latest"
+            fi
             echo ""
             echo "   APK-Dateien im Release:"
             echo "     - Lumo-Lernen-latest.apk"
