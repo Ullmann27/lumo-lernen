@@ -74,37 +74,24 @@ class _GamesContentState extends State<GamesContent> {
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
-    switch (level.miniType) {
-      case GameMiniType.starsPath:
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => StarsPathGame(
-              appState: widget.appState,
-              level: level,
-            ),
-          ),
-        );
-      case GameMiniType.numberHouse:
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => NumberHouseGame(
-              appState: widget.appState,
-              level: level,
-            ),
-          ),
-        );
-      case GameMiniType.numberPath:
-      case GameMiniType.wordForest:
-      case GameMiniType.mixedQuiz:
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${level.miniType.germanLabel} - bald spielbar! Das Spiel kommt im naechsten Update.'),
-            backgroundColor: LumoColors.orange,
-            duration: const Duration(seconds: 2),
-          ),
-        );
-        return;
-    }
+    // TODO(games): Eigene Screens fuer numberPath/wordForest/mixedQuiz einfuehren.
+    // Bis dahin nutzt die Spielewelt den adaptiven StarsPath-Runner als stabile Engine.
+    final screen = switch (level.miniType) {
+      GameMiniType.numberHouse => NumberHouseGame(
+          appState: widget.appState,
+          level: level,
+        ),
+      GameMiniType.starsPath ||
+      GameMiniType.numberPath ||
+      GameMiniType.wordForest ||
+      GameMiniType.mixedQuiz => StarsPathGame(
+          appState: widget.appState,
+          level: level,
+        ),
+    };
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => screen),
+    );
     // Nach Rueckkehr: Fortschritt neu laden damit neue Sterne sichtbar sind.
     await _load();
   }
@@ -447,7 +434,11 @@ class _PathPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _PathPainter old) => false;
+  bool shouldRepaint(covariant _PathPainter old) {
+    return old.levelCount != levelCount ||
+        old.width != width ||
+        old.cellHeight != cellHeight;
+  }
 }
 
 class _LevelCircle extends StatelessWidget {
