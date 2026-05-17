@@ -325,7 +325,7 @@ abstract class RewardCatalog {
     RewardItem(
       id: 'lego_set',
       title: 'Lego-Set',
-      emoji: '��',
+      emoji: '🧱',
       description: 'Ein eigenes Lego-Set zum Bauen aussuchen.',
       cost: 12000,
       currency: RewardCurrency.stars,
