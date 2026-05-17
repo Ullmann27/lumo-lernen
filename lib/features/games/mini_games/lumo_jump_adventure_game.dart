@@ -27,6 +27,14 @@ class LumoJumpPhysicsConfig {
   static const double minimumDuckClearance = 44;
   static const double groundTop = 380;
   static const double worldHeight = 540;
+  static const double maxFrameDeltaSeconds = 1 / 30;
+  static const double questionBlockTriggerThreshold = 6;
+  static const double chestTriggerInflation = 12;
+  static const double puddleJumpTolerance = 10;
+  static const double logJumpTolerance = 8;
+  static const double obstaclePushbackOffset = 6;
+  static const double platformEdgeTolerance = 8;
+  static const double platformCrossingTolerance = 6;
 }
 
 enum LumoJumpObstacleType {
@@ -316,7 +324,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     _lastTick = elapsed;
     if (previous == null) return;
     final dt = ((elapsed - previous).inMicroseconds / Duration.microsecondsPerSecond)
-        .clamp(0.0, 1 / 30)
+        .clamp(0.0, LumoJumpPhysicsConfig.maxFrameDeltaSeconds)
         .toDouble();
     _world.update(
       dt: dt,
@@ -341,7 +349,8 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     }
 
     for (final block in _world.questionBlocks.where((block) => block.active && !block.solved)) {
-      if (_world.playerRect.center.dx >= block.rect.center.dx - 6) {
+      if (_world.playerRect.center.dx >=
+          block.rect.center.dx - LumoJumpPhysicsConfig.questionBlockTriggerThreshold) {
         _world.pauseMomentum();
         setState(() {
           _questionOverlay = _QuestionOverlayState(
@@ -354,7 +363,8 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     }
 
     if (!_completed && _bossOverlay == null && !_world.chestOpened) {
-      final triggerRect = _levelData.chestRect.inflate(12);
+      final triggerRect =
+          _levelData.chestRect.inflate(LumoJumpPhysicsConfig.chestTriggerInflation);
       if (_world.playerRect.overlaps(triggerRect)) {
         _world.pauseMomentum();
         setState(() {
@@ -1096,12 +1106,16 @@ class _JumpWorld {
     for (final obstacle in obstacles.where((entry) => entry.active)) {
       if (!currentRect.overlaps(obstacle.rect)) continue;
       final allowsPass = switch (obstacle.type) {
-        LumoJumpObstacleType.puddle => currentRect.bottom <= obstacle.rect.top + 10,
+        LumoJumpObstacleType.puddle =>
+            currentRect.bottom <= obstacle.rect.top + LumoJumpPhysicsConfig.puddleJumpTolerance,
         LumoJumpObstacleType.lowBranch => currentRect.height <= LumoJumpPhysicsConfig.crouchHeight,
-        LumoJumpObstacleType.rollingLog => currentRect.bottom <= obstacle.rect.top + 8,
+        LumoJumpObstacleType.rollingLog =>
+            currentRect.bottom <= obstacle.rect.top + LumoJumpPhysicsConfig.logJumpTolerance,
       };
       if (!allowsPass) {
-        playerX = obstacle.rect.left - LumoJumpPhysicsConfig.playerWidth - 6;
+        playerX = obstacle.rect.left -
+            LumoJumpPhysicsConfig.playerWidth -
+            LumoJumpPhysicsConfig.obstaclePushbackOffset;
         break;
       }
     }
@@ -1116,10 +1130,14 @@ class _JumpWorld {
     _PlatformState? best;
     for (final platform in platforms) {
       final horizontallyOverlapping =
-          currentRect.right > platform.rect.left + 8 &&
-              currentRect.left < platform.rect.right - 8;
+          currentRect.right >
+              platform.rect.left + LumoJumpPhysicsConfig.platformEdgeTolerance &&
+              currentRect.left <
+                  platform.rect.right - LumoJumpPhysicsConfig.platformEdgeTolerance;
       final crossedTop =
-          previousRect.bottom <= platform.rect.top + 6 && currentRect.bottom >= platform.rect.top;
+          previousRect.bottom <=
+              platform.rect.top + LumoJumpPhysicsConfig.platformCrossingTolerance &&
+              currentRect.bottom >= platform.rect.top;
       if (horizontallyOverlapping && crossedTop) {
         best = platform;
       }
