@@ -99,6 +99,21 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
   int _confettiTrigger = 0;
   String? _statusHint;
 
+  // ── Nintendo-Polish: visuelle Effekte ────────────────────────
+  /// Stern-Burst-Partikel bei Aufnahme. Werden im Painter gezeichnet
+  /// und im Tick reduziert (alive bis ttl <= 0).
+  final List<_FxBurst> _starBursts = <_FxBurst>[];
+
+  /// Holz-Splitter bei zerstoerter Kiste.
+  final List<_FxSplinter> _splinters = <_FxSplinter>[];
+
+  /// Screen-Shake bei Crate-Break / Boss-Treffer.
+  double _shakeTimer = 0;
+  double _shakeIntensity = 0;
+
+  /// Anim-Zeit fuer Wolken-Drift + Lumo-Wedeln.
+  double _animTime = 0;
+
   double _checkpointX = 70;
 
   // ── Hilfsfunktionen ───────────────────────────────────────────
@@ -165,7 +180,9 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
   }
 
   void _update(double dt) {
+    _animTime += dt;
     _updatePlayerState(dt);
+    _updateFx(dt);
 
     // Geschwindigkeit abhängig vom Spielerzustand
     final double speed;
@@ -276,6 +293,8 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
         _totalEarnedStars += 3;
         _confettiTrigger++;
         _statusHint = 'Kiste zerstört! +3 ⭐';
+        _spawnSplinters(obstacle.rect.center);
+        _triggerShake(intensity: 8, duration: 0.22);
         continue; // Kein Abbremsen
       }
 
@@ -323,6 +342,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
         _sessionStars += 1;
         _totalEarnedStars += 1;
         _confettiTrigger++;
+        _spawnStarBurst(star.position);
       } else if (star.scalePulse > 1.0) {
         star.scalePulse = math.max(1.0, star.scalePulse - 0.04);
       }
@@ -777,6 +797,71 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     }
   }
 
+  // ── Nintendo-Polish: FX-Methoden ──────────────────────────────
+  void _updateFx(double dt) {
+    // Stern-Bursts ausbleichen lassen + bewegen
+    for (final b in _starBursts) {
+      b.ttl -= dt;
+      b.pos += b.vel * dt;
+      b.vel = Offset(b.vel.dx * 0.95, b.vel.dy + 320 * dt);
+    }
+    _starBursts.removeWhere((b) => b.ttl <= 0);
+
+    // Holz-Splitter mit Schwerkraft + Rotation
+    for (final s in _splinters) {
+      s.ttl -= dt;
+      s.pos += s.vel * dt;
+      s.vel = Offset(s.vel.dx * 0.96, s.vel.dy + 520 * dt);
+      s.angle += s.spin * dt;
+    }
+    _splinters.removeWhere((s) => s.ttl <= 0);
+
+    // Screen-Shake abklingen lassen
+    if (_shakeTimer > 0) {
+      _shakeTimer = math.max(0, _shakeTimer - dt);
+      if (_shakeTimer == 0) _shakeIntensity = 0;
+    }
+  }
+
+  void _spawnStarBurst(Offset center) {
+    final r = math.Random();
+    for (var i = 0; i < 8; i++) {
+      final angle = (i / 8) * math.pi * 2 + r.nextDouble() * 0.4;
+      final speed = 100 + r.nextDouble() * 90;
+      _starBursts.add(_FxBurst(
+        pos: center,
+        vel: Offset(math.cos(angle) * speed, math.sin(angle) * speed - 80),
+        ttl: 0.55,
+        color: const Color(0xFFFACC15),
+        size: 4 + r.nextDouble() * 2,
+      ));
+    }
+  }
+
+  void _spawnSplinters(Offset center) {
+    final r = math.Random();
+    for (var i = 0; i < 7; i++) {
+      final angle = -math.pi / 2 + (r.nextDouble() - 0.5) * math.pi;
+      final speed = 180 + r.nextDouble() * 140;
+      _splinters.add(_FxSplinter(
+        pos: center,
+        vel: Offset(math.cos(angle) * speed, math.sin(angle) * speed - 120),
+        angle: r.nextDouble() * math.pi,
+        spin: (r.nextDouble() - 0.5) * 12,
+        ttl: 0.85,
+        size: 6 + r.nextDouble() * 6,
+      ));
+    }
+  }
+
+  void _triggerShake({required double intensity, required double duration}) {
+    _shakeIntensity = math.max(_shakeIntensity, intensity);
+    _shakeTimer = math.max(_shakeTimer, duration);
+  }
+
+  /// Theme passend zum aktuellen Level-Block (1-5). Nintendo-Welt-Variation.
+  _LumoTheme get _theme => _LumoTheme.forLevel(widget.level.id);
+
   void _resetAfterFall() {
     final nearest = _platforms
             .where((p) => p.rect.left <= _checkpointX + 50)
@@ -967,12 +1052,23 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
                             cameraX: _cameraX,
                             playerRect: _playerRect,
                             playerState: _playerState,
+                            playerFacingRight: _vx >= 0,
                             platforms: _platforms,
                             stars: _stars,
                             obstacles: _obstacles,
                             questionBlocks: _questionBlocks,
                             chest: _chest,
                             confettiTrigger: _confettiTrigger,
+                            theme: _theme,
+                            animTime: _animTime,
+                            starBursts: _starBursts,
+                            splinters: _splinters,
+                            shakeOffset: _shakeIntensity > 0
+                                ? Offset(
+                                    (math.Random(_shakeTimer.hashCode).nextDouble() - 0.5) * _shakeIntensity * 2,
+                                    (math.Random((_shakeTimer * 7).hashCode).nextDouble() - 0.5) * _shakeIntensity * 2,
+                                  )
+                                : Offset.zero,
                             // Vorberechnete Counts für shouldRepaint
                             activeObstacleCount:
                                 _obstacles.where((o) => o.active).length,
@@ -980,6 +1076,8 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
                                 _questionBlocks.where((b) => b.cleared).length,
                             collectedStarCount:
                                 _stars.where((s) => s.collected).length,
+                            burstCount: _starBursts.length,
+                            splinterCount: _splinters.length,
                           ),
                         ),
                       ),
@@ -1309,89 +1407,238 @@ class _LumoJumpPainter extends CustomPainter {
     required this.cameraX,
     required this.playerRect,
     required this.playerState,
+    required this.playerFacingRight,
     required this.platforms,
     required this.stars,
     required this.obstacles,
     required this.questionBlocks,
     required this.chest,
     required this.confettiTrigger,
+    required this.theme,
+    required this.animTime,
+    required this.starBursts,
+    required this.splinters,
+    required this.shakeOffset,
     required this.activeObstacleCount,
     required this.clearedBlockCount,
     required this.collectedStarCount,
+    required this.burstCount,
+    required this.splinterCount,
   });
 
   final double cameraX;
   final Rect playerRect;
   final _PlayerState playerState;
+  final bool playerFacingRight;
   final List<_Platform> platforms;
   final List<_StarPickup> stars;
   final List<_Obstacle> obstacles;
   final List<_QuestionBlock> questionBlocks;
   final _Chest chest;
   final int confettiTrigger;
+  final _LumoTheme theme;
+  final double animTime;
+  final List<_FxBurst> starBursts;
+  final List<_FxSplinter> splinters;
+  final Offset shakeOffset;
   // Vorberechnete Counts für effizientes shouldRepaint
   final int activeObstacleCount;
   final int clearedBlockCount;
   final int collectedStarCount;
+  final int burstCount;
+  final int splinterCount;
 
   @override
   void paint(Canvas canvas, Size size) {
-    // Hintergrund-Gradient (statisch – könnte in ImageShader gecacht werden)
+    // ── 1. Himmel-Gradient (Theme-spezifisch) ──────────────────
     final skyPaint = Paint()
-      ..shader = const LinearGradient(
-        colors: <Color>[Color(0xFFA7F3D0), Color(0xFFBFDBFE), Color(0xFFFDE68A)],
+      ..shader = LinearGradient(
+        colors: <Color>[theme.skyTop, theme.skyMid, theme.skyBottom],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ).createShader(Offset.zero & size);
     canvas.drawRect(Offset.zero & size, skyPaint);
 
+    // ── 2. Parallax-Schicht: Sonne/Mond ────────────────────────
+    final sunPaint = Paint()..color = theme.sunColor.withOpacity(0.85);
+    canvas.drawCircle(Offset(size.width * 0.78, size.height * 0.18), 36, sunPaint);
+    canvas.drawCircle(
+        Offset(size.width * 0.78, size.height * 0.18),
+        50,
+        Paint()..color = theme.sunColor.withOpacity(0.18));
+
+    // Shake-Offset wird auf alle bewegten Schichten angewendet
+    canvas.save();
+    canvas.translate(shakeOffset.dx, shakeOffset.dy);
+
+    // ── 3. Wolken / Theme-Partikel (langsam driftend) ─────────
+    _paintBackgroundParticles(canvas, size);
+
+    // ── 4. Parallax-Berge (ferne Schicht, cameraX * 0.15) ─────
+    _paintMountainLayer(canvas, size, parallax: 0.15, color: theme.mountainBack, height: 110);
+    // Parallax-Huegel (naehere Schicht, cameraX * 0.35)
+    _paintMountainLayer(canvas, size, parallax: 0.35, color: theme.mountainFront, height: 78);
+
+    // ── 5. Vordergrund mit voller Kamera-Translation ──────────
     canvas.save();
     canvas.translate(-cameraX, 0);
 
-    // ── Plattformen ───────────────────────────────────────────
-    final platformPaint = Paint()..color = const Color(0xFF22C55E);
-    for (final platform in platforms) {
-      canvas.drawRRect(
-          RRect.fromRectAndRadius(platform.rect, const Radius.circular(10)),
-          platformPaint);
+    _paintPlatforms(canvas);
+    _paintObstacles(canvas);
+    _paintQuestionBlocks(canvas);
+    _paintStars(canvas);
+    _paintChest(canvas);
+    _paintFox(canvas);
+    _paintStarBursts(canvas);
+    _paintSplinters(canvas);
+    _paintConfetti(canvas);
+
+    canvas.restore();
+    canvas.restore();
+  }
+
+  // ── Wolken/Partikel-Schicht ──────────────────────────────────
+  void _paintBackgroundParticles(Canvas canvas, Size size) {
+    final cloudPaint = Paint()..color = Colors.white.withOpacity(0.7);
+    // 5 langsam driftende Wolken, verteilt
+    for (var i = 0; i < 5; i++) {
+      final baseX = (i * 280) - (cameraX * 0.1) - (animTime * 8 % 200);
+      final wrapped = baseX % (size.width + 200);
+      final x = wrapped < -100 ? wrapped + size.width + 200 : wrapped;
+      final y = 40 + (i.isEven ? 0 : 30) + math.sin(animTime + i) * 4;
+      _paintCloud(canvas, Offset(x, y), 1.0 + (i % 2) * 0.3, cloudPaint);
     }
 
-    // ── Hindernisse ───────────────────────────────────────────
-    for (final obstacle in obstacles) {
-      if (!obstacle.active) continue;
-      final Color color;
-      if (obstacle.type == _GameObjectType.breakableCrate) {
-        color = const Color(0xFF92400E); // Braune Kiste
-      } else if (obstacle.requiresDuck) {
-        color = const Color(0xFF7C3AED); // Lila: ducken
-      } else {
-        color = const Color(0xFF0EA5E9); // Blau: normal
-      }
-      canvas.drawRRect(
-          RRect.fromRectAndRadius(obstacle.rect, const Radius.circular(8)),
-          Paint()..color = color);
-
-      // Kisten-Icon
-      if (obstacle.type == _GameObjectType.breakableCrate) {
+    // Theme-spezifische Partikel (Schnee/Blaetter/Funken)
+    if (theme.particleEmoji != null) {
+      final t = animTime;
+      for (var i = 0; i < 12; i++) {
+        final baseX = (i * 67.3 + t * 18) % (size.width + 40);
+        final y = ((i * 53.7 + t * 30) % size.height);
         final tp = TextPainter(
-          text: const TextSpan(
-              text: '📦',
-              style: TextStyle(fontSize: 20)),
+          text: TextSpan(
+              text: theme.particleEmoji,
+              style: TextStyle(fontSize: 12 + (i % 3) * 4, color: Colors.white.withOpacity(0.6))),
           textDirection: TextDirection.ltr,
         )..layout();
-        tp.paint(
-            canvas,
-            Offset(obstacle.rect.center.dx - tp.width / 2,
-                obstacle.rect.center.dy - tp.height / 2));
+        tp.paint(canvas, Offset(baseX, y));
       }
     }
+  }
 
-    // ── Frageblöcke ───────────────────────────────────────────
+  void _paintCloud(Canvas canvas, Offset c, double scale, Paint p) {
+    canvas.drawCircle(c, 18 * scale, p);
+    canvas.drawCircle(c.translate(20 * scale, -6 * scale), 22 * scale, p);
+    canvas.drawCircle(c.translate(40 * scale, 0), 18 * scale, p);
+    canvas.drawCircle(c.translate(22 * scale, 8 * scale), 16 * scale, p);
+  }
+
+  void _paintMountainLayer(Canvas canvas, Size size,
+      {required double parallax, required Color color, required double height}) {
+    final offset = cameraX * parallax;
+    final baseY = size.height * 0.62;
+    final p = Paint()..color = color;
+    final path = Path()..moveTo(0, baseY);
+    const peakSpacing = 180.0;
+    final peakCount = (size.width / peakSpacing).ceil() + 2;
+    for (var i = 0; i < peakCount; i++) {
+      final x = i * peakSpacing - (offset % peakSpacing);
+      final isAlt = i.isEven;
+      path.lineTo(x + peakSpacing / 2, baseY - height * (isAlt ? 1.0 : 0.72));
+      path.lineTo(x + peakSpacing, baseY);
+    }
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    canvas.drawPath(path, p);
+  }
+
+  // ── Plattformen mit Premium-Stil ─────────────────────────────
+  void _paintPlatforms(Canvas canvas) {
+    for (final platform in platforms) {
+      final r = platform.rect;
+      final platTop = Rect.fromLTWH(r.left, r.top, r.width, 14);
+      final platBody = Rect.fromLTWH(r.left, r.top + 14, r.width, r.height - 14);
+      // Top-Schicht (Gras/Eis/Sand)
+      canvas.drawRRect(
+          RRect.fromRectAndCorners(platTop,
+              topLeft: const Radius.circular(12),
+              topRight: const Radius.circular(12)),
+          Paint()..color = theme.platformTop);
+      // Body (Erde/Stein)
+      canvas.drawRRect(
+          RRect.fromRectAndCorners(platBody,
+              bottomLeft: const Radius.circular(8),
+              bottomRight: const Radius.circular(8)),
+          Paint()..color = theme.platformBody);
+      // Akzent-Linie an der Oberkante
+      canvas.drawLine(
+          Offset(r.left + 6, r.top + 14),
+          Offset(r.right - 6, r.top + 14),
+          Paint()
+            ..color = theme.platformAccent
+            ..strokeWidth = 2);
+    }
+  }
+
+  void _paintObstacles(Canvas canvas) {
+    for (final obstacle in obstacles) {
+      if (!obstacle.active) continue;
+      if (obstacle.type == _GameObjectType.breakableCrate) {
+        // Hoelzerne Kiste mit Holzmaserung
+        final r = obstacle.rect;
+        canvas.drawRRect(
+            RRect.fromRectAndRadius(r, const Radius.circular(6)),
+            Paint()..color = const Color(0xFF92400E));
+        // Holzplanken-Linien
+        final linePaint = Paint()
+          ..color = const Color(0xFF7C2D12)
+          ..strokeWidth = 2;
+        canvas.drawLine(Offset(r.left, r.top + r.height / 3),
+            Offset(r.right, r.top + r.height / 3), linePaint);
+        canvas.drawLine(Offset(r.left, r.top + 2 * r.height / 3),
+            Offset(r.right, r.top + 2 * r.height / 3), linePaint);
+        // Eisen-Beschlag-Punkte
+        final boltPaint = Paint()..color = const Color(0xFF422006);
+        canvas.drawCircle(Offset(r.left + 5, r.top + 5), 2.5, boltPaint);
+        canvas.drawCircle(Offset(r.right - 5, r.top + 5), 2.5, boltPaint);
+        canvas.drawCircle(Offset(r.left + 5, r.bottom - 5), 2.5, boltPaint);
+        canvas.drawCircle(Offset(r.right - 5, r.bottom - 5), 2.5, boltPaint);
+      } else {
+        final color = obstacle.requiresDuck
+            ? const Color(0xFF7C3AED) // Lila: ducken
+            : const Color(0xFF0EA5E9); // Blau: normal
+        canvas.drawRRect(
+            RRect.fromRectAndRadius(obstacle.rect, const Radius.circular(8)),
+            Paint()..color = color);
+        // Glanz oben
+        canvas.drawRRect(
+            RRect.fromLTRBR(obstacle.rect.left + 4, obstacle.rect.top + 3,
+                obstacle.rect.right - 4, obstacle.rect.top + 8,
+                const Radius.circular(4)),
+            Paint()..color = Colors.white.withOpacity(0.3));
+      }
+    }
+  }
+
+  void _paintQuestionBlocks(Canvas canvas) {
     for (final block in questionBlocks) {
       if (block.cleared) continue;
+      final r = block.rect;
+      // Pulsierende Glow-Aura
+      final pulse = 0.5 + math.sin(animTime * 3) * 0.5;
       canvas.drawRRect(
-          RRect.fromRectAndRadius(block.rect, const Radius.circular(8)),
+          RRect.fromRectAndRadius(r.inflate(6), const Radius.circular(12)),
+          Paint()..color = const Color(0xFFFCD34D).withOpacity(0.25 + pulse * 0.2));
+      // Block-Body
+      canvas.drawRRect(
+          RRect.fromRectAndRadius(r, const Radius.circular(8)),
           Paint()..color = const Color(0xFFF59E0B));
+      // Inner-Highlight (3D-Effekt)
+      canvas.drawRRect(
+          RRect.fromLTRBR(r.left + 3, r.top + 3, r.right - 3, r.top + 12, const Radius.circular(4)),
+          Paint()..color = Colors.white.withOpacity(0.45));
+      // ? Symbol
       final tp = TextPainter(
         text: const TextSpan(
             text: '?',
@@ -1401,19 +1648,22 @@ class _LumoJumpPainter extends CustomPainter {
                 color: Colors.white)),
         textDirection: TextDirection.ltr,
       )..layout();
-      tp.paint(
-          canvas,
-          Offset(block.rect.center.dx - tp.width / 2,
-              block.rect.center.dy - tp.height / 2));
+      tp.paint(canvas,
+          Offset(r.center.dx - tp.width / 2, r.center.dy - tp.height / 2));
     }
+  }
 
-    // ── Sterne ────────────────────────────────────────────────
+  void _paintStars(Canvas canvas) {
     final starPaint = Paint()..color = const Color(0xFFFACC15);
+    final glowPaint = Paint()..color = const Color(0xFFFEF3C7).withOpacity(0.45);
     for (final star in stars) {
       if (star.collected) continue;
       final s = 10 * star.scalePulse;
       final cx = star.position.dx;
-      final cy = star.position.dy;
+      final cy = star.position.dy + math.sin(animTime * 2 + star.position.dx) * 2;
+      // Glow
+      canvas.drawCircle(Offset(cx, cy), s * 1.7, glowPaint);
+      // Stern-Form
       final path = Path()
         ..moveTo(cx, cy - s)
         ..lineTo(cx + s * 0.35, cy - s * 0.2)
@@ -1427,65 +1677,254 @@ class _LumoJumpPainter extends CustomPainter {
         ..lineTo(cx - s * 0.35, cy - s * 0.2)
         ..close();
       canvas.drawPath(path, starPaint);
+      // Highlight im Stern
+      canvas.drawCircle(Offset(cx - s * 0.25, cy - s * 0.25), 2, Paint()..color = Colors.white);
     }
+  }
 
-    // ── Boss-Truhe ────────────────────────────────────────────
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(chest.rect, const Radius.circular(8)),
-        Paint()
-          ..color =
-              chest.opened ? const Color(0xFF10B981) : const Color(0xFF92400E));
+  void _paintChest(Canvas canvas) {
+    final r = chest.rect;
+    if (chest.opened) {
+      // Geoeffnete Truhe mit Glanz
+      canvas.drawRRect(
+          RRect.fromRectAndRadius(r, const Radius.circular(8)),
+          Paint()..color = const Color(0xFF10B981));
+      // Trophy-Stern
+      final tp = TextPainter(
+        text: const TextSpan(text: '🏆', style: TextStyle(fontSize: 36)),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      tp.paint(canvas, Offset(r.center.dx - tp.width / 2, r.center.dy - tp.height / 2));
+    } else {
+      // Geschlossene Truhe mit Schloss
+      canvas.drawRRect(
+          RRect.fromRectAndRadius(r, const Radius.circular(8)),
+          Paint()..color = const Color(0xFF92400E));
+      // Goldener Deckel
+      canvas.drawRRect(
+          RRect.fromLTRBR(r.left, r.top, r.right, r.top + 14, const Radius.circular(6)),
+          Paint()..color = const Color(0xFFD97706));
+      // Schloss
+      canvas.drawRect(
+          Rect.fromCenter(center: Offset(r.center.dx, r.top + 18), width: 14, height: 18),
+          Paint()..color = const Color(0xFFFCD34D));
+      canvas.drawCircle(Offset(r.center.dx, r.top + 18), 3, Paint()..color = const Color(0xFF422006));
+    }
+  }
 
-    // ── Lumo (Fuchs) ──────────────────────────────────────────
-    final foxColor = playerState == _PlayerState.rolling
+  // ── Lumo (richtiger Fuchs - kein Box mehr!) ─────────────────
+  void _paintFox(Canvas canvas) {
+    final r = playerRect;
+    final dir = playerFacingRight ? 1.0 : -1.0;
+    final cx = r.center.dx;
+    final cy = r.center.dy;
+    final w = r.width;
+    final h = r.height;
+
+    final bodyColor = playerState == _PlayerState.rolling
         ? const Color(0xFF7C3AED) // Lila beim Rollen
         : const Color(0xFFF97316); // Orange normal
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(playerRect, const Radius.circular(10)),
-        Paint()..color = foxColor);
+    final bellyColor = const Color(0xFFFEDBA4);
+    final accentColor = playerState == _PlayerState.rolling
+        ? const Color(0xFF5B21B6)
+        : const Color(0xFFC2410C);
 
-    // Augen
-    canvas.drawCircle(
-        Offset(playerRect.left + playerRect.width * 0.30, playerRect.top + 18),
-        5,
-        Paint()..color = Colors.white);
-    canvas.drawCircle(
-        Offset(playerRect.left + playerRect.width * 0.70, playerRect.top + 18),
-        5,
-        Paint()..color = Colors.white);
-    canvas.drawCircle(
-        Offset(playerRect.left + playerRect.width * 0.30, playerRect.top + 18),
-        2,
-        Paint()..color = Colors.black);
-    canvas.drawCircle(
-        Offset(playerRect.left + playerRect.width * 0.70, playerRect.top + 18),
-        2,
-        Paint()..color = Colors.black);
-
-    // ── Konfetti bei Sammel-Events ────────────────────────────
-    if (confettiTrigger > 0) {
-      final confettiPaint = Paint()..color = const Color(0x99FFFFFF);
-      for (var i = 0; i < 14; i++) {
-        final dx = playerRect.center.dx + math.sin(i.toDouble()) * 36;
-        final dy = playerRect.top - 12 - (i % 4) * 5;
-        canvas.drawCircle(Offset(dx, dy), 2.4, confettiPaint);
+    // Roll = zur Kugel werden
+    if (playerState == _PlayerState.rolling) {
+      final rollSize = math.min(w, h) * 0.95;
+      final center = Offset(cx, cy);
+      canvas.drawCircle(center, rollSize / 2, Paint()..color = bodyColor);
+      // Speed-Streifen rotierend
+      final t = animTime * 14;
+      for (var i = 0; i < 3; i++) {
+        final a = t + i * (math.pi * 2 / 3);
+        canvas.drawCircle(
+            center + Offset(math.cos(a) * rollSize * 0.28, math.sin(a) * rollSize * 0.28),
+            3, Paint()..color = const Color(0xFFFCD34D));
       }
+      // Anti-Aliasing-Glow
+      canvas.drawCircle(center, rollSize / 2 + 2,
+          Paint()..color = bodyColor.withOpacity(0.3));
+      return;
     }
 
+    // Schwanz (hinter dem Körper)
+    final tailWag = math.sin(animTime * 8) * 0.15 * dir;
+    canvas.save();
+    canvas.translate(cx - 14 * dir, cy + h * 0.05);
+    canvas.rotate(tailWag);
+    final tailPath = Path()
+      ..moveTo(0, 0)
+      ..quadraticBezierTo(-12 * dir, -8, -22 * dir, -4)
+      ..quadraticBezierTo(-28 * dir, 8, -18 * dir, 14)
+      ..quadraticBezierTo(-8 * dir, 8, 0, 4)
+      ..close();
+    canvas.drawPath(tailPath, Paint()..color = bodyColor);
+    // Weisse Schwanzspitze
+    canvas.drawCircle(Offset(-22 * dir, 4), 6, Paint()..color = Colors.white);
     canvas.restore();
+
+    // Hauptkoerper - eiförmig
+    final bodyRect = Rect.fromCenter(center: Offset(cx, cy + 2), width: w * 0.78, height: h * 0.78);
+    canvas.drawOval(bodyRect, Paint()..color = bodyColor);
+
+    // Bauchpartie (heller, vorne)
+    final bellyRect = Rect.fromCenter(
+        center: Offset(cx + 6 * dir, cy + h * 0.18),
+        width: w * 0.5,
+        height: h * 0.42);
+    canvas.drawOval(bellyRect, Paint()..color = bellyColor);
+
+    // Kopf (kreisförmig, oben vorne)
+    final headCx = cx + 8 * dir;
+    final headCy = cy - h * 0.18;
+    canvas.drawCircle(Offset(headCx, headCy), w * 0.32, Paint()..color = bodyColor);
+    // Gesichts-Maske (heller Bereich um Schnauze)
+    canvas.drawCircle(Offset(headCx + 4 * dir, headCy + 4), w * 0.22, Paint()..color = bellyColor);
+
+    // Ohren - dreieckig
+    final earColor = bodyColor;
+    final earInner = accentColor;
+    final earL = Path()
+      ..moveTo(headCx - 14 * dir, headCy - w * 0.22)
+      ..lineTo(headCx - 4 * dir, headCy - w * 0.42)
+      ..lineTo(headCx + 4 * dir, headCy - w * 0.18)
+      ..close();
+    canvas.drawPath(earL, Paint()..color = earColor);
+    // Innen-Ohr
+    final earLInner = Path()
+      ..moveTo(headCx - 10 * dir, headCy - w * 0.22)
+      ..lineTo(headCx - 5 * dir, headCy - w * 0.34)
+      ..lineTo(headCx + 0 * dir, headCy - w * 0.20)
+      ..close();
+    canvas.drawPath(earLInner, Paint()..color = earInner);
+    // Zweites Ohr (hinten, etwas kleiner)
+    final earR = Path()
+      ..moveTo(headCx + 8 * dir, headCy - w * 0.20)
+      ..lineTo(headCx + 18 * dir, headCy - w * 0.36)
+      ..lineTo(headCx + 22 * dir, headCy - w * 0.10)
+      ..close();
+    canvas.drawPath(earR, Paint()..color = earColor);
+
+    // Augen (gross, kindlich - Pixar-Style)
+    final eyeY = headCy + 2;
+    final eyeLx = headCx - 6 * dir;
+    final eyeRx = headCx + 6 * dir;
+    // Augen-Weiss
+    canvas.drawCircle(Offset(eyeLx, eyeY), 5, Paint()..color = Colors.white);
+    canvas.drawCircle(Offset(eyeRx, eyeY), 5, Paint()..color = Colors.white);
+    // Pupillen (Blickrichtung folgt Lauf-Richtung)
+    canvas.drawCircle(Offset(eyeLx + 1.5 * dir, eyeY), 2.8,
+        Paint()..color = const Color(0xFF1F2937));
+    canvas.drawCircle(Offset(eyeRx + 1.5 * dir, eyeY), 2.8,
+        Paint()..color = const Color(0xFF1F2937));
+    // Glanz-Punkte
+    canvas.drawCircle(Offset(eyeLx + 2 * dir, eyeY - 1.5), 0.9,
+        Paint()..color = Colors.white);
+    canvas.drawCircle(Offset(eyeRx + 2 * dir, eyeY - 1.5), 0.9,
+        Paint()..color = Colors.white);
+
+    // Schnauze - kleine Nase + Mund
+    final noseX = headCx + 12 * dir;
+    final noseY = headCy + 10;
+    canvas.drawCircle(Offset(noseX, noseY), 2.5, Paint()..color = const Color(0xFF1F2937));
+    // Mund - kleine Kurve
+    final mouthPath = Path()
+      ..moveTo(noseX - 3, noseY + 2)
+      ..quadraticBezierTo(noseX, noseY + 5, noseX + 3, noseY + 2);
+    canvas.drawPath(
+        mouthPath,
+        Paint()
+          ..color = const Color(0xFF1F2937)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.2);
+
+    // Pfoten / Beine
+    final legColor = accentColor;
+    final legY = r.bottom - 6;
+    final legRunFrame = math.sin(animTime * 14) * 4;
+    final isRunning = playerState == _PlayerState.running;
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(
+            Rect.fromCenter(
+                center: Offset(cx - 8, legY + (isRunning ? legRunFrame : 0)),
+                width: 10, height: 12),
+            const Radius.circular(4)),
+        Paint()..color = legColor);
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(
+            Rect.fromCenter(
+                center: Offset(cx + 8, legY - (isRunning ? legRunFrame : 0)),
+                width: 10, height: 12),
+            const Radius.circular(4)),
+        Paint()..color = legColor);
+
+    // Ducken: Lumo bleibt klein gezeichnet (durch _playerHeight schon)
+    // Springen: Beine ziehen sich an
+  }
+
+  // ── FX: Stern-Burst-Partikel ─────────────────────────────────
+  void _paintStarBursts(Canvas canvas) {
+    for (final b in starBursts) {
+      final alpha = (b.ttl / 0.55).clamp(0.0, 1.0);
+      final p = Paint()..color = b.color.withOpacity(alpha);
+      canvas.drawCircle(b.pos, b.size, p);
+      // Heller Kern
+      canvas.drawCircle(b.pos, b.size * 0.45, Paint()..color = Colors.white.withOpacity(alpha * 0.8));
+    }
+  }
+
+  // ── FX: Holz-Splitter ────────────────────────────────────────
+  void _paintSplinters(Canvas canvas) {
+    for (final s in splinters) {
+      final alpha = (s.ttl / 0.85).clamp(0.0, 1.0);
+      canvas.save();
+      canvas.translate(s.pos.dx, s.pos.dy);
+      canvas.rotate(s.angle);
+      canvas.drawRect(
+          Rect.fromCenter(center: Offset.zero, width: s.size, height: s.size * 0.4),
+          Paint()..color = const Color(0xFF92400E).withOpacity(alpha));
+      canvas.drawRect(
+          Rect.fromCenter(center: Offset.zero, width: s.size, height: s.size * 0.4),
+          Paint()
+            ..color = const Color(0xFF7C2D12).withOpacity(alpha * 0.6)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1);
+      canvas.restore();
+    }
+  }
+
+  void _paintConfetti(Canvas canvas) {
+    if (confettiTrigger <= 0) return;
+    final colors = <Color>[
+      const Color(0xFFFACC15),
+      const Color(0xFFFB923C),
+      const Color(0xFF34D399),
+      const Color(0xFF60A5FA),
+      const Color(0xFFF472B6),
+    ];
+    for (var i = 0; i < 18; i++) {
+      final dx = playerRect.center.dx + math.sin(i.toDouble() + animTime * 4) * 38;
+      final dy = playerRect.top - 12 - (i % 5) * 6 - math.cos(i.toDouble()) * 4;
+      canvas.drawCircle(Offset(dx, dy), 2.6, Paint()..color = colors[i % colors.length]);
+    }
   }
 
   @override
   bool shouldRepaint(covariant _LumoJumpPainter oldDelegate) {
     // Exakte O(1)-Prüfung relevanter Spielzustands-Felder.
-    // Counts werden vom State vorberechnet übergeben – keine Iteration hier.
     return cameraX != oldDelegate.cameraX ||
         playerRect != oldDelegate.playerRect ||
         playerState != oldDelegate.playerState ||
+        playerFacingRight != oldDelegate.playerFacingRight ||
         confettiTrigger != oldDelegate.confettiTrigger ||
         clearedBlockCount != oldDelegate.clearedBlockCount ||
         collectedStarCount != oldDelegate.collectedStarCount ||
         activeObstacleCount != oldDelegate.activeObstacleCount ||
+        burstCount != oldDelegate.burstCount ||
+        splinterCount != oldDelegate.splinterCount ||
+        shakeOffset != oldDelegate.shakeOffset ||
+        animTime != oldDelegate.animTime ||
         chest.opened != oldDelegate.chest.opened;
   }
 }
@@ -1553,4 +1992,160 @@ class _LearningTask {
   final String prompt;
   final List<String> choices;
   final String answer;
+}
+
+// ── Nintendo-Polish: FX-Partikel + Theme-System ─────────────────────
+
+/// Generischer Stern-Burst-Partikel (gelb, fadiert aus).
+class _FxBurst {
+  _FxBurst({
+    required this.pos,
+    required this.vel,
+    required this.ttl,
+    required this.color,
+    required this.size,
+  });
+  Offset pos;
+  Offset vel;
+  double ttl;
+  final Color color;
+  final double size;
+}
+
+/// Holz-Splitter bei zerstoerter Kiste.
+class _FxSplinter {
+  _FxSplinter({
+    required this.pos,
+    required this.vel,
+    required this.angle,
+    required this.spin,
+    required this.ttl,
+    required this.size,
+  });
+  Offset pos;
+  Offset vel;
+  double angle;
+  final double spin;
+  double ttl;
+  final double size;
+}
+
+/// Theme-Farben + Effekte pro Welt (Wiese / Eis / Wald / Wueste / Lava).
+/// Wird durch den Level-Block 1-5 bestimmt.
+class _LumoTheme {
+  const _LumoTheme({
+    required this.skyTop,
+    required this.skyMid,
+    required this.skyBottom,
+    required this.sunColor,
+    required this.mountainBack,
+    required this.mountainFront,
+    required this.platformTop,
+    required this.platformBody,
+    required this.platformAccent,
+    this.particleEmoji,
+  });
+
+  final Color skyTop;
+  final Color skyMid;
+  final Color skyBottom;
+  final Color sunColor;
+  final Color mountainBack;
+  final Color mountainFront;
+  final Color platformTop;
+  final Color platformBody;
+  final Color platformAccent;
+
+  /// Optionales Welt-spezifisches Partikel (Schneeflocke/Blatt/Funke).
+  final String? particleEmoji;
+
+  /// Liefert das Theme passend zum Level (1-50) -> Block 1-5.
+  factory _LumoTheme.forLevel(int levelId) {
+    final block = levelId <= 10
+        ? 1
+        : levelId <= 20
+            ? 2
+            : levelId <= 30
+                ? 3
+                : levelId <= 40
+                    ? 4
+                    : 5;
+    switch (block) {
+      case 1: // Wiese - warmer Tag, gruene Huegel
+        return const _LumoTheme(
+          skyTop: Color(0xFFBAE6FD),
+          skyMid: Color(0xFFE0F2FE),
+          skyBottom: Color(0xFFFEF3C7),
+          sunColor: Color(0xFFFCD34D),
+          mountainBack: Color(0xFF86EFAC),
+          mountainFront: Color(0xFF22C55E),
+          platformTop: Color(0xFF4ADE80),
+          platformBody: Color(0xFF92400E),
+          platformAccent: Color(0xFF15803D),
+        );
+      case 2: // Eis - kalt, blau, Schneeflocken
+        return const _LumoTheme(
+          skyTop: Color(0xFFE0F2FE),
+          skyMid: Color(0xFFBAE6FD),
+          skyBottom: Color(0xFFE5E7EB),
+          sunColor: Color(0xFFF1F5F9),
+          mountainBack: Color(0xFFCBD5E1),
+          mountainFront: Color(0xFF94A3B8),
+          platformTop: Color(0xFFDDF7FF),
+          platformBody: Color(0xFF60A5FA),
+          platformAccent: Color(0xFF1E40AF),
+          particleEmoji: '❄',
+        );
+      case 3: // Wald - dunkles Gruen, Blaetter
+        return const _LumoTheme(
+          skyTop: Color(0xFFD9F99D),
+          skyMid: Color(0xFFBBF7D0),
+          skyBottom: Color(0xFFFEF3C7),
+          sunColor: Color(0xFFFDE68A),
+          mountainBack: Color(0xFF166534),
+          mountainFront: Color(0xFF15803D),
+          platformTop: Color(0xFF65A30D),
+          platformBody: Color(0xFF422006),
+          platformAccent: Color(0xFF14532D),
+          particleEmoji: '🍃',
+        );
+      case 4: // Wueste - Sand, Kakteen-Farben
+        return const _LumoTheme(
+          skyTop: Color(0xFFFCD34D),
+          skyMid: Color(0xFFFEF3C7),
+          skyBottom: Color(0xFFFBA74A),
+          sunColor: Color(0xFFFED7AA),
+          mountainBack: Color(0xFFD97706),
+          mountainFront: Color(0xFFB45309),
+          platformTop: Color(0xFFFCD34D),
+          platformBody: Color(0xFF92400E),
+          platformAccent: Color(0xFF78350F),
+        );
+      case 5: // Lava - heiss, schwarz mit Glut
+        return const _LumoTheme(
+          skyTop: Color(0xFF7F1D1D),
+          skyMid: Color(0xFFB91C1C),
+          skyBottom: Color(0xFFF59E0B),
+          sunColor: Color(0xFFEF4444),
+          mountainBack: Color(0xFF1F2937),
+          mountainFront: Color(0xFF111827),
+          platformTop: Color(0xFFFB923C),
+          platformBody: Color(0xFF1F2937),
+          platformAccent: Color(0xFFEF4444),
+          particleEmoji: '🔥',
+        );
+      default:
+        return const _LumoTheme(
+          skyTop: Color(0xFFBAE6FD),
+          skyMid: Color(0xFFE0F2FE),
+          skyBottom: Color(0xFFFEF3C7),
+          sunColor: Color(0xFFFCD34D),
+          mountainBack: Color(0xFF86EFAC),
+          mountainFront: Color(0xFF22C55E),
+          platformTop: Color(0xFF4ADE80),
+          platformBody: Color(0xFF92400E),
+          platformAccent: Color(0xFF15803D),
+        );
+    }
+  }
 }
