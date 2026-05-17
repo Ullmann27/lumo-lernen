@@ -45,7 +45,6 @@ class _StarsPathGameState extends State<StarsPathGame> {
   static const _seedFallbackStep = 31;
   static const _seedShuffleOffset = 41;
   static const _maxUniquenessAttempts = 12;
-  static const _advancedLevelStartId = 40;
   static const _repo = GameProgressRepository();
 
   int _currentIndex = 0;
@@ -76,7 +75,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
   List<MathConcreteTask> _buildTasks() {
     final grade = math.max(widget.level.gradeFloor, widget.appState.state.grade);
     final units = _unitsForLevel(grade);
-    final uniqueKeys = <String>{};
+    final uniqueKeys = <_TaskFingerprint>{};
     final tasks = <MathConcreteTask>[];
 
     for (var i = 0; i < _totalTasks; i++) {
@@ -91,7 +90,11 @@ class _StarsPathGameState extends State<StarsPathGame> {
           unit: unit,
           seed: seed,
         );
-        final key = '${generated.prompt}|${generated.answer}|${generated.promptPattern}';
+        final key = _TaskFingerprint(
+          prompt: generated.prompt,
+          answer: generated.answer,
+          pattern: generated.promptPattern,
+        );
         if (uniqueKeys.add(key)) {
           selected = _withShuffledChoices(generated, seed + _seedShuffleOffset);
           break;
@@ -99,10 +102,15 @@ class _StarsPathGameState extends State<StarsPathGame> {
       }
       tasks.add(
         selected ??
-            MathTaskTemplates.generate(
-              grade: grade,
-              unit: units.first,
-              seed: widget.level.id * _seedLevelFactor + i * _seedFallbackStep,
+            _withShuffledChoices(
+              MathTaskTemplates.generate(
+                grade: grade,
+                unit: units.first,
+                seed: widget.level.id * _seedLevelFactor + i * _seedFallbackStep,
+              ),
+              widget.level.id * _seedLevelFactor +
+                  i * _seedFallbackStep +
+                  _seedShuffleOffset,
             ),
       );
     }
@@ -134,7 +142,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
     final title = widget.level.title.toLowerCase();
     final subject = widget.level.subject.toLowerCase();
 
-    if (widget.level.id >= _advancedLevelStartId || widget.level.miniType == GameMiniType.mixedQuiz) {
+    if (widget.level.miniType == GameMiniType.mixedQuiz) {
       preferred = <String>['Plus bis 20', 'Minus bis 20', 'Zahlenstrahl', 'Geld', 'Uhrzeit', 'Geometrie Formen'];
     } else if (widget.level.miniType == GameMiniType.numberPath || title.contains('zahlenweg') || title.contains('zahl')) {
       preferred = <String>['Zahlenstrahl', 'Vergleichen', 'Gerade und ungerade'];
@@ -150,7 +158,9 @@ class _StarsPathGameState extends State<StarsPathGame> {
 
     final filtered = preferred.where(available.contains).toList(growable: false);
     if (filtered.isNotEmpty) return filtered;
-    return available.isNotEmpty ? available : const <String>['Plus bis 10'];
+    if (available.isNotEmpty) return available;
+    final defaultUnit = MathTaskTemplates.templates.first.unit;
+    return <String>[defaultUnit];
   }
 
   void _selectOption(int idx) {
@@ -423,6 +433,30 @@ class _StarsPathGameState extends State<StarsPathGame> {
       ),
     );
   }
+}
+
+class _TaskFingerprint {
+  const _TaskFingerprint({
+    required this.prompt,
+    required this.answer,
+    required this.pattern,
+  });
+
+  final String prompt;
+  final String answer;
+  final String pattern;
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is _TaskFingerprint &&
+        other.prompt == prompt &&
+        other.answer == answer &&
+        other.pattern == pattern;
+  }
+
+  @override
+  int get hashCode => Object.hash(prompt, answer, pattern);
 }
 
 // ─────────────────── PFAD-HEADER ───────────────────
