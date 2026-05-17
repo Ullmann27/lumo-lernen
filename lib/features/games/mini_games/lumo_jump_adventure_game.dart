@@ -34,6 +34,8 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> {
   static const double duckMoveSpeed = 170;
   static const double coyoteTimeWindow = 0.22;
   static const double jumpBufferWindow = 0.20;
+  static const double coyoteExtensionFactor = 0.18;
+  static const double starCollectionDistance = 26;
 
   static const double _worldHeight = 420;
   static const double _fallResetY = _worldHeight + 220;
@@ -248,7 +250,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> {
     _coyoteTimer = 0;
     _jumpBufferTimer = 0;
     _statusHint = null;
-    _coyoteTimer = math.min(coyoteTimeWindow, airTime * 0.18);
+    _coyoteTimer = math.min(coyoteTimeWindow, airTime * coyoteExtensionFactor);
     HapticFeedback.mediumImpact();
   }
 
@@ -299,7 +301,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame> {
     final rect = _playerRect.inflate(6);
     for (final star in _stars) {
       if (star.collected) continue;
-      if ((rect.center - star.position).distance <= 26) {
+      if ((rect.center - star.position).distance <= starCollectionDistance) {
         star.collected = true;
         star.scalePulse = 1.35;
         _sessionStars += 1;
