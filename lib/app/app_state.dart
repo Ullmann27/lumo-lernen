@@ -6,7 +6,7 @@ import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/scanned_work_analysis.dart';
 
-enum LumoSection { home, learn, exercises, reading, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings }
+enum LumoSection { home, learn, exercises, reading, games, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings }
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
 
