@@ -18,7 +18,7 @@ class LumoSessionState {
     this.subject = 'Alle',
     this.unit = 'Alle',
     this.stars = 24,
-    this.totalEarnedStars = 24,
+    this.totalEarnedStars = 0,
     this.xp = 840,
     this.lastGrade = 0,
     this.mood = LumoMood.greet,

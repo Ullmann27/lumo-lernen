@@ -494,7 +494,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
                             child: _TaskOverlayCard(
                               key: ValueKey<String>('question_${_questionOverlay!.block.seed}'),
                               title: 'Frageblock',
-                              subtitle: '5 Sterne fuer Lumos Wallet',
+                              subtitle: '5 Sterne für Lumos Wallet',
                               task: _questionOverlay!.task,
                               progressLabel: 'Block geschafft? Dann geht es weiter!',
                               onSolved: () async {
@@ -519,7 +519,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
                             child: _TaskOverlayCard(
                               key: ValueKey<String>('boss_${_bossOverlay!.currentIndex}'),
                               title: 'Boss-Truhe',
-                              subtitle: '3 richtige Aufgaben in Folge fuer 50 Sterne',
+                              subtitle: '3 richtige Aufgaben in Folge für 50 Sterne',
                               task: _bossOverlay!.tasks[_bossOverlay!.currentIndex],
                               progressLabel:
                                   'Serie: ${_bossOverlay!.currentIndex}/3 richtig in Folge',
@@ -693,7 +693,7 @@ class _AdventureHeader extends StatelessWidget {
         Expanded(
           child: _HeaderPill(
             color: const Color(0xFF8B5CF6),
-            label: 'Bloecke',
+            label: 'Blöcke',
             value: '$questionBlocksSolved/$totalQuestionBlocks',
           ),
         ),
