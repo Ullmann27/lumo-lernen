@@ -85,6 +85,16 @@ class WwmGameState extends ChangeNotifier {
     }
   }
 
+  /// Coupons earned for this session (1 at Q5, 2 at Q10, 3 at Q15/finish).
+  int get couponsEarned {
+    if (_status == WwmStatus.finished) return 3;
+    // _xpLadder[9] is the XP awarded at question index 9 (Q10, safe level)
+    if (_securedXP >= _xpLadder[9]) return 2;
+    // _xpLadder[4] is the XP awarded at question index 4 (Q5, safe level)
+    if (_securedXP >= _xpLadder[4]) return 1;
+    return 0;
+  }
+
   static List<int> get xpLadder => _xpLadder;
   static Set<int> get safeIndices => _safeIndices;
 

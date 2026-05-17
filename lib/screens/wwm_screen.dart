@@ -558,6 +558,8 @@ class _WwmScreenState extends State<WwmScreen> with TickerProviderStateMixin {
 
   Widget _buildContinueBar(WwmGameState state) {
     final isSafe = state.isCurrentSafeLevel;
+    final isLastQuestion = state.currentIndex >= 14;
+    final showCoupon = isSafe || isLastQuestion;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -583,6 +585,30 @@ class _WwmScreenState extends State<WwmScreen> with TickerProviderStateMixin {
               textAlign: TextAlign.center,
             ),
           ),
+          // Coupon milestone badge
+          if (showCoupon) ...[
+            const SizedBox(height: 6),
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFD166).withOpacity(0.18),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                    color: const Color(0xFFFFD166).withOpacity(0.7)),
+              ),
+              child: Text(
+                isLastQuestion
+                    ? '🎁 Glückwunsch! Du hast 3 Gutscheine verdient!'
+                    : '🎁 Gutschein verdient! Schau im Bonus-Bereich nach.',
+                style: const TextStyle(
+                    color: Color(0xFFFFD166),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
           // Explanation
           if (state.currentQuestion?.explanation.isNotEmpty == true)
             Padding(
@@ -700,6 +726,37 @@ class _WwmScreenState extends State<WwmScreen> with TickerProviderStateMixin {
                         fontSize: 38,
                         fontWeight: FontWeight.bold),
                   ),
+                ),
+              ],
+              if (state.couponsEarned > 0) ...[
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFD166).withOpacity(0.15),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(
+                        color: const Color(0xFFFFD166).withOpacity(0.6),
+                        width: 1.5),
+                  ),
+                  child: Text(
+                    state.couponsEarned == 1
+                        ? '🎁 1 Gutschein verdient!'
+                        : '🎁 ${state.couponsEarned} Gutscheine verdient!',
+                    style: const TextStyle(
+                        color: Color(0xFFFFD166),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Im Bonus-Bereich einlösen 👇',
+                  style:
+                      TextStyle(color: Colors.white54, fontSize: 13),
+                  textAlign: TextAlign.center,
                 ),
               ],
               const SizedBox(height: 32),

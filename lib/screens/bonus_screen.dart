@@ -17,9 +17,9 @@ class _BonusScreenState extends State<BonusScreen> {
 
   static const String _demoPin = '1234';
 
-  // ── 16 vouchers across 4 categories ──────────────────────────────────────
+  // ── 32 vouchers across 6 categories ──────────────────────────────────────
   static const List<Map<String, dynamic>> _rewards = [
-    // Aktivitäten
+    // ── Aktivitäten ──────────────────────────────────────────────────────────
     {
       'emoji': '🎨',
       'title': 'Malzeit',
@@ -52,7 +52,64 @@ class _BonusScreenState extends State<BonusScreen> {
       'color': 0xFF95D5B2,
       'category': 'Aktivitäten',
     },
-    // Spaß & Spiel
+    {
+      'emoji': '🌳',
+      'title': 'Spielplatz extra',
+      'desc': 'Extra Spielplatz-Zeit nach dem Mittag',
+      'xpRequired': 60,
+      'color': 0xFF95D5B2,
+      'category': 'Aktivitäten',
+    },
+    {
+      'emoji': '🧗',
+      'title': 'Erlebnisbad',
+      'desc': 'Ausflug ins Erlebnisbad',
+      'xpRequired': 500,
+      'color': 0xFF4ECDC4,
+      'category': 'Aktivitäten',
+    },
+    {
+      'emoji': '🦁',
+      'title': 'Tiergarten',
+      'desc': 'Ausflug in den Tiergarten',
+      'xpRequired': 450,
+      'color': 0xFF95D5B2,
+      'category': 'Aktivitäten',
+    },
+    // ── Familienzeit ─────────────────────────────────────────────────────────
+    {
+      'emoji': '👨‍👧',
+      'title': 'Papa-Tochter-Ausflug',
+      'desc': 'Ein besonderer Ausflug mit Papa',
+      'xpRequired': 400,
+      'color': 0xFF87CEEB,
+      'category': 'Familienzeit',
+    },
+    {
+      'emoji': '👩‍👧',
+      'title': 'Mama-Tochter-Ausflug',
+      'desc': 'Ein besonderer Ausflug mit Mama',
+      'xpRequired': 400,
+      'color': 0xFFE0AAFF,
+      'category': 'Familienzeit',
+    },
+    {
+      'emoji': '🧺',
+      'title': 'Picknick',
+      'desc': 'Familien-Picknick im Park',
+      'xpRequired': 200,
+      'color': 0xFF95D5B2,
+      'category': 'Familienzeit',
+    },
+    {
+      'emoji': '🎡',
+      'title': 'Family Park',
+      'desc': 'Ausflug in den Freizeitpark',
+      'xpRequired': 600,
+      'color': 0xFFFF8C42,
+      'category': 'Familienzeit',
+    },
+    // ── Spaß & Spiel ─────────────────────────────────────────────────────────
     {
       'emoji': '🎮',
       'title': 'Spiel-Bonus',
@@ -79,13 +136,29 @@ class _BonusScreenState extends State<BonusScreen> {
     },
     {
       'emoji': '🎬',
-      'title': 'Filmabend',
-      'desc': 'Film deiner Wahl anschauen',
+      'title': 'Kinoabend zuhause',
+      'desc': 'Film-Abend nach Wahl mit Popcorn',
       'xpRequired': 250,
       'color': 0xFFE0AAFF,
       'category': 'Spaß & Spiel',
     },
-    // Genuss & Essen
+    {
+      'emoji': '🧱',
+      'title': 'Lego-Zeit',
+      'desc': '1 Stunde Bauen mit Lego',
+      'xpRequired': 150,
+      'color': 0xFF87CEEB,
+      'category': 'Spaß & Spiel',
+    },
+    {
+      'emoji': '🔬',
+      'title': 'Experimentierkasten',
+      'desc': 'Experimente nach Wahl durchführen',
+      'xpRequired': 350,
+      'color': 0xFF4ECDC4,
+      'category': 'Spaß & Spiel',
+    },
+    // ── Genuss & Essen ───────────────────────────────────────────────────────
     {
       'emoji': '🍦',
       'title': 'Eis holen',
@@ -96,7 +169,7 @@ class _BonusScreenState extends State<BonusScreen> {
     },
     {
       'emoji': '🍕',
-      'title': 'Pizza-Wunsch',
+      'title': 'Pizzaabend',
       'desc': 'Pizza-Abend mit Wunschbelag',
       'xpRequired': 350,
       'color': 0xFFFF8C42,
@@ -112,13 +185,46 @@ class _BonusScreenState extends State<BonusScreen> {
     },
     {
       'emoji': '🍫',
-      'title': 'Süßigkeiten',
-      'desc': 'Kleine Schokolade oder Gummibärchen',
+      'title': 'Lieblingsjause',
+      'desc': 'Lieblingsjause selbst aussuchen',
       'xpRequired': 40,
       'color': 0xFFE0AAFF,
       'category': 'Genuss',
     },
-    // Auszeit & Bildung
+    // ── Kreativ & Lernen ─────────────────────────────────────────────────────
+    {
+      'emoji': '🎨',
+      'title': 'Sticker aussuchen',
+      'desc': '5 Sticker selbst aussuchen',
+      'xpRequired': 70,
+      'color': 0xFFFFD166,
+      'category': 'Kreativ & Lernen',
+    },
+    {
+      'emoji': '📚',
+      'title': 'Buch aussuchen',
+      'desc': 'Ein neues Buch selbst aussuchen',
+      'xpRequired': 300,
+      'color': 0xFF4ECDC4,
+      'category': 'Kreativ & Lernen',
+    },
+    {
+      'emoji': '✂️',
+      'title': 'Bastelset',
+      'desc': 'Ein Bastelset nach Wahl',
+      'xpRequired': 200,
+      'color': 0xFF95D5B2,
+      'category': 'Kreativ & Lernen',
+    },
+    {
+      'emoji': '📚',
+      'title': 'Bücherei-Besuch',
+      'desc': 'Ausflug in die Bücherei',
+      'xpRequired': 180,
+      'color': 0xFF4ECDC4,
+      'category': 'Kreativ & Lernen',
+    },
+    // ── Auszeichnungen ───────────────────────────────────────────────────────
     {
       'emoji': '⭐',
       'title': 'Fleißige Biene',
@@ -126,14 +232,6 @@ class _BonusScreenState extends State<BonusScreen> {
       'xpRequired': 50,
       'color': 0xFFFFD166,
       'category': 'Auszeichnung',
-    },
-    {
-      'emoji': '📚',
-      'title': 'Bücherei-Besuch',
-      'desc': 'Ausflug in die Bücherei',
-      'xpRequired': 200,
-      'color': 0xFF4ECDC4,
-      'category': 'Bildung',
     },
     {
       'emoji': '🌟',
@@ -149,6 +247,14 @@ class _BonusScreenState extends State<BonusScreen> {
       'desc': 'Level 5 erreicht',
       'xpRequired': 500,
       'color': 0xFFFF8C42,
+      'category': 'Auszeichnung',
+    },
+    {
+      'emoji': '💎',
+      'title': 'Quiz-Champion',
+      'desc': 'Alle 15 Quiz-Fragen richtig beantwortet',
+      'xpRequired': 1000,
+      'color': 0xFF87CEEB,
       'category': 'Auszeichnung',
     },
   ];

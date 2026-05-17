@@ -8,6 +8,7 @@ import 'services/memory_graph.dart';
 import 'services/consent_service.dart';
 import 'services/companion_agent.dart';
 import 'services/local_store.dart';
+import 'services/quiz_show_repository.dart';
 import 'services/wwm_question_service.dart';
 import 'services/wwm_game_state.dart';
 
@@ -15,8 +16,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final localStore = LocalStore();
-  final wwmService = WwmQuestionService(localStore);
   final classSettings = ClassSettings(localStore);
+  final quizRepo = QuizShowRepository();
+  final wwmService = WwmQuestionService(localStore, classSettings, quizRepo);
 
   runApp(
     MultiProvider(
@@ -29,6 +31,7 @@ void main() async {
         Provider<WwmQuestionService>.value(value: wwmService),
         ChangeNotifierProvider(create: (_) => WwmGameState(wwmService)),
         ChangeNotifierProvider<ClassSettings>.value(value: classSettings),
+        Provider<QuizShowRepository>.value(value: quizRepo),
       ],
       child: const LumoLernenApp(),
     ),

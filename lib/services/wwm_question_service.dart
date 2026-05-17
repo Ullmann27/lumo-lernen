@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
+import 'class_settings.dart';
 import 'exercise_factory.dart';
 import 'local_store.dart';
+import 'quiz_question_bank.dart';
+import 'quiz_show_repository.dart';
 
 class WwmQuestion {
   final String subject;
@@ -28,8 +31,11 @@ class WwmQuestionService {
   static const _callCountKey = 'wwm_api_call_count';
 
   final LocalStore _store;
+  final ClassSettings? _classSettings;
+  final QuizShowRepository? _quizRepo;
 
-  WwmQuestionService(this._store);
+  WwmQuestionService(this._store,
+      [this._classSettings, this._quizRepo]);
 
   int get apiCallCount => _store.get<int>(_callCountKey) ?? 0;
 
@@ -153,9 +159,31 @@ Regeln: Genau 4 Optionen pro Frage. "correct" gibt den Buchstaben A, B, C oder D
   }
 
   List<WwmQuestion> _fallbackQuestions() {
+    final cs = _classSettings;
+    final repo = _quizRepo;
+
+    // If ClassSettings and QuizShowRepository are wired in, use the
+    // grade-appropriate, anti-repetition QuizQuestionBank.
+    if (cs != null && repo != null) {
+      final level = cs.level;
+      final quizQuestions =
+          QuizQuestionBank.generateGameQuestions(level, repo);
+      return quizQuestions
+          .map(
+            (q) => WwmQuestion(
+              subject: q.subject,
+              question: q.question,
+              options: q.options,
+              correctIndex: q.correctIndex,
+              explanation: q.explanation,
+            ),
+          )
+          .toList();
+    }
+
+    // Legacy static fallback (used only when providers are unavailable).
     final rng = Random();
 
-    // Pick 5 random questions from each difficulty tier (no repeats within tier)
     final easy = List<Exercise>.from(ExerciseFactory.easyExercises)
       ..shuffle(rng);
     final medium = List<Exercise>.from(ExerciseFactory.mediumExercises)
@@ -170,7 +198,6 @@ Regeln: Genau 4 Optionen pro Frage. "correct" gibt den Buchstaben A, B, C oder D
     ];
 
     return selected.map((exercise) {
-      // Shuffle answer options while tracking the correct one
       final indexed = exercise.options.asMap().entries.toList()..shuffle(rng);
       final shuffledOptions = indexed.map((e) => e.value).toList();
       final correctIndex =
