@@ -18,6 +18,7 @@ class LumoSessionState {
     this.subject = 'Alle',
     this.unit = 'Alle',
     this.stars = 24,
+    this.totalEarnedStars = 24,
     this.xp = 840,
     this.lastGrade = 0,
     this.mood = LumoMood.greet,
@@ -39,6 +40,7 @@ class LumoSessionState {
   String subject;
   String unit;
   int stars;
+  int totalEarnedStars;
   int xp;
   int lastGrade;
   LumoMood mood;
@@ -65,6 +67,7 @@ class LumoSessionState {
     String? subject,
     String? unit,
     int? stars,
+    int? totalEarnedStars,
     int? xp,
     int? lastGrade,
     LumoMood? mood,
@@ -85,6 +88,7 @@ class LumoSessionState {
         subject: subject ?? this.subject,
         unit: unit ?? this.unit,
         stars: stars ?? this.stars,
+        totalEarnedStars: totalEarnedStars ?? this.totalEarnedStars,
         xp: xp ?? this.xp,
         lastGrade: lastGrade ?? this.lastGrade,
         mood: mood ?? this.mood,
@@ -250,7 +254,26 @@ class LumoAppState extends ChangeNotifier {
   void correctAnswer(String unit) {
     final solved = Map<String, int>.from(_state.solved);
     solved[unit] = (solved[unit] ?? 0) + 1;
-    update(_state.copyWith(stars: _state.stars + 3, xp: _state.xp + 20, solved: solved, practiceErrors: 0, mood: LumoMood.celebrate, lumoMessage: 'Juhu!\nDas war richtig.\nWeiter so! ⭐'));
+    update(_state.copyWith(
+      stars: _state.stars + 3,
+      totalEarnedStars: _state.totalEarnedStars + 3,
+      xp: _state.xp + 20,
+      solved: solved,
+      practiceErrors: 0,
+      mood: LumoMood.celebrate,
+      lumoMessage: 'Juhu!\nDas war richtig.\nWeiter so! ⭐',
+    ));
+  }
+
+  void awardEarnedStars(int amount, {int xp = 0, String? message}) {
+    if (amount <= 0) return;
+    update(_state.copyWith(
+      stars: _state.stars + amount,
+      totalEarnedStars: _state.totalEarnedStars + amount,
+      xp: _state.xp + xp,
+      mood: LumoMood.celebrate,
+      lumoMessage: message ?? _state.lumoMessage,
+    ));
   }
 
   void wrongAnswer(String unit) {
