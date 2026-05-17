@@ -4,6 +4,7 @@ import '../../app/app_theme.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/app_settings.dart';
 import '../../core/app_update_service.dart';
+import '../../core/error_breakdown_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/settings_repository.dart';
@@ -1482,24 +1483,57 @@ class _QuickQuestionChip extends StatelessWidget {
 }
 
 /// Phase 1 - Eltern-Slot fuer die Lern-DNA-Karte.
-/// Berechnet die DNA bei jedem Aufruf neu aus dem App-State.
-class _DnaSettingsSlot extends StatelessWidget {
+/// Laedt persistierte Fehler-Breakdown (aus Phase 2) und berechnet DNA.
+class _DnaSettingsSlot extends StatefulWidget {
   const _DnaSettingsSlot({required this.appState});
 
   final LumoAppState appState;
 
   @override
+  State<_DnaSettingsSlot> createState() => _DnaSettingsSlotState();
+}
+
+class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
+  static const _errorRepo = ErrorBreakdownRepository();
+  Map<String, int> _errorBreakdown = const <String, int>{};
+  bool _loaded = false;
+
+  String get _childId {
+    final st = widget.appState.state;
+    final safeName = st.childName.trim().isEmpty
+        ? 'kind'
+        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    return 'local_${safeName}_${st.grade}';
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final breakdown = await _errorRepo.load(_childId);
+    if (!mounted) return;
+    setState(() {
+      _errorBreakdown = breakdown;
+      _loaded = true;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // DNA aus aktuellem State berechnen.
-    // Quellen: weakSkills, stars, xp, level, lastGrade, solved.
+    final state = widget.appState.state;
     final dna = const LearningDnaEngine().compute(
-      state: appState.state,
-      // recentCorrect/Incorrect approximieren aus solved/weakSkills-Summe
-      recentCorrect: appState.state.solved.values.fold<int>(0, (sum, v) => sum + v),
-      recentIncorrect: appState.state.weakSkills.values.fold<int>(0, (sum, v) => sum + v),
+      state: state,
+      errorBreakdown: _errorBreakdown,
+      recentCorrect: state.solved.values.fold<int>(0, (sum, v) => sum + v),
+      recentIncorrect: state.weakSkills.values.fold<int>(0, (sum, v) => sum + v),
     );
-    if (dna.strengths.isEmpty && dna.weaknesses.isEmpty && dna.totalCorrect == 0) {
-      // Frueh-Phase: zeige Hinweis statt leere Karte.
+    if (dna.strengths.isEmpty &&
+        dna.weaknesses.isEmpty &&
+        dna.totalCorrect == 0 &&
+        _errorBreakdown.isEmpty) {
       return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -1511,11 +1545,13 @@ class _DnaSettingsSlot extends StatelessWidget {
           children: [
             const Text('🧬', style: TextStyle(fontSize: 22)),
             const SizedBox(width: 10),
-            const Expanded(
+            Expanded(
               child: Text(
-                'Lumo Lern-DNA: noch keine Daten. Nach einigen Aufgaben '
-                'siehst du hier Staerken, Schwaechen und die naechste Empfehlung.',
-                style: TextStyle(
+                _loaded
+                    ? 'Lumo Lern-DNA: noch keine Daten. Nach einigen Aufgaben '
+                        'siehst du hier Staerken, Schwaechen und die naechste Empfehlung.'
+                    : 'Lumo Lern-DNA wird geladen...',
+                style: const TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 12.5,
                   fontWeight: FontWeight.w700,

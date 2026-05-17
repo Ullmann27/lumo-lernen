@@ -7,6 +7,7 @@ import '../../app/app_theme.dart';
 import '../../app/app_design.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
+import '../../core/error_breakdown_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_tutor_contracts.dart';
 import '../../core/lumo_tutor_engine.dart';
@@ -17,6 +18,7 @@ import '../../core/recent_task_repository.dart';
 import '../../core/session_variety_guard.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
+import '../../domain/learning/error_detective.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
 import '../../domain/learning/lumo_learning_feedback_engine.dart';
 import '../../domain/learning/reward_engine.dart';
@@ -82,6 +84,12 @@ class _LearningContentState extends State<LearningContent> {
   // Konfetti-Trigger: jedes Hochzaehlen loest einen neuen Burst aus.
   // Wird bei richtigen Antworten erhoeht.
   int _confettiTrigger = 0;
+
+  // Phase 2 - Lumo Fehlerdetektiv: zaehlt Fehlerarten in dieser Session.
+  // Wird in den ErrorBreakdownRepository persistiert und vom DNA-Engine
+  // in Phase 1 gelesen.
+  final Map<String, int> _errorBreakdown = <String, int>{};
+  final ErrorBreakdownRepository _errorRepo = const ErrorBreakdownRepository();
 
   // KI-Hilfe vom Cloud-Tutor (optional, nur wenn aiProxyEnabled).
   // Heinz' Wunsch: pro Bereich zugeschnittener KI-Helfer mit echtem Kontext.
@@ -606,7 +614,29 @@ class _LearningContentState extends State<LearningContent> {
     } else if (_allowHelp) {
       _attemptCount++;
     }
-    final nextTutorHint = correct ? null : _buildTutorHint(answerGiven, errorTypes);
+
+    // Phase 2 - Lumo Fehlerdetektiv. Erkennt sofort beim 1. Fehler
+    // die wahrscheinlichste Fehlerart und gibt kindgerechtes Feedback.
+    // Faellt zurueck auf den bestehenden Tutor-Engine wenn Vertrauen niedrig.
+    String? nextTutorHint;
+    if (!correct) {
+      final detection = const ErrorDetective().analyze(
+        subject: _task.subject,
+        prompt: _task.prompt,
+        correctAnswer: '${_taskInstance.correctAnswer}',
+        givenAnswer: '$answerGiven',
+      );
+      if (detection.confidence >= 0.65) {
+        nextTutorHint = detection.childFriendlyMessage;
+        // Fehlerart zaehlen + persistieren fuer die DNA-Anzeige in Phase 1.
+        final key = detection.pattern.germanShortLabel;
+        _errorBreakdown[key] = (_errorBreakdown[key] ?? 0) + 1;
+        unawaited(_errorRepo.increment(_childId, key));
+      } else {
+        // Niedrige Konfidenz - generischer Tutor-Hint (nur ab 3 Versuchen).
+        nextTutorHint = _buildTutorHint(answerGiven, errorTypes);
+      }
+    }
     // 4. Eskalations-Stufe: nach 5+ Fehlversuchen lokale Bildhilfe nachladen.
     // Asynchron, damit die UI sofort reagiert. Setzt _visualAid via setState
     // sobald fertig. Cloud-Aufruf ist explizit ausgeschlossen.
