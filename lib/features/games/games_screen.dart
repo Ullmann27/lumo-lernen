@@ -7,30 +7,30 @@ class GamesScreen extends StatelessWidget {
   const GamesScreen({super.key, required this.appState});
 
   final LumoAppState appState;
+  static const int _minimumStarsForCompletedLevel = 2;
+  static const List<_LevelData> _levels = <_LevelData>[
+    _LevelData(1, 'Sterne sammeln', 'Mengen bis 10', unlocked: true, stars: 3),
+    _LevelData(2, 'Sterne sammeln', 'Plus bis 10', unlocked: true, stars: 2),
+    _LevelData(3, 'Rechenhaus bauen', 'Zahlzerlegung', unlocked: true, stars: 1),
+    _LevelData(4, 'Zahlenweg', 'Zahlenfolge', unlocked: true, stars: 0),
+    _LevelData(5, 'Zahlenweg', 'Plus-Schritte', unlocked: true, stars: 0),
+    _LevelData(6, 'Wörterwald', 'Silben erkennen', unlocked: false, stars: 0),
+    _LevelData(7, 'Wörterwald', 'Wort-Bild', unlocked: false, stars: 0),
+    _LevelData(8, 'Rechenhaus bauen', 'Fehlende Zahl', unlocked: false, stars: 0),
+    _LevelData(9, 'Sterne sammeln', 'Minus bis 10', unlocked: false, stars: 0),
+    _LevelData(10, 'Lumo-Challenge', 'Gemischt', unlocked: false, stars: 0),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    const levels = <_LevelData>[
-      _LevelData(1, 'Sterne sammeln', 'Mengen bis 10', unlocked: true, stars: 3),
-      _LevelData(2, 'Sterne sammeln', 'Plus bis 10', unlocked: true, stars: 2),
-      _LevelData(3, 'Rechenhaus bauen', 'Zahlzerlegung', unlocked: true, stars: 1),
-      _LevelData(4, 'Zahlenweg', 'Zahlenfolge', unlocked: true, stars: 0),
-      _LevelData(5, 'Zahlenweg', 'Plus-Schritte', unlocked: true, stars: 0),
-      _LevelData(6, 'Wörterwald', 'Silben erkennen', unlocked: false, stars: 0),
-      _LevelData(7, 'Wörterwald', 'Wort-Bild', unlocked: false, stars: 0),
-      _LevelData(8, 'Rechenhaus bauen', 'Fehlende Zahl', unlocked: false, stars: 0),
-      _LevelData(9, 'Sterne sammeln', 'Minus bis 10', unlocked: false, stars: 0),
-      _LevelData(10, 'Lumo-Challenge', 'Gemischt', unlocked: false, stars: 0),
-    ];
-
     return ListView(
       padding: const EdgeInsets.all(22),
       children: [
         _GamesHeader(childName: appState.state.childName),
         const SizedBox(height: 16),
         _WeekPreviewCard(
-          done: levels.where((level) => level.unlocked && level.stars >= 2).length,
-          total: levels.length,
+          done: _levels.where((level) => level.unlocked && level.stars >= _minimumStarsForCompletedLevel).length,
+          total: _levels.length,
         ),
         const SizedBox(height: 16),
         LayoutBuilder(
@@ -40,7 +40,7 @@ class GamesScreen extends StatelessWidget {
             return Wrap(
               spacing: 14,
               runSpacing: 14,
-              children: levels
+              children: _levels
                   .map((level) => SizedBox(
                         width: itemWidth,
                         child: _LevelCard(level: level),
