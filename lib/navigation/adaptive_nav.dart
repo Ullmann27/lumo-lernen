@@ -20,6 +20,7 @@ class AdaptiveNav extends StatefulWidget {
 
 class _AdaptiveNavState extends State<AdaptiveNav> {
   int _selectedIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   static const List<_NavItem> _navItems = [
     _NavItem(icon: Icons.home_rounded, label: 'Home'),
@@ -60,18 +61,84 @@ class _AdaptiveNavState extends State<AdaptiveNav> {
 
   Widget _buildMobileLayout() {
     return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: (i) => setState(() => _selectedIndex = i),
+      key: _scaffoldKey,
+      drawer: Drawer(
         backgroundColor: Colors.white,
-        indicatorColor: AppTheme.orange.withOpacity(0.2),
-        destinations: _navItems
-            .map((item) => NavigationDestination(
-                  icon: Icon(item.icon),
-                  label: item.label,
-                ))
-            .toList(),
+        child: SafeArea(
+          child: ListView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            itemCount: _navItems.length,
+            itemBuilder: (context, i) {
+              final item = _navItems[i];
+              final isSelected = i == _selectedIndex;
+              return ListTile(
+                leading: Icon(
+                  item.icon,
+                  color: isSelected
+                      ? AppTheme.orange
+                      : const Color(0xFF4A4A4A),
+                ),
+                title: Text(
+                  item.label,
+                  style: TextStyle(
+                    color: isSelected
+                        ? AppTheme.orange
+                        : const Color(0xFF2D2D2D),
+                    fontWeight: isSelected
+                        ? FontWeight.bold
+                        : FontWeight.normal,
+                  ),
+                ),
+                tileColor: isSelected
+                    ? AppTheme.orange.withOpacity(0.08)
+                    : null,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                onTap: () {
+                  setState(() => _selectedIndex = i);
+                  Navigator.of(context).pop();
+                },
+              );
+            },
+          ),
+        ),
+      ),
+      body: Stack(
+        children: [
+          _screens[_selectedIndex],
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 8,
+            left: 8,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(24),
+                onTap: () => _scaffoldKey.currentState?.openDrawer(),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.85),
+                    shape: BoxShape.circle,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 6,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.menu_rounded,
+                    color: Color(0xFF2D1B69),
+                    size: 22,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
