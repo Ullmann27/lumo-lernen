@@ -9,17 +9,22 @@
 class WritingTargetParser {
   const WritingTargetParser._();
 
+  static final RegExp _trailingPunctuation = RegExp(r'[.!?]+$');
+
   static String parse(String prompt) {
-    final word = RegExp(r'Schreibe\s+das\s+Wort:\s*(.+)$', caseSensitive: false).firstMatch(prompt);
-    if (word != null) return word.group(1)!.trim();
+    final word = RegExp(r'Schreibe\s+das\s+Wort\s*:?\s*(.+)$', caseSensitive: false).firstMatch(prompt);
+    if (word != null) return _cleanWordTarget(word.group(1));
 
     final number = RegExp(r'Schreibe\s+die\s+Zahl\s+(\d{1,2})', caseSensitive: false).firstMatch(prompt);
     if (number != null) return number.group(1)!;
 
-    final copySentence = RegExp(r'Schreibe:\s*(.+)$', caseSensitive: false).firstMatch(prompt);
-    if (copySentence != null) return copySentence.group(1)!.trim();
+    final sentence = RegExp(r'Schreibe\s+den\s+Satz\s*:?\s*(.+)$', caseSensitive: false).firstMatch(prompt);
+    if (sentence != null) return _cleanSentenceTarget(sentence.group(1));
 
-    final traceLetter = RegExp(r'(?:Buchstaben|grosses|großes)\s+([A-ZÄÖÜ])\b', caseSensitive: false).firstMatch(prompt);
+    final copyText = RegExp(r'Schreibe:\s*(.+)$', caseSensitive: false).firstMatch(prompt);
+    if (copyText != null) return _cleanSentenceTarget(copyText.group(1));
+
+    final traceLetter = RegExp(r'(?:Buchstaben?|grosses|großes)\s+([A-ZÄÖÜ])\b', caseSensitive: false).firstMatch(prompt);
     if (traceLetter != null) return traceLetter.group(1)!.toUpperCase();
 
     final loneNumber = RegExp(r'Zahl\s+(\d{1,2})', caseSensitive: false).firstMatch(prompt);
@@ -29,5 +34,24 @@ class WritingTargetParser {
     if (singleLetter != null) return singleLetter.group(1)!;
 
     return 'A';
+  }
+
+  static String _cleanWordTarget(String? value) {
+    final cleaned = _stripWrappingQuotes(
+      (value ?? '').replaceAll(_trailingPunctuation, ''),
+    );
+    return cleaned.isEmpty ? 'A' : cleaned;
+  }
+
+  static String _cleanSentenceTarget(String? value) {
+    final cleaned = _stripWrappingQuotes(value);
+    return cleaned.isEmpty ? 'A' : cleaned;
+  }
+
+  static String _stripWrappingQuotes(String? value) {
+    return (value ?? '').trim()
+        .replaceFirst(RegExp(r"""^[„"'‚]+"""), '')
+        .replaceFirst(RegExp(r"""[“"'‘]+$"""), '')
+        .trim();
   }
 }
