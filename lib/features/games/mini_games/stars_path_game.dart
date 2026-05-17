@@ -39,6 +39,12 @@ class StarsPathGame extends StatefulWidget {
 
 class _StarsPathGameState extends State<StarsPathGame> {
   static const _totalTasks = 5;
+  static const _seedLevelFactor = 1000;
+  static const _seedTaskStep = 97;
+  static const _seedAttemptStep = 17;
+  static const _seedFallbackStep = 31;
+  static const _seedShuffleOffset = 41;
+  static const _maxUniquenessAttempts = 12;
   static const _repo = GameProgressRepository();
 
   int _currentIndex = 0;
@@ -74,22 +80,31 @@ class _StarsPathGameState extends State<StarsPathGame> {
 
     for (var i = 0; i < _totalTasks; i++) {
       MathConcreteTask? selected;
-      for (var attempt = 0; attempt < 12; attempt++) {
-        final seed = widget.level.id * 1000 + i * 97 + attempt * 17;
+      for (var attempt = 0; attempt < _maxUniquenessAttempts; attempt++) {
+        final seed = widget.level.id * _seedLevelFactor +
+            i * _seedTaskStep +
+            attempt * _seedAttemptStep;
         final unit = units[(i + attempt) % units.length];
         final generated = MathTaskTemplates.generate(
           grade: grade,
           unit: unit,
           seed: seed,
         );
-        final shuffled = _withShuffledChoices(generated, seed + 41);
+        final shuffled = _withShuffledChoices(generated, seed + _seedShuffleOffset);
         final key = '${shuffled.prompt}|${shuffled.answer}|${shuffled.choices.join('|')}';
         if (uniqueKeys.add(key)) {
           selected = shuffled;
           break;
         }
       }
-      tasks.add(selected ?? MathTaskTemplates.generate(grade: grade, unit: units.first, seed: widget.level.id * 1000 + i * 31));
+      tasks.add(
+        selected ??
+            MathTaskTemplates.generate(
+              grade: grade,
+              unit: units.first,
+              seed: widget.level.id * _seedLevelFactor + i * _seedFallbackStep,
+            ),
+      );
     }
     return tasks;
   }
