@@ -9,6 +9,7 @@ import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
+import 'mini_games/number_house_game.dart';
 import 'mini_games/stars_path_game.dart';
 
 /// Haupt-Screen der Lumo Spielewelt.
@@ -19,7 +20,7 @@ import 'mini_games/stars_path_game.dart';
 ///   - Aktives Level glueht (Lumo-Avatar sitzt darauf)
 ///   - Gesperrte Level mit Schloss-Icon
 ///   - Tap auf entsperrtes Level: zeigt Bottom-Sheet mit Level-Info
-///     und "Bald spielbar"-Hinweis (Mini-Games kommen Sprint 6+)
+///     und startet das passende Mini-Game.
 class GamesContent extends StatefulWidget {
   const GamesContent({super.key, required this.appState});
 
@@ -72,26 +73,38 @@ class _GamesContentState extends State<GamesContent> {
 
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
-    // Sprint 6 - aktuell ist nur starsPath spielbar.
-    // Andere miniTypes folgen Sprint 7+.
-    if (rt.level.miniType != GameMiniType.starsPath) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('${rt.level.miniType.germanLabel} - bald spielbar! Das Spiel kommt im naechsten Update.'),
-          backgroundColor: LumoColors.orange,
-          duration: const Duration(seconds: 2),
-        ),
-      );
-      return;
+    final level = rt.level;
+    switch (level.miniType) {
+      case GameMiniType.starsPath:
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => StarsPathGame(
+              appState: widget.appState,
+              level: level,
+            ),
+          ),
+        );
+      case GameMiniType.numberHouse:
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => NumberHouseGame(
+              appState: widget.appState,
+              level: level,
+            ),
+          ),
+        );
+      case GameMiniType.numberPath:
+      case GameMiniType.wordForest:
+      case GameMiniType.mixedQuiz:
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('${level.miniType.germanLabel} - bald spielbar! Das Spiel kommt im naechsten Update.'),
+            backgroundColor: LumoColors.orange,
+            duration: const Duration(seconds: 2),
+          ),
+        );
+        return;
     }
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => StarsPathGame(
-          appState: widget.appState,
-          level: rt.level,
-        ),
-      ),
-    );
     // Nach Rueckkehr: Fortschritt neu laden damit neue Sterne sichtbar sind.
     await _load();
   }
@@ -300,11 +313,16 @@ class _BlockBanner extends StatelessWidget {
 
   Color _accent() {
     switch (block) {
-      case 1: return LumoColors.orange;
-      case 2: return LumoColors.blue;
-      case 3: return LumoColors.purple;
-      case 4: return LumoColors.teal;
-      default: return LumoColors.gold;
+      case 1:
+        return LumoColors.orange;
+      case 2:
+        return LumoColors.blue;
+      case 3:
+        return LumoColors.purple;
+      case 4:
+        return LumoColors.teal;
+      default:
+        return LumoColors.gold;
     }
   }
 
@@ -405,11 +423,6 @@ class _PathPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = const Color(0xFFFFE0B2).withOpacity(0.6)
-      ..strokeWidth = 18
-      ..strokeCap = StrokeCap.round
-      ..style = PaintingStyle.stroke;
     final dotPaint = Paint()..color = const Color(0xFFFFB347).withOpacity(0.4);
     // Punkte-Linie statt Linie - kindgerechter Pfad-Stil.
     final lanes = <double>[
@@ -447,10 +460,8 @@ class _LevelCircle extends StatelessWidget {
     final locked = runtime.locked;
     final perfect = runtime.isPerfect;
     final isCurrent = runtime.isCurrent;
-    final size = 74.0;
-    final bg = locked
-        ? const Color(0xFFE5E5E5)
-        : (perfect ? LumoColors.gold : LumoColors.orange);
+    const size = 74.0;
+    final bg = locked ? const Color(0xFFE5E5E5) : (perfect ? LumoColors.gold : LumoColors.orange);
     final border = isCurrent ? LumoColors.gold : Colors.white;
     return GestureDetector(
       onTap: locked ? null : onTap,
@@ -623,7 +634,6 @@ class _LevelDetailSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
-          // Stars-Anzeige
           Row(
             children: List<Widget>.generate(level.maxStars, (i) {
               final earned = i < runtime.starsEarned;
@@ -637,7 +647,6 @@ class _LevelDetailSheet extends StatelessWidget {
             }),
           ),
           const SizedBox(height: 14),
-          // CTA - aktuell "Bald spielbar", spaeter Mini-Game starten
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
