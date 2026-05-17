@@ -925,7 +925,7 @@ class _TaskOverlayCardState extends State<_TaskOverlayCard> {
                   const Spacer(),
                   FilledButton(
                     onPressed: _submitting ? null : _submit,
-                    child: Text(_revealed ? 'Weiter' : 'Pruefen'),
+                    child: Text(_revealed ? 'Weiter' : 'Prüfen'),
                   ),
                 ],
               ),
@@ -1121,8 +1121,7 @@ class _JumpWorld {
     }
 
     cameraX = (playerX - 180)
-        .clamp(0.0, math.max(0.0, level.length - 640))
-        .toDouble();
+        .clamp(0.0, math.max(0.0, level.length - 640));
   }
 
   _PlatformState? _findLandingPlatform(Rect previousRect) {
@@ -1234,7 +1233,7 @@ class _LumoJumpPainter extends CustomPainter {
       );
       canvas.drawRRect(
         RRect.fromRectAndRadius(
-          Rect.fromLTWH(rect.left, rect.top, rect.width, math.min(rect.height, 18).toDouble()),
+          Rect.fromLTWH(rect.left, rect.top, rect.width, math.min(rect.height, 18)),
           const Radius.circular(18),
         ),
         top,
@@ -1316,7 +1315,7 @@ class _LumoJumpPainter extends CustomPainter {
     }
     for (final star in world.stars.where((entry) => entry.sparkTimer > 0)) {
       final t = star.sparkTimer / 0.35;
-      final sparkPaint = Paint()..color = const Color(0xFFFFF3B0).withOpacity(t.clamp(0.0, 1.0).toDouble());
+      final sparkPaint = Paint()..color = const Color(0xFFFFF3B0).withOpacity(t.clamp(0.0, 1.0));
       for (var i = 0; i < 6; i++) {
         final angle = i * math.pi / 3;
         canvas.drawCircle(
