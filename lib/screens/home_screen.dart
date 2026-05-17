@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/lumo_avatar.dart';
-import '../widgets/star_badge.dart';
 import '../services/reward_orchestrator.dart';
 import 'wwm_screen.dart';
 
@@ -14,64 +13,146 @@ class HomeScreen extends StatelessWidget {
     final rewards = context.watch<RewardOrchestrator>();
     return Scaffold(
       backgroundColor: AppTheme.cream,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
+        children: [
+          _buildHeroHeader(context, rewards),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Hallo! 👋',
-                    style: Theme.of(context).textTheme.headlineLarge,
+                  _buildXpBar(context, rewards),
+                  const SizedBox(height: 24),
+                  _buildWwmBanner(context),
+                  const SizedBox(height: 20),
+                  _buildInfoCard(
+                    context,
+                    icon: Icons.tips_and_updates_rounded,
+                    title: 'Tipp des Tages',
+                    body: 'Lerne jeden Tag 10 Minuten – das hilft deinem Gehirn, Neues zu behalten!',
+                    accentColor: AppTheme.lightBlue,
                   ),
-                  StarBadge(stars: rewards.stars, xp: rewards.xp),
+                  const SizedBox(height: 14),
+                  _buildInfoCard(
+                    context,
+                    icon: Icons.emoji_events_rounded,
+                    title: 'Dein Fortschritt',
+                    body: '${rewards.stars} ⭐ gesammelt • Level ${rewards.level}',
+                    accentColor: AppTheme.yellow,
+                  ),
                 ],
               ),
-              const SizedBox(height: 24),
-              const Center(child: LumoAvatar(size: 140)),
-              const SizedBox(height: 16),
-              Center(
-                child: Text(
-                  'Ich bin Lumo, dein Lernfreund! 🦊',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHeroHeader(BuildContext context, RewardOrchestrator rewards) {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF2D1B69), Color(0xFFFF8C42)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(36),
+          bottomRight: Radius.circular(36),
+        ),
+      ),
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 28),
+          child: Row(
+            children: [
+              const LumoAvatar(size: 90),
+              const SizedBox(width: 18),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hallo! 👋',
+                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                        color: Colors.white,
+                        fontSize: 26,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Ich bin Lumo, dein Lernfreund 🦊',
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 13,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.18),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                            color: Colors.white.withOpacity(0.35)),
+                      ),
+                      child: Text(
+                        '⭐ ${rewards.stars}  •  ${rewards.xp} XP  •  Lvl ${rewards.level}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 8),
-              Center(
-                child: Text(
-                  'Level ${rewards.level} – ${rewards.xp} XP',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppTheme.orange,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 28),
-              _buildWwmBanner(context),
-              const SizedBox(height: 24),
-              _buildInfoCard(
-                context,
-                icon: Icons.tips_and_updates_rounded,
-                title: 'Tipp des Tages',
-                body: 'Lerne jeden Tag 10 Minuten – das hilft deinem Gehirn, Neues zu behalten!',
-                color: AppTheme.lightBlue,
-              ),
-              const SizedBox(height: 16),
-              _buildInfoCard(
-                context,
-                icon: Icons.emoji_events_rounded,
-                title: 'Dein Fortschritt',
-                body: '${rewards.stars} ⭐ gesammelt • Level ${rewards.level}',
-                color: AppTheme.yellow,
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildXpBar(BuildContext context, RewardOrchestrator rewards) {
+    final progress = (rewards.xp % 100) / 100.0;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Level ${rewards.level}',
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  color: Color(0xFF4A4A4A)),
+            ),
+            Text(
+              '${rewards.xp % 100}/100 XP bis Level ${rewards.level + 1}',
+              style: const TextStyle(fontSize: 12, color: Colors.black45),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: LinearProgressIndicator(
+            value: progress,
+            minHeight: 10,
+            backgroundColor: Colors.black12,
+            valueColor:
+                const AlwaysStoppedAnimation<Color>(AppTheme.orange),
+          ),
+        ),
+      ],
     );
   }
 
@@ -139,9 +220,23 @@ class HomeScreen extends StatelessWidget {
     required IconData icon,
     required String title,
     required String body,
-    required Color color,
+    required Color accentColor,
   }) {
-    return Card(
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border(
+          left: BorderSide(color: accentColor, width: 4),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -150,10 +245,10 @@ class HomeScreen extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(12),
+                color: accentColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(14),
               ),
-              child: Icon(icon, color: color, size: 28),
+              child: Icon(icon, color: accentColor, size: 28),
             ),
             const SizedBox(width: 16),
             Expanded(
