@@ -129,31 +129,56 @@ jobs:
       # OHNE continue-on-error: dieser Step MUSS funktionieren, weil er
       # der einzige Auslieferungs-Pfad ist. Wenn er rot wird, sieht Heinz
       # das sofort.
+      - name: Changelog seit letztem Release erstellen
+        id: changelog
+        run: |
+          git fetch --tags --unshallow 2>/dev/null || git fetch --tags || true
+          # Letzten Release-Tag finden (build-XX Schema)
+          LAST_TAG=$(git tag --list 'build-*' --sort=-version:refname | grep -v "build-$GITHUB_RUN_NUMBER" | head -n 1)
+          echo "Letzter Tag: $LAST_TAG"
+          if [ -n "$LAST_TAG" ]; then
+            LOG=$(git log "${LAST_TAG}..HEAD" --pretty=format:"- %s" --no-merges 2>/dev/null | head -30 || true)
+          else
+            LOG=$(git log --pretty=format:"- %s" --no-merges -20 2>/dev/null || true)
+          fi
+          if [ -z "$LOG" ]; then
+            LOG="- Kleinere Verbesserungen und Fehlerbehebungen"
+          fi
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+          BUILD_DATE=$(date '+%d.%m.%Y %H:%M Uhr')
+          # Vollständigen Release-Body schreiben
+          cat > /tmp/release_body.md << RELEASEBODY
+          **Lumo Lernen — Debug Build #${GITHUB_RUN_NUMBER}**
+
+          Commit: \`${SHORT_SHA}\` · Build-Datum: ${BUILD_DATE}
+
+          ## 📥 Direkter Download
+
+          Auf dem Handy bitte **Lumo-Lernen-latest.apk** antippen (siehe Anhang unten).
+
+          > **Einmalig in Android freigeben:** Einstellungen → Apps → Spezieller Zugriff → Unbekannte Apps installieren → Browser aktivieren.
+
+          ## 🔄 Änderungen in diesem Build
+
+          ${LOG}
+
+          ## 📋 Versionierung
+
+          Dateiname mit Build-Nummer und Commit-Hash:
+          **Lumo-Lernen-${GITHUB_RUN_NUMBER}-${SHORT_SHA}.apk**
+
+          SHA256-Prüfsummen in \`SHA256SUMS.txt\`.
+          RELEASEBODY
+          echo "Release-Body erstellt:"
+          cat /tmp/release_body.md
+
       - name: Publish GitHub Release
         id: publish_release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: Lumo Lernen Build ${{ github.run_number }}
-          body: |
-            **Lumo Lernen — Debug Build #${{ github.run_number }}**
-
-            Commit: `${{ github.sha }}`
-            Build-Datum: ${{ github.event.head_commit.timestamp }}
-
-            ## Direkter Download
-
-            Auf dem Handy bitte **Lumo-Lernen-latest.apk** antippen.
-
-            Vorab in Android: **Einstellungen -> Apps -> Spezieller Zugriff
-            -> Unbekannte Apps installieren** den Browser freigeben.
-
-            ## Versionierung
-
-            Der Dateiname zeigt Build-Nummer und Commit-Hash:
-            **Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk**
-
-            SHA256-Pruefsummen in `SHA256SUMS.txt`.
+          name: "Lumo Lernen Build ${{ github.run_number }}"
+          body-path: /tmp/release_body.md
           draft: false
           prerelease: false
           fail_on_unmatched_files: false

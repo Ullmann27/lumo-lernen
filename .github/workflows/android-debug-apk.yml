@@ -87,3 +87,19 @@ jobs:
           cp "$APK_PATH" "dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk"
           sha256sum dist/*.apk > dist/SHA256SUMS.txt
           echo "APK collected locally in dist. Artifact upload is disabled to avoid GitHub storage quota failures."
+
+      - name: Job-Zusammenfassung mit Release-Link
+        if: always()
+        run: |
+          echo "## ✅ Build #${GITHUB_RUN_NUMBER} abgeschlossen" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Der APK-Download ist **nicht** in diesem Workflow – er läuft parallel im Release-Workflow." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### 📥 Download-Links" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Link | Beschreibung |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|------|--------------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| [**Immer aktuell: Lumo-Lernen-latest.apk**](https://github.com/${GITHUB_REPOSITORY}/releases/latest) | Neuester Build – direkt auf dem Handy antippen |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| [Alle Releases](https://github.com/${GITHUB_REPOSITORY}/releases) | Alle Builds mit Changelog |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "> **Hinweis:** In Android zuerst *Einstellungen → Apps → Spezieller Zugriff → Unbekannte Apps installieren* für den Browser freigeben." >> "$GITHUB_STEP_SUMMARY"
