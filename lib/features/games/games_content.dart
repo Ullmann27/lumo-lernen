@@ -9,6 +9,7 @@ import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
+import 'mini_games/stars_path_game.dart';
 
 /// Haupt-Screen der Lumo Spielewelt.
 ///
@@ -62,8 +63,37 @@ class _GamesContentState extends State<GamesContent> {
     showModalBottomSheet<void>(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (_) => _LevelDetailSheet(runtime: rt),
+      builder: (_) => _LevelDetailSheet(
+        runtime: rt,
+        onPlay: () => _launchLevel(rt),
+      ),
     );
+  }
+
+  Future<void> _launchLevel(GameLevelRuntime rt) async {
+    Navigator.of(context).pop(); // Sheet schliessen
+    // Sprint 6 - aktuell ist nur starsPath spielbar.
+    // Andere miniTypes folgen Sprint 7+.
+    if (rt.level.miniType != GameMiniType.starsPath) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('${rt.level.miniType.germanLabel} - bald spielbar! Das Spiel kommt im naechsten Update.'),
+          backgroundColor: LumoColors.orange,
+          duration: const Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => StarsPathGame(
+          appState: widget.appState,
+          level: rt.level,
+        ),
+      ),
+    );
+    // Nach Rueckkehr: Fortschritt neu laden damit neue Sterne sichtbar sind.
+    await _load();
   }
 
   @override
@@ -498,8 +528,9 @@ class _LevelCircle extends StatelessWidget {
 // ─────────────────── DETAIL-SHEET ───────────────────
 
 class _LevelDetailSheet extends StatelessWidget {
-  const _LevelDetailSheet({required this.runtime});
+  const _LevelDetailSheet({required this.runtime, required this.onPlay});
   final GameLevelRuntime runtime;
+  final VoidCallback onPlay;
 
   @override
   Widget build(BuildContext context) {
@@ -619,13 +650,7 @@ class _LevelDetailSheet extends StatelessWidget {
               ),
               onPressed: () {
                 HapticFeedback.mediumImpact();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Bald spielbar! Die Mini-Games kommen im naechsten Update.'),
-                    backgroundColor: LumoColors.orange,
-                  ),
-                );
-                Navigator.of(context).maybePop();
+                onPlay();
               },
               child: const Text(
                 'Level starten',
