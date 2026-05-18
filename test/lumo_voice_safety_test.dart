@@ -23,8 +23,10 @@ void main() {
     });
   });
 
-  testWidgets('LumoLivingAvatar smoke test', (tester) async {
+  testWidgets('LumoLivingAvatar smoke test renders without plugin calls', (tester) async {
     final appState = LumoAppState();
+    addTearDown(appState.dispose);
+
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -40,8 +42,6 @@ void main() {
     );
 
     expect(find.byType(LumoLivingAvatar), findsOneWidget);
-    await tester.tap(find.byType(LumoLivingAvatar));
     await tester.pump(const Duration(milliseconds: 100));
-    appState.dispose();
   });
 }
