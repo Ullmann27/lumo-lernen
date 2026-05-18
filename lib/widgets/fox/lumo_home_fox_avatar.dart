@@ -6,27 +6,32 @@ import 'package:flutter/services.dart';
 
 import '../../lumo_jump/fox_sprite.dart' as fox;
 
-/// Animierter Lumo-Fuchs auf dem Home-Screen.
+/// Animierter Lumo-Fuchs auf dem Home-Screen — Persönlichkeits-Avatar.
 ///
-/// Nutzt die echten 3D-Pixar-Sprites aus assets/lumo_jump/fox/.
-/// - Standardmaessig: FoxAction.idle + autonomes Wandern, Ducken, Springen
-/// - Bei Tap: kurzer Hop + FoxAction.jump-Animation
-/// - Bei jedem 3. Tap: FoxAction.roll (Easter-Egg)
-/// - Periodische Speech-Bubbles ("Lass uns lernen!" etc.)
-/// - Kopf dreht sich automatisch in Laufrichtung
-///
-/// Der Avatar hat keinen eigenen GameState - er ist rein dekorativ.
+/// Lumo ist ein echter digitaler Freund:
+/// - lebt autonom: wandert, dreht sich, tanzt, winkt, kratzt sich, gähnt
+/// - kennt den Namen des Kindes und reagiert darauf
+/// - kommentiert Sterne und Fortschritt
+/// - begrüßt tageszeit-abhängig
+/// - reagiert auf Taps mit eigenem Charakter (1. Tap anders als 5. Tap)
+/// - zeigt Langeweile wenn niemand interagiert
 class LumoHomeFoxAvatar extends StatefulWidget {
   const LumoHomeFoxAvatar({
     super.key,
     this.size = 180,
     this.facingLeft = false,
     this.onTap,
+    this.childName = '',
+    this.stars = 0,
   });
 
   final double size;
   final bool facingLeft;
   final VoidCallback? onTap;
+  /// Name des Kindes – macht Speech-Bubbles persönlich.
+  final String childName;
+  /// Aktuelle Sternzahl – Lumo kommentiert Fortschritte.
+  final int stars;
 
   @override
   State<LumoHomeFoxAvatar> createState() => _LumoHomeFoxAvatarState();
@@ -34,47 +39,136 @@ class LumoHomeFoxAvatar extends StatefulWidget {
 
 class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
     with TickerProviderStateMixin {
-  // ── Hop-Animation (bei Tap) ──────────────────────────────────────────
-  late final AnimationController _hopCtrl;
 
-  // ── Wander-Animation (autonome Bewegung) ────────────────────────────
+  // ── Animationen ──────────────────────────────────────────────────────
+  late final AnimationController _hopCtrl;
   late final AnimationController _wanderCtrl;
+  late final AnimationController _waveCtrl; // Wackeln/Winken
+
   double _wanderFrom   = 0;
   double _wanderTarget = 0;
 
   // ── Action-State ─────────────────────────────────────────────────────
-  fox.FoxAction _tapAction  = fox.FoxAction.idle;  // durch Tap ausgelöst
-  fox.FoxAction _autoAction = fox.FoxAction.idle;  // autonom
-  bool _autoFacingLeft = false;  // Richtung beim autonomen Wandern
+  fox.FoxAction _tapAction  = fox.FoxAction.idle;
+  fox.FoxAction _autoAction = fox.FoxAction.idle;
+  bool _autoFacingLeft = false;
 
   // ── Timers ────────────────────────────────────────────────────────────
   Timer? _resetTimer;
   Timer? _behaviorTimer;
-  Timer? _actionResetTimer;   // kurzlebiger Timer für Duck/Jump-Rücksetz
+  Timer? _actionResetTimer;
   Timer? _speechTimer;
   Timer? _speechClearTimer;
+  Timer? _boredTimer;
+  Timer? _wiggleTimer2;
+
+  // ── Tap-Zustand ───────────────────────────────────────────────────────
   int _tapCount = 0;
+  DateTime? _lastTap;
 
-  // ── Speech-Bubbles ────────────────────────────────────────────────────
+  // ── Speech-Bubble ─────────────────────────────────────────────────────
   String? _currentSpeech;
+  _BubbleStyle _bubbleStyle = _BubbleStyle.normal;
 
-  static const _phrases = <String>[
-    'Lass uns lernen! 🦊',
-    'Schaffst du die Aufgabe?',
-    'Heute wirst du super! 🌟',
-    'Was möchtest du machen?',
-    'Komm, ich helf dir!',
-    'Du schaffst das! 💪',
-    'Eine Aufgabe gefällig?',
-    'Lumo ist bereit! ✨',
-  ];
-
-  // ── Maximale Wanderdistanz in Pixeln ─────────────────────────────────
+  // ── Maximale Wanderdistanz ────────────────────────────────────────────
   static const double _maxWander = 52.0;
 
-  // ── Aktuell interpolierte X-Position ─────────────────────────────────
+  // ── Wanderinterpolation ───────────────────────────────────────────────
   double get _wanderX =>
       _wanderFrom + (_wanderTarget - _wanderFrom) * _wanderCtrl.value;
+
+  // ── Tageszeit-Kategorie ───────────────────────────────────────────────
+  static _TimeOfDay get _timeOfDay {
+    final h = DateTime.now().hour;
+    if (h < 10) return _TimeOfDay.morning;
+    if (h < 14) return _TimeOfDay.midday;
+    if (h < 18) return _TimeOfDay.afternoon;
+    return _TimeOfDay.evening;
+  }
+
+  // ── Kurzer Name (nicht leer) ──────────────────────────────────────────
+  String get _name =>
+      widget.childName.trim().isEmpty ? '' : ' ${widget.childName.trim()}';
+
+  // ── Speech-Bubble Texte ───────────────────────────────────────────────
+
+  List<String> get _greetingPhrases => [
+    switch (_timeOfDay) {
+      _TimeOfDay.morning   => 'Guten Morgen$_name! ☀️',
+      _TimeOfDay.midday    => 'Na$_name, schon bereit? 📚',
+      _TimeOfDay.afternoon => 'Hi$_name! Was lernen wir? 🦊',
+      _TimeOfDay.evening   => 'Hallo$_name! Noch am Lernen? 🌙',
+    },
+  ];
+
+  List<String> get _idlePhrases => [
+    'Ich bin hier für dich!',
+    'Was möchtest du machen?',
+    'Lumo wartet... 🦊',
+    'Tippe auf mich! 👆',
+    'Psst – ich hab eine Idee!',
+    'Lass uns was Cooles machen!',
+    'Ich langweile mich schon 😄',
+    'Du bist der Boss hier!',
+    'Gemeinsam sind wir stark! 💪',
+    'Ich glaub an dich$_name!',
+  ];
+
+  List<String> get _starPhrases {
+    final s = widget.stars;
+    if (s == 0) return ['Dein erster Stern wartet auf dich! ⭐'];
+    if (s < 10) return ['$s Sterne schon – super Start! ⭐'];
+    if (s < 30) return ['Wow, $s Sterne! Du bist auf Kurs! 🌟'];
+    if (s < 60) return ['$s Sterne – ich bin stolz auf dich! 🏆'];
+    return ['$s Sterne! Du bist ein Lumo-Champion! 🎉'];
+  }
+
+  List<String> get _motivationPhrases => [
+    'Du schaffst das$_name! 💪',
+    'Eine Aufgabe gefällig?',
+    'Bereit für Mathe? 🔢',
+    'Lesen macht Spaß! 📖',
+    'Jede Aufgabe macht dich stärker!',
+    'Heute wirst du noch besser!',
+    'Ich freu mich auf unsere Session!',
+    "Los geht's – du kannst das!",
+  ];
+
+  List<String> get _funnyPhrases => [
+    'Ich bin der beste Fuchs! 😄',
+    'Wusstest du? Füchse sind schlau! 🦊',
+    'Ich hab heute Morgen trainiert!',
+    'Pst… ich mag Sterne mehr als Karotten 😅',
+    'Mein Schwanz ist heute besonders flauschig!',
+    'Ich könnte auch Pirouetten drehen!',
+    '3, 2, 1… Lumo! 🚀',
+    'Hoch die Pfoten! ✋',
+  ];
+
+  String _pickRandom(List<String> list) =>
+      list[math.Random().nextInt(list.length)];
+
+  String _nextSpeechText() {
+    final r = math.Random().nextDouble();
+    if (r < 0.15) return _pickRandom(_greetingPhrases);
+    if (r < 0.30) return _pickRandom(_starPhrases);
+    if (r < 0.55) return _pickRandom(_motivationPhrases);
+    if (r < 0.75) return _pickRandom(_idlePhrases);
+    return _pickRandom(_funnyPhrases);
+  }
+
+  // ── Tap-Reaktionen ────────────────────────────────────────────────────
+
+  static const _tapReactions = <String>[
+    'Oh! Hallo! 👋',
+    'Kitzelt das! 😄',
+    'Nochmal! Ich mag das!',
+    'He he he! 😂',
+    'Du bist lustig... 😏',
+    'Ich spring gleich weg! 🏃',
+    'Ok, ok, ich geb auf! 😅',
+    'Du gewinnst! 🏆',
+  ];
 
   @override
   void initState() {
@@ -82,114 +176,234 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
 
     _hopCtrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 520),
+      duration: const Duration(milliseconds: 480),
     );
 
     _wanderCtrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1600),
+      duration: const Duration(milliseconds: 1200),
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed && mounted) {
-          // Wanderung abgeschlossen → Position festhalten, idle
           setState(() {
-            _wanderFrom   = _wanderTarget;
-            _autoAction   = fox.FoxAction.idle;
+            _wanderFrom = _wanderTarget;
+            _autoAction = fox.FoxAction.idle;
           });
         }
       });
 
+    _waveCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+
     _scheduleBehavior();
     _scheduleSpeech();
+    _scheduleBoredCheck();
   }
 
   @override
   void dispose() {
     _hopCtrl.dispose();
     _wanderCtrl.dispose();
+    _waveCtrl.dispose();
     _resetTimer?.cancel();
     _behaviorTimer?.cancel();
     _actionResetTimer?.cancel();
     _speechTimer?.cancel();
     _speechClearTimer?.cancel();
+    _boredTimer?.cancel();
+    _wiggleTimer2?.cancel();
     super.dispose();
   }
 
   // ── Autonomes Verhalten ───────────────────────────────────────────────
+  // Kürzere Zyklen (2-5 Sek) = lebendiger
 
   void _scheduleBehavior() {
     final r = math.Random();
-    _behaviorTimer = Timer(Duration(seconds: 4 + r.nextInt(5)), () {
+    // 2-5 Sekunden Pause zwischen Aktionen = deutlich lebhafter
+    _behaviorTimer = Timer(Duration(milliseconds: 2000 + r.nextInt(3000)), () {
       if (!mounted) return;
-      final pick = r.nextDouble();
-
-      if (pick < 0.30) {
-        // 30 % – Wandern
-        final newTarget =
-            ((r.nextDouble() * 2 - 1) * _maxWander).clamp(-_maxWander, _maxWander);
-        setState(() {
-          _wanderFrom     = _wanderX;
-          _wanderTarget   = newTarget;
-          _autoAction     = fox.FoxAction.run;
-          _autoFacingLeft = newTarget < _wanderFrom;
-        });
-        _wanderCtrl.forward(from: 0);
-      } else if (pick < 0.45) {
-        // 15 % – Kurz ducken
-        setState(() => _autoAction = fox.FoxAction.duck);
-        _actionResetTimer?.cancel();
-        _actionResetTimer = Timer(const Duration(milliseconds: 1100), () {
-          if (mounted) setState(() => _autoAction = fox.FoxAction.idle);
-        });
-      } else if (pick < 0.55) {
-        // 10 % – Kleiner Hüpfer
-        setState(() => _autoAction = fox.FoxAction.jump);
-        _hopCtrl.forward(from: 0);
-        _actionResetTimer?.cancel();
-        _actionResetTimer = Timer(const Duration(milliseconds: 520), () {
-          if (mounted) setState(() => _autoAction = fox.FoxAction.idle);
-        });
-      } else {
-        // 45 % – Idle (atmen, blinzeln)
-        setState(() => _autoAction = fox.FoxAction.idle);
-      }
-
+      _pickAndExecuteAction(r);
       _scheduleBehavior();
     });
   }
 
+  void _pickAndExecuteAction(math.Random r) {
+    final pick = r.nextDouble();
+
+    if (pick < 0.22) {
+      // 22 % – Wandern (links/rechts laufen)
+      final newTarget =
+          ((r.nextDouble() * 2 - 1) * _maxWander).clamp(-_maxWander, _maxWander);
+      setState(() {
+        _wanderFrom     = _wanderX;
+        _wanderTarget   = newTarget;
+        _autoAction     = fox.FoxAction.run;
+        _autoFacingLeft = newTarget < _wanderFrom;
+      });
+      _wanderCtrl.forward(from: 0);
+
+    } else if (pick < 0.35) {
+      // 13 % – Umdrehen und kurz in andere Richtung schauen
+      setState(() {
+        _autoFacingLeft = !_autoFacingLeft;
+        _autoAction     = fox.FoxAction.idle;
+      });
+      // Nach kurzer Pause wieder zurückdrehen
+      _actionResetTimer?.cancel();
+      _actionResetTimer = Timer(const Duration(milliseconds: 1200), () {
+        if (mounted) setState(() => _autoFacingLeft = !_autoFacingLeft);
+      });
+
+    } else if (pick < 0.46) {
+      // 11 % – Ducken (gähnen / kratzen)
+      setState(() => _autoAction = fox.FoxAction.duck);
+      _actionResetTimer?.cancel();
+      _actionResetTimer = Timer(const Duration(milliseconds: 900), () {
+        if (mounted) setState(() => _autoAction = fox.FoxAction.idle);
+      });
+
+    } else if (pick < 0.55) {
+      // 9 % – Kleiner Sprung (Energie-Moment)
+      setState(() => _autoAction = fox.FoxAction.jump);
+      _hopCtrl.forward(from: 0);
+      _actionResetTimer?.cancel();
+      _actionResetTimer = Timer(const Duration(milliseconds: 480), () {
+        if (mounted) setState(() => _autoAction = fox.FoxAction.idle);
+      });
+
+    } else if (pick < 0.62) {
+      // 7 % – Rollen / Tanzen (Überschlag)
+      setState(() => _autoAction = fox.FoxAction.roll);
+      _actionResetTimer?.cancel();
+      _actionResetTimer = Timer(const Duration(milliseconds: 700), () {
+        if (mounted) setState(() => _autoAction = fox.FoxAction.idle);
+      });
+
+    } else if (pick < 0.72) {
+      // 10 % – Schnelles Wackeln links-rechts (Winken)
+      _doWiggle();
+
+    } else {
+      // 28 % – Idle (ruhig atmen, blinzeln)
+      setState(() => _autoAction = fox.FoxAction.idle);
+    }
+  }
+
+  void _doWiggle() {
+    // Lumo wackelt schnell hin und her: run rechts → links → stopp
+    setState(() {
+      _wanderFrom   = _wanderX;
+      _wanderTarget = _wanderX + 18;
+      _autoAction   = fox.FoxAction.run;
+      _autoFacingLeft = false;
+    });
+    _wanderCtrl.forward(from: 0);
+
+    _actionResetTimer?.cancel();
+    _actionResetTimer = Timer(const Duration(milliseconds: 350), () {
+      if (!mounted) return;
+      _wanderCtrl.stop();
+      setState(() {
+        _wanderFrom   = _wanderX;
+        _wanderTarget = _wanderX - 18;
+        _autoFacingLeft = true;
+      });
+      _wanderCtrl.forward(from: 0);
+      _wiggleTimer2 = Timer(const Duration(milliseconds: 350), () {
+        if (!mounted) return;
+        _wanderCtrl.stop();
+        setState(() {
+          _wanderTarget = _wanderFrom;
+          _wanderFrom   = _wanderX;
+          _autoAction   = fox.FoxAction.idle;
+          _autoFacingLeft = false;
+        });
+      });
+    });
+  }
+
+  // ── Langeweile-Check ──────────────────────────────────────────────────
+  // Wenn > 30 Sekunden kein Tap: Lumo zeigt Langeweile-Bubble
+
+  void _scheduleBoredCheck() {
+    _boredTimer = Timer(const Duration(seconds: 30), () {
+      if (!mounted) return;
+      final sinceLastTap = _lastTap == null
+          ? const Duration(hours: 1)
+          : DateTime.now().difference(_lastTap!);
+      if (sinceLastTap.inSeconds >= 30 && _currentSpeech == null) {
+        _showSpeech('Psst… bin ich noch sichtbar? 👀', style: _BubbleStyle.bored);
+      }
+      _scheduleBoredCheck();
+    });
+  }
+
+  // ── Speech-Bubble Logik ───────────────────────────────────────────────
+
   void _scheduleSpeech() {
+    // Alle 8-15 Sekunden eine Speech-Bubble (häufiger = lebendiger)
     _speechTimer = Timer(
-      Duration(seconds: 12 + math.Random().nextInt(9)),
+      Duration(seconds: 8 + math.Random().nextInt(8)),
       () {
         if (!mounted) return;
-        setState(() {
-          _currentSpeech = _phrases[math.Random().nextInt(_phrases.length)];
-        });
-        _speechClearTimer = Timer(const Duration(seconds: 4), () {
-          if (mounted) setState(() => _currentSpeech = null);
-        });
+        if (_currentSpeech == null) {
+          _showSpeech(_nextSpeechText());
+        }
         _scheduleSpeech();
       },
     );
   }
 
-  // ── Tap-Handler ───────────────────────────────────────────────────────
+  void _showSpeech(String text, {_BubbleStyle style = _BubbleStyle.normal}) {
+    _speechClearTimer?.cancel();
+    setState(() {
+      _currentSpeech = text;
+      _bubbleStyle   = style;
+    });
+    _speechClearTimer = Timer(const Duration(milliseconds: 3500), () {
+      if (mounted) setState(() => _currentSpeech = null);
+    });
+  }
+
+  // ── Tap-Handler mit Charakter ─────────────────────────────────────────
 
   void _onTap() {
     HapticFeedback.lightImpact();
+    final now = DateTime.now();
+    final isFirstTapToday = _lastTap == null ||
+        now.difference(_lastTap!).inHours > 1;
+    _lastTap = now;
     _tapCount++;
-    final useRoll = _tapCount % 3 == 0;
+
+    // Aktion
+    final useRoll = _tapCount % 4 == 0;
     _hopCtrl.forward(from: 0);
     setState(() {
       _tapAction = useRoll ? fox.FoxAction.roll : fox.FoxAction.jump;
     });
     _resetTimer?.cancel();
     _resetTimer = Timer(
-      Duration(milliseconds: useRoll ? 800 : 520),
+      Duration(milliseconds: useRoll ? 700 : 480),
       () {
         if (mounted) setState(() => _tapAction = fox.FoxAction.idle);
       },
     );
+
+    // Tap-Reaktion als Bubble
+    String reaction;
+    if (isFirstTapToday) {
+      // Erste Interaktion: persönliche Begrüßung
+      reaction = _pickRandom(_greetingPhrases);
+    } else if (_tapCount <= _tapReactions.length) {
+      reaction = _tapReactions[_tapCount - 1].replaceAll(r'$...', _name);
+    } else {
+      // Danach: zufällig witzige Reaktion
+      reaction = _pickRandom(_funnyPhrases);
+    }
+    _showSpeech(reaction, style: _BubbleStyle.reaction);
+
     widget.onTap?.call();
   }
 
@@ -208,21 +422,21 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
     return AnimatedBuilder(
       animation: Listenable.merge([_hopCtrl, _wanderCtrl]),
       builder: (_, __) {
-        final hopY   = -math.sin(_hopCtrl.value * math.pi) * 24.0;
+        final hopY   = -math.sin(_hopCtrl.value * math.pi) * 26.0;
         final offsetX = _wanderX;
 
         return SizedBox(
           width:  widget.size + _maxWander * 2,
-          height: widget.size + 72,  // Platz für Speech-Bubble oben
+          height: widget.size + 80,
           child: Stack(
             alignment: Alignment.bottomCenter,
             clipBehavior: Clip.none,
             children: [
-              // Speech-Bubble oberhalb des Fuchses
+              // Speech-Bubble oberhalb
               Positioned(
                 bottom: widget.size - 4,
                 child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 280),
+                  duration: const Duration(milliseconds: 260),
                   transitionBuilder: (child, anim) => ScaleTransition(
                     scale: CurvedAnimation(
                       parent: anim,
@@ -234,12 +448,13 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
                       ? _SpeechBubble(
                           key: ValueKey(_currentSpeech),
                           text: _currentSpeech!,
+                          style: _bubbleStyle,
                         )
                       : const SizedBox.shrink(key: ValueKey('empty')),
                 ),
               ),
 
-              // Fuchs mit Wander + Hop
+              // Fuchs
               Positioned(
                 bottom: 0,
                 child: GestureDetector(
@@ -264,26 +479,55 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
   }
 }
 
-// ── Speech-Bubble ─────────────────────────────────────────────────────────
+// ── Hilfsenum Tageszeit ───────────────────────────────────────────────────
+
+enum _TimeOfDay { morning, midday, afternoon, evening }
+
+// ── Bubble-Style ──────────────────────────────────────────────────────────
+
+enum _BubbleStyle { normal, reaction, bored }
+
+// ── Speech-Bubble Widget ──────────────────────────────────────────────────
 
 class _SpeechBubble extends StatelessWidget {
-  const _SpeechBubble({super.key, required this.text});
-  final String text;
+  const _SpeechBubble({
+    super.key,
+    required this.text,
+    this.style = _BubbleStyle.normal,
+  });
+
+  final String      text;
+  final _BubbleStyle style;
+
+  static Color _bgColor(_BubbleStyle s) => switch (s) {
+    _BubbleStyle.normal   => Colors.white,
+    _BubbleStyle.reaction => const Color(0xFFFFF7E6),
+    _BubbleStyle.bored    => const Color(0xFFF0F9FF),
+  };
+
+  static Color _borderColor(_BubbleStyle s) => switch (s) {
+    _BubbleStyle.normal   => Colors.white,
+    _BubbleStyle.reaction => const Color(0xFFFFD97D),
+    _BubbleStyle.bored    => const Color(0xFFBAE6FD),
+  };
 
   @override
   Widget build(BuildContext context) {
+    final bg     = _bgColor(style);
+    final border = _borderColor(style);
     return CustomPaint(
-      painter: _BubbleTailPainter(),
+      painter: _BubbleTailPainter(color: bg),
       child: Container(
-        constraints: const BoxConstraints(maxWidth: 160),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        constraints: const BoxConstraints(maxWidth: 170),
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
+          color:        bg,
+          borderRadius: BorderRadius.circular(16),
+          border:       Border.all(color: border, width: 2),
           boxShadow: [
             BoxShadow(
-              color:      Colors.black.withOpacity(0.12),
-              blurRadius: 12,
+              color:      Colors.black.withOpacity(0.11),
+              blurRadius: 14,
               offset:     const Offset(0, 4),
             ),
           ],
@@ -305,19 +549,21 @@ class _SpeechBubble extends StatelessWidget {
 }
 
 class _BubbleTailPainter extends CustomPainter {
+  const _BubbleTailPainter({required this.color});
+  final Color color;
+
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white
-      ..style = PaintingStyle.fill;
-    final path = Path()
-      ..moveTo(size.width / 2 - 8, size.height)
-      ..lineTo(size.width / 2,     size.height + 10)
-      ..lineTo(size.width / 2 + 8, size.height)
-      ..close();
-    canvas.drawPath(path, paint);
+    canvas.drawPath(
+      Path()
+        ..moveTo(size.width / 2 - 8, size.height)
+        ..lineTo(size.width / 2,     size.height + 11)
+        ..lineTo(size.width / 2 + 8, size.height)
+        ..close(),
+      Paint()..color = color,
+    );
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _BubbleTailPainter old) => old.color != color;
 }
