@@ -245,27 +245,53 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
             final floatY = (_floatCtrl.value - 0.5) * 6;
             final hopY = -math.sin(_hopCtrl.value * math.pi) * 22;
             final spin = _spinCtrl.value * math.pi * 2;
+            // Waehrend Spin-Animation: Schatten bleibt am Boden, nur
+            // der Fox rotiert. Sonst: Schatten ist Teil des Sprites.
+            final isSpinning = _spinCtrl.isAnimating;
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: _handleTap,
-              child: Transform.translate(
-                offset: Offset(0, floatY + hopY),
-                child: Transform.rotate(
-                  angle: spin,
-                  child: fox.FoxSprite(
-                    action: _action,
-                    size: widget.size,
-                    facingLeft: _facingLeft,
-                    showShadow: true,
+              child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.bottomCenter,
+                children: [
+                  // Statischer Schatten am Boden (rotiert NICHT mit)
+                  if (isSpinning)
+                    Positioned(
+                      bottom: 0,
+                      child: Opacity(
+                        opacity: 0.5,
+                        child: Image.asset(
+                          fox.FoxAssets.shadow,
+                          width: widget.size * 0.7,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  // Body mit Float + Hop + optional Rotation
+                  Transform.translate(
+                    offset: Offset(0, floatY + hopY),
+                    child: Transform.rotate(
+                      angle: spin,
+                      child: fox.FoxSprite(
+                        action: _action,
+                        size: widget.size,
+                        facingLeft: _facingLeft,
+                        // Waehrend Spin Schatten ausblenden, sonst zeigen
+                        showShadow: !isSpinning,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             );
           },
         ),
         if (_speech != null)
           Positioned(
-            top: -8,
+            top: -28,
+            left: 0,
+            right: 0,
             child: AnimatedBuilder(
               animation: _bubbleCtrl,
               builder: (_, child) {
@@ -277,7 +303,10 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
                   child: Opacity(opacity: _bubbleCtrl.value, child: child),
                 );
               },
-              child: _SpeechBubble(text: _speech ?? ''),
+              child: Align(
+                alignment: Alignment.center,
+                child: _SpeechBubble(text: _speech ?? ''),
+              ),
             ),
           ),
       ],
@@ -291,35 +320,80 @@ class _SpeechBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 220),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.12),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          constraints: const BoxConstraints(maxWidth: 200),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                blurRadius: 14,
+                offset: const Offset(0, 4),
+              ),
+            ],
+            border: Border.all(
+              color: const Color(0xFFF97316).withOpacity(0.35),
+              width: 1.5,
+            ),
           ),
-        ],
-        border: Border.all(
-          color: const Color(0xFFF97316).withOpacity(0.3),
-          width: 1.5,
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w800,
+              fontSize: 14,
+              color: Color(0xFF1F2937),
+              height: 1.25,
+            ),
+          ),
         ),
-      ),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontFamily: 'Nunito',
-          fontWeight: FontWeight.w800,
-          fontSize: 14,
-          color: Color(0xFF1F2937),
-          height: 1.2,
+        // Tail-Pfeil nach unten (zeigt auf Lumo)
+        CustomPaint(
+          size: const Size(16, 8),
+          painter: _BubbleTailPainter(),
         ),
-      ),
+      ],
     );
   }
+}
+
+class _BubbleTailPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Schatten
+    final shadowPath = Path()
+      ..moveTo(0, 0)
+      ..lineTo(size.width / 2, size.height + 1)
+      ..lineTo(size.width, 0)
+      ..close();
+    canvas.drawPath(shadowPath,
+        Paint()..color = Colors.black.withOpacity(0.12));
+    // Border
+    final borderPath = Path()
+      ..moveTo(0, 0)
+      ..lineTo(size.width / 2, size.height)
+      ..lineTo(size.width, 0);
+    canvas.drawPath(
+        borderPath,
+        Paint()
+          ..color = const Color(0xFFF97316).withOpacity(0.35)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.5);
+    // Fill
+    final fillPath = Path()
+      ..moveTo(1, 0)
+      ..lineTo(size.width / 2, size.height - 1)
+      ..lineTo(size.width - 1, 0)
+      ..close();
+    canvas.drawPath(fillPath, Paint()..color = Colors.white);
+  }
+
+  @override
+  bool shouldRepaint(covariant _BubbleTailPainter old) => false;
 }

@@ -963,35 +963,42 @@ class NormalObstacleComponent extends PositionComponent {
             end: Alignment.bottomCenter,
           ).createShader(Rect.fromLTWH(4, 3, w - 8, h * 0.32)));
 
-    // Boese Augen (Charakter)
-    final eyeY = h * 0.4;
-    final eyeR = math.min(w, h) * 0.10;
-    // Augen-Weiss
-    canvas.drawCircle(Offset(w * 0.32, eyeY), eyeR,
-        Paint()..color = Colors.white);
-    canvas.drawCircle(Offset(w * 0.68, eyeY), eyeR,
-        Paint()..color = Colors.white);
-    // Pupillen (boese, schraeg)
-    canvas.drawCircle(Offset(w * 0.34, eyeY + 1), eyeR * 0.55,
-        Paint()..color = Colors.black);
-    canvas.drawCircle(Offset(w * 0.70, eyeY + 1), eyeR * 0.55,
-        Paint()..color = Colors.black);
+    // Augen-Setup (zentral, freundlicher Charakter)
+    final eyeY = h * 0.42;
+    final eyeR = math.min(w, h) * 0.11;
 
-    // Augenbraue-Striche (boese Optik)
-    final browPaint = Paint()
-      ..color = Colors.black
-      ..strokeWidth = 2.0
-      ..strokeCap = StrokeCap.round;
-    canvas.drawLine(
-        Offset(w * 0.22, eyeY - eyeR * 1.5),
-        Offset(w * 0.42, eyeY - eyeR * 0.8),
-        browPaint);
-    canvas.drawLine(
-        Offset(w * 0.58, eyeY - eyeR * 0.8),
-        Offset(w * 0.78, eyeY - eyeR * 1.5),
-        browPaint);
+    // Augen-Weiss (gross, rund - freundlich nicht boese)
+    canvas.drawCircle(Offset(w * 0.32, eyeY), eyeR * 1.15,
+        Paint()..color = Colors.white);
+    canvas.drawCircle(Offset(w * 0.68, eyeY), eyeR * 1.15,
+        Paint()..color = Colors.white);
+    // Pupillen mittig, gross, schauen nach vorne
+    canvas.drawCircle(Offset(w * 0.32, eyeY), eyeR * 0.65,
+        Paint()..color = const Color(0xFF1F2937));
+    canvas.drawCircle(Offset(w * 0.68, eyeY), eyeR * 0.65,
+        Paint()..color = const Color(0xFF1F2937));
+    // Pupillen-Glanzpunkte (lebendig)
+    canvas.drawCircle(Offset(w * 0.32 - eyeR * 0.2, eyeY - eyeR * 0.2),
+        eyeR * 0.22, Paint()..color = Colors.white);
+    canvas.drawCircle(Offset(w * 0.68 - eyeR * 0.2, eyeY - eyeR * 0.2),
+        eyeR * 0.22, Paint()..color = Colors.white);
 
-    // Bei requiresDuck: kleine Stachel oben
+    // Niedliche rote Wangen (Charakter, freundlich)
+    final cheek = Paint()..color = const Color(0xFFFB7185).withOpacity(0.55);
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: Offset(w * 0.20, eyeY + eyeR * 1.6),
+            width: w * 0.15,
+            height: h * 0.10),
+        cheek);
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: Offset(w * 0.80, eyeY + eyeR * 1.6),
+            width: w * 0.15,
+            height: h * 0.10),
+        cheek);
+
+    // Bei requiresDuck: kleine Stachel oben (Spielfigur "stachelig")
     if (requiresDuck) {
       final spikePaint = Paint()..color = colorDark;
       for (var i = 0; i < 3; i++) {
