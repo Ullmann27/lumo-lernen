@@ -492,14 +492,30 @@ class LumoParallaxBackground extends PositionComponent {
     final cx = game.cameraX;
 
     _paintSky(canvas, s);
+    // ── Schicht 1: ferne Berge (langsamster Parallax) ──────
     _paintMountainLayer(canvas, s,
-        offset: cx * 0.15,
+        offset: cx * 0.10,
+        color:  const Color(0xFFBBDEFB),
+        hFrac:  0.34,
+        peakW:  220);
+    // ── Schicht 2: mittlere Berge mit Nebel ────────────────
+    _paintMountainLayer(canvas, s,
+        offset: cx * 0.20,
         color:  const Color(0xFF86EFAC),
-        hFrac:  0.28);
+        hFrac:  0.28,
+        peakW:  180);
+    // ── Schicht 3: Wasserfall im Hintergrund ───────────────
+    _paintWaterfall(canvas, s, cx);
+    // ── Schicht 4: vordere Huegel (kraeftiges Gruen) ───────
     _paintMountainLayer(canvas, s,
-        offset: cx * 0.35,
+        offset: cx * 0.38,
         color:  const Color(0xFF22C55E),
-        hFrac:  0.19);
+        hFrac:  0.19,
+        peakW:  160);
+    // ── Schicht 5: Baum-Silhouetten + Voegel + Schmetterlinge ──
+    _paintTreeline(canvas, s, cx);
+    _paintBirds(canvas, s);
+    _paintButterflies(canvas, s, cx);
   }
 
   void _paintSky(Canvas canvas, Vector2 s) {
@@ -509,31 +525,55 @@ class LumoParallaxBackground extends PositionComponent {
         Paint()
           ..shader = const LinearGradient(
             colors: [Color(0xFFBAE6FD), Color(0xFFE0F2FE), Color(0xFFFEF3C7)],
-            stops:  [0.0, 0.6, 1.0],
+            stops:  [0.0, 0.55, 1.0],
             begin:  Alignment.topCenter,
             end:    Alignment.bottomCenter,
           ).createShader(rect));
 
-    // Sonne
-    canvas.drawCircle(Offset(s.x * 0.88, s.y * 0.12), 28,
+    // Sonne mit Strahlen + Glow (mehr Praesenz)
+    final sunC = Offset(s.x * 0.85, s.y * 0.14);
+    // Glow-Schichten
+    canvas.drawCircle(sunC, 60, Paint()..color = const Color(0xFFFCD34D).withOpacity(0.18));
+    canvas.drawCircle(sunC, 42, Paint()..color = const Color(0xFFFCD34D).withOpacity(0.35));
+    // Strahlen (rotierend)
+    final rayPaint = Paint()
+      ..color = const Color(0xFFFCD34D).withOpacity(0.4)
+      ..strokeWidth = 3
+      ..strokeCap = StrokeCap.round;
+    for (var i = 0; i < 12; i++) {
+      final a = (i / 12) * math.pi * 2 + game.totalTime * 0.15;
+      final r1 = 32.0 + math.sin(game.totalTime + i) * 2;
+      final r2 = 50.0 + math.sin(game.totalTime * 1.4 + i) * 4;
+      canvas.drawLine(
+          sunC + Offset(math.cos(a) * r1, math.sin(a) * r1),
+          sunC + Offset(math.cos(a) * r2, math.sin(a) * r2),
+          rayPaint);
+    }
+    // Sonnenkoerper
+    canvas.drawCircle(sunC, 28,
         Paint()..color = const Color(0xFFFCD34D));
-    canvas.drawCircle(Offset(s.x * 0.88, s.y * 0.12), 20,
-        Paint()..color = Colors.white.withOpacity(0.40));
+    canvas.drawCircle(sunC.translate(-7, -7), 9,
+        Paint()..color = Colors.white.withOpacity(0.8));
 
-    // animierte Wolken
+    // Driftende Wolken (mehrere Schichten)
     _paintCloud(canvas,
-        s.x * 0.20 + math.sin(game.totalTime * 0.04) * 8, s.y * 0.14,
-        55, 22);
+        s.x * 0.18 + math.sin(game.totalTime * 0.04) * 10, s.y * 0.12, 65, 24);
     _paintCloud(canvas,
-        s.x * 0.55 + math.sin(game.totalTime * 0.03 + 1) * 6, s.y * 0.10,
-        70, 26);
+        s.x * 0.42 + math.sin(game.totalTime * 0.03 + 1) * 8, s.y * 0.18, 80, 30);
     _paintCloud(canvas,
-        s.x * 0.72 + math.cos(game.totalTime * 0.05) * 5, s.y * 0.18,
-        48, 18);
+        s.x * 0.65 + math.cos(game.totalTime * 0.05) * 6, s.y * 0.10, 55, 22);
+    _paintCloud(canvas,
+        s.x * 0.28 + math.cos(game.totalTime * 0.025 + 2) * 9, s.y * 0.22, 48, 18);
   }
 
   void _paintCloud(Canvas canvas, double cx, double cy, double w, double h) {
-    final p = Paint()..color = Colors.white.withOpacity(0.82);
+    // Sanfter Schatten unten
+    final shadow = Paint()..color = const Color(0xFF94A3B8).withOpacity(0.18);
+    canvas.drawOval(
+        Rect.fromCenter(center: Offset(cx, cy + 4), width: w * 1.1, height: h * 0.5),
+        shadow);
+    // Wolken-Kreise (organisch)
+    final p = Paint()..color = Colors.white.withOpacity(0.92);
     canvas.drawOval(
         Rect.fromCenter(center: Offset(cx, cy), width: w, height: h), p);
     canvas.drawOval(
@@ -548,26 +588,199 @@ class LumoParallaxBackground extends PositionComponent {
             width:  w * 0.65,
             height: h * 0.78),
         p);
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: Offset(cx + w * 0.15, cy - h * 0.3),
+            width:  w * 0.5,
+            height: h * 0.7),
+        p);
+    // Highlight oben
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: Offset(cx - w * 0.1, cy - h * 0.25),
+            width:  w * 0.35,
+            height: h * 0.3),
+        Paint()..color = Colors.white);
   }
 
   /// Zeichnet eine Schicht sich wiederholender Berggipfel.
   void _paintMountainLayer(Canvas canvas, Vector2 s,
-      {required double offset, required Color color, required double hFrac}) {
-    const w   = 180.0;
+      {required double offset,
+       required Color color,
+       required double hFrac,
+       double peakW = 180}) {
     final h   = s.y * hFrac;
-    final cnt = (s.x / w).ceil() + 2;
-    final mod = offset % w;
+    final cnt = (s.x / peakW).ceil() + 2;
+    final mod = offset % peakW;
     final paint = Paint()..color = color;
+    final darker = Paint()..color = color.withOpacity(0.7);
     for (var i = -1; i < cnt; i++) {
-      final px = i * w - mod + w * 0.5;
+      final px = i * peakW - mod + peakW * 0.5;
+      // Berg-Hauptkoerper
       canvas.drawPath(
           Path()
-            ..moveTo(px - w * 0.5, s.y)
-            ..lineTo(px,           s.y - h)
-            ..lineTo(px + w * 0.5, s.y)
+            ..moveTo(px - peakW * 0.5, s.y)
+            ..lineTo(px,                s.y - h)
+            ..lineTo(px + peakW * 0.5, s.y)
             ..close(),
           paint);
+      // Schatten-Seite (rechts dunkler fuer 3D)
+      canvas.drawPath(
+          Path()
+            ..moveTo(px, s.y - h)
+            ..lineTo(px + peakW * 0.5, s.y)
+            ..lineTo(px + peakW * 0.05, s.y)
+            ..close(),
+          darker);
+      // Schnee-Spitze
+      if (h > s.y * 0.2) {
+        canvas.drawPath(
+            Path()
+              ..moveTo(px - peakW * 0.12, s.y - h + 12)
+              ..lineTo(px, s.y - h)
+              ..lineTo(px + peakW * 0.12, s.y - h + 12)
+              ..lineTo(px + peakW * 0.06, s.y - h + 16)
+              ..lineTo(px - peakW * 0.06, s.y - h + 16)
+              ..close(),
+            Paint()..color = Colors.white.withOpacity(0.85));
+      }
     }
+  }
+
+  /// Wasserfall-Effekt im Hintergrund (mittlere Ebene, stilisiert).
+  void _paintWaterfall(Canvas canvas, Vector2 s, double cx) {
+    final wfX = s.x * 0.75 - (cx * 0.15 % s.x);
+    if (wfX < -100 || wfX > s.x + 100) return;
+    final topY = s.y * 0.30;
+    final bottomY = s.y * 0.66;
+    // Wasserfall-Streifen
+    final rect = Rect.fromLTWH(wfX, topY, 36, bottomY - topY);
+    canvas.drawRect(
+        rect,
+        Paint()
+          ..shader = LinearGradient(
+            colors: [
+              Colors.white.withOpacity(0.6),
+              const Color(0xFF7DD3FC).withOpacity(0.75),
+              const Color(0xFF38BDF8).withOpacity(0.65),
+            ],
+            begin: Alignment.topCenter,
+            end:   Alignment.bottomCenter,
+          ).createShader(rect));
+    // Animierte vertikale Linien (Wasser-Fluss)
+    final linePaint = Paint()
+      ..color = Colors.white.withOpacity(0.55)
+      ..strokeWidth = 1.5;
+    for (var i = 0; i < 5; i++) {
+      final lx = wfX + 4 + i * 7;
+      final offset = (game.totalTime * 120 + i * 13) % 30;
+      for (var j = 0; j < 6; j++) {
+        final ly = topY + j * 30 + offset;
+        if (ly > bottomY) continue;
+        canvas.drawLine(
+            Offset(lx, ly),
+            Offset(lx, ly + 14),
+            linePaint);
+      }
+    }
+    // Spray unten
+    final sprayY = bottomY;
+    final sprayPaint = Paint()..color = Colors.white.withOpacity(0.6);
+    for (var i = 0; i < 8; i++) {
+      final sx = wfX + 18 + (i - 4) * 8 + math.sin(game.totalTime * 4 + i) * 2;
+      final sr = 4.0 + math.cos(game.totalTime * 3 + i) * 1.5;
+      canvas.drawCircle(Offset(sx, sprayY - sr / 2), sr, sprayPaint);
+    }
+  }
+
+  /// Dunkle Baum-Silhouetten am unteren Horizont (Tiefe).
+  void _paintTreeline(Canvas canvas, Vector2 s, double cx) {
+    final offset = cx * 0.55;
+    const treeW = 60.0;
+    final baseY = s.y * 0.85;
+    final cnt = (s.x / treeW).ceil() + 2;
+    final mod = offset % treeW;
+    final paint = Paint()..color = const Color(0xFF166534).withOpacity(0.85);
+    for (var i = -1; i < cnt; i++) {
+      final tx = i * treeW - mod;
+      final h = 50.0 + ((i * 17) % 24);
+      // Tannen-Form (3 Dreiecke uebereinander)
+      for (var j = 0; j < 3; j++) {
+        final tw = treeW * (0.5 - j * 0.08);
+        final ty = baseY - h + j * (h * 0.28);
+        canvas.drawPath(
+            Path()
+              ..moveTo(tx + treeW * 0.5 - tw * 0.5, ty + 12)
+              ..lineTo(tx + treeW * 0.5, ty - 8)
+              ..lineTo(tx + treeW * 0.5 + tw * 0.5, ty + 12)
+              ..close(),
+            paint);
+      }
+      // Stamm
+      canvas.drawRect(
+          Rect.fromCenter(
+              center: Offset(tx + treeW * 0.5, baseY - 4),
+              width: 4, height: 8),
+          Paint()..color = const Color(0xFF422006));
+    }
+  }
+
+  /// Voegel die sanft durch den Himmel ziehen (3 Voegel).
+  void _paintBirds(Canvas canvas, Vector2 s) {
+    final t = game.totalTime;
+    for (var i = 0; i < 3; i++) {
+      final baseX = (s.x * 1.2 + i * 280 - (t * 30 + i * 100)) % (s.x * 1.5) - s.x * 0.25;
+      final baseY = s.y * (0.08 + i * 0.04) + math.sin(t * 1.5 + i) * 4;
+      _paintBird(canvas, Offset(baseX, baseY), t * 8 + i * 2);
+    }
+  }
+
+  void _paintBird(Canvas canvas, Offset c, double wingPhase) {
+    final p = Paint()
+      ..color = const Color(0xFF1E293B).withOpacity(0.7)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.2
+      ..strokeCap = StrokeCap.round;
+    // Voegel als geschwungenes M
+    final flap = math.sin(wingPhase) * 5;
+    final path = Path()
+      ..moveTo(c.dx - 9, c.dy + 1)
+      ..quadraticBezierTo(c.dx - 4, c.dy - 4 + flap, c.dx, c.dy + 1)
+      ..quadraticBezierTo(c.dx + 4, c.dy - 4 + flap, c.dx + 9, c.dy + 1);
+    canvas.drawPath(path, p);
+  }
+
+  /// Bunt flatternde Schmetterlinge im mittleren Bereich.
+  void _paintButterflies(Canvas canvas, Vector2 s, double cx) {
+    final t = game.totalTime;
+    final colors = <Color>[
+      const Color(0xFFFB7185),
+      const Color(0xFFA78BFA),
+      const Color(0xFFFCD34D),
+    ];
+    for (var i = 0; i < 3; i++) {
+      final x = (s.x * (0.15 + i * 0.32) + math.sin(t * 0.4 + i * 2) * 30 -
+              (cx * 0.4) % s.x) %
+          s.x;
+      final y = s.y * (0.45 + i * 0.08) + math.sin(t * 1.2 + i) * 12;
+      _paintButterfly(canvas, Offset(x, y), t * 14 + i, colors[i]);
+    }
+  }
+
+  void _paintButterfly(Canvas canvas, Offset c, double wingPhase, Color color) {
+    final wingW = 5 + math.sin(wingPhase) * 2;
+    final p = Paint()..color = color.withOpacity(0.85);
+    // 4 Fluegel als Ovale
+    canvas.drawOval(
+        Rect.fromCenter(center: c.translate(-wingW, -2), width: 6, height: 8), p);
+    canvas.drawOval(
+        Rect.fromCenter(center: c.translate(wingW, -2), width: 6, height: 8), p);
+    canvas.drawOval(
+        Rect.fromCenter(center: c.translate(-wingW * 0.8, 3), width: 5, height: 6), p);
+    canvas.drawOval(
+        Rect.fromCenter(center: c.translate(wingW * 0.8, 3), width: 5, height: 6), p);
+    // Koerper
+    canvas.drawCircle(c, 1.5, Paint()..color = const Color(0xFF1F2937));
   }
 }
 
