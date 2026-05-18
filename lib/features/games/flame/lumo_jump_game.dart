@@ -794,30 +794,120 @@ class PlatformTileComponent extends PositionComponent {
     final w = size.x;
     final h = size.y;
 
-    // Erdkörper
+    // Schatten UNTER der Plattform fuer Tiefe
     canvas.drawRRect(
         RRect.fromRectAndRadius(
-            Rect.fromLTWH(0, 4, w, h - 4), const Radius.circular(6)),
-        Paint()..color = const Color(0xFF92400E));
+            Rect.fromLTWH(2, h - 2, w - 4, 8),
+            const Radius.circular(4)),
+        Paint()..color = Colors.black.withOpacity(0.18));
 
-    // Grasoberfläche
+    // Erdkoerper mit Gradient (oben heller, unten dunkler)
+    final earthRect = Rect.fromLTWH(0, 4, w, h - 4);
     canvas.drawRRect(
-        RRect.fromLTRBR(0, 0, w, 16, const Radius.circular(6)),
+        RRect.fromRectAndRadius(earthRect, const Radius.circular(8)),
         Paint()
           ..shader = const LinearGradient(
-            colors: [Color(0xFF4ADE80), Color(0xFF22C55E)],
+            colors: [
+              Color(0xFFA16207),
+              Color(0xFF92400E),
+              Color(0xFF78350F),
+            ],
+            stops: [0.0, 0.4, 1.0],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(earthRect));
+
+    // Stein-Textur (sichtbare Kiesel im Erdkoerper)
+    final rng = math.Random((position.x * 7 + position.y * 3).round());
+    final pebbleCount = (w / 35).floor();
+    for (var i = 0; i < pebbleCount; i++) {
+      final px = 12 + i * 32 + rng.nextInt(20).toDouble();
+      final py = 22 + rng.nextInt((h - 30).round()).toDouble();
+      final ps = 3.0 + rng.nextInt(4);
+      // Kiesel-Body
+      canvas.drawOval(
+          Rect.fromCenter(center: Offset(px, py), width: ps * 2, height: ps * 1.4),
+          Paint()..color = const Color(0xFF57534E).withOpacity(0.6));
+      // Highlight
+      canvas.drawOval(
+          Rect.fromCenter(
+              center: Offset(px - ps * 0.3, py - ps * 0.3),
+              width: ps * 0.8,
+              height: ps * 0.4),
+          Paint()..color = Colors.white.withOpacity(0.35));
+    }
+
+    // Wurzel-Linien (organischer)
+    final rootPaint = Paint()
+      ..color = const Color(0xFF422006).withOpacity(0.4)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.2;
+    for (var i = 0; i < (w / 80).floor(); i++) {
+      final rx = 30 + i * 70 + rng.nextInt(20);
+      canvas.drawPath(
+          Path()
+            ..moveTo(rx.toDouble(), 18)
+            ..quadraticBezierTo(
+                rx + 4.0, 30, rx + (rng.nextInt(8) - 4).toDouble(), h - 8),
+          rootPaint);
+    }
+
+    // Grasoberflaeche mit Hauptgradient
+    final grassRect = Rect.fromLTWH(0, 0, w, 18);
+    canvas.drawRRect(
+        RRect.fromLTRBR(0, 0, w, 18, const Radius.circular(8)),
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [Color(0xFF86EFAC), Color(0xFF4ADE80), Color(0xFF16A34A)],
+            stops: [0.0, 0.5, 1.0],
             begin:  Alignment.topCenter,
             end:    Alignment.bottomCenter,
-          ).createShader(Rect.fromLTWH(0, 0, w, 16)));
+          ).createShader(grassRect));
 
-    // dekorative Steine
-    final rng = math.Random((position.x * 7 + position.y).round());
-    for (var i = 0; i < (w / 60).floor(); i++) {
-      final sx = 20 + i * 55 + rng.nextInt(25).toDouble();
-      canvas.drawOval(
-          Rect.fromCenter(center: Offset(sx, 8), width: 10, height: 5),
-          Paint()..color = Colors.white.withOpacity(0.22));
+    // Gras-Halme (kleine Spitzen am oberen Rand)
+    final grassPaint = Paint()..color = const Color(0xFF15803D);
+    for (var i = 0; i < (w / 12).floor(); i++) {
+      final gx = 6 + i * 12 + rng.nextInt(6) - 3;
+      final gh = 3.0 + rng.nextInt(3);
+      canvas.drawPath(
+          Path()
+            ..moveTo(gx.toDouble() - 1.5, 0)
+            ..lineTo(gx.toDouble(), -gh)
+            ..lineTo(gx.toDouble() + 1.5, 0)
+            ..close(),
+          grassPaint);
     }
+
+    // Blumen-Akzente (kleine bunte Punkte)
+    for (var i = 0; i < (w / 100).floor(); i++) {
+      final fx = 30 + i * 90 + rng.nextInt(40);
+      final fy = -1.0;
+      final colors = <Color>[
+        const Color(0xFFFB7185),
+        const Color(0xFFA78BFA),
+        const Color(0xFFFCD34D),
+        Colors.white,
+      ];
+      final flowerColor = colors[rng.nextInt(colors.length)];
+      // 5 Blutenblaetter
+      for (var j = 0; j < 5; j++) {
+        final a = (j / 5) * math.pi * 2;
+        canvas.drawCircle(
+            Offset(fx + math.cos(a) * 2.2, fy + math.sin(a) * 2.2),
+            1.6,
+            Paint()..color = flowerColor);
+      }
+      // Mittelpunkt
+      canvas.drawCircle(
+          Offset(fx.toDouble(), fy),
+          1.2,
+          Paint()..color = const Color(0xFFFCD34D));
+    }
+
+    // Glanzlicht auf der oberen Kante (3D-Effekt)
+    canvas.drawRRect(
+        RRect.fromLTRBR(2, 2, w - 2, 5, const Radius.circular(3)),
+        Paint()..color = Colors.white.withOpacity(0.25));
   }
 }
 
@@ -832,14 +922,89 @@ class NormalObstacleComponent extends PositionComponent {
 
   @override
   void render(Canvas canvas) {
+    final w = size.x;
+    final h = size.y;
     final color =
         requiresDuck ? const Color(0xFF7C3AED) : const Color(0xFF0EA5E9);
+    final colorDark = requiresDuck
+        ? const Color(0xFF5B21B6)
+        : const Color(0xFF0369A1);
+
+    // Schatten unter dem Hindernis
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: Offset(w / 2, h + 2),
+            width: w * 0.95,
+            height: 6),
+        Paint()..color = Colors.black.withOpacity(0.25));
+
+    // Hauptkoerper mit Vertikal-Gradient
     canvas.drawRRect(
-        RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, size.x, size.y), const Radius.circular(8)),
-        Paint()..color = color);
+        RRect.fromRectAndRadius(
+            Rect.fromLTWH(0, 0, w, h),
+            const Radius.circular(10)),
+        Paint()
+          ..shader = LinearGradient(
+            colors: [color, colorDark],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(Rect.fromLTWH(0, 0, w, h)));
+
+    // Highlight oben (Glanz)
     canvas.drawRRect(
-        RRect.fromLTRBR(4, 3, size.x - 4, 8, const Radius.circular(4)),
-        Paint()..color = Colors.white.withOpacity(0.28));
+        RRect.fromLTRBR(4, 3, w - 4, h * 0.35, const Radius.circular(8)),
+        Paint()
+          ..shader = LinearGradient(
+            colors: [
+              Colors.white.withOpacity(0.4),
+              Colors.white.withOpacity(0.0),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(Rect.fromLTWH(4, 3, w - 8, h * 0.32)));
+
+    // Boese Augen (Charakter)
+    final eyeY = h * 0.4;
+    final eyeR = math.min(w, h) * 0.10;
+    // Augen-Weiss
+    canvas.drawCircle(Offset(w * 0.32, eyeY), eyeR,
+        Paint()..color = Colors.white);
+    canvas.drawCircle(Offset(w * 0.68, eyeY), eyeR,
+        Paint()..color = Colors.white);
+    // Pupillen (boese, schraeg)
+    canvas.drawCircle(Offset(w * 0.34, eyeY + 1), eyeR * 0.55,
+        Paint()..color = Colors.black);
+    canvas.drawCircle(Offset(w * 0.70, eyeY + 1), eyeR * 0.55,
+        Paint()..color = Colors.black);
+
+    // Augenbraue-Striche (boese Optik)
+    final browPaint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 2.0
+      ..strokeCap = StrokeCap.round;
+    canvas.drawLine(
+        Offset(w * 0.22, eyeY - eyeR * 1.5),
+        Offset(w * 0.42, eyeY - eyeR * 0.8),
+        browPaint);
+    canvas.drawLine(
+        Offset(w * 0.58, eyeY - eyeR * 0.8),
+        Offset(w * 0.78, eyeY - eyeR * 1.5),
+        browPaint);
+
+    // Bei requiresDuck: kleine Stachel oben
+    if (requiresDuck) {
+      final spikePaint = Paint()..color = colorDark;
+      for (var i = 0; i < 3; i++) {
+        final sx = w * (0.25 + i * 0.25);
+        canvas.drawPath(
+            Path()
+              ..moveTo(sx - 4, 0)
+              ..lineTo(sx, -6)
+              ..lineTo(sx + 4, 0)
+              ..close(),
+            spikePaint);
+      }
+    }
   }
 }
 
@@ -884,21 +1049,31 @@ class StarCoinComponent extends SpriteAnimationComponent {
     final s  = size.x * 0.5;
     final t  = game.totalTime;
 
-    // Glow-Halo
-    canvas.drawCircle(Offset(cx, cy), s * 1.15,
-        Paint()..color = const Color(0xFFFCD34D).withOpacity(0.32));
+    // Pulsierende Glow-Halo (mehrschichtig)
+    final pulse = 0.85 + math.sin(t * 3.0 + position.x * 0.01) * 0.15;
+    canvas.drawCircle(Offset(cx, cy), s * 1.6 * pulse,
+        Paint()..color = const Color(0xFFFCD34D).withOpacity(0.12));
+    canvas.drawCircle(Offset(cx, cy), s * 1.3 * pulse,
+        Paint()..color = const Color(0xFFFBBF24).withOpacity(0.22));
+    canvas.drawCircle(Offset(cx, cy), s * 1.05 * pulse,
+        Paint()..color = const Color(0xFFFCD34D).withOpacity(0.42));
 
-    // Kreis-Body
+    // Kreis-Body mit Radial-Gradient
     canvas.drawCircle(
         Offset(cx, cy),
         s * 0.88,
         Paint()
           ..shader = RadialGradient(
-            colors: const [Color(0xFFFCD34D), Color(0xFFF59E0B)],
+            colors: const [
+              Color(0xFFFEF3C7),
+              Color(0xFFFCD34D),
+              Color(0xFFF59E0B),
+            ],
+            stops: const [0.0, 0.55, 1.0],
           ).createShader(
               Rect.fromCircle(center: Offset(cx, cy), radius: s)));
 
-    // Innerer Stern (rotiert)
+    // Inner Stern (rotiert)
     final rot  = t * 0.9 + position.x * 0.01;
     final path = Path();
     for (var i = 0; i < 10; i++) {
@@ -914,6 +1089,39 @@ class StarCoinComponent extends SpriteAnimationComponent {
     }
     path.close();
     canvas.drawPath(path, Paint()..color = const Color(0xFFFEF3C7));
+
+    // Glanzpunkt
+    canvas.drawCircle(
+        Offset(cx - s * 0.25, cy - s * 0.25),
+        s * 0.18,
+        Paint()..color = Colors.white.withOpacity(0.85));
+
+    // Funkel-Partikel um den Stern (4 Sterne die rotieren)
+    for (var i = 0; i < 4; i++) {
+      final a = (i / 4) * math.pi * 2 + t * 1.5;
+      final r = s * (1.4 + math.sin(t * 2 + i) * 0.15);
+      final sx = cx + math.cos(a) * r;
+      final sy = cy + math.sin(a) * r;
+      final sparkleSize = 2.2 + math.sin(t * 4 + i) * 1.0;
+      _drawSparkle(canvas, Offset(sx, sy), sparkleSize,
+          Colors.white.withOpacity(0.75));
+    }
+  }
+
+  /// Zeichnet ein kleines 4-strahliges Funkel-Symbol.
+  void _drawSparkle(Canvas canvas, Offset c, double r, Color color) {
+    final paint = Paint()..color = color;
+    final path = Path()
+      ..moveTo(c.dx, c.dy - r)
+      ..lineTo(c.dx + r * 0.3, c.dy - r * 0.3)
+      ..lineTo(c.dx + r, c.dy)
+      ..lineTo(c.dx + r * 0.3, c.dy + r * 0.3)
+      ..lineTo(c.dx, c.dy + r)
+      ..lineTo(c.dx - r * 0.3, c.dy + r * 0.3)
+      ..lineTo(c.dx - r, c.dy)
+      ..lineTo(c.dx - r * 0.3, c.dy - r * 0.3)
+      ..close();
+    canvas.drawPath(path, paint);
   }
 }
 
@@ -933,7 +1141,20 @@ class QuestionBlockComponent extends PositionComponent {
     if (cleared) {
       canvas.drawRRect(
           RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, size.x, size.y), const Radius.circular(8)),
-          Paint()..color = const Color(0xFFD1D5DB));
+          Paint()..color = const Color(0xFFD1D5DB).withOpacity(0.6));
+      // X-Marke fuer geklaerten Block
+      final clearedPaint = Paint()
+        ..color = const Color(0xFF6B7280)
+        ..strokeWidth = 3
+        ..strokeCap = StrokeCap.round;
+      canvas.drawLine(
+          Offset(size.x * 0.3, size.y * 0.3),
+          Offset(size.x * 0.7, size.y * 0.7),
+          clearedPaint);
+      canvas.drawLine(
+          Offset(size.x * 0.7, size.y * 0.3),
+          Offset(size.x * 0.3, size.y * 0.7),
+          clearedPaint);
       return;
     }
 
@@ -941,28 +1162,89 @@ class QuestionBlockComponent extends PositionComponent {
     final r     = Rect.fromLTWH(0, 0, size.x, size.y);
     final pulse = 0.5 + math.sin(t * 3) * 0.5;
 
-    // Äußeres Glühen
+    // Schatten unter dem Block (3D)
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(
+            r.translate(0, 4), const Radius.circular(10)),
+        Paint()..color = Colors.black.withOpacity(0.25));
+
+    // Pulsierender Glow-Halo (mehrschichtig)
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(r.inflate(12), const Radius.circular(16)),
+        Paint()..color = const Color(0xFFFCD34D).withOpacity(0.15 + pulse * 0.10));
     canvas.drawRRect(
         RRect.fromRectAndRadius(r.inflate(6), const Radius.circular(12)),
         Paint()
-          ..color = const Color(0xFFFCD34D).withOpacity(0.22 + pulse * 0.18));
+          ..color = const Color(0xFFFCD34D).withOpacity(0.30 + pulse * 0.20));
 
-    // Block
+    // Block-Body mit Gradient
     canvas.drawRRect(
-        RRect.fromRectAndRadius(r, const Radius.circular(8)),
-        Paint()..color = const Color(0xFFF59E0B));
-    canvas.drawRRect(
-        RRect.fromLTRBR(3, 3, size.x - 3, 12, const Radius.circular(4)),
-        Paint()..color = Colors.white.withOpacity(0.42));
+        RRect.fromRectAndRadius(r, const Radius.circular(10)),
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [
+              Color(0xFFFEF3C7),
+              Color(0xFFFCD34D),
+              Color(0xFFF59E0B),
+            ],
+            stops: [0.0, 0.5, 1.0],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(r));
 
-    // Symbol
+    // Rote Edelstein-Knoepfe an den 4 Ecken (Charakter)
+    final gemSize = math.min(size.x, size.y) * 0.10;
+    final gemPositions = [
+      Offset(6 + gemSize, 6 + gemSize),
+      Offset(size.x - 6 - gemSize, 6 + gemSize),
+      Offset(6 + gemSize, size.y - 6 - gemSize),
+      Offset(size.x - 6 - gemSize, size.y - 6 - gemSize),
+    ];
+    for (final c in gemPositions) {
+      canvas.drawCircle(c, gemSize,
+          Paint()..color = const Color(0xFF92400E));
+      canvas.drawCircle(c, gemSize * 0.7,
+          Paint()..color = const Color(0xFFFBBF24));
+    }
+
+    // Highlight-Glanz oben
+    canvas.drawRRect(
+        RRect.fromLTRBR(4, 4, size.x - 4, size.y * 0.4, const Radius.circular(7)),
+        Paint()
+          ..shader = LinearGradient(
+            colors: [
+              Colors.white.withOpacity(0.55),
+              Colors.white.withOpacity(0.0),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(Rect.fromLTWH(4, 4, size.x - 8, size.y * 0.35)));
+
+    // Symbol mit Outline
+    final symText = isGerman ? 'A' : '?';
+    // Outline
+    final outline = TextPainter(
+      text: TextSpan(
+          text: symText,
+          style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w900,
+              foreground: Paint()
+                ..style = PaintingStyle.stroke
+                ..strokeWidth = 4
+                ..color = const Color(0xFF92400E))),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    outline.paint(canvas,
+        Offset(size.x / 2 - outline.width / 2, size.y / 2 - outline.height / 2));
+    // Fuellung
     final tp = TextPainter(
       text: TextSpan(
-          text:  isGerman ? 'A' : '?',
+          text:  symText,
           style: const TextStyle(
-              fontSize:   28,
+              fontSize:   32,
               fontWeight: FontWeight.w900,
-              color:      Color(0xFF92400E))),
+              color:      Color(0xFFFEF3C7))),
       textDirection: TextDirection.ltr,
     )..layout();
     tp.paint(canvas,
