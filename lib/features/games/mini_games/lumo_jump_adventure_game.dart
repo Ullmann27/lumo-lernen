@@ -10,9 +10,11 @@ import '../../../core/game_progress_repository.dart';
 import '../../../core/german_task_templates.dart';
 import '../../../core/math_task_templates.dart';
 import '../../../domain/games/game_level_model.dart';
+import 'fox_sprite.dart';
 
 /// Spieler-Zustand für Animations- und Mechanik-Logik.
-enum _PlayerState { idle, running, jumping, ducking, rolling }
+/// `falling` differenziert den Abstieg vom Aufstieg beim Springen.
+enum _PlayerState { idle, running, jumping, falling, ducking, rolling }
 
 /// Hindernistypen – normales Hindernis oder zerstörbare Kiste.
 enum _GameObjectType { obstacle, breakableCrate }
@@ -243,7 +245,8 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     if (_duckPressed) {
       _playerState = _PlayerState.ducking;
     } else if (!_onGround) {
-      _playerState = _PlayerState.jumping;
+      // Aufstieg (vy negativ) = jumping; Abstieg (vy positiv) = falling
+      _playerState = _vy > 80 ? _PlayerState.falling : _PlayerState.jumping;
     } else if (_vx.abs() > 0) {
       _playerState = _PlayerState.running;
     } else {
@@ -1511,7 +1514,14 @@ class _LumoJumpPainter extends CustomPainter {
     _paintQuestionBlocks(canvas);
     _paintStars(canvas);
     _paintChest(canvas);
-    _paintFox(canvas);
+    // Animierten Fuchs über FoxSprite zeichnen
+    FoxSprite.paint(
+      canvas,
+      rect: playerRect,
+      state: _toFoxState(playerState),
+      facingRight: playerFacingRight,
+      animTime: animTime,
+    );
     _paintStarBursts(canvas);
     _paintSplinters(canvas);
     _paintConfetti(canvas);
@@ -1966,212 +1976,6 @@ class _LumoJumpPainter extends CustomPainter {
     }
   }
 
-  // ── Lumo (richtiger Fuchs - kein Box mehr!) ─────────────────
-  void _paintFox(Canvas canvas) {
-    final r = playerRect;
-    final dir = playerFacingRight ? 1.0 : -1.0;
-    final cx = r.center.dx;
-    final cy = r.center.dy;
-    final w = r.width;
-    final h = r.height;
-
-    final bodyColor = playerState == _PlayerState.rolling
-        ? const Color(0xFF7C3AED) // Lila beim Rollen
-        : const Color(0xFFF97316); // Orange normal
-    final bellyColor = const Color(0xFFFEDBA4);
-    final accentColor = playerState == _PlayerState.rolling
-        ? const Color(0xFF5B21B6)
-        : const Color(0xFFC2410C);
-
-    // Roll = zur Kugel werden
-    if (playerState == _PlayerState.rolling) {
-      final rollSize = math.min(w, h) * 0.95;
-      final center = Offset(cx, cy);
-      canvas.drawCircle(center, rollSize / 2, Paint()..color = bodyColor);
-      // Speed-Streifen rotierend
-      final t = animTime * 14;
-      for (var i = 0; i < 3; i++) {
-        final a = t + i * (math.pi * 2 / 3);
-        canvas.drawCircle(
-            center + Offset(math.cos(a) * rollSize * 0.28, math.sin(a) * rollSize * 0.28),
-            3, Paint()..color = const Color(0xFFFCD34D));
-      }
-      // Anti-Aliasing-Glow
-      canvas.drawCircle(center, rollSize / 2 + 2,
-          Paint()..color = bodyColor.withOpacity(0.3));
-      return;
-    }
-
-    // Schatten unter dem Fuchs
-    canvas.drawOval(
-        Rect.fromCenter(
-            center: Offset(cx, r.bottom + 4), width: w * 0.7, height: 6),
-        Paint()..color = Colors.black.withOpacity(0.2));
-
-    // Schwanz (hinter dem Körper, buschiger)
-    final tailWag = math.sin(animTime * 8) * 0.18 * dir;
-    canvas.save();
-    canvas.translate(cx - 16 * dir, cy + h * 0.05);
-    canvas.rotate(tailWag);
-    // Schwanz-Hauptform (groesser, buschiger)
-    final tailPath = Path()
-      ..moveTo(0, 0)
-      ..quadraticBezierTo(-14 * dir, -10, -26 * dir, -6)
-      ..quadraticBezierTo(-32 * dir, 4, -28 * dir, 12)
-      ..quadraticBezierTo(-22 * dir, 18, -12 * dir, 16)
-      ..quadraticBezierTo(-4 * dir, 12, 0, 6)
-      ..close();
-    canvas.drawPath(tailPath, Paint()..color = bodyColor);
-    // Dunkleres Innen des Schwanzes
-    final tailInner = Path()
-      ..moveTo(-4 * dir, 2)
-      ..quadraticBezierTo(-12 * dir, -4, -18 * dir, 0)
-      ..quadraticBezierTo(-22 * dir, 8, -18 * dir, 12)
-      ..quadraticBezierTo(-10 * dir, 12, -4 * dir, 8)
-      ..close();
-    canvas.drawPath(tailInner, Paint()..color = accentColor.withOpacity(0.4));
-    // Weisse Schwanzspitze (groesser, runder)
-    canvas.drawCircle(Offset(-26 * dir, 4), 8, Paint()..color = Colors.white);
-    canvas.drawCircle(Offset(-28 * dir, 2), 5, Paint()..color = const Color(0xFFFEDBA4));
-    canvas.restore();
-
-    // Hauptkoerper - kleiner, runder (Pixar-Proportionen: kleiner Body, grosser Kopf)
-    final bodyRect = Rect.fromCenter(
-        center: Offset(cx, cy + h * 0.12),
-        width: w * 0.7,
-        height: h * 0.58);
-    canvas.drawOval(bodyRect, Paint()..color = bodyColor);
-
-    // Bauchpartie (heller, vorne)
-    final bellyRect = Rect.fromCenter(
-        center: Offset(cx + 4 * dir, cy + h * 0.22),
-        width: w * 0.42,
-        height: h * 0.36);
-    canvas.drawOval(bellyRect, Paint()..color = bellyColor);
-
-    // ── Kopf - GROSS (Pixar/Chibi-Style) ──────────────────────
-    final headCx = cx + 6 * dir;
-    final headCy = cy - h * 0.22;
-    final headR = w * 0.42; // viel groesser als vorher
-    // Kopf-Body
-    canvas.drawCircle(Offset(headCx, headCy), headR, Paint()..color = bodyColor);
-
-    // Schnauze (heller Bereich um Mund/Nase, prominenter)
-    canvas.drawOval(
-        Rect.fromCenter(
-            center: Offset(headCx + 6 * dir, headCy + 8),
-            width: headR * 1.05,
-            height: headR * 0.8),
-        Paint()..color = bellyColor);
-
-    // Wangen-Rouge (Pausbacken, Pixar-typisch)
-    final cheekPaint = Paint()..color = const Color(0xFFFB7185).withOpacity(0.5);
-    canvas.drawCircle(Offset(headCx - 8 * dir, headCy + 6), 4, cheekPaint);
-    canvas.drawCircle(Offset(headCx + 14 * dir, headCy + 6), 4, cheekPaint);
-
-    // ── Ohren - groesser, dreieckig, niedlich ─────────────────
-    final earColor = bodyColor;
-    final earInner = accentColor;
-    // Vorderes Ohr
-    final earL = Path()
-      ..moveTo(headCx - 16 * dir, headCy - headR * 0.55)
-      ..quadraticBezierTo(headCx - 6 * dir, headCy - headR * 1.15,
-                         headCx + 4 * dir, headCy - headR * 0.45)
-      ..close();
-    canvas.drawPath(earL, Paint()..color = earColor);
-    // Innen-Ohr (Pink-Akzent)
-    final earLInner = Path()
-      ..moveTo(headCx - 10 * dir, headCy - headR * 0.55)
-      ..quadraticBezierTo(headCx - 4 * dir, headCy - headR * 0.95,
-                         headCx + 2 * dir, headCy - headR * 0.5)
-      ..close();
-    canvas.drawPath(earLInner, Paint()..color = const Color(0xFFFB7185));
-
-    // Hinteres Ohr (kleiner, hinten)
-    final earR = Path()
-      ..moveTo(headCx + 10 * dir, headCy - headR * 0.45)
-      ..quadraticBezierTo(headCx + 20 * dir, headCy - headR * 1.0,
-                         headCx + 26 * dir, headCy - headR * 0.25)
-      ..close();
-    canvas.drawPath(earR, Paint()..color = earColor);
-
-    // ── Augen - RIESIG, Pixar-Stil ────────────────────────────
-    final eyeY = headCy + 2;
-    final eyeLx = headCx - 7 * dir;
-    final eyeRx = headCx + 8 * dir;
-    final eyeSize = 7.5; // grosse Kulleraugen
-    // Augen-Weiss
-    canvas.drawCircle(Offset(eyeLx, eyeY), eyeSize, Paint()..color = Colors.white);
-    canvas.drawCircle(Offset(eyeRx, eyeY), eyeSize, Paint()..color = Colors.white);
-    // Iris (braun-warm)
-    canvas.drawCircle(Offset(eyeLx + 1.5 * dir, eyeY + 0.5), eyeSize * 0.7,
-        Paint()..color = const Color(0xFF422006));
-    canvas.drawCircle(Offset(eyeRx + 1.5 * dir, eyeY + 0.5), eyeSize * 0.7,
-        Paint()..color = const Color(0xFF422006));
-    // Pupille (gross, schwarz)
-    canvas.drawCircle(Offset(eyeLx + 2 * dir, eyeY + 1), eyeSize * 0.45,
-        Paint()..color = const Color(0xFF0F172A));
-    canvas.drawCircle(Offset(eyeRx + 2 * dir, eyeY + 1), eyeSize * 0.45,
-        Paint()..color = const Color(0xFF0F172A));
-    // Grosser Glanz-Highlight
-    canvas.drawCircle(Offset(eyeLx + 1 * dir, eyeY - 2), 2.4,
-        Paint()..color = Colors.white);
-    canvas.drawCircle(Offset(eyeRx + 1 * dir, eyeY - 2), 2.4,
-        Paint()..color = Colors.white);
-    // Kleiner zweiter Glanz
-    canvas.drawCircle(Offset(eyeLx + 3 * dir, eyeY + 2), 1.0,
-        Paint()..color = Colors.white.withOpacity(0.8));
-    canvas.drawCircle(Offset(eyeRx + 3 * dir, eyeY + 2), 1.0,
-        Paint()..color = Colors.white.withOpacity(0.8));
-
-    // ── Nase + Schnauze - klein und suess ─────────────────────
-    final noseX = headCx + 10 * dir;
-    final noseY = headCy + 10;
-    // Nasen-Schatten
-    canvas.drawCircle(Offset(noseX, noseY + 0.5), 3, Paint()..color = Colors.black.withOpacity(0.15));
-    // Nase
-    canvas.drawCircle(Offset(noseX, noseY), 3,
-        Paint()..color = const Color(0xFF1F2937));
-    // Nasen-Highlight
-    canvas.drawCircle(Offset(noseX - 1, noseY - 1), 0.9,
-        Paint()..color = Colors.white);
-
-    // Mund - kleine laechelnde Kurve
-    final mouthPath = Path()
-      ..moveTo(noseX - 4, noseY + 3)
-      ..quadraticBezierTo(noseX, noseY + 6, noseX + 4, noseY + 3);
-    canvas.drawPath(
-        mouthPath,
-        Paint()
-          ..color = const Color(0xFF1F2937)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.4
-          ..strokeCap = StrokeCap.round);
-
-    // Pfoten / Beine
-    final legColor = accentColor;
-    final legY = r.bottom - 6;
-    final legRunFrame = math.sin(animTime * 14) * 4;
-    final isRunning = playerState == _PlayerState.running;
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(
-            Rect.fromCenter(
-                center: Offset(cx - 8, legY + (isRunning ? legRunFrame : 0)),
-                width: 10, height: 12),
-            const Radius.circular(4)),
-        Paint()..color = legColor);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(
-            Rect.fromCenter(
-                center: Offset(cx + 8, legY - (isRunning ? legRunFrame : 0)),
-                width: 10, height: 12),
-            const Radius.circular(4)),
-        Paint()..color = legColor);
-
-    // Ducken: Lumo bleibt klein gezeichnet (durch _playerHeight schon)
-    // Springen: Beine ziehen sich an
-  }
-
   // ── FX: Stern-Burst-Partikel ─────────────────────────────────
   void _paintStarBursts(Canvas canvas) {
     for (final b in starBursts) {
@@ -2218,6 +2022,16 @@ class _LumoJumpPainter extends CustomPainter {
       canvas.drawCircle(Offset(dx, dy), 2.6, Paint()..color = colors[i % colors.length]);
     }
   }
+
+  /// Übersetzt den privaten `_PlayerState` in den öffentlichen `FoxAnimationState`.
+  static FoxAnimationState _toFoxState(_PlayerState s) => switch (s) {
+        _PlayerState.idle    => FoxAnimationState.idle,
+        _PlayerState.running => FoxAnimationState.run,
+        _PlayerState.jumping => FoxAnimationState.jump,
+        _PlayerState.falling => FoxAnimationState.fall,
+        _PlayerState.ducking => FoxAnimationState.duck,
+        _PlayerState.rolling => FoxAnimationState.roll,
+      };
 
   @override
   bool shouldRepaint(covariant _LumoJumpPainter oldDelegate) {
