@@ -62,6 +62,9 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
   Timer? _boredTimer;
   Timer? _wiggleTimer2;
 
+  // ── Zufallsgenerator (einmalig, wiederverwendet) ───────────────────────
+  final _rng = math.Random();
+
   // ── Tap-Zustand ───────────────────────────────────────────────────────
   int _tapCount = 0;
   DateTime? _lastTap;
@@ -146,10 +149,10 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
   ];
 
   String _pickRandom(List<String> list) =>
-      list[math.Random().nextInt(list.length)];
+      list[_rng.nextInt(list.length)];
 
   String _nextSpeechText() {
-    final r = math.Random().nextDouble();
+    final r = _rng.nextDouble();
     if (r < 0.15) return _pickRandom(_greetingPhrases);
     if (r < 0.30) return _pickRandom(_starPhrases);
     if (r < 0.55) return _pickRandom(_motivationPhrases);
@@ -220,22 +223,21 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
   // Kürzere Zyklen (2-5 Sek) = lebendiger
 
   void _scheduleBehavior() {
-    final r = math.Random();
     // 2-5 Sekunden Pause zwischen Aktionen = deutlich lebhafter
-    _behaviorTimer = Timer(Duration(milliseconds: 2000 + r.nextInt(3000)), () {
+    _behaviorTimer = Timer(Duration(milliseconds: 2000 + _rng.nextInt(3000)), () {
       if (!mounted) return;
-      _pickAndExecuteAction(r);
+      _pickAndExecuteAction();
       _scheduleBehavior();
     });
   }
 
-  void _pickAndExecuteAction(math.Random r) {
-    final pick = r.nextDouble();
+  void _pickAndExecuteAction() {
+    final pick = _rng.nextDouble();
 
     if (pick < 0.22) {
       // 22 % – Wandern (links/rechts laufen)
       final newTarget =
-          ((r.nextDouble() * 2 - 1) * _maxWander).clamp(-_maxWander, _maxWander);
+          ((_rng.nextDouble() * 2 - 1) * _maxWander).clamp(-_maxWander, _maxWander);
       setState(() {
         _wanderFrom     = _wanderX;
         _wanderTarget   = newTarget;
@@ -345,7 +347,7 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
   void _scheduleSpeech() {
     // Alle 8-15 Sekunden eine Speech-Bubble (häufiger = lebendiger)
     _speechTimer = Timer(
-      Duration(seconds: 8 + math.Random().nextInt(8)),
+      Duration(seconds: 8 + _rng.nextInt(8)),
       () {
         if (!mounted) return;
         if (_currentSpeech == null) {
@@ -397,7 +399,7 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
       // Erste Interaktion: persönliche Begrüßung
       reaction = _pickRandom(_greetingPhrases);
     } else if (_tapCount <= _tapReactions.length) {
-      reaction = _tapReactions[_tapCount - 1].replaceAll(r'$...', _name);
+      reaction = _tapReactions[_tapCount - 1];
     } else {
       // Danach: zufällig witzige Reaktion
       reaction = _pickRandom(_funnyPhrases);
