@@ -58,7 +58,7 @@ const double _maxSafeGap    = _baseSpeed * (_jumpPower / _gravity) * 2 * 0.85;
 // Erstellt eine 1-Frame transparente SpriteAnimation als Platzhalter für
 // SpriteAnimationGroupComponent und SpriteAnimationComponent-Subklassen,
 // die render() komplett selbst überschreiben.
-Future<SpriteAnimation> _mkAnim() async {
+Future<SpriteAnimation> _createPlaceholderAnim() async {
   final rec = ui.PictureRecorder();
   Canvas(rec, const Rect.fromLTWH(0, 0, 2, 2))
       .drawRect(const Rect.fromLTWH(0, 0, 2, 2),
@@ -204,7 +204,7 @@ class LumoFlameJumpGame extends FlameGame {
     interactionLock = true;
     pauseEngine();
     final seed  = DateTime.now().millisecondsSinceEpoch + _solvedCount * 11;
-    final task  = block.isGerman ? _createGermanTask(seed) : _createMathTask(seed);
+    final task  = block.isGerman ? createGermanTask(seed) : createMathTask(seed);
     final title = block.isGerman ? 'Deutsch-Frageblock 🦊' : 'Mathe-Frageblock 🔢';
     final ok    = await onQuestionNeeded(title, task);
     if (ok) {
@@ -286,7 +286,7 @@ class LumoFlameJumpGame extends FlameGame {
 
   // ── Lernaufgaben ──────────────────────────────────────────────────────
 
-  LumoLearningTask _createMathTask(int seed) {
+  LumoLearningTask createMathTask(int seed) {
     final grade = math.max(level.gradeFloor, appState.state.grade);
     const units = ['Plus bis 10', 'Minus bis 10', 'Mengenvergleich', 'Zahlenstrahl'];
     final unit  = units[seed.abs() % units.length];
@@ -294,7 +294,7 @@ class LumoFlameJumpGame extends FlameGame {
     return LumoLearningTask(prompt: t.prompt, choices: t.choices, answer: t.answer);
   }
 
-  LumoLearningTask _createGermanTask(int seed) {
+  LumoLearningTask createGermanTask(int seed) {
     final grade = math.max(level.gradeFloor, appState.state.grade);
     const units = ['Anfangslaute', 'Endlaute', 'Silben', 'Wort-Bild-Zuordnung'];
     final unit  = units[seed.abs() % units.length];
@@ -594,7 +594,7 @@ class StarCoinComponent extends SpriteAnimationComponent {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    animation = await _mkAnim();
+    animation = await _createPlaceholderAnim();
     anchor    = Anchor.topLeft;
   }
 
@@ -1080,7 +1080,7 @@ class FoxPlayerComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    final anim = await _mkAnim();
+    final anim = await _createPlaceholderAnim();
     animations  = {for (final s in FoxAnimationState.values) s: anim};
     current     = FoxAnimationState.idle;
   }
@@ -1428,7 +1428,7 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
     var    streak   = 0;
     var    seed     = DateTime.now().millisecondsSinceEpoch;
     String feedback = 'Beantworte 3 Aufgaben hintereinander richtig.';
-    LumoLearningTask task = _game._createMathTask(seed);
+    LumoLearningTask task = _game.createMathTask(seed);
 
     await showDialog<void>(
       context:           context,
@@ -1449,14 +1449,14 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
                 }
                 final rem = 3 - streak;
                 seed += 29;
-                task = _game._createMathTask(seed);
+                task = _game.createMathTask(seed);
                 selected = null;
                 localSet(() => feedback =
                     'Stark! Noch $rem ${rem == 1 ? "richtige Aufgabe" : "richtige Aufgaben"}.');
               } else {
                 streak = 0;
                 seed += 41;
-                task = _game._createMathTask(seed);
+                task = _game.createMathTask(seed);
                 selected = null;
                 localSet(
                     () => feedback = 'Fast! Wir starten die 3er-Serie neu.');
