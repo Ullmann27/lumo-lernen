@@ -1462,13 +1462,33 @@ class _LumoJumpPainter extends CustomPainter {
       ).createShader(Offset.zero & size);
     canvas.drawRect(Offset.zero & size, skyPaint);
 
-    // ── 2. Parallax-Schicht: Sonne/Mond ────────────────────────
-    final sunPaint = Paint()..color = theme.sunColor.withOpacity(0.85);
-    canvas.drawCircle(Offset(size.width * 0.78, size.height * 0.18), 36, sunPaint);
-    canvas.drawCircle(
-        Offset(size.width * 0.78, size.height * 0.18),
-        50,
-        Paint()..color = theme.sunColor.withOpacity(0.18));
+    // ── 2. Sonne mit Strahlen + Glow (Pixar-Style) ─────────────
+    final sunCenter = Offset(size.width * 0.78, size.height * 0.18);
+    // Aeusserer Glow
+    canvas.drawCircle(sunCenter, 76, Paint()..color = theme.sunColor.withOpacity(0.10));
+    canvas.drawCircle(sunCenter, 58, Paint()..color = theme.sunColor.withOpacity(0.18));
+    canvas.drawCircle(sunCenter, 44, Paint()..color = theme.sunColor.withOpacity(0.28));
+    // Sonnenstrahlen (8 Strahlen, leicht animiert)
+    final rayPaint = Paint()
+      ..color = theme.sunColor.withOpacity(0.35)
+      ..strokeWidth = 4
+      ..strokeCap = StrokeCap.round;
+    for (var i = 0; i < 8; i++) {
+      final a = (i / 8) * math.pi * 2 + animTime * 0.3;
+      final inner = sunCenter + Offset(math.cos(a) * 42, math.sin(a) * 42);
+      final outer = sunCenter + Offset(math.cos(a) * (58 + math.sin(animTime * 2 + i) * 4),
+                                       math.sin(a) * (58 + math.sin(animTime * 2 + i) * 4));
+      canvas.drawLine(inner, outer, rayPaint);
+    }
+    // Sonnenscheibe selbst
+    canvas.drawCircle(sunCenter, 36, Paint()..color = theme.sunColor.withOpacity(0.95));
+    canvas.drawCircle(sunCenter, 36,
+        Paint()
+          ..color = Colors.white.withOpacity(0.5)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.inner, 8));
+    // Highlight oben links
+    canvas.drawCircle(sunCenter + const Offset(-8, -8), 8,
+        Paint()..color = Colors.white.withOpacity(0.6));
 
     // Shake-Offset wird auf alle bewegten Schichten angewendet
     canvas.save();
@@ -1497,7 +1517,84 @@ class _LumoJumpPainter extends CustomPainter {
     _paintConfetti(canvas);
 
     canvas.restore();
+    // Vordergrund-Pflanzen am Bildschirmrand (KEINE cameraX-Translation,
+    // immer sichtbar wie Foliage am Kamera-Objektiv)
+    _paintForegroundFoliage(canvas, size);
     canvas.restore();
+  }
+
+  /// Pflanzen + Blumen am unteren Bildschirmrand fuer Tiefen-Effekt
+  /// wie im Pixar-Referenzbild.
+  void _paintForegroundFoliage(Canvas canvas, Size size) {
+    final baseY = size.height;
+    final leafDark = Paint()..color = const Color(0xFF166534);
+    final leafBright = Paint()..color = const Color(0xFF22C55E);
+
+    // Linker Pflanzen-Cluster
+    _paintLeafCluster(canvas, Offset(20, baseY - 24), 1.0, leafDark, leafBright);
+    _paintLeafCluster(canvas, Offset(60, baseY - 14), 0.8, leafDark, leafBright);
+    // Linke Blume gross
+    _paintBigFlower(canvas, Offset(38, baseY - 30), const Color(0xFFFB7185));
+    _paintBigFlower(canvas, Offset(78, baseY - 22), const Color(0xFFFCD34D));
+
+    // Rechter Pflanzen-Cluster
+    _paintLeafCluster(canvas, Offset(size.width - 30, baseY - 22), 1.0, leafDark, leafBright);
+    _paintLeafCluster(canvas, Offset(size.width - 70, baseY - 12), 0.85, leafDark, leafBright);
+    _paintBigFlower(canvas, Offset(size.width - 50, baseY - 28), const Color(0xFFE0F2FE));
+    _paintBigFlower(canvas, Offset(size.width - 90, baseY - 18), const Color(0xFFFB7185));
+
+    // Mitte: Gras-Tufts
+    for (var x = 130.0; x < size.width - 130; x += 50) {
+      _paintGrassTuft(canvas, Offset(x, baseY - 4), leafBright);
+    }
+  }
+
+  void _paintLeafCluster(Canvas canvas, Offset c, double scale, Paint dark, Paint bright) {
+    // Mehrere Blaetter-Ovale
+    for (var i = 0; i < 5; i++) {
+      final a = (i / 5) * math.pi - math.pi / 2;
+      final px = c.dx + math.cos(a) * 14 * scale;
+      final py = c.dy + math.sin(a) * 14 * scale;
+      canvas.drawOval(
+          Rect.fromCenter(center: Offset(px, py), width: 18 * scale, height: 28 * scale),
+          dark);
+    }
+    // Hellere Blaetter dauf
+    for (var i = 0; i < 3; i++) {
+      final a = (i / 3) * math.pi - math.pi / 2;
+      final px = c.dx + math.cos(a) * 8 * scale;
+      final py = c.dy + math.sin(a) * 8 * scale - 4;
+      canvas.drawOval(
+          Rect.fromCenter(center: Offset(px, py), width: 14 * scale, height: 22 * scale),
+          bright);
+    }
+  }
+
+  void _paintBigFlower(Canvas canvas, Offset c, Color petalColor) {
+    // 5 Blütenblätter
+    for (var i = 0; i < 5; i++) {
+      final a = (i / 5) * math.pi * 2 - math.pi / 2;
+      final px = c.dx + math.cos(a) * 6;
+      final py = c.dy + math.sin(a) * 6;
+      canvas.drawCircle(Offset(px, py), 5,
+          Paint()..color = petalColor.withOpacity(0.85));
+      canvas.drawCircle(Offset(px - 1, py - 1), 2.5,
+          Paint()..color = Colors.white.withOpacity(0.5));
+    }
+    canvas.drawCircle(c, 3, Paint()..color = const Color(0xFFFCD34D));
+    canvas.drawCircle(c.translate(-0.5, -0.5), 1.5, Paint()..color = Colors.white);
+  }
+
+  void _paintGrassTuft(Canvas canvas, Offset base, Paint p) {
+    for (var i = -1; i <= 1; i++) {
+      canvas.drawLine(
+          Offset(base.dx + i * 3, base.dy),
+          Offset(base.dx + i * 3, base.dy - 6 - (i.abs() == 1 ? 0 : 2)),
+          Paint()
+            ..color = p.color
+            ..strokeWidth = 2
+            ..strokeCap = StrokeCap.round);
+    }
   }
 
   // ── Wolken/Partikel-Schicht ──────────────────────────────────
@@ -1530,10 +1627,27 @@ class _LumoJumpPainter extends CustomPainter {
   }
 
   void _paintCloud(Canvas canvas, Offset c, double scale, Paint p) {
+    // Schatten unten (weicher Untergrund)
+    final shadow = Paint()
+      ..color = const Color(0xFFCBD5E1).withOpacity(0.35);
+    canvas.drawCircle(c.translate(0, 4 * scale), 19 * scale, shadow);
+    canvas.drawCircle(c.translate(20 * scale, -2 * scale), 23 * scale, shadow);
+    canvas.drawCircle(c.translate(40 * scale, 4 * scale), 19 * scale, shadow);
+
+    // Wolke Hauptkoerper (mehrere Kreise = weiche Form)
     canvas.drawCircle(c, 18 * scale, p);
-    canvas.drawCircle(c.translate(20 * scale, -6 * scale), 22 * scale, p);
-    canvas.drawCircle(c.translate(40 * scale, 0), 18 * scale, p);
-    canvas.drawCircle(c.translate(22 * scale, 8 * scale), 16 * scale, p);
+    canvas.drawCircle(c.translate(14 * scale, -8 * scale), 18 * scale, p);
+    canvas.drawCircle(c.translate(28 * scale, -10 * scale), 20 * scale, p);
+    canvas.drawCircle(c.translate(44 * scale, -4 * scale), 18 * scale, p);
+    canvas.drawCircle(c.translate(50 * scale, 2 * scale), 16 * scale, p);
+    canvas.drawCircle(c.translate(36 * scale, 10 * scale), 18 * scale, p);
+    canvas.drawCircle(c.translate(20 * scale, 12 * scale), 17 * scale, p);
+    canvas.drawCircle(c.translate(6 * scale, 8 * scale), 16 * scale, p);
+
+    // Heller Hoehepunkt oben (Cloud-Top-Highlight)
+    final highlight = Paint()..color = Colors.white;
+    canvas.drawCircle(c.translate(14 * scale, -10 * scale), 9 * scale, highlight);
+    canvas.drawCircle(c.translate(28 * scale, -12 * scale), 11 * scale, highlight);
   }
 
   void _paintMountainLayer(Canvas canvas, Size size,
@@ -1556,57 +1670,167 @@ class _LumoJumpPainter extends CustomPainter {
     canvas.drawPath(path, p);
   }
 
-  // ── Plattformen mit Premium-Stil ─────────────────────────────
+  // ── Plattformen Premium-Stil (Wiese mit Gras, Steinen, Blumen) ───
   void _paintPlatforms(Canvas canvas) {
     for (final platform in platforms) {
       final r = platform.rect;
-      final platTop = Rect.fromLTWH(r.left, r.top, r.width, 14);
-      final platBody = Rect.fromLTWH(r.left, r.top + 14, r.width, r.height - 14);
-      // Top-Schicht (Gras/Eis/Sand)
-      canvas.drawRRect(
-          RRect.fromRectAndCorners(platTop,
-              topLeft: const Radius.circular(12),
-              topRight: const Radius.circular(12)),
-          Paint()..color = theme.platformTop);
-      // Body (Erde/Stein)
-      canvas.drawRRect(
-          RRect.fromRectAndCorners(platBody,
-              bottomLeft: const Radius.circular(8),
-              bottomRight: const Radius.circular(8)),
-          Paint()..color = theme.platformBody);
-      // Akzent-Linie an der Oberkante
+
+      // ── 1. Erde-Body mit organischem Boden ──
+      final bodyPath = Path()
+        ..moveTo(r.left, r.top + 18)
+        ..lineTo(r.left, r.bottom - 8)
+        ..quadraticBezierTo(r.left + 6, r.bottom, r.left + 16, r.bottom)
+        ..lineTo(r.right - 16, r.bottom)
+        ..quadraticBezierTo(r.right - 6, r.bottom, r.right, r.bottom - 8)
+        ..lineTo(r.right, r.top + 18)
+        ..close();
+      canvas.drawPath(bodyPath, Paint()..color = theme.platformBody);
+
+      // Erdschicht-Linien (Tiefe simulieren)
+      final earthLine = Paint()
+        ..color = theme.platformBody.withOpacity(0.6)
+        ..strokeWidth = 1.5;
+      final earthDarkLine = Paint()
+        ..color = const Color(0xFF422006).withOpacity(0.4)
+        ..strokeWidth = 1.2;
       canvas.drawLine(
-          Offset(r.left + 6, r.top + 14),
-          Offset(r.right - 6, r.top + 14),
-          Paint()
-            ..color = theme.platformAccent
-            ..strokeWidth = 2);
+          Offset(r.left + 6, r.top + 32), Offset(r.right - 6, r.top + 32), earthLine);
+      canvas.drawLine(
+          Offset(r.left + 4, r.top + 48), Offset(r.right - 4, r.top + 48), earthDarkLine);
+
+      // Stein-Klumpen in der Erde (deterministische Position pro Plattform)
+      final seed = r.left.toInt();
+      for (var i = 0; i < 4; i++) {
+        final sx = r.left + 20 + ((seed + i * 47) % (r.width.toInt() - 40));
+        final sy = r.top + 30 + ((seed + i * 31) % math.max(1, r.height.toInt() - 50));
+        final sr = 4.0 + ((seed + i * 13) % 3);
+        // Stein-Schatten
+        canvas.drawCircle(Offset(sx + 1, sy + 1), sr, Paint()..color = const Color(0x40000000));
+        // Stein-Hauptfarbe
+        canvas.drawCircle(Offset(sx, sy), sr,
+            Paint()..color = const Color(0xFF78716C));
+        // Stein-Highlight
+        canvas.drawCircle(Offset(sx - sr * 0.4, sy - sr * 0.4), sr * 0.35,
+            Paint()..color = const Color(0xFFA8A29E));
+      }
+
+      // ── 2. Gras-Top-Schicht ──
+      final grassTop = Rect.fromLTWH(r.left, r.top, r.width, 22);
+      canvas.drawRRect(
+          RRect.fromRectAndCorners(grassTop,
+              topLeft: const Radius.circular(14),
+              topRight: const Radius.circular(14)),
+          Paint()..color = theme.platformTop);
+
+      // Helligkeits-Highlight oben (Gras-Glow)
+      canvas.drawRRect(
+          RRect.fromLTRBR(r.left + 4, r.top + 2, r.right - 4, r.top + 6, const Radius.circular(6)),
+          Paint()..color = Colors.white.withOpacity(0.25));
+
+      // ── 3. Gras-Fransen oben (kleine vertikale Striche) ──
+      final fringe = Paint()
+        ..color = theme.platformTop
+        ..strokeWidth = 2
+        ..strokeCap = StrokeCap.round;
+      final fringeDark = Paint()
+        ..color = theme.platformAccent
+        ..strokeWidth = 1.5
+        ..strokeCap = StrokeCap.round;
+      for (var x = r.left + 4; x < r.right - 4; x += 6) {
+        final h = 4.0 + ((x.toInt() + seed) % 3);
+        canvas.drawLine(Offset(x, r.top), Offset(x, r.top - h), fringe);
+        if (((x.toInt() + seed) % 3) == 0) {
+          canvas.drawLine(Offset(x + 2, r.top), Offset(x + 2, r.top - h * 1.2), fringeDark);
+        }
+      }
+
+      // ── 4. Blumen oben drauf (deterministische Spots) ──
+      for (var i = 0; i < 3; i++) {
+        final fx = r.left + 30 + ((seed * 7 + i * 53) % (r.width.toInt() - 60));
+        final fy = r.top - 2;
+        _paintFlower(canvas, Offset(fx.toDouble(), fy), i);
+      }
     }
+  }
+
+  /// Kleine 5-Blatt-Blume in verschiedenen Farben.
+  void _paintFlower(Canvas canvas, Offset center, int variant) {
+    final colors = <Color>[
+      const Color(0xFFEF4444), // rot
+      const Color(0xFFF472B6), // pink
+      const Color(0xFFFCD34D), // gelb
+      const Color(0xFFE0E7FF), // weiss-blau
+    ];
+    final petalColor = colors[variant % colors.length];
+    // 5 Blütenblätter
+    for (var i = 0; i < 5; i++) {
+      final a = (i / 5) * math.pi * 2;
+      final px = center.dx + math.cos(a) * 3.5;
+      final py = center.dy + math.sin(a) * 3.5;
+      canvas.drawCircle(Offset(px, py), 2.4, Paint()..color = petalColor);
+    }
+    // Gelbes Zentrum
+    canvas.drawCircle(center, 1.8, Paint()..color = const Color(0xFFFCD34D));
   }
 
   void _paintObstacles(Canvas canvas) {
     for (final obstacle in obstacles) {
       if (!obstacle.active) continue;
       if (obstacle.type == _GameObjectType.breakableCrate) {
-        // Hoelzerne Kiste mit Holzmaserung
+        // Premium-Holzkiste mit X-Beschlag (wie Referenzbild)
         final r = obstacle.rect;
+        // Schatten unter der Kiste
+        canvas.drawRRect(
+            RRect.fromRectAndRadius(r.shift(const Offset(2, 3)), const Radius.circular(6)),
+            Paint()..color = Colors.black.withOpacity(0.25));
+        // Holz-Body mit Gradient
         canvas.drawRRect(
             RRect.fromRectAndRadius(r, const Radius.circular(6)),
-            Paint()..color = const Color(0xFF92400E));
-        // Holzplanken-Linien
-        final linePaint = Paint()
-          ..color = const Color(0xFF7C2D12)
-          ..strokeWidth = 2;
-        canvas.drawLine(Offset(r.left, r.top + r.height / 3),
-            Offset(r.right, r.top + r.height / 3), linePaint);
-        canvas.drawLine(Offset(r.left, r.top + 2 * r.height / 3),
-            Offset(r.right, r.top + 2 * r.height / 3), linePaint);
-        // Eisen-Beschlag-Punkte
+            Paint()
+              ..shader = LinearGradient(
+                colors: <Color>[
+                  const Color(0xFFA16207),
+                  const Color(0xFF78350F),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ).createShader(r));
+        // Holzmaserung (sanfte vertikale Linien)
+        final grainPaint = Paint()
+          ..color = const Color(0xFF422006).withOpacity(0.25)
+          ..strokeWidth = 1;
+        for (var i = 1; i < 4; i++) {
+          final x = r.left + r.width * i / 4;
+          canvas.drawLine(Offset(x, r.top + 4), Offset(x, r.bottom - 4), grainPaint);
+        }
+        // X-Beschlag (Kreuz auf Front-Seite) wie Referenzbild
+        final framePaint = Paint()
+          ..color = const Color(0xFFEAB308)
+          ..strokeWidth = 3
+          ..strokeCap = StrokeCap.round;
+        canvas.drawLine(
+            Offset(r.left + 4, r.top + 4), Offset(r.right - 4, r.bottom - 4), framePaint);
+        canvas.drawLine(
+            Offset(r.right - 4, r.top + 4), Offset(r.left + 4, r.bottom - 4), framePaint);
+        // Rahmen-Ecken (Eisen-Beschlag)
+        final cornerPaint = Paint()
+          ..color = const Color(0xFFEAB308)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 3;
+        canvas.drawRRect(
+            RRect.fromRectAndRadius(r.deflate(3), const Radius.circular(4)), cornerPaint);
+        // Eisen-Niete (4 Ecken)
         final boltPaint = Paint()..color = const Color(0xFF422006);
-        canvas.drawCircle(Offset(r.left + 5, r.top + 5), 2.5, boltPaint);
-        canvas.drawCircle(Offset(r.right - 5, r.top + 5), 2.5, boltPaint);
-        canvas.drawCircle(Offset(r.left + 5, r.bottom - 5), 2.5, boltPaint);
-        canvas.drawCircle(Offset(r.right - 5, r.bottom - 5), 2.5, boltPaint);
+        final boltHighlight = Paint()..color = const Color(0xFFFCD34D);
+        for (final pos in [
+          Offset(r.left + 6, r.top + 6),
+          Offset(r.right - 6, r.top + 6),
+          Offset(r.left + 6, r.bottom - 6),
+          Offset(r.right - 6, r.bottom - 6),
+        ]) {
+          canvas.drawCircle(pos, 2.8, boltPaint);
+          canvas.drawCircle(pos.translate(-0.8, -0.8), 1.0, boltHighlight);
+        }
       } else {
         final color = obstacle.requiresDuck
             ? const Color(0xFF7C3AED) // Lila: ducken
@@ -1657,31 +1881,58 @@ class _LumoJumpPainter extends CustomPainter {
   }
 
   void _paintStars(Canvas canvas) {
-    final starPaint = Paint()..color = const Color(0xFFFACC15);
-    final glowPaint = Paint()..color = const Color(0xFFFEF3C7).withOpacity(0.45);
     for (final star in stars) {
       if (star.collected) continue;
-      final s = 10 * star.scalePulse;
+      final s = 14 * star.scalePulse;
       final cx = star.position.dx;
-      final cy = star.position.dy + math.sin(animTime * 2 + star.position.dx) * 2;
-      // Glow
-      canvas.drawCircle(Offset(cx, cy), s * 1.7, glowPaint);
-      // Stern-Form
-      final path = Path()
-        ..moveTo(cx, cy - s)
-        ..lineTo(cx + s * 0.35, cy - s * 0.2)
-        ..lineTo(cx + s, cy - s * 0.1)
-        ..lineTo(cx + s * 0.5, cy + s * 0.25)
-        ..lineTo(cx + s * 0.65, cy + s)
-        ..lineTo(cx, cy + s * 0.55)
-        ..lineTo(cx - s * 0.65, cy + s)
-        ..lineTo(cx - s * 0.5, cy + s * 0.25)
-        ..lineTo(cx - s, cy - s * 0.1)
-        ..lineTo(cx - s * 0.35, cy - s * 0.2)
-        ..close();
-      canvas.drawPath(path, starPaint);
-      // Highlight im Stern
-      canvas.drawCircle(Offset(cx - s * 0.25, cy - s * 0.25), 2, Paint()..color = Colors.white);
+      final cy = star.position.dy + math.sin(animTime * 2 + star.position.dx) * 3;
+      final center = Offset(cx, cy);
+
+      // Outer Glow (golden aura)
+      canvas.drawCircle(center, s * 1.5,
+          Paint()..color = const Color(0xFFFEF3C7).withOpacity(0.4));
+      canvas.drawCircle(center, s * 1.2,
+          Paint()..color = const Color(0xFFFCD34D).withOpacity(0.4));
+
+      // Coin-Ring (aussen, dunkleres Gold)
+      canvas.drawCircle(center, s,
+          Paint()..color = const Color(0xFFB45309));
+      // Coin-Body (Hauptgold mit Gradient)
+      canvas.drawCircle(
+          center,
+          s - 1.5,
+          Paint()
+            ..shader = RadialGradient(
+              colors: <Color>[
+                const Color(0xFFFEF08A), // hell
+                const Color(0xFFFACC15), // gold
+                const Color(0xFFD97706), // dunkelgold
+              ],
+              stops: const <double>[0.0, 0.55, 1.0],
+            ).createShader(Rect.fromCircle(center: center, radius: s)));
+
+      // Innen-Stern (5-Zack)
+      final innerS = s * 0.55;
+      final starPath = Path();
+      for (var i = 0; i < 10; i++) {
+        final a = -math.pi / 2 + (i / 10) * math.pi * 2;
+        final r = i.isEven ? innerS : innerS * 0.5;
+        final px = cx + math.cos(a) * r;
+        final py = cy + math.sin(a) * r;
+        if (i == 0) {
+          starPath.moveTo(px, py);
+        } else {
+          starPath.lineTo(px, py);
+        }
+      }
+      starPath.close();
+      canvas.drawPath(starPath, Paint()..color = const Color(0xFFFEF3C7));
+
+      // Glanz-Highlight (oben links auf der Muenze)
+      canvas.drawCircle(center.translate(-s * 0.35, -s * 0.35), s * 0.22,
+          Paint()..color = Colors.white.withOpacity(0.85));
+      canvas.drawCircle(center.translate(-s * 0.4, -s * 0.4), s * 0.10,
+          Paint()..color = Colors.white);
     }
   }
 
@@ -1751,96 +2002,151 @@ class _LumoJumpPainter extends CustomPainter {
       return;
     }
 
-    // Schwanz (hinter dem Körper)
-    final tailWag = math.sin(animTime * 8) * 0.15 * dir;
+    // Schatten unter dem Fuchs
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: Offset(cx, r.bottom + 4), width: w * 0.7, height: 6),
+        Paint()..color = Colors.black.withOpacity(0.2));
+
+    // Schwanz (hinter dem Körper, buschiger)
+    final tailWag = math.sin(animTime * 8) * 0.18 * dir;
     canvas.save();
-    canvas.translate(cx - 14 * dir, cy + h * 0.05);
+    canvas.translate(cx - 16 * dir, cy + h * 0.05);
     canvas.rotate(tailWag);
+    // Schwanz-Hauptform (groesser, buschiger)
     final tailPath = Path()
       ..moveTo(0, 0)
-      ..quadraticBezierTo(-12 * dir, -8, -22 * dir, -4)
-      ..quadraticBezierTo(-28 * dir, 8, -18 * dir, 14)
-      ..quadraticBezierTo(-8 * dir, 8, 0, 4)
+      ..quadraticBezierTo(-14 * dir, -10, -26 * dir, -6)
+      ..quadraticBezierTo(-32 * dir, 4, -28 * dir, 12)
+      ..quadraticBezierTo(-22 * dir, 18, -12 * dir, 16)
+      ..quadraticBezierTo(-4 * dir, 12, 0, 6)
       ..close();
     canvas.drawPath(tailPath, Paint()..color = bodyColor);
-    // Weisse Schwanzspitze
-    canvas.drawCircle(Offset(-22 * dir, 4), 6, Paint()..color = Colors.white);
+    // Dunkleres Innen des Schwanzes
+    final tailInner = Path()
+      ..moveTo(-4 * dir, 2)
+      ..quadraticBezierTo(-12 * dir, -4, -18 * dir, 0)
+      ..quadraticBezierTo(-22 * dir, 8, -18 * dir, 12)
+      ..quadraticBezierTo(-10 * dir, 12, -4 * dir, 8)
+      ..close();
+    canvas.drawPath(tailInner, Paint()..color = accentColor.withOpacity(0.4));
+    // Weisse Schwanzspitze (groesser, runder)
+    canvas.drawCircle(Offset(-26 * dir, 4), 8, Paint()..color = Colors.white);
+    canvas.drawCircle(Offset(-28 * dir, 2), 5, Paint()..color = const Color(0xFFFEDBA4));
     canvas.restore();
 
-    // Hauptkoerper - eiförmig
-    final bodyRect = Rect.fromCenter(center: Offset(cx, cy + 2), width: w * 0.78, height: h * 0.78);
+    // Hauptkoerper - kleiner, runder (Pixar-Proportionen: kleiner Body, grosser Kopf)
+    final bodyRect = Rect.fromCenter(
+        center: Offset(cx, cy + h * 0.12),
+        width: w * 0.7,
+        height: h * 0.58);
     canvas.drawOval(bodyRect, Paint()..color = bodyColor);
 
     // Bauchpartie (heller, vorne)
     final bellyRect = Rect.fromCenter(
-        center: Offset(cx + 6 * dir, cy + h * 0.18),
-        width: w * 0.5,
-        height: h * 0.42);
+        center: Offset(cx + 4 * dir, cy + h * 0.22),
+        width: w * 0.42,
+        height: h * 0.36);
     canvas.drawOval(bellyRect, Paint()..color = bellyColor);
 
-    // Kopf (kreisförmig, oben vorne)
-    final headCx = cx + 8 * dir;
-    final headCy = cy - h * 0.18;
-    canvas.drawCircle(Offset(headCx, headCy), w * 0.32, Paint()..color = bodyColor);
-    // Gesichts-Maske (heller Bereich um Schnauze)
-    canvas.drawCircle(Offset(headCx + 4 * dir, headCy + 4), w * 0.22, Paint()..color = bellyColor);
+    // ── Kopf - GROSS (Pixar/Chibi-Style) ──────────────────────
+    final headCx = cx + 6 * dir;
+    final headCy = cy - h * 0.22;
+    final headR = w * 0.42; // viel groesser als vorher
+    // Kopf-Body
+    canvas.drawCircle(Offset(headCx, headCy), headR, Paint()..color = bodyColor);
 
-    // Ohren - dreieckig
+    // Schnauze (heller Bereich um Mund/Nase, prominenter)
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: Offset(headCx + 6 * dir, headCy + 8),
+            width: headR * 1.05,
+            height: headR * 0.8),
+        Paint()..color = bellyColor);
+
+    // Wangen-Rouge (Pausbacken, Pixar-typisch)
+    final cheekPaint = Paint()..color = const Color(0xFFFB7185).withOpacity(0.5);
+    canvas.drawCircle(Offset(headCx - 8 * dir, headCy + 6), 4, cheekPaint);
+    canvas.drawCircle(Offset(headCx + 14 * dir, headCy + 6), 4, cheekPaint);
+
+    // ── Ohren - groesser, dreieckig, niedlich ─────────────────
     final earColor = bodyColor;
     final earInner = accentColor;
+    // Vorderes Ohr
     final earL = Path()
-      ..moveTo(headCx - 14 * dir, headCy - w * 0.22)
-      ..lineTo(headCx - 4 * dir, headCy - w * 0.42)
-      ..lineTo(headCx + 4 * dir, headCy - w * 0.18)
+      ..moveTo(headCx - 16 * dir, headCy - headR * 0.55)
+      ..quadraticBezierTo(headCx - 6 * dir, headCy - headR * 1.15,
+                         headCx + 4 * dir, headCy - headR * 0.45)
       ..close();
     canvas.drawPath(earL, Paint()..color = earColor);
-    // Innen-Ohr
+    // Innen-Ohr (Pink-Akzent)
     final earLInner = Path()
-      ..moveTo(headCx - 10 * dir, headCy - w * 0.22)
-      ..lineTo(headCx - 5 * dir, headCy - w * 0.34)
-      ..lineTo(headCx + 0 * dir, headCy - w * 0.20)
+      ..moveTo(headCx - 10 * dir, headCy - headR * 0.55)
+      ..quadraticBezierTo(headCx - 4 * dir, headCy - headR * 0.95,
+                         headCx + 2 * dir, headCy - headR * 0.5)
       ..close();
-    canvas.drawPath(earLInner, Paint()..color = earInner);
-    // Zweites Ohr (hinten, etwas kleiner)
+    canvas.drawPath(earLInner, Paint()..color = const Color(0xFFFB7185));
+
+    // Hinteres Ohr (kleiner, hinten)
     final earR = Path()
-      ..moveTo(headCx + 8 * dir, headCy - w * 0.20)
-      ..lineTo(headCx + 18 * dir, headCy - w * 0.36)
-      ..lineTo(headCx + 22 * dir, headCy - w * 0.10)
+      ..moveTo(headCx + 10 * dir, headCy - headR * 0.45)
+      ..quadraticBezierTo(headCx + 20 * dir, headCy - headR * 1.0,
+                         headCx + 26 * dir, headCy - headR * 0.25)
       ..close();
     canvas.drawPath(earR, Paint()..color = earColor);
 
-    // Augen (gross, kindlich - Pixar-Style)
+    // ── Augen - RIESIG, Pixar-Stil ────────────────────────────
     final eyeY = headCy + 2;
-    final eyeLx = headCx - 6 * dir;
-    final eyeRx = headCx + 6 * dir;
+    final eyeLx = headCx - 7 * dir;
+    final eyeRx = headCx + 8 * dir;
+    final eyeSize = 7.5; // grosse Kulleraugen
     // Augen-Weiss
-    canvas.drawCircle(Offset(eyeLx, eyeY), 5, Paint()..color = Colors.white);
-    canvas.drawCircle(Offset(eyeRx, eyeY), 5, Paint()..color = Colors.white);
-    // Pupillen (Blickrichtung folgt Lauf-Richtung)
-    canvas.drawCircle(Offset(eyeLx + 1.5 * dir, eyeY), 2.8,
-        Paint()..color = const Color(0xFF1F2937));
-    canvas.drawCircle(Offset(eyeRx + 1.5 * dir, eyeY), 2.8,
-        Paint()..color = const Color(0xFF1F2937));
-    // Glanz-Punkte
-    canvas.drawCircle(Offset(eyeLx + 2 * dir, eyeY - 1.5), 0.9,
+    canvas.drawCircle(Offset(eyeLx, eyeY), eyeSize, Paint()..color = Colors.white);
+    canvas.drawCircle(Offset(eyeRx, eyeY), eyeSize, Paint()..color = Colors.white);
+    // Iris (braun-warm)
+    canvas.drawCircle(Offset(eyeLx + 1.5 * dir, eyeY + 0.5), eyeSize * 0.7,
+        Paint()..color = const Color(0xFF422006));
+    canvas.drawCircle(Offset(eyeRx + 1.5 * dir, eyeY + 0.5), eyeSize * 0.7,
+        Paint()..color = const Color(0xFF422006));
+    // Pupille (gross, schwarz)
+    canvas.drawCircle(Offset(eyeLx + 2 * dir, eyeY + 1), eyeSize * 0.45,
+        Paint()..color = const Color(0xFF0F172A));
+    canvas.drawCircle(Offset(eyeRx + 2 * dir, eyeY + 1), eyeSize * 0.45,
+        Paint()..color = const Color(0xFF0F172A));
+    // Grosser Glanz-Highlight
+    canvas.drawCircle(Offset(eyeLx + 1 * dir, eyeY - 2), 2.4,
         Paint()..color = Colors.white);
-    canvas.drawCircle(Offset(eyeRx + 2 * dir, eyeY - 1.5), 0.9,
+    canvas.drawCircle(Offset(eyeRx + 1 * dir, eyeY - 2), 2.4,
+        Paint()..color = Colors.white);
+    // Kleiner zweiter Glanz
+    canvas.drawCircle(Offset(eyeLx + 3 * dir, eyeY + 2), 1.0,
+        Paint()..color = Colors.white.withOpacity(0.8));
+    canvas.drawCircle(Offset(eyeRx + 3 * dir, eyeY + 2), 1.0,
+        Paint()..color = Colors.white.withOpacity(0.8));
+
+    // ── Nase + Schnauze - klein und suess ─────────────────────
+    final noseX = headCx + 10 * dir;
+    final noseY = headCy + 10;
+    // Nasen-Schatten
+    canvas.drawCircle(Offset(noseX, noseY + 0.5), 3, Paint()..color = Colors.black.withOpacity(0.15));
+    // Nase
+    canvas.drawCircle(Offset(noseX, noseY), 3,
+        Paint()..color = const Color(0xFF1F2937));
+    // Nasen-Highlight
+    canvas.drawCircle(Offset(noseX - 1, noseY - 1), 0.9,
         Paint()..color = Colors.white);
 
-    // Schnauze - kleine Nase + Mund
-    final noseX = headCx + 12 * dir;
-    final noseY = headCy + 10;
-    canvas.drawCircle(Offset(noseX, noseY), 2.5, Paint()..color = const Color(0xFF1F2937));
-    // Mund - kleine Kurve
+    // Mund - kleine laechelnde Kurve
     final mouthPath = Path()
-      ..moveTo(noseX - 3, noseY + 2)
-      ..quadraticBezierTo(noseX, noseY + 5, noseX + 3, noseY + 2);
+      ..moveTo(noseX - 4, noseY + 3)
+      ..quadraticBezierTo(noseX, noseY + 6, noseX + 4, noseY + 3);
     canvas.drawPath(
         mouthPath,
         Paint()
           ..color = const Color(0xFF1F2937)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.2);
+          ..strokeWidth = 1.4
+          ..strokeCap = StrokeCap.round);
 
     // Pfoten / Beine
     final legColor = accentColor;
