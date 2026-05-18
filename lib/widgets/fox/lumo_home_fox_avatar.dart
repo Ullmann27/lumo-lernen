@@ -90,8 +90,10 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
   }
 
   // ── Kurzer Name (nicht leer) ──────────────────────────────────────────
-  String get _name =>
-      widget.childName.trim().isEmpty ? '' : ' ${widget.childName.trim()}';
+  String get _name {
+    final trimmed = widget.childName.trim();
+    return trimmed.isEmpty ? '' : ' $trimmed';
+  }
 
   // ── Speech-Bubble Texte ───────────────────────────────────────────────
 
@@ -236,8 +238,8 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
 
     if (pick < 0.22) {
       // 22 % – Wandern (links/rechts laufen)
-      final newTarget =
-          ((_rng.nextDouble() * 2 - 1) * _maxWander).clamp(-_maxWander, _maxWander);
+      // Wert liegt bereits im Bereich [-_maxWander, _maxWander], clamp nicht nötig.
+      final newTarget = (_rng.nextDouble() * 2 - 1) * _maxWander;
       setState(() {
         _wanderFrom     = _wanderX;
         _wanderTarget   = newTarget;
@@ -328,12 +330,14 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
 
   // ── Langeweile-Check ──────────────────────────────────────────────────
   // Wenn > 30 Sekunden kein Tap: Lumo zeigt Langeweile-Bubble
+  // _noTapSentinel: Sentinel-Dauer wenn noch nie getippt wurde.
+  static const Duration _noTapSentinel = Duration(hours: 24);
 
   void _scheduleBoredCheck() {
     _boredTimer = Timer(const Duration(seconds: 30), () {
       if (!mounted) return;
       final sinceLastTap = _lastTap == null
-          ? const Duration(hours: 1)
+          ? _noTapSentinel
           : DateTime.now().difference(_lastTap!);
       if (sinceLastTap.inSeconds >= 30 && _currentSpeech == null) {
         _showSpeech('Psst… bin ich noch sichtbar? 👀', style: _BubbleStyle.bored);

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import '../app/app_state.dart';
 import 'lumo_voice.dart';
 
@@ -142,7 +140,8 @@ class LumoCompanionOrchestrator {
     ));
 
     if (state.settings.voiceEnabled) {
-      unawaited(LumoVoice.instance.speak(message, style: style));
+      // Fehler beim Sprechen werden leise ignoriert – App darf nicht abstürzen.
+      LumoVoice.instance.speak(message, style: style).catchError((_) {});
     }
   }
 }

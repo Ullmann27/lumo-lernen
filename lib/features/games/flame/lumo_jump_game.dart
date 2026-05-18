@@ -539,15 +539,29 @@ class LumoParallaxBackground extends PositionComponent {
   }
 
   void _paintDecoration(Canvas canvas, Vector2 s, _LumoTheme t) {
-    // Schnee/Funken-Partikel: Positionen über Sinus/Cosinus animiert (kein Random-Objekt pro Frame)
-    final tm  = game.totalTime;
-    final p   = Paint()..color = t.decoration!;
+    // Schnee/Funken-Partikel: Positionen über Sinus animiert (kein Random pro Frame)
+    // Die Primzahl-ähnlichen Schrittweiten (71.3, 43.1) verteilen Partikel
+    // pseudo-gleichmäßig über die Fläche ohne echten Zufallsgenerator.
+    // Offsets (13.7, 7.9) sorgen dafür, dass Partikel 0 nicht bei (0,0) startet.
+    // Geschwindigkeit (8.0 + i%5): unterschiedliche Fallrate je Partikel.
+    // Auslenkung (0.6 * sin, 12px): natürliches Schwingen beim Fallen.
+    const double stepX       = 71.3;  // Schritt zwischen Partikel-Basis-X
+    const double offsetX     = 13.7;  // Startversatz X
+    const double stepY       = 43.1;  // Schritt zwischen Partikel-Basis-Y
+    const double offsetY     = 7.9;   // Startversatz Y
+    const double coverFracY  = 0.6;   // Partikel nur im oberen 60 % des Screens
+    const double swingSpeed  = 0.6;   // Pendelgeschwindigkeit der Sinus-Kurve
+    const double swingStride = 0.9;   // Phasenversatz zwischen Partikeln
+    const double swingAmp    = 12.0;  // Pendelamplitude in Pixeln
+    const double fallBase    = 8.0;   // Basis-Fallgeschwindigkeit (px/s)
+
+    final tm = game.totalTime;
+    final p  = Paint()..color = t.decoration!;
     for (var i = 0; i < 18; i++) {
-      // Basis-X und -Y per Pseudo-Random über i-spezifische Konstanten
-      final baseX = (i * 71.3 + 13.7) % s.x;
-      final baseY = (i * 43.1 + 7.9)  % (s.y * 0.6);
-      final bx    = (baseX + math.sin(tm * 0.6 + i * 0.9) * 12).abs() % s.x;
-      final by    = (baseY + tm * (8.0 + i % 5)).abs() % (s.y * 0.6);
+      final baseX = (i * stepX + offsetX) % s.x;
+      final baseY = (i * stepY + offsetY) % (s.y * coverFracY);
+      final bx    = (baseX + math.sin(tm * swingSpeed + i * swingStride) * swingAmp).abs() % s.x;
+      final by    = (baseY + tm * (fallBase + i % 5)).abs() % (s.y * coverFracY);
       canvas.drawCircle(Offset(bx, by), 2.5 + (i % 3), p);
     }
   }

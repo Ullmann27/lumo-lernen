@@ -74,11 +74,11 @@ class _LumoStagePanelState extends State<LumoStagePanel>
                       : 1.0;
                   return Center(
                     child: LumoHomeFoxAvatar(
-                      size:       foxHeight,
+                      size: foxHeight,
                       facingLeft: facing < 0,
-                      onTap:      widget.onFoxTap,
-                      childName:  st.childName,
-                      stars:      st.stars,
+                      onTap: widget.onFoxTap,
+                      childName: st.childName,
+                      stars: st.stars,
                     ),
                   );
                 },
