@@ -69,14 +69,15 @@ class LumoLearningFeedbackEngine {
   }
 
   String _titleFor(LumoInteractionEvent event, LumoFeedbackTone tone) {
+    final isTest = event.sessionKind == 'test' || event.sessionKind == 'schoolwork';
     return switch (tone) {
       LumoFeedbackTone.handwriting => event.correct ? 'Sauber gezeichnet!' : 'Die Form braucht noch Ruhe',
       LumoFeedbackTone.rescue => 'Lumo hilft Schritt für Schritt',
-      LumoFeedbackTone.coaching => 'Guter Versuch',
+      LumoFeedbackTone.coaching => isTest ? 'Schau nochmal genau' : 'Guter Versuch',
       LumoFeedbackTone.streak => 'Du bist im Lauf!',
       LumoFeedbackTone.improvement => 'Das wird besser!',
       LumoFeedbackTone.fastFocus => 'Schnell erkannt!',
-      LumoFeedbackTone.encouraging => 'Richtig gelöst!',
+      LumoFeedbackTone.encouraging => isTest ? 'Richtig!' : 'Richtig gelöst!',
     };
   }
 
@@ -134,8 +135,20 @@ class LumoLearningFeedbackEngine {
     final prompt = event.prompt.toLowerCase();
     final unit = event.unit.toLowerCase();
     final errors = event.errorTypes;
+    final isTest = event.sessionKind == 'test' || event.sessionKind == 'schoolwork';
+    final isTutoring = event.sessionKind == 'tutoring';
 
     final tips = <String>[];
+
+    // sessionKind-spezifische Hinweise
+    if (isTest && !event.correct) {
+      tips.add('Lerntipp: Im Test ruhig nochmal lesen, dann erst antworten.');
+    }
+    if (isTutoring && !event.correct) {
+      tips.add('Lerntipp: Beim Nachhilfe-Üben ist ein Fehler gut – so findet Lumo genau den Schritt, der dir noch fehlt.');
+    }
+
+    // Prompt-/Unit-spezifische Hinweise
     if (prompt.contains('-') && (prompt.contains('11') || prompt.contains('12') || prompt.contains('13') || prompt.contains('14') || prompt.contains('15') || prompt.contains('16') || prompt.contains('17') || prompt.contains('18') || prompt.contains('19'))) {
       tips.add('Lerntipp: Bei Minus über 10 zuerst bis zur 10 gehen, dann den Rest wegnehmen.');
     }
@@ -153,6 +166,30 @@ class LumoLearningFeedbackEngine {
     }
     if (unit.contains('silben')) {
       tips.add('Lerntipp: Klatsche das Wort langsam. Jeder Klatscher ist eine Silbe.');
+    }
+    if (unit.contains('endlaut') || prompt.contains('endet')) {
+      tips.add('Lerntipp: Sprich das Wort ganz langsam bis zum Ende. Welcher Laut bleibt zuletzt übrig?');
+    }
+    if (unit.contains('anfangslaut') || prompt.contains('beginnt')) {
+      tips.add('Lerntipp: Sprich den ersten Laut des Wortes allein: Stopp nach dem ersten Laut.');
+    }
+    if (unit.contains('reim')) {
+      tips.add('Lerntipp: Reimwörter klingen am Ende gleich. Sprich beide Wörter nacheinander.');
+    }
+    if (unit.contains('artikel')) {
+      tips.add('Lerntipp: Sprich Artikel und Wort zusammen laut. Oft klingt „der/die/das" beim richtigen Wort natürlicher.');
+    }
+    if (unit.contains('namenswort') || unit.contains('namenwort') || unit.contains('nomen')) {
+      tips.add('Lerntipp: Namenswörter kann man mit „ein" oder „der/die/das" benutzen und werden groß geschrieben.');
+    }
+    if (unit.contains('tunwort') || unit.contains('verb')) {
+      tips.add('Lerntipp: Tunwörter sagen, was jemand macht. Du kannst fragen: Was tut er/sie?');
+    }
+    if (unit.contains('wiewort') || unit.contains('adjektiv')) {
+      tips.add('Lerntipp: Wiewörter beschreiben. Frage: Wie ist es? Wie sieht es aus?');
+    }
+    if (unit.contains('rechtschreib') || unit.contains('haeufige') || unit.contains('doppelmitlaut')) {
+      tips.add('Lerntipp: Sprich das Wort in Silben. Kurzer Vokal vor Doppelmitlaut, langer vor einfachem.');
     }
     if (errors.contains(ErrorType.countingError)) {
       tips.add('Lerntipp: Du warst nur einen Schritt daneben. Zeige jede Zahl mit dem Finger.');
@@ -174,6 +211,7 @@ class LumoLearningFeedbackEngine {
         'Lerntipp: Lies zuerst die Aufgabe, dann schaue auf das Bild, dann erst antworten.',
         'Lerntipp: Wenn du unsicher bist, mach die Aufgabe kleiner und suche den ersten Schritt.',
         'Lerntipp: Dein Fehler zeigt Lumo, welche Übung als Nächstes gut passt.',
+        'Lerntipp: Ruhig und langsam lesen bringt mehr als schnell raten.',
       ]);
     }
     return _pick('tip.${event.unit}.${event.taskIndex}.${tone.name}', tips, recent: _recentTips);
