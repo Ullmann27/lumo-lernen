@@ -1884,78 +1884,89 @@ class _VirtualJoystick extends StatefulWidget {
 class _VirtualJoystickState extends State<_VirtualJoystick> {
   static const double _radius = 64;
   static const double _knobRadius = 30;
+  /// Groessere unsichtbare HitArea damit der Finger nicht aus dem
+  /// Joystick rutscht (200x200 statt 128x128).
+  static const double _hitAreaSize = 200;
   /// Aktuelle Knob-Position relativ zum Mittelpunkt (-_radius..+_radius).
   Offset _knobOffset = Offset.zero;
-  bool _dragging = false;
+  /// ID des aktiven Touch-Pointers. -1 = inaktiv. Verhindert Konflikt
+  /// mit den Action-Buttons (Multi-Touch).
+  int _activePointerId = -1;
+  /// Mittelpunkt der HitArea (in lokalen Koordinaten).
+  late Offset _center;
 
-  void _updateFrom(Offset localPos, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    var diff = localPos - center;
+  void _updateFrom(Offset localPos) {
+    var diff = localPos - _center;
     final dist = diff.distance;
     if (dist > _radius) {
       diff = diff * (_radius / dist);
     }
-    _knobOffset = diff;
-    // Normalisiert auf -1..1
+    setState(() => _knobOffset = diff);
     final norm = Offset(diff.dx / _radius, diff.dy / _radius);
     widget.onChanged(norm);
   }
 
+  void _reset() {
+    setState(() {
+      _knobOffset = Offset.zero;
+      _activePointerId = -1;
+    });
+    widget.onChanged(Offset.zero);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final size = _radius * 2;
+    _center = const Offset(_hitAreaSize / 2, _hitAreaSize / 2);
     return SizedBox(
-      width:  size,
-      height: size,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final boxSize = Size(constraints.maxWidth, constraints.maxHeight);
-          return Listener(
-            behavior: HitTestBehavior.opaque,
-            onPointerDown: (e) {
-              setState(() {
-                _dragging = true;
-                _updateFrom(e.localPosition, boxSize);
-              });
-            },
-            onPointerMove: (e) {
-              if (!_dragging) return;
-              setState(() => _updateFrom(e.localPosition, boxSize));
-            },
-            onPointerUp: (_) {
-              setState(() {
-                _dragging = false;
-                _knobOffset = Offset.zero;
-                widget.onChanged(Offset.zero);
-              });
-            },
-            onPointerCancel: (_) {
-              setState(() {
-                _dragging = false;
-                _knobOffset = Offset.zero;
-                widget.onChanged(Offset.zero);
-              });
-            },
-            child: CustomPaint(
-              painter: _JoystickPainter(
-                  knobOffset: _knobOffset, active: _dragging),
-              size: boxSize,
-            ),
-          );
+      width: _hitAreaSize,
+      height: _hitAreaSize,
+      child: Listener(
+        behavior: HitTestBehavior.opaque,
+        onPointerDown: (e) {
+          // Nur erster Pointer zaehlt - weitere ignorieren
+          if (_activePointerId != -1) return;
+          _activePointerId = e.pointer;
+          _updateFrom(e.localPosition);
         },
+        onPointerMove: (e) {
+          // Nur unser Pointer reagiert
+          if (e.pointer != _activePointerId) return;
+          _updateFrom(e.localPosition);
+        },
+        onPointerUp: (e) {
+          if (e.pointer != _activePointerId) return;
+          _reset();
+        },
+        onPointerCancel: (e) {
+          if (e.pointer != _activePointerId) return;
+          _reset();
+        },
+        child: CustomPaint(
+          painter: _JoystickPainter(
+              knobOffset: _knobOffset,
+              active: _activePointerId != -1,
+              center: _center),
+          size: const Size(_hitAreaSize, _hitAreaSize),
+        ),
       ),
     );
   }
 }
 
 class _JoystickPainter extends CustomPainter {
-  _JoystickPainter({required this.knobOffset, required this.active});
+  _JoystickPainter({
+    required this.knobOffset,
+    required this.active,
+    required this.center,
+  });
   final Offset knobOffset;
   final bool active;
+  final Offset center;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
+    // Center kommt jetzt vom State - Listener-Bereich ist groesser
+    // als die visuelle Basis. Visual = 128px Kreis um den center.
     // Aeusserer Ring (Basis)
     canvas.drawCircle(center, 64,
         Paint()..color = Colors.white.withOpacity(0.12));
@@ -1997,7 +2008,9 @@ class _JoystickPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _JoystickPainter old) =>
-      old.knobOffset != knobOffset || old.active != active;
+      old.knobOffset != knobOffset ||
+      old.active != active ||
+      old.center != center;
 }
 
 // ── Action-Button (rund, Premium-Stil wie auf Konsolen) ────────────────

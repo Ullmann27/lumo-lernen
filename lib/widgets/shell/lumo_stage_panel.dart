@@ -76,6 +76,7 @@ class _LumoStagePanelState extends State<LumoStagePanel>
                     child: LumoHomeFoxAvatar(
                       size: foxHeight,
                       facingLeft: facing < 0,
+                      childName: st.childName,
                       onTap: widget.onFoxTap,
                     ),
                   );
