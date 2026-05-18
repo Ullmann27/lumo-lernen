@@ -38,7 +38,7 @@ class _LumoStagePanelState extends State<LumoStagePanel>
   Widget build(BuildContext context) {
     final st = widget.appState.state;
     final compact = widget.compact;
-    final foxHeight = compact ? 178.0 : 230.0;
+    final foxHeight = compact ? 210.0 : 265.0;
 
     return Container(
       width: widget.panelWidth,
@@ -77,6 +77,8 @@ class _LumoStagePanelState extends State<LumoStagePanel>
                       size: foxHeight,
                       facingLeft: facing < 0,
                       onTap: widget.onFoxTap,
+                      childName: st.childName,
+                      stars: st.stars,
                     ),
                   );
                 },

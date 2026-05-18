@@ -1,22 +1,27 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import 'lumo_child_speech_normalizer.dart';
+import 'lumo_premium_voice.dart';
 
 /// Zentrales Voice-System fuer Lumo.
 ///
-/// Ziel:
-/// - deutlich weniger robotisch
-/// - kindgerechter, waermer, ruhiger
-/// - beste verfuegbare deutsche Stimme automatisch waehlen
-/// - emotionale Sprechmodi statt immer gleicher TTS-Ausgabe
-/// - stabiler Fallback ohne neue Build-Risiken
+/// Reihenfolge:
+/// 1. optionale Premium-Stimme per dart-define
+/// 2. lokaler MP3-Cache ueber LumoPremiumVoice
+/// 3. sicherer Offline-Fallback ueber flutter_tts
+///
+/// Die App darf nie abstuerzen, wenn Premium-TTS fehlt, offline ist oder
+/// fehlschlaegt. Dann spricht automatisch die lokale deutsche TTS.
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
 
   final FlutterTts _tts = FlutterTts();
+  final LumoPremiumVoice _premium = LumoPremiumVoice();
+
   Future<void>? _initFuture;
   bool _enabled = true;
   bool _voiceSelected = false;
@@ -24,6 +29,7 @@ class LumoVoice {
   double _pitchOffset = 0.0;
   String? _selectedVoiceName;
   String? _selectedLocale;
+  int _speechTicket = 0;
 
   final ValueNotifier<VoiceStatus> status = ValueNotifier<VoiceStatus>(VoiceStatus.idle);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
@@ -31,6 +37,7 @@ class LumoVoice {
   bool get isEnabled => _enabled;
   set isEnabled(bool v) => _enabled = v;
 
+  bool get premiumConfigured => _premium.configured;
   String? get selectedVoiceName => _selectedVoiceName;
   String? get selectedLocale => _selectedLocale;
 
@@ -38,14 +45,10 @@ class LumoVoice {
     if (enabled != null) _enabled = enabled;
     if (rate != null) _rateFactor = (rate / 0.35).clamp(0.70, 1.55).toDouble();
     if (pitch != null) _pitchOffset = (pitch - 1.0).clamp(-0.20, 0.20).toDouble();
-    if (_initFuture != null) {
-      await _applyStyle(VoiceStyle.warm);
-    }
+    if (_initFuture != null) await _applyStyle(VoiceStyle.warm);
   }
 
-  Future<void> _ensureReady() {
-    return _initFuture ??= _doInit();
-  }
+  Future<void> _ensureReady() => _initFuture ??= _doInit();
 
   Future<void> _doInit() async {
     try {
@@ -166,38 +169,29 @@ class LumoVoice {
   }
 
   Future<void> _applyStyle(VoiceStyle style) async {
-    // Heinz wollte schnellere Stimme. Alle Raten um ~25-35% erhoeht.
-    // Vorher waren die Werte zwischen 0.30-0.42 - zu langsam.
-    // Jetzt 0.46-0.60 - normales Sprechtempo, aber noch kindgerecht.
     switch (style) {
       case VoiceStyle.greeting:
         await _set(rate: 0.50, pitch: 1.05, volume: 1.0);
         break;
       case VoiceStyle.explain:
-        // Erklaer-Modus etwas langsamer als greeting, damit Kinder folgen koennen.
         await _set(rate: 0.46, pitch: 1.00, volume: 1.0);
         break;
       case VoiceStyle.celebrate:
-        // Bei Erfolg: schnell und froh.
         await _set(rate: 0.58, pitch: 1.10, volume: 1.0);
         break;
       case VoiceStyle.comfort:
-        // Bei Problemen: ruhig aber nicht mehr so langsam wie vorher.
         await _set(rate: 0.44, pitch: 0.98, volume: 0.96);
         break;
       case VoiceStyle.question:
         await _set(rate: 0.50, pitch: 1.04, volume: 1.0);
         break;
       case VoiceStyle.warm:
-        // Standard-Lese-Modus: natuerliches Sprechtempo.
         await _set(rate: 0.50, pitch: 1.03, volume: 1.0);
         break;
     }
   }
 
   Future<void> _set({required double rate, required double pitch, required double volume}) async {
-    // Clamp-Obergrenze von 0.60 auf 0.85 erhoeht, damit schnellere Raten
-    // ueberhaupt durchkommen. Untergrenze 0.30 reicht fuer comfort-Modus.
     await _tts.setSpeechRate((rate * _rateFactor).clamp(0.30, 0.85).toDouble());
     await _tts.setPitch((pitch + _pitchOffset).clamp(0.80, 1.25).toDouble());
     await _tts.setVolume(volume);
@@ -205,14 +199,26 @@ class LumoVoice {
 
   Future<void> speak(String text, {VoiceStyle style = VoiceStyle.warm}) async {
     if (!_enabled || text.trim().isEmpty) return;
-    await _ensureReady();
+    final ticket = ++_speechTicket;
+    final prepared = _prepareHumanText(text, style);
+
     try {
-      await _tts.stop();
+      await _stopPlaybackOnly();
+      if (ticket != _speechTicket) return;
+      status.value = VoiceStatus.speaking;
+
+      final premiumOk = await _premium.speak(prepared);
+      if (premiumOk) {
+        if (ticket == _speechTicket) status.value = VoiceStatus.idle;
+        return;
+      }
+
+      await _ensureReady();
+      if (ticket != _speechTicket) return;
       await _applyStyle(style);
-      final prepared = _prepareHumanText(text, style);
       final result = await _tts.speak(prepared);
       if (kDebugMode) {
-        debugPrint('[LumoVoice] voice=$_selectedVoiceName locale=$_selectedLocale style=$style -> $result');
+        debugPrint('[LumoVoice] locale=$_selectedLocale premium=$premiumConfigured style=$style -> $result');
       }
     } catch (e) {
       lastError.value = 'TTS-Fehler: $e';
@@ -221,9 +227,6 @@ class LumoVoice {
   }
 
   String _prepareHumanText(String input, VoiceStyle style) {
-    // Erst Mathezeichen, Geld, Uhrzeit, Brueche, Emojis schoener machen.
-    // LumoChildSpeechNormalizer.forSpeech() macht aus '3 + 4 = ?' einen
-    // natuerlichen Satz: 'drei plus vier. Was kommt heraus?'
     final beautified = LumoChildSpeechNormalizer.forSpeech(input);
 
     var text = beautified
@@ -248,21 +251,28 @@ class LumoVoice {
       case VoiceStyle.question:
         return '$text. Was denkst du?';
       case VoiceStyle.explain:
-        return text;
       case VoiceStyle.warm:
         return text;
     }
   }
 
-  Future<void> stop() async {
+  Future<void> _stopPlaybackOnly() async {
+    try {
+      await _premium.stop();
+    } catch (_) {}
     try {
       await _tts.stop();
     } catch (_) {}
+  }
+
+  Future<void> stop() async {
+    _speechTicket++;
+    await _stopPlaybackOnly();
     status.value = VoiceStatus.idle;
   }
 
   Future<void> test() => speak(
-        'Hallo! Ich bin Lumo, dein Lernfuchs. Ich spreche jetzt ruhiger, freundlicher und menschlicher.',
+        'Hallo! Ich bin Lumo, dein Lernfuchs. Ich spreche freundlich, ruhig und kindgerecht.',
         style: VoiceStyle.greeting,
       );
 }

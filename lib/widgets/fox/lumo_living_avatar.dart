@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/lumo_voice.dart';
 import '../../features/games/mini_games/fox_sprite.dart';
 
 class LumoLivingAvatar extends StatefulWidget {
@@ -11,7 +14,7 @@ class LumoLivingAvatar extends StatefulWidget {
     super.key,
     required this.appState,
     required this.onTap,
-    this.height = 230,
+    this.height = 285,
     this.facing = 1.0,
   });
 
@@ -26,41 +29,48 @@ class LumoLivingAvatar extends StatefulWidget {
 
 class _LumoLivingAvatarState extends State<LumoLivingAvatar>
     with TickerProviderStateMixin {
-  // ── Animations-Controller ─────────────────────────────────
-  late final AnimationController _breath =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 3500))
-        ..repeat(reverse: true);
-  late final AnimationController _float =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 4000))
-        ..repeat(reverse: true);
-  late final AnimationController _sway =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 5000))
-        ..repeat(reverse: true);
-  late final AnimationController _blink =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 140));
-  late final AnimationController _tapCtrl =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 700));
-  late final AnimationController _moodCtrl =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
-  /// Mundbewegung beim Sprechen: 0→1→0 im 180ms-Takt.
-  late final AnimationController _jaw =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 180));
+  late final AnimationController _breath = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 3400),
+  )..repeat(reverse: true);
+  late final AnimationController _float = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 4300),
+  )..repeat(reverse: true);
+  late final AnimationController _sway = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 5200),
+  )..repeat(reverse: true);
+  late final AnimationController _blink = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 135),
+  );
+  late final AnimationController _tapCtrl = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 680),
+  );
+  late final AnimationController _moodCtrl = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 820),
+  );
+  late final AnimationController _jaw = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 170),
+  );
 
-  // ── Ticker für absoluten animTime-Zähler ─────────────────
   late final Ticker _ticker;
   double _animTime = 0;
   Duration _lastTick = Duration.zero;
 
-  // ── Sprechen-Zustand ──────────────────────────────────────
-  /// Dauer der Mundbewegung nach einer neuen Nachricht in Sekunden.
-  static const Duration _talkDuration = Duration(seconds: 3);
+  static const Duration _talkFallbackDuration = Duration(seconds: 5);
+  static const Duration _tapSpeechCooldown = Duration(seconds: 4);
   bool _isSpeaking = false;
   Timer? _talkStopTimer;
-  String _lastMessage = '';
-
   Timer? _blinkTimer;
-  final _rng = math.Random();
+  String _lastMessage = '';
   LumoMood _lastMood = LumoMood.greet;
+  DateTime? _lastTapSpeech;
+  final _rng = math.Random();
 
   @override
   void initState() {
@@ -68,9 +78,19 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
     _lastMood = widget.appState.state.mood;
     _lastMessage = widget.appState.state.lumoMessage;
     widget.appState.addListener(_onStateChange);
+    LumoVoice.instance.status.addListener(_onVoiceStatus);
     _jaw.addStatusListener(_onJawStatus);
     _scheduleBlink();
     _ticker = createTicker(_onTick)..start();
+  }
+
+  void _onVoiceStatus() {
+    final speaking = LumoVoice.instance.status.value == VoiceStatus.speaking;
+    if (speaking && !_isSpeaking) {
+      _startTalking();
+    } else if (!speaking && _isSpeaking) {
+      _stopTalking();
+    }
   }
 
   void _onTick(Duration elapsed) {
@@ -79,7 +99,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
       _lastTick = elapsed;
       return;
     }
-    final dt = ((elapsed - _lastTick).inMicroseconds / 1e6).clamp(0.0, 0.05);
+    final dt = ((elapsed - _lastTick).inMicroseconds / 1e6).clamp(0.0, 0.05).toDouble();
     _lastTick = elapsed;
     setState(() => _animTime += dt);
   }
@@ -90,31 +110,32 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
       _lastMood = st.mood;
       _moodCtrl.forward(from: 0);
     }
-    // Sprechen starten wenn neue Nachricht erscheint
     if (st.lumoMessage != _lastMessage) {
       _lastMessage = st.lumoMessage;
-      _startTalking();
+      if (!_isSpeaking && widget.appState.state.settings.voiceEnabled) {
+        _startTalking();
+      }
     }
   }
 
   void _startTalking() {
     if (!mounted) return;
-    _isSpeaking = true;
+    setState(() => _isSpeaking = true);
     _jaw.forward(from: 0);
-    // Sprechen nach 3 Sekunden automatisch stoppen
     _talkStopTimer?.cancel();
-    _talkStopTimer = Timer(_talkDuration, _stopTalking);
+    _talkStopTimer = Timer(_talkFallbackDuration, _stopTalking);
   }
 
   void _stopTalking() {
     if (!mounted) return;
+    _talkStopTimer?.cancel();
     setState(() => _isSpeaking = false);
     _jaw.stop();
+    _jaw.value = 0;
   }
 
   void _onJawStatus(AnimationStatus status) {
     if (!_isSpeaking) return;
-    // Mund auf/zu im Pendel-Rhythmus
     if (status == AnimationStatus.completed) {
       _jaw.reverse();
     } else if (status == AnimationStatus.dismissed) {
@@ -124,9 +145,11 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
 
   void _scheduleBlink() {
     _blinkTimer?.cancel();
-    _blinkTimer = Timer(Duration(milliseconds: 3000 + _rng.nextInt(4000)), () {
+    _blinkTimer = Timer(Duration(milliseconds: 2600 + _rng.nextInt(4200)), () {
       if (!mounted) return;
-      _blink.forward(from: 0).then((_) => _blink.reverse());
+      _blink.forward(from: 0).then((_) {
+        if (mounted) _blink.reverse();
+      });
       _scheduleBlink();
     });
   }
@@ -134,6 +157,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
   @override
   void dispose() {
     widget.appState.removeListener(_onStateChange);
+    LumoVoice.instance.status.removeListener(_onVoiceStatus);
     _blinkTimer?.cancel();
     _talkStopTimer?.cancel();
     _ticker.dispose();
@@ -151,6 +175,24 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
   void _handleTap() {
     _tapCtrl.forward(from: 0);
     widget.onTap();
+    final now = DateTime.now();
+    if (_lastTapSpeech == null || now.difference(_lastTapSpeech!) >= _tapSpeechCooldown) {
+      _lastTapSpeech = now;
+      unawaited(LumoVoice.instance.speak(
+        _tapPhrase(),
+        style: VoiceStyle.greeting,
+      ));
+    }
+  }
+
+  String _tapPhrase() {
+    const phrases = <String>[
+      'Ich bin da. Womit starten wir?',
+      'Tippe eine Aufgabe an, dann lernen wir zusammen.',
+      'Super, ich begleite dich ruhig Schritt fuer Schritt.',
+      'Bereit? Wir schaffen das gemeinsam.',
+    ];
+    return phrases[_rng.nextInt(phrases.length)];
   }
 
   @override
@@ -161,8 +203,14 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
         behavior: HitTestBehavior.opaque,
         onTap: _handleTap,
         child: AnimatedBuilder(
-          animation: Listenable.merge([
-            _breath, _float, _sway, _blink, _tapCtrl, _moodCtrl, _jaw,
+          animation: Listenable.merge(<Listenable>[
+            _breath,
+            _float,
+            _sway,
+            _blink,
+            _tapCtrl,
+            _moodCtrl,
+            _jaw,
           ]),
           builder: (context, _) => _buildAvatar(reduced),
         ),
@@ -172,76 +220,75 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
 
   Widget _buildAvatar(bool reduced) {
     final mood = widget.appState.state.mood;
-    final breath  = Curves.easeInOut.transform(_breath.value);
+    final breath = Curves.easeInOut.transform(_breath.value);
     final floating = Curves.easeInOut.transform(_float.value);
-    final sway    = Curves.easeInOut.transform(_sway.value);
-    final tap     = _tapCtrl.value;
-    final moodT   = _moodCtrl.value;
+    final sway = Curves.easeInOut.transform(_sway.value);
+    final tap = _tapCtrl.value;
+    final moodT = _moodCtrl.value;
 
-    final scaleY   = 1.0 + breath * 0.025 - _blink.value * 0.04;
-    final floatY   = reduced ? 0.0 : (floating - 0.5) * 8.0;
-    final swayRot  = reduced ? 0.0 : (sway - 0.5) * 0.08;
-    final tapJump  = tap == 0 ? 0.0 : -math.sin(tap * math.pi) * 24.0;
-    final tapScale = tap == 0 ? 1.0 : 1.0 - math.sin(tap * math.pi) * 0.06;
-    final pose     = _poseFor(mood, moodT);
+    final scaleY = 1.02 + breath * 0.032 - _blink.value * 0.035;
+    final scaleX = 1.06 + breath * 0.012;
+    final floatY = reduced ? 0.0 : (floating - 0.5) * 9.0;
+    final swayRot = reduced ? 0.0 : (sway - 0.5) * 0.075;
+    final tapJump = tap == 0 ? 0.0 : -math.sin(tap * math.pi) * 26.0;
+    final tapScale = tap == 0 ? 1.0 : 1.0 - math.sin(tap * math.pi) * 0.045;
+    final speakingNod = _isSpeaking && !reduced ? math.sin(_animTime * 10) * 0.025 : 0.0;
+    final pose = _poseFor(mood, moodT);
     final auraColor = _moodAuraColor(mood);
-
-    // Mund-Öffnung: sinusförmige Kurve für natürlichere Lippenbewegung
     final mouthOpen = _isSpeaking
-        ? math.sin(_jaw.value * math.pi).clamp(0.0, 1.0)
+        ? math.sin(_jaw.value * math.pi).clamp(0.0, 1.0).toDouble()
         : 0.0;
+    final responsiveHeight = widget.height.clamp(190.0, 300.0).toDouble();
 
     return SizedBox(
-      width: widget.height * 1.1,
-      height: widget.height + 60,
+      width: responsiveHeight * 1.22,
+      height: responsiveHeight + 72,
       child: Stack(
         alignment: Alignment.center,
         clipBehavior: Clip.none,
         children: [
-          // Aura-Glow
           Transform.scale(
-            scale: 0.85 + breath * 0.25,
+            scale: 0.95 + breath * 0.30,
             child: Container(
-              width: widget.height * 0.95,
-              height: widget.height * 0.95,
+              width: responsiveHeight * 1.12,
+              height: responsiveHeight * 1.12,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    auraColor.withOpacity(.30),
-                    auraColor.withOpacity(.08),
+                    auraColor.withOpacity(.34),
+                    auraColor.withOpacity(.11),
                     Colors.transparent,
                   ],
-                  stops: const [0.0, 0.55, 1.0],
+                  stops: const [0.0, 0.58, 1.0],
                 ),
               ),
             ),
           ),
-          // Boden-Schatten
           Positioned(
-            bottom: 0,
+            bottom: 2,
             child: Container(
-              width: widget.height * 0.45,
-              height: 14,
+              width: responsiveHeight * 0.56,
+              height: 16,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(99),
                 gradient: RadialGradient(
-                    colors: [Colors.black.withOpacity(.20), Colors.transparent]),
+                  colors: [Colors.black.withOpacity(.22), Colors.transparent],
+                ),
               ),
             ),
           ),
-          // Fuchs (animierter Vektor)
           Transform.translate(
             offset: Offset(pose.dx, floatY + tapJump + pose.dy),
             child: Transform.rotate(
-              angle: swayRot + pose.rotation,
+              angle: swayRot + speakingNod + pose.rotation,
               child: Transform(
                 transform: Matrix4.identity()
-                  ..scale(widget.facing * tapScale, scaleY),
+                  ..scale(widget.facing * tapScale * scaleX, scaleY),
                 alignment: Alignment.center,
                 child: SizedBox(
-                  width: widget.height * 0.82,
-                  height: widget.height,
+                  width: responsiveHeight * 0.88,
+                  height: responsiveHeight,
                   child: CustomPaint(
                     painter: _AvatarFoxPainter(
                       animTime: _animTime,
@@ -253,7 +300,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
               ),
             ),
           ),
-          if (mood == LumoMood.celebrate) ..._sparkles(moodT),
+          if (mood == LumoMood.celebrate) ..._sparkles(moodT, responsiveHeight),
           if (mood == LumoMood.think) _thought(moodT),
         ],
       ),
@@ -261,23 +308,23 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
   }
 
   _Pose _poseFor(LumoMood mood, double t) {
-    final e = Curves.easeOut.transform(t.clamp(0.0, 1.0));
+    final e = Curves.easeOut.transform(t.clamp(0.0, 1.0).toDouble());
     switch (mood) {
       case LumoMood.point:
-        return _Pose(dx: widget.facing * 6 * e, rotation: widget.facing * 0.10 * e);
+        return _Pose(dx: widget.facing * 8 * e, rotation: widget.facing * 0.11 * e);
       case LumoMood.celebrate:
-        return _Pose(dy: -math.sin(t * math.pi) * 38, rotation: t * math.pi * 2);
+        return _Pose(dy: -math.sin(t * math.pi) * 40, rotation: t * math.pi * 2);
       case LumoMood.comfort:
-        return _Pose(dy: -2, rotation: -0.08 * e);
+        return _Pose(dy: -2, rotation: -0.075 * e);
       case LumoMood.think:
-        return _Pose(dy: -4 * e, rotation: 0.08 * e);
+        return _Pose(dy: -5 * e, rotation: 0.075 * e);
       case LumoMood.wave:
-        return _Pose(
-            rotation: math.sin(t * math.pi * 4) * 0.08 * (1 - t));
+        return _Pose(rotation: math.sin(t * math.pi * 4) * 0.09 * (1 - t));
       case LumoMood.greet:
         return _Pose(
-            dy: -math.sin(t * math.pi) * 8,
-            rotation: math.sin(t * math.pi * 3) * 0.05 * (1 - t));
+          dy: -math.sin(t * math.pi) * 10,
+          rotation: math.sin(t * math.pi * 3) * 0.055 * (1 - t),
+        );
       case LumoMood.idle:
         return const _Pose();
     }
@@ -301,18 +348,17 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
     }
   }
 
-  List<Widget> _sparkles(double t) {
+  List<Widget> _sparkles(double t, double avatarHeight) {
     final widgets = <Widget>[];
-    final radius = widget.height * 0.48 * t;
-    for (var i = 0; i < 6; i++) {
-      final angle = -math.pi / 2 + i * math.pi / 3 + t * math.pi;
+    final radius = avatarHeight * 0.50 * t;
+    for (var i = 0; i < 7; i++) {
+      final angle = -math.pi / 2 + i * math.pi / 3.5 + t * math.pi;
       widgets.add(Positioned(
-        left: widget.height * 0.55 + math.cos(angle) * radius,
-        top: widget.height * 0.5 + math.sin(angle) * radius,
+        left: avatarHeight * 0.58 + math.cos(angle) * radius,
+        top: avatarHeight * 0.48 + math.sin(angle) * radius,
         child: Opacity(
-          opacity: (1 - t).clamp(0.0, 1.0),
-          child:
-              const Icon(Icons.star_rounded, color: LumoColors.gold, size: 22),
+          opacity: (1 - t).clamp(0.0, 1.0).toDouble(),
+          child: const Icon(Icons.star_rounded, color: LumoColors.gold, size: 24),
         ),
       ));
     }
@@ -320,21 +366,21 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
   }
 
   Widget _thought(double t) {
+    final v = t.clamp(0.0, 1.0).toDouble();
     return Positioned(
       top: 8,
       right: 18,
       child: Opacity(
-        opacity: t.clamp(0.0, 1.0),
+        opacity: v,
         child: Transform.scale(
-          scale: t.clamp(0.0, 1.0),
+          scale: v,
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
               boxShadow: [
-                BoxShadow(
-                    color: LumoColors.gold.withOpacity(.4), blurRadius: 14)
+                BoxShadow(color: LumoColors.gold.withOpacity(.4), blurRadius: 14),
               ],
             ),
             child: const Text('💡', style: TextStyle(fontSize: 18)),
@@ -345,10 +391,6 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
   }
 }
 
-// ── CustomPainter ─────────────────────────────────────────────────
-
-/// Malt den Lumo-Fuchs als Ganzkörper-Avatar (Idle-State) mit
-/// Mundbewegung wenn Lumo spricht.
 class _AvatarFoxPainter extends CustomPainter {
   const _AvatarFoxPainter({
     required this.animTime,
@@ -379,12 +421,9 @@ class _AvatarFoxPainter extends CustomPainter {
       facingRight != old.facingRight;
 }
 
-// ── Hilfsklassen ──────────────────────────────────────────────────
-
 class _Pose {
   const _Pose({this.dx = 0, this.dy = 0, this.rotation = 0});
   final double dx;
   final double dy;
   final double rotation;
 }
-
