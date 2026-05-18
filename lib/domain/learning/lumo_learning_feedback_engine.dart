@@ -145,7 +145,7 @@ class LumoLearningFeedbackEngine {
       tips.add('Lerntipp: Im Test ruhig nochmal lesen, dann erst antworten.');
     }
     if (isTutoring && !event.correct) {
-      tips.add('Lerntipp: Beim Nachhilfe-Üben ist ein Fehler gut – so findet Lumo genau den Schritt, der dir noch fehlt.');
+      tips.add('Lerntipp: Beim Üben in der Nachhilfe ist ein Fehler gut – so findet Lumo genau den Schritt, der dir noch fehlt.');
     }
 
     // Prompt-/Unit-spezifische Hinweise

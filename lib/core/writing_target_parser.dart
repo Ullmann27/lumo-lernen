@@ -25,7 +25,7 @@ class WritingTargetParser {
     if (copySentence != null) return copySentence.group(1)!.trim().replaceAll(RegExp(r'[.!?]+$'), '').trim();
 
     // "Schreibe langsam: Apfel" oder "Schreibe schön: Rose"
-    final copyWithAdverb = RegExp(r'Schreibe\s+\w+[:\s]+([A-ZÄÖÜ][a-zäöüß]+(?:\s+[A-Za-zÄÖÜäöüß]+)*)\.?$', caseSensitive: false).firstMatch(trimmed);
+    final copyWithAdverb = RegExp(r'Schreibe\s+[a-zäöüßÄÖÜ]+[:\s]+([A-ZÄÖÜ][a-zäöüß]+(?:\s+[A-Za-zÄÖÜäöüß]+)*)\.?$', caseSensitive: false).firstMatch(trimmed);
     if (copyWithAdverb != null) return copyWithAdverb.group(1)!.trim();
 
     // "Buchstaben A" oder "großes/grosses B"
