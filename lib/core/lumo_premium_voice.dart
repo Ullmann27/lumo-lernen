@@ -77,7 +77,7 @@ class LumoPremiumVoice {
   Future<Directory> _ensureCacheDir() async {
     final existing = _cacheDir;
     if (existing != null) return existing;
-    final base = await getApplicationCacheDirectory();
+    final base = await getTemporaryDirectory();
     final dir = Directory('${base.path}/lumo_voice_cache');
     if (!await dir.exists()) await dir.create(recursive: true);
     _cacheDir = dir;
@@ -107,8 +107,7 @@ class LumoPremiumVoice {
 
       final response = await request.close().timeout(_networkTimeout);
       if (response.statusCode < 200 || response.statusCode >= 300) return null;
-      final bytes = await consolidateHttpClientResponseBytes(response);
-      return bytes;
+      return consolidateHttpClientResponseBytes(response);
     } finally {
       client.close(force: true);
     }
@@ -132,10 +131,9 @@ class LumoPremiumVoice {
   }
 
   static String sanitizeForPremiumTts(String input) {
-    var text = input
+    var text = _stripEmojiAndSymbols(input)
         .replaceAll('\n', '. ')
         .replaceAll(RegExp(r'\s+'), ' ')
-        .replaceAll(RegExp(r'[\u{1F300}-\u{1FAFF}]', unicode: true), '')
         .trim();
 
     // Keine offensichtlichen privaten Daten an externe TTS-Endpunkte senden.
@@ -151,5 +149,20 @@ class LumoPremiumVoice {
       text = text.substring(0, _maxTextLength).trimRight();
     }
     return text;
+  }
+
+  static String _stripEmojiAndSymbols(String input) {
+    final buffer = StringBuffer();
+    for (final rune in input.runes) {
+      if (_isEmojiOrPrivateSymbol(rune)) continue;
+      buffer.writeCharCode(rune);
+    }
+    return buffer.toString();
+  }
+
+  static bool _isEmojiOrPrivateSymbol(int rune) {
+    return (rune >= 0x1F000 && rune <= 0x1FAFF) ||
+        (rune >= 0x2600 && rune <= 0x27BF) ||
+        (rune >= 0xFE00 && rune <= 0xFE0F);
   }
 }
