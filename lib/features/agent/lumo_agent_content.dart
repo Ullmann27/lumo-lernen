@@ -8,6 +8,7 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_voice.dart';
+import '../../widgets/fox/lumo_living_avatar.dart';
 
 class LumoAgentContent extends StatefulWidget {
   const LumoAgentContent({super.key, required this.appState, required this.onSection});
@@ -302,7 +303,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 820),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            _AgentHeader(proxyReady: proxyReady, enabled: settings.aiProxyEnabled, onSettings: () => widget.onSection(LumoSection.settings)),
+            _AgentHeader(appState: widget.appState, proxyReady: proxyReady, enabled: settings.aiProxyEnabled, onSettings: () => widget.onSection(LumoSection.settings)),
             const SizedBox(height: 16),
             _SafetyFrame(proxyReady: proxyReady),
             const SizedBox(height: 16),
@@ -347,8 +348,14 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
 }
 
 class _AgentHeader extends StatelessWidget {
-  const _AgentHeader({required this.proxyReady, required this.enabled, required this.onSettings});
+  const _AgentHeader({
+    required this.appState,
+    required this.proxyReady,
+    required this.enabled,
+    required this.onSettings,
+  });
 
+  final LumoAppState appState;
   final bool proxyReady;
   final bool enabled;
   final VoidCallback onSettings;
@@ -369,11 +376,14 @@ class _AgentHeader extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF7ED), Color(0xFFEFF6FF)])),
       child: Row(children: [
-        Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)),
-          child: const Center(child: Text('🦊', style: TextStyle(fontSize: 34))),
+        // Echter lebendiger Avatar statt statisches Emoji
+        SizedBox(
+          width: 88,
+          child: LumoLivingAvatar(
+            appState: appState,
+            onTap: () {},
+            height: 88,
+          ),
         ),
         const SizedBox(width: 14),
         Expanded(

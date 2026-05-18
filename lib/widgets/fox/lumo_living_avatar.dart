@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/lumo_voice.dart';
 import '../../features/games/mini_games/fox_sprite.dart';
 
 class LumoLivingAvatar extends StatefulWidget {
@@ -11,7 +12,8 @@ class LumoLivingAvatar extends StatefulWidget {
     super.key,
     required this.appState,
     required this.onTap,
-    this.height = 230,
+    /// Standardhöhe erhöht: 230 → 265 für mehr Präsenz.
+    this.height = 265,
     this.facing = 1.0,
   });
 
@@ -52,8 +54,8 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
   Duration _lastTick = Duration.zero;
 
   // ── Sprechen-Zustand ──────────────────────────────────────
-  /// Dauer der Mundbewegung nach einer neuen Nachricht in Sekunden.
-  static const Duration _talkDuration = Duration(seconds: 3);
+  /// Fallback-Dauer wenn VoiceStatus nicht kommt (z.B. kein TTS-Event).
+  static const Duration _talkFallbackDuration = Duration(seconds: 5);
   bool _isSpeaking = false;
   Timer? _talkStopTimer;
   String _lastMessage = '';
@@ -68,9 +70,20 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
     _lastMood = widget.appState.state.mood;
     _lastMessage = widget.appState.state.lumoMessage;
     widget.appState.addListener(_onStateChange);
+    // Echtzeit VoiceStatus-Listener: Mund bleibt offen, solange Lumo spricht.
+    LumoVoice.instance.status.addListener(_onVoiceStatus);
     _jaw.addStatusListener(_onJawStatus);
     _scheduleBlink();
     _ticker = createTicker(_onTick)..start();
+  }
+
+  void _onVoiceStatus() {
+    final speaking = LumoVoice.instance.status.value == VoiceStatus.speaking;
+    if (speaking && !_isSpeaking) {
+      _startTalking();
+    } else if (!speaking && _isSpeaking) {
+      _stopTalking();
+    }
   }
 
   void _onTick(Duration elapsed) {
@@ -90,10 +103,12 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
       _lastMood = st.mood;
       _moodCtrl.forward(from: 0);
     }
-    // Sprechen starten wenn neue Nachricht erscheint
+    // Fallback: Nachricht geändert aber VoiceStatus kam nicht → Mund kurz öffnen
     if (st.lumoMessage != _lastMessage) {
       _lastMessage = st.lumoMessage;
-      _startTalking();
+      if (!_isSpeaking) {
+        _startTalking();
+      }
     }
   }
 
@@ -101,9 +116,9 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
     if (!mounted) return;
     _isSpeaking = true;
     _jaw.forward(from: 0);
-    // Sprechen nach 3 Sekunden automatisch stoppen
+    // Fallback-Timer: falls VoiceStatus.idle nie kommt
     _talkStopTimer?.cancel();
-    _talkStopTimer = Timer(_talkDuration, _stopTalking);
+    _talkStopTimer = Timer(_talkFallbackDuration, _stopTalking);
   }
 
   void _stopTalking() {
@@ -134,6 +149,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
   @override
   void dispose() {
     widget.appState.removeListener(_onStateChange);
+    LumoVoice.instance.status.removeListener(_onVoiceStatus);
     _blinkTimer?.cancel();
     _talkStopTimer?.cancel();
     _ticker.dispose();
@@ -200,10 +216,10 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
         children: [
           // Aura-Glow
           Transform.scale(
-            scale: 0.85 + breath * 0.25,
+            scale: 0.90 + breath * 0.28,
             child: Container(
-              width: widget.height * 0.95,
-              height: widget.height * 0.95,
+              width: widget.height * 1.05,
+              height: widget.height * 1.05,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(

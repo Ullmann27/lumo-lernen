@@ -17,6 +17,7 @@ import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
 import '../core/lumo_voice.dart';
+import '../core/lumo_companion_orchestrator.dart';
 import '../core/settings_repository.dart';
 import '../core/user_profile.dart';
 
@@ -49,6 +50,8 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
         lumoMessage: 'Hallo ${profile.name}!\nWomit wollen wir\nheute lernen?',
       ));
     }
+    // Orchestrator verbinden
+    LumoCompanionOrchestrator.instance.attach(_appState);
     _loadSettings();
   }
 
@@ -68,6 +71,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
 
   @override
   void dispose() {
+    LumoCompanionOrchestrator.instance.detach();
     _appState.dispose();
     _fadeCtrl.dispose();
     super.dispose();
@@ -90,6 +94,8 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     await _fadeCtrl.reverse();
     if (!mounted) return;
     _appState.setSection(section);
+    // Orchestrator über Sektionswechsel informieren
+    LumoCompanionOrchestrator.instance.onSectionChanged(section);
     final settings = _appState.state.settings;
     if (settings.voiceEnabled && settings.autoReadEnabled) {
       LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
