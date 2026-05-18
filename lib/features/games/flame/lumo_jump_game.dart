@@ -133,8 +133,11 @@ class LumoFlameJumpGame extends FlameGame {
         level.id * 97;
   }
 
+  /// Welt-Theme abhaengig von Level-ID (Zyklus 1–5 fuer je 2 Stufen).
+  _LumoTheme get theme => _LumoTheme.forLevel(level.id);
+
   @override
-  Color backgroundColor() => const Color(0xFFBAE6FD);
+  Color backgroundColor() => theme.skyTop;
 
   @override
   Future<void> onLoad() async {
@@ -418,7 +421,7 @@ class LumoFlameJumpGame extends FlameGame {
   }
 
   void _addPlatform(double x, double y, double w, double h) {
-    final c = PlatformTileComponent()
+    final c = PlatformTileComponent(game: this)
       ..position = Vector2(x, y)
       ..size     = Vector2(w, h);
     platforms.add(c);
@@ -490,50 +493,67 @@ class LumoParallaxBackground extends PositionComponent {
   void render(Canvas canvas) {
     final s  = size;
     final cx = game.cameraX;
+    final t  = game.theme;
 
-    _paintSky(canvas, s);
+    _paintSky(canvas, s, t);
     _paintMountainLayer(canvas, s,
         offset: cx * 0.15,
-        color:  const Color(0xFF86EFAC),
+        color:  t.mountainFar,
         hFrac:  0.28);
     _paintMountainLayer(canvas, s,
         offset: cx * 0.35,
-        color:  const Color(0xFF22C55E),
+        color:  t.mountainNear,
         hFrac:  0.19);
+    if (t.decoration != null) {
+      _paintDecoration(canvas, s, t);
+    }
   }
 
-  void _paintSky(Canvas canvas, Vector2 s) {
+  void _paintSky(Canvas canvas, Vector2 s, _LumoTheme t) {
     final rect = Rect.fromLTWH(0, 0, s.x, s.y);
     canvas.drawRect(
         rect,
         Paint()
-          ..shader = const LinearGradient(
-            colors: [Color(0xFFBAE6FD), Color(0xFFE0F2FE), Color(0xFFFEF3C7)],
-            stops:  [0.0, 0.6, 1.0],
+          ..shader = LinearGradient(
+            colors: [t.skyTop, t.skyMid, t.skyBot],
+            stops:  const [0.0, 0.6, 1.0],
             begin:  Alignment.topCenter,
             end:    Alignment.bottomCenter,
           ).createShader(rect));
 
-    // Sonne
+    // Sonne / Mond je nach Theme
     canvas.drawCircle(Offset(s.x * 0.88, s.y * 0.12), 28,
-        Paint()..color = const Color(0xFFFCD34D));
+        Paint()..color = t.sunColor);
     canvas.drawCircle(Offset(s.x * 0.88, s.y * 0.12), 20,
         Paint()..color = Colors.white.withOpacity(0.40));
 
-    // animierte Wolken
-    _paintCloud(canvas,
-        s.x * 0.20 + math.sin(game.totalTime * 0.04) * 8, s.y * 0.14,
-        55, 22);
-    _paintCloud(canvas,
+    // animierte Wolken (Farbe je Theme)
+    final cloudColor = t.cloudColor;
+    _paintCloud(canvas, cloudColor,
+        s.x * 0.20 + math.sin(game.totalTime * 0.04) * 8, s.y * 0.14, 55, 22);
+    _paintCloud(canvas, cloudColor,
         s.x * 0.55 + math.sin(game.totalTime * 0.03 + 1) * 6, s.y * 0.10,
         70, 26);
-    _paintCloud(canvas,
-        s.x * 0.72 + math.cos(game.totalTime * 0.05) * 5, s.y * 0.18,
-        48, 18);
+    _paintCloud(canvas, cloudColor,
+        s.x * 0.72 + math.cos(game.totalTime * 0.05) * 5, s.y * 0.18, 48, 18);
   }
 
-  void _paintCloud(Canvas canvas, double cx, double cy, double w, double h) {
-    final p = Paint()..color = Colors.white.withOpacity(0.82);
+  void _paintDecoration(Canvas canvas, Vector2 s, _LumoTheme t) {
+    // Schnee-Partikel (Eis-Welt) oder Funken (Lava-Welt)
+    final rng = math.Random(42);
+    final p = Paint()..color = t.decoration!;
+    final tm = game.totalTime;
+    for (var i = 0; i < 18; i++) {
+      final bx = (rng.nextDouble() * s.x + math.sin(tm * 0.7 + i) * 6) % s.x;
+      final by = (rng.nextDouble() * s.y * 0.6 + tm * 22 * (i % 3 == 0 ? 1 : -0.5))
+              .abs() %
+          (s.y * 0.6);
+      canvas.drawCircle(Offset(bx, by), 2.5 + (i % 3), p);
+    }
+  }
+
+  void _paintCloud(Canvas canvas, Color cloudColor, double cx, double cy, double w, double h) {
+    final p = Paint()..color = cloudColor.withOpacity(0.82);
     canvas.drawOval(
         Rect.fromCenter(center: Offset(cx, cy), width: w, height: h), p);
     canvas.drawOval(
@@ -576,23 +596,27 @@ class LumoParallaxBackground extends PositionComponent {
 // ════════════════════════════════════════════════════════════════════════
 
 class PlatformTileComponent extends PositionComponent {
+  PlatformTileComponent({this.game});
+  final LumoFlameJumpGame? game;
+
   @override
   void render(Canvas canvas) {
     final w = size.x;
     final h = size.y;
+    final theme = game?.theme ?? _LumoTheme.meadow;
 
     // Erdkörper
     canvas.drawRRect(
         RRect.fromRectAndRadius(
             Rect.fromLTWH(0, 4, w, h - 4), const Radius.circular(6)),
-        Paint()..color = const Color(0xFF92400E));
+        Paint()..color = theme.platformBody);
 
-    // Grasoberfläche
+    // Oberfläche (Gras / Eis / Moos / Sand / Lava-Stein)
     canvas.drawRRect(
         RRect.fromLTRBR(0, 0, w, 16, const Radius.circular(6)),
         Paint()
-          ..shader = const LinearGradient(
-            colors: [Color(0xFF4ADE80), Color(0xFF22C55E)],
+          ..shader = LinearGradient(
+            colors: [theme.platformTop, theme.platformAccent],
             begin:  Alignment.topCenter,
             end:    Alignment.bottomCenter,
           ).createShader(Rect.fromLTWH(0, 0, w, 16)));
@@ -2568,4 +2592,129 @@ class _LevelConfig {
       doubleObstacles: true,
     ),
   ];
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// WELT-THEME – visuelle Farbpalette je nach Level-ID
+// ════════════════════════════════════════════════════════════════════════
+
+/// Steuert die visuelle Farbpalette eines Levels:
+/// Himmel, Berge, Plattform-Ober-/Unterfläche, Akzentfarbe.
+///
+/// 5 Welten, je 2 Level-Stufen pro Welt (Zyklus alle 10 Level):
+///  1+2  → Wiese  (Meadow)
+///  3+4  → Eis    (Ice)
+///  5+6  → Wald   (Forest)
+///  7+8  → Wüste  (Desert)
+///  9+10 → Lava   (Lava)
+class _LumoTheme {
+  const _LumoTheme({
+    required this.skyTop,
+    required this.skyMid,
+    required this.skyBot,
+    required this.sunColor,
+    required this.cloudColor,
+    required this.mountainFar,
+    required this.mountainNear,
+    required this.platformTop,
+    required this.platformAccent,
+    required this.platformBody,
+    this.decoration,
+  });
+
+  final Color  skyTop;
+  final Color  skyMid;
+  final Color  skyBot;
+  final Color  sunColor;
+  final Color  cloudColor;
+  final Color  mountainFar;
+  final Color  mountainNear;
+  final Color  platformTop;
+  final Color  platformAccent;
+  final Color  platformBody;
+  /// Optional: Farbe von Ambient-Partikeln (Schnee, Funken…). null = keine.
+  final Color? decoration;
+
+  // ── Wiese ──────────────────────────────────────────────────────────────
+  static const meadow = _LumoTheme(
+    skyTop:        Color(0xFFBAE6FD),
+    skyMid:        Color(0xFFE0F2FE),
+    skyBot:        Color(0xFFFEF3C7),
+    sunColor:      Color(0xFFFCD34D),
+    cloudColor:    Colors.white,
+    mountainFar:   Color(0xFF86EFAC),
+    mountainNear:  Color(0xFF22C55E),
+    platformTop:   Color(0xFF4ADE80),
+    platformAccent:Color(0xFF22C55E),
+    platformBody:  Color(0xFF92400E),
+  );
+
+  // ── Eis ────────────────────────────────────────────────────────────────
+  static const ice = _LumoTheme(
+    skyTop:        Color(0xFFBFDBFE),
+    skyMid:        Color(0xFFDBEAFE),
+    skyBot:        Color(0xFFF0F9FF),
+    sunColor:      Color(0xFFBAE6FD),
+    cloudColor:    Color(0xFFE0F2FE),
+    mountainFar:   Color(0xFF93C5FD),
+    mountainNear:  Color(0xFF60A5FA),
+    platformTop:   Color(0xFFBAE6FD),
+    platformAccent:Color(0xFF7DD3FC),
+    platformBody:  Color(0xFF1E40AF),
+    decoration:    Color(0xCCE0F2FE),  // Schnee-Partikel
+  );
+
+  // ── Wald ───────────────────────────────────────────────────────────────
+  static const forest = _LumoTheme(
+    skyTop:        Color(0xFF166534),
+    skyMid:        Color(0xFF15803D),
+    skyBot:        Color(0xFF4ADE80),
+    sunColor:      Color(0xFFFCD34D),
+    cloudColor:    Color(0xCC86EFAC),
+    mountainFar:   Color(0xFF14532D),
+    mountainNear:  Color(0xFF166534),
+    platformTop:   Color(0xFF166534),
+    platformAccent:Color(0xFF14532D),
+    platformBody:  Color(0xFF422006),
+  );
+
+  // ── Wüste ─────────────────────────────────────────────────────────────
+  static const desert = _LumoTheme(
+    skyTop:        Color(0xFFFDE68A),
+    skyMid:        Color(0xFFFCD34D),
+    skyBot:        Color(0xFFFEF3C7),
+    sunColor:      Color(0xFFF97316),
+    cloudColor:    Color(0xCCFEF3C7),
+    mountainFar:   Color(0xFFD97706),
+    mountainNear:  Color(0xFFB45309),
+    platformTop:   Color(0xFFD97706),
+    platformAccent:Color(0xFFB45309),
+    platformBody:  Color(0xFF78350F),
+  );
+
+  // ── Lava ───────────────────────────────────────────────────────────────
+  static const lava = _LumoTheme(
+    skyTop:        Color(0xFF1C0A00),
+    skyMid:        Color(0xFF450A00),
+    skyBot:        Color(0xFF7F1D1D),
+    sunColor:      Color(0xFFDC2626),
+    cloudColor:    Color(0xCC7F1D1D),
+    mountainFar:   Color(0xFF7F1D1D),
+    mountainNear:  Color(0xFF991B1B),
+    platformTop:   Color(0xFFDC2626),
+    platformAccent:Color(0xFF991B1B),
+    platformBody:  Color(0xFF1C0A00),
+    decoration:    Color(0xCCFB923C),  // Funken-Partikel
+  );
+
+  /// Gibt das passende Theme für eine Level-ID zurück.
+  /// Zyklus: Level 1+2 → Wiese, 3+4 → Eis, 5+6 → Wald, 7+8 → Wüste, 9+10 → Lava.
+  factory _LumoTheme.forLevel(int levelId) {
+    final stage = ((levelId - 1) % 10) + 1;  // 1..10
+    if (stage <= 2) return meadow;
+    if (stage <= 4) return ice;
+    if (stage <= 6) return forest;
+    if (stage <= 8) return desert;
+    return lava;
+  }
 }
