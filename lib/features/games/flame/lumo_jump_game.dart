@@ -1065,11 +1065,18 @@ class FoxPlayerComponent
   bool   leftPressed  = false;
   bool   rightPressed = false;
   bool   duckPressed  = false;
+  /// Joystick-Velocity-Input: -1.0 (voll links) bis 1.0 (voll rechts).
+  /// Wird kontinuierlich vom Joystick-Widget gesetzt, bricht NICHT ab.
+  double stickX       = 0;
   double rollTimer    = 0;
   double coyoteTimer  = 0;
   double jumpBufTimer = 0;
   double checkpointX  = 70;
   bool   facingRight  = true;
+
+  /// Wird auf true gesetzt sobald die echten Sprite-Animationen geladen sind.
+  /// Solange false bleibt der prozedurale Fallback aktiv.
+  bool _spritesLoaded = false;
 
   double get _pW => (duckPressed || current == FoxAnimationState.roll) ? 64 : 54;
   double get _pH => (duckPressed || current == FoxAnimationState.roll) ? 52 : 76;
@@ -1080,22 +1087,83 @@ class FoxPlayerComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    final anim = await _createPlaceholderAnim();
-    animations  = {for (final s in FoxAnimationState.values) s: anim};
+    // Erst Placeholder setzen damit das Spiel sofort startet
+    final placeholder = await _createPlaceholderAnim();
+    animations  = {for (final s in FoxAnimationState.values) s: placeholder};
     current     = FoxAnimationState.idle;
+    // Dann die echten Sprites asynchron laden
+    _loadRealSprites();
   }
 
-  /// Render überschreibt SpriteAnimationGroupComponent.render() vollständig
-  /// und nutzt den prozeduralen FoxSprite-Painter.
+  /// Laedt die 39 echten Fox-Frames aus assets/lumo_jump/fox/ als
+  /// SpriteAnimationen. Asynchron - Game startet ohne Wartezeit.
+  Future<void> _loadRealSprites() async {
+    try {
+      // Flame's images.prefix ist 'assets/images/' - wir setzen es auf
+      // leer damit beliebige Pfade unter assets/ funktionieren.
+      game.images.prefix = '';
+
+      Future<SpriteAnimation> _loadAnim(
+          String dir, int count, double fps) async {
+        final sprites = <Sprite>[];
+        for (var i = 1; i <= count; i++) {
+          final id = i.toString().padLeft(2, '0');
+          final img = await game.images
+              .load('assets/lumo_jump/fox/$dir/fox_${dir}_$id.png');
+          sprites.add(Sprite(img));
+        }
+        return SpriteAnimation.spriteList(sprites, stepTime: 1.0 / fps);
+      }
+
+      final idle = await _loadAnim('idle', 8, 8);
+      final run  = await _loadAnim('run', 12, 16);
+      final jump = await _loadAnim('jump', 4, 10);
+      final fall = await _loadAnim('fall', 4, 10);
+      final duck = await _loadAnim('duck', 3, 6);
+      final roll = await _loadAnim('roll', 8, 16);
+
+      // Setze die echten Animationen
+      animations = {
+        FoxAnimationState.idle: idle,
+        FoxAnimationState.run:  run,
+        FoxAnimationState.jump: jump,
+        FoxAnimationState.fall: fall,
+        FoxAnimationState.duck: duck,
+        FoxAnimationState.roll: roll,
+      };
+      _spritesLoaded = true;
+      // Hitbox vergroessern - die echten Sprites sind 96x96 sichtbar
+      size = Vector2(96, 96);
+    } catch (e) {
+      // Bei Ladefehler bleibt prozeduraler Fallback aktiv
+      _spritesLoaded = false;
+    }
+  }
+
+  /// Render: echte Sprites wenn geladen, sonst prozeduraler Fallback.
   @override
   void render(Canvas canvas) {
-    FoxSprite.paint(
-      canvas,
-      rect:        Rect.fromLTWH(0, 0, _pW, _pH),
-      state:       current ?? FoxAnimationState.idle,
-      facingRight: facingRight,
-      animTime:    game.totalTime,
-    );
+    if (_spritesLoaded) {
+      // Flip horizontal wenn nach links schauend
+      if (!facingRight) {
+        canvas.save();
+        canvas.translate(size.x, 0);
+        canvas.scale(-1, 1);
+        super.render(canvas);
+        canvas.restore();
+      } else {
+        super.render(canvas);
+      }
+    } else {
+      // Prozeduraler Fallback bis Sprites geladen sind
+      FoxSprite.paint(
+        canvas,
+        rect:        Rect.fromLTWH(0, 0, _pW, _pH),
+        state:       current ?? FoxAnimationState.idle,
+        facingRight: facingRight,
+        animTime:    game.totalTime,
+      );
+    }
   }
 
   @override
@@ -1148,10 +1216,17 @@ class FoxPlayerComponent
             ? _duckSpeed
             : _baseSpeed;
 
-    final dir = (rightPressed ? 1 : 0) - (leftPressed ? 1 : 0);
-    vx = dir * spd;
-    if (dir > 0) facingRight = true;
-    if (dir < 0) facingRight = false;
+    // Stick-Input (kontinuierlich, -1..1) hat Vorrang vor Button-Input.
+    // Wenn beide null sind: vx = 0 (stehen bleiben).
+    final double inputX;
+    if (stickX.abs() > 0.05) {
+      inputX = stickX.clamp(-1.0, 1.0);
+    } else {
+      inputX = ((rightPressed ? 1 : 0) - (leftPressed ? 1 : 0)).toDouble();
+    }
+    vx = inputX * spd;
+    if (inputX > 0.05) facingRight = true;
+    if (inputX < -0.05) facingRight = false;
 
     // Coyote + Jump-Buffer
     jumpBufTimer = math.max(0, jumpBufTimer - dt);
@@ -1693,52 +1768,266 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
     );
   }
 
-  // ── Steuerbuttons ─────────────────────────────────────────────────────
+  // ── Steuerbuttons - Joystick + Action-Buttons ─────────────────────────
 
   Widget _buildControls() {
     return Container(
-      height: 100,
+      height: 180,
       color:  const Color(0xCC000000),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Stack(
         children: [
-          // Links / Rechts
-          Row(children: [
-            _GameButton(
-              icon:   Icons.arrow_back_ios_rounded,
-              onDown: () => _game.fox.leftPressed  = true,
-              onUp:   () => _game.fox.leftPressed  = false,
+          // Links: Virtual Joystick (kontinuierlich, bricht NICHT ab)
+          Positioned(
+            left:   24,
+            bottom: 16,
+            top:    16,
+            child: _VirtualJoystick(
+              onChanged: (vec) {
+                _game.fox.stickX = vec.dx;
+                _game.fox.duckPressed = vec.dy > 0.6;
+              },
             ),
-            _GameButton(
-              icon:   Icons.arrow_forward_ios_rounded,
-              onDown: () => _game.fox.rightPressed = true,
-              onUp:   () => _game.fox.rightPressed = false,
+          ),
+          // Rechts: Action-Buttons gestapelt (Jump oben, Roll unten)
+          Positioned(
+            right:  24,
+            top:    16,
+            bottom: 16,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Jump - oben, gross, orange (wichtigste Action)
+                _CircularActionButton(
+                  size:    72,
+                  color:   const Color(0xFFF97316),
+                  label:   '▲',
+                  onTap:   () => _game.fox.jump(),
+                ),
+                const SizedBox(height: 14),
+                // Roll - unten, lila
+                _CircularActionButton(
+                  size:    60,
+                  color:   const Color(0xFF7C3AED),
+                  label:   '●',
+                  onTap:   () => _game.fox.activateRoll(),
+                ),
+              ],
             ),
-          ]),
-          // Ducken / Roll / Springen
-          Row(children: [
-            _GameButton(
-              label:  'Duck',
-              onDown: () => _game.fox.duckPressed = true,
-              onUp:   () => _game.fox.duckPressed = false,
-            ),
-            const SizedBox(width: 8),
-            _GameButton(
-              label:  'Roll',
-              onDown: () => _game.fox.activateRoll(),
-              onUp:   () {},
-              accent: LumoColors.purple,
-            ),
-            const SizedBox(width: 8),
-            _GameButton(
-              label:  '↑',
-              onDown: () => _game.fox.jump(),
-              onUp:   () {},
-              accent: LumoColors.orange,
-              large:  true,
-            ),
-          ]),
+          ),
         ],
+      ),
+    );
+  }
+}
+
+// ── Virtual Joystick - kontinuierliche Bewegung, bricht NICHT ab ────────
+
+class _VirtualJoystick extends StatefulWidget {
+  const _VirtualJoystick({required this.onChanged});
+  /// Liefert (dx, dy) im Bereich -1..1. (0,0) = Mittelstellung.
+  final ValueChanged<Offset> onChanged;
+
+  @override
+  State<_VirtualJoystick> createState() => _VirtualJoystickState();
+}
+
+class _VirtualJoystickState extends State<_VirtualJoystick> {
+  static const double _radius = 64;
+  static const double _knobRadius = 30;
+  /// Aktuelle Knob-Position relativ zum Mittelpunkt (-_radius..+_radius).
+  Offset _knobOffset = Offset.zero;
+  bool _dragging = false;
+
+  void _updateFrom(Offset localPos, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    var diff = localPos - center;
+    final dist = diff.distance;
+    if (dist > _radius) {
+      diff = diff * (_radius / dist);
+    }
+    _knobOffset = diff;
+    // Normalisiert auf -1..1
+    final norm = Offset(diff.dx / _radius, diff.dy / _radius);
+    widget.onChanged(norm);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = _radius * 2;
+    return SizedBox(
+      width:  size,
+      height: size,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final boxSize = Size(constraints.maxWidth, constraints.maxHeight);
+          return Listener(
+            behavior: HitTestBehavior.opaque,
+            onPointerDown: (e) {
+              setState(() {
+                _dragging = true;
+                _updateFrom(e.localPosition, boxSize);
+              });
+            },
+            onPointerMove: (e) {
+              if (!_dragging) return;
+              setState(() => _updateFrom(e.localPosition, boxSize));
+            },
+            onPointerUp: (_) {
+              setState(() {
+                _dragging = false;
+                _knobOffset = Offset.zero;
+                widget.onChanged(Offset.zero);
+              });
+            },
+            onPointerCancel: (_) {
+              setState(() {
+                _dragging = false;
+                _knobOffset = Offset.zero;
+                widget.onChanged(Offset.zero);
+              });
+            },
+            child: CustomPaint(
+              painter: _JoystickPainter(
+                  knobOffset: _knobOffset, active: _dragging),
+              size: boxSize,
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _JoystickPainter extends CustomPainter {
+  _JoystickPainter({required this.knobOffset, required this.active});
+  final Offset knobOffset;
+  final bool active;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    // Aeusserer Ring (Basis)
+    canvas.drawCircle(center, 64,
+        Paint()..color = Colors.white.withOpacity(0.12));
+    canvas.drawCircle(center, 64,
+        Paint()
+          ..color = Colors.white.withOpacity(0.3)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2);
+    // Richtungs-Hinweise (kleine Pfeile innen)
+    final hintPaint = Paint()..color = Colors.white.withOpacity(0.35);
+    for (var i = 0; i < 4; i++) {
+      final a = i * math.pi / 2;
+      final c = center + Offset(math.cos(a) * 52, math.sin(a) * 52);
+      canvas.drawCircle(c, 3, hintPaint);
+    }
+    // Knob (innerer Kreis)
+    final knobCenter = center + knobOffset;
+    canvas.drawCircle(knobCenter, 32,
+        Paint()..color = Colors.black.withOpacity(0.3));
+    canvas.drawCircle(knobCenter, 30,
+        Paint()
+          ..shader = RadialGradient(
+            colors: active
+                ? <Color>[
+                    const Color(0xFFFCD34D),
+                    const Color(0xFFF97316),
+                  ]
+                : <Color>[
+                    Colors.white,
+                    const Color(0xFFE5E7EB),
+                  ],
+          ).createShader(Rect.fromCircle(center: knobCenter, radius: 30)));
+    canvas.drawCircle(knobCenter, 30,
+        Paint()
+          ..color = Colors.black.withOpacity(0.4)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2);
+  }
+
+  @override
+  bool shouldRepaint(covariant _JoystickPainter old) =>
+      old.knobOffset != knobOffset || old.active != active;
+}
+
+// ── Action-Button (rund, Premium-Stil wie auf Konsolen) ────────────────
+
+class _CircularActionButton extends StatefulWidget {
+  const _CircularActionButton({
+    required this.size,
+    required this.color,
+    required this.label,
+    required this.onTap,
+  });
+  final double size;
+  final Color color;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  State<_CircularActionButton> createState() => _CircularActionButtonState();
+}
+
+class _CircularActionButtonState extends State<_CircularActionButton> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Listener(
+      behavior: HitTestBehavior.opaque,
+      onPointerDown: (_) {
+        setState(() => _pressed = true);
+        HapticFeedback.lightImpact();
+        widget.onTap();
+      },
+      onPointerUp:     (_) => setState(() => _pressed = false),
+      onPointerCancel: (_) => setState(() => _pressed = false),
+      child: AnimatedScale(
+        scale:    _pressed ? 0.9 : 1.0,
+        duration: const Duration(milliseconds: 90),
+        curve:    Curves.easeOut,
+        child: Container(
+          width:  widget.size,
+          height: widget.size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: RadialGradient(
+              colors: <Color>[
+                Color.lerp(widget.color, Colors.white, 0.3)!,
+                widget.color,
+              ],
+              stops: const <double>[0.0, 1.0],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color:     widget.color.withOpacity(0.5),
+                blurRadius: 16,
+                offset:    const Offset(0, 6),
+                spreadRadius: -2,
+              ),
+              BoxShadow(
+                color:     Colors.black.withOpacity(0.25),
+                blurRadius: 4,
+                offset:    const Offset(0, 2),
+              ),
+            ],
+            border: Border.all(color: Colors.white.withOpacity(0.6), width: 2),
+          ),
+          child: Center(
+            child: Text(
+              widget.label,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+                fontSize: widget.size * 0.45,
+                color: Colors.white,
+                shadows: const [
+                  Shadow(color: Color(0x60000000), blurRadius: 4, offset: Offset(0, 2)),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

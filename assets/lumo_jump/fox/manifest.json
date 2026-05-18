@@ -1,0 +1,76 @@
+{
+  "asset_pack": "Lumo Jump Fox",
+  "frame_size": 512,
+  "actions": {
+    "idle": {
+      "frames": [
+        "assets/lumo_jump/fox/idle/fox_idle_01.png",
+        "assets/lumo_jump/fox/idle/fox_idle_02.png",
+        "assets/lumo_jump/fox/idle/fox_idle_03.png",
+        "assets/lumo_jump/fox/idle/fox_idle_04.png",
+        "assets/lumo_jump/fox/idle/fox_idle_05.png",
+        "assets/lumo_jump/fox/idle/fox_idle_06.png",
+        "assets/lumo_jump/fox/idle/fox_idle_07.png",
+        "assets/lumo_jump/fox/idle/fox_idle_08.png"
+      ],
+      "fps": 8
+    },
+    "run": {
+      "frames": [
+        "assets/lumo_jump/fox/run/fox_run_01.png",
+        "assets/lumo_jump/fox/run/fox_run_02.png",
+        "assets/lumo_jump/fox/run/fox_run_03.png",
+        "assets/lumo_jump/fox/run/fox_run_04.png",
+        "assets/lumo_jump/fox/run/fox_run_05.png",
+        "assets/lumo_jump/fox/run/fox_run_06.png",
+        "assets/lumo_jump/fox/run/fox_run_07.png",
+        "assets/lumo_jump/fox/run/fox_run_08.png",
+        "assets/lumo_jump/fox/run/fox_run_09.png",
+        "assets/lumo_jump/fox/run/fox_run_10.png",
+        "assets/lumo_jump/fox/run/fox_run_11.png",
+        "assets/lumo_jump/fox/run/fox_run_12.png"
+      ],
+      "fps": 16
+    },
+    "jump": {
+      "frames": [
+        "assets/lumo_jump/fox/jump/fox_jump_01.png",
+        "assets/lumo_jump/fox/jump/fox_jump_02.png",
+        "assets/lumo_jump/fox/jump/fox_jump_03.png",
+        "assets/lumo_jump/fox/jump/fox_jump_04.png"
+      ],
+      "fps": 10
+    },
+    "fall": {
+      "frames": [
+        "assets/lumo_jump/fox/fall/fox_fall_01.png",
+        "assets/lumo_jump/fox/fall/fox_fall_02.png",
+        "assets/lumo_jump/fox/fall/fox_fall_03.png",
+        "assets/lumo_jump/fox/fall/fox_fall_04.png"
+      ],
+      "fps": 10
+    },
+    "duck": {
+      "frames": [
+        "assets/lumo_jump/fox/duck/fox_duck_01.png",
+        "assets/lumo_jump/fox/duck/fox_duck_02.png",
+        "assets/lumo_jump/fox/duck/fox_duck_03.png"
+      ],
+      "fps": 6
+    },
+    "roll": {
+      "frames": [
+        "assets/lumo_jump/fox/roll/fox_roll_01.png",
+        "assets/lumo_jump/fox/roll/fox_roll_02.png",
+        "assets/lumo_jump/fox/roll/fox_roll_03.png",
+        "assets/lumo_jump/fox/roll/fox_roll_04.png",
+        "assets/lumo_jump/fox/roll/fox_roll_05.png",
+        "assets/lumo_jump/fox/roll/fox_roll_06.png",
+        "assets/lumo_jump/fox/roll/fox_roll_07.png",
+        "assets/lumo_jump/fox/roll/fox_roll_08.png"
+      ],
+      "fps": 16
+    }
+  },
+  "shadow": "assets/lumo_jump/fox/shadow/fox_shadow.png"
+}
