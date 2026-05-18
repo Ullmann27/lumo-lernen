@@ -39,20 +39,26 @@ enum JumpPadState { idle, compress }
 
 // ── Physik-Konstanten (abgestimmt auf das bestehende Spiel) ───────────
 
-const double _gravity       = 1800;
-const double _jumpPower     = 780;
-const double _baseSpeed     = 230;
-const double _duckSpeed     = 170;
-const double _rollSpeedMult = 1.8;
-const double _rollDuration  = 0.6;
-const double _coyoteWindow  = 0.22;
-const double _jumpBufferWin = 0.20;
+// ── Physik-Konstanten (Lumo-Bewegungsgefuehl) ───────────────────────
+// Tuning fuer fluessigeres Mario-Style-Plattformer-Gefuehl:
+// - Etwas schneller, hoehere Spruenge, groessere Coyote-Time
+const double _gravity       = 1700;
+const double _jumpPower     = 830;
+const double _baseSpeed     = 270;
+const double _duckSpeed     = 190;
+const double _rollSpeedMult = 1.9;
+const double _rollDuration  = 0.65;
+/// Coyote-Time: wie lange Lumo nach Verlassen einer Plattform noch springen darf.
+/// Groesser = flexibler/forgiving.
+const double _coyoteWindow  = 0.28;
+/// Jump-Buffer: wie lange ein zu frueh gedrueckter Sprung-Knopf erinnert wird.
+const double _jumpBufferWin = 0.24;
 const double _fallThreshold = 80;
 const double _jumpPadBoost  = 1.55;
 const double _baseGroundY   = 330.0;
-const double _fallResetY    = 650.0;
+const double _fallResetY    = 700.0;
 const double _starRadius    = 22.0;
-const double _maxSafeGap    = _baseSpeed * (_jumpPower / _gravity) * 2 * 0.85;
+const double _maxSafeGap    = _baseSpeed * (_jumpPower / _gravity) * 2 * 0.82;
 
 // ── Transparenz-Sprite-Hilfe ──────────────────────────────────────────
 // Erstellt eine 1-Frame transparente SpriteAnimation als Platzhalter für
@@ -305,37 +311,41 @@ class LumoFlameJumpGame extends FlameGame {
   // ── Level-Generator ───────────────────────────────────────────────────
 
   void _buildLevel() {
+    final config = _LevelConfig.forLevel(level.id);
     final rng   = math.Random(_levelSeed);
     double x    = 0;
     double lastY = _baseGroundY;
 
-    // Startplattform
+    // Startplattform (immer breit + flach fuer einen sicheren Start)
     _addPlatform(x, lastY, 420, 120);
     x = 380;
 
     var chunk = 0;
-    while (x < 5200) {
-      final w  = (280 + rng.nextInt(170)).toDouble();
-      final dy = (rng.nextInt(3) - 1) * 28.0;
-      final y  = (lastY + dy).clamp(220.0, 338.0);
-
+    while (x < config.worldLength) {
+      // ── Plattform-Breite + Hoehen-Variation skalieren je nach Level ──
+      final w  = (config.platformMinW +
+              rng.nextInt(config.platformMaxW - config.platformMinW))
+          .toDouble();
+      final dy = (rng.nextInt(3) - 1) * config.yVariation;
+      final y  = (lastY + dy).clamp(config.minY, config.maxY);
       _addPlatform(x, y, w, 90);
 
-      // Sterne
-      final sc = 2 + rng.nextInt(3);
+      // ── Sterne ──
+      final sc = config.starsPerChunk + rng.nextInt(2);
       for (var i = 0; i < sc; i++) {
         final sx = x + 48 + i * ((w - 96) / math.max(1, sc - 1));
         final sy = y - 54 - (i.isEven ? 10.0 : 0.0);
         _addStar(sx, sy);
       }
 
-      // Frageblock
-      if (chunk % 2 == 1) {
-        _addQuestionBlock(x + w * 0.55, y - 70, isGerman: chunk % 4 == 1);
+      // ── Frageblock (haeufiger bei hoeheren Levels) ──
+      if (chunk % config.questionBlockEveryN == 1) {
+        _addQuestionBlock(x + w * 0.55, y - 70,
+            isGerman: chunk % (config.questionBlockEveryN * 2) == 1);
       }
 
-      // Hindernis oder Kiste
-      if (chunk % 3 == 0) {
+      // ── Hindernis oder Kiste ──
+      if (chunk % config.obstacleEveryN == 0 && chunk > 0) {
         final ox = x + w * 0.35;
         if (rng.nextBool()) {
           _addCrate(ox, y - 52);
@@ -344,20 +354,60 @@ class LumoFlameJumpGame extends FlameGame {
           _addObstacle(ox, y - (isDuck ? 36 : 52), 54,
               isDuck ? 36 : 52, isDuck);
         }
+        // Doppel-Hindernis bei hohen Leveln (taktisch fordernder)
+        if (config.doubleObstacles && rng.nextDouble() < 0.4) {
+          _addCrate(ox + 70, y - 52);
+        }
       }
 
-      // Jump-Pad
-      if (chunk % 5 == 2 && chunk > 0) {
+      // ── Jump-Pad ──
+      if (chunk % config.jumpPadEveryN == 2 && chunk > 0) {
         _addJumpPad(x + w * 0.5 - 20, y - 22);
       }
 
+      // ── PODEST-SEKTION (mehrstoeckige Plattformen, taktischer Aufstieg) ──
+      // Ab Level 4 alle paar Chunks ein 3-Stock-Podest neben der Hauptebene
+      if (config.includePodests && chunk % 6 == 4) {
+        final podestX = x + w + 40;
+        final tower1Y = y - 90;
+        final tower2Y = y - 170;
+        final tower3Y = y - 250;
+        _addPlatform(podestX, tower1Y, 90, 24);
+        _addStar(podestX + 45, tower1Y - 24);
+        if (config.podestStories >= 2) {
+          _addPlatform(podestX + 60, tower2Y, 80, 24);
+          _addStar(podestX + 100, tower2Y - 24);
+        }
+        if (config.podestStories >= 3) {
+          _addPlatform(podestX + 130, tower3Y, 70, 24);
+          // Bonus-Stern oben
+          _addStar(podestX + 165, tower3Y - 30);
+          _addStar(podestX + 165, tower3Y - 50);
+        }
+      }
+
+      // ── TIEFE TAL-SEKTION (Lumo muss runter + wieder rauf) ──
+      // Ab Level 6: alle paar Chunks eine Tal-Sektion mit niedrigeren Plattformen
+      if (config.includeValleys && chunk % 8 == 6) {
+        final valleyX = x + w + 30;
+        final valleyY = y + 50;
+        _addPlatform(valleyX, valleyY.clamp(config.minY, config.maxY + 60),
+            220, 90);
+        _addStar(valleyX + 60, valleyY - 24);
+        _addStar(valleyX + 110, valleyY - 30);
+        _addStar(valleyX + 160, valleyY - 24);
+      }
+
       lastY = y;
-      final gap = (60 + rng.nextInt(80)).toDouble().clamp(50.0, _maxSafeGap);
+      final gap = (config.gapMin +
+              rng.nextInt(config.gapMax - config.gapMin))
+          .toDouble()
+          .clamp(50.0, _maxSafeGap);
       x    += w + gap;
       chunk++;
     }
 
-    // Boss-Truhe
+    // Boss-Truhe (immer am Ende)
     chest          = BossChestComponent(game: this);
     chest.position = Vector2(x + 120, lastY - 60);
     chest.size     = Vector2(74, 60);
@@ -2274,4 +2324,248 @@ class _LevelCompleteDialog extends StatelessWidget {
       ),
     );
   }
+}
+
+// ── Level-Konfiguration (Schwierigkeitsgrad je nach level.id) ────────
+
+/// Steuert wie das Spiel pro Level-ID erzeugt wird. Mit 10 Stufen.
+/// - Hoehere Level: laenger, mehr Hindernisse, mehr Hoehenvariation,
+///   Podeste (Sprung-Tuerme) und Tal-Sektionen.
+class _LevelConfig {
+  const _LevelConfig({
+    required this.worldLength,
+    required this.platformMinW,
+    required this.platformMaxW,
+    required this.yVariation,
+    required this.minY,
+    required this.maxY,
+    required this.starsPerChunk,
+    required this.questionBlockEveryN,
+    required this.obstacleEveryN,
+    required this.jumpPadEveryN,
+    required this.gapMin,
+    required this.gapMax,
+    required this.includePodests,
+    required this.podestStories,
+    required this.includeValleys,
+    required this.doubleObstacles,
+  });
+
+  final double worldLength;
+  final int platformMinW;
+  final int platformMaxW;
+  final double yVariation;
+  final double minY;
+  final double maxY;
+  final int starsPerChunk;
+  final int questionBlockEveryN;
+  final int obstacleEveryN;
+  final int jumpPadEveryN;
+  final int gapMin;
+  final int gapMax;
+  final bool includePodests;
+  final int podestStories;
+  final bool includeValleys;
+  final bool doubleObstacles;
+
+  /// Mappt eine beliebige Level-ID (1..50 aus dem Catalog) auf
+  /// 10 Schwierigkeits-Stufen.
+  factory _LevelConfig.forLevel(int levelId) {
+    // Skaliere auf 1..10
+    final stage = ((levelId - 1) % 10) + 1;
+    return _stages[stage - 1];
+  }
+
+  static const List<_LevelConfig> _stages = <_LevelConfig>[
+    // Level 1 - Tutorial: kurz, einfach, viel Platz
+    _LevelConfig(
+      worldLength: 4200,
+      platformMinW: 320,
+      platformMaxW: 440,
+      yVariation: 18,
+      minY: 240,
+      maxY: 340,
+      starsPerChunk: 2,
+      questionBlockEveryN: 3,
+      obstacleEveryN: 4,
+      jumpPadEveryN: 7,
+      gapMin: 60,
+      gapMax: 110,
+      includePodests: false,
+      podestStories: 0,
+      includeValleys: false,
+      doubleObstacles: false,
+    ),
+    // Level 2 - Etwas mehr Hindernisse
+    _LevelConfig(
+      worldLength: 4800,
+      platformMinW: 280,
+      platformMaxW: 400,
+      yVariation: 22,
+      minY: 230,
+      maxY: 340,
+      starsPerChunk: 2,
+      questionBlockEveryN: 3,
+      obstacleEveryN: 3,
+      jumpPadEveryN: 6,
+      gapMin: 70,
+      gapMax: 130,
+      includePodests: false,
+      podestStories: 0,
+      includeValleys: false,
+      doubleObstacles: false,
+    ),
+    // Level 3 - Mehr Hoehenvariation, erste Podeste
+    _LevelConfig(
+      worldLength: 5400,
+      platformMinW: 260,
+      platformMaxW: 380,
+      yVariation: 26,
+      minY: 220,
+      maxY: 340,
+      starsPerChunk: 2,
+      questionBlockEveryN: 2,
+      obstacleEveryN: 3,
+      jumpPadEveryN: 5,
+      gapMin: 80,
+      gapMax: 140,
+      includePodests: true,
+      podestStories: 1,
+      includeValleys: false,
+      doubleObstacles: false,
+    ),
+    // Level 4 - 2-stoeckige Podeste
+    _LevelConfig(
+      worldLength: 6000,
+      platformMinW: 240,
+      platformMaxW: 360,
+      yVariation: 28,
+      minY: 210,
+      maxY: 340,
+      starsPerChunk: 3,
+      questionBlockEveryN: 2,
+      obstacleEveryN: 3,
+      jumpPadEveryN: 5,
+      gapMin: 80,
+      gapMax: 150,
+      includePodests: true,
+      podestStories: 2,
+      includeValleys: false,
+      doubleObstacles: false,
+    ),
+    // Level 5 - Erste Tal-Sektionen, mehr Sterne
+    _LevelConfig(
+      worldLength: 6600,
+      platformMinW: 240,
+      platformMaxW: 340,
+      yVariation: 32,
+      minY: 200,
+      maxY: 350,
+      starsPerChunk: 3,
+      questionBlockEveryN: 2,
+      obstacleEveryN: 3,
+      jumpPadEveryN: 4,
+      gapMin: 90,
+      gapMax: 160,
+      includePodests: true,
+      podestStories: 2,
+      includeValleys: true,
+      doubleObstacles: false,
+    ),
+    // Level 6 - Doppel-Hindernisse, taktischer
+    _LevelConfig(
+      worldLength: 7200,
+      platformMinW: 220,
+      platformMaxW: 320,
+      yVariation: 34,
+      minY: 200,
+      maxY: 350,
+      starsPerChunk: 3,
+      questionBlockEveryN: 2,
+      obstacleEveryN: 2,
+      jumpPadEveryN: 4,
+      gapMin: 100,
+      gapMax: 170,
+      includePodests: true,
+      podestStories: 2,
+      includeValleys: true,
+      doubleObstacles: true,
+    ),
+    // Level 7 - 3-stoeckige Podeste, schmaler
+    _LevelConfig(
+      worldLength: 7800,
+      platformMinW: 200,
+      platformMaxW: 300,
+      yVariation: 38,
+      minY: 190,
+      maxY: 360,
+      starsPerChunk: 3,
+      questionBlockEveryN: 2,
+      obstacleEveryN: 2,
+      jumpPadEveryN: 4,
+      gapMin: 100,
+      gapMax: 180,
+      includePodests: true,
+      podestStories: 3,
+      includeValleys: true,
+      doubleObstacles: true,
+    ),
+    // Level 8 - Lange Strecken, alles aktiv
+    _LevelConfig(
+      worldLength: 8400,
+      platformMinW: 200,
+      platformMaxW: 280,
+      yVariation: 42,
+      minY: 180,
+      maxY: 360,
+      starsPerChunk: 4,
+      questionBlockEveryN: 2,
+      obstacleEveryN: 2,
+      jumpPadEveryN: 3,
+      gapMin: 110,
+      gapMax: 190,
+      includePodests: true,
+      podestStories: 3,
+      includeValleys: true,
+      doubleObstacles: true,
+    ),
+    // Level 9 - Pre-Boss
+    _LevelConfig(
+      worldLength: 9000,
+      platformMinW: 190,
+      platformMaxW: 260,
+      yVariation: 44,
+      minY: 170,
+      maxY: 370,
+      starsPerChunk: 4,
+      questionBlockEveryN: 2,
+      obstacleEveryN: 2,
+      jumpPadEveryN: 3,
+      gapMin: 120,
+      gapMax: 200,
+      includePodests: true,
+      podestStories: 3,
+      includeValleys: true,
+      doubleObstacles: true,
+    ),
+    // Level 10 - BOSS-LEVEL: laengste Strecke, alles dabei
+    _LevelConfig(
+      worldLength: 10000,
+      platformMinW: 180,
+      platformMaxW: 250,
+      yVariation: 48,
+      minY: 160,
+      maxY: 370,
+      starsPerChunk: 5,
+      questionBlockEveryN: 2,
+      obstacleEveryN: 2,
+      jumpPadEveryN: 3,
+      gapMin: 120,
+      gapMax: 200,
+      includePodests: true,
+      podestStories: 3,
+      includeValleys: true,
+      doubleObstacles: true,
+    ),
+  ];
 }

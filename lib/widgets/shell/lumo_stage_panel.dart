@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
-import '../fox/lumo_living_avatar.dart';
+import '../fox/lumo_home_fox_avatar.dart';
 
 class LumoStagePanel extends StatefulWidget {
   const LumoStagePanel({
@@ -73,11 +73,10 @@ class _LumoStagePanelState extends State<LumoStagePanel>
                       ? -1.0
                       : 1.0;
                   return Center(
-                    child: LumoLivingAvatar(
-                      appState: widget.appState,
+                    child: LumoHomeFoxAvatar(
+                      size: foxHeight,
+                      facingLeft: facing < 0,
                       onTap: widget.onFoxTap,
-                      height: foxHeight,
-                      facing: facing,
                     ),
                   );
                 },
