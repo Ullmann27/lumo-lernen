@@ -54,6 +54,10 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
   static const double _rollDuration = 0.6;
   static const double _rollSpeedMultiplier = 1.8;
 
+  /// Schwellenwert in px/s ab dem ein Luftzustand als „Fallen" gilt.
+  /// Unterhalb davon (Aufstieg) gilt `jumping`.
+  static const double _fallingVelocityThreshold = 80.0;
+
   // ── Welt-Konstanten ───────────────────────────────────────────
   static const double _worldHeight = 420;
   static const double _fallResetY = _worldHeight + 220;
@@ -246,7 +250,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
       _playerState = _PlayerState.ducking;
     } else if (!_onGround) {
       // Aufstieg (vy negativ) = jumping; Abstieg (vy positiv) = falling
-      _playerState = _vy > 80 ? _PlayerState.falling : _PlayerState.jumping;
+      _playerState = _vy > _fallingVelocityThreshold ? _PlayerState.falling : _PlayerState.jumping;
     } else if (_vx.abs() > 0) {
       _playerState = _PlayerState.running;
     } else {

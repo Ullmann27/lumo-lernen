@@ -42,6 +42,12 @@ class FoxSprite {
   static const Color _rollPurple = Color(0xFF7C3AED);
   static const Color _gold       = Color(0xFFFCD34D);
 
+  // ── Augenblinzeln-Timing ──────────────────────────────────────
+  /// Abstand zwischen zwei Blinzel-Aktionen in Sekunden.
+  static const double _blinkInterval = 3.5;
+  /// Dauer des Augenschlusses in Sekunden.
+  static const double _blinkDuration = 0.12;
+
   /// Malt den Fuchs auf [canvas] innerhalb von [rect].
   ///
   /// [state]        – aktueller Animations-Zustand (aus `_PlayerState`)
@@ -368,7 +374,7 @@ class FoxSprite {
         Paint()..color = Colors.white.withOpacity(0.8));
 
     // Blinzeln – alle ~3,5 s kurz im Idle-Zustand
-    if (state == FoxAnimationState.idle && animTime % 3.5 < 0.12) {
+    if (state == FoxAnimationState.idle && animTime % _blinkInterval < _blinkDuration) {
       final blinkPaint = Paint()..color = _orange;
       canvas.drawOval(
           Rect.fromCenter(center: Offset(eyeLx, eyeY), width: es * 2.1, height: es * 0.38),
