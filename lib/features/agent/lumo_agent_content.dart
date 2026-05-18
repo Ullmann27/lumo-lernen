@@ -41,9 +41,6 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
   @override
   void initState() {
     super.initState();
-    // Render-Warmup: Wenn KI freigegeben ist, Server bereits beim
-    // Öffnen anstoßen. Dann ist der erste Chat warm und Heinz
-    // sieht keinen 30s-Cold-Start.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _proxy.warmup(widget.appState.state.settings);
       if (widget.appState.state.settings.microphoneEnabled) {
@@ -376,13 +373,23 @@ class _AgentHeader extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF7ED), Color(0xFFEFF6FF)])),
       child: Row(children: [
-        // Echter lebendiger Avatar statt statisches Emoji
         SizedBox(
           width: 88,
-          child: LumoLivingAvatar(
-            appState: appState,
-            onTap: () {},
-            height: 88,
+          height: 88,
+          child: ClipRect(
+            child: OverflowBox(
+              maxWidth: 160,
+              maxHeight: 150,
+              alignment: Alignment.center,
+              child: Transform.scale(
+                scale: 0.54,
+                child: LumoLivingAvatar(
+                  appState: appState,
+                  onTap: () {},
+                  height: 190,
+                ),
+              ),
+            ),
           ),
         ),
         const SizedBox(width: 14),
@@ -456,7 +463,6 @@ class _AnswerBubble extends StatelessWidget {
       case 'local_policy':
         return 'Lumo (Schutzfilter)';
       default:
-        // Niemals interne Codes anzeigen - immer kindgerechter Fallback.
         return 'Lumo';
     }
   }
