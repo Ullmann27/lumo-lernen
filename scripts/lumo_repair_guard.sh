@@ -42,9 +42,11 @@ require_file lib/features/learning/renderers/adaptive_task_renderer.dart
 require_file lib/features/reading/reading_content.dart
 require_file lib/features/settings/settings_content.dart
 require_file lib/features/agent/lumo_agent_content.dart
+require_file lib/features/games/flame/lumo_jump_game.dart
 require_file lib/widgets/shell/left_navigation.dart
 require_file lib/widgets/shell/lumo_stage_panel.dart
 require_file lib/core/lumo_voice.dart
+require_file lib/core/lumo_premium_voice.dart
 require_file lib/core/lumo_speech_listener.dart
 require_file lib/core/ai_tutor_service.dart
 require_file lib/core/lumo_tutor_engine.dart
@@ -72,6 +74,16 @@ require_text lib/app/app_state.dart "recordLearningAnswer"
 require_text lib/app/app_state.dart "analyzeScannedWork"
 require_text lib/app/app_state.dart "wrongAnswer"
 require_text lib/app/app_state.dart "errors >= 2"
+
+require_text lib/core/lumo_premium_voice.dart "LUMO_PREMIUM_TTS_ENDPOINT"
+require_text lib/core/lumo_premium_voice.dart "LUMO_PREMIUM_TTS_VOICE_ID"
+require_text lib/core/lumo_premium_voice.dart "LUMO_PREMIUM_TTS_API_KEY"
+require_text lib/core/lumo_voice.dart "premiumConfigured"
+require_text lib/core/lumo_voice.dart "flutter_tts"
+
+require_text lib/features/games/flame/lumo_jump_game.dart "class LumoJumpFlameScreen"
+require_text lib/features/games/flame/lumo_jump_game.dart "_transferRewardOnce"
+require_text lib/features/games/flame/lumo_jump_game.dart "recordResult"
 
 require_text lib/features/learning/learning_content.dart "AiTutorService"
 require_text lib/features/learning/learning_content.dart "LumoTutorEngine"
@@ -103,7 +115,7 @@ require_text .github/workflows/android-debug-apk.yml "bash scripts/lumo_repair_g
 
 if command -v flutter >/dev/null 2>&1; then
   flutter pub get
-  flutter analyze --no-fatal-infos --no-fatal-warnings || true
+  flutter analyze --no-fatal-infos --no-fatal-warnings
 fi
 
 echo "Zero-Defect Repair Guard finished."
