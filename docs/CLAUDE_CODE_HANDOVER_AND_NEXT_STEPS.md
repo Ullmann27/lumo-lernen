@@ -1,5 +1,7 @@
 # Claude Code Übergabe – Lumo Lernen
 
+<!-- Zuletzt aktualisiert: 17. Mai 2026 — Build-Trigger für APK #54 -->
+
 Dieses Dokument ist die direkte Übergabe an Claude Code / Opus 4.7 für das Repository:
 
 ```text
