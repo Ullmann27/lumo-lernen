@@ -53,20 +53,26 @@ class FoxSprite {
   /// [state]        – aktueller Animations-Zustand (aus `_PlayerState`)
   /// [facingRight]  – true = Blickrichtung rechts
   /// [animTime]     – monoton wachsende Ticker-Zeit in Sekunden
+  /// [mouthOpen]    – 0.0 = Mund geschlossen, 1.0 = Mund weit geöffnet (für Sprechen)
   static void paint(
     Canvas canvas, {
     required Rect rect,
     required FoxAnimationState state,
     required bool facingRight,
     required double animTime,
+    double mouthOpen = 0.0,
   }) {
     switch (state) {
       case FoxAnimationState.roll:
         _paintRoll(canvas, rect: rect, animTime: animTime);
       case FoxAnimationState.duck:
-        _paintDuck(canvas, rect: rect, facingRight: facingRight, animTime: animTime);
+        _paintDuck(canvas,
+            rect: rect, facingRight: facingRight,
+            animTime: animTime, mouthOpen: mouthOpen);
       default:
-        _paintFull(canvas, rect: rect, state: state, facingRight: facingRight, animTime: animTime);
+        _paintFull(canvas,
+            rect: rect, state: state, facingRight: facingRight,
+            animTime: animTime, mouthOpen: mouthOpen);
     }
   }
 
@@ -110,6 +116,7 @@ class FoxSprite {
     required Rect rect,
     required bool facingRight,
     required double animTime,
+    double mouthOpen = 0.0,
   }) {
     final dir = facingRight ? 1.0 : -1.0;
     final cx  = rect.center.dx;
@@ -141,7 +148,7 @@ class FoxSprite {
     final headR  = w * 0.36;
     _paintHead(canvas,
         cx: headCx, cy: headCy, headR: headR, dir: dir,
-        state: FoxAnimationState.duck, animTime: animTime);
+        state: FoxAnimationState.duck, animTime: animTime, mouthOpen: mouthOpen);
     // Kurze Beine
     canvas.drawRRect(
       RRect.fromRectAndRadius(
@@ -165,6 +172,7 @@ class FoxSprite {
     required FoxAnimationState state,
     required bool facingRight,
     required double animTime,
+    double mouthOpen = 0.0,
   }) {
     final dir = facingRight ? 1.0 : -1.0;
     final cx  = rect.center.dx;
@@ -216,7 +224,7 @@ class FoxSprite {
 
     _paintHead(canvas,
         cx: headCx, cy: headCy, headR: headR, dir: dir,
-        state: state, animTime: animTime);
+        state: state, animTime: animTime, mouthOpen: mouthOpen);
 
     _paintLegs(canvas, rect: rect, cx: cx, state: state, animTime: animTime);
   }
@@ -278,6 +286,7 @@ class FoxSprite {
     required double cx, required double cy,
     required double headR, required double dir,
     required FoxAnimationState state, required double animTime,
+    double mouthOpen = 0.0,
   }) {
     // Kopf-Kreis
     canvas.drawCircle(Offset(cx, cy), headR, Paint()..color = _orange);
@@ -296,7 +305,7 @@ class FoxSprite {
 
     _paintEars(canvas, cx: cx, cy: cy, headR: headR, dir: dir, state: state);
     _paintEyes(canvas, cx: cx, cy: cy, headR: headR, dir: dir, state: state, animTime: animTime);
-    _paintNoseMouth(canvas, cx: cx, cy: cy, dir: dir, state: state);
+    _paintNoseMouth(canvas, cx: cx, cy: cy, dir: dir, state: state, mouthOpen: mouthOpen);
   }
 
   // ─────────────────────────────────────────────────────────────
@@ -392,6 +401,7 @@ class FoxSprite {
     required double cx, required double cy,
     required double dir,
     required FoxAnimationState state,
+    double mouthOpen = 0.0,
   }) {
     final noseX = cx + 10 * dir;
     final noseY = cy + 10;
@@ -402,25 +412,70 @@ class FoxSprite {
     canvas.drawCircle(Offset(noseX, noseY), 3, Paint()..color = _dark);
     canvas.drawCircle(Offset(noseX - 1, noseY - 1), 0.9, Paint()..color = Colors.white);
 
-    // Mund: lächelnd bei idle/run/jump, neutral/überrascht bei fall/duck
-    final happy = state == FoxAnimationState.idle ||
-        state == FoxAnimationState.run ||
-        state == FoxAnimationState.jump;
-    final mouthPath = Path()
-      ..moveTo(noseX - 4, noseY + 3);
-    if (happy) {
-      mouthPath.quadraticBezierTo(noseX, noseY + 7, noseX + 4, noseY + 3);
+    final open = mouthOpen.clamp(0.0, 1.0);
+
+    if (open > 0.02) {
+      // ── Sprechender Mund: Oval, das sich öffnet ──────────────
+      // Unterkiefer sinkt nach unten (max 8px)
+      final jawDrop = open * 8.0;
+      final mouthW  = 8.0 + open * 4.0;
+      final mouthH  = 2.0 + jawDrop;
+      // Mundinneres (dunkel)
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: Offset(noseX, noseY + 4.5 + jawDrop * 0.4),
+          width: mouthW,
+          height: mouthH,
+        ),
+        Paint()..color = const Color(0xFF3B0A00),
+      );
+      // Zähne (nur wenn weit geöffnet)
+      if (open > 0.35) {
+        final toothAlpha = ((open - 0.35) / 0.65).clamp(0.0, 1.0);
+        canvas.drawRRect(
+          RRect.fromRectAndRadius(
+            Rect.fromLTWH(
+              noseX - mouthW * 0.35,
+              noseY + 3.5,
+              mouthW * 0.7,
+              2.5 * toothAlpha,
+            ),
+            const Radius.circular(2),
+          ),
+          Paint()..color = Colors.white.withOpacity(toothAlpha),
+        );
+      }
+      // Obere Mundlinie
+      final upperPath = Path()
+        ..moveTo(noseX - mouthW * 0.5, noseY + 3.5)
+        ..quadraticBezierTo(noseX, noseY + 2.5, noseX + mouthW * 0.5, noseY + 3.5);
+      canvas.drawPath(upperPath,
+          Paint()
+            ..color = _dark
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1.2
+            ..strokeCap = StrokeCap.round);
     } else {
-      mouthPath.quadraticBezierTo(noseX, noseY + 4, noseX + 4, noseY + 3);
+      // ── Geschlossener Mund: lächelnd oder neutral ──────────
+      final happy = state == FoxAnimationState.idle ||
+          state == FoxAnimationState.run ||
+          state == FoxAnimationState.jump;
+      final mouthPath = Path()
+        ..moveTo(noseX - 4, noseY + 3);
+      if (happy) {
+        mouthPath.quadraticBezierTo(noseX, noseY + 7, noseX + 4, noseY + 3);
+      } else {
+        mouthPath.quadraticBezierTo(noseX, noseY + 4, noseX + 4, noseY + 3);
+      }
+      canvas.drawPath(
+        mouthPath,
+        Paint()
+          ..color = _dark
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.4
+          ..strokeCap = StrokeCap.round,
+      );
     }
-    canvas.drawPath(
-      mouthPath,
-      Paint()
-        ..color = _dark
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.4
-        ..strokeCap = StrokeCap.round,
-    );
   }
 
   // ─────────────────────────────────────────────────────────────

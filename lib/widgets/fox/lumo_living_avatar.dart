@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../features/games/mini_games/fox_sprite.dart';
 
 class LumoLivingAvatar extends StatefulWidget {
   const LumoLivingAvatar({
@@ -22,13 +24,38 @@ class LumoLivingAvatar extends StatefulWidget {
   State<LumoLivingAvatar> createState() => _LumoLivingAvatarState();
 }
 
-class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProviderStateMixin {
-  late final AnimationController _breath = AnimationController(vsync: this, duration: const Duration(milliseconds: 3500))..repeat(reverse: true);
-  late final AnimationController _float = AnimationController(vsync: this, duration: const Duration(milliseconds: 4000))..repeat(reverse: true);
-  late final AnimationController _sway = AnimationController(vsync: this, duration: const Duration(milliseconds: 5000))..repeat(reverse: true);
-  late final AnimationController _blink = AnimationController(vsync: this, duration: const Duration(milliseconds: 140));
-  late final AnimationController _tapCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 700));
-  late final AnimationController _moodCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+class _LumoLivingAvatarState extends State<LumoLivingAvatar>
+    with TickerProviderStateMixin {
+  // ── Animations-Controller ─────────────────────────────────
+  late final AnimationController _breath =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 3500))
+        ..repeat(reverse: true);
+  late final AnimationController _float =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 4000))
+        ..repeat(reverse: true);
+  late final AnimationController _sway =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 5000))
+        ..repeat(reverse: true);
+  late final AnimationController _blink =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 140));
+  late final AnimationController _tapCtrl =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 700));
+  late final AnimationController _moodCtrl =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+  /// Mundbewegung beim Sprechen: 0→1→0 im 180ms-Takt.
+  late final AnimationController _jaw =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 180))
+        ..addStatusListener(_onJawStatus);
+
+  // ── Ticker für absoluten animTime-Zähler ─────────────────
+  late final Ticker _ticker;
+  double _animTime = 0;
+  Duration _lastTick = Duration.zero;
+
+  // ── Sprechen-Zustand ──────────────────────────────────────
+  bool _isSpeaking = false;
+  Timer? _talkStopTimer;
+  String _lastMessage = '';
 
   Timer? _blinkTimer;
   final _rng = math.Random();
@@ -38,15 +65,58 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
   void initState() {
     super.initState();
     _lastMood = widget.appState.state.mood;
+    _lastMessage = widget.appState.state.lumoMessage;
     widget.appState.addListener(_onStateChange);
     _scheduleBlink();
+    _ticker = createTicker(_onTick)..start();
+  }
+
+  void _onTick(Duration elapsed) {
+    if (!mounted) return;
+    if (_lastTick == Duration.zero) {
+      _lastTick = elapsed;
+      return;
+    }
+    final dt = ((elapsed - _lastTick).inMicroseconds / 1e6).clamp(0.0, 0.05);
+    _lastTick = elapsed;
+    setState(() => _animTime += dt);
   }
 
   void _onStateChange() {
-    final mood = widget.appState.state.mood;
-    if (mood != _lastMood) {
-      _lastMood = mood;
+    final st = widget.appState.state;
+    if (st.mood != _lastMood) {
+      _lastMood = st.mood;
       _moodCtrl.forward(from: 0);
+    }
+    // Sprechen starten wenn neue Nachricht erscheint
+    if (st.lumoMessage != _lastMessage) {
+      _lastMessage = st.lumoMessage;
+      _startTalking();
+    }
+  }
+
+  void _startTalking() {
+    if (!mounted) return;
+    _isSpeaking = true;
+    _jaw.forward(from: 0);
+    // Sprechen nach 3 Sekunden automatisch stoppen
+    _talkStopTimer?.cancel();
+    _talkStopTimer = Timer(const Duration(seconds: 3), _stopTalking);
+  }
+
+  void _stopTalking() {
+    if (!mounted) return;
+    setState(() => _isSpeaking = false);
+    _jaw.stop();
+  }
+
+  void _onJawStatus(AnimationStatus status) {
+    if (!_isSpeaking) return;
+    // Mund auf/zu im Pendel-Rhythmus
+    if (status == AnimationStatus.completed) {
+      _jaw.reverse();
+    } else if (status == AnimationStatus.dismissed) {
+      _jaw.forward();
     }
   }
 
@@ -63,12 +133,15 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
   void dispose() {
     widget.appState.removeListener(_onStateChange);
     _blinkTimer?.cancel();
+    _talkStopTimer?.cancel();
+    _ticker.dispose();
     _breath.dispose();
     _float.dispose();
     _sway.dispose();
     _blink.dispose();
     _tapCtrl.dispose();
     _moodCtrl.dispose();
+    _jaw.dispose();
     super.dispose();
   }
 
@@ -85,7 +158,9 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
         behavior: HitTestBehavior.opaque,
         onTap: _handleTap,
         child: AnimatedBuilder(
-          animation: Listenable.merge([_breath, _float, _sway, _blink, _tapCtrl, _moodCtrl]),
+          animation: Listenable.merge([
+            _breath, _float, _sway, _blink, _tapCtrl, _moodCtrl, _jaw,
+          ]),
           builder: (context, _) => _buildAvatar(reduced),
         ),
       ),
@@ -94,19 +169,24 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
 
   Widget _buildAvatar(bool reduced) {
     final mood = widget.appState.state.mood;
-    final breath = Curves.easeInOut.transform(_breath.value);
+    final breath  = Curves.easeInOut.transform(_breath.value);
     final floating = Curves.easeInOut.transform(_float.value);
-    final sway = Curves.easeInOut.transform(_sway.value);
-    final tap = _tapCtrl.value;
-    final moodT = _moodCtrl.value;
+    final sway    = Curves.easeInOut.transform(_sway.value);
+    final tap     = _tapCtrl.value;
+    final moodT   = _moodCtrl.value;
 
-    final scaleY = 1.0 + breath * 0.025 - _blink.value * 0.04;
-    final floatY = reduced ? 0.0 : (floating - 0.5) * 8.0;
-    final swayRot = reduced ? 0.0 : (sway - 0.5) * 0.08;
-    final tapJump = tap == 0 ? 0.0 : -math.sin(tap * math.pi) * 24.0;
+    final scaleY   = 1.0 + breath * 0.025 - _blink.value * 0.04;
+    final floatY   = reduced ? 0.0 : (floating - 0.5) * 8.0;
+    final swayRot  = reduced ? 0.0 : (sway - 0.5) * 0.08;
+    final tapJump  = tap == 0 ? 0.0 : -math.sin(tap * math.pi) * 24.0;
     final tapScale = tap == 0 ? 1.0 : 1.0 - math.sin(tap * math.pi) * 0.06;
-    final pose = _poseFor(mood, moodT);
+    final pose     = _poseFor(mood, moodT);
     final auraColor = _moodAuraColor(mood);
+
+    // Mund-Öffnung: sinusförmige Kurve für natürlichere Lippenbewegung
+    final mouthOpen = _isSpeaking
+        ? math.sin(_jaw.value * math.pi).clamp(0.0, 1.0)
+        : 0.0;
 
     return SizedBox(
       width: widget.height * 1.1,
@@ -115,6 +195,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
         alignment: Alignment.center,
         clipBehavior: Clip.none,
         children: [
+          // Aura-Glow
           Transform.scale(
             scale: 0.85 + breath * 0.25,
             child: Container(
@@ -123,12 +204,17 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
-                  colors: [auraColor.withOpacity(.30), auraColor.withOpacity(.08), Colors.transparent],
+                  colors: [
+                    auraColor.withOpacity(.30),
+                    auraColor.withOpacity(.08),
+                    Colors.transparent,
+                  ],
                   stops: const [0.0, 0.55, 1.0],
                 ),
               ),
             ),
           ),
+          // Boden-Schatten
           Positioned(
             bottom: 0,
             child: Container(
@@ -136,22 +222,30 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
               height: 14,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(99),
-                gradient: RadialGradient(colors: [Colors.black.withOpacity(.20), Colors.transparent]),
+                gradient: RadialGradient(
+                    colors: [Colors.black.withOpacity(.20), Colors.transparent]),
               ),
             ),
           ),
+          // Fuchs (animierter Vektor)
           Transform.translate(
             offset: Offset(pose.dx, floatY + tapJump + pose.dy),
             child: Transform.rotate(
               angle: swayRot + pose.rotation,
               child: Transform(
-                transform: Matrix4.identity()..scale(widget.facing * tapScale, scaleY),
+                transform: Matrix4.identity()
+                  ..scale(widget.facing * tapScale, scaleY),
                 alignment: Alignment.center,
-                child: Image.asset(
-                  'assets/images/lumo_fox.png',
+                child: SizedBox(
+                  width: widget.height * 0.82,
                   height: widget.height,
-                  fit: BoxFit.contain,
-                  errorBuilder: (_, __, ___) => _FallbackFox(height: widget.height),
+                  child: CustomPaint(
+                    painter: _AvatarFoxPainter(
+                      animTime: _animTime,
+                      mouthOpen: mouthOpen,
+                      facingRight: widget.facing >= 0,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -175,9 +269,12 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
       case LumoMood.think:
         return _Pose(dy: -4 * e, rotation: 0.08 * e);
       case LumoMood.wave:
-        return _Pose(rotation: math.sin(t * math.pi * 4) * 0.08 * (1 - t));
+        return _Pose(
+            rotation: math.sin(t * math.pi * 4) * 0.08 * (1 - t));
       case LumoMood.greet:
-        return _Pose(dy: -math.sin(t * math.pi) * 8, rotation: math.sin(t * math.pi * 3) * 0.05 * (1 - t));
+        return _Pose(
+            dy: -math.sin(t * math.pi) * 8,
+            rotation: math.sin(t * math.pi * 3) * 0.05 * (1 - t));
       case LumoMood.idle:
         return const _Pose();
     }
@@ -211,7 +308,8 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
         top: widget.height * 0.5 + math.sin(angle) * radius,
         child: Opacity(
           opacity: (1 - t).clamp(0.0, 1.0),
-          child: const Icon(Icons.star_rounded, color: LumoColors.gold, size: 22),
+          child:
+              const Icon(Icons.star_rounded, color: LumoColors.gold, size: 22),
         ),
       ));
     }
@@ -231,7 +329,10 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
             decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: LumoColors.gold.withOpacity(.4), blurRadius: 14)],
+              boxShadow: [
+                BoxShadow(
+                    color: LumoColors.gold.withOpacity(.4), blurRadius: 14)
+              ],
             ),
             child: const Text('💡', style: TextStyle(fontSize: 18)),
           ),
@@ -241,6 +342,42 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar> with TickerProvider
   }
 }
 
+// ── CustomPainter ─────────────────────────────────────────────────
+
+/// Malt den Lumo-Fuchs als Ganzkörper-Avatar (Idle-State) mit
+/// Mundbewegung wenn Lumo spricht.
+class _AvatarFoxPainter extends CustomPainter {
+  const _AvatarFoxPainter({
+    required this.animTime,
+    required this.mouthOpen,
+    required this.facingRight,
+  });
+
+  final double animTime;
+  final double mouthOpen;
+  final bool facingRight;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    FoxSprite.paint(
+      canvas,
+      rect: Offset.zero & size,
+      state: FoxAnimationState.idle,
+      facingRight: facingRight,
+      animTime: animTime,
+      mouthOpen: mouthOpen,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _AvatarFoxPainter old) =>
+      animTime != old.animTime ||
+      mouthOpen != old.mouthOpen ||
+      facingRight != old.facingRight;
+}
+
+// ── Hilfsklassen ──────────────────────────────────────────────────
+
 class _Pose {
   const _Pose({this.dx = 0, this.dy = 0, this.rotation = 0});
   final double dx;
@@ -248,20 +385,3 @@ class _Pose {
   final double rotation;
 }
 
-class _FallbackFox extends StatelessWidget {
-  const _FallbackFox({required this.height});
-  final double height;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: height * 0.7,
-      height: height,
-      decoration: BoxDecoration(
-        color: LumoColors.orange,
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: const Center(child: Text('🦊', style: TextStyle(fontSize: 80))),
-    );
-  }
-}
