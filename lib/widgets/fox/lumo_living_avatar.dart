@@ -44,8 +44,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
       AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
   /// Mundbewegung beim Sprechen: 0→1→0 im 180ms-Takt.
   late final AnimationController _jaw =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 180))
-        ..addStatusListener(_onJawStatus);
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 180));
 
   // ── Ticker für absoluten animTime-Zähler ─────────────────
   late final Ticker _ticker;
@@ -53,6 +52,8 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
   Duration _lastTick = Duration.zero;
 
   // ── Sprechen-Zustand ──────────────────────────────────────
+  /// Dauer der Mundbewegung nach einer neuen Nachricht in Sekunden.
+  static const Duration _talkDuration = Duration(seconds: 3);
   bool _isSpeaking = false;
   Timer? _talkStopTimer;
   String _lastMessage = '';
@@ -67,6 +68,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
     _lastMood = widget.appState.state.mood;
     _lastMessage = widget.appState.state.lumoMessage;
     widget.appState.addListener(_onStateChange);
+    _jaw.addStatusListener(_onJawStatus);
     _scheduleBlink();
     _ticker = createTicker(_onTick)..start();
   }
@@ -101,7 +103,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
     _jaw.forward(from: 0);
     // Sprechen nach 3 Sekunden automatisch stoppen
     _talkStopTimer?.cancel();
-    _talkStopTimer = Timer(const Duration(seconds: 3), _stopTalking);
+    _talkStopTimer = Timer(_talkDuration, _stopTalking);
   }
 
   void _stopTalking() {
@@ -141,6 +143,7 @@ class _LumoLivingAvatarState extends State<LumoLivingAvatar>
     _blink.dispose();
     _tapCtrl.dispose();
     _moodCtrl.dispose();
+    _jaw.removeStatusListener(_onJawStatus);
     _jaw.dispose();
     super.dispose();
   }
