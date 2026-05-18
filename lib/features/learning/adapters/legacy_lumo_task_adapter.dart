@@ -299,8 +299,15 @@ class LegacyLumoTaskAdapter {
   }
 
   LumoTask _soundVariant(LumoTask task) {
-    const startWords = <String>['Tasse', 'Lampe', 'Igel', 'Nase', 'Rose', 'Kerze', 'Wolke', 'Biene'];
-    const endWords = <String>['Brot', 'Rad', 'Glas', 'Rose', 'Apfel', 'Garten', 'Stift', 'Blatt'];
+    const startWords = <String>[
+      'Tasse', 'Lampe', 'Igel', 'Nase', 'Rose', 'Kerze', 'Wolke', 'Biene',
+      'Fenster', 'Garten', 'Sonne', 'Krone', 'Brille', 'Vogel', 'Katze',
+    ];
+    const endWords = <String>[
+      'Brot', 'Rad', 'Glas', 'Rose', 'Apfel', 'Garten', 'Stift', 'Blatt',
+      'Hut', 'Ofen', 'Tier', 'Baum', 'Igel', 'Hase', 'Ohr', 'Buch',
+      'Schatz', 'Sand', 'Ring', 'Arm',
+    ];
     final isEnd = task.unit == 'Endlaute';
     final words = isEnd ? endWords : startWords;
     final word = words[_varietyIndex(task, words.length)];
@@ -487,34 +494,58 @@ class LegacyLumoTaskAdapter {
       'papa' => const <String>['Pappa', 'Pupa'],
       'haus' => const <String>['Hauß', 'Has'],
       'ball' => const <String>['Bal', 'Bahl'],
-      'sonne' => const <String>['Sone', 'Sonne Sonne'],
+      'sonne' => const <String>['Sone', 'Sonnne'],
       'spielen' => const <String>['spilen', 'schpielen'],
       'kommen' => const <String>['komen', 'komenn'],
-      'schule' => const <String>['Schuhle', 'schule'],
+      'schule' => const <String>['Schuhle', 'Schulle'],
       'freund' => const <String>['Froind', 'Freunt'],
       'heute' => const <String>['hoite', 'heude'],
-      'klein' => const <String>['kline', 'Klein'],
-      'gross' => const <String>['gros', 'grohs'],
+      'klein' => const <String>['kline', 'kleinn'],
+      'groß' || 'gross' => const <String>['gros', 'grohs'],
       _ => <String>['${correct}e', '${correct}n'],
     };
     return _distinctChoices(correct, fallbackPool: <String>[correct, ...distractors, 'Blume', 'Kerze', 'Biene']);
   }
 
   String _wordEndingWith(String ending) {
-    final bank = <String, List<String>>{
-      't': <String>['Stift', 'Hut', 'Boot', 'Brot', 'Blatt'],
-      'd': <String>['Rad', 'Wald', 'Bild', 'Kind'],
-      's': <String>['Glas', 'Bus', 'Reis'],
-      'e': <String>['Hase', 'Rose', 'Lampe', 'Blume', 'Tasse'],
-      'n': <String>['Banane', 'Kaninchen', 'Ofen', 'Garten'],
-      'l': <String>['Apfel', 'Igel', 'Pinsel'],
+    const bank = <String, List<String>>{
+      'a': <String>['Sofa', 'Lama'],
+      'b': <String>['Stab', 'Grab', 'Dieb', 'Korb'],
+      'd': <String>['Rad', 'Wald', 'Bild', 'Kind', 'Sand', 'Hund'],
+      'e': <String>['Hase', 'Rose', 'Lampe', 'Blume', 'Tasse', 'Katze', 'Krone'],
+      'f': <String>['Hof', 'Ruf', 'Topf', 'Kopf', 'Brief'],
+      'g': <String>['Weg', 'Berg', 'Ring', 'Zug', 'Flug'],
+      'h': <String>['Reh', 'Stroh', 'Roh', 'Floh'],
+      'i': <String>['Kiwi', 'Mini'],
+      'j': <String>['Papagei', 'Meerei'],
+      'k': <String>['Blick', 'Strick', 'Haken', 'Back'],
+      'l': <String>['Apfel', 'Igel', 'Pinsel', 'Tunnel', 'Vogel'],
+      'm': <String>['Baum', 'Traum', 'Rahm', 'Sturm', 'Arm'],
+      'n': <String>['Banane', 'Kaninchen', 'Ofen', 'Garten', 'Regen', 'Wagen'],
+      'o': <String>['Froh', 'Stroh', 'Solo', 'Kino'],
+      'p': <String>['Kap', 'Typ', 'Klapp', 'Stopp'],
+      'r': <String>['Tier', 'Meer', 'Tor', 'Bär', 'Ohr', 'Feuer', 'Mauer', 'Wasser'],
+      's': <String>['Glas', 'Bus', 'Eis', 'Hals', 'Preis', 'Fluss'],
+      't': <String>['Stift', 'Hut', 'Boot', 'Brot', 'Blatt', 'Ast'],
+      'u': <String>['Kanu', 'Tofu'],
+      'v': <String>['Brav', 'Aktiv'],
+      'w': <String>['Bau', 'Tau'],
+      'x': <String>['Axt', 'Wachs'],
+      'y': <String>['Hobby', 'Baby'],
+      'z': <String>['Schatz', 'Platz', 'Sitz', 'Schutz', 'Netz'],
+      'ß': <String>['Straße', 'Strauss', 'Gruß', 'Fluss'],
     };
-    final words = bank[ending] ?? <String>['Stift'];
+    final words = bank[ending] ?? bank['t']!;
     return words.first;
   }
 
   List<String> _wordsNotEndingWith(String ending, {required int count}) {
-    final bank = <String>['Hase', 'Rose', 'Apfel', 'Igel', 'Schule', 'Banane', 'Blume', 'Kerze', 'Biene', 'Wolke', 'Tasche', 'Garten'];
+    const bank = <String>[
+      'Hase', 'Rose', 'Apfel', 'Igel', 'Schule', 'Banane', 'Blume', 'Kerze',
+      'Biene', 'Wolke', 'Tasche', 'Garten', 'Lampe', 'Krone', 'Fenster',
+      'Tanne', 'Gabel', 'Katze', 'Vogel', 'Brille', 'Sonne', 'Kette',
+      'Mütze', 'Puppe', 'Wiese', 'Nase', 'Buch', 'Hemd', 'Seife',
+    ];
     return bank
         .where((word) => !_normalizeWord(word).endsWith(ending))
         .take(count)

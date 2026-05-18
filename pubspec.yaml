@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flame: ^1.18.0
   shared_preferences: ^2.3.3
   flutter_tts: ^4.2.0
   speech_to_text: ^7.0.0

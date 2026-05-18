@@ -9,7 +9,7 @@ import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
-import 'mini_games/lumo_jump_adventure_game.dart';
+import 'flame/lumo_jump_game.dart';
 import 'mini_games/number_house_game.dart';
 import 'mini_games/stars_path_game.dart';
 
@@ -80,7 +80,7 @@ class _GamesContentState extends State<GamesContent> {
     final adventureLevel = GameLevelCatalog.levels.first;
     final earnedStars = await Navigator.of(context).push<int>(
       MaterialPageRoute<int>(
-        builder: (_) => LumoJumpAdventureGame(
+        builder: (_) => LumoJumpFlameScreen(
           appState: widget.appState,
           level: adventureLevel,
         ),
