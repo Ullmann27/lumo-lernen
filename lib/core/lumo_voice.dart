@@ -203,7 +203,7 @@ class LumoVoice {
     final prepared = _prepareHumanText(text, style);
 
     try {
-      await stop();
+      await _stopPlaybackOnly();
       if (ticket != _speechTicket) return;
       status.value = VoiceStatus.speaking;
 
@@ -256,14 +256,18 @@ class LumoVoice {
     }
   }
 
-  Future<void> stop() async {
-    _speechTicket++;
+  Future<void> _stopPlaybackOnly() async {
     try {
       await _premium.stop();
     } catch (_) {}
     try {
       await _tts.stop();
     } catch (_) {}
+  }
+
+  Future<void> stop() async {
+    _speechTicket++;
+    await _stopPlaybackOnly();
     status.value = VoiceStatus.idle;
   }
 
