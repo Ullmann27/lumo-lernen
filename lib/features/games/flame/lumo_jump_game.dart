@@ -488,7 +488,7 @@ class _TileBadge extends StatelessWidget {
             ? LumoColors.blue
             : starVisible
                 ? LumoColors.gold
-                : LumoColors.green;
+                : LumoColors.teal;
     return AnimatedScale(
       scale: active ? 1.15 : 1.0,
       duration: const Duration(milliseconds: 180),
