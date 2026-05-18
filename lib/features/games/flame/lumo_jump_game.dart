@@ -238,6 +238,14 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen>
     Navigator.of(context).pop(_earnedStars);
   }
 
+  void _finishAndCloseSafely() {
+    unawaited(_finishAndClose());
+  }
+
+  void _openBossChestSafely() {
+    unawaited(_openBossChest());
+  }
+
   @override
   Widget build(BuildContext context) {
     final progress = _tile / _lastTile;
@@ -248,7 +256,7 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen>
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.close_rounded, color: LumoColors.ink700),
-          onPressed: _finishAndClose,
+          onPressed: _finishAndCloseSafely,
         ),
         title: Text(
           'Lumo Jump • Level ${widget.level.id}',
@@ -325,10 +333,10 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen>
               onJump: _jump,
               onDuck: _duck,
               onRoll: _roll,
-              onChest: _openBossChest,
+              onChest: _openBossChestSafely,
               chestEnabled: _tile == _bossTile,
               finished: _bossOpened,
-              onFinish: _finishAndClose,
+              onFinish: _finishAndCloseSafely,
             ),
           ],
         ),
