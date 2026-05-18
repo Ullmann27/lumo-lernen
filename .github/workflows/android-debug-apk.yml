@@ -5,6 +5,16 @@ on:
   push:
     branches: [ main ]
   pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+
+# Cancel-in-progress: ein neuer Push/PR-Sync bricht aeltere noch laufende
+# Builds ab. Spart Actions-Minuten bei haeufigen Codex-PR-Syncs erheblich.
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -12,6 +22,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Skip drafts to save minutes - aktiviert sich erst wenn PR ready ist
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     steps:
       - uses: actions/checkout@v4
 

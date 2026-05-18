@@ -21,6 +21,12 @@ on:
 permissions:
   contents: write
 
+# Cancel-in-progress: alte Release-Builds abbrechen wenn ein neuer
+# Push auf main kommt. Spart Actions-Minuten.
+concurrency:
+  group: release-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
