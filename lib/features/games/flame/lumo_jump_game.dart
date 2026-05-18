@@ -617,7 +617,7 @@ class _HintCard extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: LumoColors.ink800),
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: LumoColors.ink700),
       ),
     );
   }
