@@ -78,6 +78,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
   final List<_StarPickup> _stars = <_StarPickup>[];
   late _Chest _chest;
   late double _worldWidth;
+  final List<_JumpPad> _jumpPads = <_JumpPad>[];
 
   // ── Spieler-Zustand ───────────────────────────────────────────
   double _playerX = 70;
@@ -220,10 +221,14 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     _vy = _vy.clamp(-1500.0, 1500.0);
     _playerY += _vy * dt;
 
+    _checkJumpPadLanding(previousRect);
     _resolveVertical(previousRect);
     _collectStars();
     _checkQuestionBlocks();
     _checkChest();
+    _updateCrateWiggle();
+    _updateChestAnimation(dt);
+    _updateJumpPadSprings(dt);
 
     if (_playerY > _fallResetY) {
       _resetAfterFall();
@@ -867,6 +872,56 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     _shakeTimer = math.max(_shakeTimer, duration);
   }
 
+  // ── Jump-Pad-Landung ─────────────────────────────────────────
+  void _checkJumpPadLanding(Rect previousRect) {
+    if (_vy < 0) return; // Nur beim Fallen reagieren
+    final rect = _playerRect;
+    for (final pad in _jumpPads) {
+      final p = pad.rect;
+      final horizontalOverlap = rect.right > p.left + 4 && rect.left < p.right - 4;
+      if (!horizontalOverlap) continue;
+      final wasAbove = previousRect.bottom <= p.top + 6;
+      final nowPastTop = rect.bottom >= p.top;
+      if (wasAbove && nowPastTop) {
+        _playerY = p.top - _playerHeight;
+        _vy = -jumpPower * 1.55; // 55 % höher als normaler Sprung
+        _onGround = false;
+        pad.springTime = 0.30;
+        _statusHint = 'Sprungfeder! 🌀';
+        HapticFeedback.mediumImpact();
+      }
+    }
+  }
+
+  // ── Kisten-Wiggle (Annäherungs-Reaktion) ─────────────────────
+  void _updateCrateWiggle() {
+    final playerCenter = _playerRect.center;
+    for (final obs in _obstacles) {
+      if (!obs.active || obs.type != _GameObjectType.breakableCrate) continue;
+      final dist = (obs.rect.center - playerCenter).distance;
+      obs.wiggleTimer = dist < 110 ? obs.wiggleTimer + 0.016 : 0;
+    }
+  }
+
+  // ── Boss-Truhe Deckel-Animation ───────────────────────────────
+  void _updateChestAnimation(double dt) {
+    if (!_chest.opened) return;
+    const maxAngle = math.pi * 0.75;
+    if (_chest.lidAngle < maxAngle) {
+      _chest.openAnimTime += dt;
+      _chest.lidAngle = math.min(_chest.openAnimTime * 5.0, maxAngle);
+    }
+  }
+
+  // ── Spring-Pads: Timer herunterzählen ─────────────────────────
+  void _updateJumpPadSprings(double dt) {
+    for (final pad in _jumpPads) {
+      if (pad.springTime > 0) {
+        pad.springTime = math.max(0, pad.springTime - dt);
+      }
+    }
+  }
+
   /// Theme passend zum aktuellen Level-Block (1-5). Nintendo-Welt-Variation.
   _LumoTheme get _theme => _LumoTheme.forLevel(widget.level.id);
 
@@ -907,6 +962,9 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     _stars
       ..clear()
       ..addAll(generated.stars);
+    _jumpPads
+      ..clear()
+      ..addAll(generated.jumpPads);
     _worldWidth = generated.worldWidth;
     _chest = generated.chest;
   }
@@ -917,6 +975,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
     final stars = <_StarPickup>[];
     final obstacles = <_Obstacle>[];
     final questionBlocks = <_QuestionBlock>[];
+    final jumpPads = <_JumpPad>[];
 
     const baseGroundY = 330.0;
     double x = 0;
@@ -969,6 +1028,12 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
         }
       }
 
+      // Jump-Pad alle 5 Chunks (versetzt zum Hindernis-Rhythmus)
+      if (chunk % 5 == 2 && chunk > 0) {
+        final padX = x + width * 0.5 - 20;
+        jumpPads.add(_JumpPad(Rect.fromLTWH(padX, y - 22, 40, 22)));
+      }
+
       lastY = y;
 
       // ── Spelunky-Garantie: Lücke mathematisch begrenzen ──────
@@ -991,6 +1056,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
       obstacles: obstacles,
       questionBlocks: questionBlocks,
       chest: chest,
+      jumpPads: jumpPads,
     );
   }
 
@@ -1088,6 +1154,7 @@ class _LumoJumpAdventureGameState extends State<LumoJumpAdventureGame>
                                 _stars.where((s) => s.collected).length,
                             burstCount: _starBursts.length,
                             splinterCount: _splinters.length,
+                            jumpPads: _jumpPads,
                           ),
                         ),
                       ),
@@ -1434,6 +1501,7 @@ class _LumoJumpPainter extends CustomPainter {
     required this.collectedStarCount,
     required this.burstCount,
     required this.splinterCount,
+    required this.jumpPads,
   });
 
   final double cameraX;
@@ -1457,6 +1525,7 @@ class _LumoJumpPainter extends CustomPainter {
   final int collectedStarCount;
   final int burstCount;
   final int splinterCount;
+  final List<_JumpPad> jumpPads;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -1514,6 +1583,7 @@ class _LumoJumpPainter extends CustomPainter {
     canvas.translate(-cameraX, 0);
 
     _paintPlatforms(canvas);
+    _paintJumpPads(canvas);
     _paintObstacles(canvas);
     _paintQuestionBlocks(canvas);
     _paintStars(canvas);
@@ -1787,11 +1857,115 @@ class _LumoJumpPainter extends CustomPainter {
     canvas.drawCircle(center, 1.8, Paint()..color = const Color(0xFFFCD34D));
   }
 
+  // ── Jump-Pads mit Feder-Animation ────────────────────────────
+  void _paintJumpPads(Canvas canvas) {
+    for (final pad in jumpPads) {
+      final r = pad.rect;
+      // Kompression: 0 = keine Stauchung, 1 = maximal gestaucht
+      final compression = pad.springTime > 0
+          ? math.sin(math.pi * (1 - pad.springTime / 0.30)) * 0.55
+          : 0.0;
+      final compressedH = r.height * (1.0 - compression * 0.55);
+      final topY = r.bottom - compressedH;
+      final padRect = Rect.fromLTRB(r.left, topY, r.right, r.bottom);
+
+      // Sockel (graue Metallscheibe)
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(r.left - 5, r.bottom - 9, r.width + 10, 9),
+          const Radius.circular(5),
+        ),
+        Paint()..color = const Color(0xFF78716C),
+      );
+      // Sockel-Highlight
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(r.left - 3, r.bottom - 9, r.width + 6, 4),
+          const Radius.circular(3),
+        ),
+        Paint()..color = Colors.white.withOpacity(0.25),
+      );
+
+      // Feder-Spiralen (4 V-Linien)
+      final coilPaint = Paint()
+        ..color = const Color(0xFFD97706)
+        ..strokeWidth = 3
+        ..strokeCap = StrokeCap.round
+        ..style = PaintingStyle.stroke;
+      final coilH = compressedH * 0.58;
+      const coilCount = 4;
+      for (var i = 0; i < coilCount; i++) {
+        final yBase = r.bottom - 9 - (i / coilCount) * coilH;
+        final yTop = r.bottom - 9 - ((i + 1) / coilCount) * coilH;
+        final leftX = r.left + 4;
+        final rightX = r.right - 4;
+        final midX = r.center.dx;
+        if (i.isEven) {
+          canvas.drawLine(Offset(leftX, yBase), Offset(midX, yTop), coilPaint);
+        } else {
+          canvas.drawLine(Offset(midX, yBase), Offset(rightX, yTop), coilPaint);
+        }
+      }
+
+      // Ober-Pad mit Orange-Gradient
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(padRect, const Radius.circular(7)),
+        Paint()
+          ..shader = LinearGradient(
+            colors: const <Color>[Color(0xFFFB923C), Color(0xFFF97316)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(padRect),
+      );
+      // Highlight-Streifen oben
+      canvas.drawRRect(
+        RRect.fromLTRBR(
+          padRect.left + 4, padRect.top + 2,
+          padRect.right - 4, padRect.top + 5,
+          const Radius.circular(3),
+        ),
+        Paint()..color = Colors.white.withOpacity(0.4),
+      );
+
+      // Pfeil-nach-oben Indikator
+      final mx = padRect.center.dx;
+      final my = padRect.center.dy + 1;
+      final arrowP = Paint()
+        ..color = Colors.white.withOpacity(0.85)
+        ..strokeWidth = 2.5
+        ..strokeCap = StrokeCap.round;
+      canvas.drawLine(Offset(mx, my + 4), Offset(mx, my - 4), arrowP);
+      canvas.drawLine(Offset(mx - 4, my + 0), Offset(mx, my - 4), arrowP);
+      canvas.drawLine(Offset(mx + 4, my + 0), Offset(mx, my - 4), arrowP);
+
+      // Goldener Glow-Puls wenn aktiv
+      if (pad.springTime > 0) {
+        final glowAlpha = (pad.springTime / 0.30).clamp(0.0, 1.0);
+        canvas.drawRRect(
+          RRect.fromRectAndRadius(padRect.inflate(6), const Radius.circular(12)),
+          Paint()..color = const Color(0xFFFCD34D).withOpacity(glowAlpha * 0.55),
+        );
+      }
+    }
+  }
+
   void _paintObstacles(Canvas canvas) {
     for (final obstacle in obstacles) {
       if (!obstacle.active) continue;
       if (obstacle.type == _GameObjectType.breakableCrate) {
-        // Premium-Holzkiste mit X-Beschlag (wie Referenzbild)
+        // Wiggle-Rotation wenn Spieler nah ist
+        final hasWiggle = obstacle.wiggleTimer > 0;
+        final wiggleAngle = hasWiggle
+            ? math.sin(obstacle.wiggleTimer * 14) * 0.055
+            : 0.0;
+
+        if (hasWiggle) {
+          canvas.save();
+          final rc = obstacle.rect.center;
+          canvas.translate(rc.dx, rc.dy);
+          canvas.rotate(wiggleAngle);
+          canvas.translate(-rc.dx, -rc.dy);
+        }
         final r = obstacle.rect;
         // Schatten unter der Kiste
         canvas.drawRRect(
@@ -1845,6 +2019,7 @@ class _LumoJumpPainter extends CustomPainter {
           canvas.drawCircle(pos, 2.8, boltPaint);
           canvas.drawCircle(pos.translate(-0.8, -0.8), 1.0, boltHighlight);
         }
+        if (hasWiggle) canvas.restore();
       } else {
         final color = obstacle.requiresDuck
             ? const Color(0xFF7C3AED) // Lila: ducken
@@ -1925,14 +2100,15 @@ class _LumoJumpPainter extends CustomPainter {
               stops: const <double>[0.0, 0.55, 1.0],
             ).createShader(Rect.fromCircle(center: center, radius: s)));
 
-      // Innen-Stern (5-Zack)
+      // Innen-Stern (5-Zack, dreht sich langsam)
       final innerS = s * 0.55;
       final starPath = Path();
+      final starRot = animTime * 0.9 + star.position.dx * 0.01;
       for (var i = 0; i < 10; i++) {
-        final a = -math.pi / 2 + (i / 10) * math.pi * 2;
-        final r = i.isEven ? innerS : innerS * 0.5;
-        final px = cx + math.cos(a) * r;
-        final py = cy + math.sin(a) * r;
+        final a = -math.pi / 2 + (i / 10) * math.pi * 2 + starRot;
+        final rr = i.isEven ? innerS : innerS * 0.5;
+        final px = cx + math.cos(a) * rr;
+        final py = cy + math.sin(a) * rr;
         if (i == 0) {
           starPath.moveTo(px, py);
         } else {
@@ -1953,16 +2129,64 @@ class _LumoJumpPainter extends CustomPainter {
   void _paintChest(Canvas canvas) {
     final r = chest.rect;
     if (chest.opened) {
-      // Geoeffnete Truhe mit Glanz
+      final lidFraction = (chest.lidAngle / (math.pi * 0.75)).clamp(0.0, 1.0);
+
+      // Glühender Innenraum (Goldton, wird mit Öffnung heller)
       canvas.drawRRect(
           RRect.fromRectAndRadius(r, const Radius.circular(8)),
-          Paint()..color = const Color(0xFF10B981));
-      // Trophy-Stern
-      final tp = TextPainter(
-        text: const TextSpan(text: '🏆', style: TextStyle(fontSize: 36)),
-        textDirection: TextDirection.ltr,
-      )..layout();
-      tp.paint(canvas, Offset(r.center.dx - tp.width / 2, r.center.dy - tp.height / 2));
+          Paint()
+            ..shader = RadialGradient(
+              colors: <Color>[
+                const Color(0xFFFCD34D).withOpacity(lidFraction),
+                const Color(0xFF92400E),
+              ],
+              stops: const <double>[0.45, 1.0],
+            ).createShader(r));
+
+      // Truhen-Boden (dunkelbraun)
+      canvas.drawRRect(
+          RRect.fromRectAndRadius(
+              Rect.fromLTWH(r.left, r.top + 14, r.width, r.height - 14),
+              const Radius.circular(6)),
+          Paint()..color = const Color(0xFF78350F));
+
+      // Deckel öffnet sich: dreht rückwärts um den oberen Rand als Angelpunkt
+      canvas.save();
+      canvas.translate(r.left, r.top);
+      canvas.rotate(-chest.lidAngle);
+      canvas.drawRRect(
+          RRect.fromLTRBR(0, 0, r.width, 16, const Radius.circular(6)),
+          Paint()
+            ..shader = LinearGradient(
+              colors: const <Color>[Color(0xFFD97706), Color(0xFF92400E)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ).createShader(Rect.fromLTWH(0, 0, r.width, 16)));
+      // Deckel-Highlight
+      canvas.drawRRect(
+          RRect.fromLTRBR(3, 2, r.width - 3, 6, const Radius.circular(3)),
+          Paint()..color = Colors.white.withOpacity(0.25));
+      canvas.restore();
+
+      // Funken fliegen aus der Truhe (nur während Öffnung)
+      if (lidFraction > 0.1 && lidFraction < 0.98) {
+        _paintChestSparkles(canvas, r, lidFraction);
+      }
+
+      // Trophy-Emoji erst ab 70 % Öffnung
+      if (lidFraction > 0.70) {
+        final emojiAlpha = ((lidFraction - 0.70) / 0.30).clamp(0.0, 1.0);
+        final tp = TextPainter(
+          text: TextSpan(
+              text: '🏆',
+              style: TextStyle(
+                  fontSize: 34,
+                  color: Colors.white.withOpacity(emojiAlpha))),
+          textDirection: TextDirection.ltr,
+        )..layout();
+        tp.paint(canvas,
+            Offset(r.center.dx - tp.width / 2, r.center.dy - tp.height / 2 + 4));
+      }
     } else {
       // Geschlossene Truhe mit Schloss
       canvas.drawRRect(
@@ -1977,6 +2201,21 @@ class _LumoJumpPainter extends CustomPainter {
           Rect.fromCenter(center: Offset(r.center.dx, r.top + 18), width: 14, height: 18),
           Paint()..color = const Color(0xFFFCD34D));
       canvas.drawCircle(Offset(r.center.dx, r.top + 18), 3, Paint()..color = const Color(0xFF422006));
+    }
+  }
+
+  /// Goldene Funken die beim Öffnen der Truhe herausschießen.
+  void _paintChestSparkles(Canvas canvas, Rect r, double progress) {
+    final sparkPaint = Paint()..color = const Color(0xFFFCD34D).withOpacity(0.85);
+    final glintPaint = Paint()..color = Colors.white.withOpacity(0.7);
+    for (var i = 0; i < 8; i++) {
+      final a = (i / 8) * math.pi * 2 + animTime * 3.5;
+      final dist = 18 + progress * 38;
+      final cx = r.center.dx + math.cos(a) * dist;
+      final cy = r.top - 6 + math.sin(a) * dist * 0.45;
+      final sz = 2.5 + (i % 3);
+      canvas.drawCircle(Offset(cx, cy), sz, sparkPaint);
+      canvas.drawCircle(Offset(cx - 0.6, cy - 0.6), sz * 0.40, glintPaint);
     }
   }
 
@@ -2052,7 +2291,8 @@ class _LumoJumpPainter extends CustomPainter {
         splinterCount != oldDelegate.splinterCount ||
         shakeOffset != oldDelegate.shakeOffset ||
         animTime != oldDelegate.animTime ||
-        chest.opened != oldDelegate.chest.opened;
+        chest.opened != oldDelegate.chest.opened ||
+        chest.lidAngle != oldDelegate.chest.lidAngle;
   }
 }
 
@@ -2066,6 +2306,7 @@ class _GeneratedLevel {
     required this.obstacles,
     required this.questionBlocks,
     required this.chest,
+    required this.jumpPads,
   });
 
   final double worldWidth;
@@ -2074,6 +2315,7 @@ class _GeneratedLevel {
   final List<_Obstacle> obstacles;
   final List<_QuestionBlock> questionBlocks;
   final _Chest chest;
+  final List<_JumpPad> jumpPads;
 }
 
 class _Platform {
@@ -2091,6 +2333,9 @@ class _Obstacle {
   final bool requiresDuck;
   final _GameObjectType type;
   bool active = true; // false = zerstörte Kiste
+  /// Akkumulierte Zeit in Sekunden, die der Spieler in der Nähe war.
+  /// Treibt die Wiggle-Animation an.
+  double wiggleTimer = 0;
 }
 
 class _QuestionBlock {
@@ -2111,6 +2356,18 @@ class _Chest {
   _Chest(this.rect);
   final Rect rect;
   bool opened = false;
+  /// Öffnungswinkel des Deckels in Radiant (0 = zu, pi * 0.75 = offen).
+  double lidAngle = 0;
+  /// Akkumulierte Zeit seit dem Öffnen für Lid-Tween.
+  double openAnimTime = 0;
+}
+
+/// Spring-Pad – schleudert Lumo 1,55× höher als ein normaler Sprung.
+class _JumpPad {
+  _JumpPad(this.rect);
+  final Rect rect;
+  /// 0.0 = Ruhestellung, 0.3 = gerade ausgelöst (zählt runter).
+  double springTime = 0;
 }
 
 class _LearningTask {
