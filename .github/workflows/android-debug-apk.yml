@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
   build:
@@ -66,12 +68,48 @@ jobs:
           done
 
       - name: Repair guard
-        run: bash scripts/lumo_repair_guard.sh
+        run: |
+          set -o pipefail
+          bash scripts/lumo_repair_guard.sh 2>&1 | tee repair_guard.log
 
       - name: Build debug APK
         run: |
-          flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
+          set -o pipefail
+          flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER" 2>&1 | tee build_debug_apk.log
           find build -type f -name "*.apk" -print
+
+      - name: Comment failure diagnostics
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            function tail(path) {
+              if (!fs.existsSync(path)) return `Keine Datei: ${path}`;
+              return fs.readFileSync(path, 'utf8').split('\n').slice(-140).join('\n');
+            }
+            const body = [
+              '## ❌ Lumo Android Build fehlgeschlagen',
+              '',
+              `Run: #${process.env.GITHUB_RUN_NUMBER}`,
+              `Commit: ${process.env.GITHUB_SHA}`,
+              '',
+              '### Repair guard / Analyse – letzte Zeilen',
+              '```text',
+              tail('repair_guard.log').slice(-12000),
+              '```',
+              '',
+              '### Flutter build apk – letzte Zeilen',
+              '```text',
+              tail('build_debug_apk.log').slice(-12000),
+              '```',
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body,
+            });
 
       - name: Collect APK files
         run: |
