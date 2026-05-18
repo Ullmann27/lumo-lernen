@@ -540,9 +540,10 @@ class LumoParallaxBackground extends PositionComponent {
 
   void _paintDecoration(Canvas canvas, Vector2 s, _LumoTheme t) {
     // Schnee-Partikel (Eis-Welt) oder Funken (Lava-Welt)
-    final rng = math.Random(42);
-    final p = Paint()..color = t.decoration!;
+    // Seed kombiniert feste Basis + Zeitstempel → natürliche Variation
     final tm = game.totalTime;
+    final rng = math.Random((tm * 4).floor() * 19 + 42);
+    final p = Paint()..color = t.decoration!;
     for (var i = 0; i < 18; i++) {
       final bx = (rng.nextDouble() * s.x + math.sin(tm * 0.7 + i) * 6) % s.x;
       final by = (rng.nextDouble() * s.y * 0.6 + tm * 22 * (i % 3 == 0 ? 1 : -0.5))

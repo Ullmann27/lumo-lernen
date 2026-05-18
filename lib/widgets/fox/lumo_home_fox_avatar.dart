@@ -50,6 +50,7 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
   // ── Timers ────────────────────────────────────────────────────────────
   Timer? _resetTimer;
   Timer? _behaviorTimer;
+  Timer? _actionResetTimer;   // kurzlebiger Timer für Duck/Jump-Rücksetz
   Timer? _speechTimer;
   Timer? _speechClearTimer;
   int _tapCount = 0;
@@ -107,6 +108,7 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
     _wanderCtrl.dispose();
     _resetTimer?.cancel();
     _behaviorTimer?.cancel();
+    _actionResetTimer?.cancel();
     _speechTimer?.cancel();
     _speechClearTimer?.cancel();
     super.dispose();
@@ -134,14 +136,16 @@ class _LumoHomeFoxAvatarState extends State<LumoHomeFoxAvatar>
       } else if (pick < 0.45) {
         // 15 % – Kurz ducken
         setState(() => _autoAction = fox.FoxAction.duck);
-        Timer(const Duration(milliseconds: 1100), () {
+        _actionResetTimer?.cancel();
+        _actionResetTimer = Timer(const Duration(milliseconds: 1100), () {
           if (mounted) setState(() => _autoAction = fox.FoxAction.idle);
         });
       } else if (pick < 0.55) {
         // 10 % – Kleiner Hüpfer
         setState(() => _autoAction = fox.FoxAction.jump);
         _hopCtrl.forward(from: 0);
-        Timer(const Duration(milliseconds: 520), () {
+        _actionResetTimer?.cancel();
+        _actionResetTimer = Timer(const Duration(milliseconds: 520), () {
           if (mounted) setState(() => _autoAction = fox.FoxAction.idle);
         });
       } else {
