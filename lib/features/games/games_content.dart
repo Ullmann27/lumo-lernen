@@ -72,25 +72,28 @@ class _GamesContentState extends State<GamesContent> {
     );
   }
 
+  Future<void> _launchAdventure() async {
+    HapticFeedback.mediumImpact();
+    // Adventure-Mode nutzt das erste Level-Objekt als Basis (Theme + ID),
+    // aber laeuft als eigenstaendiges Plattform-Game. Sterne landen direkt
+    // ins Wallet (totalEarnedStars via appState.update im Game selbst).
+    final adventureLevel = GameLevelCatalog.levels.first;
+    final earnedStars = await Navigator.of(context).push<int>(
+      MaterialPageRoute<int>(
+        builder: (_) => LumoJumpAdventureGame(
+          appState: widget.appState,
+          level: adventureLevel,
+        ),
+      ),
+    );
+    if (earnedStars != null && earnedStars > 0) {
+      await _load();
+    }
+  }
+
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
-    // Level 1 startet das Lumo Jump Adventure
-    if (level.id == 1) {
-      final earnedStars = await Navigator.of(context).push<int>(
-        MaterialPageRoute<int>(
-          builder: (_) => LumoJumpAdventureGame(
-            appState: widget.appState,
-            level: level,
-          ),
-        ),
-      );
-      // Fortschritt neu laden – Wallet wurde bereits im Spiel aktualisiert
-      if (earnedStars != null && earnedStars > 0) {
-        await _load();
-      }
-      return;
-    }
     switch (level.miniType) {
       case GameMiniType.starsPath:
         await Navigator.of(context).push(
@@ -166,6 +169,11 @@ class _GamesContentState extends State<GamesContent> {
                       totalStars: totalStars,
                       maxStars: maxStars,
                       unlockedCount: unlockedCount,
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: _AdventureCard(
+                      onPlay: _launchAdventure,
                     ),
                   ),
                   SliverPadding(
@@ -284,6 +292,172 @@ class _HeaderStrip extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ─────────────────── ADVENTURE-KARTE ───────────────────
+
+class _AdventureCard extends StatefulWidget {
+  const _AdventureCard({required this.onPlay});
+  final VoidCallback onPlay;
+
+  @override
+  State<_AdventureCard> createState() => _AdventureCardState();
+}
+
+class _AdventureCardState extends State<_AdventureCard>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(14, 10, 14, 6),
+      child: AnimatedBuilder(
+        animation: _ctrl,
+        builder: (_, __) {
+          final pulse = 0.92 + _ctrl.value * 0.08;
+          return GestureDetector(
+            onTap: widget.onPlay,
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: <Color>[
+                    Color(0xFFF97316), // orange
+                    Color(0xFFEC4899), // pink
+                    Color(0xFF7C3AED), // lila
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFF97316).withOpacity(0.4 * pulse),
+                    blurRadius: 24 * pulse,
+                    offset: const Offset(0, 8),
+                    spreadRadius: -2,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  // Animierter Lumo-Avatar
+                  Container(
+                    width: 64,
+                    height: 64,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Transform.scale(
+                        scale: pulse,
+                        child: const Text('🦊', style: TextStyle(fontSize: 38)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.25),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const Text(
+                                'NEU',
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            const Text(
+                              '⭐',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        const Text(
+                          'Lumos Jump Adventure',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w900,
+                            fontSize: 19,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(color: Color(0x40000000), blurRadius: 4, offset: Offset(0, 2)),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        const Text(
+                          'Spring durch 5 Welten, sammle Sterne, knack die Truhe!',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12,
+                            color: Colors.white,
+                            height: 1.25,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.play_arrow_rounded,
+                      color: Color(0xFFF97316),
+                      size: 26,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
