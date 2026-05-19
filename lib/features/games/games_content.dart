@@ -10,6 +10,7 @@ import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import 'flame/lumo_jump_game.dart';
+import 'kart/lumo_kart_screen.dart';
 import 'mini_games/number_house_game.dart';
 import 'mini_games/stars_path_game.dart';
 
@@ -89,6 +90,16 @@ class _GamesContentState extends State<GamesContent> {
     if (earnedStars != null && earnedStars > 0) {
       await _load();
     }
+  }
+
+  Future<void> _launchKart() async {
+    HapticFeedback.mediumImpact();
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => LumoKartScreen(appState: widget.appState),
+      ),
+    );
+    await _load();
   }
 
   Future<void> _launchLevel(GameLevelRuntime rt) async {
@@ -174,6 +185,11 @@ class _GamesContentState extends State<GamesContent> {
                   SliverToBoxAdapter(
                     child: _AdventureCard(
                       onPlay: _launchAdventure,
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: _KartCard(
+                      onPlay: _launchKart,
                     ),
                   ),
                   SliverPadding(
@@ -859,6 +875,182 @@ class _LevelDetailSheet extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ─────────────────── LUMO KART CARD ───────────────────
+//
+// Grosse promintente Karte fuer den neuen Spielmodus 'Lumo Kart Adventure'.
+// Lila/Orange Gradient (passt zu Lumo's Pullover/Pelz), Kart-Sprite rechts,
+// CTA-Button mit Boost-Symbol links.
+
+class _KartCard extends StatelessWidget {
+  const _KartCard({required this.onPlay});
+  final VoidCallback onPlay;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+      child: GestureDetector(
+        onTap: onPlay,
+        child: Container(
+          height: 138,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFF7C3AED), Color(0xFFF97316)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF7C3AED).withOpacity(0.35),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            child: Stack(
+              children: [
+                // Hintergrund-Glow rechts
+                Positioned(
+                  right: -30,
+                  top: -30,
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          const Color(0xFFFEF3C7).withOpacity(0.4),
+                          const Color(0xFFFEF3C7).withOpacity(0.0),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                // Kart-Sprite rechts
+                Positioned(
+                  right: 8,
+                  top: 4,
+                  bottom: 4,
+                  child: Image.asset(
+                    'assets/lumo_kart/kart/lumo_kart_360_vehicle_sheet_asset_001.png',
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, __, ___) =>
+                        const Icon(Icons.sports_motorsports_rounded,
+                            size: 110, color: Colors.white70),
+                  ),
+                ),
+                // Text + Button links
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(18, 14, 18, 14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.22),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: Colors.white.withOpacity(0.4),
+                                  width: 1),
+                            ),
+                            child: const Text(
+                              'NEU',
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w900,
+                                fontSize: 11,
+                                color: Colors.white,
+                                letterSpacing: 1.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Lumo Kart',
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.w900,
+                              fontSize: 22,
+                              color: Colors.white,
+                              height: 1.0,
+                              shadows: [
+                                Shadow(
+                                    color: Colors.black26,
+                                    blurRadius: 6,
+                                    offset: Offset(0, 2)),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            'Adventure',
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.w800,
+                              fontSize: 16,
+                              color: Color(0xFFFEF3C7),
+                              height: 1.1,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFFF97316).withOpacity(0.4),
+                              blurRadius: 8,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.bolt_rounded,
+                                color: Color(0xFFF97316), size: 16),
+                            SizedBox(width: 4),
+                            Text(
+                              'Rennen starten',
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w900,
+                                fontSize: 13,
+                                color: Color(0xFFF97316),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -117,6 +117,22 @@ class LumoAppState extends ChangeNotifier {
     if (!_disposed) notifyListeners();
   }
 
+  /// Belohne Sterne (z.B. nach Mini-Spiel / Kart-Lauf).
+  /// Stoesst notifyListeners aus damit HUD/Dashboard sich aktualisieren.
+  void addStars(int delta) {
+    if (_disposed || delta == 0) return;
+    _state = _state.copyWith(stars: (_state.stars + delta).clamp(0, 999999));
+    _safeNotify();
+  }
+
+  /// Belohne XP nach erfolgreichem Mini-Spiel / Kart-Lauf.
+  void addXp(int delta) {
+    if (_disposed || delta == 0) return;
+    final newXp = (_state.xp + delta).clamp(0, 9999999);
+    _state = _state.copyWith(xp: newXp);
+    _safeNotify();
+  }
+
   Future<void> loadLearningProfile() async {
     if (_learningProfileLoaded || _disposed) return;
     try {
