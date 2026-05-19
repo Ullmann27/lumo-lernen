@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
@@ -35,7 +37,7 @@ class LeftNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final active = appState.state.section;
     final childName = appState.state.childName.trim().isEmpty ? 'Kind' : appState.state.childName.trim();
-    final iconOnly = width < 180;
+    final iconOnly = width < 110;
     return Container(
       width: width,
       decoration: const BoxDecoration(
@@ -99,7 +101,7 @@ class _NavItem {
   final String label;
 }
 
-class _NavPill extends StatelessWidget {
+class _NavPill extends StatefulWidget {
   const _NavPill({required this.item, required this.isActive, required this.iconOnly, required this.onTap});
   final _NavItem item;
   final bool isActive;
@@ -107,49 +109,150 @@ class _NavPill extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
+  State<_NavPill> createState() => _NavPillState();
+}
+
+class _NavPillState extends State<_NavPill>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _glowCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _glowCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2200),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _glowCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final pill = Padding(
-      padding: EdgeInsets.symmetric(horizontal: iconOnly ? 9 : 14, vertical: 3),
-      child: GestureDetector(
-        onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 220),
-          curve: Curves.easeInOut,
-          padding: EdgeInsets.symmetric(horizontal: iconOnly ? 10 : 13, vertical: 9),
-          decoration: BoxDecoration(
-            gradient: isActive ? const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]) : null,
-            color: isActive ? null : Colors.transparent,
-            borderRadius: BorderRadius.circular(LumoRadius.pill),
-            boxShadow: isActive ? LumoShadow.pill : [],
-          ),
-          child: Row(mainAxisAlignment: iconOnly ? MainAxisAlignment.center : MainAxisAlignment.start, children: [
-            AnimatedContainer(
+    // Heinz: 'Buttons im Tablet-Modus haben keine Beschriftung'
+    // Loesung: Compact-Modus mit kleinen Labels unter Icons.
+    // Nur in extrem schmaler Sidebar (<100px) zeigen wir nur Icons.
+    final isUltraCompact = widget.iconOnly;
+    return AnimatedBuilder(
+      animation: _glowCtrl,
+      builder: (context, _) {
+        final pulse = 0.5 + (math.sin(_glowCtrl.value * math.pi * 2) + 1) * 0.25;
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: isUltraCompact ? 9 : 14, vertical: 3),
+          child: GestureDetector(
+            onTap: widget.onTap,
+            child: AnimatedContainer(
               duration: const Duration(milliseconds: 220),
-              width: 32,
-              height: 32,
+              curve: Curves.easeInOut,
+              padding: EdgeInsets.symmetric(
+                  horizontal: isUltraCompact ? 6 : 13,
+                  vertical: isUltraCompact ? 8 : 9),
               decoration: BoxDecoration(
-                color: isActive ? Colors.white.withOpacity(.25) : LumoColors.orangeSurface,
-                borderRadius: BorderRadius.circular(LumoRadius.sm),
+                gradient: widget.isActive
+                    ? const LinearGradient(
+                        colors: [LumoColors.orange, LumoColors.orangeLight])
+                    : null,
+                color: widget.isActive ? null : Colors.transparent,
+                borderRadius: BorderRadius.circular(LumoRadius.pill),
+                // HOLOGRAM-GLOW: aktive Pille pulsiert + farbiger Schein
+                boxShadow: widget.isActive
+                    ? [
+                        BoxShadow(
+                          color: LumoColors.orange.withOpacity(0.45 * pulse),
+                          blurRadius: 22 + pulse * 6,
+                          offset: const Offset(0, 4),
+                          spreadRadius: 1,
+                        ),
+                        BoxShadow(
+                          color: LumoColors.orangeLight.withOpacity(0.3),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ]
+                    : null,
+                border: widget.isActive
+                    ? Border.all(
+                        color: Colors.white.withOpacity(0.45 + pulse * 0.20),
+                        width: 1.2)
+                    : null,
               ),
-              child: Icon(item.icon, color: isActive ? Colors.white : LumoColors.orange, size: 19),
+              child: isUltraCompact
+                  ? _compactLayout()
+                  : _fullLayout(),
             ),
-            if (!iconOnly) ...[
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  item.label,
-                  maxLines: 1,
-                  softWrap: false,
-                  overflow: TextOverflow.visible,
-                  style: isActive ? LumoTextStyles.navItemActive : LumoTextStyles.navItem.copyWith(color: LumoColors.ink700),
-                ),
-              ),
-            ],
-          ]),
-        ),
-      ),
+          ),
+        );
+      },
     );
-    return iconOnly ? Tooltip(message: item.label, child: pill) : pill;
+  }
+
+  Widget _fullLayout() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        _iconBox(40),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            widget.item.label,
+            maxLines: 1,
+            softWrap: false,
+            overflow: TextOverflow.visible,
+            style: widget.isActive
+                ? LumoTextStyles.navItemActive
+                : LumoTextStyles.navItem.copyWith(color: LumoColors.ink700),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Compact-Layout: Icon + kleine Beschriftung darunter.
+  /// Heinz: 'Buttons im Tablet-Modus muessen beschriftet werden.'
+  Widget _compactLayout() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _iconBox(32),
+        const SizedBox(height: 4),
+        Text(
+          widget.item.label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontWeight: FontWeight.w900,
+            fontSize: 9.5,
+            letterSpacing: 0.2,
+            height: 1.0,
+            color: widget.isActive ? Colors.white : LumoColors.ink700,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _iconBox(double size) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 220),
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: widget.isActive
+            ? Colors.white.withOpacity(.28)
+            : LumoColors.orangeSurface,
+        borderRadius: BorderRadius.circular(LumoRadius.sm),
+      ),
+      child: Icon(widget.item.icon,
+          color: widget.isActive ? Colors.white : LumoColors.orange,
+          size: size * 0.58),
+    );
   }
 }
 
