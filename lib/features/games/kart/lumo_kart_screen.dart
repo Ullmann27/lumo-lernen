@@ -17,7 +17,7 @@
 // Inspiriert von Top-Mobile-Racers (Subway Surfers, Mario Kart Tour),
 // aber NICHT kopiert. Eigenes Design, eigene Assets.
 
-import 'dart:async';
+import 'dart:async' as async;
 import 'dart:math' as math;
 
 import 'package:flame/components.dart';
@@ -179,16 +179,16 @@ class LumoKartGame extends FlameGame {
 
     // Kamera scrollt mit Kart (kart bewegt sich relativ konstant nach oben)
     // Wir nutzen cameraY damit Welt-Objekte richtig positioniert sind
-    cameraY = kart.distance;
+    cameraY = kart.traveled;
 
     // Mehr Objekte spawnen wenn noetig
-    if (kart.distance > _spawnedUpTo - 600) {
+    if (kart.traveled > _spawnedUpTo - 600) {
       _populateAhead(600);
     }
 
     // Aufraeumen: Objekte hinter Kamera entfernen
     for (final c in children.whereType<_WorldObject>().toList()) {
-      if (c.worldY < kart.distance - 400) {
+      if (c.worldY < kart.traveled - 400) {
         c.removeFromParent();
       }
     }
@@ -245,7 +245,7 @@ class LumoKartGame extends FlameGame {
 
   /// Konvertiert Welt-Y in Bildschirm-Y (kart bleibt bei 70% unten zentriert)
   double worldToScreenY(double worldY) =>
-      (size.y * 0.75) - (worldY - kart.distance);
+      (size.y * 0.75) - (worldY - kart.traveled);
 
   double worldToScreenX(double worldX) => size.x / 2 + worldX;
 }
@@ -283,7 +283,7 @@ class KartPlayerComponent extends PositionComponent {
   double  speed         = 0;
   double  laneX         = 0;  // -1..+1
   double  stickX        = 0;  // Joystick-Input
-  double  distance      = 0;  // Welt-Y (steigt)
+  double  traveled      = 0;  // Welt-Y zurueckgelegte Strecke (steigt)
   double  boostTimer    = 0;
   double  crashTimer    = 0;
   double  tilt          = 0;  // visuell
@@ -332,7 +332,7 @@ class KartPlayerComponent extends PositionComponent {
     }
 
     // Vorwaerts-Bewegung
-    distance += speed * dt;
+    traveled += speed * dt;
 
     // Lenken (Stick hat Prio)
     final inputX = stickX.abs() > 0.05 ? stickX.clamp(-1.0, 1.0) : 0.0;
@@ -355,7 +355,7 @@ class KartPlayerComponent extends PositionComponent {
 
   void _checkCollisions() {
     final kartWorldRect = Rect.fromCenter(
-        center: Offset(laneX * (_trackWidth / 2), distance),
+        center: Offset(laneX * (_trackWidth / 2), traveled),
         width: _kartW * 0.7,
         height: _kartH * 0.7);
     for (final obj in game.children.whereType<_WorldObject>()) {
@@ -397,7 +397,7 @@ class KartPlayerComponent extends PositionComponent {
     // Schatten
     canvas.drawOval(
         Rect.fromCenter(
-            center: const Offset(2, h * 0.4),
+            center: Offset(2, h * 0.4),
             width: w * 0.8,
             height: h * 0.15),
         Paint()..color = Colors.black.withOpacity(0.32));
@@ -699,12 +699,12 @@ class _HudPill extends StatefulWidget {
 }
 
 class _HudPillState extends State<_HudPill> {
-  late final Timer _ticker;
+  late final async.Timer _ticker;
 
   @override
   void initState() {
     super.initState();
-    _ticker = Timer.periodic(const Duration(milliseconds: 200), (_) {
+    _ticker = async.Timer.periodic(const Duration(milliseconds: 200), (_) {
       if (mounted) setState(() {});
     });
   }
