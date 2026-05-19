@@ -159,13 +159,18 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _voiceListener = () => _onVoiceStatus(LumoVoice.instance.status.value);
     LumoVoice.instance.status.addListener(_voiceListener!);
 
-    // ── Autonomes Wandern starten ──
-    // Heinz: 'Lumo soll selbstständig sein, ganz alleine, nicht der
-    // Maus folgen.' Alle 8-15s zu zufaelligem Safe-Zone-Punkt laufen.
-    _wanderTimer = Timer.periodic(const Duration(seconds: 1), (_) {
-      _maybeAutoWander();
-    });
+    // ── Autonomes Wandern DEAKTIVIERT ──
+    // Heinz Note-5-Feedback: 'Lumo war ueber der Mathe-Card und blockierte
+    // die UI'. Wandern komplett aus - Lumo bleibt jetzt in der Ecke
+    // (bottom-right) wie ein dezentes Maskottchen.
+    // Falls Heinz spaeter doch wieder Wandern will, einfach
+    // den Timer wieder aktivieren.
+    // _wanderTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+    //   _maybeAutoWander();
+    // });
+
     // ── Zufaellige Idle-Mikro-Reaktionen ──
+    // Bleiben drin - das ist NUR Mund/Augen/Schwanz, keine Bewegung.
     _idleBehaviorTimer = Timer.periodic(const Duration(seconds: 4), (_) {
       _maybeIdleBehavior();
     });
@@ -219,16 +224,16 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   }
 
   // ── Responsive Avatar-Groesse ──
-  // Heinz: 'Mindestens 50% groesser'.
-  // Vorher: 110 / 140 / 170 / 200
-  // Jetzt:  170 / 215 / 255 / 305 (~50% groesser)
+  // Heinz Feedback Note 5: 'Lumo viel zu gross, blockiert UI'.
+  // Reduziert von 170/215/255/305 -> 120/140/160/180.
+  // Klein genug um nicht ueber Cards zu walzen.
   double _effectiveSize(Size screen) {
     if (widget.size != null) return widget.size!;
     final w = screen.width;
-    if (w < 380) return 170;
-    if (w < 600) return 215;
-    if (w < 900) return 255;
-    return 305;
+    if (w < 380) return 120;
+    if (w < 600) return 140;
+    if (w < 900) return 160;
+    return 180;
   }
 
   // ── FRAME-BASIERTE WALK-CYCLE ──
@@ -805,9 +810,22 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     final cx = ((r.x + 1) / 2) * screen.width;
     final cy = ((r.y + 1) / 2) * screen.height;
     // Margin anwenden
-    return Offset(
+    final raw = Offset(
       cx - widget.homeMargin.right + widget.homeMargin.left,
       cy - widget.homeMargin.bottom + widget.homeMargin.top,
+    );
+    // ── CLAMPEN: garantiert auf dem Screen ─────────────────────────
+    // Heinz Note-5-Feedback: 'Lumo war ganz am Anfang ausserhalb
+    // des Bildschirms'. Das passiert wenn Margin/Foxsize zu gross sind.
+    // Fix: clamp so dass Lumo komplett sichtbar bleibt.
+    final halfW = foxSize / 2;
+    final minX = halfW + 8;
+    final maxX = screen.width - halfW - 8;
+    final minY = foxSize + 8;
+    final maxY = screen.height - 8;
+    return Offset(
+      raw.dx.clamp(minX, maxX),
+      raw.dy.clamp(minY, maxY),
     );
   }
 }
