@@ -59,7 +59,7 @@ require_text lib/main.dart "profile = null"
 require_text lib/main.dart "AppShell(profile: _profile)"
 
 require_text lib/app/app_shell.dart "HomeContent(appState: _appState"
-require_text lib/app/app_shell.dart "SectionContent(appState: _appState, section: LumoSection.learn"
+require_text lib/app/app_shell.dart "LumoAkademieScreen(appState: _appState)"
 require_text lib/app/app_shell.dart "LearningContent(appState: _appState)"
 require_text lib/app/app_shell.dart "ReadingContent(appState: _appState"
 require_text lib/app/app_shell.dart "SettingsContent(appState: _appState)"
