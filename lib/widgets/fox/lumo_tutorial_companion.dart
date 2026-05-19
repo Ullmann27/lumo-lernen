@@ -174,11 +174,11 @@ class LumoTutorialCompanionState extends State<LumoTutorialCompanion>
       return;
     }
 
-    final stop = widget.stops[idx];
+    final tStop = widget.stops[idx];
     final fromX = _curX;
     final fromY = _curY;
-    final toX = stop.xFraction;
-    final toY = stop.yFraction;
+    final toX = tStop.xFraction;
+    final toY = tStop.yFraction;
 
     // Lumo dreht sich in die Bewegungsrichtung
     setState(() {
@@ -188,7 +188,7 @@ class LumoTutorialCompanionState extends State<LumoTutorialCompanion>
     });
     _bubbleCtrl.reverse();
 
-    if (stop.jumpToReach) {
+    if (tStop.jumpToReach) {
       // ── JUMP-MODUS: kurzer hoher Bogen zur naechsten Reihe ──
       await _animateJump(fromX, fromY, toX, toY);
     } else {
@@ -203,13 +203,13 @@ class LumoTutorialCompanionState extends State<LumoTutorialCompanion>
     // Angekommen — Sprechblase zeigen
     setState(() {
       _isTalking = true;
-      _bubbleText = stop.message;
+      _bubbleText = tStop.message;
     });
     await _bubbleCtrl.forward();
 
     // Verweildauer am Ziel
     _stayTimer?.cancel();
-    _stayTimer = Timer(stop.duration, () {
+    _stayTimer = Timer(tStop.duration, () {
       if (!mounted) return;
       setState(() {
         _currentStop = idx + 1;
