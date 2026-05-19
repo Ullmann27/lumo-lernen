@@ -2385,7 +2385,6 @@ class _VirtualJoystick extends StatefulWidget {
 
 class _VirtualJoystickState extends State<_VirtualJoystick> {
   static const double _radius = 64;
-  static const double _knobRadius = 30;
   /// Groessere unsichtbare HitArea damit der Finger nicht aus dem
   /// Joystick rutscht (200x200 statt 128x128).
   static const double _hitAreaSize = 200;
@@ -2599,62 +2598,6 @@ class _CircularActionButtonState extends State<_CircularActionButton> {
 }
 
 // ── Spielknopf ────────────────────────────────────────────────────────
-
-class _GameButton extends StatefulWidget {
-  const _GameButton({
-    this.icon,
-    this.label,
-    required this.onDown,
-    required this.onUp,
-    this.accent,
-    this.large = false,
-  });
-
-  final IconData?    icon;
-  final String?      label;
-  final VoidCallback onDown;
-  final VoidCallback onUp;
-  final Color?       accent;
-  final bool         large;
-
-  @override
-  State<_GameButton> createState() => _GameButtonState();
-}
-
-class _GameButtonState extends State<_GameButton> {
-  bool _pressed = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = widget.accent ?? Colors.white;
-    final sz    = widget.large ? 64.0 : 54.0;
-    return GestureDetector(
-      onTapDown:   (_) { setState(() => _pressed = true);  widget.onDown(); },
-      onTapUp:     (_) { setState(() => _pressed = false); widget.onUp(); },
-      onTapCancel: ()  { setState(() => _pressed = false); widget.onUp(); },
-      child: Container(
-        margin: const EdgeInsets.all(6),
-        width: sz, height: sz,
-        decoration: BoxDecoration(
-          color:  _pressed
-              ? color.withOpacity(0.88)
-              : color.withOpacity(0.20),
-          shape:  BoxShape.circle,
-          border: Border.all(color: color.withOpacity(0.55), width: 2),
-        ),
-        child: Center(
-          child: widget.icon != null
-              ? Icon(widget.icon, color: color, size: 22)
-              : Text(widget.label ?? '',
-                  style: TextStyle(
-                      color:      color,
-                      fontWeight: FontWeight.w900,
-                      fontSize:   18)),
-        ),
-      ),
-    );
-  }
-}
 
 // ── Frage-Sheet ──────────────────────────────────────────────────────
 
