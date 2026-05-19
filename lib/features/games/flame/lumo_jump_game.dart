@@ -151,6 +151,11 @@ class LumoFlameJumpGame extends FlameGame {
     fox = FoxPlayerComponent(game: this);
     fox.position = Vector2(70, _baseGroundY - 76);
     world.add(fox);
+
+    // Cinematic Lighting-Overlay (hoechste Prioritaet - ueber allem)
+    // Erzeugt Pseudo-3D-Look durch Sonnen-Highlight oben +
+    // dunkle Vignette an den Raendern (wie ein Foto-Filter).
+    camera.viewport.add(_LightingOverlay(game: this)..priority = 1000);
   }
 
   @override
@@ -492,16 +497,22 @@ class LumoParallaxBackground extends PositionComponent {
     final cx = game.cameraX;
 
     _paintSky(canvas, s);
-    // ── Schicht 1: ferne Berge (langsamster Parallax) ──────
+    // ── Schicht 1: ferne Berge - atmosphaerisch verblaut + verblasst ──
+    // (Pseudo-3D: weiter weg = mehr Blaustich, weniger Saettigung)
+    _paintMountainLayer(canvas, s,
+        offset: cx * 0.05,
+        color:  const Color(0xFFC7DAEF),  // sehr hellblau, kaum saturiert
+        hFrac:  0.38,
+        peakW:  280);
     _paintMountainLayer(canvas, s,
         offset: cx * 0.10,
-        color:  const Color(0xFFBBDEFB),
+        color:  const Color(0xFFA8C5E2),  // hellblau
         hFrac:  0.34,
         peakW:  220);
-    // ── Schicht 2: mittlere Berge mit Nebel ────────────────
+    // ── Schicht 2: mittlere Berge - leicht entsaettigt ──
     _paintMountainLayer(canvas, s,
         offset: cx * 0.20,
-        color:  const Color(0xFF86EFAC),
+        color:  const Color(0xFF7CBE9F),  // entsaettigtes gruen
         hFrac:  0.28,
         peakW:  180);
     // ── Schicht 3: Wasserfall im Hintergrund ───────────────
@@ -793,6 +804,24 @@ class PlatformTileComponent extends PositionComponent {
   void render(Canvas canvas) {
     final w = size.x;
     final h = size.y;
+
+    // ── 3D-ISO-SEITENWAND (rechte Seite, fuer Tiefen-Effekt) ──
+    // Schraege Wand-Flaeche rechts mit dunklerer Erde - simuliert
+    // dass die Plattform ein 3D-Quader ist von oben gesehen.
+    final isoOffset = 12.0;  // Pseudo-3D Tiefe
+    canvas.drawPath(
+        Path()
+          ..moveTo(w, 0)
+          ..lineTo(w + isoOffset, isoOffset)
+          ..lineTo(w + isoOffset, h + isoOffset - 4)
+          ..lineTo(w, h - 4)
+          ..close(),
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [Color(0xFF78350F), Color(0xFF451A03)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(Rect.fromLTWH(w, 0, isoOffset, h)));
 
     // Schatten UNTER der Plattform fuer Tiefe
     canvas.drawRRect(
@@ -3026,4 +3055,65 @@ class _LevelConfig {
       doubleObstacles: true,
     ),
   ];
+}
+
+// ── Cinematic Lighting-Overlay ────────────────────────────────────────
+// Wird ueber das gesamte Spiel gelegt (im Viewport, nicht World) und
+// simuliert Sonnenlicht von oben + dunkle Ecken (Vignette). Macht den
+// Pseudo-3D-Look = Spiel sieht aus wie ein Mobile-Game von Supercell.
+
+class _LightingOverlay extends Component with HasGameReference<LumoFlameJumpGame> {
+  _LightingOverlay({required this.game});
+  @override
+  final LumoFlameJumpGame game;
+
+  @override
+  void render(Canvas canvas) {
+    final s = game.camera.viewport.size;
+    final rect = Rect.fromLTWH(0, 0, s.x, s.y);
+
+    // Schicht 1: Warmes Sonnenlicht von oben (subtil)
+    canvas.drawRect(
+        rect,
+        Paint()
+          ..blendMode = BlendMode.softLight
+          ..shader = LinearGradient(
+            colors: [
+              const Color(0xFFFEF3C7).withOpacity(0.55),
+              const Color(0xFFFEF3C7).withOpacity(0.0),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.center,
+          ).createShader(rect));
+
+    // Schicht 2: Vignette (dunkle Ecken) fuer Filmlook
+    canvas.drawRect(
+        rect,
+        Paint()
+          ..shader = RadialGradient(
+            colors: [
+              Colors.transparent,
+              Colors.transparent,
+              const Color(0xFF1F2937).withOpacity(0.18),
+              const Color(0xFF1F2937).withOpacity(0.32),
+            ],
+            stops: const [0.0, 0.55, 0.85, 1.0],
+            center: Alignment.center,
+            radius: 0.95,
+          ).createShader(rect));
+
+    // Schicht 3: Subtiler Boden-Glow (waermt den Spielbereich)
+    canvas.drawRect(
+        Rect.fromLTWH(0, s.y * 0.55, s.x, s.y * 0.45),
+        Paint()
+          ..blendMode = BlendMode.overlay
+          ..shader = LinearGradient(
+            colors: [
+              const Color(0xFFF59E0B).withOpacity(0.0),
+              const Color(0xFFF59E0B).withOpacity(0.10),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(Rect.fromLTWH(0, s.y * 0.55, s.x, s.y * 0.45)));
+  }
 }
