@@ -1,17 +1,17 @@
 // ════════════════════════════════════════════════════════════════════════
-// LETTER WRITING SCREEN — Buchstaben-Schreibtraining
+// LETTER WRITING SCREEN — Buchstaben-Schreibtraining (NEU strukturiert)
 // ════════════════════════════════════════════════════════════════════════
-// Heinz Feedback nach Build 88:
-//   1. Bildschirm bewegte sich beim Schreiben (Scroll-Konflikt)
-//   2. Linien waren nicht auf den Buchstaben ausgerichtet
-//   3. Wunsch: oben A anzeigen, dann BUTTON zum Extra-Bildschirm wie
-//      bei "Schreibe Wörter"
+// Heinz Feedback 2:
+//   1) Bildschirm scrollt beim Schreiben -> EXTRA Vollbild-Screen
+//   2) A schwebt zwischen Linien -> muss auf Grundlinie sitzen
+//   3) Erst nur das große A zeigen mit "was wir heute lernen"
 //
-// Neue Struktur:
-//   1. Übersichts-Screen: nur Anzeige Buchstabe + Button "Schreiben üben"
-//   2. Vollbild-Schreibmodus (Modal): Linien perfekt ausgerichtet,
-//      KEIN Scroll mehr - Kind kann ohne Verrutschen schreiben
+// Aufbau:
+//   1. DEMO-SCREEN: zeigt grosses A + "Was wir heute lernen" + Buttons
+//   2. VOLLBILD-SCHREIB-SCREEN: nur Linien + Schreibflaeche, kein Scroll
 // ════════════════════════════════════════════════════════════════════════
+
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,7 +38,7 @@ class LetterWritingScreen extends StatefulWidget {
 
 class _LetterWritingScreenState extends State<LetterWritingScreen>
     with TickerProviderStateMixin {
-  late final AnimationController _bigLetterCtrl;
+  late final AnimationController _demoCtrl;
   int _currentLetterIdx = 0;
   int _correctCount = 0;
 
@@ -47,9 +47,9 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
   @override
   void initState() {
     super.initState();
-    _bigLetterCtrl = AnimationController(
+    _demoCtrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 2200),
     )..forward();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       try {
@@ -60,27 +60,29 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
 
   @override
   void dispose() {
-    _bigLetterCtrl.dispose();
+    _demoCtrl.dispose();
     super.dispose();
   }
 
-  void _openPracticeMode() async {
+  Future<void> _openPracticeScreen() async {
     HapticFeedback.lightImpact();
-    final completed = await Navigator.of(context).push<bool>(
+    final result = await Navigator.of(context).push<bool>(
       MaterialPageRoute(
-        builder: (_) => _LetterPracticeScreen(
+        builder: (_) => _LetterPracticeFullScreen(
           letter: _letter,
           gradient: widget.topic.gradient,
-          letterNumber: _currentLetterIdx + 1,
-          totalLetters: widget.topic.writingChars.length,
+          letterIdx: _currentLetterIdx,
+          letterTotal: widget.topic.writingChars.length,
         ),
         fullscreenDialog: true,
       ),
     );
-    if (completed == true) _markAsLearned();
+    if (result == true) {
+      _nextLetter();
+    }
   }
 
-  void _markAsLearned() {
+  void _nextLetter() {
     HapticFeedback.mediumImpact();
     setState(() {
       _correctCount++;
@@ -90,8 +92,8 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
       }
       _currentLetterIdx++;
     });
-    _bigLetterCtrl.reset();
-    _bigLetterCtrl.forward();
+    _demoCtrl.reset();
+    _demoCtrl.forward();
     try {
       LumoVoice.instance.speak('Super! Jetzt das $_letter!');
     } catch (_) {}
@@ -117,7 +119,7 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
                 fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text(
-              'Du hast ${widget.topic.writingChars.length} Buchstaben geübt!',
+              'Du hast ${widget.topic.writingChars.length} Buchstaben geschrieben!',
               style: const TextStyle(fontFamily: 'Nunito', fontSize: 15),
               textAlign: TextAlign.center),
           const SizedBox(height: 12),
@@ -153,14 +155,6 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
     );
   }
 
-  void _previousLetter() {
-    if (_currentLetterIdx == 0) return;
-    HapticFeedback.selectionClick();
-    setState(() => _currentLetterIdx--);
-    _bigLetterCtrl.reset();
-    _bigLetterCtrl.forward();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,18 +164,18 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
           children: [
             _buildTopBar(),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildBigLetter(),
-                  const SizedBox(height: 32),
-                  _buildPracticeButton(),
-                  const SizedBox(height: 16),
-                  _buildHint(),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildHeader(),
+                    Expanded(child: Center(child: _buildBigDemo())),
+                    _buildActionButtons(),
+                  ],
+                ),
               ),
             ),
-            _buildBottomNav(),
           ],
         ),
       ),
@@ -252,586 +246,531 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
     );
   }
 
-  Widget _buildBigLetter() {
-    return AnimatedBuilder(
-      animation: _bigLetterCtrl,
-      builder: (_, __) {
-        final t = Curves.easeOutBack.transform(_bigLetterCtrl.value);
-        return Transform.scale(
-          scale: 0.7 + t * 0.3,
-          child: Opacity(
-            opacity: _bigLetterCtrl.value,
-            child: Column(
-              children: [
-                Container(
-                  width: 240,
-                  height: 240,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: widget.topic.gradient,
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(40),
-                    boxShadow: [
-                      BoxShadow(
-                          color: widget.topic.gradient[0].withOpacity(0.45),
-                          blurRadius: 40,
-                          offset: const Offset(0, 16))
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(_letter,
-                        style: const TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 180,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
-                            height: 0.9,
-                            shadows: [
-                              Shadow(
-                                  color: Color(0x55000000),
-                                  blurRadius: 8,
-                                  offset: Offset(0, 4))
-                            ])),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Text('Heute lernen wir den Buchstaben',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.grey.shade700)),
-                Text('"$_letter"',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 28,
-                        fontWeight: FontWeight.w900,
-                        color: widget.topic.gradient[0])),
-              ],
-            ),
-          ),
-        );
-      },
+  Widget _buildHeader() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: widget.topic.gradient),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+              color: widget.topic.gradient[0].withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(0, 3))
+        ],
+      ),
+      child: const Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.school_rounded, color: Colors.white, size: 18),
+          SizedBox(width: 8),
+          Text('Was wir heute lernen:',
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 0.5)),
+        ],
+      ),
     );
   }
 
-  Widget _buildPracticeButton() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: SizedBox(
-        width: double.infinity,
-        child: GestureDetector(
-          onTap: _openPracticeMode,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 22),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: widget.topic.gradient),
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [
-                BoxShadow(
-                    color: widget.topic.gradient[0].withOpacity(0.5),
-                    blurRadius: 20,
-                    offset: const Offset(0, 8))
-              ],
+  Widget _buildBigDemo() {
+    return AnimatedBuilder(
+      animation: _demoCtrl,
+      builder: (_, __) => Container(
+        constraints: const BoxConstraints(maxWidth: 360),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(28),
+          border: Border.all(color: const Color(0xFFE5E7EB), width: 2),
+          boxShadow: [
+            BoxShadow(
+                color: widget.topic.gradient[0].withOpacity(0.18),
+                blurRadius: 24,
+                offset: const Offset(0, 12))
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: 220,
+              height: 220,
+              child: CustomPaint(
+                painter: _LetterDemoPainter(
+                  letter: _letter,
+                  progress: _demoCtrl.value,
+                  color: widget.topic.gradient[0],
+                ),
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(Icons.edit_rounded, color: Colors.white, size: 28),
-                SizedBox(width: 12),
-                Text('Schreiben üben',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white)),
-              ],
-            ),
-          ),
+            const SizedBox(height: 6),
+            Text('Schau dir den Schreibweg an!',
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: widget.topic.gradient[0])),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildHint() {
-    return Text('Tippe oben um zu üben - im Vollbild',
-        style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-            color: Colors.grey.shade600));
-  }
-
-  Widget _buildBottomNav() {
-    final hasPrev = _currentLetterIdx > 0;
-    final hasNext =
-        _currentLetterIdx < widget.topic.writingChars.length - 1;
-    return SafeArea(
-      top: false,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-        child: Row(children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: hasPrev ? _previousLetter : null,
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                  color: hasPrev ? Colors.white : Colors.white.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                      color: hasPrev
-                          ? widget.topic.gradient[0].withOpacity(0.5)
-                          : const Color(0xFFE5E7EB),
-                      width: 2),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.arrow_back_rounded,
-                        size: 18,
-                        color: hasPrev
-                            ? widget.topic.gradient[0]
-                            : Colors.grey),
-                    const SizedBox(width: 6),
-                    Text('Voriger',
-                        style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                            color: hasPrev
-                                ? widget.topic.gradient[0]
-                                : Colors.grey)),
-                  ],
-                ),
-              ),
+  Widget _buildActionButtons() {
+    return Column(children: [
+      SizedBox(
+        width: double.infinity,
+        child: GestureDetector(
+          onTap: _openPracticeScreen,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 18),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: widget.topic.gradient),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                    color: widget.topic.gradient[0].withOpacity(0.45),
+                    blurRadius: 18,
+                    offset: const Offset(0, 8))
+              ],
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.edit_rounded, color: Colors.white, size: 24),
+                SizedBox(width: 10),
+                Text('Jetzt schreiben üben',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white)),
+                SizedBox(width: 10),
+                Icon(Icons.arrow_forward_ios_rounded,
+                    color: Colors.white, size: 18),
+              ],
             ),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                if (hasNext) {
-                  setState(() => _currentLetterIdx++);
-                  _bigLetterCtrl.reset();
-                  _bigLetterCtrl.forward();
-                }
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                  color: hasNext ? Colors.white : Colors.white.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                      color: hasNext
-                          ? widget.topic.gradient[0].withOpacity(0.5)
-                          : const Color(0xFFE5E7EB),
-                      width: 2),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Nächster',
-                        style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                            color: hasNext
-                                ? widget.topic.gradient[0]
-                                : Colors.grey)),
-                    const SizedBox(width: 6),
-                    Icon(Icons.arrow_forward_rounded,
-                        size: 18,
-                        color: hasNext
-                            ? widget.topic.gradient[0]
-                            : Colors.grey),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ]),
+        ),
       ),
-    );
+      const SizedBox(height: 10),
+      GestureDetector(
+        onTap: _nextLetter,
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Überspringen → Nächster Buchstabe',
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.grey.shade600)),
+            ],
+          ),
+        ),
+      ),
+    ]);
   }
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// VOLLBILD-SCHREIBMODUS - kein Scroll, perfekt ausgerichtete Linien
+// VOLLBILD-SCHREIB-SCREEN (KEIN Scroll, perfekt ausgerichtete Linien)
 // ════════════════════════════════════════════════════════════════════════
 
-class _LetterPracticeScreen extends StatefulWidget {
-  const _LetterPracticeScreen({
+class _LetterPracticeFullScreen extends StatefulWidget {
+  const _LetterPracticeFullScreen({
     required this.letter,
     required this.gradient,
-    required this.letterNumber,
-    required this.totalLetters,
+    required this.letterIdx,
+    required this.letterTotal,
   });
+
   final String letter;
   final List<Color> gradient;
-  final int letterNumber;
-  final int totalLetters;
+  final int letterIdx;
+  final int letterTotal;
 
   @override
-  State<_LetterPracticeScreen> createState() => _LetterPracticeScreenState();
+  State<_LetterPracticeFullScreen> createState() =>
+      _LetterPracticeFullScreenState();
 }
 
-class _LetterPracticeScreenState extends State<_LetterPracticeScreen> {
-  final List<List<List<Offset>>> _rows = [
-    <List<Offset>>[],
-    <List<Offset>>[],
-    <List<Offset>>[],
-    <List<Offset>>[],
-  ];
-  List<Offset>? _activeStroke;
-  int _activeRow = -1;
+class _LetterPracticeFullScreenState
+    extends State<_LetterPracticeFullScreen> {
+  final List<List<Offset>> _strokes = [];
+  List<Offset>? _currentStroke;
 
-  void _clearAll() {
+  void _clear() {
+    HapticFeedback.lightImpact();
     setState(() {
-      for (final r in _rows) {
-        r.clear();
-      }
+      _strokes.clear();
+      _currentStroke = null;
     });
   }
 
-  void _clearRow(int row) {
-    setState(() => _rows[row].clear());
+  void _done() {
+    HapticFeedback.mediumImpact();
+    Navigator.of(context).pop(true);
   }
-
-  bool get _hasAnything => _rows.any((r) => r.isNotEmpty);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFBEB),
-      // KEIN SafeArea + KEIN Scroll - alles fest, sodass Kind ungestört schreiben kann
-      body: Column(
-        children: [
-          // ── KOMPAKTE KOPFZEILE ─────────────────────────────────────
-          Container(
-            padding: EdgeInsets.fromLTRB(
-                8, MediaQuery.of(context).padding.top + 4, 16, 8),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: widget.gradient),
-              boxShadow: [
-                BoxShadow(
-                    color: widget.gradient[0].withOpacity(0.3),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2))
-              ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            _buildTopBar(),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: _buildWritingCanvas(),
+              ),
             ),
-            child: Row(children: [
-              IconButton(
-                icon: const Icon(Icons.close_rounded,
-                    color: Colors.white, size: 28),
-                onPressed: () => Navigator.of(context).pop(false),
-              ),
-              Container(
-                width: 52,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.25),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Text(widget.letter,
-                      style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 36,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                          height: 1)),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Schreibe das "${widget.letter}" nach',
-                        style: const TextStyle(
-                            fontFamily: 'Nunito',
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w900)),
-                    Text(
-                        'Buchstabe ${widget.letterNumber} / ${widget.totalLetters}',
-                        style: const TextStyle(
-                            fontFamily: 'Nunito',
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700)),
-                  ],
-                ),
-              ),
-              if (_hasAnything)
-                IconButton(
-                  icon: const Icon(Icons.delete_outline_rounded,
-                      color: Colors.white, size: 26),
-                  onPressed: _clearAll,
-                ),
-            ]),
+            _buildBottomActions(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTopBar() {
+    final g = widget.gradient;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(8, 12, 16, 14),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: g),
+        boxShadow: [
+          BoxShadow(
+              color: g[0].withOpacity(0.3),
+              blurRadius: 12,
+              offset: const Offset(0, 4))
+        ],
+      ),
+      child: Row(children: [
+        IconButton(
+          icon: const Icon(Icons.close_rounded, color: Colors.white, size: 28),
+          onPressed: () => Navigator.of(context).pop(false),
+        ),
+        Expanded(
+          child: Column(
+            children: [
+              Text('Schreibe Übung',
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: Colors.white.withOpacity(0.85),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.4)),
+              Text('Buchstabe "${widget.letter}"',
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900)),
+            ],
           ),
-          // ── SCHREIBFLÄCHE - fest, kein Scroll ──────────────────────
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                children: [
-                  for (int row = 0; row < 4; row++) ...[
-                    Expanded(
-                      child: _PracticeRow(
-                        letter: widget.letter,
-                        gradient: widget.gradient,
-                        strokes: _rows[row],
-                        showHints: row == 0,
-                        onPanStart: (offset) {
-                          setState(() {
-                            _activeRow = row;
-                            _activeStroke = [offset];
-                            _rows[row].add(_activeStroke!);
-                          });
-                        },
-                        onPanUpdate: (offset) {
-                          if (_activeRow != row) return;
-                          setState(() {
-                            _activeStroke?.add(offset);
-                          });
-                        },
-                        onPanEnd: () {
-                          _activeStroke = null;
-                        },
-                        onClear: () => _clearRow(row),
-                      ),
+        ),
+        Container(
+          padding:
+              const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.22),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+              '${widget.letterIdx + 1} / ${widget.letterTotal}',
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w900)),
+        ),
+      ]),
+    );
+  }
+
+  Widget _buildWritingCanvas() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFFFCD34D), width: 2),
+        boxShadow: [
+          BoxShadow(
+            color: widget.gradient[0].withOpacity(0.1),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          )
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(18),
+        child: LayoutBuilder(builder: (_, c) {
+          final h = c.maxHeight;
+          // ── PERFEKT AUSGERICHTETE LINIEN + BUCHSTABE ──
+          // Heinz Feedback: A hing zwischen Linien. Loesung:
+          // - Grundlinie bei 78% (Stand des Buchstabens)
+          // - Mittellinie bei 32% (Oberkante normaler Buchstaben)
+          // - Buchstabe sitzt EXAKT von Mittellinie bis Grundlinie
+          final midY = h * 0.32;
+          final baseY = h * 0.78;
+          final letterHeight = baseY - midY;
+
+          return Stack(children: [
+            CustomPaint(
+              size: Size.infinite,
+              painter: _SchoolLinesPainter(
+                topY: h * 0.10,
+                midY: midY,
+                baseY: baseY,
+                bottomY: h * 0.93,
+              ),
+            ),
+            // Geist-Buchstabe: EXAKT auf Linien ausgerichtet
+            Positioned(
+              left: 0,
+              right: 0,
+              top: midY,
+              height: letterHeight,
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    widget.letter,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900,
+                      color: widget.gradient[0].withOpacity(0.15),
+                      height: 1.0,
                     ),
-                    if (row < 3) const SizedBox(height: 8),
-                  ],
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onPanStart: (d) {
+                setState(() {
+                  _currentStroke = [d.localPosition];
+                  _strokes.add(_currentStroke!);
+                });
+              },
+              onPanUpdate: (d) {
+                setState(() {
+                  _currentStroke?.add(d.localPosition);
+                });
+              },
+              onPanEnd: (_) {
+                _currentStroke = null;
+              },
+              child: CustomPaint(
+                size: Size.infinite,
+                painter: _StrokesPainter(
+                  strokes: _strokes,
+                  color: widget.gradient[0],
+                ),
+              ),
+            ),
+          ]);
+        }),
+      ),
+    );
+  }
+
+  Widget _buildBottomActions() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+      child: Row(children: [
+        Expanded(
+          child: GestureDetector(
+            onTap: _strokes.isEmpty ? null : _clear,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              decoration: BoxDecoration(
+                color: _strokes.isEmpty
+                    ? const Color(0xFFF3F4F6)
+                    : Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                    color: _strokes.isEmpty
+                        ? const Color(0xFFD1D5DB)
+                        : Colors.red.shade300,
+                    width: 2),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.refresh_rounded,
+                      color: _strokes.isEmpty
+                          ? Colors.grey.shade400
+                          : Colors.red.shade700,
+                      size: 20),
+                  const SizedBox(width: 6),
+                  Text('Löschen',
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w900,
+                          color: _strokes.isEmpty
+                              ? Colors.grey.shade500
+                              : Colors.red.shade700)),
                 ],
               ),
             ),
           ),
-          // ── BOTTOM ACTIONS ─────────────────────────────────────────
-          SafeArea(
-            top: false,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
-              child: Row(children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: _clearAll,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                            color: const Color(0xFFD1D5DB), width: 2),
-                      ),
-                      child: const Center(
-                        child: Text('Alles löschen',
-                            style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w800,
-                                color: Color(0xFF6B7280))),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  flex: 2,
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(true),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: widget.gradient),
-                        borderRadius: BorderRadius.circular(14),
-                        boxShadow: [
-                          BoxShadow(
-                              color: widget.gradient[0].withOpacity(0.4),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4))
-                        ],
-                      ),
-                      child: const Center(
-                        child: Text('Fertig ✓',
-                            style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontSize: 15,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.white)),
-                      ),
-                    ),
-                  ),
-                ),
-              ]),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          flex: 2,
+          child: GestureDetector(
+            onTap: _done,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: widget.gradient),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                      color: widget.gradient[0].withOpacity(0.4),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4))
+                ],
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.check_circle_rounded,
+                      color: Colors.white, size: 22),
+                  SizedBox(width: 8),
+                  Text('Fertig & Weiter',
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white)),
+                ],
+              ),
             ),
           ),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// EINE ÜBUNGSZEILE - mit korrekt ausgerichteten Schulheft-Linien
+// PAINTER
 // ════════════════════════════════════════════════════════════════════════
-// Heinz: 'die Linien musst mehr ausrichten auf das A jetzt hängt das A
-// zwischen denn zeilen'
-// Lösung: Geist-Buchstabe SITZT EXAKT zwischen Mittel- und Grundlinie.
-//   Oberlinie (gestrichelt) bei 18% Höhe
-//   Mittellinie (durchgehend gelb) bei 35% Höhe - CAPITAL TOP
-//   Grundlinie (durchgehend orange, HAUPT) bei 75% Höhe - BASELINE
-//   Unterlinie (gestrichelt) bei 90% Höhe
-// Großbuchstabe FÜLLT exakt die Zone 35%..75%
 
-class _PracticeRow extends StatelessWidget {
-  const _PracticeRow({
+class _LetterDemoPainter extends CustomPainter {
+  _LetterDemoPainter({
     required this.letter,
-    required this.gradient,
-    required this.strokes,
-    required this.showHints,
-    required this.onPanStart,
-    required this.onPanUpdate,
-    required this.onPanEnd,
-    required this.onClear,
+    required this.progress,
+    required this.color,
   });
   final String letter;
-  final List<Color> gradient;
-  final List<List<Offset>> strokes;
-  final bool showHints;
-  final ValueChanged<Offset> onPanStart;
-  final ValueChanged<Offset> onPanUpdate;
-  final VoidCallback onPanEnd;
-  final VoidCallback onClear;
+  final double progress;
+  final Color color;
 
-  @override
-  Widget build(BuildContext context) {
-    return Stack(children: [
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xFFFCD34D), width: 1.5),
-        ),
-        child: LayoutBuilder(
-          builder: (context, c) {
-            return Stack(children: [
-              // Schulheft-Linien (HINTER allem)
-              CustomPaint(
-                size: Size(c.maxWidth, c.maxHeight),
-                painter: _SchoolLinesPainter(),
-              ),
-              // Geist-Buchstaben (nur erste Zeile als Hilfe)
-              if (showHints)
-                ..._buildGhostLetters(c.maxWidth, c.maxHeight),
-              // Mal-Fläche (über allem)
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onPanStart: (d) => onPanStart(d.localPosition),
-                onPanUpdate: (d) => onPanUpdate(d.localPosition),
-                onPanEnd: (_) => onPanEnd(),
-                child: CustomPaint(
-                  size: Size(c.maxWidth, c.maxHeight),
-                  painter: _StrokesPainter(
-                    strokes: strokes,
-                    color: gradient[0],
-                  ),
-                ),
-              ),
-            ]);
-          },
-        ),
-      ),
-      // Clear-Button für diese Zeile
-      if (strokes.isNotEmpty)
-        Positioned(
-          right: 4,
-          top: 4,
-          child: GestureDetector(
-            onTap: onClear,
-            behavior: HitTestBehavior.opaque,
-            child: Container(
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                color: Colors.red.shade100,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(Icons.close_rounded,
-                  size: 16, color: Colors.red.shade700),
-            ),
-          ),
-        ),
-    ]);
-  }
-
-  // ── GEIST-BUCHSTABEN: SITZEN EXAKT ZWISCHEN Mittel- und Grundlinie ──
-  // Mittellinie 35% = Buchstaben-Oberkante (Capital Top)
-  // Grundlinie  75% = Buchstaben-Unterkante (Baseline)
-  // Höhe = 75% - 35% = 40% der Zeilenhöhe
-  List<Widget> _buildGhostLetters(double w, double h) {
-    final zoneTop = h * 0.35;
-    final zoneBottom = h * 0.75;
-    final zoneHeight = zoneBottom - zoneTop;
-    // FontSize so dass die GLYPHE genau in die Zone passt
-    // Nunito Bold: Capital Height ≈ 0.72 * fontSize
-    final fontSize = zoneHeight / 0.72;
-    final spacing = w / 4;
-    return List.generate(3, (i) {
-      return Positioned(
-        // Positioniere so dass Baseline auf 75% liegt
-        left: spacing * (i + 1) - fontSize * 0.35,
-        top: zoneTop - fontSize * 0.10, // FontSize-Padding kompensieren
-        child: Text(
-          letter,
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: fontSize,
-            fontWeight: FontWeight.w900,
-            color: gradient[0].withOpacity(0.20),
-            height: 1.0,
-          ),
-        ),
-      );
-    });
-  }
-}
-
-// ── Schulheft-Hilfslinien (4-Linien-System Volksschule Österreich) ─────
-class _SchoolLinesPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final h = size.height;
-    final w = size.width;
+    final shadowPaint = TextPainter(
+      text: TextSpan(
+        text: letter,
+        style: TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: 180,
+          fontWeight: FontWeight.w900,
+          color: color.withOpacity(0.15),
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    shadowPaint.paint(
+      canvas,
+      Offset((size.width - shadowPaint.width) / 2,
+          (size.height - shadowPaint.height) / 2),
+    );
+    final tp = TextPainter(
+      text: TextSpan(
+        text: letter,
+        style: TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: 180,
+          fontWeight: FontWeight.w900,
+          color: color.withOpacity(progress),
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    tp.paint(
+      canvas,
+      Offset((size.width - tp.width) / 2, (size.height - tp.height) / 2),
+    );
+    if (progress < 1.0) {
+      final ang = progress * math.pi * 2 - math.pi / 2;
+      final px = size.width / 2 + math.cos(ang) * 50;
+      final py = size.height / 2 + math.sin(ang) * 50;
+      canvas.drawCircle(
+        Offset(px, py),
+        11,
+        Paint()
+          ..color = color
+          ..maskFilter = const MaskFilter.blur(BlurStyle.solid, 5),
+      );
+      canvas.drawCircle(
+        Offset(px, py),
+        6,
+        Paint()..color = Colors.white,
+      );
+    }
+  }
 
+  @override
+  bool shouldRepaint(_LetterDemoPainter old) =>
+      old.progress != progress || old.letter != letter;
+}
+
+class _SchoolLinesPainter extends CustomPainter {
+  _SchoolLinesPainter({
+    required this.topY,
+    required this.midY,
+    required this.baseY,
+    required this.bottomY,
+  });
+  final double topY;
+  final double midY;
+  final double baseY;
+  final double bottomY;
+
+  @override
+  void paint(Canvas canvas, Size size) {
     final thin = Paint()
       ..color = const Color(0xFFFCD34D)
-      ..strokeWidth = 1;
+      ..strokeWidth = 1.5;
     final mid = Paint()
       ..color = const Color(0xFFFCD34D)
-      ..strokeWidth = 1.5;
+      ..strokeWidth = 2;
     final base = Paint()
       ..color = const Color(0xFFEA580C)
-      ..strokeWidth = 2.0;
+      ..strokeWidth = 2.4;
 
-    // Volksschul-Schreibhefte haben 4 Linien:
-    //   Oberlinie 18%  - gestrichelt (Oberlängen: K, L, T)
-    //   Mittellinie 35% - durchgehend gelb (Capital Top)
-    //   Grundlinie 75%  - durchgehend orange (Baseline - HAUPT!)
-    //   Unterlinie 90% - gestrichelt (Unterlängen: g, p, q)
-    _drawDashed(canvas, Offset(8, h * 0.18), Offset(w - 8, h * 0.18), thin);
-    canvas.drawLine(Offset(8, h * 0.35), Offset(w - 8, h * 0.35), mid);
-    canvas.drawLine(Offset(8, h * 0.75), Offset(w - 8, h * 0.75), base);
-    _drawDashed(canvas, Offset(8, h * 0.90), Offset(w - 8, h * 0.90), thin);
+    _drawDashed(canvas, Offset(0, topY), Offset(size.width, topY), thin);
+    canvas.drawLine(Offset(0, midY), Offset(size.width, midY), mid);
+    canvas.drawLine(Offset(0, baseY), Offset(size.width, baseY), base);
+    _drawDashed(
+        canvas, Offset(0, bottomY), Offset(size.width, bottomY), thin);
   }
 
   void _drawDashed(Canvas c, Offset from, Offset to, Paint p) {
-    const dashW = 6.0;
-    const gap = 4.0;
+    const dashW = 8.0;
+    const gap = 5.0;
     final dx = to.dx - from.dx;
     final n = dx ~/ (dashW + gap);
     for (int i = 0; i < n; i++) {
@@ -844,7 +783,6 @@ class _SchoolLinesPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter old) => false;
 }
 
-// ── Strokes-Painter: zeichnet die Striche des Kindes ────────────────────
 class _StrokesPainter extends CustomPainter {
   _StrokesPainter({required this.strokes, required this.color});
   final List<List<Offset>> strokes;
@@ -854,14 +792,14 @@ class _StrokesPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final p = Paint()
       ..color = color
-      ..strokeWidth = 6
+      ..strokeWidth = 8
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
       ..style = PaintingStyle.stroke;
     for (final stroke in strokes) {
       if (stroke.length < 2) {
         if (stroke.isNotEmpty) {
-          canvas.drawCircle(stroke.first, 3.5, Paint()..color = color);
+          canvas.drawCircle(stroke.first, 4, Paint()..color = color);
         }
         continue;
       }
@@ -875,9 +813,5 @@ class _StrokesPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_StrokesPainter old) =>
-      old.strokes.length != strokes.length ||
-      (strokes.isNotEmpty &&
-          old.strokes.isNotEmpty &&
-          old.strokes.last.length != strokes.last.length) ||
-      old.color != color;
+      old.strokes.length != strokes.length || old.color != color;
 }
