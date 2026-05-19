@@ -43,7 +43,7 @@ enum LumoCompanionState {
 class LumoFreeCompanion extends StatefulWidget {
   const LumoFreeCompanion({
     super.key,
-    this.foxAssetPath = 'assets/lumo_jump/fox/idle/fox_idle_01.png',
+    this.foxAssetPath = 'assets/lumo_sprite_pack/lumo_main.png',
     this.size,
     this.homeAlignment = Alignment.bottomRight,
     this.homeMargin = const EdgeInsets.fromLTRB(0, 0, 28, 28),
@@ -229,6 +229,33 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     if (w < 600) return 215;
     if (w < 900) return 255;
     return 305;
+  }
+
+  // ── FRAME-BASIERTE WALK-CYCLE ──
+  // Heinz: 'Lumo darf kein Standbild sein - er soll laufen wie im Zeichentrick'.
+  // 8 Walk-Frames (sprite pack vom 19.05.2026) werden bei Bewegung zykliert.
+  // Bei stillstand wird das main-Sprite genutzt.
+  String _currentSprite() {
+    // Beim Laufen: Walk-Frames zykeln
+    if (_moveCtrl.isAnimating) {
+      // 8 Frames, 4 Schritte pro Sekunde -> Frame-Index basiert auf Zeit
+      final t = _moveCtrl.lastElapsedDuration?.inMilliseconds ?? 0;
+      final frameIdx = ((t / 110).floor() % 8) + 1;  // 1..8
+      final dir = _facingRight ? 'walk_right' : 'walk_left';
+      // Frame-Format: walk_right_01.png .. walk_right_08.png
+      final fname = '${dir}_${frameIdx.toString().padLeft(2, '0')}.png';
+      return 'assets/lumo_sprite_pack/$dir/$fname';
+    }
+    // Beim Jubeln: Cheer-Frame
+    if (_state == LumoCompanionState.celebrating ||
+        _state == LumoCompanionState.tickled) {
+      final t = _tickleCtrl.lastElapsedDuration?.inMilliseconds ?? 0;
+      final frameIdx = ((t / 130).floor() % 8) + 1;
+      final fname = 'cheer_${frameIdx.toString().padLeft(2, '0')}.png';
+      return 'assets/lumo_sprite_pack/cheer/$fname';
+    }
+    // Default: main-Sprite (das schoene Lumo-Stand-Bild)
+    return widget.foxAssetPath;
   }
 
   // ── Public API ──
@@ -689,14 +716,17 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                                   ),
                                   // Fox sprite mit ATEM-SKALIERUNG
                                   // (vertikal pulsiert leicht - "atmet")
+                                  // FRAME-CYCLE: beim Laufen Walk-Sprites,
+                                  // beim Jubeln Cheer-Sprites (Heinz' ZIP)
                                   Transform.scale(
                                     scaleY: breathScale,
                                     alignment: Alignment.bottomCenter,
                                     child: Image.asset(
-                                      widget.foxAssetPath,
+                                      _currentSprite(),
                                       width: foxSize,
                                       height: foxSize,
                                       fit: BoxFit.contain,
+                                      gaplessPlayback: true,
                                       errorBuilder: (_, __, ___) =>
                                           _FallbackFox(size: foxSize),
                                     ),
