@@ -1127,7 +1127,7 @@ class _TapAnywhereHintState extends State<_TapAnywhereHint>
               const SizedBox(width: 12),
               const Expanded(
                 child: Text(
-                  'Tippe irgendwo – Lumo kommt zu dir!',
+                  'Tippe Lumo an – er reagiert! Doppelt = kitzeln 😆',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 14,

@@ -86,7 +86,11 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   Timer? _returnTimer;
   Timer? _bubbleTimer;
   Timer? _mouthTimer;
+  Timer? _wanderTimer;        // NEU: autonomes Wandern
+  Timer? _idleBehaviorTimer;  // NEU: zufaellige Idle-Ticks
   VoidCallback? _voiceListener;
+
+  final math.Random _rng = math.Random();
 
   // ── Controllers ──
   late final AnimationController _moveCtrl;
@@ -126,6 +130,17 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     // VoiceStatus -> mouthOpen Animation
     _voiceListener = () => _onVoiceStatus(LumoVoice.instance.status.value);
     LumoVoice.instance.status.addListener(_voiceListener!);
+
+    // ── Autonomes Wandern starten ──
+    // Heinz: 'Lumo soll selbstständig sein, ganz alleine, nicht der
+    // Maus folgen.' Alle 8-15s zu zufaelligem Safe-Zone-Punkt laufen.
+    _wanderTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      _maybeAutoWander();
+    });
+    // ── Zufaellige Idle-Mikro-Reaktionen ──
+    _idleBehaviorTimer = Timer.periodic(const Duration(seconds: 4), (_) {
+      _maybeIdleBehavior();
+    });
   }
 
   void _onVoiceStatus(VoiceStatus s) {
@@ -158,6 +173,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _returnTimer?.cancel();
     _bubbleTimer?.cancel();
     _mouthTimer?.cancel();
+    _wanderTimer?.cancel();
+    _idleBehaviorTimer?.cancel();
     if (_voiceListener != null) {
       LumoVoice.instance.status.removeListener(_voiceListener!);
     }
@@ -170,13 +187,16 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   }
 
   // ── Responsive Avatar-Groesse ──
+  // Heinz: 'Mindestens 50% groesser'.
+  // Vorher: 110 / 140 / 170 / 200
+  // Jetzt:  170 / 215 / 255 / 305 (~50% groesser)
   double _effectiveSize(Size screen) {
     if (widget.size != null) return widget.size!;
     final w = screen.width;
-    if (w < 380) return 110;
-    if (w < 600) return 140;
-    if (w < 900) return 170;
-    return 200;
+    if (w < 380) return 170;
+    if (w < 600) return 215;
+    if (w < 900) return 255;
+    return 305;
   }
 
   // ── Public API ──
@@ -205,6 +225,121 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       _scheduleReturnHome();
     });
   }
+
+  // ── AUTONOMES WANDERN ──
+  // Heinz: 'Lumo soll selbstständig sein. Etwas einfallen lassen.'
+  //
+  // Lumo wandert von alleine alle 8-15s zu einer SICHEREN ZONE:
+  //   - unteres Viertel (y > 0.72 * height)
+  //   - oder ganz rechts (x > 0.78 * width) - aber NUR unten
+  // NIEMALS in der Mitte stehen, wo die Spielkarten sind. So
+  // blockiert Lumo nichts und wirkt trotzdem lebendig.
+  DateTime _lastWanderAt = DateTime.now();
+  double _wanderCooldownSec = 9.0;
+
+  void _maybeAutoWander() {
+    if (!mounted) return;
+    if (_state == LumoCompanionState.walking) return;
+    if (_state == LumoCompanionState.speaking) return;
+
+    final secsSince = DateTime.now().difference(_lastWanderAt).inSeconds;
+    if (secsSince < _wanderCooldownSec) return;
+
+    // Naechste Wanderung in 8-15 Sekunden
+    _wanderCooldownSec = 8.0 + _rng.nextDouble() * 7.0;
+    _lastWanderAt = DateTime.now();
+
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
+    final s = box.size;
+    final target = _pickSafeWanderPoint(s);
+    _autoWalkTo(target);
+  }
+
+  /// Waehlt einen zufaelligen Punkt in den "sicheren" Bildschirm-Zonen
+  /// (untere Raender, rechts unten). Vermeidet die Mitte wo Cards sind.
+  Offset _pickSafeWanderPoint(Size s) {
+    // 4 Zonen, alle im unteren Drittel oder rechts-unten:
+    final zones = <Rect>[
+      // rechts unten (Home-Bereich)
+      Rect.fromLTWH(s.width * 0.72, s.height * 0.72,
+          s.width * 0.24, s.height * 0.22),
+      // mitte unten
+      Rect.fromLTWH(s.width * 0.40, s.height * 0.78,
+          s.width * 0.30, s.height * 0.16),
+      // links unten
+      Rect.fromLTWH(s.width * 0.05, s.height * 0.78,
+          s.width * 0.25, s.height * 0.16),
+      // ganz rechts mittig (Random-Visit)
+      Rect.fromLTWH(s.width * 0.84, s.height * 0.40,
+          s.width * 0.14, s.height * 0.30),
+    ];
+    final zone = zones[_rng.nextInt(zones.length)];
+    return Offset(
+      zone.left + _rng.nextDouble() * zone.width,
+      zone.top + _rng.nextDouble() * zone.height,
+    );
+  }
+
+  void _autoWalkTo(Offset target) {
+    if (!mounted) return;
+    final from = _currentPos ?? _homePos ?? target;
+    _moveFrom = from;
+    _moveTo = target;
+
+    final dist = (target - from).distance;
+    final ms = (500 + dist * 1.4).clamp(500, 1600).round();
+    _moveCtrl.duration = Duration(milliseconds: ms);
+
+    setState(() {
+      _state = LumoCompanionState.walking;
+      _facingRight = target.dx >= from.dx;
+    });
+    _moveCtrl.reset();
+    _moveCtrl.forward().then((_) {
+      if (!mounted) return;
+      setState(() {
+        _currentPos = _moveTo;
+        _state = LumoCompanionState.idle;
+      });
+    });
+  }
+
+  /// Zufaellige Idle-Mikro-Reaktionen: Lumo macht ab und zu
+  /// kleine Sachen auch wenn niemand interagiert.
+  void _maybeIdleBehavior() {
+    if (!mounted) return;
+    if (_state != LumoCompanionState.idle) return;
+    if (_bubbleText.isNotEmpty) return;
+
+    final roll = _rng.nextDouble();
+    if (roll < 0.18) {
+      // 18%: kurzes Winken
+      setState(() => _state = LumoCompanionState.waving);
+      _waveCtrl.reset();
+      _waveCtrl.forward().then((_) {
+        if (!mounted) return;
+        setState(() => _state = LumoCompanionState.idle);
+      });
+    } else if (roll < 0.30) {
+      // 12%: kurzer Spruch
+      final spruch = _idleSayings[_rng.nextInt(_idleSayings.length)];
+      _showBubble(spruch, duration: const Duration(milliseconds: 2400));
+    } else if (roll < 0.42) {
+      // 12%: kurz drehen (Richtung wechseln)
+      setState(() => _facingRight = !_facingRight);
+    }
+    // 58%: nichts - bleibt entspannt
+  }
+
+  static const _idleSayings = [
+    'Was machen wir jetzt?',
+    'Klicke ruhig auf etwas!',
+    'Ich warte hier auf dich.',
+    'Hihi 😊',
+    'Bereit für Abenteuer?',
+    'Was lernen wir heute?',
+  ];
 
   void returnHome() {
     final home = _homePos;
@@ -260,12 +395,22 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     'Hallo! Schön, dass du da bist!',
     'Bereit für ein Abenteuer?',
     'Wir schaffen das zusammen!',
+    'Magst du mit mir spielen?',
+    'Was möchtest du heute lernen?',
+    'Du bist großartig! ⭐',
+    'Hey! Tipp doch eine Karte an.',
+    'Lust auf Mathe oder Lesen?',
+    'Ich freue mich auf dich!',
   ];
   static const _tickleLines = [
     'Hihihi! Das kitzelt!',
     'Iiiiih! 🌟',
     'Hör auf, hihi!',
     'Du bist witzig!',
+    'Hahaha! 😄',
+    'Au au au, kitzlig!',
+    'Wuiii! Nochmal!',
+    'Du machst mich glücklich! 💛',
   ];
 
   void _onTapLumo() {
@@ -309,15 +454,6 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     } catch (_) {
       // Silent fail - Voice ist optional
     }
-  }
-
-  // ── Background-Tap-Handler (move Lumo dorthin) ──
-  void _onBackgroundTap(Offset globalPos) {
-    if (!widget.tapEnabled) return;
-    final box = context.findRenderObject() as RenderBox?;
-    if (box == null) return;
-    final local = box.globalToLocal(globalPos);
-    moveTo(local);
   }
 
   @override
@@ -374,14 +510,10 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
             return Stack(
               clipBehavior: Clip.none,
               children: [
-                // ── Hintergrund-Tap-Catcher (durchlaesst Pointer wenn moeglich) ──
-                Positioned.fill(
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTapUp: (details) => _onBackgroundTap(details.globalPosition),
-                    child: const SizedBox.expand(),
-                  ),
-                ),
+                // Heinz' Feedback: 'Lumo darf nichts ueberdecken /
+                // blockieren'. Deshalb KEIN Hintergrund-Tap-Detector
+                // mehr - Buttons darunter funktionieren direkt.
+                // Lumo wandert von alleine in sicheren Zonen.
 
                 // ── Sprechblase ueber Lumo ──
                 if (_bubbleText.isNotEmpty)
@@ -401,73 +533,100 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                   ),
 
                 // ── Lumo selbst ──
+                // Heinz: 'Lumo darf nichts ueberdecken'. Daher:
+                // HitArea NUR auf dem Zentrum des Avatars (60% Breite,
+                // 70% Hoehe). Der Rest der Bounding-Box laesst Taps
+                // durch zu den darunterliegenden Buttons.
                 Positioned(
                   left: renderX,
                   top: renderY,
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: _onTapLumo,
-                    onDoubleTap: _onDoubleTapLumo,
-                    onLongPress: _onLongPressLumo,
-                    child: Transform(
-                      alignment: Alignment.center,
-                      transform: Matrix4.identity()
-                        ..rotateZ(tickleRot)
-                        ..scale(
-                            (_facingRight ? 1.0 : -1.0) * tickleScale,
-                            tickleScale,
-                            1.0),
-                      child: SizedBox(
-                        width: foxSize,
-                        height: foxSize,
-                        child: Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            // Bodenschatten
-                            Positioned(
-                              bottom: 2,
-                              child: Container(
-                                width: foxSize * 0.62,
-                                height: 7,
-                                decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.32),
-                                  borderRadius:
-                                      BorderRadius.circular(foxSize),
-                                ),
-                              ),
-                            ),
-                            // Fox sprite
-                            Image.asset(
-                              widget.foxAssetPath,
+                  child: SizedBox(
+                    width: foxSize,
+                    height: foxSize,
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        // Tap-Detector NUR auf dem Zentrum (60% x 70%)
+                        Positioned(
+                          left: foxSize * 0.20,
+                          top: foxSize * 0.15,
+                          width: foxSize * 0.60,
+                          height: foxSize * 0.70,
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: _onTapLumo,
+                            onDoubleTap: _onDoubleTapLumo,
+                            onLongPress: _onLongPressLumo,
+                          ),
+                        ),
+                        // Visueller Avatar (IgnorePointer = Tap geht
+                        // durch zu darunterliegenden Buttons wenn
+                        // er nicht ins HitArea-Center faellt)
+                        IgnorePointer(
+                          child: Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..rotateZ(tickleRot)
+                              ..scale(
+                                  (_facingRight ? 1.0 : -1.0) * tickleScale,
+                                  tickleScale,
+                                  1.0),
+                            child: SizedBox(
                               width: foxSize,
                               height: foxSize,
-                              fit: BoxFit.contain,
-                              errorBuilder: (_, __, ___) =>
-                                  _FallbackFox(size: foxSize),
-                            ),
-                            // Mund-Highlight (Voice-synchron, oben "draufgepainted")
-                            if (_mouthOpen)
-                              Positioned(
-                                top: foxSize * 0.48,
-                                child: Container(
-                                  width: foxSize * 0.16,
-                                  height: foxSize * 0.10,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFF7C2D12),
-                                    borderRadius: BorderRadius.circular(foxSize),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.4),
-                                        blurRadius: 2,
-                                        offset: const Offset(0, 1),
+                              child: Stack(
+                                alignment: Alignment.bottomCenter,
+                                children: [
+                                  // Bodenschatten
+                                  Positioned(
+                                    bottom: 2,
+                                    child: Container(
+                                      width: foxSize * 0.62,
+                                      height: 7,
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.32),
+                                        borderRadius:
+                                            BorderRadius.circular(foxSize),
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                  // Fox sprite
+                                  Image.asset(
+                                    widget.foxAssetPath,
+                                    width: foxSize,
+                                    height: foxSize,
+                                    fit: BoxFit.contain,
+                                    errorBuilder: (_, __, ___) =>
+                                        _FallbackFox(size: foxSize),
+                                  ),
+                                  // Mund-Highlight (Voice-synchron)
+                                  if (_mouthOpen)
+                                    Positioned(
+                                      top: foxSize * 0.48,
+                                      child: Container(
+                                        width: foxSize * 0.16,
+                                        height: foxSize * 0.10,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF7C2D12),
+                                          borderRadius:
+                                              BorderRadius.circular(foxSize),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black
+                                                  .withOpacity(0.4),
+                                              blurRadius: 2,
+                                              offset: const Offset(0, 1),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
-                          ],
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),
