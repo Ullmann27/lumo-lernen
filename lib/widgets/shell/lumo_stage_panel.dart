@@ -3,7 +3,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../fox/lumo_home_fox_avatar.dart';
 
-class LumoStagePanel extends StatefulWidget {
+class LumoStagePanel extends StatelessWidget {
   const LumoStagePanel({
     super.key,
     required this.appState,
@@ -18,30 +18,16 @@ class LumoStagePanel extends StatefulWidget {
   final bool compact;
 
   @override
-  State<LumoStagePanel> createState() => _LumoStagePanelState();
-}
-
-class _LumoStagePanelState extends State<LumoStagePanel>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _hop = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 480),
-  );
-
-  @override
-  void dispose() {
-    _hop.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final st = widget.appState.state;
-    final compact = widget.compact;
+    final st = appState.state;
     final foxHeight = compact ? 178.0 : 230.0;
+    final facing = (st.section == LumoSection.exercises ||
+            st.section == LumoSection.scanner)
+        ? -1.0
+        : 1.0;
 
     return Container(
-      width: widget.panelWidth,
+      width: panelWidth,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [LumoColors.stageBg1, LumoColors.stageBg2],
@@ -61,26 +47,12 @@ class _LumoStagePanelState extends State<LumoStagePanel>
           ),
           SizedBox(height: compact ? 10 : 16),
           Expanded(
-            child: GestureDetector(
-              onTap: () {
-                _hop.forward(from: 0);
-                widget.onFoxTap();
-              },
-              child: Builder(
-                builder: (context) {
-                  final facing = (st.section == LumoSection.exercises ||
-                          st.section == LumoSection.scanner)
-                      ? -1.0
-                      : 1.0;
-                  return Center(
-                    child: LumoHomeFoxAvatar(
-                      size: foxHeight,
-                      facingLeft: facing < 0,
-                      childName: st.childName,
-                      onTap: widget.onFoxTap,
-                    ),
-                  );
-                },
+            child: Center(
+              child: LumoHomeFoxAvatar(
+                size: foxHeight,
+                facingLeft: facing < 0,
+                childName: st.childName,
+                onTap: onFoxTap,
               ),
             ),
           ),
@@ -156,6 +128,7 @@ class _DailyGoalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final progress = (stars / 50).clamp(0.0, 1.0).toDouble();
     return Container(
       padding: EdgeInsets.all(compact ? 10 : 14),
       decoration: BoxDecoration(
@@ -196,7 +169,7 @@ class _DailyGoalCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.pill),
             child: LinearProgressIndicator(
-              value: (stars / 50).clamp(0.0, 1.0),
+              value: progress,
               minHeight: compact ? 5 : 6,
               color: LumoColors.orange,
               backgroundColor: LumoColors.orange.withOpacity(.14),
