@@ -192,6 +192,9 @@ class _GamesContentState extends State<GamesContent> {
                       onPlay: _launchKart,
                     ),
                   ),
+                  const SliverToBoxAdapter(
+                    child: _TapAnywhereHint(),
+                  ),
                   SliverPadding(
                     padding: const EdgeInsets.fromLTRB(12, 8, 12, 32),
                     sliver: SliverToBoxAdapter(
@@ -1051,6 +1054,93 @@ class _KartCard extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// "Tippe irgendwo - Lumo kommt zu dir!" Hinweis-Card
+// ════════════════════════════════════════════════════════════════════════
+// Heinz: 'Fuege eine kleine Interaktionskarte hinzu: Tippe irgendwo -
+// Lumo kommt zu dir!' (Auftrag 9E)
+class _TapAnywhereHint extends StatefulWidget {
+  const _TapAnywhereHint();
+
+  @override
+  State<_TapAnywhereHint> createState() => _TapAnywhereHintState();
+}
+
+class _TapAnywhereHintState extends State<_TapAnywhereHint>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _pulse;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulse = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1600),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _pulse.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+      child: AnimatedBuilder(
+        animation: _pulse,
+        builder: (context, _) {
+          final p = _pulse.value;
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [Color(0xFFFFF8E7), Color(0xFFFEF3C7)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: const Color(0xFFF59E0B).withOpacity(0.35 + p * 0.20),
+                width: 1.4,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFFF97316).withOpacity(0.10 + p * 0.08),
+                  blurRadius: 12 + p * 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(children: [
+              Transform.scale(
+                scale: 1.0 + p * 0.08,
+                child: const Text('👆', style: TextStyle(fontSize: 22)),
+              ),
+              const SizedBox(width: 12),
+              const Expanded(
+                child: Text(
+                  'Tippe irgendwo – Lumo kommt zu dir!',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF7C2D12),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 4),
+              const Text('🦊', style: TextStyle(fontSize: 22)),
+            ]),
+          );
+        },
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
-import '../widgets/shell/lumo_stage_panel.dart';
+import '../widgets/fox/lumo_free_companion.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
 import '../features/home/home_content.dart';
@@ -188,10 +188,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                 final width = constraints.maxWidth;
                 final mobile = width < 720;
                 final showNav = width >= 720;
-                final showStage = width >= 860;
-                final compactStage = width < 1120;
                 final navWidth = width < 980 ? 160.0 : 200.0;
-                final stageWidth = compactStage ? 238.0 : 320.0;
                 final gap = width < 980 ? 6.0 : 10.0;
 
                 if (mobile) {
@@ -202,16 +199,21 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                       }
                     }),
                     Expanded(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(LumoRadius.lg),
-                        child: FadeTransition(
-                          opacity: _fadeCtrl,
-                          child: LumoSectionTransition(
-                            sectionKey: _appState.state.section.name,
-                            child: _buildContent(),
+                      child: Stack(children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(LumoRadius.lg),
+                          child: FadeTransition(
+                            opacity: _fadeCtrl,
+                            child: LumoSectionTransition(
+                              sectionKey: _appState.state.section.name,
+                              child: _buildContent(),
+                            ),
                           ),
                         ),
-                      ),
+                        // Free-Companion-Overlay (Heinz: 'Lumo soll frei
+                        // beweglich sein, nicht in einem Kasten gefangen.')
+                        const Positioned.fill(child: LumoFreeCompanion()),
+                      ]),
                     ),
                     _MobileBottomNavigation(active: _appState.state.section, onSelect: _navigateTo),
                   ]);
@@ -231,29 +233,26 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                           borderRadius: BorderRadius.circular(LumoRadius.xl),
                           child: Container(
                             decoration: BoxDecoration(color: LumoColors.appBg, borderRadius: BorderRadius.circular(LumoRadius.xl)),
-                            child: FadeTransition(
-                              opacity: _fadeCtrl,
-                              child: LumoSectionTransition(
-                                sectionKey: _appState.state.section.name,
-                                child: _buildContent(),
-                              ),
+                            // ── Stack: Content + Free-Companion-Overlay ──
+                            // Heinz: 'Der rechte feste Kasten muss weg.
+                            // Lumo soll frei beweglich sein.'
+                            // Vorher: LumoStagePanel rechts, 238-320px fest.
+                            // Jetzt: voller Content + Lumo als Overlay.
+                            child: Stack(
+                              children: [
+                                FadeTransition(
+                                  opacity: _fadeCtrl,
+                                  child: LumoSectionTransition(
+                                    sectionKey: _appState.state.section.name,
+                                    child: _buildContent(),
+                                  ),
+                                ),
+                                const Positioned.fill(child: LumoFreeCompanion()),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                      if (showStage) ...[
-                        SizedBox(width: gap),
-                        LumoStagePanel(
-                          appState: _appState,
-                          panelWidth: stageWidth,
-                          compact: compactStage,
-                          onFoxTap: () {
-                            if (_appState.state.settings.voiceEnabled) {
-                              LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
-                            }
-                          },
-                        ),
-                      ],
                     ],
                   ),
                 );

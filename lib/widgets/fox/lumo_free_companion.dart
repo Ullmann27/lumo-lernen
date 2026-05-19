@@ -1,0 +1,595 @@
+// ════════════════════════════════════════════════════════════════════════
+// LUMO FREE COMPANION
+// ════════════════════════════════════════════════════════════════════════
+// Heinz' Auftrag: 'Lumo soll nicht mehr im rechten Kasten gefangen sein.
+// Er soll als frei beweglicher, lebendiger Companion frei ueber der App
+// existieren. Kind tippt irgendwo -> Lumo laeuft hin. Tap auf Lumo ->
+// Reaktion. Doppel-Tap -> Kitzeln/Lachen. Lumo kehrt zur Home-Position
+// zurueck. Mundbewegung an VoiceStatus gekoppelt.'
+//
+// Architektur:
+//   - LumoFreeCompanion ist ein Overlay-Layer der ueber der App liegt
+//   - Hintergrund-Tap (auf "freie Flaeche") = move-to
+//   - Tap auf Lumo = Reaktion (Winken)
+//   - Doppel-Tap auf Lumo = Kitzeln/Lachen
+//   - Long-Press = Erklaerung sprechen
+//   - Auto-Return-Home nach 8s Inaktivitaet
+//
+// Wichtig:
+//   - Hintergrund-Hit-Test nur sammelt taps, blockiert keine Buttons.
+//   - Companion-Hit-Test ist klein (nur auf dem Avatar selbst).
+//   - SafeArea respektieren (Home-Position dynamisch).
+//   - Responsive: kleiner auf Handy, groesser auf Tablet.
+// ════════════════════════════════════════════════════════════════════════
+
+import 'dart:async';
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+
+import '../../core/lumo_voice.dart';
+
+enum LumoCompanionState {
+  idle,
+  walking,
+  speaking,
+  waving,
+  tickled,
+  celebrating,
+  comforting,
+  returningHome,
+}
+
+class LumoFreeCompanion extends StatefulWidget {
+  const LumoFreeCompanion({
+    super.key,
+    this.foxAssetPath = 'assets/lumo_jump/fox/idle/fox_idle_01.png',
+    this.size,
+    this.homeAlignment = Alignment.bottomRight,
+    this.homeMargin = const EdgeInsets.fromLTRB(0, 0, 28, 28),
+    this.tapEnabled = true,
+    this.returnHomeAfter = const Duration(seconds: 8),
+  });
+
+  /// Pfad zum Fox-Sprite (Fallback Emoji wenn nicht ladbar).
+  final String foxAssetPath;
+
+  /// Avatar-Groesse. Wenn null wird responsive berechnet.
+  final double? size;
+
+  /// Wo Lumo zur Home-Position zurueckkehrt.
+  final Alignment homeAlignment;
+
+  /// Margin von der Home-Ecke.
+  final EdgeInsets homeMargin;
+
+  /// Wenn false reagiert Lumo nicht auf Taps (nur visueller Idle).
+  final bool tapEnabled;
+
+  /// Nach dieser Zeit ohne Tap kehrt Lumo nach Hause zurueck.
+  final Duration returnHomeAfter;
+
+  @override
+  State<LumoFreeCompanion> createState() => _LumoFreeCompanionState();
+}
+
+class _LumoFreeCompanionState extends State<LumoFreeCompanion>
+    with TickerProviderStateMixin {
+  // ── State ──
+  LumoCompanionState _state = LumoCompanionState.idle;
+  Offset? _currentPos;       // absolute Position des Avatar-Centers
+  Offset? _homePos;          // berechnete Home-Position
+  String _bubbleText = '';
+  bool _facingRight = true;
+  bool _mouthOpen = false;
+
+  Timer? _returnTimer;
+  Timer? _bubbleTimer;
+  Timer? _mouthTimer;
+  VoidCallback? _voiceListener;
+
+  // ── Controllers ──
+  late final AnimationController _moveCtrl;
+  late final AnimationController _bobCtrl;
+  late final AnimationController _waveCtrl;
+  late final AnimationController _tickleCtrl;
+  late final AnimationController _bubbleCtrl;
+
+  Offset _moveFrom = Offset.zero;
+  Offset _moveTo = Offset.zero;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _moveCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+    _bobCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1700),
+    )..repeat(reverse: true);
+    _waveCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1100),
+    );
+    _tickleCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1300),
+    );
+    _bubbleCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 280),
+    );
+
+    // VoiceStatus -> mouthOpen Animation
+    _voiceListener = () => _onVoiceStatus(LumoVoice.instance.status.value);
+    LumoVoice.instance.status.addListener(_voiceListener!);
+  }
+
+  void _onVoiceStatus(VoiceStatus s) {
+    if (!mounted) return;
+    if (s == VoiceStatus.speaking) {
+      _mouthTimer?.cancel();
+      _mouthTimer = Timer.periodic(const Duration(milliseconds: 140), (_) {
+        if (!mounted) return;
+        setState(() => _mouthOpen = !_mouthOpen);
+      });
+      if (_state != LumoCompanionState.walking) {
+        setState(() => _state = LumoCompanionState.speaking);
+      }
+    } else {
+      _mouthTimer?.cancel();
+      _mouthTimer = null;
+      if (mounted) {
+        setState(() {
+          _mouthOpen = false;
+          if (_state == LumoCompanionState.speaking) {
+            _state = LumoCompanionState.idle;
+          }
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _returnTimer?.cancel();
+    _bubbleTimer?.cancel();
+    _mouthTimer?.cancel();
+    if (_voiceListener != null) {
+      LumoVoice.instance.status.removeListener(_voiceListener!);
+    }
+    _moveCtrl.dispose();
+    _bobCtrl.dispose();
+    _waveCtrl.dispose();
+    _tickleCtrl.dispose();
+    _bubbleCtrl.dispose();
+    super.dispose();
+  }
+
+  // ── Responsive Avatar-Groesse ──
+  double _effectiveSize(Size screen) {
+    if (widget.size != null) return widget.size!;
+    final w = screen.width;
+    if (w < 380) return 110;
+    if (w < 600) return 140;
+    if (w < 900) return 170;
+    return 200;
+  }
+
+  // ── Public API ──
+  void moveTo(Offset target) {
+    if (!widget.tapEnabled) return;
+    final from = _currentPos ?? _homePos ?? target;
+    _moveFrom = from;
+    _moveTo = target;
+
+    // Distanz-basierte Dauer (300-1200ms)
+    final dist = (target - from).distance;
+    final ms = (300 + dist * 1.4).clamp(300, 1200).round();
+    _moveCtrl.duration = Duration(milliseconds: ms);
+
+    setState(() {
+      _state = LumoCompanionState.walking;
+      _facingRight = target.dx >= from.dx;
+    });
+    _moveCtrl.reset();
+    _moveCtrl.forward().then((_) {
+      if (!mounted) return;
+      setState(() {
+        _currentPos = _moveTo;
+        _state = LumoCompanionState.idle;
+      });
+      _scheduleReturnHome();
+    });
+  }
+
+  void returnHome() {
+    final home = _homePos;
+    if (home == null) return;
+    final from = _currentPos ?? home;
+    _moveFrom = from;
+    _moveTo = home;
+
+    final dist = (home - from).distance;
+    final ms = (400 + dist * 1.2).clamp(400, 1100).round();
+    _moveCtrl.duration = Duration(milliseconds: ms);
+
+    setState(() {
+      _state = LumoCompanionState.returningHome;
+      _facingRight = home.dx >= from.dx;
+    });
+    _moveCtrl.reset();
+    _moveCtrl.forward().then((_) {
+      if (!mounted) return;
+      setState(() {
+        _currentPos = home;
+        _state = LumoCompanionState.idle;
+      });
+    });
+  }
+
+  void _scheduleReturnHome() {
+    _returnTimer?.cancel();
+    _returnTimer = Timer(widget.returnHomeAfter, () {
+      if (!mounted) return;
+      if (_state == LumoCompanionState.idle) {
+        returnHome();
+      }
+    });
+  }
+
+  void _showBubble(String text, {Duration? duration}) {
+    setState(() => _bubbleText = text);
+    _bubbleCtrl.forward();
+    _bubbleTimer?.cancel();
+    _bubbleTimer = Timer(duration ?? const Duration(milliseconds: 2600), () {
+      if (!mounted) return;
+      _bubbleCtrl.reverse();
+      Future.delayed(const Duration(milliseconds: 300), () {
+        if (!mounted) return;
+        setState(() => _bubbleText = '');
+      });
+    });
+  }
+
+  static const _waveLines = [
+    'Hihi! Was machen wir als Nächstes?',
+    'Hallo! Schön, dass du da bist!',
+    'Bereit für ein Abenteuer?',
+    'Wir schaffen das zusammen!',
+  ];
+  static const _tickleLines = [
+    'Hihihi! Das kitzelt!',
+    'Iiiiih! 🌟',
+    'Hör auf, hihi!',
+    'Du bist witzig!',
+  ];
+
+  void _onTapLumo() {
+    if (!widget.tapEnabled) return;
+    setState(() => _state = LumoCompanionState.waving);
+    _waveCtrl.reset();
+    _waveCtrl.forward().then((_) {
+      if (!mounted) return;
+      setState(() => _state = LumoCompanionState.idle);
+    });
+    final txt = _waveLines[math.Random().nextInt(_waveLines.length)];
+    _showBubble(txt);
+    _trySpeak(txt);
+    _scheduleReturnHome();
+  }
+
+  void _onDoubleTapLumo() {
+    if (!widget.tapEnabled) return;
+    setState(() => _state = LumoCompanionState.tickled);
+    _tickleCtrl.reset();
+    _tickleCtrl.forward().then((_) {
+      if (!mounted) return;
+      setState(() => _state = LumoCompanionState.idle);
+    });
+    final txt = _tickleLines[math.Random().nextInt(_tickleLines.length)];
+    _showBubble(txt, duration: const Duration(milliseconds: 2000));
+    _scheduleReturnHome();
+  }
+
+  void _onLongPressLumo() {
+    if (!widget.tapEnabled) return;
+    const txt = 'Tippe irgendwo – ich komme zu dir!';
+    _showBubble(txt, duration: const Duration(milliseconds: 3200));
+    _trySpeak(txt);
+    _scheduleReturnHome();
+  }
+
+  void _trySpeak(String text) {
+    try {
+      LumoVoice.instance.speak(text);
+    } catch (_) {
+      // Silent fail - Voice ist optional
+    }
+  }
+
+  // ── Background-Tap-Handler (move Lumo dorthin) ──
+  void _onBackgroundTap(Offset globalPos) {
+    if (!widget.tapEnabled) return;
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
+    final local = box.globalToLocal(globalPos);
+    moveTo(local);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screen = Size(constraints.maxWidth, constraints.maxHeight);
+        final foxSize = _effectiveSize(screen);
+
+        // Home-Position dynamisch berechnen
+        _homePos ??= _calcHomePos(screen, foxSize);
+        _currentPos ??= _homePos;
+
+        return AnimatedBuilder(
+          animation: Listenable.merge([
+            _moveCtrl,
+            _bobCtrl,
+            _waveCtrl,
+            _tickleCtrl,
+            _bubbleCtrl,
+          ]),
+          builder: (context, _) {
+            // Aktuelle Position (waehrend Move animiert, sonst _currentPos)
+            Offset pos;
+            if (_moveCtrl.isAnimating) {
+              final t = Curves.easeInOutCubic.transform(_moveCtrl.value);
+              pos = Offset.lerp(_moveFrom, _moveTo, t)!;
+            } else {
+              pos = _currentPos ?? Offset.zero;
+            }
+
+            // Idle-Bobbing
+            final bob = math.sin(_bobCtrl.value * math.pi) * 2.5;
+            // Walk-Bob (waehrend Bewegung)
+            final walkBob = _moveCtrl.isAnimating
+                ? math.sin(_moveCtrl.value * math.pi * 6) * 3.5
+                : 0.0;
+            // Wave-Bob (kleiner Hopser beim Winken)
+            final waveBob = _state == LumoCompanionState.waving
+                ? -math.sin(_waveCtrl.value * math.pi) * 8
+                : 0.0;
+            // Tickle: kleine Wackel-Rotation
+            final tickleRot = _state == LumoCompanionState.tickled
+                ? math.sin(_tickleCtrl.value * math.pi * 6) * 0.12
+                : 0.0;
+            final tickleScale = _state == LumoCompanionState.tickled
+                ? 1.0 + math.sin(_tickleCtrl.value * math.pi) * 0.08
+                : 1.0;
+
+            final yOff = bob + walkBob + waveBob;
+            final renderX = pos.dx - foxSize / 2;
+            final renderY = pos.dy - foxSize + yOff;
+
+            return Stack(
+              clipBehavior: Clip.none,
+              children: [
+                // ── Hintergrund-Tap-Catcher (durchlaesst Pointer wenn moeglich) ──
+                Positioned.fill(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTapUp: (details) => _onBackgroundTap(details.globalPosition),
+                    child: const SizedBox.expand(),
+                  ),
+                ),
+
+                // ── Sprechblase ueber Lumo ──
+                if (_bubbleText.isNotEmpty)
+                  Positioned(
+                    left: (pos.dx - 130)
+                        .clamp(8.0, math.max(8.0, screen.width - 268)),
+                    top: (renderY - 70).clamp(8.0, screen.height - 100),
+                    child: IgnorePointer(
+                      child: Transform.scale(
+                        scale: Curves.elasticOut
+                            .transform(_bubbleCtrl.value)
+                            .clamp(0.0, 1.0),
+                        alignment: Alignment.bottomCenter,
+                        child: _SpeechBubble(text: _bubbleText),
+                      ),
+                    ),
+                  ),
+
+                // ── Lumo selbst ──
+                Positioned(
+                  left: renderX,
+                  top: renderY,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: _onTapLumo,
+                    onDoubleTap: _onDoubleTapLumo,
+                    onLongPress: _onLongPressLumo,
+                    child: Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.identity()
+                        ..rotateZ(tickleRot)
+                        ..scale(
+                            (_facingRight ? 1.0 : -1.0) * tickleScale,
+                            tickleScale,
+                            1.0),
+                      child: SizedBox(
+                        width: foxSize,
+                        height: foxSize,
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            // Bodenschatten
+                            Positioned(
+                              bottom: 2,
+                              child: Container(
+                                width: foxSize * 0.62,
+                                height: 7,
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.32),
+                                  borderRadius:
+                                      BorderRadius.circular(foxSize),
+                                ),
+                              ),
+                            ),
+                            // Fox sprite
+                            Image.asset(
+                              widget.foxAssetPath,
+                              width: foxSize,
+                              height: foxSize,
+                              fit: BoxFit.contain,
+                              errorBuilder: (_, __, ___) =>
+                                  _FallbackFox(size: foxSize),
+                            ),
+                            // Mund-Highlight (Voice-synchron, oben "draufgepainted")
+                            if (_mouthOpen)
+                              Positioned(
+                                top: foxSize * 0.48,
+                                child: Container(
+                                  width: foxSize * 0.16,
+                                  height: foxSize * 0.10,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF7C2D12),
+                                    borderRadius: BorderRadius.circular(foxSize),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.4),
+                                        blurRadius: 2,
+                                        offset: const Offset(0, 1),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Offset _calcHomePos(Size screen, double foxSize) {
+    final r = widget.homeAlignment.resolve(TextDirection.ltr);
+    // Wir wollen den Center-Bottom des Fuchses am Home-Punkt
+    final cx = ((r.x + 1) / 2) * screen.width;
+    final cy = ((r.y + 1) / 2) * screen.height;
+    // Margin anwenden
+    return Offset(
+      cx - widget.homeMargin.right + widget.homeMargin.left,
+      cy - widget.homeMargin.bottom + widget.homeMargin.top,
+    );
+  }
+}
+
+// ────────────────────────────────────────────────────────────────────────
+// Speech-Bubble
+// ────────────────────────────────────────────────────────────────────────
+class _SpeechBubble extends StatelessWidget {
+  const _SpeechBubble({required this.text});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 260, minWidth: 130),
+      child: CustomPaint(
+        painter: _BubblePainter(),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 18),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 14,
+              fontWeight: FontWeight.w800,
+              color: Color(0xFF7C2D12),
+              height: 1.25,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BubblePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+
+    // Glow hinter Bubble
+    final glowPaint = Paint()
+      ..color = const Color(0xFFFEF3C7).withOpacity(0.85)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+          Rect.fromLTWH(-2, -2, w + 4, h + 4 - 6),
+          const Radius.circular(18)),
+      glowPaint,
+    );
+
+    // Body
+    final body = Paint()
+      ..shader = const LinearGradient(
+        colors: [Color(0xFFFFFFFF), Color(0xFFFFF8E7)],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ).createShader(Rect.fromLTWH(0, 0, w, h));
+    final rect = RRect.fromRectAndRadius(
+        Rect.fromLTWH(0, 0, w, h - 6), const Radius.circular(18));
+    canvas.drawRRect(rect, body);
+
+    // Outline
+    final outline = Paint()
+      ..color = const Color(0xFFF59E0B)
+      ..strokeWidth = 2.2
+      ..style = PaintingStyle.stroke;
+    canvas.drawRRect(rect, outline);
+
+    // Tail
+    final tail = Path()
+      ..moveTo(w * 0.42, h - 6)
+      ..lineTo(w * 0.52, h)
+      ..lineTo(w * 0.56, h - 6)
+      ..close();
+    canvas.drawPath(tail, body);
+    canvas.drawPath(tail, outline);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter old) => false;
+}
+
+// ────────────────────────────────────────────────────────────────────────
+// Fallback wenn Sprite fehlt
+// ────────────────────────────────────────────────────────────────────────
+class _FallbackFox extends StatelessWidget {
+  const _FallbackFox({required this.size});
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: const BoxDecoration(
+        color: Color(0xFFF97316),
+        shape: BoxShape.circle,
+      ),
+      child: const Center(child: Text('🦊', style: TextStyle(fontSize: 50))),
+    );
+  }
+}
