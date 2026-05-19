@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../learning_modules/learning_module_registry.dart';
 import 'lumo_teacher_screen.dart';
 import 'letter_writing_screen.dart';
 
@@ -843,6 +844,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openTopic(LearningTopic t, LearningSubject s) {
+    // 1) Buchstaben-Schreiben (eigenes echtes Modul)
     if (t.isWriting && t.writingChars.isNotEmpty) {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => LetterWritingScreen(
@@ -851,15 +853,25 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           subject: s,
         ),
       ));
-    } else {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => LumoTeacherScreen(
-          appState: widget.appState,
-          topic: t,
-          subject: s,
-          grade: _selectedGrade,
-        ),
-      ));
+      return;
     }
+    // 2) Pruefe ob Topic ein registriertes echtes Modul hat
+    final moduleBuilder =
+        LearningModuleRegistry.builderFor(t.id, widget.appState);
+    if (moduleBuilder != null) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => moduleBuilder,
+      ));
+      return;
+    }
+    // 3) Fallback: ChatGPT-Lernchat
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => LumoTeacherScreen(
+        appState: widget.appState,
+        topic: t,
+        subject: s,
+        grade: _selectedGrade,
+      ),
+    ));
   }
 }

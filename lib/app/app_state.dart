@@ -125,8 +125,12 @@ class LumoAppState extends ChangeNotifier {
     if (_disposed || delta == 0) return;
     _state = _state.copyWith(stars: (_state.stars + delta).clamp(0, 999999));
     _safeNotify();
-    // Persistent in Wallet schreiben (fire-and-forget)
-    RewardWalletRepository.instance.addStars(delta).catchError((_) {});
+    // Persistent in Wallet schreiben (fire-and-forget, errors ignorieren)
+    () async {
+      try {
+        await RewardWalletRepository.instance.addStars(delta);
+      } catch (_) {}
+    }();
   }
 
   /// Belohne XP nach erfolgreichem Mini-Spiel / Kart-Lauf.
@@ -136,7 +140,11 @@ class LumoAppState extends ChangeNotifier {
     final newXp = (_state.xp + delta).clamp(0, 9999999);
     _state = _state.copyWith(xp: newXp);
     _safeNotify();
-    RewardWalletRepository.instance.addXp(delta).catchError((_) {});
+    () async {
+      try {
+        await RewardWalletRepository.instance.addXp(delta);
+      } catch (_) {}
+    }();
   }
 
   /// Beim App-Start aufgerufen: laedt die Wallet und schreibt
