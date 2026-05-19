@@ -171,12 +171,18 @@ class LumoKartGame extends FlameGame {
   final math.Random _rng = math.Random(42);
 
   @override
-  Color backgroundColor() => const Color(0xFF65A30D);  // Wiesen-Gruen
+  Color backgroundColor() => const Color(0xFF87CEEB);  // Himmelblau
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
     images.prefix = '';
+
+    // ── 3D-Cartoon-Backdrop (Pseudo-Mario-Kart-Optik) ──
+    // Heinz: 'Ich will diese Mario-Kart-Tour-Optik'.
+    // Boden mit perspektivischen Streifen + Banden + Huegel + Wolken.
+    // Wird zuerst gerendert (priority -100), dann Welt-Objekte darueber.
+    add(_KartTrackBackdrop(game: this)..priority = -100);
 
     // Kart bereits im Konstruktor erstellt - nur zum Game adden.
     await add(kart);
@@ -1006,5 +1012,234 @@ class _ResultDialog extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// 3D-CARTOON-BACKDROP (Mario-Kart-Tour-Style)
+// ════════════════════════════════════════════════════════════════════════
+// Heinz: 'Ich will aber diese Optik' (Mario-Kart-Style)
+//
+// Schichten (von hinten nach vorne):
+//   1. Himmel-Gradient (oberer Bildschirmrand)
+//   2. Sonne (oben rechts, leichter Pulse-Glow)
+//   3. Wolken (parallax, langsamer als Kart)
+//   4. Ferne Huegel (Cartoon-Silhouetten)
+//   5. Nahe Huegel (groesser, kraeftiger)
+//   6. Pseudo-3D-Boden mit perspektivischen Streifen die in die
+//      Tiefe konvergieren (Horizont = 38% Bildhoehe)
+//   7. Banden links und rechts (rot-weiss gestreift, Cartoon-Style)
+//
+// Pseudo-3D-Trick: Boden-Streifen scrollen perspektivisch — naehere
+// Streifen sind dicker, fernere duenner. Y-Position-Offset basiert
+// auf game.cameraY damit der Boden synchron mit dem Kart laeuft.
+// ════════════════════════════════════════════════════════════════════════
+class _KartTrackBackdrop extends Component
+    with HasGameReference<LumoKartGame> {
+  _KartTrackBackdrop({required this.game});
+  @override
+  final LumoKartGame game;
+
+  static const double _horizonFrac = 0.38;
+
+  @override
+  void render(Canvas canvas) {
+    final w = game.size.x;
+    final h = game.size.y;
+    final horizonY = h * _horizonFrac;
+
+    // ── 1. Himmel-Gradient ─────────────────────────────────────────
+    canvas.drawRect(
+        Rect.fromLTWH(0, 0, w, horizonY),
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [Color(0xFF7FB9E0), Color(0xFFB9DCEF), Color(0xFFFEF3C7)],
+            stops: [0.0, 0.7, 1.0],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(Rect.fromLTWH(0, 0, w, horizonY)));
+
+    // ── 2. Sonne (oben rechts, sanftes Glow) ───────────────────────
+    final sunX = w * 0.82;
+    final sunY = horizonY * 0.38;
+    final sunR = math.min(w, h) * 0.058;
+    // Glow-Aura
+    canvas.drawCircle(
+        Offset(sunX, sunY),
+        sunR * 2.2,
+        Paint()
+          ..color = const Color(0xFFFEF08A).withOpacity(0.45)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18));
+    canvas.drawCircle(
+        Offset(sunX, sunY),
+        sunR * 1.4,
+        Paint()
+          ..color = const Color(0xFFFCD34D).withOpacity(0.7)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8));
+    canvas.drawCircle(Offset(sunX, sunY), sunR,
+        Paint()..color = const Color(0xFFFEF3C7));
+
+    // ── 3. Wolken (parallax, langsamer als Kart) ───────────────────
+    final cloudShift = (game.cameraY * 0.05) % (w * 1.4);
+    _drawCloud(canvas, w * 0.15 - cloudShift, horizonY * 0.32, w * 0.10);
+    _drawCloud(canvas, w * 0.55 - cloudShift, horizonY * 0.20, w * 0.13);
+    _drawCloud(
+        canvas, w * 0.95 - cloudShift, horizonY * 0.42, w * 0.08);
+    _drawCloud(
+        canvas, w * 0.30 - cloudShift + w * 1.4, horizonY * 0.28, w * 0.11);
+
+    // ── 4. Ferne Huegel-Silhouette (entsaettigt, Atmosphaerisch) ───
+    final farHillShift = (game.cameraY * 0.1) % (w * 0.4);
+    final farHillPath = Path()..moveTo(-farHillShift, horizonY);
+    final farPeaks = (w / (w * 0.4)).ceil() + 2;
+    for (int i = 0; i < farPeaks; i++) {
+      final px = i * (w * 0.4) - farHillShift;
+      farHillPath
+        ..lineTo(px + w * 0.10, horizonY - h * 0.040)
+        ..lineTo(px + w * 0.20, horizonY - h * 0.015)
+        ..lineTo(px + w * 0.30, horizonY - h * 0.055)
+        ..lineTo(px + w * 0.40, horizonY);
+    }
+    farHillPath.close();
+    canvas.drawPath(
+        farHillPath, Paint()..color = const Color(0xFF93C5FD));
+
+    // ── 5. Nahe Huegel (kraeftiger, gruener) ───────────────────────
+    final nearHillShift = (game.cameraY * 0.18) % (w * 0.5);
+    final nearHillPath = Path()..moveTo(-nearHillShift, horizonY);
+    final nearPeaks = (w / (w * 0.5)).ceil() + 2;
+    for (int i = 0; i < nearPeaks; i++) {
+      final px = i * (w * 0.5) - nearHillShift;
+      nearHillPath
+        ..quadraticBezierTo(
+            px + w * 0.12, horizonY - h * 0.055,
+            px + w * 0.25, horizonY - h * 0.020)
+        ..quadraticBezierTo(
+            px + w * 0.37, horizonY - h * 0.075,
+            px + w * 0.50, horizonY);
+    }
+    nearHillPath.close();
+    canvas.drawPath(
+        nearHillPath, Paint()..color = const Color(0xFF65A30D));
+
+    // ── 6. Pseudo-3D-Boden mit perspektivischen Streifen ───────────
+    // Trapez fuer den Boden (oben schmal, unten breit)
+    final groundTopY = horizonY;
+    final groundBottomY = h;
+    final groundTopHalfW = w * 0.40;
+    final groundBottomHalfW = w * 1.05;
+
+    // Boden-Fuellung als Trapez (etwas dunkler unten)
+    final groundPath = Path()
+      ..moveTo(w / 2 - groundTopHalfW, groundTopY)
+      ..lineTo(w / 2 + groundTopHalfW, groundTopY)
+      ..lineTo(w / 2 + groundBottomHalfW, groundBottomY)
+      ..lineTo(w / 2 - groundBottomHalfW, groundBottomY)
+      ..close();
+    canvas.drawPath(
+        groundPath,
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [Color(0xFF86EFAC), Color(0xFF65A30D)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(Rect.fromLTWH(0, groundTopY, w, groundBottomY - groundTopY)));
+
+    // Streifen die nach hinten in die Tiefe konvergieren
+    // (Pseudo-3D-Highway-Effekt). Scroll basiert auf cameraY.
+    const stripeSpacing = 60.0;  // Welt-Y-Abstand zwischen Streifen
+    final scroll = game.cameraY % stripeSpacing;
+    // Wir zeichnen Streifen mit Y-Welt-Positionen, projizieren sie
+    // perspektivisch auf den Trapez-Boden.
+    for (int i = 0; i < 12; i++) {
+      final worldDist = i * stripeSpacing - scroll;
+      if (worldDist < 0) continue;
+      // t=0: nah unten, t=1: fern oben (am Horizont)
+      // exponentiell verteilt damit nahe Streifen weiter auseinander sind
+      final t = (worldDist / 700).clamp(0.0, 1.0);
+      final perspectiveT = 1.0 - math.pow(1.0 - t, 1.6) as double;
+      final stripeY = groundBottomY -
+          perspectiveT * (groundBottomY - groundTopY);
+      // Streifen-Hoehe schrumpft mit Entfernung
+      final stripeH = math.max(2.0, 14.0 * (1.0 - perspectiveT) + 1.5);
+      // Streifen-Breite folgt dem Trapez
+      final halfW =
+          groundBottomHalfW + (groundTopHalfW - groundBottomHalfW) * perspectiveT;
+      // Alternierende helle/dunkle Streifen
+      final isDark = (i + (game.cameraY ~/ stripeSpacing)) % 2 == 0;
+      final color = isDark
+          ? const Color(0xFF59A20E)
+          : const Color(0xFF7CBE38);
+      canvas.drawRect(
+          Rect.fromLTWH(w / 2 - halfW, stripeY, halfW * 2, stripeH),
+          Paint()..color = color);
+    }
+
+    // ── 7. Banden links und rechts (Cartoon-Mario-Style) ───────────
+    _drawSideBarrier(
+        canvas, w, h, horizonY, groundTopHalfW, groundBottomHalfW, true);
+    _drawSideBarrier(
+        canvas, w, h, horizonY, groundTopHalfW, groundBottomHalfW, false);
+  }
+
+  void _drawCloud(Canvas canvas, double cx, double cy, double r) {
+    final p = Paint()..color = const Color(0xFFFFFFFF).withOpacity(0.92);
+    canvas.drawCircle(Offset(cx, cy), r * 0.7, p);
+    canvas.drawCircle(Offset(cx + r * 0.6, cy + r * 0.1), r * 0.85, p);
+    canvas.drawCircle(Offset(cx + r * 1.3, cy + r * 0.05), r * 0.75, p);
+    canvas.drawCircle(Offset(cx + r * 1.85, cy + r * 0.15), r * 0.55, p);
+  }
+
+  /// Banden links/rechts mit rot-weissem Cartoon-Streifen-Muster.
+  void _drawSideBarrier(
+      Canvas canvas,
+      double w,
+      double h,
+      double horizonY,
+      double topHalfW,
+      double bottomHalfW,
+      bool leftSide) {
+    // Bande ist ein duennes vertikales Trapez links bzw rechts vom
+    // Strassenrand. Aussen ist das Trapez weiter weg vom Mittelpunkt.
+    final sign = leftSide ? -1.0 : 1.0;
+    final topInner = w / 2 + sign * topHalfW;
+    final topOuter = topInner + sign * w * 0.030;
+    final bottomInner = w / 2 + sign * bottomHalfW;
+    final bottomOuter = bottomInner + sign * w * 0.060;
+    final barrierPath = Path()
+      ..moveTo(topInner, horizonY)
+      ..lineTo(topOuter, horizonY)
+      ..lineTo(bottomOuter, h)
+      ..lineTo(bottomInner, h)
+      ..close();
+    // Basisfarbe weiss
+    canvas.drawPath(
+        barrierPath, Paint()..color = const Color(0xFFFFFFFF));
+    // Rot-weisse Streifen quer ueber die Bande (animiert scrollend)
+    canvas.save();
+    canvas.clipPath(barrierPath);
+    const stripeSpacing = 50.0;
+    final scroll = game.cameraY % stripeSpacing;
+    for (int i = 0; i < 14; i++) {
+      final worldDist = i * stripeSpacing - scroll;
+      if (worldDist < 0) continue;
+      final t = (worldDist / 700).clamp(0.0, 1.0);
+      final perspectiveT = 1.0 - math.pow(1.0 - t, 1.6) as double;
+      final stripeY = h - perspectiveT * (h - horizonY);
+      final stripeH = math.max(3.0, 18.0 * (1.0 - perspectiveT) + 2.0);
+      if (i % 2 == 0) {
+        canvas.drawRect(
+            Rect.fromLTWH(0, stripeY, w, stripeH),
+            Paint()..color = const Color(0xFFDC2626));
+      }
+    }
+    canvas.restore();
+    // Schwarze Outline
+    canvas.drawPath(
+        barrierPath,
+        Paint()
+          ..color = const Color(0xFF1F2937)
+          ..strokeWidth = 1.5
+          ..style = PaintingStyle.stroke);
   }
 }
