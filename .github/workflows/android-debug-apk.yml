@@ -90,8 +90,8 @@ jobs:
         run: flutter test --no-pub --reporter=expanded
         continue-on-error: true  # Bestehende Tests duerfen alt sein, aber neue Smoke-Tests muessen gruen sein
 
-      - name: Smoke Tests EXPLICIT (Wallet/Akademie - mussen gruen sein)
-        run: flutter test test/smoke_main_screens_test.dart --no-pub
+      - name: Smoke Tests EXPLICIT (Wallet/Akademie/Kart - mussen gruen sein)
+        run: flutter test test/smoke_main_screens_test.dart test/smoke_lumo_kart_test.dart --no-pub
 
       - name: Build debug APK
         run: |

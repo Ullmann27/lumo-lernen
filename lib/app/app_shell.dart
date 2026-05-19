@@ -4,6 +4,7 @@ import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import '../widgets/fox/lumo_free_companion.dart';
+import '../widgets/fox/lumo_companion_requests.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
 import '../features/home/home_content.dart';
@@ -204,25 +205,44 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                       }
                     }),
                     Expanded(
-                      child: Stack(children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(LumoRadius.lg),
-                          child: FadeTransition(
-                            opacity: _fadeCtrl,
-                            child: LumoSectionTransition(
-                              sectionKey: _appState.state.section.name,
-                              child: _buildContent(),
+                      child: Listener(
+                        // PARENT-LISTENER (Heinz-Auftrag):
+                        // Passiver Pointer-Beobachter. Verbraucht KEINE
+                        // Events - Buttons/Cards funktionieren weiter.
+                        // Schickt globale Tap-Position an den Companion
+                        // damit Lumo dort hinwandern kann (mit Safe-Zone-
+                        // Check und Cooldown im RequestBus).
+                        behavior: HitTestBehavior.translucent,
+                        onPointerDown: (event) {
+                          // Companion nicht im Lesemodus
+                          if (_appState.state.section ==
+                                  LumoSection.reading ||
+                              _isReadingMode()) {
+                            return;
+                          }
+                          LumoCompanionRequests.instance
+                              .requestMoveTo(event.position);
+                        },
+                        child: Stack(children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(LumoRadius.lg),
+                            child: FadeTransition(
+                              opacity: _fadeCtrl,
+                              child: LumoSectionTransition(
+                                sectionKey: _appState.state.section.name,
+                                child: _buildContent(),
+                              ),
                             ),
                           ),
-                        ),
-                        // Free-Companion-Overlay (Heinz: 'Lumo soll frei
-                        // beweglich sein, nicht in einem Kasten gefangen.')
-                        // NICHT im Lesemodus / Reading-Section anzeigen
-                        // (Heinz: 'Im Lesemodus ueberdeckt Lumo die Schriften').
-                        if (_appState.state.section != LumoSection.reading &&
-                            !_isReadingMode())
-                          const Positioned.fill(child: LumoFreeCompanion()),
-                      ]),
+                          // Free-Companion-Overlay (Heinz: 'Lumo soll frei
+                          // beweglich sein, nicht in einem Kasten gefangen.')
+                          // NICHT im Lesemodus / Reading-Section anzeigen
+                          // (Heinz: 'Im Lesemodus ueberdeckt Lumo die Schriften').
+                          if (_appState.state.section != LumoSection.reading &&
+                              !_isReadingMode())
+                            const Positioned.fill(child: LumoFreeCompanion()),
+                        ]),
+                      ),
                     ),
                     _MobileBottomNavigation(active: _appState.state.section, onSelect: _navigateTo),
                   ]);

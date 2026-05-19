@@ -28,6 +28,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../core/lumo_voice.dart';
+import 'lumo_companion_requests.dart';
 
 enum LumoCompanionState {
   idle,
@@ -89,6 +90,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   Timer? _wanderTimer;        // NEU: autonomes Wandern
   Timer? _idleBehaviorTimer;  // NEU: zufaellige Idle-Ticks
   VoidCallback? _voiceListener;
+  VoidCallback? _requestListener; // NEU: Parent-Listener Tap-to-move
 
   final math.Random _rng = math.Random();
 
@@ -159,6 +161,18 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _voiceListener = () => _onVoiceStatus(LumoVoice.instance.status.value);
     LumoVoice.instance.status.addListener(_voiceListener!);
 
+    // Parent-Listener Tap-to-move (Heinz-Auftrag).
+    // App-Shell schickt globale Tap-Position via LumoCompanionRequests.
+    // Wir konvertieren zu lokalen Koordinaten + Safe-Zone-Check.
+    _requestListener = () {
+      final target = LumoCompanionRequests.instance.moveTarget.value;
+      if (target == null) return;
+      _handleMoveRequest(target);
+      LumoCompanionRequests.instance.clearRequest();
+    };
+    LumoCompanionRequests.instance.moveTarget
+        .addListener(_requestListener!);
+
     // ── Autonomes Wandern DEAKTIVIERT ──
     // Heinz Note-5-Feedback: 'Lumo war ueber der Mathe-Card und blockierte
     // die UI'. Wandern komplett aus - Lumo bleibt jetzt in der Ecke
@@ -211,6 +225,10 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _blinkTimer?.cancel();
     if (_voiceListener != null) {
       LumoVoice.instance.status.removeListener(_voiceListener!);
+    }
+    if (_requestListener != null) {
+      LumoCompanionRequests.instance.moveTarget
+          .removeListener(_requestListener!);
     }
     _moveCtrl.dispose();
     _bobCtrl.dispose();
@@ -317,6 +335,46 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     if (box == null) return;
     final s = box.size;
     final target = _pickSafeWanderPoint(s);
+    _autoWalkTo(target);
+  }
+
+  /// Verarbeitet eine Move-Request vom Parent-Listener (App-Shell).
+  /// Globale Position wird zu lokalen Koords konvertiert.
+  /// Safe-Zone-Check: Lumo wandert NUR ins untere Drittel und nicht
+  /// in Lumo's eigene Hitbox. So sind alle Buttons/Cards weiter
+  /// bedienbar und Lumo blockiert nichts wichtiges.
+  void _handleMoveRequest(Offset globalPos) {
+    if (!mounted) return;
+    if (_state == LumoCompanionState.walking) return;
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
+    final Offset local;
+    try {
+      local = box.globalToLocal(globalPos);
+    } catch (_) {
+      return;
+    }
+    final s = box.size;
+    // ── SAFE-ZONE-CHECK ──────────────────────────────────────────────
+    // Heinz: 'Lumo darf nicht ueber Karten stehen'.
+    // -> Wandern nur in den unteren 35% des Bildschirms erlaubt.
+    // -> Auch nicht in einer kleinen Zone um Lumo selbst
+    //    (damit Tap-auf-Lumo nicht missinterpretiert wird).
+    final minY = s.height * 0.55; // ab hier abwaerts ist safe
+    if (local.dy < minY) return;
+    if (local.dx < 12 || local.dx > s.width - 12) return;
+    // Selbst-Tap ignorieren
+    final selfPos = _currentPos ?? _homePos;
+    if (selfPos != null) {
+      final dxFromSelf = (local.dx - selfPos.dx).abs();
+      final dyFromSelf = (local.dy - selfPos.dy).abs();
+      if (dxFromSelf < 60 && dyFromSelf < 60) return;
+    }
+    // OK - dorthin wandern (mit kleinem Padding zum Rand)
+    final target = Offset(
+      local.dx.clamp(40.0, s.width - 40.0),
+      local.dy.clamp(minY, s.height - 30.0),
+    );
     _autoWalkTo(target);
   }
 
