@@ -11,6 +11,8 @@ import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import 'flame/lumo_jump_game.dart';
 import 'kart/lumo_kart_screen.dart';
+import 'mini_games/color_boxes_game.dart';
+import 'mini_games/letter_fill_game.dart';
 import 'mini_games/number_house_game.dart';
 import 'mini_games/stars_path_game.dart';
 
@@ -119,6 +121,24 @@ class _GamesContentState extends State<GamesContent> {
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
             builder: (_) => NumberHouseGame(
+              appState: widget.appState,
+              level: level,
+            ),
+          ),
+        );
+      case GameMiniType.colorBoxes:
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => ColorBoxesGame(
+              appState: widget.appState,
+              level: level,
+            ),
+          ),
+        );
+      case GameMiniType.letterFill:
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => LetterFillGame(
               appState: widget.appState,
               level: level,
             ),

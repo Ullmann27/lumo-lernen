@@ -10,11 +10,13 @@
 import 'package:flutter/foundation.dart';
 
 enum GameMiniType {
-  starsPath,    // Lumo sammelt Sterne auf Pfad - Aufgaben loesen
-  numberHouse,  // Rechenhaus mit fehlenden Zahlen
-  numberPath,   // Zahlenweg-Sprung
-  wordForest,   // Silben/Woerter
-  mixedQuiz,    // Mix-Quiz mit 5 Aufgaben
+  starsPath,       // Lumo sammelt Sterne auf Pfad - Aufgaben loesen
+  numberHouse,     // Rechenhaus mit fehlenden Zahlen
+  numberPath,      // Zahlenweg-Sprung
+  wordForest,      // Silben/Woerter
+  mixedQuiz,       // Mix-Quiz mit 5 Aufgaben
+  colorBoxes,      // Anmalen-Mengen: 10 Kaestchen, X anmalen
+  letterFill,      // Buchstaben-Luecke: M_US, BR_T, _PFEL etc.
 }
 
 extension GameMiniTypeMeta on GameMiniType {
@@ -25,6 +27,8 @@ extension GameMiniTypeMeta on GameMiniType {
       case GameMiniType.numberPath: return 'Zahlenweg';
       case GameMiniType.wordForest: return 'Woerterwald';
       case GameMiniType.mixedQuiz: return 'Lumos Mix';
+      case GameMiniType.colorBoxes: return 'Mengen anmalen';
+      case GameMiniType.letterFill: return 'Buchstaben-Luecke';
     }
   }
 
@@ -35,6 +39,8 @@ extension GameMiniTypeMeta on GameMiniType {
       case GameMiniType.numberPath: return '🦘';
       case GameMiniType.wordForest: return '🌲';
       case GameMiniType.mixedQuiz: return '🎯';
+      case GameMiniType.colorBoxes: return '🎨';
+      case GameMiniType.letterFill: return '🔤';
     }
   }
 }

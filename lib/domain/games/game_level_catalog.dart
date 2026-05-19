@@ -16,7 +16,7 @@ abstract class GameLevelCatalog {
   static const List<GameLevel> levels = <GameLevel>[
     // ─────── Block 1: Plus + Mengen bis 10 (Klasse 1) ───────
     GameLevel(id: 1, title: 'Plus bis 5', gradeFloor: 1, miniType: GameMiniType.starsPath, subject: 'Mathe', learningGoal: 'Erste Plus-Aufgaben bis 5 sicher loesen'),
-    GameLevel(id: 2, title: 'Mengen zaehlen', gradeFloor: 1, miniType: GameMiniType.starsPath, subject: 'Mathe', learningGoal: 'Mengen bis 5 schnell erfassen'),
+    GameLevel(id: 2, title: 'Mengen anmalen', gradeFloor: 1, miniType: GameMiniType.colorBoxes, subject: 'Mathe', learningGoal: 'Mengen bis 10 visuell darstellen durch Anmalen'),
     GameLevel(id: 3, title: 'Plus bis 7', gradeFloor: 1, miniType: GameMiniType.starsPath, subject: 'Mathe', learningGoal: 'Plus bis 7 mit Zaehlbild'),
     GameLevel(id: 4, title: 'Punkt-Gruppen', gradeFloor: 1, miniType: GameMiniType.starsPath, subject: 'Mathe', learningGoal: 'Punktgruppen ohne Zaehlen erkennen'),
     GameLevel(id: 5, title: 'Plus bis 10', gradeFloor: 1, miniType: GameMiniType.numberHouse, subject: 'Mathe', learningGoal: 'Zahlzerlegung im Rechenhaus'),
@@ -43,7 +43,7 @@ abstract class GameLevelCatalog {
     GameLevel(id: 22, title: 'Endlaute', gradeFloor: 1, miniType: GameMiniType.wordForest, subject: 'Deutsch', learningGoal: 'Endlaute am Wortende hoeren'),
     GameLevel(id: 23, title: 'Silben klatschen', gradeFloor: 1, miniType: GameMiniType.wordForest, subject: 'Deutsch', learningGoal: 'Woerter in Silben zerlegen'),
     GameLevel(id: 24, title: 'Reime finden', gradeFloor: 1, miniType: GameMiniType.wordForest, subject: 'Deutsch', learningGoal: 'Reim-Wortpaare erkennen'),
-    GameLevel(id: 25, title: 'Wort und Bild', gradeFloor: 1, miniType: GameMiniType.wordForest, subject: 'Deutsch', learningGoal: 'Geschriebenes Wort zum Bild zuordnen'),
+    GameLevel(id: 25, title: 'Wort und Bild', gradeFloor: 1, miniType: GameMiniType.letterFill, subject: 'Deutsch', learningGoal: 'Buchstaben-Luecken in Woertern ergaenzen'),
     GameLevel(id: 26, title: 'Kurze Woerter', gradeFloor: 1, miniType: GameMiniType.wordForest, subject: 'Deutsch', learningGoal: 'Erste kurze Woerter (3-4 Buchstaben) lesen'),
     GameLevel(id: 27, title: 'Artikel der/die/das', gradeFloor: 2, miniType: GameMiniType.wordForest, subject: 'Deutsch', learningGoal: 'Den passenden Artikel waehlen'),
     GameLevel(id: 28, title: 'Einzahl - Mehrzahl', gradeFloor: 2, miniType: GameMiniType.wordForest, subject: 'Deutsch', learningGoal: 'Einzahl/Mehrzahl bilden'),
