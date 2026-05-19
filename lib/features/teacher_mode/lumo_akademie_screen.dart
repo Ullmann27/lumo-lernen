@@ -28,6 +28,12 @@ class LearningTopic {
     required this.shortDesc,
     this.isWriting = false,
     this.writingChars = const [],
+    // ── Detaillierte Lehrplan-Inhalte (fuer ChatGPT-Prompt) ──
+    this.detailedScope = '',
+    this.exampleTask = '',
+    this.coreVocabulary = const [],
+    this.forbiddenContent = '',
+    this.complexityHint = '',
   });
   final String id;
   final String title;
@@ -36,6 +42,23 @@ class LearningTopic {
   final String shortDesc;
   final bool isWriting;
   final List<String> writingChars;
+
+  /// Was genau in diesem Topic gelernt wird - sehr konkret.
+  /// Beispiel: 'Bruchrechnen: Brueche kennen lernen (1/2, 1/3, 1/4),
+  /// Brueche aus Bildern ablesen, einfache Vergleiche.'
+  final String detailedScope;
+
+  /// Konkretes Beispiel-Task wie ChatGPT antworten soll.
+  final String exampleTask;
+
+  /// Schluesselwoerter die ChatGPT VERWENDEN soll.
+  final List<String> coreVocabulary;
+
+  /// Was NICHT angesprochen werden darf.
+  final String forbiddenContent;
+
+  /// Hinweis zur Klassenstufe.
+  final String complexityHint;
 }
 
 class LearningSubject {

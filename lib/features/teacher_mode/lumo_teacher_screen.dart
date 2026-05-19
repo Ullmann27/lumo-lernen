@@ -13,6 +13,7 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_voice.dart';
 import 'lumo_akademie_screen.dart';
+import 'topic_curriculum.dart';
 
 class LumoTeacherScreen extends StatefulWidget {
   const LumoTeacherScreen({
@@ -43,12 +44,25 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   bool _loading = false;
   late final AnimationController _lumoPulseCtrl;
 
-  static const _quickQuestions = [
-    'Erkläre mir das nochmal!',
-    'Gib mir ein Beispiel',
-    'Wie soll ich das üben?',
-    'Mach eine Aufgabe für mich',
-  ];
+  // ── Themen-spezifische Schnellfragen ──
+  List<String> get _quickQuestions {
+    final ctx = TopicCurriculum.of(widget.topic.id);
+    if (ctx == null) {
+      return const [
+        'Erkläre mir das nochmal!',
+        'Gib mir ein Beispiel',
+        'Wie soll ich das üben?',
+        'Mach eine Aufgabe für mich',
+      ];
+    }
+    // Themen-konkrete Schnellfragen
+    return [
+      'Erkläre mir ${ctx.title} nochmal!',
+      'Zeig mir ein Beispiel zu ${ctx.title}',
+      'Wie übe ich ${ctx.title} am besten?',
+      'Mach mir eine ${ctx.title}-Aufgabe',
+    ];
+  }
 
   @override
   void initState() {
@@ -81,10 +95,13 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   }
 
   String _buildGreeting() {
-    final topic = widget.topic.title;
-    final subject = widget.subject.name;
-    return 'Hallo! Heute lernen wir gemeinsam "$topic" aus $subject. '
-        'Ich erklär dir alles ganz einfach. Frag mich was du wissen willst!';
+    final ctx = TopicCurriculum.of(widget.topic.id);
+    if (ctx != null) {
+      return 'Hallo! Heute lernen wir "${ctx.title}" für die ${ctx.grade}. Klasse. '
+          'Ich erkläre dir alles ganz einfach. Frag mich was du wissen willst!';
+    }
+    return 'Hallo! Heute lernen wir "${widget.topic.title}" aus ${widget.subject.name}. '
+        'Ich erkläre dir alles ganz einfach. Frag mich was du wissen willst!';
   }
 
   Future<void> _ask(String text) async {
@@ -92,20 +109,31 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
     if (trimmed.isEmpty || _loading) return;
     HapticFeedback.lightImpact();
     setState(() {
+      // UI zeigt nur die Original-Frage, nicht den eingebetteten Kontext
       _messages.add(_ChatMessage(text: trimmed, isLumo: false));
       _loading = true;
       _controller.clear();
     });
     _scrollToBottom();
 
-    _history.add(LumoAiChatTurn(role: 'user', content: trimmed));
+    // ── KONTEXT-INJECTION (Loesung fuer "ChatGPT redet vom falschen Thema") ──
+    // Heinz' Feedback: ChatGPT bekommt Bruchrechnen-Topic aber antwortet
+    // mit "3 Aepfel + 2 Aepfel" (1. Klasse Aufgabe). Grund: Render-Backend
+    // ignoriert extras-Parameter mit der Persona.
+    // Loesung: Wir embedden den kompletten Lehrplan-Kontext direkt in die
+    // Message - so kommt er garantiert beim Modell an.
+    final ctx = TopicCurriculum.of(widget.topic.id);
+    final messageForAi = ctx != null
+        ? '${ctx.buildPromptHeader()}KINDFRAGE: $trimmed'
+        : '[Thema: ${widget.topic.title} aus ${widget.subject.name} Klasse ${widget.grade}]\n$trimmed';
+
+    _history.add(LumoAiChatTurn(role: 'user', content: messageForAi));
 
     try {
-      // Spezialisierter Lehrer-Prompt via extras
       final response = await _ai.ask(
         settings: widget.appState.state.settings,
         state: widget.appState.state,
-        message: trimmed,
+        message: messageForAi,
         history: _history,
         context: LumoAiContext.companion,
         extras: {
@@ -113,11 +141,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
           'grade': widget.grade,
           'subject': widget.subject.name,
           'topic': widget.topic.title,
-          'persona':
-              'Du bist Lumo, ein freundlicher Fuchs-Lehrer fuer die ${widget.grade}. Klasse Volksschule in Oesterreich. '
-                  'Erklaere "${widget.topic.title}" aus ${widget.subject.name} kindgerecht. '
-                  'Verwende einfache Saetze, max 3 pro Antwort. Gib Beispiele aus dem Kinderalltag. '
-                  'Lobe oft. Bleib im Thema. Sprich freundlich und geduldig.',
+          'topic_id': widget.topic.id,
         },
       );
 
