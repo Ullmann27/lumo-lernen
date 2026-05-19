@@ -212,7 +212,11 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                         ),
                         // Free-Companion-Overlay (Heinz: 'Lumo soll frei
                         // beweglich sein, nicht in einem Kasten gefangen.')
-                        const Positioned.fill(child: LumoFreeCompanion()),
+                        // NICHT im Lesemodus / Reading-Section anzeigen
+                        // (Heinz: 'Im Lesemodus ueberdeckt Lumo die Schriften').
+                        if (_appState.state.section != LumoSection.reading &&
+                            !_isReadingMode())
+                          const Positioned.fill(child: LumoFreeCompanion()),
                       ]),
                     ),
                     _MobileBottomNavigation(active: _appState.state.section, onSelect: _navigateTo),
@@ -236,8 +240,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                             // ── Stack: Content + Free-Companion-Overlay ──
                             // Heinz: 'Der rechte feste Kasten muss weg.
                             // Lumo soll frei beweglich sein.'
-                            // Vorher: LumoStagePanel rechts, 238-320px fest.
-                            // Jetzt: voller Content + Lumo als Overlay.
+                            // NICHT im Lesemodus (ueberdeckt Schriften)
                             child: Stack(
                               children: [
                                 FadeTransition(
@@ -247,7 +250,11 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
                                     child: _buildContent(),
                                   ),
                                 ),
-                                const Positioned.fill(child: LumoFreeCompanion()),
+                                if (_appState.state.section !=
+                                        LumoSection.reading &&
+                                    !_isReadingMode())
+                                  const Positioned.fill(
+                                      child: LumoFreeCompanion()),
                               ],
                             ),
                           ),

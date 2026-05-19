@@ -98,6 +98,11 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   late final AnimationController _waveCtrl;
   late final AnimationController _tickleCtrl;
   late final AnimationController _bubbleCtrl;
+  // Lebens-Controllers (intern bewegen, auch wenn Lumo steht)
+  late final AnimationController _breathCtrl;
+  late final AnimationController _tailCtrl;
+  late final AnimationController _blinkCtrl;
+  Timer? _blinkTimer;
 
   Offset _moveFrom = Offset.zero;
   Offset _moveTo = Offset.zero;
@@ -126,6 +131,29 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       vsync: this,
       duration: const Duration(milliseconds: 280),
     );
+    // ── INTERNE LEBENS-ANIMATIONEN (Heinz: 'Lumo darf kein Standbild sein') ──
+    _breathCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    )..repeat(reverse: true);
+    _tailCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 850),
+    )..repeat(reverse: true);
+    _blinkCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 180),
+    );
+    // Augen-Blinzeln: alle 3-6 Sek einmal
+    _blinkTimer = Timer.periodic(const Duration(milliseconds: 2800), (_) {
+      if (!mounted) return;
+      if (_rng.nextDouble() < 0.6) {
+        _blinkCtrl.forward().then((_) {
+          if (!mounted) return;
+          _blinkCtrl.reverse();
+        });
+      }
+    });
 
     // VoiceStatus -> mouthOpen Animation
     _voiceListener = () => _onVoiceStatus(LumoVoice.instance.status.value);
@@ -175,6 +203,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _mouthTimer?.cancel();
     _wanderTimer?.cancel();
     _idleBehaviorTimer?.cancel();
+    _blinkTimer?.cancel();
     if (_voiceListener != null) {
       LumoVoice.instance.status.removeListener(_voiceListener!);
     }
@@ -183,6 +212,9 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _waveCtrl.dispose();
     _tickleCtrl.dispose();
     _bubbleCtrl.dispose();
+    _breathCtrl.dispose();
+    _tailCtrl.dispose();
+    _blinkCtrl.dispose();
     super.dispose();
   }
 
@@ -474,6 +506,9 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
             _waveCtrl,
             _tickleCtrl,
             _bubbleCtrl,
+            _breathCtrl,
+            _tailCtrl,
+            _blinkCtrl,
           ]),
           builder: (context, _) {
             // Aktuelle Position (waehrend Move animiert, sonst _currentPos)
@@ -502,6 +537,16 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
             final tickleScale = _state == LumoCompanionState.tickled
                 ? 1.0 + math.sin(_tickleCtrl.value * math.pi) * 0.08
                 : 1.0;
+
+            // ── LEBENS-ANIMATIONEN (immer aktiv) ────────────────────
+            // Atem: vertikale Skalierung 1.0..1.04 (Brust hebt sich)
+            final breathScale =
+                1.0 + math.sin(_breathCtrl.value * math.pi) * 0.04;
+            // Schwanz-Winkel: -0.35..+0.35 rad (~20° wedeln)
+            final tailAngle =
+                math.sin(_tailCtrl.value * math.pi * 2 - math.pi / 2) * 0.35;
+            // Blink: 0 (Augen offen) ... 1 (Augen ganz zu)
+            final blinkAmt = _blinkCtrl.value;
 
             final yOff = bob + walkBob + waveBob;
             final renderX = pos.dx - foxSize / 2;
@@ -590,15 +635,101 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                                       ),
                                     ),
                                   ),
-                                  // Fox sprite
-                                  Image.asset(
-                                    widget.foxAssetPath,
-                                    width: foxSize,
-                                    height: foxSize,
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (_, __, ___) =>
-                                        _FallbackFox(size: foxSize),
+                                  // SCHWANZ-Overlay (hinter dem Sprite,
+                                  // wedelt links/rechts) - Heinz wollte
+                                  // Schwanzbewegung
+                                  Positioned(
+                                    bottom: foxSize * 0.18,
+                                    left: foxSize * 0.05,
+                                    child: Transform.rotate(
+                                      angle: tailAngle,
+                                      alignment: Alignment.bottomRight,
+                                      child: Container(
+                                        width: foxSize * 0.18,
+                                        height: foxSize * 0.34,
+                                        decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                            colors: [
+                                              Color(0xFFF97316),
+                                              Color(0xFFFB923C),
+                                            ],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                          ),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(foxSize),
+                                            topRight: Radius.circular(foxSize),
+                                            bottomLeft:
+                                                Radius.circular(foxSize * 0.4),
+                                            bottomRight:
+                                                Radius.circular(foxSize * 0.6),
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black
+                                                  .withOpacity(0.2),
+                                              blurRadius: 4,
+                                              offset: const Offset(1, 2),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Container(
+                                            width: foxSize * 0.10,
+                                            height: foxSize * 0.10,
+                                            decoration: const BoxDecoration(
+                                              color: Color(0xFFFFFFFF),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
+                                  // Fox sprite mit ATEM-SKALIERUNG
+                                  // (vertikal pulsiert leicht - "atmet")
+                                  Transform.scale(
+                                    scaleY: breathScale,
+                                    alignment: Alignment.bottomCenter,
+                                    child: Image.asset(
+                                      widget.foxAssetPath,
+                                      width: foxSize,
+                                      height: foxSize,
+                                      fit: BoxFit.contain,
+                                      errorBuilder: (_, __, ___) =>
+                                          _FallbackFox(size: foxSize),
+                                    ),
+                                  ),
+                                  // AUGEN-BLINK-Overlay: zwei kleine
+                                  // Lidschlag-Streifen wenn _blinkCtrl > 0
+                                  if (blinkAmt > 0.05)
+                                    Positioned(
+                                      top: foxSize * 0.32,
+                                      left: foxSize * 0.28,
+                                      child: SizedBox(
+                                        width: foxSize * 0.44,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: List.generate(
+                                              2,
+                                              (i) => Container(
+                                                    width: foxSize * 0.10,
+                                                    height: foxSize *
+                                                        0.06 *
+                                                        blinkAmt,
+                                                    decoration: BoxDecoration(
+                                                      color: const Color(
+                                                          0xFFF97316),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              foxSize),
+                                                    ),
+                                                  )),
+                                        ),
+                                      ),
+                                    ),
                                   // Mund-Highlight (Voice-synchron)
                                   if (_mouthOpen)
                                     Positioned(

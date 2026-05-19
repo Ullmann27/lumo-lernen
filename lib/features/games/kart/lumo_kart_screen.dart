@@ -322,6 +322,7 @@ class KartPlayerComponent extends PositionComponent {
   double  boostTimer    = 0;
   double  crashTimer    = 0;
   double  tilt          = 0;  // visuell
+  double  wheelAngle    = 0;  // Raeder-Rotation (steigt mit speed)
 
   @override
   Future<void> onLoad() async {
@@ -379,6 +380,11 @@ class KartPlayerComponent extends PositionComponent {
 
     if (boostTimer > 0) boostTimer -= dt;
     if (crashTimer > 0) crashTimer -= dt;
+
+    // ── Raeder-Rotation: rotiert proportional zum Speed ──
+    // Heinz: 'Kart soll echte Raeder haben, nicht Standbild'.
+    wheelAngle += speed * dt * 0.025;  // 0.025 = visuelle Skalierung
+    if (wheelAngle > math.pi * 2) wheelAngle -= math.pi * 2;
 
     // Position auf Bildschirm
     position.x = game.size.x / 2 + laneX * (_trackWidth / 2);
@@ -449,7 +455,64 @@ class KartPlayerComponent extends PositionComponent {
     }
     canvas.restore();
 
-    // Boost-Flammen hinten
+    // ── ECHTE DREHENDE RAEDER (Heinz: 'echtes Fahrzeug mit Raedern') ──
+    // 4 Raeder: 2 hinten (groesser, naeher zur Kamera), 2 vorne.
+    // Drehung simuliert via Speichen-Muster das mit wheelAngle rotiert.
+    final wheelOffsetsY = [h * 0.92, h * 0.42];   // hinten, vorne
+    final wheelOffsetsX = [w * 0.15, w * 0.85];   // links, rechts
+    for (int row = 0; row < wheelOffsetsY.length; row++) {
+      // Hinten groesser (Perspektive)
+      final radius = (row == 0 ? w * 0.13 : w * 0.10);
+      for (int col = 0; col < wheelOffsetsX.length; col++) {
+        final cx = wheelOffsetsX[col];
+        final cy = wheelOffsetsY[row];
+        // Reifen (schwarzer Kreis)
+        canvas.drawCircle(Offset(cx, cy), radius,
+            Paint()..color = const Color(0xFF1F2937));
+        // Felge (grauer Kreis innen)
+        canvas.drawCircle(Offset(cx, cy), radius * 0.65,
+            Paint()..color = const Color(0xFFD1D5DB));
+        // Speichen (3 Linien, rotiert mit wheelAngle)
+        canvas.save();
+        canvas.translate(cx, cy);
+        canvas.rotate(wheelAngle);
+        for (int s = 0; s < 3; s++) {
+          canvas.rotate(math.pi * 2 / 3);
+          canvas.drawLine(
+              Offset.zero,
+              Offset(radius * 0.55, 0),
+              Paint()
+                ..color = const Color(0xFF6B7280)
+                ..strokeWidth = radius * 0.18);
+        }
+        // Nabe
+        canvas.drawCircle(Offset.zero, radius * 0.18,
+            Paint()..color = const Color(0xFF374151));
+        canvas.restore();
+      }
+    }
+
+    // ── SPEED-LINES (Motion Blur bei hohem Speed) ──────────────────
+    // Heinz: 'flüssiger'. Bei speed > 60% max werden weisse Streifen
+    // links/rechts vom Kart gerendert die nach hinten fliegen.
+    final speedRatio = (speed / _kartMaxSpeed).clamp(0.0, 1.5);
+    if (speedRatio > 0.4) {
+      final alpha = ((speedRatio - 0.4) * 1.3).clamp(0.0, 0.7);
+      final p = Paint()..color = Colors.white.withOpacity(alpha);
+      // 4 Streifen pro Seite, animiert mit game.totalTime
+      for (int i = 0; i < 4; i++) {
+        final offsetY = (game.totalTime * 240 + i * 18) % 40;
+        final stripeY = h * 0.10 + offsetY;
+        // links
+        canvas.drawRect(
+            Rect.fromLTWH(-w * 0.25, stripeY, w * 0.18, 2.5), p);
+        // rechts
+        canvas.drawRect(
+            Rect.fromLTWH(w + w * 0.07, stripeY, w * 0.18, 2.5), p);
+      }
+    }
+
+    // Boost-Flammen hinten (vergroessert + dynamischer)
     if (boostTimer > 0) {
       final flicker = 0.7 + math.sin(game.totalTime * 30) * 0.3;
       final paint = Paint()
@@ -695,26 +758,129 @@ class _KartHud extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 12, 16, 0),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Stern-Counter
-          _HudPill(
-            icon: Icons.star_rounded,
-            iconColor: const Color(0xFFFCD34D),
-            valueBuilder: () => '${game.stars}',
+          Row(
+            children: [
+              // Stern-Counter
+              _HudPill(
+                icon: Icons.star_rounded,
+                iconColor: const Color(0xFFFCD34D),
+                valueBuilder: () => '${game.stars}',
+              ),
+              const SizedBox(width: 8),
+              // SPEEDO (Heinz: 'UI Elemente')
+              _HudPill(
+                icon: Icons.speed_rounded,
+                iconColor: const Color(0xFFEF4444),
+                valueBuilder: () => '${(game.kart.speed * 0.3).toInt()} km/h',
+              ),
+              const Spacer(),
+              // Zeit / Distanz
+              _HudPill(
+                icon: Icons.flag_rounded,
+                iconColor: const Color(0xFF38BDF8),
+                valueBuilder: () {
+                  final remaining =
+                      (_raceDuration - game.totalTime).clamp(0, _raceDuration);
+                  return '${remaining.toInt()}s';
+                },
+              ),
+            ],
           ),
-          const Spacer(),
-          // Zeit / Distanz
-          _HudPill(
-            icon: Icons.flag_rounded,
-            iconColor: const Color(0xFF38BDF8),
-            valueBuilder: () {
-              final remaining = (_raceDuration - game.totalTime).clamp(0, _raceDuration);
-              return '${remaining.toInt()}s';
-            },
-          ),
+          const SizedBox(height: 8),
+          // ── ENGINE-BOOST-BAR (laedt sich beim Sterne-Sammeln) ──
+          // Heinz: 'Engine modus eingebaut werden'
+          _EngineBoostBar(game: game),
         ],
       ),
+    );
+  }
+}
+
+/// Engine-Boost-Bar: laedt sich beim Sterne-Sammeln auf, kann fuer
+/// Mega-Boost ausgeloest werden. Visualisiert wie eine Tachoanzeige.
+class _EngineBoostBar extends StatefulWidget {
+  const _EngineBoostBar({required this.game});
+  final LumoKartGame game;
+
+  @override
+  State<_EngineBoostBar> createState() => _EngineBoostBarState();
+}
+
+class _EngineBoostBarState extends State<_EngineBoostBar> {
+  late final async.Timer _ticker;
+
+  @override
+  void initState() {
+    super.initState();
+    _ticker = async.Timer.periodic(const Duration(milliseconds: 80), (_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _ticker.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Boost-Fuellstand: 1 Stern = 12.5% -> 8 Sterne fuer volle Bar
+    final fill = (widget.game.stars / 8.0).clamp(0.0, 1.0);
+    final boosting = widget.game.kart.boostTimer > 0;
+    return Container(
+      height: 22,
+      decoration: BoxDecoration(
+        color: const Color(0xFF1F2937).withOpacity(0.55),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.white.withOpacity(boosting ? 0.7 : 0.3),
+          width: 1.4,
+        ),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+      child: Stack(children: [
+        // Fuell-Bar
+        FractionallySizedBox(
+          widthFactor: fill,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: fill < 0.5
+                    ? const [Color(0xFF34D399), Color(0xFFFBBF24)]
+                    : const [Color(0xFFFBBF24), Color(0xFFEF4444)],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ),
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: boosting
+                  ? [
+                      BoxShadow(
+                        color: const Color(0xFFEF4444).withOpacity(0.6),
+                        blurRadius: 8,
+                      )
+                    ]
+                  : null,
+            ),
+          ),
+        ),
+        // Label
+        Center(
+          child: Text(
+            boosting ? '🔥 BOOST!' : 'ENGINE ${(fill * 100).toInt()}%',
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 11,
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
+              shadows: [Shadow(blurRadius: 2, color: Colors.black)],
+            ),
+          ),
+        ),
+      ]),
     );
   }
 }
