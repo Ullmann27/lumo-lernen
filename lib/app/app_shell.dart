@@ -65,6 +65,10 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     try {
       await _appState.loadLearningProfile();
     } catch (_) {}
+    // Persistente Sterne/XP laden (Heinz: 'bleibt nach Neustart')
+    try {
+      await _appState.hydrateFromWallet();
+    } catch (_) {}
   }
 
   @override

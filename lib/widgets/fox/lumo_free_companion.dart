@@ -506,8 +506,15 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
 
   void _onLongPressLumo() {
     if (!widget.tapEnabled) return;
-    const txt = 'Tippe irgendwo – ich komme zu dir!';
-    _showBubble(txt, duration: const Duration(milliseconds: 3200));
+    // Heinz: 'Lumo laeuft zu freien Tap-Punkten'.
+    // LongPress = aktiv Wanderung triggern, immer in Safe-Zone
+    final box = context.findRenderObject() as RenderBox?;
+    if (box != null) {
+      final target = _pickSafeWanderPoint(box.size);
+      _autoWalkTo(target);
+    }
+    const txt = 'Ich lauf mal woanders hin!';
+    _showBubble(txt, duration: const Duration(milliseconds: 2200));
     _trySpeak(txt);
     _scheduleReturnHome();
   }

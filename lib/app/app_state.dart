@@ -4,6 +4,7 @@ import '../core/app_settings.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
+import '../core/reward_wallet_repository.dart';
 import '../core/scanned_work_analysis.dart';
 
 enum LumoSection { home, learn, exercises, reading, games, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings }
@@ -119,18 +120,40 @@ class LumoAppState extends ChangeNotifier {
 
   /// Belohne Sterne (z.B. nach Mini-Spiel / Kart-Lauf).
   /// Stoesst notifyListeners aus damit HUD/Dashboard sich aktualisieren.
+  /// Schreibt sofort in die persistente RewardWallet -> bleibt nach Neustart.
   void addStars(int delta) {
     if (_disposed || delta == 0) return;
     _state = _state.copyWith(stars: (_state.stars + delta).clamp(0, 999999));
     _safeNotify();
+    // Persistent in Wallet schreiben (fire-and-forget)
+    RewardWalletRepository.instance.addStars(delta).catchError((_) {});
   }
 
   /// Belohne XP nach erfolgreichem Mini-Spiel / Kart-Lauf.
+  /// Schreibt sofort in die persistente RewardWallet.
   void addXp(int delta) {
     if (_disposed || delta == 0) return;
     final newXp = (_state.xp + delta).clamp(0, 9999999);
     _state = _state.copyWith(xp: newXp);
     _safeNotify();
+    RewardWalletRepository.instance.addXp(delta).catchError((_) {});
+  }
+
+  /// Beim App-Start aufgerufen: laedt die Wallet und schreibt
+  /// Sterne/XP in den State zurueck.
+  Future<void> hydrateFromWallet() async {
+    if (_disposed) return;
+    try {
+      final wallet = await RewardWalletRepository.instance.load();
+      if (_disposed) return;
+      _state = _state.copyWith(
+        stars: wallet.stars > 0 ? wallet.stars : _state.stars,
+        xp: wallet.xp > 0 ? wallet.xp : _state.xp,
+      );
+      _safeNotify();
+    } catch (_) {
+      // Wallet-Fehler ist nicht App-kritisch
+    }
   }
 
   Future<void> loadLearningProfile() async {
