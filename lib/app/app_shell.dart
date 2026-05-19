@@ -7,6 +7,7 @@ import '../widgets/fox/lumo_free_companion.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
 import '../features/home/home_content.dart';
+import '../features/teacher_mode/lumo_akademie_screen.dart';
 import '../features/learning/learning_content.dart';
 import '../features/reading/reading_content.dart';
 import '../features/shared/widgets/lumo_section_transition.dart';
@@ -130,7 +131,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
       case LumoSection.games:
         return GamesContent(appState: _appState);
       case LumoSection.learn:
-        return SectionContent(appState: _appState, section: LumoSection.learn, onSection: _navigateTo);
+        return LumoAkademieScreen(appState: _appState);
       case LumoSection.exercises:
         if (_isReadingMode()) {
           return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));

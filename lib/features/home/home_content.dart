@@ -8,6 +8,7 @@ import '../quiz/quiz_show_content.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
 import '../shared/widgets/lumo_subject_tile.dart';
+import '../teacher_mode/lumo_akademie_screen.dart';
 
 class HomeContent extends StatefulWidget {
   const HomeContent({
@@ -143,11 +144,11 @@ class _HomeContentState extends State<HomeContent> {
         subtitle: 'Was möchtest du heute lernen?',
         greeting: 'Schön, dass du da bist!',
         lumoMessage: 'Heute warten\nspannende Aufgaben\nauf dich!',
-        ctaLabel: 'Aufgabe starten',
-        onCtaPressed: () => _startPractice(
-          subject: 'Alle',
-          unit: 'Alle',
-          message: 'Ich suche dir\neine passende Aufgabe\naus.',
+        ctaLabel: '🎓 Lumo Akademie öffnen',
+        onCtaPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => LumoAkademieScreen(appState: widget.appState),
+          ),
         ),
         headerAccent: LumoColors.orange,
         dailyMissionTitle: 'Tägliche Mission',
@@ -161,29 +162,35 @@ class _HomeContentState extends State<HomeContent> {
         topicTiles: [
           LumoSubjectTile(
             title: 'Mathe mit Lumo',
-            subtitle: 'Rechnen, Zählen und Knobeln',
+            subtitle: 'Lumo erklärt Schritt-für-Schritt',
             iconEmoji: 'M',
             illustrationEmoji: '+',
             accent: LumoColors.math,
             level: 3,
             starsCollected: 12,
             starsTotal: 20,
-            onTap: () => _startPractice(
-              subject: 'Mathematik',
-              unit: 'Alle',
-              message: 'Mathe startet.\nRuhig zählen,\ndann antworten.',
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    LumoAkademieScreen(appState: widget.appState),
+              ),
             ),
           ),
           LumoSubjectTile(
             title: 'Deutsch mit Lumo',
-            subtitle: 'Lesen, Schreiben, Wörter entdecken',
+            subtitle: 'Buchstaben schreiben, Lesen, Wörter',
             iconEmoji: 'D',
             illustrationEmoji: 'ABC',
             accent: LumoColors.purple,
             level: 2,
             starsCollected: 8,
             starsTotal: 20,
-            onTap: () => widget.onSection(LumoSection.learn),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    LumoAkademieScreen(appState: widget.appState),
+              ),
+            ),
           ),
           LumoSubjectTile(
             title: 'Quizshow',
@@ -236,10 +243,11 @@ class _HomeContentState extends State<HomeContent> {
             level: 1,
             starsCollected: 2,
             starsTotal: 15,
-            onTap: () => _startPractice(
-              subject: 'Sachunterricht',
-              unit: 'Tiere',
-              message: 'Sachunterricht\nstartet jetzt.\nWir forschen zusammen.',
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    LumoAkademieScreen(appState: widget.appState),
+              ),
             ),
           ),
         ],
