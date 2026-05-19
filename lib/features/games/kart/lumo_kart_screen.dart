@@ -74,8 +74,13 @@ class _LumoKartScreenState extends State<LumoKartScreen> {
 
   void _onStar(int total) => setState(() {});
   void _onFinish(int stars, double timeUsed) {
+    if (!mounted) return;
     widget.appState.addStars(stars);
     widget.appState.addXp(stars * 8);
+
+    // Engine anhalten waehrend Dialog offen ist
+    _game.pauseEngine();
+
     showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -83,8 +88,11 @@ class _LumoKartScreenState extends State<LumoKartScreen> {
         stars: stars,
         timeUsed: timeUsed,
         onClose: () {
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
+          // Dialog schliessen
+          final navigator = Navigator.of(context);
+          if (navigator.canPop()) navigator.pop();
+          // Game-Screen schliessen (zurueck zur Spiele-Liste)
+          if (navigator.canPop()) navigator.pop();
         },
       ),
     );
@@ -109,13 +117,13 @@ class _LumoKartScreenState extends State<LumoKartScreen> {
           Positioned(
             left: 28, bottom: 32,
             child: _SteeringJoystick(
-              onChanged: (vec) => _game.kart.stickX = vec.dx,
+              onChanged: (vec) => _game.setSteering(vec.dx),
             ),
           ),
           // Boost-Button rechts
           Positioned(
             right: 28, bottom: 40,
-            child: _BoostButton(onTap: _game.kart.tryManualBoost),
+            child: _BoostButton(onTap: _game.triggerBoost),
           ),
           // Zurueck oben links
           Positioned(
@@ -139,12 +147,19 @@ class _LumoKartScreenState extends State<LumoKartScreen> {
 // ════════════════════════════════════════════════════════════════════════
 
 class LumoKartGame extends FlameGame {
-  LumoKartGame({required this.onFinish, required this.onStar});
+  LumoKartGame({required this.onFinish, required this.onStar}) {
+    // WICHTIG: kart MUSS im Konstruktor erstellt werden, damit es
+    // existiert bevor Flutter-UI im build() darauf zugreift.
+    // Vorher: 'late KartPlayerComponent kart' wurde erst in onLoad()
+    // initialisiert -> LateInitializationError wenn Flutter-Overlay
+    // schneller war als Flame's async onLoad().
+    kart = KartPlayerComponent(game: this);
+  }
 
   final void Function(int stars, double timeUsed) onFinish;
   final void Function(int starsTotal) onStar;
 
-  late KartPlayerComponent kart;
+  late final KartPlayerComponent kart;
   double totalTime    = 0;
   double cameraY      = 0;
   int    stars        = 0;
@@ -163,12 +178,26 @@ class LumoKartGame extends FlameGame {
     await super.onLoad();
     images.prefix = '';
 
-    // Kart-Spieler
-    kart = KartPlayerComponent(game: this);
+    // Kart bereits im Konstruktor erstellt - nur zum Game adden.
     await add(kart);
 
     // Erstmal vor-spawnen
     _populateAhead(800);
+  }
+
+  // ─── Sichere UI->Game Schnittstellen ────────────────────────────────
+  // Flutter-Buttons rufen NICHT mehr direkt _game.kart.X auf, sondern
+  // diese Methoden. So kann das UI auch noch vor dem ersten Frame
+  // gebaut werden ohne dass es crasht.
+
+  /// Steering-Input vom Joystick (-1.0 .. +1.0)
+  void setSteering(double x) {
+    kart.stickX = x.clamp(-1.0, 1.0).toDouble();
+  }
+
+  /// Manueller Boost-Trigger vom Boost-Button
+  void triggerBoost() {
+    kart.tryManualBoost();
   }
 
   @override
