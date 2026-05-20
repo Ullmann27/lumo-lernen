@@ -109,7 +109,6 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
         'Sag mir was du wissen willst - und wenn du ein Bild sehen magst, '
         'sag einfach "Zeig mir ein/eine ..."!';
   }
-  }
 
   Future<void> _ask(String text) async {
     final trimmed = text.trim();
