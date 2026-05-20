@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_ai_proxy_client.dart';
+import '../../core/lumo_brain.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/lumo_image_generator.dart';
 import 'lumo_akademie_screen.dart';
@@ -122,6 +123,41 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
     });
     _scrollToBottom();
 
+    // ── HEINZ-WUNSCH: LumoBrain als FIRST-LINE-Responder ──────────────
+    // Bevor wir ChatGPT belaesten, fragen wir Lumo's lokales Gehirn:
+    // - Bei einfachen Fragen (Mathe, Tiere, Koerper, Wetter, Geografie)
+    //   antwortet LumoBrain SOFORT ohne Internet.
+    // - Bei komplexen Fragen sagt LumoBrain "ich weiss es nicht"
+    //   (confident=false) - dann erst ChatGPT.
+    // -> spart Render-Tokens, schneller fuer das Kind, funktioniert offline.
+    final brainReply = LumoBrain.instance.ask(trimmed, topicId: widget.topic.id);
+    if (brainReply.confident && brainReply.text.isNotEmpty) {
+      setState(() {
+        _messages.add(_ChatMessage(text: brainReply.text, isLumo: true));
+        _loading = false;
+      });
+      _history.add(LumoAiChatTurn(role: 'assistant', content: brainReply.text));
+      _scrollToBottom();
+      try {
+        LumoVoice.instance.speak(brainReply.text);
+      } catch (_) {}
+      // Bild dazu wenn Brain einen Allowlist-Hint mitliefert
+      if (brainReply.imageTopicHint != null) {
+        _generateImage(brainReply.imageTopicHint!);
+      } else {
+        final isVisualSubject = widget.subject.name.toLowerCase().contains('sachkunde');
+        if (LumoImageGenerator.seemsImageRequest(trimmed)) {
+          _generateImage(trimmed);
+        } else if (isVisualSubject) {
+          final mainTopic = LumoImageGenerator.extractMainTopic(trimmed);
+          if (mainTopic != null) {
+            _generateImage(mainTopic);
+          }
+        }
+      }
+      return; // ChatGPT nicht noetig - LumoBrain hat schon geantwortet!
+    }
+
     // ── KONTEXT-INJECTION (Loesung fuer "ChatGPT redet vom falschen Thema") ──
     // Heinz' Feedback: ChatGPT bekommt Bruchrechnen-Topic aber antwortet
     // mit "3 Aepfel + 2 Aepfel" (1. Klasse Aufgabe). Grund: Render-Backend
@@ -201,8 +237,14 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   }
 
   /// Lokaler Fallback wenn KI-Server nicht erreichbar ist.
-  /// Variiert die Server-Fehler-Message + gibt topic-spezifischen Hinweis.
+  /// Variiert die Server-Fehler-Message + gibt LumoBrain-Antwort wenn moeglich.
   String _buildLocalFallback(String question) {
+    // LumoBrain probieren - vielleicht weiss er die Antwort doch
+    final brainReply = LumoBrain.instance.ask(question, topicId: widget.topic.id);
+    if (brainReply.confident && brainReply.text.isNotEmpty) {
+      return brainReply.text;
+    }
+    // Sonst topic-spezifischer Curriculum-Tipp
     final ctx = TopicCurriculum.of(widget.topic.id);
     final variants = [
       'Mein Online-Lehrer ist gerade beschaeftigt. Lass uns trotzdem ueben!',
@@ -214,7 +256,6 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       return '$variant Frag mich konkret zu "${widget.topic.title}" - '
           'zum Beispiel mit einem Beispiel oder einer Aufgabe.';
     }
-    // Topic-spezifischer Tipp
     final hint = ctx.detailedScope.split('.').first.trim();
     return '$variant $hint. '
         'Probier eine der Fragen unten oder schreib mir genauer!';
