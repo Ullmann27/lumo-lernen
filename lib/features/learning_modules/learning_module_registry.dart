@@ -20,7 +20,9 @@ import '../../app/app_state.dart';
 import 'artikel_lernen/artikel_lernen_screen.dart';
 import 'bruchrechnen/bruchrechnen_screen.dart';
 import 'einmaleins/einmaleins_screen.dart';
+import 'farben/farben_screen.dart';
 import 'formen/formen_screen.dart';
+import 'geld/geld_screen.dart';
 import 'minus_bis_10/minus_bis_10_screen.dart';
 import 'plus_bis_10/plus_bis_10_screen.dart';
 import 'tiere/tiere_screen.dart';
@@ -45,8 +47,12 @@ class LearningModuleRegistry {
         return FormenScreen(appState: appState);
       case 's1_tiere':
         return TiereScreen(appState: appState);
+      case 's1_farben':
+        return FarbenScreen(appState: appState);
       case 'm2_uhr':
         return UhrLernenScreen(appState: appState);
+      case 'm2_geld':
+        return GeldScreen(appState: appState);
       case 'd2_artikel':
         return ArtikelLernenScreen(appState: appState);
       case 'd1_woerter':
@@ -68,7 +74,9 @@ class LearningModuleRegistry {
     'm1_zahlen10',
     'm1_formen',
     's1_tiere',
+    's1_farben',
     'm2_uhr',
+    'm2_geld',
     'm2_einmaleins',
     'm3_einmaleins_voll',
     'm4_bruch',
