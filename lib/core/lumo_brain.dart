@@ -232,8 +232,108 @@ class LumoBrain {
   };
 
   // ────────────────────────────────────────────────────────────────
-  // BUCHSTABEN-HILFE
+  // PFLANZEN-LEXIKON (Klasse 3 Sachkunde-Schwerpunkt)
   // ────────────────────────────────────────────────────────────────
+  static const Map<String, String> _pflanzen = {
+    'baum': 'Ein Baum hat einen Stamm, Aeste und Blaetter. Er braucht Sonne, Wasser und Erde zum Wachsen!',
+    'blume': 'Blumen haben Wurzeln, Stiel, Blaetter und Bluetenblaetter. Bienen lieben Blumen!',
+    'rose': 'Die Rose ist eine schoene Blume die meistens rot oder rosa bluet - aber Vorsicht, Dornen!',
+    'tulpe': 'Tulpen sind Fruehlingsblumen. Aus einer Zwiebel waechst jedes Jahr eine neue Tulpe!',
+    'sonnenblume': 'Die Sonnenblume wird sehr gross und ihre Blueten drehen sich immer zur Sonne!',
+    'tanne': 'Die Tanne ist immer gruen - auch im Winter. Wir nehmen sie als Weihnachtsbaum!',
+    'eiche': 'Die Eiche ist ein starker Baum. Aus ihren Eicheln fressen Eichhoernchen!',
+    'birke': 'Die Birke hat eine weisse Rinde mit schwarzen Streifen - man erkennt sie sofort!',
+    'wurzel': 'Die Wurzel ist der Teil der Pflanze unter der Erde. Sie haelt die Pflanze fest und nimmt Wasser auf!',
+    'blatt': 'Blaetter sind gruen und holen mit Sonnenlicht Energie fuer die Pflanze!',
+    'stiel': 'Der Stiel haelt die Bluete oder das Blatt - wie ein duenner Rohr fuer Wasser!',
+    'samen': 'Aus einem Samen waechst eine neue Pflanze. Wie aus einem Apfelkern ein Apfelbaum!',
+    'gras': 'Gras waechst auf Wiesen. Kuehe und Schafe fressen es!',
+    'kaktus': 'Der Kaktus lebt in der Wueste. Er kann lange ohne Wasser auskommen - hat aber Stacheln!',
+    'pilz': 'Ein Pilz ist keine Pflanze! Er waechst im Wald. Manche darf man essen, andere sind giftig!',
+  };
+
+  // ────────────────────────────────────────────────────────────────
+  // BERUFE-LEXIKON (Klasse 2-3 Sachkunde)
+  // ────────────────────────────────────────────────────────────────
+  static const Map<String, String> _berufe = {
+    'feuerwehrmann': 'Der Feuerwehrmann loescht Feuer und hilft bei Unfaellen. Er faehrt das rote Feuerwehrauto!',
+    'feuerwehrfrau': 'Die Feuerwehrfrau loescht Feuer und hilft Menschen in Not!',
+    'polizist': 'Der Polizist passt auf dass alle Regeln einhalten und hilft Menschen!',
+    'polizistin': 'Die Polizistin sorgt fuer Sicherheit und faengt Diebe!',
+    'arzt': 'Der Arzt hilft kranken Menschen wieder gesund zu werden!',
+    'aerztin': 'Die Aerztin untersucht uns und gibt Medizin wenn wir krank sind!',
+    'lehrer': 'Der Lehrer bringt Kindern in der Schule lesen, rechnen und vieles mehr bei!',
+    'lehrerin': 'Die Lehrerin hilft Kindern in der Schule beim Lernen!',
+    'baecker': 'Der Baecker backt frueh am Morgen Brot, Semmeln und Kuchen!',
+    'bäcker': 'Der Baecker backt frueh am Morgen Brot, Semmeln und Kuchen!',
+    'koch': 'Der Koch kocht leckere Essen in Restaurants oder Kueche!',
+    'koechin': 'Die Koechin zaubert leckere Gerichte fuer alle!',
+    'tierarzt': 'Der Tierarzt hilft kranken Tieren - Hunde, Katzen und sogar Pferde!',
+    'astronaut': 'Ein Astronaut fliegt mit einer Rakete ins Weltall und besucht Sterne!',
+    'pilot': 'Der Pilot fliegt grosse Flugzeuge in andere Laender!',
+    'bauer': 'Der Bauer arbeitet am Bauernhof - pflanzt Gemuese und kuemmert sich um Tiere!',
+    'baeuerin': 'Die Baeuerin arbeitet am Bauernhof mit Tieren und Pflanzen!',
+    'gaertner': 'Der Gaertner pflegt Pflanzen, Blumen und Baeume in Gaerten und Parks!',
+    'friseur': 'Der Friseur schneidet uns die Haare und macht sie schoen!',
+    'mechaniker': 'Der Mechaniker repariert kaputte Autos und Maschinen!',
+  };
+
+  // ────────────────────────────────────────────────────────────────
+  // KINDER-WITZE (rotierend - Lumo wird lebendig)
+  // ────────────────────────────────────────────────────────────────
+  static const List<String> _witze = [
+    'Was sagt ein Hund wenn er aufs Klo geht? Wau-zu! 🐶',
+    'Was macht ein Pirat am Computer? Er drueckt die Enter-Taste! 🏴‍☠️',
+    'Warum koennen Geister nicht luegen? Weil man durch sie hindurchschaut! 👻',
+    'Wie nennt man einen Bumerang der nicht zurueck kommt? Ein Stock! 🪃',
+    'Was ist gelb und schiesst durchs Wasser? Eine Biene auf der Flucht! 🐝',
+    'Treffen sich zwei Kerzen. Sagt die eine: "Komisch dass alle Kerzen wachsen wenn man sie anzuendet!" 🕯',
+    'Was ist gruen und steht vor der Tuer? Ein Klopfsalat! 🥗',
+    'Wo schlafen Autos? In der Gar-aaaaaaage! 🚗',
+    'Was sagt ein Hai der eine Ente gefressen hat? Schmeckt komisch nach Plastik! 🦆',
+    'Was macht ein Clown im Buero? Faxen! 🤡',
+    'Wie nennt man eine schlafende Bombe? Eine Ruhestoer! 💣',
+    'Warum gehen Bananen so gerne zum Arzt? Weil sie nicht in Schale werfen wollen! 🍌',
+  ];
+
+  // ────────────────────────────────────────────────────────────────
+  // KINDER-RAETSEL
+  // ────────────────────────────────────────────────────────────────
+  static const List<Map<String, String>> _raetsel = [
+    {'frage': 'Ich habe vier Beine aber kann nicht laufen. Ich trag dich beim Essen. Was bin ich?',
+     'antwort': 'Ein Stuhl! 🪑'},
+    {'frage': 'Ich bin gelb, rund und am Himmel. Bei mir wird es hell und warm. Was bin ich?',
+     'antwort': 'Die Sonne! ☀️'},
+    {'frage': 'Ich habe Blaetter aber bin keine Pflanze. Du blaetterst durch mich und lernst. Was bin ich?',
+     'antwort': 'Ein Buch! 📖'},
+    {'frage': 'Ich bin weiss und kalt und falle vom Himmel im Winter. Was bin ich?',
+     'antwort': 'Schnee! ❄️'},
+    {'frage': 'Ich habe zwei Raeder, einen Lenker und keinen Motor. Was bin ich?',
+     'antwort': 'Ein Fahrrad! 🚲'},
+    {'frage': 'Ich bin ein Tier mit Schwimmhaeuten und mache "Quak". Was bin ich?',
+     'antwort': 'Eine Ente! 🦆'},
+    {'frage': 'Ich bin sehr klein und summe von Blume zu Blume. Ich mache Honig. Was bin ich?',
+     'antwort': 'Eine Biene! 🐝'},
+    {'frage': 'Ich bin am Himmel und habe sieben Farben. Was bin ich?',
+     'antwort': 'Ein Regenbogen! 🌈'},
+  ];
+
+  // ────────────────────────────────────────────────────────────────
+  // LERN-TIPPS (selbst-vorschlagende KI)
+  // ────────────────────────────────────────────────────────────────
+  static const List<String> _lernTipps = [
+    'Wie waere es heute mit Plus-Rechnen? Probier doch "Plus bis 10" im Lernen-Bereich!',
+    'Heute koennten wir Tiere lernen - es gibt 12 spannende Tiere zu entdecken!',
+    'Magst du die Uhr lesen ueben? Das Modul "Die Uhr" hilft dir dabei!',
+    'Heute koennten wir Buchstaben schreiben ueben - das macht richtig Spass!',
+    'Wie waere es mit Wortarten? Nomen, Verben und Adjektive sind cool zu lernen!',
+    'Heute koennten wir Farben lernen - mit echten Bildern!',
+    'Magst du Geld zaehlen lernen? Euro und Cent sind wichtig fuer Einkaufen!',
+    'Wie waere es mit Einmaleins? Die 2er-Reihe ist ein guter Anfang!',
+    'Heute koennten wir Mehrzahl bilden ueben - aus Hund wird Hunde!',
+    'Magst du was ueber Jahreszeiten lernen? Fruehling, Sommer, Herbst, Winter!',
+  ];
+
   static const Map<String, String> _buchstabenLaut = {
     'a': 'A wie Apfel oder Auto!',
     'b': 'B wie Ball oder Banane!',
@@ -347,6 +447,66 @@ class LumoBrain {
           imageTopicHint: entry.key,
         );
       }
+    }
+
+    // 5a. Pflanzen-Lexikon (NEU)
+    for (final entry in _pflanzen.entries) {
+      if (q.contains(entry.key)) {
+        return LumoBrainReply(
+          text: _wrap(entry.value),
+          confident: true,
+          imageTopicHint: entry.key,
+        );
+      }
+    }
+
+    // 5b. Berufe-Lexikon (NEU)
+    for (final entry in _berufe.entries) {
+      if (q.contains(entry.key)) {
+        return LumoBrainReply(
+          text: _wrap(entry.value),
+          confident: true,
+          imageTopicHint: entry.key,
+        );
+      }
+    }
+
+    // 5c. Witze-Pattern (NEU - macht Lumo lebendig)
+    if (q.contains('witz') || q.contains('lustig') ||
+        q.contains('lach mich')) {
+      final witz = _witze[_rng.nextInt(_witze.length)];
+      return LumoBrainReply(text: witz, confident: true);
+    }
+
+    // 5d. Raetsel-Pattern (NEU)
+    if (q.contains('raetsel') || q.contains('rätsel') ||
+        q.contains('rate mal') || q.contains('errate')) {
+      final raetsel = _raetsel[_rng.nextInt(_raetsel.length)];
+      return LumoBrainReply(
+        text: '🤔 Raetsel-Zeit! ${raetsel['frage']} '
+            '(Loesung kommt wenn du raetst oder "Aufloesung" sagst!)',
+        confident: true,
+      );
+    }
+
+    // 5e. Aufloesung-Pattern - gibt letzte Raetsel-Antwort
+    if (q.contains('aufloesung') || q.contains('ich weiss es nicht') ||
+        q.contains('sag mir die antwort')) {
+      // Wir koennen das letzte Raetsel nicht trackn ohne State,
+      // also liefern wir ein zufaelliges
+      final raetsel = _raetsel[_rng.nextInt(_raetsel.length)];
+      return LumoBrainReply(
+        text: 'Die Loesung: ${raetsel['antwort']} Magst du noch ein Raetsel?',
+        confident: true,
+      );
+    }
+
+    // 5f. Lern-Tipp Pattern (NEU - selbst-vorschlagende KI)
+    if (q.contains('was soll ich lernen') || q.contains('was kann ich lernen') ||
+        q.contains('was sollen wir') || q.contains('gib mir einen tipp') ||
+        q.contains('was machen wir heute') || q.contains('tipp fuer heute')) {
+      final tipp = _lernTipps[_rng.nextInt(_lernTipps.length)];
+      return LumoBrainReply(text: '💡 Lumo-Tipp: $tipp', confident: true);
     }
 
     // 6. Geschichte
@@ -510,11 +670,10 @@ class LumoBrain {
   }
 
   // ────────────────────────────────────────────────────────────────
-  // AUFGABEN-GENERATOR
+  // AUFGABEN-GENERATOR (adaptive Schwierigkeit + mehr Topics)
   // ────────────────────────────────────────────────────────────────
   String? _generateTask(String? topicId) {
     if (topicId == null) {
-      // Generische Aufgabe
       return _generatePlusAufgabe();
     }
     if (topicId == 'm1_plus10' || topicId.contains('plus')) {
@@ -523,11 +682,48 @@ class LumoBrain {
     if (topicId == 'm1_minus10' || topicId.contains('minus')) {
       return _generateMinusAufgabe();
     }
-    if (topicId.contains('einmaleins') || topicId.contains('mal')) {
-      return _generateMalAufgabe();
+    if (topicId == 'm2_zahlen100' || topicId.contains('zahlen100')) {
+      return _generateZahlen100Aufgabe();
+    }
+    if (topicId.contains('einmaleins') || topicId == 'm3_einmaleins_voll') {
+      return _generateMalAufgabe(fullRange: topicId.contains('voll'));
+    }
+    if (topicId == 'm4_bruch' || topicId.contains('bruch')) {
+      return _generateBruchAufgabe();
+    }
+    if (topicId == 'm2_geld' || topicId.contains('geld')) {
+      return _generateGeldAufgabe();
     }
     if (topicId.startsWith('s1_tier') || topicId.contains('tier')) {
       return _generateTierAufgabe();
+    }
+    if (topicId == 's1_farben' || topicId.contains('farb')) {
+      return _generateFarbAufgabe();
+    }
+    if (topicId == 's1_koerper' || topicId.contains('koerper') ||
+        topicId.contains('körper')) {
+      return _generateKoerperAufgabe();
+    }
+    if (topicId == 'd2_mehrzahl' || topicId.contains('mehrzahl')) {
+      return _generateMehrzahlAufgabe();
+    }
+    if (topicId == 'd2_artikel' || topicId.contains('artikel')) {
+      return _generateArtikelAufgabe();
+    }
+    if (topicId == 'd3_wortarten' || topicId.contains('wortart')) {
+      return _generateWortartAufgabe();
+    }
+    if (topicId == 'm2_uhr' || topicId.contains('uhr')) {
+      return _generateUhrAufgabe();
+    }
+    if (topicId == 's2_jahreszeiten' || topicId.contains('jahreszeit')) {
+      return _generateJahreszeitAufgabe();
+    }
+    if (topicId == 's2_wetter' || topicId.contains('wetter')) {
+      return _generateWetterAufgabe();
+    }
+    if (topicId == 's4_europa' || topicId.contains('europa')) {
+      return _generateEuropaAufgabe();
     }
     return null;
   }
@@ -546,16 +742,155 @@ class LumoBrain {
         'Du hast $a Sachen, $b werden weggenommen!';
   }
 
-  String _generateMalAufgabe() {
-    final a = 2 + _rng.nextInt(3);
-    final b = 2 + _rng.nextInt(8);
+  String _generateZahlen100Aufgabe() {
+    final a = 20 + _rng.nextInt(70);
+    final tipps = [
+      'Welche Zahl kommt nach $a?',
+      'Welche Zahl kommt vor $a?',
+      'Welche Zahl ist groesser: $a oder ${a + 7}?',
+      'Wie viele Zehner hat die Zahl $a?',
+    ];
+    return tipps[_rng.nextInt(tipps.length)];
+  }
+
+  String _generateMalAufgabe({bool fullRange = false}) {
+    final maxFactor = fullRange ? 10 : 5;
+    final a = 2 + _rng.nextInt(maxFactor - 1);
+    final b = 2 + _rng.nextInt(maxFactor - 1);
     return 'Hier eine Mal-Aufgabe: Was ist $a mal $b? '
         'Das sind $a Gruppen mit je $b!';
   }
 
+  String _generateBruchAufgabe() {
+    final ganze = 4 + _rng.nextInt(8); // 4..11
+    final teile = [2, 3, 4][_rng.nextInt(3)];
+    if (ganze % teile == 0) {
+      return 'Bruch-Aufgabe: Du hast $ganze Stueck Schokolade. '
+          'Teile sie auf $teile Freunde - wie viele bekommt jeder?';
+    }
+    return 'Bruch-Aufgabe: Was ist die Haelfte von $ganze?';
+  }
+
+  String _generateGeldAufgabe() {
+    final c1 = [10, 20, 50, 100, 200][_rng.nextInt(5)];
+    final c2 = [10, 20, 50, 100][_rng.nextInt(4)];
+    final total = c1 + c2;
+    final euro = total ~/ 100;
+    final cent = total % 100;
+    final totalStr = cent == 0
+        ? '$euro Euro'
+        : (euro == 0 ? '$cent Cent' : '$euro Euro $cent');
+    return 'Geld-Aufgabe: Du hast eine ${c1 >= 100 ? "${c1 ~/ 100}-Euro" : "$c1-Cent"} '
+        'und eine ${c2 >= 100 ? "${c2 ~/ 100}-Euro" : "$c2-Cent"} Muenze. '
+        'Wie viel ist das zusammen? ($totalStr)';
+  }
+
   String _generateTierAufgabe() {
     final tier = _tiere.keys.elementAt(_rng.nextInt(_tiere.length));
-    return 'Tier-Frage: Wie macht ein ${tier[0].toUpperCase()}${tier.substring(1)}?';
+    final tierLabel = tier[0].toUpperCase() + tier.substring(1);
+    final typen = [
+      'Wie macht ein $tierLabel?',
+      'Wo lebt ein $tierLabel?',
+      'Was frisst ein $tierLabel?',
+    ];
+    return typen[_rng.nextInt(typen.length)];
+  }
+
+  String _generateFarbAufgabe() {
+    const objekte = ['Apfel', 'Banane', 'Frosch', 'Sonne', 'Himmel', 'Schnee'];
+    const farben = ['rot', 'gelb', 'gruen', 'blau', 'weiss'];
+    final obj = objekte[_rng.nextInt(objekte.length)];
+    final farbe = farben[_rng.nextInt(farben.length)];
+    return 'Farben-Frage: Welche Farbe hat ein typischer $obj? '
+        '(Tipp: Denk an einen $farbe-en oder anderen!)';
+  }
+
+  String _generateKoerperAufgabe() {
+    const fragen = [
+      'Wie viele Finger hast du an einer Hand?',
+      'Wie viele Beine hast du?',
+      'Was machst du mit deinen Augen?',
+      'Wo sitzt dein Herz?',
+      'Wie viele Zaehne hast du ungefaehr?',
+    ];
+    return 'Koerper-Frage: ${fragen[_rng.nextInt(fragen.length)]}';
+  }
+
+  String _generateMehrzahlAufgabe() {
+    const paare = [
+      'Hund', 'Kind', 'Apfel', 'Auto', 'Buch', 'Maus', 'Haus',
+      'Baum', 'Stuhl', 'Tisch', 'Blume', 'Vogel'
+    ];
+    final w = paare[_rng.nextInt(paare.length)];
+    return 'Mehrzahl-Frage: Wie heisst die Mehrzahl von "$w"?';
+  }
+
+  String _generateArtikelAufgabe() {
+    const woerter = [
+      'Hund', 'Katze', 'Auto', 'Buch', 'Sonne', 'Mond', 'Baum',
+      'Blume', 'Apfel', 'Pferd', 'Haus', 'Kind'
+    ];
+    final w = woerter[_rng.nextInt(woerter.length)];
+    return 'Artikel-Frage: Heisst es DER, DIE oder DAS $w?';
+  }
+
+  String _generateWortartAufgabe() {
+    const woerter = [
+      'laufen', 'Hund', 'rot', 'Schule', 'lustig', 'spielen',
+      'Auto', 'schoen', 'singen', 'gross', 'Mama', 'klein'
+    ];
+    final w = woerter[_rng.nextInt(woerter.length)];
+    return 'Wortarten-Frage: Ist "$w" ein Nomen, Verb oder Adjektiv?';
+  }
+
+  String _generateUhrAufgabe() {
+    final h = 1 + _rng.nextInt(12);
+    final variants = [
+      'Es ist $h Uhr genau. Wo steht der grosse Zeiger?',
+      'Wie heisst die Uhrzeit halb $h?',
+      'Wie heisst die Uhrzeit Viertel nach $h?',
+    ];
+    return 'Uhr-Frage: ${variants[_rng.nextInt(variants.length)]}';
+  }
+
+  String _generateJahreszeitAufgabe() {
+    const fragen = [
+      'In welcher Jahreszeit faellt Schnee?',
+      'In welcher Jahreszeit bluehen die ersten Blumen?',
+      'Wann werden die Blaetter bunt?',
+      'In welcher Jahreszeit schwimmen wir im Pool?',
+      'Wann ist Weihnachten?',
+    ];
+    return 'Jahreszeit: ${fragen[_rng.nextInt(fragen.length)]}';
+  }
+
+  String _generateWetterAufgabe() {
+    const fragen = [
+      'Was zieht man bei Regen an?',
+      'Wann gibt es einen Regenbogen?',
+      'Was ist Nebel?',
+      'Was kommt nach einem Blitz?',
+    ];
+    return 'Wetter-Frage: ${fragen[_rng.nextInt(fragen.length)]}';
+  }
+
+  String _generateEuropaAufgabe() {
+    const fragen = [
+      'Wie heisst die Hauptstadt von Oesterreich?',
+      'Welches Land liegt im Sueden von Oesterreich?',
+      'Wie heisst die Hauptstadt von Italien?',
+      'Was ist der laengste Fluss in Oesterreich?',
+    ];
+    return 'Geografie: ${fragen[_rng.nextInt(fragen.length)]}';
+  }
+
+  // ────────────────────────────────────────────────────────────────
+  // SELBST-VORSCHLAG: schlaegt naechstes Topic vor
+  // ────────────────────────────────────────────────────────────────
+  /// Lumo's KI-Vorschlag: was sollte das Kind als naechstes lernen?
+  /// Wird in der Akademie oder im Greeting genutzt.
+  String suggestNextTopic() {
+    return _lernTipps[_rng.nextInt(_lernTipps.length)];
   }
 }
 
