@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../../widgets/fox/lumo_reaction_companion.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
 import 'writing_task_renderer.dart';
@@ -38,7 +41,29 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
   Object? _picked;
   final Set<String> _wrongAnswers = <String>{};
 
+  /// Stimmung des begleitenden Lumo-Companion. Cheer/Think kehren
+  /// automatisch nach 2 Sekunden zurueck auf idle.
+  LumoReactionMood _companionMood = LumoReactionMood.idle;
+  Timer? _moodResetTimer;
+
   bool get _solved => _picked != null && '$_picked' == '${widget.task.correctAnswer}';
+
+  @override
+  void dispose() {
+    _moodResetTimer?.cancel();
+    super.dispose();
+  }
+
+  void _setMood(LumoReactionMood next) {
+    _moodResetTimer?.cancel();
+    setState(() => _companionMood = next);
+    if (next != LumoReactionMood.idle) {
+      _moodResetTimer = Timer(const Duration(seconds: 2), () {
+        if (!mounted) return;
+        setState(() => _companionMood = LumoReactionMood.idle);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +126,16 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         solved: _solved,
         onPick: _pick,
       ),
+      const SizedBox(height: 16),
+      // Phase 3: kleiner Lumo-Companion rechts unten, reagiert sichtbar
+      // auf richtige (cheer) oder falsche (think) Antworten.
+      Align(
+        alignment: Alignment.centerRight,
+        child: LumoReactionCompanion(
+          mood: _companionMood,
+          size: 84,
+        ),
+      ),
     ]);
   }
 
@@ -118,6 +153,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         _wrongAnswers.add(answerKey);
       }
     });
+
+    // Lumo-Companion reagiert sichtbar (Phase 3): bei richtiger Antwort
+    // jubelt er, bei falscher Antwort guckt er nachdenklich.
+    _setMood(correct ? LumoReactionMood.cheer : LumoReactionMood.think);
 
     if (correct) {
       widget.onAnswered?.call(
