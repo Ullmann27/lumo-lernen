@@ -241,6 +241,214 @@ class LetterTemplates {
       ],
       description: 'H wie Haus - zwei Striche und eine Bruecke!',
     ),
+    'B': LetterTemplate(
+      letter: 'B',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.vertical, position: 'left'),
+        _ExpectedStroke(type: _StrokeType.curve),
+      ],
+      minStrokes: 2, maxStrokes: 4,
+      demoStrokes: [
+        [Offset(20, 10), Offset(20, 90)],
+        [Offset(20, 10), Offset(65, 25), Offset(65, 45), Offset(20, 50)],
+        [Offset(20, 50), Offset(70, 65), Offset(70, 85), Offset(20, 90)],
+      ],
+      description: 'B wie Ball - Strich runter, dann zwei Baeuche!',
+    ),
+    'C': LetterTemplate(
+      letter: 'C',
+      expectedStrokes: [_ExpectedStroke(type: _StrokeType.curve)],
+      minStrokes: 1, maxStrokes: 2,
+      demoStrokes: [
+        [Offset(75, 25), Offset(45, 12), Offset(20, 40), Offset(20, 70), Offset(45, 88), Offset(75, 78)],
+      ],
+      description: 'C wie Computer - eine Kurve wie ein offener Mond!',
+    ),
+    'D': LetterTemplate(
+      letter: 'D',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.vertical, position: 'left'),
+        _ExpectedStroke(type: _StrokeType.curve),
+      ],
+      minStrokes: 2, maxStrokes: 3,
+      demoStrokes: [
+        [Offset(20, 10), Offset(20, 90)],
+        [Offset(20, 10), Offset(70, 30), Offset(75, 60), Offset(20, 90)],
+      ],
+      description: 'D wie Dackel - Strich runter, dann ein grosser Bauch!',
+    ),
+    'F': LetterTemplate(
+      letter: 'F',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.vertical),
+        _ExpectedStroke(type: _StrokeType.horizontal, position: 'top'),
+        _ExpectedStroke(type: _StrokeType.horizontal, position: 'middle'),
+      ],
+      minStrokes: 3, maxStrokes: 4,
+      demoStrokes: [
+        [Offset(20, 10), Offset(20, 90)],
+        [Offset(20, 10), Offset(75, 10)],
+        [Offset(20, 50), Offset(60, 50)],
+      ],
+      description: 'F wie Fisch - Strich runter und zwei Querstriche!',
+    ),
+    'G': LetterTemplate(
+      letter: 'G',
+      expectedStrokes: [_ExpectedStroke(type: _StrokeType.curve)],
+      minStrokes: 1, maxStrokes: 3,
+      demoStrokes: [
+        [Offset(75, 25), Offset(45, 12), Offset(20, 40), Offset(20, 70), Offset(45, 88), Offset(75, 78), Offset(75, 55), Offset(55, 55)],
+      ],
+      description: 'G wie Garten - Kurve wie ein C mit einem Haken!',
+    ),
+    'J': LetterTemplate(
+      letter: 'J',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.vertical),
+        _ExpectedStroke(type: _StrokeType.curve),
+      ],
+      minStrokes: 1, maxStrokes: 3,
+      demoStrokes: [
+        [Offset(60, 10), Offset(60, 75), Offset(40, 90), Offset(20, 82)],
+      ],
+      description: 'J wie Junge - Strich runter und unten ein Haekchen!',
+    ),
+    'K': LetterTemplate(
+      letter: 'K',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.vertical),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+      ],
+      minStrokes: 2, maxStrokes: 4,
+      demoStrokes: [
+        [Offset(20, 10), Offset(20, 90)],
+        [Offset(20, 50), Offset(75, 10)],
+        [Offset(20, 50), Offset(75, 90)],
+      ],
+      description: 'K wie Katze - Strich runter und zwei schraege Striche!',
+    ),
+    'P': LetterTemplate(
+      letter: 'P',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.vertical),
+        _ExpectedStroke(type: _StrokeType.curve),
+      ],
+      minStrokes: 2, maxStrokes: 3,
+      demoStrokes: [
+        [Offset(20, 10), Offset(20, 90)],
+        [Offset(20, 10), Offset(70, 25), Offset(70, 45), Offset(20, 55)],
+      ],
+      description: 'P wie Papa - Strich runter und oben ein Bauch!',
+    ),
+    'Q': LetterTemplate(
+      letter: 'Q',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.circle),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+      ],
+      minStrokes: 2, maxStrokes: 3,
+      demoStrokes: [
+        [Offset(50, 10), Offset(82, 30), Offset(82, 70), Offset(50, 90), Offset(18, 70), Offset(18, 30), Offset(50, 10)],
+        [Offset(65, 70), Offset(90, 95)],
+      ],
+      description: 'Q wie Quark - ein Kreis mit einem Schwaenzchen!',
+    ),
+    'R': LetterTemplate(
+      letter: 'R',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.vertical),
+        _ExpectedStroke(type: _StrokeType.curve),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+      ],
+      minStrokes: 2, maxStrokes: 4,
+      demoStrokes: [
+        [Offset(20, 10), Offset(20, 90)],
+        [Offset(20, 10), Offset(70, 25), Offset(70, 45), Offset(20, 55)],
+        [Offset(20, 55), Offset(80, 90)],
+      ],
+      description: 'R wie Rose - wie P, aber mit einem Bein nach rechts!',
+    ),
+    'T': LetterTemplate(
+      letter: 'T',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.horizontal, position: 'top'),
+        _ExpectedStroke(type: _StrokeType.vertical),
+      ],
+      minStrokes: 2, maxStrokes: 3,
+      demoStrokes: [
+        [Offset(15, 15), Offset(85, 15)],
+        [Offset(50, 15), Offset(50, 90)],
+      ],
+      description: 'T wie Tisch - oben quer und in der Mitte runter!',
+    ),
+    'V': LetterTemplate(
+      letter: 'V',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+      ],
+      minStrokes: 1, maxStrokes: 3,
+      demoStrokes: [
+        [Offset(15, 10), Offset(50, 90), Offset(85, 10)],
+      ],
+      description: 'V wie Vogel - schraeg runter und schraeg wieder hoch!',
+    ),
+    'W': LetterTemplate(
+      letter: 'W',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+      ],
+      minStrokes: 1, maxStrokes: 4,
+      demoStrokes: [
+        [Offset(10, 10), Offset(30, 90), Offset(50, 40), Offset(70, 90), Offset(90, 10)],
+      ],
+      description: 'W wie Wasser - zwei V nebeneinander!',
+    ),
+    'X': LetterTemplate(
+      letter: 'X',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+      ],
+      minStrokes: 2, maxStrokes: 3,
+      demoStrokes: [
+        [Offset(15, 10), Offset(85, 90)],
+        [Offset(85, 10), Offset(15, 90)],
+      ],
+      description: 'X wie Xylophon - ein Kreuz aus zwei schraegen Strichen!',
+    ),
+    'Y': LetterTemplate(
+      letter: 'Y',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.vertical),
+      ],
+      minStrokes: 2, maxStrokes: 4,
+      demoStrokes: [
+        [Offset(15, 10), Offset(50, 50)],
+        [Offset(85, 10), Offset(50, 50)],
+        [Offset(50, 50), Offset(50, 90)],
+      ],
+      description: 'Y wie Yacht - zwei Striche oben und einer runter!',
+    ),
+    'Z': LetterTemplate(
+      letter: 'Z',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.horizontal, position: 'top'),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.horizontal, position: 'bottom'),
+      ],
+      minStrokes: 1, maxStrokes: 4,
+      demoStrokes: [
+        [Offset(15, 10), Offset(85, 10), Offset(15, 90), Offset(85, 90)],
+      ],
+      description: 'Z wie Zebra - oben quer, schraeg runter, unten quer!',
+    ),
   };
 
   static List<String> get availableLetters => all.keys.toList();
