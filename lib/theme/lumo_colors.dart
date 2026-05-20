@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 
 class LumoColors {
-  const LumoColors._();
+  LumoColors._();
 
   // ── BRAND ─────────────────────────────────────────────────────────
   Color get lumoOrange => const Color(0xFFF97316);
