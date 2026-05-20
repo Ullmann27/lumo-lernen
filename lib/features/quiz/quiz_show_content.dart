@@ -7,6 +7,7 @@ import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_rewards.dart';
 import '../../domain/quiz/quiz_show.dart';
+import '../../widgets/premium/lumo_reward_burst.dart';
 
 class QuizShowContent extends StatefulWidget {
   const QuizShowContent({super.key, required this.appState});
@@ -60,6 +61,12 @@ class _QuizShowContentState extends State<QuizShowContent> {
     setState(() {
       _state = _engine.reveal(_state, drawCouponForMilestone: _drawCoupon);
     });
+    // Phase 5 Premium: Sterne sprudeln bei richtiger Antwort.
+    final q = _state.currentQuestion;
+    final correct = _state.selectedOption == q.correctIndex;
+    if (correct && mounted) {
+      showLumoRewardBurst(context, stars: 1);
+    }
   }
 
   void _next() {
@@ -165,7 +172,7 @@ class _QuizCard extends StatelessWidget {
           Text(
             question.prompt,
             textAlign: TextAlign.center,
-            style: LumoTextStyles.heading1.copyWith(fontSize: 28),
+            style: LumoTextStyles.heading1.copyWith(fontSize: 34, height: 1.15),
           ),
           const SizedBox(height: 18),
           Wrap(
@@ -187,19 +194,50 @@ class _QuizCard extends StatelessWidget {
             _AudienceVotes(votes: state.audienceVotes!),
           ],
           const SizedBox(height: 18),
-          for (var i = 0; i < question.options.length; i++)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: _AnswerButton(
-                label: question.options[i],
-                index: i,
-                hidden: state.fiftyFiftyHiddenOptions.contains(i),
-                selected: selected == i,
-                revealed: answered,
-                correct: question.correctIndex == i,
-                onTap: () => onSelect(i),
-              ),
-            ),
+          // Phase 5 Premium: bei genau 4 Optionen 2x2 Grid (kindgerechter,
+          // satter), bei 3 oder anderer Anzahl vertikal listen.
+          LayoutBuilder(builder: (context, c) {
+            final use2x2 = question.options.length == 4 && c.maxWidth >= 320;
+            if (use2x2) {
+              final itemWidth = (c.maxWidth - 10) / 2;
+              return Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  for (var i = 0; i < question.options.length; i++)
+                    SizedBox(
+                      width: itemWidth,
+                      child: _AnswerButton(
+                        label: question.options[i],
+                        index: i,
+                        hidden: state.fiftyFiftyHiddenOptions.contains(i),
+                        selected: selected == i,
+                        revealed: answered,
+                        correct: question.correctIndex == i,
+                        onTap: () => onSelect(i),
+                      ),
+                    ),
+                ],
+              );
+            }
+            return Column(
+              children: [
+                for (var i = 0; i < question.options.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: _AnswerButton(
+                      label: question.options[i],
+                      index: i,
+                      hidden: state.fiftyFiftyHiddenOptions.contains(i),
+                      selected: selected == i,
+                      revealed: answered,
+                      correct: question.correctIndex == i,
+                      onTap: () => onSelect(i),
+                    ),
+                  ),
+              ],
+            );
+          }),
           const SizedBox(height: 8),
           if (state.gameOver)
             FilledButton.icon(
@@ -295,17 +333,33 @@ class _AnswerButton extends StatelessWidget {
   Widget _shell(String text, Color fg, Color bg, Color? border) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 180),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      // Phase 5: Buttons satter - mehr vertikales Padding, dickerer
+      // Border, kraeftigerer Schatten. Mindesthoehe sorgt fuer
+      // gleichmaessiges 2x2-Grid-Aussehen.
+      constraints: const BoxConstraints(minHeight: 84),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
       decoration: BoxDecoration(
         color: bg,
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: border?.withOpacity(.55) ?? const Color(0xFFFFD7AD)),
-        boxShadow: [BoxShadow(color: fg.withOpacity(.10), blurRadius: 14, offset: const Offset(0, 5))],
+        border: Border.all(
+          color: border?.withOpacity(.65) ?? const Color(0xFFFFD7AD),
+          width: 2,
+        ),
+        boxShadow: [BoxShadow(color: fg.withOpacity(.12), blurRadius: 16, offset: const Offset(0, 6))],
       ),
+      alignment: Alignment.center,
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: fg),
+        maxLines: 3,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: 22,
+          fontWeight: FontWeight.w900,
+          color: fg,
+          height: 1.2,
+        ),
       ),
     );
   }
