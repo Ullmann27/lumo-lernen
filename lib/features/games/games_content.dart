@@ -8,6 +8,7 @@ import '../../app/app_theme.dart';
 import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import 'flame/lumo_jump_game.dart';
 import 'kart/lumo_kart_screen.dart';
@@ -274,7 +275,7 @@ class _HeaderStrip extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Text('🦊', style: TextStyle(fontSize: 32)),
+            child: const LumoIdleFox(size: 44),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -285,7 +286,7 @@ class _HeaderStrip extends StatelessWidget {
                   'Lumos Abenteuer',
                   style: TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 17,
+                    fontSize: 20,
                     fontWeight: FontWeight.w900,
                     color: LumoColors.ink900,
                   ),
@@ -417,7 +418,7 @@ class _AdventureCardState extends State<_AdventureCard>
                     child: Center(
                       child: Transform.scale(
                         scale: pulse,
-                        child: const Text('🦊', style: TextStyle(fontSize: 38)),
+                        child: const LumoIdleFox(size: 52),
                       ),
                     ),
                   ),
@@ -458,7 +459,7 @@ class _AdventureCardState extends State<_AdventureCard>
                           style: TextStyle(
                             fontFamily: 'Nunito',
                             fontWeight: FontWeight.w900,
-                            fontSize: 19,
+                            fontSize: 22,
                             color: Colors.white,
                             shadows: [
                               Shadow(color: Color(0x40000000), blurRadius: 4, offset: Offset(0, 2)),
