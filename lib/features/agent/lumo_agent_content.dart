@@ -8,6 +8,7 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_voice.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 
 class LumoAgentContent extends StatefulWidget {
   const LumoAgentContent({super.key, required this.appState, required this.onSection});
@@ -373,7 +374,10 @@ class _AgentHeader extends StatelessWidget {
           width: 64,
           height: 64,
           decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)),
-          child: const Center(child: Text('🦊', style: TextStyle(fontSize: 34))),
+          child: const Padding(
+            padding: EdgeInsets.all(6),
+            child: LumoIdleFox(size: 52),
+          ),
         ),
         const SizedBox(width: 14),
         Expanded(

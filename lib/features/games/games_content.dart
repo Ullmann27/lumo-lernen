@@ -720,7 +720,7 @@ class _LevelCircle extends StatelessWidget {
             child: locked
                 ? const Icon(Icons.lock_rounded, color: Colors.white, size: 28)
                 : isCurrent
-                    ? const Text('🦊', style: TextStyle(fontSize: 36))
+                    ? const LumoIdleFox(size: 50)
                     : Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
