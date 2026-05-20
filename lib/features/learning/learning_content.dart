@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../app/app_design.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/error_breakdown_repository.dart';
@@ -951,7 +952,7 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                           BoxShadow(color: const Color(0xFFFFB800).withOpacity(.30), blurRadius: 12, offset: const Offset(0, 4)),
                         ],
                       ),
-                      child: const Text('🦊', style: TextStyle(fontSize: 22)),
+                      child: const LumoIdleFox(size: 36),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -2188,7 +2189,7 @@ class _AiHelpBubble extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Text('🦊', style: TextStyle(fontSize: 20)),
+                child: const LumoIdleFox(size: 30),
               ),
               const SizedBox(width: 10),
               const Expanded(
