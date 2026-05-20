@@ -12,6 +12,7 @@
 //   6. Wenn falsch -> Lumo malt richtigen Buchstaben vor + Erklaerung
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -19,8 +20,10 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/writing_progress_repository.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
+import 'writing_feature_flags.dart';
 
 class LumoWritingCoachScreen extends StatefulWidget {
   const LumoWritingCoachScreen({super.key, required this.appState});
@@ -42,6 +45,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  final _progressRepo = WritingProgressRepository();
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -129,6 +133,12 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
       template: _currentTemplate,
       userStrokes: _strokes,
     );
+    if (WritingFeatureFlags.enableProgressTracking) {
+      unawaited(_progressRepo.recordAttempt(
+        letter: _currentLetter,
+        correct: feedback.matched,
+      ));
+    }
     setState(() {
       _lastFeedback = feedback;
       _showDemo = feedback.showDemo;
