@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_idle_fox.dart';
+import '../../widgets/premium/lumo_magic_background.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import '../writing/lumo_writing_word_coach_screen.dart';
@@ -494,24 +495,31 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF6EE),
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            // ── HERO BANNER ────────────────────────────────────
-            SliverToBoxAdapter(child: _buildHero()),
-            // ── KLASSEN-SELECTOR ───────────────────────────────
-            SliverToBoxAdapter(child: _buildGradePicker()),
-            // ── FACH-KACHELN ───────────────────────────────────
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 100),
-              sliver: SliverList.builder(
-                itemCount: _currentGrade.subjects.length,
-                itemBuilder: (_, i) => _buildSubjectSection(
-                    _currentGrade.subjects[i], i),
+      // LumoMagicBackground liefert den Premium-Hintergrund mit sanften
+      // Sternen + Wolken. Scaffold-bg wird transparent, sonst doppelter
+      // Hintergrund.
+      backgroundColor: Colors.transparent,
+      body: LumoMagicBackground(
+        intensity: 0.9,
+        starCount: 14,
+        child: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              // ── HERO BANNER ────────────────────────────────────
+              SliverToBoxAdapter(child: _buildHero()),
+              // ── KLASSEN-SELECTOR ───────────────────────────────
+              SliverToBoxAdapter(child: _buildGradePicker()),
+              // ── FACH-KACHELN ───────────────────────────────────
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 100),
+                sliver: SliverList.builder(
+                  itemCount: _currentGrade.subjects.length,
+                  itemBuilder: (_, i) => _buildSubjectSection(
+                      _currentGrade.subjects[i], i),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -572,9 +580,9 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   style: TextStyle(
                       fontFamily: 'Nunito',
                       color: Colors.white,
-                      fontSize: 28,
+                      fontSize: 32,
                       fontWeight: FontWeight.w900,
-                      height: 1.0),
+                      height: 1.05),
                 ),
                 const SizedBox(height: 10),
                 const Text(
