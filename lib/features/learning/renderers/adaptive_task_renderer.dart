@@ -65,14 +65,14 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             _subjectLabel(task.subject),
-            style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13),
+            style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 15),
           ),
           const SizedBox(height: 10),
           Text(
             task.prompt,
             style: const TextStyle(
               fontFamily: 'Nunito',
-              fontSize: 30,
+              fontSize: 34,
               fontWeight: FontWeight.w900,
               color: LumoColors.ink900,
               height: 1.12,
@@ -91,7 +91,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         _wrongAnswers.length >= 2 && !_solved
             ? 'Versuch es nochmal mit Lumos Hilfe:'
             : 'Wähle die richtige Antwort:',
-        style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 14),
+        style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 16),
       ),
       const SizedBox(height: 12),
       _OptionGrid(
@@ -280,11 +280,35 @@ class _AnswerButton extends StatelessWidget {
       textColor = LumoColors.ink900;
     }
 
+    // Heinz' Wunsch: Mathe-Zahlen (kurze Labels) deutlich groesser
+    // darstellen, normale Antworten satter, lange Texte ohne Overflow.
+    // Heuristik nach Label-Laenge.
+    final labelLen = label.length;
+    final double labelFontSize;
+    final double verticalPadding;
+    final int maxLines;
+    if (labelLen <= 3) {
+      // Mathe-Zahlen: '8', '10', '100' - sehr gross + viel Padding
+      labelFontSize = 38;
+      verticalPadding = 24;
+      maxLines = 1;
+    } else if (labelLen <= 8) {
+      // Kurzwoerter: 'Hase', 'Forelle', 'Mama'
+      labelFontSize = 28;
+      verticalPadding = 20;
+      maxLines = 1;
+    } else {
+      // Lange Saetze - kompakter, ohne Overflow
+      labelFontSize = 20;
+      verticalPadding = 16;
+      maxLines = 2;
+    }
+
     return GestureDetector(
       onTap: solved || isWrongPicked ? null : onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 160),
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+        padding: EdgeInsets.symmetric(horizontal: 18, vertical: verticalPadding),
         decoration: BoxDecoration(
           color: bg,
           borderRadius: BorderRadius.circular(LumoRadius.pill),
@@ -294,22 +318,22 @@ class _AnswerButton extends StatelessWidget {
           if (solved && isCorrect)
             const Padding(
               padding: EdgeInsets.only(right: 7),
-              child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 20),
+              child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 24),
             ),
           if (isWrongPicked)
             const Padding(
               padding: EdgeInsets.only(right: 7),
-              child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 20),
+              child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 24),
             ),
           Flexible(
             child: Text(
               label,
               textAlign: TextAlign.center,
-              maxLines: 1,
+              maxLines: maxLines,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontFamily: 'Nunito',
-                fontSize: 22,
+                fontSize: labelFontSize,
                 fontWeight: FontWeight.w900,
                 color: textColor,
               ),
