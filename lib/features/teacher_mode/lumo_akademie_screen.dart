@@ -144,29 +144,16 @@ class LumoCurriculum {
               icon: Icons.menu_book_rounded,
               topics: const [
                 LearningTopic(
-                    id: 'd1_buchstaben_aj',
-                    title: 'Buchstaben A-J',
+                    id: 'd1_buchstaben_alle',
+                    title: 'Alle Buchstaben A-Z',
                     icon: Icons.edit_rounded,
                     gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                    shortDesc: 'Schreiben üben',
+                    shortDesc: 'Alle 26 Buchstaben üben',
                     isWriting: true,
-                    writingChars: ['A','B','C','D','E','F','G','H','I','J']),
-                LearningTopic(
-                    id: 'd1_buchstaben_kt',
-                    title: 'Buchstaben K-T',
-                    icon: Icons.edit_rounded,
-                    gradient: [Color(0xFFC084FC), Color(0xFFE9D5FF)],
-                    shortDesc: 'Schreiben üben',
-                    isWriting: true,
-                    writingChars: ['K','L','M','N','O','P','Q','R','S','T']),
-                LearningTopic(
-                    id: 'd1_buchstaben_uz',
-                    title: 'Buchstaben U-Z',
-                    icon: Icons.edit_rounded,
-                    gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                    shortDesc: 'Schreiben üben',
-                    isWriting: true,
-                    writingChars: ['U','V','W','X','Y','Z']),
+                    writingChars: [
+                      'A','B','C','D','E','F','G','H','I','J','K','L','M',
+                      'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+                    ]),
                 LearningTopic(
                     id: 'd1_woerter',
                     title: 'Erste Wörter',

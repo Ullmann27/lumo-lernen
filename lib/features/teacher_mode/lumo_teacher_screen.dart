@@ -12,6 +12,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_image_generator.dart';
 import 'lumo_akademie_screen.dart';
 import 'topic_curriculum.dart';
 
@@ -159,6 +160,15 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       try {
         LumoVoice.instance.speak(reply);
       } catch (_) {}
+
+      // Heinz' Bildgenerator (strikt kindersicher):
+      // Wenn Kind nach einem Bild gefragt hat ('zeig mir', 'wie schaut'),
+      // automatisch ein Bild ueber Pollinations.ai generieren.
+      // Inhalts-Sicherheit ueber LumoImageGenerator.checkSafety()
+      // (60+ Block-Woerter, Comic-Style-Wrapper, no realistic).
+      if (LumoImageGenerator.seemsImageRequest(trimmed)) {
+        _generateImage(trimmed);
+      }
     } catch (e) {
       setState(() {
         _messages.add(_ChatMessage(
@@ -169,6 +179,34 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
         _loading = false;
       });
     }
+  }
+
+  /// Bildgenerator-Helfer (Heinz-Auftrag).
+  /// Erzeugt Pollinations.ai URL nach Safety-Check + fuegt Image-Bubble
+  /// ins Chat-Verlauf ein.
+  void _generateImage(String childPrompt) {
+    final url = LumoImageGenerator.instance.buildSafeImageUrl(childPrompt);
+    if (url == null) {
+      // Safety blockiert
+      final safety = LumoImageGenerator.checkSafety(childPrompt);
+      setState(() {
+        _messages.add(_ChatMessage(
+          text: safety.reason ?? 'Dieses Bild zeig ich dir nicht. Probier was Liebes!',
+          isLumo: true,
+          isError: true,
+        ));
+      });
+      _scrollToBottom();
+      return;
+    }
+    setState(() {
+      _messages.add(_ChatMessage(
+        text: 'Schau mal - hier ist ein Bild fuer dich!',
+        isLumo: true,
+        imageUrl: url,
+      ));
+    });
+    _scrollToBottom();
   }
 
   void _scrollToBottom() {
@@ -389,17 +427,81 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                   ),
                 ],
               ),
-              child: Text(
-                msg.text,
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  height: 1.4,
-                  color: msg.isError
-                      ? const Color(0xFFB91C1C)
-                      : (isLumo ? const Color(0xFF1F2937) : Colors.white),
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    msg.text,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      height: 1.4,
+                      color: msg.isError
+                          ? const Color(0xFFB91C1C)
+                          : (isLumo ? const Color(0xFF1F2937) : Colors.white),
+                    ),
+                  ),
+                  // Bildgenerator-Bubble (Heinz' Feature)
+                  if (msg.imageUrl != null) ...[
+                    const SizedBox(height: 8),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(14),
+                      child: Image.network(
+                        msg.imageUrl!,
+                        width: 240,
+                        height: 240,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (ctx, child, progress) {
+                          if (progress == null) return child;
+                          return Container(
+                            width: 240,
+                            height: 240,
+                            decoration: BoxDecoration(
+                              color: widget.topic.gradient[0].withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CircularProgressIndicator(
+                                      color: widget.topic.gradient[0],
+                                      strokeWidth: 3),
+                                  const SizedBox(height: 8),
+                                  Text('Bild wird gemalt...',
+                                      style: TextStyle(
+                                          fontFamily: 'Nunito',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w800,
+                                          color: widget.topic.gradient[1])),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                        errorBuilder: (ctx, err, st) => Container(
+                          width: 240,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFEE2E2),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: const Center(
+                            child: Text(
+                                'Bild konnte ich nicht laden. Versuch nochmal!',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFFB91C1C))),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
           ),
@@ -590,8 +692,14 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
 
 class _ChatMessage {
   _ChatMessage(
-      {required this.text, required this.isLumo, this.isError = false});
+      {required this.text,
+      required this.isLumo,
+      this.isError = false,
+      this.imageUrl});
   final String text;
   final bool isLumo;
   final bool isError;
+  /// Wenn gesetzt: Image-Bubble wird im Chat angezeigt (Pollinations.ai URL).
+  /// Heinz' Bildgenerator-Feature: nur kindersichere Inhalte.
+  final String? imageUrl;
 }

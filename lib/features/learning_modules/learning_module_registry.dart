@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import 'artikel_lernen/artikel_lernen_screen.dart';
+import 'einmaleins/einmaleins_screen.dart';
 import 'minus_bis_10/minus_bis_10_screen.dart';
 import 'plus_bis_10/plus_bis_10_screen.dart';
 import 'uhr_lernen/uhr_lernen_screen.dart';
@@ -39,23 +40,27 @@ class LearningModuleRegistry {
       case 'd2_artikel':
         return ArtikelLernenScreen(appState: appState);
       case 'd1_woerter':
-        // Heinz Wunsch: Diktat-Modus fuer 'Erste Woerter' Topic.
-        // Lumo sagt das Wort vor, Kind schreibt blind, am Schluss
-        // erscheint das richtige Wort als Vergleich.
         return WortDiktatScreen(appState: appState);
+      case 'm2_einmaleins':
+        // Klasse 2: nur 2er/5er/10er-Reihe
+        return EinmaleinsScreen(appState: appState, fullRange: false);
+      case 'm3_einmaleins_voll':
+        // Klasse 3: volles Einmaleins
+        return EinmaleinsScreen(appState: appState, fullRange: true);
       default:
         return null;
     }
   }
 
   /// Liste aller Topic-IDs die ein echtes Modul haben.
-  /// Wird in der Akademie genutzt um ein Badge "🎮 Übung" anzuzeigen.
   static const Set<String> registeredTopicIds = {
     'm1_plus10',
     'm1_minus10',
     'm2_uhr',
-    'd2_artikel',
+    'm2_einmaleins',
+    'm3_einmaleins_voll',
     'd1_woerter',
+    'd2_artikel',
   };
 
   static bool hasModule(String topicId) =>
