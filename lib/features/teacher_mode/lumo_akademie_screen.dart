@@ -17,6 +17,8 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../writing/lumo_writing_coach_screen.dart';
+import '../writing/lumo_writing_word_coach_screen.dart';
+import '../writing/writing_feature_flags.dart';
 import 'lumo_teacher_screen.dart';
 import 'letter_writing_screen.dart';
 
@@ -872,6 +874,14 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     if (t.id == 'd1_schreibcoach') {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => LumoWritingCoachScreen(appState: widget.appState),
+      ));
+      return;
+    }
+    // 0b) Wortmodus (Phase 5): Diktat mit Buchstabenfeldern.
+    if (t.id == 'd1_woerter' && WritingFeatureFlags.enableWordMode) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) =>
+            LumoWritingWordCoachScreen(appState: widget.appState),
       ));
       return;
     }

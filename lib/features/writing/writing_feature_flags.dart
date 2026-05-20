@@ -10,8 +10,7 @@ class WritingFeatureFlags {
   WritingFeatureFlags._();
 
   /// Phase 5: Wortmodus mit Buchstabenfeldern (Diktat).
-  /// Wird im Phase-5-Commit auf true gesetzt.
-  static const bool enableWordMode = false;
+  static const bool enableWordMode = true;
 
   /// Phase 6: Persistenter Progress (Buchstaben-Statistiken,
   /// schwache Buchstaben, abgeschlossene Woerter).
