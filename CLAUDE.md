@@ -94,3 +94,7 @@ lib/app/app_theme.dart
 ## Commit-Regel
 
 Ein Commit darf nur eine klare Sache reparieren oder verbessern. Wenn GitHub Actions rot ist, darf Claude keine neuen Features bauen, sondern muss zuerst den ersten Buildfehler reparieren.
+
+## Antwort-Regel
+
+Wenn Claude Heinz vor eine Entscheidung stellt, immer das `AskUserQuestion`-Tool nutzen und 2-4 klar formulierte, anklickbare Optionen vorbereiten. Keine offenen Fragen mehr ohne Auswahl ("Was möchtest du?", "Welcher Hebel?"). Heinz tippt nicht gerne lange Antworten - er klickt.
