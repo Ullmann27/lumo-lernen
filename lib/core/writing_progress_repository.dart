@@ -14,6 +14,13 @@ import '../domain/writing/writing_progress.dart';
 class WritingProgressRepository {
   static const _key = 'lumo_writing_progress_v1';
 
+  /// Serialisiert alle Schreib-Operationen. recordAttempt /
+  /// recordCompletedWord werden von den Coach-Screens via unawaited(...)
+  /// aufgerufen und koennen bei schnellen Wiederholungen ineinander
+  /// laufen. Ohne Lock liest Operation B den Snapshot von vor Operation A
+  /// und ueberschreibt deren save() - der Versuch geht verloren.
+  Future<void> _writeLock = Future<void>.value();
+
   Future<WritingProgress> load() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -36,22 +43,31 @@ class WritingProgressRepository {
     }
   }
 
-  Future<WritingProgress> recordAttempt({
-    required String letter,
-    required bool correct,
-  }) async {
-    final current = await load();
-    final next = current.withAttempt(letter: letter, correct: correct);
-    await save(next);
+  /// Fuehrt einen read-modify-write Zyklus seriell mit allen anderen
+  /// Mutationen auf diesem Repository aus.
+  Future<WritingProgress> _mutate(
+      WritingProgress Function(WritingProgress current) update) {
+    final next = _writeLock.then((_) async {
+      final current = await load();
+      final updated = update(current);
+      await save(updated);
+      return updated;
+    });
+    // Lock immer auf den letzten Schritt setzen, Fehler aber schlucken
+    // damit eine fehlgeschlagene Operation nachfolgende nicht blockiert.
+    _writeLock = next.then((_) {}, onError: (_) {});
     return next;
   }
 
-  Future<WritingProgress> recordCompletedWord(String word) async {
-    final current = await load();
-    final next = current.withCompletedWord(word);
-    await save(next);
-    return next;
-  }
+  Future<WritingProgress> recordAttempt({
+    required String letter,
+    required bool correct,
+  }) =>
+      _mutate((current) =>
+          current.withAttempt(letter: letter, correct: correct));
+
+  Future<WritingProgress> recordCompletedWord(String word) =>
+      _mutate((current) => current.withCompletedWord(word));
 
   Future<void> reset() async {
     try {
