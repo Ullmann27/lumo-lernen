@@ -21,6 +21,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/writing_progress_repository.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
@@ -363,7 +364,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
         border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
       ),
       child: Row(children: [
-        const Text('🦊', style: TextStyle(fontSize: 32)),
+        const LumoIdleFox(size: 44),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -372,13 +373,13 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
               Text('Schreib ein ${_currentLetter}!',
                   style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: 22,
+                      fontSize: 26,
                       fontWeight: FontWeight.w900,
                       color: _gradient[1])),
               Text('Mit dem Finger - keine Eile!',
                   style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: 12,
+                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                       color: _gradient[1].withOpacity(0.7))),
             ],

@@ -23,6 +23,7 @@ import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/writing_progress_repository.dart';
 import '../../domain/writing/writing_word_bank.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
@@ -471,7 +472,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
       ),
       child: Row(children: [
-        const Text('🦊', style: TextStyle(fontSize: 32)),
+        const LumoIdleFox(size: 44),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -480,14 +481,14 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
               const Text('Hoer gut zu!',
                   style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: 13,
+                      fontSize: 14,
                       fontWeight: FontWeight.w800,
                       color: Color(0xFF6B7280))),
               Text(
                   'Schreib Buchstabe ${_letterCursor + 1} von ${_currentTask.letters.length}.',
                   style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w900,
                       color: _gradient[1])),
             ],
