@@ -314,7 +314,13 @@ class KartPlayerComponent extends PositionComponent {
       : super(size: Vector2(_kartW, _kartH), anchor: Anchor.center);
   final LumoKartGame game;
 
-  Sprite? _kartSprite;
+  // Heinz: 'Lumo soll sich bewegen wie bei Mario Kart, kein Standbild'.
+  // 12 Sprite-Frames cyclen basierend auf Speed + Lean.
+  final List<Sprite> _kartSprites = [];
+  int _animFrame = 0;       // aktueller Frame-Index (0..11)
+  double _frameTimer = 0;   // akkumulierter Time seit letztem Frame-Wechsel
+  double _bounceTime = 0;   // fuer subtle Y-Bouncing
+  Sprite? _kartSprite;      // legacy fallback (Frame 1)
   double  speed         = 0;
   double  laneX         = 0;  // -1..+1
   double  stickX        = 0;  // Joystick-Input
@@ -327,12 +333,19 @@ class KartPlayerComponent extends PositionComponent {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    try {
-      final img = await game.images
-          .load('assets/lumo_kart/kart/lumo_kart_360_vehicle_sheet_asset_001.png');
-      _kartSprite = Sprite(img);
-    } catch (_) {
-      _kartSprite = null;
+    // 12 Frames vom 360-Vehicle-Sheet laden (Heinz' Mario-Kart-Animation)
+    for (int i = 1; i <= 12; i++) {
+      try {
+        final id = i.toString().padLeft(3, '0');
+        final img = await game.images
+            .load('assets/lumo_kart/kart/lumo_kart_360_vehicle_sheet_asset_$id.png');
+        _kartSprites.add(Sprite(img));
+      } catch (_) {
+        // Einzelner Frame fehlt - kein Problem, andere zeigen
+      }
+    }
+    if (_kartSprites.isNotEmpty) {
+      _kartSprite = _kartSprites.first;
     }
   }
 
@@ -386,6 +399,20 @@ class KartPlayerComponent extends PositionComponent {
     wheelAngle += speed * dt * 0.025;  // 0.025 = visuelle Skalierung
     if (wheelAngle > math.pi * 2) wheelAngle -= math.pi * 2;
 
+    // ── HEINZ' KART-ANIMATION (Mario-Kart-Style) ──
+    // 12 Sprite-Frames cyclen basierend auf Speed - schneller wenn boost.
+    // Bei stand: langsamer cycle (Idle-Wackeln).
+    if (_kartSprites.length >= 2) {
+      final cycleSpeed = (speed.abs() / 100.0).clamp(0.4, 4.0);
+      _frameTimer += dt * cycleSpeed;
+      if (_frameTimer >= 0.08) {  // alle 80ms naechster Frame bei norm. Speed
+        _frameTimer = 0;
+        _animFrame = (_animFrame + 1) % _kartSprites.length;
+      }
+    }
+    // Bouncing-Zeit fuer subtle Y-Versatz (Vibration des Karts)
+    _bounceTime += dt * (1.0 + (speed.abs() / 150.0).clamp(0, 1.5));
+
     // Position auf Bildschirm
     position.x = game.size.x / 2 + laneX * (_trackWidth / 2);
     position.y = game.size.y * 0.75;
@@ -433,19 +460,27 @@ class KartPlayerComponent extends PositionComponent {
     final w = size.x;
     final h = size.y;
     canvas.save();
-    canvas.translate(w / 2, h / 2);
+    // Heinz' Bouncing: subtle Y-Versatz (1-3px), Sinus-modulierte Vibration
+    // staerker bei hoeherer Speed. Lumo "huepft" wie in Mario Kart.
+    final bounceY = math.sin(_bounceTime * 12) *
+        (1.5 + (speed.abs() / 100.0).clamp(0, 3.5));
+    canvas.translate(w / 2, h / 2 + bounceY);
     canvas.rotate(tilt);
-    // Schatten
+    // Schatten (groesser wenn weiter weg = bouncing = oben)
+    final shadowScale = 1.0 - (bounceY.abs() / 30);
     canvas.drawOval(
         Rect.fromCenter(
             center: Offset(2, h * 0.4),
-            width: w * 0.8,
-            height: h * 0.15),
-        Paint()..color = Colors.black.withOpacity(0.32));
+            width: w * 0.8 * shadowScale,
+            height: h * 0.15 * shadowScale),
+        Paint()..color = Colors.black.withOpacity(0.32 * shadowScale));
     canvas.translate(-w / 2, -h / 2);
-    // Kart-Sprite
-    if (_kartSprite != null) {
-      _kartSprite!.render(canvas, size: Vector2(w, h));
+    // Animierter Kart-Sprite (Heinz: Mario-Kart-Style)
+    final currentSprite = _kartSprites.isNotEmpty
+        ? _kartSprites[_animFrame.clamp(0, _kartSprites.length - 1)]
+        : _kartSprite;
+    if (currentSprite != null) {
+      currentSprite.render(canvas, size: Vector2(w, h));
     } else {
       // Fallback: bunter Kart-Block
       canvas.drawRRect(
