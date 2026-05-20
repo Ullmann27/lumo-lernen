@@ -23,6 +23,8 @@ import 'einmaleins/einmaleins_screen.dart';
 import 'farben/farben_screen.dart';
 import 'formen/formen_screen.dart';
 import 'geld/geld_screen.dart';
+import 'jahreszeiten/jahreszeiten_screen.dart';
+import 'mehrzahl/mehrzahl_screen.dart';
 import 'minus_bis_10/minus_bis_10_screen.dart';
 import 'plus_bis_10/plus_bis_10_screen.dart';
 import 'tiere/tiere_screen.dart';
@@ -30,6 +32,7 @@ import 'uhr_lernen/uhr_lernen_screen.dart';
 import 'wort_diktat/wort_diktat_screen.dart';
 import 'wortarten/wortarten_screen.dart';
 import 'zahlen_bis_10/zahlen_bis_10_screen.dart';
+import 'zeitformen/zeitformen_screen.dart';
 
 class LearningModuleRegistry {
   LearningModuleRegistry._();
@@ -56,8 +59,14 @@ class LearningModuleRegistry {
         return GeldScreen(appState: appState);
       case 'd2_artikel':
         return ArtikelLernenScreen(appState: appState);
+      case 'd2_mehrzahl':
+        return MehrzahlScreen(appState: appState);
+      case 's2_jahreszeiten':
+        return JahreszeitenScreen(appState: appState);
       case 'd3_wortarten':
         return WortartenScreen(appState: appState);
+      case 'd3_zeitformen':
+        return ZeitformenScreen(appState: appState);
       case 'd1_woerter':
         return WortDiktatScreen(appState: appState);
       case 'm2_einmaleins':
@@ -85,7 +94,10 @@ class LearningModuleRegistry {
     'm4_bruch',
     'd1_woerter',
     'd2_artikel',
+    'd2_mehrzahl',
+    's2_jahreszeiten',
     'd3_wortarten',
+    'd3_zeitformen',
   };
 
   static bool hasModule(String topicId) =>
