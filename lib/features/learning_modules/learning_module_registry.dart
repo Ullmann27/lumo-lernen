@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import 'artikel_lernen/artikel_lernen_screen.dart';
+import 'bruchrechnen/bruchrechnen_screen.dart';
 import 'einmaleins/einmaleins_screen.dart';
 import 'minus_bis_10/minus_bis_10_screen.dart';
 import 'plus_bis_10/plus_bis_10_screen.dart';
@@ -47,6 +48,9 @@ class LearningModuleRegistry {
       case 'm3_einmaleins_voll':
         // Klasse 3: volles Einmaleins
         return EinmaleinsScreen(appState: appState, fullRange: true);
+      case 'm4_bruch':
+        // Klasse 4: Bruchrechnen mit Pizza-Visualisierung
+        return BruchrechnenScreen(appState: appState);
       default:
         return null;
     }
@@ -59,6 +63,7 @@ class LearningModuleRegistry {
     'm2_uhr',
     'm2_einmaleins',
     'm3_einmaleins_voll',
+    'm4_bruch',
     'd1_woerter',
     'd2_artikel',
   };
