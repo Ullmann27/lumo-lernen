@@ -62,7 +62,7 @@ class LumoImageGenerator {
     'roller', 'skateboard', 'einrad', 'zug', 'eisenbahn', 'lokomotive',
     // Natur + Himmel
     'wolke', 'sonne', 'mond', 'stern', 'regenbogen', 'regen',
-    'schnee', 'schneeflocke', 'schneemann', 'wind', 'eis', 'feder',
+    'schnee', 'schneeflocke', 'schneemann', 'wind', 'feder',
     'blatt', 'berg', 'gebirge', 'fluss', 'meer', 'see', 'bach',
     'wald', 'wiese', 'feld', 'huegel', 'hügel', 'insel', 'strand',
     'sandburg', 'wasserfall', 'hoehle', 'höhle',
@@ -81,7 +81,7 @@ class LumoImageGenerator {
     'rutsche', 'sandkasten', 'klettergeruest', 'klettergerüst',
     // Lernthemen
     'buchstabe', 'zahl', 'farbe', 'form', 'kreis', 'quadrat',
-    'dreieck', 'rechteck', 'herz', 'stern', 'uhr', 'kalender',
+    'dreieck', 'rechteck', 'herz', 'uhr', 'kalender',
     'buch', 'stift', 'schultasche', 'tafel',
     // Sport + Bewegung
     'klettern', 'rennen', 'huepfen', 'hüpfen', 'springen',
