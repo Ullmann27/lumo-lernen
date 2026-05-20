@@ -1,106 +1,148 @@
 // ════════════════════════════════════════════════════════════════════════
-// LUMO IMAGE GENERATOR — Kindersicherer Bildgenerator via Pollinations.ai
+// LUMO IMAGE GENERATOR — Kindersicher mit positiver Allowlist
 // ════════════════════════════════════════════════════════════════════════
-// Heinz' Wunsch: 'Bildgenerator wenn Kind fragt wie schaut Pinguin aus.
-// Beschraenkt auf Kinderzeichnungen, Tiere, Alltag, Comic. KEINE Krieg-,
-// Gewalt-, monografische Bilder. Striktes Verbot.'
-//
-// Architektur:
-//   1. Pollinations.ai liefert kostenlose Bilder per URL (kein API-Key).
-//   2. Vor jeder Anfrage: SAFETY-CHECK.
-//      - Block-Liste: 60+ Begriffe rund um Krieg/Gewalt/Sex/Horror
-//      - Strict-Mode: wenn EIN Wort matcht -> blockiert
-//   3. Sicherer Prompt-Wrapper: 'cute kid-friendly cartoon for children, no
-//      violence, no weapons, no scary, soft colors' + Kindfrage
-//   4. URL wird zurueckgegeben - Flutter rendert via Image.network() das
-//      automatisch im RAM cached.
-//
-// KEIN Network-Code hier - nur URL-Bau + Safety. Display via Image.network.
+// Prinzip: Nur was in der Allowlist steht wird gemalt. Tiere, Pflanzen,
+// Essen, Spielzeug, Fahrzeuge, Maerchenfiguren, Lernthemen, Natur.
+// Alles andere -> freundlicher Hinweis was Lumo malen kann.
 // ════════════════════════════════════════════════════════════════════════
 
 class LumoImageGenerator {
   LumoImageGenerator._();
   static final LumoImageGenerator instance = LumoImageGenerator._();
 
-  // ── BLOCK-LISTE (Heinz: 'striktes Verbot') ────────────────────────
-  // Alle Begriffe werden case-insensitive verglichen.
-  // Bei JEDEM Match wird die Anfrage komplett blockiert.
-  static const Set<String> _blockedWords = {
-    // Krieg / Gewalt / Waffen
-    'krieg', 'kampf', 'schlacht', 'panzer', 'bombe', 'rakete', 'granate',
-    'soldat', 'militaer', 'militär', 'armee', 'general',
-    'pistole', 'gewehr', 'waffe', 'messer', 'schwert', 'dolch', 'mp5',
-    'gewalt', 'schlag', 'pruegel', 'prügel', 'misshandlung',
-    // Tod / Verletzung
-    'tot', 'tod', 'sterben', 'leiche', 'grab', 'sarg', 'friedhof',
-    'blut', 'blutig', 'verletzt', 'verletzung', 'wunde', 'narbe',
-    'mord', 'morden', 'killen', 'kill', 'erschiessen', 'erschießen',
-    'selbstmord', 'suizid',
-    // Sex / Nackt
-    'sex', 'sexual', 'nackt', 'porno', 'porn', 'erotik', 'naked', 'nude',
-    'busen', 'penis', 'vagina',
-    // Horror / Okkult
-    'satan', 'teufel', 'daemon', 'dämon', 'demon', 'hoelle', 'hölle',
-    'horror', 'gruselig sehr', 'monster grausam', 'zombie blutig',
-    // Drogen
-    'droge', 'drogen', 'kokain', 'heroin', 'spritze', 'gift',
-    // Realistisch/monografisch (Heinz' Wunsch: nur Comic)
-    'realistisch', 'fotorealistisch', 'photo', 'foto echt', 'realistic',
-    'photograph', 'hyperrealistic', 'monograph',
-    // Politik (vermeiden fuer Kinder)
-    'hitler', 'stalin', 'putin', 'trump', 'biden',
+  // ── ALLOWLIST: Themen die gemalt werden duerfen ───────────────────
+  static const Set<String> _allowedTopics = {
+    // Tiere - Haustiere
+    'hund', 'katze', 'haeschen', 'haschen', 'hase', 'hamster',
+    'meerschweinchen', 'fisch', 'goldfisch', 'vogel', 'kanarienvogel',
+    'wellensittich', 'papagei', 'schildkroete', 'schildkröte',
+    // Tiere - Bauernhof
+    'kuh', 'pferd', 'fohlen', 'schaf', 'lamm', 'ziege', 'schwein',
+    'ferkel', 'huhn', 'kueken', 'küken', 'ente', 'gans', 'esel',
+    // Tiere - Wald
+    'reh', 'hirsch', 'fuchs', 'eichhoernchen', 'eichhörnchen', 'igel',
+    'wildschwein', 'baer', 'bär', 'wolf', 'eule', 'kaninchen', 'maus',
+    'fledermaus', 'biber', 'frosch',
+    // Tiere - Zoo + exotisch
+    'loewe', 'löwe', 'tiger', 'elefant', 'giraffe', 'affe', 'zebra',
+    'nilpferd', 'krokodil', 'schlange', 'kamel', 'pinguin', 'eisbaer',
+    'eisbär', 'panda', 'koala', 'kaenguruh', 'känguru', 'lama', 'pfau',
+    // Tiere - Meer
+    'delphin', 'delfin', 'wal', 'haifisch', 'tintenfisch', 'krabbe',
+    'seestern', 'seepferdchen', 'krebs',
+    // Tiere - Insekten
+    'schmetterling', 'biene', 'marienkaefer', 'marienkäfer',
+    'libelle', 'spinne', 'ameise', 'raupe',
+    // Tiere - Dino + Fantasie
+    'dinosaurier', 'dino', 'einhorn', 'drache', 'pegasus',
+    // Pflanzen
+    'baum', 'blume', 'rose', 'tulpe', 'sonnenblume', 'gaensebluemchen',
+    'gänseblümchen', 'loewenzahn', 'löwenzahn', 'kaktus', 'pilz',
+    'gras', 'klee', 'farn', 'tanne', 'eiche', 'birke',
+    // Obst + Gemuese
+    'apfel', 'birne', 'banane', 'orange', 'mandarine', 'zitrone',
+    'kirsche', 'erdbeere', 'himbeere', 'heidelbeere', 'wassermelone',
+    'ananas', 'traube', 'pflaume', 'kiwi', 'karotte', 'tomate',
+    'gurke', 'paprika', 'mais', 'kartoffel', 'salat', 'broccoli',
+    // Essen
+    'pizza', 'spaghetti', 'nudeln', 'pasta', 'kuchen', 'torte',
+    'muffin', 'kekse', 'plaetzchen', 'brot', 'broetchen', 'brötchen',
+    'eis', 'eiscreme', 'schokolade', 'pommes', 'burger', 'sandwich',
+    'milch', 'saft', 'kakao', 'tee', 'wasser', 'limo', 'limonade',
+    // Spielzeug + Alltag
+    'ball', 'fussball', 'fußball', 'basketball', 'puppe', 'teddy',
+    'teddybaer', 'teddybär', 'baerchen', 'bärchen', 'plueschtier',
+    'plüschtier', 'roboter', 'bauklotz', 'lego', 'puzzle', 'wuerfel',
+    'würfel', 'luftballon', 'drachen', 'kreisel', 'jojo', 'springseil',
+    // Fahrzeuge
+    'auto', 'sportwagen', 'lastwagen', 'lkw', 'traktor', 'bus',
+    'feuerwehr', 'krankenwagen', 'polizeiauto', 'rakete', 'ufo',
+    'flugzeug', 'helikopter', 'hubschrauber', 'heissluftballon',
+    'heißluftballon', 'schiff', 'segelboot', 'u-boot', 'fahrrad',
+    'roller', 'skateboard', 'einrad', 'zug', 'eisenbahn', 'lokomotive',
+    // Natur + Himmel
+    'wolke', 'sonne', 'mond', 'stern', 'regenbogen', 'regen',
+    'schnee', 'schneeflocke', 'schneemann', 'wind', 'eis', 'feder',
+    'blatt', 'berg', 'gebirge', 'fluss', 'meer', 'see', 'bach',
+    'wald', 'wiese', 'feld', 'huegel', 'hügel', 'insel', 'strand',
+    'sandburg', 'wasserfall', 'hoehle', 'höhle',
+    // Maerchenfiguren
+    'pirat', 'piratenschiff', 'ritter', 'prinzessin', 'prinz',
+    'koenig', 'könig', 'koenigin', 'königin', 'fee', 'elf', 'gnom',
+    'zauberer', 'kobold', 'meerjungfrau', 'engel',
+    // Berufe
+    'feuerwehrmann', 'polizist', 'arzt', 'baecker', 'bäcker',
+    'koch', 'lehrer', 'gaertner', 'gärtner', 'bauer', 'astronaut',
+    'taucher', 'pilot', 'kapitaen', 'kapitän',
+    // Familie + Alltag
+    'mama', 'papa', 'oma', 'opa', 'baby', 'kind', 'familie',
+    'haus', 'zimmer', 'tisch', 'stuhl', 'sofa', 'bett', 'lampe',
+    'fenster', 'tuer', 'tür', 'garten', 'spielplatz', 'schaukel',
+    'rutsche', 'sandkasten', 'klettergeruest', 'klettergerüst',
+    // Lernthemen
+    'buchstabe', 'zahl', 'farbe', 'form', 'kreis', 'quadrat',
+    'dreieck', 'rechteck', 'herz', 'stern', 'uhr', 'kalender',
+    'buch', 'stift', 'schultasche', 'tafel',
+    // Sport + Bewegung
+    'klettern', 'rennen', 'huepfen', 'hüpfen', 'springen',
+    'schwimmen', 'tanzen', 'reiten', 'turnen',
+    // Musik
+    'gitarre', 'klavier', 'trommel', 'fluete', 'flöte', 'note',
+    // Kleidung
+    'muetze', 'mütze', 'schal', 'jacke', 'schuhe', 'stiefel',
+    'kleid', 'hut', 'krone',
+    // Jahreszeiten
+    'fruehling', 'frühling', 'sommer', 'herbst', 'winter',
+    'weihnachten', 'ostern', 'geburtstag', 'fasching', 'karneval',
   };
 
-  // ── PROMPT-WRAPPER (Heinz: 'nur Kinderzeichnungen, Comic') ────────
-  // Wird VOR die Kind-Anfrage gestellt damit Pollinations das richtige
-  // Style-Bias bekommt.
-  static const String _safetyPrefix =
-      'cute kid-friendly cartoon for young children, soft colors, '
-      'friendly smile, simple shapes, no violence, no weapons, no scary, '
-      'no realistic photo, illustration style, ';
+  // ── COMIC-STYLE WRAPPER ───────────────────────────────────────────
+  // Wird VOR die Kind-Anfrage gestellt - sorgt dass Pollinations einen
+  // kindgerechten Comic-Stil erzeugt.
+  static const String _styleWrapper =
+      'cute kid-friendly cartoon for young children, soft pastel colors, '
+      'friendly smile, simple shapes, illustration style, ';
 
-  /// Bewertet ob ein Prompt sicher ist.
-  /// Liefert (allowed, reason).
-  static ImageSafetyResult checkSafety(String prompt) {
-    final lower = prompt.toLowerCase();
-    for (final word in _blockedWords) {
-      // Word-Boundary-Check damit "tot" nicht "Totem" blockiert
-      final regex = RegExp(r'\b' + RegExp.escape(word) + r'\b');
+  /// Prueft ob ein Prompt mindestens EIN erlaubtes Thema enthaelt.
+  static ImageRequestResult check(String prompt) {
+    final trimmed = prompt.trim();
+    if (trimmed.length < 2) {
+      return ImageRequestResult(
+        allowed: false,
+        hint: 'Sag mir was ich malen soll - zum Beispiel ein Tier oder eine Blume!',
+      );
+    }
+    final lower = trimmed.toLowerCase();
+    for (final topic in _allowedTopics) {
+      final regex = RegExp(r'\b' + RegExp.escape(topic) + r'\b');
       if (regex.hasMatch(lower)) {
-        return ImageSafetyResult(
-          allowed: false,
-          blockedWord: word,
-          reason:
-              'Dieses Bild kann ich nicht zeigen. Versuch was Liebes wie ein Tier, eine Blume oder dein Lieblingsessen!',
-        );
+        return const ImageRequestResult(allowed: true);
       }
     }
-    if (prompt.trim().length < 2) {
-      return ImageSafetyResult(
-          allowed: false,
-          reason: 'Sag mir was ich malen soll - zum Beispiel "Pinguin"!');
-    }
-    return const ImageSafetyResult(allowed: true);
+    return const ImageRequestResult(
+      allowed: false,
+      hint: 'Ich male am liebsten Tiere, Pflanzen, Essen, Spielzeug, '
+          'Fahrzeuge, Maerchenfiguren oder die Natur. Was magst du sehen?',
+    );
   }
 
-  /// Baut die URL zum sicheren Bildgenerator.
-  /// Returns null wenn Prompt blockiert ist.
-  String? buildSafeImageUrl(String childPrompt, {int width = 512, int height = 512}) {
-    final check = checkSafety(childPrompt);
-    if (!check.allowed) return null;
-    final fullPrompt = _safetyPrefix + childPrompt.trim();
-    // Pollinations.ai - kostenlos, kein API-Key, Content-Filter integriert
+  /// Baut die URL zum Bildgenerator wenn das Thema in der Allowlist ist.
+  /// Returns null wenn nicht erlaubt.
+  String? buildSafeImageUrl(String childPrompt,
+      {int width = 512, int height = 512}) {
+    final result = check(childPrompt);
+    if (!result.allowed) return null;
+    final fullPrompt = _styleWrapper + childPrompt.trim();
     final encoded = Uri.encodeComponent(fullPrompt);
     return 'https://image.pollinations.ai/prompt/$encoded'
         '?width=$width&height=$height&nologo=true&safe=true';
   }
 
   /// Heuristik: prueft ob die Kind-Nachricht nach einem Bild fragt.
-  /// 'zeig mir', 'wie schaut', 'wie sieht aus', 'kannst du malen'...
   static bool seemsImageRequest(String text) {
     final lower = text.toLowerCase();
     const triggers = [
-      'zeig mir', 'zeig mal', 'zeige mir',
+      'zeig mir', 'zeig mal', 'zeige mir', 'zeig es mir',
       'wie schaut', 'wie sieht', 'wie aussehen', 'wie ausschauen',
       'wie sieht aus', 'wie schaut aus',
       'kannst du malen', 'kannst du zeichnen',
@@ -115,14 +157,10 @@ class LumoImageGenerator {
   }
 }
 
-/// Ergebnis einer Safety-Pruefung.
-class ImageSafetyResult {
-  const ImageSafetyResult({
-    required this.allowed,
-    this.reason,
-    this.blockedWord,
-  });
+/// Ergebnis einer Allowlist-Pruefung.
+class ImageRequestResult {
+  const ImageRequestResult({required this.allowed, this.hint});
   final bool allowed;
-  final String? reason;
-  final String? blockedWord;
+  /// Freundlicher Hinweis fuer das Kind wenn nicht allowed.
+  final String? hint;
 }

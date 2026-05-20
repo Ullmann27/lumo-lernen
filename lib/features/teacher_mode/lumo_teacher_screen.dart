@@ -182,18 +182,17 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   }
 
   /// Bildgenerator-Helfer (Heinz-Auftrag).
-  /// Erzeugt Pollinations.ai URL nach Safety-Check + fuegt Image-Bubble
-  /// ins Chat-Verlauf ein.
+  /// Positive Allowlist: nur Tiere, Pflanzen, Essen, Spielzeug, etc.
+  /// werden gemalt. Kein Negativ-Wortschatz im Code.
   void _generateImage(String childPrompt) {
     final url = LumoImageGenerator.instance.buildSafeImageUrl(childPrompt);
     if (url == null) {
-      // Safety blockiert
-      final safety = LumoImageGenerator.checkSafety(childPrompt);
+      // Nicht in Allowlist -> positiver Hinweis (kein Schimpfen)
+      final result = LumoImageGenerator.check(childPrompt);
       setState(() {
         _messages.add(_ChatMessage(
-          text: safety.reason ?? 'Dieses Bild zeig ich dir nicht. Probier was Liebes!',
+          text: result.hint ?? 'Sag mir was Liebes - ein Tier, eine Blume, ein Spielzeug?',
           isLumo: true,
-          isError: true,
         ));
       });
       _scrollToBottom();
