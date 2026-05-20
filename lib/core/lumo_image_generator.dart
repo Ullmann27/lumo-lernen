@@ -1,107 +1,157 @@
 // ════════════════════════════════════════════════════════════════════════
 // LUMO IMAGE GENERATOR — Kindersicher mit positiver Allowlist
 // ════════════════════════════════════════════════════════════════════════
-// Prinzip: Nur was in der Allowlist steht wird gemalt. Tiere, Pflanzen,
-// Essen, Spielzeug, Fahrzeuge, Maerchenfiguren, Lernthemen, Natur.
-// Alles andere -> freundlicher Hinweis was Lumo malen kann.
+// Prinzip:
+//   1. Nur Themen aus der Allowlist werden gemalt.
+//   2. Deutsche Begriffe werden zu englischen uebersetzt damit Pollinations
+//      sauber rendert (vorher kam bei 'Hund' ein Kind weil 'kid-friendly'
+//      Wrapper falsch interpretiert wurde).
+//   3. Comic-Style-Wrapper mit prominentem Hauptmotiv.
+//   4. Pollinations.ai safe=true als Zusatz-Sicherung.
 // ════════════════════════════════════════════════════════════════════════
 
 class LumoImageGenerator {
   LumoImageGenerator._();
   static final LumoImageGenerator instance = LumoImageGenerator._();
 
-  // ── ALLOWLIST: Themen die gemalt werden duerfen ───────────────────
-  static const Set<String> _allowedTopics = {
-    // Tiere - Haustiere
-    'hund', 'katze', 'haeschen', 'haschen', 'hase', 'hamster',
-    'meerschweinchen', 'fisch', 'goldfisch', 'vogel', 'kanarienvogel',
-    'wellensittich', 'papagei', 'schildkroete', 'schildkröte',
-    // Tiere - Bauernhof
-    'kuh', 'pferd', 'fohlen', 'schaf', 'lamm', 'ziege', 'schwein',
-    'ferkel', 'huhn', 'kueken', 'küken', 'ente', 'gans', 'esel',
-    // Tiere - Wald
-    'reh', 'hirsch', 'fuchs', 'eichhoernchen', 'eichhörnchen', 'igel',
-    'wildschwein', 'baer', 'bär', 'wolf', 'eule', 'kaninchen', 'maus',
-    'fledermaus', 'biber', 'frosch',
-    // Tiere - Zoo + exotisch
-    'loewe', 'löwe', 'tiger', 'elefant', 'giraffe', 'affe', 'zebra',
-    'nilpferd', 'krokodil', 'schlange', 'kamel', 'pinguin', 'eisbaer',
-    'eisbär', 'panda', 'koala', 'kaenguruh', 'känguru', 'lama', 'pfau',
-    // Tiere - Meer
-    'delphin', 'delfin', 'wal', 'haifisch', 'tintenfisch', 'krabbe',
-    'seestern', 'seepferdchen', 'krebs',
-    // Tiere - Insekten
-    'schmetterling', 'biene', 'marienkaefer', 'marienkäfer',
-    'libelle', 'spinne', 'ameise', 'raupe',
-    // Tiere - Dino + Fantasie
-    'dinosaurier', 'dino', 'einhorn', 'drache', 'pegasus',
+  // ── DEUTSCH -> ENGLISCH MAPPING ───────────────────────────────────
+  // Wird VOR Pollinations geschickt damit das Modell den richtigen
+  // Begriff versteht. 'Hund' -> 'dog' rendert sauber, 'Hund' allein
+  // wird oft falsch interpretiert weil Englisch dominiert.
+  static const Map<String, String> _translate = {
+    // Tiere
+    'hund': 'dog', 'katze': 'cat', 'hase': 'bunny', 'haeschen': 'bunny',
+    'maus': 'mouse', 'fisch': 'fish', 'vogel': 'bird',
+    'pferd': 'horse', 'kuh': 'cow', 'schaf': 'sheep', 'lamm': 'lamb',
+    'ziege': 'goat', 'schwein': 'pig', 'huhn': 'chicken',
+    'kueken': 'chick', 'küken': 'chick', 'ente': 'duck', 'gans': 'goose',
+    'reh': 'deer', 'fuchs': 'fox', 'baer': 'bear', 'bär': 'bear',
+    'wolf': 'wolf', 'eule': 'owl', 'frosch': 'frog',
+    'loewe': 'lion', 'löwe': 'lion', 'tiger': 'tiger',
+    'elefant': 'elephant', 'giraffe': 'giraffe', 'affe': 'monkey',
+    'pinguin': 'penguin', 'eisbaer': 'polar bear', 'eisbär': 'polar bear',
+    'panda': 'panda', 'koala': 'koala', 'krokodil': 'crocodile',
+    'schlange': 'snake', 'delfin': 'dolphin', 'wal': 'whale',
+    'schmetterling': 'butterfly', 'biene': 'bee',
+    'marienkaefer': 'ladybug', 'marienkäfer': 'ladybug',
+    'eichhoernchen': 'squirrel', 'eichhörnchen': 'squirrel',
+    'igel': 'hedgehog', 'dinosaurier': 'dinosaur', 'dino': 'dinosaur',
+    'einhorn': 'unicorn', 'drache': 'friendly dragon',
     // Pflanzen
-    'baum', 'blume', 'rose', 'tulpe', 'sonnenblume', 'gaensebluemchen',
-    'gänseblümchen', 'loewenzahn', 'löwenzahn', 'kaktus', 'pilz',
-    'gras', 'klee', 'farn', 'tanne', 'eiche', 'birke',
+    'baum': 'tree', 'blume': 'flower', 'rose': 'rose', 'tulpe': 'tulip',
+    'sonnenblume': 'sunflower', 'kaktus': 'cactus', 'pilz': 'mushroom',
+    'tanne': 'pine tree', 'eiche': 'oak tree',
     // Obst + Gemuese
-    'apfel', 'birne', 'banane', 'orange', 'mandarine', 'zitrone',
-    'kirsche', 'erdbeere', 'himbeere', 'heidelbeere', 'wassermelone',
-    'ananas', 'traube', 'pflaume', 'kiwi', 'karotte', 'tomate',
-    'gurke', 'paprika', 'mais', 'kartoffel', 'salat', 'broccoli',
+    'apfel': 'apple', 'birne': 'pear', 'banane': 'banana',
+    'orange': 'orange', 'kirsche': 'cherry', 'erdbeere': 'strawberry',
+    'wassermelone': 'watermelon', 'ananas': 'pineapple', 'traube': 'grapes',
+    'karotte': 'carrot', 'tomate': 'tomato', 'gurke': 'cucumber',
+    'kartoffel': 'potato',
     // Essen
-    'pizza', 'spaghetti', 'nudeln', 'pasta', 'kuchen', 'torte',
-    'muffin', 'kekse', 'plaetzchen', 'brot', 'broetchen', 'brötchen',
-    'eis', 'eiscreme', 'schokolade', 'pommes', 'burger', 'sandwich',
-    'milch', 'saft', 'kakao', 'tee', 'wasser', 'limo', 'limonade',
-    // Spielzeug + Alltag
-    'ball', 'fussball', 'fußball', 'basketball', 'puppe', 'teddy',
-    'teddybaer', 'teddybär', 'baerchen', 'bärchen', 'plueschtier',
-    'plüschtier', 'roboter', 'bauklotz', 'lego', 'puzzle', 'wuerfel',
-    'würfel', 'luftballon', 'drachen', 'kreisel', 'jojo', 'springseil',
+    'pizza': 'pizza', 'spaghetti': 'spaghetti', 'kuchen': 'cake',
+    'eis': 'ice cream', 'eiscreme': 'ice cream', 'brot': 'bread',
+    'kekse': 'cookies', 'schokolade': 'chocolate', 'pommes': 'french fries',
+    'milch': 'milk glass', 'saft': 'juice glass',
+    // Spielzeug
+    'ball': 'ball', 'puppe': 'doll', 'teddy': 'teddy bear',
+    'teddybaer': 'teddy bear', 'teddybär': 'teddy bear',
+    'roboter': 'cute robot', 'luftballon': 'balloon',
     // Fahrzeuge
-    'auto', 'sportwagen', 'lastwagen', 'lkw', 'traktor', 'bus',
-    'feuerwehr', 'krankenwagen', 'polizeiauto', 'rakete', 'ufo',
-    'flugzeug', 'helikopter', 'hubschrauber', 'heissluftballon',
-    'heißluftballon', 'schiff', 'segelboot', 'u-boot', 'fahrrad',
-    'roller', 'skateboard', 'einrad', 'zug', 'eisenbahn', 'lokomotive',
+    'auto': 'car', 'lastwagen': 'truck', 'lkw': 'truck',
+    'traktor': 'tractor', 'bus': 'school bus',
+    'feuerwehr': 'fire truck', 'krankenwagen': 'ambulance',
+    'polizeiauto': 'police car', 'rakete': 'rocket',
+    'flugzeug': 'airplane', 'helikopter': 'helicopter',
+    'hubschrauber': 'helicopter', 'schiff': 'ship',
+    'segelboot': 'sailboat', 'fahrrad': 'bicycle', 'zug': 'train',
+    'eisenbahn': 'train', 'lokomotive': 'locomotive',
     // Natur + Himmel
-    'wolke', 'sonne', 'mond', 'stern', 'regenbogen', 'regen',
-    'schnee', 'schneeflocke', 'schneemann', 'wind', 'feder',
-    'blatt', 'berg', 'gebirge', 'fluss', 'meer', 'see', 'bach',
-    'wald', 'wiese', 'feld', 'huegel', 'hügel', 'insel', 'strand',
-    'sandburg', 'wasserfall', 'hoehle', 'höhle',
+    'wolke': 'cloud', 'sonne': 'sun', 'mond': 'moon', 'stern': 'star',
+    'regenbogen': 'rainbow', 'regen': 'rain', 'schnee': 'snowflake',
+    'schneemann': 'snowman', 'blatt': 'leaf', 'berg': 'mountain',
+    'meer': 'ocean', 'see': 'lake', 'wald': 'forest', 'wiese': 'meadow',
+    'feld': 'field', 'insel': 'island', 'strand': 'beach',
+    'sandburg': 'sandcastle', 'wasserfall': 'waterfall',
+    // Wetter
+    'wetter': 'sunny weather scene', 'gewitter': 'thunderstorm clouds',
+    'blitz': 'lightning bolt', 'donner': 'storm clouds',
+    'nebel': 'foggy landscape', 'sturm': 'stormy weather',
+    'sonnig': 'sunny day', 'wolkig': 'cloudy sky',
+    // Koerper (Heinz-Wunsch: Koerper-Topic mit Bildern)
+    'koerper': 'cute child showing body', 'körper': 'cute child showing body',
+    'kopf': 'cartoon head', 'arm': 'cartoon arm',
+    'bein': 'cartoon leg', 'bauch': 'cartoon belly',
+    'fuss': 'cartoon foot', 'fuß': 'cartoon foot',
+    'hand': 'cartoon hand', 'finger': 'cartoon hand with five fingers',
+    'auge': 'cartoon eyes', 'augen': 'cartoon eyes',
+    'ohr': 'cartoon ears', 'ohren': 'cartoon ears',
+    'nase': 'cartoon nose', 'mund': 'cartoon smile',
+    'zahn': 'cartoon tooth', 'zaehne': 'cartoon teeth',
+    'zähne': 'cartoon teeth', 'herz': 'cute heart shape',
+    'haare': 'cartoon hair', 'haar': 'cartoon hair',
     // Maerchenfiguren
-    'pirat', 'piratenschiff', 'ritter', 'prinzessin', 'prinz',
-    'koenig', 'könig', 'koenigin', 'königin', 'fee', 'elf', 'gnom',
-    'zauberer', 'kobold', 'meerjungfrau', 'engel',
+    'pirat': 'cute pirate', 'piratenschiff': 'pirate ship',
+    'ritter': 'cute knight', 'prinzessin': 'cute princess',
+    'prinz': 'cute prince', 'koenig': 'cute king', 'könig': 'cute king',
+    'koenigin': 'cute queen', 'königin': 'cute queen',
+    'fee': 'cute fairy', 'meerjungfrau': 'cute mermaid',
+    'engel': 'cute angel',
     // Berufe
-    'feuerwehrmann', 'polizist', 'arzt', 'baecker', 'bäcker',
-    'koch', 'lehrer', 'gaertner', 'gärtner', 'bauer', 'astronaut',
-    'taucher', 'pilot', 'kapitaen', 'kapitän',
+    'feuerwehrmann': 'cute firefighter', 'polizist': 'cute policeman',
+    'arzt': 'cute doctor', 'baecker': 'cute baker', 'bäcker': 'cute baker',
+    'koch': 'cute chef', 'astronaut': 'cute astronaut',
+    'pilot': 'cute pilot',
     // Familie + Alltag
-    'mama', 'papa', 'oma', 'opa', 'baby', 'kind', 'familie',
-    'haus', 'zimmer', 'tisch', 'stuhl', 'sofa', 'bett', 'lampe',
-    'fenster', 'tuer', 'tür', 'garten', 'spielplatz', 'schaukel',
-    'rutsche', 'sandkasten', 'klettergeruest', 'klettergerüst',
-    // Lernthemen
-    'buchstabe', 'zahl', 'farbe', 'form', 'kreis', 'quadrat',
-    'dreieck', 'rechteck', 'herz', 'uhr', 'kalender',
-    'buch', 'stift', 'schultasche', 'tafel',
-    // Sport + Bewegung
-    'klettern', 'rennen', 'huepfen', 'hüpfen', 'springen',
-    'schwimmen', 'tanzen', 'reiten', 'turnen',
+    'mama': 'cute happy mom', 'papa': 'cute happy dad',
+    'oma': 'cute happy grandmother', 'opa': 'cute happy grandfather',
+    'baby': 'cute baby', 'kind': 'cute happy child',
+    'haus': 'cute house', 'garten': 'cute garden',
+    'spielplatz': 'cute playground',
+    // Geometrie + Lernthemen
+    'buchstabe': 'large letter on background', 'zahl': 'large number',
+    'farbe': 'rainbow colors palette',
+    'kreis': 'circle shape', 'quadrat': 'square shape',
+    'dreieck': 'triangle shape', 'uhr': 'cute analog clock',
+    'buch': 'open book', 'schultasche': 'school backpack',
+    // Verkehr (Klasse 2)
+    'ampel': 'traffic light', 'zebrastreifen': 'zebra crossing',
+    'strasse': 'street with cars', 'straße': 'street with cars',
+    'kreuzung': 'street intersection',
+    // Jahreszeiten + Feste
+    'fruehling': 'spring meadow', 'frühling': 'spring meadow',
+    'sommer': 'sunny summer beach', 'herbst': 'autumn forest',
+    'winter': 'snowy winter scene', 'weihnachten': 'christmas tree',
+    'ostern': 'easter eggs', 'geburtstag': 'birthday cake',
+    // Geografie / Klasse 3+4 Sachkunde
+    'europa': 'map of Europe', 'oesterreich': 'map of Austria',
+    'österreich': 'map of Austria', 'deutschland': 'map of Germany',
+    'italien': 'map of Italy', 'frankreich': 'map of France',
+    'wien': 'Vienna city skyline', 'berlin': 'Berlin skyline',
+    'rom': 'Rome with Colosseum', 'paris': 'Paris Eiffel Tower',
+    'london': 'London Big Ben', 'madrid': 'Madrid skyline',
+    'alpen': 'Alps mountains', 'salzburg': 'Salzburg city',
+    'graz': 'Graz city', 'donau': 'Danube river',
+    'bundesland': 'map region',
+    // Sport
+    'klettern': 'kid climbing', 'rennen': 'kid running',
+    'schwimmen': 'kid swimming', 'tanzen': 'kid dancing',
     // Musik
-    'gitarre', 'klavier', 'trommel', 'fluete', 'flöte', 'note',
-    // Kleidung
-    'muetze', 'mütze', 'schal', 'jacke', 'schuhe', 'stiefel',
-    'kleid', 'hut', 'krone',
-    // Jahreszeiten
-    'fruehling', 'frühling', 'sommer', 'herbst', 'winter',
-    'weihnachten', 'ostern', 'geburtstag', 'fasching', 'karneval',
+    'gitarre': 'guitar', 'klavier': 'piano',
+    'trommel': 'drum', 'fluete': 'flute', 'flöte': 'flute',
   };
 
+  // ── ALLOWLIST = KEYS DES TRANSLATE-MAPS ───────────────────────────
+  // Wenn ein Begriff im Map ist, ist er erlaubt. Konsolidiert beide
+  // Datenstrukturen zu einer einzigen Quelle.
+  static Set<String> get _allowedTopics => _translate.keys.toSet();
+
   // ── COMIC-STYLE WRAPPER ───────────────────────────────────────────
-  // Wird VOR die Kind-Anfrage gestellt - sorgt dass Pollinations einen
-  // kindgerechten Comic-Stil erzeugt.
-  static const String _styleWrapper =
-      'cute kid-friendly cartoon for young children, soft pastel colors, '
-      'friendly smile, simple shapes, illustration style, ';
+  // Wichtige Aenderung: das Motiv kommt ZUERST, dann der Style-Hinweis.
+  // Sonst dominiert 'kid-friendly child' das Bild.
+  static String _buildPrompt(String englishTopic) {
+    return '$englishTopic, cute kid-friendly cartoon style, '
+        'soft pastel colors, simple shapes, illustration for children';
+  }
 
   /// Prueft ob ein Prompt mindestens EIN erlaubtes Thema enthaelt.
   static ImageRequestResult check(String prompt) {
@@ -122,17 +172,30 @@ class LumoImageGenerator {
     return const ImageRequestResult(
       allowed: false,
       hint: 'Ich male am liebsten Tiere, Pflanzen, Essen, Spielzeug, '
-          'Fahrzeuge, Maerchenfiguren oder die Natur. Was magst du sehen?',
+          'Fahrzeuge, Wetter, Maerchenfiguren oder die Natur. '
+          'Was magst du sehen?',
     );
   }
 
-  /// Baut die URL zum Bildgenerator wenn das Thema in der Allowlist ist.
-  /// Returns null wenn nicht erlaubt.
+  /// Baut die URL zum Bildgenerator. Translatet deutsche Begriffe zu
+  /// englischen damit Pollinations das Motiv sauber rendert.
   String? buildSafeImageUrl(String childPrompt,
       {int width = 512, int height = 512}) {
     final result = check(childPrompt);
     if (!result.allowed) return null;
-    final fullPrompt = _styleWrapper + childPrompt.trim();
+
+    // Hauptmotiv extrahieren + uebersetzen
+    final lower = childPrompt.toLowerCase().trim();
+    String mainEnglish = childPrompt.trim();
+    for (final topic in _allowedTopics) {
+      final regex = RegExp(r'\b' + RegExp.escape(topic) + r'\b');
+      if (regex.hasMatch(lower)) {
+        mainEnglish = _translate[topic] ?? topic;
+        break;
+      }
+    }
+
+    final fullPrompt = _buildPrompt(mainEnglish);
     final encoded = Uri.encodeComponent(fullPrompt);
     return 'https://image.pollinations.ai/prompt/$encoded'
         '?width=$width&height=$height&nologo=true&safe=true';
@@ -158,8 +221,7 @@ class LumoImageGenerator {
 
   /// Extrahiert das erste Allowlist-Thema das im Text vorkommt.
   /// Wird genutzt um pro-aktiv ein Bild zu zeigen wenn ein Kind ein
-  /// bekanntes Thema nennt (z.B. 'Wie macht eine Kuh?' -> Bild von Kuh).
-  /// Returns null wenn kein Allowlist-Wort gefunden wurde.
+  /// bekanntes Thema nennt.
   static String? extractMainTopic(String text) {
     final lower = text.toLowerCase();
     for (final topic in _allowedTopics) {

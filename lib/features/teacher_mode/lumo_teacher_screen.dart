@@ -155,27 +155,34 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
           ? 'Hmm, lass uns das nochmal probieren. Frag mich konkreter!'
           : response.reply;
 
+      // Heinz-Wunsch: Cloud-Fallback variabler + topic-spezifisch
+      final isCloudFailure = reply.contains('antwortet gerade nicht') ||
+          reply.contains('Cloud weiter') ||
+          reply.contains('Serverantwort');
+      final finalReply = isCloudFailure
+          ? _buildLocalFallback(trimmed)
+          : reply;
+
       setState(() {
-        _messages.add(_ChatMessage(text: reply, isLumo: true));
+        _messages.add(_ChatMessage(text: finalReply, isLumo: true));
         _loading = false;
       });
-      _history.add(LumoAiChatTurn(role: 'assistant', content: reply));
+      _history.add(LumoAiChatTurn(role: 'assistant', content: finalReply));
       _scrollToBottom();
 
       try {
-        LumoVoice.instance.speak(reply);
+        LumoVoice.instance.speak(finalReply);
       } catch (_) {}
 
       // Heinz' Bildgenerator (strikt kindersicher):
-      // - Wenn Kind explizit nach Bild gefragt hat ('zeig mir', 'wie schaut')
-      //   -> generiere Bild zur ganzen Frage
-      // - Wenn Kind ein Allowlist-Wort erwaehnt (z.B. 'Wie macht eine Kuh?')
-      //   -> generiere Bild zum erkannten Thema (Kuh)
-      // Inhalts-Sicherheit kommt aus der positiven Allowlist:
-      // nur was dort steht wird gemalt.
+      // - Wenn Kind explizit nach Bild gefragt hat -> Bild
+      // - Pro-aktiv NUR in Sachkunde (visuelle Topics: Tiere, Wetter,
+      //   Verkehr, Koerper, Geografie). NICHT in Mathe/Deutsch wo das
+      //   Bild vom Lerninhalt ablenkt (z.B. bei Mehrzahl-Quiz spurios).
+      final isVisualSubject = widget.subject.name.toLowerCase().contains('sachkunde');
       if (LumoImageGenerator.seemsImageRequest(trimmed)) {
         _generateImage(trimmed);
-      } else {
+      } else if (isVisualSubject) {
         final mainTopic = LumoImageGenerator.extractMainTopic(trimmed);
         if (mainTopic != null) {
           _generateImage(mainTopic);
@@ -191,6 +198,26 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
         _loading = false;
       });
     }
+  }
+
+  /// Lokaler Fallback wenn KI-Server nicht erreichbar ist.
+  /// Variiert die Server-Fehler-Message + gibt topic-spezifischen Hinweis.
+  String _buildLocalFallback(String question) {
+    final ctx = TopicCurriculum.of(widget.topic.id);
+    final variants = [
+      'Mein Online-Lehrer ist gerade beschaeftigt. Lass uns trotzdem ueben!',
+      'Die Cloud antwortet langsam. Aber ich kenne mich auch so aus:',
+      'Mein Server ist gerade weg - kein Problem, ich erklaer dir das:',
+    ];
+    final variant = variants[DateTime.now().millisecondsSinceEpoch % 3];
+    if (ctx == null) {
+      return '$variant Frag mich konkret zu "${widget.topic.title}" - '
+          'zum Beispiel mit einem Beispiel oder einer Aufgabe.';
+    }
+    // Topic-spezifischer Tipp
+    final hint = ctx.detailedScope.split('.').first.trim();
+    return '$variant $hint. '
+        'Probier eine der Fragen unten oder schreib mir genauer!';
   }
 
   /// Bildgenerator-Helfer (Heinz-Auftrag).
