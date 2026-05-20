@@ -5,10 +5,12 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/feature_flags.dart';
 import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
+import '../writing/lumo_writing_coach_screen.dart';
 import 'flame/lumo_jump_game.dart';
 import 'kart/lumo_kart_menu.dart';
 import 'mini_games/color_boxes_game.dart';
@@ -99,6 +101,16 @@ class _GamesContentState extends State<GamesContent> {
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
         builder: (_) => LumoKartMenuScreen(appState: widget.appState),
+      ),
+    );
+    await _load();
+  }
+
+  Future<void> _launchWritingCoach() async {
+    HapticFeedback.mediumImpact();
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => const LumoWritingCoachScreen(),
       ),
     );
     await _load();
@@ -212,6 +224,12 @@ class _GamesContentState extends State<GamesContent> {
                       onPlay: _launchKart,
                     ),
                   ),
+                  if (FeatureFlags.enableWritingCoach)
+                    SliverToBoxAdapter(
+                      child: _WritingCoachCard(
+                        onPlay: _launchWritingCoach,
+                      ),
+                    ),
                   const SliverToBoxAdapter(
                     child: _TapAnywhereHint(),
                   ),
@@ -1161,6 +1179,142 @@ class _TapAnywhereHintState extends State<_TapAnywhereHint>
             ]),
           );
         },
+      ),
+    );
+  }
+}
+
+// ─────────────────── SCHREIBCOACH KARTE ───────────────────
+
+class _WritingCoachCard extends StatelessWidget {
+  const _WritingCoachCard({required this.onPlay});
+  final VoidCallback onPlay;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+      child: GestureDetector(
+        onTap: onPlay,
+        child: Container(
+          height: 110,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFFFE4B5), Color(0xFFFCA5A5)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFEF4444).withOpacity(0.25),
+                blurRadius: 14,
+                offset: const Offset(0, 6),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            child: Stack(
+              children: [
+                Positioned(
+                  right: -10,
+                  top: -10,
+                  child: Container(
+                    width: 140,
+                    height: 140,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          Colors.white.withOpacity(0.45),
+                          Colors.white.withOpacity(0.0),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(18, 14, 18, 14),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 64,
+                        height: 64,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 8,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.edit_rounded,
+                          color: Color(0xFFDC2626),
+                          size: 32,
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Lumo Schreibcoach',
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w900,
+                                fontSize: 18,
+                                color: Color(0xFF7C2D12),
+                                shadows: [
+                                  Shadow(
+                                      color: Colors.white,
+                                      blurRadius: 4,
+                                      offset: Offset(0, 1)),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            Text(
+                              'Schreib Buchstaben - Lumo schaut mit.',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12.5,
+                                color: Color(0xFF7C2D12),
+                                height: 1.25,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.arrow_forward_rounded,
+                          color: Color(0xFFDC2626),
+                          size: 22,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
