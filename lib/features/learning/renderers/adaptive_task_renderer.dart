@@ -567,29 +567,40 @@ class _ObjectGroup extends StatelessWidget {
       return Text('0', style: LumoTextStyles.heading2.copyWith(color: LumoColors.ink500));
     }
     return Wrap(
-      spacing: 6,
-      runSpacing: 6,
+      spacing: 7,
+      runSpacing: 7,
       children: List.generate(safeCount, (index) {
         final isCrossed = index < safeCrossed;
         return Stack(alignment: Alignment.center, children: [
           Opacity(
             opacity: isCrossed ? .25 : 1,
             child: Container(
-              width: 34,
-              height: 34,
+              width: 44,
+              height: 44,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(.86),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: LumoColors.orange.withOpacity(.18)),
+                color: Colors.white.withOpacity(.92),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                    color: LumoColors.orange.withOpacity(.24), width: 1.5),
+                boxShadow: [
+                  BoxShadow(
+                    color: LumoColors.orange.withOpacity(.10),
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
-              child: Text(emoji, style: const TextStyle(fontSize: 22)),
+              child: Text(emoji, style: const TextStyle(fontSize: 28)),
             ),
           ),
           if (isCrossed)
             Transform.rotate(
               angle: -.68,
-              child: Container(width: 38, height: 3, color: LumoColors.ink700.withOpacity(.72)),
+              child: Container(
+                  width: 48,
+                  height: 3.5,
+                  color: LumoColors.ink700.withOpacity(.72)),
             ),
         ]);
       }),
