@@ -3,6 +3,7 @@ import '../core/school_exercise_generator.dart';
 import '../domain/learning/learning_dna.dart';
 import '../features/learning/learning_dna_card.dart';
 import '../features/shared/widgets/lumo_premium_effects.dart';
+import 'fox/lumo_idle_fox.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  LUMO LERNEN — ProfileScreen
@@ -184,7 +185,10 @@ class _ProfileHeroCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Center(child: Text('🦊', style: TextStyle(fontSize: 36))),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: LumoIdleFox(size: 64),
+                ),
               ),
             ),
           ),
