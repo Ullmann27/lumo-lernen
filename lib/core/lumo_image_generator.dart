@@ -155,6 +155,19 @@ class LumoImageGenerator {
     }
     return false;
   }
+
+  /// Extrahiert das erste Allowlist-Thema das im Text vorkommt.
+  /// Wird genutzt um pro-aktiv ein Bild zu zeigen wenn ein Kind ein
+  /// bekanntes Thema nennt (z.B. 'Wie macht eine Kuh?' -> Bild von Kuh).
+  /// Returns null wenn kein Allowlist-Wort gefunden wurde.
+  static String? extractMainTopic(String text) {
+    final lower = text.toLowerCase();
+    for (final topic in _allowedTopics) {
+      final regex = RegExp(r'\b' + RegExp.escape(topic) + r'\b');
+      if (regex.hasMatch(lower)) return topic;
+    }
+    return null;
+  }
 }
 
 /// Ergebnis einer Allowlist-Pruefung.

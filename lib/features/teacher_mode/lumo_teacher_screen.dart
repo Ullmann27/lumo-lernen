@@ -167,12 +167,19 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       } catch (_) {}
 
       // Heinz' Bildgenerator (strikt kindersicher):
-      // Wenn Kind nach einem Bild gefragt hat ('zeig mir', 'wie schaut'),
-      // automatisch ein Bild ueber Pollinations.ai generieren.
-      // Inhalts-Sicherheit ueber LumoImageGenerator.checkSafety()
-      // (60+ Block-Woerter, Comic-Style-Wrapper, no realistic).
+      // - Wenn Kind explizit nach Bild gefragt hat ('zeig mir', 'wie schaut')
+      //   -> generiere Bild zur ganzen Frage
+      // - Wenn Kind ein Allowlist-Wort erwaehnt (z.B. 'Wie macht eine Kuh?')
+      //   -> generiere Bild zum erkannten Thema (Kuh)
+      // Inhalts-Sicherheit kommt aus der positiven Allowlist:
+      // nur was dort steht wird gemalt.
       if (LumoImageGenerator.seemsImageRequest(trimmed)) {
         _generateImage(trimmed);
+      } else {
+        final mainTopic = LumoImageGenerator.extractMainTopic(trimmed);
+        if (mainTopic != null) {
+          _generateImage(mainTopic);
+        }
       }
     } catch (e) {
       setState(() {
