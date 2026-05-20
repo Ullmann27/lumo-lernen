@@ -69,6 +69,17 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   int _wrongSlot = -1;
   int _correctWords = 0;
 
+  /// Anzahl Buchstaben, die das Kind ohne Retry richtig hatte.
+  /// Basis fuer die finale Sterne-Vergabe - sonst gibt es immer 5/5.
+  int _firstTryLetters = 0;
+
+  /// Wurde der aktuelle Buchstabe schon einmal falsch geprueft?
+  /// Damit zaehlt nur die erste richtige Antwort als 'first try'.
+  bool _currentLetterHadMistake = false;
+
+  /// Verhindert doppelte _checkLetter-Aufrufe bei schnellen Doppel-Taps.
+  bool _checkInFlight = false;
+
   @override
   void initState() {
     super.initState();
@@ -153,43 +164,58 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   }
 
   Future<void> _checkLetter() async {
+    // Re-Entry-Guard: schnelle Doppel-Taps duerfen _checkLetter nicht
+    // zweimal parallel laufen lassen. Sonst doppelte XP/Sterne und
+    // moegliches Ueberspringen von Buchstaben.
+    if (_checkInFlight) return;
     if (_strokes.isEmpty) return;
-    final template = _currentTemplate;
-    if (template == null) {
-      // Falls Buchstabe nicht im Template-Lexikon - akzeptieren mit kurzer Notiz.
-      _onLetterCorrect();
-      return;
-    }
-    HapticFeedback.lightImpact();
-    final feedback = WritingFeedbackEngine.generate(
-      template: template,
-      userStrokes: _strokes,
-    );
-    if (WritingFeatureFlags.enableProgressTracking) {
-      // Best-effort, kein await blockierend.
-      unawaited(_progressRepo.recordAttempt(
-        letter: _currentLetter,
-        correct: feedback.matched,
-      ));
-    }
-    setState(() {
-      _lastFeedback = feedback;
-      _showDemo = feedback.showDemo;
-    });
-    _speak(feedback.message);
+    if (_lastFeedback != null && _lastFeedback!.matched) return;
 
-    if (feedback.matched) {
-      _onLetterCorrect();
-    } else {
-      setState(() => _wrongSlot = _letterCursor);
-      _wrongShakeCtrl.forward(from: 0);
-      if (_showDemo) _demoCtrl.forward(from: 0);
+    _checkInFlight = true;
+    try {
+      final template = _currentTemplate;
+      if (template == null) {
+        // Falls Buchstabe nicht im Template-Lexikon - akzeptieren mit kurzer Notiz.
+        await _onLetterCorrect();
+        return;
+      }
+      HapticFeedback.lightImpact();
+      final feedback = WritingFeedbackEngine.generate(
+        template: template,
+        userStrokes: _strokes,
+      );
+      if (WritingFeatureFlags.enableProgressTracking) {
+        // Best-effort, kein await blockierend.
+        unawaited(_progressRepo.recordAttempt(
+          letter: _currentLetter,
+          correct: feedback.matched,
+        ));
+      }
+      setState(() {
+        _lastFeedback = feedback;
+        _showDemo = feedback.showDemo;
+      });
+      _speak(feedback.message);
+
+      if (feedback.matched) {
+        await _onLetterCorrect();
+      } else {
+        _currentLetterHadMistake = true;
+        setState(() => _wrongSlot = _letterCursor);
+        _wrongShakeCtrl.forward(from: 0);
+        if (_showDemo) _demoCtrl.forward(from: 0);
+      }
+    } finally {
+      _checkInFlight = false;
     }
   }
 
   Future<void> _onLetterCorrect() async {
     HapticFeedback.mediumImpact();
     _completedSlots.add(_letterCursor);
+    if (!_currentLetterHadMistake) {
+      _firstTryLetters++;
+    }
     widget.appState.addXp(4);
     final isLastLetter = _letterCursor + 1 >= _currentTask.letters.length;
     if (isLastLetter) {
@@ -208,6 +234,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
       if (!mounted) return;
       setState(() {
         _letterCursor++;
+        _currentLetterHadMistake = false;
         _strokes.clear();
         _currentPoints = [];
         _lastFeedback = null;
@@ -225,6 +252,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     setState(() {
       _taskIdx++;
       _letterCursor = 0;
+      _currentLetterHadMistake = false;
       _completedSlots.clear();
       _strokes.clear();
       _currentPoints = [];
@@ -272,7 +300,15 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   void _showFinish() {
     final total = _sessionTasks.length;
-    final stars = ((_correctWords / total) * 5).round().clamp(1, 5);
+    // Sterne basieren auf _firstTryLetters / Gesamtbuchstaben, nicht auf
+    // _correctWords. _correctWords ist im Normalfall immer gleich total
+    // (weil jedes Wort erst beim letzten korrekten Buchstaben weiterzaehlt),
+    // also waere die Sterne-Anzeige sonst immer maximal.
+    final totalLetters = _sessionTasks.fold<int>(
+        0, (sum, task) => sum + task.letters.length);
+    final accuracy =
+        totalLetters > 0 ? _firstTryLetters / totalLetters : 0.0;
+    final stars = (accuracy * 5).round().clamp(1, 5);
     widget.appState.addStars(stars);
     showDialog<void>(
       context: context,
