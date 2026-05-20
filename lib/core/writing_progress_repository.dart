@@ -14,12 +14,13 @@ import '../domain/writing/writing_progress.dart';
 class WritingProgressRepository {
   static const _key = 'lumo_writing_progress_v1';
 
-  /// Serialisiert alle Schreib-Operationen. recordAttempt /
-  /// recordCompletedWord werden von den Coach-Screens via unawaited(...)
-  /// aufgerufen und koennen bei schnellen Wiederholungen ineinander
-  /// laufen. Ohne Lock liest Operation B den Snapshot von vor Operation A
-  /// und ueberschreibt deren save() - der Versuch geht verloren.
-  Future<void> _writeLock = Future<void>.value();
+  /// Prozess-weiter Schreib-Lock: jede Mutation wird an die vorherige
+  /// gekettet, egal welche Repository-Instanz sie ausloest. Das schuetzt
+  /// auch dann vor lost updates, wenn das Kind zwischen Single-Letter-
+  /// und Wort-Coach wechselt waehrend pending writes laufen. Beide Screens
+  /// schreiben auf denselben SharedPreferences-Key, also ist genau ein
+  /// gemeinsamer Lock noetig.
+  static Future<void> _writeLock = Future<void>.value();
 
   Future<WritingProgress> load() async {
     try {
