@@ -20,10 +20,12 @@ import '../../app/app_state.dart';
 import 'artikel_lernen/artikel_lernen_screen.dart';
 import 'bruchrechnen/bruchrechnen_screen.dart';
 import 'einmaleins/einmaleins_screen.dart';
+import 'formen/formen_screen.dart';
 import 'minus_bis_10/minus_bis_10_screen.dart';
 import 'plus_bis_10/plus_bis_10_screen.dart';
 import 'uhr_lernen/uhr_lernen_screen.dart';
 import 'wort_diktat/wort_diktat_screen.dart';
+import 'zahlen_bis_10/zahlen_bis_10_screen.dart';
 
 class LearningModuleRegistry {
   LearningModuleRegistry._();
@@ -36,6 +38,10 @@ class LearningModuleRegistry {
         return PlusBis10Screen(appState: appState);
       case 'm1_minus10':
         return MinusBis10Screen(appState: appState);
+      case 'm1_zahlen10':
+        return ZahlenBis10Screen(appState: appState);
+      case 'm1_formen':
+        return FormenScreen(appState: appState);
       case 'm2_uhr':
         return UhrLernenScreen(appState: appState);
       case 'd2_artikel':
@@ -43,23 +49,21 @@ class LearningModuleRegistry {
       case 'd1_woerter':
         return WortDiktatScreen(appState: appState);
       case 'm2_einmaleins':
-        // Klasse 2: nur 2er/5er/10er-Reihe
         return EinmaleinsScreen(appState: appState, fullRange: false);
       case 'm3_einmaleins_voll':
-        // Klasse 3: volles Einmaleins
         return EinmaleinsScreen(appState: appState, fullRange: true);
       case 'm4_bruch':
-        // Klasse 4: Bruchrechnen mit Pizza-Visualisierung
         return BruchrechnenScreen(appState: appState);
       default:
         return null;
     }
   }
 
-  /// Liste aller Topic-IDs die ein echtes Modul haben.
   static const Set<String> registeredTopicIds = {
     'm1_plus10',
     'm1_minus10',
+    'm1_zahlen10',
+    'm1_formen',
     'm2_uhr',
     'm2_einmaleins',
     'm3_einmaleins_voll',

@@ -48,20 +48,17 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   // ── Themen-spezifische Schnellfragen ──
   List<String> get _quickQuestions {
     final ctx = TopicCurriculum.of(widget.topic.id);
-    if (ctx == null) {
-      return const [
-        'Erkläre mir das nochmal!',
-        'Gib mir ein Beispiel',
-        'Wie soll ich das üben?',
-        'Mach eine Aufgabe für mich',
-      ];
+    // Heinz-Wunsch: Topic-spezifische Quick-Fragen!
+    // Frueher waren generische Fragen wie 'Erklaere das Wesen von Mathe'
+    // angezeigt - das passte nicht zum konkreten Topic.
+    if (ctx != null && ctx.quickQuestions.isNotEmpty) {
+      return ctx.quickQuestions;
     }
-    // Themen-konkrete Schnellfragen
+    // Fallback: zumindest topic-titled, nicht generisch
     return [
-      'Erkläre mir ${ctx.title} nochmal!',
-      'Zeig mir ein Beispiel zu ${ctx.title}',
-      'Wie übe ich ${ctx.title} am besten?',
-      'Mach mir eine ${ctx.title}-Aufgabe',
+      'Erklaere mir ${widget.topic.title} mit einem Beispiel',
+      'Mach mir eine ${widget.topic.title}-Aufgabe',
+      'Zeig mir ein Bild zu ${widget.topic.title}',
     ];
   }
 
@@ -98,11 +95,20 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   String _buildGreeting() {
     final ctx = TopicCurriculum.of(widget.topic.id);
     if (ctx != null) {
-      return 'Hallo! Heute lernen wir "${ctx.title}" für die ${ctx.grade}. Klasse. '
-          'Ich erkläre dir alles ganz einfach. Frag mich was du wissen willst!';
+      // Topic-spezifische Begruessung mit konkretem Beispiel
+      final firstQuestion = ctx.quickQuestions.isNotEmpty
+          ? ctx.quickQuestions.first
+          : 'was du wissen willst';
+      return 'Hallo! Ich bin Lumo und heute lernen wir "${ctx.title}" '
+          'fuer die ${ctx.grade}. Klasse. '
+          'Frag mich zum Beispiel: "$firstQuestion". '
+          'Wenn du ein Bild sehen willst, sag mir einfach "Zeig mir ..."!';
     }
-    return 'Hallo! Heute lernen wir "${widget.topic.title}" aus ${widget.subject.name}. '
-        'Ich erkläre dir alles ganz einfach. Frag mich was du wissen willst!';
+    return 'Hallo! Ich bin Lumo und heute lernen wir "${widget.topic.title}" '
+        'aus ${widget.subject.name}. '
+        'Sag mir was du wissen willst - und wenn du ein Bild sehen magst, '
+        'sag einfach "Zeig mir ein/eine ..."!';
+  }
   }
 
   Future<void> _ask(String text) async {

@@ -36,6 +36,11 @@ class TopicCurriculum {
       vocabulary: ['Zahl', 'zaehlen', 'mehr', 'weniger', 'gleich', 'Reihenfolge'],
       forbidden: 'NICHT Plus/Minus rechnen, NICHT ueber 10 zaehlen, NICHT Einmaleins.',
       complexityHint: 'Erste Klasse, 6-7 Jahre, kann gerade Zahlen erkennen',
+      quickQuestions: [
+        'Zeig mir 5 mit Fingern',
+        'Welche Zahl kommt nach 7?',
+        'Wie viele sind das: 3 Aepfel?',
+      ],
     ),
     'm1_plus10': TopicContext(
       grade: 1,
@@ -50,6 +55,11 @@ class TopicCurriculum {
       forbidden:
           'KEINE Aufgaben mit Ergebnis ueber 10. KEIN Minus. KEINE groesseren Zahlen.',
       complexityHint: 'Klasse 1 - Plus mit Ergebnis bis 10',
+      quickQuestions: [
+        'Wie rechne ich 4 + 3?',
+        'Zeig mir 2 + 5 mit Steinen',
+        'Was ist 6 + 4?',
+      ],
     ),
     'm1_minus10': TopicContext(
       grade: 1,
@@ -62,6 +72,11 @@ class TopicCurriculum {
       vocabulary: ['minus', 'weg', 'uebrig', 'wegnehmen'],
       forbidden: 'KEIN Plus. KEINE Zahlen ueber 10. KEINE negativen Zahlen.',
       complexityHint: 'Klasse 1 - Minus im Zahlenraum bis 10',
+      quickQuestions: [
+        'Wie rechne ich 7 minus 3?',
+        'Zeig mir 5 minus 2 mit Aepfeln',
+        'Was ist 10 minus 4?',
+      ],
     ),
     'm1_formen': TopicContext(
       grade: 1,
@@ -75,6 +90,11 @@ class TopicCurriculum {
       vocabulary: ['Kreis', 'Quadrat', 'Dreieck', 'Rechteck', 'Ecke', 'Seite', 'rund'],
       forbidden: 'KEIN Rechnen. KEINE 3D-Formen (Wuerfel, Kugel) - nur Flaechen.',
       complexityHint: 'Klasse 1 - Erste Geometrie',
+      quickQuestions: [
+        'Was ist ein Kreis?',
+        'Zeig mir ein Dreieck',
+        'Was hat 4 gleiche Seiten?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -92,6 +112,11 @@ class TopicCurriculum {
       vocabulary: ['Buchstabe', 'Anfangslaut', 'wie', 'Apfel', 'Ball', 'Affe'],
       forbidden: 'KEIN Rechnen. KEINE Buchstaben nach J. KEIN Schreiben (das macht das Schreibmodul).',
       complexityHint: 'Klasse 1 - Erste Buchstaben hoeren',
+      quickQuestions: [
+        'Wie spricht man A?',
+        'Zeig mir ein Wort mit B',
+        'Welches Tier beginnt mit E?',
+      ],
     ),
     'd1_buchstaben_kt': TopicContext(
       grade: 1,
@@ -103,6 +128,11 @@ class TopicCurriculum {
       vocabulary: ['Buchstabe', 'Anfangslaut', 'Maus', 'Nase', 'Otto'],
       forbidden: 'KEIN Rechnen. NICHT Buchstaben A-J, NICHT U-Z.',
       complexityHint: 'Klasse 1 - Mittlere Buchstaben',
+      quickQuestions: [
+        'Wie spricht man M?',
+        'Zeig mir ein Wort mit N',
+        'Welches Tier beginnt mit P?',
+      ],
     ),
     'd1_buchstaben_uz': TopicContext(
       grade: 1,
@@ -113,6 +143,11 @@ class TopicCurriculum {
       vocabulary: ['Buchstabe', 'Vogel', 'Wolke', 'Zebra'],
       forbidden: 'KEIN Rechnen. NICHT Buchstaben A-T.',
       complexityHint: 'Klasse 1 - Letzte Buchstaben',
+      quickQuestions: [
+        'Wie spricht man Z?',
+        'Was beginnt mit W?',
+        'Zeig mir ein Wort mit V',
+      ],
     ),
     'd1_woerter': TopicContext(
       grade: 1,
@@ -126,6 +161,11 @@ class TopicCurriculum {
       vocabulary: ['Wort', 'Buchstaben', 'lesen', 'MAMA', 'PAPA', 'BALL'],
       forbidden: 'KEIN Rechnen. KEINE schwierigen Woerter. NICHT Grammatik.',
       complexityHint: 'Klasse 1 - Erste 3-4-Buchstaben-Woerter',
+      quickQuestions: [
+        'Wie schreibt man MAMA?',
+        'Zeig mir das Wort BALL',
+        'Wie spricht man HAUS?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -144,6 +184,11 @@ class TopicCurriculum {
       vocabulary: ['Bauernhof', 'Wald', 'Haustier', 'Futter', 'Milch', 'Wolle'],
       forbidden: 'KEIN Rechnen. KEINE Buchstaben. NICHT Pflanzen.',
       complexityHint: 'Klasse 1 - Erste Tier-Kunde',
+      quickQuestions: [
+        'Wie macht eine Kuh?',
+        'Zeig mir einen Pinguin',
+        'Wo lebt der Loewe?',
+      ],
     ),
     's1_farben': TopicContext(
       grade: 1,
@@ -157,6 +202,11 @@ class TopicCurriculum {
       vocabulary: ['Rot', 'Blau', 'Gelb', 'Gruen', 'mischen', 'Farbe'],
       forbidden: 'KEIN Rechnen. KEINE Buchstaben. NICHT Formen.',
       complexityHint: 'Klasse 1 - Farben erkennen',
+      quickQuestions: [
+        'Was ist die Farbe Rot?',
+        'Zeig mir ein gruenes Tier',
+        'Welche Farbe hat die Sonne?',
+      ],
     ),
     's1_koerper': TopicContext(
       grade: 1,
@@ -170,6 +220,11 @@ class TopicCurriculum {
       vocabulary: ['Kopf', 'Arm', 'Bein', 'Auge', 'Ohr', 'Nase', 'Mund', 'sehen', 'hoeren'],
       forbidden: 'KEIN Rechnen. KEINE detaillierte Anatomie. NICHT Krankheiten.',
       complexityHint: 'Klasse 1 - Erste Koerperkunde',
+      quickQuestions: [
+        'Wo sitzt mein Herz?',
+        'Wie viele Finger habe ich?',
+        'Was machen die Augen?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -188,6 +243,11 @@ class TopicCurriculum {
       vocabulary: ['Zehner', 'Einer', 'Hunderter', 'Stelle'],
       forbidden: 'KEINE Zahlen ueber 100. KEIN Bruchrechnen. NICHT Einmaleins.',
       complexityHint: 'Klasse 2 - Zahlenraum bis 100',
+      quickQuestions: [
+        'Wie heisst die Zahl nach 47?',
+        'Welche Zahl ist groesser: 28 oder 32?',
+        'Wie viele Zehner sind in 60?',
+      ],
     ),
     'm2_einmaleins': TopicContext(
       grade: 2,
@@ -202,6 +262,11 @@ class TopicCurriculum {
       vocabulary: ['mal', 'Reihe', 'Multiplikation', 'mehrfach'],
       forbidden: 'NICHT 3er, 4er, 6er, 7er, 8er, 9er Reihe. NICHT Division. NICHT ueber 100.',
       complexityHint: 'Klasse 2 - Nur 2er, 5er, 10er-Reihe',
+      quickQuestions: [
+        'Was ist 5 mal 4?',
+        'Wie rechne ich 10 mal 7?',
+        'Zeig mir die 2er-Reihe',
+      ],
     ),
     'm2_uhr': TopicContext(
       grade: 2,
@@ -215,6 +280,11 @@ class TopicCurriculum {
       vocabulary: ['Stunde', 'Minute', 'Zeiger', 'halb', 'viertel'],
       forbidden: 'KEIN normales Rechnen. NICHT Sekunden. NICHT 24h-Format.',
       complexityHint: 'Klasse 2 - Analoge Uhr lesen',
+      quickQuestions: [
+        'Was zeigt die Uhr um halb 3?',
+        'Wie heisst der grosse Zeiger?',
+        'Wann ist Viertel nach 4?',
+      ],
     ),
     'm2_geld': TopicContext(
       grade: 2,
@@ -229,6 +299,11 @@ class TopicCurriculum {
       vocabulary: ['Euro', 'Cent', 'Muenze', 'kaufen', 'kostet', 'bezahlen'],
       forbidden: 'KEINE grossen Geldbetraege (>10€). NICHT Prozentrechnen.',
       complexityHint: 'Klasse 2 - Kleines Geld bis 10 Euro',
+      quickQuestions: [
+        'Wie viel sind 2 Euro plus 3 Euro?',
+        'Wie viele Cent hat 1 Euro?',
+        'Was kostet ein Apfel ungefaehr?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -246,6 +321,11 @@ class TopicCurriculum {
       vocabulary: ['Satz', 'Subjekt', 'Verb', 'gross', 'Punkt'],
       forbidden: 'KEIN Rechnen. NICHT Faelle/Grammatik vertieft. KEINE komplexen Saetze.',
       complexityHint: 'Klasse 2 - Erste einfache Saetze',
+      quickQuestions: [
+        'Wie endet ein Satz?',
+        'Schreib einen Satz mit Hund',
+        'Was ist ein Punkt?',
+      ],
     ),
     'd2_artikel': TopicContext(
       grade: 2,
@@ -260,6 +340,11 @@ class TopicCurriculum {
       vocabulary: ['Artikel', 'der', 'die', 'das', 'maennlich', 'weiblich', 'saechlich'],
       forbidden: 'KEIN Rechnen. NICHT Faelle (Nominativ, Akkusativ...). NICHT Pluralbildung.',
       complexityHint: 'Klasse 2 - Bestimmte Artikel',
+      quickQuestions: [
+        'Heisst es DER oder DIE Sonne?',
+        'Welcher Artikel passt zu Auto?',
+        'DER, DIE oder DAS Maus?',
+      ],
     ),
     'd2_mehrzahl': TopicContext(
       grade: 2,
@@ -273,6 +358,11 @@ class TopicCurriculum {
       vocabulary: ['Einzahl', 'Mehrzahl', 'Plural', 'mehrere', 'Umlaut'],
       forbidden: 'KEIN Rechnen. NICHT Faelle. NICHT unregelmaessige Verben.',
       complexityHint: 'Klasse 2 - Pluralbildung Nomen',
+      quickQuestions: [
+        'Wie heisst die Mehrzahl von Hund?',
+        'Was ist die Mehrzahl von Kind?',
+        'Mehrzahl von Apfel?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -290,6 +380,11 @@ class TopicCurriculum {
       vocabulary: ['Fruehling', 'Sommer', 'Herbst', 'Winter', 'bluehen', 'fallen', 'kalt'],
       forbidden: 'KEIN Rechnen. KEINE Buchstaben. NICHT Klimazonen.',
       complexityHint: 'Klasse 2 - Vier Jahreszeiten',
+      quickQuestions: [
+        'Wann faellt Schnee?',
+        'In welcher Jahreszeit bluehen Blumen?',
+        'Wann wird Laub bunt?',
+      ],
     ),
     's2_wetter': TopicContext(
       grade: 2,
@@ -303,6 +398,11 @@ class TopicCurriculum {
       vocabulary: ['Sonne', 'Regen', 'Schnee', 'Wind', 'Wolke', 'Thermometer'],
       forbidden: 'KEIN Rechnen. NICHT Klimawandel.',
       complexityHint: 'Klasse 2 - Wetter-Grundkunde',
+      quickQuestions: [
+        'Wann gibt es einen Regenbogen?',
+        'Was ist Nebel?',
+        'Wie entsteht Schnee?',
+      ],
     ),
     's2_verkehr': TopicContext(
       grade: 2,
@@ -316,6 +416,11 @@ class TopicCurriculum {
       vocabulary: ['Ampel', 'Zebrastreifen', 'Fahrrad', 'Helm', 'Schulweg'],
       forbidden: 'KEIN Rechnen. NICHT Autotypen.',
       complexityHint: 'Klasse 2 - Verkehrserziehung',
+      quickQuestions: [
+        'Wann darf ich ueber die Strasse?',
+        'Was bedeutet ein Zebrastreifen?',
+        'Welche Farbe heisst Stopp?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -334,6 +439,11 @@ class TopicCurriculum {
       vocabulary: ['Hunderter', 'Zehner', 'Einer', 'Stellenwert'],
       forbidden: 'KEIN Bruchrechnen. KEINE Zahlen ueber 1000.',
       complexityHint: 'Klasse 3 - Zahlenraum 1000',
+      quickQuestions: [
+        'Wie schreibt man 358?',
+        'Welche Zahl kommt nach 999?',
+        'Was sind 5 Hunderter?',
+      ],
     ),
     'm3_einmaleins_voll': TopicContext(
       grade: 3,
@@ -347,6 +457,11 @@ class TopicCurriculum {
       vocabulary: ['mal', 'geteilt durch', 'Quotient', 'Reihe', 'umgekehrt'],
       forbidden: 'NICHT Bruchrechnen. NICHT ueber 100 (max 10×10=100).',
       complexityHint: 'Klasse 3 - Volles Einmaleins + Division',
+      quickQuestions: [
+        'Was ist 8 mal 7?',
+        'Wie rechne ich 56 geteilt durch 8?',
+        'Zeig mir die 9er-Reihe',
+      ],
     ),
     'm3_geometrie': TopicContext(
       grade: 3,
@@ -361,6 +476,11 @@ class TopicCurriculum {
       vocabulary: ['Umfang', 'Flaeche', 'Seite', 'Rechteck', 'Quadrat', 'Wuerfel'],
       forbidden: 'KEIN Bruchrechnen. NICHT Volumen berechnen.',
       complexityHint: 'Klasse 3 - Umfang/Flaeche Basis',
+      quickQuestions: [
+        'Was ist der Umfang von einem Quadrat mit Seite 5?',
+        'Wie berechne ich die Flaeche?',
+        'Was ist eine Diagonale?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -380,6 +500,11 @@ class TopicCurriculum {
       vocabulary: ['Nomen', 'Verb', 'Adjektiv', 'Hauptwort', 'Taetigkeitswort', 'Eigenschaftswort'],
       forbidden: 'KEIN Rechnen. NICHT Faelle. NICHT Zeitformen.',
       complexityHint: 'Klasse 3 - Drei Hauptwortarten',
+      quickQuestions: [
+        'Was ist ein Nomen?',
+        'Zeig mir ein Adjektiv',
+        'Was tut ein Verb?',
+      ],
     ),
     'd3_zeitformen': TopicContext(
       grade: 3,
@@ -395,6 +520,11 @@ class TopicCurriculum {
       vocabulary: ['Gegenwart', 'Vergangenheit', 'Zukunft', 'Zeit', 'Verb'],
       forbidden: 'KEIN Rechnen. NICHT Perfekt/Plusquamperfekt. NICHT Konjunktiv.',
       complexityHint: 'Klasse 3 - Drei einfache Zeiten',
+      quickQuestions: [
+        'Was ist Gegenwart?',
+        'Wie heisst gestern in der Vergangenheit?',
+        'Was ist die Zukunft?',
+      ],
     ),
     'd3_geschichten': TopicContext(
       grade: 3,
@@ -409,6 +539,11 @@ class TopicCurriculum {
       vocabulary: ['Geschichte', 'Anfang', 'Mitte', 'Ende', 'Hauptfigur', 'Maerchen'],
       forbidden: 'KEIN Rechnen. NICHT Romane. NICHT Lyrik analysieren.',
       complexityHint: 'Klasse 3 - Erste Textarbeit',
+      quickQuestions: [
+        'Wie faengt eine Geschichte an?',
+        'Was ist ein Hauptteil?',
+        'Wie endet eine Geschichte?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -428,6 +563,11 @@ class TopicCurriculum {
       vocabulary: ['Bundesland', 'Hauptstadt', 'Wien', 'Alpen', 'Donau'],
       forbidden: 'KEIN Rechnen. NICHT Politik. NICHT Geschichte vertieft.',
       complexityHint: 'Klasse 3 - Bundeslaender Oesterreich',
+      quickQuestions: [
+        'Wie heisst die Hauptstadt Oesterreichs?',
+        'Welches Bundesland ist am groessten?',
+        'Was sind die Alpen?',
+      ],
     ),
     's3_natur': TopicContext(
       grade: 3,
@@ -498,6 +638,11 @@ class TopicCurriculum {
       vocabulary: ['Frage', 'Rechenweg', 'Antwort', 'Sachaufgabe'],
       forbidden: 'KEINE einfachen Aufgaben mit 3 Aepfeln. Es muss eine richtige Textaufgabe sein.',
       complexityHint: 'Klasse 4 - Komplexe Textaufgaben mit mehreren Schritten',
+      quickQuestions: [
+        'Wie schreibt man eine Million?',
+        'Welche Zahl kommt nach 99999?',
+        'Was sind 10 Tausender?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -520,6 +665,11 @@ class TopicCurriculum {
           'KEINE Rechenaufgaben. KEINE einfachen Saetze ohne Faelle.',
       complexityHint:
           'Klasse 4 - Die 4 Faelle (Nom/Gen/Dat/Akk). Schueler kennt schon Wortarten + Zeitformen.',
+      quickQuestions: [
+        'Was ist der erste Fall?',
+        'Wo steht das Komma?',
+        'Was ist ein Beistrich?',
+      ],
     ),
     'd4_aufsatz': TopicContext(
       grade: 4,
@@ -535,6 +685,11 @@ class TopicCurriculum {
       vocabulary: ['Erzaehlung', 'Beschreibung', 'Bericht', 'Einleitung', 'Hauptteil', 'Schluss'],
       forbidden: 'KEIN Rechnen. NICHT Grammatik analysieren.',
       complexityHint: 'Klasse 4 - Texte schreiben',
+      quickQuestions: [
+        'Was ist die Haelfte von 8?',
+        'Was bedeutet 1 Drittel?',
+        'Wie viel ist ein Viertel von 12?',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
@@ -554,6 +709,11 @@ class TopicCurriculum {
       vocabulary: ['Kontinent', 'Europa', 'Nachbarland', 'Hauptstadt', 'Grenze'],
       forbidden: 'KEIN Rechnen. NICHT EU-Politik. NICHT andere Kontinente.',
       complexityHint: 'Klasse 4 - Europa-Geografie',
+      quickQuestions: [
+        'Welche Laender grenzen an Oesterreich?',
+        'Was ist die Hauptstadt von Italien?',
+        'Was ist die EU?',
+      ],
     ),
     's4_geschichte': TopicContext(
       grade: 4,
@@ -573,6 +733,11 @@ class TopicCurriculum {
           'AUF KEINEN FALL fragen "Was moechtest du lernen - Mathe oder Tiere?" - das hier ist GESCHICHTE!',
       complexityHint:
           'Klasse 4 - Oesterreichs Geschichte. Steig direkt mit einem konkreten Geschichts-Thema ein!',
+      quickQuestions: [
+        'Wer war Maria Theresia?',
+        'Was ist eine Burg?',
+        'Wann lebten die Ritter?',
+      ],
     ),
   };
 }
@@ -589,6 +754,7 @@ class TopicContext {
     required this.vocabulary,
     required this.forbidden,
     required this.complexityHint,
+    this.quickQuestions = const [],
   });
   final int grade;
   final String subject;
@@ -598,6 +764,10 @@ class TopicContext {
   final List<String> vocabulary;
   final String forbidden;
   final String complexityHint;
+
+  /// 3 topic-spezifische Quick-Fragen die im Chat als Schnelltasten
+  /// angezeigt werden. Wenn leer -> Fallback im Teacher-Screen.
+  final List<String> quickQuestions;
 
   /// Baut einen praezisen Prompt-Header fuer ChatGPT.
   String buildPromptHeader() {
@@ -619,11 +789,15 @@ $exampleTask
 VERBOTEN IN DIESER ANTWORT:
 $forbidden$vocab
 
-WICHTIG: 
-- Antworte nur zum Thema "$title" aus $subject Klasse $grade!
-- KEINE Themen-Wechsel anbieten ("magst du Mathe oder Tiere?")!
-- Max 3 kurze Saetze + 1 konkrete Aufgabe/Frage.
-- Sprich das Kind direkt an. Lobe oft.
+DU BIST LUMO, DER PERSOENLICHE KI-LEHRER:
+- Antworte NUR zum Thema "$title" aus $subject Klasse $grade.
+- Sprich das Kind direkt und freundlich an. Lobe oft.
+- KEINE Themen-Wechsel anbieten ("magst du Mathe oder Tiere?").
+- Bei JEDER Antwort: SCHRITT FUER SCHRITT erklaeren mit EINEM konkreten Beispiel.
+- Ende mit GENAU EINER konkreten Frage oder Aufgabe fuer das Kind.
+- Max 4 kurze Saetze. Keine Vorlesungen.
+- Wenn ein Bild helfen wuerde: sag "Magst du das auch sehen?" (Lumo zeigt dann ein Bild).
+- Nutze einfache Sprache fuer Klasse $grade. Keine Fremdwoerter.
 [KONTEXT-ENDE]
 
 ''';
