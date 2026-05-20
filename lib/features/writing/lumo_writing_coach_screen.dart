@@ -47,6 +47,10 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   final _rng = math.Random();
   final _progressRepo = WritingProgressRepository();
 
+  /// Verhindert doppelte _checkWriting-Aufrufe bei schnellen Doppel-Taps.
+  /// Sonst doppelter recordAttempt, doppelte XP/Sterne.
+  bool _checkInFlight = false;
+
   int _taskIdx = 0;
   int _correctCount = 0;
   late String _currentLetter;
@@ -127,35 +131,46 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   }
 
   void _checkWriting() async {
+    // Re-Entry-Guard: zwei schnelle Taps auf 'Fertig' duerfen nicht
+    // doppelt recordAttempt() ausloesen (Codex P2). Auch Klicks
+    // waehrend bereits ein 'correct'-Feedback gezeigt wird, ignorieren.
+    if (_checkInFlight) return;
     if (_strokes.isEmpty) return;
-    HapticFeedback.lightImpact();
-    final feedback = WritingFeedbackEngine.generate(
-      template: _currentTemplate,
-      userStrokes: _strokes,
-    );
-    if (WritingFeatureFlags.enableProgressTracking) {
-      unawaited(_progressRepo.recordAttempt(
-        letter: _currentLetter,
-        correct: feedback.matched,
-      ));
-    }
-    setState(() {
-      _lastFeedback = feedback;
-      _showDemo = feedback.showDemo;
-    });
+    if (_lastFeedback != null && _lastFeedback!.matched) return;
+
+    _checkInFlight = true;
     try {
-      LumoVoice.instance.speak(feedback.message);
-    } catch (_) {}
-    if (feedback.type == FeedbackType.correct) {
-      _bounceCtrl.forward(from: 0);
-      _correctCount++;
-      widget.appState.addStars(2);
-      widget.appState.addXp(10);
-      await Future.delayed(const Duration(milliseconds: 1800));
-      if (!mounted) return;
-      _nextTask();
-    } else if (_showDemo) {
-      _demoCtrl.forward(from: 0);
+      HapticFeedback.lightImpact();
+      final feedback = WritingFeedbackEngine.generate(
+        template: _currentTemplate,
+        userStrokes: _strokes,
+      );
+      if (WritingFeatureFlags.enableProgressTracking) {
+        unawaited(_progressRepo.recordAttempt(
+          letter: _currentLetter,
+          correct: feedback.matched,
+        ));
+      }
+      setState(() {
+        _lastFeedback = feedback;
+        _showDemo = feedback.showDemo;
+      });
+      try {
+        LumoVoice.instance.speak(feedback.message);
+      } catch (_) {}
+      if (feedback.type == FeedbackType.correct) {
+        _bounceCtrl.forward(from: 0);
+        _correctCount++;
+        widget.appState.addStars(2);
+        widget.appState.addXp(10);
+        await Future.delayed(const Duration(milliseconds: 1800));
+        if (!mounted) return;
+        _nextTask();
+      } else if (_showDemo) {
+        _demoCtrl.forward(from: 0);
+      }
+    } finally {
+      _checkInFlight = false;
     }
   }
 
