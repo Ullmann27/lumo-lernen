@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../learning_modules/learning_module_registry.dart';
+import '../writing/lumo_writing_coach_screen.dart';
 import 'lumo_teacher_screen.dart';
 import 'letter_writing_screen.dart';
 
@@ -143,6 +144,12 @@ class LumoCurriculum {
               color: LumoColors.german,
               icon: Icons.menu_book_rounded,
               topics: const [
+                LearningTopic(
+                    id: 'd1_schreibcoach',
+                    title: '✨ Schreibcoach LIVE',
+                    icon: Icons.draw_rounded,
+                    gradient: [Color(0xFFEC4899), Color(0xFFDB2777)],
+                    shortDesc: 'Lumo schaut beim Schreiben zu!'),
                 LearningTopic(
                     id: 'd1_buchstaben_alle',
                     title: 'Alle Buchstaben A-Z',
@@ -861,6 +868,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openTopic(LearningTopic t, LearningSubject s) {
+    // 0) Schreibcoach LIVE (Heinz' Premium-Feature)
+    if (t.id == 'd1_schreibcoach') {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => LumoWritingCoachScreen(appState: widget.appState),
+      ));
+      return;
+    }
     // 1) Buchstaben-Schreiben (eigenes echtes Modul)
     if (t.isWriting && t.writingChars.isNotEmpty) {
       Navigator.of(context).push(MaterialPageRoute(
