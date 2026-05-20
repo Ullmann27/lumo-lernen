@@ -831,6 +831,36 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                             fontSize: 10,
                             fontWeight: FontWeight.w800,
                             color: Color(0xFF92400E))),
+                  )
+                else if (LearningModuleRegistry.hasModule(t.id))
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFD1FAE5),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Text('🎮 Übung',
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF065F46))),
+                  )
+                else
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFEDE9FE),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Text('💬 Chat',
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF5B21B6))),
                   ),
                 const SizedBox(width: 4),
                 Icon(Icons.chevron_right_rounded,

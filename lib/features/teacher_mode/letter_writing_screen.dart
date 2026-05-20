@@ -416,7 +416,66 @@ class _LetterPracticeFullScreenState
 
   void _done() {
     HapticFeedback.mediumImpact();
+    // Heinz-Wunsch: 'Lumo kontrolliert nicht aktiv mit'
+    // Einfache Heuristik bevor Fertig akzeptiert wird:
+    //   - Mindestens 1 Stroke vorhanden
+    //   - Mindestens 80 Pixel Gesamt-Stroke-Laenge
+    //   - Stroke-Bounding-Box mindestens 30% der Schreibflaeche
+    // Wenn nicht erfuellt -> Lumo sagt sanft "Probier nochmal"
+    // (statt einfach durchzulassen). Echte Stroke-Recognition braucht
+    // ML - das hier ist die machbare Heuristik.
+    if (_strokes.isEmpty) {
+      _hintTryAgain('Du hast noch nichts geschrieben! Probier es!');
+      return;
+    }
+    // Gesamt-Laenge der Striche
+    double totalLength = 0;
+    double minX = double.infinity, maxX = -double.infinity;
+    double minY = double.infinity, maxY = -double.infinity;
+    for (final stroke in _strokes) {
+      for (int i = 0; i < stroke.length; i++) {
+        if (stroke[i].dx < minX) minX = stroke[i].dx;
+        if (stroke[i].dx > maxX) maxX = stroke[i].dx;
+        if (stroke[i].dy < minY) minY = stroke[i].dy;
+        if (stroke[i].dy > maxY) maxY = stroke[i].dy;
+        if (i > 0) totalLength += (stroke[i] - stroke[i - 1]).distance;
+      }
+    }
+    final bboxWidth = maxX - minX;
+    final bboxHeight = maxY - minY;
+    if (totalLength < 80) {
+      _hintTryAgain('Schreib das ${widget.letter} groß und deutlich!');
+      return;
+    }
+    if (bboxHeight < 40) {
+      _hintTryAgain('Das ${widget.letter} ist zu klein - schreib es größer!');
+      return;
+    }
+    // OK - akzeptiert. Lumo lobt.
+    try {
+      LumoVoice.instance.speak('Sehr gut! Das war das ${widget.letter}!');
+    } catch (_) {}
     Navigator.of(context).pop(true);
+  }
+
+  /// Sanfte Korrektur ohne Strafe - Lumo's "Mitkontrollieren"
+  void _hintTryAgain(String msg) {
+    try {
+      LumoVoice.instance.speak(msg);
+    } catch (_) {}
+    HapticFeedback.mediumImpact();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: widget.gradient[1],
+      content: Text(msg,
+          style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w800,
+              color: Colors.white)),
+      duration: const Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)),
+    ));
   }
 
   @override
