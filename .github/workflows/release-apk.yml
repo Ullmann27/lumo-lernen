@@ -41,6 +41,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: '3.41.x'
           cache: true
 
       - name: Flutter version
@@ -74,12 +75,15 @@ jobs:
 
       - name: Patch minSdk to 21
         run: |
+          set -e
           for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
             if [ -f "$GRADLE" ]; then
-              sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/' "$GRADLE" || true
-              sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
-              sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
-              sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
+              sed -i -E 's/minSdkVersion[[:space:]]+flutter\.minSdkVersion/minSdkVersion 21/' "$GRADLE"
+              sed -i -E 's/minSdk[[:space:]]+flutter\.minSdkVersion/minSdk 21/' "$GRADLE"
+              sed -i -E 's/minSdk[[:space:]]*=[[:space:]]*flutter\.minSdkVersion/minSdk = 21/' "$GRADLE"
+              sed -i -E 's/minSdkVersion[[:space:]]*=[[:space:]]*flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE"
+              perl -0pi -e 's/(minSdkVersion\s+)(?:[0-9]|1[0-9]|20)(?![0-9])/${1}21/g' "$GRADLE"
+              perl -0pi -e 's/(minSdk\s*=\s*)(?:[0-9]|1[0-9]|20)(?![0-9])/${1}21/g' "$GRADLE"
             fi
           done
 
