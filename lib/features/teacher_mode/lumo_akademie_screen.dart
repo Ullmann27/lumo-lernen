@@ -630,7 +630,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                     color: Color(0xFF1F2937))),
           ),
           SizedBox(
-            height: 96,
+            height: 110,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
