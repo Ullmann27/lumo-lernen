@@ -212,10 +212,17 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   Future<void> _onLetterCorrect() async {
     HapticFeedback.mediumImpact();
-    _completedSlots.add(_letterCursor);
-    if (!_currentLetterHadMistake) {
-      _firstTryLetters++;
-    }
+    // setState noetig, damit der gerade akzeptierte Slot SOFORT gruen
+    // wird. Bei nicht-letzten Buchstaben maskierte das nachfolgende
+    // setState(_letterCursor++) den Bug, beim letzten Buchstaben aber
+    // raeumt _nextTask die _completedSlots wieder weg, bevor je ein
+    // Rebuild passiert - der finale Slot blieb leer (Codex P2).
+    setState(() {
+      _completedSlots.add(_letterCursor);
+      if (!_currentLetterHadMistake) {
+        _firstTryLetters++;
+      }
+    });
     widget.appState.addXp(4);
     final isLastLetter = _letterCursor + 1 >= _currentTask.letters.length;
     if (isLastLetter) {
