@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_tutorial_companion.dart';
+import '../../widgets/premium/lumo_floating_action_dock.dart';
 import '../games/games_content.dart';
 import '../quiz/quiz_show_content.dart';
 import '../shared/widgets/lumo_living_world.dart';
@@ -275,97 +276,31 @@ class _HomeContentState extends State<HomeContent> {
           ),
         ),
 
-        // ── Floating "Tutorial starten" Button (unten rechts) ────
-        Positioned(
-          right: 16,
-          bottom: 18,
-          child: _TutorialFab(
-            visible: _tutorialBadgeVisible,
-            onTap: _startTutorial,
+        // ── Premium Floating Action Dock (unten rechts) ────────
+        // Heinz' Phase 5: LumoFloatingActionDock statt eigenem FAB.
+        // Akademie als primary, Tutorial-Hilfe als sekundaer.
+        if (_tutorialBadgeVisible)
+          LumoFloatingActionDock(
+            actions: [
+              LumoDockAction(
+                icon: Icons.help_outline_rounded,
+                label: 'Tutorial',
+                onTap: _startTutorial,
+              ),
+              LumoDockAction(
+                icon: Icons.school_rounded,
+                label: 'Akademie',
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        LumoAkademieScreen(appState: widget.appState),
+                  ),
+                ),
+                isPrimary: true,
+              ),
+            ],
           ),
-        ),
       ],
-    );
-  }
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// FAB-Button "Lumo zeigt's dir"
-// ════════════════════════════════════════════════════════════════════════
-class _TutorialFab extends StatefulWidget {
-  const _TutorialFab({required this.visible, required this.onTap});
-  final bool visible;
-  final VoidCallback onTap;
-
-  @override
-  State<_TutorialFab> createState() => _TutorialFabState();
-}
-
-class _TutorialFabState extends State<_TutorialFab>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _pulse;
-
-  @override
-  void initState() {
-    super.initState();
-    _pulse = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1800),
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _pulse.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (!widget.visible) return const SizedBox.shrink();
-    return AnimatedBuilder(
-      animation: _pulse,
-      builder: (context, _) {
-        final p = _pulse.value;
-        return GestureDetector(
-          onTap: widget.onTap,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFF97316), Color(0xFFFB923C)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(28),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFF97316).withOpacity(0.45 + p * 0.25),
-                  blurRadius: 18 + p * 8,
-                  spreadRadius: 1,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-              border: Border.all(
-                  color: Colors.white.withOpacity(0.5 + p * 0.2), width: 1.4),
-            ),
-            child: Row(mainAxisSize: MainAxisSize.min, children: [
-              const Text('🦊', style: TextStyle(fontSize: 22)),
-              const SizedBox(width: 8),
-              const Text(
-                "Lumo zeigt's dir",
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 14,
-                  letterSpacing: 0.2,
-                ),
-              ),
-            ]),
-          ),
-        );
-      },
     );
   }
 }
