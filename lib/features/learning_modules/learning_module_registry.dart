@@ -29,9 +29,12 @@ import 'minus_bis_10/minus_bis_10_screen.dart';
 import 'plus_bis_10/plus_bis_10_screen.dart';
 import 'tiere/tiere_screen.dart';
 import 'uhr_lernen/uhr_lernen_screen.dart';
+import 'verkehr/verkehr_screen.dart';
+import 'wetter/wetter_screen.dart';
 import 'wort_diktat/wort_diktat_screen.dart';
 import 'wortarten/wortarten_screen.dart';
 import 'zahlen_bis_10/zahlen_bis_10_screen.dart';
+import 'zahlen_bis_100/zahlen_bis_100_screen.dart';
 import 'zeitformen/zeitformen_screen.dart';
 
 class LearningModuleRegistry {
@@ -57,12 +60,18 @@ class LearningModuleRegistry {
         return UhrLernenScreen(appState: appState);
       case 'm2_geld':
         return GeldScreen(appState: appState);
+      case 'm2_zahlen100':
+        return ZahlenBis100Screen(appState: appState);
       case 'd2_artikel':
         return ArtikelLernenScreen(appState: appState);
       case 'd2_mehrzahl':
         return MehrzahlScreen(appState: appState);
       case 's2_jahreszeiten':
         return JahreszeitenScreen(appState: appState);
+      case 's2_wetter':
+        return WetterScreen(appState: appState);
+      case 's2_verkehr':
+        return VerkehrScreen(appState: appState);
       case 'd3_wortarten':
         return WortartenScreen(appState: appState);
       case 'd3_zeitformen':
@@ -89,6 +98,7 @@ class LearningModuleRegistry {
     's1_farben',
     'm2_uhr',
     'm2_geld',
+    'm2_zahlen100',
     'm2_einmaleins',
     'm3_einmaleins_voll',
     'm4_bruch',
@@ -96,6 +106,8 @@ class LearningModuleRegistry {
     'd2_artikel',
     'd2_mehrzahl',
     's2_jahreszeiten',
+    's2_wetter',
+    's2_verkehr',
     'd3_wortarten',
     'd3_zeitformen',
   };
