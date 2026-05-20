@@ -468,18 +468,26 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         final shake = _wrongShakeCtrl.value > 0
             ? math.sin(_wrongShakeCtrl.value * math.pi * 4) * 6
             : 0.0;
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (int i = 0; i < letters.length; i++)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: Transform.translate(
-                  offset: i == _wrongSlot ? Offset(shake, 0) : Offset.zero,
-                  child: _slot(letters[i], i, pulse),
+        // FittedBox + scaleDown: lange Woerter wie 'SONNE' oder 'BLUME'
+        // passen auch auf 360dp-Geraeten in eine Zeile, weil die Slot-Row
+        // bei Bedarf gleichmaessig runter-skaliert wird. Kein RenderFlex-
+        // Overflow, Layout bleibt ruhig in einer Reihe.
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (int i = 0; i < letters.length; i++)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: Transform.translate(
+                    offset: i == _wrongSlot ? Offset(shake, 0) : Offset.zero,
+                    child: _slot(letters[i], i, pulse),
+                  ),
                 ),
-              ),
-          ],
+            ],
+          ),
         );
       },
     );
