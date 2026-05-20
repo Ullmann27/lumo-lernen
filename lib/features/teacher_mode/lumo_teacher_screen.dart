@@ -14,6 +14,8 @@ import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_brain.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/lumo_image_generator.dart';
+import '../../theme/lumo_design_tokens.dart';
+import '../../widgets/premium/lumo_empty_error_state.dart';
 import 'lumo_akademie_screen.dart';
 import 'topic_curriculum.dart';
 
@@ -200,7 +202,11 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
           : reply;
 
       setState(() {
-        _messages.add(_ChatMessage(text: finalReply, isLumo: true));
+        _messages.add(_ChatMessage(
+          text: finalReply,
+          isLumo: true,
+          isCloudOffline: isCloudFailure,
+        ));
         _loading = false;
       });
       _history.add(LumoAiChatTurn(role: 'assistant', content: finalReply));
@@ -445,6 +451,31 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
 
   Widget _buildBubble(_ChatMessage msg) {
     final isLumo = msg.isLumo;
+
+    // Cloud-Offline-Variante: Premium-Card statt Bubble
+    if (msg.isCloudOffline) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: LumoEmptyErrorState(
+          title: 'Cloud-Lehrer gerade beschaeftigt',
+          message: msg.text,
+          icon: Icons.cloud_off_rounded,
+          iconColor: LumoTokens.colors.lumoOrange,
+          actionLabel: 'Nochmal versuchen',
+          onAction: () {
+            // Nimm letzte User-Frage und schicke sie nochmal
+            for (int i = _messages.length - 1; i >= 0; i--) {
+              if (!_messages[i].isLumo) {
+                _ask(_messages[i].text);
+                break;
+              }
+            }
+          },
+          compact: true,
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
@@ -774,10 +805,14 @@ class _ChatMessage {
       {required this.text,
       required this.isLumo,
       this.isError = false,
+      this.isCloudOffline = false,
       this.imageUrl});
   final String text;
   final bool isLumo;
   final bool isError;
+  /// Wenn true: rendert als LumoEmptyErrorState.cloud() statt Bubble.
+  /// Wird gesetzt wenn _buildLocalFallback genutzt wurde.
+  final bool isCloudOffline;
   /// Wenn gesetzt: Image-Bubble wird im Chat angezeigt (Pollinations.ai URL).
   /// Heinz' Bildgenerator-Feature: nur kindersichere Inhalte.
   final String? imageUrl;
