@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 
 class LumoShadows {
-  LumoShadows._();
+  LumoShadows();
 
   /// Weicher Karten-Schatten - fuer Premium-Cards.
   List<BoxShadow> get softCard => [

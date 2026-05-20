@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 
 class LumoMotion {
-  LumoMotion._();
+  LumoMotion();
 
   // ── DURATIONS ─────────────────────────────────────────────────────
   Duration get instant => const Duration(milliseconds: 100);

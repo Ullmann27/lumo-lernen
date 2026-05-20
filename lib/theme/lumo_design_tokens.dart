@@ -56,8 +56,8 @@ class LumoTokens {
   static const double iconXLarge = 48;
 
   // ── DAS GROSSE ZIEL: Aliase fuer schnellen Zugriff ────────────────
-  static final LumoColors colors = LumoColors._();
-  static final LumoShadows shadows = LumoShadows._();
-  static final LumoMotion motion = LumoMotion._();
-  static final LumoTypography typo = LumoTypography._();
+  static final LumoColors colors = LumoColors();
+  static final LumoShadows shadows = LumoShadows();
+  static final LumoMotion motion = LumoMotion();
+  static final LumoTypography typo = LumoTypography();
 }

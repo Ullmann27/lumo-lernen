@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 
 class LumoTypography {
-  LumoTypography._();
+  LumoTypography();
   static const String fontFamily = 'Nunito';
 
   // ── DISPLAY (Hero-Texte) ──────────────────────────────────────────
