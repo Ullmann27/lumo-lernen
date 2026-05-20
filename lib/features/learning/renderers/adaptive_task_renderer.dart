@@ -250,6 +250,10 @@ class _OptionGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Phase 2D: nach 2 Fehlversuchen die korrekte Antwort sanft glowen.
+    // Konsistent mit _LocalHelpBanner, der ab demselben Schwellwert sichtbar
+    // wird - Hinweis ohne Spoiler-Effekt nach dem ersten Versuch.
+    final glowCorrect = wrongAnswers.length >= 2 && !solved;
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 460;
       final itemWidth = compact ? constraints.maxWidth : (constraints.maxWidth - 24) / 3;
@@ -269,6 +273,7 @@ class _OptionGrid extends StatelessWidget {
               isWrongPicked: isWrongPicked,
               isCorrect: isCorrect,
               solved: solved,
+              highlightCorrect: glowCorrect && isCorrect,
               onTap: () => onPick(option),
             ),
           );
@@ -278,7 +283,7 @@ class _OptionGrid extends StatelessWidget {
   }
 }
 
-class _AnswerButton extends StatelessWidget {
+class _AnswerButton extends StatefulWidget {
   const _AnswerButton({
     required this.label,
     required this.isPicked,
@@ -286,6 +291,7 @@ class _AnswerButton extends StatelessWidget {
     required this.isCorrect,
     required this.solved,
     required this.onTap,
+    this.highlightCorrect = false,
   });
 
   final String label;
@@ -293,7 +299,47 @@ class _AnswerButton extends StatelessWidget {
   final bool isWrongPicked;
   final bool isCorrect;
   final bool solved;
+  final bool highlightCorrect;
   final VoidCallback onTap;
+
+  @override
+  State<_AnswerButton> createState() => _AnswerButtonState();
+}
+
+class _AnswerButtonState extends State<_AnswerButton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _glow;
+
+  @override
+  void initState() {
+    super.initState();
+    _glow = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1300),
+    );
+    if (widget.highlightCorrect) {
+      _glow.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant _AnswerButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.highlightCorrect != widget.highlightCorrect) {
+      if (widget.highlightCorrect) {
+        _glow.repeat(reverse: true);
+      } else {
+        _glow.stop();
+        _glow.value = 0;
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _glow.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -301,18 +347,23 @@ class _AnswerButton extends StatelessWidget {
     final Color border;
     final Color textColor;
 
-    if (solved && isCorrect) {
+    if (widget.solved && widget.isCorrect) {
       bg = const Color(0xFFDCFCE7);
       border = const Color(0xFF22C55E);
       textColor = const Color(0xFF14532D);
-    } else if (isWrongPicked) {
+    } else if (widget.isWrongPicked) {
       bg = const Color(0xFFFFE4E6);
       border = const Color(0xFFF43F5E);
       textColor = const Color(0xFF881337);
-    } else if (solved) {
+    } else if (widget.solved) {
       bg = Colors.white;
       border = LumoColors.ink100;
       textColor = LumoColors.ink300;
+    } else if (widget.highlightCorrect) {
+      // Sanfter gruener Glow auf der korrekten Antwort nach 2 Fehlern.
+      bg = const Color(0xFFECFDF5);
+      border = const Color(0xFF34D399);
+      textColor = const Color(0xFF065F46);
     } else {
       bg = Colors.white;
       border = LumoColors.ink100;
@@ -322,7 +373,7 @@ class _AnswerButton extends StatelessWidget {
     // Heinz' Wunsch: Mathe-Zahlen (kurze Labels) deutlich groesser
     // darstellen, normale Antworten satter, lange Texte ohne Overflow.
     // Heuristik nach Label-Laenge.
-    final labelLen = label.length;
+    final labelLen = widget.label.length;
     final double labelFontSize;
     final double verticalPadding;
     final int maxLines;
@@ -344,29 +395,48 @@ class _AnswerButton extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: solved || isWrongPicked ? null : onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 160),
-        padding: EdgeInsets.symmetric(horizontal: 18, vertical: verticalPadding),
-        decoration: BoxDecoration(
-          color: bg,
-          borderRadius: BorderRadius.circular(LumoRadius.pill),
-          border: Border.all(color: border, width: 2),
-        ),
+      onTap: widget.solved || widget.isWrongPicked ? null : widget.onTap,
+      child: AnimatedBuilder(
+        animation: _glow,
+        builder: (_, child) {
+          // Sanfter pulsierender Schatten nur wenn highlightCorrect aktiv.
+          final pulse = widget.highlightCorrect ? _glow.value : 0.0;
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 160),
+            padding: EdgeInsets.symmetric(
+                horizontal: 18, vertical: verticalPadding),
+            decoration: BoxDecoration(
+              color: bg,
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              border: Border.all(color: border, width: 2),
+              boxShadow: widget.highlightCorrect
+                  ? [
+                      BoxShadow(
+                        color: const Color(0xFF34D399)
+                            .withOpacity(0.28 + pulse * 0.32),
+                        blurRadius: 14 + pulse * 10,
+                        spreadRadius: 1 + pulse * 2,
+                      ),
+                    ]
+                  : null,
+            ),
+            child: child,
+          );
+        },
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          if (solved && isCorrect)
+          if (widget.solved && widget.isCorrect)
             const Padding(
               padding: EdgeInsets.only(right: 7),
               child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 24),
             ),
-          if (isWrongPicked)
+          if (widget.isWrongPicked)
             const Padding(
               padding: EdgeInsets.only(right: 7),
               child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 24),
             ),
           Flexible(
             child: Text(
-              label,
+              widget.label,
               textAlign: TextAlign.center,
               maxLines: maxLines,
               overflow: TextOverflow.ellipsis,
