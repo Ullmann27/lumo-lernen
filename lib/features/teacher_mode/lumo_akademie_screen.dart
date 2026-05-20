@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import '../writing/lumo_writing_word_coach_screen.dart';
@@ -595,14 +596,9 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               shape: BoxShape.circle,
               border: Border.all(color: Colors.white.withOpacity(0.4), width: 2),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Image.asset(
-                'assets/lumo_sprite_pack/lumo_main.png',
-                errorBuilder: (_, __, ___) => const Icon(
-                    Icons.pets_rounded,
-                    color: Colors.white, size: 40),
-              ),
+            child: const Padding(
+              padding: EdgeInsets.all(10),
+              child: LumoIdleFox(size: 56),
             ),
           ),
         ],

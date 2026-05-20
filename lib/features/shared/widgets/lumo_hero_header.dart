@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import '../../../widgets/fox/lumo_idle_fox.dart';
 import 'lumo_premium_effects.dart';
 
 /// Premium-Hero-Header nach Referenzbild "Mathe mit Lumo" / "Deutsch mit Lumo".
@@ -26,7 +27,7 @@ class LumoHeroHeader extends StatelessWidget {
     required this.stars,
     required this.streakDays,
     this.accent = LumoColors.orange,
-    this.heroIllustrationAsset = 'assets/images/lumo_fox.png',
+    this.heroIllustrationAsset,
     this.backgroundImageAsset = 'assets/images/lumo_classroom_header.png',
     this.showBackgroundImage = true,
   });
@@ -40,7 +41,9 @@ class LumoHeroHeader extends StatelessWidget {
   final int stars;
   final int streakDays;
   final Color accent;
-  final String heroIllustrationAsset;
+  /// Optionaler Override fuer das Fuchs-Asset. Wenn null wird die
+  /// LumoIdleFox-Animation gerendert (kein altmodisches Cartoon mehr).
+  final String? heroIllustrationAsset;
   final String backgroundImageAsset;
   final bool showBackgroundImage;
 
@@ -167,7 +170,7 @@ class _TopBar extends StatelessWidget {
   final int stars;
   final int streakDays;
   final Color accent;
-  final String asset;
+  final String? asset;
   final bool compact;
 
   @override
@@ -269,7 +272,7 @@ class _WideHeroBody extends StatelessWidget {
   final String title;
   final String titleAccent;
   final String subtitle;
-  final String asset;
+  final String? asset;
   final String message;
   final Color accent;
 
@@ -299,7 +302,7 @@ class _CompactHeroBody extends StatelessWidget {
   final String title;
   final String titleAccent;
   final String subtitle;
-  final String asset;
+  final String? asset;
   final String message;
   final Color accent;
 
@@ -370,7 +373,7 @@ class _TitleBlock extends StatelessWidget {
 
 class _MiniLumoAvatar extends StatelessWidget {
   const _MiniLumoAvatar({required this.asset, required this.accent});
-  final String asset;
+  final String? asset;
   final Color accent;
 
   @override
@@ -388,11 +391,16 @@ class _MiniLumoAvatar extends StatelessWidget {
           padding: const EdgeInsets.all(2),
           child: Container(
             decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-            child: Image.asset(
-              asset,
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const Center(child: Text('🦊', style: TextStyle(fontSize: 22))),
-            ),
+            child: asset == null
+                ? const FittedBox(
+                    fit: BoxFit.cover,
+                    child: LumoIdleFox(size: 44),
+                  )
+                : Image.asset(
+                    asset!,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => const Center(child: Text('🦊', style: TextStyle(fontSize: 22))),
+                  ),
           ),
         ),
       ),
@@ -444,7 +452,7 @@ class _StatChip extends StatelessWidget {
 
 class _LumoWithBubble extends StatelessWidget {
   const _LumoWithBubble({required this.asset, required this.message, required this.accent, required this.size});
-  final String asset;
+  final String? asset;
   final String message;
   final Color accent;
   final double size;
@@ -462,16 +470,18 @@ class _LumoWithBubble extends StatelessWidget {
             child: LumoFloating(
               amplitude: 4,
               duration: const Duration(seconds: 4),
-              child: Image.asset(
-                asset,
-                height: size,
-                fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) => SizedBox(
-                  width: size,
-                  height: size,
-                  child: Center(child: Text('🦊', style: TextStyle(fontSize: size * 0.6))),
-                ),
-              ),
+              child: asset == null
+                  ? LumoIdleFox(size: size)
+                  : Image.asset(
+                      asset!,
+                      height: size,
+                      fit: BoxFit.contain,
+                      errorBuilder: (_, __, ___) => SizedBox(
+                        width: size,
+                        height: size,
+                        child: Center(child: Text('🦊', style: TextStyle(fontSize: size * 0.6))),
+                      ),
+                    ),
             ),
           ),
           Positioned(

@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'fox/lumo_idle_fox.dart';
+
+/// Eingebettete Lumo-Darstellung. Frueher wurde hier das Cartoon-JPG
+/// (assets/images/lumo_fox.jpg) angezeigt - das ist raus. Jetzt rendert
+/// EmbeddedLumoFox die 8-Frame-Idle-Animation (LumoIdleFox).
+///
+/// jpgAssetPath bleibt als Konstante erhalten, damit alte Verweise
+/// (z.B. precacheImage in lumo_tour.dart) den Build nicht brechen -
+/// das eigentliche Rendering ignoriert den Pfad.
 class EmbeddedLumoFox extends StatelessWidget {
   const EmbeddedLumoFox({super.key, required this.size});
   final double size;
@@ -8,56 +17,11 @@ class EmbeddedLumoFox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      jpgAssetPath,
+    return SizedBox(
       width: size,
       height: size * 1.42,
-      fit: BoxFit.contain,
-      errorBuilder: (context, error, stackTrace) => _SafeFoxPlaceholder(size: size),
+      child: Center(child: LumoIdleFox(size: size * 1.4)),
     );
   }
 }
 
-class _SafeFoxPlaceholder extends StatelessWidget {
-  const _SafeFoxPlaceholder({required this.size});
-  final double size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size * 1.3,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFFFFE0B2), Color(0xFFFFCC80)],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFFFFCC80).withOpacity(0.35),
-            blurRadius: 22,
-            spreadRadius: 2,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('🦊', style: TextStyle(fontSize: 80)),
-          SizedBox(height: 12),
-          Text(
-            'Lumo',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFFE65100),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

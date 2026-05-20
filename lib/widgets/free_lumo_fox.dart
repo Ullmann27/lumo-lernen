@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'embedded_lumo_fox.dart';
+import 'fox/lumo_idle_fox.dart';
 
 /// Lumo-Fuchs als lebendiger Charakter.
 ///
@@ -321,16 +322,11 @@ class _FreeLumoFoxState extends State<FreeLumoFox>
                         ),
                       ),
                     ),
-                    // Fuchs
+                    // Fuchs - 8-Frame-Idle-Animation statt Cartoon-PNG
                     SizedBox(
                       width: w,
                       height: h,
-                      child: Image.asset(
-                        'assets/images/lumo_fox.png',
-                        fit: BoxFit.contain,
-                        errorBuilder: (_, __, ___) =>
-                            EmbeddedLumoFox(size: widget.size),
-                      ),
+                      child: LumoIdleFox(size: h),
                     ),
                     // Sprechblase: KEIN Mirror (Text muss lesbar bleiben)
                     if (widget.message != null && widget.message!.isNotEmpty)

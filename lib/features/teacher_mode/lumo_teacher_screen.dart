@@ -15,6 +15,7 @@ import '../../core/lumo_brain.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/lumo_image_generator.dart';
 import '../../theme/lumo_design_tokens.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 import '../../widgets/premium/lumo_empty_error_state.dart';
 import 'lumo_akademie_screen.dart';
 import 'topic_curriculum.dart';
@@ -397,15 +398,9 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                         width: 2,
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(6),
-                      child: Image.asset(
-                        'assets/lumo_sprite_pack/lumo_main.png',
-                        errorBuilder: (_, __, ___) => const Icon(
-                            Icons.pets_rounded,
-                            color: Colors.white,
-                            size: 30),
-                      ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(6),
+                      child: LumoIdleFox(size: 36),
                     ),
                   ),
                 );

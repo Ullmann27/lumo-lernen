@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../core/user_profile.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 
 class LumoOnboardingScreen extends StatefulWidget {
   const LumoOnboardingScreen({super.key, required this.onFinished});
@@ -275,13 +276,7 @@ class _LumoIntroHeaderCompact extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            'assets/images/lumo_fox.png',
-            height: 78,
-            fit: BoxFit.contain,
-            errorBuilder: (_, __, ___) =>
-                const Text('🦊', style: TextStyle(fontSize: 56)),
-          ),
+          const LumoIdleFox(size: 78),
           const SizedBox(width: 12),
           Expanded(
             child: AnimatedSwitcher(
@@ -334,7 +329,7 @@ class _LumoIntroStage extends StatelessWidget {
             child: Text(text, textAlign: TextAlign.center, style: LumoTextStyles.heading3),
           ),
           const Spacer(),
-          Image.asset('assets/images/lumo_fox.png', height: 250, fit: BoxFit.contain, errorBuilder: (_, __, ___) => const Text('🦊', style: TextStyle(fontSize: 120))),
+          const LumoIdleFox(size: 250),
           const Spacer(),
           const Padding(
             padding: EdgeInsets.all(18),

@@ -29,6 +29,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/lumo_voice.dart';
 import 'lumo_companion_requests.dart';
+import 'lumo_idle_fox.dart';
 
 enum LumoCompanionState {
   idle,
@@ -44,7 +45,7 @@ enum LumoCompanionState {
 class LumoFreeCompanion extends StatefulWidget {
   const LumoFreeCompanion({
     super.key,
-    this.foxAssetPath = 'assets/lumo_sprite_pack/lumo_main.png',
+    this.foxAssetPath,
     this.size,
     this.homeAlignment = Alignment.bottomRight,
     this.homeMargin = const EdgeInsets.fromLTRB(0, 0, 28, 28),
@@ -52,8 +53,11 @@ class LumoFreeCompanion extends StatefulWidget {
     this.returnHomeAfter = const Duration(seconds: 8),
   });
 
-  /// Pfad zum Fox-Sprite (Fallback Emoji wenn nicht ladbar).
-  final String foxAssetPath;
+  /// Pfad zum Fox-Sprite. Wenn null wird die LumoIdleFox-Animation
+  /// (8 Frames aus assets/lumo_jump/fox/idle) verwendet. Der alte
+  /// Default 'assets/lumo_sprite_pack/lumo_main.png' (Cartoon mit
+  /// Karte) ist bewusst entfernt.
+  final String? foxAssetPath;
 
   /// Avatar-Groesse. Wenn null wird responsive berechnet.
   final double? size;
@@ -257,8 +261,11 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   // ── FRAME-BASIERTE WALK-CYCLE ──
   // Heinz: 'Lumo darf kein Standbild sein - er soll laufen wie im Zeichentrick'.
   // 8 Walk-Frames (sprite pack vom 19.05.2026) werden bei Bewegung zykliert.
-  // Bei stillstand wird das main-Sprite genutzt.
-  String _currentSprite() {
+  // Bei Idle uebernimmt LumoIdleFox (separates Widget mit eigenem
+  // AnimationController, nutzt assets/lumo_jump/fox/idle).
+  /// Returns Sprite-Pfad fuer walk/cheer. Bei Idle returnt null, dann
+  /// rendert _renderFox stattdessen LumoIdleFox.
+  String? _currentSprite() {
     // Beim Laufen: Walk-Frames zykeln
     if (_moveCtrl.isAnimating) {
       // 8 Frames, 4 Schritte pro Sekunde -> Frame-Index basiert auf Zeit
@@ -277,8 +284,30 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       final fname = 'cheer_${frameIdx.toString().padLeft(2, '0')}.png';
       return 'assets/lumo_sprite_pack/cheer/$fname';
     }
-    // Default: main-Sprite (das schoene Lumo-Stand-Bild)
+    // Idle: kein Standbild mehr (kein 'lumo_main.png' Cartoon mit Karte).
+    // Override via widget.foxAssetPath bleibt moeglich falls Tests/
+    // Spezialfaelle ein Standbild wollen.
     return widget.foxAssetPath;
+  }
+
+  /// Liefert das Fuchs-Render-Widget. Im Idle die echte 8-Frame-
+  /// Animation (LumoIdleFox), bei walk/cheer das passende Sprite.
+  Widget _renderFox(double foxSize) {
+    final sprite = _currentSprite();
+    if (sprite == null) {
+      return LumoIdleFox(
+        size: foxSize,
+        facingRight: _facingRight,
+      );
+    }
+    return Image.asset(
+      sprite,
+      width: foxSize,
+      height: foxSize,
+      fit: BoxFit.contain,
+      gaplessPlayback: true,
+      errorBuilder: (_, __, ___) => _FallbackFox(size: foxSize),
+    );
   }
 
   // ── Public API ──
@@ -787,19 +816,12 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                                   // Fox sprite mit ATEM-SKALIERUNG
                                   // (vertikal pulsiert leicht - "atmet")
                                   // FRAME-CYCLE: beim Laufen Walk-Sprites,
-                                  // beim Jubeln Cheer-Sprites (Heinz' ZIP)
+                                  // beim Jubeln Cheer-Sprites, bei Idle
+                                  // die 8-Frame-Idle-Animation (LumoIdleFox).
                                   Transform.scale(
                                     scaleY: breathScale,
                                     alignment: Alignment.bottomCenter,
-                                    child: Image.asset(
-                                      _currentSprite(),
-                                      width: foxSize,
-                                      height: foxSize,
-                                      fit: BoxFit.contain,
-                                      gaplessPlayback: true,
-                                      errorBuilder: (_, __, ___) =>
-                                          _FallbackFox(size: foxSize),
-                                    ),
+                                    child: _renderFox(foxSize),
                                   ),
                                   // AUGEN-BLINK-Overlay: zwei kleine
                                   // Lidschlag-Streifen wenn _blinkCtrl > 0

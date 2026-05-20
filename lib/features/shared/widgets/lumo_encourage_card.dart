@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import '../../../widgets/fox/lumo_idle_fox.dart';
 
 /// Motivations-Karte am Ende der Lernseite ("Weiter so, Alina!")
 class LumoEncourageCard extends StatelessWidget {
@@ -7,13 +8,16 @@ class LumoEncourageCard extends StatelessWidget {
     super.key,
     required this.childName,
     required this.message,
-    this.foxAsset = 'assets/images/lumo_fox.png',
+    this.foxAsset,
     this.accent = LumoColors.orange,
   });
 
   final String childName;
   final String message;
-  final String foxAsset;
+
+  /// Optionaler Override fuer den Fuchs-Asset-Pfad. Wenn null wird die
+  /// 8-Frame-Idle-Animation (LumoIdleFox) gerendert.
+  final String? foxAsset;
   final Color accent;
 
   @override
@@ -50,13 +54,21 @@ class LumoEncourageCard extends StatelessWidget {
                   child: ClipOval(
                     child: Container(
                       color: Colors.white,
-                      child: Image.asset(
-                        foxAsset,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const Center(
-                          child: Text('🦊', style: TextStyle(fontSize: 44)),
-                        ),
-                      ),
+                      child: foxAsset == null
+                          ? const Center(
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                child: LumoIdleFox(size: 76),
+                              ),
+                            )
+                          : Image.asset(
+                              foxAsset!,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) => const Center(
+                                child: Text('🦊',
+                                    style: TextStyle(fontSize: 44)),
+                              ),
+                            ),
                     ),
                   ),
                 ),
