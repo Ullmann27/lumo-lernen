@@ -122,11 +122,18 @@ class _LumoReactionCompanionState extends State<LumoReactionCompanion>
       // Frame-Index zurueck auf Anfang, Controller mit neuer Duration
       // resetten, damit der Wechsel sichtbar wird (z.B. cheer-Burst).
       _frameIdx = 0;
+      // Reduced-Motion respektieren: ohne diesen Check wuerde jeder
+      // Mood-Wechsel den Controller wieder starten, obwohl der User
+      // Animations deaktiviert hat (Codex P2 Accessibility-Regression).
+      final disable =
+          MediaQuery.maybeDisableAnimationsOf(context) ?? false;
       _frameCtrl
         ..stop()
         ..duration = _frameDuration * 8
-        ..reset()
-        ..repeat();
+        ..reset();
+      if (!disable) {
+        _frameCtrl.repeat();
+      }
       if (widget.mood == LumoReactionMood.cheer) {
         // Cheer-Frames erst beim ersten Wechsel laden.
         if (!_precachedCheer) {
@@ -135,7 +142,9 @@ class _LumoReactionCompanionState extends State<LumoReactionCompanion>
             precacheImage(AssetImage(p), context);
           }
         }
-        _bounceCtrl.forward(from: 0);
+        if (!disable) {
+          _bounceCtrl.forward(from: 0);
+        }
       }
     }
   }

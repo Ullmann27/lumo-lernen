@@ -295,9 +295,13 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   Widget _renderFox(double foxSize) {
     final sprite = _currentSprite();
     if (sprite == null) {
+      // facingRight bewusst fest auf true: der aeussere Transform
+      // (Zeile 742) spiegelt den ganzen Stack bereits anhand von
+      // _facingRight. Ohne dieses true bekaeme der Idle-Fox einen
+      // doppelten Flip und stuende falsch zur Tail-Animation (Codex P2).
       return LumoIdleFox(
         size: foxSize,
-        facingRight: _facingRight,
+        facingRight: true,
       );
     }
     return Image.asset(
