@@ -28,6 +28,7 @@ import 'plus_bis_10/plus_bis_10_screen.dart';
 import 'tiere/tiere_screen.dart';
 import 'uhr_lernen/uhr_lernen_screen.dart';
 import 'wort_diktat/wort_diktat_screen.dart';
+import 'wortarten/wortarten_screen.dart';
 import 'zahlen_bis_10/zahlen_bis_10_screen.dart';
 
 class LearningModuleRegistry {
@@ -55,6 +56,8 @@ class LearningModuleRegistry {
         return GeldScreen(appState: appState);
       case 'd2_artikel':
         return ArtikelLernenScreen(appState: appState);
+      case 'd3_wortarten':
+        return WortartenScreen(appState: appState);
       case 'd1_woerter':
         return WortDiktatScreen(appState: appState);
       case 'm2_einmaleins':
@@ -82,6 +85,7 @@ class LearningModuleRegistry {
     'm4_bruch',
     'd1_woerter',
     'd2_artikel',
+    'd3_wortarten',
   };
 
   static bool hasModule(String topicId) =>
