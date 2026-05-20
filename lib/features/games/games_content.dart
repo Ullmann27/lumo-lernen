@@ -10,7 +10,7 @@ import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import 'flame/lumo_jump_game.dart';
-import 'kart/lumo_kart_screen.dart';
+import 'kart/lumo_kart_menu.dart';
 import 'mini_games/color_boxes_game.dart';
 import 'mini_games/letter_fill_game.dart';
 import 'mini_games/number_house_game.dart';
@@ -98,7 +98,7 @@ class _GamesContentState extends State<GamesContent> {
     HapticFeedback.mediumImpact();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
-        builder: (_) => LumoKartScreen(appState: widget.appState),
+        builder: (_) => LumoKartMenuScreen(appState: widget.appState),
       ),
     );
     await _load();
