@@ -70,10 +70,18 @@ class WritingProgressRepository {
   Future<WritingProgress> recordCompletedWord(String word) =>
       _mutate((current) => current.withCompletedWord(word));
 
-  Future<void> reset() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove(_key);
-    } catch (_) {}
+  Future<void> reset() {
+    // Reset muss durch den gleichen _writeLock wie die Mutationen,
+    // sonst kann ein noch pending recordAttempt nach dem prefs.remove
+    // landen und die geloeschten Daten wieder zurueckschreiben - der
+    // 'Daten loeschen'-Klick wuerde dann nicht halten (Codex P2).
+    final next = _writeLock.then((_) async {
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.remove(_key);
+      } catch (_) {}
+    });
+    _writeLock = next.then((_) {}, onError: (_) {});
+    return next;
   }
 }
