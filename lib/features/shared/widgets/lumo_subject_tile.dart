@@ -139,7 +139,7 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontFamily: 'Nunito',
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.w900,
                         color: LumoColors.ink900,
                         letterSpacing: 0.1,
@@ -160,7 +160,7 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontFamily: 'Nunito',
-                        fontSize: 12.5,
+                        fontSize: 14,
                         fontWeight: FontWeight.w700,
                         color: LumoColors.ink500,
                         height: 1.32,
