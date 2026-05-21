@@ -375,20 +375,20 @@ class _ActionCard extends StatelessWidget {
     return GestureDetector(
       onTap: data.onTap,
       child: Container(
-        width: 230,
-        height: 160,
+        width: 240,
+        height: 168,
         padding: const EdgeInsets.all(16),
-        decoration: lumoCard(gradient: LinearGradient(colors: [Colors.white, accent.withOpacity(.09)], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+        decoration: lumoCard(gradient: LinearGradient(colors: [Colors.white, accent.withOpacity(.10)], begin: Alignment.topLeft, end: Alignment.bottomRight)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            Container(width: 38, height: 38, decoration: BoxDecoration(color: accent.withOpacity(.13), borderRadius: BorderRadius.circular(LumoRadius.sm)), child: Icon(data.icon, color: accent, size: 21)),
-            const SizedBox(width: 10),
-            Expanded(child: Text(data.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.heading3.copyWith(color: accent))),
+            Container(width: 44, height: 44, decoration: BoxDecoration(color: accent.withOpacity(.16), borderRadius: BorderRadius.circular(LumoRadius.md)), child: Icon(data.icon, color: accent, size: 26)),
+            const SizedBox(width: 12),
+            Expanded(child: Text(data.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.heading3.copyWith(color: accent, fontSize: 17))),
           ]),
           const SizedBox(height: 10),
-          Expanded(child: Text(data.description, style: LumoTextStyles.cardSub, maxLines: 3, overflow: TextOverflow.ellipsis)),
+          Expanded(child: Text(data.description, style: LumoTextStyles.cardSub.copyWith(fontSize: 13), maxLines: 3, overflow: TextOverflow.ellipsis)),
           Row(mainAxisSize: MainAxisSize.min, children: [
-            Text(data.cta, style: LumoTextStyles.cta.copyWith(color: accent)),
+            Text(data.cta, style: LumoTextStyles.cta.copyWith(color: accent, fontSize: 15)),
             const SizedBox(width: 4),
             Icon(Icons.arrow_forward_rounded, color: accent, size: 15),
           ]),
