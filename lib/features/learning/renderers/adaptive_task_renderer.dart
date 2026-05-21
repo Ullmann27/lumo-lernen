@@ -143,6 +143,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         child: LumoReactionCompanion(
           mood: _companionMood,
           size: 84,
+          onTap: () => _showCompanionHint(),
         ),
       ),
     ]);
@@ -177,6 +178,39 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         AdaptiveTaskAnswer(task: widget.task, answer: answer, correct: true),
       );
     }
+  }
+
+  /// Phase 3: Tap auf den Reaction-Companion zeigt einen kurzen
+  /// Mini-Chat-Hint passend zur aktuellen Aufgabe.
+  void _showCompanionHint() {
+    final task = widget.task;
+    final prompt = task.prompt.toLowerCase();
+    String hint;
+    if (task.subject == LearningSubject.mathematik) {
+      hint = 'Zähle die Dinge im Bild langsam mit dem Finger.';
+    } else if (prompt.contains('silbe')) {
+      hint = 'Sprich das Wort langsam und klatsch bei jeder Silbe.';
+    } else if (prompt.contains('anfangs') || prompt.contains('laut')) {
+      hint = 'Höre nur auf den ersten oder letzten Laut im Wort.';
+    } else {
+      hint = 'Lies die Aufgabe noch einmal langsam und in Ruhe.';
+    }
+    _setMood(LumoReactionMood.think);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text('🦊 $hint',
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.white)),
+          backgroundColor: const Color(0xFF7C3AED),
+          duration: const Duration(seconds: 4),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
   }
 
   String _subjectLabel(LearningSubject subject) {
