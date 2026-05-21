@@ -442,7 +442,26 @@ class _JokerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: used ? null : onTap, child: Text(used ? '$label ✓' : label));
+    final accent =
+        used ? LumoColors.ink300 : const Color(0xFF8B5CF6);
+    return OutlinedButton(
+      onPressed: used ? null : onTap,
+      style: OutlinedButton.styleFrom(
+        foregroundColor: accent,
+        backgroundColor: used
+            ? Colors.white.withOpacity(.5)
+            : const Color(0xFFF3E8FF),
+        side: BorderSide(color: accent.withOpacity(.4), width: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(LumoRadius.pill)),
+      ),
+      child: Text(
+        used ? '$label ✓' : label,
+        style: const TextStyle(
+            fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900),
+      ),
+    );
   }
 }
 
