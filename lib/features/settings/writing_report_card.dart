@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../core/writing_progress_repository.dart';
 import '../../domain/writing/writing_progress.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 import '../writing/writing_feature_flags.dart';
 
 class WritingReportCard extends StatefulWidget {
@@ -179,7 +180,7 @@ class _WritingReportCardState extends State<WritingReportCard> {
             border: Border.all(color: const Color(0xFFFCD34D), width: 1.5),
           ),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('🦊', style: TextStyle(fontSize: 22)),
+            const LumoIdleFox(size: 32),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
