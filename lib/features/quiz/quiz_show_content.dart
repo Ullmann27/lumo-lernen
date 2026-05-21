@@ -549,13 +549,27 @@ class _ResultPanel extends StatelessWidget {
             ? '✅ Richtig! Weiter geht’s.'
             : '💡 Richtig wäre: $answer';
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(.10),
+        color: color.withOpacity(.12),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: color.withOpacity(.25)),
+        border: Border.all(color: color.withOpacity(.35), width: 2),
+        boxShadow: [
+          BoxShadow(
+            color: color.withOpacity(.18),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      child: Text(text, style: LumoTextStyles.body.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w800)),
+      child: Text(
+        text,
+        style: LumoTextStyles.body.copyWith(
+            color: LumoColors.ink900,
+            fontWeight: FontWeight.w900,
+            fontSize: 16,
+            height: 1.35),
+      ),
     );
   }
 }
