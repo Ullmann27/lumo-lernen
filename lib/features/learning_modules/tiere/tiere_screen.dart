@@ -21,7 +21,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
-import '../../../core/lumo_image_generator.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 
@@ -378,68 +377,59 @@ class _TiereScreenState extends State<TiereScreen>
     );
   }
 
-  /// Zeigt das Tier-Bild via Pollinations.ai - das Highlight des Moduls!
-  /// Beim bildZeigen-Typ ist das die Hauptfrage.
-  /// Beim lautRaten/lebensraum-Typ als Hilfe darunter.
+  /// Zeigt das Tier mit lebensraum-passendem Hintergrund-Gradient und
+  /// grossem Tier-Emoji. Pollinations.ai ist raus - wie bei Farben kamen
+  /// die Bilder im Cloud-Setup nie zuverlaessig durch. Der Lebensraum-
+  /// Gradient gibt Atmosphaere (Bauernhof=gruen-gelb, Zoo=orange-braun,
+  /// See=blau-tuerkis, Zuhause=warm-rosa).
   Widget _buildMainImage() {
-    final url = LumoImageGenerator.instance.buildSafeImageUrl(_correctTier.name);
-    if (url == null) {
-      // Wenn kein Bild generiert werden kann: zeige Tier-Emoji gross.
-      return Container(
-        width: 200,
-        height: 200,
-        decoration: BoxDecoration(
-          color: _gradient[0].withOpacity(0.15),
-          borderRadius: BorderRadius.circular(24),
-        ),
+    final colors = _lebensraumGradient(_correctTier.lebensraum);
+    return AnimatedBuilder(
+      animation: _bounceCtrl,
+      builder: (_, child) {
+        final s = 1.0 + math.sin(_bounceCtrl.value * math.pi * 2) * 0.02;
+        return Transform.scale(scale: s, child: child);
+      },
+      child: Container(
+        width: 220,
+        height: 220,
         alignment: Alignment.center,
-        child: Text(_correctTier.emoji,
-            style: const TextStyle(fontSize: 120)),
-      );
-    }
-    return Container(
-      width: 200,
-      height: 200,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-              color: _gradient[0].withOpacity(0.25),
-              blurRadius: 16,
-              offset: const Offset(0, 6))
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(24),
-        // Heinz-Scan 2026-05-21: gleicher Stack-Fallback wie Wetter -
-        // Tier-Emoji IMMER im Hintergrund, Pollinations-Bild legt sich
-        // drueber wenn fertig. Verhindert leere Boxen bei langsamem/
-        // 0-Byte Pollinations-Response.
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Container(
-              color: _gradient[0].withOpacity(0.15),
-              alignment: Alignment.center,
-              child: Text(_correctTier.emoji,
-                  style: const TextStyle(fontSize: 100)),
-            ),
-            Image.network(
-              url,
-              fit: BoxFit.cover,
-              loadingBuilder: (ctx, child, progress) {
-                if (progress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                      color: _gradient[0], strokeWidth: 3),
-                );
-              },
-              errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            colors: [colors[0], colors[1]],
+            radius: 0.9,
+          ),
+          borderRadius: BorderRadius.circular(28),
+          border: Border.all(color: Colors.white, width: 6),
+          boxShadow: [
+            BoxShadow(
+              color: colors[1].withOpacity(.45),
+              blurRadius: 24,
+              offset: const Offset(0, 10),
+              spreadRadius: -2,
             ),
           ],
         ),
+        child: Text(_correctTier.emoji,
+            style: const TextStyle(fontSize: 140, height: 1.0)),
       ),
     );
+  }
+
+  /// Liefert ein passendes Farbpaar fuer den Lebensraum, damit der
+  /// Hintergrund Atmosphaere transportiert.
+  List<Color> _lebensraumGradient(String lebensraum) {
+    switch (lebensraum) {
+      case 'Bauernhof':
+        return const [Color(0xFFFFF7CC), Color(0xFFA7E07A)]; // gelb-gruen
+      case 'Zoo':
+        return const [Color(0xFFFFD8A8), Color(0xFFC77D3D)]; // sand-braun
+      case 'See':
+        return const [Color(0xFFCCEFFF), Color(0xFF4DB6E8)]; // hellblau-tief
+      case 'Zuhause':
+      default:
+        return const [Color(0xFFFFE6D5), Color(0xFFF5A38C)]; // warm-rosa
+    }
   }
 
   Widget _buildAnswerOptions() {
