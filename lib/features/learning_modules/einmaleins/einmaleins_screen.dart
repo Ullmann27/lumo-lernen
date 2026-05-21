@@ -85,14 +85,26 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
     _b = 2 + _rng.nextInt(9); // 2..10
     final correct = _correct;
     final wrongOptions = <int>{};
-    while (wrongOptions.length < 3) {
-      // Plausible falsche Antworten: +/- a oder +/- b
+    // FIX: Safety-Limit. Bei correct=2 (z.B. _a=1, _b=2) koennen
+    // negative Shifts nie greifen - vorher theoretisch Endlos-Loop.
+    var safety = 0;
+    while (wrongOptions.length < 3 && safety < 60) {
+      safety++;
       final shifts = [_a, -_a, _b, -_b, _a * 2, -_a];
       final shift = shifts[_rng.nextInt(shifts.length)];
       final cand = correct + shift;
       if (cand > 0 && cand <= 100 && cand != correct) {
         wrongOptions.add(cand);
       }
+    }
+    // Auffuellen falls weniger als 3 zusammengekommen sind.
+    var fillCounter = 1;
+    while (wrongOptions.length < 3 && fillCounter < 200) {
+      final cand = correct + fillCounter;
+      if (cand > 0 && cand <= 100 && cand != correct) {
+        wrongOptions.add(cand);
+      }
+      fillCounter++;
     }
     _answers = [correct, ...wrongOptions]..shuffle(_rng);
     _answered = false;

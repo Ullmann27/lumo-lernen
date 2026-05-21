@@ -99,7 +99,13 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
         break;
     }
     final wrong = <int>{};
-    while (wrong.length < 3) {
+    // FIX: Safety-Limit gegen theoretischen Endlos-Loop, falls correctAnswer
+    // an einer Bereichsgrenze sitzt (0 oder 100) und die Random-Deltas
+    // ungluecklich fallen. Nach 60 Versuchen Auffuellen mit beliebigen
+    // anderen Zahlen, damit immer 3 unique wrong answers da sind.
+    var safety = 0;
+    while (wrong.length < 3 && safety < 60) {
+      safety++;
       int cand;
       if (_typ == _Zahl100FrageTyp.zehnerEiner) {
         cand = 1 + _rng.nextInt(9);
@@ -109,6 +115,12 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
         if (cand < 0 || cand > 100) continue;
       }
       if (cand != _correctAnswer) wrong.add(cand);
+    }
+    var fillCounter = 1;
+    while (wrong.length < 3 && fillCounter < 200) {
+      final cand = (_correctAnswer + fillCounter) % 100 + 1;
+      if (cand != _correctAnswer) wrong.add(cand);
+      fillCounter++;
     }
     _answers = [_correctAnswer, ...wrong]..shuffle(_rng);
     _answered = false;
