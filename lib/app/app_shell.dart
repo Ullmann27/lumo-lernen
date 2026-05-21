@@ -5,7 +5,10 @@ import 'package:flutter/services.dart';
 import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
-import '../widgets/fox/lumo_free_companion.dart';
+// LumoFreeCompanion ausgeblendet (Heinz: "mach diesen lumo weg, der
+// schaut nicht gut aus"). Import bleibt auskommentiert fuer schnelle
+// Re-Aktivierung, falls die Optik spaeter ueberarbeitet ist.
+// import '../widgets/fox/lumo_free_companion.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
@@ -283,13 +286,14 @@ class _AppShellState extends State<AppShell>
                               ),
                             ),
                           ),
-                          // Free-Companion-Overlay (Heinz: 'Lumo soll frei
-                          // beweglich sein, nicht in einem Kasten gefangen.')
-                          // NICHT im Lesemodus / Reading-Section anzeigen
-                          // (Heinz: 'Im Lesemodus ueberdeckt Lumo die Schriften').
-                          if (_appState.state.section != LumoSection.reading &&
-                              !_isReadingMode())
-                            const Positioned.fill(child: LumoFreeCompanion()),
+                          // Heinz' Wunsch (Screenshot 2026-05-21):
+                          // "mach diesen lumo weg der schaut nicht gut aus".
+                          // Der LumoFreeCompanion (3D-Sprite mit Schultasche
+                          // als bewegliches Overlay) wirkt zu schwer und
+                          // ueberdeckt die schon vorhandenen "Mathe mit Lumo"
+                          // / "Deutsch mit Lumo" Karten. Companion komplett
+                          // ausgeblendet - die Subject-Tiles haben ihre
+                          // eigenen Lumo-Symbole und reichen.
                         ]),
                       ),
                     ),
@@ -324,11 +328,8 @@ class _AppShellState extends State<AppShell>
                                     child: _buildContent(),
                                   ),
                                 ),
-                                if (_appState.state.section !=
-                                        LumoSection.reading &&
-                                    !_isReadingMode())
-                                  const Positioned.fill(
-                                      child: LumoFreeCompanion()),
+                                // LumoFreeCompanion ausgeblendet auf
+                                // Heinz' Wunsch (siehe oben).
                               ],
                             ),
                           ),
