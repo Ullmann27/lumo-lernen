@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../core/user_profile.dart';
+import '../../widgets/lumo/lumo.dart';
 import 'widgets/lumo_step_indicator.dart';
 
 class LumoOnboardingScreen extends StatefulWidget {
@@ -162,24 +163,9 @@ class _IntroStep extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Begruessungs-Pille
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: LumoColors.orange.withOpacity(0.15),
-            borderRadius: BorderRadius.circular(99),
-            border: Border.all(
-                color: LumoColors.orange.withOpacity(0.3), width: 1.4),
-          ),
-          child: const Text('Willkommen 👋',
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 13,
-                fontWeight: FontWeight.w900,
-                color: LumoColors.orange,
-                letterSpacing: 0.3,
-              )),
-        ),
+        // Begruessungs-Pille - zentrales LumoChip statt ad-hoc Container.
+        // Variante "brand" = Orange-Tint mit Border, passt zum Lumo-Look.
+        const LumoChip.brand(label: 'Willkommen 👋'),
         const SizedBox(height: 14),
         const Text('Lumo Lernen', style: LumoTextStyles.heading1),
         const SizedBox(height: 12),
