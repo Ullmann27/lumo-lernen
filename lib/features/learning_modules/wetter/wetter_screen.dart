@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
+import '../../../core/lumo_companion_state.dart';
+import '../../../core/lumo_cosmos.dart';
 import '../../../core/lumo_image_generator.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
@@ -203,6 +205,12 @@ class _WetterScreenState extends State<WetterScreen>
       _correctCount++;
       widget.appState.addStars(1);
       widget.appState.addXp(7);
+      CosmosWorld.instance.grantReward(
+        subjectId: 's1_wetter',
+        isMath: false,
+        isPerfect: false,
+      );
+      LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
         LumoVoice.instance
             .speak('Richtig! Das ist ${_correctWetter.name}!');

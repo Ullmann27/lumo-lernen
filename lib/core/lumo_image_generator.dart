@@ -179,15 +179,67 @@ class LumoImageGenerator {
 
   /// Baut die URL zum Bildgenerator. Translatet deutsche Begriffe zu
   /// englischen damit Pollinations das Motiv sauber rendert.
+  ///
+  /// WICHTIG: Bei Prompts mit Farb-Modifikator (z.B. "red Apfel",
+  /// "orange Auto") wurde die Farbinformation frueher weggeworfen,
+  /// weil nur das Haupt-Motiv ueber `_translate` gemappt wurde. Heinz
+  /// sah dann im Farben-Quiz 4 visuell identische Bilder (alle in der
+  /// Pollinations-Default-Farbe), egal welche Farbe gefragt war.
+  ///
+  /// Fix: Bekannte Farb-Praefixe werden separat extrahiert und VOR das
+  /// uebersetzte Motiv geschrieben. Beispiel: "orange Apfel" -> Color
+  /// "orange-colored", Topic "apple" -> Prompt "orange-colored apple,
+  /// cute kid-friendly cartoon..." -> Pollinations rendert einen
+  /// orangefarbenen Apfel statt einer Orange-Frucht oder roten Apfel.
   String? buildSafeImageUrl(String childPrompt,
       {int width = 512, int height = 512}) {
     final result = check(childPrompt);
     if (!result.allowed) return null;
 
-    // Hauptmotiv extrahieren + uebersetzen
     final lower = childPrompt.toLowerCase().trim();
+
+    // Farb-Modifikator extrahieren. "orange-colored" statt "orange",
+    // damit Pollinations nicht die Orange-Frucht ausspielt wenn das
+    // Motiv ein Apfel oder Auto sein soll.
+    const colorModifiers = <String, String>{
+      'red': 'red-colored',
+      'rot': 'red-colored',
+      'blue': 'blue-colored',
+      'blau': 'blue-colored',
+      'yellow': 'yellow-colored',
+      'gelb': 'yellow-colored',
+      'green': 'green-colored',
+      'gruen': 'green-colored',
+      'grün': 'green-colored',
+      'orange': 'orange-colored',
+      'pink': 'pink-colored',
+      'rosa': 'pink-colored',
+      'purple': 'purple-colored',
+      'lila': 'purple-colored',
+      'brown': 'brown-colored',
+      'braun': 'brown-colored',
+      'black': 'black-colored',
+      'schwarz': 'black-colored',
+      'white': 'white-colored',
+      'weiss': 'white-colored',
+      'weiß': 'white-colored',
+    };
+    String? color;
+    String? matchedColorKey;
+    for (final entry in colorModifiers.entries) {
+      if (RegExp(r'\b' + RegExp.escape(entry.key) + r'\b').hasMatch(lower)) {
+        color = entry.value;
+        matchedColorKey = entry.key;
+        break;
+      }
+    }
+
+    // Hauptmotiv extrahieren + uebersetzen. Wichtig: das Farb-Wort selbst
+    // NICHT als Topic werten (sonst kollidiert 'orange' mit der Frucht
+    // 'orange' im _translate-Map).
     String mainEnglish = childPrompt.trim();
     for (final topic in _allowedTopics) {
+      if (matchedColorKey != null && topic == matchedColorKey) continue;
       final regex = RegExp(r'\b' + RegExp.escape(topic) + r'\b');
       if (regex.hasMatch(lower)) {
         mainEnglish = _translate[topic] ?? topic;
@@ -195,10 +247,15 @@ class LumoImageGenerator {
       }
     }
 
-    final fullPrompt = _buildPrompt(mainEnglish);
+    final colored = color != null ? '$color $mainEnglish' : mainEnglish;
+    final fullPrompt = _buildPrompt(colored);
     final encoded = Uri.encodeComponent(fullPrompt);
+    // Seed aus dem vollen Prompt: gleiche Eingabe -> gleiches Bild, aber
+    // unterschiedliche Farb-Praefixe ergeben unterschiedliche Seeds und
+    // damit unterschiedliche Pollinations-Renderings.
+    final seed = fullPrompt.hashCode.abs() % 100000;
     return 'https://image.pollinations.ai/prompt/$encoded'
-        '?width=$width&height=$height&nologo=true&safe=true';
+        '?width=$width&height=$height&nologo=true&safe=true&seed=$seed';
   }
 
   /// Heuristik: prueft ob die Kind-Nachricht nach einem Bild fragt.
