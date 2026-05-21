@@ -122,6 +122,13 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
     setState(() {
       _currentPoints = [d.localPosition];
     });
+    // Phase 3: Lumo guckt aktiv mit waehrend das Kind schreibt.
+    // Mood zurueck auf think (egal was zuvor war) - der 2s-Reset-Timer
+    // sorgt dafuer dass der Companion zurueck auf idle springt wenn
+    // das Kind eine Pause macht.
+    if (_companionMood != LumoReactionMood.cheer) {
+      _setMood(LumoReactionMood.think);
+    }
   }
 
   void _onPanUpdate(DragUpdateDetails d) {

@@ -156,6 +156,10 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   void _onPanStart(DragStartDetails d) {
     setState(() => _currentPoints = [d.localPosition]);
+    // Phase 3: Lumo guckt aktiv mit waehrend das Kind schreibt.
+    if (_companionMood != LumoReactionMood.cheer) {
+      _setMood(LumoReactionMood.think);
+    }
   }
 
   void _onPanUpdate(DragUpdateDetails d) {
