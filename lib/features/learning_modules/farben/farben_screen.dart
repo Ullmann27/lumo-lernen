@@ -561,10 +561,23 @@ class _BuildableImageOption extends StatelessWidget {
             borderRadius: BorderRadius.circular(17),
             child: url == null
                 ? Container(
-                    color: gradient[0].withOpacity(0.1),
-                    alignment: Alignment.center,
-                    child: const Text('🎨',
-                        style: TextStyle(fontSize: 50)),
+                    // FIX: Bei reiner Farb-Aufgabe ('Tippe blau!')
+                    // zeige die FARBE selbst als grossen Block,
+                    // nicht das Palette-Emoji.
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: gradient,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    alignment: Alignment.bottomRight,
+                    padding: const EdgeInsets.all(8),
+                    child: Icon(
+                      Icons.palette_rounded,
+                      color: Colors.white.withOpacity(0.4),
+                      size: 28,
+                    ),
                   )
                 : Image.network(
                     url!,
@@ -579,10 +592,20 @@ class _BuildableImageOption extends StatelessWidget {
                       );
                     },
                     errorBuilder: (ctx, err, st) => Container(
-                      color: gradient[0].withOpacity(0.15),
+                      // Fallback bei Image-Fail: auch volle Farbe zeigen
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: gradient,
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
                       alignment: Alignment.center,
-                      child: const Text('🎨',
-                          style: TextStyle(fontSize: 40)),
+                      child: Icon(
+                        Icons.palette_rounded,
+                        color: Colors.white.withOpacity(0.5),
+                        size: 36,
+                      ),
                     ),
                   ),
           ),

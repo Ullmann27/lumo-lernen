@@ -29,10 +29,14 @@ class _Tier {
     required this.name,
     required this.laut,
     required this.lebensraum,
+    required this.emoji,
   });
   final String name;
   final String laut;
   final String lebensraum;
+  /// Sichtbares Emoji als Fallback wenn Pollinations-Bild nicht laedt.
+  /// Heinz' Wunsch: keine generischen Pfoten mehr, sondern echte Tier-Emojis.
+  final String emoji;
 }
 
 class TiereScreen extends StatefulWidget {
@@ -51,20 +55,20 @@ class _TiereScreenState extends State<TiereScreen>
     Color(0xFF059669),
   ];
 
-  // 12 Tiere fuer Quiz - alle in der Allowlist
+  // 12 Tiere fuer Quiz - alle in der Allowlist - mit echten Tier-Emojis
   static const List<_Tier> _tiere = [
-    _Tier(name: 'Kuh', laut: 'Muh', lebensraum: 'Bauernhof'),
-    _Tier(name: 'Hund', laut: 'Wau Wau', lebensraum: 'Zuhause'),
-    _Tier(name: 'Katze', laut: 'Miau', lebensraum: 'Zuhause'),
-    _Tier(name: 'Schaf', laut: 'Mäh', lebensraum: 'Bauernhof'),
-    _Tier(name: 'Pferd', laut: 'Wieher', lebensraum: 'Bauernhof'),
-    _Tier(name: 'Huhn', laut: 'Gack Gack', lebensraum: 'Bauernhof'),
-    _Tier(name: 'Ente', laut: 'Quak', lebensraum: 'See'),
-    _Tier(name: 'Frosch', laut: 'Quak Quak', lebensraum: 'See'),
-    _Tier(name: 'Löwe', laut: 'Brüll', lebensraum: 'Zoo'),
-    _Tier(name: 'Elefant', laut: 'Tröt', lebensraum: 'Zoo'),
-    _Tier(name: 'Pinguin', laut: 'Watschel', lebensraum: 'Zoo'),
-    _Tier(name: 'Affe', laut: 'Uh Uh', lebensraum: 'Zoo'),
+    _Tier(name: 'Kuh', laut: 'Muh', lebensraum: 'Bauernhof', emoji: '🐄'),
+    _Tier(name: 'Hund', laut: 'Wau Wau', lebensraum: 'Zuhause', emoji: '🐶'),
+    _Tier(name: 'Katze', laut: 'Miau', lebensraum: 'Zuhause', emoji: '🐱'),
+    _Tier(name: 'Schaf', laut: 'Mäh', lebensraum: 'Bauernhof', emoji: '🐑'),
+    _Tier(name: 'Pferd', laut: 'Wieher', lebensraum: 'Bauernhof', emoji: '🐴'),
+    _Tier(name: 'Huhn', laut: 'Gack Gack', lebensraum: 'Bauernhof', emoji: '🐔'),
+    _Tier(name: 'Ente', laut: 'Quak', lebensraum: 'See', emoji: '🦆'),
+    _Tier(name: 'Frosch', laut: 'Quak Quak', lebensraum: 'See', emoji: '🐸'),
+    _Tier(name: 'Löwe', laut: 'Brüll', lebensraum: 'Zoo', emoji: '🦁'),
+    _Tier(name: 'Elefant', laut: 'Tröt', lebensraum: 'Zoo', emoji: '🐘'),
+    _Tier(name: 'Pinguin', laut: 'Watschel', lebensraum: 'Zoo', emoji: '🐧'),
+    _Tier(name: 'Affe', laut: 'Uh Uh', lebensraum: 'Zoo', emoji: '🐵'),
   ];
 
   late final AnimationController _bounceCtrl;
@@ -371,7 +375,18 @@ class _TiereScreenState extends State<TiereScreen>
   Widget _buildMainImage() {
     final url = LumoImageGenerator.instance.buildSafeImageUrl(_correctTier.name);
     if (url == null) {
-      return const SizedBox.shrink();
+      // Wenn kein Bild generiert werden kann: zeige Tier-Emoji gross.
+      return Container(
+        width: 200,
+        height: 200,
+        decoration: BoxDecoration(
+          color: _gradient[0].withOpacity(0.15),
+          borderRadius: BorderRadius.circular(24),
+        ),
+        alignment: Alignment.center,
+        child: Text(_correctTier.emoji,
+            style: const TextStyle(fontSize: 120)),
+      );
     }
     return Container(
       width: 200,
@@ -415,8 +430,9 @@ class _TiereScreenState extends State<TiereScreen>
           errorBuilder: (ctx, err, st) => Container(
             color: _gradient[0].withOpacity(0.15),
             alignment: Alignment.center,
-            child: Text('🐾',
-                style: const TextStyle(fontSize: 80)),
+            // Heinz: keine generischen Pfoten - echtes Tier-Emoji.
+            child: Text(_correctTier.emoji,
+                style: const TextStyle(fontSize: 100)),
           ),
         ),
       ),

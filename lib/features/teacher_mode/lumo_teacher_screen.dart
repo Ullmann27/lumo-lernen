@@ -593,19 +593,34 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                         },
                         errorBuilder: (ctx, err, st) => Container(
                           width: 240,
-                          height: 100,
+                          height: 140,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFFEE2E2),
+                            gradient: LinearGradient(
+                              colors: widget.topic.gradient,
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
                             borderRadius: BorderRadius.circular(14),
                           ),
-                          child: const Center(
-                            child: Text(
-                                'Bild konnte ich nicht laden. Versuch nochmal!',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFFB91C1C))),
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.auto_awesome_rounded,
+                                  size: 48, color: Colors.white),
+                              SizedBox(height: 8),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 12),
+                                child: Text(
+                                    'Stell dir das Bild im Kopf vor! 🎨',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontFamily: 'Nunito',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.white)),
+                              ),
+                            ],
                           ),
                         ),
                       ),

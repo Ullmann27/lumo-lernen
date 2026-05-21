@@ -794,7 +794,9 @@ class _LearningContentState extends State<LearningContent> {
                 ),
               ]),
               const SizedBox(height: 22),
-              _LumoJourneyMap(
+              // Modernes Premium-Progress-Element statt altmodischer Map.
+              // Heinz' Wunsch: 'die map muss weg, durch was Neueres'.
+              _ModernProgressHeader(
                 currentStep: _questionNum,
                 totalSteps: _totalQuestions,
                 subject: chip,
@@ -2219,6 +2221,204 @@ class _AiHelpBubble extends StatelessWidget {
               fontWeight: FontWeight.w700,
               color: Color(0xFF1F2937),
               height: 1.45,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// MODERN PROGRESS HEADER (ersetzt altmodische _LumoJourneyMap)
+// ════════════════════════════════════════════════════════════════════════
+// Heinz' Wunsch: 'die map muss weg, durch was Neueres'.
+// Premium-Progress mit grossem Stern, ProgressBar und Status.
+// ════════════════════════════════════════════════════════════════════════
+
+class _ModernProgressHeader extends StatefulWidget {
+  const _ModernProgressHeader({
+    required this.currentStep,
+    required this.totalSteps,
+    required this.subject,
+    required this.lastWasCorrect,
+  });
+
+  final int currentStep;
+  final int totalSteps;
+  final String subject;
+  final bool? lastWasCorrect;
+
+  @override
+  State<_ModernProgressHeader> createState() => _ModernProgressHeaderState();
+}
+
+class _ModernProgressHeaderState extends State<_ModernProgressHeader>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _pulseCtrl = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 600),
+  );
+
+  @override
+  void didUpdateWidget(covariant _ModernProgressHeader old) {
+    super.didUpdateWidget(old);
+    if (old.currentStep != widget.currentStep && widget.lastWasCorrect == true) {
+      _pulseCtrl.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _pulseCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = widget.currentStep / widget.totalSteps.clamp(1, 999);
+    final stars = (widget.currentStep / widget.totalSteps * 5).floor().clamp(0, 5);
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFF7ED), Color(0xFFFFE4D2)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFF97316).withOpacity(0.10),
+            blurRadius: 20,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Top Row: Subject + Sterne
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFF97316), Color(0xFFEA580C)],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  widget.subject.toUpperCase(),
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              // Sterne-Anzeige
+              ...List.generate(5, (i) {
+                final filled = i < stars;
+                return Padding(
+                  padding: const EdgeInsets.only(left: 2),
+                  child: Icon(
+                    filled ? Icons.star_rounded : Icons.star_outline_rounded,
+                    color: filled
+                        ? const Color(0xFFFCD34D)
+                        : const Color(0xFFD1D5DB),
+                    size: 22,
+                  ),
+                );
+              }),
+            ],
+          ),
+          const SizedBox(height: 16),
+          // Aufgabe X von Y - GROSS
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                '${widget.currentStep}',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 56,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFFEA580C),
+                  height: 1.0,
+                ),
+              ),
+              Text(
+                ' / ${widget.totalSteps}',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  color: const Color(0xFFEA580C).withOpacity(0.5),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  widget.currentStep < widget.totalSteps
+                      ? 'Weiter so!'
+                      : 'Fast geschafft!',
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFF4C1D95),
+                  ),
+                ),
+              ),
+              // Status-Sparkle bei Erfolg
+              if (widget.lastWasCorrect == true)
+                AnimatedBuilder(
+                  animation: _pulseCtrl,
+                  builder: (_, __) {
+                    final s = Curves.elasticOut.transform(
+                        _pulseCtrl.value.clamp(0.01, 1.0));
+                    return Transform.scale(
+                      scale: 0.7 + s * 0.4,
+                      child: const Icon(
+                        Icons.auto_awesome_rounded,
+                        color: Color(0xFFFCD34D),
+                        size: 36,
+                      ),
+                    );
+                  },
+                ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Premium Progress Bar
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Stack(
+              children: [
+                Container(
+                  height: 12,
+                  color: const Color(0xFFE5E7EB),
+                ),
+                AnimatedFractionallySizedBox(
+                  duration: const Duration(milliseconds: 600),
+                  curve: Curves.easeOutCubic,
+                  widthFactor: progress.clamp(0.0, 1.0),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xFFF97316), Color(0xFFFCD34D)],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
