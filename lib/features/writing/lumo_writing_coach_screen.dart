@@ -40,8 +40,19 @@ enum WritingMode {
 }
 
 class LumoWritingCoachScreen extends StatefulWidget {
-  const LumoWritingCoachScreen({super.key, required this.appState});
+  const LumoWritingCoachScreen({
+    super.key,
+    required this.appState,
+    this.customWords,
+    this.sourceTitle,
+  });
   final LumoAppState appState;
+  /// Optional: Wenn gesetzt werden diese Woerter als Custom-Uebung
+  /// durchgegangen (z.B. neue Woerter aus einer Lumo-Story-Heft).
+  /// Buchstabe fuer Buchstabe.
+  final List<String>? customWords;
+  /// Quelle der Custom-Words (z.B. Story-Titel) fuer Anzeige.
+  final String? sourceTitle;
 
   @override
   State<LumoWritingCoachScreen> createState() => _LumoWritingCoachScreenState();
@@ -99,6 +110,42 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   }
 
   void _pickNextLetter() {
+    // CUSTOM-WORDS MODUS (von Lumo-Story): jedes Wort wird Buchstabe
+    // fuer Buchstabe geuebt.
+    if (widget.customWords != null && widget.customWords!.isNotEmpty) {
+      final allChars = <String>[];
+      for (final word in widget.customWords!) {
+        // Zuerst jeden Buchstabe einzeln, dann das ganze Wort als Demo
+        for (final c in word.split('')) {
+          // Nur uebliche Buchstaben (a-Z) — Umlaute weglassen
+          if (LetterTemplates.all.containsKey(c) ||
+              LetterTemplates.all.containsKey(c.toUpperCase()) ||
+              LetterTemplates.all.containsKey(c.toLowerCase())) {
+            allChars.add(c);
+          }
+        }
+      }
+      if (allChars.isNotEmpty) {
+        final idx = _taskIdx % allChars.length;
+        var letter = allChars[idx];
+        // Bevorzuge Grossbuchstaben-Templates (mehr abgedeckt)
+        if (!LetterTemplates.all.containsKey(letter)) {
+          if (LetterTemplates.all.containsKey(letter.toUpperCase())) {
+            letter = letter.toUpperCase();
+          } else if (LetterTemplates.all.containsKey(letter.toLowerCase())) {
+            letter = letter.toLowerCase();
+          }
+        }
+        _currentLetter = letter;
+        _currentTemplate = LetterTemplates.all[_currentLetter] ??
+            LetterTemplates.all['A']!;
+        _strokes.clear();
+        _currentPoints = [];
+        _lastFeedback = null;
+        _showDemo = false;
+        return;
+      }
+    }
     // Lehrplan-basierte Auswahl: leichte Buchstaben zuerst, mit
     // gelegentlichen Wiederholungen.
     final pool = _currentPool();

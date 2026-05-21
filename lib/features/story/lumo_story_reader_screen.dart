@@ -14,6 +14,7 @@ import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
+import '../writing/lumo_writing_coach_screen.dart';
 
 class LumoStoryReaderScreen extends StatefulWidget {
   const LumoStoryReaderScreen({
@@ -144,8 +145,18 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context, widget.story);
+              Navigator.pop(context); // Dialog
+              Navigator.pop(context); // Reader
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => LumoWritingCoachScreen(
+                    appState: widget.appState,
+                    customWords: widget.story.newWords,
+                    sourceTitle: widget.story.title,
+                  ),
+                ),
+              );
             },
             child: const Text('Wörter im Schreibcoach üben!'),
           ),

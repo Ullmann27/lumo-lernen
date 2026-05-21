@@ -79,23 +79,23 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
                     ),
                   ),
                   // Sonne oder Mond
-                  if (period == DayPeriod.night)
+                  if (period == LumoDayPeriod.night)
                     Positioned(
                       top: 30, right: 30,
                       child: _MoonIcon(),
                     )
-                  else if (period == DayPeriod.morning ||
-                      period == DayPeriod.noon)
+                  else if (period == LumoDayPeriod.morning ||
+                      period == LumoDayPeriod.noon)
                     Positioned(
                       top: 30, right: 30,
                       child: _SunIcon(
-                        color: period == DayPeriod.morning
+                        color: period == LumoDayPeriod.morning
                             ? const Color(0xFFFFB347)
                             : const Color(0xFFFCD34D),
                       ),
                     ),
                   // Sterne bei Nacht
-                  if (period == DayPeriod.night)
+                  if (period == LumoDayPeriod.night)
                     Positioned.fill(child: _StarsLayer()),
                   // Animated items
                   Positioned.fill(
@@ -121,15 +121,15 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
     );
   }
 
-  List<Color> _skyForPeriod(DayPeriod p) {
+  List<Color> _skyForPeriod(LumoDayPeriod p) {
     switch (p) {
-      case DayPeriod.morning:
+      case LumoDayPeriod.morning:
         return [const Color(0xFFFFD194), const Color(0xFFFFB5A7)];
-      case DayPeriod.noon:
+      case LumoDayPeriod.noon:
         return [const Color(0xFF87CEEB), const Color(0xFFB5E2FA)];
-      case DayPeriod.evening:
+      case LumoDayPeriod.evening:
         return [const Color(0xFFFF7E5F), const Color(0xFFFEB47B)];
-      case DayPeriod.night:
+      case LumoDayPeriod.night:
         return [const Color(0xFF1E3A8A), const Color(0xFF4338CA)];
     }
   }
@@ -143,15 +143,15 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
     }
   }
 
-  Widget _buildTopBar(CosmosWorld world, DayPeriod period, Season season) {
-    String periodName;
+  Widget _buildTopBar(CosmosWorld world, LumoDayPeriod period, Season season) {
+    String periodName = 'Tag';
     switch (period) {
-      case DayPeriod.morning: periodName = 'Morgen'; break;
-      case DayPeriod.noon: periodName = 'Mittag'; break;
-      case DayPeriod.evening: periodName = 'Abend'; break;
-      case DayPeriod.night: periodName = 'Nacht'; break;
+      case LumoDayPeriod.morning: periodName = 'Morgen'; break;
+      case LumoDayPeriod.noon: periodName = 'Mittag'; break;
+      case LumoDayPeriod.evening: periodName = 'Abend'; break;
+      case LumoDayPeriod.night: periodName = 'Nacht'; break;
     }
-    String seasonName;
+    String seasonName = 'Sommer';
     switch (season) {
       case Season.spring: seasonName = 'Fruehling'; break;
       case Season.summer: seasonName = 'Sommer'; break;

@@ -96,19 +96,19 @@ class CosmosItem {
 }
 
 /// Tageszeit basierend auf realer Uhr.
-enum DayPeriod {
+enum LumoDayPeriod {
   morning,   // 5-11
   noon,      // 11-17
   evening,   // 17-21
   night,     // 21-5
 }
 
-DayPeriod currentDayPeriod() {
+LumoDayPeriod currentDayPeriod() {
   final h = DateTime.now().hour;
-  if (h >= 5 && h < 11) return DayPeriod.morning;
-  if (h >= 11 && h < 17) return DayPeriod.noon;
-  if (h >= 17 && h < 21) return DayPeriod.evening;
-  return DayPeriod.night;
+  if (h >= 5 && h < 11) return LumoDayPeriod.morning;
+  if (h >= 11 && h < 17) return LumoDayPeriod.noon;
+  if (h >= 17 && h < 21) return LumoDayPeriod.evening;
+  return LumoDayPeriod.night;
 }
 
 /// Jahreszeit basierend auf realem Datum.
