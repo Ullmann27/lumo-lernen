@@ -465,12 +465,36 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
                       fontSize: 26,
                       fontWeight: FontWeight.w900,
                       color: _gradient[1])),
-              Text('Mit dem Finger - keine Eile!',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: _gradient[1].withOpacity(0.7))),
+              Row(children: [
+                Text('Mit dem Finger - keine Eile!',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: _gradient[1].withOpacity(0.7))),
+                if (_strokes.isNotEmpty) ...[
+                  const SizedBox(width: 8),
+                  // Phase 3: Live-Strich-Counter - das Kind sieht
+                  // sofort wie viele Striche es schon gemacht hat,
+                  // im Vergleich zum Template-Minimum.
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: _gradient[0].withOpacity(0.18),
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                    child: Text(
+                      '${_strokes.length} / ${_currentTemplate.minStrokes} Striche',
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 11,
+                          fontWeight: FontWeight.w900,
+                          color: _gradient[1]),
+                    ),
+                  ),
+                ],
+              ]),
             ],
           ),
         ),
