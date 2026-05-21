@@ -478,6 +478,12 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
 - `79d9da0` Lumo wechselt aktiv auf Mood `think` während das Kind
   im Schreibcoach zeichnet (Pan-Start) – visuelle Begleitung
   während des Schreibens, nicht erst beim Prüfen.
+- `dff86df` Adaptive Schwierigkeit im Single-Letter-Coach: 60% Chance
+  einen schwachen Buchstaben (accuracy < 0.7 nach ≥3 Versuchen) zu
+  ziehen, 40% rein zufällig. Direkte Wiederholungen werden vermieden.
+- `50da340` Adaptive Wort-Auswahl im Wortdiktat: Wörter mit weakLetters
+  werden bevorzugt gepickt (Mama/Oma vor Papa wenn 'O'/'M' schwach).
+  Async Load – wenn das Kind schon angefangen hat, kein jarring Reset.
 
 **Phase 4 – Lehrplan-Audit:**
 - Tabelle aller 20 Module gegen ÖsterreichVS-Lehrplan: **alle konform**,
