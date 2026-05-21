@@ -341,12 +341,12 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.edit_rounded, color: Colors.white, size: 24),
+                Icon(Icons.edit_rounded, color: Colors.white, size: 26),
                 SizedBox(width: 10),
                 Text('Jetzt schreiben üben',
                     style: TextStyle(
                         fontFamily: 'Nunito',
-                        fontSize: 18,
+                        fontSize: 22,
                         fontWeight: FontWeight.w900,
                         color: Colors.white)),
                 SizedBox(width: 10),
@@ -531,7 +531,7 @@ class _LetterPracticeFullScreenState
                   style: const TextStyle(
                       fontFamily: 'Nunito',
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 24,
                       fontWeight: FontWeight.w900)),
             ],
           ),
