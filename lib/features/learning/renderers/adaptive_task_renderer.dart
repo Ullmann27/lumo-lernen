@@ -464,7 +464,7 @@ class _AdaptiveVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (task.visualPayload.type) {
-      VisualType.dots => _DotsVisual(task: task),
+      VisualType.dots => _DotsVisual(task: task, solved: solved),
       VisualType.tenOnes => _TenOnesVisual(task: task),
       VisualType.numberLine => _NumberLineVisual(task: task, picked: picked, solved: solved),
       VisualType.shape => _ShapeVisual(task: task, picked: picked, solved: solved),
@@ -487,9 +487,10 @@ class _AdaptiveVisual extends StatelessWidget {
 }
 
 class _DotsVisual extends StatelessWidget {
-  const _DotsVisual({required this.task});
+  const _DotsVisual({required this.task, required this.solved});
 
   final TaskInstance task;
+  final bool solved;
 
   @override
   Widget build(BuildContext context) {
@@ -499,6 +500,8 @@ class _DotsVisual extends StatelessWidget {
     final left = _readInt(data['left']) ?? _readInt(data['start']) ?? (numbers.isNotEmpty ? numbers[0] : 0);
     final right = _readInt(data['right']) ?? _readInt(data['takeAway']) ?? (numbers.length > 1 ? numbers[1] : 0);
     final emoji = _emojiForPrompt(task.prompt);
+    final answer = int.tryParse('${task.correctAnswer}') ??
+        (operation == 'subtraction' ? left - right : left + right);
 
     if (operation == 'subtraction' && left > 10 && right > 0) {
       return SchoolbookTaskCard(
@@ -519,35 +522,174 @@ class _DotsVisual extends StatelessWidget {
       subtitle: operation == 'subtraction' ? 'Streiche weg und zähle, was bleibt.' : 'Lege beide Mengen zusammen.',
       ribbonLabel: operation == 'subtraction' ? '−' : '+',
       child: emoji != null
-          ? _ObjectMathVisual(left: left, right: right, operation: operation, emoji: emoji)
+          ? _ObjectMathVisual(
+              left: left,
+              right: right,
+              answer: answer,
+              operation: operation,
+              emoji: emoji,
+              solved: solved,
+            )
           : QuantityDotsVisual(left: left, operator: operation == 'subtraction' ? '-' : '+', right: right),
     );
   }
 }
 
 class _ObjectMathVisual extends StatelessWidget {
-  const _ObjectMathVisual({required this.left, required this.right, required this.operation, required this.emoji});
+  const _ObjectMathVisual({
+    required this.left,
+    required this.right,
+    required this.answer,
+    required this.operation,
+    required this.emoji,
+    this.solved = false,
+  });
 
   final int left;
   final int right;
+  final int answer;
   final String operation;
+  final String emoji;
+
+  /// Wenn true wird zusaetzlich der Loesungsweg gezeigt:
+  /// Addition: '... = N Aepfel' mit allen N Objekten zusammen.
+  /// Subtraktion: '... = N Aepfel' mit den verbleibenden Objekten.
+  final bool solved;
+
+  @override
+  Widget build(BuildContext context) {
+    final mainVisual = operation == 'subtraction'
+        ? _ObjectGroup(count: left, crossed: right, emoji: emoji)
+        : Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            alignment: WrapAlignment.center,
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              _ObjectGroup(count: left, crossed: 0, emoji: emoji),
+              Text('+', style: LumoTextStyles.heading1.copyWith(color: LumoColors.orange, fontWeight: FontWeight.w900)),
+              _ObjectGroup(count: right, crossed: 0, emoji: emoji),
+            ],
+          );
+
+    if (!solved) return mainVisual;
+
+    // Phase 3 Vollausbau: Loesungsweg sichtbar. Nach richtiger Antwort
+    // zeigt Lumo dem Kind '3 + 5 = 8 Aepfel' mit echten Objekten.
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        mainVisual,
+        const SizedBox(height: 14),
+        _SolutionPath(
+          operation: operation,
+          left: left,
+          right: right,
+          answer: answer,
+          emoji: emoji,
+        ),
+      ],
+    );
+  }
+}
+
+/// Lumos Loesungsweg-Karte: animiertes 'Aha-Bild' das nach einer
+/// richtigen Antwort erscheint. Heinz' Phase 3 Wunsch:
+/// 'nach Tap zeigt Lumo IMMER den Loesungsweg visuell'.
+class _SolutionPath extends StatelessWidget {
+  const _SolutionPath({
+    required this.operation,
+    required this.left,
+    required this.right,
+    required this.answer,
+    required this.emoji,
+  });
+
+  final String operation;
+  final int left;
+  final int right;
+  final int answer;
   final String emoji;
 
   @override
   Widget build(BuildContext context) {
-    if (operation == 'subtraction') {
-      return _ObjectGroup(count: left, crossed: right, emoji: emoji);
-    }
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      alignment: WrapAlignment.center,
-      spacing: 10,
-      runSpacing: 10,
-      children: [
-        _ObjectGroup(count: left, crossed: 0, emoji: emoji),
-        Text('+', style: LumoTextStyles.heading1.copyWith(color: LumoColors.orange, fontWeight: FontWeight.w900)),
-        _ObjectGroup(count: right, crossed: 0, emoji: emoji),
-      ],
+    final isSubtraction = operation == 'subtraction';
+    final headline = isSubtraction
+        ? '$left − $right = $answer'
+        : '$left + $right = $answer';
+    final hint = isSubtraction
+        ? 'Wenn du $right wegnimmst, bleiben $answer übrig.'
+        : 'Wenn du $left und $right zusammenlegst, hast du $answer.';
+
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0.0, end: 1.0),
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeOutCubic,
+      builder: (context, t, child) {
+        return Opacity(
+          opacity: t,
+          child: Transform.translate(
+            offset: Offset(0, (1 - t) * 10),
+            child: child,
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(14, 14, 14, 16),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFFECFDF5), Color(0xFFD1FAE5)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(LumoRadius.lg),
+          border: Border.all(color: const Color(0xFF34D399), width: 1.5),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF10B981).withOpacity(.18),
+              blurRadius: 16,
+              offset: const Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              const Text('🦊', style: TextStyle(fontSize: 22)),
+              const SizedBox(width: 8),
+              Text('Lumos Lösungsweg',
+                  style: LumoTextStyles.label.copyWith(
+                      color: const Color(0xFF047857), fontSize: 13)),
+            ]),
+            const SizedBox(height: 8),
+            Text(
+              headline,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 26,
+                fontWeight: FontWeight.w900,
+                color: Color(0xFF065F46),
+                letterSpacing: 1.0,
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Ergebnis als visuelle Menge - die N Aepfel zusammen.
+            _ObjectGroup(count: answer, crossed: 0, emoji: emoji),
+            const SizedBox(height: 10),
+            Text(
+              hint,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF065F46),
+                height: 1.35,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -925,7 +1067,7 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
 
     final numbers = _allInts(task.prompt);
     if (task.subject == LearningSubject.mathematik && numbers.length >= 2) {
-      return _DotsVisual(task: task);
+      return _DotsVisual(task: task, solved: false);
     }
 
     final unitFromParams = task.parameters['unit']?.toString() ?? '';
