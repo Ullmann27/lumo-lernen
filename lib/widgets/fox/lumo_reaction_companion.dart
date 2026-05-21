@@ -103,9 +103,15 @@ class _LumoReactionCompanionState extends State<LumoReactionCompanion>
     super.didChangeDependencies();
     if (!_precachedIdle) {
       _precachedIdle = true;
-      for (final p in LumoReactionCompanion._idleFrames) {
-        precacheImage(AssetImage(p), context);
-      }
+      // Heinz-Bug-Fix: precacheImage hier kann _dependents.isEmpty
+      // assertion ausloesen wenn der Screen schnell unmounted wird.
+      // In addPostFrameCallback verschieben + mounted-Check.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        for (final p in LumoReactionCompanion._idleFrames) {
+          precacheImage(AssetImage(p), context);
+        }
+      });
     }
     final disable = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
     if (disable) {
@@ -138,9 +144,15 @@ class _LumoReactionCompanionState extends State<LumoReactionCompanion>
         // Cheer-Frames erst beim ersten Wechsel laden.
         if (!_precachedCheer) {
           _precachedCheer = true;
-          for (final p in LumoReactionCompanion._cheerFrames) {
-            precacheImage(AssetImage(p), context);
-          }
+          // Heinz-Bug-Fix: precacheImage in addPostFrameCallback
+          // verschieben damit _dependents.isEmpty Assertion nicht
+          // crasht bei schneller Navigation.
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            for (final p in LumoReactionCompanion._cheerFrames) {
+              precacheImage(AssetImage(p), context);
+            }
+          });
         }
         if (!disable) {
           _bounceCtrl.forward(from: 0);
