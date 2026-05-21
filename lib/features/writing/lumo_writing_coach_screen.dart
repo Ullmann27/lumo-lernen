@@ -21,6 +21,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/writing_progress_repository.dart';
+import '../../widgets/lumo/lumo.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
@@ -477,40 +478,14 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   }
 
   Widget _buildPrompt() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
-      ),
-      child: Row(children: [
-        const Text('🦊', style: TextStyle(fontSize: 32)),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Schreib ein ${_currentLetter}!',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 22,
-                      fontWeight: FontWeight.w900,
-                      color: _gradient[1])),
-              Text('Mit dem Finger - keine Eile!',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: _gradient[1].withOpacity(0.7))),
-            ],
-          ),
-        ),
-        IconButton(
-          onPressed: _speakPrompt,
-          icon: Icon(Icons.volume_up_rounded, color: _gradient[0], size: 32),
-        ),
-      ]),
+    // Polish: zentrale LumoPromptCard statt ad-hoc Container.
+    // Konsistente Hierarchie mit WordCoach: Label oben (klein),
+    // Title unten (gross + Akzentfarbe). Speaker-Icon rechts.
+    return LumoPromptCard(
+      label: 'Mit dem Finger - keine Eile!',
+      title: 'Schreib ein $_currentLetter!',
+      accent: _gradient[1],
+      onSpeakerTap: _speakPrompt,
     );
   }
 
