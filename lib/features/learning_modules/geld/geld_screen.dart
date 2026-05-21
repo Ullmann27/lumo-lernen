@@ -401,27 +401,59 @@ class _GeldScreenState extends State<GeldScreen>
   }
 
   Widget _buildCoinWidget(_Muenze m, {double size = 60}) {
+    // 3D-Muenze: RadialGradient mit Highlight oben links und Schatten
+    // unten rechts. Innen ein leicht abgesetzter Ring fuer den geprägten
+    // Eindruck. Heinz Polish-Runde 2: vorher waren die Muenzen flach.
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: m.color,
-        border: Border.all(color: m.borderColor, width: 3),
+        gradient: RadialGradient(
+          center: const Alignment(-0.35, -0.4),
+          radius: 0.95,
+          colors: [
+            Color.lerp(m.color, Colors.white, 0.45)!,
+            m.color,
+            Color.lerp(m.color, m.borderColor, 0.55)!,
+          ],
+          stops: const [0.0, 0.55, 1.0],
+        ),
+        border: Border.all(color: m.borderColor, width: 2.4),
         boxShadow: [
           BoxShadow(
-              color: m.borderColor.withOpacity(0.4),
-              blurRadius: 6,
-              offset: const Offset(0, 3))
+            color: m.borderColor.withOpacity(0.45),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+            spreadRadius: -1,
+          ),
+          BoxShadow(
+            color: Colors.white.withOpacity(0.55),
+            blurRadius: 4,
+            offset: const Offset(-1, -1),
+            spreadRadius: -1,
+          ),
         ],
       ),
       alignment: Alignment.center,
-      child: Text(m.label,
-          style: TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: size * 0.28,
-              fontWeight: FontWeight.w900,
-              color: m.borderColor)),
+      child: Container(
+        width: size * 0.82,
+        height: size * 0.82,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+              color: m.borderColor.withOpacity(0.55), width: 1.2),
+        ),
+        child: Text(m.label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: size * 0.26,
+                fontWeight: FontWeight.w900,
+                color: m.borderColor,
+                height: 1.0)),
+      ),
     );
   }
 
