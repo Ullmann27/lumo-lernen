@@ -415,4 +415,118 @@ Diese Punkte müssen nach deiner Arbeit stimmen:
 - Build ist grün.
 - GitHub Actions erzeugt APK.
 
+---
+
+## 9. Session 2026-05-20 – Was Claude (Opus 4.7) gemacht hat
+
+Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
+
+### Gepushte Phasen (28 Commits auf `claude/continue-previous-chat-KtY7p`, PR #50)
+
+**Phase 5/6 Schreibcoach (frühere Session-Hälfte):**
+- `ca7241e` Phase 6: `WritingProgress` + `WritingProgressRepository` + Single-Letter-Coach-Integration
+- `462b5d3` Phase 5: Wortdiktat mit Buchstabenfeldern (`LumoWritingWordCoachScreen`, 12 Klasse-1-Wörter)
+- `673ea07` Phase 6b: `WritingReportCard` im Elternbereich
+- `f3b0ce5`, `35f9cf7`, `96b768e`, `75054ed`, `054a6cb`, `004aeb6`, `08d71b1` – sieben Codex P1/P2 Bugfixes:
+  Race-Conditions im Repo-Lock, Row-Overflow bei langen Diktatwörtern, prozess-weiter
+  Lock (Singleton-Pattern via static), Double-Tap-Guard in beiden Coaches, ehrliche
+  Sterne (`_firstTryLetters`), Final-Slot-Rebuild, Reset durch Lock.
+
+**Phase 1 – Cartoon-Fuchs raus:**
+- `c3bef26` Neues `LumoIdleFox`-Widget (8-Frame-Animation aus
+  `assets/lumo_jump/fox/idle`). Alte `lumo_fox.png/.jpg` + `lumo_main.png`
+  in 5+ Widgets ersetzt: `LumoFreeCompanion`, `LumoHeroHeader`,
+  `LumoEncourageCard`, `EmbeddedLumoFox`, `LumoOnboardingScreen`,
+  `LumoAkademieScreen`, `LumoTeacherScreen`.
+- `7c81f6e` Agent + Level-Map Marker → Idle-Fox.
+- `080216b` Lumo-Erklärt + Hint-Bubble → Idle-Fox.
+- `b24fcd8` Profil-Avatar → Idle-Fox.
+- Alle aktiven `Image.asset('lumo_fox.png/.jpg')` und `'lumo_main.png'`
+  weg. Nur Asset-Dateien bleiben (für späteren Cleanup).
+
+**Phase 2A – Aufgaben/Antworten größer (zentraler Renderer):**
+- `931fd2c` `AdaptiveTaskRenderer` dynamisch:
+    * Labels ≤3 Zeichen (Mathe-Zahlen): **38pt**, padding 24
+    * Labels ≤8 (kurze Wörter): **28pt**, padding 20
+    * Lange Sätze: 20pt, padding 16, max 2 lines
+  Frage-Prompt 30→34pt, Subject-Label 13→15pt, Helper 14→16pt.
+  Wirkt automatisch in allen 20 Modulen.
+
+**Phase 2B – Mathe-Bilder satter:**
+- `9b587c5` `_ObjectGroup`: 34x34 → 44x44, emoji 22→28pt, sanfter Orange-Schatten.
+
+**Phase 2D – Glow auf richtiger Antwort:**
+- `f99d40d` `_AnswerButton` Stateless→Stateful, eigener Glow-Controller.
+  Nach 2 Fehlern leuchtet die korrekte Option grün-pulsierend
+  (konsistent mit dem bestehenden `_LocalHelpBanner` ab demselben Schwellwert).
+
+**Phase 3 – Lumo reagiert live (Reaction-Companion):**
+- `ee45831` Neues `LumoReactionCompanion`-Widget mit 3 Stimmungen
+  (idle, cheer mit 8-Frame Cheer-Sprite, think mit Kopf-Tilt).
+  Eingebaut im `AdaptiveTaskRenderer`: bei richtiger Antwort → cheer,
+  bei falscher → think. Auto-Reset nach 2 s.
+- `47053f1` Companion auch in Single-Letter- und Word-Coach
+  – beide reagieren jetzt mit Lumo-Mood.
+- `f177fbf` Zwei Codex-P2-Fixes am Companion: Double-Mirror beim Idle-Fox,
+  Reduced-Motion-Regression bei `didUpdateWidget`.
+
+**Phase 4 – Lehrplan-Audit:**
+- Tabelle aller 20 Module gegen ÖsterreichVS-Lehrplan: **alle konform**,
+  Klasse-1-Module konservativ (bis 10 statt bis 20) als Anfänger-Stärke.
+  Keine Code-Änderung nötig.
+
+**Phase 5 – Screens premium-isiert:**
+- `caa3e8f` Home: `LumoFloatingActionDock` (Akademie+Tutorial) statt eigener FAB.
+- `5a235c1` Quizshow: Frage 34pt, **2×2 Grid** bei 4 Optionen, Antwortbuttons
+  84px min-height + 22pt, `showLumoRewardBurst` bei richtiger Antwort.
+- `93e3b02` Akademie: `LumoMagicBackground` als Untergrund, Hero-Titel 32pt.
+- `7d0975e` Spielewelt: `LumoIdleFox` + Titel 17→20pt + 19→22pt.
+- `a565309` Schreibcoach + Word-Diktat: Prompt-Header mit `LumoIdleFox`,
+  Texte größer.
+
+**Antwort-Regel:**
+- `e679dfd` CLAUDE.md erweitert: Entscheidungen immer mit `AskUserQuestion`
+  als klickbare Auswahl (Heinz tippt nicht gerne lange Antworten).
+
+### Status am Ende der Session
+
+- PR #50 offen, head = `47053f1`.
+- CI-Status: **pending** beim letzten Check – Build noch in Queue.
+  Heinz hatte erwähnt, dass alte Workflow-Runs gelegentlich die Queue
+  blockieren ("durch das Löschen wieder gegangen"). Falls CI sehr
+  lange hängt: alte Runs unter Actions löschen.
+- Working tree clean.
+- Alle Codex-Reviews bis `47053f1` adressiert (10 P1/P2 Hinweise gefixt).
+- Token-Limit-Bewusstsein: Claude hat vor 99% gestoppt wie von Heinz
+  angewiesen, weitere Refactors auf nächste Session verschoben.
+
+### Was noch offen ist (NICHT in dieser Session, für später)
+
+1. **Phase 3 Vollausbau** – aktive Live-Erkennung beim Buchstaben-Schreiben
+   (Strich-für-Strich Hint, Mathe-Lösungsweg-Visualisierung mit Bildern).
+   Heinz' eigentliches "Wow-Feature" – braucht eigene Session,
+   möglicherweise mit lokalem `flutter test`.
+2. **Phase 2C** – Module einzeln mit `LumoMagicBackground`/`LumoPremiumCard`
+   wrappen. Eigentlich überflüssig, weil `AdaptiveTaskRenderer` zentral wirkt
+   – aber für Module mit eigenen Screens (z.B. Lumo Jump) sinnvoll.
+3. **Phase 2E** – `SemanticLabels` für Screen-Reader-Support an Antwort-Buttons
+   und Reaction-Companion.
+4. **Asset-Cleanup** – alte `lumo_fox.png/.jpg` und `lumo_main.png` aus
+   `assets/` löschen, sobald CI mehrfach grün war. Spart APK-Größe.
+5. **Modul-Vergrößerung Lehrplan-konform** – Klasse 1 könnte optional
+   bis 20 erweitert werden (aktuell bis 10); Klasse 3 schriftliches Rechnen;
+   Klasse 4 Sachrechnen. Neue Module wären eigene Features.
+
+### Empfehlung für Heinz nach Rückkehr
+
+1. **Erst CI-Status auf PR #50 prüfen.** Falls grün → Squash-Merge nach `main`,
+   APK testen. Falls rot → ersten Buildfehler in Action-Logs lesen, mir
+   per Chat schicken, ich fixe.
+2. **Heinz' Auftrag ist nicht "fertig"** – Phase 3 Vollausbau steht noch aus.
+   Aber die App ist substantiell moderner: kein Cartoon-Fuchs mehr,
+   größere Aufgaben, lebendiger Lumo-Companion, premium Screens.
+3. Falls Heinz weitere Iteration will: kleine Häppchen wie heute (kein
+   Mega-Refactor), CLAUDE.md-konform.
+
+
 Wenn Build rot bleibt, keine Designarbeit fortsetzen, sondern Fehler fixen.
