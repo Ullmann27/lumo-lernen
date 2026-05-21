@@ -58,6 +58,7 @@ class LumoStory {
     required this.pages,
     required this.newWords,
     required this.gradeLevel,
+    this.keyPoints = const <String>[],
   });
 
   final String title;
@@ -69,6 +70,14 @@ class LumoStory {
   final List<String> newWords;
   /// Klassenstufe 1-4.
   final int gradeLevel;
+  /// Stichwoerter, die in einer guten Zusammenfassung der Geschichte
+  /// vorkommen sollten. Beispiel fuer "Einhorn im Mond-Palast":
+  /// ['Einhorn', 'Mond-Palast', 'Hilferuf', 'Freund', 'Raetsel',
+  ///  'magische Steine', 'Schatten', 'tapfer', 'jubeln', 'Hause'].
+  /// Wird vom Story-Reader fuer die Zusammenfassungs-Bewertung am Ende
+  /// genutzt: Kind erzaehlt nach, Lumo zaehlt, wie viele Stichworte
+  /// getroffen wurden -> Sterne-Bewertung.
+  final List<String> keyPoints;
 }
 
 /// Generator fuer personalisierte Lern-Geschichten.
@@ -128,6 +137,9 @@ class LumoStoryGenerator {
   List<String> get themeOptions => _themeOptions;
 
   /// Erstelle eine personalisierte 8-Seiten-Geschichte.
+  /// Jede Seite ist 4-6 Saetze lang (echter Geschichtsbuch-Stil),
+  /// nicht nur 1-2 wie vorher. Plus keyPoints fuer die Zusammenfassungs-
+  /// Bewertung am Ende.
   LumoStory generate({
     required String hero,
     required String location,
@@ -142,8 +154,10 @@ class LumoStoryGenerator {
 
     for (int i = 0; i < arcs.length; i++) {
       final arc = arcs[i];
-      // Alle 2 Seiten kommt eine Lernaufgabe (Seiten 2, 4, 6, 8).
-      final exercise = (i + 1) % 2 == 0
+      // Nur auf Seiten 2 und 5 eine Lernaufgabe - sonst stoert sie den
+      // Lese-Fluss. Vorher waren es 4 Aufgaben (jede 2. Seite), das
+      // hat den narrativen Bogen zerrissen.
+      final exercise = (i == 1 || i == 4)
           ? _generateExercise(gradeLevel, i)
           : null;
       pages.add(LumoStoryPage(
@@ -164,7 +178,26 @@ class LumoStoryGenerator {
       pages: pages,
       newWords: newWords,
       gradeLevel: gradeLevel,
+      keyPoints: _buildKeyPoints(hero, location, theme),
     );
+  }
+
+  /// Stichwoerter fuer die Zusammenfassungs-Bewertung am Ende der Story.
+  /// Kind erzaehlt nach, Lumo zaehlt, wie viele dieser Stichworte
+  /// (oder Synonyme) vorkommen.
+  List<String> _buildKeyPoints(String hero, String location, String theme) {
+    return <String>[
+      hero,
+      location,
+      'Hilfe',         // Seite 2: Hilferuf
+      'Freund',        // Seite 3
+      'Raetsel',       // Seite 4
+      'Steine',        // Seite 5: magische Steine
+      'Schatten',      // Seite 6
+      'tapfer',        // Seite 6
+      'jubeln',        // Seite 7
+      'Hause',         // Seite 8
+    ];
   }
 
   /// Generiert eine zufaellige Story (alles random).
@@ -183,59 +216,140 @@ class LumoStoryGenerator {
 
   List<_StoryArc> _generateArc(
       String hero, String location, String theme, int gradeLevel) {
-    // Grammar-Helper: aus dem 'theme' Wort einen sauberen Satz bauen.
-    // Vorher: "wollte ein Ferien erleben" - grammatikalisch falsch.
-    // Jetzt: "wollte $themeStart" mit themenspezifischem Auftakt.
     final themeIntro = _themeIntro(theme);
-    final art = _heroArticle(hero); // kleingeschrieben (mitten im Satz)
-    final Art = art[0].toUpperCase() + art.substring(1); // Satzanfang
+    final art = _heroArticle(hero);
+    final Art = art[0].toUpperCase() + art.substring(1);
     final pron = _heroPronoun(hero);
+    final Pron = pron[0].toUpperCase() + pron.substring(1);
+    final poss = _heroPossessive(hero); // sein/ihr
+    final atmo = _locationAtmosphere(location); // 1-Satz-Stimmung des Ortes
     return [
-      // Seite 1: Setup
+      // Seite 1: Setup - Helden-Welt vorstellen
       _StoryArc(
-        text: 'Es war einmal $art $hero. $Art $hero lebte im $location und $themeIntro.',
+        text:
+          'Es war einmal $art $hero, $art mitten im $location lebte. $atmo. '
+          'Jeden Morgen wachte $art $hero auf und freute sich auf den neuen Tag. '
+          'Doch heute war alles ein bisschen anders: $art $hero $themeIntro. '
+          '$Pron wusste noch nicht, was an diesem Tag alles passieren würde!',
         imagePrompt: 'cute $hero in $location, story book style',
         newWord: hero.toLowerCase(),
       ),
-      // Seite 2: Aufgabe
+      // Seite 2: Auslöser - Hilferuf
       _StoryArc(
-        text: 'Eines Tages hörte $art $hero ein Rufen. "Hilfe, hilfe!" rief jemand aus der Ferne. Schnell lief $pron los!',
+        text:
+          'Plötzlich, mitten am Vormittag, hörte $art $hero ein leises Rufen. '
+          '"Hilfe, bitte hilf mir!", rief eine Stimme aus der Ferne. '
+          '$Art $hero spitzte $poss Ohren und lauschte ganz genau. '
+          'Da war es wieder! Ohne lange zu zögern, lief $pron in die Richtung, '
+          'aus der das Rufen kam. Was würde $pron wohl finden?',
         imagePrompt: 'cute $hero running in $location',
       ),
-      // Seite 3: Begegnung
+      // Seite 3: Begegnung - neuer Freund
       _StoryArc(
-        text: 'Im $location traf $art $hero einen neuen Freund. Sie wurden ein tolles Team!',
+        text:
+          'Hinter einem großen Baum saß ein kleines Wesen und weinte. '
+          '"Ich habe mich verlaufen", schluchzte es. '
+          '$Art $hero setzte sich daneben und sagte ganz ruhig: '
+          '"Keine Sorge, ich helfe dir nach Hause." '
+          'Sie schauten sich an, lächelten - und ab jetzt waren sie Freunde fürs Leben.',
         imagePrompt: 'cute $hero with cute friend in $location',
         newWord: 'Freund',
       ),
-      // Seite 4: Erste Herausforderung
+      // Seite 4: Herausforderung - Rätsel
       _StoryArc(
-        text: 'Zusammen mussten sie ein Rätsel lösen. Das war gar nicht so leicht!',
+        text:
+          'Auf dem Weg nach Hause kamen die beiden zu einem alten Tor. '
+          'Auf dem Tor stand: "Nur wer das Rätsel löst, darf hindurch." '
+          'Sie überlegten und überlegten. Schließlich hatte $art $hero eine Idee: '
+          '"Wenn wir es zusammen versuchen, schaffen wir das bestimmt!" '
+          'Und siehe da - das Tor schwang langsam auf.',
         imagePrompt: 'cute $hero solving puzzle in $location',
         newWord: 'Rätsel',
       ),
-      // Seite 5: Mitte
+      // Seite 5: Mitte - magische Steine
       _StoryArc(
-        text: 'Sie sammelten magische Steine. Mit jedem Stein wurde $art $hero stärker und mutiger.',
+        text:
+          'Auf der anderen Seite des Tors leuchteten überall kleine Steine im Gras. '
+          'Es waren magische Steine, die nur funkelten, wenn jemand etwas Gutes tat. '
+          '$Art $hero und $poss Freund sammelten gemeinsam viele bunte Steine. '
+          'Mit jedem Stein fühlte $pron sich stärker, mutiger und glücklicher. '
+          'Eine warme Sonne schien auf die beiden herab.',
         imagePrompt: 'cute $hero with magic stones in $location',
       ),
-      // Seite 6: Wendepunkt
+      // Seite 6: Wendepunkt - Schatten
       _StoryArc(
-        text: 'Plötzlich tauchte ein großer Schatten auf. $Art $hero atmete tief ein und blieb tapfer!',
+        text:
+          'Da, ganz unerwartet, wurde es plötzlich dunkel um sie herum. '
+          'Ein großer Schatten erhob sich vor ihnen - er war riesig und sah furchteinflößend aus! '
+          '$poss Freund zitterte. Doch $art $hero atmete tief ein und ging einen Schritt nach vorne. '
+          '"Ich habe keine Angst", sagte $pron mit fester Stimme. '
+          'Und wisst ihr was? Im selben Moment wurde der Schatten kleiner und kleiner.',
         imagePrompt: 'cute brave $hero facing shadow in $location',
         newWord: 'tapfer',
       ),
-      // Seite 7: Klimax
+      // Seite 7: Klimax - Sieg
       _StoryArc(
-        text: 'Mit dem Mut von ${gradeLevel * 10} Löwen schaffte $art $hero das große Abenteuer! Alle jubelten!',
+        text:
+          'Als der Schatten ganz verschwunden war, blieben nur leuchtende Lichter zurück. '
+          '$Art $hero und $poss Freund hatten es geschafft - sie waren tapfer geblieben! '
+          'Aus allen Ecken des $location kamen Tiere und Wesen herbei und jubelten ihnen zu. '
+          'Sie klatschten in die Hände und riefen laut: "Was für ein Mut!" '
+          '$Art $hero strahlte über das ganze Gesicht. Heute war wirklich ein besonderer Tag.',
         imagePrompt: 'cute happy $hero celebrating in $location',
       ),
-      // Seite 8: Ende
+      // Seite 8: Ende - Heimkehr
       _StoryArc(
-        text: 'Am Abend kehrte $art $hero nach Hause zurück. Was für ein Tag voller $theme! Gute Nacht!',
+        text:
+          'Als die Sonne langsam unterging, machte $art $hero sich auf den Heimweg. '
+          '$poss neuer Freund winkte ihm zum Abschied zu. '
+          '"Bis morgen!", rief $pron noch und versprach, bald wieder zu kommen. '
+          'Zu Hause kuschelte $art $hero sich glücklich ein und dachte: '
+          '"Was für ein Tag voller $theme!" Und dann schlief $pron tief und fest ein. Gute Nacht!',
         imagePrompt: 'cute sleeping $hero at home, peaceful story book ending',
       ),
     ];
+  }
+
+  /// Possessivpronomen (sein/ihr) passend zum Helden.
+  String _heroPossessive(String hero) {
+    final art = _heroArticle(hero);
+    if (art == 'die') return 'ihre';
+    return 'seine';
+  }
+
+  /// 1-Satz-Atmosphaere fuer den Ort. Macht die Geschichte plastischer.
+  String _locationAtmosphere(String location) {
+    const map = <String, String>{
+      'Zauberwald':         'Die Baeume flüsterten leise und die Blätter glitzerten im Sonnenlicht',
+      'Schloss':            'Die hohen Türme reichten fast bis zu den Wolken',
+      'Weltraum':           'Tausende Sterne funkelten überall in der weiten Dunkelheit',
+      'Unterwasser-Stadt':  'Bunte Fische schwammen zwischen Korallen und Algen umher',
+      'Dschungel':          'Lianen hingen von den Bäumen und Affen riefen aus der Ferne',
+      'Berg':               'Der Wind pfiff um die schneebedeckten Gipfel',
+      'Wueste':             'Goldener Sand erstreckte sich bis zum Horizont',
+      'Eis-Welt':           'Alles glitzerte wie Diamanten im kalten Sonnenlicht',
+      'Bauernhof':          'Hähne krähten und Kühe muhten auf den grünen Wiesen',
+      'Drachen-Hoehle':     'Funken sprühten und es roch nach warmem Rauch',
+      'Piratenschiff':      'Die Segel knatterten im Wind und das Meer rauschte',
+      'Magisches Dorf':     'Aus jedem Schornstein stieg bunter Zauber-Rauch auf',
+      'Wolken-Reich':       'Weiche Wolken trugen jeden Schritt federleicht',
+      'Vulkan':             'Heiße Lava blubberte tief unten in der Erde',
+      'Schatzinsel':        'Palmen wiegten sich sanft und Möwen kreisten am Himmel',
+      'Schule':             'Glocken läuteten und Kinder lachten auf dem Schulhof',
+      'Spielplatz':         'Die Schaukeln knarrten und überall hörte man Kinderlachen',
+      'Garten':             'Blumen wuchsen in allen Farben und Bienen summten umher',
+      'Park':               'Vögel zwitscherten und der Wind raschelte in den Blättern',
+      'Stadt am See':       'Das Wasser glitzerte und kleine Boote schaukelten am Steg',
+      'Wiese':              'Schmetterlinge tanzten und die Gräser wiegten sich im Wind',
+      'Bibliothek':         'Tausende Bücher standen in hohen Regalen, jedes voller Geheimnisse',
+      'Bauernhof am Bach':  'Das Wasser plätscherte fröhlich vorbei und Frösche quakten',
+      'Regenbogen-Insel':   'Über der Insel spannte sich ein riesiger bunter Regenbogen',
+      'Sterne-Stadt':       'Alle Häuser leuchteten wie kleine Sterne in der Nacht',
+      'Mond-Palast':        'Die Wände waren aus glitzerndem Silber und überall funkelten Mondsteine',
+      'Suessigkeiten-Land': 'Die Bäume hatten Lutscher als Blätter und es duftete nach Schokolade',
+      'Musik-Wald':         'Mit jedem Schritt klang eine schöne Melodie zwischen den Bäumen',
+    };
+    return map[location] ?? 'Es war ein wunderschöner Ort voller Magie';
   }
 
   /// Artikel kleingeschrieben (fuer mitten im Satz).

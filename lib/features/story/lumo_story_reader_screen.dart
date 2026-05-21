@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_image_generator.dart';
+import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_story_generator.dart';
 import '../../core/lumo_story_library.dart';
 import '../../core/lumo_voice.dart';
@@ -40,6 +41,15 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   bool _exerciseDone = false;
   String? _selectedAnswer;
   late final PageController _pageCtrl;
+  // Zusammenfassungs-Phase nach der letzten Seite (Heinz' Wunsch:
+  // "Am Schluss wird gefragt um was es geht und das Kind kann erklaeren,
+  //  dann bewertet Lumo die Zusammenfassung").
+  bool _inSummaryMode = false;
+  final TextEditingController _summaryCtrl = TextEditingController();
+  final LumoSpeechListener _speech = LumoSpeechListener();
+  bool _summaryEvaluated = false;
+  int _summaryHits = 0;
+  int _summaryStars = 0;
 
   @override
   void initState() {
@@ -51,6 +61,9 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   @override
   void dispose() {
     _pageCtrl.dispose();
+    _summaryCtrl.dispose();
+    _speech.cancel();
+    _speech.dispose();
     super.dispose();
   }
 
@@ -62,7 +75,17 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
 
   void _nextPage() {
     if (_pageIdx + 1 >= widget.story.pages.length) {
-      _showFinish();
+      // Letzte Seite fertig: wenn die Geschichte keyPoints hat, starten wir
+      // die Zusammenfassungs-Phase. Sonst direkt zu Finish.
+      if (widget.story.keyPoints.isNotEmpty) {
+        setState(() => _inSummaryMode = true);
+        try {
+          LumoVoice.instance.speak(
+              'Schön! Erzähl mir, worum es in der Geschichte ging. Was ist alles passiert?');
+        } catch (_) {}
+      } else {
+        _showFinish();
+      }
       return;
     }
     setState(() {
@@ -74,6 +97,80 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeOutCubic);
     _speak();
+  }
+
+  void _startListeningSummary() async {
+    try {
+      _summaryCtrl.text = '';
+      await _speech.startListening(
+        onResult: (text) {
+          if (!mounted) return;
+          setState(() => _summaryCtrl.text = text);
+        },
+        onFinalResult: (text) {
+          if (!mounted) return;
+          setState(() => _summaryCtrl.text = text);
+        },
+      );
+    } catch (_) {}
+  }
+
+  void _stopListeningSummary() async {
+    try {
+      await _speech.stopListening();
+    } catch (_) {}
+    if (mounted) setState(() {});
+  }
+
+  /// Bewertung: zaehlt, wie viele keyPoints (oder einfache Wort-Stamm-Treffer)
+  /// im Kind-Text vorkommen. Jeder Treffer = 1 Punkt. >=70% -> 5 Sterne,
+  /// >=50% -> 4, >=30% -> 3, sonst 2 (Kind hat es zumindest versucht).
+  void _evaluateSummary() {
+    final raw = _summaryCtrl.text.trim();
+    final lower = raw.toLowerCase();
+    if (lower.isEmpty) {
+      try {
+        LumoVoice.instance.speak('Erzaehl mir doch ein paar Sätze, ich hör dir gerne zu!');
+      } catch (_) {}
+      return;
+    }
+    var hits = 0;
+    for (final kp in widget.story.keyPoints) {
+      // Stamm-Matching: erste 4 Buchstaben des keypoints in lower suchen.
+      final stem = kp.toLowerCase().length >= 4
+          ? kp.toLowerCase().substring(0, 4)
+          : kp.toLowerCase();
+      if (lower.contains(stem)) hits++;
+    }
+    final total = widget.story.keyPoints.length.clamp(1, 99);
+    final ratio = hits / total;
+    final stars = ratio >= 0.7
+        ? 5
+        : ratio >= 0.5
+            ? 4
+            : ratio >= 0.3
+                ? 3
+                : 2;
+    setState(() {
+      _summaryEvaluated = true;
+      _summaryHits = hits;
+      _summaryStars = stars;
+    });
+    widget.appState.addStars(stars);
+    widget.appState.addXp(stars * 10);
+    final msg = stars >= 5
+        ? 'Super! Du hast die Geschichte fast komplett erzaehlt! $stars Sterne fuer dich!'
+        : stars >= 4
+            ? 'Sehr gut! Du hast viele wichtige Punkte erwischt. $stars Sterne!'
+            : stars >= 3
+                ? 'Schon gut! Lies die Geschichte nochmal, dann faellt dir mehr ein. $stars Sterne!'
+                : 'Du hast es probiert - das ist mutig! Versuch nochmal, mehr Details zu erzaehlen.';
+    try {
+      LumoVoice.instance.speak(msg);
+    } catch (_) {}
+    if (stars >= 4) {
+      showLumoRewardBurst(context, stars: stars, xp: stars * 10);
+    }
   }
 
   void _onAnswer(String answer, StoryExercise ex) async {
@@ -183,8 +280,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           child: Column(
             children: [
               _buildTopBar(),
-              Expanded(child: _buildPage(page)),
-              _buildBottomNav(page),
+              Expanded(
+                child: _inSummaryMode
+                    ? _buildSummaryPage()
+                    : _buildPage(page),
+              ),
+              _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
             ],
           ),
         ),
@@ -445,7 +546,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               ? Icons.celebration_rounded
               : Icons.arrow_forward_rounded),
           label: Text(_pageIdx + 1 >= widget.story.pages.length
-              ? 'Geschichte beenden!'
+              ? 'Erzähl mir die Geschichte!'
               : 'Weiterlesen'),
           style: ElevatedButton.styleFrom(
             backgroundColor: LumoTokens.colors.lumoOrange,
@@ -455,6 +556,203 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 borderRadius: LumoTokens.brLarge),
           ),
         ),
+      ),
+    );
+  }
+
+  // ──────────────────────────────────────────────────────────────────
+  // ZUSAMMENFASSUNGS-PHASE
+  // ──────────────────────────────────────────────────────────────────
+
+  Widget _buildSummaryPage() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(LumoTokens.space16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Aufgaben-Karte mit Frage
+          LumoPremiumCard(
+            gradient: LinearGradient(
+              colors: [LumoTokens.colors.gold, LumoTokens.colors.goldDeep],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(children: const [
+                  Icon(Icons.auto_stories_rounded, color: Colors.white),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      'Worum ging es in der Geschichte?',
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white),
+                    ),
+                  ),
+                ]),
+                const SizedBox(height: 8),
+                const Text(
+                  'Erzähl Lumo mit deinen eigenen Worten, was passiert ist. '
+                  'Du kannst sprechen oder tippen.',
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      height: 1.4),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: LumoTokens.space12),
+          // Eingabefeld
+          LumoPremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                TextField(
+                  controller: _summaryCtrl,
+                  enabled: !_summaryEvaluated,
+                  maxLines: 5,
+                  minLines: 3,
+                  decoration: const InputDecoration(
+                    hintText: 'Tipp hier deine Zusammenfassung ein oder drück "Sprechen"...',
+                    border: OutlineInputBorder(),
+                  ),
+                  style: const TextStyle(
+                      fontFamily: 'Nunito', fontSize: 16, height: 1.4),
+                ),
+                const SizedBox(height: 10),
+                AnimatedBuilder(
+                  animation: _speech,
+                  builder: (_, __) {
+                    final listening = _speech.listening;
+                    return ElevatedButton.icon(
+                      onPressed: _summaryEvaluated
+                          ? null
+                          : (listening
+                              ? _stopListeningSummary
+                              : _startListeningSummary),
+                      icon: Icon(
+                          listening ? Icons.stop_rounded : Icons.mic_rounded),
+                      label: Text(listening ? 'Stopp' : 'Sprechen'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: listening
+                            ? LumoTokens.colors.errorSoft
+                            : LumoTokens.colors.lumoLila,
+                        foregroundColor: Colors.white,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          if (_summaryEvaluated) ...[
+            const SizedBox(height: LumoTokens.space12),
+            _buildSummaryFeedback(),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSummaryFeedback() {
+    final total = widget.story.keyPoints.length;
+    return LumoPremiumCard(
+      gradient: LinearGradient(
+        colors: _summaryStars >= 4
+            ? [LumoTokens.colors.success, LumoTokens.colors.successDeep]
+            : [LumoTokens.colors.lumoOrange, LumoTokens.colors.lumoOrangeDeep],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              5,
+              (i) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2),
+                child: Icon(
+                  Icons.star_rounded,
+                  color: i < _summaryStars
+                      ? Colors.white
+                      : Colors.white.withOpacity(0.3),
+                  size: 36,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Du hast $_summaryHits von $total wichtigen Punkten erzählt!',
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 17,
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            _summaryStars >= 5
+                ? 'Spitze! Du hast die Geschichte fast komplett erzählt.'
+                : _summaryStars >= 4
+                    ? 'Sehr gut! Du hast viele wichtige Details.'
+                    : _summaryStars >= 3
+                        ? 'Schon gut! Versuch beim nächsten Mal noch mehr Details.'
+                        : 'Versuch nochmal, dir mehr aus der Geschichte zu merken.',
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+              height: 1.35,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSummaryBottomNav() {
+    return Padding(
+      padding: const EdgeInsets.all(LumoTokens.space16),
+      child: SizedBox(
+        width: double.infinity,
+        height: 56,
+        child: _summaryEvaluated
+            ? ElevatedButton.icon(
+                onPressed: _showFinish,
+                icon: const Icon(Icons.celebration_rounded),
+                label: const Text('Fertig!'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: LumoTokens.colors.lumoOrange,
+                  foregroundColor: Colors.white,
+                  textStyle:
+                      LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: LumoTokens.brLarge),
+                ),
+              )
+            : ElevatedButton.icon(
+                onPressed: _evaluateSummary,
+                icon: const Icon(Icons.check_circle_rounded),
+                label: const Text('Bewertung holen'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: LumoTokens.colors.lumoLila,
+                  foregroundColor: Colors.white,
+                  textStyle:
+                      LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: LumoTokens.brLarge),
+                ),
+              ),
       ),
     );
   }
