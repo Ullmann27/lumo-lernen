@@ -7,21 +7,57 @@
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
+import '../../core/lumo_companion_state.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
+import '../../widgets/premium/lumo_premium_card.dart';
 import '../cosmos/lumo_cosmos_screen.dart';
 import '../live/lumo_live_pro_screen.dart';
 import '../story/lumo_story_library_screen.dart';
-import '../story/lumo_story_setup_screen.dart';
 
-class LumoMagicHubScreen extends StatelessWidget {
+class LumoMagicHubScreen extends StatefulWidget {
   const LumoMagicHubScreen({super.key, required this.appState});
   final LumoAppState appState;
 
   @override
+  State<LumoMagicHubScreen> createState() => _LumoMagicHubScreenState();
+}
+
+class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
+  String _greeting = 'Hallo!';
+  LumoMirrorMood _mood = LumoMirrorMood.happy;
+  int _streakDays = 0;
+  int _correctToday = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCompanion();
+  }
+
+  Future<void> _loadCompanion() async {
+    final state = LumoCompanionState.instance;
+    // Set child name from app state if not yet set
+    if (state.childName == 'Freund' &&
+        widget.appState.state.childName.isNotEmpty) {
+      await state.setChildName(widget.appState.state.childName);
+    }
+    await state.load();
+    if (mounted) {
+      setState(() {
+        _greeting = state.smartGreeting();
+        _mood = state.smartMood();
+        _streakDays = state.streakDays;
+        _correctToday = state.correctToday;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final appState = widget.appState;
     return Scaffold(
       backgroundColor: LumoTokens.colors.creme,
       body: LumoMagicBackground(
@@ -46,20 +82,56 @@ class LumoMagicHubScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: LumoTokens.space8),
-              // Featured Lumo-Mirror Showcase
+              // Featured Lumo-Mirror Showcase mit smartem Mood
               Center(
                 child: LumoMirror(
-                  mood: LumoMirrorMood.happy,
+                  mood: _mood,
                   size: 140,
                 ),
               ),
-              const SizedBox(height: LumoTokens.space8),
+              const SizedBox(height: LumoTokens.space12),
+              // Smarte Begruessung
               Center(
-                child: Text(
-                    'Vier Wege wie ich dir helfe!',
-                    style: LumoTokens.typo.headlineSmall.copyWith(
-                        color: LumoTokens.colors.textDark)),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(_greeting,
+                      style: LumoTokens.typo.headlineSmall.copyWith(
+                          color: LumoTokens.colors.textDark),
+                      textAlign: TextAlign.center),
+                ),
               ),
+              // Streak Pill
+              if (_streakDays >= 2) ...[
+                const SizedBox(height: LumoTokens.space12),
+                Center(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 8),
+                    decoration: BoxDecoration(
+                      gradient: LumoTokens.colors.heroGold,
+                      borderRadius: LumoTokens.brPill,
+                      boxShadow: [
+                        BoxShadow(
+                          color: LumoTokens.colors.gold.withOpacity(0.4),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.local_fire_department_rounded,
+                            color: Colors.white, size: 22),
+                        const SizedBox(width: 6),
+                        Text('$_streakDays Tage Streak!',
+                            style: LumoTokens.typo.titleMedium.copyWith(
+                                color: Colors.white)),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
               const SizedBox(height: LumoTokens.space24),
 
               // 1. LUMO STORY
@@ -69,7 +141,7 @@ class LumoMagicHubScreen extends StatelessWidget {
                 icon: Icons.auto_stories_rounded,
                 gradient: LumoTokens.colors.heroLila,
                 glowColor: LumoTokens.colors.lumoLila,
-                badge: 'NEU',
+                badge: 'PRO',
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -83,13 +155,13 @@ class LumoMagicHubScreen extends StatelessWidget {
               // 2. LUMO COSMOS
               LumoHeroCard(
                 title: 'Meine Welt',
-                subtitle: 'Lerne und sieh deine Welt wachsen!',
+                subtitle: 'Tag/Nacht + 4 Jahreszeiten + dein Garten waechst',
                 icon: Icons.eco_rounded,
                 gradient: const LinearGradient(
                   colors: [Color(0xFF10B981), Color(0xFF059669)],
                 ),
                 glowColor: const Color(0xFF10B981),
-                badge: 'NEU',
+                badge: 'PRO',
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -119,11 +191,11 @@ class LumoMagicHubScreen extends StatelessWidget {
               // 4. LUMO MIRROR (Showcase)
               LumoHeroCard(
                 title: 'Lumo Mirror',
-                subtitle: 'Schau mit mir wie ich reagiere!',
+                subtitle: '8 Emotionen + reagiert auf dich',
                 icon: Icons.face_rounded,
                 gradient: LumoTokens.colors.heroGold,
                 glowColor: LumoTokens.colors.gold,
-                badge: 'BETA',
+                badge: 'PRO',
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -131,6 +203,30 @@ class LumoMagicHubScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
+              // Heutige Stats
+              if (_correctToday > 0) ...[
+                const SizedBox(height: LumoTokens.space20),
+                LumoPremiumCard(
+                  child: Row(children: [
+                    const Icon(Icons.today_rounded,
+                        color: Color(0xFF10B981), size: 32),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Heute schon $_correctToday richtig!',
+                              style: LumoTokens.typo.titleLarge),
+                          Text('Weiter so!',
+                              style: LumoTokens.typo.bodyMedium.copyWith(
+                                  color: LumoTokens.colors.textMuted)),
+                        ],
+                      ),
+                    ),
+                  ]),
+                ),
+              ],
             ],
           ),
         ),

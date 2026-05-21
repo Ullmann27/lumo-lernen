@@ -14,6 +14,7 @@
 
 import 'dart:math' as math;
 
+import '../../../core/lumo_companion_state.dart';
 import '../../../core/lumo_cosmos.dart';
 
 import 'package:flutter/material.dart';
@@ -160,6 +161,7 @@ class _TiereScreenState extends State<TiereScreen>
         isMath: false,
         isPerfect: false,
       );
+      LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
         LumoVoice.instance
             .speak('Richtig! Das ist ein ${_correctTier.name}!');

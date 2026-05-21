@@ -8,6 +8,7 @@
 
 import 'dart:math' as math;
 
+import '../../../core/lumo_companion_state.dart';
 import '../../../core/lumo_cosmos.dart';
 
 import 'package:flutter/material.dart';
@@ -120,6 +121,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
         isMath: true,
         isPerfect: false,
       );
+      LumoCompanionState.instance.recordCorrect(topic: 'math');
       final phrase = LumoPhrases.correct();
       try {
         LumoVoice.instance.speak(phrase);

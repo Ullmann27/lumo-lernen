@@ -14,6 +14,7 @@
 
 import 'dart:math' as math;
 
+import '../../../core/lumo_companion_state.dart';
 import '../../../core/lumo_cosmos.dart';
 
 import 'package:flutter/material.dart';
@@ -151,6 +152,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       isMath: true,
       isPerfect: false,
     );
+      LumoCompanionState.instance.recordCorrect(topic: 'math');
     try {
       LumoVoice.instance.speak(LumoPhrases.correct());
     } catch (_) {}
