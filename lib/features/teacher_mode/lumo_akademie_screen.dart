@@ -676,31 +676,40 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                 ]
               : null,
         ),
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text('${g.grade}.',
                 style: TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 26,
+                    fontSize: 22,
+                    height: 1.0,
                     fontWeight: FontWeight.w900,
                     color: isSelected ? Colors.white : g.color)),
+            const SizedBox(height: 2),
             Text(g.title,
                 style: TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 13,
+                    fontSize: 12,
+                    height: 1.1,
                     fontWeight: FontWeight.w800,
-                    color: isSelected ? Colors.white : const Color(0xFF374151))),
+                    color: isSelected ? Colors.white : const Color(0xFF374151)),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis),
             Text(g.ageRange,
                 style: TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 11,
+                    fontSize: 10,
+                    height: 1.1,
                     fontWeight: FontWeight.w600,
                     color: isSelected
                         ? Colors.white.withOpacity(0.85)
-                        : const Color(0xFF6B7280))),
+                        : const Color(0xFF6B7280)),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis),
           ],
         ),
       ),
