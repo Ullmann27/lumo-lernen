@@ -754,9 +754,13 @@ class _LearningContentState extends State<LearningContent> {
   Widget build(BuildContext context) {
     final st = widget.appState.state;
     final title = st.subject == 'Alle' ? 'Gemischte Übung' : st.subject;
+    // prettifyUnit setzt Umlaute in Code-stabilen Unit-Namen wieder ein
+    // (z.B. 'Rechenhaeuser' -> 'Rechenhäuser') ohne die internen Keys
+    // zu aendern, die als Lookup in template-Maps weiter funktionieren.
+    final unitDisplay = st.unit == 'Alle' ? 'alle Themen' : Curriculum.prettifyUnit(st.unit);
     final chip = st.subject == 'Alle'
         ? 'Klasse ${st.grade} • adaptiv'
-        : '${st.subject} • ${st.unit == 'Alle' ? 'alle Themen' : st.unit}';
+        : '${st.subject} • $unitDisplay';
 
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 560;

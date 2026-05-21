@@ -115,7 +115,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
         text = 'Welche Zahl kommt nach $_zahl1?';
         break;
       case _ZahlAufgabenTyp.groesser:
-        text = 'Welche Zahl ist groesser: $_zahl1 oder $_zahl2?';
+        text = 'Welche Zahl ist größer: $_zahl1 oder $_zahl2?';
         break;
     }
     try {

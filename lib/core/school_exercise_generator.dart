@@ -78,6 +78,32 @@ class Curriculum {
       'Diagramme lesen',
     ],
   };
+
+  /// Wandelt einen Unit-Key (mit "ue", "ae", "oe", "ss" als Code-stabile
+  /// Schreibweise) in die hubsche Display-Form mit echten Umlauten um.
+  /// Die internen Keys bleiben erhalten, sodass alle vorhandenen
+  /// Lookup-Tables (math_task_templates, german_task_templates etc.)
+  /// weiterhin matchen.
+  ///
+  /// Beispiel: "Rechenhaeuser" -> "Rechenhäuser", "Gross und klein"
+  /// -> "Groß und klein", "Begruessung" -> "Begrüßung".
+  static String prettifyUnit(String key) {
+    const map = <String, String>{
+      'Minus ueber 10': 'Minus über 10',
+      'Rechenhaeuser': 'Rechenhäuser',
+      'Haeufige Woerter': 'Häufige Wörter',
+      'Gross und klein': 'Groß und klein',
+      'Schwunguebung': 'Schwungübung',
+      'Begruessung': 'Begrüßung',
+      'Namenwoerter': 'Namenwörter',
+      'Tunwoerter': 'Tunwörter',
+      'Wiewoerter': 'Wiewörter',
+      'Woerter lesen': 'Wörter lesen',
+      'Namenswoerter': 'Namenswörter',
+      'Hauptwoerter': 'Hauptwörter',
+    };
+    return map[key] ?? key;
+  }
 }
 
 class ExerciseFactory {

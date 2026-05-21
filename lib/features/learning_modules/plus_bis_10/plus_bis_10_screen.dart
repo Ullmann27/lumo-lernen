@@ -218,7 +218,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   void _showFinish() {
     final percent = _correctCount / _totalTasks;
     final stars = (percent * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars * 2);
+    // FIX: vorher stars*2 - das war Star-Inflation: 30 richtige Antworten
+    // gaben 30 Sterne wahrend des Spiels + 10 Bonus = 40 Sterne. Die
+    // anderen Module geben am Ende nur `stars` (1-5). Jetzt konsistent.
+    widget.appState.addStars(stars);
     widget.appState.addXp(_correctCount * 10);
 
     showDialog<void>(
