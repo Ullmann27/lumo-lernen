@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../core/user_profile.dart';
+import 'widgets/lumo_step_indicator.dart';
 
 class LumoOnboardingScreen extends StatefulWidget {
   const LumoOnboardingScreen({super.key, required this.onFinished});
@@ -66,12 +67,25 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                         flex: 5,
                         child: Padding(
                           padding: const EdgeInsets.all(28),
-                          child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 280),
-                            child: KeyedSubtree(
-                              key: ValueKey(_step),
-                              child: _buildStep(),
-                            ),
+                          child: Column(
+                            children: [
+                              // Step-Indicator oben (Desktop)
+                              LumoStepIndicator(
+                                currentStep: _step,
+                                totalSteps: 4,
+                                accent: LumoColors.orange,
+                              ),
+                              const SizedBox(height: 20),
+                              Expanded(
+                                child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 280),
+                                  child: KeyedSubtree(
+                                    key: ValueKey(_step),
+                                    child: _buildStep(),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -98,6 +112,15 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
           child: _LumoIntroHeaderCompact(step: _step),
+        ),
+        // ── Step-Indicator (Polish): zeigt 1/4, 2/4, 3/4, 4/4 ─────────
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+          child: LumoStepIndicator(
+            currentStep: _step,
+            totalSteps: 4,
+            accent: LumoColors.orange,
+          ),
         ),
         Expanded(
           child: SingleChildScrollView(
@@ -139,14 +162,96 @@ class _IntroStep extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // Begruessungs-Pille
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            color: LumoColors.orange.withOpacity(0.15),
+            borderRadius: BorderRadius.circular(99),
+            border: Border.all(
+                color: LumoColors.orange.withOpacity(0.3), width: 1.4),
+          ),
+          child: const Text('Willkommen 👋',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13,
+                fontWeight: FontWeight.w900,
+                color: LumoColors.orange,
+                letterSpacing: 0.3,
+              )),
+        ),
+        const SizedBox(height: 14),
         const Text('Lumo Lernen', style: LumoTextStyles.heading1),
         const SizedBox(height: 12),
         const Text(
-          'Willkommen! Zuerst richten wir dein Lernprofil ein. Danach erzeugt Lumo Aufgaben passend zu Klasse, Alter und Lernstand.',
+          'Wir richten gemeinsam dein Lernprofil ein. '
+          'Lumo erstellt dann passende Aufgaben für deine Klasse und dein Alter.',
           style: LumoTextStyles.body,
         ),
+        const SizedBox(height: 20),
+        // Feature-Highlight-Karten (drei kleine Punkte)
+        const _IntroBullet(
+            emoji: '🎓', text: 'Übungen passend zur Klasse'),
+        const SizedBox(height: 8),
+        const _IntroBullet(
+            emoji: '🦊', text: 'Lumo erklärt Schritt für Schritt'),
+        const SizedBox(height: 8),
+        const _IntroBullet(
+            emoji: '⭐', text: 'Sterne sammeln und Welt wachsen lassen'),
         const SizedBox(height: 28),
-        FilledButton.icon(onPressed: onStart, icon: const Icon(Icons.play_arrow_rounded), label: const Text('Start drücken')),
+        SizedBox(
+          width: double.infinity,
+          child: FilledButton.icon(
+            onPressed: onStart,
+            icon: const Icon(Icons.play_arrow_rounded),
+            label: const Text("Los geht's!"),
+            style: FilledButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              textStyle: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 17,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Kleine Highlight-Zeile im Intro-Schritt: Emoji + Text.
+class _IntroBullet extends StatelessWidget {
+  const _IntroBullet({required this.emoji, required this.text});
+  final String emoji;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: 32,
+          height: 32,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.9),
+            shape: BoxShape.circle,
+            border: Border.all(
+                color: LumoColors.orange.withOpacity(0.25), width: 1.2),
+          ),
+          child: Text(emoji, style: const TextStyle(fontSize: 16)),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(text,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
+                color: LumoColors.ink700,
+              )),
+        ),
       ],
     );
   }
