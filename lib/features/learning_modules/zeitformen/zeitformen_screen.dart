@@ -71,7 +71,7 @@ class ZeitformenScreen extends StatefulWidget {
 
 class _ZeitformenScreenState extends State<ZeitformenScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFF0EA5E9),
     Color(0xFF0369A1),

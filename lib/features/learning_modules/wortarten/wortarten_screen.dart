@@ -60,7 +60,7 @@ class WortartenScreen extends StatefulWidget {
 
 class _WortartenScreenState extends State<WortartenScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFF7C3AED),
     Color(0xFF5B21B6),

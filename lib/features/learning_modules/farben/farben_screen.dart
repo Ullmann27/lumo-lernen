@@ -37,7 +37,7 @@ class FarbenScreen extends StatefulWidget {
 
 class _FarbenScreenState extends State<FarbenScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFFEF4444),
     Color(0xFFF97316),

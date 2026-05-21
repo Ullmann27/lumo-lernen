@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_tutorial_companion.dart';
 import '../games/games_content.dart';
+import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../quiz/quiz_show_content.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
@@ -284,7 +285,78 @@ class _HomeContentState extends State<HomeContent> {
             onTap: _startTutorial,
           ),
         ),
+
+        // ── Lumo Magic Hub FAB (Heinz' 4 Premium-Vorschlaege) ─────
+        Positioned(
+          left: 16,
+          bottom: 18,
+          child: _MagicHubFab(appState: widget.appState),
+        ),
       ],
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// Magic Hub FAB - Zugang zu Lumo Story/Cosmos/Live/Mirror
+// ════════════════════════════════════════════════════════════════════════
+class _MagicHubFab extends StatefulWidget {
+  const _MagicHubFab({required this.appState});
+  final LumoAppState appState;
+
+  @override
+  State<_MagicHubFab> createState() => _MagicHubFabState();
+}
+
+class _MagicHubFabState extends State<_MagicHubFab>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _glow;
+
+  @override
+  void initState() {
+    super.initState();
+    _glow = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _glow.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _glow,
+      builder: (_, child) {
+        return Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF7C3AED).withOpacity(0.4 + _glow.value * 0.3),
+                blurRadius: 16 + _glow.value * 12,
+                spreadRadius: _glow.value * 4,
+              ),
+            ],
+          ),
+          child: child,
+        );
+      },
+      child: FloatingActionButton(
+        heroTag: 'magicHubFab',
+        backgroundColor: const Color(0xFF7C3AED),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) =>
+                LumoMagicHubScreen(appState: widget.appState),
+          ),
+        ),
+        child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 28),
+      ),
     );
   }
 }

@@ -33,7 +33,7 @@ class WortDiktatScreen extends StatefulWidget {
 
 class _WortDiktatScreenState extends State<WortDiktatScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFF06B6D4),
     Color(0xFF0E7490),

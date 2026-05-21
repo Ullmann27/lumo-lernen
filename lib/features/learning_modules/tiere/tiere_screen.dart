@@ -49,7 +49,7 @@ class TiereScreen extends StatefulWidget {
 
 class _TiereScreenState extends State<TiereScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFF10B981),
     Color(0xFF059669),

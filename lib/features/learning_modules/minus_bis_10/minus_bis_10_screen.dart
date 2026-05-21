@@ -25,7 +25,7 @@ class MinusBis10Screen extends StatefulWidget {
 
 class _MinusBis10ScreenState extends State<MinusBis10Screen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFFEC4899),
     Color(0xFFBE185D),

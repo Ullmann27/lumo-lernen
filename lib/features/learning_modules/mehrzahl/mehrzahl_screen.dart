@@ -32,7 +32,7 @@ class MehrzahlScreen extends StatefulWidget {
 
 class _MehrzahlScreenState extends State<MehrzahlScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFF8B5CF6),
     Color(0xFF6D28D9),

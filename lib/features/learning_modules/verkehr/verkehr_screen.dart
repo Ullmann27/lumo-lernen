@@ -41,7 +41,7 @@ class VerkehrScreen extends StatefulWidget {
 
 class _VerkehrScreenState extends State<VerkehrScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFFDC2626),
     Color(0xFF991B1B),

@@ -42,7 +42,7 @@ class GeldScreen extends StatefulWidget {
 
 class _GeldScreenState extends State<GeldScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 10;
+  static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFFCA8A04),
     Color(0xFF92400E),
