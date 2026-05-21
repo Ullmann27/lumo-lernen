@@ -22,6 +22,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/writing_progress_repository.dart';
+import '../../domain/writing/writing_progress.dart';
 import '../../domain/writing/writing_word_bank.dart';
 import '../../widgets/fox/lumo_idle_fox.dart';
 import '../../widgets/fox/lumo_reaction_companion.dart';
@@ -110,7 +111,20 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         vsync: this, duration: const Duration(milliseconds: 400));
     _wrongShakeCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
+    // Erste Session noch ohne Progress (random), dann nachladen und
+    // ggf. adaptiv neu picken solange das Kind noch nicht angefangen
+    // hat (taskIdx == 0 und keinen Buchstaben fertig).
     _sessionTasks = _pickSessionTasks();
+    _progressRepo.load().then((p) {
+      if (!mounted) return;
+      final hasStarted = _taskIdx > 0 || _completedSlots.isNotEmpty;
+      setState(() {
+        _progress = p;
+        if (!hasStarted && p.weakLetters.isNotEmpty) {
+          _sessionTasks = _pickSessionTasks();
+        }
+      });
+    }).catchError((_) {});
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakPrompt());
   }
@@ -125,10 +139,32 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     super.dispose();
   }
 
+  /// Schreibstatistik fuer adaptive Wort-Auswahl. Wird einmalig in
+  /// initState geladen, Best-effort.
+  WritingProgress _progress = WritingProgress.empty;
+
   List<WritingWordTask> _pickSessionTasks() {
     final pool = [...WritingWordBank.forGrade(widget.appState.state.grade)];
     if (pool.isEmpty) pool.addAll(WritingWordBank.all);
-    pool.shuffle(_rng);
+
+    // Phase 3 (E) adaptive Auswahl:
+    // Wenn das Kind bestimmte Buchstaben schwach hat, sortiere Woerter
+    // die diese Buchstaben enthalten nach oben. Pool bleibt komplett -
+    // aber die ersten _wordsPerSession werden bevorzugt aus 'starken
+    // Kandidaten' gezogen.
+    final weak = _progress.weakLetters.toSet();
+    if (weak.isNotEmpty) {
+      int weakCount(WritingWordTask t) =>
+          t.letters.where(weak.contains).length;
+      pool.sort((a, b) {
+        final delta = weakCount(b) - weakCount(a);
+        if (delta != 0) return delta;
+        // Sekundaer-Random: gleicher Score -> zufaellig
+        return _rng.nextBool() ? 1 : -1;
+      });
+    } else {
+      pool.shuffle(_rng);
+    }
     return pool.take(_wordsPerSession).toList(growable: false);
   }
 
