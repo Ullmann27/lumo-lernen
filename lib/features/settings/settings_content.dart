@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/ai_task_cache.dart';
@@ -6,6 +7,7 @@ import '../../core/app_settings.dart';
 import '../../core/app_update_service.dart';
 import '../../core/error_breakdown_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
+import '../../core/lumo_error_log.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/settings_repository.dart';
 import '../../domain/learning/learning_dna.dart';
@@ -404,6 +406,11 @@ class _SettingsContentState extends State<SettingsContent> {
           const SizedBox(height: 10),
           OutlinedButton.icon(onPressed: _resetSettings, icon: const Icon(Icons.restore_rounded), label: const Text('Einstellungen zurücksetzen')),
         ]),
+        const SizedBox(height: 14),
+        // Heinz' Diagnose-Karte: zeigt die letzten 20 Abstuerze mit
+        // Stacktrace. Damit kann Claude beim naechsten Bug-Report
+        // gezielt fixen, statt blind zu raten.
+        const _ErrorLogCard(),
       ]),
     );
   }
@@ -1570,5 +1577,174 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
       );
     }
     return LearningDnaParentCard(dna: dna);
+  }
+}
+
+/// Fehlerprotokoll-Karte: zeigt die letzten Crashes inkl. Stacktrace.
+/// Heinz tippt auf "In Zwischenablage kopieren" und sendet den Text
+/// an Claude. So kann Claude den naechsten Bug gezielt fixen, statt
+/// im Code zu raten.
+class _ErrorLogCard extends StatefulWidget {
+  const _ErrorLogCard();
+
+  @override
+  State<_ErrorLogCard> createState() => _ErrorLogCardState();
+}
+
+class _ErrorLogCardState extends State<_ErrorLogCard> {
+  List<LumoErrorEntry> _entries = const <LumoErrorEntry>[];
+  bool _expanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _reload();
+  }
+
+  Future<void> _reload() async {
+    await LumoErrorLog.instance.hydrate();
+    if (!mounted) return;
+    setState(() => _entries = LumoErrorLog.instance.entries);
+  }
+
+  Future<void> _clear() async {
+    await LumoErrorLog.instance.clear();
+    if (!mounted) return;
+    setState(() => _entries = const <LumoErrorEntry>[]);
+  }
+
+  void _copyAll() {
+    final buffer = StringBuffer();
+    for (final entry in _entries) {
+      buffer.writeln('=== ${entry.timestamp.toIso8601String()} ===');
+      buffer.writeln('Library: ${entry.library}');
+      buffer.writeln('Context: ${entry.context}');
+      buffer.writeln('Exception:');
+      buffer.writeln(entry.exception);
+      buffer.writeln('Stack:');
+      buffer.writeln(entry.stack);
+      buffer.writeln();
+    }
+    Clipboard.setData(ClipboardData(text: buffer.toString()));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Fehlerprotokoll kopiert.')),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _SettingsCard(
+      title: 'Fehlerprotokoll (Diagnose)',
+      children: [
+        Text(
+          _entries.isEmpty
+              ? 'Bisher keine Abstuerze aufgezeichnet. 🦊'
+              : '${_entries.length} Eintraege. Tippe "Kopieren" und sende den Text an Claude, damit er den Fehler gezielt fixen kann.',
+          style: LumoTextStyles.caption,
+        ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            OutlinedButton.icon(
+              onPressed: _entries.isEmpty ? null : _copyAll,
+              icon: const Icon(Icons.copy_rounded, size: 18),
+              label: const Text('Alle kopieren'),
+            ),
+            OutlinedButton.icon(
+              onPressed: _entries.isEmpty
+                  ? null
+                  : () => setState(() => _expanded = !_expanded),
+              icon: Icon(
+                _expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded,
+                size: 18,
+              ),
+              label: Text(_expanded ? 'Verbergen' : 'Anzeigen'),
+            ),
+            OutlinedButton.icon(
+              onPressed: _entries.isEmpty ? null : _clear,
+              icon: const Icon(Icons.delete_sweep_rounded, size: 18),
+              label: const Text('Loeschen'),
+            ),
+          ],
+        ),
+        if (_expanded && _entries.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          ..._entries.take(5).map((entry) => _ErrorEntryTile(entry: entry)),
+        ],
+      ],
+    );
+  }
+}
+
+class _ErrorEntryTile extends StatelessWidget {
+  const _ErrorEntryTile({required this.entry});
+
+  final LumoErrorEntry entry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFEF2F2),
+        borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(color: const Color(0xFFFCA5A5)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            entry.timestamp.toIso8601String().replaceFirst('T', ' ').split('.').first,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF7F1D1D),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            entry.exception,
+            style: const TextStyle(
+              fontFamily: 'monospace',
+              fontSize: 11.5,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFFB91C1C),
+            ),
+          ),
+          if (entry.context.isNotEmpty) ...[
+            const SizedBox(height: 4),
+            Text(
+              entry.context,
+              style: const TextStyle(
+                fontFamily: 'monospace',
+                fontSize: 10.5,
+                color: Color(0xFF7F1D1D),
+              ),
+            ),
+          ],
+          if (entry.stack.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 140),
+              child: SingleChildScrollView(
+                child: Text(
+                  entry.stack,
+                  style: const TextStyle(
+                    fontFamily: 'monospace',
+                    fontSize: 10,
+                    color: Color(0xFF374151),
+                    height: 1.3,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
   }
 }
