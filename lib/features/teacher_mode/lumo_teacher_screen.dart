@@ -402,7 +402,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                       child: Image.asset(
                         'assets/lumo_sprite_pack/lumo_main.png',
                         errorBuilder: (_, __, ___) => const Icon(
-                            Icons.pets_rounded,
+                            Icons.auto_awesome_rounded,
                             color: Colors.white,
                             size: 30),
                       ),
@@ -495,7 +495,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
               ),
               child: const Padding(
                 padding: EdgeInsets.all(4),
-                child: Icon(Icons.pets_rounded, color: Colors.white, size: 22),
+                child: Center(child: Text("🦊", style: TextStyle(fontSize: 22))),
               ),
             ),
             const SizedBox(width: 8),
@@ -634,7 +634,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
             ),
             child: const Padding(
               padding: EdgeInsets.all(4),
-              child: Icon(Icons.pets_rounded, color: Colors.white, size: 22),
+              child: Center(child: Text("🦊", style: TextStyle(fontSize: 22))),
             ),
           ),
           const SizedBox(width: 8),

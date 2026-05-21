@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../widgets/premium/lumo_magic_background.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import 'lumo_teacher_screen.dart';
@@ -492,23 +493,25 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF6EE),
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            // ── HERO BANNER ────────────────────────────────────
-            SliverToBoxAdapter(child: _buildHero()),
-            // ── KLASSEN-SELECTOR ───────────────────────────────
-            SliverToBoxAdapter(child: _buildGradePicker()),
-            // ── FACH-KACHELN ───────────────────────────────────
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 100),
-              sliver: SliverList.builder(
-                itemCount: _currentGrade.subjects.length,
-                itemBuilder: (_, i) => _buildSubjectSection(
-                    _currentGrade.subjects[i], i),
+      body: LumoMagicBackground(
+        child: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              // ── HERO BANNER ────────────────────────────────────
+              SliverToBoxAdapter(child: _buildHero()),
+              // ── KLASSEN-SELECTOR ───────────────────────────────
+              SliverToBoxAdapter(child: _buildGradePicker()),
+              // ── FACH-KACHELN ───────────────────────────────────
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 100),
+                sliver: SliverList.builder(
+                  itemCount: _currentGrade.subjects.length,
+                  itemBuilder: (_, i) => _buildSubjectSection(
+                      _currentGrade.subjects[i], i),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
