@@ -255,22 +255,50 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                         fit: BoxFit.cover,
                         loadingBuilder: (_, child, p) {
                           if (p == null) return child;
+                          // Vorher: kleines Indicator-Spin in cremeDeep
+                          // Container - sah aus wie leerer weisser Bereich
+                          // (Heinz' Screenshot). Jetzt: deutlicher Gradient
+                          // mit grossem Buch-Emoji + Text "Lumo malt das Bild".
                           return Container(
-                            color: LumoTokens.colors.cremeDeep,
+                            decoration: BoxDecoration(
+                                gradient: LumoTokens.colors.bgMagic),
                             alignment: Alignment.center,
-                            child: const CircularProgressIndicator(),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text('📖',
+                                    style: TextStyle(fontSize: 64)),
+                                const SizedBox(height: 12),
+                                Text('Lumo malt das Bild...',
+                                    style: LumoTokens.typo.titleMedium
+                                        .copyWith(color: Colors.white)),
+                                const SizedBox(height: 12),
+                                const CircularProgressIndicator(
+                                    color: Colors.white),
+                              ],
+                            ),
                           );
                         },
                         errorBuilder: (_, __, ___) => Container(
                           decoration: BoxDecoration(
                               gradient: LumoTokens.colors.bgMagic),
                           alignment: Alignment.center,
-                          child: const Text('📖',
-                              style: TextStyle(fontSize: 80)),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Text('📖',
+                                  style: TextStyle(fontSize: 80)),
+                              const SizedBox(height: 8),
+                              Text('Bild konnte nicht laden',
+                                  style: LumoTokens.typo.bodyMedium
+                                      .copyWith(color: Colors.white)),
+                            ],
+                          ),
                         ),
                       )
                     : Container(
-                        color: LumoTokens.colors.cremeDeep,
+                        decoration: BoxDecoration(
+                            gradient: LumoTokens.colors.bgMagic),
                         alignment: Alignment.center,
                         child: const Text('📖',
                             style: TextStyle(fontSize: 80)),
