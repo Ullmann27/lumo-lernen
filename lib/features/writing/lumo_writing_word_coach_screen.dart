@@ -26,6 +26,7 @@ import '../../domain/writing/writing_progress.dart';
 import '../../domain/writing/writing_word_bank.dart';
 import '../../widgets/fox/lumo_idle_fox.dart';
 import '../../widgets/fox/lumo_reaction_companion.dart';
+import '../../widgets/lumo/lumo.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
@@ -623,42 +624,16 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   }
 
   Widget _buildPrompt() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
-      ),
-      child: Row(children: [
-        const LumoIdleFox(size: 44),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Hoer gut zu!',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFF6B7280))),
-              Text(
-                  'Schreib Buchstabe ${_letterCursor + 1} von ${_currentTask.letters.length}.',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      color: _gradient[1])),
-            ],
-          ),
-        ),
-        IconButton(
-          onPressed: _speakPrompt,
-          icon: Icon(Icons.volume_up_rounded, color: _gradient[0], size: 32),
-          tooltip: 'Nochmal hoeren',
-        ),
-      ]),
+    // Polish: zentrale LumoPromptCard statt ad-hoc Container.
+    // Selbe Optik (Lila Border, Fox links, Label+Title rechts, Speaker rechts),
+    // aber konsistente Tokens. Animierter LumoIdleFox bleibt als `leading`.
+    return LumoPromptCard(
+      label: 'Hör gut zu!',
+      title: 'Schreib Buchstabe ${_letterCursor + 1} von '
+          '${_currentTask.letters.length}.',
+      accent: _gradient[1],
+      leading: const LumoIdleFox(size: 44),
+      onSpeakerTap: _speakPrompt,
     );
   }
 
