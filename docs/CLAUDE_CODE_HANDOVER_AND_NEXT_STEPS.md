@@ -484,6 +484,15 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
 - `50da340` Adaptive Wort-Auswahl im Wortdiktat: Wörter mit weakLetters
   werden bevorzugt gepickt (Mama/Oma vor Papa wenn 'O'/'M' schwach).
   Async Load – wenn das Kind schon angefangen hat, kein jarring Reset.
+- `891f3fb` Lesemodus: Highlight-Wort 25→32pt, aktives Wort 22→26pt,
+  Header 13→15pt. Erstklässler-Augen können besser folgen.
+- `77353ec` Quizshow bekommt auch den Reaction-Companion (cheer/think
+  bei richtig/falsch). Damit reagiert Lumo in allen 4 Lern-Hauptbereichen.
+- `340ad4d` Lokaler Hilfe-Banner (nach 2 Fehlern) mit `LumoIdleFox`
+  statt statischem Emoji + größere Texte.
+- `1063a5e` Letter-Writing-Screen: Buchstabe-Titel 20→24pt, CTA
+  „Jetzt schreiben üben" 18→22pt.
+- `36fc7d5` App-Shell Top-Avatar + Learning-DNA-Card mit `LumoIdleFox`.
 
 **Phase 4 – Lehrplan-Audit:**
 - Tabelle aller 20 Module gegen ÖsterreichVS-Lehrplan: **alle konform**,
