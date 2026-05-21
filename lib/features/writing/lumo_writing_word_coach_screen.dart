@@ -24,6 +24,7 @@ import '../../core/lumo_voice.dart';
 import '../../core/writing_progress_repository.dart';
 import '../../domain/writing/writing_word_bank.dart';
 import '../../widgets/fox/lumo_idle_fox.dart';
+import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
@@ -81,6 +82,22 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   /// Verhindert doppelte _checkLetter-Aufrufe bei schnellen Doppel-Taps.
   bool _checkInFlight = false;
 
+  /// Stimmung des Lumo-Reaction-Companions im Wortdiktat.
+  LumoReactionMood _companionMood = LumoReactionMood.idle;
+  Timer? _moodResetTimer;
+
+  void _setMood(LumoReactionMood next) {
+    _moodResetTimer?.cancel();
+    if (!mounted) return;
+    setState(() => _companionMood = next);
+    if (next != LumoReactionMood.idle) {
+      _moodResetTimer = Timer(const Duration(seconds: 2), () {
+        if (!mounted) return;
+        setState(() => _companionMood = LumoReactionMood.idle);
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -100,6 +117,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   @override
   void dispose() {
+    _moodResetTimer?.cancel();
     _demoCtrl.dispose();
     _pulseCtrl.dispose();
     _entryCtrl.dispose();
@@ -199,9 +217,11 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
       _speak(feedback.message);
 
       if (feedback.matched) {
+        _setMood(LumoReactionMood.cheer);
         await _onLetterCorrect();
       } else {
         _currentLetterHadMistake = true;
+        _setMood(LumoReactionMood.think);
         setState(() => _wrongSlot = _letterCursor);
         _wrongShakeCtrl.forward(from: 0);
         if (_showDemo) _demoCtrl.forward(from: 0);
@@ -400,6 +420,16 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
                   if (_lastFeedback != null) _buildFeedback(),
                   const SizedBox(height: 12),
                   _buildControls(),
+                  const SizedBox(height: 12),
+                  // Lumo-Reaction-Companion - reagiert sichtbar auf jeden
+                  // Buchstabencheck (cheer bei richtig, think bei falsch).
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: LumoReactionCompanion(
+                      mood: _companionMood,
+                      size: 80,
+                    ),
+                  ),
                 ]),
               ),
             ),

@@ -22,6 +22,7 @@ import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/writing_progress_repository.dart';
 import '../../widgets/fox/lumo_idle_fox.dart';
+import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
@@ -52,6 +53,22 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   /// Sonst doppelter recordAttempt, doppelte XP/Sterne.
   bool _checkInFlight = false;
 
+  /// Stimmung des Reaction-Companions im Schreibcoach.
+  LumoReactionMood _companionMood = LumoReactionMood.idle;
+  Timer? _moodResetTimer;
+
+  void _setMood(LumoReactionMood next) {
+    _moodResetTimer?.cancel();
+    if (!mounted) return;
+    setState(() => _companionMood = next);
+    if (next != LumoReactionMood.idle) {
+      _moodResetTimer = Timer(const Duration(seconds: 2), () {
+        if (!mounted) return;
+        setState(() => _companionMood = LumoReactionMood.idle);
+      });
+    }
+  }
+
   int _taskIdx = 0;
   int _correctCount = 0;
   late String _currentLetter;
@@ -77,6 +94,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
 
   @override
   void dispose() {
+    _moodResetTimer?.cancel();
     _demoCtrl.dispose();
     _bounceCtrl.dispose();
     _entryCtrl.dispose();
@@ -159,6 +177,9 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
       try {
         LumoVoice.instance.speak(feedback.message);
       } catch (_) {}
+      _setMood(feedback.matched
+          ? LumoReactionMood.cheer
+          : LumoReactionMood.think);
       if (feedback.type == FeedbackType.correct) {
         _bounceCtrl.forward(from: 0);
         _correctCount++;
@@ -292,6 +313,14 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
                   if (_lastFeedback != null) _buildFeedback(),
                   const SizedBox(height: 12),
                   _buildControls(),
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: LumoReactionCompanion(
+                      mood: _companionMood,
+                      size: 80,
+                    ),
+                  ),
                 ]),
               ),
             ),
