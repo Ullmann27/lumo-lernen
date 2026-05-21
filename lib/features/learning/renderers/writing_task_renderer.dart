@@ -526,8 +526,12 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                       template: widget.template,
                       mode: widget.mode,
                       height: canvasHeight,
+                      // Bewusst kein setState: _strokes und _evaluation werden
+                      // nicht im build() verwendet (nur beim Pop). Ein setState
+                      // bei jedem Stroke wuerde das ganze Modal neu layouten
+                      // und das Canvas-Feld koennte dabei sichtbar springen.
                       onChanged: (strokes) => _strokes = strokes,
-                      onEvaluated: (next) => setState(() => _evaluation = next),
+                      onEvaluated: (next) => _evaluation = next,
                     );
                   },
                 ),

@@ -70,10 +70,6 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     final point = _pointFromLocalPosition(localPosition, size);
     if (point == null) return;
     if (active.points.isNotEmpty && _distance(active.points.last, point) < .65) return;
-    if (active.points.isNotEmpty && _distance(active.points.last, point) > 32) {
-      _finishStroke();
-      return;
-    }
 
     final next = <StrokePoint>[...active.points, point];
     setState(() => _activeStroke = Stroke(id: active.id, points: next));
@@ -156,10 +152,45 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
       );
     }
 
-    final expectedLetters = widget.template.symbol.replaceAll(RegExp(r'[^A-Za-zÄÖÜäöüß0-9]'), '').length.clamp(1, 12);
-    final strokeCoverage = (usableStrokes.length / expectedLetters).clamp(0.25, 1.0).toDouble();
-    final boundsCoverage = _boundsCoverage(usableStrokes).clamp(0.20, 1.0).toDouble();
-    final score = (.35 + strokeCoverage * .30 + boundsCoverage * .35).clamp(0.0, 1.0).toDouble();
+    // Erwartete Strichanzahl: bevorzugt die Template-Striche (echte Buchstaben-Form),
+    // sonst grob 2 Striche pro Buchstabe als Heuristik fuer Woerter.
+    final symbolLength = widget.template.symbol.replaceAll(RegExp(r'\s+'), '').length.clamp(1, 12);
+    final templateStrokeCount = widget.template.strokes.length;
+    final expectedStrokes = templateStrokeCount > 0
+        ? templateStrokeCount
+        : (symbolLength * 2).clamp(2, 24);
+
+    final strokeCoverage = (usableStrokes.length / expectedStrokes).clamp(0.0, 1.0).toDouble();
+    final boundsCoverage = _boundsCoverage(usableStrokes).clamp(0.0, 1.0).toDouble();
+    final pointCount = usableStrokes.fold<int>(0, (sum, s) => sum + s.points.length);
+
+    // Mindestpunktzahl pro erwartetem Strich, damit ein einzelner Wischer nicht
+    // 100% Coverage bekommt. Erwartet werden mindestens ~12 Punkte pro Strich.
+    final minPoints = expectedStrokes * 8;
+    final pointDensity = (pointCount / minPoints).clamp(0.0, 1.0).toDouble();
+
+    // Neue strengere Formel:
+    //  - kein freier Basisbonus mehr
+    //  - alle drei Faktoren muessen erreicht sein
+    //  - Multiplikative Penalty, wenn ein Faktor sehr niedrig ist
+    final base = (strokeCoverage * .42 + boundsCoverage * .32 + pointDensity * .26)
+        .clamp(0.0, 1.0)
+        .toDouble();
+
+    // Harte Penalty: nur 1 Strich auf einem Mehr-Strich-Symbol = klar falsch.
+    final tooFewStrokes = usableStrokes.length < (expectedStrokes / 2).ceil();
+    final score = (tooFewStrokes ? base * .55 : base).clamp(0.0, 1.0).toDouble();
+
+    final String hintMessage;
+    if (score >= .80) {
+      hintMessage = 'Gut. Du hast das Ziel sauber geschrieben.';
+    } else if (tooFewStrokes) {
+      hintMessage = 'Zu wenig Striche. Schreibe das Zeichen vollstaendig nach.';
+    } else if (boundsCoverage < .45) {
+      hintMessage = 'Schreibe groesser, so dass das Feld gut ausgefuellt ist.';
+    } else {
+      hintMessage = 'Achte auf die Form. Schreibe langsam ueber die Vorlage.';
+    }
 
     return WritingEvaluation(
       overallScore: score,
@@ -167,16 +198,11 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
       directionScore: score,
       coverageScore: boundsCoverage,
       pathDistanceScore: score,
-      strokeOrderScore: 1,
+      strokeOrderScore: tooFewStrokes ? .4 : 1,
       mirrored: false,
-      incomplete: score < .45,
+      incomplete: score < .60,
       hints: <WritingHint>[
-        WritingHint(
-          type: WritingHintType.coverage,
-          message: score >= .72
-              ? 'Gut. Du hast das Ziel sauber geschrieben.'
-              : 'Schreibe größer und langsam über die Vorlage.',
-        ),
+        WritingHint(type: WritingHintType.coverage, message: hintMessage),
       ],
     );
   }
