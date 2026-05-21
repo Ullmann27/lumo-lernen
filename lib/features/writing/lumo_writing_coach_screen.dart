@@ -12,6 +12,7 @@
 //   6. Wenn falsch -> Lumo malt richtigen Buchstaben vor + Erklaerung
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -19,8 +20,10 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/writing_progress_repository.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
+import 'writing_feature_flags.dart';
 
 /// Heinz-Erweiterung: 4 Lern-Modi fuer den Schreibcoach.
 /// Vorher: nur Grossbuchstaben zufaellig.
@@ -70,6 +73,10 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  final _progressRepo = WritingProgressRepository();
+
+  /// Verhindert doppelte _checkWriting-Aufrufe bei Doppel-Taps.
+  bool _checkInFlight = false;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -240,33 +247,50 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   }
 
   void _checkWriting() async {
+    // Re-Entry-Guard fuer Doppel-Taps.
+    if (_checkInFlight) return;
     if (_strokes.isEmpty) return;
-    HapticFeedback.lightImpact();
-    final feedback = WritingFeedbackEngine.generate(
-      template: _currentTemplate,
-      userStrokes: _strokes,
-    );
-    setState(() {
-      _lastFeedback = feedback;
-      _showDemo = feedback.showDemo;
-    });
+    if (_lastFeedback != null && _lastFeedback!.matched) return;
+
+    _checkInFlight = true;
     try {
-      LumoVoice.instance.speak(feedback.message);
-    } catch (_) {}
-    if (feedback.type == FeedbackType.correct) {
-      _bounceCtrl.forward(from: 0);
-      _correctCount++;
-      // Lehrplan-Progression: nach jeder richtigen Antwort kommt
-      // der naechste Buchstabe in der Lehrplan-Reihenfolge.
-      final pool = _currentPool();
-      _curriculumIdx = (_curriculumIdx + 1).clamp(0, pool.length - 1);
-      widget.appState.addStars(2);
-      widget.appState.addXp(10);
-      await Future.delayed(const Duration(milliseconds: 1800));
-      if (!mounted) return;
-      _nextTask();
-    } else if (_showDemo) {
-      _demoCtrl.forward(from: 0);
+      HapticFeedback.lightImpact();
+      final feedback = WritingFeedbackEngine.generate(
+        template: _currentTemplate,
+        userStrokes: _strokes,
+      );
+      // Phase 6: Schreibversuch in WritingProgressRepository protokollieren,
+      // damit die Eltern-Karte 'Schreibcoach-Uebungsstand' echte Daten zeigt.
+      if (WritingFeatureFlags.enableProgressTracking) {
+        unawaited(_progressRepo.recordAttempt(
+          letter: _currentLetter,
+          correct: feedback.matched,
+        ));
+      }
+      setState(() {
+        _lastFeedback = feedback;
+        _showDemo = feedback.showDemo;
+      });
+      try {
+        LumoVoice.instance.speak(feedback.message);
+      } catch (_) {}
+      if (feedback.type == FeedbackType.correct) {
+        _bounceCtrl.forward(from: 0);
+        _correctCount++;
+        // Lehrplan-Progression: nach jeder richtigen Antwort kommt
+        // der naechste Buchstabe in der Lehrplan-Reihenfolge.
+        final pool = _currentPool();
+        _curriculumIdx = (_curriculumIdx + 1).clamp(0, pool.length - 1);
+        widget.appState.addStars(2);
+        widget.appState.addXp(10);
+        await Future.delayed(const Duration(milliseconds: 1800));
+        if (!mounted) return;
+        _nextTask();
+      } else if (_showDemo) {
+        _demoCtrl.forward(from: 0);
+      }
+    } finally {
+      _checkInFlight = false;
     }
   }
 

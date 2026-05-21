@@ -117,7 +117,17 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     _sessionTasks = _pickSessionTasks();
     _progressRepo.load().then((p) {
       if (!mounted) return;
-      final hasStarted = _taskIdx > 0 || _completedSlots.isNotEmpty;
+      // hasStarted strenger pruefen (Codex P2): auch Strokes, falsche
+      // Versuche und Cursor-Position zaehlen als 'Kind hat angefangen'.
+      // Sonst koennten _sessionTasks reshufflen waehrend das Kind gerade
+      // am ersten Wort schreibt - prompt/target mismatch.
+      final hasStarted = _taskIdx > 0 ||
+          _completedSlots.isNotEmpty ||
+          _strokes.isNotEmpty ||
+          _currentPoints.isNotEmpty ||
+          _letterCursor > 0 ||
+          _wrongSlot >= 0 ||
+          _lastFeedback != null;
       setState(() {
         _progress = p;
         if (!hasStarted && p.weakLetters.isNotEmpty) {
