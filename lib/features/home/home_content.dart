@@ -31,6 +31,18 @@ class _HomeContentState extends State<HomeContent> {
       GlobalKey<LumoTutorialCompanionState>();
   bool _tutorialBadgeVisible = true;
 
+  // GlobalKeys auf die 6 Subject-Tiles.
+  // Heinz 2026-05-21: 'Tutorial-Fuchs landet nicht auf den Buttons,
+  // soll knapp neben der Ueberschrift springen.' Mit echten Render-
+  // Box-Positionen statt nur Bildschirm-Fractions trifft Lumo die
+  // Tile-Ueberschriften genau, auf jedem Geraet.
+  final GlobalKey _kMathe = GlobalKey(debugLabel: 'tut_mathe');
+  final GlobalKey _kDeutsch = GlobalKey(debugLabel: 'tut_deutsch');
+  final GlobalKey _kQuiz = GlobalKey(debugLabel: 'tut_quiz');
+  final GlobalKey _kSpiele = GlobalKey(debugLabel: 'tut_spiele');
+  final GlobalKey _kLesen = GlobalKey(debugLabel: 'tut_lesen');
+  final GlobalKey _kSachk = GlobalKey(debugLabel: 'tut_sachk');
+
   void _startPractice({
     required String subject,
     required String unit,
@@ -68,120 +80,76 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   /// Lumo's Reise durch den Homescreen.
-  /// Heinz 2026-05-21: 'Fuchs muss viel mehr erklaeren und fix von Button
-  /// zu Button springen'. Daher:
-  ///  - genauere x/y-Positionen passend zum 2-Spalten-Subject-Grid
-  ///    (linke Spalte ~0.27, rechte Spalte ~0.73)
-  ///  - laengere Texte pro Stop (Heinz: 'viel mehr erklaeren')
-  ///  - Verweildauer hoeher, damit Kind lesen + verstehen kann
-  ///  - jumpToReach beim Wechsel der Reihe (klassische Leiter-Bewegung)
+  /// Heinz 2026-05-21: 'Sprünge fixen - immer knapp neben der
+  /// Überschrift'. Daher: GlobalKeys auf die echten Subject-Tiles +
+  /// Sections. Der Companion liest zur Laufzeit die echte
+  /// RenderBox-Position und positioniert Lumo direkt am Ziel-Widget.
+  /// xFraction/yFraction bleiben als Fallback (z.B. fuer FABs).
   List<LumoTutorialStop> _buildTutorialPath() {
-    return const [
-      // 1) Begruessung oben rechts
-      LumoTutorialStop(
-        xFraction: 0.78,
-        yFraction: 0.16,
+    return [
+      // 1) Begruessung (Fraction: kein Header-Key)
+      const LumoTutorialStop(
+        xFraction: 0.75,
+        yFraction: 0.18,
         message: 'Hallo! Ich bin Lumo. 🦊\n'
             'Ich zeig dir jetzt die ganze App.\n'
             'Folge mir Schritt fuer Schritt.',
         duration: Duration(milliseconds: 4500),
       ),
-      // 2) Profil-Header links oben (Sterne + Mission)
+      // 2) Mathe-Tile
       LumoTutorialStop(
-        xFraction: 0.22,
-        yFraction: 0.16,
-        message: 'Hier oben siehst du deine Sterne.\n'
-            'Jede richtige Antwort gibt dir einen.\n'
-            'Sammle viele und Lumo freut sich!',
-        duration: Duration(milliseconds: 5000),
-      ),
-      // 3) Daily Mission Strip
-      LumoTutorialStop(
-        xFraction: 0.50,
-        yFraction: 0.30,
-        message: 'Das ist deine taegliche Mission.\n'
-            'Mach sie jeden Tag - dann wirst du immer besser.',
-        duration: Duration(milliseconds: 4500),
-        jumpToReach: true,
-      ),
-      // 4) Mathe-Tile (linke Spalte, Reihe 1)
-      LumoTutorialStop(
-        xFraction: 0.27,
-        yFraction: 0.45,
+        targetKey: _kMathe,
         message: 'Tipp hier auf "Mathe mit Lumo"! ➕\n'
             'Wir rechnen zusammen Plus, Minus und mehr.\n'
             'Ich erklaere jeden Schritt.',
-        duration: Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 5000),
         jumpToReach: true,
       ),
-      // 5) Deutsch-Tile (rechte Spalte, Reihe 1)
+      // 5) Deutsch-Tile
       LumoTutorialStop(
-        xFraction: 0.73,
-        yFraction: 0.45,
+        targetKey: _kDeutsch,
         message: '"Deutsch mit Lumo" ist hier. ✏️\n'
             'Buchstaben schreiben, Woerter lesen, Diktat.\n'
             'Ich sag dir das Wort, du schreibst es.',
-        duration: Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 5000),
       ),
-      // 6) Quizshow (linke Spalte, Reihe 2)
+      // 6) Quizshow
       LumoTutorialStop(
-        xFraction: 0.27,
-        yFraction: 0.58,
+        targetKey: _kQuiz,
         message: 'Die Quizshow! 🏆\n'
             '15 Fragen, drei Joker, am Ende echte Gutscheine.\n'
             'Trau dich!',
-        duration: Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 5000),
         jumpToReach: true,
       ),
-      // 7) Spielewelt (rechte Spalte, Reihe 2)
+      // 7) Spielewelt
       LumoTutorialStop(
-        xFraction: 0.73,
-        yFraction: 0.58,
+        targetKey: _kSpiele,
         message: 'In der Spielewelt 🎮 gibt es viele Level.\n'
             'Renne, springe, sammle Sterne.\n'
             'Lernen darf Spass machen!',
-        duration: Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 5000),
       ),
-      // 8) Lesen-Tile (linke Spalte, Reihe 3)
+      // 8) Lesen-Tile
       LumoTutorialStop(
-        xFraction: 0.27,
-        yFraction: 0.72,
+        targetKey: _kLesen,
         message: '"Lesen mit Lumo" 📖\n'
             'Ich hoer dir beim Lesen zu.\n'
             'Wir lesen Geschichten Satz fuer Satz.',
-        duration: Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 5000),
         jumpToReach: true,
       ),
-      // 9) Sachunterricht (rechte Spalte, Reihe 3)
+      // 9) Sachunterricht
       LumoTutorialStop(
-        xFraction: 0.73,
-        yFraction: 0.72,
+        targetKey: _kSachk,
         message: 'Sachunterricht 🌍\n'
             'Tiere, Pflanzen, Wetter, Farben.\n'
             'Hier entdeckst du die Welt.',
-        duration: Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 5000),
       ),
-      // 10) Magic-Hub FAB (links unten lila)
-      LumoTutorialStop(
-        xFraction: 0.12,
-        yFraction: 0.92,
-        message: 'Der lila Stern unten links 🌟\n'
-            'Da gibt es Geschichten, das Universum\n'
-            'und meine Live-Magie.',
-        duration: Duration(milliseconds: 5000),
-        jumpToReach: true,
-      ),
-      // 11) Eltern-FAB (rechts unten orange) - falls vorhanden
-      LumoTutorialStop(
-        xFraction: 0.88,
-        yFraction: 0.92,
-        message: 'Hier kommen die Eltern hin. 👪\n'
-            'Sie sehen wie gut du lernst\n'
-            'und stellen die App ein.',
-        duration: Duration(milliseconds: 5000),
-      ),
-      // 12) Abschluss in der Mitte
-      LumoTutorialStop(
+      // 10) Abschluss - bewusst per Fraction (kein Tile am Bildschirm-
+      //     Mittelpunkt, dort steht Lumo am Schluss "winkend").
+      const LumoTutorialStop(
         xFraction: 0.50,
         yFraction: 0.50,
         message: 'Das war alles! 💛\n'
@@ -224,6 +192,7 @@ class _HomeContentState extends State<HomeContent> {
             'Du machst großartige Fortschritte! Heute wartet eine neue Lernmission auf dich.',
         topicTiles: [
           LumoSubjectTile(
+            key: _kMathe,
             title: 'Mathe mit Lumo',
             subtitle: 'Lumo erklärt Schritt-für-Schritt',
             iconEmoji: 'M',
@@ -240,6 +209,7 @@ class _HomeContentState extends State<HomeContent> {
             ),
           ),
           LumoSubjectTile(
+            key: _kDeutsch,
             title: 'Deutsch mit Lumo',
             subtitle: 'Buchstaben schreiben, Lesen, Wörter',
             iconEmoji: 'D',
@@ -256,6 +226,7 @@ class _HomeContentState extends State<HomeContent> {
             ),
           ),
           LumoSubjectTile(
+            key: _kQuiz,
             title: 'Quizshow',
             subtitle: '15 Fragen, Joker und echte Gutscheine',
             iconEmoji: 'Q',
@@ -267,6 +238,7 @@ class _HomeContentState extends State<HomeContent> {
             onTap: () => _openQuiz(context),
           ),
           LumoSubjectTile(
+            key: _kSpiele,
             title: 'Lumo Spielewelt',
             subtitle: '50 Level - Sterne sammeln und Abenteuer erleben',
             iconEmoji: 'S',
@@ -278,6 +250,7 @@ class _HomeContentState extends State<HomeContent> {
             onTap: () => _openGames(context),
           ),
           LumoSubjectTile(
+            key: _kLesen,
             title: 'Lesen mit Lumo',
             subtitle: 'Spannende Geschichten vorlesen',
             iconEmoji: 'L',
@@ -298,6 +271,7 @@ class _HomeContentState extends State<HomeContent> {
             },
           ),
           LumoSubjectTile(
+            key: _kSachk,
             title: 'Sachunterricht',
             subtitle: 'Tiere, Pflanzen und Wetter entdecken',
             iconEmoji: 'S',

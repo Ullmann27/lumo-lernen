@@ -224,8 +224,20 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     } catch (_) {}
   }
 
+  /// Heinz 2026-05-21: 'Schreiben funktioniert nicht, der Bildschirm
+  /// bewegt sich mit'. Ursache: SingleChildScrollView (Z. 495) und
+  /// das Canvas teilen sich die Pan-Geste -> der Scroll gewinnt.
+  /// Loesung: solange das Kind einen Strich zeichnet, friert der
+  /// Scroll ein. Sobald der Strich endet, ist Scrollen wieder
+  /// erlaubt (damit das Kind weiter unten zum Lumo-Companion oder
+  /// Fertig-Button kommt).
+  bool _drawing = false;
+
   void _onPanStart(DragStartDetails d) {
-    setState(() => _currentPoints = [d.localPosition]);
+    setState(() {
+      _drawing = true;
+      _currentPoints = [d.localPosition];
+    });
     // Phase 3: Lumo guckt aktiv mit waehrend das Kind schreibt.
     if (_companionMood != LumoReactionMood.cheer) {
       _setMood(LumoReactionMood.think);
@@ -237,6 +249,10 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   }
 
   void _onPanEnd(DragEndDetails _) {
+    // Strich ist beendet -> Scroll wieder erlauben.
+    if (_drawing) {
+      _drawing = false;
+    }
     if (_currentPoints.length > 1) {
       final pts = List<Offset>.of(_currentPoints);
       setState(() {
@@ -493,6 +509,11 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
           _buildTopBar(),
           Expanded(
             child: SingleChildScrollView(
+              // Heinz' Schreib-Bug: physics auf NeverScrollable solange
+              // ein Strich aktiv ist - sonst klaut Scroll die Pan-Geste.
+              physics: _drawing
+                  ? const NeverScrollableScrollPhysics()
+                  : const ClampingScrollPhysics(),
               padding: const EdgeInsets.all(16),
               child: AnimatedBuilder(
                 animation: _entryCtrl,
@@ -750,9 +771,15 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         child: ClipRRect(
           borderRadius: BorderRadius.circular(17),
           child: GestureDetector(
+            // Behavior.opaque sichert dass der Canvas die Geste
+            // wirklich packt, nicht der Scroll-Parent.
+            behavior: HitTestBehavior.opaque,
             onPanStart: _onPanStart,
             onPanUpdate: _onPanUpdate,
             onPanEnd: _onPanEnd,
+            onPanCancel: () {
+              if (_drawing) setState(() => _drawing = false);
+            },
             child: AnimatedBuilder(
               animation: _demoCtrl,
               builder: (ctx, child) {

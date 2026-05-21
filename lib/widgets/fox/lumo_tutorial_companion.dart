@@ -24,18 +24,36 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 /// Ein einzelner Tutorial-Halt auf der Reise durch den Home-Screen.
+///
+/// Position kann auf zwei Arten angegeben werden:
+///   - `targetKey`: GlobalKey eines echten Widgets im Home-Screen
+///     (z.B. einer Subject-Tile). Der Companion liest dessen
+///     RenderBox-Position zur Laufzeit -> Lumo trifft den Button
+///     genau, unabhaengig von Bildschirmgroesse oder Scroll.
+///   - `xFraction`/`yFraction`: relative Position als Fallback
+///     (z.B. fuer FABs ohne Key oder fuer den Abschluss-Stop).
+///
+/// Genau einer der beiden Modi muss gesetzt sein.
 class LumoTutorialStop {
   const LumoTutorialStop({
-    required this.xFraction,
-    required this.yFraction,
+    this.targetKey,
+    this.xFraction,
+    this.yFraction,
     required this.message,
     this.duration = const Duration(milliseconds: 3800),
     this.jumpToReach = false,
-  });
+  }) : assert(
+          targetKey != null || (xFraction != null && yFraction != null),
+          'LumoTutorialStop braucht entweder targetKey oder x/yFraction',
+        );
 
-  /// Position auf dem Screen in Prozent (0.0 - 1.0).
-  final double xFraction;
-  final double yFraction;
+  /// Optionaler Key auf das echte Ziel-Widget. Bevorzugt vor Fractions.
+  final GlobalKey? targetKey;
+
+  /// Position auf dem Screen in Prozent (0.0 - 1.0). Fallback wenn
+  /// `targetKey` null ist oder nicht aufgeloest werden kann.
+  final double? xFraction;
+  final double? yFraction;
 
   /// Was Lumo an diesem Stop sagt (max 2-3 kurze Saetze, kindgerecht).
   final String message;
@@ -161,6 +179,36 @@ class LumoTutorialCompanionState extends State<LumoTutorialCompanion>
     _bubbleCtrl.reverse();
   }
 
+  /// Loest die Stop-Position in Bildschirm-Fractions auf.
+  /// Heinz 2026-05-21: bevorzugt die echte RenderBox-Position des
+  /// targetKey-Widgets, damit Lumo direkt am Ziel-Button landet.
+  ({double x, double y}) _resolveStopFraction(LumoTutorialStop s) {
+    final key = s.targetKey;
+    if (key != null) {
+      final ctx = key.currentContext;
+      final renderObj = ctx?.findRenderObject();
+      if (renderObj is RenderBox && renderObj.attached) {
+        final size = MediaQuery.of(context).size;
+        // Ziel: knapp neben der UEBERSCHRIFT der Card.
+        // -> x: 30% von links innerhalb der Card (links neben dem Titel)
+        // -> y: 20px unter dem Card-Top (Hoehe der Ueberschrift-Zeile)
+        // Heinz: 'immer knapp neben der Ueberschrift'.
+        final topLeft = renderObj.localToGlobal(Offset.zero);
+        final box = renderObj.size;
+        final anchorX = topLeft.dx + box.width * 0.30;
+        final anchorY = topLeft.dy + 20.0;
+        return (
+          x: (anchorX / size.width).clamp(0.05, 0.95),
+          y: (anchorY / size.height).clamp(0.05, 0.95),
+        );
+      }
+    }
+    return (
+      x: s.xFraction ?? 0.5,
+      y: s.yFraction ?? 0.5,
+    );
+  }
+
   void _goToStop(int idx) async {
     if (idx >= widget.stops.length) {
       // Tutorial fertig — Lumo winkt zum Abschied
@@ -175,10 +223,11 @@ class LumoTutorialCompanionState extends State<LumoTutorialCompanion>
     }
 
     final tStop = widget.stops[idx];
+    final resolved = _resolveStopFraction(tStop);
     final fromX = _curX;
     final fromY = _curY;
-    final toX = tStop.xFraction;
-    final toY = tStop.yFraction;
+    final toX = resolved.x;
+    final toY = resolved.y;
 
     // Lumo dreht sich in die Bewegungsrichtung
     setState(() {
@@ -292,20 +341,28 @@ class LumoTutorialCompanionState extends State<LumoTutorialCompanion>
         // Bubble-Scale
         final bubbleScale = Curves.elasticOut.transform(_bubbleCtrl.value);
 
+        // Bubble-Geometrie - 300 max, geclampted an Bildschirmrand.
+        const bubbleW = 300.0;
+        final foxScreenX = _xAnim.value * size.width;
+        final bubbleLeft =
+            (foxScreenX - bubbleW / 2).clamp(8.0, size.width - bubbleW - 8.0);
+        // Wo zeigt der Tail? Relativ zur Bubble-Breite (0.0..1.0).
+        // Heinz' Bubble-Cut-off Fix: wenn die Bubble am Rand geclampted
+        // wurde, soll der Tail trotzdem auf den Fuchs zeigen, nicht in
+        // die Bubble-Mitte.
+        final tailRel = ((foxScreenX - bubbleLeft) / bubbleW).clamp(0.12, 0.88);
+
         return Stack(
           children: [
             // ── Sprechblase ueber Lumo ──
             if (_bubbleText.isNotEmpty)
               Positioned(
-                // Bubble ist jetzt bis 300px breit, daher Mitte = -150 und
-                // rechter Clamp = size.width - 308 (8px Sicherheitsabstand).
-                left: (_xAnim.value * size.width - 150)
-                    .clamp(8.0, size.width - 308),
+                left: bubbleLeft,
                 top: py - 92,
                 child: Transform.scale(
                   scale: bubbleScale.clamp(0.0, 1.0),
                   alignment: Alignment.bottomCenter,
-                  child: _SpeechBubble(text: _bubbleText),
+                  child: _SpeechBubble(text: _bubbleText, tailRel: tailRel),
                 ),
               ),
 
@@ -372,8 +429,13 @@ class LumoTutorialCompanionState extends State<LumoTutorialCompanion>
 // Speech-Bubble mit kindgerechtem Comic-Look
 // ────────────────────────────────────────────────────────────────────────
 class _SpeechBubble extends StatelessWidget {
-  const _SpeechBubble({required this.text});
+  const _SpeechBubble({required this.text, this.tailRel = 0.5});
   final String text;
+
+  /// Wo der Tail relativ zur Bubble-Breite sitzt (0..1). 0.5 = Mitte.
+  /// Heinz 2026-05-21: wenn die Bubble am Bildschirmrand geclampted
+  /// wurde, zeigt der Tail dynamisch zum Fuchs statt zur Bubble-Mitte.
+  final double tailRel;
 
   @override
   Widget build(BuildContext context) {
@@ -383,7 +445,7 @@ class _SpeechBubble extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 300, minWidth: 160),
       child: CustomPaint(
-        painter: _BubblePainter(),
+        painter: _BubblePainter(tailRel: tailRel),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(18, 14, 18, 20),
           child: Text(
@@ -404,6 +466,11 @@ class _SpeechBubble extends StatelessWidget {
 }
 
 class _BubblePainter extends CustomPainter {
+  _BubblePainter({this.tailRel = 0.5});
+
+  /// Tail-Position relativ zur Bubble-Breite (0..1).
+  final double tailRel;
+
   @override
   void paint(Canvas canvas, Size size) {
     final w = size.width;
@@ -437,18 +504,20 @@ class _BubblePainter extends CustomPainter {
       ..style = PaintingStyle.stroke;
     canvas.drawRRect(bubbleRect, outlinePaint);
 
-    // Comic-Tail unten
+    // Comic-Tail unten - Position abhaengig von tailRel.
+    // Tail-Spitze 'zeigt' nach unten zur Fuchs-Position.
+    final cx = w * tailRel.clamp(0.10, 0.90);
     final tailPath = Path()
-      ..moveTo(w * 0.42, h - 6)
-      ..lineTo(w * 0.52, h)
-      ..lineTo(w * 0.56, h - 6)
+      ..moveTo(cx - 10, h - 6)
+      ..lineTo(cx, h)
+      ..lineTo(cx + 6, h - 6)
       ..close();
     canvas.drawPath(tailPath, bodyPaint);
     canvas.drawPath(tailPath, outlinePaint);
   }
 
   @override
-  bool shouldRepaint(_) => false;
+  bool shouldRepaint(covariant _BubblePainter old) => old.tailRel != tailRel;
 }
 
 // ────────────────────────────────────────────────────────────────────────
