@@ -16,7 +16,6 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_companion_state.dart';
 import '../../../core/lumo_cosmos.dart';
-import '../../../core/lumo_image_generator.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 
@@ -428,69 +427,23 @@ class _WetterScreenState extends State<WetterScreen>
   Widget _buildVisualization() {
     switch (_typ) {
       case _WetterFrageTyp.bildErraten:
-        final url = LumoImageGenerator.instance
-            .buildSafeImageUrl(_correctWetter.imagePrompt);
-        return Container(
-          width: 220,
-          height: 220,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
-            boxShadow: [
-              BoxShadow(
-                  color: _gradient[0].withOpacity(0.25),
-                  blurRadius: 16,
-                  offset: const Offset(0, 6))
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            // Heinz Screenshot 2026-05-21: 'Welches Wetter ist das?' zeigte
-            // ein leeres tuerkises Quadrat (kein Bild, kein Emoji, kein
-            // Spinner). Loesung: Emoji-Fallback IMMER im Stack-Hintergrund -
-            // egal ob Image.network laedt, leer kommt oder errort, das
-            // Kind sieht zumindest das Wetter-Icon.
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Container(
-                  color: _correctWetter.color.withOpacity(0.18),
-                  alignment: Alignment.center,
-                  child: Text(_correctWetter.icon,
-                      style: const TextStyle(fontSize: 100)),
-                ),
-                if (url != null)
-                  Image.network(
-                    url,
-                    fit: BoxFit.cover,
-                    loadingBuilder: (ctx, child, progress) {
-                      // progress null = Bild fertig. Sonst sanfter Spinner
-                      // ueber dem Emoji-Hintergrund.
-                      if (progress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                            color: _gradient[0], strokeWidth: 3),
-                      );
-                    },
-                    // errorBuilder leer: dann bleibt der Stack-Hintergrund
-                    // (Emoji) sichtbar.
-                    errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-                  ),
-              ],
-            ),
-          ),
+        // Pollinations raus (kam im Cloud-Setup nie zuverlaessig durch).
+        // Stattdessen: grosser Wetter-Emoji auf himmelartigem RadialGradient,
+        // pro Wetter eigene Stimmung.
+        return _WetterBubble(
+          icon: _correctWetter.icon,
+          colors: _himmelGradient(_correctWetter.name),
+          size: 220,
+          bouncing: true,
+          bounceCtrl: _bounceCtrl,
         );
       case _WetterFrageTyp.kleidungWaehlen:
-        return Container(
-          width: 180,
-          height: 180,
-          decoration: BoxDecoration(
-            color: _correctWetter.color.withOpacity(0.2),
-            shape: BoxShape.circle,
-            border: Border.all(color: _correctWetter.color, width: 4),
-          ),
-          alignment: Alignment.center,
-          child: Text(_correctWetter.icon,
-              style: const TextStyle(fontSize: 100)),
+        return _WetterBubble(
+          icon: _correctWetter.icon,
+          colors: _himmelGradient(_correctWetter.name),
+          size: 180,
+          bouncing: false,
+          bounceCtrl: _bounceCtrl,
         );
       case _WetterFrageTyp.hinweisErraten:
         return Container(
@@ -632,6 +585,78 @@ class _WetterScreenState extends State<WetterScreen>
           ),
         );
       }).toList(),
+    );
+  }
+
+  /// Stimmungs-Gradient pro Wetterlage (oben=Himmel, unten=Boden/Tieferes).
+  List<Color> _himmelGradient(String name) {
+    switch (name) {
+      case 'Sonne':
+        return const [Color(0xFFFFF6B7), Color(0xFFFFC04D)];
+      case 'Regen':
+        return const [Color(0xFFCBD9E8), Color(0xFF4A7A9A)];
+      case 'Wolken':
+        return const [Color(0xFFE5EBF0), Color(0xFF9AA7B5)];
+      case 'Schnee':
+        return const [Color(0xFFEAF4FF), Color(0xFFA7C8E8)];
+      case 'Gewitter':
+        return const [Color(0xFF6E5B85), Color(0xFF2C2347)];
+      case 'Nebel':
+      default:
+        return const [Color(0xFFE8EAEC), Color(0xFFB8BCBF)];
+    }
+  }
+}
+
+/// Visualisierung fuer Wetter: grosser Icon-Emoji auf passendem
+/// RadialGradient, mit optionaler Atem-Animation.
+class _WetterBubble extends StatelessWidget {
+  const _WetterBubble({
+    required this.icon,
+    required this.colors,
+    required this.size,
+    required this.bouncing,
+    required this.bounceCtrl,
+  });
+  final String icon;
+  final List<Color> colors;
+  final double size;
+  final bool bouncing;
+  final AnimationController bounceCtrl;
+
+  @override
+  Widget build(BuildContext context) {
+    final card = Container(
+      width: size,
+      height: size,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        gradient: RadialGradient(
+          colors: [colors[0], colors[1]],
+          radius: 0.9,
+        ),
+        borderRadius: BorderRadius.circular(28),
+        border: Border.all(color: Colors.white, width: 6),
+        boxShadow: [
+          BoxShadow(
+            color: colors[1].withOpacity(.45),
+            blurRadius: 22,
+            offset: const Offset(0, 8),
+            spreadRadius: -2,
+          ),
+        ],
+      ),
+      child: Text(icon,
+          style: TextStyle(fontSize: size * 0.55, height: 1.0)),
+    );
+    if (!bouncing) return card;
+    return AnimatedBuilder(
+      animation: bounceCtrl,
+      builder: (_, child) {
+        final s = 1.0 + math.sin(bounceCtrl.value * math.pi * 2) * 0.02;
+        return Transform.scale(scale: s, child: child);
+      },
+      child: card,
     );
   }
 }
