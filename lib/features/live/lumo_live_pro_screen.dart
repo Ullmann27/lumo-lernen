@@ -92,23 +92,38 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
   int _safariRound = 0;
   int _safariTotal = 0;
 
-  // Photo-Quiz state
+  // Photo-Quiz state - nutzt jetzt _extendedPhotoQuestions
   String? _photoQuizSubject;
   int _photoQuizQuestionIdx = 0;
-  final List<String> _photoQuestions = [
-    'Was siehst du da auf dem Foto?',
-    'Welche Farbe hat das?',
-    'Wo findet man so etwas?',
-  ];
 
   // Lumo redet
   bool _lumoCurrentlySpeaking = false;
 
   static const List<String> _safariAnimals = [
+    // Savanne / Afrika
     'Loewe', 'Elefant', 'Giraffe', 'Zebra', 'Affe',
     'Tiger', 'Baer', 'Wolf', 'Eule', 'Pinguin',
     'Delfin', 'Schmetterling', 'Hund', 'Katze',
     'Pferd', 'Kuh', 'Schaf', 'Schwein',
+    // Erweiterung: Zoo + Wasser
+    'Krokodil', 'Nashorn', 'Flusspferd', 'Kaenguru',
+    'Koala', 'Faultier', 'Hai', 'Wal', 'Robbe',
+    // Erweiterung: Polar + Wald
+    'Eisbaer', 'Rentier', 'Fuchs', 'Reh', 'Eichhoernchen',
+    'Igel', 'Frosch', 'Schildkroete',
+    // Erweiterung: Vogel + Insekt
+    'Adler', 'Papagei', 'Storch', 'Biene', 'Marienkaefer',
+  ];
+
+  /// Photo-Quiz-Fragen mit etwas mehr Variation.
+  static const List<String> _extendedPhotoQuestions = [
+    'Was siehst du da auf dem Foto?',
+    'Welche Farbe hat das?',
+    'Wo findet man so etwas?',
+    'Ist das gross oder klein?',
+    'Mag das jemand essen?',
+    'Hast du das schon einmal gesehen?',
+    'Wie fuehlt sich das an, glaubst du?',
   ];
 
   @override
@@ -267,7 +282,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
         _photoQuizQuestionIdx = 0;
         _mood = LumoMirrorMood.curious;
       });
-      _speak(_photoQuestions[0]);
+      _speak(_extendedPhotoQuestions[0]);
     } catch (e) {
       _speak('Das Foto hat nicht geklappt. Probier nochmal!');
     }
@@ -281,11 +296,11 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
     CosmosWorld.instance.grantReward(
       subjectId: 'live_photo', isMath: false, isPerfect: false,
     );
-    if (_photoQuizQuestionIdx + 1 < _photoQuestions.length) {
+    if (_photoQuizQuestionIdx + 1 < _extendedPhotoQuestions.length) {
       _photoQuizQuestionIdx++;
       setState(() => _mood = LumoMirrorMood.happy);
       await Future.delayed(const Duration(milliseconds: 1500));
-      _speak(_photoQuestions[_photoQuizQuestionIdx]);
+      _speak(_extendedPhotoQuestions[_photoQuizQuestionIdx]);
     } else {
       setState(() => _mood = LumoMirrorMood.cheer);
       _speak('Super! Du hast alle Fragen beantwortet! '
@@ -318,9 +333,14 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
     if (_safariAnimal == null) return;
     final said = _recognized.toLowerCase().trim();
     final correct = _safariAnimal!.toLowerCase();
+    // Levenshtein-Toleranz nach Wortlaenge: kurze Tiere ('Hai') haben
+    // Toleranz 1, lange ('Schildkroete') Toleranz 3 - statt fixer 2.
+    // Sonst sind 5-Jaehrige mit Schmetterling vs Schildkroete im Vorteil
+    // oder bei Bar/Baer ungerecht 'falsch'.
+    final tol = (correct.length / 4).floor().clamp(1, 3);
     final isRight = said.contains(correct) ||
         correct.contains(said) ||
-        _levenshtein(said, correct) <= 2;
+        _levenshtein(said, correct) <= tol;
     if (isRight) {
       _safariScore++;
       setState(() => _mood = LumoMirrorMood.cheer);
