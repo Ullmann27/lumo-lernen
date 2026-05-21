@@ -502,6 +502,11 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
   sichtbar, Lumo geht parallel auf Mood `think`. Heinz' Phase-3-Plan-
   Punkt „Tap auf Lumo öffnet einen Mini-Chat" damit komplett.
 - `1063a5e` Letter-Writing-Screen: Titel 20→24pt, CTA 18→22pt.
+- `ad8f13a` WritingReportCard-Empfehlung (Elternbereich) mit Idle-Fox.
+- `5fb7a87` Quizshow `_HintBubble` premium-isiert (Idle-Fox + Schatten
+  + 15pt bold Text).
+- `72be014` Quizshow JokerButton lila Premium-Stil + Pill-Form.
+- `d448d8f` Quizshow ResultPanel mit Premium-Schatten, Text 13→16pt.
 
 **Phase 4 – Lehrplan-Audit:**
 - Tabelle aller 20 Module gegen ÖsterreichVS-Lehrplan: **alle konform**,
