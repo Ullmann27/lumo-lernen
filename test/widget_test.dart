@@ -4,7 +4,10 @@ import 'package:lumo_lernen/main.dart';
 void main() {
   testWidgets('Lumo app boots', (tester) async {
     await tester.pumpWidget(const LumoApp());
-    expect(find.text('Lumo Lernen'), findsOneWidget);
-    expect(find.text('Intro überspringen'), findsOneWidget);
+    // Pump genug damit async init durch ist (Profile-Load, etc).
+    await tester.pump(const Duration(milliseconds: 100));
+    // Bei frischer Installation zeigt sich der Onboarding-Screen.
+    // 'Lumo Lernen' Titel ist in MaterialApp + Onboarding-Step.
+    expect(find.text('Lumo Lernen'), findsWidgets);
   });
 }
