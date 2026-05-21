@@ -542,13 +542,27 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
 - Token-Limit-Bewusstsein: Claude hat vor 99% gestoppt wie von Heinz
   angewiesen, weitere Refactors auf nächste Session verschoben.
 
-### Was noch offen ist (NICHT in dieser Session, für später)
+### Was Phase 3 Vollausbau jetzt zusätzlich hat (autonom umgesetzt)
 
-1. **Phase 3 Live-Strich-Erkennung** – während das Kind im Schreibcoach
-   einen Buchstaben zeichnet, prüft Lumo den Strich KONTINUIERLICH und
-   gibt Live-Hints ("Hmm, der Strich geht hier lang!"). Aktuell nur
-   beim "Fertig"-Tap. Braucht Live-Stroke-Analyse via `LetterShapeAnalyzer`
-   nach jedem Pan-End-Event, plus Performance-Sicherung. Eigene Session.
+- `c31404e` Live-Strich-Counter im Schreibcoach – Pille „X / Y Striche"
+  in der Prompt-Karte, sichtbar sobald 1+ Strich gemacht.
+- `a190ace` `LumoBrain.ask` in `_showCompanionHint` integriert. Tap
+  auf Lumo bei einer Aufgabe „Welches Tier ist ein Fisch?" liefert
+  jetzt eine echte Lexikon-Antwort statt nur eines generischen Hints.
+- `acae872`, `cf48659` Live-Stroke-Analyse in beiden Schreibcoaches
+  (Single-Letter + Word-Diktat) – nach jedem Pan-End prüfe Stroke-
+  Länge, bei < 24 Pixel: Mood `think` + Voice-Hint „Mach den Strich
+  ein bisschen länger!".
+
+### Was wirklich noch offen ist (für eigene Session)
+
+- **Vollständige Live-Strich-Pfad-Analyse** – aktuell prüfe ich nur
+  Länge. Heinz' Plan wollte auch „Strich-Richtung falsch", „Pfeil-Hint
+  zum nächsten Strich". Das braucht ein Stroke-vs-Template Vergleich
+  Pixel-für-Pixel pro Pan-Update – komplex, Performance-relevant.
+- **Adaptive Schwierigkeit im AdaptiveTaskRenderer** – die Coaches
+  haben es (weakLetters → bevorzugt). Der Renderer selbst nicht
+  (Aufgaben kommen von der Session-Engine), wäre Engine-Refactor.
 2. **Phase 2C** – Module einzeln mit `LumoMagicBackground`/`LumoPremiumCard`
    wrappen. Eigentlich überflüssig, weil `AdaptiveTaskRenderer` zentral wirkt
    – aber für Module mit eigenen Screens (z.B. Lumo Jump) sinnvoll.
