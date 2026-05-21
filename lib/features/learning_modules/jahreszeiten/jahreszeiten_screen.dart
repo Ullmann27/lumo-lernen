@@ -58,6 +58,22 @@ extension _JahreszeitName on _Jahreszeit {
         return const Color(0xFF3B82F6);
     }
   }
+
+  /// Fallback-Emoji wenn Pollinations-Bild nicht laedt.
+  /// Heinz-Scan: vorher zeigte der Fallback IMMER 🌸 (Blume), auch
+  /// im Winter - inhaltlich falsch. Jetzt passt das Emoji zur Saison.
+  String get fallbackEmoji {
+    switch (this) {
+      case _Jahreszeit.fruehling:
+        return '🌸';
+      case _Jahreszeit.sommer:
+        return '☀️';
+      case _Jahreszeit.herbst:
+        return '🍂';
+      case _Jahreszeit.winter:
+        return '❄️';
+    }
+  }
 }
 
 class _Hinweis {
@@ -402,30 +418,34 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
-        child: url == null
-            ? Container(
-                color: _gradient[0].withOpacity(0.15),
-                alignment: Alignment.center,
-                child: const Text('🌸', style: TextStyle(fontSize: 80)),
-              )
-            : Image.network(
+        // Heinz-Scan: gleicher Stack-Fallback wie Wetter/Tiere - das
+        // saison-passende Emoji ist IMMER sichtbar, Pollinations-Bild
+        // legt sich drueber wenn fertig. Vorher: bei Fehler stand
+        // IMMER '🌸' (Bluete) - auch im Winter inhaltlich falsch.
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              color: _correctJz.themeColor.withOpacity(0.18),
+              alignment: Alignment.center,
+              child: Text(_correctJz.fallbackEmoji,
+                  style: const TextStyle(fontSize: 96)),
+            ),
+            if (url != null)
+              Image.network(
                 url,
                 fit: BoxFit.cover,
                 loadingBuilder: (ctx, child, progress) {
                   if (progress == null) return child;
-                  return Container(
-                    color: _gradient[0].withOpacity(0.1),
-                    alignment: Alignment.center,
+                  return Center(
                     child: CircularProgressIndicator(
                         color: _gradient[0], strokeWidth: 3),
                   );
                 },
-                errorBuilder: (ctx, err, st) => Container(
-                  color: _gradient[0].withOpacity(0.15),
-                  alignment: Alignment.center,
-                  child: const Text('🌸', style: TextStyle(fontSize: 80)),
-                ),
+                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
               ),
+          ],
+        ),
       ),
     );
   }
