@@ -178,6 +178,65 @@ class _SettingsContentState extends State<SettingsContent> {
   }
 
   /// Manuelle Pruefung ob ein neueres Lumo-Lernen Release verfuegbar ist.
+  /// Heinz 2026-05-21: 'Mann muss immer die Moeglichkeit haben das
+  /// Profil auf neu zurueckzusetzen - extra Option bei den Eltern.'
+  /// Confirmation-Dialog mit doppeltem Tap (Sicherheit).
+  Future<void> _confirmResetProfile(BuildContext context) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)),
+        title: const Text(
+          'Profil wirklich zuruecksetzen?',
+          style: TextStyle(
+              fontFamily: 'Nunito', fontWeight: FontWeight.w900),
+        ),
+        content: const Text(
+          'Damit gehen verloren:\n'
+          '• Name und Klasse des Kindes\n'
+          '• Alle gesammelten Sterne und XP\n'
+          '• Lese-, Schreib- und Lernfortschritt\n'
+          '• Spielstaende der Mini-Spiele\n\n'
+          'Die App startet danach wie beim ersten Mal mit der Begruessung.',
+          style: TextStyle(fontFamily: 'Nunito', fontSize: 13, height: 1.4),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text(
+              'Abbrechen',
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900),
+            ),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xFFDC2626)),
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text(
+              'Ja, zuruecksetzen',
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900),
+            ),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    if (!mounted) return;
+    await widget.appState.resetAllProfile();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Profil zurueckgesetzt. App startet beim naechsten Oeffnen neu.'),
+        duration: Duration(seconds: 4),
+      ),
+    );
+  }
+
   /// Heinz' Wunsch 2026-05-21: 'Einfach auf Aktualisieren druecken,
   /// dann passiert alles automatisch.' Vorher musste man erst auf
   /// 'Pruefen' druecken und dann nochmal auf 'Herunterladen'.
@@ -279,6 +338,10 @@ class _SettingsContentState extends State<SettingsContent> {
           checking: _checkingUpdate,
           error: _updateError,
           onUpdate: _checkAndUpdate,
+        ),
+        const SizedBox(height: 18),
+        _ProfileResetCard(
+          onReset: () => _confirmResetProfile(context),
         ),
         const SizedBox(height: 18),
         ParentReportCard(appState: widget.appState),
@@ -1309,6 +1372,103 @@ class _AppUpdateCard extends StatelessWidget {
               fontWeight: FontWeight.w700,
               color: LumoColors.ink500,
               height: 1.35,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Heinz 2026-05-21: 'Profil auf neu zuruecksetzen - extra Option
+/// bei den Eltern.' Danger-Zone Karte mit rotem Akzent, deutlich
+/// abgesetzt vom Update-Bereich.
+class _ProfileResetCard extends StatelessWidget {
+  const _ProfileResetCard({required this.onReset});
+  final VoidCallback onReset;
+
+  @override
+  Widget build(BuildContext context) {
+    const danger = Color(0xFFDC2626);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.white, danger.withOpacity(0.05)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: danger.withOpacity(0.25), width: 1.4),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFFCA5A5), Color(0xFFDC2626)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: const Text('⚠️', style: TextStyle(fontSize: 22)),
+              ),
+              const SizedBox(width: 12),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Profil zuruecksetzen',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900,
+                        color: LumoColors.ink900,
+                      ),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      'Loescht Name, Klasse, Sterne, XP und allen Fortschritt. '
+                      'Danach startet die App wie neu.',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: LumoColors.ink500,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              onPressed: onReset,
+              style: OutlinedButton.styleFrom(
+                foregroundColor: danger,
+                side: const BorderSide(color: danger, width: 1.6),
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+              ),
+              icon: const Icon(Icons.restart_alt_rounded, size: 18),
+              label: const Text(
+                'Profil zuruecksetzen',
+                style: TextStyle(
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900),
+              ),
             ),
           ),
         ],

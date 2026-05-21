@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/app_settings.dart';
 import '../core/learning_profile_engine.dart';
@@ -245,6 +246,24 @@ class LumoAppState extends ChangeNotifier {
     try {
       await _learningProfile.reset();
     } catch (_) {}
+    _safeNotify();
+  }
+
+  /// Heinz 2026-05-21: 'Mann muss immer die Moeglichkeit haben das Profil
+  /// auf neu zurueckzusetzen - extra Option bei den Eltern.' Loescht das
+  /// gespeicherte Kind-Profil, Sterne/XP, Cosmos, Reading- und Writing-
+  /// Progress, Companion-State, Settings - im Grunde alle SharedPreferences-
+  /// Keys der App. Danach startet die App wie beim ersten Mal mit dem
+  /// Onboarding-Flow.
+  Future<void> resetAllProfile() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.clear();
+    } catch (_) {}
+    try {
+      await _learningProfile.reset();
+    } catch (_) {}
+    _state = LumoSessionState();
     _safeNotify();
   }
 

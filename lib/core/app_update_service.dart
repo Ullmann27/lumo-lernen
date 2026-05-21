@@ -99,7 +99,8 @@ class AppUpdateService {
       final commitSha = decoded['target_commitish']?.toString() ?? '';
       final releaseUrl = _trustedUri(decoded['html_url']?.toString()) ?? fallbackReleaseUrl;
       final apkUrl = _trustedUri(apkAsset?['browser_download_url']?.toString()) ?? Uri();
-      final latestBuild = _extractLatestBuildNumber(assets);
+      final tagName = decoded['tag_name']?.toString();
+      final latestBuild = _extractLatestBuildNumber(tagName, assets);
 
       return AppUpdateInfo(
         available: latestBuild > currentBuildNumber && apkUrl.toString().isNotEmpty,
@@ -138,11 +139,32 @@ class AppUpdateService {
     return apks.first;
   }
 
-  int _extractLatestBuildNumber(List<Map<String, dynamic>> assets) {
+  /// Heinz Bug 2026-05-21: Update-Pruefung sagte 'neueste Version'
+  /// obwohl Build 156 schon draussen war. Ursache: das alte Regex
+  /// suchte 'debug-NUMBER.apk', aber die APKs heissen jetzt
+  /// 'Lumo-Lernen-156-abc1234.apk' und der Release-Tag heisst
+  /// 'build-156'. Beide Namensschemas werden jetzt erkannt;
+  /// primaer wird der Release-Tag genommen (robuster).
+  int _extractLatestBuildNumber(
+    String? tagName,
+    List<Map<String, dynamic>> assets,
+  ) {
+    // Primaer: aus Release-Tag (z.B. 'build-156').
+    if (tagName != null && tagName.isNotEmpty) {
+      final match = RegExp(r'(?:build|debug)-(\d+)').firstMatch(tagName);
+      if (match != null) {
+        final parsed = int.tryParse(match.group(1) ?? '');
+        if (parsed != null) return parsed;
+      }
+    }
+    // Fallback: aus Asset-Datei-Namen. Erkennt sowohl das alte
+    // 'debug-NUMBER.apk' als auch das neue
+    // 'Lumo-Lernen-NUMBER-sha.apk' Schema.
     var latest = currentBuildNumber;
+    final pattern = RegExp(r'(?:debug|Lumo-Lernen)-(\d+)');
     for (final asset in assets) {
       final name = asset['name']?.toString() ?? '';
-      final match = RegExp(r'debug-(\d+)\.apk').firstMatch(name);
+      final match = pattern.firstMatch(name);
       if (match == null) continue;
       final parsed = int.tryParse(match.group(1) ?? '');
       if (parsed != null && parsed > latest) latest = parsed;
