@@ -766,9 +766,13 @@ class _MicrophonePanel extends StatelessWidget {
         Row(children: [
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(headline, style: LumoTextStyles.heading3.copyWith(color: accent)),
+              Text(headline,
+                  style: LumoTextStyles.heading3.copyWith(
+                      color: accent, fontSize: 18)),
               const SizedBox(height: 4),
-              Text(subline, style: LumoTextStyles.body.copyWith(color: LumoColors.ink500)),
+              Text(subline,
+                  style: LumoTextStyles.body.copyWith(
+                      color: LumoColors.ink500, fontSize: 14)),
             ]),
           ),
           const SizedBox(width: 12),
@@ -776,14 +780,14 @@ class _MicrophonePanel extends StatelessWidget {
             onTap: enabled ? onTap : null,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              width: 72,
-              height: 72,
+              width: 84,
+              height: 84,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: !enabled ? LumoColors.ink300 : listening ? LumoColors.practice : LumoColors.orange,
                 boxShadow: enabled ? LumoShadow.pill : null,
               ),
-              child: Icon(listening ? Icons.stop_rounded : Icons.mic_rounded, color: Colors.white, size: 36),
+              child: Icon(listening ? Icons.stop_rounded : Icons.mic_rounded, color: Colors.white, size: 42),
             ),
           ),
         ]),
