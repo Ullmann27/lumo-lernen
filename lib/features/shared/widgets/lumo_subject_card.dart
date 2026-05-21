@@ -39,9 +39,12 @@ class LumoSubjectCard extends StatelessWidget {
           color: backgroundColor ?? LumoColors.cardBg,
           padding: const EdgeInsets.all(18),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 170),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-              Expanded(
+            constraints: const BoxConstraints(minHeight: 170, maxHeight: 220),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+              Flexible(
                 child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                   Expanded(child: _SubjectText(title: title, description: description, accentColor: accentColor)),
                   const SizedBox(width: 12),
