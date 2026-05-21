@@ -5,6 +5,7 @@ import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import '../widgets/fox/lumo_free_companion.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
+import '../widgets/fox/lumo_idle_fox.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
 import '../features/home/home_content.dart';
@@ -383,7 +384,10 @@ class _MobileLumoHeader extends StatelessWidget {
                   shape: BoxShape.circle,
                   gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
                 ),
-                child: const Center(child: Text('🦊', style: TextStyle(fontSize: 28))),
+                child: const Padding(
+                  padding: EdgeInsets.all(6),
+                  child: LumoIdleFox(size: 40),
+                ),
               ),
             ),
           ),

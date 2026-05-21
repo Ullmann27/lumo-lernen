@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_theme.dart';
 import '../../domain/learning/learning_dna.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 
 /// Eltern-Karte: vollstaendige Lern-DNA mit allen Feldern.
 class LearningDnaParentCard extends StatelessWidget {
@@ -462,7 +463,7 @@ class LearningDnaChildCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('🦊', style: TextStyle(fontSize: 28)),
+              const LumoIdleFox(size: 40),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
