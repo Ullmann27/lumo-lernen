@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../core/lumo_brain.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../widgets/fox/lumo_idle_fox.dart';
 import '../../../widgets/fox/lumo_reaction_companion.dart';
@@ -181,20 +182,31 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
   }
 
   /// Phase 3: Tap auf den Reaction-Companion zeigt einen kurzen
-  /// Mini-Chat-Hint passend zur aktuellen Aufgabe.
+  /// Mini-Chat-Hint passend zur aktuellen Aufgabe. Erst wird
+  /// LumoBrain.ask konsultiert - liefert das eine confident Antwort,
+  /// gewinnt sie. Sonst Fallback auf einen statischen Topic-Hint.
   void _showCompanionHint() {
     final task = widget.task;
     final prompt = task.prompt.toLowerCase();
     String hint;
-    if (task.subject == LearningSubject.mathematik) {
-      hint = 'Zähle die Dinge im Bild langsam mit dem Finger.';
-    } else if (prompt.contains('silbe')) {
-      hint = 'Sprich das Wort langsam und klatsch bei jeder Silbe.';
-    } else if (prompt.contains('anfangs') || prompt.contains('laut')) {
-      hint = 'Höre nur auf den ersten oder letzten Laut im Wort.';
+
+    // 1) Versuch via LumoBrain (kennt Tiere, Pflanzen, Mathe, etc.)
+    final brain = LumoBrain.instance.ask(task.prompt);
+    if (brain.confident) {
+      hint = brain.text;
     } else {
-      hint = 'Lies die Aufgabe noch einmal langsam und in Ruhe.';
+      // 2) Fallback - topic-spezifischer Standard-Hint
+      if (task.subject == LearningSubject.mathematik) {
+        hint = 'Zähle die Dinge im Bild langsam mit dem Finger.';
+      } else if (prompt.contains('silbe')) {
+        hint = 'Sprich das Wort langsam und klatsch bei jeder Silbe.';
+      } else if (prompt.contains('anfangs') || prompt.contains('laut')) {
+        hint = 'Höre nur auf den ersten oder letzten Laut im Wort.';
+      } else {
+        hint = 'Lies die Aufgabe noch einmal langsam und in Ruhe.';
+      }
     }
+
     _setMood(LumoReactionMood.think);
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
@@ -207,7 +219,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                   fontWeight: FontWeight.w800,
                   color: Colors.white)),
           backgroundColor: const Color(0xFF7C3AED),
-          duration: const Duration(seconds: 4),
+          duration: const Duration(seconds: 5),
           behavior: SnackBarBehavior.floating,
         ),
       );
