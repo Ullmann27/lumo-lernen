@@ -12,7 +12,7 @@ import '../../widgets/lumo_mirror.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../cosmos/lumo_cosmos_screen.dart';
-import '../live/lumo_live_screen.dart';
+import '../live/lumo_live_pro_screen.dart';
 import '../story/lumo_story_library_screen.dart';
 import '../story/lumo_story_setup_screen.dart';
 
@@ -99,18 +99,18 @@ class LumoMagicHubScreen extends StatelessWidget {
               ),
               const SizedBox(height: LumoTokens.space12),
 
-              // 3. LUMO LIVE
+              // 3. LUMO LIVE PRO
               LumoHeroCard(
                 title: 'Lumo LIVE',
-                subtitle: 'Sprich oder fotografiere - Lumo lernt mit!',
+                subtitle: 'Wort-Magie · Foto-Quiz · Tier-Safari',
                 icon: Icons.mic_rounded,
                 gradient: LumoTokens.colors.heroOrange,
                 glowColor: LumoTokens.colors.lumoOrange,
-                badge: 'NEU',
+                badge: 'PRO',
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => LumoLiveScreen(appState: appState),
+                    builder: (_) => LumoLiveProScreen(appState: appState),
                   ),
                 ),
               ),
