@@ -554,74 +554,69 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                     ),
                   ),
                   // Bildgenerator-Bubble (Heinz' Feature)
+                  // Heinz Screenshot 2026-05-21: 'Schau mal - hier ist
+                  // ein Bild fuer dich!' zeigte oft eine LEERE weisse
+                  // Box (Pollinations langsam / 0-Byte). Jetzt mit
+                  // sofortigem 'Bild wird gemalt'-Hintergrund - Image
+                  // legt sich obendrauf wenn fertig.
                   if (msg.imageUrl != null) ...[
                     const SizedBox(height: 8),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(14),
-                      child: Image.network(
-                        msg.imageUrl!,
+                      child: SizedBox(
                         width: 240,
                         height: 240,
-                        fit: BoxFit.cover,
-                        loadingBuilder: (ctx, child, progress) {
-                          if (progress == null) return child;
-                          return Container(
-                            width: 240,
-                            height: 240,
-                            decoration: BoxDecoration(
-                              color: widget.topic.gradient[0].withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            child: Center(
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            // Always-visible Hintergrund mit 'Bild wird
+                            // gemalt' - kein blanker weisser Bereich mehr.
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: widget.topic.gradient,
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                              ),
+                              alignment: Alignment.center,
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  CircularProgressIndicator(
-                                      color: widget.topic.gradient[0],
-                                      strokeWidth: 3),
+                                  const Icon(Icons.auto_awesome_rounded,
+                                      size: 48, color: Colors.white),
                                   const SizedBox(height: 8),
-                                  Text('Bild wird gemalt...',
-                                      style: TextStyle(
-                                          fontFamily: 'Nunito',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w800,
-                                          color: widget.topic.gradient[1])),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 12),
+                                    child: Text(
+                                        'Lumos Phantasie laeuft… 🎨',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: 'Nunito',
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w800,
+                                            color: Colors.white)),
+                                  ),
                                 ],
                               ),
                             ),
-                          );
-                        },
-                        errorBuilder: (ctx, err, st) => Container(
-                          width: 240,
-                          height: 140,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: widget.topic.gradient,
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
+                            Image.network(
+                              msg.imageUrl!,
+                              fit: BoxFit.cover,
+                              loadingBuilder: (ctx, child, progress) {
+                                if (progress == null) return child;
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 3),
+                                );
+                              },
+                              // errorBuilder leer -> Hintergrund bleibt.
+                              errorBuilder: (_, __, ___) =>
+                                  const SizedBox.shrink(),
                             ),
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: const [
-                              Icon(Icons.auto_awesome_rounded,
-                                  size: 48, color: Colors.white),
-                              SizedBox(height: 8),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 12),
-                                child: Text(
-                                    'Stell dir das Bild im Kopf vor! 🎨',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontFamily: 'Nunito',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w800,
-                                        color: Colors.white)),
-                              ),
-                            ],
-                          ),
+                          ],
                         ),
                       ),
                     ),

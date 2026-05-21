@@ -153,8 +153,17 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     super.dispose();
   }
 
+  // Heinz-Scan 2026-05-21: vorher nextInt(_fragen.length) bei jedem
+  // Task -> selbe Frage konnte bei 30 Aufgaben mehrmals vorkommen.
+  // Jetzt: Shuffled-Pool, durchgehen bis leer, dann neu mischen
+  // (gleiche Frage kommt nicht in den letzten N).
+  List<_VerkehrFrage> _pool = [];
+
   void _generateTask() {
-    _aktuelle = _fragen[_rng.nextInt(_fragen.length)];
+    if (_pool.isEmpty) {
+      _pool = List.of(_fragen)..shuffle(_rng);
+    }
+    _aktuelle = _pool.removeLast();
     _options = [_aktuelle.richtig, ..._aktuelle.falsch]..shuffle(_rng);
     _correctIdx = _options.indexOf(_aktuelle.richtig);
     _answered = false;

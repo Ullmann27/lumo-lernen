@@ -411,38 +411,32 @@ class _TiereScreenState extends State<TiereScreen>
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
-        child: Image.network(
-          url,
-          fit: BoxFit.cover,
-          loadingBuilder: (ctx, child, progress) {
-            if (progress == null) return child;
-            return Container(
-              color: _gradient[0].withOpacity(0.1),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    CircularProgressIndicator(
-                        color: _gradient[0], strokeWidth: 3),
-                    const SizedBox(height: 8),
-                    Text('Bild wird gemalt...',
-                        style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w800,
-                            color: _gradient[1])),
-                  ],
-                ),
-              ),
-            );
-          },
-          errorBuilder: (ctx, err, st) => Container(
-            color: _gradient[0].withOpacity(0.15),
-            alignment: Alignment.center,
-            // Heinz: keine generischen Pfoten - echtes Tier-Emoji.
-            child: Text(_correctTier.emoji,
-                style: const TextStyle(fontSize: 100)),
-          ),
+        // Heinz-Scan 2026-05-21: gleicher Stack-Fallback wie Wetter -
+        // Tier-Emoji IMMER im Hintergrund, Pollinations-Bild legt sich
+        // drueber wenn fertig. Verhindert leere Boxen bei langsamem/
+        // 0-Byte Pollinations-Response.
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              color: _gradient[0].withOpacity(0.15),
+              alignment: Alignment.center,
+              child: Text(_correctTier.emoji,
+                  style: const TextStyle(fontSize: 100)),
+            ),
+            Image.network(
+              url,
+              fit: BoxFit.cover,
+              loadingBuilder: (ctx, child, progress) {
+                if (progress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                      color: _gradient[0], strokeWidth: 3),
+                );
+              },
+              errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+            ),
+          ],
         ),
       ),
     );

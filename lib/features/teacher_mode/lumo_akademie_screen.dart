@@ -18,6 +18,8 @@ import '../../app/app_theme.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../writing/lumo_writing_coach_screen.dart';
+import '../writing/lumo_writing_word_coach_screen.dart';
+import '../writing/writing_feature_flags.dart';
 import 'lumo_teacher_screen.dart';
 import 'letter_writing_screen.dart';
 
@@ -875,6 +877,14 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     if (t.id == 'd1_schreibcoach') {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => LumoWritingCoachScreen(appState: widget.appState),
+      ));
+      return;
+    }
+    // 0b) Wortdiktat (Phase 5): Buchstabenfelder + WritingProgressRepo.
+    if (t.id == 'd1_woerter' && WritingFeatureFlags.enableWordMode) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) =>
+            LumoWritingWordCoachScreen(appState: widget.appState),
       ));
       return;
     }

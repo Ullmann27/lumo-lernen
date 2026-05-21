@@ -388,11 +388,21 @@ class _FarbenScreenState extends State<FarbenScreen>
         final farbe = _bildFarben[i];
         final isCorrect = i == _correctImageIdx;
         final isSelected = _selectedIdx == i;
-        final prompt = '${farbe.prompt} $_objekt';
-        final url = LumoImageGenerator.instance.buildSafeImageUrl(prompt);
+        // Heinz Screenshot 2026-05-21 zeigte 'Tippe gelb!' wo das URL
+        // potentiell vom Bildgenerator nicht kam -> alle Boxen wurden
+        // mit dem Parent-Gradient orange. Bei _objekt 'Farbe' (kein
+        // echtes Objekt) gar keinen URL bauen, damit der optionColor-
+        // Fallback greift.
+        final usesPlainColor = _objekt.toLowerCase() == 'farbe' ||
+            _objekt.toLowerCase() == 'farben';
+        final url = usesPlainColor
+            ? null
+            : LumoImageGenerator.instance
+                .buildSafeImageUrl('${farbe.prompt} $_objekt');
         return _BuildableImageOption(
           url: url,
           gradient: _gradient,
+          optionColor: farbe.color,
           isSelected: isSelected,
           isCorrect: isCorrect,
           answered: _answered,
@@ -523,6 +533,14 @@ class _ImageBubble extends StatelessWidget {
   }
 }
 
+/// Eine etwas hellere/dunklere Variante der gleichen Farbe -
+/// fuer den Gradient innerhalb einer 'Tippe Farbe!'-Box.
+Color _shadeOf(Color base, double factor) {
+  final hsl = HSLColor.fromColor(base);
+  final l = (hsl.lightness * factor).clamp(0.0, 1.0);
+  return hsl.withLightness(l).toColor();
+}
+
 class _BuildableImageOption extends StatelessWidget {
   const _BuildableImageOption({
     required this.url,
@@ -532,6 +550,7 @@ class _BuildableImageOption extends StatelessWidget {
     required this.answered,
     required this.bounceCtrl,
     required this.onTap,
+    this.optionColor,
   });
   final String? url;
   final List<Color> gradient;
@@ -540,6 +559,11 @@ class _BuildableImageOption extends StatelessWidget {
   final bool answered;
   final AnimationController bounceCtrl;
   final VoidCallback onTap;
+
+  /// Die ECHTE Farbe der Option (nur fuer 'Tippe Farbe X!'-Modus
+  /// wo url == null und das Kind die richtige Farbe finden muss).
+  /// Wenn null wird der Parent-Gradient genommen.
+  final Color? optionColor;
 
   @override
   Widget build(BuildContext context) {
@@ -570,12 +594,16 @@ class _BuildableImageOption extends StatelessWidget {
             borderRadius: BorderRadius.circular(17),
             child: url == null
                 ? Container(
-                    // FIX: Bei reiner Farb-Aufgabe ('Tippe blau!')
-                    // zeige die FARBE selbst als grossen Block,
-                    // nicht das Palette-Emoji.
+                    // FIX (Heinz Screenshot 2026-05-21): bei 'Tippe Farbe X!'
+                    // (objektZuFarbe-Modus, url=null) wurde IMMER der
+                    // Parent-Gradient (rot-orange) verwendet -> alle 4
+                    // Boxen sahen gleich orange aus. Jetzt: ECHTE Farbe
+                    // der Option als Gradient mit dezentem Hell-Verlauf.
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: gradient,
+                        colors: optionColor != null
+                            ? [optionColor!, _shadeOf(optionColor!, .8)]
+                            : gradient,
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),

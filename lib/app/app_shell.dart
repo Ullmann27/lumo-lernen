@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../app/app_state.dart';
@@ -18,6 +20,7 @@ import '../features/shared/widgets/lumo_premium_effects.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
+import '../core/lumo_ai_proxy_client.dart';
 import '../core/lumo_voice.dart';
 import '../core/settings_repository.dart';
 import '../core/user_profile.dart';
@@ -31,8 +34,16 @@ class AppShell extends StatefulWidget {
   State<AppShell> createState() => _AppShellState();
 }
 
-class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin {
+class _AppShellState extends State<AppShell>
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   final _appState = LumoAppState();
+
+  // Aggressiver Warmup-Layer (Heinz Screenshot 2026-05-21:
+  // 'Verbindung zum KI-Server nicht moeglich'). Render Free-Tier
+  // schlaeft nach 15min ein. Wir halten ihn wach solange die App
+  // im Vordergrund ist.
+  final _proxyClient = const LumoAiProxyClient();
+  Timer? _keepAliveTimer;
 
   late final AnimationController _fadeCtrl = AnimationController(
     vsync: this,
@@ -43,6 +54,7 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     final profile = widget.profile;
     if (profile != null) {
       _appState.update(_appState.state.copyWith(
@@ -70,10 +82,47 @@ class _AppShellState extends State<AppShell> with SingleTickerProviderStateMixin
     try {
       await _appState.hydrateFromWallet();
     } catch (_) {}
+    // Sofortiger Warmup beim App-Start. Render Free-Tier schlaeft
+    // nach 15min ein und braucht 30-45s zum Aufwachen - wenn das
+    // Kind direkt in einen Lernmodus geht, wartet es sonst.
+    _proxyClient.warmup(settings);
+    _startKeepAlive();
+  }
+
+  /// Pingt den Proxy alle 14 Minuten solange die App im Vordergrund
+  /// ist. Render schlaeft erst nach 15min, also bleibt der Server
+  /// immer warm. Best-effort - Fehler werden geschluckt.
+  void _startKeepAlive() {
+    _keepAliveTimer?.cancel();
+    _keepAliveTimer = Timer.periodic(const Duration(minutes: 14), (_) {
+      final settings = _appState.state.settings;
+      if (settings.aiProxyEnabled) {
+        _proxyClient.warmup(settings);
+      }
+    });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    // Wenn App aus Background zurueckkommt: sofort warmup +
+    // Keep-Alive-Timer neu starten (im Background war er pausiert).
+    if (state == AppLifecycleState.resumed) {
+      final settings = _appState.state.settings;
+      if (settings.aiProxyEnabled) {
+        _proxyClient.warmup(settings);
+      }
+      _startKeepAlive();
+    } else if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      _keepAliveTimer?.cancel();
+    }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _keepAliveTimer?.cancel();
     _appState.dispose();
     _fadeCtrl.dispose();
     super.dispose();

@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_ai_learning_access.dart';
 import '../../core/lumo_ai_learning_policy_bridge.dart';
+import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/reading_progress_repository.dart';
 import '../../core/settings_repository.dart';
 import '../../domain/analysis/daily_recommendation_engine.dart';
@@ -22,7 +23,14 @@ class ParentReportCard extends StatefulWidget {
 class _ParentReportCardState extends State<ParentReportCard> {
   final _readingRepo = ReadingProgressRepository();
   final _engine = const ParentReportEngine();
+  final _aiProxy = const LumoAiProxyClient();
   late Future<ParentReportSummary> _future;
+
+  // KI-Wochenreport - optional, ergaenzt den lokalen Bericht durch
+  // eine paedagogische Analyse vom parentAdvisor-Kontext.
+  String? _aiInsight;
+  bool _aiLoading = false;
+  String? _aiError;
 
   @override
   void initState() {
@@ -51,6 +59,60 @@ class _ParentReportCardState extends State<ParentReportCard> {
     widget.appState.updateSettings(next);
     await SettingsRepository.save(next);
     if (mounted) setState(() {});
+  }
+
+  /// KI-Wochenanalyse: schickt strukturierte Daten an parentAdvisor
+  /// und bekommt 3-5 Saetze paedagogische Einschaetzung zurueck.
+  /// Nicht-Automatik - Eltern muessen aktiv anfordern (Daten-
+  /// sparsam, kein Background-Call).
+  Future<void> _requestAiAnalysis(ParentReportSummary report) async {
+    if (_aiLoading) return;
+    setState(() {
+      _aiLoading = true;
+      _aiError = null;
+    });
+    String fmtBlock(SubjectAnalysisBlock b) {
+      final s = b.strengths.take(3).join(', ');
+      final w = b.weaknesses.take(3).join(', ');
+      return '${b.subject}: Staerken [${s.isEmpty ? "keine erkannt" : s}], '
+          'Foerderbedarf [${w.isEmpty ? "keiner" : w}], '
+          'naechster Schritt [${b.recommendedAction}]';
+    }
+
+    final payload = StringBuffer()
+      ..writeln('Wochenanalyse fuer ${report.childName} bitte:')
+      ..writeln(fmtBlock(report.reading))
+      ..writeln(fmtBlock(report.math))
+      ..writeln(fmtBlock(report.german))
+      ..writeln('Gib mir 3-5 Saetze als Elternteil: Was lief gut diese '
+          'Woche, woran sollten wir zuhause arbeiten, ein konkreter '
+          'Foerder-Tipp fuer die kommende Woche. Keine Floskeln, '
+          'praktisch.');
+
+    try {
+      final response = await _aiProxy.ask(
+        settings: widget.appState.state.settings,
+        state: widget.appState.state,
+        message: payload.toString(),
+        context: LumoAiContext.parentAdvisor,
+      );
+      if (!mounted) return;
+      setState(() {
+        _aiInsight = response.reply;
+        _aiLoading = false;
+        if (response.source.startsWith('proxy_') ||
+            response.source == 'local_not_enabled') {
+          _aiError = response.reply;
+          _aiInsight = null;
+        }
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _aiLoading = false;
+        _aiError = 'KI-Berater gerade nicht erreichbar. Spaeter erneut.';
+      });
+    }
   }
 
   @override
@@ -110,9 +172,89 @@ class _ParentReportCardState extends State<ParentReportCard> {
                     Expanded(child: Text(step, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700))),
                   ]),
                 )),
+            const SizedBox(height: 18),
+            _buildAiInsightSection(report),
           ]),
         );
       },
+    );
+  }
+
+  Widget _buildAiInsightSection(ParentReportSummary report) {
+    final aiEnabled = widget.appState.state.settings.aiProxyEnabled;
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFEFF6FF), Color(0xFFF5F3FF)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: const Color(0xFFC7D2FE)),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          const Text('✨', style: TextStyle(fontSize: 22)),
+          const SizedBox(width: 8),
+          Expanded(
+              child: Text('KI-Wochenanalyse',
+                  style: LumoTextStyles.heading3
+                      .copyWith(color: const Color(0xFF4338CA)))),
+        ]),
+        const SizedBox(height: 6),
+        Text(
+          aiEnabled
+              ? 'Lumo-Berater fasst Lernfortschritt + Foerder-Tipp in 3-5 Saetzen zusammen.'
+              : 'Lumo-KI-Server im Elternbereich noch nicht aktiviert.',
+          style: LumoTextStyles.caption.copyWith(color: LumoColors.ink600),
+        ),
+        const SizedBox(height: 10),
+        if (_aiInsight != null) ...[
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(LumoRadius.md),
+            ),
+            child: Text(_aiInsight!,
+                style: LumoTextStyles.body.copyWith(color: LumoColors.ink900)),
+          ),
+          const SizedBox(height: 8),
+        ],
+        if (_aiError != null) ...[
+          Text(_aiError!,
+              style:
+                  LumoTextStyles.caption.copyWith(color: LumoColors.orange)),
+          const SizedBox(height: 8),
+        ],
+        Align(
+          alignment: Alignment.centerLeft,
+          child: ElevatedButton.icon(
+            onPressed: (!aiEnabled || _aiLoading)
+                ? null
+                : () => _requestAiAnalysis(report),
+            icon: _aiLoading
+                ? const SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(
+                        strokeWidth: 2, color: Colors.white))
+                : const Icon(Icons.auto_awesome_rounded, size: 18),
+            label: Text(_aiInsight == null
+                ? 'KI-Analyse anfordern'
+                : 'Neu generieren'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF4F46E5),
+              foregroundColor: Colors.white,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(LumoRadius.md)),
+            ),
+          ),
+        ),
+      ]),
     );
   }
 

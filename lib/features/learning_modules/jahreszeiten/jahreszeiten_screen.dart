@@ -58,6 +58,22 @@ extension _JahreszeitName on _Jahreszeit {
         return const Color(0xFF3B82F6);
     }
   }
+
+  /// Fallback-Emoji wenn Pollinations-Bild nicht laedt.
+  /// Heinz-Scan: vorher zeigte der Fallback IMMER 🌸 (Blume), auch
+  /// im Winter - inhaltlich falsch. Jetzt passt das Emoji zur Saison.
+  String get fallbackEmoji {
+    switch (this) {
+      case _Jahreszeit.fruehling:
+        return '🌸';
+      case _Jahreszeit.sommer:
+        return '☀️';
+      case _Jahreszeit.herbst:
+        return '🍂';
+      case _Jahreszeit.winter:
+        return '❄️';
+    }
+  }
 }
 
 class _Hinweis {
@@ -140,10 +156,21 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     super.dispose();
   }
 
+  // Heinz CLAUDE.md Punkt 5: 'Wiederholungslogik verbessern'.
+  // Bei 30 Aufgaben aus 4 Jahreszeiten ist Repeat unvermeidbar - aber
+  // mindestens NIE 2x dieselbe Jahreszeit hintereinander.
+  _Jahreszeit? _lastJz;
+
   void _generateTask() {
     _typ = _JahreszeitFrageTyp.values[_rng.nextInt(2)];
     if (_typ == _JahreszeitFrageTyp.bildErraten) {
-      _correctJz = _Jahreszeit.values[_rng.nextInt(4)];
+      _Jahreszeit pick;
+      int safety = 6;
+      do {
+        pick = _Jahreszeit.values[_rng.nextInt(4)];
+      } while (pick == _lastJz && --safety > 0);
+      _correctJz = pick;
+      _lastJz = pick;
     } else {
       _aktuellerHinweis = _hinweise[_rng.nextInt(_hinweise.length)];
       _correctJz = _aktuellerHinweis.jz;
@@ -402,30 +429,34 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
-        child: url == null
-            ? Container(
-                color: _gradient[0].withOpacity(0.15),
-                alignment: Alignment.center,
-                child: const Text('🌸', style: TextStyle(fontSize: 80)),
-              )
-            : Image.network(
+        // Heinz-Scan: gleicher Stack-Fallback wie Wetter/Tiere - das
+        // saison-passende Emoji ist IMMER sichtbar, Pollinations-Bild
+        // legt sich drueber wenn fertig. Vorher: bei Fehler stand
+        // IMMER '🌸' (Bluete) - auch im Winter inhaltlich falsch.
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              color: _correctJz.themeColor.withOpacity(0.18),
+              alignment: Alignment.center,
+              child: Text(_correctJz.fallbackEmoji,
+                  style: const TextStyle(fontSize: 96)),
+            ),
+            if (url != null)
+              Image.network(
                 url,
                 fit: BoxFit.cover,
                 loadingBuilder: (ctx, child, progress) {
                   if (progress == null) return child;
-                  return Container(
-                    color: _gradient[0].withOpacity(0.1),
-                    alignment: Alignment.center,
+                  return Center(
                     child: CircularProgressIndicator(
                         color: _gradient[0], strokeWidth: 3),
                   );
                 },
-                errorBuilder: (ctx, err, st) => Container(
-                  color: _gradient[0].withOpacity(0.15),
-                  alignment: Alignment.center,
-                  child: const Text('🌸', style: TextStyle(fontSize: 80)),
-                ),
+                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
               ),
+          ],
+        ),
       ),
     );
   }

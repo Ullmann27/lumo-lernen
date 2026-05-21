@@ -84,22 +84,43 @@ class LumoStoryGenerator {
   // ────────────────────────────────────────────────────────────────
 
   static const List<String> _heroOptions = [
+    // Klassische Heldenfiguren
     'Drache', 'Prinzessin', 'Pirat', 'Ritter', 'Astronaut',
     'Fee', 'Einhorn', 'Roboter', 'Zauberer', 'Detektiv',
     'Forscher', 'Pilot', 'Tierfreund', 'Meerjungfrau', 'Cowboy',
+    // Erweiterung: Tier-Helden (besonders kinder-nah)
+    'Fuchs', 'Hund', 'Katze', 'Hase', 'Pinguin', 'Pony',
+    'Eichhoernchen', 'Schmetterling', 'Eule', 'Wal',
+    // Erweiterung: Alltagsheld + Erfinder-Berufe
+    'Feuerwehrmann', 'Tierarzt', 'Baeckerin', 'Lehrerin',
+    'Gaertner', 'Lokfuehrerin',
   ];
 
   static const List<String> _locationOptions = [
+    // Fantasie-Welten
     'Zauberwald', 'Schloss', 'Weltraum', 'Unterwasser-Stadt',
     'Dschungel', 'Berg', 'Wueste', 'Eis-Welt', 'Bauernhof',
     'Drachen-Hoehle', 'Piratenschiff', 'Magisches Dorf',
     'Wolken-Reich', 'Vulkan', 'Schatzinsel',
+    // Erweiterung: Vertraute Welten fuer Kinder
+    'Schule', 'Spielplatz', 'Garten', 'Park', 'Stadt am See',
+    'Wiese', 'Bibliothek', 'Bauernhof am Bach',
+    // Erweiterung: Magische Orte
+    'Regenbogen-Insel', 'Sterne-Stadt', 'Mond-Palast',
+    'Suessigkeiten-Land', 'Musik-Wald',
   ];
 
   static const List<String> _themeOptions = [
+    // Abenteuer-Themen
     'Freundschaft', 'Abenteuer', 'Schatzsuche', 'Wettrennen',
     'Geheimnis', 'Rettungsaktion', 'Mutprobe', 'Helfen',
     'Erfinden', 'Reisen', 'Zauber lernen', 'Tiere retten',
+    // Erweiterung: Kinder-Alltag
+    'Geburtstag', 'Schul-Tag', 'Sport-Fest', 'Picknick',
+    'Ferien', 'Backen', 'Pflanzen',
+    // Erweiterung: Soziale Themen
+    'Anders sein', 'Neuer Freund', 'Mut machen', 'Verzeihen',
+    'Teilen', 'Etwas Neues lernen',
   ];
 
   List<String> get heroOptions => _heroOptions;

@@ -99,16 +99,28 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _b = 1 + _rng.nextInt(10 - _a); // mind. 1, max. 10 - a
     if (_b < 1) _b = 1;
 
-    // 4 Antworten: richtige + 3 plausibel falsche
+    // 4 Antworten: richtige + 3 plausibel falsche.
+    // Heinz-Scan 2026-05-21: bisherige Loop hatte Edge-Case wo
+    // wrong == _correct (innerhalb 0..10) weder if- noch else-if-
+    // Branch traf -> potenzielle Endlos-Iteration. Neu: klare
+    // 2-Stufen-Strategie: zuerst nahe Plausibel-Werte, dann beliebige
+    // 0..10 als Fallback.
     final answers = <int>{_correct};
-    while (answers.length < 4) {
-      int wrong = _correct + (_rng.nextInt(5) - 2);
-      if (wrong >= 0 && wrong <= 10 && wrong != _correct) {
-        answers.add(wrong);
-      } else if (wrong < 0 || wrong > 10) {
-        // Fallback: nehmen wir andere nahe Werte
-        answers.add(_rng.nextInt(11));
-      }
+    // Stufe 1: Plausibel-nahe Werte (correct +/- 1..2)
+    final nearby = <int>[
+      for (final d in const [-2, -1, 1, 2])
+        if (_correct + d >= 0 && _correct + d <= 10) _correct + d,
+    ]..shuffle(_rng);
+    for (final n in nearby) {
+      if (answers.length >= 4) break;
+      answers.add(n);
+    }
+    // Stufe 2: Fallback aus 0..10 (falls correct am Rand liegt, zb
+    // 0 oder 10, gibt's weniger nearby).
+    int safety = 30;
+    while (answers.length < 4 && safety-- > 0) {
+      final cand = _rng.nextInt(11);
+      if (cand != _correct) answers.add(cand);
     }
     _answers = answers.toList()..shuffle(_rng);
     _showHint = false;

@@ -25,6 +25,8 @@ class LumoStoryLibraryScreen extends StatefulWidget {
 class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   bool _loaded = false;
   bool _showFavOnly = false;
+  String _searchQuery = '';
+  _StorySort _sort = _StorySort.newest;
 
   @override
   void initState() {
@@ -71,7 +73,31 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
           body: Center(child: CircularProgressIndicator()));
     }
     final lib = LumoStoryLibrary.instance;
-    final stories = _showFavOnly ? lib.favorites : lib.all;
+    var stories = _showFavOnly ? lib.favorites : lib.all.toList();
+    // Filter via Suche (Titel, Held, Ort, Thema)
+    if (_searchQuery.isNotEmpty) {
+      final q = _searchQuery.toLowerCase();
+      stories = stories.where((s) {
+        final st = s.story;
+        return st.title.toLowerCase().contains(q) ||
+            st.heroName.toLowerCase().contains(q) ||
+            st.location.toLowerCase().contains(q) ||
+            st.theme.toLowerCase().contains(q);
+      }).toList();
+    }
+    // Sortierung
+    switch (_sort) {
+      case _StorySort.newest:
+        stories.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+        break;
+      case _StorySort.mostRead:
+        stories.sort((a, b) => b.timesRead.compareTo(a.timesRead));
+        break;
+      case _StorySort.gradeAsc:
+        stories.sort(
+            (a, b) => a.story.gradeLevel.compareTo(b.story.gradeLevel));
+        break;
+    }
     return Scaffold(
       backgroundColor: LumoTokens.colors.creme,
       body: LumoMagicBackground(
@@ -80,6 +106,7 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
           child: Column(
             children: [
               _buildTopBar(lib),
+              _buildSearchAndSort(),
               Expanded(
                 child: stories.isEmpty
                     ? _buildEmpty()
@@ -154,6 +181,53 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     );
   }
 
+  Widget _buildSearchAndSort() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: LumoTokens.space16, vertical: LumoTokens.space8),
+      child: Row(children: [
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Held, Ort oder Titel suchen…',
+              prefixIcon: const Icon(Icons.search_rounded, size: 20),
+              isDense: true,
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: LumoTokens.brPill,
+                borderSide: BorderSide(color: LumoTokens.colors.outline),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: LumoTokens.brPill,
+                borderSide: BorderSide(color: LumoTokens.colors.outline),
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 12, vertical: 10),
+            ),
+            onChanged: (v) => setState(() => _searchQuery = v.trim()),
+          ),
+        ),
+        const SizedBox(width: 8),
+        PopupMenuButton<_StorySort>(
+          icon: Icon(Icons.sort_rounded,
+              color: LumoTokens.colors.lumoOrangeDeep),
+          tooltip: 'Sortieren',
+          onSelected: (v) => setState(() => _sort = v),
+          itemBuilder: (_) => [
+            const PopupMenuItem(
+                value: _StorySort.newest, child: Text('Neueste zuerst')),
+            const PopupMenuItem(
+                value: _StorySort.mostRead, child: Text('Meist gelesen')),
+            const PopupMenuItem(
+                value: _StorySort.gradeAsc,
+                child: Text('Nach Klassenstufe')),
+          ],
+        ),
+      ]),
+    );
+  }
+
   Widget _buildEmpty() {
     return Center(
       child: Padding(
@@ -215,6 +289,8 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     );
   }
 }
+
+enum _StorySort { newest, mostRead, gradeAsc }
 
 class _StoryCard extends StatelessWidget {
   const _StoryCard({

@@ -161,6 +161,8 @@ class CosmosWorld {
     if (totalItems < 200) return 'Lebendiges Dorf';
     if (totalItems < 400) return 'Magisches Reich';
     if (totalItems < 800) return 'Koenigreich';
+    if (totalItems < 1500) return 'Sterne-Land';
+    if (totalItems < 3000) return 'Galaktisches Reich';
     return 'Unendliche Welt';
   }
 
@@ -222,6 +224,8 @@ class CosmosWorld {
 
   /// Hauptmethode: Kind hat richtig geantwortet -> Welt waechst.
   /// Heinz: jede Mathe-Aufgabe -> Baum, jeder Buchstabe -> Blume.
+  /// Saison-adaptiv: Schmetterlinge bevorzugt im Fruehling/Sommer,
+  /// Sterne bevorzugt im Winter.
   Future<List<CosmosItem>> grantReward({
     required String subjectId,
     required bool isMath,
@@ -229,18 +233,42 @@ class CosmosWorld {
   }) async {
     final newItems = <CosmosItem>[];
     _totalCorrect++;
+    final season = currentSeason();
 
-    // Basis-Item passt zum Subject
+    // Basis-Item passt zum Subject + Saison.
     if (isMath) {
       newItems.add(_randomItem(CosmosItemType.tree));
     } else if (subjectId.contains('sachk')) {
-      // Tier zufaellig
-      const animals = [
-        CosmosItemType.butterfly,
-        CosmosItemType.bird,
-        CosmosItemType.rabbit,
-      ];
+      // Tier zufaellig - saison-gewichtet:
+      // Fruehling/Sommer: Schmetterlinge bevorzugt
+      // Herbst: Voegel bevorzugt
+      // Winter: Hasen bevorzugt (im Schnee gut sichtbar)
+      final animals = <CosmosItemType>[];
+      switch (season) {
+        case Season.spring:
+        case Season.summer:
+          animals.addAll([
+            CosmosItemType.butterfly, CosmosItemType.butterfly,
+            CosmosItemType.bird, CosmosItemType.rabbit,
+          ]);
+          break;
+        case Season.autumn:
+          animals.addAll([
+            CosmosItemType.bird, CosmosItemType.bird,
+            CosmosItemType.rabbit, CosmosItemType.butterfly,
+          ]);
+          break;
+        case Season.winter:
+          animals.addAll([
+            CosmosItemType.rabbit, CosmosItemType.rabbit,
+            CosmosItemType.bird, CosmosItemType.butterfly,
+          ]);
+          break;
+      }
       newItems.add(_randomItem(animals[_rng.nextInt(animals.length)]));
+    } else if (subjectId.contains('lesen') ||
+        subjectId.contains('story')) {
+      newItems.add(_randomItem(CosmosItemType.bush));
     } else {
       newItems.add(_randomItem(CosmosItemType.flower));
     }
@@ -257,6 +285,18 @@ class CosmosWorld {
     if ((_totalCorrect % 100) == 0) {
       newItems.add(_randomItem(CosmosItemType.star));
     }
+    // Im Winter: zusaetzliche Sterne (klare Nacht)
+    if (season == Season.winter && (_totalCorrect % 25) == 0) {
+      newItems.add(_randomItem(CosmosItemType.star));
+    }
+    // Streak-Belohnungen: alle 7 Tage Streak -> Bonus-Stern,
+    // alle 14 Tage -> Bonus-Schmetterling
+    if (_streakDays > 0 && _streakDays % 7 == 0 && (_totalCorrect % 5) == 0) {
+      newItems.add(_randomItem(CosmosItemType.star));
+    }
+    if (_streakDays >= 14 && (_totalCorrect % 30) == 0) {
+      newItems.add(_randomItem(CosmosItemType.butterfly));
+    }
     // Meilensteine
     if (_totalCorrect == 200) {
       newItems.add(_randomItem(CosmosItemType.castle));
@@ -267,8 +307,10 @@ class CosmosWorld {
     if (_totalCorrect == 1000) {
       newItems.add(_randomItem(CosmosItemType.unicorn));
     }
-    // Perfekte Note -> Regenbogen
-    if (isPerfect && _rng.nextDouble() < 0.3) {
+    // Perfekte Note -> Regenbogen (Herbst-Bonus: hoeher)
+    final rainbowChance =
+        season == Season.autumn ? 0.45 : 0.30;
+    if (isPerfect && _rng.nextDouble() < rainbowChance) {
       newItems.add(_randomItem(CosmosItemType.rainbow));
     }
 
