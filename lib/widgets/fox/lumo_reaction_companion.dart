@@ -59,7 +59,12 @@ class LumoReactionCompanion extends StatefulWidget {
 }
 
 class _LumoReactionCompanionState extends State<LumoReactionCompanion>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
+  // FIX (Heinz Crash-Bericht 2026-05-21): vorher SingleTickerProviderStateMixin,
+  // aber wir erstellen ZWEI AnimationController (_frameCtrl + _bounceCtrl)
+  // mit vsync: this -> Flutter wirft 'createTicker was called multiple times'
+  // beim initState -> sofortiger Absturz beim Oeffnen des Wortdiktat-Screens.
+  // TickerProviderStateMixin erlaubt mehrere Ticker.
   late final AnimationController _frameCtrl;
   late final AnimationController _bounceCtrl;
   int _frameIdx = 0;

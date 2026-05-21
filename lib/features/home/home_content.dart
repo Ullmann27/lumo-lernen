@@ -67,66 +67,128 @@ class _HomeContentState extends State<HomeContent> {
     _tutorialKey.currentState?.start();
   }
 
-  /// Lumo's Reise durch den Homescreen — von rechts nach links wandernd,
-  /// dann reihenweise nach unten ueber alle Subject-Tiles.
+  /// Lumo's Reise durch den Homescreen.
+  /// Heinz 2026-05-21: 'Fuchs muss viel mehr erklaeren und fix von Button
+  /// zu Button springen'. Daher:
+  ///  - genauere x/y-Positionen passend zum 2-Spalten-Subject-Grid
+  ///    (linke Spalte ~0.27, rechte Spalte ~0.73)
+  ///  - laengere Texte pro Stop (Heinz: 'viel mehr erklaeren')
+  ///  - Verweildauer hoeher, damit Kind lesen + verstehen kann
+  ///  - jumpToReach beim Wechsel der Reihe (klassische Leiter-Bewegung)
   List<LumoTutorialStop> _buildTutorialPath() {
     return const [
+      // 1) Begruessung oben rechts
       LumoTutorialStop(
         xFraction: 0.78,
-        yFraction: 0.18,
-        message: 'Hallo! Ich zeig dir alles in der App. Folge mir! 🦊',
-        duration: Duration(milliseconds: 3000),
+        yFraction: 0.16,
+        message: 'Hallo! Ich bin Lumo. 🦊\n'
+            'Ich zeig dir jetzt die ganze App.\n'
+            'Folge mir Schritt fuer Schritt.',
+        duration: Duration(milliseconds: 4500),
       ),
+      // 2) Profil-Header links oben (Sterne + Mission)
       LumoTutorialStop(
-        xFraction: 0.28,
-        yFraction: 0.18,
-        message: 'Hier oben siehst du deine Sterne und Mission.',
-        duration: Duration(milliseconds: 3500),
+        xFraction: 0.22,
+        yFraction: 0.16,
+        message: 'Hier oben siehst du deine Sterne.\n'
+            'Jede richtige Antwort gibt dir einen.\n'
+            'Sammle viele und Lumo freut sich!',
+        duration: Duration(milliseconds: 5000),
       ),
+      // 3) Daily Mission Strip
       LumoTutorialStop(
-        xFraction: 0.30,
-        yFraction: 0.40,
-        message: 'Mathe mit Lumo — Zahlen und Knobeln.',
-        duration: Duration(milliseconds: 3500),
+        xFraction: 0.50,
+        yFraction: 0.30,
+        message: 'Das ist deine taegliche Mission.\n'
+            'Mach sie jeden Tag - dann wirst du immer besser.',
+        duration: Duration(milliseconds: 4500),
         jumpToReach: true,
       ),
+      // 4) Mathe-Tile (linke Spalte, Reihe 1)
       LumoTutorialStop(
-        xFraction: 0.75,
-        yFraction: 0.40,
-        message: 'Deutsch — Lesen und Schreiben lernen.',
-        duration: Duration(milliseconds: 3300),
+        xFraction: 0.27,
+        yFraction: 0.45,
+        message: 'Tipp hier auf "Mathe mit Lumo"! ➕\n'
+            'Wir rechnen zusammen Plus, Minus und mehr.\n'
+            'Ich erklaere jeden Schritt.',
+        duration: Duration(milliseconds: 5000),
+        jumpToReach: true,
       ),
+      // 5) Deutsch-Tile (rechte Spalte, Reihe 1)
       LumoTutorialStop(
-        xFraction: 0.30,
+        xFraction: 0.73,
+        yFraction: 0.45,
+        message: '"Deutsch mit Lumo" ist hier. ✏️\n'
+            'Buchstaben schreiben, Woerter lesen, Diktat.\n'
+            'Ich sag dir das Wort, du schreibst es.',
+        duration: Duration(milliseconds: 5000),
+      ),
+      // 6) Quizshow (linke Spalte, Reihe 2)
+      LumoTutorialStop(
+        xFraction: 0.27,
         yFraction: 0.58,
-        message: 'Quizshow — 15 Fragen für echte Gutscheine! 🏆',
-        duration: Duration(milliseconds: 3500),
+        message: 'Die Quizshow! 🏆\n'
+            '15 Fragen, drei Joker, am Ende echte Gutscheine.\n'
+            'Trau dich!',
+        duration: Duration(milliseconds: 5000),
         jumpToReach: true,
       ),
+      // 7) Spielewelt (rechte Spalte, Reihe 2)
       LumoTutorialStop(
-        xFraction: 0.75,
+        xFraction: 0.73,
         yFraction: 0.58,
-        message: 'Hier sind die Spiele. Renne, springe, lerne! 🎮',
-        duration: Duration(milliseconds: 3500),
+        message: 'In der Spielewelt 🎮 gibt es viele Level.\n'
+            'Renne, springe, sammle Sterne.\n'
+            'Lernen darf Spass machen!',
+        duration: Duration(milliseconds: 5000),
       ),
+      // 8) Lesen-Tile (linke Spalte, Reihe 3)
       LumoTutorialStop(
-        xFraction: 0.30,
-        yFraction: 0.76,
-        message: 'Lesen mit Lumo — ich höre dir beim Lesen zu.',
-        duration: Duration(milliseconds: 3300),
+        xFraction: 0.27,
+        yFraction: 0.72,
+        message: '"Lesen mit Lumo" 📖\n'
+            'Ich hoer dir beim Lesen zu.\n'
+            'Wir lesen Geschichten Satz fuer Satz.',
+        duration: Duration(milliseconds: 5000),
         jumpToReach: true,
       ),
+      // 9) Sachunterricht (rechte Spalte, Reihe 3)
       LumoTutorialStop(
-        xFraction: 0.75,
-        yFraction: 0.76,
-        message: 'Sachunterricht — Tiere, Pflanzen, Wetter entdecken!',
-        duration: Duration(milliseconds: 3300),
+        xFraction: 0.73,
+        yFraction: 0.72,
+        message: 'Sachunterricht 🌍\n'
+            'Tiere, Pflanzen, Wetter, Farben.\n'
+            'Hier entdeckst du die Welt.',
+        duration: Duration(milliseconds: 5000),
       ),
+      // 10) Magic-Hub FAB (links unten lila)
+      LumoTutorialStop(
+        xFraction: 0.12,
+        yFraction: 0.92,
+        message: 'Der lila Stern unten links 🌟\n'
+            'Da gibt es Geschichten, das Universum\n'
+            'und meine Live-Magie.',
+        duration: Duration(milliseconds: 5000),
+        jumpToReach: true,
+      ),
+      // 11) Eltern-FAB (rechts unten orange) - falls vorhanden
       LumoTutorialStop(
         xFraction: 0.88,
-        yFraction: 0.88,
-        message: 'Probier es einfach aus. Ich bin immer hier! 💛',
-        duration: Duration(milliseconds: 2800),
+        yFraction: 0.92,
+        message: 'Hier kommen die Eltern hin. 👪\n'
+            'Sie sehen wie gut du lernst\n'
+            'und stellen die App ein.',
+        duration: Duration(milliseconds: 5000),
+      ),
+      // 12) Abschluss in der Mitte
+      LumoTutorialStop(
+        xFraction: 0.50,
+        yFraction: 0.50,
+        message: 'Das war alles! 💛\n'
+            'Tipp einfach ueberall drauf.\n'
+            'Ich bin immer da wenn du mich brauchst.',
+        duration: Duration(milliseconds: 4500),
+        jumpToReach: true,
       ),
     ];
   }
