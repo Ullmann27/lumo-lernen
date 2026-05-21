@@ -104,7 +104,14 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             ),
           ),
           const SizedBox(height: 18),
-          _AdaptiveVisual(task: task, picked: _picked, solved: _solved),
+          // Phase 3: solved=true zeigt den Loesungsweg-Bonus IM Visual.
+          // Ab 2 Fehlern auch ohne richtige Antwort -> didaktische Hilfe
+          // (Lumo erklaert was die korrekte Loesung WAERE).
+          _AdaptiveVisual(
+            task: task,
+            picked: _picked,
+            solved: _solved || _wrongAnswers.length >= 2,
+          ),
           if (_wrongAnswers.length >= 2 && !_solved) ...[
             const SizedBox(height: 14),
             _LocalHelpBanner(task: task, wrongCount: _wrongAnswers.length),
