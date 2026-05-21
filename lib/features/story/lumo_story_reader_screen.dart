@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_image_generator.dart';
 import '../../core/lumo_story_generator.dart';
+import '../../core/lumo_story_library.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
@@ -19,10 +20,14 @@ class LumoStoryReaderScreen extends StatefulWidget {
     super.key,
     required this.story,
     required this.appState,
+    this.storyId,
   });
 
   final LumoStory story;
   final LumoAppState appState;
+  /// Wenn null: Story ist neu und wird beim Beenden gespeichert.
+  /// Wenn gesetzt: Story kommt schon aus der Bibliothek.
+  final String? storyId;
 
   @override
   State<LumoStoryReaderScreen> createState() => _LumoStoryReaderScreenState();
@@ -86,6 +91,10 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   }
 
   void _showFinish() {
+    // Bei abgeschlossener Story: auto in Bibliothek speichern wenn neu
+    if (widget.storyId == null) {
+      LumoStoryLibrary.instance.addStory(widget.story);
+    }
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
@@ -98,6 +107,24 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           children: [
             Text('Du hast die ganze Geschichte gelesen!',
                 style: LumoTokens.typo.bodyLarge),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: LumoTokens.colors.successLight,
+                borderRadius: LumoTokens.brMedium,
+              ),
+              child: Row(children: [
+                Icon(Icons.save_rounded,
+                    color: LumoTokens.colors.successDeep),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text('Heft in deine Bibliothek gespeichert!',
+                      style: LumoTokens.typo.bodyMedium.copyWith(
+                          color: LumoTokens.colors.successDeep)),
+                ),
+              ]),
+            ),
             const SizedBox(height: 12),
             Text('Neue Wörter aus dem Heft:',
                 style: LumoTokens.typo.titleMedium),
@@ -120,7 +147,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               Navigator.pop(context);
               Navigator.pop(context, widget.story);
             },
-            child: const Text('Schreibcoach übt diese Wörter!'),
+            child: const Text('Wörter im Schreibcoach üben!'),
           ),
           TextButton(
             onPressed: () {

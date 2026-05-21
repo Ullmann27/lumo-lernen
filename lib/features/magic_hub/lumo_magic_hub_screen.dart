@@ -13,6 +13,7 @@ import '../../widgets/premium/lumo_hero_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../cosmos/lumo_cosmos_screen.dart';
 import '../live/lumo_live_screen.dart';
+import '../story/lumo_story_library_screen.dart';
 import '../story/lumo_story_setup_screen.dart';
 
 class LumoMagicHubScreen extends StatelessWidget {
@@ -64,7 +65,7 @@ class LumoMagicHubScreen extends StatelessWidget {
               // 1. LUMO STORY
               LumoHeroCard(
                 title: 'Lumo Story',
-                subtitle: 'Lumo schreibt eine Geschichte fuer dich',
+                subtitle: 'Deine Geschichten - Bibliothek + neue erstellen',
                 icon: Icons.auto_stories_rounded,
                 gradient: LumoTokens.colors.heroLila,
                 glowColor: LumoTokens.colors.lumoLila,
@@ -73,7 +74,7 @@ class LumoMagicHubScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (_) =>
-                        LumoStorySetupScreen(appState: appState),
+                        LumoStoryLibraryScreen(appState: appState),
                   ),
                 ),
               ),
