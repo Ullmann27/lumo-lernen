@@ -183,21 +183,28 @@ class LumoStoryGenerator {
 
   List<_StoryArc> _generateArc(
       String hero, String location, String theme, int gradeLevel) {
+    // Grammar-Helper: aus dem 'theme' Wort einen sauberen Satz bauen.
+    // Vorher: "wollte ein Ferien erleben" - grammatikalisch falsch.
+    // Jetzt: "wollte $themeStart" mit themenspezifischem Auftakt.
+    final themeIntro = _themeIntro(theme);
+    final art = _heroArticle(hero); // kleingeschrieben (mitten im Satz)
+    final Art = art[0].toUpperCase() + art.substring(1); // Satzanfang
+    final pron = _heroPronoun(hero);
     return [
       // Seite 1: Setup
       _StoryArc(
-        text: 'Es war einmal ein $hero. Er lebte im $location und wollte ein $theme erleben.',
+        text: 'Es war einmal $art $hero. $Art $hero lebte im $location und $themeIntro.',
         imagePrompt: 'cute $hero in $location, story book style',
         newWord: hero.toLowerCase(),
       ),
       // Seite 2: Aufgabe
       _StoryArc(
-        text: 'Eines Tages hörte der $hero ein Rufen. "Hilfe, hilfe!" rief jemand aus der Ferne. Schnell lief er los!',
+        text: 'Eines Tages hörte $art $hero ein Rufen. "Hilfe, hilfe!" rief jemand aus der Ferne. Schnell lief $pron los!',
         imagePrompt: 'cute $hero running in $location',
       ),
       // Seite 3: Begegnung
       _StoryArc(
-        text: 'Im $location traf der $hero einen neuen Freund. Sie wurden ein tolles Team!',
+        text: 'Im $location traf $art $hero einen neuen Freund. Sie wurden ein tolles Team!',
         imagePrompt: 'cute $hero with cute friend in $location',
         newWord: 'Freund',
       ),
@@ -209,26 +216,83 @@ class LumoStoryGenerator {
       ),
       // Seite 5: Mitte
       _StoryArc(
-        text: 'Sie sammelten magische Steine. Mit jedem Stein wurde der $hero stärker und mutiger.',
+        text: 'Sie sammelten magische Steine. Mit jedem Stein wurde $art $hero stärker und mutiger.',
         imagePrompt: 'cute $hero with magic stones in $location',
       ),
       // Seite 6: Wendepunkt
       _StoryArc(
-        text: 'Plötzlich tauchte ein großer Schatten auf. Der $hero atmete tief ein und blieb tapfer!',
+        text: 'Plötzlich tauchte ein großer Schatten auf. $Art $hero atmete tief ein und blieb tapfer!',
         imagePrompt: 'cute brave $hero facing shadow in $location',
         newWord: 'tapfer',
       ),
       // Seite 7: Klimax
       _StoryArc(
-        text: 'Mit dem Mut von ${gradeLevel * 10} Löwen schaffte der $hero das große Abenteuer! Alle jubelten!',
+        text: 'Mit dem Mut von ${gradeLevel * 10} Löwen schaffte $art $hero das große Abenteuer! Alle jubelten!',
         imagePrompt: 'cute happy $hero celebrating in $location',
       ),
       // Seite 8: Ende
       _StoryArc(
-        text: 'Am Abend kehrte der $hero nach Hause zurück. Was für ein Tag voller $theme! Gute Nacht!',
+        text: 'Am Abend kehrte $art $hero nach Hause zurück. Was für ein Tag voller $theme! Gute Nacht!',
         imagePrompt: 'cute sleeping $hero at home, peaceful story book ending',
       ),
     ];
+  }
+
+  /// Artikel kleingeschrieben (fuer mitten im Satz).
+  String _heroArticle(String hero) {
+    const die = <String>[
+      'Prinzessin', 'Fee', 'Meerjungfrau', 'Baeckerin', 'Lehrerin',
+      'Lokfuehrerin', 'Katze', 'Eule', 'Schildkroete', 'Maus',
+    ];
+    const das = <String>[
+      'Einhorn', 'Pony', 'Eichhoernchen', 'Kind', 'Reh', 'Kueken',
+    ];
+    if (die.contains(hero)) return 'die';
+    if (das.contains(hero)) return 'das';
+    return 'der';
+  }
+
+  /// Personalpronomen (er/sie/es) passend zum Artikel.
+  String _heroPronoun(String hero) {
+    final art = _heroArticle(hero);
+    if (art == 'die') return 'sie';
+    if (art == 'das') return 'es';
+    return 'er';
+  }
+
+  /// Bildet einen sauberen Satz-Auftakt aus dem Theme-Wort.
+  /// Vorher: "wollte ein $theme erleben" - mit theme="Ferien" wurde das
+  /// "wollte ein Ferien erleben" (falsch). Jetzt: pro Theme passender
+  /// Satz, der grammatikalisch funktioniert.
+  String _themeIntro(String theme) {
+    const map = <String, String>{
+      'Freundschaft': 'wollte echte Freundschaft erleben',
+      'Abenteuer': 'wollte ein großes Abenteuer erleben',
+      'Schatzsuche': 'wollte einen Schatz suchen',
+      'Wettrennen': 'wollte ein Wettrennen gewinnen',
+      'Geheimnis': 'wollte ein Geheimnis lüften',
+      'Rettungsaktion': 'wollte jemanden retten',
+      'Mutprobe': 'wollte seinen Mut beweisen',
+      'Helfen': 'wollte anderen helfen',
+      'Erfinden': 'wollte etwas Neues erfinden',
+      'Reisen': 'wollte auf Reisen gehen',
+      'Zauber lernen': 'wollte einen Zauber lernen',
+      'Tiere retten': 'wollte Tiere retten',
+      'Geburtstag': 'feierte gerade Geburtstag',
+      'Schul-Tag': 'hatte einen aufregenden Schul-Tag',
+      'Sport-Fest': 'freute sich auf das Sport-Fest',
+      'Picknick': 'wollte ein Picknick im Grünen machen',
+      'Ferien': 'freute sich auf die Ferien',
+      'Backen': 'wollte etwas Leckeres backen',
+      'Pflanzen': 'wollte einen Garten pflanzen',
+      'Anders sein': 'war anders als alle anderen',
+      'Neuer Freund': 'suchte einen neuen Freund',
+      'Mut machen': 'wollte anderen Mut machen',
+      'Verzeihen': 'lernte zu verzeihen',
+      'Teilen': 'wollte mit anderen teilen',
+      'Etwas Neues lernen': 'wollte etwas Neues lernen',
+    };
+    return map[theme] ?? 'erlebte etwas Spannendes';
   }
 
   // ────────────────────────────────────────────────────────────────

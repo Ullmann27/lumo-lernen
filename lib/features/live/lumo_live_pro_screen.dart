@@ -576,20 +576,41 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
                   fit: BoxFit.cover,
                   loadingBuilder: (_, child, p) {
                     if (p == null) return child;
-                    return Center(
+                    return Container(
+                      decoration: BoxDecoration(
+                          gradient: LumoTokens.colors.bgMagic),
+                      alignment: Alignment.center,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const CircularProgressIndicator(),
+                          const Text('🎨',
+                              style: TextStyle(fontSize: 56)),
                           const SizedBox(height: 12),
-                          Text('Ich male...',
-                              style: LumoTokens.typo.titleMedium),
+                          Text('Lumo malt...',
+                              style: LumoTokens.typo.titleMedium
+                                  .copyWith(color: Colors.white)),
+                          const SizedBox(height: 12),
+                          const CircularProgressIndicator(
+                              color: Colors.white),
                         ],
                       ),
                     );
                   },
-                  errorBuilder: (_, __, ___) => Center(
-                    child: Text('🎨', style: TextStyle(fontSize: 80)),
+                  errorBuilder: (_, __, ___) => Container(
+                    decoration: BoxDecoration(
+                        gradient: LumoTokens.colors.bgMagic),
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text('🎨',
+                            style: TextStyle(fontSize: 64)),
+                        const SizedBox(height: 8),
+                        Text('Bild konnte nicht laden',
+                            style: LumoTokens.typo.bodyMedium
+                                .copyWith(color: Colors.white)),
+                      ],
+                    ),
                   ),
                 )
               : path != null

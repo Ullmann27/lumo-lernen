@@ -393,7 +393,67 @@ class LumoBrain {
   String _wrap(String core, {String? imageHint}) {
     final intro = _intros[_rng.nextInt(_intros.length)];
     final outro = _outros[_rng.nextInt(_outros.length)];
-    return '$intro$core$outro';
+    return _prettifyUmlauts('$intro$core$outro');
+  }
+
+  /// Wandelt im Tier-Lexikon und in Wrappers verwendete Ersatzschreibungen
+  /// (Frueechte, koennen, ueben, gross...) zurueck in echte Umlaute und ß.
+  /// Vorher sah Heinz im UI "Affen sind sehr schlau und koennen Werkzeug
+  /// benutzen! Magst du das ueben?" - liest sich falsch und das TTS
+  /// spricht es auch verstuemmelt aus. Hier zentral fixen, ohne 100+
+  /// Tier-Eintraege einzeln editieren zu muessen.
+  static String _prettifyUmlauts(String text) {
+    const map = <String, String>{
+      // Modal-Verben
+      'koennen': 'können', 'koennten': 'könnten', 'koennt': 'könnt',
+      'moegen': 'mögen', 'moechte': 'möchte', 'moechten': 'möchten',
+      'muessen': 'müssen', 'muesste': 'müsste',
+      'duerfen': 'dürfen', 'duerfte': 'dürfte',
+      // Verben
+      'ueben': 'üben', 'fuehlen': 'fühlen', 'fuehrt': 'führt',
+      'huepfen': 'hüpfen', 'spuelen': 'spülen',
+      'wuenschen': 'wünschen', 'fuettern': 'füttern', 'beruehren': 'berühren',
+      'gruessen': 'grüßen', 'erzaehlen': 'erzählen', 'zaehlen': 'zählen',
+      // Substantive
+      'Frueechte': 'Früchte', 'Fruechte': 'Früchte',
+      'Aepfel': 'Äpfel', 'Maeuse': 'Mäuse', 'Voegel': 'Vögel',
+      'Loewe': 'Löwe', 'Loewen': 'Löwen', 'Loewin': 'Löwin',
+      'Baer': 'Bär', 'Baeren': 'Bären', 'Baerin': 'Bärin',
+      'Kuehe': 'Kühe', 'Huehner': 'Hühner', 'Wuermer': 'Würmer',
+      'Fuechse': 'Füchse', 'Woelfe': 'Wölfe', 'Foehne': 'Föhne',
+      'Hoehlen': 'Höhlen', 'Hoehle': 'Höhle', 'Hoehe': 'Höhe',
+      'Suedpol': 'Südpol', 'Buecher': 'Bücher',
+      'Koerper': 'Körper', 'Koerperteil': 'Körperteil',
+      'Blaetter': 'Blätter', 'Baeume': 'Bäume', 'Aeste': 'Äste',
+      'Maerchen': 'Märchen', 'Saetze': 'Sätze',
+      'Maehne': 'Mähne', 'Saeugetiere': 'Säugetiere',
+      'Daemonen': 'Dämonen', 'Naehrstoffe': 'Nährstoffe',
+      'Schwimmhaeute': 'Schwimmhäute',
+      'Ruessel': 'Rüssel', 'Schluessel': 'Schlüssel',
+      'Koerner': 'Körner',
+      // Tierlaute
+      'Bruell': 'Brüll', 'Troet': 'Tröt', 'Maeh': 'Mäh', 'Quaek': 'Quäk',
+      // Adjektive
+      'hoechsten': 'höchsten', 'groessten': 'größten', 'kleinsten': 'kleinsten',
+      'schoenen': 'schönen', 'schoenes': 'schönes', 'schoene': 'schöne',
+      'naechste': 'nächste', 'naechsten': 'nächsten',
+      'taeglich': 'täglich', 'haeufig': 'häufig', 'staerker': 'stärker',
+      'gemuetlich': 'gemütlich', 'wuetend': 'wütend',
+      // Praepositionen / Adverbien
+      'fuer': 'für', 'ueber': 'über', 'gegenueber': 'gegenüber',
+      'frueh': 'früh', 'frueher': 'früher', 'spaeter': 'später',
+      // ss/ß
+      'gross': 'groß', 'Gross': 'Groß', 'Spass': 'Spaß', 'spass': 'spaß',
+      'heisst': 'heißt', 'heissen': 'heißen', 'heisse': 'heiße',
+      'draussen': 'draußen', 'Strasse': 'Straße', 'strasse': 'straße',
+      'weiss': 'weiß', 'reissen': 'reißen', 'beissen': 'beißen',
+    };
+    var result = text;
+    map.forEach((from, to) {
+      // \b vor und nach dem Wort, damit "ueben" in "Uebenshof" nicht ersetzt wird.
+      result = result.replaceAll(RegExp(r'\b' + RegExp.escape(from) + r'\b'), to);
+    });
+    return result;
   }
 
   // ════════════════════════════════════════════════════════════════

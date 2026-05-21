@@ -37,6 +37,25 @@ class LumoImageGenerator {
     'eichhoernchen': 'squirrel', 'eichhörnchen': 'squirrel',
     'igel': 'hedgehog', 'dinosaurier': 'dinosaur', 'dino': 'dinosaur',
     'einhorn': 'unicorn', 'drache': 'friendly dragon',
+    // Erweiterung Mai 2026 - fehlende Safari-Tiere
+    // Vorher rendert Pollinations ein 🎨 Palette-Fallback weil
+    // 'zebra', 'nashorn', etc. NICHT in der Allowlist waren.
+    'zebra': 'zebra', 'nashorn': 'rhinoceros', 'flusspferd': 'hippopotamus',
+    'nilpferd': 'hippopotamus',
+    'kaenguru': 'kangaroo', 'känguru': 'kangaroo',
+    'faultier': 'sloth', 'hai': 'shark', 'robbe': 'seal',
+    'rentier': 'reindeer', 'schildkroete': 'turtle', 'schildkröte': 'turtle',
+    'pinguine': 'penguin', 'voegel': 'bird', 'vögel': 'bird',
+    'fledermaus': 'bat', 'spinne': 'spider', 'ameise': 'ant',
+    'libelle': 'dragonfly', 'wespe': 'wasp', 'hummel': 'bumblebee',
+    'storch': 'stork', 'specht': 'woodpecker', 'rabe': 'raven',
+    'taube': 'pigeon', 'papagei': 'parrot', 'flamingo': 'flamingo',
+    'pfau': 'peacock', 'adler': 'eagle', 'falke': 'falcon',
+    'krebs': 'crab', 'oktopus': 'octopus', 'seestern': 'starfish',
+    'qualle': 'jellyfish', 'rochen': 'stingray', 'forelle': 'trout',
+    'lachs': 'salmon', 'hering': 'herring', 'thunfisch': 'tuna',
+    'echse': 'lizard', 'gecko': 'gecko', 'chamaeleon': 'chameleon',
+    'chamäleon': 'chameleon',
     // Pflanzen
     'baum': 'tree', 'blume': 'flower', 'rose': 'rose', 'tulpe': 'tulip',
     'sonnenblume': 'sunflower', 'kaktus': 'cactus', 'pilz': 'mushroom',
