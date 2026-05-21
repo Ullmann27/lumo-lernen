@@ -336,19 +336,28 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
 
   Widget _buildTrack() {
     // Spielfeld: 6 Reihen a 5 Felder, Schlangenfoermig.
+    // FIX (Heinz Screenshot 2026-05-21): vorher 'BOTTOM OVERFLOWED BY
+    // 426 PIXEL' weil cellSize nur aus maxWidth berechnet wurde. Jetzt
+    // beide Constraints (width + height) ausreizen mit min().
     const cols = 5;
     const rowsTotal = 6;
+    const colSpacing = 6.0;
+    const rowSpacing = 6.0;
     return LayoutBuilder(builder: (_, c) {
-      final cellSize = (c.maxWidth - 28) / cols;
+      final availW = c.maxWidth - 28;
+      final availH = c.maxHeight - 20;
+      final wBased = (availW - (cols - 1) * colSpacing) / cols;
+      final hBased = (availH - (rowsTotal - 1) * rowSpacing) / rowsTotal;
+      final cellSize = math.min(wBased, hBased).clamp(36.0, 96.0);
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: List.generate(rowsTotal, (r) {
             // Schlangenform: gerade Reihen links->rechts, ungerade rechts->links
             final cells = <Widget>[];
             for (var col = 0; col < cols; col++) {
-              final position = r * cols + col + 1; // 1..30
               final actualCol = r % 2 == 0 ? col : (cols - 1 - col);
               final realPos = r * cols + actualCol + 1;
               cells.add(SizedBox(
@@ -357,13 +366,12 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
                 child: _buildTrackCell(realPos),
               ));
               if (col < cols - 1) {
-                cells.add(const SizedBox(width: 2));
+                cells.add(const SizedBox(width: colSpacing));
               }
-              // ignore: unused_local_variable
-              final _ = position;
             }
             return Padding(
-              padding: const EdgeInsets.only(bottom: 4),
+              padding: EdgeInsets.only(
+                  bottom: r == rowsTotal - 1 ? 0 : rowSpacing),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center, children: cells),
             );
@@ -378,34 +386,77 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
     final isLumoHere = _lumoPos == pos;
     final isGoal = pos == _goal;
     final isStart = pos == 1;
+    // Bonus-Felder alle 5 Schritte: machen das Brett bunt und feiern
+    // kleine Fortschritte.
+    final isBonus = !isGoal && !isStart && pos % 5 == 0;
+    // Sanfte Pastell-Toene fuer normale Felder im Wechsel.
+    final stripeA = pos.isEven;
+    final List<Color> baseColors = isGoal
+        ? const [Color(0xFFFCD34D), Color(0xFFEAB308)]
+        : isStart
+            ? const [Color(0xFFA7F3D0), Color(0xFF34D399)]
+            : isBonus
+                ? const [Color(0xFFFCE7F3), Color(0xFFFBCFE8)]
+                : stripeA
+                    ? const [Color(0xFFFFFFFF), Color(0xFFF3F4F6)]
+                    : const [Color(0xFFF9FAFB), Color(0xFFE5E7EB)];
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: isGoal
-              ? const [Color(0xFFFCD34D), Color(0xFFEAB308)]
-              : isStart
-                  ? const [Color(0xFFA7F3D0), Color(0xFF6EE7B7)]
-                  : const [Color(0xFFFAFAFA), Color(0xFFE5E7EB)],
+          colors: baseColors,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(
-            color: const Color(0xFF9CA3AF), width: 1.4),
+            color: isGoal
+                ? const Color(0xFFB45309)
+                : isBonus
+                    ? const Color(0xFFEC4899)
+                    : const Color(0xFFD1D5DB),
+            width: isGoal ? 2.4 : 1.4),
+        boxShadow: isGoal || isBonus
+            ? [
+                BoxShadow(
+                  color: (isGoal
+                          ? const Color(0xFFEAB308)
+                          : const Color(0xFFEC4899))
+                      .withOpacity(.35),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ]
+            : null,
       ),
       alignment: Alignment.center,
       child: Stack(alignment: Alignment.center, children: [
-        Text('$pos',
-            style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 10,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF6B7280))),
-        if (isGoal) const Positioned(top: 2, child: Icon(Icons.star, size: 14, color: Color(0xFFB45309))),
+        // Position-Zahl klein oben links
+        Positioned(
+          top: 3,
+          left: 5,
+          child: Text('$pos',
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 9,
+                  fontWeight: FontWeight.w800,
+                  color: isGoal
+                      ? const Color(0xFFB45309)
+                      : const Color(0xFF6B7280))),
+        ),
+        // Feld-Symbol (Stern / Bonus / Start)
+        if (isGoal)
+          const Text('🏆', style: TextStyle(fontSize: 22))
+        else if (isBonus)
+          const Text('⭐', style: TextStyle(fontSize: 16))
+        else if (isStart)
+          const Text('🚩', style: TextStyle(fontSize: 16)),
+        // Spielfiguren ueberlagern alles
         if (isKindHere && isLumoHere)
-          const Text('🦊🟠', style: TextStyle(fontSize: 16))
+          const Text('🦊🧒', style: TextStyle(fontSize: 16, height: 1.0))
         else if (isKindHere)
-          const Text('🟠', style: TextStyle(fontSize: 18))
+          const Text('🧒', style: TextStyle(fontSize: 22, height: 1.0))
         else if (isLumoHere)
-          const Text('🦊', style: TextStyle(fontSize: 18)),
+          const Text('🦊', style: TextStyle(fontSize: 22, height: 1.0)),
       ]),
     );
   }

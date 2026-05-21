@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
-import '../../../core/lumo_image_generator.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 
@@ -26,6 +25,19 @@ class _Farbe {
   final Color color;
   /// Was im Pollinations-Prompt steht (englisch fuer bessere Ergebnisse)
   final String prompt;
+}
+
+class _Objekt {
+  const _Objekt({
+    required this.name,
+    required this.artikel,
+    required this.emoji,
+    required this.prompt,
+  });
+  final String name;
+  final String artikel; // 'der', 'die', 'das'
+  final String emoji;   // lokales Fallback-Symbol fuer offline / Image-Fail
+  final String prompt;  // englisch fuer evtl. spaetere Bildquelle
 }
 
 enum _FarbFrageTyp { farbeZuObjekt, objektZuFarbe }
@@ -57,10 +69,26 @@ class _FarbenScreenState extends State<FarbenScreen>
     _Farbe(name: 'Braun', color: Color(0xFFA16207), prompt: 'brown'),
   ];
 
-  // Objekte die in einer bestimmten Farbe gerendert werden
-  static const List<String> _objekte = [
-    'Apfel', 'Ball', 'Auto', 'Blume', 'Vogel', 'Fisch',
-    'Hut', 'Schmetterling', 'Luftballon',
+  // Objekte die in einer bestimmten Farbe gerendert werden.
+  // Jedes Objekt hat: Artikel (der/die/das) + Emoji-Symbol.
+  // Heinz Screenshot 2026-05-21: 'das Vogel/Hut/Luftballon' war
+  // grammatikalisch falsch und alle Bilder zeigten 🎨 (Pollinations
+  // war nicht erreichbar). Lokale Emojis + korrekte Artikel.
+  static const List<_Objekt> _objekte = [
+    _Objekt(name: 'Apfel', artikel: 'der', emoji: '🍎', prompt: 'apple'),
+    _Objekt(name: 'Ball', artikel: 'der', emoji: '⚽', prompt: 'ball'),
+    _Objekt(name: 'Auto', artikel: 'das', emoji: '🚗', prompt: 'car'),
+    _Objekt(name: 'Blume', artikel: 'die', emoji: '🌸', prompt: 'flower'),
+    _Objekt(name: 'Vogel', artikel: 'der', emoji: '🐦', prompt: 'bird'),
+    _Objekt(name: 'Fisch', artikel: 'der', emoji: '🐟', prompt: 'fish'),
+    _Objekt(name: 'Hut', artikel: 'der', emoji: '🎩', prompt: 'hat'),
+    _Objekt(name: 'Schmetterling',
+        artikel: 'der', emoji: '🦋', prompt: 'butterfly'),
+    _Objekt(name: 'Luftballon',
+        artikel: 'der', emoji: '🎈', prompt: 'balloon'),
+    _Objekt(name: 'Stern', artikel: 'der', emoji: '⭐', prompt: 'star'),
+    _Objekt(name: 'Herz', artikel: 'das', emoji: '❤️', prompt: 'heart'),
+    _Objekt(name: 'Drache', artikel: 'der', emoji: '🐉', prompt: 'dragon'),
   ];
 
   late final AnimationController _bounceCtrl;
@@ -75,7 +103,7 @@ class _FarbenScreenState extends State<FarbenScreen>
 
   late _FarbFrageTyp _typ;
   late _Farbe _correctFarbe;
-  late String _objekt;
+  late _Objekt _objekt;
   // Bei objektZuFarbe: 4 Bilder, eines hat die richtige Farbe
   late List<_Farbe> _bildFarben; // Welche Farbe jedes Bild hat
   late int _correctImageIdx;
@@ -124,10 +152,10 @@ class _FarbenScreenState extends State<FarbenScreen>
     String text;
     switch (_typ) {
       case _FarbFrageTyp.farbeZuObjekt:
-        text = 'Welche Farbe hat dieser ${_objekt}?';
+        text = 'Welche Farbe hat ${_objekt.artikel} ${_objekt.name}?';
         break;
       case _FarbFrageTyp.objektZuFarbe:
-        text = 'Tippe den ${_correctFarbe.name.toLowerCase()}en ${_objekt}!';
+        text = 'Tippe ${_correctFarbe.name.toLowerCase()}!';
         break;
     }
     try {
@@ -339,7 +367,7 @@ class _FarbenScreenState extends State<FarbenScreen>
     String text;
     switch (_typ) {
       case _FarbFrageTyp.farbeZuObjekt:
-        text = 'Welche Farbe hat ${_objekt.toLowerCase().startsWith("a") || _objekt.toLowerCase().startsWith("e") || _objekt.toLowerCase().startsWith("i") || _objekt.toLowerCase().startsWith("o") || _objekt.toLowerCase().startsWith("u") ? "der" : "das"} $_objekt?';
+        text = 'Welche Farbe hat ${_objekt.artikel} ${_objekt.name}?';
         break;
       case _FarbFrageTyp.objektZuFarbe:
         text = 'Tippe ${_correctFarbe.name.toLowerCase()}!';
@@ -371,9 +399,14 @@ class _FarbenScreenState extends State<FarbenScreen>
   }
 
   Widget _buildSingleImage(_Farbe farbe) {
-    final prompt = '${farbe.prompt} $_objekt';
-    final url = LumoImageGenerator.instance.buildSafeImageUrl(prompt);
-    return _ImageBubble(url: url, gradient: _gradient, size: 220);
+    // Heinz Screenshot 2026-05-21: Pollinations-Bilder kamen NIE durch,
+    // Kind sah immer nur 🎨-Palette als Fallback. Jetzt verlaesslich:
+    // farbiger Hintergrund + echtes Emoji des Objekts.
+    return _EmojiBubble(
+      emoji: _objekt.emoji,
+      color: farbe.color,
+      size: 220,
+    );
   }
 
   Widget _buildImageGrid() {
@@ -388,21 +421,9 @@ class _FarbenScreenState extends State<FarbenScreen>
         final farbe = _bildFarben[i];
         final isCorrect = i == _correctImageIdx;
         final isSelected = _selectedIdx == i;
-        // Heinz Screenshot 2026-05-21 zeigte 'Tippe gelb!' wo das URL
-        // potentiell vom Bildgenerator nicht kam -> alle Boxen wurden
-        // mit dem Parent-Gradient orange. Bei _objekt 'Farbe' (kein
-        // echtes Objekt) gar keinen URL bauen, damit der optionColor-
-        // Fallback greift.
-        final usesPlainColor = _objekt.toLowerCase() == 'farbe' ||
-            _objekt.toLowerCase() == 'farben';
-        final url = usesPlainColor
-            ? null
-            : LumoImageGenerator.instance
-                .buildSafeImageUrl('${farbe.prompt} $_objekt');
-        return _BuildableImageOption(
-          url: url,
-          gradient: _gradient,
-          optionColor: farbe.color,
+        return _ColoredEmojiOption(
+          emoji: _objekt.emoji,
+          color: farbe.color,
           isSelected: isSelected,
           isCorrect: isCorrect,
           answered: _answered,
@@ -472,63 +493,43 @@ class _FarbenScreenState extends State<FarbenScreen>
   }
 }
 
-class _ImageBubble extends StatelessWidget {
-  const _ImageBubble({
-    required this.url,
-    required this.gradient,
+/// Grosse Anzeige eines farbigen Objekts: gefuellter Farb-Hintergrund
+/// mit dem Objekt-Emoji als grosse Mitte. Verlaesslich offline, kein
+/// Internet-Bild noetig.
+class _EmojiBubble extends StatelessWidget {
+  const _EmojiBubble({
+    required this.emoji,
+    required this.color,
     required this.size,
   });
-  final String? url;
-  final List<Color> gradient;
+  final String emoji;
+  final Color color;
   final double size;
 
   @override
   Widget build(BuildContext context) {
-    if (url == null) {
-      return Container(
-        width: size,
-        height: size,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: gradient[0].withOpacity(0.15),
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: const Text('🎨', style: TextStyle(fontSize: 80)),
-      );
-    }
     return Container(
       width: size,
       height: size,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
+        gradient: LinearGradient(
+          colors: [color, _shadeOf(color, .78)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(28),
+        border: Border.all(color: Colors.white, width: 6),
         boxShadow: [
           BoxShadow(
-              color: gradient[0].withOpacity(0.25),
-              blurRadius: 16,
-              offset: const Offset(0, 6))
+            color: color.withOpacity(.35),
+            blurRadius: 22,
+            offset: const Offset(0, 8),
+            spreadRadius: -2,
+          ),
         ],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(24),
-        child: Image.network(
-          url!,
-          fit: BoxFit.cover,
-          loadingBuilder: (ctx, child, progress) {
-            if (progress == null) return child;
-            return Container(
-              color: gradient[0].withOpacity(0.1),
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(
-                  color: gradient[0], strokeWidth: 3),
-            );
-          },
-          errorBuilder: (ctx, err, st) => Container(
-            color: gradient[0].withOpacity(0.15),
-            alignment: Alignment.center,
-            child: const Text('🎨', style: TextStyle(fontSize: 60)),
-          ),
-        ),
-      ),
+      child: Text(emoji, style: TextStyle(fontSize: size * 0.5)),
     );
   }
 }
@@ -541,35 +542,36 @@ Color _shadeOf(Color base, double factor) {
   return hsl.withLightness(l).toColor();
 }
 
-class _BuildableImageOption extends StatelessWidget {
-  const _BuildableImageOption({
-    required this.url,
-    required this.gradient,
+/// 'Tippe rot!'-Modus: 4 farbige Felder mit dem gleichen Objekt-Emoji,
+/// jedes Feld in EINER der 4 Antwort-Farben. Kind erkennt die Farbe
+/// und tippt das richtige Feld. Heinz Screenshot 2026-05-21: vorher
+/// wurden alle 4 Felder gleich gerendert weil Bilder-API failte. Jetzt
+/// reine lokale Render-Logik mit garantiert unterschiedlichen Farben.
+class _ColoredEmojiOption extends StatelessWidget {
+  const _ColoredEmojiOption({
+    required this.emoji,
+    required this.color,
     required this.isSelected,
     required this.isCorrect,
     required this.answered,
     required this.bounceCtrl,
     required this.onTap,
-    this.optionColor,
   });
-  final String? url;
-  final List<Color> gradient;
+  final String emoji;
+  final Color color;
   final bool isSelected;
   final bool isCorrect;
   final bool answered;
   final AnimationController bounceCtrl;
   final VoidCallback onTap;
 
-  /// Die ECHTE Farbe der Option (nur fuer 'Tippe Farbe X!'-Modus
-  /// wo url == null und das Kind die richtige Farbe finden muss).
-  /// Wenn null wird der Parent-Gradient genommen.
-  final Color? optionColor;
-
   @override
   Widget build(BuildContext context) {
-    Color borderColor = gradient[0].withOpacity(0.3);
+    Color borderColor = Colors.white;
     if (answered && isSelected) {
-      borderColor = isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
+      borderColor = isCorrect
+          ? const Color(0xFF10B981)
+          : const Color(0xFFEF4444);
     } else if (answered && isCorrect) {
       borderColor = const Color(0xFFFCD34D);
     }
@@ -586,66 +588,25 @@ class _BuildableImageOption extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: borderColor, width: 3),
+            gradient: LinearGradient(
+              colors: [color, _shadeOf(color, .78)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(22),
+            border: Border.all(color: borderColor, width: 5),
+            boxShadow: [
+              BoxShadow(
+                color: color.withOpacity(.35),
+                blurRadius: 14,
+                offset: const Offset(0, 6),
+                spreadRadius: -2,
+              ),
+            ],
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(17),
-            child: url == null
-                ? Container(
-                    // FIX (Heinz Screenshot 2026-05-21): bei 'Tippe Farbe X!'
-                    // (objektZuFarbe-Modus, url=null) wurde IMMER der
-                    // Parent-Gradient (rot-orange) verwendet -> alle 4
-                    // Boxen sahen gleich orange aus. Jetzt: ECHTE Farbe
-                    // der Option als Gradient mit dezentem Hell-Verlauf.
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: optionColor != null
-                            ? [optionColor!, _shadeOf(optionColor!, .8)]
-                            : gradient,
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
-                    alignment: Alignment.bottomRight,
-                    padding: const EdgeInsets.all(8),
-                    child: Icon(
-                      Icons.palette_rounded,
-                      color: Colors.white.withOpacity(0.4),
-                      size: 28,
-                    ),
-                  )
-                : Image.network(
-                    url!,
-                    fit: BoxFit.cover,
-                    loadingBuilder: (ctx, child, progress) {
-                      if (progress == null) return child;
-                      return Container(
-                        color: gradient[0].withOpacity(0.1),
-                        alignment: Alignment.center,
-                        child: CircularProgressIndicator(
-                            color: gradient[0], strokeWidth: 2),
-                      );
-                    },
-                    errorBuilder: (ctx, err, st) => Container(
-                      // Fallback bei Image-Fail: auch volle Farbe zeigen
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: gradient,
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                      child: Icon(
-                        Icons.palette_rounded,
-                        color: Colors.white.withOpacity(0.5),
-                        size: 36,
-                      ),
-                    ),
-                  ),
-          ),
+          alignment: Alignment.center,
+          child: Text(emoji,
+              style: const TextStyle(fontSize: 70, height: 1.0)),
         ),
       ),
     );
