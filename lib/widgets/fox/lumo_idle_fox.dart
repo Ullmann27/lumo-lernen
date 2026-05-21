@@ -75,10 +75,15 @@ class _LumoIdleFoxState extends State<LumoIdleFox>
     super.didChangeDependencies();
     if (!_precached) {
       _precached = true;
-      // Frames im Speicher vorhalten, damit der erste Loop nicht stottert.
-      for (final path in LumoIdleFox.frames) {
-        precacheImage(AssetImage(path), context);
-      }
+      // Frames im Speicher vorhalten - aber NACH dem Frame, damit
+      // _dependents.isEmpty assertion bei schneller Navigation nicht
+      // crasht (Heinz-Bug: WordCoach Pause-Screen).
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        for (final path in LumoIdleFox.frames) {
+          precacheImage(AssetImage(path), context);
+        }
+      });
     }
     // Animationen ggf. abschalten (Barrierefreiheit).
     final disable = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
