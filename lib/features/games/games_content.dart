@@ -12,6 +12,7 @@ import '../shared/widgets/lumo_living_world.dart';
 import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
+import 'lumo_cards/lumo_cards_screen.dart';
 import 'memory/lumo_memory_game.dart';
 import 'mini_games/color_boxes_game.dart';
 import 'mini_games/letter_fill_game.dart';
@@ -126,6 +127,20 @@ class _GamesContentState extends State<GamesContent> {
     if (mounted) await _load();
   }
 
+  Future<void> _launchLumoCards() async {
+    HapticFeedback.mediumImpact();
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => LumoCardsScreen(
+          appState: widget.appState,
+          player1Name: 'Spieler 1',
+          player2Name: 'Spieler 2',
+        ),
+      ),
+    );
+    if (mounted) await _load();
+  }
+
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
@@ -234,6 +249,7 @@ class _GamesContentState extends State<GamesContent> {
                       onMemory: _launchMemory,
                       onConnectFour: _launchConnectFour,
                       onDiceRace: _launchDiceRace,
+                      onLumoCards: _launchLumoCards,
                     ),
                   ),
                   const SliverToBoxAdapter(
@@ -942,11 +958,13 @@ class _MultiPlayerSection extends StatelessWidget {
     required this.onMemory,
     required this.onConnectFour,
     required this.onDiceRace,
+    required this.onLumoCards,
   });
 
   final VoidCallback onMemory;
   final VoidCallback onConnectFour;
   final VoidCallback onDiceRace;
+  final VoidCallback onLumoCards;
 
   @override
   Widget build(BuildContext context) {
@@ -988,6 +1006,14 @@ class _MultiPlayerSection extends StatelessWidget {
             emoji: '🎲',
             gradient: const [Color(0xFF34D399), Color(0xFF059669)],
             onPlay: onDiceRace,
+          ),
+          const SizedBox(height: 10),
+          _VsLumoCard(
+            title: 'Lumo Cards',
+            subtitle: 'Das bunte Lernkarten-Duell - zu zweit am Tablet',
+            emoji: '🃏',
+            gradient: const [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+            onPlay: onLumoCards,
           ),
         ],
       ),
