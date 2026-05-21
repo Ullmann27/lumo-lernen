@@ -193,6 +193,10 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                     child: Text(
                       widget.illustrationEmoji,
                       style: TextStyle(
+                        // Bei echten Emojis (zB '➕', '✏️', '🏆') ignoriert
+                        // Flutter den Color-Stil sowieso. Bei textbasierten
+                        // Symbolen (z.B. 'M', 'D') wird die Accent-Farbe
+                        // wirksam. fontSize bleibt fuer beide gleich gross.
                         fontSize: illustrationFont,
                         fontWeight: FontWeight.w900,
                         color: widget.accent,
