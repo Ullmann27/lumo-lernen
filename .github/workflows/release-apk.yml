@@ -54,6 +54,26 @@ jobs:
             flutter create --platforms=android --org dev.ullmann.lumo .
           fi
 
+      # Heinz-Wunsch 2026-05-21: Updates ohne 'alte App deinstallieren'.
+      # Standardmaessig generiert flutter create bei jedem CI-Lauf einen
+      # neuen zufaelligen Debug-Keystore. Folge: jede APK hat eine andere
+      # Signatur und Android verweigert ein Update -> User muss erst die
+      # alte App loeschen.
+      #
+      # Fix: einen STABILEN Debug-Keystore aus tools/ ueber den frischen
+      # legen. Dann haben alle CI-Builds dieselbe Signatur und Android
+      # erkennt sie als Update derselben App.
+      - name: Use stable debug keystore
+        run: |
+          if [ -f tools/lumo-debug.keystore ]; then
+            mkdir -p ~/.android
+            cp tools/lumo-debug.keystore ~/.android/debug.keystore
+            ls -la ~/.android/debug.keystore
+            echo "Stable debug keystore installed."
+          else
+            echo "WARN: tools/lumo-debug.keystore not found - falling back to flutter-generated keystore"
+          fi
+
       - name: Patch AndroidManifest safely
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
