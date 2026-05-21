@@ -297,8 +297,11 @@ class LumoTutorialCompanionState extends State<LumoTutorialCompanion>
             // ── Sprechblase ueber Lumo ──
             if (_bubbleText.isNotEmpty)
               Positioned(
-                left: (_xAnim.value * size.width - 130).clamp(8.0, size.width - 268),
-                top: py - 78,
+                // Bubble ist jetzt bis 300px breit, daher Mitte = -150 und
+                // rechter Clamp = size.width - 308 (8px Sicherheitsabstand).
+                left: (_xAnim.value * size.width - 150)
+                    .clamp(8.0, size.width - 308),
+                top: py - 92,
                 child: Transform.scale(
                   scale: bubbleScale.clamp(0.0, 1.0),
                   alignment: Alignment.bottomCenter,
@@ -374,21 +377,24 @@ class _SpeechBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // FIX (Heinz 2026-05-21): laengere Tutorial-Texte sollen sauber auf
+    // mehrere Zeilen umbrechen. Bubble breiter (300) und Padding etwas
+    // mehr, damit 3-4-zeiliger Text gut lesbar bleibt.
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 260, minWidth: 140),
+      constraints: const BoxConstraints(maxWidth: 300, minWidth: 160),
       child: CustomPaint(
         painter: _BubblePainter(),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 18),
+          padding: const EdgeInsets.fromLTRB(18, 14, 18, 20),
           child: Text(
             text,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontFamily: 'Nunito',
-              fontSize: 14,
+              fontSize: 14.5,
               fontWeight: FontWeight.w800,
               color: Color(0xFF7C2D12),
-              height: 1.25,
+              height: 1.32,
             ),
           ),
         ),
