@@ -1,48 +1,155 @@
 // ════════════════════════════════════════════════════════════════════════
-// LUMO CARD TABLE — warmer Spieltisch-Hintergrund
+// LUMO CARD TABLE — Premium-Edition (hochmodern)
 // ════════════════════════════════════════════════════════════════════════
-// Dunkler warmer Holz/Stoff-Gradient mit dezentem Vignette-Effekt.
+// Hochwertiger Spieltisch mit:
+//  • Tiefem Velvet-Gradient (warm Amber zu deepem Bordeaux)
+//  • Sanfte Vignette an den Raendern fuer Buehnen-Effekt
+//  • Animierte Light-Dust-Partikel (sehr subtil, langsam schwebend)
+//  • Noise/Texture-Overlay fuer Stoff-Optik
+//  • Deterministische Sterne (kein Flackern bei Rebuild)
 // ════════════════════════════════════════════════════════════════════════
+
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class LumoCardTable extends StatelessWidget {
+class LumoCardTable extends StatefulWidget {
   const LumoCardTable({super.key, required this.child});
   final Widget child;
 
   @override
+  State<LumoCardTable> createState() => _LumoCardTableState();
+}
+
+class _LumoCardTableState extends State<LumoCardTable>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _dustCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    // Sehr langsame Animation - dust schwebt 20 Sekunden lang.
+    _dustCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 20),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _dustCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DecoratedBox(
+      // ── Premium Velvet-Gradient ──
+      // Drei Stops: warm Amber oben links, tiefes Caramel center,
+      // dunkles Bordeaux am Rand. Plus ueberlagerter Radial-Glow zentral.
       decoration: const BoxDecoration(
         gradient: RadialGradient(
-          colors: [Color(0xFFFFE4C2), Color(0xFFD6841B)],
-          radius: 1.05,
-          center: Alignment(0, -0.15),
+          colors: [
+            Color(0xFFFFE0B8), // warm cream center
+            Color(0xFFDB924A), // amber mid
+            Color(0xFF9A4A0E), // deep caramel rand
+          ],
+          stops: [0.0, 0.45, 1.0],
+          radius: 1.1,
+          center: Alignment(0, -0.20),
         ),
       ),
       child: Stack(
         children: [
-          // Dezentes Sternenmuster im Hintergrund.
+          // ── Layer 1: Noise/Texture-Overlay (Stoff-Optik) ──
           Positioned.fill(
             child: IgnorePointer(
               child: CustomPaint(
-                painter: _TableSparkles(),
+                painter: _TableNoisePainter(),
               ),
             ),
           ),
-          child,
+
+          // ── Layer 2: Vignette an den Raendern ──
+          // Dunkler werden zu den Ecken hin - macht den Tisch zur "Buehne".
+          Positioned.fill(
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withOpacity(0.18),
+                      Colors.black.withOpacity(0.32),
+                    ],
+                    stops: const [0.55, 0.85, 1.0],
+                    radius: 1.2,
+                    center: Alignment.center,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          // ── Layer 3: Animierte Lichtpartikel (Dust) ──
+          // Langsam schwebende warme Punkte - wie Sonnenstaub im Licht.
+          Positioned.fill(
+            child: IgnorePointer(
+              child: AnimatedBuilder(
+                animation: _dustCtrl,
+                builder: (_, __) {
+                  return CustomPaint(
+                    painter: _LightDustPainter(_dustCtrl.value),
+                  );
+                },
+              ),
+            ),
+          ),
+
+          // ── Layer 4: Deterministisches Sterne-Muster (statisch) ──
+          Positioned.fill(
+            child: IgnorePointer(
+              child: CustomPaint(
+                painter: _StaticSparklesPainter(),
+              ),
+            ),
+          ),
+
+          // ── Content ──
+          widget.child,
         ],
       ),
     );
   }
 }
 
-class _TableSparkles extends CustomPainter {
+/// Sehr feines Noise-Pattern fuer Stoff-Optik.
+class _TableNoisePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = Colors.white.withOpacity(0.10);
-    // Fixe deterministische Positionen damit es nicht bei jedem Build neu
-    // berechnet werden muss und nicht "blinkt".
+    final paint = Paint();
+    // Sehr fein - kaum sichtbar, aber gibt der Flaeche Charakter.
+    // Pseudo-random aber deterministisch (kein flicker).
+    final rng = math.Random(42);
+    for (int i = 0; i < 280; i++) {
+      final x = rng.nextDouble() * size.width;
+      final y = rng.nextDouble() * size.height;
+      final opacity = 0.02 + rng.nextDouble() * 0.04;
+      paint.color = Colors.white.withOpacity(opacity);
+      canvas.drawCircle(Offset(x, y), 0.7, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_TableNoisePainter old) => false;
+}
+
+/// Statische warme Sparkles - wie Kerzenlicht-Reflexe auf dem Tisch.
+class _StaticSparklesPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = const Color(0xFFFFE0B8).withOpacity(0.22);
+    // Deterministische Positionen.
     const points = [
       Offset(60, 80),
       Offset(220, 140),
@@ -54,15 +161,48 @@ class _TableSparkles extends CustomPainter {
       Offset(260, 520),
       Offset(390, 560),
       Offset(180, 720),
+      Offset(450, 380),
+      Offset(120, 610),
     ];
     for (final p in points) {
-      // Innerhalb der Canvas-Groesse halten.
       final cx = (p.dx % size.width).clamp(8.0, size.width - 8);
       final cy = (p.dy % size.height).clamp(8.0, size.height - 8);
-      canvas.drawCircle(Offset(cx, cy), 2.4, paint);
+      canvas.drawCircle(Offset(cx, cy), 2.8, paint);
     }
   }
 
   @override
-  bool shouldRepaint(_TableSparkles old) => false;
+  bool shouldRepaint(_StaticSparklesPainter old) => false;
+}
+
+/// Animierte Lichtpartikel - schweben langsam diagonal nach oben rechts.
+class _LightDustPainter extends CustomPainter {
+  _LightDustPainter(this.t);
+  final double t; // 0..1 - aktueller Animations-Fortschritt
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = const Color(0xFFFFF8E8).withOpacity(0.40);
+    // 18 Partikel, langsam schwebend.
+    final rng = math.Random(1337);
+    for (int i = 0; i < 18; i++) {
+      final baseX = rng.nextDouble() * size.width;
+      final baseY = rng.nextDouble() * size.height;
+      // Diagonale Schwebebewegung - nach oben + leicht rechts.
+      final phase = rng.nextDouble();
+      final localT = (t + phase) % 1.0;
+      final driftY = -localT * size.height * 0.25;
+      final driftX = math.sin(localT * math.pi * 2) * 14;
+      final x = (baseX + driftX).clamp(2.0, size.width - 2);
+      final y = (baseY + driftY).clamp(2.0, size.height - 2);
+      // Fade in/out an den Enden.
+      final fade = math.sin(localT * math.pi); // 0 → 1 → 0
+      paint.color = const Color(0xFFFFF8E8).withOpacity(0.10 + fade * 0.35);
+      final radius = 1.2 + fade * 1.0;
+      canvas.drawCircle(Offset(x, y), radius, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_LightDustPainter old) => old.t != t;
 }

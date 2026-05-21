@@ -6,6 +6,8 @@
 // uebergeben.
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../lumo_cards_models.dart';
@@ -47,17 +49,33 @@ class LumoPlayerHand extends StatelessWidget {
     // ueberlappen, sonst gefaechert.
     final overlap = cards.length > 8 ? -36.0 : -18.0;
 
+    // Premium-Polish: leichter Fan-Effekt - jede Karte minimal rotiert
+    // basierend auf Position. Mitte = gerade, Aussen = nach aussen gekippt.
+    // Wirkt wie echter Faecher in der Hand.
+    final n = cards.length;
+    final fanAngle = (math.pi / 180) * (n > 6 ? 2.0 : 3.0); // 2-3 Grad pro Karte
+
     return SizedBox(
-      height: 160,
+      height: 170,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             for (int i = 0; i < cards.length; i++)
               Padding(
                 padding: EdgeInsets.only(left: i == 0 ? 0 : overlap),
-                child: _buildHandCard(cards[i]),
+                child: Transform.rotate(
+                  // Center = 0, Outer cards = nach aussen geneigt
+                  angle: n <= 1 ? 0 : (i - (n - 1) / 2) * fanAngle,
+                  alignment: Alignment.bottomCenter,
+                  child: Transform.translate(
+                    // Aussere Karten leicht nach oben, fuer Faecher-Bogen
+                    offset: Offset(0, n <= 1 ? 0 : -math.pow(((i - (n - 1) / 2).abs() / n), 2).toDouble() * 12),
+                    child: _buildHandCard(cards[i]),
+                  ),
+                ),
               ),
           ],
         ),
