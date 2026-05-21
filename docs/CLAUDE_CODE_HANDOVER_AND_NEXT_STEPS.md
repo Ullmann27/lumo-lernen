@@ -460,7 +460,7 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
   Nach 2 Fehlern leuchtet die korrekte Option grün-pulsierend
   (konsistent mit dem bestehenden `_LocalHelpBanner` ab demselben Schwellwert).
 
-**Phase 3 – Lumo reagiert live (Reaction-Companion):**
+**Phase 3 – Lumo reagiert live + Lösungsweg sichtbar:**
 - `ee45831` Neues `LumoReactionCompanion`-Widget mit 3 Stimmungen
   (idle, cheer mit 8-Frame Cheer-Sprite, think mit Kopf-Tilt).
   Eingebaut im `AdaptiveTaskRenderer`: bei richtiger Antwort → cheer,
@@ -469,6 +469,15 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
   – beide reagieren jetzt mit Lumo-Mood.
 - `f177fbf` Zwei Codex-P2-Fixes am Companion: Double-Mirror beim Idle-Fox,
   Reduced-Motion-Regression bei `didUpdateWidget`.
+- `5aae7c3` Neue `_SolutionPath`-Karte: nach richtiger Mathe-Antwort
+  zeigt Lumo den Lösungsweg visuell als grüne Premium-Karte
+  ('3 + 5 = 8' + 8 Äpfel als Bild + kindgerechter Hinweis).
+- `6079c4e` Lösungsweg auch als didaktische Hilfe nach 2 Fehlern.
+- `f3e70f8` `showLumoRewardBurst(stars: 1)` bei jeder richtigen
+  Antwort – Sterne sprudeln raus, konsistent mit Quizshow.
+- `79d9da0` Lumo wechselt aktiv auf Mood `think` während das Kind
+  im Schreibcoach zeichnet (Pan-Start) – visuelle Begleitung
+  während des Schreibens, nicht erst beim Prüfen.
 
 **Phase 4 – Lehrplan-Audit:**
 - Tabelle aller 20 Module gegen ÖsterreichVS-Lehrplan: **alle konform**,
@@ -502,10 +511,11 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
 
 ### Was noch offen ist (NICHT in dieser Session, für später)
 
-1. **Phase 3 Vollausbau** – aktive Live-Erkennung beim Buchstaben-Schreiben
-   (Strich-für-Strich Hint, Mathe-Lösungsweg-Visualisierung mit Bildern).
-   Heinz' eigentliches "Wow-Feature" – braucht eigene Session,
-   möglicherweise mit lokalem `flutter test`.
+1. **Phase 3 Live-Strich-Erkennung** – während das Kind im Schreibcoach
+   einen Buchstaben zeichnet, prüft Lumo den Strich KONTINUIERLICH und
+   gibt Live-Hints ("Hmm, der Strich geht hier lang!"). Aktuell nur
+   beim "Fertig"-Tap. Braucht Live-Stroke-Analyse via `LetterShapeAnalyzer`
+   nach jedem Pan-End-Event, plus Performance-Sicherung. Eigene Session.
 2. **Phase 2C** – Module einzeln mit `LumoMagicBackground`/`LumoPremiumCard`
    wrappen. Eigentlich überflüssig, weil `AdaptiveTaskRenderer` zentral wirkt
    – aber für Module mit eigenen Screens (z.B. Lumo Jump) sinnvoll.
