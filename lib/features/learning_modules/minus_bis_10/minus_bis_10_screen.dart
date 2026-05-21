@@ -8,6 +8,8 @@
 
 import 'dart:math' as math;
 
+import '../../../core/lumo_cosmos.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -113,6 +115,11 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       _correctCount++;
       widget.appState.addStars(1);
       widget.appState.addXp(5);
+      CosmosWorld.instance.grantReward(
+        subjectId: 'm1_minus10',
+        isMath: true,
+        isPerfect: false,
+      );
       final phrase = LumoPhrases.correct();
       try {
         LumoVoice.instance.speak(phrase);

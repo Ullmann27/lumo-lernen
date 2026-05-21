@@ -48,24 +48,28 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     final world = CosmosWorld.instance;
+    final period = currentDayPeriod();
+    final season = currentSeason();
+    final skyColors = _skyForPeriod(period);
+    final grassColor = _grassForSeason(season);
     return Scaffold(
-      backgroundColor: const Color(0xFFB5E2FA), // Himmelblau
+      backgroundColor: skyColors.first,
       body: SafeArea(
         child: Column(
           children: [
-            _buildTopBar(world),
+            _buildTopBar(world, period, season),
             Expanded(
               child: Stack(
                 children: [
-                  // Sky-Gradient
+                  // Sky-Gradient passt zur Tageszeit
                   Positioned.fill(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            const Color(0xFFB5E2FA), // Himmel
-                            const Color(0xFFFFE4B5), // Horizon
-                            const Color(0xFF90EE90), // Gras
+                            skyColors[0],
+                            skyColors[1],
+                            grassColor,
                           ],
                           stops: const [0, 0.5, 0.55],
                           begin: Alignment.topCenter,
@@ -74,6 +78,25 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
                       ),
                     ),
                   ),
+                  // Sonne oder Mond
+                  if (period == DayPeriod.night)
+                    Positioned(
+                      top: 30, right: 30,
+                      child: _MoonIcon(),
+                    )
+                  else if (period == DayPeriod.morning ||
+                      period == DayPeriod.noon)
+                    Positioned(
+                      top: 30, right: 30,
+                      child: _SunIcon(
+                        color: period == DayPeriod.morning
+                            ? const Color(0xFFFFB347)
+                            : const Color(0xFFFCD34D),
+                      ),
+                    ),
+                  // Sterne bei Nacht
+                  if (period == DayPeriod.night)
+                    Positioned.fill(child: _StarsLayer()),
                   // Animated items
                   Positioned.fill(
                     child: AnimatedBuilder(
@@ -98,7 +121,43 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
     );
   }
 
-  Widget _buildTopBar(CosmosWorld world) {
+  List<Color> _skyForPeriod(DayPeriod p) {
+    switch (p) {
+      case DayPeriod.morning:
+        return [const Color(0xFFFFD194), const Color(0xFFFFB5A7)];
+      case DayPeriod.noon:
+        return [const Color(0xFF87CEEB), const Color(0xFFB5E2FA)];
+      case DayPeriod.evening:
+        return [const Color(0xFFFF7E5F), const Color(0xFFFEB47B)];
+      case DayPeriod.night:
+        return [const Color(0xFF1E3A8A), const Color(0xFF4338CA)];
+    }
+  }
+
+  Color _grassForSeason(Season s) {
+    switch (s) {
+      case Season.spring: return const Color(0xFF90EE90);
+      case Season.summer: return const Color(0xFF52C41A);
+      case Season.autumn: return const Color(0xFFFFB347);
+      case Season.winter: return const Color(0xFFE6E6FA);
+    }
+  }
+
+  Widget _buildTopBar(CosmosWorld world, DayPeriod period, Season season) {
+    String periodName;
+    switch (period) {
+      case DayPeriod.morning: periodName = 'Morgen'; break;
+      case DayPeriod.noon: periodName = 'Mittag'; break;
+      case DayPeriod.evening: periodName = 'Abend'; break;
+      case DayPeriod.night: periodName = 'Nacht'; break;
+    }
+    String seasonName;
+    switch (season) {
+      case Season.spring: seasonName = 'Fruehling'; break;
+      case Season.summer: seasonName = 'Sommer'; break;
+      case Season.autumn: seasonName = 'Herbst'; break;
+      case Season.winter: seasonName = 'Winter'; break;
+    }
     return Padding(
       padding: const EdgeInsets.all(LumoTokens.space12),
       child: Row(
@@ -113,7 +172,7 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
               children: [
                 Text('Meine Welt',
                     style: LumoTokens.typo.headlineMedium),
-                Text(world.worldStage,
+                Text('$periodName · $seasonName · ${world.worldStage}',
                     style: LumoTokens.typo.bodyMedium.copyWith(
                         color: LumoTokens.colors.textMuted)),
               ],
@@ -250,4 +309,106 @@ class _CosmosPainter extends CustomPainter {
   @override
   bool shouldRepaint(_CosmosPainter old) =>
       old.items.length != items.length || old.progress != progress;
+}
+
+class _SunIcon extends StatelessWidget {
+  const _SunIcon({required this.color});
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 56,
+      height: 56,
+      decoration: BoxDecoration(
+        gradient: RadialGradient(
+          colors: [color, color.withOpacity(0.0)],
+          stops: const [0.5, 1.0],
+        ),
+        shape: BoxShape.circle,
+      ),
+      alignment: Alignment.center,
+      child: Container(
+        width: 36, height: 36,
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+      ),
+    );
+  }
+}
+
+class _MoonIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 48, height: 48,
+      decoration: BoxDecoration(
+        color: const Color(0xFFFEFCE8),
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFFEFCE8).withOpacity(0.5),
+            blurRadius: 20,
+            spreadRadius: 4,
+          ),
+        ],
+      ),
+      alignment: Alignment.center,
+      child: const Text('🌙', style: TextStyle(fontSize: 28)),
+    );
+  }
+}
+
+class _StarsLayer extends StatefulWidget {
+  @override
+  State<_StarsLayer> createState() => _StarsLayerState();
+}
+
+class _StarsLayerState extends State<_StarsLayer>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _twinkle;
+  late final List<Offset> _stars;
+  @override
+  void initState() {
+    super.initState();
+    _twinkle = AnimationController(
+        vsync: this, duration: const Duration(seconds: 3))
+      ..repeat(reverse: true);
+    final r = math.Random(13);
+    _stars = List.generate(40,
+        (_) => Offset(r.nextDouble(), r.nextDouble() * 0.45));
+  }
+  @override
+  void dispose() {
+    _twinkle.dispose();
+    super.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _twinkle,
+      builder: (_, __) {
+        return IgnorePointer(
+          child: CustomPaint(
+            painter: _StarsPainter(
+                stars: _stars, opacity: 0.5 + _twinkle.value * 0.5),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _StarsPainter extends CustomPainter {
+  _StarsPainter({required this.stars, required this.opacity});
+  final List<Offset> stars;
+  final double opacity;
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = Colors.white.withOpacity(opacity);
+    for (final s in stars) {
+      canvas.drawCircle(
+          Offset(s.dx * size.width, s.dy * size.height), 1.5, paint);
+    }
+  }
+  @override
+  bool shouldRepaint(_StarsPainter old) => old.opacity != opacity;
 }

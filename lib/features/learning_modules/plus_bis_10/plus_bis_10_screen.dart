@@ -14,6 +14,8 @@
 
 import 'dart:math' as math;
 
+import '../../../core/lumo_cosmos.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -143,6 +145,12 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     HapticFeedback.mediumImpact();
     widget.appState.addStars(1);
     widget.appState.addXp(5);
+    // Cosmos-Belohnung: pflanze einen Baum in der Welt!
+    CosmosWorld.instance.grantReward(
+      subjectId: 'm1_plus10',
+      isMath: true,
+      isPerfect: false,
+    );
     try {
       LumoVoice.instance.speak(LumoPhrases.correct());
     } catch (_) {}

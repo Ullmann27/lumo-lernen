@@ -95,6 +95,33 @@ class CosmosItem {
       );
 }
 
+/// Tageszeit basierend auf realer Uhr.
+enum DayPeriod {
+  morning,   // 5-11
+  noon,      // 11-17
+  evening,   // 17-21
+  night,     // 21-5
+}
+
+DayPeriod currentDayPeriod() {
+  final h = DateTime.now().hour;
+  if (h >= 5 && h < 11) return DayPeriod.morning;
+  if (h >= 11 && h < 17) return DayPeriod.noon;
+  if (h >= 17 && h < 21) return DayPeriod.evening;
+  return DayPeriod.night;
+}
+
+/// Jahreszeit basierend auf realem Datum.
+enum Season { spring, summer, autumn, winter }
+
+Season currentSeason() {
+  final m = DateTime.now().month;
+  if (m >= 3 && m <= 5) return Season.spring;
+  if (m >= 6 && m <= 8) return Season.summer;
+  if (m >= 9 && m <= 11) return Season.autumn;
+  return Season.winter;
+}
+
 /// Persistente Lern-Welt des Kindes.
 class CosmosWorld {
   CosmosWorld._();
@@ -107,6 +134,19 @@ class CosmosWorld {
   List<CosmosItem> _items = [];
   int _totalCorrect = 0;
   int _streakDays = 0;
+  String? _lastVisitDate; // YYYY-MM-DD
+  bool _loaded = false;
+
+  /// Listeners die nach grantReward benachrichtigt werden (z.B. fuer
+  /// Toast 'Du hast einen Baum gepflanzt!' in Modul-Screens).
+  final List<void Function(List<CosmosItem>)> _listeners = [];
+
+  void addListener(void Function(List<CosmosItem>) cb) {
+    _listeners.add(cb);
+  }
+  void removeListener(void Function(List<CosmosItem>) cb) {
+    _listeners.remove(cb);
+  }
 
   List<CosmosItem> get items => List.unmodifiable(_items);
   int get totalItems => _items.length;
@@ -125,6 +165,7 @@ class CosmosWorld {
   }
 
   Future<void> load() async {
+    if (_loaded) return;
     final p = await SharedPreferences.getInstance();
     final raw = p.getString(_key);
     if (raw != null) {
@@ -141,16 +182,42 @@ class CosmosWorld {
         final m = jsonDecode(metaRaw) as Map<String, dynamic>;
         _totalCorrect = m['c'] as int? ?? 0;
         _streakDays = m['s'] as int? ?? 0;
+        _lastVisitDate = m['d'] as String?;
       } catch (_) {}
     }
+    // Streak-Check: Wenn lastVisit gestern war, dann +1.
+    // Wenn schon heute, kein Update. Wenn aelter, reset.
+    final today = _todayString();
+    if (_lastVisitDate != today) {
+      final yesterday = _dateString(
+          DateTime.now().subtract(const Duration(days: 1)));
+      if (_lastVisitDate == yesterday) {
+        _streakDays++;
+      } else if (_lastVisitDate != null) {
+        _streakDays = 1; // Reset auf 1 (heute zaehlt schon)
+      } else {
+        _streakDays = 1;
+      }
+      _lastVisitDate = today;
+      await save();
+    }
+    _loaded = true;
   }
+
+  String _todayString() => _dateString(DateTime.now());
+  String _dateString(DateTime d) =>
+      '${d.year}-${d.month.toString().padLeft(2, "0")}-${d.day.toString().padLeft(2, "0")}';
 
   Future<void> save() async {
     final p = await SharedPreferences.getInstance();
     await p.setString(_key,
         jsonEncode(_items.map((i) => i.toJson()).toList()));
     await p.setString(_meta,
-        jsonEncode({'c': _totalCorrect, 's': _streakDays}));
+        jsonEncode({
+          'c': _totalCorrect,
+          's': _streakDays,
+          'd': _lastVisitDate,
+        }));
   }
 
   /// Hauptmethode: Kind hat richtig geantwortet -> Welt waechst.
@@ -207,6 +274,9 @@ class CosmosWorld {
 
     _items.addAll(newItems);
     await save();
+    for (final cb in _listeners) {
+      cb(newItems);
+    }
     return newItems;
   }
 

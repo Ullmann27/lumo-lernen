@@ -14,6 +14,8 @@
 
 import 'dart:math' as math;
 
+import '../../../core/lumo_cosmos.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -153,6 +155,11 @@ class _TiereScreenState extends State<TiereScreen>
       _correctCount++;
       widget.appState.addStars(1);
       widget.appState.addXp(7);
+      CosmosWorld.instance.grantReward(
+        subjectId: 's1_tiere',
+        isMath: false,
+        isPerfect: false,
+      );
       try {
         LumoVoice.instance
             .speak('Richtig! Das ist ein ${_correctTier.name}!');
