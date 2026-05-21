@@ -343,8 +343,13 @@ class FractionPizzaVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final num = _readInt(data['numerator']) ?? 1;
-    final den = _readInt(data['denominator']) ?? _denomFromPrompt(task.prompt);
+    final rawNum = _readInt(data['numerator']) ?? 1;
+    final rawDen = _readInt(data['denominator']) ?? _denomFromPrompt(task.prompt);
+    // FIX: Erst Nenner clampen, dann Zaehler an den geclampten Nenner clampen.
+    // Vorher konnte numerator > denominator entstehen (z.B. 14/12 als Pizza),
+    // wenn den ungeclampt zur Numerator-Clamp-Grenze wurde.
+    final den = rawDen.clamp(1, 12);
+    final num = rawNum.clamp(0, den);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: _stageDecoration(LumoColors.practice),
@@ -352,7 +357,7 @@ class FractionPizzaVisual extends StatelessWidget {
         child: SizedBox(
           width: 160,
           height: 160,
-          child: CustomPaint(painter: _PizzaPainter(numerator: num.clamp(0, den), denominator: den.clamp(1, 12))),
+          child: CustomPaint(painter: _PizzaPainter(numerator: num, denominator: den)),
         ),
       ),
     );

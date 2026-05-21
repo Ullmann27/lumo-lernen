@@ -31,25 +31,12 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
   final List<Stroke> _strokes = <Stroke>[];
   Stroke? _activeStroke;
   DateTime? _startedAt;
-  ScrollHoldController? _scrollHold;
-
-  @override
-  void dispose() {
-    _releaseParentScroll();
-    super.dispose();
-  }
-
-  void _holdParentScroll() {
-    if (_scrollHold != null) return;
-    final scrollable = Scrollable.maybeOf(context);
-    _scrollHold = scrollable?.position.hold(() {});
-  }
-
-  void _releaseParentScroll() {
-    final hold = _scrollHold;
-    _scrollHold = null;
-    hold?.cancel();
-  }
+  // Frueher: Scrollable.maybeOf(context) im PointerDown-Handler, um den
+  // Eltern-Scroll wegen Pan-Konflikt festzuhalten. Das registrierte eine
+  // Inherited-Dependency zur Laufzeit; beim Disposal des Canvas konnte
+  // das den "_dependents.isEmpty"-Assert in Flutter framework.dart aus-
+  // loesen. Jetzt rendert das Canvas nur noch im Vollbild-Modal ohne
+  // Scrollable-Parent, sodass dieser Hack nicht mehr noetig ist.
 
   void _startStroke(Offset localPosition, Size size) {
     final point = _pointFromLocalPosition(localPosition, size);
@@ -77,16 +64,12 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
 
   void _finishStroke() {
     final active = _activeStroke;
-    if (active == null) {
-      _releaseParentScroll();
-      return;
-    }
+    if (active == null) return;
     final smoothed = active.points.length >= 2 ? _smoother.smooth(active) : active;
     setState(() {
       if (smoothed.points.length >= 2) _strokes.add(smoothed);
       _activeStroke = null;
     });
-    _releaseParentScroll();
     widget.onChanged?.call(List<Stroke>.unmodifiable(_strokes));
     _emitEvaluation();
   }
@@ -265,27 +248,22 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.xl - 2),
-            child: Listener(
-              onPointerDown: (_) => _holdParentScroll(),
-              onPointerUp: (_) => _releaseParentScroll(),
-              onPointerCancel: (_) => _releaseParentScroll(),
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                dragStartBehavior: DragStartBehavior.down,
-                onPanStart: (details) => _startStroke(details.localPosition, size),
-                onPanUpdate: (details) => _appendPoint(details.localPosition, size),
-                onPanEnd: (_) => _finishStroke(),
-                onPanCancel: _finishStroke,
-                child: CustomPaint(
-                  painter: _WritingCanvasPainter(
-                    template: widget.template,
-                    mode: widget.mode,
-                    strokes: _activeStroke == null
-                        ? _strokes
-                        : <Stroke>[..._strokes, _activeStroke!],
-                  ),
-                  child: const SizedBox.expand(),
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              dragStartBehavior: DragStartBehavior.down,
+              onPanStart: (details) => _startStroke(details.localPosition, size),
+              onPanUpdate: (details) => _appendPoint(details.localPosition, size),
+              onPanEnd: (_) => _finishStroke(),
+              onPanCancel: _finishStroke,
+              child: CustomPaint(
+                painter: _WritingCanvasPainter(
+                  template: widget.template,
+                  mode: widget.mode,
+                  strokes: _activeStroke == null
+                      ? _strokes
+                      : <Stroke>[..._strokes, _activeStroke!],
                 ),
+                child: const SizedBox.expand(),
               ),
             ),
           ),
