@@ -63,8 +63,6 @@ class _LumoReactionCompanionState extends State<LumoReactionCompanion>
   late final AnimationController _frameCtrl;
   late final AnimationController _bounceCtrl;
   int _frameIdx = 0;
-  bool _precachedIdle = false;
-  bool _precachedCheer = false;
 
   List<String> get _frames {
     switch (widget.mood) {
@@ -101,18 +99,8 @@ class _LumoReactionCompanionState extends State<LumoReactionCompanion>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (!_precachedIdle) {
-      _precachedIdle = true;
-      // Heinz-Bug-Fix: precacheImage hier kann _dependents.isEmpty
-      // assertion ausloesen wenn der Screen schnell unmounted wird.
-      // In addPostFrameCallback verschieben + mounted-Check.
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        for (final p in LumoReactionCompanion._idleFrames) {
-          precacheImage(AssetImage(p), context);
-        }
-      });
-    }
+    // Heinz-Bug: precacheImage hier crashed mit _dependents.isEmpty
+    // assertion bei Wortdiktat-Oeffnen. Komplett rausgenommen.
     final disable = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
     if (disable) {
       _frameCtrl.stop();
@@ -141,19 +129,8 @@ class _LumoReactionCompanionState extends State<LumoReactionCompanion>
         _frameCtrl.repeat();
       }
       if (widget.mood == LumoReactionMood.cheer) {
-        // Cheer-Frames erst beim ersten Wechsel laden.
-        if (!_precachedCheer) {
-          _precachedCheer = true;
-          // Heinz-Bug-Fix: precacheImage in addPostFrameCallback
-          // verschieben damit _dependents.isEmpty Assertion nicht
-          // crasht bei schneller Navigation.
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted) return;
-            for (final p in LumoReactionCompanion._cheerFrames) {
-              precacheImage(AssetImage(p), context);
-            }
-          });
-        }
+        // Cheer-Frames laden lazy beim ersten Anzeigen.
+        // (precacheImage entfernt - crashed mit _dependents.isEmpty)
         if (!disable) {
           _bounceCtrl.forward(from: 0);
         }

@@ -111,16 +111,28 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         vsync: this, duration: const Duration(milliseconds: 400));
     _wrongShakeCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
-    // Erste Session noch ohne Progress (random), dann nachladen und
-    // ggf. adaptiv neu picken solange das Kind noch nicht angefangen
-    // hat (taskIdx == 0 und keinen Buchstaben fertig).
-    _sessionTasks = _pickSessionTasks();
+    // Heinz-Crash-Bug: Wenn _pickSessionTasks fehlt, soll der Screen
+    // nicht crashen sondern Fallback-Tasks bekommen.
+    try {
+      _sessionTasks = _pickSessionTasks();
+    } catch (e, st) {
+      debugPrint('WordCoach picking failed: $e\n$st');
+      _sessionTasks = WritingWordBank.all.take(_wordsPerSession).toList();
+    }
+    // SAFETY: wenn pool wirklich leer ist (sollte nie passieren, aber
+    // sicherer als Crash), zumindest 1 Dummy-Task damit _currentTask
+    // nicht in IndexOutOfBounds laeuft.
+    if (_sessionTasks.isEmpty) {
+      _sessionTasks = const [
+        WritingWordTask(
+          id: 'fallback',
+          word: 'Mama',
+          spokenPrompt: 'Schreib das Wort Mama!',
+        ),
+      ];
+    }
     _progressRepo.load().then((p) {
       if (!mounted) return;
-      // hasStarted strenger pruefen (Codex P2): auch Strokes, falsche
-      // Versuche und Cursor-Position zaehlen als 'Kind hat angefangen'.
-      // Sonst koennten _sessionTasks reshufflen waehrend das Kind gerade
-      // am ersten Wort schreibt - prompt/target mismatch.
       final hasStarted = _taskIdx > 0 ||
           _completedSlots.isNotEmpty ||
           _strokes.isNotEmpty ||
@@ -131,12 +143,24 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
       setState(() {
         _progress = p;
         if (!hasStarted && p.weakLetters.isNotEmpty) {
-          _sessionTasks = _pickSessionTasks();
+          try {
+            _sessionTasks = _pickSessionTasks();
+            if (_sessionTasks.isEmpty) {
+              _sessionTasks = WritingWordBank.all
+                  .take(_wordsPerSession)
+                  .toList();
+            }
+          } catch (_) {
+            // Pool-Pick failed - behalte bisherigen Stand.
+          }
         }
       });
     }).catchError((_) {});
     _entryCtrl.forward();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _speakPrompt());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _speakPrompt();
+    });
   }
 
   @override

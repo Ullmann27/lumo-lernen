@@ -58,7 +58,6 @@ class _LumoIdleFoxState extends State<LumoIdleFox>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   int _frameIndex = 0;
-  bool _precached = false;
 
   @override
   void initState() {
@@ -73,18 +72,11 @@ class _LumoIdleFoxState extends State<LumoIdleFox>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (!_precached) {
-      _precached = true;
-      // Frames im Speicher vorhalten - aber NACH dem Frame, damit
-      // _dependents.isEmpty assertion bei schneller Navigation nicht
-      // crasht (Heinz-Bug: WordCoach Pause-Screen).
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        for (final path in LumoIdleFox.frames) {
-          precacheImage(AssetImage(path), context);
-        }
-      });
-    }
+    // Heinz-Bug: precacheImage hier ausloeste _dependents.isEmpty
+    // assertion-crash beim Oeffnen des Wortdiktats. Lieber langsamer
+    // erster Frame als Crash - der gaplessPlayback im Build verhindert
+    // sichtbare Stottern beim ersten Loop.
+    //
     // Animationen ggf. abschalten (Barrierefreiheit).
     final disable = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
     if (disable) {
