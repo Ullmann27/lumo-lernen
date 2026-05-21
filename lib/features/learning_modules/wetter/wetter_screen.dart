@@ -426,32 +426,39 @@ class _WetterScreenState extends State<WetterScreen>
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(24),
-            child: url == null
-                ? Container(
-                    color: _correctWetter.color.withOpacity(0.2),
-                    alignment: Alignment.center,
-                    child: Text(_correctWetter.icon,
-                        style: const TextStyle(fontSize: 100)),
-                  )
-                : Image.network(
+            // Heinz Screenshot 2026-05-21: 'Welches Wetter ist das?' zeigte
+            // ein leeres tuerkises Quadrat (kein Bild, kein Emoji, kein
+            // Spinner). Loesung: Emoji-Fallback IMMER im Stack-Hintergrund -
+            // egal ob Image.network laedt, leer kommt oder errort, das
+            // Kind sieht zumindest das Wetter-Icon.
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Container(
+                  color: _correctWetter.color.withOpacity(0.18),
+                  alignment: Alignment.center,
+                  child: Text(_correctWetter.icon,
+                      style: const TextStyle(fontSize: 100)),
+                ),
+                if (url != null)
+                  Image.network(
                     url,
                     fit: BoxFit.cover,
                     loadingBuilder: (ctx, child, progress) {
+                      // progress null = Bild fertig. Sonst sanfter Spinner
+                      // ueber dem Emoji-Hintergrund.
                       if (progress == null) return child;
-                      return Container(
-                        color: _gradient[0].withOpacity(0.1),
-                        alignment: Alignment.center,
+                      return Center(
                         child: CircularProgressIndicator(
                             color: _gradient[0], strokeWidth: 3),
                       );
                     },
-                    errorBuilder: (ctx, err, st) => Container(
-                      color: _correctWetter.color.withOpacity(0.2),
-                      alignment: Alignment.center,
-                      child: Text(_correctWetter.icon,
-                          style: const TextStyle(fontSize: 100)),
-                    ),
+                    // errorBuilder leer: dann bleibt der Stack-Hintergrund
+                    // (Emoji) sichtbar.
+                    errorBuilder: (_, __, ___) => const SizedBox.shrink(),
                   ),
+              ],
+            ),
           ),
         );
       case _WetterFrageTyp.kleidungWaehlen:
