@@ -21,6 +21,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/writing_progress_repository.dart';
+import '../../domain/writing/writing_progress.dart';
 import '../../widgets/fox/lumo_idle_fox.dart';
 import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../learning_modules/lumo_phrases.dart';
@@ -49,6 +50,10 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   final _rng = math.Random();
   final _progressRepo = WritingProgressRepository();
 
+  /// Zuletzt geladene Schreibstatistik - liefert weakLetters fuer
+  /// adaptive Auswahl in _pickNextLetter (Phase 3 Punkt E).
+  WritingProgress _progress = WritingProgress.empty;
+
   /// Verhindert doppelte _checkWriting-Aufrufe bei schnellen Doppel-Taps.
   /// Sonst doppelter recordAttempt, doppelte XP/Sterne.
   bool _checkInFlight = false;
@@ -71,7 +76,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
 
   int _taskIdx = 0;
   int _correctCount = 0;
-  late String _currentLetter;
+  String _currentLetter = '';
   late LetterTemplate _currentTemplate;
   final List<WritingStroke> _strokes = [];
   List<Offset> _currentPoints = [];
@@ -87,6 +92,13 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
         vsync: this, duration: const Duration(milliseconds: 600));
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
+    // Phase 3 (E): laden der Schreibstatistik fuer adaptive Auswahl
+    // der naechsten Buchstaben. Best-effort - bei Fehler bleibt
+    // _progress = empty und _pickNextLetter waehlt rein zufaellig.
+    _progressRepo.load().then((p) {
+      if (!mounted) return;
+      setState(() => _progress = p);
+    }).catchError((_) {});
     _pickNextLetter();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakPrompt());
@@ -103,7 +115,28 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
 
   void _pickNextLetter() {
     final letters = LetterTemplates.availableLetters;
-    _currentLetter = letters[_rng.nextInt(letters.length)];
+    // Phase 3 (E) adaptive Schwierigkeit:
+    // 60% Chance einen schwachen Buchstaben zu nehmen, 40% rein zufaellig.
+    // Schwacher Buchstabe = accuracy < 0.7 nach >= 3 Versuchen
+    // (Definition aus WritingProgress.weakLetters).
+    final weak = _progress.weakLetters
+        .where((l) => letters.contains(l))
+        .toList();
+    String chosen;
+    if (weak.isNotEmpty && _rng.nextDouble() < 0.6) {
+      chosen = weak[_rng.nextInt(weak.length)];
+    } else {
+      chosen = letters[_rng.nextInt(letters.length)];
+    }
+    // Vermeide direkte Wiederholung wenn moeglich.
+    if (chosen == _currentLetter && letters.length > 1) {
+      var attempts = 0;
+      while (chosen == _currentLetter && attempts < 5) {
+        chosen = letters[_rng.nextInt(letters.length)];
+        attempts++;
+      }
+    }
+    _currentLetter = chosen;
     _currentTemplate = LetterTemplates.all[_currentLetter]!;
     _strokes.clear();
     _currentPoints = [];
