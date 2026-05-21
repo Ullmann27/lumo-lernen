@@ -10,7 +10,9 @@ import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import 'flame/lumo_jump_game.dart';
-import 'kart/lumo_kart_screen.dart';
+import 'connect_four/lumo_connect_four_game.dart';
+import 'dice_race/lumo_dice_race_game.dart';
+import 'memory/lumo_memory_game.dart';
 import 'mini_games/color_boxes_game.dart';
 import 'mini_games/letter_fill_game.dart';
 import 'mini_games/number_house_game.dart';
@@ -94,14 +96,34 @@ class _GamesContentState extends State<GamesContent> {
     }
   }
 
-  Future<void> _launchKart() async {
+  Future<void> _launchMemory() async {
     HapticFeedback.mediumImpact();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
-        builder: (_) => LumoKartScreen(appState: widget.appState),
+        builder: (_) => LumoMemoryScreen(appState: widget.appState),
       ),
     );
-    await _load();
+    if (mounted) await _load();
+  }
+
+  Future<void> _launchConnectFour() async {
+    HapticFeedback.mediumImpact();
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => LumoConnectFourScreen(appState: widget.appState),
+      ),
+    );
+    if (mounted) await _load();
+  }
+
+  Future<void> _launchDiceRace() async {
+    HapticFeedback.mediumImpact();
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => LumoDiceRaceScreen(appState: widget.appState),
+      ),
+    );
+    if (mounted) await _load();
   }
 
   Future<void> _launchLevel(GameLevelRuntime rt) async {
@@ -208,8 +230,10 @@ class _GamesContentState extends State<GamesContent> {
                     ),
                   ),
                   SliverToBoxAdapter(
-                    child: _KartCard(
-                      onPlay: _launchKart,
+                    child: _MultiPlayerSection(
+                      onMemory: _launchMemory,
+                      onConnectFour: _launchConnectFour,
+                      onDiceRace: _launchDiceRace,
                     ),
                   ),
                   const SliverToBoxAdapter(
@@ -903,176 +927,155 @@ class _LevelDetailSheet extends StatelessWidget {
   }
 }
 
-// ─────────────────── LUMO KART CARD ───────────────────
-//
-// Grosse promintente Karte fuer den neuen Spielmodus 'Lumo Kart Adventure'.
-// Lila/Orange Gradient (passt zu Lumo's Pullover/Pelz), Kart-Sprite rechts,
-// CTA-Button mit Boost-Symbol links.
 
-class _KartCard extends StatelessWidget {
-  const _KartCard({required this.onPlay});
-  final VoidCallback onPlay;
+// ════════════════════════════════════════════════════════════════════════
+// MULTIPLAYER-SEKTION: 3 Spiele gegen Lumo als KI-Gegner
+// ════════════════════════════════════════════════════════════════════════
+// Heinz' Wunsch (Mai 2026):
+//   - Memory mit Lumo (12 Paare, jedes genau 2x)
+//   - Vier gewinnt mit Lumo (6x7 Brett, Lumo blockt + gewinnt)
+//   - Wuerfel-Wettlauf (Mensch-aergere-dich-nicht light, 30 Felder)
+// Statt der Kart-Karte. Lumo spielt jeweils aktiv mit, nicht nur Zufall.
+
+class _MultiPlayerSection extends StatelessWidget {
+  const _MultiPlayerSection({
+    required this.onMemory,
+    required this.onConnectFour,
+    required this.onDiceRace,
+  });
+
+  final VoidCallback onMemory;
+  final VoidCallback onConnectFour;
+  final VoidCallback onDiceRace;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
-      child: GestureDetector(
-        onTap: onPlay,
-        child: Container(
-          height: 138,
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFF7C3AED), Color(0xFFF97316)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 4, bottom: 8),
+            child: Text(
+              'Gegen Lumo spielen',
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900,
+                  color: LumoColors.ink900),
             ),
-            borderRadius: BorderRadius.circular(LumoRadius.lg),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF7C3AED).withOpacity(0.35),
-                blurRadius: 20,
-                offset: const Offset(0, 8),
+          ),
+          _VsLumoCard(
+            title: 'Memory mit Lumo',
+            subtitle: '12 Paare suchen - Lumo merkt sich auch!',
+            emoji: '🧠',
+            gradient: const [Color(0xFFA78BFA), Color(0xFF7C3AED)],
+            onPlay: onMemory,
+          ),
+          const SizedBox(height: 10),
+          _VsLumoCard(
+            title: 'Vier gewinnt mit Lumo',
+            subtitle: 'Wer baut zuerst eine Reihe aus 4?',
+            emoji: '🔴',
+            gradient: const [Color(0xFF60A5FA), Color(0xFF2563EB)],
+            onPlay: onConnectFour,
+          ),
+          const SizedBox(height: 10),
+          _VsLumoCard(
+            title: 'Wuerfel-Wettlauf',
+            subtitle: 'Wer ist zuerst am Stern? Mit Schlag-Regel!',
+            emoji: '🎲',
+            gradient: const [Color(0xFF34D399), Color(0xFF059669)],
+            onPlay: onDiceRace,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _VsLumoCard extends StatelessWidget {
+  const _VsLumoCard({
+    required this.title,
+    required this.subtitle,
+    required this.emoji,
+    required this.gradient,
+    required this.onPlay,
+  });
+
+  final String title;
+  final String subtitle;
+  final String emoji;
+  final List<Color> gradient;
+  final VoidCallback onPlay;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPlay,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: gradient,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(LumoRadius.lg),
+          boxShadow: [
+            BoxShadow(
+                color: gradient.first.withOpacity(0.30),
+                blurRadius: 14,
+                offset: const Offset(0, 6)),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 54,
+              height: 54,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.22),
+                borderRadius: BorderRadius.circular(14),
               ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(LumoRadius.lg),
-            child: Stack(
-              children: [
-                // Hintergrund-Glow rechts
-                Positioned(
-                  right: -30,
-                  top: -30,
-                  child: Container(
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          const Color(0xFFFEF3C7).withOpacity(0.4),
-                          const Color(0xFFFEF3C7).withOpacity(0.0),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                // Kart-Sprite rechts
-                Positioned(
-                  right: 8,
-                  top: 4,
-                  bottom: 4,
-                  child: Image.asset(
-                    'assets/lumo_kart/kart/lumo_kart_360_vehicle_sheet_asset_001.png',
-                    fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) =>
-                        const Icon(Icons.sports_motorsports_rounded,
-                            size: 110, color: Colors.white70),
-                  ),
-                ),
-                // Text + Button links
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(18, 14, 18, 14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 3),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.22),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Colors.white.withOpacity(0.4),
-                                  width: 1),
-                            ),
-                            child: const Text(
-                              'NEU',
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w900,
-                                fontSize: 11,
-                                color: Colors.white,
-                                letterSpacing: 1.0,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'Lumo Kart',
-                            style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontWeight: FontWeight.w900,
-                              fontSize: 22,
-                              color: Colors.white,
-                              height: 1.0,
-                              shadows: [
-                                Shadow(
-                                    color: Colors.black26,
-                                    blurRadius: 6,
-                                    offset: Offset(0, 2)),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            'Adventure',
-                            style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                              color: Color(0xFFFEF3C7),
-                              height: 1.1,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color(0xFFF97316).withOpacity(0.4),
-                              blurRadius: 8,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.bolt_rounded,
-                                color: Color(0xFFF97316), size: 16),
-                            SizedBox(width: 4),
-                            Text(
-                              'Rennen starten',
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w900,
-                                fontSize: 13,
-                                color: Color(0xFFF97316),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              child: Text(emoji, style: const TextStyle(fontSize: 30)),
             ),
-          ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white)),
+                  const SizedBox(height: 2),
+                  Text(subtitle,
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white.withOpacity(0.92))),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              width: 44,
+              height: 44,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(Icons.play_arrow_rounded,
+                  color: gradient.last, size: 28),
+            ),
+          ],
         ),
       ),
     );
