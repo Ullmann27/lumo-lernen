@@ -507,6 +507,10 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
   + 15pt bold Text).
 - `72be014` Quizshow JokerButton lila Premium-Stil + Pill-Form.
 - `d448d8f` Quizshow ResultPanel mit Premium-Schatten, Text 13→16pt.
+- `6ae1386` `_ActionCard` in Sections (Tests/Schularbeit/Mission)
+  satter: 230→240px, Icon 38→44, Titel +1pt, CTA-Text 15pt.
+- `a8ea67b` Reading-Mikrofon-Button 72→84px, Icon 36→42, Headline 18pt.
+- `9c8ea58` Reading-Mission CTA-Button mit Gradient + Schatten, 14pt.
 
 **Phase 4 – Lehrplan-Audit:**
 - Tabelle aller 20 Module gegen ÖsterreichVS-Lehrplan: **alle konform**,
