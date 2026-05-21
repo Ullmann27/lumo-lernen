@@ -204,10 +204,24 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   void _onPanEnd(DragEndDetails _) {
     if (_currentPoints.length > 1) {
+      final pts = List<Offset>.of(_currentPoints);
       setState(() {
-        _strokes.add(WritingStroke(List.of(_currentPoints)));
+        _strokes.add(WritingStroke(pts));
         _currentPoints = [];
       });
+      // Phase 3 Live-Stroke-Analyse: zu kurzer Strich -> Hint.
+      double length = 0;
+      for (int i = 1; i < pts.length; i++) {
+        length += (pts[i] - pts[i - 1]).distance;
+      }
+      if (length < 24) {
+        _setMood(LumoReactionMood.think);
+        if (widget.appState.state.settings.voiceEnabled) {
+          try {
+            LumoVoice.instance.speak('Mach den Strich ein bisschen länger!');
+          } catch (_) {}
+        }
+      }
     }
   }
 
