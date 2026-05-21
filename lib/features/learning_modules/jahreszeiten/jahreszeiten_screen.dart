@@ -156,10 +156,21 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     super.dispose();
   }
 
+  // Heinz CLAUDE.md Punkt 5: 'Wiederholungslogik verbessern'.
+  // Bei 30 Aufgaben aus 4 Jahreszeiten ist Repeat unvermeidbar - aber
+  // mindestens NIE 2x dieselbe Jahreszeit hintereinander.
+  _Jahreszeit? _lastJz;
+
   void _generateTask() {
     _typ = _JahreszeitFrageTyp.values[_rng.nextInt(2)];
     if (_typ == _JahreszeitFrageTyp.bildErraten) {
-      _correctJz = _Jahreszeit.values[_rng.nextInt(4)];
+      _Jahreszeit pick;
+      int safety = 6;
+      do {
+        pick = _Jahreszeit.values[_rng.nextInt(4)];
+      } while (pick == _lastJz && --safety > 0);
+      _correctJz = pick;
+      _lastJz = pick;
     } else {
       _aktuellerHinweis = _hinweise[_rng.nextInt(_hinweise.length)];
       _correctJz = _aktuellerHinweis.jz;

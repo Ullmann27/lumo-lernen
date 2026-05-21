@@ -146,6 +146,10 @@ class _WetterScreenState extends State<WetterScreen>
     super.dispose();
   }
 
+  // Heinz CLAUDE.md Punkt 5: Anti-Repeat. Bei 30 Aufgaben aus 6
+  // Wetterarten nie 2x dasselbe Wetter hintereinander.
+  _Wetter? _lastWetter;
+
   void _generateTask() {
     _typ = _WetterFrageTyp.values[_rng.nextInt(3)];
     if (_typ == _WetterFrageTyp.hinweisErraten) {
@@ -153,8 +157,14 @@ class _WetterScreenState extends State<WetterScreen>
       _correctWetter =
           _wetterArten.firstWhere((w) => w.name == _aktuellerHinweis.value);
     } else {
-      _correctWetter = _wetterArten[_rng.nextInt(_wetterArten.length)];
+      _Wetter pick;
+      int safety = 8;
+      do {
+        pick = _wetterArten[_rng.nextInt(_wetterArten.length)];
+      } while (pick == _lastWetter && --safety > 0);
+      _correctWetter = pick;
     }
+    _lastWetter = _correctWetter;
     final shuffled = List.of(_wetterArten)..shuffle(_rng);
     _options = [_correctWetter, ...shuffled.where((w) => w != _correctWetter).take(3)]
       ..shuffle(_rng);
