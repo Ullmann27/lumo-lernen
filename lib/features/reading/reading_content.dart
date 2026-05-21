@@ -836,11 +836,30 @@ class _FinishedReadingCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFDCFCE7), Color(0xFFFFFFFF)])),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('Leserunde geschafft!', style: TextStyle(fontFamily: 'Nunito', fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF14532D))),
-        const SizedBox(height: 8),
-        Text('Lumo hat deine Sätze und Übungswörter gespeichert. Morgen kann daraus eine neue Empfehlung entstehen.', style: LumoTextStyles.body.copyWith(color: const Color(0xFF166534))),
-        const SizedBox(height: 12),
-        FilledButton.icon(onPressed: onBack, icon: const Icon(Icons.home_rounded), label: const Text('Zurück')),
+        Row(children: [
+          const Text('🎉', style: TextStyle(fontSize: 32)),
+          const SizedBox(width: 10),
+          const Expanded(
+            child: Text('Leserunde geschafft!',
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 26,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF14532D))),
+          ),
+        ]),
+        const SizedBox(height: 10),
+        Text(
+          'Lumo hat deine Sätze und Übungswörter gespeichert. Morgen kann daraus eine neue Empfehlung entstehen.',
+          style: LumoTextStyles.body.copyWith(
+              color: const Color(0xFF166534), fontSize: 15, height: 1.4),
+        ),
+        const SizedBox(height: 14),
+        FilledButton.icon(
+            onPressed: onBack,
+            icon: const Icon(Icons.home_rounded),
+            label: const Text('Zurück',
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15))),
       ]),
     );
   }
