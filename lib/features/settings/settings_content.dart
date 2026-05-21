@@ -178,9 +178,11 @@ class _SettingsContentState extends State<SettingsContent> {
   }
 
   /// Manuelle Pruefung ob ein neueres Lumo-Lernen Release verfuegbar ist.
-  /// Greift auf AppUpdateService zu (von Codex gebaut), der nur
-  /// vertrauenswuerdige github.com URLs zulaesst.
-  Future<void> _checkForUpdate() async {
+  /// Heinz' Wunsch 2026-05-21: 'Einfach auf Aktualisieren druecken,
+  /// dann passiert alles automatisch.' Vorher musste man erst auf
+  /// 'Pruefen' druecken und dann nochmal auf 'Herunterladen'.
+  /// Jetzt EIN-KLICK: pruefen + (falls verfuegbar) sofort Download.
+  Future<void> _checkAndUpdate() async {
     if (_checkingUpdate) return;
     if (!mounted) return;
     setState(() {
@@ -195,23 +197,37 @@ class _SettingsContentState extends State<SettingsContent> {
         _updateInfo = info;
         _updateError = info.error;
       });
+      // Direkt weiter zum Download wenn ein Update verfuegbar ist.
+      if (info.available && info.hasUsableDownload) {
+        final ok = await service.openUpdate(info);
+        if (!mounted) return;
+        if (!ok) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Download konnte nicht geoeffnet werden.')),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                  'Lade Build ${info.latestBuildNumber}… danach auf die '
+                  'Download-Benachrichtigung tippen zum Installieren.'),
+              duration: const Duration(seconds: 6),
+            ),
+          );
+        }
+      } else if (info.error == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Du hast die neueste Version (Build '
+                '${info.currentBuildNumber}).'),
+          ),
+        );
+      }
     } catch (e) {
       if (!mounted) return;
       setState(() => _updateError = 'Update-Pruefung fehlgeschlagen: $e');
     } finally {
       if (mounted) setState(() => _checkingUpdate = false);
-    }
-  }
-
-  Future<void> _openUpdate() async {
-    final info = _updateInfo;
-    if (info == null) return;
-    final ok = await const AppUpdateService().openUpdate(info);
-    if (!mounted) return;
-    if (!ok) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Download konnte nicht geoeffnet werden.')),
-      );
     }
   }
 
@@ -262,8 +278,7 @@ class _SettingsContentState extends State<SettingsContent> {
           info: _updateInfo,
           checking: _checkingUpdate,
           error: _updateError,
-          onCheck: _checkForUpdate,
-          onDownload: _openUpdate,
+          onUpdate: _checkAndUpdate,
         ),
         const SizedBox(height: 18),
         ParentReportCard(appState: widget.appState),
@@ -1112,15 +1127,19 @@ class _AppUpdateCard extends StatelessWidget {
     required this.info,
     required this.checking,
     required this.error,
-    required this.onCheck,
-    required this.onDownload,
+    required this.onUpdate,
   });
 
   final AppUpdateInfo? info;
   final bool checking;
   final String? error;
-  final VoidCallback onCheck;
-  final VoidCallback onDownload;
+
+  /// Heinz 2026-05-21: Ein-Klick-Aktualisierung. Vorher musste man
+  /// 'Pruefen' und dann 'Herunterladen' druecken - jetzt EIN Button
+  /// macht beides. Wenn ein Update verfuegbar ist, startet der
+  /// Download direkt; wenn nicht, kommt eine Snackbar 'du hast die
+  /// neueste Version'.
+  final VoidCallback onUpdate;
 
   @override
   Widget build(BuildContext context) {
@@ -1240,40 +1259,57 @@ class _AppUpdateCard extends StatelessWidget {
             ),
           ],
           const SizedBox(height: 12),
-          Row(
-            children: [
-              if (hasUpdate)
-                Expanded(
-                  child: FilledButton.icon(
-                    onPressed: onDownload,
-                    style: FilledButton.styleFrom(
-                      backgroundColor: accent,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                    ),
-                    icon: const Icon(Icons.download_rounded, size: 18),
-                    label: const Text('Herunterladen'),
-                  ),
-                ),
-              if (hasUpdate) const SizedBox(width: 10),
-              Expanded(
-                flex: hasUpdate ? 0 : 1,
-                child: OutlinedButton.icon(
-                  onPressed: checking ? null : onCheck,
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    side: BorderSide(color: accent.withOpacity(0.40)),
-                  ),
-                  icon: checking
-                      ? const SizedBox(
-                          width: 14,
-                          height: 14,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : const Icon(Icons.refresh_rounded, size: 18),
-                  label: Text(checking ? 'Prüfe…' : 'Auf Update prüfen'),
+          // Ein-Klick: Heinz' Wunsch. Der Button macht alles in einem
+          // Rutsch - pruefen + (falls verfuegbar) Download starten.
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton.icon(
+              onPressed: checking ? null : onUpdate,
+              style: FilledButton.styleFrom(
+                backgroundColor: accent,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14)),
+              ),
+              icon: checking
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2.4, color: Colors.white),
+                    )
+                  : Icon(hasUpdate
+                      ? Icons.download_rounded
+                      : Icons.refresh_rounded),
+              label: Text(
+                checking
+                    ? 'Pruefe…'
+                    : hasUpdate
+                        ? 'Jetzt aktualisieren'
+                        : 'Auf Update pruefen',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w900,
                 ),
               ),
-            ],
+            ),
+          ),
+          // Anleitung: erstes Mal nach neuem Keystore evtl. einmal
+          // deinstallieren noetig.
+          const SizedBox(height: 10),
+          const Text(
+            'Tipp: Nach dem Druecken laedt die APK im Hintergrund. '
+            'Tippe danach auf die Download-Benachrichtigung um zu installieren.\n'
+            'Beim allerersten Update kann es noetig sein, die alte Version '
+            'einmalig zu deinstallieren - danach laufen alle Updates direkt.',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 11.5,
+              fontWeight: FontWeight.w700,
+              color: LumoColors.ink500,
+              height: 1.35,
+            ),
           ),
         ],
       ),
