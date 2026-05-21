@@ -141,6 +141,24 @@ class _QuizShowContentState extends State<QuizShowContent> {
               child: LumoReactionCompanion(
                 mood: _companionMood,
                 size: 80,
+                // Phase 3: Tap auf Lumo schlaegt einen Joker vor.
+                onTap: () {
+                  _setMood(LumoReactionMood.think);
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(SnackBar(
+                      content: const Text(
+                          '🦊 Wenn du unsicher bist, probier einen Joker - 50:50 hilft am meisten!',
+                          style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white)),
+                      backgroundColor: const Color(0xFF7C3AED),
+                      duration: const Duration(seconds: 4),
+                      behavior: SnackBarBehavior.floating,
+                    ));
+                },
               ),
             );
             return SingleChildScrollView(

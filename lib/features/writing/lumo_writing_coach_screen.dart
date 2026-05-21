@@ -359,6 +359,26 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
                     child: LumoReactionCompanion(
                       mood: _companionMood,
                       size: 80,
+                      // Phase 3: Tap auf Lumo zeigt einen Mini-Chat-Hint
+                      // (kindgerechte Schreib-Erinnerung).
+                      onTap: () {
+                        _setMood(LumoReactionMood.think);
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                            content: Text(
+                              '🦊 ${_currentTemplate.description}',
+                              style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white),
+                            ),
+                            backgroundColor: _gradient[1],
+                            duration: const Duration(seconds: 4),
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                      },
                     ),
                   ),
                 ]),

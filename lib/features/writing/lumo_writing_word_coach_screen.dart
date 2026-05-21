@@ -468,6 +468,26 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
                     child: LumoReactionCompanion(
                       mood: _companionMood,
                       size: 80,
+                      // Phase 3: Tap auf Lumo gibt einen Tipp zum
+                      // aktuellen Diktatwort.
+                      onTap: () {
+                        _setMood(LumoReactionMood.think);
+                        final hint = _currentTask.hint ??
+                            'Hör gut zu was ich sage und schreib Buchstabe für Buchstabe.';
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                            content: Text('🦊 $hint',
+                                style: const TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w800,
+                                    color: Colors.white)),
+                            backgroundColor: _gradient[1],
+                            duration: const Duration(seconds: 4),
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                      },
                     ),
                   ),
                 ]),
