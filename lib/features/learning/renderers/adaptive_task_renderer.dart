@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../../widgets/fox/lumo_idle_fox.dart';
 import '../../../widgets/fox/lumo_reaction_companion.dart';
 import '../../../widgets/premium/lumo_reward_burst.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
@@ -205,18 +206,18 @@ class _LocalHelpBanner extends StatelessWidget {
         border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.35)),
       ),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('🦊', style: TextStyle(fontSize: 24)),
+        const LumoIdleFox(size: 36),
         const SizedBox(width: 10),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               wrongCount == 2 ? 'Lumo hilft jetzt Schritt für Schritt' : 'Noch ein Tipp von Lumo',
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F)),
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Color(0xFF78350F)),
             ),
             const SizedBox(height: 5),
             Text(
               hint,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.3),
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.35),
             ),
           ]),
         ),
