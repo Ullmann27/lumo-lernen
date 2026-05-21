@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_rewards.dart';
 import '../../domain/quiz/quiz_show.dart';
+import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 
 class QuizShowContent extends StatefulWidget {
@@ -25,10 +27,33 @@ class _QuizShowContentState extends State<QuizShowContent> {
 
   late QuizShowState _state;
 
+  /// Stimmung des Quiz-Companions. Cheer bei richtiger, think bei
+  /// falscher Antwort. Auto-Reset auf idle nach 2s.
+  LumoReactionMood _companionMood = LumoReactionMood.idle;
+  Timer? _moodResetTimer;
+
+  void _setMood(LumoReactionMood next) {
+    _moodResetTimer?.cancel();
+    if (!mounted) return;
+    setState(() => _companionMood = next);
+    if (next != LumoReactionMood.idle) {
+      _moodResetTimer = Timer(const Duration(seconds: 2), () {
+        if (!mounted) return;
+        setState(() => _companionMood = LumoReactionMood.idle);
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _startNewGame();
+  }
+
+  @override
+  void dispose() {
+    _moodResetTimer?.cancel();
+    super.dispose();
   }
 
   void _startNewGame() {
@@ -61,9 +86,10 @@ class _QuizShowContentState extends State<QuizShowContent> {
     setState(() {
       _state = _engine.reveal(_state, drawCouponForMilestone: _drawCoupon);
     });
-    // Phase 5 Premium: Sterne sprudeln bei richtiger Antwort.
+    // Phase 3+5: Sterne sprudeln + Lumo-Mood-Reaction.
     final q = _state.currentQuestion;
     final correct = _state.selectedOption == q.correctIndex;
+    _setMood(correct ? LumoReactionMood.cheer : LumoReactionMood.think);
     if (correct && mounted) {
       showLumoRewardBurst(context, stars: 1);
     }
@@ -106,18 +132,42 @@ class _QuizShowContentState extends State<QuizShowContent> {
               onJoker: _joker,
             );
             final prizes = _PrizeColumn(state: _state);
+            // Phase 3: Quiz-Companion unten rechts - reagiert auf
+            // jede Antwort sichtbar mit cheer/think. Idle wenn nichts
+            // los ist. Konsistent mit AdaptiveTaskRenderer + beiden
+            // Schreibcoaches.
+            final companion = Align(
+              alignment: Alignment.centerRight,
+              child: LumoReactionCompanion(
+                mood: _companionMood,
+                size: 80,
+              ),
+            );
             return SingleChildScrollView(
               padding: const EdgeInsets.all(18),
               child: wide
                   ? Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(flex: 3, child: card),
+                        Expanded(
+                          flex: 3,
+                          child: Column(children: [
+                            card,
+                            const SizedBox(height: 14),
+                            companion,
+                          ]),
+                        ),
                         const SizedBox(width: 18),
                         SizedBox(width: 280, child: prizes),
                       ],
                     )
-                  : Column(children: [card, const SizedBox(height: 16), prizes]),
+                  : Column(children: [
+                      card,
+                      const SizedBox(height: 16),
+                      prizes,
+                      const SizedBox(height: 14),
+                      companion,
+                    ]),
             );
           },
         ),
