@@ -100,70 +100,85 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     final opponent = s.otherPlayer;
     final topCard = s.topCard;
 
+    // Heinz Bug 2026-05-21: Hand wurde nicht angezeigt + Layout-Overflow.
+    // Loesung: LayoutBuilder fuer responsive Hoehen + Stack wo das Pass-
+    // Overlay GARANTIERT ueber allem liegt (auch ueber der SafeArea).
     return Scaffold(
-      body: LumoCardTable(
-        child: SafeArea(
-          child: Stack(
-            children: [
-              // Hauptlayout: Banner oben, Mitte = Piles, Hand unten.
-              Column(
-                children: [
-                  _buildTopBar(),
-                  LumoTurnBanner(
-                    currentPlayerName: current.name,
-                    message: s.lastActionMessage ?? '',
-                    opponentName: opponent.name,
-                    opponentCardCount: opponent.hand.length,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          LumoDrawPile(
-                            cardsLeft: s.drawPile.length,
-                            onDraw: s.phase == GamePhase.playing
-                                ? () => _controller.drawCard()
-                                : null,
-                          ),
-                          const SizedBox(width: 24),
-                          if (topCard != null)
-                            LumoDiscardPile(
-                              topCard: topCard,
-                              selectedColor: s.selectedColor,
+      body: Stack(
+        children: [
+          // ── Hauptlayout ──
+          LumoCardTable(
+            child: SafeArea(
+              child: LayoutBuilder(builder: (ctx, c) {
+                // Hand-Hoehe responsive: 142..170 abhaengig von verfuegbarem
+                // Platz. So gibt es nie Bottom-Overflow.
+                final handHeight =
+                    (c.maxHeight * 0.22).clamp(132.0, 172.0);
+                return Column(
+                  children: [
+                    _buildTopBar(),
+                    LumoTurnBanner(
+                      currentPlayerName: current.name,
+                      message: s.lastActionMessage ?? '',
+                      opponentName: opponent.name,
+                      opponentCardCount: opponent.hand.length,
+                    ),
+                    // Mitte: Piles - der Expanded sorgt fuer den
+                    // restlichen Platz, kein Overflow moeglich.
+                    Expanded(
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            LumoDrawPile(
+                              cardsLeft: s.drawPile.length,
+                              onDraw: s.phase == GamePhase.playing
+                                  ? () => _controller.drawCard()
+                                  : null,
                             ),
-                        ],
+                            const SizedBox(width: 24),
+                            if (topCard != null)
+                              LumoDiscardPile(
+                                topCard: topCard,
+                                selectedColor: s.selectedColor,
+                              ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  if (topCard != null)
-                    LumoPlayerHand(
-                      cards: current.hand,
-                      topCard: topCard,
-                      selectedColor: s.selectedColor,
-                      onCardTap: (c) => _controller.playCard(c),
-                    ),
-                  const SizedBox(height: 4),
-                ],
-              ),
-              // Overlays je nach Phase.
-              if (s.phase == GamePhase.passDevice)
-                LumoPassDeviceOverlay(
-                  nextPlayerName: current.name,
-                  onReady: _controller.confirmHandover,
-                ),
-              if (s.phase == GamePhase.chooseColor)
-                LumoColorPicker(onPick: _controller.selectColor),
-              if (s.phase == GamePhase.learningQuestion &&
-                  s.pendingLearningQuestion != null)
-                LumoLearningCardOverlay(
-                  question: s.pendingLearningQuestion!,
-                  onAnswer: _controller.answerLearningQuestion,
-                ),
-              if (s.phase == GamePhase.gameOver) _buildGameOverOverlay(s),
-            ],
+                    // Hand am Boden - fix Hoehe damit nichts ueberlaeuft.
+                    if (topCard != null)
+                      LumoPlayerHand(
+                        cards: current.hand,
+                        topCard: topCard,
+                        selectedColor: s.selectedColor,
+                        onCardTap: (card) => _controller.playCard(card),
+                        height: handHeight,
+                      ),
+                  ],
+                );
+              }),
+            ),
           ),
-        ),
+          // ── Overlays ÜBER der SafeArea ──
+          // Garantiert vollflaechig, deckt auch Status-/Navi-Bar ab,
+          // damit das Kind die geheimen Karten des Gegners NICHT
+          // versehentlich sieht.
+          if (s.phase == GamePhase.passDevice)
+            LumoPassDeviceOverlay(
+              nextPlayerName: current.name,
+              onReady: _controller.confirmHandover,
+            ),
+          if (s.phase == GamePhase.chooseColor)
+            LumoColorPicker(onPick: _controller.selectColor),
+          if (s.phase == GamePhase.learningQuestion &&
+              s.pendingLearningQuestion != null)
+            LumoLearningCardOverlay(
+              question: s.pendingLearningQuestion!,
+              onAnswer: _controller.answerLearningQuestion,
+            ),
+          if (s.phase == GamePhase.gameOver) _buildGameOverOverlay(s),
+        ],
       ),
     );
   }
