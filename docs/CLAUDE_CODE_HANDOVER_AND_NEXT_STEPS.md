@@ -493,6 +493,15 @@ Heinz' Auftrag: "Total Perfektion" – Phase 1-5 starten, autonom arbeiten.
 - `1063a5e` Letter-Writing-Screen: Buchstabe-Titel 20→24pt, CTA
   „Jetzt schreiben üben" 18→22pt.
 - `36fc7d5` App-Shell Top-Avatar + Learning-DNA-Card mit `LumoIdleFox`.
+- `ddbd205` `LumoSubjectTile`-Titel 16→18pt, Untertitel 12.5→14pt.
+- `367ab68` Reading-Modus Abschluss-Karte „Leserunde geschafft!" satter
+  (🎉 + 26pt Titel + bessere Lesbarkeit).
+- `3744937`, `0117822` **Tap auf Lumo öffnet Mini-Chat-Hint** in allen
+  4 Lern-Bereichen (AdaptiveTaskRenderer + 2 Schreibcoaches + Quizshow).
+  Topic-spezifischer Tipp als floating SnackBar mit 🦊-Prefix, 4 s
+  sichtbar, Lumo geht parallel auf Mood `think`. Heinz' Phase-3-Plan-
+  Punkt „Tap auf Lumo öffnet einen Mini-Chat" damit komplett.
+- `1063a5e` Letter-Writing-Screen: Titel 20→24pt, CTA 18→22pt.
 
 **Phase 4 – Lehrplan-Audit:**
 - Tabelle aller 20 Module gegen ÖsterreichVS-Lehrplan: **alle konform**,
