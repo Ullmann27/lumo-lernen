@@ -20,7 +20,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
-import '../app/app_theme.dart';
+import '../../app/app_theme.dart';
 
 class LumoKit {
   LumoKit._();

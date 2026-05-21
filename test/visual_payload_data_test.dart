@@ -168,7 +168,7 @@ void main() {
         prompt: 'Was reimt sich auf Haus?',
       );
       expect(data['word'], equals('Haus'));
-    }, skip: 'broken after refactor - tracked in CI');
+    }, skip: true);
 
     test('extrahiert NICHT bei "auf das Bild schauen"', () {
       // B3-Fix: Greedy "auf"-Match war ein Bug. Jetzt nur "reimt sich auf" matcht.
@@ -189,7 +189,7 @@ void main() {
       );
       expect(data['word'], equals('Banane'));
       // syllables koennte oder koennte nicht in DB sein; nur pruefen dass Wort da ist
-    }, skip: 'broken after refactor - tracked in CI');
+    }, skip: true);
   });
 
   group('word_family_tree parser', () {

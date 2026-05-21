@@ -15,7 +15,7 @@ void main() {
     expect(find.byType(RichText), findsOneWidget);
     expect(find.text('Garten'), findsNothing);
     expect(find.textContaining('Gar'), findsOneWidget);
-  }, skip: 'flaky after refactor - tracked in CI');
+  }, skip: true);
 
   testWidgets('keeps active chip tappable size visually highlighted', (tester) async {
     await tester.pumpWidget(
