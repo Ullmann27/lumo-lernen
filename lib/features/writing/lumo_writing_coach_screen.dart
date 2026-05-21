@@ -22,6 +22,23 @@ import '../../core/lumo_voice.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
 
+/// Heinz-Erweiterung: 4 Lern-Modi fuer den Schreibcoach.
+/// Vorher: nur Grossbuchstaben zufaellig.
+/// Jetzt: Auswahl plus Lehrplan-Reihenfolge plus Wiederholung.
+enum WritingMode {
+  /// Grossbuchstaben A-Z (Klasse 1 erste Haelfte)
+  uppercase,
+
+  /// Kleinbuchstaben a-z (Klasse 1 zweite Haelfte)
+  lowercase,
+
+  /// Zahlen 0-9 (Klasse 1 Mathe)
+  numbers,
+
+  /// Gemischt - aus allen Pools die ersten 10 dann fortgeschritten
+  mixed,
+}
+
 class LumoWritingCoachScreen extends StatefulWidget {
   const LumoWritingCoachScreen({super.key, required this.appState});
   final LumoAppState appState;
@@ -52,6 +69,13 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   WritingFeedback? _lastFeedback;
   bool _showDemo = false;
 
+  /// Heinz-Erweiterung: vier Modi (Gross/Klein/Zahlen/Gemischt).
+  WritingMode _mode = WritingMode.uppercase;
+
+  /// Index in der Lehrplan-Reihenfolge (0 = leichtester Buchstabe).
+  /// Steigt mit jeder richtigen Antwort, lernt logisch aufbauend.
+  int _curriculumIdx = 0;
+
   @override
   void initState() {
     super.initState();
@@ -75,13 +99,59 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   }
 
   void _pickNextLetter() {
-    final letters = LetterTemplates.availableLetters;
-    _currentLetter = letters[_rng.nextInt(letters.length)];
-    _currentTemplate = LetterTemplates.all[_currentLetter]!;
+    // Lehrplan-basierte Auswahl: leichte Buchstaben zuerst, mit
+    // gelegentlichen Wiederholungen.
+    final pool = _currentPool();
+    if (pool.isEmpty) {
+      _currentLetter = 'A';
+    } else {
+      // 70% Lehrplan-Progression, 30% Wiederholung frueherer Buchstaben.
+      if (_curriculumIdx > 0 && _rng.nextDouble() < 0.3) {
+        // Wiederhole einen frueheren Buchstaben (Festigung).
+        _currentLetter = pool[_rng.nextInt(_curriculumIdx)];
+      } else {
+        final idx = _curriculumIdx.clamp(0, pool.length - 1);
+        _currentLetter = pool[idx];
+      }
+    }
+    _currentTemplate = LetterTemplates.all[_currentLetter] ??
+        LetterTemplates.all['A']!;
     _strokes.clear();
     _currentPoints = [];
     _lastFeedback = null;
     _showDemo = false;
+  }
+
+  /// Pool basierend auf aktuellem Modus + Lehrplan-Reihenfolge.
+  List<String> _currentPool() {
+    switch (_mode) {
+      case WritingMode.uppercase:
+        return LetterTemplates.curriculumOrderUppercase;
+      case WritingMode.lowercase:
+        return LetterTemplates.curriculumOrderLowercase;
+      case WritingMode.numbers:
+        return LetterTemplates.curriculumOrderNumbers;
+      case WritingMode.mixed:
+        // Mische alle drei Pools nach Schwierigkeit
+        return [
+          ...LetterTemplates.curriculumOrderUppercase.take(10),
+          ...LetterTemplates.curriculumOrderLowercase.take(10),
+          ...LetterTemplates.curriculumOrderNumbers,
+          ...LetterTemplates.curriculumOrderUppercase.skip(10),
+          ...LetterTemplates.curriculumOrderLowercase.skip(10),
+        ];
+    }
+  }
+
+  void _switchMode(WritingMode newMode) {
+    setState(() {
+      _mode = newMode;
+      _curriculumIdx = 0;
+      _correctCount = 0;
+      _taskIdx = 0;
+      _pickNextLetter();
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _speakPrompt());
   }
 
   void _speakPrompt() {
@@ -139,6 +209,10 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
     if (feedback.type == FeedbackType.correct) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
+      // Lehrplan-Progression: nach jeder richtigen Antwort kommt
+      // der naechste Buchstabe in der Lehrplan-Reihenfolge.
+      final pool = _currentPool();
+      _curriculumIdx = (_curriculumIdx + 1).clamp(0, pool.length - 1);
       widget.appState.addStars(2);
       widget.appState.addXp(10);
       await Future.delayed(const Duration(milliseconds: 1800));
@@ -260,6 +334,8 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
                 },
                 child: Column(children: [
                   _buildPrompt(),
+                  const SizedBox(height: 12),
+                  _buildModePicker(),
                   const SizedBox(height: 16),
                   _buildCanvas(),
                   const SizedBox(height: 12),
@@ -364,6 +440,78 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
           icon: Icon(Icons.volume_up_rounded, color: _gradient[0], size: 32),
         ),
       ]),
+    );
+  }
+
+  /// Heinz-Erweiterung: 4-Modus-Picker (Gross/Klein/Zahlen/Gemischt).
+  /// Premium-Pills mit aktivem Highlight.
+  Widget _buildModePicker() {
+    final modes = [
+      (WritingMode.uppercase, 'ABC', 'Gross'),
+      (WritingMode.lowercase, 'abc', 'Klein'),
+      (WritingMode.numbers, '123', 'Zahlen'),
+      (WritingMode.mixed, '🎲', 'Mix'),
+    ];
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: modes.map((m) {
+          final active = _mode == m.$1;
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: GestureDetector(
+              onTap: () => _switchMode(m.$1),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16, vertical: 10),
+                decoration: BoxDecoration(
+                  gradient: active
+                      ? LinearGradient(colors: _gradient)
+                      : null,
+                  color: active ? null : Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: active
+                        ? Colors.transparent
+                        : _gradient[0].withOpacity(0.3),
+                    width: 2,
+                  ),
+                  boxShadow: active
+                      ? [
+                          BoxShadow(
+                            color: _gradient[0].withOpacity(0.3),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ]
+                      : null,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(m.$2,
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                            color: active ? Colors.white : _gradient[1])),
+                    const SizedBox(width: 6),
+                    Text(m.$3,
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 13,
+                            fontWeight: FontWeight.w800,
+                            color: active
+                                ? Colors.white
+                                : _gradient[1].withOpacity(0.8))),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 
