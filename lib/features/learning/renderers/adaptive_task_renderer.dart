@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../widgets/fox/lumo_reaction_companion.dart';
+import '../../../widgets/premium/lumo_reward_burst.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
 import 'writing_task_renderer.dart';
@@ -166,6 +167,11 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     _setMood(correct ? LumoReactionMood.cheer : LumoReactionMood.think);
 
     if (correct) {
+      // Phase 3: Sterne sprudeln raus. Heinz' Wunsch: 'nicht nur Bounce,
+      // auch ein Sparkle-Effect, dann LumoRewardBurst (1 Stern)'.
+      if (mounted) {
+        showLumoRewardBurst(context, stars: 1);
+      }
       widget.onAnswered?.call(
         AdaptiveTaskAnswer(task: widget.task, answer: answer, correct: true),
       );
