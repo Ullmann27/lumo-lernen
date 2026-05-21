@@ -145,9 +145,10 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
       try {
         LumoVoice.instance.speak(LumoPhrases.wrongGentle());
       } catch (_) {}
-      await Future.delayed(const Duration(milliseconds: 1500));
-      if (!mounted) return;
-      // Bei Uhr direkt weiter (richtig wird hervorgehoben)
+      // Bei Uhr direkt weiter (richtig wird hervorgehoben). 1500ms reichen,
+      // damit das Kind die richtige Loesung sieht und die Stimme zu Ende
+      // sprechen kann. Vorher waren es 3000ms (zweimal 1500) - das fuehlte
+      // sich wie eingefrorene UI an.
       await Future.delayed(const Duration(milliseconds: 1500));
       if (!mounted) return;
       _nextTask();

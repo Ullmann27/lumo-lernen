@@ -185,7 +185,7 @@ class _UnitGroup extends StatelessWidget {
                 borderRadius: BorderRadius.circular(LumoRadius.pill),
                 border: Border.all(color: subject.color.withOpacity(.18)),
               ),
-              child: Text(unit, style: LumoTextStyles.cta.copyWith(color: subject.color)),
+              child: Text(Curriculum.prettifyUnit(unit), style: LumoTextStyles.cta.copyWith(color: subject.color)),
             ),
           )).toList(),
         ),

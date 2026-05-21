@@ -205,9 +205,15 @@ class MathTaskTemplate {
         final dividend = quotient * divisor;
         return _numberTask('$dividend : $divisor = ?', quotient, 'Teile $dividend in $divisor gleich große Gruppen.', 'division');
       case MathTemplateKind.simpleFractionAdd:
+        // FIX: Vorher war right = denominator - left, sodass left+right
+        // IMMER == denominator war (z.B. 3/5 + 2/5 = 5/5 = 1). Das war
+        // didaktisch falsch und verwirrend - die ganze Aufgabe hatte
+        // keine echten Brueche als Ergebnis. Jetzt: left max denominator-2
+        // und right max denominator-left-1, damit ein echter Bruch < 1
+        // entsteht (z.B. 1/5 + 2/5 = 3/5).
         final denominator = (b + 2).clamp(3, 12).toInt();
-        final left = a.clamp(1, denominator - 1).toInt();
-        final right = (denominator - left).clamp(1, denominator - 1).toInt();
+        final left = a.clamp(1, denominator - 2).toInt();
+        final right = b.clamp(1, denominator - left - 1).toInt();
         final answer = '${left + right}/$denominator';
         return _choice('$left/$denominator + $right/$denominator = ?', answer, <String>[answer, '${left + right}/${denominator + 1}', '$left/$denominator'], 'Bei gleichem Nenner addierst du die Zähler.', 'fraction_add');
       case MathTemplateKind.decimals:

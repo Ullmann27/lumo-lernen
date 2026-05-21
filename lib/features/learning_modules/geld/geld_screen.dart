@@ -98,18 +98,24 @@ class _GeldScreenState extends State<GeldScreen>
   void _generateTask() {
     _typ = _GeldFrageTyp.values[_rng.nextInt(_GeldFrageTyp.values.length)];
     if (_typ == _GeldFrageTyp.zaehlen) {
-      // 1-4 Muenzen zaehlen, max 10 Euro total
+      // 1-4 Muenzen zaehlen, max 10 Euro total.
+      // FIX: Vorher hat `continue` im for-Loop den Index weiterlaufen lassen,
+      // sodass weniger Muenzen herauskamen als gewollt - z.B. 1 Muenze
+      // statt 4. Jetzt mit retry-Limit: bei Limit-Treffern wird nur die
+      // zu teure Muenze uebersprungen, der Slot aber neu versucht.
       _muenzenAufTisch = [];
       _gesamtWert = 0;
       final count = 1 + _rng.nextInt(4); // 1..4 Muenzen
-      for (int i = 0; i < count; i++) {
+      var safety = 0;
+      while (_muenzenAufTisch.length < count && safety < 30) {
+        safety++;
         final m = _muenzen[_rng.nextInt(_muenzen.length)];
-        if (_gesamtWert + m.wert > 1000) continue; // max 10 Euro
+        if (_gesamtWert + m.wert > 1000) continue;
         _muenzenAufTisch.add(m);
         _gesamtWert += m.wert;
       }
       if (_muenzenAufTisch.isEmpty) {
-        // Fallback
+        // Fallback (sollte mit Safety eigentlich nicht mehr noetig sein)
         _muenzenAufTisch.add(_muenzen[0]);
         _gesamtWert = _muenzen[0].wert;
       }

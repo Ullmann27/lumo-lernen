@@ -9,6 +9,7 @@ import '../../core/error_breakdown_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_error_log.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../core/settings_repository.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
@@ -289,7 +290,7 @@ class _SettingsContentState extends State<SettingsContent> {
           _InfoCard(
             title: 'Profil',
             emoji: '👤',
-            lines: ['Name: ${state.childName}', 'Klasse: ${state.grade}', 'Fach: ${state.subject}', 'Thema: ${state.unit}'],
+            lines: ['Name: ${state.childName}', 'Klasse: ${state.grade}', 'Fach: ${state.subject}', 'Thema: ${Curriculum.prettifyUnit(state.unit)}'],
           ),
           _InfoCard(
             title: 'Datenschutz',
