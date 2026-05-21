@@ -496,9 +496,28 @@ class _ReadingMissionCard extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            decoration: BoxDecoration(color: LumoColors.blue, borderRadius: BorderRadius.circular(LumoRadius.pill)),
-            child: const Text('Lesen', style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: Colors.white)),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [LumoColors.blue, Color(0xFF3B82F6)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              boxShadow: [
+                BoxShadow(
+                  color: LumoColors.blue.withOpacity(.35),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: const Text('Lesen',
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white)),
           ),
         ]),
       ),
