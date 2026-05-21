@@ -8,6 +8,7 @@ import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_rewards.dart';
 import '../../domain/quiz/quiz_show.dart';
+import '../../widgets/fox/lumo_idle_fox.dart';
 import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 
@@ -453,8 +454,31 @@ class _HintBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(color: const Color(0xFFF3E8FF), borderRadius: BorderRadius.circular(LumoRadius.lg)),
-      child: Text('🦊 $text', style: LumoTextStyles.body),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF3E8FF),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border:
+            Border.all(color: const Color(0xFF8B5CF6).withOpacity(.25)),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF8B5CF6).withOpacity(.12),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const LumoIdleFox(size: 32),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(text,
+              style: LumoTextStyles.body.copyWith(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
+                  color: const Color(0xFF5B21B6),
+                  height: 1.35)),
+        ),
+      ]),
     );
   }
 }
