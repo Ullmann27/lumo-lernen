@@ -13,6 +13,7 @@ import '../../domain/learning/learning_dna_engine.dart';
 import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import 'parent_report_card.dart';
+import 'writing_report_card.dart';
 
 class SettingsContent extends StatefulWidget {
   const SettingsContent({super.key, required this.appState});
@@ -263,6 +264,10 @@ class _SettingsContentState extends State<SettingsContent> {
         ),
         const SizedBox(height: 18),
         ParentReportCard(appState: widget.appState),
+        const SizedBox(height: 18),
+        // Phase 6b: Schreibcoach-Uebungsstand (geuebte/schwache Buchstaben,
+        // Diktatwoerter, kurze Lumo-Empfehlung).
+        const WritingReportCard(),
         const SizedBox(height: 18),
         // Phase 1 - sichtbare Lern-DNA fuer Eltern
         _DnaSettingsSlot(appState: widget.appState),
