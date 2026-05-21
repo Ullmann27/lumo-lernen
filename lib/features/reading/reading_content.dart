@@ -518,11 +518,11 @@ class _ReadingHeader extends StatelessWidget {
         const SizedBox(width: 14),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('Aktiver Lesemodus', style: TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.orange)),
-            const SizedBox(height: 3),
-            Text(title, style: LumoTextStyles.heading2),
+            const Text('Aktiver Lesemodus', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.orange)),
             const SizedBox(height: 4),
-            Text('Lumo hört Satz für Satz zu und hilft sofort freundlich.', style: LumoTextStyles.body.copyWith(fontSize: 13)),
+            Text(title, style: LumoTextStyles.heading2.copyWith(fontSize: 22)),
+            const SizedBox(height: 4),
+            Text('Lumo hört Satz für Satz zu und hilft sofort freundlich.', style: LumoTextStyles.body.copyWith(fontSize: 14)),
           ]),
         ),
         IconButton(onPressed: onBack, icon: const Icon(Icons.close_rounded, color: LumoColors.ink500)),
@@ -655,7 +655,7 @@ class _SyllableWord extends StatelessWidget {
               text: entry.value,
               style: TextStyle(
                 fontFamily: 'Nunito',
-                fontSize: highlight ? 25 : active ? 22 : 18,
+                fontSize: highlight ? 32 : active ? 26 : 20,
                 fontWeight: FontWeight.w900,
                 color: problem
                     ? LumoColors.orange
