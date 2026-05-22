@@ -20,6 +20,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../lumo_cards_assets.dart';
 import '../lumo_cards_models.dart';
 
 // ── LUMO CARDS Farbpalette (aus den Mockups) ──
@@ -212,6 +213,19 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
   // ════════════════════════════════════════════════════════
   Widget _buildFront(Color base) {
     if (widget.card.isWild) return _buildWildFront();
+    // Heinz 2026-05-22: hat ein eigenes Karten-Sheet geliefert (40 Zahlen-
+    // Karten 0-9 in 4 Farben + Card-Back). Wenn fuer diese Karte ein
+    // PNG-Asset existiert, rendern wir das statt der gezeichneten Version.
+    // Fuer Spezialkarten (Skip/Reverse/Draw 2) gibt es noch keine PNGs ->
+    // dort bleibt der gezeichnete Look.
+    final assetPath = LumoCardsAssets.assetFor(widget.card);
+    if (assetPath != null && widget.card.type == LumoCardType.number) {
+      return Image.asset(
+        assetPath,
+        fit: BoxFit.cover,
+        errorBuilder: (_, __, ___) => _buildColorFront(base),
+      );
+    }
     return _buildColorFront(base);
   }
 
@@ -499,6 +513,17 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
   // BACK — dunkles Navy mit leuchtendem Stern + Fuchs (Mockup)
   // ════════════════════════════════════════════════════════
   Widget _buildBack() {
+    // Heinz 2026-05-22: Card-Back-PNG aus seinem Sheet liegt unter
+    // assets/lumo_cards/cards/back/card_back_default.png. Wenn das
+    // Asset vorhanden ist: rendern. Sonst: gezeichneter Fallback unten.
+    return Image.asset(
+      LumoCardsAssets.cardBack,
+      fit: BoxFit.cover,
+      errorBuilder: (_, __, ___) => _buildBackFallback(),
+    );
+  }
+
+  Widget _buildBackFallback() {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
