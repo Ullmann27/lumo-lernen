@@ -93,7 +93,28 @@ class LumoCardsAssets {
   static const String impactBurst = '$_root/fx/impact_burst.png';
   static const String confetti = '$_root/fx/confetti.png';
 
-  // ── Spieler-Avatare (Platzhalter, Heinz kann eigene einlegen) ──
+  // ── Spieler-Avatare (saubere Sub-Assets, Heinz' Pack 2026-05-22) ──
+  // 512x512 PNG, transparenter Aussenbereich, kein Karten-Badge, kein
+  // Markenlogo. Verwendung in LumoPlayerHud: runder Rahmen via Flutter,
+  // optionaler Glow bei aktivem Spieler.
+  static const String avatarBlueBoy =
+      '$_root/avatars/avatar_player_blue_boy.png';
+  static const String avatarRedGirl =
+      '$_root/avatars/avatar_player_red_girl.png';
+  static const String avatarGreenBoyGlasses =
+      '$_root/avatars/avatar_player_green_boy_glasses.png';
+  static const String avatarYellowGirlHeadphones =
+      '$_root/avatars/avatar_player_yellow_girl_headphones.png';
+
+  /// Alle vier Spieler-Avatare in fester Reihenfolge (fuer Picker).
+  static const List<String> allPlayerAvatars = [
+    avatarBlueBoy,
+    avatarRedGirl,
+    avatarGreenBoyGlasses,
+    avatarYellowGirlHeadphones,
+  ];
+
+  // Legacy-Platzhalter (falls Heinz spaeter Fuchs-Avatar liefert).
   static const String avatarLumo = '$_root/avatars/lumo.png';
   static const String avatarPlayer = '$_root/avatars/player.png';
 
