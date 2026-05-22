@@ -12,11 +12,13 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/app_state.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
+import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_action_button.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_color_picker.dart';
@@ -52,6 +54,11 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   late final LumoCardsGameController _controller;
   bool _rewardGiven = false;
 
+  /// Vom Kind gewaehlter Avatar fuer Spieler 1.
+  /// Persistiert in SharedPreferences ('lumo_cards_player_avatar').
+  String? _playerAvatarPath;
+  static const String _avatarPrefKey = 'lumo_cards_player_avatar';
+
   @override
   void initState() {
     super.initState();
@@ -61,6 +68,52 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       vsBot: widget.vsBot,
     );
     _controller.addListener(_onStateChanged);
+    // Avatar laden + ggf. Picker beim ersten Start anzeigen.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _loadOrPickAvatar());
+  }
+
+  Future<void> _loadOrPickAvatar() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final saved = prefs.getString(_avatarPrefKey);
+      if (saved != null && saved.isNotEmpty) {
+        if (mounted) setState(() => _playerAvatarPath = saved);
+        return;
+      }
+    } catch (_) {}
+    // Noch kein Avatar gewaehlt -> Picker zeigen.
+    if (!mounted) return;
+    final picked = await LumoAvatarPicker.show(
+      context,
+      title: 'Waehle deinen Avatar',
+      currentAvatarPath: _playerAvatarPath,
+    );
+    if (picked == null) {
+      // Picker abgebrochen -> Default verwenden.
+      if (mounted) {
+        setState(() => _playerAvatarPath = LumoCardsAssets.avatarBlueBoy);
+      }
+      return;
+    }
+    if (mounted) setState(() => _playerAvatarPath = picked);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_avatarPrefKey, picked);
+    } catch (_) {}
+  }
+
+  Future<void> _changeAvatar() async {
+    final picked = await LumoAvatarPicker.show(
+      context,
+      title: 'Avatar wechseln',
+      currentAvatarPath: _playerAvatarPath,
+    );
+    if (picked == null) return;
+    if (mounted) setState(() => _playerAvatarPath = picked);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_avatarPrefKey, picked);
+    } catch (_) {}
   }
 
   @override
@@ -251,13 +304,41 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
           if (_showActionUi(s) && _isMyTurnVisible(s))
             Positioned(
               left: 14,
-              bottom: 18,
+              // Hint-Bubble etwas hoeher damit unten Platz fuer den
+              // Spieler-Mini-HUD bleibt.
+              bottom: 92,
               child: SafeArea(
                 top: false,
                 right: false,
                 child: LumoHintBubble(message: _hintFor(s)),
               ),
             ),
+          // ── Spieler-1-Mini-HUD unten links ──
+          // Avatar + Karten-Counter. Tap auf den Avatar oeffnet den
+          // Picker (Avatar wechseln). Sichtbar in beiden Modi.
+          Positioned(
+            left: 14,
+            bottom: 14,
+            child: SafeArea(
+              top: false,
+              right: false,
+              child: GestureDetector(
+                onTap: _changeAvatar,
+                child: LumoPlayerHud(
+                  name: widget.vsBot
+                      ? widget.player1Name
+                      : s.players[viewerIndex].name,
+                  cardCount: s.players[viewerIndex].hand.length,
+                  stars: s.players[viewerIndex].stars,
+                  isActive: s.currentPlayerIndex == viewerIndex &&
+                      s.phase == GamePhase.playing,
+                  compact: true,
+                  avatarAssetPath: _playerAvatarPath,
+                  ringColor: const Color(0xFFFCD34D),
+                ),
+              ),
+            ),
+          ),
           if (s.phase == GamePhase.gameOver)
             LumoResultDialog(
               winnerName: s.players[s.winnerIndex ?? 0].name,
