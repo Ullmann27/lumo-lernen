@@ -71,38 +71,26 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       vsBot: widget.vsBot,
     );
     _controller.addListener(_onStateChanged);
-    // Avatar laden + ggf. Picker beim ersten Start anzeigen.
-    WidgetsBinding.instance.addPostFrameCallback((_) => _loadOrPickAvatar());
+    // Heinz Crash-Bericht 2026-05-22: '_dependents.isEmpty' Assertion.
+    // Frueher hat sich beim ersten Start ein Avatar-Picker-Dialog
+    // direkt aus addPostFrameCallback geoeffnet. Das fuehrte zu
+    // Race-Conditions zwischen Dialog-Mount und Screen-Build -> Crash.
+    // Jetzt: kein automatischer Picker mehr, sondern Default-Avatar
+    // direkt setzen. Avatar-Wechsel nur explizit ueber Tap aufs HUD.
+    _playerAvatarPath = LumoCardsAssets.avatarBlueBoy;
+    WidgetsBinding.instance.addPostFrameCallback((_) => _loadSavedAvatar());
   }
 
-  Future<void> _loadOrPickAvatar() async {
+  Future<void> _loadSavedAvatar() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final saved = prefs.getString(_avatarPrefKey);
-      if (saved != null && saved.isNotEmpty) {
-        if (mounted) setState(() => _playerAvatarPath = saved);
-        return;
+      if (saved != null && saved.isNotEmpty && mounted) {
+        setState(() => _playerAvatarPath = saved);
       }
-    } catch (_) {}
-    // Noch kein Avatar gewaehlt -> Picker zeigen.
-    if (!mounted) return;
-    final picked = await LumoAvatarPicker.show(
-      context,
-      title: 'Waehle deinen Avatar',
-      currentAvatarPath: _playerAvatarPath,
-    );
-    if (picked == null) {
-      // Picker abgebrochen -> Default verwenden.
-      if (mounted) {
-        setState(() => _playerAvatarPath = LumoCardsAssets.avatarBlueBoy);
-      }
-      return;
+    } catch (_) {
+      // Pref-Lesen fehlgeschlagen - Default bleibt
     }
-    if (mounted) setState(() => _playerAvatarPath = picked);
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_avatarPrefKey, picked);
-    } catch (_) {}
   }
 
   Future<void> _changeAvatar() async {
@@ -127,6 +115,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   }
 
   void _onStateChanged() {
+    // mounted ZUERST pruefen - Bot-Timer kann nach Screen-Pop noch feuern.
+    if (!mounted) return;
     final s = _controller.state;
     // Bei Game-Over: Streak-System ueber AppState aufrufen.
     // Nur einmal pro Gewinner.
@@ -137,7 +127,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       final kindWon = s.winnerIndex == 0;
       widget.appState.recordLumoCardsResult(won: kindWon);
     }
-    if (mounted) setState(() {});
+    setState(() {});
   }
 
   @override
