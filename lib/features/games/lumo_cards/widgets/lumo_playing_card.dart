@@ -84,39 +84,36 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
     final scale = _pressed ? 1.06 : 1.0;
     final liftY = _pressed ? -6.0 : 0.0;
 
-    // Heinz Crash 2026-05-22 (Build 180): 'debugNeedsLayout: is not true'
-    // aus shifted_box.dart. Ursache: das Widget hatte KEINE feste Outer-
-    // Groesse - AnimatedContainer + Matrix4 + Image.asset (neue 320px-PNGs)
-    // konnten beim Image-Decode eine Re-Layout-Phase anfordern, waehrend
-    // das Eltern-Layout schon fertig war.
-    // Fix: SizedBox aussen, RepaintBoundary innen. SizedBox erzwingt
-    // tight Constraints, RepaintBoundary isoliert Paint-Fehler.
+    // Heinz Crash 2026-05-22 Build 180/181:
+    //  - Build 180: 'debugNeedsLayout' - SizedBox aussen fixt das durch
+    //    tight Constraints (Image.asset kann nach Decode keine Re-Layout-
+    //    Phase mehr triggern).
+    //  - Build 181: '_dependents.isEmpty' - RepaintBoundary entfernt, sie
+    //    kann mit Matrix4-Perspektive den Element-Lifecycle stoeren.
     return SizedBox(
       width: widget.width,
       height: widget.height,
-      child: RepaintBoundary(
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          curve: Curves.easeOutCubic,
-          transform: Matrix4.identity()
-            ..setEntry(3, 2, 0.0015)
-            ..rotateX(tiltX)
-            ..rotateY(tiltY)
-            ..scale(scale),
-          transformAlignment: Alignment.center,
-          child: Transform.translate(
-            offset: Offset(0, liftY),
-            child: GestureDetector(
-              onTapDown: widget.onTap == null
-                  ? null
-                  : (_) => setState(() => _pressed = true),
-              onTapUp: widget.onTap == null
-                  ? null
-                  : (_) => setState(() => _pressed = false),
-              onTapCancel: () => setState(() => _pressed = false),
-              onTap: widget.onTap,
-              child: _build(base),
-            ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOutCubic,
+        transform: Matrix4.identity()
+          ..setEntry(3, 2, 0.0015)
+          ..rotateX(tiltX)
+          ..rotateY(tiltY)
+          ..scale(scale),
+        transformAlignment: Alignment.center,
+        child: Transform.translate(
+          offset: Offset(0, liftY),
+          child: GestureDetector(
+            onTapDown: widget.onTap == null
+                ? null
+                : (_) => setState(() => _pressed = true),
+            onTapUp: widget.onTap == null
+                ? null
+                : (_) => setState(() => _pressed = false),
+            onTapCancel: () => setState(() => _pressed = false),
+            onTap: widget.onTap,
+            child: _build(base),
           ),
         ),
       ),
@@ -231,13 +228,16 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
     // PNG existiert, rendern wir es; sonst Fallback auf gezeichnete Variante.
     final assetPath = LumoCardsAssets.assetFor(widget.card);
     if (assetPath != null) {
-      // Pixel-Dichte des Displays beachten - decode mit doppelter
-      // Display-Groesse fuer Retina-Schaerfe, aber NICHT die 320x450
-      // Original-PNG-Aufloesung. Beide Achsen explizit, damit Image
-      // beim Decode-Done keine Layout-Phase mehr anstoesst.
-      final dpr = MediaQuery.maybeOf(context)?.devicePixelRatio ?? 2.0;
-      final cw = (widget.width * dpr).round();
-      final ch = (widget.height * dpr).round();
+      // Heinz Crash 2026-05-22 Build 181: '_dependents.isEmpty: is not true'.
+      // Vorher hatte ich hier MediaQuery.maybeOf(context) BEDINGT
+      // aufgerufen (nur wenn assetPath != null). Conditional Inherited-
+      // Widget-Subscriptions sind ein Flutter-Anti-Pattern - die
+      // Dependency-Liste wird inkonsistent und die Assertion beim
+      // Unmount feuert. Loesung: konstanten Cache-Wert nehmen.
+      // 3x reicht fuer fast alle Handys (DPR 2.5-3.0), groesser waere
+      // nur Memory-Verschwendung.
+      const cw = 264; // 88 px display * 3
+      const ch = 384; // 128 px display * 3
       return Image.asset(
         assetPath,
         width: widget.width,
@@ -538,17 +538,15 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
   // BACK — dunkles Navy mit leuchtendem Stern + Fuchs (Mockup)
   // ════════════════════════════════════════════════════════
   Widget _buildBack() {
-    final dpr = MediaQuery.maybeOf(context)?.devicePixelRatio ?? 2.0;
-    final cw = (widget.width * dpr).round();
-    final ch = (widget.height * dpr).round();
+    // Selber Anti-Pattern-Fix wie in _buildFront (Heinz Build 181 Crash).
     return Image.asset(
       LumoCardsAssets.cardBack,
       width: widget.width,
       height: widget.height,
       fit: BoxFit.cover,
       gaplessPlayback: true,
-      cacheWidth: cw,
-      cacheHeight: ch,
+      cacheWidth: 264,
+      cacheHeight: 384,
       errorBuilder: (_, __, ___) => _buildBackFallback(),
     );
   }
