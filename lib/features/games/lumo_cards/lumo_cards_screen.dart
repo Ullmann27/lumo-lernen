@@ -172,10 +172,10 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 return Column(
                   children: [
                     // Score-Header: Logo + Round/Target + Emoji/Settings
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).padding.top + 4),
-                      child: LumoCardsScoreHeader(
+                    // SafeArea ist bereits Parent, daher kein zusaetzliches
+                    // MediaQuery-Padding noetig (Heinz Crash 2026-05-22:
+                    // doppeltes Top-Padding fuehrte zu Bottom-Overflow).
+                    LumoCardsScoreHeader(
                         round: 1, // MVP: nur eine Runde aktiv
                         totalRounds: 1,
                         targetPoints: widget.appState.state.stars,
@@ -185,7 +185,6 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                           _controller.restart();
                         },
                       ),
-                    ),
                     // ── Gegner-HUD oben: Avatar + Name + Karten-Anzahl +
                     //    Sterne, glueht wenn er dran ist. ──
                     // Im vsBot-Modus ist der Gegner Lumo (Fuchs-Emoji),
@@ -217,7 +216,10 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                       child: Center(
                         child: LumoColorArrows(
                           activeColor: s.selectedColor,
-                          size: 320,
+                          // Kleinere Arena damit die Hand garantiert unten
+                          // Platz hat. FittedBox in LumoColorArrows skaliert
+                          // bei Bedarf weiter herunter.
+                          size: 260,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,

@@ -24,12 +24,17 @@ class LumoColorArrows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
+    // Auf knappen Geraeten skaliert FittedBox die ganze Arena herunter,
+    // damit nichts overflowt. Heinz Crash-Report 2026-05-22: 'BOTTOM
+    // OVERFLOWED BY 82 PIXELS' bei fixer 320x320-Arena.
+    return FittedBox(
+      fit: BoxFit.contain,
+      child: SizedBox(
+        width: size,
+        height: size,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
           // 4 Pfeile aussen herum
           Positioned(
             top: 4,
@@ -63,9 +68,10 @@ class LumoColorArrows extends StatelessWidget {
               isActive: activeColor == LumoCardColor.green,
             ),
           ),
-          // Mittelteil (Draw + Discard)
-          child,
-        ],
+            // Mittelteil (Draw + Discard)
+            child,
+          ],
+        ),
       ),
     );
   }

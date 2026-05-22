@@ -221,6 +221,15 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
       return Image.asset(
         assetPath,
         fit: BoxFit.cover,
+        // gaplessPlayback verhindert Flicker zwischen Frames - sicherer
+        // bei vielen gleichzeitig animierten Karten in der Hand.
+        gaplessPlayback: true,
+        // Memory-Effizienz: Karten sind nur ~100x150 dargestellt, also
+        // muessen sie nicht in voller 300x300 Aufloesung im RAM liegen.
+        // Bei 7+ Karten in der Hand + Discard + Draw kann das sonst
+        // Memory-Pressure aufbauen die zu Render-Crashes fuehrt.
+        cacheWidth: 200,
+        // Force-erase auf Fehler statt Crash zu propagieren.
         errorBuilder: (_, __, ___) =>
             widget.card.isWild ? _buildWildFront() : _buildColorFront(base),
       );
@@ -519,6 +528,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
     return Image.asset(
       LumoCardsAssets.cardBack,
       fit: BoxFit.cover,
+      gaplessPlayback: true,
+      cacheWidth: 200,
       errorBuilder: (_, __, ___) => _buildBackFallback(),
     );
   }
