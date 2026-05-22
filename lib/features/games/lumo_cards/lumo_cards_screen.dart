@@ -64,7 +64,6 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     _controller.dispose();
     super.dispose();
   }
-  }
 
   void _onStateChanged() {
     final s = _controller.state;
