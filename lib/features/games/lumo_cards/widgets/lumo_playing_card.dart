@@ -84,27 +84,40 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
     final scale = _pressed ? 1.06 : 1.0;
     final liftY = _pressed ? -6.0 : 0.0;
 
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 180),
-      curve: Curves.easeOutCubic,
-      transform: Matrix4.identity()
-        ..setEntry(3, 2, 0.0015)
-        ..rotateX(tiltX)
-        ..rotateY(tiltY)
-        ..scale(scale),
-      transformAlignment: Alignment.center,
-      child: Transform.translate(
-        offset: Offset(0, liftY),
-        child: GestureDetector(
-          onTapDown: widget.onTap == null
-              ? null
-              : (_) => setState(() => _pressed = true),
-          onTapUp: widget.onTap == null
-              ? null
-              : (_) => setState(() => _pressed = false),
-          onTapCancel: () => setState(() => _pressed = false),
-          onTap: widget.onTap,
-          child: _build(base),
+    // Heinz Crash 2026-05-22 (Build 180): 'debugNeedsLayout: is not true'
+    // aus shifted_box.dart. Ursache: das Widget hatte KEINE feste Outer-
+    // Groesse - AnimatedContainer + Matrix4 + Image.asset (neue 320px-PNGs)
+    // konnten beim Image-Decode eine Re-Layout-Phase anfordern, waehrend
+    // das Eltern-Layout schon fertig war.
+    // Fix: SizedBox aussen, RepaintBoundary innen. SizedBox erzwingt
+    // tight Constraints, RepaintBoundary isoliert Paint-Fehler.
+    return SizedBox(
+      width: widget.width,
+      height: widget.height,
+      child: RepaintBoundary(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeOutCubic,
+          transform: Matrix4.identity()
+            ..setEntry(3, 2, 0.0015)
+            ..rotateX(tiltX)
+            ..rotateY(tiltY)
+            ..scale(scale),
+          transformAlignment: Alignment.center,
+          child: Transform.translate(
+            offset: Offset(0, liftY),
+            child: GestureDetector(
+              onTapDown: widget.onTap == null
+                  ? null
+                  : (_) => setState(() => _pressed = true),
+              onTapUp: widget.onTap == null
+                  ? null
+                  : (_) => setState(() => _pressed = false),
+              onTapCancel: () => setState(() => _pressed = false),
+              onTap: widget.onTap,
+              child: _build(base),
+            ),
+          ),
         ),
       ),
     );
@@ -218,18 +231,21 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
     // PNG existiert, rendern wir es; sonst Fallback auf gezeichnete Variante.
     final assetPath = LumoCardsAssets.assetFor(widget.card);
     if (assetPath != null) {
+      // Pixel-Dichte des Displays beachten - decode mit doppelter
+      // Display-Groesse fuer Retina-Schaerfe, aber NICHT die 320x450
+      // Original-PNG-Aufloesung. Beide Achsen explizit, damit Image
+      // beim Decode-Done keine Layout-Phase mehr anstoesst.
+      final dpr = MediaQuery.maybeOf(context)?.devicePixelRatio ?? 2.0;
+      final cw = (widget.width * dpr).round();
+      final ch = (widget.height * dpr).round();
       return Image.asset(
         assetPath,
+        width: widget.width,
+        height: widget.height,
         fit: BoxFit.cover,
-        // gaplessPlayback verhindert Flicker zwischen Frames - sicherer
-        // bei vielen gleichzeitig animierten Karten in der Hand.
         gaplessPlayback: true,
-        // Memory-Effizienz: Karten sind nur ~100x150 dargestellt, also
-        // muessen sie nicht in voller 300x300 Aufloesung im RAM liegen.
-        // Bei 7+ Karten in der Hand + Discard + Draw kann das sonst
-        // Memory-Pressure aufbauen die zu Render-Crashes fuehrt.
-        cacheWidth: 200,
-        // Force-erase auf Fehler statt Crash zu propagieren.
+        cacheWidth: cw,
+        cacheHeight: ch,
         errorBuilder: (_, __, ___) =>
             widget.card.isWild ? _buildWildFront() : _buildColorFront(base),
       );
@@ -522,14 +538,17 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
   // BACK — dunkles Navy mit leuchtendem Stern + Fuchs (Mockup)
   // ════════════════════════════════════════════════════════
   Widget _buildBack() {
-    // Heinz 2026-05-22: Card-Back-PNG aus seinem Sheet liegt unter
-    // assets/lumo_cards/cards/back/card_back_default.png. Wenn das
-    // Asset vorhanden ist: rendern. Sonst: gezeichneter Fallback unten.
+    final dpr = MediaQuery.maybeOf(context)?.devicePixelRatio ?? 2.0;
+    final cw = (widget.width * dpr).round();
+    final ch = (widget.height * dpr).round();
     return Image.asset(
       LumoCardsAssets.cardBack,
+      width: widget.width,
+      height: widget.height,
       fit: BoxFit.cover,
       gaplessPlayback: true,
-      cacheWidth: 200,
+      cacheWidth: cw,
+      cacheHeight: ch,
       errorBuilder: (_, __, ___) => _buildBackFallback(),
     );
   }

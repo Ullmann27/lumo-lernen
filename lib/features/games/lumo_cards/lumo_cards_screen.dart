@@ -160,10 +160,12 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
           LumoCardTable(
             child: SafeArea(
               child: LayoutBuilder(builder: (ctx, c) {
-                // Hand-Hoehe responsive: 142..170 abhaengig von verfuegbarem
-                // Platz. So gibt es nie Bottom-Overflow.
+                // Hand-Hoehe responsive: passt zu Karten-Hoehe 128 px +
+                // Schatten-Lift. Heinz Crash Build 180: vorher konnte
+                // handHeight bis 132 px schrumpfen -> 16 px Overflow im
+                // Hand-Bereich + ErrorWidget-Stack-Trace ueberlaeuft.
                 final handHeight =
-                    (c.maxHeight * 0.22).clamp(132.0, 172.0);
+                    (c.maxHeight * 0.22).clamp(150.0, 176.0);
                 return Column(
                   children: [
                     // Score-Header: Logo + Round/Target + Emoji/Settings
