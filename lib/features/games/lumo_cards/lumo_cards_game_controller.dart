@@ -193,6 +193,18 @@ class LumoCardsGameController extends ChangeNotifier {
     if (!vsBot) return;
     final s = _state;
     if (s.phase == GamePhase.gameOver) return;
+    // Heinz Fix 2026-05-22: Im Solo-Modus haengt das Spiel, wenn nach
+    // Lumo's Zug die phase auf passDevice wechselt und DU (Index 0) dran
+    // bist. Das Pass-Overlay wird im Solo-Modus nicht angezeigt (man gibt
+    // ja kein Tablet weiter) - also gab es nichts zu tippen, der Action-
+    // Button erschien nicht (er braucht phase==playing). Loesung: fuer den
+    // Menschen automatisch uebernehmen -> playing, damit dein
+    // "Karte ziehen"-Button erscheint und du immer weiterspielen kannst.
+    if (s.phase == GamePhase.passDevice && s.currentPlayerIndex == 0) {
+      _state = LumoCardsRules.confirmHandover(s);
+      notifyListeners();
+      return;
+    }
     if (s.currentPlayerIndex != 1) return; // Lumo ist Spieler 2
     // Im Solo-Modus: kein Pass-Overlay - direkt zu Lumo's Zug.
     if (s.phase == GamePhase.passDevice) {
