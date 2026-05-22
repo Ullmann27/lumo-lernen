@@ -212,20 +212,20 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
   // FRONT
   // ════════════════════════════════════════════════════════
   Widget _buildFront(Color base) {
-    if (widget.card.isWild) return _buildWildFront();
-    // Heinz 2026-05-22: hat ein eigenes Karten-Sheet geliefert (40 Zahlen-
-    // Karten 0-9 in 4 Farben + Card-Back). Wenn fuer diese Karte ein
-    // PNG-Asset existiert, rendern wir das statt der gezeichneten Version.
-    // Fuer Spezialkarten (Skip/Reverse/Draw 2) gibt es noch keine PNGs ->
-    // dort bleibt der gezeichnete Look.
+    // Heinz 2026-05-22: hat sowohl Zahlenkarten als auch Spezialkarten
+    // (Skip/Reverse/Draw 2 + Wild/Wild Draw 4) als PNG geliefert. Spezial-
+    // karten wurden per Hue-Rotation in alle 4 Farben generiert. Wenn das
+    // PNG existiert, rendern wir es; sonst Fallback auf gezeichnete Variante.
     final assetPath = LumoCardsAssets.assetFor(widget.card);
-    if (assetPath != null && widget.card.type == LumoCardType.number) {
+    if (assetPath != null) {
       return Image.asset(
         assetPath,
         fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => _buildColorFront(base),
+        errorBuilder: (_, __, ___) =>
+            widget.card.isWild ? _buildWildFront() : _buildColorFront(base),
       );
     }
+    if (widget.card.isWild) return _buildWildFront();
     return _buildColorFront(base);
   }
 
