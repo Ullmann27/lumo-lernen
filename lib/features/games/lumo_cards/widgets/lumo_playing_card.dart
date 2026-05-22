@@ -253,79 +253,88 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
 
     return Container(
       decoration: BoxDecoration(
-        // Premium Gradient: 3-Punkt-Stop fuer Tiefe statt 2
+        // Solider, satter Farbkoerper - professioneller Karten-Look.
+        // Subtiler Verlauf von hell oben-links zu dunkel unten-rechts.
         gradient: LinearGradient(
-          colors: [colors[0], colors[1], _darken(colors[1], 0.10)],
-          stops: const [0.0, 0.55, 1.0],
+          colors: [
+            _lighten(colors[1], 0.06),
+            colors[1],
+            _darken(colors[1], 0.08),
+          ],
+          stops: const [0.0, 0.5, 1.0],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
       ),
       child: Stack(
+        alignment: Alignment.center,
         children: [
-          // ── Weisser Inner-Rahmen ──
+          // ── Weisser Inner-Rahmen (Karten-Kante) ──
           Padding(
             padding: const EdgeInsets.all(4),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Colors.white.withOpacity(0.88),
-                  width: 1.8,
+                  color: Colors.white.withOpacity(0.92),
+                  width: 2.2,
                 ),
               ),
             ),
           ),
-          // ── Mittlere Center-Bubble mit subtle gradient ──
+
+          // ── IKONISCHES CENTERPIECE: rotierte weisse Ellipse (Diamant) ──
+          // Das ist die Signature-Optik moderner Karten-Spiele: eine
+          // schraeg gestellte weisse Kapsel, auf der die Zahl gross prangt.
           Center(
-            child: Container(
-              width: widget.width * 0.66,
-              height: widget.height * 0.55,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.white,
-                    Colors.white.withOpacity(0.92),
+            child: Transform.rotate(
+              angle: -0.52, // ~ -30 Grad - schraeg gestellt
+              child: Container(
+                width: widget.width * 0.52,
+                height: widget.height * 0.78,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                      BorderRadius.circular(widget.width * 0.30),
+                  boxShadow: [
+                    // Sanfter Schatten unter der Ellipse (Tiefe)
+                    BoxShadow(
+                      color: _darken(colors[1], 0.15).withOpacity(0.45),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                      spreadRadius: -1,
+                    ),
                   ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
                 ),
-                borderRadius: BorderRadius.circular(11),
-                boxShadow: [
-                  // Inner depth
-                  BoxShadow(
-                    color: colors[1].withOpacity(0.35),
-                    blurRadius: 8,
-                    offset: const Offset(0, 3),
-                    spreadRadius: -1,
-                  ),
-                  // Subtle highlight oben
-                  BoxShadow(
-                    color: Colors.white.withOpacity(0.8),
-                    blurRadius: 3,
-                    offset: const Offset(0, -1),
-                    spreadRadius: -1,
-                  ),
-                ],
               ),
+            ),
+          ),
+
+          // ── Grosse Zahl/Glyph - AUFRECHT auf der Ellipse ──
+          // Steht gerade (nicht mitrotiert) damit gut lesbar.
+          Center(
+            child: SizedBox(
+              width: widget.width * 0.66,
+              height: widget.height * 0.66,
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: Text(
                     centerLabel,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: isSpec ? 28 : 46,
+                      fontSize: isSpec ? 28 : 50,
                       fontWeight: FontWeight.w900,
                       color: colors[1],
                       height: 1.0,
                       shadows: [
+                        // Subtiler Tiefenschatten fuer die Zahl
                         Shadow(
-                          color: colors[1].withOpacity(0.25),
-                          offset: const Offset(0, 1),
-                          blurRadius: 2,
+                          color: _darken(colors[1], 0.20).withOpacity(0.30),
+                          offset: const Offset(0, 2),
+                          blurRadius: 3,
                         ),
                       ],
                     ),
@@ -334,30 +343,22 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
               ),
             ),
           ),
-          // ── Ecken: oben-links + unten-rechts (rotiert) ──
+
+          // ── Eck-Indizes: oben-links + unten-rechts (180 rotiert) ──
+          // Weiss mit Schatten - der klassische Karten-Index.
           Positioned(
-            top: 6,
-            left: 8,
+            top: 7,
+            left: 9,
             child: _cornerLabel(cornerLabel, colors[1]),
           ),
           Positioned(
-            bottom: 6,
-            right: 8,
+            bottom: 7,
+            right: 9,
             child: Transform.rotate(
               angle: math.pi,
               child: _cornerLabel(cornerLabel, colors[1]),
             ),
           ),
-          // ── Dekoratives Symbol oben rechts ──
-          if (widget.card.symbol != null && !isSpec)
-            Positioned(
-              top: 6,
-              right: 8,
-              child: Text(
-                widget.card.symbol!,
-                style: const TextStyle(fontSize: 12, height: 1.0),
-              ),
-            ),
         ],
       ),
     );
@@ -489,6 +490,11 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
   static Color _darken(Color c, double amount) {
     final h = HSLColor.fromColor(c);
     return h.withLightness((h.lightness - amount).clamp(0.0, 1.0)).toColor();
+  }
+
+  static Color _lighten(Color c, double amount) {
+    final h = HSLColor.fromColor(c);
+    return h.withLightness((h.lightness + amount).clamp(0.0, 1.0)).toColor();
   }
 }
 
