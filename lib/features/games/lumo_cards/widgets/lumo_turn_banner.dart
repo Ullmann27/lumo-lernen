@@ -6,19 +6,23 @@
 
 import 'package:flutter/material.dart';
 
+import 'lumo_turn_pill.dart';
+
 class LumoTurnBanner extends StatelessWidget {
   const LumoTurnBanner({
     super.key,
     required this.currentPlayerName,
     required this.message,
-    required this.opponentName,
-    required this.opponentCardCount,
+    this.isMyTurn = true,
   });
 
   final String currentPlayerName;
   final String message;
-  final String opponentName;
-  final int opponentCardCount;
+
+  /// Heinz HUD-Asset 2026-05-22: prominente "DEIN ZUG"/"GEGNER"-Pille.
+  /// Steuerung kommt vom Screen, da der Banner sonst nicht weiss wer
+  /// "ich" ist (Pass-and-Play kontextabhaengig).
+  final bool isMyTurn;
 
   @override
   Widget build(BuildContext context) {
@@ -107,46 +111,11 @@ class LumoTurnBanner extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          // Gegner-Pille mit Anzahl Karten (verdeckt).
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(
-                  color: const Color(0xFF7C2D12).withOpacity(0.2), width: 1.4),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  opponentName,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 11,
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xFF7C2D12),
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text('🃏', style: TextStyle(fontSize: 14)),
-                    const SizedBox(width: 3),
-                    Text(
-                      '$opponentCardCount',
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w900,
-                        color: Color(0xFF7C2D12),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          // ── Turn-Pille im HUD-Asset-Stil (Heinz 2026-05-22) ──
+          // Ersetzt die alte Gegner-Karten-Pille - die Karten-Anzahl wird
+          // jetzt durch das Gegner-HUD oben angezeigt (vermeidet doppelte
+          // Info).
+          LumoTurnPill(isMyTurn: isMyTurn),
         ],
       ),
     );

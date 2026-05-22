@@ -140,7 +140,6 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   Widget build(BuildContext context) {
     final s = _controller.state;
     final current = s.currentPlayer;
-    final opponent = s.otherPlayer;
     final topCard = s.topCard;
 
     // Fixe Sicht-Perspektive fuer die HUDs: im Bot-Modus sieht das Kind
@@ -203,8 +202,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                     LumoTurnBanner(
                       currentPlayerName: current.name,
                       message: s.lastActionMessage ?? '',
-                      opponentName: opponent.name,
-                      opponentCardCount: opponent.hand.length,
+                      isMyTurn: s.currentPlayerIndex == viewerIndex &&
+                          s.phase == GamePhase.playing,
                     ),
                     // Mitte: Piles - der Expanded sorgt fuer den
                     // restlichen Platz, kein Overflow moeglich.
