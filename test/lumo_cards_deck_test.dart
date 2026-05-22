@@ -6,46 +6,64 @@ import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_models.dart';
 
 void main() {
   group('LumoCardsDeck', () {
-    test('Deck hat erwartete Anzahl Karten', () {
+    test('Deck hat erwartete Anzahl Karten (112)', () {
       final deck = LumoCardsDeck.buildDeck(rng: Random(42));
-      // 4 Farben × (18 Zahlen + 4 Spezial + 1 Wild) = 4 × 23 = 92
-      expect(deck.length, 92);
+      // Pro Farbe: 1 (0er) + 18 (1-9 zweimal) + 6 (Skip/Draw2/Reverse je 2x)
+      // + 1 (Denkpause) = 26. x4 = 104. Plus 8 schwarz (Wild + WildDraw4).
+      expect(deck.length, 112);
     });
 
-    test('Deck enthaelt 18 Zahlenkarten pro Farbe', () {
+    test('Deck enthaelt 19 Zahlenkarten pro Farbe (1x 0er + 2x 1-9)', () {
       final deck = LumoCardsDeck.buildDeck(rng: Random(42));
       for (final color in LumoCardColor.values) {
         final numberCount = deck
             .where((c) => c.color == color && c.type == LumoCardType.number)
             .length;
-        expect(numberCount, 18,
-            reason: 'Farbe ${color.name} sollte 18 Zahlen haben');
-      }
-    });
-
-    test('Deck enthaelt 1 colorMagic-Karte pro Farbe', () {
-      final deck = LumoCardsDeck.buildDeck(rng: Random(42));
-      for (final color in LumoCardColor.values) {
-        final wildCount = deck
-            .where((c) => c.color == color && c.type == LumoCardType.colorMagic)
+        expect(numberCount, 19,
+            reason: 'Farbe ${color.name} sollte 19 Zahlenkarten haben');
+        final zeros = deck
+            .where((c) =>
+                c.color == color &&
+                c.type == LumoCardType.number &&
+                c.number == 0)
             .length;
-        expect(wildCount, 1);
+        expect(zeros, 1, reason: '${color.name} sollte 1 Nuller haben');
       }
     });
 
-    test('Deck enthaelt 1 Spezialkarte pro Typ und Farbe', () {
+    test('Deck enthaelt 4 colorMagic (Wild) gesamt', () {
+      final deck = LumoCardsDeck.buildDeck(rng: Random(42));
+      final wildCount = deck
+          .where((c) => c.type == LumoCardType.colorMagic)
+          .length;
+      expect(wildCount, 4);
+    });
+
+    test('Deck enthaelt 4 superRain (Wild Draw 4) gesamt', () {
+      final deck = LumoCardsDeck.buildDeck(rng: Random(42));
+      final superCount = deck
+          .where((c) => c.type == LumoCardType.superRain)
+          .length;
+      expect(superCount, 4);
+    });
+
+    test('Deck enthaelt 2 Skip/Draw2/Reverse pro Farbe + 1 Denkpause', () {
       final deck = LumoCardsDeck.buildDeck(rng: Random(42));
       for (final color in LumoCardColor.values) {
         for (final type in [
           LumoCardType.lumoJump,
           LumoCardType.starRain,
           LumoCardType.whirlwind,
-          LumoCardType.thinkPause,
         ]) {
           final count =
               deck.where((c) => c.color == color && c.type == type).length;
-          expect(count, 1, reason: '${color.name} ${type.name}');
+          expect(count, 2, reason: '${color.name} ${type.name}');
         }
+        final thinkCount = deck
+            .where((c) =>
+                c.color == color && c.type == LumoCardType.thinkPause)
+            .length;
+        expect(thinkCount, 1, reason: '${color.name} thinkPause');
       }
     });
 

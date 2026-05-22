@@ -338,6 +338,11 @@ class LumoCardsGameController extends ChangeNotifier {
       case LumoCardType.colorMagic:
         _speak('Farbzauber! Neue Farbe waehlen.');
         break;
+      case LumoCardType.superRain:
+        _speak(playedByPlayer1
+            ? 'Super-Sternenregen! Lumo zieht vier.'
+            : 'Super-Sternenregen! Du ziehst vier Karten.');
+        break;
       case LumoCardType.whirlwind:
         _speak(playedByPlayer1
             ? 'Wirbelwind! Lumo zieht eine.'

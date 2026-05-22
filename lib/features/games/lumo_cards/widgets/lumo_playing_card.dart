@@ -453,7 +453,7 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
     );
   }
 
-  /// Glyph fuer eine Spezialkarte. Eigene Symbole, kein UNO-Vokabular.
+  /// Glyph fuer eine Spezialkarte. Eigene Lumo-Symbole.
   static String _specGlyph(LumoCardType t) {
     switch (t) {
       case LumoCardType.lumoJump:
@@ -462,6 +462,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
         return '⭐+2';
       case LumoCardType.colorMagic:
         return '🌈';
+      case LumoCardType.superRain:
+        return '🌟+4';
       case LumoCardType.whirlwind:
         return '🌀+1';
       case LumoCardType.thinkPause:
