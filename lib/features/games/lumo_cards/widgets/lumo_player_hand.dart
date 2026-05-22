@@ -65,6 +65,12 @@ class LumoPlayerHand extends StatelessWidget {
     final double totalW =
         cards.isEmpty ? 0 : (cards.length - 1) * step + cardW;
 
+    // Premium-Faecher: jede Karte leicht rotiert (Mitte gerade, aussen
+    // gekippt) + aeussere Karten minimal tiefer fuer einen Bogen. Alle
+    // Werte sauber als double -> kein int/double-Crash wie frueher.
+    final int n = cards.length;
+    final double mid = (n - 1) / 2.0;
+
     return SizedBox(
       height: height,
       child: ClipRect(
@@ -84,9 +90,18 @@ class LumoPlayerHand extends StatelessWidget {
                     top: 0,
                     bottom: 0,
                     child: Center(
-                      child: KeyedSubtree(
-                        key: ValueKey('hand-${cards[i].id}'),
-                        child: _buildHandCard(cards[i]),
+                      child: Transform.translate(
+                        // quadratischer Bogen: aeussere Karten leicht tiefer
+                        offset: Offset(0, ((i - mid) * (i - mid)) * 1.4),
+                        child: Transform.rotate(
+                          // ~3.4 Grad pro Karte ab der Mitte
+                          angle: (i - mid) * 0.06,
+                          alignment: Alignment.bottomCenter,
+                          child: KeyedSubtree(
+                            key: ValueKey('hand-${cards[i].id}'),
+                            child: _buildHandCard(cards[i]),
+                          ),
+                        ),
                       ),
                     ),
                   ),
