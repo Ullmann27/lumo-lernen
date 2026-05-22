@@ -229,6 +229,46 @@ void main() {
       expect(next.currentPlayerIndex, 1);
     });
 
+    test('Super-Sternenregen -> Gegner zieht 4 + Farbwahl', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.superRain, id: 'super');
+      final st = _state(
+        handA: [card, _num(LumoCardColor.orange, 1)],
+        handB: const [],
+        draw: [
+          _num(LumoCardColor.green, 1, id: 'd1'),
+          _num(LumoCardColor.green, 2, id: 'd2'),
+          _num(LumoCardColor.green, 3, id: 'd3'),
+          _num(LumoCardColor.green, 4, id: 'd4'),
+          _num(LumoCardColor.green, 5, id: 'd5'),
+        ],
+        top: _num(LumoCardColor.purple, 5),
+        selected: LumoCardColor.purple,
+      );
+      final next = LumoCardsRules.applyPlay(
+        state: st,
+        card: card,
+        rng: Random(7),
+      );
+      expect(next.players[1].hand.length, 4);
+      expect(next.drawPile.length, 1);
+      expect(next.phase, GamePhase.chooseColor);
+      expect(next.currentPlayerIndex, 0);
+    });
+
+    test('Super-Sternenregen ist immer spielbar (wie Wild)', () {
+      final superCard =
+          _spec(LumoCardColor.orange, LumoCardType.superRain);
+      expect(
+        LumoCardsRules.isPlayable(
+          card: superCard,
+          topCard: _num(LumoCardColor.purple, 5),
+          selectedColor: LumoCardColor.purple,
+        ),
+        isTrue,
+      );
+    });
+
     test('Denkpause -> phase = learningQuestion mit Frage', () {
       final card =
           _spec(LumoCardColor.orange, LumoCardType.thinkPause, id: 'think');

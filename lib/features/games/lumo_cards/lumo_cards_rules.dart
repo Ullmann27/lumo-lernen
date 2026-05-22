@@ -145,6 +145,27 @@ class LumoCardsRules {
               'Farbzauber! ${state.currentPlayer.name} waehlt eine Farbe.',
         );
 
+      case LumoCardType.superRain:
+        // Super-Sternenregen: Gegner zieht 4 Karten + Spieler waehlt Farbe.
+        final (drawnSuper, restDrawSuper) = _safeDraw(
+          state.drawPile,
+          state.discardPile,
+          4,
+          rng,
+        );
+        final otherHandSuper = List<LumoCard>.of(state.otherPlayer.hand)
+          ..addAll(drawnSuper);
+        newPlayers[1 - state.currentPlayerIndex] =
+            state.otherPlayer.copyWith(hand: otherHandSuper);
+        return state.copyWith(
+          players: newPlayers,
+          drawPile: restDrawSuper,
+          discardPile: newDiscard,
+          phase: GamePhase.chooseColor,
+          lastActionMessage:
+              'Super-Sternenregen! ${state.otherPlayer.name} zieht 4 Karten - jetzt Farbe waehlen.',
+        );
+
       case LumoCardType.whirlwind:
         // 2P-angepasst: Gegner zieht 1 Karte, Zug wechselt.
         final (drawn, restDraw) = _safeDraw(
