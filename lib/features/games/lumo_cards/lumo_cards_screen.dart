@@ -202,14 +202,15 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                     ),
                     // Mitte: Piles - der Expanded sorgt fuer den
                     // restlichen Platz, kein Overflow moeglich.
+                    // Heinz Crash 2026-05-22: AnimatedSwitcher um den
+                    // Discard-Pile + FittedBox in LumoColorArrows hat eine
+                    // 'debugNeedsLayout' Layout-Cycle-Assertion ausgeloest.
+                    // Wir zeigen den Discard jetzt direkt ohne Switcher.
                     Expanded(
                       child: Center(
                         child: LumoColorArrows(
                           activeColor: s.selectedColor,
-                          // Kleinere Arena damit die Hand garantiert unten
-                          // Platz hat. FittedBox in LumoColorArrows skaliert
-                          // bei Bedarf weiter herunter.
-                          size: 260,
+                          size: 220,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
@@ -220,35 +221,11 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                     ? () => _controller.drawCard()
                                     : null,
                               ),
-                              const SizedBox(width: 24),
-                              // AnimatedSwitcher: jede neue Karte fliegt
-                              // mit kleinem Bounce zur Mitte. Trigger ueber
-                              // ValueKey(topCard.id).
+                              const SizedBox(width: 20),
                               if (topCard != null)
-                                AnimatedSwitcher(
-                                  duration: const Duration(milliseconds: 360),
-                                  transitionBuilder: (child, anim) {
-                                    return SlideTransition(
-                                      position: Tween<Offset>(
-                                        begin: const Offset(0, -0.6),
-                                        end: Offset.zero,
-                                      ).animate(CurvedAnimation(
-                                        parent: anim,
-                                        curve: Curves.easeOutBack,
-                                      )),
-                                      child: ScaleTransition(
-                                        scale: anim,
-                                        child: child,
-                                      ),
-                                    );
-                                  },
-                                  child: KeyedSubtree(
-                                    key: ValueKey(topCard.id),
-                                    child: LumoDiscardPile(
-                                      topCard: topCard,
-                                      selectedColor: s.selectedColor,
-                                    ),
-                                  ),
+                                LumoDiscardPile(
+                                  topCard: topCard,
+                                  selectedColor: s.selectedColor,
                                 ),
                             ],
                           ),
