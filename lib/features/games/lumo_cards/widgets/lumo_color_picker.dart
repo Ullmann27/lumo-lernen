@@ -100,23 +100,23 @@ class LumoColorPicker extends StatelessWidget {
 
   static List<Color> _gradientOf(LumoCardColor c) {
     switch (c) {
-      case LumoCardColor.orange:
-        return const [Color(0xFFFFB96B), Color(0xFFFF7A2F)];
-      case LumoCardColor.purple:
-        return const [Color(0xFFC4B5FD), Color(0xFF7C3AED)];
-      case LumoCardColor.blue:
-        return const [Color(0xFF93C5FD), Color(0xFF2563EB)];
-      case LumoCardColor.green:
-        return const [Color(0xFF86EFAC), Color(0xFF059669)];
+      case LumoCardColor.orange: // -> Rot (Mockup-Palette)
+        return const [Color(0xFFFF7779), Color(0xFFFF4D4F)];
+      case LumoCardColor.purple: // -> Gelb
+        return const [Color(0xFFFFD970), Color(0xFFFFC83D)];
+      case LumoCardColor.blue: // -> Blau
+        return const [Color(0xFF6FA4FF), Color(0xFF2D7BFF)];
+      case LumoCardColor.green: // -> Gruen
+        return const [Color(0xFF6BD98A), Color(0xFF35C759)];
     }
   }
 
   static String _labelOf(LumoCardColor c) {
     switch (c) {
       case LumoCardColor.orange:
-        return 'Orange';
+        return 'Rot';
       case LumoCardColor.purple:
-        return 'Lila';
+        return 'Gelb';
       case LumoCardColor.blue:
         return 'Blau';
       case LumoCardColor.green:

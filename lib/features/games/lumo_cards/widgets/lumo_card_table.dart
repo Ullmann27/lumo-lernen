@@ -44,19 +44,18 @@ class _LumoCardTableState extends State<LumoCardTable>
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      // ── Premium Velvet-Gradient ──
-      // Drei Stops: warm Amber oben links, tiefes Caramel center,
-      // dunkles Bordeaux am Rand. Plus ueberlagerter Radial-Glow zentral.
+      // ── LUMO CARDS Arena (lila, nach Mockup Bild 3) ──
+      // Radialer Verlauf: warmes Zentrum (Spotlight) -> tiefes Lila Rand.
       decoration: const BoxDecoration(
         gradient: RadialGradient(
           colors: [
-            Color(0xFFFFE0B8), // warm cream center
-            Color(0xFFDB924A), // amber mid
-            Color(0xFF9A4A0E), // deep caramel rand
+            Color(0xFF6B3FA0), // warmes Lila-Zentrum
+            Color(0xFF3D2270), // mittleres Lila
+            Color(0xFF1E1240), // tiefes Lila Rand
           ],
-          stops: [0.0, 0.45, 1.0],
+          stops: [0.0, 0.5, 1.0],
           radius: 1.1,
-          center: Alignment(0, -0.20),
+          center: Alignment(0, -0.10),
         ),
       ),
       child: Stack(
