@@ -129,12 +129,16 @@ class _GamesContentState extends State<GamesContent> {
 
   Future<void> _launchLumoCards() async {
     HapticFeedback.mediumImpact();
+    // Heinz 2026-05-21 'zu langweilig' -> Solo-Bot ist jetzt der
+    // Default. Pass-and-Play (vsBot=false) ist spaeter ueber einen
+    // sekundaeren Button erreichbar.
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
         builder: (_) => LumoCardsScreen(
           appState: widget.appState,
-          player1Name: 'Spieler 1',
-          player2Name: 'Spieler 2',
+          player1Name: 'Du',
+          player2Name: 'Lumo',
+          vsBot: true,
         ),
       ),
     );
@@ -1010,7 +1014,7 @@ class _MultiPlayerSection extends StatelessWidget {
           const SizedBox(height: 10),
           _VsLumoCard(
             title: 'Lumo Cards',
-            subtitle: 'Das bunte Lernkarten-Duell - zu zweit am Tablet',
+            subtitle: 'Karten-Duell gegen Lumo - sammle Streak-Sterne!',
             emoji: '🃏',
             gradient: const [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
             onPlay: onLumoCards,
