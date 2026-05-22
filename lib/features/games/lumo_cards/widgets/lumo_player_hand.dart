@@ -54,22 +54,32 @@ class LumoPlayerHand extends StatelessWidget {
     // ueberlappen damit sie alle reinpassen, sonst nur leicht.
     final double overlap = cards.length > 8 ? -36.0 : -16.0;
 
+    // Heinz Crash 2026-05-22 Build 180: BOTTOM OVERFLOWED BY 97 PIXELS
+    // im Hand-Bereich. Karten sind 128 px hoch, mit vorherigem
+    // vertical:10 Padding brauchten sie 148 px - bei handHeight=132 ergab
+    // das 16 px Overflow. Plus: das Karten-Pulsieren liess Flutter neu
+    // layoutieren -> debugNeedsLayout-Assertion.
+    // Fix: vertikales Padding raus (Karten haben eh schon Schatten-Lift),
+    // horizontales Scrollen ohne Hoehen-Padding. Plus ClipRect drumherum
+    // gegen versehentliches Overflow-Reporting in Release-Builds.
     return SizedBox(
       height: height,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-        physics: const BouncingScrollPhysics(),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (int i = 0; i < cards.length; i++)
-              Padding(
-                padding: EdgeInsets.only(left: i == 0 ? 0 : overlap),
-                child: _buildHandCard(cards[i]),
-              ),
-          ],
+      child: ClipRect(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 18),
+          physics: const BouncingScrollPhysics(),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (int i = 0; i < cards.length; i++)
+                Padding(
+                  padding: EdgeInsets.only(left: i == 0 ? 0 : overlap),
+                  child: _buildHandCard(cards[i]),
+                ),
+            ],
+          ),
         ),
       ),
     );
