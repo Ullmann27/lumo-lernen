@@ -28,6 +28,7 @@ import 'widgets/lumo_color_picker.dart';
 import 'widgets/lumo_discard_pile.dart';
 import 'widgets/lumo_draw_pile.dart';
 import 'widgets/lumo_hint_bubble.dart';
+import 'widgets/lumo_intro_splash.dart';
 import 'widgets/lumo_learning_card_overlay.dart';
 import 'widgets/lumo_pass_device_overlay.dart';
 import 'widgets/lumo_player_hand.dart';
@@ -56,6 +57,11 @@ class LumoCardsScreen extends StatefulWidget {
 class _LumoCardsScreenState extends State<LumoCardsScreen> {
   late final LumoCardsGameController _controller;
   bool _rewardGiven = false;
+
+  /// Intro-Splash beim Spielstart (Heinz 2026-05-22). Verschwindet nach
+  /// ~2 Sekunden automatisch oder per Tap. Wird beim Restart nicht
+  /// erneut gezeigt.
+  bool _showIntro = true;
 
   /// Vom Kind gewaehlter Avatar fuer Spieler 1.
   /// Persistiert in SharedPreferences ('lumo_cards_player_avatar').
@@ -202,14 +208,15 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                     ),
                     // Mitte: Piles - der Expanded sorgt fuer den
                     // restlichen Platz, kein Overflow moeglich.
+                    // Heinz Crash 2026-05-22: AnimatedSwitcher um den
+                    // Discard-Pile + FittedBox in LumoColorArrows hat eine
+                    // 'debugNeedsLayout' Layout-Cycle-Assertion ausgeloest.
+                    // Wir zeigen den Discard jetzt direkt ohne Switcher.
                     Expanded(
                       child: Center(
                         child: LumoColorArrows(
                           activeColor: s.selectedColor,
-                          // Kleinere Arena damit die Hand garantiert unten
-                          // Platz hat. FittedBox in LumoColorArrows skaliert
-                          // bei Bedarf weiter herunter.
-                          size: 260,
+                          size: 220,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
@@ -220,35 +227,11 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                     ? () => _controller.drawCard()
                                     : null,
                               ),
-                              const SizedBox(width: 24),
-                              // AnimatedSwitcher: jede neue Karte fliegt
-                              // mit kleinem Bounce zur Mitte. Trigger ueber
-                              // ValueKey(topCard.id).
+                              const SizedBox(width: 20),
                               if (topCard != null)
-                                AnimatedSwitcher(
-                                  duration: const Duration(milliseconds: 360),
-                                  transitionBuilder: (child, anim) {
-                                    return SlideTransition(
-                                      position: Tween<Offset>(
-                                        begin: const Offset(0, -0.6),
-                                        end: Offset.zero,
-                                      ).animate(CurvedAnimation(
-                                        parent: anim,
-                                        curve: Curves.easeOutBack,
-                                      )),
-                                      child: ScaleTransition(
-                                        scale: anim,
-                                        child: child,
-                                      ),
-                                    );
-                                  },
-                                  child: KeyedSubtree(
-                                    key: ValueKey(topCard.id),
-                                    child: LumoDiscardPile(
-                                      topCard: topCard,
-                                      selectedColor: s.selectedColor,
-                                    ),
-                                  ),
+                                LumoDiscardPile(
+                                  topCard: topCard,
+                                  selectedColor: s.selectedColor,
                                 ),
                             ],
                           ),
@@ -372,6 +355,15 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 _controller.restart();
               },
               onExit: () => Navigator.of(context).pop(),
+            ),
+          // ── Intro-Splash (Heinz 2026-05-22) ──
+          // Liegt UEBER allem - inkl. Result-Dialog/Color-Picker. Wird
+          // nur einmal beim Screen-Eintritt gezeigt.
+          if (_showIntro)
+            LumoIntroSplash(
+              onComplete: () {
+                if (mounted) setState(() => _showIntro = false);
+              },
             ),
         ],
       ),

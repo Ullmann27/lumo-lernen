@@ -24,17 +24,17 @@ class LumoColorArrows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Auf knappen Geraeten skaliert FittedBox die ganze Arena herunter,
-    // damit nichts overflowt. Heinz Crash-Report 2026-05-22: 'BOTTOM
-    // OVERFLOWED BY 82 PIXELS' bei fixer 320x320-Arena.
-    return FittedBox(
-      fit: BoxFit.contain,
-      child: SizedBox(
-        width: size,
-        height: size,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
+    // Heinz Crash-Report 2026-05-22: 'debugNeedsLayout: is not true'.
+    // Ursache: FittedBox um Stack-mit-Positioned-Kindern in einem
+    // LayoutBuilder-Kontext loest in Flutter eine Layout-Cycle-Assertion
+    // aus. Wir lassen daher die feste Groesse und vertrauen darauf, dass
+    // der Eltern-Layout (Expanded in lumo_cards_screen) genug Platz gibt.
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
           // 4 Pfeile aussen herum
           Positioned(
             top: 4,
@@ -68,10 +68,9 @@ class LumoColorArrows extends StatelessWidget {
               isActive: activeColor == LumoCardColor.green,
             ),
           ),
-            // Mittelteil (Draw + Discard)
-            child,
-          ],
-        ),
+          // Mittelteil (Draw + Discard)
+          child,
+        ],
       ),
     );
   }
