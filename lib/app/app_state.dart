@@ -242,6 +242,30 @@ class LumoAppState extends ChangeNotifier {
   Map<String, List<String>> learningWeaknessesBySubject() => _learningProfileLoaded ? _learningProfile.weaknessesBySubject() : <String, List<String>>{};
   Map<String, SkillRecord> learningSkills() => _learningProfileLoaded ? _learningProfile.skills : <String, SkillRecord>{};
 
+  /// Heinz 2026-05-21: 'Lumo Cards ist zu langweilig'. Streak-Counter
+  /// fuer aufeinanderfolgende Siege gegen Lumo - gibt Bonus-Sterne und
+  /// macht Wiederspielen attraktiver. In-memory pro Session (keine
+  /// Persistierung noetig fuer MVP).
+  int _lumoCardsWinStreak = 0;
+  int get lumoCardsWinStreak => _lumoCardsWinStreak;
+
+  /// Wird nach einem Lumo-Cards-Spiel aufgerufen. Bei Sieg: Streak +1,
+  /// Bonus-Sterne nach Streak-Hoehe. Bei Niederlage: Streak auf 0,
+  /// kleiner Trost-Stern.
+  void recordLumoCardsResult({required bool won}) {
+    if (won) {
+      _lumoCardsWinStreak++;
+      // Bonus skaliert mit Streak: 3 / 4 / 5 / 6+ Sterne
+      final bonus = (3 + (_lumoCardsWinStreak - 1)).clamp(3, 6);
+      addStars(bonus);
+      addXp(15 + _lumoCardsWinStreak * 5);
+    } else {
+      _lumoCardsWinStreak = 0;
+      addStars(1); // kleiner Trost
+    }
+    _safeNotify();
+  }
+
   Future<void> resetLearningProfile() async {
     try {
       await _learningProfile.reset();
@@ -264,6 +288,7 @@ class LumoAppState extends ChangeNotifier {
       await _learningProfile.reset();
     } catch (_) {}
     _state = LumoSessionState();
+    _lumoCardsWinStreak = 0;
     _safeNotify();
   }
 

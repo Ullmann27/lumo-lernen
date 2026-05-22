@@ -1,23 +1,19 @@
 // ════════════════════════════════════════════════════════════════════════
 // LUMO CARDS SCREEN — Top-Level der Karten-Mini-App
 // ════════════════════════════════════════════════════════════════════════
-// Pass-and-Play 2-Spieler-Karten-Ablegespiel. Eigenstaendiges Lumo-Design,
-// keine UNO-Bezuege.
+// Eigenstaendiges Lumo-Design, keine UNO-Bezuege.
 //
-// Heinz' MVP:
-//  - 2 Spieler am Tablet
-//  - Pass-and-Play (Tablet-Uebergabe-Overlay zwischen Zuegen)
-//  - 5 Spezialkarten (Lumo-Sprung, Sternenregen, Farbzauber, Wirbelwind,
-//    Denkpause)
-//  - Denkpause oeffnet kleine lokale Lernfrage
-//  - Gewinn, Sterne, 'Nochmal spielen', 'Zurueck'
+// Modi:
+//  - vsBot=true (Default): Kind spielt gegen Lumo (Bot). Sofort spielbar.
+//  - vsBot=false: 2 Menschen am Tablet (Pass-and-Play).
+//
+// Heinz 2026-05-21 'zu langweilig' -> Solo-Bot + Streak + Animation
+// machen das Spiel sofort spannend.
 // ════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
-import '../../../core/lumo_voice.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
 import 'widgets/lumo_card_table.dart';
@@ -33,13 +29,15 @@ class LumoCardsScreen extends StatefulWidget {
   const LumoCardsScreen({
     super.key,
     required this.appState,
-    this.player1Name = 'Spieler 1',
-    this.player2Name = 'Spieler 2',
+    this.player1Name = 'Du',
+    this.player2Name = 'Lumo',
+    this.vsBot = true,
   });
 
   final LumoAppState appState;
   final String player1Name;
   final String player2Name;
+  final bool vsBot;
 
   @override
   State<LumoCardsScreen> createState() => _LumoCardsScreenState();
@@ -55,11 +53,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     _controller = LumoCardsGameController(
       player1Name: widget.player1Name,
       player2Name: widget.player2Name,
+      vsBot: widget.vsBot,
     );
     _controller.addListener(_onStateChanged);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _say('Willkommen bei Lumo Cards! ${widget.player1Name} faengt an.');
-    });
   }
 
   @override
@@ -68,27 +64,18 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     _controller.dispose();
     super.dispose();
   }
-
-  void _say(String text) {
-    try {
-      LumoVoice.instance.speak(text);
-    } catch (_) {}
   }
 
   void _onStateChanged() {
     final s = _controller.state;
-    // Sterne aus Lernfragen ans App-State weiterreichen.
-    // Nur einmal pro Gewinner: Bonus fuer den Sieg.
+    // Bei Game-Over: Streak-System ueber AppState aufrufen.
+    // Nur einmal pro Gewinner.
     if (s.phase == GamePhase.gameOver &&
         s.winnerIndex != null &&
         !_rewardGiven) {
       _rewardGiven = true;
-      widget.appState.addStars(3);
-      widget.appState.addXp(20);
-      try {
-        HapticFeedback.heavyImpact();
-      } catch (_) {}
-      _say('${s.players[s.winnerIndex!].name} gewinnt! Glueckwunsch!');
+      final kindWon = s.winnerIndex == 0;
+      widget.appState.recordLumoCardsResult(won: kindWon);
     }
     if (mounted) setState(() {});
   }
@@ -137,34 +124,67 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                   : null,
                             ),
                             const SizedBox(width: 24),
+                            // AnimatedSwitcher: jede neue Karte fliegt
+                            // mit kleinem Bounce zur Mitte. Trigger ueber
+                            // ValueKey(topCard.id).
                             if (topCard != null)
-                              LumoDiscardPile(
-                                topCard: topCard,
-                                selectedColor: s.selectedColor,
+                              AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 360),
+                                transitionBuilder: (child, anim) {
+                                  return SlideTransition(
+                                    position: Tween<Offset>(
+                                      begin: const Offset(0, -0.6),
+                                      end: Offset.zero,
+                                    ).animate(CurvedAnimation(
+                                      parent: anim,
+                                      curve: Curves.easeOutBack,
+                                    )),
+                                    child: ScaleTransition(
+                                      scale: anim,
+                                      child: child,
+                                    ),
+                                  );
+                                },
+                                child: KeyedSubtree(
+                                  key: ValueKey(topCard.id),
+                                  child: LumoDiscardPile(
+                                    topCard: topCard,
+                                    selectedColor: s.selectedColor,
+                                  ),
+                                ),
                               ),
                           ],
                         ),
                       ),
                     ),
-                    // Hand am Boden - fix Hoehe damit nichts ueberlaeuft.
+                    // Hand am Boden - im vsBot-Modus zeigen wir IMMER
+                    // die Hand des Kindes (Spieler 1), auch wenn Lumo
+                    // gerade dran ist. Sonst wuerde das Kind die
+                    // Geheim-Karten von Lumo sehen.
                     if (topCard != null)
-                      LumoPlayerHand(
-                        cards: current.hand,
-                        topCard: topCard,
-                        selectedColor: s.selectedColor,
-                        onCardTap: (card) => _controller.playCard(card),
-                        height: handHeight,
-                      ),
+                      _isMyTurnVisible(s)
+                          ? LumoPlayerHand(
+                              cards: widget.vsBot
+                                  ? s.players[0].hand
+                                  : current.hand,
+                              topCard: topCard,
+                              selectedColor: s.selectedColor,
+                              onCardTap: widget.vsBot && s.currentPlayerIndex != 0
+                                  ? (_) {}
+                                  : (card) => _controller.playCard(card),
+                              height: handHeight,
+                            )
+                          : _buildLumoThinking(handHeight),
                   ],
                 );
               }),
             ),
           ),
           // ── Overlays ÜBER der SafeArea ──
-          // Garantiert vollflaechig, deckt auch Status-/Navi-Bar ab,
-          // damit das Kind die geheimen Karten des Gegners NICHT
-          // versehentlich sieht.
-          if (s.phase == GamePhase.passDevice)
+          // Garantiert vollflaechig, deckt auch Status-/Navi-Bar ab.
+          // Im vsBot-Modus: kein Pass-Device-Overlay (Lumo's Zuege
+          // laufen automatisch ab).
+          if (!widget.vsBot && s.phase == GamePhase.passDevice)
             LumoPassDeviceOverlay(
               nextPlayerName: current.name,
               onReady: _controller.confirmHandover,
@@ -179,6 +199,59 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
             ),
           if (s.phase == GamePhase.gameOver) _buildGameOverOverlay(s),
         ],
+      ),
+    );
+  }
+
+  /// Sichtbar = Kind ist dran ODER 2-Mensch-Modus. Bei vsBot+Lumo-dran:
+  /// wir verstecken die Hand und zeigen 'Lumo ueberlegt...'.
+  bool _isMyTurnVisible(LumoCardsGameState s) {
+    if (!widget.vsBot) return true;
+    return s.currentPlayerIndex == 0;
+  }
+
+  Widget _buildLumoThinking(double height) {
+    return SizedBox(
+      height: height,
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(99),
+            border: Border.all(color: const Color(0xFFF59E0B), width: 2),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.12),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                width: 18,
+                height: 18,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.4,
+                  color: Color(0xFFFF7A2F),
+                ),
+              ),
+              const SizedBox(width: 12),
+              const Text(
+                '🦊 Lumo ueberlegt...',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFF7C2D12),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -229,6 +302,11 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
 
   Widget _buildGameOverOverlay(LumoCardsGameState s) {
     final winner = s.players[s.winnerIndex ?? 0];
+    final kindWon = s.winnerIndex == 0;
+    final streak = widget.appState.lumoCardsWinStreak;
+    final reward = kindWon
+        ? (streak <= 1 ? 3 : (3 + (streak - 1)).clamp(3, 6))
+        : 1;
     return Positioned.fill(
       child: Container(
         color: Colors.black.withOpacity(0.65),
@@ -237,13 +315,20 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
           margin: const EdgeInsets.all(24),
           padding: const EdgeInsets.fromLTRB(28, 24, 28, 24),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFFFFFBEB), Color(0xFFFCD34D)],
+            gradient: LinearGradient(
+              colors: kindWon
+                  ? const [Color(0xFFFFFBEB), Color(0xFFFCD34D)]
+                  : const [Color(0xFFFEF2F2), Color(0xFFFCA5A5)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(28),
-            border: Border.all(color: const Color(0xFFCA8A04), width: 3),
+            border: Border.all(
+              color: kindWon
+                  ? const Color(0xFFCA8A04)
+                  : const Color(0xFFB91C1C),
+              width: 3,
+            ),
             boxShadow: const [
               BoxShadow(
                 color: Colors.black38,
@@ -255,10 +340,11 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('🏆', style: TextStyle(fontSize: 72)),
+              Text(kindWon ? '🏆' : '🦊',
+                  style: const TextStyle(fontSize: 72)),
               const SizedBox(height: 8),
               Text(
-                '${winner.name} gewinnt!',
+                kindWon ? '${winner.name} gewinnt!' : 'Lumo gewinnt diesmal!',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontFamily: 'Nunito',
@@ -268,8 +354,33 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 ),
               ),
               const SizedBox(height: 8),
+              if (kindWon && streak >= 2) ...[
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 14, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFCD34D).withOpacity(0.55),
+                    borderRadius: BorderRadius.circular(99),
+                    border: Border.all(
+                        color: const Color(0xFFCA8A04), width: 1.6),
+                  ),
+                  child: Text(
+                    'Streak x$streak! ${'🔥' * streak.clamp(1, 5)}',
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xFF7C2D12),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+              ],
               Text(
-                'Du bekommst 3 Sterne und 20 XP!',
+                kindWon
+                    ? 'Du bekommst $reward Sterne!'
+                    : 'Du bekommst 1 Trost-Stern. Naechstes Mal du!',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 15,
