@@ -16,14 +16,17 @@ import 'package:flutter/material.dart';
 import '../../../app/app_state.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
+import 'widgets/lumo_action_button.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_color_picker.dart';
 import 'widgets/lumo_discard_pile.dart';
 import 'widgets/lumo_draw_pile.dart';
+import 'widgets/lumo_hint_bubble.dart';
 import 'widgets/lumo_learning_card_overlay.dart';
 import 'widgets/lumo_pass_device_overlay.dart';
 import 'widgets/lumo_player_hand.dart';
 import 'widgets/lumo_player_hud.dart';
+import 'widgets/lumo_result_dialog.dart';
 import 'widgets/lumo_turn_banner.dart';
 
 class LumoCardsScreen extends StatefulWidget {
@@ -218,10 +221,81 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               question: s.pendingLearningQuestion!,
               onAnswer: _controller.answerLearningQuestion,
             ),
-          if (s.phase == GamePhase.gameOver) _buildGameOverOverlay(s),
+          // Action-Button unten rechts + Hint-Bubble unten links
+          // (nur waehrend der Spielphase, nicht ueber den Overlays).
+          if (_showActionUi(s))
+            Positioned(
+              right: 18,
+              bottom: 18,
+              child: SafeArea(
+                top: false,
+                left: false,
+                child: LumoActionButton(
+                  label: _actionLabel(s),
+                  icon: _actionIcon(s),
+                  enabled: _isMyTurnVisible(s),
+                  pulse: _isMyTurnVisible(s),
+                  onPressed: _isMyTurnVisible(s)
+                      ? () => _controller.drawCard()
+                      : null,
+                ),
+              ),
+            ),
+          if (_showActionUi(s) && _isMyTurnVisible(s))
+            Positioned(
+              left: 14,
+              bottom: 18,
+              child: SafeArea(
+                top: false,
+                right: false,
+                child: LumoHintBubble(message: _hintFor(s)),
+              ),
+            ),
+          if (s.phase == GamePhase.gameOver)
+            LumoResultDialog(
+              winnerName: s.players[s.winnerIndex ?? 0].name,
+              kindWon: s.winnerIndex == 0,
+              reward: _rewardForStreak(s.winnerIndex == 0
+                  ? widget.appState.lumoCardsWinStreak
+                  : 0),
+              streak: widget.appState.lumoCardsWinStreak,
+              onRestart: () {
+                _rewardGiven = false;
+                _controller.restart();
+              },
+              onExit: () => Navigator.of(context).pop(),
+            ),
         ],
       ),
     );
+  }
+
+  /// Action-Button nur waehrend Spielphase sichtbar.
+  bool _showActionUi(LumoCardsGameState s) =>
+      s.phase == GamePhase.playing && _isMyTurnVisible(s);
+
+  String _actionLabel(LumoCardsGameState s) => 'Karte ziehen';
+  IconData _actionIcon(LumoCardsGameState s) => Icons.add_circle_outline_rounded;
+
+  String _hintFor(LumoCardsGameState s) {
+    if (s.phase != GamePhase.playing) return '';
+    final top = s.topCard;
+    if (top == null) return '';
+    final me = s.players[0];
+    final hasPlayable = me.hand.any((c) =>
+        c.isWild ||
+        c.color == s.selectedColor ||
+        (c.number != null && c.number == top.number) ||
+        (c.isSpecial && c.type == top.type));
+    if (!hasPlayable) {
+      return 'Keine passende Karte - ziehe eine!';
+    }
+    return 'Lege eine passende Farbe oder Zahl.';
+  }
+
+  int _rewardForStreak(int streak) {
+    if (streak <= 1) return 3;
+    return (3 + (streak - 1)).clamp(3, 6);
   }
 
   /// Sichtbar = Kind ist dran ODER 2-Mensch-Modus. Bei vsBot+Lumo-dran:
@@ -321,139 +395,4 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     );
   }
 
-  Widget _buildGameOverOverlay(LumoCardsGameState s) {
-    final winner = s.players[s.winnerIndex ?? 0];
-    final kindWon = s.winnerIndex == 0;
-    final streak = widget.appState.lumoCardsWinStreak;
-    final reward = kindWon
-        ? (streak <= 1 ? 3 : (3 + (streak - 1)).clamp(3, 6))
-        : 1;
-    return Positioned.fill(
-      child: Container(
-        color: Colors.black.withOpacity(0.65),
-        alignment: Alignment.center,
-        child: Container(
-          margin: const EdgeInsets.all(24),
-          padding: const EdgeInsets.fromLTRB(28, 24, 28, 24),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: kindWon
-                  ? const [Color(0xFFFFFBEB), Color(0xFFFCD34D)]
-                  : const [Color(0xFFFEF2F2), Color(0xFFFCA5A5)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(28),
-            border: Border.all(
-              color: kindWon
-                  ? const Color(0xFFCA8A04)
-                  : const Color(0xFFB91C1C),
-              width: 3,
-            ),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black38,
-                blurRadius: 24,
-                offset: Offset(0, 12),
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(kindWon ? '🏆' : '🦊',
-                  style: const TextStyle(fontSize: 72)),
-              const SizedBox(height: 8),
-              Text(
-                kindWon ? '${winner.name} gewinnt!' : 'Lumo gewinnt diesmal!',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 28,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xFF7C2D12),
-                ),
-              ),
-              const SizedBox(height: 8),
-              if (kindWon && streak >= 2) ...[
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 14, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFCD34D).withOpacity(0.55),
-                    borderRadius: BorderRadius.circular(99),
-                    border: Border.all(
-                        color: const Color(0xFFCA8A04), width: 1.6),
-                  ),
-                  child: Text(
-                    'Streak x$streak! ${'🔥' * streak.clamp(1, 5)}',
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w900,
-                      color: Color(0xFF7C2D12),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-              ],
-              Text(
-                kindWon
-                    ? 'Du bekommst $reward Sterne!'
-                    : 'Du bekommst 1 Trost-Stern. Naechstes Mal du!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xFF7C2D12).withOpacity(0.85),
-                ),
-              ),
-              const SizedBox(height: 22),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FilledButton.icon(
-                    onPressed: () {
-                      _rewardGiven = false;
-                      _controller.restart();
-                    },
-                    icon: const Icon(Icons.replay_rounded),
-                    label: const Text('Nochmal',
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w900,
-                        )),
-                    style: FilledButton.styleFrom(
-                      backgroundColor: const Color(0xFF059669),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 14),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  OutlinedButton.icon(
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(Icons.exit_to_app_rounded),
-                    label: const Text('Zurueck',
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w900,
-                        )),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFF7C2D12),
-                      side: const BorderSide(
-                          color: Color(0xFF7C2D12), width: 1.6),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 14),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }
