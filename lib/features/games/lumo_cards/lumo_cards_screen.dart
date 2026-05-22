@@ -18,9 +18,12 @@ import '../../../app/app_state.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
-import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_action_button.dart';
+import 'widgets/lumo_avatar_picker.dart';
+import 'widgets/lumo_call_button.dart';
 import 'widgets/lumo_card_table.dart';
+import 'widgets/lumo_cards_score_header.dart';
+import 'widgets/lumo_color_arrows.dart';
 import 'widgets/lumo_color_picker.dart';
 import 'widgets/lumo_discard_pile.dart';
 import 'widgets/lumo_draw_pile.dart';
@@ -168,7 +171,21 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                     (c.maxHeight * 0.22).clamp(132.0, 172.0);
                 return Column(
                   children: [
-                    _buildTopBar(),
+                    // Score-Header: Logo + Round/Target + Emoji/Settings
+                    Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).padding.top + 4),
+                      child: LumoCardsScoreHeader(
+                        round: 1, // MVP: nur eine Runde aktiv
+                        totalRounds: 1,
+                        targetPoints: widget.appState.state.stars,
+                        onClose: () => Navigator.of(context).pop(),
+                        onSettings: () {
+                          _rewardGiven = false;
+                          _controller.restart();
+                        },
+                      ),
+                    ),
                     // ── Gegner-HUD oben: Avatar + Name + Karten-Anzahl +
                     //    Sterne, glueht wenn er dran ist. ──
                     // Im vsBot-Modus ist der Gegner Lumo (Fuchs-Emoji),
@@ -198,46 +215,51 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                     // restlichen Platz, kein Overflow moeglich.
                     Expanded(
                       child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            LumoDrawPile(
-                              cardsLeft: s.drawPile.length,
-                              onDraw: s.phase == GamePhase.playing
-                                  ? () => _controller.drawCard()
-                                  : null,
-                            ),
-                            const SizedBox(width: 24),
-                            // AnimatedSwitcher: jede neue Karte fliegt
-                            // mit kleinem Bounce zur Mitte. Trigger ueber
-                            // ValueKey(topCard.id).
-                            if (topCard != null)
-                              AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 360),
-                                transitionBuilder: (child, anim) {
-                                  return SlideTransition(
-                                    position: Tween<Offset>(
-                                      begin: const Offset(0, -0.6),
-                                      end: Offset.zero,
-                                    ).animate(CurvedAnimation(
-                                      parent: anim,
-                                      curve: Curves.easeOutBack,
-                                    )),
-                                    child: ScaleTransition(
-                                      scale: anim,
-                                      child: child,
+                        child: LumoColorArrows(
+                          activeColor: s.selectedColor,
+                          size: 320,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              LumoDrawPile(
+                                cardsLeft: s.drawPile.length,
+                                onDraw: s.phase == GamePhase.playing
+                                    ? () => _controller.drawCard()
+                                    : null,
+                              ),
+                              const SizedBox(width: 24),
+                              // AnimatedSwitcher: jede neue Karte fliegt
+                              // mit kleinem Bounce zur Mitte. Trigger ueber
+                              // ValueKey(topCard.id).
+                              if (topCard != null)
+                                AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 360),
+                                  transitionBuilder: (child, anim) {
+                                    return SlideTransition(
+                                      position: Tween<Offset>(
+                                        begin: const Offset(0, -0.6),
+                                        end: Offset.zero,
+                                      ).animate(CurvedAnimation(
+                                        parent: anim,
+                                        curve: Curves.easeOutBack,
+                                      )),
+                                      child: ScaleTransition(
+                                        scale: anim,
+                                        child: child,
+                                      ),
+                                    );
+                                  },
+                                  child: KeyedSubtree(
+                                    key: ValueKey(topCard.id),
+                                    child: LumoDiscardPile(
+                                      topCard: topCard,
+                                      selectedColor: s.selectedColor,
                                     ),
-                                  );
-                                },
-                                child: KeyedSubtree(
-                                  key: ValueKey(topCard.id),
-                                  child: LumoDiscardPile(
-                                    topCard: topCard,
-                                    selectedColor: s.selectedColor,
                                   ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -281,8 +303,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               question: s.pendingLearningQuestion!,
               onAnswer: _controller.answerLearningQuestion,
             ),
-          // Action-Button unten rechts + Hint-Bubble unten links
-          // (nur waehrend der Spielphase, nicht ueber den Overlays).
+          // Action-Button unten rechts. Wenn der Spieler nur noch 1-2
+          // Karten hat -> LUMO!-Button statt 'Karte ziehen'.
           if (_showActionUi(s))
             Positioned(
               right: 18,
@@ -290,7 +312,13 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               child: SafeArea(
                 top: false,
                 left: false,
-                child: LumoActionButton(
+                child: s.players[viewerIndex].hand.length <= 2
+                    ? LumoCallButton(
+                        cardsLeft: s.players[viewerIndex].hand.length,
+                        totalCards: 7,
+                        onPressed: _onLumoCall,
+                      )
+                    : LumoActionButton(
                   label: _actionLabel(s),
                   icon: _actionIcon(s),
                   enabled: _isMyTurnVisible(s),
@@ -386,6 +414,19 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     return (3 + (streak - 1)).clamp(3, 6);
   }
 
+  /// 'LUMO!'-Ruf wenn das Kind nur noch 1-2 Karten hat. Gibt einen
+  /// Bonus-Stern und zeigt Feedback. Eigene Lumo-Spielmechanik.
+  void _onLumoCall() {
+    widget.appState.addStars(1);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('LUMO! +1 Stern - bring jetzt die letzte Karte!'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Color(0xFFEF4444),
+      ),
+    );
+  }
+
   /// Sichtbar = Kind ist dran ODER 2-Mensch-Modus. Bei vsBot+Lumo-dran:
   /// wir verstecken die Hand und zeigen 'Lumo ueberlegt...'.
   bool _isMyTurnVisible(LumoCardsGameState s) {
@@ -439,48 +480,5 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     );
   }
 
-  Widget _buildTopBar() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(
-          8, MediaQuery.of(context).padding.top + 4, 16, 8),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
-      ),
-      child: Row(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.close_rounded, color: Colors.white),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Lumo Cards',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.refresh_rounded, color: Colors.white),
-            tooltip: 'Neu starten',
-            onPressed: () {
-              _rewardGiven = false;
-              _controller.restart();
-            },
-          ),
-        ],
-      ),
-    );
-  }
 
 }
