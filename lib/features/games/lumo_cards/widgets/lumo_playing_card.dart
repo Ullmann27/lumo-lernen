@@ -34,8 +34,8 @@ class LumoPlayingCard extends StatefulWidget {
   const LumoPlayingCard({
     super.key,
     required this.card,
-    this.width = 88,
-    this.height = 128,
+    this.width = 96,
+    this.height = 140,
     this.faceDown = false,
     this.playable = false,
     this.onTap,
@@ -54,67 +54,40 @@ class LumoPlayingCard extends StatefulWidget {
   State<LumoPlayingCard> createState() => _LumoPlayingCardState();
 }
 
-class _LumoPlayingCardState extends State<LumoPlayingCard>
-    with SingleTickerProviderStateMixin {
+class _LumoPlayingCardState extends State<LumoPlayingCard> {
+  // Heinz Crash 2026-05-22 Build 182: stabilitaets-Refactor.
+  // - kein dauerhafter AnimationController mehr (jeder LumoPlayingCard
+  //   hatte einen, 7+ Hand + 7+ Gegner + 1 Discard + 1 Draw = 16+ Tickers
+  //   gleichzeitig -> Memory-Pressure + Lifecycle-Risk).
+  // - kein Matrix4-Perspective mehr (komplexe Transform-Math + Layout-
+  //   Interaktion).
+  // - kein Holographic-Shimmer-Stack mehr.
+  // - kein AnimatedBuilder mit Pulse mehr.
+  // Press-Feedback laeuft jetzt ueber implicit AnimatedScale - ein einziger
+  // billiger Widget statt eines vollen AnimationControllers.
   bool _pressed = false;
-  late AnimationController _pulseCtrl;
-
-  @override
-  void initState() {
-    super.initState();
-    _pulseCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1800),
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _pulseCtrl.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final base = _baseColor(widget.card.color);
 
-    // 3D Tilt bei Press
-    final tiltX = _pressed ? -0.08 : 0.0;
-    final tiltY = _pressed ? 0.10 : 0.0;
-    final scale = _pressed ? 1.06 : 1.0;
-    final liftY = _pressed ? -6.0 : 0.0;
-
-    // Heinz Crash 2026-05-22 Build 180/181:
-    //  - Build 180: 'debugNeedsLayout' - SizedBox aussen fixt das durch
-    //    tight Constraints (Image.asset kann nach Decode keine Re-Layout-
-    //    Phase mehr triggern).
-    //  - Build 181: '_dependents.isEmpty' - RepaintBoundary entfernt, sie
-    //    kann mit Matrix4-Perspektive den Element-Lifecycle stoeren.
     return SizedBox(
       width: widget.width,
       height: widget.height,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        curve: Curves.easeOutCubic,
-        transform: Matrix4.identity()
-          ..setEntry(3, 2, 0.0015)
-          ..rotateX(tiltX)
-          ..rotateY(tiltY)
-          ..scale(scale),
-        transformAlignment: Alignment.center,
-        child: Transform.translate(
-          offset: Offset(0, liftY),
-          child: GestureDetector(
-            onTapDown: widget.onTap == null
-                ? null
-                : (_) => setState(() => _pressed = true),
-            onTapUp: widget.onTap == null
-                ? null
-                : (_) => setState(() => _pressed = false),
-            onTapCancel: () => setState(() => _pressed = false),
-            onTap: widget.onTap,
-            child: _build(base),
-          ),
+      child: GestureDetector(
+        onTapDown: widget.onTap == null
+            ? null
+            : (_) => setState(() => _pressed = true),
+        onTapUp: widget.onTap == null
+            ? null
+            : (_) => setState(() => _pressed = false),
+        onTapCancel: () => setState(() => _pressed = false),
+        onTap: widget.onTap,
+        child: AnimatedScale(
+          scale: _pressed ? 1.05 : 1.0,
+          duration: const Duration(milliseconds: 120),
+          curve: Curves.easeOut,
+          child: _build(base),
         ),
       ),
     );
@@ -136,54 +109,19 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
           children: [
             widget.faceDown ? _buildBack() : _buildFront(base),
 
-            // ── Holographic Shimmer ──
-            if (!widget.faceDown)
+            // Statischer Playable-Border (kein Pulse mehr - viel weniger
+            // Memory-Pressure als der vorherige AnimatedBuilder).
+            if (widget.playable && !widget.faceDown)
               IgnorePointer(
                 child: Container(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(-1.2, -1),
-                      end: const Alignment(1.2, 1),
-                      stops: const [0.0, 0.35, 0.5, 0.65, 1.0],
-                      colors: [
-                        Colors.white.withOpacity(0.0),
-                        Colors.white.withOpacity(0.0),
-                        Colors.white.withOpacity(0.16),
-                        Colors.white.withOpacity(0.0),
-                        Colors.white.withOpacity(0.0),
-                      ],
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: const Color(0xFFFFE08A),
+                      width: 3,
                     ),
                   ),
                 ),
-              ),
-
-            // ── Inner Glow fuer playable (pulsierend) ──
-            if (widget.playable && !widget.faceDown)
-              AnimatedBuilder(
-                animation: _pulseCtrl,
-                builder: (_, __) {
-                  final t = _pulseCtrl.value;
-                  return IgnorePointer(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: const Color(0xFFFFE08A)
-                              .withOpacity(0.55 + t * 0.35),
-                          width: 2.5,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFFFFC83D)
-                                .withOpacity(0.30 + t * 0.20),
-                            blurRadius: 12 + t * 6,
-                            spreadRadius: -3,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
               ),
 
             if (dimColor != null)
@@ -198,20 +136,14 @@ class _LumoPlayingCardState extends State<LumoPlayingCard>
     final lift = _pressed ? 1.0 : 0.0;
     return [
       BoxShadow(
-        color: base.withOpacity(0.18 + lift * 0.10),
-        blurRadius: 28 + lift * 12,
-        offset: Offset(0, 12 + lift * 8),
-        spreadRadius: -8,
-      ),
-      BoxShadow(
-        color: base.withOpacity(0.28 + lift * 0.15),
-        blurRadius: 14 + lift * 6,
+        color: base.withOpacity(0.20 + lift * 0.10),
+        blurRadius: 16 + lift * 8,
         offset: Offset(0, 6 + lift * 4),
-        spreadRadius: -2,
+        spreadRadius: -4,
       ),
       BoxShadow(
-        color: Colors.black.withOpacity(0.18),
-        blurRadius: 4,
+        color: Colors.black.withOpacity(0.20),
+        blurRadius: 3,
         offset: const Offset(0, 2),
         spreadRadius: -1,
       ),
