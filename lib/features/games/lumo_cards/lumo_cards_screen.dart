@@ -30,6 +30,7 @@ import 'widgets/lumo_draw_pile.dart';
 import 'widgets/lumo_hint_bubble.dart';
 import 'widgets/lumo_intro_splash.dart';
 import 'widgets/lumo_learning_card_overlay.dart';
+import 'widgets/lumo_opponent_hand.dart';
 import 'widgets/lumo_pass_device_overlay.dart';
 import 'widgets/lumo_player_hand.dart';
 import 'widgets/lumo_player_hud.dart';
@@ -157,67 +158,65 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       body: Stack(
         children: [
           // ── Hauptlayout ──
+          // Heinz 2026-05-22 Refactor Build 182:
+          //  - LayoutBuilder raus (war Komplexitaets-Quelle)
+          //  - Karten groesser (96x140 default)
+          //  - Hand-Hoehe fix 180 px
+          //  - Gegner-Hand-Fan oben sichtbar (Heinz: 'vom Gegner sollte
+          //    man auch sehen')
+          //  - Arena kleiner damit alles passt
           LumoCardTable(
             child: SafeArea(
-              child: LayoutBuilder(builder: (ctx, c) {
-                // Hand-Hoehe responsive: passt zu Karten-Hoehe 128 px +
-                // Schatten-Lift. Heinz Crash Build 180: vorher konnte
-                // handHeight bis 132 px schrumpfen -> 16 px Overflow im
-                // Hand-Bereich + ErrorWidget-Stack-Trace ueberlaeuft.
-                final handHeight =
-                    (c.maxHeight * 0.22).clamp(150.0, 176.0);
-                return Column(
-                  children: [
-                    // Score-Header: Logo + Round/Target + Emoji/Settings
-                    // SafeArea ist bereits Parent, daher kein zusaetzliches
-                    // MediaQuery-Padding noetig (Heinz Crash 2026-05-22:
-                    // doppeltes Top-Padding fuehrte zu Bottom-Overflow).
-                    LumoCardsScoreHeader(
-                        round: 1, // MVP: nur eine Runde aktiv
-                        totalRounds: 1,
-                        targetPoints: widget.appState.state.stars,
-                        onClose: () => Navigator.of(context).pop(),
-                        onSettings: () {
-                          _rewardGiven = false;
-                          _controller.restart();
-                        },
-                      ),
-                    // ── Gegner-HUD oben: Avatar + Name + Karten-Anzahl +
-                    //    Sterne, glueht wenn er dran ist. ──
-                    // Im vsBot-Modus ist der Gegner Lumo (Fuchs-Emoji),
-                    // im 2-Mensch-Modus bekommt Spieler 2 einen sauberen
-                    // Kind-Avatar (Heinz' Asset-Pack 2026-05-22).
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 4),
-                      child: LumoPlayerHud(
-                        name: oppPlayer.name,
-                        cardCount: oppPlayer.hand.length,
-                        stars: oppPlayer.stars,
-                        isActive: oppActive,
-                        compact: true,
-                        avatarAssetPath: widget.vsBot
-                            ? null
-                            : LumoCardsAssets.avatarRedGirl,
-                        ringColor: const Color(0xFF8B5CF6),
-                      ),
+              child: Column(
+                children: [
+                  LumoCardsScoreHeader(
+                    round: 1,
+                    totalRounds: 1,
+                    targetPoints: widget.appState.state.stars,
+                    onClose: () => Navigator.of(context).pop(),
+                    onSettings: () {
+                      _rewardGiven = false;
+                      _controller.restart();
+                    },
+                  ),
+                  // ── Gegner-HUD: Avatar + Name + Karten + Sterne ──
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 2),
+                    child: LumoPlayerHud(
+                      name: oppPlayer.name,
+                      cardCount: oppPlayer.hand.length,
+                      stars: oppPlayer.stars,
+                      isActive: oppActive,
+                      compact: true,
+                      avatarAssetPath: widget.vsBot
+                          ? null
+                          : LumoCardsAssets.avatarRedGirl,
+                      ringColor: const Color(0xFF8B5CF6),
                     ),
-                    LumoTurnBanner(
-                      currentPlayerName: current.name,
-                      message: s.lastActionMessage ?? '',
-                      isMyTurn: s.currentPlayerIndex == viewerIndex &&
-                          s.phase == GamePhase.playing,
-                    ),
-                    // Mitte: Piles - der Expanded sorgt fuer den
-                    // restlichen Platz, kein Overflow moeglich.
-                    // Heinz Crash 2026-05-22: AnimatedSwitcher um den
-                    // Discard-Pile + FittedBox in LumoColorArrows hat eine
-                    // 'debugNeedsLayout' Layout-Cycle-Assertion ausgeloest.
-                    // Wir zeigen den Discard jetzt direkt ohne Switcher.
-                    Expanded(
+                  ),
+                  // ── Gegner-Hand-Fan: verdeckte Karten-Rueckseiten ──
+                  // (Heinz Wunsch: 'vom Gegner sollte man auch sehen')
+                  LumoOpponentHand(
+                    cardCount: oppPlayer.hand.length,
+                    cardWidth: 50,
+                    cardHeight: 70,
+                  ),
+                  LumoTurnBanner(
+                    currentPlayerName: current.name,
+                    message: s.lastActionMessage ?? '',
+                    isMyTurn: s.currentPlayerIndex == viewerIndex &&
+                        s.phase == GamePhase.playing,
+                  ),
+                  // Mitte: Piles in der Arena. ClipRect schuetzt vor
+                  // Overflow auf kleinen Handys (Arena ist 230 px square,
+                  // bei wenig vertikalem Platz wird der untere/obere Pfeil
+                  // geclippt - kein Crash, nur visuell etwas knapp).
+                  Expanded(
+                    child: ClipRect(
                       child: Center(
                         child: LumoColorArrows(
                           activeColor: s.selectedColor,
-                          size: 220,
+                          size: 230,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
@@ -228,7 +227,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                     ? () => _controller.drawCard()
                                     : null,
                               ),
-                              const SizedBox(width: 20),
+                              const SizedBox(width: 16),
                               if (topCard != null)
                                 LumoDiscardPile(
                                   topCard: topCard,
@@ -239,27 +238,25 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                         ),
                       ),
                     ),
-                    // Hand am Boden - im vsBot-Modus zeigen wir IMMER
-                    // die Hand des Kindes (Spieler 1), auch wenn Lumo
-                    // gerade dran ist. Sonst wuerde das Kind die
-                    // Geheim-Karten von Lumo sehen.
-                    if (topCard != null)
-                      _isMyTurnVisible(s)
-                          ? LumoPlayerHand(
-                              cards: widget.vsBot
-                                  ? s.players[0].hand
-                                  : current.hand,
-                              topCard: topCard,
-                              selectedColor: s.selectedColor,
-                              onCardTap: widget.vsBot && s.currentPlayerIndex != 0
-                                  ? (_) {}
-                                  : (card) => _controller.playCard(card),
-                              height: handHeight,
-                            )
-                          : _buildLumoThinking(handHeight),
-                  ],
-                );
-              }),
+                  ),
+                  // Hand am Boden - im vsBot-Modus immer die Hand des
+                  // Kindes (Spieler 1), egal wer dran ist.
+                  if (topCard != null)
+                    _isMyTurnVisible(s)
+                        ? LumoPlayerHand(
+                            cards: widget.vsBot
+                                ? s.players[0].hand
+                                : current.hand,
+                            topCard: topCard,
+                            selectedColor: s.selectedColor,
+                            onCardTap: widget.vsBot && s.currentPlayerIndex != 0
+                                ? (_) {}
+                                : (card) => _controller.playCard(card),
+                            height: 180,
+                          )
+                        : _buildLumoThinking(180),
+                ],
+              ),
             ),
           ),
           // ── Overlays ÜBER der SafeArea ──
