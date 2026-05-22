@@ -77,13 +77,13 @@ class LumoDiscardPile extends StatelessWidget {
   static Color _colorOf(LumoCardColor c) {
     switch (c) {
       case LumoCardColor.orange:
-        return const Color(0xFFFF7A2F);
+        return const Color(0xFFFF4D4F); // Rot
       case LumoCardColor.purple:
-        return const Color(0xFF7C3AED);
+        return const Color(0xFFFFC83D); // Gelb
       case LumoCardColor.blue:
-        return const Color(0xFF2563EB);
+        return const Color(0xFF2D7BFF); // Blau
       case LumoCardColor.green:
-        return const Color(0xFF059669);
+        return const Color(0xFF35C759); // Gruen
     }
   }
 
