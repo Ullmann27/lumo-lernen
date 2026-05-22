@@ -23,6 +23,7 @@ import 'widgets/lumo_draw_pile.dart';
 import 'widgets/lumo_learning_card_overlay.dart';
 import 'widgets/lumo_pass_device_overlay.dart';
 import 'widgets/lumo_player_hand.dart';
+import 'widgets/lumo_player_hud.dart';
 import 'widgets/lumo_turn_banner.dart';
 
 class LumoCardsScreen extends StatefulWidget {
@@ -86,6 +87,14 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     final opponent = s.otherPlayer;
     final topCard = s.topCard;
 
+    // Fixe Sicht-Perspektive fuer die HUDs: im Bot-Modus sieht das Kind
+    // (Spieler 0) immer von unten; der Gegner (Lumo) ist oben. Im Pass-
+    // and-Play ist der aktive Spieler der Betrachter.
+    final viewerIndex = widget.vsBot ? 0 : s.currentPlayerIndex;
+    final oppIndex = 1 - viewerIndex;
+    final oppPlayer = s.players[oppIndex];
+    final oppActive = s.currentPlayerIndex == oppIndex;
+
     // Heinz Bug 2026-05-21: Hand wurde nicht angezeigt + Layout-Overflow.
     // Loesung: LayoutBuilder fuer responsive Hoehen + Stack wo das Pass-
     // Overlay GARANTIERT ueber allem liegt (auch ueber der SafeArea).
@@ -103,6 +112,19 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 return Column(
                   children: [
                     _buildTopBar(),
+                    // ── Gegner-HUD oben (Mockup Bild 3): Avatar + Name +
+                    //    Karten-Anzahl + Sterne, glueht wenn er dran ist. ──
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: LumoPlayerHud(
+                        name: oppPlayer.name,
+                        cardCount: oppPlayer.hand.length,
+                        stars: oppPlayer.stars,
+                        isActive: oppActive,
+                        compact: true,
+                        ringColor: const Color(0xFF8B5CF6),
+                      ),
+                    ),
                     LumoTurnBanner(
                       currentPlayerName: current.name,
                       message: s.lastActionMessage ?? '',
