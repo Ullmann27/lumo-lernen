@@ -54,14 +54,17 @@ class LumoPlayerHand extends StatelessWidget {
     // ueberlappen damit sie alle reinpassen, sonst nur leicht.
     final double overlap = cards.length > 8 ? -36.0 : -16.0;
 
-    // Heinz Crash 2026-05-22 Build 180: BOTTOM OVERFLOWED BY 97 PIXELS
-    // im Hand-Bereich. Karten sind 128 px hoch, mit vorherigem
-    // vertical:10 Padding brauchten sie 148 px - bei handHeight=132 ergab
-    // das 16 px Overflow. Plus: das Karten-Pulsieren liess Flutter neu
-    // layoutieren -> debugNeedsLayout-Assertion.
-    // Fix: vertikales Padding raus (Karten haben eh schon Schatten-Lift),
-    // horizontales Scrollen ohne Hoehen-Padding. Plus ClipRect drumherum
-    // gegen versehentliches Overflow-Reporting in Release-Builds.
+    // Heinz Crash 2026-05-22: 'padding.isNonNegative is not true'.
+    // Ursache: EdgeInsets.only(left: overlap) mit NEGATIVEM overlap zum
+    // Ueberlappen. Negatives Padding ist in Flutter verboten.
+    // Fix: Stack + Positioned mit fester Gesamtbreite. Karten ueberlappen
+    // sauber ueber left-Offset (step = Kartenbreite + overlap), kein
+    // negatives Padding mehr. Vertikal zentriert via top/bottom + Center.
+    const double cardW = 96.0;
+    final double step = cardW + overlap; // overlap negativ -> step < cardW
+    final double totalW =
+        cards.isEmpty ? 0 : (cards.length - 1) * step + cardW;
+
     return SizedBox(
       height: height,
       child: ClipRect(
@@ -69,22 +72,26 @@ class LumoPlayerHand extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: 18),
           physics: const BouncingScrollPhysics(),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (int i = 0; i < cards.length; i++)
-                Padding(
-                  // Heinz Crash 2026-05-22 Build 181: ValueKey pro Karten-ID
-                  // verhindert dass Flutter beim Hand-Mutate (Ziehen/Legen)
-                  // die State eines weggefallenen LumoPlayingCard wieder-
-                  // verwendet -> Element-Lifecycle bleibt sauber, keine
-                  // _dependents.isEmpty-Assertion mehr.
-                  key: ValueKey('hand-${cards[i].id}'),
-                  padding: EdgeInsets.only(left: i == 0 ? 0 : overlap),
-                  child: _buildHandCard(cards[i]),
-                ),
-            ],
+          child: SizedBox(
+            width: totalW,
+            height: height,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                for (int i = 0; i < cards.length; i++)
+                  Positioned(
+                    left: i * step,
+                    top: 0,
+                    bottom: 0,
+                    child: Center(
+                      child: KeyedSubtree(
+                        key: ValueKey('hand-${cards[i].id}'),
+                        child: _buildHandCard(cards[i]),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),

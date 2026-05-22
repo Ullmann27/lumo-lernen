@@ -35,23 +35,39 @@ class LumoOpponentHand extends StatelessWidget {
     final overlap = visible > 5 ? -28.0 : -14.0;
     final dummyCard = _dummyCard;
 
+    // Heinz Crash 2026-05-22: negatives Padding (overlap) ist verboten.
+    // Fix: Stack + Positioned mit fester Breite fuer die ueberlappenden
+    // verdeckten Karten. Der "+N"-Badge bleibt rechts daneben.
+    final double step = cardWidth + overlap; // overlap negativ
+    final double stackW = visible <= 0 ? 0 : (visible - 1) * step + cardWidth;
+
     return SizedBox(
       height: cardHeight + 8,
       child: Center(
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            for (int i = 0; i < visible; i++)
-              Padding(
-                key: ValueKey('opp-$i'),
-                padding: EdgeInsets.only(left: i == 0 ? 0 : overlap),
-                child: LumoPlayingCard(
-                  card: dummyCard,
-                  faceDown: true,
-                  width: cardWidth,
-                  height: cardHeight,
-                ),
+            SizedBox(
+              width: stackW,
+              height: cardHeight,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  for (int i = 0; i < visible; i++)
+                    Positioned(
+                      left: i * step,
+                      top: 0,
+                      child: LumoPlayingCard(
+                        key: ValueKey('opp-$i'),
+                        card: dummyCard,
+                        faceDown: true,
+                        width: cardWidth,
+                        height: cardHeight,
+                      ),
+                    ),
+                ],
               ),
+            ),
             if (extra > 0) ...[
               const SizedBox(width: 6),
               Container(

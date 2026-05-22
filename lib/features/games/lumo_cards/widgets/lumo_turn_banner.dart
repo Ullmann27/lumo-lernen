@@ -80,7 +80,9 @@ class LumoTurnBanner extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '$currentPlayerName ist dran',
+                          currentPlayerName == 'Du'
+                              ? 'Du bist dran'
+                              : '$currentPlayerName ist dran',
                           style: const TextStyle(
                             fontFamily: 'Nunito',
                             fontSize: 13,
