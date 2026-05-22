@@ -23,6 +23,7 @@ class LumoPlayerHud extends StatefulWidget {
     this.isActive = false,
     this.compact = false,
     this.avatarEmoji = '🦊',
+    this.avatarAssetPath,
     this.ringColor = const Color(0xFFFF7A2F),
   });
 
@@ -41,8 +42,14 @@ class LumoPlayerHud extends StatefulWidget {
   /// Kompakt fuer Gegner-Plaetze (kleinere Groessen).
   final bool compact;
 
-  /// Avatar-Emoji (Default Fuchs).
+  /// Avatar-Emoji (Default Fuchs). Wird nur verwendet wenn
+  /// `avatarAssetPath` null ist.
   final String avatarEmoji;
+
+  /// Pfad zu einem sauberen Avatar-PNG (Heinz' Pack, 2026-05-22).
+  /// Wenn gesetzt: ueberschreibt das Emoji. Bild wird kreisfoermig
+  /// geclippt und in den Avatar-Rahmen eingebettet.
+  final String? avatarAssetPath;
 
   /// Farbe des Avatar-Rings.
   final Color ringColor;
@@ -120,11 +127,29 @@ class _LumoPlayerHudState extends State<LumoPlayerHud>
               child: child,
             );
           },
-          child: Center(
-            child: Text(
-              widget.avatarEmoji,
-              style: TextStyle(fontSize: widget.compact ? 22 : 28),
-            ),
+          child: ClipOval(
+            child: widget.avatarAssetPath != null
+                ? Image.asset(
+                    widget.avatarAssetPath!,
+                    width: avatarSize,
+                    height: avatarSize,
+                    fit: BoxFit.cover,
+                    // Fallback wenn das PNG fehlen sollte (z.B. neuer
+                    // Build vor 'flutter pub get'): zeige den Emoji.
+                    errorBuilder: (_, __, ___) => Center(
+                      child: Text(
+                        widget.avatarEmoji,
+                        style:
+                            TextStyle(fontSize: widget.compact ? 22 : 28),
+                      ),
+                    ),
+                  )
+                : Center(
+                    child: Text(
+                      widget.avatarEmoji,
+                      style: TextStyle(fontSize: widget.compact ? 22 : 28),
+                    ),
+                  ),
           ),
         ),
         const SizedBox(height: 5),
