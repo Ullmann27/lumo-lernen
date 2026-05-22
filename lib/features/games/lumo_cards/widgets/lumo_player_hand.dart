@@ -75,6 +75,12 @@ class LumoPlayerHand extends StatelessWidget {
             children: [
               for (int i = 0; i < cards.length; i++)
                 Padding(
+                  // Heinz Crash 2026-05-22 Build 181: ValueKey pro Karten-ID
+                  // verhindert dass Flutter beim Hand-Mutate (Ziehen/Legen)
+                  // die State eines weggefallenen LumoPlayingCard wieder-
+                  // verwendet -> Element-Lifecycle bleibt sauber, keine
+                  // _dependents.isEmpty-Assertion mehr.
+                  key: ValueKey('hand-${cards[i].id}'),
                   padding: EdgeInsets.only(left: i == 0 ? 0 : overlap),
                   child: _buildHandCard(cards[i]),
                 ),
