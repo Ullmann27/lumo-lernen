@@ -13,11 +13,12 @@ enum LumoCardColor { orange, purple, blue, green }
 /// Kartentypen. `number` hat eine Zahl, alle anderen sind Spezialkarten.
 enum LumoCardType {
   number,
-  lumoJump,    // Gegner setzt aus, aktueller darf nochmal
-  starRain,    // Gegner zieht 2 Karten
-  colorMagic,  // Spieler waehlt neue Farbe (Wild)
-  whirlwind,   // 2P-angepasst: Gegner zieht 1 Karte
-  thinkPause,  // Oeffnet eine kleine Lernfrage
+  lumoJump,      // Skip - Gegner setzt aus
+  starRain,      // Draw 2 - Gegner zieht 2
+  colorMagic,    // Wild - Spieler waehlt neue Farbe
+  superRain,     // Wild Draw 4 - Gegner zieht 4 + Spieler waehlt Farbe
+  whirlwind,     // Reverse - bei 2P aequivalent zu Skip / Draw 1
+  thinkPause,    // Lumo-USP - Lernfrage oeffnet sich
 }
 
 /// Spielphasen - steuern was die UI gerade zeigt.
@@ -57,7 +58,8 @@ class LumoCard {
   bool get isSpecial => type != LumoCardType.number;
 
   /// 'Wild'-Karte (jede Farbe legbar).
-  bool get isWild => type == LumoCardType.colorMagic;
+  bool get isWild =>
+      type == LumoCardType.colorMagic || type == LumoCardType.superRain;
 
   @override
   String toString() {

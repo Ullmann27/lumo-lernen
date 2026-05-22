@@ -24,15 +24,19 @@ const List<String> _decoSymbols = [
 class LumoCardsDeck {
   /// Baut ein komplettes Lumo-Cards-Deck.
   ///
-  /// Aufbau (insgesamt 76 Karten):
-  ///   - 4 Farben × Zahlen 1..9 zweimal = 4 × 18 = 72 Zahlenkarten
-  ///   - colorMagic 4× (eine je Farbe als Default-Anzeige)
+  /// Aufbau (insgesamt 112 Karten):
+  ///   Pro Farbe (4 Farben):
+  ///     - 1× 0er
+  ///     - 2× von 1 bis 9 = 18 Karten
+  ///     - 2× lumoJump (Skip)
+  ///     - 2× starRain (Draw 2)
+  ///     - 2× whirlwind (Reverse / bei 2P: Draw 1)
+  ///     - 1× thinkPause (Lumo-USP: Lernfrage)
+  ///   Schwarz (Wild):
+  ///     - 4× colorMagic (Wild - Farbe waehlen)
+  ///     - 4× superRain (Wild Draw 4 - Gegner zieht 4 + Farbe waehlen)
   ///
-  /// Wir lassen Lumo-Sprung, Sternenregen, Wirbelwind und Denkpause
-  /// jeweils pro Farbe 1× zu - insgesamt also +16 Spezialkarten -> 92.
-  ///
-  /// Hinweis: das ist BEWUSST kleiner als das volle Mattel-UNO-Deck und
-  /// hat andere Karten-Verteilung. Eigenes Lumo-Spiel.
+  /// Total pro Farbe: 26, x4 = 104, plus 8 schwarz = 112.
   static List<LumoCard> buildDeck({Random? rng}) {
     final cards = <LumoCard>[];
     var idCounter = 0;
@@ -40,7 +44,15 @@ class LumoCardsDeck {
     String pickSymbol(int i) => _decoSymbols[i % _decoSymbols.length];
 
     for (final color in LumoCardColor.values) {
-      // Zahlenkarten 1..9 jeweils zweimal.
+      // 1× 0er-Karte
+      cards.add(LumoCard(
+        id: nextId('num'),
+        color: color,
+        type: LumoCardType.number,
+        number: 0,
+        symbol: pickSymbol(0),
+      ));
+      // 2× Zahlen 1..9
       for (int n = 1; n <= 9; n++) {
         cards.add(LumoCard(
           id: nextId('num'),
@@ -57,20 +69,33 @@ class LumoCardsDeck {
           symbol: pickSymbol(n + 1),
         ));
       }
-      // Spezialkarten je Farbe einmal.
+      // 2× Skip / Draw 2 / Reverse
+      for (int i = 0; i < 2; i++) {
+        cards
+          ..add(LumoCard(
+              id: nextId('jump'), color: color, type: LumoCardType.lumoJump))
+          ..add(LumoCard(
+              id: nextId('rain'), color: color, type: LumoCardType.starRain))
+          ..add(LumoCard(
+              id: nextId('wind'), color: color, type: LumoCardType.whirlwind));
+      }
+      // 1× Lumo-USP: Denkpause
+      cards.add(LumoCard(
+          id: nextId('think'), color: color, type: LumoCardType.thinkPause));
+    }
+    // 4× Wild (colorMagic) und 4× Wild Draw 4 (superRain) - "schwarze"
+    // Karten, color hier nur als Default fuer das Sortieren; visuell
+    // schwarz mit 4 Quadranten.
+    for (int i = 0; i < 4; i++) {
       cards
         ..add(LumoCard(
-            id: nextId('jump'), color: color, type: LumoCardType.lumoJump))
+            id: nextId('wild'),
+            color: LumoCardColor.orange, // Wert egal, Karte ist Wild
+            type: LumoCardType.colorMagic))
         ..add(LumoCard(
-            id: nextId('rain'), color: color, type: LumoCardType.starRain))
-        ..add(LumoCard(
-            id: nextId('wind'), color: color, type: LumoCardType.whirlwind))
-        ..add(LumoCard(
-            id: nextId('think'), color: color, type: LumoCardType.thinkPause));
-      // Farbzauber-Karte (Wild) je Farbe als Default-Anzeige - bei Wahl
-      // setzt der Spieler die neue selectedColor.
-      cards.add(LumoCard(
-          id: nextId('wild'), color: color, type: LumoCardType.colorMagic));
+            id: nextId('super'),
+            color: LumoCardColor.orange,
+            type: LumoCardType.superRain));
     }
 
     final r = rng ?? Random();
