@@ -14,6 +14,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_state.dart';
+import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
 import 'widgets/lumo_action_button.dart';
@@ -115,8 +116,11 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 return Column(
                   children: [
                     _buildTopBar(),
-                    // ── Gegner-HUD oben (Mockup Bild 3): Avatar + Name +
-                    //    Karten-Anzahl + Sterne, glueht wenn er dran ist. ──
+                    // ── Gegner-HUD oben: Avatar + Name + Karten-Anzahl +
+                    //    Sterne, glueht wenn er dran ist. ──
+                    // Im vsBot-Modus ist der Gegner Lumo (Fuchs-Emoji),
+                    // im 2-Mensch-Modus bekommt Spieler 2 einen sauberen
+                    // Kind-Avatar (Heinz' Asset-Pack 2026-05-22).
                     Padding(
                       padding: const EdgeInsets.only(bottom: 4),
                       child: LumoPlayerHud(
@@ -125,6 +129,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                         stars: oppPlayer.stars,
                         isActive: oppActive,
                         compact: true,
+                        avatarAssetPath: widget.vsBot
+                            ? null
+                            : LumoCardsAssets.avatarRedGirl,
                         ringColor: const Color(0xFF8B5CF6),
                       ),
                     ),
