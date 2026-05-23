@@ -113,12 +113,39 @@ class LumoApp extends StatefulWidget {
 class _LumoAppState extends State<LumoApp> {
   final _repo = ProfileRepository();
   bool _loading = true;
+  bool _warmedCache = false;
   UserProfile? _profile;
 
   @override
   void initState() {
     super.initState();
     _load();
+    // Tier 1 Foundation 2026-05-23: Hot-Path Assets vorzeitig dekodieren.
+    // Wenn das Kind ins Spiel geht sind die Bilder schon im Bild-Cache
+    // -> kein Hitch beim ersten Render, weicher Uebergang.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _warmAssetCache());
+  }
+
+  Future<void> _warmAssetCache() async {
+    if (_warmedCache || !mounted) return;
+    _warmedCache = true;
+    // Diese Assets werden in fast jedem Screen geladen - Vorab-Dekodieren
+    // verhindert sichtbare Lade-Sprünge beim ersten Anzeigen.
+    const hotPaths = <String>[
+      'assets/lumo_cards/cards/back/card_back_default.png',
+      'assets/lumo_cards/avatars/avatar_player_blue_boy.png',
+      'assets/lumo_cards/avatars/avatar_player_red_girl.png',
+      'assets/lumo_cards/avatars/avatar_player_green_boy_glasses.png',
+      'assets/lumo_cards/avatars/avatar_player_yellow_girl_headphones.png',
+    ];
+    for (final path in hotPaths) {
+      if (!mounted) return;
+      try {
+        await precacheImage(AssetImage(path), context);
+      } catch (_) {
+        // Fehlendes Asset darf den App-Start nicht stoeren.
+      }
+    }
   }
 
   Future<void> _load() async {

@@ -71,7 +71,11 @@ class LumoPlayerHand extends StatelessWidget {
     final int n = cards.length;
     final double mid = (n - 1) / 2.0;
 
-    return SizedBox(
+    // Tier 1 Foundation 2026-05-23: RepaintBoundary isoliert die
+    // permanente Karten-Pulse-Animation (jede playable-Karte) und das
+    // Faecher-Layout vom Rest des Spielfelds.
+    return RepaintBoundary(
+      child: SizedBox(
       height: height,
       child: ClipRect(
         child: SingleChildScrollView(
@@ -109,6 +113,7 @@ class LumoPlayerHand extends StatelessWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

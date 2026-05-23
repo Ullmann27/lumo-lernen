@@ -134,6 +134,11 @@ class _LumoPlayerHudState extends State<LumoPlayerHud>
                     width: avatarSize,
                     height: avatarSize,
                     fit: BoxFit.cover,
+                    // Tier 1 Foundation 2026-05-23: Decode-Cap auf 3x
+                    // Display-Groesse (avatar ist 42-54 px - 162 deckt
+                    // High-DPI bis ~3.0 DPR).
+                    cacheWidth: 162,
+                    cacheHeight: 162,
                     // Fallback wenn das PNG fehlen sollte (z.B. neuer
                     // Build vor 'flutter pub get'): zeige den Emoji.
                     errorBuilder: (_, __, ___) => Center(
