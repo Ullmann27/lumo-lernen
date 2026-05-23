@@ -30,6 +30,9 @@ enum GamePhase {
   gameOver,
 }
 
+/// Spieler-Typ: echtes Kind vs. KI-Bot.
+enum LumoPlayerKind { human, bot }
+
 /// Eine einzelne Karte.
 ///
 /// Bei `colorMagic` ist `color` der Default-Anzeigewert (z.B. orange) -
@@ -75,13 +78,16 @@ class LumoCard {
   int get hashCode => id.hashCode;
 }
 
-/// Ein Spieler. Im MVP genau zwei Spieler (Pass-and-Play).
+/// Ein Spieler. 2-4 Spieler unterstuetzt.
 class LumoPlayer {
   const LumoPlayer({
     required this.id,
     required this.name,
     required this.hand,
     this.stars = 0,
+    this.score = 0,
+    this.kind = LumoPlayerKind.human,
+    this.avatarAssetPath,
   });
 
   final String id;
@@ -89,16 +95,39 @@ class LumoPlayer {
   final List<LumoCard> hand;
   final int stars;
 
-  LumoPlayer copyWith({List<LumoCard>? hand, int? stars}) => LumoPlayer(
+  /// Gesamtpunkte ueber mehrere Runden (Heinz Mockup 'Round 3/10 Target 100').
+  final int score;
+
+  /// Mensch oder Bot? Bots werden vom Controller automatisch gesteuert.
+  final LumoPlayerKind kind;
+
+  /// Optionaler Avatar-PNG-Pfad. Wenn null wird ein generisches Emoji
+  /// (Fuchs fuer Bot) verwendet.
+  final String? avatarAssetPath;
+
+  bool get isBot => kind == LumoPlayerKind.bot;
+
+  LumoPlayer copyWith({
+    List<LumoCard>? hand,
+    int? stars,
+    int? score,
+  }) =>
+      LumoPlayer(
         id: id,
         name: name,
         hand: hand ?? this.hand,
         stars: stars ?? this.stars,
+        score: score ?? this.score,
+        kind: kind,
+        avatarAssetPath: avatarAssetPath,
       );
 }
 
 /// Komplettes Spielzustand. Immutable - jeder `applyMove` gibt einen neuen
 /// State zurueck. Erleichtert das Testen und Undo (falls spaeter).
+///
+/// 2-4 Spieler werden unterstuetzt. `direction` steuert die Rotations-
+/// richtung (1 = im Uhrzeigersinn, -1 = gegen). Reverse-Karte flippt.
 class LumoCardsGameState {
   const LumoCardsGameState({
     required this.players,
@@ -107,6 +136,7 @@ class LumoCardsGameState {
     required this.discardPile,
     required this.selectedColor,
     required this.phase,
+    this.direction = 1,
     this.winnerIndex,
     this.lastActionMessage,
     this.pendingLearningQuestion,
@@ -116,6 +146,11 @@ class LumoCardsGameState {
   final int currentPlayerIndex;
   final List<LumoCard> drawPile;
   final List<LumoCard> discardPile;
+
+  /// Rotationsrichtung: +1 normal, -1 nach Reverse.
+  /// Bei 2 Spielern verhaelt sich Reverse aequivalent zu Skip (der Zug
+  /// kommt sofort zurueck).
+  final int direction;
 
   /// Die aktuell 'gueltige' Farbe. Normalerweise = topCard.color, nach
   /// einer Farbzauber-Karte aber die vom Spieler gewaehlte Farbe.
@@ -127,7 +162,6 @@ class LumoCardsGameState {
   final int? winnerIndex;
 
   /// Letzte Aktion als kurzer Text fuer den Turn-Banner.
-  /// z.B. 'Sternenregen! Zoey zieht 2 Karten.'
   final String? lastActionMessage;
 
   /// Nur gesetzt wenn phase == learningQuestion.
@@ -135,7 +169,20 @@ class LumoCardsGameState {
 
   LumoCard? get topCard => discardPile.isEmpty ? null : discardPile.last;
   LumoPlayer get currentPlayer => players[currentPlayerIndex];
-  LumoPlayer get otherPlayer => players[1 - currentPlayerIndex];
+
+  /// Naechster Spieler in der aktuellen Richtung (modulo Spieleranzahl).
+  int nextPlayerIndex([int steps = 1]) {
+    final n = players.length;
+    return (currentPlayerIndex + steps * direction + n * 4) % n;
+  }
+
+  LumoPlayer get nextPlayer => players[nextPlayerIndex()];
+
+  /// Backwards-compat fuer 2-Spieler-Modus: bei 2 Spielern ist der
+  /// "andere" Spieler immer der naechste. Bei 3-4 Spielern ist es der
+  /// naechste in Richtung - was meistens auch das ist was die +2/+4-
+  /// Effekte treffen sollen.
+  LumoPlayer get otherPlayer => nextPlayer;
 
   LumoCardsGameState copyWith({
     List<LumoPlayer>? players,
@@ -144,6 +191,7 @@ class LumoCardsGameState {
     List<LumoCard>? discardPile,
     LumoCardColor? selectedColor,
     GamePhase? phase,
+    int? direction,
     int? winnerIndex,
     String? lastActionMessage,
     Object? pendingLearningQuestion = _sentinel,
@@ -155,6 +203,7 @@ class LumoCardsGameState {
         discardPile: discardPile ?? this.discardPile,
         selectedColor: selectedColor ?? this.selectedColor,
         phase: phase ?? this.phase,
+        direction: direction ?? this.direction,
         winnerIndex: winnerIndex ?? this.winnerIndex,
         lastActionMessage: lastActionMessage ?? this.lastActionMessage,
         pendingLearningQuestion: pendingLearningQuestion == _sentinel
