@@ -177,13 +177,19 @@ class _LumoPlayerHudState extends State<LumoPlayerHud>
         const SizedBox(height: 4),
 
         // ── Badges: Karten-Anzahl + optional Sterne ──
+        // Heinz 2026-05-22: warnt rot wenn der Gegner nur noch 1-2 Karten
+        // hat - Spannung sichtbar machen.
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             _badge(
               icon: Icons.style_rounded,
               label: '${widget.cardCount}',
-              bg: Colors.black.withOpacity(0.32),
+              bg: widget.cardCount <= 1
+                  ? const Color(0xFFDC2626) // satter Rot-Alarm
+                  : widget.cardCount <= 2
+                      ? const Color(0xFFEA580C) // Orange-Warnung
+                      : Colors.black.withOpacity(0.32),
               fg: Colors.white,
             ),
             if (widget.stars > 0) ...[
