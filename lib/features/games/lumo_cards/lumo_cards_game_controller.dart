@@ -16,6 +16,7 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
+import '../../../core/lumo_sound.dart';
 import '../../../core/lumo_voice.dart';
 import 'lumo_cards_deck.dart';
 import 'lumo_cards_models.dart';
@@ -121,6 +122,7 @@ class LumoCardsGameController extends ChangeNotifier {
     if (identical(next, _state)) return;
     _state = next;
     _speakForLastAction(playedByPlayer1: wasPlayer1, card: card);
+    _playSfxForPlay(card, next);
     notifyListeners();
     _maybeRunBotTurn();
   }
@@ -135,8 +137,35 @@ class LumoCardsGameController extends ChangeNotifier {
     );
     _state = next;
     _speak(wasPlayer1 ? 'Du ziehst eine Karte.' : 'Lumo zieht eine Karte.');
+    LumoSound.instance.play(SoundEffect.cardDraw);
     notifyListeners();
     _maybeRunBotTurn();
+  }
+
+  /// Tier 3 Audio 2026-05-23: spielt den passenden SFX nachdem eine Karte
+  /// gelegt wurde. Bei +2/+4 ueberlagert sich der Karten-Whoosh mit dem
+  /// Storm-Effekt. Bei Spiel-Ende kommt zusaetzlich win/lose.
+  void _playSfxForPlay(LumoCard card, LumoCardsGameState next) {
+    switch (card.type) {
+      case LumoCardType.starRain:
+        LumoSound.instance.play(SoundEffect.plus2);
+        break;
+      case LumoCardType.superRain:
+        LumoSound.instance.play(SoundEffect.plus4);
+        break;
+      case LumoCardType.number:
+      case LumoCardType.lumoJump:
+      case LumoCardType.colorMagic:
+      case LumoCardType.whirlwind:
+      case LumoCardType.thinkPause:
+        LumoSound.instance.play(SoundEffect.cardPlay);
+        break;
+    }
+    if (next.phase == GamePhase.gameOver) {
+      LumoSound.instance.play(
+        next.winnerIndex == 0 ? SoundEffect.win : SoundEffect.lose,
+      );
+    }
   }
 
   /// Nach Farbzauber: Farbe waehlen.
@@ -277,6 +306,7 @@ class LumoCardsGameController extends ChangeNotifier {
         rng: _rng,
       );
       _speakForLastAction(playedByPlayer1: false, card: best);
+      _playSfxForPlay(best, _state);
       notifyListeners();
       _maybeRunBotTurn();
     } else {
@@ -286,6 +316,7 @@ class LumoCardsGameController extends ChangeNotifier {
         playIfPossible: true,
       );
       _speak('Lumo zieht eine Karte.');
+      LumoSound.instance.play(SoundEffect.cardDraw);
       notifyListeners();
       _maybeRunBotTurn();
     }
