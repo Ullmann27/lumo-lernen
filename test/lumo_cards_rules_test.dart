@@ -376,4 +376,316 @@ void main() {
       expect(next.currentPlayerIndex, 1);
     });
   });
+
+  // ════════════════════════════════════════════════════════════════════
+  // N-Spieler-Regeln (3 + 4 Spieler)
+  // ════════════════════════════════════════════════════════════════════
+  // Heinz 2026-05-22 'cleverer + 4 Spieler'. Die 2-Spieler-Tests oben
+  // bleiben grün, weil applyPlay in jedem Special-Card-Handler bei
+  // `players.length == 2` den alten Branch nimmt.
+
+  LumoCardsGameState stateN({
+    required List<List<LumoCard>> hands,
+    required List<LumoCard> draw,
+    required LumoCard top,
+    int currentIdx = 0,
+    int direction = 1,
+    LumoCardColor? selected,
+    GamePhase phase = GamePhase.playing,
+  }) {
+    final players = <LumoPlayer>[];
+    for (int i = 0; i < hands.length; i++) {
+      players.add(LumoPlayer(id: 'p$i', name: 'P$i', hand: hands[i]));
+    }
+    return LumoCardsGameState(
+      players: players,
+      currentPlayerIndex: currentIdx,
+      drawPile: draw,
+      discardPile: [top],
+      selectedColor: selected ?? top.color,
+      phase: phase,
+      direction: direction,
+    );
+  }
+
+  group('3-Spieler-Regeln', () {
+    test('Skip ueberspringt naechsten Spieler (0 -> 2)', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.lumoJump, id: 'jump3');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1)],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: const [],
+        top: _num(LumoCardColor.orange, 5),
+      );
+      final next = LumoCardsRules.applyPlay(state: st, card: card);
+      expect(next.currentPlayerIndex, 2,
+          reason: 'naechster Spieler 1 wird uebersprungen');
+      expect(next.phase, GamePhase.passDevice);
+      expect(next.direction, 1, reason: 'Skip aendert Richtung nicht');
+    });
+
+    test('Reverse flippt Richtung (0 -> 2, direction wird -1)', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.whirlwind, id: 'rev3');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1, id: 'f0')],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: const [],
+        top: _num(LumoCardColor.orange, 5),
+      );
+      final next = LumoCardsRules.applyPlay(state: st, card: card);
+      expect(next.direction, -1, reason: 'Reverse flippt direction');
+      expect(next.currentPlayerIndex, 2,
+          reason: '1 Schritt rueckwaerts: 0 -> 2 (mod 3)');
+      expect(next.phase, GamePhase.passDevice);
+    });
+
+    test('Reverse zweimal -> Richtung wieder 1', () {
+      final card1 =
+          _spec(LumoCardColor.orange, LumoCardType.whirlwind, id: 'rev3a');
+      final card2 =
+          _spec(LumoCardColor.orange, LumoCardType.whirlwind, id: 'rev3b');
+      // Player 0 hat card1 + Filler (sonst gameOver beim Abspielen).
+      // Player 2 hat card2 + Filler.
+      final st = stateN(
+        hands: [
+          [card1, _num(LumoCardColor.orange, 2, id: 'f0')],
+          const <LumoCard>[],
+          [card2, _num(LumoCardColor.orange, 1, id: 'f2')],
+        ],
+        draw: const [],
+        top: _num(LumoCardColor.orange, 5),
+      );
+      final mid =
+          LumoCardsRules.applyPlay(state: st, card: card1);
+      expect(mid.direction, -1);
+      expect(mid.currentPlayerIndex, 2);
+      // Bevor Player 2 spielen kann muss confirmHandover laufen.
+      final ready =
+          LumoCardsRules.confirmHandover(mid);
+      final next = LumoCardsRules.applyPlay(state: ready, card: card2);
+      expect(next.direction, 1, reason: 'doppeltes Reverse = direction 1');
+      expect(next.currentPlayerIndex, 0,
+          reason: 'Schritt vorwaerts ab idx 2: -> 0 (mod 3)');
+    });
+
+    test('+2 Opfer zieht 2 UND ueberspringt seinen Zug', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.starRain, id: 'rain3');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1, id: 'f0')],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: [
+          _num(LumoCardColor.blue, 1, id: 'd1'),
+          _num(LumoCardColor.blue, 2, id: 'd2'),
+          _num(LumoCardColor.blue, 3, id: 'd3'),
+        ],
+        top: _num(LumoCardColor.orange, 5),
+      );
+      final next = LumoCardsRules.applyPlay(
+        state: st,
+        card: card,
+        rng: Random(1),
+      );
+      expect(next.players[1].hand.length, 2,
+          reason: 'Opfer (idx 1) zieht 2 Karten');
+      expect(next.currentPlayerIndex, 2,
+          reason: 'Opfer skippt -> idx 2 ist dran');
+      expect(next.phase, GamePhase.passDevice);
+    });
+
+    test('+4 Opfer zieht 4 + chooseColor + steps=2 nach Farbwahl', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.superRain, id: 'sup3');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1, id: 'f0')],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: [
+          _num(LumoCardColor.blue, 1, id: 'd1'),
+          _num(LumoCardColor.blue, 2, id: 'd2'),
+          _num(LumoCardColor.blue, 3, id: 'd3'),
+          _num(LumoCardColor.blue, 4, id: 'd4'),
+          _num(LumoCardColor.blue, 5, id: 'd5'),
+        ],
+        top: _num(LumoCardColor.purple, 5),
+        selected: LumoCardColor.purple,
+      );
+      final played = LumoCardsRules.applyPlay(
+        state: st,
+        card: card,
+        rng: Random(7),
+      );
+      expect(played.players[1].hand.length, 4,
+          reason: 'Opfer (idx 1) zieht 4 Karten');
+      expect(played.phase, GamePhase.chooseColor);
+      expect(played.currentPlayerIndex, 0,
+          reason: 'aktueller Spieler waehlt Farbe');
+
+      final chosen = LumoCardsRules.applyColorChoice(
+        state: played,
+        chosen: LumoCardColor.blue,
+      );
+      expect(chosen.selectedColor, LumoCardColor.blue);
+      expect(chosen.currentPlayerIndex, 2,
+          reason: '+4-Opfer skippt -> idx 2 ist dran');
+      expect(chosen.phase, GamePhase.passDevice);
+    });
+
+    test('Wild (colorMagic) ohne Skip nach Farbwahl', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.colorMagic, id: 'wld3');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1)],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: const [],
+        top: _num(LumoCardColor.purple, 5),
+        selected: LumoCardColor.purple,
+      );
+      final played = LumoCardsRules.applyPlay(state: st, card: card);
+      expect(played.phase, GamePhase.chooseColor);
+
+      final chosen = LumoCardsRules.applyColorChoice(
+        state: played,
+        chosen: LumoCardColor.blue,
+      );
+      expect(chosen.currentPlayerIndex, 1,
+          reason: 'normales Wild = 1 Schritt weiter (kein Skip)');
+    });
+  });
+
+  group('4-Spieler-Regeln', () {
+    test('Skip ueberspringt naechsten Spieler (0 -> 2)', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.lumoJump, id: 'jump4');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1)],
+          const <LumoCard>[],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: const [],
+        top: _num(LumoCardColor.orange, 5),
+      );
+      final next = LumoCardsRules.applyPlay(state: st, card: card);
+      expect(next.currentPlayerIndex, 2);
+    });
+
+    test('Reverse flippt Richtung (0 -> 3, direction=-1)', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.whirlwind, id: 'rev4');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1, id: 'f0')],
+          const <LumoCard>[],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: const [],
+        top: _num(LumoCardColor.orange, 5),
+      );
+      final next = LumoCardsRules.applyPlay(state: st, card: card);
+      expect(next.direction, -1);
+      expect(next.currentPlayerIndex, 3,
+          reason: '1 Schritt rueckwaerts: 0 -> 3 (mod 4)');
+    });
+
+    test('+2 in 4P: Opfer (idx 1) zieht 2, idx 2 ist dran', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.starRain, id: 'rain4');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1, id: 'f0')],
+          const <LumoCard>[],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: [
+          _num(LumoCardColor.blue, 1, id: 'a'),
+          _num(LumoCardColor.blue, 2, id: 'b'),
+          _num(LumoCardColor.blue, 3, id: 'c'),
+        ],
+        top: _num(LumoCardColor.orange, 5),
+      );
+      final next = LumoCardsRules.applyPlay(
+        state: st,
+        card: card,
+        rng: Random(2),
+      );
+      expect(next.players[1].hand.length, 2);
+      expect(next.currentPlayerIndex, 2);
+    });
+
+    test('+4 in 4P: Opfer (idx 1) zieht 4, idx 2 nach Farbwahl', () {
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.superRain, id: 'sup4');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1, id: 'f0')],
+          const <LumoCard>[],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: [
+          _num(LumoCardColor.blue, 1, id: 'a'),
+          _num(LumoCardColor.blue, 2, id: 'b'),
+          _num(LumoCardColor.blue, 3, id: 'c'),
+          _num(LumoCardColor.blue, 4, id: 'd'),
+          _num(LumoCardColor.blue, 5, id: 'e'),
+        ],
+        top: _num(LumoCardColor.purple, 5),
+        selected: LumoCardColor.purple,
+      );
+      final played = LumoCardsRules.applyPlay(
+        state: st,
+        card: card,
+        rng: Random(3),
+      );
+      expect(played.players[1].hand.length, 4);
+      expect(played.phase, GamePhase.chooseColor);
+
+      final chosen = LumoCardsRules.applyColorChoice(
+        state: played,
+        chosen: LumoCardColor.blue,
+      );
+      expect(chosen.currentPlayerIndex, 2);
+    });
+
+    test('Skip mit direction=-1 ab idx 0: -> idx 2 (mod 4 backwards)', () {
+      // direction=-1, currentIdx=0, Skip -> steps=2 rueckwaerts
+      // (0 + 2*-1 + 16) % 4 = 14 % 4 = 2
+      final card =
+          _spec(LumoCardColor.orange, LumoCardType.lumoJump, id: 'jumpD');
+      final st = stateN(
+        hands: [
+          [card, _num(LumoCardColor.orange, 1, id: 'f0')],
+          const <LumoCard>[],
+          const <LumoCard>[],
+          const <LumoCard>[],
+        ],
+        draw: const [],
+        top: _num(LumoCardColor.orange, 5),
+        direction: -1,
+      );
+      final next = LumoCardsRules.applyPlay(state: st, card: card);
+      expect(next.currentPlayerIndex, 2);
+      expect(next.direction, -1, reason: 'Skip aendert direction nicht');
+    });
+  });
 }
