@@ -385,14 +385,51 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     final top = s.topCard;
     if (top == null) return '';
     final me = s.players[0];
-    final hasPlayable = me.hand.any((c) =>
-        c.isWild ||
-        c.color == s.selectedColor ||
-        (c.number != null && c.number == top.number) ||
-        (c.isSpecial && c.type == top.type));
-    if (!hasPlayable) {
+    final opp = s.players[1];
+    final playables = me.hand
+        .where((c) =>
+            c.isWild ||
+            c.color == s.selectedColor ||
+            (c.number != null && c.number == top.number) ||
+            (c.isSpecial && c.type == top.type))
+        .toList();
+
+    if (playables.isEmpty) {
       return 'Keine passende Karte - ziehe eine!';
     }
+
+    // Strategische Tipps (Heinz 2026-05-22 'cleverer + strategischer').
+    final hasBlock = playables.any((c) =>
+        c.type == LumoCardType.lumoJump ||
+        c.type == LumoCardType.whirlwind ||
+        c.type == LumoCardType.starRain ||
+        c.type == LumoCardType.superRain);
+
+    if (opp.hand.length == 1) {
+      return hasBlock
+          ? 'Lumo hat nur 1 Karte - leg eine Spezialkarte!'
+          : 'Achtung: Lumo gewinnt fast! Halte ihn auf!';
+    }
+    if (opp.hand.length == 2 && hasBlock) {
+      return 'Lumo hat nur 2 Karten - Spezialkarte hilft jetzt!';
+    }
+
+    // Nur Wild-Karte als einzige Option
+    if (playables.length == 1) {
+      final only = playables.first;
+      if (only.type == LumoCardType.superRain) {
+        return 'Sternen-Sturm! Lumo muss 4 Karten ziehen!';
+      }
+      if (only.type == LumoCardType.colorMagic) {
+        return 'Spiel die Wild und waehle eine Farbe!';
+      }
+    }
+
+    // Wenn die Hand gross ist, hohe Zahlen zuerst loswerden.
+    if (me.hand.length >= 9) {
+      return 'Spiel deine grossen Zahlen zuerst!';
+    }
+
     return 'Lege eine passende Farbe oder Zahl.';
   }
 
