@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'app/app_shell.dart';
 import 'app/app_theme.dart';
 import 'core/lumo_error_log.dart';
+import 'core/lumo_sound.dart';
 import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
 import 'features/onboarding/lumo_onboarding_screen.dart';
@@ -32,6 +33,10 @@ Future<void> main() async {
     DeviceOrientation.landscapeRight,
     DeviceOrientation.portraitUp,
   ]);
+  // Tier 3 Audio 2026-05-23: Persistierter Mute-Status laden bevor die
+  // App startet. Klingt sonst beim ersten Aufruf falsch (kurz an, dann
+  // aus). Idempotent + try/catch innen, kann nicht den App-Start blocken.
+  await LumoSound.instance.init();
   runApp(const LumoApp());
 }
 
