@@ -178,19 +178,32 @@ class _LumoPlayerHudState extends State<LumoPlayerHud>
 
         // ── Badges: Karten-Anzahl + optional Sterne ──
         // Heinz 2026-05-22: warnt rot wenn der Gegner nur noch 1-2 Karten
-        // hat - Spannung sichtbar machen.
+        // hat - Spannung sichtbar machen. Plus: Badge pulst kurz bei jedem
+        // Anzahl-Wechsel (TweenAnimationBuilder mit Key auf cardCount).
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _badge(
-              icon: Icons.style_rounded,
-              label: '${widget.cardCount}',
-              bg: widget.cardCount <= 1
-                  ? const Color(0xFFDC2626) // satter Rot-Alarm
-                  : widget.cardCount <= 2
-                      ? const Color(0xFFEA580C) // Orange-Warnung
-                      : Colors.black.withOpacity(0.32),
-              fg: Colors.white,
+            TweenAnimationBuilder<double>(
+              key: ValueKey('cardcount-${widget.cardCount}'),
+              tween: Tween<double>(begin: 0.0, end: 1.0),
+              duration: const Duration(milliseconds: 320),
+              curve: Curves.easeOutBack,
+              builder: (_, t, child) {
+                // Bell-curve: 0 -> 1 -> 0, dann statisch
+                final pulse = t < 0.5 ? t * 2 : (1 - (t - 0.5) * 1.4);
+                final scale = 1.0 + (pulse.clamp(0.0, 1.0)) * 0.30;
+                return Transform.scale(scale: scale, child: child);
+              },
+              child: _badge(
+                icon: Icons.style_rounded,
+                label: '${widget.cardCount}',
+                bg: widget.cardCount <= 1
+                    ? const Color(0xFFDC2626) // satter Rot-Alarm
+                    : widget.cardCount <= 2
+                        ? const Color(0xFFEA580C) // Orange-Warnung
+                        : Colors.black.withOpacity(0.32),
+                fg: Colors.white,
+              ),
             ),
             if (widget.stars > 0) ...[
               const SizedBox(width: 5),

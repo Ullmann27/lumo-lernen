@@ -43,22 +43,35 @@ class LumoDiscardPile extends StatelessWidget {
               ),
               // Lege-Animation: bei jeder neuen Top-Karte (ID-Wechsel)
               // bekommt der TweenAnimationBuilder einen frischen Key und
-              // animiert die Karte 0->1 mit Scale + Opacity (easeOutBack).
+              // animiert die Karte 0->1 mit Slide-von-oben + Scale +
+              // Opacity (easeOutBack). Wirkt wie "Karte schwebt rein und
+              // klatscht auf den Tisch".
               // Sicher, kein AnimatedSwitcher (der war frueher die
               // Crash-Quelle).
               TweenAnimationBuilder<double>(
                 key: ValueKey('discard-${topCard.id}'),
                 tween: Tween<double>(begin: 0.0, end: 1.0),
-                duration: const Duration(milliseconds: 360),
+                duration: const Duration(milliseconds: 420),
                 curve: Curves.easeOutBack,
                 builder: (_, t, child) {
-                  // Scale faengt bei 0.55 an (fast unsichtbar klein),
-                  // schiesst leicht ueber 1.0 dank easeOutBack -> wirkt
-                  // wie "Klatsch auf den Tisch".
-                  final scale = 0.55 + t * 0.45;
-                  return Transform.scale(
-                    scale: scale,
-                    child: Opacity(opacity: t.clamp(0.0, 1.0), child: child),
+                  // Slide: faengt 70 px ueber dem Ziel an, kommt runter.
+                  final dy = (1 - t) * -70;
+                  // Scale 0.6 -> 1.0 mit easeOutBack-Schwung
+                  final scale = 0.6 + t * 0.4;
+                  // Drehung leicht rotierend reinkommen
+                  final rot = (1 - t) * -0.18;
+                  return Transform.translate(
+                    offset: Offset(0, dy),
+                    child: Transform.rotate(
+                      angle: rot,
+                      child: Transform.scale(
+                        scale: scale,
+                        child: Opacity(
+                          opacity: t.clamp(0.0, 1.0),
+                          child: child,
+                        ),
+                      ),
+                    ),
                   );
                 },
                 child: LumoPlayingCard(card: topCard),
