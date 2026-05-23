@@ -90,6 +90,13 @@ jobs:
             if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
               sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
             fi
+            # Tier 1 Foundation 2026-05-23: Impeller-Renderer aktivieren.
+            # Liefert auf Android deutlich fluessigere Animationen + native
+            # Shader-Pipeline. Wird via meta-data im <application>-Block
+            # angefordert. Fallback auf Skia falls Impeller nicht verfuegbar.
+            if ! grep -q "EnableImpeller" "$MANIFEST"; then
+              sed -i 's|</application>|    <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="true"/>\n    </application>|' "$MANIFEST"
+            fi
           fi
 
       - name: Patch minSdk to 21

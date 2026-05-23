@@ -92,15 +92,19 @@ class _LumoCardTableState extends State<LumoCardTable>
 
           // ── Layer 3: Animierte Lichtpartikel (Dust) ──
           // Langsam schwebende warme Punkte - wie Sonnenstaub im Licht.
+          // RepaintBoundary (Tier 1 Foundation 2026-05-23) isoliert die
+          // permanente Repaint-Loop vom Rest des Tischs.
           Positioned.fill(
             child: IgnorePointer(
-              child: AnimatedBuilder(
-                animation: _dustCtrl,
-                builder: (_, __) {
-                  return CustomPaint(
-                    painter: _LightDustPainter(_dustCtrl.value),
-                  );
-                },
+              child: RepaintBoundary(
+                child: AnimatedBuilder(
+                  animation: _dustCtrl,
+                  builder: (_, __) {
+                    return CustomPaint(
+                      painter: _LightDustPainter(_dustCtrl.value),
+                    );
+                  },
+                ),
               ),
             ),
           ),

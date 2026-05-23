@@ -50,15 +50,20 @@ class _LumoConfettiState extends State<LumoConfetti>
 
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: AnimatedBuilder(
-        animation: _ctrl,
-        builder: (_, __) {
-          return CustomPaint(
-            painter: _ConfettiPainter(_ctrl.value, _pieces),
-            size: Size.infinite,
-          );
-        },
+    // Tier 1 Foundation 2026-05-23: RepaintBoundary isoliert die 60-fps-
+    // Confetti-Painter-Updates vom Result-Dialog drunter. Dialog wird so
+    // nicht 60-mal pro Sekunde mit neu komponiert.
+    return RepaintBoundary(
+      child: IgnorePointer(
+        child: AnimatedBuilder(
+          animation: _ctrl,
+          builder: (_, __) {
+            return CustomPaint(
+              painter: _ConfettiPainter(_ctrl.value, _pieces),
+              size: Size.infinite,
+            );
+          },
+        ),
       ),
     );
   }
