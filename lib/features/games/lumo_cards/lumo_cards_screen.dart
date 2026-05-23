@@ -25,6 +25,7 @@ import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_cards_score_header.dart';
 import 'widgets/lumo_color_arrows.dart';
 import 'widgets/lumo_color_picker.dart';
+import 'widgets/lumo_confetti.dart';
 import 'widgets/lumo_discard_pile.dart';
 import 'widgets/lumo_draw_pile.dart';
 import 'widgets/lumo_hint_bubble.dart';
@@ -354,6 +355,10 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               },
               onExit: () => Navigator.of(context).pop(),
             ),
+          // Konfetti-Regen wenn das Kind gewinnt. Liegt UEBER dem Result-
+          // Dialog, IgnorePointer drinnen damit der Dialog klickbar bleibt.
+          if (s.phase == GamePhase.gameOver && s.winnerIndex == 0)
+            const Positioned.fill(child: LumoConfetti()),
           // ── Intro-Splash (Heinz 2026-05-22) ──
           // Liegt UEBER allem - inkl. Result-Dialog/Color-Picker. Wird
           // nur einmal beim Screen-Eintritt gezeigt.

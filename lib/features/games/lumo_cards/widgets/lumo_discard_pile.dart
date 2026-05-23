@@ -41,7 +41,28 @@ class LumoDiscardPile extends StatelessWidget {
                   ),
                 ),
               ),
-              LumoPlayingCard(card: topCard),
+              // Lege-Animation: bei jeder neuen Top-Karte (ID-Wechsel)
+              // bekommt der TweenAnimationBuilder einen frischen Key und
+              // animiert die Karte 0->1 mit Scale + Opacity (easeOutBack).
+              // Sicher, kein AnimatedSwitcher (der war frueher die
+              // Crash-Quelle).
+              TweenAnimationBuilder<double>(
+                key: ValueKey('discard-${topCard.id}'),
+                tween: Tween<double>(begin: 0.0, end: 1.0),
+                duration: const Duration(milliseconds: 360),
+                curve: Curves.easeOutBack,
+                builder: (_, t, child) {
+                  // Scale faengt bei 0.55 an (fast unsichtbar klein),
+                  // schiesst leicht ueber 1.0 dank easeOutBack -> wirkt
+                  // wie "Klatsch auf den Tisch".
+                  final scale = 0.55 + t * 0.45;
+                  return Transform.scale(
+                    scale: scale,
+                    child: Opacity(opacity: t.clamp(0.0, 1.0), child: child),
+                  );
+                },
+                child: LumoPlayingCard(card: topCard),
+              ),
             ],
           ),
         ),
