@@ -142,6 +142,10 @@ class _AvatarChoice extends StatelessWidget {
           child: Image.asset(
             assetPath,
             fit: BoxFit.cover,
+            // Tier 1 Foundation 2026-05-23: tighten Decode-Constraints
+            // damit das Bild nicht in voller PNG-Aufloesung dekodiert wird.
+            cacheWidth: 256,
+            cacheHeight: 256,
             errorBuilder: (_, __, ___) => Container(
               color: const Color(0xFFFFE0B8),
               alignment: Alignment.center,

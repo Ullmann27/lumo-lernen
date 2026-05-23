@@ -65,7 +65,10 @@ class _LumoTurnPillState extends State<LumoTurnPill>
     final icon = isMy ? Icons.arrow_forward_rounded : Icons.hourglass_top_rounded;
     final glowColor = isMy ? const Color(0xFF38BDF8) : Colors.black;
 
-    return AnimatedBuilder(
+    // Tier 1 Foundation 2026-05-23: RepaintBoundary isoliert das
+    // permanente Pulsieren vom Turn-Banner drumherum.
+    return RepaintBoundary(
+      child: AnimatedBuilder(
       animation: _pulse,
       builder: (_, __) {
         final t = isMy ? _pulse.value : 0.0;
@@ -108,6 +111,7 @@ class _LumoTurnPillState extends State<LumoTurnPill>
           ),
         );
       },
+      ),
     );
   }
 }
