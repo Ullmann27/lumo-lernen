@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
@@ -248,13 +247,22 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.xl - 2),
-            child: GestureDetector(
+            // Heinz 2026-05-22: 'Schreibflaeche bewegt sich beim Schreiben,
+            // touchflaeche nicht benutzbar'. Ursache: GestureDetector mit
+            // onPan* konkurriert in der Gesture-Arena mit jedem moeglichen
+            // Scroll-Vorfahren. Loesung: Listener (Raw-Pointer-Events)
+            // statt GestureDetector. Listener feuert sofort auf jeden
+            // Touch, keine Arena-Konkurrenz.
+            child: Listener(
               behavior: HitTestBehavior.opaque,
-              dragStartBehavior: DragStartBehavior.down,
-              onPanStart: (details) => _startStroke(details.localPosition, size),
-              onPanUpdate: (details) => _appendPoint(details.localPosition, size),
-              onPanEnd: (_) => _finishStroke(),
-              onPanCancel: _finishStroke,
+              onPointerDown: (event) {
+                _startStroke(event.localPosition, size);
+              },
+              onPointerMove: (event) {
+                _appendPoint(event.localPosition, size);
+              },
+              onPointerUp: (_) => _finishStroke(),
+              onPointerCancel: (_) => _finishStroke(),
               child: CustomPaint(
                 painter: _WritingCanvasPainter(
                   template: widget.template,
