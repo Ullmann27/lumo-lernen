@@ -101,39 +101,57 @@ class LumoCardsRules {
         ));
 
       case LumoCardType.lumoJump:
-        // Gegner setzt aus -> Zug bleibt beim aktuellen, aber wir
-        // koennen ihn trotzdem ans andere Tablet uebergeben? Heinz'
-        // Vorgabe: 'aktueller darf nochmal' - also bleibt aktuell.
-        // Ohne passDevice, damit derselbe Spieler weiter legen kann.
-        return state.copyWith(
-          players: newPlayers,
-          discardPile: newDiscard,
-          selectedColor: card.color,
-          phase: GamePhase.playing,
-          lastActionMessage:
-              'Lumo-Sprung! ${state.otherPlayer.name} setzt aus.',
+        // Skip-Karte. 2P: aktueller bleibt dran (phase=playing).
+        // 3-4P: ueberspringt den naechsten Spieler in Richtung.
+        if (state.players.length == 2) {
+          return state.copyWith(
+            players: newPlayers,
+            discardPile: newDiscard,
+            selectedColor: card.color,
+            phase: GamePhase.playing,
+            lastActionMessage:
+                'Lumo-Sprung! ${state.otherPlayer.name} setzt aus.',
+          );
+        }
+        final skippedName = state.players[state.nextPlayerIndex()].name;
+        return _passTurn(
+          state.copyWith(
+            players: newPlayers,
+            discardPile: newDiscard,
+            selectedColor: card.color,
+            lastActionMessage: 'Lumo-Sprung! $skippedName setzt aus.',
+          ),
+          steps: 2,
         );
 
       case LumoCardType.starRain:
-        // Gegner zieht 2.
-        final (drawn, restDraw) = _safeDraw(
+        // +2-Karte. Naechster Spieler zieht 2 Karten.
+        // 2P: zieht und ist sofort dran (steps=1).
+        // 3-4P: zieht UND ueberspringt eigenen Zug (steps=2).
+        final nextIdxRain = state.nextPlayerIndex();
+        final (drawnRain, restDrawRain) = _safeDraw(
           state.drawPile,
           state.discardPile,
           2,
           rng,
         );
-        final otherHand = List<LumoCard>.of(state.otherPlayer.hand)
-          ..addAll(drawn);
-        newPlayers[1 - state.currentPlayerIndex] =
-            state.otherPlayer.copyWith(hand: otherHand);
-        return _passTurn(state.copyWith(
-          players: newPlayers,
-          drawPile: restDraw,
-          discardPile: newDiscard,
-          selectedColor: card.color,
-          lastActionMessage:
-              'Sternenregen! ${state.otherPlayer.name} zieht 2 Karten.',
-        ));
+        final nextHandRain =
+            List<LumoCard>.of(state.players[nextIdxRain].hand)
+              ..addAll(drawnRain);
+        newPlayers[nextIdxRain] =
+            state.players[nextIdxRain].copyWith(hand: nextHandRain);
+        final rainSteps = state.players.length == 2 ? 1 : 2;
+        return _passTurn(
+          state.copyWith(
+            players: newPlayers,
+            drawPile: restDrawRain,
+            discardPile: newDiscard,
+            selectedColor: card.color,
+            lastActionMessage:
+                'Sternenregen! ${state.players[nextIdxRain].name} zieht 2 Karten.',
+          ),
+          steps: rainSteps,
+        );
 
       case LumoCardType.colorMagic:
         // Spieler waehlt neue Farbe -> phase = chooseColor.
@@ -146,45 +164,61 @@ class LumoCardsRules {
         );
 
       case LumoCardType.superRain:
-        // Super-Sternenregen: Gegner zieht 4 Karten + Spieler waehlt Farbe.
+        // +4-Karte. Naechster Spieler zieht 4, dann Farbwahl.
+        // Skip nach Farbwahl wird in applyColorChoice (steps=2 fuer 3-4P)
+        // gehandhabt, hier nur Karten ziehen + chooseColor-Phase.
+        final nextIdxSuper = state.nextPlayerIndex();
         final (drawnSuper, restDrawSuper) = _safeDraw(
           state.drawPile,
           state.discardPile,
           4,
           rng,
         );
-        final otherHandSuper = List<LumoCard>.of(state.otherPlayer.hand)
-          ..addAll(drawnSuper);
-        newPlayers[1 - state.currentPlayerIndex] =
-            state.otherPlayer.copyWith(hand: otherHandSuper);
+        final nextHandSuper =
+            List<LumoCard>.of(state.players[nextIdxSuper].hand)
+              ..addAll(drawnSuper);
+        newPlayers[nextIdxSuper] =
+            state.players[nextIdxSuper].copyWith(hand: nextHandSuper);
         return state.copyWith(
           players: newPlayers,
           drawPile: restDrawSuper,
           discardPile: newDiscard,
           phase: GamePhase.chooseColor,
           lastActionMessage:
-              'Super-Sternenregen! ${state.otherPlayer.name} zieht 4 Karten - jetzt Farbe waehlen.',
+              'Super-Sternenregen! ${state.players[nextIdxSuper].name} zieht 4 Karten - jetzt Farbe waehlen.',
         );
 
       case LumoCardType.whirlwind:
-        // 2P-angepasst: Gegner zieht 1 Karte, Zug wechselt.
-        final (drawn, restDraw) = _safeDraw(
-          state.drawPile,
-          state.discardPile,
-          1,
-          rng,
-        );
-        final otherHand = List<LumoCard>.of(state.otherPlayer.hand)
-          ..addAll(drawn);
-        newPlayers[1 - state.currentPlayerIndex] =
-            state.otherPlayer.copyWith(hand: otherHand);
+        // Reverse-Karte.
+        // 2P: Gegner zieht 1 Karte, Zug wechselt (OLD-Verhalten).
+        // 3-4P: Richtung flippt, naechster Spieler in NEUER Richtung.
+        if (state.players.length == 2) {
+          final (drawnWind, restDrawWind) = _safeDraw(
+            state.drawPile,
+            state.discardPile,
+            1,
+            rng,
+          );
+          final otherHandWind = List<LumoCard>.of(state.otherPlayer.hand)
+            ..addAll(drawnWind);
+          newPlayers[1 - state.currentPlayerIndex] =
+              state.otherPlayer.copyWith(hand: otherHandWind);
+          return _passTurn(state.copyWith(
+            players: newPlayers,
+            drawPile: restDrawWind,
+            discardPile: newDiscard,
+            selectedColor: card.color,
+            lastActionMessage:
+                'Wirbelwind! ${state.otherPlayer.name} zieht 1 Karte.',
+          ));
+        }
+        // 3-4P: direction flippen + 1 Schritt
         return _passTurn(state.copyWith(
           players: newPlayers,
-          drawPile: restDraw,
           discardPile: newDiscard,
           selectedColor: card.color,
-          lastActionMessage:
-              'Wirbelwind! ${state.otherPlayer.name} zieht 1 Karte.',
+          direction: -state.direction,
+          lastActionMessage: 'Wirbelwind! Richtung wechselt.',
         ));
 
       case LumoCardType.thinkPause:
@@ -203,17 +237,28 @@ class LumoCardsRules {
   }
 
   /// Wendet die Farbwahl nach einer colorMagic-Karte an.
+  ///
+  /// Bei +4 (superRain) in 3-4P: das Opfer hat bereits 4 Karten gezogen
+  /// und ueberspringt jetzt zusaetzlich seinen Zug -> steps=2.
+  /// Bei Wild (colorMagic) oder bei +4 in 2P: normaler Zug-Wechsel
+  /// (steps=1), was im 2P-Fall identisch zur alten Logik ist.
   static LumoCardsGameState applyColorChoice({
     required LumoCardsGameState state,
     required LumoCardColor chosen,
   }) {
     if (state.phase != GamePhase.chooseColor) return state;
-    return _passTurn(state.copyWith(
-      selectedColor: chosen,
-      phase: GamePhase.playing,
-      lastActionMessage:
-          '${state.currentPlayer.name} waehlt ${chosen.name}.',
-    ));
+    final isSuperRain = state.topCard?.type == LumoCardType.superRain;
+    final steps =
+        (state.players.length > 2 && isSuperRain) ? 2 : 1;
+    return _passTurn(
+      state.copyWith(
+        selectedColor: chosen,
+        phase: GamePhase.playing,
+        lastActionMessage:
+            '${state.currentPlayer.name} waehlt ${chosen.name}.',
+      ),
+      steps: steps,
+    );
   }
 
   /// Beantwortet die Lernfrage. Richtig: +1 Stern, Spieler darf nochmal
@@ -314,9 +359,27 @@ class LumoCardsRules {
   // Private Helfer
   // ──────────────────────────────────────────────────────────────────
 
-  /// Schaltet auf den naechsten Spieler um und setzt phase = passDevice.
-  static LumoCardsGameState _passTurn(LumoCardsGameState state) {
-    final nextIdx = 1 - state.currentPlayerIndex;
+  /// Schaltet `steps` Spieler weiter in der aktuellen Richtung und
+  /// setzt phase = passDevice.
+  ///
+  /// Bei 2 Spielern mit direction=1:
+  ///   steps=1 -> currentPlayerIndex 0 ↔ 1 (identisch zum alten 1-Spieler-XOR)
+  ///   steps=2 -> bleibt beim aktuellen Spieler (Skip in 2P)
+  ///
+  /// Bei 3-4 Spielern:
+  ///   steps=1 -> normaler Zug
+  ///   steps=2 -> ueberspringt einen Spieler (Skip / Draw-Opfer)
+  ///
+  /// Negative steps oder direction=-1 rotieren rueckwaerts (Reverse).
+  static LumoCardsGameState _passTurn(
+    LumoCardsGameState state, {
+    int steps = 1,
+  }) {
+    final n = state.players.length;
+    final dir = state.direction;
+    // +n*4 als Polster gegen negative Modulos (Dart Modulo erlaubt zwar
+    // negative Werte, aber dies vermeidet jede Subtilitaet).
+    final nextIdx = (state.currentPlayerIndex + steps * dir + n * 4) % n;
     return state.copyWith(
       currentPlayerIndex: nextIdx,
       phase: GamePhase.passDevice,
