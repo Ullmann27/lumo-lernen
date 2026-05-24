@@ -118,6 +118,30 @@ class _LumoCardTableState extends State<LumoCardTable>
             ),
           ),
 
+          // ── Layer 5: Spotlight um die Tisch-Mitte (Tier 4 3D-Optik) ──
+          // Statisches warmes Glow das Draw + Discard aus dem dunkleren
+          // Tisch heraushebt - macht das Spielfeld zur 'Buehne'. Reine
+          // BoxDecoration mit RadialGradient, keine Animation, kein
+          // CustomPainter -> null Performance-Kosten.
+          Positioned.fill(
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    colors: [
+                      const Color(0xFFFFE0B8).withOpacity(0.22),
+                      const Color(0xFFFFE0B8).withOpacity(0.08),
+                      const Color(0xFFFFE0B8).withOpacity(0.0),
+                    ],
+                    stops: const [0.0, 0.25, 0.55],
+                    radius: 0.42,
+                    center: const Alignment(0, -0.05),
+                  ),
+                ),
+              ),
+            ),
+          ),
+
           // ── Content ──
           widget.child,
         ],

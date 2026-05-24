@@ -87,7 +87,23 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
           scale: _pressed ? 1.05 : 1.0,
           duration: const Duration(milliseconds: 120),
           curve: Curves.easeOut,
-          child: _build(base),
+          // Tier 4 3D-Optik 2026-05-23: STATISCHE Matrix4-Perspektive.
+          // Im Gegensatz zu Build 181 (Crash mit AnimatedContainer +
+          // Matrix4 + per-card-Controller) ist diese Perspektive
+          // statisch - kein AnimationController, kein pro-Frame-Update,
+          // keine Lifecycle-Konflikte. Wirkt nur als visuelle Tiefe:
+          //  - faceDown-Karten leicht nach rechts geneigt (wie schief
+          //    aufeinander gestapelt)
+          //  - playable-Karten leicht zum Spieler hin geneigt (heben
+          //    sich von dimmed-Karten ab)
+          child: Transform(
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.0012)
+              ..rotateX(widget.faceDown ? 0 : (widget.playable ? -0.06 : -0.02))
+              ..rotateY(widget.faceDown ? 0.04 : 0),
+            alignment: Alignment.center,
+            child: _build(base),
+          ),
         ),
       ),
     );
