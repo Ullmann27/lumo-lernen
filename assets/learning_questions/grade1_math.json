@@ -1,0 +1,552 @@
+[
+  {
+    "prompt": "Wie viel ist 2+3?",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 4+5?",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 7+2?",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 9+1?",
+    "options": [
+      "10",
+      "11",
+      "9",
+      "12"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 6+6?",
+    "options": [
+      "12",
+      "13",
+      "11",
+      "14"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 8+4?",
+    "options": [
+      "12",
+      "13",
+      "11",
+      "14"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 10+5?",
+    "options": [
+      "15",
+      "16",
+      "14",
+      "17"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 12+3?",
+    "options": [
+      "15",
+      "16",
+      "14",
+      "17"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 15+2?",
+    "options": [
+      "17",
+      "18",
+      "16",
+      "19"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 11+7?",
+    "options": [
+      "18",
+      "19",
+      "17",
+      "20"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 5+9?",
+    "options": [
+      "14",
+      "15",
+      "13",
+      "16"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 3+8?",
+    "options": [
+      "11",
+      "12",
+      "10",
+      "13"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 14+4?",
+    "options": [
+      "18",
+      "19",
+      "17",
+      "20"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 13+6?",
+    "options": [
+      "19",
+      "20",
+      "18",
+      "21"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 16+1?",
+    "options": [
+      "17",
+      "18",
+      "16",
+      "19"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle langsam weiter."
+  },
+  {
+    "prompt": "Wie viel ist 8-3?",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 10-4?",
+    "options": [
+      "6",
+      "7",
+      "5",
+      "8"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 12-5?",
+    "options": [
+      "7",
+      "8",
+      "6",
+      "9"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 15-6?",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 18-8?",
+    "options": [
+      "10",
+      "11",
+      "9",
+      "12"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 20-7?",
+    "options": [
+      "13",
+      "14",
+      "12",
+      "15"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 14-9?",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 11-2?",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 16-4?",
+    "options": [
+      "12",
+      "13",
+      "11",
+      "14"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 19-10?",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 7-2?",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 9-5?",
+    "options": [
+      "4",
+      "5",
+      "3",
+      "6"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 13-3?",
+    "options": [
+      "10",
+      "11",
+      "9",
+      "12"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 17-6?",
+    "options": [
+      "11",
+      "12",
+      "10",
+      "13"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Wie viel ist 6-1?",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "correctIndex": 0,
+    "hint": "Nimm die Zahl weg und zähle."
+  },
+  {
+    "prompt": "Welche Zahl ist größer?",
+    "options": [
+      "12",
+      "8",
+      "5",
+      "3"
+    ],
+    "correctIndex": 0,
+    "hint": "Die größere Zahl kommt weiter hinten."
+  },
+  {
+    "prompt": "Welche Zahl ist kleiner?",
+    "options": [
+      "2",
+      "9",
+      "6",
+      "4"
+    ],
+    "correctIndex": 0,
+    "hint": "Die kleinere Zahl ist weniger."
+  },
+  {
+    "prompt": "Was hat 3 Ecken?",
+    "options": [
+      "Dreieck",
+      "Kreis",
+      "Ball",
+      "Sonne"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Ecken."
+  },
+  {
+    "prompt": "Was ist rund?",
+    "options": [
+      "Kreis",
+      "Quadrat",
+      "Buch",
+      "Haus"
+    ],
+    "correctIndex": 0,
+    "hint": "Ein Kreis hat keine Ecken."
+  },
+  {
+    "prompt": "Was hat 4 gleiche Seiten?",
+    "options": [
+      "Quadrat",
+      "Kreis",
+      "Dreieck",
+      "Linie"
+    ],
+    "correctIndex": 0,
+    "hint": "Ein Quadrat hat vier Seiten."
+  },
+  {
+    "prompt": "Wie viele Finger an einer Hand?",
+    "options": [
+      "5",
+      "4",
+      "6",
+      "10"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau auf deine Hand."
+  },
+  {
+    "prompt": "Was kommt nach 6?",
+    "options": [
+      "7",
+      "5",
+      "8",
+      "4"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle weiter."
+  },
+  {
+    "prompt": "Was kommt vor 10?",
+    "options": [
+      "9",
+      "11",
+      "8",
+      "12"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle rückwärts."
+  },
+  {
+    "prompt": "Welche Menge ist mehr?",
+    "options": [
+      "6",
+      "3",
+      "2",
+      "1"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr heißt größere Anzahl."
+  },
+  {
+    "prompt": "Welche Zahl fehlt: 1,2,3,_?",
+    "options": [
+      "4",
+      "5",
+      "2",
+      "6"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle weiter."
+  },
+  {
+    "prompt": "Wie viel ist 5+5?",
+    "options": [
+      "10",
+      "9",
+      "11",
+      "8"
+    ],
+    "correctIndex": 0,
+    "hint": "Fünf und fünf sind zehn."
+  },
+  {
+    "prompt": "Wie viel ist 20-0?",
+    "options": [
+      "20",
+      "0",
+      "10",
+      "19"
+    ],
+    "correctIndex": 0,
+    "hint": "Nichts wegnehmen bleibt gleich."
+  },
+  {
+    "prompt": "Was ist 10+0?",
+    "options": [
+      "10",
+      "0",
+      "11",
+      "9"
+    ],
+    "correctIndex": 0,
+    "hint": "Null ändert nichts."
+  },
+  {
+    "prompt": "Welche Zahl ist gerade?",
+    "options": [
+      "8",
+      "7",
+      "5",
+      "3"
+    ],
+    "correctIndex": 0,
+    "hint": "Gerade Zahlen kann man teilen."
+  },
+  {
+    "prompt": "Welche Form hat keine Ecken?",
+    "options": [
+      "Kreis",
+      "Dreieck",
+      "Quadrat",
+      "Haus"
+    ],
+    "correctIndex": 0,
+    "hint": "Rund bedeutet keine Ecken."
+  },
+  {
+    "prompt": "Wie viele Ecken hat ein Quadrat?",
+    "options": [
+      "4",
+      "3",
+      "5",
+      "0"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Ecken."
+  },
+  {
+    "prompt": "Wie viele Ecken hat ein Dreieck?",
+    "options": [
+      "3",
+      "4",
+      "2",
+      "0"
+    ],
+    "correctIndex": 0,
+    "hint": "Drei steckt im Wort Dreieck."
+  },
+  {
+    "prompt": "Was ist die Hälfte von 10?",
+    "options": [
+      "5",
+      "4",
+      "6",
+      "10"
+    ],
+    "correctIndex": 0,
+    "hint": "Teile zehn in zwei gleiche Teile."
+  },
+  {
+    "prompt": "Was ist größer als 15?",
+    "options": [
+      "18",
+      "12",
+      "9",
+      "5"
+    ],
+    "correctIndex": 0,
+    "hint": "Suche die Zahl über 15."
+  },
+  {
+    "prompt": "Was ist kleiner als 5?",
+    "options": [
+      "3",
+      "7",
+      "9",
+      "6"
+    ],
+    "correctIndex": 0,
+    "hint": "Suche die Zahl unter 5."
+  }
+]

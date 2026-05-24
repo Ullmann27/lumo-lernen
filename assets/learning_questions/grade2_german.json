@@ -1,0 +1,552 @@
+[
+  {
+    "prompt": "Finde das Wort: Haus",
+    "options": [
+      "Haus",
+      "Tür",
+      "Ball",
+      "Hund"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Baum",
+    "options": [
+      "Baum",
+      "Rose",
+      "Katze",
+      "Hund"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Frosch",
+    "options": [
+      "Frosch",
+      "Rose",
+      "Hund",
+      "Tür"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Stern",
+    "options": [
+      "Stern",
+      "Tür",
+      "Fisch",
+      "Maus"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Tisch",
+    "options": [
+      "Tisch",
+      "Rose",
+      "Fisch",
+      "Maus"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Milch",
+    "options": [
+      "Milch",
+      "Rose",
+      "Sonne",
+      "Maus"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Hut",
+    "options": [
+      "Hut",
+      "Fisch",
+      "Apfel",
+      "Auto"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Brot",
+    "options": [
+      "Brot",
+      "Fisch",
+      "Hund",
+      "Apfel"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Zug",
+    "options": [
+      "Zug",
+      "Maus",
+      "Auto",
+      "Tür"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Mond",
+    "options": [
+      "Mond",
+      "Fisch",
+      "Hund",
+      "Apfel"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Bär",
+    "options": [
+      "Bär",
+      "Hund",
+      "Fisch",
+      "Sonne"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Korb",
+    "options": [
+      "Korb",
+      "Fisch",
+      "Sonne",
+      "Auto"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Wald",
+    "options": [
+      "Wald",
+      "Fisch",
+      "Hund",
+      "Tür"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Kind",
+    "options": [
+      "Kind",
+      "Rose",
+      "Ball",
+      "Maus"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Finde das Wort: Buch",
+    "options": [
+      "Buch",
+      "Auto",
+      "Sonne",
+      "Hund"
+    ],
+    "correctIndex": 0,
+    "hint": "Lies langsam Buchstabe für Buchstabe."
+  },
+  {
+    "prompt": "Mehrzahl von Hund?",
+    "options": [
+      "Hunde",
+      "Hund",
+      "Hunden",
+      "Hunde"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Katze?",
+    "options": [
+      "Katzen",
+      "Katze",
+      "Katzenn",
+      "Katzee"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Ball?",
+    "options": [
+      "Bälle",
+      "Ball",
+      "Bällen",
+      "Balle"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Buch?",
+    "options": [
+      "Bücher",
+      "Buch",
+      "Büchern",
+      "Buche"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Kind?",
+    "options": [
+      "Kinder",
+      "Kind",
+      "Kindern",
+      "Kinde"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Haus?",
+    "options": [
+      "Häuser",
+      "Haus",
+      "Häusern",
+      "Hause"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Baum?",
+    "options": [
+      "Bäume",
+      "Baum",
+      "Bäumen",
+      "Baume"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Apfel?",
+    "options": [
+      "Äpfel",
+      "Apfel",
+      "Äpfeln",
+      "Apfele"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Maus?",
+    "options": [
+      "Mäuse",
+      "Maus",
+      "Mäusen",
+      "Mause"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Mehrzahl von Stift?",
+    "options": [
+      "Stifte",
+      "Stift",
+      "Stiften",
+      "Stifte"
+    ],
+    "correctIndex": 0,
+    "hint": "Mehr als eines heißt Mehrzahl."
+  },
+  {
+    "prompt": "Was reimt sich auf Haus?",
+    "options": [
+      "Maus",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Ball?",
+    "options": [
+      "Fall",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Sonne?",
+    "options": [
+      "Tonne",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Hase?",
+    "options": [
+      "Nase",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Buch?",
+    "options": [
+      "Tuch",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Kind?",
+    "options": [
+      "Wind",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Schule?",
+    "options": [
+      "Kuhle",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Baum?",
+    "options": [
+      "Raum",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Licht?",
+    "options": [
+      "Gesicht",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was reimt sich auf Hand?",
+    "options": [
+      "Sand",
+      "Katze",
+      "Auto",
+      "Blume"
+    ],
+    "correctIndex": 0,
+    "hint": "Reime klingen am Ende gleich."
+  },
+  {
+    "prompt": "Was ist ein Tier?",
+    "options": [
+      "Hund",
+      "Tisch",
+      "Buch",
+      "Haus"
+    ],
+    "correctIndex": 0,
+    "hint": "Ein Tier lebt."
+  },
+  {
+    "prompt": "Was kann man essen?",
+    "options": [
+      "Apfel",
+      "Stuhl",
+      "Schuh",
+      "Buch"
+    ],
+    "correctIndex": 0,
+    "hint": "Essen kommt in den Mund."
+  },
+  {
+    "prompt": "Was ist ein Fahrzeug?",
+    "options": [
+      "Auto",
+      "Baum",
+      "Hase",
+      "Milch"
+    ],
+    "correctIndex": 0,
+    "hint": "Es fährt."
+  },
+  {
+    "prompt": "Was liest man?",
+    "options": [
+      "Buch",
+      "Ball",
+      "Tasse",
+      "Lampe"
+    ],
+    "correctIndex": 0,
+    "hint": "Man schlägt es auf."
+  },
+  {
+    "prompt": "Was trägt man am Fuß?",
+    "options": [
+      "Schuh",
+      "Hut",
+      "Jacke",
+      "Tisch"
+    ],
+    "correctIndex": 0,
+    "hint": "Es ist am Fuß."
+  },
+  {
+    "prompt": "Was ist warm?",
+    "options": [
+      "Sonne",
+      "Eis",
+      "Schnee",
+      "Regen"
+    ],
+    "correctIndex": 0,
+    "hint": "Sie scheint hell."
+  },
+  {
+    "prompt": "Was ist im Wasser?",
+    "options": [
+      "Fisch",
+      "Vogel",
+      "Hase",
+      "Katze"
+    ],
+    "correctIndex": 0,
+    "hint": "Er schwimmt."
+  },
+  {
+    "prompt": "Was braucht man zum Schreiben?",
+    "options": [
+      "Stift",
+      "Löffel",
+      "Ball",
+      "Uhr"
+    ],
+    "correctIndex": 0,
+    "hint": "Damit schreibt man."
+  },
+  {
+    "prompt": "Was ist ein Möbel?",
+    "options": [
+      "Tisch",
+      "Apfel",
+      "Hund",
+      "Sonne"
+    ],
+    "correctIndex": 0,
+    "hint": "Es steht im Zimmer."
+  },
+  {
+    "prompt": "Was zeigt die Zeit?",
+    "options": [
+      "Uhr",
+      "Buch",
+      "Haus",
+      "Baum"
+    ],
+    "correctIndex": 0,
+    "hint": "Sie tickt."
+  },
+  {
+    "prompt": "Was reimt sich auf Haus?",
+    "options": [
+      "Maus",
+      "Hund",
+      "Ball",
+      "Stern"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf das Ende."
+  },
+  {
+    "prompt": "Was reimt sich auf Haus?",
+    "options": [
+      "Maus",
+      "Hund",
+      "Ball",
+      "Stern"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf das Ende."
+  },
+  {
+    "prompt": "Was reimt sich auf Haus?",
+    "options": [
+      "Maus",
+      "Hund",
+      "Ball",
+      "Stern"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf das Ende."
+  },
+  {
+    "prompt": "Was reimt sich auf Haus?",
+    "options": [
+      "Maus",
+      "Hund",
+      "Ball",
+      "Stern"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf das Ende."
+  },
+  {
+    "prompt": "Was reimt sich auf Haus?",
+    "options": [
+      "Maus",
+      "Hund",
+      "Ball",
+      "Stern"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf das Ende."
+  }
+]

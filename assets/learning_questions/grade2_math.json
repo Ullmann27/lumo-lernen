@@ -1,0 +1,552 @@
+[
+  {
+    "prompt": "Wie viel ist 25+17?",
+    "options": [
+      "42",
+      "43",
+      "41",
+      "52"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 36+12?",
+    "options": [
+      "48",
+      "49",
+      "47",
+      "58"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 48+21?",
+    "options": [
+      "69",
+      "70",
+      "68",
+      "79"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 55+35?",
+    "options": [
+      "90",
+      "91",
+      "89",
+      "100"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 63+14?",
+    "options": [
+      "77",
+      "78",
+      "76",
+      "87"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 72+18?",
+    "options": [
+      "90",
+      "91",
+      "89",
+      "100"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 29+39?",
+    "options": [
+      "68",
+      "69",
+      "67",
+      "78"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 44+28?",
+    "options": [
+      "72",
+      "73",
+      "71",
+      "82"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 19+57?",
+    "options": [
+      "76",
+      "77",
+      "75",
+      "86"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 31+46?",
+    "options": [
+      "77",
+      "78",
+      "76",
+      "87"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 83+9?",
+    "options": [
+      "92",
+      "93",
+      "91",
+      "102"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 67+24?",
+    "options": [
+      "91",
+      "92",
+      "90",
+      "101"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 90+5?",
+    "options": [
+      "95",
+      "96",
+      "94",
+      "105"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 58+32?",
+    "options": [
+      "90",
+      "91",
+      "89",
+      "100"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 41+17?",
+    "options": [
+      "58",
+      "59",
+      "57",
+      "68"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne Zehner und Einer."
+  },
+  {
+    "prompt": "Wie viel ist 52-18?",
+    "options": [
+      "34",
+      "35",
+      "33",
+      "44"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 80-25?",
+    "options": [
+      "55",
+      "56",
+      "54",
+      "65"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 71-36?",
+    "options": [
+      "35",
+      "36",
+      "34",
+      "45"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 90-40?",
+    "options": [
+      "50",
+      "51",
+      "49",
+      "60"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 63-27?",
+    "options": [
+      "36",
+      "37",
+      "35",
+      "46"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 44-19?",
+    "options": [
+      "25",
+      "26",
+      "24",
+      "35"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 100-55?",
+    "options": [
+      "45",
+      "46",
+      "44",
+      "55"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 38-14?",
+    "options": [
+      "24",
+      "25",
+      "23",
+      "34"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 75-31?",
+    "options": [
+      "44",
+      "45",
+      "43",
+      "54"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 60-22?",
+    "options": [
+      "38",
+      "39",
+      "37",
+      "48"
+    ],
+    "correctIndex": 0,
+    "hint": "Ziehe erst die Zehner ab."
+  },
+  {
+    "prompt": "Wie viel ist 2 mal 3?",
+    "options": [
+      "6",
+      "8",
+      "4",
+      "7"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 3 mal 4?",
+    "options": [
+      "12",
+      "15",
+      "9",
+      "13"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 4 mal 5?",
+    "options": [
+      "20",
+      "24",
+      "16",
+      "21"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 5 mal 5?",
+    "options": [
+      "25",
+      "30",
+      "20",
+      "26"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 2 mal 8?",
+    "options": [
+      "16",
+      "18",
+      "14",
+      "17"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 3 mal 7?",
+    "options": [
+      "21",
+      "24",
+      "18",
+      "22"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 4 mal 6?",
+    "options": [
+      "24",
+      "28",
+      "20",
+      "25"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 5 mal 9?",
+    "options": [
+      "45",
+      "50",
+      "40",
+      "46"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 1 mal 9?",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "10"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie viel ist 5 mal 4?",
+    "options": [
+      "20",
+      "25",
+      "15",
+      "21"
+    ],
+    "correctIndex": 0,
+    "hint": "Zähle die Reihe weiter."
+  },
+  {
+    "prompt": "Wie spät ist 3 Uhr?",
+    "options": [
+      "3:00",
+      "3:30",
+      "2:00",
+      "4:30"
+    ],
+    "correctIndex": 0,
+    "hint": "Voll heißt :00."
+  },
+  {
+    "prompt": "Halb 8 ist?",
+    "options": [
+      "7:30",
+      "8:30",
+      "8:00",
+      "7:00"
+    ],
+    "correctIndex": 0,
+    "hint": "Halb 8 ist vor 8."
+  },
+  {
+    "prompt": "Wie spät ist 6 Uhr?",
+    "options": [
+      "6:00",
+      "6:30",
+      "5:30",
+      "7:00"
+    ],
+    "correctIndex": 0,
+    "hint": "Voll heißt :00."
+  },
+  {
+    "prompt": "Halb 2 ist?",
+    "options": [
+      "1:30",
+      "2:30",
+      "2:00",
+      "1:00"
+    ],
+    "correctIndex": 0,
+    "hint": "Halb 2 ist vor 2."
+  },
+  {
+    "prompt": "Wie spät ist halb 5?",
+    "options": [
+      "4:30",
+      "5:30",
+      "5:00",
+      "4:00"
+    ],
+    "correctIndex": 0,
+    "hint": "Halb 5 ist vor 5."
+  },
+  {
+    "prompt": "Lisa hat 3 Äpfel, bekommt 4.",
+    "options": [
+      "7",
+      "6",
+      "8",
+      "5"
+    ],
+    "correctIndex": 0,
+    "hint": "Plus bedeutet dazu."
+  },
+  {
+    "prompt": "Tom hat 10 Karten, gibt 2 weg.",
+    "options": [
+      "8",
+      "12",
+      "7",
+      "9"
+    ],
+    "correctIndex": 0,
+    "hint": "Weggeben heißt minus."
+  },
+  {
+    "prompt": "2 Kinder haben je 5 Sterne.",
+    "options": [
+      "10",
+      "7",
+      "12",
+      "5"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne 2 mal 5."
+  },
+  {
+    "prompt": "Ein Buch hat 20 Seiten, 5 gelesen.",
+    "options": [
+      "15",
+      "25",
+      "10",
+      "5"
+    ],
+    "correctIndex": 0,
+    "hint": "Gelesene Seiten wegnehmen."
+  },
+  {
+    "prompt": "4 Tische mit je 3 Stiften.",
+    "options": [
+      "12",
+      "7",
+      "9",
+      "16"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne 4 mal 3."
+  },
+  {
+    "prompt": "Was ist 34+13?",
+    "options": [
+      "47",
+      "49",
+      "45",
+      "52"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne in Schritten."
+  },
+  {
+    "prompt": "Was ist 39+28?",
+    "options": [
+      "67",
+      "69",
+      "65",
+      "72"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne in Schritten."
+  },
+  {
+    "prompt": "Was ist 43+13?",
+    "options": [
+      "56",
+      "58",
+      "54",
+      "61"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne in Schritten."
+  },
+  {
+    "prompt": "Was ist 51+28?",
+    "options": [
+      "79",
+      "81",
+      "77",
+      "84"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne in Schritten."
+  },
+  {
+    "prompt": "Was ist 48+22?",
+    "options": [
+      "70",
+      "72",
+      "68",
+      "75"
+    ],
+    "correctIndex": 0,
+    "hint": "Rechne in Schritten."
+  }
+]

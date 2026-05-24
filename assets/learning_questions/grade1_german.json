@@ -1,0 +1,552 @@
+[
+  {
+    "prompt": "Womit beginnt Apfel?",
+    "options": [
+      "A",
+      "I",
+      "T",
+      "S"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Ball?",
+    "options": [
+      "B",
+      "F",
+      "M",
+      "U"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Hund?",
+    "options": [
+      "H",
+      "Q",
+      "V",
+      "T"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Katze?",
+    "options": [
+      "K",
+      "C",
+      "U",
+      "A"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Sonne?",
+    "options": [
+      "S",
+      "P",
+      "I",
+      "R"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Maus?",
+    "options": [
+      "M",
+      "H",
+      "G",
+      "X"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Nase?",
+    "options": [
+      "N",
+      "Q",
+      "S",
+      "M"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Dach?",
+    "options": [
+      "D",
+      "V",
+      "F",
+      "I"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Esel?",
+    "options": [
+      "E",
+      "V",
+      "F",
+      "R"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Fisch?",
+    "options": [
+      "F",
+      "N",
+      "Y",
+      "A"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Gans?",
+    "options": [
+      "G",
+      "W",
+      "Z",
+      "C"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Igel?",
+    "options": [
+      "I",
+      "F",
+      "Z",
+      "T"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Lampe?",
+    "options": [
+      "L",
+      "B",
+      "J",
+      "Z"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Oma?",
+    "options": [
+      "O",
+      "A",
+      "I",
+      "Q"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Pferd?",
+    "options": [
+      "P",
+      "U",
+      "Y",
+      "M"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Rose?",
+    "options": [
+      "R",
+      "X",
+      "N",
+      "M"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Tasse?",
+    "options": [
+      "T",
+      "Y",
+      "S",
+      "O"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Uhr?",
+    "options": [
+      "U",
+      "E",
+      "L",
+      "D"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Vogel?",
+    "options": [
+      "V",
+      "B",
+      "E",
+      "P"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Womit beginnt Wolke?",
+    "options": [
+      "W",
+      "G",
+      "I",
+      "V"
+    ],
+    "correctIndex": 0,
+    "hint": "Hör auf den ersten Laut."
+  },
+  {
+    "prompt": "Finde den Buchstaben A.",
+    "options": [
+      "A",
+      "O",
+      "Z",
+      "V"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben B.",
+    "options": [
+      "B",
+      "K",
+      "O",
+      "R"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben C.",
+    "options": [
+      "C",
+      "N",
+      "T",
+      "M"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben D.",
+    "options": [
+      "D",
+      "S",
+      "T",
+      "O"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben E.",
+    "options": [
+      "E",
+      "T",
+      "I",
+      "L"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben F.",
+    "options": [
+      "F",
+      "W",
+      "A",
+      "J"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben G.",
+    "options": [
+      "G",
+      "U",
+      "W",
+      "X"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben H.",
+    "options": [
+      "H",
+      "F",
+      "X",
+      "L"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben I.",
+    "options": [
+      "I",
+      "S",
+      "T",
+      "D"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben J.",
+    "options": [
+      "J",
+      "X",
+      "V",
+      "G"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben K.",
+    "options": [
+      "K",
+      "V",
+      "T",
+      "I"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben L.",
+    "options": [
+      "L",
+      "J",
+      "D",
+      "C"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben M.",
+    "options": [
+      "M",
+      "Q",
+      "V",
+      "C"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben N.",
+    "options": [
+      "N",
+      "L",
+      "C",
+      "O"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben O.",
+    "options": [
+      "O",
+      "E",
+      "A",
+      "J"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben P.",
+    "options": [
+      "P",
+      "N",
+      "Z",
+      "D"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben Q.",
+    "options": [
+      "Q",
+      "B",
+      "U",
+      "Z"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben R.",
+    "options": [
+      "R",
+      "B",
+      "M",
+      "X"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben S.",
+    "options": [
+      "S",
+      "T",
+      "K",
+      "R"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Finde den Buchstaben T.",
+    "options": [
+      "T",
+      "I",
+      "Q",
+      "H"
+    ],
+    "correctIndex": 0,
+    "hint": "Schau genau auf die Form."
+  },
+  {
+    "prompt": "Wie klatscht man Mama?",
+    "options": [
+      "Ma-ma",
+      "Mama",
+      "Mama",
+      "Ma-ma-x"
+    ],
+    "correctIndex": 0,
+    "hint": "Klatsche die Silben."
+  },
+  {
+    "prompt": "Wie klatscht man Sonne?",
+    "options": [
+      "Son-ne",
+      "Sonne",
+      "Sonne",
+      "Son-ne-x"
+    ],
+    "correctIndex": 0,
+    "hint": "Klatsche die Silben."
+  },
+  {
+    "prompt": "Wie klatscht man Hase?",
+    "options": [
+      "Ha-se",
+      "Hase",
+      "Hase",
+      "Ha-se-x"
+    ],
+    "correctIndex": 0,
+    "hint": "Klatsche die Silben."
+  },
+  {
+    "prompt": "Wie klatscht man Blume?",
+    "options": [
+      "Blu-me",
+      "Blume",
+      "Blume",
+      "Blu-me-x"
+    ],
+    "correctIndex": 0,
+    "hint": "Klatsche die Silben."
+  },
+  {
+    "prompt": "Wie klatscht man Katze?",
+    "options": [
+      "Kat-ze",
+      "Katze",
+      "Katze",
+      "Kat-ze-x"
+    ],
+    "correctIndex": 0,
+    "hint": "Klatsche die Silben."
+  },
+  {
+    "prompt": "Anfang von Ball?",
+    "options": [
+      "B",
+      "K",
+      "A",
+      "D"
+    ],
+    "correctIndex": 0,
+    "hint": "Der erste Laut hilft."
+  },
+  {
+    "prompt": "Anfang von Katze?",
+    "options": [
+      "K",
+      "U",
+      "S",
+      "B"
+    ],
+    "correctIndex": 0,
+    "hint": "Der erste Laut hilft."
+  },
+  {
+    "prompt": "Anfang von Nase?",
+    "options": [
+      "N",
+      "O",
+      "J",
+      "U"
+    ],
+    "correctIndex": 0,
+    "hint": "Der erste Laut hilft."
+  },
+  {
+    "prompt": "Anfang von Esel?",
+    "options": [
+      "E",
+      "F",
+      "X",
+      "B"
+    ],
+    "correctIndex": 0,
+    "hint": "Der erste Laut hilft."
+  },
+  {
+    "prompt": "Anfang von Gans?",
+    "options": [
+      "G",
+      "L",
+      "M",
+      "E"
+    ],
+    "correctIndex": 0,
+    "hint": "Der erste Laut hilft."
+  }
+]
