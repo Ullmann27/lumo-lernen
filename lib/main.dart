@@ -4,10 +4,12 @@ import 'package:flutter/services.dart';
 
 import 'app/app_shell.dart';
 import 'app/app_theme.dart';
+import 'core/lumo_asset_paths.dart';
 import 'core/lumo_error_log.dart';
 import 'core/lumo_sound.dart';
 import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
+import 'features/companion/lumo_lottie.dart';
 import 'features/games/lumo_cards/learning_question_repository.dart';
 import 'features/onboarding/lumo_onboarding_screen.dart';
 
@@ -188,9 +190,19 @@ class _LumoAppState extends State<LumoApp> {
   Widget build(BuildContext context) {
     Widget home;
     if (_loading) {
+      // PR D 2026-05-23: LumoLottie ersetzt den generischen Material-
+      // Spinner durch eine markenkonforme Lottie-Animation. Bei Lade-
+      // Fehler (kaputtes JSON, fehlende Datei) faellt der Wrapper
+      // intern auf eine stille Box zurueck - der Lade-Screen friert
+      // niemals ein.
       home = const Scaffold(
         backgroundColor: Color(0xFFFFF6EE),
-        body: Center(child: CircularProgressIndicator()),
+        body: Center(
+          child: LumoLottie(
+            asset: LumoAssetPaths.lottieLoading,
+            size: 120,
+          ),
+        ),
       );
     } else if (_profile == null) {
       home = LumoOnboardingScreen(onFinished: _finishOnboarding);
