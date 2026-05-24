@@ -11,6 +11,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../core/lumo_companion_pose.dart';
+import '../../companion/lumo_companion_pose_image.dart';
+
 class LumoResultDialog extends StatefulWidget {
   const LumoResultDialog({
     super.key,
@@ -106,8 +109,16 @@ class _LumoResultDialogState extends State<LumoResultDialog>
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(widget.kindWon ? '🏆' : '🦊',
-              style: const TextStyle(fontSize: 76)),
+          // PR B 2026-05-23: Lumo-Fuchs Pose statt Emoji. cheer + Glow
+          // bei Sieg, sad ohne Glow bei Niederlage. Falls Asset fehlt
+          // (Build mit unvollstaendigem Repo): Emoji-Fallback intern.
+          LumoCompanionPoseImage(
+            pose: widget.kindWon
+                ? LumoCompanionPose.cheer
+                : LumoCompanionPose.sad,
+            size: 96,
+            showGlow: widget.kindWon,
+          ),
           const SizedBox(height: 8),
           Text(
             widget.kindWon

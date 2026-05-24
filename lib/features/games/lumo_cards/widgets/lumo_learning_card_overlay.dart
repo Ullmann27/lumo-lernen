@@ -7,6 +7,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/lumo_companion_pose.dart';
+import '../../../companion/lumo_companion_pose_image.dart';
 import '../lumo_cards_models.dart';
 
 class LumoLearningCardOverlay extends StatelessWidget {
@@ -50,7 +52,11 @@ class LumoLearningCardOverlay extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Text('🦊', style: TextStyle(fontSize: 36)),
+                  // PR B 2026-05-23: Lumo-Fuchs think-Pose statt Emoji.
+                  const LumoCompanionPoseImage(
+                    pose: LumoCompanionPose.think,
+                    size: 44,
+                  ),
                   const SizedBox(width: 10),
                   const Text(
                     'Denkpause',
