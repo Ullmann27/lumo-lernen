@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/app_state.dart';
+import '../../../core/lumo_sound.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
@@ -203,8 +204,12 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                     round: 1,
                     totalRounds: 1,
                     targetPoints: widget.appState.state.stars,
-                    onClose: () => Navigator.of(context).pop(),
+                    onClose: () {
+                      LumoSound.instance.play(SoundEffect.click);
+                      Navigator.of(context).pop();
+                    },
                     onSettings: () {
+                      LumoSound.instance.play(SoundEffect.click);
                       _rewardGiven = false;
                       _controller.restart();
                     },
@@ -379,10 +384,14 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                   : 0),
               streak: widget.appState.lumoCardsWinStreak,
               onRestart: () {
+                LumoSound.instance.play(SoundEffect.click);
                 _rewardGiven = false;
                 _controller.restart();
               },
-              onExit: () => Navigator.of(context).pop(),
+              onExit: () {
+                LumoSound.instance.play(SoundEffect.click);
+                Navigator.of(context).pop();
+              },
             ),
           // Tier 6 Karten-Polish 2026-05-23: Partikel-Burst bei +2/+4.
           // Position auf den zentralen Arena-Bereich (in dem die Discard-

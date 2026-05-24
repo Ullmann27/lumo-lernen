@@ -24,6 +24,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'lumo_asset_paths.dart';
+
 /// Alle verfuegbaren Sound-Effekte. Asset-Pfade in [LumoSound._assetPath].
 enum SoundEffect {
   cardPlay,
@@ -42,17 +44,21 @@ class LumoSound {
 
   static const String _mutePrefKey = 'lumo_sfx_muted';
 
-  /// Asset-Pfade ohne 'assets/' Praefix - audioplayers nimmt den Pfad
-  /// relativ zum assets/-Root.
-  static const Map<SoundEffect, String> _assetPath = {
-    SoundEffect.cardPlay: 'audio/sfx/card_whoosh.m4a',
-    SoundEffect.cardDraw: 'audio/sfx/card_draw.m4a',
-    SoundEffect.plus2: 'audio/sfx/plus2_storm.m4a',
-    SoundEffect.plus4: 'audio/sfx/plus4_thunder.m4a',
-    SoundEffect.win: 'audio/sfx/win_fanfare.m4a',
-    SoundEffect.lose: 'audio/sfx/lose_buzz.m4a',
-    SoundEffect.click: 'audio/sfx/click.m4a',
-    SoundEffect.error: 'audio/sfx/error.m4a',
+  /// PR C 2026-05-23: Asset-Pfade aus der zentralen LumoAssetPaths-
+  /// Registry (PR A). audioplayers' AssetSource erwartet Pfade ohne
+  /// 'assets/'-Praefix - daher der _strip-Helper.
+  static String _strip(String fullPath) =>
+      fullPath.startsWith('assets/') ? fullPath.substring(7) : fullPath;
+
+  static final Map<SoundEffect, String> _assetPath = {
+    SoundEffect.cardPlay: _strip(LumoAssetPaths.sfxCardWhoosh),
+    SoundEffect.cardDraw: _strip(LumoAssetPaths.sfxCardDraw),
+    SoundEffect.plus2: _strip(LumoAssetPaths.sfxPlus2Storm),
+    SoundEffect.plus4: _strip(LumoAssetPaths.sfxPlus4Thunder),
+    SoundEffect.win: _strip(LumoAssetPaths.sfxWinFanfare),
+    SoundEffect.lose: _strip(LumoAssetPaths.sfxLoseBuzz),
+    SoundEffect.click: _strip(LumoAssetPaths.sfxClick),
+    SoundEffect.error: _strip(LumoAssetPaths.sfxError),
   };
 
   /// Set von Sounds die schon als 'fehlt' markiert wurden - so spammen
