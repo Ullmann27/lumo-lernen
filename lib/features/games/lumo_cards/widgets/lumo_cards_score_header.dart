@@ -9,6 +9,9 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/lumo_icon_paths.dart';
+import '../../../shared/widgets/lumo_svg_icon.dart';
+
 class LumoCardsScoreHeader extends StatelessWidget {
   const LumoCardsScoreHeader({
     super.key,
@@ -59,7 +62,8 @@ class LumoCardsScoreHeader extends StatelessWidget {
           ],
           if (onSettings != null)
             _RoundIconButton(
-              icon: Icons.settings_rounded,
+              // PR E 2026-05-23: SVG-Lumo-Icon statt Material-Settings.
+              svgPath: LumoIconPaths.settings,
               onTap: onSettings,
               bg: const Color(0xFF374151),
             ),
@@ -175,11 +179,19 @@ class _StatPill extends StatelessWidget {
 
 class _RoundIconButton extends StatelessWidget {
   const _RoundIconButton({
-    required this.icon,
+    this.icon,
+    this.svgPath,
     required this.bg,
     this.onTap,
-  });
-  final IconData icon;
+  }) : assert(icon != null || svgPath != null,
+            'Entweder Material-Icon ODER SVG-Pfad muss gesetzt sein.');
+
+  /// Material-Icon-Fallback fuer Stellen ohne SVG-Pendant.
+  final IconData? icon;
+
+  /// SVG-Pfad aus LumoIconPaths (bevorzugt, wenn vorhanden).
+  final String? svgPath;
+
   final Color bg;
   final VoidCallback? onTap;
 
@@ -203,7 +215,13 @@ class _RoundIconButton extends StatelessWidget {
             ),
           ],
         ),
-        child: Icon(icon, size: 20, color: Colors.white),
+        child: svgPath != null
+            ? LumoSvgIcon(
+                path: svgPath!,
+                size: 20,
+                color: Colors.white,
+              )
+            : Icon(icon, size: 20, color: Colors.white),
       ),
     );
   }
