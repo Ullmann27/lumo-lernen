@@ -18,6 +18,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../core/lumo_sound.dart';
 import '../../../core/lumo_voice.dart';
+import 'learning_question_repository.dart';
 import 'lumo_cards_deck.dart';
 import 'lumo_cards_models.dart';
 import 'lumo_cards_rules.dart';
@@ -118,6 +119,7 @@ class LumoCardsGameController extends ChangeNotifier {
       state: _state,
       card: card,
       rng: _rng,
+      questionPicker: LearningQuestionRepository.instance.random,
     );
     if (identical(next, _state)) return;
     _state = next;
@@ -304,6 +306,7 @@ class LumoCardsGameController extends ChangeNotifier {
         state: s,
         card: best,
         rng: _rng,
+        questionPicker: LearningQuestionRepository.instance.random,
       );
       _speakForLastAction(playedByPlayer1: false, card: best);
       _playSfxForPlay(best, _state);
