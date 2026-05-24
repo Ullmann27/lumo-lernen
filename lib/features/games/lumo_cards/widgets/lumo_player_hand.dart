@@ -11,6 +11,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/lumo_sound.dart';
 import '../lumo_cards_models.dart';
 import '../lumo_cards_rules.dart';
 import 'lumo_playing_card.dart';
@@ -124,11 +125,22 @@ class LumoPlayerHand extends StatelessWidget {
       topCard: topCard,
       selectedColor: selectedColor,
     );
-    return LumoPlayingCard(
+    final lumoCard = LumoPlayingCard(
       card: card,
       playable: playable,
       dimmed: !playable,
       onTap: playable ? () => onCardTap(card) : null,
+    );
+    if (playable) return lumoCard;
+    // PR G 2026-05-23: dimmed (= nicht spielbar) - Tap fuehrt zum
+    // Error-SFX statt zu stillem Nicht-Reagieren. LumoPlayingCard
+    // bleibt selbst nicht-interaktiv (onTap: null), kein Press-
+    // Feedback bei gedimmten Karten - das macht die GestureDetector
+    // hier moeglich, weil die innere onTap-null sie nicht abfaengt.
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () => LumoSound.instance.play(SoundEffect.error),
+      child: lumoCard,
     );
   }
 }
