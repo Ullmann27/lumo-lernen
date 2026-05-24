@@ -8,6 +8,7 @@ import 'core/lumo_error_log.dart';
 import 'core/lumo_sound.dart';
 import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
+import 'features/games/lumo_cards/learning_question_repository.dart';
 import 'features/onboarding/lumo_onboarding_screen.dart';
 
 Future<void> main() async {
@@ -37,6 +38,10 @@ Future<void> main() async {
   // App startet. Klingt sonst beim ersten Aufruf falsch (kurz an, dann
   // aus). Idempotent + try/catch innen, kann nicht den App-Start blocken.
   await LumoSound.instance.init();
+  // PR F 2026-05-23: 200 Lernfragen aus 4 JSON-Bundles laden. Wenn
+  // Bundles fehlen / kaputt sind, faellt das Repository auf die
+  // hardcoded Standard-Frage zurueck. Kein App-Block bei Fehler.
+  await LearningQuestionRepository.instance.init();
   runApp(const LumoApp());
 }
 

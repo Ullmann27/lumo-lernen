@@ -55,6 +55,7 @@ class LumoCardsRules {
     required LumoCardsGameState state,
     required LumoCard card,
     Random? rng,
+    LearningQuestion Function(Random?)? questionPicker,
   }) {
     if (state.phase != GamePhase.playing) return state;
     if (state.topCard == null) return state;
@@ -222,8 +223,12 @@ class LumoCardsRules {
         ));
 
       case LumoCardType.thinkPause:
-        // Oeffnet eine zufaellige Lernfrage.
-        final q = _pickLearningQuestion(rng);
+        // Oeffnet eine zufaellige Lernfrage. PR F (2026-05-23): wenn
+        // der Aufrufer einen Picker injiziert (Controller -> Repository
+        // mit 200 JSON-Fragen) wird der genutzt, sonst Default-Pool aus
+        // _learningQuestions (so bleiben alle Rules-Tests gruen).
+        final picker = questionPicker ?? _pickLearningQuestion;
+        final q = picker(rng);
         return state.copyWith(
           players: newPlayers,
           discardPile: newDiscard,
