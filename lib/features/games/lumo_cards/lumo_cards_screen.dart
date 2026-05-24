@@ -21,6 +21,7 @@ import 'lumo_cards_models.dart';
 import 'widgets/lumo_action_button.dart';
 import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_call_button.dart';
+import 'widgets/lumo_card_burst.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_cards_score_header.dart';
 import 'widgets/lumo_color_arrows.dart';
@@ -64,6 +65,17 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// ~2 Sekunden automatisch oder per Tap. Wird beim Restart nicht
   /// erneut gezeigt.
   bool _showIntro = true;
+
+  /// Tier 6 Karten-Polish 2026-05-23: aktiver Partikel-Burst bei +2/+4.
+  /// Solange != null wird LumoCardBurst ueber der Arena angezeigt.
+  /// Wird via onDone-Callback nach ca. 900 ms automatisch geleert.
+  LumoBurstStyle? _activeBurst;
+  int _burstKey = 0;
+
+  /// Tracking: letzte topCard.id um Karten-Wechsel zu erkennen.
+  /// Wird im _onStateChanged-Listener verglichen, NICHT im build() -
+  /// build() darf keine Side-Effects haben.
+  String? _lastTopCardId;
 
   /// Vom Kind gewaehlter Avatar fuer Spieler 1.
   /// Persistiert in SharedPreferences ('lumo_cards_player_avatar').
@@ -135,6 +147,23 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       final kindWon = s.winnerIndex == 0;
       widget.appState.recordLumoCardsResult(won: kindWon);
     }
+
+    // Tier 6 Karten-Polish 2026-05-23: Burst-Trigger bei +2 / +4.
+    // Nur bei ECHTEM Wechsel der topCard.id (nicht bei jedem Listener-
+    // Tick) und nur fuer Storm-Karten - Number-Karten lassen die Discard-
+    // Pile-Slide-Animation aus PR #87 das visuelle Feedback machen.
+    final top = s.topCard;
+    if (top != null && top.id != _lastTopCardId) {
+      _lastTopCardId = top.id;
+      if (top.type == LumoCardType.starRain) {
+        _activeBurst = LumoBurstStyle.storm;
+        _burstKey += 1;
+      } else if (top.type == LumoCardType.superRain) {
+        _activeBurst = LumoBurstStyle.thunder;
+        _burstKey += 1;
+      }
+    }
+
     setState(() {});
   }
 
@@ -354,6 +383,25 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 _controller.restart();
               },
               onExit: () => Navigator.of(context).pop(),
+            ),
+          // Tier 6 Karten-Polish 2026-05-23: Partikel-Burst bei +2/+4.
+          // Position auf den zentralen Arena-Bereich (in dem die Discard-
+          // Pile sitzt). Partikel spawnen von der Mitte des Positioned-
+          // Bereichs aus, daher die ungleichmaessigen Insets - die Mitte
+          // soll genau ueber dem Discard liegen.
+          if (_activeBurst != null)
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.30,
+              bottom: MediaQuery.of(context).size.height * 0.32,
+              left: 0,
+              right: 0,
+              child: LumoCardBurst(
+                key: ValueKey('burst-$_burstKey'),
+                style: _activeBurst!,
+                onDone: () {
+                  if (mounted) setState(() => _activeBurst = null);
+                },
+              ),
             ),
           // Konfetti-Regen wenn das Kind gewinnt. Liegt UEBER dem Result-
           // Dialog, IgnorePointer drinnen damit der Dialog klickbar bleibt.
