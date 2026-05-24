@@ -1,0 +1,16 @@
+# Lumo Lernen — flutter gen-l10n config
+#
+# Aktiviert wird das spaeter mit `flutter pub add flutter_localizations
+# --sdk-flutter` + `flutter pub add intl` + `generate: true` in pubspec.yaml.
+# Dieser Eintrag liegt schon hier damit der Translation-PR self-contained
+# ist und ChatGPT-uebersetzte .arb-Files spaeter ohne Setup gen-l10n
+# fuettern koennen.
+arb-dir: lib/l10n
+template-arb-file: app_de.arb
+output-localization-file: app_localizations.dart
+output-class: AppL10n
+preferred-supported-locales:
+  - de
+  - en
+  - tr
+  - bs
