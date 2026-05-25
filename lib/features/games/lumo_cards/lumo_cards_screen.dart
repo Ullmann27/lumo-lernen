@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_asset_paths.dart';
+import '../../../core/lumo_music.dart';
 import '../../../core/lumo_sound.dart';
 import '../../companion/lumo_lottie.dart';
 import 'lumo_cards_assets.dart';
@@ -111,6 +112,13 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     // direkt setzen. Avatar-Wechsel nur explizit ueber Tap aufs HUD.
     _playerAvatarPath = LumoCardsAssets.avatarBlueBoy;
     WidgetsBinding.instance.addPostFrameCallback((_) => _loadSavedAvatar());
+    // PR H3 2026-05-23: ruhige Background-Music starten sobald der erste
+    // Frame steht. LumoMusic respektiert seinen muted-Toggle intern, das
+    // play() ist also kein No-op-Risiko wenn der Spieler Musik aus hat.
+    // Fehlende m4a-Datei -> stille Box (try/catch + _missing-Set).
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => LumoMusic.instance.play(LumoMusicTrack.chillLoop),
+    );
   }
 
   Future<void> _loadSavedAvatar() async {
@@ -143,6 +151,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   void dispose() {
     _controller.removeListener(_onStateChanged);
     _controller.dispose();
+    // PR H3: Background-Music stoppen wenn der Screen verlassen wird.
+    // Singleton-Player bleibt offen fuer den naechsten Screen-Eintritt.
+    LumoMusic.instance.stop();
     super.dispose();
   }
 
