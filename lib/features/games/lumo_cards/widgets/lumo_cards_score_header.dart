@@ -21,6 +21,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
     this.onClose,
     this.onEmoji,
     this.onSettings,
+    this.onAudioSettings,
   });
 
   final int round;
@@ -29,6 +30,10 @@ class LumoCardsScoreHeader extends StatelessWidget {
   final VoidCallback? onClose;
   final VoidCallback? onEmoji;
   final VoidCallback? onSettings;
+
+  /// PR I 2026-05-23: oeffnet das Audio-Settings-BottomSheet.
+  /// Wenn null wird der Audio-Button nicht angezeigt.
+  final VoidCallback? onAudioSettings;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +62,15 @@ class LumoCardsScoreHeader extends StatelessWidget {
               icon: Icons.emoji_emotions_rounded,
               onTap: onEmoji,
               bg: const Color(0xFF7C3AED),
+            ),
+            const SizedBox(width: 8),
+          ],
+          // PR I 2026-05-23: Audio-Settings (Music + SFX Toggle).
+          if (onAudioSettings != null) ...[
+            _RoundIconButton(
+              svgPath: LumoIconPaths.volumeOn,
+              onTap: onAudioSettings,
+              bg: const Color(0xFF0EA5E9),
             ),
             const SizedBox(width: 8),
           ],

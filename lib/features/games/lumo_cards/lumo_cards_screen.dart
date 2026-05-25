@@ -19,6 +19,7 @@ import '../../../core/lumo_asset_paths.dart';
 import '../../../core/lumo_music.dart';
 import '../../../core/lumo_sound.dart';
 import '../../companion/lumo_lottie.dart';
+import '../../shared/widgets/lumo_audio_settings_sheet.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
@@ -212,6 +213,26 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     });
   }
 
+  /// PR I 2026-05-23: oeffnet das Audio-Settings BottomSheet. Wenn der
+  /// Spieler Musik wieder aktiviert, startet die chill_loop sofort -
+  /// passt zum aktuellen Lumo-Cards-Kontext. LumoMusic.muted persistiert,
+  /// SharedPreferences merken sich die Wahl ueber App-Neustarts hinweg.
+  Future<void> _openAudioSettings() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      backgroundColor: const Color(0xFFFFF6EE),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (_) => LumoAudioSettingsSheet(
+        onMusicEnabled: () => LumoMusic.instance.play(
+          LumoMusicTrack.chillLoop,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final s = _controller.state;
@@ -256,6 +277,11 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                       LumoSound.instance.play(SoundEffect.click);
                       _rewardGiven = false;
                       _controller.restart();
+                    },
+                    // PR I 2026-05-23: Audio-Settings BottomSheet
+                    onAudioSettings: () {
+                      LumoSound.instance.play(SoundEffect.click);
+                      _openAudioSettings();
                     },
                   ),
                   // ── Gegner-HUD: Avatar + Name + Karten + Sterne ──
