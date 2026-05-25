@@ -112,12 +112,16 @@ class _LumoResultDialogState extends State<LumoResultDialog>
           // PR B 2026-05-23: Lumo-Fuchs Pose statt Emoji. cheer + Glow
           // bei Sieg, sad ohne Glow bei Niederlage. Falls Asset fehlt
           // (Build mit unvollstaendigem Repo): Emoji-Fallback intern.
+          // PR H2 2026-05-23: Lottie-Variante der Pose (cheer.json /
+          // sad.json). Bei Asset-Fehler faellt LumoLottie intern auf
+          // das PNG zurueck (fallbackPngAsset = pose.pngPath).
           LumoCompanionPoseImage(
             pose: widget.kindWon
                 ? LumoCompanionPose.cheer
                 : LumoCompanionPose.sad,
             size: 96,
             showGlow: widget.kindWon,
+            useLottie: true,
           ),
           const SizedBox(height: 8),
           Text(
