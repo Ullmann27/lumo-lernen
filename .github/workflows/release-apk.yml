@@ -121,14 +121,23 @@ jobs:
 
       - name: Build debug APK
         run: |
+          set -o pipefail
+          # CI-Rescue 2026-05-25: --verbose + Tail-on-Failure damit der
+          # eigentliche Build-Error im GitHub-Log sichtbar wird.
           # Build-Nummer und Version-Name werden via --dart-define an die App weitergegeben.
           # AppUpdateService liest currentBuildNumber aus int.fromEnvironment('LUMO_BUILD_NUMBER').
-          # Damit kennt jede installierte APK ihre eigene Build-Nummer und kann sich mit
-          # github.com/releases/latest vergleichen.
-          flutter build apk --debug \
+          flutter build apk --debug --verbose \
             --build-number "$GITHUB_RUN_NUMBER" \
             --dart-define=LUMO_BUILD_NUMBER="$GITHUB_RUN_NUMBER" \
-            --dart-define=LUMO_VERSION_NAME=0.9.0
+            --dart-define=LUMO_VERSION_NAME=0.9.0 2>&1 | tee /tmp/build.log || (
+              echo "::group::== LETZTE 200 ZEILEN BUILD-LOG =="
+              tail -n 200 /tmp/build.log
+              echo "::endgroup::"
+              echo "::group::== SAEMTLICHE 'error' UND 'FAILED' ZEILEN =="
+              grep -nE "error|FAILED|Exception|Caused by" /tmp/build.log | tail -n 80 || true
+              echo "::endgroup::"
+              exit 1
+            )
           find build -type f -name "*.apk" -print
 
       - name: Prepare APK for release

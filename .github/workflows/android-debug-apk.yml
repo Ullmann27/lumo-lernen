@@ -95,7 +95,21 @@ jobs:
 
       - name: Build debug APK
         run: |
-          flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
+          set -o pipefail
+          # CI-Rescue 2026-05-25: --verbose + Tail-on-Failure damit der
+          # eigentliche Build-Error im GitHub-Log sichtbar wird. Vorher
+          # war nur "Process completed with exit code 1" sichtbar - das
+          # hat 13 Builds lang verhindert dass wir die Ursache finden.
+          flutter build apk --debug --verbose \
+            --build-number "$GITHUB_RUN_NUMBER" 2>&1 | tee /tmp/build.log || (
+              echo "::group::== LETZTE 200 ZEILEN BUILD-LOG =="
+              tail -n 200 /tmp/build.log
+              echo "::endgroup::"
+              echo "::group::== SAEMTLICHE 'error' UND 'FAILED' ZEILEN =="
+              grep -nE "error|FAILED|Exception|Caused by" /tmp/build.log | tail -n 80 || true
+              echo "::endgroup::"
+              exit 1
+            )
           find build -type f -name "*.apk" -print
 
       - name: Collect APK files
