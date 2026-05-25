@@ -11,8 +11,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../../../core/lumo_companion_pose.dart';
-import '../../companion/lumo_companion_pose_image.dart';
+import '../../../../core/lumo_companion_pose.dart';
+import '../../../companion/lumo_companion_pose_image.dart';
 
 class LumoResultDialog extends StatefulWidget {
   const LumoResultDialog({
