@@ -18,6 +18,8 @@ concurrency:
 
 permissions:
   contents: read
+  pull-requests: write
+  issues: write
 
 jobs:
   build:
@@ -94,6 +96,7 @@ jobs:
         run: flutter test test/smoke_main_screens_test.dart --no-pub
 
       - name: Build debug APK
+        id: build_apk
         run: |
           set -o pipefail
           # CI-Rescue 2026-05-25: --verbose + Tail-on-Failure damit der
@@ -111,6 +114,46 @@ jobs:
               exit 1
             )
           find build -type f -name "*.apk" -print
+
+      # CI-Rescue 2026-05-25: bei Build-Failure den Log-Tail in den
+      # PR-Comment posten. So sieht Claude die echte Fehlerursache ohne
+      # sich beim GitHub-Web-UI einloggen zu muessen.
+      - name: Comment build log on PR (if failure)
+        if: failure() && steps.build_apk.outcome == 'failure' && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          if [ ! -f /tmp/build.log ]; then
+            echo "Keine /tmp/build.log gefunden - nichts zum posten."
+            exit 0
+          fi
+          {
+            echo "## CI-Failure-Diagnose (Build #${GITHUB_RUN_NUMBER})"
+            echo ""
+            echo "Workflow-Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}"
+            echo ""
+            echo "### Letzte 120 Zeilen Build-Log"
+            echo ""
+            echo '```'
+            tail -n 120 /tmp/build.log | sed 's/```/`\``/g'
+            echo '```'
+            echo ""
+            echo "### Alle 'error|FAILED|Exception|Caused by'-Treffer (max 60)"
+            echo ""
+            echo '```'
+            grep -nE "error|FAILED|Exception|Caused by" /tmp/build.log | tail -n 60 | sed 's/```/`\``/g' || echo "(keine Treffer)"
+            echo '```'
+          } > /tmp/comment.md
+          # GH-API per curl statt gh-cli weil gh CLI nicht installiert ist
+          BODY=$(jq -Rs . < /tmp/comment.md)
+          curl -fsSL \
+            -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
+            -d "{\"body\": ${BODY}}"
 
       - name: Collect APK files
         run: |
