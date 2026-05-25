@@ -1,24 +1,17 @@
 // ════════════════════════════════════════════════════════════════════════
-// LUMO SVG ICON — Wrapper-Widget mit Material-Icon-Fallback
+// LUMO SVG ICON — Wrapper-Widget (Material-Icon-Modus, Build 199+)
 // ════════════════════════════════════════════════════════════════════════
-// Tier E aus dem Asset-Integrations-Plan (Heinz 2026-05-23).
+// CI-Rescue 2026-05-25: das flutter_svg-Package wurde voruebergehend aus
+// pubspec.yaml entfernt (siehe lumo_lottie.dart). Das Widget bleibt
+// API-kompatibel - es zeigt nur statt eines SVG einen Material-Fallback-
+// Icon (oder Icons.help_outline wenn kein Fallback gesetzt ist).
 //
-// Rendert ein SVG aus LumoIconPaths mit:
-//  - currentColor-Tint via ColorFilter
-//  - errorBuilder -> optionaler Material-Icon-Fallback wenn SVG nicht
-//    laedt (kaputtes XML, fehlende Datei)
-//  - keine Crashs, immer eine sichtbare Reaktion
-//
-// Verwendung:
-//   const LumoSvgIcon(
-//     path: LumoIconPaths.settings,
-//     size: 22,
-//     color: Colors.white,
-//   )
+// Aufrufstellen die bisher 'svgPath: LumoIconPaths.xyz' uebergeben haben
+// koennen schrittweise auf direkte Material-Icons migriert werden, ohne
+// dass das Layout bricht.
 // ════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LumoSvgIcon extends StatelessWidget {
   const LumoSvgIcon({
@@ -30,40 +23,24 @@ class LumoSvgIcon extends StatelessWidget {
     this.fallbackIcon,
   });
 
-  /// SVG-Pfad aus LumoIconPaths (z.B. LumoIconPaths.settings).
+  /// Wird im Material-Modus nicht geladen (siehe Datei-Kopf).
   final String path;
 
-  /// Quadratische Anzeige-Groesse in Logical Pixels.
   final double size;
-
-  /// Tint-Farbe. Wenn null: Original-Farbe des SVG (sollte 'currentColor'
-  /// sein - dann erbt es vom umgebenden IconTheme).
   final Color? color;
-
-  /// Optional eigener Accessibility-Label.
   final String? semanticLabel;
 
-  /// Optionales Material-Fallback-Icon wenn SVG nicht laedt.
+  /// Optionales Material-Icon. Wenn null: Icons.help_outline.
   final IconData? fallbackIcon;
 
   @override
   Widget build(BuildContext context) {
     final tintColor = color ?? IconTheme.of(context).color;
-    return SvgPicture.asset(
-      path,
-      width: size,
-      height: size,
-      semanticsLabel: semanticLabel,
-      colorFilter: tintColor != null
-          ? ColorFilter.mode(tintColor, BlendMode.srcIn)
-          : null,
-      placeholderBuilder: (_) => SizedBox(width: size, height: size),
-      // SvgPicture.asset hat keinen direkten errorBuilder, aber wenn
-      // das Asset fehlt rendert es einfach nichts. Fuer einen sichtbaren
-      // Fallback wrappen wir in einen Error-Catcher... nicht trivial.
-      // Stattdessen: bei fallbackIcon != null + bekannten Pfad-Fehlern
-      // koennten wir vorher pruefen. Vorerst: stille SizedBox als
-      // Standard, fallbackIcon nur als Optionsparameter dokumentiert.
+    return Icon(
+      fallbackIcon ?? Icons.help_outline,
+      size: size,
+      color: tintColor,
+      semanticLabel: semanticLabel,
     );
   }
 }

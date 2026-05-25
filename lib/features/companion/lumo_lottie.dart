@@ -1,23 +1,24 @@
 // ════════════════════════════════════════════════════════════════════════
-// LUMO LOTTIE — Wrapper-Widget mit PNG-Fallback
+// LUMO LOTTIE — Wrapper-Widget (PNG-Fallback-Modus, Build 199+)
 // ════════════════════════════════════════════════════════════════════════
-// Tier D aus dem Asset-Integrations-Plan (Heinz 2026-05-23).
+// CI-Rescue 2026-05-25: das lottie-Package wurde voruebergehend aus
+// pubspec.yaml entfernt, weil es den Android-Native-Build seit 13 Commits
+// rot gemacht hat (Build 199-212 alle ROT). Heinz braucht zuerst eine
+// installierbare APK mit allen Funktionen.
 //
-// Rendert ein Lottie-Asset, mit:
-//  - try/catch um den Loader (kaputtes JSON -> Fallback statt Crash)
-//  - optionalem PNG-Pfad als Fallback wenn Lottie nicht laedt
-//  - delegate auf das offizielle lottie-Package (MIT, open source)
+// Das Widget bleibt API-kompatibel:
+//   - Alle Aufrufstellen funktionieren weiter
+//   - Wenn ein fallbackPngAsset gesetzt ist, wird das PNG angezeigt
+//   - Sonst eine stille SizedBox in der angegebenen Groesse
 //
-// Verwendung:
-//   const LumoLottie(asset: LumoAssetPaths.lottieLoading, size: 96)
-//
-// Falls das lottie-Package zur Build-Zeit unverfuegbar ist (z.B. wenn
-// pubspec noch nicht aktualisiert wurde), gibt es einen einzigen
-// zentralen Punkt der angepasst werden muss.
+// Sobald das lottie-Package wieder mit dem aktuellen Flutter-Stack
+// kompatibel ist, kann diese Datei zurueck auf Lottie.asset(...) gedreht
+// werden. Bis dahin: PNG-Fallback genuegt fuer den Loading-Spinner +
+// die 6 Companion-Lottie-Animationen (Heinz hat fuer alle Posen auch
+// statische PNGs geliefert).
 // ════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class LumoLottie extends StatelessWidget {
   const LumoLottie({
@@ -28,46 +29,30 @@ class LumoLottie extends StatelessWidget {
     this.fallbackPngAsset,
   });
 
-  /// Lottie-JSON-Pfad (z.B. LumoAssetPaths.lottieLoading)
+  /// Bleibt aus API-Gruenden im Konstruktor, wird im PNG-Fallback-Modus
+  /// aber nicht geladen.
   final String asset;
 
-  /// Quadratische Anzeige-Groesse in Logical Pixels.
   final double size;
 
-  /// Bei Loop-Animationen (Spinner, Idle, Sad/Think) true belassen.
-  /// Fuer einmalige Animationen (Star-Burst, Cheer) auf false setzen.
+  /// Wird im PNG-Modus ignoriert (PNG ist statisch).
   final bool repeat;
 
-  /// Optional: PNG-Pfad als Fallback wenn Lottie crasht / nicht laedt.
-  /// Z.B. fuer LumoCompanionPose-Lottie kann hier der pose.pngPath
-  /// uebergeben werden.
+  /// PNG-Pfad als Fallback. Wenn null: stille Box in 'size' x 'size'.
   final String? fallbackPngAsset;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    final fallback = fallbackPngAsset;
+    if (fallback == null) {
+      return SizedBox(width: size, height: size);
+    }
+    return Image.asset(
+      fallback,
       width: size,
       height: size,
-      child: Lottie.asset(
-        asset,
-        repeat: repeat,
-        fit: BoxFit.contain,
-        errorBuilder: (_, __, ___) {
-          // Kaputtes JSON / fehlendes Asset -> PNG-Fallback wenn vorhanden,
-          // sonst stille Box. Kein Crash.
-          final fallback = fallbackPngAsset;
-          if (fallback != null) {
-            return Image.asset(
-              fallback,
-              width: size,
-              height: size,
-              fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-            );
-          }
-          return const SizedBox.shrink();
-        },
-      ),
+      fit: BoxFit.contain,
+      errorBuilder: (_, __, ___) => SizedBox(width: size, height: size),
     );
   }
 }
