@@ -134,16 +134,23 @@ jobs:
             echo ""
             echo "Workflow-Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}"
             echo ""
-            echo "### Letzte 120 Zeilen Build-Log"
+            echo "### Kontext um 'kernel_snapshot' / 'compileFlutter' Failure"
+            echo "(80 Zeilen vor + 5 nach jedem Treffer)"
             echo ""
             echo '```'
-            tail -n 120 /tmp/build.log | sed 's/```/`\``/g'
+            grep -nB 80 -A 5 -iE "kernel_snapshot.*failed|compileFlutter.*FAILED|Target.*failed" /tmp/build.log | tail -n 300 | sed 's/```/`\``/g' || echo "(keine Treffer)"
             echo '```'
             echo ""
-            echo "### Alle 'error|FAILED|Exception|Caused by'-Treffer (max 60)"
+            echo "### Alle case-insensitiven 'error:' / 'FAILED' / 'Exception' Zeilen"
             echo ""
             echo '```'
-            grep -nE "error|FAILED|Exception|Caused by" /tmp/build.log | tail -n 60 | sed 's/```/`\``/g' || echo "(keine Treffer)"
+            grep -niE "(^| )error:|FAILED$|Exception$|Caused by|: error " /tmp/build.log | tail -n 60 | sed 's/```/`\``/g' || echo "(keine Treffer)"
+            echo '```'
+            echo ""
+            echo "### Letzte 80 Zeilen Build-Log"
+            echo ""
+            echo '```'
+            tail -n 80 /tmp/build.log | sed 's/```/`\``/g'
             echo '```'
           } > /tmp/comment.md
           # GH-API per curl statt gh-cli weil gh CLI nicht installiert ist
