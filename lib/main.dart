@@ -6,6 +6,7 @@ import 'app/app_shell.dart';
 import 'app/app_theme.dart';
 import 'core/lumo_asset_paths.dart';
 import 'core/lumo_error_log.dart';
+import 'core/lumo_music.dart';
 import 'core/lumo_sound.dart';
 import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
@@ -40,6 +41,10 @@ Future<void> main() async {
   // App startet. Klingt sonst beim ersten Aufruf falsch (kurz an, dann
   // aus). Idempotent + try/catch innen, kann nicht den App-Start blocken.
   await LumoSound.instance.init();
+  // PR H3 2026-05-23: Background-Music-Manager init laedt den
+  // persistierten Mute-Status. Spielt von sich aus noch nichts ab -
+  // das macht der jeweilige Screen ueber play() im initState.
+  await LumoMusic.instance.init();
   // PR F 2026-05-23: 200 Lernfragen aus 4 JSON-Bundles laden. Wenn
   // Bundles fehlen / kaputt sind, faellt das Repository auf die
   // hardcoded Standard-Frage zurueck. Kein App-Block bei Fehler.
