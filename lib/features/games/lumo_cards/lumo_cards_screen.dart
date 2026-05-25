@@ -15,7 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/app_state.dart';
+import '../../../core/lumo_asset_paths.dart';
 import '../../../core/lumo_sound.dart';
+import '../../companion/lumo_lottie.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
@@ -77,6 +79,15 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// Wird im _onStateChanged-Listener verglichen, NICHT im build() -
   /// build() darf keine Side-Effects haben.
   String? _lastTopCardId;
+
+  /// PR H1 2026-05-23: Star-Burst-Lottie bei richtiger Lernfrage-Antwort.
+  /// Detection ueber Phase-Transition (learningQuestion -> playing) +
+  /// Stars-Increment beim Kind. Burst spielt ~1.5 s und entfernt sich
+  /// dann via Future.delayed-Aufraeumer.
+  GamePhase? _prevPhase;
+  int _prevKidStars = 0;
+  bool _showStarBurst = false;
+  int _starBurstKey = 0;
 
   /// Vom Kind gewaehlter Avatar fuer Spieler 1.
   /// Persistiert in SharedPreferences ('lumo_cards_player_avatar').
@@ -165,7 +176,29 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       }
     }
 
+    // PR H1 2026-05-23: Star-Burst bei korrekter Lernfrage-Antwort.
+    // Detection: prev phase war learningQuestion, jetzt nicht mehr, UND
+    // Kind-Stars sind gewachsen -> Antwort richtig (Belohnung +1 Stern
+    // im Repository).
+    final kidStarsNow = s.players[0].stars;
+    final wasLearning = _prevPhase == GamePhase.learningQuestion;
+    final isLearningNow = s.phase == GamePhase.learningQuestion;
+    if (wasLearning && !isLearningNow && kidStarsNow > _prevKidStars) {
+      _triggerStarBurst();
+    }
+    _prevPhase = s.phase;
+    _prevKidStars = kidStarsNow;
+
     setState(() {});
+  }
+
+  /// PR H1: spielt LumoLottie(star_burst) ueber dem Spielfeld ab, ~1.5 s.
+  void _triggerStarBurst() {
+    _starBurstKey += 1;
+    _showStarBurst = true;
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      if (mounted) setState(() => _showStarBurst = false);
+    });
   }
 
   @override
@@ -410,6 +443,22 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 onDone: () {
                   if (mounted) setState(() => _activeBurst = null);
                 },
+              ),
+            ),
+          // PR H1 2026-05-23: Star-Burst-Lottie bei richtiger Lernfrage.
+          // Liegt UEBER der Arena, IgnorePointer damit Tap-Events
+          // weiter zur unterliegenden UI durchgehen.
+          if (_showStarBurst)
+            Positioned.fill(
+              child: IgnorePointer(
+                child: Center(
+                  child: LumoLottie(
+                    key: ValueKey('starburst-$_starBurstKey'),
+                    asset: LumoAssetPaths.lottieStarBurst,
+                    size: 220,
+                    repeat: false,
+                  ),
+                ),
               ),
             ),
           // Konfetti-Regen wenn das Kind gewinnt. Liegt UEBER dem Result-
