@@ -17,6 +17,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/lumo_companion_pose.dart';
+import 'lumo_lottie.dart';
 
 class LumoCompanionPoseImage extends StatelessWidget {
   const LumoCompanionPoseImage({
@@ -25,6 +26,8 @@ class LumoCompanionPoseImage extends StatelessWidget {
     this.size = 96.0,
     this.showGlow = false,
     this.semanticLabel,
+    this.useLottie = false,
+    this.lottieRepeat = false,
   });
 
   final LumoCompanionPose pose;
@@ -37,22 +40,44 @@ class LumoCompanionPoseImage extends StatelessWidget {
   /// Optional eigener Accessibility-Label. Default = pose.semanticLabel.
   final String? semanticLabel;
 
+  /// PR H2 2026-05-23: wenn true UND die Pose eine Lottie-Variante hat,
+  /// wird stattdessen die Vector-Animation gerendert (mit PNG als
+  /// Fallback). Bei 'surprised' (kein Lottie) faellt der Widget
+  /// stillschweigend auf PNG zurueck.
+  final bool useLottie;
+
+  /// Loop-Verhalten fuer Lottie. Default false = einmaliges Abspielen
+  /// (passend fuer cheer/sad-Moment). Idle/Think profitieren von true.
+  final bool lottieRepeat;
+
   @override
   Widget build(BuildContext context) {
-    final cw = (size * 3).round();
-    final ch = (size * 3).round();
     final label = semanticLabel ?? pose.semanticLabel;
-    final image = Image.asset(
-      pose.pngPath,
-      width: size,
-      height: size,
-      fit: BoxFit.contain,
-      cacheWidth: cw,
-      cacheHeight: ch,
-      semanticLabel: label,
-      errorBuilder: (_, __, ___) => _emojiFallback(),
-    );
-    if (!showGlow) return SizedBox(width: size, height: size, child: image);
+    final lottiePath = pose.lottiePath;
+    final Widget figure;
+    if (useLottie && lottiePath != null) {
+      // PR H2: Vector-Pose mit PNG-Fallback wenn Lottie scheitert.
+      figure = LumoLottie(
+        asset: lottiePath,
+        size: size,
+        repeat: lottieRepeat,
+        fallbackPngAsset: pose.pngPath,
+      );
+    } else {
+      final cw = (size * 3).round();
+      final ch = (size * 3).round();
+      figure = Image.asset(
+        pose.pngPath,
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+        cacheWidth: cw,
+        cacheHeight: ch,
+        semanticLabel: label,
+        errorBuilder: (_, __, ___) => _emojiFallback(),
+      );
+    }
+    if (!showGlow) return SizedBox(width: size, height: size, child: figure);
 
     // Glow-Variante: weicher Strahlenkranz, statisch (kein Pulse, kein
     // Controller - bleibt verlustfrei bei vielen Instanzen gleichzeitig).
@@ -75,7 +100,7 @@ class LumoCompanionPoseImage extends StatelessWidget {
             ),
           ],
         ),
-        child: image,
+        child: figure,
       ),
     );
   }
