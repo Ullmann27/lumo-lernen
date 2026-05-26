@@ -9,9 +9,6 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../core/lumo_icon_paths.dart';
-import '../../../shared/widgets/lumo_svg_icon.dart';
-
 class LumoCardsScoreHeader extends StatelessWidget {
   const LumoCardsScoreHeader({
     super.key,
@@ -66,9 +63,11 @@ class LumoCardsScoreHeader extends StatelessWidget {
             const SizedBox(width: 8),
           ],
           // PR I 2026-05-23: Audio-Settings (Music + SFX Toggle).
+          // CI-Rescue 2026-05-25: SVG-Icon -> Material-Fallback (flutter_svg
+          // raus aus pubspec, siehe lumo_svg_icon.dart).
           if (onAudioSettings != null) ...[
             _RoundIconButton(
-              svgPath: LumoIconPaths.volumeOn,
+              icon: Icons.volume_up_rounded,
               onTap: onAudioSettings,
               bg: const Color(0xFF0EA5E9),
             ),
@@ -76,8 +75,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
           ],
           if (onSettings != null)
             _RoundIconButton(
-              // PR E 2026-05-23: SVG-Lumo-Icon statt Material-Settings.
-              svgPath: LumoIconPaths.settings,
+              icon: Icons.settings_rounded,
               onTap: onSettings,
               bg: const Color(0xFF374151),
             ),
@@ -193,19 +191,12 @@ class _StatPill extends StatelessWidget {
 
 class _RoundIconButton extends StatelessWidget {
   const _RoundIconButton({
-    this.icon,
-    this.svgPath,
+    required this.icon,
     required this.bg,
     this.onTap,
-  }) : assert(icon != null || svgPath != null,
-            'Entweder Material-Icon ODER SVG-Pfad muss gesetzt sein.');
+  });
 
-  /// Material-Icon-Fallback fuer Stellen ohne SVG-Pendant.
-  final IconData? icon;
-
-  /// SVG-Pfad aus LumoIconPaths (bevorzugt, wenn vorhanden).
-  final String? svgPath;
-
+  final IconData icon;
   final Color bg;
   final VoidCallback? onTap;
 
@@ -229,13 +220,7 @@ class _RoundIconButton extends StatelessWidget {
             ),
           ],
         ),
-        child: svgPath != null
-            ? LumoSvgIcon(
-                path: svgPath!,
-                size: 20,
-                color: Colors.white,
-              )
-            : Icon(icon, size: 20, color: Colors.white),
+        child: Icon(icon, size: 20, color: Colors.white),
       ),
     );
   }
