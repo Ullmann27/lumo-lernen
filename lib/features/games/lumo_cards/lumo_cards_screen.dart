@@ -27,6 +27,7 @@ import 'widgets/lumo_action_button.dart';
 import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_call_button.dart';
 import 'widgets/lumo_card_burst.dart';
+import 'widgets/lumo_card_fly.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_cards_score_header.dart';
 import 'widgets/lumo_color_arrows.dart';
@@ -76,6 +77,19 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// Wird via onDone-Callback nach ca. 900 ms automatisch geleert.
   LumoBurstStyle? _activeBurst;
   int _burstKey = 0;
+
+  /// Tier 6 Karten-Polish 2026-05-25: aktiver Karten-Flug von Hand zu
+  /// Discard. Wenn gesetzt, rendert der Screen oben ein LumoCardFly mit
+  /// Bezier-Bogen + Rotation. Wird ueber onDone-Callback nach ca. 360 ms
+  /// automatisch geleert.
+  LumoCard? _flyingCard;
+  Offset? _flyStart;
+  Offset? _flyEnd;
+  int _flyKey = 0;
+
+  /// GlobalKey fuer die Discard-Pile - wird gebraucht um die End-Position
+  /// des Karten-Flugs zu berechnen.
+  final GlobalKey _discardKey = GlobalKey();
 
   /// Tracking: letzte topCard.id um Karten-Wechsel zu erkennen.
   /// Wird im _onStateChanged-Listener verglichen, NICHT im build() -
@@ -213,6 +227,49 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     });
   }
 
+  /// Tier 6 Karten-Polish 2026-05-25: zeigt die Fly-Animation von der
+  /// Tap-Position zur Discard-Pile, dann wird die Karte gespielt. Wenn
+  /// bereits ein Flug laeuft oder die Discard-Pile noch nicht im Tree
+  /// ist, wird die Karte sofort gespielt (Fallback ohne Animation).
+  void _playCardWithFly(LumoCard card, Offset globalTapPos) {
+    if (_flyingCard != null) {
+      // Schon ein Flug aktiv - lass ihn fertig laufen, kein zweiter.
+      return;
+    }
+    final discardBox =
+        _discardKey.currentContext?.findRenderObject() as RenderBox?;
+    if (discardBox == null || !discardBox.attached) {
+      _controller.playCard(card);
+      return;
+    }
+    final endPos = discardBox.localToGlobal(
+      discardBox.size.center(Offset.zero),
+    );
+    setState(() {
+      _flyingCard = card;
+      _flyStart = globalTapPos;
+      _flyEnd = endPos;
+      _flyKey += 1;
+    });
+    // Karte wird minimal verzoegert gespielt - der Stack zeigt waehrend-
+    // dessen die fliegende Kopie. State-Update + Discard-Pile-Visual
+    // wechselt erst nach Animations-Mitte, dann ueberlappt der Flug-
+    // Endpunkt mit der neuen Top-Card.
+    Future.delayed(const Duration(milliseconds: 220), () {
+      if (!mounted) return;
+      _controller.playCard(card);
+    });
+  }
+
+  void _clearFly() {
+    if (!mounted) return;
+    setState(() {
+      _flyingCard = null;
+      _flyStart = null;
+      _flyEnd = null;
+    });
+  }
+
   /// PR I 2026-05-23: oeffnet das Audio-Settings BottomSheet. Wenn der
   /// Spieler Musik wieder aktiviert, startet die chill_loop sofort -
   /// passt zum aktuellen Lumo-Cards-Kontext. LumoMusic.muted persistiert,
@@ -334,9 +391,12 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                               ),
                               const SizedBox(width: 16),
                               if (topCard != null)
-                                LumoDiscardPile(
-                                  topCard: topCard,
-                                  selectedColor: s.selectedColor,
+                                KeyedSubtree(
+                                  key: _discardKey,
+                                  child: LumoDiscardPile(
+                                    topCard: topCard,
+                                    selectedColor: s.selectedColor,
+                                  ),
                                 ),
                             ],
                           ),
@@ -357,6 +417,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                             onCardTap: widget.vsBot && s.currentPlayerIndex != 0
                                 ? (_) {}
                                 : (card) => _controller.playCard(card),
+                            onCardTapAt: widget.vsBot && s.currentPlayerIndex != 0
+                                ? null
+                                : _playCardWithFly,
                             height: 180,
                           )
                         : _buildLumoThinking(180),
@@ -462,6 +525,25 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 LumoSound.instance.play(SoundEffect.click);
                 Navigator.of(context).pop();
               },
+            ),
+          // Tier 6 Karten-Polish 2026-05-25: fliegende Karte von der
+          // Tap-Position zur Discard-Pile. Stack-Positioned (left/top
+          // werden im LumoCardFly per Animation gesetzt), IgnorePointer
+          // damit Taps weiter zur Hand durchgehen.
+          if (_flyingCard != null && _flyStart != null && _flyEnd != null)
+            Positioned.fill(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  LumoCardFly(
+                    key: ValueKey('fly-$_flyKey'),
+                    card: _flyingCard!,
+                    start: _flyStart!,
+                    end: _flyEnd!,
+                    onDone: _clearFly,
+                  ),
+                ],
+              ),
             ),
           // Tier 6 Karten-Polish 2026-05-23: Partikel-Burst bei +2/+4.
           // Position auf den zentralen Arena-Bereich (in dem die Discard-

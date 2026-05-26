@@ -23,6 +23,7 @@ class LumoPlayerHand extends StatelessWidget {
     required this.topCard,
     required this.selectedColor,
     required this.onCardTap,
+    this.onCardTapAt,
     this.height = 162,
   });
 
@@ -30,6 +31,12 @@ class LumoPlayerHand extends StatelessWidget {
   final LumoCard topCard;
   final LumoCardColor selectedColor;
   final void Function(LumoCard) onCardTap;
+
+  /// Tier 6 Karten-Polish 2026-05-25: optional - bekommt zusaetzlich die
+  /// globale Tap-Position. Wenn gesetzt, wird statt onCardTap aufgerufen
+  /// damit der Screen einen Fly-Animation-Start fuer diese Position
+  /// rendern kann.
+  final void Function(LumoCard card, Offset globalTapPosition)? onCardTapAt;
   final double height;
 
   @override
@@ -125,6 +132,22 @@ class LumoPlayerHand extends StatelessWidget {
       topCard: topCard,
       selectedColor: selectedColor,
     );
+    // Tier 6 Karten-Polish 2026-05-25: wenn onCardTapAt gesetzt ist,
+    // muessen wir die globale Tap-Position zum Screen schicken damit
+    // dort die Fly-Animation starten kann. onTapUp gibt uns die Position
+    // beim Loslassen und ist semantisch sauber (kein Drag-Cancel).
+    final onTapAt = onCardTapAt;
+    if (playable && onTapAt != null) {
+      return GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTapUp: (details) => onTapAt(card, details.globalPosition),
+        child: LumoPlayingCard(
+          card: card,
+          playable: playable,
+          dimmed: false,
+        ),
+      );
+    }
     final lumoCard = LumoPlayingCard(
       card: card,
       playable: playable,
