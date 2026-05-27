@@ -20,6 +20,7 @@ import '../../../core/lumo_music.dart';
 import '../../../core/lumo_sound.dart';
 import '../../companion/lumo_lottie.dart';
 import '../../shared/widgets/lumo_audio_settings_sheet.dart';
+import '../../shared/widgets/lumo_premium_effects.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
@@ -322,24 +323,38 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
             child: SafeArea(
               child: Column(
                 children: [
-                  LumoCardsScoreHeader(
-                    round: 1,
-                    totalRounds: 1,
-                    targetPoints: widget.appState.state.stars,
-                    onClose: () {
-                      LumoSound.instance.play(SoundEffect.click);
-                      Navigator.of(context).pop();
-                    },
-                    onSettings: () {
-                      LumoSound.instance.play(SoundEffect.click);
-                      _rewardGiven = false;
-                      _controller.restart();
-                    },
-                    // PR I 2026-05-23: Audio-Settings BottomSheet
-                    onAudioSettings: () {
-                      LumoSound.instance.play(SoundEffect.click);
-                      _openAudioSettings();
-                    },
+                  // Premium-Look 2026-05-25: HUD-Header sitzt jetzt auf
+                  // einem Glass-Panel (BackdropFilter Blur + warmer Tint),
+                  // hebt sich klar vom Velvet-Tisch ab und sieht weniger
+                  // "Standard-Material" aus.
+                  Padding(
+                    padding:
+                        const EdgeInsets.fromLTRB(10, 6, 10, 2),
+                    child: LumoGlassCard(
+                      blur: 14,
+                      borderRadius: 22,
+                      padding: EdgeInsets.zero,
+                      tintColor: const Color(0xFFFFE0B8),
+                      child: LumoCardsScoreHeader(
+                        round: 1,
+                        totalRounds: 1,
+                        targetPoints: widget.appState.state.stars,
+                        onClose: () {
+                          LumoSound.instance.play(SoundEffect.click);
+                          Navigator.of(context).pop();
+                        },
+                        onSettings: () {
+                          LumoSound.instance.play(SoundEffect.click);
+                          _rewardGiven = false;
+                          _controller.restart();
+                        },
+                        // PR I 2026-05-23: Audio-Settings BottomSheet
+                        onAudioSettings: () {
+                          LumoSound.instance.play(SoundEffect.click);
+                          _openAudioSettings();
+                        },
+                      ),
+                    ),
                   ),
                   // ── Gegner-HUD: Avatar + Name + Karten + Sterne ──
                   Padding(
@@ -393,9 +408,55 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                               if (topCard != null)
                                 KeyedSubtree(
                                   key: _discardKey,
-                                  child: LumoDiscardPile(
-                                    topCard: topCard,
-                                    selectedColor: s.selectedColor,
+                                  // Premium-Look 2026-05-25:
+                                  //  - radialer Glow-Halo HINTER der Pile
+                                  //    (96x140 Karte + grosser Spread -
+                                  //    sieht aus wie ein Spot-Strahler)
+                                  //  - LumoFloating: sanftes Schweben +/-4 px,
+                                  //    bricht die statische Optik
+                                  child: SizedBox(
+                                    width: 132,
+                                    height: 172,
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        IgnorePointer(
+                                          child: Container(
+                                            width: 112,
+                                            height: 152,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color:
+                                                      const Color(0xFFFFE0B8)
+                                                          .withOpacity(0.55),
+                                                  blurRadius: 48,
+                                                  spreadRadius: 4,
+                                                ),
+                                                BoxShadow(
+                                                  color:
+                                                      const Color(0xFFFFB96B)
+                                                          .withOpacity(0.35),
+                                                  blurRadius: 22,
+                                                  spreadRadius: -2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        LumoFloating(
+                                          amplitude: 4,
+                                          duration:
+                                              const Duration(seconds: 4),
+                                          child: LumoDiscardPile(
+                                            topCard: topCard,
+                                            selectedColor: s.selectedColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                             ],
@@ -446,6 +507,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
             ),
           // Action-Button unten rechts. Wenn der Spieler nur noch 1-2
           // Karten hat -> LUMO!-Button statt 'Karte ziehen'.
+          // Premium-Look 2026-05-25: pulsierender Glow um den Button,
+          // wenn das Kind dran ist - macht ihn zum visuell dominanten
+          // Call-to-Action.
           if (_showActionUi(s))
             Positioned(
               right: 18,
@@ -453,20 +517,27 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               child: SafeArea(
                 top: false,
                 left: false,
-                child: s.players[viewerIndex].hand.length <= 2
-                    ? LumoCallButton(
-                        cardsLeft: s.players[viewerIndex].hand.length,
-                        totalCards: 7,
-                        onPressed: _onLumoCall,
-                      )
-                    : LumoActionButton(
-                  label: _actionLabel(s),
-                  icon: _actionIcon(s),
-                  enabled: _isMyTurnVisible(s),
-                  pulse: _isMyTurnVisible(s),
-                  onPressed: _isMyTurnVisible(s)
-                      ? () => _controller.drawCard()
-                      : null,
+                child: LumoGlowPulse(
+                  color: _isMyTurnVisible(s)
+                      ? const Color(0xFFFFB96B)
+                      : Colors.transparent,
+                  minBlur: 18,
+                  maxBlur: 42,
+                  child: s.players[viewerIndex].hand.length <= 2
+                      ? LumoCallButton(
+                          cardsLeft: s.players[viewerIndex].hand.length,
+                          totalCards: 7,
+                          onPressed: _onLumoCall,
+                        )
+                      : LumoActionButton(
+                          label: _actionLabel(s),
+                          icon: _actionIcon(s),
+                          enabled: _isMyTurnVisible(s),
+                          pulse: _isMyTurnVisible(s),
+                          onPressed: _isMyTurnVisible(s)
+                              ? () => _controller.drawCard()
+                              : null,
+                        ),
                 ),
               ),
             ),
