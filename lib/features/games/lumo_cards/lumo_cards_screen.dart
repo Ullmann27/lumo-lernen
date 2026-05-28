@@ -20,6 +20,7 @@ import '../../../core/lumo_music.dart';
 import '../../../core/lumo_sound.dart';
 import '../../companion/lumo_lottie.dart';
 import '../../shared/widgets/lumo_audio_settings_sheet.dart';
+import '../../shared/widgets/lumo_premium_effects.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
@@ -27,6 +28,7 @@ import 'widgets/lumo_action_button.dart';
 import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_call_button.dart';
 import 'widgets/lumo_card_burst.dart';
+import 'widgets/lumo_card_fly.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_cards_score_header.dart';
 import 'widgets/lumo_color_arrows.dart';
@@ -76,6 +78,19 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// Wird via onDone-Callback nach ca. 900 ms automatisch geleert.
   LumoBurstStyle? _activeBurst;
   int _burstKey = 0;
+
+  /// Tier 6 Karten-Polish 2026-05-25: aktiver Karten-Flug von Hand zu
+  /// Discard. Wenn gesetzt, rendert der Screen oben ein LumoCardFly mit
+  /// Bezier-Bogen + Rotation. Wird ueber onDone-Callback nach ca. 360 ms
+  /// automatisch geleert.
+  LumoCard? _flyingCard;
+  Offset? _flyStart;
+  Offset? _flyEnd;
+  int _flyKey = 0;
+
+  /// GlobalKey fuer die Discard-Pile - wird gebraucht um die End-Position
+  /// des Karten-Flugs zu berechnen.
+  final GlobalKey _discardKey = GlobalKey();
 
   /// Tracking: letzte topCard.id um Karten-Wechsel zu erkennen.
   /// Wird im _onStateChanged-Listener verglichen, NICHT im build() -
@@ -213,6 +228,49 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     });
   }
 
+  /// Tier 6 Karten-Polish 2026-05-25: zeigt die Fly-Animation von der
+  /// Tap-Position zur Discard-Pile, dann wird die Karte gespielt. Wenn
+  /// bereits ein Flug laeuft oder die Discard-Pile noch nicht im Tree
+  /// ist, wird die Karte sofort gespielt (Fallback ohne Animation).
+  void _playCardWithFly(LumoCard card, Offset globalTapPos) {
+    if (_flyingCard != null) {
+      // Schon ein Flug aktiv - lass ihn fertig laufen, kein zweiter.
+      return;
+    }
+    final discardBox =
+        _discardKey.currentContext?.findRenderObject() as RenderBox?;
+    if (discardBox == null || !discardBox.attached) {
+      _controller.playCard(card);
+      return;
+    }
+    final endPos = discardBox.localToGlobal(
+      discardBox.size.center(Offset.zero),
+    );
+    setState(() {
+      _flyingCard = card;
+      _flyStart = globalTapPos;
+      _flyEnd = endPos;
+      _flyKey += 1;
+    });
+    // Karte wird minimal verzoegert gespielt - der Stack zeigt waehrend-
+    // dessen die fliegende Kopie. State-Update + Discard-Pile-Visual
+    // wechselt erst nach Animations-Mitte, dann ueberlappt der Flug-
+    // Endpunkt mit der neuen Top-Card.
+    Future.delayed(const Duration(milliseconds: 220), () {
+      if (!mounted) return;
+      _controller.playCard(card);
+    });
+  }
+
+  void _clearFly() {
+    if (!mounted) return;
+    setState(() {
+      _flyingCard = null;
+      _flyStart = null;
+      _flyEnd = null;
+    });
+  }
+
   /// PR I 2026-05-23: oeffnet das Audio-Settings BottomSheet. Wenn der
   /// Spieler Musik wieder aktiviert, startet die chill_loop sofort -
   /// passt zum aktuellen Lumo-Cards-Kontext. LumoMusic.muted persistiert,
@@ -265,24 +323,38 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
             child: SafeArea(
               child: Column(
                 children: [
-                  LumoCardsScoreHeader(
-                    round: 1,
-                    totalRounds: 1,
-                    targetPoints: widget.appState.state.stars,
-                    onClose: () {
-                      LumoSound.instance.play(SoundEffect.click);
-                      Navigator.of(context).pop();
-                    },
-                    onSettings: () {
-                      LumoSound.instance.play(SoundEffect.click);
-                      _rewardGiven = false;
-                      _controller.restart();
-                    },
-                    // PR I 2026-05-23: Audio-Settings BottomSheet
-                    onAudioSettings: () {
-                      LumoSound.instance.play(SoundEffect.click);
-                      _openAudioSettings();
-                    },
+                  // Premium-Look 2026-05-25: HUD-Header sitzt jetzt auf
+                  // einem Glass-Panel (BackdropFilter Blur + warmer Tint),
+                  // hebt sich klar vom Velvet-Tisch ab und sieht weniger
+                  // "Standard-Material" aus.
+                  Padding(
+                    padding:
+                        const EdgeInsets.fromLTRB(10, 6, 10, 2),
+                    child: LumoGlassCard(
+                      blur: 14,
+                      borderRadius: 22,
+                      padding: EdgeInsets.zero,
+                      tintColor: const Color(0xFFFFE0B8),
+                      child: LumoCardsScoreHeader(
+                        round: 1,
+                        totalRounds: 1,
+                        targetPoints: widget.appState.state.stars,
+                        onClose: () {
+                          LumoSound.instance.play(SoundEffect.click);
+                          Navigator.of(context).pop();
+                        },
+                        onSettings: () {
+                          LumoSound.instance.play(SoundEffect.click);
+                          _rewardGiven = false;
+                          _controller.restart();
+                        },
+                        // PR I 2026-05-23: Audio-Settings BottomSheet
+                        onAudioSettings: () {
+                          LumoSound.instance.play(SoundEffect.click);
+                          _openAudioSettings();
+                        },
+                      ),
+                    ),
                   ),
                   // ── Gegner-HUD: Avatar + Name + Karten + Sterne ──
                   Padding(
@@ -334,9 +406,58 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                               ),
                               const SizedBox(width: 16),
                               if (topCard != null)
-                                LumoDiscardPile(
-                                  topCard: topCard,
-                                  selectedColor: s.selectedColor,
+                                KeyedSubtree(
+                                  key: _discardKey,
+                                  // Premium-Look 2026-05-25:
+                                  //  - radialer Glow-Halo HINTER der Pile
+                                  //    (96x140 Karte + grosser Spread -
+                                  //    sieht aus wie ein Spot-Strahler)
+                                  //  - LumoFloating: sanftes Schweben +/-4 px,
+                                  //    bricht die statische Optik
+                                  child: SizedBox(
+                                    width: 132,
+                                    height: 172,
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        IgnorePointer(
+                                          child: Container(
+                                            width: 112,
+                                            height: 152,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color:
+                                                      const Color(0xFFFFE0B8)
+                                                          .withOpacity(0.55),
+                                                  blurRadius: 48,
+                                                  spreadRadius: 4,
+                                                ),
+                                                BoxShadow(
+                                                  color:
+                                                      const Color(0xFFFFB96B)
+                                                          .withOpacity(0.35),
+                                                  blurRadius: 22,
+                                                  spreadRadius: -2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        LumoFloating(
+                                          amplitude: 4,
+                                          duration:
+                                              const Duration(seconds: 4),
+                                          child: LumoDiscardPile(
+                                            topCard: topCard,
+                                            selectedColor: s.selectedColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                             ],
                           ),
@@ -357,6 +478,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                             onCardTap: widget.vsBot && s.currentPlayerIndex != 0
                                 ? (_) {}
                                 : (card) => _controller.playCard(card),
+                            onCardTapAt: widget.vsBot && s.currentPlayerIndex != 0
+                                ? null
+                                : _playCardWithFly,
                             height: 180,
                           )
                         : _buildLumoThinking(180),
@@ -383,6 +507,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
             ),
           // Action-Button unten rechts. Wenn der Spieler nur noch 1-2
           // Karten hat -> LUMO!-Button statt 'Karte ziehen'.
+          // Premium-Look 2026-05-25: pulsierender Glow um den Button,
+          // wenn das Kind dran ist - macht ihn zum visuell dominanten
+          // Call-to-Action.
           if (_showActionUi(s))
             Positioned(
               right: 18,
@@ -390,20 +517,27 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               child: SafeArea(
                 top: false,
                 left: false,
-                child: s.players[viewerIndex].hand.length <= 2
-                    ? LumoCallButton(
-                        cardsLeft: s.players[viewerIndex].hand.length,
-                        totalCards: 7,
-                        onPressed: _onLumoCall,
-                      )
-                    : LumoActionButton(
-                  label: _actionLabel(s),
-                  icon: _actionIcon(s),
-                  enabled: _isMyTurnVisible(s),
-                  pulse: _isMyTurnVisible(s),
-                  onPressed: _isMyTurnVisible(s)
-                      ? () => _controller.drawCard()
-                      : null,
+                child: LumoGlowPulse(
+                  color: _isMyTurnVisible(s)
+                      ? const Color(0xFFFFB96B)
+                      : Colors.transparent,
+                  minBlur: 18,
+                  maxBlur: 42,
+                  child: s.players[viewerIndex].hand.length <= 2
+                      ? LumoCallButton(
+                          cardsLeft: s.players[viewerIndex].hand.length,
+                          totalCards: 7,
+                          onPressed: _onLumoCall,
+                        )
+                      : LumoActionButton(
+                          label: _actionLabel(s),
+                          icon: _actionIcon(s),
+                          enabled: _isMyTurnVisible(s),
+                          pulse: _isMyTurnVisible(s),
+                          onPressed: _isMyTurnVisible(s)
+                              ? () => _controller.drawCard()
+                              : null,
+                        ),
                 ),
               ),
             ),
@@ -462,6 +596,25 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 LumoSound.instance.play(SoundEffect.click);
                 Navigator.of(context).pop();
               },
+            ),
+          // Tier 6 Karten-Polish 2026-05-25: fliegende Karte von der
+          // Tap-Position zur Discard-Pile. Stack-Positioned (left/top
+          // werden im LumoCardFly per Animation gesetzt), IgnorePointer
+          // damit Taps weiter zur Hand durchgehen.
+          if (_flyingCard != null && _flyStart != null && _flyEnd != null)
+            Positioned.fill(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  LumoCardFly(
+                    key: ValueKey('fly-$_flyKey'),
+                    card: _flyingCard!,
+                    start: _flyStart!,
+                    end: _flyEnd!,
+                    onDone: _clearFly,
+                  ),
+                ],
+              ),
             ),
           // Tier 6 Karten-Polish 2026-05-23: Partikel-Burst bei +2/+4.
           // Position auf den zentralen Arena-Bereich (in dem die Discard-
