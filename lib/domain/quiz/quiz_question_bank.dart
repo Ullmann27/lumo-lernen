@@ -1,21 +1,4 @@
 /// Fragenbank fuer den Quiz-Modus.
-///
-/// CODEX TODO:
-/// Implementiere generateGameQuestions() das 15 Fragen mit der richtigen
-/// Verteilung produziert:
-///   - 4 easy (Frage 1-4)
-///   - 5 medium (Frage 5-9)
-///   - 6 hard (Frage 10-15)
-///
-/// Themen-Mix pro Spiel:
-///   - 5 Mathe + 5 Deutsch + 5 Sachunterricht (zufaellig durchmischt)
-///
-/// Anti-Wiederholung: seenIds aus Repository nutzen.
-///
-/// Quellen:
-///   - lib/core/math_task_templates.dart (33 Templates, NICHT MODIFIZIEREN)
-///   - lib/core/german_task_templates.dart (40 Templates, NICHT MODIFIZIEREN)
-///   - lib/core/primary_school_word_data.dart (800+ Woerter, NICHT MODIFIZIEREN)
 
 import 'dart:math' as math;
 
@@ -24,8 +7,6 @@ import 'quiz_show.dart';
 class QuizQuestionBank {
   const QuizQuestionBank();
 
-  /// CODEX TODO: Generiere 15 Fragen fuer ein Spiel.
-  ///
   /// Parameter:
   ///   - grade: Schulklasse (1-4) - beeinflusst Schwierigkeit der hard-Fragen
   ///   - seenIds: bereits verwendete Frage-IDs zum Filtern
