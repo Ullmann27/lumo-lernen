@@ -186,23 +186,38 @@ class TaskQualityGuard {
       if (!_isCorrectSentence(answer)) issues.add('answer_not_correct_sentence_like');
       if (!choices.every(_isSentencePart)) issues.add('sentence_choices_not_sentence_like');
     }
-    if (lower.contains('welches wort ist ein namenswort') || lower.contains('welches wort ist ein namenwort') || lower.contains('welches wort ist ein nomen') || lower.contains('welches wort ist ein hauptwort')) {
+    if (_isNounQuestion(lower)) {
       if (!_isKnownNoun(answer)) issues.add('nomen_answer_not_known_noun');
       if (!choices.where((c) => _choice(c) != a).any((c) => _isKnownVerb(c) || _isKnownAdjective(c))) {
         issues.add('nomen_choices_missing_wordclass_distractor');
       }
     }
-    if (lower.contains('welches wort ist ein tunwort') || lower.contains('welches wort ist ein verb')) {
+    if (_isVerbQuestion(lower)) {
       if (!_isKnownVerb(answer)) issues.add('verb_answer_not_known_verb');
       if (choices.every(_isKnownVerb)) issues.add('verb_choices_not_contrasting_wordclasses');
     }
-    if (lower.contains('welches wort ist ein wiewort') || lower.contains('welches wort beschreibt, wie') || lower.contains('welches wort ist eine eigenschaft')) {
+    if (_isAdjectiveQuestion(lower)) {
       if (!_isKnownAdjective(answer)) issues.add('adjective_answer_not_known_adjective');
       if (choices.every(_isKnownAdjective)) issues.add('adjective_choices_not_contrasting_wordclasses');
     }
 
     return issues;
   }
+
+  bool _isNounQuestion(String prompt) =>
+      prompt.contains('welches wort ist ein namenswort') ||
+      prompt.contains('welches wort ist ein namenwort') ||
+      prompt.contains('welches wort ist ein nomen') ||
+      prompt.contains('welches wort ist ein hauptwort');
+
+  bool _isVerbQuestion(String prompt) =>
+      prompt.contains('welches wort ist ein tunwort') ||
+      prompt.contains('welches wort ist ein verb');
+
+  bool _isAdjectiveQuestion(String prompt) =>
+      prompt.contains('welches wort ist ein wiewort') ||
+      prompt.contains('welches wort beschreibt, wie') ||
+      prompt.contains('welches wort ist eine eigenschaft');
 
   int? _expectedNumber(String prompt) {
     final basic = RegExp(r'(\d+)\s*([+\-])\s*(\d+)\s*=\s*\?').firstMatch(prompt);

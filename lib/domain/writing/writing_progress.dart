@@ -69,8 +69,8 @@ class WritingProgress {
   List<String> get weakLetters {
     final entries = letterStats.entries
         .where((e) => e.value.attempts >= 3 && e.value.accuracy < 0.7)
-        .toList()
-      ..sort((a, b) => a.value.accuracy.compareTo(b.value.accuracy));
+        .toList();
+    entries.sort((a, b) => a.value.accuracy.compareTo(b.value.accuracy));
     return entries.map((e) => e.key).toList(growable: false);
   }
 
