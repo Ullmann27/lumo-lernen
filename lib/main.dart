@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'app/app_shell.dart';
+import 'app/app_state.dart';
 import 'app/app_theme.dart';
+import 'core/deep_link_router.dart';
 import 'core/lumo_asset_paths.dart';
 import 'core/lumo_error_log.dart';
 import 'core/lumo_music.dart';
@@ -133,9 +135,19 @@ class _LumoAppState extends State<LumoApp> {
   bool _warmedCache = false;
   UserProfile? _profile;
 
+  /// Deep-Link-Section vom Cold-Start. Wird einmalig beim App-Start aus
+  /// defaultRouteName ausgelesen (Bridge vom Godot-Hub - lumolernen://).
+  /// Bleibt null wenn die App normal gestartet wurde.
+  LumoSection? _initialSection;
+
   @override
   void initState() {
     super.initState();
+    // Deep-Link auswerten BEVOR der Shell gebaut wird. defaultRouteName
+    // setzt Android beim Intent-Start auf die Deep-Link-URI.
+    _initialSection = DeepLinkRouter.parseInitialSection(
+      WidgetsBinding.instance.platformDispatcher.defaultRouteName,
+    );
     _load();
     // Tier 1 Foundation 2026-05-23: Hot-Path Assets vorzeitig dekodieren.
     // Wenn das Kind ins Spiel geht sind die Bilder schon im Bild-Cache
@@ -212,7 +224,7 @@ class _LumoAppState extends State<LumoApp> {
     } else if (_profile == null) {
       home = LumoOnboardingScreen(onFinished: _finishOnboarding);
     } else {
-      home = AppShell(profile: _profile);
+      home = AppShell(profile: _profile, initialSection: _initialSection);
     }
 
     return MaterialApp(

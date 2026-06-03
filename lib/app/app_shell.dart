@@ -29,9 +29,15 @@ import '../core/settings_repository.dart';
 import '../core/user_profile.dart';
 
 class AppShell extends StatefulWidget {
-  const AppShell({super.key, this.profile});
+  const AppShell({super.key, this.profile, this.initialSection});
 
   final UserProfile? profile;
+
+  /// Optionale Start-Sektion. Wenn die App ueber einen Deep-Link vom
+  /// Godot-3D-Hub (lumolernen://open?section=...) cold-startet, landet
+  /// hier z.B. LumoSection.learn - der Shell oeffnet dann direkt den
+  /// Lern-Bereich statt das Home.
+  final LumoSection? initialSection;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -65,6 +71,11 @@ class _AppShellState extends State<AppShell>
         grade: profile.grade,
         lumoMessage: 'Hallo ${profile.name}!\nWomit wollen wir\nheute lernen?',
       ));
+    }
+    // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
+    final deepSection = widget.initialSection;
+    if (deepSection != null && deepSection != _appState.state.section) {
+      _appState.update(_appState.state.copyWith(section: deepSection));
     }
     _loadSettings();
   }
