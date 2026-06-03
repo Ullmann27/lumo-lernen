@@ -284,17 +284,54 @@ class ExerciseFactory {
       return _choiceTask('gross', grade, 'Rechtschreibung', unit, 'Wie schreibt man das Namenwort richtig?', noun, 'Namenwörter schreibt man groß.', customChoices: <String>[noun, noun.toLowerCase(), _decapitalize(noun)]);
     }
     if (unit == 'Satzzeichen') {
-      return _choiceTask('punkt', grade, 'Rechtschreibung', unit, 'Welches Zeichen kommt am Ende von: Lumo liest', '.', 'Ein Aussagesatz endet mit einem Punkt.', customChoices: const <String>['.', '?', '!']);
+      // 2026-06-03: vorher EIN fester Satz. Jetzt Pool nach Satz-Typ
+      // (Aussage / Frage / Ausrufung) mit korrektem Zeichen + Erklaerung.
+      const items = <List<String>>[
+        <String>['Lumo liest ein Buch', '.', 'Ein Aussagesatz endet mit einem Punkt.'],
+        <String>['Heute ist Schule', '.', 'Aussagesätze enden mit einem Punkt.'],
+        <String>['Wer hat die Tasche', '?', 'Eine Frage endet mit einem Fragezeichen.'],
+        <String>['Wie spät ist es', '?', 'Bei einer Frage steht am Ende ein Fragezeichen.'],
+        <String>['Pass auf, Lumo', '!', 'Ein Aufforderungssatz oder Ausruf endet mit einem Rufzeichen.'],
+        <String>['Was für ein schöner Tag', '!', 'Ausrufesätze enden mit einem Rufzeichen.'],
+      ];
+      final pick = items[_random.nextInt(items.length)];
+      return _choiceTask('punkt', grade, 'Rechtschreibung', unit, 'Welches Zeichen kommt am Ende von: ${pick[0]}', pick[1], pick[2], customChoices: const <String>['.', '?', '!']);
     }
     if (unit == 'Doppelmitlaut') {
-      return _choiceTask('doppel', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', 'kommen', 'Bei kommen hörst du ein kurzes o, darum mm.', customChoices: const <String>['komen', 'kommen', 'komenn']);
+      // 2026-06-03: vorher EIN Wort (kommen). Jetzt 10 typische Doppel-
+      // Konsonanten-Faelle aus dem AT-Lehrplan.
+      const items = <List<String>>[
+        <String>['kommen', 'komen', 'komenn', 'Bei kommen hörst du ein kurzes o, darum mm.'],
+        <String>['rennen', 'renen', 'renenn', 'Kurzes e vor nn: rennen.'],
+        <String>['offen', 'ofen', 'ofenn', 'Kurzes o vor ff: offen.'],
+        <String>['Sommer', 'Somer', 'Somerr', 'Kurzes o vor mm: Sommer.'],
+        <String>['Mutter', 'Muter', 'Muther', 'Kurzes u vor tt: Mutter.'],
+        <String>['Affe', 'Afe', 'Affee', 'Kurzes a vor ff: Affe.'],
+        <String>['hoffen', 'hofen', 'hophen', 'Kurzes o vor ff: hoffen.'],
+        <String>['Wanne', 'Wane', 'Wann', 'Kurzes a vor nn: Wanne.'],
+        <String>['Wetter', 'Weter', 'Wether', 'Kurzes e vor tt: Wetter.'],
+        <String>['nett', 'net', 'neett', 'Kurzes e vor tt: nett.'],
+      ];
+      final pick = items[_random.nextInt(items.length)];
+      return _choiceTask('doppel', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', pick[0], pick[3], customChoices: <String>[pick[0], pick[1], pick[2]]);
     }
     final word = PrimarySchoolWordData.nounForGrade(grade, _serial + _random.nextInt(9999));
     return _choiceTask('wort', grade, 'Rechtschreibung', unit, 'Welche Schreibweise ist richtig?', word, 'Schau jeden Buchstaben langsam an.', customChoices: _spellingChoicesFor(word));
   }
 
   LumoTask _stOrSp(int grade, String subject) {
-    const data = <String, String>{'Stern': 'St', 'Storch': 'St', 'Stift': 'St', 'Stein': 'St', 'Spiegel': 'Sp', 'Spinne': 'Sp', 'Sport': 'Sp', 'Spaten': 'Sp'};
+    // 2026-06-03: vorher 8 Woerter. Jetzt 20 Woerter, ausgewogen St/Sp/Sch
+    // (Sch als Distraktor war vorher nie als Antwort).
+    const data = <String, String>{
+      // St-Wörter
+      'Stern': 'St', 'Storch': 'St', 'Stift': 'St', 'Stein': 'St',
+      'Stube': 'St', 'Stange': 'St', 'Straße': 'St', 'Stuhl': 'St',
+      // Sp-Wörter
+      'Spiegel': 'Sp', 'Spinne': 'Sp', 'Sport': 'Sp', 'Spaten': 'Sp',
+      'Spatz': 'Sp', 'Sprache': 'Sp', 'Spielzeug': 'Sp', 'Specht': 'Sp',
+      // Sch-Wörter (vorher nie als Antwort erreichbar)
+      'Schule': 'Sch', 'Schaf': 'Sch', 'Schiff': 'Sch', 'Schnee': 'Sch',
+    };
     final entry = data.entries.elementAt(_random.nextInt(data.length));
     return _choiceTask('stsp', grade, subject, 'St oder Sp', 'Was hörst du am Anfang von ${entry.key}?', entry.value, 'Sprich das Wort langsam: ${entry.key}.', customChoices: const <String>['St', 'Sp', 'Sch']);
   }
