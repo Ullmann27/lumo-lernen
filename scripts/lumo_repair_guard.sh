@@ -56,7 +56,7 @@ require_text lib/main.dart "WidgetsFlutterBinding.ensureInitialized()"
 require_text lib/main.dart "runApp(const LumoApp())"
 require_text lib/main.dart "try {"
 require_text lib/main.dart "profile = null"
-require_text lib/main.dart "AppShell(profile: _profile)"
+require_text lib/main.dart "AppShell(profile: _profile"
 
 require_text lib/app/app_shell.dart "HomeContent(appState: _appState"
 require_text lib/app/app_shell.dart "LumoAkademieScreen(appState: _appState)"
