@@ -178,8 +178,13 @@ class MathTaskTemplate {
         final answer = b;
         return _numberTask('Wie oft $a ist ${a * b}?', answer, '$a wird $answer-mal genommen: ${List<String>.filled(answer, '$a').join(' + ')} = ${a * b}.', 'groups');
       case MathTemplateKind.wordProblemOneStep:
+        // 2026-06-03: vorher EINE Geschichte (Lisa+Aepfel) - Kind sah staendig
+        // dieselbe Aufgabe nur mit anderen Zahlen. Jetzt 8 Szenarien aus dem
+        // oesterreichischen Alltag (AT-Lehrplan VS Sachrechnen).
         final answer = a + b;
-        return _numberTask('Lisa hat $a Äpfel und bekommt $b dazu. Wie viele Äpfel hat sie?', answer, 'Das ist eine Plusgeschichte: $a + $b = $answer.', 'story');
+        final s1 = _positive(seed, _oneStepStories.length);
+        final story = _oneStepStories[s1];
+        return _numberTask(story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story');
       case MathTemplateKind.moneyChange:
         final euro = a.clamp(2, 20).toInt();
         return _choice('Wie kann man $euro € in 1-€-Münzen wechseln?', '$euro Münzen', <String>['${euro - 1} Münzen', '$euro Münzen', '${euro + 1} Münzen'], 'Jede 1-€-Münze zählt einen Euro.', 'money_change');
@@ -222,7 +227,9 @@ class MathTaskTemplate {
         return _numberTask('Was ist die Hälfte von $even?', answer, 'Die Hälfte ist einer von zwei gleich großen Teilen.', 'fraction_half');
       case MathTemplateKind.wordProblemTwoStep:
         final answer = a + b - 3;
-        return _numberTask('Im Garten wachsen $a Tulpen. $b kommen dazu, 3 werden gepflückt. Wie viele bleiben?', answer, 'Zuerst plus, dann minus: $a + $b - 3 = $answer.', 'story_two');
+        final s2 = _positive(seed, _twoStepStories.length);
+        final story = _twoStepStories[s2];
+        return _numberTask(story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story_two');
       case MathTemplateKind.perimeter:
         final answer = 2 * (a + b);
         return _numberTask('Ein Rechteck ist $a cm lang und $b cm breit. Wie groß ist der Umfang?', answer, 'Umfang: $a + $b + $a + $b = $answer cm.', 'perimeter');
@@ -256,7 +263,9 @@ class MathTaskTemplate {
         return _choice('${left.toStringAsFixed(1).replaceAll('.', ',')} + ${right.toStringAsFixed(1).replaceAll('.', ',')} = ?', answer, <String>[answer, (left + right + 1).toStringAsFixed(1).replaceAll('.', ','), (left + right - 0.1).toStringAsFixed(1).replaceAll('.', ',')], 'Addiere Zehntel wie normale Zahlen und setze das Komma.', 'decimal');
       case MathTemplateKind.wordProblemThreeStep:
         final answer = (a + b) * 2 - 4;
-        return _numberTask('Für ein Fest gibt es $a Semmeln und $b Weckerl. Es werden doppelt so viele gekauft, 4 bleiben übrig. Wie viele wurden gegessen?', answer, 'Rechne in drei Schritten: addieren, verdoppeln, 4 abziehen.', 'story_three');
+        final s3 = _positive(seed, _threeStepStories.length);
+        final story = _threeStepStories[s3];
+        return _numberTask(story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story_three');
       case MathTemplateKind.chartRead:
         final answer = a + b;
         return _numberTask('Diagramm: Montag $a Kinder, Dienstag $b Kinder. Wie viele zusammen?', answer, 'Lies beide Balken ab und addiere sie.', 'chart');
@@ -488,3 +497,98 @@ List<String> _numberWordChoices(int number) {
   }
   return choices;
 }
+
+// ════════════════════════════════════════════════════════════════════════
+// SACHAUFGABEN-POOLS (Heinz 2026-06-03: "modernisierte Aufgaben, mehr Logik")
+// ════════════════════════════════════════════════════════════════════════
+// Vorher gab es pro Schwierigkeit GENAU EINE Geschichte. Das Kind lernte
+// Pattern-Matching ("immer Lisa+Aepfel") statt echtes Sachrechnen.
+//
+// Jetzt: 8/7/6 vielfaeltige Szenarien aus dem AT-Volksschul-Alltag
+// (Schultag, Pausenhof, Familie, Garten, Markt, Sport, Schulausflug).
+// Pro Aufruf wird per Seed eine andere Geschichte gewuerfelt.
+
+class _WordStory {
+  const _WordStory(this.prompt, this.explain);
+  final String Function(int a, int b, int answer) prompt;
+  final String Function(int a, int b, int answer) explain;
+}
+
+// 1-Schritt (Klasse 1-2): nur Addition mit a + b.
+const List<_WordStory> _oneStepStories = <_WordStory>[
+  _WordStory(
+    _p1Apfel, _e1Sum,
+  ),
+  _WordStory(
+    _p1Kekse, _e1Sum,
+  ),
+  _WordStory(
+    _p1Bus, _e1Sum,
+  ),
+  _WordStory(
+    _p1Buntstifte, _e1Sum,
+  ),
+  _WordStory(
+    _p1Schulhof, _e1Sum,
+  ),
+  _WordStory(
+    _p1Sticker, _e1Sum,
+  ),
+  _WordStory(
+    _p1Garten, _e1Sum,
+  ),
+  _WordStory(
+    _p1Sport, _e1Sum,
+  ),
+];
+
+String _p1Apfel(int a, int b, int s) => 'Lisa hat $a Aepfel und bekommt $b dazu. Wie viele Aepfel hat sie?';
+String _p1Kekse(int a, int b, int s) => 'Tom hat $a Kekse gebacken. Oma bringt $b weitere. Wie viele Kekse sind es?';
+String _p1Bus(int a, int b, int s) => 'Im Bus sitzen $a Kinder. An der naechsten Station steigen $b zu. Wie viele Kinder sind jetzt im Bus?';
+String _p1Buntstifte(int a, int b, int s) => 'Mia hat $a rote Buntstifte und $b blaue. Wie viele Buntstifte hat sie zusammen?';
+String _p1Schulhof(int a, int b, int s) => 'Am Schulhof spielen $a Kinder Fangen und $b Hupfkaestchen. Wie viele Kinder spielen?';
+String _p1Sticker(int a, int b, int s) => 'Jonas sammelt Sticker. Er hat $a und bekommt $b neue geschenkt. Wie viele hat er?';
+String _p1Garten(int a, int b, int s) => 'In Omas Garten bluehen $a Tulpen. $b Rosen kommen dazu. Wie viele Blumen sind das?';
+String _p1Sport(int a, int b, int s) => 'Beim Schulfest gibt es $a Wuerstel und $b Brote. Wie viele Snacks sind das?';
+
+String _e1Sum(int a, int b, int s) => 'Plusgeschichte: $a + $b = $s. Zaehle erst die erste, dann die zweite Gruppe zusammen.';
+
+// 2-Schritt (Klasse 2-3): a + b - 3, mehrstufige Logik.
+const List<_WordStory> _twoStepStories = <_WordStory>[
+  _WordStory(_p2Tulpen, _e2),
+  _WordStory(_p2Pausenbrot, _e2),
+  _WordStory(_p2Markt, _e2),
+  _WordStory(_p2Klassenfahrt, _e2),
+  _WordStory(_p2Spielzeug, _e2),
+  _WordStory(_p2Aquarium, _e2),
+  _WordStory(_p2Schwimmbad, _e2),
+];
+
+String _p2Tulpen(int a, int b, int s) => 'Im Garten wachsen $a Tulpen. $b kommen dazu, 3 werden gepflueckt. Wie viele bleiben?';
+String _p2Pausenbrot(int a, int b, int s) => 'In der Schultasche sind $a Aepfel und $b Birnen. Lisa isst 3 Stueck. Wie viele bleiben uebrig?';
+String _p2Markt(int a, int b, int s) => 'Am Markt gibt es $a Karotten und $b Paradeiser. 3 werden verkauft. Wie viele Gemueseteile sind noch da?';
+String _p2Klassenfahrt(int a, int b, int s) => 'Bei der Klassenfahrt fahren $a Kinder und $b Erwachsene mit. 3 muessen krank zurueckbleiben. Wie viele Personen fahren wirklich mit?';
+String _p2Spielzeug(int a, int b, int s) => 'Im Spielzimmer liegen $a Autos und $b Bauklotz-Stuecke. 3 Stuecke werden weggeraeumt. Wie viele Spielsachen liegen noch herum?';
+String _p2Aquarium(int a, int b, int s) => 'Im Aquarium schwimmen $a Goldfische und $b Neonfische. 3 schwimmen hinter Pflanzen und sind versteckt. Wie viele sieht man?';
+String _p2Schwimmbad(int a, int b, int s) => 'Im Schwimmbad sind $a Kinder im grossen und $b im kleinen Becken. 3 gehen in die Sauna. Wie viele schwimmen noch?';
+
+String _e2(int a, int b, int s) => 'Zwei Schritte: zuerst zusammen $a + $b, dann minus 3 = $s.';
+
+// 3-Schritt (Klasse 3-4): (a + b) * 2 - 4, komplexere Verkettung.
+const List<_WordStory> _threeStepStories = <_WordStory>[
+  _WordStory(_p3Semmeln, _e3),
+  _WordStory(_p3Buecher, _e3),
+  _WordStory(_p3Sammelkarten, _e3),
+  _WordStory(_p3Schultheater, _e3),
+  _WordStory(_p3Sportfest, _e3),
+  _WordStory(_p3Schulfest, _e3),
+];
+
+String _p3Semmeln(int a, int b, int s) => 'Fuer ein Fest gibt es $a Semmeln und $b Weckerl. Es werden doppelt so viele gekauft, 4 bleiben uebrig. Wie viele wurden gegessen?';
+String _p3Buecher(int a, int b, int s) => 'In der Bibliothek stehen $a Kinderbuecher und $b Sachbuecher. Es kommen doppelt so viele neue dazu, 4 werden ausgeliehen. Wie viele Buecher stehen jetzt im Regal?';
+String _p3Sammelkarten(int a, int b, int s) => 'Tim hat $a Fussball-Karten und $b Tier-Karten. Beim Geburtstag bekommt er doppelt so viele dazu, 4 verschenkt er an seinen Freund. Wie viele behaelt er?';
+String _p3Schultheater(int a, int b, int s) => 'Fuer das Schultheater werden $a Stuehle aus 2A und $b aus 2B geholt. Doppelt so viele Eltern kommen wie Stuehle, 4 Eltern muessen stehen. Wie viele Eltern sitzen?';
+String _p3Sportfest(int a, int b, int s) => 'Beim Sportfest laufen $a Buben und $b Maedchen mit. Beim Hindernislauf sind doppelt so viele Teilnehmer, 4 brechen ab. Wie viele kommen ins Ziel?';
+String _p3Schulfest(int a, int b, int s) => 'Beim Schulfest stehen $a Limonadenflaschen und $b Saftflaschen bereit. Es werden doppelt so viele verkauft wie bereitgestellt, 4 zerbrechen. Wie viele Flaschen wurden tatsaechlich getrunken?';
+
+String _e3(int a, int b, int s) => 'Drei Schritte: addieren ($a + $b = ${a + b}), verdoppeln (${(a + b) * 2}), 4 abziehen = $s.';
