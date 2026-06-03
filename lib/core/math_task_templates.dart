@@ -33,7 +33,9 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g3_fraction_half', grade: 3, unit: 'Brüche Vorbereitung', kind: MathTemplateKind.fractionHalf, validRangeA: <int>[2, 40], validRangeB: <int>[0, 0], promptPattern: 'haelfte-als-bruchvorbereitung'),
     MathTaskTemplate(id: 'g3_two_step', grade: 3, unit: 'Sachaufgaben zwei Schritte', kind: MathTemplateKind.wordProblemTwoStep, validRangeA: <int>[5, 30], validRangeB: <int>[2, 12], promptPattern: 'sachaufgabe-zwei-schritte'),
     MathTaskTemplate(id: 'g3_perimeter', grade: 3, unit: 'Umfang', kind: MathTemplateKind.perimeter, validRangeA: <int>[2, 18], validRangeB: <int>[2, 18], promptPattern: 'umfang-rechteck'),
-    MathTaskTemplate(id: 'g3_area', grade: 3, unit: 'Flächeninhalt', kind: MathTemplateKind.area, validRangeA: <int>[2, 12], validRangeB: <int>[2, 12], promptPattern: 'flaeche-rechteck'),
+    // AT-Lehrplan-Korrektur 2026-06-03: Flaecheninhalt ist Klasse-4-Stoff
+    // (BMBWF Mathe-Lehrplan VS). Vorher faelschlich als g3_area gefuehrt
+    // -> Klasse 3 sah eine Aufgabe die laut Lehrplan erst Klasse 4 dran ist.
     MathTaskTemplate(id: 'g3_add_100', grade: 3, unit: 'Plus bis 100', kind: MathTemplateKind.addition, validRangeA: <int>[10, 90], validRangeB: <int>[5, 80], promptPattern: 'plus-bis-100'),
     MathTaskTemplate(id: 'g3_sub_100', grade: 3, unit: 'Minus bis 100', kind: MathTemplateKind.subtraction, validRangeA: <int>[20, 100], validRangeB: <int>[5, 70], promptPattern: 'minus-bis-100'),
     // Neue Klasse-3-Lehrplan-Templates (AT Lehrplan 2023):
@@ -58,6 +60,9 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g4_volume', grade: 4, unit: 'Hohlmaße Liter und Milliliter', kind: MathTemplateKind.volumeConversion, validRangeA: <int>[1, 50], validRangeB: <int>[1, 4], promptPattern: 'l-zu-ml'),
     MathTaskTemplate(id: 'g4_fraction_expand', grade: 4, unit: 'Brüche erweitern', kind: MathTemplateKind.fractionExpand, validRangeA: <int>[2, 30], validRangeB: <int>[2, 6], promptPattern: 'bruch-erweitern'),
     MathTaskTemplate(id: 'g4_average', grade: 4, unit: 'Mittelwert', kind: MathTemplateKind.average, validRangeA: <int>[6, 60], validRangeB: <int>[2, 6], promptPattern: 'durchschnitt'),
+    // AT-Lehrplan-konform: Flaecheninhalt erst Klasse 4 (vorher g3_area).
+    MathTaskTemplate(id: 'g4_area', grade: 4, unit: 'Flächeninhalt', kind: MathTemplateKind.area, validRangeA: <int>[2, 12], validRangeB: <int>[2, 12], promptPattern: 'flaeche-rechteck'),
+    MathTaskTemplate(id: 'g4_symmetry_lines', grade: 4, unit: 'Symmetrieachsen', kind: MathTemplateKind.symmetry, validRangeA: <int>[0, 7], validRangeB: <int>[0, 7], promptPattern: 'symmetrieachsen'),
   ];
 
   static List<MathTaskTemplate> templatesForGrade(int grade, {String? unit}) {

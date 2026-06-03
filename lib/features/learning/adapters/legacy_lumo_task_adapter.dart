@@ -608,6 +608,12 @@ class LegacyLumoTaskAdapter {
       'word_type_color' => VisualType.wordTypeColor,
       'article_cards' => VisualType.articleCards,
       'letters' => VisualType.none,
+      // Geometrie + Groessen 2026-06-03 (Heinz: Rechteck mit Mass-Beschriftung):
+      'perimeter' => VisualType.rectangleMeasure,
+      'area' => VisualType.rectangleMeasure,
+      'ruler' => VisualType.rulerCompare,
+      'mass' => VisualType.scaleMeasure,
+      'volume' => VisualType.scaleMeasure,
       _ => VisualType.none,
     };
   }
