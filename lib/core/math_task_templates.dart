@@ -36,6 +36,12 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g3_area', grade: 3, unit: 'Flächeninhalt', kind: MathTemplateKind.area, validRangeA: <int>[2, 12], validRangeB: <int>[2, 12], promptPattern: 'flaeche-rechteck'),
     MathTaskTemplate(id: 'g3_add_100', grade: 3, unit: 'Plus bis 100', kind: MathTemplateKind.addition, validRangeA: <int>[10, 90], validRangeB: <int>[5, 80], promptPattern: 'plus-bis-100'),
     MathTaskTemplate(id: 'g3_sub_100', grade: 3, unit: 'Minus bis 100', kind: MathTemplateKind.subtraction, validRangeA: <int>[20, 100], validRangeB: <int>[5, 70], promptPattern: 'minus-bis-100'),
+    // Neue Klasse-3-Lehrplan-Templates (AT Lehrplan 2023):
+    MathTaskTemplate(id: 'g3_add_1000', grade: 3, unit: 'Plus bis 1000', kind: MathTemplateKind.addition, validRangeA: <int>[120, 600], validRangeB: <int>[80, 400], promptPattern: 'plus-bis-1000'),
+    MathTaskTemplate(id: 'g3_sub_1000', grade: 3, unit: 'Minus bis 1000', kind: MathTemplateKind.subtraction, validRangeA: <int>[300, 999], validRangeB: <int>[100, 500], promptPattern: 'minus-bis-1000'),
+    MathTaskTemplate(id: 'g3_division_basic', grade: 3, unit: 'Division einstellig', kind: MathTemplateKind.division, validRangeA: <int>[12, 90], validRangeB: <int>[2, 9], promptPattern: 'geteilt-einstellig'),
+    MathTaskTemplate(id: 'g3_money_change_100', grade: 3, unit: 'Geld bis 100 Euro', kind: MathTemplateKind.moneyChange, validRangeA: <int>[5, 50], validRangeB: <int>[1, 5], promptPattern: 'geld-bis-100'),
+    MathTaskTemplate(id: 'g3_mass', grade: 3, unit: 'Massen Kilogramm und Gramm', kind: MathTemplateKind.massConversion, validRangeA: <int>[1, 50], validRangeB: <int>[1, 4], promptPattern: 'kg-zu-g'),
 
     MathTaskTemplate(id: 'g4_written_mul', grade: 4, unit: 'Schriftliche Multiplikation', kind: MathTemplateKind.writtenMultiplication, validRangeA: <int>[12, 999], validRangeB: <int>[2, 12], promptPattern: 'schriftliche-multiplikation'),
     MathTaskTemplate(id: 'g4_written_div', grade: 4, unit: 'Schriftliche Division', kind: MathTemplateKind.division, validRangeA: <int>[20, 999], validRangeB: <int>[2, 12], promptPattern: 'schriftliche-division'),
@@ -44,6 +50,14 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g4_three_step', grade: 4, unit: 'Sachaufgaben drei Schritte', kind: MathTemplateKind.wordProblemThreeStep, validRangeA: <int>[5, 60], validRangeB: <int>[2, 20], promptPattern: 'sachaufgabe-drei-schritte'),
     MathTaskTemplate(id: 'g4_chart', grade: 4, unit: 'Diagramme lesen', kind: MathTemplateKind.chartRead, validRangeA: <int>[4, 40], validRangeB: <int>[4, 40], promptPattern: 'diagramm-lesen'),
     MathTaskTemplate(id: 'g4_compare', grade: 4, unit: 'Vergleichen', kind: MathTemplateKind.compare, validRangeA: <int>[1, 999], validRangeB: <int>[1, 999], promptPattern: 'zahlen-vergleichen'),
+    // Neue Klasse-4-Lehrplan-Templates (AT Lehrplan 2023):
+    MathTaskTemplate(id: 'g4_add_10000', grade: 4, unit: 'Plus bis 10000', kind: MathTemplateKind.addition, validRangeA: <int>[1200, 6000], validRangeB: <int>[800, 4000], promptPattern: 'plus-bis-10000'),
+    MathTaskTemplate(id: 'g4_sub_10000', grade: 4, unit: 'Minus bis 10000', kind: MathTemplateKind.subtraction, validRangeA: <int>[3000, 9999], validRangeB: <int>[800, 4000], promptPattern: 'minus-bis-10000'),
+    MathTaskTemplate(id: 'g4_compare_1mio', grade: 4, unit: 'Zahlenraum bis 1 Million', kind: MathTemplateKind.compare, validRangeA: <int>[10000, 999999], validRangeB: <int>[10000, 999999], promptPattern: 'vergleichen-grosse-zahlen'),
+    MathTaskTemplate(id: 'g4_time_minutes', grade: 4, unit: 'Zeit Minuten und Stunden', kind: MathTemplateKind.timeMinutes, validRangeA: <int>[1, 50], validRangeB: <int>[1, 4], promptPattern: 'stunden-zu-minuten'),
+    MathTaskTemplate(id: 'g4_volume', grade: 4, unit: 'Hohlmaße Liter und Milliliter', kind: MathTemplateKind.volumeConversion, validRangeA: <int>[1, 50], validRangeB: <int>[1, 4], promptPattern: 'l-zu-ml'),
+    MathTaskTemplate(id: 'g4_fraction_expand', grade: 4, unit: 'Brüche erweitern', kind: MathTemplateKind.fractionExpand, validRangeA: <int>[2, 30], validRangeB: <int>[2, 6], promptPattern: 'bruch-erweitern'),
+    MathTaskTemplate(id: 'g4_average', grade: 4, unit: 'Mittelwert', kind: MathTemplateKind.average, validRangeA: <int>[6, 60], validRangeB: <int>[2, 6], promptPattern: 'durchschnitt'),
   ];
 
   static List<MathTaskTemplate> templatesForGrade(int grade, {String? unit}) {
@@ -57,8 +71,27 @@ class MathTaskTemplates {
     return templates.where((template) => template.grade <= capped).toList(growable: false);
   }
 
+  /// Liefert nur die Templates der EXAKTEN Klasse - keine Wiederholung aus
+  /// niedrigeren Klassen. Wird beim regulaeren Ueben genutzt damit das
+  /// Niveau zur Schulstufe passt (Heinz 2026-06-03: "nicht zu einfach,
+  /// angepasst auf jede Schulstufe").
+  static List<MathTaskTemplate> templatesForGradeStrict(int grade, {String? unit}) {
+    final capped = grade.clamp(1, 4);
+    final pool = templates.where((template) => template.grade == capped).where((template) {
+      if (unit == null || unit == 'Alle') return true;
+      if (template.unit == unit) return true;
+      return _legacyUnitAliases[unit]?.contains(template.unit) ?? false;
+    }).toList(growable: false);
+    if (pool.isNotEmpty) return pool;
+    return templatesForGrade(grade, unit: unit);
+  }
+
   static MathConcreteTask generate({required int grade, required String unit, required int seed}) {
-    final pool = templatesForGrade(grade, unit: unit);
+    // 75% aktuelle Klassenstufe (strict), 25% Wiederholung aus Vorjahren.
+    final useStrict = seed.abs() % 4 != 0;
+    final pool = useStrict
+        ? templatesForGradeStrict(grade, unit: unit)
+        : templatesForGrade(grade, unit: unit);
     final template = pool[_positive(seed, pool.length)];
     return template.concretize(seed + template.id.hashCode);
   }
@@ -230,6 +263,55 @@ class MathTaskTemplate {
       case MathTemplateKind.compare:
         final answer = a > b ? '>' : a < b ? '<' : '=';
         return _choice('Welches Zeichen passt? $a ? $b', answer, <String>['<', '>', '='], 'Vergleiche von links nach rechts.', 'compare');
+      case MathTemplateKind.massConversion:
+        // a Kilogramm in Gramm. 1 kg = 1000 g.
+        final kg = a.clamp(1, 9).toInt();
+        final answer = kg * 1000;
+        return _numberTask('Wie viele Gramm sind $kg kg?', answer, '1 kg sind 1000 g. Also $kg × 1000 = $answer g.', 'mass');
+      case MathTemplateKind.volumeConversion:
+        // a Liter in Milliliter. 1 l = 1000 ml.
+        final liter = a.clamp(1, 9).toInt();
+        final answer = liter * 1000;
+        return _numberTask('Wie viele Milliliter sind $liter Liter?', answer, '1 l sind 1000 ml. Also $liter × 1000 = $answer ml.', 'volume');
+      case MathTemplateKind.timeMinutes:
+        // a Stunden in Minuten. 1 h = 60 min.
+        final hours = a.clamp(1, 5).toInt();
+        final answer = hours * 60;
+        return _numberTask('$hours Stunden sind wie viele Minuten?', answer, '1 Stunde hat 60 Minuten. Also $hours × 60 = $answer min.', 'clock');
+      case MathTemplateKind.fractionExpand:
+        // Erweitere 1/a mit b: ergibt b/(a*b).
+        final denom = a.clamp(2, 6).toInt();
+        final factor = b.clamp(2, 5).toInt();
+        final newNumerator = factor;
+        final newDenom = denom * factor;
+        final answer = '$newNumerator/$newDenom';
+        return _choice(
+          'Erweitere den Bruch 1/$denom mit $factor. Wie heißt der neue Bruch?',
+          answer,
+          <String>[
+            answer,
+            '$newNumerator/$denom',
+            '1/${denom + factor}',
+            '${newNumerator + 1}/$newDenom',
+          ],
+          'Beim Erweitern multiplizierst du Zähler UND Nenner mit derselben Zahl: 1·$factor / $denom·$factor = $answer.',
+          'fraction_expand',
+        );
+      case MathTemplateKind.average:
+        // Mittelwert aus a, b und (a+b)/2-ish. Drei Werte deren Durchschnitt
+        // ganzzahlig ist: nutze 3-Zahlen die ein Vielfaches von 3 ergeben.
+        final base = ((a + b) ~/ 2).clamp(4, 50).toInt();
+        final v1 = (base - 2).clamp(1, 999).toInt();
+        final v2 = base;
+        final v3 = (base + 2).clamp(1, 999).toInt();
+        final sum = v1 + v2 + v3;
+        final answer = sum ~/ 3;
+        return _numberTask(
+          'Drei Kinder sammeln Sterne: $v1, $v2 und $v3. Wie viele Sterne im Mittelwert?',
+          answer,
+          'Addiere alle Werte ($v1+$v2+$v3=$sum) und teile durch die Anzahl (3): $sum:3 = $answer.',
+          'chart',
+        );
     }
   }
 
@@ -342,6 +424,12 @@ enum MathTemplateKind {
   wordProblemThreeStep,
   chartRead,
   compare,
+  // AT-Lehrplan-Erweiterungen 2026-06-03 (Klassen 3 + 4):
+  massConversion,
+  volumeConversion,
+  timeMinutes,
+  fractionExpand,
+  average,
 }
 
 int _valueInRange(List<int> range, int seed) {
