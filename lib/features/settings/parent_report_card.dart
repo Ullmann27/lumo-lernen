@@ -9,6 +9,7 @@ import '../../core/reading_progress_repository.dart';
 import '../../core/settings_repository.dart';
 import '../../domain/analysis/daily_recommendation_engine.dart';
 import '../../domain/analysis/lumo_analysis_domain.dart';
+import '../parents/lumo_insight_dashboard.dart';
 import '../parents/widgets/lumo_ai_policy_selector.dart';
 
 class ParentReportCard extends StatefulWidget {
@@ -135,6 +136,11 @@ class _ParentReportCardState extends State<ParentReportCard> {
           padding: const EdgeInsets.all(18),
           decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFFFFF), Color(0xFFFFF7ED)])),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            // 2026-06-03: prominenter CTA zum neuen Lumo-Insight-Dashboard
+            // (visuelle Kompetenz-Heatmap, das echte Game-Changer-Feature
+            // gegen LernMax). Steht ganz oben damit Eltern es sofort sehen.
+            _LumoInsightCta(appState: widget.appState),
+            const SizedBox(height: 14),
             Row(children: [
               Container(
                 width: 52,
@@ -298,6 +304,94 @@ class _SubjectReportMini extends StatelessWidget {
         ],
         Text(block.recommendedAction, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w900)),
       ]),
+    );
+  }
+}
+
+// CTA-Karte 2026-06-03: Prominenter Einstieg zum neuen Lumo-Insight-Dashboard.
+// Visuelle Kompetenz-Heatmap als Unterscheidung gegenueber LernMax (textuelles
+// Kimaro-AI-Report). Fix oben in der ParentReportCard.
+class _LumoInsightCta extends StatelessWidget {
+  const _LumoInsightCta({required this.appState});
+
+  final LumoAppState appState;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => LumoInsightDashboard(appState: appState),
+            ),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            boxShadow: [
+              BoxShadow(
+                color: LumoColors.orange.withOpacity(0.36),
+                blurRadius: 16,
+                offset: const Offset(0, 6),
+                spreadRadius: -3,
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.22),
+                  borderRadius: BorderRadius.circular(LumoRadius.md),
+                ),
+                alignment: Alignment.center,
+                child: const Text('🦊', style: TextStyle(fontSize: 32)),
+              ),
+              const SizedBox(width: 14),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Lumo Insight',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      'Visuelle Staerken-Karte + Lumo schlaegt nächste Übung vor',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 24),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
