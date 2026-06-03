@@ -66,6 +66,12 @@ jobs:
             if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
               sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
             fi
+            # Inter-App-Bridge 2026-06-03: Deep-Link intent-filter (siehe
+            # release-apk.yml). Damit Godot-Hub diese App per lumolernen://
+            # oeffnen kann. Additiv + idempotent.
+            if ! grep -q 'android:scheme="lumolernen"' "$MANIFEST"; then
+              sed -i 's|</activity>|        <intent-filter>\n            <action android:name="android.intent.action.VIEW"/>\n            <category android:name="android.intent.category.DEFAULT"/>\n            <category android:name="android.intent.category.BROWSABLE"/>\n            <data android:scheme="lumolernen"/>\n        </intent-filter>\n        </activity>|' "$MANIFEST"
+            fi
           fi
 
       - name: Patch minSdk to 21

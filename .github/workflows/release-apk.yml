@@ -90,6 +90,13 @@ jobs:
             if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
               sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
             fi
+            # Inter-App-Bridge 2026-06-03: Deep-Link intent-filter, damit die
+            # Godot-3D-Hub-App (dev.ullmann.lumo3d) diese Lern-App per
+            # OS.shell_open("lumolernen://open?section=learn") starten kann.
+            # Additiv + idempotent: nur einfuegen wenn noch nicht da.
+            if ! grep -q 'android:scheme="lumolernen"' "$MANIFEST"; then
+              sed -i 's|</activity>|        <intent-filter>\n            <action android:name="android.intent.action.VIEW"/>\n            <category android:name="android.intent.category.DEFAULT"/>\n            <category android:name="android.intent.category.BROWSABLE"/>\n            <data android:scheme="lumolernen"/>\n        </intent-filter>\n        </activity>|' "$MANIFEST"
+            fi
             # Tier 1 Foundation 2026-05-23: Impeller-Renderer aktivieren.
             # Liefert auf Android deutlich fluessigere Animationen + native
             # Shader-Pipeline. Wird via meta-data im <application>-Block
