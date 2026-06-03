@@ -5,6 +5,7 @@ import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_tutorial_companion.dart';
 import '../games/games_content.dart';
 import '../lumo3d/lumo3d_launcher.dart';
+import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../quiz/quiz_show_content.dart';
 import '../shared/widgets/lumo_living_world.dart';
@@ -285,6 +286,23 @@ class _HomeContentState extends State<HomeContent> {
               MaterialPageRoute(
                 builder: (_) =>
                     LumoAkademieScreen(appState: widget.appState),
+              ),
+            ),
+          ),
+          // Lumo Quest - narrative Mini-Abenteuer mit eingebetteten klassen-
+          // gerechten Aufgaben (Heinz 2026-06-03: echtes Level-Up gegen LernMax).
+          LumoSubjectTile(
+            title: 'Lumo Quest',
+            subtitle: 'Geh mit Lumo auf Abenteuer',
+            iconEmoji: '🦊',
+            illustrationEmoji: '⚔️',
+            accent: LumoColors.orange,
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => LumoQuestHubScreen(appState: widget.appState),
               ),
             ),
           ),
