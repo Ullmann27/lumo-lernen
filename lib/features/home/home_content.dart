@@ -8,6 +8,7 @@ import '../lumo3d/lumo3d_launcher.dart';
 import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../quiz/quiz_show_content.dart';
+import '../../widgets/premium/lumo_magic_background.dart';
 import '../shared/widgets/lumo_living_world.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
 import '../shared/widgets/lumo_subject_tile.dart';
@@ -323,10 +324,18 @@ class _HomeContentState extends State<HomeContent> {
       ),
     );
 
-    // Stack-Overlay: Dashboard + Tutorial-Companion + "Tutorial starten"-FAB
+    // Modernisierung 2026-06-03: gesamter Home auf LumoMagicBackground
+    // (Sternen-Layer + sanfter Gradient + Wolken). Bisher war der Premium-
+    // Stack im Repo aber nirgendwo im echten Home aktiv - jetzt sofort.
+    // Intensity 0.7 ist ruhig genug fuer Kinder-Augen, starCount 22 spart
+    // Performance auf aelteren Geraeten.
     return Stack(
       children: [
-        dashboard,
+        LumoMagicBackground(
+          intensity: 0.7,
+          starCount: 22,
+          child: dashboard,
+        ),
 
         // ── Wandernder Lumo-Tutorial-Begleiter ────────────────────
         Positioned.fill(

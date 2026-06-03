@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_quest_library.dart';
+import '../../widgets/premium/lumo_magic_background.dart';
 import 'lumo_story_reader_screen.dart';
 
 class LumoQuestHubScreen extends StatelessWidget {
@@ -28,7 +29,7 @@ class LumoQuestHubScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF6EE),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFF6EE),
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: const BackButton(color: Color(0xFF7C2D12)),
         title: const Text(
@@ -41,7 +42,11 @@ class LumoQuestHubScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
+      extendBodyBehindAppBar: true,
+      body: LumoMagicBackground(
+        intensity: 0.7,
+        starCount: 18,
+        child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
         children: [
           _intro(grade),
@@ -52,7 +57,8 @@ class LumoQuestHubScreen extends StatelessWidget {
           ],
           if (quests.isEmpty) _noQuestsForGrade(),
         ],
-      ),
+      ), // close ListView
+      ), // close LumoMagicBackground
     );
   }
 
