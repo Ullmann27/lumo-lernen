@@ -21,6 +21,7 @@ import '../../app/app_theme.dart';
 import '../../core/error_breakdown_repository.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
+import '../../widgets/premium/lumo_magic_background.dart';
 import '../learning/learning_dna_card.dart';
 import 'widgets/lumo_insight_heatmap.dart';
 
@@ -71,7 +72,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF6EE),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFF6EE),
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: const BackButton(color: Color(0xFF7C2D12)),
         title: const Text(
@@ -84,7 +85,11 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
           ),
         ),
       ),
-      body: _loading
+      extendBodyBehindAppBar: true,
+      body: LumoMagicBackground(
+        intensity: 0.6,
+        starCount: 16,
+        child: _loading
           ? const Center(child: CircularProgressIndicator(color: LumoColors.orange))
           : SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
@@ -115,6 +120,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                 ],
               ),
             ),
+      ), // close LumoMagicBackground
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../widgets/premium/lumo_magic_background.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/app_settings.dart';
 import '../../core/app_update_service.dart';
@@ -323,7 +324,12 @@ class _SettingsContentState extends State<SettingsContent> {
   @override
   Widget build(BuildContext context) {
     final state = widget.appState.state;
-    return SingleChildScrollView(
+    // Modernisierung 2026-06-03: Settings auf LumoMagicBackground wie Home.
+    // Niedrige Intensitaet damit der Settings-Fokus erhalten bleibt.
+    return LumoMagicBackground(
+      intensity: 0.5,
+      starCount: 14,
+      child: SingleChildScrollView(
       padding: const EdgeInsets.all(26),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         _Header(
@@ -491,7 +497,8 @@ class _SettingsContentState extends State<SettingsContent> {
         // gezielt fixen, statt blind zu raten.
         const _ErrorLogCard(),
       ]),
-    );
+      ), // close SingleChildScrollView
+    ); // close LumoMagicBackground
   }
 }
 
