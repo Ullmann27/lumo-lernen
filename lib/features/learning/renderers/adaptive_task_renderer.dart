@@ -348,6 +348,10 @@ class _AdaptiveVisual extends StatelessWidget {
       VisualType.sentenceBlocks => SentenceBlocksVisual(task: task),
       VisualType.wordTypeColor => WordTypeColorVisual(task: task),
       VisualType.articleCards => ArticleCardsVisual(task: task),
+      // Geometrie + Groessen 2026-06-03 (Heinz: "Rechteck mit Maßen"):
+      VisualType.rectangleMeasure => RectangleMeasureVisual(task: task),
+      VisualType.rulerCompare => RulerCompareVisual(task: task),
+      VisualType.scaleMeasure => ScaleMeasureVisual(task: task),
       _ => _SchoolbookFallbackVisual(task: task),
     };
   }

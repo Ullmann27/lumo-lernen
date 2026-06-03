@@ -855,3 +855,269 @@ class _ArticleCard extends StatelessWidget {
     );
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────
+//  GEOMETRIE + GROESSEN-VISUALS (2026-06-03)
+//  Heinz: "Rechteck mit Länge und Breitemaße". Plus Lineal-Vergleich
+//  und Skala-Visualisierung fuer Groessen-Umrechnung.
+// ─────────────────────────────────────────────────────────────────────
+
+/// Rechteck mit beschrifteten Seitenlaengen. Liest a (Laenge) und b (Breite)
+/// aus dem Prompt. Kindgerecht: Mass-Linien mit Pfeilen, deutliche
+/// cm-Beschriftung, Rechteck mit Farbverlauf.
+class RectangleMeasureVisual extends StatelessWidget {
+  const RectangleMeasureVisual({super.key, required this.task});
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final data = task.visualPayload.data;
+    final nums = _digitsFromPrompt(task.prompt);
+    final length = _readInt(data['length']) ?? (nums.isNotEmpty ? nums[0] : 6);
+    final width = _readInt(data['width']) ?? (nums.length > 1 ? nums[1] : 4);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+      decoration: _stageDecoration(const Color(0xFF34D399)),
+      child: AspectRatio(
+        aspectRatio: 1.4,
+        child: CustomPaint(
+          painter: _RectangleMeasurePainter(length: length, width: width),
+        ),
+      ),
+    );
+  }
+}
+
+class _RectangleMeasurePainter extends CustomPainter {
+  _RectangleMeasurePainter({required this.length, required this.width});
+  final int length;
+  final int width;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Bereiche: links/oben/rechts/unten je 28px fuer Beschriftungen.
+    const margin = 32.0;
+    final rect = Rect.fromLTWH(
+      margin,
+      margin,
+      size.width - 2 * margin,
+      size.height - 2 * margin,
+    );
+    // Rechteck-Fuellung mit Farbverlauf.
+    final fill = Paint()
+      ..shader = const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color(0xFFA7F3D0), Color(0xFF34D399)],
+      ).createShader(rect);
+    final rrect = RRect.fromRectAndRadius(rect, const Radius.circular(8));
+    canvas.drawRRect(rrect, fill);
+    final stroke = Paint()
+      ..color = const Color(0xFF065F46)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 3;
+    canvas.drawRRect(rrect, stroke);
+
+    // Mass-Linien + Pfeile aussen.
+    final guide = Paint()
+      ..color = const Color(0xFF065F46)
+      ..strokeWidth = 2;
+    // Oben: Laenge
+    final topY = margin - 14;
+    canvas.drawLine(Offset(rect.left, topY), Offset(rect.right, topY), guide);
+    _drawArrow(canvas, Offset(rect.left, topY), const Offset(-1, 0), guide);
+    _drawArrow(canvas, Offset(rect.right, topY), const Offset(1, 0), guide);
+    // Links: Breite
+    final leftX = margin - 14;
+    canvas.drawLine(Offset(leftX, rect.top), Offset(leftX, rect.bottom), guide);
+    _drawArrow(canvas, Offset(leftX, rect.top), const Offset(0, -1), guide);
+    _drawArrow(canvas, Offset(leftX, rect.bottom), const Offset(0, 1), guide);
+
+    // Beschriftungen.
+    _drawLabel(canvas, '$length cm', rect.center.dx, topY - 12, anchor: Alignment.center, color: const Color(0xFF065F46));
+    _drawLabel(canvas, '$width cm', leftX - 12, rect.center.dy, anchor: Alignment.centerRight, color: const Color(0xFF065F46));
+  }
+
+  void _drawArrow(Canvas canvas, Offset tip, Offset dir, Paint paint) {
+    const len = 6.0;
+    final perp = Offset(-dir.dy, dir.dx);
+    final base = tip - Offset(dir.dx * len, dir.dy * len);
+    canvas.drawLine(tip, base + Offset(perp.dx * len * 0.6, perp.dy * len * 0.6), paint);
+    canvas.drawLine(tip, base - Offset(perp.dx * len * 0.6, perp.dy * len * 0.6), paint);
+  }
+
+  void _drawLabel(Canvas canvas, String text, double x, double y, {required Alignment anchor, required Color color}) {
+    final tp = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: 16,
+          fontWeight: FontWeight.w900,
+          color: color,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    final dx = x - tp.width * (anchor.x + 1) / 2;
+    final dy = y - tp.height * (anchor.y + 1) / 2;
+    tp.paint(canvas, Offset(dx, dy));
+  }
+
+  @override
+  bool shouldRepaint(_RectangleMeasurePainter old) =>
+      old.length != length || old.width != width;
+}
+
+
+/// Lineal-Vergleich fuer Laengen-Umrechnung (cm/m, mm/cm).
+/// Zeigt zwei Lineale uebereinander mit Skala + farblicher Markierung.
+class RulerCompareVisual extends StatelessWidget {
+  const RulerCompareVisual({super.key, required this.task});
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final data = task.visualPayload.data;
+    final nums = _digitsFromPrompt(task.prompt);
+    final value = _readInt(data['value']) ?? (nums.isNotEmpty ? nums[0] : 1);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+      decoration: _stageDecoration(const Color(0xFF60A5FA)),
+      child: SizedBox(
+        height: 110,
+        child: CustomPaint(
+          painter: _RulerPainter(meters: value),
+        ),
+      ),
+    );
+  }
+}
+
+class _RulerPainter extends CustomPainter {
+  _RulerPainter({required this.meters});
+  final int meters;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paintLine = Paint()
+      ..color = const Color(0xFF1E3A8A)
+      ..strokeWidth = 2;
+    final fill = Paint()..color = const Color(0xFFFEF3C7);
+    final w = size.width;
+    final markStep = w / 10;
+    // Oberes Lineal: Meter
+    final rect1 = Rect.fromLTWH(0, 12, w, 28);
+    canvas.drawRRect(RRect.fromRectAndRadius(rect1, const Radius.circular(4)), fill);
+    canvas.drawRRect(RRect.fromRectAndRadius(rect1, const Radius.circular(4)),
+        Paint()..color = const Color(0xFF1E3A8A)..style = PaintingStyle.stroke..strokeWidth = 2);
+    for (var i = 0; i <= 10; i++) {
+      final x = i * markStep;
+      final h = i % 5 == 0 ? 14.0 : 8.0;
+      canvas.drawLine(Offset(x, 12), Offset(x, 12 + h), paintLine);
+    }
+    _label(canvas, '0 m', 0, 4, anchor: Alignment.centerLeft);
+    _label(canvas, '$meters m', w, 4, anchor: Alignment.centerRight);
+
+    // Unteres Lineal: cm (1m = 100cm)
+    final rect2 = Rect.fromLTWH(0, 64, w, 28);
+    canvas.drawRRect(RRect.fromRectAndRadius(rect2, const Radius.circular(4)), fill);
+    canvas.drawRRect(RRect.fromRectAndRadius(rect2, const Radius.circular(4)),
+        Paint()..color = const Color(0xFF991B1B)..style = PaintingStyle.stroke..strokeWidth = 2);
+    for (var i = 0; i <= 10; i++) {
+      final x = i * markStep;
+      final h = i % 5 == 0 ? 14.0 : 8.0;
+      canvas.drawLine(Offset(x, 64), Offset(x, 64 + h),
+          Paint()..color = const Color(0xFF991B1B)..strokeWidth = 2);
+    }
+    _label(canvas, '0 cm', 0, 96, anchor: Alignment.centerLeft, color: const Color(0xFF991B1B));
+    _label(canvas, '${meters * 100} cm', w, 96, anchor: Alignment.centerRight, color: const Color(0xFF991B1B));
+  }
+
+  void _label(Canvas canvas, String text, double x, double y,
+      {required Alignment anchor, Color color = const Color(0xFF1E3A8A)}) {
+    final tp = TextPainter(
+      text: TextSpan(text: text, style: TextStyle(
+        fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: color,
+      )),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    final dx = x - tp.width * (anchor.x + 1) / 2;
+    final dy = y - tp.height * (anchor.y + 1) / 2;
+    tp.paint(canvas, Offset(dx, dy));
+  }
+
+  @override
+  bool shouldRepaint(_RulerPainter old) => old.meters != meters;
+}
+
+
+/// Skala-Visualisierung fuer Masse (kg/g) und Hohlmasse (l/ml).
+/// Zwei Bechertank-Symbole mit beschrifteter Skala 1:1000.
+class ScaleMeasureVisual extends StatelessWidget {
+  const ScaleMeasureVisual({super.key, required this.task});
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final data = task.visualPayload.data;
+    final nums = _digitsFromPrompt(task.prompt);
+    final value = _readInt(data['value']) ?? (nums.isNotEmpty ? nums[0] : 1);
+    final isVolume = task.prompt.toLowerCase().contains('liter') ||
+                     task.prompt.toLowerCase().contains('milliliter');
+    final bigUnit = isVolume ? 'Liter' : 'kg';
+    final smallUnit = isVolume ? 'ml' : 'g';
+    final emoji = isVolume ? '🫗' : '⚖️';
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+      decoration: _stageDecoration(const Color(0xFFF472B6)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _ScaleChip(value: '$value', unit: bigUnit, emoji: emoji,
+                    color: const Color(0xFF9D174D)),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Text('=', style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900,
+                color: Color(0xFF9D174D), fontFamily: 'Nunito')),
+          ),
+          _ScaleChip(value: '${value * 1000}', unit: smallUnit, emoji: emoji,
+                    color: const Color(0xFFA855F7)),
+        ],
+      ),
+    );
+  }
+}
+
+class _ScaleChip extends StatelessWidget {
+  const _ScaleChip({required this.value, required this.unit, required this.emoji, required this.color});
+  final String value;
+  final String unit;
+  final String emoji;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(color: color.withOpacity(0.40), width: 1.6),
+        boxShadow: [
+          BoxShadow(color: color.withOpacity(0.18), blurRadius: 8, offset: const Offset(0, 3)),
+        ],
+      ),
+      child: Column(
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 28, height: 1.0)),
+          const SizedBox(height: 4),
+          Text(value, style: TextStyle(fontFamily: 'Nunito', fontSize: 22,
+              fontWeight: FontWeight.w900, color: color, height: 1.0)),
+          Text(unit, style: TextStyle(fontFamily: 'Nunito', fontSize: 12,
+              fontWeight: FontWeight.w800, color: color.withOpacity(0.85))),
+        ],
+      ),
+    );
+  }
+}

@@ -51,6 +51,11 @@ enum VisualType {
   sentenceBlocks,
   wordTypeColor,
   articleCards,
+  // Geometrie + Groessen-Visuals 2026-06-03 (Heinz: "Rechteck mit Länge
+  // und Breitemaße"). Renderer in lumo_premium_visuals.dart.
+  rectangleMeasure,
+  rulerCompare,
+  scaleMeasure,
 }
 
 enum ErrorType {
