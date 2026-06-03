@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_tutorial_companion.dart';
 import '../games/games_content.dart';
+import '../lumo3d/lumo3d_launcher.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../quiz/quiz_show_content.dart';
 import '../shared/widgets/lumo_living_world.dart';
@@ -286,6 +287,19 @@ class _HomeContentState extends State<HomeContent> {
                     LumoAkademieScreen(appState: widget.appState),
               ),
             ),
+          ),
+          // Lumo 3D Welt - oeffnet die separate Godot-3D-App per Intent,
+          // mit Fallback zur Web-Version auf GitHub Pages.
+          LumoSubjectTile(
+            title: 'Lumo 3D Welt',
+            subtitle: 'Besuche Lumo in der 3D-Lernwelt',
+            iconEmoji: '🦊',
+            illustrationEmoji: '✨',
+            accent: LumoColors.orange,
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => launchLumo3D(context),
           ),
         ],
       ),

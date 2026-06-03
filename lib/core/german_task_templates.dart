@@ -28,11 +28,20 @@ class GermanTaskTemplates {
     GermanTaskTemplate(id: 'g3_tense', grade: 3, unit: 'Zeitformen', kind: GermanTemplateKind.pastTense, promptPattern: 'vergangenheit'),
     GermanTaskTemplate(id: 'g3_comparison', grade: 3, unit: 'Steigerung', kind: GermanTemplateKind.comparison, promptPattern: 'steigerung'),
     GermanTaskTemplate(id: 'g3_verb_form', grade: 3, unit: 'Verbformen', kind: GermanTemplateKind.verbForm, promptPattern: 'verb-kongruenz'),
+    // Neue Klasse-3-Lehrplan-Templates (AT 2026-06-03):
+    GermanTaskTemplate(id: 'g3_case_nom_akk', grade: 3, unit: 'Wer-Fall und Wen-Fall', kind: GermanTemplateKind.caseNomAkk, promptPattern: 'fall-bestimmen'),
+    GermanTaskTemplate(id: 'g3_capitalization', grade: 3, unit: 'Großschreibung', kind: GermanTemplateKind.capitalization, promptPattern: 'grossbuchstabe'),
+    GermanTaskTemplate(id: 'g3_ie_or_i', grade: 3, unit: 'ie oder i', kind: GermanTemplateKind.ieOrI, promptPattern: 'lang-i-rechtschreibung'),
 
     GermanTaskTemplate(id: 'g4_sentence_parts', grade: 4, unit: 'Satzglieder', kind: GermanTemplateKind.sentenceParts, promptPattern: 'satzglied'),
     GermanTaskTemplate(id: 'g4_direct_speech', grade: 4, unit: 'Direkte Rede', kind: GermanTemplateKind.directSpeech, promptPattern: 'direkte-rede'),
     GermanTaskTemplate(id: 'g4_commas', grade: 4, unit: 'Kommas in Aufzählungen', kind: GermanTemplateKind.commas, promptPattern: 'komma-aufzaehlung'),
     GermanTaskTemplate(id: 'g4_compounds', grade: 4, unit: 'Zusammensetzungen', kind: GermanTemplateKind.compounds, promptPattern: 'zusammensetzung-bedeutung'),
+    // Neue Klasse-4-Lehrplan-Templates (AT 2026-06-03):
+    GermanTaskTemplate(id: 'g4_four_cases', grade: 4, unit: 'Die 4 Fälle', kind: GermanTemplateKind.fourCases, promptPattern: 'vier-faelle'),
+    GermanTaskTemplate(id: 'g4_dass_das', grade: 4, unit: 'dass oder das', kind: GermanTemplateKind.dassDas, promptPattern: 'dass-das'),
+    GermanTaskTemplate(id: 'g4_adverbs', grade: 4, unit: 'Umstandswörter', kind: GermanTemplateKind.adverbs, promptPattern: 'adverb-bestimmen'),
+    GermanTaskTemplate(id: 'g4_plusquam', grade: 4, unit: 'Vorvergangenheit', kind: GermanTemplateKind.plusquamperfect, promptPattern: 'plusquamperfekt'),
   ];
 
   static List<GermanTaskTemplate> templatesForGrade(int grade, {String? unit}) {
@@ -47,8 +56,27 @@ class GermanTaskTemplates {
     return templates.where((template) => template.grade <= capped).toList(growable: false);
   }
 
+  /// Liefert nur Templates der EXAKTEN Klasse (keine Wiederholung). Wird
+  /// im Hauptpool genutzt damit das Niveau zur Stufe passt (Heinz
+  /// 2026-06-03: "auf jede Schulstufe angepasst").
+  static List<GermanTaskTemplate> templatesForGradeStrict(int grade, {String? unit}) {
+    final capped = grade.clamp(1, 4);
+    final normalized = _normalizeUnit(unit ?? 'Alle');
+    final pool = templates.where((template) => template.grade == capped).where((template) {
+      if (normalized == 'Alle') return true;
+      if (_normalizeUnit(template.unit) == normalized) return true;
+      return _legacyUnitAliases[normalized]?.contains(template.unit) ?? false;
+    }).toList(growable: false);
+    if (pool.isNotEmpty) return pool;
+    return templatesForGrade(grade, unit: unit);
+  }
+
   static GermanConcreteTask generate({required int grade, required String unit, required int seed}) {
-    final pool = templatesForGrade(grade, unit: unit);
+    // 75% aktuelle Klassenstufe (strict), 25% Wiederholung aus Vorjahren.
+    final useStrict = seed.abs() % 4 != 0;
+    final pool = useStrict
+        ? templatesForGradeStrict(grade, unit: unit)
+        : templatesForGrade(grade, unit: unit);
     final template = pool[_positive(seed, pool.length)];
     return template.concretize(seed + template.id.hashCode);
   }
@@ -164,6 +192,69 @@ class GermanTaskTemplate {
       case GermanTemplateKind.compounds:
         final item = _compounds[_positive(seed, _compounds.length)];
         return _choice('Was bedeutet „${item.compound}“?', item.answer, <String>[item.answer, ...item.distractors], 'Zusammensetzungen verbinden zwei Wörter zu einem neuen Wort.', 'compound');
+      case GermanTemplateKind.caseNomAkk:
+        final item = _caseNomAkkItems[_positive(seed, _caseNomAkkItems.length)];
+        return _choice(
+          'Welcher Fall ist „${item.phrase}“ im Satz „${item.sentence}“?',
+          item.answer,
+          <String>[item.answer, ...item.distractors],
+          'Frage „Wer/Was?“ für den Wer-Fall (Nominativ), „Wen/Was?“ für den Wen-Fall (Akkusativ).',
+          'case',
+        );
+      case GermanTemplateKind.capitalization:
+        final item = _capitalizationItems[_positive(seed, _capitalizationItems.length)];
+        return _choice(
+          'Welches Wort muss groß geschrieben werden? „${item.sentence}“',
+          item.answer,
+          <String>[item.answer, ...item.distractors],
+          'Nomen (Namenwörter) und Satzanfänge schreibt man immer groß.',
+          'capitalization',
+        );
+      case GermanTemplateKind.ieOrI:
+        final item = _ieOrIItems[_positive(seed, _ieOrIItems.length)];
+        return _choice(
+          'Wie schreibt man das Wort richtig?',
+          item.answer,
+          <String>[item.answer, ...item.distractors],
+          'Bei lang gesprochenem i schreibt man meist „ie“ (Tier, Brief). Kurz gesprochenes i bleibt „i“.',
+          'spelling',
+        );
+      case GermanTemplateKind.fourCases:
+        final item = _fourCasesItems[_positive(seed, _fourCasesItems.length)];
+        return _choice(
+          'Welcher Fall? „${item.phrase}“ im Satz „${item.sentence}“',
+          item.answer,
+          <String>[item.answer, ...item.distractors],
+          'Wer/Was = 1. Fall, Wessen = 2. Fall, Wem = 3. Fall, Wen/Was = 4. Fall.',
+          'case',
+        );
+      case GermanTemplateKind.dassDas:
+        final item = _dassDasItems[_positive(seed, _dassDasItems.length)];
+        return _choice(
+          'Welches Wort passt? „${item.sentence}“',
+          item.answer,
+          <String>[item.answer, ...item.distractors],
+          'Wenn du „welches/dieses/jenes“ einsetzen kannst, schreibst du „das“. Sonst „dass“.',
+          'dass_das',
+        );
+      case GermanTemplateKind.adverbs:
+        final item = _adverbItems[_positive(seed, _adverbItems.length)];
+        return _choice(
+          'Welches Wort im Satz ist ein Umstandswort (Adverb)? „${item.sentence}“',
+          item.answer,
+          <String>[item.answer, ...item.distractors],
+          'Umstandswörter sagen wann, wo, wie oder warum etwas passiert.',
+          'adverb',
+        );
+      case GermanTemplateKind.plusquamperfect:
+        final item = _plusquamItems[_positive(seed, _plusquamItems.length)];
+        return _choice(
+          'Welche Form ist Vorvergangenheit (Plusquamperfekt) von „${item.verb}“?',
+          item.answer,
+          <String>[item.answer, ...item.distractors],
+          'Vorvergangenheit: „hatte/war + Partizip“. Vor der Vergangenheit passiert.',
+          'tense',
+        );
     }
   }
 
@@ -247,6 +338,14 @@ enum GermanTemplateKind {
   directSpeech,
   commas,
   compounds,
+  // AT-Lehrplan-Erweiterungen 2026-06-03 (Klassen 3 + 4):
+  caseNomAkk,
+  capitalization,
+  ieOrI,
+  fourCases,
+  dassDas,
+  adverbs,
+  plusquamperfect,
 }
 
 class _LetterSound {
@@ -328,6 +427,36 @@ class _CommaItem {
 class _CompoundItem {
   const _CompoundItem(this.compound, this.answer, this.distractors);
   final String compound;
+  final String answer;
+  final List<String> distractors;
+}
+
+// AT-Lehrplan-Erweiterungen 2026-06-03 - Klasse 3+4 Datenklassen:
+
+class _CaseItem {
+  const _CaseItem(this.sentence, this.phrase, this.answer, this.distractors);
+  final String sentence;
+  final String phrase;
+  final String answer;
+  final List<String> distractors;
+}
+
+class _SentenceMcItem {
+  const _SentenceMcItem(this.sentence, this.answer, this.distractors);
+  final String sentence;
+  final String answer;
+  final List<String> distractors;
+}
+
+class _SimpleMcItem {
+  const _SimpleMcItem(this.answer, this.distractors);
+  final String answer;
+  final List<String> distractors;
+}
+
+class _VerbFormMcItem {
+  const _VerbFormMcItem(this.verb, this.answer, this.distractors);
+  final String verb;
   final String answer;
   final List<String> distractors;
 }
@@ -482,3 +611,70 @@ String _emojiFor(String word) {
 String _cap(String value) => value.isEmpty ? value : value.substring(0, 1).toUpperCase() + value.substring(1);
 String _normalizeUnit(String value) => value.replaceAll('ö', 'oe').replaceAll('ä', 'ae').replaceAll('ü', 'ue');
 int _positive(int seed, int length) => length <= 1 ? 0 : (seed & 0x7fffffff) % length;
+
+// AT-Lehrplan-Erweiterungen 2026-06-03 - Klasse 3+4 Daten:
+
+const List<_CaseItem> _caseNomAkkItems = <_CaseItem>[
+  _CaseItem('Der Hund bellt im Garten.', 'Der Hund', 'Wer-Fall', <String>['Wen-Fall', 'Wem-Fall']),
+  _CaseItem('Lisa füttert die Katze.', 'die Katze', 'Wen-Fall', <String>['Wer-Fall', 'Wem-Fall']),
+  _CaseItem('Das Kind liest ein Buch.', 'Das Kind', 'Wer-Fall', <String>['Wen-Fall', 'Wem-Fall']),
+  _CaseItem('Der Lehrer erklärt die Aufgabe.', 'die Aufgabe', 'Wen-Fall', <String>['Wer-Fall', 'Wem-Fall']),
+  _CaseItem('Die Sonne scheint heute warm.', 'Die Sonne', 'Wer-Fall', <String>['Wen-Fall', 'Wem-Fall']),
+  _CaseItem('Mama bäckt einen Kuchen.', 'einen Kuchen', 'Wen-Fall', <String>['Wer-Fall', 'Wem-Fall']),
+];
+
+const List<_SentenceMcItem> _capitalizationItems = <_SentenceMcItem>[
+  _SentenceMcItem('die kinder spielen im garten.', 'Kinder', <String>['die', 'spielen', 'im']),
+  _SentenceMcItem('mein bruder liest ein buch.', 'Buch', <String>['mein', 'liest', 'ein']),
+  _SentenceMcItem('wir gehen heute in die schule.', 'Schule', <String>['gehen', 'heute', 'in']),
+  _SentenceMcItem('papa kocht die suppe für uns.', 'Suppe', <String>['kocht', 'für', 'uns']),
+  _SentenceMcItem('der hund jagt eine katze.', 'Hund', <String>['jagt', 'eine', 'katze']),
+  _SentenceMcItem('ich male einen schönen baum.', 'Baum', <String>['male', 'einen', 'schönen']),
+];
+
+const List<_SimpleMcItem> _ieOrIItems = <_SimpleMcItem>[
+  _SimpleMcItem('Tier', <String>['Tir', 'Thier', 'Tyr']),
+  _SimpleMcItem('Brief', <String>['Brif', 'Briff', 'Bryf']),
+  _SimpleMcItem('viel', <String>['vil', 'fiel', 'vihl']),
+  _SimpleMcItem('Spiegel', <String>['Spigel', 'Spihgel', 'Schpiegel']),
+  _SimpleMcItem('lieben', <String>['liben', 'lihben', 'lyben']),
+  _SimpleMcItem('Knie', <String>['Kni', 'Knih', 'Kniee']),
+  _SimpleMcItem('Sieg', <String>['Sig', 'Sieh', 'Sigh']),
+  _SimpleMcItem('hier', <String>['hir', 'hihr', 'hiher']),
+];
+
+const List<_CaseItem> _fourCasesItems = <_CaseItem>[
+  _CaseItem('Der Bauer gibt der Kuh Heu.', 'der Kuh', 'Wem-Fall (3.)', <String>['Wer-Fall (1.)', 'Wen-Fall (4.)']),
+  _CaseItem('Das Auto des Vaters ist rot.', 'des Vaters', 'Wessen-Fall (2.)', <String>['Wem-Fall (3.)', 'Wer-Fall (1.)']),
+  _CaseItem('Anna schenkt ihrer Mutter Blumen.', 'ihrer Mutter', 'Wem-Fall (3.)', <String>['Wessen-Fall (2.)', 'Wen-Fall (4.)']),
+  _CaseItem('Wir besuchen die Großeltern.', 'die Großeltern', 'Wen-Fall (4.)', <String>['Wer-Fall (1.)', 'Wem-Fall (3.)']),
+  _CaseItem('Die Tür des Hauses ist offen.', 'des Hauses', 'Wessen-Fall (2.)', <String>['Wer-Fall (1.)', 'Wen-Fall (4.)']),
+  _CaseItem('Die Lehrerin lobt den Schüler.', 'den Schüler', 'Wen-Fall (4.)', <String>['Wer-Fall (1.)', 'Wem-Fall (3.)']),
+];
+
+const List<_SentenceMcItem> _dassDasItems = <_SentenceMcItem>[
+  _SentenceMcItem('Ich weiß, ___ du gewinnst.', 'dass', <String>['das', 'daß']),
+  _SentenceMcItem('___ Buch liegt am Tisch.', 'Das', <String>['Dass', 'Daß']),
+  _SentenceMcItem('Mama hofft, ___ es nicht regnet.', 'dass', <String>['das', 'daß']),
+  _SentenceMcItem('Ich nehme ___ rote Heft.', 'das', <String>['dass', 'daß']),
+  _SentenceMcItem('Er sagt, ___ er müde ist.', 'dass', <String>['das', 'daß']),
+  _SentenceMcItem('Schau, ___ Lumo dort schläft!', 'dass', <String>['das', 'daß']),
+];
+
+const List<_SentenceMcItem> _adverbItems = <_SentenceMcItem>[
+  _SentenceMcItem('Wir spielen heute draußen.', 'heute', <String>['Wir', 'spielen', 'draußen']),
+  _SentenceMcItem('Lumo läuft schnell durch den Wald.', 'schnell', <String>['Lumo', 'läuft', 'Wald']),
+  _SentenceMcItem('Morgen kommt Oma zu Besuch.', 'Morgen', <String>['Oma', 'kommt', 'Besuch']),
+  _SentenceMcItem('Der Hund schläft ruhig im Korb.', 'ruhig', <String>['Hund', 'schläft', 'Korb']),
+  _SentenceMcItem('Wir gehen oft schwimmen im Sommer.', 'oft', <String>['gehen', 'schwimmen', 'Sommer']),
+  _SentenceMcItem('Anna singt laut im Chor.', 'laut', <String>['Anna', 'singt', 'Chor']),
+];
+
+const List<_VerbFormMcItem> _plusquamItems = <_VerbFormMcItem>[
+  _VerbFormMcItem('lesen', 'hatte gelesen', <String>['liest', 'las', 'wird lesen']),
+  _VerbFormMcItem('gehen', 'war gegangen', <String>['geht', 'ging', 'wird gehen']),
+  _VerbFormMcItem('schreiben', 'hatte geschrieben', <String>['schreibt', 'schrieb', 'wird schreiben']),
+  _VerbFormMcItem('kommen', 'war gekommen', <String>['kommt', 'kam', 'wird kommen']),
+  _VerbFormMcItem('spielen', 'hatte gespielt', <String>['spielt', 'spielte', 'wird spielen']),
+  _VerbFormMcItem('singen', 'hatte gesungen', <String>['singt', 'sang', 'wird singen']),
+];
