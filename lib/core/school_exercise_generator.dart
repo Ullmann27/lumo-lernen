@@ -247,11 +247,21 @@ class ExerciseFactory {
   LumoTask _science(int grade, String unit) {
     final seed = _serial + _random.nextInt(9999);
     final capped = grade.clamp(1, 4).toInt();
-    final pool = _scienceQuestions.where((question) {
+    // 75% strict (exakte Klassenstufe), 25% Wiederholung aus Vorjahren -
+    // gleiche Strategie wie Math/German seit 2026-06-03.
+    final useStrict = seed.abs() % 4 != 0;
+    final strictPool = _scienceQuestions.where((question) {
+      final unitMatches = unit == 'Alle' || question.unit == unit || _scienceAliases[unit]?.contains(question.unit) == true;
+      return question.grade == capped && unitMatches;
+    }).toList(growable: false);
+    final loosePool = _scienceQuestions.where((question) {
       final unitMatches = unit == 'Alle' || question.unit == unit || _scienceAliases[unit]?.contains(question.unit) == true;
       return question.grade <= capped && unitMatches;
     }).toList(growable: false);
-    final source = pool.isEmpty ? _scienceQuestions.where((question) => question.grade <= capped).toList(growable: false) : pool;
+    var source = useStrict && strictPool.isNotEmpty ? strictPool : loosePool;
+    if (source.isEmpty) {
+      source = _scienceQuestions.where((question) => question.grade <= capped).toList(growable: false);
+    }
     final question = source[_positive(seed, source.length)];
     return LumoTask(
       id: _id('sach-${question.unit}'),
@@ -309,17 +319,50 @@ class ExerciseFactory {
   }
 
   LumoTask _english(int grade, String unit) {
-    const data = <String, Map<String, String>>{
-      'Farben': <String, String>{'red': 'rot', 'blue': 'blau', 'green': 'grün', 'yellow': 'gelb'},
-      'Zahlen': <String, String>{'one': 'eins', 'two': 'zwei', 'three': 'drei', 'four': 'vier'},
-      'Tiere': <String, String>{'dog': 'Hund', 'cat': 'Katze', 'bird': 'Vogel', 'fish': 'Fisch'},
-      'Schulsachen': <String, String>{'book': 'Buch', 'pen': 'Stift', 'bag': 'Tasche', 'ruler': 'Lineal'},
-      'Begruessung': <String, String>{'hello': 'hallo', 'goodbye': 'auf Wiedersehen', 'please': 'bitte', 'thanks': 'danke'},
-      'Familie': <String, String>{'mother': 'Mutter', 'father': 'Vater', 'sister': 'Schwester', 'brother': 'Bruder'},
-      'Körper': <String, String>{'hand': 'Hand', 'foot': 'Fuß', 'eye': 'Auge', 'ear': 'Ohr'},
+    // AT-Lehrplan VS Lebende Fremdsprache 2026-06-03: pro Klassenstufe ein
+    // eigener Wortschatz. Kleinere Kinder = vertraute Themen + nur 4 Vokabeln.
+    // Aeltere Kinder = breiterer Wortschatz mit komplexeren Worten/Verben.
+    final capped = grade.clamp(1, 4).toInt();
+    final levels = <int, Map<String, Map<String, String>>>{
+      1: <String, Map<String, String>>{
+        'Farben': <String, String>{'red': 'rot', 'blue': 'blau', 'green': 'grün', 'yellow': 'gelb'},
+        'Tiere': <String, String>{'dog': 'Hund', 'cat': 'Katze', 'bird': 'Vogel', 'fish': 'Fisch'},
+        'Begruessung': <String, String>{'hello': 'hallo', 'goodbye': 'auf Wiedersehen', 'please': 'bitte', 'thanks': 'danke'},
+        'Familie': <String, String>{'mother': 'Mutter', 'father': 'Vater', 'sister': 'Schwester', 'brother': 'Bruder'},
+      },
+      2: <String, Map<String, String>>{
+        'Zahlen': <String, String>{'one': 'eins', 'two': 'zwei', 'three': 'drei', 'four': 'vier', 'five': 'fünf'},
+        'Körper': <String, String>{'hand': 'Hand', 'foot': 'Fuß', 'eye': 'Auge', 'ear': 'Ohr', 'nose': 'Nase'},
+        'Spielzeug': <String, String>{'ball': 'Ball', 'doll': 'Puppe', 'car': 'Auto', 'kite': 'Drachen'},
+        'Tiere': <String, String>{'horse': 'Pferd', 'cow': 'Kuh', 'pig': 'Schwein', 'sheep': 'Schaf', 'mouse': 'Maus'},
+      },
+      3: <String, Map<String, String>>{
+        'Schulsachen': <String, String>{'book': 'Buch', 'pen': 'Stift', 'bag': 'Tasche', 'ruler': 'Lineal', 'desk': 'Tisch'},
+        'Wetter': <String, String>{'sun': 'Sonne', 'rain': 'Regen', 'snow': 'Schnee', 'wind': 'Wind', 'cloud': 'Wolke'},
+        'Essen': <String, String>{'apple': 'Apfel', 'bread': 'Brot', 'milk': 'Milch', 'water': 'Wasser', 'cheese': 'Käse'},
+        'Tageszeit': <String, String>{'morning': 'Morgen', 'evening': 'Abend', 'night': 'Nacht', 'today': 'heute'},
+      },
+      4: <String, Map<String, String>>{
+        'Verben': <String, String>{'run': 'laufen', 'jump': 'springen', 'eat': 'essen', 'drink': 'trinken', 'read': 'lesen', 'write': 'schreiben'},
+        'Wochentage': <String, String>{'Monday': 'Montag', 'Tuesday': 'Dienstag', 'Friday': 'Freitag', 'Saturday': 'Samstag', 'Sunday': 'Sonntag'},
+        'Hobbys': <String, String>{'football': 'Fußball', 'music': 'Musik', 'painting': 'Malen', 'dancing': 'Tanzen', 'reading': 'Lesen'},
+        'Länder': <String, String>{'Austria': 'Österreich', 'Germany': 'Deutschland', 'England': 'England', 'France': 'Frankreich'},
+      },
     };
-    final map = data[unit] ?? data['Farben']!;
-    final entry = map.entries.elementAt(_random.nextInt(map.length));
+    // Suche zuerst in der exakten Klassenstufe, sonst Fallback auf vorherige
+    // Stufen (alte Themen darf das Kind wiederholen).
+    Map<String, String>? map;
+    for (var g = capped; g >= 1 && map == null; g--) {
+      map = levels[g]?[unit];
+    }
+    // Wenn die Unit ueberhaupt nicht existiert (Legacy): nimm ein zufaelliges
+    // Thema aus der exakten Klassenstufe.
+    if (map == null) {
+      final levelMaps = levels[capped] ?? levels[1]!;
+      final keys = levelMaps.keys.toList(growable: false);
+      map = levelMaps[keys[_random.nextInt(keys.length)]];
+    }
+    final entry = map!.entries.elementAt(_random.nextInt(map.length));
     return _choiceTask('englisch', grade, 'Englisch', unit, 'Was bedeutet „${entry.key}“?', entry.value, 'Das englische Wort „${entry.key}“ bedeutet ${entry.value}.', customChoices: map.values.toList(growable: false));
   }
 
