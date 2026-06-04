@@ -21,6 +21,7 @@ import '../../app/app_theme.dart';
 import '../../core/error_breakdown_repository.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
+import '../../core/lumo_ai_proxy_client.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../learning/learning_dna_card.dart';
 import 'widgets/lumo_insight_heatmap.dart';
@@ -37,9 +38,19 @@ class LumoInsightDashboard extends StatefulWidget {
 class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   final _errorRepo = const ErrorBreakdownRepository();
   final _dnaEngine = const LearningDnaEngine();
+  final _aiProxy = const LumoAiProxyClient();
   LearningDna? _dna;
   bool _loading = true;
   bool _showFullDna = false;
+
+  // 2026-06-04: KI-Wochenanalyse direkt im Insight-Dashboard.
+  // Bisher war diese Funktion nur in parent_report_card.dart versteckt.
+  // Jetzt prominenter Button, gleiches Backend (LumoAiProxyClient mit
+  // parentAdvisor-Kontext), aber sichtbar wo Eltern ohnehin schon
+  // schauen.
+  String? _aiInsight;
+  String? _aiError;
+  bool _aiLoading = false;
 
   @override
   void initState() {
@@ -112,6 +123,9 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                     _errorTop3(),
                     const SizedBox(height: 16),
                   ],
+                  // 2026-06-04 KI-Wochenanalyse: ChatGPT-Berater fuer Eltern.
+                  _aiAnalysisSection(),
+                  const SizedBox(height: 16),
                   _toggleFullDna(),
                   if (_showFullDna) ...[
                     const SizedBox(height: 12),
@@ -406,6 +420,148 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                     ),
                   ),
                 ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  /// 2026-06-04 KI-Wochenanalyse: schickt strukturierte Eltern-Daten an den
+  /// LumoAiProxyClient (parentAdvisor-Kontext) und zeigt 3-5 Saetze
+  /// paedagogische Einschaetzung zurueck. Daten-sparsam: kein Background-
+  /// Call, Eltern muessen aktiv tippen.
+  Future<void> _requestAiAnalysis() async {
+    if (_aiLoading) return;
+    setState(() {
+      _aiLoading = true;
+      _aiError = null;
+    });
+    final state = widget.appState.state;
+    final strengths = _dna!.strengths.take(3).map((e) => '${e.subject}/${e.skillLabel}').join(', ');
+    final weaknesses = _dna!.weaknesses.take(3).map((e) => '${e.subject}/${e.skillLabel}').join(', ');
+    final errors = _dna!.errorBreakdown.entries
+        .take(3)
+        .map((e) => '${e.key}(${e.value}x)')
+        .join(', ');
+    final payload = StringBuffer()
+      ..writeln('Wochenanalyse fuer ${state.childName.isEmpty ? "das Kind" : state.childName} (Klasse ${state.grade}) bitte:')
+      ..writeln('Staerken: ${strengths.isEmpty ? "noch wenig Daten" : strengths}')
+      ..writeln('Foerderbedarf: ${weaknesses.isEmpty ? "noch wenig Daten" : weaknesses}')
+      ..writeln('Haeufigste Fehlertypen: ${errors.isEmpty ? "keine" : errors}')
+      ..writeln('Gib mir 3-5 Saetze als Elternteil: Was lief diese Woche gut, '
+          'woran sollten wir zuhause arbeiten, ein konkreter Foerder-Tipp fuer '
+          'die kommende Woche. Keine Floskeln, praktisch.');
+    try {
+      final response = await _aiProxy.ask(
+        settings: state.settings,
+        state: state,
+        message: payload.toString(),
+        context: LumoAiContext.parentAdvisor,
+      );
+      if (!mounted) return;
+      setState(() {
+        _aiLoading = false;
+        if (response.source.startsWith('local_') || response.blocked) {
+          _aiError = response.reply;
+          _aiInsight = null;
+        } else {
+          _aiInsight = response.reply;
+        }
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _aiLoading = false;
+        _aiError = 'KI-Berater gerade nicht erreichbar. Spaeter erneut.';
+      });
+    }
+  }
+
+  Widget _aiAnalysisSection() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFF5F3FF), Color(0xFFEDE9FE)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(color: const Color(0xFFC4B5FD), width: 1.4),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Text('🤖', style: TextStyle(fontSize: 22)),
+              const SizedBox(width: 8),
+              const Expanded(
+                child: Text(
+                  'Lumo-KI Wochenanalyse',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF5B21B6),
+                  ),
+                ),
+              ),
+              if (_aiLoading)
+                const SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(strokeWidth: 2.4, color: Color(0xFF7C3AED)),
+                )
+              else
+                FilledButton.icon(
+                  onPressed: _requestAiAnalysis,
+                  icon: const Icon(Icons.auto_awesome_rounded, size: 16),
+                  label: Text(
+                    _aiInsight == null && _aiError == null ? 'KI fragen' : 'Erneut',
+                    style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w800, fontSize: 12),
+                  ),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFF7C3AED),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          if (_aiInsight != null)
+            Text(
+              _aiInsight!,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF1F2937),
+                height: 1.45,
+              ),
+            )
+          else if (_aiError != null)
+            Text(
+              _aiError!,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF991B1B),
+              ),
+            )
+          else
+            const Text(
+              'Drueck auf "KI fragen" - Lumo gibt euch eine kurze Foerder-Einschaetzung mit konkretem Wochen-Tipp.',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF6B21A8),
+                height: 1.4,
               ),
             ),
         ],
