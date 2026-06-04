@@ -164,6 +164,21 @@ class _ParentReportCardState extends State<ParentReportCard> {
               _SubjectReportMini(block: report.german, color: LumoColors.german),
             ]),
             const SizedBox(height: 14),
+            // 2026-06-03: Master-Toggle Lumo KI aktivieren/deaktivieren.
+            // Bisher konnten Eltern nur den Modus waehlen, mussten
+            // aiProxyEnabled aber nirgends explizit aktivieren - die KI
+            // blieb deshalb komplett stumm und der Bottom-Nav 'Lumo KI'
+            // hatte nur das lokale Brain. Jetzt 1-Tap Aktivierung.
+            _LumoKiMasterToggle(
+              enabled: settings.aiProxyEnabled,
+              onToggle: (v) async {
+                final next = settings.copyWith(aiProxyEnabled: v);
+                widget.appState.updateSettings(next);
+                await SettingsRepository.save(next);
+                if (mounted) setState(() {});
+              },
+            ),
+            const SizedBox(height: 12),
             LumoAiPolicySelector(
               currentMode: settings.lumoAiLearningMode,
               onModeChanged: _saveAiMode,
@@ -391,6 +406,93 @@ class _LumoInsightCta extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+// 2026-06-03: Master-Toggle Lumo KI aktivieren. Ohne diesen Schalter
+// blieb die OpenAI-Anbindung default aus (aiProxyEnabled=false) und der
+// neue Bottom-Nav-Eintrag 'Lumo KI' hatte nur lokales Fallback.
+class _LumoKiMasterToggle extends StatelessWidget {
+  const _LumoKiMasterToggle({required this.enabled, required this.onToggle});
+
+  final bool enabled;
+  final ValueChanged<bool> onToggle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 14, 14, 14),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: enabled
+              ? const [Color(0xFFFFB96B), Color(0xFFFF7A2F)]
+              : const [Color(0xFFE5E7EB), Color(0xFFD1D5DB)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        boxShadow: enabled
+            ? [
+                BoxShadow(
+                  color: LumoColors.orange.withOpacity(0.36),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
+                  spreadRadius: -3,
+                )
+              ]
+            : null,
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 52,
+            height: 52,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.22),
+              borderRadius: BorderRadius.circular(LumoRadius.md),
+            ),
+            alignment: Alignment.center,
+            child: const Text('🤖', style: TextStyle(fontSize: 30)),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  enabled ? 'Lumo KI ist AN' : 'Lumo KI aktivieren',
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  enabled
+                      ? 'Lumo antwortet mit ChatGPT - sicher, kindgerecht.'
+                      : 'Schalte die KI an damit Lumo wirklich antworten kann.',
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    height: 1.3,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Switch(
+            value: enabled,
+            onChanged: onToggle,
+            activeColor: Colors.white,
+            activeTrackColor: Colors.white.withOpacity(0.4),
+          ),
+        ],
       ),
     );
   }
