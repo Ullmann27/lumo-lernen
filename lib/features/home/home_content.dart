@@ -6,6 +6,7 @@ import '../../widgets/fox/lumo_tutorial_companion.dart';
 import '../games/games_content.dart';
 import '../../core/lumo_mission_engine.dart';
 import '../live/lumo_live_pro_screen.dart';
+import '../rewards/achievements_wall_screen.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
@@ -317,6 +318,24 @@ class _HomeContentState extends State<HomeContent> {
               MaterialPageRoute(
                 builder: (_) =>
                     LumoAkademieScreen(appState: widget.appState),
+              ),
+            ),
+          ),
+          // Lumo Achievements - 14 Badges in 3 Tiers (Bronze/Silver/Gold).
+          // High-End-Feature: persistente Sammlung, Live-Unlock-Toast,
+          // Progress-Ringe pro Badge (Heinz 2026-06-04: 'high end Ideen einbauen').
+          LumoSubjectTile(
+            title: 'Achievements',
+            subtitle: 'Sammle Badges, schalte Belohnungen frei',
+            iconEmoji: '🏆',
+            illustrationEmoji: '🥇',
+            accent: const Color(0xFFFFD166),
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => AchievementsWallScreen(appState: widget.appState),
               ),
             ),
           ),
