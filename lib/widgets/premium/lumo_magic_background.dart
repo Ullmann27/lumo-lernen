@@ -166,9 +166,12 @@ class _MagicPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Wolken zuerst (hinten)
+    // 2026-06-03 Modernisierung (Heinz: 'sehe keine Veraenderungen'):
+    // Wolken-Opacity 0.35 -> 0.60 + leichter Pink-Tint damit sie gegen
+    // den neuen Sunset-Verlauf sichtbar sind statt verschwimmen.
     final cloudPaint = Paint()
-      ..color = Colors.white.withOpacity(0.35 * intensity)
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 20);
+      ..color = const Color(0xFFFFF0F5).withOpacity(0.60 * intensity)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 22);
     for (final c in clouds) {
       final driftX = math.sin(progress * 2 * math.pi + c.x * 10) * c.drift;
       final cx = (c.x + driftX) * size.width;
@@ -181,15 +184,27 @@ class _MagicPainter extends CustomPainter {
     }
 
     // Sterne (vorne, twinkling)
+    // 2026-06-03 Modernisierung: Sterne deutlich aufgedreht.
+    //   Farbe: gold (0xFFFCD34D) -> weiss + warm-gelber Halo damit sie
+    //   gegen den neuen Magenta-Lila-Verlauf knackig hervorstechen.
+    //   Opacity 0.3-0.8 -> 0.7-1.0.
+    //   Groesse 0.8x-1.2x -> 1.4x-2.4x.
+    //   Plus: weicher Halo-Pass davor fuer Glow-Effekt.
     for (final s in stars) {
       final twinkle =
           (math.sin(progress * 2 * math.pi * s.speed + s.phase) + 1) / 2;
-      final opacity = (0.3 + twinkle * 0.5) * intensity;
-      final size_ = s.size * (0.8 + twinkle * 0.4);
-      final paint = Paint()
-        ..color = LumoTokens.colors.gold.withOpacity(opacity);
+      final opacity = (0.7 + twinkle * 0.3).clamp(0.0, 1.0) * intensity;
+      final size_ = s.size * (1.4 + twinkle * 1.0);
       final cx = s.x * size.width;
       final cy = s.y * size.height;
+      // Halo-Pass (weicher gelber Glow drumherum)
+      final haloPaint = Paint()
+        ..color = const Color(0xFFFCD34D).withOpacity(opacity * 0.55)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
+      canvas.drawCircle(Offset(cx, cy), size_ * 1.6, haloPaint);
+      // Stern selbst in Weiss fuer maximalen Kontrast
+      final paint = Paint()
+        ..color = Colors.white.withOpacity(opacity);
       _drawStar(canvas, Offset(cx, cy), size_, paint);
     }
   }

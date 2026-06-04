@@ -44,8 +44,8 @@ class LumoQuestHubScreen extends StatelessWidget {
       ),
       extendBodyBehindAppBar: true,
       body: LumoMagicBackground(
-        intensity: 0.7,
-        starCount: 18,
+        intensity: 1.1,
+        starCount: 26,
         child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
         children: [

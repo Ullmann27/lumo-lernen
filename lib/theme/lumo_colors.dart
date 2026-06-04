@@ -91,8 +91,20 @@ class LumoColors {
       );
 
   LinearGradient get bgMagic => const LinearGradient(
-        colors: [Color(0xFFFFF7ED), Color(0xFFFFE4D2), Color(0xFFFDD9C0)],
+        // Modernisierung 2026-06-03 (Heinz: 'ich sehe keine Veraenderungen').
+        // Vorher fast unsichtbarer Pastell-Verlauf (#FFF7ED -> #FDD9C0) sah
+        // identisch zum vorherigen weissen Hintergrund aus. Jetzt: kraeftiger
+        // Sunset-Verlauf von Pfirsich ueber Sonnenuntergangs-Orange zu
+        // Magenta-Pink-Lila. Sofort als 'modernes Magic-Theme' erkennbar,
+        // bleibt aber kindgerecht (warm, nicht dunkel).
+        colors: [
+          Color(0xFFFFE4C4), // weicher Pfirsich oben links
+          Color(0xFFFFB07A), // Sonnenuntergang
+          Color(0xFFFF6B9D), // Magenta-Pink
+          Color(0xFFC084FC), // helles Lila unten rechts
+        ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
+        stops: <double>[0.0, 0.35, 0.70, 1.0],
       );
 }

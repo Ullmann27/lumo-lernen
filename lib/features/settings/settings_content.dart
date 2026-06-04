@@ -327,8 +327,8 @@ class _SettingsContentState extends State<SettingsContent> {
     // Modernisierung 2026-06-03: Settings auf LumoMagicBackground wie Home.
     // Niedrige Intensitaet damit der Settings-Fokus erhalten bleibt.
     return LumoMagicBackground(
-      intensity: 0.5,
-      starCount: 14,
+      intensity: 0.85,
+      starCount: 18,
       child: SingleChildScrollView(
       padding: const EdgeInsets.all(26),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
