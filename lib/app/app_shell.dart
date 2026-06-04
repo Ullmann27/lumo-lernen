@@ -24,6 +24,7 @@ import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
 import '../core/lumo_ai_proxy_client.dart';
+import '../core/lumo_companion_agent.dart';
 import '../core/lumo_voice.dart';
 import '../core/settings_repository.dart';
 import '../core/user_profile.dart';
@@ -66,10 +67,17 @@ class _AppShellState extends State<AppShell>
     WidgetsBinding.instance.addObserver(this);
     final profile = widget.profile;
     if (profile != null) {
+      // 2026-06-04: LumoCompanionAgent angeschlossen. Vorher war die Greeting
+      // statisch ('Hallo X! Womit wollen wir heute lernen?'). Jetzt nutzt
+      // Lumo seine event-basierte Persoenlichkeits-Engine (12+ Reaktionen
+      // wie 'mission_start', 'success_streak', 'wrong_3'). Greeting kommt
+      // aus reactToEvent('app_opened') + Personalisierung mit Kindernamen.
+      const agent = LumoCompanionAgent();
+      final greeting = 'Hallo ${profile.name}!\n${agent.reactToEvent('app_opened')}';
       _appState.update(_appState.state.copyWith(
         childName: profile.name,
         grade: profile.grade,
-        lumoMessage: 'Hallo ${profile.name}!\nWomit wollen wir\nheute lernen?',
+        lumoMessage: greeting,
       ));
     }
     // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
