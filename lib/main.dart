@@ -212,12 +212,62 @@ class _LumoAppState extends State<LumoApp> {
       // Fehler (kaputtes JSON, fehlende Datei) faellt der Wrapper
       // intern auf eine stille Box zurueck - der Lade-Screen friert
       // niemals ein.
-      home = const Scaffold(
-        backgroundColor: Color(0xFFFFF6EE),
-        body: Center(
-          child: LumoLottie(
-            asset: LumoAssetPaths.lottieLoading,
-            size: 120,
+      // 2026-06-04 Premium-Splash (Heinz: 'high end Ideen einbauen').
+      // Statt nur Lottie-Spinner: Sunset-Gradient + Lumo-Lottie + Brand-
+      // Text. Voll zentrierter Premium-Look beim App-Start.
+      home = Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFFFFE4C4),
+                Color(0xFFFFB07A),
+                Color(0xFFFF6B9D),
+                Color(0xFFC084FC),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: <double>[0.0, 0.35, 0.70, 1.0],
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                LumoLottie(
+                  asset: LumoAssetPaths.lottieLoading,
+                  size: 150,
+                ),
+                SizedBox(height: 18),
+                Text(
+                  'Lumo Lernen',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 28,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                    letterSpacing: 0.8,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black26,
+                        blurRadius: 12,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 6),
+                Text(
+                  'lädt eure Welt...',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );

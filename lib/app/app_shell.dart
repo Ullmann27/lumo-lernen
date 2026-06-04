@@ -23,6 +23,8 @@ import '../features/shared/widgets/lumo_premium_effects.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../widgets/parental_gate.dart';
+import '../core/achievements/achievement_tracker.dart';
+import '../core/achievements/lumo_achievement.dart';
 import '../core/lumo_ai_proxy_client.dart';
 import '../core/lumo_companion_agent.dart';
 import '../core/lumo_voice.dart';
@@ -86,6 +88,101 @@ class _AppShellState extends State<AppShell>
       _appState.update(_appState.state.copyWith(section: deepSection));
     }
     _loadSettings();
+    // 2026-06-04: Achievement-Tracker hydrieren + Unlock-Toast-Listener.
+    _hydrateAchievements();
+    _appState.addListener(_syncAchievementMetrics);
+  }
+
+  /// 2026-06-04: Lumo Achievements Live-System. Tracker laed Persistence
+  /// und bindet einen Unlock-Stream-Listener, der bei jedem freigeschalteten
+  /// Achievement einen prominenten Toast/Burst zeigt.
+  Future<void> _hydrateAchievements() async {
+    await AchievementTracker.instance.hydrate();
+    AchievementTracker.instance.unlockStream.listen(_onAchievementUnlock);
+    // Initialen Sterne-Counter syncen (sofort beim Start damit Stars-Achievements
+    // greifen wenn das Kind ohne Aktion schon X Sterne im Wallet hat).
+    _syncAchievementMetrics();
+  }
+
+  void _syncAchievementMetrics() {
+    final stars = _appState.state.stars;
+    AchievementTracker.instance.setMetric(AchievementMetric.starsTotal, stars);
+  }
+
+  void _onAchievementUnlock(LumoAchievement a) {
+    if (!mounted) return;
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    if (messenger == null) return;
+    messenger.showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 4),
+        backgroundColor: const Color(0xFF7C2D12),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 90),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(LumoRadius.lg),
+        ),
+        content: Row(
+          children: [
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.22),
+                shape: BoxShape.circle,
+              ),
+              alignment: Alignment.center,
+              child: Text(a.emoji, style: const TextStyle(fontSize: 26)),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '🏆 Achievement!',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xFFFCD34D),
+                      letterSpacing: 0.6,
+                    ),
+                  ),
+                  Text(
+                    a.title,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.amber.withOpacity(0.30),
+                borderRadius: BorderRadius.circular(99),
+              ),
+              child: Text(
+                '+${a.rewardStars} ★',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> _loadSettings() async {
@@ -145,6 +242,7 @@ class _AppShellState extends State<AppShell>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _keepAliveTimer?.cancel();
+    _appState.removeListener(_syncAchievementMetrics);
     _appState.dispose();
     _fadeCtrl.dispose();
     super.dispose();
