@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_tutorial_companion.dart';
 import '../games/games_content.dart';
+import '../../core/lumo_mission_engine.dart';
 import '../live/lumo_live_pro_screen.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import '../story/lumo_quest_hub_screen.dart';
@@ -165,6 +166,29 @@ class _HomeContentState extends State<HomeContent> {
     ];
   }
 
+  /// 2026-06-04: Liefert die erste Mission aus LumoMissionEngine fuer die
+  /// aktuelle Klasse + die Schwaechen des Kindes. Bisher war diese Engine
+  /// (LumoMission, LumoMissionEngine) nur self-referentiell - jetzt
+  /// aktiv ans Home angeschlossen.
+  static const LumoMissionEngine _missionEngine = LumoMissionEngine();
+  LumoMission? _todayMission() {
+    final st = widget.appState.state;
+    final missions = _missionEngine.dailyMissions(
+      grade: st.grade,
+      weakSkills: st.weakSkills,
+    );
+    return missions.isEmpty ? null : missions.first;
+  }
+
+  /// Geschaetzter Mission-Fortschritt: wie viele Aufgaben heute schon
+  /// geloest. Solid-Approximation aus solved-Map (gesamt-Tag), gecapped
+  /// auf targetTasks der aktuellen Mission.
+  int _todayMissionDone() {
+    final solved = widget.appState.state.solved.values.fold<int>(0, (a, b) => a + b);
+    final target = _todayMission()?.targetTasks ?? 3;
+    return solved.clamp(0, target);
+  }
+
   @override
   Widget build(BuildContext context) {
     final childName = widget.appState.state.childName.trim().isEmpty
@@ -186,12 +210,17 @@ class _HomeContentState extends State<HomeContent> {
           ),
         ),
         headerAccent: LumoColors.orange,
-        dailyMissionTitle: 'Tägliche Mission',
-        dailyMissionSubtitle: 'Starte heute eine Lernrunde',
-        dailyMissionDone: 1,
-        dailyMissionTotal: 3,
-        dailyMissionRewardStars: 10,
-        dailyMissionRewardXp: 50,
+        // 2026-06-04: Daily-Mission an LumoMissionEngine angeschlossen.
+        // Vorher: statischer Text ('Tägliche Mission' / 'Starte heute...').
+        // Jetzt: echte Mission aus Engine, abgeleitet aus Schwaechen-Profil
+        // des Kindes (weakSkills aus AppState). Fallback bleibt statisch wenn
+        // die Engine keine Mission liefert.
+        dailyMissionTitle: _todayMission()?.title ?? 'Tägliche Mission',
+        dailyMissionSubtitle: _todayMission()?.subtitle ?? 'Starte heute eine Lernrunde',
+        dailyMissionDone: _todayMissionDone(),
+        dailyMissionTotal: _todayMission()?.targetTasks ?? 3,
+        dailyMissionRewardStars: _todayMission()?.rewardStars ?? 10,
+        dailyMissionRewardXp: _todayMission()?.rewardXp ?? 50,
         encourageMessage:
             'Du machst großartige Fortschritte! Heute wartet eine neue Lernmission auf dich.',
         topicTiles: [
