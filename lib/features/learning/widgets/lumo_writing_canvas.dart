@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
@@ -253,7 +254,23 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
             // Scroll-Vorfahren. Loesung: Listener (Raw-Pointer-Events)
             // statt GestureDetector. Listener feuert sofort auf jeden
             // Touch, keine Arena-Konkurrenz.
-            child: Listener(
+            //
+            // 2026-06-04 Heinz: 'Bildschirm geht beim Schreiben mit'.
+            // Listener allein reichte NICHT - das Scrollable im Eltern-
+            // Widget bekam die Pan-Events trotzdem und scrollte. Fix:
+            // zusaetzlich RawGestureDetector mit EagerGestureRecognizer
+            // drumherum - der gewinnt die Gesture-Arena sofort und
+            // blockt damit den Scrollable-Parent.
+            child: RawGestureDetector(
+              behavior: HitTestBehavior.opaque,
+              gestures: <Type, GestureRecognizerFactory>{
+                EagerGestureRecognizer:
+                    GestureRecognizerFactoryWithHandlers<EagerGestureRecognizer>(
+                  () => EagerGestureRecognizer(),
+                  (EagerGestureRecognizer instance) {},
+                ),
+              },
+              child: Listener(
               behavior: HitTestBehavior.opaque,
               onPointerDown: (event) {
                 _startStroke(event.localPosition, size);
@@ -273,7 +290,8 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
                 ),
                 child: const SizedBox.expand(),
               ),
-            ),
+              ), // close inner Listener
+            ), // close RawGestureDetector
           ),
         );
       }),
