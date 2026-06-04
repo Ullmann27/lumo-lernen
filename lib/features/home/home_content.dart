@@ -332,8 +332,8 @@ class _HomeContentState extends State<HomeContent> {
     return Stack(
       children: [
         LumoMagicBackground(
-          intensity: 0.7,
-          starCount: 22,
+          intensity: 1.1,
+          starCount: 32,
           child: dashboard,
         ),
 

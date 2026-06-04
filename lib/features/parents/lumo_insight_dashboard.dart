@@ -87,8 +87,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       ),
       extendBodyBehindAppBar: true,
       body: LumoMagicBackground(
-        intensity: 0.6,
-        starCount: 16,
+        intensity: 1.0,
+        starCount: 22,
         child: _loading
           ? const Center(child: CircularProgressIndicator(color: LumoColors.orange))
           : SingleChildScrollView(
