@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_tutorial_companion.dart';
 import '../games/games_content.dart';
+import '../live/lumo_live_pro_screen.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
@@ -287,6 +288,24 @@ class _HomeContentState extends State<HomeContent> {
               MaterialPageRoute(
                 builder: (_) =>
                     LumoAkademieScreen(appState: widget.appState),
+              ),
+            ),
+          ),
+          // Lumo LIVE - Voice + Foto + Tier-Safari. Existierte als 612-Zeilen-
+          // Vollfeature aber war NUR im versteckten Magic-Hub-FAB erreichbar
+          // (Heinz 2026-06-03: 'such nach nicht-angeschlossenen Verbindungen').
+          LumoSubjectTile(
+            title: 'Lumo LIVE',
+            subtitle: 'Sprich oder fotografiere - Lumo erkennt!',
+            iconEmoji: '🎤',
+            illustrationEmoji: '📸',
+            accent: LumoColors.blue,
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => LumoLiveProScreen(appState: widget.appState),
               ),
             ),
           ),
