@@ -56,6 +56,13 @@ enum VisualType {
   rectangleMeasure,
   rulerCompare,
   scaleMeasure,
+  // 2026-06-05 Iter 18/B1: Visual-Mapping-Luecken fuer Klasse 3/4 Math.
+  // Vorher fielen written_add/sub/mul, division, compare, chart auf
+  // VisualType.none = nur Text+4-Buttons. Jetzt eigene CustomPainter.
+  writtenArithmetic,
+  divisionGroups,
+  numberCompare,
+  simpleBarChart,
 }
 
 enum ErrorType {

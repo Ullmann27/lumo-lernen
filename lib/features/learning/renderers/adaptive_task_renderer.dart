@@ -362,6 +362,11 @@ class _AdaptiveVisual extends StatelessWidget {
       VisualType.rectangleMeasure => RectangleMeasureVisual(task: task),
       VisualType.rulerCompare => RulerCompareVisual(task: task),
       VisualType.scaleMeasure => ScaleMeasureVisual(task: task),
+      // 2026-06-05 Iter 18/B1:
+      VisualType.writtenArithmetic => WrittenArithmeticVisual(task: task),
+      VisualType.divisionGroups => DivisionGroupsVisual(task: task),
+      VisualType.numberCompare => NumberCompareVisual(task: task),
+      VisualType.simpleBarChart => SimpleBarChartVisual(task: task),
       _ => _SchoolbookFallbackVisual(task: task),
     };
   }

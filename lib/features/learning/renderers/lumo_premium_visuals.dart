@@ -1121,3 +1121,311 @@ class _ScaleChip extends StatelessWidget {
     );
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────
+//  ITER 18/B1 (2026-06-05) - 4 neue Visuals fuer K3/K4-Aufgaben
+//  Schliesst die groessten Visual-Mapping-Luecken (Audit zeigte: 56%
+//  aller Aufgaben fielen auf VisualType.none = nur Text+4-Buttons).
+// ─────────────────────────────────────────────────────────────────────
+
+/// Schriftliches Rechnen: Stellenwert-Tabelle (H Z E) mit zwei Zahlen
+/// uebereinander + Operator-Symbol links. Reines visuelles Layout-Beispiel
+/// damit das Kind sieht: 'aha, schriftlich heisst Stellen untereinander'.
+class WrittenArithmeticVisual extends StatelessWidget {
+  const WrittenArithmeticVisual({super.key, required this.task});
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final nums = _digitsFromPrompt(task.prompt);
+    final a = nums.isNotEmpty ? nums[0] : 234;
+    final b = nums.length > 1 ? nums[1] : 156;
+    final op = _detectOp(task.prompt);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+      decoration: _stageDecoration(const Color(0xFF60A5FA)),
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(LumoRadius.md),
+            border: Border.all(color: const Color(0xFF60A5FA), width: 1.4),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _digitRow(a, op: null),
+              _digitRow(b, op: op),
+              Container(
+                width: _digitRowWidth(a, b) + 18,
+                height: 2,
+                color: const Color(0xFF1E3A8A),
+                margin: const EdgeInsets.symmetric(vertical: 4),
+              ),
+              const Text(
+                '?',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFF1E3A8A),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  String _detectOp(String prompt) {
+    if (prompt.contains('×') || prompt.toLowerCase().contains('mal')) return '×';
+    if (prompt.contains('-')) return '−';
+    return '+';
+  }
+
+  Widget _digitRow(int value, {String? op}) {
+    final digits = value.toString().split('');
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 22,
+          child: Text(
+            op ?? '',
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 28,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF1E3A8A),
+            ),
+          ),
+        ),
+        for (final d in digits)
+          Container(
+            width: 36,
+            height: 44,
+            margin: const EdgeInsets.symmetric(horizontal: 2),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFEF9C3),
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(color: const Color(0xFFFCD34D)),
+            ),
+            child: Text(
+              d,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 28,
+                fontWeight: FontWeight.w900,
+                color: Color(0xFF7C2D12),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  double _digitRowWidth(int a, int b) {
+    final maxDigits = a.toString().length > b.toString().length
+        ? a.toString().length
+        : b.toString().length;
+    return 22.0 + maxDigits * 40.0;
+  }
+}
+
+
+/// Division als Gruppen: X Objekte (Emoji) in N Schalen aufgeteilt.
+/// Beispiel: '24 : 4 = ?' zeigt 4 Schalen mit je 6 Emoji-Items.
+class DivisionGroupsVisual extends StatelessWidget {
+  const DivisionGroupsVisual({super.key, required this.task});
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final nums = _digitsFromPrompt(task.prompt);
+    final dividend = nums.isNotEmpty ? nums[0] : 24;
+    final divisor = nums.length > 1 ? nums[1] : 4;
+    final perGroup = divisor > 0 ? (dividend ~/ divisor) : 0;
+    final showGroups = divisor.clamp(2, 6);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+      decoration: _stageDecoration(const Color(0xFFA855F7)),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '$dividend Aepfel in $divisor gleiche Schalen',
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 13,
+              fontWeight: FontWeight.w800,
+              color: Color(0xFF6B21A8),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 10,
+            runSpacing: 8,
+            alignment: WrapAlignment.center,
+            children: [
+              for (var i = 0; i < showGroups; i++)
+                Container(
+                  padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        color: const Color(0xFFA855F7).withOpacity(0.45),
+                        width: 1.2),
+                  ),
+                  child: Wrap(
+                    spacing: 1,
+                    children: [
+                      for (var k = 0; k < perGroup.clamp(0, 9); k++)
+                        const Text('🍎', style: TextStyle(fontSize: 16)),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+/// Zahlenvergleich: zwei grosse Zahlen mit dem richtigen Vergleichssymbol
+/// (>, <, =) zwischen ihnen als Hilfe-Visualisierung.
+class NumberCompareVisual extends StatelessWidget {
+  const NumberCompareVisual({super.key, required this.task});
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final nums = _digitsFromPrompt(task.prompt);
+    final a = nums.isNotEmpty ? nums[0] : 42;
+    final b = nums.length > 1 ? nums[1] : 24;
+    final symbol = a > b ? '>' : (a < b ? '<' : '=');
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
+      decoration: _stageDecoration(const Color(0xFFEC4899)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _numberChip(a, color: const Color(0xFF9D174D)),
+          Text(
+            symbol,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 56,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF7C2D12),
+            ),
+          ),
+          _numberChip(b, color: const Color(0xFFA855F7)),
+        ],
+      ),
+    );
+  }
+
+  Widget _numberChip(int n, {required Color color}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(color: color, width: 1.6),
+        boxShadow: [
+          BoxShadow(color: color.withOpacity(0.20), blurRadius: 10, offset: const Offset(0, 4)),
+        ],
+      ),
+      child: Text(
+        '$n',
+        style: TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: 36,
+          fontWeight: FontWeight.w900,
+          color: color,
+        ),
+      ),
+    );
+  }
+}
+
+
+/// Einfaches Saeulen-Bar-Chart - 2 Balken nebeneinander mit Werten.
+class SimpleBarChartVisual extends StatelessWidget {
+  const SimpleBarChartVisual({super.key, required this.task});
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final nums = _digitsFromPrompt(task.prompt);
+    final a = nums.isNotEmpty ? nums[0] : 8;
+    final b = nums.length > 1 ? nums[1] : 5;
+    final maxVal = a > b ? a : b;
+    final heightA = (a / maxVal * 100).clamp(20.0, 100.0);
+    final heightB = (b / maxVal * 100).clamp(20.0, 100.0);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+      decoration: _stageDecoration(const Color(0xFF22C55E)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          _bar(a, heightA, const Color(0xFF60A5FA), 'Mo'),
+          _bar(b, heightB, const Color(0xFFEC4899), 'Di'),
+        ],
+      ),
+    );
+  }
+
+  Widget _bar(int value, double h, Color c, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          '$value',
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 18,
+            fontWeight: FontWeight.w900,
+            color: c,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Container(
+          width: 56,
+          height: h,
+          decoration: BoxDecoration(
+            color: c,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+            boxShadow: [
+              BoxShadow(color: c.withOpacity(0.35), blurRadius: 10, offset: const Offset(0, 4)),
+            ],
+          ),
+        ),
+        Container(
+          width: 56,
+          height: 3,
+          color: const Color(0xFF065F46),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          label,
+          style: const TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 12,
+            fontWeight: FontWeight.w800,
+            color: Color(0xFF065F46),
+          ),
+        ),
+      ],
+    );
+  }
+}
