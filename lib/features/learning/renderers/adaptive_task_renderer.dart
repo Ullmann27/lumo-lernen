@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
@@ -240,7 +242,12 @@ class _OptionGrid extends StatelessWidget {
   }
 }
 
-class _AnswerButton extends StatelessWidget {
+/// 2026-06-05 Iter 19/B5: Stateful Antwort-Button mit Feedback-Animation.
+/// - Richtig (solved+isCorrect): kurz pulsen (Scale 1.0 -> 1.08 -> 1.0)
+/// - Falsch (isWrongPicked): 3x wackeln (links/rechts) wie Kopfschuetteln
+/// Animation startet einmalig wenn Status sich aendert; alte Tilt+Color
+/// bleiben unveraendert.
+class _AnswerButton extends StatefulWidget {
   const _AnswerButton({
     required this.label,
     required this.isPicked,
@@ -258,20 +265,55 @@ class _AnswerButton extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
+  State<_AnswerButton> createState() => _AnswerButtonState();
+}
+
+class _AnswerButtonState extends State<_AnswerButton>
+    with TickerProviderStateMixin {
+  late final AnimationController _pulse = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 360),
+  );
+  late final AnimationController _shake = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 420),
+  );
+
+  @override
+  void didUpdateWidget(covariant _AnswerButton old) {
+    super.didUpdateWidget(old);
+    final justSolved =
+        widget.solved && widget.isCorrect && !(old.solved && old.isCorrect);
+    final justWrong = widget.isWrongPicked && !old.isWrongPicked;
+    if (justSolved) {
+      _pulse.forward(from: 0);
+    } else if (justWrong) {
+      _shake.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _pulse.dispose();
+    _shake.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final Color bg;
     final Color border;
     final Color textColor;
 
-    if (solved && isCorrect) {
+    if (widget.solved && widget.isCorrect) {
       bg = const Color(0xFFDCFCE7);
       border = const Color(0xFF22C55E);
       textColor = const Color(0xFF14532D);
-    } else if (isWrongPicked) {
+    } else if (widget.isWrongPicked) {
       bg = const Color(0xFFFFE4E6);
       border = const Color(0xFFF43F5E);
       textColor = const Color(0xFF881337);
-    } else if (solved) {
+    } else if (widget.solved) {
       bg = Colors.white;
       border = LumoColors.ink100;
       textColor = LumoColors.ink300;
@@ -286,7 +328,7 @@ class _AnswerButton extends StatelessWidget {
     // auf Touch-only spring-back. Tap funktioniert weiterhin normal.
     // Disabled-State (solved/isWrongPicked) ohne Tilt damit nur aktive Cards
     // reagieren.
-    final tilted = !(solved || isWrongPicked);
+    final tilted = !(widget.solved || widget.isWrongPicked);
     final card = AnimatedContainer(
         duration: const Duration(milliseconds: 160),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
@@ -296,19 +338,19 @@ class _AnswerButton extends StatelessWidget {
           border: Border.all(color: border, width: 2),
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          if (solved && isCorrect)
+          if (widget.solved && widget.isCorrect)
             const Padding(
               padding: EdgeInsets.only(right: 7),
               child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 20),
             ),
-          if (isWrongPicked)
+          if (widget.isWrongPicked)
             const Padding(
               padding: EdgeInsets.only(right: 7),
               child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 20),
             ),
           Flexible(
             child: Text(
-              label,
+              widget.label,
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -322,13 +364,35 @@ class _AnswerButton extends StatelessWidget {
           ),
         ]),
       );
+    // 2026-06-05 Iter 19/B5: Feedback-Animation um die Card legen.
+    // Pulse fuer Richtig, Shake fuer Falsch. AnimatedBuilder nur wenn aktiv.
+    Widget animated = card;
+    animated = AnimatedBuilder(
+      animation: Listenable.merge(<Listenable>[_pulse, _shake]),
+      child: card,
+      builder: (context, child) {
+        // Pulse: 1.0 -> 1.08 -> 1.0 (sin-Kurve)
+        final p = _pulse.value;
+        final scale = p == 0 ? 1.0 : 1.0 + 0.08 * (1 - (2 * p - 1) * (2 * p - 1));
+        // Shake: 3x links/rechts +/- 8px ueber 420ms
+        final s = _shake.value;
+        final dx = s == 0 ? 0.0 : 8.0 * (1 - s) * _shakeWave(s);
+        return Transform.translate(
+          offset: Offset(dx, 0),
+          child: Transform.scale(scale: scale, child: child),
+        );
+      },
+    );
     // Wenn aktive Card: in LumoTiltCard fuer 3D-Effekt + Tap-Forward.
     // Sonst nur GestureDetector (kein Tilt fuer disabled Cards).
     if (tilted) {
-      return LumoTiltCard(onTap: onTap, child: card);
+      return LumoTiltCard(onTap: widget.onTap, child: animated);
     }
-    return GestureDetector(onTap: null, child: card);
+    return GestureDetector(onTap: null, child: animated);
   }
+
+  /// Sinus-Shake-Welle: drei volle Schwingungen ueber 0..1.
+  double _shakeWave(double t) => math.sin(t * 3 * 2 * math.pi);
 }
 
 class _AdaptiveVisual extends StatelessWidget {
@@ -367,6 +431,8 @@ class _AdaptiveVisual extends StatelessWidget {
       VisualType.divisionGroups => DivisionGroupsVisual(task: task),
       VisualType.numberCompare => NumberCompareVisual(task: task),
       VisualType.simpleBarChart => SimpleBarChartVisual(task: task),
+      // 2026-06-05 Iter 19/B3:
+      VisualType.storyStage => StoryStageVisual(task: task),
       _ => _SchoolbookFallbackVisual(task: task),
     };
   }

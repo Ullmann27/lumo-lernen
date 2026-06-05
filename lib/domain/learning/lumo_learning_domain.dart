@@ -63,6 +63,9 @@ enum VisualType {
   divisionGroups,
   numberCompare,
   simpleBarChart,
+  // 2026-06-05 Iter 19/B3: Sachaufgaben/Story-Texts bekommen eine Buehne
+  // mit Themen-Emoji oben. Renderer in lumo_premium_visuals.dart.
+  storyStage,
 }
 
 enum ErrorType {

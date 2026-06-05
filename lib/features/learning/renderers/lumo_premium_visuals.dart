@@ -1429,3 +1429,111 @@ class SimpleBarChartVisual extends StatelessWidget {
     );
   }
 }
+
+
+// ─────────────────────────────────────────────────────────────────────
+//  ITER 19/B3 (2026-06-05) - Story-Stage fuer Sachaufgaben
+//  Vorher: 21 Story-Szenarien (Apfelgarten, Baeckerei, Schwimmbad, ...)
+//  fielen auf VisualType.none = nur Text. Jetzt: grosses Themen-Emoji
+//  oben, Story-Text in einer warmen Karte, Lese-Hinweis unten.
+// ─────────────────────────────────────────────────────────────────────
+
+class StoryStageVisual extends StatelessWidget {
+  const StoryStageVisual({super.key, required this.task});
+  final TaskInstance task;
+
+  @override
+  Widget build(BuildContext context) {
+    final emoji = _themeEmoji(task.prompt);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+      decoration: _stageDecoration(const Color(0xFFFB923C)),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 84,
+            height: 84,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFFFB923C).withOpacity(0.35),
+                  blurRadius: 22,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 6),
+                ),
+              ],
+            ),
+            child: Text(emoji, style: const TextStyle(fontSize: 50)),
+          ),
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              border: Border.all(
+                  color: const Color(0xFFFB923C).withOpacity(0.45),
+                  width: 1.2),
+            ),
+            child: const Text(
+              '📖 Lies die Geschichte langsam',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF9A3412),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Erkennt das Story-Thema aus Schluesselwoertern im Prompt und liefert
+  /// das passende Emoji. Default: Buch-Emoji.
+  String _themeEmoji(String prompt) {
+    final p = prompt.toLowerCase();
+    // Reihenfolge: spezifischer zuerst.
+    if (p.contains('apfel') || p.contains('aepfel') || p.contains('äpfel')) {
+      return '🍎';
+    }
+    if (p.contains('baecker') || p.contains('bäcker') ||
+        p.contains('brot') || p.contains('kuchen') || p.contains('semmel')) {
+      return '🥨';
+    }
+    if (p.contains('schwimm') || p.contains('schwimmbad')) return '🏊';
+    if (p.contains('schule') || p.contains('klasse') ||
+        p.contains('schüler') || p.contains('schueler')) {
+      return '🏫';
+    }
+    if (p.contains('blume') || p.contains('garten') || p.contains('baum')) {
+      return '🌳';
+    }
+    if (p.contains('tier') || p.contains('hund') || p.contains('katze') ||
+        p.contains('hase')) {
+      return '🐶';
+    }
+    if (p.contains('vogel') || p.contains('biene')) return '🐦';
+    if (p.contains('euro') || p.contains('geld') || p.contains('cent') ||
+        p.contains('€')) {
+      return '💶';
+    }
+    if (p.contains('zug') || p.contains('bahn')) return '🚆';
+    if (p.contains('auto') || p.contains('rad')) return '🚗';
+    if (p.contains('uhr') || p.contains('stunde') || p.contains('minute')) {
+      return '⏰';
+    }
+    if (p.contains('eis') || p.contains('schoko')) return '🍦';
+    if (p.contains('ball') || p.contains('spiel')) return '⚽';
+    if (p.contains('kerze') || p.contains('geburtstag')) return '🎂';
+    if (p.contains('regen') || p.contains('wolke') || p.contains('sonne')) {
+      return '🌤️';
+    }
+    return '📖';
+  }
+}

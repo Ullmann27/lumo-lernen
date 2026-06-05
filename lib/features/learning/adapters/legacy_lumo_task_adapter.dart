@@ -633,6 +633,11 @@ class LegacyLumoTaskAdapter {
       'division' => VisualType.divisionGroups,
       'compare' => VisualType.numberCompare,
       'chart' => VisualType.simpleBarChart,
+      // 2026-06-05 Iter 19/B3: Story-Visuals fuer Sachaufgaben (G2/G3/G4).
+      // Vorher fielen alle 21 Story-Szenarien auf VisualType.none.
+      'story' => VisualType.storyStage,
+      'story_two' => VisualType.storyStage,
+      'story_three' => VisualType.storyStage,
       _ => VisualType.none,
     };
   }
