@@ -12,6 +12,7 @@ import '../../core/error_breakdown_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_tutor_contracts.dart';
 import '../../core/lumo_tutor_engine.dart';
+import '../../core/math/lumo_rechentricks.dart';
 import '../../core/lumo_visual_aid_service.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/task_quality_guard.dart';
@@ -28,6 +29,7 @@ import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/adaptive_task_renderer.dart';
 import 'renderers/shape_trace_task_renderer.dart';
 import 'renderers/writing_task_renderer.dart';
+import 'widgets/rechentricks_mentor_card.dart';
 
 class LearningContent extends StatefulWidget {
   const LearningContent({super.key, required this.appState});
@@ -86,6 +88,9 @@ class _LearningContentState extends State<LearningContent> {
   // Bildhilfe-Karte als 4. Hilfsstufe nach 5+ Fehlversuchen.
   // Nur lokal generiert, kein Cloud-Aufruf.
   LumoVisualAid? _visualAid;
+  // 2026-06-05 Iter 21: Rechentricks-Mentor-Erklärung.
+  // Wird bei attempt 2 fuer Math-Aufgaben angezeigt - Mildenberger-Stil.
+  RechentricksExplanation? _rechentricks;
 
   // Konfetti-Trigger: jedes Hochzaehlen loest einen neuen Burst aus.
   // Wird bei richtigen Antworten erhoeht.
@@ -259,6 +264,7 @@ class _LearningContentState extends State<LearningContent> {
     _visualAid = null;
     _aiHelpReply = null;
     _aiHelpLoading = false;
+    _rechentricks = null;
     if (resetCounter) {
       _questionNum = 1;
       _attemptCount = 0;
@@ -656,6 +662,21 @@ class _LearningContentState extends State<LearningContent> {
         nextTutorHint = _buildTutorHint(answerGiven, errorTypes);
       }
     }
+    // 2026-06-05 Iter 21: Rechentricks-Mentor (Mildenberger-Stil) bei
+    // attempt >= 2 fuer Math-Aufgaben. Eine der 5 Figuren (Emma, Max,
+    // Hanna, Tim, Mira) zeigt eine Strategie zur aktuellen Aufgabe.
+    RechentricksExplanation? nextRechentricks = _rechentricks;
+    if (!correct &&
+        _allowHelp &&
+        _attemptCount >= 2 &&
+        _task.subject == 'Mathematik' &&
+        nextRechentricks == null) {
+      nextRechentricks = const LumoRechentricks().explain(
+        prompt: _task.prompt,
+        correctAnswer: '${_taskInstance.correctAnswer}',
+        grade: widget.appState.state.grade,
+      );
+    }
     // 4. Eskalations-Stufe: nach 5+ Fehlversuchen lokale Bildhilfe nachladen.
     // Asynchron, damit die UI sofort reagiert. Setzt _visualAid via setState
     // sobald fertig. Cloud-Aufruf ist explizit ausgeschlossen.
@@ -711,6 +732,7 @@ class _LearningContentState extends State<LearningContent> {
       _lastSkillState = after;
       _lastFeedback = feedback;
       _tutorHint = nextTutorHint;
+      _rechentricks = nextRechentricks;
     });
 
     // 2026-06-05 Iter 16/A1: Lumo-Reaktion setzen und nach 2.5s zurueck zu idle.
@@ -840,6 +862,10 @@ class _LearningContentState extends State<LearningContent> {
                 subject: chip,
                 lastWasCorrect: _answered ? _lastCorrect : null,
               ),
+              if (_rechentricks != null) ...[
+                const SizedBox(height: 14),
+                RechentricksMentorCard(explanation: _rechentricks!),
+              ],
               if (_tutorHint != null) ...[
                 const SizedBox(height: 14),
                 _TutorHintBanner(text: _tutorHint!),
