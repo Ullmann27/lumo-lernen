@@ -8,6 +8,7 @@ import '../../core/lumo_mission_engine.dart';
 import '../live/lumo_live_pro_screen.dart';
 import '../rewards/achievements_wall_screen.dart';
 import '../lumo3d/lumo3d_launcher.dart';
+import '../learning/lumo_rechentricks_poster_screen.dart';
 import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../quiz/quiz_show_content.dart';
@@ -318,6 +319,24 @@ class _HomeContentState extends State<HomeContent> {
               MaterialPageRoute(
                 builder: (_) =>
                     LumoAkademieScreen(appState: widget.appState),
+              ),
+            ),
+          ),
+          // 2026-06-05 Iter 22: Meine Rechentricks (Mildenberger-inspiriert).
+          // Browseable Poster mit allen 5 Mentor-Figuren (Emma, Max, Hanna,
+          // Tim, Mira). Pro Mentor 2 Beispiel-Aufgaben Schritt fuer Schritt.
+          LumoSubjectTile(
+            title: 'Meine Rechentricks',
+            subtitle: '5 Mentoren zeigen dir schlaue Wege',
+            iconEmoji: '🧮',
+            illustrationEmoji: '💡',
+            accent: const Color(0xFFEC4899),
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const LumoRechentricksPosterScreen(),
               ),
             ),
           ),
