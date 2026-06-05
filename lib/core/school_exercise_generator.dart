@@ -39,7 +39,8 @@ class Curriculum {
     'Mathematik': <String>[
       'Plus bis 10', 'Minus bis 10', 'Plus bis 20', 'Minus bis 20',
       'Plus bis 100', 'Minus bis 100', 'Zahlenstrahl', 'Mengenvergleich',
-      'Zahl in Worten', 'Geometrie Formen', 'Geld', 'Zeit', 'Symmetrie',
+      'Zahl in Worten', 'Geometrie Formen', 'Formen Nachzeichnen',
+      'Geld', 'Zeit', 'Symmetrie',
       'Einmaleins Vorbereitung', 'Geld wechseln', 'Uhrzeit', 'Längen',
       'Gerade und ungerade', 'Verdoppeln und Halbieren', 'Zehner und Einer',
       'Einmaleins', 'Schriftliche Addition', 'Schriftliche Subtraktion',

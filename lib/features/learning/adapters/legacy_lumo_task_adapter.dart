@@ -27,7 +27,12 @@ class LegacyLumoTaskAdapter {
     final fixedTask = _qualityCheckedTask(task);
     final generatedAt = now ?? DateTime.now();
     final subject = _subject(fixedTask.subject);
-    final taskType = fixedTask.handwriting ? TaskType.writingCanvas : _taskType(fixedTask.visual);
+    // 2026-06-05 Iter 20: Form-Nachzeichnen hat eigene TaskType, vor writing
+    // wird auf shape_trace visual geprueft - Renderer entscheidet dann.
+    final isShapeTrace = fixedTask.visual == 'shape_trace';
+    final taskType = isShapeTrace
+        ? TaskType.shapeTrace
+        : (fixedTask.handwriting ? TaskType.writingCanvas : _taskType(fixedTask.visual));
     final visualType = _visual(fixedTask.visual, handwriting: fixedTask.handwriting);
     final correctAnswer = _payload(fixedTask.answer);
 
@@ -48,6 +53,8 @@ class LegacyLumoTaskAdapter {
         'unit': fixedTask.unit,
         'visual': fixedTask.visual,
         if (fixedTask.handwriting) 'symbol': WritingTargetParser.parse(fixedTask.prompt),
+        // 2026-06-05 Iter 20: Form-Nachzeichnen liest 'shape' aus Parametern.
+        if (isShapeTrace) 'shape': _shapeFromAnswer(fixedTask.answer),
       },
       prompt: fixedTask.prompt,
       options: fixedTask.choices
@@ -638,6 +645,12 @@ class LegacyLumoTaskAdapter {
       'story' => VisualType.storyStage,
       'story_two' => VisualType.storyStage,
       'story_three' => VisualType.storyStage,
+      // 2026-06-05 Iter 20: Form-Nachzeichnen verwendet eigenen Renderer,
+      // braucht aber einen VisualType-Eintrag, damit der Switch in
+      // adaptive_task_renderer NICHT auf _SchoolbookFallbackVisual faellt.
+      // Renderer dispatcht direkt auf TaskType.shapeTrace bevor das Visual
+      // ueberhaupt gerendert wird.
+      'shape_trace' => VisualType.shapeTrace,
       _ => VisualType.none,
     };
   }
@@ -907,5 +920,18 @@ class LegacyLumoTaskAdapter {
 
   int _payloadInt(String value) {
     return int.tryParse(value.replaceAll(RegExp(r'[^0-9-]'), '')) ?? 0;
+  }
+
+  /// 2026-06-05 Iter 20: Form-Antwort (deutsch) -> Shape-Key (englisch).
+  /// Default Quadrat falls die Antwort nicht zuordenbar ist.
+  String _shapeFromAnswer(String answer) {
+    return switch (answer.toLowerCase().trim()) {
+      'quadrat' => 'square',
+      'rechteck' => 'rectangle',
+      'kreis' => 'circle',
+      'dreieck' => 'triangle',
+      'stern' => 'star',
+      _ => 'square',
+    };
   }
 }

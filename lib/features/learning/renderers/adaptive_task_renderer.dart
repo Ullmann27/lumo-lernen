@@ -7,6 +7,7 @@ import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
+import 'shape_trace_task_renderer.dart';
 import 'writing_task_renderer.dart';
 
 class AdaptiveTaskAnswer {
@@ -27,11 +28,13 @@ class AdaptiveTaskRenderer extends StatefulWidget {
     required this.task,
     this.onAnswered,
     this.onWritingSubmitted,
+    this.onShapeTraced,
   });
 
   final TaskInstance task;
   final ValueChanged<AdaptiveTaskAnswer>? onAnswered;
   final ValueChanged<WritingTaskResult>? onWritingSubmitted;
+  final ValueChanged<ShapeTraceTaskResult>? onShapeTraced;
 
   @override
   State<AdaptiveTaskRenderer> createState() => _AdaptiveTaskRendererState();
@@ -51,6 +54,16 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       return WritingTaskRenderer(
         task: task,
         onSubmitted: widget.onWritingSubmitted,
+      );
+    }
+
+    // 2026-06-05 Iter 20: Form-Nachzeichnen-Aufgaben (Quadrat, Kreis, ...).
+    // Eigener Renderer mit Demo-Phase (Strich fuer Strich vorgezeichnet)
+    // und Trace-Phase (Kind zeichnet auf leerem Canvas nach).
+    if (task.taskType == TaskType.shapeTrace) {
+      return ShapeTraceTaskRenderer(
+        task: task,
+        onSubmitted: widget.onShapeTraced,
       );
     }
 
