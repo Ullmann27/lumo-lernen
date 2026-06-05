@@ -91,47 +91,46 @@ class _LumoAbcTafelScreenState extends State<LumoAbcTafelScreen> {
           ),
         ),
       ),
-      body: Stack(
-        children: [
-          const Positioned.fill(child: LumoMagicBackground()),
-          SafeArea(
-            child: CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(14, 12, 14, 8),
-                  sliver: SliverToBoxAdapter(child: _HeroBanner()),
-                ),
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(14, 8, 14, 28),
-                  sliver: SliverGrid(
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 130,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 0.85,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                      (context, i) {
-                        final e = _abc[i];
-                        return _LetterCard(
-                          entry: e,
-                          highlighted: _selectedLetter == e.letter,
-                          onTap: () => _onTap(e),
-                        );
-                      },
-                      childCount: _abc.length,
-                    ),
+      body: LumoMagicBackground(
+        intensity: 1.0,
+        starCount: 22,
+        child: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(14, 12, 14, 8),
+                sliver: SliverToBoxAdapter(child: _HeroBanner()),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(14, 8, 14, 28),
+                sliver: SliverGrid(
+                  gridDelegate:
+                      const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 130,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 0.85,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, i) {
+                      final e = _abc[i];
+                      return _LetterCard(
+                        entry: e,
+                        highlighted: _selectedLetter == e.letter,
+                        onTap: () => _onTap(e),
+                      );
+                    },
+                    childCount: _abc.length,
                   ),
                 ),
-                const SliverPadding(
-                  padding: EdgeInsets.fromLTRB(14, 0, 14, 28),
-                  sliver: SliverToBoxAdapter(child: _Tip()),
-                ),
-              ],
-            ),
+              ),
+              const SliverPadding(
+                padding: EdgeInsets.fromLTRB(14, 0, 14, 28),
+                sliver: SliverToBoxAdapter(child: _Tip()),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

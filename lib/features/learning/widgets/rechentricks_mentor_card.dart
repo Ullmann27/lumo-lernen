@@ -209,7 +209,7 @@ class _StepLine extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 14,
                 fontWeight: FontWeight.w800,
-                color: LumoColors.ink800,
+                color: LumoColors.ink700,
                 height: 1.25,
               ),
             ),

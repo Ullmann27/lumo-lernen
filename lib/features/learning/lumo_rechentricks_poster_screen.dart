@@ -45,27 +45,26 @@ class LumoRechentricksPosterScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Stack(
-        children: [
-          const Positioned.fill(child: LumoMagicBackground()),
-          SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(14, 12, 14, 28),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const _HeroBanner(),
+      body: LumoMagicBackground(
+        intensity: 1.0,
+        starCount: 22,
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(14, 12, 14, 28),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const _HeroBanner(),
+                const SizedBox(height: 14),
+                for (final e in entries) ...[
+                  _MentorSection(entry: e),
                   const SizedBox(height: 14),
-                  for (final e in entries) ...[
-                    _MentorSection(entry: e),
-                    const SizedBox(height: 14),
-                  ],
-                  const _FooterCredit(),
                 ],
-              ),
+                const _FooterCredit(),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
