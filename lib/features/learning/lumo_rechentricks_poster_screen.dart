@@ -78,11 +78,15 @@ class LumoRechentricksPosterScreen extends StatelessWidget {
         return [
           tricks.explain(prompt: '2 + 7 = ?', correctAnswer: '9', grade: 1),
           tricks.explain(prompt: '3 + 8 = ?', correctAnswer: '11', grade: 1),
+          // 2026-06-05 Iter 24: Mal-Tauschtrick
+          tricks.explain(prompt: '7 × 3 = ?', correctAnswer: '21', grade: 3),
         ].whereType<RechentricksExplanation>().toList(growable: false);
       case RechentricksKind.neighborTask:
         return [
           tricks.explain(prompt: '5 + 4 = ?', correctAnswer: '9', grade: 1),
           tricks.explain(prompt: '6 + 7 = ?', correctAnswer: '13', grade: 1),
+          // 2026-06-05 Iter 24: Verdoppeln-Trick (Mal-Aufgabe)
+          tricks.explain(prompt: '4 × 8 = ?', correctAnswer: '32', grade: 3),
         ].whereType<RechentricksExplanation>().toList(growable: false);
       case RechentricksKind.inverseCheck:
         return [
@@ -93,6 +97,8 @@ class LumoRechentricksPosterScreen extends StatelessWidget {
         return [
           tricks.explain(prompt: '12 + 4 = ?', correctAnswer: '16', grade: 1),
           tricks.explain(prompt: '15 + 3 = ?', correctAnswer: '18', grade: 1),
+          // 2026-06-05 Iter 24: 5er-Trick fuer Einmaleins
+          tricks.explain(prompt: '7 × 8 = ?', correctAnswer: '56', grade: 3),
         ].whereType<RechentricksExplanation>().toList(growable: false);
       case RechentricksKind.bridgeTen:
         return [
