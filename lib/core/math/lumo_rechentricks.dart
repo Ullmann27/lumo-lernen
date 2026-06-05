@@ -151,11 +151,78 @@ class LumoRechentricks {
     final answer = int.tryParse(correctAnswer.replaceAll(RegExp(r'[^0-9-]'), ''));
     if (answer == null) return null;
 
+    // 2026-06-05 Iter 24: Multiplikations-Tricks fuer K3 Einmaleins.
+    if (op == '×' || op == '*' || op == '·') {
+      return _multiplicationTrick(a, b, answer);
+    }
     // K3+ Profi-Tricks fuer dreistellige Zahlen.
     if (grade >= 3 && (a >= 100 || b >= 100)) {
       return _gradeThreeTrick(op, a, b, answer);
     }
     return _gradeOneTrick(op, a, b, answer);
+  }
+
+  /// 2026-06-05 Iter 24: Multiplikations-Tricks fuer K3 (Einmaleins).
+  /// - Tausch-Trick (kommutativ): 4 x 7 = 7 x 4, einfacher wenn der
+  ///   kleinere Faktor links ist
+  /// - Verdoppeln-Trick: 4 x 8 = 2 x (2 x 8) = 2 x 16 = 32
+  /// - Nachbaraufgabe: 6 x 7 = 6 x 6 + 6 = 36 + 6 = 42
+  /// - Kleinaufgabe + Rest: 7 x 8 = (5 x 8) + (2 x 8) = 40 + 16 = 56
+  RechentricksExplanation? _multiplicationTrick(int a, int b, int answer) {
+    // Emma: Tauschen wenn a > b (kleinerer Faktor links)
+    if (a > b && b <= 5) {
+      return RechentricksExplanation(
+        mentor: _mentorOf(RechentricksKind.swapNumbers),
+        taskText: '$a × $b = ?',
+        steps: <String>[
+          'Vertausche: $b × $a = $answer',
+          'Kleinere Reihe ist leichter zu merken.',
+        ],
+        resultText: 'Antwort: $answer',
+      );
+    }
+    // Max: Verdoppeln wenn a gerade und a >= 4
+    if (a >= 4 && a.isEven) {
+      final half = a ~/ 2;
+      return RechentricksExplanation(
+        mentor: _mentorOf(RechentricksKind.neighborTask),
+        taskText: '$a × $b = ?',
+        steps: <String>[
+          'Hilfsaufgabe: $half × $b = ${half * b}',
+          'Verdoppeln: ${half * b} + ${half * b} = $answer',
+        ],
+        resultText: 'Antwort: $answer',
+      );
+    }
+    // Tim: Kleinaufgabe (5er-Reihe) + Rest
+    if (a > 5 && a < 10) {
+      final restA = a - 5;
+      final fivePart = 5 * b;
+      final restPart = restA * b;
+      return RechentricksExplanation(
+        mentor: _mentorOf(RechentricksKind.smallFirst),
+        taskText: '$a × $b = ?',
+        steps: <String>[
+          '5er-Trick: 5 × $b = $fivePart',
+          '$restA × $b = $restPart',
+          '$fivePart + $restPart = $answer',
+        ],
+        resultText: 'Antwort: $answer',
+      );
+    }
+    // Hanna: Umkehraufgabe zur Kontrolle (Division)
+    if (b > 1 && answer > b) {
+      return RechentricksExplanation(
+        mentor: _mentorOf(RechentricksKind.inverseCheck),
+        taskText: '$a × $b = ?',
+        steps: <String>[
+          '$a × $b = $answer',
+          'Kontrolle: $answer : $b = $a ✓',
+        ],
+        resultText: 'Stimmt: $answer',
+      );
+    }
+    return null;
   }
 
   RechentricksExplanation? _gradeOneTrick(String op, int a, int b, int answer) {
@@ -312,7 +379,8 @@ class LumoRechentricks {
   }
 
   _ParsedTask? _parseTask(String prompt) {
-    final m = RegExp(r'(\d+)\s*([+\-])\s*(\d+)').firstMatch(prompt);
+    // 2026-06-05 Iter 24: jetzt auch ×, *, · fuer Multiplikation.
+    final m = RegExp(r'(\d+)\s*([+\-×*·])\s*(\d+)').firstMatch(prompt);
     if (m == null) return null;
     return _ParsedTask(
       a: int.parse(m.group(1)!),
