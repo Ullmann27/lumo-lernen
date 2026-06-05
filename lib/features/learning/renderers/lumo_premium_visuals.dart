@@ -336,12 +336,19 @@ class _Coin extends StatelessWidget {
 }
 
 /// Bruch als Pizza
+/// 2026-06-05 Iter 19/B4: Wenn Prompt zwei Brueche enthaelt (z.B. Erweitern
+/// "1/2 = 2/4"), werden zwei Pizzas nebeneinander mit "=" gezeigt. Sonst
+/// eine Pizza wie bisher.
 class FractionPizzaVisual extends StatelessWidget {
   const FractionPizzaVisual({super.key, required this.task});
   final TaskInstance task;
 
   @override
   Widget build(BuildContext context) {
+    final fractions = _allFractionsFromPrompt(task.prompt);
+    if (fractions.length >= 2) {
+      return _buildDual(fractions[0], fractions[1]);
+    }
     final data = task.visualPayload.data;
     final rawNum = _readInt(data['numerator']) ?? 1;
     final rawDen = _readInt(data['denominator']) ?? _denomFromPrompt(task.prompt);
@@ -361,6 +368,61 @@ class FractionPizzaVisual extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildDual(List<int> a, List<int> b) {
+    final denA = a[1].clamp(1, 12);
+    final numA = a[0].clamp(0, denA);
+    final denB = b[1].clamp(1, 12);
+    final numB = b[0].clamp(0, denB);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 16, 14, 16),
+      decoration: _stageDecoration(LumoColors.practice),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 110,
+            height: 110,
+            child: CustomPaint(
+              painter: _PizzaPainter(numerator: numA, denominator: denA),
+            ),
+          ),
+          const Text(
+            '=',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 36,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF7C2D12),
+            ),
+          ),
+          SizedBox(
+            width: 110,
+            height: 110,
+            child: CustomPaint(
+              painter: _PizzaPainter(numerator: numB, denominator: denB),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Liest alle 'a/b' Brueche aus dem Prompt heraus (a und b zwischen 1-12).
+  /// '?' als Platzhalter wird zu 0 (leere Pizza).
+  List<List<int>> _allFractionsFromPrompt(String p) {
+    final out = <List<int>>[];
+    final re = RegExp(r'(\?|\d+)\s*/\s*(\?|\d+)');
+    for (final m in re.allMatches(p)) {
+      final aRaw = m.group(1)!;
+      final bRaw = m.group(2)!;
+      final a = aRaw == '?' ? 0 : int.tryParse(aRaw) ?? 0;
+      final b = bRaw == '?' ? 2 : int.tryParse(bRaw) ?? 2;
+      if (b > 0 && b <= 12) out.add(<int>[a, b]);
+    }
+    return out;
   }
 
   int _denomFromPrompt(String p) {
