@@ -56,6 +56,16 @@ enum VisualType {
   rectangleMeasure,
   rulerCompare,
   scaleMeasure,
+  // 2026-06-05 Iter 18/B1: Visual-Mapping-Luecken fuer Klasse 3/4 Math.
+  // Vorher fielen written_add/sub/mul, division, compare, chart auf
+  // VisualType.none = nur Text+4-Buttons. Jetzt eigene CustomPainter.
+  writtenArithmetic,
+  divisionGroups,
+  numberCompare,
+  simpleBarChart,
+  // 2026-06-05 Iter 19/B3: Sachaufgaben/Story-Texts bekommen eine Buehne
+  // mit Themen-Emoji oben. Renderer in lumo_premium_visuals.dart.
+  storyStage,
 }
 
 enum ErrorType {

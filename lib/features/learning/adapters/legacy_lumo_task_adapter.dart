@@ -614,6 +614,30 @@ class LegacyLumoTaskAdapter {
       'ruler' => VisualType.rulerCompare,
       'mass' => VisualType.scaleMeasure,
       'volume' => VisualType.scaleMeasure,
+      // 2026-06-05 Iter 18/B1: Existierende Visuals fuer weitere IDs
+      // nutzen (vorher fielen viele auf VisualType.none zurueck).
+      'money' => VisualType.money,
+      'money_change' => VisualType.money,
+      'fraction_half' => VisualType.fractionPizza,
+      'fraction_add' => VisualType.fractionPizza,
+      'fraction_expand' => VisualType.fractionPizza,
+      'symmetry' => VisualType.shape,
+      'family' => VisualType.wordFamilyTree,
+      'category' => VisualType.wordFamilyTree,
+      'word_type' => VisualType.wordTypeColor,
+      'comma' => VisualType.sentenceBlocks,
+      // Neue Custom-Painter (siehe lumo_premium_visuals.dart):
+      'written_add' => VisualType.writtenArithmetic,
+      'written_sub' => VisualType.writtenArithmetic,
+      'written_mul' => VisualType.writtenArithmetic,
+      'division' => VisualType.divisionGroups,
+      'compare' => VisualType.numberCompare,
+      'chart' => VisualType.simpleBarChart,
+      // 2026-06-05 Iter 19/B3: Story-Visuals fuer Sachaufgaben (G2/G3/G4).
+      // Vorher fielen alle 21 Story-Szenarien auf VisualType.none.
+      'story' => VisualType.storyStage,
+      'story_two' => VisualType.storyStage,
+      'story_three' => VisualType.storyStage,
       _ => VisualType.none,
     };
   }
