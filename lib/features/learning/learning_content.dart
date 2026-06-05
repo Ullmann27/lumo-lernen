@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../app/app_design.dart';
+import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/error_breakdown_repository.dart';
@@ -70,6 +71,10 @@ class _LearningContentState extends State<LearningContent> {
   late TaskInstance _taskInstance;
   DateTime _taskStartedAt = DateTime.now();
   bool _answered = false;
+  // 2026-06-05 Iter 16/A1: Lumo reagiert visuell auf Antworten.
+  // cheer = nach richtiger Antwort, think = nach falscher.
+  LumoReactionMood _reactionMood = LumoReactionMood.idle;
+  Timer? _reactionResetTimer;
   bool? _lastCorrect;
   RewardDelta? _lastRewardDelta;
   SkillState? _lastSkillState;
@@ -694,6 +699,15 @@ class _LearningContentState extends State<LearningContent> {
       _tutorHint = nextTutorHint;
     });
 
+    // 2026-06-05 Iter 16/A1: Lumo-Reaktion setzen und nach 2.5s zurueck zu idle.
+    _reactionResetTimer?.cancel();
+    setState(() {
+      _reactionMood = correct ? LumoReactionMood.cheer : LumoReactionMood.think;
+    });
+    _reactionResetTimer = Timer(const Duration(milliseconds: 2500), () {
+      if (mounted) setState(() => _reactionMood = LumoReactionMood.idle);
+    });
+
     if (correct) {
       widget.appState.correctAnswer(_task.unit);
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: hintUsed);
@@ -748,6 +762,12 @@ class _LearningContentState extends State<LearningContent> {
       _questionNum = nextQuestion;
       _loadNextTask(resetCounter: false);
     });
+  }
+
+  @override
+  void dispose() {
+    _reactionResetTimer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -872,6 +892,18 @@ class _LearningContentState extends State<LearningContent> {
           // Konfetti-Layer: feuert bei jeder richtigen Antwort.
           Positioned.fill(
             child: LumoConfettiBurst(trigger: _confettiTrigger),
+          ),
+          // 2026-06-05 Iter 16/A1: Lumo-Reaction-Companion unten rechts.
+          // Cheer-Bounce bei richtig, think bei falsch, sonst idle. 80px.
+          Positioned(
+            right: 16,
+            bottom: 16,
+            child: IgnorePointer(
+              child: LumoReactionCompanion(
+                mood: _reactionMood,
+                size: 88,
+              ),
+            ),
           ),
         ],
       );

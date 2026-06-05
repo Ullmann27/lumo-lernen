@@ -10,6 +10,8 @@ import '../widgets/shell/left_navigation.dart';
 // Re-Aktivierung, falls die Optik spaeter ueberarbeitet ist.
 // import '../widgets/fox/lumo_free_companion.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
+import '../core/lumo_asset_paths.dart';
+import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
 import '../features/home/home_content.dart';
@@ -111,6 +113,11 @@ class _AppShellState extends State<AppShell>
 
   void _onAchievementUnlock(LumoAchievement a) {
     if (!mounted) return;
+    // 2026-06-05 Iter 16/A2: Full-screen Star-Burst-Lottie als visueller Pop.
+    // Wird ueber Navigator.push als transparente Page-Route gepusht und
+    // automatisch nach 1500 ms wieder gepoppt. Lottie + Emoji + Achievement-
+    // Titel zusammen = befriedigendes Belohnungs-Feedback.
+    _showAchievementBurstOverlay(a);
     final messenger = ScaffoldMessenger.maybeOf(context);
     if (messenger == null) return;
     messenger.showSnackBar(
@@ -236,6 +243,27 @@ class _AppShellState extends State<AppShell>
         state == AppLifecycleState.detached) {
       _keepAliveTimer?.cancel();
     }
+  }
+
+  /// 2026-06-05 Iter 16/A2: Vollbild-Overlay mit Star-Burst-Lottie bei
+  /// Achievement-Unlock. Halbtransparenter schwarzer Hintergrund + grosse
+  /// Lottie-Animation 240px + Badge-Emoji + Titel. Automatisch nach 1.6s
+  /// gepoppt - synchron mit der SnackBar.
+  void _showAchievementBurstOverlay(LumoAchievement a) {
+    if (!mounted) return;
+    final navigator = Navigator.maybeOf(context, rootNavigator: true);
+    if (navigator == null) return;
+    navigator.push(
+      PageRouteBuilder<void>(
+        opaque: false,
+        barrierDismissible: false,
+        transitionDuration: const Duration(milliseconds: 200),
+        pageBuilder: (_, __, ___) => _AchievementBurstOverlay(achievement: a),
+      ),
+    );
+    Future<void>.delayed(const Duration(milliseconds: 1600), () {
+      if (navigator.canPop()) navigator.pop();
+    });
   }
 
   @override
@@ -696,4 +724,67 @@ class _MobileNavItem {
   final LumoSection section;
   final IconData icon;
   final String label;
+}
+
+// 2026-06-05 Iter 16/A2: Achievement-Burst-Overlay
+// Vollbild-transparente Page mit Lottie + Emoji + Titel als Belohnungs-Pop.
+class _AchievementBurstOverlay extends StatelessWidget {
+  const _AchievementBurstOverlay({required this.achievement});
+
+  final LumoAchievement achievement;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.black.withOpacity(0.32),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: 260,
+              height: 260,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  LumoLottie(
+                    asset: LumoAssetPaths.lottieStarBurst,
+                    size: 260,
+                  ),
+                  Text(
+                    achievement.emoji,
+                    style: const TextStyle(fontSize: 92),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.94),
+                borderRadius: BorderRadius.circular(LumoRadius.pill),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.20),
+                    blurRadius: 14,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+              ),
+              child: Text(
+                achievement.title,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFF7C2D12),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
