@@ -511,33 +511,97 @@ class _TwentyDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 2026-06-05 Iter 24: Mildenberger-Zwanzigerfeld.
+    // 2 Reihen x 10 Wuerfel, in 5er-Bloecken aufgeteilt. Vorhandene
+    // Menge in Blau, weggenommene Wuerfel kreuzen wir rot durch.
+    // Heinz' Wunsch: 'Mehr Professionalitaet ... bessere grafische
+    // Darstellung'. Inspiriert von Bild #3 Rechentricks-Poster.
     final safeStart = start.clamp(0, 20).toInt();
     final safeCrossed = crossed.clamp(0, safeStart).toInt();
-    return Wrap(
-      spacing: 5,
-      runSpacing: 7,
-      children: List.generate(20, (index) {
-        final active = index < safeStart;
-        final crossed = index >= safeStart - safeCrossed && index < safeStart;
-        return SizedBox(
-          width: 22,
-          height: 22,
-          child: Stack(alignment: Alignment.center, children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: active ? LumoColors.orange.withOpacity(.22) : Colors.white,
-                border: Border.all(color: active ? LumoColors.orange.withOpacity(.75) : LumoColors.ink100, width: 1.5),
-              ),
+    Widget row(int rowOffset) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          for (var j = 0; j < 10; j++) ...[
+            _ZwanzigerCube(
+              filled: rowOffset + j < safeStart,
+              crossed: rowOffset + j >= safeStart - safeCrossed &&
+                  rowOffset + j < safeStart,
             ),
-            if (crossed)
-              Transform.rotate(
-                angle: -.72,
-                child: Container(width: 27, height: 2.2, color: LumoColors.ink700.withOpacity(.80)),
+            if (j == 4) const SizedBox(width: 8),
+          ],
+        ],
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFFBEB),
+        borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(color: const Color(0xFFFDE68A), width: 1.4),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          row(0),
+          const SizedBox(height: 6),
+          row(10),
+        ],
+      ),
+    );
+  }
+}
+
+/// 2026-06-05 Iter 24: Einzelner Wuerfel im Mildenberger-Zwanzigerfeld.
+/// Blau wenn gefuellt, hellgrau wenn leer, mit rotem Diagonal-Strich
+/// bei "crossed" (wegnehmen).
+class _ZwanzigerCube extends StatelessWidget {
+  const _ZwanzigerCube({required this.filled, required this.crossed});
+
+  final bool filled;
+  final bool crossed;
+
+  @override
+  Widget build(BuildContext context) {
+    const fillColor = Color(0xFF3B82F6);
+    const crossColor = Color(0xFFEF4444);
+    return SizedBox(
+      width: 20,
+      height: 20,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 1.5),
+            decoration: BoxDecoration(
+              color: filled ? fillColor : Colors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: filled
+                    ? const Color(0xFF1D4ED8)
+                    : const Color(0xFFE5E7EB),
+                width: 1.2,
               ),
-          ]),
-        );
-      }),
+              boxShadow: filled
+                  ? [
+                      BoxShadow(
+                        color: fillColor.withOpacity(0.35),
+                        blurRadius: 4,
+                        offset: const Offset(0, 1.5),
+                      ),
+                    ]
+                  : null,
+            ),
+          ),
+          if (crossed)
+            Transform.rotate(
+              angle: -.78,
+              child: Container(width: 24, height: 2.4, color: crossColor),
+            ),
+        ],
+      ),
     );
   }
 }
