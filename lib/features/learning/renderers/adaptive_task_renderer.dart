@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../shared/widgets/lumo_premium_effects.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
 import 'writing_task_renderer.dart';
@@ -280,9 +281,13 @@ class _AnswerButton extends StatelessWidget {
       textColor = LumoColors.ink900;
     }
 
-    return GestureDetector(
-      onTap: solved || isWrongPicked ? null : onTap,
-      child: AnimatedContainer(
+    // 2026-06-05 Iter 17/A5: LumoTiltCard 3D-Neigung um die Antwort-Cards.
+    // Auf Desktop/Tablet folgt die Karte dem Finger-/Mouse-Hover (4.6 Grad),
+    // auf Touch-only spring-back. Tap funktioniert weiterhin normal.
+    // Disabled-State (solved/isWrongPicked) ohne Tilt damit nur aktive Cards
+    // reagieren.
+    final tilted = !(solved || isWrongPicked);
+    final card = AnimatedContainer(
         duration: const Duration(milliseconds: 160),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
         decoration: BoxDecoration(
@@ -316,8 +321,13 @@ class _AnswerButton extends StatelessWidget {
             ),
           ),
         ]),
-      ),
-    );
+      );
+    // Wenn aktive Card: in LumoTiltCard fuer 3D-Effekt + Tap-Forward.
+    // Sonst nur GestureDetector (kein Tilt fuer disabled Cards).
+    if (tilted) {
+      return LumoTiltCard(onTap: onTap, child: card);
+    }
+    return GestureDetector(onTap: null, child: card);
   }
 }
 

@@ -15,6 +15,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_quest_library.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
+import '../../widgets/premium/lumo_stage_header.dart';
 import 'lumo_story_reader_screen.dart';
 
 class LumoQuestHubScreen extends StatelessWidget {
@@ -49,6 +50,18 @@ class LumoQuestHubScreen extends StatelessWidget {
         child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
         children: [
+          // 2026-06-05 Iter 17/A4: LumoStageHeader prominent oben mit
+          // Level + Sterne + Streak. Bisher nur Showcase, jetzt aktiv.
+          LumoStageHeader(
+            greeting: 'Hallo ${appState.state.childName.isEmpty ? "Held" : appState.state.childName}!',
+            subtitle: 'Welche Quest startest du heute?',
+            stars: appState.state.stars,
+            xp: appState.state.xp,
+            level: appState.state.level,
+            streak: appState.learningStreakDays(),
+            padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
+          ),
+          const SizedBox(height: 8),
           _intro(grade),
           const SizedBox(height: 16),
           for (final q in quests) ...[
