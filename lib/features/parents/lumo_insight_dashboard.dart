@@ -22,6 +22,7 @@ import '../../core/error_breakdown_repository.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../../core/lumo_ai_proxy_client.dart';
+import '../../widgets/premium/lumo_empty_error_state.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../learning/learning_dna_card.dart';
 import 'widgets/lumo_insight_heatmap.dart';
@@ -544,14 +545,14 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
               ),
             )
           else if (_aiError != null)
-            Text(
-              _aiError!,
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF991B1B),
-              ),
+            // 2026-06-05 Iter 16/A3: Warmer Fehler-Zustand mit Lumo-Sad-Lottie
+            // statt nackt-rotem Text. LumoEmptyErrorState.cloud zeigt Wolke +
+            // Titel/Message + optionalen Retry-Button.
+            LumoEmptyErrorState.cloud(
+              title: 'Lumo-KI gerade nicht erreichbar',
+              message: _aiError,
+              actionLabel: 'Nochmal versuchen',
+              onAction: _requestAiAnalysis,
             )
           else
             const Text(
