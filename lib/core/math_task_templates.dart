@@ -63,6 +63,14 @@ class MathTaskTemplates {
     // AT-Lehrplan-konform: Flaecheninhalt erst Klasse 4 (vorher g3_area).
     MathTaskTemplate(id: 'g4_area', grade: 4, unit: 'Flächeninhalt', kind: MathTemplateKind.area, validRangeA: <int>[2, 12], validRangeB: <int>[2, 12], promptPattern: 'flaeche-rechteck'),
     MathTaskTemplate(id: 'g4_symmetry_lines', grade: 4, unit: 'Symmetrieachsen', kind: MathTemplateKind.symmetry, validRangeA: <int>[0, 7], validRangeB: <int>[0, 7], promptPattern: 'symmetrieachsen'),
+    // 2026-06-05 Iter 20: Form-Nachzeichnen. Kind sieht erst Demo (Strich
+    // fuer Strich), dann zeichnet selbst nach. Eigener Renderer. Pro
+    // Klassenstufe ein paar Formen mit steigender Komplexitaet.
+    MathTaskTemplate(id: 'g1_trace_square', grade: 1, unit: 'Formen Nachzeichnen', kind: MathTemplateKind.shapeTrace, validRangeA: <int>[0, 0], validRangeB: <int>[0, 0], promptPattern: 'nachzeichnen-quadrat'),
+    MathTaskTemplate(id: 'g1_trace_circle', grade: 1, unit: 'Formen Nachzeichnen', kind: MathTemplateKind.shapeTrace, validRangeA: <int>[1, 1], validRangeB: <int>[0, 0], promptPattern: 'nachzeichnen-kreis'),
+    MathTaskTemplate(id: 'g1_trace_triangle', grade: 1, unit: 'Formen Nachzeichnen', kind: MathTemplateKind.shapeTrace, validRangeA: <int>[2, 2], validRangeB: <int>[0, 0], promptPattern: 'nachzeichnen-dreieck'),
+    MathTaskTemplate(id: 'g2_trace_rectangle', grade: 2, unit: 'Formen Nachzeichnen', kind: MathTemplateKind.shapeTrace, validRangeA: <int>[3, 3], validRangeB: <int>[0, 0], promptPattern: 'nachzeichnen-rechteck'),
+    MathTaskTemplate(id: 'g2_trace_star', grade: 2, unit: 'Formen Nachzeichnen', kind: MathTemplateKind.shapeTrace, validRangeA: <int>[4, 4], validRangeB: <int>[0, 0], promptPattern: 'nachzeichnen-stern'),
   ];
 
   static List<MathTaskTemplate> templatesForGrade(int grade, {String? unit}) {
@@ -326,6 +334,30 @@ class MathTaskTemplate {
           'Addiere alle Werte ($v1+$v2+$v3=$sum) und teile durch die Anzahl (3): $sum:3 = $answer.',
           'chart',
         );
+      case MathTemplateKind.shapeTrace:
+        // 2026-06-05 Iter 20: Form-Nachzeichnen.
+        // a kodiert die Form: 0=Quadrat, 1=Kreis, 2=Dreieck, 3=Rechteck, 4=Stern.
+        // Der ShapeTraceTaskRenderer liest die Form aus der Antwort und
+        // zeigt erst Demo, dann Trace-Canvas.
+        const shapes = <List<String>>[
+          <String>['Quadrat', 'Ein Quadrat hat 4 gleich lange Seiten und 4 rechte Winkel.'],
+          <String>['Kreis', 'Ein Kreis ist eine runde Linie ohne Anfang und Ende.'],
+          <String>['Dreieck', 'Ein Dreieck hat 3 Ecken und 3 Seiten.'],
+          <String>['Rechteck', 'Ein Rechteck hat 4 Ecken und 2 verschieden lange Seiten.'],
+          <String>['Stern', 'Ein Stern hat 5 Zacken und 10 Ecken.'],
+        ];
+        final pick = a.clamp(0, shapes.length - 1).toInt();
+        final entry = shapes[pick];
+        return MathConcreteTask(
+          unit: unit,
+          prompt: 'Zeichne ein ${entry[0]} nach',
+          answer: entry[0],
+          choices: const <String>[],
+          explanation: entry[1],
+          visual: 'shape_trace',
+          difficulty: grade,
+          promptPattern: promptPattern,
+        );
     }
   }
 
@@ -444,6 +476,9 @@ enum MathTemplateKind {
   timeMinutes,
   fractionExpand,
   average,
+  // 2026-06-05 Iter 20: Form-Nachzeichnen (Quadrat, Kreis, Dreieck, ...).
+  // Demo-Phase + Trace-Phase im eigenen Renderer.
+  shapeTrace,
 }
 
 int _valueInRange(List<int> range, int seed) {

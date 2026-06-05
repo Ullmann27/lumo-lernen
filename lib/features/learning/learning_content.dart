@@ -26,6 +26,7 @@ import '../../domain/learning/reward_engine.dart';
 import '../shared/widgets/lumo_premium_effects.dart';
 import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/adaptive_task_renderer.dart';
+import 'renderers/shape_trace_task_renderer.dart';
 import 'renderers/writing_task_renderer.dart';
 
 class LearningContent extends StatefulWidget {
@@ -539,6 +540,19 @@ class _LearningContentState extends State<LearningContent> {
     );
   }
 
+  /// 2026-06-05 Iter 20: Form-Nachzeichnen-Aufgaben.
+  /// Der Canvas evaluiert intern (bounding box + Ecken-Zahl) und
+  /// liefert correct/feedback. Hier wird das in den Standard-Pfad
+  /// eingespeist.
+  void _answerShapeTrace(ShapeTraceTaskResult result) {
+    if (_answered) return;
+    _completeAnswer(
+      correct: result.correct,
+      hintUsed: false,
+      answerGiven: 'shape_trace:${result.shape}',
+    );
+  }
+
   String? _buildTutorHint(Object answerGiven, List<ErrorType> errorTypes) {
     if (!_allowHelp || _attemptCount < 3) return null;
     final helpLevel = _localTutorEngine.decideHelpLevel(
@@ -871,6 +885,7 @@ class _LearningContentState extends State<LearningContent> {
                   task: _taskInstance,
                   onAnswered: _answerAdaptive,
                   onWritingSubmitted: _answerWriting,
+                  onShapeTraced: _answerShapeTrace,
                 ),
               ),
               if (_answered && _lastCorrect != null) ...[

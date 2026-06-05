@@ -28,6 +28,10 @@ enum TaskType {
   readingComprehension,
   dragDrop,
   trueFalse,
+  // 2026-06-05 Iter 20: Form-Nachzeichnen mit Demo-Phase + Trace-Phase.
+  // Kind sieht erst die Form Strich fuer Strich animiert, dann
+  // erscheint ein leerer Canvas zum Nachzeichnen.
+  shapeTrace,
 }
 
 enum VisualType {
@@ -66,6 +70,9 @@ enum VisualType {
   // 2026-06-05 Iter 19/B3: Sachaufgaben/Story-Texts bekommen eine Buehne
   // mit Themen-Emoji oben. Renderer in lumo_premium_visuals.dart.
   storyStage,
+  // 2026-06-05 Iter 20: Form-Nachzeichnen-Aufgabe (Quadrat/Rechteck/Kreis/
+  // Dreieck/Stern). Hat einen eigenen Renderer mit Demo+Trace Phasen.
+  shapeTrace,
 }
 
 enum ErrorType {
