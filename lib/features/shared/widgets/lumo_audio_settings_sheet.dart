@@ -151,7 +151,14 @@ class _AudioRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    // 2026-06-05 Bugfix (Heinz Tablet-Screenshot): vorher Container ->
+    // direkt SwitchListTile. Flutter warnte 'ListTile background color or
+    // ink splashes may be invisible'. Fix: Material-Layer zwischen Container
+    // und SwitchListTile damit Ink-Effekte sichtbar bleiben + Warnings
+    // verschwinden. ClipRRect haelt die rounded corners sichtbar.
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(14),
+      child: Container(
       decoration: BoxDecoration(
         color: const Color(0xFFFFFBF0),
         borderRadius: BorderRadius.circular(14),
@@ -160,7 +167,9 @@ class _AudioRow extends StatelessWidget {
           width: 1.4,
         ),
       ),
-      child: SwitchListTile(
+      child: Material(
+        type: MaterialType.transparency,
+        child: SwitchListTile(
         secondary: Container(
           width: 40,
           height: 40,
@@ -193,6 +202,8 @@ class _AudioRow extends StatelessWidget {
         onChanged: onChanged,
         activeColor: activeColor,
       ),
-    );
+      ), // close Material
+      ), // close Container
+    ); // close ClipRRect
   }
 }
