@@ -11,6 +11,7 @@ import '../lumo3d/lumo3d_launcher.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
 import '../learning/lumo_rechentricks_poster_screen.dart';
 import '../games/lumo_kart/lumo_kart_screen.dart';
+import '../lumo_welt/lumo_welt_screen.dart';
 import '../photo_lesson/lumo_photo_lesson_screen.dart';
 import '../reading/lumo_reading_buddy_screen.dart';
 import '../story/lumo_quest_hub_screen.dart';
@@ -394,6 +395,25 @@ class _HomeContentState extends State<HomeContent> {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => LumoLiveProScreen(appState: widget.appState),
+              ),
+            ),
+          ),
+          // 2026-06-06 Iter 36: Meine Lumo-Welt - 3 wachsende Inseln.
+          // Math/Deutsch/Sachkunde als isometrische Inseln im Ozean.
+          // Jede Insel wächst mit den richtigen Antworten in dem Fach
+          // (Sämling → Wachsend → Blühend).
+          LumoSubjectTile(
+            title: 'Meine Welt',
+            subtitle: '3 Inseln wachsen mit deinem Lernen',
+            iconEmoji: '🏝️',
+            illustrationEmoji: '🌴',
+            accent: const Color(0xFF06B6D4),
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => LumoWeltScreen(appState: widget.appState),
               ),
             ),
           ),
