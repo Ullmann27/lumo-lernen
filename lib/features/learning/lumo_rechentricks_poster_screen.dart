@@ -225,16 +225,32 @@ class _MentorSection extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // 2026-06-06 Iter 31: Premium-Avatar-PNG mit Emoji-Fallback.
               Container(
                 width: 48,
                 height: 48,
                 alignment: Alignment.center,
+                padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: accent.withOpacity(0.18),
                   border: Border.all(color: accent, width: 1.6),
                 ),
-                child: Text(m.emoji, style: const TextStyle(fontSize: 26)),
+                child: ClipOval(
+                  child: m.avatarAsset != null
+                      ? Image.asset(
+                          m.avatarAsset!,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => Center(
+                            child: Text(m.emoji,
+                                style: const TextStyle(fontSize: 26)),
+                          ),
+                        )
+                      : Center(
+                          child: Text(m.emoji,
+                              style: const TextStyle(fontSize: 26)),
+                        ),
+                ),
               ),
               const SizedBox(width: 10),
               Expanded(
