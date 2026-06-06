@@ -556,16 +556,25 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   Widget _buildBubble(_ChatMessage msg) {
     final isLumo = msg.isLumo;
 
-    // Cloud-Offline-Variante: Premium-Card statt Bubble
+    // 2026-06-06 Iter 28: Cloud-Offline-Variante.
+    // Heinz: 'Cloud funktioniert nicht'. Iter 25 hat den Solver eingebaut,
+    // jetzt erkennen wir ob die Antwort eine echte Loesung enthaelt - dann
+    // POSITIVER Titel ('Hier ist die Antwort!') statt 'Cloud-Lehrer
+    // beschaeftigt'. Nur wenn nur Hinweise drin sind, bleibt der Fallback-Ton.
     if (msg.isCloudOffline) {
+      final hasRealAnswer = RegExp(r'=\s*\d+|\d+\s*[+\-×*·]\s*\d+|Antwort').hasMatch(msg.text);
       return Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: LumoEmptyErrorState(
-          title: 'Cloud-Lehrer gerade beschaeftigt',
+          title: hasRealAnswer
+              ? 'Lumo erklaert es dir direkt'
+              : 'Lass uns das gemeinsam machen',
           message: msg.text,
-          icon: Icons.cloud_off_rounded,
+          icon: hasRealAnswer
+              ? Icons.lightbulb_rounded
+              : Icons.handshake_rounded,
           iconColor: LumoTokens.colors.lumoOrange,
-          actionLabel: 'Nochmal versuchen',
+          actionLabel: hasRealAnswer ? 'Noch eine Frage?' : 'Nochmal versuchen',
           onAction: () {
             // Nimm letzte User-Frage und schicke sie nochmal
             for (int i = _messages.length - 1; i >= 0; i--) {
