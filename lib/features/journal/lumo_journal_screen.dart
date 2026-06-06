@@ -191,7 +191,7 @@ class _EditorState extends State<_Editor> {
                     fontFamily: 'Nunito',
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
-                    color: LumoColors.ink800,
+                    color: LumoColors.ink700,
                     height: 1.5,
                   ),
                   decoration: const InputDecoration(
