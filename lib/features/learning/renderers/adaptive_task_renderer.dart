@@ -197,27 +197,85 @@ class _LocalHelpBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hint = _buildHint(task);
+    // 2026-06-06 Iter 27: Premium-Look fuer Lumo-Hilfe-Banner.
+    // Vorher: flacher gelber Container. Jetzt: Gradient + Glow + groesserer
+    // Mascot-Avatar im farbigen Kreis. Header in Pill-Form abgesetzt.
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF7D6),
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFFBEB), Color(0xFFFEF3C7)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.35)),
+        border: Border.all(color: const Color(0xFFFCD34D), width: 1.4),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFFCD34D).withOpacity(0.25),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
+        ],
       ),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('🦊', style: TextStyle(fontSize: 24)),
-        const SizedBox(width: 10),
+        Container(
+          width: 44,
+          height: 44,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            border: Border.all(color: const Color(0xFFFB923C), width: 1.6),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFFB923C).withOpacity(0.35),
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: const Text('🦊', style: TextStyle(fontSize: 24)),
+        ),
+        const SizedBox(width: 11),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              wrongCount == 2 ? 'Lumo hilft jetzt Schritt für Schritt' : 'Noch ein Tipp von Lumo',
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F)),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFB923C),
+                borderRadius: BorderRadius.circular(LumoRadius.pill),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFFB923C).withOpacity(0.35),
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                wrongCount == 2
+                    ? '💡 Lumo hilft Schritt fuer Schritt'
+                    : '💡 Noch ein Tipp von Lumo',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+              ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 8),
             Text(
               hint,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.3),
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13.5,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF78350F),
+                height: 1.35,
+              ),
             ),
           ]),
         ),
