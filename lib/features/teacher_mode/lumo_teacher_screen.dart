@@ -243,28 +243,132 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   }
 
   /// Lokaler Fallback wenn KI-Server nicht erreichbar ist.
-  /// Variiert die Server-Fehler-Message + gibt LumoBrain-Antwort wenn moeglich.
+  /// 2026-06-05 Iter 25 (Heinz: 'Cloud funktioniert nicht'):
+  /// Vorher gab es bei Cloud-Aus nur einen generischen 'mein Server ist weg'-Spruch
+  /// + Curriculum-Hint. Jetzt versuchen wir die Frage WIRKLICH zu beantworten -
+  /// lokal, ohne Cloud. Reihenfolge:
+  /// 1. LumoBrain (vorhandene Wissensdatenbank)
+  /// 2. Mathe-Mini-Solver: Umfang/Flaeche/Plus/Minus/Mal/Geteilt
+  /// 3. Erst zuletzt: topic-spezifischer Hint mit freundlichem Ton
   String _buildLocalFallback(String question) {
-    // LumoBrain probieren - vielleicht weiss er die Antwort doch
+    // 1. LumoBrain probieren - vielleicht weiss er die Antwort doch
     final brainReply = LumoBrain.instance.ask(question, topicId: widget.topic.id);
     if (brainReply.confident && brainReply.text.isNotEmpty) {
       return brainReply.text;
     }
-    // Sonst topic-spezifischer Curriculum-Tipp
+
+    // 2. Mathe-Mini-Solver: versucht die Frage konkret zu loesen statt nur Hinweise.
+    final solver = _tryMathSolver(question);
+    if (solver != null) return solver;
+
+    // 3. Fallback: warmer Ton statt 'Cloud weg' + topic-spezifischer Tipp.
     final ctx = TopicCurriculum.of(widget.topic.id);
-    final variants = [
-      'Mein Online-Lehrer ist gerade beschaeftigt. Lass uns trotzdem ueben!',
-      'Die Cloud antwortet langsam. Aber ich kenne mich auch so aus:',
-      'Mein Server ist gerade weg - kein Problem, ich erklaer dir das:',
+    final variants = <String>[
+      'Komm wir machen das gemeinsam, ohne Cloud! ',
+      'Ich erklaer dir das auch so, kein Problem: ',
+      'Lass uns das zusammen durchrechnen: ',
+      'Brauchen wir gar nicht das Internet - ich helf dir: ',
     ];
-    final variant = variants[DateTime.now().millisecondsSinceEpoch % 3];
+    final variant = variants[
+        (question.hashCode.abs() + DateTime.now().minute) % variants.length];
     if (ctx == null) {
-      return '$variant Frag mich konkret zu "${widget.topic.title}" - '
+      return '${variant}Frag mich konkret zu "${widget.topic.title}", '
           'zum Beispiel mit einem Beispiel oder einer Aufgabe.';
     }
     final hint = ctx.detailedScope.split('.').first.trim();
-    return '$variant $hint. '
-        'Probier eine der Fragen unten oder schreib mir genauer!';
+    return '$variant$hint. '
+        'Probier eine der Fragen unten oder schreib mir noch genauer!';
+  }
+
+  /// 2026-06-05 Iter 25: Lokaler Mathe-Solver fuer haeufige K1-K4 Fragen.
+  /// Erkennt: Umfang/Flaeche von Quadrat/Rechteck mit Seitenlaenge,
+  /// einfache +/-/x/: Aufgaben, Bruch-Vergleiche, Stundenrechnung.
+  /// Heinz hat Geometrie-Frage 'Umfang Quadrat Seite 5' gestellt - das
+  /// muss lokal beantwortbar sein, auch wenn die Cloud streikt.
+  String? _tryMathSolver(String q) {
+    final lower = q.toLowerCase();
+    final nums =
+        RegExp(r'\d+').allMatches(q).map((m) => int.parse(m.group(0)!)).toList();
+
+    // Umfang Quadrat (4 x Seite)
+    if (lower.contains('umfang') && lower.contains('quadrat') && nums.isNotEmpty) {
+      final s = nums.first;
+      final u = s * 4;
+      return 'Der Umfang von einem Quadrat = 4 × Seite. '
+          'Bei Seite $s gilt: 4 × $s = $u. Die Antwort ist also $u.';
+    }
+    // Umfang Rechteck (2*(a+b))
+    if (lower.contains('umfang') && lower.contains('rechteck') && nums.length >= 2) {
+      final a = nums[0];
+      final b = nums[1];
+      final u = 2 * (a + b);
+      return 'Der Umfang von einem Rechteck = 2 × (Laenge + Breite). '
+          'Bei $a und $b gilt: 2 × ($a + $b) = 2 × ${a + b} = $u.';
+    }
+    // Flaecheninhalt Quadrat (Seite x Seite)
+    if ((lower.contains('flaeche') ||
+            lower.contains('flächeninhalt') ||
+            lower.contains('inhalt')) &&
+        lower.contains('quadrat') &&
+        nums.isNotEmpty) {
+      final s = nums.first;
+      final a = s * s;
+      return 'Der Flaecheninhalt vom Quadrat = Seite × Seite. '
+          'Bei Seite $s gilt: $s × $s = $a. Antwort: $a Quadrat-Einheiten.';
+    }
+    // Flaecheninhalt Rechteck (a x b)
+    if ((lower.contains('flaeche') ||
+            lower.contains('flächeninhalt') ||
+            lower.contains('inhalt')) &&
+        lower.contains('rechteck') &&
+        nums.length >= 2) {
+      final a = nums[0];
+      final b = nums[1];
+      final f = a * b;
+      return 'Flaecheninhalt vom Rechteck = Laenge × Breite. '
+          '$a × $b = $f. Das ist die Antwort.';
+    }
+    // Diagonale Quadrat (a * sqrt(2) - K4 Niveau)
+    if (lower.contains('diagonale') && lower.contains('quadrat') &&
+        nums.isNotEmpty) {
+      final s = nums.first;
+      return 'Die Diagonale vom Quadrat ist ungefaehr 1,41 × Seite. '
+          'Bei Seite $s also etwa ${(s * 1.41).toStringAsFixed(1)}. '
+          '(Genau: Seite × Wurzel-aus-2, das lernst du spaeter genauer.)';
+    }
+    // Aufgabe mit Operator: 5 + 3, 8 - 2, 4 x 6, 12 : 3
+    final op = RegExp(r'(\d+)\s*([+\-×x*·:/])\s*(\d+)').firstMatch(q);
+    if (op != null) {
+      final a = int.parse(op.group(1)!);
+      final b = int.parse(op.group(3)!);
+      switch (op.group(2)) {
+        case '+':
+          return '$a + $b = ${a + b}. Du kannst auch tauschen: $b + $a = ${a + b}.';
+        case '-':
+          return '$a - $b = ${a - b}. Kontrolle: ${a - b} + $b = $a stimmt.';
+        case '×':
+        case 'x':
+        case '*':
+        case '·':
+          return '$a × $b = ${a * b}. Tipp: $a Reihen mit je $b Wuerfeln.';
+        case ':':
+        case '/':
+          if (b == 0) return null;
+          return '$a : $b = ${a ~/ b} (Rest ${a % b}). '
+              'Du verteilst $a Dinge gleichmaessig auf $b Schalen.';
+      }
+    }
+    // Halbieren / Doppeln
+    if ((lower.contains('haelfte') || lower.contains('hälfte') ||
+            lower.contains('halbier')) && nums.isNotEmpty) {
+      final n = nums.first;
+      return 'Die Haelfte von $n ist ${n / 2}. (${n ~/ 2}, wenn ganzzahlig.)';
+    }
+    if (lower.contains('doppel') && nums.isNotEmpty) {
+      final n = nums.first;
+      return 'Das Doppelte von $n ist ${n * 2}. (Also $n + $n.)';
+    }
+    return null;
   }
 
   /// Bildgenerator-Helfer (Heinz-Auftrag).

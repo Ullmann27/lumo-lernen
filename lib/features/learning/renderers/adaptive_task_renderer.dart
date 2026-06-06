@@ -189,24 +189,167 @@ class _LocalHelpBanner extends StatelessWidget {
   }
 
   String _buildHint(TaskInstance task) {
+    // 2026-06-05 Iter 25: variantenreiche, aufgaben-spezifische Hilfe.
+    // Heinz' Feedback: 'Hilfen sind eintoenig'. Vorher fielen Deutsch und
+    // Sachkunde auf den selben Default-Satz zurueck. Jetzt:
+    // - parst aufgaben-konkrete Schluesselwoerter (Satz, Wort, Tier, Koerper, ...)
+    // - liefert 2-4 sinnvolle Varianten pro Kategorie
+    // - waehlt die Variante per Seed-Hash der Aufgabe (stabil aber abwechslungsreich)
     final prompt = task.prompt.toLowerCase();
     final numbers = _allInts(task.prompt);
+
     if (task.subject == LearningSubject.mathematik && numbers.length >= 2) {
       final a = numbers[0];
       final b = numbers[1];
       final op = _operationFromTask(task);
       if (op == 'subtraction') {
-        return 'Du startest mit $a. Dann nimmst du $b weg. Decke $b Dinge ab oder streiche sie. Was übrig bleibt, ist die Antwort.';
+        return _pick(task, <String>[
+          'Du startest mit $a. Dann nimmst du $b weg. Decke $b Dinge ab oder streiche sie. Was uebrig bleibt, ist die Antwort.',
+          'Stell dir $a Aepfel vor. Du gibst $b weg. Zaehl was uebrig bleibt.',
+          'Beginne bei $a auf dem Zahlenstrahl und huepfe $b Schritte zurueck.',
+        ]);
       }
-      return 'Zähle zuerst $a Dinge, dann noch $b dazu. Danach zählst du alle zusammen.';
+      if (op == 'multiplication' || prompt.contains('×') || prompt.contains('mal')) {
+        return _pick(task, <String>[
+          'Stell dir $a Gruppen mit je $b Dingen vor. Wie viele insgesamt?',
+          'Du kannst auch tauschen: $b × $a ist genau dasselbe.',
+          'Zerlege $a × $b in $a Reihen mit $b Wuerfeln.',
+        ]);
+      }
+      return _pick(task, <String>[
+        'Zaehle zuerst $a Dinge, dann noch $b dazu. Danach zaehlst du alle zusammen.',
+        'Erst $a, dann $b mehr - huepfe auf dem Zahlenstrahl weiter.',
+        'Vertausche zur Probe: $b + $a ist genau dasselbe wie $a + $b.',
+      ]);
+    }
+
+    // ── Deutsch / Lesen ──
+    if (prompt.contains('welcher satz ist richtig') || prompt.contains('satz')) {
+      return _pick(task, <String>[
+        'Ein Satz beginnt gross und endet mit einem Punkt. Pruef das bei jeder Antwort.',
+        'Welcher Satz klingt richtig wenn du ihn laut liest? Probiers!',
+        'Subjekt (wer?), dann das Verb (was tut er?) - die richtige Reihenfolge.',
+        'Sprich jeden Satz langsam vor dich hin. Welcher klingt schoen?',
+      ]);
+    }
+    if (prompt.contains('namenswort') || prompt.contains('hauptwort') || prompt.contains('nomen')) {
+      return _pick(task, <String>[
+        'Namenswoerter sind Dinge, Personen oder Tiere. Sie werden GROSS geschrieben.',
+        'Vor ein Namenswort kannst du der/die/das setzen. Probier es bei jeder Antwort!',
+        'Such das Wort das ein Ding meint - kein Tun, keine Eigenschaft.',
+      ]);
+    }
+    if (prompt.contains('tunwort') || prompt.contains('verb')) {
+      return _pick(task, <String>[
+        'Tunwoerter sagen was jemand MACHT: laufen, malen, lachen.',
+        'Pass auf das Wort auf das eine Bewegung oder Taetigkeit zeigt.',
+        'Welches Wort kannst du nach "Ich..." setzen? Das ist das Tunwort.',
+      ]);
+    }
+    if (prompt.contains('wiewort') || prompt.contains('adjektiv') || prompt.contains('eigenschaft')) {
+      return _pick(task, <String>[
+        'Wiewoerter beschreiben WIE etwas ist: gross, klein, schnell, leise.',
+        'Frag dich: "wie ist es?" - das passt nur auf das Wiewort.',
+        'Ein Wiewort sagt nicht WAS das ist, sondern WIE es ist.',
+      ]);
+    }
+    if (prompt.contains('reim') || prompt.contains('reimt sich')) {
+      return _pick(task, <String>[
+        'Reimwoerter klingen am Ende gleich: Hase - Nase, Ball - Fall.',
+        'Sprich beide Woerter laut. Hoeren sich die letzten Laute gleich an?',
+        'Nur die letzten Buchstaben muessen gleich klingen, nicht das ganze Wort.',
+      ]);
     }
     if (prompt.contains('silbe')) {
-      return 'Sprich das Wort langsam. Bei jeder Silbe klatschst du einmal mit.';
+      return _pick(task, <String>[
+        'Sprich das Wort langsam. Bei jeder Silbe klatschst du einmal mit.',
+        'Stell dir die Silben wie kleine Pakete vor: Ba-na-ne = 3 Pakete.',
+        'Lege fuer jede Silbe einen Finger hin. Zaehl am Ende deine Finger.',
+      ]);
     }
-    if (prompt.contains('anfangs') || prompt.contains('laut')) {
-      return 'Sprich das Wort ganz langsam und höre nur auf den ersten oder letzten Laut.';
+    if (prompt.contains('anfangs') || prompt.contains('beginnt')) {
+      return _pick(task, <String>[
+        'Sprich das Wort ganz langsam und hoere nur auf den ersten Laut.',
+        'Welcher Laut kommt zuerst raus wenn du den Mund auf-machst?',
+        'Sprich nur den ersten Buchstaben sehr lang: "Aaaa-pfel" - das A!',
+      ]);
     }
-    return 'Lies die Aufgabe noch einmal langsam. Suche zuerst die wichtigen Wörter und dann die passende Antwort.';
+    if (prompt.contains('endlaut') || prompt.contains('endet')) {
+      return _pick(task, <String>[
+        'Sprich das Wort langsam. Welcher Laut kommt ganz am Ende?',
+        'Sprich nur den letzten Buchstaben lang: "Bal-llll" - das L!',
+        'Hoer beim letzten Laut genau hin. Das ist die Antwort.',
+      ]);
+    }
+    if (prompt.contains('mehrzahl') || prompt.contains('plural')) {
+      return _pick(task, <String>[
+        '"Eins" oder "viele"? Bei viele endet das Wort oft auf -e, -en oder -s.',
+        'Setze "viele" davor und sprich das Wort - so klingt die Mehrzahl.',
+      ]);
+    }
+    if (prompt.contains('artikel') || prompt.contains('der die das')) {
+      return _pick(task, <String>[
+        'Frag dich: heisst es der, die oder das? Hoer auf den natuerlichen Klang.',
+        'Setze "ein" oder "eine" davor - das hilft beim Artikel finden.',
+      ]);
+    }
+
+    // ── Sachkunde ──
+    if (prompt.contains('koerper') ||
+        prompt.contains('hoer') ||
+        prompt.contains('seh') ||
+        prompt.contains('riech') ||
+        prompt.contains('schmeck')) {
+      return _pick(task, <String>[
+        'Greif dir an den Koerper-Teil mit dem du das machst - der gehoert dazu!',
+        'Womit machst DU das gerade? Spuer es selber - das ist die Antwort.',
+        'Schau dich kurz im Spiegel an. Welches Koerper-Teil passt zur Frage?',
+      ]);
+    }
+    if (prompt.contains('tier') || prompt.contains('hund') || prompt.contains('katze') ||
+        prompt.contains('vogel')) {
+      return _pick(task, <String>[
+        'Stell dir das Tier vor: wo lebt es? was frisst es? - das hilft.',
+        'Ueberleg was das Tier kann - schwimmen, fliegen, klettern?',
+      ]);
+    }
+    if (prompt.contains('wetter') || prompt.contains('regen') || prompt.contains('sonne') ||
+        prompt.contains('jahreszeit')) {
+      return _pick(task, <String>[
+        'Denk an die Jahreszeiten: Fruehling, Sommer, Herbst, Winter - was passt?',
+        'Schau aus dem Fenster: welche Wetter siehst du im Kopf?',
+      ]);
+    }
+    if (prompt.contains('verkehr') || prompt.contains('ampel') ||
+        prompt.contains('strasse') || prompt.contains('zebrastreifen')) {
+      return _pick(task, <String>[
+        'Bei der Ampel: rot = stehen, gruen = gehen. Was war die Frage?',
+        'Schau immer erst links, dann rechts, dann nochmal links bevor du gehst.',
+      ]);
+    }
+    if (prompt.contains('pflanz') || prompt.contains('blume') || prompt.contains('baum')) {
+      return _pick(task, <String>[
+        'Pflanzen brauchen Wasser, Sonne und Erde - das hilft beim Antworten.',
+        'Denk an die Teile der Pflanze: Wurzel, Stamm/Stiel, Blatt, Blueten.',
+      ]);
+    }
+
+    // ── Generischer Fallback aber variantenreich ──
+    return _pick(task, <String>[
+      'Lies die Frage nochmal langsam. Welche Antwort klingt richtig wenn du sie laut sagst?',
+      'Schau dir jede Antwort einzeln an. Welche kannst du auf jeden Fall ausschliessen?',
+      'Sprich die Frage und jede Antwort laut. Welche fuehlt sich am sichersten an?',
+      'Such die wichtigsten Woerter in der Frage. Was wird wirklich gefragt?',
+    ]);
+  }
+
+  /// Stabile aber variierende Auswahl: gleicher Task = gleicher Tipp,
+  /// neue Task = anderer Tipp. Vermeidet, dass dasselbe Kind staendig
+  /// die exakt selbe Hilfe sieht.
+  String _pick(TaskInstance task, List<String> variants) {
+    if (variants.isEmpty) return '';
+    final h = task.taskInstanceId.hashCode ^ task.prompt.hashCode;
+    return variants[h.abs() % variants.length];
   }
 }
 
