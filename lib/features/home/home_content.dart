@@ -10,6 +10,7 @@ import '../rewards/achievements_wall_screen.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
 import '../learning/lumo_rechentricks_poster_screen.dart';
+import '../games/lumo_kart/lumo_kart_screen.dart';
 import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../quiz/quiz_show_content.dart';
@@ -391,6 +392,26 @@ class _HomeContentState extends State<HomeContent> {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => LumoLiveProScreen(appState: widget.appState),
+              ),
+            ),
+          ),
+          // 2026-06-06 Iter 33: Lumo Kart Lern-Rennen.
+          // Top-Down-Racing-Game mit integriertem Math/Deutsch-Quiz an jedem
+          // Tor. Richtige Antwort = Boost, falsche = Bremse. Sterne sammeln,
+          // 3 Strecken pro Klasse (Wald/Berg/Stadt). Nutzt die 11 MB
+          // bisher brachliegende `assets/lumo_kart/` Asset-Foundation.
+          LumoSubjectTile(
+            title: 'Lumo Kart',
+            subtitle: 'Fahr-Rennen + Lernfragen an jedem Tor',
+            iconEmoji: '🏁',
+            illustrationEmoji: '🏎️',
+            accent: const Color(0xFFEA580C),
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => LumoKartScreen(appState: widget.appState),
               ),
             ),
           ),
