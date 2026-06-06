@@ -53,8 +53,22 @@ class LumoStreakWeekCalendar extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('🔥', style: TextStyle(fontSize: 26)),
-              const SizedBox(width: 8),
+              // 2026-06-06 Iter 29: bei langem Streak echter Lumo-Cheer
+              // statt nur Flammen-Emoji. Asset-Fehler -> Flammen-Fallback.
+              if (streakDays >= 5)
+                ClipOval(
+                  child: Image.asset(
+                    'assets/companion/lumo_cheer.png',
+                    width: 38,
+                    height: 38,
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, __, ___) =>
+                        const Text('🔥', style: TextStyle(fontSize: 26)),
+                  ),
+                )
+              else
+                const Text('🔥', style: TextStyle(fontSize: 26)),
+              const SizedBox(width: 10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
