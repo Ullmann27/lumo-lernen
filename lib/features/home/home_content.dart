@@ -11,6 +11,7 @@ import '../lumo3d/lumo3d_launcher.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
 import '../learning/lumo_rechentricks_poster_screen.dart';
 import '../games/lumo_kart/lumo_kart_screen.dart';
+import '../reading/lumo_reading_buddy_screen.dart';
 import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../quiz/quiz_show_content.dart';
@@ -392,6 +393,26 @@ class _HomeContentState extends State<HomeContent> {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => LumoLiveProScreen(appState: widget.appState),
+              ),
+            ),
+          ),
+          // 2026-06-06 Iter 34: Reading Buddy - Mit-Lese-Coach mit Voice.
+          // Tochter liest laut, Lumo hoert via Mikrofon mit. Wort fuer Wort
+          // farbig markiert (gruen = perfekt, gelb = naeher, grau = pending).
+          // Nutzt speech_to_text (de_AT) + Levenshtein-Vergleich.
+          LumoSubjectTile(
+            title: 'Reading Buddy',
+            subtitle: 'Lies laut - Lumo hoert dir zu',
+            iconEmoji: '📖',
+            illustrationEmoji: '🎤',
+            accent: const Color(0xFF6366F1),
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) =>
+                    LumoReadingBuddyScreen(appState: widget.appState),
               ),
             ),
           ),
