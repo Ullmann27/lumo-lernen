@@ -597,18 +597,35 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (isLumo) ...[
+            // 2026-06-06 Iter 29: echtes Lumo-Companion-PNG in der Chat-
+            // Avatar-Kugel statt nur Emoji. Bei Asset-Fehler Emoji-Fallback.
             Container(
-              width: 36,
-              height: 36,
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: widget.topic.gradient,
                 ),
                 shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: widget.topic.gradient[0].withOpacity(0.35),
+                    blurRadius: 8,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(4),
-                child: Center(child: Text("🦊", style: TextStyle(fontSize: 22))),
+              padding: const EdgeInsets.all(3),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/companion/lumo_idle.png',
+                  width: 34,
+                  height: 34,
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, __, ___) => const Center(
+                    child: Text("🦊", style: TextStyle(fontSize: 22)),
+                  ),
+                ),
               ),
             ),
             const SizedBox(width: 8),
