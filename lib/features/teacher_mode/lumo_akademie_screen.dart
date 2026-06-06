@@ -761,24 +761,41 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   Widget _buildTopicCard(LearningTopic t, LearningSubject s) {
+    // 2026-06-06 Iter 27: Topic-Cards in der Akademie aufgewertet.
+    // Heinz: 'Aufgaben und Akademie sehen nicht eindrucksvoll aus'. Vorher
+    // schlichte weisse Card mit grauem Border. Jetzt: Subject-Akzent als
+    // Top-Streifen, Hintergrund-Verlauf nach unten, kraeftigerer Glow.
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(20),
           onTap: () => _openTopic(t, s),
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: const Color(0xFFE5E7EB)),
+              gradient: LinearGradient(
+                colors: [
+                  Colors.white,
+                  Color.alphaBlend(
+                      t.gradient[0].withOpacity(0.06), Colors.white),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+              borderRadius: BorderRadius.circular(20),
+              border: Border(
+                top: BorderSide(color: t.gradient[0], width: 3),
+                left: BorderSide(color: t.gradient[0].withOpacity(0.15)),
+                right: BorderSide(color: t.gradient[0].withOpacity(0.15)),
+                bottom: BorderSide(color: t.gradient[0].withOpacity(0.15)),
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: t.gradient[0].withOpacity(0.08),
-                  blurRadius: 12,
-                  offset: const Offset(0, 4),
+                  color: t.gradient[0].withOpacity(0.16),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
                 ),
               ],
             ),
