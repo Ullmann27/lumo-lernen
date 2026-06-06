@@ -67,23 +67,60 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       );
     }
 
+    // 2026-06-06 Iter 26: Frage-Card mit Schulbuch-Akzent.
+    // Heinz: 'sieht nicht eindrucksvoll aus'. Vorher schlichte cream Card.
+    // Jetzt: linker Buch-Spine in Subject-Farbe (vertikaler 8px Streifen),
+    // Subject-Label als Chip-Pill statt nur Text, papier-Schatten unten.
+    final subjectAccent = switch (task.subject) {
+      LearningSubject.mathematik => const Color(0xFFEA580C),
+      LearningSubject.deutsch => const Color(0xFF6366F1),
+      LearningSubject.sachkunde => const Color(0xFF059669),
+    };
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(18),
-        decoration: lumoCard(
+        padding: const EdgeInsets.fromLTRB(22, 18, 18, 18),
+        decoration: BoxDecoration(
           gradient: const LinearGradient(
             colors: [Color(0xFFFFF8ED), Color(0xFFFFFEFA)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
+          borderRadius: BorderRadius.circular(20),
+          border: Border(
+            left: BorderSide(color: subjectAccent, width: 5),
+            top: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
+            right: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
+            bottom: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: subjectAccent.withOpacity(0.10),
+              blurRadius: 18,
+              offset: const Offset(0, 8),
+            ),
+          ],
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            _subjectLabel(task.subject),
-            style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: subjectAccent.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              border: Border.all(color: subjectAccent.withOpacity(0.35)),
+            ),
+            child: Text(
+              _subjectLabel(task.subject),
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 0.6,
+                color: subjectAccent,
+              ),
+            ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           Text(
             task.prompt,
             style: const TextStyle(
@@ -485,13 +522,44 @@ class _AnswerButtonState extends State<_AnswerButton>
     // Disabled-State (solved/isWrongPicked) ohne Tilt damit nur aktive Cards
     // reagieren.
     final tilted = !(widget.solved || widget.isWrongPicked);
+    // 2026-06-06 Iter 26: Premium-Look fuer Answer-Cards.
+    // Heinz: 'Aufgaben sehen nicht eindrucksvoll aus'. Vorher flache Pills mit
+    // 2px Border. Jetzt: weicher 3D-Schatten + Top-Shine (Glas-Effekt) +
+    // subtiler Hintergrund-Verlauf, abgerundete Card statt komplette Pill.
+    final shadowColor = widget.solved && widget.isCorrect
+        ? const Color(0xFF22C55E)
+        : widget.isWrongPicked
+            ? const Color(0xFFF43F5E)
+            : Colors.black;
     final card = AnimatedContainer(
-        duration: const Duration(milliseconds: 160),
+        duration: const Duration(milliseconds: 180),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
         decoration: BoxDecoration(
-          color: bg,
-          borderRadius: BorderRadius.circular(LumoRadius.pill),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              bg,
+              Color.alphaBlend(Colors.white.withOpacity(0.4), bg),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(LumoRadius.lg),
           border: Border.all(color: border, width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: shadowColor.withOpacity(
+                  widget.solved || widget.isWrongPicked ? 0.22 : 0.12),
+              blurRadius: 14,
+              offset: const Offset(0, 5),
+            ),
+            // Subtiler Inner-Glow oben (Glas-Shine) ueber zweite Box-Shadow
+            BoxShadow(
+              color: Colors.white.withOpacity(0.7),
+              blurRadius: 1,
+              offset: const Offset(0, 1),
+              spreadRadius: 0,
+            ),
+          ],
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           if (widget.solved && widget.isCorrect)
