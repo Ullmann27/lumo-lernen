@@ -8,6 +8,7 @@ import 'lumo_hero_header.dart';
 import 'lumo_level_strip.dart';
 import 'lumo_streak_calendar.dart';
 import 'lumo_subject_tile.dart';
+import 'lumo_tagestipp_card.dart';
 
 /// Premium-Fach-Dashboard nach Referenzbild "Deutsch mit Lumo".
 ///
@@ -95,6 +96,10 @@ class LumoSubjectDashboard extends StatelessWidget {
               dailyActivity: appState.learningProfileDailyMap(),
               streakDays: appState.learningStreakDays(),
             ),
+            const SizedBox(height: 10),
+            // 2026-06-06 Iter 30: Tagestipp-Karte mit Mentor-Bezug
+            // (Mildenberger-inspiriert).
+            const LumoTagestippCard(),
             const SizedBox(height: 10),
             LumoDailyMissionCard(
               title: dailyMissionTitle,
