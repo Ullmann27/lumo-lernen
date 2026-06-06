@@ -11,6 +11,7 @@ import '../lumo3d/lumo3d_launcher.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
 import '../learning/lumo_rechentricks_poster_screen.dart';
 import '../games/lumo_kart/lumo_kart_screen.dart';
+import '../photo_lesson/lumo_photo_lesson_screen.dart';
 import '../reading/lumo_reading_buddy_screen.dart';
 import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
@@ -393,6 +394,24 @@ class _HomeContentState extends State<HomeContent> {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => LumoLiveProScreen(appState: widget.appState),
+              ),
+            ),
+          ),
+          // 2026-06-06 Iter 35: Foto-Lektion. Tochter macht Foto vom
+          // Heft -> OCR erkennt Fach + Thema -> 5 Übungen generieren.
+          LumoSubjectTile(
+            title: 'Foto-Lektion',
+            subtitle: 'Foto vom Heft → 5 Übungen',
+            iconEmoji: '📸',
+            illustrationEmoji: '✏️',
+            accent: const Color(0xFF22C55E),
+            level: 1,
+            starsCollected: 0,
+            starsTotal: 0,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) =>
+                    LumoPhotoLessonScreen(appState: widget.appState),
               ),
             ),
           ),
