@@ -104,6 +104,120 @@ jobs:
             if ! grep -q "EnableImpeller" "$MANIFEST"; then
               sed -i 's|</application>|    <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="true"/>\n    </application>|' "$MANIFEST"
             fi
+            # Heinz 2026-06-06: Ein-Klick-Auto-Update. Wir brauchen
+            # REQUEST_INSTALL_PACKAGES um den System-Installer ohne
+            # Browser-Umweg zu starten. Plus FileProvider damit die
+            # APK-URI auf Android 7+ teilbar ist (content:// statt file://).
+            if ! grep -q "REQUEST_INSTALL_PACKAGES" "$MANIFEST"; then
+              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>' "$MANIFEST"
+            fi
+            if ! grep -q "androidx.core.content.FileProvider" "$MANIFEST"; then
+              sed -i 's|</application>|    <provider\n        android:name="androidx.core.content.FileProvider"\n        android:authorities="${applicationId}.fileprovider"\n        android:exported="false"\n        android:grantUriPermissions="true">\n        <meta-data\n            android:name="android.support.FILE_PROVIDER_PATHS"\n            android:resource="@xml/lumo_file_paths"/>\n    </provider>\n    </application>|' "$MANIFEST"
+            fi
+          fi
+
+          # 2026-06-06: FileProvider braucht eine Pfad-Whitelist. Erzeugen.
+          mkdir -p android/app/src/main/res/xml
+          cat > android/app/src/main/res/xml/lumo_file_paths.xml << 'PATHS'
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <cache-path name="lumo_cache" path="."/>
+    <external-cache-path name="lumo_ext_cache" path="."/>
+    <files-path name="lumo_files" path="."/>
+</paths>
+PATHS
+
+          # 2026-06-06: MainActivity.kt mit MethodChannel-Bridge fuer Auto-Install.
+          # flutter create hat eine minimale MainActivity erzeugt - wir
+          # ueberschreiben sie mit einer Version die unsere Installer-
+          # Methoden via MethodChannel('lumo_lernen/installer') anbietet.
+          KOTLIN_DIR="android/app/src/main/kotlin/dev/ullmann/lumo"
+          if [ -d "$KOTLIN_DIR" ]; then
+            cat > "$KOTLIN_DIR/MainActivity.kt" << 'MAIN_ACTIVITY'
+package dev.ullmann.lumo
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
+import androidx.core.content.FileProvider
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.MethodChannel
+import java.io.File
+
+class MainActivity : FlutterActivity() {
+    private val installerChannel = "lumo_lernen/installer"
+
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        MethodChannel(
+            flutterEngine.dartExecutor.binaryMessenger,
+            installerChannel
+        ).setMethodCallHandler { call, result ->
+            when (call.method) {
+                "canInstall" -> {
+                    val allowed = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        packageManager.canRequestPackageInstalls()
+                    } else {
+                        true
+                    }
+                    result.success(allowed)
+                }
+                "requestInstallPermission" -> {
+                    try {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            val intent = Intent(
+                                Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
+                                Uri.parse("package:" + packageName)
+                            )
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            result.success(true)
+                        } else {
+                            result.success(true)
+                        }
+                    } catch (e: Exception) {
+                        result.success(false)
+                    }
+                }
+                "install" -> {
+                    val path = call.argument<String>("path")
+                    if (path.isNullOrEmpty()) {
+                        result.success(false)
+                        return@setMethodCallHandler
+                    }
+                    try {
+                        val file = File(path)
+                        if (!file.exists()) {
+                            result.success(false)
+                            return@setMethodCallHandler
+                        }
+                        val uri = FileProvider.getUriForFile(
+                            this,
+                            packageName + ".fileprovider",
+                            file
+                        )
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.setDataAndType(uri, "application/vnd.android.package-archive")
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        startActivity(intent)
+                        result.success(true)
+                    } catch (e: Exception) {
+                        result.success(false)
+                    }
+                }
+                else -> result.notImplemented()
+            }
+        }
+    }
+}
+MAIN_ACTIVITY
+            echo "MainActivity.kt mit Installer-MethodChannel installiert."
+          else
+            echo "WARN: Kotlin-Verzeichnis nicht gefunden: $KOTLIN_DIR"
+            find android/app/src/main/kotlin -type d | head -5
           fi
 
       - name: Patch minSdk to 21

@@ -43,6 +43,9 @@ class _SettingsContentState extends State<SettingsContent> {
   AppUpdateInfo? _updateInfo;
   bool _checkingUpdate = false;
   String? _updateError;
+  // 2026-06-06: Auto-Install-Status fuer Heinz' Ein-Klick-Update.
+  bool _installing = false;
+  double _installProgress = 0;
 
   // KI-Eltern-Berater: spricht mit Eltern, NICHT mit Kind.
   // Mehr fachlich, mit paedagogischen Vorschlaegen.
@@ -257,21 +260,54 @@ class _SettingsContentState extends State<SettingsContent> {
         _updateInfo = info;
         _updateError = info.error;
       });
-      // Direkt weiter zum Download wenn ein Update verfuegbar ist.
+      // Direkt weiter zum Auto-Install wenn ein Update verfuegbar ist.
+      // 2026-06-06 Heinz: 'einfach Update-Button druecken, alles automatisch'.
+      // Statt Browser-Launch jetzt: APK direkt in den App-Cache laden, dann
+      // ueber MethodChannel den System-Installer aufrufen. Bei Berechtigungs-
+      // fehler oeffnet sich automatisch der Einstellungs-Dialog.
       if (info.available && info.hasUsableDownload) {
-        final ok = await service.openUpdate(info);
+        setState(() {
+          _installing = true;
+          _installProgress = 0;
+        });
+        final result = await service.downloadAndInstall(
+          info,
+          onProgress: (p) {
+            if (!mounted) return;
+            setState(() => _installProgress = p);
+          },
+        );
         if (!mounted) return;
-        if (!ok) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Download konnte nicht geoeffnet werden.')),
-          );
-        } else {
+        setState(() {
+          _installing = false;
+        });
+        if (result.success) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(
-                  'Lade Build ${info.latestBuildNumber}… danach auf die '
-                  'Download-Benachrichtigung tippen zum Installieren.'),
-              duration: const Duration(seconds: 6),
+              content: Text('Build ${info.latestBuildNumber} geladen - jetzt '
+                  'auf Installieren tippen!'),
+              duration: const Duration(seconds: 5),
+              backgroundColor: const Color(0xFF22C55E),
+            ),
+          );
+        } else if (result.needsPermission) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(result.error ??
+                  'Bitte in den Einstellungen "Apps installieren" erlauben.'),
+              duration: const Duration(seconds: 8),
+            ),
+          );
+        } else {
+          // Fallback: Browser-Download wenn Auto-Install nicht ging.
+          final ok = await service.openUpdate(info);
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(ok
+                  ? 'Auto-Install ging nicht. Browser-Download gestartet - bitte Notification antippen.'
+                  : 'Update konnte nicht gestartet werden: ${result.error ?? "unbekannter Fehler"}'),
+              duration: const Duration(seconds: 8),
             ),
           );
         }

@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'app_install_helper.dart';
 
 class AppUpdateInfo {
   const AppUpdateInfo({
@@ -187,4 +190,160 @@ class AppUpdateService {
     if (url.toString().isEmpty || _trustedUri(url.toString()) == null) return false;
     return launchUrl(url, mode: LaunchMode.externalApplication);
   }
+
+  /// 2026-06-06 Heinz: 'einfach Update-Button druecken, alles automatisch'.
+  /// Diese Methode laedt die APK direkt in den App-Cache und startet
+  /// dann den System-Installer ueber den AppInstallHelper (MethodChannel
+  /// zu Kotlin/PackageInstaller). Liefert Status + ggf. Fehlertext.
+  ///
+  /// Reihenfolge:
+  ///   1. Berechtigungs-Check ('REQUEST_INSTALL_PACKAGES')
+  ///   2. APK-URL whitelisten (gleiche Logik wie checkLatest)
+  ///   3. Download mit Progress-Callback in den App-Cache
+  ///   4. install() ruft Android-Installer auf
+  Future<AppUpdateDownloadResult> downloadAndInstall(
+    AppUpdateInfo info, {
+    ValueChanged<double>? onProgress,
+    AppInstallHelper installer = const AppInstallHelper(),
+  }) async {
+    if (!Platform.isAndroid) {
+      return const AppUpdateDownloadResult(
+        success: false,
+        error:
+            'Update wird nur auf Android unterstuetzt - oeffne den Link im Browser.',
+      );
+    }
+    if (!info.hasUsableDownload) {
+      return const AppUpdateDownloadResult(
+        success: false,
+        error: 'Keine gueltige APK-URL im Release.',
+      );
+    }
+    if (_trustedUri(info.apkUrl.toString()) == null) {
+      return const AppUpdateDownloadResult(
+        success: false,
+        error: 'Download-URL ist nicht aus dem offiziellen GitHub-Repo.',
+      );
+    }
+    final canInstall = await installer.canInstall();
+    if (!canInstall) {
+      await installer.requestInstallPermission();
+      return const AppUpdateDownloadResult(
+        success: false,
+        error: 'Bitte "Aus dieser Quelle installieren" fuer Lumo Lernen freigeben.',
+        needsPermission: true,
+      );
+    }
+    final tempPath = await _downloadApk(info.apkUrl, onProgress: onProgress);
+    if (tempPath == null) {
+      return const AppUpdateDownloadResult(
+        success: false,
+        error: 'Download der neuen Version fehlgeschlagen.',
+      );
+    }
+    final started = await installer.install(tempPath);
+    if (!started) {
+      return AppUpdateDownloadResult(
+        success: false,
+        error: 'Installer konnte nicht gestartet werden (Datei: $tempPath).',
+      );
+    }
+    return const AppUpdateDownloadResult(success: true);
+  }
+
+  /// Laedt die APK in den Anwendungs-Cache. Manuelles Redirect-Following
+  /// mit Whitelist (gleiche Logik wie checkLatest), plus ProgressCallback
+  /// alle ~5% damit die UI einen Fortschritts-Indikator zeigen kann.
+  Future<String?> _downloadApk(
+    Uri apkUrl, {
+    ValueChanged<double>? onProgress,
+  }) async {
+    final client = HttpClient()
+      ..connectionTimeout = const Duration(seconds: 12);
+    client.autoUncompress = true;
+    try {
+      Uri current = apkUrl;
+      HttpClientResponse response = await _openWithRedirects(client, current);
+
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        await response.drain<void>();
+        return null;
+      }
+
+      // Anwendungs-Cache erfragen (ohne path_provider Plugin direkt
+      // ueber Platform.environment - das ist nicht zuverlaessig auf
+      // Android. Stattdessen: Directory.systemTemp - reicht fuer die
+      // einmalige APK-Datei, wird vom System aufgeraeumt).
+      final tmpDir = Directory.systemTemp;
+      final apkFile = File(
+          '${tmpDir.path}/lumo-lernen-update-${DateTime.now().millisecondsSinceEpoch}.apk');
+      final sink = apkFile.openWrite();
+      final total = response.contentLength;
+      var received = 0;
+      var lastReported = -0.06;
+      await for (final chunk in response) {
+        sink.add(chunk);
+        received += chunk.length;
+        if (total > 0 && onProgress != null) {
+          final pct = received / total;
+          if (pct - lastReported >= 0.05) {
+            onProgress(pct.clamp(0.0, 1.0));
+            lastReported = pct;
+          }
+        }
+      }
+      await sink.flush();
+      await sink.close();
+      if (onProgress != null) onProgress(1.0);
+      return apkFile.path;
+    } catch (e) {
+      return null;
+    } finally {
+      client.close(force: true);
+    }
+  }
+
+  Future<HttpClientResponse> _openWithRedirects(
+      HttpClient client, Uri start) async {
+    Uri current = start;
+    var redirectCount = 0;
+    while (true) {
+      final request = await client.getUrl(current);
+      request.followRedirects = false;
+      request.headers
+          .set(HttpHeaders.userAgentHeader, 'Lumo-Lernen-App-Update-Checker');
+      final response =
+          await request.close().timeout(const Duration(seconds: 30));
+      if (!response.isRedirect || redirectCount >= 4) {
+        return response;
+      }
+      final location = response.headers.value(HttpHeaders.locationHeader);
+      if (location == null) return response;
+      await response.drain<void>();
+      final next = _trustedUri(location);
+      if (next == null) {
+        // Unsicheres Redirect - abbrechen
+        final req = await client.getUrl(current);
+        req.followRedirects = false;
+        return req.close();
+      }
+      current = next;
+      redirectCount++;
+    }
+  }
 }
+
+/// Ergebnis-Struktur fuer downloadAndInstall().
+class AppUpdateDownloadResult {
+  const AppUpdateDownloadResult({
+    required this.success,
+    this.error,
+    this.needsPermission = false,
+  });
+  final bool success;
+  final String? error;
+  /// True wenn der User erst die Berechtigung 'Apps installieren'
+  /// in den System-Einstellungen aktivieren muss.
+  final bool needsPermission;
+}
+
