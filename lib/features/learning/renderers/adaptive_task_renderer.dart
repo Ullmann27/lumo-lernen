@@ -221,22 +221,35 @@ class _LocalHelpBanner extends StatelessWidget {
       ),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
-          width: 44,
-          height: 44,
+          width: 52,
+          height: 52,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
-            border: Border.all(color: const Color(0xFFFB923C), width: 1.6),
+            border: Border.all(color: const Color(0xFFFB923C), width: 1.8),
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFFFB923C).withOpacity(0.35),
-                blurRadius: 8,
+                blurRadius: 10,
                 offset: const Offset(0, 3),
               ),
             ],
           ),
-          child: const Text('🦊', style: TextStyle(fontSize: 24)),
+          // 2026-06-06 Iter 28: Echte Lumo-Pose statt nur Emoji.
+          // Heinz' Wunsch: 'mehr Professionalitaet'. Wir nutzen den
+          // vorhandenen Companion-PNG (lumo_think) - faellt bei
+          // Asset-Fehler auf Emoji zurueck.
+          child: ClipOval(
+            child: Image.asset(
+              'assets/companion/lumo_think.png',
+              width: 44,
+              height: 44,
+              fit: BoxFit.contain,
+              errorBuilder: (_, __, ___) =>
+                  const Text('🦊', style: TextStyle(fontSize: 26)),
+            ),
+          ),
         ),
         const SizedBox(width: 11),
         Expanded(
