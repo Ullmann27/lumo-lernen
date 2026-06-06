@@ -45,10 +45,12 @@ class RechentricksMentorCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // 2026-06-06 Iter 31: Premium-Avatar-PNG mit Emoji-Fallback.
               Container(
                 width: 56,
                 height: 56,
                 alignment: Alignment.center,
+                padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
@@ -61,7 +63,21 @@ class RechentricksMentorCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Text(m.emoji, style: const TextStyle(fontSize: 32)),
+                child: ClipOval(
+                  child: m.avatarAsset != null
+                      ? Image.asset(
+                          m.avatarAsset!,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => Center(
+                            child: Text(m.emoji,
+                                style: const TextStyle(fontSize: 32)),
+                          ),
+                        )
+                      : Center(
+                          child: Text(m.emoji,
+                              style: const TextStyle(fontSize: 32)),
+                        ),
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(

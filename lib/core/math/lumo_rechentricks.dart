@@ -49,6 +49,7 @@ class RechentricksMentor {
     required this.emoji,
     required this.catchphrase,
     required this.color,
+    this.avatarAsset,
   });
 
   final RechentricksKind kind;
@@ -56,7 +57,19 @@ class RechentricksMentor {
   final String emoji;
   final String catchphrase;
   final int color; // RGB hex
+  /// 2026-06-06 Iter 31: Optionaler Premium-PNG-Avatar.
+  /// Wenn null oder Asset-Fehler, faellt der Renderer auf Emoji zurueck.
+  final String? avatarAsset;
 }
+
+// 2026-06-06 Iter 31: Premium-Avatare aus assets/lumo_cards/avatars/.
+// Heinz' Wunsch nach 'mehr Professionalitaet' - die PNGs lagen brach.
+const String _avatarEmma = 'assets/lumo_cards/avatars/avatar_player_red_girl.png';
+const String _avatarMax = 'assets/lumo_cards/avatars/avatar_player_blue_boy.png';
+const String _avatarHanna = 'assets/lumo_cards/avatars/avatar_player_yellow_girl_headphones.png';
+const String _avatarTim = 'assets/lumo_cards/avatars/avatar_player_green_boy_glasses.png';
+// Mira ist lila - passt zur Luna-Owl
+const String _avatarMira = 'assets/lumo_cards/avatars/bot_luna_owl.png';
 
 const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
   RechentricksMentor(
@@ -65,6 +78,7 @@ const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
     emoji: '🧒',
     catchphrase: 'Ich tausche die Zahlen!',
     color: 0xFFEC4899,
+    avatarAsset: _avatarEmma,
   ),
   RechentricksMentor(
     kind: RechentricksKind.neighborTask,
@@ -72,6 +86,7 @@ const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
     emoji: '👦',
     catchphrase: 'Ich suche eine Nachbaraufgabe!',
     color: 0xFF60A5FA,
+    avatarAsset: _avatarMax,
   ),
   RechentricksMentor(
     kind: RechentricksKind.inverseCheck,
@@ -79,6 +94,7 @@ const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
     emoji: '👧',
     catchphrase: 'Ich rechne die Umkehraufgabe zur Kontrolle!',
     color: 0xFFF59E0B,
+    avatarAsset: _avatarHanna,
   ),
   RechentricksMentor(
     kind: RechentricksKind.smallFirst,
@@ -86,6 +102,7 @@ const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
     emoji: '🧑',
     catchphrase: 'Ich rechne zuerst die kleine Aufgabe!',
     color: 0xFF22C55E,
+    avatarAsset: _avatarTim,
   ),
   RechentricksMentor(
     kind: RechentricksKind.bridgeTen,
@@ -93,6 +110,7 @@ const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
     emoji: '👩',
     catchphrase: 'Ich rechne bis zur 10 und dann weiter!',
     color: 0xFFA855F7,
+    avatarAsset: _avatarMira,
   ),
   RechentricksMentor(
     kind: RechentricksKind.stepByStep,
@@ -100,6 +118,7 @@ const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
     emoji: '🧒',
     catchphrase: 'Ich rechne in Schritten!',
     color: 0xFFEC4899,
+    avatarAsset: _avatarEmma,
   ),
   RechentricksMentor(
     kind: RechentricksKind.decomposeBoth,
@@ -107,6 +126,7 @@ const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
     emoji: '👦',
     catchphrase: 'Ich zerlege beide Zahlen!',
     color: 0xFF60A5FA,
+    avatarAsset: _avatarMax,
   ),
   RechentricksMentor(
     kind: RechentricksKind.simplify,
@@ -114,6 +134,7 @@ const List<RechentricksMentor> kAllRechentricksMentors = <RechentricksMentor>[
     emoji: '👧',
     catchphrase: 'Ich vereinfache die Aufgabe!',
     color: 0xFFF59E0B,
+    avatarAsset: _avatarHanna,
   ),
 ];
 
