@@ -2453,9 +2453,13 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
             ),
           ),
           // Lumo-Maskottchen rechts unten als grosser Eyecatcher
+          // 2026-06-06 Iter 28: echtes Companion-PNG statt Emoji (laesst sich
+          // mit korrektem Subject-Color-Glow umranden + wirkt premium).
+          // Bei richtig: lumo_cheer, sonst lumo_idle. Bei Asset-Fehler:
+          // Emoji-Fallback.
           Positioned(
-            right: -4,
-            bottom: -10,
+            right: -6,
+            bottom: -12,
             child: AnimatedBuilder(
               animation: _pulseCtrl,
               builder: (_, __) {
@@ -2463,20 +2467,42 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
                     (widget.lastWasCorrect == true)
                         ? (1 - _pulseCtrl.value).clamp(0.0, 1.0)
                         : 0.0;
+                final asset = widget.lastWasCorrect == true
+                    ? 'assets/companion/lumo_cheer.png'
+                    : 'assets/companion/lumo_idle.png';
                 return Transform.rotate(
                   angle: wiggle * 0.15,
                   child: Opacity(
-                    opacity: 0.42,
-                    child: Text(
-                      '🦊',
-                      style: TextStyle(
-                        fontSize: 88,
-                        shadows: [
-                          Shadow(
-                            color: cols.primary.withOpacity(0.5),
-                            blurRadius: 14,
+                    opacity: 0.55,
+                    child: Container(
+                      width: 96,
+                      height: 96,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: cols.primary.withOpacity(0.45),
+                            blurRadius: 22,
+                            spreadRadius: 2,
                           ),
                         ],
+                      ),
+                      child: Image.asset(
+                        asset,
+                        width: 96,
+                        height: 96,
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, __, ___) => Text(
+                          '🦊',
+                          style: TextStyle(
+                            fontSize: 88,
+                            shadows: [
+                              Shadow(
+                                color: cols.primary.withOpacity(0.5),
+                                blurRadius: 14,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
