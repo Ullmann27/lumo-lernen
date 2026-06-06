@@ -6,6 +6,7 @@ import 'lumo_daily_mission_card.dart';
 import 'lumo_encourage_card.dart';
 import 'lumo_hero_header.dart';
 import 'lumo_level_strip.dart';
+import 'lumo_streak_calendar.dart';
 import 'lumo_subject_tile.dart';
 
 /// Premium-Fach-Dashboard nach Referenzbild "Deutsch mit Lumo".
@@ -85,6 +86,14 @@ class LumoSubjectDashboard extends StatelessWidget {
               currentXp: st.xp % 1200,
               xpForNextLevel: 1200,
               accent: headerAccent,
+            ),
+            const SizedBox(height: 10),
+            // 2026-06-06 Iter 27: Streak-Wochen-Kalender als Eyecatcher.
+            // Heinz' Wunsch: 'visuell starke Verbesserungen'. Zeigt Tochter
+            // sofort die Aktivitaet der Woche + aktuellen Streak.
+            LumoStreakWeekCalendar(
+              dailyActivity: appState.learningProfileDailyMap(),
+              streakDays: appState.learningStreakDays(),
             ),
             const SizedBox(height: 10),
             LumoDailyMissionCard(
