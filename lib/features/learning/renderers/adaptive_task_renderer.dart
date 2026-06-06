@@ -67,23 +67,60 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       );
     }
 
+    // 2026-06-06 Iter 26: Frage-Card mit Schulbuch-Akzent.
+    // Heinz: 'sieht nicht eindrucksvoll aus'. Vorher schlichte cream Card.
+    // Jetzt: linker Buch-Spine in Subject-Farbe (vertikaler 8px Streifen),
+    // Subject-Label als Chip-Pill statt nur Text, papier-Schatten unten.
+    final subjectAccent = switch (task.subject) {
+      LearningSubject.mathematik => const Color(0xFFEA580C),
+      LearningSubject.deutsch => const Color(0xFF6366F1),
+      LearningSubject.sachkunde => const Color(0xFF059669),
+    };
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(18),
-        decoration: lumoCard(
+        padding: const EdgeInsets.fromLTRB(22, 18, 18, 18),
+        decoration: BoxDecoration(
           gradient: const LinearGradient(
             colors: [Color(0xFFFFF8ED), Color(0xFFFFFEFA)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
+          borderRadius: BorderRadius.circular(20),
+          border: Border(
+            left: BorderSide(color: subjectAccent, width: 5),
+            top: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
+            right: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
+            bottom: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: subjectAccent.withOpacity(0.10),
+              blurRadius: 18,
+              offset: const Offset(0, 8),
+            ),
+          ],
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            _subjectLabel(task.subject),
-            style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: subjectAccent.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(LumoRadius.pill),
+              border: Border.all(color: subjectAccent.withOpacity(0.35)),
+            ),
+            child: Text(
+              _subjectLabel(task.subject),
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 0.6,
+                color: subjectAccent,
+              ),
+            ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           Text(
             task.prompt,
             style: const TextStyle(
@@ -160,27 +197,85 @@ class _LocalHelpBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hint = _buildHint(task);
+    // 2026-06-06 Iter 27: Premium-Look fuer Lumo-Hilfe-Banner.
+    // Vorher: flacher gelber Container. Jetzt: Gradient + Glow + groesserer
+    // Mascot-Avatar im farbigen Kreis. Header in Pill-Form abgesetzt.
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF7D6),
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFFBEB), Color(0xFFFEF3C7)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.35)),
+        border: Border.all(color: const Color(0xFFFCD34D), width: 1.4),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFFCD34D).withOpacity(0.25),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
+        ],
       ),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('🦊', style: TextStyle(fontSize: 24)),
-        const SizedBox(width: 10),
+        Container(
+          width: 44,
+          height: 44,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            border: Border.all(color: const Color(0xFFFB923C), width: 1.6),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFFB923C).withOpacity(0.35),
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: const Text('🦊', style: TextStyle(fontSize: 24)),
+        ),
+        const SizedBox(width: 11),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              wrongCount == 2 ? 'Lumo hilft jetzt Schritt für Schritt' : 'Noch ein Tipp von Lumo',
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F)),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFB923C),
+                borderRadius: BorderRadius.circular(LumoRadius.pill),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFFB923C).withOpacity(0.35),
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                wrongCount == 2
+                    ? '💡 Lumo hilft Schritt fuer Schritt'
+                    : '💡 Noch ein Tipp von Lumo',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+              ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 8),
             Text(
               hint,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.3),
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13.5,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF78350F),
+                height: 1.35,
+              ),
             ),
           ]),
         ),
@@ -189,24 +284,167 @@ class _LocalHelpBanner extends StatelessWidget {
   }
 
   String _buildHint(TaskInstance task) {
+    // 2026-06-05 Iter 25: variantenreiche, aufgaben-spezifische Hilfe.
+    // Heinz' Feedback: 'Hilfen sind eintoenig'. Vorher fielen Deutsch und
+    // Sachkunde auf den selben Default-Satz zurueck. Jetzt:
+    // - parst aufgaben-konkrete Schluesselwoerter (Satz, Wort, Tier, Koerper, ...)
+    // - liefert 2-4 sinnvolle Varianten pro Kategorie
+    // - waehlt die Variante per Seed-Hash der Aufgabe (stabil aber abwechslungsreich)
     final prompt = task.prompt.toLowerCase();
     final numbers = _allInts(task.prompt);
+
     if (task.subject == LearningSubject.mathematik && numbers.length >= 2) {
       final a = numbers[0];
       final b = numbers[1];
       final op = _operationFromTask(task);
       if (op == 'subtraction') {
-        return 'Du startest mit $a. Dann nimmst du $b weg. Decke $b Dinge ab oder streiche sie. Was übrig bleibt, ist die Antwort.';
+        return _pick(task, <String>[
+          'Du startest mit $a. Dann nimmst du $b weg. Decke $b Dinge ab oder streiche sie. Was uebrig bleibt, ist die Antwort.',
+          'Stell dir $a Aepfel vor. Du gibst $b weg. Zaehl was uebrig bleibt.',
+          'Beginne bei $a auf dem Zahlenstrahl und huepfe $b Schritte zurueck.',
+        ]);
       }
-      return 'Zähle zuerst $a Dinge, dann noch $b dazu. Danach zählst du alle zusammen.';
+      if (op == 'multiplication' || prompt.contains('×') || prompt.contains('mal')) {
+        return _pick(task, <String>[
+          'Stell dir $a Gruppen mit je $b Dingen vor. Wie viele insgesamt?',
+          'Du kannst auch tauschen: $b × $a ist genau dasselbe.',
+          'Zerlege $a × $b in $a Reihen mit $b Wuerfeln.',
+        ]);
+      }
+      return _pick(task, <String>[
+        'Zaehle zuerst $a Dinge, dann noch $b dazu. Danach zaehlst du alle zusammen.',
+        'Erst $a, dann $b mehr - huepfe auf dem Zahlenstrahl weiter.',
+        'Vertausche zur Probe: $b + $a ist genau dasselbe wie $a + $b.',
+      ]);
+    }
+
+    // ── Deutsch / Lesen ──
+    if (prompt.contains('welcher satz ist richtig') || prompt.contains('satz')) {
+      return _pick(task, <String>[
+        'Ein Satz beginnt gross und endet mit einem Punkt. Pruef das bei jeder Antwort.',
+        'Welcher Satz klingt richtig wenn du ihn laut liest? Probiers!',
+        'Subjekt (wer?), dann das Verb (was tut er?) - die richtige Reihenfolge.',
+        'Sprich jeden Satz langsam vor dich hin. Welcher klingt schoen?',
+      ]);
+    }
+    if (prompt.contains('namenswort') || prompt.contains('hauptwort') || prompt.contains('nomen')) {
+      return _pick(task, <String>[
+        'Namenswoerter sind Dinge, Personen oder Tiere. Sie werden GROSS geschrieben.',
+        'Vor ein Namenswort kannst du der/die/das setzen. Probier es bei jeder Antwort!',
+        'Such das Wort das ein Ding meint - kein Tun, keine Eigenschaft.',
+      ]);
+    }
+    if (prompt.contains('tunwort') || prompt.contains('verb')) {
+      return _pick(task, <String>[
+        'Tunwoerter sagen was jemand MACHT: laufen, malen, lachen.',
+        'Pass auf das Wort auf das eine Bewegung oder Taetigkeit zeigt.',
+        'Welches Wort kannst du nach "Ich..." setzen? Das ist das Tunwort.',
+      ]);
+    }
+    if (prompt.contains('wiewort') || prompt.contains('adjektiv') || prompt.contains('eigenschaft')) {
+      return _pick(task, <String>[
+        'Wiewoerter beschreiben WIE etwas ist: gross, klein, schnell, leise.',
+        'Frag dich: "wie ist es?" - das passt nur auf das Wiewort.',
+        'Ein Wiewort sagt nicht WAS das ist, sondern WIE es ist.',
+      ]);
+    }
+    if (prompt.contains('reim') || prompt.contains('reimt sich')) {
+      return _pick(task, <String>[
+        'Reimwoerter klingen am Ende gleich: Hase - Nase, Ball - Fall.',
+        'Sprich beide Woerter laut. Hoeren sich die letzten Laute gleich an?',
+        'Nur die letzten Buchstaben muessen gleich klingen, nicht das ganze Wort.',
+      ]);
     }
     if (prompt.contains('silbe')) {
-      return 'Sprich das Wort langsam. Bei jeder Silbe klatschst du einmal mit.';
+      return _pick(task, <String>[
+        'Sprich das Wort langsam. Bei jeder Silbe klatschst du einmal mit.',
+        'Stell dir die Silben wie kleine Pakete vor: Ba-na-ne = 3 Pakete.',
+        'Lege fuer jede Silbe einen Finger hin. Zaehl am Ende deine Finger.',
+      ]);
     }
-    if (prompt.contains('anfangs') || prompt.contains('laut')) {
-      return 'Sprich das Wort ganz langsam und höre nur auf den ersten oder letzten Laut.';
+    if (prompt.contains('anfangs') || prompt.contains('beginnt')) {
+      return _pick(task, <String>[
+        'Sprich das Wort ganz langsam und hoere nur auf den ersten Laut.',
+        'Welcher Laut kommt zuerst raus wenn du den Mund auf-machst?',
+        'Sprich nur den ersten Buchstaben sehr lang: "Aaaa-pfel" - das A!',
+      ]);
     }
-    return 'Lies die Aufgabe noch einmal langsam. Suche zuerst die wichtigen Wörter und dann die passende Antwort.';
+    if (prompt.contains('endlaut') || prompt.contains('endet')) {
+      return _pick(task, <String>[
+        'Sprich das Wort langsam. Welcher Laut kommt ganz am Ende?',
+        'Sprich nur den letzten Buchstaben lang: "Bal-llll" - das L!',
+        'Hoer beim letzten Laut genau hin. Das ist die Antwort.',
+      ]);
+    }
+    if (prompt.contains('mehrzahl') || prompt.contains('plural')) {
+      return _pick(task, <String>[
+        '"Eins" oder "viele"? Bei viele endet das Wort oft auf -e, -en oder -s.',
+        'Setze "viele" davor und sprich das Wort - so klingt die Mehrzahl.',
+      ]);
+    }
+    if (prompt.contains('artikel') || prompt.contains('der die das')) {
+      return _pick(task, <String>[
+        'Frag dich: heisst es der, die oder das? Hoer auf den natuerlichen Klang.',
+        'Setze "ein" oder "eine" davor - das hilft beim Artikel finden.',
+      ]);
+    }
+
+    // ── Sachkunde ──
+    if (prompt.contains('koerper') ||
+        prompt.contains('hoer') ||
+        prompt.contains('seh') ||
+        prompt.contains('riech') ||
+        prompt.contains('schmeck')) {
+      return _pick(task, <String>[
+        'Greif dir an den Koerper-Teil mit dem du das machst - der gehoert dazu!',
+        'Womit machst DU das gerade? Spuer es selber - das ist die Antwort.',
+        'Schau dich kurz im Spiegel an. Welches Koerper-Teil passt zur Frage?',
+      ]);
+    }
+    if (prompt.contains('tier') || prompt.contains('hund') || prompt.contains('katze') ||
+        prompt.contains('vogel')) {
+      return _pick(task, <String>[
+        'Stell dir das Tier vor: wo lebt es? was frisst es? - das hilft.',
+        'Ueberleg was das Tier kann - schwimmen, fliegen, klettern?',
+      ]);
+    }
+    if (prompt.contains('wetter') || prompt.contains('regen') || prompt.contains('sonne') ||
+        prompt.contains('jahreszeit')) {
+      return _pick(task, <String>[
+        'Denk an die Jahreszeiten: Fruehling, Sommer, Herbst, Winter - was passt?',
+        'Schau aus dem Fenster: welche Wetter siehst du im Kopf?',
+      ]);
+    }
+    if (prompt.contains('verkehr') || prompt.contains('ampel') ||
+        prompt.contains('strasse') || prompt.contains('zebrastreifen')) {
+      return _pick(task, <String>[
+        'Bei der Ampel: rot = stehen, gruen = gehen. Was war die Frage?',
+        'Schau immer erst links, dann rechts, dann nochmal links bevor du gehst.',
+      ]);
+    }
+    if (prompt.contains('pflanz') || prompt.contains('blume') || prompt.contains('baum')) {
+      return _pick(task, <String>[
+        'Pflanzen brauchen Wasser, Sonne und Erde - das hilft beim Antworten.',
+        'Denk an die Teile der Pflanze: Wurzel, Stamm/Stiel, Blatt, Blueten.',
+      ]);
+    }
+
+    // ── Generischer Fallback aber variantenreich ──
+    return _pick(task, <String>[
+      'Lies die Frage nochmal langsam. Welche Antwort klingt richtig wenn du sie laut sagst?',
+      'Schau dir jede Antwort einzeln an. Welche kannst du auf jeden Fall ausschliessen?',
+      'Sprich die Frage und jede Antwort laut. Welche fuehlt sich am sichersten an?',
+      'Such die wichtigsten Woerter in der Frage. Was wird wirklich gefragt?',
+    ]);
+  }
+
+  /// Stabile aber variierende Auswahl: gleicher Task = gleicher Tipp,
+  /// neue Task = anderer Tipp. Vermeidet, dass dasselbe Kind staendig
+  /// die exakt selbe Hilfe sieht.
+  String _pick(TaskInstance task, List<String> variants) {
+    if (variants.isEmpty) return '';
+    final h = task.taskInstanceId.hashCode ^ task.prompt.hashCode;
+    return variants[h.abs() % variants.length];
   }
 }
 
@@ -342,13 +580,44 @@ class _AnswerButtonState extends State<_AnswerButton>
     // Disabled-State (solved/isWrongPicked) ohne Tilt damit nur aktive Cards
     // reagieren.
     final tilted = !(widget.solved || widget.isWrongPicked);
+    // 2026-06-06 Iter 26: Premium-Look fuer Answer-Cards.
+    // Heinz: 'Aufgaben sehen nicht eindrucksvoll aus'. Vorher flache Pills mit
+    // 2px Border. Jetzt: weicher 3D-Schatten + Top-Shine (Glas-Effekt) +
+    // subtiler Hintergrund-Verlauf, abgerundete Card statt komplette Pill.
+    final shadowColor = widget.solved && widget.isCorrect
+        ? const Color(0xFF22C55E)
+        : widget.isWrongPicked
+            ? const Color(0xFFF43F5E)
+            : Colors.black;
     final card = AnimatedContainer(
-        duration: const Duration(milliseconds: 160),
+        duration: const Duration(milliseconds: 180),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
         decoration: BoxDecoration(
-          color: bg,
-          borderRadius: BorderRadius.circular(LumoRadius.pill),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              bg,
+              Color.alphaBlend(Colors.white.withOpacity(0.4), bg),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(LumoRadius.lg),
           border: Border.all(color: border, width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: shadowColor.withOpacity(
+                  widget.solved || widget.isWrongPicked ? 0.22 : 0.12),
+              blurRadius: 14,
+              offset: const Offset(0, 5),
+            ),
+            // Subtiler Inner-Glow oben (Glas-Shine) ueber zweite Box-Shadow
+            BoxShadow(
+              color: Colors.white.withOpacity(0.7),
+              blurRadius: 1,
+              offset: const Offset(0, 1),
+              spreadRadius: 0,
+            ),
+          ],
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           if (widget.solved && widget.isCorrect)

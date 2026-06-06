@@ -2351,29 +2351,140 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
     super.dispose();
   }
 
+  /// 2026-06-06 Iter 26: Subject-spezifische Farben statt nur orange.
+  /// Math = Sunset, Deutsch = Royal-Blue, Sachkunde = Forest, andere = Lumo-Orange.
+  ({Color primary, Color accent, List<Color> gradient, Color subjectPill}) _subjectColors() {
+    final s = widget.subject.toLowerCase();
+    if (s.contains('mathematik') || s.contains('mathe')) {
+      return (
+        primary: const Color(0xFFEA580C),
+        accent: const Color(0xFFFCD34D),
+        gradient: const [Color(0xFFFFF7ED), Color(0xFFFFE4D2), Color(0xFFFED7AA)],
+        subjectPill: const Color(0xFFF97316),
+      );
+    }
+    if (s.contains('deutsch') || s.contains('lesen') || s.contains('schreiben')) {
+      return (
+        primary: const Color(0xFF4338CA),
+        accent: const Color(0xFFA78BFA),
+        gradient: const [Color(0xFFEEF2FF), Color(0xFFDDD6FE), Color(0xFFC4B5FD)],
+        subjectPill: const Color(0xFF6366F1),
+      );
+    }
+    if (s.contains('sachkunde') || s.contains('sachunterricht')) {
+      return (
+        primary: const Color(0xFF047857),
+        accent: const Color(0xFF6EE7B7),
+        gradient: const [Color(0xFFECFDF5), Color(0xFFD1FAE5), Color(0xFFA7F3D0)],
+        subjectPill: const Color(0xFF059669),
+      );
+    }
+    // Default + 'Alle' (Gemischte Uebung)
+    return (
+      primary: const Color(0xFFEA580C),
+      accent: const Color(0xFFFCD34D),
+      gradient: const [Color(0xFFFFF7ED), Color(0xFFFFE4D2), Color(0xFFFED7AA)],
+      subjectPill: const Color(0xFFF97316),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final progress = widget.currentStep / widget.totalSteps.clamp(1, 999);
     final stars = (widget.currentStep / widget.totalSteps * 5).floor().clamp(0, 5);
+    final cols = _subjectColors();
 
-    return Container(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(24),
+      child: Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFFFFF7ED), Color(0xFFFFE4D2)],
+        gradient: LinearGradient(
+          colors: cols.gradient,
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFF97316).withOpacity(0.10),
-            blurRadius: 20,
-            offset: const Offset(0, 6),
+            color: cols.primary.withOpacity(0.18),
+            blurRadius: 22,
+            offset: const Offset(0, 8),
           ),
         ],
       ),
-      child: Column(
+      child: Stack(
+        children: [
+          // Dekorative Floating-Punkte als Hintergrund-Atmosphaere
+          Positioned(
+            right: -10,
+            top: -10,
+            child: Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: cols.accent.withOpacity(0.22),
+              ),
+            ),
+          ),
+          Positioned(
+            right: 60,
+            top: 50,
+            child: Container(
+              width: 18,
+              height: 18,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white.withOpacity(0.45),
+              ),
+            ),
+          ),
+          Positioned(
+            right: 110,
+            top: 12,
+            child: Container(
+              width: 10,
+              height: 10,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: cols.primary.withOpacity(0.30),
+              ),
+            ),
+          ),
+          // Lumo-Maskottchen rechts unten als grosser Eyecatcher
+          Positioned(
+            right: -4,
+            bottom: -10,
+            child: AnimatedBuilder(
+              animation: _pulseCtrl,
+              builder: (_, __) {
+                final wiggle =
+                    (widget.lastWasCorrect == true)
+                        ? (1 - _pulseCtrl.value).clamp(0.0, 1.0)
+                        : 0.0;
+                return Transform.rotate(
+                  angle: wiggle * 0.15,
+                  child: Opacity(
+                    opacity: 0.42,
+                    child: Text(
+                      '🦊',
+                      style: TextStyle(
+                        fontSize: 88,
+                        shadows: [
+                          Shadow(
+                            color: cols.primary.withOpacity(0.5),
+                            blurRadius: 14,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Top Row: Subject + Sterne
@@ -2382,10 +2493,21 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFF97316), Color(0xFFEA580C)],
+                  gradient: LinearGradient(
+                    colors: [
+                      cols.subjectPill,
+                      Color.alphaBlend(
+                          Colors.black.withOpacity(0.18), cols.subjectPill),
+                    ],
                   ),
                   borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: cols.subjectPill.withOpacity(0.35),
+                      blurRadius: 10,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
                 ),
                 child: Text(
                   widget.subject.toUpperCase(),
@@ -2423,11 +2545,11 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
             children: [
               Text(
                 '${widget.currentStep}',
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 56,
                   fontWeight: FontWeight.w900,
-                  color: Color(0xFFEA580C),
+                  color: cols.primary,
                   height: 1.0,
                 ),
               ),
@@ -2474,24 +2596,31 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
             ],
           ),
           const SizedBox(height: 14),
-          // Premium Progress Bar
+          // Premium Progress Bar mit Subject-Farbe
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Stack(
               children: [
                 Container(
-                  height: 12,
-                  color: const Color(0xFFE5E7EB),
+                  height: 14,
+                  color: Colors.white.withOpacity(0.45),
                 ),
                 AnimatedFractionallySizedBox(
                   duration: const Duration(milliseconds: 600),
                   curve: Curves.easeOutCubic,
                   widthFactor: progress.clamp(0.0, 1.0),
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0xFFF97316), Color(0xFFFCD34D)],
+                        colors: [cols.primary, cols.accent],
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: cols.primary.withOpacity(0.35),
+                          blurRadius: 6,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -2499,6 +2628,9 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
             ),
           ),
         ],
+      ),
+        ],
+      ),
       ),
     );
   }

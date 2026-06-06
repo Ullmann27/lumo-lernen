@@ -239,6 +239,9 @@ class LumoAppState extends ChangeNotifier {
 
   int learningDailyDone() => _learningProfileLoaded ? _learningProfile.dailyDone() : 0;
   int learningStreakDays() => _learningProfileLoaded ? _learningProfile.currentStreakDays() : 0;
+  /// 2026-06-06 Iter 27: ganzer Daily-Map fuer Streak-Wochen-Kalender.
+  Map<String, int> learningProfileDailyMap() =>
+      _learningProfileLoaded ? _learningProfile.daily : const <String, int>{};
   Map<String, List<String>> learningWeaknessesBySubject() => _learningProfileLoaded ? _learningProfile.weaknessesBySubject() : <String, List<String>>{};
   Map<String, SkillRecord> learningSkills() => _learningProfileLoaded ? _learningProfile.skills : <String, SkillRecord>{};
 
