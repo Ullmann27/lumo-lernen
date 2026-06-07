@@ -343,9 +343,8 @@ class _ResultsPanel extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
-            border: Border(
-                left: BorderSide(
-                    color: const Color(0xFF22C55E), width: 5)),
+            // 2026-06-06 FIX: Single-side Border + borderRadius rendert nicht.
+            border: Border.all(color: const Color(0xFF22C55E), width: 2),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.10),

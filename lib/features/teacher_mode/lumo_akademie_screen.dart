@@ -784,12 +784,15 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
+              // 2026-06-06 FIX: Border mit unterschiedlichen Farben +
+              // borderRadius rendert nicht in Flutter (Widget unsichtbar).
+              // Loesung: Uniform-Border, dafuer den Top-Streifen als
+              // visuellen Akzent ueber Box-Shadow inset oder einfach
+              // weglassen.
               borderRadius: BorderRadius.circular(20),
-              border: Border(
-                top: BorderSide(color: t.gradient[0], width: 3),
-                left: BorderSide(color: t.gradient[0].withOpacity(0.15)),
-                right: BorderSide(color: t.gradient[0].withOpacity(0.15)),
-                bottom: BorderSide(color: t.gradient[0].withOpacity(0.15)),
+              border: Border.all(
+                color: t.gradient[0].withOpacity(0.30),
+                width: 1.5,
               ),
               boxShadow: [
                 BoxShadow(

@@ -77,22 +77,14 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       LearningSubject.sachkunde => const Color(0xFF059669),
     };
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      // 2026-06-06 FIX: Border mit unterschiedlichen Farben + borderRadius
+      // crasht Flutter silent (Widget unsichtbar). Loesung: Outer Container
+      // mit border-Side links als separate child, dann inner Card mit
+      // borderRadius + uniform border.
       Container(
         width: double.infinity,
-        padding: const EdgeInsets.fromLTRB(22, 18, 18, 18),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFFFFF8ED), Color(0xFFFFFEFA)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
           borderRadius: BorderRadius.circular(20),
-          border: Border(
-            left: BorderSide(color: subjectAccent, width: 5),
-            top: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
-            right: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
-            bottom: BorderSide(color: subjectAccent.withOpacity(0.18), width: 1),
-          ),
           boxShadow: [
             BoxShadow(
               color: subjectAccent.withOpacity(0.10),
@@ -101,43 +93,69 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             ),
           ],
         ),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-              color: subjectAccent.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(LumoRadius.pill),
-              border: Border.all(color: subjectAccent.withOpacity(0.35)),
-            ),
-            child: Text(
-              _subjectLabel(task.subject),
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 12,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 0.6,
-                color: subjectAccent,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            // Linker Buch-Spine (5px), eigenes Container
+            Container(width: 5, color: subjectAccent),
+            // Hauptbereich
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFFFF8ED), Color(0xFFFFFEFA)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  border: Border.all(
+                      color: subjectAccent.withOpacity(0.18), width: 1),
+                ),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: subjectAccent.withOpacity(0.12),
+                      borderRadius: BorderRadius.circular(LumoRadius.pill),
+                      border: Border.all(
+                          color: subjectAccent.withOpacity(0.35)),
+                    ),
+                    child: Text(
+                      _subjectLabel(task.subject),
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0.6,
+                        color: subjectAccent,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    task.prompt,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      color: LumoColors.ink900,
+                      height: 1.12,
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  _AdaptiveVisual(task: task, picked: _picked, solved: _solved),
+                  if (_wrongAnswers.length >= 2 && !_solved) ...[
+                    const SizedBox(height: 14),
+                    _LocalHelpBanner(task: task, wrongCount: _wrongAnswers.length),
+                  ],
+                ]),
               ),
             ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            task.prompt,
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 30,
-              fontWeight: FontWeight.w900,
-              color: LumoColors.ink900,
-              height: 1.12,
-            ),
-          ),
-          const SizedBox(height: 18),
-          _AdaptiveVisual(task: task, picked: _picked, solved: _solved),
-          if (_wrongAnswers.length >= 2 && !_solved) ...[
-            const SizedBox(height: 14),
-            _LocalHelpBanner(task: task, wrongCount: _wrongAnswers.length),
-          ],
-        ]),
+          ]),
+        ),
       ),
       const SizedBox(height: 18),
       Text(

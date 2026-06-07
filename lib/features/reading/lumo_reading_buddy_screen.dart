@@ -315,10 +315,9 @@ class _TextCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(18),
-            border: Border(
-              left: BorderSide(
-                  color: const Color(0xFF6366F1), width: 4),
-            ),
+            // 2026-06-06 FIX: Single-side Border + borderRadius = unsichtbar.
+            border: Border.all(
+                color: const Color(0xFF6366F1).withOpacity(0.30), width: 1.5),
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFF6366F1).withOpacity(0.20),
@@ -592,12 +591,8 @@ class _TextDisplay extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border(
-            left: BorderSide(
-                color: const Color(0xFFFB923C), width: 5),
-            top: BorderSide(color: const Color(0xFFFCD34D), width: 1),
-            right: BorderSide(color: const Color(0xFFFCD34D), width: 1),
-            bottom: BorderSide(color: const Color(0xFFFCD34D), width: 1)),
+        // 2026-06-06 FIX: non-uniform Border + borderRadius rendert nicht.
+        border: Border.all(color: const Color(0xFFFB923C), width: 2),
         boxShadow: [
           BoxShadow(
             color: const Color(0xFFFB923C).withOpacity(0.12),

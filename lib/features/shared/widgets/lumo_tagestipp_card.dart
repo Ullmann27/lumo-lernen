@@ -37,12 +37,8 @@ class LumoTagestippCard extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(LumoRadius.lg),
-            border: Border(
-              left: BorderSide(color: tip.color, width: 4),
-              top: BorderSide(color: tip.color.withOpacity(0.18)),
-              right: BorderSide(color: tip.color.withOpacity(0.18)),
-              bottom: BorderSide(color: tip.color.withOpacity(0.18)),
-            ),
+            // 2026-06-06 FIX: non-uniform Border + borderRadius rendert nicht.
+            border: Border.all(color: tip.color.withOpacity(0.45), width: 1.5),
             boxShadow: [
               BoxShadow(
                 color: tip.color.withOpacity(0.14),
