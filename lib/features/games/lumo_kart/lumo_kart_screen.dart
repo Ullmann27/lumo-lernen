@@ -329,7 +329,8 @@ class _RaceCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
-            border: Border(left: BorderSide(color: color, width: 5)),
+            // 2026-06-06 FIX: Single-side Border + borderRadius rendert nicht.
+            border: Border.all(color: color, width: 2),
             boxShadow: [
               BoxShadow(
                 color: color.withOpacity(0.30),

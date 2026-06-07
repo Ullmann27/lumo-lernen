@@ -728,9 +728,8 @@ class _EntryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border(
-            left: BorderSide(
-                color: const Color(0xFFA855F7), width: 4)),
+        // 2026-06-06 FIX: Single-side Border + borderRadius rendert nicht.
+        border: Border.all(color: const Color(0xFFA855F7), width: 2),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.10),
