@@ -95,8 +95,37 @@ jobs:
         run: flutter analyze --no-fatal-infos --no-fatal-warnings || true
 
       - name: Flutter test (Smoke + bestehende Tests)
-        run: flutter test --no-pub --reporter=expanded
+        id: flutter_test
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded 2>&1 | tee /tmp/test.log
         continue-on-error: true  # Bestehende Tests duerfen alt sein, aber neue Smoke-Tests muessen gruen sein
+
+      - name: Surface failing tests into job summary
+        if: always()
+        run: |
+          if [ ! -f /tmp/test.log ]; then
+            echo "Keine test.log gefunden." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          {
+            echo "## Flutter-Test-Ergebnisse"
+            echo ""
+            FAIL_LINE=$(grep -E "Some tests failed|All tests passed" /tmp/test.log | tail -n 1 || true)
+            echo "**Summary:** ${FAIL_LINE:-(keine Summary-Zeile gefunden)}"
+            echo ""
+            echo "### Fehlgeschlagene Tests (\"FAILED\" / \"[E]\" Marker)"
+            echo ""
+            echo '```'
+            grep -nE "^\s*\[E\]|FAILED|^\d+:\d+ \+\d+ -\d+:" /tmp/test.log | head -n 200 || echo "(keine Treffer)"
+            echo '```'
+            echo ""
+            echo "### Expect-Mismatches (Expected/Actual/Which)"
+            echo ""
+            echo '```'
+            grep -nE "Expected:|Actual:|Which:" /tmp/test.log | head -n 200 || echo "(keine Treffer)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Smoke Tests EXPLICIT (Wallet/Akademie - mussen gruen sein)
         run: flutter test test/smoke_main_screens_test.dart --no-pub
