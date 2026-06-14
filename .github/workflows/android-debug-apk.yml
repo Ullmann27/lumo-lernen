@@ -114,10 +114,10 @@ jobs:
             FAIL_LINE=$(grep -E "Some tests failed|All tests passed" /tmp/test.log | tail -n 1 || true)
             echo "**Summary:** ${FAIL_LINE:-(keine Summary-Zeile gefunden)}"
             echo ""
-            echo "### Fehlgeschlagene Tests (\"FAILED\" / \"[E]\" Marker)"
+            echo "### Fehlgeschlagene Tests (\"[E]\" / \"FAILED\" Marker)"
             echo ""
             echo '```'
-            grep -nE "^\s*\[E\]|FAILED|^\d+:\d+ \+\d+ -\d+:" /tmp/test.log | head -n 200 || echo "(keine Treffer)"
+            grep -E "\[E\]|: FAILED" /tmp/test.log | head -n 80 || echo "(keine Treffer)"
             echo '```'
             echo ""
             echo "### Expect-Mismatches (Expected/Actual/Which)"
@@ -144,10 +144,12 @@ jobs:
               echo ""
               echo "**Summary:** ${FAIL_LINE}"
               echo ""
-              echo "### Failing Tests"
+              echo "### Failing Tests (mit [E]-Marker oder FAILED)"
               echo ""
               echo '```'
-              grep -nE "^\s*\[E\]|: FAILED|^[0-9]+:[0-9]+ \+[0-9]+ -[1-9][0-9]*:" /tmp/test.log | head -n 80 | sed 's/```/`\``/g' || echo "(keine)"
+              # Nur Zeilen mit [E] oder FAILED zaehlen, NICHT alle Test-Lines
+              # mit "+N -M" Zaehler (das war zu laut).
+              grep -E "\[E\]|: FAILED" /tmp/test.log | head -n 40 | sed 's/```/`\``/g' || echo "(keine)"
               echo '```'
               echo ""
               echo "### Expect-Mismatches"
