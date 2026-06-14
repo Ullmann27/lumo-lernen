@@ -13,6 +13,9 @@ void main() {
 
     test('each template range can create more than 30 concrete variants', () {
       for (final template in MathTaskTemplates.templates) {
+        // shapeTrace ist Form-Nachzeichnen (Demo+Trace, kein Multiple-Choice),
+        // hat absichtlich kleine Range [0..4] = 5 Formen, nicht > 30 Varianten.
+        if (template.kind == MathTemplateKind.shapeTrace) continue;
         final variants = (template.validRangeA.last - template.validRangeA.first + 1) *
             (template.validRangeB.last - template.validRangeB.first + 1);
         expect(variants, greaterThan(30), reason: template.id);
@@ -21,6 +24,8 @@ void main() {
 
     test('generated tasks always include answer and distinct distractors', () {
       for (final template in MathTaskTemplates.templates) {
+        // shapeTrace hat keine Choices (Renderer ist Trace-Canvas, kein MC).
+        if (template.kind == MathTemplateKind.shapeTrace) continue;
         for (var seed = 1; seed <= 12; seed++) {
           final task = template.concretize(seed * 37);
           expect(task.prompt.trim(), isNotEmpty, reason: template.id);
@@ -37,6 +42,8 @@ void main() {
       // D-Fix: _smartFallback hat das alte 'answer_2'/'answer_3'-Padding ersetzt.
       // Diese Stress-Iteration sucht ueber alle Templates und 50 Seeds.
       for (final template in MathTaskTemplates.templates) {
+        // shapeTrace hat keine Choices, kann auch keine Filler haben.
+        if (template.kind == MathTemplateKind.shapeTrace) continue;
         for (var seed = 1; seed <= 50; seed++) {
           final task = template.concretize(seed * 13);
           for (final choice in task.choices) {
@@ -53,6 +60,8 @@ void main() {
     test('no template produces duplicate choices over many seeds', () {
       // D-Fix Regression-Test: stresstest fuer Duplicate-Choices.
       for (final template in MathTaskTemplates.templates) {
+        // shapeTrace hat keine Choices.
+        if (template.kind == MathTemplateKind.shapeTrace) continue;
         for (var seed = 1; seed <= 100; seed++) {
           final task = template.concretize(seed * 7);
           expect(
@@ -73,6 +82,9 @@ void main() {
           expect(numeric, greaterThanOrEqualTo(0), reason: task.prompt);
           expect(numeric, lessThanOrEqualTo(100), reason: task.prompt);
         }
+        // Form-Nachzeichnen-Aufgaben (visual='shape_trace') haben keine
+        // Choices - eigener Trace-Canvas-Renderer.
+        if (task.choices.isEmpty || task.visual == 'shape_trace') continue;
         expect(task.choices, contains(task.answer));
       }
     });
