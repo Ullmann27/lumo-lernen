@@ -95,8 +95,77 @@ jobs:
         run: flutter analyze --no-fatal-infos --no-fatal-warnings || true
 
       - name: Flutter test (Smoke + bestehende Tests)
-        run: flutter test --no-pub --reporter=expanded
+        id: flutter_test
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded 2>&1 | tee /tmp/test.log
         continue-on-error: true  # Bestehende Tests duerfen alt sein, aber neue Smoke-Tests muessen gruen sein
+
+      - name: Surface failing tests into job summary
+        if: always()
+        run: |
+          if [ ! -f /tmp/test.log ]; then
+            echo "Keine test.log gefunden." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          {
+            echo "## Flutter-Test-Ergebnisse"
+            echo ""
+            FAIL_LINE=$(grep -E "Some tests failed|All tests passed" /tmp/test.log | tail -n 1 || true)
+            echo "**Summary:** ${FAIL_LINE:-(keine Summary-Zeile gefunden)}"
+            echo ""
+            echo "### Fehlgeschlagene Tests (\"[E]\" / \"FAILED\" Marker)"
+            echo ""
+            echo '```'
+            grep -E "\[E\]|: FAILED" /tmp/test.log | head -n 80 || echo "(keine Treffer)"
+            echo '```'
+            echo ""
+            echo "### Expect-Mismatches (Expected/Actual/Which)"
+            echo ""
+            echo '```'
+            grep -nE "Expected:|Actual:|Which:" /tmp/test.log | head -n 200 || echo "(keine Treffer)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Test-Failures als PR-Kommentar (auf PRs)
+        if: always() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ ! -f /tmp/test.log ]; then
+            exit 0
+          fi
+          # Nur posten wenn es WIRKLICH Failures gibt, sonst Spam vermeiden.
+          if grep -qE "Some tests failed" /tmp/test.log; then
+            FAIL_LINE=$(grep -E "Some tests failed|All tests passed" /tmp/test.log | tail -n 1)
+            {
+              echo "## Flutter-Test-Failures (Build #${GITHUB_RUN_NUMBER})"
+              echo ""
+              echo "**Summary:** ${FAIL_LINE}"
+              echo ""
+              echo "### Failing Tests (mit [E]-Marker oder FAILED)"
+              echo ""
+              echo '```'
+              # Nur Zeilen mit [E] oder FAILED zaehlen, NICHT alle Test-Lines
+              # mit "+N -M" Zaehler (das war zu laut).
+              grep -E "\[E\]|: FAILED" /tmp/test.log | head -n 40 | sed 's/```/`\``/g' || echo "(keine)"
+              echo '```'
+              echo ""
+              echo "### Expect-Mismatches"
+              echo ""
+              echo '```'
+              grep -nE "Expected:|Actual:|Which:" /tmp/test.log | head -n 100 | sed 's/```/`\``/g' || echo "(keine)"
+              echo '```'
+            } > /tmp/test_comment.md
+            BODY=$(jq -Rs . < /tmp/test_comment.md)
+            curl -fsSL \
+              -X POST \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
+              -d "{\"body\": ${BODY}}"
+          fi
 
       - name: Smoke Tests EXPLICIT (Wallet/Akademie - mussen gruen sein)
         run: flutter test test/smoke_main_screens_test.dart --no-pub
