@@ -434,8 +434,10 @@ class _SettingsContentState extends State<SettingsContent> {
           _SwitchRow(title: 'Lumo-Stimme', subtitle: 'Lumo darf Antworten laut sprechen.', value: _settings.voiceEnabled, onChanged: (v) => _save(_settings.copyWith(voiceEnabled: v))),
           _SwitchRow(title: 'Automatisch vorlesen', subtitle: 'Lumo spricht beim Wechseln von Bereichen.', value: _settings.autoReadEnabled, onChanged: (v) => _save(_settings.copyWith(autoReadEnabled: v))),
           const SizedBox(height: 10),
-          _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.55, onChanged: (v) => _save(_settings.copyWith(voiceRate: v))),
-          _SliderRow(title: 'Stimmhöhe', value: _settings.voicePitch, min: 0.85, max: 1.18, onChanged: (v) => _save(_settings.copyWith(voicePitch: v))),
+          _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.60, onChanged: (v) => _save(_settings.copyWith(voiceRate: v))),
+          // 2026-06-14 Heinz' Tochter: Stimme war zu tief/erwachsen. Slider
+          // bis 1.35 erlaubt jetzt deutlich kindlichere Maedchenstimme.
+          _SliderRow(title: 'Stimmhöhe', value: _settings.voicePitch, min: 0.90, max: 1.35, onChanged: (v) => _save(_settings.copyWith(voicePitch: v))),
           const SizedBox(height: 10),
           Wrap(spacing: 10, runSpacing: 10, children: [
             FilledButton.icon(onPressed: _settings.voiceEnabled ? () => LumoVoice.instance.test() : null, icon: const Icon(Icons.volume_up_rounded), label: const Text('Stimme testen')),
