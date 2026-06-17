@@ -36,8 +36,10 @@ class LumoVoice {
 
   Future<void> configure({bool? enabled, double? rate, double? pitch}) async {
     if (enabled != null) _enabled = enabled;
-    if (rate != null) _rateFactor = (rate / 0.35).clamp(0.70, 1.55).toDouble();
-    if (pitch != null) _pitchOffset = (pitch - 1.0).clamp(-0.20, 0.20).toDouble();
+    // 2026-06-14: Anker auf neuen Default 0.46 verschoben + Pitch-Offset-
+    // Range vergroessert damit Kinder-Stimme (bis +0.25) durchgereicht wird.
+    if (rate != null) _rateFactor = (rate / 0.46).clamp(0.55, 1.45).toDouble();
+    if (pitch != null) _pitchOffset = (pitch - 1.14).clamp(-0.25, 0.25).toDouble();
     if (_initFuture != null) {
       await _applyStyle(VoiceStyle.warm);
     }
@@ -142,64 +144,99 @@ class LumoVoice {
     final locale = (voice['locale'] ?? '').toLowerCase();
     var score = 0;
 
+    // 2026-06-14 Heinz' Tochter: "Stimme klingt nicht schön".
+    // Neu-Gewichtung: Premium-Qualitaet (Neural/WaveNet/Google-Network) wird
+    // viel hoeher gewertet als die alte robotische Pico-TTS-Standardstimme.
+    // Frauen-/Maedchen-Stimmen bekommen DEUTLICH mehr Gewicht weil Kinder
+    // sie als waermer und freundlicher empfinden.
     if (locale == 'de-at') score += 120;
     if (locale == 'de-de') score += 100;
     if (locale.startsWith('de')) score += 80;
 
-    if (name.contains('google')) score += 45;
-    if (name.contains('neural')) score += 45;
-    if (name.contains('natural')) score += 40;
-    if (name.contains('enhanced')) score += 35;
-    if (name.contains('premium')) score += 30;
-    if (name.contains('female')) score += 22;
-    if (name.contains('frau')) score += 22;
-    if (name.contains('anna')) score += 18;
-    if (name.contains('marlene')) score += 18;
-    if (name.contains('katja')) score += 18;
-    if (name.contains('vicki')) score += 18;
+    // Premium-Qualitaet (massiv hoehere Gewichtung als vorher)
+    if (name.contains('google')) score += 110;
+    if (name.contains('neural')) score += 100;
+    if (name.contains('wavenet')) score += 100;
+    if (name.contains('natural')) score += 90;
+    if (name.contains('enhanced')) score += 70;
+    if (name.contains('premium')) score += 65;
+    if (name.contains('hd')) score += 60;
+    // Network-Voices auf Android sind meistens Google's premium Cloud-TTS -
+    // also POSITIV, nicht negativ wie vorher.
+    if (name.contains('network')) score += 50;
 
-    if (name.contains('network')) score -= 15;
-    if (name.contains('compact')) score -= 20;
-    if (name.contains('default')) score -= 8;
+    // Konkrete bekannte deutsche Frauenstimmen (Android + iOS)
+    if (name.contains('marlene')) score += 60;
+    if (name.contains('vicki')) score += 60;
+    if (name.contains('hedda')) score += 55;
+    if (name.contains('petra')) score += 55;
+    if (name.contains('anna')) score += 50;
+    if (name.contains('katja')) score += 50;
+    if (name.contains('katharina')) score += 45;
+    if (name.contains('helena')) score += 40;
+    // de-de-x-deg / de-de-x-nfh sind Google's neuesten Female-Voices
+    if (name.contains('-deg')) score += 70;
+    if (name.contains('-nfh')) score += 70;
+    if (name.contains('-deb')) score += 65;
+    if (name.contains('-def')) score += 65;
+
+    // Allgemeine Female-Marker
+    if (name.contains('female')) score += 45;
+    if (name.contains('frau')) score += 45;
+    if (name.contains('woman')) score += 40;
+    // f-suffix in Voice-Namen ist oft Female
+    if (name.endsWith('-f') || name.endsWith('_f')) score += 25;
+
+    // Robotische / alte Stimmen abwerten
+    if (name.contains('compact')) score -= 40;
+    if (name.contains('legacy')) score -= 50;
+    if (name.contains('pico')) score -= 60;
+    if (name.contains('espeak')) score -= 60;
+    if (name.contains('default')) score -= 20;
+    // Männerstimmen leicht abwerten (Heinz' Tochter mag Mädchenstimme lieber)
+    if (name.contains('male') && !name.contains('female')) score -= 15;
+    if (name.contains('mann')) score -= 15;
 
     return score;
   }
 
   Future<void> _applyStyle(VoiceStyle style) async {
-    // Heinz wollte schnellere Stimme. Alle Raten um ~25-35% erhoeht.
-    // Vorher waren die Werte zwischen 0.30-0.42 - zu langsam.
-    // Jetzt 0.46-0.60 - normales Sprechtempo, aber noch kindgerecht.
+    // 2026-06-14 Heinz' Tochter findet die Stimme nicht schoen.
+    // Neu-Tuning: Pitch generell HOEHER (kindlicher / freundlicher),
+    // Rate moderat (nicht zu schnell, damit Kinder folgen koennen) und
+    // staerkere emotionale Differenzierung zwischen den Styles.
     switch (style) {
       case VoiceStyle.greeting:
-        await _set(rate: 0.50, pitch: 1.05, volume: 1.0);
+        await _set(rate: 0.48, pitch: 1.18, volume: 1.0);
         break;
       case VoiceStyle.explain:
-        // Erklaer-Modus etwas langsamer als greeting, damit Kinder folgen koennen.
-        await _set(rate: 0.46, pitch: 1.00, volume: 1.0);
+        // Erklaer-Modus: ruhig + klar, aber waermer als vorher.
+        await _set(rate: 0.44, pitch: 1.12, volume: 1.0);
         break;
       case VoiceStyle.celebrate:
-        // Bei Erfolg: schnell und froh.
-        await _set(rate: 0.58, pitch: 1.10, volume: 1.0);
+        // Bei Erfolg: deutlich froher + hoeher.
+        await _set(rate: 0.56, pitch: 1.22, volume: 1.0);
         break;
       case VoiceStyle.comfort:
-        // Bei Problemen: ruhig aber nicht mehr so langsam wie vorher.
-        await _set(rate: 0.44, pitch: 0.98, volume: 0.96);
+        // Bei Problemen: weich, langsam, beruhigend.
+        await _set(rate: 0.42, pitch: 1.08, volume: 0.96);
         break;
       case VoiceStyle.question:
-        await _set(rate: 0.50, pitch: 1.04, volume: 1.0);
+        // Frage-Modus: leicht ansteigend, neugierig.
+        await _set(rate: 0.48, pitch: 1.16, volume: 1.0);
         break;
       case VoiceStyle.warm:
-        // Standard-Lese-Modus: natuerliches Sprechtempo.
-        await _set(rate: 0.50, pitch: 1.03, volume: 1.0);
+        // Standard: warm + freundlich, nicht zu robotisch.
+        await _set(rate: 0.46, pitch: 1.14, volume: 1.0);
         break;
     }
   }
 
   Future<void> _set({required double rate, required double pitch, required double volume}) async {
-    // Clamp-Obergrenze von 0.60 auf 0.85 erhoeht, damit schnellere Raten
-    // ueberhaupt durchkommen. Untergrenze 0.30 reicht fuer comfort-Modus.
+    // Pitch-Obergrenze auf 1.40 angehoben damit der waermere Default-Pitch
+    // + User-Offset noch Spielraum hat (kindlichere Stimme).
     await _tts.setSpeechRate((rate * _rateFactor).clamp(0.30, 0.85).toDouble());
-    await _tts.setPitch((pitch + _pitchOffset).clamp(0.80, 1.25).toDouble());
+    await _tts.setPitch((pitch + _pitchOffset).clamp(0.80, 1.40).toDouble());
     await _tts.setVolume(volume);
   }
 
@@ -262,7 +299,7 @@ class LumoVoice {
   }
 
   Future<void> test() => speak(
-        'Hallo! Ich bin Lumo, dein Lernfuchs. Ich spreche jetzt ruhiger, freundlicher und menschlicher.',
+        'Hallo! Ich bin Lumo, dein Lernfuchs. Klingt meine Stimme schön für dich?',
         style: VoiceStyle.greeting,
       );
 }
