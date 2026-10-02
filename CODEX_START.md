@@ -4,7 +4,7 @@ Stand: 2. Oktober 2026. Aktiver Anwendungscode: dieses Repository.
 
 - [Aktueller Arbeitsstand und Prüfungen](docs/FORTSETZUNG_2026-10-02.md)
 - [Neustartbericht aus dem vorherigen Chat](docs/NEUSTART_2026-10-02.md)
-- 19 übergebene Projektdateien sind lokal mit Herkunft, Dateigröße, SHA-256 und Duplikatzuordnung vorbereitet. Ihre Veröffentlichung im öffentlichen Repository wartet auf ausdrückliche Nutzerfreigabe.
+- [Alle 19 übergebenen Projektdateien](archive/project-sources/2026-10-02/README.md) mit Herkunft, Dateigröße, SHA-256 und Duplikatzuordnung. Die öffentliche Archivierung wurde am 2. Oktober 2026 ausdrücklich freigegeben.
 - Flutter-App: `lib/`, Regressionstests: `test/`.
 - KI-Servercode: `server/lumo-ai-proxy/`.
 - Android-Bau: `.github/workflows/release-apk.yml`; native Verbindung: `scripts/prepare_android.py`.

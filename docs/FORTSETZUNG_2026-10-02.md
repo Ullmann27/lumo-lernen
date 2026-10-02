@@ -3,11 +3,12 @@
 ## Grundlage und Ablage
 
 Fortsetzung von PR #151 nach dessen Merge in `main` (`1e0eeaa`). Sämtliche 19
-übergebenen Dateien sind bytegenau einschließlich der Duplikate lokal als
-Projektarchiv vorbereitet. Das GitHub-Repository ist öffentlich; die automatische
-Freigabeprüfung hat das Hochladen der Originalquellen ohne ausdrückliche
-Veröffentlichungsfreigabe blockiert. Die Originalquellen werden deshalb nicht
-mit diesem Code-Commit veröffentlicht.
+übergebenen Dateien sind bytegenau einschließlich der Duplikate im
+[Projektarchiv](../archive/project-sources/2026-10-02/README.md) enthalten.
+Nach dem Hinweis auf das öffentliche Repository hat der Nutzer am 2. Oktober
+2026 die öffentliche Ablage ausdrücklich freigegeben. Die Originaldateien
+bleiben als historische Quellen unverändert; ein Index erklärt Herkunft,
+Duplikate, Dateigrößen und SHA-256-Prüfsummen.
 Die frühere App wird nicht durch einen alten HTML-Prototyp ersetzt.
 
 ## Korrekturen
@@ -61,13 +62,17 @@ Lokal mit Flutter 3.44.9 / Dart 3.12.2:
 | Repair Guard | bestanden |
 | Flutter-Analyse | 0 Fehler; 28 Warnungen und 76 Hinweise im Gesamtprojekt bleiben sichtbar |
 | Änderungen auf Whitespace-/Patchfehler | bestanden |
+| Android-APK-Prüfbau | GitHub Actions Build #945 erfolgreich, einschließlich Tests, Analyse und APK-Bau |
 
 Die neuen Integrationstests klicken echte Antworten, prüfen die Wallet nach
 Neustart, testen fehlgeschlagene Zeichenversuche und die PIN beim direkten
 Settings-Link. Die Health-Prüfung nutzt einen lokalen HTTP-Testserver.
-Android-APK-Bau wird im bestehenden PR-Workflow geprüft; ein lokaler Android-SDK
-ist in dieser Fortsetzung nicht eingerichtet. Keine Veröffentlichung oder
-Produktivbereitstellung durch diese Fortsetzung.
+Der [Android-Prüfbau #945](https://github.com/Ullmann27/lumo-lernen/actions/runs/37021317982)
+hat Anwendungscode-Commit `8e7016595fa254a33bf892f64b73ba33c61497a7` erfolgreich gebaut.
+Die anschließende Archivierung ändert nur Originalquellen und Dokumentation,
+nicht die geprüfte App. Dieser Prüflauf hat keine APK zum Download veröffentlicht;
+die automatische APK-Ausgabe des Repositorys erfolgt separat im Release-Workflow.
+Keine Produktivbereitstellung durch diese Fortsetzung.
 
 ## Noch offen
 
