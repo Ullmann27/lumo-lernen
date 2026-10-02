@@ -98,7 +98,7 @@ class SubjectSelectionContent extends StatelessWidget {
         const SizedBox(height: 12),
         ..._subjects.map((s) => _UnitGroup(
           subject: s,
-          units: Curriculum.subjects[s.title] ?? const <String>[],
+          units: Curriculum.unitsForGrade(s.title, appState.state.grade),
           onUnit: (unit) => _startUnit(s.title, unit),
         )),
       ]),
@@ -176,7 +176,7 @@ class _UnitGroup extends StatelessWidget {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: units.take(10).map((unit) => GestureDetector(
+          children: units.map((unit) => GestureDetector(
             onTap: () => onUnit(unit),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),

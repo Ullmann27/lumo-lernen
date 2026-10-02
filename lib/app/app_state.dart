@@ -7,6 +7,7 @@ import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/reward_wallet_repository.dart';
 import '../core/scanned_work_analysis.dart';
+import '../core/settings_repository.dart';
 
 enum LumoSection { home, learn, exercises, reading, games, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings ,
 }
@@ -105,6 +106,10 @@ class LumoSessionState {
 }
 
 class LumoAppState extends ChangeNotifier {
+  LumoAppState({RewardWalletRepository? walletRepository})
+      : _walletRepository = walletRepository ?? RewardWalletRepository.instance;
+
+  final RewardWalletRepository _walletRepository;
   LumoSessionState _state = LumoSessionState();
   LumoSessionState get state => _state;
 
@@ -112,6 +117,22 @@ class LumoAppState extends ChangeNotifier {
   final ScannedWorkAnalysisEngine _scanAnalysis = const ScannedWorkAnalysisEngine();
   bool _learningProfileLoaded = false;
   bool _disposed = false;
+  bool _resetting = false;
+  int _profileGeneration = 0;
+  bool _settingsLoaded = false;
+  Future<void>? _settingsLoad;
+
+  bool get settingsLoaded => _settingsLoaded;
+
+  Future<void> ensureSettingsLoaded() => _settingsLoad ??= _loadSettings();
+
+  Future<void> _loadSettings() async {
+    final generation = _profileGeneration;
+    final settings = await SettingsRepository.load();
+    if (_disposed || generation != _profileGeneration) return;
+    _settingsLoaded = true;
+    updateSettings(settings);
+  }
 
   Future<void> _pendingRewards = Future<void>.value();
 
@@ -120,8 +141,8 @@ class LumoAppState extends ChangeNotifier {
   void _persistRewards({int stars = 0, int xp = 0}) {
     _pendingRewards = _pendingRewards
         .then((_) async {
-          if (stars != 0) await RewardWalletRepository.instance.addStars(stars);
-          if (xp != 0) await RewardWalletRepository.instance.addXp(xp);
+          if (stars != 0) await _walletRepository.addStars(stars);
+          if (xp != 0) await _walletRepository.addXp(xp);
         })
         .catchError((Object _) {});
   }
@@ -152,7 +173,7 @@ class LumoAppState extends ChangeNotifier {
   /// Stoesst notifyListeners aus damit HUD/Dashboard sich aktualisieren.
   /// Schreibt sofort in die persistente RewardWallet -> bleibt nach Neustart.
   void addStars(int delta) {
-    if (_disposed || delta == 0) return;
+    if (_disposed || _resetting || delta == 0) return;
     _state = _state.copyWith(stars: (_state.stars + delta).clamp(0, 999999));
     _safeNotify();
     _persistRewards(stars: delta);
@@ -161,7 +182,7 @@ class LumoAppState extends ChangeNotifier {
   /// Belohne XP nach erfolgreichem Mini-Spiel / Kart-Lauf.
   /// Schreibt sofort in die persistente RewardWallet.
   void addXp(int delta) {
-    if (_disposed || delta == 0) return;
+    if (_disposed || _resetting || delta == 0) return;
     final newXp = (_state.xp + delta).clamp(0, 9999999);
     _state = _state.copyWith(xp: newXp);
     _safeNotify();
@@ -171,15 +192,21 @@ class LumoAppState extends ChangeNotifier {
   /// Beim App-Start aufgerufen: laedt die Wallet und schreibt
   /// Sterne/XP in den State zurueck.
   Future<void> hydrateFromWallet() async {
-    if (_disposed) return;
+    if (_disposed || _resetting) return;
+    final generation = _profileGeneration;
     try {
-      await _pendingRewards;
-      final wallet = await RewardWalletRepository.instance.load();
-      if (_disposed) return;
-      _state = _state.copyWith(
-        stars: wallet.stars ,
-        xp: wallet.xp );
-      _safeNotify();
+      while (!_disposed && generation == _profileGeneration) {
+        final pending = _pendingRewards;
+        await pending;
+        final wallet = await _walletRepository.load();
+        if (_disposed || generation != _profileGeneration) return;
+        // Rewards can arrive while disk loading is in progress. Only install
+        // a snapshot once every reward queued during that load is persisted.
+        if (!identical(pending, _pendingRewards)) continue;
+        _state = _state.copyWith(stars: wallet.stars, xp: wallet.xp);
+        _safeNotify();
+        return;
+      }
     } catch (_) {
       // Wallet-Fehler ist nicht App-kritisch
     }
@@ -310,6 +337,14 @@ class LumoAppState extends ChangeNotifier {
   /// Keys der App. Danach startet die App wie beim ersten Mal mit dem
   /// Onboarding-Flow.
   Future<void> resetAllProfile() async {
+    if (_disposed || _resetting) return;
+    _resetting = true;
+    _profileGeneration++;
+    // Drain old writes before deleting their storage, then reset the cached
+    // singleton too; otherwise the next earned star restores the old balance.
+    await _pendingRewards;
+    if (_settingsLoad != null) await _settingsLoad;
+    await _walletRepository.reset();
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.clear();
@@ -319,6 +354,11 @@ class LumoAppState extends ChangeNotifier {
     } catch (_) {}
     _state = LumoSessionState();
     _lumoCardsWinStreak = 0;
+    _learningProfileLoaded = false;
+    _settingsLoaded = false;
+    _settingsLoad = null;
+    _resetting = false;
+    await ensureSettingsLoaded();
     _safeNotify();
   }
 
@@ -371,7 +411,7 @@ class LumoAppState extends ChangeNotifier {
   }
 
   void correctAnswer(String unit, {int stars = 3, int xp = 20}) {
-    if (_disposed) return;
+    if (_disposed || _resetting) return;
     final earnedStars = stars.clamp(0, 12);
     final earnedXp = xp.clamp(0, 70);
     final solved = Map<String, int>.from(_state.solved);

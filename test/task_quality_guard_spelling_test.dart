@@ -65,7 +65,8 @@ void main() {
     );
 
     expect(guard.validate(task), isFalse);
-    expect(guard.problems(task), contains('nomen_choices_missing_wordclass_distractor'));
+    expect(guard.problems(task),
+        contains('nomen_choices_missing_wordclass_distractor'));
   });
 
   test('accepts category question with noun verb adjective contrast', () {
@@ -83,9 +84,9 @@ void main() {
     expect(guard.validate(task), isTrue);
   });
 
-  test('rejects observed wrong end-sound task with Hund as t answer', () {
+  test('accepts spoken final t in Hund despite written final d', () {
     const task = LumoTask(
-      id: 'bad_end_sound_hund',
+      id: 'good_end_sound_hund',
       grade: 1,
       subject: 'Deutsch',
       unit: 'Endlaute',
@@ -95,8 +96,7 @@ void main() {
       explanation: 'Sprich jedes Wort langsam.',
     );
 
-    expect(guard.validate(task), isFalse);
-    expect(guard.problems(task), contains('answer_wrong_ending'));
+    expect(guard.validate(task), isTrue);
   });
 
   test('accepts generated final-sound letter question', () {

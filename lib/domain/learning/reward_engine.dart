@@ -131,6 +131,36 @@ class VoucherVisibilityResult {
 class RewardEngine {
   const RewardEngine();
 
+  /// Belohnung einer abgegebenen Antwort unter Berücksichtigung der Sitzung.
+  /// Fehlversuche mit Wiederholungsmöglichkeit bleiben ohne Punkteänderung.
+  /// Eine endgültige falsche Antwort nutzt den bestehenden Abzugspfad und
+  /// darf keine Abschluss-, Schreib- oder Prüfungsboni erhalten.
+  RewardDelta calculateAnswerReward({
+    required TaskResult result,
+    required SkillState before,
+    required SkillState after,
+    required bool allowRetry,
+    required bool firstAttempt,
+    LearningMode mode = LearningMode.practice,
+    bool completedSession = false,
+  }) {
+    if (!result.correct) {
+      if (allowRetry) return const RewardDelta(stars: 0, xp: 0);
+      return calculateWrongAnswerDeduction(
+        firstAttempt: firstAttempt,
+        afterHint: result.helpUsed,
+        mode: mode,
+      );
+    }
+    return calculateTaskReward(
+      result: result,
+      before: before,
+      after: after,
+      mode: mode,
+      completedSession: completedSession,
+    );
+  }
+
   RewardDelta calculateTaskReward({
     required TaskResult result,
     required SkillState before,

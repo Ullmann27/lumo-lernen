@@ -6,6 +6,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../app/app_design.dart';
 import '../../widgets/fox/lumo_reaction_companion.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/error_breakdown_repository.dart';
@@ -16,6 +17,7 @@ import '../../core/math/lumo_rechentricks.dart';
 import '../../core/lumo_visual_aid_service.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/task_quality_guard.dart';
+import '../../core/task_hint_service.dart';
 import '../../core/recent_task_repository.dart';
 import '../../core/session_variety_guard.dart';
 import '../../core/lumo_voice.dart';
@@ -45,6 +47,9 @@ class _LearningContentState extends State<LearningContent> {
   final _resultHandler = const SkillStateUpdater();
   final _rewardEngine = const RewardEngine();
   final _feedbackEngine = LumoLearningFeedbackEngine();
+  final _taskHints = const TaskHintService();
+  LumoCompanionTaskContext? _publishedTaskContext;
+  String? _activeSessionScope;
   final Map<String, SkillState> _skillStates = <String, SkillState>{};
   final List<String> _recentTaskKeys = <String>[];
   final List<String> _recentUnits = <String>[];
@@ -70,6 +75,11 @@ class _LearningContentState extends State<LearningContent> {
 
   String get _currentAiScope => '$_childId|${widget.appState.state.grade}|${_aiSubjectName(widget.appState.state.subject)}';
 
+  String get _sessionScope {
+    final state = widget.appState.state;
+    return '$_childId|${state.subject}|${state.unit}|${state.sessionKind.name}';
+  }
+
   static const int _recentTaskMemory = RecentTaskRepository.maxTaskKeys;
   static const int _recentUnitMemory = 10;
 
@@ -87,6 +97,7 @@ class _LearningContentState extends State<LearningContent> {
   SkillState? _lastSkillState;
   LumoFeedbackTurn? _lastFeedback;
   int _questionNum = 1;
+  bool _sessionFinished = false;
   int _attemptCount = 0;
   String? _tutorHint;
   // Bildhilfe-Karte als 4. Hilfsstufe nach 5+ Fehlversuchen.
@@ -123,11 +134,13 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   bool get _allowHelp =>
-      widget.appState.state.sessionKind != LumoSessionKind.schoolwork;
+      widget.appState.state.sessionKind != LumoSessionKind.schoolwork &&
+      widget.appState.state.sessionKind != LumoSessionKind.test;
 
   @override
   void initState() {
     super.initState();
+    LumoCompanionRequests.instance.helpRequested.addListener(_requestTaskHelp);
     _loadNextTask(resetCounter: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       LumoVoice.instance.speak(_welcomeForKind);
@@ -138,6 +151,22 @@ class _LearningContentState extends State<LearningContent> {
     //   1. KI-Aufgaben aus Cache laden (kostenlos, lokal)
     //   2. Wenn Cache niedrig und KI freigegeben: vom Server nachfuellen
     _hydrateAiQueueAndMaybeRefill();
+  }
+
+  @override
+  void didUpdateWidget(covariant LearningContent oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (_activeSessionScope == _sessionScope) return;
+    _skillStates.clear();
+    _recentTaskKeys.clear();
+    _recentUnits.clear();
+    _sessionTaskKeys.clear();
+    _lastTaskMarkers.clear();
+    _varietyGuard.reset();
+    _aiDraftQueue.clear();
+    _loadNextTask(resetCounter: true);
+    unawaited(_hydrateRecent());
+    unawaited(_hydrateAiQueueAndMaybeRefill());
   }
 
   Future<void> _hydrateRecent() async {
@@ -263,15 +292,17 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   void _loadNextTask({bool resetCounter = false}) {
+    _activeSessionScope = _sessionScope;
     _autoAdvanceTimer?.cancel();
     _reactionResetTimer?.cancel();
     _reactionMood = LumoReactionMood.idle;
-    _task = _nextTask();
+    // Keep prompt, answer, progress and renderer on the same checked task.
+    _task = _adapter.qualityCheckedTask(_nextTask());
     _rememberTask(_task);
     _taskInstance = _adapter.toTaskInstance(
       task: _task,
       childId: _childId,
-      difficulty: widget.appState.state.grade,
+      difficulty: _task.difficulty,
     );
     _taskStartedAt = DateTime.now();
     _answered = false;
@@ -284,9 +315,40 @@ class _LearningContentState extends State<LearningContent> {
     _aiHelpReply = null;
     _aiHelpLoading = false;
     _rechentricks = null;
+    _attemptCount = 0;
     if (resetCounter) {
+      _sessionFinished = false;
       _questionNum = 1;
       _attemptCount = 0;
+    }
+    _publishTaskContext();
+  }
+
+  void _publishTaskContext() {
+    final context = LumoCompanionTaskContext(
+      subject: _task.subject,
+      unit: _task.unit,
+      prompt: _task.prompt,
+      isExam: !_allowHelp,
+      answering: !_answered && !_sessionFinished,
+    );
+    _publishedTaskContext = context;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && identical(_publishedTaskContext, context)) {
+        LumoCompanionRequests.instance.taskContext.value = context;
+      }
+    });
+  }
+
+  void _requestTaskHelp() {
+    if (!mounted || !_allowHelp || _answered || _sessionFinished) return;
+    final hint = _taskHints.explain(_task);
+    setState(() => _tutorHint = hint);
+    if (widget.appState.state.settings.voiceEnabled) {
+      unawaited(LumoVoice.instance.speak(hint, style: VoiceStyle.explain));
+    }
+    if (widget.appState.state.settings.aiProxyEnabled) {
+      unawaited(_askAiTutor());
     }
   }
 
@@ -294,7 +356,8 @@ class _LearningContentState extends State<LearningContent> {
   /// Heinz' Wunsch: pro Bereich zugeschnittener Helfer.
   /// Wenn aiProxyEnabled = false: lokaler Hinweis wird gezeigt.
   Future<void> _askAiTutor() async {
-    if (_aiHelpLoading) return;
+    if (_aiHelpLoading || !_allowHelp || _answered ||
+        !widget.appState.state.settings.aiProxyEnabled) return;
     if (!mounted) return;
     final taskId = _taskInstance.taskInstanceId;
     setState(() => _aiHelpLoading = true);
@@ -330,7 +393,8 @@ class _LearningContentState extends State<LearningContent> {
     } catch (e) {
       if (!mounted || _taskInstance.taskInstanceId != taskId) return;
       setState(() {
-        _aiHelpReply = 'Lumo konnte gerade keine Hilfe geben. Versuche es nochmal.';
+        // The immediate offline explanation remains usable after network errors.
+        _aiHelpReply = null;
         _aiHelpLoading = false;
       });
     }
@@ -402,7 +466,7 @@ class _LearningContentState extends State<LearningContent> {
         avoidUnits: attempt < 40 ? avoidUnits : const <String>{},
       );
 
-      if (_isPassiveReadingQuiz(task)) continue;
+      if (!_taskQualityGuard.validate(task)) continue;
 
       if (!_wasRecentlySeen(task)) fallback ??= task;
 
@@ -494,10 +558,6 @@ class _LearningContentState extends State<LearningContent> {
     return aliases[normalized] ?? unit;
   }
 
-  bool _isPassiveReadingQuiz(LumoTask task) {
-    return task.subject.trim().toLowerCase() == 'lesen' && !task.handwriting;
-  }
-
   void _rememberTask(LumoTask task) {
     final markers = _taskMemoryKeys(task);
     _lastTaskMarkers = markers.toSet();
@@ -560,6 +620,11 @@ class _LearningContentState extends State<LearningContent> {
 
   void _answerWriting(WritingTaskResult result) {
     if (_answered) return;
+    if (!result.graded) {
+      // Free words/sentences are honest practice without invented grading.
+      _nextQuestion();
+      return;
+    }
     // Heinz' Wunsch: Schreib-Pruefung war zu ungenau (>= 0.55 reichte).
     // Jetzt strenger:
     //  - overallScore muss >= 0.70 sein (vorher 0.55)
@@ -661,6 +726,7 @@ class _LearningContentState extends State<LearningContent> {
 
     final responseTimeMs = DateTime.now().difference(_taskStartedAt).inMilliseconds;
     final errorTypes = correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven);
+    final firstAttempt = _attemptCount == 0;
     if (correct) {
       _attemptCount = 0;
       // Heinz' Wunsch: Konfetti bei Erfolgen. Wird ueber Trigger-Int
@@ -683,7 +749,7 @@ class _LearningContentState extends State<LearningContent> {
         givenAnswer: '$answerGiven',
       );
       if (detection.confidence >= 0.65) {
-        nextTutorHint = detection.childFriendlyMessage;
+        nextTutorHint = _allowHelp ? detection.childFriendlyMessage : null;
         // Fehlerart zaehlen + persistieren fuer die DNA-Anzeige in Phase 1.
         final key = detection.pattern.germanShortLabel;
         _errorBreakdown[key] = (_errorBreakdown[key] ?? 0) + 1;
@@ -726,10 +792,12 @@ class _LearningContentState extends State<LearningContent> {
       frustrationSignal: !correct && responseTimeMs > 18000,
     );
     final after = _resultHandler.applyResult(before: before, result: result);
-    final rewardDelta = !correct && _allowHelp ? const RewardDelta(stars: 0, xp: 0) : _rewardEngine.calculateTaskReward(
+    final rewardDelta = _rewardEngine.calculateAnswerReward(
       result: result,
       before: before,
       after: after,
+      allowRetry: _allowHelp,
+      firstAttempt: firstAttempt,
       mode: _learningModeForSession,
       completedSession: _questionNum >= _totalQuestions,
     );
@@ -765,6 +833,7 @@ class _LearningContentState extends State<LearningContent> {
       _tutorHint = nextTutorHint;
       _rechentricks = nextRechentricks;
     });
+    _publishTaskContext();
 
     // 2026-06-05 Iter 16/A1: Lumo-Reaktion setzen und nach 2.5s zurueck zu idle.
     _reactionResetTimer?.cancel();
@@ -831,6 +900,11 @@ class _LearningContentState extends State<LearningContent> {
   void _nextQuestion() {
     if (!mounted) return;
     _autoAdvanceTimer?.cancel();
+    if (_questionNum >= _totalQuestions) {
+      setState(() => _sessionFinished = true);
+      _publishTaskContext();
+      return;
+    }
     setState(() {
       final nextQuestion = _questionNum < _totalQuestions ? _questionNum + 1 : 1;
       if (nextQuestion == 1) {
@@ -843,6 +917,14 @@ class _LearningContentState extends State<LearningContent> {
 
   @override
   void dispose() {
+    LumoCompanionRequests.instance.helpRequested.removeListener(_requestTaskHelp);
+    final published = _publishedTaskContext;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final requests = LumoCompanionRequests.instance;
+      if (identical(requests.taskContext.value, published)) {
+        requests.taskContext.value = null;
+      }
+    });
     _autoAdvanceTimer?.cancel();
     _reactionResetTimer?.cancel();
     super.dispose();
@@ -851,6 +933,26 @@ class _LearningContentState extends State<LearningContent> {
   @override
   Widget build(BuildContext context) {
     final st = widget.appState.state;
+    if (_sessionFinished) {
+      return Center(child: Padding(
+        padding: const EdgeInsets.all(28),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Icon(Icons.check_circle_outline, size: 64, color: LumoColors.orange),
+          const SizedBox(height: 16),
+          const Text('Einheit beendet', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800)),
+          const SizedBox(height: 12),
+          Text('Du hast $_totalQuestions Aufgaben bearbeitet. Zeit für eine kurze Pause!',
+              textAlign: TextAlign.center, style: const TextStyle(fontSize: 18)),
+          const SizedBox(height: 20),
+          FilledButton(onPressed: () => setState(() {
+            _sessionTaskKeys.clear();
+            _loadNextTask(resetCounter: true);
+          }), child: const Text('Neue Einheit starten')),
+          const SizedBox(height: 10),
+          const Text('Du kannst im Menü auch ein anderes Thema auswählen.', textAlign: TextAlign.center),
+        ]),
+      ));
+    }
     final title = st.subject == 'Alle' ? 'Gemischte Übung' : st.subject;
     // prettifyUnit setzt Umlaute in Code-stabilen Unit-Namen wieder ein
     // (z.B. 'Rechenhaeuser' -> 'Rechenhäuser') ohne die internen Keys
@@ -927,11 +1029,11 @@ class _LearningContentState extends State<LearningContent> {
               ],
               // KI-Hilfe-Button: nur sichtbar wenn aiProxyEnabled.
               // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
-              if (widget.appState.state.settings.aiProxyEnabled && !_answered) ...[
+              if (_allowHelp && !_answered) ...[
                 const SizedBox(height: 12),
                 _AiHelpButton(
                   loading: _aiHelpLoading,
-                  onTap: _askAiTutor,
+                  onTap: _requestTaskHelp,
                   subject: _task.subject,
                 ),
               ],
@@ -1054,7 +1156,8 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.lg),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            child: IntrinsicHeight(
+              child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               // Akzent-Linie links als visueller Anker
               Container(
                 width: 5,
@@ -1132,6 +1235,7 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                 ),
               ),
             ],
+              ),
             ),
           ),
         ),
@@ -2152,7 +2256,7 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                   if (reward != null) ...[
                     const SizedBox(height: 14),
                     Wrap(spacing: 8, runSpacing: 8, children: [
-                      _InfoPill(text: '+${reward.stars} Sterne'),
+                      _InfoPill(text: '${reward.stars >= 0 ? '+' : ''}${reward.stars} Sterne'),
                       _InfoPill(text: '+${reward.xp} XP'),
                       if (fb != null) _InfoPill(text: fb.rewardLabel),
                       if (fb?.badgeLabel != null) _InfoPill(text: fb!.badgeLabel!),

@@ -9,6 +9,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -74,8 +75,8 @@ class RewardWallet {
 
 /// Persistente Wallet mit Lazy-Load + Write-Through.
 class RewardWalletRepository {
-  RewardWalletRepository._();
-  static final RewardWalletRepository instance = RewardWalletRepository._();
+  RewardWalletRepository();
+  static final RewardWalletRepository instance = RewardWalletRepository();
 
   static const _storageKey = 'lumo_reward_wallet_v1';
   static const _legacyStarsKey = 'lumo_legacy_stars';
@@ -115,7 +116,10 @@ class RewardWalletRepository {
         }
       } else {
         // Legacy-Migration falls vorhanden
-        final legacyStars = prefs.getInt(_legacyStarsKey) ?? 0;
+        final storedStars = prefs.getInt(_legacyStarsKey) ?? 0;
+        final shopStars = _legacyShopStars(prefs);
+        // These were two mirrors of the same balance, not separate earnings.
+        final legacyStars = storedStars > shopStars ? storedStars : shopStars;
         final legacyXp = prefs.getInt(_legacyXpKey) ?? 0;
         if (legacyStars > 0 || legacyXp > 0) {
           _wallet = RewardWallet(
@@ -124,8 +128,10 @@ class RewardWalletRepository {
             level: 1 + (legacyXp ~/ 400),
             totalEarnedStars: legacyStars,
           );
-          await _persist();
         }
+        // Persist even an empty wallet: an explicit zero must not later be
+        // replaced by an old shop snapshot after rewards have been spent.
+        await _persist();
       }
     } catch (_) {
       // Bei jeglichem Fehler: leere Wallet, App startet trotzdem
@@ -197,6 +203,29 @@ class RewardWalletRepository {
   }
 
   // ── Interna ───────────────────────────────────────────────────────
+  int _legacyShopStars(SharedPreferences prefs) {
+    try {
+      final profileRaw = prefs.getString('lumo_active_profile');
+      final profile = profileRaw == null ? null : jsonDecode(profileRaw);
+      final name = profile is Map
+          ? (profile['name'] as String? ?? 'Lena')
+          : 'Lena';
+      final grade = profile is Map
+          ? (profile['grade'] as num?)?.toInt() ?? 1
+          : 1;
+      final safeName = name.trim().isEmpty
+          ? 'kind'
+          : name.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+      final raw = prefs.getString('lumo.reward_shop.local_${safeName}_$grade');
+      if (raw == null) return 0;
+      final shop = jsonDecode(raw);
+      if (shop is! Map) return 0;
+      return ((shop['availableStars'] as num?)?.toInt() ?? 0).clamp(0, 999999);
+    } catch (_) {
+      return 0;
+    }
+  }
+
   Future<void> _persist() {
     final serialized = _encode(_wallet.toJson());
     _pendingWrites = _pendingWrites.then((_) async {

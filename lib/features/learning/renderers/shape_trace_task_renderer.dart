@@ -27,10 +27,12 @@ class ShapeTraceTaskRenderer extends StatelessWidget {
     super.key,
     required this.task,
     this.onSubmitted,
+    this.allowRetry = true,
   });
 
   final TaskInstance task;
   final ValueChanged<ShapeTraceTaskResult>? onSubmitted;
+  final bool allowRetry;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,7 @@ class ShapeTraceTaskRenderer extends StatelessWidget {
           const SizedBox(height: 14),
           LumoShapeTraceCanvas(
             shape: shape,
+            allowRetry: allowRetry,
             onSubmitted: (r) => onSubmitted?.call(
               ShapeTraceTaskResult(
                 task: task,

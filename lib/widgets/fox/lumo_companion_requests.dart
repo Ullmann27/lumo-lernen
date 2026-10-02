@@ -15,8 +15,24 @@
 //   5. So bleiben Buttons komplett bedienbar und Lumo wandert frei.
 // ════════════════════════════════════════════════════════════════════════
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+
+/// Current visible task; no answer or child identifier is shared here.
+class LumoCompanionTaskContext {
+  const LumoCompanionTaskContext({
+    required this.subject,
+    required this.unit,
+    required this.prompt,
+    this.isExam = false,
+    this.answering = true,
+  });
+
+  final String subject;
+  final String unit;
+  final String prompt;
+  final bool isExam;
+  final bool answering;
+}
 
 class LumoCompanionRequests {
   LumoCompanionRequests._();
@@ -25,6 +41,16 @@ class LumoCompanionRequests {
   /// Position auf die der Companion hinwandern soll (in GLOBAL coords).
   /// Wenn null = keine aktive Anfrage. Nach Verarbeitung wieder auf null.
   final ValueNotifier<Offset?> moveTarget = ValueNotifier<Offset?>(null);
+
+  /// The active lesson handles this request in place, keeping its answer state.
+  final ValueNotifier<int> helpRequested = ValueNotifier<int>(0);
+  final ValueNotifier<LumoCompanionTaskContext?> taskContext =
+      ValueNotifier<LumoCompanionTaskContext?>(null);
+
+  final ValueNotifier<int> appExplanationRequested = ValueNotifier<int>(0);
+
+  void requestTaskHelp() => helpRequested.value++;
+  void requestAppExplanation() => appExplanationRequested.value++;
 
   /// Letzter Zeitpunkt einer Anfrage - fuer Cooldown.
   DateTime _lastRequest = DateTime.fromMillisecondsSinceEpoch(0);

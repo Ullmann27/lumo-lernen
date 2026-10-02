@@ -22,7 +22,7 @@ class WritingTargetParser {
 
     // "Schreibe: Lumo lernt." oder "Schreibe: Mama"
     final copySentence = RegExp(r'Schreibe:\s*(.+)$', caseSensitive: false).firstMatch(trimmed);
-    if (copySentence != null) return copySentence.group(1)!.trim().replaceAll(RegExp(r'[.!?]+$'), '').trim();
+    if (copySentence != null) return copySentence.group(1)!.trim();
 
     // "Schreibe langsam: Apfel" oder "Schreibe schön: Rose"
     final copyWithAdverb = RegExp(r'Schreibe\s+[a-zäöüßÄÖÜ]+[:\s]+([A-ZÄÖÜ][a-zäöüß]+(?:\s+[A-Za-zÄÖÜäöüß]+)*)\.?$', caseSensitive: false).firstMatch(trimmed);
@@ -37,7 +37,7 @@ class WritingTargetParser {
     if (loneNumber != null) return loneNumber.group(1)!;
 
     // Letztes Kapitalwort am Ende des Satzes, wenn es nach "Wort" oder ":" steht
-    final afterColon = RegExp(r'[:\s]([A-ZÄÖÜ][a-zäöüß]{1,20}(?:\s+[A-ZÄÖÜ][a-zäöüß]+)?)\s*[.!?]?$').firstMatch(trimmed);
+    final afterColon = RegExp(r'(?:Wort\s+|:\s*)([A-ZÄÖÜ][a-zäöüß]{1,20}(?:\s+[A-ZÄÖÜ][a-zäöüß]+)?)\s*[.!?]?$').firstMatch(trimmed);
     if (afterColon != null) {
       final candidate = afterColon.group(1)!.trim();
       if (candidate.length > 1) return candidate;
@@ -47,6 +47,6 @@ class WritingTargetParser {
     final singleLetter = RegExp(r'\b([A-ZÄÖÜ])\b').firstMatch(trimmed);
     if (singleLetter != null) return singleLetter.group(1)!;
 
-    return 'A';
+    return '';
   }
 }

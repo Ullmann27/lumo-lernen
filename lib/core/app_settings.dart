@@ -6,8 +6,12 @@ class AppSettings {
   /// vorausgefuellt, damit Heinz sie nicht jedes Mal eintragen muss.
   static const String defaultAiProxyUrl = 'https://lumo-ai-proxy.onrender.com';
 
+  static const String initialParentPin = '2468';
+
   const AppSettings({
-    this.parentPin = '2468',
+    this.parentPin = initialParentPin,
+    bool? parentPinConfigured,
+    this.parentRecoveryCodeHash = '',
     this.dailyGoal = 3,
     this.soundEnabled = true,
     this.voiceEnabled = true,
@@ -23,9 +27,15 @@ class AppSettings {
     this.learningMode = LearningMode.normal,
     this.voiceRate = 0.35,
     this.voicePitch = 1.0,
-  });
+  }) : parentPinConfigured =
+           parentPinConfigured ?? (parentPin != initialParentPin);
 
   final String parentPin;
+  final bool parentPinConfigured;
+  final String parentRecoveryCodeHash;
+
+  bool get hasParentRecoveryCode =>
+      RegExp(r'^[a-f0-9]{64}$').hasMatch(parentRecoveryCodeHash);
   final int dailyGoal;
   final bool soundEnabled;
   final bool voiceEnabled;
@@ -44,6 +54,8 @@ class AppSettings {
 
   AppSettings copyWith({
     String? parentPin,
+    bool? parentPinConfigured,
+    String? parentRecoveryCodeHash,
     int? dailyGoal,
     bool? soundEnabled,
     bool? voiceEnabled,
@@ -62,6 +74,9 @@ class AppSettings {
   }) {
     return AppSettings(
       parentPin: parentPin ?? this.parentPin,
+      parentPinConfigured: parentPinConfigured ??
+          (parentPin != null ? true : this.parentPinConfigured),
+      parentRecoveryCodeHash: parentRecoveryCodeHash ?? this.parentRecoveryCodeHash,
       dailyGoal: dailyGoal ?? this.dailyGoal,
       soundEnabled: soundEnabled ?? this.soundEnabled,
       voiceEnabled: voiceEnabled ?? this.voiceEnabled,
@@ -82,6 +97,8 @@ class AppSettings {
 
   Map<String, dynamic> toJson() => {
         'parentPin': parentPin,
+        'parentPinConfigured': parentPinConfigured,
+        'parentRecoveryCodeHash': parentRecoveryCodeHash,
         'dailyGoal': dailyGoal,
         'soundEnabled': soundEnabled,
         'voiceEnabled': voiceEnabled,
@@ -100,30 +117,43 @@ class AppSettings {
       };
 
   factory AppSettings.fromJson(Map<String, dynamic> json) {
+    final savedPin = '${json['parentPin'] ?? ''}';
+    final validPin = RegExp(r'^\d{4,8}$').hasMatch(savedPin);
+    final pin = validPin ? savedPin : initialParentPin;
+    // Existing custom PINs are never downgraded by missing/false metadata.
+    // Only the old untouched default needs first-time setup.
+    final configured = (validPin && pin != initialParentPin) ||
+        json['parentPinConfigured'] == true;
     return AppSettings(
-      parentPin: RegExp(r'^\d{4,8}$').hasMatch('${json['parentPin'] ?? ''}')?'${json['parentPin']}'
-          : '2468',
+      parentPin: pin,
+      parentPinConfigured: configured,
+      parentRecoveryCodeHash: json['parentRecoveryCodeHash'] is String
+          ? json['parentRecoveryCodeHash'] as String
+          : '',
       dailyGoal: _intIn(json['dailyGoal'], fallback: 3, allowed: const [3, 5, 10, 15],
       ),
-      soundEnabled: json['soundEnabled'] as bool? ?? true,
-      voiceEnabled: json['voiceEnabled'] as bool? ?? true,
-      autoReadEnabled: json['autoReadEnabled'] as bool? ?? true,
-      microphoneEnabled: json['microphoneEnabled'] as bool? ?? true,
-      scannerEnabled: json['scannerEnabled'] as bool? ?? true,
-      aiProxyEnabled: json['aiProxyEnabled'] as bool? ?? false,
-      aiLearningMode: AiLearningModeX.fromName(json['aiLearningMode'] as String?,
+      soundEnabled: _bool(json['soundEnabled'], fallback: true),
+      voiceEnabled: _bool(json['voiceEnabled'], fallback: true),
+      autoReadEnabled: _bool(json['autoReadEnabled'], fallback: true),
+      microphoneEnabled: _bool(json['microphoneEnabled'], fallback: true),
+      scannerEnabled: _bool(json['scannerEnabled'], fallback: true),
+      aiProxyEnabled: _bool(json['aiProxyEnabled'], fallback: false),
+      aiLearningMode: AiLearningModeX.fromName(json['aiLearningMode'] is String ? json['aiLearningMode'] as String : null,
       ),
       aiProxyUrl: _safeProxyUrl(json['aiProxyUrl']),
-      reduceAnimations: json['reduceAnimations'] as bool? ?? false,
-      largeText: json['largeText'] as bool? ?? false,
-      calmMode: json['calmMode'] as bool? ?? false,
-      learningMode: LearningModeX.fromName(json['learningMode'] as String?),
+      reduceAnimations: _bool(json['reduceAnimations'], fallback: false),
+      largeText: _bool(json['largeText'], fallback: false),
+      calmMode: _bool(json['calmMode'], fallback: false),
+      learningMode: LearningModeX.fromName(json['learningMode'] is String ? json['learningMode'] as String : null),
       voiceRate: _doubleRange(json['voiceRate'], fallback: 0.35, min: 0.25, max: 0.55,
       ),
       voicePitch: _doubleRange(json['voicePitch'], fallback: 1.0, min: 0.85, max: 1.18,
       ),
     );
   }
+
+  static bool _bool(dynamic value, {required bool fallback}) =>
+      value is bool ? value : fallback;
 
   static int _intIn(dynamic value, {required int fallback, required List<int> allowed,
   }) {

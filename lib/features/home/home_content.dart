@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
-import '../../widgets/fox/lumo_tutorial_companion.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
 import '../games/games_content.dart';
 import '../../core/lumo_mission_engine.dart';
 import '../live/lumo_live_pro_screen.dart';
@@ -39,16 +39,6 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
-  // Tutorial-Companion Steuerung
-  final GlobalKey<LumoTutorialCompanionState> _tutorialKey =
-      GlobalKey<LumoTutorialCompanionState>();
-  bool _tutorialBadgeVisible = true;
-
-  // GlobalKeys auf die 6 Subject-Tiles.
-  // Heinz 2026-05-21: 'Tutorial-Fuchs landet nicht auf den Buttons,
-  // soll knapp neben der Ueberschrift springen.' Mit echten Render-
-  // Box-Positionen statt nur Bildschirm-Fractions trifft Lumo die
-  // Tile-Ueberschriften genau, auf jedem Geraet.
   final GlobalKey _kMathe = GlobalKey(debugLabel: 'tut_mathe');
   final GlobalKey _kDeutsch = GlobalKey(debugLabel: 'tut_deutsch');
   final GlobalKey _kQuiz = GlobalKey(debugLabel: 'tut_quiz');
@@ -88,90 +78,7 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   void _startTutorial() {
-    setState(() => _tutorialBadgeVisible = false);
-    _tutorialKey.currentState?.start();
-  }
-
-  /// Lumo's Reise durch den Homescreen.
-  /// Heinz 2026-05-21: 'Sprünge fixen - immer knapp neben der
-  /// Überschrift'. Daher: GlobalKeys auf die echten Subject-Tiles +
-  /// Sections. Der Companion liest zur Laufzeit die echte
-  /// RenderBox-Position und positioniert Lumo direkt am Ziel-Widget.
-  /// xFraction/yFraction bleiben als Fallback (z.B. fuer FABs).
-  List<LumoTutorialStop> _buildTutorialPath() {
-    return [
-      // 1) Begruessung (Fraction: kein Header-Key)
-      const LumoTutorialStop(
-        xFraction: 0.75,
-        yFraction: 0.18,
-        message: 'Hallo! Ich bin Lumo. 🦊\n'
-            'Ich zeig dir jetzt die ganze App.\n'
-            'Folge mir Schritt fuer Schritt.',
-        duration: Duration(milliseconds: 4500),
-      ),
-      // 2) Mathe-Tile
-      LumoTutorialStop(
-        targetKey: _kMathe,
-        message: 'Tipp hier auf "Mathe mit Lumo"! ➕\n'
-            'Wir rechnen zusammen Plus, Minus und mehr.\n'
-            'Ich erklaere jeden Schritt.',
-        duration: const Duration(milliseconds: 5000),
-        jumpToReach: true,
-      ),
-      // 5) Deutsch-Tile
-      LumoTutorialStop(
-        targetKey: _kDeutsch,
-        message: '"Deutsch mit Lumo" ist hier. ✏️\n'
-            'Buchstaben schreiben, Woerter lesen, Diktat.\n'
-            'Ich sag dir das Wort, du schreibst es.',
-        duration: const Duration(milliseconds: 5000),
-      ),
-      // 6) Quizshow
-      LumoTutorialStop(
-        targetKey: _kQuiz,
-        message: 'Die Quizshow! 🏆\n'
-            '15 Fragen, drei Joker, am Ende echte Gutscheine.\n'
-            'Trau dich!',
-        duration: const Duration(milliseconds: 5000),
-        jumpToReach: true,
-      ),
-      // 7) Spielewelt
-      LumoTutorialStop(
-        targetKey: _kSpiele,
-        message: 'In der Spielewelt 🎮 gibt es viele Level.\n'
-            'Renne, springe, sammle Sterne.\n'
-            'Lernen darf Spass machen!',
-        duration: const Duration(milliseconds: 5000),
-      ),
-      // 8) Lesen-Tile
-      LumoTutorialStop(
-        targetKey: _kLesen,
-        message: '"Lesen mit Lumo" 📖\n'
-            'Ich hoer dir beim Lesen zu.\n'
-            'Wir lesen Geschichten Satz fuer Satz.',
-        duration: const Duration(milliseconds: 5000),
-        jumpToReach: true,
-      ),
-      // 9) Sachunterricht
-      LumoTutorialStop(
-        targetKey: _kSachk,
-        message: 'Sachunterricht 🌍\n'
-            'Tiere, Pflanzen, Wetter, Farben.\n'
-            'Hier entdeckst du die Welt.',
-        duration: const Duration(milliseconds: 5000),
-      ),
-      // 10) Abschluss - bewusst per Fraction (kein Tile am Bildschirm-
-      //     Mittelpunkt, dort steht Lumo am Schluss "winkend").
-      const LumoTutorialStop(
-        xFraction: 0.50,
-        yFraction: 0.50,
-        message: 'Das war alles! 💛\n'
-            'Tipp einfach ueberall drauf.\n'
-            'Ich bin immer da wenn du mich brauchst.',
-        duration: Duration(milliseconds: 4500),
-        jumpToReach: true,
-      ),
-    ];
+    LumoCompanionRequests.instance.requestAppExplanation();
   }
 
   /// 2026-06-04: Liefert die erste Mission aus LumoMissionEngine fuer die
@@ -192,7 +99,8 @@ class _HomeContentState extends State<HomeContent> {
   /// geloest. Solid-Approximation aus solved-Map (gesamt-Tag), gecapped
   /// auf targetTasks der aktuellen Mission.
   int _todayMissionDone() {
-    final solved = widget.appState.state.solved.values.fold<int>(0, (a, b) => a + b);
+    final solved =
+        widget.appState.state.solved.values.fold<int>(0, (a, b) => a + b);
     final target = _todayMission()?.targetTasks ?? 3;
     return solved.clamp(0, target);
   }
@@ -224,7 +132,8 @@ class _HomeContentState extends State<HomeContent> {
         // des Kindes (weakSkills aus AppState). Fallback bleibt statisch wenn
         // die Engine keine Mission liefert.
         dailyMissionTitle: _todayMission()?.title ?? 'Tägliche Mission',
-        dailyMissionSubtitle: _todayMission()?.subtitle ?? 'Starte heute eine Lernrunde',
+        dailyMissionSubtitle:
+            _todayMission()?.subtitle ?? 'Starte heute eine Lernrunde',
         dailyMissionDone: _todayMissionDone(),
         dailyMissionTotal: _todayMission()?.targetTasks ?? 3,
         dailyMissionRewardStars: _todayMission()?.rewardStars ?? 10,
@@ -244,8 +153,7 @@ class _HomeContentState extends State<HomeContent> {
             starsTotal: 20,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) =>
-                    LumoAkademieScreen(appState: widget.appState),
+                builder: (_) => LumoAkademieScreen(appState: widget.appState),
               ),
             ),
           ),
@@ -261,8 +169,7 @@ class _HomeContentState extends State<HomeContent> {
             starsTotal: 20,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) =>
-                    LumoAkademieScreen(appState: widget.appState),
+                builder: (_) => LumoAkademieScreen(appState: widget.appState),
               ),
             ),
           ),
@@ -305,8 +212,7 @@ class _HomeContentState extends State<HomeContent> {
                 subject: 'Lesen',
                 unit: 'Aktives Lesen',
                 mood: LumoMood.think,
-                lumoMessage:
-                    'Ich höre dir\nbeim Lesen zu.\nSatz für Satz.',
+                lumoMessage: 'Ich höre dir\nbeim Lesen zu.\nSatz für Satz.',
               ));
               widget.onSection(LumoSection.reading);
             },
@@ -323,8 +229,7 @@ class _HomeContentState extends State<HomeContent> {
             starsTotal: 15,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) =>
-                    LumoAkademieScreen(appState: widget.appState),
+                builder: (_) => LumoAkademieScreen(appState: widget.appState),
               ),
             ),
           ),
@@ -377,7 +282,8 @@ class _HomeContentState extends State<HomeContent> {
             starsTotal: 0,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
-                builder: (_) => AchievementsWallScreen(appState: widget.appState),
+                builder: (_) =>
+                    AchievementsWallScreen(appState: widget.appState),
               ),
             ),
           ),
@@ -541,28 +447,12 @@ class _HomeContentState extends State<HomeContent> {
           child: dashboard,
         ),
 
-        // ── Wandernder Lumo-Tutorial-Begleiter ────────────────────
-        Positioned.fill(
-          child: IgnorePointer(
-            ignoring: false,
-            child: LumoTutorialCompanion(
-              key: _tutorialKey,
-              stops: _buildTutorialPath(),
-              childName: childName,
-              foxSize: 130,
-              onCompleted: () {
-                if (mounted) setState(() => _tutorialBadgeVisible = true);
-              },
-            ),
-          ),
-        ),
-
         // ── Floating "Tutorial starten" Button (unten rechts) ────
         Positioned(
           right: 16,
           bottom: 18,
           child: _TutorialFab(
-            visible: _tutorialBadgeVisible,
+            visible: true,
             onTap: _startTutorial,
           ),
         ),
@@ -618,7 +508,8 @@ class _MagicHubFabState extends State<_MagicHubFab>
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF7C3AED).withOpacity(0.4 + _glow.value * 0.3),
+                color: const Color(0xFF7C3AED)
+                    .withOpacity(0.4 + _glow.value * 0.3),
                 blurRadius: 16 + _glow.value * 12,
                 spreadRadius: _glow.value * 4,
               ),
@@ -632,11 +523,11 @@ class _MagicHubFabState extends State<_MagicHubFab>
         backgroundColor: const Color(0xFF7C3AED),
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) =>
-                LumoMagicHubScreen(appState: widget.appState),
+            builder: (_) => LumoMagicHubScreen(appState: widget.appState),
           ),
         ),
-        child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 28),
+        child: const Icon(Icons.auto_awesome_rounded,
+            color: Colors.white, size: 28),
       ),
     );
   }

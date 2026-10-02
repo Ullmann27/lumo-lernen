@@ -1,7 +1,7 @@
 name: Publish verified Android APK
 on:
   push:
-    branches: [main, codex/lumo-restart-school-test-2026-10-02]
+    branches: [main, codex/lumo-restart-school-test-2026-10-02, codex/lumo-school-readiness-followup-2026-10-02]
   workflow_dispatch:
 permissions:
   contents: write
@@ -42,14 +42,34 @@ jobs:
       - name: Full Flutter regression tests
         run: flutter test --no-pub --reporter=expanded --timeout=45s --concurrency=2
       - name: Build Android APK
-        run: flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER" --build-name 0.9.0
+        run: >-
+          flutter build apk --release
+          --build-number "$GITHUB_RUN_NUMBER" --build-name 0.9.0
+          --dart-define=LUMO_BUILD_NUMBER="$GITHUB_RUN_NUMBER"
+          --dart-define=LUMO_VERSION_NAME=0.9.0
+          --dart-define=LUMO_ACTIVATE_COACH=true
+      - name: Verify stable signing certificate and save original-package APK
+        run: |
+          python3 scripts/verify_android_apk.py build/app/outputs/flutter-apk/app-release.apk
+          mkdir -p dist
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Lumo-Lernen-latest.apk
+      - name: Build safe side-by-side APK
+        run: |
+          python3 scripts/prepare_android.py --side-by-side
+          flutter build apk --release \
+            --build-number "$GITHUB_RUN_NUMBER" --build-name 0.9.0 \
+            --dart-define=LUMO_BUILD_NUMBER="$GITHUB_RUN_NUMBER" \
+            --dart-define=LUMO_VERSION_NAME=0.9.0 \
+            --dart-define=LUMO_ACTIVATE_COACH=true \
+            --dart-define=LUMO_SIDE_BY_SIDE=true
+          python3 scripts/verify_android_apk.py build/app/outputs/flutter-apk/app-release.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Lumo-Lernen-Neu.apk
       - name: Prepare release
         id: prepare
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-debug.apk dist/Lumo-Lernen-latest.apk
           sha256sum dist/*.apk > dist/SHA256SUMS.txt
           python3 - <<'PY'
           import os
@@ -58,7 +78,7 @@ jobs:
           tag=('school-test-' if school else 'build-')+os.environ['GITHUB_RUN_NUMBER']
           with open(os.environ['GITHUB_OUTPUT'],'a') as output:
               output.write(f'tag={tag}\nprerelease={str(school).lower()}\nlatest={str(not school).lower()}\n')
-          Path('/tmp/release_body.md').write_text('Lumo Lernen 0.9.0 – geprüfter Android-Testbuild.\n\nLernaufgaben, Fehlversuche und Hilfen, gespeicherte Belohnungen, Eltern-PIN, Android-Installer und Verbindung zur Godot-3D-App überarbeitet.\n\nFlutter-Analyse, vollständige Flutter-Tests sowie Backend- und Android-Verbindungstests müssen vor Veröffentlichung erfolgreich sein. Geräte-, Sprach- und Unterrichtstest stehen noch aus.\n\nDie 3D-App wird separat installiert; im Rennspiel führt „3D-Rennen“ direkt zu ihr oder zur Browser-Version.\n\nPrüfsumme: SHA256SUMS.txt.\n')
+          Path('/tmp/release_body.md').write_text('Lumo Lernen 0.9.0 – geprüfter Android-Testbuild.\n\nFlüssig bewegter Lernfuchs mit freiwilligen Lernideen und Erklärungen, überarbeitete Aufgaben und Schreibvorlagen sowie Eltern-PIN-Einrichtung. Optimierter Release-Build mit explizit geprüftem stabilem Zertifikat. Online-KI in der App freigegeben; ihr externer Dienst kann weiterhin durch ein Provider-Limit blockiert sein.\n\nFlutter-Analyse, vollständige Flutter-Tests sowie Backend- und Android-Verbindungstests müssen vor Veröffentlichung erfolgreich sein. Geräte-, Sprach- und Unterrichtstest stehen noch aus.\n\nDie 3D-App wird separat installiert; im Rennspiel führt „3D-Rennen“ direkt zu ihr oder zur Browser-Version.\n\nInstallation nach Build 270: Lumo-Lernen-Neu.apk installiert Lumo Lernen Neu parallel und bewahrt die alte App samt Daten. Lernstände werden nicht automatisch übernommen. Die alte APK 270 hat einen abweichenden Signierschlüssel; Lumo-Lernen-latest.apk kann sie deshalb nicht direkt aktualisieren. Alte App nicht für einen Test deinstallieren. Prüfsummen: SHA256SUMS.txt.\n')
           PY
       - name: Publish downloadable APK
         uses: softprops/action-gh-release@v2
@@ -71,4 +91,5 @@ jobs:
           make_latest: ${{ steps.prepare.outputs.latest }}
           files: |
             dist/Lumo-Lernen-latest.apk
+            dist/Lumo-Lernen-Neu.apk
             dist/SHA256SUMS.txt

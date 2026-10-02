@@ -597,7 +597,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                 Row(children: const [
                   Icon(Icons.school_rounded, color: Colors.white, size: 22),
                   SizedBox(width: 6),
-                  Text('LUMO AKADEMIE',
+                  Expanded(child: Text('LUMO AKADEMIE',
                       style: TextStyle(
                           fontFamily: 'Nunito',
                           color: Colors.white,
@@ -605,7 +605,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.4,
                       ),
-                    ),
+                     )),
                 ],
                 ),
                 const SizedBox(height: 8),

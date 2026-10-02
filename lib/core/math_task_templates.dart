@@ -12,7 +12,7 @@ class MathTaskTemplates {
     ),
     MathTaskTemplate(id: 'g1_sub_10', grade: 1, unit: 'Minus bis 10', kind: MathTemplateKind.subtraction, validRangeA: <int>[3, 10], validRangeB: <int>[1, 7], promptPattern: 'minus-bis-10',
     ),
-    MathTaskTemplate(id: 'g1_number_line', grade: 1, unit: 'Zahlenstrahl', kind: MathTemplateKind.numberLineMissing, validRangeA: <int>[1, 20], validRangeB: <int>[0, 2], promptPattern: 'zahlenstrahl-fehlt',
+    MathTaskTemplate(id: 'g1_number_line', grade: 1, unit: 'Zahlenstrahl', kind: MathTemplateKind.numberLineMissing, validRangeA: <int>[0, 17], validRangeB: <int>[0, 2], promptPattern: 'zahlenstrahl-fehlt',
     ),
     MathTaskTemplate(id: 'g1_quantity_compare', grade: 1, unit: 'Mengenvergleich', kind: MathTemplateKind.quantityCompare, validRangeA: <int>[1, 8], validRangeB: <int>[1, 8], promptPattern: 'menge-vergleichen',
     ),
@@ -128,6 +128,14 @@ class MathTaskTemplates {
     ),
   ];
 
+  static bool supportsUnit(int grade, String unit) {
+    if (unit == 'Alle') return true;
+    final capped = grade.clamp(1, 4);
+    return templates.any((template) => template.grade <= capped &&
+        (template.unit == unit ||
+            (_legacyUnitAliases[unit]?.contains(template.unit) ?? false)));
+  }
+
   static List<MathTaskTemplate> templatesForGrade(int grade, {String? unit}) {
     final capped = grade.clamp(1, 4);
     final pool = templates.where((template) => template.grade <= capped).where((template) {
@@ -162,8 +170,10 @@ class MathTaskTemplates {
     final pool = useStrict
         ? templatesForGradeStrict(grade, unit: unit)
         : templatesForGrade(grade, unit: unit);
-    final template = pool[_positive(seed, pool.length)];
-    return template.concretize(seed + template.id.hashCode);
+    // Auswahl und Wiederholungsquote dürfen nicht denselben Modulo nutzen:
+    // Bei 16 Templates wären sonst ganze Familien nie erreichbar.
+    final template = pool[_positive(_mixSeed(seed + 101), pool.length)];
+    return template.concretize(_mixSeed(seed + 809));
   }
 
   static const Map<String, List<String>> _legacyUnitAliases = <String, List<String>>{
@@ -207,8 +217,8 @@ class MathTaskTemplate {
   final String promptPattern;
 
   MathConcreteTask concretize(int seed) {
-    final a = _valueInRange(validRangeA, seed);
-    final b = _valueInRange(validRangeB, seed ~/ 7 + 13);
+    final a = _valueInRange(validRangeA, _mixSeed(seed + 17));
+    final b = _valueInRange(validRangeB, _mixSeed(seed + 53));
     switch (kind) {
       case MathTemplateKind.addition:
         final limit = int.tryParse(
@@ -230,8 +240,8 @@ class MathTaskTemplate {
         return _numberTask('Welche Zahl fehlt? $start, ${start + 1}, _, ${start + 3}', answer, 'Am Zahlenstrahl geht es immer um 1 weiter.', 'number_line',
         );
       case MathTemplateKind.quantityCompare:
-        final left = a == b ? a + 1 : a;
-        final answer = left > b ? 'links' : 'rechts';
+        final left = a;
+        final answer = left == b ? 'gleich' : left > b ? 'links' : 'rechts';
         final leftDots = _repeatEmoji('🍎', left);
         final rightDots = _repeatEmoji('🍎', b);
         return _choice('$leftDots oder $rightDots – wo ist mehr?', answer, <String>['links', 'rechts', 'gleich'], 'Vergleiche die Menge, nicht die Länge der Zeile.', 'quantity',
@@ -248,19 +258,33 @@ class MathTaskTemplate {
         );
       case MathTemplateKind.moneyCompare:
         final left = a;
-        final right = a == b ? b + 1 : b;
-        final answer = left > right ? '$left €' : '$right €';
+        final right = b;
+        final answer = left == right ? 'gleich viel' : left > right ? '$left €' : '$right €';
         return _choice('Was kostet mehr: $left € oder $right €?', answer, <String>['$left €', '$right €', 'gleich viel'], 'Mehr Euro bedeutet höherer Preis.', 'money',
         );
       case MathTemplateKind.dayHours:
         return _choice('Wie viele Stunden hat ein Tag?', '24', <String>['12', '24', '30'], 'Ein Tag hat 24 Stunden: Tag und Nacht zusammen.', 'clock',
         );
       case MathTemplateKind.symmetry:
-        final data = <String, bool>{'Kreis': true, 'Quadrat': true, 'Herz': true, 'krumme Wolke': false, 'Handabdruck': false, 'Blitz': false,
+        if (unit == 'Symmetrieachsen') {
+          const examples = <(String, int)>[
+            ('ein Quadrat', 4),
+            ('ein Rechteck, das kein Quadrat ist', 2),
+            ('ein gleichseitiges Dreieck', 3),
+            ('ein gleichschenkliges Dreieck, das nicht gleichseitig ist', 1),
+          ];
+          final entry = examples[_positive(_mixSeed(seed), examples.length)];
+          return _numberTask('Wie viele Symmetrieachsen hat ${entry.$1}?', entry.$2,
+              'Eine Symmetrieachse teilt eine Form in zwei spiegelgleiche Hälften. Prüfe jede mögliche Faltlinie.', 'symmetry');
+        }
+        const data = <String, bool>{
+          'ein Kreis': true, 'ein Quadrat': true,
+          'ein gleichseitiges Dreieck': true,
+          'ein Dreieck mit drei verschieden langen Seiten': false,
         };
-        final entry = data.entries.elementAt(_positive(seed, data.length));
-        return _choice('Ist die Form „${entry.key}“ symmetrisch?', entry.value ? 'ja' : 'nein', <String>['ja', 'nein', 'nur manchmal'], 'Symmetrisch heißt: Zwei Seiten passen wie Spiegelbilder zusammen.', 'symmetry',
-        );
+        final entry = data.entries.elementAt(_positive(_mixSeed(seed), data.length));
+        return _choice('Hat ${entry.key} eine Spiegelachse?', entry.value ? 'ja' : 'nein',
+            <String>['ja', 'nein'], 'Beim Spiegeln an einer Achse müssen beide Hälften genau aufeinanderpassen.', 'symmetry');
       case MathTemplateKind.multiplicationPrep:
         final answer = b;
         return _numberTask('Wie oft $a ist ${a * b}?', answer, '$a wird $answer-mal genommen: ${List<String>.filled(answer, '$a').join(' + ')} = ${a * b}.', 'groups',
@@ -281,19 +305,28 @@ class MathTaskTemplate {
         return _numberTask(story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story',
         );
       case MathTemplateKind.moneyChange:
-        final euro = a.clamp(2, 20).toInt();
-        return _choice('Wie kann man $euro € in 1-€-Münzen wechseln?', '$euro Münzen', <String>['${euro - 1} Münzen', '$euro Münzen', '${euro + 1} Münzen'], 'Jede 1-€-Münze zählt einen Euro.', 'money_change',
-        );
+        final denomination = grade >= 3 ? <int>[2, 5, 10][b % 3] : (b.isEven ? 2 : 1);
+        final amount = grade >= 3 ? a * 2 : a;
+        final euro = (amount ~/ denomination).clamp(1, 100).toInt() * denomination;
+        final count = euro ~/ denomination;
+        final pieces = denomination <= 2 ? 'Münzen' : 'Scheine';
+        String counted(int value) => '$value ${value == 1 ? (denomination <= 2 ? 'Münze' : 'Schein') : pieces}';
+        return _choice('Wie viele $denomination-€-$pieces ergeben $euro €?', counted(count),
+            <String>[counted(count), counted(count + 1), counted(count == 1 ? count + 2 : count - 1)],
+            'Zähle in $denomination-er-Schritten bis $euro: $count × $denomination € = $euro €.', 'money_change');
       case MathTemplateKind.clockTime:
-        final minutes = <int>[0, 15, 30, 45][b.clamp(0, 3).toInt()];
-        final answer = minutes == 0 ? '$a Uhr' : '$a:${minutes.toString().padLeft(2, '0')} Uhr';
-        return _choice('Welche Uhrzeit ist gemeint: Stunde $a und Minute $minutes?', answer, <String>[answer, '${(a % 12) + 1}:${minutes.toString().padLeft(2, '0')} Uhr', '$a:00 Uhr',
-          ], 'Der kleine Zeiger zeigt die Stunde, der große die Minuten.', 'clock',
-        );
+        final minutes = <int>[0, 15, 30, 45][b];
+        String clock(int hour, int minute) => '${(hour - 1) % 12 + 1}:${minute.toString().padLeft(2, '0')} Uhr';
+        final answer = clock(a, minutes);
+        return _choice('Welche Uhrzeit ist gemeint: Stunde $a und Minute $minutes?', answer,
+            <String>[answer, clock(a + 1, minutes), clock(a, (minutes + 15) % 60), clock(a, (minutes + 30) % 60)],
+            'Die Zahl vor dem Doppelpunkt nennt die Stunde. Danach stehen die Minuten; 00 heißt eine volle Stunde.', 'clock');
       case MathTemplateKind.lengthConversion:
-        final answer = a * 100;
-        return _numberTask('Wie viele Zentimeter sind $a Meter?', answer, '1 Meter sind 100 Zentimeter. Also $a × 100 = $answer.', 'ruler',
-        );
+        final extra = b * 10;
+        final answer = a * 100 + extra;
+        final amount = extra == 0 ? '$a Meter' : '$a Meter und $extra Zentimeter';
+        return _numberTask('Wie viele Zentimeter sind $amount?', answer,
+            '1 Meter sind 100 Zentimeter. Rechne $a × 100 und zähle $extra Zentimeter dazu.', 'ruler');
       case MathTemplateKind.evenOdd:
         final answer = a.isEven ? 'gerade' : 'ungerade';
         return _choice('Ist $a gerade oder ungerade?', answer, <String>['gerade', 'ungerade', 'beides'], 'Gerade Zahlen kann man in zwei gleiche Gruppen teilen.', 'parity',
@@ -358,19 +391,14 @@ class MathTaskTemplate {
         return _numberTask('$dividend : $divisor = ?', quotient, 'Teile $dividend in $divisor gleich große Gruppen.', 'division',
         );
       case MathTemplateKind.simpleFractionAdd:
-        // FIX: Vorher war right = denominator - left, sodass left+right
-        // IMMER == denominator war (z.B. 3/5 + 2/5 = 5/5 = 1). Das war
-        // didaktisch falsch und verwirrend - die ganze Aufgabe hatte
-        // keine echten Brueche als Ergebnis. Jetzt: left max denominator-2
-        // und right max denominator-left-1, damit ein echter Bruch < 1
-        // entsteht (z.B. 1/5 + 2/5 = 3/5).
-        final denominator = (b + 2).clamp(3, 12).toInt();
-        final left = a.clamp(1, denominator - 2).toInt();
-        final right = b.clamp(1, denominator - left - 1).toInt();
-        final answer = '${left + right}/$denominator';
-        return _choice('$left/$denominator + $right/$denominator = ?', answer, <String>[answer, '${left + right}/${denominator + 1}', '$left/$denominator',
-          ], 'Bei gleichem Nenner addierst du die Zähler.', 'fraction_add',
-        );
+        final denominator = b + 2;
+        final left = 1 + (a - 1) % (denominator - 2);
+        final right = 1 + _positive(_mixSeed(seed + 211), denominator - left - 1);
+        final numerator = left + right;
+        final answer = '$numerator/$denominator';
+        return _choice('$left/$denominator + $right/$denominator = ?', answer,
+            <String>[answer, '${numerator - 1}/$denominator', '${numerator + 1}/$denominator'],
+            'Die Teile bleiben gleich groß: Der Nenner bleibt $denominator. Addiere nur die Zähler: $left + $right = $numerator. Kürzen ist hier nicht nötig.', 'fraction_add');
       case MathTemplateKind.decimals:
         final left = a / 10;
         final right = b / 10;
@@ -393,49 +421,48 @@ class MathTaskTemplate {
         return _choice('Welches Zeichen passt? $a ? $b', answer, <String>['<', '>', '='], 'Vergleiche von links nach rechts.', 'compare',
         );
       case MathTemplateKind.massConversion:
-        // a Kilogramm in Gramm. 1 kg = 1000 g.
-        final kg = a.clamp(1, 9).toInt();
-        final answer = kg * 1000;
-        return _numberTask('Wie viele Gramm sind $kg kg?', answer, '1 kg sind 1000 g. Also $kg × 1000 = $answer g.', 'mass',
-        );
+        final kg = 1 + (a - 1) % 9;
+        final extra = (b - 1) * 100;
+        final answer = kg * 1000 + extra;
+        final amount = extra == 0 ? '$kg kg' : '$kg kg und $extra g';
+        return _numberTask('Wie viele Gramm sind $amount?', answer,
+            '1 kg sind 1000 g. Rechne $kg × 1000 und zähle $extra g dazu.', 'mass');
       case MathTemplateKind.volumeConversion:
-        // a Liter in Milliliter. 1 l = 1000 ml.
-        final liter = a.clamp(1, 9).toInt();
-        final answer = liter * 1000;
-        return _numberTask('Wie viele Milliliter sind $liter Liter?', answer, '1 l sind 1000 ml. Also $liter × 1000 = $answer ml.', 'volume',
-        );
+        final liter = 1 + (a - 1) % 9;
+        final extra = (b - 1) * 100;
+        final answer = liter * 1000 + extra;
+        final amount = extra == 0 ? '$liter Liter' : '$liter Liter und $extra Milliliter';
+        return _numberTask('Wie viele Milliliter sind $amount?', answer,
+            '1 Liter sind 1000 Milliliter. Rechne $liter × 1000 und zähle $extra Milliliter dazu.', 'volume');
       case MathTemplateKind.timeMinutes:
-        // a Stunden in Minuten. 1 h = 60 min.
-        final hours = a.clamp(1, 5).toInt();
-        final answer = hours * 60;
-        return _numberTask('$hours Stunden sind wie viele Minuten?', answer, '1 Stunde hat 60 Minuten. Also $hours × 60 = $answer min.', 'clock',
-        );
+        final hours = 1 + (a - 1) % 5;
+        final extra = (b - 1) * 15;
+        final answer = hours * 60 + extra;
+        final hoursText = '$hours ${hours == 1 ? 'Stunde' : 'Stunden'}';
+        final amount = extra == 0 ? hoursText : '$hoursText und $extra Minuten';
+        return _numberTask('Wie viele Minuten sind $amount?', answer,
+            '1 Stunde hat 60 Minuten. Rechne $hours × 60 und zähle $extra Minuten dazu.', 'clock');
       case MathTemplateKind.fractionExpand:
-        // Erweitere 1/a mit b: ergibt b/(a*b).
-        final denom = a.clamp(2, 6).toInt();
-        final factor = b.clamp(2, 5).toInt();
-        final newNumerator = factor;
+        final denom = 2 + (a - 2) % 5;
+        final factor = 2 + (b - 2) % 4;
+        final numerator = 1 + _positive(_mixSeed(seed + 31), denom - 1);
+        final newNumerator = numerator * factor;
         final newDenom = denom * factor;
         final answer = '$newNumerator/$newDenom';
         return _choice(
-          'Erweitere den Bruch 1/$denom mit $factor. Wie heißt der neue Bruch?',
+          'Erweitere den Bruch $numerator/$denom mit $factor. Wie heißt der neue Bruch?',
           answer,
-          <String>[
-            answer,
-            '$newNumerator/$denom',
-            '1/${denom + factor}',
-            '${newNumerator + 1}/$newDenom',
-          ],
-          'Beim Erweitern multiplizierst du Zähler UND Nenner mit derselben Zahl: 1·$factor / $denom·$factor = $answer.',
+          <String>[answer, '$numerator/$newDenom', '${newNumerator + 1}/$newDenom'],
+          'Multipliziere Zähler UND Nenner mit $factor: $numerator · $factor = $newNumerator und $denom · $factor = $newDenom.',
           'fraction_expand',
         );
       case MathTemplateKind.average:
         // Mittelwert aus a, b und (a+b)/2-ish. Drei Werte deren Durchschnitt
         // ganzzahlig ist: nutze 3-Zahlen die ein Vielfaches von 3 ergeben.
-        final base = ((a + b) ~/ 2).clamp(4, 50).toInt();
-        final v1 = (base - 2).clamp(1, 999).toInt();
-        final v2 = base;
-        final v3 = (base + 2).clamp(1, 999).toInt();
+        final base = a;
+        final v1 = base - b;
+        final v2 = base + 1;
+        final v3 = base + b - 1;
         final sum = v1 + v2 + v3;
         final answer = sum ~/ 3;
         return _numberTask(
@@ -463,7 +490,7 @@ class MathTaskTemplate {
         final entry = shapes[pick];
         return MathConcreteTask(
           unit: unit,
-          prompt: 'Zeichne ein ${entry[0]} nach',
+          prompt: 'Zeichne ${pick == 1 || pick == 4 ? 'einen' : 'ein'} ${entry[0]} nach',
           answer: entry[0],
           choices: const <String>[],
           explanation: entry[1],
@@ -490,7 +517,7 @@ class MathTaskTemplate {
     // Wenn weniger als 3 Choices: paedagogisch sinnvolle Padding-Werte hinzufuegen.
     // Vorher: 'answer_2', 'answer_3' (sah technisch und kaputt aus fuer Kinder).
     // Nachher: bei Zahl-Antworten naheliegende Nachbarzahlen, sonst sinnvolle Alternativen.
-    while (choices.length < 3) {
+    while (choices.length < 3 && int.tryParse(answer) != null) {
       final fallback = _smartFallback(answer, choices);
       if (fallback == null) break;
       choices.add(fallback);
@@ -596,6 +623,14 @@ enum MathTemplateKind {
   // 2026-06-05 Iter 20: Form-Nachzeichnen (Quadrat, Kreis, Dreieck, ...).
   // Demo-Phase + Trace-Phase im eigenen Renderer.
   shapeTrace,
+}
+
+// Uses bounded integer operations so the same seed works on mobile and web.
+int _mixSeed(int seed) {
+  var value = seed & 0x7fffffff;
+  value = ((value ^ (value >> 16)) * 2053) & 0x7fffffff;
+  value = ((value ^ (value >> 13)) * 4093) & 0x7fffffff;
+  return value ^ (value >> 16);
 }
 
 int _valueInRange(List<int> range, int seed) {
