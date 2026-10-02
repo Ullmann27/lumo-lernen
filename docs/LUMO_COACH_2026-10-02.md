@@ -65,10 +65,12 @@ Limit nicht. Hinweise und Vorschläge sind auch offline verfügbar.
 
 - Inhaltsaudit: 37.540 erzeugte Aufgabenvarianten geprüft.
 - Node-Backend: 19 Regressionstests bestanden (simulierte Providerantworten).
-- Android-Vorbereitung und Signaturauswertung: 5 Python-Tests bestanden.
+- Android-Vorbereitung und Verifikationsaufruf: 4 Python-Tests bestanden.
+  Signaturen werden direkt über Androids ApkVerifier-API und DER-Zertifikate
+  geprüft, ohne CLI-Ausgabetext zu interpretieren. Echte APK-Gegenprobe:
+  Kopie mit Repository-Schlüssel akzeptiert, ursprüngliche APK 270 abgewiesen.
 - Repair Guard und `git diff --check`: bestanden.
-- Vollständige Flutter-Suite: 375 bestanden, 4 zuvor übersprungen, keine Fehler.
-  Anschließend zusätzlicher gezielter Variantentest: 8 Update-Tests bestanden.
+- Vollständige Flutter-Suite in CI #950: 376 bestanden, 4 zuvor übersprungen, keine Fehler.
 - Flutter-Analyse: 0 Fehler; vorhandene Warnungen/Hinweise bleiben sichtbar.
 - Abschließender CI-APK-Bau: Ergebnis wird in PR #152 und im Release protokolliert.
 - Layouttest verwendet echte AppShell und prüft 360×740, 840×560 und 280×640,
