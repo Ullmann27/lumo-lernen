@@ -25,6 +25,46 @@ class ApkSignatureTest(unittest.TestCase):
         )
         self.assertEqual(module.verify_certificate_digest(output, self.certificate), self.digest)
 
+    def test_v31_sdk_ranges_repeating_one_certificate_and_dev_release(self):
+        # Matches the labels in AOSP ApkSignerTool.verify / printCertificate.
+        # https://android.googlesource.com/platform/tools/apksig/+/refs/heads/main/src/apksigner/java/com/android/apksigner/ApkSignerTool.java
+        for dev_release in ('', ' (dev release=true)'):
+            with self.subTest(dev_release=dev_release):
+                output = (
+                    'Verified using v3.1 scheme (APK Signature Scheme v3.1): true\r\n'
+                    'Number of signers: 1\r\n'
+                    f'Signer (minSdkVersion=33{dev_release}, maxSdkVersion=2147483647) certificate DN: CN=Android Debug\r\n'
+                    f'Signer (minSdkVersion=33{dev_release}, maxSdkVersion=2147483647) certificate SHA-256 digest: {self.digest.upper()}\r\n'
+                    f'Signer (minSdkVersion=24, maxSdkVersion=32) certificate SHA-256 digest: {self.digest}\r\n'
+                    f'Signer (minSdkVersion=24, maxSdkVersion=32) public key SHA-256 digest: {"0" * 64}\r\n'
+                    f'Source Stamp Signer certificate SHA-256 digest: {"1" * 64}\r\n'
+                )
+                self.assertEqual(module.verify_certificate_digest(output, self.certificate), self.digest)
+
+    def test_rejects_untrusted_or_unreadable_additional_sdk_signer(self):
+        valid = f'Signer (minSdkVersion=24, maxSdkVersion=32) certificate SHA-256 digest: {self.digest}\n'
+        for label, digest in (
+            ('Signer (minSdkVersion=33, maxSdkVersion=2147483647)', '0' * 64),
+            ('Signer (minSdkVersion=33, maxSdkVersion=2147483647)', 'malformed'),
+            ('Signer (unknown-format=true)', self.digest),
+        ):
+            with self.subTest(label=label, digest=digest):
+                with self.assertRaises(module.VerificationError):
+                    module.verify_certificate_digest(valid + f'{label} certificate SHA-256 digest: {digest}\n', self.certificate)
+
+    def test_failure_diagnostic_is_limited_to_public_digest_labels(self):
+        output = (
+            'Signer #1 certificate DN: CN=DO-NOT-PRINT\n'
+            'unrelated private host details\n'
+            f'Signer #1 certificate SHA-256 digest: {"0" * 64}\n'
+        )
+        with self.assertRaises(module.VerificationError) as caught:
+            module.verify_certificate_digest(output, self.certificate)
+        message = str(caught.exception)
+        self.assertIn('Signer #1: ' + '0' * 64, message)
+        self.assertNotIn('DO-NOT-PRINT', message)
+        self.assertNotIn('private host details', message)
+
     def test_rejects_missing_malformed_multiple_and_wrong_certificates(self):
         valid = f'Signer #1 certificate SHA-256 digest: {self.digest}\n'
         cases = (

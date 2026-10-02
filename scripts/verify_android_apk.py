@@ -44,18 +44,38 @@ def run_tool(command: list[str]) -> bytes:
 
 
 def verify_certificate_digest(signer_output: str, trusted_certificate: bytes) -> str:
-    digests = re.findall(
-        r'^Signer #\d+ certificate SHA-256 digest:\s*([0-9a-fA-F]{64})\s*$',
-        signer_output,
-        re.MULTILINE,
-    )
-    if len(digests) != 1:
-        raise VerificationError('APK must have exactly one reported signing certificate.')
+    # AOSP ApkSignerTool.verify prints SDK ranges for v3.1 signatures instead
+    # of numbered signers, possibly repeating one certificate across ranges.
+    label_pattern = r'Signer (?:#\d+|\(minSdkVersion=\d+(?: \(dev release=true\))?, maxSdkVersion=\d+\))'
+    entries = []
+    for line in signer_output.splitlines():
+        line = line.strip()
+        if line.startswith('Signer ') and ' certificate SHA-256 digest:' in line:
+            label, digest = line.split(' certificate SHA-256 digest:', 1)
+            entries.append((label, digest.strip()))
+
+    # Print only bounded labels and public certificate digests on failure.
+    # Never dump certificate DNs, public-key details, or arbitrary tool output.
+    diagnostic = '; '.join(
+        re.sub(r'[^A-Za-z0-9 #()=,._-]', '?', label)[:120] + ': ' +
+        (digest.lower() if re.fullmatch(r'[0-9a-fA-F]{64}', digest) else '<invalid digest>')
+        for label, digest in entries[:8]
+    ) or '<no signer certificate SHA-256 lines>'
+    if not entries or any(
+        re.fullmatch(label_pattern, label) is None or
+        re.fullmatch(r'[0-9a-fA-F]{64}', digest) is None
+        for label, digest in entries
+    ):
+        raise VerificationError(f'Unrecognized APK signing certificate output. Public digest labels: {diagnostic}')
+    digests = {digest.lower() for _, digest in entries}
+    numbered_signers = {label for label, _ in entries if label.startswith('Signer #')}
+    if len(digests) != 1 or len(numbered_signers) > 1:
+        raise VerificationError(f'APK must use one signing certificate. Public digest labels: {diagnostic}')
     if not trusted_certificate:
         raise VerificationError('The stable signing certificate could not be exported.')
-    digest = digests[0].lower()
+    digest = next(iter(digests))
     if digest != hashlib.sha256(trusted_certificate).hexdigest():
-        raise VerificationError('APK certificate does not match the stable Lumo signing certificate.')
+        raise VerificationError(f'APK certificate does not match the stable Lumo signing certificate. Public digest labels: {diagnostic}')
     return digest
 
 
