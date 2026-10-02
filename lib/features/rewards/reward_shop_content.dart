@@ -68,6 +68,8 @@ class _RewardShopContentState extends State<RewardShopContent> {
       if (!mounted || !widget.appState.settingsLoaded) return;
       final confirmed = await ParentalGate.show(context,
           pin: widget.appState.state.settings.parentPin,
+          initialPin: !widget.appState.state.settings.parentPinConfigured,
+          onPinRecovered: widget.appState.updateSettings,
         );
       if (!confirmed || !mounted) return;
     }

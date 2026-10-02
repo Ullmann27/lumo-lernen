@@ -1,6 +1,9 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
+import '../core/app_settings.dart';
+import 'parent_pin_setup_dialog.dart';
+
 /// Erwachsenen-Schranke ("Parental Gate").
 ///
 /// Verlangt die konfigurierte Eltern-PIN. Ohne PIN-Parameter bleibt
@@ -13,12 +16,20 @@ import 'package:flutter/material.dart';
 /// if (ok) ...; // Zugriff freigegeben
 /// ```
 class ParentalGate extends StatefulWidget {
-  const ParentalGate({super.key, this.pin});
+  const ParentalGate({
+    super.key, this.pin, this.initialPin = false, this.onPinRecovered,
+  });
 
   final String? pin;
+  final bool initialPin;
+  final ValueChanged<AppSettings>? onPinRecovered;
 
   /// Zeigt die Gate als modalen Dialog. Liefert `true` bei Erfolg.
-  static Future<bool> show(BuildContext context, {String? pin}) async {
+  static Future<bool> show(BuildContext context, {
+    String? pin,
+    bool initialPin = false,
+    ValueChanged<AppSettings>? onPinRecovered,
+  }) async {
     final ok = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
@@ -26,7 +37,9 @@ class ParentalGate extends StatefulWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         insetPadding: EdgeInsets.all(20),
-        child: ParentalGate(pin: pin),
+        child: SingleChildScrollView(child: ParentalGate(
+          pin: pin, initialPin: initialPin, onPinRecovered: onPinRecovered,
+        )),
       ),
     );
     return ok ?? false;
@@ -107,6 +120,13 @@ class _ParentalGateState extends State<ParentalGate> {
     }
   }
 
+  Future<void> _recover() async {
+    final next = await ParentPinRecoveryDialog.show(context);
+    if (!mounted || next == null) return;
+    widget.onPinRecovered?.call(next);
+    Navigator.of(context).pop(true);
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -169,7 +189,9 @@ class _ParentalGateState extends State<ParentalGate> {
           Text(
             widget.pin == null
                 ? 'Bitte gib einer erwachsenen Person das Gerät, um diese Frage zu beantworten:'
-                : 'Bitte gib das Gerät einer erwachsenen Person. Zur Freigabe wird die Eltern-PIN benötigt.',
+                : widget.initialPin
+                    ? 'Für Eltern: Es wurde noch keine eigene PIN eingerichtet. Der bisherige Erstzugang lautet 2468. Bitte richte im Elternbereich eine eigene PIN ein.'
+                    : 'Bitte gib das Gerät einer erwachsenen Person. Zur Freigabe wird die Eltern-PIN benötigt.',
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w700,
@@ -228,6 +250,8 @@ class _ParentalGateState extends State<ParentalGate> {
               ),
             ),
           ],
+          if (widget.pin != null)
+            TextButton(onPressed: _recover, child: const Text('PIN vergessen?')),
           const SizedBox(height: 18),
           Row(children: [
             Expanded(

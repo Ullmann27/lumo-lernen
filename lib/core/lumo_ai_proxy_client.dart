@@ -32,6 +32,14 @@ class LumoAiProxyClient {
         source: 'local_empty',
       );
     }
+    if (text.length > 1200) {
+      return const LumoAiProxyResponse(
+        reply: 'Deine Frage ist sehr lang. Stell mir bitte eine kürzere Frage, dann gehen wir sie gemeinsam durch.',
+        blocked: false,
+        source: 'local_input_too_long',
+        reason: 'message_too_long',
+      );
+    }
 
     final localSafety = LumoChildSafetyFilter.inspect(text);
     if (!localSafety.allowed) {
@@ -84,25 +92,32 @@ class LumoAiProxyClient {
       final payload = <String, dynamic>{
         'message': text,
         'childProfile': <String, dynamic>{
-          'name': state.childName,
           'grade': state.grade,
         },
-        'history': history.take(8).map((turn) => turn.toJson()).toList(growable: false),
+        'history': history.skip(history.length > 8 ? history.length - 8 : 0)
+            .map((turn) => turn.toJson()).toList(growable: false),
         // Bereichs-Kontext: der Proxy kennt jetzt aus welchem Modul
         // die Anfrage kommt und kann ein angepasstes System-Prompt waehlen.
         'context': context.key,
-        'persona': context.personaHint,
-        if (extras != null && extras.isNotEmpty) 'extras': extras,
+        if (extras != null && extras.isNotEmpty) 'extras': <String, Object?>{
+          for (final key in const ['section', 'subject', 'unit', 'topic', 'topic_id', 'mode', 'visual'])
+            if (extras[key] is String) key: (extras[key] as String).substring(0, (extras[key] as String).length.clamp(0, 120)),
+          if (extras['attempt'] is int) 'attempt': (extras['attempt'] as int).clamp(0, 10),
+        },
       };
       request.write(jsonEncode(payload));
 
       final response = await request.close().timeout(timeout);
       final raw = await response.transform(utf8.decoder).join().timeout(timeout);
       if (response.statusCode < 200 || response.statusCode >= 300) {
+        final reason = _safeErrorReason(_tryDecodeHealthJson(raw));
         return LumoAiProxyResponse(
-          reply: 'Der Lumo-KI-Server antwortet gerade nicht. Wir üben ohne Cloud weiter.',
+          reply: reason == 'openai_rate_limited'
+              ? 'Die Lumo-KI braucht gerade eine kurze Pause. Wir können inzwischen eine Aufgabe ohne KI üben.'
+              : 'Die Lumo-KI ist gerade nicht verfügbar. Wir können inzwischen eine Aufgabe ohne KI üben.',
           blocked: false,
           source: 'proxy_http_${response.statusCode}',
+          reason: reason,
         );
       }
       final decoded = jsonDecode(raw);
@@ -343,7 +358,6 @@ class LumoAiProxyClient {
       final payload = <String, dynamic>{
         'message': 'Sag hallo in einem kurzen Satz.',
         'childProfile': <String, dynamic>{
-          'name': 'Eltern-Test',
           'grade': 1,
         },
         'history': const <Map<String, String>>[],
@@ -354,22 +368,29 @@ class LumoAiProxyClient {
       final code = response.statusCode;
       String source = 'unknown';
       String replySnippet = '';
+      String? reason;
+      bool blocked = false;
       try {
         final decoded = jsonDecode(raw);
         if (decoded is Map) {
           source = decoded['source']?.toString() ?? 'unknown';
+          reason = _safeErrorReason(decoded);
+          blocked = decoded['blocked'] == true;
           final reply = decoded['reply']?.toString() ?? '';
-          replySnippet = reply.length > 150 ? '${reply.substring(0, 150)}...' : reply;
+          replySnippet = reason != null
+              ? aiErrorDescription(reason)
+              : reply.length > 150 ? '${reply.substring(0, 150)}...' : reply;
         }
       } catch (_) {
-        replySnippet = raw.length > 150 ? '${raw.substring(0, 150)}...' : raw;
+        replySnippet = 'Der Server hat keine lesbare KI-Antwort geliefert.';
       }
       return LumoAiSmokeTestResult(
-        success: code >= 200 && code < 300 && replySnippet.isNotEmpty,
+        success: code >= 200 && code < 300 && source == 'openai_proxy' && !blocked && reason == null && replySnippet.isNotEmpty,
         statusCode: code,
         source: source,
         replySnippet: replySnippet,
         endpoint: endpoint.toString(),
+        reason: reason,
       );
     } on TimeoutException {
       return LumoAiSmokeTestResult(
@@ -379,12 +400,12 @@ class LumoAiProxyClient {
         replySnippet: 'Server hat nicht innerhalb von 45 Sekunden geantwortet.',
         endpoint: endpoint.toString(),
       );
-    } catch (e) {
+    } catch (_) {
       return LumoAiSmokeTestResult(
         success: false,
         statusCode: 0,
         source: 'error',
-        replySnippet: 'Fehler: ${e.toString().substring(0, e.toString().length > 100 ? 100 : e.toString().length)}',
+        replySnippet: 'Die Verbindung zum KI-Server konnte nicht hergestellt werden.',
         endpoint: endpoint.toString(),
       );
     } finally {
@@ -432,7 +453,7 @@ class LumoAiProxyClient {
         message: available
             ? '${prefix}Server erreichbar. Die letzte KI-Anfrage war erfolgreich.'
             : upstreamStatus != null && upstreamStatus != 'not_checked'
-                ? '${prefix}Server erreichbar, aber die KI meldet einen Fehler: $upstreamStatus.'
+                ? '${prefix}Server erreichbar. ${aiErrorDescription(upstreamStatus)}'
                 : '${prefix}Server erreichbar. KI-Schlüssel vorhanden; Verbindung noch nicht bestätigt. Bitte KI-Test ausführen.',
         statusCode: statusCode,
         endpoint: endpoint,
@@ -557,8 +578,7 @@ class LumoAiProxyClient {
         'subject': subject,
         'grade': grade,
         'units': units.take(6).toList(growable: false),
-        'count': count.clamp(3, 20),
-        if (childName != null && childName.isNotEmpty) 'childName': childName,
+        'count': count.clamp(3, 12),
       };
       request.write(jsonEncode(payload));
       final response = await request.close().timeout(timeout);
@@ -592,6 +612,31 @@ class LumoAiProxyClient {
     }
   }
 }
+
+const _publicAiErrors = <String>{
+  'openai_key_missing', 'openai_authentication_failed', 'openai_quota_exceeded',
+  'openai_rate_limited', 'openai_model_unavailable', 'openai_configuration_error',
+  'openai_upstream_error', 'upstream_unavailable', 'message_too_long',
+  'invalid_json', 'body_too_large', 'no_valid_tasks',
+};
+
+String? _safeErrorReason(Map? decoded) {
+  final reason = decoded?['reason']?.toString() ?? decoded?['error']?.toString();
+  return _publicAiErrors.contains(reason) ? reason : null;
+}
+
+/// Allowlisted parent diagnostics; never show raw provider errors or credentials.
+String aiErrorDescription(String? reason) => switch (reason) {
+  'openai_rate_limited' => 'OpenAI begrenzt gerade die Anfragen. Bitte kurz warten; bei wiederholtem Fehler die Projektlimits im OpenAI-Konto prüfen.',
+  'openai_quota_exceeded' => 'Das OpenAI-Kontingent ist aufgebraucht. Bitte Guthaben und Abrechnung im OpenAI-Projekt prüfen.',
+  'openai_authentication_failed' => 'Der hinterlegte OpenAI-Schlüssel wird abgelehnt. Bitte den Schlüssel am Server erneuern.',
+  'openai_key_missing' => 'Am Server fehlt der OpenAI-Schlüssel.',
+  'openai_model_unavailable' => 'Das konfigurierte KI-Modell ist für dieses OpenAI-Projekt nicht verfügbar.',
+  'openai_configuration_error' => 'OpenAI lehnt einen Modellparameter ab. Bitte die Serverkonfiguration prüfen.',
+  'message_too_long' || 'body_too_large' => 'Die Anfrage ist zu lang. Bitte kürzen und erneut versuchen.',
+  'no_valid_tasks' => 'Die KI hat keine fachlich geprüften Aufgaben geliefert. Lokale Aufgaben bleiben verfügbar.',
+  _ => 'Die KI-Verbindung ist derzeit nicht bestätigt. Bitte später erneut testen.',
+};
 
 class _HealthHttpResult {
   const _HealthHttpResult({required this.statusCode, required this.rawBody});
@@ -639,6 +684,7 @@ class LumoAiSmokeTestResult {
     required this.source,
     required this.replySnippet,
     required this.endpoint,
+    this.reason,
   });
 
   final bool success;
@@ -646,6 +692,7 @@ class LumoAiSmokeTestResult {
   final String source;
   final String replySnippet;
   final String endpoint;
+  final String? reason;
 }
 
 class LumoAiProxyResponse {
@@ -654,12 +701,16 @@ class LumoAiProxyResponse {
     required this.blocked,
     required this.source,
     this.ruleId,
+    this.reason,
   });
 
   final String reply;
   final bool blocked;
   final String source;
   final String? ruleId;
+  final String? reason;
+
+  bool get isCloudAnswer => source == 'openai_proxy' && reason == null && !blocked;
 }
 
 class LumoAiChatTurn {
@@ -701,9 +752,16 @@ class LumoChildSafetyFilter {
   };
 
   static LumoSafetyDecision inspect(String value) {
-    final text = value.toLowerCase();
-    for (final entry in _blockedTerms.entries) {
-      if (entry.value.any((term) => text.contains(term))) {
+    final text = _normalize(_normalizeReceiveVerbs(value));
+    final rules = _blockedTerms.entries.toList()
+      ..sort((a, b) => _urgentRule(b.key).compareTo(_urgentRule(a.key)));
+    for (final entry in rules) {
+      final compound = entry.key == 'violence_war_weapons' && RegExp(
+        r'(^|[^a-z])(?:[a-z]*krieg(?:e|en|er|s[a-z]*)?|[a-z]*waffen[a-z]*|[a-z]*waffe|[a-z]*(?:pistole|gewehr)[a-z]*|bomben[a-z]*|messer(?:stich|angriff|attacke)[a-z]*)(?=$|[^a-z])',
+      ).hasMatch(text);
+      if (compound || entry.value.any((term) => RegExp(
+        '(^|[^a-z])${RegExp.escape(_normalize(term))}(?:e|en|er|n|s)?(?=\$|[^a-z])',
+      ).hasMatch(text))) {
         return LumoSafetyDecision(
           allowed: false,
           ruleId: entry.key,
@@ -713,6 +771,31 @@ class LumoChildSafetyFilter {
     }
     return const LumoSafetyDecision(allowed: true, ruleId: null, redirect: '');
   }
+
+  static int _urgentRule(String key) => key == 'self_harm' || key == 'stranger_danger' ? 1 : 0;
+
+  static String _normalize(String text) => text.toLowerCase()
+      .replaceAll('ä', 'ae').replaceAll('ö', 'oe').replaceAll('ü', 'ue').replaceAll('ß', 'ss');
+
+  static String _normalizeReceiveVerbs(String source) => source.replaceAllMapped(
+    RegExp(r'\b(?:ab|hin|mit|auf|raus|rein|weg|zurecht)?krieg(?:e|en|st|t|te|ten|test|tet)\b', caseSensitive: false),
+    (match) {
+      final word = match[0]!;
+      if (!RegExp(r'^kriege(?:n)?$', caseSensitive: false).hasMatch(word)) return 'bekommen';
+      final before = source.substring(0, match.start);
+      final after = source.substring(match.end);
+      final tokens = RegExp(r'[A-Za-zÄÖÜäöüß0-9]+').allMatches(before).map((m) => m[0]!).toList();
+      var i = tokens.length - 1;
+      while (i >= 0 && RegExp(r'^(?:den|der|diesen|jenen|solchen|[a-zäöüß]+(?:en|em|er|es|e))$').hasMatch(tokens[i])) { i--; }
+      final nounPrefix = RegExp(r'^(?:in|von|vor|nach|bei|aus|zu|mit|gegen|über|ueber|durch|für|fuer|ohne|trotz|während|waehrend|wegen|seit|zwischen|zwei|drei|vier|fünf|fuenf|\d+)$', caseSensitive: false).hasMatch(i >= 0 ? tokens[i] : '');
+      final nounPredicate = RegExp(r'^\s+(?:sind|waren|beginnen|begannen|enden|endeten|dauern|dauerten|verursachen|fordern)\b', caseSensitive: false).hasMatch(after);
+      final explicitVerb = RegExp(r'\b(?:ich|wir|du|sie|ihr|er|es)\s*$', caseSensitive: false).hasMatch(before)
+          || RegExp(r'^\s+(?:ich|wir|du|sie|ihr|er|es)\b', caseSensitive: false).hasMatch(after)
+          || (word.toLowerCase() == 'kriegen' && RegExp(r'(?:^|[.!?]\s*)$').hasMatch(before) && RegExp(r'^\s+[A-ZÄÖÜ][A-Za-zÄÖÜäöüß]*\b').hasMatch(after));
+      if (nounPrefix || nounPredicate || (word[0] == word[0].toUpperCase() && !explicitVerb)) return word;
+      return 'bekommen';
+    },
+  );
 
   static String _redirectFor(String ruleId) {
     switch (ruleId) {

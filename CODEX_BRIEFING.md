@@ -144,7 +144,7 @@ Bitte führe die Tradition fort und schreibe deinen Session-Eintrag in `/mnt/tra
 
 ## 4. DEINE WERKZEUGE / WAS DU SCHON KANNST
 
-- Du hast vollen Push-Zugriff auf `Ullmann27/lumo-lernen` via PAT `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`
+- Du hast vollen Push-Zugriff auf `Ullmann27/lumo-lernen` via PAT `[ENTFERNT – offengelegtes Zugriffstoken widerrufen; GitHub-Verbindung verwenden]`
 - Du kennst die SKILL.md Konventionen
 - Du kannst `flutter analyze` und `flutter test` lokal in deiner Umgebung laufen lassen
 - Du kennst die Schutzbereiche (pubspec.yaml, app_state.dart, lumo_speech_listener.dart, reading-Module, Cold-Start-Logik in proxy_client, ChatGPT-5.5-Templates)

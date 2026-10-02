@@ -21,11 +21,13 @@ Standard ist GPT-6 Luna für kurze Lernhinweise und Aufgabenchargen. Frühere Ko
 
 Gleichzeitige Aufgabenanfragen mit derselben Klasse, demselben Fach sowie identischen normalisierten Themen und Anzahlen teilen eine laufende Erzeugung und deren Ergebnis. Andere Anforderungen bleiben unabhängig; der Verlauf je Klasse/Fach führt ihre Ergebnisse zusammen. Bodies über 16 KiB erhalten HTTP 413; danach wird die Verbindung zeitnah geschlossen, auch wenn ein Client den Upload nicht beendet.
 
+`/chat` akzeptiert die festen Kontexte `companion`, `learning_tutor`, `reading_buddy`, `writing_helper`, `math_coach`, `science_explorer` und `parent_advisor`. Die Regeln stehen ausschließlich am Server; eine frei mitgesendete `persona` wird ignoriert. `extras` erlaubt kurze Aufgabenfelder (`subject`, `unit`, `topic`, `topic_id`, `mode`, `visual`), `attempt` zwischen 0 und 10 und eine bekannte App-`section`. Der Lernfuchs erklärt Bereiche und bietet freiwillige nächste Schritte an, führt aber keine Modellaktionen oder Navigation aus. Datenschutz und Kinderschutz gelten für alle Kontexte.
+
 Die App verwendet bei gewählten einzelnen Einheiten den lokalen Generator, damit die KI keine Aufgabe unter einer falschen Einheit anbietet. Ein Vorrat ist pro Profil, Klasse und Fach gespeichert. Hinweise sind zum Üben verfügbar; im Testmodus bleiben Hilfen aus.
 
 ## Diagnose
 
-Ein HTTP-200-Healthcheck bedeutet: der Proxy läuft. Einen echten `/chat`- oder `/tasks`-Aufruf ebenfalls prüfen. Fehlergründe sind `openai_authentication_failed`, `openai_quota_exceeded`, `openai_rate_limited`, `no_valid_tasks` oder ein Upstream-Fehler. Interne Provider-Antworten und Geheimnisse werden nicht an Kinder weitergegeben.
+Ein HTTP-200-Healthcheck bedeutet: der Proxy läuft. Einen echten `/chat`- oder `/tasks`-Aufruf ebenfalls prüfen. Fehlergründe sind `openai_authentication_failed`, `openai_quota_exceeded`, `openai_rate_limited`, `openai_model_unavailable`, `openai_configuration_error`, `no_valid_tasks` oder ein Upstream-Fehler. Ein Rate-Limit wird nicht durch automatische Wiederholungen verstärkt. Der Eltern-Test bestätigt nur eine erfolgreiche Antwort mit `source: openai_proxy`, keine lokale Ersatzantwort. Interne Provider-Antworten und Geheimnisse werden nicht an Kinder weitergegeben.
 
 ## Prüfung
 

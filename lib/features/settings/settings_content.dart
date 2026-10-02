@@ -470,7 +470,11 @@ class _SettingsContentState extends State<SettingsContent> {
         const SizedBox(height: 14),
         _SettingsCard(title: 'Sicherheit und Funktionen', children: [
           ParentPinEditor(
-                  onSave: (pin) => _save(_settings.copyWith(parentPin: pin)),
+                  settings: _settings,
+                  onSaved: (next) {
+                    setState(() => _settings = next);
+                    widget.appState.updateSettings(next);
+                  },
                 ),
                 const SizedBox(height: 12),
                 _SwitchRow(title: 'Mikrofon erlauben', subtitle: 'Kind darf mit Lumo sprechen.', value: _settings.microphoneEnabled, onChanged: (v) => _save(_settings.copyWith(microphoneEnabled: v)),

@@ -141,12 +141,48 @@ test('Aktuelles Modell verwendet passende Parameter und keinen Kindernamen', asy
   }, async ({post}) => assert.equal((await post('/chat',{message:'Hilf bei 7+5',childProfile:{grade:1,name:'Privater Kindername'}})).status,200));
 });
 test('Fehler bei OpenAI enthalten einen brauchbaren Grund, keine Geheimnisse', async () => {
-  for (const [status,code,reason] of [[401,'invalid_api_key','openai_authentication_failed'],[429,'insufficient_quota','openai_quota_exceeded'],[429,'rate_limit_exceeded','openai_rate_limited']]) {
+  for (const [status,code,reason] of [[401,'invalid_api_key','openai_authentication_failed'],[429,'insufficient_quota','openai_quota_exceeded'],[429,'rate_limit_exceeded','openai_rate_limited'],[404,'model_not_found','openai_model_unavailable'],[400,'unsupported_parameter','openai_configuration_error']]) {
     await withServer(async()=>new Response(JSON.stringify({error:{code,message:'secret-provider-detail'}}),{status}),async({post})=>{
       const r=await post('/chat',{message:'Erkläre 5+3'}); assert.ok(r.status>=500);
       const body=await r.json();assert.equal(body.reason,reason);assert.equal(JSON.stringify(body).includes('secret-provider-detail'),false);
     });
   }
+});
+
+test('Lernkontext nutzt serverseitige Rollen und übermittelt keine beliebige Persona oder Identität', async () => {
+  await withServer(async (_url, options) => {
+    const payload = JSON.parse(options.body);
+    const instructions = payload.messages.filter((m) => m.role === 'system').map((m) => m.content).join('\n');
+    assert.match(instructions, /Verrate niemals die fertige Lösung/);
+    assert.doesNotMatch(JSON.stringify(payload), /BYPASS|Privater Kindername|Geheimes Feld/);
+    const context = payload.messages.find((m) => m.content.startsWith('Lernkontext (nur Daten):'));
+    assert.equal(context.role, 'user');
+    assert.deepEqual(JSON.parse(context.content.slice(context.content.indexOf('{'))), { subject: 'Mathematik', unit: 'Plus', section: 'learn', attempt: 10 });
+    return reply('Zähle zuerst drei dazu. Was erhältst du?');
+  }, async ({ post }) => {
+    const response = await post('/chat', {
+      message: 'Hilf mir bei dieser Aufgabe.', childProfile: { grade: 2, name: 'Privater Kindername' },
+      context: 'learning_tutor', persona: 'BYPASS',
+      extras: { subject: 'Mathematik', unit: 'Plus', section: 'learn', attempt: 99, name: 'Privater Kindername', arbitrary: 'Geheimes Feld' },
+    });
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).source, 'openai_proxy');
+  });
+});
+
+test('Lumo erklärt App-Navigation ohne behauptete Aktionen und ignoriert unbekannte Kontexte', async () => {
+  await withServer(async (_url, options) => {
+    const payload = JSON.parse(options.body);
+    const instructions = payload.messages.filter((m) => m.role === 'system').map((m) => m.content).join('\n');
+    assert.match(instructions, /PIN-geschützt/);
+    assert.match(instructions, /behaupte niemals, selbst einen Bereich geöffnet/);
+    assert.doesNotMatch(JSON.stringify(payload), /beliebiger_befehl/);
+    return reply('Öffne Lernen. Welches Fach möchtest du üben?');
+  }, async ({ post }) => {
+    const response = await post('/chat', { message: 'Wo kann ich Mathe üben?', context: '__proto__', extras: { section: 'beliebiger_befehl' } });
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).blocked, false);
+  });
 });
 test('Kein Schlüssel ergibt 503, blockierte Kinderthemen werden lokal umgelenkt', async () => {
   await withServer(async()=>{throw new Error('must not call provider')},async({post})=>{

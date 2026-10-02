@@ -1,998 +1,495 @@
-// ════════════════════════════════════════════════════════════════════════
-// LUMO FREE COMPANION
-// ════════════════════════════════════════════════════════════════════════
-// Heinz' Auftrag: 'Lumo soll nicht mehr im rechten Kasten gefangen sein.
-// Er soll als frei beweglicher, lebendiger Companion frei ueber der App
-// existieren. Kind tippt irgendwo -> Lumo laeuft hin. Tap auf Lumo ->
-// Reaktion. Doppel-Tap -> Kitzeln/Lachen. Lumo kehrt zur Home-Position
-// zurueck. Mundbewegung an VoiceStatus gekoppelt.'
-//
-// Architektur:
-//   - LumoFreeCompanion ist ein Overlay-Layer der ueber der App liegt
-//   - Hintergrund-Tap (auf "freie Flaeche") = move-to
-//   - Tap auf Lumo = Reaktion (Winken)
-//   - Doppel-Tap auf Lumo = Kitzeln/Lachen
-//   - Long-Press = Erklaerung sprechen
-//   - Auto-Return-Home nach 8s Inaktivitaet
-//
-// Wichtig:
-//   - Hintergrund-Hit-Test nur sammelt taps, blockiert keine Buttons.
-//   - Companion-Hit-Test ist klein (nur auf dem Avatar selbst).
-//   - SafeArea respektieren (Home-Position dynamisch).
-//   - Responsive: kleiner auf Handy, groesser auf Tablet.
-// ════════════════════════════════════════════════════════════════════════
-
 import 'dart:async';
 import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
-
+import '../../core/lumo_companion_guide.dart';
 import '../../core/lumo_voice.dart';
+import 'lumo_animated_fox.dart';
 import 'lumo_companion_requests.dart';
+export '../../core/lumo_companion_guide.dart';
 
-enum LumoCompanionState {
-  idle,
-  walking,
-  speaking,
-  waving,
-  tickled,
-  celebrating,
-  comforting,
-  returningHome,
-}
-
+/// A reserved floor below the content: Lumo walks above his own controls,
+/// never over answers, navigation buttons, keyboards or modal routes.
 class LumoFreeCompanion extends StatefulWidget {
-  const LumoFreeCompanion({
-    super.key,
-    this.foxAssetPath = 'assets/lumo_sprite_pack/lumo_main.png',
-    this.size,
-    this.homeAlignment = Alignment.bottomRight,
-    this.homeMargin = const EdgeInsets.fromLTRB(0, 0, 28, 28),
-    this.tapEnabled = true,
-    this.returnHomeAfter = const Duration(seconds: 8),
-  });
-
-  /// Pfad zum Fox-Sprite (Fallback Emoji wenn nicht ladbar).
-  final String foxAssetPath;
-
-  /// Avatar-Groesse. Wenn null wird responsive berechnet.
-  final double? size;
-
-  /// Wo Lumo zur Home-Position zurueckkehrt.
-  final Alignment homeAlignment;
-
-  /// Margin von der Home-Ecke.
-  final EdgeInsets homeMargin;
-
-  /// Wenn false reagiert Lumo nicht auf Taps (nur visueller Idle).
-  final bool tapEnabled;
-
-  /// Nach dieser Zeit ohne Tap kehrt Lumo nach Hause zurueck.
-  final Duration returnHomeAfter;
-
+  const LumoFreeCompanion(
+      {super.key,
+      required this.scene,
+      required this.onAction,
+      this.voiceEnabled = false,
+      this.reducedMotion = false,
+      this.compact = false,
+      this.proactive = true});
+  final LumoCompanionScene scene;
+  final ValueChanged<LumoCompanionAction> onAction;
+  final bool voiceEnabled;
+  final bool reducedMotion;
+  final bool compact;
+  final bool proactive;
   @override
   State<LumoFreeCompanion> createState() => _LumoFreeCompanionState();
 }
 
 class _LumoFreeCompanionState extends State<LumoFreeCompanion>
-    with TickerProviderStateMixin {
-  // ── State ──
-  LumoCompanionState _state = LumoCompanionState.idle;
-  Offset? _currentPos;       // absolute Position des Avatar-Centers
-  Offset? _homePos;          // berechnete Home-Position
-  String _bubbleText = '';
-  bool _facingRight = true;
-  bool _mouthOpen = false;
-
-  Timer? _returnTimer;
-  Timer? _bubbleTimer;
-  Timer? _mouthTimer;
-  Timer? _wanderTimer;        // NEU: autonomes Wandern
-  Timer? _idleBehaviorTimer;  // NEU: zufaellige Idle-Ticks
-  VoidCallback? _voiceListener;
-  VoidCallback? _requestListener; // NEU: Parent-Listener Tap-to-move
-
-  final math.Random _rng = math.Random();
-
-  // ── Controllers ──
-  late final AnimationController _moveCtrl;
-  late final AnimationController _bobCtrl;
-  late final AnimationController _waveCtrl;
-  late final AnimationController _tickleCtrl;
-  late final AnimationController _bubbleCtrl;
-  // Lebens-Controllers (intern bewegen, auch wenn Lumo steht)
-  late final AnimationController _breathCtrl;
-  late final AnimationController _tailCtrl;
-  late final AnimationController _blinkCtrl;
-  Timer? _blinkTimer;
-
-  Offset _moveFrom = Offset.zero;
-  Offset _moveTo = Offset.zero;
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+  late final _guide = LumoCompanionGuide(now: DateTime.now());
+  late final AnimationController _walk = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 1500))
+    ..addStatusListener((s) {
+      if (s == AnimationStatus.completed && mounted) setState(() {});
+    });
+  Timer? _initiative;
+  Timer? _turnTimer;
+  DateTime _lastActivity = DateTime.now();
+  DateTime _lastWalk = DateTime.now();
+  DateTime? _restUntil;
+  int _nextStation = 0;
+  LumoCompanionProposal? _proposal;
+  double _from = 1, _to = 1;
+  bool _right = true, _sheetOpen = false, _foreground = true;
+  double get _position => _walk.isAnimating
+      ? _from + (_to - _from) * Curves.easeInOutCubic.transform(_walk.value)
+      : _to;
+  bool get _quiet =>
+      widget.reducedMotion || MediaQuery.disableAnimationsOf(context);
+  bool get _visible =>
+      _foreground && !_sheetOpen && (ModalRoute.of(context)?.isCurrent ?? true);
 
   @override
   void initState() {
     super.initState();
-
-    _moveCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 900),
-    );
-    _bobCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1700),
-    )..repeat(reverse: true);
-    _waveCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1100),
-    );
-    _tickleCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1300),
-    );
-    _bubbleCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 280),
-    );
-    // ── INTERNE LEBENS-ANIMATIONEN (Heinz: 'Lumo darf kein Standbild sein') ──
-    _breathCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2400),
-    )..repeat(reverse: true);
-    _tailCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 850),
-    )..repeat(reverse: true);
-    _blinkCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 180),
-    );
-    // Augen-Blinzeln: alle 3-6 Sek einmal
-    _blinkTimer = Timer.periodic(const Duration(milliseconds: 2800), (_) {
-      if (!mounted) return;
-      if (_rng.nextDouble() < 0.6) {
-        _blinkCtrl.forward().then((_) {
-          if (!mounted) return;
-          _blinkCtrl.reverse();
-        });
-      }
-    });
-
-    // VoiceStatus -> mouthOpen Animation
-    _voiceListener = () => _onVoiceStatus(LumoVoice.instance.status.value);
-    LumoVoice.instance.status.addListener(_voiceListener!);
-
-    // Parent-Listener Tap-to-move (Heinz-Auftrag).
-    // App-Shell schickt globale Tap-Position via LumoCompanionRequests.
-    // Wir konvertieren zu lokalen Koordinaten + Safe-Zone-Check.
-    _requestListener = () {
-      final target = LumoCompanionRequests.instance.moveTarget.value;
-      if (target == null) return;
-      _handleMoveRequest(target);
-      LumoCompanionRequests.instance.clearRequest();
-    };
-    LumoCompanionRequests.instance.moveTarget
-        .addListener(_requestListener!);
-
-    // ── Autonomes Wandern DEAKTIVIERT ──
-    // Heinz Note-5-Feedback: 'Lumo war ueber der Mathe-Card und blockierte
-    // die UI'. Wandern komplett aus - Lumo bleibt jetzt in der Ecke
-    // (bottom-right) wie ein dezentes Maskottchen.
-    // Falls Heinz spaeter doch wieder Wandern will, einfach
-    // den Timer wieder aktivieren.
-    // _wanderTimer = Timer.periodic(const Duration(seconds: 1), (_) {
-    //   _maybeAutoWander();
-    // });
-
-    // ── Zufaellige Idle-Mikro-Reaktionen ──
-    // Bleiben drin - das ist NUR Mund/Augen/Schwanz, keine Bewegung.
-    _idleBehaviorTimer = Timer.periodic(const Duration(seconds: 4), (_) {
-      _maybeIdleBehavior();
-    });
+    WidgetsBinding.instance.addObserver(this);
+    LumoCompanionRequests.instance.moveTarget.addListener(_noteActivity);
+    LumoCompanionRequests.instance.appExplanationRequested
+        .addListener(_explainAppRequested);
+    _initiative =
+        Timer.periodic(const Duration(seconds: 2), (_) => _considerIdea());
   }
 
-  void _onVoiceStatus(VoiceStatus s) {
-    if (!mounted) return;
-    if (s == VoiceStatus.speaking) {
-      _mouthTimer?.cancel();
-      _mouthTimer = Timer.periodic(const Duration(milliseconds: 140), (_) {
-        if (!mounted) return;
-        setState(() => _mouthOpen = !_mouthOpen);
-      });
-      if (_state != LumoCompanionState.walking) {
-        setState(() => _state = LumoCompanionState.speaking);
-      }
-    } else {
-      _mouthTimer?.cancel();
-      _mouthTimer = null;
-      if (mounted) {
-        setState(() {
-          _mouthOpen = false;
-          if (_state == LumoCompanionState.speaking) {
-            _state = LumoCompanionState.idle;
-          }
-        });
-      }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _foreground = state == AppLifecycleState.resumed;
+    if (!_foreground) {
+      _turnTimer?.cancel();
+      _walk.stop();
+    }
+    _noteActivity();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_quiet) {
+      _turnTimer?.cancel();
+      _walk.stop();
     }
   }
 
   @override
-  void dispose() {
-    _returnTimer?.cancel();
-    _bubbleTimer?.cancel();
-    _mouthTimer?.cancel();
-    _wanderTimer?.cancel();
-    _idleBehaviorTimer?.cancel();
-    _blinkTimer?.cancel();
-    if (_voiceListener != null) {
-      LumoVoice.instance.status.removeListener(_voiceListener!);
+  void didUpdateWidget(covariant LumoFreeCompanion oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.scene.section != widget.scene.section ||
+        oldWidget.scene.schoolwork != widget.scene.schoolwork ||
+        oldWidget.scene.taskInProgress != widget.scene.taskInProgress) {
+      _proposal = null;
+      _noteActivity();
+      if (widget.scene.section != oldWidget.scene.section) {
+        _moveTo(widget.scene.hasTask
+            ? 1
+            : widget.scene.section == 'agent'
+                ? 2
+                : 0);
+      }
     }
-    if (_requestListener != null) {
-      LumoCompanionRequests.instance.moveTarget
-          .removeListener(_requestListener!);
+    if (widget.reducedMotion) {
+      _turnTimer?.cancel();
+      _walk.stop();
     }
-    _moveCtrl.dispose();
-    _bobCtrl.dispose();
-    _waveCtrl.dispose();
-    _tickleCtrl.dispose();
-    _bubbleCtrl.dispose();
-    _breathCtrl.dispose();
-    _tailCtrl.dispose();
-    _blinkCtrl.dispose();
-    super.dispose();
   }
 
-  // ── Responsive Avatar-Groesse ──
-  // Heinz Feedback Note 5: 'Lumo viel zu gross, blockiert UI'.
-  // Reduziert von 170/215/255/305 -> 120/140/160/180.
-  // Klein genug um nicht ueber Cards zu walzen.
-  double _effectiveSize(Size screen) {
-    if (widget.size != null) return widget.size!;
-    final w = screen.width;
-    if (w < 380) return 120;
-    if (w < 600) return 140;
-    if (w < 900) return 160;
-    return 180;
+  void _noteActivity() {
+    _lastActivity = DateTime.now();
+    _guide.noteInteraction(_lastActivity);
   }
 
-  // ── FRAME-BASIERTE WALK-CYCLE ──
-  // Heinz: 'Lumo darf kein Standbild sein - er soll laufen wie im Zeichentrick'.
-  // 8 Walk-Frames (sprite pack vom 19.05.2026) werden bei Bewegung zykliert.
-  // Bei stillstand wird das main-Sprite genutzt.
-  String _currentSprite() {
-    // Beim Laufen: Walk-Frames zykeln
-    if (_moveCtrl.isAnimating) {
-      // 8 Frames, 4 Schritte pro Sekunde -> Frame-Index basiert auf Zeit
-      final t = _moveCtrl.lastElapsedDuration?.inMilliseconds ?? 0;
-      final frameIdx = ((t / 110).floor() % 8) + 1;  // 1..8
-      final dir = _facingRight ? 'walk_right' : 'walk_left';
-      // Frame-Format: walk_right_01.png .. walk_right_08.png
-      final fname = '${dir}_${frameIdx.toString().padLeft(2, '0')}.png';
-      return 'assets/lumo_sprite_pack/$dir/$fname';
-    }
-    // Beim Jubeln: Cheer-Frame
-    if (_state == LumoCompanionState.celebrating ||
-        _state == LumoCompanionState.tickled) {
-      final t = _tickleCtrl.lastElapsedDuration?.inMilliseconds ?? 0;
-      final frameIdx = ((t / 130).floor() % 8) + 1;
-      final fname = 'cheer_${frameIdx.toString().padLeft(2, '0')}.png';
-      return 'assets/lumo_sprite_pack/cheer/$fname';
-    }
-    // Default: main-Sprite (das schoene Lumo-Stand-Bild)
-    return widget.foxAssetPath;
-  }
-
-  // ── Public API ──
-  void moveTo(Offset target) {
-    if (!widget.tapEnabled) return;
-    final from = _currentPos ?? _homePos ?? target;
-    _moveFrom = from;
-    _moveTo = target;
-
-    // Distanz-basierte Dauer (300-1200ms)
-    final dist = (target - from).distance;
-    final ms = (300 + dist * 1.4).clamp(300, 1200).round();
-    _moveCtrl.duration = Duration(milliseconds: ms);
-
-    setState(() {
-      _state = LumoCompanionState.walking;
-      _facingRight = target.dx >= from.dx;
-    });
-    _moveCtrl.reset();
-    _moveCtrl.forward().then((_) {
-      if (!mounted) return;
-      setState(() {
-        _currentPos = _moveTo;
-        _state = LumoCompanionState.idle;
-      });
-      _scheduleReturnHome();
-    });
-  }
-
-  // ── AUTONOMES WANDERN ──
-  // Heinz: 'Lumo soll selbstständig sein. Etwas einfallen lassen.'
-  //
-  // Lumo wandert von alleine alle 8-15s zu einer SICHEREN ZONE:
-  //   - unteres Viertel (y > 0.72 * height)
-  //   - oder ganz rechts (x > 0.78 * width) - aber NUR unten
-  // NIEMALS in der Mitte stehen, wo die Spielkarten sind. So
-  // blockiert Lumo nichts und wirkt trotzdem lebendig.
-  DateTime _lastWanderAt = DateTime.now();
-  double _wanderCooldownSec = 9.0;
-
-  void _maybeAutoWander() {
-    if (!mounted) return;
-    if (_state == LumoCompanionState.walking) return;
-    if (_state == LumoCompanionState.speaking) return;
-
-    final secsSince = DateTime.now().difference(_lastWanderAt).inSeconds;
-    if (secsSince < _wanderCooldownSec) return;
-
-    // Naechste Wanderung in 8-15 Sekunden
-    _wanderCooldownSec = 8.0 + _rng.nextDouble() * 7.0;
-    _lastWanderAt = DateTime.now();
-
-    final box = context.findRenderObject() as RenderBox?;
-    if (box == null) return;
-    final s = box.size;
-    final target = _pickSafeWanderPoint(s);
-    _autoWalkTo(target);
-  }
-
-  /// Verarbeitet eine Move-Request vom Parent-Listener (App-Shell).
-  /// Globale Position wird zu lokalen Koords konvertiert.
-  /// Safe-Zone-Check: Lumo wandert NUR ins untere Drittel und nicht
-  /// in Lumo's eigene Hitbox. So sind alle Buttons/Cards weiter
-  /// bedienbar und Lumo blockiert nichts wichtiges.
-  void _handleMoveRequest(Offset globalPos) {
-    if (!mounted) return;
-    if (_state == LumoCompanionState.walking) return;
-    final box = context.findRenderObject() as RenderBox?;
-    if (box == null) return;
-    final Offset local;
-    try {
-      local = box.globalToLocal(globalPos);
-    } catch (_) {
+  void _considerIdea() {
+    if (!mounted || !widget.proactive) return;
+    if (_proposal != null) {
+      _considerQuietWalk();
       return;
     }
-    final s = box.size;
-    // ── SAFE-ZONE-CHECK ──────────────────────────────────────────────
-    // Heinz: 'Lumo darf nicht ueber Karten stehen'.
-    // -> Wandern nur in den unteren 35% des Bildschirms erlaubt.
-    // -> Auch nicht in einer kleinen Zone um Lumo selbst
-    //    (damit Tap-auf-Lumo nicht missinterpretiert wird).
-    final minY = s.height * 0.55; // ab hier abwaerts ist safe
-    if (local.dy < minY) return;
-    if (local.dx < 12 || local.dx > s.width - 12) return;
-    // Selbst-Tap ignorieren
-    final selfPos = _currentPos ?? _homePos;
-    if (selfPos != null) {
-      final dxFromSelf = (local.dx - selfPos.dx).abs();
-      final dyFromSelf = (local.dy - selfPos.dy).abs();
-      if (dxFromSelf < 60 && dyFromSelf < 60) return;
+    final proposal = _guide.maybeSuggest(widget.scene,
+        now: DateTime.now(), routeVisible: _visible);
+    if (proposal != null) {
+      setState(() => _proposal = proposal);
+      _moveTo(proposal.action == LumoCompanionAction.explainTask ||
+              proposal.action == LumoCompanionAction.explainView
+          ? 1
+          : 0);
+    } else {
+      _considerQuietWalk();
     }
-    // OK - dorthin wandern (mit kleinem Padding zum Rand)
-    final target = Offset(
-      local.dx.clamp(40.0, s.width - 40.0),
-      local.dy.clamp(minY, s.height - 30.0),
-    );
-    _autoWalkTo(target);
   }
 
-  /// Waehlt einen zufaelligen Punkt in den "sicheren" Bildschirm-Zonen
-  /// (untere Raender, rechts unten). Vermeidet die Mitte wo Cards sind.
-  Offset _pickSafeWanderPoint(Size s) {
-    // 4 Zonen, alle im unteren Drittel oder rechts-unten:
-    final zones = <Rect>[
-      // rechts unten (Home-Bereich)
-      Rect.fromLTWH(s.width * 0.72, s.height * 0.72,
-          s.width * 0.24, s.height * 0.22),
-      // mitte unten
-      Rect.fromLTWH(s.width * 0.40, s.height * 0.78,
-          s.width * 0.30, s.height * 0.16),
-      // links unten
-      Rect.fromLTWH(s.width * 0.05, s.height * 0.78,
-          s.width * 0.25, s.height * 0.16),
-      // ganz rechts mittig (Random-Visit)
-      Rect.fromLTWH(s.width * 0.84, s.height * 0.40,
-          s.width * 0.14, s.height * 0.30),
-    ];
-    final zone = zones[_rng.nextInt(zones.length)];
-    return Offset(
-      zone.left + _rng.nextDouble() * zone.width,
-      zone.top + _rng.nextDouble() * zone.height,
-    );
-  }
-
-  void _autoWalkTo(Offset target) {
-    if (!mounted) return;
-    final from = _currentPos ?? _homePos ?? target;
-    _moveFrom = from;
-    _moveTo = target;
-
-    final dist = (target - from).distance;
-    final ms = (500 + dist * 1.4).clamp(500, 1600).round();
-    _moveCtrl.duration = Duration(milliseconds: ms);
-
-    setState(() {
-      _state = LumoCompanionState.walking;
-      _facingRight = target.dx >= from.dx;
-    });
-    _moveCtrl.reset();
-    _moveCtrl.forward().then((_) {
-      if (!mounted) return;
-      setState(() {
-        _currentPos = _moveTo;
-        _state = LumoCompanionState.idle;
-      });
-    });
-  }
-
-  /// Zufaellige Idle-Mikro-Reaktionen: Lumo macht ab und zu
-  /// kleine Sachen auch wenn niemand interagiert.
-  void _maybeIdleBehavior() {
-    if (!mounted) return;
-    if (_state != LumoCompanionState.idle) return;
-    if (_bubbleText.isNotEmpty) return;
-
-    final roll = _rng.nextDouble();
-    if (roll < 0.18) {
-      // 18%: kurzes Winken
-      setState(() => _state = LumoCompanionState.waving);
-      _waveCtrl.reset();
-      _waveCtrl.forward().then((_) {
-        if (!mounted) return;
-        setState(() => _state = LumoCompanionState.idle);
-      });
-    } else if (roll < 0.30) {
-      // 12%: kurzer Spruch
-      final spruch = _idleSayings[_rng.nextInt(_idleSayings.length)];
-      _showBubble(spruch, duration: const Duration(milliseconds: 2400));
-    } else if (roll < 0.42) {
-      // 12%: kurz drehen (Richtung wechseln)
-      setState(() => _facingRight = !_facingRight);
+  void _considerQuietWalk() {
+    final now = DateTime.now();
+    if (!_visible ||
+        _quiet ||
+        widget.scene.taskInProgress ||
+        widget.scene.schoolwork ||
+        widget.scene.section == 'settings' ||
+        widget.scene.section == 'profile' ||
+        widget.scene.section == 'agent' ||
+        _walk.isAnimating ||
+        (_restUntil != null && now.isBefore(_restUntil!)) ||
+        now.difference(_lastActivity) < const Duration(seconds: 20) ||
+        now.difference(_lastWalk) < const Duration(seconds: 45)) {
+      return;
     }
-    // 58%: nichts - bleibt entspannt
+    // Visit the next useful control along the reserved floor, never a random
+    // point over learning content. No speech or new pop-up accompanies a walk.
+    _nextStation = (_nextStation + 1) % 3;
+    setState(() => _moveTo(_nextStation));
   }
 
-  static const _idleSayings = [
-    'Was machen wir jetzt?',
-    'Klicke ruhig auf etwas!',
-    'Ich warte hier auf dich.',
-    'Hihi 😊',
-    'Bereit für Abenteuer?',
-    'Was lernen wir heute?',
-  ];
+  void _moveTo(int index) => _moveToFraction(index / 2);
 
-  void returnHome() {
-    final home = _homePos;
-    if (home == null) return;
-    final from = _currentPos ?? home;
-    _moveFrom = from;
-    _moveTo = home;
-
-    final dist = (home - from).distance;
-    final ms = (400 + dist * 1.2).clamp(400, 1100).round();
-    _moveCtrl.duration = Duration(milliseconds: ms);
-
-    setState(() {
-      _state = LumoCompanionState.returningHome;
-      _facingRight = home.dx >= from.dx;
-    });
-    _moveCtrl.reset();
-    _moveCtrl.forward().then((_) {
-      if (!mounted) return;
-      setState(() {
-        _currentPos = home;
-        _state = LumoCompanionState.idle;
-      });
-    });
-  }
-
-  void _scheduleReturnHome() {
-    _returnTimer?.cancel();
-    _returnTimer = Timer(widget.returnHomeAfter, () {
-      if (!mounted) return;
-      if (_state == LumoCompanionState.idle) {
-        returnHome();
-      }
-    });
-  }
-
-  void _showBubble(String text, {Duration? duration}) {
-    setState(() => _bubbleText = text);
-    _bubbleCtrl.forward();
-    _bubbleTimer?.cancel();
-    _bubbleTimer = Timer(duration ?? const Duration(milliseconds: 2600), () {
-      if (!mounted) return;
-      _bubbleCtrl.reverse();
-      Future.delayed(const Duration(milliseconds: 300), () {
-        if (!mounted) return;
-        setState(() => _bubbleText = '');
-      });
-    });
-  }
-
-  static const _waveLines = [
-    'Hihi! Was machen wir als Nächstes?',
-    'Hallo! Schön, dass du da bist!',
-    'Bereit für ein Abenteuer?',
-    'Wir schaffen das zusammen!',
-    'Magst du mit mir spielen?',
-    'Was möchtest du heute lernen?',
-    'Du bist großartig! ⭐',
-    'Hey! Tipp doch eine Karte an.',
-    'Lust auf Mathe oder Lesen?',
-    'Ich freue mich auf dich!',
-  ];
-  static const _tickleLines = [
-    'Hihihi! Das kitzelt!',
-    'Iiiiih! 🌟',
-    'Hör auf, hihi!',
-    'Du bist witzig!',
-    'Hahaha! 😄',
-    'Au au au, kitzlig!',
-    'Wuiii! Nochmal!',
-    'Du machst mich glücklich! 💛',
-  ];
-
-  void _onTapLumo() {
-    if (!widget.tapEnabled) return;
-    setState(() => _state = LumoCompanionState.waving);
-    _waveCtrl.reset();
-    _waveCtrl.forward().then((_) {
-      if (!mounted) return;
-      setState(() => _state = LumoCompanionState.idle);
-    });
-    final txt = _waveLines[math.Random().nextInt(_waveLines.length)];
-    _showBubble(txt);
-    _trySpeak(txt);
-    _scheduleReturnHome();
-  }
-
-  void _onDoubleTapLumo() {
-    if (!widget.tapEnabled) return;
-    setState(() => _state = LumoCompanionState.tickled);
-    _tickleCtrl.reset();
-    _tickleCtrl.forward().then((_) {
-      if (!mounted) return;
-      setState(() => _state = LumoCompanionState.idle);
-    });
-    final txt = _tickleLines[math.Random().nextInt(_tickleLines.length)];
-    _showBubble(txt, duration: const Duration(milliseconds: 2000));
-    _scheduleReturnHome();
-  }
-
-  void _onLongPressLumo() {
-    if (!widget.tapEnabled) return;
-    // Heinz: 'Lumo laeuft zu freien Tap-Punkten'.
-    // LongPress = aktiv Wanderung triggern, immer in Safe-Zone
-    final box = context.findRenderObject() as RenderBox?;
-    if (box != null) {
-      final target = _pickSafeWanderPoint(box.size);
-      _autoWalkTo(target);
+  void _moveToFraction(double target) {
+    _turnTimer?.cancel();
+    final current = _position;
+    final clamped = target.clamp(0.0, 1.0);
+    final newRight = clamped >= current;
+    _walk.stop();
+    _from = _to = current;
+    _lastWalk = DateTime.now();
+    if (_quiet) {
+      _to = clamped;
+      return;
     }
-    const txt = 'Ich lauf mal woanders hin!';
-    _showBubble(txt, duration: const Duration(milliseconds: 2200));
-    _trySpeak(txt);
-    _scheduleReturnHome();
+    if ((clamped - current).abs() < .02) return;
+    if (newRight != _right) {
+      // Settle on both feet facing the child before leaving in the opposite
+      // direction. Never instantly mirror a running fox mid-stride.
+      _turnTimer = Timer(const Duration(milliseconds: 180), () {
+        if (!mounted || !_foreground) return;
+        setState(() => _startWalk(clamped, newRight));
+      });
+    } else {
+      _startWalk(clamped, newRight);
+    }
   }
 
-  void _trySpeak(String text) {
+  void _startWalk(double target, bool facingRight) {
+    _from = _position;
+    _to = target;
+    _right = facingRight;
+    final width = MediaQuery.sizeOf(context).width;
+    final distance = (_to - _from).abs() * math.max(0, width - 90);
+    _walk.duration =
+        Duration(milliseconds: (700 + distance * 5).round().clamp(700, 2800));
+    _walk.forward(from: 0);
+  }
+
+  void _dismiss() {
+    _guide.dismiss(DateTime.now());
+    _restUntil = DateTime.now().add(const Duration(minutes: 10));
+    setState(() => _proposal = null);
+    _moveTo(2);
+  }
+
+  Future<void> _say(String text) async {
+    if (!widget.voiceEnabled) return;
     try {
-      LumoVoice.instance.speak(text);
-    } catch (_) {
-      // Silent fail - Voice ist optional
-    }
+      await LumoVoice.instance.speak(text);
+    } catch (_) {/* Text remains available. */}
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final screen = Size(constraints.maxWidth, constraints.maxHeight);
-        final foxSize = _effectiveSize(screen);
-
-        // Home-Position dynamisch berechnen
-        _homePos ??= _calcHomePos(screen, foxSize);
-        _currentPos ??= _homePos;
-
-        return AnimatedBuilder(
-          animation: Listenable.merge([
-            _moveCtrl,
-            _bobCtrl,
-            _waveCtrl,
-            _tickleCtrl,
-            _bubbleCtrl,
-            _breathCtrl,
-            _tailCtrl,
-            _blinkCtrl,
-          ]),
-          builder: (context, _) {
-            // Aktuelle Position (waehrend Move animiert, sonst _currentPos)
-            Offset pos;
-            if (_moveCtrl.isAnimating) {
-              final t = Curves.easeInOutCubic.transform(_moveCtrl.value);
-              pos = Offset.lerp(_moveFrom, _moveTo, t)!;
-            } else {
-              pos = _currentPos ?? Offset.zero;
-            }
-
-            // Idle-Bobbing
-            final bob = math.sin(_bobCtrl.value * math.pi) * 2.5;
-            // Walk-Bob (waehrend Bewegung)
-            final walkBob = _moveCtrl.isAnimating
-                ? math.sin(_moveCtrl.value * math.pi * 6) * 3.5
-                : 0.0;
-            // Wave-Bob (kleiner Hopser beim Winken)
-            final waveBob = _state == LumoCompanionState.waving
-                ? -math.sin(_waveCtrl.value * math.pi) * 8
-                : 0.0;
-            // Tickle: kleine Wackel-Rotation
-            final tickleRot = _state == LumoCompanionState.tickled
-                ? math.sin(_tickleCtrl.value * math.pi * 6) * 0.12
-                : 0.0;
-            final tickleScale = _state == LumoCompanionState.tickled
-                ? 1.0 + math.sin(_tickleCtrl.value * math.pi) * 0.08
-                : 1.0;
-
-            // ── LEBENS-ANIMATIONEN (immer aktiv) ────────────────────
-            // Atem: vertikale Skalierung 1.0..1.04 (Brust hebt sich)
-            final breathScale =
-                1.0 + math.sin(_breathCtrl.value * math.pi) * 0.04;
-            // Schwanz-Winkel: -0.35..+0.35 rad (~20° wedeln)
-            final tailAngle =
-                math.sin(_tailCtrl.value * math.pi * 2 - math.pi / 2) * 0.35;
-            // Blink: 0 (Augen offen) ... 1 (Augen ganz zu)
-            final blinkAmt = _blinkCtrl.value;
-
-            final yOff = bob + walkBob + waveBob;
-            final renderX = pos.dx - foxSize / 2;
-            final renderY = pos.dy - foxSize + yOff;
-
-            return Stack(
-              clipBehavior: Clip.none,
+  Future<void> _showText(String title, String text,
+      {bool pause = false}) async {
+    _noteActivity();
+    _sheetOpen = true;
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (sheetContext) => SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Heinz' Feedback: 'Lumo darf nichts ueberdecken /
-                // blockieren'. Deshalb KEIN Hintergrund-Tap-Detector
-                // mehr - Buttons darunter funktionieren direkt.
-                // Lumo wandert von alleine in sicheren Zonen.
-
-                // ── Sprechblase ueber Lumo ──
-                if (_bubbleText.isNotEmpty)
-                  Positioned(
-                    left: (pos.dx - 130)
-                        .clamp(8.0, math.max(8.0, screen.width - 268)),
-                    top: (renderY - 70).clamp(8.0, screen.height - 100),
-                    child: IgnorePointer(
-                      child: Transform.scale(
-                        scale: Curves.elasticOut
-                            .transform(_bubbleCtrl.value)
-                            .clamp(0.0, 1.0),
-                        alignment: Alignment.bottomCenter,
-                        child: _SpeechBubble(text: _bubbleText),
-                      ),
-                    ),
-                  ),
-
-                // ── Lumo selbst ──
-                // Heinz: 'Lumo darf nichts ueberdecken'. Daher:
-                // HitArea NUR auf dem Zentrum des Avatars (60% Breite,
-                // 70% Hoehe). Der Rest der Bounding-Box laesst Taps
-                // durch zu den darunterliegenden Buttons.
-                Positioned(
-                  left: renderX,
-                  top: renderY,
-                  child: SizedBox(
-                    width: foxSize,
-                    height: foxSize,
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        // Tap-Detector NUR auf dem Zentrum (60% x 70%)
-                        Positioned(
-                          left: foxSize * 0.20,
-                          top: foxSize * 0.15,
-                          width: foxSize * 0.60,
-                          height: foxSize * 0.70,
-                          child: GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: _onTapLumo,
-                            onDoubleTap: _onDoubleTapLumo,
-                            onLongPress: _onLongPressLumo,
-                          ),
-                        ),
-                        // Visueller Avatar (IgnorePointer = Tap geht
-                        // durch zu darunterliegenden Buttons wenn
-                        // er nicht ins HitArea-Center faellt)
-                        IgnorePointer(
-                          child: Transform(
-                            alignment: Alignment.center,
-                            transform: Matrix4.identity()
-                              ..rotateZ(tickleRot)
-                              ..scale(
-                                  (_facingRight ? 1.0 : -1.0) * tickleScale,
-                                  tickleScale,
-                                  1.0),
-                            child: SizedBox(
-                              width: foxSize,
-                              height: foxSize,
-                              child: Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  // Bodenschatten
-                                  Positioned(
-                                    bottom: 2,
-                                    child: Container(
-                                      width: foxSize * 0.62,
-                                      height: 7,
-                                      decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.32),
-                                        borderRadius:
-                                            BorderRadius.circular(foxSize),
-                                      ),
-                                    ),
-                                  ),
-                                  // SCHWANZ-Overlay (hinter dem Sprite,
-                                  // wedelt links/rechts) - Heinz wollte
-                                  // Schwanzbewegung
-                                  Positioned(
-                                    bottom: foxSize * 0.18,
-                                    left: foxSize * 0.05,
-                                    child: Transform.rotate(
-                                      angle: tailAngle,
-                                      alignment: Alignment.bottomRight,
-                                      child: Container(
-                                        width: foxSize * 0.18,
-                                        height: foxSize * 0.34,
-                                        decoration: BoxDecoration(
-                                          gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFFF97316),
-                                              Color(0xFFFB923C),
-                                            ],
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                          ),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(foxSize),
-                                            topRight: Radius.circular(foxSize),
-                                            bottomLeft:
-                                                Radius.circular(foxSize * 0.4),
-                                            bottomRight:
-                                                Radius.circular(foxSize * 0.6),
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black
-                                                  .withOpacity(0.2),
-                                              blurRadius: 4,
-                                              offset: const Offset(1, 2),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Align(
-                                          alignment: Alignment.topCenter,
-                                          child: Container(
-                                            width: foxSize * 0.10,
-                                            height: foxSize * 0.10,
-                                            decoration: const BoxDecoration(
-                                              color: Color(0xFFFFFFFF),
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  // Fox sprite mit ATEM-SKALIERUNG
-                                  // (vertikal pulsiert leicht - "atmet")
-                                  // FRAME-CYCLE: beim Laufen Walk-Sprites,
-                                  // beim Jubeln Cheer-Sprites (Heinz' ZIP)
-                                  Transform.scale(
-                                    scaleY: breathScale,
-                                    alignment: Alignment.bottomCenter,
-                                    child: Image.asset(
-                                      _currentSprite(),
-                                      width: foxSize,
-                                      height: foxSize,
-                                      fit: BoxFit.contain,
-                                      gaplessPlayback: true,
-                                      errorBuilder: (_, __, ___) =>
-                                          _FallbackFox(size: foxSize),
-                                    ),
-                                  ),
-                                  // AUGEN-BLINK-Overlay: zwei kleine
-                                  // Lidschlag-Streifen wenn _blinkCtrl > 0
-                                  if (blinkAmt > 0.05)
-                                    Positioned(
-                                      top: foxSize * 0.32,
-                                      left: foxSize * 0.28,
-                                      child: SizedBox(
-                                        width: foxSize * 0.44,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: List.generate(
-                                              2,
-                                              (i) => Container(
-                                                    width: foxSize * 0.10,
-                                                    height: foxSize *
-                                                        0.06 *
-                                                        blinkAmt,
-                                                    decoration: BoxDecoration(
-                                                      color: const Color(
-                                                          0xFFF97316),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              foxSize),
-                                                    ),
-                                                  )),
-                                        ),
-                                      ),
-                                    ),
-                                  // Mund-Highlight (Voice-synchron)
-                                  if (_mouthOpen)
-                                    Positioned(
-                                      top: foxSize * 0.48,
-                                      child: Container(
-                                        width: foxSize * 0.16,
-                                        height: foxSize * 0.10,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFF7C2D12),
-                                          borderRadius:
-                                              BorderRadius.circular(foxSize),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black
-                                                  .withOpacity(0.4),
-                                              blurRadius: 2,
-                                              offset: const Offset(0, 1),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        );
-      },
-    );
-  }
-
-  Offset _calcHomePos(Size screen, double foxSize) {
-    final r = widget.homeAlignment.resolve(TextDirection.ltr);
-    // Wir wollen den Center-Bottom des Fuchses am Home-Punkt
-    final cx = ((r.x + 1) / 2) * screen.width;
-    final cy = ((r.y + 1) / 2) * screen.height;
-    // Margin anwenden
-    final raw = Offset(
-      cx - widget.homeMargin.right + widget.homeMargin.left,
-      cy - widget.homeMargin.bottom + widget.homeMargin.top,
-    );
-    // ── CLAMPEN: garantiert auf dem Screen ─────────────────────────
-    // Heinz Note-5-Feedback: 'Lumo war ganz am Anfang ausserhalb
-    // des Bildschirms'. Das passiert wenn Margin/Foxsize zu gross sind.
-    // Fix: clamp so dass Lumo komplett sichtbar bleibt.
-    final halfW = foxSize / 2;
-    final minX = halfW + 8;
-    final maxX = screen.width - halfW - 8;
-    final minY = foxSize + 8;
-    final maxY = screen.height - 8;
-    return Offset(
-      raw.dx.clamp(minX, maxX),
-      raw.dy.clamp(minY, maxY),
-    );
-  }
-}
-
-// ────────────────────────────────────────────────────────────────────────
-// Speech-Bubble
-// ────────────────────────────────────────────────────────────────────────
-class _SpeechBubble extends StatelessWidget {
-  const _SpeechBubble({required this.text});
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 260, minWidth: 130),
-      child: CustomPaint(
-        painter: _BubblePainter(),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 18),
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 14,
-              fontWeight: FontWeight.w800,
-              color: Color(0xFF7C2D12),
-              height: 1.25,
-            ),
-          ),
+                Text(title, style: Theme.of(context).textTheme.headlineSmall),
+                const SizedBox(height: 16),
+                Text(text,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge
+                        ?.copyWith(height: 1.5)),
+                const SizedBox(height: 20),
+                Wrap(spacing: 12, runSpacing: 8, children: [
+                  if (widget.voiceEnabled)
+                    OutlinedButton.icon(
+                        onPressed: () => _say(text),
+                        icon: const Icon(Icons.volume_up_rounded),
+                        label: const Text('Vorlesen')),
+                  FilledButton(
+                      onPressed: () => Navigator.pop(sheetContext),
+                      child:
+                          Text(pause ? 'Ich bin wieder bereit' : 'Alles klar')),
+                ]),
+              ]),
         ),
       ),
     );
+    if (!mounted) return;
+    _sheetOpen = false;
+    _noteActivity();
   }
-}
 
-class _BubblePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
+  void _explainAppRequested() {
+    if (mounted && _visible) _perform(LumoCompanionAction.explainApp);
+  }
 
-    // Glow hinter Bubble
-    final glowPaint = Paint()
-      ..color = const Color(0xFFFEF3C7).withOpacity(0.85)
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-          Rect.fromLTWH(-2, -2, w + 4, h + 4 - 6),
-          const Radius.circular(18)),
-      glowPaint,
+  Future<void> _perform(LumoCompanionAction action) async {
+    _noteActivity();
+    if (widget.scene.schoolwork &&
+        (action == LumoCompanionAction.explainTask ||
+            action == LumoCompanionAction.suggestTask ||
+            action == LumoCompanionAction.askLumo)) {
+      await _showText(
+          'Dein eigener Lernschritt',
+          'Während der Schularbeit löst du die Aufgaben selbst. '
+              'Nachher können wir schwierige Themen gemeinsam üben.');
+      return;
+    }
+    setState(() => _proposal = null);
+    switch (action) {
+      case LumoCompanionAction.explainApp:
+        await _showText('So helfe ich dir', LumoCompanionScene.appExplanation);
+      case LumoCompanionAction.explainView:
+        await _showText(
+            'So funktioniert diese Seite', widget.scene.viewExplanation);
+      case LumoCompanionAction.takeBreak:
+        await _showText(
+            'Eine kleine Pause',
+            'Leg das Gerät kurz zur Seite. Strecke dich und schau etwas weiter '
+                'in die Ferne. Wenn du wieder lernen möchtest, machst du in deinem '
+                'Tempo weiter.',
+            pause: true);
+        if (mounted) widget.onAction(action);
+      case LumoCompanionAction.suggestTask:
+      case LumoCompanionAction.explainTask:
+      case LumoCompanionAction.askLumo:
+        widget.onAction(action);
+    }
+  }
+
+  Future<void> _showMenu({LumoCompanionProposal? proposal}) async {
+    if (_sheetOpen) return;
+    _noteActivity();
+    _sheetOpen = true;
+    final action = await showModalBottomSheet<LumoCompanionAction>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (sheetContext) => SafeArea(
+          child: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          Text('Was möchtest du machen?',
+              style: Theme.of(context).textTheme.titleLarge),
+          if (proposal != null) ...[
+            Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(proposal.text,
+                    style: Theme.of(context).textTheme.bodyLarge)),
+            FilledButton.icon(
+                onPressed: () => Navigator.pop(sheetContext, proposal.action),
+                icon: const Icon(Icons.play_arrow_rounded),
+                label: Text(proposal.acceptLabel)),
+            TextButton(
+                onPressed: () {
+                  _dismiss();
+                  Navigator.pop(sheetContext);
+                },
+                child: const Text('Später – lass mich selbst entdecken')),
+            const Divider(),
+          ],
+          if (widget.scene.hasTask && !widget.scene.schoolwork)
+            _menuItem(sheetContext, Icons.lightbulb_outline, 'Aufgabe erklären',
+                LumoCompanionAction.explainTask),
+          _menuItem(sheetContext, Icons.explore_outlined,
+              'Diese Seite erklären', LumoCompanionAction.explainView),
+          _menuItem(sheetContext, Icons.help_outline, 'Die ganze App erklären',
+              LumoCompanionAction.explainApp),
+          if (!widget.scene.schoolwork)
+            _menuItem(sheetContext, Icons.chat_bubble_outline,
+                'Lumo eine Frage stellen', LumoCompanionAction.askLumo),
+          _menuItem(sheetContext, Icons.spa_outlined, 'Ich brauche eine Pause',
+              LumoCompanionAction.takeBreak),
+        ]),
+      )),
     );
-
-    // Body
-    final body = Paint()
-      ..shader = const LinearGradient(
-        colors: [Color(0xFFFFFFFF), Color(0xFFFFF8E7)],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      ).createShader(Rect.fromLTWH(0, 0, w, h));
-    final rect = RRect.fromRectAndRadius(
-        Rect.fromLTWH(0, 0, w, h - 6), const Radius.circular(18));
-    canvas.drawRRect(rect, body);
-
-    // Outline
-    final outline = Paint()
-      ..color = const Color(0xFFF59E0B)
-      ..strokeWidth = 2.2
-      ..style = PaintingStyle.stroke;
-    canvas.drawRRect(rect, outline);
-
-    // Tail
-    final tail = Path()
-      ..moveTo(w * 0.42, h - 6)
-      ..lineTo(w * 0.52, h)
-      ..lineTo(w * 0.56, h - 6)
-      ..close();
-    canvas.drawPath(tail, body);
-    canvas.drawPath(tail, outline);
+    if (!mounted) return;
+    _sheetOpen = false;
+    _noteActivity();
+    if (action != null) await _perform(action);
   }
 
+  Widget _menuItem(BuildContext sheetContext, IconData icon, String title,
+          LumoCompanionAction action) =>
+      ListTile(
+          leading: Icon(icon),
+          title: Text(title),
+          onTap: () => Navigator.pop(sheetContext, action));
   @override
-  bool shouldRepaint(covariant CustomPainter old) => false;
-}
-
-// ────────────────────────────────────────────────────────────────────────
-// Fallback wenn Sprite fehlt
-// ────────────────────────────────────────────────────────────────────────
-class _FallbackFox extends StatelessWidget {
-  const _FallbackFox({required this.size});
-  final double size;
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    LumoCompanionRequests.instance.moveTarget.removeListener(_noteActivity);
+    LumoCompanionRequests.instance.appExplanationRequested
+        .removeListener(_explainAppRequested);
+    _initiative?.cancel();
+    _turnTimer?.cancel();
+    _walk.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: const BoxDecoration(
-        color: Color(0xFFF97316),
-        shape: BoxShape.circle,
-      ),
-      child: const Center(child: Text('🦊', style: TextStyle(fontSize: 50))),
-    );
+    final foxSize = widget.compact ? 52.0 : 72.0;
+    final trackHeight = widget.compact ? 56.0 : 76.0;
+    final textScale = MediaQuery.textScalerOf(context).scale(12) / 12;
+    final buttonHeight = math.max(40.0, 32 * textScale);
+    return Material(
+        color: Colors.transparent,
+        child: SizedBox(
+          key: const ValueKey('lumo-companion-floor'),
+          height: trackHeight + buttonHeight,
+          child: LayoutBuilder(builder: (context, constraints) {
+            final width = constraints.maxWidth;
+            return Column(children: [
+              SizedBox(
+                  height: trackHeight,
+                  child: GestureDetector(
+                      key: const ValueKey('lumo-walking-floor'),
+                      behavior: HitTestBehavior.translucent,
+                      onTapUp: (details) {
+                        _noteActivity();
+                        final inset =
+                            (width / 6 - foxSize / 2).clamp(0.0, width / 2);
+                        final travel =
+                            math.max(1.0, width - 2 * inset - foxSize);
+                        final target =
+                            (details.localPosition.dx - inset - foxSize / 2) /
+                                travel;
+                        setState(() => _moveToFraction(target));
+                      },
+                      child: AnimatedBuilder(
+                        animation: _walk,
+                        builder: (context, _) {
+                          final inset =
+                              (width / 6 - foxSize / 2).clamp(0.0, width / 2);
+                          final x = inset +
+                              _position *
+                                  math.max(0, width - 2 * inset - foxSize);
+                          final foxRight = _position > .5;
+                          return Stack(clipBehavior: Clip.hardEdge, children: [
+                            if (!_walk.isAnimating && !widget.compact)
+                              Positioned(
+                                left: foxRight ? 12 : x + foxSize + 6,
+                                right: foxRight ? width - x + 6 : 12,
+                                top: 4,
+                                bottom: 4,
+                                child: Row(children: [
+                                  Expanded(
+                                      child: InkWell(
+                                    borderRadius: BorderRadius.circular(16),
+                                    onTap: () => _showMenu(proposal: _proposal),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 4, vertical: 2),
+                                      child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            _proposal?.text ??
+                                                (widget.scene.schoolwork
+                                                    ? 'Danach üben wir gemeinsam weiter.'
+                                                    : 'Tippe mich an. Ich helfe dir gern!'),
+                                            maxLines: 3,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall
+                                                ?.copyWith(height: 1.3),
+                                          )),
+                                    ),
+                                  )),
+                                  if (_proposal != null)
+                                    IconButton(
+                                        tooltip: 'Vorschlag später ansehen',
+                                        onPressed: _dismiss,
+                                        icon:
+                                            const Icon(Icons.close, size: 18)),
+                                ]),
+                              ),
+                            Positioned(
+                              key: const ValueKey('lumo-fox-position'),
+                              left: x,
+                              bottom: 0,
+                              child: Semantics(
+                                label:
+                                    'Lumo, dein Lernfuchs. Hilfe und Ideen öffnen',
+                                button: true,
+                                child: InkWell(
+                                  key: const ValueKey('lumo-fox-button'),
+                                  onTap: () => _showMenu(proposal: _proposal),
+                                  borderRadius: BorderRadius.circular(40),
+                                  child: LumoAnimatedFox(
+                                      size: foxSize,
+                                      moving: _walk.isAnimating,
+                                      facingRight: _right,
+                                      reducedMotion: _quiet),
+                                ),
+                              ),
+                            ),
+                          ]);
+                        },
+                      ))),
+              SizedBox(
+                  height: buttonHeight,
+                  child: Row(children: [
+                    _floorButton(Icons.auto_awesome_outlined, 'Idee', 0,
+                        () => _showMenu(proposal: _guide.choose(widget.scene))),
+                    _floorButton(Icons.lightbulb_outline, 'Erklären', 1, () {
+                      if (widget.scene.hasTask && !widget.scene.schoolwork) {
+                        _perform(LumoCompanionAction.explainTask);
+                      } else {
+                        _showMenu();
+                      }
+                    }),
+                    _floorButton(Icons.chat_bubble_outline, 'Fragen', 2,
+                        () => _perform(LumoCompanionAction.askLumo)),
+                  ])),
+            ]);
+          }),
+        ));
   }
+
+  Widget _floorButton(
+          IconData icon, String label, int index, VoidCallback action) =>
+      Expanded(
+          child: TextButton(
+        style: TextButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 2)),
+        onPressed: () {
+          _noteActivity();
+          setState(() => _moveTo(index));
+          action();
+        },
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          Icon(icon, size: 17),
+          const SizedBox(width: 4),
+          Flexible(
+              child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis)),
+        ]),
+      ));
 }

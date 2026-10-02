@@ -2,7 +2,8 @@
 
 Stand: 2. Oktober 2026. Aktiver Anwendungscode: dieses Repository.
 
-- [Aktueller Arbeitsstand und Prüfungen](docs/FORTSETZUNG_2026-10-02.md)
+- [Aktueller Lernfuchs-/APK-Arbeitsstand](docs/LUMO_COACH_2026-10-02.md)
+- [Vorheriger Arbeitsstand und Prüfungen](docs/FORTSETZUNG_2026-10-02.md)
 - [Neustartbericht aus dem vorherigen Chat](docs/NEUSTART_2026-10-02.md)
 - [Alle 19 übergebenen Projektdateien](archive/project-sources/2026-10-02/README.md) mit Herkunft, Dateigröße, SHA-256 und Duplikatzuordnung. Die öffentliche Archivierung wurde am 2. Oktober 2026 ausdrücklich freigegeben.
 - Flutter-App: `lib/`, Regressionstests: `test/`.
@@ -20,7 +21,11 @@ baut auf `1e0eeaa7d0a78fcaf89977b47bf03826b56f34eb` auf und sammelt die danach
 noch offenen Korrekturen im Zweig
 `codex/lumo-school-readiness-followup-2026-10-02`.
 
-Der Nutzer hat für diese Fortsetzung **nur das Codex-Projekt** gewählt.
-Render-Zugriff und Live-Deployment werden nicht durchgeführt. Eine erfolgreiche
-lokale oder CI-Prüfung belegt keine reparierte Live-KI und ersetzt keinen
-Gerätetest mit der Lehrerin.
+Der Nutzer möchte alle Änderungen im Codex-Projekt und eine neue installierbare
+APK. Nach Veröffentlichung von `school-test-270` hat er ausdrücklich zusätzlich
+die KI-Aktivierung, überarbeitete Aufgaben und einen flüssig bewegten Lernfuchs
+beauftragt. Dieser neuere Auftrag ersetzt die frühere Beschränkung „kein Render“.
+Der Render-Connector verlangt jedoch noch die ausdrückliche Wahl des Workspaces
+`My Workspace`; deshalb wurden keine Kontoeinstellungen oder Deployments geändert.
+Ein neutraler Liveaufruf bestätigte einen Provider-Limitfehler. Lokale/CI-Tests
+belegen keine funktionierende Live-KI und ersetzen keinen Android-Gerätetest.

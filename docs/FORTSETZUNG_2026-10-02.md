@@ -1,3 +1,6 @@
+> Neuere Fortsetzung: [Lernfuchs, Aufgaben, PIN und APK](LUMO_COACH_2026-10-02.md).
+> Die unten dokumentierte frühere Beschränkung auf Codex wurde durch den späteren ausdrücklichen KI-Auftrag ergänzt.
+
 # Lumo – Fortsetzung für den Schultest
 
 ## Grundlage und Ablage

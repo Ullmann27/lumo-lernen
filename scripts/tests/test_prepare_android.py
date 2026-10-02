@@ -18,6 +18,28 @@ class AndroidHostTest(unittest.TestCase):
             (root/'tools/auto_install/lumo_file_paths.xml').write_text('<paths/>')
             (root/'tools/lumo-debug.keystore').write_bytes(b'test-fixture')
             for _ in range(2): module.prepare(root,root/'keystore')
+            proguard = (root/'android/app/proguard-rules.pro').read_text()
+            expected_rules = {
+                f'-dontwarn com.google.mlkit.vision.text.{language}.**'
+                for language in ('chinese', 'devanagari', 'japanese', 'korean')
+            }
+            actual_rules = [line for line in proguard.splitlines() if line.startswith('-')]
+            self.assertEqual(set(actual_rules), expected_rules)
+            self.assertEqual(len(actual_rules), len(expected_rules))
+
+            # Preserve unrelated rules and a preexisting optional-language rule,
+            # including its indentation/comment and missing final newline.
+            existing = '# App rules\r\n-keep class example.NativeBridge { *; }\r\n  -dontwarn com.google.mlkit.vision.text.chinese.** # already configured'
+            proguard_path = root/'android/app/proguard-rules.pro'
+            proguard_path.write_bytes(existing.encode())
+            module.prepare(root,root/'keystore')
+            first_preparation = proguard_path.read_bytes()
+            module.prepare(root,root/'keystore')
+            self.assertEqual(proguard_path.read_bytes(), first_preparation)
+            self.assertTrue(first_preparation.startswith(existing.encode()))
+            actual_rules = [line.split('#',1)[0].strip() for line in first_preparation.decode().splitlines()]
+            for rule in expected_rules:
+                self.assertEqual(actual_rules.count(rule), 1)
             doc=ET.parse(main/'AndroidManifest.xml').getroot(); attr=module.attr
             self.assertEqual(len(doc.findall('uses-permission')),4)
             self.assertEqual(len(doc.findall('application/provider')),1)

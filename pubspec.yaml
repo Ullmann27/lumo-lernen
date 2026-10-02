@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
+  crypto: ^3.0.6
   flutter:
     sdk: flutter
   flame: ^1.18.0
@@ -29,6 +30,7 @@ flutter:
     - assets/videos/
     - assets/images/
     - assets/lumo_jump/fox/master/
+    - assets/lumo_jump/fox/sprite_sheets/
     - assets/lumo_jump/fox/idle/
     - assets/lumo_jump/fox/run/
     - assets/lumo_jump/fox/jump/

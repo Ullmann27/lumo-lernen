@@ -12,11 +12,13 @@ class WritingTaskResult {
     required this.task,
     required this.evaluation,
     required this.strokes,
+    this.graded = true,
   });
 
   final TaskInstance task;
   final WritingEvaluation evaluation;
   final List<Stroke> strokes;
+  final bool graded;
 }
 
 class WritingTaskRenderer extends StatefulWidget {
@@ -43,7 +45,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         widget.task.parameters['symbol'] ??
         WritingTargetParser.parse(widget.task.prompt);
     final value = raw?.toString().trim();
-    return value == null || value.isEmpty ? 'A' : value;
+    return value ?? '';
   }
 
   bool get _isWordTarget {
@@ -66,9 +68,21 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
     return _templates.findOrFallback(_target);
   }
 
+  bool get _isFreeTarget => _template.strokes.isEmpty;
+  bool get _isSentenceTarget => _target.trim().contains(RegExp(r'\s'));
+
   WritingMode get _mode {
-    if (_isWordTarget) return WritingMode.free;
+    if (_isFreeTarget) return WritingMode.free;
     return widget.task.helpPayload.level >= 2 ? WritingMode.guided : WritingMode.trace;
+  }
+
+  @override
+  void didUpdateWidget(covariant WritingTaskRenderer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.task.taskInstanceId != widget.task.taskInstanceId) {
+      _strokes = <Stroke>[];
+      _evaluation = null;
+    }
   }
 
   @override
@@ -89,7 +103,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
-            _isWordTarget ? 'Schreibwort' : 'Schreibaufgabe',
+            _isSentenceTarget ? 'Schreibsatz' : _isWordTarget ? 'Schreibwort' : 'Schreibaufgabe',
             style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13),
           ),
           const SizedBox(height: 8),
@@ -106,7 +120,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
           const SizedBox(height: 8),
           Text(
             _isWordTarget
-                ? 'Zielwort: ${template.symbol}'
+                ? '${_isSentenceTarget ? 'Zielsatz' : 'Zielwort'}: ${template.symbol}'
                 : 'Ziel: ${template.symbol}',
             style: const TextStyle(
               fontFamily: 'Nunito',
@@ -120,10 +134,12 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
             _WordTargetStrip(word: template.symbol),
             const SizedBox(height: 8),
             Text(
-              'Schreibe das ganze Wort frei auf die Linien. Keine A-Vorlage wird angezeigt.',
+              'Schreibe ${_isSentenceTarget ? 'den ganzen Satz' : 'das ganze Wort'} frei auf die Linien. Diese Übung wird nicht automatisch bewertet; vergleiche sie mit einer erwachsenen Person.',
               style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800),
             ),
           ],
+          if (_isFreeTarget && !_isWordTarget)
+            Text('Freie Schreibübung ohne automatische Bewertung. Für dieses Zeichen ist noch keine geprüfte Spur hinterlegt.', style: LumoTextStyles.body),
           const SizedBox(height: 16),
           // Statt inline-Canvas: Tipp-Karte die ein Vollbild-Modal oeffnet.
           // Verhindert den Scroll-Konflikt: im Modal gibt es keinen Scroll
@@ -143,12 +159,15 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         ]),
       ),
       const SizedBox(height: 14),
-      if (evaluation != null) _WritingFeedbackCard(evaluation: evaluation, wordMode: _isWordTarget),
+      if (evaluation != null)
+        _isFreeTarget
+            ? const Text('Schreibübung aufgezeichnet. Bitte gemeinsam ansehen; es wird keine Note oder Richtig-Bewertung vergeben.')
+            : _WritingFeedbackCard(evaluation: evaluation, wordMode: false),
       const SizedBox(height: 14),
       Align(
         alignment: Alignment.centerRight,
         child: GestureDetector(
-          onTap: evaluation == null
+          onTap: evaluation == null || _strokes.isEmpty
               ? null
               : () {
                   widget.onSubmitted?.call(
@@ -156,12 +175,13 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
                       task: widget.task,
                       evaluation: evaluation,
                       strokes: List<Stroke>.unmodifiable(_strokes),
+                      graded: !_isFreeTarget,
                     ),
                   );
                 },
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 160),
-            opacity: evaluation == null ? .45 : 1,
+            opacity: evaluation == null || _strokes.isEmpty ? .45 : 1,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 13),
               decoration: BoxDecoration(
@@ -526,6 +546,7 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                       template: widget.template,
                       mode: widget.mode,
                       height: canvasHeight,
+                      initialStrokes: widget.initialStrokes,
                       // Bewusst kein setState: _strokes und _evaluation werden
                       // nicht im build() verwendet (nur beim Pop). Ein setState
                       // bei jedem Stroke wuerde das ganze Modal neu layouten

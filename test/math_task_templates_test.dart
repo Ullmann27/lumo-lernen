@@ -59,7 +59,8 @@ void main() {
           expect(task.answer.trim(), isNotEmpty, reason: template.id);
           expect(task.choices, contains(task.answer), reason: template.id);
           expect(task.choices.toSet(), hasLength(task.choices.length), reason: template.id);
-          expect(task.choices.length, greaterThanOrEqualTo(3), reason: template.id);
+          // Ja/Nein and equal-money comparisons have two meaningful choices.
+          expect(task.choices.length, greaterThanOrEqualTo(2), reason: template.id);
           expect(task.explanation.trim(), isNotEmpty, reason: template.id);
         }
       }

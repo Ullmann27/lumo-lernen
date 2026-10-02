@@ -1,84 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
+import '../../core/app_settings.dart';
+import '../../widgets/parent_pin_setup_dialog.dart';
+
+/// Lives inside the authenticated parent area; credentials are saved by the
+/// setup dialog before onSaved updates the live app state.
 class ParentPinEditor extends StatefulWidget {
-  const ParentPinEditor({super.key, required this.onSave});
+  const ParentPinEditor({
+    super.key,
+    required this.settings,
+    required this.onSaved,
+  });
 
-  final Future<void> Function(String) onSave;
+  final AppSettings settings;
+  final ValueChanged<AppSettings> onSaved;
 
   @override
   State<ParentPinEditor> createState() => _ParentPinEditorState();
 }
 
 class _ParentPinEditorState extends State<ParentPinEditor> {
-  final _pin = TextEditingController();
-  final _confirmation = TextEditingController();
   String? _message;
-  bool _saving = false;
+  bool _editing = false;
 
-  Future<void> _save() async {
-    final pin = _pin.text;
-    if (!RegExp(r'^\d{4,8}$').hasMatch(pin) || pin != _confirmation.text) {
-      setState(
-        () => _message = 'Bitte 4 bis 8 Ziffern zweimal gleich eingeben.',
-      );
-      return;
-    }
-    setState(() => _saving = true);
+  Future<void> _edit() async {
+    if (_editing) return;
+    setState(() => _editing = true);
     try {
-      await widget.onSave(pin);
-      if (!mounted) return;
-      _pin.clear();
-      _confirmation.clear();
-      setState(() => _message = 'Eltern-PIN gespeichert.');
-    } catch (_) {
-      if (mounted)
-        setState(
-          () => _message =
-              'Die PIN konnte nicht gespeichert werden. Bitte erneut versuchen.',
-        );
+      final next =
+          await ParentPinSetupDialog.show(context, settings: widget.settings);
+      if (!mounted || next == null) return;
+      widget.onSaved(next);
+      setState(() =>
+          _message = 'Eltern-PIN und Wiederherstellungscode gespeichert.');
     } finally {
-      if (mounted) setState(() => _saving = false);
+      if (mounted) setState(() => _editing = false);
     }
-  }
-
-  @override
-  void dispose() {
-    _pin.dispose();
-    _confirmation.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const Text(
-        'Eltern-PIN ändern',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      for (final entry in [
-        (_pin, 'Neue PIN'),
-        (_confirmation, 'PIN wiederholen'),
-      ])
-        Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: TextField(
-            controller: entry.$1,
-            enabled: !_saving,
-            obscureText: true,
-            keyboardType: TextInputType.number,
-            maxLength: 8,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            decoration: InputDecoration(labelText: entry.$2, counterText: ''),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Eltern-PIN',
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 6),
+          Text(!widget.settings.parentPinConfigured
+              ? 'Noch keine eigene PIN eingerichtet. Der bisherige Erstzugang lautet 2468. Bitte lege jetzt eine eigene PIN fest.'
+              : widget.settings.hasParentRecoveryCode
+                  ? 'Eigene PIN und Wiederherstellungscode sind eingerichtet.'
+                  : 'Deine eigene PIN bleibt gültig. Richte zusätzlich einen Wiederherstellungscode ein, damit du bei einer vergessenen PIN keine Lernstände verlierst.'),
+          if (_message != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(_message!),
+            ),
+          const SizedBox(height: 8),
+          OutlinedButton(
+            onPressed: _editing ? null : _edit,
+            child: Text(widget.settings.parentPinConfigured
+                ? 'PIN und Wiederherstellungscode ändern'
+                : 'Eigene PIN einrichten'),
           ),
-        ),
-      if (_message != null) Text(_message!),
-      const SizedBox(height: 8),
-      OutlinedButton(
-        onPressed: _saving ? null : _save,
-        child: const Text('PIN speichern'),
-      ),
-    ],
-  );
+        ],
+      );
 }
