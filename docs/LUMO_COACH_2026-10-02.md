@@ -33,9 +33,21 @@ Alle 19 historischen Projektdateien bleiben unverändert archiviert.
 - Die angeforderte KI-Freigabe wird in diesem APK-Build einmalig gesetzt. Ein späteres
   Ausschalten durch Eltern bleibt erhalten. Kindname/ungeprüfte Persona werden nicht
   an den KI-Proxy geschickt. Nur erfolgreiche echte Providerantworten gelten als online.
-- APK wird optimiert im Release-Modus gebaut. Stabiles bestehendes Signaturzertifikat
-  bleibt erhalten; vor Veröffentlichung wird die tatsächliche APK-Signatur geprüft.
+- APK wird optimiert im Release-Modus gebaut. Das Repository-Zertifikat wird
+  explizit im Gradle-Bau gesetzt und die fertige APK damit verglichen.
   Optionale nicht gebündelte MLKit-Sprachklassen erhalten gezielte R8-Regeln.
+- Prüfung der wirklich ausgelieferten APK 270 zeigte einen abweichenden Signierer:
+  SHA-256 edff8e83e12993fbdf0e054bda44949269ea69f1949c7ccafc1ecd47a1735b74.
+  Das Repository-Zertifikat hat a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702.
+  Das frühere bloße Kopieren nach HOME/.android garantierte den verwendeten
+  Schlüssel nicht. Der private Schlüssel von 270 liegt hier nicht vor.
+  Deshalb gibt es zusätzlich Lumo-Lernen-Neu.apk mit eigener Paketkennung
+  dev.ullmann.lumo.lumo_lernen.coachpreview und Name „Lumo Lernen Neu“.
+  Sie installiert parallel, ohne alte App/Daten zu löschen; Lernstände werden
+  nicht automatisch übernommen. Die alte App für den Test nicht deinstallieren.
+  Die normale Lumo-Lernen-latest.apk behält die ursprüngliche Paketkennung,
+  kann Build 270 wegen der Signatur aber nicht direkt aktualisieren.
+  Beide Varianten wählen künftig nur APK-Assets ihrer eigenen Paketkennung.
 
 ## Live-KI: noch offen
 
@@ -53,9 +65,10 @@ Limit nicht. Hinweise und Vorschläge sind auch offline verfügbar.
 
 - Inhaltsaudit: 37.540 erzeugte Aufgabenvarianten geprüft.
 - Node-Backend: 19 Regressionstests bestanden (simulierte Providerantworten).
-- Android-Vorbereitung und Signaturauswertung: 4 Python-Tests bestanden.
+- Android-Vorbereitung und Signaturauswertung: 5 Python-Tests bestanden.
 - Repair Guard und `git diff --check`: bestanden.
 - Vollständige Flutter-Suite: 375 bestanden, 4 zuvor übersprungen, keine Fehler.
+  Anschließend zusätzlicher gezielter Variantentest: 8 Update-Tests bestanden.
 - Flutter-Analyse: 0 Fehler; vorhandene Warnungen/Hinweise bleiben sichtbar.
 - Abschließender CI-APK-Bau: Ergebnis wird in PR #152 und im Release protokolliert.
 - Layouttest verwendet echte AppShell und prüft 360×740, 840×560 und 280×640,

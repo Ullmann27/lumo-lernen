@@ -12,6 +12,25 @@ import 'package:lumo_lernen/core/app_update_service.dart';
 ///   - echte Netzwerk-Aufrufe gegen api.github.com
 ///   - openUpdate mit url_launcher
 void main() {
+  test(
+      'parallel and original installations select only matching APK identities',
+      () {
+    final original = <String, dynamic>{'name': 'Lumo-Lernen-latest.apk'};
+    final parallel = <String, dynamic>{'name': 'Lumo-Lernen-Neu.apk'};
+    expect(
+        AppUpdateService.preferredApkAsset([parallel, original],
+            sideBySide: false),
+        original);
+    expect(
+        AppUpdateService.preferredApkAsset([original, parallel],
+            sideBySide: true),
+        parallel);
+    expect(AppUpdateService.preferredApkAsset([original], sideBySide: true),
+        isNull);
+    expect(AppUpdateService.preferredApkAsset([parallel], sideBySide: false),
+        isNull);
+  });
+
   group('AppUpdateInfo', () {
     test('hasUsableDownload ist false wenn apkUrl leer', () {
       final info = AppUpdateInfo(
@@ -50,7 +69,8 @@ void main() {
     test('currentVersionName hat Default-Format', () {
       // Sollte wie '0.0.0' oder '0.9.0' aussehen, kein leerer String.
       expect(AppUpdateService.currentVersionName, isNotEmpty);
-      expect(AppUpdateService.currentVersionName, matches(RegExp(r'^\d+\.\d+\.\d+$')));
+      expect(AppUpdateService.currentVersionName,
+          matches(RegExp(r'^\d+\.\d+\.\d+$')));
     });
 
     test('latestReleaseApi zeigt auf api.github.com', () {
@@ -66,8 +86,10 @@ void main() {
 
     test('latestReleaseApi und fallbackReleaseUrl haben gleiches Repo', () {
       // Beide URLs muessen auf Ullmann27/lumo-lernen zeigen, sonst Bug.
-      expect(AppUpdateService.latestReleaseApi.path, contains('Ullmann27/lumo-lernen'));
-      expect(AppUpdateService.fallbackReleaseUrl.path, contains('Ullmann27/lumo-lernen'));
+      expect(AppUpdateService.latestReleaseApi.path,
+          contains('Ullmann27/lumo-lernen'));
+      expect(AppUpdateService.fallbackReleaseUrl.path,
+          contains('Ullmann27/lumo-lernen'));
     });
   });
 }
