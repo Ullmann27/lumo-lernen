@@ -15,9 +15,11 @@ Standard ist GPT-6 Luna für kurze Lernhinweise und Aufgabenchargen. Frühere Ko
 
 ## Schnittstellen
 
-- `GET /health`: Serverversion, Konfiguration, Chat-/Aufgabenmodell und letzter tatsächlich geprüfter Upstream-Zustand. Ein konfigurierter Schlüssel allein belegt noch keine funktionierende KI.
+- `GET /health`: Serverversion, Konfiguration, Chat-/Aufgabenmodell und letzter tatsächlich geprüfter Upstream-Zustand. `ok` zeigt die Erreichbarkeit des Proxys; `openAiConfigured` meldet einen hinterlegten Schlüssel. `openAiAvailable` wird erst nach einem erfolgreichen KI-Aufruf wahr und bei einem späteren Upstream-Fehler wieder falsch. Der Zustand ist die letzte Beobachtung, kein zusätzlicher Live-Aufruf.
 - `POST /chat`: Lernhilfe mit kurzem Verlauf und Klassenstufe. Der Server übernimmt keinen Namen aus dem Kinderprofil.
-- `POST /tasks`: Mathematik/Deutsch, Klasse 1–4, 3–12 angeforderte Aufgaben. Mathematikaufgaben benötigen unabhängig nachrechenbare Rechenschritte. Ungültige Antworten, doppelte Optionen, unsichere Inhalte und Wiederholungen werden verworfen. Deshalb kann die tatsächliche Charge kleiner ausfallen.
+- `POST /tasks`: Mathematik/Deutsch, Klasse 1–4, 3–12 angeforderte Aufgaben. Mathematikaufgaben benötigen unabhängig nachrechenbare, zusammenhängende Rechenschritte. Der Proxy erstellt daraus den angezeigten Aufgabentext und die Erklärung; freie KI-Sachgeschichten werden nicht übernommen, weil korrekte Metadaten deren Inhalt nicht beweisen. Ungültige Antworten, doppelte Optionen, unsichere Inhalte und Wiederholungen werden verworfen. Deshalb kann die tatsächliche Charge kleiner ausfallen.
+
+Gleichzeitige Aufgabenanfragen mit derselben Klasse, demselben Fach sowie identischen normalisierten Themen und Anzahlen teilen eine laufende Erzeugung und deren Ergebnis. Andere Anforderungen bleiben unabhängig; der Verlauf je Klasse/Fach führt ihre Ergebnisse zusammen. Bodies über 16 KiB erhalten HTTP 413; danach wird die Verbindung zeitnah geschlossen, auch wenn ein Client den Upload nicht beendet.
 
 Die App verwendet bei gewählten einzelnen Einheiten den lokalen Generator, damit die KI keine Aufgabe unter einer falschen Einheit anbietet. Ein Vorrat ist pro Profil, Klasse und Fach gespeichert. Hinweise sind zum Üben verfügbar; im Testmodus bleiben Hilfen aus.
 
@@ -31,4 +33,4 @@ Ein HTTP-200-Healthcheck bedeutet: der Proxy läuft. Einen echten `/chat`- oder 
 node --test test/*.test.js
 ```
 
-Die Tests prüfen Modellmigration und Parameter, fehlende Schlüssel, tatsächliche Erreichbarkeit, Fehlerdiagnose, Eingabegrenzen, Kinderschutz, Rechnungen und Aufgabenfilter. Sie ersetzen keinen echten Render-Aufruf und keinen pädagogischen Unterrichtstest.
+Die Tests prüfen Modellmigration und Parameter, fehlende Schlüssel, tatsächliche Erreichbarkeit, Fehlerdiagnose, Eingabegrenzen einschließlich unvollständiger TCP-Uploads, Kinderschutz einschließlich deutscher Komposita, Rechnungen, Aufgabenfilter und parallele Aufgabenanfragen. Sie ersetzen keinen echten Render-Aufruf und keinen pädagogischen Unterrichtstest.

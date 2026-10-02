@@ -11,7 +11,7 @@ void main() {
       expect(MathTaskTemplates.templatesForGrade(4), hasLength(greaterThanOrEqualTo(30)));
     });
 
-    test('each template range can create more than 30 concrete variants', () {
+    test('parameter ranges provide more than 30 combinations', () {
       for (final template in MathTaskTemplates.templates) {
         // shapeTrace ist Form-Nachzeichnen (Demo+Trace, kein Multiple-Choice),
         // hat absichtlich kleine Range [0..4] = 5 Formen, nicht > 30 Varianten.
@@ -19,6 +19,33 @@ void main() {
         final variants = (template.validRangeA.last - template.validRangeA.first + 1) *
             (template.validRangeB.last - template.validRangeB.first + 1);
         expect(variants, greaterThan(30), reason: template.id);
+      }
+    });
+
+    test('new story templates generate genuinely distinct, correct tasks', () {
+      // Ein Produkt der Parameter-Ranges allein beweist keine Vielfalt:
+      // Der Generator kann Werte begrenzen oder einen Parameter ignorieren.
+      // Die neuen Geschichten müssen daher auch sichtbar verschieden sein.
+      for (final id in ['g1_word_problem', 'g2_sub_story']) {
+        final template = MathTaskTemplates.templates.singleWhere(
+          (template) => template.id == id,
+        );
+        final prompts = <String>{};
+        for (var seed = 0; seed < 160; seed++) {
+          final task = template.concretize(seed);
+          prompts.add(task.prompt);
+          final numbers = RegExp(r'\b\d+\b')
+              .allMatches(task.prompt)
+              .map((match) => int.parse(match.group(0)!))
+              .toList();
+          expect(numbers, hasLength(2), reason: task.prompt);
+          final expected = id == 'g2_sub_story'
+              ? numbers[0] - numbers[1]
+              : numbers[0] + numbers[1];
+          expect(task.answer, '$expected', reason: task.prompt);
+          expect(expected, inInclusiveRange(0, 20), reason: task.prompt);
+        }
+        expect(prompts.length, greaterThanOrEqualTo(40), reason: id);
       }
     });
 

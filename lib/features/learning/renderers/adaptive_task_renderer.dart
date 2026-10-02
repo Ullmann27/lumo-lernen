@@ -68,6 +68,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       return ShapeTraceTaskRenderer(
         task: task,
         onSubmitted: widget.onShapeTraced,
+        allowRetry: widget.allowRetry,
       );
     }
 

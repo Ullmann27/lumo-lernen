@@ -416,6 +416,8 @@ class LumoAiProxyClient {
         _truthy(decoded['open_ai_configured']) ||
         _truthy(decoded['openai']) ||
         _truthy(decoded['configured']);
+    final upstreamStatus = decoded['upstreamStatus']?.toString();
+    final available = openAi && (decoded['openAiAvailable'] == true || upstreamStatus == 'ready');
     final service = decoded['service']?.toString().toLowerCase() ?? '';
     final isLumoProxy = service.contains('lumo') && service.contains('proxy');
     final prefix = fallbackPrefix == null ? '' : '$fallbackPrefix ';
@@ -425,7 +427,13 @@ class LumoAiProxyClient {
       return LumoAiHealthStatus(
         reachable: true,
         openAiConfigured: true,
-        message: '${prefix}Server erreichbar. OpenAI ist verbunden.',
+        openAiAvailable: available,
+        upstreamStatus: upstreamStatus,
+        message: available
+            ? '${prefix}Server erreichbar. Die letzte KI-Anfrage war erfolgreich.'
+            : upstreamStatus != null && upstreamStatus != 'not_checked'
+                ? '${prefix}Server erreichbar, aber die KI meldet einen Fehler: $upstreamStatus.'
+                : '${prefix}Server erreichbar. KI-Schlüssel vorhanden; Verbindung noch nicht bestätigt. Bitte KI-Test ausführen.',
         statusCode: statusCode,
         endpoint: endpoint,
         service: service.isEmpty ? null : service,
@@ -597,6 +605,8 @@ class LumoAiHealthStatus {
     required this.reachable,
     required this.openAiConfigured,
     required this.message,
+    this.openAiAvailable = false,
+    this.upstreamStatus,
     this.statusCode,
     this.endpoint,
     this.service,
@@ -606,6 +616,8 @@ class LumoAiHealthStatus {
 
   final bool reachable;
   final bool openAiConfigured;
+  final bool openAiAvailable;
+  final String? upstreamStatus;
   final String message;
 
   /// Diagnose-Felder. Sichtbar im Elternbereich, hilfreich
@@ -617,7 +629,7 @@ class LumoAiHealthStatus {
   final String? rawBodySnippet;
   final String? checkedUrl;
 
-  bool get fullyOk => reachable && openAiConfigured;
+  bool get fullyOk => reachable && openAiConfigured && openAiAvailable;
 }
 
 class LumoAiSmokeTestResult {

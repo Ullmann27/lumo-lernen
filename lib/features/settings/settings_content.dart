@@ -550,6 +550,7 @@ class _SettingsContentState extends State<SettingsContent> {
           _AiTutorStatsPanel(
             key: ValueKey(_aiStatsRevision),
             childId: _childId,
+            grade: state.grade,
             enabled: _settings.aiProxyEnabled,
             onClear: _clearAiTaskCache,
           ),
@@ -818,6 +819,7 @@ class _AiTutorStatsPanel extends StatelessWidget {
   const _AiTutorStatsPanel({
     super.key,
     required this.childId,
+    required this.grade,
     required this.enabled,
     required this.onClear,
   });
@@ -826,6 +828,7 @@ class _AiTutorStatsPanel extends StatelessWidget {
   static const AiTaskCache _cache = AiTaskCache();
 
   final String childId;
+  final int grade;
   final bool enabled;
   final Future<void> Function() onClear;
 
@@ -835,8 +838,8 @@ class _AiTutorStatsPanel extends StatelessWidget {
     DateTime? newest;
     final freshBySubject = <String, int>{};
     for (final subject in subjects) {
-      final fresh = await _cache.freshCount(childId: childId, subject: subject);
-      final last = await _cache.lastGeneratedAt(childId: childId, subject: subject,
+      final fresh = await _cache.freshCount(childId: childId, subject: subject, grade: grade);
+      final last = await _cache.lastGeneratedAt(childId: childId, subject: subject, grade: grade,
       );
       freshBySubject[subject] = fresh;
       freshTotal += fresh;
@@ -1174,6 +1177,8 @@ class _HealthDiagnosticsCard extends StatelessWidget {
     final lines = <_DiagLine>[
       _DiagLine('reachable', status.reachable.toString()),
       _DiagLine('openAiConfigured', status.openAiConfigured.toString()),
+      _DiagLine('openAiAvailable', status.openAiAvailable.toString()),
+      if (status.upstreamStatus != null) _DiagLine('upstreamStatus', status.upstreamStatus!),
       _DiagLine('fullyOk', status.fullyOk.toString()),
       if (status.statusCode != null) _DiagLine('HTTP', status.statusCode.toString()),
       if (status.endpoint != null) _DiagLine('endpoint', status.endpoint!),

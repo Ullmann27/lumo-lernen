@@ -44,10 +44,10 @@ class _RewardShopContentState extends State<RewardShopContent> {
 
   Future<void> _load() async {
     final loaded = await _repo.load(_childId);
+    await widget.appState.hydrateFromWallet();
     if (!mounted) return;
     setState(() {
-      // Wenn der State leer ist, initial Sterne aus der App-State uebernehmen.
-      // Bestehende Sterne aus Lern-Aufgaben werden so erstmalig in den Shop importiert.
+      // Wallet loading migrates legacy shop balances before this snapshot.
       _state = loaded.copyWith(availableStars: widget.appState.state.stars);
       _loading = false;
     });
@@ -64,6 +64,8 @@ class _RewardShopContentState extends State<RewardShopContent> {
     if (!_engine.canAfford(_state!, item)) return;
     final needsApproval = item.parentApprovalRequired || item.isPremiumReward;
     if (needsApproval) {
+      await widget.appState.ensureSettingsLoaded();
+      if (!mounted || !widget.appState.settingsLoaded) return;
       final confirmed = await ParentalGate.show(context,
           pin: widget.appState.state.settings.parentPin,
         );

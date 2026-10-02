@@ -76,7 +76,11 @@ export function inspectChildSafety(message) {
   const rules = [...blockedTopicRules].sort((a, b) =>
     Number(b.severity === 'safe_redirect') - Number(a.severity === 'safe_redirect'));
   for (const rule of rules) {
-    if (rule.terms.some((term) => {
+    // German compounds need targeted stems as well as word boundaries. Keep
+    // everyday words such as "Durchmesser", "Waffeleisen" and "Blutegel" safe.
+    const blockedCompound = rule.id === 'graphic_violence_war_weapons' &&
+      /(^|[^\p{L}])(?:[\p{L}]*krieg(?:e|en|er|s[\p{L}]*)?|[\p{L}]*waffen[\p{L}]*|[\p{L}]*waffe|[\p{L}]*(?:pistole|gewehr)[\p{L}]*|bomben[\p{L}]*|messer(?:stich|angriff|attacke)[\p{L}]*)(?=$|[^\p{L}])/u.test(text);
+    if (blockedCompound || rule.terms.some((term) => {
       const escaped = normalize(term).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       // Wortgrenzen: "Durchmesser" und "ich kriege" sind Lernsprache,
       // keine Waffen- oder Kriegsthemen. Flexionen bleiben erkennbar.

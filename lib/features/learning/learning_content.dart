@@ -661,6 +661,7 @@ class _LearningContentState extends State<LearningContent> {
 
     final responseTimeMs = DateTime.now().difference(_taskStartedAt).inMilliseconds;
     final errorTypes = correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven);
+    final firstAttempt = _attemptCount == 0;
     if (correct) {
       _attemptCount = 0;
       // Heinz' Wunsch: Konfetti bei Erfolgen. Wird ueber Trigger-Int
@@ -683,7 +684,7 @@ class _LearningContentState extends State<LearningContent> {
         givenAnswer: '$answerGiven',
       );
       if (detection.confidence >= 0.65) {
-        nextTutorHint = detection.childFriendlyMessage;
+        nextTutorHint = _allowHelp ? detection.childFriendlyMessage : null;
         // Fehlerart zaehlen + persistieren fuer die DNA-Anzeige in Phase 1.
         final key = detection.pattern.germanShortLabel;
         _errorBreakdown[key] = (_errorBreakdown[key] ?? 0) + 1;
@@ -726,10 +727,12 @@ class _LearningContentState extends State<LearningContent> {
       frustrationSignal: !correct && responseTimeMs > 18000,
     );
     final after = _resultHandler.applyResult(before: before, result: result);
-    final rewardDelta = !correct && _allowHelp ? const RewardDelta(stars: 0, xp: 0) : _rewardEngine.calculateTaskReward(
+    final rewardDelta = _rewardEngine.calculateAnswerReward(
       result: result,
       before: before,
       after: after,
+      allowRetry: _allowHelp,
+      firstAttempt: firstAttempt,
       mode: _learningModeForSession,
       completedSession: _questionNum >= _totalQuestions,
     );
@@ -1054,7 +1057,8 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.lg),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            child: IntrinsicHeight(
+              child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               // Akzent-Linie links als visueller Anker
               Container(
                 width: 5,
@@ -1132,6 +1136,7 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                 ),
               ),
             ],
+              ),
             ),
           ),
         ),
@@ -2152,7 +2157,7 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                   if (reward != null) ...[
                     const SizedBox(height: 14),
                     Wrap(spacing: 8, runSpacing: 8, children: [
-                      _InfoPill(text: '+${reward.stars} Sterne'),
+                      _InfoPill(text: '${reward.stars >= 0 ? '+' : ''}${reward.stars} Sterne'),
                       _InfoPill(text: '+${reward.xp} XP'),
                       if (fb != null) _InfoPill(text: fb.rewardLabel),
                       if (fb?.badgeLabel != null) _InfoPill(text: fb!.badgeLabel!),

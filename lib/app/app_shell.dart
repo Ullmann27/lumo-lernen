@@ -30,7 +30,6 @@ import '../core/achievements/lumo_achievement.dart';
 import '../core/lumo_ai_proxy_client.dart';
 import '../core/lumo_companion_agent.dart';
 import '../core/lumo_voice.dart';
-import '../core/settings_repository.dart';
 import '../core/user_profile.dart';
 
 class AppShell extends StatefulWidget {
@@ -88,7 +87,13 @@ class _AppShellState extends State<AppShell>
     // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
     final deepSection = widget.initialSection;
     if (deepSection != null && deepSection != _appState.state.section) {
-      _appState.update(_appState.state.copyWith(section: deepSection));
+      if (_requiresParentPin(deepSection)) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) _navigateTo(deepSection);
+        });
+      } else {
+        _appState.update(_appState.state.copyWith(section: deepSection));
+      }
     }
     _loadSettings();
     // 2026-06-04: Achievement-Tracker hydrieren + Unlock-Toast-Listener.
@@ -194,9 +199,9 @@ class _AppShellState extends State<AppShell>
   }
 
   Future<void> _loadSettings() async {
-    final settings = await SettingsRepository.load();
+    await _appState.ensureSettingsLoaded();
     if (!mounted) return;
-    _appState.updateSettings(settings);
+    final settings = _appState.state.settings;
     await LumoVoice.instance.configure(
       enabled: settings.voiceEnabled,
       rate: settings.voiceRate,
@@ -286,7 +291,9 @@ class _AppShellState extends State<AppShell>
 
   Future<void> _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
-    if (section == LumoSection.profile || section == LumoSection.settings) {
+    if (_requiresParentPin(section)) {
+      await _appState.ensureSettingsLoaded();
+      if (!mounted || !_appState.settingsLoaded) return;
       final ok = await ParentalGate.show(context,
         pin: _appState.state.settings.parentPin,
       );
@@ -304,13 +311,10 @@ class _AppShellState extends State<AppShell>
     if (mounted) await _fadeCtrl.forward();
   }
 
-  Future<void> _openParentSettings() async {
-    final ok = await ParentalGate.show(context,
-      pin: _appState.state.settings.parentPin,
-    );
-    if (!mounted || !ok) return;
-    await _navigateTo(LumoSection.settings);
-  }
+  bool _requiresParentPin(LumoSection section) =>
+      section == LumoSection.profile || section == LumoSection.settings;
+
+  Future<void> _openParentSettings() => _navigateTo(LumoSection.settings);
 
   Future<void> _handleScannedText(String text) async {
     if (!mounted) return;
@@ -394,6 +398,9 @@ class _AppShellState extends State<AppShell>
     return AnimatedBuilder(
       animation: _appState,
       builder: (context, _) {
+        if (!_appState.settingsLoaded) {
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        }
         return Scaffold(
           backgroundColor: LumoColors.appBg,
           body: SafeArea(
