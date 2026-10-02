@@ -6,6 +6,8 @@ class MathTaskTemplates {
   const MathTaskTemplates._();
 
   static const List<MathTaskTemplate> templates = <MathTaskTemplate>[
+    MathTaskTemplate(id: 'g1_word_problem', grade: 1, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[1, 6], validRangeB: <int>[1, 4], promptPattern: 'sachaufgabe-ein-schritt'),
+    MathTaskTemplate(id: 'g2_sub_story', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[5, 20], validRangeB: <int>[1, 5], promptPattern: 'sachaufgabe-wegnehmen'),
     MathTaskTemplate(id: 'g1_add_10', grade: 1, unit: 'Plus bis 10', kind: MathTemplateKind.addition, validRangeA: <int>[1, 6], validRangeB: <int>[1, 6], promptPattern: 'plus-bis-10',
     ),
     MathTaskTemplate(id: 'g1_sub_10', grade: 1, unit: 'Minus bis 10', kind: MathTemplateKind.subtraction, validRangeA: <int>[3, 10], validRangeB: <int>[1, 7], promptPattern: 'minus-bis-10',
@@ -264,6 +266,12 @@ class MathTaskTemplate {
         return _numberTask('Wie oft $a ist ${a * b}?', answer, '$a wird $answer-mal genommen: ${List<String>.filled(answer, '$a').join(' + ')} = ${a * b}.', 'groups',
         );
       case MathTemplateKind.wordProblemOneStep:
+        if (promptPattern == 'sachaufgabe-wegnehmen') {
+          final removed = b.clamp(1, a).toInt();
+          final answer = a - removed;
+          final story = _subtractionStories[_positive(seed, _subtractionStories.length)];
+          return _numberTask(story.prompt(a, removed, answer), answer, story.explain(a, removed, answer), 'story');
+        }
         // 2026-06-03: vorher EINE Geschichte (Lisa+Aepfel) - Kind sah staendig
         // dieselbe Aufgabe nur mit anderen Zahlen. Jetzt 8 Szenarien aus dem
         // oesterreichischen Alltag (AT-Lehrplan VS Sachrechnen).
@@ -680,7 +688,28 @@ const List<_WordStory> _oneStepStories = <_WordStory>[
     _p1Garten, _e1Sum),
   _WordStory(
     _p1Sport, _e1Sum),
+  _WordStory(_p1Bibliothek, _e1Sum),
+  _WordStory(_p1Baum, _e1Sum),
+  _WordStory(_p1Jause, _e1Sum),
+  _WordStory(_p1Basteln, _e1Sum),
 ];
+
+String _p1Bibliothek(int a, int b, int s) => 'In der Leseecke liegen $a Bilderbücher. Die Lehrerin bringt $b dazu. Wie viele Bücher sind es zusammen?';
+String _p1Baum(int a, int b, int s) => 'Auf dem Baum sitzen $a Vögel. $b fliegen dazu. Wie viele Vögel sitzen jetzt auf dem Baum?';
+String _p1Jause(int a, int b, int s) => 'Für die Jause gibt es $a Apfelstücke und $b Birnenstücke. Wie viele Obststücke sind es zusammen?';
+String _p1Basteln(int a, int b, int s) => 'Lumo bastelt $a Papiersterne. Mia bastelt $b. Wie viele Sterne haben sie zusammen?';
+
+const List<_WordStory> _subtractionStories = <_WordStory>[
+  _WordStory(_pMinusSemmeln, _eMinus),
+  _WordStory(_pMinusStifte, _eMinus),
+  _WordStory(_pMinusBuecher, _eMinus),
+  _WordStory(_pMinusBus, _eMinus),
+];
+String _pMinusSemmeln(int a, int b, int s) => 'Auf dem Teller liegen $a Semmeln. $b werden gegessen. Wie viele Semmeln bleiben übrig?';
+String _pMinusStifte(int a, int b, int s) => 'Lumo hat $a Buntstifte. Er verleiht $b an Mia. Wie viele Buntstifte hat Lumo noch?';
+String _pMinusBuecher(int a, int b, int s) => 'Im Regal stehen $a Bücher. $b werden ausgeliehen. Wie viele Bücher stehen noch im Regal?';
+String _pMinusBus(int a, int b, int s) => 'Im Bus sitzen $a Kinder. An der Haltestelle steigen $b aus. Wie viele Kinder sitzen noch im Bus?';
+String _eMinus(int a, int b, int s) => 'Wegnehmen: $a − $b = $s. Starte mit $a und streiche $b weg.';
 
 String _p1Apfel(int a, int b, int s) => 'Lisa hat $a Aepfel und bekommt $b dazu. Wie viele Aepfel hat sie?';
 String _p1Kekse(int a, int b, int s) => 'Tom hat $a Kekse gebacken. Oma bringt $b weitere. Wie viele Kekse sind es?';
@@ -702,7 +731,12 @@ const List<_WordStory> _twoStepStories = <_WordStory>[
   _WordStory(_p2Spielzeug, _e2),
   _WordStory(_p2Aquarium, _e2),
   _WordStory(_p2Schwimmbad, _e2),
+  _WordStory(_p2Werkstatt, _e2),
+  _WordStory(_p2Buecherei, _e2),
 ];
+
+String _p2Werkstatt(int a, int b, int s) => 'Für die Bastelwerkstatt gibt es $a rote und $b blaue Papierbögen. 3 Bögen werden verbraucht. Wie viele Bögen bleiben?';
+String _p2Buecherei(int a, int b, int s) => 'Die Bücherei hat $a Bilderbücher. $b kommen dazu. 3 Bücher werden ausgeliehen. Wie viele bleiben in der Bücherei?';
 
 String _p2Tulpen(int a, int b, int s) => 'Im Garten wachsen $a Tulpen. $b kommen dazu, 3 werden gepflueckt. Wie viele bleiben?';
 String _p2Pausenbrot(int a, int b, int s) => 'In der Schultasche sind $a Aepfel und $b Birnen. Lisa isst 3 Stueck. Wie viele bleiben uebrig?';
@@ -722,7 +756,12 @@ const List<_WordStory> _threeStepStories = <_WordStory>[
   _WordStory(_p3Schultheater, _e3),
   _WordStory(_p3Sportfest, _e3),
   _WordStory(_p3Schulfest, _e3),
+  _WordStory(_p3Bastelstern, _e3),
+  _WordStory(_p3Obstkiste, _e3),
 ];
+
+String _p3Bastelstern(int a, int b, int s) => 'Die Klasse bastelt $a gelbe und $b blaue Sterne. Am nächsten Tag bastelt sie noch einmal dieselbe Anzahl Sterne. 4 Sterne werden verschenkt. Wie viele Sterne bleiben?';
+String _p3Obstkiste(int a, int b, int s) => 'In einer Kiste liegen $a Äpfel und $b Birnen. Eine zweite Kiste enthält genau gleich viele Früchte. 4 Früchte werden gegessen. Wie viele bleiben insgesamt?';
 
 String _p3Semmeln(int a, int b, int s) => 'Fuer ein Fest werden $a Semmeln und $b Weckerl gekauft. Danach wird noch einmal dieselbe Anzahl Gebaeckstuecke gekauft. 4 bleiben uebrig. Wie viele wurden gegessen?';
 String _p3Buecher(int a, int b, int s) => 'Im Regal stehen $a Kinderbuecher und $b Sachbuecher. Es kommt noch einmal dieselbe Anzahl Buecher dazu. 4 werden ausgeliehen. Wie viele Buecher stehen jetzt im Regal?';

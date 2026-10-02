@@ -5,8 +5,12 @@ import { inspectChildSafety, buildLumoSystemPrompt, allowedTopicHints } from './
 
 const port = Number(process.env.PORT || 8787);
 const openAiApiKey = process.env.OPENAI_API_KEY || '';
-const model = process.env.OPENAI_MODEL || 'gpt-6-luna';
-const taskModel = process.env.OPENAI_TASK_MODEL || model;
+export function resolveModel(configured) {
+  const value = String(configured || '').trim();
+  return !value || ['gpt-4.1-mini', 'gpt-4o-mini'].includes(value) ? 'gpt-6-luna' : value;
+}
+const model = resolveModel(process.env.OPENAI_MODEL);
+const taskModel = process.env.OPENAI_TASK_MODEL ? resolveModel(process.env.OPENAI_TASK_MODEL) : model;
 function modelOptions(selected, tokens) {
   return /^gpt-[56]/.test(selected)
     ? { reasoning_effort: /luna/.test(selected) ? 'none' : 'low', max_completion_tokens: tokens }
@@ -37,6 +41,7 @@ function healthPayload(apiKey, upstreamStatus) {
   return {
     ok: true,
     service: 'lumo-ai-proxy',
+    version: '2026-10-02-restart',
     openAiConfigured: Boolean(apiKey),
     upstreamStatus,
     chatModel: model,

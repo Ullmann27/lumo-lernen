@@ -66,6 +66,9 @@ class _LearningContentState extends State<LearningContent> {
   // So sehen Heinz' Toechter nicht 5x in Folge "1+2", "2+1", "1+3" usw.
   final SessionVarietyGuard _varietyGuard = SessionVarietyGuard();
   final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
+  String? _aiQueueScope;
+
+  String get _currentAiScope => '$_childId|${widget.appState.state.grade}|${_aiSubjectName(widget.appState.state.subject)}';
 
   static const int _recentTaskMemory = RecentTaskRepository.maxTaskKeys;
   static const int _recentUnitMemory = 10;
@@ -145,7 +148,7 @@ class _LearningContentState extends State<LearningContent> {
     );
     final units = await _recentRepo.loadUnits(childId: childId, subject: subject,
     );
-    if (!mounted) return;
+    if (!mounted || childId != _childId || subject != widget.appState.state.subject) return;
     setState(() {
       final currentKeys = List<String>.from(_recentTaskKeys);
       final currentUnits = List<String>.from(_recentUnits);
@@ -178,33 +181,39 @@ class _LearningContentState extends State<LearningContent> {
     final st = widget.appState.state;
     final subject = _aiSubjectName(st.subject);
     if (subject == null) return;
-    final fresh = await _aiCache.loadFresh(childId: _childId, subject: subject,
+    final childId = _childId;
+    final scope = _currentAiScope;
+    bool isCurrent() => mounted && _childId == childId && widget.appState.state.grade == st.grade && _aiSubjectName(widget.appState.state.subject) == subject;
+    final fresh = await _aiCache.loadFresh(childId: childId, subject: subject,
       grade: st.grade,
     );
-    if (mounted) {
+    if (isCurrent()) {
       setState(() {
+        _aiQueueScope = scope;
         _aiDraftQueue
           ..clear()
           ..addAll(fresh);
       });
     }
+    if (!isCurrent()) return;
     // Refill bei Bedarf - laeuft asynchron, kein Block
     final result = await _tutor.refillIfNeeded(
       settings: st.settings,
       profile: widget.appState.learningProfile,
-      childId: _childId,
+      childId: childId,
       childName: st.childName,
       grade: st.grade,
       subject: subject,
     );
-    if (!mounted) return;
+    if (!isCurrent()) return;
     if (!result.skipped && result.generated > 0) {
       // Neue Drafts in die Queue uebernehmen
-      final updated = await _aiCache.loadFresh(childId: _childId, subject: subject,
+      final updated = await _aiCache.loadFresh(childId: childId, subject: subject,
         grade: st.grade,
       );
-      if (!mounted) return;
+      if (!isCurrent()) return;
       setState(() {
+        _aiQueueScope = scope;
         _aiDraftQueue
           ..clear()
           ..addAll(updated);
@@ -287,6 +296,7 @@ class _LearningContentState extends State<LearningContent> {
   Future<void> _askAiTutor() async {
     if (_aiHelpLoading) return;
     if (!mounted) return;
+    final taskId = _taskInstance.taskInstanceId;
     setState(() => _aiHelpLoading = true);
     try {
       // Bereich basierend auf Subject und Unit waehlen.
@@ -307,7 +317,7 @@ class _LearningContentState extends State<LearningContent> {
           'visual': _task.visual,
         },
       );
-      if (!mounted) return;
+      if (!mounted || _taskInstance.taskInstanceId != taskId) return;
       setState(() {
         _aiHelpReply = response.reply;
         _aiHelpLoading = false;
@@ -318,7 +328,7 @@ class _LearningContentState extends State<LearningContent> {
         );
       }
     } catch (e) {
-      if (!mounted) return;
+      if (!mounted || _taskInstance.taskInstanceId != taskId) return;
       setState(() {
         _aiHelpReply = 'Lumo konnte gerade keine Hilfe geben. Versuche es nochmal.';
         _aiHelpLoading = false;
@@ -362,7 +372,7 @@ class _LearningContentState extends State<LearningContent> {
     // auf den Standard-Generator zurueck.
     final aiSubject = _aiSubjectName(st.subject);
     LumoTask? relaxedFallback;
-    if (aiSubject != null && factoryUnit == 'Alle' &&
+    if (aiSubject != null && factoryUnit == 'Alle' && _aiQueueScope == _currentAiScope &&
         _aiDraftQueue.isNotEmpty) {
       while (_aiDraftQueue.isNotEmpty) {
         final draft = _aiDraftQueue.removeAt(0);
@@ -613,6 +623,7 @@ class _LearningContentState extends State<LearningContent> {
   /// liegt - dann zeigt Lumo eine bildliche Erklaerung mit Schritten.
   /// Kein Cloud-Aufruf, keine Credit-Kosten.
   Future<void> _loadVisualAid() async {
+    final taskId = _taskInstance.taskInstanceId;
     try {
       final aid = await _visualAidService.buildAid(
         task: _task,
@@ -626,7 +637,7 @@ class _LearningContentState extends State<LearningContent> {
         childName: _childFirstName,
         childRequestedImage: false,
       );
-      if (!mounted) return;
+      if (!mounted || _taskInstance.taskInstanceId != taskId) return;
       setState(() => _visualAid = aid);
     } catch (_) {
       // Bildhilfe ist optional. Wenn sie nicht laedt, gehts ohne weiter.
@@ -715,7 +726,7 @@ class _LearningContentState extends State<LearningContent> {
       frustrationSignal: !correct && responseTimeMs > 18000,
     );
     final after = _resultHandler.applyResult(before: before, result: result);
-    final rewardDelta = _rewardEngine.calculateTaskReward(
+    final rewardDelta = !correct && _allowHelp ? const RewardDelta(stars: 0, xp: 0) : _rewardEngine.calculateTaskReward(
       result: result,
       before: before,
       after: after,
@@ -765,7 +776,7 @@ class _LearningContentState extends State<LearningContent> {
     });
 
     if (correct) {
-      widget.appState.correctAnswer(_task.unit);
+      widget.appState.correctAnswer(_task.unit, stars: rewardDelta.stars, xp: rewardDelta.xp);
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: hintUsed,
       );
       LumoVoice.instance.speak(feedback.spokenText);
@@ -773,6 +784,10 @@ class _LearningContentState extends State<LearningContent> {
       );
     } else {
       widget.appState.wrongAnswer(_task.unit);
+      if (!_allowHelp) {
+        widget.appState.addStars(rewardDelta.stars);
+        widget.appState.addXp(rewardDelta.xp);
+      }
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: hintUsed,
       );
       LumoVoice.instance.speak(feedback.spokenText);

@@ -21,6 +21,10 @@ void main() {
         final nums = RegExp(r'\b\d+\b').allMatches(t.prompt).map((m) => int.parse(m.group(0)!)).toList();
         if (nums.length != 3 || t.answer != '${2 * (nums[0] + nums[1]) - nums[2]}') errors.add('${template.id}: story does not match calculation: ${t.prompt}');
       }
+      if (template.promptPattern == 'sachaufgabe-wegnehmen') {
+        final nums = RegExp(r'\b\d+\b').allMatches(t.prompt).map((m) => int.parse(m.group(0)!)).toList();
+        if (nums.length != 2 || t.answer != '${nums[0] - nums[1]}' || nums[1] > nums[0]) errors.add('${template.id}: subtraction story does not match: ${t.prompt}');
+      }
     }
   }
   for (final template in GermanTaskTemplates.templates) {

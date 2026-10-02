@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
-import { createLumoServer } from '../src/server.js';
+import { createLumoServer, resolveModel } from '../src/server.js';
 import { inspectChildSafety } from '../src/childSafetyPolicy.js';
 import { validateCalculation } from '../src/taskValidation.js';
 
@@ -14,6 +14,11 @@ async function withServer(fetchImpl, run, apiKey = 'test-only-placeholder') {
 }
 const reply = (content) => new Response(JSON.stringify({choices:[{message:{content}}]}), {status:200});
 const valid = {prompt:'Im Korb sind 7 Äpfel. 5 kommen dazu. Wie viele sind es?', answer:'12', choices:['11','12','13'], explanation:'7 + 5 = 12.', calculation:{steps:[{a:7,op:'add',b:5}]}};
+
+test('Alte Mini-Konfiguration migriert; ausdrücklich andere Modelle bleiben wählbar', () => {
+  for (const old of [undefined, '', 'gpt-4.1-mini', 'gpt-4o-mini']) assert.equal(resolveModel(old), 'gpt-6-luna');
+  assert.equal(resolveModel('gpt-6-astra'), 'gpt-6-astra');
+});
 
 test('Lernsprache bleibt erlaubt, Umlaute und Gefahr werden erkannt', () => {
   for (const text of ['Was ist der Durchmesser?', 'Ich kriege 5 Äpfel.', 'Ein Blutegel ist ein Tier.']) assert.equal(inspectChildSafety(text).allowed, true);

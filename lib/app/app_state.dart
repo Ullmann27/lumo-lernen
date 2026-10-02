@@ -370,14 +370,16 @@ class LumoAppState extends ChangeNotifier {
     );
   }
 
-  void correctAnswer(String unit) {
+  void correctAnswer(String unit, {int stars = 3, int xp = 20}) {
     if (_disposed) return;
+    final earnedStars = stars.clamp(0, 12);
+    final earnedXp = xp.clamp(0, 70);
     final solved = Map<String, int>.from(_state.solved);
     solved[unit] = (solved[unit] ?? 0) + 1;
-    update(_state.copyWith(stars: _state.stars + 3, xp: _state.xp + 20, solved: solved, practiceErrors: 0, mood: LumoMood.celebrate, lumoMessage: 'Juhu!\nDas war richtig.\nWeiter so! ⭐',
+    update(_state.copyWith(stars: _state.stars + earnedStars, xp: _state.xp + earnedXp, solved: solved, practiceErrors: 0, mood: LumoMood.celebrate, lumoMessage: 'Juhu!\nDas war richtig.\nWeiter so! ⭐',
       ),
     );
-    _persistRewards(stars: 3, xp: 20);
+    _persistRewards(stars: earnedStars, xp: earnedXp);
   }
 
   void wrongAnswer(String unit) {

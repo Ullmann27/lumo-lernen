@@ -78,6 +78,22 @@ void main() {
       third.dispose();
     },
   );
+  test(
+    'Angezeigte Lernbelohnung wird mit ihren tatsächlichen Werten gespeichert',
+    () async {
+      final state = LumoAppState();
+      state.correctAnswer('Textaufgaben', stars: 7, xp: 45);
+      await state.flushRewards();
+      expect(state.state.stars, 7);
+      expect(state.state.xp, 45);
+      state.dispose();
+      final restored = LumoAppState();
+      await restored.hydrateFromWallet();
+      expect(restored.state.stars, 7);
+      expect(restored.state.xp, 45);
+      restored.dispose();
+    },
+  );
   testWidgets(
     'Eltern-PIN verweigert falsche Eingabe und akzeptiert die konfigurierte PIN',
     (tester) async {
