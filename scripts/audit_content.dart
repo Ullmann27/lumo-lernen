@@ -25,6 +25,10 @@ void main() {
         final nums = RegExp(r'\b\d+\b').allMatches(t.prompt).map((m) => int.parse(m.group(0)!)).toList();
         if (nums.length != 2 || t.answer != '${nums[0] - nums[1]}' || nums[1] > nums[0]) errors.add('${template.id}: subtraction story does not match: ${t.prompt}');
       }
+      if (template.kind == MathTemplateKind.writtenAddition && template.grade == 3) {
+        final numbers = RegExp(r'\b\d+\b').allMatches(t.prompt).map((m) => int.parse(m.group(0)!)).toList();
+        if (numbers.length != 2 || numbers[0] + numbers[1] > 1000 || t.answer != '${numbers[0] + numbers[1]}') errors.add('${template.id}: written addition exceeds class 3 range');
+      }
     }
   }
   for (final template in MathTaskTemplates.templates.where((t) => t.id == 'g1_word_problem' || t.id == 'g2_sub_story')) {

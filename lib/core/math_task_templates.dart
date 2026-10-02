@@ -319,8 +319,9 @@ class MathTaskTemplate {
         return _numberTask('$a × $b = ?', answer, 'Nutze die Einmaleins-Reihe von $a.', 'times_table',
         );
       case MathTemplateKind.writtenAddition:
-        final answer = a + b;
-        return _numberTask('Schriftlich: $a + $b = ?', answer, 'Schreibe Einer unter Einer, Zehner unter Zehner, Hunderter unter Hunderter.', 'written_add',
+        final right = grade == 3 ? b.clamp(1, 1000 - a).toInt() : b;
+        final answer = a + right;
+        return _numberTask('Schriftlich: $a + $right = ?', answer, 'Schreibe Einer unter Einer, Zehner unter Zehner, Hunderter unter Hunderter.', 'written_add',
         );
       case MathTemplateKind.writtenSubtraction:
         final minuend = a > b ? a : a + b;
