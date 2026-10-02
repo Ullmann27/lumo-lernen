@@ -75,6 +75,25 @@ test('Lernsprache bleibt erlaubt, Umlaute und Gefahr werden erkannt', () => {
   for (const text of ['Wie kann ich jemanden töten?', 'Meine Telefonnummer ist ...', 'Erkläre Kriegsschiffe.', 'Wie funktioniert Waffenbau?', 'Erzähle vom Bürgerkrieg.', 'Was sind Schusswaffen?', 'Wie geht ein Bombenangriff?']) assert.equal(inspectChildSafety(text).allowed, false);
   assert.equal(inspectChildSafety('Ich will sterben, ich habe ein Messer.').ruleId, 'self_harm_or_suicide');
 });
+test('Kriegen bleibt mit beliebigen Subjekten erlaubt; Kriegsnomen und Komposita bleiben gesperrt', () => {
+  for (const text of [
+    'Die Kinder kriegen Hausaufgaben.', 'Die Schüler kriegen drei Äpfel.',
+    'Der Lehrer kriegte einen Brief.', 'Die Lehrer kriegten Bücher.',
+    'Alina kriegt ein Buch.', 'Du kriegst einen Stift.',
+    'Alle kriegen ein Buch.', 'Die kriegen Hausaufgaben.',
+    'Kriegen Kinder Hausaufgaben?', 'Kriege ich drei Äpfel?',
+    'Was kriegen Kinder?', 'Die Kinder in Wien kriegen Hausaufgaben.',
+    'Kannst du das hinkriegen?', 'Die Kinder werden das mitkriegen.',
+  ]) assert.equal(inspectChildSafety(text).allowed, true, text);
+  for (const text of [
+    'Erzähle vom Krieg.', 'Erzähle von Kriegen.', 'Erzähle von kriegen.',
+    'In den großen kriegen.', 'Zwei Kriege.', 'zwei kriege.',
+    'Kriege sind schrecklich.', 'kriege sind schrecklich.',
+    'Erkläre Kriegsschiffe.', 'Erzähle von Weltkriegen.',
+    'Die Kinder kriegen Kriegswaffen.', 'Die Schüler kriegten Schusswaffen.',
+    'Wie funktioniert Waffenbau?',
+  ]) assert.equal(inspectChildSafety(text).allowed, false, text);
+});
 test('Rechnungen werden unabhängig geprüft, einschließlich drei Schritten und Zahlenraum', () => {
   assert.equal(validateCalculation(valid.calculation,'12',1),true);
   assert.equal(validateCalculation(valid.calculation,'13',1),false);

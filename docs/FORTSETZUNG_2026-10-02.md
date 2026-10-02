@@ -35,6 +35,9 @@ Die frühere App wird nicht durch einen alten HTML-Prototyp ersetzt.
   aufgebaut. Freie KI-Sachgeschichten werden nicht allein wegen passend
   behaupteter Rechenmetadaten als korrekt behandelt. Lokale Sachaufgaben bleiben.
 - Deutsche Krieg-/Waffen-Komposita werden vom bestehenden Kinderfilter erfasst.
+  Der abschließend gemeldete Fehlalarm bei „Die Kinder kriegen Hausaufgaben“
+  ist korrigiert; normale Verbformen werden unabhängig vom Subjekt behandelt.
+  Dies bleibt eine begrenzte lexikalische Regel, keine vollständige Sprachprüfung.
 - APK-Release enthält wieder die vom App-Updater gelesene Buildnummer/Version.
 - `pubspec.lock` hält die für diese Prüfung aufgelösten App-Abhängigkeiten fest.
 
@@ -56,12 +59,12 @@ Lokal mit Flutter 3.44.9 / Dart 3.12.2:
 | Prüfung | Ergebnis |
 |---|---|
 | Vollständige Flutter-Suite | 295 bestanden, 4 bereits zuvor übersprungen, keine Fehler |
-| Backend Node-Regressionen | 16 bestanden; künstliche Upstream-Antworten, keine Live-KI |
+| Backend Node-Regressionen | 17 bestanden nach dem abschließenden Filterfix; künstliche Upstream-Antworten, keine Live-KI |
 | Android-Hostvorbereitung | 1 Regressionstest bestanden, inkl. erneutem idempotentem Durchlauf |
 | Inhaltsaudit | 26.100 Aufgabenvarianten erfolgreich geprüft |
 | Repair Guard | bestanden |
 | Flutter-Analyse | 0 Fehler; 28 Warnungen und 76 Hinweise im Gesamtprojekt bleiben sichtbar |
-| Änderungen auf Whitespace-/Patchfehler | bestanden |
+| Änderungen am Anwendungscode auf Whitespace-/Patchfehler | bestanden; historische Originaldateien bleiben bytegenau erhalten |
 | Android-APK-Prüfbau | GitHub Actions Build #945 erfolgreich, einschließlich Tests, Analyse und APK-Bau |
 
 Die neuen Integrationstests klicken echte Antworten, prüfen die Wallet nach
@@ -69,8 +72,11 @@ Neustart, testen fehlgeschlagene Zeichenversuche und die PIN beim direkten
 Settings-Link. Die Health-Prüfung nutzt einen lokalen HTTP-Testserver.
 Der [Android-Prüfbau #945](https://github.com/Ullmann27/lumo-lernen/actions/runs/37021317982)
 hat Anwendungscode-Commit `8e7016595fa254a33bf892f64b73ba33c61497a7` erfolgreich gebaut.
-Die anschließende Archivierung ändert nur Originalquellen und Dokumentation,
-nicht die geprüfte App. Dieser Prüflauf hat keine APK zum Download veröffentlicht;
+Die anschließende Archivierung ändert nur Originalquellen und Dokumentation.
+Der danach ergänzte Verbfilter-Fix betrifft ausschließlich den separat betriebenen
+Node-Server; sein kompletter Testlauf besteht mit 17 Tests. Der Android-/Flutter-
+Anwendungscode ist unverändert gegenüber dem erfolgreichen Prüfbau.
+Dieser Prüflauf hat keine APK zum Download veröffentlicht;
 die automatische APK-Ausgabe des Repositorys erfolgt separat im Release-Workflow.
 Keine Produktivbereitstellung durch diese Fortsetzung.
 

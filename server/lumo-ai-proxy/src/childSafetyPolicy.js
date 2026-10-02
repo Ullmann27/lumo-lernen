@@ -68,10 +68,34 @@ export const blockedTopicRules = [
   },
 ];
 
+function normalizeReceiveVerbs(message) {
+  const source = String(message || '').normalize('NFKC');
+  return source.replace(/\b(?:ab|hin|mit|auf|raus|rein|weg|zurecht)?krieg(?:e|en|st|t|te|ten|test|tet)\b/giu, (word, offset) => {
+    // Only standalone "kriege(n)" overlaps with the plural noun "Krieg".
+    // Other conjugations and everyday compounds are unambiguous verbs.
+    if (!/^kriege(?:n)?$/i.test(word)) return 'bekommen';
+    const before = source.slice(0, offset);
+    const after = source.slice(offset + word.length);
+    const tokens = before.match(/[\p{L}\p{N}]+/gu) || [];
+    let i = tokens.length - 1;
+    // Retain nominal cases even in lowercase chat: "von kriegen",
+    // "in den großen kriegen", "zwei kriege". Capitalized noun subjects
+    // such as "Kinder" are not skipped as if they were adjectives.
+    while (i >= 0 && /^(?:den|der|diesen|jenen|solchen|[a-zäöüß]+(?:en|em|er|es|e))$/.test(tokens[i])) i--;
+    const nounPrefix = /^(?:in|von|vor|nach|bei|aus|zu|mit|gegen|über|ueber|durch|für|fuer|ohne|trotz|während|waehrend|wegen|seit|zwischen|zwei|drei|vier|fünf|fuenf|\d+)$/i.test(tokens[i] || '');
+    const nounPredicate = /^\s+(?:sind|waren|beginnen|begannen|enden|endeten|dauern|dauerten|verursachen|fordern)\b/i.test(after);
+    const explicitVerb = /\b(?:ich|wir|du|sie|ihr|er|es)\s*$/i.test(before)
+      || /^\s+(?:ich|wir|du|sie|ihr|er|es)\b/i.test(after)
+      || (/^Kriegen$/i.test(word) && /(?:^|[.!?]\s*)$/.test(before) && /^\s+[A-ZÄÖÜ][\p{L}]*\b/u.test(after));
+    if (nounPrefix || nounPredicate || (word[0] === word[0].toUpperCase() && !explicitVerb)) return word;
+    return 'bekommen';
+  });
+}
+
 export function inspectChildSafety(message) {
   const normalize = (value) => String(value || '').normalize('NFKC').toLowerCase()
     .replaceAll('ä', 'ae').replaceAll('ö', 'oe').replaceAll('ü', 'ue').replaceAll('ß', 'ss');
-  const text = normalize(message).replace(/\b(?:ich|wir|du|sie)\s+(?:kriege|kriegen|kriegst|kriegt)\b/g, 'bekomme');
+  const text = normalize(normalizeReceiveVerbs(message));
   // Hilfe bei unmittelbarer Gefahr hat Vorrang vor einer Themen-Umlenkung.
   const rules = [...blockedTopicRules].sort((a, b) =>
     Number(b.severity === 'safe_redirect') - Number(a.severity === 'safe_redirect'));
