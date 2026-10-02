@@ -27,6 +27,10 @@ void main() {
       }
     }
   }
+  for (final template in MathTaskTemplates.templates.where((t) => t.id == 'g1_word_problem' || t.id == 'g2_sub_story')) {
+    final prompts = {for (var seed = 0; seed < 160; seed++) template.concretize(seed).prompt};
+    if (prompts.length < 40) errors.add('${template.id}: too few distinct stories: ${prompts.length}');
+  }
   for (final template in GermanTaskTemplates.templates) {
     for (var seed = 0; seed < 300; seed++) {
       final t = template.concretize(seed);

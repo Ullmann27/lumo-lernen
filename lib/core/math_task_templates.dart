@@ -6,7 +6,7 @@ class MathTaskTemplates {
   const MathTaskTemplates._();
 
   static const List<MathTaskTemplate> templates = <MathTaskTemplate>[
-    MathTaskTemplate(id: 'g1_word_problem', grade: 1, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[1, 6], validRangeB: <int>[1, 4], promptPattern: 'sachaufgabe-ein-schritt'),
+    MathTaskTemplate(id: 'g1_word_problem', grade: 1, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[1, 7], validRangeB: <int>[1, 5], promptPattern: 'sachaufgabe-ein-schritt'),
     MathTaskTemplate(id: 'g2_sub_story', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[5, 20], validRangeB: <int>[1, 5], promptPattern: 'sachaufgabe-wegnehmen'),
     MathTaskTemplate(id: 'g1_add_10', grade: 1, unit: 'Plus bis 10', kind: MathTemplateKind.addition, validRangeA: <int>[1, 6], validRangeB: <int>[1, 6], promptPattern: 'plus-bis-10',
     ),
