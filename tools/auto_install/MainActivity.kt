@@ -88,7 +88,7 @@ class MainActivity : FlutterActivity() {
                             val scene = if (call.argument<String>("scene") == "kart") "kart" else "home"
                             val grade = (call.argument<Int>("grade") ?: 1).coerceIn(1, 4)
                             val subject = if (call.argument<String>("subject") == "Deutsch") "Deutsch" else "Mathematik"
-                            intent.putExtra("command_line_params", arrayOf("--", "--scene=$scene", "--grade=$grade", "--subject=$subject"))
+                            intent.data = Uri.Builder().scheme("lumo3d").authority(scene).appendQueryParameter("grade", grade.toString()).appendQueryParameter("subject", subject).build()
                             startActivity(intent)
                             result.success(true)
                         }

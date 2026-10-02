@@ -75,7 +75,7 @@ jobs:
         id: flutter_test
         run: |
           set -o pipefail
-          flutter test --no-pub --reporter=expanded 2>&1 | tee /tmp/test.log
+          flutter test --no-pub --reporter=expanded --timeout=45s --concurrency=2 2>&1 | tee /tmp/test.log
 
       - name: Surface failing tests into job summary
         if: always()

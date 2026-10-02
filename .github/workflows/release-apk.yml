@@ -40,7 +40,7 @@ jobs:
       - name: Analyze
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
       - name: Full Flutter regression tests
-        run: flutter test --no-pub --reporter=expanded
+        run: flutter test --no-pub --reporter=expanded --timeout=45s --concurrency=2
       - name: Build Android APK
         run: flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER" --build-name 0.9.0
       - name: Prepare release

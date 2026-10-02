@@ -21,7 +21,7 @@ const String lumo3DAndroidPackage = 'dev.ullmann.lumo3d';
 
 /// Permanente Web-URL (GitHub Pages) als Fallback wenn die native App
 /// nicht installiert ist.
-const String lumo3DWebUrl = 'https://ullmann27.github.io/lumo-godot/';
+const String lumo3DWebUrl = 'https://ullmann27.github.io/lumo-godot/island-cup/';
 
 /// Versucht die Lumo-3D-Welt zu oeffnen.
 ///
