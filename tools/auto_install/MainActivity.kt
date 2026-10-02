@@ -75,5 +75,28 @@ class MainActivity : FlutterActivity() {
                 else -> result.notImplemented()
             }
         }
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "lumo_lernen/bridge")
+            .setMethodCallHandler { call, result ->
+                if (call.method != "launch3D") {
+                    result.notImplemented()
+                } else {
+                    try {
+                        val intent = packageManager.getLaunchIntentForPackage("dev.ullmann.lumo3d")
+                        if (intent == null) {
+                            result.success(false)
+                        } else {
+                            val requestedScene = call.argument<String>("scene")
+                            val scene = if (requestedScene in setOf("kart", "jump")) requestedScene!! else "home"
+                            val grade = (call.argument<Int>("grade") ?: 1).coerceIn(1, 4)
+                            val subject = if (call.argument<String>("subject") == "Deutsch") "Deutsch" else "Mathematik"
+                            intent.data = Uri.Builder().scheme("lumo3d").authority(scene).appendQueryParameter("grade", grade.toString()).appendQueryParameter("subject", subject).build()
+                            startActivity(intent)
+                            result.success(true)
+                        }
+                    } catch (e: Exception) {
+                        result.success(false)
+                    }
+                }
+            }
     }
 }

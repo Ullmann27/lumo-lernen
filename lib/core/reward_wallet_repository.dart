@@ -61,7 +61,7 @@ class RewardWallet {
   factory RewardWallet.fromJson(Map<String, dynamic> j) => RewardWallet(
         stars: (j['stars'] as int?) ?? 0,
         xp: (j['xp'] as int?) ?? 0,
-        level: (j['level'] as int?) ?? 1,
+        level: 1 + (((j['xp'] as int?) ?? 0).clamp(0, 999999999) ~/ 400),
         streak: (j['streak'] as int?) ?? 0,
         totalEarnedStars: (j['totalEarnedStars'] as int?) ?? 0,
         lastDailyKey: (j['lastDailyKey'] as String?) ?? '',
@@ -83,6 +83,8 @@ class RewardWalletRepository {
 
   RewardWallet _wallet = const RewardWallet();
   bool _loaded = false;
+  Future<RewardWallet>? _loadFuture;
+  Future<void> _pendingWrites = Future<void>.value();
   final _controller = StreamController<RewardWallet>.broadcast();
 
   /// Stream, der bei jeder Aenderung den neuen Wallet-Stand emittiert.
@@ -94,8 +96,12 @@ class RewardWalletRepository {
   /// Laedt die Wallet aus SharedPreferences. Sicher: bei Fehlern Defaults.
   /// Wenn keine Wallet existiert, aber Legacy-Stars/XP gefunden werden,
   /// migriert sie diese.
-  Future<RewardWallet> load() async {
-    if (_loaded) return _wallet;
+  Future<RewardWallet> load() {
+    if (_loaded) return Future<RewardWallet>.value(_wallet);
+    return _loadFuture ??= _loadFromDisk();
+  }
+
+  Future<RewardWallet> _loadFromDisk() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_storageKey);
@@ -115,7 +121,7 @@ class RewardWalletRepository {
           _wallet = RewardWallet(
             stars: legacyStars,
             xp: legacyXp,
-            level: 1 + (legacyXp ~/ 100),
+            level: 1 + (legacyXp ~/ 400),
             totalEarnedStars: legacyStars,
           );
           await _persist();
@@ -137,8 +143,7 @@ class RewardWalletRepository {
     final newTotal = _wallet.totalEarnedStars + (delta > 0 ? delta : 0);
     _wallet = _wallet.copyWith(
       stars: newStars,
-      totalEarnedStars: newTotal,
-    );
+      totalEarnedStars: newTotal);
     await _persist();
     _emit();
     return _wallet;
@@ -149,8 +154,8 @@ class RewardWalletRepository {
     if (!_loaded) await load();
     if (delta == 0) return _wallet;
     final newXp = (_wallet.xp + delta).clamp(0, 9999999);
-    // Einfache Level-Formel: Level = 1 + xp / 100
-    final newLevel = 1 + (newXp ~/ 100);
+    // Gleiche 400-XP-Stufen wie App-State und RewardEngine.
+    final newLevel = 1 + (newXp ~/ 400);
     _wallet = _wallet.copyWith(xp: newXp, level: newLevel);
     await _persist();
     _emit();
@@ -184,19 +189,25 @@ class RewardWalletRepository {
 
   /// Reset (z.B. fuer Profil-Wechsel oder Eltern-Sperre).
   Future<void> reset() async {
+    if (_loadFuture != null) await _loadFuture;
     _wallet = const RewardWallet();
+    _loaded = true;
     await _persist();
     _emit();
   }
 
   // ── Interna ───────────────────────────────────────────────────────
-  Future<void> _persist() async {
+  Future<void> _persist() {
+    final serialized = _encode(_wallet.toJson());
+    _pendingWrites = _pendingWrites.then((_) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_storageKey, _encode(_wallet.toJson()));
+      await prefs.setString(_storageKey, serialized);
     } catch (_) {
-      // Fehler beim Speichern ist nicht App-kritisch
-    }
+      // Fehler beim Speichern ist nicht App-kritisch.
+      }
+  });
+    return _pendingWrites;
   }
 
   void _emit() {

@@ -17,6 +17,7 @@ import '../../domain/learning/learning_dna_engine.dart';
 import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import 'parent_report_card.dart';
+import 'parent_pin_editor.dart';
 import 'writing_report_card.dart';
 
 class SettingsContent extends StatefulWidget {
@@ -78,7 +79,8 @@ class _SettingsContentState extends State<SettingsContent> {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
         ? 'kind'
-        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_',
+          );
     return 'local_${safeName}_${st.grade}';
   }
 
@@ -212,18 +214,21 @@ class _SettingsContentState extends State<SettingsContent> {
               'Abbrechen',
               style: TextStyle(
                   fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w900),
+                  fontWeight: FontWeight.w900,
+              ),
             ),
           ),
           FilledButton(
             style: FilledButton.styleFrom(
-                backgroundColor: const Color(0xFFDC2626)),
+                backgroundColor: const Color(0xFFDC2626),
+            ),
             onPressed: () => Navigator.of(dialogContext).pop(true),
             child: const Text(
               'Ja, zuruecksetzen',
               style: TextStyle(
                   fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w900),
+                  fontWeight: FontWeight.w900,
+              ),
             ),
           ),
         ],
@@ -235,7 +240,8 @@ class _SettingsContentState extends State<SettingsContent> {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Profil zurueckgesetzt. App startet beim naechsten Oeffnen neu.'),
+        content: Text('Profil zurueckgesetzt. App startet beim naechsten Oeffnen neu.',
+        ),
         duration: Duration(seconds: 4),
       ),
     );
@@ -285,7 +291,8 @@ class _SettingsContentState extends State<SettingsContent> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Build ${info.latestBuildNumber} geladen - jetzt '
-                  'auf Installieren tippen!'),
+                  'auf Installieren tippen!',
+              ),
               duration: const Duration(seconds: 5),
               backgroundColor: const Color(0xFF22C55E),
             ),
@@ -294,7 +301,8 @@ class _SettingsContentState extends State<SettingsContent> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(result.error ??
-                  'Bitte in den Einstellungen "Apps installieren" erlauben.'),
+                  'Bitte in den Einstellungen "Apps installieren" erlauben.',
+              ),
               duration: const Duration(seconds: 8),
             ),
           );
@@ -306,7 +314,8 @@ class _SettingsContentState extends State<SettingsContent> {
             SnackBar(
               content: Text(ok
                   ? 'Auto-Install ging nicht. Browser-Download gestartet - bitte Notification antippen.'
-                  : 'Update konnte nicht gestartet werden: ${result.error ?? "unbekannter Fehler"}'),
+                  : 'Update konnte nicht gestartet werden: ${result.error ?? "unbekannter Fehler"}',
+              ),
               duration: const Duration(seconds: 8),
             ),
           );
@@ -315,7 +324,8 @@ class _SettingsContentState extends State<SettingsContent> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Du hast die neueste Version (Build '
-                '${info.currentBuildNumber}).'),
+                '${info.currentBuildNumber}).',
+            ),
           ),
         );
       }
@@ -383,8 +393,7 @@ class _SettingsContentState extends State<SettingsContent> {
         ),
         const SizedBox(height: 18),
         _ProfileResetCard(
-          onReset: () => _confirmResetProfile(context),
-        ),
+          onReset: () => _confirmResetProfile(context)),
         const SizedBox(height: 18),
         ParentReportCard(appState: widget.appState),
         const SizedBox(height: 18),
@@ -410,7 +419,8 @@ class _SettingsContentState extends State<SettingsContent> {
           _InfoCard(
             title: 'Profil',
             emoji: '👤',
-            lines: ['Name: ${state.childName}', 'Klasse: ${state.grade}', 'Fach: ${state.subject}', 'Thema: ${Curriculum.prettifyUnit(state.unit)}'],
+            lines: ['Name: ${state.childName}', 'Klasse: ${state.grade}', 'Fach: ${state.subject}', 'Thema: ${Curriculum.prettifyUnit(state.unit)}',
+                  ],
           ),
           _InfoCard(
             title: 'Datenschutz',
@@ -422,34 +432,55 @@ class _SettingsContentState extends State<SettingsContent> {
               'Keine Werbung',
             ],
           ),
-        ]),
+        ],
+            ),
         const SizedBox(height: 18),
         _SettingsCard(title: 'Lernen', children: [
-          _DailyGoalSelector(value: _settings.dailyGoal, onChanged: (v) => _save(_settings.copyWith(dailyGoal: v))),
+          _DailyGoalSelector(value: _settings.dailyGoal, onChanged: (v) => _save(_settings.copyWith(dailyGoal: v)),
+                ),
           const SizedBox(height: 12),
-          _ModeSelector(value: _settings.learningMode, onChanged: (v) => _save(_settings.copyWith(learningMode: v))),
-        ]),
+          _ModeSelector(value: _settings.learningMode, onChanged: (v) => _save(_settings.copyWith(learningMode: v)),
+                ),
+        ],
+            ),
         const SizedBox(height: 14),
         _SettingsCard(title: 'Ton und Stimme', children: [
-          _SwitchRow(title: 'Lumo-Stimme', subtitle: 'Lumo darf Antworten laut sprechen.', value: _settings.voiceEnabled, onChanged: (v) => _save(_settings.copyWith(voiceEnabled: v))),
-          _SwitchRow(title: 'Automatisch vorlesen', subtitle: 'Lumo spricht beim Wechseln von Bereichen.', value: _settings.autoReadEnabled, onChanged: (v) => _save(_settings.copyWith(autoReadEnabled: v))),
+          _SwitchRow(title: 'Lumo-Stimme', subtitle: 'Lumo darf Antworten laut sprechen.', value: _settings.voiceEnabled, onChanged: (v) => _save(_settings.copyWith(voiceEnabled: v)),
+                ),
+          _SwitchRow(title: 'Automatisch vorlesen', subtitle: 'Lumo spricht beim Wechseln von Bereichen.', value: _settings.autoReadEnabled, onChanged: (v) => _save(_settings.copyWith(autoReadEnabled: v)),
+                ),
           const SizedBox(height: 10),
-          _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.55, onChanged: (v) => _save(_settings.copyWith(voiceRate: v))),
-          _SliderRow(title: 'Stimmhöhe', value: _settings.voicePitch, min: 0.85, max: 1.18, onChanged: (v) => _save(_settings.copyWith(voicePitch: v))),
+          _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.55, onChanged: (v) => _save(_settings.copyWith(voiceRate: v)),
+                ),
+          _SliderRow(title: 'Stimmhöhe', value: _settings.voicePitch, min: 0.85, max: 1.18, onChanged: (v) => _save(_settings.copyWith(voicePitch: v)),
+                ),
           const SizedBox(height: 10),
           Wrap(spacing: 10, runSpacing: 10, children: [
-            FilledButton.icon(onPressed: _settings.voiceEnabled ? () => LumoVoice.instance.test() : null, icon: const Icon(Icons.volume_up_rounded), label: const Text('Stimme testen')),
-            OutlinedButton.icon(onPressed: () => LumoVoice.instance.stop(), icon: const Icon(Icons.stop_rounded), label: const Text('Stopp')),
-          ]),
+            FilledButton.icon(onPressed: _settings.voiceEnabled ? () => LumoVoice.instance.test() : null, icon: const Icon(Icons.volume_up_rounded), label: const Text('Stimme testen'),
+                    ),
+            OutlinedButton.icon(onPressed: () => LumoVoice.instance.stop(), icon: const Icon(Icons.stop_rounded), label: const Text('Stopp'),
+                    ),
+          ],
+                ),
           const SizedBox(height: 8),
-          Text('Aktuelle Stimme: ${LumoVoice.instance.selectedVoiceName ?? 'Systemstandard'} (${LumoVoice.instance.selectedLocale ?? 'de'})', style: LumoTextStyles.caption),
-        ]),
+          Text('Aktuelle Stimme: ${LumoVoice.instance.selectedVoiceName ?? 'Systemstandard'} (${LumoVoice.instance.selectedLocale ?? 'de'})', style: LumoTextStyles.caption,
+                ),
+        ],
+            ),
         const SizedBox(height: 14),
         _SettingsCard(title: 'Sicherheit und Funktionen', children: [
-          _SwitchRow(title: 'Mikrofon erlauben', subtitle: 'Kind darf mit Lumo sprechen.', value: _settings.microphoneEnabled, onChanged: (v) => _save(_settings.copyWith(microphoneEnabled: v))),
-          _SwitchRow(title: 'Scanner erlauben', subtitle: 'Foto- und Aufgabenhilfe aktivieren.', value: _settings.scannerEnabled, onChanged: (v) => _save(_settings.copyWith(scannerEnabled: v))),
-          _SwitchRow(title: 'Ton-Effekte', subtitle: 'Vorbereitung für spätere Klick- und Belohnungstöne.', value: _settings.soundEnabled, onChanged: (v) => _save(_settings.copyWith(soundEnabled: v))),
-        ]),
+          ParentPinEditor(
+                  onSave: (pin) => _save(_settings.copyWith(parentPin: pin)),
+                ),
+                const SizedBox(height: 12),
+                _SwitchRow(title: 'Mikrofon erlauben', subtitle: 'Kind darf mit Lumo sprechen.', value: _settings.microphoneEnabled, onChanged: (v) => _save(_settings.copyWith(microphoneEnabled: v)),
+                ),
+          _SwitchRow(title: 'Scanner erlauben', subtitle: 'Foto- und Aufgabenhilfe aktivieren.', value: _settings.scannerEnabled, onChanged: (v) => _save(_settings.copyWith(scannerEnabled: v)),
+                ),
+          _SwitchRow(title: 'Ton-Effekte', subtitle: 'Vorbereitung für spätere Klick- und Belohnungstöne.', value: _settings.soundEnabled, onChanged: (v) => _save(_settings.copyWith(soundEnabled: v)),
+                ),
+        ],
+            ),
         const SizedBox(height: 14),
         _SettingsCard(title: 'Lumo-KI Testserver', children: [
           _SwitchRow(
@@ -462,7 +493,9 @@ class _SettingsContentState extends State<SettingsContent> {
           _ProxyUrlField(
             initialValue: _settings.aiProxyUrl,
             enabled: _settings.aiProxyEnabled,
-            onSubmitted: (value) => _save(_settings.copyWith(aiProxyUrl: AppSettings.sanitizeProxyUrl(value))),
+            onSubmitted: (value) => _save(_settings.copyWith(aiProxyUrl: AppSettings.sanitizeProxyUrl(value),
+                    ),
+                  ),
             onChanged: (value) => _currentUrlInField = value,
           ),
           const SizedBox(height: 8),
@@ -473,23 +506,31 @@ class _SettingsContentState extends State<SettingsContent> {
               OutlinedButton.icon(
                 onPressed: _settings.aiProxyUrl == AppSettings.defaultAiProxyUrl
                     ? null
-                    : () => _save(_settings.copyWith(aiProxyUrl: AppSettings.defaultAiProxyUrl)),
+                    : () => _save(_settings.copyWith(aiProxyUrl: AppSettings.defaultAiProxyUrl,
+                              ),
+                            ),
                 icon: const Icon(Icons.restore_rounded, size: 18),
                 label: const Text('Standard wiederherstellen'),
               ),
               FilledButton.icon(
                 onPressed: _checkingHealth ? null : _runHealthCheck,
                 icon: _checkingHealth
-                    ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Icon(Icons.health_and_safety_rounded, size: 18),
-                label: Text(_checkingHealth ? 'Server wacht auf …' : 'Server prüfen'),
+                    ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                    : const Icon(Icons.health_and_safety_rounded, size: 18,
+                            ),
+                label: Text(_checkingHealth ? 'Server wacht auf …' : 'Server prüfen',
+                      ),
               ),
               OutlinedButton.icon(
                 onPressed: (_runningSmokeTest || !_settings.aiProxyEnabled) ? null : _runSmokeTest,
                 icon: _runningSmokeTest
-                    ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Icon(Icons.chat_bubble_outline_rounded, size: 18),
-                label: Text(_runningSmokeTest ? 'Sende Test …' : 'KI-Testantwort prüfen'),
+                    ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                    : const Icon(Icons.chat_bubble_outline_rounded, size: 18,
+                            ),
+                label: Text(_runningSmokeTest ? 'Sende Test …' : 'KI-Testantwort prüfen',
+                      ),
               ),
             ],
           ),
@@ -513,33 +554,44 @@ class _SettingsContentState extends State<SettingsContent> {
             onClear: _clearAiTaskCache,
           ),
           const SizedBox(height: 10),
-          _AiSafetyNotice(enabled: _settings.aiProxyEnabled, url: _settings.aiProxyUrl),
-        ]),
+          _AiSafetyNotice(enabled: _settings.aiProxyEnabled, url: _settings.aiProxyUrl,
+                ),
+        ],
+            ),
         const SizedBox(height: 14),
         _SettingsCard(title: 'Barrierefreiheit', children: [
-          _SwitchRow(title: 'Ruhiger Modus', subtitle: 'Weniger Reize und sanftere Ansprache.', value: _settings.calmMode, onChanged: (v) => _save(_settings.copyWith(calmMode: v))),
-          _SwitchRow(title: 'Große Schrift', subtitle: 'Texte werden Schritt für Schritt größer nutzbar gemacht.', value: _settings.largeText, onChanged: (v) => _save(_settings.copyWith(largeText: v))),
-          _SwitchRow(title: 'Animationen reduzieren', subtitle: 'Bewegung und Effekte reduzieren.', value: _settings.reduceAnimations, onChanged: (v) => _save(_settings.copyWith(reduceAnimations: v))),
-        ]),
+          _SwitchRow(title: 'Ruhiger Modus', subtitle: 'Weniger Reize und sanftere Ansprache.', value: _settings.calmMode, onChanged: (v) => _save(_settings.copyWith(calmMode: v)),
+                ),
+          _SwitchRow(title: 'Große Schrift', subtitle: 'Texte werden Schritt für Schritt größer nutzbar gemacht.', value: _settings.largeText, onChanged: (v) => _save(_settings.copyWith(largeText: v)),
+                ),
+          _SwitchRow(title: 'Animationen reduzieren', subtitle: 'Bewegung und Effekte reduzieren.', value: _settings.reduceAnimations, onChanged: (v) => _save(_settings.copyWith(reduceAnimations: v)),
+                ),
+        ],
+            ),
         const SizedBox(height: 14),
         _SettingsCard(title: 'Verwaltung', children: [
-          Text('Speicherstatus: ${_saving ? 'speichert ...' : 'gespeichert'}', style: LumoTextStyles.caption),
+          Text('Speicherstatus: ${_saving ? 'speichert ...' : 'gespeichert'}', style: LumoTextStyles.caption,
+                ),
           const SizedBox(height: 10),
-          OutlinedButton.icon(onPressed: _resetSettings, icon: const Icon(Icons.restore_rounded), label: const Text('Einstellungen zurücksetzen')),
-        ]),
+          OutlinedButton.icon(onPressed: _resetSettings, icon: const Icon(Icons.restore_rounded), label: const Text('Einstellungen zurücksetzen'),
+                ),
+        ],
+            ),
         const SizedBox(height: 14),
         // Heinz' Diagnose-Karte: zeigt die letzten 20 Abstuerze mit
         // Stacktrace. Damit kann Claude beim naechsten Bug-Report
         // gezielt fixen, statt blind zu raten.
         const _ErrorLogCard(),
-      ]),
+      ],
+        ),
       ), // close SingleChildScrollView
     ); // close LumoMagicBackground
   }
 }
 
 class _Header extends StatelessWidget {
-  const _Header({required this.title, required this.subtitle, required this.emoji, required this.accent});
+  const _Header({required this.title, required this.subtitle, required this.emoji, required this.accent,
+  });
   final String title;
   final String subtitle;
   final String emoji;
@@ -594,7 +646,8 @@ class _Header extends StatelessWidget {
                 ),
               ],
             ),
-            child: Text(emoji, style: const TextStyle(fontSize: 38, height: 1.0)),
+            child: Text(emoji, style: const TextStyle(fontSize: 38, height: 1.0),
+            ),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -646,13 +699,15 @@ class _SettingsCard extends StatelessWidget {
         Text(title, style: LumoTextStyles.heading3),
         const SizedBox(height: 12),
         ...children,
-      ]),
+      ],
+      ),
     );
   }
 }
 
 class _InfoCard extends StatelessWidget {
-  const _InfoCard({required this.title, required this.emoji, required this.lines});
+  const _InfoCard({required this.title, required this.emoji, required this.lines,
+  });
   final String title;
   final String emoji;
   final List<String> lines;
@@ -664,16 +719,24 @@ class _InfoCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: lumoCard(),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [Text(emoji, style: const TextStyle(fontSize: 28)), const SizedBox(width: 8), Expanded(child: Text(title, style: LumoTextStyles.heading3))]),
+        Row(children: [Text(emoji, style: const TextStyle(fontSize: 28)), const SizedBox(width: 8), Expanded(child: Text(title, style: LumoTextStyles.heading3)),
+            ],
+          ),
         const SizedBox(height: 10),
-        ...lines.map((line) => Padding(padding: const EdgeInsets.only(bottom: 4), child: Text('• $line', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700)))),
-      ]),
+        ...lines.map((line) => Padding(padding: const EdgeInsets.only(bottom: 4), child: Text('• $line', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700,
+                ),
+              ),
+            ),
+          ),
+      ],
+      ),
     );
   }
 }
 
 class _SwitchRow extends StatelessWidget {
-  const _SwitchRow({required this.title, required this.subtitle, required this.value, required this.onChanged});
+  const _SwitchRow({required this.title, required this.subtitle, required this.value, required this.onChanged,
+  });
   final String title;
   final String subtitle;
   final bool value;
@@ -683,7 +746,9 @@ class _SwitchRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return SwitchListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(title, style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+      title: Text(title, style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink900,
+        ),
+      ),
       subtitle: Text(subtitle, style: LumoTextStyles.caption),
       value: value,
       onChanged: onChanged,
@@ -709,7 +774,8 @@ class _ProxyUrlField extends StatefulWidget {
 }
 
 class _ProxyUrlFieldState extends State<_ProxyUrlField> {
-  late final TextEditingController _controller = TextEditingController(text: widget.initialValue);
+  late final TextEditingController _controller = TextEditingController(text: widget.initialValue,
+  );
 
   @override
   void didUpdateWidget(covariant _ProxyUrlField oldWidget) {
@@ -770,7 +836,8 @@ class _AiTutorStatsPanel extends StatelessWidget {
     final freshBySubject = <String, int>{};
     for (final subject in subjects) {
       final fresh = await _cache.freshCount(childId: childId, subject: subject);
-      final last = await _cache.lastGeneratedAt(childId: childId, subject: subject);
+      final last = await _cache.lastGeneratedAt(childId: childId, subject: subject,
+      );
       freshBySubject[subject] = fresh;
       freshTotal += fresh;
       if (last != null) {
@@ -805,7 +872,8 @@ class _AiTutorStatsPanel extends StatelessWidget {
           ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              const Icon(Icons.psychology_alt_rounded, color: LumoColors.orange, size: 22),
+              const Icon(Icons.psychology_alt_rounded, color: LumoColors.orange, size: 22,
+                  ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
@@ -816,15 +884,20 @@ class _AiTutorStatsPanel extends StatelessWidget {
                   ),
                 ),
               ),
-            ]),
+            ],
+              ),
             const SizedBox(height: 8),
             if (snapshot.connectionState == ConnectionState.waiting && data == null)
               Text('Lade KI-Status ...', style: LumoTextStyles.caption)
             else ...[
-              _AiStatLine(label: 'KI-Schalter', value: enabled ? 'aktiv' : 'aus'),
-              _AiStatLine(label: 'Aufgaben im Vorrat', value: '${data?.freshTotal ?? 0}'),
-              _AiStatLine(label: 'Heute generierte Fächer', value: '${data?.generatedToday ?? 0}'),
-              _AiStatLine(label: 'Letzte Generierung', value: data?.newestLabel ?? 'noch keine'),
+              _AiStatLine(label: 'KI-Schalter', value: enabled ? 'aktiv' : 'aus',
+                ),
+              _AiStatLine(label: 'Aufgaben im Vorrat', value: '${data?.freshTotal ?? 0}',
+                ),
+              _AiStatLine(label: 'Heute generierte Fächer', value: '${data?.generatedToday ?? 0}',
+                ),
+              _AiStatLine(label: 'Letzte Generierung', value: data?.newestLabel ?? 'noch keine',
+                ),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
@@ -846,10 +919,12 @@ class _AiTutorStatsPanel extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 'Nur Eltern sehen diesen Bereich. Der API-Key bleibt ausschließlich auf dem Proxy-Server.',
-                style: LumoTextStyles.caption.copyWith(color: LumoColors.ink500),
+                style: LumoTextStyles.caption.copyWith(color: LumoColors.ink500,
+                  ),
               ),
             ],
-          ]),
+          ],
+          ),
         );
       },
     );
@@ -867,10 +942,15 @@ class _AiStatLine extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Row(children: [
-        Expanded(child: Text(label, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700))),
+        Expanded(child: Text(label, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700),
+            ),
+          ),
         const SizedBox(width: 12),
-        Text(value, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w900)),
-      ]),
+        Text(value, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w900,
+            ),
+          ),
+      ],
+      ),
     );
   }
 }
@@ -925,7 +1005,8 @@ class _AiSafetyNotice extends StatelessWidget {
       decoration: BoxDecoration(
         color: enabled ? LumoColors.orangeSurface : LumoColors.ink100.withOpacity(.45),
         borderRadius: BorderRadius.circular(LumoRadius.md),
-        border: Border.all(color: enabled ? LumoColors.orange.withOpacity(.22) : LumoColors.ink300.withOpacity(.20)),
+        border: Border.all(color: enabled ? LumoColors.orange.withOpacity(.22) : LumoColors.ink300.withOpacity(.20),
+        ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -963,7 +1044,8 @@ class _AiSafetyNotice extends StatelessWidget {
 }
 
 class _SliderRow extends StatelessWidget {
-  const _SliderRow({required this.title, required this.value, required this.min, required this.max, required this.onChanged});
+  const _SliderRow({required this.title, required this.value, required this.min, required this.max, required this.onChanged,
+  });
   final String title;
   final double value;
   final double min;
@@ -973,9 +1055,12 @@ class _SliderRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text('$title: ${value.toStringAsFixed(2)}', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700)),
-      Slider(value: value, min: min, max: max, divisions: 12, onChanged: onChanged),
-    ]);
+      Text('$title: ${value.toStringAsFixed(2)}', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700),
+        ),
+      Slider(value: value, min: min, max: max, divisions: 12, onChanged: onChanged,
+        ),
+    ],
+    );
   }
 }
 
@@ -987,10 +1072,16 @@ class _DailyGoalSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text('Tagesziel', style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+      Text('Tagesziel', style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink900,
+          ),
+        ),
       const SizedBox(height: 8),
-      Wrap(spacing: 8, children: [3, 5, 10, 15].map((goal) => ChoiceChip(label: Text('$goal Aufgaben'), selected: value == goal, onSelected: (_) => onChanged(goal))).toList()),
-    ]);
+      Wrap(spacing: 8, children: [3, 5, 10, 15].map((goal) => ChoiceChip(label: Text('$goal Aufgaben'), selected: value == goal, onSelected: (_) => onChanged(goal),
+                ),
+              ).toList(),
+        ),
+    ],
+    );
   }
 }
 
@@ -1002,14 +1093,19 @@ class _ModeSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text('Lernmodus', style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+      Text('Lernmodus', style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink900,
+          ),
+        ),
       const SizedBox(height: 8),
       Wrap(spacing: 8, runSpacing: 8, children: LearningMode.values.map((mode) => ChoiceChip(
         label: Text('${mode.label} – ${mode.description}'),
         selected: value == mode,
         onSelected: (_) => onChanged(mode),
-      )).toList()),
-    ]);
+      ),
+              ).toList(),
+        ),
+    ],
+    );
   }
 }
 
@@ -1123,7 +1219,8 @@ class _HealthDiagnosticsCard extends StatelessWidget {
                     ],
                   ),
                 ),
-              )),
+              ),
+          ),
         ],
       ),
     );
@@ -1258,8 +1355,7 @@ class _AppUpdateCard extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             Colors.white,
-            accent.withOpacity(0.06),
-          ],
+            accent.withOpacity(0.06)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -1293,7 +1389,8 @@ class _AppUpdateCard extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(14),
                   boxShadow: [
-                    BoxShadow(color: accent.withOpacity(0.35), blurRadius: 10, offset: const Offset(0, 4)),
+                    BoxShadow(color: accent.withOpacity(0.35), blurRadius: 10, offset: const Offset(0, 4),
+                    ),
                   ],
                 ),
                 child: Text(
@@ -1375,18 +1472,21 @@ class _AppUpdateCard extends StatelessWidget {
                 backgroundColor: accent,
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14)),
+                    borderRadius: BorderRadius.circular(14),
+                ),
               ),
               icon: checking
                   ? const SizedBox(
                       width: 16,
                       height: 16,
                       child: CircularProgressIndicator(
-                          strokeWidth: 2.4, color: Colors.white),
+                          strokeWidth: 2.4, color: Colors.white,
+                      ),
                     )
                   : Icon(hasUpdate
                       ? Icons.download_rounded
-                      : Icons.refresh_rounded),
+                      : Icons.refresh_rounded,
+                    ),
               label: Text(
                 checking
                     ? 'Pruefe…'
@@ -1504,13 +1604,15 @@ class _ProfileResetCard extends StatelessWidget {
                 side: const BorderSide(color: danger, width: 1.6),
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12),
+                ),
               ),
               icon: const Icon(Icons.restart_alt_rounded, size: 18),
               label: const Text(
                 'Profil zuruecksetzen',
                 style: TextStyle(
-                    fontFamily: 'Nunito', fontWeight: FontWeight.w900),
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                ),
               ),
             ),
           ),
@@ -1633,7 +1735,8 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
             children: quickQuestions.map((q) => _QuickQuestionChip(
               text: q,
               onTap: widget.askingLoading ? null : () => widget.onAsk(q),
-            )).toList(growable: false),
+            ),
+                ).toList(growable: false),
           ),
           const SizedBox(height: 12),
           Row(
@@ -1647,7 +1750,8 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                     border: OutlineInputBorder(borderSide: BorderSide.none),
                     filled: true,
                     fillColor: Colors.white,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 12,
+                    ),
                   ),
                   onSubmitted: (txt) {
                     if (txt.trim().isNotEmpty) widget.onAsk(txt);
@@ -1664,13 +1768,15 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                       },
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xFF0EA5E9),
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12,
+                  ),
                 ),
                 child: widget.askingLoading
                     ? const SizedBox(
                         width: 16,
                         height: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white,
+                        ),
                       )
                     : const Icon(Icons.send_rounded, size: 18),
               ),
@@ -1754,7 +1860,8 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
         ? 'kind'
-        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_',
+          );
     return 'local_${safeName}_${st.grade}';
   }
 
@@ -1780,7 +1887,8 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
       state: state,
       errorBreakdown: _errorBreakdown,
       recentCorrect: state.solved.values.fold<int>(0, (sum, v) => sum + v),
-      recentIncorrect: state.weakSkills.values.fold<int>(0, (sum, v) => sum + v),
+      recentIncorrect: state.weakSkills.values.fold<int>(0, (sum, v) => sum + v,
+      ),
     );
     if (dna.strengths.isEmpty &&
         dna.weaknesses.isEmpty &&
@@ -1866,9 +1974,9 @@ class _ErrorLogCardState extends State<_ErrorLogCard> {
       buffer.writeln();
     }
     Clipboard.setData(ClipboardData(text: buffer.toString()));
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Fehlerprotokoll kopiert.')),
-    );
+    ScaffoldMessenger.of(context,
+    ).showSnackBar(
+      const SnackBar(content: Text('Fehlerprotokoll kopiert.')));
   }
 
   @override

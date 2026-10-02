@@ -66,6 +66,9 @@ class _LearningContentState extends State<LearningContent> {
   // So sehen Heinz' Toechter nicht 5x in Folge "1+2", "2+1", "1+3" usw.
   final SessionVarietyGuard _varietyGuard = SessionVarietyGuard();
   final List<LumoAiTaskDraft> _aiDraftQueue = <LumoAiTaskDraft>[];
+  String? _aiQueueScope;
+
+  String get _currentAiScope => '$_childId|${widget.appState.state.grade}|${_aiSubjectName(widget.appState.state.subject)}';
 
   static const int _recentTaskMemory = RecentTaskRepository.maxTaskKeys;
   static const int _recentUnitMemory = 10;
@@ -78,6 +81,7 @@ class _LearningContentState extends State<LearningContent> {
   // cheer = nach richtiger Antwort, think = nach falscher.
   LumoReactionMood _reactionMood = LumoReactionMood.idle;
   Timer? _reactionResetTimer;
+  Timer? _autoAdvanceTimer;
   bool? _lastCorrect;
   RewardDelta? _lastRewardDelta;
   SkillState? _lastSkillState;
@@ -140,9 +144,11 @@ class _LearningContentState extends State<LearningContent> {
     final st = widget.appState.state;
     final childId = _childId;
     final subject = st.subject;
-    final keys = await _recentRepo.loadTaskKeys(childId: childId, subject: subject);
-    final units = await _recentRepo.loadUnits(childId: childId, subject: subject);
-    if (!mounted) return;
+    final keys = await _recentRepo.loadTaskKeys(childId: childId, subject: subject,
+    );
+    final units = await _recentRepo.loadUnits(childId: childId, subject: subject,
+    );
+    if (!mounted || childId != _childId || subject != widget.appState.state.subject) return;
     setState(() {
       final currentKeys = List<String>.from(_recentTaskKeys);
       final currentUnits = List<String>.from(_recentUnits);
@@ -175,29 +181,39 @@ class _LearningContentState extends State<LearningContent> {
     final st = widget.appState.state;
     final subject = _aiSubjectName(st.subject);
     if (subject == null) return;
-    final fresh = await _aiCache.loadFresh(childId: _childId, subject: subject);
-    if (mounted) {
+    final childId = _childId;
+    final scope = _currentAiScope;
+    bool isCurrent() => mounted && _childId == childId && widget.appState.state.grade == st.grade && _aiSubjectName(widget.appState.state.subject) == subject;
+    final fresh = await _aiCache.loadFresh(childId: childId, subject: subject,
+      grade: st.grade,
+    );
+    if (isCurrent()) {
       setState(() {
+        _aiQueueScope = scope;
         _aiDraftQueue
           ..clear()
           ..addAll(fresh);
       });
     }
+    if (!isCurrent()) return;
     // Refill bei Bedarf - laeuft asynchron, kein Block
     final result = await _tutor.refillIfNeeded(
       settings: st.settings,
       profile: widget.appState.learningProfile,
-      childId: _childId,
+      childId: childId,
       childName: st.childName,
       grade: st.grade,
       subject: subject,
     );
-    if (!mounted) return;
+    if (!isCurrent()) return;
     if (!result.skipped && result.generated > 0) {
       // Neue Drafts in die Queue uebernehmen
-      final updated = await _aiCache.loadFresh(childId: _childId, subject: subject);
-      if (!mounted) return;
+      final updated = await _aiCache.loadFresh(childId: childId, subject: subject,
+        grade: st.grade,
+      );
+      if (!isCurrent()) return;
       setState(() {
+        _aiQueueScope = scope;
         _aiDraftQueue
           ..clear()
           ..addAll(updated);
@@ -247,6 +263,9 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   void _loadNextTask({bool resetCounter = false}) {
+    _autoAdvanceTimer?.cancel();
+    _reactionResetTimer?.cancel();
+    _reactionMood = LumoReactionMood.idle;
     _task = _nextTask();
     _rememberTask(_task);
     _taskInstance = _adapter.toTaskInstance(
@@ -277,6 +296,7 @@ class _LearningContentState extends State<LearningContent> {
   Future<void> _askAiTutor() async {
     if (_aiHelpLoading) return;
     if (!mounted) return;
+    final taskId = _taskInstance.taskInstanceId;
     setState(() => _aiHelpLoading = true);
     try {
       // Bereich basierend auf Subject und Unit waehlen.
@@ -297,17 +317,18 @@ class _LearningContentState extends State<LearningContent> {
           'visual': _task.visual,
         },
       );
-      if (!mounted) return;
+      if (!mounted || _taskInstance.taskInstanceId != taskId) return;
       setState(() {
         _aiHelpReply = response.reply;
         _aiHelpLoading = false;
       });
       // Antwort gleich vorlesen, damit auch nicht-lesende Kinder es hoeren.
       if (widget.appState.state.settings.voiceEnabled) {
-        unawaited(LumoVoice.instance.speak(response.reply, style: VoiceStyle.explain));
+        unawaited(LumoVoice.instance.speak(response.reply, style: VoiceStyle.explain),
+        );
       }
     } catch (e) {
-      if (!mounted) return;
+      if (!mounted || _taskInstance.taskInstanceId != taskId) return;
       setState(() {
         _aiHelpReply = 'Lumo konnte gerade keine Hilfe geben. Versuche es nochmal.';
         _aiHelpLoading = false;
@@ -335,7 +356,8 @@ class _LearningContentState extends State<LearningContent> {
 
   String get _childId {
     final st = widget.appState.state;
-    final safeName = st.childName.trim().isEmpty ? 'kind' : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    final safeName = st.childName.trim().isEmpty ? 'kind' : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_',
+          );
     return 'local_${safeName}_${st.grade}';
   }
 
@@ -350,12 +372,16 @@ class _LearningContentState extends State<LearningContent> {
     // auf den Standard-Generator zurueck.
     final aiSubject = _aiSubjectName(st.subject);
     LumoTask? relaxedFallback;
-    if (aiSubject != null && _aiDraftQueue.isNotEmpty) {
+    if (aiSubject != null && factoryUnit == 'Alle' && _aiQueueScope == _currentAiScope &&
+        _aiDraftQueue.isNotEmpty) {
       while (_aiDraftQueue.isNotEmpty) {
         final draft = _aiDraftQueue.removeAt(0);
         // Cache-Markierung im Hintergrund
-        _aiCache.markConsumed(childId: _childId, subject: aiSubject, prompt: draft.prompt);
-        final aiTask = _draftToLumoTask(draft, st.grade, factorySubject, factoryUnit);
+        _aiCache.markConsumed(childId: _childId, subject: aiSubject, grade: st.grade,
+          prompt: draft.prompt,
+        );
+        final aiTask = _draftToLumoTask(draft, st.grade, factorySubject, factoryUnit,
+        );
         if (aiTask == null) continue;
         if (_canUseTask(aiTask, relaxed: false)) return aiTask;
         relaxedFallback ??= _canUseTask(aiTask, relaxed: true) ? aiTask : null;
@@ -410,10 +436,12 @@ class _LearningContentState extends State<LearningContent> {
   /// Wandelt einen vom Server gelieferten Draft in einen LumoTask um.
   /// Liefert null wenn die Pflichtfelder nicht passen oder der TaskQualityGuard
   /// die Aufgabe als fachlich/strukturell unsicher bewertet.
-  LumoTask? _draftToLumoTask(LumoAiTaskDraft draft, int grade, String subject, String unit) {
+  LumoTask? _draftToLumoTask(LumoAiTaskDraft draft, int grade, String subject, String unit,
+  ) {
     if (draft.prompt.trim().isEmpty || draft.answer.trim().isEmpty) return null;
     if (draft.choices.length < 2) return null;
-    if (!draft.choices.any((c) => c.trim().toLowerCase() == draft.answer.trim().toLowerCase())) {
+    if (!draft.choices.any((c) => c.trim().toLowerCase() == draft.answer.trim().toLowerCase(),
+    )) {
       return null;
     }
     final probe = LumoTask(
@@ -514,7 +542,8 @@ class _LearningContentState extends State<LearningContent> {
     return markers.any((marker) =>
         _lastTaskMarkers.contains(marker) ||
         _sessionTaskKeys.contains(marker) ||
-        _recentTaskKeys.contains(marker));
+        _recentTaskKeys.contains(marker),
+    );
   }
 
   List<String> _taskMemoryKeys(LumoTask task) => _varietyGuard.taskMemoryKeys(task);
@@ -523,7 +552,8 @@ class _LearningContentState extends State<LearningContent> {
     if (_answered) return;
     _completeAnswer(
       correct: answer.correct,
-      hintUsed: !_allowHelp ? false : false,
+      hintUsed: _allowHelp &&
+          (answer.hintUsed || _tutorHint != null || _aiHelpReply != null),
       answerGiven: answer.answer,
     );
   }
@@ -593,6 +623,7 @@ class _LearningContentState extends State<LearningContent> {
   /// liegt - dann zeigt Lumo eine bildliche Erklaerung mit Schritten.
   /// Kein Cloud-Aufruf, keine Credit-Kosten.
   Future<void> _loadVisualAid() async {
+    final taskId = _taskInstance.taskInstanceId;
     try {
       final aid = await _visualAidService.buildAid(
         task: _task,
@@ -606,7 +637,7 @@ class _LearningContentState extends State<LearningContent> {
         childName: _childFirstName,
         childRequestedImage: false,
       );
-      if (!mounted) return;
+      if (!mounted || _taskInstance.taskInstanceId != taskId) return;
       setState(() => _visualAid = aid);
     } catch (_) {
       // Bildhilfe ist optional. Wenn sie nicht laedt, gehts ohne weiter.
@@ -695,7 +726,7 @@ class _LearningContentState extends State<LearningContent> {
       frustrationSignal: !correct && responseTimeMs > 18000,
     );
     final after = _resultHandler.applyResult(before: before, result: result);
-    final rewardDelta = _rewardEngine.calculateTaskReward(
+    final rewardDelta = !correct && _allowHelp ? const RewardDelta(stars: 0, xp: 0) : _rewardEngine.calculateTaskReward(
       result: result,
       before: before,
       after: after,
@@ -726,7 +757,7 @@ class _LearningContentState extends State<LearningContent> {
     _skillStates[_taskInstance.skillId.value] = after;
 
     setState(() {
-      _answered = true;
+      _answered = correct || !_allowHelp;
       _lastCorrect = correct;
       _lastRewardDelta = rewardDelta;
       _lastSkillState = after;
@@ -745,13 +776,20 @@ class _LearningContentState extends State<LearningContent> {
     });
 
     if (correct) {
-      widget.appState.correctAnswer(_task.unit);
-      widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: hintUsed);
+      widget.appState.correctAnswer(_task.unit, stars: rewardDelta.stars, xp: rewardDelta.xp);
+      widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: hintUsed,
+      );
       LumoVoice.instance.speak(feedback.spokenText);
-      Timer(Duration(milliseconds: feedback.autoAdvanceDelayMs), _nextQuestion);
+      _autoAdvanceTimer = Timer(Duration(milliseconds: feedback.autoAdvanceDelayMs), _nextQuestion,
+      );
     } else {
       widget.appState.wrongAnswer(_task.unit);
-      widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: hintUsed);
+      if (!_allowHelp) {
+        widget.appState.addStars(rewardDelta.stars);
+        widget.appState.addXp(rewardDelta.xp);
+      }
+      widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: hintUsed,
+      );
       LumoVoice.instance.speak(feedback.spokenText);
     }
   }
@@ -772,8 +810,10 @@ class _LearningContentState extends State<LearningContent> {
 
   List<ErrorType> _legacyErrorTypes(Object answerGiven) {
     if (_task.subject == 'Mathematik') {
-      final given = int.tryParse('$answerGiven'.replaceAll(RegExp(r'[^0-9-]'), ''));
-      final expected = int.tryParse('${_taskInstance.correctAnswer}'.replaceAll(RegExp(r'[^0-9-]'), ''));
+      final given = int.tryParse('$answerGiven'.replaceAll(RegExp(r'[^0-9-]'), ''),
+      );
+      final expected = int.tryParse('${_taskInstance.correctAnswer}'.replaceAll(RegExp(r'[^0-9-]'), ''),
+      );
       if (given != null && expected != null && (given - expected).abs() == 1) {
         return const <ErrorType>[ErrorType.countingError];
       }
@@ -790,6 +830,7 @@ class _LearningContentState extends State<LearningContent> {
 
   void _nextQuestion() {
     if (!mounted) return;
+    _autoAdvanceTimer?.cancel();
     setState(() {
       final nextQuestion = _questionNum < _totalQuestions ? _questionNum + 1 : 1;
       if (nextQuestion == 1) {
@@ -802,6 +843,7 @@ class _LearningContentState extends State<LearningContent> {
 
   @override
   void dispose() {
+    _autoAdvanceTimer?.cancel();
     _reactionResetTimer?.cancel();
     super.dispose();
   }
@@ -836,23 +878,32 @@ class _LearningContentState extends State<LearningContent> {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(
                       title,
-                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.05),
+                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.05,
+                                  ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       _welcomeForKind,
-                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w800, color: LumoColors.ink500, height: 1.35),
+                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w800, color: LumoColors.ink500, height: 1.35,
+                                  ),
                     ),
-                  ]),
+                  ],
+                            ),
                 ),
                 Container(
-                  decoration: BoxDecoration(color: LumoColors.orangeSurface, shape: BoxShape.circle, boxShadow: [BoxShadow(color: LumoColors.orange.withOpacity(.20), blurRadius: 14, offset: const Offset(0, 6))]),
+                  decoration: BoxDecoration(color: LumoColors.orangeSurface, shape: BoxShape.circle, boxShadow: [BoxShadow(color: LumoColors.orange.withOpacity(.20), blurRadius: 14, offset: const Offset(0, 6),
+                                ),
+                              ],
+                            ),
                   child: IconButton(
-                    icon: const Icon(Icons.volume_up_rounded, color: LumoColors.orange, size: 26),
-                    onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}'),
+                    icon: const Icon(Icons.volume_up_rounded, color: LumoColors.orange, size: 26,
+                              ),
+                    onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}',
+                              ),
                   ),
                 ),
-              ]),
+              ],
+                      ),
               const SizedBox(height: 22),
               // Modernes Premium-Progress-Element statt altmodischer Map.
               // Heinz' Wunsch: 'die map muss weg, durch was Neueres'.
@@ -888,7 +939,8 @@ class _LearningContentState extends State<LearningContent> {
                 const SizedBox(height: 12),
                 _AiHelpBubble(
                   text: _aiHelpReply!,
-                  onSpeak: () => LumoVoice.instance.speak(_aiHelpReply!, style: VoiceStyle.explain),
+                  onSpeak: () => LumoVoice.instance.speak(_aiHelpReply!, style: VoiceStyle.explain,
+                          ),
                 ),
               ],
               const SizedBox(height: 22),
@@ -903,12 +955,14 @@ class _LearningContentState extends State<LearningContent> {
                   ).animate(animation);
                   return FadeTransition(
                     opacity: animation,
-                    child: SlideTransition(position: slide, child: child),
+                    child: SlideTransition(position: slide, child: child,
+                            ),
                   );
                 },
                 child: AdaptiveTaskRenderer(
                   key: ValueKey(_taskInstance.taskInstanceId),
                   task: _taskInstance,
+                          allowRetry: _allowHelp,
                   onAnswered: _answerAdaptive,
                   onWritingSubmitted: _answerWriting,
                   onShapeTraced: _answerShapeTrace,
@@ -926,7 +980,8 @@ class _LearningContentState extends State<LearningContent> {
                   onNext: _nextQuestion,
                 ),
               ],
-            ]),
+            ],
+                  ),
           ),
         ),
       ),
@@ -942,13 +997,13 @@ class _LearningContentState extends State<LearningContent> {
             child: IgnorePointer(
               child: LumoReactionCompanion(
                 mood: _reactionMood,
-                size: 88,
-              ),
+                size: 88),
             ),
           ),
         ],
       );
-    });
+    },
+    );
   }
 }
 
@@ -993,7 +1048,8 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
           decoration: BoxDecoration(
             gradient: LumoGradients.peachComfort,
             borderRadius: BorderRadius.circular(LumoRadius.lg),
-            border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.32), width: 1.4),
+            border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.32), width: 1.4,
+            ),
             boxShadow: LumoShadow.help(const Color(0xFFFFB96B)),
           ),
           child: ClipRRect(
@@ -1025,12 +1081,15 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                           radius: .9,
                         ),
                         shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30), width: 1.5),
+                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30), width: 1.5,
+                            ),
                         boxShadow: [
-                          BoxShadow(color: const Color(0xFFFFB800).withOpacity(.30), blurRadius: 12, offset: const Offset(0, 4)),
+                          BoxShadow(color: const Color(0xFFFFB800).withOpacity(.30), blurRadius: 12, offset: const Offset(0, 4),
+                              ),
                         ],
                       ),
-                      child: const Text('🦊', style: TextStyle(fontSize: 22)),
+                      child: const Text('🦊', style: TextStyle(fontSize: 22),
+                          ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -1038,32 +1097,42 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                         Row(children: [
                           const Text(
                             'Lumo erklärt',
-                            style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F), letterSpacing: .2),
+                            style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F), letterSpacing: .2,
+                                    ),
                           ),
                           const SizedBox(width: 6),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2,
+                                    ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFF59E0B).withOpacity(.18),
-                              borderRadius: BorderRadius.circular(LumoRadius.pill),
+                              color: const Color(0xFFF59E0B,
+                                      ).withOpacity(.18),
+                              borderRadius: BorderRadius.circular(LumoRadius.pill,
+                                      ),
                             ),
                             child: const Text(
                               'Tipp',
-                              style: TextStyle(fontFamily: 'Nunito', fontSize: 9, fontWeight: FontWeight.w900, color: Color(0xFF92400E), letterSpacing: .6),
+                              style: TextStyle(fontFamily: 'Nunito', fontSize: 9, fontWeight: FontWeight.w900, color: Color(0xFF92400E), letterSpacing: .6,
+                                      ),
                             ),
                           ),
-                        ]),
+                        ],
+                              ),
                         const SizedBox(height: 5),
                         Text(
                           widget.text,
-                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.32),
+                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.32,
+                                ),
                         ),
-                      ]),
+                      ],
+                          ),
                     ),
-                  ]),
+                  ],
+                    ),
                 ),
               ),
-            ]),
+            ],
+            ),
           ),
         ),
       ),
@@ -1123,7 +1192,8 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
       decoration: BoxDecoration(
         gradient: LumoGradients.visualCool,
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFF6366F1).withOpacity(.32), width: 1.4),
+        border: Border.all(color: const Color(0xFF6366F1).withOpacity(.32), width: 1.4,
+        ),
         boxShadow: LumoShadow.help(const Color(0xFF6366F1)),
       ),
       child: ClipRRect(
@@ -1181,12 +1251,15 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                         radius: .9,
                       ),
                       shape: BoxShape.circle,
-                      border: Border.all(color: const Color(0xFF6366F1).withOpacity(.40), width: 1.6),
+                      border: Border.all(color: const Color(0xFF6366F1).withOpacity(.40), width: 1.6,
+                            ),
                       boxShadow: [
-                        BoxShadow(color: const Color(0xFF6366F1).withOpacity(.32), blurRadius: 14, offset: const Offset(0, 5)),
+                        BoxShadow(color: const Color(0xFF6366F1).withOpacity(.32), blurRadius: 14, offset: const Offset(0, 5),
+                              ),
                       ],
                     ),
-                    child: const Text('🎨', style: TextStyle(fontSize: 26)),
+                    child: const Text('🎨', style: TextStyle(fontSize: 26),
+                          ),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
@@ -1194,29 +1267,38 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                       Row(children: [
                         const Text(
                           'Lumo zeigt es dir',
-                          style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xFF4338CA), letterSpacing: .8),
+                          style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xFF4338CA), letterSpacing: .8,
+                                    ),
                         ),
                         const SizedBox(width: 6),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2,
+                                    ),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF6366F1).withOpacity(.20),
-                            borderRadius: BorderRadius.circular(LumoRadius.pill),
+                            color: const Color(0xFF6366F1,
+                                      ).withOpacity(.20),
+                            borderRadius: BorderRadius.circular(LumoRadius.pill,
+                                      ),
                           ),
                           child: const Text(
                             'BILD-HILFE',
-                            style: TextStyle(fontFamily: 'Nunito', fontSize: 8, fontWeight: FontWeight.w900, color: Color(0xFF312E81), letterSpacing: .8),
+                            style: TextStyle(fontFamily: 'Nunito', fontSize: 8, fontWeight: FontWeight.w900, color: Color(0xFF312E81), letterSpacing: .8,
+                                      ),
                           ),
                         ),
-                      ]),
+                      ],
+                              ),
                       const SizedBox(height: 3),
                       Text(
                         widget.aid.title,
-                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF1E1B4B), height: 1.15),
+                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF1E1B4B), height: 1.15,
+                                ),
                       ),
-                    ]),
+                    ],
+                          ),
                   ),
-                ]),
+                ],
+                    ),
               ),
               const SizedBox(height: 14),
               // ERKLAERUNG
@@ -1228,11 +1310,13 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(.62),
                     borderRadius: BorderRadius.circular(LumoRadius.md),
-                    border: Border.all(color: Colors.white.withOpacity(.85), width: 1.0),
+                    border: Border.all(color: Colors.white.withOpacity(.85), width: 1.0,
+                        ),
                   ),
                   child: Text(
                     widget.aid.explanation,
-                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: Color(0xFF1E1B4B), height: 1.4),
+                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: Color(0xFF1E1B4B), height: 1.4,
+                        ),
                   ),
                 ),
               ),
@@ -1261,69 +1345,89 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                                   gradient: const LinearGradient(
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
-                                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6),
+                                            ],
                                   ),
                                   shape: BoxShape.circle,
                                   boxShadow: [
-                                    BoxShadow(color: const Color(0xFF6366F1).withOpacity(.36), blurRadius: 8, offset: const Offset(0, 3)),
+                                    BoxShadow(color: const Color(0xFF6366F1,
+                                              ).withOpacity(.36), blurRadius: 8, offset: const Offset(0, 3),
+                                            ),
                                   ],
                                 ),
                                 child: Text(
                                   '${index + 1}',
-                                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Colors.white),
+                                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Colors.white,
+                                          ),
                                 ),
                               ),
                               if (!isLast)
                                 Expanded(
                                   child: Container(
                                     width: 2,
-                                    margin: const EdgeInsets.symmetric(vertical: 2),
-                                    color: const Color(0xFF6366F1).withOpacity(.30),
+                                    margin: const EdgeInsets.symmetric(vertical: 2,
+                                            ),
+                                    color: const Color(0xFF6366F1,
+                                            ).withOpacity(.30),
                                   ),
                                 ),
-                            ]),
+                            ],
+                                  ),
                             const SizedBox(width: 12),
                             // Step-Inhalt als kleine Karte
                             Expanded(
                               child: Container(
-                                padding: const EdgeInsets.fromLTRB(14, 10, 14, 12),
+                                padding: const EdgeInsets.fromLTRB(14, 10, 14, 12,
+                                      ),
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(.85),
-                                  borderRadius: BorderRadius.circular(LumoRadius.md),
-                                  border: Border.all(color: const Color(0xFF6366F1).withOpacity(.18), width: 1.0),
+                                  borderRadius: BorderRadius.circular(LumoRadius.md,
+                                        ),
+                                  border: Border.all(color: const Color(0xFF6366F1,
+                                          ).withOpacity(.18), width: 1.0,
+                                        ),
                                   boxShadow: [
-                                    BoxShadow(color: const Color(0xFF6366F1).withOpacity(.08), blurRadius: 8, offset: const Offset(0, 3)),
+                                    BoxShadow(color: const Color(0xFF6366F1,
+                                            ).withOpacity(.08), blurRadius: 8, offset: const Offset(0, 3),
+                                          ),
                                   ],
                                 ),
                                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                                   // Visual gross und mittig, das ist der Kernpunkt
                                   Center(
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 4),
+                                      padding: const EdgeInsets.symmetric(vertical: 4,
+                                                  ),
                                       child: Text(
                                         step.visual,
-                                        style: const TextStyle(fontSize: 28, height: 1.2, letterSpacing: 2),
+                                        style: const TextStyle(fontSize: 28, height: 1.2, letterSpacing: 2,
+                                                ),
                                       ),
                                     ),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
                                     step.caption,
-                                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: Color(0xFF1E1B4B), height: 1.3),
+                                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: Color(0xFF1E1B4B), height: 1.3,
+                                            ),
                                   ),
-                                ]),
+                                ],
+                                      ),
                               ),
                             ),
-                          ]),
+                          ],
+                              ),
                         ),
                       ),
                     ),
                   );
                 }),
               ],
-            ]),
+            ],
+              ),
           ),
-        ]),
+        ],
+        ),
       ),
     );
   }
@@ -1401,7 +1505,8 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
   /// Symbol fuer eine Station - rotiert je nach Position fuer Abwechslung.
   String _stationEmoji(int step, int total) {
     if (step == total - 1) return '🏆'; // Ziel
-    const symbols = ['🌟', '🎯', '🎨', '📚', '✏️', '🎵', '🌈', '🦋', '🍀', '⭐', '🎁'];
+    const symbols = ['🌟', '🎯', '🎨', '📚', '✏️', '🎵', '🌈', '🦋', '🍀', '⭐', '🎁',
+    ];
     return symbols[step % symbols.length];
   }
 
@@ -1424,40 +1529,50 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
         // HEADER mit Fortschritt
         Row(children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6,
+                ),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+              gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight],
+                  ),
               borderRadius: BorderRadius.circular(LumoRadius.pill),
               boxShadow: [
-                BoxShadow(color: LumoColors.orange.withOpacity(.32), blurRadius: 8, offset: const Offset(0, 3)),
+                BoxShadow(color: LumoColors.orange.withOpacity(.32), blurRadius: 8, offset: const Offset(0, 3),
+                    ),
               ],
             ),
             child: Text(
               'Station ${widget.currentStep}',
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: .3),
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: .3,
+                  ),
             ),
           ),
           const SizedBox(width: 8),
-          Text('von $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink500)),
+          Text('von $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink500,
+                ),
+              ),
           const Spacer(),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(LumoRadius.pill),
-              border: Border.all(color: LumoColors.orange.withOpacity(.30), width: 1.2),
+              border: Border.all(color: LumoColors.orange.withOpacity(.30), width: 1.2,
+                  ),
             ),
             child: Text(
               '$percent%',
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2),
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2,
+                  ),
             ),
           ),
-        ]),
+        ],
+          ),
         const SizedBox(height: 10),
         // SUBJECT-CHIP klein und subtil
         Text(
           widget.subject,
-          style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoColors.ink500, letterSpacing: .3),
+          style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoColors.ink500, letterSpacing: .3,
+            ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
@@ -1482,7 +1597,8 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
                   ),
                 ),
                 child: AnimatedBuilder(
-                  animation: Listenable.merge([_hopController, _idleController]),
+                  animation: Listenable.merge([_hopController, _idleController,
+                      ]),
                   builder: (context, _) => CustomPaint(
                     painter: _JourneyPainter(
                       total: total,
@@ -1499,7 +1615,8 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
                 ),
               ),
             );
-          }),
+          },
+            ),
         ),
         const SizedBox(height: 8),
         // Progress-Balken als zusaetzliche Lese-Hilfe
@@ -1518,8 +1635,10 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
               ),
             ),
           ),
-        ]),
-      ]),
+        ],
+          ),
+      ],
+      ),
     );
   }
 }
@@ -1566,7 +1685,8 @@ class _JourneyPainter extends CustomPainter {
         pathTodo.moveTo(pos.dx, pos.dy);
       } else {
         // Bezier-Kurve fuer weichen Schwung
-        final ctrl = Offset((prev!.dx + pos.dx) / 2, (prev.dy + pos.dy) / 2 + 8);
+        final ctrl = Offset((prev!.dx + pos.dx) / 2, (prev.dy + pos.dy) / 2 + 8,
+        );
         if (i < currentStep) {
           pathDone.quadraticBezierTo(ctrl.dx, ctrl.dy, pos.dx, pos.dy);
         }
@@ -1624,8 +1744,7 @@ class _JourneyPainter extends CustomPainter {
       canvas.drawCircle(
         pos,
         r,
-        Paint()..color = fillColor,
-      );
+        Paint()..color = fillColor);
       // Border
       canvas.drawCircle(
         pos,
@@ -1649,7 +1768,8 @@ class _JourneyPainter extends CustomPainter {
           Paint()
             ..style = PaintingStyle.stroke
             ..strokeWidth = 2.0
-            ..color = const Color(0xFFFF7A2F).withOpacity(.40 * (1 - idlePulse)),
+            ..color = const Color(0xFFFF7A2F,
+            ).withOpacity(.40 * (1 - idlePulse)),
         );
       }
 
@@ -1697,11 +1817,11 @@ class _JourneyPainter extends CustomPainter {
     final lumoTp = TextPainter(
       text: const TextSpan(
         text: '🦊',
-        style: TextStyle(fontSize: 28),
-      ),
+        style: TextStyle(fontSize: 28)),
       textDirection: TextDirection.ltr,
     )..layout();
-    lumoTp.paint(canvas, lumoPos.translate(-lumoTp.width / 2, -lumoTp.height / 2));
+    lumoTp.paint(canvas, lumoPos.translate(-lumoTp.width / 2, -lumoTp.height / 2),
+    );
   }
 
   void _drawDashedPath(Canvas canvas, Path path, Paint paint) {
@@ -1726,7 +1846,8 @@ class _JourneyPainter extends CustomPainter {
 }
 
 class _ProgressHeader extends StatelessWidget {
-  const _ProgressHeader({required this.current, required this.total, required this.subject});
+  const _ProgressHeader({required this.current, required this.total, required this.subject,
+  });
   final int current;
   final int total;
   final String subject;
@@ -1743,46 +1864,55 @@ class _ProgressHeader extends StatelessWidget {
         Row(children: [
           // Animierte Aufgaben-Nummer
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6,
+                ),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+              gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight],
+                  ),
               borderRadius: BorderRadius.circular(LumoRadius.pill),
               boxShadow: [
-                BoxShadow(color: LumoColors.orange.withOpacity(.30), blurRadius: 8, offset: const Offset(0, 3)),
+                BoxShadow(color: LumoColors.orange.withOpacity(.30), blurRadius: 8, offset: const Offset(0, 3),
+                    ),
               ],
             ),
             child: Text(
               '$current',
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900, color: Colors.white, height: 1.0),
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900, color: Colors.white, height: 1.0,
+                  ),
             ),
           ),
           const SizedBox(width: 8),
           Text(
             'von $total',
-            style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink500),
+            style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink500,
+                ),
           ),
           const Spacer(),
           // Subject-Chip mit dezentem Schatten
           Container(
             constraints: const BoxConstraints(maxWidth: 220),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7,
+                ),
             decoration: BoxDecoration(
               color: LumoColors.orangeSurface,
               borderRadius: BorderRadius.circular(LumoRadius.pill),
               border: Border.all(color: LumoColors.orange.withOpacity(.24)),
               boxShadow: [
-                BoxShadow(color: LumoColors.orange.withOpacity(.10), blurRadius: 6, offset: const Offset(0, 2)),
+                BoxShadow(color: LumoColors.orange.withOpacity(.10), blurRadius: 6, offset: const Offset(0, 2),
+                    ),
               ],
             ),
             child: Text(
               subject,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2),
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2,
+                  ),
               maxLines: 1,
               softWrap: false,
               overflow: TextOverflow.ellipsis,
             ),
           ),
-        ]),
+        ],
+          ),
         const SizedBox(height: 14),
         // Progress mit Prozent-Bubble der mitläuft
         Stack(clipBehavior: Clip.none, children: [
@@ -1805,23 +1935,29 @@ class _ProgressHeader extends StatelessWidget {
             top: -2,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3,
+                  ),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(LumoRadius.pill),
-                border: Border.all(color: LumoColors.orange.withOpacity(.32), width: 1.2),
+                border: Border.all(color: LumoColors.orange.withOpacity(.32), width: 1.2,
+                    ),
                 boxShadow: [
-                  BoxShadow(color: LumoColors.orange.withOpacity(.18), blurRadius: 4, offset: const Offset(0, 2)),
+                  BoxShadow(color: LumoColors.orange.withOpacity(.18), blurRadius: 4, offset: const Offset(0, 2),
+                      ),
                 ],
               ),
               child: Text(
                 '$percent%',
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2),
+                style: const TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w900, color: LumoColors.orange, letterSpacing: .2,
+                    ),
               ),
             ),
           ),
-        ]),
-      ]),
+        ],
+          ),
+      ],
+      ),
     );
   }
 }
@@ -1855,9 +1991,9 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
     duration: const Duration(milliseconds: 540),
   )..forward();
 
-  late final Animation<double> _scale = Tween<double>(begin: .92, end: 1.0).animate(
-    CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
-  );
+  late final Animation<double> _scale = Tween<double>(begin: .92, end: 1.0,
+  ).animate(
+    CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
 
   late final Animation<double> _fade = CurvedAnimation(
     parent: _controller,
@@ -1917,9 +2053,12 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
               ),
               // Konfetti-Sterne dezent bei Erfolg
               if (correct) ...const [
-                Positioned(top: 14, right: 70, child: Text('✨', style: TextStyle(fontSize: 14))),
-                Positioned(top: 38, right: 24, child: Text('⭐', style: TextStyle(fontSize: 16))),
-                Positioned(top: 62, right: 56, child: Text('✨', style: TextStyle(fontSize: 12))),
+                Positioned(top: 14, right: 70, child: Text('✨', style: TextStyle(fontSize: 14)),
+                  ),
+                Positioned(top: 38, right: 24, child: Text('⭐', style: TextStyle(fontSize: 16)),
+                  ),
+                Positioned(top: 62, right: 56, child: Text('✨', style: TextStyle(fontSize: 12)),
+                  ),
               ],
               Padding(
                 padding: const EdgeInsets.all(18),
@@ -1964,7 +2103,8 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                         ),
                       ),
                     ),
-                  ]),
+                  ],
+                      ),
                   const SizedBox(height: 12),
                   Text(
                     fb?.cardMessage ?? widget.explanation,
@@ -1976,18 +2116,23 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                     ),
                   ),
                   const SizedBox(height: 10),
-                  _LearningTipBox(text: fb?.learningTip ?? widget.explanation, correct: correct),
+                  _LearningTipBox(text: fb?.learningTip ?? widget.explanation, correct: correct,
+                      ),
                   if (!correct) ...[
                     const SizedBox(height: 10),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8,
+                          ),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(.85),
                         borderRadius: BorderRadius.circular(LumoRadius.sm),
-                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30), width: 1.0),
+                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30), width: 1.0,
+                            ),
                       ),
                       child: Row(children: [
-                        const Text('✓', style: TextStyle(fontSize: 16, color: Color(0xFF15803D), fontWeight: FontWeight.w900)),
+                        const Text('✓', style: TextStyle(fontSize: 16, color: Color(0xFF15803D), fontWeight: FontWeight.w900,
+                                ),
+                              ),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
@@ -2000,7 +2145,8 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                             ),
                           ),
                         ),
-                      ]),
+                      ],
+                          ),
                     ),
                   ],
                   if (reward != null) ...[
@@ -2010,8 +2156,10 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                       _InfoPill(text: '+${reward.xp} XP'),
                       if (fb != null) _InfoPill(text: fb.rewardLabel),
                       if (fb?.badgeLabel != null) _InfoPill(text: fb!.badgeLabel!),
-                      if (skill != null) _InfoPill(text: 'Können ${(skill.masteryScore * 100).round()}%'),
-                    ]),
+                      if (skill != null) _InfoPill(text: 'Können ${(skill.masteryScore * 100).round()}%',
+                              ),
+                    ],
+                        ),
                   ],
                   const SizedBox(height: 16),
                   Align(
@@ -2019,23 +2167,34 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                     child: GestureDetector(
                       onTap: widget.onNext,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 13),
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 13,
+                            ),
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
-                          borderRadius: BorderRadius.circular(LumoRadius.pill),
+                          gradient: const LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight,
+                                ],
+                              ),
+                          borderRadius: BorderRadius.circular(LumoRadius.pill,
+                              ),
                           boxShadow: LumoShadow.pill,
                         ),
                         child: const Row(mainAxisSize: MainAxisSize.min, children: [
-                          Text('Weiter', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white)),
+                          Text('Weiter', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white,
+                                  ),
+                                ),
                           SizedBox(width: 6),
-                          Text('→', style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: Colors.white)),
-                        ]),
+                          Text('→', style: TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: Colors.white,
+                                  ),
+                                ),
+                        ],
+                            ),
                       ),
                     ),
                   ),
-                ]),
+                ],
+                  ),
               ),
-            ]),
+            ],
+            ),
           ),
         ),
       ),
@@ -2057,18 +2216,22 @@ class _LearningTipBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(.72),
         borderRadius: BorderRadius.circular(LumoRadius.md),
-        border: Border.all(color: (correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B)).withOpacity(.22)),
+        border: Border.all(color: (correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B)).withOpacity(.22),
+        ),
       ),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Icon(Icons.psychology_rounded, color: correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B), size: 20),
+        Icon(Icons.psychology_rounded, color: correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B), size: 20,
+          ),
         const SizedBox(width: 8),
         Expanded(
           child: Text(
             text,
-            style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink700, height: 1.28),
+            style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink700, height: 1.28,
+              ),
           ),
         ),
-      ]),
+      ],
+      ),
     );
   }
 }
@@ -2099,12 +2262,14 @@ class _InfoPill extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Colors.white.withOpacity(.95), Colors.white.withOpacity(.78)],
+          colors: [Colors.white.withOpacity(.95), Colors.white.withOpacity(.78),
+          ],
         ),
         borderRadius: BorderRadius.circular(LumoRadius.pill),
         border: Border.all(color: LumoColors.orange.withOpacity(.22)),
         boxShadow: [
-          BoxShadow(color: LumoColors.orange.withOpacity(.12), blurRadius: 8, offset: const Offset(0, 3)),
+          BoxShadow(color: LumoColors.orange.withOpacity(.12), blurRadius: 8, offset: const Offset(0, 3),
+          ),
         ],
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
@@ -2122,7 +2287,8 @@ class _InfoPill extends StatelessWidget {
             letterSpacing: .1,
           ),
         ),
-      ]),
+      ],
+      ),
     );
   }
 }
@@ -2284,7 +2450,8 @@ class _AiHelpBubble extends StatelessWidget {
               ),
               IconButton(
                 onPressed: onSpeak,
-                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF7C3AED)),
+                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF7C3AED),
+                ),
                 tooltip: 'Lumo vorlesen lassen',
               ),
             ],
@@ -2359,7 +2526,8 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
       return (
         primary: const Color(0xFFEA580C),
         accent: const Color(0xFFFCD34D),
-        gradient: const [Color(0xFFFFF7ED), Color(0xFFFFE4D2), Color(0xFFFED7AA)],
+        gradient: const [Color(0xFFFFF7ED), Color(0xFFFFE4D2), Color(0xFFFED7AA),
+        ],
         subjectPill: const Color(0xFFF97316),
       );
     }
@@ -2367,7 +2535,8 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
       return (
         primary: const Color(0xFF4338CA),
         accent: const Color(0xFFA78BFA),
-        gradient: const [Color(0xFFEEF2FF), Color(0xFFDDD6FE), Color(0xFFC4B5FD)],
+        gradient: const [Color(0xFFEEF2FF), Color(0xFFDDD6FE), Color(0xFFC4B5FD),
+        ],
         subjectPill: const Color(0xFF6366F1),
       );
     }
@@ -2375,7 +2544,8 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
       return (
         primary: const Color(0xFF047857),
         accent: const Color(0xFF6EE7B7),
-        gradient: const [Color(0xFFECFDF5), Color(0xFFD1FAE5), Color(0xFFA7F3D0)],
+        gradient: const [Color(0xFFECFDF5), Color(0xFFD1FAE5), Color(0xFFA7F3D0),
+        ],
         subjectPill: const Color(0xFF059669),
       );
     }
@@ -2391,7 +2561,8 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
   @override
   Widget build(BuildContext context) {
     final progress = widget.currentStep / widget.totalSteps.clamp(1, 999);
-    final stars = (widget.currentStep / widget.totalSteps * 5).floor().clamp(0, 5);
+    final stars = (widget.currentStep / widget.totalSteps * 5).floor().clamp(0, 5,
+    );
     final cols = _subjectColors();
 
     return ClipRRect(
@@ -2517,13 +2688,15 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6,
+                      ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       cols.subjectPill,
                       Color.alphaBlend(
-                          Colors.black.withOpacity(0.18), cols.subjectPill),
+                          Colors.black.withOpacity(0.18), cols.subjectPill,
+                            ),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),
@@ -2608,7 +2781,8 @@ class _ModernProgressHeaderState extends State<_ModernProgressHeader>
                   animation: _pulseCtrl,
                   builder: (_, __) {
                     final s = Curves.elasticOut.transform(
-                        _pulseCtrl.value.clamp(0.01, 1.0));
+                        _pulseCtrl.value.clamp(0.01, 1.0),
+                          );
                     return Transform.scale(
                       scale: 0.7 + s * 0.4,
                       child: const Icon(

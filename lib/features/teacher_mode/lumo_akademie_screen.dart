@@ -120,25 +120,29 @@ class LumoCurriculum {
                     title: 'Zahlen 1-10',
                     icon: Icons.format_list_numbered_rounded,
                     gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                    shortDesc: 'Zählen, vergleichen, sortieren'),
+                    shortDesc: 'Zählen, vergleichen, sortieren',
+            ),
                 LearningTopic(
                     id: 'm1_plus10',
                     title: 'Plus bis 10',
                     icon: Icons.add_circle_rounded,
                     gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                    shortDesc: '2+3, 5+4 ...'),
+                    shortDesc: '2+3, 5+4 ...',
+            ),
                 LearningTopic(
                     id: 'm1_minus10',
                     title: 'Minus bis 10',
                     icon: Icons.remove_circle_rounded,
                     gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
-                    shortDesc: '7-3, 10-6 ...'),
+                    shortDesc: '7-3, 10-6 ...',
+            ),
                 LearningTopic(
                     id: 'm1_formen',
                     title: 'Formen',
                     icon: Icons.category_rounded,
                     gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                    shortDesc: 'Kreis, Quadrat, Dreieck'),
+                    shortDesc: 'Kreis, Quadrat, Dreieck',
+            ),
               ],
             ),
             LearningSubject(
@@ -152,7 +156,8 @@ class LumoCurriculum {
                     title: '✨ Schreibcoach LIVE',
                     icon: Icons.draw_rounded,
                     gradient: [Color(0xFFEC4899), Color(0xFFDB2777)],
-                    shortDesc: 'Lumo schaut beim Schreiben zu!'),
+                    shortDesc: 'Lumo schaut beim Schreiben zu!',
+            ),
                 LearningTopic(
                     id: 'd1_buchstaben_alle',
                     title: 'Alle Buchstaben A-Z',
@@ -163,13 +168,16 @@ class LumoCurriculum {
                     writingChars: [
                       'A','B','C','D','E','F','G','H','I','J','K','L','M',
                       'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
-                    ]),
+                    ,
+              ],
+            ),
                 LearningTopic(
                     id: 'd1_woerter',
                     title: 'Erste Wörter',
                     icon: Icons.text_fields_rounded,
                     gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                    shortDesc: 'MAMA, PAPA, OMA...'),
+                    shortDesc: 'MAMA, PAPA, OMA...',
+            ),
               ],
             ),
             LearningSubject(
@@ -183,19 +191,22 @@ class LumoCurriculum {
                     title: 'Tiere',
                     icon: Icons.pets_rounded,
                     gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                    shortDesc: 'Bauernhof, Wald, Zoo'),
+                    shortDesc: 'Bauernhof, Wald, Zoo',
+            ),
                 LearningTopic(
                     id: 's1_farben',
                     title: 'Farben',
                     icon: Icons.palette_rounded,
                     gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                    shortDesc: 'Rot, Blau, Grün...'),
+                    shortDesc: 'Rot, Blau, Grün...',
+            ),
                 LearningTopic(
                     id: 's1_koerper',
                     title: 'Mein Körper',
                     icon: Icons.accessibility_new_rounded,
                     gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
-                    shortDesc: 'Augen, Hände, Füße'),
+                    shortDesc: 'Augen, Hände, Füße',
+            ),
               ],
             ),
           ],
@@ -219,25 +230,29 @@ class LumoCurriculum {
                     title: 'Zahlen bis 100',
                     icon: Icons.format_list_numbered_rounded,
                     gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                    shortDesc: 'Zehner & Einer'),
+                    shortDesc: 'Zehner & Einer',
+            ),
                 LearningTopic(
                     id: 'm2_einmaleins',
                     title: 'Kleines 1×1',
                     icon: Icons.close_rounded,
                     gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                    shortDesc: '2er, 5er, 10er-Reihe'),
+                    shortDesc: '2er, 5er, 10er-Reihe',
+            ),
                 LearningTopic(
                     id: 'm2_uhr',
                     title: 'Die Uhr',
                     icon: Icons.access_time_rounded,
                     gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                    shortDesc: 'Stunden & Minuten'),
+                    shortDesc: 'Stunden & Minuten',
+            ),
                 LearningTopic(
                     id: 'm2_geld',
                     title: 'Geld',
                     icon: Icons.euro_rounded,
                     gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                    shortDesc: 'Euro & Cent'),
+                    shortDesc: 'Euro & Cent',
+            ),
               ],
             ),
             LearningSubject(
@@ -251,19 +266,22 @@ class LumoCurriculum {
                     title: 'Sätze bilden',
                     icon: Icons.format_quote_rounded,
                     gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                    shortDesc: 'Subjekt + Prädikat'),
+                    shortDesc: 'Subjekt + Prädikat',
+            ),
                 LearningTopic(
                     id: 'd2_artikel',
                     title: 'Der/Die/Das',
                     icon: Icons.text_format_rounded,
                     gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                    shortDesc: 'Artikel finden'),
+                    shortDesc: 'Artikel finden',
+            ),
                 LearningTopic(
                     id: 'd2_mehrzahl',
                     title: 'Mehrzahl',
                     icon: Icons.numbers_rounded,
                     gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                    shortDesc: 'Ein Hund - viele Hunde'),
+                    shortDesc: 'Ein Hund - viele Hunde',
+            ),
               ],
             ),
             LearningSubject(
@@ -277,19 +295,22 @@ class LumoCurriculum {
                     title: 'Jahreszeiten',
                     icon: Icons.wb_sunny_rounded,
                     gradient: [Color(0xFFFFB800), Color(0xFFFCD34D)],
-                    shortDesc: 'Frühling bis Winter'),
+                    shortDesc: 'Frühling bis Winter',
+            ),
                 LearningTopic(
                     id: 's2_wetter',
                     title: 'Wetter',
                     icon: Icons.cloud_rounded,
                     gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                    shortDesc: 'Regen, Sonne, Schnee'),
+                    shortDesc: 'Regen, Sonne, Schnee',
+            ),
                 LearningTopic(
                     id: 's2_verkehr',
                     title: 'Verkehr',
                     icon: Icons.directions_walk_rounded,
                     gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
-                    shortDesc: 'Sicher auf der Straße'),
+                    shortDesc: 'Sicher auf der Straße',
+            ),
               ],
             ),
           ],
@@ -313,19 +334,22 @@ class LumoCurriculum {
                     title: 'Zahlen bis 1000',
                     icon: Icons.format_list_numbered_rounded,
                     gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                    shortDesc: 'Hunderter, Zehner, Einer'),
+                    shortDesc: 'Hunderter, Zehner, Einer',
+            ),
                 LearningTopic(
                     id: 'm3_einmaleins_voll',
                     title: 'Großes 1×1',
                     icon: Icons.close_rounded,
                     gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                    shortDesc: 'Alle Reihen bis 10'),
+                    shortDesc: 'Alle Reihen bis 10',
+            ),
                 LearningTopic(
                     id: 'm3_geometrie',
                     title: 'Geometrie',
                     icon: Icons.architecture_rounded,
                     gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                    shortDesc: 'Umfang, Fläche'),
+                    shortDesc: 'Umfang, Fläche',
+            ),
               ],
             ),
             LearningSubject(
@@ -339,19 +363,22 @@ class LumoCurriculum {
                     title: 'Wortarten',
                     icon: Icons.category_rounded,
                     gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                    shortDesc: 'Nomen, Verb, Adjektiv'),
+                    shortDesc: 'Nomen, Verb, Adjektiv',
+            ),
                 LearningTopic(
                     id: 'd3_zeitformen',
                     title: 'Zeitformen',
                     icon: Icons.timer_rounded,
                     gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                    shortDesc: 'Gestern, Heute, Morgen'),
+                    shortDesc: 'Gestern, Heute, Morgen',
+            ),
                 LearningTopic(
                     id: 'd3_geschichten',
                     title: 'Geschichten',
                     icon: Icons.auto_stories_rounded,
                     gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                    shortDesc: 'Lesen & Verstehen'),
+                    shortDesc: 'Lesen & Verstehen',
+            ),
               ],
             ),
             LearningSubject(
@@ -365,13 +392,15 @@ class LumoCurriculum {
                     title: 'Österreich',
                     icon: Icons.map_rounded,
                     gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                    shortDesc: 'Bundesländer & Hauptstädte'),
+                    shortDesc: 'Bundesländer & Hauptstädte',
+            ),
                 LearningTopic(
                     id: 's3_natur',
                     title: 'Natur',
                     icon: Icons.park_rounded,
                     gradient: [Color(0xFF059669), Color(0xFF34D399)],
-                    shortDesc: 'Pflanzen & Tiere'),
+                    shortDesc: 'Pflanzen & Tiere',
+            ),
               ],
             ),
           ],
@@ -395,19 +424,22 @@ class LumoCurriculum {
                     title: 'Zahlen bis 1 Million',
                     icon: Icons.format_list_numbered_rounded,
                     gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                    shortDesc: 'Große Zahlen'),
+                    shortDesc: 'Große Zahlen',
+            ),
                 LearningTopic(
                     id: 'm4_bruch',
                     title: 'Bruchrechnen',
                     icon: Icons.pie_chart_rounded,
                     gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                    shortDesc: '1/2, 1/4, 1/3'),
+                    shortDesc: '1/2, 1/4, 1/3',
+            ),
                 LearningTopic(
                     id: 'm4_textaufgaben',
                     title: 'Textaufgaben',
                     icon: Icons.notes_rounded,
                     gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                    shortDesc: 'Sachrechnen'),
+                    shortDesc: 'Sachrechnen',
+            ),
               ],
             ),
             LearningSubject(
@@ -421,13 +453,15 @@ class LumoCurriculum {
                     title: 'Grammatik',
                     icon: Icons.psychology_rounded,
                     gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                    shortDesc: 'Fälle, Satzglieder'),
+                    shortDesc: 'Fälle, Satzglieder',
+            ),
                 LearningTopic(
                     id: 'd4_aufsatz',
                     title: 'Aufsätze',
                     icon: Icons.edit_note_rounded,
                     gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                    shortDesc: 'Erzählen & Beschreiben'),
+                    shortDesc: 'Erzählen & Beschreiben',
+            ),
               ],
             ),
             LearningSubject(
@@ -441,13 +475,15 @@ class LumoCurriculum {
                     title: 'Europa',
                     icon: Icons.public_rounded,
                     gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                    shortDesc: 'Länder & Hauptstädte'),
+                    shortDesc: 'Länder & Hauptstädte',
+            ),
                 LearningTopic(
                     id: 's4_geschichte',
                     title: 'Geschichte',
                     icon: Icons.castle_rounded,
                     gradient: [Color(0xFF7C2D12), Color(0xFFB45309)],
-                    shortDesc: 'Vom Mittelalter bis heute'),
+                    shortDesc: 'Vom Mittelalter bis heute',
+            ),
               ],
             ),
           ],
@@ -549,6 +585,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             blurRadius: 24,
             offset: const Offset(0, 12),
           )
+        ,
         ],
       ),
       child: Row(
@@ -566,8 +603,11 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                           color: Colors.white,
                           fontSize: 12,
                           fontWeight: FontWeight.w900,
-                          letterSpacing: 1.4)),
-                ]),
+                          letterSpacing: 1.4,
+                      ),
+                    ),
+                ],
+                ),
                 const SizedBox(height: 8),
                 const Text(
                   'Lumo zeigt\ndir alles!',
@@ -576,7 +616,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                       color: Colors.white,
                       fontSize: 28,
                       fontWeight: FontWeight.w900,
-                      height: 1.0),
+                      height: 1.0,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 const Text(
@@ -585,7 +626,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                       fontFamily: 'Nunito',
                       color: Colors.white,
                       fontSize: 13,
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontWeight.w700,
+                  ),
                 ),
               ],
             ),
@@ -596,7 +638,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.2),
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.white.withOpacity(0.4), width: 2),
+              border: Border.all(color: Colors.white.withOpacity(0.4), width: 2,
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -604,7 +647,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                 'assets/lumo_sprite_pack/lumo_main.png',
                 errorBuilder: (_, __, ___) => const Icon(
                     Icons.pets_rounded,
-                    color: Colors.white, size: 40),
+                    color: Colors.white, size: 40,
+                ),
               ),
             ),
           ),
@@ -626,10 +670,12 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                     fontFamily: 'Nunito',
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF1F2937))),
+                    color: Color(0xFF1F2937),
+              ),
+            ),
           ),
           SizedBox(
-            height: 110,
+            height: 110* MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
@@ -688,7 +734,9 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                     fontSize: 22,
                     height: 1.0,
                     fontWeight: FontWeight.w900,
-                    color: isSelected ? Colors.white : g.color)),
+                    color: isSelected ? Colors.white : g.color,
+              ),
+            ),
             const SizedBox(height: 2),
             Text(g.title,
                 style: TextStyle(
@@ -696,9 +744,11 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                     fontSize: 12,
                     height: 1.1,
                     fontWeight: FontWeight.w800,
-                    color: isSelected ? Colors.white : const Color(0xFF374151)),
+                    color: isSelected ? Colors.white : const Color(0xFF374151),
+              ),
                 maxLines: 1,
-                overflow: TextOverflow.ellipsis),
+                overflow: TextOverflow.ellipsis,
+            ),
             Text(g.ageRange,
                 style: TextStyle(
                     fontFamily: 'Nunito',
@@ -707,9 +757,11 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                     fontWeight: FontWeight.w600,
                     color: isSelected
                         ? Colors.white.withOpacity(0.85)
-                        : const Color(0xFF6B7280)),
+                        : const Color(0xFF6B7280),
+              ),
                 maxLines: 1,
-                overflow: TextOverflow.ellipsis),
+                overflow: TextOverflow.ellipsis,
+            ),
           ],
         ),
       ),
@@ -742,14 +794,18 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                         fontFamily: 'Nunito',
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF1F2937))),
+                        color: Color(0xFF1F2937),
+                  ),
+                ),
                 const Spacer(),
                 Text('${s.topics.length} Themen',
                     style: const TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF6B7280))),
+                        color: Color(0xFF6B7280),
+                  ),
+                ),
               ],
             ),
           ),
@@ -779,7 +835,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                 colors: [
                   Colors.white,
                   Color.alphaBlend(
-                      t.gradient[0].withOpacity(0.06), Colors.white),
+                      t.gradient[0].withOpacity(0.06), Colors.white,
+                  ),
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -834,21 +891,26 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                               fontFamily: 'Nunito',
                               fontSize: 16,
                               fontWeight: FontWeight.w900,
-                              color: Color(0xFF1F2937))),
+                              color: Color(0xFF1F2937),
+                        ),
+                      ),
                       const SizedBox(height: 2),
                       Text(t.shortDesc,
                           style: const TextStyle(
                               fontFamily: 'Nunito',
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF6B7280))),
+                              color: Color(0xFF6B7280),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 if (t.isWriting)
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 8, vertical: 4),
+                        horizontal: 8, vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFFEF3C7),
                       borderRadius: BorderRadius.circular(8),
@@ -858,12 +920,15 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                             fontFamily: 'Nunito',
                             fontSize: 10,
                             fontWeight: FontWeight.w800,
-                            color: Color(0xFF92400E))),
+                            color: Color(0xFF92400E),
+                      ),
+                    ),
                   )
                 else if (LearningModuleRegistry.hasModule(t.id))
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 8, vertical: 4),
+                        horizontal: 8, vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFD1FAE5),
                       borderRadius: BorderRadius.circular(8),
@@ -873,12 +938,15 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                             fontFamily: 'Nunito',
                             fontSize: 10,
                             fontWeight: FontWeight.w800,
-                            color: Color(0xFF065F46))),
+                            color: Color(0xFF065F46),
+                      ),
+                    ),
                   )
                 else
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 8, vertical: 4),
+                        horizontal: 8, vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFEDE9FE),
                       borderRadius: BorderRadius.circular(8),
@@ -888,11 +956,14 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                             fontFamily: 'Nunito',
                             fontSize: 10,
                             fontWeight: FontWeight.w800,
-                            color: Color(0xFF5B21B6))),
+                            color: Color(0xFF5B21B6),
+                      ),
+                    ),
                   ),
                 const SizedBox(width: 4),
                 Icon(Icons.chevron_right_rounded,
-                    color: t.gradient[0], size: 28),
+                    color: t.gradient[0], size: 28,
+                ),
               ],
             ),
           ),
@@ -906,7 +977,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     if (t.id == 'd1_schreibcoach') {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => LumoWritingCoachScreen(appState: widget.appState),
-      ));
+      ),
+      );
       return;
     }
     // 0b) Wortdiktat (Phase 5): Buchstabenfelder + WritingProgressRepo.
@@ -914,7 +986,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) =>
             LumoWritingWordCoachScreen(appState: widget.appState),
-      ));
+      ),
+      );
       return;
     }
     // 1) Buchstaben-Schreiben (eigenes echtes Modul)
@@ -925,16 +998,18 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           topic: t,
           subject: s,
         ),
-      ));
+      ),
+      );
       return;
     }
     // 2) Pruefe ob Topic ein registriertes echtes Modul hat
     final moduleBuilder =
-        LearningModuleRegistry.builderFor(t.id, widget.appState);
+        LearningModuleRegistry.builderFor(t.id, widget.appState,
+    );
     if (moduleBuilder != null) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => moduleBuilder,
-      ));
+      Navigator.of(context,
+      ).push(MaterialPageRoute(
+        builder: (_) => moduleBuilder));
       return;
     }
     // 3) Fallback: ChatGPT-Lernchat
@@ -945,6 +1020,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
         subject: s,
         grade: _selectedGrade,
       ),
-    ));
+    ),
+    );
   }
 }

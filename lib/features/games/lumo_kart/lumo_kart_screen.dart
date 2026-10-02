@@ -26,6 +26,8 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/math_task_templates.dart';
+import '../../../core/german_task_templates.dart';
+import '../../lumo3d/lumo3d_launcher.dart';
 
 // ── DATEN-MODELL ──────────────────────────────────────────────────────
 
@@ -69,40 +71,48 @@ enum KartTheme { forest, mountain, city }
 List<KartQuestion> generateQuestions(KartRaceConfig cfg, int seed) {
   final rng = math.Random(seed);
   final out = <KartQuestion>[];
-  for (var i = 0; i < cfg.questionCount; i++) {
-    try {
+  final seen = <String>{};
+  final german = cfg.subject.toLowerCase().contains('deutsch');
+  for (var attempt = 0; out.length < cfg.questionCount&& attempt < cfg.questionCount * 80; attempt++) {
+    late String prompt;
+    late String answer;
+    late List<String> choices;
+    if (german) {
+      final task = GermanTaskTemplates.generate(
+        grade: cfg.grade,
+        unit: 'Alle',
+        seed: rng.nextInt(0x7fffffff),
+      );
+      prompt = task.prompt;
+      answer = task.answer;
+      choices = task.choices.toSet().toList();
+    } else {
       final task = MathTaskTemplates.generate(
         grade: cfg.grade,
         unit: 'Alle',
         seed: rng.nextInt(0x7fffffff),
       );
-      final correct = task.answer;
-      final correctNum =
-          int.tryParse(correct.replaceAll(RegExp(r'[^0-9-]'), ''));
-      if (correctNum != null) {
-        out.add(_buildQuestion(task.prompt, correctNum, rng));
-      } else {
-        final choices = task.choices.isNotEmpty
-            ? task.choices.take(3).toList()
-            : <String>[correct, 'mehr', 'gleich'];
-        var correctIdx = choices.indexOf(correct);
-        if (correctIdx < 0) {
-          choices.insert(0, correct);
-          correctIdx = 0;
-        }
+      prompt = task.prompt;
+      answer = task.answer;
+      choices = task.choices.toSet().toList()
+            ;
+    }
+    if (choices.length < 2 || !choices.contains(answer) || !seen.add(prompt))
+      continue;
+    final wrong = choices.where((c) => c != answer).toList()..shuffle(rng);
+    final options = <String>[answer, ...wrong.take(2)]..shuffle(rng);
         out.add(KartQuestion(
-          prompt: task.prompt,
-          answers: choices,
-          correctIndex: correctIdx,
-        ));
+          prompt: prompt,
+          answers: options,
+          correctIndex: options.indexOf(answer),
+        ),
+    );
       }
-    } catch (_) {
-      // Fallback: einfache Plus-Aufgabe wenn Template-System haengt
+    while (out.length < cfg.questionCount) {
       final a = rng.nextInt(8) + 1;
-      final b = rng.nextInt(8) + 1;
+      final b = rng.nextInt(10 - a) + 1;
       out.add(_buildQuestion('$a + $b = ?', a + b, rng));
     }
-  }
   return out;
 }
 
@@ -143,6 +153,7 @@ class _LumoKartScreenState extends State<LumoKartScreen> {
     if (_activeRace == null) {
       return _RaceSelectionScreen(
         grade: widget.appState.state.grade,
+        on3D: () => launchLumo3D(context, scene: 'kart', grade: widget.appState.state.grade, subject: widget.appState.state.subject),
         onPick: (cfg) => setState(() => _activeRace = cfg),
       );
     }
@@ -157,9 +168,10 @@ class _LumoKartScreenState extends State<LumoKartScreen> {
 // ── RENN-AUSWAHL ──────────────────────────────────────────────────────
 
 class _RaceSelectionScreen extends StatelessWidget {
-  const _RaceSelectionScreen({required this.grade, required this.onPick});
+  const _RaceSelectionScreen({required this.grade, required this.onPick, required this.on3D});
   final int grade;
   final ValueChanged<KartRaceConfig> onPick;
+  final VoidCallback on3D;
 
   @override
   Widget build(BuildContext context) {
@@ -220,6 +232,13 @@ class _RaceSelectionScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _hero(grade),
+                const SizedBox(height: 16),
+                SizedBox(width: double.infinity, child: FilledButton.icon(
+                  onPressed: on3D,
+                  icon: const Icon(Icons.sports_motorsports),
+                  label: const Padding(padding: EdgeInsets.symmetric(vertical: 14), child: Text('3D-Rennen: Lumos Insel-Cup')),
+                )),
+                const Padding(padding: EdgeInsets.only(top: 8), child: Text('Kurven, Boosts und Lernstopps · Touch oder Tastatur', style: TextStyle(color: Colors.white))),
                 const SizedBox(height: 16),
                 for (final r in races) ...[
                   _RaceCard(race: r, onTap: () => onPick(r)),
@@ -426,7 +445,8 @@ class _RaceArenaState extends State<_RaceArena>
   void initState() {
     super.initState();
     _questions = generateQuestions(
-        widget.race, DateTime.now().millisecondsSinceEpoch % 0x7fffffff);
+        widget.race, DateTime.now().millisecondsSinceEpoch % 0x7fffffff,
+    );
     final n = _questions.length;
     _gates = List<double>.generate(n, (i) => (i + 1) / (n + 1) * 0.92 + 0.04);
     _starPositions = List<double>.generate(n + 2, (i) => (i + 0.5) / (n + 2));
@@ -585,7 +605,8 @@ class _RaceArenaState extends State<_RaceArena>
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.close_rounded,
-                  color: Colors.white, size: 22),
+                  color: Colors.white, size: 22,
+              ),
             ),
           ),
           const SizedBox(width: 10),
@@ -600,7 +621,8 @@ class _RaceArenaState extends State<_RaceArena>
               child: Row(
                 children: [
                   const Icon(Icons.flag_rounded,
-                      color: Color(0xFFFCD34D), size: 18),
+                      color: Color(0xFFFCD34D), size: 18,
+                  ),
                   const SizedBox(width: 6),
                   Text(
                     '${(_kartProgress * 100).round()}%',
@@ -613,7 +635,8 @@ class _RaceArenaState extends State<_RaceArena>
                   ),
                   const Spacer(),
                   const Icon(Icons.star_rounded,
-                      color: Color(0xFFFCD34D), size: 18),
+                      color: Color(0xFFFCD34D), size: 18,
+                  ),
                   const SizedBox(width: 4),
                   Text(
                     '$_starsCollected',
@@ -678,7 +701,8 @@ class _RaceArenaState extends State<_RaceArena>
                       fontWeight: FontWeight.w900,
                       color: Color(0xFFEA580C),
                       letterSpacing: 1.2,
-                    )),
+                    ),
+                ),
                 const SizedBox(height: 8),
                 Text(
                   q.prompt,
@@ -718,7 +742,8 @@ class _RaceArenaState extends State<_RaceArena>
                           picked == null ? () => _answerQuestion(i) : null,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 22, vertical: 12),
+                            horizontal: 22, vertical: 12,
+                        ),
                         decoration: BoxDecoration(
                           color: bg,
                           borderRadius: BorderRadius.circular(99),
@@ -835,7 +860,8 @@ class _RaceArenaState extends State<_RaceArena>
                   onTap: widget.onExit,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 26, vertical: 12),
+                        horizontal: 26, vertical: 12,
+                    ),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
                         colors: [Color(0xFFEA580C), Color(0xFFFB923C)],
@@ -944,8 +970,7 @@ class _RacePainter extends CustomPainter {
     final trackRect = Rect.fromLTWH(trackLeft, 0, trackWidth, size.height);
     canvas.drawRect(
       trackRect,
-      Paint()..color = colors.track,
-    );
+      Paint()..color = colors.track);
 
     // Track-Edges (gelbe Linien an den Seiten)
     final edgePaint = Paint()
@@ -988,8 +1013,7 @@ class _RacePainter extends CustomPainter {
       canvas.drawCircle(
         Offset(trackLeft - 22, decY),
         16,
-        decorPaint,
-      );
+        decorPaint);
       // Rechts
       canvas.drawCircle(
         Offset(trackLeft + trackWidth + 22, decY + 65),
@@ -1095,7 +1119,8 @@ class _RacePainter extends CustomPainter {
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         Rect.fromCenter(
-            center: Offset(kartX, kartY - 15), width: 40, height: 24),
+            center: Offset(kartX, kartY - 15), width: 40, height: 24,
+        ),
         const Radius.circular(6),
       ),
       Paint()..color = const Color(0xFF60A5FA),
@@ -1104,8 +1129,7 @@ class _RacePainter extends CustomPainter {
     final tp = TextPainter(
       text: const TextSpan(
         text: '🦊',
-        style: TextStyle(fontSize: 22),
-      ),
+        style: TextStyle(fontSize: 22)),
       textDirection: TextDirection.ltr,
     );
     tp.layout();
@@ -1123,13 +1147,15 @@ class _RacePainter extends CustomPainter {
             if ((i + j) % 2 == 0) {
               canvas.drawRect(
                 Rect.fromLTWH(trackLeft + i * tileSize, finishY + j * tileSize,
-                    tileSize, tileSize),
+                    tileSize, tileSize,
+                ),
                 Paint()..color = Colors.white,
               );
             } else {
               canvas.drawRect(
                 Rect.fromLTWH(trackLeft + i * tileSize, finishY + j * tileSize,
-                    tileSize, tileSize),
+                    tileSize, tileSize,
+                ),
                 Paint()..color = Colors.black,
               );
             }

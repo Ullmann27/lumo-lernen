@@ -27,7 +27,7 @@ export const blockedTopicRules = [
   {
     id: 'graphic_violence_war_weapons',
     severity: 'block',
-    terms: ['krieg', 'gewalt', 'waffe', 'messer', 'pistole', 'gewehr', 'bombe', 'toeten', 'mord', 'blut', 'hinrichten', 'folter', 'anschlag', 'schiessen', 'erschiessen', 'stechen', 'pruegeln'],
+    terms: ['krieg', 'weltkrieg', 'messerstich', 'gewalt', 'waffe', 'messer', 'pistole', 'gewehr', 'bombe', 'toeten', 'mord', 'blut', 'hinrichten', 'folter', 'anschlag', 'schiessen', 'erschiessen', 'stechen', 'pruegeln'],
     redirect: 'Das ist kein gutes Thema fuer unsere Lernzeit. Wir koennen ueber Mut, Hilfe holen oder ein friedliches Abenteuer sprechen.',
   },
   {
@@ -69,9 +69,19 @@ export const blockedTopicRules = [
 ];
 
 export function inspectChildSafety(message) {
-  const text = String(message || '').toLowerCase();
-  for (const rule of blockedTopicRules) {
-    if (rule.terms.some((term) => text.includes(term))) {
+  const normalize = (value) => String(value || '').normalize('NFKC').toLowerCase()
+    .replaceAll('ä', 'ae').replaceAll('ö', 'oe').replaceAll('ü', 'ue').replaceAll('ß', 'ss');
+  const text = normalize(message).replace(/\b(?:ich|wir|du|sie)\s+(?:kriege|kriegen|kriegst|kriegt)\b/g, 'bekomme');
+  // Hilfe bei unmittelbarer Gefahr hat Vorrang vor einer Themen-Umlenkung.
+  const rules = [...blockedTopicRules].sort((a, b) =>
+    Number(b.severity === 'safe_redirect') - Number(a.severity === 'safe_redirect'));
+  for (const rule of rules) {
+    if (rule.terms.some((term) => {
+      const escaped = normalize(term).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      // Wortgrenzen: "Durchmesser" und "ich kriege" sind Lernsprache,
+      // keine Waffen- oder Kriegsthemen. Flexionen bleiben erkennbar.
+      return new RegExp(`(^|[^\\p{L}])${escaped}(?:e|en|er|n|s)?(?=$|[^\\p{L}])`, 'u').test(text);
+    })) {
       return {
         allowed: false,
         ruleId: rule.id,

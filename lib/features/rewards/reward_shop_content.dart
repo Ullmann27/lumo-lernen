@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/reward_shop_repository.dart';
 import '../../domain/rewards/reward_shop.dart';
+import '../../widgets/parental_gate.dart';
 
 /// Belohnungs-Shop Seite.
 /// Kind sieht Sterne + Punkte + verfuegbare Belohnungen.
@@ -11,8 +12,7 @@ import '../../domain/rewards/reward_shop.dart';
 class RewardShopContent extends StatefulWidget {
   const RewardShopContent({
     super.key,
-    required this.appState,
-  });
+    required this.appState});
 
   final LumoAppState appState;
 
@@ -25,6 +25,7 @@ class _RewardShopContentState extends State<RewardShopContent> {
   static const _repo = RewardShopRepository();
   RewardShopState? _state;
   bool _loading = true;
+  bool _redeeming = false;
 
   @override
   void initState() {
@@ -36,7 +37,8 @@ class _RewardShopContentState extends State<RewardShopContent> {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
         ? 'kind'
-        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_',
+          );
     return 'local_${safeName}_${st.grade}';
   }
 
@@ -46,11 +48,7 @@ class _RewardShopContentState extends State<RewardShopContent> {
     setState(() {
       // Wenn der State leer ist, initial Sterne aus der App-State uebernehmen.
       // Bestehende Sterne aus Lern-Aufgaben werden so erstmalig in den Shop importiert.
-      if (loaded.availableStars == 0 && widget.appState.state.stars > 0) {
-        _state = loaded.copyWith(availableStars: widget.appState.state.stars);
-      } else {
-        _state = loaded;
-      }
+      _state = loaded.copyWith(availableStars: widget.appState.state.stars);
       _loading = false;
     });
     if (_state != null) {
@@ -59,18 +57,29 @@ class _RewardShopContentState extends State<RewardShopContent> {
   }
 
   Future<void> _redeem(RewardItem item) async {
-    if (_state == null) return;
+    if (_state == null|| _redeeming) return;
+    _redeeming = true;
+    try {
+      _state = _state!.copyWith(availableStars: widget.appState.state.stars);
     if (!_engine.canAfford(_state!, item)) return;
     final needsApproval = item.parentApprovalRequired || item.isPremiumReward;
     if (needsApproval) {
-      // Eltern-PIN bestaetigen (vereinfacht: zweimal antippen-Modal).
-      final confirmed = await _showParentConfirmation(item);
+      final confirmed = await ParentalGate.show(context,
+          pin: widget.appState.state.settings.parentPin,
+        );
       if (!confirmed || !mounted) return;
     }
-    final next = _engine.redeem(_state!, item);
+    final current = _state!.copyWith(
+        availableStars: widget.appState.state.stars,
+      );
+      final next = _engine.redeem(current, item);
     if (next == null) return;
     setState(() => _state = next);
-    await _repo.save(_childId, next);
+    if (item.currency == RewardCurrency.stars) {
+        widget.appState.addStars(-item.cost);
+        await widget.appState.flushRewards();
+      }
+      await _repo.save(_childId, next);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -91,51 +100,16 @@ class _RewardShopContentState extends State<RewardShopContent> {
     );
   }
 
-  Future<bool> _showParentConfirmation(RewardItem item) async {
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Eltern-Bestätigung'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(item.emoji, style: const TextStyle(fontSize: 48)),
-            const SizedBox(height: 8),
-            Text(
-              item.title,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900),
-            ),
-            const SizedBox(height: 6),
-            Text(item.description,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, color: LumoColors.ink500)),
-            const SizedBox(height: 12),
-            const Text(
-              'Bitte zeige diese Belohnung Mama oder Papa zur Bestätigung.',
-              style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w700, color: LumoColors.ink700),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Abbrechen'),
-          ),
-          FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: const Color(0xFF22C55E)),
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Mama/Papa bestätigt'),
-          ),
-        ],
-      ),
-    );
-    return result == true;
+  finally {
+    _redeeming = false;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     if (_loading || _state == null) {
-      return const Center(child: CircularProgressIndicator(color: LumoColors.orange));
+      return const Center(child: CircularProgressIndicator(color: LumoColors.orange),
+      );
     }
     final state = _state!;
     final now = DateTime.now();
@@ -153,7 +127,8 @@ class _RewardShopContentState extends State<RewardShopContent> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header mit Saison + Waehrungen
-          _ShopHeader(season: season, stars: state.availableStars, points: state.availablePoints),
+          _ShopHeader(season: season, stars: state.availableStars, points: state.availablePoints,
+          ),
           const SizedBox(height: 20),
           if (state.testPhotos.isNotEmpty) ...[
             _TestPhotoSummary(testPhotos: state.testPhotos),
@@ -161,7 +136,8 @@ class _RewardShopContentState extends State<RewardShopContent> {
           ],
           // Mini-Belohnungen
           if (microItems.isNotEmpty) ...[
-            _SectionTitle(emoji: '🪄', title: 'Mini-Belohnungen', subtitle: 'Schnelle Belohnungen für kurze Lernrunden'),
+            _SectionTitle(emoji: '🪄', title: 'Mini-Belohnungen', subtitle: 'Schnelle Belohnungen für kurze Lernrunden',
+            ),
             const SizedBox(height: 10),
             ...microItems.map((item) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -170,12 +146,14 @@ class _RewardShopContentState extends State<RewardShopContent> {
                     canAfford: _engine.canAfford(state, item),
                     onRedeem: () => _redeem(item),
                   ),
-                )),
+                ),
+            ),
             const SizedBox(height: 18),
           ],
           // Kleine Belohnungen
           if (smallItems.isNotEmpty) ...[
-            _SectionTitle(emoji: '🌟', title: 'Kleine Belohnungen', subtitle: 'Sterne sammeln und einlösen'),
+            _SectionTitle(emoji: '🌟', title: 'Kleine Belohnungen', subtitle: 'Sterne sammeln und einlösen',
+            ),
             const SizedBox(height: 10),
             ...smallItems.map((item) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -184,12 +162,14 @@ class _RewardShopContentState extends State<RewardShopContent> {
                     canAfford: _engine.canAfford(state, item),
                     onRedeem: () => _redeem(item),
                   ),
-                )),
+                ),
+            ),
             const SizedBox(height: 18),
           ],
           // Mittlere Belohnungen
           if (mediumItems.isNotEmpty) ...[
-            _SectionTitle(emoji: '✨', title: 'Mittlere Belohnungen', subtitle: 'Mit Punkten aus guten Noten'),
+            _SectionTitle(emoji: '✨', title: 'Mittlere Belohnungen', subtitle: 'Mit Punkten aus guten Noten',
+            ),
             const SizedBox(height: 10),
             ...mediumItems.map((item) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -198,12 +178,14 @@ class _RewardShopContentState extends State<RewardShopContent> {
                     canAfford: _engine.canAfford(state, item),
                     onRedeem: () => _redeem(item),
                   ),
-                )),
+                ),
+            ),
             const SizedBox(height: 18),
           ],
           // Grosse Belohnungen
           if (bigItems.isNotEmpty) ...[
-            _SectionTitle(emoji: '🏆', title: 'Große Geschenke', subtitle: 'Für richtig gute Noten'),
+            _SectionTitle(emoji: '🏆', title: 'Große Geschenke', subtitle: 'Für richtig gute Noten',
+            ),
             const SizedBox(height: 10),
             ...bigItems.map((item) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -212,12 +194,14 @@ class _RewardShopContentState extends State<RewardShopContent> {
                     canAfford: _engine.canAfford(state, item),
                     onRedeem: () => _redeem(item),
                   ),
-                )),
+                ),
+            ),
             const SizedBox(height: 18),
           ],
           // Premium-Belohnungen
           if (premiumItems.isNotEmpty) ...[
-            _SectionTitle(emoji: '👑', title: 'Premium-Belohnungen', subtitle: 'Nur mit Elternfreigabe einlösbar'),
+            _SectionTitle(emoji: '👑', title: 'Premium-Belohnungen', subtitle: 'Nur mit Elternfreigabe einlösbar',
+            ),
             const SizedBox(height: 10),
             ...premiumItems.map((item) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -226,11 +210,13 @@ class _RewardShopContentState extends State<RewardShopContent> {
                     canAfford: _engine.canAfford(state, item),
                     onRedeem: () => _redeem(item),
                   ),
-                )),
+                ),
+            ),
             const SizedBox(height: 18),
           ],
           if (state.redeemed.isNotEmpty) ...[
-            _SectionTitle(emoji: '📜', title: 'Schon eingelöst', subtitle: 'Deine Belohnungs-Historie'),
+            _SectionTitle(emoji: '📜', title: 'Schon eingelöst', subtitle: 'Deine Belohnungs-Historie',
+            ),
             const SizedBox(height: 10),
             ...state.redeemed.reversed.take(10).map((r) => _RedeemedRow(entry: r)),
           ],
@@ -242,7 +228,8 @@ class _RewardShopContentState extends State<RewardShopContent> {
 }
 
 class _ShopHeader extends StatelessWidget {
-  const _ShopHeader({required this.season, required this.stars, required this.points});
+  const _ShopHeader({required this.season, required this.stars, required this.points,
+  });
   final Season season;
   final int stars;
   final int points;
@@ -288,9 +275,13 @@ class _ShopHeader extends StatelessWidget {
           const SizedBox(height: 14),
           Row(
             children: [
-              Expanded(child: _CurrencyChip(emoji: '⭐', label: 'Sterne', count: stars, color: const Color(0xFFFFB800))),
+              Expanded(child: _CurrencyChip(emoji: '⭐', label: 'Sterne', count: stars, color: const Color(0xFFFFB800),
+                ),
+              ),
               const SizedBox(width: 10),
-              Expanded(child: _CurrencyChip(emoji: '💎', label: 'Punkte', count: points, color: const Color(0xFF8B5CF6))),
+              Expanded(child: _CurrencyChip(emoji: '💎', label: 'Punkte', count: points, color: const Color(0xFF8B5CF6),
+                ),
+              ),
             ],
           ),
         ],
@@ -309,7 +300,8 @@ class _ShopHeader extends StatelessWidget {
 }
 
 class _CurrencyChip extends StatelessWidget {
-  const _CurrencyChip({required this.emoji, required this.label, required this.count, required this.color});
+  const _CurrencyChip({required this.emoji, required this.label, required this.count, required this.color,
+  });
   final String emoji;
   final String label;
   final int count;
@@ -323,7 +315,8 @@ class _CurrencyChip extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
-          BoxShadow(color: color.withOpacity(0.30), blurRadius: 8, offset: const Offset(0, 3)),
+          BoxShadow(color: color.withOpacity(0.30), blurRadius: 8, offset: const Offset(0, 3),
+          ),
         ],
       ),
       child: Row(
@@ -334,9 +327,13 @@ class _CurrencyChip extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(label,
-                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w800, color: LumoColors.ink500)),
+                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w800, color: LumoColors.ink500,
+                ),
+              ),
               Text('$count',
-                  style: TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: color, height: 1.1)),
+                  style: TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: color, height: 1.1,
+                ),
+              ),
             ],
           ),
         ],
@@ -346,7 +343,8 @@ class _CurrencyChip extends StatelessWidget {
 }
 
 class _SectionTitle extends StatelessWidget {
-  const _SectionTitle({required this.emoji, required this.title, required this.subtitle});
+  const _SectionTitle({required this.emoji, required this.title, required this.subtitle,
+  });
   final String emoji;
   final String title;
   final String subtitle;
@@ -362,9 +360,13 @@ class _SectionTitle extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title,
-                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: LumoColors.ink900,
+                ),
+              ),
               Text(subtitle,
-                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoColors.ink500)),
+                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoColors.ink500,
+                ),
+              ),
             ],
           ),
         ),
@@ -374,7 +376,8 @@ class _SectionTitle extends StatelessWidget {
 }
 
 class _RewardCard extends StatelessWidget {
-  const _RewardCard({required this.item, required this.canAfford, required this.onRedeem});
+  const _RewardCard({required this.item, required this.canAfford, required this.onRedeem,
+  });
   final RewardItem item;
   final bool canAfford;
   final VoidCallback onRedeem;
@@ -417,7 +420,8 @@ class _RewardCard extends StatelessWidget {
             height: 56,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: canAfford ? [color.withOpacity(0.25), color.withOpacity(0.10)] : const [Color(0xFFE2E8F0), Color(0xFFF1F5F9)]),
+              gradient: LinearGradient(colors: canAfford ? [color.withOpacity(0.25), color.withOpacity(0.10)] : const [Color(0xFFE2E8F0), Color(0xFFF1F5F9)],
+              ),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Text(item.emoji, style: const TextStyle(fontSize: 30)),
@@ -430,24 +434,30 @@ class _RewardCard extends StatelessWidget {
                 Text(item.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: canAfford ? LumoColors.ink900 : LumoColors.ink500)),
+                    style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: canAfford ? LumoColors.ink900 : LumoColors.ink500,
+                  ),
+                ),
                 const SizedBox(height: 2),
                 Text(item.description,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoColors.ink500, height: 1.3)),
+                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoColors.ink500, height: 1.3,
+                  ),
+                ),
                 const SizedBox(height: 6),
                 Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3,
+                      ),
                       decoration: BoxDecoration(
                         color: color.withOpacity(0.18),
                         borderRadius: BorderRadius.circular(99),
                       ),
                       child: Text(
                         '${item.cost} ${item.currency == RewardCurrency.stars ? '⭐' : '💎'}',
-                        style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: color),
+                        style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: color,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -455,12 +465,15 @@ class _RewardCard extends StatelessWidget {
                       onPressed: canAfford ? onRedeem : null,
                       style: FilledButton.styleFrom(
                         backgroundColor: color,
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6,
+                        ),
                         minimumSize: Size.zero,
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(canAfford ? 'Einlösen' : 'Noch nicht',
-                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w900)),
+                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w900,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -496,7 +509,8 @@ class _TestPhotoSummary extends StatelessWidget {
               SizedBox(width: 8),
               Text(
                 'Deine letzten Tests',
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Color(0xFF6D28D9)),
+                style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Color(0xFF6D28D9),
+                ),
               ),
             ],
           ),
@@ -514,18 +528,25 @@ class _TestPhotoSummary extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text('${t.note}',
-                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white)),
+                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white,
+                      ),
+                    ),
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(t.subject,
-                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink700)),
+                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink700,
+                      ),
+                    ),
                     ),
                     Text('+${t.pointsAwarded} 💎',
-                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: Color(0xFF7C3AED))),
+                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: Color(0xFF7C3AED),
+                    ),
+                  ),
                   ],
                 ),
-              )),
+              ),
+          ),
         ],
       ),
     );
@@ -552,14 +573,19 @@ class _RedeemedRow extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 6),
       child: Row(
         children: [
-          const Icon(Icons.check_circle_rounded, size: 18, color: Color(0xFF22C55E)),
+          const Icon(Icons.check_circle_rounded, size: 18, color: Color(0xFF22C55E),
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: Text(entry.title,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoColors.ink700)),
+                style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoColors.ink700,
+              ),
+            ),
           ),
           Text('-${entry.cost} ${entry.currency == RewardCurrency.stars ? '⭐' : '💎'}',
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w900, color: LumoColors.ink500)),
+              style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w900, color: LumoColors.ink500,
+            ),
+          ),
         ],
       ),
     );

@@ -15,11 +15,13 @@ class AdaptiveTaskAnswer {
     required this.task,
     required this.answer,
     required this.correct,
+  this.hintUsed = false,
   });
 
   final TaskInstance task;
   final Object answer;
   final bool correct;
+  final bool hintUsed;
 }
 
 class AdaptiveTaskRenderer extends StatefulWidget {
@@ -29,12 +31,14 @@ class AdaptiveTaskRenderer extends StatefulWidget {
     this.onAnswered,
     this.onWritingSubmitted,
     this.onShapeTraced,
+  this.allowRetry = true,
   });
 
   final TaskInstance task;
   final ValueChanged<AdaptiveTaskAnswer>? onAnswered;
   final ValueChanged<WritingTaskResult>? onWritingSubmitted;
   final ValueChanged<ShapeTraceTaskResult>? onShapeTraced;
+  final bool allowRetry;
 
   @override
   State<AdaptiveTaskRenderer> createState() => _AdaptiveTaskRendererState();
@@ -95,7 +99,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          child: IntrinsicHeight(
+              child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             // Linker Buch-Spine (5px), eigenes Container
             Container(width: 5, color: subjectAccent),
             // Hauptbereich
@@ -109,19 +114,23 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                     end: Alignment.bottomRight,
                   ),
                   border: Border.all(
-                      color: subjectAccent.withOpacity(0.18), width: 1),
+                      color: subjectAccent.withOpacity(0.18), width: 1,
+                        ),
                 ),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4),
+                        horizontal: 10, vertical: 4,
+                            ),
                     decoration: BoxDecoration(
                       color: subjectAccent.withOpacity(0.12),
-                      borderRadius: BorderRadius.circular(LumoRadius.pill),
+                      borderRadius: BorderRadius.circular(LumoRadius.pill,
+                              ),
                       border: Border.all(
-                          color: subjectAccent.withOpacity(0.35)),
+                          color: subjectAccent.withOpacity(0.35),
+                              ),
                     ),
                     child: Text(
                       _subjectLabel(task.subject),
@@ -146,15 +155,21 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                     ),
                   ),
                   const SizedBox(height: 18),
-                  _AdaptiveVisual(task: task, picked: _picked, solved: _solved),
-                  if (_wrongAnswers.length >= 2 && !_solved) ...[
+                  _AdaptiveVisual(task: task, picked: _picked, solved: _solved,
+                          ),
+                  if (widget.allowRetry &&
+                              _wrongAnswers.length >= 2 && !_solved) ...[
                     const SizedBox(height: 14),
-                    _LocalHelpBanner(task: task, wrongCount: _wrongAnswers.length),
+                    _LocalHelpBanner(task: task, wrongCount: _wrongAnswers.length,
+                            ),
                   ],
-                ]),
+                ],
+                      ),
               ),
             ),
-          ]),
+          ],
+              ),
+            ),
         ),
       ),
       const SizedBox(height: 18),
@@ -162,7 +177,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         _wrongAnswers.length >= 2 && !_solved
             ? 'Versuch es nochmal mit Lumos Hilfe:'
             : 'Wähle die richtige Antwort:',
-        style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 14),
+        style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 14,
+          ),
       ),
       const SizedBox(height: 12),
       _OptionGrid(
@@ -172,11 +188,12 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         solved: _solved,
         onPick: _pick,
       ),
-    ]);
+    ],
+    );
   }
 
   void _pick(AnswerOption option) {
-    if (_solved) return;
+    if (_solved|| (!widget.allowRetry && _wrongAnswers.isNotEmpty)) return;
     final answer = option.payload ?? option.label;
     final answerKey = '$answer';
     if (_wrongAnswers.contains(answerKey)) return;
@@ -190,12 +207,12 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       }
     });
 
-    if (correct) {
-      widget.onAnswered?.call(
-        AdaptiveTaskAnswer(task: widget.task, answer: answer, correct: true),
+    widget.onAnswered?.call(
+        AdaptiveTaskAnswer(task: widget.task, answer: answer, correct: correct,
+        hintUsed: widget.allowRetry && _wrongAnswers.length >= 2,
+      ),
       );
     }
-  }
 
   String _subjectLabel(LearningSubject subject) {
     return switch (subject) {
@@ -273,7 +290,8 @@ class _LocalHelpBanner extends StatelessWidget {
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4,
+                  ),
               decoration: BoxDecoration(
                 color: const Color(0xFFFB923C),
                 borderRadius: BorderRadius.circular(LumoRadius.pill),
@@ -308,9 +326,11 @@ class _LocalHelpBanner extends StatelessWidget {
                 height: 1.35,
               ),
             ),
-          ]),
+          ],
+            ),
         ),
-      ]),
+      ],
+      ),
     );
   }
 
@@ -520,7 +540,8 @@ class _OptionGrid extends StatelessWidget {
           );
         }).toList(),
       );
-    });
+    },
+    );
   }
 }
 
@@ -629,15 +650,15 @@ class _AnswerButtonState extends State<_AnswerButton>
             end: Alignment.bottomRight,
             colors: [
               bg,
-              Color.alphaBlend(Colors.white.withOpacity(0.4), bg),
-            ],
+              Color.alphaBlend(Colors.white.withOpacity(0.4), bg)],
           ),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
           border: Border.all(color: border, width: 2),
           boxShadow: [
             BoxShadow(
               color: shadowColor.withOpacity(
-                  widget.solved || widget.isWrongPicked ? 0.22 : 0.12),
+                  widget.solved || widget.isWrongPicked ? 0.22 : 0.12,
+            ),
               blurRadius: 14,
               offset: const Offset(0, 5),
             ),
@@ -654,12 +675,14 @@ class _AnswerButtonState extends State<_AnswerButton>
           if (widget.solved && widget.isCorrect)
             const Padding(
               padding: EdgeInsets.only(right: 7),
-              child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 20),
+              child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 20,
+              ),
             ),
           if (widget.isWrongPicked)
             const Padding(
               padding: EdgeInsets.only(right: 7),
-              child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 20),
+              child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 20,
+              ),
             ),
           Flexible(
             child: Text(
@@ -675,7 +698,8 @@ class _AnswerButtonState extends State<_AnswerButton>
               ),
             ),
           ),
-        ]),
+        ],
+      ),
       );
     // 2026-06-05 Iter 19/B5: Feedback-Animation um die Card legen.
     // Pulse fuer Richtig, Shake fuer Falsch. AnimatedBuilder nur wenn aktiv.
@@ -709,7 +733,8 @@ class _AnswerButtonState extends State<_AnswerButton>
 }
 
 class _AdaptiveVisual extends StatelessWidget {
-  const _AdaptiveVisual({required this.task, required this.picked, required this.solved});
+  const _AdaptiveVisual({required this.task, required this.picked, required this.solved,
+  });
 
   final TaskInstance task;
   final Object? picked;
@@ -720,8 +745,10 @@ class _AdaptiveVisual extends StatelessWidget {
     return switch (task.visualPayload.type) {
       VisualType.dots => _DotsVisual(task: task),
       VisualType.tenOnes => _TenOnesVisual(task: task),
-      VisualType.numberLine => _NumberLineVisual(task: task, picked: picked, solved: solved),
-      VisualType.shape => _ShapeVisual(task: task, picked: picked, solved: solved),
+      VisualType.numberLine => _NumberLineVisual(task: task, picked: picked, solved: solved,
+      ),
+      VisualType.shape => _ShapeVisual(task: task, picked: picked, solved: solved,
+      ),
       VisualType.syllables => _SyllableVisual(task: task),
       // Heinz' neue Visuals (Mai 2026):
       VisualType.quantityCompare => QuantityCompareVisual(task: task),
@@ -775,7 +802,8 @@ class _DotsVisual extends StatelessWidget {
           TwentyFrameVisual(start: left, takeAway: right),
           const SizedBox(height: 16),
           NumberLineJumpVisual(start: left, takeAway: right),
-        ]),
+        ],
+        ),
       );
     }
 
@@ -784,14 +812,17 @@ class _DotsVisual extends StatelessWidget {
       subtitle: operation == 'subtraction' ? 'Streiche weg und zähle, was bleibt.' : 'Lege beide Mengen zusammen.',
       ribbonLabel: operation == 'subtraction' ? '−' : '+',
       child: emoji != null
-          ? _ObjectMathVisual(left: left, right: right, operation: operation, emoji: emoji)
-          : QuantityDotsVisual(left: left, operator: operation == 'subtraction' ? '-' : '+', right: right),
+          ? _ObjectMathVisual(left: left, right: right, operation: operation, emoji: emoji,
+            )
+          : QuantityDotsVisual(left: left, operator: operation == 'subtraction' ? '-' : '+', right: right,
+            ),
     );
   }
 }
 
 class _ObjectMathVisual extends StatelessWidget {
-  const _ObjectMathVisual({required this.left, required this.right, required this.operation, required this.emoji});
+  const _ObjectMathVisual({required this.left, required this.right, required this.operation, required this.emoji,
+  });
 
   final int left;
   final int right;
@@ -810,7 +841,9 @@ class _ObjectMathVisual extends StatelessWidget {
       runSpacing: 10,
       children: [
         _ObjectGroup(count: left, crossed: 0, emoji: emoji),
-        Text('+', style: LumoTextStyles.heading1.copyWith(color: LumoColors.orange, fontWeight: FontWeight.w900)),
+        Text('+', style: LumoTextStyles.heading1.copyWith(color: LumoColors.orange, fontWeight: FontWeight.w900,
+          ),
+        ),
         _ObjectGroup(count: right, crossed: 0, emoji: emoji),
       ],
     );
@@ -818,7 +851,8 @@ class _ObjectMathVisual extends StatelessWidget {
 }
 
 class _ObjectGroup extends StatelessWidget {
-  const _ObjectGroup({required this.count, required this.crossed, required this.emoji});
+  const _ObjectGroup({required this.count, required this.crossed, required this.emoji,
+  });
 
   final int count;
   final int crossed;
@@ -829,7 +863,8 @@ class _ObjectGroup extends StatelessWidget {
     final safeCount = count.clamp(0, 20).toInt();
     final safeCrossed = crossed.clamp(0, safeCount).toInt();
     if (safeCount == 0) {
-      return Text('0', style: LumoTextStyles.heading2.copyWith(color: LumoColors.ink500));
+      return Text('0', style: LumoTextStyles.heading2.copyWith(color: LumoColors.ink500),
+      );
     }
     return Wrap(
       spacing: 6,
@@ -854,9 +889,11 @@ class _ObjectGroup extends StatelessWidget {
           if (isCrossed)
             Transform.rotate(
               angle: -.68,
-              child: Container(width: 38, height: 3, color: LumoColors.ink700.withOpacity(.72)),
+              child: Container(width: 38, height: 3, color: LumoColors.ink700.withOpacity(.72),
+                ),
             ),
-        ]);
+        ],
+        );
       }),
     );
   }
@@ -884,8 +921,10 @@ class _TenOnesVisual extends StatelessWidget {
           children: List.generate(tens, (_) => Container(
                 width: 18,
                 height: 72,
-                decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.78), borderRadius: BorderRadius.circular(LumoRadius.sm)),
-              )),
+                decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.78), borderRadius: BorderRadius.circular(LumoRadius.sm),
+                ),
+              ),
+            ),
         ),
         const SizedBox(height: 12),
         Wrap(
@@ -894,16 +933,20 @@ class _TenOnesVisual extends StatelessWidget {
           children: List.generate(ones, (_) => Container(
                 width: 16,
                 height: 16,
-                decoration: BoxDecoration(color: LumoColors.gold.withOpacity(.85), shape: BoxShape.circle),
-              )),
+                decoration: BoxDecoration(color: LumoColors.gold.withOpacity(.85), shape: BoxShape.circle,
+                ),
+              ),
+            ),
         ),
-      ]),
+      ],
+      ),
     );
   }
 }
 
 class _NumberLineVisual extends StatelessWidget {
-  const _NumberLineVisual({required this.task, required this.picked, required this.solved});
+  const _NumberLineVisual({required this.task, required this.picked, required this.solved,
+  });
 
   final TaskInstance task;
   final Object? picked;
@@ -939,19 +982,24 @@ class _NumberLineVisual extends StatelessWidget {
           decoration: BoxDecoration(
             color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : Colors.white,
             shape: BoxShape.circle,
-            border: Border.all(color: correct ? const Color(0xFF22C55E) : LumoColors.orange.withOpacity(.55), width: 2),
+            border: Border.all(color: correct ? const Color(0xFF22C55E) : LumoColors.orange.withOpacity(.55), width: 2,
+              ),
           ),
           child: Center(
-            child: Text('$number', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: correct || selected ? Colors.white : LumoColors.ink900)),
+            child: Text('$number', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: correct || selected ? Colors.white : LumoColors.ink900,
+                ),
+              ),
           ),
         );
-      }).toList()),
+      }).toList(),
+      ),
     );
   }
 }
 
 class _ShapeVisual extends StatelessWidget {
-  const _ShapeVisual({required this.task, required this.picked, required this.solved});
+  const _ShapeVisual({required this.task, required this.picked, required this.solved,
+  });
 
   final TaskInstance task;
   final Object? picked;
@@ -1126,7 +1174,8 @@ class _SyllableVisual extends StatelessWidget {
       subtitle: 'Sprich das Wort langsam und klatsche bei jeder Silbe.',
       ribbonLabel: 'Silben',
       accentColor: LumoColors.purple,
-      child: SyllableChipRow(word: word.isEmpty ? 'Wort' : word, syllables: syllables, accentColor: LumoColors.purple),
+      child: SyllableChipRow(word: word.isEmpty ? 'Wort' : word, syllables: syllables, accentColor: LumoColors.purple,
+      ),
     );
   }
 }
@@ -1150,7 +1199,9 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
         subtitle: 'Die Dachzahl ist das Ganze. Die Zimmer ergeben zusammen das Dach.',
         ribbonLabel: '$target',
         helperText: 'Schau zuerst auf das Dach. Dann suchst du die Partnerzahl zu $left.',
-        child: NumberHouseVisual(target: target, rows: <List<int>>[<int>[left, right], <int>[0, target]], missingIndex: 1),
+        child: NumberHouseVisual(target: target, rows: <List<int>>[<int>[left, right], <int>[0, target],
+          ], missingIndex: 1,
+        ),
       );
     }
 
@@ -1173,7 +1224,8 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
         subtitle: 'Lies genau und schreibe das passende Wort.',
         ribbonLabel: 'Wort',
         accentColor: LumoColors.purple,
-        child: WritingLineBox(placeholder: word, cells: target.length.clamp(3, 10).toInt()),
+        child: WritingLineBox(placeholder: word, cells: target.length.clamp(3, 10).toInt(),
+        ),
       );
     }
 
@@ -1204,7 +1256,8 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
         subtitle: highlight == 'end' ? 'Sprich das Wort und höre genau auf den letzten Laut.' : 'Sprich das Wort und höre genau auf den ersten Laut.',
         ribbonLabel: 'Laut',
         accentColor: LumoColors.purple,
-        child: SoundHighlightWord(word: word, highlight: highlight, color: LumoColors.purple),
+        child: SoundHighlightWord(word: word, highlight: highlight, color: LumoColors.purple,
+        ),
       );
     }
 

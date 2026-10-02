@@ -12,6 +12,8 @@
 // Dependency: url_launcher (schon in pubspec.yaml).
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Package-Name der separaten Godot-App.
@@ -19,7 +21,7 @@ const String lumo3DAndroidPackage = 'dev.ullmann.lumo3d';
 
 /// Permanente Web-URL (GitHub Pages) als Fallback wenn die native App
 /// nicht installiert ist.
-const String lumo3DWebUrl = 'https://ullmann27.github.io/lumo-godot/';
+const String lumo3DWebUrl = 'https://ullmann27.github.io/lumo-godot/island-cup/';
 
 /// Versucht die Lumo-3D-Welt zu oeffnen.
 ///
@@ -28,35 +30,33 @@ const String lumo3DWebUrl = 'https://ullmann27.github.io/lumo-godot/';
 ///   - Fallback: Web-URL im Browser
 ///
 /// Gibt true zurueck wenn irgendetwas geoeffnet wurde, sonst false.
-Future<bool> launchLumo3D(BuildContext context) async {
-  // Versuch 1: Android-Intent. Die "android-app://"-URL-Syntax laesst
-  // sich von url_launcher direkt an Android weiterreichen. Wenn das
-  // Package nicht installiert ist, schlaegt das fehl und wir fallen
-  // auf die Web-URL zurueck.
-  final intentUri = Uri.parse(
-    'intent://lumo3d#Intent;'
-    'scheme=lumo;'
-    'package=$lumo3DAndroidPackage;'
-    'S.browser_fallback_url=${Uri.encodeQueryComponent(lumo3DWebUrl)};'
-    'end',
-  );
+Future<bool> launchLumo3D(
+  BuildContext context, {
+  String scene = 'home',
+  int grade = 1,
+  String subject = 'Mathematik',
+}) async {
+  // Die native Host-Bridge startet Godot mit dem gewünschten Spiel.
   try {
-    final ok = await launchUrl(
-      intentUri,
-      mode: LaunchMode.externalApplication,
-    );
-    if (ok) return true;
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+      const bridge = MethodChannel('lumo_lernen/bridge');
+      final ok = await bridge.invokeMethod<bool>('launch3D', {
+        'scene': scene,
+        'grade': grade,
+        'subject': subject,
+      });
+      if (ok == true) return true;
+    }
   } catch (_) {
     // Intent-URL nicht resolvbar, weiter zu Versuch 2
   }
 
   // Versuch 2: Web-Version direkt
-  final webUri = Uri.parse(lumo3DWebUrl);
+  final webUri = Uri.parse(lumo3DWebUrl).replace(
+    queryParameters: {'scene': scene, 'grade': '$grade', 'subject': subject},
+  );
   try {
-    final ok = await launchUrl(
-      webUri,
-      mode: LaunchMode.externalApplication,
-    );
+    final ok = await launchUrl(webUri, mode: LaunchMode.externalApplication);
     if (ok) return true;
   } catch (_) {
     // ignore

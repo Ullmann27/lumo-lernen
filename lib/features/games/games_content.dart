@@ -9,6 +9,7 @@ import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../shared/widgets/lumo_living_world.dart';
+import '../lumo3d/lumo3d_launcher.dart';
 import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
@@ -47,7 +48,10 @@ class _GamesContentState extends State<GamesContent> {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
         ? 'kind'
-        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+        : st.childName.trim().toLowerCase().replaceAll(
+            RegExp(r'[^a-z0-9]+'),
+            '_',
+          );
     return 'local_${safeName}_${st.grade}';
   }
 
@@ -71,10 +75,8 @@ class _GamesContentState extends State<GamesContent> {
     showModalBottomSheet<void>(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (_) => _LevelDetailSheet(
-        runtime: rt,
-        onPlay: () => _launchLevel(rt),
-      ),
+      builder: (_) =>
+          _LevelDetailSheet(runtime: rt, onPlay: () => _launchLevel(rt)),
     );
   }
 
@@ -95,6 +97,17 @@ class _GamesContentState extends State<GamesContent> {
     if (earnedStars != null && earnedStars > 0) {
       await _load();
     }
+  }
+
+  Future<void> _launch3D(String scene) async {
+    HapticFeedback.mediumImpact();
+    final state = widget.appState.state;
+    await launchLumo3D(
+      context,
+      scene: scene,
+      grade: state.grade,
+      subject: state.subject == 'Deutsch' ? 'Deutsch' : 'Mathematik',
+    );
   }
 
   Future<void> _launchMemory() async {
@@ -152,37 +165,29 @@ class _GamesContentState extends State<GamesContent> {
       case GameMiniType.starsPath:
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (_) => StarsPathGame(
-              appState: widget.appState,
-              level: level,
-            ),
+            builder: (_) =>
+                StarsPathGame(appState: widget.appState, level: level),
           ),
         );
       case GameMiniType.numberHouse:
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (_) => NumberHouseGame(
-              appState: widget.appState,
-              level: level,
-            ),
+            builder: (_) =>
+                NumberHouseGame(appState: widget.appState, level: level),
           ),
         );
       case GameMiniType.colorBoxes:
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (_) => ColorBoxesGame(
-              appState: widget.appState,
-              level: level,
-            ),
+            builder: (_) =>
+                ColorBoxesGame(appState: widget.appState, level: level),
           ),
         );
       case GameMiniType.letterFill:
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (_) => LetterFillGame(
-              appState: widget.appState,
-              level: level,
-            ),
+            builder: (_) =>
+                LetterFillGame(appState: widget.appState, level: level),
           ),
         );
       case GameMiniType.numberPath:
@@ -190,7 +195,9 @@ class _GamesContentState extends State<GamesContent> {
       case GameMiniType.mixedQuiz:
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${level.miniType.germanLabel} - bald spielbar! Das Spiel kommt im naechsten Update.'),
+            content: Text(
+              '${level.miniType.germanLabel} - bald spielbar! Das Spiel kommt im naechsten Update.',
+            ),
             backgroundColor: LumoColors.orange,
             duration: const Duration(seconds: 2),
           ),
@@ -205,7 +212,10 @@ class _GamesContentState extends State<GamesContent> {
   Widget build(BuildContext context) {
     final runtime = _repo.buildRuntime(_stars);
     final totalStars = runtime.fold<int>(0, (sum, r) => sum + r.starsEarned);
-    final maxStars = GameLevelCatalog.levels.fold<int>(0, (s, l) => s + l.maxStars);
+    final maxStars = GameLevelCatalog.levels.fold<int>(
+      0,
+      (s, l) => s + l.maxStars,
+    );
     final unlockedCount = runtime.where((r) => !r.locked).length;
 
     return LumoLivingWorld(
@@ -216,7 +226,10 @@ class _GamesContentState extends State<GamesContent> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_rounded, color: LumoColors.ink700),
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: LumoColors.ink700,
+            ),
             onPressed: () {
               HapticFeedback.lightImpact();
               Navigator.of(context).maybePop();
@@ -233,7 +246,9 @@ class _GamesContentState extends State<GamesContent> {
           ),
         ),
         body: !_loaded
-            ? const Center(child: CircularProgressIndicator(color: LumoColors.orange))
+            ? const Center(
+                child: CircularProgressIndicator(color: LumoColors.orange),
+              )
             : CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
@@ -244,9 +259,61 @@ class _GamesContentState extends State<GamesContent> {
                     ),
                   ),
                   SliverToBoxAdapter(
-                    child: _AdventureCard(
-                      onPlay: _launchAdventure,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Lumos 3D-Abenteuer',
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 22,
+                              fontWeight: FontWeight.w900,
+                              color: LumoColors.ink900,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          const Text(
+                            'Deine Klasse und dein Fach reisen mit. Bei den Lernstopps hast du Zeit zum Nachdenken.',
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 14,
+                              color: LumoColors.ink700,
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+                          _VsLumoCard(
+                            title: 'Insel-Cup · 3D-Rennen',
+                            subtitle:
+                                'Kurven, Gegner, Kristalle und Drift-Boosts',
+                            emoji: '🏎️',
+                            gradient: const [
+                              Color(0xFF7762E9),
+                              Color(0xFF44348D),
+                            ],
+                            onPlay: () => _launch3D('kart'),
+                          ),
+                          const SizedBox(height: 12),
+                          _VsLumoCard(
+                            title: 'Wolkeninseln · 3D-Jump',
+                            subtitle: 'Springe mit Lumo von Insel zu Insel',
+                            emoji: '☁️',
+                            gradient: const [
+                              Color(0xFF41A993),
+                              Color(0xFF237568),
+                            ],
+                            onPlay: () => _launch3D('jump'),
+                          ),
+                        ],
+                      ),
                     ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: _AdventureCard(onPlay: _launchAdventure),
                   ),
                   SliverToBoxAdapter(
                     child: _MultiPlayerSection(
@@ -256,16 +323,11 @@ class _GamesContentState extends State<GamesContent> {
                       onLumoCards: _launchLumoCards,
                     ),
                   ),
-                  const SliverToBoxAdapter(
-                    child: _TapAnywhereHint(),
-                  ),
+                  const SliverToBoxAdapter(child: _TapAnywhereHint()),
                   SliverPadding(
                     padding: const EdgeInsets.fromLTRB(12, 8, 12, 32),
                     sliver: SliverToBoxAdapter(
-                      child: _LevelMap(
-                        runtime: runtime,
-                        onTap: _onLevelTap,
-                      ),
+                      child: _LevelMap(runtime: runtime, onTap: _onLevelTap),
                     ),
                   ),
                 ],
@@ -350,19 +412,21 @@ class _HeaderStrip extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Row(children: [
-                const Text('⭐', style: TextStyle(fontSize: 22)),
-                const SizedBox(width: 4),
-                Text(
-                  '$totalStars',
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
+              Row(
+                children: [
+                  const Text('⭐', style: TextStyle(fontSize: 22)),
+                  const SizedBox(width: 4),
+                  Text(
+                    '$totalStars',
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 22,
+                      fontWeight: FontWeight.w900,
+                      color: LumoColors.ink900,
+                    ),
                   ),
-                ),
-              ]),
+                ],
+              ),
               Text(
                 'von $maxStars',
                 style: const TextStyle(
@@ -473,7 +537,10 @@ class _AdventureCardState extends State<_AdventureCard>
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.25),
                                 borderRadius: BorderRadius.circular(8),
@@ -490,22 +557,23 @@ class _AdventureCardState extends State<_AdventureCard>
                               ),
                             ),
                             const SizedBox(width: 6),
-                            const Text(
-                              '⭐',
-                              style: TextStyle(fontSize: 12),
-                            ),
+                            const Text('⭐', style: TextStyle(fontSize: 12)),
                           ],
                         ),
                         const SizedBox(height: 4),
                         const Text(
-                          'Lumos Jump Adventure',
+                          'Lumos Jump Adventure · 2D',
                           style: TextStyle(
                             fontFamily: 'Nunito',
                             fontWeight: FontWeight.w900,
                             fontSize: 19,
                             color: Colors.white,
                             shadows: [
-                              Shadow(color: Color(0x40000000), blurRadius: 4, offset: Offset(0, 2)),
+                              Shadow(
+                                color: Color(0x40000000),
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
                             ],
                           ),
                         ),
@@ -657,7 +725,11 @@ class _PathSegment extends StatelessWidget {
             children: [
               CustomPaint(
                 size: Size(width, cellHeight * levels.length / 2 + cellHeight),
-                painter: _PathPainter(levelCount: levels.length, width: width, cellHeight: cellHeight),
+                painter: _PathPainter(
+                  levelCount: levels.length,
+                  width: width,
+                  cellHeight: cellHeight,
+                ),
               ),
               for (var i = 0; i < levels.length; i++)
                 Positioned(
@@ -690,7 +762,11 @@ class _PathSegment extends StatelessWidget {
 }
 
 class _PathPainter extends CustomPainter {
-  _PathPainter({required this.levelCount, required this.width, required this.cellHeight});
+  _PathPainter({
+    required this.levelCount,
+    required this.width,
+    required this.cellHeight,
+  });
   final int levelCount;
   final double width;
   final double cellHeight;
@@ -735,7 +811,9 @@ class _LevelCircle extends StatelessWidget {
     final perfect = runtime.isPerfect;
     final isCurrent = runtime.isCurrent;
     const size = 74.0;
-    final bg = locked ? const Color(0xFFE5E5E5) : (perfect ? LumoColors.gold : LumoColors.orange);
+    final bg = locked
+        ? const Color(0xFFE5E5E5)
+        : (perfect ? LumoColors.gold : LumoColors.orange);
     final border = isCurrent ? LumoColors.gold : Colors.white;
     return GestureDetector(
       onTap: locked ? null : onTap,
@@ -763,32 +841,35 @@ class _LevelCircle extends StatelessWidget {
             child: locked
                 ? const Icon(Icons.lock_rounded, color: Colors.white, size: 28)
                 : isCurrent
-                    ? const Text('🦊', style: TextStyle(fontSize: 36))
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '${runtime.level.id}',
-                            style: const TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                            ),
-                          ),
-                          if (runtime.starsEarned > 0)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 2),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: List<Widget>.generate(
-                                  math.min(runtime.starsEarned, 3),
-                                  (_) => const Text('⭐', style: TextStyle(fontSize: 10)),
-                                ),
+                ? const Text('🦊', style: TextStyle(fontSize: 36))
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${runtime.level.id}',
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
+                      ),
+                      if (runtime.starsEarned > 0)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List<Widget>.generate(
+                              math.min(runtime.starsEarned, 3),
+                              (_) => const Text(
+                                '⭐',
+                                style: TextStyle(fontSize: 10),
                               ),
                             ),
-                        ],
-                      ),
+                          ),
+                        ),
+                    ],
+                  ),
           ),
           if (!locked) ...[
             const SizedBox(height: 2),
@@ -851,7 +932,10 @@ class _LevelDetailSheet extends StatelessWidget {
                   color: LumoColors.orangeSurface,
                   borderRadius: BorderRadius.circular(LumoRadius.md),
                 ),
-                child: Text(level.miniType.emoji, style: const TextStyle(fontSize: 28)),
+                child: Text(
+                  level.miniType.emoji,
+                  style: const TextStyle(fontSize: 28),
+                ),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -915,7 +999,10 @@ class _LevelDetailSheet extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 6),
                 child: Text(
                   earned ? '⭐' : '☆',
-                  style: TextStyle(fontSize: 28, color: earned ? null : LumoColors.ink300),
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: earned ? null : LumoColors.ink300,
+                  ),
                 ),
               );
             }),
@@ -928,7 +1015,9 @@ class _LevelDetailSheet extends StatelessWidget {
                 backgroundColor: LumoColors.orange,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.pill)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(LumoRadius.pill),
+                ),
                 elevation: 0,
               ),
               onPressed: () {
@@ -937,7 +1026,11 @@ class _LevelDetailSheet extends StatelessWidget {
               },
               child: const Text(
                 'Level starten',
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w900),
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
           ),
@@ -946,7 +1039,6 @@ class _LevelDetailSheet extends StatelessWidget {
     );
   }
 }
-
 
 // ════════════════════════════════════════════════════════════════════════
 // MULTIPLAYER-SEKTION: 3 Spiele gegen Lumo als KI-Gegner
@@ -982,10 +1074,11 @@ class _MultiPlayerSection extends StatelessWidget {
             child: Text(
               'Gegen Lumo spielen',
               style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 17,
-                  fontWeight: FontWeight.w900,
-                  color: LumoColors.ink900),
+                fontFamily: 'Nunito',
+                fontSize: 17,
+                fontWeight: FontWeight.w900,
+                color: LumoColors.ink900,
+              ),
             ),
           ),
           _VsLumoCard(
@@ -1055,9 +1148,10 @@ class _VsLumoCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(LumoRadius.lg),
           boxShadow: [
             BoxShadow(
-                color: gradient.first.withOpacity(0.30),
-                blurRadius: 14,
-                offset: const Offset(0, 6)),
+              color: gradient.first.withOpacity(0.30),
+              blurRadius: 14,
+              offset: const Offset(0, 6),
+            ),
           ],
         ),
         child: Row(
@@ -1077,19 +1171,25 @@ class _VsLumoCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title,
-                      style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white)),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                    ),
+                  ),
                   const SizedBox(height: 2),
-                  Text(subtitle,
-                      style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 12.5,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white.withOpacity(0.92))),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white.withOpacity(0.92),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -1102,8 +1202,11 @@ class _VsLumoCard extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(Icons.play_arrow_rounded,
-                  color: gradient.last, size: 28),
+              child: Icon(
+                Icons.play_arrow_rounded,
+                color: gradient.last,
+                size: 28,
+              ),
             ),
           ],
         ),
@@ -1172,26 +1275,28 @@ class _TapAnywhereHintState extends State<_TapAnywhereHint>
                 ),
               ],
             ),
-            child: Row(children: [
-              Transform.scale(
-                scale: 1.0 + p * 0.08,
-                child: const Text('👆', style: TextStyle(fontSize: 22)),
-              ),
-              const SizedBox(width: 12),
-              const Expanded(
-                child: Text(
-                  'Tippe Lumo an – er reagiert! Doppelt = kitzeln 😆',
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xFF7C2D12),
+            child: Row(
+              children: [
+                Transform.scale(
+                  scale: 1.0 + p * 0.08,
+                  child: const Text('👆', style: TextStyle(fontSize: 22)),
+                ),
+                const SizedBox(width: 12),
+                const Expanded(
+                  child: Text(
+                    'Tippe Lumo an – er reagiert! Doppelt = kitzeln 😆',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xFF7C2D12),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 4),
-              const Text('🦊', style: TextStyle(fontSize: 22)),
-            ]),
+                const SizedBox(width: 4),
+                const Text('🦊', style: TextStyle(fontSize: 22)),
+              ],
+            ),
           );
         },
       ),
