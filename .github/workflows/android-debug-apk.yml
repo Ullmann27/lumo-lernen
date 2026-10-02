@@ -36,6 +36,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.44.9'
           channel: stable
           cache: true
 
@@ -50,41 +51,17 @@ jobs:
             flutter create --platforms=android --org dev.ullmann.lumo .
           fi
 
-      - name: Patch AndroidManifest safely
-        run: |
-          MANIFEST="android/app/src/main/AndroidManifest.xml"
-          if [ -f "$MANIFEST" ]; then
-            if ! grep -q "xmlns:tools=" "$MANIFEST"; then
-              sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
-            fi
-            if ! grep -q "android.permission.CAMERA" "$MANIFEST"; then
-              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-feature android:name="android.hardware.camera" android:required="false"/>' "$MANIFEST"
-            fi
-            if ! grep -q "android.permission.RECORD_AUDIO" "$MANIFEST"; then
-              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.RECORD_AUDIO"/>' "$MANIFEST"
-            fi
-            if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
-              sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
-            fi
-            # Inter-App-Bridge 2026-06-03: Deep-Link intent-filter (siehe
-            # release-apk.yml). Damit Godot-Hub diese App per lumolernen://
-            # oeffnen kann. Additiv + idempotent.
-            if ! grep -q 'android:scheme="lumolernen"' "$MANIFEST"; then
-              sed -i 's|</activity>|        <intent-filter>\n            <action android:name="android.intent.action.VIEW"/>\n            <category android:name="android.intent.category.DEFAULT"/>\n            <category android:name="android.intent.category.BROWSABLE"/>\n            <data android:scheme="lumolernen"/>\n        </intent-filter>\n        </activity>|' "$MANIFEST"
-            fi
-          fi
+      - name: Prepare native Android host
+        run: python3 scripts/prepare_android.py
 
-      - name: Patch minSdk to 21
-        run: |
-          for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
-            if [ -f "$GRADLE" ]; then
-              sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/' "$GRADLE" || true
-              sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
-              sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
-              sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
-            fi
-          done
+      - name: Backend regression tests
+        run: node --test server/lumo-ai-proxy/test/*.test.js
 
+      - name: Android preparation regression test
+        run: python3 -m unittest discover -s scripts/tests
+
+      - name: Audit all generated task templates
+        run: dart scripts/audit_content.dart
       - name: Repair guard
         run: bash scripts/lumo_repair_guard.sh
 
@@ -92,14 +69,13 @@ jobs:
         run: flutter pub get
 
       - name: Flutter analyze (soft - warnings sichtbar aber nicht blockierend)
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings || true
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
       - name: Flutter test (Smoke + bestehende Tests)
         id: flutter_test
         run: |
           set -o pipefail
           flutter test --no-pub --reporter=expanded 2>&1 | tee /tmp/test.log
-        continue-on-error: true  # Bestehende Tests duerfen alt sein, aber neue Smoke-Tests muessen gruen sein
 
       - name: Surface failing tests into job summary
         if: always()
@@ -253,7 +229,7 @@ jobs:
           echo "APK collected locally in dist. Artifact upload is disabled to avoid GitHub storage quota failures."
 
       - name: Job-Zusammenfassung mit Release-Link
-        if: always()
+        if: success()
         run: |
           echo "## ✅ Build #${GITHUB_RUN_NUMBER} abgeschlossen" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"

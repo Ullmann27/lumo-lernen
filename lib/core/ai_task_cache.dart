@@ -20,24 +20,27 @@ class AiTaskCache {
 
   static const int _keepHistory = 40;
 
-  String _storageKey(String childId, String subject) {
+  String _storageKey(String childId, String subject, int? grade) {
     final sChild = childId.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     final sSubj = subject.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
-    return 'lumo_ai_tasks_${sChild}_$sSubj';
+    return 'lumo_ai_tasks_${sChild}_$sSubj${grade == null ? '' : '_g$grade'}';
   }
 
-  String _metaKey(String childId, String subject) {
+  String _metaKey(String childId, String subject, int? grade) {
     final sChild = childId.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     final sSubj = subject.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
-    return 'lumo_ai_tasks_meta_${sChild}_$sSubj';
+    return 'lumo_ai_tasks_meta_${sChild}_$sSubj${grade == null ? '' : '_g$grade'}';
   }
 
   /// Laedt unverbrauchte Aufgaben aus dem Cache.
   Future<List<LumoAiTaskDraft>> loadFresh({
     required String childId,
     required String subject,
+  int? grade,
   }) async {
-    final all = await _loadAll(childId: childId, subject: subject);
+    final all = await _loadAll(childId: childId, subject: subject,
+      grade: grade,
+    );
     return all.where((e) => !e.consumed).map((e) => e.draft).toList(growable: false);
   }
 
@@ -45,8 +48,11 @@ class AiTaskCache {
   Future<int> freshCount({
     required String childId,
     required String subject,
+  int? grade,
   }) async {
-    final fresh = await loadFresh(childId: childId, subject: subject);
+    final fresh = await loadFresh(childId: childId, subject: subject,
+      grade: grade,
+    );
     return fresh.length;
   }
 
@@ -55,10 +61,13 @@ class AiTaskCache {
   Future<void> saveBatch({
     required String childId,
     required String subject,
+    int? grade,
     required List<LumoAiTaskDraft> drafts,
   }) async {
     if (drafts.isEmpty) return;
-    final all = await _loadAll(childId: childId, subject: subject);
+    final all = await _loadAll(childId: childId, subject: subject,
+      grade: grade,
+    );
     // Verbrauchte zuerst einkuerzen
     final consumed = all.where((e) => e.consumed).toList();
     final keepConsumed = consumed.length > _keepHistory
@@ -76,17 +85,24 @@ class AiTaskCache {
       existingPrompts.add(d.prompt.toLowerCase());
     }
     final all2 = [...keepConsumed, ...fresh];
-    await _persistAll(childId: childId, subject: subject, entries: all2);
-    await _writeMeta(childId: childId, subject: subject, generatedAtIso: DateTime.now().toIso8601String());
+    await _persistAll(childId: childId, subject: subject, grade: grade,
+      entries: all2,
+    );
+    await _writeMeta(childId: childId, subject: subject, grade: grade,
+      generatedAtIso: DateTime.now().toIso8601String(),
+    );
   }
 
   /// Markiert eine Aufgabe als verbraucht (Kind hat sie gesehen).
   Future<void> markConsumed({
     required String childId,
     required String subject,
+    int? grade,
     required String prompt,
   }) async {
-    final all = await _loadAll(childId: childId, subject: subject);
+    final all = await _loadAll(childId: childId, subject: subject,
+      grade: grade,
+    );
     final lowered = prompt.toLowerCase();
     var changed = false;
     for (var i = 0; i < all.length; i++) {
@@ -97,7 +113,9 @@ class AiTaskCache {
       }
     }
     if (changed) {
-      await _persistAll(childId: childId, subject: subject, entries: all);
+      await _persistAll(childId: childId, subject: subject, grade: grade,
+        entries: all,
+      );
     }
   }
 
@@ -105,9 +123,10 @@ class AiTaskCache {
   Future<DateTime?> lastGeneratedAt({
     required String childId,
     required String subject,
+    int? grade,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_metaKey(childId, subject));
+    final raw = prefs.getString(_metaKey(childId, subject, grade));
     if (raw == null || raw.isEmpty) return null;
     return DateTime.tryParse(raw);
   }
@@ -116,18 +135,22 @@ class AiTaskCache {
   Future<void> clear({
     required String childId,
     required String subject,
+  int? grade,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_storageKey(childId, subject));
-    await prefs.remove(_metaKey(childId, subject));
+    for (final g in grade == null ? <int?>[null, 1, 2, 3, 4] : <int?>[grade]) {
+      await prefs.remove(_storageKey(childId, subject, g));
+    await prefs.remove(_metaKey(childId, subject, g));
+  }
   }
 
   Future<List<_CachedDraft>> _loadAll({
     required String childId,
     required String subject,
+    int? grade,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_storageKey(childId, subject));
+    final raw = prefs.getString(_storageKey(childId, subject, grade));
     if (raw == null || raw.isEmpty) return <_CachedDraft>[];
     try {
       final decoded = jsonDecode(raw);
@@ -137,12 +160,12 @@ class AiTaskCache {
         if (item is! Map) continue;
         final draftJson = item['draft'];
         if (draftJson is! Map) continue;
-        final draft = LumoAiTaskDraft.fromJson(Map<String, dynamic>.from(draftJson));
+        final draft = LumoAiTaskDraft.fromJson(Map<String, dynamic>.from(draftJson),
+        );
         if (draft.prompt.isEmpty || draft.answer.isEmpty) continue;
         out.add(_CachedDraft(
           draft: draft,
-          consumed: item['consumed'] == true,
-        ));
+          consumed: item['consumed'] == true));
       }
       return out;
     } catch (_) {
@@ -153,6 +176,7 @@ class AiTaskCache {
   Future<void> _persistAll({
     required String childId,
     required String subject,
+    int? grade,
     required List<_CachedDraft> entries,
   }) async {
     final prefs = await SharedPreferences.getInstance();
@@ -160,18 +184,21 @@ class AiTaskCache {
         .map((e) => <String, dynamic>{
               'draft': e.draft.toJson(),
               'consumed': e.consumed,
-            })
-        .toList(growable: false));
-    await prefs.setString(_storageKey(childId, subject), raw);
+            },
+          )
+        .toList(growable: false),
+    );
+    await prefs.setString(_storageKey(childId, subject, grade), raw);
   }
 
   Future<void> _writeMeta({
     required String childId,
     required String subject,
+    int? grade,
     required String generatedAtIso,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_metaKey(childId, subject), generatedAtIso);
+    await prefs.setString(_metaKey(childId, subject, grade), generatedAtIso);
   }
 }
 

@@ -1,302 +1,74 @@
-name: Publish APK as Release
-
-# Veroeffentlicht den fertigen Debug-APK als GitHub-Release.
-# Damit hat Heinz einen permanenten direkten Download-Link,
-# unabhaengig von der Artifact-Storage-Quota.
-#
-# Auslöser:
-#   - manuell ueber "Run workflow"
-#   - automatisch nach jedem push auf main
-#
-# Release-Tag-Schema: build-{run_number}
-# APK-Dateiname: Lumo-Lernen-{run_number}-{short_sha}.apk
-
+name: Publish verified Android APK
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-      - copilot/feat-engine-overhaul-timer-replacement
-
+    branches: [main, codex/lumo-restart-school-test-2026-10-02]
+  workflow_dispatch:
 permissions:
   contents: write
-
-# Cancel-in-progress: alte Release-Builds abbrechen wenn ein neuer
-# Push auf main kommt. Spart Actions-Minuten.
 concurrency:
-  group: release-${{ github.workflow }}-${{ github.ref }}
+  group: release-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
-  build-and-release:
+  release:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-
       - uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.44.9'
           channel: stable
           cache: true
-
-      - name: Flutter version
+      - name: Create Android host
+        run: flutter create --platforms=android --org dev.ullmann.lumo .
+      - name: Prepare native connections and stable signing
+        run: python3 scripts/prepare_android.py
+      - name: Backend and Android regression tests
         run: |
-          flutter --version
-          dart --version
-
-      - name: Create Android platform if missing
-        run: |
-          if [ ! -d android ]; then
-            flutter create --platforms=android --org dev.ullmann.lumo .
-          fi
-
-      # Heinz-Wunsch 2026-05-21: Updates ohne 'alte App deinstallieren'.
-      # Standardmaessig generiert flutter create bei jedem CI-Lauf einen
-      # neuen zufaelligen Debug-Keystore. Folge: jede APK hat eine andere
-      # Signatur und Android verweigert ein Update -> User muss erst die
-      # alte App loeschen.
-      #
-      # Fix: einen STABILEN Debug-Keystore aus tools/ ueber den frischen
-      # legen. Dann haben alle CI-Builds dieselbe Signatur und Android
-      # erkennt sie als Update derselben App.
-      - name: Use stable debug keystore
-        run: |
-          if [ -f tools/lumo-debug.keystore ]; then
-            mkdir -p ~/.android
-            cp tools/lumo-debug.keystore ~/.android/debug.keystore
-            ls -la ~/.android/debug.keystore
-            echo "Stable debug keystore installed."
-          else
-            echo "WARN: tools/lumo-debug.keystore not found - falling back to flutter-generated keystore"
-          fi
-
-      - name: Patch AndroidManifest safely
-        run: |
-          MANIFEST="android/app/src/main/AndroidManifest.xml"
-          if [ -f "$MANIFEST" ]; then
-            if ! grep -q "xmlns:tools=" "$MANIFEST"; then
-              sed -i 's|<manifest |<manifest xmlns:tools="http://schemas.android.com/tools" |' "$MANIFEST" || true
-            fi
-            if ! grep -q "android.permission.CAMERA" "$MANIFEST"; then
-              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-feature android:name="android.hardware.camera" android:required="false"/>' "$MANIFEST"
-            fi
-            if ! grep -q "android.permission.RECORD_AUDIO" "$MANIFEST"; then
-              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.RECORD_AUDIO"/>' "$MANIFEST"
-            fi
-            if ! grep -q "intent.action.TTS_SERVICE" "$MANIFEST"; then
-              sed -i 's|</manifest>|    <queries>\n        <intent>\n            <action android:name="android.intent.action.TTS_SERVICE"/>\n        </intent>\n    </queries>\n</manifest>|' "$MANIFEST"
-            fi
-            # Inter-App-Bridge 2026-06-03: Deep-Link intent-filter, damit die
-            # Godot-3D-Hub-App (dev.ullmann.lumo3d) diese Lern-App per
-            # OS.shell_open("lumolernen://open?section=learn") starten kann.
-            # Additiv + idempotent: nur einfuegen wenn noch nicht da.
-            if ! grep -q 'android:scheme="lumolernen"' "$MANIFEST"; then
-              sed -i 's|</activity>|        <intent-filter>\n            <action android:name="android.intent.action.VIEW"/>\n            <category android:name="android.intent.category.DEFAULT"/>\n            <category android:name="android.intent.category.BROWSABLE"/>\n            <data android:scheme="lumolernen"/>\n        </intent-filter>\n        </activity>|' "$MANIFEST"
-            fi
-            # Tier 1 Foundation 2026-05-23: Impeller-Renderer aktivieren.
-            # Liefert auf Android deutlich fluessigere Animationen + native
-            # Shader-Pipeline. Wird via meta-data im <application>-Block
-            # angefordert. Fallback auf Skia falls Impeller nicht verfuegbar.
-            if ! grep -q "EnableImpeller" "$MANIFEST"; then
-              sed -i 's|</application>|    <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="true"/>\n    </application>|' "$MANIFEST"
-            fi
-            # Heinz 2026-06-06: Ein-Klick-Auto-Update. Wir brauchen
-            # REQUEST_INSTALL_PACKAGES um den System-Installer ohne
-            # Browser-Umweg zu starten. Plus FileProvider damit die
-            # APK-URI auf Android 7+ teilbar ist (content:// statt file://).
-            if ! grep -q "REQUEST_INSTALL_PACKAGES" "$MANIFEST"; then
-              sed -i '/<manifest /a \    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>' "$MANIFEST"
-            fi
-            if ! grep -q "androidx.core.content.FileProvider" "$MANIFEST"; then
-              sed -i 's|</application>|    <provider\n        android:name="androidx.core.content.FileProvider"\n        android:authorities="${applicationId}.fileprovider"\n        android:exported="false"\n        android:grantUriPermissions="true">\n        <meta-data\n            android:name="android.support.FILE_PROVIDER_PATHS"\n            android:resource="@xml/lumo_file_paths"/>\n    </provider>\n    </application>|' "$MANIFEST"
-            fi
-          fi
-
-          # 2026-06-06: FileProvider braucht eine Pfad-Whitelist.
-          # Liegt als statische Datei in tools/auto_install/ - vermeidet
-          # YAML-Parser-Probleme mit inline-Heredocs.
-          mkdir -p android/app/src/main/res/xml
-          cp tools/auto_install/lumo_file_paths.xml android/app/src/main/res/xml/lumo_file_paths.xml
-
-          # 2026-06-06: MainActivity.kt mit MethodChannel-Bridge fuer Auto-Install.
-          # Statische Datei aus tools/auto_install/ ueberschreibt die von
-          # flutter create generierte MainActivity.
-          KOTLIN_DIR="android/app/src/main/kotlin/dev/ullmann/lumo"
-          if [ -d "$KOTLIN_DIR" ]; then
-            cp tools/auto_install/MainActivity.kt "$KOTLIN_DIR/MainActivity.kt"
-            echo "MainActivity.kt mit Installer-MethodChannel installiert."
-          else
-            echo "WARN: Kotlin-Verzeichnis nicht gefunden: $KOTLIN_DIR"
-            find android/app/src/main/kotlin -type d | head -5
-          fi
-
-
-      - name: Patch minSdk to 21
-        run: |
-          for GRADLE in android/app/build.gradle android/app/build.gradle.kts; do
-            if [ -f "$GRADLE" ]; then
-              sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/' "$GRADLE" || true
-              sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/' "$GRADLE" || true
-              sed -i 's/minSdk = flutter\.minSdkVersion/minSdk = 21/' "$GRADLE" || true
-              sed -i 's/minSdkVersion = flutter\.minSdkVersion/minSdkVersion = 21/' "$GRADLE" || true
-            fi
-          done
-
+          node --test server/lumo-ai-proxy/test/*.test.js
+          python3 -m unittest discover -s scripts/tests
+      - name: Audit all generated task templates
+        run: dart scripts/audit_content.dart
       - name: Repair guard
-        run: |
-          if [ -f scripts/lumo_repair_guard.sh ]; then
-            bash scripts/lumo_repair_guard.sh
-          fi
-
+        run: bash scripts/lumo_repair_guard.sh
       - name: Get dependencies
         run: flutter pub get
-
-      - name: Build debug APK
-        run: |
-          set -o pipefail
-          # CI-Rescue 2026-05-25: --verbose + Tail-on-Failure damit der
-          # eigentliche Build-Error im GitHub-Log sichtbar wird.
-          # Build-Nummer und Version-Name werden via --dart-define an die App weitergegeben.
-          # AppUpdateService liest currentBuildNumber aus int.fromEnvironment('LUMO_BUILD_NUMBER').
-          flutter build apk --debug --verbose \
-            --build-number "$GITHUB_RUN_NUMBER" \
-            --dart-define=LUMO_BUILD_NUMBER="$GITHUB_RUN_NUMBER" \
-            --dart-define=LUMO_VERSION_NAME=0.9.0 2>&1 | tee /tmp/build.log || (
-              echo "::group::== LETZTE 200 ZEILEN BUILD-LOG =="
-              tail -n 200 /tmp/build.log
-              echo "::endgroup::"
-              echo "::group::== SAEMTLICHE 'error' UND 'FAILED' ZEILEN =="
-              grep -nE "error|FAILED|Exception|Caused by" /tmp/build.log | tail -n 80 || true
-              echo "::endgroup::"
-              exit 1
-            )
-          find build -type f -name "*.apk" -print
-
-      - name: Prepare APK for release
+      - name: Analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Full Flutter regression tests
+        run: flutter test --no-pub --reporter=expanded
+      - name: Build Android APK
+        run: flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER" --build-name 0.9.0
+      - name: Prepare release
         id: prepare
+        env:
+          BRANCH: ${{ github.ref_name }}
         run: |
-          set -e
           mkdir -p dist
-          APK_PATH="build/app/outputs/flutter-apk/app-debug.apk"
-          if [ ! -f "$APK_PATH" ]; then
-            APK_PATH="$(find build -type f -name "*.apk" | sort | head -n 1)"
-          fi
-          test -n "$APK_PATH"
-          test -f "$APK_PATH"
-          SHORT_SHA="${GITHUB_SHA:0:7}"
-          DEST="dist/Lumo-Lernen-${GITHUB_RUN_NUMBER}-${SHORT_SHA}.apk"
-          cp "$APK_PATH" "$DEST"
-          cp "$APK_PATH" "dist/Lumo-Lernen-latest.apk"
+          cp build/app/outputs/flutter-apk/app-debug.apk dist/Lumo-Lernen-latest.apk
           sha256sum dist/*.apk > dist/SHA256SUMS.txt
-          echo "apk_path=$DEST" >> "$GITHUB_OUTPUT"
-          echo "short_sha=$SHORT_SHA" >> "$GITHUB_OUTPUT"
-          ls -la dist/
-
-      # Quota-Hinweis: GitHub Actions Artifact wurde entfernt.
-      # Heinz' Repo hat die Artifact-Quota erreicht
-      # ('Failed to CreateArtifact: Artifact storage quota has been hit').
-      # Dieser Step blockierte den ganzen Workflow.
-      #
-      # Stattdessen: GitHub Release ist der einzige Ausgabepfad.
-      # Permanent-Link, kein Quota-Limit, public oder per Token zugaenglich.
-
-      # Hauptpfad: GitHub Release
-      # Permanent-Link unter https://github.com/Ullmann27/lumo-lernen/releases
-      # OHNE continue-on-error: dieser Step MUSS funktionieren, weil er
-      # der einzige Auslieferungs-Pfad ist. Wenn er rot wird, sieht Heinz
-      # das sofort.
-      - name: Changelog seit letztem Release erstellen
-        id: changelog
-        run: |
-          git fetch --tags --unshallow 2>/dev/null || git fetch --tags || true
-          # Letzten Release-Tag finden (build-XX Schema)
-          LAST_TAG=$(git tag --list 'build-*' --sort=-version:refname | grep -v "build-$GITHUB_RUN_NUMBER" | head -n 1)
-          echo "Letzter Tag: $LAST_TAG"
-          if [ -n "$LAST_TAG" ]; then
-            LOG=$(git log "${LAST_TAG}..HEAD" --pretty=format:"- %s" --no-merges 2>/dev/null | head -30 || true)
-          else
-            LOG=$(git log --pretty=format:"- %s" --no-merges -20 2>/dev/null || true)
-          fi
-          if [ -z "$LOG" ]; then
-            LOG="- Kleinere Verbesserungen und Fehlerbehebungen"
-          fi
-          SHORT_SHA="${GITHUB_SHA:0:7}"
-          BUILD_DATE=$(date '+%d.%m.%Y %H:%M Uhr')
-          # Vollständigen Release-Body schreiben
-          cat > /tmp/release_body.md << RELEASEBODY
-          **Lumo Lernen — Debug Build #${GITHUB_RUN_NUMBER}**
-
-          Commit: \`${SHORT_SHA}\` · Build-Datum: ${BUILD_DATE}
-
-          ## 📥 Direkter Download
-
-          Auf dem Handy bitte **Lumo-Lernen-latest.apk** antippen (siehe Anhang unten).
-
-          > **Einmalig in Android freigeben:** Einstellungen → Apps → Spezieller Zugriff → Unbekannte Apps installieren → Browser aktivieren.
-
-          ## 🔄 Änderungen in diesem Build
-
-          ${LOG}
-
-          ## 📋 Versionierung
-
-          Dateiname mit Build-Nummer und Commit-Hash:
-          **Lumo-Lernen-${GITHUB_RUN_NUMBER}-${SHORT_SHA}.apk**
-
-          SHA256-Prüfsummen in \`SHA256SUMS.txt\`.
-          RELEASEBODY
-          echo "Release-Body erstellt:"
-          cat /tmp/release_body.md
-
-      - name: Publish GitHub Release
-        id: publish_release
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          school=os.environ['BRANCH']!='main'
+          tag=('school-test-' if school else 'build-')+os.environ['GITHUB_RUN_NUMBER']
+          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
+              output.write(f'tag={tag}\nprerelease={str(school).lower()}\nlatest={str(not school).lower()}\n')
+          Path('/tmp/release_body.md').write_text('Lumo Lernen 0.9.0 – geprüfter Android-Testbuild.\n\nLernaufgaben, Fehlversuche und Hilfen, gespeicherte Belohnungen, Eltern-PIN, Android-Installer und Verbindung zur Godot-3D-App überarbeitet.\n\nFlutter-Analyse, vollständige Flutter-Tests sowie Backend- und Android-Verbindungstests müssen vor Veröffentlichung erfolgreich sein. Geräte-, Sprach- und Unterrichtstest stehen noch aus.\n\nDie 3D-App wird separat installiert; im Rennspiel führt „3D-Rennen“ direkt zu ihr oder zur Browser-Version.\n\nPrüfsumme: SHA256SUMS.txt.\n')
+          PY
+      - name: Publish downloadable APK
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: build-${{ github.run_number }}
-          name: "Lumo Lernen Build ${{ github.run_number }}"
-          body-path: /tmp/release_body.md
-          draft: false
-          prerelease: false
-          fail_on_unmatched_files: false
-          make_latest: 'true'
+          tag_name: ${{ steps.prepare.outputs.tag }}
+          name: Lumo Lernen ${{ steps.prepare.outputs.tag }}
+          body_path: /tmp/release_body.md
+          target_commitish: ${{ github.sha }}
+          prerelease: ${{ steps.prepare.outputs.prerelease == 'true' }}
+          make_latest: ${{ steps.prepare.outputs.latest }}
           files: |
             dist/Lumo-Lernen-latest.apk
-            dist/Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk
             dist/SHA256SUMS.txt
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Release-Status zusammenfassen
-        if: always()
-        run: |
-          echo "═══════════════════════════════════════════════════"
-          echo "BUILD #${{ github.run_number }} ABGESCHLOSSEN"
-          echo "═══════════════════════════════════════════════════"
-          echo ""
-          if [ "${{ steps.publish_release.outcome }}" = "success" ]; then
-            echo "🚀 RELEASE PUBLIZIERT:"
-            echo ""
-            echo "   Direkt zum neuen Build:"
-            echo "   https://github.com/${{ github.repository }}/releases/tag/build-${{ github.run_number }}"
-            echo ""
-            echo "   Immer aktuell:"
-            echo "   https://github.com/${{ github.repository }}/releases/latest"
-            echo ""
-            echo "   APK-Dateien im Release:"
-            echo "     - Lumo-Lernen-latest.apk"
-            echo "     - Lumo-Lernen-${{ github.run_number }}-${{ steps.prepare.outputs.short_sha }}.apk"
-          else
-            echo "❌ RELEASE-Schritt hat NICHT funktioniert."
-            echo ""
-            echo "   Wahrscheinliche Ursache:"
-            echo "   Repo-Settings -> Actions -> General -> Workflow permissions"
-            echo "   muss 'Read and write permissions' sein."
-            echo ""
-            echo "   Direkter Settings-Link:"
-            echo "   https://github.com/${{ github.repository }}/settings/actions"
-          fi
-          echo "═══════════════════════════════════════════════════"

@@ -64,7 +64,7 @@ require_text lib/app/app_shell.dart "LearningContent(appState: _appState)"
 require_text lib/app/app_shell.dart "ReadingContent(appState: _appState"
 require_text lib/app/app_shell.dart "SettingsContent(appState: _appState)"
 require_text lib/app/app_shell.dart "LumoAgentContent(appState: _appState"
-require_text lib/app/app_shell.dart "ParentalGate.show(context)"
+require_text lib/app/app_shell.dart "ParentalGate.show("
 require_text lib/app/app_shell.dart "ScanScreen("
 
 require_text lib/app/app_state.dart "loadLearningProfile"

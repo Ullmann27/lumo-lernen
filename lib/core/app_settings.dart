@@ -101,32 +101,39 @@ class AppSettings {
 
   factory AppSettings.fromJson(Map<String, dynamic> json) {
     return AppSettings(
-      parentPin: (json['parentPin'] as String?)?.trim().isNotEmpty == true ? json['parentPin'] as String : '2468',
-      dailyGoal: _intIn(json['dailyGoal'], fallback: 3, allowed: const [3, 5, 10, 15]),
+      parentPin: RegExp(r'^\d{4,8}$').hasMatch('${json['parentPin'] ?? ''}')?'${json['parentPin']}'
+          : '2468',
+      dailyGoal: _intIn(json['dailyGoal'], fallback: 3, allowed: const [3, 5, 10, 15],
+      ),
       soundEnabled: json['soundEnabled'] as bool? ?? true,
       voiceEnabled: json['voiceEnabled'] as bool? ?? true,
       autoReadEnabled: json['autoReadEnabled'] as bool? ?? true,
       microphoneEnabled: json['microphoneEnabled'] as bool? ?? true,
       scannerEnabled: json['scannerEnabled'] as bool? ?? true,
       aiProxyEnabled: json['aiProxyEnabled'] as bool? ?? false,
-      aiLearningMode: AiLearningModeX.fromName(json['aiLearningMode'] as String?),
+      aiLearningMode: AiLearningModeX.fromName(json['aiLearningMode'] as String?,
+      ),
       aiProxyUrl: _safeProxyUrl(json['aiProxyUrl']),
       reduceAnimations: json['reduceAnimations'] as bool? ?? false,
       largeText: json['largeText'] as bool? ?? false,
       calmMode: json['calmMode'] as bool? ?? false,
       learningMode: LearningModeX.fromName(json['learningMode'] as String?),
-      voiceRate: _doubleRange(json['voiceRate'], fallback: 0.35, min: 0.25, max: 0.55),
-      voicePitch: _doubleRange(json['voicePitch'], fallback: 1.0, min: 0.85, max: 1.18),
+      voiceRate: _doubleRange(json['voiceRate'], fallback: 0.35, min: 0.25, max: 0.55,
+      ),
+      voicePitch: _doubleRange(json['voicePitch'], fallback: 1.0, min: 0.85, max: 1.18,
+      ),
     );
   }
 
-  static int _intIn(dynamic value, {required int fallback, required List<int> allowed}) {
+  static int _intIn(dynamic value, {required int fallback, required List<int> allowed,
+  }) {
     final parsed = value is int ? value : int.tryParse(value?.toString() ?? '');
     if (parsed != null && allowed.contains(parsed)) return parsed;
     return fallback;
   }
 
-  static double _doubleRange(dynamic value, {required double fallback, required double min, required double max}) {
+  static double _doubleRange(dynamic value, {required double fallback, required double min, required double max,
+  }) {
     final parsed = value is num ? value.toDouble() : double.tryParse(value?.toString() ?? '');
     if (parsed == null) return fallback;
     return parsed.clamp(min, max).toDouble();
@@ -146,7 +153,14 @@ class AppSettings {
     final uri = Uri.tryParse(trimmed);
     if (uri == null || !uri.hasScheme || uri.host.isEmpty) return defaultAiProxyUrl;
     if (uri.scheme != 'https' && uri.scheme != 'http') return defaultAiProxyUrl;
-    return _stripWellKnownPaths(trimmed);
+    if (uri.userInfo.isNotEmpty) return defaultAiProxyUrl;
+    // Eingefuegte Health-Links enthalten oft '?' oder einen Fragment-Anker.
+    // Nur der Pfad wird bereinigt; Query und Fragment gehoeren nicht zur Basis.
+    final path = _stripWellKnownPaths(uri.path);
+    return uri
+        .replace(path: path, query: '', fragment: '')
+        .toString()
+        .replaceAll(RegExp(r'[?#]+$'), '');
   }
 
   /// Entfernt bekannte Endpunkt-Pfade aus einer Benutzer-URL,
@@ -165,8 +179,8 @@ class AppSettings {
     var changed = true;
     while (changed) {
       changed = false;
-      for (final suffix in const <String>['/health', '/chat', '/']) {
-        if (out.endsWith(suffix) && out.length > suffix.length) {
+      for (final suffix in const <String>['/health', '/chat', '/tasks', '/']) {
+        if (out.endsWith(suffix) ) {
           out = out.substring(0, out.length - suffix.length);
           changed = true;
         }

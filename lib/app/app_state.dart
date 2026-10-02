@@ -8,7 +8,8 @@ import '../core/recommendation_engine.dart';
 import '../core/reward_wallet_repository.dart';
 import '../core/scanned_work_analysis.dart';
 
-enum LumoSection { home, learn, exercises, reading, games, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings }
+enum LumoSection { home, learn, exercises, reading, games, tests, schoolwork, scanner, missions, progress, rewards, agent, profile, settings ,
+}
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
 
@@ -19,8 +20,8 @@ class LumoSessionState {
     this.grade = 1,
     this.subject = 'Alle',
     this.unit = 'Alle',
-    this.stars = 24,
-    this.xp = 840,
+    this.stars = 0,
+    this.xp = 0,
     this.lastGrade = 0,
     this.mood = LumoMood.greet,
     this.lumoMessage = 'Hallo!\nWomit wollen wir\nheute lernen?',
@@ -57,8 +58,8 @@ class LumoSessionState {
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
-  int get progressPercent => ((solved.values.fold(0, (a, b) => a + b) / 30) * 100).round().clamp(0, 100);
-  int get weeklyProgress => 62;
+  int get progressPercent => ((solved.values.fold(0, (a, b) => a + b) / 30) * 100).round().clamp(0, 100,
+      );
 
   LumoSessionState copyWith({
     LumoSection? section,
@@ -112,6 +113,34 @@ class LumoAppState extends ChangeNotifier {
   bool _learningProfileLoaded = false;
   bool _disposed = false;
 
+  Future<void> _pendingRewards = Future<void>.value();
+
+  Future<void> flushRewards() => _pendingRewards;
+
+  void _persistRewards({int stars = 0, int xp = 0}) {
+    _pendingRewards = _pendingRewards
+        .then((_) async {
+          if (stars != 0) await RewardWalletRepository.instance.addStars(stars);
+          if (xp != 0) await RewardWalletRepository.instance.addXp(xp);
+        })
+        .catchError((Object _) {});
+  }
+
+  int get weeklyProgressPercent {
+    final daily = learningProfileDailyMap();
+    final now = DateTime.now();
+    final monday = DateTime(now.year, now.month, now.day - now.weekday + 1);
+    final goal = _state.settings.dailyGoal;
+    var completed = 0;
+    for (var offset = 0; offset < 7; offset++) {
+      final day = DateTime(monday.year, monday.month, monday.day + offset);
+      final key =
+          '${day.year}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
+      completed += (daily[key] ?? 0).clamp(0, goal);
+    }
+    return (completed * 100 / (goal * 7)).round();
+  }
+
   LearningProfileEngine get learningProfile => _learningProfile;
   bool get learningProfileLoaded => _learningProfileLoaded;
 
@@ -126,12 +155,7 @@ class LumoAppState extends ChangeNotifier {
     if (_disposed || delta == 0) return;
     _state = _state.copyWith(stars: (_state.stars + delta).clamp(0, 999999));
     _safeNotify();
-    // Persistent in Wallet schreiben (fire-and-forget, errors ignorieren)
-    () async {
-      try {
-        await RewardWalletRepository.instance.addStars(delta);
-      } catch (_) {}
-    }();
+    _persistRewards(stars: delta);
   }
 
   /// Belohne XP nach erfolgreichem Mini-Spiel / Kart-Lauf.
@@ -141,11 +165,7 @@ class LumoAppState extends ChangeNotifier {
     final newXp = (_state.xp + delta).clamp(0, 9999999);
     _state = _state.copyWith(xp: newXp);
     _safeNotify();
-    () async {
-      try {
-        await RewardWalletRepository.instance.addXp(delta);
-      } catch (_) {}
-    }();
+    _persistRewards(xp: delta);
   }
 
   /// Beim App-Start aufgerufen: laedt die Wallet und schreibt
@@ -153,12 +173,12 @@ class LumoAppState extends ChangeNotifier {
   Future<void> hydrateFromWallet() async {
     if (_disposed) return;
     try {
+      await _pendingRewards;
       final wallet = await RewardWalletRepository.instance.load();
       if (_disposed) return;
       _state = _state.copyWith(
-        stars: wallet.stars > 0 ? wallet.stars : _state.stars,
-        xp: wallet.xp > 0 ? wallet.xp : _state.xp,
-      );
+        stars: wallet.stars ,
+        xp: wallet.xp );
       _safeNotify();
     } catch (_) {
       // Wallet-Fehler ist nicht App-kritisch
@@ -174,19 +194,22 @@ class LumoAppState extends ChangeNotifier {
       _syncLearningRecommendation();
     } catch (_) {
       if (_disposed) return;
-      _state = _state.copyWith(mood: LumoMood.comfort, lumoMessage: 'Ich starte sicher.\nGleich geht es weiter.');
+      _state = _state.copyWith(mood: LumoMood.comfort, lumoMessage: 'Ich starte sicher.\nGleich geht es weiter.',
+      );
     }
     _safeNotify();
   }
 
-  Future<void> recordLearningAnswer({required String subject, required String unit, required bool correct, bool hintUsed = false}) async {
+  Future<void> recordLearningAnswer({required String subject, required String unit, required bool correct, bool hintUsed = false,
+  }) async {
     if (_disposed) return;
     try {
       if (!_learningProfileLoaded) {
         await _learningProfile.load();
         _learningProfileLoaded = true;
       }
-      await _learningProfile.recordAnswer(subject: subject, unit: unit, isCorrect: correct, hintUsed: hintUsed);
+      await _learningProfile.recordAnswer(subject: subject, unit: unit, isCorrect: correct, hintUsed: hintUsed,
+      );
       _syncLearningRecommendation();
       _safeNotify();
     } catch (_) {}
@@ -207,10 +230,12 @@ class LumoAppState extends ChangeNotifier {
     final newWeak = Map<String, int>.from(_state.weakSkills);
     for (final unit in analysis.weakUnits) {
       newWeak[unit] = (newWeak[unit] ?? 0) + 1;
-      await recordLearningAnswer(subject: analysis.nextPracticeSubject, unit: unit, correct: false);
+      await recordLearningAnswer(subject: analysis.nextPracticeSubject, unit: unit, correct: false,
+      );
     }
     for (final unit in analysis.strengthUnits) {
-      await recordLearningAnswer(subject: analysis.nextPracticeSubject, unit: unit, correct: true);
+      await recordLearningAnswer(subject: analysis.nextPracticeSubject, unit: unit, correct: true,
+      );
     }
     update(_state.copyWith(
       section: LumoSection.exercises,
@@ -221,11 +246,13 @@ class LumoAppState extends ChangeNotifier {
       lumoMessage: analysis.childSummary,
       sessionKind: analysis.workType == ScannedWorkType.schoolwork || analysis.workType == ScannedWorkType.test ? LumoSessionKind.test : LumoSessionKind.quickPractice,
       lastScanAnalysis: analysis,
-    ));
+    ),
+    );
     return analysis;
   }
 
-  Recommendation? topLearningRecommendation() => _learningProfileLoaded ? _learningProfile.topRecommendation(dailyGoalTarget: _state.settings.dailyGoal) : null;
+  Recommendation? topLearningRecommendation() => _learningProfileLoaded ? _learningProfile.topRecommendation(dailyGoalTarget: _state.settings.dailyGoal,
+        ) : null;
 
   void _syncLearningRecommendation() {
     final recommendation = topLearningRecommendation();
@@ -338,13 +365,19 @@ class LumoAppState extends ChangeNotifier {
       LumoSection.profile: LumoMood.idle,
       LumoSection.settings: LumoMood.idle,
     };
-    update(_state.copyWith(section: section, mood: moods[section], lumoMessage: messages[section]));
+    update(_state.copyWith(section: section, mood: moods[section], lumoMessage: messages[section],
+      ),
+    );
   }
 
   void correctAnswer(String unit) {
+    if (_disposed) return;
     final solved = Map<String, int>.from(_state.solved);
     solved[unit] = (solved[unit] ?? 0) + 1;
-    update(_state.copyWith(stars: _state.stars + 3, xp: _state.xp + 20, solved: solved, practiceErrors: 0, mood: LumoMood.celebrate, lumoMessage: 'Juhu!\nDas war richtig.\nWeiter so! ⭐'));
+    update(_state.copyWith(stars: _state.stars + 3, xp: _state.xp + 20, solved: solved, practiceErrors: 0, mood: LumoMood.celebrate, lumoMessage: 'Juhu!\nDas war richtig.\nWeiter so! ⭐',
+      ),
+    );
+    _persistRewards(stars: 3, xp: 20);
   }
 
   void wrongAnswer(String unit) {
@@ -356,7 +389,8 @@ class LumoAppState extends ChangeNotifier {
       practiceErrors: errors,
       mood: errors >= 2 ? LumoMood.comfort : LumoMood.think,
       lumoMessage: errors >= 2 ? 'Ganz ruhig.\nIch zeige dir\nden Weg.' : 'Fast!\nWir schauen\nnochmal hin.',
-    ));
+    ),
+    );
   }
 
   @override

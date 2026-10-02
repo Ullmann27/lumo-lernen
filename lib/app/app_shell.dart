@@ -82,7 +82,8 @@ class _AppShellState extends State<AppShell>
         childName: profile.name,
         grade: profile.grade,
         lumoMessage: greeting,
-      ));
+      ),
+      );
     }
     // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
     final deepSection = widget.initialSection;
@@ -286,7 +287,9 @@ class _AppShellState extends State<AppShell>
   Future<void> _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
     if (section == LumoSection.profile || section == LumoSection.settings) {
-      final ok = await ParentalGate.show(context);
+      final ok = await ParentalGate.show(context,
+        pin: _appState.state.settings.parentPin,
+      );
       if (!mounted || !ok) return;
     }
     if (!mounted) return;
@@ -295,13 +298,16 @@ class _AppShellState extends State<AppShell>
     _appState.setSection(section);
     final settings = _appState.state.settings;
     if (settings.voiceEnabled && settings.autoReadEnabled) {
-      LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
+      LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '),
+      );
     }
     if (mounted) await _fadeCtrl.forward();
   }
 
   Future<void> _openParentSettings() async {
-    final ok = await ParentalGate.show(context);
+    final ok = await ParentalGate.show(context,
+      pin: _appState.state.settings.parentPin,
+    );
     if (!mounted || !ok) return;
     await _navigateTo(LumoSection.settings);
   }
@@ -311,13 +317,15 @@ class _AppShellState extends State<AppShell>
     _appState.update(_appState.state.copyWith(
       lumoMessage: 'Ich analysiere\ndeine Aufgabe\nkurz und ruhig.',
       mood: LumoMood.think,
-    ));
+    ),
+    );
 
     final analysis = await _appState.analyzeScannedWork(text);
     if (!mounted) return;
 
     if (_appState.state.settings.voiceEnabled) {
-      LumoVoice.instance.speak(analysis.childSummary, style: analysis.hasWeaknesses ? VoiceStyle.comfort : VoiceStyle.explain);
+      LumoVoice.instance.speak(analysis.childSummary, style: analysis.hasWeaknesses ? VoiceStyle.comfort : VoiceStyle.explain,
+      );
     }
 
     await _fadeCtrl.reverse();
@@ -336,11 +344,13 @@ class _AppShellState extends State<AppShell>
         return LumoAkademieScreen(appState: _appState);
       case LumoSection.exercises:
         if (_isReadingMode()) {
-          return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
+          return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn),
+          );
         }
         return LearningContent(appState: _appState);
       case LumoSection.reading:
-        return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn));
+        return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn),
+        );
       case LumoSection.agent:
         return LumoAgentContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.scanner:
@@ -374,7 +384,8 @@ class _AppShellState extends State<AppShell>
       case LumoSection.settings:
         return SettingsContent(appState: _appState);
       default:
-        return SectionContent(appState: _appState, section: section, onSection: _navigateTo);
+        return SectionContent(appState: _appState, section: section, onSection: _navigateTo,
+        );
     }
   }
 
@@ -398,9 +409,11 @@ class _AppShellState extends State<AppShell>
                   return Column(children: [
                     _MobileLumoHeader(appState: _appState, onFoxTap: () {
                       if (_appState.state.settings.voiceEnabled) {
-                        LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '));
+                        LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '),
+                            );
                       }
-                    }),
+                    },
+                      ),
                     Expanded(
                       child: Listener(
                         // PARENT-LISTENER (Heinz-Auftrag):
@@ -418,11 +431,13 @@ class _AppShellState extends State<AppShell>
                             return;
                           }
                           LumoCompanionRequests.instance
-                              .requestMoveTo(event.position);
+                              .requestMoveTo(event.position,
+                            );
                         },
                         child: Stack(children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(LumoRadius.lg),
+                            borderRadius: BorderRadius.circular(LumoRadius.lg,
+                                ),
                             child: FadeTransition(
                               opacity: _fadeCtrl,
                               child: LumoSectionTransition(
@@ -439,11 +454,14 @@ class _AppShellState extends State<AppShell>
                           // / "Deutsch mit Lumo" Karten. Companion komplett
                           // ausgeblendet - die Subject-Tiles haben ihre
                           // eigenen Lumo-Symbole und reichen.
-                        ]),
+                        ],
+                          ),
                       ),
                     ),
-                    _MobileBottomNavigation(active: _appState.state.section, onSelect: _navigateTo),
-                  ]);
+                    _MobileBottomNavigation(active: _appState.state.section, onSelect: _navigateTo,
+                      ),
+                  ],
+                  );
                 }
 
                 return Padding(
@@ -452,14 +470,17 @@ class _AppShellState extends State<AppShell>
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       if (showNav) ...[
-                        LeftNavigation(appState: _appState, onSelect: _navigateTo, width: navWidth),
+                        LeftNavigation(appState: _appState, onSelect: _navigateTo, width: navWidth,
+                        ),
                         SizedBox(width: gap),
                       ],
                       Expanded(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(LumoRadius.xl),
                           child: Container(
-                            decoration: BoxDecoration(color: LumoColors.appBg, borderRadius: BorderRadius.circular(LumoRadius.xl)),
+                            decoration: BoxDecoration(color: LumoColors.appBg, borderRadius: BorderRadius.circular(LumoRadius.xl,
+                              ),
+                            ),
                             // ── Stack: Content + Free-Companion-Overlay ──
                             // Heinz: 'Der rechte feste Kasten muss weg.
                             // Lumo soll frei beweglich sein.'
@@ -516,24 +537,33 @@ class _FeatureDisabledContent extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 560),
           child: Container(
             padding: const EdgeInsets.all(22),
-            decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF8ED), Color(0xFFFFFFFF)])),
+            decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF8ED), Color(0xFFFFFFFF)],
+              ),
+            ),
             child: Column(mainAxisSize: MainAxisSize.min, children: [
               Container(
                 width: 70,
                 height: 70,
-                decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)),
+                decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg),
+                  ),
                 child: Icon(icon, color: LumoColors.orange, size: 34),
               ),
               const SizedBox(height: 14),
-              Text(title, textAlign: TextAlign.center, style: LumoTextStyles.heading2),
+              Text(title, textAlign: TextAlign.center, style: LumoTextStyles.heading2,
+                ),
               const SizedBox(height: 8),
-              Text(message, textAlign: TextAlign.center, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+              Text(message, textAlign: TextAlign.center, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700),
+                ),
               const SizedBox(height: 18),
               Wrap(alignment: WrapAlignment.center, spacing: 10, runSpacing: 10, children: [
-                FilledButton.icon(onPressed: onBack, icon: const Icon(Icons.home_rounded), label: const Text('Zurück')),
-                OutlinedButton.icon(onPressed: onParentSettings, icon: const Icon(Icons.lock_rounded), label: const Text('Elternbereich')),
-              ]),
-            ]),
+                FilledButton.icon(onPressed: onBack, icon: const Icon(Icons.home_rounded), label: const Text('Zurück'),
+                    ),
+                OutlinedButton.icon(onPressed: onParentSettings, icon: const Icon(Icons.lock_rounded), label: const Text('Elternbereich'),
+                    ),
+              ],
+                ),
+            ],
+            ),
           ),
         ),
       ),
@@ -554,7 +584,8 @@ class _MobileLumoHeader extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(8, 6, 8, 6),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(colors: [LumoColors.stageBg1, LumoColors.stageBg2]),
+        gradient: const LinearGradient(colors: [LumoColors.stageBg1, LumoColors.stageBg2],
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(color: Colors.white.withOpacity(.72)),
         boxShadow: LumoShadow.card,
@@ -576,9 +607,11 @@ class _MobileLumoHeader extends StatelessWidget {
                 height: 52,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight]),
+                  gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight],
+                    ),
                 ),
-                child: const Center(child: Text('🦊', style: TextStyle(fontSize: 28))),
+                child: const Center(child: Text('🦊', style: TextStyle(fontSize: 28)),
+                  ),
               ),
             ),
           ),
@@ -586,17 +619,28 @@ class _MobileLumoHeader extends StatelessWidget {
         const SizedBox(width: 10),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-            Text(st.childName, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.ink900)),
+            Text(st.childName, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.ink900,
+                  ),
+                ),
             const SizedBox(height: 2),
-            Text(st.lumoMessage.replaceAll('\n', ' '), maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink600, height: 1.2)),
-          ]),
+            Text(st.lumoMessage.replaceAll('\n', ' '), maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink600, height: 1.2,
+                  ),
+                ),
+          ],
+            ),
         ),
         const SizedBox(width: 8),
         Column(mainAxisSize: MainAxisSize.min, children: [
-          Text('⭐ ${st.stars}', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700)),
-          Text('Lv ${st.level}', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange)),
-        ]),
-      ]),
+          Text('⭐ ${st.stars}', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700,
+                ),
+              ),
+          Text('Lv ${st.level}', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange,
+                ),
+              ),
+        ],
+          ),
+      ],
+      ),
     );
   }
 }
@@ -611,8 +655,10 @@ class _MobileBottomNavigation extends StatelessWidget {
     _MobileNavItem(LumoSection.home, Icons.home_rounded, 'Start'),
     _MobileNavItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
     _MobileNavItem(LumoSection.agent, Icons.auto_awesome_rounded, 'Lumo KI'),
-    _MobileNavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesen'),
-    _MobileNavItem(LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
+    _MobileNavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesen',
+    ),
+    _MobileNavItem(LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil',
+    ),
   ];
 
   @override
@@ -628,7 +674,8 @@ class _MobileBottomNavigation extends StatelessWidget {
           end: Alignment.bottomCenter,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.pill),
-        border: Border.all(color: LumoColors.orange.withOpacity(.25), width: 1.4),
+        border: Border.all(color: LumoColors.orange.withOpacity(.25), width: 1.4,
+        ),
         boxShadow: [
           BoxShadow(
             color: LumoColors.orange.withOpacity(0.18),
@@ -749,12 +796,10 @@ class _AchievementBurstOverlay extends StatelessWidget {
                 children: [
                   LumoLottie(
                     asset: LumoAssetPaths.lottieStarBurst,
-                    size: 260,
-                  ),
+                    size: 260),
                   Text(
                     achievement.emoji,
-                    style: const TextStyle(fontSize: 92),
-                  ),
+                    style: const TextStyle(fontSize: 92)),
                 ],
               ),
             ),

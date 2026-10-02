@@ -3,17 +3,9 @@ import 'package:flutter/material.dart';
 
 /// Erwachsenen-Schranke ("Parental Gate").
 ///
-/// **Pflicht für Google Play "Designed for Families":**
-/// Vor dem Zugang zu Bereichen, die nicht für Kinder gedacht sind
-/// (Einstellungen, externe Links, Datenschutzerklärung, Käufe), muss
-/// eine Gate vorgelagert sein, die ein typisches kleines Kind nicht
-/// einfach lösen kann.
-///
-/// Diese Implementierung verlangt die Eingabe einer schriftlich
-/// formulierten Multiplikations-Aufgabe (z. B. "Achtundzwanzig").
-/// Das ist konform zu Googles Vorgaben, da sowohl Lesen mehrstelliger
-/// Zahlwörter als auch zweistellige Multiplikation für jüngere
-/// Kinder ungeeignet sind.
+/// Verlangt die konfigurierte Eltern-PIN. Ohne PIN-Parameter bleibt
+/// die bestehende Rechenfrage fuer bisherige Aufrufer verfuegbar.
+/// Diese lokale Bedienungssperre ersetzt keine Kontenauthentifizierung.
 ///
 /// Verwendung:
 /// ```
@@ -21,18 +13,20 @@ import 'package:flutter/material.dart';
 /// if (ok) ...; // Zugriff freigegeben
 /// ```
 class ParentalGate extends StatefulWidget {
-  const ParentalGate({super.key});
+  const ParentalGate({super.key, this.pin});
+
+  final String? pin;
 
   /// Zeigt die Gate als modalen Dialog. Liefert `true` bei Erfolg.
-  static Future<bool> show(BuildContext context) async {
+  static Future<bool> show(BuildContext context, {String? pin}) async {
     final ok = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => const Dialog(
+      builder: (_) => Dialog(
         backgroundColor: Colors.transparent,
         elevation: 0,
         insetPadding: EdgeInsets.all(20),
-        child: ParentalGate(),
+        child: ParentalGate(pin: pin),
       ),
     );
     return ok ?? false;
@@ -64,7 +58,7 @@ class _ParentalGateState extends State<ParentalGate> {
   @override
   void initState() {
     super.initState();
-    _newProblem();
+    if (widget.pin == null) _newProblem();
   }
 
   void _newProblem() {
@@ -92,10 +86,10 @@ class _ParentalGateState extends State<ParentalGate> {
 
   void _check() {
     final input = _controller.text.trim().toLowerCase();
-    final expected = _wordNumbers[_a * _b]!;
+    final expected = widget.pin ?? _wordNumbers[_a * _b]!;
     final asNumber = int.tryParse(input);
     final correct =
-        input == expected || asNumber == _a * _b;
+        input == expected || (widget.pin == null && asNumber == _a * _b);
     if (correct) {
       Navigator.of(context).pop(true);
     } else {
@@ -105,7 +99,7 @@ class _ParentalGateState extends State<ParentalGate> {
             ? 'Bitte einen Erwachsenen fragen.'
             : 'Hmm, das stimmt noch nicht. Probier es nochmal.';
         if (_attempts >= 3) {
-          _newProblem();
+          if (widget.pin == null) _newProblem();
           _controller.clear();
           _attempts = 0;
         }
@@ -172,9 +166,10 @@ class _ParentalGateState extends State<ParentalGate> {
             ),
           ]),
           const SizedBox(height: 12),
-          const Text(
-            'Bitte gib eine erwachsene Person das Gerät, '
-            'um diese Frage zu beantworten:',
+          Text(
+            widget.pin == null
+                ? 'Bitte gib einer erwachsenen Person das Gerät, um diese Frage zu beantworten:'
+                : 'Bitte gib das Gerät einer erwachsenen Person. Zur Freigabe wird die Eltern-PIN benötigt.',
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w700,
@@ -183,7 +178,7 @@ class _ParentalGateState extends State<ParentalGate> {
             ),
           ),
           const SizedBox(height: 18),
-          Container(
+          if (widget.pin == null) Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
@@ -207,10 +202,12 @@ class _ParentalGateState extends State<ParentalGate> {
           TextField(
             controller: _controller,
             autofocus: true,
+            obscureText: widget.pin != null,
+            keyboardType: widget.pin != null ? TextInputType.number : TextInputType.text,
             textInputAction: TextInputAction.done,
             onSubmitted: (_) => _check(),
             decoration: InputDecoration(
-              hintText: 'Antwort als Wort oder Zahl',
+              hintText: widget.pin != null ? 'Eltern-PIN' : 'Antwort als Wort oder Zahl',
               filled: true,
               fillColor: const Color(0xfff8f4ee),
               border: OutlineInputBorder(

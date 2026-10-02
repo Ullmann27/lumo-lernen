@@ -10,7 +10,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: OPENAI_MODEL
-        value: gpt-4.1-mini
+        value: gpt-6-luna
       - key: ALLOWED_ORIGIN
         value: "*"
       - key: OPENAI_API_KEY
