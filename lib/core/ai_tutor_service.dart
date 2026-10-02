@@ -21,8 +21,8 @@ class AiTutorService {
   const AiTutorService({
     LumoAiProxyClient client = const LumoAiProxyClient(),
     AiTaskCache cache = const AiTaskCache(),
-  })  : _client = client,
-        _cache = cache;
+  }) : _client = client,
+       _cache = cache;
 
   final LumoAiProxyClient _client;
   final AiTaskCache _cache;
@@ -45,20 +45,30 @@ class AiTutorService {
     if (!settings.aiProxyEnabled) {
       return const AiTutorRefillResult(skipped: true, reason: 'proxy_disabled');
     }
-    final fresh = await _cache.freshCount(childId: childId, subject: subject,
+    final fresh = await _cache.freshCount(
+      childId: childId,
+      subject: subject,
       grade: grade,
     );
     if (fresh >= _refillThreshold) {
-      return AiTutorRefillResult(skipped: true, reason: 'cache_full', freshAfter: fresh,
+      return AiTutorRefillResult(
+        skipped: true,
+        reason: 'cache_full',
+        freshAfter: fresh,
       );
     }
-    final lastAt = await _cache.lastGeneratedAt(childId: childId, subject: subject,
+    final lastAt = await _cache.lastGeneratedAt(
+      childId: childId,
+      subject: subject,
       grade: grade,
     );
     if (lastAt != null && fresh > 0) {
       final gap = DateTime.now().difference(lastAt);
       if (gap < _minRefillGap) {
-        return AiTutorRefillResult(skipped: true, reason: 'too_soon', freshAfter: fresh,
+        return AiTutorRefillResult(
+          skipped: true,
+          reason: 'too_soon',
+          freshAfter: fresh,
         );
       }
     }
@@ -74,12 +84,17 @@ class AiTutorService {
       childName: '',
     );
     final safeDrafts = drafts
-        .where((draft) => _guard.validate(_probeTask(draft, grade, subject, unitsForSubject),
+        .where(
+          (draft) => _guard.validate(
+            _probeTask(draft, grade, subject, unitsForSubject),
           ),
         )
         .toList(growable: false);
     if (safeDrafts.isEmpty) {
-      return const AiTutorRefillResult(skipped: false, reason: 'batch_empty', generated: 0,
+      return const AiTutorRefillResult(
+        skipped: false,
+        reason: 'batch_empty',
+        generated: 0,
       );
     }
     await _cache.saveBatch(
@@ -88,7 +103,9 @@ class AiTutorService {
       grade: grade,
       drafts: safeDrafts,
     );
-    final freshAfter = await _cache.freshCount(childId: childId, subject: subject,
+    final freshAfter = await _cache.freshCount(
+      childId: childId,
+      subject: subject,
       grade: grade,
     );
     return AiTutorRefillResult(
@@ -114,7 +131,9 @@ class AiTutorService {
       prompt: draft.prompt,
       answer: draft.answer,
       choices: draft.choices,
-      explanation: draft.explanation.isEmpty ? 'Lumo erklärt dir das gleich Schritt für Schritt.' : draft.explanation,
+      explanation: draft.explanation.isEmpty
+          ? 'Lumo erklärt dir das gleich Schritt für Schritt.'
+          : draft.explanation,
       visual: draft.visual,
       difficulty: grade,
     );
@@ -125,8 +144,11 @@ class AiTutorService {
   Future<LumoAiTaskDraft?> takeNext({
     required String childId,
     required String subject,
+    int grade = 1,
   }) async {
-    final fresh = await _cache.loadFresh(childId: childId, subject: subject,
+    final fresh = await _cache.loadFresh(
+      childId: childId,
+      subject: subject,
       grade: grade,
     );
     if (fresh.isEmpty) return null;
@@ -134,6 +156,7 @@ class AiTutorService {
     await _cache.markConsumed(
       childId: childId,
       subject: subject,
+      grade: grade,
       prompt: next.prompt,
     );
     return next;

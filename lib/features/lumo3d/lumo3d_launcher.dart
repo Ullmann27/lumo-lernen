@@ -30,25 +30,23 @@ const String lumo3DWebUrl = 'https://ullmann27.github.io/lumo-godot/';
 ///   - Fallback: Web-URL im Browser
 ///
 /// Gibt true zurueck wenn irgendetwas geoeffnet wurde, sonst false.
-Future<bool> launchLumo3D(BuildContext context, {
+Future<bool> launchLumo3D(
+  BuildContext context, {
   String scene = 'home',
   int grade = 1,
   String subject = 'Mathematik',
 }) async {
   // Die native Host-Bridge startet Godot mit dem gewünschten Spiel.
   try {
-    if (!kIsWeb && defaultTargetPlatform = = TargetPlatform.android) {
-      const bridge = MethodChannel(
-    'lumo_lernen/bridge');
-  final ok = await bridge.invokeMethod<bool>(
-      'launch3D',
-      {
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+      const bridge = MethodChannel('lumo_lernen/bridge');
+      final ok = await bridge.invokeMethod<bool>('launch3D', {
         'scene': scene,
-    'grade': grade,
+        'grade': grade,
         'subject': subject,
       });
-    if (ok== true) return true;
-  }
+      if (ok == true) return true;
+    }
   } catch (_) {
     // Intent-URL nicht resolvbar, weiter zu Versuch 2
   }
@@ -58,9 +56,7 @@ Future<bool> launchLumo3D(BuildContext context, {
     queryParameters: {'scene': scene, 'grade': '$grade', 'subject': subject},
   );
   try {
-    final ok = await launchUrl(
-      webUri,
-      mode: LaunchMode.externalApplication);
+    final ok = await launchUrl(webUri, mode: LaunchMode.externalApplication);
     if (ok) return true;
   } catch (_) {
     // ignore
