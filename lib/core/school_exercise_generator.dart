@@ -85,6 +85,10 @@ class Curriculum {
       'Geschichte', 'Kontinente und Ozeane', 'Ökosysteme', 'Stromkreise',
       'Diagramme lesen',
     ],
+    'Logik': <String>[
+      'Muster', 'Reihenfolgen', 'Zahlenmuster', 'Schlussfolgern',
+      'Regeln kombinieren',
+    ],
   };
 
   /// Selectable topics backed by real task data for this grade. Topics from
@@ -93,6 +97,14 @@ class Curriculum {
   static List<String> unitsForGrade(String subject, int grade, {bool currentGradeOnly = false}) {
     final capped = grade.clamp(1, 4).toInt();
     final lowestGrade = currentGradeOnly ? capped : 1;
+    if (subject == 'Logik') {
+      return <String>[
+        if (!currentGradeOnly || capped == 1) ...['Muster', 'Reihenfolgen'],
+        if (capped >= 2 && (!currentGradeOnly || capped == 2)) 'Zahlenmuster',
+        if (capped >= 3 && (!currentGradeOnly || capped == 3)) 'Schlussfolgern',
+        if (capped >= 4) 'Regeln kombinieren',
+      ];
+    }
     if (subject == 'Mathematik') {
       return <String>{
         for (var level = capped; level >= lowestGrade; level--)
@@ -260,12 +272,90 @@ class ExerciseFactory {
         return _english(grade, unit);
       case 'Sachunterricht':
         return _science(grade, unit);
+      case 'Logik':
+        return _logic(grade, unit);
       default:
         return _math(grade, unit);
     }
   }
 
   String _id(String prefix) => '$prefix-${DateTime.now().microsecondsSinceEpoch}-$_serial-${_random.nextInt(99999)}';
+
+  LumoTask _logic(int grade, String unit) {
+    if (unit == 'Muster') {
+      final symbols = <String>['Kreis', 'Dreieck', 'Stern', 'Quadrat']
+        ..shuffle(_random);
+      final length = grade == 1 ? 2 : 3;
+      final pattern = symbols.take(length).toList();
+      final shown = <String>[...pattern, ...pattern];
+      return _choiceTask(
+          'logik-muster',
+          grade,
+          'Logik',
+          unit,
+          'Das Muster wiederholt sich immer gleich: ${shown.join(' – ')} – ? Welche Form folgt?',
+          pattern.first,
+          'Die Gruppe ${pattern.join(' – ')} wiederholt sich. Nach ${pattern.last} kommt wieder ${pattern.first}.',
+          customChoices: symbols);
+    }
+    if (unit == 'Zahlenmuster') {
+      final step = 1 + _random.nextInt(grade * 2);
+      final start = _random.nextInt(grade == 2 ? 50 : 200);
+      final shown = List.generate(4, (i) => start + i * step);
+      final answer = start + 4 * step;
+      return _choiceTask(
+          'logik-zahlenmuster',
+          grade,
+          'Logik',
+          unit,
+          'Gehe jedes Mal gleich viele Schritte weiter: ${shown.join(' – ')} – ? Welche Zahl folgt?',
+          '$answer',
+          'Der Abstand ist immer $step. Nach ${shown.last} kommt ${shown.last} + $step = $answer.',
+          customChoices: <String>[
+            '$answer',
+            '${answer + 1}',
+            '${answer - 1}',
+            '${answer + step + 1}'
+          ]);
+    }
+    if (unit == 'Regeln kombinieren') {
+      final lower = 10 + _random.nextInt(90) * 2;
+      final answer = lower + 4;
+      return _choiceTask(
+          'logik-regeln',
+          grade,
+          'Logik',
+          unit,
+          'Welche Zahl erfüllt alle drei Regeln: größer als $lower, kleiner als ${lower + 8} und gerade?',
+          '$answer',
+          '$answer liegt zwischen $lower und ${lower + 8}. Die Zahl ist gerade, weil man sie ohne Rest in Paare teilen kann. Nur diese Antwort erfüllt alle drei Regeln.',
+          customChoices: <String>[
+            '$answer',
+            '$lower',
+            '${lower + 3}',
+            '${lower + 8}'
+          ]);
+    }
+    final names = <String>['Lumo', 'Mia', 'Ben', 'Ali', 'Lea']
+      ..shuffle(_random);
+    final first = names[0], middle = names[1], last = names[2];
+    final askedIndex = _random.nextInt(3);
+    final asked =
+        <String>['ganz links', 'in der Mitte', 'ganz rechts'][askedIndex];
+    final answer = <String>[first, middle, last][askedIndex];
+    final prompt = unit == 'Schlussfolgern'
+        ? 'Drei Figuren stehen nebeneinander. $first steht links von $middle. $middle steht links von $last. Wer steht $asked?'
+        : 'Von links nach rechts stehen $first, $middle und $last. Wer steht $asked?';
+    return _choiceTask(
+        'logik-reihenfolge',
+        grade,
+        'Logik',
+        unit,
+        prompt,
+        answer,
+        'Von links nach rechts ist die Reihenfolge $first – $middle – $last. $answer steht $asked.',
+        customChoices: <String>[first, middle, last]);
+  }
 
   LumoTask _math(int grade, String unit) {
     final seed = _serial + _random.nextInt(9999);
@@ -946,13 +1036,13 @@ class ExerciseFactory {
       if (choice.trim().isNotEmpty && _normalizeChoice(choice) != _normalizeChoice(answer) && !choices.any((item) => _normalizeChoice(item) == _normalizeChoice(choice))) choices.add(choice);
       if (choices.length == 4) break;
     }
-    if (_looksNumeric(answer)) {
+    if (choices.length < 4 && _looksNumeric(answer)) {
       final value = int.tryParse(answer.replaceAll(RegExp('[^0-9-]'), ''));
       if (value != null) {
         for (final offset in <int>[1, -1, 2, -2, 5, -5]) {
           final candidate = '${value + offset}';
           if (!choices.any((item) => _normalizeChoice(item) == _normalizeChoice(candidate)) && value + offset >= 0) choices.add(candidate);
-          if (choices.length == 4) break;
+          if (choices.length >= 4) break;
         }
       }
     }

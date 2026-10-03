@@ -11,6 +11,8 @@ import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/error_breakdown_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
+import '../../core/lumo_ai_learning_access.dart';
+import '../../core/lumo_ai_learning_policy_bridge.dart';
 import '../../core/lumo_tutor_contracts.dart';
 import '../../core/lumo_tutor_engine.dart';
 import '../../core/math/lumo_rechentricks.dart';
@@ -100,6 +102,7 @@ class _LearningContentState extends State<LearningContent> {
   bool _sessionFinished = false;
   int _attemptCount = 0;
   String? _tutorHint;
+  int _requestedHelpLevel = 0;
   // Bildhilfe-Karte als 4. Hilfsstufe nach 5+ Fehlversuchen.
   // Nur lokal generiert, kein Cloud-Aufruf.
   LumoVisualAid? _visualAid;
@@ -267,6 +270,7 @@ class _LearningContentState extends State<LearningContent> {
     }
     if (normalized.contains('lesen')) return LumoTutorSubject.lesen;
     if (normalized.contains('englisch')) return LumoTutorSubject.englisch;
+    if (normalized == 'logik') return LumoTutorSubject.logik;
     return LumoTutorSubject.sachunterricht;
   }
 
@@ -311,6 +315,7 @@ class _LearningContentState extends State<LearningContent> {
     _lastSkillState = null;
     _lastFeedback = null;
     _tutorHint = null;
+    _requestedHelpLevel = 0;
     _visualAid = null;
     _aiHelpReply = null;
     _aiHelpLoading = false;
@@ -342,22 +347,29 @@ class _LearningContentState extends State<LearningContent> {
 
   void _requestTaskHelp() {
     if (!mounted || !_allowHelp || _answered || _sessionFinished) return;
-    final hint = _taskHints.explain(_task);
+    _requestedHelpLevel = (_requestedHelpLevel + 1).clamp(1, 3);
+    final hint = _taskHints.explain(_task, level: _requestedHelpLevel);
     setState(() => _tutorHint = hint);
     if (widget.appState.state.settings.voiceEnabled) {
       unawaited(LumoVoice.instance.speak(hint, style: VoiceStyle.explain));
     }
-    if (widget.appState.state.settings.aiProxyEnabled) {
+    if (_cloudHelpAllowed) {
       unawaited(_askAiTutor());
     }
   }
+
+  bool get _cloudHelpAllowed =>
+      widget.appState.state.settings.lumoAiLearningAccess.allows(
+          _task.subject == 'Lesen'
+              ? LumoAiLearningArea.readingHelp
+              : LumoAiLearningArea.taskHelp);
 
   /// Holt KI-Hilfe vom Cloud-Tutor fuer die aktuelle Aufgabe.
   /// Heinz' Wunsch: pro Bereich zugeschnittener Helfer.
   /// Wenn aiProxyEnabled = false: lokaler Hinweis wird gezeigt.
   Future<void> _askAiTutor() async {
-    if (_aiHelpLoading || !_allowHelp || _answered ||
-        !widget.appState.state.settings.aiProxyEnabled) return;
+    if (_aiHelpLoading || !_allowHelp || _answered || !_cloudHelpAllowed)
+      return;
     if (!mounted) return;
     final taskId = _taskInstance.taskInstanceId;
     setState(() => _aiHelpLoading = true);
@@ -375,19 +387,27 @@ class _LearningContentState extends State<LearningContent> {
         message: question,
         context: context,
         extras: <String, Object?>{
+          'subject': _task.subject,
           'unit': _task.unit,
           'attempt': _attemptCount,
           'visual': _task.visual,
         },
       );
       if (!mounted || _taskInstance.taskInstanceId != taskId) return;
+      if (_answered || !_allowHelp) {
+        setState(() => _aiHelpLoading = false);
+        return;
+      }
       setState(() {
-        _aiHelpReply = response.reply;
+        // Network or provider failures keep the actual local task help visible.
+        _aiHelpReply = response.isCloudAnswer ? response.reply : null;
         _aiHelpLoading = false;
       });
       // Antwort gleich vorlesen, damit auch nicht-lesende Kinder es hoeren.
-      if (widget.appState.state.settings.voiceEnabled) {
-        unawaited(LumoVoice.instance.speak(response.reply, style: VoiceStyle.explain),
+      if (response.isCloudAnswer &&
+          widget.appState.state.settings.voiceEnabled) {
+        unawaited(
+          LumoVoice.instance.speak(response.reply, style: VoiceStyle.explain),
         );
       }
     } catch (e) {

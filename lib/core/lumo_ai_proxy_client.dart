@@ -4,6 +4,8 @@ import 'dart:io';
 
 import '../app/app_state.dart';
 import 'app_settings.dart';
+import 'lumo_ai_learning_access.dart';
+import 'lumo_ai_learning_policy_bridge.dart';
 
 class LumoAiProxyClient {
   const LumoAiProxyClient();
@@ -52,7 +54,16 @@ class LumoAiProxyClient {
     }
 
     final baseUri = _validatedBaseUri(settings.aiProxyUrl);
-    if (!settings.aiProxyEnabled || baseUri == null) {
+    final area = switch (context) {
+      LumoAiContext.readingBuddy => LumoAiLearningArea.readingHelp,
+      LumoAiContext.learningTutor ||
+      LumoAiContext.mathCoach ||
+      LumoAiContext.writingHelper ||
+      LumoAiContext.scienceExplorer =>
+        LumoAiLearningArea.taskHelp,
+      _ => LumoAiLearningArea.chat,
+    };
+    if (!settings.lumoAiLearningAccess.allows(area) || baseUri == null) {
       return const LumoAiProxyResponse(
         reply: 'Die Lumo-KI ist im Elternbereich noch nicht freigegeben. Ich kann dir lokal bei Mathe, Deutsch und Lesen helfen.',
         blocked: false,
@@ -356,11 +367,15 @@ class LumoAiProxyClient {
       request.headers.contentType = ContentType.json;
       request.headers.set(HttpHeaders.acceptHeader, 'application/json');
       final payload = <String, dynamic>{
-        'message': 'Sag hallo in einem kurzen Satz.',
+        'message': 'Aufgabe: 3 + 4 = ? Gib einen kleinen Denkschritt und eine Rückfrage, ohne die Lösung zu verraten.',
         'childProfile': <String, dynamic>{
           'grade': 1,
         },
         'history': const <Map<String, String>>[],
+        'context': LumoAiContext.learningTutor.key,
+        'extras': <String, Object?>{
+          'subject': 'Mathematik', 'unit': 'Plus bis 10', 'attempt': 0,
+        },
       };
       request.write(jsonEncode(payload));
       final response = await request.close().timeout(_coldStartTimeout);
@@ -532,7 +547,7 @@ class LumoAiProxyClient {
     int count = 10,
     String? childName,
   }) async {
-    if (!settings.aiProxyEnabled) return const <LumoAiTaskDraft>[];
+    if (!settings.lumoAiLearningAccess.allows(LumoAiLearningArea.taskHelp)) return const <LumoAiTaskDraft>[];
     final baseUri = _validatedBaseUri(settings.aiProxyUrl);
     if (baseUri == null) return const <LumoAiTaskDraft>[];
 
@@ -911,7 +926,7 @@ enum LumoAiContext {
   /// Mathe-Coach: erklaert Mathe-Konzepte mit Alltagsbeispielen.
   mathCoach(
     'math_coach',
-    'Du bist Lumo der Mathe-Coach. Erklaere Mathe-Konzepte mit Alltagsbeispielen aus Oesterreich (Aepfel, Semmeln, Schillingmuenzen, etc). Maximal 3 Saetze.',
+    'Du bist Lumo der Mathe-Coach. Erklaere Mathe-Konzepte mit Alltagsbeispielen aus Oesterreich (Aepfel, Semmeln, Euromuenzen). Maximal 3 Saetze.',
   ),
 
   /// Sachunterricht: erklaert Welt-Wissen kindgerecht.

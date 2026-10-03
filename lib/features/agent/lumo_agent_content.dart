@@ -20,7 +20,7 @@ class LumoAgentContent extends StatefulWidget {
   State<LumoAgentContent> createState() => _LumoAgentContentState();
 }
 
-class _LumoAgentContentState extends State<LumoAgentContent> {
+class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBindingObserver {
   final TextEditingController _controller = TextEditingController();
   final LumoAiProxyClient _proxy = const LumoAiProxyClient();
   final LumoCompanionEngine _localEngine = const LumoCompanionEngine();
@@ -39,10 +39,12 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
   String? _speechError;
   bool _blocked = false;
   bool _verifiedCloudReply = false;
+  bool _foreground = true;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     // Render-Warmup: Wenn KI freigegeben ist, Server bereits beim
     // Öffnen anstoßen. Dann ist der erste Chat warm und Heinz
     // sieht keinen 30s-Cold-Start.
@@ -54,9 +56,21 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
 
   @override
   void dispose() {
-    unawaited(_speech.stop());
+    WidgetsBinding.instance.removeObserver(this);
+    unawaited(_speech.cancel());
+    unawaited(LumoVoice.instance.stop());
     _controller.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _foreground = state == AppLifecycleState.resumed;
+    if (!_foreground) {
+      unawaited(_speech.cancel());
+      unawaited(LumoVoice.instance.stop());
+      if (mounted) setState(() => _speechListening = false);
+    }
   }
 
   Future<void> _ensureSpeechReady() async {
@@ -155,6 +169,8 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
 
   Future<void> _startVoiceQuestion() async {
     if (_loading || _speechListening) return;
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted || !_foreground) return;
     final settings = widget.appState.state.settings;
     if (!settings.microphoneEnabled) {
       setState(
@@ -181,7 +197,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
         cancelOnError: true,
         listenMode: stt.ListenMode.confirmation,
         onResult: (result) {
-          if (!mounted) return;
+          if (!mounted || !_foreground) return;
           final words = result.recognizedWords.trim();
           setState(() {
             _liveSpeech = words;
@@ -205,7 +221,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> {
     try {
       await _speech.stop();
     } catch (_) {}
-    if (!mounted) return;
+    if (!mounted || !_foreground) return;
     setState(() => _speechListening = false);
     await _ask(words);
   }

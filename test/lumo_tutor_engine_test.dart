@@ -107,6 +107,39 @@ void main() {
   group('LumoTutorEngine local fallback', () {
     const engine = LumoTutorEngine();
 
+    test('multiplication help uses equal groups instead of a plus visual', () {
+      const request = LumoTutorRequest(
+        mode: LumoTutorMode.mistakeExplanation,
+        subject: LumoTutorSubject.mathematik,
+        grade: 2,
+        unit: 'Einmaleins',
+        helpLevel: LumoTutorHelpLevel.guidedStep,
+        currentPrompt: '3 × 4 = ?',
+        correctAnswer: '12',
+        attemptCount: 2,
+      );
+      final response = engine.buildLocalFallback(request);
+      expect(
+          response.speech, contains('3 gleich große Gruppen mit je 4 Dingen'));
+      expect(response.speech, isNot(contains('12')));
+      expect(response.visualPlan.type, LumoTutorVisualType.none);
+    });
+
+    test(
+        'fraction and non-arithmetic questions do not become unrelated apple sums',
+        () {
+      const request = LumoTutorRequest(
+        mode: LumoTutorMode.miniLesson,
+        subject: LumoTutorSubject.mathematik,
+        grade: 4,
+        unit: 'Brüche erweitern',
+        helpLevel: LumoTutorHelpLevel.visualExplanation,
+        currentPrompt: 'Erweitere 1/2 mit 3.',
+        correctAnswer: '3/6',
+      );
+      expect(engine.suggestVisualPlan(request).type, LumoTutorVisualType.none);
+    });
+
     test('buildLocalFallback does not give live help in test mode', () {
       final response = engine.buildLocalFallback(
         const LumoTutorRequest(

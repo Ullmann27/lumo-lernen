@@ -563,6 +563,7 @@ class LegacyLumoTaskAdapter {
     return switch (value) {
       'Deutsch' || 'Rechtschreibung' || 'Schreiben' || 'Lesen' => LearningSubject.deutsch,
       'Sachunterricht' => LearningSubject.sachkunde,
+      'Logik' => LearningSubject.logik,
       _ => LearningSubject.mathematik,
     };
   }

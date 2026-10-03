@@ -16,7 +16,7 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import '../../app/app_state.dart';
 import '../../core/lumo_brain.dart';
-import '../../core/lumo_image_generator.dart';
+import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
@@ -31,7 +31,8 @@ class LumoLiveScreen extends StatefulWidget {
   State<LumoLiveScreen> createState() => _LumoLiveScreenState();
 }
 
-class _LumoLiveScreenState extends State<LumoLiveScreen> {
+class _LumoLiveScreenState extends State<LumoLiveScreen>
+    with WidgetsBindingObserver {
   final stt.SpeechToText _stt = stt.SpeechToText();
   final ImagePicker _picker = ImagePicker();
 
@@ -46,7 +47,7 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
   @override
   void initState() {
     super.initState();
-    _initStt();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   Future<void> _initStt() async {
@@ -62,9 +63,12 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
   }
 
   Future<void> _startListening() async {
+    if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
+        !mounted) return;
+    if (!_sttReady) await _initStt();
+    if (!mounted) return;
     if (!_sttReady) {
-      _speakAndShow(
-          'Sag mir bitte was ich auf deinem Handy einstellen darf, '
+      _speakAndShow('Sag mir bitte was ich auf deinem Handy einstellen darf, '
           'dann kann ich dich hoeren!');
       return;
     }
@@ -80,6 +84,7 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
         localeId: 'de_DE',
         listenFor: const Duration(seconds: 6),
         onResult: (r) {
+          if (!mounted) return;
           setState(() => _recognized = r.recognizedWords);
           if (r.finalResult) {
             _onSpeechDone();
@@ -93,6 +98,7 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
   }
 
   Future<void> _onSpeechDone() async {
+    if (!mounted) return;
     setState(() {
       _listening = false;
       _mood = LumoMirrorMood.think;
@@ -103,15 +109,13 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
       return;
     }
     // Bild generieren basierend auf gesagtem Wort
-    final url = LumoImageGenerator.instance
-        .buildSafeImageUrl(_recognized);
     // Lumo-Brain fragt nach Erklaerung
     final reply = LumoBrain.instance
         .ask('Was ist ein ${_recognized}?', topicId: 's1_tiere');
     final explanation = reply.text;
 
     setState(() {
-      _generatedImageUrl = url;
+      _generatedImageUrl = null;
       _lumoExplanation = explanation;
       _mood = LumoMirrorMood.happy;
     });
@@ -119,13 +123,15 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
   }
 
   Future<void> _capturePhoto() async {
+    if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
+        !mounted) return;
     try {
       final photo = await _picker.pickImage(
         source: ImageSource.camera,
         imageQuality: 60,
         maxWidth: 800,
       );
-      if (photo == null) return;
+      if (photo == null || !mounted) return;
       setState(() {
         _capturedImagePath = photo.path;
         _mood = LumoMirrorMood.curious;
@@ -138,10 +144,30 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
     }
   }
 
-  void _speakAndShow(String text) {
+  Future<void> _speakAndShow(String text) async {
+    if (!mounted) return;
+    setState(() => _lumoExplanation = text);
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted || !widget.appState.state.settings.voiceEnabled) return;
     try {
       LumoVoice.instance.speak(text);
     } catch (_) {}
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      _stt.cancel();
+      LumoVoice.instance.stop();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _stt.cancel();
+    LumoVoice.instance.stop();
+    super.dispose();
   }
 
   void _reset() {
@@ -249,7 +275,8 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
                                   );
                                 },
                                 errorBuilder: (_, __, ___) => Center(
-                                  child: Text('🎨', style: TextStyle(fontSize: 80)),
+                                  child: Text('🎨',
+                                      style: TextStyle(fontSize: 80)),
                                 ),
                               ),
                             ),
@@ -320,8 +347,7 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           Expanded(
-            child: Text('Lumo LIVE',
-                style: LumoTokens.typo.headlineMedium),
+            child: Text('Lumo LIVE', style: LumoTokens.typo.headlineMedium),
           ),
           IconButton(
             icon: const Icon(Icons.refresh_rounded),
@@ -348,9 +374,9 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
                 height: 64,
                 child: ElevatedButton.icon(
                   onPressed: _listening ? null : _startListening,
-                  icon: Icon(_listening
-                      ? Icons.hearing_rounded
-                      : Icons.mic_rounded, size: 28),
+                  icon: Icon(
+                      _listening ? Icons.hearing_rounded : Icons.mic_rounded,
+                      size: 28),
                   label: Text(_listening ? 'Hoere...' : 'Sprechen'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: LumoTokens.colors.lumoOrange,
@@ -371,8 +397,8 @@ class _LumoLiveScreenState extends State<LumoLiveScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: LumoTokens.colors.lumoLila,
                   foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: LumoTokens.brLarge),
+                  shape:
+                      RoundedRectangleBorder(borderRadius: LumoTokens.brLarge),
                   padding: EdgeInsets.zero,
                 ),
                 child: const Icon(Icons.camera_alt_rounded, size: 28),

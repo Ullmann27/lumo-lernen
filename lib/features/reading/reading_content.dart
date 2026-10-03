@@ -25,7 +25,7 @@ class ReadingContent extends StatefulWidget {
   State<ReadingContent> createState() => _ReadingContentState();
 }
 
-class _ReadingContentState extends State<ReadingContent> {
+class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObserver {
   final _storyEngine = const StoryEngine();
   final _textCleaner = const ReadingTextCleaner();
   final _monitor = ReadingMonitor(
@@ -57,6 +57,7 @@ class _ReadingContentState extends State<ReadingContent> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _prepareStorySession();
   }
 
@@ -87,9 +88,6 @@ class _ReadingContentState extends State<ReadingContent> {
       _loadingStory = false;
     });
 
-    if (widget.appState.state.settings.microphoneEnabled) {
-      _speech.initialize();
-    }
     await _speakOnly('Wir lesen jetzt ${story.title}. Wenn du bereit bist, drück auf das Mikrofon und lies den Satz vor.');
     await _persistReadingProgress(latestScore: 0);
   }
@@ -99,7 +97,18 @@ class _ReadingContentState extends State<ReadingContent> {
     _listenTimer?.cancel();
     _speech.cancel();
     _speech.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    LumoVoice.instance.stop();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      _listenTimer?.cancel();
+      _speech.cancel();
+      LumoVoice.instance.stop();
+    }
   }
 
   String get _childId {
@@ -154,6 +163,8 @@ class _ReadingContentState extends State<ReadingContent> {
 
   Future<void> _startListening() async {
     if (_progress == null) return;
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted) return;
     if (!widget.appState.state.settings.microphoneEnabled) {
       setState(() => _lumoLine = 'Das Mikrofon ist im Elternbereich ausgeschaltet.');
       return;

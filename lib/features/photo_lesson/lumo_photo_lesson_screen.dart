@@ -18,6 +18,7 @@ import '../../app/app_theme.dart';
 import '../../core/math_task_templates.dart';
 import '../../core/scanned_work_analysis.dart';
 import '../../core/progress_repository.dart';
+import '../../core/lumo_feature_permissions.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/scan_screen.dart';
 
@@ -33,6 +34,18 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
   ScannedWorkAnalysis? _analysis;
   List<MathConcreteTask> _exercises = const <MathConcreteTask>[];
   bool _scanning = false;
+
+  Future<void> _startScan({bool reset = false}) async {
+    if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
+        !mounted) return;
+    setState(() {
+      if (reset) {
+        _analysis = null;
+        _exercises = const [];
+      }
+      _scanning = true;
+    });
+  }
 
   void _onTextDetected(String text) {
     final engine = const ScannedWorkAnalysisEngine();
@@ -57,8 +70,7 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
         final task = MathTaskTemplates.generate(
           grade: widget.appState.state.grade,
           unit: unit,
-          seed:
-              (DateTime.now().millisecondsSinceEpoch + i * 7919) & 0x7fffffff,
+          seed: (DateTime.now().millisecondsSinceEpoch + i * 7919) & 0x7fffffff,
         );
         out.add(task);
       } catch (_) {
@@ -99,16 +111,12 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
                   )
                 : _analysis == null
                     ? _IntroPanel(
-                        onCapture: () => setState(() => _scanning = true),
+                        onCapture: _startScan,
                       )
                     : _ResultsPanel(
                         analysis: _analysis!,
                         exercises: _exercises,
-                        onScanAgain: () => setState(() {
-                          _analysis = null;
-                          _exercises = const [];
-                          _scanning = true;
-                        }),
+                        onScanAgain: () => _startScan(reset: true),
                       ),
           ),
         ),
@@ -359,8 +367,8 @@ class _ResultsPanel extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: const Color(0xFF22C55E),
                       borderRadius: BorderRadius.circular(99),
@@ -378,8 +386,8 @@ class _ResultsPanel extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: const Color(0xFF6366F1),
                       borderRadius: BorderRadius.circular(99),
@@ -424,14 +432,13 @@ class _ResultsPanel extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: const Color(0xFFFEF3C7),
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                        color: const Color(0xFFFCD34D), width: 1.3),
+                    border:
+                        Border.all(color: const Color(0xFFFCD34D), width: 1.3),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('💡',
-                          style: TextStyle(fontSize: 20)),
+                      const Text('💡', style: TextStyle(fontSize: 20)),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -491,8 +498,7 @@ class _ResultsPanel extends StatelessWidget {
           child: GestureDetector(
             onTap: onScanAgain,
             child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
                   colors: [Color(0xFF6366F1), Color(0xFFA855F7)],
@@ -502,8 +508,7 @@ class _ResultsPanel extends StatelessWidget {
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.camera_alt_rounded,
-                      color: Colors.white, size: 18),
+                  Icon(Icons.camera_alt_rounded, color: Colors.white, size: 18),
                   SizedBox(width: 8),
                   Text(
                     'Neues Foto aufnehmen',
@@ -593,8 +598,7 @@ class _ExerciseCardState extends State<_ExerciseCard> {
           GestureDetector(
             onTap: () => setState(() => _showAnswer = !_showAnswer),
             child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
                 color: _showAnswer
                     ? const Color(0xFFDCFCE7)

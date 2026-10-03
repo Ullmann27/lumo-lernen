@@ -7,6 +7,63 @@ import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_ai_proxy_client.dart';
 
 void main() {
+  test('chat-only consent prevents tutor and generated-task network calls',
+      () async {
+    var requests = 0;
+    final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+    server.listen((request) async {
+      requests++;
+      await request.drain<void>();
+      await request.response.close();
+    });
+    addTearDown(() => server.close(force: true));
+    final settings = AppSettings(
+        aiProxyEnabled: true,
+        aiLearningMode: AiLearningMode.chatOnly,
+        aiProxyUrl: 'http://127.0.0.1:${server.port}');
+    const client = LumoAiProxyClient();
+    final response = await client.ask(
+        settings: settings,
+        state: LumoSessionState(),
+        message: 'Hilf mir bei 3 + 4.',
+        context: LumoAiContext.learningTutor);
+    expect(response.isCloudAnswer, isFalse);
+    expect(response.source, 'local_not_enabled');
+    expect(
+        await client.fetchTaskBatch(
+            settings: settings, subject: 'Mathematik', grade: 1, units: []),
+        isEmpty);
+    expect(requests, 0);
+  });
+  test('parent diagnosis sends a real neutral task to the tutoring context',
+      () async {
+    Map<String, dynamic>? body;
+    final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+    server.listen((request) async {
+      body = jsonDecode(await utf8.decoder.bind(request).join())
+          as Map<String, dynamic>;
+      request.response.headers.contentType = ContentType.json;
+      request.response.write(jsonEncode({
+        'reply':
+            'Starte bei drei und zähle weiter. Wie viele Schritte kommen dazu?',
+        'source': 'openai_proxy',
+        'blocked': false
+      }));
+      await request.response.close();
+    });
+    addTearDown(() => server.close(force: true));
+    final result = await const LumoAiProxyClient().parentSmokeTest(AppSettings(
+      aiProxyEnabled: true,
+      aiProxyUrl: 'http://127.0.0.1:${server.port}',
+    ));
+    expect(result.success, isTrue);
+    expect(body!['context'], 'learning_tutor');
+    expect(body!['message'], contains('3 + 4 = ?'));
+    expect(body!['extras'],
+        {'subject': 'Mathematik', 'unit': 'Plus bis 10', 'attempt': 0});
+    expect(body!['childProfile'], {'grade': 1});
+    expect(body!.containsKey('name'), isFalse);
+  });
   test(
       'Navigation and learning context use recent history without child identity',
       () async {

@@ -4,9 +4,15 @@ import 'school_exercise_generator.dart';
 class TaskHintService {
   const TaskHintService();
 
-  String explain(LumoTask task) {
+  String explain(LumoTask task, {int level = 1}) {
+    if (level >= 2) return _guidedHint(task, level);
     final unit = task.unit.toLowerCase();
     final prompt = task.prompt.toLowerCase();
+    if (task.subject == 'Logik') {
+      return unit.contains('muster')
+          ? 'Suche die Gruppe oder den Abstand, der sich wiederholt. Prüfe, ob deine Regel an jeder Stelle passt.'
+          : 'Lies jede Angabe einzeln. Ordne die Figuren oder prüfe die Regeln nacheinander. Eine Antwort muss zu allen Angaben passen.';
+    }
     if (task.handwriting || task.visual == 'shape_trace') {
       return 'Schau zuerst auf die Vorlage. Beginne an einem Punkt und zeichne langsam. Achte auf die Richtung und auf alle Teile der Form.';
     }
@@ -96,5 +102,64 @@ class TaskHintService {
         unit.contains('komma'))
       return 'Lies den ganzen Satz. Achte auf Wortstellung, Satzanfang und Satzende. Bei wörtlicher Rede wird das Gesprochene mit Anführungszeichen markiert.';
     return 'Sprich das Wort langsam. Achte auf die Stelle, nach der gefragt wird, und vergleiche die Schreibweisen Buchstabe für Buchstabe.';
+  }
+
+  String _guidedHint(LumoTask task, int level) {
+    final unit = task.unit.toLowerCase();
+    if (task.subject == 'Mathematik') {
+      final expression =
+          RegExp(r'(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*=').firstMatch(task.prompt);
+      if (expression != null) {
+        final left = int.parse(expression.group(1)!);
+        final right = int.parse(expression.group(3)!);
+        final op = expression.group(2)!;
+        if (op == '+') {
+          return level == 2
+              ? 'Starte bei $left. Zähle $right weiter. Du kannst dir die zweite Menge als Punkte legen.'
+              : 'Teile $right in kleine Schritte. Gehe zuerst bis zum nächsten Zehner, wenn du ihn erreichst, und zähle dann den Rest weiter. Prüfe durch Zurückzählen.';
+        }
+        if (op == '-' || op == '−') {
+          return level == 2
+              ? 'Starte bei $left. Nimm $right weg oder gehe $right Schritte zurück.'
+              : 'Zerlege die weggenommene Menge in kleinere Schritte. Nimm sie nacheinander weg. Prüfe: Wenn du $right wieder dazuzählst, musst du bei $left ankommen.';
+        }
+        if (op == ':' || op == '÷') {
+          return level == 2
+              ? 'Verteile $left Dinge auf $right gleich große Gruppen. Wie viele liegen in einer Gruppe?'
+              : 'Lege in jede der $right Gruppen immer genau ein Ding, bis alle $left verteilt sind. Prüfe dein Ergebnis mit der passenden Malaufgabe.';
+        }
+        return level == 2
+            ? 'Lege $left gleich große Gruppen mit je $right Dingen. Zähle eine Gruppe nach der anderen.'
+            : 'Zähle in Schritten von $right. Mache genau $left Schritte. Prüfe, dass jede Gruppe gleich groß ist.';
+      }
+    }
+    if (task.subject == 'Logik') {
+      if (unit.contains('zahlenmuster')) {
+        return level == 2
+            ? 'Vergleiche zuerst die erste und die zweite Zahl. Wie viele Schritte liegen dazwischen? Prüfe denselben Abstand bei den nächsten Zahlen.'
+            : 'Nimm den Abstand, den du an allen Stellen gefunden hast. Gehe von der letzten sichtbaren Zahl genau diesen Abstand weiter.';
+      }
+      if (unit == 'muster') {
+        return level == 2
+            ? 'Suche, an welcher Stelle die erste Form wieder auftaucht. Alles davor bildet die Gruppe, die sich wiederholt.'
+            : 'Sprich eine ganze Gruppe laut und beginne dann dieselbe Gruppe wieder von vorn. Welche Form ist an der Lücke an der Reihe?';
+      }
+      return level == 2
+          ? 'Lege für jede Figur eine Karte. Verschiebe die Karten so, dass jede Angabe stimmt. Bei Zahlen prüfst du zuerst die beiden Grenzen.'
+          : 'Prüfe jede Antwort einzeln gegen jede Angabe. Streiche sie, sobald eine Angabe nicht passt. Bei geraden Zahlen bleibt beim Bilden von Paaren nichts übrig.';
+    }
+    if (task.handwriting || task.visual == 'shape_trace') {
+      return level == 2
+          ? 'Suche den Startpunkt und zeichne nur den ersten Strich. Schau dann wieder auf die Vorlage.'
+          : 'Vergleiche deine Zeichnung Teil für Teil mit der Vorlage. Ergänze fehlende Teile und achte auf die Richtung.';
+    }
+    if (task.subject == 'Lesen') {
+      return level == 2
+          ? 'Suche im Text die Person oder das wichtige Wort aus der Frage. Lies den Satz davor und danach noch einmal.'
+          : 'Prüfe jede Antwort: Gibt es im Text eine Stelle, die sie belegt? Wähle erst, wenn du diese Stelle gefunden hast.';
+    }
+    return level == 2
+        ? '${explain(task)} Probiere jede Antwort einzeln und begründe, ob sie zur Frage passt.'
+        : '${explain(task)} Schließe zuerst eine unpassende Antwort aus. Vergleiche die übrigen noch einmal mit dem entscheidenden Wort in der Frage.';
   }
 }

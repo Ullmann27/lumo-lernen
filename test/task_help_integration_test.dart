@@ -56,6 +56,15 @@ void main() {
         expect(find.textContaining('Beginne mit der ersten Menge'),
             findsOneWidget);
         expect(find.text('Lumo, hilf mir'), findsOneWidget);
+        requests.requestTaskHelp();
+        await tester.pump();
+        expect(find.textContaining('Starte bei'), findsOneWidget);
+        expect(
+            find.textContaining('Beginne mit der ersten Menge'), findsNothing);
+        requests.requestTaskHelp();
+        await tester.pump();
+        expect(find.textContaining('Teile'), findsOneWidget);
+        expect(find.textContaining('Prüfe durch Zurückzählen'), findsOneWidget);
       }
       final after = tester
           .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))

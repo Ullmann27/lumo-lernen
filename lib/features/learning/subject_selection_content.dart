@@ -21,6 +21,7 @@ class SubjectSelectionContent extends StatelessWidget {
     _SubjectInfo('Schreiben', '📝', LumoColors.scanner, 'Finger schreiben und nachspuren'),
     _SubjectInfo('Englisch', '🌍', LumoColors.english, 'Farben, Tiere, Wörter'),
     _SubjectInfo('Sachunterricht', '🌱', LumoColors.teal, 'Welt, Tiere, Wetter'),
+    _SubjectInfo('Logik', '🧩', LumoColors.blue, 'Muster, Reihenfolgen, Regeln'),
   ];
 
   bool _isActiveReading(String subject, [String? unit]) {
