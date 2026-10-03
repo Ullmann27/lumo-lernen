@@ -8,17 +8,13 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
-from urllib.parse import quote
+from release_lookup import resolve_draft
 
 
 def main(args):
     if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', args.repository):
         raise ValueError('Invalid GitHub repository')
-    release = json.loads(subprocess.check_output([
-        'gh', 'api', f'repos/{args.repository}/releases/tags/{quote(args.release_tag, safe="")}',
-    ], text=True))
-    if not release.get('draft'):
-        raise ValueError('Build delivery requires an existing unpublished draft')
+    release = resolve_draft(args.repository, args.release_tag)
     if any(asset['name'].lower().endswith('.apk') for asset in release.get('assets', [])):
         raise ValueError('Build mode refuses to replace an existing draft APK; use download mode to check it')
     args.out.mkdir(parents=True, exist_ok=True)

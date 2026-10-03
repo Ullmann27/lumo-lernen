@@ -10,8 +10,9 @@ import os
 from pathlib import Path
 import re
 import subprocess
-from urllib.parse import quote
 import zipfile
+
+from release_lookup import resolve_draft
 
 
 def download(repository, tag, expected, output):
@@ -19,10 +20,7 @@ def download(repository, tag, expected, output):
         raise ValueError('Invalid GitHub repository')
     if not re.fullmatch(r'[0-9a-fA-F]{64}', expected):
         raise ValueError('apkSha must be exactly 64 hexadecimal characters')
-    endpoint = f'repos/{repository}/releases/tags/{quote(tag, safe="")}'
-    release = json.loads(subprocess.check_output(['gh', 'api', endpoint], text=True))
-    if not release.get('draft'):
-        raise ValueError('This integration check expects an existing draft release')
+    release = resolve_draft(repository, tag)
     assets = [asset for asset in release.get('assets', []) if asset['name'].lower().endswith('.apk')]
     if len(assets) != 1:
         raise ValueError('The requested release must have exactly one APK asset')

@@ -3,19 +3,14 @@
 import argparse
 import json
 from pathlib import Path
-import re
 import subprocess
-from urllib.parse import quote
 import zipfile
+
+from release_lookup import resolve_draft
 
 
 def upload(repository, tag, evidence, run_id, attempt):
-    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
-        raise ValueError('Invalid GitHub repository')
-    release = json.loads(subprocess.check_output(
-        ['gh', 'api', f'repos/{repository}/releases/tags/{quote(tag, safe="")}'], text=True))
-    if not release.get('draft'):
-        raise ValueError('Test evidence is only uploaded to the existing draft release')
+    release = resolve_draft(repository, tag)
     evidence.mkdir(parents=True, exist_ok=True)
     (evidence/'workflow-run.json').write_text(json.dumps({
         'run_id': int(run_id), 'attempt': int(attempt), 'repository': repository,

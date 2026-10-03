@@ -8,6 +8,7 @@ import subprocess
 import tempfile
 
 from download_apk import download
+from release_lookup import resolve_draft
 
 
 def upload(args):
@@ -22,11 +23,8 @@ def upload(args):
     if actual != expected or result['sha256'] != expected:
         raise ValueError('Build, usage test and upload APK hashes must be identical')
     # Require a still-unpublished, empty draft immediately before upload.
-    from urllib.parse import quote
-    release = json.loads(subprocess.check_output([
-        'gh', 'api', f'repos/{args.repository}/releases/tags/{quote(args.release_tag, safe="")}',
-    ], text=True))
-    if not release.get('draft') or any(asset['name'].lower().endswith('.apk') for asset in release.get('assets', [])):
+    release = resolve_draft(args.repository, args.release_tag)
+    if any(asset['name'].lower().endswith('.apk') for asset in release.get('assets', [])):
         raise ValueError('The requested draft must still exist unpublished without another APK')
     named = args.evidence.parent/'Lumo-Lernen-Neu.apk'
     # A byte-identical copy gives the release its child-facing filename.

@@ -23,6 +23,10 @@ on:
 permissions:
   contents: write
 
+defaults:
+  run:
+    shell: bash
+
 concurrency:
   group: android-integration-qa-${{ github.ref }}
   cancel-in-progress: false
@@ -30,7 +34,7 @@ concurrency:
 jobs:
   exact-apk:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     env:
       LUMO_QA_DIR: ${{ github.workspace }}/android-qa-evidence
       RELEASE_TAG: ${{ inputs.releaseTag }}
