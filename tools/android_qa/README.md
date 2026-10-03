@@ -1,7 +1,7 @@
 # Exact-APK Android integration check
 
 The manually dispatched `android-integration-qa.yml` workflow checks one APK on
-an API 35 x86_64 emulator with KVM and SwANGLE. It keeps the release unpublished
+an API 35 x86_64 emulator with KVM and Mesa llvmpipe OpenGL. It keeps the release unpublished
 and never replaces an existing APK.
 
 Inputs are `mode`, `releaseTag` and, for download mode, the full 64-character
@@ -30,14 +30,17 @@ available for manual dispatch on the repository's default branch; the dispatch
 ref selects the version of these test scripts. Dispatch remains a separate
 operator action.
 
-The real UI check creates a synthetic first-grade profile, uses the actual
+The real UI check creates a synthetic first-grade profile and first opens
+Home → Games → Lumo Kart. It checks Android Back/pause/continue and changes the
+actual user-facing lightweight graphics setting through its visible pause button.
+It answers calculable math questions after inspecting a wrong-answer hint once,
+waits through a full two-lap race, restarts
+from the result, and returns to Flutter. It opens the game again to check a fresh
+engine process and compares the saved/restored visible race HUD and graphics
+setting. It then uses the native return to learning, selects the actual
 `Plus bis 10` topic, requests local task help, computes the answer solely from
 the visible addition prompt and checks increased visible home stars, XP and
-daily completion. It then opens Home → Games → Lumo Kart, checks Android Back/pause/continue, answers one actual math question
-after inspecting a wrong-answer hint, waits through a full two-lap race, restarts
-from the result, and returns to Flutter. It opens the game again to check a fresh
-engine process and compares the saved/restored visible race HUD, then restarts
-Flutter offline. It also plays all twelve Memory pairs through real touches,
+daily completion. It also plays all twelve Memory pairs through real touches,
 checks result/restart/back/background/return, completes an actual Cards round
 using accessible visible card faces, and checks its result/restart/back/return.
 It compares visible wallet rewards after each game. Racing uses the
@@ -48,6 +51,13 @@ Flutter controls use the APK's Android accessibility semantics; Godot controls
 use OCR of raw screenshots and actual ADB touch input. Missing captions,
 unreadable math, crashes, missing native returns, unchanged engine PID or APK
 hash mismatches fail the check rather than being assumed successful.
+
+The software-rendered race starts at 480×800 logical pixels, then uses the real
+lightweight graphics option to keep the CPU-only renderer practical. This is
+not evidence for frame rates on ARM hardware or a physical Samsung Fold.
+One initial external Pixel Launcher ANR may be closed only after matching its
+exact title and Android dialog resource IDs; screenshots and XML are retained.
+App ANRs, unknown dialogs and repeated launcher ANRs fail the run.
 
 The final Flutter checks resize the emulator to 904×2316, 1812×2176 and back to
 904×2316 at density 320, perform real Learn/Home navigation at each size, then
