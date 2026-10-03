@@ -1,0 +1,26 @@
+name: Check unified Android APK in KVM
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Build saved source, or test an existing draft APK
+        required: true
+        type: choice
+        default: build
+        options: [build, download]
+      releaseTag:
+        description: Existing draft release tag
+        required: true
+        type: string
+      apkSha:
+        description: Required only in download mode
+        required: false
+        type: string
+permissions:
+  contents: read
+jobs:
+  select_working_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Select the saved integration source
+        run: python3 -c "raise SystemExit('Run with branch codex/lumo-unified-android-2026-10-03; its workflow builds and tests the unified APK before draft upload.')"
