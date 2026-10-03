@@ -137,14 +137,16 @@ class _StarsPathGameState extends State<StarsPathGame> {
     } else {
       stars = 0;
     }
+    // The completed round earns its wallet reward even if its route is
+    // closed while the level-map write is still pending on Android.
+    widget.appState.addStars(stars);
+    widget.appState.addXp(_correct * 8);
     await _repo.recordResult(
       childId: _childId,
       levelId: widget.level.id,
       starsEarned: stars,
     );
     if (!mounted) return;
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correct * 8);
     widget.onResult?.call(stars);
     showDialog<void>(
       context: context,
