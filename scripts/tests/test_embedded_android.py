@@ -40,6 +40,8 @@ class EmbeddedAndroidTest(unittest.TestCase):
             self.assertTrue(rules.read_text().startswith(original_rules))
             self.assertEqual(rules.read_text().count('-keep class org.godotengine.godot.** { *; }'), 1)
             self.assertEqual(rules.read_text().count('-keep class dev.ullmann.lumo.lumo_lernen.LumoHostPlugin { *; }'), 1)
+            self.assertEqual(rules.read_text().count(
+                '-keep class * implements com.google.firebase.components.ComponentRegistrar { *; }'), 1)
             doc = ET.parse(manifest).getroot()
             attr = lambda name: '{http://schemas.android.com/apk/res/android}' + name
             activities = doc.findall('application/activity')

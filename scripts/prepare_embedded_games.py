@@ -109,6 +109,11 @@ def prepare(root: Path):
         # as Godot.restart() and Godot.setKeepScreenOn(boolean).
         ('Godot JNI and reflection require the original engine classes and members.',
          '-keep class org.godotengine.godot.** { *; }'),
+        # ML Kit discovers these factories from Android manifest metadata and
+        # instantiates them reflectively. R8 otherwise removes their unused
+        # public zero-argument constructors, breaking scanner initialization.
+        ('ML Kit component discovery requires registrar names, constructors and factories.',
+         '-keep class * implements com.google.firebase.components.ComponentRegistrar { *; }'),
     )
     for comment, keep in required_rules:
         if keep not in existing:
