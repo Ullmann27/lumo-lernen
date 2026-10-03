@@ -116,6 +116,22 @@ def race_state(frame):
     return state
 
 
+def second_round_in_progress(frame):
+    """Count only a readable real HUD before the result overlay appears."""
+    if marker(frame, 'geschafft') or marker(frame, 'Noch ein Rennen'):
+        return False
+    try:
+        return race_state(frame)['round'] == [2, 2]
+    except RuntimeError:
+        # Unreadable frames are retained as evidence but cannot prove a lap.
+        return False
+
+
+def require_second_round(capture_number):
+    if capture_number is None:
+        raise RuntimeError('No captured race HUD proved Runde 2/2 before the result screen.')
+
+
 def marker(frame, phrase):
     phrase = folded(phrase)
     return next((line for line in frame['lines'] if phrase in folded(line['text'])), None)
@@ -222,10 +238,17 @@ def main():
     deadline = time.monotonic()+args.timeout
     correct = 0
     skipped = 0
+    second_round_capture = None
     while time.monotonic() < deadline:
         frame = capture('race')
+        if second_round_capture is None and second_round_in_progress(frame):
+            second_round_capture = sequence
+            record('second_round_observed', capture_sequence=sequence,
+                   hud=race_state(frame), text=frame['text'])
         if marker(frame, 'geschafft') and marker(frame, 'Noch ein Rennen'):
-            record('finished', correct_actions=correct, skipped_actions=skipped, text=frame['text'])
+            require_second_round(second_round_capture)
+            record('finished', correct_actions=correct, skipped_actions=skipped,
+                   second_round_capture_sequence=second_round_capture, text=frame['text'])
             if args.require_correct and correct < 1:
                 raise RuntimeError('No actual maths answer was proven; race finish alone is insufficient.')
             break
