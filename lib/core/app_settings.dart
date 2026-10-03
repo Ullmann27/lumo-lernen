@@ -25,8 +25,8 @@ class AppSettings {
     this.largeText = false,
     this.calmMode = false,
     this.learningMode = LearningMode.normal,
-    this.voiceRate = 0.35,
-    this.voicePitch = 1.0,
+    this.voiceRate = 0.46,
+    this.voicePitch = 1.14,
   }) : parentPinConfigured =
            parentPinConfigured ?? (parentPin != initialParentPin);
 
@@ -145,9 +145,9 @@ class AppSettings {
       largeText: _bool(json['largeText'], fallback: false),
       calmMode: _bool(json['calmMode'], fallback: false),
       learningMode: LearningModeX.fromName(json['learningMode'] is String ? json['learningMode'] as String : null),
-      voiceRate: _doubleRange(json['voiceRate'], fallback: 0.35, min: 0.25, max: 0.55,
+      voiceRate: _doubleRange(json['voiceRate'], fallback: 0.46, min: 0.25, max: 0.60,
       ),
-      voicePitch: _doubleRange(json['voicePitch'], fallback: 1.0, min: 0.85, max: 1.18,
+      voicePitch: _doubleRange(json['voicePitch'], fallback: 1.14, min: 0.90, max: 1.35,
       ),
     );
   }

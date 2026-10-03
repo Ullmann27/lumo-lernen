@@ -18,6 +18,7 @@ import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import 'parent_report_card.dart';
 import 'parent_pin_editor.dart';
+import 'widgets/lumo_voice_picker.dart';
 import 'writing_report_card.dart';
 
 class SettingsContent extends StatefulWidget {
@@ -450,9 +451,9 @@ class _SettingsContentState extends State<SettingsContent> {
           _SwitchRow(title: 'Automatisch vorlesen', subtitle: 'Lumo spricht beim Wechseln von Bereichen.', value: _settings.autoReadEnabled, onChanged: (v) => _save(_settings.copyWith(autoReadEnabled: v)),
                 ),
           const SizedBox(height: 10),
-          _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.55, onChanged: (v) => _save(_settings.copyWith(voiceRate: v)),
+          _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.60, onChanged: (v) => _save(_settings.copyWith(voiceRate: v)),
                 ),
-          _SliderRow(title: 'Stimmhöhe', value: _settings.voicePitch, min: 0.85, max: 1.18, onChanged: (v) => _save(_settings.copyWith(voicePitch: v)),
+          _SliderRow(title: 'Stimmhöhe', value: _settings.voicePitch, min: 0.90, max: 1.35, onChanged: (v) => _save(_settings.copyWith(voicePitch: v)),
                 ),
           const SizedBox(height: 10),
           Wrap(spacing: 10, runSpacing: 10, children: [
@@ -462,9 +463,8 @@ class _SettingsContentState extends State<SettingsContent> {
                     ),
           ],
                 ),
-          const SizedBox(height: 8),
-          Text('Aktuelle Stimme: ${LumoVoice.instance.selectedVoiceName ?? 'Systemstandard'} (${LumoVoice.instance.selectedLocale ?? 'de'})', style: LumoTextStyles.caption,
-                ),
+          const SizedBox(height: 14),
+          LumoVoicePicker(enabled: _settings.voiceEnabled),
         ],
             ),
         const SizedBox(height: 14),
