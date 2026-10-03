@@ -23,6 +23,13 @@ def folded(text):
     return ''.join(c for c in unicodedata.normalize('NFKD', text) if not unicodedata.combining(c)).upper()
 
 
+def simple_calculation(text):
+    # OCR can omit "= ?". Accept only a complete arithmetic prompt, never
+    # a sentence that merely mentions a calculation in an explanation.
+    text = text.replace('—', '−').replace('-', '−')
+    return re.fullmatch(r'\s*(\d+)\s*([+−·xX])\s*(\d+)\s*(?:=\s*)?\??\s*', text)
+
+
 def read_frame(path):
     from PIL import Image
     with Image.open(path) as image:
@@ -115,7 +122,7 @@ def read_frame(path):
                 words.extend(group)
         frame['text'] = '\n'.join(line['text'] for line in lines)
         prompts = [line for line in lines if lesson['top']+lesson['height'] < line['top'] < .37*height
-                   and ('=' in line['text'] or 'WIE VIELE' in folded(line['text']))]
+                   and (simple_calculation(line['text']) or 'WIE VIELE' in folded(line['text']))]
         if prompts:
             prompt_bottom = max(line['top']+line['height'] for line in prompts)
             with Image.open(path) as source:
@@ -248,10 +255,10 @@ def answer_for(frame):
     """Extract a first-grade maths question and its real on-screen option box."""
     height = frame['height']
     prompts = [line for line in frame['lines'] if .20*height < line['top'] < .37*height
-               and any(token in folded(line['text']) for token in (' =', '+', '−', ' WIE VIELE'))]
+               and (simple_calculation(line['text']) or 'WIE VIELE' in folded(line['text']))]
     for prompt in prompts:
         text = prompt['text'].replace('—', '−').replace('-', '−')
-        calculation = re.search(r'(\d+)\s*([+−·xX])\s*(\d+)\s*=', text)
+        calculation = simple_calculation(text)
         expected = None
         if calculation:
             a, operator, b = calculation.groups()

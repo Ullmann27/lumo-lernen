@@ -7,7 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from kart_android_race import (race_state, second_round_in_progress, require_second_round,
                               wait_for_frame, marker, restart_visible, local_hint_visible,
                               lesson_closed_or_changed, action_marker, lightweight_pause_visible,
-                              answer_for)
+                              answer_for, simple_calculation)
 
 
 def frame(*captions):
@@ -160,6 +160,29 @@ class KartActionCaptionTests(unittest.TestCase):
 
 
 class KartAnswerTargetTests(unittest.TestCase):
+    def test_real_kvm_arithmetic_without_ocr_equals_uses_the_observed_eight_button(self):
+        # Actual 014-race.png OCR, run 37119973383. '=' is absent from OCR.
+        prompt = {'text': '7+1', 'left': 134, 'top': 154, 'width': 31, 'height': 12}
+        eight = {'left': 210, 'top': 190, 'width': 6, 'height': 9, 'text': '8'}
+        seven = {'left': 538, 'top': 190, 'width': 6, 'height': 9, 'text': '7'}
+        observed = {'height': 480, 'lines': [prompt], 'words': [eight, seven]}
+        answer = answer_for(observed)
+        self.assertEqual(answer['expected'], 8)
+        self.assertIs(answer['option'], eight)
+        self.assertEqual(answer['options'], [eight, seven])
+        for caption in ('7+1', '7 + 1 =', '7 + 1 = ?'):
+            self.assertIsNotNone(simple_calculation(caption))
+
+    def test_explanation_with_numbers_is_not_an_arithmetic_prompt(self):
+        for caption in ('Rechne zum Beispiel 7+1.', 'Bei 7+1 kommen 8 heraus.',
+                        'Zähle 7 Muscheln und 1 Muschel dazu.', '7+1=8'):
+            with self.subTest(caption=caption):
+                self.assertIsNone(simple_calculation(caption))
+                observed = {'height': 480,
+                            'lines': [{'text': caption, 'top': 154, 'height': 12}],
+                            'words': [{'text': '8', 'top': 190}]}
+                self.assertIsNone(answer_for(observed))
+
     def test_real_kvm_answer_strip_excludes_prompt_digits_for_both_answer_choices(self):
         # Actual OCR positions from run 37119121430: 013-race.png and
         # 021-wrong-local-hint.png show the same unanswered maths question.
