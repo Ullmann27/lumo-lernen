@@ -1,7 +1,5 @@
 name: Publish verified Android APK
 on:
-  push:
-    branches: [main, codex/lumo-restart-school-test-2026-10-02]
   workflow_dispatch:
 permissions:
   contents: write
