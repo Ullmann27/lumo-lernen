@@ -2,13 +2,60 @@
 from __future__ import annotations
 import argparse
 import json
+import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import threading
 import time
 
 FATAL = r'FATAL EXCEPTION|Fatal signal|SCRIPT ERROR|Parse Error| E godot.*ERROR:|LUMO_ASSET_ERROR(?:\s|$)'
+
+
+def verify_emulator(out, sdk, proc_root=Path('/proc')):
+    """Gate the real usage script on the selected binary AND running process."""
+    out.mkdir(parents=True, exist_ok=True)
+    root = sdk/'emulator'
+    qemu = (root/'qemu/linux-x86_64/qemu-system-x86_64').resolve(strict=True)
+    env = os.environ.copy()
+    libraries = [str(root/'lib64'), str(root/'lib64/qt/lib')]
+    env['LD_LIBRARY_PATH'] = ':'.join(libraries+[env.get('LD_LIBRARY_PATH', '')])
+    dependencies = subprocess.run(['ldd', str(qemu)], capture_output=True, text=True,
+                                  timeout=15, env=env)
+    (out/'emulator-libraries.txt').write_text(
+        f'exit_code={dependencies.returncode}\n'+dependencies.stdout+dependencies.stderr)
+    if dependencies.returncode or 'not found' in dependencies.stdout+dependencies.stderr:
+        raise RuntimeError('Pinned emulator dependencies are missing; emulator-libraries.txt retained')
+    version = subprocess.run([str(root/'emulator'), '-version'], capture_output=True,
+                             text=True, timeout=15, env=env)
+    output = version.stdout+version.stderr
+    (out/'emulator-version.txt').write_text(f'exit_code={version.returncode}\n'+output)
+    match = re.search(r'Android emulator version ([\d.]+) \(build_id (\d+)\)', output)
+    if version.returncode or not match or match.groups() != ('36.3.10.0', '14472402'):
+        raise RuntimeError('Actual emulator binary did not verify as 36.3.10.0/build14472402')
+    properties = (root/'source.properties').read_text()
+    (out/'emulator-source.properties').write_text(properties)
+    values = dict(line.split('=', 1) for line in properties.splitlines() if '=' in line)
+    if values.get('Pkg.Revision') != '36.3.10' or values.get('Pkg.BuildId') != '14472402':
+        raise RuntimeError('Emulator source.properties does not match its pinned binary')
+    running = []
+    for directory in proc_root.glob('[0-9]*'):
+        try:
+            if (directory/'comm').read_text().strip().startswith('qemu-system'):
+                running.append({'pid': int(directory.name),
+                                'executable': str((directory/'exe').resolve(strict=True))})
+        except (FileNotFoundError, PermissionError, ProcessLookupError):
+            continue
+    proof = {'version': match.group(1), 'build_id': match.group(2),
+             'binary': str(root/'emulator'), 'expected_qemu': str(qemu),
+             'running_qemu': running, 'library_search_paths': libraries,
+             'passed': len(running) == 1 and running[0]['executable'] == str(qemu)}
+    (out/'emulator-version-proof.json').write_text(json.dumps(proof, indent=2)+'\n')
+    if not proof['passed']:
+        raise RuntimeError('Running QEMU process does not uniquely match the verified pinned emulator')
+    print(json.dumps(proof, indent=2))
+    return proof
 
 
 def host_sample():
@@ -121,4 +168,9 @@ def collect_host(out):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
-    collect_host(parser.parse_args().out)
+    parser.add_argument('--verify-emulator', action='store_true')
+    args = parser.parse_args()
+    if args.verify_emulator:
+        verify_emulator(args.out, Path(os.environ['ANDROID_HOME']))
+    else:
+        collect_host(args.out)

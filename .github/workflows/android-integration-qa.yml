@@ -57,7 +57,7 @@ jobs:
       - name: Install OCR and Android SDK tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y tesseract-ocr xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0
+          sudo apt-get install -y tesseract-ocr xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
           python3 -m pip install Pillow
       - uses: android-actions/setup-android@v3
         with:
@@ -148,11 +148,9 @@ jobs:
           # gfxstream context loss while testing the identical frozen APK.
           emulator-build: '14472402'
           disable-animations: true
-          pre-emulator-launch-script: >-
-            bash -o pipefail -c '"$ANDROID_HOME/emulator/emulator" -version 2>&1 | tee "$LUMO_QA_DIR/emulator-version.txt"; grep -F "36.3.10" "$LUMO_QA_DIR/emulator-version.txt"'
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: >-
-            bash -o pipefail -c 'python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
+            bash -e -o pipefail -c 'python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR" --verify-emulator; python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
       - name: Preserve host kernel and emulator crash diagnostics
         if: always()
         run: python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR"

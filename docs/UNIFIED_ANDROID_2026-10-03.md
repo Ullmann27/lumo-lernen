@@ -54,8 +54,8 @@ Einzelberichte: [Spiele](GAMES_QA_2026-10-03.md),
 ## Tatsächlich geprüft
 
 **Flutter: 509 bestanden, vier bestehende übersprungen, keine Fehler.**
-Analyse: keine Fehler, 153 bestehende Warnungen/Hinweise. Backend: 22 Tests. 102 Prüfungen des aktuellen Android-Testwerkzeugs bestehen (90 beim APK-Bau,
-zwölf zusätzliche Diagnostik-/Kartenfragenregressionen).
+Analyse: keine Fehler, 153 bestehende Warnungen/Hinweise. Backend: 22 Tests. 116 Prüfungen des aktuellen Android-Testwerkzeugs bestehen (90 beim APK-Bau,
+26 zusätzliche Diagnostik-/Versions-/Karten-/Memoryregressionen).
 Inhaltsaudit: 37.940 Aufgabenvarianten; Klassen-/Fachmatrix mit 16 Fällen.
 Acht gezielte Plus-Modultests prüfen Hilfen, falsche/richtige Antworten,
 verzögerte/abgelehnte Speicherung, Doppeltaps, Unmount, Hintergrund und Neustart.
@@ -127,6 +127,30 @@ behält API 35/KVM/Mesa bei und sichert kontinuierlich Android-/Hostdiagnostik.
 Ein weiterer belegter QA-Parserfehler für gültige Buchstabenanweisungen ohne
 Fragezeichen ist über die tatsächliche Promptposition korrigiert. Unbekannte
 Lernantworten bleiben ausdrücklich unbestätigt; alle bisherigen Gates bleiben.
+
+**Installierter APK-280-Lauf 37132721782:** Hostlog bestätigt Emulator
+36.3.10.0 / Build 14472402. Das reale Rennen endete mit vier richtigen Antworten,
+zwei „Später“-Auswahlen und elf Sternen. Neustart, beide Rückwege einschließlich
+native Rückkehr zur Akademie bei lebendem Flutter und beendetem Engineprozess
+sind bestätigt. Die sichtbare Lernaufgabe `2 + 7 = ?` wurde nach zwei falschen
+Antworten und der passenden Apfelhilfe mit `9` gelöst; Aufgabe 2/30 und Rückkehr
+waren sichtbar. Wallet von 11 Sternen / 40 XP / 0 Tagesaufgaben auf
+12 Sterne / 45 XP / 1 Tagesaufgabe gespeichert.
+
+Der Gesamttest brach anschließend im Memory-Helfer ab: ein langsamer
+UI-Dump enthielt zeitlich gemischte Zug-/Score-/Karteninformationen. Die QA
+hielt eine bereits von Lumo gepaarte Karte für den eigenen ersten Zug und
+erklärte eine offene ungepaarte Karte falsch als gefundenes Paar. Der neue
+Helfer muss die tatsächliche zugängliche Button-/View-Kartenrolle und stabile
+Kinderzugaufnahmen verwenden. Die unteren Karten sind in einem aktiven
+ScrollView; alle bisherigen Memory-Aufnahmen standen bei Offset 0. Ihre
+Android-Erreichbarkeit bleibt bis zum tatsächlichen Scrolltest offen.
+
+Der bisherige Emulator-Versions-Prehook schlug wegen `libpulse.so.0` fehl,
+obwohl der Host die richtige Version startete. Der neue harte Versionsgate
+prüft Bibliotheken, Ausgabe, SDK-Metadaten und laufenden QEMU vor jedem UI-Test.
+Memory-Abschluss, Kartenspiel, Foldwechsel und Offline-Neustart bleiben offen;
+kein endgültiger APK-Download ist veröffentlicht.
 
 Weitere belegte Aufgaben-/Fortschrittskorrekturen für Build 280:
 

@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from emulator_diagnostics import ContinuousDiagnostics, save_final_logs
+from emulator_diagnostics import ContinuousDiagnostics, save_final_logs, verify_emulator
 
 
 class DiagnosticTests(unittest.TestCase):
@@ -62,6 +62,64 @@ class DiagnosticTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'original device loss'):
                 with ContinuousDiagnostics('adb', 'emulator-5554', self.out):
                     raise RuntimeError('original device loss')
+
+    def emulator_fixture(self):
+        sdk = self.out/'sdk'
+        root = sdk/'emulator'
+        qemu = root/'qemu/linux-x86_64/qemu-system-x86_64'
+        qemu.parent.mkdir(parents=True)
+        qemu.write_text('actual binary fixture')
+        (root/'source.properties').write_text('Pkg.Revision=36.3.10\nPkg.BuildId=14472402\n')
+        proc = self.out/'proc'
+        (proc/'42').mkdir(parents=True)
+        (proc/'42/comm').write_text('qemu-system-x86\n')
+        (proc/'42/exe').symlink_to(qemu)
+        results = [subprocess.CompletedProcess([], 0, 'libpulse.so.0 => /usr/lib/libpulse.so.0\n', ''),
+                   subprocess.CompletedProcess([], 0, 'Android emulator version 36.3.10.0 (build_id 14472402) (CL:N/A)\n', '')]
+        return sdk, proc, results
+
+    def test_version_gate_verifies_running_binary_and_captures_library_paths(self):
+        sdk, proc, results = self.emulator_fixture()
+        with patch('emulator_diagnostics.subprocess.run', side_effect=results) as run:
+            proof = verify_emulator(self.out, sdk, proc)
+        self.assertTrue(proof['passed'])
+        self.assertEqual(proof['running_qemu'][0]['pid'], 42)
+        self.assertIn(str(sdk/'emulator/lib64'), run.call_args.kwargs['env']['LD_LIBRARY_PATH'])
+        self.assertTrue((self.out/'emulator-version.txt').exists())
+        self.assertTrue((self.out/'emulator-libraries.txt').exists())
+
+    def test_version_gate_rejects_missing_libpulse(self):
+        sdk, proc, results = self.emulator_fixture()
+        results[0] = subprocess.CompletedProcess([], 0, 'libpulse.so.0 => not found\n', '')
+        with patch('emulator_diagnostics.subprocess.run', side_effect=results), self.assertRaisesRegex(RuntimeError, 'dependencies'):
+            verify_emulator(self.out, sdk, proc)
+
+    def test_version_gate_rejects_load_failure_even_when_version_text_is_present(self):
+        sdk, proc, results = self.emulator_fixture()
+        results[1] = subprocess.CompletedProcess([], 1, results[1].stdout, 'libpulse.so.0 missing')
+        with patch('emulator_diagnostics.subprocess.run', side_effect=results), self.assertRaisesRegex(RuntimeError, 'binary did not verify'):
+            verify_emulator(self.out, sdk, proc)
+
+    def test_version_gate_rejects_wrong_version_and_build(self):
+        sdk, proc, results = self.emulator_fixture()
+        results[1] = subprocess.CompletedProcess([], 0, 'Android emulator version 37.2.12.0 (build_id 16428233)', '')
+        with patch('emulator_diagnostics.subprocess.run', side_effect=results), self.assertRaisesRegex(RuntimeError, 'binary did not verify'):
+            verify_emulator(self.out, sdk, proc)
+
+    def test_version_gate_rejects_missing_running_qemu(self):
+        sdk, proc, results = self.emulator_fixture()
+        (proc/'42/exe').unlink()
+        with patch('emulator_diagnostics.subprocess.run', side_effect=results), self.assertRaisesRegex(RuntimeError, 'Running QEMU'):
+            verify_emulator(self.out, sdk, proc)
+
+    def test_version_gate_rejects_different_running_binary(self):
+        sdk, proc, results = self.emulator_fixture()
+        different = self.out/'different-qemu'
+        different.write_text('wrong binary')
+        (proc/'42/exe').unlink()
+        (proc/'42/exe').symlink_to(different)
+        with patch('emulator_diagnostics.subprocess.run', side_effect=results), self.assertRaisesRegex(RuntimeError, 'Running QEMU'):
+            verify_emulator(self.out, sdk, proc)
 
 
 if __name__ == '__main__':
