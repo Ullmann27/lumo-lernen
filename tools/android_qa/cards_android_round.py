@@ -16,7 +16,7 @@ import re
 import time
 
 from android_ui import Android
-from memory_android_round import Round, labels
+from memory_android_round import Round, has_caption, labels
 
 
 def described_cards(root):
@@ -103,7 +103,7 @@ class CardsRound(Round):
                             unverified_learning_answers=self.unverified_answers,
                             result_labels=values)
                 return root
-            if 'Spiel pausiert' in values:
+            if has_caption(root, 'Spiel pausiert'):
                 raise RuntimeError('Unexpected pause; no automatic takeover of another test.')
             if 'Waehle eine Farbe' in values:
                 self.tap_label(root, 'Rot')
@@ -154,13 +154,13 @@ class CardsRound(Round):
         self.android.key('4', 'KEY_BACK')
         time.sleep(.5)
         root = self.frame('cards-back-pause')
-        if 'Spiel pausiert' not in labels(root):
+        if not has_caption(root, 'Spiel pausiert'):
             raise RuntimeError('Actual Android Back did not pause Cards.')
         self.screenshot('cards-back-pause')
         self.tap_label(root, 'Fortsetzen')
         time.sleep(.5)
         root = self.frame('cards-resumed')
-        if 'Spiel pausiert' in labels(root) or 'Ziehen' not in labels(root):
+        if has_caption(root, 'Spiel pausiert') or 'Ziehen' not in labels(root):
             raise RuntimeError('Actual Cards Fortsetzen did not resume the human turn.')
         self.record('cards_back_resume_verified')
         self.android.key('4', 'KEY_BACK')

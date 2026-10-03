@@ -37,6 +37,17 @@ def labels(root):
             if (value := node.attrib.get(key, '').strip())]
 
 
+def has_caption(root, caption):
+    """Match an entire visible text line within merged Flutter semantics.
+
+    The shared pause Card combines its title and instruction on one node:
+    "Spiel pausiert\nDein aktueller Zug wartet auf dich.". Keep original nodes
+    and bounds for tapping; a substring within another caption never matches.
+    """
+    return any(caption == line.strip() for value in labels(root)
+               for line in value.splitlines())
+
+
 def cards(root):
     result = {}
     for node in root.iter('node'):
@@ -160,7 +171,7 @@ class Round:
             root = self.frame()
             if result_scores(root) is not None:
                 return root
-            if 'Spiel pausiert' in labels(root):
+            if has_caption(root, 'Spiel pausiert'):
                 raise RuntimeError('Unexpected paused game; do not silently resume someone else\'s test.')
             if 'Du bist dran! Tipp 2 Karten.' in labels(root):
                 # At the start of our turn all already open cards are matched.
@@ -258,13 +269,13 @@ class Round:
         self.android.key('4', 'KEY_BACK')
         time.sleep(.5)
         root = self.frame('android-back-pause')
-        if 'Spiel pausiert' not in labels(root):
+        if not has_caption(root, 'Spiel pausiert'):
             raise RuntimeError('Real Android Back did not open Memory pause.')
         self.screenshot('android-back-pause')
         self.tap_label(root, 'Fortsetzen')
         time.sleep(.5)
         root = self.frame('resumed-memory')
-        if 'Spiel pausiert' in labels(root) or 'Du bist dran! Tipp 2 Karten.' not in labels(root):
+        if has_caption(root, 'Spiel pausiert') or 'Du bist dran! Tipp 2 Karten.' not in labels(root):
             raise RuntimeError('Actual Fortsetzen did not resume Memory.')
         if before != {number: card.symbol for number, card in cards(root).items()}:
             raise RuntimeError('Board changed during explicit pause/resume.')
@@ -275,7 +286,7 @@ class Round:
             self.android.foreground(package)
             time.sleep(1)
             root = self.frame('foreground-lifecycle-pause')
-            if 'Spiel pausiert' not in labels(root):
+            if not has_caption(root, 'Spiel pausiert'):
                 raise RuntimeError('Home/foreground did not retain a paused Memory round.')
             self.screenshot('foreground-lifecycle-pause')
             self.tap_label(root, 'Fortsetzen')

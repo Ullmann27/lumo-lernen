@@ -4,16 +4,84 @@ import sys
 import tempfile
 import types
 import unittest
+from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from android_ui import Android
 from cards_android_round import CardsRound, arithmetic, described_cards, is_result
 from flutter_flows import FlutterChecks, profile_from_labels, visible_text_lines, wallet_from_labels
-from memory_android_round import cards, labels, result_scores
+from memory_android_round import Round, cards, has_caption, labels, result_scores
 
 
 class VisibleUiTests(unittest.TestCase):
+    def test_shared_pause_caption_is_an_exact_visible_line_not_a_substring(self):
+        # Captured from the current LumoGamePauseScope widget semantics tree:
+        # the Card merges its two Text children; buttons keep separate labels.
+        root = ET.fromstring('''<hierarchy><node
+            content-desc="Spiel pausiert&#10;Dein aktueller Zug wartet auf dich.">
+            <node content-desc="Fortsetzen" clickable="true" bounds="[80,400][640,490]"/>
+            <node content-desc="Zur Spieleauswahl" clickable="true" bounds="[80,590][640,690]"/>
+            </node></hierarchy>''')
+        original = ET.tostring(root)
+        self.assertNotIn('Spiel pausiert', labels(root))
+        self.assertTrue(has_caption(root, 'Spiel pausiert'))
+        self.assertTrue(has_caption(root, 'Fortsetzen'))
+        self.assertFalse(has_caption(root, 'pausiert'))
+        self.assertFalse(has_caption(ET.fromstring(
+            '<hierarchy><node content-desc="Nicht Spiel pausiert"/></hierarchy>'), 'Spiel pausiert'))
+        self.assertEqual(ET.tostring(root), original)
+
+    def test_memory_back_background_resume_accepts_actual_merged_pause_caption(self):
+        self._merged_pause_flow(cards_game=False)
+
+    def test_cards_back_resume_accepts_actual_merged_pause_caption(self):
+        self._merged_pause_flow(cards_game=True)
+
+    def _merged_pause_flow(self, cards_game):
+        def screen(children):
+            return ET.fromstring('<hierarchy><node bounds="[0,0][720,1280]">'
+                                 + children + '</node></hierarchy>')
+        pause = screen('''<node content-desc="Spiel pausiert&#10;Dein aktueller Zug wartet auf dich."
+            bounds="[40,300][680,800]">
+            <node content-desc="Fortsetzen" clickable="true" bounds="[80,400][640,490]"/>
+            <node content-desc="Zur Spieleauswahl" clickable="true" bounds="[80,590][640,690]"/>
+            </node>''')
+        board = screen('''<node content-desc="Lumo Karte, Rot, Zahl 7, spielbar" bounds="[40,700][200,900]"/>
+                           <node content-desc="Ziehen" clickable="true" bounds="[80,1000][320,1100]"/>'''
+                       if cards_game else '''<node content-desc="Memory Karte 1, verdeckt&#10;?"
+                           bounds="[40,200][200,360]"/><node content-desc="Du bist dran! Tipp 2 Karten."/>''')
+        result = screen('<node content-desc="' + ('Nochmal' if cards_game else 'Nochmal!')
+                        + '" clickable="true" bounds="[80,400][640,490]"/>')
+        games = screen('<node content-desc="Lumo Spielewelt"/>')
+        events, touches, keys = [], [], []
+        device = types.SimpleNamespace(bounds=Android.bounds,
+                                       tap=lambda x, y: touches.append((x, y)),
+                                       key=lambda *args: keys.append(args),
+                                       foreground=lambda package: keys.append(('foreground', package)))
+        with tempfile.TemporaryDirectory() as directory, patch('memory_android_round.time.sleep'):
+            check = (CardsRound(device, Path(directory), timeout=1, allow_unverified=True)
+                     if cards_game else Round(device, Path(directory), timeout=1))
+            frames = iter([board, pause, board, pause, games] if cards_game
+                          else [board, pause, board, pause, board, pause, games])
+            def frame(name):
+                check.latest_root = next(frames)
+                return check.latest_root
+            check.frame = frame
+            check.screenshot = lambda name: None
+            check.record = lambda event, **values: events.append(event)
+            if cards_game:
+                check.after_result(result)
+            else:
+                check.after_result(result, 'example', background=True)
+        self.assertIn('cards_back_resume_verified' if cards_game else 'android_back_resume_verified', events)
+        self.assertIn('cards_return_verified' if cards_game else 'return_to_games_verified', events)
+        self.assertEqual(touches.count((360, 445)), 2 if cards_game else 3)
+        self.assertEqual(touches[-1], (360, 640))
+        if not cards_game:
+            self.assertIn('background_resume_verified', events)
+            self.assertIn(('foreground', 'example'), keys)
+
     def test_actual_api35_merged_profile_preserves_original_xml_and_touch_bounds(self):
         fixture = Path(__file__).parent/'fixtures/home-api35-37111452558.xml'
         root = ET.parse(fixture).getroot()
