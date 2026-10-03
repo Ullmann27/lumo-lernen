@@ -21,9 +21,11 @@ class ProfileScreen extends StatelessWidget {
     required this.practice,
     required this.lastGrade,
     required this.childName,
+    required this.grade,
   });
 
   final String childName;
+  final int grade;
   final int stars;
   final int xp;
   final int level;
@@ -39,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _ProfileHeroCard(stars: stars, xp: xp, level: level, totalSolved: _totalSolved, childName: childName),
+        _ProfileHeroCard(stars: stars, xp: xp, level: level, totalSolved: _totalSolved, childName: childName, grade: grade),
         const SizedBox(height: 18),
 
         // Phase 1 - kindgerechte Lern-DNA-Kurzfassung
@@ -133,8 +135,10 @@ class _ProfileHeroCard extends StatelessWidget {
     required this.level,
     required this.totalSolved,
     required this.childName,
+    required this.grade,
   });
   final String childName;
+  final int grade;
   final int stars;
   final int xp;
   final int level;
@@ -201,7 +205,7 @@ class _ProfileHeroCard extends StatelessWidget {
                   runSpacing: 4,
                   children: [
                     _LevelBadge(level: level),
-                    const _ClassBadge(),
+                    _ClassBadge(grade: grade),
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -241,7 +245,8 @@ class _LevelBadge extends StatelessWidget {
 }
 
 class _ClassBadge extends StatelessWidget {
-  const _ClassBadge();
+  const _ClassBadge({required this.grade});
+  final int grade;
 
   @override
   Widget build(BuildContext context) {
@@ -252,8 +257,8 @@ class _ClassBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(99),
         border: Border.all(color: Colors.white.withOpacity(.80)),
       ),
-      child: const Text('Klasse 2',
-          style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xff766a61))),
+      child: Text('Klasse $grade',
+          style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xff766a61))),
     );
   }
 }

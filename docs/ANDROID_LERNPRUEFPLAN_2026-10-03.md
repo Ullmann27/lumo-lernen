@@ -4,8 +4,8 @@ Ausführungsplan für die tatsächlich ausgelieferte APK, noch kein Testnachweis
 APK-Version/SHA-256, Emulator-Gerät/API/ABI, Bildschirmgröße und Zeitpunkt
 vor dem ersten Schritt notieren. Nur ein fiktives Testprofil verwenden;
 vorhandene Nutzerdaten weder zurücksetzen noch löschen. Für jede Klasse ein
-passend gespeichertes Testprofil verwenden und den aktiven Grad auf der
-Lernfachauswahl kontrollieren. Ein früheres Thema ist als Wiederholung erlaubt.
+passend gespeichertes Testprofil verwenden und die aktuelle Klasse im Profil
+und auf der Lernfachauswahl kontrollieren. Ein früheres Thema ist als Wiederholung erlaubt.
 
 | Klasse | Mathematik | Deutsch | Sachunterricht | Logik |
 | --- | --- | --- | --- | --- |

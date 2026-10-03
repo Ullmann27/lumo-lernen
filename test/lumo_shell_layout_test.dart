@@ -8,12 +8,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_shell.dart';
+import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:lumo_lernen/core/user_profile.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_free_companion.dart';
+import 'package:lumo_lernen/widgets/profile_screen.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -44,6 +47,54 @@ void main() {
       await tester.pump(const Duration(milliseconds: 200));
     }
   }
+
+  testWidgets('profile displays the active school grade from the real shell',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    LumoVoice.instance.isEnabled = false;
+    final fixtureDate = DateTime(2026, 10, 3);
+    for (var grade = 1; grade <= 4; grade++) {
+      SharedPreferences.setMockInitialValues({
+        'lumo_app_settings_v1': jsonEncode(const AppSettings(
+          voiceEnabled: false,
+          autoReadEnabled: false,
+          reduceAnimations: true,
+        ).toJson()),
+      });
+      await RewardWalletRepository.instance.reset();
+      await tester.pumpWidget(MaterialApp(
+        theme: LumoAppTheme.light(),
+        home: AppShell(
+          profile: UserProfile(
+            id: 'grade-fixture-$grade',
+            name: 'Testfuchs',
+            age: grade + 5,
+            grade: grade,
+            createdAt: fixtureDate,
+            lastActiveAt: fixtureDate,
+          ),
+          initialSection: LumoSection.profile,
+        ),
+      ));
+      await settleWork(tester);
+      final profile = find.byType(ProfileScreen);
+      expect(profile, findsOneWidget);
+      expect(tester.widget<ProfileScreen>(profile).grade, grade);
+      expect(
+          find.descendant(of: profile, matching: find.text('Klasse $grade')),
+          findsOneWidget);
+      for (var other = 1; other <= 4; other++) {
+        if (other != grade) {
+          expect(
+              find.descendant(of: profile, matching: find.text('Klasse $other')),
+              findsNothing);
+        }
+      }
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    }
+  });
 
   testWidgets(
       'actual shell stays usable while resizing from phone to Fold and narrow phone',

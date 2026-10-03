@@ -405,6 +405,7 @@ class _AppShellState extends State<AppShell>
           padding: const EdgeInsets.all(22),
           child: ProfileScreen(
             childName: _appState.state.childName,
+            grade: _appState.state.grade,
             stars: _appState.state.stars,
             xp: _appState.state.xp,
             level: _appState.state.level,
