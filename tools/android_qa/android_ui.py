@@ -10,6 +10,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import xml.etree.ElementTree as ET
 
@@ -18,6 +19,27 @@ QA_ROOT = Path(os.environ.get('LUMO_QA_DIR', 'android-qa-evidence'))
 EVIDENCE = QA_ROOT / 'screens'
 LOG = QA_ROOT / 'android-ui-actions.jsonl'
 DISPLAY = QA_ROOT / 'emulator-display.json'
+
+
+def package_from_apk(path):
+    tool = shutil.which('aapt') or shutil.which('aapt2')
+    if not tool:
+        for sdk in filter(None, [os.environ.get('ANDROID_HOME'), os.environ.get('ANDROID_SDK_ROOT')]):
+            versions = sorted((Path(sdk)/'build-tools').glob('*'),
+                              key=lambda p: tuple(map(int, re.findall(r'\d+', p.name))), reverse=True)
+            tool = next((str(version/name) for version in versions for name in ('aapt', 'aapt2')
+                         if (version/name).is_file()), None)
+            if tool:
+                break
+    if not tool:
+        raise RuntimeError('aapt/aapt2 missing; Android SDK build-tools are required to identify the APK')
+    result = subprocess.run([tool, 'dump', 'badging', str(path)], capture_output=True,
+                            text=True, check=True, timeout=60)
+    names = re.findall(r"^package: name='([^']+)'", result.stdout, re.M)
+    if len(names) != 1 or not re.fullmatch(r'[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+', names[0], re.ASCII):
+        raise RuntimeError('APK does not declare one unambiguous Android package')
+    return names[0]
+
 
 class Android:
     def __init__(self, serial='emulator-5554', fast_input=False):
@@ -180,11 +202,34 @@ class Android:
 
     def install(self, apk):
         path = Path(apk).resolve()
-        checksum = hashlib.sha256(path.read_bytes()).hexdigest()
+        package = package_from_apk(path)
+        with path.open('rb') as stream:
+            checksum = hashlib.file_digest(stream, 'sha256').hexdigest()
+        size = path.stat().st_size
         # -r preserves app data. No downgrade or uninstall is attempted on signature mismatch.
         output = self.adb('install', '--no-incremental', '-r', str(path), timeout=600)
-        return {'file': str(path), 'bytes': path.stat().st_size, 'sha256': checksum,
-                'adb_install_output': output.strip()}
+        paths = self.adb('shell', 'pm', 'path', package)
+        installed = [line.removeprefix('package:').strip() for line in paths.splitlines()
+                     if line.startswith('package:')]
+        bases = [remote for remote in installed if Path(remote).name == 'base.apk']
+        if len(bases) != 1:
+            raise RuntimeError(f'Installed package {package} has no unique base.apk path: {installed}')
+        # Pull only the public APK, never private profiles/preferences. Hash a
+        # temporary file so this check does not buffer another large APK in RAM.
+        with tempfile.TemporaryDirectory() as directory:
+            downloaded = Path(directory)/'installed-base.apk'
+            self.adb('pull', bases[0], str(downloaded), timeout=180)
+            with downloaded.open('rb') as stream:
+                installed_checksum = hashlib.file_digest(stream, 'sha256').hexdigest()
+            installed_size = downloaded.stat().st_size
+        if installed_checksum != checksum or installed_size != size:
+            raise RuntimeError('Installed base.apk differs from the input APK: '
+                               f'input={checksum}/{size}, installed={installed_checksum}/{installed_size}')
+        return {'file': str(path), 'bytes': size, 'sha256': checksum,
+                'adb_install_output': output.strip(), 'package': package,
+                'installed_base_apk': {'remote_path': bases[0], 'sha256': installed_checksum,
+                                       'bytes': installed_size, 'matches_input': True},
+                'installed_split_paths': [remote for remote in installed if remote != bases[0]]}
 
 
 def main():
