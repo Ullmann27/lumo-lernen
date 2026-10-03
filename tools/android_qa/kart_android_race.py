@@ -1,0 +1,269 @@
+#!/usr/bin/env python3
+"""Real ADB touch/OCR race check; start from an already opened native Kart screen.
+
+No Godot debug commands, altered physics, teleports or save edits. Automatic gas
+is the actual child-facing game mechanic. Evidence records every real touch.
+"""
+from __future__ import annotations
+import argparse
+import csv
+import io
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import time
+import unicodedata
+
+from android_ui import Android, ADB
+
+
+def folded(text):
+    return ''.join(c for c in unicodedata.normalize('NFKD', text) if not unicodedata.combining(c)).upper()
+
+
+def read_frame(path):
+    from PIL import Image
+    with Image.open(path) as image:
+        width, height = image.size
+    raw = subprocess.run(['tesseract', str(path), 'stdout', '--psm', '11', 'tsv'],
+                         capture_output=True, text=True, check=True, timeout=45).stdout
+    grouped = {}
+    words = []
+    for row in csv.DictReader(io.StringIO(raw), delimiter='\t'):
+        text = row.get('text', '').strip()
+        if not text or float(row.get('conf', '-1')) < 5:
+            continue
+        box = {k: int(row[k]) for k in ('left', 'top', 'width', 'height')}
+        box['text'] = text
+        words.append(box)
+        group = tuple(row[k] for k in ('block_num', 'par_num', 'line_num'))
+        grouped.setdefault(group, []).append(box)
+    lines = []
+    for line_words in grouped.values():
+        line_words.sort(key=lambda x: x['left'])
+        left = min(w['left'] for w in line_words)
+        top = min(w['top'] for w in line_words)
+        right = max(w['left'] + w['width'] for w in line_words)
+        bottom = max(w['top'] + w['height'] for w in line_words)
+        lines.append({'text': ' '.join(w['text'] for w in line_words),
+                      'left': left, 'top': top, 'width': right-left, 'height': bottom-top})
+    frame = {'width': width, 'height': height, 'words': words, 'lines': lines,
+             'text': '\n'.join(line['text'] for line in lines), 'tsv': raw}
+    # OCR analysis crops are temporary; the evidence PNG is always the raw
+    # screencap. White numbers on the game's purple buttons need inversion.
+    lesson = marker(frame, 'LERN-BOOST')
+    if lesson:
+        prompts = [line for line in lines if lesson['top']+lesson['height'] < line['top'] < .37*height
+                   and ('=' in line['text'] or 'WIE VIELE' in folded(line['text']))]
+        if prompts:
+            prompt_bottom = max(line['top']+line['height'] for line in prompts)
+            center_y = prompt_bottom + 32*height/720
+            with Image.open(path) as source:
+                for index, center_x in enumerate((.275*width, .5*width, .725*width)):
+                    crop_box = (int(center_x-.043*width), int(center_y-.03*height),
+                                int(center_x+.043*width), int(center_y+.03*height))
+                    analysis = source.crop(crop_box).convert('L').point(lambda value: 0 if value > 165 else 255)
+                    analysis = analysis.resize((analysis.width*4, analysis.height*4))
+                    buffer = io.BytesIO(); analysis.save(buffer, format='PNG')
+                    output = subprocess.run(['tesseract', 'stdin', 'stdout', '--psm', '8',
+                                             '-c', 'tessedit_char_whitelist=0123456789'],
+                                            input=buffer.getvalue(), capture_output=True, timeout=30).stdout.decode().strip()
+                    if re.fullmatch(r'\d+', output):
+                        words.append({'left': int(center_x-8), 'top': int(center_y-8),
+                                      'width': 16, 'height': 16, 'text': output})
+    return frame
+
+
+def marker(frame, phrase):
+    phrase = folded(phrase)
+    return next((line for line in frame['lines'] if phrase in folded(line['text'])), None)
+
+
+def answer_for(frame):
+    """Extract a first-grade maths question and its real on-screen option box."""
+    height = frame['height']
+    prompts = [line for line in frame['lines'] if .20*height < line['top'] < .37*height
+               and any(token in folded(line['text']) for token in (' =', '+', '−', ' WIE VIELE'))]
+    for prompt in prompts:
+        text = prompt['text'].replace('—', '−').replace('-', '−')
+        calculation = re.search(r'(\d+)\s*([+−·xX])\s*(\d+)\s*=', text)
+        expected = None
+        if calculation:
+            a, operator, b = calculation.groups()
+            a, b = int(a), int(b)
+            expected = a+b if operator == '+' else a-b if operator == '−' else a*b
+        elif any(term in folded(text) for term in ('MUSCHELN', 'BLUMEN', 'BUCHER', 'KINDER')):
+            numbers = re.findall(r'\b\d+\b', text)
+            if len(numbers) == 2:
+                expected = sum(map(int, numbers))
+        if expected is None:
+            continue
+        options = [word for word in frame['words']
+                   if prompt['top'] + prompt['height'] < word['top'] < .44*height
+                   and re.fullmatch(r'\d+', word['text'])]
+        right = next((word for word in options if int(word['text']) == expected), None)
+        if right:
+            return {'prompt': text, 'expected': expected, 'option': right}
+    return None
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--serial', default='emulator-5554')
+    parser.add_argument('--package', default='dev.ullmann.lumo.lumo_lernen.neu')
+    parser.add_argument('--out', type=Path, default=Path(os.environ.get('LUMO_QA_DIR', 'android-qa-evidence'))/'kart-race')
+    parser.add_argument('--timeout', type=int, default=600)
+    parser.add_argument('--require-correct', action='store_true')
+    parser.add_argument('--restart', action='store_true')
+    parser.add_argument('--pause-back', action='store_true')
+    parser.add_argument('--check-wrong-hint', action='store_true')
+    parser.add_argument('--return-to', choices=['games', 'learn'])
+    parser.add_argument('--self-test', type=Path,
+                        help='Inspect a supplied PNG only; sends no Android input.')
+    args = parser.parse_args()
+    if args.self_test:
+        frame = read_frame(args.self_test)
+        print(json.dumps({'width': frame['width'], 'height': frame['height'],
+                          'text': frame['text'], 'math': answer_for(frame)}, ensure_ascii=False))
+        return
+    args.out.mkdir(parents=True, exist_ok=True)
+    android = Android(args.serial, fast_input=False)
+    sequence = 0
+    def record(event, **values):
+        value = {'time_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+                 'event': event, **values}
+        with (args.out/'actions.jsonl').open('a') as stream:
+            stream.write(json.dumps(value, ensure_ascii=False)+'\n')
+        print(json.dumps(value, ensure_ascii=False), flush=True)
+    def capture(label):
+        nonlocal sequence
+        sequence += 1
+        path = args.out/f'{sequence:03d}-{label}.png'
+        path.write_bytes(android.adb('exec-out', 'screencap', '-p', binary=True))
+        frame = read_frame(path)
+        path.with_suffix('.tsv').write_text(frame.pop('tsv'))
+        path.with_suffix('.txt').write_text(frame['text'])
+        record('capture', image=str(path), width=frame['width'], height=frame['height'])
+        if frame['width'] <= frame['height']:
+            raise RuntimeError('Kart must finish its actual native landscape rotation first.')
+        return frame
+    def tap_box(box, reason):
+        x, y = box['left']+box['width']//2, box['top']+box['height']//2
+        record('touch', x=x, y=y, reason=reason)
+        android.tap(x, y)
+    def tap_phrase(frame, phrase):
+        box = marker(frame, phrase)
+        if not box and folded(phrase) == 'SPATER':
+            lesson = marker(frame, 'LERN-BOOST')
+            if lesson:
+                # Actual lesson heading anchors the row; this is the source
+                # layout's right-hand skip button, not an arbitrary tap.
+                box = {'left': int(.795*frame['width'])-5,
+                       'top': lesson['top']+lesson['height']//2-5,
+                       'width': 10, 'height': 10}
+        if not box:
+            raise RuntimeError(f'Button absent in actual OCR frame: {phrase}')
+        tap_box(box, phrase)
+    frame = capture('native-start')
+    if marker(frame, 'Weiterfahren'):
+        tap_phrase(frame, 'Weiterfahren')
+        time.sleep(2)
+        frame = capture('resumed-start')
+    if args.pause_back:
+        android.key(4, 'KEY_BACK')
+        time.sleep(2)
+        frame = capture('android-back-pause')
+        if not marker(frame, 'Weiterfahren'):
+            raise RuntimeError('Android Back did not open the Godot pause screen.')
+        tap_phrase(frame, 'Weiterfahren')
+        time.sleep(2)
+    deadline = time.monotonic()+args.timeout
+    correct = 0
+    skipped = 0
+    while time.monotonic() < deadline:
+        frame = capture('race')
+        if marker(frame, 'geschafft') and marker(frame, 'Noch ein Rennen'):
+            record('finished', correct_actions=correct, skipped_actions=skipped, text=frame['text'])
+            if args.require_correct and correct < 1:
+                raise RuntimeError('No actual maths answer was proven; race finish alone is insufficient.')
+            break
+        if marker(frame, 'SPATER') or marker(frame, 'LERN-BOOST'):
+            if correct == 0:
+                answer = answer_for(frame)
+                if answer:
+                    record('math_solution', prompt=answer['prompt'], expected=answer['expected'])
+                    # A second actual screenshot proves that the visible lesson remains
+                    # waiting while real CPU/wall time passes; no controller alteration.
+                    time.sleep(4)
+                    waiting = capture('learning-waits')
+                    if not (marker(waiting, 'SPATER') or marker(waiting, 'LERN-BOOST')):
+                        raise RuntimeError('Lesson disappeared without a touch while waiting.')
+                    if not re.search(r'\b[0O]\s*KM\s*/\s*H', folded(waiting['text'])):
+                        raise RuntimeError('Visible learning-pause speed is not proven zero by OCR.')
+                    record('real_learning_wait', wall_seconds=4, speed_zero=True)
+                    if args.check_wrong_hint:
+                        wrong = next((word for word in frame['words'] if .32*frame['height'] < word['top'] < .42*frame['height']
+                                      and re.fullmatch(r'\d+', word['text']) and int(word['text']) != answer['expected']), None)
+                        if not wrong:
+                            raise RuntimeError('No wrong option box could be identified safely.')
+                        tap_box(wrong, 'intentional wrong answer, inspect local hint')
+                        time.sleep(1.5)
+                        hint = capture('wrong-local-hint')
+                        if not marker(hint, 'LERN-BOOST'):
+                            raise RuntimeError('Wrong answer unexpectedly closed the question.')
+                        new_hints = [line['text'] for line in hint['lines']
+                                     if .38*hint['height'] < line['top'] < .52*hint['height']
+                                     and len(re.findall(r'[A-Za-z]', line['text'])) >= 12
+                                     and 'ALLE KARTS WARTEN' not in folded(line['text'])]
+                        if marker(hint, 'Alle Karts warten') or not new_hints:
+                            raise RuntimeError('The local explanation after the wrong answer was not visible.')
+                        record('wrong_answer_hint', text=hint['text'])
+                    tap_box(answer['option'], 'correct maths answer')
+                    time.sleep(1.5)
+                    after = capture('answered')
+                    if marker(after, 'SPATER') or marker(after, 'LERN-BOOST'):
+                        next_answer = answer_for(after)
+                        if not next_answer or next_answer['prompt'] == answer['prompt']:
+                            raise RuntimeError('Answer touch did not close the real learning pause.')
+                    correct += 1
+                    continue
+            tap_phrase(frame, 'SPATER')
+            skipped += 1
+            time.sleep(1.5)
+            continue
+        time.sleep(2)
+    else:
+        raise RuntimeError('The real two-lap race did not finish before timeout; evidence retained.')
+    if args.restart:
+        tap_phrase(frame, 'Noch ein Rennen')
+        time.sleep(4)
+        restarted = capture('real-restart')
+        if marker(restarted, 'Noch ein Rennen') or not marker(restarted, 'RUNDE'):
+            raise RuntimeError('The real restart did not return to the race HUD.')
+        record('restart_verified', text=restarted['text'])
+        android.key(4, 'KEY_BACK')
+        time.sleep(2)
+        frame = capture('restart-paused')
+    if args.return_to:
+        tap_phrase(frame, 'Zum Lernen' if args.return_to == 'learn' else 'Zur Spieleauswahl')
+        # Allow native renderer shutdown; only engine PID may stop, never Flutter.
+        deadline = time.monotonic()+45
+        while time.monotonic() < deadline:
+            running = subprocess.run(
+                [ADB, '-s', args.serial,
+                 'shell', 'pidof', args.package+':lumo_game'], capture_output=True, text=True).stdout.strip()
+            if not running:
+                break
+            time.sleep(.5)
+        else:
+            raise RuntimeError('Native game process did not stop after the real return button.')
+        flutter = android.adb('shell', 'pidof', args.package).strip()
+        if not flutter:
+            raise RuntimeError('Return killed Flutter as well as the engine.')
+        record('returned', destination=args.return_to, flutter_pid=flutter)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,78 @@
+name: Test exact unified Android APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseTag:
+        description: 'Existing draft release tag containing exactly one APK asset'
+        required: true
+        type: string
+      apkSha:
+        description: 'SHA-256 of that exact APK; no APK is rebuilt or published'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-integration-qa-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  exact-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LUMO_QA_DIR: ${{ github.workspace }}/android-qa-evidence
+      RELEASE_TAG: ${{ inputs.releaseTag }}
+      APK_SHA: ${{ inputs.apkSha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install OCR and Android SDK tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y tesseract-ocr
+          python3 -m pip install Pillow
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools build-tools;35.0.0'
+      - name: Download and verify the supplied APK bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$LUMO_QA_DIR"
+          python3 tools/android_qa/download_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/download-check.log"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$LUMO_QA_DIR/tested.apk" > "$LUMO_QA_DIR/signature.txt"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$LUMO_QA_DIR/tested.apk" > "$LUMO_QA_DIR/apk-badging.txt"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+      - name: Install the verified APK and exercise the actual user flow
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          disable-animations: true
+          emulator-options: -no-window -accel on -gpu swangle -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: >-
+            bash -o pipefail -c 'python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
+      - name: Save proof ZIP to the existing draft without publishing or changing APK bytes
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/android_qa/upload_proof.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --evidence "$LUMO_QA_DIR" --run-id "$GITHUB_RUN_ID" --attempt "$GITHUB_RUN_ATTEMPT"
