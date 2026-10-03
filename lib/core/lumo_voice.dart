@@ -24,20 +24,34 @@ class LumoVoice {
   double _pitchOffset = 0.0;
   String? _selectedVoiceName;
   String? _selectedLocale;
+  int _speechGeneration = 0;
 
-  final ValueNotifier<VoiceStatus> status = ValueNotifier<VoiceStatus>(VoiceStatus.idle);
+  final ValueNotifier<VoiceStatus> status =
+      ValueNotifier<VoiceStatus>(VoiceStatus.idle);
+
+  /// Native TTS word boundaries, used by Lumo's approximate mouth animation.
+  /// This never starts speech or advances while a local timer is running.
+  final ValueNotifier<int> spokenWordRevision = ValueNotifier<int>(0);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
 
   bool get isEnabled => _enabled;
-  set isEnabled(bool v) => _enabled = v;
+  set isEnabled(bool value) {
+    _enabled = value;
+    if (!value) unawaited(stop());
+  }
 
   String? get selectedVoiceName => _selectedVoiceName;
   String? get selectedLocale => _selectedLocale;
 
   Future<void> configure({bool? enabled, double? rate, double? pitch}) async {
-    if (enabled != null) _enabled = enabled;
+    if (enabled != null) {
+      _enabled = enabled;
+      if (!enabled) await stop();
+    }
     if (rate != null) _rateFactor = (rate / 0.35).clamp(0.70, 1.55).toDouble();
-    if (pitch != null) _pitchOffset = (pitch - 1.0).clamp(-0.20, 0.20).toDouble();
+    if (pitch != null) {
+      _pitchOffset = (pitch - 1.0).clamp(-0.20, 0.20).toDouble();
+    }
     if (_initFuture != null) {
       await _applyStyle(VoiceStyle.warm);
     }
@@ -49,9 +63,20 @@ class LumoVoice {
 
   Future<void> _doInit() async {
     try {
-      _tts.setStartHandler(() => status.value = VoiceStatus.speaking);
+      _tts.setStartHandler(() =>
+          status.value = _enabled ? VoiceStatus.speaking : VoiceStatus.idle);
       _tts.setCompletionHandler(() => status.value = VoiceStatus.idle);
       _tts.setCancelHandler(() => status.value = VoiceStatus.idle);
+      _tts.setPauseHandler(() => status.value = VoiceStatus.idle);
+      _tts.setContinueHandler(() =>
+          status.value = _enabled ? VoiceStatus.speaking : VoiceStatus.idle);
+      _tts.setProgressHandler((text, start, end, word) {
+        if (_enabled &&
+            status.value == VoiceStatus.speaking &&
+            word.trim().isNotEmpty) {
+          spokenWordRevision.value++;
+        }
+      });
       _tts.setErrorHandler((msg) {
         lastError.value = msg.toString();
         status.value = VoiceStatus.error;
@@ -120,21 +145,27 @@ class LumoVoice {
 
   List<Map<String, String>> _normaliseVoices(dynamic rawVoices) {
     if (rawVoices is! List) return const <Map<String, String>>[];
-    return rawVoices.map<Map<String, String>?>((voice) {
-      if (voice is Map) {
-        final name = (voice['name'] ?? voice['voice'] ?? '').toString();
-        final locale = (voice['locale'] ?? voice['language'] ?? '').toString();
-        if (name.isEmpty && locale.isEmpty) return null;
-        return <String, String>{'name': name, 'locale': locale};
-      }
-      return null;
-    }).whereType<Map<String, String>>().toList();
+    return rawVoices
+        .map<Map<String, String>?>((voice) {
+          if (voice is Map) {
+            final name = (voice['name'] ?? voice['voice'] ?? '').toString();
+            final locale =
+                (voice['locale'] ?? voice['language'] ?? '').toString();
+            if (name.isEmpty && locale.isEmpty) return null;
+            return <String, String>{'name': name, 'locale': locale};
+          }
+          return null;
+        })
+        .whereType<Map<String, String>>()
+        .toList();
   }
 
   bool _isGermanVoice(Map<String, String> voice) {
     final locale = (voice['locale'] ?? '').toLowerCase();
     final name = (voice['name'] ?? '').toLowerCase();
-    return locale.startsWith('de') || name.contains('german') || name.contains('deutsch');
+    return locale.startsWith('de') ||
+        name.contains('german') ||
+        name.contains('deutsch');
   }
 
   int _scoreVoice(Map<String, String> voice) {
@@ -195,7 +226,10 @@ class LumoVoice {
     }
   }
 
-  Future<void> _set({required double rate, required double pitch, required double volume}) async {
+  Future<void> _set(
+      {required double rate,
+      required double pitch,
+      required double volume}) async {
     // Clamp-Obergrenze von 0.60 auf 0.85 erhoeht, damit schnellere Raten
     // ueberhaupt durchkommen. Untergrenze 0.30 reicht fuer comfort-Modus.
     await _tts.setSpeechRate((rate * _rateFactor).clamp(0.30, 0.85).toDouble());
@@ -205,14 +239,19 @@ class LumoVoice {
 
   Future<void> speak(String text, {VoiceStyle style = VoiceStyle.warm}) async {
     if (!_enabled || text.trim().isEmpty) return;
+    final generation = ++_speechGeneration;
     await _ensureReady();
+    if (!_enabled || generation != _speechGeneration) return;
     try {
       await _tts.stop();
+      if (!_enabled || generation != _speechGeneration) return;
       await _applyStyle(style);
+      if (!_enabled || generation != _speechGeneration) return;
       final prepared = _prepareHumanText(text, style);
       final result = await _tts.speak(prepared);
       if (kDebugMode) {
-        debugPrint('[LumoVoice] voice=$_selectedVoiceName locale=$_selectedLocale style=$style -> $result');
+        debugPrint(
+            '[LumoVoice] voice=$_selectedVoiceName locale=$_selectedLocale style=$style -> $result');
       }
     } catch (e) {
       lastError.value = 'TTS-Fehler: $e';
@@ -255,6 +294,8 @@ class LumoVoice {
   }
 
   Future<void> stop() async {
+    _speechGeneration++;
+    status.value = VoiceStatus.idle;
     try {
       await _tts.stop();
     } catch (_) {}

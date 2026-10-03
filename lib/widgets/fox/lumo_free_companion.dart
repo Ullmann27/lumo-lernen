@@ -16,12 +16,16 @@ class LumoFreeCompanion extends StatefulWidget {
       required this.onAction,
       this.voiceEnabled = false,
       this.reducedMotion = false,
+      this.expression = LumoFoxExpression.idle,
+      this.message,
       this.compact = false,
       this.proactive = true});
   final LumoCompanionScene scene;
   final ValueChanged<LumoCompanionAction> onAction;
   final bool voiceEnabled;
   final bool reducedMotion;
+  final LumoFoxExpression expression;
+  final String? message;
   final bool compact;
   final bool proactive;
   @override
@@ -38,6 +42,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     });
   Timer? _initiative;
   Timer? _turnTimer;
+  Timer? _reactionTimer;
+  LumoFoxExpression? _reaction;
   DateTime _lastActivity = DateTime.now();
   DateTime _lastWalk = DateTime.now();
   DateTime? _restUntil;
@@ -45,9 +51,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   LumoCompanionProposal? _proposal;
   double _from = 1, _to = 1;
   bool _right = true, _sheetOpen = false, _foreground = true;
-  double get _position => _walk.isAnimating
-      ? _from + (_to - _from) * Curves.easeInOutCubic.transform(_walk.value)
-      : _to;
+  double get _position =>
+      _from + (_to - _from) * Curves.easeInOutCubic.transform(_walk.value);
   bool get _quiet =>
       widget.reducedMotion || MediaQuery.disableAnimationsOf(context);
   bool get _visible =>
@@ -66,7 +71,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    _foreground = state == AppLifecycleState.resumed;
+    setState(() => _foreground = state == AppLifecycleState.resumed);
     if (!_foreground) {
       _turnTimer?.cancel();
       _walk.stop();
@@ -86,6 +91,12 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   @override
   void didUpdateWidget(covariant LumoFreeCompanion oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (widget.scene.solvedTasks > oldWidget.scene.solvedTasks) {
+      _react(LumoFoxExpression.celebrate);
+    } else if (widget.scene.consecutiveWrong >
+        oldWidget.scene.consecutiveWrong) {
+      _react(LumoFoxExpression.comfort);
+    }
     if (oldWidget.scene.section != widget.scene.section ||
         oldWidget.scene.schoolwork != widget.scene.schoolwork ||
         oldWidget.scene.taskInProgress != widget.scene.taskInProgress) {
@@ -103,6 +114,14 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       _turnTimer?.cancel();
       _walk.stop();
     }
+  }
+
+  void _react(LumoFoxExpression expression) {
+    _reactionTimer?.cancel();
+    _reaction = expression;
+    _reactionTimer = Timer(const Duration(milliseconds: 1700), () {
+      if (mounted) setState(() => _reaction = null);
+    });
   }
 
   void _noteActivity() {
@@ -161,7 +180,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _from = _to = current;
     _lastWalk = DateTime.now();
     if (_quiet) {
-      _to = clamped;
+      _from = _to = clamped;
+      _walk.value = 0;
       return;
     }
     if ((clamped - current).abs() < .02) return;
@@ -205,7 +225,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   Future<void> _showText(String title, String text,
       {bool pause = false}) async {
     _noteActivity();
-    _sheetOpen = true;
+    setState(() => _sheetOpen = true);
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -217,7 +237,18 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: Theme.of(context).textTheme.headlineSmall),
+                Row(children: [
+                  Expanded(
+                      child: Text(title,
+                          style: Theme.of(context).textTheme.headlineSmall)),
+                  const SizedBox(width: 12),
+                  LumoAnimatedFox(
+                      moving: false,
+                      size: 66,
+                      reducedMotion: _quiet,
+                      voiceEnabled: widget.voiceEnabled,
+                      expression: LumoFoxExpression.explain),
+                ]),
                 const SizedBox(height: 16),
                 Text(text,
                     style: Theme.of(context)
@@ -227,10 +258,19 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                 const SizedBox(height: 20),
                 Wrap(spacing: 12, runSpacing: 8, children: [
                   if (widget.voiceEnabled)
-                    OutlinedButton.icon(
-                        onPressed: () => _say(text),
-                        icon: const Icon(Icons.volume_up_rounded),
-                        label: const Text('Vorlesen')),
+                    ValueListenableBuilder<VoiceStatus>(
+                      valueListenable: LumoVoice.instance.status,
+                      builder: (context, status, _) => OutlinedButton.icon(
+                          onPressed: () => status == VoiceStatus.speaking
+                              ? LumoVoice.instance.stop()
+                              : _say(text),
+                          icon: Icon(status == VoiceStatus.speaking
+                              ? Icons.volume_off_rounded
+                              : Icons.volume_up_rounded),
+                          label: Text(status == VoiceStatus.speaking
+                              ? 'Vorlesen stoppen'
+                              : 'Vorlesen')),
+                    ),
                   FilledButton(
                       onPressed: () => Navigator.pop(sheetContext),
                       child:
@@ -241,7 +281,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       ),
     );
     if (!mounted) return;
-    _sheetOpen = false;
+    setState(() => _sheetOpen = false);
+    await LumoVoice.instance.stop();
     _noteActivity();
   }
 
@@ -262,6 +303,9 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       return;
     }
     setState(() => _proposal = null);
+    _react(action == LumoCompanionAction.askLumo
+        ? LumoFoxExpression.think
+        : LumoFoxExpression.explain);
     switch (action) {
       case LumoCompanionAction.explainApp:
         await _showText('So helfe ich dir', LumoCompanionScene.appExplanation);
@@ -286,7 +330,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   Future<void> _showMenu({LumoCompanionProposal? proposal}) async {
     if (_sheetOpen) return;
     _noteActivity();
-    _sheetOpen = true;
+    setState(() => _sheetOpen = true);
     final action = await showModalBottomSheet<LumoCompanionAction>(
       context: context,
       isScrollControlled: true,
@@ -330,7 +374,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       )),
     );
     if (!mounted) return;
-    _sheetOpen = false;
+    setState(() => _sheetOpen = false);
     _noteActivity();
     if (action != null) await _perform(action);
   }
@@ -349,6 +393,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
         .removeListener(_explainAppRequested);
     _initiative?.cancel();
     _turnTimer?.cancel();
+    _reactionTimer?.cancel();
     _walk.dispose();
     super.dispose();
   }
@@ -411,6 +456,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             _proposal?.text ??
+                                                widget.message
+                                                    ?.replaceAll('\n', ' ') ??
                                                 (widget.scene.schoolwork
                                                     ? 'Danach üben wir gemeinsam weiter.'
                                                     : 'Tippe mich an. Ich helfe dir gern!'),
@@ -447,6 +494,10 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                                       size: foxSize,
                                       moving: _walk.isAnimating,
                                       facingRight: _right,
+                                      active: _visible,
+                                      voiceEnabled: widget.voiceEnabled,
+                                      expression:
+                                          _reaction ?? widget.expression,
                                       reducedMotion: _quiet),
                                 ),
                               ),

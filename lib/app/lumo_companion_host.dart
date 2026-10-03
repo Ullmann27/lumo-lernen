@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../core/lumo_companion_guide.dart';
 import '../core/lumo_voice.dart';
 import '../core/progress_recommendation_service.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
+import '../widgets/fox/lumo_animated_fox.dart';
 import '../widgets/fox/lumo_free_companion.dart';
 import 'app_state.dart';
 
@@ -68,6 +68,15 @@ class LumoCompanionHost extends StatelessWidget {
               state.settings.calmMode ||
               MediaQuery.disableAnimationsOf(context),
           voiceEnabled: state.settings.voiceEnabled,
+          message: state.lumoMessage,
+          expression: switch (state.mood) {
+            LumoMood.greet || LumoMood.wave => LumoFoxExpression.greet,
+            LumoMood.point => LumoFoxExpression.explain,
+            LumoMood.celebrate => LumoFoxExpression.celebrate,
+            LumoMood.comfort => LumoFoxExpression.comfort,
+            LumoMood.think => LumoFoxExpression.think,
+            LumoMood.idle => LumoFoxExpression.idle,
+          },
           scene: LumoCompanionScene(
             section: currentSection,
             childName: state.childName,

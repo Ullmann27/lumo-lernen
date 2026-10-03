@@ -131,4 +131,26 @@ void main() {
     await tester.pumpWidget(const SizedBox());
     await tester.binding.setSurfaceSize(null);
   });
+
+  testWidgets('backgrounding during a walk retains the visible fox position',
+      (tester) async {
+    await mount(tester, reduced: false);
+    await mount(tester,
+        reduced: false, scene: const LumoCompanionScene(section: 'reading'));
+    await tester.pump(const Duration(milliseconds: 300));
+    final before =
+        tester.getRect(find.byKey(const ValueKey('lumo-fox-button')));
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump(const Duration(seconds: 3));
+    final paused =
+        tester.getRect(find.byKey(const ValueKey('lumo-fox-button')));
+    expect(paused.left, closeTo(before.left, .01));
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(tester.getRect(find.byKey(const ValueKey('lumo-fox-button'))).left,
+        closeTo(before.left, .01));
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.binding.setSurfaceSize(null);
+  });
 }
