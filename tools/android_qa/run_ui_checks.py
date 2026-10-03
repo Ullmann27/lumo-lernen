@@ -13,7 +13,7 @@ import time
 import traceback
 
 from android_ui import Android, ADB, content_scroll_gesture
-from kart_android_race import marker, read_frame, race_state
+from kart_android_race import action_marker, marker, read_frame, race_state, wait_for_frame
 from flutter_flows import FlutterChecks
 from system_ui import pixel_launcher_anr_close_bounds
 
@@ -174,8 +174,11 @@ def main(args):
                 time.sleep(.5)
         raise RuntimeError(f'Actual Flutter control missing: {phrase}')
 
+    native_capture_number = 0
     def native_frame(label):
-        path = args.out/'screens'/f'{label}.png'
+        nonlocal native_capture_number
+        native_capture_number += 1
+        path = args.out/'screens'/f'{native_capture_number:03d}-{label}.png'
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(device.adb('exec-out', 'screencap', '-p', binary=True))
         frame = read_frame(path)
@@ -188,10 +191,39 @@ def main(args):
         while time.monotonic() < deadline:
             frame = native_frame(label)
             if frame['width'] > frame['height'] and marker(frame, 'RUNDE'):
-                if not paused or marker(frame, 'Weiterfahren'):
+                if not paused or action_marker(frame, 'Weiterfahren'):
                     return frame
             time.sleep(1)
         raise RuntimeError('Actual native landscape race/resume frame did not render')
+
+    def native_pause_button(frame, phrase, label):
+        # A compact display makes the real pause panel scroll. Anchor every
+        # gesture to its actually visible button captions, then require the
+        # destination button in a new raw screencap before any touch.
+        button = action_marker(frame, phrase)
+        if button:
+            return frame, button
+        if not marker(frame, 'Kleine Pause'):
+            raise RuntimeError('Expected the real native pause panel before scrolling.')
+        visible = [box for caption in ('Weiterfahren', 'Ruhige Bewegung: aus',
+                   'Ruhige Bewegung: an', 'Ton: aus', 'Ton: an',
+                   'Leichte Grafik: aus', 'Leichte Grafik: an',
+                   'Tempo: gemütlich', 'Tempo: flott', 'Zur Spieleauswahl')
+                   if (box := action_marker(frame, caption))]
+        if len(visible) < 2:
+            raise RuntimeError('Too few actual pause button bounds for a safe panel scroll.')
+        first = min(visible, key=lambda box: box['top'])
+        last = max(visible, key=lambda box: box['top'])
+        from_y = last['top']+last['height']//2
+        to_y = first['top']+first['height']//2
+        if from_y-to_y < 48:
+            raise RuntimeError('The visible pause panel has no usable scroll span.')
+        x = last['left']+last['width']//2
+        device.swipe(x, from_y, x, to_y, 650)
+        frame = wait_for_frame(native_frame, label+'-scrolled',
+                               lambda observed: bool(action_marker(observed, phrase)),
+                               f'Native pause button absent after one real panel scroll: {phrase}')
+        return frame, action_marker(frame, phrase)
 
     try:
         complete_first_run_ui(wait_for, click, device.capture, labels)
@@ -213,13 +245,16 @@ def main(args):
         subprocess.run([sys.executable, str(Path(__file__).with_name('kart_android_race.py')),
                         '--serial', args.serial, '--package', package,
                         '--out', str(args.out/'kart-race'), '--pause-back', '--require-correct',
-                        '--check-wrong-hint', '--restart', '--return-to', 'games', '--timeout', '600'],
+                        '--check-wrong-hint', '--lightweight', '--restart',
+                        '--return-to', 'games', '--timeout', '600'],
                        check=True)
         wait_for(['Losfahren'])
         device.capture('flutter-games-after-full-race')
         # Open from Flutter again, proving a new Engine process and saved race.
         click('Losfahren', scroll=True)
         frame = wait_native('native-fresh-process-saved-race', paused=True)
+        if not action_marker(frame, 'Leichte Grafik: an'):
+            raise RuntimeError('The actual lightweight graphics preference did not survive engine reopening.')
         next_pid = device.adb('shell', 'pidof', package+':lumo_game').strip()
         if not first_pid or not next_pid or first_pid == next_pid:
             raise RuntimeError('Reopening from Flutter did not create a fresh engine PID')
@@ -227,7 +262,7 @@ def main(args):
         restored_state = race_state(frame)
         if saved_state != restored_state:
             raise RuntimeError(f'Saved/restored visible race HUD differs: {saved_state} / {restored_state}')
-        button = marker(frame, 'Zur Spieleauswahl')
+        button = action_marker(frame, 'Zur Spieleauswahl')
         if not button:
             raise RuntimeError('Resumed native pause does not expose return to games')
         device.tap(button['left']+button['width']//2, button['top']+button['height']//2)
@@ -241,7 +276,8 @@ def main(args):
         learn_engine_pid = device.adb('shell', 'pidof', package+':lumo_game').strip()
         if not learn_engine_pid or learn_engine_pid == next_pid:
             raise RuntimeError('Learning-return check did not open a fresh native engine process')
-        learn_button = marker(learn_frame, 'Zum Lernen')
+        learn_frame, learn_button = native_pause_button(
+            learn_frame, 'Zum Lernen', 'native-pause-return-to-learning')
         if not learn_button:
             raise RuntimeError('Actual native pause does not expose its learning return button')
         device.tap(learn_button['left']+learn_button['width']//2,
@@ -274,6 +310,8 @@ def main(args):
         proof = {'passed': True, **environment, 'first_engine_pid': first_pid,
                  'reopened_engine_pid': next_pid,
                  'saved_race_hud': saved_state, 'restored_race_hud': restored_state,
+                 'graphics_preference': {'set_through_actual_pause_button': True,
+                                         'lightweight': True, 'retained_after_engine_restart': True},
                  'native_learning_return': learn_return_proof,
                  'flutter_checks': flutter_proof,
                  'flow': 'Flutter home/games → Kart two-lap race/result/restart/fresh native resume → native return to Flutter learning/help/answer/reward → Memory twelve pairs → Cards complete round → Fold resize/navigation → offline restart with identical visible wallet/profile/progress',
