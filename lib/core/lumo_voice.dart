@@ -1,8 +1,86 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'lumo_child_speech_normalizer.dart';
+
+/// Eine installierte Sprachausgabe-Stimme, so wie Android sie meldet.
+///
+/// Android liefert neben Name und Sprache auch die Qualitaet, ob Internet
+/// noetig ist und ob die Stimme ueberhaupt heruntergeladen ist. Diese Werte
+/// sind verlaesslicher als Vermutungen anhand des Stimmnamens.
+@immutable
+class LumoVoiceOption {
+  const LumoVoiceOption({
+    required this.name,
+    required this.locale,
+    this.quality = '',
+    this.networkRequired = false,
+    this.installed = true,
+  });
+
+  final String name;
+  final String locale;
+
+  /// Androids Qualitaetsstufe: 'very high', 'high', 'normal', 'low',
+  /// 'very low' oder leer, wenn die Plattform nichts meldet.
+  final String quality;
+  final bool networkRequired;
+  final bool installed;
+
+  static LumoVoiceOption? fromRaw(Object? raw) {
+    if (raw is! Map) return null;
+    final name = (raw['name'] ?? raw['voice'] ?? '').toString().trim();
+    final locale = (raw['locale'] ?? raw['language'] ?? '').toString().trim();
+    if (name.isEmpty) return null;
+    final features = (raw['features'] ?? '').toString().toLowerCase();
+    return LumoVoiceOption(
+      name: name,
+      locale: locale,
+      quality: (raw['quality'] ?? '').toString().toLowerCase().trim(),
+      networkRequired: raw['network_required']?.toString() == '1',
+      installed: !features.contains('notinstalled'),
+    );
+  }
+
+  bool get isGerman {
+    final l = locale.toLowerCase();
+    final n = name.toLowerCase();
+    return l.startsWith('de') || n.contains('german') || n.contains('deutsch');
+  }
+
+  String get regionLabel {
+    final l = locale.toLowerCase().replaceAll('_', '-');
+    if (l.startsWith('de-at')) return 'Österreich';
+    if (l.startsWith('de-ch')) return 'Schweiz';
+    if (l.startsWith('de-de')) return 'Deutschland';
+    return 'Deutsch';
+  }
+
+  String get qualityLabel {
+    switch (quality) {
+      case 'very high':
+        return 'sehr gute Qualität';
+      case 'high':
+        return 'gute Qualität';
+      case 'normal':
+        return 'normale Qualität';
+      case 'low':
+      case 'very low':
+        return 'einfache Qualität';
+      default:
+        return '';
+    }
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is LumoVoiceOption && other.name == name && other.locale == locale;
+
+  @override
+  int get hashCode => Object.hash(name, locale);
+}
 
 /// Zentrales Voice-System fuer Lumo.
 ///
@@ -73,32 +151,114 @@ class LumoVoice {
     }
   }
 
+  static const String _voiceNamePrefKey = 'lumo_voice_name';
+  static const String _voiceLocalePrefKey = 'lumo_voice_locale';
+
+  /// Alle installierten deutschen Stimmen, die beste zuerst.
+  /// Liefert eine leere Liste, wenn die Plattform keine Stimmen meldet.
+  Future<List<LumoVoiceOption>> germanVoices() async {
+    try {
+      return rankGermanVoices(await _tts.getVoices);
+    } catch (e) {
+      if (kDebugMode) debugPrint('[LumoVoice] Voice scan failed: $e');
+      return const <LumoVoiceOption>[];
+    }
+  }
+
+  /// Von Eltern oder Kind ausgewaehlte Stimme (Name), oder null fuer
+  /// automatische Auswahl.
+  Future<String?> savedVoiceName() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getString(_voiceNamePrefKey);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Waehlt eine bestimmte Stimme und merkt sie sich dauerhaft.
+  /// `null` setzt zurueck auf die automatisch beste Stimme.
+  /// Gespeichert wird nur, was Android tatsaechlich setzen konnte, damit
+  /// nach einem Neustart keine nicht vorhandene Stimme gesucht wird.
+  Future<bool> chooseVoice(LumoVoiceOption? option) async {
+    await stop();
+    if (option == null) {
+      await _persistVoice(null);
+      _voiceSelected = false;
+      _selectedVoiceName = null;
+      _selectedLocale = null;
+      await _selectBestGermanVoice();
+      return true;
+    }
+    final applied = await _useVoice(option);
+    if (applied) await _persistVoice(option);
+    return applied;
+  }
+
+  Future<void> _persistVoice(LumoVoiceOption? option) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      if (option == null) {
+        await prefs.remove(_voiceNamePrefKey);
+        await prefs.remove(_voiceLocalePrefKey);
+      } else {
+        await prefs.setString(_voiceNamePrefKey, option.name);
+        await prefs.setString(_voiceLocalePrefKey, option.locale);
+      }
+    } catch (_) {
+      // Ohne Speicher gilt die Wahl nur bis zum Neustart.
+    }
+  }
+
+  Future<bool> _useVoice(LumoVoiceOption option) async {
+    try {
+      final result = await _tts.setVoice({'name': option.name, 'locale': option.locale});
+      if (result == 0) return false;
+      _selectedVoiceName = option.name;
+      _selectedLocale = option.locale;
+      _voiceSelected = true;
+      return true;
+    } catch (e) {
+      if (kDebugMode) debugPrint('[LumoVoice] setVoice failed: $e');
+      return false;
+    }
+  }
+
+  /// Sortiert die rohen Plattform-Stimmen: nur deutsche, nur installierte,
+  /// beste zuerst. Gleich bewertete Stimmen bleiben stabil nach Name sortiert.
+  @visibleForTesting
+  static List<LumoVoiceOption> rankGermanVoices(Object? rawVoices) {
+    if (rawVoices is! List) return const <LumoVoiceOption>[];
+    final seen = <LumoVoiceOption>{};
+    final voices = <LumoVoiceOption>[];
+    for (final raw in rawVoices) {
+      final option = LumoVoiceOption.fromRaw(raw);
+      if (option == null || !option.isGerman || !option.installed) continue;
+      if (seen.add(option)) voices.add(option);
+    }
+    voices.sort((a, b) {
+      final byScore = scoreVoice(b).compareTo(scoreVoice(a));
+      return byScore != 0 ? byScore : a.name.compareTo(b.name);
+    });
+    return voices;
+  }
+
   Future<void> _selectBestGermanVoice() async {
     if (_voiceSelected) return;
 
     final fallbackLanguages = <String>['de-AT', 'de-DE', 'de'];
 
-    try {
-      final rawVoices = await _tts.getVoices;
-      final voices = _normaliseVoices(rawVoices);
-      final germanVoices = voices.where(_isGermanVoice).toList();
-
-      if (germanVoices.isNotEmpty) {
-        germanVoices.sort((a, b) => _scoreVoice(b).compareTo(_scoreVoice(a)));
-        final best = germanVoices.first;
-        final name = best['name'];
-        final locale = best['locale'];
-
-        if (name != null && locale != null) {
-          await _tts.setVoice({'name': name, 'locale': locale});
-          _selectedVoiceName = name;
-          _selectedLocale = locale;
-          _voiceSelected = true;
-          return;
-        }
+    final voices = await germanVoices();
+    if (voices.isNotEmpty) {
+      // Gespeicherte Lieblingsstimme zuerst, danach die beste verfuegbare.
+      final savedName = await savedVoiceName();
+      final ordered = <LumoVoiceOption>[
+        ...voices.where((v) => v.name == savedName),
+        ...voices.where((v) => v.name != savedName),
+      ];
+      for (final candidate in ordered) {
+        if (await _useVoice(candidate)) return;
       }
-    } catch (e) {
-      if (kDebugMode) debugPrint('[LumoVoice] Voice scan failed: $e');
     }
 
     for (final lang in fallbackLanguages) {
@@ -120,82 +280,61 @@ class LumoVoice {
     _voiceSelected = true;
   }
 
-  List<Map<String, String>> _normaliseVoices(dynamic rawVoices) {
-    if (rawVoices is! List) return const <Map<String, String>>[];
-    return rawVoices.map<Map<String, String>?>((voice) {
-      if (voice is Map) {
-        final name = (voice['name'] ?? voice['voice'] ?? '').toString();
-        final locale = (voice['locale'] ?? voice['language'] ?? '').toString();
-        if (name.isEmpty && locale.isEmpty) return null;
-        return <String, String>{'name': name, 'locale': locale};
-      }
-      return null;
-    }).whereType<Map<String, String>>().toList();
-  }
-
-  bool _isGermanVoice(Map<String, String> voice) {
-    final locale = (voice['locale'] ?? '').toLowerCase();
-    final name = (voice['name'] ?? '').toLowerCase();
-    return locale.startsWith('de') || name.contains('german') || name.contains('deutsch');
-  }
-
-  int _scoreVoice(Map<String, String> voice) {
-    final name = (voice['name'] ?? '').toLowerCase();
-    final locale = (voice['locale'] ?? '').toLowerCase();
+  /// Bewertung fuer die automatische Auswahl. Die von Android gemeldete
+  /// Qualitaet zaehlt am meisten; bekannte natuerlich klingende Stimmen und
+  /// oesterreichisches Deutsch bekommen einen Bonus, alte robotische
+  /// Engines (Pico, eSpeak, Compact) einen Abzug. Stimmen, die Internet
+  /// brauchen, sind leicht abgewertet, damit Lumo auch offline spricht.
+  @visibleForTesting
+  static int scoreVoice(LumoVoiceOption voice) {
+    final name = voice.name.toLowerCase();
+    final locale = voice.locale.toLowerCase().replaceAll('_', '-');
     var score = 0;
 
-    // 2026-06-14 Heinz' Tochter: "Stimme klingt nicht schön".
-    // Neu-Gewichtung: Premium-Qualitaet (Neural/WaveNet/Google-Network) wird
-    // viel hoeher gewertet als die alte robotische Pico-TTS-Standardstimme.
-    // Frauen-/Maedchen-Stimmen bekommen DEUTLICH mehr Gewicht weil Kinder
-    // sie als waermer und freundlicher empfinden.
-    if (locale == 'de-at') score += 120;
-    if (locale == 'de-de') score += 100;
-    if (locale.startsWith('de')) score += 80;
+    if (locale.startsWith('de-at')) {
+      score += 30;
+    } else if (locale.startsWith('de-de')) {
+      score += 20;
+    } else if (locale.startsWith('de')) {
+      score += 10;
+    }
 
-    // Premium-Qualitaet (massiv hoehere Gewichtung als vorher)
-    if (name.contains('google')) score += 110;
-    if (name.contains('neural')) score += 100;
-    if (name.contains('wavenet')) score += 100;
-    if (name.contains('natural')) score += 90;
-    if (name.contains('enhanced')) score += 70;
-    if (name.contains('premium')) score += 65;
-    if (name.contains('hd')) score += 60;
-    // Network-Voices auf Android sind meistens Google's premium Cloud-TTS -
-    // also POSITIV, nicht negativ wie vorher.
-    if (name.contains('network')) score += 50;
+    switch (voice.quality) {
+      case 'very high':
+        score += 120;
+        break;
+      case 'high':
+        score += 80;
+        break;
+      case 'low':
+        score -= 60;
+        break;
+      case 'very low':
+        score -= 100;
+        break;
+    }
 
-    // Konkrete bekannte deutsche Frauenstimmen (Android + iOS)
-    if (name.contains('marlene')) score += 60;
-    if (name.contains('vicki')) score += 60;
-    if (name.contains('hedda')) score += 55;
-    if (name.contains('petra')) score += 55;
-    if (name.contains('anna')) score += 50;
-    if (name.contains('katja')) score += 50;
-    if (name.contains('katharina')) score += 45;
-    if (name.contains('helena')) score += 40;
-    // de-de-x-deg / de-de-x-nfh sind Google's neuesten Female-Voices
-    if (name.contains('-deg')) score += 70;
-    if (name.contains('-nfh')) score += 70;
-    if (name.contains('-deb')) score += 65;
-    if (name.contains('-def')) score += 65;
+    for (final marker in const ['neural', 'natural', 'wavenet', 'enhanced', 'premium']) {
+      if (name.contains(marker)) {
+        score += 60;
+        break;
+      }
+    }
+    for (final known in const ['marlene', 'vicki', 'hedda', 'katja', 'anna', 'petra', 'helena']) {
+      if (name.contains(known)) {
+        score += 40;
+        break;
+      }
+    }
+    if (name.contains('female') || name.contains('frau')) score += 30;
 
-    // Allgemeine Female-Marker
-    if (name.contains('female')) score += 45;
-    if (name.contains('frau')) score += 45;
-    if (name.contains('woman')) score += 40;
-    // f-suffix in Voice-Namen ist oft Female
-    if (name.endsWith('-f') || name.endsWith('_f')) score += 25;
-
-    // Robotische / alte Stimmen abwerten
-    if (name.contains('compact')) score -= 40;
-    if (name.contains('legacy')) score -= 50;
-    if (name.contains('pico')) score -= 60;
-    if (name.contains('espeak')) score -= 60;
-    if (name.contains('default')) score -= 20;
-    // Männerstimmen leicht abwerten (Heinz' Tochter mag Mädchenstimme lieber)
-    if (name.contains('male') && !name.contains('female')) score -= 15;
-    if (name.contains('mann')) score -= 15;
+    for (final robotic in const ['pico', 'espeak', 'compact', 'legacy']) {
+      if (name.contains(robotic)) {
+        score -= 80;
+        break;
+      }
+    }
+    if (voice.networkRequired) score -= 10;
 
     return score;
   }
@@ -298,8 +437,10 @@ class LumoVoice {
     status.value = VoiceStatus.idle;
   }
 
+  // Der Begruessungs-Stil stellt selbst "Hallo." voran, deshalb beginnt der
+  // Testsatz ohne eigene Begruessung (vorher: "Hallo. Hallo! Ich bin ...").
   Future<void> test() => speak(
-        'Hallo! Ich bin Lumo, dein Lernfuchs. Klingt meine Stimme schön für dich?',
+        'Ich bin Lumo, dein Lernfuchs. Klingt meine Stimme schön für dich?',
         style: VoiceStyle.greeting,
       );
 }

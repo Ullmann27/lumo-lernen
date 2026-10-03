@@ -18,6 +18,7 @@ import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import 'parent_report_card.dart';
 import 'parent_pin_editor.dart';
+import 'widgets/lumo_voice_picker.dart';
 import 'writing_report_card.dart';
 
 class SettingsContent extends StatefulWidget {
@@ -462,9 +463,8 @@ class _SettingsContentState extends State<SettingsContent> {
                     ),
           ],
                 ),
-          const SizedBox(height: 8),
-          Text('Aktuelle Stimme: ${LumoVoice.instance.selectedVoiceName ?? 'Systemstandard'} (${LumoVoice.instance.selectedLocale ?? 'de'})', style: LumoTextStyles.caption,
-                ),
+          const SizedBox(height: 14),
+          LumoVoicePicker(enabled: _settings.voiceEnabled),
         ],
             ),
         const SizedBox(height: 14),
