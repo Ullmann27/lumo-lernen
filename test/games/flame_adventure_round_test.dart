@@ -222,10 +222,12 @@ void main() {
         'Pinguin': 3
       };
       final syl = RegExp(r'^Wie viele Silben hat (.+)\?$').firstMatch(prompt);
-      if (syl != null && syllables.containsKey(syl[1]))
+      if (syl != null && syllables.containsKey(syl[1])) {
         return '${syllables[syl[1]]}';
-      if (syl != null)
+      }
+      if (syl != null) {
         return '${RegExp(r'au|ei|eu|äu|ie|aa|ee|oo|[aeiouäöü]', caseSensitive: false).allMatches(syl[1]!).length}';
+      }
       throw StateError('Unsupported visible prompt: $prompt');
     }
 
@@ -248,7 +250,7 @@ void main() {
         final prompt = texts.firstWhere(
             (text) => text.contains('?') || text.endsWith('wo ist mehr?'));
         final answer = answerFromPrompt(prompt);
-        print('VISIBLE QUESTION $prompt -> $answer (choices: $texts)');
+        debugPrint('VISIBLE QUESTION $prompt -> $answer (choices: $texts)');
         final choice = find.descendant(of: panel, matching: find.text(answer));
         expect(choice, findsOneWidget);
         await tester.tap(choice);
@@ -257,16 +259,18 @@ void main() {
         await _frames(tester, 30);
         questions++;
         if (game.solvedN.value == game.totalQN.value) direction = 1;
-        if (questions > 15)
+        if (questions > 15) {
           fail(
               'Too many unanswered visible questions; no artificial completion');
+        }
         continue;
       }
       if (game.solvedN.value < game.totalQN.value &&
-          game.fox.position.x > game.chest.position.x - 120) direction = -1;
-      if (stick == null)
-        stick = await tester.startGesture(origin + Offset(64 * direction, 0),
-            pointer: 1);
+          game.fox.position.x > game.chest.position.x - 120) {
+        direction = -1;
+      }
+      stick ??= await tester.startGesture(origin + Offset(64 * direction, 0),
+          pointer: 1);
       await stick.moveTo(origin + Offset(64 * direction, 0));
       final rect = game.fox.worldRect;
       final grounds = game.platforms
@@ -298,9 +302,10 @@ void main() {
       // or behind the fox. No test code changes the player's position.
       if ((game.fox.position.x - previousX).abs() > 100) falls++;
       previousX = game.fox.position.x;
-      if (frame % 120 == 0)
-        print(
+      if (frame % 120 == 0) {
+        debugPrint(
             'RUN frame=$frame x=${game.fox.position.x} y=${game.fox.position.y} vx=${game.fox.vx} vy=${game.fox.vy} ground=${game.fox.onGround} questions=${game.solvedN.value}/${game.totalQN.value} stars=${game.totalEarnedStars} jumps=$jumps falls=$falls');
+      }
       await _frames(tester, 1);
     }
     await stick?.up();
@@ -323,7 +328,7 @@ void main() {
     final progress = await const GameProgressRepository()
         .loadStars('local_${name}_${app.state.grade}');
     expect(progress[game.level.id], 3);
-    print(
+    debugPrint(
         'COMPLETE actual physics stars=$earned questions=$questions jumps=$jumps falls=$falls time=${game.totalTime}');
     final reloaded = LumoAppState(walletRepository: RewardWalletRepository());
     await reloaded.hydrateFromWallet();
