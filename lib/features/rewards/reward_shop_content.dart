@@ -4,11 +4,11 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/reward_shop_repository.dart';
 import '../../domain/rewards/reward_shop.dart';
-import '../../widgets/parental_gate.dart';
+import '../../widgets/parent_approval_dialog.dart';
 
 /// Belohnungs-Shop Seite.
 /// Kind sieht Sterne + Punkte + verfuegbare Belohnungen.
-/// Bei Einloesung muss Eltern-PIN bestaetigt werden.
+/// Familienbelohnungen werden gemeinsam mit einer erwachsenen Person bestätigt.
 class RewardShopContent extends StatefulWidget {
   const RewardShopContent({
     super.key,
@@ -57,55 +57,52 @@ class _RewardShopContentState extends State<RewardShopContent> {
   }
 
   Future<void> _redeem(RewardItem item) async {
-    if (_state == null|| _redeeming) return;
+    if (_state == null || _redeeming) return;
     _redeeming = true;
     try {
       _state = _state!.copyWith(availableStars: widget.appState.state.stars);
-    if (!_engine.canAfford(_state!, item)) return;
-    final needsApproval = item.parentApprovalRequired || item.isPremiumReward;
-    if (needsApproval) {
-      await widget.appState.ensureSettingsLoaded();
-      if (!mounted || !widget.appState.settingsLoaded) return;
-      final confirmed = await ParentalGate.show(context,
-          pin: widget.appState.state.settings.parentPin,
-          initialPin: !widget.appState.state.settings.parentPinConfigured,
-          onPinRecovered: widget.appState.updateSettings,
+      if (!_engine.canAfford(_state!, item)) return;
+      final needsApproval = item.parentApprovalRequired || item.isPremiumReward;
+      if (needsApproval) {
+        final confirmed = await ParentApprovalDialog.show(
+          context,
+          rewardTitle: item.title,
+          costLabel:
+              '${item.cost} ${item.currency == RewardCurrency.stars ? 'Sterne' : 'Punkte'}',
         );
-      if (!confirmed || !mounted) return;
-    }
-    final current = _state!.copyWith(
+        if (!confirmed || !mounted) return;
+      }
+      final current = _state!.copyWith(
         availableStars: widget.appState.state.stars,
       );
       final next = _engine.redeem(current, item);
-    if (next == null) return;
-    setState(() => _state = next);
-    if (item.currency == RewardCurrency.stars) {
+      if (next == null) return;
+      setState(() => _state = next);
+      if (item.currency == RewardCurrency.stars) {
         widget.appState.addStars(-item.cost);
         await widget.appState.flushRewards();
       }
       await _repo.save(_childId, next);
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: const Color(0xFF22C55E),
-        content: Row(
-          children: [
-            Text(item.emoji, style: const TextStyle(fontSize: 22)),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                'Belohnung "${item.title}" eingelöst! Mama oder Papa erfüllen sie bald.',
-                style: const TextStyle(fontWeight: FontWeight.w900),
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: const Color(0xFF22C55E),
+          content: Row(
+            children: [
+              Text(item.emoji, style: const TextStyle(fontSize: 22)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  'Belohnung "${item.title}" eingelöst! Mama oder Papa erfüllen sie bald.',
+                  style: const TextStyle(fontWeight: FontWeight.w900),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
-  }
-
-  finally {
-    _redeeming = false;
+      );
+    } finally {
+      _redeeming = false;
     }
   }
 

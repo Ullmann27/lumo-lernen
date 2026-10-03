@@ -85,7 +85,14 @@ require_state_constructor lib/app/app_shell.dart LearningContent
 require_state_constructor lib/app/app_shell.dart ReadingContent
 require_state_constructor lib/app/app_shell.dart SettingsContent
 require_state_constructor lib/app/app_shell.dart LumoAgentContent
-require_text lib/app/app_shell.dart "ParentalGate.show("
+require_text lib/app/app_shell.dart "_requiresLoadedSettings(section)"
+require_absent lib/app/app_shell.dart "ParentalGate"
+require_absent lib/core/app_settings.dart "parentPin"
+require_absent lib/core/settings_repository.dart "setParentPin"
+require_text lib/features/rewards/reward_shop_content.dart "ParentApprovalDialog.show("
+if rg -n 'ParentPin|ParentalGate|initialParentPin|parentPin|parentRecoveryCode|requiresParentPin' lib; then
+  fail "Obsolete access-code gate remains in active application code"
+fi
 require_text lib/app/app_shell.dart "ScanScreen("
 
 require_text lib/app/app_state.dart "loadLearningProfile"

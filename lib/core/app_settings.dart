@@ -6,18 +6,13 @@ class AppSettings {
   /// vorausgefuellt, damit Heinz sie nicht jedes Mal eintragen muss.
   static const String defaultAiProxyUrl = 'https://lumo-ai-proxy.onrender.com';
 
-  static const String initialParentPin = '2468';
-
   const AppSettings({
-    this.parentPin = initialParentPin,
-    bool? parentPinConfigured,
-    this.parentRecoveryCodeHash = '',
     this.dailyGoal = 3,
     this.soundEnabled = true,
     this.voiceEnabled = true,
     this.autoReadEnabled = true,
-    this.microphoneEnabled = true,
-    this.scannerEnabled = true,
+    this.microphoneEnabled = false,
+    this.scannerEnabled = false,
     this.aiProxyEnabled = false,
     this.aiLearningMode = AiLearningMode.chatOnly,
     this.aiProxyUrl = defaultAiProxyUrl,
@@ -27,15 +22,7 @@ class AppSettings {
     this.learningMode = LearningMode.normal,
     this.voiceRate = 0.35,
     this.voicePitch = 1.0,
-  }) : parentPinConfigured =
-           parentPinConfigured ?? (parentPin != initialParentPin);
-
-  final String parentPin;
-  final bool parentPinConfigured;
-  final String parentRecoveryCodeHash;
-
-  bool get hasParentRecoveryCode =>
-      RegExp(r'^[a-f0-9]{64}$').hasMatch(parentRecoveryCodeHash);
+  });
   final int dailyGoal;
   final bool soundEnabled;
   final bool voiceEnabled;
@@ -53,9 +40,6 @@ class AppSettings {
   final double voicePitch;
 
   AppSettings copyWith({
-    String? parentPin,
-    bool? parentPinConfigured,
-    String? parentRecoveryCodeHash,
     int? dailyGoal,
     bool? soundEnabled,
     bool? voiceEnabled,
@@ -73,10 +57,6 @@ class AppSettings {
     double? voicePitch,
   }) {
     return AppSettings(
-      parentPin: parentPin ?? this.parentPin,
-      parentPinConfigured: parentPinConfigured ??
-          (parentPin != null ? true : this.parentPinConfigured),
-      parentRecoveryCodeHash: parentRecoveryCodeHash ?? this.parentRecoveryCodeHash,
       dailyGoal: dailyGoal ?? this.dailyGoal,
       soundEnabled: soundEnabled ?? this.soundEnabled,
       voiceEnabled: voiceEnabled ?? this.voiceEnabled,
@@ -96,9 +76,6 @@ class AppSettings {
   }
 
   Map<String, dynamic> toJson() => {
-        'parentPin': parentPin,
-        'parentPinConfigured': parentPinConfigured,
-        'parentRecoveryCodeHash': parentRecoveryCodeHash,
         'dailyGoal': dailyGoal,
         'soundEnabled': soundEnabled,
         'voiceEnabled': voiceEnabled,
@@ -117,37 +94,41 @@ class AppSettings {
       };
 
   factory AppSettings.fromJson(Map<String, dynamic> json) {
-    final savedPin = '${json['parentPin'] ?? ''}';
-    final validPin = RegExp(r'^\d{4,8}$').hasMatch(savedPin);
-    final pin = validPin ? savedPin : initialParentPin;
-    // Existing custom PINs are never downgraded by missing/false metadata.
-    // Only the old untouched default needs first-time setup.
-    final configured = (validPin && pin != initialParentPin) ||
-        json['parentPinConfigured'] == true;
     return AppSettings(
-      parentPin: pin,
-      parentPinConfigured: configured,
-      parentRecoveryCodeHash: json['parentRecoveryCodeHash'] is String
-          ? json['parentRecoveryCodeHash'] as String
-          : '',
-      dailyGoal: _intIn(json['dailyGoal'], fallback: 3, allowed: const [3, 5, 10, 15],
+      dailyGoal: _intIn(
+        json['dailyGoal'],
+        fallback: 3,
+        allowed: const [3, 5, 10, 15],
       ),
       soundEnabled: _bool(json['soundEnabled'], fallback: true),
       voiceEnabled: _bool(json['voiceEnabled'], fallback: true),
       autoReadEnabled: _bool(json['autoReadEnabled'], fallback: true),
-      microphoneEnabled: _bool(json['microphoneEnabled'], fallback: true),
-      scannerEnabled: _bool(json['scannerEnabled'], fallback: true),
+      microphoneEnabled: _bool(json['microphoneEnabled'], fallback: false),
+      scannerEnabled: _bool(json['scannerEnabled'], fallback: false),
       aiProxyEnabled: _bool(json['aiProxyEnabled'], fallback: false),
-      aiLearningMode: AiLearningModeX.fromName(json['aiLearningMode'] is String ? json['aiLearningMode'] as String : null,
+      aiLearningMode: AiLearningModeX.fromName(
+        json['aiLearningMode'] is String
+            ? json['aiLearningMode'] as String
+            : null,
       ),
       aiProxyUrl: _safeProxyUrl(json['aiProxyUrl']),
       reduceAnimations: _bool(json['reduceAnimations'], fallback: false),
       largeText: _bool(json['largeText'], fallback: false),
       calmMode: _bool(json['calmMode'], fallback: false),
-      learningMode: LearningModeX.fromName(json['learningMode'] is String ? json['learningMode'] as String : null),
-      voiceRate: _doubleRange(json['voiceRate'], fallback: 0.35, min: 0.25, max: 0.55,
+      learningMode: LearningModeX.fromName(json['learningMode'] is String
+          ? json['learningMode'] as String
+          : null),
+      voiceRate: _doubleRange(
+        json['voiceRate'],
+        fallback: 0.35,
+        min: 0.25,
+        max: 0.55,
       ),
-      voicePitch: _doubleRange(json['voicePitch'], fallback: 1.0, min: 0.85, max: 1.18,
+      voicePitch: _doubleRange(
+        json['voicePitch'],
+        fallback: 1.0,
+        min: 0.85,
+        max: 1.18,
       ),
     );
   }
@@ -155,16 +136,25 @@ class AppSettings {
   static bool _bool(dynamic value, {required bool fallback}) =>
       value is bool ? value : fallback;
 
-  static int _intIn(dynamic value, {required int fallback, required List<int> allowed,
+  static int _intIn(
+    dynamic value, {
+    required int fallback,
+    required List<int> allowed,
   }) {
     final parsed = value is int ? value : int.tryParse(value?.toString() ?? '');
     if (parsed != null && allowed.contains(parsed)) return parsed;
     return fallback;
   }
 
-  static double _doubleRange(dynamic value, {required double fallback, required double min, required double max,
+  static double _doubleRange(
+    dynamic value, {
+    required double fallback,
+    required double min,
+    required double max,
   }) {
-    final parsed = value is num ? value.toDouble() : double.tryParse(value?.toString() ?? '');
+    final parsed = value is num
+        ? value.toDouble()
+        : double.tryParse(value?.toString() ?? '');
     if (parsed == null) return fallback;
     return parsed.clamp(min, max).toDouble();
   }
@@ -181,7 +171,8 @@ class AppSettings {
     final trimmed = raw?.trim() ?? '';
     if (trimmed.isEmpty) return defaultAiProxyUrl;
     final uri = Uri.tryParse(trimmed);
-    if (uri == null || !uri.hasScheme || uri.host.isEmpty) return defaultAiProxyUrl;
+    if (uri == null || !uri.hasScheme || uri.host.isEmpty)
+      return defaultAiProxyUrl;
     if (uri.scheme != 'https' && uri.scheme != 'http') return defaultAiProxyUrl;
     if (uri.userInfo.isNotEmpty) return defaultAiProxyUrl;
     // Eingefuegte Health-Links enthalten oft '?' oder einen Fragment-Anker.
@@ -210,7 +201,7 @@ class AppSettings {
     while (changed) {
       changed = false;
       for (final suffix in const <String>['/health', '/chat', '/tasks', '/']) {
-        if (out.endsWith(suffix) ) {
+        if (out.endsWith(suffix)) {
           out = out.substring(0, out.length - suffix.length);
           changed = true;
         }

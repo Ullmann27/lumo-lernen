@@ -133,7 +133,7 @@ class LearningProfileEngine {
   Map<String, List<String>> weaknessesBySubject() =>
       _detector.weaknessesBySubject(_skills);
 
-  /// Setzt alle Lerndaten zurück. Nur Eltern-PIN-geschützt aufrufen.
+  /// Setzt alle Lerndaten zurück. Vorher ausdrücklich bestätigen lassen.
   Future<void> reset() async {
     await _repo.resetAll();
     _skills = {};

@@ -7,7 +7,6 @@ import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import 'lumo_companion_host.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
-import '../widgets/parent_pin_setup_dialog.dart';
 import '../core/lumo_asset_paths.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
@@ -22,7 +21,6 @@ import '../features/settings/settings_content.dart';
 import '../features/shared/widgets/lumo_premium_effects.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
-import '../widgets/parental_gate.dart';
 import '../core/achievements/achievement_tracker.dart';
 import '../core/achievements/lumo_achievement.dart';
 import '../core/lumo_ai_proxy_client.dart';
@@ -88,7 +86,7 @@ class _AppShellState extends State<AppShell>
     // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
     final deepSection = widget.initialSection;
     if (deepSection != null && deepSection != _appState.state.section) {
-      if (_requiresParentPin(deepSection)) {
+      if (_requiresLoadedSettings(deepSection)) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted) _navigateTo(deepSection);
         });
@@ -295,24 +293,9 @@ class _AppShellState extends State<AppShell>
 
   Future<void> _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
-    if (_requiresParentPin(section)) {
+    if (_requiresLoadedSettings(section)) {
       await _appState.ensureSettingsLoaded();
       if (!mounted || !_appState.settingsLoaded) return;
-      final settings = _appState.state.settings;
-      if (!settings.parentPinConfigured) {
-        final configured =
-            await ParentPinSetupDialog.show(context, settings: settings);
-        if (!mounted || configured == null) return;
-        _appState.updateSettings(configured);
-      } else {
-        final ok = await ParentalGate.show(
-          context,
-          pin: settings.parentPin,
-          initialPin: false,
-          onPinRecovered: _appState.updateSettings,
-        );
-        if (!mounted || !ok) return;
-      }
     }
     if (!mounted) return;
     await _fadeCtrl.reverse();
@@ -327,7 +310,7 @@ class _AppShellState extends State<AppShell>
     if (mounted) await _fadeCtrl.forward();
   }
 
-  bool _requiresParentPin(LumoSection section) =>
+  bool _requiresLoadedSettings(LumoSection section) =>
       section == LumoSection.profile || section == LumoSection.settings;
 
   Future<void> _openParentSettings() => _navigateTo(LumoSection.settings);

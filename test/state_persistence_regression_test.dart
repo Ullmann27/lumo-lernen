@@ -13,7 +13,6 @@ import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/domain/rewards/reward_shop.dart';
 import 'package:lumo_lernen/features/rewards/reward_shop_content.dart';
 import 'package:lumo_lernen/features/settings/settings_content.dart';
-import 'package:lumo_lernen/widgets/parental_gate.dart';
 
 class _DelayedWallet extends RewardWalletRepository {
   final started = Completer<void>();
@@ -144,17 +143,21 @@ void main() {
     state.dispose();
   });
 
-  testWidgets('A settings deep link requires the loaded parent PIN', (
+  testWidgets(
+      'A settings deep link opens without a code and uses saved permissions', (
     tester,
   ) async {
     SharedPreferences.setMockInitialValues({
       'lumo_app_settings_v1': jsonEncode(
-        const AppSettings(
-          parentPin: '7291',
-          voiceEnabled: false,
-          autoReadEnabled: false,
-          aiProxyEnabled: false,
-        ).toJson(),
+        {
+          ...const AppSettings(
+            voiceEnabled: false,
+            autoReadEnabled: false,
+            aiProxyEnabled: false,
+          ).toJson(),
+          'parentPin': '7291',
+          'parentPinConfigured': true
+        },
       ),
     });
     await RewardWalletRepository.instance.reset();
@@ -164,17 +167,22 @@ void main() {
     );
     await tester.pump(const Duration(milliseconds: 400));
     await tester.pump(const Duration(milliseconds: 400));
-    expect(find.byType(SettingsContent), findsNothing);
-    expect(find.byType(ParentalGate), findsOneWidget);
-    expect(tester.widget<ParentalGate>(find.byType(ParentalGate)).pin, '7291');
-    await tester.enterText(find.byType(TextField), '2468');
-    await tester.tap(find.text('Bestätigen'));
-    await tester.pump(const Duration(milliseconds: 400));
-    expect(find.byType(ParentalGate), findsOneWidget);
-    expect(find.byType(SettingsContent), findsNothing);
-    // Dismiss without constructing the much larger settings screen.
-    await tester.tap(find.text('Abbrechen'));
-    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.byType(SettingsContent), findsOneWidget);
+    expect(find.byType(Dialog), findsNothing);
+    expect(find.textContaining('PIN'), findsNothing);
+    final settings =
+        tester.widget<SettingsContent>(find.byType(SettingsContent));
+    expect(settings.appState.settingsLoaded, isTrue);
+    expect(settings.appState.state.settings.voiceEnabled, isFalse);
+    for (final size in [
+      const Size(360, 740),
+      const Size(840, 720),
+      const Size(280, 640),
+    ]) {
+      await tester.binding.setSurfaceSize(size);
+      await tester.pump(const Duration(milliseconds: 400));
+      expect(tester.takeException(), isNull, reason: 'Settings at $size');
+    }
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.binding.setSurfaceSize(null);
     expect(tester.takeException(), isNull);

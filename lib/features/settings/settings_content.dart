@@ -17,7 +17,6 @@ import '../../domain/learning/learning_dna_engine.dart';
 import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import 'parent_report_card.dart';
-import 'parent_pin_editor.dart';
 import 'writing_report_card.dart';
 
 class SettingsContent extends StatefulWidget {
@@ -468,24 +467,38 @@ class _SettingsContentState extends State<SettingsContent> {
         ],
             ),
         const SizedBox(height: 14),
-        _SettingsCard(title: 'Sicherheit und Funktionen', children: [
-          ParentPinEditor(
-                  settings: _settings,
-                  onSaved: (next) {
-                    setState(() => _settings = next);
-                    widget.appState.updateSettings(next);
-                  },
-                ),
+            _SettingsCard(
+              title: 'Sicherheit und Funktionen',
+              children: [
+                const Text(
+                    'Für Erwachsene: Wähle hier bewusst, welche Funktionen dein Kind nutzen darf. Gerätefreigaben werden erst beim Verwenden angefragt.'),
                 const SizedBox(height: 12),
-                _SwitchRow(title: 'Mikrofon erlauben', subtitle: 'Kind darf mit Lumo sprechen.', value: _settings.microphoneEnabled, onChanged: (v) => _save(_settings.copyWith(microphoneEnabled: v)),
+                _SwitchRow(
+                  title: 'Mikrofon erlauben',
+                  subtitle:
+                      'Spracheingabe erst nach Antippen. Ohne Freigabe bleiben Text und lokale Lernhilfe nutzbar.',
+                  value: _settings.microphoneEnabled,
+                  onChanged: (v) =>
+                      _save(_settings.copyWith(microphoneEnabled: v)),
                 ),
-          _SwitchRow(title: 'Scanner erlauben', subtitle: 'Foto- und Aufgabenhilfe aktivieren.', value: _settings.scannerEnabled, onChanged: (v) => _save(_settings.copyWith(scannerEnabled: v)),
+                _SwitchRow(
+                  title: 'Kamera und Scanner erlauben',
+                  subtitle:
+                      'Aufgabenfotos erst nach Antippen aufnehmen oder auswählen.',
+                  value: _settings.scannerEnabled,
+                  onChanged: (v) =>
+                      _save(_settings.copyWith(scannerEnabled: v)),
                 ),
-          _SwitchRow(title: 'Ton-Effekte', subtitle: 'Vorbereitung für spätere Klick- und Belohnungstöne.', value: _settings.soundEnabled, onChanged: (v) => _save(_settings.copyWith(soundEnabled: v)),
+                _SwitchRow(
+                  title: 'Ton-Effekte',
+                  subtitle:
+                      'Vorbereitung für spätere Klick- und Belohnungstöne.',
+                  value: _settings.soundEnabled,
+                  onChanged: (v) => _save(_settings.copyWith(soundEnabled: v)),
                 ),
-        ],
+              ],
             ),
-        const SizedBox(height: 14),
+            const SizedBox(height: 14),
         _SettingsCard(title: 'Lumo-KI Testserver', children: [
           _SwitchRow(
             title: 'Lumo-KI-Server erlauben',
@@ -740,7 +753,11 @@ class _InfoCard extends StatelessWidget {
 }
 
 class _SwitchRow extends StatelessWidget {
-  const _SwitchRow({required this.title, required this.subtitle, required this.value, required this.onChanged,
+  const _SwitchRow({
+    required this.title,
+    required this.subtitle,
+    required this.value,
+    required this.onChanged,
   });
   final String title;
   final String subtitle;
@@ -749,14 +766,21 @@ class _SwitchRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SwitchListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text(title, style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink900,
+    return Material(
+      type: MaterialType.transparency,
+      child: SwitchListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          title,
+          style: LumoTextStyles.body.copyWith(
+            fontWeight: FontWeight.w900,
+            color: LumoColors.ink900,
+          ),
         ),
+        subtitle: Text(subtitle, style: LumoTextStyles.caption),
+        value: value,
+        onChanged: onChanged,
       ),
-      subtitle: Text(subtitle, style: LumoTextStyles.caption),
-      value: value,
-      onChanged: onChanged,
     );
   }
 }
@@ -1510,14 +1534,14 @@ class _AppUpdateCard extends StatelessWidget {
               ),
             ),
           ),
-          // Anleitung: erstes Mal nach neuem Keystore evtl. einmal
-          // deinstallieren noetig.
+          // Android accepts updates only with the same package and signer.
           const SizedBox(height: 10),
           const Text(
-            'Tipp: Nach dem Druecken laedt die APK im Hintergrund. '
-            'Tippe danach auf die Download-Benachrichtigung um zu installieren.\n'
-            'Beim allerersten Update kann es noetig sein, die alte Version '
-            'einmalig zu deinstallieren - danach laufen alle Updates direkt.',
+            'Nach dem Download öffnest du die APK zur Installation. '
+            'Ein direktes Update braucht denselben Paketnamen und Signaturschlüssel.\n'
+            'Deinstalliere die alte App nicht: Dabei können Lernstände verloren gehen. '
+            'Eine Variante mit anderer Paketkennung lässt sich parallel installieren; '
+            'die Lernstände werden dabei nicht automatisch übernommen.',
             style: TextStyle(
               fontFamily: 'Nunito',
               fontSize: 11.5,

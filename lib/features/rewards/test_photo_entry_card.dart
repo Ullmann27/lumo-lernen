@@ -53,11 +53,16 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
         ? 'kind'
-        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+        : st.childName
+            .trim()
+            .toLowerCase()
+            .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     return 'local_${safeName}_${st.grade}';
   }
 
   Future<void> _pickPhoto() async {
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted || !widget.appState.state.settings.scannerEnabled) return;
     try {
       final file = await _picker.pickImage(
         source: ImageSource.camera,
@@ -78,7 +83,8 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
     final subject = _subjectController.text.trim();
     if (subject.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Bitte gib das Fach ein (z.B. Mathe, Deutsch).')),
+        const SnackBar(
+            content: Text('Bitte gib das Fach ein (z.B. Mathe, Deutsch).')),
       );
       return;
     }
@@ -105,7 +111,8 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: points > 0 ? const Color(0xFF22C55E) : LumoColors.ink500,
+          backgroundColor:
+              points > 0 ? const Color(0xFF22C55E) : LumoColors.ink500,
           content: Row(
             children: [
               const Text('💎', style: TextStyle(fontSize: 22)),
@@ -222,11 +229,15 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
             TextButton.icon(
               onPressed: () => setState(() => _imagePath = null),
               icon: const Icon(Icons.close_rounded, size: 16),
-              label: const Text('Foto entfernen', style: TextStyle(fontSize: 12)),
+              label:
+                  const Text('Foto entfernen', style: TextStyle(fontSize: 12)),
             ),
           ] else
             OutlinedButton.icon(
-              onPressed: _saving ? null : _pickPhoto,
+              onPressed:
+                  _saving || !widget.appState.state.settings.scannerEnabled
+                      ? null
+                      : _pickPhoto,
               icon: const Icon(Icons.camera_alt_rounded, size: 18),
               label: const Text('Foto vom Test machen (optional)'),
               style: OutlinedButton.styleFrom(
@@ -234,6 +245,12 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                 side: const BorderSide(color: Color(0xFFC4B5FD), width: 1.4),
                 padding: const EdgeInsets.symmetric(vertical: 12),
               ),
+            ),
+          if (!widget.appState.state.settings.scannerEnabled)
+            const Padding(
+              padding: EdgeInsets.only(top: 8),
+              child: Text(
+                  'Kamera ist ausgeschaltet. Die Note kannst du ohne Foto speichern.'),
             ),
           const SizedBox(height: 12),
           // Fach-Eingabe
@@ -246,13 +263,18 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
               border: OutlineInputBorder(),
               filled: true,
               fillColor: Colors.white,
-              contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             ),
           ),
           const SizedBox(height: 12),
           const Text(
             'Note (Österreich)',
-            style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF6D28D9)),
+            style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF6D28D9)),
           ),
           const SizedBox(height: 6),
           // Note-Auswahl 1-5
@@ -265,14 +287,20 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                 child: Padding(
                   padding: EdgeInsets.only(right: i < 4 ? 6 : 0),
                   child: InkWell(
-                    onTap: _saving ? null : () => setState(() => _selectedNote = note),
+                    onTap: _saving
+                        ? null
+                        : () => setState(() => _selectedNote = note),
                     borderRadius: BorderRadius.circular(12),
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
                         gradient: selected
-                            ? LinearGradient(colors: [color, color.withOpacity(0.75)])
-                            : LinearGradient(colors: [Colors.white, Colors.white.withOpacity(0.95)]),
+                            ? LinearGradient(
+                                colors: [color, color.withOpacity(0.75)])
+                            : LinearGradient(colors: [
+                                Colors.white,
+                                Colors.white.withOpacity(0.95)
+                              ]),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: color, width: 1.6),
                         boxShadow: selected
@@ -307,16 +335,21 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: notePoints > 0 ? const Color(0xFFDCFCE7) : const Color(0xFFFEF2F2),
+              color: notePoints > 0
+                  ? const Color(0xFFDCFCE7)
+                  : const Color(0xFFFEF2F2),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: notePoints > 0 ? const Color(0xFF22C55E) : const Color(0xFFFCA5A5),
+                color: notePoints > 0
+                    ? const Color(0xFF22C55E)
+                    : const Color(0xFFFCA5A5),
                 width: 1.0,
               ),
             ),
             child: Row(
               children: [
-                Text(notePoints > 0 ? '💎' : '💪', style: const TextStyle(fontSize: 18)),
+                Text(notePoints > 0 ? '💎' : '💪',
+                    style: const TextStyle(fontSize: 18)),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -327,7 +360,9 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                       fontFamily: 'Nunito',
                       fontSize: 12,
                       fontWeight: FontWeight.w800,
-                      color: notePoints > 0 ? const Color(0xFF14532D) : const Color(0xFFB91C1C),
+                      color: notePoints > 0
+                          ? const Color(0xFF14532D)
+                          : const Color(0xFFB91C1C),
                     ),
                   ),
                 ),
@@ -344,7 +379,8 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                   ? const SizedBox(
                       width: 16,
                       height: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2, color: Colors.white),
                     )
                   : const Icon(Icons.save_rounded, size: 18),
               label: Text(_saving ? 'Speichert…' : 'Punkte hinzufügen'),
@@ -361,11 +397,16 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
 
   Color _noteColor(int note) {
     switch (note) {
-      case 1: return const Color(0xFF22C55E);
-      case 2: return const Color(0xFF84CC16);
-      case 3: return const Color(0xFFFFB800);
-      case 4: return const Color(0xFFEA580C);
-      default: return const Color(0xFFEF4444);
+      case 1:
+        return const Color(0xFF22C55E);
+      case 2:
+        return const Color(0xFF84CC16);
+      case 3:
+        return const Color(0xFFFFB800);
+      case 4:
+        return const Color(0xFFEA580C);
+      default:
+        return const Color(0xFFEF4444);
     }
   }
 }
