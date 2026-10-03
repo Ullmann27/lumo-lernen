@@ -137,6 +137,57 @@ def marker(frame, phrase):
     return next((line for line in frame['lines'] if phrase in folded(line['text'])), None)
 
 
+def wait_for_frame(capture, label, predicate, error_message, *, timeout=30,
+                   poll_interval=.5, clock=time.monotonic, sleep=time.sleep):
+    """Observe a bounded real UI transition after one already-issued input.
+
+    Rendering and panel layout can span several slow emulator frames. Capture
+    every observation, but never retry the input or accept a stale HUD alone.
+    """
+    deadline = clock()+timeout
+    last_text = ''
+    while clock() < deadline:
+        frame = capture(label)
+        last_text = frame['text']
+        remaining = deadline-clock()
+        if remaining >= 0 and predicate(frame):
+            return frame
+        if remaining <= 0:
+            break
+        sleep(min(poll_interval, remaining))
+    raise RuntimeError(f'{error_message} No matching frame within {timeout}s. '
+                       f'Last captured OCR: {last_text!r}')
+
+
+def race_view_visible(frame):
+    return bool(marker(frame, 'RUNDE')) and not any(marker(frame, caption) for caption in
+        ('Weiterfahren', 'Kleine Pause', 'geschafft', 'Noch ein Rennen'))
+
+
+def local_hint_visible(frame):
+    if not marker(frame, 'LERN-BOOST') or marker(frame, 'Alle Karts warten'):
+        return False
+    return any(.38*frame['height'] < line['top'] < .52*frame['height']
+               and len(re.findall(r'[A-Za-z]', line['text'])) >= 12
+               for line in frame['lines'])
+
+
+def lesson_closed_or_changed(frame, previous_prompt=None):
+    if not (marker(frame, 'SPATER') or marker(frame, 'LERN-BOOST')):
+        return race_view_visible(frame) or bool(marker(frame, 'geschafft'))
+    next_answer = answer_for(frame)
+    return bool(previous_prompt and next_answer and next_answer['prompt'] != previous_prompt)
+
+
+def restart_visible(frame):
+    if not race_view_visible(frame):
+        return False
+    try:
+        return race_state(frame)['round'] == [1, 2]
+    except RuntimeError:
+        return False
+
+
 def answer_for(frame):
     """Extract a first-grade maths question and its real on-screen option box."""
     height = frame['height']
@@ -187,6 +238,7 @@ def main():
     args.out.mkdir(parents=True, exist_ok=True)
     android = Android(args.serial, fast_input=False)
     sequence = 0
+    second_round_capture = None
     def record(event, **values):
         value = {'time_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
                  'event': event, **values}
@@ -194,7 +246,7 @@ def main():
             stream.write(json.dumps(value, ensure_ascii=False)+'\n')
         print(json.dumps(value, ensure_ascii=False), flush=True)
     def capture(label):
-        nonlocal sequence
+        nonlocal sequence, second_round_capture
         sequence += 1
         path = args.out/f'{sequence:03d}-{label}.png'
         path.write_bytes(android.adb('exec-out', 'screencap', '-p', binary=True))
@@ -204,7 +256,17 @@ def main():
         record('capture', image=str(path), width=frame['width'], height=frame['height'])
         if frame['width'] <= frame['height']:
             raise RuntimeError('Kart must finish its actual native landscape rotation first.')
+        if second_round_capture is None and second_round_in_progress(frame):
+            second_round_capture = sequence
+            record('second_round_observed', capture_sequence=sequence,
+                   hud=race_state(frame), text=frame['text'])
         return frame
+    def wait_frame(label, predicate, error_message):
+        started = time.monotonic()
+        observed = wait_for_frame(capture, label, predicate, error_message)
+        record('transition_observed', transition=label,
+               seconds=round(time.monotonic()-started, 2))
+        return observed
     def tap_box(box, reason):
         x, y = box['left']+box['width']//2, box['top']+box['height']//2
         record('touch', x=x, y=y, reason=reason)
@@ -225,26 +287,20 @@ def main():
     frame = capture('native-start')
     if marker(frame, 'Weiterfahren'):
         tap_phrase(frame, 'Weiterfahren')
-        time.sleep(2)
-        frame = capture('resumed-start')
+        frame = wait_frame('resumed-start', race_view_visible,
+                           'Resume touch did not close the real pause screen.')
     if args.pause_back:
         android.key(4, 'KEY_BACK')
-        time.sleep(2)
-        frame = capture('android-back-pause')
-        if not marker(frame, 'Weiterfahren'):
-            raise RuntimeError('Android Back did not open the Godot pause screen.')
+        frame = wait_frame('android-back-pause', lambda frame: bool(marker(frame, 'Weiterfahren')),
+                           'Android Back did not open the Godot pause screen.')
         tap_phrase(frame, 'Weiterfahren')
-        time.sleep(2)
+        frame = wait_frame('android-back-resumed', race_view_visible,
+                           'Resume touch did not close the real pause screen.')
     deadline = time.monotonic()+args.timeout
     correct = 0
     skipped = 0
-    second_round_capture = None
     while time.monotonic() < deadline:
         frame = capture('race')
-        if second_round_capture is None and second_round_in_progress(frame):
-            second_round_capture = sequence
-            record('second_round_observed', capture_sequence=sequence,
-                   hud=race_state(frame), text=frame['text'])
         if marker(frame, 'geschafft') and marker(frame, 'Noch ein Rennen'):
             require_second_round(second_round_capture)
             record('finished', correct_actions=correct, skipped_actions=skipped,
@@ -272,43 +328,32 @@ def main():
                         if not wrong:
                             raise RuntimeError('No wrong option box could be identified safely.')
                         tap_box(wrong, 'intentional wrong answer, inspect local hint')
-                        time.sleep(1.5)
-                        hint = capture('wrong-local-hint')
-                        if not marker(hint, 'LERN-BOOST'):
-                            raise RuntimeError('Wrong answer unexpectedly closed the question.')
-                        new_hints = [line['text'] for line in hint['lines']
-                                     if .38*hint['height'] < line['top'] < .52*hint['height']
-                                     and len(re.findall(r'[A-Za-z]', line['text'])) >= 12
-                                     and 'ALLE KARTS WARTEN' not in folded(line['text'])]
-                        if marker(hint, 'Alle Karts warten') or not new_hints:
-                            raise RuntimeError('The local explanation after the wrong answer was not visible.')
+                        hint = wait_frame('wrong-local-hint', local_hint_visible,
+                                          'The local explanation after the wrong answer was not visible.')
                         record('wrong_answer_hint', text=hint['text'])
                     tap_box(answer['option'], 'correct maths answer')
-                    time.sleep(1.5)
-                    after = capture('answered')
-                    if marker(after, 'SPATER') or marker(after, 'LERN-BOOST'):
-                        next_answer = answer_for(after)
-                        if not next_answer or next_answer['prompt'] == answer['prompt']:
-                            raise RuntimeError('Answer touch did not close the real learning pause.')
+                    wait_frame('answered', lambda frame: lesson_closed_or_changed(frame, answer['prompt']),
+                               'Answer touch did not close the real learning pause.')
                     correct += 1
                     continue
             tap_phrase(frame, 'SPATER')
+            previous_answer = answer_for(frame)
+            wait_frame('lesson-skipped', lambda frame: lesson_closed_or_changed(
+                frame, previous_answer['prompt'] if previous_answer else None),
+                'Später touch did not close the real learning pause.')
             skipped += 1
-            time.sleep(1.5)
             continue
         time.sleep(2)
     else:
         raise RuntimeError('The real two-lap race did not finish before timeout; evidence retained.')
     if args.restart:
         tap_phrase(frame, 'Noch ein Rennen')
-        time.sleep(4)
-        restarted = capture('real-restart')
-        if marker(restarted, 'Noch ein Rennen') or not marker(restarted, 'RUNDE'):
-            raise RuntimeError('The real restart did not return to the race HUD.')
+        restarted = wait_frame('real-restart', restart_visible,
+                               'The real restart did not return to the round-one race HUD.')
         record('restart_verified', text=restarted['text'])
         android.key(4, 'KEY_BACK')
-        time.sleep(2)
-        frame = capture('restart-paused')
+        frame = wait_frame('restart-paused', lambda frame: bool(marker(frame, 'Weiterfahren')),
+                           'Android Back after restart did not open the Godot pause screen.')
     if args.return_to:
         if args.restart:
             (args.out/'saved-pause-before-return.json').write_text(json.dumps(race_state(frame), indent=2)+'\n')
