@@ -53,7 +53,7 @@ Einzelberichte: [Spiele](GAMES_QA_2026-10-03.md),
 
 ## Tatsächlich geprüft
 
-**Flutter: 508 bestanden, vier bestehende übersprungen, keine Fehler.**
+**Flutter: 509 bestanden, vier bestehende übersprungen, keine Fehler.**
 Analyse: keine Fehler, 153 bestehende Warnungen/Hinweise. Backend: 22 Tests. 90 Prüfungen des Android-Testwerkzeugs bestehen.
 Inhaltsaudit: 37.940 Aufgabenvarianten; Klassen-/Fachmatrix mit 16 Fällen.
 Acht gezielte Plus-Modultests prüfen Hilfen, falsche/richtige Antworten,
@@ -119,6 +119,10 @@ Weitere echte Aufgaben-/Fortschrittskorrekturen für280:
   Wiederholung und lassen denselben Speicherstand erneut schreiben, ohne
   Belohnung/Antwort erneut zu buchen. Hintergrundfeedback wartet auf Fortsetzen;
   bereits akzeptierte Speicherung läuft bei Modul-Unmount weiter.
+- Der aktive Wort-Schreibcoach zeigt bei Stummschaltung das tatsächliche Zielwort
+  als Abschreibhilfe; mit Stimme bleibt das Diktat erhalten. Sieben neue
+  Widgettests prüfen echte Striche, Fortschritt, Fehler, Retry, Doppel-Taps,
+  Hintergrund, Unmount und beide Text-/Stimmenmodi.
 - Diktatheader und Abschluss verwenden die tatsächlichen 20 Wörter der Session;
   synchrone Eingabesicherung verhindert doppelte Selbsteinschätzung.
 - Native `SharedPreferences.setString=false` wird für Skills, Daily und letztes
