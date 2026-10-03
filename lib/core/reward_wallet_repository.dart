@@ -22,6 +22,7 @@ class RewardWallet {
     this.streak = 0,
     this.totalEarnedStars = 0,
     this.lastDailyKey = '',
+    this.gameResultIds = const <String>[],
   });
 
   final int stars;
@@ -29,8 +30,12 @@ class RewardWallet {
   final int level;
   final int streak;
   final int totalEarnedStars;
+
   /// Format: yyyy-mm-dd des letzten Lerntages, fuer Streak-Berechnung.
   final String lastDailyKey;
+
+  /// IDs live in the same persisted snapshot as their reward, for crash-safe replay.
+  final List<String> gameResultIds;
 
   RewardWallet copyWith({
     int? stars,
@@ -39,6 +44,7 @@ class RewardWallet {
     int? streak,
     int? totalEarnedStars,
     String? lastDailyKey,
+    List<String>? gameResultIds,
   }) {
     return RewardWallet(
       stars: stars ?? this.stars,
@@ -47,6 +53,7 @@ class RewardWallet {
       streak: streak ?? this.streak,
       totalEarnedStars: totalEarnedStars ?? this.totalEarnedStars,
       lastDailyKey: lastDailyKey ?? this.lastDailyKey,
+      gameResultIds: gameResultIds ?? this.gameResultIds,
     );
   }
 
@@ -57,6 +64,7 @@ class RewardWallet {
         'streak': streak,
         'totalEarnedStars': totalEarnedStars,
         'lastDailyKey': lastDailyKey,
+        'gameResultIds': gameResultIds,
       };
 
   factory RewardWallet.fromJson(Map<String, dynamic> j) => RewardWallet(
@@ -66,6 +74,9 @@ class RewardWallet {
         streak: (j['streak'] as int?) ?? 0,
         totalEarnedStars: (j['totalEarnedStars'] as int?) ?? 0,
         lastDailyKey: (j['lastDailyKey'] as String?) ?? '',
+        gameResultIds:
+            (j['gameResultIds'] as List?)?.whereType<String>().toList() ??
+                const <String>[],
       );
 
   @override
@@ -85,7 +96,9 @@ class RewardWalletRepository {
   RewardWallet _wallet = const RewardWallet();
   bool _loaded = false;
   Future<RewardWallet>? _loadFuture;
-  Future<void> _pendingWrites = Future<void>.value();
+  // Every balance change shares this queue. A failed transaction cannot roll
+  // back a later lesson reward, reset, or another completed game.
+  Future<void> _mutations = Future<void>.value();
   final _controller = StreamController<RewardWallet>.broadcast();
 
   /// Stream, der bei jeder Aenderung den neuen Wallet-Stand emittiert.
@@ -131,7 +144,12 @@ class RewardWalletRepository {
         }
         // Persist even an empty wallet: an explicit zero must not later be
         // replaced by an old shop snapshot after rewards have been spent.
-        await _persist();
+        try {
+          await _persist(_wallet);
+        } catch (_) {
+          // Keep successfully read legacy balances. The next real transaction
+          // includes them and retries persistence; loading never spends them.
+        }
       }
     } catch (_) {
       // Bei jeglichem Fehler: leere Wallet, App startet trotzdem
@@ -142,64 +160,94 @@ class RewardWalletRepository {
   }
 
   /// Sterne dazugeben. Sofort persistent gespeichert.
-  Future<RewardWallet> addStars(int delta) async {
-    if (!_loaded) await load();
-    if (delta == 0) return _wallet;
-    final newStars = (_wallet.stars + delta).clamp(0, 999999);
-    final newTotal = _wallet.totalEarnedStars + (delta > 0 ? delta : 0);
-    _wallet = _wallet.copyWith(
-      stars: newStars,
-      totalEarnedStars: newTotal);
-    await _persist();
-    _emit();
-    return _wallet;
-  }
+  Future<RewardWallet> addStars(int delta) => _transaction((current) async {
+        if (delta == 0) return current;
+        return _commit(current.copyWith(
+          stars: (current.stars + delta).clamp(0, 999999),
+          totalEarnedStars: current.totalEarnedStars + (delta > 0 ? delta : 0),
+        ));
+      });
 
   /// XP dazugeben + Level-Berechnung.
-  Future<RewardWallet> addXp(int delta) async {
-    if (!_loaded) await load();
-    if (delta == 0) return _wallet;
-    final newXp = (_wallet.xp + delta).clamp(0, 9999999);
-    // Gleiche 400-XP-Stufen wie App-State und RewardEngine.
-    final newLevel = 1 + (newXp ~/ 400);
-    _wallet = _wallet.copyWith(xp: newXp, level: newLevel);
-    await _persist();
-    _emit();
-    return _wallet;
-  }
+  Future<RewardWallet> addXp(int delta) => _transaction((current) async {
+        if (delta == 0) return current;
+        final newXp = (current.xp + delta).clamp(0, 9999999);
+        return _commit(current.copyWith(xp: newXp, level: 1 + newXp ~/ 400));
+      });
+
+  /// Awards one completed native race exactly once, including after process death.
+  Future<RewardWallet> awardGameResult({
+    required String resultId,
+    required int stars,
+    required int xp,
+  }) =>
+      _transaction((current) async {
+        if (resultId.isEmpty ||
+            resultId.length > 160 ||
+            stars < 0 ||
+            stars > 100 ||
+            xp < 0 ||
+            xp > 1000) {
+          throw ArgumentError('Ungültiges Spielergebnis');
+        }
+        if (current.gameResultIds.contains(resultId)) return current;
+        final nextXp = (current.xp + xp).clamp(0, 9999999);
+        return _commit(current.copyWith(
+          stars: (current.stars + stars).clamp(0, 999999),
+          totalEarnedStars: current.totalEarnedStars + stars,
+          xp: nextXp,
+          level: 1 + nextXp ~/ 400,
+          gameResultIds: [...current.gameResultIds, resultId],
+        ));
+      });
 
   /// Markiere heutigen Lerntag - aktualisiert Streak.
-  Future<RewardWallet> markDailyActivity() async {
-    if (!_loaded) await load();
-    final today = _todayKey();
-    if (_wallet.lastDailyKey == today) return _wallet;
-    int newStreak = 1;
-    if (_wallet.lastDailyKey.isNotEmpty) {
-      final last = DateTime.tryParse(_wallet.lastDailyKey);
-      if (last != null) {
-        final diff = DateTime.now().difference(last).inDays;
-        if (diff == 1) {
-          newStreak = _wallet.streak + 1;
-        } else if (diff > 1) {
-          newStreak = 1;
-        } else {
-          newStreak = _wallet.streak; // gleicher Tag = nicht aendern
+  Future<RewardWallet> markDailyActivity() => _transaction((current) async {
+        final today = _todayKey();
+        if (current.lastDailyKey == today) return current;
+        int newStreak = 1;
+        if (current.lastDailyKey.isNotEmpty) {
+          final last = DateTime.tryParse(current.lastDailyKey);
+          if (last != null) {
+            final diff = DateTime.now().difference(last).inDays;
+            if (diff == 1) {
+              newStreak = current.streak + 1;
+            } else if (diff > 1) {
+              newStreak = 1;
+            } else {
+              newStreak = current.streak; // gleicher Tag = nicht aendern
+            }
+          }
         }
-      }
-    }
-    _wallet = _wallet.copyWith(streak: newStreak, lastDailyKey: today);
-    await _persist();
-    _emit();
-    return _wallet;
-  }
+        return _commit(
+            current.copyWith(streak: newStreak, lastDailyKey: today));
+      });
 
   /// Reset (z.B. fuer Profil-Wechsel oder Eltern-Sperre).
-  Future<void> reset() async {
-    if (_loadFuture != null) await _loadFuture;
-    _wallet = const RewardWallet();
-    _loaded = true;
-    await _persist();
+  Future<void> reset() =>
+      _transaction((_) => _commit(const RewardWallet())).then<void>((_) {});
+
+  Future<RewardWallet> _transaction(
+    Future<RewardWallet> Function(RewardWallet current) operation,
+  ) {
+    final pending = _mutations.then((_) async {
+      await load();
+      return operation(_wallet);
+    });
+    // A failed operation is reported to its caller but must not poison the
+    // queue: later rewards and replay of the failed native event still run.
+    _mutations =
+        pending.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    return pending;
+  }
+
+  Future<RewardWallet> _commit(RewardWallet next) async {
+    // Balance and result identities are persisted in one snapshot before any
+    // subscriber can observe them. Failure leaves the previous state intact.
+    await _persist(next);
+    _wallet = next;
     _emit();
+    return next;
   }
 
   // ── Interna ───────────────────────────────────────────────────────
@@ -207,12 +255,10 @@ class RewardWalletRepository {
     try {
       final profileRaw = prefs.getString('lumo_active_profile');
       final profile = profileRaw == null ? null : jsonDecode(profileRaw);
-      final name = profile is Map
-          ? (profile['name'] as String? ?? 'Lena')
-          : 'Lena';
-      final grade = profile is Map
-          ? (profile['grade'] as num?)?.toInt() ?? 1
-          : 1;
+      final name =
+          profile is Map ? (profile['name'] as String? ?? 'Lena') : 'Lena';
+      final grade =
+          profile is Map ? (profile['grade'] as num?)?.toInt() ?? 1 : 1;
       final safeName = name.trim().isEmpty
           ? 'kind'
           : name.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
@@ -226,17 +272,11 @@ class RewardWalletRepository {
     }
   }
 
-  Future<void> _persist() {
-    final serialized = _encode(_wallet.toJson());
-    _pendingWrites = _pendingWrites.then((_) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_storageKey, serialized);
-    } catch (_) {
-      // Fehler beim Speichern ist nicht App-kritisch.
-      }
-  });
-    return _pendingWrites;
+  Future<void> _persist(RewardWallet snapshot) async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved =
+        await prefs.setString(_storageKey, _encode(snapshot.toJson()));
+    if (!saved) throw StateError('Belohnung konnte nicht gespeichert werden');
   }
 
   void _emit() {
@@ -252,59 +292,12 @@ class RewardWalletRepository {
   }
 
   String _encode(Map<String, dynamic> m) {
-    // Simple inline JSON encode without dart:convert dependency duplication
-    // We rely on shared_preferences storing strings - use minimalist encoding
-    final parts = <String>[];
-    m.forEach((k, v) {
-      parts.add('"$k":${v is String ? '"$v"' : v}');
-    });
-    return '{${parts.join(',')}}';
+    return jsonEncode(m);
   }
 
   Map<String, dynamic> _decode(String json) {
-    final result = <String, dynamic>{};
-    // Minimal JSON-Parser fuer unsere flachen Wallet-Objekte.
-    final body = json.trim();
-    if (!body.startsWith('{') || !body.endsWith('}')) return result;
-    final inner = body.substring(1, body.length - 1);
-    final parts = _splitTopLevel(inner);
-    for (final part in parts) {
-      final colon = part.indexOf(':');
-      if (colon < 0) continue;
-      var key = part.substring(0, colon).trim();
-      var val = part.substring(colon + 1).trim();
-      if (key.startsWith('"') && key.endsWith('"')) {
-        key = key.substring(1, key.length - 1);
-      }
-      if (val.startsWith('"') && val.endsWith('"')) {
-        result[key] = val.substring(1, val.length - 1);
-      } else {
-        result[key] = int.tryParse(val) ?? 0;
-      }
-    }
-    return result;
-  }
-
-  List<String> _splitTopLevel(String s) {
-    final out = <String>[];
-    int depth = 0;
-    bool inStr = false;
-    var buf = StringBuffer();
-    for (var i = 0; i < s.length; i++) {
-      final c = s[i];
-      if (c == '"' && (i == 0 || s[i - 1] != '\\')) inStr = !inStr;
-      if (!inStr) {
-        if (c == '{' || c == '[') depth++;
-        if (c == '}' || c == ']') depth--;
-        if (c == ',' && depth == 0) {
-          out.add(buf.toString());
-          buf = StringBuffer();
-          continue;
-        }
-      }
-      buf.write(c);
-    }
-    if (buf.isNotEmpty) out.add(buf.toString());
-    return out;
+    final decoded = jsonDecode(json);
+    if (decoded is Map<String, dynamic>) return decoded;
+    throw const FormatException('Invalid wallet');
   }
 }

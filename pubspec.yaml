@@ -1,7 +1,7 @@
 name: lumo_lernen
-description: Lumo Lernen - Lern-App fuer Volksschulkinder (1. und 2. Klasse Oesterreich)
+description: Lumo Lernen - Lern-App mit integrierten Spielen fuer die 1. bis 4. Klasse Volksschule in Oesterreich
 publish_to: none
-version: 0.8.0+9
+version: 0.10.0+275
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -23,6 +23,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  shared_preferences_platform_interface: ^2.4.2
 
 flutter:
   uses-material-design: true
