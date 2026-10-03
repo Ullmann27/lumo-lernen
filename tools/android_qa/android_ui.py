@@ -10,7 +10,6 @@ import re
 import shutil
 import subprocess
 import sys
-import tempfile
 import time
 import xml.etree.ElementTree as ET
 
@@ -235,21 +234,26 @@ class Android:
         bases = [remote for remote in installed if Path(remote).name == 'base.apk']
         if len(bases) != 1:
             raise RuntimeError(f'Installed package {package} has no unique base.apk path: {installed}')
-        # Pull only the public APK, never private profiles/preferences. Hash a
-        # temporary file so this check does not buffer another large APK in RAM.
-        with tempfile.TemporaryDirectory() as directory:
-            downloaded = Path(directory)/'installed-base.apk'
-            self.adb('pull', bases[0], str(downloaded), timeout=180)
-            with downloaded.open('rb') as stream:
-                installed_checksum = hashlib.file_digest(stream, 'sha256').hexdigest()
-            installed_size = downloaded.stat().st_size
+        # Read the public installed APK on Android; do not transfer another
+        # large binary or touch private profiles/preferences. Missing tools or
+        # malformed output fail instead of weakening this byte comparison.
+        hashed = self.adb('shell', 'toybox', 'sha256sum', bases[0], timeout=180).strip()
+        match = re.fullmatch(r'([0-9a-fA-F]{64})[ \t]+' + re.escape(bases[0]), hashed)
+        if not match:
+            raise RuntimeError(f'Malformed installed APK sha256sum output: {hashed!r}')
+        installed_checksum = match.group(1).lower()
+        sized = self.adb('shell', 'toybox', 'stat', '-c', '%s', bases[0]).strip()
+        if not re.fullmatch(r'[0-9]+', sized):
+            raise RuntimeError(f'Malformed installed APK stat size output: {sized!r}')
+        installed_size = int(sized)
         if installed_checksum != checksum or installed_size != size:
             raise RuntimeError('Installed base.apk differs from the input APK: '
                                f'input={checksum}/{size}, installed={installed_checksum}/{installed_size}')
         return {'file': str(path), 'bytes': size, 'sha256': checksum,
                 'adb_install_output': output.strip(), 'package': package,
                 'installed_base_apk': {'remote_path': bases[0], 'sha256': installed_checksum,
-                                       'bytes': installed_size, 'matches_input': True},
+                                       'bytes': installed_size, 'matches_input': True,
+                                       'verification_method': 'android-toybox-sha256sum-stat'},
                 'installed_split_paths': [remote for remote in installed if remote != bases[0]]}
 
 

@@ -22,7 +22,7 @@ class InstalledApkBytesTest(unittest.TestCase):
         with patch('android_ui.QA_ROOT', self.root):
             self.device = android_ui.Android()
 
-    def adb(self, content, paths=None):
+    def adb(self, content, paths=None, hashed=None, sized=None):
         def call(*args, **kwargs):
             if args[0] == 'install':
                 self.assertEqual(args[1:3], ('--no-incremental', '-r'))
@@ -30,14 +30,16 @@ class InstalledApkBytesTest(unittest.TestCase):
             if args[:3] == ('shell', 'pm', 'path'):
                 self.assertEqual(args[3], PACKAGE)
                 return paths if paths is not None else f'package:{BASE}\n'
-            if args[0] == 'pull':
-                self.assertEqual(args[1], BASE)
-                Path(args[2]).write_bytes(content)
-                return '1 file pulled'
+            if args[:3] == ('shell', 'toybox', 'sha256sum'):
+                self.assertEqual(args[3], BASE)
+                return hashed if hashed is not None else hashlib.sha256(content).hexdigest()+'  '+BASE+'\n'
+            if args[:3] == ('shell', 'toybox', 'stat'):
+                self.assertEqual(args[3:], ('-c', '%s', BASE))
+                return sized if sized is not None else str(len(content))+'\n'
             self.fail(f'Unexpected ADB mutation/read: {args}')
         return call
 
-    def test_actual_pulled_base_is_hashed_and_split_paths_are_recorded(self):
+    def test_device_base_hash_and_size_are_compared_and_split_paths_recorded(self):
         content = self.apk.read_bytes()
         split = '/data/app/~~fixture/lumo/split_config.en.apk'
         with patch('android_ui.package_from_apk', return_value=PACKAGE), patch.object(
@@ -45,7 +47,8 @@ class InstalledApkBytesTest(unittest.TestCase):
             proof = self.device.install(self.apk)
         self.assertEqual(proof['installed_base_apk'], {
             'remote_path': BASE, 'bytes': len(content),
-            'sha256': hashlib.sha256(content).hexdigest(), 'matches_input': True})
+            'sha256': hashlib.sha256(content).hexdigest(), 'matches_input': True,
+            'verification_method': 'android-toybox-sha256sum-stat'})
         self.assertEqual(proof['package'], PACKAGE)
         self.assertEqual(proof['installed_split_paths'], [split])
 
@@ -56,13 +59,42 @@ class InstalledApkBytesTest(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError, 'Installed base.apk differs'):
                     self.device.install(self.apk)
 
-    def test_missing_or_ambiguous_base_fails_before_pull(self):
+    def test_missing_or_ambiguous_base_fails_before_hashing(self):
         for paths in ['', f'package:{BASE}\npackage:/data/app/other/base.apk\n']:
             with self.subTest(paths=paths), patch('android_ui.package_from_apk', return_value=PACKAGE), \
                     patch.object(self.device, 'adb', side_effect=self.adb(b'unused', paths)) as adb:
                 with self.assertRaisesRegex(RuntimeError, 'no unique base.apk'):
                     self.device.install(self.apk)
                 self.assertEqual(adb.call_count, 2)
+
+    def test_missing_malformed_or_wrong_filename_hash_is_rejected(self):
+        content = self.apk.read_bytes(); checksum = hashlib.sha256(content).hexdigest()
+        for hashed in ['', 'not-a-hash', '0'*63+'  '+BASE, 'z'*64+'  '+BASE,
+                       checksum+'  /other/base.apk', checksum+'  '+BASE+'\nextra']:
+            with self.subTest(hashed=hashed), patch('android_ui.package_from_apk', return_value=PACKAGE), \
+                    patch.object(self.device, 'adb', side_effect=self.adb(content, hashed=hashed)) as adb:
+                with self.assertRaisesRegex(RuntimeError, 'Malformed installed APK sha256sum'):
+                    self.device.install(self.apk)
+                self.assertEqual(adb.call_count, 3)
+
+    def test_missing_or_malformed_size_is_rejected(self):
+        content = self.apk.read_bytes()
+        for sized in ['', '-1', '15 bytes', '15\n15', '١٥']:
+            with self.subTest(sized=sized), patch('android_ui.package_from_apk', return_value=PACKAGE), \
+                    patch.object(self.device, 'adb', side_effect=self.adb(content, sized=sized)):
+                with self.assertRaisesRegex(RuntimeError, 'Malformed installed APK stat'):
+                    self.device.install(self.apk)
+
+    def test_unavailable_device_hash_tool_fails_without_fallback(self):
+        def unavailable(*args, **kwargs):
+            if args[:3] == ('shell', 'toybox', 'sha256sum'):
+                raise RuntimeError('toybox sha256sum missing')
+            return self.adb(self.apk.read_bytes())(*args, **kwargs)
+        with patch('android_ui.package_from_apk', return_value=PACKAGE), \
+                patch.object(self.device, 'adb', side_effect=unavailable) as adb:
+            with self.assertRaisesRegex(RuntimeError, 'sha256sum missing'):
+                self.device.install(self.apk)
+            self.assertEqual(adb.call_count, 3)
 
     def test_package_is_derived_uniquely_from_apk_before_adb(self):
         with patch('android_ui.shutil.which', return_value='/sdk/aapt'), \
