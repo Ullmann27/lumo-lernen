@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/lumo_asset_diagnostics.dart';
 import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
@@ -441,11 +442,15 @@ class _KartHeroCard extends StatelessWidget {
                   width: double.infinity,
                   height: 190,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => const SizedBox(
-                      height: 190,
-                      child: Center(
-                          child: Icon(Icons.sports_motorsports_rounded,
-                              size: 90, color: Color(0xFFFFC46B)))),
+                  errorBuilder: (_, error, __) {
+                    reportLumoAssetError(
+                        'assets/images/lumo_kart_cover.png', error);
+                    return const SizedBox(
+                        height: 190,
+                        child: Center(
+                            child: Icon(Icons.sports_motorsports_rounded,
+                                size: 90, color: Color(0xFFFFC46B))));
+                  },
                 ),
                 Positioned.fill(
                     child: DecoratedBox(
@@ -894,7 +899,7 @@ class _PathSegment extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final width = constraints.maxWidth;
-        final cellHeight = 96.0;
+        const cellHeight = 96.0;
         return SizedBox(
           height: cellHeight * levels.length / 2 + cellHeight,
           width: width,

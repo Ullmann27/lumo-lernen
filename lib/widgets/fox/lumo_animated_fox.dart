@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_asset_diagnostics.dart';
 
 /// The original sheets contain complete foxes. Their cells are NOT equally
 /// spaced: the old pre-cut PNGs cut off faces and included neighbouring tails.
@@ -85,15 +86,20 @@ class _FoxArt {
   }
 
   static Future<ui.Image> _image(String path) async {
-    final bytes = await rootBundle.load(path);
-    final codec = await ui.instantiateImageCodec(bytes.buffer.asUint8List(
-      bytes.offsetInBytes,
-      bytes.lengthInBytes,
-    ));
     try {
-      return (await codec.getNextFrame()).image;
-    } finally {
-      codec.dispose();
+      final bytes = await rootBundle.load(path);
+      final codec = await ui.instantiateImageCodec(bytes.buffer.asUint8List(
+        bytes.offsetInBytes,
+        bytes.lengthInBytes,
+      ));
+      try {
+        return (await codec.getNextFrame()).image;
+      } finally {
+        codec.dispose();
+      }
+    } catch (error) {
+      reportLumoAssetError(path, error);
+      rethrow;
     }
   }
 
@@ -249,6 +255,11 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
         height: widget.size,
         fit: BoxFit.contain,
         excludeFromSemantics: true,
+        errorBuilder: (_, error, __) {
+          reportLumoAssetError(
+              'assets/lumo_jump/fox/master/lumo_fox_master_512.png', error);
+          return SizedBox.square(dimension: widget.size);
+        },
       );
     }
     return RepaintBoundary(

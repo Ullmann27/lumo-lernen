@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/lumo_asset_diagnostics.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../journal/lumo_journal_screen.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
@@ -123,7 +124,12 @@ class HomeContent extends StatelessWidget {
                           height: 66,
                           fit: BoxFit.cover,
                           alignment: Alignment.topCenter,
-                          excludeFromSemantics: true),
+                          excludeFromSemantics: true,
+                          errorBuilder: (_, error, __) {
+                        reportLumoAssetError(
+                            'assets/images/lumo_fox.png', error);
+                        return const SizedBox(width: 66, height: 66);
+                      }),
                     ),
                   ]),
                   const SizedBox(height: 16),

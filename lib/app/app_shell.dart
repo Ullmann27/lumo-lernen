@@ -8,6 +8,7 @@ import '../widgets/shell/left_navigation.dart';
 import 'lumo_companion_host.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
 import '../core/lumo_asset_paths.dart';
+import '../core/lumo_asset_diagnostics.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
@@ -624,6 +625,31 @@ class _MobileLumoHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final st = appState.state;
+    final reduced = st.settings.reduceAnimations ||
+        st.settings.calmMode ||
+        MediaQuery.disableAnimationsOf(context);
+    final avatar = Container(
+      width: 52,
+      height: 52,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          colors: [LumoColors.orange, LumoColors.orangeLight],
+        ),
+      ),
+      child: ClipOval(
+        child: Image.asset(
+          'assets/images/lumo_fox.png',
+          fit: BoxFit.cover,
+          alignment: Alignment.topCenter,
+          excludeFromSemantics: true,
+          errorBuilder: (_, error, __) {
+            reportLumoAssetError('assets/images/lumo_fox.png', error);
+            return const SizedBox.shrink();
+          },
+        ),
+      ),
+    );
     return Container(
       margin: const EdgeInsets.fromLTRB(8, 6, 8, 6),
       padding: const EdgeInsets.all(10),
@@ -637,34 +663,32 @@ class _MobileLumoHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Heinz' Premium-Sprung: Lumo schwebt sanft + pulsiert mit Glow.
-          // Tap startet Voice. Wirkt jetzt wie ein echter Begleiter.
-          LumoFloating(
-            amplitude: 3,
-            duration: const Duration(milliseconds: 2800),
-            child: LumoGlowPulse(
-              color: LumoColors.orange,
-              minBlur: 6,
-              maxBlur: 18,
-              child: GestureDetector(
-                onTap: onFoxTap,
-                child: Container(
-                  width: 52,
-                  height: 52,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      colors: [LumoColors.orange, LumoColors.orangeLight],
-                    ),
-                  ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      'assets/images/lumo_fox.png',
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
-                    ),
-                  ),
-                ),
+          // Keep accessibility/touch bounds fixed while only the art moves.
+          Semantics(
+            label: 'Lumo, dein Lernfuchs. Hilfe öffnen',
+            button: true,
+            onTap: onFoxTap,
+            excludeSemantics: true,
+            child: GestureDetector(
+              key: const ValueKey('mobile-lumo-button'),
+              excludeFromSemantics: true,
+              onTap: onFoxTap,
+              child: SizedBox(
+                width: 52,
+                height: 52,
+                child: ExcludeSemantics(
+                    child: reduced
+                        ? avatar
+                        : LumoFloating(
+                            amplitude: 3,
+                            duration: const Duration(milliseconds: 2800),
+                            child: LumoGlowPulse(
+                              color: LumoColors.orange,
+                              minBlur: 6,
+                              maxBlur: 18,
+                              child: avatar,
+                            ),
+                          )),
               ),
             ),
           ),
