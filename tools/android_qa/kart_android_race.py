@@ -211,6 +211,45 @@ def analyse_lesson(source, heading, frame):
         frame['lines'].append(frame['lesson_hint'])
 
 
+def analyse_result(source, heading, frame):
+    panel = light_panel(source, heading, (max(0, heading['left']-40),
+                                         max(0, heading['top']-40), source.width, source.height))
+    if not panel:
+        return
+    buttons = sorted([box for box in colour_regions(source, bounds(panel), 'purple')
+                      if box['top'] > heading['top']+heading['height']
+                      and box['width'] > .25*source.width
+                      and box['height'] > .025*source.height
+                      and box['width']/box['height'] > 4], key=lambda box: box['top'])
+    if len(buttons) != 3 or max(box['left'] for box in buttons)-min(box['left'] for box in buttons) > 3:
+        return
+    frame['result_buttons'] = buttons
+    captions = ('Noch ein Rennen', 'Zur Spieleauswahl', 'Zum Lernen')
+    for box, wanted in zip(buttons, captions):
+        inside = {'left': box['left']+3, 'top': box['top']+4,
+                  'width': box['width']-6, 'height': box['height']-8}
+        words, lines = ocr_region(source, inside, frame, 'Measured result button',
+                                  contrast='light', psm=7, min_confidence=40)
+        for line in lines:
+            if action_marker({'lines': [line]}, wanted):
+                frame['lines'].append(line)
+                frame['words'].extend(words)
+    summary = {'left': buttons[0]['left'], 'top': heading['top']+heading['height']+1,
+               'width': buttons[0]['width'],
+               'height': buttons[0]['top']-heading['top']-heading['height']-4}
+    _, lines = ocr_region(source, summary, frame, 'Measured result summary', min_confidence=5)
+    frame['lines'].extend(lines)
+    for line in lines:
+        if 'SPEICHERN' in folded(line['text']):
+            # Re-read only the observed error row; other result lines cannot
+            # obscure its small red caption. Coordinates remain screenshot-based.
+            error_row = {'left': summary['left'], 'top': max(summary['top'], line['top']-8),
+                         'width': summary['width'], 'height': line['height']+16}
+            _, error_lines = ocr_region(source, error_row, frame, 'Observed result save error',
+                                        psm=7, min_confidence=5)
+            frame['lines'].extend(error_lines)
+
+
 def read_frame(path):
     from PIL import Image
     with Image.open(path) as image:
@@ -283,6 +322,9 @@ def read_frame(path):
         lesson = marker(frame, 'LERN-BOOST')
         if lesson:
             analyse_lesson(source, lesson, frame)
+        result = marker(frame, 'Sonnenhafen-Cup geschafft')
+        if result:
+            analyse_result(source, result, frame)
     frame['text'] = '\n'.join(line['text'] for line in lines)
     return frame
 
@@ -349,6 +391,12 @@ def lightweight_pause_visible(frame):
 
 def lesson_visible(frame):
     return bool(marker(frame, 'LERN-BOOST') or action_marker(frame, 'SPATER'))
+
+
+def require_no_save_error(frame):
+    error = marker(frame, 'Speichern fehlgeschlagen')
+    if error:
+        raise RuntimeError(f'The actual game reports a save failure: {error["text"]}')
 
 
 def wait_for_frame(capture, label, predicate, error_message, *, timeout=90,
@@ -481,6 +529,7 @@ def main():
         path.with_suffix('.tsv').write_text(frame.pop('tsv'))
         path.with_suffix('.txt').write_text(frame['text'])
         record('capture', image=str(path), width=frame['width'], height=frame['height'])
+        require_no_save_error(frame)
         if frame['width'] <= frame['height']:
             raise RuntimeError('Kart must finish its actual native landscape rotation first.')
         if second_round_capture is None and second_round_in_progress(frame):

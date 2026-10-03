@@ -29,6 +29,61 @@ def is_result(root):
     return 'Nochmal' in values and 'Zurueck' in values and any('gewinnt' in s for s in values)
 
 
+def picker_color_button(root, color):
+    """Find one enabled picker action, keeping its actual touch bounds.
+
+    The game table remains below the color overlay in Flutter's semantics.
+    A matching noninteractive color caption is not a picker button. Text may
+    live on a child of the clickable node, so resolve the nearest actionable
+    ancestor without inventing coordinates or choosing an ambiguous index.
+    """
+    colors = {'Rot', 'Gelb', 'Blau', 'Gruen'}
+    if color not in colors:
+        raise RuntimeError(f'Unknown actual picker color: {color!r}.')
+    parents = {child: parent for parent in root.iter() for child in parent}
+
+    def visible_enabled(node):
+        while node is not None:
+            if (node.get('enabled', 'true') != 'true'
+                    or node.get('visible-to-user', 'true') != 'true'):
+                return False
+            node = parents.get(node)
+        return True
+
+    headings = [node for node in root.iter('node')
+                if 'Waehle eine Farbe' in (node.get('text'), node.get('content-desc'))
+                and visible_enabled(node)]
+    if len(headings) != 1:
+        raise RuntimeError(f'Expected one actual color picker heading, found {len(headings)}.')
+    _, _, _, heading_bottom = Android.bounds(headings[0])
+    targets = set()
+    for label in root.iter('node'):
+        if color not in (label.get('text'), label.get('content-desc')) or not visible_enabled(label):
+            continue
+        target = label
+        while target is not None and target.get('clickable') != 'true':
+            target = parents.get(target)
+        if target is None or not visible_enabled(target):
+            continue
+        left, top, right, bottom = Android.bounds(target)
+        if top < heading_bottom:
+            continue
+        text_left, text_top, text_right, text_bottom = Android.bounds(label)
+        if not (left <= text_left < text_right <= right
+                and top <= text_top < text_bottom <= bottom):
+            continue
+        # A shared clickable container for several colors is not a specific
+        # color action, even if one descendant happens to have this caption.
+        captions = {value for child in target.iter('node') for key in ('text', 'content-desc')
+                    if (value := child.get(key)) in colors}
+        if captions != {color}:
+            continue
+        targets.add(target)
+    if len(targets) != 1:
+        raise RuntimeError(f'Expected one actual enabled picker {color!r} button, found {len(targets)}.')
+    return next(iter(targets))
+
+
 def arithmetic(prompt):
     calculation = re.search(r'(\d+)\s*([+−\-×·x:÷])\s*(\d+)', prompt)
     if not calculation:
@@ -106,7 +161,7 @@ class CardsRound(Round):
             if has_caption(root, 'Spiel pausiert'):
                 raise RuntimeError('Unexpected pause; no automatic takeover of another test.')
             if 'Waehle eine Farbe' in values:
-                self.tap_label(root, 'Rot')
+                self.tap_node(picker_color_button(root, 'Rot'), 'actual clickable picker Rot button')
             elif 'Denkpause' in values:
                 self.learning_answer(root)
             elif 'Ziehen' in values:

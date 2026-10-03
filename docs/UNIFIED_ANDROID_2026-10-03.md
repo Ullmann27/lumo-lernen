@@ -1,188 +1,143 @@
 # Gemeinsame Android-App: Lumo Lernen und Lumo Kart
 
-Aktuelle Fortsetzung: **0.10.3 / Build 278 wird vorbereitet**. Build 277 wurde
-nicht veröffentlicht. Sein installierter Androidlauf bestätigte den echten
-Kartstart, Android-Zurück/Pause/Fortsetzen, lokale Erklärung nach falscher
-Antwort, richtige Matheantwort und die sichtbar erreichte zweite Runde.
-Ergebnis, Rückkehr und vollständiger gemeinsamer Ablauf sind damit noch nicht
-bewiesen. Die Prüfung deckte außerdem einen echten Fehler im erreichbaren
-Akademie-Modul „Plus bis 10“ auf: Belohnungen wurden vergeben, aber die Antwort
-wurde nicht im Lernprofil und Tagesfortschritt gespeichert. Build 278 behebt
-diesen Pfad mit kontrollierter Speicherwiederholung ohne erneute Zählung oder
-Belohnung. Der neue APK-Bau und vollständige Androidlauf stehen noch aus.
+Stand 3. Oktober 2026: **0.10.4 / Build 279 wird vorbereitet**. Noch kein
+freigegebener Download. Build 278 wurde installiert und durch ein echtes
+zweiründiges Kartrennen gespielt, scheiterte danach aber an einer falsch
+interpretierten Speicherbestätigung. Build 279 korrigiert diesen Vertrag und
+muss den vollständigen Android-Nutzungstest erneut bestehen.
 
-Fortsetzung vom gespeicherten Flutter-PR-152-Commit
-`e4d6309b86a4e4365d30771eebdc91c2fce44e9a` und Godot-PR-2-Commit
-`55a35b84aeb0eef737f0f9b5a37415cf9a181dfc`.
-Die historischen Prototypen bleiben Quellen im Archiv; sie ersetzen keine
-weiterentwickelten Repositorydateien. Beide Klone waren am Anfang sauber.
-Es wurden keine geltenden `AGENTS.md` in den Projektpfaden gefunden.
+## Gespeicherte Grundlage
+
+Flutter-PR #152: `e4d6309b86a4e4365d30771eebdc91c2fce44e9a`;
+Godot-PR #2: `55a35b84aeb0eef737f0f9b5a37415cf9a181dfc`.
+Beide Klone waren zu Beginn sauber; geltende `AGENTS.md` wurden in den
+Projektpfaden nicht gefunden. Die 19 Originaldateien liegen mit Herkunft,
+Prüfsummen und Duplikatzuordnung im [Archiv](../archive/project-sources/2026-10-02/README.md).
+Alte ungetestete Entwürfe ersetzten keine weiterentwickelten Repositorydateien.
+
+Fortsetzungszweige: `codex/lumo-unified-android-2026-10-03` und im Godot-Repository
+`codex/lumo-unified-kart-2026-10-03`. Der Bau verwendet ausschließlich den
+vollständigen gespeicherten Godot-Commit in `config/godot-source.json` und
+Godot 4.6.3. Historische separate Godot-Builds 31/45 sind keine gemeinsame APK.
 
 ## Umgesetzt
 
-- Flutter bleibt Einstieg, Lernen, Profil, Elternbereich und gemeinsame Wallet.
-  Der Homescreen zeigt Lernen und Spielen als große erste Auswahl.
-- Spieleauswahl mit tatsächlichen Spielen und 24 implementierten Lernleveln;
-  26 historische Platzhalter sind ausgeblendet. Kartkarte verwendet ein eigenes
-  echtes Godot-Renderbild des vorhandenen Lumo-Fuchses im Kart.
-- Godot 4.6.3 und dessen genau festgelegtes PCK sind in derselben APK enthalten.
-  Eine private `LumoGameActivity` im Prozess `:lumo_game` startet Kart beziehungsweise
-  Wolkeninseln, ohne zweite Installation oder externen Browser. Der separate
-  Engineprozess ermöglicht wiederholte Starts ohne veraltete Engineglobals.
-- `LumoHost` übergibt Spiel, Klasse 1–4, Fach, aktuelle Sterne und Sitzungs-ID.
-  Godot liefert Ergebnis, Pause und Rückkehr zum Lernen beziehungsweise zur
-  Spieleauswahl. Flutter liest native Rückkehrdaten bei Wiederaufnahme.
-- Native Ergebnisse werden vor dem Engineende atomar mit Dateisperre gespeichert.
-  Stabile Ergebnis-IDs verhindern doppelte Sterne beim erneuten Start/fehlender
-  Bestätigung. Flutter bestätigt erst nach erfolgreicher dauerhafter Walletbuchung.
-- Kart-Klasse und Fach bleiben gespeichert. Profilreset löscht auch bekannte
-  Godot-Spielstände; verspätete alte Rückkehrdaten erhalten keinen neuen Profilstand.
-- PINs sind aus den aktiven Einstellungen und Dialogen entfernt. Mikrofon,
-  Kamera und Onlinehilfe haben verständliche ausdrückliche Freigaben.
-- Aufgaben, mehrstufige Hilfe, Logik, TTS-Stummschaltung und Fuchsbewegung verbessert.
-- Das Flutter-Abenteuer verwendet für Android-Zurück und sein X denselben
-  Abbruchdialog. Tatsächlich eingesammelte Sterne und XP werden gemeinsam
-  dauerhaft gebucht; die Rückkehr wartet auf den Schreibabschluss und erlaubt
-  nach einem Speicherfehler einen Versuch ohne doppelte Buchung.
+- Flutter-Homescreen mit großen Lern-/Spieleflächen und tatsächlicher Spieleauswahl.
+  26 historische Platzhalter sind ausgeblendet; vorhandene Lernlevel bleiben sichtbar.
+  Die Kartkarte zeigt ein eigenes Godot-Renderbild von Lumo im Rennkart.
+- Godot und sein festgelegtes PCK sind in derselben APK eingebettet. Kart und
+  Wolkeninseln starten in einer privaten Activity im Prozess `:lumo_game`.
+  Die Android-Zurück-Taste öffnet die native Pause, statt die Engine zu beenden.
+  Fortsetzen, leichte Grafik und Rückkehr führen über sichtbare Bedienelemente.
+- Übergabe von Spiel, Klasse 1–4, Fach, Sternen und Sitzungs-ID. Native Ergebnisse
+  werden mit Dateisperre atomar gespeichert; stabile Ergebnis-IDs und dauerhafte
+  Flutter-Buchung verhindern doppelte Belohnungen. Ein neuer Engineprozess erlaubt
+  wiederholten Start. Profilreset schützt vor verspäteten alten Rückkehrdaten.
+- Alle aktiven PIN-Abfragen und Demo-PINs entfernt. Mikrofon, Kamera und Onlinehilfe
+  bleiben ausdrückliche Einstellungen; bestehende Freigaben werden nicht eingeschaltet.
+- Aufgaben, lokale mehrstufige Hilfen, Antwortauswertung, Logik und Lernprofil verbessert.
+  Das tatsächlich erreichbare Akademie-Modul „Plus bis 10“ speichert jetzt auch
+  Tagesfortschritt und Lernprofil. Fehler erlauben kontrollierte Wiederholung ohne
+  erneute Zählung/Belohnung; Hintergrundpause stoppt den Aufgabentimer.
+- Abenteuer: Abbruchdialog, echte eingesammelte Sterne/XP, kontrollierte dauerhafte
+  Rückkehr und Wiederholung nach Speicherfehler ohne doppelte Buchung.
+- Fuchs mit weich verbundenen 2D-Bewegungen, zustandsbezogener lokaler Hilfe,
+  TTS-Stummschaltung und annähernder Wortbewegung.
 
-Die Fachberichte enthalten konkrete Einzeländerungen und deren Grenzen:
-[Spiele](GAMES_QA_2026-10-03.md), [Lernen/KI](LERNEN_KI_PRUEFUNG_2026-10-03.md),
+Einzelberichte: [Spiele](GAMES_QA_2026-10-03.md),
+[Lernen/KI](LERNEN_KI_PRUEFUNG_2026-10-03.md),
 [PIN-freie Einstellungen](PIN_FREI_2026-10-03.md),
 [Wallet-Transaktionen](WALLET_TRANSACTIONS_2026-10-03.md).
 
-## Historische APKs und sicheres Update
+## Tatsächlich geprüft
 
-Flutter-Build 274 ist durch einen erfolgreichen tatsächlichen GitHub-Baulauf
-und die heruntergeladene APK belegt, nicht nur durch eine Übergabeangabe:
+**Flutter: 457 bestanden, vier bestehende übersprungen, keine Fehler.**
+Analyse: keine Fehler, 155 bestehende Warnungen/Hinweise. Backend: 22 Tests.
+Inhaltsaudit: 37.940 Aufgabenvarianten; Klassen-/Fachmatrix mit 16 Fällen.
+Acht gezielte Plus-Modultests prüfen Hilfen, falsche/richtige Antworten,
+verzögerte/abgelehnte Speicherung, Doppeltaps, Unmount, Hintergrund und Neustart.
+30 sichtbare Lösungen ergeben 35 Sterne/450 XP/30 Tagesaufgaben; eine weitere
+Lösung nach Neustart 36 Sterne/455 XP/31 Tagesaufgaben. Das sind Widget- und
+Persistenztests, kein Android-Nutzungstest.
 
-- Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version `0.9.0`, Code 274.
-- 142.859.956 Bytes, SHA-256
-  `25e764ddc12a9577f49f091ff48d749d1ace9e22c70acab0c1089fe01f836bd4`.
-- Zertifikat SHA-256
-  `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`.
+Lokale Godot-Prüfungen spielen vollständige Rennen mit unveränderter Physik,
+Touch-/Drift-/Bremslogik, Pause, Aufgaben, Rundenzählung und Ergebnis-ID-Dedup.
+Ein Flutter-Engine-Test spielt die erste Abenteuerstrecke/Klasse 1 bei 800×900
+vollständig mit Joystick/Sprung-Taps und unveränderter 60-Hz-Physik durch:
+Ergebnis, Rückkehr, 80 Sterne/160 XP, gespeicherter Abschluss, Neustart und
+Hintergrundpause. Testuhr und Desktop ersetzen keine Handyprüfung.
 
-Die gemeinsame neue APK verwendet dasselbe Parallelpaket und Zertifikat,
-Aktuelle Zielversion `0.10.3`, Code 278, Mindestversion Android 7 (API 24), Ziel-API 36.
-Enthaltene Architekturen: `arm64-v8a` für aktuelle Handys einschließlich Galaxy
-Z Fold und `x86_64` für den Emulator. Die neue APK enthält keine 32-Bit-Engine.
+**Installierter APK278-Lauf 37124995594:** Android 15/API 35, Google-APIs-x86_64,
+KVM, Mesa 25.2.8/llvmpipe, 480×800 logische Pixel. APK- und installierte
+Paketbytes stimmen exakt überein. Tatsächlich sichtbar/bedient: Onboarding,
+Home, Spiele, eingebettetes Kart, Android-Zurück, Pause, leichte Grafik,
+Fortsetzen, falsche Antwort mit lokaler Hilfe, vier richtige Matheantworten,
+zwei sichtbare optionale „Später“-Auswahlen und zwei vollständige Runden.
+Ergebnis: Platz 1/6, 47,8 Simulationssekunden, 11 Sterne/16 Kristalle.
 
-Das ursprüngliche Paket ohne `.coachpreview` aus Build 270 trägt ein anderes
-Zertifikat (`edff8e83e12993fbdf0e054bda44949269ea69f1949c7ccafc1ecd47a1735b74`).
-Dessen passender Schlüssel liegt nicht vor. Deshalb ist kein problemloses
-Direktupdate dieses alten Pakets behauptet. Nicht deinstallieren: dessen Daten
-bleiben getrennt erhalten. Ein Datenimport zwischen diesen Paketen ist nicht
-implementiert. Die alte separate Godot-APK wird für die gemeinsame App nicht benötigt.
+Der Ergebnisbildschirm meldete einen echten Fehler: „Speichern fehlgeschlagen“.
+Die vollständige Rückkehr, Android-Lernaufgabe, Memory-/Kartenrunde, Fold-Größen
+und Offline-Neustart wurden in diesem Lauf nicht erreicht. Er ist kein bestandener
+Gesamttest; APK278 bleibt unveröffentlicht.
 
-Godot-Build 31 existierte als eigene historische Release-APK. Der später
-gespeicherte Build 45 und PR #2 enthalten bereits weitere Reparaturen.
-Für den gemeinsamen Bau gilt allein die Commitreferenz in
-`config/godot-source.json`, kein historischer Dateiname.
+Die Ursache ist am tatsächlichen Release-DEX und offiziellen Godot-4.6.3-Code
+belegt: erforderliche Hostmethoden und Annotationen sind vorhanden. JNI liefert
+Java-Boolean über `jboolean`/`Variant(uint8_t)` als Integer 0/1. Der alte strikte
+Vergleich mit Bool `true` wies Integer 1 fälschlich ab. Build279 akzeptiert nur
+Bool `true` oder Integer 1; false/0/2/null/Strings bleiben Fehler. Dieselbe
+Korrektur gilt für Ergebnis und Rückkehr. Der Erfolg muss erst im neuen
+installierten Androidlauf nachgewiesen werden.
 
-## Prüfstand
+Weitere belegte Releasekorrekturen schützen Godot-JNI-Methoden und
+parameterlose ML-Kit-Registrierungen vor R8. APK-Prüfung kontrolliert Paket,
+Version, Signatur, Mindest-API, ZIP, PCK-Revision/Hash, beide Architekturen und
+16-KiB-Ausrichtung aller ELF-Ladesegmente/Androidressourcen.
 
-Die aktuelle Korrektur des tatsächlich erreichbaren Akademie-Plus-Moduls wurde
-mit acht gezielten Fluttertests geprüft: lokale Hilfe nach zwei Fehlversuchen,
-richtige Antwort, Wallet-/Lernprofilfehler mit Wiederholung, doppelte Eingaben,
-Unmount während Speicherung, Hintergrund/Fortsetzen, serialisierte
-Lernspeicherung sowie alle 30 sichtbaren Summen mit Abschluss und Neustart.
-30 Lösungen ergaben im Widgettest 35 Sterne, 450 XP und 30 Tagesaufgaben;
-nach Neustart und einer weiteren Lösung 36 Sterne, 455 XP und 31 Tagesaufgaben.
-Das sind Widget-/Persistenzprüfungen, kein Android-Nutzungstest. Alle 80
-Prüfungen des Android-Testwerkzeugs bestehen; dessen Kart-Regressionen nutzen
-drei unveränderte echte Androidaufnahmen mit SHA-Provenienz. Der gesamte
-Flutterlauf vor den letzten zwei ergänzten Regressionen bestand 455 Tests;
-die acht gezielten Tests enthalten auch diese beiden Ergänzungen.
+Die QA friert Kandidatenbytes vor dem Nutzungstest ein. Nur bestandene Läufe
+speichern exakt diese Bytes als endgültige APK; erneuter Download und Prüfsumme
+müssen passen. Änderungen ausschließlich am Testwerkzeug benötigen keinen
+Neubau. Rohaufnahmen, OCR, UI-XML, Aktionen und Logcat bleiben im Proof-ZIP.
 
-Die gemeinsame Release-APK wurde erfolgreich gebaut. Der Prüfer kontrolliert
-APK-Signatur, Paket, Version, Mindest-API, beide Enginebibliotheken je Architektur,
-uncompressed `resources.arsc`, ZIP-Integrität, PCK-Hash und gespeicherte Godot-Revision.
-Die erste gemeinsame APK wurde wegen unnötiger 32-Bit-Bibliotheken von rund
-366 MB auf rund 148 MB verkleinert; diese Zwischenstände sind keine finale Lieferung.
-Auch die Ausrichtung von Androidressourcen und sämtlichen ELF-Ladesegmenten
-für 16-KiB-Speicherseiten wurde am tatsächlichen APK-Inhalt überprüft.
+## Installation und Datenerhalt
 
-Vollständiger Flutterlauf auf dem Stand für Build 278: **455 bestanden, vier
-übersprungen, keine Fehler**. Analyse: keine Fehler, 155 bestehende Warnungen/
-Hinweise. Fünf Android-Vorbereitungsprüfungen bestanden. Inhaltsaudit prüft
-37.940 Aufgabenvarianten. Backend nach sicherer Providerdiagnose: 22 Tests
-bestanden. Vertragsregressionen prüfen auch abgelehnte Speicheraktionen und
-ein neues Ergebnis während einer bereits laufenden Rückkehrsynchronisierung.
+Zielpaket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version `0.10.4`, Code279,
+Android ab API24, Ziel-API36, `arm64-v8a` und `x86_64`.
+Signaturzertifikat SHA-256:
+`a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`.
 
-Lokale vollständige Spielrunden, Aufgaben- und Widgetprüfungen sind in den
-Fachberichten belegt. Der gemeinsame Android-Test und endgültige Downloadhash
-werden nach dem tatsächlichen installierten Nutzungstest hier ergänzt.
-Dieser Zwischenbericht behauptet noch keine bestandene Android-Gesamtprüfung.
+Die echte historische APK274 hat dasselbe Paket/Zertifikat: 0.9.0/274,
+142.859.956 Bytes, SHA-256
+`25e764ddc12a9577f49f091ff48d749d1ace9e22c70acab0c1089fe01f836bd4`.
+Ein tatsächliches `adb install -r` von274 auf den ersten275-Kandidaten erhielt
+synthetisches Profil und die anfangs leere Wallet. Das beweist keinen Transfer
+einer gefüllten alten Android-Wallet und keinen Test auf dem Nutzerhandy.
 
-Android-Umgebungen: lokale Linux-Emulatoren API 30 und API 35, x86_64,
-CPU-Emulation ohne KVM sowie GitHub-Runner mit KVM, Android 15/API 35,
-Google-APIs-x86_64 und ANGLE/SwiftShader. Installationen verwenden normale
-Launcherstarts und `adb install -r`, ohne Deinstallation oder Löschung von Daten.
-Der tatsächliche Updateversuch von 274 auf den ersten 275-Kandidaten erhielt
-das fiktive Profil und die anfangs leere Wallet; er beweist keinen Transfer einer
-bereits gefüllten Android-Wallet. Alte PIN-Einstellungsfelder werden beim Start
-entfernt, ohne die vorhandenen ausdrücklichen Freigaben einzuschalten.
+Das alte Paket ohne `.coachpreview` aus Build270 hat ein anderes Zertifikat:
+`edff8e83e12993fbdf0e054bda44949269ea69f1949c7ccafc1ecd47a1735b74`.
+Passender Schlüssel und paketübergreifender Import fehlen. **Alte App nicht
+deinstallieren**; deren Daten bleiben im eigenen Paket erhalten. Kein problemloses
+Direktupdate dieses anders signierten Pakets wird behauptet.
 
-Eigene Android-Prüfungen deckten zwei echte Releasefehler auf: R8 hatte
-Godot-JNI-Methoden und parameterlose ML-Kit-Komponentenregistrierungen entfernt.
-Die Buildvorbereitung schützt diese Klassen und Methoden jetzt ausdrücklich;
-ihre Definitionen wurden im tatsächlichen Release-DEX nachgewiesen. Godot
-startet dadurch innerhalb derselben APK mit seinem gebündelten PCK.
+## Offen und konkrete Grenzen
 
-Die lokalen CPU-Emulatoren zeigen zusätzliche Grafikprobleme. Der KVM-Lauf
-37111452558 zeigte dagegen Onboarding, Header, Homescreen und Fuchs-PNGs korrekt.
-Er scheiterte anschließend an einem Prüfskript, das zusammengefasste sichtbare
-Android-Captions falsch aufteilte. Das Prüfskript wurde anhand des tatsächlichen
-UI-XML korrigiert. Der vollständige native Rennablauf ist damit noch nicht
-bestätigt. Das ist keine Prüfung auf dem echten Galaxy Z Fold und keine
-Handy-FPS-Messung.
+**Online-Tutor nicht aktiv:** Echte neutrale Anfrage zu 3+4 am3.Oktober
+12:42:43 UTC: HTTP503 `openai_quota_exceeded`; korrelierter Providerlog HTTP429
+mit `type=insufficient_quota`. Fehlende Voraussetzung: verfügbares
+Provider-Kontingent. Betrag/Kontostand wurden nicht geprüft; Schlüssel, Modell,
+Adresse und Tarif wurden nicht verändert. Der vorhandene Renderdienst hat den
+getesteten Backend-Commit `fcca1f372ea24ea5a5057d79688cc8e0f2ad7c06` ausgerollt.
+Erreichbarkeit allein ist kein KI-Nachweis. Lokale Hilfe bleibt verfügbar;
+Zugangsdaten liegen nicht in der APK.
 
-Weitere Läufe sichern dieselben gebauten APK-Bytes mit Provenienz zunächst als
-unveröffentlichten Prüfkandidaten. Reine Änderungen an Prüfskripten benötigen
-dadurch keinen neuen App-Build. Die endgültige APK wird erst nach bestandener
-Nutzungsprüfung gespeichert und erneut heruntergeladen; ihr Downloadhash muss
-dem getesteten Hash entsprechen.
+Kart ist eine eigene farbige 3D-Welt mit geführter Fahrt und seitlicher Lenkung.
+Professionelles Referenzniveau, frei fahrbare Fahrzeugphysik, weitere Strecken
+und echte ARM-Leistungsprüfung bleiben offen. Der Fuchs besitzt kein vollständiges
+3D-Skelett/Phonemabgleich. Laufende Brettpositionen überleben erhaltene
+Hintergrundprozesse, noch keinen vollständigen Prozessabbruch; abgeschlossene
+Belohnungen werden persistent gespeichert. Weitere Abenteuerstrecken/Klassen
+und native Android-Steuerung sind nicht vollständig geprüft.
 
-Der unveröffentlichte Kandidat 275 bleibt für die Untersuchung der bisherigen
-Android-Prüfungen erhalten. Der neue Kandidat 276 enthält zusätzlich die
-nachgewiesene Abenteuer-Back-/Walletkorrektur. Seine drei Regressionen sammeln
-einen Stern über reale Joystick-/Kollisionsphysik und prüfen Abbruch, Fortsetzen,
-Wallet-Neuladen sowie einen verzögerten beziehungsweise abgelehnten
-Speichervorgang mit erneutem Versuch. Ein weiterer Flutter-/Engine-Test spielte
-die erste Abenteuerstrecke/Klasse 1 vollständig bei 800×900 durch: drei
-Frageblöcke, drei Truhenaufgaben, Ergebnis, Rückkehr, neu geladene Wallet mit
-80 Sternen/160 XP, gespeicherter Levelabschluss, erneuter Start und
-Hintergrundpause. Er nutzte Joystick/Sprung-Taps und unveränderte 60-Hz-Physik
-mit Testuhr, einschließlich einer normalen spielinternen Fallrücksetzung.
-Das ist kein Android-, Echtzeit- oder weiterer Streckennachweis.
-
-Im KVM-Lauf 37114690770 startet Kart tatsächlich in derselben installierten
-APK, einschließlich eigener 3D-Welt, Kart und HUD. Der frühere lokale
-CPU-Emulator-Absturz trat dort nicht auf. Die erste Android-Zurück-Taste beendete
-aber die Engine: Godot behandelt `quit_on_go_back` unabhängig von
-`auto_accept_quit`. Kandidat 277 übernimmt die getrennte Korrektur dieses
-Engine-Back-Verhaltens; die vollständige Android-Gesamtprüfung ist weiter offen.
-
-## Offen
-
-Der getestete minimale Backend-PR #155 wurde auf `main` übernommen; der
-bestehende Renderdienst hat automatisch genau Commit
-`fcca1f372ea24ea5a5057d79688cc8e0f2ad7c06` erfolgreich ausgerollt.
-Eine echte neutrale Tutorfrage zu 3 + 4 am 3. Oktober 07:12:50 UTC liefert
-HTTP 503 `openai_quota_exceeded`. Die passenden Providerlogs belegen
-HTTP 429 mit `type=insufficient_quota`. Der Blocker ist damit aktuell
-fehlendes Provider-Kontingent, nicht lediglich ein vermutetes kurzfristiges
-Anfragelimit. Betrag/Kontostand wurden nicht geprüft. Schlüssel, Modell,
-Serveradresse und Tarif wurden nicht verändert. Online-Tutor ist nicht aktiviert;
-lokale Lernhilfe bleibt vorhanden. Kein Schlüssel wird in die APK eingebaut.
-Die alte automatische APK-Veröffentlichung auf `main` wurde auf manuellen
-Aufruf begrenzt, damit ein Backendrollout keine ungeprüfte alte APK veröffentlicht.
-
-Kart ist eine eigene farbige Welt mit geführter Fahrt und seitlicher Lenkung.
-Frei fahrbare Fahrzeugphysik, professionelle Grafik auf dem genannten
-Referenzniveau, weitere Strecken und Hardwareleistungsprüfung sind noch offen.
-Der Fuchs besitzt weich verbundene 2D-Animationen und annähernde TTS-Wortbewegung,
-kein vollständiges 3D-Skelett oder Phonemabgleich.
-Laufende Flutter-Brettpositionen überleben Hintergrundwechsel mit erhaltenem
-Prozess, aber noch keinen vollständigen Prozessabbruch; abgeschlossene Fortschritte
-und Belohnungen sind persistent. Weitere Flame-Strecken/Klassen sowie dessen
-Android-Steuerung sind noch nicht vollständig geprüft.
+Kein Test auf einem echten Galaxy Z Fold, keine Handy-FPS-Messung, keine
+vollständige Mikrofon-/Kamera-/hörbare TTS-Prüfung. Der geplante Fold-Test ändert
+nur Emulatorgrößen, nicht ein physisches Scharnier. Die APK und ihr endgültiger
+Downloadhash werden erst nach bestandener Android-Gesamtprüfung hier ergänzt.

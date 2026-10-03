@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from kart_android_race import (race_state, second_round_in_progress, require_second_round,
                               wait_for_frame, marker, restart_visible, local_hint_visible,
                               lesson_closed_or_changed, action_marker, lightweight_pause_visible,
-                              answer_for, simple_calculation, lesson_visible, maths_value, read_frame)
+                              answer_for, simple_calculation, lesson_visible, maths_value, read_frame,
+                              require_no_save_error)
 
 
 def frame(*captions):
@@ -387,6 +388,29 @@ class KartActualScreenshotTests(unittest.TestCase):
         self.assertTrue(second_round_in_progress(observed))
         result = {**observed, 'lines': observed['lines']+[{'text': 'Sonnenhafen-Cup geschafft!'}]}
         self.assertFalse(second_round_in_progress(result))
+
+
+@unittest.skipUnless(shutil.which('tesseract') and importlib.util.find_spec('PIL'),
+                     'Actual screenshot OCR requires tesseract and Pillow')
+class KartActualResultTests(unittest.TestCase):
+    def test_real_result_buttons_are_read_but_actual_save_error_still_fails(self):
+        directory = Path(__file__).parent/'fixtures'/'kart-37124995594'
+        path = directory/'072-race.png'
+        record = json.loads((directory/'provenance.json').read_text())['files'][path.name]
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), record['sha256'])
+        self.assertEqual(path.stat().st_size, record['bytes'])
+        observed = read_frame(path)
+        for caption, top, bottom in [('Noch ein Rennen', 206, 242),
+                                     ('Zur Spieleauswahl', 249, 285), ('Zum Lernen', 291, 327)]:
+            with self.subTest(caption=caption):
+                button = action_marker(observed, caption)
+                self.assertIsNotNone(button)
+                x, y = button['left']+button['width']//2, button['top']+button['height']//2
+                self.assertTrue(192 <= x <= 562 and top <= y <= bottom)
+        with self.assertRaisesRegex(RuntimeError, 'actual game reports a save failure'):
+            require_no_save_error(observed)
+        self.assertFalse(second_round_in_progress(observed))
+        require_no_save_error(frame('Richtig!', 'RUNDE2/2', 'PLATZ1/6'))
 
 
 if __name__ == '__main__':
