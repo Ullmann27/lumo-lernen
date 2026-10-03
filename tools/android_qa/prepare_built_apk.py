@@ -9,14 +9,14 @@ import re
 import shutil
 import subprocess
 from release_lookup import resolve_draft
+from download_apk import require_empty_build_draft
 
 
 def main(args):
     if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', args.repository):
         raise ValueError('Invalid GitHub repository')
     release = resolve_draft(args.repository, args.release_tag)
-    if any(asset['name'].lower().endswith('.apk') for asset in release.get('assets', [])):
-        raise ValueError('Build mode refuses to replace an existing draft APK; use download mode to check it')
+    require_empty_build_draft(release)
     args.out.mkdir(parents=True, exist_ok=True)
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
     if head != os.environ.get('GITHUB_SHA', head):

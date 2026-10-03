@@ -8,13 +8,22 @@ Inputs are `mode`, `releaseTag` and, for download mode, the full 64-character
 `apkSha`. Build mode compiles the saved Flutter checkout selected by dispatch
 and the full Godot revision in `config/godot-source.json` using the committed
 stable signing keystore. It verifies and freezes the APK hash before the actual
-usage test. Only after success does it attach that exact APK to the **existing
-empty draft**, then download the uploaded bytes and verify their hash again.
+usage test. Before UI QA it saves immutable bytes as
+`Lumo-Lernen-Pruefkandidat.bin` and their verified provenance as
+`Lumo-Lernen-Pruefkandidat-Provenienz.json` in the **existing unpublished draft**.
+Existing candidates or final APKs prevent another build from replacing them.
+Only after success does it attach the exact bytes as `Lumo-Lernen-Neu.apk`,
+then download the uploaded bytes and verify their hash again.
 Source revision, pinned PCK, signature, version and checksum are in the proof.
 
-Download mode reads the single APK of the existing draft using `GITHUB_TOKEN`,
-verifies the requested hash, APK ZIP structure and signature, and installs those
-exact bytes. It performs no APK build or upload.
+Download mode reads its single final APK, or, when there is no final APK,
+the unique candidate/provenance pair using `GITHUB_TOKEN` and an explicit SHA.
+It verifies hash, byte count, original saved source, draft ID, APK structure and
+signature, and installs those exact bytes with the selected QA harness. After
+passing UI checks it can promote the same candidate bytes to the final APK;
+an existing final APK is verified without replacement. Root reviews the proof
+and removes candidate assets before any publication. Helpers never publish or
+delete assets. APK source and QA harness commits are recorded separately.
 
 The workflow must be
 available for manual dispatch on the repository's default branch; the dispatch
@@ -67,7 +76,8 @@ existing draft; APK bytes are excluded from the proof ZIP and the draft stays
 unpublished. It uses
 release assets instead of Actions artifact storage. `contents: write` is needed
 for the explicitly scoped APK/proof uploads. A failed usage test uploads only
-the proof ZIP and withholds the APK.
+the proof ZIP and withholds the final APK; the unpublished candidate remains
+available for an explicit-SHA rerun after a QA harness correction.
 
 Local read-only OCR smoke check (no emulator interaction):
 

@@ -12,7 +12,7 @@ on:
           - build
           - download
       releaseTag:
-        description: 'Existing draft tag: no APK for build mode, one APK for download mode'
+        description: 'Existing draft: empty for build mode; cached candidate or final APK for download'
         required: true
         type: string
       apkSha:
@@ -83,6 +83,12 @@ jobs:
         run: |
           python3 tools/android_qa/prepare_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/freeze-build.log"
           cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json "$LUMO_QA_DIR/"
+      - name: Cache the exact verified bytes and provenance as an unpublished candidate
+        if: inputs.mode == 'build'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/android_qa/cache_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --evidence "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/candidate-cache.log"
       - name: Download and verify the supplied APK bytes
         id: downloaded
         if: inputs.mode == 'download'
@@ -119,7 +125,7 @@ jobs:
           script: >-
             bash -o pipefail -c 'python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
       - name: Upload and re-download the same successfully tested APK into the existing draft
-        if: success() && inputs.mode == 'build'
+        if: success()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
