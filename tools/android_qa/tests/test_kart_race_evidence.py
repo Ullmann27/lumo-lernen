@@ -7,7 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from kart_android_race import (race_state, second_round_in_progress, require_second_round,
                               wait_for_frame, marker, restart_visible, local_hint_visible,
                               lesson_closed_or_changed, action_marker, lightweight_pause_visible,
-                              answer_for, simple_calculation)
+                              answer_for, simple_calculation, lesson_visible)
 
 
 def frame(*captions):
@@ -109,6 +109,15 @@ class KartTransitionEvidenceTests(unittest.TestCase):
         self.assertFalse(lesson_closed_or_changed(frame('unreadable frame')))
         self.assertFalse(lesson_closed_or_changed(frame('RUNDE 1/2', 'Weiterfahren')))
         self.assertTrue(lesson_closed_or_changed(frame('RUNDE 1/2', 'PLATZ 1/6')))
+
+    def test_real_world_skip_caption_does_not_leave_a_phantom_learning_pause(self):
+        observed = frame('RUNDE 1/2', 'PLATZ 1/6',
+                         "Weiter geht's. Die nächste Lernfrage kommt später.")
+        self.assertIsNotNone(marker(observed, 'SPATER'))
+        self.assertFalse(lesson_visible(observed))
+        self.assertTrue(lesson_closed_or_changed(observed))
+        self.assertTrue(lesson_visible(frame('RUNDE 1/2', 'LERN-BOOST · 1. KLASSE · Mathematik')))
+        self.assertTrue(lesson_visible(frame('RUNDE 1/2', 'Spater >')))
 
 
 class KartActionCaptionTests(unittest.TestCase):

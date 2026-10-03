@@ -200,6 +200,10 @@ def lightweight_pause_visible(frame):
     return bool(action_marker(frame, 'Leichte Grafik: an') and action_marker(frame, 'Weiterfahren'))
 
 
+def lesson_visible(frame):
+    return bool(marker(frame, 'LERN-BOOST') or action_marker(frame, 'SPATER'))
+
+
 def wait_for_frame(capture, label, predicate, error_message, *, timeout=30,
                    poll_interval=.5, clock=time.monotonic, sleep=time.sleep):
     """Observe a bounded real UI transition after one already-issued input.
@@ -236,7 +240,7 @@ def local_hint_visible(frame):
 
 
 def lesson_closed_or_changed(frame, previous_prompt=None):
-    if not (marker(frame, 'SPATER') or marker(frame, 'LERN-BOOST')):
+    if not lesson_visible(frame):
         return race_view_visible(frame) or bool(marker(frame, 'geschafft'))
     next_answer = answer_for(frame)
     return bool(previous_prompt and next_answer and next_answer['prompt'] != previous_prompt)
@@ -377,7 +381,7 @@ def main():
             if args.require_correct and correct < 1:
                 raise RuntimeError('No actual maths answer was proven; race finish alone is insufficient.')
             break
-        if marker(frame, 'SPATER') or marker(frame, 'LERN-BOOST'):
+        if lesson_visible(frame):
             if correct == 0:
                 answer = answer_for(frame)
                 if answer:
@@ -386,7 +390,7 @@ def main():
                     # waiting while real CPU/wall time passes; no controller alteration.
                     time.sleep(4)
                     waiting = capture('learning-waits')
-                    if not (marker(waiting, 'SPATER') or marker(waiting, 'LERN-BOOST')):
+                    if not lesson_visible(waiting):
                         raise RuntimeError('Lesson disappeared without a touch while waiting.')
                     if not re.search(r'\b[0O]\s*KM\s*/\s*H', folded(waiting['text'])):
                         raise RuntimeError('Visible learning-pause speed is not proven zero by OCR.')
