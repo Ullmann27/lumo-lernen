@@ -15,6 +15,7 @@ import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_color_picker.
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_learning_card_overlay.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_result_dialog.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_intro_splash.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_playing_card.dart';
 
 void main() {
   setUp(() {
@@ -29,6 +30,7 @@ void main() {
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(360, 780));
     addTearDown(() => tester.binding.setSurfaceSize(null));
+    final semantics = tester.ensureSemantics();
     final app = LumoAppState(walletRepository: RewardWalletRepository());
     await app.hydrateFromWallet();
     await tester.pumpWidget(MaterialApp(
@@ -50,6 +52,7 @@ void main() {
       await tester.tap(find.byType(LumoIntroSplash));
       await tester.pump();
     }
+    await tester.pump(const Duration(milliseconds: 400));
     expect(tester.takeException(), isNull);
     await tester.binding.setSurfaceSize(const Size(720, 840));
     await tester.pump();
@@ -80,7 +83,11 @@ void main() {
           final card = find.byKey(ValueKey('hand-${playable.first.id}'));
           await tester.ensureVisible(card);
           await tester.pump();
-          await tester.tap(card);
+          final rendered = tester.widget<LumoPlayingCard>(find.descendant(
+              of: card, matching: find.byType(LumoPlayingCard)));
+          final accessible = find.bySemanticsLabel(rendered.semanticLabel);
+          expect(accessible, findsWidgets);
+          await tester.tap(accessible.first);
         }
       }
       await tester.pump(const Duration(milliseconds: 1700));
@@ -109,10 +116,12 @@ void main() {
     await tester.pump(const Duration(milliseconds: 400));
     await tester.pump(const Duration(seconds: 2));
     expect(find.text('Spielauswahl'), findsOneWidget);
-    expect(Navigator.of(tester.element(find.text('Spielauswahl'))).canPop(), isFalse);
+    expect(Navigator.of(tester.element(find.text('Spielauswahl'))).canPop(),
+        isFalse);
     expect(find.byType(LumoCardsScreen), findsNothing);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
+    semantics.dispose();
     app.dispose();
   });
   testWidgets(
