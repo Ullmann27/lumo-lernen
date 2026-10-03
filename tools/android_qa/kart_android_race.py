@@ -382,10 +382,10 @@ def main():
                 raise RuntimeError('No actual maths answer was proven; race finish alone is insufficient.')
             break
         if lesson_visible(frame):
-            if correct == 0:
-                answer = answer_for(frame)
-                if answer:
-                    record('math_solution', prompt=answer['prompt'], expected=answer['expected'])
+            answer = answer_for(frame)
+            if answer:
+                record('math_solution', prompt=answer['prompt'], expected=answer['expected'])
+                if correct == 0:
                     # A second actual screenshot proves that the visible lesson remains
                     # waiting while real CPU/wall time passes; no controller alteration.
                     time.sleep(4)
@@ -404,11 +404,11 @@ def main():
                         hint = wait_frame('wrong-local-hint', local_hint_visible,
                                           'The local explanation after the wrong answer was not visible.')
                         record('wrong_answer_hint', text=hint['text'])
-                    tap_box(answer['option'], 'correct maths answer')
-                    wait_frame('answered', lambda frame: lesson_closed_or_changed(frame, answer['prompt']),
-                               'Answer touch did not close the real learning pause.')
-                    correct += 1
-                    continue
+                tap_box(answer['option'], 'correct maths answer')
+                wait_frame('answered', lambda frame: lesson_closed_or_changed(frame, answer['prompt']),
+                           'Answer touch did not close the real learning pause.')
+                correct += 1
+                continue
             tap_phrase(frame, 'SPATER')
             previous_answer = answer_for(frame)
             wait_frame('lesson-skipped', lambda frame: lesson_closed_or_changed(

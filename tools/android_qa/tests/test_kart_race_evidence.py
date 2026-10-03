@@ -169,6 +169,22 @@ class KartActionCaptionTests(unittest.TestCase):
 
 
 class KartAnswerTargetTests(unittest.TestCase):
+    def test_second_real_kvm_question_is_answerable_when_skip_caption_is_not_readable(self):
+        # Actual second learning stop: 023-race.png, run 37120532906.
+        observed = {'height': 480, 'lines': [
+            {'text': 'LERN-BOOST- 1, KLASSE - Mathematik', 'top': 112, 'height': 28},
+            {'text': '9+1=?', 'left': 135, 'top': 155, 'width': 57, 'height': 11}],
+            'words': [{'left': 207, 'top': 190, 'width': 11, 'height': 9, 'text': '11'},
+                      {'left': 370, 'top': 190, 'width': 13, 'height': 9, 'text': '10'},
+                      {'left': 538, 'top': 190, 'width': 6, 'height': 9, 'text': '9'}]}
+        self.assertTrue(lesson_visible(observed))
+        self.assertIsNone(action_marker(observed, 'SPATER'))
+        answer = answer_for(observed)
+        self.assertEqual(answer['expected'], 10)
+        self.assertIs(answer['option'], observed['words'][1])
+        self.assertEqual((answer['option']['left']+answer['option']['width']//2,
+                          answer['option']['top']+answer['option']['height']//2), (376, 194))
+
     def test_real_kvm_arithmetic_without_ocr_equals_uses_the_observed_eight_button(self):
         # Actual 014-race.png OCR, run 37119973383. '=' is absent from OCR.
         prompt = {'text': '7+1', 'left': 134, 'top': 154, 'width': 31, 'height': 12}
