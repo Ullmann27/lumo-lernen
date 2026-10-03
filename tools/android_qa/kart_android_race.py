@@ -137,6 +137,25 @@ def marker(frame, phrase):
     return next((line for line in frame['lines'] if phrase in folded(line['text'])), None)
 
 
+def action_marker(frame, phrase):
+    """Match an entire actual button caption, never a sentence mentioning it."""
+    wanted = ' '.join(folded(phrase).split())
+    for line in frame['lines']:
+        caption = ' '.join(folded(line['text']).split())
+        if caption == wanted:
+            return line
+        if wanted in ('ZUR SPIELEAUSWAHL', 'ZUM LERNEN') and re.fullmatch(
+                re.escape(wanted)+r'\s*[·•:\-–—]\s*RENNEN BEHALTEN', caption):
+            return line
+        if wanted == 'SPATER' and re.fullmatch(r'SPATER\s*[›»>]+', caption):
+            return line
+    return None
+
+
+def lightweight_pause_visible(frame):
+    return bool(action_marker(frame, 'Leichte Grafik: an') and action_marker(frame, 'Weiterfahren'))
+
+
 def wait_for_frame(capture, label, predicate, error_message, *, timeout=30,
                    poll_interval=.5, clock=time.monotonic, sleep=time.sleep):
     """Observe a bounded real UI transition after one already-issued input.
@@ -225,11 +244,15 @@ def main():
     parser.add_argument('--require-correct', action='store_true')
     parser.add_argument('--restart', action='store_true')
     parser.add_argument('--pause-back', action='store_true')
+    parser.add_argument('--lightweight', action='store_true',
+                        help='Enable the real Leichte Grafik setting in the observed Back pause.')
     parser.add_argument('--check-wrong-hint', action='store_true')
     parser.add_argument('--return-to', choices=['games', 'learn'])
     parser.add_argument('--self-test', type=Path,
                         help='Inspect a supplied PNG only; sends no Android input.')
     args = parser.parse_args()
+    if args.lightweight and not args.pause_back:
+        parser.error('--lightweight requires --pause-back to inspect the actual settings panel')
     if args.self_test:
         frame = read_frame(args.self_test)
         print(json.dumps({'width': frame['width'], 'height': frame['height'],
@@ -272,7 +295,7 @@ def main():
         record('touch', x=x, y=y, reason=reason)
         android.tap(x, y)
     def tap_phrase(frame, phrase):
-        box = marker(frame, phrase)
+        box = action_marker(frame, phrase)
         if not box and folded(phrase) == 'SPATER':
             lesson = marker(frame, 'LERN-BOOST')
             if lesson:
@@ -285,14 +308,24 @@ def main():
             raise RuntimeError(f'Button absent in actual OCR frame: {phrase}')
         tap_box(box, phrase)
     frame = capture('native-start')
-    if marker(frame, 'Weiterfahren'):
+    if action_marker(frame, 'Weiterfahren'):
         tap_phrase(frame, 'Weiterfahren')
         frame = wait_frame('resumed-start', race_view_visible,
                            'Resume touch did not close the real pause screen.')
     if args.pause_back:
         android.key(4, 'KEY_BACK')
-        frame = wait_frame('android-back-pause', lambda frame: bool(marker(frame, 'Weiterfahren')),
+        frame = wait_frame('android-back-pause', lambda frame: bool(action_marker(frame, 'Weiterfahren')),
                            'Android Back did not open the Godot pause screen.')
+        if args.lightweight:
+            changed = False
+            if action_marker(frame, 'Leichte Grafik: aus'):
+                tap_phrase(frame, 'Leichte Grafik: aus')
+                changed = True
+                frame = wait_frame('lightweight-setting-reloaded', lightweight_pause_visible,
+                                   'The real lightweight setting did not reload the saved pause with Leichte Grafik: an.')
+            elif not lightweight_pause_visible(frame):
+                raise RuntimeError('The actual lightweight setting and resume button were not visible.')
+            record('lightweight_setting_verified', changed=changed, text=frame['text'])
         tap_phrase(frame, 'Weiterfahren')
         frame = wait_frame('android-back-resumed', race_view_visible,
                            'Resume touch did not close the real pause screen.')
@@ -352,7 +385,7 @@ def main():
                                'The real restart did not return to the round-one race HUD.')
         record('restart_verified', text=restarted['text'])
         android.key(4, 'KEY_BACK')
-        frame = wait_frame('restart-paused', lambda frame: bool(marker(frame, 'Weiterfahren')),
+        frame = wait_frame('restart-paused', lambda frame: bool(action_marker(frame, 'Weiterfahren')),
                            'Android Back after restart did not open the Godot pause screen.')
     if args.return_to:
         if args.restart:

@@ -6,7 +6,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from kart_android_race import (race_state, second_round_in_progress, require_second_round,
                               wait_for_frame, marker, restart_visible, local_hint_visible,
-                              lesson_closed_or_changed)
+                              lesson_closed_or_changed, action_marker, lightweight_pause_visible)
 
 
 def frame(*captions):
@@ -56,7 +56,7 @@ class KartTransitionEvidenceTests(unittest.TestCase):
             now[0] += 1.4  # Realistic slow render/OCR observations, not game time.
             return observed
         result = wait_for_frame(capture, 'android-back-pause',
-                                lambda observed: bool(marker(observed, 'Weiterfahren')),
+                                lambda observed: bool(action_marker(observed, 'Weiterfahren')),
                                 'Android Back did not open the Godot pause screen.',
                                 clock=lambda: now[0], sleep=lambda seconds: now.__setitem__(0, now[0]+seconds))
         self.assertIs(result, observations[2])
@@ -73,7 +73,7 @@ class KartTransitionEvidenceTests(unittest.TestCase):
             return stale
         with self.assertRaisesRegex(RuntimeError, 'pause screen.*within 3s.*RUNDE'):
             wait_for_frame(capture, 'android-back-pause',
-                           lambda observed: bool(marker(observed, 'Weiterfahren')),
+                           lambda observed: bool(action_marker(observed, 'Weiterfahren')),
                            'Android Back did not open the Godot pause screen.', timeout=3,
                            clock=lambda: now[0], sleep=lambda seconds: now.__setitem__(0, now[0]+seconds))
         self.assertGreater(len(captured), 1)
@@ -86,7 +86,7 @@ class KartTransitionEvidenceTests(unittest.TestCase):
             return frame('Weiterfahren')
         with self.assertRaisesRegex(RuntimeError, 'within 30s'):
             wait_for_frame(slow_capture, 'android-back-pause',
-                           lambda observed: bool(marker(observed, 'Weiterfahren')),
+                           lambda observed: bool(action_marker(observed, 'Weiterfahren')),
                            'Pause did not appear.', clock=lambda: now[0], sleep=lambda _: None)
 
     def test_restart_requires_round_one_and_cannot_accept_stale_result_or_hud(self):
@@ -108,6 +108,39 @@ class KartTransitionEvidenceTests(unittest.TestCase):
         self.assertFalse(lesson_closed_or_changed(frame('unreadable frame')))
         self.assertFalse(lesson_closed_or_changed(frame('RUNDE 1/2', 'Weiterfahren')))
         self.assertTrue(lesson_closed_or_changed(frame('RUNDE 1/2', 'PLATZ 1/6')))
+
+
+class KartActionCaptionTests(unittest.TestCase):
+    def test_real_kvm_pause_ocr_clicks_resume_button_instead_of_explanation(self):
+        # read_frame output of run 37118471725, raw 003-android-back-pause.png.
+        explanation = {'text': 'Dein Rennen wartet. Du kannst spater hier weiterfahren.',
+                       'left': 193, 'top': 112, 'width': 325, 'height': 13}
+        cropped_explanation = {'text': 'n Rennen wartet. Du kannst spater hier weiterfahren.',
+                               'left': 212, 'top': 110, 'width': 306, 'height': 17}
+        button = {'text': 'Weiterfahren', 'left': 332, 'top': 145, 'width': 83, 'height': 10}
+        observed = {'lines': [explanation, cropped_explanation, button]}
+        self.assertIs(marker(observed, 'Weiterfahren'), explanation)
+        self.assertIs(action_marker(observed, 'Weiterfahren'), button)
+        self.assertEqual((button['left']+button['width']//2, button['top']+button['height']//2), (373, 150))
+        self.assertIsNone(action_marker({'lines': [explanation, cropped_explanation]}, 'Weiterfahren'))
+
+    def test_return_buttons_accept_real_caption_suffixes_but_not_explanations(self):
+        for caption in ('Zur Spieleauswahl : Rennen behalten',
+                        'Zur Spieleauswahl - Rennen behalten',
+                        'Zur Spieleauswahl · Rennen behalten', 'Zur Spieleauswahl'):
+            with self.subTest(caption=caption):
+                self.assertIsNotNone(action_marker(frame(caption), 'Zur Spieleauswahl'))
+        self.assertIsNotNone(action_marker(frame('Zum Lernen · Rennen behalten'), 'Zum Lernen'))
+        self.assertIsNone(action_marker(frame('Du kannst zur Spieleauswahl zurückgehen.'), 'Zur Spieleauswahl'))
+        self.assertIsNone(action_marker(frame('Zum Lernen später weiterfahren.'), 'Zum Lernen'))
+        self.assertIsNotNone(action_marker(frame('Später ›'), 'SPATER'))
+
+    def test_lightweight_reload_needs_both_actual_enabled_setting_and_resume_buttons(self):
+        self.assertFalse(lightweight_pause_visible(frame('Leichte Grafik: aus', 'Weiterfahren')))
+        self.assertFalse(lightweight_pause_visible(frame('Leichte Grafik: an')))
+        self.assertFalse(lightweight_pause_visible(frame('Leichte Grafik: an',
+                         'Dein Rennen wartet. Du kannst spater hier weiterfahren.')))
+        self.assertTrue(lightweight_pause_visible(frame('Leichte Grafik: an', 'Weiterfahren')))
 
 
 if __name__ == '__main__':
