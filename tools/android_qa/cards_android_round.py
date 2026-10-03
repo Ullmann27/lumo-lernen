@@ -108,27 +108,45 @@ class CardsRound(Round):
         self.unverified_answers = 0
 
     def learning_answer(self, root):
-        heading = next(node for node in root.iter('node')
-                       if 'Denkpause' in (node.attrib.get('text'), node.attrib.get('content-desc')))
+        parents = {child: parent for parent in root.iter() for child in parent}
+
+        def visible_enabled(node):
+            while node is not None:
+                if (node.get('enabled', 'true') != 'true'
+                        or node.get('visible-to-user', 'true') != 'true'):
+                    return False
+                node = parents.get(node)
+            return True
+
+        headings = [node for node in root.iter('node')
+                    if 'Denkpause' in (node.get('text'), node.get('content-desc'))
+                    and visible_enabled(node)]
+        if len(headings) != 1:
+            raise RuntimeError(f'Expected one actual learning heading, found {len(headings)}.')
+        heading = headings[0]
         _, _, _, heading_bottom = self.android.bounds(heading)
+        ignored = {'Ziehen', 'Avatar wechseln', 'Pausieren / Zurück', 'Audio-Einstellungen', 'LUMO! +1'}
+        choices = [node for node in root.iter('node')
+                   if node.get('clickable') == 'true' and visible_enabled(node)
+                   and (text := node.get('text') or node.get('content-desc'))
+                   and text not in ignored and not text.startswith('Lumo Karte, ')
+                   and self.android.bounds(node)[1] >= heading_bottom]
+        if not 2 <= len(choices) <= 6:
+            raise RuntimeError(f'Cannot safely identify the actual answer buttons ({len(choices)}).')
+        answer_top = min(self.android.bounds(node)[1] for node in choices)
+        # A valid instruction such as "Finde den Buchstaben A." needs no
+        # question mark. Identify its actual visible position between the
+        # heading and answer grid; unsupported content stays unverified below.
         prompts = [node for node in root.iter('node')
                    if (text := node.attrib.get('text') or node.attrib.get('content-desc'))
+                   and visible_enabled(node) and node.get('clickable') != 'true'
                    and self.android.bounds(node)[1] >= heading_bottom
-                   and ('?' in text or arithmetic(text) is not None)
+                   and self.android.bounds(node)[3] <= answer_top
                    and not text.startswith('Lumo Karte, ')]
         if len(prompts) != 1:
             raise RuntimeError('Cannot uniquely identify the actual learning prompt; retain partial evidence.')
         prompt_node = prompts[0]
         prompt = prompt_node.attrib.get('text') or prompt_node.attrib.get('content-desc')
-        _, _, _, prompt_bottom = self.android.bounds(prompt_node)
-        ignored = {'Ziehen', 'Avatar wechseln', 'Pausieren / Zurück', 'Audio-Einstellungen', 'LUMO! +1'}
-        choices = [node for node in root.iter('node')
-                   if node.attrib.get('clickable') == 'true'
-                   and (text := node.attrib.get('text') or node.attrib.get('content-desc'))
-                   and text not in ignored and not text.startswith('Lumo Karte, ')
-                   and self.android.bounds(node)[1] >= prompt_bottom]
-        if not 2 <= len(choices) <= 6:
-            raise RuntimeError(f'Cannot safely identify the actual answer buttons ({len(choices)}).')
         expected = arithmetic(prompt)
         answer = (next((node for node in choices
                         if expected in (node.attrib.get('text'), node.attrib.get('content-desc'))), None)

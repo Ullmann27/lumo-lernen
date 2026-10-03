@@ -16,6 +16,7 @@ from android_ui import Android, ADB, content_scroll_gesture
 from kart_android_race import action_marker, marker, read_frame, race_state, wait_for_frame
 from flutter_flows import FlutterChecks, LEARNING_SELECTION_CAPTION
 from system_ui import pixel_launcher_anr_close_bounds
+from emulator_diagnostics import ContinuousDiagnostics, save_final_logs
 
 
 ONBOARDING_CAPTIONS = {
@@ -326,13 +327,9 @@ def main(args):
             (args.out/'failure-capture-error.txt').write_text(str(capture_error)+'\n')
         raise
     finally:
-        logs = device.adb('logcat', '-d', '-v', 'threadtime', timeout=45)
-        (args.out/'android-logcat.txt').write_text(logs)
-        fatal = [line for line in logs.splitlines() if re.search(
-            r'FATAL EXCEPTION|Fatal signal|SCRIPT ERROR|Parse Error| E godot.*ERROR:|LUMO_ASSET_ERROR(?:\s|$)', line)]
-        if fatal:
-            (args.out/'fatal-errors.txt').write_text('\n'.join(fatal)+'\n')
-            raise RuntimeError('Android, engine or bundled-asset errors appeared during the real usage checks; logs retained')
+        # Device loss must remain the original failure, with continuous logs
+        # retained even when its final adb command can no longer connect.
+        save_final_logs(device, args.out, preserve_error=sys.exc_info()[0] is not None)
 
 
 if __name__ == '__main__':
@@ -343,7 +340,8 @@ if __name__ == '__main__':
     parser.add_argument('--serial', default='emulator-5554')
     args = parser.parse_args()
     try:
-        main(args)
+        with ContinuousDiagnostics(ADB, args.serial, args.out):
+            main(args)
     except Exception:
         args.out.mkdir(parents=True, exist_ok=True)
         details = traceback.format_exc()

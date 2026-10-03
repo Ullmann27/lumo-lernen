@@ -1,6 +1,6 @@
 # Gemeinsame Android-App: Lumo Lernen und Lumo Kart
 
-Stand 3. Oktober 2026: **0.10.5 / Build 280 wird vorbereitet**. Noch kein
+Stand 3. Oktober 2026: **0.10.5 / Build 280 ist gebaut; Android-Gesamtprüfung noch offen**. Noch kein
 freigegebener Download. Build 279 bestätigte das vollständige native Rennen,
 Ergebnisbestätigung, Neustart und Rückkehr zur Spieleauswahl. Im kompakten
 Pausenmenü war die Rückkehr zum Lernen abgeschnitten. Build 280 ergänzt feste
@@ -54,7 +54,8 @@ Einzelberichte: [Spiele](GAMES_QA_2026-10-03.md),
 ## Tatsächlich geprüft
 
 **Flutter: 509 bestanden, vier bestehende übersprungen, keine Fehler.**
-Analyse: keine Fehler, 153 bestehende Warnungen/Hinweise. Backend: 22 Tests. 90 Prüfungen des Android-Testwerkzeugs bestehen.
+Analyse: keine Fehler, 153 bestehende Warnungen/Hinweise. Backend: 22 Tests. 102 Prüfungen des aktuellen Android-Testwerkzeugs bestehen (90 beim APK-Bau,
+zwölf zusätzliche Diagnostik-/Kartenfragenregressionen).
 Inhaltsaudit: 37.940 Aufgabenvarianten; Klassen-/Fachmatrix mit 16 Fällen.
 Acht gezielte Plus-Modultests prüfen Hilfen, falsche/richtige Antworten,
 verzögerte/abgelehnte Speicherung, Doppeltaps, Unmount, Hintergrund und Neustart.
@@ -87,8 +88,7 @@ belegt: erforderliche Hostmethoden und Annotationen sind vorhanden. JNI liefert
 Java-Boolean über `jboolean`/`Variant(uint8_t)` als Integer 0/1. Der alte strikte
 Vergleich mit Bool `true` wies Integer 1 fälschlich ab. Build 279 akzeptiert nur
 Bool `true` oder Integer 1; false/0/2/null/Strings bleiben Fehler. Dieselbe
-Korrektur gilt für Ergebnis und Rückkehr. Der Erfolg muss erst im neuen
-installierten Androidlauf nachgewiesen werden.
+Korrektur gilt für Ergebnis und Rückkehr. Der Erfolg ist im unten beschriebenen installierten APK-279-Lauf nachgewiesen.
 
 **Installierter APK 279-Lauf 37126787675:** Dieselbe API-35-KVM/Mesa-Umgebung.
 Das echte zweiründige Rennen endete mit Platz 1/6, drei richtigen Matheantworten,
@@ -106,7 +106,29 @@ Einstellungen. Echte Desktop-Godot-Control-/ScreenTouch-Prüfungen bei 800×480
 und beiden Fold-Größen zeigen beide Rückwege vollständig bedienbar;
 der Erfolg innerhalb APK 280 bleibt im Android-Gesamttest nachzuweisen.
 
-Weitere echte Aufgaben-/Fortschrittskorrekturen für280:
+**Installierter APK-280-Lauf 37130107394:** Die exakten 148.336.186 Bytes
+(SHA-256 `3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48`)
+absolvierten zwei Runden mit drei richtigen Antworten, drei sichtbaren
+„Später“-Auswahlen, Ergebnis Platz 1/6 und neun Sternen. Ergebnis-Neustart,
+zweimalige Rückkehr zur Spieleauswahl, frischer Engineprozess, gespeicherter
+HUD und leichte Grafik waren erfolgreich; Flutter zeigte neun Sterne.
+Beide festen Rückkehrknöpfe waren bei 800×480 vollständig sichtbar.
+
+Nach dem tatsächlichen „Zum Lernen“-Touch verschwand der gesamte Emulator
+(ADB-Gerät weg, Konsolenport 5554 verweigert). Der Host meldete gfxstream-
+37.2.12-Fehler ohne aktiven GL-Kontext. Eine Emulator-Renderer-Störung ist
+wahrscheinlich; Gast-Logcat und Host-Exit-Signal wurden nicht aufgezeichnet,
+daher wird kein belegter App-Crash oder erfolgreicher Lern-Rückweg behauptet.
+Die unabhängigen Flutter-Lern-/Memory-/Karten-/Fold-/Neustartprüfungen wurden
+nicht erreicht. Dieser Lauf bleibt fehlgeschlagen; eine reine Korrektur der
+Testumgebung darf dieselben unveränderten APK-Bytes erneut prüfen. Der nächste
+Lauf pinnt den offiziell verifizierten stabilen Emulator 36.3.10 / Build 14472402,
+behält API 35/KVM/Mesa bei und sichert kontinuierlich Android-/Hostdiagnostik.
+Ein weiterer belegter QA-Parserfehler für gültige Buchstabenanweisungen ohne
+Fragezeichen ist über die tatsächliche Promptposition korrigiert. Unbekannte
+Lernantworten bleiben ausdrücklich unbestätigt; alle bisherigen Gates bleiben.
+
+Weitere belegte Aufgaben-/Fortschrittskorrekturen für Build 280:
 
 - Klasse-4-Bruchrechnen vergleicht den mathematischen Wert. Gleichwertige Brüche
   werden nicht als falsche Distraktoren angeboten; ein begrenzter Pool vermeidet

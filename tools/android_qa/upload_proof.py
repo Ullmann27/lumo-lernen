@@ -19,7 +19,9 @@ def upload(repository, tag, evidence, run_id, attempt):
     }, indent=2)+'\n')
     output = evidence.parent/f'android-api35-qa-{int(run_id)}-{int(attempt)}.zip'
     allowed = {'.png', '.xml', '.txt', '.tsv', '.json', '.jsonl', '.log'}
-    files = [path for path in evidence.rglob('*') if path.is_file() and path.suffix in allowed]
+    files = [path for path in evidence.rglob('*') if path.is_file()
+             and (path.suffix in allowed or 'emulator-crash' in path.relative_to(evidence).parts)
+             and path.suffix.lower() != '.apk']
     with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(files):
             archive.write(path, path.relative_to(evidence))
