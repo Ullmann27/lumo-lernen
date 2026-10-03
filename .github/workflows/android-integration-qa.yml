@@ -124,7 +124,7 @@ jobs:
           arch: x86_64
           profile: pixel_5
           disable-animations: true
-          emulator-options: -no-window -accel on -gpu swiftshader -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          emulator-options: -no-window -accel on -gpu swangle -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: >-
             bash -o pipefail -c 'python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
       - name: Upload and re-download the same successfully tested APK into the existing draft

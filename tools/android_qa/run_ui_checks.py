@@ -88,7 +88,11 @@ def main(args):
     (args.out/'installation.json').write_text(json.dumps(installed, indent=2)+'\n')
     if installed['sha256'] != args.sha256.lower():
         raise RuntimeError('Installed input hash differs from the downloaded/verified APK')
-    device.resize('720x1280', '320')
+    # This is a real compact Android display, not altered game rendering or
+    # physics. Fewer software-rendered pixels leave the KVM CPU available for
+    # the native race; Fold-size navigation is still exercised afterwards.
+    environment['initial_display'] = device.resize('480x800', '160')
+    (args.out/'environment.json').write_text(json.dumps(environment, indent=2)+'\n')
     device.adb('logcat', '-c')
     device.foreground(package)
 
