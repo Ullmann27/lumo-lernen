@@ -50,11 +50,52 @@ test('Aktuelles Modell verwendet passende Parameter und keinen Kindernamen', asy
   }, async ({post}) => assert.equal((await post('/chat',{message:'Hilf bei 7+5',childProfile:{grade:1,name:'Privater Kindername'}})).status,200));
 });
 test('Fehler bei OpenAI enthalten einen brauchbaren Grund, keine Geheimnisse', async () => {
-  for (const [status,code,reason] of [[401,'invalid_api_key','openai_authentication_failed'],[429,'insufficient_quota','openai_quota_exceeded'],[429,'rate_limit_exceeded','openai_rate_limited']]) {
+  for (const [status,code,reason] of [[401,'invalid_api_key','openai_authentication_failed'],[429,'insufficient_quota','openai_quota_exceeded'],[429,'rate_limit_exceeded','openai_rate_limited'],[404,'model_not_found','openai_model_unavailable'],[400,'unsupported_parameter','openai_configuration_error']]) {
     await withServer(async()=>new Response(JSON.stringify({error:{code,message:'secret-provider-detail'}}),{status}),async({post})=>{
       const r=await post('/chat',{message:'Erkläre 5+3'}); assert.ok(r.status>=500);
       const body=await r.json();assert.equal(body.reason,reason);assert.equal(JSON.stringify(body).includes('secret-provider-detail'),false);
     });
+  }
+});
+test('Quota im Provider-Typ wird für Tutor und Aufgaben samt Health erkannt', async (t) => {
+  const logs = [];
+  t.mock.method(console, 'warn', (line) => logs.push(line));
+  await withServer(async () => new Response(JSON.stringify({error:{type:'insufficient_quota',message:'private-provider-detail'}}), {status:429}), async ({post,base}) => {
+    for (const [path,body] of [['/chat',{message:'Hilf bei 3+4'}],['/tasks',{subject:'Mathematik',grade:1,count:3}]]) {
+      const response = await post(path,body);
+      assert.equal(response.status,503);
+      const payload = await response.json();
+      assert.equal(payload.reason,'openai_quota_exceeded');
+      assert.equal(JSON.stringify(payload).includes('private-provider-detail'),false);
+      assert.equal((await (await fetch(base+'/health')).json()).upstreamStatus,'openai_quota_exceeded');
+    }
+  });
+  assert.equal(logs.filter(line => line === '[lumo-ai-proxy] OpenAI error status=429 code=absent type=insufficient_quota').length,2);
+  assert.equal(logs.join('\n').includes('private-provider-detail'),false);
+});
+test('Diagnoselogs erlauben nur feste Labels und zeigen den tatsächlichen Limit-Typ', async (t) => {
+  const logs = [];
+  t.mock.method(console, 'warn', (line) => logs.push(line));
+  const cases = [
+    [{code:'rate_limit_exceeded',type:'tokens'},'code=rate_limit_exceeded type=tokens'],
+    [{code:'rate_limit_exceeded',type:'requests'},'code=rate_limit_exceeded type=requests'],
+    [{code:'private-key-like-value\nforged log',type:{private:'child-name'}},'code=other type=other'],
+    [null,'code=absent type=absent'],
+  ];
+  for (const [error,expected] of cases) {
+    await withServer(async () => new Response(JSON.stringify({error,message:'private-raw-body'}),{status:429}), async ({post}) => {
+      const response = await post('/chat',{message:'Hilf bei 3+4'});
+      assert.equal(response.status,503);
+      assert.equal((await response.json()).reason,'openai_rate_limited');
+    });
+    assert.ok(logs.includes(`[lumo-ai-proxy] OpenAI error status=429 ${expected}`));
+  }
+  await withServer(async () => new Response('private-non-json-body',{status:502}), async ({post}) => {
+    assert.equal((await (await post('/chat',{message:'Hilf bei 3+4'})).json()).reason,'openai_upstream_error');
+  });
+  assert.ok(logs.includes('[lumo-ai-proxy] OpenAI error status=502 code=absent type=absent'));
+  for (const secret of ['test-only-placeholder','private-key-like-value','forged log','child-name','private-raw-body','private-non-json-body']) {
+    assert.equal(logs.join('\n').includes(secret),false);
   }
 });
 test('Kein Schlüssel ergibt 503, blockierte Kinderthemen werden lokal umgelenkt', async () => {
