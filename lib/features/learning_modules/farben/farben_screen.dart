@@ -17,12 +17,14 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
+import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
 
 class _Farbe {
   const _Farbe({required this.name, required this.color, required this.prompt});
   final String name;
   final Color color;
+
   /// Was im Pollinations-Prompt steht (englisch fuer bessere Ergebnisse)
   final String prompt;
 }
@@ -36,8 +38,8 @@ class _Objekt {
   });
   final String name;
   final String artikel; // 'der', 'die', 'das'
-  final String emoji;   // lokales Fallback-Symbol fuer offline / Image-Fail
-  final String prompt;  // englisch fuer evtl. spaetere Bildquelle
+  final String emoji; // lokales Fallback-Symbol fuer offline / Image-Fail
+  final String prompt; // englisch fuer evtl. spaetere Bildquelle
 }
 
 enum _FarbFrageTyp { farbeZuObjekt, objektZuFarbe }
@@ -82,14 +84,18 @@ class _FarbenScreenState extends State<FarbenScreen>
     _Objekt(name: 'Vogel', artikel: 'der', emoji: '🐦', prompt: 'bird'),
     _Objekt(name: 'Fisch', artikel: 'der', emoji: '🐟', prompt: 'fish'),
     _Objekt(name: 'Hut', artikel: 'der', emoji: '🎩', prompt: 'hat'),
-    _Objekt(name: 'Schmetterling',
-        artikel: 'der', emoji: '🦋', prompt: 'butterfly'),
-    _Objekt(name: 'Luftballon',
-        artikel: 'der', emoji: '🎈', prompt: 'balloon'),
+    _Objekt(
+        name: 'Schmetterling',
+        artikel: 'der',
+        emoji: '🦋',
+        prompt: 'butterfly'),
+    _Objekt(name: 'Luftballon', artikel: 'der', emoji: '🎈', prompt: 'balloon'),
     _Objekt(name: 'Stern', artikel: 'der', emoji: '⭐', prompt: 'star'),
     _Objekt(name: 'Herz', artikel: 'das', emoji: '❤️', prompt: 'heart'),
     _Objekt(name: 'Drache', artikel: 'der', emoji: '🐉', prompt: 'dragon'),
   ];
+
+  late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -111,6 +117,11 @@ class _FarbenScreenState extends State<FarbenScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Sachunterricht',
+      unit: 'Farben',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -124,6 +135,7 @@ class _FarbenScreenState extends State<FarbenScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -164,17 +176,21 @@ class _FarbenScreenState extends State<FarbenScreen>
   }
 
   void _onAnswer(int idx, bool isCorrect) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedIdx = idx;
       _answered = true;
     });
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 7 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(7);
       CosmosWorld.instance.grantReward(
         subjectId: 's1_farben',
         isMath: false,
@@ -182,8 +198,7 @@ class _FarbenScreenState extends State<FarbenScreen>
       );
       LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
-        LumoVoice.instance
-            .speak('Richtig! Das ist ${_correctFarbe.name}!');
+        LumoVoice.instance.speak('Richtig! Das ist ${_correctFarbe.name}!');
       } catch (_) {}
     } else {
       HapticFeedback.mediumImpact();
@@ -193,8 +208,9 @@ class _FarbenScreenState extends State<FarbenScreen>
             'Schau nochmal - die richtige Farbe ist ${_correctFarbe.name}!');
       } catch (_) {}
     }
-    await Future.delayed(const Duration(milliseconds: 1400));
-    if (!mounted) return;
+    final canAdvance =
+        await _progress.feedbackDelay(const Duration(milliseconds: 1400));
+    if (!canAdvance || !mounted) return;
     _nextTask();
   }
 
@@ -211,21 +227,23 @@ class _FarbenScreenState extends State<FarbenScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  void _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    final saved = await _progress.saveBonus(
+      stars: stars,
+      xp: _correctCount * 10,
+    );
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🎨 Farben-Quiz fertig!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks Farben erkannt!',
               style: const TextStyle(
@@ -275,36 +293,38 @@ class _FarbenScreenState extends State<FarbenScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildTaskHeader(),
-                  const SizedBox(height: 20),
-                  if (_typ == _FarbFrageTyp.farbeZuObjekt) ...[
-                    _buildSingleImage(_correctFarbe),
-                    const SizedBox(height: 20),
-                    _buildColorOptions(),
-                  ] else ...[
-                    _buildImageGrid(),
-                  ],
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildTaskHeader(),
+                      const SizedBox(height: 20),
+                      if (_typ == _FarbFrageTyp.farbeZuObjekt) ...[
+                        _buildSingleImage(_correctFarbe),
+                        const SizedBox(height: 20),
+                        _buildColorOptions(),
+                      ] else ...[
+                        _buildImageGrid(),
+                      ],
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -312,13 +332,12 @@ class _FarbenScreenState extends State<FarbenScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
         Expanded(
@@ -347,8 +366,7 @@ class _FarbenScreenState extends State<FarbenScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -377,8 +395,7 @@ class _FarbenScreenState extends State<FarbenScreen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
@@ -452,12 +469,14 @@ class _FarbenScreenState extends State<FarbenScreen>
         final isCorrect = f == _correctFarbe;
         Color borderColor = _gradient[0].withOpacity(0.3);
         if (_answered && isSelected) {
-          borderColor = isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
+          borderColor =
+              isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
         } else if (_answered && isCorrect) {
           borderColor = const Color(0xFFFCD34D);
         }
         return GestureDetector(
-          onTap: _answered ? null : () => _onAnswer(options.indexOf(f), isCorrect),
+          onTap:
+              _answered ? null : () => _onAnswer(options.indexOf(f), isCorrect),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             decoration: BoxDecoration(
@@ -569,9 +588,8 @@ class _ColoredEmojiOption extends StatelessWidget {
   Widget build(BuildContext context) {
     Color borderColor = Colors.white;
     if (answered && isSelected) {
-      borderColor = isCorrect
-          ? const Color(0xFF10B981)
-          : const Color(0xFFEF4444);
+      borderColor =
+          isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
     } else if (answered && isCorrect) {
       borderColor = const Color(0xFFFCD34D);
     }
@@ -605,8 +623,7 @@ class _ColoredEmojiOption extends StatelessWidget {
             ],
           ),
           alignment: Alignment.center,
-          child: Text(emoji,
-              style: const TextStyle(fontSize: 70, height: 1.0)),
+          child: Text(emoji, style: const TextStyle(fontSize: 70, height: 1.0)),
         ),
       ),
     );

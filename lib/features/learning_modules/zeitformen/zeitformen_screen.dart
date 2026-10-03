@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
+import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
 
 enum _Zeitform { vergangenheit, gegenwart, zukunft }
@@ -101,6 +102,8 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     _SatzItem('Papa wird auch da sein.', _Zeitform.zukunft),
   ];
 
+  late final LearningModuleProgress _progress;
+
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
@@ -120,6 +123,11 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Deutsch',
+      unit: 'Zeitformen',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -133,6 +141,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -140,7 +149,8 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
   }
 
   void _generateTask() {
-    _typ = _ZeitformFrageTyp.values[_rng.nextInt(_ZeitformFrageTyp.values.length)];
+    _typ =
+        _ZeitformFrageTyp.values[_rng.nextInt(_ZeitformFrageTyp.values.length)];
     if (_typ == _ZeitformFrageTyp.satzKategorisieren) {
       _korrektSatz = _saetze[_rng.nextInt(_saetze.length)];
       _zeitOptions = List.of(_Zeitform.values)..shuffle(_rng);
@@ -171,17 +181,21 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
   }
 
   void _onAnswer(int idx, bool isCorrect) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedIdx = idx;
       _answered = true;
     });
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 7 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(7);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -189,12 +203,13 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
       HapticFeedback.mediumImpact();
       _shakeCtrl.forward(from: 0);
       try {
-        LumoVoice.instance.speak(
-            'Schau nochmal - das ist ${_korrektSatz.zeit.label}!');
+        LumoVoice.instance
+            .speak('Schau nochmal - das ist ${_korrektSatz.zeit.label}!');
       } catch (_) {}
     }
-    await Future.delayed(const Duration(milliseconds: 1500));
-    if (!mounted) return;
+    final canAdvance =
+        await _progress.feedbackDelay(const Duration(milliseconds: 1500));
+    if (!canAdvance || !mounted) return;
     _nextTask();
   }
 
@@ -211,21 +226,23 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  void _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    final saved = await _progress.saveBonus(
+      stars: stars,
+      xp: _correctCount * 10,
+    );
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('⏰ Zeitformen-Quiz fertig!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks richtig!',
               style: const TextStyle(
@@ -275,35 +292,37 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildTaskHeader(),
-                  const SizedBox(height: 24),
-                  if (_typ == _ZeitformFrageTyp.satzKategorisieren) ...[
-                    _buildSatzAnzeige(_korrektSatz.satz),
-                    const SizedBox(height: 24),
-                    _buildZeitOptions(),
-                  ] else
-                    _buildSatzOptions(),
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildTaskHeader(),
+                      const SizedBox(height: 24),
+                      if (_typ == _ZeitformFrageTyp.satzKategorisieren) ...[
+                        _buildSatzAnzeige(_korrektSatz.satz),
+                        const SizedBox(height: 24),
+                        _buildZeitOptions(),
+                      ] else
+                        _buildSatzOptions(),
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -311,13 +330,12 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
         Expanded(
@@ -344,8 +362,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -368,8 +385,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
@@ -450,7 +466,8 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
               onTap: _answered ? null : () => _onAnswer(idx, isCorrect),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                 decoration: BoxDecoration(
                   color: bgColor,
                   borderRadius: BorderRadius.circular(18),

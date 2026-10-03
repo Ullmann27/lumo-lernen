@@ -1,10 +1,12 @@
 # Gemeinsame Android-App: Lumo Lernen und Lumo Kart
 
-Stand 3. Oktober 2026: **0.10.4 / Build 279 wird vorbereitet**. Noch kein
-freigegebener Download. Build 278 wurde installiert und durch ein echtes
-zweiründiges Kartrennen gespielt, scheiterte danach aber an einer falsch
-interpretierten Speicherbestätigung. Build 279 korrigiert diesen Vertrag und
-muss den vollständigen Android-Nutzungstest erneut bestehen.
+Stand 3. Oktober 2026: **0.10.5 / Build 280 wird vorbereitet**. Noch kein
+freigegebener Download. Build279 bestätigte das vollständige native Rennen,
+Ergebnisbestätigung, Neustart und Rückkehr zur Spieleauswahl. Im kompakten
+Pausenmenü war die Rückkehr zum Lernen abgeschnitten. Build280 ergänzt feste
+sichtbare Rückkehrknöpfe sowie die gemeinsame Lernfortschrittsspeicherung aller
+registrierten Module und des aktiven Wort-Schreibcoachs. Der neue installierte
+Android-Gesamttest muss anschließend noch bestanden werden.
 
 ## Gespeicherte Grundlage
 
@@ -88,6 +90,42 @@ Bool `true` oder Integer 1; false/0/2/null/Strings bleiben Fehler. Dieselbe
 Korrektur gilt für Ergebnis und Rückkehr. Der Erfolg muss erst im neuen
 installierten Androidlauf nachgewiesen werden.
 
+**Installierter APK279-Lauf 37126787675:** Dieselbe API35-KVM/Mesa-Umgebung.
+Das echte zweiründige Rennen endete mit Platz1/6, drei richtigen Matheantworten,
+drei sichtbaren „Später“-Auswahlen und neun Sternen. Androidlog bestätigt
+`[LumoHost] reward reported`. Ergebnis-Neustart, Android-Back/Pause, Rückkehr
+zur Spieleauswahl bei lebendem Flutter, erneuter Start mit frischem Engine-PID,
+gespeicherter HUD und beibehaltene leichte Grafik funktionierten. Eine zweite
+Rückkehr zur Spieleauswahl gelang ebenfalls. Die JNI-Korrektur ist dadurch
+am tatsächlichen APK-Lauf bestätigt.
+
+Die dritte Rückkehr zum Lernen scheiterte am abgeschnittenen unteren Knopf.
+Ein tatsächlicher650ms-Touchscroll offenbarte ihn nicht. Der kleine native
+Pauseaufbau erhält deshalb feste Rückkehrknöpfe außerhalb der scrollenden
+Einstellungen. Echte Desktop-Godot-Control-/ScreenTouch-Prüfungen bei800×480
+und beiden Fold-Größen zeigen beide Rückwege vollständig bedienbar;
+der Erfolg innerhalb APK280 bleibt im Android-Gesamttest nachzuweisen.
+
+Weitere echte Aufgaben-/Fortschrittskorrekturen für280:
+
+- Klasse4-Bruchrechnen vergleicht den mathematischen Wert. Gleichwertige Brüche
+  werden nicht als falsche Distraktoren angeboten; ein begrenzter Pool vermeidet
+  unkontrollierte Zufallsschleifen. Vollständige8-Aufgaben- und Fehlerspeichertests.
+- Alle18 übrigen direkt erreichbaren Registryrouten und der aktive Wort-Schreibcoach
+  verwenden eine gemeinsame dauerhafte Antwort-/Walletgrenze. Richtige Antworten
+  erhöhen Daily einmal, falsche nur den passenden Skillfehler. Buchstaben- und
+  Abschlussboni zählen nicht als zusätzliche gelöste Aufgaben.
+- Speicherfehler halten die akzeptierte Antwort gesperrt, zeigen eine sichtbare
+  Wiederholung und lassen denselben Speicherstand erneut schreiben, ohne
+  Belohnung/Antwort erneut zu buchen. Hintergrundfeedback wartet auf Fortsetzen;
+  bereits akzeptierte Speicherung läuft bei Modul-Unmount weiter.
+- Diktatheader und Abschluss verwenden die tatsächlichen20Wörter der Session;
+  synchrone Eingabesicherung verhindert doppelte Selbsteinschätzung.
+- Native `SharedPreferences.setString=false` wird für Skills, Daily und letztes
+  Thema als Fehler behandelt. Fehlgeschlagenes Normalisieren löscht keinen
+  vorhandenen gültigen Lernstand. Sieben Regressionen prüfen tatsächliche
+  Plattformablehnung, erhaltene Altwerte und sichtbare Wiederholung ohne Doppelzählung.
+
 Weitere belegte Releasekorrekturen schützen Godot-JNI-Methoden und
 parameterlose ML-Kit-Registrierungen vor R8. APK-Prüfung kontrolliert Paket,
 Version, Signatur, Mindest-API, ZIP, PCK-Revision/Hash, beide Architekturen und
@@ -100,7 +138,7 @@ Neubau. Rohaufnahmen, OCR, UI-XML, Aktionen und Logcat bleiben im Proof-ZIP.
 
 ## Installation und Datenerhalt
 
-Zielpaket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version `0.10.4`, Code279,
+Zielpaket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version `0.10.5`, Code280,
 Android ab API24, Ziel-API36, `arm64-v8a` und `x86_64`.
 Signaturzertifikat SHA-256:
 `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`.

@@ -21,8 +21,8 @@ def verify(path: Path):
     package = re.search(r"package: name='([^']+)' versionCode='([^']+)' versionName='([^']+)'", badging)
     if package is None or package.group(1) != 'dev.ullmann.lumo.lumo_lernen.coachpreview':
         raise RuntimeError('Wrong package: this delivery must safely update the Build 274 parallel app')
-    expected_code = os.environ.get('LUMO_BUILD_NUMBER', '279')
-    expected_name = os.environ.get('LUMO_VERSION_NAME', '0.10.4')
+    expected_code = os.environ.get('LUMO_BUILD_NUMBER', '280')
+    expected_name = os.environ.get('LUMO_VERSION_NAME', '0.10.5')
     if package.group(2) != expected_code or package.group(3) != expected_name:
         raise RuntimeError('Wrong Android version')
     if "sdkVersion:'24'" not in badging:

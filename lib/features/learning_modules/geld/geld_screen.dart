@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
+import '../learning_module_progress.dart';
 
 class _Muenze {
   const _Muenze({
@@ -40,8 +41,7 @@ class GeldScreen extends StatefulWidget {
   State<GeldScreen> createState() => _GeldScreenState();
 }
 
-class _GeldScreenState extends State<GeldScreen>
-    with TickerProviderStateMixin {
+class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
   static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFFCA8A04),
@@ -50,16 +50,37 @@ class _GeldScreenState extends State<GeldScreen>
 
   // Euro-Muenzen
   static const List<_Muenze> _muenzen = [
-    _Muenze(wert: 10, label: '10c', color: Color(0xFFCA8A04), borderColor: Color(0xFF92400E)),
-    _Muenze(wert: 20, label: '20c', color: Color(0xFFEAB308), borderColor: Color(0xFF92400E)),
-    _Muenze(wert: 50, label: '50c', color: Color(0xFFFCD34D), borderColor: Color(0xFF92400E)),
-    _Muenze(wert: 100, label: '1€', color: Color(0xFFFEF3C7), borderColor: Color(0xFF6B7280)),
-    _Muenze(wert: 200, label: '2€', color: Color(0xFFF5F3FF), borderColor: Color(0xFFCA8A04)),
+    _Muenze(
+        wert: 10,
+        label: '10c',
+        color: Color(0xFFCA8A04),
+        borderColor: Color(0xFF92400E)),
+    _Muenze(
+        wert: 20,
+        label: '20c',
+        color: Color(0xFFEAB308),
+        borderColor: Color(0xFF92400E)),
+    _Muenze(
+        wert: 50,
+        label: '50c',
+        color: Color(0xFFFCD34D),
+        borderColor: Color(0xFF92400E)),
+    _Muenze(
+        wert: 100,
+        label: '1€',
+        color: Color(0xFFFEF3C7),
+        borderColor: Color(0xFF6B7280)),
+    _Muenze(
+        wert: 200,
+        label: '2€',
+        color: Color(0xFFF5F3FF),
+        borderColor: Color(0xFFCA8A04)),
   ];
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
   int _taskIdx = 0;
@@ -76,6 +97,11 @@ class _GeldScreenState extends State<GeldScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: 'Geld',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -89,6 +115,7 @@ class _GeldScreenState extends State<GeldScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -154,23 +181,27 @@ class _GeldScreenState extends State<GeldScreen>
   }
 
   String _formatCent(int cent) {
-    if (cent < 100) return '${cent} Cent';
+    if (cent < 100) return '$cent Cent';
     if (cent % 100 == 0) return '${cent ~/ 100} Euro';
     return '${cent ~/ 100} Euro ${cent % 100}';
   }
 
   void _onAnswer(int idx, bool isCorrect) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = idx;
       _answered = true;
     });
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 7 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(7);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -181,8 +212,10 @@ class _GeldScreenState extends State<GeldScreen>
         LumoVoice.instance.speak(LumoPhrases.wrongGentle());
       } catch (_) {}
     }
-    await Future.delayed(const Duration(milliseconds: 1300));
-    if (!mounted) return;
+    if (!await _progress.feedbackDelay(const Duration(milliseconds: 1300)) ||
+        !mounted) {
+      return;
+    }
     _nextTask();
   }
 
@@ -199,21 +232,21 @@ class _GeldScreenState extends State<GeldScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  Future<void> _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    final saved =
+        await _progress.saveBonus(stars: stars, xp: _correctCount * 10);
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('💰 Geld-Quiz fertig!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks Aufgaben richtig!',
               style: const TextStyle(
@@ -263,36 +296,38 @@ class _GeldScreenState extends State<GeldScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildTaskHeader(),
-                  const SizedBox(height: 24),
-                  if (_typ == _GeldFrageTyp.zaehlen) ...[
-                    _buildCoinsOnTable(),
-                    const SizedBox(height: 24),
-                    _buildCentAnswerGrid(),
-                  ] else ...[
-                    _buildCoinAnswerGrid(),
-                  ],
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildTaskHeader(),
+                      const SizedBox(height: 24),
+                      if (_typ == _GeldFrageTyp.zaehlen) ...[
+                        _buildCoinsOnTable(),
+                        const SizedBox(height: 24),
+                        _buildCentAnswerGrid(),
+                      ] else ...[
+                        _buildCoinAnswerGrid(),
+                      ],
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -300,14 +335,13 @@ class _GeldScreenState extends State<GeldScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () => Navigator.of(context).maybePop(),
         ),
         Expanded(
           child: Column(
@@ -335,8 +369,7 @@ class _GeldScreenState extends State<GeldScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -362,8 +395,7 @@ class _GeldScreenState extends State<GeldScreen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
@@ -395,7 +427,8 @@ class _GeldScreenState extends State<GeldScreen>
         alignment: WrapAlignment.center,
         spacing: 12,
         runSpacing: 12,
-        children: _muenzenAufTisch.map((m) => _buildCoinWidget(m, size: 70)).toList(),
+        children:
+            _muenzenAufTisch.map((m) => _buildCoinWidget(m, size: 70)).toList(),
       ),
     );
   }
@@ -442,8 +475,8 @@ class _GeldScreenState extends State<GeldScreen>
         alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(
-              color: m.borderColor.withOpacity(0.55), width: 1.2),
+          border:
+              Border.all(color: m.borderColor.withOpacity(0.55), width: 1.2),
         ),
         child: Text(m.label,
             textAlign: TextAlign.center,
@@ -534,7 +567,8 @@ class _GeldScreenState extends State<GeldScreen>
         final isSelected = _selectedAnswer == idx;
         Color borderColor = _gradient[0].withOpacity(0.3);
         if (_answered && isSelected) {
-          borderColor = isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
+          borderColor =
+              isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
         } else if (_answered && isCorrect) {
           borderColor = const Color(0xFFFCD34D);
         }
