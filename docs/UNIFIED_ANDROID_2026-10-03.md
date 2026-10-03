@@ -51,7 +51,7 @@ und die heruntergeladene APK belegt, nicht nur durch eine Übergabeangabe:
   `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`.
 
 Die gemeinsame neue APK verwendet dasselbe Parallelpaket und Zertifikat,
-Version `0.10.1`, Code 276, Mindestversion Android 7 (API 24), Ziel-API 36.
+Version `0.10.2`, Code 277, Mindestversion Android 7 (API 24), Ziel-API 36.
 Enthaltene Architekturen: `arm64-v8a` für aktuelle Handys einschließlich Galaxy
 Z Fold und `x86_64` für den Emulator. Die neue APK enthält keine 32-Bit-Engine.
 
@@ -77,7 +77,7 @@ Die erste gemeinsame APK wurde wegen unnötiger 32-Bit-Bibliotheken von rund
 Auch die Ausrichtung von Androidressourcen und sämtlichen ELF-Ladesegmenten
 für 16-KiB-Speicherseiten wurde am tatsächlichen APK-Inhalt überprüft.
 
-Vollständiger Flutterlauf auf dem gemeinsamen Stand: **448 bestanden, vier
+Vollständiger Flutterlauf auf dem gemeinsamen Stand: **449 bestanden, vier
 übersprungen, keine Fehler**. Analyse: keine Fehler, 155 bestehende Warnungen/
 Hinweise. Fünf Android-Vorbereitungsprüfungen bestanden. Inhaltsaudit prüft
 37.940 Aufgabenvarianten. Backend nach sicherer Providerdiagnose: 22 Tests
@@ -123,8 +123,20 @@ Android-Prüfungen erhalten. Der neue Kandidat 276 enthält zusätzlich die
 nachgewiesene Abenteuer-Back-/Walletkorrektur. Seine drei Regressionen sammeln
 einen Stern über reale Joystick-/Kollisionsphysik und prüfen Abbruch, Fortsetzen,
 Wallet-Neuladen sowie einen verzögerten beziehungsweise abgelehnten
-Speichervorgang mit erneutem Versuch. Der komplette Abenteuerlevel und die
-Android-Gesamtprüfung werden dadurch noch nicht als bestanden behauptet.
+Speichervorgang mit erneutem Versuch. Ein weiterer Flutter-/Engine-Test spielte
+die erste Abenteuerstrecke/Klasse 1 vollständig bei 800×900 durch: drei
+Frageblöcke, drei Truhenaufgaben, Ergebnis, Rückkehr, neu geladene Wallet mit
+80 Sternen/160 XP, gespeicherter Levelabschluss, erneuter Start und
+Hintergrundpause. Er nutzte Joystick/Sprung-Taps und unveränderte 60-Hz-Physik
+mit Testuhr, einschließlich einer normalen spielinternen Fallrücksetzung.
+Das ist kein Android-, Echtzeit- oder weiterer Streckennachweis.
+
+Im KVM-Lauf 37114690770 startet Kart tatsächlich in derselben installierten
+APK, einschließlich eigener 3D-Welt, Kart und HUD. Der frühere lokale
+CPU-Emulator-Absturz trat dort nicht auf. Die erste Android-Zurück-Taste beendete
+aber die Engine: Godot behandelt `quit_on_go_back` unabhängig von
+`auto_accept_quit`. Kandidat 277 übernimmt die getrennte Korrektur dieses
+Engine-Back-Verhaltens; die vollständige Android-Gesamtprüfung ist weiter offen.
 
 ## Offen
 
@@ -148,4 +160,5 @@ Der Fuchs besitzt weich verbundene 2D-Animationen und annähernde TTS-Wortbewegu
 kein vollständiges 3D-Skelett oder Phonemabgleich.
 Laufende Flutter-Brettpositionen überleben Hintergrundwechsel mit erhaltenem
 Prozess, aber noch keinen vollständigen Prozessabbruch; abgeschlossene Fortschritte
-und Belohnungen sind persistent. Das Flame-Abenteuer ist noch nicht komplett geprüft.
+und Belohnungen sind persistent. Weitere Flame-Strecken/Klassen sowie dessen
+Android-Steuerung sind noch nicht vollständig geprüft.
