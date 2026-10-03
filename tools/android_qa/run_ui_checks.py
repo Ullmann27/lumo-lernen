@@ -14,7 +14,7 @@ import traceback
 
 from android_ui import Android, ADB, content_scroll_gesture
 from kart_android_race import action_marker, marker, read_frame, race_state, wait_for_frame
-from flutter_flows import FlutterChecks
+from flutter_flows import FlutterChecks, LEARNING_SELECTION_CAPTION
 from system_ui import pixel_launcher_anr_close_bounds
 
 
@@ -25,7 +25,6 @@ ONBOARDING_CAPTIONS = {
     'grade': 'In welche Klasse gehst du?',
     'home': 'Spielen',
 }
-LEARNING_SELECTION_CAPTION = 'Was möchtest du üben?'
 
 
 def complete_first_run_ui(wait_for, click, capture, labels):

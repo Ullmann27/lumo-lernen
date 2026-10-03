@@ -37,10 +37,13 @@ It answers calculable math questions after inspecting a wrong-answer hint once,
 waits through a full two-lap race, restarts
 from the result, and returns to Flutter. It opens the game again to check a fresh
 engine process and compares the saved/restored visible race HUD and graphics
-setting. It then uses the native return to learning, selects the actual
-`Plus bis 10` topic, requests local task help, computes the answer solely from
-the visible addition prompt and checks increased visible home stars, XP and
-daily completion. It also plays all twelve Memory pairs through real touches,
+setting. It then uses the native return to the actual Lumo Akademie, selects
+the first-grade `Plus bis 10` exercise module and touches two visibly wrong
+answers to reveal its real local apple-count help. It checks that the help
+matches the observed operands, computes the correct answer solely from the
+visible addition prompt, requires the next actual task, returns with Android
+Back, and checks increased visible home stars, XP and daily completion.
+It also plays all twelve Memory pairs through real touches,
 checks result/restart/back/background/return, completes an actual Cards round
 using accessible visible card faces, and checks its result/restart/back/return.
 It compares visible wallet rewards after each game. Racing uses the

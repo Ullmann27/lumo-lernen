@@ -10,11 +10,72 @@ import xml.etree.ElementTree as ET
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from android_ui import Android, content_scroll_gesture
 from cards_android_round import CardsRound, arithmetic, described_cards, is_result
-from flutter_flows import FlutterChecks, profile_from_labels, visible_text_lines, wallet_from_labels
+from flutter_flows import (FlutterChecks, LEARNING_SELECTION_CAPTION, addition_prompt_from_labels,
+                           apple_help_from_labels, profile_from_labels, visible_text_lines,
+                           wallet_from_labels)
 from memory_android_round import Round, cards, has_caption, labels, result_scores
 
 
 class VisibleUiTests(unittest.TestCase):
+    def test_actual_akademie_plus_module_path_requires_help_answer_and_daily_reward(self):
+        source = Path(__file__).resolve().parents[3]/'lib'
+        shell = (source/'app/app_shell.dart').read_text()
+        akademie = (source/'features/teacher_mode/lumo_akademie_screen.dart').read_text()
+        registry = (source/'features/learning_modules/learning_module_registry.dart').read_text()
+        module = (source/'features/learning_modules/plus_bis_10/plus_bis_10_screen.dart').read_text()
+        self.assertIn('return LumoAkademieScreen(appState: _appState)', shell)
+        self.assertIn(LEARNING_SELECTION_CAPTION, akademie)
+        self.assertIn("id: 'm1_plus10'", akademie)
+        self.assertIn('return PlusBis10Screen(appState: appState)', registry)
+        self.assertIn("'Zähle alle Äpfel zusammen:", module)
+        root = ET.fromstring('''<hierarchy><node bounds="[0,0][480,800]">
+            <node content-desc="Aufgabe 1 / 30&#10;Plus bis 10" bounds="[60,30][410,80]"/>
+            <node content-desc="2 + 5 = ?" bounds="[30,100][450,230]"/>
+            <node content-desc="Ein Tipp!&#10;Zähle alle Äpfel zusammen: 🍎🍎 und 🍏🍏🍏🍏🍏"
+                bounds="[30,260][450,360]"/>
+            <node content-desc="7" clickable="true" bounds="[30,450][225,560]"/>
+            <node content-desc="6" clickable="true" bounds="[240,450][450,560]"/>
+            <node content-desc="8" clickable="true" bounds="[30,575][225,685]"/>
+            <node content-desc="5" clickable="true" bounds="[240,575][450,685]"/>
+            </node></hierarchy>''')
+        device = types.SimpleNamespace(key=lambda *args: keys.append(args), capture=lambda name: None)
+        calls, keys = [], []
+        check = FlutterChecks(device, Path('.'), 'example')
+        check.top = lambda: None
+        check.click = lambda caption, **kwargs: calls.append((caption, kwargs))
+        check.wait = lambda caption, **kwargs: root
+        check.frame = lambda name: root
+        check.targets = lambda screen, caption, **kwargs: [(1, 1, 3, 3)] if caption in {'5', '6', '7', '8'} else []
+        check.record = lambda *args, **kwargs: None
+        before = {'stars': 9, 'xp': 18, 'daily_completed': 0}
+        after = {'stars': 10, 'xp': 23, 'daily_completed': 1}
+        values = iter([before, after])
+        check.wallet = lambda name: next(values)
+        with patch('flutter_flows.time.sleep'):
+            check.learning()
+        self.assertEqual([caption for caption, _ in calls],
+                         ['Lernen', '1. Klasse', 'Plus bis 10', '5', '5', '7'])
+        self.assertTrue(calls[1][1]['contains'])
+        self.assertTrue(calls[2][1]['contains'])
+        self.assertEqual(keys, [('4', 'KEY_BACK')])
+        self.assertEqual(check.proof['learning']['wrong_answers'], ['5', '5'])
+        self.assertEqual(check.proof['learning']['wallet_after']['daily_completed'], 1)
+        values = iter([before, dict(after, daily_completed=0)])
+        check.wallet = lambda name: next(values)
+        with patch('flutter_flows.time.sleep'), self.assertRaises(RuntimeError):
+            check.learning()
+
+    def test_local_apple_help_must_match_unique_visible_plus_task(self):
+        self.assertEqual(addition_prompt_from_labels(['Plus bis 10\n2 + 5 = ?']), '2 + 5 = ?')
+        hint = 'Zähle alle Äpfel zusammen: 🍎🍎 und 🍏🍏🍏🍏🍏'
+        self.assertEqual(apple_help_from_labels(['Ein Tipp!\n'+hint], '2 + 5 = ?'), hint)
+        for values in (['2 + 5 = ?', '3 + 4 = ?'], ['9 + 8 = ?'], ['Keine Frage']):
+            with self.subTest(values=values), self.assertRaises(ValueError):
+                addition_prompt_from_labels(values)
+        for values in (['Lumo erklärt'], [hint+' Text'], ['Zähle alle Äpfel zusammen: 🍎 und 🍏']):
+            with self.subTest(values=values), self.assertRaises(ValueError):
+                apple_help_from_labels(values, '2 + 5 = ?')
+
     def test_real_home_scroll_stays_inside_content_above_companion(self):
         root = ET.parse(Path(__file__).parent/'fixtures/home-api35-37111452558.xml').getroot()
         gesture = content_scroll_gesture(root)
@@ -121,6 +182,40 @@ class VisibleUiTests(unittest.TestCase):
                                     'Heute: 2 von 5 Aufgaben\n7 / 400 XP bis Level 3'])
         self.assertEqual(value, {'stars': 27, 'xp': 407, 'level': 2,
                                  'daily_completed': 2, 'daily_goal': 5})
+
+    def test_actual_compact_android_wallet_progress_prefix_preserves_xml_and_bounds(self):
+        fixture = Path(__file__).parent/'fixtures/home-api35-37121358107.xml'
+        root = ET.parse(fixture).getroot()
+        original = ET.tostring(root)
+        raw = labels(root)
+        self.assertIn('0, 0 Sterne\nLevel 1\n0 Lerntage in Folge\n'
+                      'Heute: 0 von 3 Aufgaben\n0 / 400 XP bis Level 2', raw)
+        self.assertEqual(wallet_from_labels(raw), {'stars': 0, 'xp': 0, 'level': 1,
+                                                   'daily_completed': 0, 'daily_goal': 3})
+        checker = FlutterChecks(types.SimpleNamespace(bounds=Android.bounds), Path('.'), 'example')
+        self.assertEqual(checker.targets(root, 'Spielen', contains=True), [(16, 328, 464, 416)])
+        self.assertEqual(content_scroll_gesture(root)['bounds'], [0, 132, 480, 577])
+        self.assertEqual(ET.tostring(root), original)
+
+    def test_numeric_merged_progress_value_matches_actual_daily_completion(self):
+        for progress, completed, goal in [(33, 1, 3), (67, 2, 3), (100, 5, 3), (13, 1, 8)]:
+            with self.subTest(progress=progress):
+                value = wallet_from_labels([f'{progress}, 27 Sterne', '7 / 400 XP bis Level 3',
+                                            f'Heute: {completed} von {goal} Aufgaben'])
+                self.assertEqual(value['stars'], 27)
+                self.assertEqual(value['daily_completed'], completed)
+
+    def test_merged_progress_prefix_never_bypasses_missing_or_ambiguous_wallet_checks(self):
+        for values in (['0, 27 Sterne', '0 / 400 XP bis Level 2'],
+                       ['0, 27 Sterne', 'Heute: 0 von 3 Aufgaben'],
+                       ['0, 27 Sterne', '28 Sterne', '0 / 400 XP bis Level 2', 'Heute: 0 von 3 Aufgaben'],
+                       ['33, 27 Sterne', '0 / 400 XP bis Level 2', 'Heute: 0 von 3 Aufgaben'],
+                       ['101, 27 Sterne', '0 / 400 XP bis Level 2', 'Heute: 3 von 3 Aufgaben'],
+                       ['Text 0, 27 Sterne', '0 / 400 XP bis Level 2', 'Heute: 0 von 3 Aufgaben'],
+                       ['0, 27 Sterne extra', '0 / 400 XP bis Level 2', 'Heute: 0 von 3 Aufgaben'],
+                       ['0, 27 Sterne', '0 / 400 XP bis Level 2', 'Heute: 0 von 0 Aufgaben']):
+            with self.subTest(values=values), self.assertRaises(ValueError):
+                wallet_from_labels(values)
 
     def test_missing_or_conflicting_merged_profile_and_wallet_still_fail(self):
         for values in (['Hallo, Kind!'], ['Hallo, Kind!\nDein Lumo-Tag · 1. Klasse\nDein Lumo-Tag · 2. Klasse'],

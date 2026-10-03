@@ -145,14 +145,17 @@ class LumoSessionState {
 }
 
 class LumoAppState extends ChangeNotifier {
-  LumoAppState({RewardWalletRepository? walletRepository})
-      : _walletRepository = walletRepository ?? RewardWalletRepository.instance;
+  LumoAppState(
+      {RewardWalletRepository? walletRepository,
+      LearningProfileEngine? learningProfile})
+      : _walletRepository = walletRepository ?? RewardWalletRepository.instance,
+        _learningProfile = learningProfile ?? LearningProfileEngine();
 
   final RewardWalletRepository _walletRepository;
   LumoSessionState _state = LumoSessionState();
   LumoSessionState get state => _state;
 
-  final LearningProfileEngine _learningProfile = LearningProfileEngine();
+  final LearningProfileEngine _learningProfile;
   final ScannedWorkAnalysisEngine _scanAnalysis =
       const ScannedWorkAnalysisEngine();
   bool _learningProfileLoaded = false;
@@ -352,6 +355,7 @@ class LumoAppState extends ChangeNotifier {
     required String unit,
     required bool correct,
     bool hintUsed = false,
+    bool requireSaved = false,
   }) async {
     if (_disposed) return;
     try {
@@ -367,7 +371,17 @@ class LumoAppState extends ChangeNotifier {
       );
       _syncLearningRecommendation();
       _safeNotify();
-    } catch (_) {}
+    } catch (_) {
+      if (requireSaved) rethrow;
+    }
+  }
+
+  /// Retries the existing learning state without counting the answer again.
+  Future<void> flushLearningProgress() async {
+    await _learningProfile.flush();
+    if (_disposed) return;
+    _syncLearningRecommendation();
+    _safeNotify();
   }
 
   Future<ScannedWorkAnalysis> analyzeScannedWork(String rawText) async {

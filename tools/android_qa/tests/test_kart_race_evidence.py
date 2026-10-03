@@ -2,12 +2,16 @@
 import sys
 from pathlib import Path
 import unittest
+import hashlib
+import importlib.util
+import json
+import shutil
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from kart_android_race import (race_state, second_round_in_progress, require_second_round,
                               wait_for_frame, marker, restart_visible, local_hint_visible,
                               lesson_closed_or_changed, action_marker, lightweight_pause_visible,
-                              answer_for, simple_calculation, lesson_visible)
+                              answer_for, simple_calculation, lesson_visible, maths_value, read_frame)
 
 
 def frame(*captions):
@@ -39,6 +43,23 @@ class KartRaceEvidenceTests(unittest.TestCase):
                          frame('RUNDE?/2', 'PLATZ4/6'), frame('PLATZ4/6')]:
             with self.subTest(frame=observed):
                 self.assertFalse(second_round_in_progress(observed))
+
+    def test_valid_later_hud_crop_is_read_and_conflicting_values_are_rejected(self):
+        observed = frame('RUNDE2/2', 'PLATZ1l/6', 'RUNDE 2/2 · PLATZ 1/6')
+        self.assertEqual(race_state(observed), {'round': [2, 2], 'place': [1, 6]})
+        for captions in [('RUNDE1/2', 'RUNDE2/2', 'PLATZ1/6'),
+                         ('RUNDE2/2', 'PLATZ1/6', 'PLATZ2/6'),
+                         ('RUNDE3/2', 'PLATZ1/6')]:
+            with self.subTest(captions=captions):
+                with self.assertRaises(RuntimeError):
+                    race_state(frame(*captions))
+
+    def test_measured_hud_ignores_captions_outside_its_real_panel(self):
+        observed = {'hud_panel': {'top': 45, 'height': 39},
+                    'hud_lines': [{'text': 'RUNDE2/2 · PLATZ1/6'}], 'lines': [
+                        {'text': 'RUNDE1/2', 'top': 150, 'height': 12},
+                        {'text': 'PLATZ1l/6', 'top': 58, 'height': 14}]}
+        self.assertEqual(race_state(observed), {'round': [2, 2], 'place': [1, 6]})
 
     def test_success_keeps_reference_to_the_actual_prior_capture(self):
         require_second_round(23)
@@ -97,12 +118,24 @@ class KartTransitionEvidenceTests(unittest.TestCase):
         self.assertTrue(restart_visible(frame('RUNDE 1/2', 'PLATZ 1/6', '3')))
 
     def test_hint_must_replace_the_waiting_caption_while_the_lesson_remains(self):
-        original = {'height': 720, 'lines': [{'text': 'LERN-BOOST', 'top': 160},
-                    {'text': 'Alle Karts warten. Nimm dir Zeit.', 'top': 290}]}
-        explanation = {'height': 720, 'lines': [{'text': 'LERN-BOOST', 'top': 160},
-                       {'text': 'Zähle die beiden Gruppen gemeinsam.', 'top': 290}]}
+        # Measured multiline-panel geometry can put a hint below the old
+        # arbitrary 0.52*480=249 cutoff. No world caption can supply this ROI.
+        geometry = {'height': 480, 'lines': [{'text': 'LERN-BOOST', 'top': 121}],
+                    'lesson_panel': {'top': 100, 'height': 180},
+                    'answer_buttons': [{'top': 200, 'height': 36}]}
+        original = {**geometry, 'lesson_hint': {'text': 'Alle Karts warten. Nimm dir Zeit.',
+                                              'top': 254, 'height': 11}}
+        explanation = {**geometry, 'lesson_hint': {'text': 'Zähle die beiden Gruppen gemeinsam.',
+                                                 'top': 254, 'height': 11}}
         self.assertFalse(local_hint_visible(original))
         self.assertTrue(local_hint_visible(explanation))
+        self.assertFalse(local_hint_visible({**explanation, 'lesson_hint': {
+            **explanation['lesson_hint'], 'top': 200}}))
+        self.assertFalse(local_hint_visible({**explanation, 'lesson_hint': {
+            **explanation['lesson_hint'], 'top': 290}}))
+        self.assertFalse(local_hint_visible({'height': 480, 'lines': [
+            {'text': 'LERN-BOOST', 'top': 121},
+            {'text': 'Zähle die beiden Gruppen gemeinsam.', 'top': 254}]}))
         self.assertFalse(local_hint_visible(frame('RUNDE 1/2')))
 
     def test_answer_transition_requires_a_real_hud_after_the_lesson_disappears(self):
@@ -169,6 +202,15 @@ class KartActionCaptionTests(unittest.TestCase):
 
 
 class KartAnswerTargetTests(unittest.TestCase):
+    def test_complete_known_story_prompts_are_computed_but_partial_noise_is_rejected(self):
+        self.assertEqual(maths_value('Im Regal liegen 2 Bücher. 7 neue kommen dazu. Wie viele sind es jetzt?'), 9)
+        self.assertEqual(maths_value('Im Garten stehen 2 Blumen. Lumo pflanzt 1 dazu. Wie viele wachsen jetzt?'), 3)
+        self.assertEqual(maths_value('Auf dem Fest sind 2 Kinder. 3 kommen noch. Wie viele feiern zusammen?'), 5)
+        for caption in ('Im Regal liegen 2 Bücher. 7 neue kommen dazu.',
+                        'Zähle 2 Bücher und 7 neue zusammen.',
+                        'Lure sammelt 2 Muscheln. 4 kommen dazu. Wie viele sind es?'):
+            self.assertIsNone(maths_value(caption))
+
     def test_second_real_kvm_question_is_answerable_when_skip_caption_is_not_readable(self):
         # Actual second learning stop: 023-race.png, run 37120532906.
         observed = {'height': 480, 'lines': [
@@ -232,6 +274,67 @@ class KartAnswerTargetTests(unittest.TestCase):
                 self.assertIs(wrong, options[0])
                 self.assertEqual((wrong['left']+wrong['width']//2, wrong['top']+wrong['height']//2), (213, 194))
                 self.assertTrue(all(word['top'] > prompt['top']+prompt['height'] for word in answer['options']))
+
+
+@unittest.skipUnless(shutil.which('tesseract') and importlib.util.find_spec('PIL'),
+                     'Actual screenshot OCR requires tesseract and Pillow')
+class KartActualScreenshotTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.directory = Path(__file__).parent/'fixtures'/'kart-37121358107'
+        cls.provenance = json.loads((cls.directory/'provenance.json').read_text())
+        cls.frames = {name: read_frame(cls.directory/name) for name in cls.provenance['files']}
+
+    def test_raw_fixtures_are_the_unmodified_actual_android_frames(self):
+        for name, record in self.provenance['files'].items():
+            raw = (self.directory/name).read_bytes()
+            self.assertEqual(len(raw), record['bytes'])
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), record['sha256'])
+
+    def test_all_real_skip_captions_are_read_inside_their_actual_blue_buttons(self):
+        for name, observed in self.frames.items():
+            with self.subTest(image=name):
+                button = action_marker(observed, 'SPATER')
+                self.assertIsNotNone(button)
+                x, y = button['left']+button['width']//2, button['top']+button['height']//2
+                self.assertTrue(553 <= x <= 620 and 108 <= y <= 145)
+        self.assertIsNone(action_marker(frame('spacer', 'Die nächste Frage kommt später.'), 'SPATER'))
+
+    def test_complete_wrapped_book_prompt_and_all_real_answer_fields_are_read(self):
+        observed = self.frames['033-race.png']
+        answer = answer_for(observed)
+        self.assertEqual(answer['expected'], 9)
+        self.assertEqual([int(word['text']) for word in answer['options']], [9, 6, 12])
+        self.assertGreater(answer['option']['top'], .44*observed['height'])
+        self.assertTrue(134 <= answer['option']['left'] <= 291)
+        self.assertTrue(200 <= answer['option']['top'] <= 236)
+        self.assertFalse(local_hint_visible(observed))
+
+    def test_wrapped_garden_task_uses_observed_three_instead_of_prompt_digits(self):
+        observed = self.frames['022-race.png']
+        answer = answer_for(observed)
+        self.assertEqual(answer['expected'], 3)
+        self.assertEqual([int(word['text']) for word in answer['options']], [6, 0, 3])
+        self.assertTrue(462 <= answer['option']['left'] <= 620)
+        self.assertTrue(200 <= answer['option']['top'] <= 236)
+        self.assertFalse(local_hint_visible(observed))
+
+    def test_real_wrong_hint_is_contextual_and_correct_eight_remains_readable(self):
+        observed = self.frames['016-wrong-local-hint.png']
+        self.assertTrue(local_hint_visible(observed))
+        self.assertIn('Starte bei 6', observed['lesson_hint']['text'])
+        answer = answer_for(observed)
+        self.assertEqual(answer['expected'], 8)
+        self.assertEqual([int(word['text']) for word in answer['options']], [8, 10, 6])
+        self.assertTrue(134 <= answer['option']['left'] <= 291)
+        self.assertTrue(176 <= answer['option']['top'] <= 212)
+
+    def test_real_frame_with_missing_base_place_still_proves_round_two_before_result(self):
+        observed = self.frames['033-race.png']
+        self.assertEqual(race_state(observed), {'round': [2, 2], 'place': [1, 6]})
+        self.assertTrue(second_round_in_progress(observed))
+        result = {**observed, 'lines': observed['lines']+[{'text': 'Sonnenhafen-Cup geschafft!'}]}
+        self.assertFalse(second_round_in_progress(result))
 
 
 if __name__ == '__main__':

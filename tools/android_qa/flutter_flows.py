@@ -7,6 +7,7 @@ stars, XP/level and daily completion before/after process restart.
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 import re
 import time
@@ -15,6 +16,32 @@ import xml.etree.ElementTree as ET
 from memory_android_round import Round as MemoryRound, labels
 from cards_android_round import CardsRound, arithmetic
 from android_ui import content_scroll_gesture
+
+LEARNING_SELECTION_CAPTION = 'LUMO AKADEMIE'
+
+
+def addition_prompt_from_labels(values):
+    prompts = {value for value in visible_text_lines(values)
+               if re.fullmatch(r'\d+\s*\+\s*\d+\s*=\s*\?', value)}
+    if len(prompts) != 1:
+        raise ValueError('The actual Plus-bis-10 task did not expose one unambiguous addition.')
+    prompt = prompts.pop()
+    operands = list(map(int, re.findall(r'\d+', prompt)))
+    if len(operands) != 2 or min(operands) < 1 or sum(operands) > 10:
+        raise ValueError('The visible addition does not belong to Plus bis 10.')
+    return prompt
+
+
+def apple_help_from_labels(values, prompt):
+    hints = {value for value in visible_text_lines(values)
+             if re.fullmatch(r'Zähle alle Äpfel zusammen: 🍎+ und 🍏+', value)}
+    if len(hints) != 1:
+        raise ValueError('The real module did not expose one local apple-count explanation.')
+    hint = hints.pop()
+    left, right = map(int, re.findall(r'\d+', prompt))
+    if hint.count('🍎') != left or hint.count('🍏') != right:
+        raise ValueError('Visible local apple help does not match the actual task operands.')
+    return hint
 
 
 def visible_text_lines(values):
@@ -39,8 +66,12 @@ def profile_from_labels(values):
 def wallet_from_labels(values):
     """Only the concrete home-stat captions count; bare header digits do not."""
     values = visible_text_lines(values)
-    stars = {int(match[1]) for value in values
-             if (match := re.fullmatch(r'(\d+) Sterne', value))}
+    # The real Android progress-bar value can be prepended to the merged
+    # wallet caption, e.g. "0, 0 Sterne\nLevel 1\nHeute: ...". Accept
+    # exactly that numeric prefix, then verify it against the daily progress.
+    star_matches = [match for value in values
+                    if (match := re.fullmatch(r'(?:(\d+), )?(\d+) Sterne', value))]
+    stars = {int(match[2]) for match in star_matches}
     xp = {(int(match[1]), int(match[2])) for value in values
           if (match := re.fullmatch(r'(\d+) / 400 XP bis Level (\d+)', value))}
     daily = {(int(match[1]), int(match[2])) for value in values
@@ -51,6 +82,12 @@ def wallet_from_labels(values):
     if not 0 <= xp_in_level < 400 or next_level < 2:
         raise ValueError('Invalid visible XP/level caption.')
     completed, goal = next(iter(daily))
+    if goal < 1:
+        raise ValueError('Invalid visible daily goal.')
+    expected_progress = math.floor(min(completed / goal, 1)*100+.5)
+    if any(match[1] is not None and int(match[1]) != expected_progress
+           for match in star_matches):
+        raise ValueError('Merged progress-bar value conflicts with visible daily progress.')
     return {'stars': next(iter(stars)), 'xp': (next_level-2)*400+xp_in_level,
             'level': next_level-1, 'daily_completed': completed, 'daily_goal': goal}
 
@@ -192,42 +229,60 @@ class FlutterChecks:
         before = self.wallet('wallet-before-learning')
         self.top()
         self.click('Lernen', scroll=True)
-        self.wait('Was möchtest du üben?')
-        self.click('Plus bis 10', scroll=True)
-        self.wait('Lumo, hilf mir', scroll=True)
-        # The real GestureDetector merges its decorative emoji and caption
-        # into one accessibility label: "✨\nLumo, hilf mir".
-        self.click('Lumo, hilf mir', contains=True, scroll=True)
-        self.wait('Lumo erklärt', scroll=True)
-        self.device.capture('flutter-local-task-help')
-        self.top()
-        prompt = None
-        for _ in range(10):
-            root = self.frame('actual-learning-prompt')
-            prompts = {value for value in visible_text_lines(labels(root))
-                       if re.fullmatch(r'\d+\s*\+\s*\d+\s*=\s*\?', value)}
-            if len(prompts) == 1:
-                prompt = prompts.pop()
-                break
-            self.scroll(root)
-        if prompt is None:
-            raise RuntimeError('The chosen Plus-bis-10 task did not expose an unambiguous addition prompt.')
+        self.wait(LEARNING_SELECTION_CAPTION)
+        # AppShell opens the actual Akademie. Its first-grade Plus topic is
+        # a real Navigator exercise module, not the unused subject-selection
+        # screen or the generic LearningContent route.
+        self.click('1. Klasse', contains=True, scroll=True)
+        self.click('Plus bis 10', contains=True, scroll=True)
+        self.wait('Aufgabe 1 / 30')
+        root = self.frame('actual-plus-module-prompt')
+        prompt = addition_prompt_from_labels(labels(root))
         expected = arithmetic(prompt)
         if expected is None:
             raise RuntimeError('The actual visible addition cannot be evaluated.')
+        answers = {value for value in visible_text_lines(labels(root))
+                   if re.fullmatch(r'\d+', value) and self.targets(root, value)
+                   and 0 <= int(value) <= 10}
+        if len(answers) != 4 or expected not in answers:
+            raise RuntimeError('The actual Plus module did not expose its four answer controls.')
+        wrong = min(answers-{expected}, key=int)
+        # This module reveals its real local explanation after two wrong
+        # answers. Compute both from the public prompt, never from app state.
+        for attempt in range(2):
+            root = self.frame('plus-before-wrong-answer')
+            if addition_prompt_from_labels(labels(root)) != prompt:
+                raise RuntimeError('The actual task changed before the local-help check.')
+            self.record('actual_learning_wrong_answer', prompt=prompt, answer=wrong,
+                        attempt=attempt+1, correct=False)
+            self.click(wrong, scroll=True)
+            time.sleep(1)
+        root = self.wait('Zähle alle Äpfel zusammen:', scroll=True)
+        if addition_prompt_from_labels(labels(root)) != prompt:
+            raise RuntimeError('The actual task changed while showing local help.')
+        hint = apple_help_from_labels(labels(root), prompt)
+        self.device.capture('flutter-local-task-help')
         self.record('actual_learning_solution', prompt=prompt, expected=expected,
-                    source='visible Android prompt', local_help_observed=True)
+                    source='visible Android prompt', local_help_observed=True,
+                    visible_local_help=hint)
         self.click(expected, scroll=True)
-        # Feedback advances automatically in this app. The durable, visible
-        # daily count and earned wallet delta prove evaluation even if that
-        # brief feedback has disappeared before a subsequent UI dump.
-        time.sleep(1)
+        # The module advances only after the accepted answer and reward have
+        # been saved. Require its actual next task counter before returning.
+        self.wait('Aufgabe 2 / 30')
         self.device.capture('flutter-learning-answer')
+        self.device.key('4', 'KEY_BACK')
+        # Navigator restores the Akademie's actual topic scroll position.
+        # Reach its hero through real upward gestures before checking return.
+        self.top()
+        self.wait(LEARNING_SELECTION_CAPTION)
         after = self.wallet('wallet-after-learning')
         if not (after['daily_completed'] >= before['daily_completed']+1
-                and after['stars'] > before['stars'] and after['xp'] > before['xp']):
+                and after['stars'] >= before['stars']+1 and after['xp'] >= before['xp']+5):
             raise RuntimeError(f'Correct help/answer did not produce actual visible progress/reward: {before} / {after}')
-        self.proof['learning'] = {'prompt': prompt, 'answer': expected, 'help': 'local visible explanation',
+        self.proof['learning'] = {'route': 'Akademie → 1. Klasse → Plus bis 10 module',
+                                  'prompt': prompt, 'answer': expected, 'wrong_answers': [wrong, wrong],
+                                  'help': hint, 'next_actual_task': 'Aufgabe 2 / 30',
+                                  'android_back_to_akademie': True,
                                   'wallet_before': before, 'wallet_after': after}
         self.top()
 
@@ -278,7 +333,7 @@ class FlutterChecks:
             # Real navigation at each size checks actionable controls as well
             # as screenshots; no physical Samsung device is claimed.
             self.click('Lernen', scroll=True)
-            self.wait('Was möchtest du üben?')
+            self.wait(LEARNING_SELECTION_CAPTION)
             self.device.capture(name+'-learning-navigation')
             self.home()
         self.device.resize('720x1280', '320')

@@ -12,6 +12,7 @@
 //   - Am Ende: Auswertung mit Sternen
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:math' as math;
 
 import '../../../core/lumo_companion_state.dart';
@@ -37,7 +38,7 @@ class PlusBis10Screen extends StatefulWidget {
 }
 
 class _PlusBis10ScreenState extends State<PlusBis10Screen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFFFB923C),
@@ -55,6 +56,17 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   bool _showHint = false;
   bool _answered = false;
   int? _selectedAnswer;
+  int? _pendingAnswer;
+  bool _pendingHintUsed = false;
+  bool _saving = false;
+  bool _rewardBooked = false;
+  bool _profileRecorded = false;
+  String? _saveError;
+  Timer? _feedbackTimer;
+  VoidCallback? _afterFeedback;
+  bool _foreground = true;
+  bool _finishSavePending = false;
+  bool _finishRewardBooked = false;
 
   // Aktuelle Aufgabe
   late int _a;
@@ -66,6 +78,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _bounceCtrl = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),
@@ -87,6 +100,8 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _feedbackTimer?.cancel();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -127,6 +142,32 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _answered = false;
     _selectedAnswer = null;
     _wrongAttempts = 0;
+    _pendingAnswer = null;
+    _rewardBooked = false;
+    _profileRecorded = false;
+    _saveError = null;
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _foreground = state == AppLifecycleState.resumed;
+    if (!_foreground) {
+      _feedbackTimer?.cancel();
+      _feedbackTimer = null;
+    } else if (_afterFeedback != null) {
+      _scheduleFeedback(const Duration(milliseconds: 1300), _afterFeedback!);
+    }
+  }
+
+  void _scheduleFeedback(Duration duration, VoidCallback action) {
+    _feedbackTimer?.cancel();
+    _afterFeedback = action;
+    if (!_foreground) return;
+    _feedbackTimer = Timer(duration, () {
+      _feedbackTimer = null;
+      _afterFeedback = null;
+      if (mounted) action();
+    });
   }
 
   void _speakTask() {
@@ -136,48 +177,101 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   }
 
   void _handleAnswer(int answer) {
-    if (_answered) return;
+    if (_answered || _pendingAnswer != null || _afterFeedback != null) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = answer;
+      _pendingAnswer = answer;
+      _pendingHintUsed = _showHint;
+      _saving = true;
+      _answered = answer == _correct;
+      if (!_answered) _wrongAttempts++;
     });
+    unawaited(_saveAnswer());
+  }
 
-    if (answer == _correct) {
-      _handleCorrect();
-    } else {
-      _handleWrong(answer);
+  Future<void> _saveAnswer() async {
+    final answer = _pendingAnswer;
+    if (answer == null) return;
+    final correct = answer == _correct;
+    final hintUsed = _pendingHintUsed;
+    try {
+      if (correct) {
+        if (!_rewardBooked) {
+          _rewardBooked = true;
+          widget.appState.addRewards(stars: 1, xp: 5);
+        }
+        await widget.appState.flushRewards();
+      }
+      if (!widget.appState.learningProfileLoaded) {
+        await widget.appState.loadLearningProfile();
+        if (!widget.appState.learningProfileLoaded) {
+          throw StateError('Learning profile could not be loaded');
+        }
+      }
+      if (!_profileRecorded) {
+        // recordAnswer mutates its in-memory counters before saving. A retry
+        // must flush that same state, rather than recording a second answer.
+        _profileRecorded = true;
+        await widget.appState.recordLearningAnswer(
+          subject: 'Mathematik',
+          unit: 'Plus bis 10',
+          correct: correct,
+          hintUsed: hintUsed,
+          requireSaved: true,
+        );
+      } else {
+        await widget.appState.flushLearningProgress();
+      }
+      if (!mounted) return;
+      setState(() {
+        _pendingAnswer = null;
+        _saving = false;
+        _saveError = null;
+      });
+      if (correct) {
+        _handleCorrect();
+      } else {
+        _handleWrong(answer);
+      }
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _saving = false;
+        _saveError = 'Deine Antwort wartet noch aufs Speichern. '
+            'Wir versuchen es gemeinsam erneut.';
+      });
     }
   }
 
-  void _handleCorrect() async {
+  void _retrySave() {
+    if (_saving || (_pendingAnswer == null && !_finishSavePending)) return;
+    setState(() => _saving = true);
+    unawaited(_finishSavePending ? _saveFinish() : _saveAnswer());
+  }
+
+  void _handleCorrect() {
     setState(() {
       _answered = true;
       _correctCount++;
     });
     _bounceCtrl.forward(from: 0);
     HapticFeedback.mediumImpact();
-    widget.appState.addStars(1);
-    widget.appState.addXp(5);
     // Cosmos-Belohnung: pflanze einen Baum in der Welt!
     CosmosWorld.instance.grantReward(
       subjectId: 'm1_plus10',
       isMath: true,
       isPerfect: false,
     );
-      LumoCompanionState.instance.recordCorrect(topic: 'math');
+    LumoCompanionState.instance.recordCorrect(topic: 'math');
     try {
       LumoVoice.instance.speak(LumoPhrases.correct());
     } catch (_) {}
 
-    await Future.delayed(const Duration(milliseconds: 1300));
-    if (!mounted) return;
-    _nextTask();
+    _scheduleFeedback(const Duration(milliseconds: 1300), _nextTask);
   }
 
-  void _handleWrong(int answer) async {
-    setState(() {
-      _wrongAttempts++;
-    });
+  void _handleWrong(int answer) {
     _shakeCtrl.forward(from: 0);
     HapticFeedback.heavyImpact();
     try {
@@ -186,18 +280,20 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
     // Nach 2 Fehlversuchen: Hint zeigen
     if (_wrongAttempts >= 2 && !_showHint) {
-      await Future.delayed(const Duration(milliseconds: 800));
-      if (!mounted) return;
-      setState(() {
-        _showHint = true;
-        _selectedAnswer = null;
-      });
+      _scheduleFeedback(
+          const Duration(milliseconds: 800),
+          () => setState(() {
+                _showHint = true;
+                _selectedAnswer = null;
+                _profileRecorded = false;
+              }));
     } else {
-      await Future.delayed(const Duration(milliseconds: 600));
-      if (!mounted) return;
-      setState(() {
-        _selectedAnswer = null;
-      });
+      _scheduleFeedback(
+          const Duration(milliseconds: 600),
+          () => setState(() {
+                _selectedAnswer = null;
+                _profileRecorded = false;
+              }));
     }
   }
 
@@ -216,25 +312,49 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   }
 
   void _showFinish() {
+    setState(() {
+      _finishSavePending = true;
+      _saving = true;
+    });
+    unawaited(_saveFinish());
+  }
+
+  Future<void> _saveFinish() async {
     final percent = _correctCount / _totalTasks;
     final stars = (percent * 5).round().clamp(1, 5);
     // FIX: vorher stars*2 - das war Star-Inflation: 30 richtige Antworten
     // gaben 30 Sterne wahrend des Spiels + 10 Bonus = 40 Sterne. Die
     // anderen Module geben am Ende nur `stars` (1-5). Jetzt konsistent.
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    try {
+      if (!_finishRewardBooked) {
+        _finishRewardBooked = true;
+        widget.appState.addRewards(stars: stars, xp: _correctCount * 10);
+      }
+      await widget.appState.flushRewards();
+      if (!mounted) return;
+      setState(() {
+        _finishSavePending = false;
+        _saving = false;
+        _saveError = null;
+      });
+    } catch (_) {
+      if (mounted) {
+        setState(() {
+          _saving = false;
+          _saveError = 'Deine Belohnung wartet noch aufs Speichern.';
+        });
+      }
+      return;
+    }
 
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFEF3C7),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: Text(
-          percent >= 0.8
-              ? '🎉 ${LumoPhrases.celebrate()}'
-              : '👍 Geschafft!',
+          percent >= 0.8 ? '🎉 ${LumoPhrases.celebrate()}' : '👍 Geschafft!',
           textAlign: TextAlign.center,
           style: const TextStyle(
               fontFamily: 'Nunito', fontWeight: FontWeight.w900),
@@ -295,6 +415,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                   setState(() {
                     _taskIdx = 0;
                     _correctCount = 0;
+                    _finishRewardBooked = false;
                     _generateTask();
                   });
                   _entryCtrl.reset();
@@ -316,43 +437,68 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(
-          children: [
-            _buildTopBar(),
-            Expanded(
-              child: AnimatedBuilder(
-                animation: Listenable.merge([_entryCtrl, _shakeCtrl]),
-                builder: (_, __) {
-                  final shake = _shakeCtrl.value < 1.0
-                      ? math.sin(_shakeCtrl.value * math.pi * 4) * 8
-                      : 0.0;
-                  return Transform.translate(
-                    offset: Offset(shake, 0),
-                    child: FadeTransition(
-                      opacity: _entryCtrl,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            _buildTaskCard(),
-                            if (_showHint) _buildHintCard(),
-                            _buildAnswerButtons(),
-                          ],
+    return PopScope<void>(
+        canPop: _pendingAnswer == null && !_finishSavePending,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(
+              children: [
+                _buildTopBar(),
+                if (_saving || _saveError != null)
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+                    child: Column(children: [
+                      Text(_saveError ?? 'Wir speichern deine Antwort…',
+                          textAlign: TextAlign.center),
+                      if (_saveError != null)
+                        FilledButton(
+                            onPressed: _saving ? null : _retrySave,
+                            child: const Text('Erneut versuchen')),
+                    ]),
+                  ),
+                Expanded(
+                  child: AnimatedBuilder(
+                    animation: Listenable.merge([_entryCtrl, _shakeCtrl]),
+                    builder: (_, __) {
+                      final shake = _shakeCtrl.value < 1.0
+                          ? math.sin(_shakeCtrl.value * math.pi * 4) * 8
+                          : 0.0;
+                      return Transform.translate(
+                        offset: Offset(shake, 0),
+                        child: FadeTransition(
+                          opacity: _entryCtrl,
+                          child: LayoutBuilder(
+                              builder: (context, constraints) =>
+                                  SingleChildScrollView(
+                                      child: ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                              minHeight: constraints.maxHeight),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(20),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                _buildTaskCard(),
+                                                const SizedBox(height: 16),
+                                                if (_showHint) _buildHintCard(),
+                                                const SizedBox(height: 16),
+                                                _buildAnswerButtons(),
+                                              ],
+                                            ),
+                                          )))),
                         ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   Widget _buildTopBar() {
@@ -360,8 +506,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: const LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
         boxShadow: [
           BoxShadow(
               color: _gradient[0].withOpacity(0.3),
@@ -371,9 +516,11 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: _pendingAnswer == null && !_finishSavePending
+              ? () => Navigator.of(context).pop()
+              : null,
         ),
         Expanded(
           child: Column(
@@ -401,8 +548,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -455,8 +601,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       spacing: 6,
       runSpacing: 6,
       children: [
-        ...List.generate(_a,
-            (i) => const Icon(Icons.apple_rounded, color: Color(0xFFEF4444), size: 38)),
+        ...List.generate(
+            _a,
+            (i) => const Icon(Icons.apple_rounded,
+                color: Color(0xFFEF4444), size: 38)),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6),
           child: Text('+',
@@ -466,8 +614,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                   fontWeight: FontWeight.w900,
                   color: _gradient[1])),
         ),
-        ...List.generate(_b,
-            (i) => const Icon(Icons.apple_rounded, color: Color(0xFF22C55E), size: 38)),
+        ...List.generate(
+            _b,
+            (i) => const Icon(Icons.apple_rounded,
+                color: Color(0xFF22C55E), size: 38)),
       ],
     );
   }
@@ -482,8 +632,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         border: Border.all(color: const Color(0xFFFCD34D), width: 2),
       ),
       child: Row(children: [
-        const Icon(Icons.lightbulb_rounded,
-            color: Color(0xFFCA8A04), size: 28),
+        const Icon(Icons.lightbulb_rounded, color: Color(0xFFCA8A04), size: 28),
         const SizedBox(width: 10),
         Expanded(
           child: Column(

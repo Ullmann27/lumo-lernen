@@ -1,5 +1,16 @@
 # Gemeinsame Android-App: Lumo Lernen und Lumo Kart
 
+Aktuelle Fortsetzung: **0.10.3 / Build 278 wird vorbereitet**. Build 277 wurde
+nicht veröffentlicht. Sein installierter Androidlauf bestätigte den echten
+Kartstart, Android-Zurück/Pause/Fortsetzen, lokale Erklärung nach falscher
+Antwort, richtige Matheantwort und die sichtbar erreichte zweite Runde.
+Ergebnis, Rückkehr und vollständiger gemeinsamer Ablauf sind damit noch nicht
+bewiesen. Die Prüfung deckte außerdem einen echten Fehler im erreichbaren
+Akademie-Modul „Plus bis 10“ auf: Belohnungen wurden vergeben, aber die Antwort
+wurde nicht im Lernprofil und Tagesfortschritt gespeichert. Build 278 behebt
+diesen Pfad mit kontrollierter Speicherwiederholung ohne erneute Zählung oder
+Belohnung. Der neue APK-Bau und vollständige Androidlauf stehen noch aus.
+
 Fortsetzung vom gespeicherten Flutter-PR-152-Commit
 `e4d6309b86a4e4365d30771eebdc91c2fce44e9a` und Godot-PR-2-Commit
 `55a35b84aeb0eef737f0f9b5a37415cf9a181dfc`.
@@ -51,7 +62,7 @@ und die heruntergeladene APK belegt, nicht nur durch eine Übergabeangabe:
   `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`.
 
 Die gemeinsame neue APK verwendet dasselbe Parallelpaket und Zertifikat,
-Version `0.10.2`, Code 277, Mindestversion Android 7 (API 24), Ziel-API 36.
+Aktuelle Zielversion `0.10.3`, Code 278, Mindestversion Android 7 (API 24), Ziel-API 36.
 Enthaltene Architekturen: `arm64-v8a` für aktuelle Handys einschließlich Galaxy
 Z Fold und `x86_64` für den Emulator. Die neue APK enthält keine 32-Bit-Engine.
 
@@ -69,6 +80,19 @@ Für den gemeinsamen Bau gilt allein die Commitreferenz in
 
 ## Prüfstand
 
+Die aktuelle Korrektur des tatsächlich erreichbaren Akademie-Plus-Moduls wurde
+mit acht gezielten Fluttertests geprüft: lokale Hilfe nach zwei Fehlversuchen,
+richtige Antwort, Wallet-/Lernprofilfehler mit Wiederholung, doppelte Eingaben,
+Unmount während Speicherung, Hintergrund/Fortsetzen, serialisierte
+Lernspeicherung sowie alle 30 sichtbaren Summen mit Abschluss und Neustart.
+30 Lösungen ergaben im Widgettest 35 Sterne, 450 XP und 30 Tagesaufgaben;
+nach Neustart und einer weiteren Lösung 36 Sterne, 455 XP und 31 Tagesaufgaben.
+Das sind Widget-/Persistenzprüfungen, kein Android-Nutzungstest. Alle 80
+Prüfungen des Android-Testwerkzeugs bestehen; dessen Kart-Regressionen nutzen
+drei unveränderte echte Androidaufnahmen mit SHA-Provenienz. Der gesamte
+Flutterlauf vor den letzten zwei ergänzten Regressionen bestand 455 Tests;
+die acht gezielten Tests enthalten auch diese beiden Ergänzungen.
+
 Die gemeinsame Release-APK wurde erfolgreich gebaut. Der Prüfer kontrolliert
 APK-Signatur, Paket, Version, Mindest-API, beide Enginebibliotheken je Architektur,
 uncompressed `resources.arsc`, ZIP-Integrität, PCK-Hash und gespeicherte Godot-Revision.
@@ -77,7 +101,7 @@ Die erste gemeinsame APK wurde wegen unnötiger 32-Bit-Bibliotheken von rund
 Auch die Ausrichtung von Androidressourcen und sämtlichen ELF-Ladesegmenten
 für 16-KiB-Speicherseiten wurde am tatsächlichen APK-Inhalt überprüft.
 
-Vollständiger Flutterlauf auf dem gemeinsamen Stand: **449 bestanden, vier
+Vollständiger Flutterlauf auf dem Stand für Build 278: **455 bestanden, vier
 übersprungen, keine Fehler**. Analyse: keine Fehler, 155 bestehende Warnungen/
 Hinweise. Fünf Android-Vorbereitungsprüfungen bestanden. Inhaltsaudit prüft
 37.940 Aufgabenvarianten. Backend nach sicherer Providerdiagnose: 22 Tests

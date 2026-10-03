@@ -59,9 +59,12 @@ class OnboardingCaptionTests(unittest.TestCase):
                                       lambda *args, **kwargs: self.fail('Unexpected onboarding tap'),
                                       lambda label: None, lambda root: root)
 
-    def test_learning_return_caption_matches_actual_subject_selection_heading(self):
-        source = Path(__file__).resolve().parents[3]/'lib/features/learning/subject_selection_content.dart'
-        self.assertIn("const Text('"+LEARNING_SELECTION_CAPTION+"'", source.read_text())
+    def test_learning_return_caption_matches_the_akademie_actually_wired_in_shell(self):
+        source = Path(__file__).resolve().parents[3]/'lib'
+        shell = (source/'app/app_shell.dart').read_text()
+        screen = (source/'features/teacher_mode/lumo_akademie_screen.dart').read_text()
+        self.assertRegex(shell, r'case LumoSection\.learn:\s*return LumoAkademieScreen\(appState: _appState\)')
+        self.assertIn("Text('"+LEARNING_SELECTION_CAPTION+"'", screen)
 
 
 if __name__ == '__main__':

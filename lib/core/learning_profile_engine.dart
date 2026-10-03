@@ -39,6 +39,7 @@ class LearningProfileEngine {
   Map<String, int> _daily = {};
   Map<String, String> _lastTopics = {};
   bool _loaded = false;
+  Future<void> _saveTail = Future<void>.value();
 
   bool get isLoaded => _loaded;
   Map<String, SkillRecord> get skills => Map.unmodifiable(_skills);
@@ -62,8 +63,8 @@ class LearningProfileEngine {
     bool hintUsed = false,
   }) async {
     final id = SkillRecord.makeId(subject, unit);
-    final existing = _skills[id] ??
-        SkillRecord(skillId: id, subject: subject, unit: unit);
+    final existing =
+        _skills[id] ?? SkillRecord(skillId: id, subject: subject, unit: unit);
 
     if (isCorrect) {
       existing.correct++;
@@ -142,10 +143,22 @@ class LearningProfileEngine {
   }
 
   // ── interne helpers ───────────────────────────────────────
-  Future<void> _persist() async {
-    await _repo.saveSkills(_skills);
-    await _repo.saveDaily(_daily);
-    await _repo.saveLastTopics(_lastTopics);
+  Future<void> flush() => _persist();
+
+  Future<void> _persist() {
+    Future<void> save() async {
+      await _repo.saveSkills(_skills);
+      await _repo.saveDaily(_daily);
+      await _repo.saveLastTopics(_lastTopics);
+    }
+
+    // A failed write remains visible to its caller but does not poison retry.
+    // Serialize all three writes so concurrent answers cannot overwrite a
+    // newer daily/skill entry with an older, late completion.
+    final pending = _saveTail.then((_) => save(),
+        onError: (Object _, StackTrace __) => save());
+    _saveTail = pending;
+    return pending;
   }
 
   String _todayKey() => _formatDay(DateTime.now());
