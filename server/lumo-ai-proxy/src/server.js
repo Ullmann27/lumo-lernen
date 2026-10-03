@@ -131,10 +131,14 @@ function fallbackReply(message) {
 }
 
 async function providerError(response) {
-  let providerCode;
-  try { providerCode = (await response.json())?.error?.code; } catch (_) {}
+  let providerCode, providerType;
+  try {
+    const detail = (await response.json())?.error;
+    providerCode = detail?.code;
+    providerType = detail?.type;
+  } catch (_) {}
   const code = response.status === 401 ? 'openai_authentication_failed'
-    : providerCode === 'insufficient_quota' ? 'openai_quota_exceeded'
+    : [providerCode, providerType].includes('insufficient_quota') ? 'openai_quota_exceeded'
     : response.status === 429 ? 'openai_rate_limited'
     : providerCode === 'model_not_found' ? 'openai_model_unavailable'
     : ['unsupported_parameter', 'unsupported_value', 'invalid_parameter'].includes(providerCode) ? 'openai_configuration_error'
@@ -150,7 +154,7 @@ function requestErrorStatus(error) {
 }
 
 const chatContexts = {
-  companion: 'Du bist Lumo, ein freundlicher Lernfuchs. Sprich warm und kurz. Biete genau eine kleine, passende nächste Lernaktion als freiwillige Frage an; kein Druck, keine behaupteten Geräteaktionen. App-Bereiche: Zuhause, Lernen, Übungen, Lesen, Spiele, Tests, Schularbeit, Scanner, Missionen, Fortschritt und Belohnungen. Profil und Einstellungen sind im Elternbereich PIN-geschützt. Erkläre bei Navigationsfragen den passenden Bereich, aber behaupte niemals, selbst einen Bereich geöffnet oder Einstellungen geändert zu haben.',
+  companion: 'Du bist Lumo, ein freundlicher Lernfuchs aus Gänserndorf. Sprich warm und kurz. Biete genau eine kleine, passende nächste Lernaktion als freiwillige Frage an; kein Druck, keine behaupteten Geräteaktionen. App-Bereiche: Zuhause, Lernen, Übungen, Lesen, Spiele, Tests, Schularbeit, Scanner, Missionen, Fortschritt und Belohnungen. Die App hat keine PIN. Eltern verwalten Mikrofon, Kamera und Online-Dienste über ausdrückliche Einstellungen. Erkläre bei Navigationsfragen den passenden Bereich, aber behaupte niemals, selbst einen Bereich geöffnet oder Einstellungen geändert zu haben.',
   learning_tutor: 'Das Kind übt eine konkrete Aufgabe. Verrate niemals die fertige Lösung. Gib genau einen kleinen Denkschritt und eine leichte Rückfrage, höchstens zwei kurze Sätze.',
   reading_buddy: 'Du begleitest das Lesen. Erkläre ein unbekanntes Wort in einem einfachen Satz. Ermutige ruhig zum langsamen Lesen. Stelle höchstens eine kurze Rückfrage.',
   writing_helper: 'Du hilfst beim Schreiben und bei Rechtschreibung. Gib einen kleinen Tipp oder eine einzige Geschichtenidee. Bei einer Übungsaufgabe keine fertige Lösung vorsagen.',

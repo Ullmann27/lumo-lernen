@@ -149,6 +149,17 @@ test('Fehler bei OpenAI enthalten einen brauchbaren Grund, keine Geheimnisse', a
   }
 });
 
+test('Quota in provider type is distinguished from a temporary rate limit', async () => {
+  await withServer(async () => new Response(JSON.stringify({error: {type: 'insufficient_quota'}}), {status: 429}), async ({post, base}) => {
+    const response = await post('/chat', {message: 'Hilf mir bei 3 + 4.'});
+    assert.equal(response.status, 503);
+    assert.equal((await response.json()).reason, 'openai_quota_exceeded');
+    const health = await (await fetch(base + '/health')).json();
+    assert.equal(health.openAiAvailable, false);
+    assert.equal(health.upstreamStatus, 'openai_quota_exceeded');
+  });
+});
+
 test('Lernkontext nutzt serverseitige Rollen und übermittelt keine beliebige Persona oder Identität', async () => {
   await withServer(async (_url, options) => {
     const payload = JSON.parse(options.body);
@@ -174,7 +185,8 @@ test('Lumo erklärt App-Navigation ohne behauptete Aktionen und ignoriert unbeka
   await withServer(async (_url, options) => {
     const payload = JSON.parse(options.body);
     const instructions = payload.messages.filter((m) => m.role === 'system').map((m) => m.content).join('\n');
-    assert.match(instructions, /PIN-geschützt/);
+    assert.match(instructions, /Die App hat keine PIN/);
+    assert.match(instructions, /ausdrückliche Einstellungen/);
     assert.match(instructions, /behaupte niemals, selbst einen Bereich geöffnet/);
     assert.doesNotMatch(JSON.stringify(payload), /beliebiger_befehl/);
     return reply('Öffne Lernen. Welches Fach möchtest du üben?');
