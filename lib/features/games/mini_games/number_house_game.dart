@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,6 +5,8 @@ import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/game_progress_repository.dart';
 import '../../../domain/games/game_level_model.dart';
+import '../shared/lumo_game_pause_scope.dart';
+import '../../../domain/games/game_math_tasks.dart';
 import '../../learning/widgets/lumo_math_visuals.dart';
 import '../../shared/widgets/lumo_companion_avatar.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
@@ -39,7 +39,9 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
   static const _totalTasks = 5;
   static const _repo = GameProgressRepository();
 
-  late final List<_HouseTask> _tasks;
+  late final List<GameHouseTask> _tasks;
+  bool _finished = false;
+  final _clock = LumoGameTurnClock();
   int _currentIndex = 0;
   int _correct = 0;
   int _wrongFirstTry = 0;
@@ -52,32 +54,32 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
         ? 'kind'
-        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+        : st.childName
+            .trim()
+            .toLowerCase()
+            .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     return 'local_${safeName}_${st.grade}';
   }
 
   @override
   void initState() {
     super.initState();
-    final grade = math.max(widget.level.gradeFloor, widget.appState.state.grade);
-    _tasks = List<_HouseTask>.generate(_totalTasks, (i) {
-      return _HouseTask.generate(
-        grade: grade,
-        seed: widget.level.id * 1000 + i * 31,
-      );
-    });
+    _tasks = List<GameHouseTask>.generate(
+        _totalTasks, (i) => GameMathTasks.numberHouse(widget.level, i));
   }
 
-  _HouseTask get _currentTask => _tasks[_currentIndex];
+  GameHouseTask get _currentTask => _tasks[_currentIndex];
 
   void _selectOption(int idx) {
-    if (_revealed) return;
+    if (_clock.value || _revealed || _finished) return;
     HapticFeedback.selectionClick();
     setState(() => _selectedOption = idx);
   }
 
   void _confirm() {
-    if (_selectedOption == null || _revealed) return;
+    if (_clock.value || _finished || _selectedOption == null || _revealed) {
+      return;
+    }
     final selected = _currentTask.choices[_selectedOption!];
     final isCorrect = selected == _currentTask.answer;
     setState(() {
@@ -95,8 +97,9 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
   }
 
   void _next() {
-    if (!_revealed) return;
-    final isCorrect = _currentTask.choices[_selectedOption!] == _currentTask.answer;
+    if (_clock.value || _finished || !_revealed) return;
+    final isCorrect =
+        _currentTask.choices[_selectedOption!] == _currentTask.answer;
     if (!isCorrect) {
       setState(() {
         _selectedOption = null;
@@ -117,6 +120,8 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
   }
 
   Future<void> _finishGame() async {
+    if (_finished) return;
+    _finished = true;
     final stars = _starsForResult();
     await _repo.recordResult(
       childId: _childId,
@@ -124,11 +129,14 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
       starsEarned: stars,
     );
     if (!mounted) return;
+    widget.appState.addStars(stars);
+    widget.appState.addXp(_correct * 8);
     widget.onResult?.call(stars);
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => _ResultDialog(
+      builder: (_) => LumoGameResultBack(
+          child: _ResultDialog(
         stars: stars,
         levelTitle: widget.level.title,
         correctCount: _correct,
@@ -137,68 +145,94 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
           Navigator.of(context).pop();
           Navigator.of(context).pop();
         },
-      ),
+      )),
     );
   }
 
   int _starsForResult() {
     if (_correct == _totalTasks && _wrongFirstTry == 0) return 3;
-    if (_correct == _totalTasks) return 2;
+    if (_correct == _totalTasks && _wrongFirstTry <= 2) return 2;
     if (_correct >= 3) return 1;
     return 0;
   }
 
   @override
+  void dispose() {
+    _clock.dispose();
+    super.dispose();
+  }
+
+  void _restartRound() {
+    _clock.cancel();
+    setState(() {
+      _finished = false;
+      _correct = 0;
+      _currentIndex = 0;
+      _wrongFirstTry = 0;
+      _attemptedThisTask = false;
+      _selectedOption = null;
+      _revealed = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFF7E6),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.close_rounded, color: LumoColors.ink700),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
-        title: Text(
-          widget.level.title,
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.w900,
-            color: LumoColors.ink900,
-            fontSize: 18,
-          ),
-        ),
-      ),
-      body: Stack(
-        children: [
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-              child: Column(
-                children: [
-                  _HouseHeader(currentIndex: _currentIndex, correct: _correct, total: _totalTasks),
-                  const SizedBox(height: 14),
-                  Expanded(child: _buildTaskCard()),
-                  const SizedBox(height: 12),
-                  _buildActionButton(),
-                ],
+    return LumoGamePauseScope(
+        clock: _clock,
+        onRestart: _restartRound,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFF7E6),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
+              icon: const Icon(Icons.close_rounded, color: LumoColors.ink700),
+              onPressed: () => Navigator.of(context).maybePop(),
+            ),
+            title: Text(
+              widget.level.title,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+                color: LumoColors.ink900,
+                fontSize: 18,
               ),
             ),
           ),
-          if (_confettiTrigger > 0)
-            Positioned.fill(
-              child: IgnorePointer(
-                child: LumoConfettiBurst(trigger: _confettiTrigger),
+          body: Stack(
+            children: [
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                  child: Column(
+                    children: [
+                      _HouseHeader(
+                          currentIndex: _currentIndex,
+                          correct: _correct,
+                          total: _totalTasks),
+                      const SizedBox(height: 14),
+                      Expanded(child: _buildTaskCard()),
+                      const SizedBox(height: 12),
+                      _buildActionButton(),
+                    ],
+                  ),
+                ),
               ),
-            ),
-        ],
-      ),
-    );
+              if (_confettiTrigger > 0)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: LumoConfettiBurst(trigger: _confettiTrigger),
+                  ),
+                ),
+            ],
+          ),
+        ));
   }
 
   Widget _buildTaskCard() {
     final task = _currentTask;
-    final selectedIsCorrect = _selectedOption != null && task.choices[_selectedOption!] == task.answer;
+    final selectedIsCorrect = _selectedOption != null &&
+        task.choices[_selectedOption!] == task.answer;
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.fromLTRB(20, 22, 20, 24),
@@ -214,7 +248,9 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
               children: [
                 LumoCompanionAvatar(
                   mood: _revealed
-                      ? (selectedIsCorrect ? LumoCompanionMood.cheer : LumoCompanionMood.help)
+                      ? (selectedIsCorrect
+                          ? LumoCompanionMood.cheer
+                          : LumoCompanionMood.help)
                       : LumoCompanionMood.idle,
                   size: 56,
                 ),
@@ -267,6 +303,7 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: _ChoiceTile(
+                  key: ValueKey('math-option-$i'),
                   label: '${task.choices[i]}',
                   selected: _selectedOption == i,
                   correct: task.choices[i] == task.answer,
@@ -282,82 +319,40 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
   }
 
   Widget _buildActionButton() {
-    final isCorrect = _selectedOption != null && _currentTask.choices[_selectedOption!] == _currentTask.answer;
+    final isCorrect = _selectedOption != null &&
+        _currentTask.choices[_selectedOption!] == _currentTask.answer;
     final label = _revealed
-        ? (isCorrect ? (_currentIndex >= _totalTasks - 1 ? 'Spiel beenden' : 'Weiter') : 'Nochmal probieren')
+        ? (isCorrect
+            ? (_currentIndex >= _totalTasks - 1 ? 'Spiel beenden' : 'Weiter')
+            : 'Nochmal probieren')
         : 'Antwort bestätigen';
     final enabled = _revealed || _selectedOption != null;
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: enabled ? LumoColors.orange : const Color(0xFFE0E0E0),
+          backgroundColor:
+              enabled ? LumoColors.orange : const Color(0xFFE0E0E0),
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.pill)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(LumoRadius.pill)),
           elevation: enabled ? 4 : 0,
         ),
         onPressed: enabled ? (_revealed ? _next : _confirm) : null,
         child: Text(
           label,
-          style: const TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900),
+          style: const TextStyle(
+              fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900),
         ),
       ),
     );
   }
 }
 
-class _HouseTask {
-  const _HouseTask({
-    required this.roof,
-    required this.visibleRoom,
-    required this.answer,
-    required this.missingLeft,
-    required this.choices,
-  });
-
-  final int roof;
-  final int visibleRoom;
-  final int answer;
-  final bool missingLeft;
-  final List<int> choices;
-
-  static _HouseTask generate({required int grade, required int seed}) {
-    final random = math.Random(seed);
-    final minRoof = grade <= 1 ? 5 : 10;
-    final maxRoof = grade <= 1 ? 10 : 20;
-    final roof = minRoof + random.nextInt(maxRoof - minRoof + 1);
-    final answer = 1 + random.nextInt(roof - 1);
-    final visible = roof - answer;
-    final choices = _buildChoices(answer: answer, max: maxRoof);
-    return _HouseTask(
-      roof: roof,
-      visibleRoom: visible,
-      answer: answer,
-      missingLeft: random.nextBool(),
-      choices: choices,
-    );
-  }
-
-  static List<int> _buildChoices({required int answer, required int max}) {
-    final values = <int>{answer};
-    for (final delta in <int>[1, -1, 2, -2, 3, -3, 4, -4]) {
-      final next = answer + delta;
-      if (next >= 0 && next <= max) values.add(next);
-      if (values.length >= 4) break;
-    }
-    var fill = 0;
-    while (values.length < 4) {
-      if (fill <= max) values.add(fill);
-      fill++;
-    }
-    final list = values.toList()..sort();
-    return list;
-  }
-}
-
 class _ChoiceTile extends StatelessWidget {
   const _ChoiceTile({
+    super.key,
     required this.label,
     required this.selected,
     required this.correct,
@@ -401,7 +396,12 @@ class _ChoiceTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(LumoRadius.lg),
           border: Border.all(color: border, width: 2),
           boxShadow: selected || (revealed && correct)
-              ? [BoxShadow(color: border.withOpacity(0.4), blurRadius: 12, offset: const Offset(0, 4))]
+              ? [
+                  BoxShadow(
+                      color: border.withOpacity(0.4),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4))
+                ]
               : null,
         ),
         child: Row(
@@ -417,8 +417,12 @@ class _ChoiceTile extends StatelessWidget {
                 ),
               ),
             ),
-            if (revealed && correct) const Icon(Icons.check_circle_rounded, color: Colors.white, size: 22),
-            if (revealed && selected && !correct) const Icon(Icons.cancel_outlined, color: Color(0xFF7C2D12), size: 22),
+            if (revealed && correct)
+              const Icon(Icons.check_circle_rounded,
+                  color: Colors.white, size: 22),
+            if (revealed && selected && !correct)
+              const Icon(Icons.cancel_outlined,
+                  color: Color(0xFF7C2D12), size: 22),
           ],
         ),
       ),
@@ -427,7 +431,8 @@ class _ChoiceTile extends StatelessWidget {
 }
 
 class _HouseHeader extends StatelessWidget {
-  const _HouseHeader({required this.currentIndex, required this.correct, required this.total});
+  const _HouseHeader(
+      {required this.currentIndex, required this.correct, required this.total});
   final int currentIndex;
   final int correct;
   final int total;
@@ -457,10 +462,17 @@ class _HouseHeader extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 4),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: isDone ? LumoColors.gold : (isCurrent ? LumoColors.orange : const Color(0xFFEEEEEE)),
+                color: isDone
+                    ? LumoColors.gold
+                    : (isCurrent ? LumoColors.orange : const Color(0xFFEEEEEE)),
                 borderRadius: BorderRadius.circular(LumoRadius.pill),
                 boxShadow: isCurrent
-                    ? [BoxShadow(color: LumoColors.orange.withOpacity(0.45), blurRadius: 10, offset: const Offset(0, 3))]
+                    ? [
+                        BoxShadow(
+                            color: LumoColors.orange.withOpacity(0.45),
+                            blurRadius: 10,
+                            offset: const Offset(0, 3))
+                      ]
                     : null,
               ),
               child: Text(
@@ -501,7 +513,8 @@ class _ResultDialog extends StatelessWidget {
                 : 'Probier es nochmal';
     return Dialog(
       backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.xl)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(LumoRadius.xl)),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
         child: Column(
@@ -537,7 +550,8 @@ class _ResultDialog extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: Text(
                     earned ? '⭐' : '☆',
-                    style: TextStyle(fontSize: 40, color: earned ? null : LumoColors.ink300),
+                    style: TextStyle(
+                        fontSize: 40, color: earned ? null : LumoColors.ink300),
                   ),
                 );
               }),
@@ -560,13 +574,17 @@ class _ResultDialog extends StatelessWidget {
                   backgroundColor: LumoColors.orange,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.pill)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(LumoRadius.pill)),
                   elevation: 0,
                 ),
                 onPressed: onClose,
                 child: const Text(
                   'Zurück zur Spielewelt',
-                  style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900),
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900),
                 ),
               ),
             ),

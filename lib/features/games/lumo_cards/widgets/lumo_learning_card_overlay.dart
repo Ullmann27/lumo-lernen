@@ -27,7 +27,8 @@ class LumoLearningCardOverlay extends StatelessWidget {
       child: Container(
         color: Colors.black.withOpacity(0.6),
         alignment: Alignment.center,
-        child: Container(
+        child: SingleChildScrollView(
+            child: Container(
           margin: const EdgeInsets.all(20),
           padding: const EdgeInsets.fromLTRB(24, 22, 24, 22),
           decoration: BoxDecoration(
@@ -58,7 +59,8 @@ class LumoLearningCardOverlay extends StatelessWidget {
                     size: 44,
                   ),
                   const SizedBox(width: 10),
-                  const Text(
+                  const Expanded(
+                      child: Text(
                     'Denkpause',
                     style: TextStyle(
                       fontFamily: 'Nunito',
@@ -66,11 +68,11 @@ class LumoLearningCardOverlay extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                       color: Color(0xFF7C2D12),
                     ),
-                  ),
-                  const Spacer(),
+                  )),
+
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: const Color(0xFFFCD34D).withOpacity(0.4),
                       borderRadius: BorderRadius.circular(99),
@@ -125,7 +127,7 @@ class LumoLearningCardOverlay extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        )),
       ),
     );
   }
@@ -145,8 +147,7 @@ class _AnswerButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(14),
-          border:
-              Border.all(color: const Color(0xFFF59E0B), width: 2),
+          border: Border.all(color: const Color(0xFFF59E0B), width: 2),
           boxShadow: [
             BoxShadow(
               color: const Color(0xFFF59E0B).withOpacity(0.2),

@@ -74,7 +74,12 @@ class _LumoResultDialogState extends State<LumoResultDialog>
                 ),
               ),
             ),
-          Center(child: _buildCard()),
+          Center(
+              child: SingleChildScrollView(
+            child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 520),
+                child: _buildCard()),
+          )),
         ],
       ),
     );
@@ -84,9 +89,8 @@ class _LumoResultDialogState extends State<LumoResultDialog>
     final colors = widget.kindWon
         ? const [Color(0xFFFFFBEB), Color(0xFFFCD34D)]
         : const [Color(0xFFFEF2F2), Color(0xFFFCA5A5)];
-    final accent = widget.kindWon
-        ? const Color(0xFFCA8A04)
-        : const Color(0xFFB91C1C);
+    final accent =
+        widget.kindWon ? const Color(0xFFCA8A04) : const Color(0xFFB91C1C);
     return Container(
       margin: const EdgeInsets.all(24),
       padding: const EdgeInsets.fromLTRB(28, 24, 28, 24),
@@ -170,8 +174,10 @@ class _LumoResultDialogState extends State<LumoResultDialog>
             ),
           ),
           const SizedBox(height: 22),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 12,
+            runSpacing: 12,
             children: [
               FilledButton.icon(
                 onPressed: widget.onRestart,
@@ -188,7 +194,6 @@ class _LumoResultDialogState extends State<LumoResultDialog>
                       const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
                 ),
               ),
-              const SizedBox(width: 12),
               OutlinedButton.icon(
                 onPressed: widget.onExit,
                 icon: const Icon(Icons.exit_to_app_rounded),
@@ -199,8 +204,7 @@ class _LumoResultDialogState extends State<LumoResultDialog>
                 ),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: const Color(0xFF7C2D12),
-                  side:
-                      const BorderSide(color: Color(0xFF7C2D12), width: 1.6),
+                  side: const BorderSide(color: Color(0xFF7C2D12), width: 1.6),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
                 ),

@@ -29,7 +29,10 @@ class GameProgressRepository {
       decoded.forEach((k, v) {
         final id = int.tryParse('$k');
         final stars = (v is num) ? v.toInt() : null;
-        if (id != null && stars != null) result[id] = stars;
+        final level = id == null ? null : GameLevelCatalog.byId(id);
+        if (level != null && stars != null) {
+          result[id!] = stars.clamp(0, level.maxStars);
+        }
       });
       return result;
     } catch (_) {
@@ -55,10 +58,13 @@ class GameProgressRepository {
     required int starsEarned,
   }) async {
     final current = await loadStars(childId);
+    final level = GameLevelCatalog.byId(levelId);
+    if (level == null || !level.miniType.isPlayable) return current;
+    final earned = starsEarned.clamp(0, level.maxStars);
     final updated = Map<int, int>.from(current);
     final existing = updated[levelId] ?? 0;
-    if (starsEarned > existing) {
-      updated[levelId] = starsEarned;
+    if (earned > existing) {
+      updated[levelId] = earned;
     }
     await saveStars(childId, updated);
     return updated;
@@ -70,10 +76,13 @@ class GameProgressRepository {
   List<GameLevelRuntime> buildRuntime(Map<int, int> stars) {
     final result = <GameLevelRuntime>[];
     var currentMarked = false;
-    for (final level in GameLevelCatalog.levels) {
-      final prevStars = level.id == 1 ? 1 : (stars[level.id - 1] ?? 0);
-      final locked = prevStars == 0;
-      final earned = stars[level.id] ?? 0;
+    int? previousPlayableId;
+    for (final level in GameLevelCatalog.playableLevels) {
+      final prevStars =
+          previousPlayableId == null ? 1 : (stars[previousPlayableId] ?? 0);
+      previousPlayableId = level.id;
+      final locked = prevStars <= 0;
+      final earned = (stars[level.id] ?? 0).clamp(0, level.maxStars);
       final isCurrent = !currentMarked && !locked && earned == 0;
       if (isCurrent) currentMarked = true;
       result.add(GameLevelRuntime(

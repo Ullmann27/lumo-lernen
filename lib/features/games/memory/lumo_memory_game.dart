@@ -16,7 +16,6 @@
 //   - Sieger: wer am Ende mehr Paare hat
 // ════════════════════════════════════════════════════════════════════════
 
-import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -25,17 +24,29 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/lumo_voice.dart';
+import '../shared/lumo_game_pause_scope.dart';
 
 /// Symbole auf den Karten. Bewusst kindgerechte Emojis statt Asset-Bilder,
 /// damit das Spiel ohne externe Assets funktioniert und visuell stabil
 /// bleibt - jedes Symbol ist klar unterscheidbar.
 const List<String> _kCardSymbols = <String>[
-  '🦊', '⭐', '🎁', '🍎', '🌸', '🌈',
-  '🚀', '🎨', '🎈', '🐝', '🌙', '🍪',
+  '🦊',
+  '⭐',
+  '🎁',
+  '🍎',
+  '🌸',
+  '🌈',
+  '🚀',
+  '🎨',
+  '🎈',
+  '🐝',
+  '🌙',
+  '🍪',
 ];
 
 class LumoMemoryScreen extends StatefulWidget {
-  const LumoMemoryScreen({super.key, required this.appState});
+  const LumoMemoryScreen({super.key, required this.appState, this.seed});
+  final int? seed;
   final LumoAppState appState;
 
   @override
@@ -44,18 +55,17 @@ class LumoMemoryScreen extends StatefulWidget {
 
 enum _Player { kind, lumo }
 
-class _LumoMemoryScreenState extends State<LumoMemoryScreen>
-    with TickerProviderStateMixin {
+class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   static const int _rows = 4;
   static const int _cols = 6;
   static const int _totalCards = _rows * _cols; // 24
   static const int _totalPairs = _totalCards ~/ 2; // 12
 
-  late List<String> _cards;     // Symbol pro Position
-  late List<bool> _matched;     // Karte schon als Paar gefunden?
-  late List<bool> _faceUp;      // Karte aktuell offen?
-  int? _firstPickIdx;           // Erste aufgedeckte Karte des aktuellen Zuges
-  bool _busy = false;           // Animation/Verzoegerung laeuft
+  late List<String> _cards; // Symbol pro Position
+  late List<bool> _matched; // Karte schon als Paar gefunden?
+  late List<bool> _faceUp; // Karte aktuell offen?
+  int? _firstPickIdx; // Erste aufgedeckte Karte des aktuellen Zuges
+  bool _busy = false; // Animation/Verzoegerung laeuft
   _Player _turn = _Player.kind;
   int _kindPairs = 0;
   int _lumoPairs = 0;
@@ -65,15 +75,24 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   // wie das Kind aufdeckt, merkt er sich Position + Symbol.
   // Realistisch fuer Klasse 1: ~70% Erinnerungsrate, sonst zufaellig.
   final Map<int, String> _lumoMemory = <int, String>{};
-  final math.Random _rng = math.Random();
+  late final math.Random _rng;
+  final _clock = LumoGameTurnClock();
+  bool _rewardGiven = false;
 
   @override
   void initState() {
     super.initState();
+    _rng = widget.seed == null ? math.Random() : math.Random(widget.seed);
     _setupBoard();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _say('Lass uns Memory spielen! Du faengst an.');
     });
+  }
+
+  @override
+  void dispose() {
+    _clock.dispose();
+    super.dispose();
   }
 
   void _say(String text) {
@@ -87,6 +106,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   /// Hier: 12 Symbole aus der Liste auswaehlen, jedes verdoppeln,
   /// shuffeln - mathematisch garantiert 12 Paare a 2 Karten.
   void _setupBoard() {
+    _clock.cancel();
+    _rewardGiven = false;
     // Defensive: falls die Symbol-Liste irgendwann erweitert wird,
     // erste _totalPairs eindeutige nehmen.
     final symbols = _kCardSymbols.toSet().take(_totalPairs).toList();
@@ -106,7 +127,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   }
 
   void _tapCard(int idx) {
-    if (_busy || _turn != _Player.kind) return;
+    if (_clock.value || _busy || _turn != _Player.kind) return;
     if (_matched[idx] || _faceUp[idx]) return;
     HapticFeedback.lightImpact();
     setState(() {
@@ -126,7 +147,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
     _busy = true;
     final firstIdx = _firstPickIdx!;
     final isMatch = _cards[firstIdx] == _cards[secondIdx];
-    Timer(const Duration(milliseconds: 850), () {
+    _clock.schedule(const Duration(milliseconds: 850), () {
       if (!mounted) return;
       setState(() {
         if (isMatch) {
@@ -153,13 +174,15 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
             ? 'Super, ein Paar! Du bist nochmal dran.'
             : 'Ein Paar! Ich bin nochmal dran.');
         if (_turn == _Player.lumo) {
-          Timer(const Duration(milliseconds: 600), _lumoTurn);
+          _clock.schedule(const Duration(milliseconds: 600), _lumoTurn);
         }
       } else {
-        _turn = _turn == _Player.kind ? _Player.lumo : _Player.kind;
+        setState(() {
+          _turn = _turn == _Player.kind ? _Player.lumo : _Player.kind;
+        });
         if (_turn == _Player.lumo) {
           _say('Mein Zug! Ich denke nach...');
-          Timer(const Duration(milliseconds: 900), _lumoTurn);
+          _clock.schedule(const Duration(milliseconds: 900), _lumoTurn);
         } else {
           _say('Du bist dran!');
         }
@@ -187,8 +210,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   ///
   /// Klasse 1 freundlich: Lumo "vergisst" mit 25% Wahrscheinlichkeit
   /// eine bekannte Karte, damit das Kind realistische Chancen hat.
-  void _lumoTurn() async {
-    if (!mounted) return;
+  void _lumoTurn() {
+    if (!mounted || _turn != _Player.lumo || _isGameOver()) return;
     // Erste Karte
     final firstIdx = _pickFirstLumoCard();
     if (firstIdx == null) return;
@@ -197,18 +220,19 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
       _lumoMemory[firstIdx] = _cards[firstIdx];
       _firstPickIdx = firstIdx;
     });
-    await Future.delayed(const Duration(milliseconds: 900));
-    if (!mounted) return;
+    _clock.schedule(const Duration(milliseconds: 900), () {
+      if (!mounted || _turn != _Player.lumo) return;
 
-    // Zweite Karte: passend zur ersten?
-    final firstSymbol = _cards[firstIdx];
-    final secondIdx = _pickSecondLumoCard(firstIdx, firstSymbol);
-    if (secondIdx == null) return;
-    setState(() {
-      _faceUp[secondIdx] = true;
-      _lumoMemory[secondIdx] = _cards[secondIdx];
+      // Zweite Karte: passend zur ersten?
+      final firstSymbol = _cards[firstIdx];
+      final secondIdx = _pickSecondLumoCard(firstIdx, firstSymbol);
+      if (secondIdx == null) return;
+      setState(() {
+        _faceUp[secondIdx] = true;
+        _lumoMemory[secondIdx] = _cards[secondIdx];
+      });
+      _continueTurn();
     });
-    _continueTurn();
   }
 
   int? _pickFirstLumoCard() {
@@ -272,6 +296,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   }
 
   void _onGameOver() {
+    if (_rewardGiven) return;
+    _rewardGiven = true;
     HapticFeedback.heavyImpact();
     final kindWon = _kindPairs > _lumoPairs;
     final draw = _kindPairs == _lumoPairs;
@@ -287,11 +313,14 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => AlertDialog(
+      builder: (_) => LumoGameResultBack(
+          child: AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: Text(
-          kindWon ? '🎉 Du hast gewonnen!' : (draw ? '🤝 Unentschieden' : '🦊 Lumo gewinnt'),
+          kindWon
+              ? '🎉 Du hast gewonnen!'
+              : (draw ? '🤝 Unentschieden' : '🦊 Lumo gewinnt'),
           textAlign: TextAlign.center,
           style: const TextStyle(
               fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 22),
@@ -343,7 +372,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
                     fontSize: 16)),
           ),
         ],
-      ),
+      )),
     );
   }
 
@@ -353,32 +382,37 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(
-          children: [
-            _buildTopBar(),
-            _buildScoreBar(),
-            Expanded(child: _buildGrid()),
-            _buildTurnIndicator(),
-          ],
-        ),
-      ),
-    );
+    return LumoGamePauseScope(
+        clock: _clock,
+        onRestart: () => setState(_setupBoard),
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(
+              children: [
+                _buildTopBar(),
+                _buildScoreBar(),
+                Expanded(child: _buildGrid()),
+                _buildTurnIndicator(),
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget _buildTopBar() {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: const BoxDecoration(
-        gradient: LinearGradient(colors: [Color(0xFFFB923C), Color(0xFFEA580C)]),
+        gradient:
+            LinearGradient(colors: [Color(0xFFFB923C), Color(0xFFEA580C)]),
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
           icon: const Icon(Icons.close_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          tooltip: 'Pausieren / Zurück',
+          onPressed: _clock.pause,
         ),
         const Expanded(
           child: Center(
@@ -393,7 +427,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
         IconButton(
           icon: const Icon(Icons.refresh_rounded, color: Colors.white),
           tooltip: 'Neu starten',
-          onPressed: () => setState(_setupBoard),
+          onPressed: _clock.pause,
         ),
       ]),
     );
@@ -404,11 +438,13 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       child: Row(
         children: [
-          Expanded(child: _scorePill('Du', _kindPairs, const Color(0xFFFB923C),
-              isActive: _turn == _Player.kind)),
+          Expanded(
+              child: _scorePill('Du', _kindPairs, const Color(0xFFFB923C),
+                  isActive: _turn == _Player.kind)),
           const SizedBox(width: 12),
-          Expanded(child: _scorePill('Lumo 🦊', _lumoPairs, const Color(0xFF8B5CF6),
-              isActive: _turn == _Player.lumo)),
+          Expanded(
+              child: _scorePill('Lumo 🦊', _lumoPairs, const Color(0xFF8B5CF6),
+                  isActive: _turn == _Player.lumo)),
         ],
       ),
     );
@@ -424,7 +460,12 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: color, width: 2.4),
         boxShadow: isActive
-            ? [BoxShadow(color: color.withOpacity(0.32), blurRadius: 14, offset: const Offset(0, 4))]
+            ? [
+                BoxShadow(
+                    color: color.withOpacity(0.32),
+                    blurRadius: 14,
+                    offset: const Offset(0, 4))
+              ]
             : null,
       ),
       child: Row(children: [
@@ -448,62 +489,73 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   Widget _buildGrid() {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: _cols,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          childAspectRatio: 1.0,
-        ),
-        itemCount: _totalCards,
-        itemBuilder: (_, i) => _buildCard(i),
-      ),
+      child: LayoutBuilder(
+          builder: (_, constraints) => GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: constraints.maxWidth >= 600 ? _cols : 4,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  childAspectRatio: 1.0,
+                ),
+                itemCount: _totalCards,
+                itemBuilder: (_, i) => _buildCard(i),
+              )),
     );
   }
 
   Widget _buildCard(int idx) {
     final showFront = _faceUp[idx] || _matched[idx];
     final isMatched = _matched[idx];
-    return GestureDetector(
-      onTap: () => _tapCard(idx),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: showFront
-                ? (isMatched
-                    ? const [Color(0xFFDCFCE7), Color(0xFFA7F3D0)]
-                    : const [Color(0xFFFEF3C7), Color(0xFFFDE68A)])
-                : const [Color(0xFFC084FC), Color(0xFF8B5CF6)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+    return Semantics(
+        label:
+            'Memory Karte ${idx + 1}${showFront ? ', ${_cards[idx]}' : ', verdeckt'}',
+        button: !isMatched,
+        child: GestureDetector(
+          key: ValueKey('memory-card-$idx'),
+          onTap: () => _tapCard(idx),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 220),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: showFront
+                    ? (isMatched
+                        ? const [Color(0xFFDCFCE7), Color(0xFFA7F3D0)]
+                        : const [Color(0xFFFEF3C7), Color(0xFFFDE68A)])
+                    : const [Color(0xFFC084FC), Color(0xFF8B5CF6)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: showFront
+                    ? (isMatched
+                        ? const Color(0xFF22C55E)
+                        : const Color(0xFFF59E0B))
+                    : const Color(0xFF6D28D9),
+                width: 2.4,
+              ),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.12),
+                    blurRadius: 6,
+                    offset: const Offset(0, 3)),
+              ],
+            ),
+            alignment: Alignment.center,
+            child: showFront
+                ? Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: FittedBox(
+                        child: Text(_cards[idx],
+                            style: const TextStyle(fontSize: 32))))
+                : const Text('?',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 26,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white)),
           ),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: showFront
-                ? (isMatched ? const Color(0xFF22C55E) : const Color(0xFFF59E0B))
-                : const Color(0xFF6D28D9),
-            width: 2.4,
-          ),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black.withOpacity(0.12),
-                blurRadius: 6,
-                offset: const Offset(0, 3)),
-          ],
-        ),
-        alignment: Alignment.center,
-        child: showFront
-            ? Text(_cards[idx], style: const TextStyle(fontSize: 32))
-            : const Text('?',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 26,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white)),
-      ),
-    );
+        ));
   }
 
   Widget _buildTurnIndicator() {
@@ -513,7 +565,9 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
       padding: const EdgeInsets.all(14),
       child: Text(
         isKind
-            ? (_busy ? 'Lass die Karten kurz...' : 'Du bist dran! Tipp 2 Karten.')
+            ? (_busy
+                ? 'Lass die Karten kurz...'
+                : 'Du bist dran! Tipp 2 Karten.')
             : (_busy ? 'Lumo denkt nach 🦊...' : 'Lumo ist dran!'),
         textAlign: TextAlign.center,
         style: const TextStyle(

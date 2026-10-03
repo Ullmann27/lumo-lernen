@@ -81,7 +81,9 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
         onTapUp: widget.onTap == null
             ? null
             : (_) => setState(() => _pressed = false),
-        onTapCancel: () => setState(() => _pressed = false),
+        onTapCancel: widget.onTap == null
+            ? null
+            : () => setState(() => _pressed = false),
         onTap: widget.onTap,
         child: AnimatedScale(
           scale: _pressed ? 1.05 : 1.0,
@@ -237,8 +239,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
                 height: widget.height * 0.42,
                 margin: const EdgeInsets.fromLTRB(6, 6, 6, 0),
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(11)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(11)),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -268,8 +270,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
           // Center: Zahl oder Spezial-Icon (weiss)
           Center(
             child: isSpec
-                ? _specialIcon(widget.card.type, widget.width * 0.46,
-                    Colors.white)
+                ? _specialIcon(
+                    widget.card.type, widget.width * 0.46, Colors.white)
                 : _bigNumber('${widget.card.number}'),
           ),
           // Eck-Indizes
@@ -329,8 +331,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
                 height: widget.height * 0.40,
                 margin: const EdgeInsets.fromLTRB(6, 6, 6, 0),
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(11)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(11)),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,

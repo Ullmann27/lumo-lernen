@@ -24,9 +24,8 @@ import '../../shared/widgets/lumo_premium_effects.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
-import 'widgets/lumo_action_button.dart';
+import '../shared/lumo_game_pause_scope.dart';
 import 'widgets/lumo_avatar_picker.dart';
-import 'widgets/lumo_call_button.dart';
 import 'widgets/lumo_card_burst.dart';
 import 'widgets/lumo_card_fly.dart';
 import 'widgets/lumo_card_table.dart';
@@ -36,7 +35,6 @@ import 'widgets/lumo_color_picker.dart';
 import 'widgets/lumo_confetti.dart';
 import 'widgets/lumo_discard_pile.dart';
 import 'widgets/lumo_draw_pile.dart';
-import 'widgets/lumo_hint_bubble.dart';
 import 'widgets/lumo_intro_splash.dart';
 import 'widgets/lumo_learning_card_overlay.dart';
 import 'widgets/lumo_opponent_hand.dart';
@@ -53,12 +51,14 @@ class LumoCardsScreen extends StatefulWidget {
     this.player1Name = 'Du',
     this.player2Name = 'Lumo',
     this.vsBot = true,
+    this.seed,
   });
 
   final LumoAppState appState;
   final String player1Name;
   final String player2Name;
   final bool vsBot;
+  final int? seed;
 
   @override
   State<LumoCardsScreen> createState() => _LumoCardsScreenState();
@@ -67,6 +67,8 @@ class LumoCardsScreen extends StatefulWidget {
 class _LumoCardsScreenState extends State<LumoCardsScreen> {
   late final LumoCardsGameController _controller;
   bool _rewardGiven = false;
+  bool _callRewardGiven = false;
+  int _roundSerial = 0;
 
   /// Intro-Splash beim Spielstart (Heinz 2026-05-22). Verschwindet nach
   /// ~2 Sekunden automatisch oder per Tap. Wird beim Restart nicht
@@ -118,6 +120,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       player1Name: widget.player1Name,
       player2Name: widget.player2Name,
       vsBot: widget.vsBot,
+      seed: widget.seed,
+      grade: widget.appState.state.grade,
     );
     _controller.addListener(_onStateChanged);
     // Heinz Crash-Bericht 2026-05-22: '_dependents.isEmpty' Assertion.
@@ -211,6 +215,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     final wasLearning = _prevPhase == GamePhase.learningQuestion;
     final isLearningNow = s.phase == GamePhase.learningQuestion;
     if (wasLearning && !isLearningNow && kidStarsNow > _prevKidStars) {
+      widget.appState.addStars(kidStarsNow - _prevKidStars);
       _triggerStarBurst();
     }
     _prevPhase = s.phase;
@@ -256,8 +261,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     // dessen die fliegende Kopie. State-Update + Discard-Pile-Visual
     // wechselt erst nach Animations-Mitte, dann ueberlappt der Flug-
     // Endpunkt mit der neuen Top-Card.
+    final serial = _roundSerial;
     Future.delayed(const Duration(milliseconds: 220), () {
-      if (!mounted) return;
+      if (!mounted || serial != _roundSerial) return;
       _controller.playCard(card);
     });
   }
@@ -294,6 +300,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   @override
   Widget build(BuildContext context) {
     final s = _controller.state;
+    final compact = MediaQuery.sizeOf(context).height < 760;
     final current = s.currentPlayer;
     final topCard = s.topCard;
 
@@ -308,426 +315,351 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     // Heinz Bug 2026-05-21: Hand wurde nicht angezeigt + Layout-Overflow.
     // Loesung: LayoutBuilder fuer responsive Hoehen + Stack wo das Pass-
     // Overlay GARANTIERT ueber allem liegt (auch ueber der SafeArea).
-    return Scaffold(
-      body: Stack(
-        children: [
-          // ── Hauptlayout ──
-          // Heinz 2026-05-22 Refactor Build 182:
-          //  - LayoutBuilder raus (war Komplexitaets-Quelle)
-          //  - Karten groesser (96x140 default)
-          //  - Hand-Hoehe fix 180 px
-          //  - Gegner-Hand-Fan oben sichtbar (Heinz: 'vom Gegner sollte
-          //    man auch sehen')
-          //  - Arena kleiner damit alles passt
-          LumoCardTable(
-            child: SafeArea(
-              child: Column(
-                children: [
-                  // Premium-Look 2026-05-25: HUD-Header sitzt jetzt auf
-                  // einem Glass-Panel (BackdropFilter Blur + warmer Tint),
-                  // hebt sich klar vom Velvet-Tisch ab und sieht weniger
-                  // "Standard-Material" aus.
-                  Padding(
-                    padding:
-                        const EdgeInsets.fromLTRB(10, 6, 10, 2),
-                    child: LumoGlassCard(
-                      blur: 14,
-                      borderRadius: 22,
-                      padding: EdgeInsets.zero,
-                      tintColor: const Color(0xFFFFE0B8),
-                      child: LumoCardsScoreHeader(
-                        round: 1,
-                        totalRounds: 1,
-                        targetPoints: widget.appState.state.stars,
-                        onClose: () {
-                          LumoSound.instance.play(SoundEffect.click);
-                          Navigator.of(context).pop();
-                        },
-                        onSettings: () {
-                          LumoSound.instance.play(SoundEffect.click);
-                          _rewardGiven = false;
-                          _controller.restart();
-                        },
-                        // PR I 2026-05-23: Audio-Settings BottomSheet
-                        onAudioSettings: () {
-                          LumoSound.instance.play(SoundEffect.click);
-                          _openAudioSettings();
-                        },
-                      ),
-                    ),
-                  ),
-                  // ── Gegner-HUD: Avatar + Name + Karten + Sterne ──
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 2),
-                    child: LumoPlayerHud(
-                      name: oppPlayer.name,
-                      cardCount: oppPlayer.hand.length,
-                      stars: oppPlayer.stars,
-                      isActive: oppActive,
-                      compact: true,
-                      avatarAssetPath: widget.vsBot
-                          ? null
-                          : LumoCardsAssets.avatarRedGirl,
-                      ringColor: const Color(0xFF8B5CF6),
-                    ),
-                  ),
-                  // ── Gegner-Hand-Fan: verdeckte Karten-Rueckseiten ──
-                  // (Heinz Wunsch: 'vom Gegner sollte man auch sehen')
-                  LumoOpponentHand(
-                    cardCount: oppPlayer.hand.length,
-                    cardWidth: 50,
-                    cardHeight: 70,
-                  ),
-                  LumoTurnBanner(
-                    currentPlayerName: current.name,
-                    message: s.lastActionMessage ?? '',
-                    isMyTurn: s.currentPlayerIndex == viewerIndex &&
-                        s.phase == GamePhase.playing,
-                  ),
-                  // Mitte: Piles in der Arena. ClipRect schuetzt vor
-                  // Overflow auf kleinen Handys (Arena ist 230 px square,
-                  // bei wenig vertikalem Platz wird der untere/obere Pfeil
-                  // geclippt - kein Crash, nur visuell etwas knapp).
-                  Expanded(
-                    child: ClipRect(
-                      child: Center(
-                        child: LumoColorArrows(
-                          activeColor: s.selectedColor,
-                          size: 230,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              LumoDrawPile(
-                                cardsLeft: s.drawPile.length,
-                                onDraw: s.phase == GamePhase.playing
-                                    ? () => _controller.drawCard()
-                                    : null,
-                              ),
-                              const SizedBox(width: 16),
-                              if (topCard != null)
-                                KeyedSubtree(
-                                  key: _discardKey,
-                                  // Premium-Look 2026-05-25:
-                                  //  - radialer Glow-Halo HINTER der Pile
-                                  //    (96x140 Karte + grosser Spread -
-                                  //    sieht aus wie ein Spot-Strahler)
-                                  //  - LumoFloating: sanftes Schweben +/-4 px,
-                                  //    bricht die statische Optik
-                                  child: SizedBox(
-                                    width: 132,
-                                    height: 172,
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        IgnorePointer(
-                                          child: Container(
-                                            width: 112,
-                                            height: 152,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color:
-                                                      const Color(0xFFFFE0B8)
-                                                          .withOpacity(0.55),
-                                                  blurRadius: 48,
-                                                  spreadRadius: 4,
-                                                ),
-                                                BoxShadow(
-                                                  color:
-                                                      const Color(0xFFFFB96B)
-                                                          .withOpacity(0.35),
-                                                  blurRadius: 22,
-                                                  spreadRadius: -2,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        LumoFloating(
-                                          amplitude: 4,
-                                          duration:
-                                              const Duration(seconds: 4),
-                                          child: LumoDiscardPile(
-                                            topCard: topCard,
-                                            selectedColor: s.selectedColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                            ],
+    return LumoGamePauseScope(
+        clock: _controller.turnClock,
+        onRestart: _restartGame,
+        child: Scaffold(
+          body: Stack(
+            children: [
+              // ── Hauptlayout ──
+              // Heinz 2026-05-22 Refactor Build 182:
+              //  - LayoutBuilder raus (war Komplexitaets-Quelle)
+              //  - Karten groesser (96x140 default)
+              //  - Hand-Hoehe fix 180 px
+              //  - Gegner-Hand-Fan oben sichtbar (Heinz: 'vom Gegner sollte
+              //    man auch sehen')
+              //  - Arena kleiner damit alles passt
+              LumoCardTable(
+                child: SafeArea(
+                  child: Column(
+                    children: [
+                      // Premium-Look 2026-05-25: HUD-Header sitzt jetzt auf
+                      // einem Glass-Panel (BackdropFilter Blur + warmer Tint),
+                      // hebt sich klar vom Velvet-Tisch ab und sieht weniger
+                      // "Standard-Material" aus.
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 6, 10, 2),
+                        child: LumoGlassCard(
+                          blur: 14,
+                          borderRadius: 22,
+                          padding: EdgeInsets.zero,
+                          tintColor: const Color(0xFFFFE0B8),
+                          child: LumoCardsScoreHeader(
+                            round: 1,
+                            totalRounds: 1,
+                            targetPoints: widget.appState.state.stars,
+                            onClose: () {
+                              LumoSound.instance.play(SoundEffect.click);
+                              _controller.turnClock.pause();
+                            },
+                            onSettings: () {
+                              LumoSound.instance.play(SoundEffect.click);
+                              _controller.turnClock.pause();
+                            },
+                            // PR I 2026-05-23: Audio-Settings BottomSheet
+                            onAudioSettings: () {
+                              LumoSound.instance.play(SoundEffect.click);
+                              _openAudioSettings();
+                            },
                           ),
                         ),
                       ),
+                      // ── Gegner-HUD: Avatar + Name + Karten + Sterne ──
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 2),
+                        child: LumoPlayerHud(
+                          name: oppPlayer.name,
+                          cardCount: oppPlayer.hand.length,
+                          stars: oppPlayer.stars,
+                          isActive: oppActive,
+                          compact: true,
+                          avatarAssetPath: widget.vsBot
+                              ? null
+                              : LumoCardsAssets.avatarRedGirl,
+                          ringColor: const Color(0xFF8B5CF6),
+                        ),
+                      ),
+                      // ── Gegner-Hand-Fan: verdeckte Karten-Rueckseiten ──
+                      // (Heinz Wunsch: 'vom Gegner sollte man auch sehen')
+                      if (!compact)
+                        LumoOpponentHand(
+                          cardCount: oppPlayer.hand.length,
+                          cardWidth: 50,
+                          cardHeight: 70,
+                        ),
+                      LumoTurnBanner(
+                        currentPlayerName: current.name,
+                        message: s.lastActionMessage ?? '',
+                        isMyTurn: s.currentPlayerIndex == viewerIndex &&
+                            s.phase == GamePhase.playing,
+                      ),
+                      // Mitte: Piles in der Arena. ClipRect schuetzt vor
+                      // Overflow auf kleinen Handys (Arena ist 230 px square,
+                      // bei wenig vertikalem Platz wird der untere/obere Pfeil
+                      // geclippt - kein Crash, nur visuell etwas knapp).
+                      Expanded(
+                        child: ClipRect(
+                          child: Center(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: LumoColorArrows(
+                                activeColor: s.selectedColor,
+                                size: 300,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    LumoDrawPile(
+                                      cardsLeft: s.drawPile.length,
+                                      onDraw: s.phase == GamePhase.playing &&
+                                              _isMyTurnVisible(s)
+                                          ? () => _controller.drawCard()
+                                          : null,
+                                    ),
+                                    const SizedBox(width: 16),
+                                    if (topCard != null)
+                                      KeyedSubtree(
+                                        key: _discardKey,
+                                        // Premium-Look 2026-05-25:
+                                        //  - radialer Glow-Halo HINTER der Pile
+                                        //    (96x140 Karte + grosser Spread -
+                                        //    sieht aus wie ein Spot-Strahler)
+                                        //  - LumoFloating: sanftes Schweben +/-4 px,
+                                        //    bricht die statische Optik
+                                        child: SizedBox(
+                                          width: 132,
+                                          height: 172,
+                                          child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              IgnorePointer(
+                                                child: Container(
+                                                  width: 112,
+                                                  height: 152,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: const Color(
+                                                                0xFFFFE0B8)
+                                                            .withOpacity(0.55),
+                                                        blurRadius: 48,
+                                                        spreadRadius: 4,
+                                                      ),
+                                                      BoxShadow(
+                                                        color: const Color(
+                                                                0xFFFFB96B)
+                                                            .withOpacity(0.35),
+                                                        blurRadius: 22,
+                                                        spreadRadius: -2,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              LumoFloating(
+                                                amplitude: 4,
+                                                duration:
+                                                    const Duration(seconds: 4),
+                                                child: LumoDiscardPile(
+                                                  topCard: topCard,
+                                                  selectedColor:
+                                                      s.selectedColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Hand am Boden - im vsBot-Modus immer die Hand des
+                      // Kindes (Spieler 1), egal wer dran ist.
+                      if (topCard != null)
+                        _isMyTurnVisible(s)
+                            ? LumoPlayerHand(
+                                cards: widget.vsBot
+                                    ? s.players[0].hand
+                                    : current.hand,
+                                topCard: topCard,
+                                selectedColor: s.selectedColor,
+                                onCardTap:
+                                    widget.vsBot && s.currentPlayerIndex != 0
+                                        ? (_) {}
+                                        : (card) => _controller.playCard(card),
+                                onCardTapAt:
+                                    widget.vsBot && s.currentPlayerIndex != 0
+                                        ? null
+                                        : _playCardWithFly,
+                                height: compact ? 148 : 180,
+                              )
+                            : _buildLumoThinking(compact ? 148 : 180),
+                      _buildControls(s, viewerIndex),
+                    ],
+                  ),
+                ),
+              ),
+              // ── Overlays ÜBER der SafeArea ──
+              // Garantiert vollflaechig, deckt auch Status-/Navi-Bar ab.
+              // Im vsBot-Modus: kein Pass-Device-Overlay (Lumo's Zuege
+              // laufen automatisch ab).
+              if (!widget.vsBot && s.phase == GamePhase.passDevice)
+                LumoPassDeviceOverlay(
+                  nextPlayerName: current.name,
+                  onReady: _controller.confirmHandover,
+                ),
+              if (s.phase == GamePhase.chooseColor &&
+                  (!widget.vsBot || s.currentPlayerIndex == 0))
+                LumoColorPicker(onPick: _controller.selectColor),
+              if (s.phase == GamePhase.learningQuestion &&
+                  (!widget.vsBot || s.currentPlayerIndex == 0) &&
+                  s.pendingLearningQuestion != null)
+                LumoLearningCardOverlay(
+                  question: s.pendingLearningQuestion!,
+                  onAnswer: _controller.answerLearningQuestion,
+                ),
+              if (s.phase == GamePhase.gameOver)
+                LumoResultDialog(
+                  winnerName: s.players[s.winnerIndex ?? 0].name,
+                  kindWon: s.winnerIndex == 0,
+                  reward: _rewardForStreak(s.winnerIndex == 0
+                      ? widget.appState.lumoCardsWinStreak
+                      : 0),
+                  streak: widget.appState.lumoCardsWinStreak,
+                  onRestart: () {
+                    LumoSound.instance.play(SoundEffect.click);
+                    _restartGame();
+                  },
+                  onExit: () {
+                    LumoSound.instance.play(SoundEffect.click);
+                    Navigator.of(context).pop();
+                  },
+                ),
+              // Tier 6 Karten-Polish 2026-05-25: fliegende Karte von der
+              // Tap-Position zur Discard-Pile. Stack-Positioned (left/top
+              // werden im LumoCardFly per Animation gesetzt), IgnorePointer
+              // damit Taps weiter zur Hand durchgehen.
+              if (_flyingCard != null && _flyStart != null && _flyEnd != null)
+                Positioned.fill(
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      LumoCardFly(
+                        key: ValueKey('fly-$_flyKey'),
+                        card: _flyingCard!,
+                        start: _flyStart!,
+                        end: _flyEnd!,
+                        onDone: _clearFly,
+                      ),
+                    ],
+                  ),
+                ),
+              // Tier 6 Karten-Polish 2026-05-23: Partikel-Burst bei +2/+4.
+              // Position auf den zentralen Arena-Bereich (in dem die Discard-
+              // Pile sitzt). Partikel spawnen von der Mitte des Positioned-
+              // Bereichs aus, daher die ungleichmaessigen Insets - die Mitte
+              // soll genau ueber dem Discard liegen.
+              if (_activeBurst != null)
+                Positioned(
+                  top: MediaQuery.of(context).size.height * 0.30,
+                  bottom: MediaQuery.of(context).size.height * 0.32,
+                  left: 0,
+                  right: 0,
+                  child: LumoCardBurst(
+                    key: ValueKey('burst-$_burstKey'),
+                    style: _activeBurst!,
+                    onDone: () {
+                      if (mounted) setState(() => _activeBurst = null);
+                    },
+                  ),
+                ),
+              // PR H1 2026-05-23: Star-Burst-Lottie bei richtiger Lernfrage.
+              // Liegt UEBER der Arena, IgnorePointer damit Tap-Events
+              // weiter zur unterliegenden UI durchgehen.
+              if (_showStarBurst)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: Center(
+                      child: LumoLottie(
+                        key: ValueKey('starburst-$_starBurstKey'),
+                        asset: LumoAssetPaths.lottieStarBurst,
+                        size: 220,
+                        repeat: false,
+                      ),
                     ),
                   ),
-                  // Hand am Boden - im vsBot-Modus immer die Hand des
-                  // Kindes (Spieler 1), egal wer dran ist.
-                  if (topCard != null)
-                    _isMyTurnVisible(s)
-                        ? LumoPlayerHand(
-                            cards: widget.vsBot
-                                ? s.players[0].hand
-                                : current.hand,
-                            topCard: topCard,
-                            selectedColor: s.selectedColor,
-                            onCardTap: widget.vsBot && s.currentPlayerIndex != 0
-                                ? (_) {}
-                                : (card) => _controller.playCard(card),
-                            onCardTapAt: widget.vsBot && s.currentPlayerIndex != 0
-                                ? null
-                                : _playCardWithFly,
-                            height: 180,
-                          )
-                        : _buildLumoThinking(180),
-                ],
-              ),
-            ),
+                ),
+              // Konfetti-Regen wenn das Kind gewinnt. Liegt UEBER dem Result-
+              // Dialog, IgnorePointer drinnen damit der Dialog klickbar bleibt.
+              if (s.phase == GamePhase.gameOver && s.winnerIndex == 0)
+                const Positioned.fill(child: LumoConfetti()),
+              // ── Intro-Splash (Heinz 2026-05-22) ──
+              // Liegt UEBER allem - inkl. Result-Dialog/Color-Picker. Wird
+              // nur einmal beim Screen-Eintritt gezeigt.
+              if (_showIntro)
+                LumoIntroSplash(
+                  onComplete: () {
+                    if (mounted) setState(() => _showIntro = false);
+                  },
+                ),
+            ],
           ),
-          // ── Overlays ÜBER der SafeArea ──
-          // Garantiert vollflaechig, deckt auch Status-/Navi-Bar ab.
-          // Im vsBot-Modus: kein Pass-Device-Overlay (Lumo's Zuege
-          // laufen automatisch ab).
-          if (!widget.vsBot && s.phase == GamePhase.passDevice)
-            LumoPassDeviceOverlay(
-              nextPlayerName: current.name,
-              onReady: _controller.confirmHandover,
-            ),
-          if (s.phase == GamePhase.chooseColor)
-            LumoColorPicker(onPick: _controller.selectColor),
-          if (s.phase == GamePhase.learningQuestion &&
-              s.pendingLearningQuestion != null)
-            LumoLearningCardOverlay(
-              question: s.pendingLearningQuestion!,
-              onAnswer: _controller.answerLearningQuestion,
-            ),
-          // Action-Button unten rechts. Wenn der Spieler nur noch 1-2
-          // Karten hat -> LUMO!-Button statt 'Karte ziehen'.
-          // Premium-Look 2026-05-25: pulsierender Glow um den Button,
-          // wenn das Kind dran ist - macht ihn zum visuell dominanten
-          // Call-to-Action.
-          if (_showActionUi(s))
-            Positioned(
-              right: 18,
-              bottom: 18,
-              child: SafeArea(
-                top: false,
-                left: false,
-                child: LumoGlowPulse(
-                  color: _isMyTurnVisible(s)
-                      ? const Color(0xFFFFB96B)
-                      : Colors.transparent,
-                  minBlur: 18,
-                  maxBlur: 42,
-                  child: s.players[viewerIndex].hand.length <= 2
-                      ? LumoCallButton(
-                          cardsLeft: s.players[viewerIndex].hand.length,
-                          totalCards: 7,
-                          onPressed: _onLumoCall,
-                        )
-                      : LumoActionButton(
-                          label: _actionLabel(s),
-                          icon: _actionIcon(s),
-                          enabled: _isMyTurnVisible(s),
-                          pulse: _isMyTurnVisible(s),
-                          onPressed: _isMyTurnVisible(s)
-                              ? () => _controller.drawCard()
-                              : null,
-                        ),
-                ),
-              ),
-            ),
-          if (_showActionUi(s) && _isMyTurnVisible(s))
-            Positioned(
-              left: 14,
-              // Hint-Bubble etwas hoeher damit unten Platz fuer den
-              // Spieler-Mini-HUD bleibt.
-              bottom: 92,
-              child: SafeArea(
-                top: false,
-                right: false,
-                child: LumoHintBubble(message: _hintFor(s)),
-              ),
-            ),
-          // ── Spieler-1-Mini-HUD unten links ──
-          // Avatar + Karten-Counter. Tap auf den Avatar oeffnet den
-          // Picker (Avatar wechseln). Sichtbar in beiden Modi.
-          Positioned(
-            left: 14,
-            bottom: 14,
-            child: SafeArea(
-              top: false,
-              right: false,
-              child: GestureDetector(
-                onTap: _changeAvatar,
-                child: LumoPlayerHud(
-                  name: widget.vsBot
-                      ? widget.player1Name
-                      : s.players[viewerIndex].name,
-                  cardCount: s.players[viewerIndex].hand.length,
-                  stars: s.players[viewerIndex].stars,
-                  isActive: s.currentPlayerIndex == viewerIndex &&
-                      s.phase == GamePhase.playing,
-                  compact: true,
-                  avatarAssetPath: _playerAvatarPath,
-                  ringColor: const Color(0xFFFCD34D),
-                ),
-              ),
-            ),
+        ));
+  }
+
+  void _restartGame() {
+    _roundSerial++;
+    _rewardGiven = false;
+    _callRewardGiven = false;
+    _flyingCard = null;
+    _flyStart = null;
+    _flyEnd = null;
+    _controller.restart();
+  }
+
+  Widget _buildControls(LumoCardsGameState s, int viewerIndex) {
+    final myTurn = _showActionUi(s);
+    final lowHand = s.players[viewerIndex].hand.length <= 2;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 4, 12, 8),
+      child: Row(children: [
+        IconButton(
+          tooltip: 'Avatar wechseln',
+          onPressed: _changeAvatar,
+          icon: const Icon(Icons.face_rounded, color: Colors.white),
+        ),
+        Expanded(
+            child: Text(
+          '${s.players[viewerIndex].name}: ${s.players[viewerIndex].hand.length} Karten',
+          style:
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.w800),
+        )),
+        if (myTurn && lowHand && !_callRewardGiven)
+          TextButton(
+              onPressed: _onLumoCall,
+              child: const Text('LUMO! +1',
+                  style: TextStyle(color: Color(0xFFFFD974)))),
+        if (myTurn)
+          FilledButton.icon(
+            onPressed:
+                _flyingCard == null ? () => _controller.drawCard() : null,
+            icon: const Icon(Icons.add_rounded),
+            label: const Text('Ziehen'),
           ),
-          if (s.phase == GamePhase.gameOver)
-            LumoResultDialog(
-              winnerName: s.players[s.winnerIndex ?? 0].name,
-              kindWon: s.winnerIndex == 0,
-              reward: _rewardForStreak(s.winnerIndex == 0
-                  ? widget.appState.lumoCardsWinStreak
-                  : 0),
-              streak: widget.appState.lumoCardsWinStreak,
-              onRestart: () {
-                LumoSound.instance.play(SoundEffect.click);
-                _rewardGiven = false;
-                _controller.restart();
-              },
-              onExit: () {
-                LumoSound.instance.play(SoundEffect.click);
-                Navigator.of(context).pop();
-              },
-            ),
-          // Tier 6 Karten-Polish 2026-05-25: fliegende Karte von der
-          // Tap-Position zur Discard-Pile. Stack-Positioned (left/top
-          // werden im LumoCardFly per Animation gesetzt), IgnorePointer
-          // damit Taps weiter zur Hand durchgehen.
-          if (_flyingCard != null && _flyStart != null && _flyEnd != null)
-            Positioned.fill(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  LumoCardFly(
-                    key: ValueKey('fly-$_flyKey'),
-                    card: _flyingCard!,
-                    start: _flyStart!,
-                    end: _flyEnd!,
-                    onDone: _clearFly,
-                  ),
-                ],
-              ),
-            ),
-          // Tier 6 Karten-Polish 2026-05-23: Partikel-Burst bei +2/+4.
-          // Position auf den zentralen Arena-Bereich (in dem die Discard-
-          // Pile sitzt). Partikel spawnen von der Mitte des Positioned-
-          // Bereichs aus, daher die ungleichmaessigen Insets - die Mitte
-          // soll genau ueber dem Discard liegen.
-          if (_activeBurst != null)
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.30,
-              bottom: MediaQuery.of(context).size.height * 0.32,
-              left: 0,
-              right: 0,
-              child: LumoCardBurst(
-                key: ValueKey('burst-$_burstKey'),
-                style: _activeBurst!,
-                onDone: () {
-                  if (mounted) setState(() => _activeBurst = null);
-                },
-              ),
-            ),
-          // PR H1 2026-05-23: Star-Burst-Lottie bei richtiger Lernfrage.
-          // Liegt UEBER der Arena, IgnorePointer damit Tap-Events
-          // weiter zur unterliegenden UI durchgehen.
-          if (_showStarBurst)
-            Positioned.fill(
-              child: IgnorePointer(
-                child: Center(
-                  child: LumoLottie(
-                    key: ValueKey('starburst-$_starBurstKey'),
-                    asset: LumoAssetPaths.lottieStarBurst,
-                    size: 220,
-                    repeat: false,
-                  ),
-                ),
-              ),
-            ),
-          // Konfetti-Regen wenn das Kind gewinnt. Liegt UEBER dem Result-
-          // Dialog, IgnorePointer drinnen damit der Dialog klickbar bleibt.
-          if (s.phase == GamePhase.gameOver && s.winnerIndex == 0)
-            const Positioned.fill(child: LumoConfetti()),
-          // ── Intro-Splash (Heinz 2026-05-22) ──
-          // Liegt UEBER allem - inkl. Result-Dialog/Color-Picker. Wird
-          // nur einmal beim Screen-Eintritt gezeigt.
-          if (_showIntro)
-            LumoIntroSplash(
-              onComplete: () {
-                if (mounted) setState(() => _showIntro = false);
-              },
-            ),
-        ],
-      ),
+      ]),
     );
   }
 
   /// Action-Button nur waehrend Spielphase sichtbar.
   bool _showActionUi(LumoCardsGameState s) =>
       s.phase == GamePhase.playing && _isMyTurnVisible(s);
-
-  String _actionLabel(LumoCardsGameState s) => 'Karte ziehen';
-  IconData _actionIcon(LumoCardsGameState s) => Icons.add_circle_outline_rounded;
-
-  String _hintFor(LumoCardsGameState s) {
-    if (s.phase != GamePhase.playing) return '';
-    final top = s.topCard;
-    if (top == null) return '';
-    final me = s.players[0];
-    final opp = s.players[1];
-    final playables = me.hand
-        .where((c) =>
-            c.isWild ||
-            c.color == s.selectedColor ||
-            (c.number != null && c.number == top.number) ||
-            (c.isSpecial && c.type == top.type))
-        .toList();
-
-    if (playables.isEmpty) {
-      return 'Keine passende Karte - ziehe eine!';
-    }
-
-    // Strategische Tipps (Heinz 2026-05-22 'cleverer + strategischer').
-    final hasBlock = playables.any((c) =>
-        c.type == LumoCardType.lumoJump ||
-        c.type == LumoCardType.whirlwind ||
-        c.type == LumoCardType.starRain ||
-        c.type == LumoCardType.superRain);
-
-    if (opp.hand.length == 1) {
-      return hasBlock
-          ? 'Lumo hat nur 1 Karte - leg eine Spezialkarte!'
-          : 'Achtung: Lumo gewinnt fast! Halte ihn auf!';
-    }
-    if (opp.hand.length == 2 && hasBlock) {
-      return 'Lumo hat nur 2 Karten - Spezialkarte hilft jetzt!';
-    }
-
-    // Nur Wild-Karte als einzige Option
-    if (playables.length == 1) {
-      final only = playables.first;
-      if (only.type == LumoCardType.superRain) {
-        return 'Sternen-Sturm! Lumo muss 4 Karten ziehen!';
-      }
-      if (only.type == LumoCardType.colorMagic) {
-        return 'Spiel die Wild und waehle eine Farbe!';
-      }
-    }
-
-    // Wenn die Hand gross ist, hohe Zahlen zuerst loswerden.
-    if (me.hand.length >= 9) {
-      return 'Spiel deine grossen Zahlen zuerst!';
-    }
-
-    return 'Lege eine passende Farbe oder Zahl.';
-  }
 
   int _rewardForStreak(int streak) {
     if (streak <= 1) return 3;
@@ -737,6 +669,15 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// 'LUMO!'-Ruf wenn das Kind nur noch 1-2 Karten hat. Gibt einen
   /// Bonus-Stern und zeigt Feedback. Eigene Lumo-Spielmechanik.
   void _onLumoCall() {
+    final s = _controller.state;
+    if (_callRewardGiven ||
+        s.phase != GamePhase.playing ||
+        !_isMyTurnVisible(s) ||
+        s.currentPlayer.hand.length > 2 ||
+        _controller.turnClock.value) {
+      return;
+    }
+    setState(() => _callRewardGiven = true);
     widget.appState.addStars(1);
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -784,21 +725,20 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 ),
               ),
               const SizedBox(width: 12),
-              const Text(
-                '🦊 Lumo ueberlegt...',
+              const Flexible(
+                  child: Text(
+                '🦊 Lumo überlegt …',
                 style: TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 16,
                   fontWeight: FontWeight.w900,
                   color: Color(0xFF7C2D12),
                 ),
-              ),
+              )),
             ],
           ),
         ),
       ),
     );
   }
-
-
 }
