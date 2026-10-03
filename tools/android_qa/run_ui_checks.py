@@ -172,12 +172,11 @@ def main(args):
     try:
         complete_first_run_ui(wait_for, click, device.capture, labels)
         device.capture('flutter-home')
-        # Work against the actual offline app, including its visible rewards.
+        # Check the requested Home → games → native race → Flutter return first.
         # The profile comes solely from the real onboarding controls above.
         device.adb('shell', 'svc', 'wifi', 'disable')
         device.adb('shell', 'svc', 'data', 'disable')
         flutter_checks = FlutterChecks(device, args.out, package)
-        flutter_checks.learning()
         click('Spielen', contains=True)
         wait_for(['Lumo Spielewelt', 'Losfahren'])
         device.capture('flutter-games')
@@ -241,6 +240,7 @@ def main(args):
                               'flutter_pid_after_return': learn_flutter_pid,
                               'visible_caption': LEARNING_SELECTION_CAPTION,
                               'native_engine_stopped': True}
+        flutter_checks.learning()
         # Full real board/card rounds, Fold-shaped resize/navigation, and exact
         # visible wallet/profile/daily-progress equality across process restart.
         flutter_checks.boards()
@@ -252,7 +252,7 @@ def main(args):
                  'saved_race_hud': saved_state, 'restored_race_hud': restored_state,
                  'native_learning_return': learn_return_proof,
                  'flutter_checks': flutter_proof,
-                 'flow': 'Flutter learning/help/answer/reward → Kart two-lap race/result/restart/fresh native resume → native return to Flutter learning → Memory twelve pairs → Cards complete round → Fold resize/navigation → offline restart with identical visible wallet/profile/progress',
+                 'flow': 'Flutter home/games → Kart two-lap race/result/restart/fresh native resume → native return to Flutter learning/help/answer/reward → Memory twelve pairs → Cards complete round → Fold resize/navigation → offline restart with identical visible wallet/profile/progress',
                  'race_uses_real_physics_and_wall_time': True,
                  'no_apk_rebuild_resign_or_publish': True}
         (args.out/'result.json').write_text(json.dumps(proof, indent=2, ensure_ascii=False)+'\n')
