@@ -106,15 +106,16 @@ class LumoFlameJumpGame extends FlameGame {
   final List<NormalObstacleComponent> obstacles      = [];
 
   // Session-Zustand
-  int    sessionStars     = 0;
-  int    totalEarnedStars = 0;
-  double totalTime        = 0;
-  double cameraX          = 0;
-  double worldWidth       = 6400;
-  bool   interactionLock  = false;
-  bool   walletTransferred= false;
-  String statusHint       = '';
-  double statusHintTimer  = 0;
+  int sessionStars = 0;
+  int totalEarnedStars = 0;
+  double totalTime = 0;
+  double cameraX = 0;
+  double worldWidth = 6400;
+  bool interactionLock = false;
+  bool walletTransferred = false;
+  int _bookedRewardStars = 0;
+  String statusHint = '';
+  double statusHintTimer = 0;
 
   // Reaktive Notifier für Flutter-HUD
   final ValueNotifier<int>    starsN  = ValueNotifier(0);
@@ -264,16 +265,11 @@ class LumoFlameJumpGame extends FlameGame {
                 ? 1
                 : 0;
 
-    if (!walletTransferred) {
-      walletTransferred = true;
-      final st = appState.state;
-      appState.update(st.copyWith(
-        stars:       st.stars + totalEarnedStars,
-        xp:          st.xp + totalEarnedStars * 2,
-        mood:        LumoMood.celebrate,
-        lumoMessage: 'Lumo Jump geschafft!\n+$totalEarnedStars Sterne',
-      ));
-    }
+    _bookRewards();
+    appState.update(appState.state.copyWith(
+      mood: LumoMood.celebrate,
+      lumoMessage: 'Lumo Jump geschafft!\n+$totalEarnedStars Sterne',
+    ));
 
     GameProgressRepository().recordResult( // fire-and-forget
       childId:     _childId,
@@ -282,6 +278,21 @@ class LumoFlameJumpGame extends FlameGame {
     );
 
     onLevelComplete(totalEarnedStars, lStars);
+  }
+
+  // Book each genuinely earned star once. A failed save can be retried, or
+  // the child can continue playing, without duplicating an earlier reward.
+  void _bookRewards() {
+    final delta = totalEarnedStars - _bookedRewardStars;
+    if (delta <= 0) return;
+    _bookedRewardStars = totalEarnedStars;
+    walletTransferred = true;
+    appState.addRewards(stars: delta, xp: delta * 2);
+  }
+
+  Future<void> transferRewards() {
+    _bookRewards();
+    return appState.flushRewards();
   }
 
   String get _childId {
@@ -2033,7 +2044,8 @@ class LumoJumpFlameScreen extends StatefulWidget {
 
 class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
   late LumoFlameJumpGame _game;
-  bool _walletTransferred = false;
+  bool _abortDialogOpen = false;
+  bool _leaving = false;
 
   @override
   void initState() {
@@ -2195,13 +2207,16 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
     showDialog<void>(
       context:           context,
       barrierDismissible: false,
-      builder: (_) => _LevelCompleteDialog(
-        totalStars: totalStars,
-        levelStars: levelStars,
-        onContinue: () {
-          Navigator.of(context).pop();           // Dialog
-          Navigator.of(context).pop(totalStars); // Game-Screen
+      builder: (_) => PopScope<void>(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, _) {
+          if (!didPop) _leaveGame(closeResult: true);
         },
+        child: _LevelCompleteDialog(
+          totalStars: totalStars,
+          levelStars: levelStars,
+          onContinue: () => _leaveGame(closeResult: true),
+        ),
       ),
     );
   }
@@ -2209,6 +2224,8 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
   // ── Abbruch-Bestätigung ────────────────────────────────────────────────
 
   Future<void> _confirmAbort() async {
+    if (_abortDialogOpen || _leaving || !mounted) return;
+    _abortDialogOpen = true;
     _game.pauseEngine();
     final quit = await showDialog<bool>(
       context: context,
@@ -2241,19 +2258,35 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
         ],
       ),
     );
+    _abortDialogOpen = false;
     if (!mounted) return;
     if (quit == true) {
-      if (_game.totalEarnedStars > 0 && !_walletTransferred) {
-        _walletTransferred = true;
-        final st = widget.appState.state;
-        widget.appState.update(st.copyWith(
-          stars: st.stars + _game.totalEarnedStars,
-          xp:    st.xp + _game.totalEarnedStars * 2,
-        ));
-      }
-      if (mounted) Navigator.of(context).pop(_game.totalEarnedStars);
+      await _leaveGame();
     } else {
       _game.resumeEngine();
+    }
+  }
+
+  Future<void> _leaveGame({bool closeResult = false}) async {
+    if (_leaving || !mounted) return;
+    _leaving = true;
+    try {
+      await _game.transferRewards();
+      if (!mounted) return;
+      if (closeResult) Navigator.of(context).pop();
+      Navigator.of(context).pop(_game.totalEarnedStars);
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(widget.appState.rewardSaveError ??
+            'Deine Sterne warten noch aufs Speichern.'),
+        action: SnackBarAction(
+          label: 'Erneut versuchen',
+          onPressed: () => _leaveGame(closeResult: closeResult),
+        ),
+      ));
+    } finally {
+      _leaving = false;
     }
   }
 
@@ -2261,15 +2294,21 @@ class _LumoJumpFlameScreenState extends State<LumoJumpFlameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Column(
-          children: [
-            _buildHud(),
-            Expanded(child: GameWidget(game: _game)),
-            _buildControls(),
-          ],
+    return PopScope<int>(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) _confirmAbort();
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Column(
+            children: [
+              _buildHud(),
+              Expanded(child: GameWidget(game: _game)),
+              _buildControls(),
+            ],
+          ),
         ),
       ),
     );

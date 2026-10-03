@@ -295,6 +295,17 @@ class LumoAppState extends ChangeNotifier {
     _safeNotify();
   }
 
+  /// Books a game reward's stars and XP in one persisted wallet transaction.
+  void addRewards({required int stars, required int xp}) {
+    if (_disposed || _resetting || (stars == 0 && xp == 0)) return;
+    _state = _state.copyWith(
+      stars: (_state.stars + stars).clamp(0, 999999),
+      xp: (_state.xp + xp).clamp(0, 9999999),
+    );
+    _persistRewards(stars: stars, xp: xp);
+    _safeNotify();
+  }
+
   /// Beim App-Start aufgerufen: laedt die Wallet und schreibt
   /// Sterne/XP in den State zurueck.
   Future<void> hydrateFromWallet() async {
