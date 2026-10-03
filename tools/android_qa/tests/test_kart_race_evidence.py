@@ -109,7 +109,59 @@ class KartTransitionEvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'within 30s'):
             wait_for_frame(slow_capture, 'android-back-pause',
                            lambda observed: bool(action_marker(observed, 'Weiterfahren')),
+                           'Pause did not appear.', timeout=30,
+                           clock=lambda: now[0], sleep=lambda _: None)
+
+    def test_real_slow_answer_observations_fit_the_bounded_native_processing_budget(self):
+        # Run37123614635 actual 025/026-answered PNGs and action timestamps:
+        # 025 still shows 9-5 with 0km/h; 026 shows closed lesson/Richtig/57km/h.
+        # Full capture+OCR observations took 15.5s and20s, with no repeated input.
+        pending = {'height': 480, 'lines': [
+            {'text': 'RUNDE1/2 - PLATZ1/6 - 0km/h', 'top': 58, 'height': 14},
+            {'text': 'LERN-BOOST · 1. KLASSE · Mathematik', 'top': 122, 'height': 9},
+            {'text': '9−5=?', 'top': 154, 'height': 12}],
+            'words': [{'text': '4', 'left': 538, 'top': 190, 'width': 6, 'height': 9}]}
+        pending['text'] = '\n'.join(line['text'] for line in pending['lines'])
+        resumed = frame('RUNDE1/2 - PLATZ1/6', '57 km/h', 'Richtig!')
+        observations = [(15.5, pending), (20.0, resumed)]
+        now, captured = [0.0], []
+        def capture(label):
+            seconds, observed = observations[len(captured)]
+            captured.append((label, observed))
+            now[0] += seconds
+            return observed
+        result = wait_for_frame(capture, 'answered',
+                                lambda observed: lesson_closed_or_changed(observed, '9−5=?'),
+                                'Answer touch did not close the real learning pause.',
+                                clock=lambda: now[0], sleep=lambda seconds: now.__setitem__(0, now[0]+seconds))
+        self.assertIs(result, resumed)
+        self.assertEqual(len(captured), 2)
+        self.assertGreater(now[0], 30)
+        self.assertLess(now[0], 90)
+
+    def test_default_native_deadline_rejects_late_success_and_slow_stale_panels(self):
+        now = [0.0]
+        def too_late(_):
+            now[0] = 91
+            return frame('Weiterfahren')
+        with self.assertRaisesRegex(RuntimeError, 'within 90s'):
+            wait_for_frame(too_late, 'android-back-pause',
+                           lambda observed: bool(action_marker(observed, 'Weiterfahren')),
                            'Pause did not appear.', clock=lambda: now[0], sleep=lambda _: None)
+        now[0] = 0
+        captured = []
+        stale = {'height': 480, 'words': [], 'text': 'RUNDE1/2 - PLATZ1/6\nLERN-BOOST',
+                 'lines': [{'text': 'RUNDE1/2 - PLATZ1/6', 'top': 58, 'height': 14},
+                           {'text': 'LERN-BOOST', 'top': 122, 'height': 9}]}
+        def slow_stale(label):
+            captured.append(label)
+            now[0] += 20
+            return stale
+        with self.assertRaisesRegex(RuntimeError, 'within 90s.*LERN-BOOST'):
+            wait_for_frame(slow_stale, 'answered', lesson_closed_or_changed,
+                           'Answer touch did not close the real learning pause.',
+                           clock=lambda: now[0], sleep=lambda seconds: now.__setitem__(0, now[0]+seconds))
+        self.assertEqual(len(captured), 5)
 
     def test_restart_requires_round_one_and_cannot_accept_stale_result_or_hud(self):
         self.assertFalse(restart_visible(frame('RUNDE 2/2', 'PLATZ 1/6', 'Noch ein Rennen')))

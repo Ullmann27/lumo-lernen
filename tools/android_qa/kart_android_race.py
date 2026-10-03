@@ -351,12 +351,13 @@ def lesson_visible(frame):
     return bool(marker(frame, 'LERN-BOOST') or action_marker(frame, 'SPATER'))
 
 
-def wait_for_frame(capture, label, predicate, error_message, *, timeout=30,
+def wait_for_frame(capture, label, predicate, error_message, *, timeout=90,
                    poll_interval=.5, clock=time.monotonic, sleep=time.sleep):
     """Observe a bounded real UI transition after one already-issued input.
 
-    Rendering and panel layout can span several slow emulator frames. Capture
-    every observation, but never retry the input or accept a stale HUD alone.
+    Rendering, ADB capture and full OCR can span several slow emulator frames.
+    The bounded budget includes all this processing. Capture every observation,
+    but never retry the input or accept a stale HUD alone or after the deadline.
     """
     deadline = clock()+timeout
     last_text = ''
