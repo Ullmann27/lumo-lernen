@@ -131,7 +131,7 @@ jobs:
             sleep 0.25
           done
           cat "$LUMO_QA_DIR/mesa-renderer.txt"
-          rg -i 'OpenGL renderer string:.*llvmpipe' "$LUMO_QA_DIR/mesa-renderer.txt"
+          grep -Ei 'OpenGL renderer string:.*llvmpipe' "$LUMO_QA_DIR/mesa-renderer.txt"
       - name: Install the verified APK and exercise the actual user flow
         uses: reactivecircus/android-emulator-runner@v2
         env:
