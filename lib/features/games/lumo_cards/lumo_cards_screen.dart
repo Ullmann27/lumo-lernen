@@ -188,7 +188,24 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
         !_rewardGiven) {
       _rewardGiven = true;
       final kindWon = s.winnerIndex == 0;
-      widget.appState.recordLumoCardsResult(won: kindWon);
+      widget.appState.recordLumoCardsResult(won: kindWon).then<void>((_) {
+        if (mounted) setState(() {});
+      }, onError: (Object _, StackTrace __) {
+        if (!mounted) return;
+        setState(() {});
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(widget.appState.rewardSaveError ??
+              'Die Belohnung wartet noch aufs Speichern.'),
+          action: SnackBarAction(
+            label: 'Erneut versuchen',
+            onPressed: () {
+              widget.appState.retryRewards().then<void>((_) {
+                if (mounted) setState(() {});
+              }, onError: (Object _, StackTrace __) {});
+            },
+          ),
+        ));
+      });
     }
 
     // Tier 6 Karten-Polish 2026-05-23: Burst-Trigger bei +2 / +4.

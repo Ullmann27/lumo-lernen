@@ -2,10 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/core/embedded_game_service.dart';
 
 enum _Outcome { success, falseResult, exception }
 
@@ -75,6 +79,92 @@ void main() {
     expect(restarted.xp, 895);
     expect(restarted.streak, 4);
     expect(restarted.gameResultIds, ['first-race']);
+  });
+
+  for (final failure in [_Outcome.falseResult, _Outcome.exception]) {
+    test(
+        'A combined lesson reward ($failure) is all-or-nothing and safely retried',
+        () async {
+      final store = _ControlledStore(firstOutcome: failure, seed: {
+        'lumo_reward_wallet_v1': jsonEncode(const RewardWallet(
+          stars: 7,
+          xp: 395,
+          totalEarnedStars: 7,
+        ).toJson()),
+      });
+      SharedPreferencesStorePlatform.instance = store;
+      final wallet = RewardWalletRepository();
+      await wallet.load();
+      final rejected = expectLater(
+          wallet.applyRewardDelta(starsDelta: 3, xpDelta: 20),
+          throwsStateError);
+      await store.firstWriteStarted.future;
+      expect(wallet.snapshot.stars, 7);
+      expect(wallet.snapshot.xp, 395);
+      expect(store.writtenSnapshots.single['stars'], 10);
+      expect(store.writtenSnapshots.single['xp'], 415);
+      store.releaseFirstWrite.complete();
+      await rejected;
+      final afterFailure = await store.persistedWallet();
+      expect(afterFailure['stars'], 7);
+      expect(afterFailure['xp'], 395);
+      expect(wallet.snapshot.totalEarnedStars, 7);
+      await wallet.applyRewardDelta(starsDelta: 3, xpDelta: 20);
+      expect(wallet.snapshot.stars, 10);
+      expect(wallet.snapshot.xp, 415);
+      expect(wallet.snapshot.level, 2);
+      expect(wallet.snapshot.totalEarnedStars, 10);
+      final persisted = await store.persistedWallet();
+      expect(persisted['stars'], 10);
+      expect(persisted['xp'], 415);
+      expect(store.writtenSnapshots, hasLength(2));
+    });
+  }
+
+  test(
+      'Combined lessons and a game share the queue without partial reward snapshots',
+      () async {
+    final store = _ControlledStore();
+    SharedPreferencesStorePlatform.instance = store;
+    final wallet = RewardWalletRepository();
+    final first = wallet.applyRewardDelta(starsDelta: 3, xpDelta: 20);
+    await store.firstWriteStarted.future;
+    final game =
+        wallet.awardGameResult(resultId: 'mixed-race', stars: 6, xp: 30);
+    final second = wallet.applyRewardDelta(starsDelta: 4, xpDelta: 45);
+    expect(store.writtenSnapshots, hasLength(1));
+    store.releaseFirstWrite.complete();
+    await Future.wait([first, game, second]);
+    expect(
+        store.writtenSnapshots
+            .map((snapshot) => [snapshot['stars'], snapshot['xp']])
+            .toList(),
+        [
+          [3, 20],
+          [9, 50],
+          [13, 95],
+        ]);
+    expect(wallet.snapshot.stars, 13);
+    expect(wallet.snapshot.xp, 95);
+    expect(wallet.snapshot.gameResultIds, ['mixed-race']);
+  });
+
+  test(
+      'Combined deductions clamp balances and do not increase earned-star totals',
+      () async {
+    SharedPreferences.setMockInitialValues({
+      'lumo_reward_wallet_v1': jsonEncode(const RewardWallet(
+        stars: 5,
+        xp: 405,
+        totalEarnedStars: 10,
+      ).toJson()),
+    });
+    final wallet = RewardWalletRepository();
+    await wallet.applyRewardDelta(starsDelta: -20, xpDelta: -500);
+    expect(wallet.snapshot.stars, 0);
+    expect(wallet.snapshot.xp, 0);
+    expect(wallet.snapshot.level, 1);
+    expect(wallet.snapshot.totalEarnedStars, 10);
   });
 
   for (final failure in [_Outcome.falseResult, _Outcome.exception]) {
@@ -257,6 +347,218 @@ void main() {
     expect(wallet.snapshot.stars, 15);
     expect(wallet.snapshot.xp, 100);
     expect((await store.persistedWallet())['stars'], 15);
+  });
+
+  test(
+      'AppState exposes failed save and flush retries the complete lesson once',
+      () async {
+    final store = _ControlledStore(firstOutcome: _Outcome.falseResult);
+    SharedPreferencesStorePlatform.instance = store;
+    final wallet = RewardWalletRepository();
+    final state = LumoAppState(walletRepository: wallet);
+    state.correctAnswer('Plus');
+    final failed = expectLater(state.flushRewards(), throwsStateError);
+    await store.firstWriteStarted.future;
+    store.releaseFirstWrite.complete();
+    await failed;
+    expect(state.hasPendingRewards, isTrue);
+    expect(state.rewardSaveError, isNotNull);
+    expect(state.state.lumoMessage, contains('warten noch aufs Speichern'));
+    expect(state.state.stars, 3);
+    expect(wallet.snapshot.stars, 0);
+    expect(wallet.snapshot.xp, 0);
+    await state.retryRewards();
+    expect(state.hasPendingRewards, isFalse);
+    expect(state.rewardSaveError, isNull);
+    expect(state.state.stars, 3);
+    expect(state.state.xp, 20);
+    final restarted = await RewardWalletRepository().load();
+    expect(restarted.stars, 3);
+    expect(restarted.xp, 20);
+    expect(store.writtenSnapshots, hasLength(2));
+    state.dispose();
+  });
+
+  test('AppState keeps younger rewards queued after the oldest storage error',
+      () async {
+    final store = _ControlledStore(firstOutcome: _Outcome.exception);
+    SharedPreferencesStorePlatform.instance = store;
+    final state = LumoAppState(walletRepository: RewardWalletRepository());
+    state.correctAnswer('Plus', stars: 3, xp: 20);
+    final failed = expectLater(state.flushRewards(), throwsStateError);
+    await store.firstWriteStarted.future;
+    state.correctAnswer('Lesen', stars: 4, xp: 45);
+    store.releaseFirstWrite.complete();
+    await failed;
+    expect(state.state.stars, 7);
+    expect(state.state.xp, 65);
+    expect(store.writtenSnapshots, hasLength(1));
+    await state.flushRewards();
+    expect(state.hasPendingRewards, isFalse);
+    expect((await store.persistedWallet())['stars'], 7);
+    expect((await store.persistedWallet())['xp'], 65);
+    expect(
+        store.writtenSnapshots
+            .map((entry) => [entry['stars'], entry['xp']])
+            .toList(),
+        [
+          [3, 20],
+          [3, 20],
+          [7, 65],
+        ]);
+    state.dispose();
+  });
+
+  test(
+      'Flush includes a reward queued while saved state notifies its listeners',
+      () async {
+    final store = _ControlledStore();
+    SharedPreferencesStorePlatform.instance = store;
+    final state = LumoAppState(walletRepository: RewardWalletRepository());
+    var firstRewardWasQueuedBeforeNotify = false;
+    var addedSecondReward = false;
+    state.addListener(() {
+      if (!addedSecondReward && state.hasPendingRewards) {
+        firstRewardWasQueuedBeforeNotify = true;
+      } else if (!addedSecondReward && state.state.stars == 3) {
+        addedSecondReward = true;
+        state.correctAnswer('Lesen', stars: 4, xp: 45);
+      }
+    });
+    state.correctAnswer('Plus', stars: 3, xp: 20);
+    final flush = state.flushRewards();
+    await store.firstWriteStarted.future;
+    store.releaseFirstWrite.complete();
+    await flush;
+    expect(firstRewardWasQueuedBeforeNotify, isTrue);
+    expect(addedSecondReward, isTrue);
+    expect(state.hasPendingRewards, isFalse);
+    expect(state.state.stars, 7);
+    expect(state.state.xp, 65);
+    expect((await store.persistedWallet())['stars'], 7);
+    expect((await store.persistedWallet())['xp'], 65);
+    state.dispose();
+  });
+
+  test(
+      'Cards win sequence, Stars and XP survive new AppState and settings hydration',
+      () async {
+    final state = LumoAppState(walletRepository: RewardWalletRepository());
+    await state.recordLumoCardsResult(won: true);
+    await state.recordLumoCardsResult(won: true);
+    expect(state.lumoCardsWinStreak, 2);
+    expect(state.state.stars, 7);
+    expect(state.state.xp, 45);
+    state.dispose();
+    final restarted = LumoAppState(walletRepository: RewardWalletRepository());
+    await restarted.ensureSettingsLoaded();
+    await restarted.hydrateFromWallet();
+    expect(restarted.lumoCardsWinStreak, 2);
+    expect(restarted.state.stars, 7);
+    await restarted.recordLumoCardsResult(won: false);
+    expect(restarted.lumoCardsWinStreak, 0);
+    expect(restarted.state.stars, 8);
+    expect(restarted.state.xp, 45);
+    await restarted.recordLumoCardsResult(won: true);
+    expect(restarted.lumoCardsWinStreak, 1);
+    expect(restarted.state.stars, 11);
+    expect(restarted.state.xp, 65);
+    restarted.dispose();
+  });
+
+  test(
+      'Failed Cards persistence cannot advance its series or grant half a reward',
+      () async {
+    final store = _ControlledStore(firstOutcome: _Outcome.falseResult, seed: {
+      'lumo_reward_wallet_v1': jsonEncode(const RewardWallet(
+        stars: 7,
+        xp: 45,
+        totalEarnedStars: 7,
+        lumoCardsWinStreak: 2,
+      ).toJson()),
+    });
+    SharedPreferencesStorePlatform.instance = store;
+    final wallet = RewardWalletRepository();
+    final state = LumoAppState(walletRepository: wallet);
+    await state.ensureSettingsLoaded();
+    final failed =
+        expectLater(state.recordLumoCardsResult(won: true), throwsStateError);
+    await store.firstWriteStarted.future;
+    expect(state.lumoCardsWinStreak, 2);
+    store.releaseFirstWrite.complete();
+    await failed;
+    expect(wallet.snapshot.lumoCardsWinStreak, 2);
+    expect(wallet.snapshot.stars, 7);
+    expect(wallet.snapshot.xp, 45);
+    final previous = await store.persistedWallet();
+    expect(previous['lumoCardsWinStreak'], 2);
+    expect(previous['stars'], 7);
+    await state.retryRewards();
+    expect(state.lumoCardsWinStreak, 3);
+    expect(state.state.stars, 12);
+    expect(state.state.xp, 75);
+    final saved = await store.persistedWallet();
+    expect(saved['lumoCardsWinStreak'], 3);
+    expect(saved['stars'], 12);
+    expect(saved['xp'], 75);
+    state.dispose();
+  });
+
+  test('Native import cannot acknowledge an event after a failed lesson flush',
+      () async {
+    final store = _ControlledStore(firstOutcome: _Outcome.falseResult);
+    SharedPreferencesStorePlatform.instance = store;
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    const channel = MethodChannel('wallet-test/native');
+    var acknowledgements = 0;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (call) async {
+      if (call.method == 'pendingGameEvents') {
+        return jsonEncode({
+          'results': [
+            {
+              'game': 'kart',
+              'resultId': 'pending-race',
+              'status': 'completed',
+              'stars': 9,
+              'solved': 3
+            },
+          ]
+        });
+      }
+      acknowledgements++;
+      return true;
+    });
+    final wallet = RewardWalletRepository();
+    final state = LumoAppState(walletRepository: wallet);
+    final service = EmbeddedGameService(
+        appState: state,
+        wallet: wallet,
+        onDestination: (_) {},
+        channel: channel);
+    try {
+      state.correctAnswer('Plus');
+      await store.firstWriteStarted.future;
+      final failed = expectLater(state.flushRewards(), throwsStateError);
+      final blockedImport = service.synchronize();
+      store.releaseFirstWrite.complete();
+      await failed;
+      await blockedImport;
+      expect(acknowledgements, 0);
+      expect(wallet.snapshot.stars, 0);
+      expect(state.hasPendingRewards, isTrue);
+      await service.synchronize();
+      expect(acknowledgements, 1);
+      expect(state.hasPendingRewards, isFalse);
+      expect(state.state.stars, 12);
+      expect(state.state.xp, 50);
+    } finally {
+      service.dispose();
+      state.dispose();
+      debugDefaultTargetPlatformOverride = null;
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, null);
+    }
   });
 
   test('Invalid native rewards cannot write balances or poison the queue',

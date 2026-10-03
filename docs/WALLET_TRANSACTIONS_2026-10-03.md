@@ -46,3 +46,32 @@ unterscheidbar sind. Auf Android verwendet das installierte Legacy-Plugin
 Native Ereignisse bei vollständigem Profilreset zu löschen und laufende
 Spieleimporte durch eine Reset-Generation zu entwerten gehört zur separaten
 AppState-/Android-Brückenkorrektur. Diese Prüfungen sind keine APK-Installation.
+
+## Anschluss an Lernaufgaben und Lumo Cards
+
+- `applyRewardDelta(starsDelta:, xpDelta:)` speichert Sterne und XP einer Aufgabe
+  gemeinsam. AppState stellt die ganze Belohnung vor der UI-Benachrichtigung in
+  seine Warteschlange; fehlgeschlagene Buchungen bleiben dort samt späterer
+  Belohnungen bis zur Wiederholung erhalten.
+- `flushRewards()` und `retryRewards()` melden Speicherfehler an ihre Aufrufer.
+  Ein nativer Spieleimport darf nach einem fehlgeschlagenen Flush keine
+  Ergebnisquittung senden. Eine erneute Synchronisierung wiederholt zuerst die
+  wartende Lernbuchung.
+- Lumo meldet den Speicherfehler verständlich. Lumo Cards bietet zusätzlich
+  „Erneut versuchen“ an; die Ergebnisansicht wird nach erfolgreichem Speichern
+  aktualisiert.
+- Die Karten-Siegesserie, Sterne und XP eines Kartenergebnisses stehen im selben
+  Snapshot. Die Serie wird bei Settings- und Wallet-Hydration wiederhergestellt;
+  eine fehlgeschlagene Speicherung verändert keine der drei gespeicherten
+  Größen.
+
+Die abschließende gezielte Prüfung umfasst 20 Transaktions-/AppState-Tests und
+zusammen mit Lernantwort-, State-Persistenz- und nativen Importtests 33 bestandene
+Tests. Ein zusätzlicher tatsächlicher Cards-Widgetlauf prüfte Fold-Größenwechsel,
+ein vollständiges Touchspiel, Ergebnis, erneuten Start und Rückkehr. Die Analyse
+aller vier geänderten Dart-Dateien und `git diff --check` bestanden.
+
+Wartende Buchungen bleiben bei einem Speicherfehler in der laufenden App
+erhalten. Erst erfolgreich gespeicherte Belohnungen und Siegesserien sind nach
+einem Prozessneustart nachweisbar vorhanden; ein Gerätestopp während weiterhin
+unbeschreibbarem Speicher kann diese ungesicherten Buchungen verlieren.

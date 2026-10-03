@@ -23,6 +23,7 @@ class RewardWallet {
     this.totalEarnedStars = 0,
     this.lastDailyKey = '',
     this.gameResultIds = const <String>[],
+    this.lumoCardsWinStreak = 0,
   });
 
   final int stars;
@@ -37,6 +38,9 @@ class RewardWallet {
   /// IDs live in the same persisted snapshot as their reward, for crash-safe replay.
   final List<String> gameResultIds;
 
+  /// Consecutive Cards wins share the same transaction as their Stars and XP.
+  final int lumoCardsWinStreak;
+
   RewardWallet copyWith({
     int? stars,
     int? xp,
@@ -45,6 +49,7 @@ class RewardWallet {
     int? totalEarnedStars,
     String? lastDailyKey,
     List<String>? gameResultIds,
+    int? lumoCardsWinStreak,
   }) {
     return RewardWallet(
       stars: stars ?? this.stars,
@@ -54,6 +59,7 @@ class RewardWallet {
       totalEarnedStars: totalEarnedStars ?? this.totalEarnedStars,
       lastDailyKey: lastDailyKey ?? this.lastDailyKey,
       gameResultIds: gameResultIds ?? this.gameResultIds,
+      lumoCardsWinStreak: lumoCardsWinStreak ?? this.lumoCardsWinStreak,
     );
   }
 
@@ -65,6 +71,7 @@ class RewardWallet {
         'totalEarnedStars': totalEarnedStars,
         'lastDailyKey': lastDailyKey,
         'gameResultIds': gameResultIds,
+        'lumoCardsWinStreak': lumoCardsWinStreak,
       };
 
   factory RewardWallet.fromJson(Map<String, dynamic> j) => RewardWallet(
@@ -77,6 +84,9 @@ class RewardWallet {
         gameResultIds:
             (j['gameResultIds'] as List?)?.whereType<String>().toList() ??
                 const <String>[],
+        lumoCardsWinStreak: j['lumoCardsWinStreak'] is int
+            ? (j['lumoCardsWinStreak'] as int).clamp(0, 999999)
+            : 0,
       );
 
   @override
@@ -160,19 +170,28 @@ class RewardWalletRepository {
   }
 
   /// Sterne dazugeben. Sofort persistent gespeichert.
-  Future<RewardWallet> addStars(int delta) => _transaction((current) async {
-        if (delta == 0) return current;
-        return _commit(current.copyWith(
-          stars: (current.stars + delta).clamp(0, 999999),
-          totalEarnedStars: current.totalEarnedStars + (delta > 0 ? delta : 0),
-        ));
-      });
+  Future<RewardWallet> addStars(int delta) =>
+      applyRewardDelta(starsDelta: delta);
 
   /// XP dazugeben + Level-Berechnung.
-  Future<RewardWallet> addXp(int delta) => _transaction((current) async {
-        if (delta == 0) return current;
-        final newXp = (current.xp + delta).clamp(0, 9999999);
-        return _commit(current.copyWith(xp: newXp, level: 1 + newXp ~/ 400));
+  Future<RewardWallet> addXp(int delta) => applyRewardDelta(xpDelta: delta);
+
+  /// Persists both parts of one lesson reward in one transaction. Failure means
+  /// neither part was committed; the caller may retry the complete delta.
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+  }) =>
+      _transaction((current) async {
+        if (starsDelta == 0 && xpDelta == 0) return current;
+        final nextXp = (current.xp + xpDelta).clamp(0, 9999999);
+        return _commit(current.copyWith(
+          stars: (current.stars + starsDelta).clamp(0, 999999),
+          totalEarnedStars:
+              current.totalEarnedStars + (starsDelta > 0 ? starsDelta : 0),
+          xp: nextXp,
+          level: 1 + nextXp ~/ 400,
+        ));
       });
 
   /// Awards one completed native race exactly once, including after process death.
@@ -198,6 +217,23 @@ class RewardWalletRepository {
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
           gameResultIds: [...current.gameResultIds, resultId],
+        ));
+      });
+
+  /// Cards reward, win sequence, and XP either all persist or all remain pending.
+  Future<RewardWallet> awardLumoCardsResult({required bool won}) =>
+      _transaction((current) async {
+        final nextStreak =
+            won ? (current.lumoCardsWinStreak + 1).clamp(0, 999999) : 0;
+        final stars = won ? (2 + nextStreak).clamp(3, 6) : 1;
+        final xp = won ? 15 + nextStreak * 5 : 0;
+        final nextXp = (current.xp + xp).clamp(0, 9999999);
+        return _commit(current.copyWith(
+          stars: (current.stars + stars).clamp(0, 999999),
+          totalEarnedStars: current.totalEarnedStars + stars,
+          xp: nextXp,
+          level: 1 + nextXp ~/ 400,
+          lumoCardsWinStreak: nextStreak,
         ));
       });
 
