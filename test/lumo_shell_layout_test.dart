@@ -40,6 +40,23 @@ void main() {
     }
   });
 
+  setUp(() async {
+    // Initialize singleton futures in the real test zone. A wallet queue
+    // created inside testWidgets retains that test's FakeAsync scheduler and
+    // cannot service a later widget test after its scheduler has stopped.
+    SharedPreferences.setMockInitialValues({
+      'lumo_app_settings_v1': jsonEncode(const AppSettings(
+        voiceEnabled: false,
+        autoReadEnabled: false,
+        microphoneEnabled: false,
+        aiProxyEnabled: false,
+        reduceAnimations: true,
+      ).toJson()),
+    });
+    LumoVoice.instance.isEnabled = false;
+    await RewardWalletRepository.instance.reset();
+  });
+
   Future<void> settleWork(WidgetTester tester) async {
     // The home scene has looping decorative animations, so do not wait for an
     // intentionally never-idle renderer with pumpAndSettle.
@@ -52,17 +69,8 @@ void main() {
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(1000, 1400));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    LumoVoice.instance.isEnabled = false;
     final fixtureDate = DateTime(2026, 10, 3);
     for (var grade = 1; grade <= 4; grade++) {
-      SharedPreferences.setMockInitialValues({
-        'lumo_app_settings_v1': jsonEncode(const AppSettings(
-          voiceEnabled: false,
-          autoReadEnabled: false,
-          reduceAnimations: true,
-        ).toJson()),
-      });
-      await RewardWalletRepository.instance.reset();
       await tester.pumpWidget(MaterialApp(
         theme: LumoAppTheme.light(),
         home: AppShell(
@@ -99,17 +107,6 @@ void main() {
   testWidgets(
       'actual shell stays usable while resizing from phone to Fold and narrow phone',
       (tester) async {
-    SharedPreferences.setMockInitialValues({
-      'lumo_app_settings_v1': jsonEncode(const AppSettings(
-        voiceEnabled: false,
-        autoReadEnabled: false,
-        microphoneEnabled: false,
-        aiProxyEnabled: false,
-        reduceAnimations: true,
-      ).toJson()),
-    });
-    LumoVoice.instance.isEnabled = false;
-    await RewardWalletRepository.instance.reset();
     for (final size in [
       const Size(360, 740),
       const Size(840, 560),
