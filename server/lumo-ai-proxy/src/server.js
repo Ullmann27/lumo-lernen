@@ -107,12 +107,32 @@ function fallbackReply(message) {
   };
 }
 
+// Only fixed provider labels may enter logs; never the provider message/body.
+const providerDiagnosticLabels = new Set([
+  'insufficient_quota', 'rate_limit_exceeded', 'requests', 'tokens',
+  'invalid_api_key', 'authentication_error', 'model_not_found',
+  'unsupported_parameter', 'unsupported_value', 'invalid_parameter',
+  'invalid_request_error', 'server_error',
+]);
+function providerDiagnosticLabel(value) {
+  if (value == null) return 'absent';
+  return providerDiagnosticLabels.has(value) ? value : 'other';
+}
+
 async function providerError(response) {
-  let providerCode;
-  try { providerCode = (await response.json())?.error?.code; } catch (_) {}
+  let providerCode, providerType;
+  try {
+    const detail = (await response.json())?.error;
+    providerCode = detail?.code;
+    providerType = detail?.type;
+  } catch (_) {}
+  console.warn(`[lumo-ai-proxy] OpenAI error status=${response.status} code=${providerDiagnosticLabel(providerCode)} type=${providerDiagnosticLabel(providerType)}`);
   const code = response.status === 401 ? 'openai_authentication_failed'
-    : providerCode === 'insufficient_quota' ? 'openai_quota_exceeded'
-    : response.status === 429 ? 'openai_rate_limited' : 'openai_upstream_error';
+    : [providerCode, providerType].includes('insufficient_quota') ? 'openai_quota_exceeded'
+    : response.status === 429 ? 'openai_rate_limited'
+    : providerCode === 'model_not_found' ? 'openai_model_unavailable'
+    : ['unsupported_parameter', 'unsupported_value', 'invalid_parameter'].includes(providerCode) ? 'openai_configuration_error'
+    : 'openai_upstream_error';
   return Object.assign(new Error(code), { status: response.status, publicCode: code });
 }
 
@@ -152,7 +172,6 @@ async function openAiChat({ message, history, childProfile, apiKey, fetchImpl })
       signal: controller.signal,
     });
     if (!response.ok) {
-      console.warn(`[lumo-ai-proxy] OpenAI returned ${response.status}`);
       throw await providerError(response);
     }
     const data = await response.json();
@@ -228,7 +247,6 @@ async function generateTaskBatch({ subject, grade, units, count, apiKey, fetchIm
       signal: controller.signal,
     });
     if (!response.ok) {
-      console.warn(`[lumo-ai-proxy] OpenAI batch returned ${response.status}`);
       throw await providerError(response);
     }
     const data = await response.json();
