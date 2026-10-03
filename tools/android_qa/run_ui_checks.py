@@ -182,6 +182,37 @@ def main(args):
         device.tap(button['left']+button['width']//2, button['top']+button['height']//2)
         wait_for(['Losfahren'])
         device.capture('flutter-after-native-reopen')
+        # Exercise the other actual native return destination. Reopening the
+        # retained race shows its real pause; Back while already paused would
+        # return to games, so tap the visible learning button directly.
+        click('Losfahren', scroll=True)
+        learn_frame = wait_native('native-pause-before-return-to-learning', paused=True)
+        learn_engine_pid = device.adb('shell', 'pidof', package+':lumo_game').strip()
+        if not learn_engine_pid or learn_engine_pid == next_pid:
+            raise RuntimeError('Learning-return check did not open a fresh native engine process')
+        learn_button = marker(learn_frame, 'Zum Lernen')
+        if not learn_button:
+            raise RuntimeError('Actual native pause does not expose its learning return button')
+        device.tap(learn_button['left']+learn_button['width']//2,
+                   learn_button['top']+learn_button['height']//2)
+        wait_for(['Was möchtest du üben?'])
+        device.capture('flutter-learning-after-native-return')
+        learn_flutter_pid = device.adb('shell', 'pidof', package).strip()
+        if not learn_flutter_pid:
+            raise RuntimeError('Native learning return did not leave Flutter running')
+        deadline = time.monotonic()+45
+        while time.monotonic() < deadline:
+            engine = subprocess.run([ADB, '-s', args.serial, 'shell', 'pidof',
+                                     package+':lumo_game'], capture_output=True, text=True).stdout.strip()
+            if not engine:
+                break
+            time.sleep(.5)
+        else:
+            raise RuntimeError('Native learning return left the engine process running')
+        learn_return_proof = {'engine_pid_before_return': learn_engine_pid,
+                              'flutter_pid_after_return': learn_flutter_pid,
+                              'visible_caption': 'Was möchtest du üben?',
+                              'native_engine_stopped': True}
         # Full real board/card rounds, Fold-shaped resize/navigation, and exact
         # visible wallet/profile/daily-progress equality across process restart.
         flutter_checks.boards()
@@ -191,8 +222,9 @@ def main(args):
         proof = {'passed': True, **environment, 'first_engine_pid': first_pid,
                  'reopened_engine_pid': next_pid,
                  'saved_race_hud': saved_state, 'restored_race_hud': restored_state,
+                 'native_learning_return': learn_return_proof,
                  'flutter_checks': flutter_proof,
-                 'flow': 'Flutter learning/help/answer/reward → Kart two-lap race/result/restart/fresh native resume → Memory twelve pairs → Cards complete round → Fold resize/navigation → offline restart with identical visible wallet/profile/progress',
+                 'flow': 'Flutter learning/help/answer/reward → Kart two-lap race/result/restart/fresh native resume → native return to Flutter learning → Memory twelve pairs → Cards complete round → Fold resize/navigation → offline restart with identical visible wallet/profile/progress',
                  'race_uses_real_physics_and_wall_time': True,
                  'no_apk_rebuild_resign_or_publish': True}
         (args.out/'result.json').write_text(json.dumps(proof, indent=2, ensure_ascii=False)+'\n')
@@ -201,10 +233,10 @@ def main(args):
         logs = device.adb('logcat', '-d', '-v', 'threadtime', timeout=45)
         (args.out/'android-logcat.txt').write_text(logs)
         fatal = [line for line in logs.splitlines() if re.search(
-            r'FATAL EXCEPTION|Fatal signal|SCRIPT ERROR|Parse Error| E godot.*ERROR:', line)]
+            r'FATAL EXCEPTION|Fatal signal|SCRIPT ERROR|Parse Error| E godot.*ERROR:|LUMO_ASSET_ERROR(?:\s|$)', line)]
         if fatal:
             (args.out/'fatal-errors.txt').write_text('\n'.join(fatal)+'\n')
-            raise RuntimeError('Android/engine errors appeared during the real usage checks; logs retained')
+            raise RuntimeError('Android, engine or bundled-asset errors appeared during the real usage checks; logs retained')
 
 
 if __name__ == '__main__':
