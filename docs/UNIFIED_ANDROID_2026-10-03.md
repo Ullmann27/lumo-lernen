@@ -73,8 +73,8 @@ Die erste gemeinsame APK wurde wegen unnötiger 32-Bit-Bibliotheken von rund
 Auch die Ausrichtung von Androidressourcen und sämtlichen ELF-Ladesegmenten
 für 16-KiB-Speicherseiten wurde am tatsächlichen APK-Inhalt überprüft.
 
-Vollständiger Flutterlauf auf dem gemeinsamen Stand: **439 bestanden, vier
-übersprungen, keine Fehler**. Analyse: keine Fehler, 156 bestehende Warnungen/
+Vollständiger Flutterlauf auf dem gemeinsamen Stand: **445 bestanden, vier
+übersprungen, keine Fehler**. Analyse: keine Fehler, 155 bestehende Warnungen/
 Hinweise. Fünf Android-Vorbereitungsprüfungen bestanden. Inhaltsaudit prüft
 37.940 Aufgabenvarianten. Backend nach sicherer Providerdiagnose: 22 Tests
 bestanden. Vertragsregressionen prüfen auch abgelehnte Speicheraktionen und
@@ -85,12 +85,34 @@ Fachberichten belegt. Der gemeinsame Android-Test und endgültige Downloadhash
 werden nach dem tatsächlichen installierten Nutzungstest hier ergänzt.
 Dieser Zwischenbericht behauptet noch keine bestandene Android-Gesamtprüfung.
 
-Android-Umgebung: Linux, Android-11-Emulator/API 30, x86_64, CPU-Emulation ohne KVM.
-Der alte SwiftShader-Grafikmodus stürzte schon beim historischen Build 274 mit
-SIGSEGV/`bad color buffer handle 208` ab; derselbe AVD wurde ohne Wipe auf ANGLE
-umgestellt. Fiktives Profil war nach Neustart erhalten. Google-Zusatzdienste sind
-für die Offline-/Navigationsprüfung deaktiviert; System-UI, Launcher und TTS bleiben.
-Das ist keine Prüfung auf dem echten Galaxy Z Fold und keine Handy-FPS-Messung.
+Android-Umgebungen: lokale Linux-Emulatoren API 30 und API 35, x86_64,
+CPU-Emulation ohne KVM sowie GitHub-Runner mit KVM, Android 15/API 35,
+Google-APIs-x86_64 und ANGLE/SwiftShader. Installationen verwenden normale
+Launcherstarts und `adb install -r`, ohne Deinstallation oder Löschung von Daten.
+Der tatsächliche Updateversuch von 274 auf den ersten 275-Kandidaten erhielt
+das fiktive Profil und die anfangs leere Wallet; er beweist keinen Transfer einer
+bereits gefüllten Android-Wallet. Alte PIN-Einstellungsfelder werden beim Start
+entfernt, ohne die vorhandenen ausdrücklichen Freigaben einzuschalten.
+
+Eigene Android-Prüfungen deckten zwei echte Releasefehler auf: R8 hatte
+Godot-JNI-Methoden und parameterlose ML-Kit-Komponentenregistrierungen entfernt.
+Die Buildvorbereitung schützt diese Klassen und Methoden jetzt ausdrücklich;
+ihre Definitionen wurden im tatsächlichen Release-DEX nachgewiesen. Godot
+startet dadurch innerhalb derselben APK mit seinem gebündelten PCK.
+
+Die lokalen CPU-Emulatoren zeigen zusätzliche Grafikprobleme. Der KVM-Lauf
+37111452558 zeigte dagegen Onboarding, Header, Homescreen und Fuchs-PNGs korrekt.
+Er scheiterte anschließend an einem Prüfskript, das zusammengefasste sichtbare
+Android-Captions falsch aufteilte. Das Prüfskript wurde anhand des tatsächlichen
+UI-XML korrigiert. Der vollständige native Rennablauf ist damit noch nicht
+bestätigt. Das ist keine Prüfung auf dem echten Galaxy Z Fold und keine
+Handy-FPS-Messung.
+
+Weitere Läufe sichern dieselben gebauten APK-Bytes mit Provenienz zunächst als
+unveröffentlichten Prüfkandidaten. Reine Änderungen an Prüfskripten benötigen
+dadurch keinen neuen App-Build. Die endgültige APK wird erst nach bestandener
+Nutzungsprüfung gespeichert und erneut heruntergeladen; ihr Downloadhash muss
+dem getesteten Hash entsprechen.
 
 ## Offen
 
