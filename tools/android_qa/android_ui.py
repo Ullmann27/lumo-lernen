@@ -21,6 +21,27 @@ LOG = QA_ROOT / 'android-ui-actions.jsonl'
 DISPLAY = QA_ROOT / 'emulator-display.json'
 
 
+def content_scroll_gesture(root):
+    """Keep real swipes inside content, above Lumo's companion/navigation."""
+    candidates = []
+    for node in root.iter('node'):
+        if node.get('scrollable') != 'true' or node.get('enabled', 'true') != 'true':
+            continue
+        try:
+            box = Android.bounds(node)
+        except RuntimeError:
+            continue
+        if box[2]-box[0] >= 40 and box[3]-box[1] >= 80:
+            candidates.append(box)
+    if not candidates:
+        return None
+    left, top, right, bottom = max(candidates, key=lambda b: (b[2]-b[0])*(b[3]-b[1]))
+    return {'bounds': [left, top, right, bottom],
+            'x': round(left+(right-left)*.58),
+            'high': round(top+(bottom-top)*.18),
+            'low': round(top+(bottom-top)*.82)}
+
+
 def package_from_apk(path):
     tool = shutil.which('aapt') or shutil.which('aapt2')
     if not tool:

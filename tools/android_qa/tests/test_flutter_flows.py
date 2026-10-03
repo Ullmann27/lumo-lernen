@@ -8,13 +8,32 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from android_ui import Android
+from android_ui import Android, content_scroll_gesture
 from cards_android_round import CardsRound, arithmetic, described_cards, is_result
 from flutter_flows import FlutterChecks, profile_from_labels, visible_text_lines, wallet_from_labels
 from memory_android_round import Round, cards, has_caption, labels, result_scores
 
 
 class VisibleUiTests(unittest.TestCase):
+    def test_real_home_scroll_stays_inside_content_above_companion(self):
+        root = ET.parse(Path(__file__).parent/'fixtures/home-api35-37111452558.xml').getroot()
+        gesture = content_scroll_gesture(root)
+        self.assertEqual(gesture['bounds'], [0, 246, 720, 874])
+        self.assertTrue(246 < gesture['high'] < gesture['low'] < 874)
+        self.assertTrue(0 < gesture['x'] < 720)
+
+    def test_scroll_targets_actual_fold_viewport_and_refuses_non_scrollable_controls(self):
+        root = ET.fromstring('''<hierarchy><node bounds="[0,0][1812,2176]">
+            <node scrollable="true" enabled="false" bounds="[0,0][1812,2176]"/>
+            <node scrollable="true" bounds="[20,500][1792,1700]"/>
+            <node clickable="true" bounds="[0,1750][1812,2176]"/>
+            </node></hierarchy>''')
+        gesture = content_scroll_gesture(root)
+        self.assertEqual(gesture['bounds'], [20, 500, 1792, 1700])
+        self.assertTrue(500 < gesture['high'] < gesture['low'] < 1700)
+        self.assertIsNone(content_scroll_gesture(ET.fromstring(
+            '<hierarchy><node clickable="true" bounds="[0,0][720,1280]"/></hierarchy>')))
+
     def test_shared_pause_caption_is_an_exact_visible_line_not_a_substring(self):
         # Captured from the current LumoGamePauseScope widget semantics tree:
         # the Card merges its two Text children; buttons keep separate labels.

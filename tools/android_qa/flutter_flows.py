@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 
 from memory_android_round import Round as MemoryRound, labels
 from cards_android_round import CardsRound, arithmetic
+from android_ui import content_scroll_gesture
 
 
 def visible_text_lines(values):
@@ -116,18 +117,21 @@ class FlutterChecks:
         return sorted(targets, key=lambda b: (b[2]-b[0])*(b[3]-b[1]))
 
     def scroll(self, root, down=True):
-        width, height = self.dimensions(root)
-        # Use the content centre and leave navigation/companion bars untouched.
-        x = round(width*.58)
-        high, low = round(height*.29), round(height*.73)
+        gesture = content_scroll_gesture(root)
+        if gesture is None:
+            self.record('no_visible_content_scroller')
+            return False
+        x, high, low = gesture['x'], gesture['high'], gesture['low']
         self.record('real_content_scroll', x=x, from_y=low if down else high,
-                    to_y=high if down else low)
+                    to_y=high if down else low, bounds=gesture['bounds'])
         self.device.swipe(x, low if down else high, x, high if down else low, 350)
         time.sleep(.3)
+        return True
 
     def top(self):
         for _ in range(4):
-            self.scroll(self.frame('scroll-to-top'), down=False)
+            if not self.scroll(self.frame('scroll-to-top'), down=False):
+                break
 
     def click(self, phrase, contains=False, scroll=False):
         for _ in range(12 if scroll else 1):
@@ -141,7 +145,8 @@ class FlutterChecks:
                 time.sleep(.5)
                 return
             if scroll:
-                self.scroll(root)
+                if not self.scroll(root):
+                    break
         raise RuntimeError(f'Actual visible actionable Flutter control absent: {phrase!r}')
 
     def wait(self, caption, timeout=45, scroll=False):

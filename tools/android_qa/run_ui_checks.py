@@ -12,7 +12,7 @@ import sys
 import time
 import traceback
 
-from android_ui import Android, ADB
+from android_ui import Android, ADB, content_scroll_gesture
 from kart_android_race import marker, read_frame, race_state
 from flutter_flows import FlutterChecks
 
@@ -142,7 +142,11 @@ def main(args):
                 time.sleep(1)
                 return
             if scroll:
-                device.swipe(360, 1060, 360, 460, 350)
+                gesture = content_scroll_gesture(root)
+                if gesture is None:
+                    break
+                device.swipe(gesture['x'], gesture['low'],
+                             gesture['x'], gesture['high'], 350)
                 time.sleep(.5)
         raise RuntimeError(f'Actual Flutter control missing: {phrase}')
 
