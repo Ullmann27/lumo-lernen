@@ -413,5 +413,27 @@ class KartActualResultTests(unittest.TestCase):
         require_no_save_error(frame('Richtig!', 'RUNDE2/2', 'PLATZ1/6'))
 
 
+@unittest.skipUnless(shutil.which('tesseract') and importlib.util.find_spec('PIL'),
+                     'Actual screenshot OCR requires tesseract and Pillow')
+class KartCompactPauseTests(unittest.TestCase):
+    def test_real_compact_pause_footer_captions_are_read_inside_observed_buttons(self):
+        directory = Path(__file__).parent/'fixtures'/'kart-compact-pause'
+        record = json.loads((directory/'provenance.json').read_text())
+        path = directory/record['image']
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), record['sha256'])
+        self.assertEqual(path.stat().st_size, record['bytes'])
+        observed = read_frame(path)
+        for caption in ('Weiterfahren', 'Leichte Grafik: aus'):
+            self.assertIsNotNone(action_marker(observed, caption))
+        for caption, box in zip(('Zur Spieleauswahl', 'Zum Lernen'), observed['pause_return_buttons']):
+            button = action_marker(observed, caption)
+            self.assertIsNotNone(button)
+            x, y = button['left']+button['width']//2, button['top']+button['height']//2
+            self.assertTrue(box['left'] <= x < box['left']+box['width'])
+            self.assertTrue(box['top'] <= y < box['top']+box['height'])
+            self.assertGreaterEqual(box['height'], 44)
+        self.assertIsNone(action_marker(frame('Du kannst später zum Lernen zurückgehen.'), 'Zum Lernen'))
+
+
 if __name__ == '__main__':
     unittest.main()

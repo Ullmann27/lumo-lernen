@@ -1,9 +1,9 @@
 # Gemeinsame Android-App: Lumo Lernen und Lumo Kart
 
 Stand 3. Oktober 2026: **0.10.5 / Build 280 wird vorbereitet**. Noch kein
-freigegebener Download. Build279 bestätigte das vollständige native Rennen,
+freigegebener Download. Build 279 bestätigte das vollständige native Rennen,
 Ergebnisbestätigung, Neustart und Rückkehr zur Spieleauswahl. Im kompakten
-Pausenmenü war die Rückkehr zum Lernen abgeschnitten. Build280 ergänzt feste
+Pausenmenü war die Rückkehr zum Lernen abgeschnitten. Build 280 ergänzt feste
 sichtbare Rückkehrknöpfe sowie die gemeinsame Lernfortschrittsspeicherung aller
 registrierten Module und des aktiven Wort-Schreibcoachs. Der neue installierte
 Android-Gesamttest muss anschließend noch bestanden werden.
@@ -53,8 +53,8 @@ Einzelberichte: [Spiele](GAMES_QA_2026-10-03.md),
 
 ## Tatsächlich geprüft
 
-**Flutter: 457 bestanden, vier bestehende übersprungen, keine Fehler.**
-Analyse: keine Fehler, 155 bestehende Warnungen/Hinweise. Backend: 22 Tests.
+**Flutter: 508 bestanden, vier bestehende übersprungen, keine Fehler.**
+Analyse: keine Fehler, 153 bestehende Warnungen/Hinweise. Backend: 22 Tests. 90 Prüfungen des Android-Testwerkzeugs bestehen.
 Inhaltsaudit: 37.940 Aufgabenvarianten; Klassen-/Fachmatrix mit 16 Fällen.
 Acht gezielte Plus-Modultests prüfen Hilfen, falsche/richtige Antworten,
 verzögerte/abgelehnte Speicherung, Doppeltaps, Unmount, Hintergrund und Neustart.
@@ -69,7 +69,7 @@ vollständig mit Joystick/Sprung-Taps und unveränderter 60-Hz-Physik durch:
 Ergebnis, Rückkehr, 80 Sterne/160 XP, gespeicherter Abschluss, Neustart und
 Hintergrundpause. Testuhr und Desktop ersetzen keine Handyprüfung.
 
-**Installierter APK278-Lauf 37124995594:** Android 15/API 35, Google-APIs-x86_64,
+**Installierter APK 278-Lauf 37124995594:** Android 15/API 35, Google-APIs-x86_64,
 KVM, Mesa 25.2.8/llvmpipe, 480×800 logische Pixel. APK- und installierte
 Paketbytes stimmen exakt überein. Tatsächlich sichtbar/bedient: Onboarding,
 Home, Spiele, eingebettetes Kart, Android-Zurück, Pause, leichte Grafik,
@@ -80,18 +80,18 @@ Ergebnis: Platz 1/6, 47,8 Simulationssekunden, 11 Sterne/16 Kristalle.
 Der Ergebnisbildschirm meldete einen echten Fehler: „Speichern fehlgeschlagen“.
 Die vollständige Rückkehr, Android-Lernaufgabe, Memory-/Kartenrunde, Fold-Größen
 und Offline-Neustart wurden in diesem Lauf nicht erreicht. Er ist kein bestandener
-Gesamttest; APK278 bleibt unveröffentlicht.
+Gesamttest; APK 278 bleibt unveröffentlicht.
 
 Die Ursache ist am tatsächlichen Release-DEX und offiziellen Godot-4.6.3-Code
 belegt: erforderliche Hostmethoden und Annotationen sind vorhanden. JNI liefert
 Java-Boolean über `jboolean`/`Variant(uint8_t)` als Integer 0/1. Der alte strikte
-Vergleich mit Bool `true` wies Integer 1 fälschlich ab. Build279 akzeptiert nur
+Vergleich mit Bool `true` wies Integer 1 fälschlich ab. Build 279 akzeptiert nur
 Bool `true` oder Integer 1; false/0/2/null/Strings bleiben Fehler. Dieselbe
 Korrektur gilt für Ergebnis und Rückkehr. Der Erfolg muss erst im neuen
 installierten Androidlauf nachgewiesen werden.
 
-**Installierter APK279-Lauf 37126787675:** Dieselbe API35-KVM/Mesa-Umgebung.
-Das echte zweiründige Rennen endete mit Platz1/6, drei richtigen Matheantworten,
+**Installierter APK 279-Lauf 37126787675:** Dieselbe API-35-KVM/Mesa-Umgebung.
+Das echte zweiründige Rennen endete mit Platz 1/6, drei richtigen Matheantworten,
 drei sichtbaren „Später“-Auswahlen und neun Sternen. Androidlog bestätigt
 `[LumoHost] reward reported`. Ergebnis-Neustart, Android-Back/Pause, Rückkehr
 zur Spieleauswahl bei lebendem Flutter, erneuter Start mit frischem Engine-PID,
@@ -100,18 +100,18 @@ Rückkehr zur Spieleauswahl gelang ebenfalls. Die JNI-Korrektur ist dadurch
 am tatsächlichen APK-Lauf bestätigt.
 
 Die dritte Rückkehr zum Lernen scheiterte am abgeschnittenen unteren Knopf.
-Ein tatsächlicher650ms-Touchscroll offenbarte ihn nicht. Der kleine native
+Ein tatsächlicher 650-ms-Touchscroll offenbarte ihn nicht. Der kleine native
 Pauseaufbau erhält deshalb feste Rückkehrknöpfe außerhalb der scrollenden
-Einstellungen. Echte Desktop-Godot-Control-/ScreenTouch-Prüfungen bei800×480
+Einstellungen. Echte Desktop-Godot-Control-/ScreenTouch-Prüfungen bei 800×480
 und beiden Fold-Größen zeigen beide Rückwege vollständig bedienbar;
-der Erfolg innerhalb APK280 bleibt im Android-Gesamttest nachzuweisen.
+der Erfolg innerhalb APK 280 bleibt im Android-Gesamttest nachzuweisen.
 
 Weitere echte Aufgaben-/Fortschrittskorrekturen für280:
 
-- Klasse4-Bruchrechnen vergleicht den mathematischen Wert. Gleichwertige Brüche
+- Klasse-4-Bruchrechnen vergleicht den mathematischen Wert. Gleichwertige Brüche
   werden nicht als falsche Distraktoren angeboten; ein begrenzter Pool vermeidet
-  unkontrollierte Zufallsschleifen. Vollständige8-Aufgaben- und Fehlerspeichertests.
-- Alle18 übrigen direkt erreichbaren Registryrouten und der aktive Wort-Schreibcoach
+  unkontrollierte Zufallsschleifen. Vollständige 8-Aufgaben- und Fehlerspeichertests.
+- Alle 18 übrigen direkt erreichbaren Registryrouten und der aktive Wort-Schreibcoach
   verwenden eine gemeinsame dauerhafte Antwort-/Walletgrenze. Richtige Antworten
   erhöhen Daily einmal, falsche nur den passenden Skillfehler. Buchstaben- und
   Abschlussboni zählen nicht als zusätzliche gelöste Aufgaben.
@@ -119,7 +119,7 @@ Weitere echte Aufgaben-/Fortschrittskorrekturen für280:
   Wiederholung und lassen denselben Speicherstand erneut schreiben, ohne
   Belohnung/Antwort erneut zu buchen. Hintergrundfeedback wartet auf Fortsetzen;
   bereits akzeptierte Speicherung läuft bei Modul-Unmount weiter.
-- Diktatheader und Abschluss verwenden die tatsächlichen20Wörter der Session;
+- Diktatheader und Abschluss verwenden die tatsächlichen 20 Wörter der Session;
   synchrone Eingabesicherung verhindert doppelte Selbsteinschätzung.
 - Native `SharedPreferences.setString=false` wird für Skills, Daily und letztes
   Thema als Fehler behandelt. Fehlgeschlagenes Normalisieren löscht keinen

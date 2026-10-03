@@ -211,6 +211,32 @@ def analyse_lesson(source, heading, frame):
         frame['lines'].append(frame['lesson_hint'])
 
 
+def analyse_pause(source, heading, frame):
+    panel = light_panel(source, heading, (max(0, heading['left']-40),
+                                         max(0, heading['top']-40), source.width, source.height))
+    if not panel:
+        return
+    # The fixed navigation footer has two visible side-by-side purple buttons.
+    # Detect their actual colour bounds; never derive taps from panel fractions.
+    buttons = sorted([box for box in colour_regions(source, bounds(panel), 'purple')
+                      if box['top'] > heading['top']+heading['height']
+                      and .12*source.width < box['width'] < .6*panel['width']
+                      and box['height'] > .025*source.height
+                      and box['width']/box['height'] > 2.5], key=lambda box: box['left'])
+    if len(buttons) != 2 or abs(buttons[0]['top']-buttons[1]['top']) > 3:
+        return
+    frame['pause_return_buttons'] = buttons
+    for box, wanted in zip(buttons, ('Zur Spieleauswahl', 'Zum Lernen')):
+        inside = {'left': box['left']+3, 'top': box['top']+4,
+                  'width': box['width']-6, 'height': box['height']-8}
+        words, lines = ocr_region(source, inside, frame, 'Measured pause return button',
+                                  contrast='light', psm=7, min_confidence=40)
+        for line in lines:
+            if action_marker({'lines': [line]}, wanted):
+                frame['lines'].append(line)
+                frame['words'].extend(words)
+
+
 def analyse_result(source, heading, frame):
     panel = light_panel(source, heading, (max(0, heading['left']-40),
                                          max(0, heading['top']-40), source.width, source.height))
@@ -322,6 +348,9 @@ def read_frame(path):
         lesson = marker(frame, 'LERN-BOOST')
         if lesson:
             analyse_lesson(source, lesson, frame)
+        pause = marker(frame, 'Kleine Pause im Sonnenhafen')
+        if pause:
+            analyse_pause(source, pause, frame)
         result = marker(frame, 'Sonnenhafen-Cup geschafft')
         if result:
             analyse_result(source, result, frame)
