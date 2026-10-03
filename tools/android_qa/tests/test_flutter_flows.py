@@ -9,11 +9,43 @@ import xml.etree.ElementTree as ET
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from android_ui import Android
 from cards_android_round import CardsRound, arithmetic, described_cards, is_result
-from flutter_flows import FlutterChecks, wallet_from_labels
-from memory_android_round import cards, result_scores
+from flutter_flows import FlutterChecks, profile_from_labels, visible_text_lines, wallet_from_labels
+from memory_android_round import cards, labels, result_scores
 
 
 class VisibleUiTests(unittest.TestCase):
+    def test_actual_api35_merged_profile_preserves_original_xml_and_touch_bounds(self):
+        fixture = Path(__file__).parent/'fixtures/home-api35-37111452558.xml'
+        root = ET.parse(fixture).getroot()
+        original = ET.tostring(root)
+        raw = labels(root)
+        self.assertIn('Hallo, Kind!\nDein Lumo-Tag · 1. Klasse', raw)
+        self.assertEqual(profile_from_labels(raw),
+                         {'Hallo, Kind!', 'Dein Lumo-Tag · 1. Klasse'})
+        checker = FlutterChecks(types.SimpleNamespace(bounds=Android.bounds), Path('.'), 'example')
+        self.assertEqual(checker.targets(root, 'Spielen', contains=True), [(32, 638, 688, 814)])
+        self.assertEqual(ET.tostring(root), original)
+        self.assertIn('Hallo, Kind!\nDein Lumo-Tag · 1. Klasse', labels(root))
+
+    def test_all_home_wallet_fields_can_share_one_visible_semantics_caption(self):
+        # Field text/units come from _ProgressCard in home_content.dart. This
+        # case exercises merging; it is not an Android wallet screenshot claim.
+        value = wallet_from_labels(['27 Sterne\nLevel 2\n1 Lerntag in Folge\n'
+                                    'Heute: 2 von 5 Aufgaben\n7 / 400 XP bis Level 3'])
+        self.assertEqual(value, {'stars': 27, 'xp': 407, 'level': 2,
+                                 'daily_completed': 2, 'daily_goal': 5})
+
+    def test_missing_or_conflicting_merged_profile_and_wallet_still_fail(self):
+        for values in (['Hallo, Kind!'], ['Hallo, Kind!\nDein Lumo-Tag · 1. Klasse\nDein Lumo-Tag · 2. Klasse'],
+                       ['Hallo, Kind!\nHallo, Mia!\nDein Lumo-Tag · 1. Klasse']):
+            with self.subTest(values=values), self.assertRaises(ValueError):
+                profile_from_labels(values)
+        with self.assertRaises(ValueError):
+            wallet_from_labels(['27 Sterne\n28 Sterne\nHeute: 2 von 5 Aufgaben\n7 / 400 XP bis Level 3'])
+
+    def test_task_prompt_line_remains_visible_when_merged_with_its_subject(self):
+        self.assertEqual(visible_text_lines(['Mathematik\n2 + 5 = ?']), ['Mathematik', '2 + 5 = ?'])
+
     def test_wallet_reconstructs_xp_and_daily_progress_across_level_boundary(self):
         value = wallet_from_labels(['27 Sterne', '7 / 400 XP bis Level 3',
                                     'Heute: 2 von 5 Aufgaben', '27'])

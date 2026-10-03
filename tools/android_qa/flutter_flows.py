@@ -16,8 +16,28 @@ from memory_android_round import Round as MemoryRound, labels
 from cards_android_round import CardsRound, arithmetic
 
 
+def visible_text_lines(values):
+    """Read lines from merged visible captions without changing UI nodes.
+
+    Android combines neighbouring Flutter Text widgets into one content-desc.
+    Keep original labels and bounds for finding/tapping controls and evidence;
+    use this text-only view when interpreting profile and wallet fields.
+    """
+    return [line.strip() for value in values for line in value.splitlines() if line.strip()]
+
+
+def profile_from_labels(values):
+    lines = visible_text_lines(values)
+    greetings = {line for line in lines if re.fullmatch(r'Hallo, .+!', line)}
+    grades = {line for line in lines if re.fullmatch(r'Dein Lumo-Tag · [1-4]\. Klasse', line)}
+    if len(greetings) != 1 or len(grades) != 1:
+        raise ValueError('Actual visible home profile captions are missing or ambiguous.')
+    return greetings | grades
+
+
 def wallet_from_labels(values):
     """Only the concrete home-stat captions count; bare header digits do not."""
+    values = visible_text_lines(values)
     stars = {int(match[1]) for value in values
              if (match := re.fullmatch(r'(\d+) Sterne', value))}
     xp = {(int(match[1]), int(match[2])) for value in values
@@ -140,10 +160,10 @@ class FlutterChecks:
         self.click('Start')
         self.top()
         root = self.wait('Hallo,')
-        profile = {value for value in labels(root)
-                   if value.startswith('Hallo,') or re.fullmatch(r'Dein Lumo-Tag · \d\. Klasse', value)}
-        if len(profile) != 2:
-            raise RuntimeError('Actual visible home profile captions are incomplete.')
+        try:
+            profile = profile_from_labels(labels(root))
+        except ValueError as error:
+            raise RuntimeError(str(error)) from error
         if self.profile_labels and self.profile_labels != profile:
             raise RuntimeError(f'Visible profile changed: {self.profile_labels} / {profile}')
         self.profile_labels = profile
@@ -179,7 +199,7 @@ class FlutterChecks:
         prompt = None
         for _ in range(10):
             root = self.frame('actual-learning-prompt')
-            prompts = {value for value in labels(root)
+            prompts = {value for value in visible_text_lines(labels(root))
                        if re.fullmatch(r'\d+\s*\+\s*\d+\s*=\s*\?', value)}
             if len(prompts) == 1:
                 prompt = prompts.pop()
