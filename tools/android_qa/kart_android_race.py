@@ -88,20 +88,27 @@ def read_frame(path):
                    and ('=' in line['text'] or 'WIE VIELE' in folded(line['text']))]
         if prompts:
             prompt_bottom = max(line['top']+line['height'] for line in prompts)
-            center_y = prompt_bottom + 32*height/720
             with Image.open(path) as source:
-                for index, center_x in enumerate((.275*width, .5*width, .725*width)):
-                    crop_box = (int(center_x-.043*width), int(center_y-.03*height),
-                                int(center_x+.043*width), int(center_y+.03*height))
-                    analysis = source.crop(crop_box).convert('L').point(lambda value: 0 if value > 165 else 255)
-                    analysis = analysis.resize((analysis.width*4, analysis.height*4))
-                    buffer = io.BytesIO(); analysis.save(buffer, format='PNG')
-                    output = subprocess.run(['tesseract', 'stdin', 'stdout', '--psm', '8',
-                                             '-c', 'tessedit_char_whitelist=0123456789'],
-                                            input=buffer.getvalue(), capture_output=True, timeout=30).stdout.decode().strip()
-                    if re.fullmatch(r'\d+', output):
-                        words.append({'left': int(center_x-8), 'top': int(center_y-8),
-                                      'width': 16, 'height': 16, 'text': output})
+                # Read the visible answer strip below the complete prompt.
+                # Fixed screen fractions miss buttons in compact safe-area layouts.
+                origin_x, origin_y = int(.1*width), int(prompt_bottom+8*height/720)
+                strip = source.crop((origin_x, origin_y, int(.9*width),
+                                     min(int(.44*height), int(prompt_bottom+64*height/720))))
+                analysis = strip.convert('L').point(lambda value: 0 if value > 165 else 255)
+                analysis = analysis.resize((analysis.width*4, analysis.height*4))
+                buffer = io.BytesIO(); analysis.save(buffer, format='PNG')
+                output = subprocess.run(['tesseract', 'stdin', 'stdout', '--psm', '6',
+                                         '-c', 'tessedit_char_whitelist=0123456789', 'tsv'],
+                                        input=buffer.getvalue(), capture_output=True, timeout=30).stdout.decode()
+                frame['tsv'] += f'\n# Answer-strip OCR, origin {origin_x},{origin_y}, scale 4\n'+output
+                for row in csv.DictReader(io.StringIO(output), delimiter='\t'):
+                    text = row.get('text', '').strip()
+                    if not re.fullmatch(r'\d+', text) or float(row.get('conf', '-1')) < 5:
+                        continue
+                    words.append({'left': origin_x+int(row['left'])//4,
+                                  'top': origin_y+int(row['top'])//4,
+                                  'width': max(1, int(row['width'])//4),
+                                  'height': max(1, int(row['height'])//4), 'text': text})
     return frame
 
 
@@ -231,7 +238,7 @@ def answer_for(frame):
                    and re.fullmatch(r'\d+', word['text'])]
         right = next((word for word in options if int(word['text']) == expected), None)
         if right:
-            return {'prompt': text, 'expected': expected, 'option': right}
+            return {'prompt': text, 'expected': expected, 'option': right, 'options': options}
     return None
 
 
@@ -356,8 +363,8 @@ def main():
                         raise RuntimeError('Visible learning-pause speed is not proven zero by OCR.')
                     record('real_learning_wait', wall_seconds=4, speed_zero=True)
                     if args.check_wrong_hint:
-                        wrong = next((word for word in frame['words'] if .32*frame['height'] < word['top'] < .42*frame['height']
-                                      and re.fullmatch(r'\d+', word['text']) and int(word['text']) != answer['expected']), None)
+                        wrong = next((word for word in answer['options']
+                                      if int(word['text']) != answer['expected']), None)
                         if not wrong:
                             raise RuntimeError('No wrong option box could be identified safely.')
                         tap_box(wrong, 'intentional wrong answer, inspect local hint')

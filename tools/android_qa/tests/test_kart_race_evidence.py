@@ -6,7 +6,8 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from kart_android_race import (race_state, second_round_in_progress, require_second_round,
                               wait_for_frame, marker, restart_visible, local_hint_visible,
-                              lesson_closed_or_changed, action_marker, lightweight_pause_visible)
+                              lesson_closed_or_changed, action_marker, lightweight_pause_visible,
+                              answer_for)
 
 
 def frame(*captions):
@@ -141,6 +142,33 @@ class KartActionCaptionTests(unittest.TestCase):
         self.assertFalse(lightweight_pause_visible(frame('Leichte Grafik: an',
                          'Dein Rennen wartet. Du kannst spater hier weiterfahren.')))
         self.assertTrue(lightweight_pause_visible(frame('Leichte Grafik: an', 'Weiterfahren')))
+
+
+class KartAnswerTargetTests(unittest.TestCase):
+    def test_real_kvm_answer_strip_excludes_prompt_digits_for_both_answer_choices(self):
+        # Actual OCR positions from run 37119121430: 013-race.png and
+        # 021-wrong-local-hint.png show the same unanswered maths question.
+        prompt = {'text': 'Lumo sammelt 2 Muscheln. 4 kommen dazu. Wie viele sind es?',
+                  'left': 135, 'top': 154, 'width': 470, 'height': 12}
+        prompt_digits = [{'left': 251, 'top': 154, 'width': 8, 'height': 12, 'text': '2'},
+                         {'left': 345, 'top': 154, 'width': 9, 'height': 12, 'text': '4'}]
+        options = [{'left': 210, 'top': 190, 'width': 6, 'height': 9, 'text': '5'},
+                   {'left': 373, 'top': 190, 'width': 7, 'height': 9, 'text': '6'},
+                   {'left': 538, 'top': 190, 'width': 6, 'height': 9, 'text': '7'}]
+        for image_name, clock_text in [('013-race.png', '11200'), ('021-wrong-local-hint.png', '1210')]:
+            with self.subTest(image=image_name):
+                observed = {'height': 480, 'lines': [prompt], 'words': [
+                    {'left': 67, 'top': 8, 'width': 49, 'height': 10, 'text': clock_text},
+                    *prompt_digits, {'left': 26, 'top': 311, 'width': 14, 'height': 54, 'text': '7'},
+                    *options]}
+                answer = answer_for(observed)
+                self.assertEqual(answer['expected'], 6)
+                self.assertIs(answer['option'], options[1])
+                self.assertEqual(answer['options'], options)
+                wrong = next(word for word in answer['options'] if int(word['text']) != answer['expected'])
+                self.assertIs(wrong, options[0])
+                self.assertEqual((wrong['left']+wrong['width']//2, wrong['top']+wrong['height']//2), (213, 194))
+                self.assertTrue(all(word['top'] > prompt['top']+prompt['height'] for word in answer['options']))
 
 
 if __name__ == '__main__':
