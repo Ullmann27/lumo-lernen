@@ -42,20 +42,20 @@ Die historischen Prototypen wurden nicht als Anwendungscode übernommen.
   bleibt auf seiner reservierten Fläche. Der Wortschreib-Coach beachtet auch
   die gespeicherte Einstellung für ruhige Animationen.
 
-## Tatsächliche Live-KI-Prüfung
+## Tatsächliche Live-KI-Prüfung vor dem Rollout
 
 Am 3. Oktober um 06:18 UTC wurde die Aufgabenanfrage ohne Kinddaten ausgeführt.
 `/health` lieferte HTTP 200 und einen konfigurierten Schlüssel;
 `/chat` lieferte HTTP 503 mit `openai_rate_limited`.
 
-Der vorhandene Renderdienst wurde anschließend ausschließlich lesend geprüft.
+Der vorhandene Renderdienst wurde anschließend zunächst ausschließlich lesend geprüft.
 URL, GitHub-Repository und `server/lumo-ai-proxy` stimmen überein. Er läuft
-noch auf `main`-Commit `1e0eeaa7d0a78fcaf89977b47bf03826b56f34eb`, vor PR #152.
+zu diesem Prüfzeitpunkt auf `main`-Commit `1e0eeaa7d0a78fcaf89977b47bf03826b56f34eb`, vor PR #152.
 Die zeitlich passenden Anwendungslogs belegen `OpenAI returned 429` und
 `/chat failed: openai_rate_limited`. Es wurde keine neue Instanz, kein Schlüssel
 und keine Abrechnungseinstellung angelegt oder geändert.
 
-Die vorhandene Livefassung prüft `provider.error.code`, protokolliert aber
+Diese damalige Livefassung prüft `provider.error.code`, protokolliert aber
 keinen genauen Providerfehler. Der neue Servercode prüft zusätzlich
 `provider.error.type == insufficient_quota` und unterscheidet das vom
 vorübergehenden Anfragelimit. Diese Zuordnung wurde mit künstlichen
@@ -67,6 +67,45 @@ Belege ohne Geheimnisse und ohne echte Kinddaten:
 
 - [Neutrale Tutor-Anfrage und Healthantwort](evidence/ai-neutral-tutor-live-2026-10-03.json)
 - [Passendes Live-Deployment und Renderlogs](evidence/ai-render-live-2026-10-03.json)
+
+## Aktueller Livezustand nach geprüftem Backend-Rollout
+
+Ein kleiner separater Backend-Branch auf frischem `origin/main` wurde geprüft
+und als [PR #155](https://github.com/Ullmann27/lumo-lernen/pull/155) übernommen.
+Er ergänzt die Quota-Auswertung aus `error.type` und sichere Diagnoselogs
+mit einer festen Liste bekannter `code`-/`type`-Werte. Unbekannte Werte werden
+als `other`, fehlende als `absent` protokolliert. Es werden keine Provider-
+Rohantworten, Fehlermeldungen, Schlüssel oder Kinddaten protokolliert.
+Das bisherige automatische Veröffentlichen der alten APK auf `main`-Push
+wurde im selben PR auf manuellen Workflowstart begrenzt; dies veröffentlicht
+keine neue APK. Im Flutter-Featurebranch wurde nur der Backend-Diagnosepatch
+übernommen, dessen eigener APK-Workflow bleibt erhalten.
+
+Der bestehende Renderdienst deployte automatisch exakt den Merge-Commit
+`fcca1f372ea24ea5a5057d79688cc8e0f2ad7c06` und wurde um 07:11:23 UTC live
+(Deployment `dep-db0aktnf3r2c73asf17g`). Host, Modell `gpt-6-luna`, Secrets
+und Tarif wurden nicht verändert. Es wurde kein zweiter Dienst angelegt.
+
+Eine neue neutrale Tutor-Anfrage zu `3 + 4` wurde um 07:12:50 UTC ausgeführt.
+Sie erhielt HTTP 503 mit `reason: openai_quota_exceeded`. Das zeitlich passende
+Renderlog lautet um 07:12:51.463823719 UTC:
+
+```text
+[lumo-ai-proxy] OpenAI error status=429 code=other type=insufficient_quota
+```
+
+Damit ist eine Quota-Ablehnung des bestehenden Provider-Projekts jetzt live
+belegt. Der konkrete Kontostand oder eine Abrechnungshöhe wurden nicht
+abgerufen. `code=other` wird nicht als tatsächlicher Providercode ausgegeben;
+der beobachtete, erlaubte Typ lautet ausdrücklich `insufficient_quota`.
+Die Healthantwort danach meldet `upstreamStatus: openai_quota_exceeded`.
+Ein erfolgreicher Tutor-Inhalt wurde weiterhin nicht geliefert. Online-KI
+bleibt daher blockiert, lokale Aufgabenhilfe bleibt nutzbar. Die fehlende
+Voraussetzung ist verfügbare Quota im vorhandenen Provider-Projekt; es wurden
+keine kostenpflichtigen Änderungen oder neue Zugangsdaten eingerichtet.
+
+- [Neue neutrale Anfrage mit Health vor/nach dem Rollout](evidence/ai-neutral-tutor-after-rollout-2026-10-03.json)
+- [Exakte Deployment-SHA und neue Providerlogs](evidence/ai-render-after-rollout-2026-10-03.json)
 
 ## Prüfung
 
@@ -82,10 +121,14 @@ Belege ohne Geheimnisse und ohne echte Kinddaten:
   38 Tests bestanden. Der umfassende APK-/Emulatorprüfstand folgt im Gesamtbericht.
   Nach der Korrektur von Wortvisualisierung und Fuchsplatzierung bestanden
   zusätzlich alle 25 ausgeführten Tutor-/Aufgabenhilfe-/Schreibprüfungen.
-- Node-Backend: 20 Regressionen bestanden; künstliche Providerantworten.
+- Node-Backend: nach dem Diagnosepatch 22 Regressionen auf Node 24.19.0
+  bestanden; künstliche Providerantworten einschließlich Tutor-/Batch-Quota,
+  Token-/Anfragelimit, unerwarteten Labels und Nicht-JSON-Rohantworten.
+  Der minimale ausgerollte `main`-Backendstand bestand alle dortigen 11 Tests.
 - Flutteranalyse: keine Fehler im geprüften gemeinsamen Zwischenstand;
   vorhandene Warnungen/Hinweise bleiben im Gesamtprojekt sichtbar.
 
 Reale Mikrofonaufnahme, TTS-Stimmenqualität und Kamera wurden auf keinem
-Galaxy Z Fold überprüft. Online-KI, echte Kontolimits und neue hochwertige
-Geschichtenillustrationen bleiben offen. APK und Emulator werden separat geprüft.
+Galaxy Z Fold überprüft. Online-KI bleibt wegen der live belegten Provider-Quota
+blockiert; genaue Kontodetails und neue hochwertige Geschichtenillustrationen
+bleiben offen. APK und Emulator werden separat geprüft.

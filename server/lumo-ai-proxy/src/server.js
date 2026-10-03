@@ -130,6 +130,18 @@ function fallbackReply(message) {
   };
 }
 
+// Only fixed provider labels may enter logs; never the provider message/body.
+const providerDiagnosticLabels = new Set([
+  'insufficient_quota', 'rate_limit_exceeded', 'requests', 'tokens',
+  'invalid_api_key', 'authentication_error', 'model_not_found',
+  'unsupported_parameter', 'unsupported_value', 'invalid_parameter',
+  'invalid_request_error', 'server_error',
+]);
+function providerDiagnosticLabel(value) {
+  if (value == null) return 'absent';
+  return providerDiagnosticLabels.has(value) ? value : 'other';
+}
+
 async function providerError(response) {
   let providerCode, providerType;
   try {
@@ -137,6 +149,7 @@ async function providerError(response) {
     providerCode = detail?.code;
     providerType = detail?.type;
   } catch (_) {}
+  console.warn(`[lumo-ai-proxy] OpenAI error status=${response.status} code=${providerDiagnosticLabel(providerCode)} type=${providerDiagnosticLabel(providerType)}`);
   const code = response.status === 401 ? 'openai_authentication_failed'
     : [providerCode, providerType].includes('insufficient_quota') ? 'openai_quota_exceeded'
     : response.status === 429 ? 'openai_rate_limited'
@@ -209,7 +222,6 @@ async function openAiChat({ message, history, childProfile, context, extras, api
       signal: controller.signal,
     });
     if (!response.ok) {
-      console.warn(`[lumo-ai-proxy] OpenAI returned ${response.status}`);
       throw await providerError(response);
     }
     const data = await response.json();
@@ -293,7 +305,6 @@ async function generateTaskBatch({ subject, grade, units: safeUnits, count: safe
       signal: controller.signal,
     });
     if (!response.ok) {
-      console.warn(`[lumo-ai-proxy] OpenAI batch returned ${response.status}`);
       throw await providerError(response);
     }
     const data = await response.json();
