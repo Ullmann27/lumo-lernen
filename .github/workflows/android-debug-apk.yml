@@ -54,6 +54,14 @@ jobs:
       - name: Prepare native Android host
         run: python3 scripts/prepare_android.py
 
+      - name: Install matching embedded Godot engine
+        run: bash scripts/install_godot_for_build.sh
+
+      - name: Bundle the pinned Godot games in this APK
+        run: |
+          python3 scripts/prepare_embedded_games.py
+          python3 scripts/export_embedded_game.py
+
       - name: Backend regression tests
         run: node --test server/lumo-ai-proxy/test/*.test.js
 

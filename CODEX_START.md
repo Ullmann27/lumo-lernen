@@ -1,6 +1,11 @@
 # Lumo – Einstieg und Fortsetzung
 
-Stand: 2. Oktober 2026. Aktiver Anwendungscode: dieses Repository.
+Stand: 3. Oktober 2026. Aktiver Anwendungscode: dieses Repository.
+
+- [Gemeinsame Flutter-/Godot-Android-App und aktueller Prüfstand](docs/UNIFIED_ANDROID_2026-10-03.md)
+- Fortsetzungszweig: `codex/lumo-unified-android-2026-10-03`.
+- Godot-Quelle wird in `config/godot-source.json` auf einen gespeicherten Commit festgelegt.
+- Der gemeinsame Bau erfolgt mit `bash scripts/build_unified_apk.sh` (Flutter 3.44.9, Godot 4.6.3).
 
 - [Aktueller Lernfuchs-/APK-Arbeitsstand](docs/LUMO_COACH_2026-10-02.md)
 - [Vorheriger Arbeitsstand und Prüfungen](docs/FORTSETZUNG_2026-10-02.md)
@@ -9,7 +14,7 @@ Stand: 2. Oktober 2026. Aktiver Anwendungscode: dieses Repository.
 - Flutter-App: `lib/`, Regressionstests: `test/`.
 - KI-Servercode: `server/lumo-ai-proxy/`.
 - Android-Bau: `.github/workflows/release-apk.yml`; native Verbindung: `scripts/prepare_android.py`.
-- Separate Godot-Spiele: [Ullmann27/lumo-godot](https://github.com/Ullmann27/lumo-godot).
+- Godot-Spielquellen: [Ullmann27/lumo-godot](https://github.com/Ullmann27/lumo-godot), jetzt im selben Android-Paket eingebettet.
 
 Die archivierten HTML-/Flutter-Prototypen sind historische Quellen. Ihr alter
 Democode, feste PINs, simulierte Erkennung und Implementierungsbehauptungen
@@ -25,7 +30,9 @@ Der Nutzer möchte alle Änderungen im Codex-Projekt und eine neue installierbar
 APK. Nach Veröffentlichung von `school-test-270` hat er ausdrücklich zusätzlich
 die KI-Aktivierung, überarbeitete Aufgaben und einen flüssig bewegten Lernfuchs
 beauftragt. Dieser neuere Auftrag ersetzt die frühere Beschränkung „kein Render“.
-Der Render-Connector verlangt jedoch noch die ausdrückliche Wahl des Workspaces
-`My Workspace`; deshalb wurden keine Kontoeinstellungen oder Deployments geändert.
-Ein neutraler Liveaufruf bestätigte einen Provider-Limitfehler. Lokale/CI-Tests
-belegen keine funktionierende Live-KI und ersetzen keinen Android-Gerätetest.
+Am 3. Oktober wurde der eindeutige bestehende Renderdienst mit seinem Workspace
+requestbezogen lesend geprüft; dafür war keine Änderung der kontoweiten Auswahl
+nötig. Ein neutraler Liveaufruf bestätigte weiter einen Provider-Limitfehler.
+Der jeweils aktuelle KI-/APK-Nachweis steht im neuen Integrationsbericht.
+Lokale/CI-Tests belegen keine funktionierende Live-KI und ersetzen keinen
+Android-Gerätetest.
