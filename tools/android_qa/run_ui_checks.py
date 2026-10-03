@@ -17,6 +17,46 @@ from kart_android_race import marker, read_frame, race_state
 from flutter_flows import FlutterChecks
 
 
+ONBOARDING_CAPTIONS = {
+    'welcome': 'Willkommen',
+    'name': 'Wie heißt du?',
+    'age': 'Wie alt bist du?',
+    'grade': 'In welche Klasse gehst du?',
+    'home': 'Spielen',
+}
+LEARNING_SELECTION_CAPTION = 'Was möchtest du üben?'
+
+
+def complete_first_run_ui(wait_for, click, capture, labels):
+    """Use visible screen headings, never an optional TextField decoration.
+
+    Android currently exposes the empty name field without its 'Dein Name'
+    InputDecoration. The two visible name captions remain available. The
+    callback boundary lets the actual caption sequence be regression-tested
+    without claiming an Android/device run.
+    """
+    root = wait_for(list(ONBOARDING_CAPTIONS.values()))
+    values = labels(root)
+    if any(ONBOARDING_CAPTIONS['welcome'] in value for value in values):
+        capture('onboarding-welcome')
+        click("Los geht's!", contains=True, scroll=True)
+        wait_for([ONBOARDING_CAPTIONS['name']])
+        # Blank input uses the app's synthetic default Kind.
+        capture('onboarding-name')
+        click('Weiter', scroll=True)
+        wait_for([ONBOARDING_CAPTIONS['age']])
+        capture('onboarding-age')
+        click('Weiter', scroll=True)
+        wait_for([ONBOARDING_CAPTIONS['grade']])
+        click('1. Klasse', scroll=True)
+        capture('onboarding-grade-1')
+        click('Profil speichern', scroll=True)
+    elif any(ONBOARDING_CAPTIONS[stage] in value
+             for stage in ('name', 'age', 'grade') for value in values):
+        raise RuntimeError('Unexpected partial onboarding on a fresh emulator; evidence retained')
+    wait_for([ONBOARDING_CAPTIONS['home']])
+
+
 def digest(path):
     with path.open('rb') as stream:
         return hashlib.file_digest(stream, 'sha256').hexdigest()
@@ -126,23 +166,7 @@ def main(args):
         raise RuntimeError('Actual native landscape race/resume frame did not render')
 
     try:
-        root = wait_for(['Willkommen', 'Wie heißt', 'Spielen'])
-        if any('Willkommen' in value for value in labels(root)):
-            device.capture('onboarding-welcome')
-            click("Los geht's!", contains=True, scroll=True)
-            wait_for(['Dein Name'])
-            # Blank name intentionally uses the app's synthetic default Kind.
-            device.capture('onboarding-name')
-            click('Weiter', scroll=True)
-            wait_for(['Wie alt'])
-            click('Weiter', scroll=True)
-            wait_for(['Klasse gehst'])
-            click('1. Klasse')
-            device.capture('onboarding-grade-1')
-            click('Profil speichern', scroll=True)
-        elif any('Wie heißt' in value for value in labels(root)):
-            raise RuntimeError('Unexpected partial onboarding on a fresh emulator; evidence retained')
-        wait_for(['Spielen'])
+        complete_first_run_ui(wait_for, click, device.capture, labels)
         device.capture('flutter-home')
         # Work against the actual offline app, including its visible rewards.
         # The profile comes solely from the real onboarding controls above.
@@ -195,7 +219,7 @@ def main(args):
             raise RuntimeError('Actual native pause does not expose its learning return button')
         device.tap(learn_button['left']+learn_button['width']//2,
                    learn_button['top']+learn_button['height']//2)
-        wait_for(['Was möchtest du üben?'])
+        wait_for([LEARNING_SELECTION_CAPTION])
         device.capture('flutter-learning-after-native-return')
         learn_flutter_pid = device.adb('shell', 'pidof', package).strip()
         if not learn_flutter_pid:
@@ -211,7 +235,7 @@ def main(args):
             raise RuntimeError('Native learning return left the engine process running')
         learn_return_proof = {'engine_pid_before_return': learn_engine_pid,
                               'flutter_pid_after_return': learn_flutter_pid,
-                              'visible_caption': 'Was möchtest du üben?',
+                              'visible_caption': LEARNING_SELECTION_CAPTION,
                               'native_engine_stopped': True}
         # Full real board/card rounds, Fold-shaped resize/navigation, and exact
         # visible wallet/profile/daily-progress equality across process restart.

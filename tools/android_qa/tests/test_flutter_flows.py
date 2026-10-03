@@ -39,6 +39,14 @@ class VisibleUiTests(unittest.TestCase):
         self.assertEqual(checker.targets(root, '7'), [])
         self.assertEqual(checker.targets(root, 'Lernen'), [(0, 1300, 240, 1410)])
 
+    def test_help_caption_can_be_merged_with_its_visible_decorative_emoji(self):
+        root = ET.fromstring('''<hierarchy><node bounds="[0,0][720,1280]">
+            <node clickable="true" content-desc="✨&#10;Lumo, hilf mir" bounds="[100,300][600,410]"/>
+            </node></hierarchy>''')
+        checker = FlutterChecks(types.SimpleNamespace(bounds=Android.bounds), Path('.'), 'example')
+        self.assertEqual(checker.targets(root, 'Lumo, hilf mir'), [])
+        self.assertEqual(checker.targets(root, 'Lumo, hilf mir', contains=True), [(100, 300, 600, 410)])
+
     def test_only_observed_memory_faces_are_available_to_solver(self):
         root = ET.fromstring('''<hierarchy>
             <node content-desc="Memory Karte 1, verdeckt&#10;?"/>

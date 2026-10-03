@@ -170,7 +170,9 @@ class FlutterChecks:
         self.wait('Was möchtest du üben?')
         self.click('Plus bis 10', scroll=True)
         self.wait('Lumo, hilf mir', scroll=True)
-        self.click('Lumo, hilf mir', scroll=True)
+        # The real GestureDetector merges its decorative emoji and caption
+        # into one accessibility label: "✨\nLumo, hilf mir".
+        self.click('Lumo, hilf mir', contains=True, scroll=True)
         self.wait('Lumo erklärt', scroll=True)
         self.device.capture('flutter-local-task-help')
         self.top()
