@@ -12,7 +12,16 @@ flutter build apk --release --target-platform android-arm64,android-x64 \
   --dart-define=LUMO_BUILD_NUMBER="${LUMO_BUILD_NUMBER:-275}" \
   --dart-define=LUMO_VERSION_NAME="${LUMO_VERSION_NAME:-0.10.0}" \
   --dart-define=LUMO_SIDE_BY_SIDE=true
-python3 scripts/verify_unified_apk.py build/app/outputs/flutter-apk/app-release.apk
 mkdir -p dist
+python3 scripts/verify_unified_apk.py build/app/outputs/flutter-apk/app-release.apk | tee dist/APK-VERIFICATION.json
 cp build/app/outputs/flutter-apk/app-release.apk dist/Lumo-Lernen-Neu.apk
 sha256sum dist/Lumo-Lernen-Neu.apk > dist/SHA256SUMS.txt
+python3 - <<'PY'
+import json
+import subprocess
+from pathlib import Path
+info = json.loads(Path('dist/APK-VERIFICATION.json').read_text())
+info['flutter_source_commit'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+info['tracked_source_clean'] = not subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=no'], text=True).strip()
+Path('dist/BUILD-PROVENANCE.json').write_text(json.dumps(info, indent=2) + '\n')
+PY

@@ -97,7 +97,8 @@ class MainActivity : FlutterActivity() {
                             GameEventStore.clear(this)
                             // Only Godot's known progress/settings files belong to the reset.
                             for (name in listOf("kart_sonnenhafen_session.cfg", "jump_session.cfg",
-                                "kart_records.cfg", "progress.cfg", "kart_preferences.cfg", "settings.cfg")) {
+                                "kart_records.cfg", "progress.cfg", "kart_preferences.cfg", "settings.cfg",
+                                "lumo_host_pending_rewards.cfg")) {
                                 for (suffix in listOf("", ".tmp")) {
                                     val file = File(filesDir, name + suffix)
                                     if (file.exists() && !file.delete()) throw IllegalStateException("Game reset failed")

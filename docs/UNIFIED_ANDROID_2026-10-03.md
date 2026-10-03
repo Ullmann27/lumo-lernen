@@ -70,6 +70,15 @@ APK-Signatur, Paket, Version, Mindest-API, beide Enginebibliotheken je Architekt
 uncompressed `resources.arsc`, ZIP-Integrität, PCK-Hash und gespeicherte Godot-Revision.
 Die erste gemeinsame APK wurde wegen unnötiger 32-Bit-Bibliotheken von rund
 366 MB auf rund 148 MB verkleinert; diese Zwischenstände sind keine finale Lieferung.
+Auch die Ausrichtung von Androidressourcen und sämtlichen ELF-Ladesegmenten
+für 16-KiB-Speicherseiten wurde am tatsächlichen APK-Inhalt überprüft.
+
+Vollständiger Flutterlauf auf dem gemeinsamen Stand: **439 bestanden, vier
+übersprungen, keine Fehler**. Analyse: keine Fehler, 156 bestehende Warnungen/
+Hinweise. Fünf Android-Vorbereitungsprüfungen bestanden. Inhaltsaudit prüft
+37.940 Aufgabenvarianten. Backend nach sicherer Providerdiagnose: 22 Tests
+bestanden. Vertragsregressionen prüfen auch abgelehnte Speicheraktionen und
+ein neues Ergebnis während einer bereits laufenden Rückkehrsynchronisierung.
 
 Lokale vollständige Spielrunden, Aufgaben- und Widgetprüfungen sind in den
 Fachberichten belegt. Der gemeinsame Android-Test und endgültige Downloadhash
@@ -85,10 +94,18 @@ Das ist keine Prüfung auf dem echten Galaxy Z Fold und keine Handy-FPS-Messung.
 
 ## Offen
 
-Die neutrale echte Tutor-Aufgabenanfrage liefert weiterhin HTTP 503 nach
-OpenAI HTTP 429. Ein Health-200 aktiviert keine KI. Lokale Lernhilfe bleibt
-vorhanden; der genaue Quota-/Rate-Limitgrund wird nicht aus unvollständigen
-Providerlogs erfunden. Kein Schlüssel wird in die APK eingebaut.
+Der getestete minimale Backend-PR #155 wurde auf `main` übernommen; der
+bestehende Renderdienst hat automatisch genau Commit
+`fcca1f372ea24ea5a5057d79688cc8e0f2ad7c06` erfolgreich ausgerollt.
+Eine echte neutrale Tutorfrage zu 3 + 4 am 3. Oktober 07:12:50 UTC liefert
+HTTP 503 `openai_quota_exceeded`. Die passenden Providerlogs belegen
+HTTP 429 mit `type=insufficient_quota`. Der Blocker ist damit aktuell
+fehlendes Provider-Kontingent, nicht lediglich ein vermutetes kurzfristiges
+Anfragelimit. Betrag/Kontostand wurden nicht geprüft. Schlüssel, Modell,
+Serveradresse und Tarif wurden nicht verändert. Online-Tutor ist nicht aktiviert;
+lokale Lernhilfe bleibt vorhanden. Kein Schlüssel wird in die APK eingebaut.
+Die alte automatische APK-Veröffentlichung auf `main` wurde auf manuellen
+Aufruf begrenzt, damit ein Backendrollout keine ungeprüfte alte APK veröffentlicht.
 
 Kart ist eine eigene farbige Welt mit geführter Fahrt und seitlicher Lenkung.
 Frei fahrbare Fahrzeugphysik, professionelle Grafik auf dem genannten

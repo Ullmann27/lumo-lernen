@@ -27,6 +27,8 @@ def verify(path: Path):
         raise RuntimeError('Wrong Android version')
     if "sdkVersion:'24'" not in badging:
         raise RuntimeError('Unexpected minimum Android version')
+    if "targetSdkVersion:'36'" not in badging:
+        raise RuntimeError('Unexpected target Android version')
     source = json.loads((ROOT / 'config/godot-source.json').read_text())
     with zipfile.ZipFile(path) as archive:
         if archive.testzip() is not None:
@@ -42,6 +44,28 @@ def verify(path: Path):
         info = archive.getinfo('resources.arsc')
         if info.compress_type != zipfile.ZIP_STORED:
             raise RuntimeError('Android 11 requires uncompressed resources.arsc')
+        with path.open('rb') as apk_file:
+            apk_file.seek(info.header_offset)
+            local_header = apk_file.read(30)
+        name_length, extra_length = struct.unpack_from('<HH', local_header, 26)
+        resource_offset = info.header_offset + 30 + name_length + extra_length
+        if resource_offset % 4:
+            raise RuntimeError('Android 11 requires aligned resources.arsc')
+        # Compressed JNI libraries are extracted on install. Their ELF load
+        # segments must still support Android devices with 16-KiB pages.
+        for name in names:
+            if not (name.startswith('lib/') and name.endswith('.so')):
+                continue
+            elf = archive.read(name)
+            if elf[:6] != b'\x7fELF\x02\x01':
+                raise RuntimeError(f'Expected a little-endian ELF64 library: {name}')
+            phoff = struct.unpack_from('<Q', elf, 32)[0]
+            phentsize, phnum = struct.unpack_from('<HH', elf, 54)
+            for index in range(phnum):
+                offset = phoff + index * phentsize
+                kind = struct.unpack_from('<I', elf, offset)[0]
+                if kind == 1 and struct.unpack_from('<Q', elf, offset + 48)[0] < 16384:
+                    raise RuntimeError(f'Native library lacks 16-KiB load alignment: {name}')
         pack = archive.read('assets/lumo_game.pck')
         provenance = json.loads(archive.read('assets/lumo_game_source.json'))
         if provenance['revision'] != source['revision']:
@@ -56,7 +80,8 @@ def verify(path: Path):
     if re.search(r'android:debuggable[^\n]*0xffffffff', xml):
         raise RuntimeError('Release APK is debuggable')
     result = {'package': package.group(1), 'versionCode': int(package.group(2)), 'versionName': package.group(3),
-              'minSdk': 24, 'abis': sorted(abis), 'bytes': path.stat().st_size,
+              'minSdk': 24, 'targetSdk': 36, 'abis': sorted(abis),
+              'elf16KiBAligned': True, 'resourcesArscAligned': True, 'bytes': path.stat().st_size,
               'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
               'signingCertificateSha256': certificate, 'godot': provenance}
     print(json.dumps(result, indent=2))
