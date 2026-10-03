@@ -15,6 +15,7 @@ import traceback
 from android_ui import Android, ADB, content_scroll_gesture
 from kart_android_race import marker, read_frame, race_state
 from flutter_flows import FlutterChecks
+from system_ui import pixel_launcher_anr_close_bounds
 
 
 ONBOARDING_CAPTIONS = {
@@ -131,6 +132,25 @@ def main(args):
         while time.monotonic() < deadline:
             root = device.dump()
             last = labels(root)
+            # Only recover a once-per-run external launcher boot ANR. Never
+            # dismiss an app ANR, crash, unknown system dialog or repeated ANR.
+            launcher_close = pixel_launcher_anr_close_bounds(root)
+            if launcher_close:
+                if environment.get('pixel_launcher_anr_recovery'):
+                    raise RuntimeError('Pixel Launcher ANR recurred after its one documented recovery.')
+                evidence = device.capture('external-pixel-launcher-anr-before-close')
+                if pixel_launcher_anr_close_bounds(device.dump()) != launcher_close:
+                    raise RuntimeError('Launcher dialog changed while recording it; no recovery touch sent.')
+                environment['pixel_launcher_anr_recovery'] = {
+                    'observed_labels': last, 'close_app_bounds': list(launcher_close),
+                    'evidence': evidence, 'external_package_only': True,
+                    'lumo_errors_suppressed': False,
+                }
+                (args.out/'environment.json').write_text(json.dumps(environment, indent=2)+'\n')
+                left, top, right, bottom = launcher_close
+                device.tap((left+right)//2, (top+bottom)//2)
+                device.foreground(package)
+                continue
             if any(any(phrase.casefold() in label.casefold() for label in last) for phrase in phrases):
                 return root
             time.sleep(1)
@@ -261,6 +281,13 @@ def main(args):
                  'no_apk_rebuild_resign_or_publish': True}
         (args.out/'result.json').write_text(json.dumps(proof, indent=2, ensure_ascii=False)+'\n')
         print(json.dumps(proof, indent=2, ensure_ascii=False))
+    except Exception:
+        # Preserve the actual blocking screen before stopping the emulator.
+        try:
+            device.capture('usage-check-failure')
+        except Exception as capture_error:
+            (args.out/'failure-capture-error.txt').write_text(str(capture_error)+'\n')
+        raise
     finally:
         logs = device.adb('logcat', '-d', '-v', 'threadtime', timeout=45)
         (args.out/'android-logcat.txt').write_text(logs)

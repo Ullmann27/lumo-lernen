@@ -57,7 +57,7 @@ jobs:
       - name: Install OCR and Android SDK tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y tesseract-ocr
+          sudo apt-get install -y tesseract-ocr xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0
           python3 -m pip install Pillow
       - uses: android-actions/setup-android@v3
         with:
@@ -116,15 +116,36 @@ jobs:
           ls -l /dev/kvm
           test -r /dev/kvm
           test -w /dev/kvm
+      - name: Start and verify the Mesa software OpenGL display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1280x720x24 -nolisten tcp +extension GLX > "$LUMO_QA_DIR/xvfb.log" 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > "$LUMO_QA_DIR/mesa-renderer.txt" 2>&1; then
+              break
+            fi
+            sleep 0.25
+          done
+          cat "$LUMO_QA_DIR/mesa-renderer.txt"
+          rg -i 'OpenGL renderer string:.*llvmpipe' "$LUMO_QA_DIR/mesa-renderer.txt"
       - name: Install the verified APK and exercise the actual user flow
         uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
         with:
           api-level: 35
           target: google_apis
           arch: x86_64
           profile: pixel_5
           disable-animations: true
-          emulator-options: -no-window -accel on -gpu swangle -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: >-
             bash -o pipefail -c 'python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
       - name: Upload and re-download the same successfully tested APK into the existing draft
