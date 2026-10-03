@@ -101,9 +101,20 @@ def prepare(root: Path):
 ''')
     rules = root / 'android/app/proguard-rules.pro'
     existing = rules.read_text() if rules.exists() else ''
-    keep = '-keep class ' + namespace + '.LumoHostPlugin { *; }'
-    if keep not in existing:
-        rules.write_text(existing.rstrip() + '\n# Godot registers the host methods through reflection.\n' + keep + '\n')
+    required_rules = (
+        ('Godot registers the host methods through reflection.',
+         '-keep class ' + namespace + '.LumoHostPlugin { *; }'),
+        # Godot's native library resolves Java classes and callbacks by their
+        # original names. Java usage analysis cannot see JNI-only methods such
+        # as Godot.restart() and Godot.setKeepScreenOn(boolean).
+        ('Godot JNI and reflection require the original engine classes and members.',
+         '-keep class org.godotengine.godot.** { *; }'),
+    )
+    for comment, keep in required_rules:
+        if keep not in existing:
+            existing = existing.rstrip() + '\n# ' + comment + '\n' + keep + '\n'
+    if not rules.exists() or existing != rules.read_text():
+        rules.write_text(existing)
     print('Embedded Godot host prepared; same APK, private activity, durable reward events.')
 
 

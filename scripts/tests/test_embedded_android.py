@@ -24,11 +24,22 @@ class EmbeddedAndroidTest(unittest.TestCase):
             templates.mkdir(parents=True)
             for filename in ('GameEventStore.kt', 'LumoGameActivity.kt'):
                 (templates / filename).write_text((ROOT / 'tools/auto_install' / filename).read_text())
+            # Upgrade a host already prepared by the old script. Existing app
+            # rules and its reflected plugin rule must survive the JNI fix.
+            rules = root / 'android/app/proguard-rules.pro'
+            original_rules = ('# Existing application rules\n'
+                              '-keep class example.CustomBridge { *; }\n'
+                              '-keep class dev.ullmann.lumo.lumo_lernen.LumoHostPlugin { *; }\n')
+            rules.write_text(original_rules)
             embedded.prepare(root)
-            first_manifest, first_gradle = manifest.read_bytes(), gradle.read_bytes()
+            first_manifest, first_gradle, first_rules = manifest.read_bytes(), gradle.read_bytes(), rules.read_bytes()
             embedded.prepare(root)
             self.assertEqual(first_manifest, manifest.read_bytes())
             self.assertEqual(first_gradle, gradle.read_bytes())
+            self.assertEqual(first_rules, rules.read_bytes())
+            self.assertTrue(rules.read_text().startswith(original_rules))
+            self.assertEqual(rules.read_text().count('-keep class org.godotengine.godot.** { *; }'), 1)
+            self.assertEqual(rules.read_text().count('-keep class dev.ullmann.lumo.lumo_lernen.LumoHostPlugin { *; }'), 1)
             doc = ET.parse(manifest).getroot()
             attr = lambda name: '{http://schemas.android.com/apk/res/android}' + name
             activities = doc.findall('application/activity')
