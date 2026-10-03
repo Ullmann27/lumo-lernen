@@ -75,8 +75,9 @@ class CardsRound(Round):
         if not 2 <= len(choices) <= 6:
             raise RuntimeError(f'Cannot safely identify the actual answer buttons ({len(choices)}).')
         expected = arithmetic(prompt)
-        answer = next((node for node in choices
-                       if expected in (node.attrib.get('text'), node.attrib.get('content-desc'))), None)
+        answer = (next((node for node in choices
+                        if expected in (node.attrib.get('text'), node.attrib.get('content-desc'))), None)
+                  if expected is not None else None)
         if answer is not None:
             self.verified_answers += 1
             self.record('visible_math_answer', prompt=prompt, expected=expected, verified=True)

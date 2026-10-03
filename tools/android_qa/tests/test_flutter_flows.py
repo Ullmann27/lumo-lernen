@@ -1,13 +1,14 @@
 """Read-only parser/target regressions; these are never Android usage proof."""
 from pathlib import Path
 import sys
+import tempfile
 import types
 import unittest
 import xml.etree.ElementTree as ET
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from android_ui import Android
-from cards_android_round import arithmetic, described_cards, is_result
+from cards_android_round import CardsRound, arithmetic, described_cards, is_result
 from flutter_flows import FlutterChecks, wallet_from_labels
 from memory_android_round import cards, result_scores
 
@@ -66,6 +67,27 @@ class VisibleUiTests(unittest.TestCase):
                                  ('Was ist die Mehrzahl von Hund?', None)]:
             with self.subTest(prompt=prompt):
                 self.assertEqual(arithmetic(prompt), expected)
+
+    def test_visible_non_arithmetic_answer_never_counts_as_verified_math(self):
+        root = ET.fromstring('''<hierarchy>
+            <node content-desc="Denkpause" bounds="[100,100][400,150]"/>
+            <node content-desc="Was ist die Mehrzahl von Hund?" bounds="[100,170][600,230]"/>
+            <node content-desc="Hunde" clickable="true" bounds="[100,250][330,320]"/>
+            <node text="Hund" clickable="true" bounds="[350,250][580,320]"/>
+            </hierarchy>''')
+        events, touches = [], []
+        with tempfile.TemporaryDirectory() as directory:
+            check = CardsRound(types.SimpleNamespace(bounds=Android.bounds),
+                               Path(directory), timeout=1, allow_unverified=True)
+            check.record = lambda event, **values: events.append((event, values))
+            check.tap_node = lambda node, reason: touches.append(node)
+            check.learning_answer(root)
+        self.assertEqual(check.verified_answers, 0)
+        self.assertEqual(check.unverified_answers, 1)
+        self.assertEqual([event for event, _ in events], ['visible_unverified_answer'])
+        self.assertFalse(events[0][1]['verified'])
+        self.assertEqual(len(touches), 1)
+        self.assertEqual(touches[0].attrib['content-desc'], 'Hunde')
 
 
 if __name__ == '__main__':
