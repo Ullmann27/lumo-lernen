@@ -38,6 +38,15 @@ def prepare(root: Path):
     app = doc.find('application')
     if app is None:
         raise ValueError('Missing Android application')
+    # The available ANGLE/SwiftShader emulators crash in Flutter's Impeller
+    # Vulkan path. Skia GLES also gives this app a compatible graphics path
+    # when switching to the embedded Godot GLES engine.
+    renderer = next((entry for entry in app.findall('meta-data')
+                     if entry.get(attr('name')) == 'io.flutter.embedding.android.EnableImpeller'), None)
+    if renderer is None:
+        renderer = ET.SubElement(app, 'meta-data')
+    renderer.set(attr('name'), 'io.flutter.embedding.android.EnableImpeller')
+    renderer.set(attr('value'), 'false')
     for entry in app.findall('provider/meta-data'):
         if entry.get(attr('name')) == 'android.support.FILE_PROVIDER_PATHS':
             entry.set(f'{{{TOOLS}}}replace', 'android:resource')

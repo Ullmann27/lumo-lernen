@@ -15,7 +15,7 @@ flutter build apk --release --target-platform android-arm64,android-x64 \
 mkdir -p dist
 python3 scripts/verify_unified_apk.py build/app/outputs/flutter-apk/app-release.apk | tee dist/APK-VERIFICATION.json
 cp build/app/outputs/flutter-apk/app-release.apk dist/Lumo-Lernen-Neu.apk
-sha256sum dist/Lumo-Lernen-Neu.apk > dist/SHA256SUMS.txt
+(cd dist && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
 python3 - <<'PY'
 import json
 import subprocess

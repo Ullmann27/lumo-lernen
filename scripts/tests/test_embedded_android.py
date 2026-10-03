@@ -38,6 +38,10 @@ class EmbeddedAndroidTest(unittest.TestCase):
             self.assertEqual(engine.get(attr('process')), ':lumo_game')
             self.assertEqual(engine.get(attr('resizeableActivity')), 'true')
             self.assertFalse(doc.findall('queries/package'))
+            renderer = [entry for entry in doc.findall('application/meta-data')
+                        if entry.get(attr('name')) == 'io.flutter.embedding.android.EnableImpeller']
+            self.assertEqual(len(renderer), 1)
+            self.assertEqual(renderer[0].get(attr('value')), 'false')
             self.assertIn('org.godotengine:godot:4.6.3.stable', gradle.read_text())
             self.assertIn('.coachpreview', gradle.read_text())
             self.assertIn('noCompress += "pck"', gradle.read_text())
