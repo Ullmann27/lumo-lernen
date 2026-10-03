@@ -14,6 +14,7 @@ import traceback
 
 from android_ui import Android, ADB
 from kart_android_race import marker, read_frame, race_state
+from flutter_flows import FlutterChecks
 
 
 def digest(path):
@@ -143,6 +144,12 @@ def main(args):
             raise RuntimeError('Unexpected partial onboarding on a fresh emulator; evidence retained')
         wait_for(['Spielen'])
         device.capture('flutter-home')
+        # Work against the actual offline app, including its visible rewards.
+        # The profile comes solely from the real onboarding controls above.
+        device.adb('shell', 'svc', 'wifi', 'disable')
+        device.adb('shell', 'svc', 'data', 'disable')
+        flutter_checks = FlutterChecks(device, args.out, package)
+        flutter_checks.learning()
         click('Spielen', contains=True)
         wait_for(['Lumo Spielewelt', 'Losfahren'])
         device.capture('flutter-games')
@@ -175,17 +182,17 @@ def main(args):
         device.tap(button['left']+button['width']//2, button['top']+button['height']//2)
         wait_for(['Losfahren'])
         device.capture('flutter-after-native-reopen')
-        # Main app restart and offline home UI; reward data has a separate test.
-        device.adb('shell', 'am', 'force-stop', package)
-        device.foreground(package)
-        wait_for(['Spielen'])
-        device.capture('flutter-offline-process-restart')
+        # Full real board/card rounds, Fold-shaped resize/navigation, and exact
+        # visible wallet/profile/daily-progress equality across process restart.
+        flutter_checks.boards()
+        flutter_proof = flutter_checks.fold_and_restart()
         if digest(args.apk) != args.sha256.lower():
             raise RuntimeError('APK input was modified during the test')
         proof = {'passed': True, **environment, 'first_engine_pid': first_pid,
                  'reopened_engine_pid': next_pid,
                  'saved_race_hud': saved_state, 'restored_race_hud': restored_state,
-                 'flow': 'Flutter Home → Spiele → Kart → full two-lap race → result → restart → Flutter → fresh native resume → Flutter offline restart',
+                 'flutter_checks': flutter_proof,
+                 'flow': 'Flutter learning/help/answer/reward → Kart two-lap race/result/restart/fresh native resume → Memory twelve pairs → Cards complete round → Fold resize/navigation → offline restart with identical visible wallet/profile/progress',
                  'race_uses_real_physics_and_wall_time': True,
                  'no_apk_rebuild_resign_or_publish': True}
         (args.out/'result.json').write_text(json.dumps(proof, indent=2, ensure_ascii=False)+'\n')
