@@ -23,7 +23,9 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
+import '../../../core/game_progress_repository.dart';
 import '../../../domain/games/game_level_model.dart';
+import '../shared/lumo_game_pause_scope.dart';
 
 class ColorBoxesGame extends StatefulWidget {
   const ColorBoxesGame({
@@ -40,6 +42,9 @@ class ColorBoxesGame extends StatefulWidget {
 }
 
 class _ColorBoxesGameState extends State<ColorBoxesGame> {
+  bool _finished = false;
+  final _clock = LumoGameTurnClock();
+
   static const int _tasksPerRound = 5;
   static const int _totalBoxes = 10;
 
@@ -71,6 +76,7 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
   int get _filledCount => _boxes.where((b) => b).length;
 
   void _toggleBox(int idx) {
+    if (_clock.value || _finished) return;
     HapticFeedback.lightImpact();
     setState(() {
       _boxes[idx] = !_boxes[idx];
@@ -78,6 +84,7 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
   }
 
   void _checkAnswer() {
+    if (_clock.value || _finished) return;
     HapticFeedback.mediumImpact();
     if (_filledCount == _targetCount) {
       _correct++;
@@ -90,13 +97,15 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
   void _showFeedback(bool correct) {
     showDialog<void>(
       context: context,
-      barrierDismissible: true,
+      barrierDismissible: false,
       builder: (_) => AlertDialog(
-        backgroundColor: correct ? const Color(0xFFECFDF5) : const Color(0xFFFEF3C7),
+        backgroundColor:
+            correct ? const Color(0xFFECFDF5) : const Color(0xFFFEF3C7),
         title: Text(
           correct ? '🎉 Richtig!' : '🤔 Nicht ganz...',
           textAlign: TextAlign.center,
-          style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900),
+          style: const TextStyle(
+              fontFamily: 'Nunito', fontWeight: FontWeight.w900),
         ),
         content: Text(
           correct
@@ -109,16 +118,16 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              if (correct) {
-                _nextTask();
-              }
             },
             child: Text(correct ? 'Weiter' : 'OK',
-                style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+                style: const TextStyle(
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
           ),
         ],
       ),
-    );
+    ).then((_) {
+      if (mounted && correct) _nextTask();
+    });
   }
 
   void _nextTask() {
@@ -132,20 +141,38 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
     });
   }
 
-  void _finishRound() {
+  Future<void> _finishRound() async {
+    if (_finished) return;
+    _finished = true;
     // Belohnung: 1 Stern pro richtige Aufgabe (max 5)
     final stars = _correct;
     widget.appState.addStars(stars);
     widget.appState.addXp(stars * 5);
 
+    final state = widget.appState.state;
+    final name = state.childName.trim().isEmpty
+        ? 'kind'
+        : state.childName
+            .trim()
+            .toLowerCase()
+            .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    await const GameProgressRepository().recordResult(
+      childId: 'local_${name}_${state.grade}',
+      levelId: widget.level.id,
+      starsEarned: stars.clamp(1, widget.level.maxStars),
+    );
+    if (!mounted) return;
+
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => AlertDialog(
+      builder: (_) => LumoGameResultBack(
+          child: AlertDialog(
         backgroundColor: const Color(0xFFFEF3C7),
         title: const Text('Runde fertig! 🦊',
             textAlign: TextAlign.center,
-            style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('Du hast $_correct von $_tasksPerRound Aufgaben richtig.',
               textAlign: TextAlign.center,
@@ -164,138 +191,175 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
         ]),
         actions: [
           TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _restartRound();
+              },
+              child: const Text('Nochmal!')),
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },
             child: const Text('Zurueck',
-                style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+                style: TextStyle(
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
           ),
         ],
-      ),
+      )),
     );
   }
 
   @override
+  void dispose() {
+    _clock.dispose();
+    super.dispose();
+  }
+
+  void _restartRound() {
+    _clock.cancel();
+    setState(() {
+      _finished = false;
+      _correct = 0;
+      _taskIndex = 0;
+      _newTask();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFEF3C7),
-      appBar: AppBar(
-        backgroundColor: LumoColors.orange,
-        foregroundColor: Colors.white,
-        title: Text(widget.level.title,
-            style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(children: [
-            // Fortschritt
-            Row(children: [
-              Text('Aufgabe ${_taskIndex + 1} / $_tasksPerRound',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFF7C2D12))),
-              const Spacer(),
-              const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 24),
-              Text(' $_correct',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: Color(0xFF7C2D12))),
-            ]),
-            const SizedBox(height: 24),
-            // Aufgabe
-            Container(
+    return LumoGamePauseScope(
+        clock: _clock,
+        onRestart: _restartRound,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFEF3C7),
+          appBar: AppBar(
+            leading: IconButton(
+                tooltip: 'Pausieren / Zurück',
+                onPressed: _clock.pause,
+                icon: const Icon(Icons.arrow_back_rounded)),
+            backgroundColor: LumoColors.orange,
+            foregroundColor: Colors.white,
+            title: Text(widget.level.title,
+                style: const TextStyle(
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+          ),
+          body: SafeArea(
+            child: Padding(
               padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: LumoColors.orange, width: 2),
-                boxShadow: [
-                  BoxShadow(
-                      color: LumoColors.orange.withOpacity(0.20),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4))
-                ],
-              ),
               child: Column(children: [
-                const Text('Male so viele Kaestchen an:',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF7C2D12))),
-                const SizedBox(height: 8),
-                Text('$_targetCount',
-                    style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 56,
-                        fontWeight: FontWeight.w900,
-                        color: LumoColors.orange)),
-                const SizedBox(height: 4),
-                Text('Du hast $_filledCount angemalt',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w800,
-                        color: _filledCount == _targetCount
-                            ? const Color(0xFF059669)
-                            : const Color(0xFF92400E))),
-              ]),
-            ),
-            const SizedBox(height: 28),
-            // 10 Kaestchen in 2x5 Raster
-            Expanded(
-              child: Center(
-                child: SizedBox(
-                  width: 360,
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: _totalBoxes,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 1.0,
-                    ),
-                    itemBuilder: (context, i) => _BoxTile(
-                      filled: _boxes[i],
-                      onTap: () => _toggleBox(i),
+                // Fortschritt
+                Row(children: [
+                  Text('Aufgabe ${_taskIndex + 1} / $_tasksPerRound',
+                      style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFF7C2D12))),
+                  const Spacer(),
+                  const Icon(Icons.star_rounded,
+                      color: Color(0xFFFCD34D), size: 24),
+                  Text(' $_correct',
+                      style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xFF7C2D12))),
+                ]),
+                const SizedBox(height: 24),
+                // Aufgabe
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: LumoColors.orange, width: 2),
+                    boxShadow: [
+                      BoxShadow(
+                          color: LumoColors.orange.withOpacity(0.20),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4))
+                    ],
+                  ),
+                  child: Column(children: [
+                    const Text('Male so viele Kaestchen an:',
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF7C2D12))),
+                    const SizedBox(height: 8),
+                    Text('$_targetCount',
+                        style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 56,
+                            fontWeight: FontWeight.w900,
+                            color: LumoColors.orange)),
+                    const SizedBox(height: 4),
+                    Text('Du hast $_filledCount angemalt',
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                            color: _filledCount == _targetCount
+                                ? const Color(0xFF059669)
+                                : const Color(0xFF92400E))),
+                  ]),
+                ),
+                const SizedBox(height: 28),
+                // 10 Kaestchen in 2x5 Raster
+                Expanded(
+                  child: Center(
+                    child: SizedBox(
+                      width: 360,
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: _totalBoxes,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 5,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 1.0,
+                        ),
+                        itemBuilder: (context, i) => Semantics(
+                            key: ValueKey('color-box-$i'),
+                            label:
+                                'Kästchen ${i + 1}, ${_boxes[i] ? 'angemalt' : 'leer'}',
+                            button: true,
+                            child: _BoxTile(
+                              filled: _boxes[i],
+                              onTap: () => _toggleBox(i),
+                            )),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            // Check-Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _checkAnswer,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: LumoColors.orange,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                const SizedBox(height: 12),
+                // Check-Button
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _checkAnswer,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: LumoColors.orange,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                    child: const Text('Pruefen',
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900)),
+                  ),
                 ),
-                child: const Text('Pruefen',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900)),
-              ),
+              ]),
             ),
-          ]),
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
 

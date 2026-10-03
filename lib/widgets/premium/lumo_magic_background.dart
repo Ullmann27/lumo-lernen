@@ -170,7 +170,7 @@ class _MagicPainter extends CustomPainter {
     // Wolken-Opacity 0.35 -> 0.60 + leichter Pink-Tint damit sie gegen
     // den neuen Sunset-Verlauf sichtbar sind statt verschwimmen.
     final cloudPaint = Paint()
-      ..color = const Color(0xFFFFF0F5).withOpacity(0.60 * intensity)
+      ..color = const Color(0xFFFFF0F5).withOpacity((0.60 * intensity).clamp(0.0, 1.0))
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 22);
     for (final c in clouds) {
       final driftX = math.sin(progress * 2 * math.pi + c.x * 10) * c.drift;
@@ -193,7 +193,7 @@ class _MagicPainter extends CustomPainter {
     for (final s in stars) {
       final twinkle =
           (math.sin(progress * 2 * math.pi * s.speed + s.phase) + 1) / 2;
-      final opacity = (0.7 + twinkle * 0.3).clamp(0.0, 1.0) * intensity;
+      final opacity = ((0.7 + twinkle * 0.3) * intensity).clamp(0.0, 1.0);
       final size_ = s.size * (1.4 + twinkle * 1.0);
       final cx = s.x * size.width;
       final cy = s.y * size.height;

@@ -177,6 +177,7 @@ class LearningSessionPlanner {
       LearningSubject.mathematik: <SkillState>[],
       LearningSubject.deutsch: <SkillState>[],
       LearningSubject.sachkunde: <SkillState>[],
+      LearningSubject.logik: <SkillState>[],
     };
 
     for (final state in states) {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/writing/writing_domain.dart';
+import '../../../domain/writing/writing_path_geometry.dart';
 
 class LumoWritingCanvas extends StatefulWidget {
   const LumoWritingCanvas({
@@ -13,11 +14,13 @@ class LumoWritingCanvas extends StatefulWidget {
     this.height = 300,
     this.onChanged,
     this.onEvaluated,
+    this.initialStrokes = const <Stroke>[],
   });
 
   final WritingTemplate template;
   final WritingMode mode;
   final double height;
+  final List<Stroke> initialStrokes;
   final ValueChanged<List<Stroke>>? onChanged;
   final ValueChanged<WritingEvaluation>? onEvaluated;
 
@@ -37,6 +40,17 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
   // das den "_dependents.isEmpty"-Assert in Flutter framework.dart aus-
   // loesen. Jetzt rendert das Canvas nur noch im Vollbild-Modal ohne
   // Scrollable-Parent, sodass dieser Hack nicht mehr noetig ist.
+
+  @override
+  void initState() {
+    super.initState();
+    _strokes.addAll(widget.initialStrokes);
+    if (_strokes.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _emitEvaluation();
+      });
+    }
+  }
 
   void _startStroke(Offset localPosition, Size size) {
     final point = _pointFromLocalPosition(localPosition, size);
@@ -103,103 +117,8 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
       finishedAt: DateTime.now(),
     );
     widget.onEvaluated?.call(
-      _useLooseEvaluation
-          ? _evaluateLooseWriting(attempt)
-          : _evaluator.evaluate(template: widget.template, attempt: attempt),
+      _evaluator.evaluate(template: widget.template, attempt: attempt),
     );
-  }
-
-  bool get _isFreeWordMode => widget.mode == WritingMode.free && widget.template.strokes.isEmpty;
-
-  bool get _useLooseEvaluation {
-    final target = widget.template.symbol.trim();
-    if (_isFreeWordMode) return true;
-    return RegExp(r'^[A-ZÄÖÜ0-9]{1,2}$').hasMatch(target);
-  }
-
-  WritingEvaluation _evaluateLooseWriting(WritingAttempt attempt) {
-    final usableStrokes = attempt.strokes.where((stroke) => stroke.points.length >= 2).toList(growable: false);
-    if (usableStrokes.isEmpty) {
-      return const WritingEvaluation(
-        overallScore: 0,
-        startPointScore: 0,
-        directionScore: 0,
-        coverageScore: 0,
-        pathDistanceScore: 0,
-        strokeOrderScore: 0,
-        mirrored: false,
-        incomplete: true,
-        hints: <WritingHint>[
-          WritingHint(type: WritingHintType.incomplete, message: 'Schreibe langsam auf die Linien.'),
-        ],
-      );
-    }
-
-    // Erwartete Strichanzahl: bevorzugt die Template-Striche (echte Buchstaben-Form),
-    // sonst grob 2 Striche pro Buchstabe als Heuristik fuer Woerter.
-    final symbolLength = widget.template.symbol.replaceAll(RegExp(r'\s+'), '').length.clamp(1, 12);
-    final templateStrokeCount = widget.template.strokes.length;
-    final expectedStrokes = templateStrokeCount > 0
-        ? templateStrokeCount
-        : (symbolLength * 2).clamp(2, 24);
-
-    final strokeCoverage = (usableStrokes.length / expectedStrokes).clamp(0.0, 1.0).toDouble();
-    final boundsCoverage = _boundsCoverage(usableStrokes).clamp(0.0, 1.0).toDouble();
-    final pointCount = usableStrokes.fold<int>(0, (sum, s) => sum + s.points.length);
-
-    // Mindestpunktzahl pro erwartetem Strich, damit ein einzelner Wischer nicht
-    // 100% Coverage bekommt. Erwartet werden mindestens ~12 Punkte pro Strich.
-    final minPoints = expectedStrokes * 8;
-    final pointDensity = (pointCount / minPoints).clamp(0.0, 1.0).toDouble();
-
-    // Neue strengere Formel:
-    //  - kein freier Basisbonus mehr
-    //  - alle drei Faktoren muessen erreicht sein
-    //  - Multiplikative Penalty, wenn ein Faktor sehr niedrig ist
-    final base = (strokeCoverage * .42 + boundsCoverage * .32 + pointDensity * .26)
-        .clamp(0.0, 1.0)
-        .toDouble();
-
-    // Harte Penalty: nur 1 Strich auf einem Mehr-Strich-Symbol = klar falsch.
-    final tooFewStrokes = usableStrokes.length < (expectedStrokes / 2).ceil();
-    final score = (tooFewStrokes ? base * .55 : base).clamp(0.0, 1.0).toDouble();
-
-    final String hintMessage;
-    if (score >= .80) {
-      hintMessage = 'Gut. Du hast das Ziel sauber geschrieben.';
-    } else if (tooFewStrokes) {
-      hintMessage = 'Zu wenig Striche. Schreibe das Zeichen vollstaendig nach.';
-    } else if (boundsCoverage < .45) {
-      hintMessage = 'Schreibe groesser, so dass das Feld gut ausgefuellt ist.';
-    } else {
-      hintMessage = 'Achte auf die Form. Schreibe langsam ueber die Vorlage.';
-    }
-
-    return WritingEvaluation(
-      overallScore: score,
-      startPointScore: 1,
-      directionScore: score,
-      coverageScore: boundsCoverage,
-      pathDistanceScore: score,
-      strokeOrderScore: tooFewStrokes ? .4 : 1,
-      mirrored: false,
-      incomplete: score < .60,
-      hints: <WritingHint>[
-        WritingHint(type: WritingHintType.coverage, message: hintMessage),
-      ],
-    );
-  }
-
-  double _boundsCoverage(List<Stroke> strokes) {
-    final points = strokes.expand((stroke) => stroke.points).toList(growable: false);
-    if (points.isEmpty) return 0;
-    final minX = points.map((p) => p.x).reduce(math.min);
-    final maxX = points.map((p) => p.x).reduce(math.max);
-    final minY = points.map((p) => p.y).reduce(math.min);
-    final maxY = points.map((p) => p.y).reduce(math.max);
-    final width = ((maxX - minX) / widget.template.viewBoxWidth).clamp(0.0, 1.0);
-    final height = ((maxY - minY) / widget.template.viewBoxHeight).clamp(0.0, 1.0);
-    return ((width + height) / 2).toDouble();
   }
 
   StrokePoint? _pointFromLocalPosition(Offset localPosition, Size size) {
@@ -390,32 +309,42 @@ class _WritingCanvasPainter extends CustomPainter {
   }
 
   void _drawTemplate(Canvas canvas, Size size) {
-    final symbol = template.symbol.trim().isEmpty ? 'A' : template.symbol.trim();
-    final symbolLength = symbol.replaceAll(RegExp(r'\s+'), '').length.clamp(1, 12);
-    final fontSize = symbolLength <= 1
-        ? size.height * .72
-        : symbolLength <= 2
-            ? size.height * .56
-            : size.height * .30;
-    final painter = TextPainter(
-      text: TextSpan(
-        text: symbol,
-        style: TextStyle(
-          fontFamily: 'Nunito',
-          fontSize: fontSize,
-          fontWeight: FontWeight.w900,
-          color: (mode == WritingMode.guided ? LumoColors.orange : LumoColors.ink900).withOpacity(.13),
-          height: 1,
-        ),
-      ),
-      maxLines: 1,
-      textDirection: TextDirection.ltr,
-    )..layout(maxWidth: size.width * .92);
-    final offset = Offset(
-      (size.width - painter.width) / 2,
-      (size.height - painter.height) / 2,
-    );
-    painter.paint(canvas, offset);
+    final paint = Paint()
+      ..color = (mode == WritingMode.guided ? LumoColors.orange : LumoColors.ink900).withOpacity(.20)
+      ..strokeWidth = 10
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+    for (final stroke in template.strokes) {
+      final points = WritingPathGeometry.sample(stroke.pathData);
+      if (points.isEmpty) continue;
+      final first = _map(points.first.x, points.first.y, size);
+      final path = Path()..moveTo(first.dx, first.dy);
+      for (final point in points.skip(1)) {
+        final mapped = _map(point.x, point.y, size);
+        path.lineTo(mapped.dx, mapped.dy);
+      }
+      canvas.drawPath(path, paint);
+      // The number and short arrow describe the same path the evaluator uses.
+      final label = TextPainter(
+        text: TextSpan(text: '${stroke.order}', style: const TextStyle(
+          fontSize: 13, fontWeight: FontWeight.bold, color: LumoColors.orange)),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      label.paint(canvas, first + const Offset(-14, -18));
+      if (points.length > 4) {
+        final index = (points.length * .22).round().clamp(1, points.length - 1);
+        final tip = _map(points[index].x, points[index].y, size);
+        final previous = _map(points[index - 1].x, points[index - 1].y, size);
+        final angle = math.atan2(tip.dy - previous.dy, tip.dx - previous.dx);
+        final arrow = Path()
+          ..moveTo(tip.dx - 9 * math.cos(angle - .5), tip.dy - 9 * math.sin(angle - .5))
+          ..lineTo(tip.dx, tip.dy)
+          ..lineTo(tip.dx - 9 * math.cos(angle + .5), tip.dy - 9 * math.sin(angle + .5));
+        canvas.drawPath(arrow, Paint()..color = LumoColors.orange.withOpacity(.65)
+          ..strokeWidth = 2 ..style = PaintingStyle.stroke);
+      }
+    }
   }
 
   void _drawChildStrokes(Canvas canvas, Size size) {

@@ -50,6 +50,30 @@ class LumoPlayingCard extends StatefulWidget {
   final bool dimmed;
   final VoidCallback? onTap;
 
+  /// Describes only the rendered face, never the identity of a covered card.
+  String get semanticLabel {
+    if (faceDown) return 'Verdeckt';
+    final visibleColor = card.isWild
+        ? 'Vier Farben'
+        : switch (card.color) {
+            LumoCardColor.orange => 'Rot',
+            LumoCardColor.purple => 'Gelb',
+            LumoCardColor.blue => 'Blau',
+            LumoCardColor.green => 'Grün',
+          };
+    final visibleType = switch (card.type) {
+      LumoCardType.number => 'Zahl ${card.number}',
+      LumoCardType.lumoJump => 'Lumo-Sprung',
+      LumoCardType.starRain => 'Sternenregen, zwei Karten ziehen',
+      LumoCardType.colorMagic => 'Farbzauber',
+      LumoCardType.superRain => 'Superregen, vier Karten ziehen',
+      LumoCardType.whirlwind => 'Wirbelwind',
+      LumoCardType.thinkPause => 'Denkpause',
+    };
+    final action = playable ? ', spielbar' : (dimmed ? ', nicht spielbar' : '');
+    return 'Lumo Karte, $visibleColor, $visibleType$action';
+  }
+
   @override
   State<LumoPlayingCard> createState() => _LumoPlayingCardState();
 }
@@ -71,42 +95,49 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
   Widget build(BuildContext context) {
     final base = _baseColor(widget.card.color);
 
-    return SizedBox(
-      width: widget.width,
-      height: widget.height,
-      child: GestureDetector(
-        onTapDown: widget.onTap == null
-            ? null
-            : (_) => setState(() => _pressed = true),
-        onTapUp: widget.onTap == null
-            ? null
-            : (_) => setState(() => _pressed = false),
-        onTapCancel: () => setState(() => _pressed = false),
-        onTap: widget.onTap,
-        child: AnimatedScale(
-          scale: _pressed ? 1.05 : 1.0,
-          duration: const Duration(milliseconds: 120),
-          curve: Curves.easeOut,
-          // Tier 4 3D-Optik 2026-05-23: STATISCHE Matrix4-Perspektive.
-          // Im Gegensatz zu Build 181 (Crash mit AnimatedContainer +
-          // Matrix4 + per-card-Controller) ist diese Perspektive
-          // statisch - kein AnimationController, kein pro-Frame-Update,
-          // keine Lifecycle-Konflikte. Wirkt nur als visuelle Tiefe:
-          //  - faceDown-Karten leicht nach rechts geneigt (wie schief
-          //    aufeinander gestapelt)
-          //  - playable-Karten leicht zum Spieler hin geneigt (heben
-          //    sich von dimmed-Karten ab)
-          child: Transform(
-            transform: Matrix4.identity()
-              ..setEntry(3, 2, 0.0012)
-              ..rotateX(widget.faceDown ? 0 : (widget.playable ? -0.06 : -0.02))
-              ..rotateY(widget.faceDown ? 0.04 : 0),
-            alignment: Alignment.center,
-            child: _build(base),
+    return Semantics(
+        container: true,
+        label: widget.semanticLabel,
+        button: !widget.faceDown && (widget.playable || widget.onTap != null),
+        child: SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: GestureDetector(
+            onTapDown: widget.onTap == null
+                ? null
+                : (_) => setState(() => _pressed = true),
+            onTapUp: widget.onTap == null
+                ? null
+                : (_) => setState(() => _pressed = false),
+            onTapCancel: widget.onTap == null
+                ? null
+                : () => setState(() => _pressed = false),
+            onTap: widget.onTap,
+            child: AnimatedScale(
+              scale: _pressed ? 1.05 : 1.0,
+              duration: const Duration(milliseconds: 120),
+              curve: Curves.easeOut,
+              // Tier 4 3D-Optik 2026-05-23: STATISCHE Matrix4-Perspektive.
+              // Im Gegensatz zu Build 181 (Crash mit AnimatedContainer +
+              // Matrix4 + per-card-Controller) ist diese Perspektive
+              // statisch - kein AnimationController, kein pro-Frame-Update,
+              // keine Lifecycle-Konflikte. Wirkt nur als visuelle Tiefe:
+              //  - faceDown-Karten leicht nach rechts geneigt (wie schief
+              //    aufeinander gestapelt)
+              //  - playable-Karten leicht zum Spieler hin geneigt (heben
+              //    sich von dimmed-Karten ab)
+              child: Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.0012)
+                  ..rotateX(
+                      widget.faceDown ? 0 : (widget.playable ? -0.06 : -0.02))
+                  ..rotateY(widget.faceDown ? 0.04 : 0),
+                alignment: Alignment.center,
+                child: ExcludeSemantics(child: _build(base)),
+              ),
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   Widget _build(Color base) {
@@ -237,8 +268,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
                 height: widget.height * 0.42,
                 margin: const EdgeInsets.fromLTRB(6, 6, 6, 0),
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(11)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(11)),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -268,8 +299,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
           // Center: Zahl oder Spezial-Icon (weiss)
           Center(
             child: isSpec
-                ? _specialIcon(widget.card.type, widget.width * 0.46,
-                    Colors.white)
+                ? _specialIcon(
+                    widget.card.type, widget.width * 0.46, Colors.white)
                 : _bigNumber('${widget.card.number}'),
           ),
           // Eck-Indizes
@@ -329,8 +360,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
                 height: widget.height * 0.40,
                 margin: const EdgeInsets.fromLTRB(6, 6, 6, 0),
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(11)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(11)),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,

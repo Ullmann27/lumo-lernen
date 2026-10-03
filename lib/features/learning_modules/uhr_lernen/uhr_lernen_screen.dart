@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
+import '../learning_module_progress.dart';
 
 class UhrLernenScreen extends StatefulWidget {
   const UhrLernenScreen({super.key, required this.appState});
@@ -34,6 +35,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
   int _taskIdx = 0;
@@ -59,6 +61,11 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: 'Die Uhr',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -72,6 +79,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -121,23 +129,29 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   }
 
   void _onAnswer(String answer) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = answer;
       _answered = true;
     });
     final isCorrect = answer == _correctText;
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 8 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(8);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
-      await Future.delayed(const Duration(milliseconds: 1200));
-      if (!mounted) return;
+      if (!await _progress.feedbackDelay(const Duration(milliseconds: 1200)) ||
+          !mounted) {
+        return;
+      }
       _nextTask();
     } else {
       HapticFeedback.mediumImpact();
@@ -149,8 +163,10 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
       // damit das Kind die richtige Loesung sieht und die Stimme zu Ende
       // sprechen kann. Vorher waren es 3000ms (zweimal 1500) - das fuehlte
       // sich wie eingefrorene UI an.
-      await Future.delayed(const Duration(milliseconds: 1500));
-      if (!mounted) return;
+      if (!await _progress.feedbackDelay(const Duration(milliseconds: 1500)) ||
+          !mounted) {
+        return;
+      }
       _nextTask();
     }
   }
@@ -168,21 +184,21 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  Future<void> _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    final saved =
+        await _progress.saveBonus(stars: stars, xp: _correctCount * 10);
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🕐 Geschafft!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks Uhrzeiten richtig!',
               style: const TextStyle(
@@ -232,37 +248,39 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  const Text('Wie spät ist es?',
-                      style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 22,
-                          fontWeight: FontWeight.w900,
-                          color: Color(0xFF6D28D9))),
-                  const SizedBox(height: 16),
-                  _buildClockFace(),
-                  const SizedBox(height: 24),
-                  _buildAnswerGrid(),
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      const Text('Wie spät ist es?',
+                          style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 22,
+                              fontWeight: FontWeight.w900,
+                              color: Color(0xFF6D28D9))),
+                      const SizedBox(height: 16),
+                      _buildClockFace(),
+                      const SizedBox(height: 24),
+                      _buildAnswerGrid(),
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -270,8 +288,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
         boxShadow: [
           BoxShadow(
               color: _gradient[0].withOpacity(0.3),
@@ -281,9 +298,9 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () => Navigator.of(context).maybePop(),
         ),
         Expanded(
           child: Column(
@@ -311,8 +328,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -332,8 +348,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 6) * 5;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         width: 260,
@@ -344,8 +359,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
             colors: [Colors.white, Color(0xFFF3F4F6)],
             stops: [0.7, 1.0],
           ),
-          border:
-              Border.all(color: _gradient[1], width: 6),
+          border: Border.all(color: _gradient[1], width: 6),
           boxShadow: [
             BoxShadow(
                 color: _gradient[0].withOpacity(0.25),
@@ -354,7 +368,8 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
           ],
         ),
         child: CustomPaint(
-          painter: _ClockPainter(hour: _hour, minute: _minute, color: _gradient[1]),
+          painter:
+              _ClockPainter(hour: _hour, minute: _minute, color: _gradient[1]),
         ),
       ),
     );
@@ -438,7 +453,8 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
 // ════════════════════════════════════════════════════════════════════════
 
 class _ClockPainter extends CustomPainter {
-  _ClockPainter({required this.hour, required this.minute, required this.color});
+  _ClockPainter(
+      {required this.hour, required this.minute, required this.color});
   final int hour;
   final int minute;
   final Color color;
@@ -462,11 +478,11 @@ class _ClockPainter extends CustomPainter {
     for (int i = 1; i <= 12; i++) {
       final angle = (i / 12) * 2 * math.pi - math.pi / 2;
       // Markierung
-      final markOuter = center +
-          Offset(math.cos(angle) * radius, math.sin(angle) * radius);
+      final markOuter =
+          center + Offset(math.cos(angle) * radius, math.sin(angle) * radius);
       final markInner = center +
-          Offset(math.cos(angle) * (radius - 10),
-              math.sin(angle) * (radius - 10));
+          Offset(
+              math.cos(angle) * (radius - 10), math.sin(angle) * (radius - 10));
       canvas.drawLine(markInner, markOuter, markPaint);
       // Zahl
       final tp = TextPainter(

@@ -38,10 +38,15 @@ class AppUpdateService {
   ///   flutter build apk --dart-define=LUMO_BUILD_NUMBER=$GITHUB_RUN_NUMBER
   ///                     --dart-define=LUMO_VERSION_NAME=0.8.0
   /// Default 0 / '0.0.0' damit Dev-Builds als 'aelter als alles' gelten.
-  static const int currentBuildNumber = int.fromEnvironment('LUMO_BUILD_NUMBER', defaultValue: 0,
+  static const int currentBuildNumber = int.fromEnvironment(
+    'LUMO_BUILD_NUMBER',
+    defaultValue: 0,
   );
-  static const String currentVersionName = String.fromEnvironment('LUMO_VERSION_NAME', defaultValue: '0.0.0',
+  static const String currentVersionName = String.fromEnvironment(
+    'LUMO_VERSION_NAME',
+    defaultValue: '0.0.0',
   );
+
   /// GitHub-API fuer das neueste Release.
   /// /releases/latest ist robust gegen Tag-Umbenennungen und
   /// funktioniert auch wenn der Workflow andere Tag-Namen vergibt.
@@ -62,12 +67,17 @@ class AppUpdateService {
     try {
       final request = await client.getUrl(latestReleaseApi);
       request.followRedirects = false;
-      request.headers.set(HttpHeaders.acceptHeader, 'application/vnd.github+json',
+      request.headers.set(
+        HttpHeaders.acceptHeader,
+        'application/vnd.github+json',
       );
-      request.headers.set(HttpHeaders.userAgentHeader, 'Lumo-Lernen-App-Update-Checker',
+      request.headers.set(
+        HttpHeaders.userAgentHeader,
+        'Lumo-Lernen-App-Update-Checker',
       );
-      HttpClientResponse response = await request.close().timeout(const Duration(seconds: 12),
-      );
+      HttpClientResponse response = await request.close().timeout(
+            const Duration(seconds: 12),
+          );
 
       // Bis zu 3 Redirects manuell folgen, jedes Mal Whitelist pruefen.
       var redirectCount = 0;
@@ -77,49 +87,61 @@ class AppUpdateService {
         final redirectTarget = Uri.tryParse(
           latestReleaseApi.resolve(location).toString(),
         );
-        if (redirectTarget == null|| !isTrustedApiUrl(redirectTarget)) {
-          return _fallbackInfo(error: 'Update-Pruefung blockiert: unsicheres Redirect-Ziel.',
+        if (redirectTarget == null || !isTrustedApiUrl(redirectTarget)) {
+          return _fallbackInfo(
+            error: 'Update-Pruefung blockiert: unsicheres Redirect-Ziel.',
           );
         }
         await response.drain<void>();
         final nextRequest = await client.getUrl(redirectTarget);
         nextRequest.followRedirects = false;
-        nextRequest.headers.set(HttpHeaders.acceptHeader, 'application/vnd.github+json',
+        nextRequest.headers.set(
+          HttpHeaders.acceptHeader,
+          'application/vnd.github+json',
         );
-        nextRequest.headers.set(HttpHeaders.userAgentHeader, 'Lumo-Lernen-App-Update-Checker',
+        nextRequest.headers.set(
+          HttpHeaders.userAgentHeader,
+          'Lumo-Lernen-App-Update-Checker',
         );
-        response = await nextRequest.close().timeout(const Duration(seconds: 12),
-        );
+        response = await nextRequest.close().timeout(
+              const Duration(seconds: 12),
+            );
         redirectCount++;
       }
 
       final body = await response.transform(utf8.decoder).join();
 
       if (response.statusCode < 200 || response.statusCode >= 300) {
-        return _fallbackInfo(error: 'Update-Pruefung nicht erreichbar (${response.statusCode}).',
+        return _fallbackInfo(
+          error: 'Update-Pruefung nicht erreichbar (${response.statusCode}).',
         );
       }
 
       final decoded = jsonDecode(body);
       if (decoded is! Map<String, dynamic>) {
-        return _fallbackInfo(error: 'Update-Antwort konnte nicht gelesen werden.',
+        return _fallbackInfo(
+          error: 'Update-Antwort konnte nicht gelesen werden.',
         );
       }
 
       final assets = (decoded['assets'] as List<dynamic>? ?? const <dynamic>[])
           .whereType<Map<String, dynamic>>()
           .toList(growable: false);
-      final apkAsset = _findPreferredApkAsset(assets);
+      final apkAsset = preferredApkAsset(assets);
 
-      final releaseName = decoded['name']?.toString() ?? 'Lumo Lernen Debug Latest';
+      final releaseName =
+          decoded['name']?.toString() ?? 'Lumo Lernen Debug Latest';
       final commitSha = decoded['target_commitish']?.toString() ?? '';
-      final releaseUrl = _trustedUri(decoded['html_url']?.toString()) ?? fallbackReleaseUrl;
-      final apkUrl = _trustedUri(apkAsset?['browser_download_url']?.toString()) ?? Uri();
+      final releaseUrl =
+          _trustedUri(decoded['html_url']?.toString()) ?? fallbackReleaseUrl;
+      final apkUrl =
+          _trustedUri(apkAsset?['browser_download_url']?.toString()) ?? Uri();
       final tagName = decoded['tag_name']?.toString();
       final latestBuild = _extractLatestBuildNumber(tagName, assets);
 
       return AppUpdateInfo(
-        available: latestBuild > currentBuildNumber && apkUrl.toString().isNotEmpty,
+        available:
+            latestBuild > currentBuildNumber && apkUrl.toString().isNotEmpty,
         currentBuildNumber: currentBuildNumber,
         latestBuildNumber: latestBuild,
         releaseUrl: releaseUrl,
@@ -147,15 +169,23 @@ class AppUpdateService {
     );
   }
 
-  Map<String, dynamic>? _findPreferredApkAsset(List<Map<String, dynamic>> assets,
-  ) {
-    final direct = assets.where((asset) => asset['name']?.toString() == 'Lumo-Lernen-latest.apk',
-    );
+  @visibleForTesting
+  static Map<String, dynamic>? preferredApkAsset(
+    List<Map<String, dynamic>> assets, {
+    bool sideBySide = const bool.fromEnvironment('LUMO_SIDE_BY_SIDE'),
+  }) {
+    const parallelName = 'Lumo-Lernen-Neu.apk';
+    final expected = sideBySide ? parallelName : 'Lumo-Lernen-latest.apk';
+    final direct = assets.where((asset) => asset['name'] == expected);
     if (direct.isNotEmpty) return direct.first;
-    final apks = assets.where((asset) => (asset['name']?.toString() ?? '').endsWith('.apk'),
-    );
-    if (apks.isEmpty) return null;
-    return apks.first;
+    // Parallel installs have a distinct Android identity. Never offer them an
+    // incompatible original-package APK, or the original app a parallel APK.
+    if (sideBySide) return null;
+    final compatible = assets.where((asset) {
+      final name = asset['name']?.toString() ?? '';
+      return name.endsWith('.apk') && name != parallelName;
+    });
+    return compatible.isEmpty ? null : compatible.first;
   }
 
   /// Heinz Bug 2026-05-21: Update-Pruefung sagte 'neueste Version'
@@ -194,7 +224,7 @@ class AppUpdateService {
   Uri? _trustedUri(String? raw) {
     if (raw == null || raw.trim().isEmpty) return null;
     final uri = Uri.tryParse(raw.trim());
-    if (uri == null || !isTrustedReleaseUrl(uri) ) return null;
+    if (uri == null || !isTrustedReleaseUrl(uri)) return null;
     return uri;
   }
 
@@ -224,7 +254,8 @@ class AppUpdateService {
 
   Future<bool> openUpdate(AppUpdateInfo info) async {
     final url = info.hasUsableDownload ? info.apkUrl : info.releaseUrl;
-    if (url.toString().isEmpty || _trustedUri(url.toString()) == null) return false;
+    if (url.toString().isEmpty || _trustedUri(url.toString()) == null)
+      return false;
     return launchUrl(url, mode: LaunchMode.externalApplication);
   }
 
@@ -267,7 +298,8 @@ class AppUpdateService {
       await installer.requestInstallPermission();
       return const AppUpdateDownloadResult(
         success: false,
-        error: 'Bitte "Aus dieser Quelle installieren" fuer Lumo Lernen freigeben.',
+        error:
+            'Bitte "Aus dieser Quelle installieren" fuer Lumo Lernen freigeben.',
         needsPermission: true,
       );
     }
@@ -313,7 +345,7 @@ class AppUpdateService {
       // einmalige APK-Datei, wird vom System aufgeraeumt).
       final tmpDir = Directory.systemTemp;
       final apkFile = File(
-          '${tmpDir.path}/lumo-lernen-update-${DateTime.now().millisecondsSinceEpoch}.apk',
+        '${tmpDir.path}/lumo-lernen-update-${DateTime.now().millisecondsSinceEpoch}.apk',
       );
       final sink = apkFile.openWrite();
       final total = response.contentLength;
@@ -342,19 +374,21 @@ class AppUpdateService {
   }
 
   Future<HttpClientResponse> _openWithRedirects(
-      HttpClient client, Uri start,
+    HttpClient client,
+    Uri start,
   ) async {
     Uri current = start;
     var redirectCount = 0;
     while (true) {
       final request = await client.getUrl(current);
       request.followRedirects = false;
-      request.headers
-          .set(HttpHeaders.userAgentHeader, 'Lumo-Lernen-App-Update-Checker',
+      request.headers.set(
+        HttpHeaders.userAgentHeader,
+        'Lumo-Lernen-App-Update-Checker',
       );
-      final response =
-          await request.close().timeout(const Duration(seconds: 30),
-      );
+      final response = await request.close().timeout(
+            const Duration(seconds: 30),
+          );
       if (!response.isRedirect || redirectCount >= 4) {
         return response;
       }
@@ -362,7 +396,7 @@ class AppUpdateService {
       if (location == null) return response;
       await response.drain<void>();
       final next = current.resolve(location);
-      if (!isTrustedDownloadRedirect(next )) {
+      if (!isTrustedDownloadRedirect(next)) {
         throw const HttpException('Unsicheres Update-Redirect blockiert.');
       }
       current = next;
@@ -380,8 +414,8 @@ class AppUpdateDownloadResult {
   });
   final bool success;
   final String? error;
+
   /// True wenn der User erst die Berechtigung 'Apps installieren'
   /// in den System-Einstellungen aktivieren muss.
   final bool needsPermission;
 }
-

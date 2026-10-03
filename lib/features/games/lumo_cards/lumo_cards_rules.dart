@@ -32,9 +32,7 @@ class LumoCardsRules {
         card.number == topCard.number) {
       return true;
     }
-    if (card.isSpecial &&
-        topCard.isSpecial &&
-        card.type == topCard.type) {
+    if (card.isSpecial && topCard.isSpecial && card.type == topCard.type) {
       return true;
     }
     return false;
@@ -59,6 +57,10 @@ class LumoCardsRules {
   }) {
     if (state.phase != GamePhase.playing) return state;
     if (state.topCard == null) return state;
+    // Only the real card in this hand can be played. A delayed tap from
+    // an older round must never create or remove a different card.
+    final held = state.currentPlayer.hand.where((c) => c.id == card.id);
+    if (held.isEmpty || !identical(held.first, card)) return state;
     if (!isPlayable(
       card: card,
       topCard: state.topCard!,
@@ -130,15 +132,14 @@ class LumoCardsRules {
         // 2P: zieht und ist sofort dran (steps=1).
         // 3-4P: zieht UND ueberspringt eigenen Zug (steps=2).
         final nextIdxRain = state.nextPlayerIndex();
-        final (drawnRain, restDrawRain) = _safeDraw(
+        final (drawnRain, restDrawRain, restDiscardRain) = _safeDraw(
           state.drawPile,
-          state.discardPile,
+          newDiscard,
           2,
           rng,
         );
-        final nextHandRain =
-            List<LumoCard>.of(state.players[nextIdxRain].hand)
-              ..addAll(drawnRain);
+        final nextHandRain = List<LumoCard>.of(state.players[nextIdxRain].hand)
+          ..addAll(drawnRain);
         newPlayers[nextIdxRain] =
             state.players[nextIdxRain].copyWith(hand: nextHandRain);
         final rainSteps = state.players.length == 2 ? 1 : 2;
@@ -146,7 +147,7 @@ class LumoCardsRules {
           state.copyWith(
             players: newPlayers,
             drawPile: restDrawRain,
-            discardPile: newDiscard,
+            discardPile: restDiscardRain,
             selectedColor: card.color,
             lastActionMessage:
                 'Sternenregen! ${state.players[nextIdxRain].name} zieht 2 Karten.',
@@ -169,9 +170,9 @@ class LumoCardsRules {
         // Skip nach Farbwahl wird in applyColorChoice (steps=2 fuer 3-4P)
         // gehandhabt, hier nur Karten ziehen + chooseColor-Phase.
         final nextIdxSuper = state.nextPlayerIndex();
-        final (drawnSuper, restDrawSuper) = _safeDraw(
+        final (drawnSuper, restDrawSuper, restDiscardSuper) = _safeDraw(
           state.drawPile,
-          state.discardPile,
+          newDiscard,
           4,
           rng,
         );
@@ -183,7 +184,7 @@ class LumoCardsRules {
         return state.copyWith(
           players: newPlayers,
           drawPile: restDrawSuper,
-          discardPile: newDiscard,
+          discardPile: restDiscardSuper,
           phase: GamePhase.chooseColor,
           lastActionMessage:
               'Super-Sternenregen! ${state.players[nextIdxSuper].name} zieht 4 Karten - jetzt Farbe waehlen.',
@@ -194,9 +195,9 @@ class LumoCardsRules {
         // 2P: Gegner zieht 1 Karte, Zug wechselt (OLD-Verhalten).
         // 3-4P: Richtung flippt, naechster Spieler in NEUER Richtung.
         if (state.players.length == 2) {
-          final (drawnWind, restDrawWind) = _safeDraw(
+          final (drawnWind, restDrawWind, restDiscardWind) = _safeDraw(
             state.drawPile,
-            state.discardPile,
+            newDiscard,
             1,
             rng,
           );
@@ -207,7 +208,7 @@ class LumoCardsRules {
           return _passTurn(state.copyWith(
             players: newPlayers,
             drawPile: restDrawWind,
-            discardPile: newDiscard,
+            discardPile: restDiscardWind,
             selectedColor: card.color,
             lastActionMessage:
                 'Wirbelwind! ${state.otherPlayer.name} zieht 1 Karte.',
@@ -253,14 +254,12 @@ class LumoCardsRules {
   }) {
     if (state.phase != GamePhase.chooseColor) return state;
     final isSuperRain = state.topCard?.type == LumoCardType.superRain;
-    final steps =
-        (state.players.length > 2 && isSuperRain) ? 2 : 1;
+    final steps = (state.players.length > 2 && isSuperRain) ? 2 : 1;
     return _passTurn(
       state.copyWith(
         selectedColor: chosen,
         phase: GamePhase.playing,
-        lastActionMessage:
-            '${state.currentPlayer.name} waehlt ${chosen.name}.',
+        lastActionMessage: '${state.currentPlayer.name} waehlt ${chosen.name}.',
       ),
       steps: steps,
     );
@@ -274,7 +273,9 @@ class LumoCardsRules {
   }) {
     if (state.phase != GamePhase.learningQuestion) return state;
     final q = state.pendingLearningQuestion;
-    if (q == null) return state;
+    if (q == null || chosenIndex < 0 || chosenIndex >= q.options.length) {
+      return state;
+    }
     final correct = chosenIndex == q.correctIndex;
 
     final newPlayers = List<LumoPlayer>.of(state.players);
@@ -307,10 +308,11 @@ class LumoCardsRules {
     required LumoCardsGameState state,
     Random? rng,
     bool playIfPossible = false,
+    LearningQuestion Function(Random?)? questionPicker,
   }) {
     if (state.phase != GamePhase.playing) return state;
 
-    final (drawn, restDraw) = _safeDraw(
+    final (drawn, restDraw, restDiscard) = _safeDraw(
       state.drawPile,
       state.discardPile,
       1,
@@ -341,15 +343,18 @@ class LumoCardsRules {
         state: state.copyWith(
           players: newPlayers,
           drawPile: restDraw,
+          discardPile: restDiscard,
         ),
         card: card,
         rng: rng,
+        questionPicker: questionPicker,
       );
     }
 
     return _passTurn(state.copyWith(
       players: newPlayers,
       drawPile: restDraw,
+      discardPile: restDiscard,
       lastActionMessage: '${state.currentPlayer.name} zieht eine Karte.',
     ));
   }
@@ -393,7 +398,7 @@ class LumoCardsRules {
 
   /// Zieht `count` Karten; falls Draw-Pile leer wird, wird der Discard
   /// (ohne Top-Karte) zurueck-gemischt.
-  static (List<LumoCard>, List<LumoCard>) _safeDraw(
+  static (List<LumoCard>, List<LumoCard>, List<LumoCard>) _safeDraw(
     List<LumoCard> drawPile,
     List<LumoCard> discardPile,
     int count,
@@ -417,7 +422,7 @@ class LumoCardsRules {
       taken.addAll(drawn);
       draw = rest;
     }
-    return (taken, draw);
+    return (taken, draw, discard);
   }
 
   /// Kleiner lokaler Lernfragen-Pool fuer die Denkpause-Karte.

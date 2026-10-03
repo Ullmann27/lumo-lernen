@@ -2,29 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
-import '../../widgets/fox/lumo_tutorial_companion.dart';
-import '../games/games_content.dart';
-import '../../core/lumo_mission_engine.dart';
-import '../live/lumo_live_pro_screen.dart';
-import '../rewards/achievements_wall_screen.dart';
-import '../lumo3d/lumo3d_launcher.dart';
+import '../../core/lumo_asset_diagnostics.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
+import '../journal/lumo_journal_screen.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
 import '../learning/lumo_rechentricks_poster_screen.dart';
-import '../games/lumo_kart/lumo_kart_screen.dart';
-import '../journal/lumo_journal_screen.dart';
+import '../live/lumo_live_pro_screen.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
-import '../photo_lesson/lumo_photo_lesson_screen.dart';
-import '../reading/lumo_reading_buddy_screen.dart';
-import '../story/lumo_quest_hub_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
+import '../photo_lesson/lumo_photo_lesson_screen.dart';
 import '../quiz/quiz_show_content.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
-import '../shared/widgets/lumo_living_world.dart';
-import '../shared/widgets/lumo_subject_dashboard.dart';
-import '../shared/widgets/lumo_subject_tile.dart';
-import '../teacher_mode/lumo_akademie_screen.dart';
+import '../reading/lumo_reading_buddy_screen.dart';
+import '../rewards/achievements_wall_screen.dart';
+import '../story/lumo_quest_hub_screen.dart';
 
-class HomeContent extends StatefulWidget {
+/// The two main routes stay visible before progress and optional activities.
+/// Every progress value comes from the current profile or persisted wallet.
+class HomeContent extends StatelessWidget {
   const HomeContent({
     super.key,
     required this.appState,
@@ -34,691 +28,513 @@ class HomeContent extends StatefulWidget {
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
 
-  @override
-  State<HomeContent> createState() => _HomeContentState();
-}
-
-class _HomeContentState extends State<HomeContent> {
-  // Tutorial-Companion Steuerung
-  final GlobalKey<LumoTutorialCompanionState> _tutorialKey =
-      GlobalKey<LumoTutorialCompanionState>();
-  bool _tutorialBadgeVisible = true;
-
-  // GlobalKeys auf die 6 Subject-Tiles.
-  // Heinz 2026-05-21: 'Tutorial-Fuchs landet nicht auf den Buttons,
-  // soll knapp neben der Ueberschrift springen.' Mit echten Render-
-  // Box-Positionen statt nur Bildschirm-Fractions trifft Lumo die
-  // Tile-Ueberschriften genau, auf jedem Geraet.
-  final GlobalKey _kMathe = GlobalKey(debugLabel: 'tut_mathe');
-  final GlobalKey _kDeutsch = GlobalKey(debugLabel: 'tut_deutsch');
-  final GlobalKey _kQuiz = GlobalKey(debugLabel: 'tut_quiz');
-  final GlobalKey _kSpiele = GlobalKey(debugLabel: 'tut_spiele');
-  final GlobalKey _kLesen = GlobalKey(debugLabel: 'tut_lesen');
-  final GlobalKey _kSachk = GlobalKey(debugLabel: 'tut_sachk');
-
-  void _startPractice({
-    required String subject,
-    required String unit,
-    required String message,
-  }) {
-    widget.appState.update(widget.appState.state.copyWith(
+  void _startPractice(String subject, {String? unit}) {
+    final lastUnit = appState.learningProfile.lastTopics[subject];
+    appState.update(appState.state.copyWith(
       subject: subject,
-      unit: unit,
+      unit: unit ?? lastUnit ?? 'Alle',
       mood: LumoMood.point,
-      lumoMessage: message,
+      lumoMessage: 'Wir üben $subject. Ich helfe dir Schritt für Schritt.',
       sessionKind: LumoSessionKind.quickPractice,
     ));
-    widget.onSection(LumoSection.exercises);
+    onSection(LumoSection.exercises);
   }
 
-  void _openQuiz(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => QuizShowContent(appState: widget.appState),
-      ),
-    );
+  void _open(BuildContext context, Widget screen) {
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
   }
 
-  void _openGames(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => GamesContent(appState: widget.appState),
-      ),
-    );
+  void _startReading() {
+    appState.update(appState.state.copyWith(
+      subject: 'Lesen',
+      unit: 'Aktives Lesen',
+      mood: LumoMood.think,
+      lumoMessage: 'Wir lesen gemeinsam, Satz für Satz.',
+    ));
+    onSection(LumoSection.reading);
   }
 
-  void _startTutorial() {
-    setState(() => _tutorialBadgeVisible = false);
-    _tutorialKey.currentState?.start();
-  }
-
-  /// Lumo's Reise durch den Homescreen.
-  /// Heinz 2026-05-21: 'Sprünge fixen - immer knapp neben der
-  /// Überschrift'. Daher: GlobalKeys auf die echten Subject-Tiles +
-  /// Sections. Der Companion liest zur Laufzeit die echte
-  /// RenderBox-Position und positioniert Lumo direkt am Ziel-Widget.
-  /// xFraction/yFraction bleiben als Fallback (z.B. fuer FABs).
-  List<LumoTutorialStop> _buildTutorialPath() {
-    return [
-      // 1) Begruessung (Fraction: kein Header-Key)
-      const LumoTutorialStop(
-        xFraction: 0.75,
-        yFraction: 0.18,
-        message: 'Hallo! Ich bin Lumo. 🦊\n'
-            'Ich zeig dir jetzt die ganze App.\n'
-            'Folge mir Schritt fuer Schritt.',
-        duration: Duration(milliseconds: 4500),
-      ),
-      // 2) Mathe-Tile
-      LumoTutorialStop(
-        targetKey: _kMathe,
-        message: 'Tipp hier auf "Mathe mit Lumo"! ➕\n'
-            'Wir rechnen zusammen Plus, Minus und mehr.\n'
-            'Ich erklaere jeden Schritt.',
-        duration: const Duration(milliseconds: 5000),
-        jumpToReach: true,
-      ),
-      // 5) Deutsch-Tile
-      LumoTutorialStop(
-        targetKey: _kDeutsch,
-        message: '"Deutsch mit Lumo" ist hier. ✏️\n'
-            'Buchstaben schreiben, Woerter lesen, Diktat.\n'
-            'Ich sag dir das Wort, du schreibst es.',
-        duration: const Duration(milliseconds: 5000),
-      ),
-      // 6) Quizshow
-      LumoTutorialStop(
-        targetKey: _kQuiz,
-        message: 'Die Quizshow! 🏆\n'
-            '15 Fragen, drei Joker, am Ende echte Gutscheine.\n'
-            'Trau dich!',
-        duration: const Duration(milliseconds: 5000),
-        jumpToReach: true,
-      ),
-      // 7) Spielewelt
-      LumoTutorialStop(
-        targetKey: _kSpiele,
-        message: 'In der Spielewelt 🎮 gibt es viele Level.\n'
-            'Renne, springe, sammle Sterne.\n'
-            'Lernen darf Spass machen!',
-        duration: const Duration(milliseconds: 5000),
-      ),
-      // 8) Lesen-Tile
-      LumoTutorialStop(
-        targetKey: _kLesen,
-        message: '"Lesen mit Lumo" 📖\n'
-            'Ich hoer dir beim Lesen zu.\n'
-            'Wir lesen Geschichten Satz fuer Satz.',
-        duration: const Duration(milliseconds: 5000),
-        jumpToReach: true,
-      ),
-      // 9) Sachunterricht
-      LumoTutorialStop(
-        targetKey: _kSachk,
-        message: 'Sachunterricht 🌍\n'
-            'Tiere, Pflanzen, Wetter, Farben.\n'
-            'Hier entdeckst du die Welt.',
-        duration: const Duration(milliseconds: 5000),
-      ),
-      // 10) Abschluss - bewusst per Fraction (kein Tile am Bildschirm-
-      //     Mittelpunkt, dort steht Lumo am Schluss "winkend").
-      const LumoTutorialStop(
-        xFraction: 0.50,
-        yFraction: 0.50,
-        message: 'Das war alles! 💛\n'
-            'Tipp einfach ueberall drauf.\n'
-            'Ich bin immer da wenn du mich brauchst.',
-        duration: Duration(milliseconds: 4500),
-        jumpToReach: true,
-      ),
-    ];
-  }
-
-  /// 2026-06-04: Liefert die erste Mission aus LumoMissionEngine fuer die
-  /// aktuelle Klasse + die Schwaechen des Kindes. Bisher war diese Engine
-  /// (LumoMission, LumoMissionEngine) nur self-referentiell - jetzt
-  /// aktiv ans Home angeschlossen.
-  static const LumoMissionEngine _missionEngine = LumoMissionEngine();
-  LumoMission? _todayMission() {
-    final st = widget.appState.state;
-    final missions = _missionEngine.dailyMissions(
-      grade: st.grade,
-      weakSkills: st.weakSkills,
-    );
-    return missions.isEmpty ? null : missions.first;
-  }
-
-  /// Geschaetzter Mission-Fortschritt: wie viele Aufgaben heute schon
-  /// geloest. Solid-Approximation aus solved-Map (gesamt-Tag), gecapped
-  /// auf targetTasks der aktuellen Mission.
-  int _todayMissionDone() {
-    final solved = widget.appState.state.solved.values.fold<int>(0, (a, b) => a + b);
-    final target = _todayMission()?.targetTasks ?? 3;
-    return solved.clamp(0, target);
-  }
+  int _correctFor(String subject) => appState
+      .learningSkills()
+      .values
+      .where((record) => record.subject == subject)
+      .fold(0, (total, record) => total + record.correct);
 
   @override
-  Widget build(BuildContext context) {
-    final childName = widget.appState.state.childName.trim().isEmpty
-        ? 'Lumo-Freund'
-        : widget.appState.state.childName.trim();
-    final dashboard = LumoLivingWorld(
-      starsEarned: widget.appState.state.stars,
-      child: LumoSubjectDashboard(
-        appState: widget.appState,
-        subject: 'Hallo',
-        subjectAccent: '$childName!',
-        subtitle: 'Was möchtest du heute lernen?',
-        greeting: 'Schön, dass du da bist!',
-        lumoMessage: 'Heute warten\nspannende Aufgaben\nauf dich!',
-        ctaLabel: '🎓 Lumo Akademie öffnen',
-        onCtaPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => LumoAkademieScreen(appState: widget.appState),
-          ),
-        ),
-        headerAccent: LumoColors.orange,
-        // 2026-06-04: Daily-Mission an LumoMissionEngine angeschlossen.
-        // Vorher: statischer Text ('Tägliche Mission' / 'Starte heute...').
-        // Jetzt: echte Mission aus Engine, abgeleitet aus Schwaechen-Profil
-        // des Kindes (weakSkills aus AppState). Fallback bleibt statisch wenn
-        // die Engine keine Mission liefert.
-        dailyMissionTitle: _todayMission()?.title ?? 'Tägliche Mission',
-        dailyMissionSubtitle: _todayMission()?.subtitle ?? 'Starte heute eine Lernrunde',
-        dailyMissionDone: _todayMissionDone(),
-        dailyMissionTotal: _todayMission()?.targetTasks ?? 3,
-        dailyMissionRewardStars: _todayMission()?.rewardStars ?? 10,
-        dailyMissionRewardXp: _todayMission()?.rewardXp ?? 50,
-        encourageMessage:
-            'Du machst großartige Fortschritte! Heute wartet eine neue Lernmission auf dich.',
-        topicTiles: [
-          LumoSubjectTile(
-            key: _kMathe,
-            title: 'Mathe mit Lumo',
-            subtitle: 'Lumo erklärt Schritt-für-Schritt',
-            iconEmoji: 'M',
-            illustrationEmoji: '➕',
-            accent: LumoColors.math,
-            level: 3,
-            starsCollected: 12,
-            starsTotal: 20,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) =>
-                    LumoAkademieScreen(appState: widget.appState),
+  Widget build(BuildContext context) => AnimatedBuilder(
+        animation: appState,
+        builder: (context, _) {
+          final state = appState.state;
+          final name = state.childName.trim().isEmpty
+              ? 'Lumo-Freund'
+              : state.childName.trim();
+          final recommendation = appState.topLearningRecommendation();
+          return DecoratedBox(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFFFFF7EC), Color(0xFFF0F6FF)],
               ),
             ),
-          ),
-          LumoSubjectTile(
-            key: _kDeutsch,
-            title: 'Deutsch mit Lumo',
-            subtitle: 'Buchstaben schreiben, Lesen, Wörter',
-            iconEmoji: 'D',
-            illustrationEmoji: '✏️',
-            accent: LumoColors.purple,
-            level: 2,
-            starsCollected: 8,
-            starsTotal: 20,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) =>
-                    LumoAkademieScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          LumoSubjectTile(
-            key: _kQuiz,
-            title: 'Quizshow',
-            subtitle: '15 Fragen, Joker und echte Gutscheine',
-            iconEmoji: 'Q',
-            illustrationEmoji: '🏆',
-            accent: LumoColors.gold,
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 15,
-            onTap: () => _openQuiz(context),
-          ),
-          LumoSubjectTile(
-            key: _kSpiele,
-            title: 'Lumo Spielewelt',
-            subtitle: '50 Level - Sterne sammeln und Abenteuer erleben',
-            iconEmoji: 'S',
-            illustrationEmoji: '🎮',
-            accent: LumoColors.orange,
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 150,
-            onTap: () => _openGames(context),
-          ),
-          LumoSubjectTile(
-            key: _kLesen,
-            title: 'Lesen mit Lumo',
-            subtitle: 'Spannende Geschichten vorlesen',
-            iconEmoji: 'L',
-            illustrationEmoji: '📖',
-            accent: LumoColors.blue,
-            level: 1,
-            starsCollected: 3,
-            starsTotal: 15,
-            onTap: () {
-              widget.appState.update(widget.appState.state.copyWith(
-                subject: 'Lesen',
-                unit: 'Aktives Lesen',
-                mood: LumoMood.think,
-                lumoMessage:
-                    'Ich höre dir\nbeim Lesen zu.\nSatz für Satz.',
-              ));
-              widget.onSection(LumoSection.reading);
-            },
-          ),
-          LumoSubjectTile(
-            key: _kSachk,
-            title: 'Sachunterricht',
-            subtitle: 'Tiere, Pflanzen und Wetter entdecken',
-            iconEmoji: 'S',
-            illustrationEmoji: '🌍',
-            accent: LumoColors.teal,
-            level: 1,
-            starsCollected: 2,
-            starsTotal: 15,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) =>
-                    LumoAkademieScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // 2026-06-05 Iter 23: ABC-Tafel (Mia & Mo Stil) fuer K1 Deutsch.
-          // 26 Buchstaben mit Beispielwort + Emoji. Tap = LumoVoice spricht.
-          LumoSubjectTile(
-            title: 'ABC-Tafel',
-            subtitle: 'A wie Affe - alle Buchstaben lernen',
-            iconEmoji: 'A',
-            illustrationEmoji: '📖',
-            accent: const Color(0xFF60A5FA),
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const LumoAbcTafelScreen(),
-              ),
-            ),
-          ),
-          // 2026-06-05 Iter 22: Meine Rechentricks (Mildenberger-inspiriert).
-          // Browseable Poster mit allen 5 Mentor-Figuren (Emma, Max, Hanna,
-          // Tim, Mira). Pro Mentor 2 Beispiel-Aufgaben Schritt fuer Schritt.
-          LumoSubjectTile(
-            title: 'Meine Rechentricks',
-            subtitle: '5 Mentoren zeigen dir schlaue Wege',
-            iconEmoji: '🧮',
-            illustrationEmoji: '💡',
-            accent: const Color(0xFFEC4899),
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const LumoRechentricksPosterScreen(),
-              ),
-            ),
-          ),
-          // Lumo Achievements - 14 Badges in 3 Tiers (Bronze/Silver/Gold).
-          // High-End-Feature: persistente Sammlung, Live-Unlock-Toast,
-          // Progress-Ringe pro Badge (Heinz 2026-06-04: 'high end Ideen einbauen').
-          LumoSubjectTile(
-            title: 'Achievements',
-            subtitle: 'Sammle Badges, schalte Belohnungen frei',
-            iconEmoji: '🏆',
-            illustrationEmoji: '🥇',
-            accent: const Color(0xFFFFD166),
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => AchievementsWallScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // Lumo LIVE - Voice + Foto + Tier-Safari. Existierte als 612-Zeilen-
-          // Vollfeature aber war NUR im versteckten Magic-Hub-FAB erreichbar
-          // (Heinz 2026-06-03: 'such nach nicht-angeschlossenen Verbindungen').
-          LumoSubjectTile(
-            title: 'Lumo LIVE',
-            subtitle: 'Sprich oder fotografiere - Lumo erkennt!',
-            iconEmoji: '🎤',
-            illustrationEmoji: '📸',
-            accent: LumoColors.blue,
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => LumoLiveProScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // 2026-06-06 Iter 37: Lumo Journal - Magisches Tagebuch.
-          // Tochter schreibt eigene Geschichten/Tagebuch-Eintraege,
-          // Lumo liest und lobt + gibt Tipps. Lokal, kein Cloud.
-          LumoSubjectTile(
-            title: 'Lumo Journal',
-            subtitle: 'Schreib eigene Geschichten - Lumo liest',
-            iconEmoji: '✍️',
-            illustrationEmoji: '📖',
-            accent: const Color(0xFFA855F7),
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => LumoJournalScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // 2026-06-06 Iter 36: Meine Lumo-Welt - 3 wachsende Inseln.
-          // Math/Deutsch/Sachkunde als isometrische Inseln im Ozean.
-          // Jede Insel wächst mit den richtigen Antworten in dem Fach
-          // (Sämling → Wachsend → Blühend).
-          LumoSubjectTile(
-            title: 'Meine Welt',
-            subtitle: '3 Inseln wachsen mit deinem Lernen',
-            iconEmoji: '🏝️',
-            illustrationEmoji: '🌴',
-            accent: const Color(0xFF06B6D4),
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => LumoWeltScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // 2026-06-06 Iter 35: Foto-Lektion. Tochter macht Foto vom
-          // Heft -> OCR erkennt Fach + Thema -> 5 Übungen generieren.
-          LumoSubjectTile(
-            title: 'Foto-Lektion',
-            subtitle: 'Foto vom Heft → 5 Übungen',
-            iconEmoji: '📸',
-            illustrationEmoji: '✏️',
-            accent: const Color(0xFF22C55E),
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) =>
-                    LumoPhotoLessonScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // 2026-06-06 Iter 34: Reading Buddy - Mit-Lese-Coach mit Voice.
-          // Tochter liest laut, Lumo hoert via Mikrofon mit. Wort fuer Wort
-          // farbig markiert (gruen = perfekt, gelb = naeher, grau = pending).
-          // Nutzt speech_to_text (de_AT) + Levenshtein-Vergleich.
-          LumoSubjectTile(
-            title: 'Reading Buddy',
-            subtitle: 'Lies laut - Lumo hoert dir zu',
-            iconEmoji: '📖',
-            illustrationEmoji: '🎤',
-            accent: const Color(0xFF6366F1),
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) =>
-                    LumoReadingBuddyScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // 2026-06-06 Iter 33: Lumo Kart Lern-Rennen.
-          // Top-Down-Racing-Game mit integriertem Math/Deutsch-Quiz an jedem
-          // Tor. Richtige Antwort = Boost, falsche = Bremse. Sterne sammeln,
-          // 3 Strecken pro Klasse (Wald/Berg/Stadt). Nutzt die 11 MB
-          // bisher brachliegende `assets/lumo_kart/` Asset-Foundation.
-          LumoSubjectTile(
-            title: 'Lumo Kart',
-            subtitle: 'Fahr-Rennen + Lernfragen an jedem Tor',
-            iconEmoji: '🏁',
-            illustrationEmoji: '🏎️',
-            accent: const Color(0xFFEA580C),
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => LumoKartScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // Lumo Quest - narrative Mini-Abenteuer mit eingebetteten klassen-
-          // gerechten Aufgaben (Heinz 2026-06-03: echtes Level-Up gegen LernMax).
-          LumoSubjectTile(
-            title: 'Lumo Quest',
-            subtitle: 'Geh mit Lumo auf Abenteuer',
-            iconEmoji: '🦊',
-            illustrationEmoji: '⚔️',
-            accent: LumoColors.orange,
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => LumoQuestHubScreen(appState: widget.appState),
-              ),
-            ),
-          ),
-          // Lumo 3D Welt - oeffnet die separate Godot-3D-App per Intent,
-          // mit Fallback zur Web-Version auf GitHub Pages.
-          LumoSubjectTile(
-            title: 'Lumo 3D Welt',
-            subtitle: 'Besuche Lumo in der 3D-Lernwelt',
-            iconEmoji: '🦊',
-            illustrationEmoji: '✨',
-            accent: LumoColors.orange,
-            level: 1,
-            starsCollected: 0,
-            starsTotal: 0,
-            onTap: () => launchLumo3D(context),
-          ),
-        ],
-      ),
-    );
+            child: LayoutBuilder(builder: (context, constraints) {
+              final sideBySide = constraints.maxWidth >= 540;
+              final actions = [
+                _HomeAction(
+                  key: const ValueKey('home-learn'),
+                  title: 'Lernen',
+                  subtitle: 'Deine Fächer und Aufgaben',
+                  icon: Icons.school_rounded,
+                  color: const Color(0xFF8B3B11),
+                  surface: const Color(0xFFFFE6C7),
+                  onTap: () => onSection(LumoSection.learn),
+                ),
+                _HomeAction(
+                  key: const ValueKey('home-games'),
+                  title: 'Spielen',
+                  subtitle: 'Lumo Kart, Memory und mehr',
+                  icon: Icons.sports_esports_rounded,
+                  color: const Color(0xFF45328B),
+                  surface: const Color(0xFFE5E0FF),
+                  onTap: () => onSection(LumoSection.games),
+                ),
+              ];
+              return ListView(
+                key: const PageStorageKey('lumo-home-scroll'),
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                children: [
+                  Row(children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Hallo, $name!',
+                              key: const ValueKey('home-greeting'),
+                              style: LumoTextStyles.heading2),
+                          const SizedBox(height: 4),
+                          Text('Dein Lumo-Tag · ${state.grade}. Klasse',
+                              style: LumoTextStyles.body),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    ClipOval(
+                      child: Image.asset('assets/images/lumo_fox.png',
+                          width: 66,
+                          height: 66,
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter,
+                          excludeFromSemantics: true,
+                          errorBuilder: (_, error, __) {
+                        reportLumoAssetError(
+                            'assets/images/lumo_fox.png', error);
+                        return const SizedBox(width: 66, height: 66);
+                      }),
+                    ),
+                  ]),
+                  const SizedBox(height: 16),
+                  if (sideBySide)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: actions.first),
+                        const SizedBox(width: 12),
+                        Expanded(child: actions.last),
+                      ],
+                    )
+                  else ...[
+                    actions.first,
+                    const SizedBox(height: 10),
+                    actions.last,
+                  ],
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton.icon(
+                      key: const ValueKey('home-explanation'),
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(48, 48),
+                        foregroundColor: const Color(0xFF824115),
+                      ),
+                      onPressed: () => LumoCompanionRequests.instance
+                          .requestAppExplanation(),
+                      icon: const Icon(Icons.waving_hand_rounded, size: 20),
+                      label: const Text("Lumo zeigt's dir"),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  _ProgressCard(appState: appState),
+                  const SizedBox(height: 20),
+                  const Text('Das passt heute zu dir',
+                      style: LumoTextStyles.heading3),
+                  const SizedBox(height: 10),
+                  _RecommendationCard(
+                    message: recommendation?.message ??
+                        'Wähle ein Fach. Wir starten mit kleinen Schritten.',
+                    label: recommendation?.cta ?? 'Kurze Lernrunde',
+                    onTap: () => _startPractice(
+                      recommendation?.subject ?? 'Mathematik',
+                      unit: recommendation?.unit,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text('Deine Lernfächer',
+                      style: LumoTextStyles.heading3),
+                  const SizedBox(height: 10),
+                  _ResponsiveCards(
+                    columns: sideBySide ? 2 : 1,
+                    children: [
+                      _SubjectCard(
+                        subject: 'Mathematik',
+                        subtitle: 'Zahlen, Rechnen und Formen',
+                        icon: Icons.calculate_rounded,
+                        color: const Color(0xFF93540C),
+                        completed: _correctFor('Mathematik'),
+                        onTap: () => _startPractice('Mathematik'),
+                      ),
+                      _SubjectCard(
+                        subject: 'Deutsch',
+                        subtitle: 'Buchstaben, Wörter und Sätze',
+                        icon: Icons.menu_book_rounded,
+                        color: const Color(0xFF6D43AC),
+                        completed: _correctFor('Deutsch'),
+                        onTap: () => _startPractice('Deutsch'),
+                      ),
+                      _SubjectCard(
+                        subject: 'Sachunterricht',
+                        subtitle: 'Deine Welt entdecken',
+                        icon: Icons.public_rounded,
+                        color: const Color(0xFF087A6A),
+                        completed: _correctFor('Sachunterricht'),
+                        onTap: () => _startPractice('Sachunterricht'),
+                      ),
+                      _SubjectCard(
+                        subject: 'Logik',
+                        subtitle: 'Muster und knifflige Rätsel',
+                        icon: Icons.extension_rounded,
+                        color: const Color(0xFF326EAC),
+                        completed: _correctFor('Logik'),
+                        onTap: () => _startPractice('Logik'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Card(
+                    margin: EdgeInsets.zero,
+                    child: ExpansionTile(
+                      key: const PageStorageKey('home-discover'),
+                      title: const Text('Mehr mit Lumo entdecken',
+                          style: LumoTextStyles.heading3),
+                      subtitle:
+                          const Text('Lesen, Abenteuer und deine Sammlung'),
+                      leading: const Icon(Icons.explore_rounded,
+                          color: LumoColors.teal),
+                      children: [
+                        _extra('Lesen mit Lumo', 'Geschichten Satz für Satz',
+                            Icons.menu_book_rounded, _startReading),
+                        _extra(
+                            'Quizshow',
+                            'Fragen mit Jokern beantworten',
+                            Icons.quiz_rounded,
+                            () => _open(
+                                context, QuizShowContent(appState: appState))),
+                        _extra(
+                            'Lumo Kart',
+                            'In der Spieleauswahl starten',
+                            Icons.sports_motorsports_rounded,
+                            () => onSection(LumoSection.games)),
+                        _extra(
+                            'ABC-Tafel',
+                            'Buchstaben anhören und entdecken',
+                            Icons.abc_rounded,
+                            () => _open(context, const LumoAbcTafelScreen())),
+                        _extra(
+                            'Meine Rechentricks',
+                            'Schlaue Wege beim Rechnen',
+                            Icons.lightbulb_rounded,
+                            () => _open(
+                                context, const LumoRechentricksPosterScreen())),
+                        _extra(
+                            'Meine Erfolge',
+                            'Deine gesammelten Abzeichen',
+                            Icons.emoji_events_rounded,
+                            () => _open(context,
+                                AchievementsWallScreen(appState: appState))),
+                        _extra(
+                            'Lumo LIVE',
+                            'Sprache und Foto-Hilfe',
+                            Icons.mic_rounded,
+                            () => _open(context,
+                                LumoLiveProScreen(appState: appState))),
+                        _extra(
+                            'Lumo Journal',
+                            'Dein eigenes Tagebuch',
+                            Icons.edit_note_rounded,
+                            () => _open(context,
+                                LumoJournalScreen(appState: appState))),
+                        _extra(
+                            'Meine Welt',
+                            'Deine Inseln wachsen beim Lernen',
+                            Icons.landscape_rounded,
+                            () => _open(
+                                context, LumoWeltScreen(appState: appState))),
+                        _extra(
+                            'Foto-Lektion',
+                            'Übungen zu deinem Heft',
+                            Icons.photo_camera_rounded,
+                            () => _open(context,
+                                LumoPhotoLessonScreen(appState: appState))),
+                        _extra(
+                            'Laut lesen',
+                            'Lumo hört dir auf Wunsch zu',
+                            Icons.record_voice_over_rounded,
+                            () => _open(context,
+                                LumoReadingBuddyScreen(appState: appState))),
+                        _extra(
+                            'Lumo Quest',
+                            'Kleine Lernabenteuer',
+                            Icons.auto_awesome_rounded,
+                            () => _open(context,
+                                LumoQuestHubScreen(appState: appState))),
+                        _extra(
+                            'Lumo Zauberwelt',
+                            'Geschichten und weitere Ideen',
+                            Icons.auto_fix_high_rounded,
+                            () => _open(context,
+                                LumoMagicHubScreen(appState: appState))),
+                        _extra(
+                            'Lumo 3D Welt',
+                            'Deine Spiele in einer App',
+                            Icons.view_in_ar_rounded,
+                            () => onSection(LumoSection.games)),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            }),
+          );
+        },
+      );
 
-    // Modernisierung 2026-06-03: gesamter Home auf LumoMagicBackground
-    // (Sternen-Layer + sanfter Gradient + Wolken). Bisher war der Premium-
-    // Stack im Repo aber nirgendwo im echten Home aktiv - jetzt sofort.
-    // Intensity 0.7 ist ruhig genug fuer Kinder-Augen, starCount 22 spart
-    // Performance auf aelteren Geraeten.
-    return Stack(
-      children: [
-        LumoMagicBackground(
-          intensity: 1.1,
-          starCount: 32,
-          child: dashboard,
-        ),
-
-        // ── Wandernder Lumo-Tutorial-Begleiter ────────────────────
-        Positioned.fill(
-          child: IgnorePointer(
-            ignoring: false,
-            child: LumoTutorialCompanion(
-              key: _tutorialKey,
-              stops: _buildTutorialPath(),
-              childName: childName,
-              foxSize: 130,
-              onCompleted: () {
-                if (mounted) setState(() => _tutorialBadgeVisible = true);
-              },
-            ),
-          ),
-        ),
-
-        // ── Floating "Tutorial starten" Button (unten rechts) ────
-        Positioned(
-          right: 16,
-          bottom: 18,
-          child: _TutorialFab(
-            visible: _tutorialBadgeVisible,
-            onTap: _startTutorial,
-          ),
-        ),
-
-        // ── Lumo Magic Hub FAB (Heinz' 4 Premium-Vorschlaege) ─────
-        Positioned(
-          left: 16,
-          bottom: 18,
-          child: _MagicHubFab(appState: widget.appState),
-        ),
-      ],
-    );
-  }
+  Widget _extra(
+          String title, String subtitle, IconData icon, VoidCallback onTap) =>
+      ListTile(
+        leading: Icon(icon, color: LumoColors.ink700),
+        title: Text(title),
+        subtitle: Text(subtitle),
+        trailing: const Icon(Icons.chevron_right_rounded),
+        onTap: onTap,
+      );
 }
 
-// ════════════════════════════════════════════════════════════════════════
-// Magic Hub FAB - Zugang zu Lumo Story/Cosmos/Live/Mirror
-// ════════════════════════════════════════════════════════════════════════
-class _MagicHubFab extends StatefulWidget {
-  const _MagicHubFab({required this.appState});
-  final LumoAppState appState;
+class _HomeAction extends StatelessWidget {
+  const _HomeAction({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.color,
+    required this.surface,
+    required this.onTap,
+  });
 
-  @override
-  State<_MagicHubFab> createState() => _MagicHubFabState();
-}
-
-class _MagicHubFabState extends State<_MagicHubFab>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _glow;
-
-  @override
-  void initState() {
-    super.initState();
-    _glow = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2400),
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _glow.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _glow,
-      builder: (_, child) {
-        return Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF7C3AED).withOpacity(0.4 + _glow.value * 0.3),
-                blurRadius: 16 + _glow.value * 12,
-                spreadRadius: _glow.value * 4,
-              ),
-            ],
-          ),
-          child: child,
-        );
-      },
-      child: FloatingActionButton(
-        heroTag: 'magicHubFab',
-        backgroundColor: const Color(0xFF7C3AED),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) =>
-                LumoMagicHubScreen(appState: widget.appState),
-          ),
-        ),
-        child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 28),
-      ),
-    );
-  }
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// FAB-Button "Lumo zeigt's dir"
-// ════════════════════════════════════════════════════════════════════════
-class _TutorialFab extends StatefulWidget {
-  const _TutorialFab({required this.visible, required this.onTap});
-  final bool visible;
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final Color color;
+  final Color surface;
   final VoidCallback onTap;
 
   @override
-  State<_TutorialFab> createState() => _TutorialFabState();
+  Widget build(BuildContext context) => Material(
+        color: surface,
+        borderRadius: BorderRadius.circular(22),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(22),
+          child: Container(
+            constraints: const BoxConstraints(minHeight: 88),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: color.withOpacity(.2)),
+            ),
+            child: Row(children: [
+              Icon(icon, size: 32, color: color),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title,
+                        style: LumoTextStyles.heading2.copyWith(color: color)),
+                    const SizedBox(height: 3),
+                    Text(subtitle,
+                        style: LumoTextStyles.body
+                            .copyWith(fontSize: 13, color: LumoColors.ink700)),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 4),
+              Icon(Icons.arrow_forward_rounded, color: color, size: 22),
+            ]),
+          ),
+        ),
+      );
 }
 
-class _TutorialFabState extends State<_TutorialFab>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _pulse;
-
-  @override
-  void initState() {
-    super.initState();
-    _pulse = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1800),
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _pulse.dispose();
-    super.dispose();
-  }
+class _ProgressCard extends StatelessWidget {
+  const _ProgressCard({required this.appState});
+  final LumoAppState appState;
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.visible) return const SizedBox.shrink();
-    return AnimatedBuilder(
-      animation: _pulse,
-      builder: (context, _) {
-        final p = _pulse.value;
-        return GestureDetector(
-          onTap: widget.onTap,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFF97316), Color(0xFFFB923C)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(28),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFF97316).withOpacity(0.45 + p * 0.25),
-                  blurRadius: 18 + p * 8,
-                  spreadRadius: 1,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-              border: Border.all(
-                  color: Colors.white.withOpacity(0.5 + p * 0.2), width: 1.4),
-            ),
-            child: Row(mainAxisSize: MainAxisSize.min, children: [
-              const Text('🦊', style: TextStyle(fontSize: 22)),
-              const SizedBox(width: 8),
-              const Text(
-                "Lumo zeigt's dir",
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 14,
-                  letterSpacing: 0.2,
-                ),
-              ),
-            ]),
+    final state = appState.state;
+    final dailyDone = appState.learningDailyDone();
+    final dailyGoal = state.settings.dailyGoal.clamp(1, 500);
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: LumoColors.ink100),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Wrap(spacing: 16, runSpacing: 10, children: [
+          _stat(Icons.star_rounded, '${state.stars} Sterne', LumoColors.math),
+          _stat(Icons.workspace_premium_rounded, 'Level ${state.level}',
+              LumoColors.purple),
+          _stat(
+              Icons.local_fire_department_rounded,
+              '${appState.learningStreakDays()} ${appState.learningStreakDays() == 1 ? 'Lerntag' : 'Lerntage'} in Folge',
+              LumoColors.teal),
+        ]),
+        const SizedBox(height: 16),
+        Text('Heute: $dailyDone von $dailyGoal Aufgaben',
+            key: const ValueKey('home-daily-progress'),
+            style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+        const SizedBox(height: 8),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: LinearProgressIndicator(
+            value: (dailyDone / dailyGoal).clamp(0.0, 1.0),
+            minHeight: 8,
+            color: LumoColors.teal,
+            backgroundColor: LumoColors.tealSurface,
           ),
-        );
-      },
+        ),
+        const SizedBox(height: 10),
+        Text('${state.xp % 400} / 400 XP bis Level ${state.level + 1}',
+            key: const ValueKey('home-xp-progress'),
+            style: LumoTextStyles.body.copyWith(fontSize: 12)),
+      ]),
     );
+  }
+
+  Widget _stat(IconData icon, String text, Color color) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 20, color: color),
+          const SizedBox(width: 5),
+          Text(text,
+              style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+        ],
+      );
+}
+
+class _RecommendationCard extends StatelessWidget {
+  const _RecommendationCard(
+      {required this.message, required this.label, required this.onTap});
+  final String message;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Card(
+        margin: EdgeInsets.zero,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(message,
+                style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              style: FilledButton.styleFrom(
+                minimumSize: const Size(48, 48),
+                backgroundColor: const Color(0xFF824115),
+              ),
+              onPressed: onTap,
+              icon: const Icon(Icons.play_arrow_rounded),
+              label: Text(label),
+            ),
+          ]),
+        ),
+      );
+}
+
+class _SubjectCard extends StatelessWidget {
+  const _SubjectCard(
+      {required this.subject,
+      required this.subtitle,
+      required this.icon,
+      required this.color,
+      required this.completed,
+      required this.onTap});
+  final String subject;
+  final String subtitle;
+  final IconData icon;
+  final Color color;
+  final int completed;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Card(
+        margin: EdgeInsets.zero,
+        child: ListTile(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          leading: Icon(icon, color: color, size: 30),
+          title: Text(subject,
+              style: LumoTextStyles.heading3.copyWith(color: color)),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+                '$subtitle\n$completed ${completed == 1 ? 'Aufgabe' : 'Aufgaben'} geschafft'),
+          ),
+          trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+          onTap: onTap,
+        ),
+      );
+}
+
+class _ResponsiveCards extends StatelessWidget {
+  const _ResponsiveCards({required this.columns, required this.children});
+  final int columns;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    if (columns == 1) {
+      return Column(children: [
+        for (final child in children)
+          Padding(padding: const EdgeInsets.only(bottom: 10), child: child),
+      ]);
+    }
+    return Column(children: [
+      for (var index = 0; index < children.length; index += 2)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Expanded(child: children[index]),
+            const SizedBox(width: 10),
+            Expanded(
+                child: index + 1 < children.length
+                    ? children[index + 1]
+                    : const SizedBox.shrink()),
+          ]),
+        ),
+    ]);
   }
 }

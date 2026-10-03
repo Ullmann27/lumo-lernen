@@ -10,8 +10,9 @@
 //   2) Wenn ja -> oeffne echtes Modul
 //   3) Wenn nein -> oeffne ChatGPT-Chat (Fallback)
 //
-// Zukunft: Hier werden alle 26+ Topics als echte Module landen.
-// Aktuell aktiv: m1_plus10 (Plus bis 10)
+// 20 registrierte Themen; beide Einmaleinsvarianten teilen einen Screen.
+// Bei aktivem Wortmodus öffnet die Akademie d1_woerter bereits vor dieser
+// Registry im Wort-Schreibcoach. Die übrigen Themen öffnen diese Module.
 // ════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';

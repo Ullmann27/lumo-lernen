@@ -1,0 +1,352 @@
+#!/usr/bin/env python3
+"""Install the exact supplied APK and drive the real Flutter/Godot screens."""
+from __future__ import annotations
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import time
+import traceback
+
+from android_ui import Android, ADB, content_scroll_gesture
+from kart_android_race import action_marker, marker, read_frame, race_state, wait_for_frame
+from flutter_flows import FlutterChecks, LEARNING_SELECTION_CAPTION
+from system_ui import pixel_launcher_anr_close_bounds
+from emulator_diagnostics import ContinuousDiagnostics, save_final_logs
+
+
+ONBOARDING_CAPTIONS = {
+    'welcome': 'Willkommen',
+    'name': 'Wie heißt du?',
+    'age': 'Wie alt bist du?',
+    'grade': 'In welche Klasse gehst du?',
+    'home': 'Spielen',
+}
+
+
+def complete_first_run_ui(wait_for, click, capture, labels):
+    """Use visible screen headings, never an optional TextField decoration.
+
+    Android currently exposes the empty name field without its 'Dein Name'
+    InputDecoration. The two visible name captions remain available. The
+    callback boundary lets the actual caption sequence be regression-tested
+    without claiming an Android/device run.
+    """
+    root = wait_for(list(ONBOARDING_CAPTIONS.values()))
+    values = labels(root)
+    if any(ONBOARDING_CAPTIONS['welcome'] in value for value in values):
+        capture('onboarding-welcome')
+        click("Los geht's!", contains=True, scroll=True)
+        wait_for([ONBOARDING_CAPTIONS['name']])
+        # Blank input uses the app's synthetic default Kind.
+        capture('onboarding-name')
+        click('Weiter', scroll=True)
+        wait_for([ONBOARDING_CAPTIONS['age']])
+        capture('onboarding-age')
+        click('Weiter', scroll=True)
+        wait_for([ONBOARDING_CAPTIONS['grade']])
+        click('1. Klasse', scroll=True)
+        capture('onboarding-grade-1')
+        click('Profil speichern', scroll=True)
+    elif any(ONBOARDING_CAPTIONS[stage] in value
+             for stage in ('name', 'age', 'grade') for value in values):
+        raise RuntimeError('Unexpected partial onboarding on a fresh emulator; evidence retained')
+    wait_for([ONBOARDING_CAPTIONS['home']])
+
+
+def digest(path):
+    with path.open('rb') as stream:
+        return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def main(args):
+    args.out.mkdir(parents=True, exist_ok=True)
+    if digest(args.apk) != args.sha256.lower():
+        raise ValueError('APK bytes differ from the requested SHA-256 before installation')
+    sdk = Path(os.environ['ANDROID_HOME'])/'build-tools/35.0.0'
+    badging = subprocess.check_output([str(sdk/'aapt'), 'dump', 'badging', str(args.apk)], text=True)
+    (args.out/'apk-badging.txt').write_text(badging)
+    package_match = re.search(r"package: name='([^']+)'", badging)
+    if not package_match:
+        raise ValueError('Could not identify the actual package from this APK')
+    package = package_match.group(1)
+    device = Android(args.serial, fast_input=False)
+    environment = {
+        'api': device.adb('shell', 'getprop', 'ro.build.version.sdk').strip(),
+        'abi': device.adb('shell', 'getprop', 'ro.product.cpu.abi').strip(),
+        'model': device.adb('shell', 'getprop', 'ro.product.model').strip(),
+        'package': package, 'sha256': args.sha256.lower(), 'bytes': args.apk.stat().st_size,
+        'physical_device_tested': False,
+    }
+    if environment['api'] != '35' or environment['abi'] != 'x86_64':
+        raise RuntimeError(f'Expected API35 x86_64 emulator; received {environment}')
+    (args.out/'environment.json').write_text(json.dumps(environment, indent=2)+'\n')
+    installed = device.install(args.apk)
+    (args.out/'installation.json').write_text(json.dumps(installed, indent=2)+'\n')
+    if installed['sha256'] != args.sha256.lower():
+        raise RuntimeError('Installed input hash differs from the downloaded/verified APK')
+    # This is a real compact Android display, not altered game rendering or
+    # physics. Fewer software-rendered pixels leave the KVM CPU available for
+    # the native race; Fold-size navigation is still exercised afterwards.
+    environment['initial_display'] = device.resize('480x800', '160')
+    (args.out/'environment.json').write_text(json.dumps(environment, indent=2)+'\n')
+    device.adb('logcat', '-c')
+    device.foreground(package)
+
+    def labels(root):
+        return [node.attrib.get('text') or node.attrib.get('content-desc')
+                for node in root.iter('node') if node.attrib.get('text') or node.attrib.get('content-desc')]
+
+    def find(root, phrase, contains=False):
+        parents = {child: parent for parent in root.iter() for child in parent}
+        candidates = {}
+        for node in root.iter('node'):
+            values = [node.attrib.get('text', ''), node.attrib.get('content-desc', '')]
+            matches = any(phrase.casefold() in value.casefold() if contains else phrase == value
+                          for value in values if value)
+            if not matches or node.attrib.get('enabled', 'true') != 'true':
+                continue
+            target = node
+            while target in parents and target.attrib.get('clickable') != 'true':
+                target = parents[target]
+            if target.attrib.get('clickable') != 'true':
+                target = node
+            try:
+                bounds = device.bounds(target)
+            except RuntimeError:
+                continue
+            if bounds[1] >= 1280 or bounds[3] <= 0:
+                continue
+            candidates[bounds] = target
+        # Nested Flutter semantics can repeat a caption on the same clickable
+        # ancestor. Pick its smallest visible rectangle, preserving real input.
+        return min(candidates, key=lambda b: (b[2]-b[0])*(b[3]-b[1])) if candidates else None
+
+    def wait_for(phrases, timeout=50):
+        deadline = time.monotonic()+timeout
+        last = []
+        while time.monotonic() < deadline:
+            root = device.dump()
+            last = labels(root)
+            # Only recover a once-per-run external launcher boot ANR. Never
+            # dismiss an app ANR, crash, unknown system dialog or repeated ANR.
+            launcher_close = pixel_launcher_anr_close_bounds(root)
+            if launcher_close:
+                if environment.get('pixel_launcher_anr_recovery'):
+                    raise RuntimeError('Pixel Launcher ANR recurred after its one documented recovery.')
+                evidence = device.capture('external-pixel-launcher-anr-before-close')
+                if pixel_launcher_anr_close_bounds(device.dump()) != launcher_close:
+                    raise RuntimeError('Launcher dialog changed while recording it; no recovery touch sent.')
+                environment['pixel_launcher_anr_recovery'] = {
+                    'observed_labels': last, 'close_app_bounds': list(launcher_close),
+                    'evidence': evidence, 'external_package_only': True,
+                    'lumo_errors_suppressed': False,
+                }
+                (args.out/'environment.json').write_text(json.dumps(environment, indent=2)+'\n')
+                left, top, right, bottom = launcher_close
+                device.tap((left+right)//2, (top+bottom)//2)
+                device.foreground(package)
+                continue
+            if any(any(phrase.casefold() in label.casefold() for label in last) for phrase in phrases):
+                return root
+            time.sleep(1)
+        raise RuntimeError(f'Expected UI captions {phrases}; actually exposed: {last}')
+
+    def click(phrase, contains=False, scroll=False):
+        for _ in range(7 if scroll else 1):
+            root = device.dump()
+            bounds = find(root, phrase, contains)
+            if bounds:
+                left, top, right, bottom = bounds
+                device.tap((left+right)//2, (top+bottom)//2)
+                time.sleep(1)
+                return
+            if scroll:
+                gesture = content_scroll_gesture(root)
+                if gesture is None:
+                    break
+                device.swipe(gesture['x'], gesture['low'],
+                             gesture['x'], gesture['high'], 350)
+                time.sleep(.5)
+        raise RuntimeError(f'Actual Flutter control missing: {phrase}')
+
+    native_capture_number = 0
+    def native_frame(label):
+        nonlocal native_capture_number
+        native_capture_number += 1
+        path = args.out/'screens'/f'{native_capture_number:03d}-{label}.png'
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(device.adb('exec-out', 'screencap', '-p', binary=True))
+        frame = read_frame(path)
+        path.with_suffix('.txt').write_text(frame['text'])
+        path.with_suffix('.tsv').write_text(frame['tsv'])
+        return frame
+
+    def wait_native(label, paused=False):
+        deadline = time.monotonic()+90
+        while time.monotonic() < deadline:
+            frame = native_frame(label)
+            if frame['width'] > frame['height'] and marker(frame, 'RUNDE'):
+                if not paused or action_marker(frame, 'Weiterfahren'):
+                    return frame
+            time.sleep(1)
+        raise RuntimeError('Actual native landscape race/resume frame did not render')
+
+    def native_pause_button(frame, phrase, label):
+        # A compact display makes the real pause panel scroll. Anchor every
+        # gesture to its actually visible button captions, then require the
+        # destination button in a new raw screencap before any touch.
+        button = action_marker(frame, phrase)
+        if button:
+            return frame, button
+        if not marker(frame, 'Kleine Pause'):
+            raise RuntimeError('Expected the real native pause panel before scrolling.')
+        visible = [box for caption in ('Weiterfahren', 'Ruhige Bewegung: aus',
+                   'Ruhige Bewegung: an', 'Ton: aus', 'Ton: an',
+                   'Leichte Grafik: aus', 'Leichte Grafik: an',
+                   'Tempo: gemütlich', 'Tempo: flott', 'Zur Spieleauswahl')
+                   if (box := action_marker(frame, caption))]
+        if len(visible) < 2:
+            raise RuntimeError('Too few actual pause button bounds for a safe panel scroll.')
+        first = min(visible, key=lambda box: box['top'])
+        last = max(visible, key=lambda box: box['top'])
+        from_y = last['top']+last['height']//2
+        to_y = first['top']+first['height']//2
+        if from_y-to_y < 48:
+            raise RuntimeError('The visible pause panel has no usable scroll span.')
+        x = last['left']+last['width']//2
+        device.swipe(x, from_y, x, to_y, 650)
+        frame = wait_for_frame(native_frame, label+'-scrolled',
+                               lambda observed: bool(action_marker(observed, phrase)),
+                               f'Native pause button absent after one real panel scroll: {phrase}')
+        return frame, action_marker(frame, phrase)
+
+    try:
+        complete_first_run_ui(wait_for, click, device.capture, labels)
+        device.capture('flutter-home')
+        # Check the requested Home → games → native race → Flutter return first.
+        # The profile comes solely from the real onboarding controls above.
+        device.adb('shell', 'svc', 'wifi', 'disable')
+        device.adb('shell', 'svc', 'data', 'disable')
+        flutter_checks = FlutterChecks(device, args.out, package)
+        click('Spielen', contains=True)
+        wait_for(['Lumo Spielewelt', 'Losfahren'])
+        device.capture('flutter-games')
+        # Native Kart must work without an external APK or network connection.
+        device.adb('shell', 'svc', 'wifi', 'disable')
+        device.adb('shell', 'svc', 'data', 'disable')
+        click('Losfahren', scroll=True)
+        wait_native('native-first-race')
+        first_pid = device.adb('shell', 'pidof', package+':lumo_game').strip()
+        subprocess.run([sys.executable, str(Path(__file__).with_name('kart_android_race.py')),
+                        '--serial', args.serial, '--package', package,
+                        '--out', str(args.out/'kart-race'), '--pause-back', '--require-correct',
+                        '--check-wrong-hint', '--lightweight', '--restart',
+                        '--return-to', 'games', '--timeout', '600'],
+                       check=True)
+        wait_for(['Losfahren'])
+        device.capture('flutter-games-after-full-race')
+        # Open from Flutter again, proving a new Engine process and saved race.
+        click('Losfahren', scroll=True)
+        frame = wait_native('native-fresh-process-saved-race', paused=True)
+        if not action_marker(frame, 'Leichte Grafik: an'):
+            raise RuntimeError('The actual lightweight graphics preference did not survive engine reopening.')
+        next_pid = device.adb('shell', 'pidof', package+':lumo_game').strip()
+        if not first_pid or not next_pid or first_pid == next_pid:
+            raise RuntimeError('Reopening from Flutter did not create a fresh engine PID')
+        saved_state = json.loads((args.out/'kart-race/saved-pause-before-return.json').read_text())
+        restored_state = race_state(frame)
+        if saved_state != restored_state:
+            raise RuntimeError(f'Saved/restored visible race HUD differs: {saved_state} / {restored_state}')
+        button = action_marker(frame, 'Zur Spieleauswahl')
+        if not button:
+            raise RuntimeError('Resumed native pause does not expose return to games')
+        device.tap(button['left']+button['width']//2, button['top']+button['height']//2)
+        wait_for(['Losfahren'])
+        device.capture('flutter-after-native-reopen')
+        # Exercise the other actual native return destination. Reopening the
+        # retained race shows its real pause; Back while already paused would
+        # return to games, so tap the visible learning button directly.
+        click('Losfahren', scroll=True)
+        learn_frame = wait_native('native-pause-before-return-to-learning', paused=True)
+        learn_engine_pid = device.adb('shell', 'pidof', package+':lumo_game').strip()
+        if not learn_engine_pid or learn_engine_pid == next_pid:
+            raise RuntimeError('Learning-return check did not open a fresh native engine process')
+        learn_frame, learn_button = native_pause_button(
+            learn_frame, 'Zum Lernen', 'native-pause-return-to-learning')
+        if not learn_button:
+            raise RuntimeError('Actual native pause does not expose its learning return button')
+        device.tap(learn_button['left']+learn_button['width']//2,
+                   learn_button['top']+learn_button['height']//2)
+        wait_for([LEARNING_SELECTION_CAPTION])
+        device.capture('flutter-learning-after-native-return')
+        learn_flutter_pid = device.adb('shell', 'pidof', package).strip()
+        if not learn_flutter_pid:
+            raise RuntimeError('Native learning return did not leave Flutter running')
+        deadline = time.monotonic()+45
+        while time.monotonic() < deadline:
+            engine = subprocess.run([ADB, '-s', args.serial, 'shell', 'pidof',
+                                     package+':lumo_game'], capture_output=True, text=True).stdout.strip()
+            if not engine:
+                break
+            time.sleep(.5)
+        else:
+            raise RuntimeError('Native learning return left the engine process running')
+        learn_return_proof = {'engine_pid_before_return': learn_engine_pid,
+                              'flutter_pid_after_return': learn_flutter_pid,
+                              'visible_caption': LEARNING_SELECTION_CAPTION,
+                              'native_engine_stopped': True}
+        flutter_checks.learning()
+        # Full real board/card rounds, Fold-shaped resize/navigation, and exact
+        # visible wallet/profile/daily-progress equality across process restart.
+        flutter_checks.boards()
+        flutter_proof = flutter_checks.fold_and_restart()
+        if digest(args.apk) != args.sha256.lower():
+            raise RuntimeError('APK input was modified during the test')
+        proof = {'passed': True, **environment, 'first_engine_pid': first_pid,
+                 'reopened_engine_pid': next_pid,
+                 'saved_race_hud': saved_state, 'restored_race_hud': restored_state,
+                 'graphics_preference': {'set_through_actual_pause_button': True,
+                                         'lightweight': True, 'retained_after_engine_restart': True},
+                 'native_learning_return': learn_return_proof,
+                 'flutter_checks': flutter_proof,
+                 'flow': 'Flutter home/games → Kart two-lap race/result/restart/fresh native resume → native return to Flutter learning/help/answer/reward → Memory twelve pairs → Cards complete round → Fold resize/navigation → offline restart with identical visible wallet/profile/progress',
+                 'race_uses_real_physics_and_wall_time': True,
+                 'no_apk_rebuild_resign_or_publish': True}
+        (args.out/'result.json').write_text(json.dumps(proof, indent=2, ensure_ascii=False)+'\n')
+        print(json.dumps(proof, indent=2, ensure_ascii=False))
+    except Exception:
+        # Preserve the actual blocking screen before stopping the emulator.
+        try:
+            device.capture('usage-check-failure')
+        except Exception as capture_error:
+            (args.out/'failure-capture-error.txt').write_text(str(capture_error)+'\n')
+        raise
+    finally:
+        # Device loss must remain the original failure, with continuous logs
+        # retained even when its final adb command can no longer connect.
+        save_final_logs(device, args.out, preserve_error=sys.exc_info()[0] is not None)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--apk', type=Path, required=True)
+    parser.add_argument('--sha256', required=True)
+    parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--serial', default='emulator-5554')
+    args = parser.parse_args()
+    try:
+        with ContinuousDiagnostics(ADB, args.serial, args.out):
+            main(args)
+    except Exception:
+        args.out.mkdir(parents=True, exist_ok=True)
+        details = traceback.format_exc()
+        (args.out/'failure.txt').write_text(details)
+        (args.out/'result.json').write_text(json.dumps({'passed': False, 'sha256': args.sha256,
+                                                       'physical_device_tested': False})+'\n')
+        print(details, file=sys.stderr)
+        raise SystemExit(1)

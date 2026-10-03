@@ -64,7 +64,8 @@ class LumoDidacticTaskStyle {
 class LumoDidacticTaskStyles {
   const LumoDidacticTaskStyles._();
 
-  static const List<LumoDidacticTaskStyle> germanProgression = <LumoDidacticTaskStyle>[
+  static const List<LumoDidacticTaskStyle> germanProgression =
+      <LumoDidacticTaskStyle>[
     LumoDidacticTaskStyle(
       domain: LumoLearningDomain.german,
       action: LumoLearningAction.hearSound,
@@ -102,14 +103,22 @@ class LumoDidacticTaskStyles {
     ),
     LumoDidacticTaskStyle(
       domain: LumoLearningDomain.german,
+      action: LumoLearningAction.buildSentence,
+      visualType: 'sentence_blocks',
+      explanationCue: 'Ordne die Wörter zu einem Satz. Lies ihn zur Probe vor.',
+      difficultyStep: 4,
+    ),
+    LumoDidacticTaskStyle(
+      domain: LumoLearningDomain.german,
       action: LumoLearningAction.understandSentence,
       visualType: 'sentence_strip',
-      explanationCue: 'Lies den Satz und suche das Tunwort.',
+      explanationCue: 'Lies den Satz. Welche Wörter helfen dir bei der Frage?',
       difficultyStep: 4,
     ),
   ];
 
-  static const List<LumoDidacticTaskStyle> mathProgression = <LumoDidacticTaskStyle>[
+  static const List<LumoDidacticTaskStyle> mathProgression =
+      <LumoDidacticTaskStyle>[
     LumoDidacticTaskStyle(
       domain: LumoLearningDomain.math,
       action: LumoLearningAction.countSet,
@@ -154,7 +163,8 @@ class LumoDidacticTaskStyles {
     ),
   ];
 
-  static const List<LumoDidacticTaskStyle> scienceProgression = <LumoDidacticTaskStyle>[
+  static const List<LumoDidacticTaskStyle> scienceProgression =
+      <LumoDidacticTaskStyle>[
     LumoDidacticTaskStyle(
       domain: LumoLearningDomain.science,
       action: LumoLearningAction.observe,

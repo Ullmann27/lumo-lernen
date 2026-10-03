@@ -32,14 +32,24 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.44.9'
           channel: stable
           cache: true
 
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build debug APK
-        run: flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
+      - name: Create Android host and install matching Godot
+        run: |
+          flutter create --platforms=android --org dev.ullmann.lumo .
+          python3 scripts/prepare_android.py --side-by-side
+          python3 scripts/prepare_embedded_games.py
+          bash scripts/install_godot_for_build.sh
+
+      - name: Bundle Godot and build debug APK
+        run: |
+          python3 scripts/export_embedded_game.py
+          flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER"
 
       - name: Collect APK
         run: |

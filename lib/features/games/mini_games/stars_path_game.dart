@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +6,8 @@ import '../../../app/app_theme.dart';
 import '../../../core/game_progress_repository.dart';
 import '../../../core/math_task_templates.dart';
 import '../../../domain/games/game_level_model.dart';
+import '../shared/lumo_game_pause_scope.dart';
+import '../../../domain/games/game_math_tasks.dart';
 import '../../shared/widgets/lumo_companion_avatar.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
 
@@ -30,6 +30,7 @@ class StarsPathGame extends StatefulWidget {
 
   final LumoAppState appState;
   final GameLevel level;
+
   /// Wird mit der erreichten Sternzahl (0-3) aufgerufen wenn Spiel endet.
   final ValueChanged<int>? onResult;
 
@@ -41,6 +42,8 @@ class _StarsPathGameState extends State<StarsPathGame> {
   static const _totalTasks = 5;
   static const _repo = GameProgressRepository();
 
+  bool _finished = false;
+  final _clock = LumoGameTurnClock();
   int _currentIndex = 0;
   int _correct = 0;
   int _wrongFirstTry = 0;
@@ -54,37 +57,32 @@ class _StarsPathGameState extends State<StarsPathGame> {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
         ? 'kind'
-        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+        : st.childName
+            .trim()
+            .toLowerCase()
+            .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     return 'local_${safeName}_${st.grade}';
   }
 
   @override
   void initState() {
     super.initState();
-    // Generiere 5 Aufgaben passend zur Level-Klasse
-    final grade = math.max(widget.level.gradeFloor, widget.appState.state.grade);
-    _tasks = List<MathConcreteTask>.generate(_totalTasks, (i) {
-      final seed = widget.level.id * 1000 + i * 17;
-      // Klasse 1: Plus bis 10 / Minus bis 10 / Mengenvergleich
-      // Klasse 2: Plus bis 20 / Minus bis 20
-      String unit = 'Plus bis 10';
-      if (widget.level.title.toLowerCase().contains('minus')) unit = 'Minus bis 10';
-      if (widget.level.id >= 16) unit = 'Plus bis 20';
-      if (widget.level.id == 17) unit = 'Minus bis 20';
-      return MathTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
-    });
+    _tasks = List<MathConcreteTask>.generate(
+        _totalTasks, (i) => GameMathTasks.starsPath(widget.level, i));
   }
 
   MathConcreteTask get _currentTask => _tasks[_currentIndex];
 
   void _selectOption(int idx) {
-    if (_revealed) return;
+    if (_clock.value || _revealed || _finished) return;
     HapticFeedback.selectionClick();
     setState(() => _selectedOption = idx);
   }
 
   void _confirm() {
-    if (_selectedOption == null || _revealed) return;
+    if (_clock.value || _finished || _selectedOption == null || _revealed) {
+      return;
+    }
     final selectedText = _currentTask.choices[_selectedOption!];
     final isCorrect = selectedText == _currentTask.answer;
     setState(() {
@@ -102,8 +100,9 @@ class _StarsPathGameState extends State<StarsPathGame> {
   }
 
   void _next() {
-    if (!_revealed) return;
-    final isCorrect = _currentTask.choices[_selectedOption!] == _currentTask.answer;
+    if (_clock.value || _finished || !_revealed) return;
+    final isCorrect =
+        _currentTask.choices[_selectedOption!] == _currentTask.answer;
     if (!isCorrect) {
       // Bei falsch: gleiche Aufgabe nochmal, aber Versuch wird gezaehlt
       setState(() {
@@ -125,17 +124,23 @@ class _StarsPathGameState extends State<StarsPathGame> {
   }
 
   Future<void> _finishGame() async {
+    if (_finished) return;
+    _finished = true;
     // Stern-Berechnung: alle richtig + max 1 fehler = 3, sonst weniger
     int stars;
     if (_correct == _totalTasks && _wrongFirstTry == 0) {
       stars = 3;
-    } else if (_correct == _totalTasks) {
+    } else if (_correct == _totalTasks && _wrongFirstTry <= 2) {
       stars = 2;
     } else if (_correct >= 3) {
       stars = 1;
     } else {
       stars = 0;
     }
+    // The completed round earns its wallet reward even if its route is
+    // closed while the level-map write is still pending on Android.
+    widget.appState.addStars(stars);
+    widget.appState.addXp(_correct * 8);
     await _repo.recordResult(
       childId: _childId,
       levelId: widget.level.id,
@@ -146,7 +151,8 @@ class _StarsPathGameState extends State<StarsPathGame> {
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => _ResultDialog(
+      builder: (_) => LumoGameResultBack(
+          child: _ResultDialog(
         stars: stars,
         levelTitle: widget.level.title,
         correctCount: _correct,
@@ -155,56 +161,81 @@ class _StarsPathGameState extends State<StarsPathGame> {
           Navigator.of(context).pop(); // dialog
           Navigator.of(context).pop(); // game screen
         },
-      ),
+      )),
     );
   }
 
   @override
+  void dispose() {
+    _clock.dispose();
+    super.dispose();
+  }
+
+  void _restartRound() {
+    _clock.cancel();
+    setState(() {
+      _finished = false;
+      _correct = 0;
+      _currentIndex = 0;
+      _wrongFirstTry = 0;
+      _attemptedThisTask = false;
+      _selectedOption = null;
+      _revealed = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFF7E6),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.close_rounded, color: LumoColors.ink700),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
-        title: Text(
-          widget.level.title,
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.w900,
-            color: LumoColors.ink900,
-            fontSize: 18,
-          ),
-        ),
-      ),
-      body: Stack(
-        children: [
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-              child: Column(
-                children: [
-                  _PathHeader(currentIndex: _currentIndex, correct: _correct, total: _totalTasks),
-                  const SizedBox(height: 14),
-                  Expanded(child: _buildTaskCard()),
-                  const SizedBox(height: 12),
-                  _buildActionButton(),
-                ],
+    return LumoGamePauseScope(
+        clock: _clock,
+        onRestart: _restartRound,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFF7E6),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
+              icon: const Icon(Icons.close_rounded, color: LumoColors.ink700),
+              onPressed: () => Navigator.of(context).maybePop(),
+            ),
+            title: Text(
+              widget.level.title,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+                color: LumoColors.ink900,
+                fontSize: 18,
               ),
             ),
           ),
-          if (_confettiTrigger > 0)
-            Positioned.fill(
-              child: IgnorePointer(
-                child: LumoConfettiBurst(trigger: _confettiTrigger),
+          body: Stack(
+            children: [
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                  child: Column(
+                    children: [
+                      _PathHeader(
+                          currentIndex: _currentIndex,
+                          correct: _correct,
+                          total: _totalTasks),
+                      const SizedBox(height: 14),
+                      Expanded(child: _buildTaskCard()),
+                      const SizedBox(height: 12),
+                      _buildActionButton(),
+                    ],
+                  ),
+                ),
               ),
-            ),
-        ],
-      ),
-    );
+              if (_confettiTrigger > 0)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: LumoConfettiBurst(trigger: _confettiTrigger),
+                  ),
+                ),
+            ],
+          ),
+        ));
   }
 
   Widget _buildTaskCard() {
@@ -281,16 +312,23 @@ class _StarsPathGameState extends State<StarsPathGame> {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: GestureDetector(
+                  key: ValueKey('math-option-$i'),
                   onTap: () => _selectOption(i),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 180),
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 18, vertical: 16),
                     decoration: BoxDecoration(
                       color: bg,
                       borderRadius: BorderRadius.circular(LumoRadius.lg),
                       border: Border.all(color: border, width: 2),
                       boxShadow: selected || (_revealed && isCorrect)
-                          ? [BoxShadow(color: border.withOpacity(0.4), blurRadius: 12, offset: const Offset(0, 4))]
+                          ? [
+                              BoxShadow(
+                                  color: border.withOpacity(0.4),
+                                  blurRadius: 12,
+                                  offset: const Offset(0, 4))
+                            ]
                           : null,
                     ),
                     child: Row(
@@ -307,9 +345,11 @@ class _StarsPathGameState extends State<StarsPathGame> {
                           ),
                         ),
                         if (_revealed && isCorrect)
-                          const Icon(Icons.check_circle_rounded, color: Colors.white, size: 22),
+                          const Icon(Icons.check_circle_rounded,
+                              color: Colors.white, size: 22),
                         if (_revealed && selected && !isCorrect)
-                          const Icon(Icons.cancel_outlined, color: Color(0xFF7C2D12), size: 22),
+                          const Icon(Icons.cancel_outlined,
+                              color: Color(0xFF7C2D12), size: 22),
                       ],
                     ),
                   ),
@@ -333,16 +373,19 @@ class _StarsPathGameState extends State<StarsPathGame> {
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: enabled ? LumoColors.orange : const Color(0xFFE0E0E0),
+          backgroundColor:
+              enabled ? LumoColors.orange : const Color(0xFFE0E0E0),
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.pill)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(LumoRadius.pill)),
           elevation: enabled ? 4 : 0,
         ),
         onPressed: enabled ? (_revealed ? _next : _confirm) : null,
         child: Text(
           label,
-          style: const TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900),
+          style: const TextStyle(
+              fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900),
         ),
       ),
     );
@@ -352,7 +395,8 @@ class _StarsPathGameState extends State<StarsPathGame> {
 // ─────────────────── PFAD-HEADER ───────────────────
 
 class _PathHeader extends StatelessWidget {
-  const _PathHeader({required this.currentIndex, required this.correct, required this.total});
+  const _PathHeader(
+      {required this.currentIndex, required this.correct, required this.total});
   final int currentIndex;
   final int correct;
   final int total;
@@ -389,10 +433,19 @@ class _PathHeader extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: isStar
                           ? LumoColors.gold
-                          : (isCurrent ? LumoColors.orange : (isPast ? const Color(0xFFFED7AA) : const Color(0xFFEEEEEE))),
+                          : (isCurrent
+                              ? LumoColors.orange
+                              : (isPast
+                                  ? const Color(0xFFFED7AA)
+                                  : const Color(0xFFEEEEEE))),
                       shape: BoxShape.circle,
                       boxShadow: isCurrent
-                          ? [BoxShadow(color: LumoColors.orange.withOpacity(0.5), blurRadius: 10, offset: const Offset(0, 3))]
+                          ? [
+                              BoxShadow(
+                                  color: LumoColors.orange.withOpacity(0.5),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 3))
+                            ]
                           : null,
                     ),
                     child: isStar
@@ -438,7 +491,8 @@ class _ResultDialog extends StatelessWidget {
                 : 'Probier es nochmal';
     return Dialog(
       backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.xl)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(LumoRadius.xl)),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
         child: Column(
@@ -474,7 +528,8 @@ class _ResultDialog extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: Text(
                     earned ? '⭐' : '☆',
-                    style: TextStyle(fontSize: 40, color: earned ? null : LumoColors.ink300),
+                    style: TextStyle(
+                        fontSize: 40, color: earned ? null : LumoColors.ink300),
                   ),
                 );
               }),
@@ -497,13 +552,17 @@ class _ResultDialog extends StatelessWidget {
                   backgroundColor: LumoColors.orange,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.pill)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(LumoRadius.pill)),
                   elevation: 0,
                 ),
                 onPressed: onClose,
                 child: const Text(
                   'Zurueck zur Spielewelt',
-                  style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900),
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900),
                 ),
               ),
             ),

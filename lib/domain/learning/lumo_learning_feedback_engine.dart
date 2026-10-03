@@ -189,7 +189,7 @@ class LumoLearningFeedbackEngine {
       tips.add('Lerntipp: Wiewörter beschreiben. Frage: Wie ist es? Wie sieht es aus?');
     }
     if (unit.contains('rechtschreib') || unit.contains('haeufige') || unit.contains('doppelmitlaut')) {
-      tips.add('Lerntipp: Sprich das Wort in Silben. Kurzer Vokal vor Doppelmitlaut, langer vor einfachem.');
+      tips.add('Lerntipp: Höre auf den betonten Vokal und vergleiche verwandte Wörter. Achte gezielt auf Doppelmitlaute und Dehnungszeichen.');
     }
     if (errors.contains(ErrorType.countingError)) {
       tips.add('Lerntipp: Du warst nur einen Schritt daneben. Zeige jede Zahl mit dem Finger.');
@@ -218,6 +218,7 @@ class LumoLearningFeedbackEngine {
   }
 
   String _rewardLabelFor(LumoInteractionEvent event, LumoFeedbackTone tone) {
+    if (!event.correct) return 'Lernschritt gespeichert';
     final labels = <String>[];
     if (event.correct) labels.add('Belohnung: richtige Lösung');
     labels.add('Belohnung: Aufgabe bearbeitet');

@@ -26,6 +26,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 import '../../../core/lumo_asset_paths.dart';
+import '../../../core/math_task_templates.dart';
 import 'lumo_cards_models.dart';
 
 class LearningQuestionRepository {
@@ -35,6 +36,7 @@ class LearningQuestionRepository {
       LearningQuestionRepository._();
 
   List<LearningQuestion> _all = const [];
+  final Map<LearningQuestion, int> _gradeByQuestion = {};
   bool _initialized = false;
 
   /// Anzahl geladener Fragen (nach erfolgreichem init).
@@ -60,7 +62,10 @@ class LearningQuestionRepository {
         for (final item in parsed) {
           if (item is! Map) continue;
           final q = _parseOne(Map<String, dynamic>.from(item));
-          if (q != null) loaded.add(q);
+          if (q != null) {
+            loaded.add(q);
+            _gradeByQuestion[q] = path.contains('grade2_') ? 2 : 1;
+          }
         }
       } catch (e) {
         if (kDebugMode) {
@@ -79,6 +84,52 @@ class LearningQuestionRepository {
     return _all[r.nextInt(_all.length)];
   }
 
+  /// A Denkpause belongs to the child's current class. Grades 3/4 use
+  /// the same checked local arithmetic templates as the learning app.
+  LearningQuestion randomForGrade(int grade, [Random? rng]) {
+    final r = rng ?? Random();
+    final safeGrade = grade.clamp(1, 4);
+    LearningQuestion question;
+    if (safeGrade >= 3) {
+      final units = safeGrade == 3
+          ? [
+              'Einmaleins',
+              'Plus bis 100',
+              'Minus bis 100',
+              'Division einstellig'
+            ]
+          : [
+              'Schriftliche Multiplikation',
+              'Schriftliche Division',
+              'Plus bis 10000',
+              'Minus bis 10000',
+              'Vergleichen'
+            ];
+      final task = MathTaskTemplates.generate(
+          grade: safeGrade,
+          unit: units[r.nextInt(units.length)],
+          seed: r.nextInt(1 << 30));
+      question = LearningQuestion(
+          prompt: task.prompt,
+          options: task.choices,
+          correctIndex: task.choices.indexOf(task.answer),
+          hint: task.explanation);
+    } else {
+      final pool =
+          _all.where((q) => (_gradeByQuestion[q] ?? 1) == safeGrade).toList();
+      question = pool.isEmpty ? _fallback : pool[r.nextInt(pool.length)];
+    }
+    // Historical bundles place almost every correct answer first. Shuffle
+    // without changing the right answer so guessing position is no shortcut.
+    final answer = question.options[question.correctIndex];
+    final options = List<String>.of(question.options)..shuffle(r);
+    return LearningQuestion(
+        prompt: question.prompt,
+        options: options,
+        correctIndex: options.indexOf(answer),
+        hint: question.hint);
+  }
+
   /// Lade-/Filter-Logik fuer ein einzelnes JSON-Item. Gibt null zurueck
   /// wenn das Item nicht dem erwarteten Schema entspricht.
   static LearningQuestion? _parseOne(Map<String, dynamic> m) {
@@ -87,7 +138,10 @@ class LearningQuestionRepository {
       if (prompt == null || prompt.isEmpty) return null;
       final optsRaw = m['options'];
       if (optsRaw is! List || optsRaw.length != 4) return null;
-      final options = optsRaw.map((e) => e.toString()).toList(growable: false);
+      final rawOptions =
+          optsRaw.map((e) => e.toString().trim()).toList(growable: false);
+      final options = rawOptions.toSet().toList(growable: false);
+      if (options.length < 2 || options.any((o) => o.isEmpty)) return null;
       final correctIdxRaw = m['correctIndex'];
       if (correctIdxRaw is! int) return null;
       if (correctIdxRaw < 0 || correctIdxRaw > 3) return null;
@@ -95,7 +149,7 @@ class LearningQuestionRepository {
       return LearningQuestion(
         prompt: prompt,
         options: options,
-        correctIndex: correctIdxRaw,
+        correctIndex: options.indexOf(rawOptions[correctIdxRaw]),
         hint: (hint == null || hint.isEmpty) ? null : hint,
       );
     } catch (_) {
@@ -116,6 +170,7 @@ class LearningQuestionRepository {
   @visibleForTesting
   void debugReset() {
     _all = const [];
+    _gradeByQuestion.clear();
     _initialized = false;
   }
 

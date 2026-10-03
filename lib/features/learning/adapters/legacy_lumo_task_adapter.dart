@@ -24,7 +24,7 @@ class LegacyLumoTaskAdapter {
     required int difficulty,
     DateTime? now,
   }) {
-    final fixedTask = _qualityCheckedTask(task);
+    final fixedTask = qualityCheckedTask(task);
     final generatedAt = now ?? DateTime.now();
     final subject = _subject(fixedTask.subject);
     // 2026-06-05 Iter 20: Form-Nachzeichnen hat eigene TaskType, vor writing
@@ -78,7 +78,10 @@ class LegacyLumoTaskAdapter {
     );
   }
 
-  LumoTask _qualityCheckedTask(LumoTask task) {
+  /// Rendering and scoring must use the same checked task. Already-valid
+  /// templates keep their wording, correct answer and every supplied option.
+  LumoTask qualityCheckedTask(LumoTask task) {
+    if (_qualityGuard.validate(task)) return task;
     final sanitized = _sanitizeTask(task);
     if (_qualityGuard.validate(sanitized)) return sanitized;
     final fallback = _safeFallbackTask(sanitized);
@@ -89,7 +92,7 @@ class LegacyLumoTaskAdapter {
   LumoTask _safeFallbackTask(LumoTask task) {
     if (task.handwriting) return task;
     return _fallbackPool.pick(
-      subject: task.subject == 'Mathematik' ? 'Mathematik' : 'Deutsch',
+      subject: task.subject,
       grade: task.grade,
       counter: _fallbackCounter++,
       unit: task.unit,
@@ -306,19 +309,12 @@ class LegacyLumoTaskAdapter {
   }
 
   LumoTask _soundVariant(LumoTask task) {
-    const startWords = <String>[
-      'Tasse', 'Lampe', 'Igel', 'Nase', 'Rose', 'Kerze', 'Wolke', 'Biene',
-      'Fenster', 'Garten', 'Sonne', 'Krone', 'Brille', 'Vogel', 'Katze',
-    ];
-    const endWords = <String>[
-      'Brot', 'Rad', 'Glas', 'Rose', 'Apfel', 'Garten', 'Stift', 'Blatt',
-      'Hut', 'Ofen', 'Tier', 'Baum', 'Igel', 'Hase', 'Ohr', 'Buch',
-      'Schatz', 'Sand', 'Ring', 'Arm',
-    ];
     final isEnd = task.unit == 'Endlaute';
-    final words = isEnd ? endWords : startWords;
+    final words = PrimarySchoolWordData.nounsForGrade(task.grade).where((word) =>
+        (isEnd ? PrimarySchoolWordData.finalSoundFor(word) : PrimarySchoolWordData.initialSoundFor(word)) != null).toList(growable: false);
+    if (words.isEmpty) return task;
     final word = words[_varietyIndex(task, words.length)];
-    final answer = isEnd ? word.substring(word.length - 1).toLowerCase() : word.substring(0, 1).toUpperCase();
+    final answer = (isEnd ? PrimarySchoolWordData.finalSoundFor(word) : PrimarySchoolWordData.initialSoundFor(word))!;
     return _copyTask(
       task,
       prompt: isEnd ? 'Mit welchem Laut endet $word?' : 'Mit welchem Laut beginnt $word?',
@@ -567,6 +563,7 @@ class LegacyLumoTaskAdapter {
     return switch (value) {
       'Deutsch' || 'Rechtschreibung' || 'Schreiben' || 'Lesen' => LearningSubject.deutsch,
       'Sachunterricht' => LearningSubject.sachkunde,
+      'Logik' => LearningSubject.logik,
       _ => LearningSubject.mathematik,
     };
   }

@@ -7,13 +7,12 @@ class AppSettings {
   static const String defaultAiProxyUrl = 'https://lumo-ai-proxy.onrender.com';
 
   const AppSettings({
-    this.parentPin = '2468',
     this.dailyGoal = 3,
     this.soundEnabled = true,
     this.voiceEnabled = true,
     this.autoReadEnabled = true,
-    this.microphoneEnabled = true,
-    this.scannerEnabled = true,
+    this.microphoneEnabled = false,
+    this.scannerEnabled = false,
     this.aiProxyEnabled = false,
     this.aiLearningMode = AiLearningMode.chatOnly,
     this.aiProxyUrl = defaultAiProxyUrl,
@@ -24,8 +23,6 @@ class AppSettings {
     this.voiceRate = 0.35,
     this.voicePitch = 1.0,
   });
-
-  final String parentPin;
   final int dailyGoal;
   final bool soundEnabled;
   final bool voiceEnabled;
@@ -43,7 +40,6 @@ class AppSettings {
   final double voicePitch;
 
   AppSettings copyWith({
-    String? parentPin,
     int? dailyGoal,
     bool? soundEnabled,
     bool? voiceEnabled,
@@ -61,7 +57,6 @@ class AppSettings {
     double? voicePitch,
   }) {
     return AppSettings(
-      parentPin: parentPin ?? this.parentPin,
       dailyGoal: dailyGoal ?? this.dailyGoal,
       soundEnabled: soundEnabled ?? this.soundEnabled,
       voiceEnabled: voiceEnabled ?? this.voiceEnabled,
@@ -81,7 +76,6 @@ class AppSettings {
   }
 
   Map<String, dynamic> toJson() => {
-        'parentPin': parentPin,
         'dailyGoal': dailyGoal,
         'soundEnabled': soundEnabled,
         'voiceEnabled': voiceEnabled,
@@ -101,40 +95,66 @@ class AppSettings {
 
   factory AppSettings.fromJson(Map<String, dynamic> json) {
     return AppSettings(
-      parentPin: RegExp(r'^\d{4,8}$').hasMatch('${json['parentPin'] ?? ''}')?'${json['parentPin']}'
-          : '2468',
-      dailyGoal: _intIn(json['dailyGoal'], fallback: 3, allowed: const [3, 5, 10, 15],
+      dailyGoal: _intIn(
+        json['dailyGoal'],
+        fallback: 3,
+        allowed: const [3, 5, 10, 15],
       ),
-      soundEnabled: json['soundEnabled'] as bool? ?? true,
-      voiceEnabled: json['voiceEnabled'] as bool? ?? true,
-      autoReadEnabled: json['autoReadEnabled'] as bool? ?? true,
-      microphoneEnabled: json['microphoneEnabled'] as bool? ?? true,
-      scannerEnabled: json['scannerEnabled'] as bool? ?? true,
-      aiProxyEnabled: json['aiProxyEnabled'] as bool? ?? false,
-      aiLearningMode: AiLearningModeX.fromName(json['aiLearningMode'] as String?,
+      soundEnabled: _bool(json['soundEnabled'], fallback: true),
+      voiceEnabled: _bool(json['voiceEnabled'], fallback: true),
+      autoReadEnabled: _bool(json['autoReadEnabled'], fallback: true),
+      microphoneEnabled: _bool(json['microphoneEnabled'], fallback: false),
+      scannerEnabled: _bool(json['scannerEnabled'], fallback: false),
+      aiProxyEnabled: _bool(json['aiProxyEnabled'], fallback: false),
+      aiLearningMode: AiLearningModeX.fromName(
+        json['aiLearningMode'] is String
+            ? json['aiLearningMode'] as String
+            : null,
       ),
       aiProxyUrl: _safeProxyUrl(json['aiProxyUrl']),
-      reduceAnimations: json['reduceAnimations'] as bool? ?? false,
-      largeText: json['largeText'] as bool? ?? false,
-      calmMode: json['calmMode'] as bool? ?? false,
-      learningMode: LearningModeX.fromName(json['learningMode'] as String?),
-      voiceRate: _doubleRange(json['voiceRate'], fallback: 0.35, min: 0.25, max: 0.55,
+      reduceAnimations: _bool(json['reduceAnimations'], fallback: false),
+      largeText: _bool(json['largeText'], fallback: false),
+      calmMode: _bool(json['calmMode'], fallback: false),
+      learningMode: LearningModeX.fromName(json['learningMode'] is String
+          ? json['learningMode'] as String
+          : null),
+      voiceRate: _doubleRange(
+        json['voiceRate'],
+        fallback: 0.35,
+        min: 0.25,
+        max: 0.55,
       ),
-      voicePitch: _doubleRange(json['voicePitch'], fallback: 1.0, min: 0.85, max: 1.18,
+      voicePitch: _doubleRange(
+        json['voicePitch'],
+        fallback: 1.0,
+        min: 0.85,
+        max: 1.18,
       ),
     );
   }
 
-  static int _intIn(dynamic value, {required int fallback, required List<int> allowed,
+  static bool _bool(dynamic value, {required bool fallback}) =>
+      value is bool ? value : fallback;
+
+  static int _intIn(
+    dynamic value, {
+    required int fallback,
+    required List<int> allowed,
   }) {
     final parsed = value is int ? value : int.tryParse(value?.toString() ?? '');
     if (parsed != null && allowed.contains(parsed)) return parsed;
     return fallback;
   }
 
-  static double _doubleRange(dynamic value, {required double fallback, required double min, required double max,
+  static double _doubleRange(
+    dynamic value, {
+    required double fallback,
+    required double min,
+    required double max,
   }) {
-    final parsed = value is num ? value.toDouble() : double.tryParse(value?.toString() ?? '');
+    final parsed = value is num
+        ? value.toDouble()
+        : double.tryParse(value?.toString() ?? '');
     if (parsed == null) return fallback;
     return parsed.clamp(min, max).toDouble();
   }
@@ -151,7 +171,8 @@ class AppSettings {
     final trimmed = raw?.trim() ?? '';
     if (trimmed.isEmpty) return defaultAiProxyUrl;
     final uri = Uri.tryParse(trimmed);
-    if (uri == null || !uri.hasScheme || uri.host.isEmpty) return defaultAiProxyUrl;
+    if (uri == null || !uri.hasScheme || uri.host.isEmpty)
+      return defaultAiProxyUrl;
     if (uri.scheme != 'https' && uri.scheme != 'http') return defaultAiProxyUrl;
     if (uri.userInfo.isNotEmpty) return defaultAiProxyUrl;
     // Eingefuegte Health-Links enthalten oft '?' oder einen Fragment-Anker.
@@ -180,7 +201,7 @@ class AppSettings {
     while (changed) {
       changed = false;
       for (final suffix in const <String>['/health', '/chat', '/tasks', '/']) {
-        if (out.endsWith(suffix) ) {
+        if (out.endsWith(suffix)) {
           out = out.substring(0, out.length - suffix.length);
           changed = true;
         }

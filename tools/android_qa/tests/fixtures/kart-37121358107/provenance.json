@@ -1,0 +1,19 @@
+{
+  "run_id": 37121358107,
+  "apk_version_code": 277,
+  "description": "Unmodified real API35 KVM Android screenshots. OCR preprocessing only occurs in memory. Captions and touch positions must be derived from their actual pixels.",
+  "files": {
+    "033-race.png": {
+      "sha256": "ba278e19de54f1596ab3f97a97d57281105de34399b149cbd4fabeda253b8d2e",
+      "bytes": 221642
+    },
+    "022-race.png": {
+      "sha256": "5076624c40eadce2d6b0b61560f6b1e18666b74552f391a94a5a0ad403fc48ec",
+      "bytes": 205365
+    },
+    "016-wrong-local-hint.png": {
+      "sha256": "1fada5bfc39df802bf6c62414c18d7a85936340181faf264938808d6261693ba",
+      "bytes": 214253
+    }
+  }
+}

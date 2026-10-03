@@ -1,0 +1,26 @@
+[
+  {
+    "utc": "2026-10-03T06:18:02.511589+00:00",
+    "endpoint": "https://lumo-ai-proxy.onrender.com/health",
+    "status": 200,
+    "payload": {
+      "ok": true,
+      "service": "lumo-ai-proxy",
+      "version": "2026-10-02-restart",
+      "openAiConfigured": true,
+      "upstreamStatus": "not_checked",
+      "chatModel": "gpt-6-luna",
+      "taskModel": "gpt-6-luna"
+    }
+  },
+  {
+    "utc": "2026-10-03T06:18:04.370155+00:00",
+    "endpoint": "https://lumo-ai-proxy.onrender.com/chat",
+    "status": 503,
+    "payload": {
+      "error": "proxy_error",
+      "reason": "openai_rate_limited",
+      "reply": "Ich kann gerade nicht mit dem KI-Server sprechen. Wir können trotzdem Mathe, Deutsch oder Lesen üben."
+    }
+  }
+]

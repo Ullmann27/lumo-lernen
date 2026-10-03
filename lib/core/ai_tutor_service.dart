@@ -1,6 +1,8 @@
 import 'ai_task_cache.dart';
 import 'app_settings.dart';
 import 'learning_profile_engine.dart';
+import 'lumo_ai_learning_access.dart';
+import 'lumo_ai_learning_policy_bridge.dart';
 import 'lumo_ai_proxy_client.dart';
 import 'school_exercise_generator.dart';
 import 'task_quality_guard.dart';
@@ -42,7 +44,7 @@ class AiTutorService {
     required int grade,
     required String subject,
   }) async {
-    if (!settings.aiProxyEnabled) {
+    if (!settings.lumoAiLearningAccess.allows(LumoAiLearningArea.taskHelp)) {
       return const AiTutorRefillResult(skipped: true, reason: 'proxy_disabled');
     }
     final fresh = await _cache.freshCount(

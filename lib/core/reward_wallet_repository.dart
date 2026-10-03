@@ -9,6 +9,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,6 +22,8 @@ class RewardWallet {
     this.streak = 0,
     this.totalEarnedStars = 0,
     this.lastDailyKey = '',
+    this.gameResultIds = const <String>[],
+    this.lumoCardsWinStreak = 0,
   });
 
   final int stars;
@@ -28,8 +31,15 @@ class RewardWallet {
   final int level;
   final int streak;
   final int totalEarnedStars;
+
   /// Format: yyyy-mm-dd des letzten Lerntages, fuer Streak-Berechnung.
   final String lastDailyKey;
+
+  /// IDs live in the same persisted snapshot as their reward, for crash-safe replay.
+  final List<String> gameResultIds;
+
+  /// Consecutive Cards wins share the same transaction as their Stars and XP.
+  final int lumoCardsWinStreak;
 
   RewardWallet copyWith({
     int? stars,
@@ -38,6 +48,8 @@ class RewardWallet {
     int? streak,
     int? totalEarnedStars,
     String? lastDailyKey,
+    List<String>? gameResultIds,
+    int? lumoCardsWinStreak,
   }) {
     return RewardWallet(
       stars: stars ?? this.stars,
@@ -46,6 +58,8 @@ class RewardWallet {
       streak: streak ?? this.streak,
       totalEarnedStars: totalEarnedStars ?? this.totalEarnedStars,
       lastDailyKey: lastDailyKey ?? this.lastDailyKey,
+      gameResultIds: gameResultIds ?? this.gameResultIds,
+      lumoCardsWinStreak: lumoCardsWinStreak ?? this.lumoCardsWinStreak,
     );
   }
 
@@ -56,6 +70,8 @@ class RewardWallet {
         'streak': streak,
         'totalEarnedStars': totalEarnedStars,
         'lastDailyKey': lastDailyKey,
+        'gameResultIds': gameResultIds,
+        'lumoCardsWinStreak': lumoCardsWinStreak,
       };
 
   factory RewardWallet.fromJson(Map<String, dynamic> j) => RewardWallet(
@@ -65,6 +81,12 @@ class RewardWallet {
         streak: (j['streak'] as int?) ?? 0,
         totalEarnedStars: (j['totalEarnedStars'] as int?) ?? 0,
         lastDailyKey: (j['lastDailyKey'] as String?) ?? '',
+        gameResultIds:
+            (j['gameResultIds'] as List?)?.whereType<String>().toList() ??
+                const <String>[],
+        lumoCardsWinStreak: j['lumoCardsWinStreak'] is int
+            ? (j['lumoCardsWinStreak'] as int).clamp(0, 999999)
+            : 0,
       );
 
   @override
@@ -74,8 +96,8 @@ class RewardWallet {
 
 /// Persistente Wallet mit Lazy-Load + Write-Through.
 class RewardWalletRepository {
-  RewardWalletRepository._();
-  static final RewardWalletRepository instance = RewardWalletRepository._();
+  RewardWalletRepository();
+  static final RewardWalletRepository instance = RewardWalletRepository();
 
   static const _storageKey = 'lumo_reward_wallet_v1';
   static const _legacyStarsKey = 'lumo_legacy_stars';
@@ -84,7 +106,9 @@ class RewardWalletRepository {
   RewardWallet _wallet = const RewardWallet();
   bool _loaded = false;
   Future<RewardWallet>? _loadFuture;
-  Future<void> _pendingWrites = Future<void>.value();
+  // Every balance change shares this queue. A failed transaction cannot roll
+  // back a later lesson reward, reset, or another completed game.
+  Future<void> _mutations = Future<void>.value();
   final _controller = StreamController<RewardWallet>.broadcast();
 
   /// Stream, der bei jeder Aenderung den neuen Wallet-Stand emittiert.
@@ -115,7 +139,10 @@ class RewardWalletRepository {
         }
       } else {
         // Legacy-Migration falls vorhanden
-        final legacyStars = prefs.getInt(_legacyStarsKey) ?? 0;
+        final storedStars = prefs.getInt(_legacyStarsKey) ?? 0;
+        final shopStars = _legacyShopStars(prefs);
+        // These were two mirrors of the same balance, not separate earnings.
+        final legacyStars = storedStars > shopStars ? storedStars : shopStars;
         final legacyXp = prefs.getInt(_legacyXpKey) ?? 0;
         if (legacyStars > 0 || legacyXp > 0) {
           _wallet = RewardWallet(
@@ -124,7 +151,14 @@ class RewardWalletRepository {
             level: 1 + (legacyXp ~/ 400),
             totalEarnedStars: legacyStars,
           );
-          await _persist();
+        }
+        // Persist even an empty wallet: an explicit zero must not later be
+        // replaced by an old shop snapshot after rewards have been spent.
+        try {
+          await _persist(_wallet);
+        } catch (_) {
+          // Keep successfully read legacy balances. The next real transaction
+          // includes them and retries persistence; loading never spends them.
         }
       }
     } catch (_) {
@@ -136,78 +170,149 @@ class RewardWalletRepository {
   }
 
   /// Sterne dazugeben. Sofort persistent gespeichert.
-  Future<RewardWallet> addStars(int delta) async {
-    if (!_loaded) await load();
-    if (delta == 0) return _wallet;
-    final newStars = (_wallet.stars + delta).clamp(0, 999999);
-    final newTotal = _wallet.totalEarnedStars + (delta > 0 ? delta : 0);
-    _wallet = _wallet.copyWith(
-      stars: newStars,
-      totalEarnedStars: newTotal);
-    await _persist();
-    _emit();
-    return _wallet;
-  }
+  Future<RewardWallet> addStars(int delta) =>
+      applyRewardDelta(starsDelta: delta);
 
   /// XP dazugeben + Level-Berechnung.
-  Future<RewardWallet> addXp(int delta) async {
-    if (!_loaded) await load();
-    if (delta == 0) return _wallet;
-    final newXp = (_wallet.xp + delta).clamp(0, 9999999);
-    // Gleiche 400-XP-Stufen wie App-State und RewardEngine.
-    final newLevel = 1 + (newXp ~/ 400);
-    _wallet = _wallet.copyWith(xp: newXp, level: newLevel);
-    await _persist();
-    _emit();
-    return _wallet;
-  }
+  Future<RewardWallet> addXp(int delta) => applyRewardDelta(xpDelta: delta);
+
+  /// Persists both parts of one lesson reward in one transaction. Failure means
+  /// neither part was committed; the caller may retry the complete delta.
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+  }) =>
+      _transaction((current) async {
+        if (starsDelta == 0 && xpDelta == 0) return current;
+        final nextXp = (current.xp + xpDelta).clamp(0, 9999999);
+        return _commit(current.copyWith(
+          stars: (current.stars + starsDelta).clamp(0, 999999),
+          totalEarnedStars:
+              current.totalEarnedStars + (starsDelta > 0 ? starsDelta : 0),
+          xp: nextXp,
+          level: 1 + nextXp ~/ 400,
+        ));
+      });
+
+  /// Awards one completed native race exactly once, including after process death.
+  Future<RewardWallet> awardGameResult({
+    required String resultId,
+    required int stars,
+    required int xp,
+  }) =>
+      _transaction((current) async {
+        if (resultId.isEmpty ||
+            resultId.length > 160 ||
+            stars < 0 ||
+            stars > 100 ||
+            xp < 0 ||
+            xp > 1000) {
+          throw ArgumentError('Ungültiges Spielergebnis');
+        }
+        if (current.gameResultIds.contains(resultId)) return current;
+        final nextXp = (current.xp + xp).clamp(0, 9999999);
+        return _commit(current.copyWith(
+          stars: (current.stars + stars).clamp(0, 999999),
+          totalEarnedStars: current.totalEarnedStars + stars,
+          xp: nextXp,
+          level: 1 + nextXp ~/ 400,
+          gameResultIds: [...current.gameResultIds, resultId],
+        ));
+      });
+
+  /// Cards reward, win sequence, and XP either all persist or all remain pending.
+  Future<RewardWallet> awardLumoCardsResult({required bool won}) =>
+      _transaction((current) async {
+        final nextStreak =
+            won ? (current.lumoCardsWinStreak + 1).clamp(0, 999999) : 0;
+        final stars = won ? (2 + nextStreak).clamp(3, 6) : 1;
+        final xp = won ? 15 + nextStreak * 5 : 0;
+        final nextXp = (current.xp + xp).clamp(0, 9999999);
+        return _commit(current.copyWith(
+          stars: (current.stars + stars).clamp(0, 999999),
+          totalEarnedStars: current.totalEarnedStars + stars,
+          xp: nextXp,
+          level: 1 + nextXp ~/ 400,
+          lumoCardsWinStreak: nextStreak,
+        ));
+      });
 
   /// Markiere heutigen Lerntag - aktualisiert Streak.
-  Future<RewardWallet> markDailyActivity() async {
-    if (!_loaded) await load();
-    final today = _todayKey();
-    if (_wallet.lastDailyKey == today) return _wallet;
-    int newStreak = 1;
-    if (_wallet.lastDailyKey.isNotEmpty) {
-      final last = DateTime.tryParse(_wallet.lastDailyKey);
-      if (last != null) {
-        final diff = DateTime.now().difference(last).inDays;
-        if (diff == 1) {
-          newStreak = _wallet.streak + 1;
-        } else if (diff > 1) {
-          newStreak = 1;
-        } else {
-          newStreak = _wallet.streak; // gleicher Tag = nicht aendern
+  Future<RewardWallet> markDailyActivity() => _transaction((current) async {
+        final today = _todayKey();
+        if (current.lastDailyKey == today) return current;
+        int newStreak = 1;
+        if (current.lastDailyKey.isNotEmpty) {
+          final last = DateTime.tryParse(current.lastDailyKey);
+          if (last != null) {
+            final diff = DateTime.now().difference(last).inDays;
+            if (diff == 1) {
+              newStreak = current.streak + 1;
+            } else if (diff > 1) {
+              newStreak = 1;
+            } else {
+              newStreak = current.streak; // gleicher Tag = nicht aendern
+            }
+          }
         }
-      }
-    }
-    _wallet = _wallet.copyWith(streak: newStreak, lastDailyKey: today);
-    await _persist();
-    _emit();
-    return _wallet;
-  }
+        return _commit(
+            current.copyWith(streak: newStreak, lastDailyKey: today));
+      });
 
   /// Reset (z.B. fuer Profil-Wechsel oder Eltern-Sperre).
-  Future<void> reset() async {
-    if (_loadFuture != null) await _loadFuture;
-    _wallet = const RewardWallet();
-    _loaded = true;
-    await _persist();
+  Future<void> reset() =>
+      _transaction((_) => _commit(const RewardWallet())).then<void>((_) {});
+
+  Future<RewardWallet> _transaction(
+    Future<RewardWallet> Function(RewardWallet current) operation,
+  ) {
+    final pending = _mutations.then((_) async {
+      await load();
+      return operation(_wallet);
+    });
+    // A failed operation is reported to its caller but must not poison the
+    // queue: later rewards and replay of the failed native event still run.
+    _mutations =
+        pending.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    return pending;
+  }
+
+  Future<RewardWallet> _commit(RewardWallet next) async {
+    // Balance and result identities are persisted in one snapshot before any
+    // subscriber can observe them. Failure leaves the previous state intact.
+    await _persist(next);
+    _wallet = next;
     _emit();
+    return next;
   }
 
   // ── Interna ───────────────────────────────────────────────────────
-  Future<void> _persist() {
-    final serialized = _encode(_wallet.toJson());
-    _pendingWrites = _pendingWrites.then((_) async {
+  int _legacyShopStars(SharedPreferences prefs) {
     try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_storageKey, serialized);
+      final profileRaw = prefs.getString('lumo_active_profile');
+      final profile = profileRaw == null ? null : jsonDecode(profileRaw);
+      final name =
+          profile is Map ? (profile['name'] as String? ?? 'Lena') : 'Lena';
+      final grade =
+          profile is Map ? (profile['grade'] as num?)?.toInt() ?? 1 : 1;
+      final safeName = name.trim().isEmpty
+          ? 'kind'
+          : name.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+      final raw = prefs.getString('lumo.reward_shop.local_${safeName}_$grade');
+      if (raw == null) return 0;
+      final shop = jsonDecode(raw);
+      if (shop is! Map) return 0;
+      return ((shop['availableStars'] as num?)?.toInt() ?? 0).clamp(0, 999999);
     } catch (_) {
-      // Fehler beim Speichern ist nicht App-kritisch.
-      }
-  });
-    return _pendingWrites;
+      return 0;
+    }
+  }
+
+  Future<void> _persist(RewardWallet snapshot) async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved =
+        await prefs.setString(_storageKey, _encode(snapshot.toJson()));
+    if (!saved) throw StateError('Belohnung konnte nicht gespeichert werden');
   }
 
   void _emit() {
@@ -223,59 +328,12 @@ class RewardWalletRepository {
   }
 
   String _encode(Map<String, dynamic> m) {
-    // Simple inline JSON encode without dart:convert dependency duplication
-    // We rely on shared_preferences storing strings - use minimalist encoding
-    final parts = <String>[];
-    m.forEach((k, v) {
-      parts.add('"$k":${v is String ? '"$v"' : v}');
-    });
-    return '{${parts.join(',')}}';
+    return jsonEncode(m);
   }
 
   Map<String, dynamic> _decode(String json) {
-    final result = <String, dynamic>{};
-    // Minimal JSON-Parser fuer unsere flachen Wallet-Objekte.
-    final body = json.trim();
-    if (!body.startsWith('{') || !body.endsWith('}')) return result;
-    final inner = body.substring(1, body.length - 1);
-    final parts = _splitTopLevel(inner);
-    for (final part in parts) {
-      final colon = part.indexOf(':');
-      if (colon < 0) continue;
-      var key = part.substring(0, colon).trim();
-      var val = part.substring(colon + 1).trim();
-      if (key.startsWith('"') && key.endsWith('"')) {
-        key = key.substring(1, key.length - 1);
-      }
-      if (val.startsWith('"') && val.endsWith('"')) {
-        result[key] = val.substring(1, val.length - 1);
-      } else {
-        result[key] = int.tryParse(val) ?? 0;
-      }
-    }
-    return result;
-  }
-
-  List<String> _splitTopLevel(String s) {
-    final out = <String>[];
-    int depth = 0;
-    bool inStr = false;
-    var buf = StringBuffer();
-    for (var i = 0; i < s.length; i++) {
-      final c = s[i];
-      if (c == '"' && (i == 0 || s[i - 1] != '\\')) inStr = !inStr;
-      if (!inStr) {
-        if (c == '{' || c == '[') depth++;
-        if (c == '}' || c == ']') depth--;
-        if (c == ',' && depth == 0) {
-          out.add(buf.toString());
-          buf = StringBuffer();
-          continue;
-        }
-      }
-      buf.write(c);
-    }
-    if (buf.isNotEmpty) out.add(buf.toString());
-    return out;
+    final decoded = jsonDecode(json);
+    if (decoded is Map<String, dynamic>) return decoded;
+    throw const FormatException('Invalid wallet');
   }
 }

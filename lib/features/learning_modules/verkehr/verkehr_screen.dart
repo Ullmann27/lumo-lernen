@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
+import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
 
 class _VerkehrFrage {
@@ -27,6 +28,7 @@ class _VerkehrFrage {
   final String frage;
   final String richtig;
   final List<String> falsch;
+
   /// Optionaler kurzer Lern-Kontext nach der Antwort
   final String? kontext;
 }
@@ -91,7 +93,11 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     _VerkehrFrage(
       frage: 'Was siehst du an einem Stoppschild?',
       richtig: 'Ein rotes Achteck',
-      falsch: ['Einen grünen Kreis', 'Ein blaues Dreieck', 'Einen gelben Stern'],
+      falsch: [
+        'Einen grünen Kreis',
+        'Ein blaues Dreieck',
+        'Einen gelben Stern'
+      ],
     ),
     _VerkehrFrage(
       frage: 'Im Auto sitzt du wo?',
@@ -117,6 +123,8 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     ),
   ];
 
+  late final LearningModuleProgress _progress;
+
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
@@ -134,6 +142,11 @@ class _VerkehrScreenState extends State<VerkehrScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Sachunterricht',
+      unit: 'Verkehr',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -147,6 +160,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -178,18 +192,22 @@ class _VerkehrScreenState extends State<VerkehrScreen>
   }
 
   void _onAnswer(int idx) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedIdx = idx;
       _answered = true;
     });
     final isCorrect = idx == _correctIdx;
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 8 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(8);
       try {
         LumoVoice.instance.speak('Richtig! ${_aktuelle.kontext ?? ""}');
       } catch (_) {}
@@ -201,9 +219,9 @@ class _VerkehrScreenState extends State<VerkehrScreen>
             'Schau nochmal - richtig ist: ${_aktuelle.richtig}. ${_aktuelle.kontext ?? ""}');
       } catch (_) {}
     }
-    await Future.delayed(
+    final canAdvance = await _progress.feedbackDelay(
         Duration(milliseconds: _aktuelle.kontext != null ? 2200 : 1500));
-    if (!mounted) return;
+    if (!canAdvance || !mounted) return;
     _nextTask();
   }
 
@@ -220,21 +238,23 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  void _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 12);
+    final saved = await _progress.saveBonus(
+      stars: stars,
+      xp: _correctCount * 12,
+    );
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🚦 Verkehrs-Quiz fertig!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks richtig!',
               style: const TextStyle(
@@ -284,34 +304,36 @@ class _VerkehrScreenState extends State<VerkehrScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildFrageHeader(),
-                  if (_answered && _aktuelle.kontext != null) ...[
-                    const SizedBox(height: 12),
-                    _buildKontextBox(),
-                  ],
-                  const SizedBox(height: 20),
-                  _buildOptions(),
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildFrageHeader(),
+                      if (_answered && _aktuelle.kontext != null) ...[
+                        const SizedBox(height: 12),
+                        _buildKontextBox(),
+                      ],
+                      const SizedBox(height: 20),
+                      _buildOptions(),
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -319,13 +341,12 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
         Expanded(
@@ -352,8 +373,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -373,8 +393,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),

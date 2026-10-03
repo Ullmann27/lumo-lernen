@@ -23,7 +23,9 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
+import '../../../core/game_progress_repository.dart';
 import '../../../domain/games/game_level_model.dart';
+import '../shared/lumo_game_pause_scope.dart';
 
 class LetterFillGame extends StatefulWidget {
   const LetterFillGame({
@@ -69,6 +71,9 @@ class _LetterFillGameState extends State<LetterFillGame> {
     _FillTask('PFERD', 2, '🐎'),
   ];
 
+  bool _finished = false;
+  final _clock = LumoGameTurnClock();
+
   static const int _tasksPerRound = 6;
 
   final math.Random _rng = math.Random();
@@ -104,7 +109,7 @@ class _LetterFillGameState extends State<LetterFillGame> {
   late List<String> _currentChoices = _choices();
 
   void _pickLetter(String letter) {
-    if (_showFeedback) return;
+    if (_clock.value || _finished || _showFeedback) return;
     HapticFeedback.lightImpact();
     final correct = _current.word[_current.gapIndex];
     setState(() {
@@ -114,7 +119,7 @@ class _LetterFillGameState extends State<LetterFillGame> {
       if (_wasCorrect) _correct++;
     });
     HapticFeedback.mediumImpact();
-    Future.delayed(const Duration(milliseconds: 1400), _nextTask);
+    _clock.schedule(const Duration(milliseconds: 1400), _nextTask);
   }
 
   void _nextTask() {
@@ -131,19 +136,37 @@ class _LetterFillGameState extends State<LetterFillGame> {
     });
   }
 
-  void _finishRound() {
+  Future<void> _finishRound() async {
+    if (_finished) return;
+    _finished = true;
     final stars = (_correct * 5 / _tasksPerRound).round().clamp(1, 5);
     widget.appState.addStars(stars);
     widget.appState.addXp(_correct * 8);
 
+    final state = widget.appState.state;
+    final name = state.childName.trim().isEmpty
+        ? 'kind'
+        : state.childName
+            .trim()
+            .toLowerCase()
+            .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    await const GameProgressRepository().recordResult(
+      childId: 'local_${name}_${state.grade}',
+      levelId: widget.level.id,
+      starsEarned: stars.clamp(1, widget.level.maxStars),
+    );
+    if (!mounted) return;
+
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => AlertDialog(
+      builder: (_) => LumoGameResultBack(
+          child: AlertDialog(
         backgroundColor: const Color(0xFFFEF3C7),
         title: const Text('Geschafft! 🦊',
             textAlign: TextAlign.center,
-            style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('Du hast $_correct von ${_roundTasks.length} richtig.',
               style: const TextStyle(fontFamily: 'Nunito', fontSize: 15)),
@@ -160,6 +183,12 @@ class _LetterFillGameState extends State<LetterFillGame> {
         ]),
         actions: [
           TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _restartRound();
+              },
+              child: const Text('Nochmal!')),
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
@@ -169,153 +198,184 @@ class _LetterFillGameState extends State<LetterFillGame> {
                     fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
           ),
         ],
-      ),
+      )),
     );
   }
 
   @override
+  void dispose() {
+    _clock.dispose();
+    super.dispose();
+  }
+
+  void _restartRound() {
+    _clock.cancel();
+    setState(() {
+      _finished = false;
+      _correct = 0;
+      _taskIndex = 0;
+      _selectedLetter = null;
+      _showFeedback = false;
+      _wasCorrect = false;
+      _roundTasks = (List<_FillTask>.from(_bank)..shuffle(_rng))
+          .take(_tasksPerRound)
+          .toList();
+      _currentChoices = _choices();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEDE9FE),
-      appBar: AppBar(
-        backgroundColor: LumoColors.purple,
-        foregroundColor: Colors.white,
-        title: Text(widget.level.title,
-            style:
-                const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(children: [
-            // Fortschritt
-            Row(children: [
-              Text('Wort ${_taskIndex + 1} / ${_roundTasks.length}',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFF4C1D95))),
-              const Spacer(),
-              const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 24),
-              Text(' $_correct',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: Color(0xFF4C1D95))),
-            ]),
-            const SizedBox(height: 28),
-            // Hinweis-Emoji
-            Text(_current.hint,
-                style: const TextStyle(fontSize: 100, height: 1)),
-            const SizedBox(height: 20),
-            // Wort mit Luecke
-            _buildWord(),
-            const Spacer(),
-            // 4 Buchstaben-Choices
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 4,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
-                childAspectRatio: 1.0,
-              ),
-              itemBuilder: (context, i) {
-                final letter = _currentChoices[i];
-                final correct = _current.word[_current.gapIndex];
-                final isSelected = _selectedLetter == letter;
-                Color bg = Colors.white;
-                Color border = const Color(0xFF6D28D9);
-                if (_showFeedback && isSelected) {
-                  bg = _wasCorrect
-                      ? const Color(0xFFD1FAE5)
-                      : const Color(0xFFFEE2E2);
-                  border = _wasCorrect
-                      ? const Color(0xFF059669)
-                      : const Color(0xFFDC2626);
-                }
-                if (_showFeedback && letter == correct && !isSelected) {
-                  bg = const Color(0xFFD1FAE5);
-                  border = const Color(0xFF059669);
-                }
-                return GestureDetector(
-                  onTap: () => _pickLetter(letter),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 220),
-                    decoration: BoxDecoration(
-                      color: bg,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: border, width: 2.6),
-                      boxShadow: [
-                        BoxShadow(
-                            color: border.withOpacity(0.2),
-                            blurRadius: 8,
-                            offset: const Offset(0, 3))
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(letter,
-                          style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 38,
-                              fontWeight: FontWeight.w900,
-                              color: border)),
-                    ),
+    return LumoGamePauseScope(
+        clock: _clock,
+        onRestart: _restartRound,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFEDE9FE),
+          appBar: AppBar(
+            leading: IconButton(
+                tooltip: 'Pausieren / Zurück',
+                onPressed: _clock.pause,
+                icon: const Icon(Icons.arrow_back_rounded)),
+            backgroundColor: LumoColors.purple,
+            foregroundColor: Colors.white,
+            title: Text(widget.level.title,
+                style: const TextStyle(
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+          ),
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(children: [
+                // Fortschritt
+                Row(children: [
+                  Text('Wort ${_taskIndex + 1} / ${_roundTasks.length}',
+                      style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFF4C1D95))),
+                  const Spacer(),
+                  const Icon(Icons.star_rounded,
+                      color: Color(0xFFFCD34D), size: 24),
+                  Text(' $_correct',
+                      style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xFF4C1D95))),
+                ]),
+                const SizedBox(height: 28),
+                // Hinweis-Emoji
+                Text(_current.hint,
+                    style: const TextStyle(fontSize: 100, height: 1)),
+                const SizedBox(height: 20),
+                // Wort mit Luecke
+                _buildWord(),
+                const Spacer(),
+                // 4 Buchstaben-Choices
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 4,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    childAspectRatio: 1.0,
                   ),
-                );
-              },
+                  itemBuilder: (context, i) {
+                    final letter = _currentChoices[i];
+                    final correct = _current.word[_current.gapIndex];
+                    final isSelected = _selectedLetter == letter;
+                    Color bg = Colors.white;
+                    Color border = const Color(0xFF6D28D9);
+                    if (_showFeedback && isSelected) {
+                      bg = _wasCorrect
+                          ? const Color(0xFFD1FAE5)
+                          : const Color(0xFFFEE2E2);
+                      border = _wasCorrect
+                          ? const Color(0xFF059669)
+                          : const Color(0xFFDC2626);
+                    }
+                    if (_showFeedback && letter == correct && !isSelected) {
+                      bg = const Color(0xFFD1FAE5);
+                      border = const Color(0xFF059669);
+                    }
+                    return GestureDetector(
+                      onTap: () => _pickLetter(letter),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 220),
+                        decoration: BoxDecoration(
+                          color: bg,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: border, width: 2.6),
+                          boxShadow: [
+                            BoxShadow(
+                                color: border.withOpacity(0.2),
+                                blurRadius: 8,
+                                offset: const Offset(0, 3))
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(letter,
+                              style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 38,
+                                  fontWeight: FontWeight.w900,
+                                  color: border)),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ]),
             ),
-          ]),
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   Widget _buildWord() {
     final word = _current.word;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(word.length, (i) {
-        final isGap = i == _current.gapIndex;
-        final displayChar = isGap
-            ? (_showFeedback ? word[i] : '_')
-            : word[i];
-        Color color = const Color(0xFF4C1D95);
-        if (isGap && _showFeedback) {
-          color = _wasCorrect
-              ? const Color(0xFF059669)
-              : const Color(0xFFDC2626);
-        } else if (isGap) {
-          color = LumoColors.purple;
-        }
-        return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: 48,
-          height: 64,
-          decoration: BoxDecoration(
-            color: isGap
-                ? const Color(0xFFFFFFFF).withOpacity(0.8)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
-            border: isGap
-                ? Border.all(color: LumoColors.purple, width: 2.4)
-                : null,
-          ),
-          child: Center(
-            child: Text(displayChar,
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 38,
-                    fontWeight: FontWeight.w900,
-                    color: color)),
-          ),
-        );
-      }),
-    );
+    return FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(word.length, (i) {
+            final isGap = i == _current.gapIndex;
+            final displayChar =
+                isGap ? (_showFeedback ? word[i] : '_') : word[i];
+            Color color = const Color(0xFF4C1D95);
+            if (isGap && _showFeedback) {
+              color = _wasCorrect
+                  ? const Color(0xFF059669)
+                  : const Color(0xFFDC2626);
+            } else if (isGap) {
+              color = LumoColors.purple;
+            }
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              width: 48,
+              height: 64,
+              decoration: BoxDecoration(
+                color: isGap
+                    ? const Color(0xFFFFFFFF).withOpacity(0.8)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(12),
+                border: isGap
+                    ? Border.all(color: LumoColors.purple, width: 2.4)
+                    : null,
+              ),
+              child: Center(
+                child: Text(displayChar,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 38,
+                        fontWeight: FontWeight.w900,
+                        color: color)),
+              ),
+            );
+          }),
+        ));
   }
 }
 

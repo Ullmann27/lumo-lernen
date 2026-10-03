@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
+import '../learning_module_progress.dart';
 
 class EinmaleinsScreen extends StatefulWidget {
   const EinmaleinsScreen({
@@ -39,6 +40,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
   int _taskIdx = 0;
@@ -61,6 +63,11 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: widget.fullRange ? 'Großes 1×1' : 'Kleines 1×1',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -74,6 +81,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -121,23 +129,30 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   }
 
   void _onAnswer(int answer) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = answer;
       _answered = true;
     });
     final isCorrect = answer == _correct;
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      hintUsed: _showHint,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 6 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(6);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
-      await Future.delayed(const Duration(milliseconds: 1100));
-      if (!mounted) return;
+      if (!await _progress.feedbackDelay(const Duration(milliseconds: 1100)) ||
+          !mounted) {
+        return;
+      }
       _nextTask();
     } else {
       HapticFeedback.mediumImpact();
@@ -146,12 +161,17 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       try {
         LumoVoice.instance.speak(LumoPhrases.wrongGentle());
       } catch (_) {}
-      await Future.delayed(const Duration(milliseconds: 1400));
-      if (!mounted) return;
+      if (!await _progress.feedbackDelay(const Duration(milliseconds: 1400)) ||
+          !mounted) {
+        return;
+      }
       if (_wrongAttempts >= 2) {
         setState(() => _showHint = true);
-        await Future.delayed(const Duration(milliseconds: 2800));
-        if (!mounted) return;
+        if (!await _progress
+                .feedbackDelay(const Duration(milliseconds: 2800)) ||
+            !mounted) {
+          return;
+        }
         _nextTask();
       } else {
         setState(() {
@@ -175,21 +195,21 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  Future<void> _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    final saved =
+        await _progress.saveBonus(stars: stars, xp: _correctCount * 10);
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🎉 Geschafft!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks Aufgaben richtig!',
               style: const TextStyle(
@@ -239,36 +259,38 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildTaskHeader(),
-                  const SizedBox(height: 24),
-                  _buildVisualization(),
-                  const SizedBox(height: 32),
-                  _buildAnswerGrid(),
-                  if (_showHint) ...[
-                    const SizedBox(height: 20),
-                    _buildHintCard(),
-                  ],
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildTaskHeader(),
+                      const SizedBox(height: 24),
+                      _buildVisualization(),
+                      const SizedBox(height: 32),
+                      _buildAnswerGrid(),
+                      if (_showHint) ...[
+                        const SizedBox(height: 20),
+                        _buildHintCard(),
+                      ],
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -276,8 +298,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
         boxShadow: [
           BoxShadow(
               color: _gradient[0].withOpacity(0.3),
@@ -287,9 +308,9 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () => Navigator.of(context).maybePop(),
         ),
         Expanded(
           child: Column(
@@ -317,8 +338,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -338,8 +358,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
