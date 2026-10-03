@@ -187,13 +187,30 @@ void main() {
           unit: 'Silben',
           helpLevel: LumoTutorHelpLevel.visualExplanation,
           currentPrompt: 'Wie viele Silben hat Banane?',
-          correctAnswer: 'Banane',
+          correctAnswer: '3',
           attemptCount: 3,
         ),
       );
 
       expect(visualPlan.type, LumoTutorVisualType.syllableChips);
       expect(visualPlan.word, 'Banane');
+      expect(visualPlan.parts, ['Ba', 'na', 'ne']);
+    });
+
+    test('sound visuals use the questioned word and do not reveal a choice answer', () {
+      final target = engine.suggestVisualPlan(const LumoTutorRequest(
+        mode: LumoTutorMode.miniLesson, subject: LumoTutorSubject.deutsch,
+        grade: 1, unit: 'Endlaute', helpLevel: LumoTutorHelpLevel.visualExplanation,
+        currentPrompt: 'Mit welchem Laut endet Hund?', correctAnswer: 'T',
+      ));
+      expect(target.word, 'Hund');
+      expect(target.highlight, 'end');
+      final chooseWord = engine.suggestVisualPlan(const LumoTutorRequest(
+        mode: LumoTutorMode.practiceHint, subject: LumoTutorSubject.deutsch,
+        grade: 1, unit: 'Endlaute', helpLevel: LumoTutorHelpLevel.hintOnly,
+        currentPrompt: 'Welches Wort endet mit T?', correctAnswer: 'Hund',
+      ));
+      expect(chooseWord.type, LumoTutorVisualType.none);
     });
   });
 }

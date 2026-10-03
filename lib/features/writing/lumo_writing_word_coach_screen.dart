@@ -537,6 +537,8 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
                     alignment: Alignment.centerRight,
                     child: LumoReactionCompanion(
                       mood: _companionMood,
+                      reducedMotion: widget.appState.state.settings.reduceAnimations ||
+                          widget.appState.state.settings.calmMode,
                       size: 80,
                       // Phase 3: Tap auf Lumo gibt einen Tipp zum
                       // aktuellen Diktatwort.

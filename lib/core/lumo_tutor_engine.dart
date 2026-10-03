@@ -1,4 +1,5 @@
 import 'lumo_tutor_contracts.dart';
+import 'primary_school_word_data.dart';
 import 'school_exercise_generator.dart';
 import 'task_hint_service.dart';
 
@@ -100,9 +101,13 @@ class LumoTutorEngine {
     if (request.subject == LumoTutorSubject.deutsch) {
       final unit = request.unit.toLowerCase();
       if (unit.contains('silb')) {
+        final word = RegExp(r'Silben\s+hat\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false)
+            .firstMatch(request.currentPrompt ?? '')?.group(1);
+        if (word == null) return const LumoTutorVisualPlan.none();
         return LumoTutorVisualPlan(
           type: LumoTutorVisualType.syllableChips,
-          word: request.correctAnswer,
+          word: word,
+          parts: PrimarySchoolWordData.syllablesFor(word) ?? const [],
         );
       }
       if (unit.contains('satz')) {
@@ -110,9 +115,12 @@ class LumoTutorEngine {
             type: LumoTutorVisualType.sentenceBuilder);
       }
       if (unit.contains('laut')) {
+        final word = RegExp(r'Laut\s+(?:beginnt|endet)\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false)
+            .firstMatch(request.currentPrompt ?? '')?.group(1);
+        if (word == null) return const LumoTutorVisualPlan.none();
         return LumoTutorVisualPlan(
           type: LumoTutorVisualType.soundHighlight,
-          word: request.correctAnswer,
+          word: word,
           highlight: unit.contains('end') ? 'end' : 'start',
         );
       }

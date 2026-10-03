@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../app/app_design.dart';
-import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
@@ -89,10 +88,6 @@ class _LearningContentState extends State<LearningContent> {
   late TaskInstance _taskInstance;
   DateTime _taskStartedAt = DateTime.now();
   bool _answered = false;
-  // 2026-06-05 Iter 16/A1: Lumo reagiert visuell auf Antworten.
-  // cheer = nach richtiger Antwort, think = nach falscher.
-  LumoReactionMood _reactionMood = LumoReactionMood.idle;
-  Timer? _reactionResetTimer;
   Timer? _autoAdvanceTimer;
   bool? _lastCorrect;
   RewardDelta? _lastRewardDelta;
@@ -298,8 +293,6 @@ class _LearningContentState extends State<LearningContent> {
   void _loadNextTask({bool resetCounter = false}) {
     _activeSessionScope = _sessionScope;
     _autoAdvanceTimer?.cancel();
-    _reactionResetTimer?.cancel();
-    _reactionMood = LumoReactionMood.idle;
     // Keep prompt, answer, progress and renderer on the same checked task.
     _task = _adapter.qualityCheckedTask(_nextTask());
     _rememberTask(_task);
@@ -855,15 +848,6 @@ class _LearningContentState extends State<LearningContent> {
     });
     _publishTaskContext();
 
-    // 2026-06-05 Iter 16/A1: Lumo-Reaktion setzen und nach 2.5s zurueck zu idle.
-    _reactionResetTimer?.cancel();
-    setState(() {
-      _reactionMood = correct ? LumoReactionMood.cheer : LumoReactionMood.think;
-    });
-    _reactionResetTimer = Timer(const Duration(milliseconds: 2500), () {
-      if (mounted) setState(() => _reactionMood = LumoReactionMood.idle);
-    });
-
     if (correct) {
       widget.appState.correctAnswer(_task.unit, stars: rewardDelta.stars, xp: rewardDelta.xp);
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: hintUsed,
@@ -946,7 +930,6 @@ class _LearningContentState extends State<LearningContent> {
       }
     });
     _autoAdvanceTimer?.cancel();
-    _reactionResetTimer?.cancel();
     super.dispose();
   }
 
@@ -1110,17 +1093,6 @@ class _LearningContentState extends State<LearningContent> {
           // Konfetti-Layer: feuert bei jeder richtigen Antwort.
           Positioned.fill(
             child: LumoConfettiBurst(trigger: _confettiTrigger),
-          ),
-          // 2026-06-05 Iter 16/A1: Lumo-Reaction-Companion unten rechts.
-          // Cheer-Bounce bei richtig, think bei falsch, sonst idle. 80px.
-          Positioned(
-            right: 16,
-            bottom: 16,
-            child: IgnorePointer(
-              child: LumoReactionCompanion(
-                mood: _reactionMood,
-                size: 88),
-            ),
           ),
         ],
       );

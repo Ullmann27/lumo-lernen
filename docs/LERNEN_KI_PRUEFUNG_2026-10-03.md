@@ -13,6 +13,8 @@ Die historischen Prototypen wurden nicht als Anwendungscode übernommen.
   Die aktuelle Aufgabe bleibt dabei erhalten. Multiplikation und Division
   erhalten passende Gruppenhinweise. Brüche und sachliche Fragen werden
   nicht mehr irrtümlich als Plusaufgabe mit Äpfeln dargestellt.
+  Silben- und Lauthilfe verwenden das tatsächlich erfragte Wort, statt eine
+  Silbenanzahl oder einen Lösungslaut als Wort darzustellen.
 - Ein tatsächlicher Generatorfehler wurde bei der Prüfung entdeckt:
   Bei bereits vier eigenen numerischen Antwortmöglichkeiten wurden weitere
   Zahlen angefügt. Diese konnten ebenfalls eine Logikregel erfüllen. Die
@@ -36,6 +38,9 @@ Die historischen Prototypen wurden nicht als Anwendungscode übernommen.
   wartende Sprechaufträge. Live-Pro-Mundbewegung verwendet den tatsächlichen
   Sprechstatus statt eines geschätzten Timers. Die separate Fuchsanimation
   wird in einem eigenen Arbeitsschritt überarbeitet.
+- Der redundante Fuchs über den Antwortflächen wurde entfernt. Der Begleiter
+  bleibt auf seiner reservierten Fläche. Der Wortschreib-Coach beachtet auch
+  die gespeicherte Einstellung für ruhige Animationen.
 
 ## Tatsächliche Live-KI-Prüfung
 
@@ -75,6 +80,8 @@ Belege ohne Geheimnisse und ohne echte Kinddaten:
 - Gezielte Flutterprüfungen decken Tutor, dreistufige Hilfe, Prüfungsmodus,
   KI-Freigaben/Transport/Diagnose, TTS-Mute und verweigerte Sensorfreigaben ab.
   38 Tests bestanden. Der umfassende APK-/Emulatorprüfstand folgt im Gesamtbericht.
+  Nach der Korrektur von Wortvisualisierung und Fuchsplatzierung bestanden
+  zusätzlich alle 25 ausgeführten Tutor-/Aufgabenhilfe-/Schreibprüfungen.
 - Node-Backend: 20 Regressionen bestanden; künstliche Providerantworten.
 - Flutteranalyse: keine Fehler im geprüften gemeinsamen Zwischenstand;
   vorhandene Warnungen/Hinweise bleiben im Gesamtprojekt sichtbar.
