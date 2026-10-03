@@ -1,15 +1,23 @@
-name: Test exact unified Android APK
+name: Check unified Android APK in KVM
 
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'Build saved source in this runner, or test an existing draft APK'
+        required: true
+        type: choice
+        default: build
+        options:
+          - build
+          - download
       releaseTag:
-        description: 'Existing draft release tag containing exactly one APK asset'
+        description: 'Existing draft tag: no APK for build mode, one APK for download mode'
         required: true
         type: string
       apkSha:
-        description: 'SHA-256 of that exact APK; no APK is rebuilt or published'
-        required: true
+        description: 'Required in download mode; full SHA-256 of the existing draft APK'
+        required: false
         type: string
 
 permissions:
@@ -22,7 +30,7 @@ concurrency:
 jobs:
   exact-apk:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       LUMO_QA_DIR: ${{ github.workspace }}/android-qa-evidence
       RELEASE_TAG: ${{ inputs.releaseTag }}
@@ -36,6 +44,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: subosito/flutter-action@v2
+        if: inputs.mode == 'build'
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
       - name: Install OCR and Android SDK tools
         run: |
           sudo apt-get update -qq
@@ -43,8 +57,31 @@ jobs:
           python3 -m pip install Pillow
       - uses: android-actions/setup-android@v3
         with:
-          packages: 'platform-tools build-tools;35.0.0'
+          packages: 'platform-tools build-tools;35.0.0 platforms;android-36'
+      - name: Check the saved source and empty draft before building
+        if: inputs.mode == 'build'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$LUMO_QA_DIR"
+          python3 tools/android_qa/prepare_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --out "$LUMO_QA_DIR" --preflight 2>&1 | tee "$LUMO_QA_DIR/build-preflight.log"
+      - name: Install the matching pinned Godot engine
+        if: inputs.mode == 'build'
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build the saved source and pinned Godot into one release APK
+        if: inputs.mode == 'build'
+        run: bash scripts/build_unified_apk.sh 2>&1 | tee "$LUMO_QA_DIR/build.log"
+      - name: Verify and freeze the runner-built APK bytes
+        id: built
+        if: inputs.mode == 'build'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/android_qa/prepare_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/freeze-build.log"
+          cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json "$LUMO_QA_DIR/"
       - name: Download and verify the supplied APK bytes
+        id: downloaded
+        if: inputs.mode == 'download'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -52,6 +89,13 @@ jobs:
           python3 tools/android_qa/download_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/download-check.log"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$LUMO_QA_DIR/tested.apk" > "$LUMO_QA_DIR/signature.txt"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$LUMO_QA_DIR/tested.apk" > "$LUMO_QA_DIR/apk-badging.txt"
+      - name: Record the selected APK hash and signature
+        env:
+          VERIFIED_SHA: ${{ steps.built.outputs.sha256 || steps.downloaded.outputs.sha256 }}
+        run: |
+          test -n "$VERIFIED_SHA"
+          echo "APK_SHA=$VERIFIED_SHA" >> "$GITHUB_ENV"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$LUMO_QA_DIR/tested.apk" > "$LUMO_QA_DIR/signature.txt"
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -70,6 +114,12 @@ jobs:
           emulator-options: -no-window -accel on -gpu swangle -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: >-
             bash -o pipefail -c 'python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
+      - name: Upload and re-download the same successfully tested APK into the existing draft
+        if: success() && inputs.mode == 'build'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/android_qa/upload_tested_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --evidence "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/upload-apk-check.log"
       - name: Save proof ZIP to the existing draft without publishing or changing APK bytes
         if: always()
         env:

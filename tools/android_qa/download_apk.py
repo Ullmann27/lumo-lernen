@@ -6,6 +6,7 @@ Only reads the release; no upload, rebuild, signing or publishing operation.
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -51,6 +52,9 @@ def download(repository, tag, expected, output):
              'asset_id': asset['id'], 'asset_name': asset['name'],
              'bytes': path.stat().st_size, 'sha256': actual}
     (output/'download-proof.json').write_text(json.dumps(proof, indent=2)+'\n')
+    if os.environ.get('GITHUB_OUTPUT'):
+        with Path(os.environ['GITHUB_OUTPUT']).open('a') as stream:
+            stream.write(f'sha256={actual}\n')
     print(json.dumps(proof, indent=2))
 
 

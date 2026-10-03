@@ -60,7 +60,7 @@ class Android:
 
     @staticmethod
     def bounds(node):
-        values = list(map(int, re.findall(r'\d+', node.attrib.get('bounds', ''))))
+        values = list(map(int, re.findall(r'-?\d+', node.attrib.get('bounds', ''))))
         if len(values) != 4:
             raise RuntimeError(f'Invalid bounds: {node.attrib.get("bounds")}')
         left, top, right, bottom = values

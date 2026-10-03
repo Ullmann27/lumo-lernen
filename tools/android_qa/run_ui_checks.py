@@ -13,7 +13,7 @@ import time
 import traceback
 
 from android_ui import Android, ADB
-from kart_android_race import marker, read_frame
+from kart_android_race import marker, read_frame, race_state
 
 
 def digest(path):
@@ -125,20 +125,22 @@ def main(args):
         raise RuntimeError('Actual native landscape race/resume frame did not render')
 
     try:
-        root = wait_for(["Los geht", 'Wie heißt', 'Spielen'])
-        if any('Los geht' in value for value in labels(root)):
+        root = wait_for(['Willkommen', 'Wie heißt', 'Spielen'])
+        if any('Willkommen' in value for value in labels(root)):
             device.capture('onboarding-welcome')
-            click("Los geht's!", contains=True)
+            click("Los geht's!", contains=True, scroll=True)
             wait_for(['Dein Name'])
             # Blank name intentionally uses the app's synthetic default Kind.
             device.capture('onboarding-name')
-            click('Weiter')
+            click('Weiter', scroll=True)
             wait_for(['Wie alt'])
-            click('Weiter')
+            click('Weiter', scroll=True)
             wait_for(['Klasse gehst'])
             click('1. Klasse')
             device.capture('onboarding-grade-1')
-            click('Profil speichern')
+            click('Profil speichern', scroll=True)
+        elif any('Wie heißt' in value for value in labels(root)):
+            raise RuntimeError('Unexpected partial onboarding on a fresh emulator; evidence retained')
         wait_for(['Spielen'])
         device.capture('flutter-home')
         click('Spielen', contains=True)
@@ -161,15 +163,19 @@ def main(args):
         click('Losfahren', scroll=True)
         frame = wait_native('native-fresh-process-saved-race', paused=True)
         next_pid = device.adb('shell', 'pidof', package+':lumo_game').strip()
-        if not first_pid or first_pid == next_pid:
+        if not first_pid or not next_pid or first_pid == next_pid:
             raise RuntimeError('Reopening from Flutter did not create a fresh engine PID')
+        saved_state = json.loads((args.out/'kart-race/saved-pause-before-return.json').read_text())
+        restored_state = race_state(frame)
+        if saved_state != restored_state:
+            raise RuntimeError(f'Saved/restored visible race HUD differs: {saved_state} / {restored_state}')
         button = marker(frame, 'Zur Spieleauswahl')
         if not button:
             raise RuntimeError('Resumed native pause does not expose return to games')
         device.tap(button['left']+button['width']//2, button['top']+button['height']//2)
         wait_for(['Losfahren'])
         device.capture('flutter-after-native-reopen')
-        # Main app restart with preserved profile/rewards and offline home UI.
+        # Main app restart and offline home UI; reward data has a separate test.
         device.adb('shell', 'am', 'force-stop', package)
         device.foreground(package)
         wait_for(['Spielen'])
@@ -178,6 +184,7 @@ def main(args):
             raise RuntimeError('APK input was modified during the test')
         proof = {'passed': True, **environment, 'first_engine_pid': first_pid,
                  'reopened_engine_pid': next_pid,
+                 'saved_race_hud': saved_state, 'restored_race_hud': restored_state,
                  'flow': 'Flutter Home → Spiele → Kart → full two-lap race → result → restart → Flutter → fresh native resume → Flutter offline restart',
                  'race_uses_real_physics_and_wall_time': True,
                  'no_apk_rebuild_resign_or_publish': True}

@@ -51,6 +51,35 @@ def read_frame(path):
                       'left': left, 'top': top, 'width': right-left, 'height': bottom-top})
     frame = {'width': width, 'height': height, 'words': words, 'lines': lines,
              'text': '\n'.join(line['text'] for line in lines), 'tsv': raw}
+    if marker(frame, 'Kleine Pause') or marker(frame, 'geschafft'):
+        # Raw full-screen OCR misses pale captions on purple buttons. A real
+        # central-panel crop at 2x preserves their actual screenshot positions.
+        with Image.open(path) as source:
+            origin_x, origin_y = int(.26*width), int(.155*height)
+            crop = source.crop((origin_x, origin_y, int(.738*width), int(.86*height)))
+            crop = crop.resize((crop.width*2, crop.height*2))
+            buffer = io.BytesIO(); crop.save(buffer, format='PNG')
+            central = subprocess.run(['tesseract', 'stdin', 'stdout', '--psm', '6', 'tsv'],
+                                     input=buffer.getvalue(), capture_output=True, timeout=30).stdout.decode()
+        groups = {}
+        for row in csv.DictReader(io.StringIO(central), delimiter='\t'):
+            text = row.get('text', '').strip()
+            if not text or float(row.get('conf', '-1')) < 5:
+                continue
+            box = {'left': origin_x+int(row['left'])//2, 'top': origin_y+int(row['top'])//2,
+                   'width': max(1, int(row['width'])//2), 'height': max(1, int(row['height'])//2),
+                   'text': text}
+            words.append(box)
+            groups.setdefault(tuple(row[k] for k in ('block_num', 'par_num', 'line_num')), []).append(box)
+        for group in groups.values():
+            group.sort(key=lambda word: word['left'])
+            left, top = min(word['left'] for word in group), min(word['top'] for word in group)
+            lines.append({'text': ' '.join(word['text'] for word in group), 'left': left, 'top': top,
+                          'width': max(word['left']+word['width'] for word in group)-left,
+                          'height': max(word['top']+word['height'] for word in group)-top})
+        frame['text'] = '\n'.join(line['text'] for line in lines)
+        frame['tsv'] += '\n# Additional central-panel crop, coordinate origin '
+        frame['tsv'] += f'{origin_x},{origin_y}, scale 2\n'+central
     # OCR analysis crops are temporary; the evidence PNG is always the raw
     # screencap. White numbers on the game's purple buttons need inversion.
     lesson = marker(frame, 'LERN-BOOST')
@@ -74,6 +103,17 @@ def read_frame(path):
                         words.append({'left': int(center_x-8), 'top': int(center_y-8),
                                       'width': 16, 'height': 16, 'text': output})
     return frame
+
+
+def race_state(frame):
+    state = {}
+    for key, caption in [('round', 'RUNDE'), ('place', 'PLATZ')]:
+        line = marker(frame, caption)
+        value = re.search(caption+r'\s*(\d+)\s*/\s*(\d+)', folded(line['text'])) if line else None
+        if not value:
+            raise RuntimeError(f'Cannot read the actual race HUD value {caption}')
+        state[key] = list(map(int, value.groups()))
+    return state
 
 
 def marker(frame, phrase):
@@ -247,6 +287,8 @@ def main():
         time.sleep(2)
         frame = capture('restart-paused')
     if args.return_to:
+        if args.restart:
+            (args.out/'saved-pause-before-return.json').write_text(json.dumps(race_state(frame), indent=2)+'\n')
         tap_phrase(frame, 'Zum Lernen' if args.return_to == 'learn' else 'Zur Spieleauswahl')
         # Allow native renderer shutdown; only engine PID may stop, never Flutter.
         deadline = time.monotonic()+45
