@@ -143,6 +143,21 @@ class KartActionCaptionTests(unittest.TestCase):
                          'Dein Rennen wartet. Du kannst spater hier weiterfahren.')))
         self.assertTrue(lightweight_pause_visible(frame('Leichte Grafik: an', 'Weiterfahren')))
 
+    def test_real_kvm_learning_header_targets_observed_skip_caption_inside_its_button(self):
+        # Enlarged header OCR from unchanged 013/021 PNGs, run 37119121430.
+        heading = {'text': 'LERN-BOOST- 1, KLASSE - Mathematik',
+                   'left': 135, 'top': 112, 'width': 192, 'height': 28}
+        skip = {'text': 'Spater >', 'left': 563, 'top': 122, 'width': 47, 'height': 11}
+        for image in ('013-race.png', '021-wrong-local-hint.png'):
+            with self.subTest(image=image):
+                observed = {'lines': [heading, skip]}
+                self.assertIs(action_marker(observed, 'SPATER'), skip)
+                x, y = skip['left']+skip['width']//2, skip['top']+skip['height']//2
+                self.assertEqual((x, y), (586, 127))
+                self.assertTrue(553 <= x <= 620)
+        self.assertIsNone(action_marker({'lines': [heading]}, 'SPATER'))
+        self.assertIsNone(action_marker(frame('Die nächste Lernfrage kommt später.'), 'SPATER'))
+
 
 class KartAnswerTargetTests(unittest.TestCase):
     def test_real_kvm_answer_strip_excludes_prompt_digits_for_both_answer_choices(self):

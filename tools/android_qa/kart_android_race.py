@@ -84,6 +84,36 @@ def read_frame(path):
     # screencap. White numbers on the game's purple buttons need inversion.
     lesson = marker(frame, 'LERN-BOOST')
     if lesson:
+        # Read the button beside the observed heading at its actual position.
+        # Whole-screen OCR often misses this small pale caption on teal.
+        origin_x = lesson['left']+lesson['width']
+        origin_y = max(0, int(lesson['top']-8*height/720))
+        with Image.open(path) as source:
+            header = source.crop((origin_x, origin_y, int(.9*width),
+                                  min(height, int(lesson['top']+lesson['height']+8*height/720))))
+            header = header.resize((header.width*4, header.height*4))
+            buffer = io.BytesIO(); header.save(buffer, format='PNG')
+            output = subprocess.run(['tesseract', 'stdin', 'stdout', '--psm', '11', 'tsv'],
+                                    input=buffer.getvalue(), capture_output=True, timeout=30).stdout.decode()
+        frame['tsv'] += f'\n# Learning-header OCR, origin {origin_x},{origin_y}, scale 4\n'+output
+        header_groups = {}
+        for row in csv.DictReader(io.StringIO(output), delimiter='\t'):
+            text = row.get('text', '').strip()
+            if not text or float(row.get('conf', '-1')) < 5:
+                continue
+            box = {'left': origin_x+int(row['left'])//4, 'top': origin_y+int(row['top'])//4,
+                   'width': max(1, int(row['width'])//4), 'height': max(1, int(row['height'])//4), 'text': text}
+            header_groups.setdefault(tuple(row[k] for k in ('block_num', 'par_num', 'line_num')), []).append(box)
+        for group in header_groups.values():
+            group.sort(key=lambda word: word['left'])
+            left, top = min(word['left'] for word in group), min(word['top'] for word in group)
+            candidate = {'text': ' '.join(word['text'] for word in group), 'left': left, 'top': top,
+                         'width': max(word['left']+word['width'] for word in group)-left,
+                         'height': max(word['top']+word['height'] for word in group)-top}
+            if action_marker({'lines': [candidate]}, 'SPATER'):
+                lines.append(candidate)
+                words.extend(group)
+        frame['text'] = '\n'.join(line['text'] for line in lines)
         prompts = [line for line in lines if lesson['top']+lesson['height'] < line['top'] < .37*height
                    and ('=' in line['text'] or 'WIE VIELE' in folded(line['text']))]
         if prompts:
@@ -303,14 +333,6 @@ def main():
         android.tap(x, y)
     def tap_phrase(frame, phrase):
         box = action_marker(frame, phrase)
-        if not box and folded(phrase) == 'SPATER':
-            lesson = marker(frame, 'LERN-BOOST')
-            if lesson:
-                # Actual lesson heading anchors the row; this is the source
-                # layout's right-hand skip button, not an arbitrary tap.
-                box = {'left': int(.795*frame['width'])-5,
-                       'top': lesson['top']+lesson['height']//2-5,
-                       'width': 10, 'height': 10}
         if not box:
             raise RuntimeError(f'Button absent in actual OCR frame: {phrase}')
         tap_box(box, phrase)
