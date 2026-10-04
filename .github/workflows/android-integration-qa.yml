@@ -50,10 +50,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check emulator diagnostics regressions
+      - name: Check all Android QA helper regressions
         run: |
           mkdir -p "$LUMO_QA_DIR"
-          python3 -m unittest discover -s tools/android_qa/tests -p 'test_emulator*.py' -v 2>&1 | tee "$LUMO_QA_DIR/emulator-regressions.log"
+          python3 -m pip install Pillow
+          python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v 2>&1 | tee "$LUMO_QA_DIR/android-helper-regressions.log"
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
