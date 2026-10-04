@@ -547,6 +547,18 @@ def answer_for(frame):
     return None
 
 
+def require_learning_evidence(correct, wrong_hint_observed, *, require_correct, check_wrong_hint):
+    if require_correct and correct < 1:
+        raise RuntimeError('No actual maths answer was proven; race finish alone is insufficient.')
+    if check_wrong_hint and not wrong_hint_observed:
+        raise RuntimeError('No actual wrong-answer/local-hint interaction was proven during this race.')
+
+
+def wrong_option_for(answer):
+    return next((word for word in answer['options']
+                 if int(word['text']) != answer['expected']), None)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--serial', default='emulator-5554')
@@ -637,14 +649,16 @@ def main():
     deadline = time.monotonic()+args.timeout
     correct = 0
     skipped = 0
+    wrong_hint_observed = False
     while time.monotonic() < deadline:
         frame = capture('race')
         if marker(frame, 'geschafft') and marker(frame, 'Noch ein Rennen'):
             require_second_round(second_round_capture)
             record('finished', correct_actions=correct, skipped_actions=skipped,
                    second_round_capture_sequence=second_round_capture, text=frame['text'])
-            if args.require_correct and correct < 1:
-                raise RuntimeError('No actual maths answer was proven; race finish alone is insufficient.')
+            require_learning_evidence(correct, wrong_hint_observed,
+                                      require_correct=args.require_correct,
+                                      check_wrong_hint=args.check_wrong_hint)
             break
         if lesson_visible(frame):
             answer = answer_for(frame)
@@ -660,15 +674,20 @@ def main():
                     if not re.search(r'\b[0O]\s*KM\s*/\s*H', folded(waiting['text'])):
                         raise RuntimeError('Visible learning-pause speed is not proven zero by OCR.')
                     record('real_learning_wait', wall_seconds=4, speed_zero=True)
-                    if args.check_wrong_hint:
-                        wrong = next((word for word in answer['options']
-                                      if int(word['text']) != answer['expected']), None)
-                        if not wrong:
-                            raise RuntimeError('No wrong option box could be identified safely.')
+                if args.check_wrong_hint and not wrong_hint_observed:
+                    # A safe correct answer may be visible before any wrong
+                    # option is readable. Keep driving/answering, but require
+                    # this independent wrong-answer/hint check before success.
+                    wrong = wrong_option_for(answer)
+                    if wrong:
                         tap_box(wrong, 'intentional wrong answer, inspect local hint')
                         hint = wait_frame('wrong-local-hint', local_hint_visible,
                                           'The local explanation after the wrong answer was not visible.')
                         record('wrong_answer_hint', text=hint['text'])
+                        wrong_hint_observed = True
+                    else:
+                        record('deferred_wrong_hint', reason='No safely read wrong option in this question',
+                               prompt=answer['prompt'], expected=answer['expected'])
                 tap_box(answer['option'], 'correct maths answer')
                 wait_frame('answered', lambda frame: lesson_closed_or_changed(frame, answer['prompt']),
                            'Answer touch did not close the real learning pause.')
