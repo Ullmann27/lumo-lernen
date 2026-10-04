@@ -3,7 +3,7 @@ name: Check unified Android APK in KVM
 on:
   # Explicit recovery run for the frozen Build 280, on this branch only.
   # Unmarked workflow edits do not start an emulator; manual dispatch is unchanged.
-  # Current harness requires both correct answers and the observed wrong-answer hint.
+  # Fresh UI observations are required before subsequent real touches or scrolls.
   push:
     branches: ['codex/lumo-unified-android-2026-10-03']
     paths: ['.github/workflows/android-integration-qa.yml']
@@ -182,3 +182,41 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 tools/android_qa/upload_proof.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --evidence "$LUMO_QA_DIR" --run-id "$GITHUB_RUN_ID" --attempt "$GITHUB_RUN_ATTEMPT"
+      - name: Stage only the byte-identical successfully tested APK for handover
+        if: success()
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, shutil
+          from pathlib import Path
+          evidence = Path(os.environ['LUMO_QA_DIR'])
+          result = json.loads((evidence/'result.json').read_text())
+          uploaded = json.loads((evidence/'uploaded-apk-download-proof.json').read_text())
+          expected = os.environ['APK_SHA']
+          if (result.get('passed') is not True or result.get('sha256') != expected
+                  or uploaded.get('sha256') != expected
+                  or uploaded.get('passing_test_sha256') != expected
+                  or uploaded.get('qa_harness_commit') != os.environ['GITHUB_SHA']
+                  or uploaded.get('source_kind') != 'final-apk'
+                  or uploaded.get('asset_name') != 'Lumo-Lernen-Neu.apk'
+                  or uploaded.get('release_published') is not False):
+              raise SystemExit('Missing matching successful APK handover proofs')
+          path = evidence/'tested.apk'
+          with path.open('rb') as stream:
+              if hashlib.file_digest(stream, 'sha256').hexdigest() != expected:
+                  raise SystemExit('Handover APK differs from the successful test')
+          destination = Path('handover')
+          destination.mkdir(exist_ok=False)
+          shutil.copyfile(path, destination/'Lumo-Lernen-Neu.apk')
+          shutil.copyfile(evidence/'uploaded-apk-download-proof.json', destination/'apk-download-proof.json')
+          PY
+      - name: Preserve exact proof and successful APK for direct download
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-android-280-check-${{ github.run_id }}
+          path: |
+            android-api35-qa-*.zip
+            handover/
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
