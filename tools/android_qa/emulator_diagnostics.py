@@ -13,11 +13,14 @@ import time
 FATAL = r'FATAL EXCEPTION|Fatal signal|SCRIPT ERROR|Parse Error| E godot.*ERROR:|LUMO_ASSET_ERROR(?:\s|$)'
 
 
-def verify_emulator(out, sdk, proc_root=Path('/proc')):
+def verify_emulator(out, sdk, proc_root=Path('/proc'), *, headless=False):
     """Gate the real usage script on the selected binary AND running process."""
     out.mkdir(parents=True, exist_ok=True)
     root = sdk/'emulator'
-    qemu = (root/'qemu/linux-x86_64/qemu-system-x86_64').resolve(strict=True)
+    # The -no-window launcher selects the distinct headless executable.
+    # Verify exactly that explicitly selected variant, never a basename allowlist.
+    binary_name = 'qemu-system-x86_64' + ('-headless' if headless else '')
+    qemu = (root/'qemu/linux-x86_64'/binary_name).resolve(strict=True)
     env = os.environ.copy()
     libraries = [str(root/'lib64'), str(root/'lib64/qt/lib')]
     env['LD_LIBRARY_PATH'] = ':'.join(libraries+[env.get('LD_LIBRARY_PATH', '')])
@@ -54,6 +57,7 @@ def verify_emulator(out, sdk, proc_root=Path('/proc')):
             continue
     proof = {'version': match.group(1), 'build_id': match.group(2),
              'binary': str(root/'emulator'), 'expected_qemu': str(qemu),
+             'headless': headless,
              'running_qemu': running, 'library_search_paths': libraries,
              'passed': len(running) == 1 and running[0]['executable'] == str(qemu)}
     (out/'emulator-version-proof.json').write_text(json.dumps(proof, indent=2)+'\n')
@@ -174,8 +178,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--verify-emulator', action='store_true')
+    parser.add_argument('--headless', action='store_true',
+                        help='Require the exact headless binary selected by -no-window')
     args = parser.parse_args()
+    if args.headless and not args.verify_emulator:
+        parser.error('--headless requires --verify-emulator')
     if args.verify_emulator:
-        verify_emulator(args.out, Path(os.environ['ANDROID_HOME']))
+        verify_emulator(args.out, Path(os.environ['ANDROID_HOME']), headless=args.headless)
     else:
         collect_host(args.out)
