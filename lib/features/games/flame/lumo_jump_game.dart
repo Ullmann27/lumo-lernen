@@ -1761,8 +1761,24 @@ class FoxPlayerComponent
   @override
   void update(double dt) {
     super.update(dt);
+    _keepFeetOnHeightChange();
     _updatePhysics(dt);
     _updateAnimState();
+    _keepFeetOnHeightChange();
+  }
+
+  // Die Hitbox ist beim Ducken/Rollen 52 statt 76 hoch, der Anker sitzt oben
+  // links. Ohne Ausgleich fiel Lumo beim Ducken 24 px ab und stand nach dem
+  // Loslassen 24 px tief in der Plattform - _resolveVertical erkannte ihn
+  // nicht mehr als "von oben kommend", und er fiel hindurch. Bei jeder
+  // Hoehenaenderung bleiben deshalb die Fuesse an derselben Stelle.
+  double? _appliedH;
+
+  void _keepFeetOnHeightChange() {
+    final h = _pH;
+    final previous = _appliedH;
+    if (previous != null && previous != h) position.y += previous - h;
+    _appliedH = h;
   }
 
   // ── Sprung-Tastendruck ────────────────────────────────────────────────
