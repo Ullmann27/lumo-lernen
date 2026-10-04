@@ -51,6 +51,12 @@ jobs:
           --release-tag unified-build-280
           --sha256 3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48
           --out delivery
+      - name: Include the current read-only QA source for offline regression replay
+        run: |
+          mkdir -p delivery/qa-source
+          cp -R tools/android_qa delivery/qa-source/
+          git rev-parse HEAD > delivery/qa-source/SOURCE-COMMIT.txt
+          find delivery/qa-source -type d -name __pycache__ -prune -exec rm -rf {} +
       # Transfer only: no release publishing, APK signing, rebuild or promotion.
       - uses: actions/upload-artifact@v4
         with:
