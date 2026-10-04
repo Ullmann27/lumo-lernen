@@ -45,4 +45,22 @@ await test('skipped is not presented as success',async()=>{const f=fixture();pro
 await test('success explicitly excludes APK approval',async()=>{const f=fixture();process.env.VERIFY_RESULT='success';await report(f.github,f.context,f.core);assert.match(f.writes[0].body,/TECHNISCHE PRUEFUNG BESTANDEN/);assert.match(f.writes[0].body,/KEINE APK-/);assert.match(f.writes[0].body,/abc123/);});
 await test('own bot comment updated rather than duplicated',async()=>{const f=fixture({comments:[{id:7,user:{login:'github-actions[bot]'},body:'<!-- lumo-change-review-v1 -->'}]});await report(f.github,f.context,f.core);assert.equal(f.writes[0].op,'update');assert.equal(f.writes[0].comment_id,7);});
 await test('user supplied marker cannot cause user-comment overwrite',async()=>{const f=fixture({comments:[{id:7,user:{login:'Ullmann27'},body:'<!-- lumo-change-review-v1 -->'}]});await report(f.github,f.context,f.core);assert.equal(f.writes[0].op,'create');});
-console.log(`${passed} JS metadata/report fixture tests passed.`);
+// Regression for run 37194052123: a green test job had no evidence artifact.
+const upload = workflow.split('      - name: Preserve evidence even when checks fail\n')[1]?.split('\n  report:')[0];
+assert.ok(upload, 'Evidence upload step must exist');
+await test('evidence uses one non-hidden directory for writing and upload', async()=>{
+  assert.doesNotMatch(workflow, /\.ci-results/);
+  assert.match(upload, /^          path: ci-results\/\s*$/m);
+  for (const name of ['source-sha.txt','flutter-version.txt','dart-version.txt','dependencies.log','analysis.log','tests.log','outcomes.json']) {
+    assert.ok(workflow.includes(`ci-results/${name}`), `Missing evidence output ${name}`);
+  }
+});
+await test('missing evidence blocks the job rather than merely warning', async()=>{
+  assert.match(upload, /^          if-no-files-found: error\s*$/m);
+  assert.match(upload, /^        if: always\(\)\s*$/m);
+  assert.doesNotMatch(upload, /continue-on-error:\s*true|include-hidden-files:\s*true/);
+});
+await test('workflow contract tests run in CI without ignored failures', async()=>{
+  assert.match(workflow, /      - name: Check review workflow contract\n        run: node scripts\/ci\/test_lumo_change_review\.mjs\n/);
+});
+console.log(`${passed} workflow contract and JS fixture tests passed.`);
