@@ -96,4 +96,20 @@ void main() {
             .locked,
         isFalse);
   });
+
+  test('StarsPath written-arithmetic levels do not always put the answer first',
+      () {
+    for (final id in [48, 49]) {
+      final level = GameLevelCatalog.playableLevels.firstWhere((l) => l.id == id);
+      final positions = <int>{
+        for (var i = 0; i < 20; i++)
+          GameMathTasks.starsPath(level, i)
+              .choices
+              .indexOf(GameMathTasks.starsPath(level, i).answer),
+      };
+      expect(positions.contains(-1), isFalse, reason: 'level $id answer missing');
+      expect(positions.length, greaterThan(1),
+          reason: 'level $id always shows the answer at the same position');
+    }
+  });
 }

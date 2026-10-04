@@ -77,7 +77,19 @@ abstract class GameMathTasks {
           id == 48 ? 'Schriftliche Addition' : 'Schriftliche Subtraktion';
       final template =
           MathTaskTemplates.templatesForGradeStrict(3, unit: unit).first;
-      return template.concretize(level.id * 1000 + index * 17);
+      final task = template.concretize(level.id * 1000 + index * 17);
+      // Die Vorlage liefert [Antwort, ...Ablenker]; StarsPath zeigt die
+      // Reihenfolge direkt an, sonst waere die oberste Taste immer richtig.
+      return MathConcreteTask(
+        unit: task.unit,
+        prompt: task.prompt,
+        answer: task.answer,
+        choices: [...task.choices]..shuffle(random),
+        explanation: task.explanation,
+        visual: task.visual,
+        difficulty: task.difficulty,
+        promptPattern: task.promptPattern,
+      );
     }
     final subtract = [11, 12, 17, 45].contains(id);
     final cap = switch (id) {
