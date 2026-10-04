@@ -131,7 +131,12 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
       if (cand != _correctAnswer) wrong.add(cand);
       fillCounter++;
     }
-    _answers = [_correctAnswer, ...wrong]..shuffle(_rng);
+    // "Welche Zahl ist groesser?": nur die beiden gezeigten Zahlen zur Wahl.
+    // Vorher kamen zufaellige Zahlen dazu, die kleinere fehlte oft, und eine
+    // noch groessere Zahl wurde als falsch gewertet.
+    _answers = _typ == _Zahl100FrageTyp.vergleich
+        ? ([_zahl1, _zahl2]..shuffle(_rng))
+        : ([_correctAnswer, ...wrong]..shuffle(_rng));
     _answered = false;
     _selectedAnswer = null;
   }
