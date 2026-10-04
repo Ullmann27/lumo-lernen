@@ -9,6 +9,9 @@ Die App bekommt das neue Design aus Heinz' Bildern.
 1. `docs/DESIGN_ZIEL_2026-10-04.md`: verbindliche Vorgabe, Abnahmepunkte, Etappen, Animationen
 2. `docs/DESIGN_ASSETS_2026-10-04.md`: alle Einzelbilder mit festen Dateinamen
 3. `docs/design_targets/2026-10-04/`: die elf Zielbilder
+4. `docs/LERNSTRUKTUR_LEBENDIG.md`: Lernpfad nach Anton-Prinzip und lebendige App
+5. `docs/RESPONSIVE_DEVICE_MATRIX.md`: Handy, Fold, Tablet nach logischer Breite
+6. Später: `docs/DENKTEST_KONZEPT.md` (Denk-/IQ-Abenteuer, noch nicht bauen)
 
 Rollen: Copilot (GPT-6 Luna) baut die Bildschirme. Claude koordiniert, führt `flutter analyze`
 und `flutter test` aus und prüft gegen die Bilder. Arbeitszweig `codex/lumo-unified-android-2026-10-03`,
