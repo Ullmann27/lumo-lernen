@@ -57,6 +57,16 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
   await _frames(tester);
   expect(find.text('LUMO AKADEMIE'), findsOneWidget);
+  expect(find.text('Lernen'), findsOneWidget);
+  expect(find.text('Heute lernen. Morgen mehr können!'), findsOneWidget);
+  expect(find.text('Deine Ziele'), findsOneWidget);
+  expect(find.text('0 von 3 Aufgaben geschafft'), findsOneWidget);
+  expect(find.text('Mathe'), findsOneWidget);
+  expect(find.text('Deutsch'), findsOneWidget);
+  expect(find.text('Lesen'), findsOneWidget);
+  expect(find.text('Schreiben'), findsOneWidget);
+  expect(find.text('Englisch'), findsOneWidget);
+  expect(find.text('Sachkunde'), findsOneWidget);
   await tester.ensureVisible(find.text('1. Klasse'));
   await tester.tap(find.text('1. Klasse'));
   await tester.ensureVisible(find.text('Plus bis 10'));
@@ -64,7 +74,12 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   await tester.tap(find.text('Plus bis 10'));
   await _frames(tester);
   expect(find.byType(PlusBis10Screen), findsOneWidget);
+  expect(find.text('Mathe-Abenteuer'), findsOneWidget);
   expect(find.text('Aufgabe 1 / 30'), findsOneWidget);
+  expect(find.text('Wähle die richtige Antwort aus.'), findsOneWidget);
+  expect(find.text('+5 XP'), findsOneWidget);
+  expect(find.text('Tipp'), findsOneWidget);
+  expect(find.text('Weiter'), findsOneWidget);
 }
 
 String _prompt(WidgetTester tester) => tester
