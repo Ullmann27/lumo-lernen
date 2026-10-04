@@ -73,7 +73,25 @@ void main() {
     expect(find.text('10 / 400 XP'), findsOneWidget);
     expect(find.text('Los geht’s!'), findsOneWidget);
     expect(find.text('Lernen'), findsOneWidget);
-    expect(find.byType(LumoFoxPose), findsOneWidget);
+    expect(
+      find.descendant(
+        of: find.byType(LumoTopBar),
+        matching: find.byWidgetPredicate(
+          (widget) =>
+              widget is LumoFoxPose &&
+              widget.pose == LumoDesignFoxPose.avatar,
+        ),
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is LumoFoxPose &&
+            widget.pose == LumoDesignFoxPose.thumbWink,
+      ),
+      findsOneWidget,
+    );
     expect(find.text('POSE FEHLT'), findsNothing);
     expect(tester.takeException(), isNull);
 
