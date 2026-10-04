@@ -25,10 +25,10 @@ jobs:
   transfer:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[lumo-export-280]')
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 60
     env:
-      QA_RUN_ID: ${{ github.event_name == 'push' && '37171778921' || inputs.runId }}
-      QA_COMMIT: ${{ github.event_name == 'push' && '6cd0fef6e7fece689c4409c197949acc494a64d3' || inputs.qaCommit }}
+      QA_RUN_ID: ${{ github.event_name == 'push' && '37172929269' || inputs.runId }}
+      QA_COMMIT: ${{ github.event_name == 'push' && '74113f56b41582cbfc341943e27d7b2c49d8364a' || inputs.qaCommit }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,6 +40,38 @@ jobs:
         run: |
           python3 -m pip install Pillow
           python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
+      - name: Wait only for the explicitly selected QA run to finish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, time
+          repository = os.environ['GITHUB_REPOSITORY']
+          run_id = os.environ['QA_RUN_ID']
+          expected = os.environ['QA_COMMIT']
+          if not run_id.isdigit():
+              raise SystemExit('Invalid QA run ID')
+          deadline = time.monotonic()+55*60
+          previous = None
+          while time.monotonic() < deadline:
+              run = json.loads(subprocess.check_output([
+                  'gh', 'api', f'repos/{repository}/actions/runs/{run_id}'
+              ], text=True, timeout=30))
+              if (run.get('head_sha') != expected or
+                  run.get('path') != '.github/workflows/android-integration-qa.yml' or
+                  run.get('head_branch') != 'codex/lumo-unified-android-2026-10-03'):
+                  raise SystemExit('Selected run does not match the expected QA source')
+              status = (run.get('status'), run.get('conclusion'))
+              if status != previous:
+                  print(json.dumps({'qa_run_id': int(run_id), 'status': status[0],
+                                    'conclusion': status[1]}), flush=True)
+                  previous = status
+              if status[0] == 'completed':
+                  break
+              time.sleep(30)
+          else:
+              raise SystemExit('Selected QA run did not finish within the bounded transfer wait')
+          PY
       - name: Read the completed run, its evidence and its byte-identical APK only on success
         env:
           GH_TOKEN: ${{ github.token }}
