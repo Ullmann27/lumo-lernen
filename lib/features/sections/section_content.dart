@@ -5,6 +5,8 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../rewards/reward_shop_content.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
 import '../shared/widgets/lumo_subject_tile.dart';
@@ -158,7 +160,8 @@ class SectionContent extends StatelessWidget {
           title: 'Test',
           subtitle: 'Teste dein Wissen mit kurzen kindgerechten Fragen.',
           emoji: '📋',
-          accent: LumoColors.testColor,
+          accent: LumoVisualTokens.tests,
+          testArena: true,
           cards: [
             _ActionData('Mini-Test', '10 gemischte Aufgaben zum Aufwärmen.', 'Starten', Icons.flash_on_rounded, () => _startSession(subject: 'Alle', message: 'Mini-Test\nist bereit.\nDu schaffst das!', sessionKind: LumoSessionKind.test,
               ),
@@ -341,61 +344,134 @@ class SectionContent extends StatelessWidget {
 }
 
 class _ActionPage extends StatelessWidget {
-  const _ActionPage({required this.title, required this.subtitle, required this.emoji, required this.accent, required this.cards,
+  const _ActionPage({required this.title, required this.subtitle, required this.emoji, required this.accent, required this.cards, this.testArena = false,
   });
   final String title;
   final String subtitle;
   final String emoji;
   final Color accent;
   final List<_ActionData> cards;
+  final bool testArena;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(26),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        _Header(title: title, subtitle: subtitle, emoji: emoji, accent: accent,
-          ),
-        const SizedBox(height: 18),
-        Wrap(spacing: 14, runSpacing: 14, children: cards.map((c) => _ActionCard(data: c, accent: accent)).toList(),
-          ),
-      ],
-      ),
-    );
+    return testArena
+        ? LumoSceneBackground(
+            scene: LumoScene.tests,
+            child: _pageContent(),
+          )
+        : _pageContent();
   }
+
+  Widget _pageContent() => SingleChildScrollView(
+        padding: EdgeInsets.all(testArena ? 18 : 26),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = testArena
+                ? constraints.maxWidth.clamp(0.0, 230.0).toDouble()
+                : 230.0;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _Header(
+                  title: title,
+                  subtitle: subtitle,
+                  emoji: emoji,
+                  accent: accent,
+                  testArena: testArena,
+                ),
+                const SizedBox(height: 18),
+                Wrap(
+                  spacing: 14,
+                  runSpacing: 14,
+                  children: cards
+                      .map((c) => _ActionCard(
+                            data: c,
+                            accent: accent,
+                            testArena: testArena,
+                            width: cardWidth,
+                          ))
+                      .toList(),
+                ),
+              ],
+            );
+          },
+        ),
+      );
 }
 
 class _Header extends StatelessWidget {
-  const _Header({required this.title, required this.subtitle, required this.emoji, required this.accent,
+  const _Header({required this.title, required this.subtitle, required this.emoji, required this.accent, this.testArena = false,
   });
   final String title;
   final String subtitle;
   final String emoji;
   final Color accent;
+  final bool testArena;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: lumoCard(gradient: LinearGradient(colors: [Colors.white, accent.withOpacity(.10)], begin: Alignment.topLeft, end: Alignment.bottomRight,
-        ),
-      ),
-      child: Row(children: [
-        Container(width: 64, height: 64, decoration: BoxDecoration(color: accent.withOpacity(.14), borderRadius: BorderRadius.circular(LumoRadius.lg),
-            ), child: Center(child: Text(emoji, style: const TextStyle(fontSize: 34)),
+    final content = Row(
+      children: [
+        if (testArena)
+          const LumoFoxPose(
+            pose: LumoDesignFoxPose.trophyWink,
+            size: 84,
+          )
+        else
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: accent.withOpacity(.14),
+              borderRadius: BorderRadius.circular(LumoRadius.lg),
             ),
+            child: Center(child: Text(emoji, style: const TextStyle(fontSize: 34))),
           ),
         const SizedBox(width: 16),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(title, style: LumoTextStyles.heading1),
-          const SizedBox(height: 6),
-          Text(subtitle, style: LumoTextStyles.body),
-        ],
-            ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                testArena ? 'LUMO TESTS' : title,
+                style: testArena
+                    ? const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900,
+                        color: LumoVisualTokens.white,
+                      )
+                    : LumoTextStyles.heading1,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                subtitle,
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 14,
+                  color: testArena ? LumoVisualTokens.muted : LumoColors.ink700,
+                  fontWeight: testArena ? FontWeight.w700 : FontWeight.normal,
+                ),
+              ),
+            ],
           ),
+        ),
       ],
-      ),
     );
+    return testArena
+        ? LumoGlassCard(padding: const EdgeInsets.all(12), child: content)
+        : Container(
+            padding: const EdgeInsets.all(20),
+            decoration: lumoCard(
+              gradient: LinearGradient(
+                colors: [Colors.white, accent.withOpacity(.10)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: content,
+          );
   }
 }
 
@@ -410,38 +486,64 @@ class _ActionData {
 }
 
 class _ActionCard extends StatelessWidget {
-  const _ActionCard({required this.data, required this.accent});
+  const _ActionCard({
+    required this.data,
+    required this.accent,
+    this.testArena = false,
+    this.width = 230,
+  });
   final _ActionData data;
   final Color accent;
+  final bool testArena;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: data.onTap,
       child: Container(
-        width: 230,
+        width: width,
         height: 160,
         padding: const EdgeInsets.all(16),
-        decoration: lumoCard(gradient: LinearGradient(colors: [Colors.white, accent.withOpacity(.09)], begin: Alignment.topLeft, end: Alignment.bottomRight,
-          ),
-        ),
+        decoration: testArena
+            ? BoxDecoration(
+                color: LumoVisualTokens.glass.withOpacity(.78),
+                borderRadius: BorderRadius.circular(22),
+                border: Border.all(
+                  color: LumoVisualTokens.cyan.withOpacity(.48),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: accent.withOpacity(.18),
+                    blurRadius: 18,
+                    offset: const Offset(0, 7),
+                  ),
+                ],
+              )
+            : lumoCard(
+                gradient: LinearGradient(
+                  colors: [Colors.white, accent.withOpacity(.09)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            Container(width: 38, height: 38, decoration: BoxDecoration(color: accent.withOpacity(.13), borderRadius: BorderRadius.circular(LumoRadius.sm),
+            Container(width: 38, height: 38, decoration: BoxDecoration(color: testArena ? LumoVisualTokens.glassRow : accent.withOpacity(.13), borderRadius: BorderRadius.circular(LumoRadius.sm),
                   ), child: Icon(data.icon, color: accent, size: 21),
                 ),
             const SizedBox(width: 10),
-            Expanded(child: Text(data.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.heading3.copyWith(color: accent),
+            Expanded(child: Text(data.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.heading3.copyWith(color: testArena ? LumoVisualTokens.white : accent),
                   ),
                 ),
           ],
             ),
           const SizedBox(height: 10),
-          Expanded(child: Text(data.description, style: LumoTextStyles.cardSub, maxLines: 3, overflow: TextOverflow.ellipsis,
+          Expanded(child: Text(data.description, style: testArena ? const TextStyle(fontFamily: 'Nunito', fontSize: 12, color: LumoVisualTokens.muted) : LumoTextStyles.cardSub, maxLines: 3, overflow: TextOverflow.ellipsis,
               ),
             ),
           Row(mainAxisSize: MainAxisSize.min, children: [
-            Text(data.cta, style: LumoTextStyles.cta.copyWith(color: accent),
+            Text(data.cta, style: LumoTextStyles.cta.copyWith(color: testArena ? LumoVisualTokens.cyanBright : accent),
                 ),
             const SizedBox(width: 4),
             Icon(Icons.arrow_forward_rounded, color: accent, size: 15),

@@ -974,20 +974,49 @@ class _ProblemWordsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return LumoGlassCard(
       padding: const EdgeInsets.all(14),
-      decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFFBEB), Color(0xFFFFFFFF)])),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('Übungswörter für später', style: LumoTextStyles.heading3),
-        const SizedBox(height: 8),
-        Wrap(spacing: 8, runSpacing: 8, children: words.map((word) {
-          return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(LumoRadius.pill), border: Border.all(color: LumoColors.gold.withOpacity(.35))),
-            child: Text(word, style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink700)),
-          );
-        }).toList()),
-      ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Übungswörter für später',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              color: LumoVisualTokens.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: words.map((word) {
+              return Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: LumoVisualTokens.glassRow,
+                  borderRadius: BorderRadius.circular(LumoRadius.pill),
+                  border: Border.all(
+                    color: LumoVisualTokens.gold.withOpacity(.55),
+                  ),
+                ),
+                child: Text(
+                  word,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -999,16 +1028,36 @@ class _FinishedReadingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return LumoGlassCard(
       padding: const EdgeInsets.all(18),
-      decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFDCFCE7), Color(0xFFFFFFFF)])),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('Leserunde geschafft!', style: TextStyle(fontFamily: 'Nunito', fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF14532D))),
-        const SizedBox(height: 8),
-        Text('Lumo hat deine Sätze und Übungswörter gespeichert. Morgen kann daraus eine neue Empfehlung entstehen.', style: LumoTextStyles.body.copyWith(color: const Color(0xFF166534))),
-        const SizedBox(height: 12),
-        FilledButton.icon(onPressed: onBack, icon: const Icon(Icons.home_rounded), label: const Text('Zurück')),
-      ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Leserunde geschafft!',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 22,
+              fontWeight: FontWeight.w900,
+              color: LumoVisualTokens.white,
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Lumo hat deine Sätze und Übungswörter gespeichert. Morgen kann daraus eine neue Empfehlung entstehen.',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              color: LumoVisualTokens.muted,
+            ),
+          ),
+          const SizedBox(height: 12),
+          FilledButton.icon(
+            onPressed: onBack,
+            icon: const Icon(Icons.home_rounded),
+            label: const Text('Zurück'),
+          ),
+        ],
+      ),
     );
   }
 }
