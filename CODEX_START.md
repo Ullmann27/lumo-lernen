@@ -1,8 +1,10 @@
 # Lumo – Einstieg und Fortsetzung
 
-Stand: 3. Oktober 2026. Aktiver Anwendungscode: dieses Repository.
+Stand: 4. Oktober 2026. Aktiver Anwendungscode: dieses Repository.
 
-- [Gemeinsame Flutter-/Godot-Android-App und aktueller Prüfstand](docs/UNIFIED_ANDROID_2026-10-03.md)
+- [Aktuelle APK-Übergabe, frische Android-Bildschirmabfragen und laufender Gesamttest](docs/ANDROID_LIVE_UI_2026-10-04.md).
+  Eine echte APK 0.10.5 / Build 280 wurde im Chat mit identischen geprüften Bytes als **Testversion** und ZIP bereitgestellt. Die vollständige Android-Nutzungsprüfung ist noch nicht als bestanden bestätigt. Aktueller Folgelauf: `37181279924`, QA-Commit `b98fd4a4336b660b39006aa81a58d112c8ededf8`. Vor einer neuen Erfolgsaussage seinen Original-Proof lesen; kein bloßer Logauszug ersetzt ihn.
+- [Gemeinsame Flutter-/Godot-Android-App und vorheriger Prüfstand](docs/UNIFIED_ANDROID_2026-10-03.md)
 - Fortsetzungszweig: `codex/lumo-unified-android-2026-10-03`.
 - Godot-Quelle wird in `config/godot-source.json` auf einen gespeicherten Commit festgelegt.
 - Der gemeinsame Bau erfolgt mit `bash scripts/build_unified_apk.sh` (Flutter 3.44.9, Godot 4.6.3).
