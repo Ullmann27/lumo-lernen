@@ -79,7 +79,21 @@ class HomeContent extends StatelessWidget {
             builder: (context, constraints) {
               final wide = constraints.maxWidth >= 720;
               final compact = constraints.maxWidth < 320;
-              final columns = constraints.maxWidth < 360 ? 2 : 4;
+              // Keep the primary labels wide enough to remain whole at phone
+              // and small-tablet widths. The shared tile intentionally keeps
+              // its label as one accessible paragraph, so the Home grid must
+              // provide the width rather than relying on ellipses.
+              final textScale = MediaQuery.textScalerOf(context).scale(1);
+              final columns =
+                  (constraints.maxWidth >= 300 && constraints.maxWidth < 360) ||
+                          (textScale > 1.2 &&
+                              constraints.maxWidth >= 300 &&
+                              constraints.maxWidth < 720)
+                      ? 1
+                      : constraints.maxWidth < 720
+                          ? 2
+                          : 4;
+              final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
                 LumoColorTile(
                   key: const ValueKey('home-learn'),
@@ -304,7 +318,7 @@ class HomeContent extends StatelessWidget {
                           Expanded(
                             flex: 11,
                             child: SizedBox(
-                              height: 240,
+                              height: cardHeight,
                               child: _ProgressCard(
                                 appState: appState,
                                 reduceMotion: reduceMotion,
@@ -317,6 +331,7 @@ class HomeContent extends StatelessWidget {
                             child: _MotivationCard(
                               reduceMotion: reduceMotion,
                               onLearn: () => onSection(LumoSection.learn),
+                              height: cardHeight,
                             ),
                           ),
                         ],
@@ -694,14 +709,16 @@ class _MotivationCard extends StatelessWidget {
   const _MotivationCard({
     required this.reduceMotion,
     required this.onLearn,
+    this.height = 240,
   });
 
   final bool reduceMotion;
   final VoidCallback onLearn;
+  final double height;
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: 240,
+        height: height,
         child: LumoGlassCard(
           padding: const EdgeInsets.all(8),
           child: Column(
