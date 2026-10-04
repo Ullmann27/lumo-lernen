@@ -1,0 +1,55 @@
+name: Transfer completed Android QA deliverables
+
+on:
+  push:
+    branches: ['codex/lumo-unified-android-2026-10-03']
+    paths: ['.github/workflows/android-delivery.yml']
+  workflow_dispatch:
+    inputs:
+      runId:
+        description: 'Completed Android integration QA run ID'
+        required: true
+        type: string
+      qaCommit:
+        description: 'Full QA commit SHA belonging to that completed run'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  transfer:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[lumo-export-280]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      QA_RUN_ID: ${{ github.event_name == 'push' && '37171368395' || inputs.runId }}
+      QA_COMMIT: ${{ github.event_name == 'push' && '6940f9453c9381b5f995b51af0e3c65138e5e851' || inputs.qaCommit }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check that failed or mismatched QA cannot deliver a final APK
+        run: python3 -m unittest discover -s tools/android_qa/tests -p 'test_export_delivery.py' -v
+      - name: Read the completed run, its evidence and its byte-identical APK only on success
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 tools/android_qa/export_delivery.py
+          --repository "$GITHUB_REPOSITORY"
+          --run-id "$QA_RUN_ID"
+          --expected-head "$QA_COMMIT"
+          --release-tag unified-build-280
+          --sha256 3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48
+          --out delivery
+      # Transfer only: no release publishing, APK signing, rebuild or promotion.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-android-280-${{ env.QA_RUN_ID }}
+          path: delivery/
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
