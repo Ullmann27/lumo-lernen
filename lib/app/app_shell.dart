@@ -7,7 +7,6 @@ import '../widgets/shell/left_navigation.dart';
 import 'lumo_companion_host.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
 import '../core/lumo_asset_paths.dart';
-import '../core/lumo_asset_diagnostics.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
@@ -18,7 +17,6 @@ import '../features/reading/reading_content.dart';
 import '../features/shared/widgets/lumo_section_transition.dart';
 import '../features/sections/section_content.dart';
 import '../features/settings/settings_content.dart';
-import '../features/shared/widgets/lumo_premium_effects.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../core/achievements/achievement_tracker.dart';
@@ -624,141 +622,14 @@ class _MobileLumoHeader extends StatelessWidget {
   final VoidCallback onFoxTap;
 
   @override
-  Widget build(BuildContext context) {
-    final st = appState.state;
-    final reduced = st.settings.reduceAnimations ||
-        st.settings.calmMode ||
-        MediaQuery.disableAnimationsOf(context);
-    final avatar = Container(
-      width: 52,
-      height: 52,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: LinearGradient(
-          colors: [LumoColors.orange, LumoColors.orangeLight],
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+        child: LumoTopBar(
+          appState: appState,
+          onTapStatus: onFoxTap,
+          onTapFox: onFoxTap,
         ),
-      ),
-      child: ClipOval(
-        child: Image.asset(
-          'assets/images/lumo_fox.png',
-          fit: BoxFit.cover,
-          alignment: Alignment.topCenter,
-          excludeFromSemantics: true,
-          errorBuilder: (_, error, __) {
-            reportLumoAssetError('assets/images/lumo_fox.png', error);
-            return const SizedBox.shrink();
-          },
-        ),
-      ),
-    );
-    return Container(
-      margin: const EdgeInsets.fromLTRB(8, 6, 8, 6),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [LumoColors.stageBg1, LumoColors.stageBg2],
-        ),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: Colors.white.withOpacity(.72)),
-        boxShadow: LumoShadow.card,
-      ),
-      child: Row(
-        children: [
-          // Keep accessibility/touch bounds fixed while only the art moves.
-          Semantics(
-            label: 'Lumo, dein Lernfuchs. Hilfe öffnen',
-            button: true,
-            onTap: onFoxTap,
-            excludeSemantics: true,
-            child: GestureDetector(
-              key: const ValueKey('mobile-lumo-button'),
-              excludeFromSemantics: true,
-              onTap: onFoxTap,
-              child: SizedBox(
-                width: 52,
-                height: 52,
-                child: ExcludeSemantics(
-                    child: reduced
-                        ? avatar
-                        : LumoFloating(
-                            amplitude: 3,
-                            duration: const Duration(milliseconds: 2800),
-                            child: LumoGlowPulse(
-                              color: LumoColors.orange,
-                              minBlur: 6,
-                              maxBlur: 18,
-                              child: avatar,
-                            ),
-                          )),
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  st.childName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 15,
-                    fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  st.lumoMessage.replaceAll('\n', ' '),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w800,
-                    color: LumoColors.ink600,
-                    height: 1.2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.star_rounded,
-                      size: 16, color: LumoColors.orange),
-                  Text('${st.stars}',
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w900,
-                        color: LumoColors.ink700,
-                      )),
-                ],
-              ),
-              Text(
-                'Lv ${st.level}',
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w900,
-                  color: LumoColors.orange,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+      );
 }
 
 // 2026-06-05 Iter 16/A2: Achievement-Burst-Overlay

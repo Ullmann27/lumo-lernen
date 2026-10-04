@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
-import 'package:lumo_lernen/core/lumo_companion_pose.dart';
 import 'package:lumo_lernen/theme/lumo_visual_tokens.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 
@@ -54,7 +53,7 @@ void main() {
                     ),
                   ),
                   const LumoFoxPose(
-                    pose: LumoCompanionPose.idle,
+                    pose: LumoDesignFoxPose.thumbWink,
                     size: 50,
                   ),
                 ],
@@ -74,7 +73,8 @@ void main() {
     expect(find.text('10 / 400 XP'), findsOneWidget);
     expect(find.text('Los geht’s!'), findsOneWidget);
     expect(find.text('Lernen'), findsOneWidget);
-    expect(find.text('POSE-PLATZHALTER'), findsOneWidget);
+    expect(find.byType(LumoFoxPose), findsOneWidget);
+    expect(find.text('POSE FEHLT'), findsNothing);
     expect(tester.takeException(), isNull);
 
     appState.update(appState.state.copyWith(

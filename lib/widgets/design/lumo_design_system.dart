@@ -2,9 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
-import '../../core/lumo_companion_pose.dart';
-import '../../features/companion/lumo_companion_pose_image.dart';
+import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
+
+enum LumoDesignFoxPose {
+  kartWave('fox_kart_wave', 'Lumo winkt im Kart'),
+  tabletThumb('fox_tablet_thumb', 'Lumo zeigt das Tablet und Daumen hoch'),
+  bookPoint('fox_book_point', 'Lumo zeigt auf das Buch'),
+  pointSide('fox_point_side', 'Lumo zeigt zur Seite'),
+  trophyWink('fox_trophy_wink', 'Lumo jubelt mit einem Pokal'),
+  armsOpen('fox_arms_open', 'Lumo begrüßt dich mit offenen Armen'),
+  thumbWink('fox_thumb_wink', 'Lumo zwinkert und zeigt Daumen hoch'),
+  teacherStick('fox_teacher_stick', 'Lumo erklärt mit dem Zeigestab'),
+  cheer('fox_cheer', 'Lumo jubelt'),
+  avatar('fox_avatar', 'Lumo, dein Profilbild');
+
+  const LumoDesignFoxPose(this.assetName, this.semanticLabel);
+
+  final String assetName;
+  final String semanticLabel;
+
+  String get assetPath => 'assets/lumo_design/fox/$assetName.png';
+}
 
 enum LumoScene {
   home,
@@ -232,19 +251,24 @@ class LumoTopBar extends StatelessWidget {
     super.key,
     required this.appState,
     this.onTapStatus,
+    this.onTapFox,
   });
 
   final LumoAppState appState;
   final VoidCallback? onTapStatus;
+  final VoidCallback? onTapFox;
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
         animation: appState,
-        builder: (context, _) => _buildForState(),
+        builder: (context, _) => _buildForState(context),
       );
 
-  Widget _buildForState() {
+  Widget _buildForState(BuildContext context) {
     final state = appState.state;
+    final reduceMotion = state.settings.reduceAnimations ||
+        state.settings.calmMode ||
+        MediaQuery.disableAnimationsOf(context);
     return Row(
       children: [
         const Expanded(
@@ -334,10 +358,35 @@ class LumoTopBar extends StatelessWidget {
                   radius: 24,
                   child: Row(
                     children: [
-                      const LumoFoxPose(
-                        pose: LumoCompanionPose.idle,
-                        size: 36,
-                        showPlaceholderLabel: false,
+                      Semantics(
+                        label: 'Lumo, dein Lernfuchs. Hilfe öffnen',
+                        button: true,
+                        onTap: onTapFox,
+                        excludeSemantics: true,
+                        child: GestureDetector(
+                          key: const ValueKey('mobile-lumo-button'),
+                          excludeFromSemantics: true,
+                          onTap: onTapFox,
+                          child: SizedBox(
+                            width: 52,
+                            height: 52,
+                            child: ExcludeSemantics(
+                              child: reduceMotion
+                                  ? _avatar()
+                                  : LumoFloating(
+                                      amplitude: 3,
+                                      duration:
+                                          const Duration(milliseconds: 2800),
+                                      child: LumoGlowPulse(
+                                        color: LumoVisualTokens.cyan,
+                                        minBlur: 6,
+                                        maxBlur: 18,
+                                        child: _avatar(),
+                                      ),
+                                    ),
+                            ),
+                          ),
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
@@ -409,6 +458,30 @@ class LumoTopBar extends StatelessWidget {
       ],
     );
   }
+
+  Widget _avatar() => Container(
+        width: 52,
+        height: 52,
+        padding: const EdgeInsets.all(2),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: LumoVisualTokens.glass,
+          border: Border.all(color: LumoVisualTokens.cyan, width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: LumoVisualTokens.cyan.withOpacity(.40),
+              blurRadius: 9,
+            ),
+          ],
+        ),
+        child: const ClipOval(
+          child: LumoFoxPose(
+            pose: LumoDesignFoxPose.avatar,
+            size: 44,
+          ),
+        ),
+      );
+
 }
 
 class LumoSpeechBubble extends StatelessWidget {
@@ -450,51 +523,45 @@ class LumoFoxPose extends StatelessWidget {
     super.key,
     required this.pose,
     this.size = 120,
-    this.showPlaceholderLabel = true,
   });
 
-  final LumoCompanionPose pose;
+  final LumoDesignFoxPose pose;
   final double size;
-  final bool showPlaceholderLabel;
 
   @override
   Widget build(BuildContext context) => Semantics(
         image: true,
-        label: '${pose.semanticLabel}. Vorläufiges Posenbild.',
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            LumoCompanionPoseImage(
-              pose: pose,
-              size: size,
-              showGlow: pose == LumoCompanionPose.cheer ||
-                  pose == LumoCompanionPose.surprised,
-            ),
-            if (showPlaceholderLabel)
-              Positioned(
-                bottom: 0,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: LumoVisualTokens.navigation.withOpacity(.9),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                        color: LumoVisualTokens.cyan.withOpacity(.60)),
-                  ),
-                  child: const Text(
-                    'POSE-PLATZHALTER',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 7,
-                      letterSpacing: .5,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.cyan,
-                    ),
+        label: pose.semanticLabel,
+        child: Image.asset(
+          pose.assetPath,
+          width: size,
+          height: size,
+          fit: BoxFit.contain,
+          cacheWidth: (size * 2).round(),
+          cacheHeight: (size * 2).round(),
+          errorBuilder: (context, error, stackTrace) => SizedBox(
+            width: size,
+            height: size,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: LumoVisualTokens.glass,
+                border: Border.all(color: LumoVisualTokens.cyan),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  'POSE FEHLT\n${pose.assetName}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    color: LumoVisualTokens.cyanBright,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
-          ],
+            ),
+          ),
         ),
       );
 }
