@@ -159,8 +159,9 @@ jobs:
           emulator-build: '14472402'
           disable-animations: true
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          # -no-window launches the separately packaged headless QEMU binary.
           script: >-
-            bash -e -o pipefail -c 'python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR" --verify-emulator; python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
+            bash -e -o pipefail -c 'python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR" --verify-emulator --headless; python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
       - name: Preserve host kernel and emulator crash diagnostics
         if: always()
         run: python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR"
