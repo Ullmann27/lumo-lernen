@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
@@ -69,18 +71,22 @@ class HomeContent extends StatelessWidget {
           final name = state.childName.trim().isEmpty
               ? 'Lumo-Freund'
               : state.childName.trim();
+          final reduceMotion = state.settings.reduceAnimations ||
+              state.settings.calmMode ||
+              MediaQuery.disableAnimationsOf(context);
           final recommendation = appState.topLearningRecommendation();
           return LayoutBuilder(
             builder: (context, constraints) {
               final wide = constraints.maxWidth >= 720;
               final compact = constraints.maxWidth < 320;
-              final columns = wide ? 4 : 2;
+              final columns = constraints.maxWidth < 360 ? 2 : 4;
               final actions = <Widget>[
                 LumoColorTile(
                   key: const ValueKey('home-learn'),
                   title: 'Lernen',
                   subtitle: 'Deine Fächer und Aufgaben',
                   icon: Icons.menu_book_rounded,
+                  iconAsset: 'assets/lumo_design/icons/book_open.png',
                   color: LumoVisualTokens.learning,
                   onTap: () => onSection(LumoSection.learn),
                 ),
@@ -89,6 +95,7 @@ class HomeContent extends StatelessWidget {
                   title: 'Spielen',
                   subtitle: 'Lumo Kart, Memory und mehr',
                   icon: Icons.sports_esports_rounded,
+                  iconAsset: 'assets/lumo_design/icons/gamepad.png',
                   color: LumoVisualTokens.games,
                   onTap: () => onSection(LumoSection.games),
                 ),
@@ -96,6 +103,7 @@ class HomeContent extends StatelessWidget {
                   title: 'Tests',
                   subtitle: 'Wissen überprüfen',
                   icon: Icons.assignment_rounded,
+                  iconAsset: 'assets/lumo_design/icons/trophy_gold.png',
                   color: LumoVisualTokens.tests,
                   onTap: () => onSection(LumoSection.tests),
                 ),
@@ -103,6 +111,7 @@ class HomeContent extends StatelessWidget {
                   title: 'Belohnungen',
                   subtitle: 'Sterne und Extras',
                   icon: Icons.star_rounded,
+                  iconAsset: 'assets/lumo_design/icons/treasure_chest.png',
                   color: LumoVisualTokens.rewards,
                   onTap: () => onSection(LumoSection.rewards),
                 ),
@@ -114,101 +123,140 @@ class HomeContent extends StatelessWidget {
                   key: const PageStorageKey('lumo-home-scroll'),
                   padding: EdgeInsets.fromLTRB(16, compact ? 4 : 12, 16, 24),
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Hallo, $name!',
-                                key: const ValueKey('home-greeting'),
-                                style: LumoTextStyles.heading2.copyWith(
-                                  color: LumoVisualTokens.white,
+                    _HomeEntrance(
+                      reduceMotion: reduceMotion,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Hallo, $name!',
+                                  key: const ValueKey('home-greeting'),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: LumoTextStyles.heading2.copyWith(
+                                    color: LumoVisualTokens.white,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Dein Lumo-Tag · ${state.grade}. Klasse',
-                                style: LumoTextStyles.body.copyWith(
-                                  color: LumoVisualTokens.muted,
+                                Text(
+                                  'Dein Lumo-Tag · ${state.grade}. Klasse',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: LumoTextStyles.body.copyWith(
+                                    color: LumoVisualTokens.muted,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 8),
-                              const LumoSpeechBubble(
-                                text: 'Bereit für ein neues Abenteuer?',
-                              ),
-                            ],
+                                const SizedBox(height: 8),
+                                LumoSpeechBubble(
+                                  text:
+                                      'Hallo! Bereit für ein neues Abenteuer?',
+                                  fontSize: compact ? 12 : null,
+                                  padding: compact
+                                      ? const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 8)
+                                      : null,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        LumoFoxPose(
-                          pose: LumoDesignFoxPose.kartWave,
-                          size: wide
-                              ? 178
-                              : compact
-                                  ? 88
-                                  : 112,
-                        ),
-                      ],
+                          _BreathingFox(
+                            reduceMotion: reduceMotion,
+                            child: LumoFoxPose(
+                              pose: LumoDesignFoxPose.kartWave,
+                              size: wide
+                                  ? 178
+                                  : compact
+                                      ? 88
+                                      : 112,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: compact ? 4 : 10),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        key: const ValueKey('home-kart-banner'),
-                        borderRadius: BorderRadius.circular(24),
-                        onTap: () => onSection(LumoSection.games),
-                        child: LumoGlassCard(
-                          padding: const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.sports_motorsports_rounded,
-                                color: LumoVisualTokens.cyanBright,
-                                size: 38,
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Lumo Kart',
-                                      style: LumoTextStyles.heading2.copyWith(
-                                        color: LumoVisualTokens.white,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Lernen auf der Überholspur!',
-                                      style: LumoTextStyles.body.copyWith(
-                                        color: LumoVisualTokens.muted,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Icon(Icons.arrow_forward_rounded,
-                                  color: LumoVisualTokens.cyanBright),
-                              const SizedBox(width: 8),
-                              DecoratedBox(
-                                decoration: BoxDecoration(
-                                  color: LumoVisualTokens.cyan,
-                                  borderRadius: BorderRadius.circular(14),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 6),
-                                  child: Text(
-                                    'Neu!',
-                                    style: TextStyle(
-                                      fontFamily: 'Nunito',
-                                      fontWeight: FontWeight.w900,
-                                      color: LumoVisualTokens.night,
+                    _HomeEntrance(
+                      reduceMotion: reduceMotion,
+                      delay: const Duration(milliseconds: 60),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          key: const ValueKey('home-kart-banner'),
+                          borderRadius: BorderRadius.circular(24),
+                          onTap: () => onSection(LumoSection.games),
+                          child: LumoGlassCard(
+                            padding: const EdgeInsets.all(12),
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    'assets/lumo_design/cards/game_kart.png',
+                                    key: const ValueKey('home-kart-image'),
+                                    width: compact ? 48 : 84,
+                                    height: compact ? 42 : 56,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (_, __, ___) => const Icon(
+                                      Icons.sports_motorsports_rounded,
+                                      color: LumoVisualTokens.cyanBright,
+                                      size: 38,
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Lumo Kart',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: LumoTextStyles.heading2.copyWith(
+                                          color: LumoVisualTokens.white,
+                                          fontSize: compact ? 16 : null,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Lernen auf der Überholspur!',
+                                        maxLines: compact ? 1 : 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: LumoTextStyles.body.copyWith(
+                                          color: LumoVisualTokens.muted,
+                                          fontSize: compact ? 10 : null,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                if (!compact) ...[
+                                  const Icon(Icons.arrow_forward_rounded,
+                                      color: LumoVisualTokens.cyanBright),
+                                  const SizedBox(width: 8),
+                                ],
+                                DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: LumoVisualTokens.cyan,
+                                    borderRadius: BorderRadius.circular(14),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 6),
+                                    child: Text(
+                                      'Neu!',
+                                      style: TextStyle(
+                                        fontFamily: 'Nunito',
+                                        fontWeight: FontWeight.w900,
+                                        color: LumoVisualTokens.night,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -218,10 +266,21 @@ class HomeContent extends StatelessWidget {
                       crossAxisCount: columns,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      childAspectRatio: wide ? 1.02 : .84,
+                      childAspectRatio: wide
+                          ? 1.02
+                          : columns == 4
+                              ? .66
+                              : .84,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      children: actions,
+                      children: [
+                        for (var i = 0; i < actions.length; i++)
+                          _HomeEntrance(
+                            reduceMotion: reduceMotion,
+                            delay: Duration(milliseconds: 120 + i * 60),
+                            child: actions[i],
+                          ),
+                      ],
                     ),
                     const SizedBox(height: 10),
                     Align(
@@ -239,25 +298,40 @@ class HomeContent extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    _ProgressCard(appState: appState),
-                    const SizedBox(height: 12),
-                    LumoGlassCard(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
+                    if (constraints.maxWidth >= 360)
+                      Row(
                         children: [
-                          const Expanded(
-                            child: LumoSpeechBubble(
-                              text: 'Du kannst das!',
-                              handwritten: true,
+                          Expanded(
+                            flex: 11,
+                            child: SizedBox(
+                              height: 240,
+                              child: _ProgressCard(
+                                appState: appState,
+                                reduceMotion: reduceMotion,
+                              ),
                             ),
                           ),
-                          LumoFoxPose(
-                            pose: LumoDesignFoxPose.thumbWink,
-                            size: wide ? 112 : 78,
+                          const SizedBox(width: 10),
+                          Expanded(
+                            flex: 10,
+                            child: _MotivationCard(
+                              reduceMotion: reduceMotion,
+                              onLearn: () => onSection(LumoSection.learn),
+                            ),
                           ),
                         ],
+                      )
+                    else ...[
+                      _ProgressCard(
+                        appState: appState,
+                        reduceMotion: reduceMotion,
                       ),
-                    ),
+                      const SizedBox(height: 12),
+                      _MotivationCard(
+                        reduceMotion: reduceMotion,
+                        onLearn: () => onSection(LumoSection.learn),
+                      ),
+                    ],
                     const SizedBox(height: 20),
                     Text(
                       'Das passt heute zu dir',
@@ -450,8 +524,13 @@ class HomeContent extends StatelessWidget {
 }
 
 class _ProgressCard extends StatelessWidget {
-  const _ProgressCard({required this.appState});
+  const _ProgressCard({
+    required this.appState,
+    required this.reduceMotion,
+  });
+
   final LumoAppState appState;
+  final bool reduceMotion;
 
   @override
   Widget build(BuildContext context) {
@@ -459,58 +538,357 @@ class _ProgressCard extends StatelessWidget {
     final dailyDone = appState.learningDailyDone();
     final dailyGoal = state.settings.dailyGoal.clamp(1, 500);
     return LumoGlassCard(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          'Tägliche Aufgaben',
-          style: LumoTextStyles.heading3.copyWith(
-            color: LumoVisualTokens.white,
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.event_available_rounded,
+                  color: LumoVisualTokens.cyanBright, size: 19),
+              const SizedBox(width: 5),
+              Expanded(
+                child: Text(
+                  'Tägliche Aufgaben',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: LumoTextStyles.heading3.copyWith(
+                    color: LumoVisualTokens.white,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              Text(
+                '$dailyDone / $dailyGoal',
+                key: const ValueKey('home-daily-progress'),
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w800,
+                  fontSize: 10,
+                  color: LumoVisualTokens.muted,
+                ),
+              ),
+            ],
           ),
-        ),
-        const SizedBox(height: 12),
-        Wrap(spacing: 16, runSpacing: 10, children: [
-          _stat(Icons.star_rounded, '${state.stars} Sterne',
-              LumoVisualTokens.gold),
-          _stat(Icons.workspace_premium_rounded, 'Level ${state.level}',
-              LumoVisualTokens.cyanBright),
-          _stat(
-              Icons.local_fire_department_rounded,
-              '${appState.learningStreakDays()} ${appState.learningStreakDays() == 1 ? 'Lerntag' : 'Lerntage'} in Folge',
-              LumoVisualTokens.rewards),
-        ]),
-        const SizedBox(height: 16),
-        Text('Heute: $dailyDone von $dailyGoal Aufgaben',
-            key: const ValueKey('home-daily-progress'),
-            style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
-        const SizedBox(height: 8),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: LinearProgressIndicator(
-            value: (dailyDone / dailyGoal).clamp(0.0, 1.0),
-            minHeight: 8,
-            color: LumoVisualTokens.cyanBright,
-            backgroundColor: LumoVisualTokens.navigation,
+          const SizedBox(height: 6),
+          for (var index = 0; index < 3; index++)
+            _DailyTaskRow(
+              index: index,
+              complete: dailyDone > index,
+            ),
+          const SizedBox(height: 5),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: TweenAnimationBuilder<double>(
+              tween: Tween<double>(
+                begin: 0,
+                end: (dailyDone / dailyGoal).clamp(0.0, 1.0),
+              ),
+              duration: reduceMotion
+                  ? Duration.zero
+                  : const Duration(milliseconds: 900),
+              curve: Curves.easeOutCubic,
+              builder: (context, value, _) => LinearProgressIndicator(
+                value: value,
+                minHeight: 6,
+                color: LumoVisualTokens.cyanBright,
+                backgroundColor: LumoVisualTokens.navigation,
+              ),
+            ),
           ),
-        ),
-        const SizedBox(height: 10),
-        Text('${state.xp % 400} / 400 XP bis Level ${state.level + 1}',
+          const SizedBox(height: 4),
+          Text(
+            'Heute: $dailyDone von $dailyGoal Aufgaben',
+            style: LumoTextStyles.body.copyWith(
+              fontSize: 10,
+              color: LumoVisualTokens.muted,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Wrap(
+            spacing: 8,
+            runSpacing: 2,
+            children: [
+              Text('${state.stars} Sterne',
+                  style: _progressLabelStyle(LumoVisualTokens.gold)),
+              Text('Level ${state.level}',
+                  style: _progressLabelStyle(LumoVisualTokens.cyanBright)),
+              Text(
+                '${appState.learningStreakDays()} ${appState.learningStreakDays() == 1 ? 'Lerntag' : 'Lerntage'} in Folge',
+                style: _progressLabelStyle(LumoVisualTokens.rewards),
+              ),
+            ],
+          ),
+          const SizedBox(height: 3),
+          Text(
+            '${state.xp % 400} / 400 XP bis Level ${state.level + 1}',
             key: const ValueKey('home-xp-progress'),
             style: LumoTextStyles.body.copyWith(
-              fontSize: 12,
+              fontSize: 10,
               color: LumoVisualTokens.muted,
-            )),
-      ]),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _stat(IconData icon, String text, Color color) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 20, color: color),
-          const SizedBox(width: 5),
-          Text(text,
-              style:
-                  LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
-        ],
+  TextStyle _progressLabelStyle(Color color) => TextStyle(
+        fontFamily: 'Nunito',
+        fontWeight: FontWeight.w800,
+        fontSize: 10,
+        color: color,
+      );
+}
+
+class _DailyTaskRow extends StatelessWidget {
+  const _DailyTaskRow({required this.index, required this.complete});
+
+  final int index;
+  final bool complete;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(bottom: 4),
+        child: Container(
+          key: ValueKey('home-daily-task-$index'),
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+          decoration: BoxDecoration(
+            color: LumoVisualTokens.glassRow.withOpacity(.72),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.18)),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                complete ? Icons.check_circle : Icons.circle_outlined,
+                color: complete
+                    ? LumoVisualTokens.cyanBright
+                    : LumoVisualTokens.muted,
+                size: 18,
+              ),
+              const SizedBox(width: 5),
+              Expanded(
+                child: Text(
+                  'Lernaufgabe ${index + 1}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: LumoVisualTokens.white,
+                  ),
+                ),
+              ),
+              if (complete)
+                const Icon(Icons.chevron_right_rounded,
+                    color: LumoVisualTokens.cyan, size: 17),
+            ],
+          ),
+        ),
+      );
+}
+
+class _MotivationCard extends StatelessWidget {
+  const _MotivationCard({
+    required this.reduceMotion,
+    required this.onLearn,
+  });
+
+  final bool reduceMotion;
+  final VoidCallback onLearn;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        height: 240,
+        child: LumoGlassCard(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: LumoSpeechBubble(
+                        text: 'Du kannst das!',
+                        handwritten: true,
+                      ),
+                    ),
+                    _BreathingFox(
+                      reduceMotion: reduceMotion,
+                      child: const LumoFoxPose(
+                        pose: LumoDesignFoxPose.thumbWink,
+                        size: 68,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 5),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size(48, 38),
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    backgroundColor: LumoVisualTokens.cyan,
+                    foregroundColor: LumoVisualTokens.night,
+                    textStyle: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 10,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  onPressed: onLearn,
+                  child: const Text(
+                    'Weiter lernen',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+}
+
+class _BreathingFox extends StatefulWidget {
+  const _BreathingFox({
+    required this.child,
+    required this.reduceMotion,
+  });
+
+  final Widget child;
+  final bool reduceMotion;
+
+  @override
+  State<_BreathingFox> createState() => _BreathingFoxState();
+}
+
+class _BreathingFoxState extends State<_BreathingFox>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2500),
+      value: widget.reduceMotion ? .5 : 0,
+    );
+    if (!widget.reduceMotion) _controller.repeat(reverse: true);
+  }
+
+  @override
+  void didUpdateWidget(covariant _BreathingFox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.reduceMotion == widget.reduceMotion) return;
+    if (widget.reduceMotion) {
+      _controller.stop();
+      _controller.value = .5;
+    } else {
+      _controller.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+        animation: _controller,
+        child: widget.child,
+        builder: (context, child) {
+          final motion = widget.reduceMotion
+              ? 0.0
+              : Curves.easeInOut.transform(_controller.value);
+          return Transform.translate(
+            offset: Offset(0, -4 * motion),
+            child: Transform.scale(
+              scale: 1 + .02 * motion,
+              child: child,
+            ),
+          );
+        },
+      );
+}
+
+class _HomeEntrance extends StatefulWidget {
+  const _HomeEntrance({
+    required this.child,
+    required this.reduceMotion,
+    this.delay = Duration.zero,
+  });
+
+  final Widget child;
+  final bool reduceMotion;
+  final Duration delay;
+
+  @override
+  State<_HomeEntrance> createState() => _HomeEntranceState();
+}
+
+class _HomeEntranceState extends State<_HomeEntrance> {
+  bool _visible = false;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _showWhenReady();
+  }
+
+  @override
+  void didUpdateWidget(covariant _HomeEntrance oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.reduceMotion) {
+      _timer?.cancel();
+      _visible = true;
+    } else if (oldWidget.reduceMotion && !widget.reduceMotion) {
+      _visible = false;
+      _showWhenReady();
+    }
+  }
+
+  void _showWhenReady() {
+    if (widget.reduceMotion || widget.delay == Duration.zero) {
+      _visible = true;
+      return;
+    }
+    _timer = Timer(widget.delay, () {
+      if (mounted) setState(() => _visible = true);
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedOpacity(
+        opacity: _visible || widget.reduceMotion ? 1 : 0,
+        duration: widget.reduceMotion
+            ? Duration.zero
+            : const Duration(milliseconds: 350),
+        child: AnimatedSlide(
+          offset: _visible || widget.reduceMotion
+              ? Offset.zero
+              : const Offset(0, .12),
+          duration: widget.reduceMotion
+              ? Duration.zero
+              : const Duration(milliseconds: 350),
+          curve: Curves.easeOutBack,
+          child: widget.child,
+        ),
       );
 }
 

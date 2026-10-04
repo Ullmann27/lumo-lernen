@@ -151,12 +151,18 @@ void main() {
       await tester.tap(find.text('Alles klar'));
       await settleWork(tester);
       if (size.width == 360) {
-        await tester.drag(
-          find.byKey(const PageStorageKey('lumo-home-scroll')),
-          const Offset(0, -700),
+        final explainHome = find.byKey(const ValueKey('home-explanation'));
+        await tester.scrollUntilVisible(
+          explainHome,
+          150,
+          scrollable: find
+              .descendant(
+                of: find.byKey(const PageStorageKey('lumo-home-scroll')),
+                matching: find.byType(Scrollable),
+              )
+              .first,
         );
         await settleWork(tester);
-        final explainHome = find.byKey(const ValueKey('home-explanation'));
         await Scrollable.ensureVisible(
           tester.element(explainHome),
           alignment: 0.5,
