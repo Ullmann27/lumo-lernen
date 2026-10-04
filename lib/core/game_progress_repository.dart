@@ -17,13 +17,27 @@ class GameProgressRepository {
   const GameProgressRepository();
 
   String _starsKey(String childId) => 'lumo.games.stars.$childId';
+  String _backupKey(String childId) => 'lumo.games.stars.backup.$childId';
 
   Future<Map<int, int>> loadStars(String childId) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final raw = prefs.getString(_starsKey(childId));
-      if (raw == null || raw.isEmpty) return <int, int>{};
-      final decoded = jsonDecode(raw);
+      var raw = prefs.getString(_starsKey(childId));
+      Object? decoded;
+      try {
+        decoded = (raw == null || raw.isEmpty) ? null : jsonDecode(raw);
+      } catch (_) {
+        decoded = null;
+      }
+      if (raw != null && raw.isNotEmpty && decoded is! Map) {
+        // Beschaedigter Stand: letzte gute Sicherung verwenden.
+        raw = prefs.getString(_backupKey(childId));
+        try {
+          decoded = (raw == null || raw.isEmpty) ? null : jsonDecode(raw);
+        } catch (_) {
+          decoded = null;
+        }
+      }
       if (decoded is! Map) return <int, int>{};
       final result = <int, int>{};
       decoded.forEach((k, v) {
@@ -44,6 +58,14 @@ class GameProgressRepository {
     try {
       final prefs = await SharedPreferences.getInstance();
       final mapped = stars.map((k, v) => MapEntry('$k', v));
+      final previous = prefs.getString(_starsKey(childId));
+      if (previous != null && previous.isNotEmpty) {
+        try {
+          if (jsonDecode(previous) is Map) {
+            await prefs.setString(_backupKey(childId), previous);
+          }
+        } catch (_) {}
+      }
       await prefs.setString(_starsKey(childId), jsonEncode(mapped));
     } catch (_) {
       // Silent fail
@@ -99,6 +121,7 @@ class GameProgressRepository {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_starsKey(childId));
+      await prefs.remove(_backupKey(childId));
     } catch (_) {}
   }
 }
