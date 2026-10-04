@@ -474,8 +474,9 @@ def local_hint_visible(frame):
 def lesson_closed_or_changed(frame, previous_prompt=None):
     if not lesson_visible(frame):
         return race_view_visible(frame) or bool(marker(frame, 'geschafft'))
-    next_answer = answer_for(frame)
-    return bool(previous_prompt and next_answer and next_answer['prompt'] != previous_prompt)
+    previous = canonical_prompt(previous_prompt) if previous_prompt else None
+    following = prompt_for(frame)
+    return bool(previous and following and following != previous)
 
 
 def restart_visible(frame):
@@ -487,17 +488,47 @@ def restart_visible(frame):
         return False
 
 
-def answer_for(frame):
-    """Extract a first-grade maths question and its real on-screen option box."""
+def lesson_prompts(frame):
+    """Read complete task captions inside the measured question area.
+
+    An explicit '= ?' is stronger evidence than a permissive OCR reading with
+    the equals sign missing (for example, 7-2=? versus the observed 7-22?).
+    Keep all equally explicit readings so disagreement still blocks an answer.
+    """
     height = frame['height']
     prompts = [frame['lesson_prompt']] if frame.get('lesson_prompt') else []
     prompt_box = frame.get('prompt_box')
     for line in frame['lines']:
         inside = (prompt_box['top'] <= line.get('top', -1)
                   and line['top']+line['height'] <= prompt_box['top']+prompt_box['height']) if prompt_box else (
-                  .20*height < line['top'] < .37*height)
+                  .20*height < line.get('top', -1) < .37*height)
         if inside and maths_value(line['text']) is not None:
             prompts.append(line)
+    recognized = [prompt for prompt in prompts if maths_value(prompt['text']) is not None]
+    explicit = [prompt for prompt in recognized
+                if re.search(r'=\s*\?\s*$', prompt['text']) or not simple_calculation(prompt['text'])]
+    return explicit or recognized
+
+
+def canonical_prompt(text):
+    calculation = simple_calculation(text)
+    if calculation:
+        left, operator, right = calculation.groups()
+        return f"{int(left)}{operator.lower().replace('x', '·')}{int(right)}"
+    return ' '.join(folded(text).split()) if maths_value(text) is not None else None
+
+
+def prompt_for(frame):
+    """A changed task can be witnessed even when its answer button is unreadable."""
+    identities = {canonical_prompt(prompt['text']) for prompt in lesson_prompts(frame)}
+    identities.discard(None)
+    return next(iter(identities)) if len(identities) == 1 else None
+
+
+def answer_for(frame):
+    """Extract a first-grade maths question and its real on-screen option box."""
+    height = frame['height']
+    prompts = lesson_prompts(frame)
     values = {maths_value(prompt['text']) for prompt in prompts if maths_value(prompt['text']) is not None}
     if len(values) != 1:
         return None
@@ -643,10 +674,10 @@ def main():
                            'Answer touch did not close the real learning pause.')
                 correct += 1
                 continue
+            previous_prompt = prompt_for(frame)
             tap_phrase(frame, 'SPATER')
-            previous_answer = answer_for(frame)
             wait_frame('lesson-skipped', lambda frame: lesson_closed_or_changed(
-                frame, previous_answer['prompt'] if previous_answer else None),
+                frame, previous_prompt),
                 'Später touch did not close the real learning pause.')
             skipped += 1
             continue
