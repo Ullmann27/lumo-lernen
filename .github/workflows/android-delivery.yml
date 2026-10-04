@@ -27,8 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      QA_RUN_ID: ${{ github.event_name == 'push' && '37172929269' || inputs.runId }}
-      QA_COMMIT: ${{ github.event_name == 'push' && '74113f56b41582cbfc341943e27d7b2c49d8364a' || inputs.qaCommit }}
+      QA_RUN_ID: ${{ github.event_name == 'push' && '37173963537' || inputs.runId }}
+      QA_COMMIT: ${{ github.event_name == 'push' && 'c5a4cc2cddebf7ddd8b55942906dcc61bc311f01' || inputs.qaCommit }}
     steps:
       - uses: actions/checkout@v4
         with:
