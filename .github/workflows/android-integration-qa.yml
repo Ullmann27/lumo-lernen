@@ -3,6 +3,7 @@ name: Check unified Android APK in KVM
 on:
   # Explicit recovery run for the frozen Build 280, on this branch only.
   # Unmarked workflow edits do not start an emulator; manual dispatch is unchanged.
+  # Current harness requires both correct answers and the observed wrong-answer hint.
   push:
     branches: ['codex/lumo-unified-android-2026-10-03']
     paths: ['.github/workflows/android-integration-qa.yml']
