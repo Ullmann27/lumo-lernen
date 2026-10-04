@@ -19,9 +19,9 @@ Die Bilder liegen in `docs/design_targets/2026-10-04/kart/`. Sie ergänzen `DESI
 
 ## Regeln
 
-1. **Kein Lernen im Kart:** Lumo Kart ist Freizeitspiel und wird durch Lernfortschritt in der App freigeschaltet (Memory → Lumo Cards → … → Kart, Schwellen legt Heinz fest). Im Rennen keine Fragen, keine Timer, kein Turbo für richtige Antworten.
+1. **Kein Lernen im Kart:** Lumo Kart ist Freizeitspiel und wird durch Lernfortschritt in der App freigeschaltet (Memory → Lumo Cards → … → Kart, Schwellen legt Heinz fest). Im Rennen keine Lernfragen, keine Antworttimer, kein Turbo für richtige Antworten. Normale Rennzeit, Startampel und der Modus „Zeitrennen“ bleiben.
 2. **Echte Daten:** Sterne pro Strecke/Cup, freigeschaltete Karts („3/8“) und Sammelziele kommen aus gespeichertem Fortschritt, keine Beispielzahlen.
-3. **Gesperrte Inhalte** zeigen die echte Freischalt-Bedingung (z. B. „Sammle 50 Sterne“). Nichts ist kaufbar.
+3. **Gesperrte Inhalte** zeigen die echte Freischalt-Bedingung (z. B. „Sammle 50 Sterne“). In dieser Version keine echten Käufe; spätere optionale, günstige Extras entscheidet Heinz gesondert. Lernen und Grundspiel bleiben ohne Kauf vollständig.
 4. **Fair und kindgerecht:** Upgrades nur kosmetisch bzw. Spaß, kein Vorteil, der Rennen entscheidet.
 5. **Figuren:** Lumo (Fuchs), Häsin, Schildkröte, Wolf/Katze wie in den Bildern.
 
