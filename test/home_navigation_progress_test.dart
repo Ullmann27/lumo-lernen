@@ -64,6 +64,7 @@ void main() {
       await tester.pump();
       expect(tester.takeException(), isNull, reason: '$size');
       for (final action in [learn, games]) {
+        expect(action, findsOneWidget, reason: '$size');
         final rect = tester.getRect(action);
         expect(rect.left, isNonNegative);
         expect(rect.right, lessThanOrEqualTo(size.width));
@@ -111,6 +112,23 @@ void main() {
     expect(find.text('Heute: 2 von 3 Aufgaben'), findsOneWidget);
     expect(find.text('1 Lerntag in Folge'), findsOneWidget);
     expect(find.textContaining('1 Aufgabe geschafft'), findsNWidgets(2));
+    for (var index = 0; index < 3; index++) {
+      expect(find.byKey(ValueKey('home-daily-task-$index')), findsOneWidget);
+    }
+    expect(
+      find.descendant(
+        of: find.byKey(const ValueKey('home-daily-task-0')),
+        matching: find.byIcon(Icons.check_circle),
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(
+        of: find.byKey(const ValueKey('home-daily-task-2')),
+        matching: find.byIcon(Icons.circle_outlined),
+      ),
+      findsOneWidget,
+    );
     await tester.runAsync(() async {
       state.addStars(3);
       state.addXp(10);
@@ -121,6 +139,30 @@ void main() {
     expect(find.text('35 / 400 XP bis Level 3'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
     state.dispose();
+    await tester.binding.setSurfaceSize(null);
+  });
+
+  testWidgets('home uses the supplied 3D icons and Kart artwork',
+      (tester) async {
+    final state = LumoAppState();
+    addTearDown(state.dispose);
+    state.update(state.state.copyWith(childName: 'Mia'));
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    await tester.pumpWidget(home(state, (_) {}));
+    await tester.pump();
+
+    for (final title in ['lernen', 'spielen', 'tests', 'belohnungen']) {
+      expect(
+        find.byKey(ValueKey('lumo-color-tile-icon-$title')),
+        findsOneWidget,
+      );
+    }
+    expect(find.byKey(const ValueKey('home-kart-image')), findsOneWidget);
+    expect(find.text('Hallo, Mia!'), findsOneWidget);
+    expect(find.text('Hallo! Bereit für ein neues Abenteuer?'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    await tester.pumpWidget(const SizedBox.shrink());
     await tester.binding.setSurfaceSize(null);
   });
 
@@ -162,7 +204,8 @@ void main() {
     final discover = find.text('Mehr mit Lumo entdecken');
     await tester.ensureVisible(discover);
     await tester.tap(discover);
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 250));
     final kartEntry = find.byKey(const ValueKey('home-discover-kart'));
     await tester.ensureVisible(kartEntry);
     await tester.tap(kartEntry);

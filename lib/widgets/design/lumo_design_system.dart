@@ -174,9 +174,11 @@ class LumoColorTile extends StatelessWidget {
     required this.subtitle,
     required this.color,
     required this.onTap,
+    this.iconAsset,
   });
 
   final IconData icon;
+  final String? iconAsset;
   final String title;
   final String subtitle;
   final Color color;
@@ -191,6 +193,7 @@ class LumoColorTile extends StatelessWidget {
           final iconPadding = compact ? 5.0 : 10.0;
           final iconSize = compact ? 20.0 : 32.0;
           final arrowRadius = compact ? 12.0 : 17.0;
+          final centered = iconAsset != null;
           return Semantics(
             button: true,
             label: '$title. $subtitle',
@@ -222,7 +225,9 @@ class LumoColorTile extends StatelessWidget {
                     child: Stack(
                       children: [
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: centered
+                              ? CrossAxisAlignment.center
+                              : CrossAxisAlignment.start,
                           children: [
                             DecoratedBox(
                               decoration: BoxDecoration(
@@ -238,8 +243,23 @@ class LumoColorTile extends StatelessWidget {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.all(iconPadding),
-                                child: Icon(icon,
-                                    size: iconSize, color: Colors.white),
+                                child: iconAsset == null
+                                    ? Icon(icon,
+                                        size: iconSize, color: Colors.white)
+                                    : Image.asset(
+                                        iconAsset!,
+                                        key: ValueKey(
+                                            'lumo-color-tile-icon-${title.toLowerCase()}'),
+                                        width: iconSize,
+                                        height: iconSize,
+                                        fit: BoxFit.contain,
+                                        excludeFromSemantics: true,
+                                        errorBuilder: (_, __, ___) => Icon(
+                                          icon,
+                                          size: iconSize,
+                                          color: Colors.white,
+                                        ),
+                                      ),
                               ),
                             ),
                             if (compact)
@@ -250,6 +270,8 @@ class LumoColorTile extends StatelessWidget {
                               title,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
+                              textAlign:
+                                  centered ? TextAlign.center : TextAlign.start,
                               style: TextStyle(
                                 fontFamily: 'Nunito',
                                 fontWeight: FontWeight.w900,
@@ -259,12 +281,16 @@ class LumoColorTile extends StatelessWidget {
                             ),
                             SizedBox(height: compact ? 0 : 2),
                             Padding(
-                              padding:
-                                  EdgeInsets.only(right: compact ? 22 : 32),
+                              padding: centered
+                                  ? EdgeInsets.zero
+                                  : EdgeInsets.only(right: compact ? 22 : 32),
                               child: Text(
                                 subtitle,
                                 maxLines: compact ? 1 : 2,
                                 overflow: TextOverflow.ellipsis,
+                                textAlign: centered
+                                    ? TextAlign.center
+                                    : TextAlign.start,
                                 style: TextStyle(
                                   fontFamily: 'Nunito',
                                   fontWeight: FontWeight.w700,
@@ -550,11 +576,15 @@ class LumoSpeechBubble extends StatelessWidget {
     required this.text,
     this.handwritten = false,
     this.alignRight = false,
+    this.fontSize,
+    this.padding,
   });
 
   final String text;
   final bool handwritten;
   final bool alignRight;
+  final double? fontSize;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) => Align(
@@ -562,13 +592,14 @@ class LumoSpeechBubble extends StatelessWidget {
         child: Transform.rotate(
           angle: alignRight ? -.025 : .012,
           child: LumoGlassCard(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: padding ??
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             radius: 18,
             child: Text(
               text,
               style: TextStyle(
                 fontFamily: handwritten ? null : 'Nunito',
-                fontSize: handwritten ? 20 : 14,
+                fontSize: fontSize ?? (handwritten ? 20 : 14),
                 fontWeight: handwritten ? FontWeight.w700 : FontWeight.w800,
                 fontStyle: handwritten ? FontStyle.italic : FontStyle.normal,
                 letterSpacing: handwritten ? .35 : 0,
