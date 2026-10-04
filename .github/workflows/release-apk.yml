@@ -1,6 +1,9 @@
 name: Build unified Lumo Android APK
 on:
   workflow_dispatch:
+  push:
+    branches: ['copilot/5979796457-update-integrationsaudit']
+    paths: ['.github/workflows/release-apk.yml']
 permissions:
   contents: read
 concurrency:
@@ -25,22 +28,72 @@ jobs:
         run: flutter pub get --enforce-lockfile
       - name: Backend and Android preparation tests
         run: |
-          node --test server/lumo-ai-proxy/test/*.test.js
-          python3 -m unittest discover -s scripts/tests
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/lumo-probe-test-logs"
+          node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/backend.log"
+          python3 -m unittest discover -s scripts/tests 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/android-preparation.log"
       - name: Generated content audit
-        run: dart scripts/audit_content.dart
+        run: |
+          set -euo pipefail
+          dart scripts/audit_content.dart 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/content-audit.log"
       - name: Repair guard
-        run: bash scripts/lumo_repair_guard.sh
+        run: |
+          set -euo pipefail
+          bash scripts/lumo_repair_guard.sh 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/repair-guard.log"
       - name: Analyze
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/flutter-analyze.log"
       - name: Full Flutter regression tests
-        run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/flutter-tests.log"
       - name: Install matching Godot engine
         run: bash scripts/install_godot_for_build.sh
+      - name: Set a fresh side-by-side probe version
+        run: |
+          echo "LUMO_BUILD_NUMBER=$((GITHUB_RUN_NUMBER + 1000))" >> "$GITHUB_ENV"
+          echo "LUMO_VERSION_NAME=0.10.6" >> "$GITHUB_ENV"
       - name: Build and verify the single application
         run: bash scripts/build_unified_apk.sh
-      # Production downloads are published from the APK that passed actual
-      # installed Android lifecycle/race tests, with its digest in the handoff.
       - name: Record build proof
         run: |
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk >> "$GITHUB_STEP_SUMMARY"
+      - name: Record compact test outcomes
+        if: success()
+        run: |
+          {
+            printf 'Source SHA: %s\n' "$(git rev-parse HEAD)"
+            printf 'Package build number: %s\n' "$LUMO_BUILD_NUMBER"
+            printf 'Package version name: %s\n' "$LUMO_VERSION_NAME"
+            for log in "$RUNNER_TEMP"/lumo-probe-test-logs/*.log; do
+              printf '\n--- %s ---\n' "$(basename "$log")"
+              tail -n 12 "$log"
+              grep -iE 'skip|skipped' "$log" | tail -n 20 || true
+            done
+          } | tee dist/TEST-RESULTS.txt
+      - name: Upload verified probe APK and evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-probe-apk-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/TEST-RESULTS.txt
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+      - name: Record artifact handoff location
+        if: success()
+        run: |
+          {
+            echo ""
+            echo "## Verified probe artifact"
+            echo ""
+            echo "Artifact: \`lumo-probe-apk-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}\`"
+            echo "Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "Download the artifact from the run's Artifacts section; no release was published."
+          } >> "$GITHUB_STEP_SUMMARY"
