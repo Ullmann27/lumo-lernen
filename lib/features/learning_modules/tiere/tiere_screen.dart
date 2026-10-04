@@ -399,7 +399,12 @@ class _TiereScreenState extends State<TiereScreen>
   /// Gradient gibt Atmosphaere (Bauernhof=gruen-gelb, Zoo=orange-braun,
   /// See=blau-tuerkis, Zuhause=warm-rosa).
   Widget _buildMainImage() {
-    final colors = _lebensraumGradient(_correctTier.lebensraum);
+    // Bei "Welches Tier macht ...?" verriet das grosse Tierbild die Antwort.
+    // Bis zur Antwort einen neutralen Lautsprecher zeigen, danach das Tier.
+    final hideAnswer = _typ == _TierFrageTyp.lautRaten && !_answered;
+    final colors = hideAnswer
+        ? const [Color(0xFFFFF3D6), Color(0xFFFFC46B)]
+        : _lebensraumGradient(_correctTier.lebensraum);
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) {
@@ -426,7 +431,7 @@ class _TiereScreenState extends State<TiereScreen>
             ),
           ],
         ),
-        child: Text(_correctTier.emoji,
+        child: Text(hideAnswer ? '🔊' : _correctTier.emoji,
             style: const TextStyle(fontSize: 140, height: 1.0)),
       ),
     );
