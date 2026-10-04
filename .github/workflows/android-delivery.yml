@@ -16,7 +16,9 @@ on:
         type: string
 
 permissions:
-  contents: read
+  # GitHub only lists unpublished drafts to credentials with push access.
+  # The transfer script itself only performs GET/download operations.
+  contents: write
   actions: read
 
 jobs:
@@ -29,6 +31,8 @@ jobs:
       QA_COMMIT: ${{ github.event_name == 'push' && '6940f9453c9381b5f995b51af0e3c65138e5e851' || inputs.qaCommit }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
