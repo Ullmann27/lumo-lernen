@@ -57,8 +57,23 @@ class GameProgressRepository {
   Future<void> saveStars(String childId, Map<int, int> stars) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final mapped = stars.map((k, v) => MapEntry('$k', v));
+      final mapped = <String, dynamic>{};
       final previous = prefs.getString(_starsKey(childId));
+      // Unbekannte Level-IDs (z. B. aus anderer Katalogversion) nicht verlieren.
+      if (previous != null && previous.isNotEmpty) {
+        try {
+          final old = jsonDecode(previous);
+          if (old is Map) {
+            old.forEach((k, v) {
+              final id = int.tryParse('$k');
+              if (id != null && GameLevelCatalog.byId(id) == null && v is num) {
+                mapped['$k'] = v.toInt();
+              }
+            });
+          }
+        } catch (_) {}
+      }
+      stars.forEach((k, v) => mapped['$k'] = v);
       if (previous != null && previous.isNotEmpty) {
         try {
           if (jsonDecode(previous) is Map) {

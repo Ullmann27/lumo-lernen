@@ -31,4 +31,12 @@ void main() {
     final s = await repo.recordResult(childId: 'k', levelId: 1, starsEarned: 1);
     expect(s[1], 3);
   });
+
+  test('unbekannte Level-IDs bleiben beim Speichern erhalten', () async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('lumo.games.stars.k', '{"9999":2,"1":1}');
+    await repo.recordResult(childId: 'k', levelId: 2, starsEarned: 1);
+    expect((await repo.loadStars('k')).containsKey(9999), isFalse);
+    expect(prefs.getString('lumo.games.stars.k'), contains('"9999":2'));
+  });
 }
