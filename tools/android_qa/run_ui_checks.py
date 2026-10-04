@@ -26,6 +26,18 @@ ONBOARDING_CAPTIONS = {
     'grade': 'In welche Klasse gehst du?',
     'home': 'Spielen',
 }
+EMPTY_LABEL_RETRIES = 8
+
+
+def labelled_hierarchy(device):
+    root = device.dump()
+    for _ in range(EMPTY_LABEL_RETRIES):
+        if any(node.attrib.get('text') or node.attrib.get('content-desc')
+               for node in root.iter('node')):
+            return root
+        time.sleep(.4)
+        root = device.dump()
+    return root
 
 
 def complete_first_run_ui(wait_for, click, capture, labels):
@@ -158,7 +170,7 @@ def main(args):
 
     def click(phrase, contains=False, scroll=False):
         for _ in range(7 if scroll else 1):
-            root = device.dump()
+            root = labelled_hierarchy(device)
             bounds = find(root, phrase, contains)
             if bounds:
                 left, top, right, bottom = bounds

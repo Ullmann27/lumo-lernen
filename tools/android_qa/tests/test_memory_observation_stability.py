@@ -76,6 +76,20 @@ class MemoryObservationTests(unittest.TestCase):
         self.assertIn(13, check.matched)
         self.assertEqual([ET.tostring(root) for root in frames], originals)
 
+    def test_transient_empty_semantics_is_saved_and_reobserved_without_input(self):
+        blank = ET.fromstring('<hierarchy><node bounds="[0,0][480,800]"/></hierarchy>')
+        actual = captured('001-initial-memory.xml')
+        check = self.check([blank, actual])
+        with patch('memory_android_round.time.sleep'):
+            root = check.frame('after-transition')
+        self.assertIs(root, actual)
+        self.assertEqual(check.sequence, 2)
+        self.assertTrue((check.out/'001-after-transition.xml').is_file())
+        self.assertTrue((check.out/'002-after-transition.xml').is_file())
+        self.assertIn('await_visible_android_content', [event for event, _ in self.events])
+        self.assertEqual(self.touches, [])
+        self.assertEqual(self.swipes, [])
+
     def test_opponent_matched_face_cannot_confirm_own_first_tap_or_trigger_second(self):
         initial = captured('001-initial-memory.xml')
         changed = captured('017-first-card-revealed.xml')

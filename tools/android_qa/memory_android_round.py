@@ -22,6 +22,7 @@ from android_ui import Android
 
 CARD = re.compile(r"Memory Karte (\d+),\s*([^\n]+)")
 RESULT = re.compile(r"Du:\s*(\d+)\s*Paare\s+Lumo:\s*(\d+)\s*Paare")
+EMPTY_LABEL_RETRIES = 8
 
 
 @dataclass
@@ -126,26 +127,31 @@ class Round:
         print(json.dumps(record, ensure_ascii=False), flush=True)
 
     def frame(self, name='board'):
-        if time.monotonic() >= self.deadline:
-            raise RuntimeError('Real Memory round timed out; retained evidence is a partial test.')
-        root = self.android.dump()
-        self.latest_root = root
-        self.sequence += 1
-        path = self.out / f'{self.sequence:03d}-{name}.xml'
-        ET.ElementTree(root).write(path, encoding='utf-8', xml_declaration=True)
-        visible = cards(root)
-        observations = {number: card.symbol for number, card in visible.items()
-                        if card.symbol is not None}
-        for number, symbol in observations.items():
-            previous = self.memory.get(number)
-            if previous is not None and previous != symbol:
-                raise RuntimeError(f'Card {number} changed symbol mid-round: {previous!r} / {symbol!r}.')
-            self.memory[number] = symbol
-            if visible[number].is_matched:
-                self.matched.add(number)
-        self.record('observed_ui', xml=str(path), visible_cards=sorted(visible),
-                    visible_symbols=observations, labels=labels(root))
-        return root
+        for attempt in range(EMPTY_LABEL_RETRIES + 1):
+            if time.monotonic() >= self.deadline:
+                raise RuntimeError('Real Memory round timed out; retained evidence is a partial test.')
+            root = self.android.dump()
+            self.latest_root = root
+            self.sequence += 1
+            path = self.out / f'{self.sequence:03d}-{name}.xml'
+            ET.ElementTree(root).write(path, encoding='utf-8', xml_declaration=True)
+            visible = cards(root)
+            observations = {number: card.symbol for number, card in visible.items()
+                            if card.symbol is not None}
+            for number, symbol in observations.items():
+                previous = self.memory.get(number)
+                if previous is not None and previous != symbol:
+                    raise RuntimeError(f'Card {number} changed symbol mid-round: {previous!r} / {symbol!r}.')
+                self.memory[number] = symbol
+                if visible[number].is_matched:
+                    self.matched.add(number)
+            current_labels = labels(root)
+            self.record('observed_ui', xml=str(path), visible_cards=sorted(visible),
+                        visible_symbols=observations, labels=current_labels)
+            if current_labels or attempt == EMPTY_LABEL_RETRIES:
+                return root
+            self.record('await_visible_android_content', retry=attempt + 1)
+            time.sleep(.4)
 
     def screenshot(self, name):
         path = self.out / f'{self.sequence:03d}-{name}.png'

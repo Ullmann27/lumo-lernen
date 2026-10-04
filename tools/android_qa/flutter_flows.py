@@ -186,9 +186,26 @@ class FlutterChecks:
                 return
         raise RuntimeError('Flutter content did not become visible within the bounded top-scroll check.')
 
+    # Each snapshot reconnects UiAutomation, which re-enables accessibility.
+    # Flutter then rebuilds its Semantics tree asynchronously, so a snapshot
+    # taken without an idle wait can briefly show only the empty FlutterView
+    # (seen in run 37181279924 after a wrong Plus answer; app still in
+    # front, no crash). Re-observe such frames without any input, bounded.
+    EMPTY_FRAME_RETRIES = 8
+
+    def labelled_frame(self, name):
+        root = self.frame(name)
+        for _ in range(self.EMPTY_FRAME_RETRIES):
+            if labels(root):
+                return root
+            self.record('await_visible_flutter_content')
+            time.sleep(.4)
+            root = self.frame(name)
+        return root
+
     def click(self, phrase, contains=False, scroll=False):
         for _ in range(12 if scroll else 1):
-            root = self.frame('find-control')
+            root = self.labelled_frame('find-control')
             targets = self.targets(root, phrase, contains)
             if targets:
                 left, top, right, bottom = targets[0]
