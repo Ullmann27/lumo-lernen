@@ -36,8 +36,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check that failed or mismatched QA cannot deliver a final APK
-        run: python3 -m unittest discover -s tools/android_qa/tests -p 'test_export_delivery.py' -v
+      - name: Check the complete Android QA helper suite before transfer
+        run: |
+          python3 -m pip install Pillow
+          python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
       - name: Read the completed run, its evidence and its byte-identical APK only on success
         env:
           GH_TOKEN: ${{ github.token }}
