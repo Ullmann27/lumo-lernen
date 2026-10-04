@@ -110,6 +110,7 @@ void main() {
     for (final size in [
       const Size(360, 740),
       const Size(840, 560),
+      const Size(941, 1672),
       const Size(280, 640)
     ]) {
       await tester.binding.setSurfaceSize(size);

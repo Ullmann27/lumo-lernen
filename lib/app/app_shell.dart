@@ -27,6 +27,7 @@ import '../core/lumo_voice.dart';
 import '../core/user_profile.dart';
 import '../core/embedded_game_service.dart';
 import '../widgets/design/lumo_design_system.dart';
+import '../theme/lumo_visual_tokens.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key, this.profile, this.initialSection});
@@ -439,7 +440,7 @@ class _AppShellState extends State<AppShell>
               if (!didPop) _navigateTo(LumoSection.home);
             },
             child: Scaffold(
-              backgroundColor: LumoColors.appBg,
+              backgroundColor: LumoVisualTokens.night,
               body: Listener(
                 behavior: HitTestBehavior.translucent,
                 onPointerDown: (event) => LumoCompanionRequests.instance
@@ -450,6 +451,9 @@ class _AppShellState extends State<AppShell>
                       final width = constraints.maxWidth;
                       final mobile = width < 720;
                       final showNav = width >= 720;
+                      final showProgressSidebar =
+                          width >= 900 &&
+                              _appState.state.section == LumoSection.home;
                       final navWidth = width < 980 ? 160.0 : 200.0;
                       final gap = width < 980 ? 6.0 : 10.0;
 
@@ -499,12 +503,30 @@ class _AppShellState extends State<AppShell>
                                     BorderRadius.circular(LumoRadius.xl),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: LumoColors.appBg,
+                                      color: LumoVisualTokens.night,
                                     borderRadius: BorderRadius.circular(
                                       LumoRadius.xl,
                                     ),
                                   ),
                                   child: Column(children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          16, 10, 16, 6),
+                                      child: LumoTopBar(
+                                        appState: _appState,
+                                        onTapStatus: () =>
+                                            showLumoConversation(
+                                          context,
+                                          appState: _appState,
+                                          onSection: _navigateTo,
+                                        ),
+                                        onTapFox: () => showLumoConversation(
+                                          context,
+                                          appState: _appState,
+                                          onSection: _navigateTo,
+                                        ),
+                                      ),
+                                    ),
                                     Expanded(
                                         child: FadeTransition(
                                       opacity: _fadeCtrl,
@@ -522,6 +544,14 @@ class _AppShellState extends State<AppShell>
                                 ),
                               ),
                             ),
+                            if (showProgressSidebar) ...[
+                              SizedBox(width: gap),
+                              LumoFoldProgressPanel(
+                                appState: _appState,
+                                onOpenRewards: () =>
+                                    _navigateTo(LumoSection.rewards),
+                              ),
+                            ],
                           ],
                         ),
                       );

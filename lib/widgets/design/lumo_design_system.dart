@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
+import '../../core/progress_repository.dart';
 import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
 
@@ -28,9 +29,12 @@ enum LumoDesignFoxPose {
 enum LumoScene {
   home,
   learning,
+  library,
   tests,
   games,
   profile,
+  kart,
+  wide,
 }
 
 class LumoSceneBackground extends StatelessWidget {
@@ -49,7 +53,16 @@ class LumoSceneBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final asset = backgroundAsset ?? 'assets/design/scenes/${scene.name}.webp';
+    final asset = backgroundAsset ?? switch (scene) {
+      LumoScene.home => 'assets/lumo_design/bg/bg_home.png',
+      LumoScene.learning => 'assets/lumo_design/bg/bg_learn.png',
+      LumoScene.library => 'assets/lumo_design/bg/bg_library.png',
+      LumoScene.tests => 'assets/lumo_design/bg/bg_tests.png',
+      LumoScene.games => 'assets/lumo_design/bg/bg_games.png',
+      LumoScene.profile => 'assets/lumo_design/bg/bg_profile.png',
+      LumoScene.kart => 'assets/lumo_design/bg/bg_kart.png',
+      LumoScene.wide => 'assets/lumo_design/bg/bg_wide.png',
+    };
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -57,8 +70,25 @@ class LumoSceneBackground extends StatelessWidget {
           child: Image.asset(
             asset,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => const ColoredBox(
-              color: LumoVisualTokens.night,
+            errorBuilder: (_, __, ___) => const DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    LumoVisualTokens.night,
+                    LumoVisualTokens.glass,
+                    LumoVisualTokens.navigation,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.landscape_rounded,
+                  size: 72,
+                  color: Color(0x4437D2FD),
+                ),
+              ),
             ),
           ),
         ),
@@ -207,6 +237,8 @@ class LumoColorTile extends StatelessWidget {
                       const Spacer(),
                       Text(
                         title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontFamily: 'Nunito',
                           fontWeight: FontWeight.w900,
@@ -514,6 +546,9 @@ class LumoSpeechBubble extends StatelessWidget {
                 fontFamily: handwritten ? null : 'Nunito',
                 fontSize: handwritten ? 20 : 14,
                 fontWeight: handwritten ? FontWeight.w700 : FontWeight.w800,
+                fontStyle:
+                    handwritten ? FontStyle.italic : FontStyle.normal,
+                letterSpacing: handwritten ? .35 : 0,
                 color: LumoVisualTokens.white,
               ),
             ),
@@ -661,6 +696,225 @@ class LumoBottomNavigation extends StatelessWidget {
               ),
             );
           }).toList(),
+        ),
+      );
+}
+
+class LumoFoldProgressPanel extends StatelessWidget {
+  const LumoFoldProgressPanel({
+    super.key,
+    required this.appState,
+    required this.onOpenRewards,
+  });
+
+  final LumoAppState appState;
+  final VoidCallback onOpenRewards;
+
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+        animation: appState,
+        builder: (context, _) {
+          final skills = appState.learningSkills();
+          final dailyGoal = appState.state.settings.dailyGoal.clamp(1, 500);
+          final dailyDone = appState.learningDailyDone();
+          return SizedBox(
+            width: 226,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.only(left: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  LumoGlassCard(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Dein Lernfortschritt',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w900,
+                            fontSize: 16,
+                            color: LumoVisualTokens.white,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          runSpacing: 12,
+                          children: [
+                            _FoldSkillRing(
+                              label: 'Mathe',
+                              value: _masteryFor(skills.values, 'Mathematik'),
+                            ),
+                            _FoldSkillRing(
+                              label: 'Deutsch',
+                              value: _masteryFor(skills.values, 'Deutsch'),
+                            ),
+                            _FoldSkillRing(
+                              label: 'Lesen',
+                              value: _masteryFor(skills.values, 'Lesen'),
+                            ),
+                            _FoldSkillRing(
+                              label: 'Sachkunde',
+                              value:
+                                  _masteryFor(skills.values, 'Sachunterricht'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  LumoGlassCard(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Tägliche Aufgaben',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w900,
+                            color: LumoVisualTokens.white,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          '$dailyDone von $dailyGoal Aufgaben geschafft',
+                          style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.muted,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: LinearProgressIndicator(
+                            value: (dailyDone / dailyGoal).clamp(0.0, 1.0),
+                            minHeight: 7,
+                            backgroundColor: LumoVisualTokens.navigation,
+                            valueColor:
+                                const AlwaysStoppedAnimation<Color>(
+                              LumoVisualTokens.cyanBright,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: onOpenRewards,
+                      borderRadius: BorderRadius.circular(24),
+                      child: LumoGlassCard(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.star_rounded,
+                              color: LumoVisualTokens.gold,
+                              size: 28,
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Deine Belohnungen',
+                                    style: TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontWeight: FontWeight.w900,
+                                      color: LumoVisualTokens.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${appState.state.stars} Sterne',
+                                    style: const TextStyle(
+                                      fontFamily: 'Nunito',
+                                      color: LumoVisualTokens.muted,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const Icon(Icons.chevron_right_rounded,
+                                color: LumoVisualTokens.cyan),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+
+  double _masteryFor(Iterable<SkillRecord> records, String subject) {
+    final matching = records.where((record) => record.subject == subject).toList();
+    if (matching.isEmpty) return 0;
+    return matching.fold<int>(0, (total, record) => total + record.mastery) /
+        matching.length /
+        100;
+  }
+}
+
+class _FoldSkillRing extends StatelessWidget {
+  const _FoldSkillRing({required this.label, required this.value});
+
+  final String label;
+  final double value;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 84,
+        child: Column(
+          children: [
+            SizedBox(
+              width: 62,
+              height: 62,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircularProgressIndicator(
+                    value: value,
+                    strokeWidth: 6,
+                    backgroundColor: LumoVisualTokens.navigation,
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      LumoVisualTokens.cyanBright,
+                    ),
+                  ),
+                  Text(
+                    '${(value * 100).round()}%',
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 11,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 3),
+            Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 10,
+                fontWeight: FontWeight.w800,
+                color: LumoVisualTokens.muted,
+              ),
+            ),
+          ],
         ),
       );
 }

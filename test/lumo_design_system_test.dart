@@ -118,4 +118,33 @@ void main() {
     await tester.tap(find.text('Tests'));
     expect(selected, LumoSection.tests);
   });
+
+  testWidgets('Fold progress panel displays live tasks and wallet values',
+      (tester) async {
+    final appState = LumoAppState();
+    addTearDown(appState.dispose);
+    appState.update(appState.state.copyWith(stars: 17, xp: 240));
+    var openedRewards = false;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: LumoFoldProgressPanel(
+              appState: appState,
+              onOpenRewards: () => openedRewards = true,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Dein Lernfortschritt'), findsOneWidget);
+    expect(find.text('Tägliche Aufgaben'), findsOneWidget);
+    expect(find.text('Deine Belohnungen'), findsOneWidget);
+    expect(find.text('17 Sterne'), findsOneWidget);
+    await tester.tap(find.text('Deine Belohnungen'));
+    expect(openedRewards, isTrue);
+    expect(tester.takeException(), isNull);
+  });
 }
