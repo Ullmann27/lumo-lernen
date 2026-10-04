@@ -73,6 +73,7 @@ class HomeContent extends StatelessWidget {
           return LayoutBuilder(
             builder: (context, constraints) {
               final wide = constraints.maxWidth >= 720;
+              final compact = constraints.maxWidth < 320;
               final columns = wide ? 4 : 2;
               final actions = <Widget>[
                 LumoColorTile(
@@ -111,7 +112,7 @@ class HomeContent extends StatelessWidget {
                 backgroundAsset: 'assets/lumo_design/bg/bg_home.png',
                 child: ListView(
                   key: const PageStorageKey('lumo-home-scroll'),
-                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+                  padding: EdgeInsets.fromLTRB(16, compact ? 4 : 12, 16, 24),
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,11 +143,15 @@ class HomeContent extends StatelessWidget {
                         ),
                         LumoFoxPose(
                           pose: LumoDesignFoxPose.kartWave,
-                          size: wide ? 178 : 112,
+                          size: wide
+                              ? 178
+                              : compact
+                                  ? 88
+                                  : 112,
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: compact ? 4 : 10),
                     Material(
                       color: Colors.transparent,
                       child: InkWell(
@@ -208,7 +213,7 @@ class HomeContent extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: compact ? 6 : 12),
                     GridView.count(
                       crossAxisCount: columns,
                       mainAxisSpacing: 10,
@@ -333,10 +338,9 @@ class HomeContent extends StatelessWidget {
                             color: LumoVisualTokens.white,
                           ),
                         ),
-                        subtitle:
-                            Text('Lesen, Abenteuer und deine Sammlung',
-                                style: LumoTextStyles.body
-                                    .copyWith(color: LumoVisualTokens.muted)),
+                        subtitle: Text('Lesen, Abenteuer und deine Sammlung',
+                            style: LumoTextStyles.body
+                                .copyWith(color: LumoVisualTokens.muted)),
                         leading: const Icon(Icons.explore_rounded,
                             color: LumoVisualTokens.cyan),
                         children: [
@@ -346,13 +350,14 @@ class HomeContent extends StatelessWidget {
                               'Quizshow',
                               'Fragen mit Jokern beantworten',
                               Icons.quiz_rounded,
-                              () => _open(
-                                  context, QuizShowContent(appState: appState))),
+                              () => _open(context,
+                                  QuizShowContent(appState: appState))),
                           _extra(
                               'Lumo Kart',
                               'In der Spieleauswahl starten',
                               Icons.sports_motorsports_rounded,
-                              () => onSection(LumoSection.games)),
+                              () => onSection(LumoSection.games),
+                              key: const ValueKey('home-discover-kart')),
                           _extra(
                               'ABC-Tafel',
                               'Buchstaben anhören und entdecken',
@@ -429,14 +434,17 @@ class HomeContent extends StatelessWidget {
       );
 
   Widget _extra(
-          String title, String subtitle, IconData icon, VoidCallback onTap) =>
+          String title, String subtitle, IconData icon, VoidCallback onTap,
+          {Key? key}) =>
       ListTile(
+        key: key,
         leading: Icon(icon, color: LumoVisualTokens.cyan),
-        title: Text(title, style: const TextStyle(color: LumoVisualTokens.white)),
-        subtitle:
-            Text(subtitle, style: const TextStyle(color: LumoVisualTokens.muted)),
-        trailing:
-            const Icon(Icons.chevron_right_rounded, color: LumoVisualTokens.cyan),
+        title:
+            Text(title, style: const TextStyle(color: LumoVisualTokens.white)),
+        subtitle: Text(subtitle,
+            style: const TextStyle(color: LumoVisualTokens.muted)),
+        trailing: const Icon(Icons.chevron_right_rounded,
+            color: LumoVisualTokens.cyan),
         onTap: onTap,
       );
 }
@@ -472,8 +480,7 @@ class _ProgressCard extends StatelessWidget {
         const SizedBox(height: 16),
         Text('Heute: $dailyDone von $dailyGoal Aufgaben',
             key: const ValueKey('home-daily-progress'),
-            style:
-                LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
+            style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
         const SizedBox(height: 8),
         ClipRRect(
           borderRadius: BorderRadius.circular(8),
@@ -555,24 +562,28 @@ class _SubjectCard extends StatelessWidget {
   Widget build(BuildContext context) => LumoGlassCard(
         padding: EdgeInsets.zero,
         color: LumoVisualTokens.glassRow,
-        child: ListTile(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          leading: Icon(icon, color: color, size: 30),
-          title: Text(
-            subject,
-            style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
-          ),
-          subtitle: Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: Text(
-              '$subtitle\n$completed ${completed == 1 ? 'Aufgabe' : 'Aufgaben'} geschafft',
-              style: const TextStyle(color: LumoVisualTokens.muted),
+        child: Material(
+          color: Colors.transparent,
+          child: ListTile(
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            leading: Icon(icon, color: color, size: 30),
+            title: Text(
+              subject,
+              style: LumoTextStyles.heading3
+                  .copyWith(color: LumoVisualTokens.white),
             ),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(
+                '$subtitle\n$completed ${completed == 1 ? 'Aufgabe' : 'Aufgaben'} geschafft',
+                style: const TextStyle(color: LumoVisualTokens.muted),
+              ),
+            ),
+            trailing: const Icon(Icons.chevron_right_rounded,
+                size: 20, color: LumoVisualTokens.cyan),
+            onTap: onTap,
           ),
-          trailing: const Icon(Icons.chevron_right_rounded,
-              size: 20, color: LumoVisualTokens.cyan),
-          onTap: onTap,
         ),
       );
 }

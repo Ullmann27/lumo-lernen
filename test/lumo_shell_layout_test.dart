@@ -89,13 +89,13 @@ void main() {
       final profile = find.byType(ProfileScreen);
       expect(profile, findsOneWidget);
       expect(tester.widget<ProfileScreen>(profile).grade, grade);
-      expect(
-          find.descendant(of: profile, matching: find.text('Klasse $grade')),
+      expect(find.descendant(of: profile, matching: find.text('Klasse $grade')),
           findsOneWidget);
       for (var other = 1; other <= 4; other++) {
         if (other != grade) {
           expect(
-              find.descendant(of: profile, matching: find.text('Klasse $other')),
+              find.descendant(
+                  of: profile, matching: find.text('Klasse $other')),
               findsNothing);
         }
       }
@@ -151,7 +151,22 @@ void main() {
       await tester.tap(find.text('Alles klar'));
       await settleWork(tester);
       if (size.width == 360) {
-        await tester.tap(find.text("Lumo zeigt's dir"));
+        await tester.drag(
+          find.byKey(const PageStorageKey('lumo-home-scroll')),
+          const Offset(0, -700),
+        );
+        await settleWork(tester);
+        final explainHome = find.byKey(const ValueKey('home-explanation'));
+        await Scrollable.ensureVisible(
+          tester.element(explainHome),
+          alignment: 0.5,
+        );
+        await tester.drag(
+          find.byKey(const PageStorageKey('lumo-home-scroll')),
+          const Offset(0, 80),
+        );
+        await settleWork(tester);
+        await tester.tap(explainHome);
         await settleWork(tester);
         expect(find.text('So helfe ich dir'), findsOneWidget);
         await tester.tap(find.text('Alles klar'));

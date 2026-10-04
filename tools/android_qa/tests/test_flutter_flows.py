@@ -54,9 +54,10 @@ class VisibleUiTests(unittest.TestCase):
         with patch('flutter_flows.time.sleep'):
             check.learning()
         self.assertEqual([caption for caption, _ in calls],
-                         ['Lernen', '1. Klasse', 'Plus bis 10', '5', '5', '7'])
+                         ['Lernen', '1. Klasse', 'Mathe', 'Plus bis 10', '5', '5', '7'])
         self.assertTrue(calls[1][1]['contains'])
         self.assertTrue(calls[2][1]['contains'])
+        self.assertTrue(calls[3][1]['contains'])
         self.assertEqual(keys, [('4', 'KEY_BACK')])
         self.assertEqual(check.proof['learning']['wrong_answers'], ['5', '5'])
         self.assertEqual(check.proof['learning']['wallet_after']['daily_completed'], 1)

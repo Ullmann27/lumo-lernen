@@ -267,6 +267,7 @@ class FlutterChecks:
         # a real Navigator exercise module, not the unused subject-selection
         # screen or the generic LearningContent route.
         self.click('1. Klasse', contains=True, scroll=True)
+        self.click('Mathe', contains=True, scroll=True)
         self.click('Plus bis 10', contains=True, scroll=True)
         self.wait('Aufgabe 1 / 30')
         root = self.frame('actual-plus-module-prompt')

@@ -163,8 +163,9 @@ void main() {
     await tester.ensureVisible(discover);
     await tester.tap(discover);
     await tester.pumpAndSettle();
-    await tester.ensureVisible(find.text('Lumo Kart'));
-    await tester.tap(find.text('Lumo Kart'));
+    final kartEntry = find.byKey(const ValueKey('home-discover-kart'));
+    await tester.ensureVisible(kartEntry);
+    await tester.tap(kartEntry);
     expect(sections, [LumoSection.games]);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());

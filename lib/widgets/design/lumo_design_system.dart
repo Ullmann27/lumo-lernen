@@ -53,16 +53,17 @@ class LumoSceneBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final asset = backgroundAsset ?? switch (scene) {
-      LumoScene.home => 'assets/lumo_design/bg/bg_home.png',
-      LumoScene.learning => 'assets/lumo_design/bg/bg_learn.png',
-      LumoScene.library => 'assets/lumo_design/bg/bg_library.png',
-      LumoScene.tests => 'assets/lumo_design/bg/bg_tests.png',
-      LumoScene.games => 'assets/lumo_design/bg/bg_games.png',
-      LumoScene.profile => 'assets/lumo_design/bg/bg_profile.png',
-      LumoScene.kart => 'assets/lumo_design/bg/bg_kart.png',
-      LumoScene.wide => 'assets/lumo_design/bg/bg_wide.png',
-    };
+    final asset = backgroundAsset ??
+        switch (scene) {
+          LumoScene.home => 'assets/lumo_design/bg/bg_home.png',
+          LumoScene.learning => 'assets/lumo_design/bg/bg_learn.png',
+          LumoScene.library => 'assets/lumo_design/bg/bg_library.png',
+          LumoScene.tests => 'assets/lumo_design/bg/bg_tests.png',
+          LumoScene.games => 'assets/lumo_design/bg/bg_games.png',
+          LumoScene.profile => 'assets/lumo_design/bg/bg_profile.png',
+          LumoScene.kart => 'assets/lumo_design/bg/bg_kart.png',
+          LumoScene.wide => 'assets/lumo_design/bg/bg_wide.png',
+        };
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -182,103 +183,116 @@ class LumoColorTile extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Semantics(
-        button: true,
-        label: '$title. $subtitle',
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(22),
-            onTap: onTap,
-            // Ink kennt keinen constraints-Parameter (Compile-Fehler);
-            // Mindesthoehe deshalb per ConstrainedBox.
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 142),
-              child: Ink(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [color, Color.lerp(color, Colors.black, .20)!],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) {
+          final compact =
+              constraints.hasBoundedHeight && constraints.maxHeight < 142;
+          final padding = compact ? 8.0 : 16.0;
+          final iconPadding = compact ? 5.0 : 10.0;
+          final iconSize = compact ? 20.0 : 32.0;
+          final arrowRadius = compact ? 12.0 : 17.0;
+          return Semantics(
+            button: true,
+            label: '$title. $subtitle',
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
                 borderRadius: BorderRadius.circular(22),
-                border: Border.all(color: Colors.white.withOpacity(.38)),
-                boxShadow: [
-                  BoxShadow(
-                    color: color.withOpacity(.35),
-                    blurRadius: 20,
-                    offset: const Offset(0, 8),
-                  ),
-                ],
-              ),
-              child: Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(.18),
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(.16),
-                              blurRadius: 8,
-                              offset: const Offset(0, 4),
+                onTap: onTap,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: compact ? 0 : 142),
+                  child: Ink(
+                    padding: EdgeInsets.all(padding),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [color, Color.lerp(color, Colors.black, .20)!],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(22),
+                      border: Border.all(color: Colors.white.withOpacity(.38)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: color.withOpacity(.35),
+                          blurRadius: 20,
+                          offset: const Offset(0, 8),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(.18),
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(.16),
+                                    blurRadius: 8,
+                                    offset: const Offset(0, 4),
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(iconPadding),
+                                child: Icon(icon,
+                                    size: iconSize, color: Colors.white),
+                              ),
+                            ),
+                            if (compact)
+                              const SizedBox(height: 3)
+                            else
+                              const Spacer(),
+                            Text(
+                              title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w900,
+                                fontSize: compact ? 12 : 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(height: compact ? 0 : 2),
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(right: compact ? 22 : 32),
+                              child: Text(
+                                subtitle,
+                                maxLines: compact ? 1 : 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white.withOpacity(.86),
+                                  fontSize: compact ? 9 : 12,
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Icon(icon, size: 32, color: Colors.white),
-                        ),
-                      ),
-                      const Spacer(),
-                      Text(
-                        title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w900,
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 32),
-                        child: Text(
-                          subtitle,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white.withOpacity(.86),
-                            fontSize: 12,
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: CircleAvatar(
+                            radius: arrowRadius,
+                            backgroundColor: Colors.white.withOpacity(.22),
+                            child: Icon(Icons.arrow_forward_rounded,
+                                color: Colors.white, size: compact ? 14 : 19),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: CircleAvatar(
-                      radius: 17,
-                      backgroundColor: Colors.white.withOpacity(.22),
-                      child: const Icon(Icons.arrow_forward_rounded,
-                          color: Colors.white, size: 19),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-            ),
-          ),
-        ),
+          );
+        },
       );
 }
 
@@ -305,199 +319,210 @@ class LumoTopBar extends StatelessWidget {
     final reduceMotion = state.settings.reduceAnimations ||
         state.settings.calmMode ||
         MediaQuery.disableAnimationsOf(context);
-    return Row(
-      children: [
-        Expanded(
-          flex: 4,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Semantics(
-                label: 'LUMO',
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'LUM',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 24,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 1.4,
-                        color: LumoVisualTokens.white,
-                        shadows: [
-                          Shadow(color: LumoVisualTokens.cyan, blurRadius: 12),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 29,
-                      height: 30,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Text(
-                            'O',
-                            style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 24,
-                              fontWeight: FontWeight.w900,
-                              color: LumoVisualTokens.white,
-                              shadows: [
-                                Shadow(
-                                  color: LumoVisualTokens.cyan,
-                                  blurRadius: 12,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Icon(
-                            Icons.star_rounded,
-                            size: 11,
-                            color: LumoVisualTokens.cyanBright,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Text(
-                'Lernen. Spielen. Weiterkommen.',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 10,
-                  fontWeight: FontWeight.w800,
-                  color: LumoVisualTokens.cyan,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          flex: 6,
-          child: Semantics(
-            button: onTapStatus != null,
-            label:
-                'Level ${state.level}, Klasse ${state.grade}, ${state.stars} Sterne, ${state.xp % 400} von 400 XP',
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(24),
-                onTap: onTapStatus,
-                child: LumoGlassCard(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                  radius: 24,
-                  child: Row(
-                    children: [
-                      Semantics(
-                        label: 'Lumo, dein Lernfuchs. Hilfe öffnen',
-                        button: true,
-                        onTap: onTapFox,
-                        excludeSemantics: true,
-                        child: GestureDetector(
-                          key: const ValueKey('mobile-lumo-button'),
-                          excludeFromSemantics: true,
-                          onTap: onTapFox,
-                          child: SizedBox(
-                            width: 52,
-                            height: 52,
-                            child: ExcludeSemantics(
-                              child: reduceMotion
-                                  ? _avatar()
-                                  : LumoFloating(
-                                      amplitude: 3,
-                                      duration:
-                                          const Duration(milliseconds: 2800),
-                                      child: LumoGlowPulse(
-                                        color: LumoVisualTokens.cyan,
-                                        minBlur: 6,
-                                        maxBlur: 18,
-                                        child: _avatar(),
-                                      ),
-                                    ),
-                            ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final compact = constraints.maxWidth < 300;
+        return Row(
+          children: [
+            Expanded(
+              flex: compact ? 5 : 4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Semantics(
+                    label: 'LUMO',
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'LUM',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 24,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 1.4,
+                            color: LumoVisualTokens.white,
+                            shadows: [
+                              Shadow(
+                                  color: LumoVisualTokens.cyan, blurRadius: 12),
+                            ],
                           ),
                         ),
+                        SizedBox(
+                          width: 29,
+                          height: 30,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Text(
+                                'O',
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w900,
+                                  color: LumoVisualTokens.white,
+                                  shadows: [
+                                    Shadow(
+                                      color: LumoVisualTokens.cyan,
+                                      blurRadius: 12,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Icon(
+                                Icons.star_rounded,
+                                size: 11,
+                                color: LumoVisualTokens.cyanBright,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    'Lernen. Spielen. Weiterkommen.',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 10,
+                      fontWeight: FontWeight.w800,
+                      color: LumoVisualTokens.cyan,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(width: compact ? 6 : 10),
+            Expanded(
+              flex: compact ? 5 : 6,
+              child: Semantics(
+                button: onTapStatus != null,
+                label:
+                    'Level ${state.level}, Klasse ${state.grade}, ${state.stars} Sterne, ${state.xp % 400} von 400 XP',
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(24),
+                    onTap: onTapStatus,
+                    child: LumoGlassCard(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: compact ? 6 : 10,
+                        vertical: compact ? 6 : 8,
                       ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Level ${state.level} · ${state.grade}. Klasse',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w900,
-                                fontSize: 11,
-                                color: LumoVisualTokens.white,
+                      radius: 24,
+                      child: Row(
+                        children: [
+                          Semantics(
+                            label: 'Lumo, dein Lernfuchs. Hilfe öffnen',
+                            button: true,
+                            onTap: onTapFox,
+                            excludeSemantics: true,
+                            child: GestureDetector(
+                              key: const ValueKey('mobile-lumo-button'),
+                              excludeFromSemantics: true,
+                              onTap: onTapFox,
+                              child: SizedBox(
+                                width: compact ? 32 : 52,
+                                height: compact ? 32 : 52,
+                                child: ExcludeSemantics(
+                                  child: reduceMotion
+                                      ? _avatar(size: compact ? 32 : 52)
+                                      : LumoFloating(
+                                          amplitude: 3,
+                                          duration: const Duration(
+                                              milliseconds: 2800),
+                                          child: LumoGlowPulse(
+                                            color: LumoVisualTokens.cyan,
+                                            minBlur: 6,
+                                            maxBlur: 18,
+                                            child: _avatar(
+                                                size: compact ? 32 : 52),
+                                          ),
+                                        ),
+                                ),
                               ),
                             ),
-                            Row(
+                          ),
+                          SizedBox(width: compact ? 4 : 8),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.star_rounded,
-                                    size: 14, color: LumoVisualTokens.gold),
                                 Text(
-                                  '${state.stars}',
+                                  'Level ${state.level} · ${state.grade}. Klasse',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
+                                    fontFamily: 'Nunito',
                                     fontWeight: FontWeight.w900,
                                     fontSize: 11,
                                     color: LumoVisualTokens.white,
                                   ),
                                 ),
-                                const SizedBox(width: 7),
-                                Expanded(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: LinearProgressIndicator(
-                                      minHeight: 5,
-                                      value: (state.xp % 400) / 400,
-                                      backgroundColor: Colors.white24,
-                                      valueColor:
-                                          const AlwaysStoppedAnimation<Color>(
-                                        LumoVisualTokens.cyanBright,
+                                Row(
+                                  children: [
+                                    const Icon(Icons.star_rounded,
+                                        size: 14, color: LumoVisualTokens.gold),
+                                    Text(
+                                      '${state.stars}',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 11,
+                                        color: LumoVisualTokens.white,
                                       ),
                                     ),
+                                    const SizedBox(width: 7),
+                                    Expanded(
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(5),
+                                        child: LinearProgressIndicator(
+                                          minHeight: 5,
+                                          value: (state.xp % 400) / 400,
+                                          backgroundColor: Colors.white24,
+                                          valueColor:
+                                              const AlwaysStoppedAnimation<
+                                                  Color>(
+                                            LumoVisualTokens.cyanBright,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  '${state.xp % 400} / 400 XP',
+                                  style: const TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 9,
+                                    color: LumoVisualTokens.muted,
                                   ),
                                 ),
                               ],
                             ),
-                            Text(
-                              '${state.xp % 400} / 400 XP',
-                              style: const TextStyle(
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 9,
-                                color: LumoVisualTokens.muted,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                          Icon(Icons.chevron_right_rounded,
+                              color: LumoVisualTokens.cyan,
+                              size: compact ? 16 : 19),
+                        ],
                       ),
-                      const Icon(Icons.chevron_right_rounded,
-                          color: LumoVisualTokens.cyan, size: 19),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 
-  Widget _avatar() => Container(
-        width: 52,
-        height: 52,
+  Widget _avatar({double size = 52}) => Container(
+        width: size,
+        height: size,
         padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
@@ -510,14 +535,13 @@ class LumoTopBar extends StatelessWidget {
             ),
           ],
         ),
-        child: const ClipOval(
+        child: ClipOval(
           child: LumoFoxPose(
             pose: LumoDesignFoxPose.avatar,
-            size: 44,
+            size: size - 8,
           ),
         ),
       );
-
 }
 
 class LumoSpeechBubble extends StatelessWidget {
@@ -546,8 +570,7 @@ class LumoSpeechBubble extends StatelessWidget {
                 fontFamily: handwritten ? null : 'Nunito',
                 fontSize: handwritten ? 20 : 14,
                 fontWeight: handwritten ? FontWeight.w700 : FontWeight.w800,
-                fontStyle:
-                    handwritten ? FontStyle.italic : FontStyle.normal,
+                fontStyle: handwritten ? FontStyle.italic : FontStyle.normal,
                 letterSpacing: handwritten ? .35 : 0,
                 color: LumoVisualTokens.white,
               ),
@@ -620,8 +643,7 @@ class LumoBottomNavigation extends StatelessWidget {
     _LumoNavigationItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
     _LumoNavigationItem(
         LumoSection.games, Icons.sports_esports_rounded, 'Spielen'),
-    _LumoNavigationItem(
-        LumoSection.tests, Icons.emoji_events_rounded, 'Tests'),
+    _LumoNavigationItem(LumoSection.tests, Icons.emoji_events_rounded, 'Tests'),
     _LumoNavigationItem(
         LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
   ];
@@ -795,8 +817,7 @@ class LumoFoldProgressPanel extends StatelessWidget {
                             value: (dailyDone / dailyGoal).clamp(0.0, 1.0),
                             minHeight: 7,
                             backgroundColor: LumoVisualTokens.navigation,
-                            valueColor:
-                                const AlwaysStoppedAnimation<Color>(
+                            valueColor: const AlwaysStoppedAnimation<Color>(
                               LumoVisualTokens.cyanBright,
                             ),
                           ),
@@ -857,7 +878,8 @@ class LumoFoldProgressPanel extends StatelessWidget {
       );
 
   double _masteryFor(Iterable<SkillRecord> records, String subject) {
-    final matching = records.where((record) => record.subject == subject).toList();
+    final matching =
+        records.where((record) => record.subject == subject).toList();
     if (matching.isEmpty) return 0;
     return matching.fold<int>(0, (total, record) => total + record.mastery) /
         matching.length /

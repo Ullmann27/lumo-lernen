@@ -1,0 +1,197 @@
+name: Lumo change review
+
+# Each new PR head, including drafts and stacked PRs. No hourly polling.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  workflow_dispatch:
+
+concurrency:
+  group: lumo-change-review-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  coordination:
+    name: Fresh head and overlapping work
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      fresh: ${{ steps.inspect.outputs.fresh }}
+      head: ${{ steps.inspect.outputs.head }}
+    steps:
+      - name: Inspect GitHub metadata without executing PR code
+        id: inspect
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            if (!pr) {
+              core.setOutput('fresh', 'true');
+              core.setOutput('head', context.sha);
+              await core.summary.addHeading('Manual technical check')
+                .addRaw('No PR overlap assessment for a manual run.').write();
+              return;
+            }
+            const args = {...context.repo, pull_number: pr.number};
+            const {data: current} = await github.rest.pulls.get(args);
+            core.setOutput('head', pr.head.sha);
+            if (current.state !== 'open' || current.head.sha !== pr.head.sha) {
+              core.setOutput('fresh', 'false');
+              await core.summary.addHeading('Superseded candidate')
+                .addRaw('No green verdict for a stale or closed PR.').write();
+              return;
+            }
+            core.setOutput('fresh', 'true');
+            const files = await github.paginate(github.rest.pulls.listFiles, {...args, per_page: 100});
+            const touched = new Set(files.map(f => f.filename));
+            const siblings = await github.paginate(github.rest.pulls.list, {
+              ...context.repo, state: 'open', base: current.base.ref, per_page: 100
+            });
+            const overlaps = [];
+            for (const other of siblings) {
+              if (other.number === pr.number) continue;
+              const theirs = await github.paginate(github.rest.pulls.listFiles, {
+                ...context.repo, pull_number: other.number, per_page: 100
+              });
+              const common = theirs.filter(f => touched.has(f.filename)).map(f => f.filename);
+              if (common.length) overlaps.push({pr: other.number, head: other.head.sha, files: common});
+            }
+            await core.summary.addHeading('Lumo coordination snapshot')
+              .addCodeBlock(JSON.stringify({pr: pr.number, testedHead: pr.head.sha,
+                base: current.base.ref, changedFiles: files.length, overlaps}, null, 2), 'json')
+              .addRaw('\nOverlapping paths are warnings, not proof of conflicting changes. '
+                + 'Only open PRs with the same base are compared; local unpushed work and '
+                + 'other-base PRs are not covered. Read current CLAIMs before writing. '
+                + 'This metadata snapshot is not an AI review or a merge approval.\n').write();
+
+  verify:
+    name: Flutter analysis and complete test suite
+    needs: coordination
+    if: needs.coordination.outputs.fresh == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.coordination.outputs.head }}
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Record exact source and toolchain
+        run: |
+          mkdir -p .ci-results
+          git rev-parse HEAD | tee .ci-results/source-sha.txt
+          flutter --version | tee .ci-results/flutter-version.txt
+          dart --version 2>&1 | tee .ci-results/dart-version.txt
+      - name: Resolve dependencies
+        id: dependencies
+        run: |
+          set -o pipefail
+          flutter pub get 2>&1 | tee .ci-results/dependencies.log
+      - name: Analyze (errors block; existing warnings remain visible)
+        id: analysis
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee .ci-results/analysis.log
+      - name: Run all Flutter tests, including asset and navigation tests
+        id: tests
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=45s --concurrency=2 2>&1 | tee .ci-results/tests.log
+      - name: Fail closed and record actual outcomes
+        if: ${{ !cancelled() }}
+        env:
+          DEPENDENCIES: ${{ steps.dependencies.outcome }}
+          ANALYSIS: ${{ steps.analysis.outcome }}
+          TESTS: ${{ steps.tests.outcome }}
+          SOURCE_SHA: ${{ needs.coordination.outputs.head }}
+        run: |
+          mkdir -p .ci-results
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          results = {key: os.environ.get(key, 'not_run') for key in
+                     ('SOURCE_SHA', 'DEPENDENCIES', 'ANALYSIS', 'TESTS')}
+          Path('.ci-results/outcomes.json').write_text(json.dumps(results, indent=2) + '\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('## Actual technical outcomes\n```json\n'
+                            + json.dumps(results, indent=2) + '\n```\n'
+                            + 'Individual skipped tests remain visible in tests.log. '
+                            + 'No APK, emulator, visual approval, TTS listening test, '
+                            + 'or independent AI review is claimed by this workflow.\n')
+          if any(results[key] != 'success' for key in ('DEPENDENCIES', 'ANALYSIS', 'TESTS')):
+              raise SystemExit(1)
+          PY
+      - name: Preserve evidence even when checks fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-change-review-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .ci-results/
+          if-no-files-found: warn
+          retention-days: 7
+
+  report:
+    name: Update one PR status comment (no agent trigger loop)
+    needs: [coordination, verify]
+    if: >-
+      ${{ !cancelled() && github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          needs.coordination.outputs.fresh == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      # Deliberately no checkout and no execution/download of PR-supplied scripts.
+      - uses: actions/github-script@v7
+        env:
+          VERIFY_RESULT: ${{ needs.verify.result }}
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const {data: latest} = await github.rest.pulls.get({...context.repo, pull_number: pr.number});
+            if (latest.state !== 'open' || latest.head.sha !== pr.head.sha) {
+              core.info('Not publishing a stale verdict.');
+              return;
+            }
+            const marker = '<!-- lumo-change-review-v1 -->';
+            const result = process.env.VERIFY_RESULT;
+            const label = result === 'success' ? 'TECHNISCHE PRUEFUNG BESTANDEN'
+              : result === 'failure' ? 'FEHLER: PRUEFUNG NICHT BESTANDEN'
+              : 'NICHT VOLLSTAENDIG GEPRUEFT';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `${marker}\n## Lumo: ${label}\n\n`
+              + `Quellstand: \`${pr.head.sha}\` · Flutter 3.44.9 · Jobstatus: \`${result}\`\n\n`
+              + `[Prueflauf, Dateiueberschneidungen und Originalprotokolle](${runUrl})\n\n`
+              + 'Analysefehler und fehlschlagende Tests blockieren den technischen Check. '
+              + 'Vorhandene Warnungen und einzelne uebersprungene Tests bleiben im Protokoll sichtbar. '
+              + 'Das ist KEINE APK-/Grafikfreigabe und ersetzt nicht die getrennten Pruefberichte '
+              + 'von Luna, Claude und ChatGPT. Keine automatische Reparatur und kein Auto-Merge. '
+              + 'Vor Aenderungen aktuellen Head, offene PRs und CLAIMs lesen; bei Fehlern '
+              + 'die vereinbarten drei echten Austausch-/Pruefrunden dokumentieren.';
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              ...context.repo, issue_number: pr.number, per_page: 100
+            });
+            const existing = comments.find(c => c.user?.login === 'github-actions[bot]' && c.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({...context.repo, comment_id: existing.id, body});
+            } else {
+              await github.rest.issues.createComment({...context.repo, issue_number: pr.number, body});
+            }
