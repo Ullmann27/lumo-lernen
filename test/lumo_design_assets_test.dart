@@ -15,6 +15,8 @@ void main() {
     'bg/bg_profile', 'bg/bg_kart', 'bg/bg_wide', 'logo/logo_lumo', 'logo/logo_lumo_kart',
     'cards/deutsch_hund', 'cards/game_kart', 'cards/game_memory', 'cards/kart_freunde',
     'cards/test_rechnen', 'cards/kart_track',
+    'icons/book_open', 'icons/treasure_chest', 'icons/star_gold', 'icons/trophy_gold',
+    'icons/gamepad', 'icons/crystal', 'icons/crown', 'badges/badge_sterne', 'badges/badge_schild',
   ];
   for (final scene in scenes) {
     test('$scene ist gebuendelt', () async {

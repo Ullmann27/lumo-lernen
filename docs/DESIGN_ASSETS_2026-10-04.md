@@ -6,7 +6,8 @@ Bis eine Datei vorhanden ist, bleibt ein gekennzeichneter Platzhalter.
 
 ## Stand 4. Oktober (geprüft von Claude)
 - **Vorhanden:** alle 10 Fuchs-Posen, alle 8 Hintergründe (`bg_games` und `bg_kart` sind fast identisch mit `bg_home`, eigene Motive fehlen noch), beide Logos, Kartenbilder `deutsch_hund`, `game_kart`, `game_memory`, `kart_freunde`, `test_rechnen`, `kart_track`.
-- **Noch fehlend (die gelieferten Dateien waren Platzhalter):** alle `icons/*`, `badges/*`, `rewards/*` (farbige Quadrate mit Wörtern wie „BOOK“ statt 3D-Symbolen) sowie `cards/game_cards`, `game_wortjagd`, `game_zahlenblitz`, `kart_garage`, `kart_missionen`, `kart_strecken` (Hintergrund-Ausschnitte mit Text). Bis echte Bilder kommen, Material-Icons bzw. Farbverlauf als Platzhalter verwenden, keine Text-Platzhalterbilder.
+- **Echte 3D-Symbole vorhanden (Heinz, 4.10.):** `icons/book_open`, `treasure_chest`, `star_gold`, `trophy_gold`, `gamepad`, `crown`, neu `icons/crystal` (Kristall, z. B. Denk-Abenteuer), `badges/badge_sterne` (Sternmedaille), neu `badges/badge_schild` (Sternschild).
+- **Noch fehlend (die gelieferten Dateien waren Platzhalter):** (außer den oben genannten echten) alle `icons/*`, `badges/*`, `rewards/*` (farbige Quadrate mit Wörtern wie „BOOK“ statt 3D-Symbolen) sowie `cards/game_cards`, `game_wortjagd`, `game_zahlenblitz`, `kart_garage`, `kart_missionen`, `kart_strecken` (Hintergrund-Ausschnitte mit Text). Bis echte Bilder kommen, Material-Icons bzw. Farbverlauf als Platzhalter verwenden, keine Text-Platzhalterbilder.
 
 Gemeinsamer Stil (in jeden Prompt): *3D-Render im Pixar-Stil, hochwertig, weiches Licht,
 nächtliche Fantasy-Welt in Dunkelblau mit Cyan-Leuchtakzenten, kindgerecht, gleiche Figur in
