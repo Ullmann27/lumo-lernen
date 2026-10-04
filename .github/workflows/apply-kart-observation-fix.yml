@@ -1,0 +1,59 @@
+name: Apply the exact reviewed Kart observation repair
+
+on:
+  push:
+    branches: ['codex/lumo-unified-android-2026-10-03']
+    paths: ['.github/workflows/apply-kart-observation-fix.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  verified-repair:
+    if: contains(github.event.head_commit.message, '[apply-kart-observation-fix]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply only the inspected before-blob and verify the exact tested after-blob
+        run: python3 tools/android_qa/apply_verified_prompt_fix.py
+      - name: Run all Android helper regression tests before committing
+        run: |
+          python3 -m pip install Pillow
+          python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
+          python3 -m compileall -q tools/android_qa
+      - name: Commit only the hash-guarded Kart helper on the continuation branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64, json, subprocess
+          from pathlib import Path
+          path = 'tools/android_qa/kart_android_race.py'
+          changed = subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines()
+          if changed != [path]:
+              raise SystemExit('Refuse any change outside the single reviewed Kart helper')
+          sha = subprocess.check_output(['git', 'hash-object', path], text=True).strip()
+          if sha != 'a036db4f937a6573925c84e348138755481171e6':
+              raise SystemExit('After-test source hash mismatch')
+          payload = {
+              'message': 'fix(qa): distinguish complete observed Kart tasks from permissive OCR noise',
+              'branch': 'codex/lumo-unified-android-2026-10-03',
+              'sha': '62394336829476558ffcf8174263ca5ef291ca56',
+              'content': base64.b64encode(Path(path).read_bytes()).decode('ascii'),
+          }
+          result = subprocess.run([
+              'gh', 'api', '--method', 'PUT',
+              'repos/Ullmann27/lumo-lernen/contents/'+path, '--input', '-'
+          ], input=json.dumps(payload), text=True, capture_output=True, check=True)
+          proof = json.loads(result.stdout)
+          if proof['content']['sha'] != sha:
+              raise SystemExit('Committed source did not match tested source')
+          print(json.dumps({'commit': proof['commit']['sha'], 'content_sha': sha,
+                            'only_changed_path': path, 'apk_changed': False}))
+          PY
