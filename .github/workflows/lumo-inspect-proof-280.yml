@@ -5,8 +5,11 @@ on:
     branches: ['codex/lumo-unified-android-2026-10-03']
     paths: ['.github/workflows/lumo-inspect-proof-280.yml']
 
+# GitHub requires draft-authoring access to read unpublished release assets.
+# This workflow performs only GET requests and an Actions artifact upload.
 permissions:
-  contents: read
+  contents: write
+  actions: read
 
 jobs:
   original-proof:
@@ -16,11 +19,15 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Read original evidence without running or changing app code
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p original-proof
+          git archive --format=zip --output=original-proof/lumo-source.zip HEAD
           python3 - <<'PY'
           import hashlib
           import json
@@ -36,8 +43,10 @@ jobs:
           release_id = 402540673
           expected_name = f'android-api35-qa-{run_id}-1.zip'
           def api(endpoint):
-              result = subprocess.run(['gh', 'api', endpoint], check=True,
-                                      capture_output=True, text=True, timeout=60)
+              result = subprocess.run(['gh', 'api', endpoint], capture_output=True,
+                                      text=True, timeout=60)
+              if result.returncode:
+                  raise RuntimeError(f'GET {endpoint}: {result.stderr.strip()}')
               return json.loads(result.stdout)
 
           run = api(f'repos/{repository}/actions/runs/{run_id}')
@@ -86,15 +95,15 @@ jobs:
               selected = [name for name in names if Path(name).name in
                           {'result.json', 'flutter-proof.json', 'emulator-version-proof.json'}]
               selected += [name for name in names if name.endswith('.xml') and
-                           ('local-help' in name or 'local-task-help' in name or 'usage-check-failure' in name)]
-              for name in selected[-10:]:
+                           ('local-help' in name or 'local-task-help' in name or 'usage-check-failure' in name)][-6:]
+              for name in selected:
                   info = archive.getinfo(name)
                   if info.file_size > 100_000:
                       continue
                   text = archive.read(name).decode('utf-8', errors='replace')
                   print('ORIGINAL_PROOF_FILE=' + json.dumps({'name': name, 'content': text}), flush=True)
           PY
-      - name: Preserve the unchanged original proof for download
+      - name: Preserve unchanged evidence and public source for download
         uses: actions/upload-artifact@v4
         with:
           name: Lumo-original-proof-37174626790
