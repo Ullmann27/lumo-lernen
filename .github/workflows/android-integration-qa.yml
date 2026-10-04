@@ -1,6 +1,11 @@
 name: Check unified Android APK in KVM
 
 on:
+  # Explicit recovery run for the frozen Build 280, on this branch only.
+  # Unmarked workflow edits do not start an emulator; manual dispatch is unchanged.
+  push:
+    branches: ['codex/lumo-unified-android-2026-10-03']
+    paths: ['.github/workflows/android-integration-qa.yml']
   workflow_dispatch:
     inputs:
       mode:
@@ -33,17 +38,22 @@ concurrency:
 
 jobs:
   exact-apk:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[lumo-qa-280]')
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       LUMO_QA_DIR: ${{ github.workspace }}/android-qa-evidence
-      RELEASE_TAG: ${{ inputs.releaseTag }}
-      APK_SHA: ${{ inputs.apkSha }}
+      RELEASE_TAG: ${{ github.event_name == 'push' && 'unified-build-280' || inputs.releaseTag }}
+      APK_SHA: ${{ github.event_name == 'push' && '3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48' || inputs.apkSha }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Check emulator diagnostics regressions
+        run: |
+          mkdir -p "$LUMO_QA_DIR"
+          python3 -m unittest discover -s tools/android_qa/tests -p 'test_emulator*.py' -v 2>&1 | tee "$LUMO_QA_DIR/emulator-regressions.log"
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -91,7 +101,7 @@ jobs:
           python3 tools/android_qa/cache_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --evidence "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/candidate-cache.log"
       - name: Download and verify the supplied APK bytes
         id: downloaded
-        if: inputs.mode == 'download'
+        if: inputs.mode == 'download' || github.event_name == 'push'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
