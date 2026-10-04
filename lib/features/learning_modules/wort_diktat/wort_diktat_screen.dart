@@ -763,11 +763,10 @@ class _StrokesPainter extends CustomPainter {
     }
   }
 
+  // Die Strich-Liste wird beim Schreiben direkt veraendert und als dieselbe
+  // Instanz uebergeben. Ein Laengenvergleich old/new war deshalb immer gleich,
+  // der Painter zeichnete nie neu und die Schrift des Kindes blieb unsichtbar.
+  // Neu gebaut wird der Painter nur bei setState, also immer neu zeichnen.
   @override
-  bool shouldRepaint(_StrokesPainter old) =>
-      old.strokes.length != strokes.length ||
-      (strokes.isNotEmpty &&
-          old.strokes.isNotEmpty &&
-          old.strokes.last.length != strokes.last.length) ||
-      old.color != color;
+  bool shouldRepaint(_StrokesPainter old) => true;
 }
