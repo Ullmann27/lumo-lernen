@@ -7,6 +7,7 @@ enum LearningSubject {
   deutsch,
   mathematik,
   sachkunde,
+  logik,
 }
 
 enum LearningMode {

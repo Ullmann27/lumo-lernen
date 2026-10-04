@@ -17,7 +17,6 @@ import '../../domain/learning/learning_dna_engine.dart';
 import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import 'parent_report_card.dart';
-import 'parent_pin_editor.dart';
 import 'writing_report_card.dart';
 
 class SettingsContent extends StatefulWidget {
@@ -415,25 +414,42 @@ class _SettingsContentState extends State<SettingsContent> {
           ),
         ],
         const SizedBox(height: 18),
-        Wrap(spacing: 14, runSpacing: 14, children: [
-          _InfoCard(
-            title: 'Profil',
-            emoji: '👤',
-            lines: ['Name: ${state.childName}', 'Klasse: ${state.grade}', 'Fach: ${state.subject}', 'Thema: ${Curriculum.prettifyUnit(state.unit)}',
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth =
+                constraints.maxWidth < 250 ? constraints.maxWidth : 250.0;
+            return Wrap(
+              spacing: 14,
+              runSpacing: 14,
+              children: [
+                _InfoCard(
+                  width: cardWidth,
+                  title: 'Profil',
+                  emoji: '👤',
+                  lines: [
+                    'Name: ${state.childName}',
+                    'Klasse: ${state.grade}',
+                    'Fach: ${state.subject}',
+                    'Thema: ${Curriculum.prettifyUnit(state.unit)}',
                   ],
-          ),
-          _InfoCard(
-            title: 'Datenschutz',
-            emoji: '🛡️',
-            lines: [
-              'Offline-first',
-              'Mikrofon nur bei aktiver Nutzung',
-              _settings.aiProxyEnabled ? 'Lumo-KI-Server durch Eltern freigegeben' : 'Keine Cloud-KI aktiv',
-              'Keine Werbung',
-            ],
-          ),
-        ],
-            ),
+                ),
+                _InfoCard(
+                  width: cardWidth,
+                  title: 'Datenschutz',
+                  emoji: '🛡️',
+                  lines: [
+                    'Offline-first',
+                    'Mikrofon nur bei aktiver Nutzung',
+                    _settings.aiProxyEnabled
+                        ? 'Lumo-KI-Server durch Eltern freigegeben'
+                        : 'Keine Cloud-KI aktiv',
+                    'Keine Werbung',
+                  ],
+                ),
+              ],
+            );
+          },
+        ),
         const SizedBox(height: 18),
         _SettingsCard(title: 'Lernen', children: [
           _DailyGoalSelector(value: _settings.dailyGoal, onChanged: (v) => _save(_settings.copyWith(dailyGoal: v)),
@@ -468,20 +484,38 @@ class _SettingsContentState extends State<SettingsContent> {
         ],
             ),
         const SizedBox(height: 14),
-        _SettingsCard(title: 'Sicherheit und Funktionen', children: [
-          ParentPinEditor(
-                  onSave: (pin) => _save(_settings.copyWith(parentPin: pin)),
-                ),
+            _SettingsCard(
+              title: 'Sicherheit und Funktionen',
+              children: [
+                const Text(
+                    'Für Erwachsene: Wähle hier bewusst, welche Funktionen dein Kind nutzen darf. Gerätefreigaben werden erst beim Verwenden angefragt.'),
                 const SizedBox(height: 12),
-                _SwitchRow(title: 'Mikrofon erlauben', subtitle: 'Kind darf mit Lumo sprechen.', value: _settings.microphoneEnabled, onChanged: (v) => _save(_settings.copyWith(microphoneEnabled: v)),
+                _SwitchRow(
+                  title: 'Mikrofon erlauben',
+                  subtitle:
+                      'Spracheingabe erst nach Antippen. Ohne Freigabe bleiben Text und lokale Lernhilfe nutzbar.',
+                  value: _settings.microphoneEnabled,
+                  onChanged: (v) =>
+                      _save(_settings.copyWith(microphoneEnabled: v)),
                 ),
-          _SwitchRow(title: 'Scanner erlauben', subtitle: 'Foto- und Aufgabenhilfe aktivieren.', value: _settings.scannerEnabled, onChanged: (v) => _save(_settings.copyWith(scannerEnabled: v)),
+                _SwitchRow(
+                  title: 'Kamera und Scanner erlauben',
+                  subtitle:
+                      'Aufgabenfotos erst nach Antippen aufnehmen oder auswählen.',
+                  value: _settings.scannerEnabled,
+                  onChanged: (v) =>
+                      _save(_settings.copyWith(scannerEnabled: v)),
                 ),
-          _SwitchRow(title: 'Ton-Effekte', subtitle: 'Vorbereitung für spätere Klick- und Belohnungstöne.', value: _settings.soundEnabled, onChanged: (v) => _save(_settings.copyWith(soundEnabled: v)),
+                _SwitchRow(
+                  title: 'Ton-Effekte',
+                  subtitle:
+                      'Vorbereitung für spätere Klick- und Belohnungstöne.',
+                  value: _settings.soundEnabled,
+                  onChanged: (v) => _save(_settings.copyWith(soundEnabled: v)),
                 ),
-        ],
+              ],
             ),
-        const SizedBox(height: 14),
+            const SizedBox(height: 14),
         _SettingsCard(title: 'Lumo-KI Testserver', children: [
           _SwitchRow(
             title: 'Lumo-KI-Server erlauben',
@@ -550,6 +584,7 @@ class _SettingsContentState extends State<SettingsContent> {
           _AiTutorStatsPanel(
             key: ValueKey(_aiStatsRevision),
             childId: _childId,
+            grade: state.grade,
             enabled: _settings.aiProxyEnabled,
             onClear: _clearAiTaskCache,
           ),
@@ -599,87 +634,101 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Premium-Header: warmer Gradient, grosser Avatar mit Glow.
-    return Container(
-      padding: const EdgeInsets.fromLTRB(20, 22, 20, 22),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFFFFF7ED), Color(0xFFFFE4CC), Color(0xFFFFD1A8)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFFFB96B), width: 1.4),
-        boxShadow: [
-          BoxShadow(
-            color: LumoColors.orange.withOpacity(0.25),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-            spreadRadius: -4,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final compact = constraints.maxWidth < 360;
+        final avatarSize = compact ? 52.0 : 72.0;
+        return Container(
+          padding: EdgeInsets.fromLTRB(
+            compact ? 14 : 20,
+            compact ? 16 : 22,
+            compact ? 14 : 20,
+            compact ? 16 : 22,
           ),
-          BoxShadow(
-            color: Colors.white.withOpacity(0.6),
-            blurRadius: 6,
-            offset: const Offset(-2, -2),
-            spreadRadius: -2,
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 72,
-            height: 72,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFFFF7ED), Color(0xFFFFE4CC), Color(0xFFFFD1A8)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            border: Border.all(color: const Color(0xFFFFB96B), width: 1.4),
+            boxShadow: [
+              BoxShadow(
+                color: LumoColors.orange.withOpacity(0.25),
+                blurRadius: 24,
+                offset: const Offset(0, 8),
+                spreadRadius: -4,
               ),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFFF7A2F).withOpacity(0.45),
-                  blurRadius: 14,
-                  offset: const Offset(0, 6),
-                ),
-              ],
-            ),
-            child: Text(emoji, style: const TextStyle(fontSize: 38, height: 1.0),
-            ),
+              BoxShadow(
+                color: Colors.white.withOpacity(0.6),
+                blurRadius: 6,
+                offset: const Offset(-2, -2),
+                spreadRadius: -2,
+              ),
+            ],
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xFF7C2D12),
-                    letterSpacing: -0.2,
+          child: Row(
+            children: [
+              Container(
+                width: avatarSize,
+                height: avatarSize,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
+                  borderRadius: BorderRadius.circular(compact ? 16 : 20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFFF7A2F).withOpacity(0.45),
+                      blurRadius: 14,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF92400E),
-                    height: 1.35,
-                  ),
+                child: Text(
+                  emoji,
+                  style: TextStyle(fontSize: compact ? 30 : 38, height: 1.0),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(width: compact ? 10 : 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: compact ? 18 : 22,
+                        fontWeight: FontWeight.w900,
+                        color: const Color(0xFF7C2D12),
+                        letterSpacing: -0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: compact ? 12 : 13,
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xFF92400E),
+                        height: 1.35,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -706,8 +755,13 @@ class _SettingsCard extends StatelessWidget {
 }
 
 class _InfoCard extends StatelessWidget {
-  const _InfoCard({required this.title, required this.emoji, required this.lines,
+  const _InfoCard({
+    required this.width,
+    required this.title,
+    required this.emoji,
+    required this.lines,
   });
+  final double width;
   final String title;
   final String emoji;
   final List<String> lines;
@@ -715,7 +769,7 @@ class _InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
+      width: width,
       padding: const EdgeInsets.all(16),
       decoration: lumoCard(),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -735,7 +789,11 @@ class _InfoCard extends StatelessWidget {
 }
 
 class _SwitchRow extends StatelessWidget {
-  const _SwitchRow({required this.title, required this.subtitle, required this.value, required this.onChanged,
+  const _SwitchRow({
+    required this.title,
+    required this.subtitle,
+    required this.value,
+    required this.onChanged,
   });
   final String title;
   final String subtitle;
@@ -744,14 +802,21 @@ class _SwitchRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SwitchListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text(title, style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink900,
+    return Material(
+      type: MaterialType.transparency,
+      child: SwitchListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          title,
+          style: LumoTextStyles.body.copyWith(
+            fontWeight: FontWeight.w900,
+            color: LumoColors.ink900,
+          ),
         ),
+        subtitle: Text(subtitle, style: LumoTextStyles.caption),
+        value: value,
+        onChanged: onChanged,
       ),
-      subtitle: Text(subtitle, style: LumoTextStyles.caption),
-      value: value,
-      onChanged: onChanged,
     );
   }
 }
@@ -818,6 +883,7 @@ class _AiTutorStatsPanel extends StatelessWidget {
   const _AiTutorStatsPanel({
     super.key,
     required this.childId,
+    required this.grade,
     required this.enabled,
     required this.onClear,
   });
@@ -826,6 +892,7 @@ class _AiTutorStatsPanel extends StatelessWidget {
   static const AiTaskCache _cache = AiTaskCache();
 
   final String childId;
+  final int grade;
   final bool enabled;
   final Future<void> Function() onClear;
 
@@ -835,8 +902,8 @@ class _AiTutorStatsPanel extends StatelessWidget {
     DateTime? newest;
     final freshBySubject = <String, int>{};
     for (final subject in subjects) {
-      final fresh = await _cache.freshCount(childId: childId, subject: subject);
-      final last = await _cache.lastGeneratedAt(childId: childId, subject: subject,
+      final fresh = await _cache.freshCount(childId: childId, subject: subject, grade: grade);
+      final last = await _cache.lastGeneratedAt(childId: childId, subject: subject, grade: grade,
       );
       freshBySubject[subject] = fresh;
       freshTotal += fresh;
@@ -1174,6 +1241,8 @@ class _HealthDiagnosticsCard extends StatelessWidget {
     final lines = <_DiagLine>[
       _DiagLine('reachable', status.reachable.toString()),
       _DiagLine('openAiConfigured', status.openAiConfigured.toString()),
+      _DiagLine('openAiAvailable', status.openAiAvailable.toString()),
+      if (status.upstreamStatus != null) _DiagLine('upstreamStatus', status.upstreamStatus!),
       _DiagLine('fullyOk', status.fullyOk.toString()),
       if (status.statusCode != null) _DiagLine('HTTP', status.statusCode.toString()),
       if (status.endpoint != null) _DiagLine('endpoint', status.endpoint!),
@@ -1501,14 +1570,14 @@ class _AppUpdateCard extends StatelessWidget {
               ),
             ),
           ),
-          // Anleitung: erstes Mal nach neuem Keystore evtl. einmal
-          // deinstallieren noetig.
+          // Android accepts updates only with the same package and signer.
           const SizedBox(height: 10),
           const Text(
-            'Tipp: Nach dem Druecken laedt die APK im Hintergrund. '
-            'Tippe danach auf die Download-Benachrichtigung um zu installieren.\n'
-            'Beim allerersten Update kann es noetig sein, die alte Version '
-            'einmalig zu deinstallieren - danach laufen alle Updates direkt.',
+            'Nach dem Download öffnest du die APK zur Installation. '
+            'Ein direktes Update braucht denselben Paketnamen und Signaturschlüssel.\n'
+            'Deinstalliere die alte App nicht: Dabei können Lernstände verloren gehen. '
+            'Eine Variante mit anderer Paketkennung lässt sich parallel installieren; '
+            'die Lernstände werden dabei nicht automatisch übernommen.',
             style: TextStyle(
               fontFamily: 'Nunito',
               fontSize: 11.5,

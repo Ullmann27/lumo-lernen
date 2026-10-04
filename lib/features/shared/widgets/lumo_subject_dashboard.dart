@@ -29,11 +29,12 @@ class LumoSubjectDashboard extends StatelessWidget {
     required this.topicTiles,
     this.dailyMissionTitle = 'Tägliche Mission',
     this.dailyMissionSubtitle = '3 Aufgaben abschließen',
-    this.dailyMissionDone = 2,
+    this.dailyMissionDone = 0,
     this.dailyMissionTotal = 3,
     this.dailyMissionRewardStars = 10,
     this.dailyMissionRewardXp = 50,
-    this.encourageMessage = 'Du machst großartige Fortschritte! 🌟\nMorgen wartet eine neue Mission auf dich.',
+    this.encourageMessage =
+        'Du machst großartige Fortschritte! 🌟\nMorgen wartet eine neue Mission auf dich.',
     this.headerAccent = LumoColors.orange,
   });
 
@@ -78,14 +79,14 @@ class LumoSubjectDashboard extends StatelessWidget {
               greeting: greeting,
               lumoMessage: lumoMessage,
               stars: st.stars,
-              streakDays: 7,
+              streakDays: appState.learningStreakDays(),
               accent: headerAccent,
             ),
             const SizedBox(height: 12),
             LumoLevelStrip(
               level: st.level,
-              currentXp: st.xp % 1200,
-              xpForNextLevel: 1200,
+              currentXp: st.xp % 400,
+              xpForNextLevel: 400,
               accent: headerAccent,
             ),
             const SizedBox(height: 10),

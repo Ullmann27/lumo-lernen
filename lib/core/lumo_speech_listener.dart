@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
@@ -8,6 +9,7 @@ class LumoSpeechListener extends ChangeNotifier {
   bool _initialized = false;
   bool _listening = false;
   bool _finalDelivered = false;
+  bool _disposed = false;
   String _lastWords = '';
   String? _error;
   String? _bestLocaleId;
@@ -22,11 +24,13 @@ class LumoSpeechListener extends ChangeNotifier {
   String? get bestLocaleId => _bestLocaleId;
 
   Future<bool> initialize() async {
+    if (_disposed) return false;
     if (_initialized) return _available;
     try {
       _available = await _speech.initialize(
         debugLogging: false,
         onStatus: (status) {
+          if (_disposed) return;
           final normalized = status.toLowerCase();
           final wasListening = _listening;
           _listening = normalized == 'listening';
@@ -36,6 +40,7 @@ class LumoSpeechListener extends ChangeNotifier {
           notifyListeners();
         },
         onError: (error) {
+          if (_disposed) return;
           _error = error.errorMsg;
           _listening = false;
           if (_lastWords.trim().isNotEmpty) {
@@ -93,7 +98,7 @@ class LumoSpeechListener extends ChangeNotifier {
     VoidCallback? onNoMatch,
   }) async {
     final ok = await initialize();
-    if (!ok) return;
+    if (!ok || _disposed) return;
     _lastWords = '';
     _error = null;
     _finalDelivered = false;
@@ -110,6 +115,7 @@ class LumoSpeechListener extends ChangeNotifier {
       partialResults: true,
       cancelOnError: false,
       onResult: (result) {
+        if (_disposed) return;
         _lastWords = result.recognizedWords;
         onResult?.call(_lastWords);
         if (result.finalResult) {
@@ -150,10 +156,26 @@ class LumoSpeechListener extends ChangeNotifier {
   }
 
   Future<void> cancel() async {
+    _activeFinalCallback = null;
+    _activeNoMatchCallback = null;
     try {
       await _speech.cancel();
     } catch (_) {}
     _listening = false;
     notifyListeners();
+  }
+
+  @override
+  void notifyListeners() {
+    if (!_disposed) super.notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    _activeFinalCallback = null;
+    _activeNoMatchCallback = null;
+    unawaited(_speech.cancel().catchError((_) {}));
+    super.dispose();
   }
 }

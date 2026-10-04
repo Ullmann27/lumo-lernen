@@ -1,4 +1,7 @@
 import 'lumo_tutor_contracts.dart';
+import 'primary_school_word_data.dart';
+import 'school_exercise_generator.dart';
+import 'task_hint_service.dart';
 
 /// Lokale Entscheidungslogik für Lumo Nachhilfe+.
 ///
@@ -42,9 +45,11 @@ class LumoTutorEngine {
   LumoTutorResponse buildLocalFallback(LumoTutorRequest request) {
     if (request.isTestLike) {
       return const LumoTutorResponse(
-        speech: 'Ich schaue mir nach dem Test an, was schon gut klappt und was wir noch üben.',
+        speech:
+            'Ich schaue mir nach dem Test an, was schon gut klappt und was wir noch üben.',
         shortHint: 'Auswertung nach dem Test',
-        explanation: 'Während Tests gibt Lumo keine Lösungshilfe. Danach wird gezielt geübt.',
+        explanation:
+            'Während Tests gibt Lumo keine Lösungshilfe. Danach wird gezielt geübt.',
         source: 'local_tutor_engine_v1',
       );
     }
@@ -60,52 +65,62 @@ class LumoTutorEngine {
         return _scienceFallback(request);
       case LumoTutorSubject.englisch:
         return _englishFallback(request);
+      case LumoTutorSubject.logik:
+        return _contextualFallback(request, 'Logik');
     }
   }
 
   LumoTutorVisualPlan suggestVisualPlan(LumoTutorRequest request) {
     if (request.subject == LumoTutorSubject.mathematik) {
-      final expression = '${request.currentPrompt ?? ''} ${request.correctAnswer ?? ''}';
-      final numbers = RegExp(r'\d+')
-          .allMatches(expression)
-          .map((match) => int.tryParse(match.group(0) ?? ''))
-          .whereType<int>()
-          .toList();
       final prompt = request.currentPrompt ?? '';
-      if (numbers.length >= 2 && numbers.take(2).every((number) => number >= 0 && number <= 10)) {
-        if (prompt.contains('-')) {
+      final calculation =
+          RegExp(r'(\d+)\s*([+−\-])\s*(\d+)\s*=').firstMatch(prompt);
+      if (calculation != null) {
+        final left = int.parse(calculation.group(1)!);
+        final right = int.parse(calculation.group(3)!);
+        if (left > 10 || right > 10) {
+          return const LumoTutorVisualPlan(
+              type: LumoTutorVisualType.numberLine);
+        }
+        if (calculation.group(2) != '+') {
           return LumoTutorVisualPlan(
             type: LumoTutorVisualType.apples,
-            left: numbers[0],
-            remove: numbers[1],
-            result: numbers.length >= 3 ? numbers[2] : null,
+            left: left,
+            remove: right,
           );
         }
         return LumoTutorVisualPlan(
           type: LumoTutorVisualType.tenFrame,
-          left: numbers[0],
-          right: numbers[1],
-          result: numbers.length >= 3 ? numbers[2] : null,
+          left: left,
+          right: right,
         );
       }
-      return const LumoTutorVisualPlan(type: LumoTutorVisualType.numberLine);
+      return const LumoTutorVisualPlan.none();
     }
 
     if (request.subject == LumoTutorSubject.deutsch) {
       final unit = request.unit.toLowerCase();
       if (unit.contains('silb')) {
+        final word = RegExp(r'Silben\s+hat\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false)
+            .firstMatch(request.currentPrompt ?? '')?.group(1);
+        if (word == null) return const LumoTutorVisualPlan.none();
         return LumoTutorVisualPlan(
           type: LumoTutorVisualType.syllableChips,
-          word: request.correctAnswer,
+          word: word,
+          parts: PrimarySchoolWordData.syllablesFor(word) ?? const [],
         );
       }
       if (unit.contains('satz')) {
-        return const LumoTutorVisualPlan(type: LumoTutorVisualType.sentenceBuilder);
+        return const LumoTutorVisualPlan(
+            type: LumoTutorVisualType.sentenceBuilder);
       }
       if (unit.contains('laut')) {
+        final word = RegExp(r'Laut\s+(?:beginnt|endet)\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false)
+            .firstMatch(request.currentPrompt ?? '')?.group(1);
+        if (word == null) return const LumoTutorVisualPlan.none();
         return LumoTutorVisualPlan(
           type: LumoTutorVisualType.soundHighlight,
-          word: request.correctAnswer,
+          word: word,
           highlight: unit.contains('end') ? 'end' : 'start',
         );
       }
@@ -116,28 +131,28 @@ class LumoTutorEngine {
   }
 
   LumoTutorResponse _mathFallback(LumoTutorRequest request) {
+    return _contextualFallback(request, 'Mathematik');
+  }
+
+  LumoTutorResponse _contextualFallback(
+      LumoTutorRequest request, String subject) {
     final visual = suggestVisualPlan(request);
-    if (request.helpLevel == LumoTutorHelpLevel.hintOnly) {
-      return LumoTutorResponse(
-        speech: 'Schau zuerst auf die Mengen. Wird es mehr oder weniger?',
-        shortHint: 'Mehr oder weniger?',
-        visualPlan: visual,
-        source: 'local_tutor_engine_v1',
-      );
-    }
-    if (request.helpLevel == LumoTutorHelpLevel.guidedStep) {
-      return LumoTutorResponse(
-        speech: 'Wir machen es Schritt für Schritt. Suche zuerst die erste Zahl und dann die zweite Zahl.',
-        shortHint: 'Erst die Zahlen finden.',
-        explanation: 'Bei Plus kommt etwas dazu. Bei Minus geht etwas weg.',
-        visualPlan: visual,
-        source: 'local_tutor_engine_v1',
-      );
-    }
+    final text = const TaskHintService().explain(
+        LumoTask(
+          id: 'local-tutor',
+          grade: request.grade,
+          subject: subject,
+          unit: request.unit,
+          prompt: request.currentPrompt ?? '',
+          answer: request.correctAnswer ?? '',
+          choices: const [],
+          explanation: '',
+        ),
+        level: request.helpLevel.index + 1);
     return LumoTutorResponse(
-      speech: 'Ich zeige es dir mit einem Bild. Dann probieren wir gleich eine ähnliche Aufgabe.',
-      shortHint: 'Bild anschauen.',
-      explanation: 'Lumo Nachhilfe+ erklärt schwierige Rechnungen mit Mengen, Zehnerfeld oder Zahlenstrahl.',
+      speech: text,
+      shortHint: text,
+      explanation: text,
       visualPlan: visual,
       source: 'local_tutor_engine_v1',
     );
@@ -155,7 +170,9 @@ class LumoTutorEngine {
                 : 'Wir schauen das Wort ganz genau an.';
     return LumoTutorResponse(
       speech: speech,
-      shortHint: request.helpLevel == LumoTutorHelpLevel.hintOnly ? 'Schau auf die Wortart.' : null,
+      shortHint: request.helpLevel == LumoTutorHelpLevel.hintOnly
+          ? 'Schau auf die Wortart.'
+          : null,
       explanation: speech,
       visualPlan: visual,
       source: 'local_tutor_engine_v1',
@@ -164,16 +181,19 @@ class LumoTutorEngine {
 
   LumoTutorResponse _readingFallback(LumoTutorRequest request) {
     return const LumoTutorResponse(
-      speech: 'Lies langsam. Wenn ein Wort schwer ist, teilen wir es in kleine Teile.',
+      speech:
+          'Lies langsam. Wenn ein Wort schwer ist, teilen wir es in kleine Teile.',
       shortHint: 'Langsam lesen.',
-      explanation: 'Lumo kann schwierige Wörter in Silben teilen und danach noch einmal üben lassen.',
+      explanation:
+          'Lumo kann schwierige Wörter in Silben teilen und danach noch einmal üben lassen.',
       source: 'local_tutor_engine_v1',
     );
   }
 
   LumoTutorResponse _scienceFallback(LumoTutorRequest request) {
     return const LumoTutorResponse(
-      speech: 'Wir denken wie kleine Forscher. Was siehst du? Was passt zur Natur?',
+      speech:
+          'Wir denken wie kleine Forscher. Was siehst du? Was passt zur Natur?',
       shortHint: 'Genau beobachten.',
       source: 'local_tutor_engine_v1',
     );
@@ -181,7 +201,8 @@ class LumoTutorEngine {
 
   LumoTutorResponse _englishFallback(LumoTutorRequest request) {
     return const LumoTutorResponse(
-      speech: 'Wir üben das englische Wort langsam und mit einem einfachen Beispiel.',
+      speech:
+          'Wir üben das englische Wort langsam und mit einem einfachen Beispiel.',
       shortHint: 'Langsam nachsprechen.',
       source: 'local_tutor_engine_v1',
     );

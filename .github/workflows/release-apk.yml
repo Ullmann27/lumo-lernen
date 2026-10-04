@@ -1,15 +1,15 @@
-name: Publish verified Android APK
+name: Build unified Lumo Android APK
 on:
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
-  group: release-${{ github.ref }}
+  group: unified-apk-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  release:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -21,52 +21,26 @@ jobs:
           flutter-version: '3.44.9'
           channel: stable
           cache: true
-      - name: Create Android host
-        run: flutter create --platforms=android --org dev.ullmann.lumo .
-      - name: Prepare native connections and stable signing
-        run: python3 scripts/prepare_android.py
-      - name: Backend and Android regression tests
+      - name: Get locked dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Backend and Android preparation tests
         run: |
           node --test server/lumo-ai-proxy/test/*.test.js
           python3 -m unittest discover -s scripts/tests
-      - name: Audit all generated task templates
+      - name: Generated content audit
         run: dart scripts/audit_content.dart
       - name: Repair guard
         run: bash scripts/lumo_repair_guard.sh
-      - name: Get dependencies
-        run: flutter pub get
       - name: Analyze
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
       - name: Full Flutter regression tests
-        run: flutter test --no-pub --reporter=expanded --timeout=45s --concurrency=2
-      - name: Build Android APK
-        run: flutter build apk --debug --build-number "$GITHUB_RUN_NUMBER" --build-name 0.9.0
-      - name: Prepare release
-        id: prepare
-        env:
-          BRANCH: ${{ github.ref_name }}
+        run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Install matching Godot engine
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build and verify the single application
+        run: bash scripts/build_unified_apk.sh
+      # Production downloads are published from the APK that passed actual
+      # installed Android lifecycle/race tests, with its digest in the handoff.
+      - name: Record build proof
         run: |
-          mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-debug.apk dist/Lumo-Lernen-latest.apk
-          sha256sum dist/*.apk > dist/SHA256SUMS.txt
-          python3 - <<'PY'
-          import os
-          from pathlib import Path
-          school=os.environ['BRANCH']!='main'
-          tag=('school-test-' if school else 'build-')+os.environ['GITHUB_RUN_NUMBER']
-          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
-              output.write(f'tag={tag}\nprerelease={str(school).lower()}\nlatest={str(not school).lower()}\n')
-          Path('/tmp/release_body.md').write_text('Lumo Lernen 0.9.0 – geprüfter Android-Testbuild.\n\nLernaufgaben, Fehlversuche und Hilfen, gespeicherte Belohnungen, Eltern-PIN, Android-Installer und Verbindung zur Godot-3D-App überarbeitet.\n\nFlutter-Analyse, vollständige Flutter-Tests sowie Backend- und Android-Verbindungstests müssen vor Veröffentlichung erfolgreich sein. Geräte-, Sprach- und Unterrichtstest stehen noch aus.\n\nDie 3D-App wird separat installiert; im Rennspiel führt „3D-Rennen“ direkt zu ihr oder zur Browser-Version.\n\nPrüfsumme: SHA256SUMS.txt.\n')
-          PY
-      - name: Publish downloadable APK
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.prepare.outputs.tag }}
-          name: Lumo Lernen ${{ steps.prepare.outputs.tag }}
-          body_path: /tmp/release_body.md
-          target_commitish: ${{ github.sha }}
-          prerelease: ${{ steps.prepare.outputs.prerelease == 'true' }}
-          make_latest: ${{ steps.prepare.outputs.latest }}
-          files: |
-            dist/Lumo-Lernen-latest.apk
-            dist/SHA256SUMS.txt
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk >> "$GITHUB_STEP_SUMMARY"

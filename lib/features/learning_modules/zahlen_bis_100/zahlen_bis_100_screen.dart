@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
+import '../learning_module_progress.dart';
 
 enum _Zahl100FrageTyp { nachfolger, vorgaenger, vergleich, zehnerEiner }
 
@@ -38,6 +39,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
   int _taskIdx = 0;
@@ -54,6 +56,11 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: 'Zahlen bis 100',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -67,6 +74,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -74,7 +82,8 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   }
 
   void _generateTask() {
-    _typ = _Zahl100FrageTyp.values[_rng.nextInt(_Zahl100FrageTyp.values.length)];
+    _typ =
+        _Zahl100FrageTyp.values[_rng.nextInt(_Zahl100FrageTyp.values.length)];
     switch (_typ) {
       case _Zahl100FrageTyp.nachfolger:
         _zahl1 = 10 + _rng.nextInt(89); // 10..98
@@ -122,7 +131,12 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
       if (cand != _correctAnswer) wrong.add(cand);
       fillCounter++;
     }
-    _answers = [_correctAnswer, ...wrong]..shuffle(_rng);
+    // "Welche Zahl ist groesser?": nur die beiden gezeigten Zahlen zur Wahl.
+    // Vorher kamen zufaellige Zahlen dazu, die kleinere fehlte oft, und eine
+    // noch groessere Zahl wurde als falsch gewertet.
+    _answers = _typ == _Zahl100FrageTyp.vergleich
+        ? ([_zahl1, _zahl2]..shuffle(_rng))
+        : ([_correctAnswer, ...wrong]..shuffle(_rng));
     _answered = false;
     _selectedAnswer = null;
   }
@@ -150,18 +164,22 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   }
 
   void _onAnswer(int answer) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = answer;
       _answered = true;
     });
     final isCorrect = answer == _correctAnswer;
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 6 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(6);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -172,8 +190,10 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
         LumoVoice.instance.speak(LumoPhrases.wrongGentle());
       } catch (_) {}
     }
-    await Future.delayed(const Duration(milliseconds: 1300));
-    if (!mounted) return;
+    if (!await _progress.feedbackDelay(const Duration(milliseconds: 1300)) ||
+        !mounted) {
+      return;
+    }
     _nextTask();
   }
 
@@ -190,21 +210,21 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     _speakTask();
   }
 
-  void _showFinish() {
+  Future<void> _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    final saved =
+        await _progress.saveBonus(stars: stars, xp: _correctCount * 10);
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🎉 Geschafft!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks Aufgaben richtig!',
               style: const TextStyle(
@@ -254,32 +274,34 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildTaskHeader(),
-                  const SizedBox(height: 24),
-                  _buildVisualization(),
-                  const SizedBox(height: 32),
-                  _buildAnswerGrid(),
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildTaskHeader(),
+                      const SizedBox(height: 24),
+                      _buildVisualization(),
+                      const SizedBox(height: 32),
+                      _buildAnswerGrid(),
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -287,14 +309,13 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () => Navigator.of(context).maybePop(),
         ),
         Expanded(
           child: Column(children: [
@@ -320,8 +341,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -356,8 +376,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -421,7 +440,8 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+              border:
+                  Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
             ),
             child: Text('$_zahl1',
                 style: TextStyle(

@@ -43,11 +43,17 @@ class TaskQualityGuard {
     if (answer.isEmpty) issues.add('empty_answer');
     if (task.explanation.trim().isEmpty) issues.add('empty_explanation');
 
-    final freeAnswer = task.handwriting || choices.length <= 1;
+    final freeAnswer = task.handwriting || task.visual == 'shape_trace';
     if (freeAnswer) return issues;
-
-    if (!_containsChoice(choices, answer)) issues.add('answer_not_in_choices');
-    if (_hasDuplicateChoices(choices)) issues.add('duplicate_choices');
+    if (choices.length < 2) issues.add('not_enough_choices');
+    if (task.difficulty > task.grade) issues.add('difficulty_above_grade');
+    // Groß-/Kleinschreibung ist in Rechtschreibaufgaben gerade die Frage.
+    final preserveCase = task.subject == 'Rechtschreibung' ||
+        prompt.toLowerCase().contains('schreibweise') ||
+        prompt.toLowerCase().contains('schreibt man');
+    if (!choices.any((choice) => _choiceKey(choice, preserveCase: preserveCase) ==
+        _choiceKey(answer, preserveCase: preserveCase))) issues.add('answer_not_in_choices');
+    if (_hasDuplicateChoices(choices, preserveCase: preserveCase)) issues.add('duplicate_choices');
 
     issues.addAll(_numericProblems(prompt, answer, choices));
     issues.addAll(_soundProblems(prompt, answer, choices));
@@ -60,46 +66,45 @@ class TaskQualityGuard {
   }
 
   List<String> _numericProblems(String prompt, String answer, List<String> choices) {
-    final issues = <String>[];
-    final expected = _expectedNumber(prompt);
-    if (expected == null) return issues;
-    final actual = _extractInt(answer);
-    if (actual == null) {
-      issues.add('numeric_answer_not_parseable');
-      return issues;
+    if (RegExp(r'[:÷]\s*0\s*=').hasMatch(prompt)) {
+      return const <String>['division_by_zero'];
     }
-    if (actual != expected) issues.add('numeric_answer_wrong_result');
-
-    final seen = <int>{};
-    for (final choice in choices) {
-      final value = _extractInt(choice);
-      if (value != null && !seen.add(value)) issues.add('duplicate_numeric_choice');
+    if ([prompt, answer, ...choices].any(
+        (value) => RegExp(r'/0(?:\D|$)').hasMatch(value))) {
+      return const <String>['zero_fraction_denominator'];
     }
-    return issues;
+    final expected = _expectedValue(prompt);
+    if (expected == null) return const <String>[];
+    final actual = _MathValue.parse(answer);
+    if (actual == null) return const <String>['numeric_answer_not_parseable'];
+    return actual.key == expected.key
+        ? const <String>[]
+        : const <String>['numeric_answer_wrong_result'];
   }
 
   List<String> _soundProblems(String prompt, String answer, List<String> choices) {
     final issues = <String>[];
-    final wordEnding = RegExp(r'Welches\s+Wort\s+endet\s+mit\s+([A-Za-zÄÖÜäöüß])\?', caseSensitive: false).firstMatch(prompt);
+    final wordEnding = RegExp(r'Welches\s+Wort\s+endet\s+mit\s+([A-Za-zÄÖÜäöüß]+)\?', caseSensitive: false).firstMatch(prompt);
     if (wordEnding != null) {
       final sound = _word(wordEnding.group(1) ?? '');
-      final matching = choices.where((c) => _word(c).endsWith(sound)).length;
-      if (!_word(answer).endsWith(sound)) issues.add('answer_wrong_ending');
+      final matching = choices.where((c) => _word(PrimarySchoolWordData.finalSoundFor(c) ?? '') == sound).length;
+      if (_word(PrimarySchoolWordData.finalSoundFor(answer) ?? '') != sound) issues.add('answer_wrong_ending');
       if (matching != 1) issues.add('ending_not_exactly_one_choice');
     }
 
-    final wordBeginning = RegExp(r'Welches\s+Wort\s+beginnt\s+mit\s+([A-Za-zÄÖÜäöüß])\?', caseSensitive: false).firstMatch(prompt);
+    final wordBeginning = RegExp(r'Welches\s+Wort\s+beginnt\s+mit\s+([A-Za-zÄÖÜäöüß]+)\?', caseSensitive: false).firstMatch(prompt);
     if (wordBeginning != null) {
       final sound = _word(wordBeginning.group(1) ?? '');
-      final matching = choices.where((c) => _word(c).startsWith(sound)).length;
-      if (!_word(answer).startsWith(sound)) issues.add('answer_wrong_beginning');
+      final matching = choices.where((c) => _word(PrimarySchoolWordData.initialSoundFor(c) ?? '') == sound).length;
+      if (_word(PrimarySchoolWordData.initialSoundFor(answer) ?? '') != sound) issues.add('answer_wrong_beginning');
       if (matching != 1) issues.add('beginning_not_exactly_one_choice');
     }
 
     final letterStart = RegExp(r'Mit\s+welchem\s+Laut\s+beginnt\s+(.+?)\?', caseSensitive: false).firstMatch(prompt);
     if (letterStart != null) {
       final word = _word(letterStart.group(1) ?? '');
-      final expected = word.isEmpty ? '' : word.substring(0, 1);
+      final expected = _word(PrimarySchoolWordData.initialSoundFor(word) ?? '');
+      if (expected.isEmpty) return issues;
       if (_word(answer) != expected) issues.add('answer_wrong_initial_sound');
       if (choices.where((c) => _word(c) == expected).length != 1) issues.add('initial_sound_not_exactly_one_choice');
     }
@@ -107,7 +112,8 @@ class TaskQualityGuard {
     final letterEnd = RegExp(r'Mit\s+welchem\s+Laut\s+endet\s+(.+?)\?', caseSensitive: false).firstMatch(prompt);
     if (letterEnd != null) {
       final word = _word(letterEnd.group(1) ?? '');
-      final expected = word.isEmpty ? '' : word.substring(word.length - 1);
+      final expected = _word(PrimarySchoolWordData.finalSoundFor(word) ?? '');
+      if (expected.isEmpty) return issues;
       if (_word(answer) != expected) issues.add('answer_wrong_final_sound');
       if (choices.where((c) => _word(c) == expected).length != 1) issues.add('final_sound_not_exactly_one_choice');
     }
@@ -130,11 +136,11 @@ class TaskQualityGuard {
     final match = RegExp(r'Was\s+reimt\s+sich\s+auf\s+(.+?)\?', caseSensitive: false).firstMatch(prompt);
     if (match == null) return const <String>[];
     final base = _stripPunctuation(match.group(1) ?? '');
-    final expected = _knownRhymePartner(base);
-    if (expected == null) return const <String>[];
+    final partners = PrimarySchoolWordData.rhymePartnersFor(base).map(_choice).toSet();
+    if (partners.isEmpty) return const <String>[];
     final issues = <String>[];
-    if (_choice(answer) != _choice(expected)) issues.add('rhyme_answer_not_known_partner');
-    if (choices.where((c) => _choice(c) == _choice(expected)).length != 1) {
+    if (!partners.contains(_choice(answer))) issues.add('rhyme_answer_not_known_partner');
+    if (choices.where((c) => partners.contains(_choice(c))).length != 1) {
       issues.add('rhyme_not_exactly_one_known_partner');
     }
     return issues;
@@ -188,35 +194,44 @@ class TaskQualityGuard {
     }
     if (lower.contains('welches wort ist ein namenswort') || lower.contains('welches wort ist ein namenwort') || lower.contains('welches wort ist ein nomen') || lower.contains('welches wort ist ein hauptwort')) {
       if (!_isKnownNoun(answer)) issues.add('nomen_answer_not_known_noun');
+      if (choices.where(_isKnownNoun).length != 1) issues.add('nomen_not_exactly_one_choice');
       if (!choices.where((c) => _choice(c) != a).any((c) => _isKnownVerb(c) || _isKnownAdjective(c))) {
         issues.add('nomen_choices_missing_wordclass_distractor');
       }
     }
     if (lower.contains('welches wort ist ein tunwort') || lower.contains('welches wort ist ein verb')) {
       if (!_isKnownVerb(answer)) issues.add('verb_answer_not_known_verb');
+      if (choices.where(_isKnownVerb).length != 1) issues.add('verb_not_exactly_one_choice');
       if (choices.every(_isKnownVerb)) issues.add('verb_choices_not_contrasting_wordclasses');
     }
     if (lower.contains('welches wort ist ein wiewort') || lower.contains('welches wort beschreibt, wie') || lower.contains('welches wort ist eine eigenschaft')) {
       if (!_isKnownAdjective(answer)) issues.add('adjective_answer_not_known_adjective');
+      if (choices.where(_isKnownAdjective).length != 1) issues.add('adjective_not_exactly_one_choice');
       if (choices.every(_isKnownAdjective)) issues.add('adjective_choices_not_contrasting_wordclasses');
     }
 
     return issues;
   }
 
-  int? _expectedNumber(String prompt) {
-    final basic = RegExp(r'(\d+)\s*([+\-])\s*(\d+)\s*=\s*\?').firstMatch(prompt);
+  _MathValue? _expectedValue(String prompt) {
+    const number = r'(-?\d+(?:[.,]\d+)?(?:/\d+)?)';
+    final basic = RegExp('$number\\s*([+\\-−×*÷:]|mal)\\s*$number\\s*=\\s*\\?').firstMatch(prompt);
     if (basic != null) {
-      final left = int.tryParse(basic.group(1) ?? '');
-      final op = basic.group(2);
-      final right = int.tryParse(basic.group(3) ?? '');
+      final left = _MathValue.parse(basic.group(1)!);
+      final right = _MathValue.parse(basic.group(3)!);
       if (left == null || right == null) return null;
-      return op == '+' ? left + right : left - right;
+      return switch (basic.group(2)) {
+        '+' => left.add(right),
+        '-' || '−' => left.add(right.negated),
+        '×' || '*' || 'mal' => left.multiply(right),
+        ':' || '÷' => right.numerator == 0 ? null : left.divide(right),
+        _ => null,
+      };
     }
     final before = RegExp(r'direkt\s+vor\s+(\d+)', caseSensitive: false).firstMatch(prompt);
-    if (before != null) return (int.tryParse(before.group(1) ?? '') ?? 0) - 1;
+    if (before != null) return _MathValue(int.parse(before.group(1)!) - 1, 1);
     final after = RegExp(r'direkt\s+nach\s+(\d+)', caseSensitive: false).firstMatch(prompt);
-    if (after != null) return (int.tryParse(after.group(1) ?? '') ?? 0) + 1;
+    if (after != null) return _MathValue(int.parse(after.group(1)!) + 1, 1);
     return null;
   }
 
@@ -234,24 +249,21 @@ class TaskQualityGuard {
     return null;
   }
 
-  String? _knownRhymePartner(String word) {
-    final normalized = _choice(word);
-    for (final pair in PrimarySchoolWordData.rhymePairs) {
-      if (pair.length < 2) continue;
-      if (_choice(pair.first) == normalized) return pair.last;
-      if (_choice(pair.last) == normalized) return pair.first;
-    }
-    return null;
-  }
-
   String _stripPunctuation(String value) => value.trim().replaceAll(RegExp(r'[„“".:;!,]+$'), '').trim();
 
-  bool _containsChoice(List<String> choices, String answer) => choices.any((c) => _choice(c) == _choice(answer));
+  String _choiceKey(String value, {required bool preserveCase}) {
+    final normalized = value.trim().replaceAll(RegExp(r'\s+'), ' ');
+    final number = _MathValue.parse(normalized);
+    if (number != null) return 'number:${number.key}';
+    final clock = RegExp(r'^(\d{1,2})(?::(\d{2}))? Uhr$', caseSensitive: false).firstMatch(normalized);
+    if (clock != null) return 'clock:${clock.group(1)}:${clock.group(2) ?? '00'}';
+    return preserveCase ? normalized : normalized.toLowerCase();
+  }
 
-  bool _hasDuplicateChoices(List<String> choices) {
+  bool _hasDuplicateChoices(List<String> choices, {required bool preserveCase}) {
     final seen = <String>{};
     for (final choice in choices) {
-      if (!seen.add(_choice(choice))) return true;
+      if (!seen.add(_choiceKey(choice, preserveCase: preserveCase))) return true;
     }
     return false;
   }
@@ -291,7 +303,6 @@ class TaskQualityGuard {
     for (var i = 1; i <= a.length; i++) {
       var previous = i;
       for (var j = 1; j <= b.length; j++) {
-        final old = row[j];
         final replace = a[i - 1] == b[j - 1] ? row[j - 1] : row[j - 1] + 1;
         final insert = previous + 1;
         final delete = row[j] + 1;
@@ -302,4 +313,42 @@ class TaskQualityGuard {
     }
     return row[b.length];
   }
+}
+
+
+/// Exact arithmetic for integer, decimal and fraction answer cards.
+class _MathValue {
+  const _MathValue(this.numerator, this.denominator);
+  final int numerator;
+  final int denominator;
+
+  String get key {
+    final divisor = numerator.gcd(denominator);
+    final sign = denominator < 0 ? -1 : 1;
+    return '${sign * numerator ~/ divisor}/${sign * denominator ~/ divisor}';
+  }
+
+  static _MathValue? parse(String text) {
+    final value = text.trim().replaceAll(',', '.');
+    final fraction = RegExp(r'^(-?\d+)/(\d+)$').firstMatch(value);
+    if (fraction != null) {
+      final denominator = int.parse(fraction.group(2)!);
+      if (denominator == 0) return null;
+      return _MathValue(int.parse(fraction.group(1)!), denominator);
+    }
+    if (!RegExp(r'^-?\d+(?:\.\d+)?$').hasMatch(value)) return null;
+    final parts = value.split('.');
+    if (parts.length == 1) return _MathValue(int.parse(value), 1);
+    final denominator = int.parse('1${'0' * parts[1].length}');
+    return _MathValue(int.parse(parts.join()), denominator);
+  }
+
+  _MathValue get negated => _MathValue(-numerator, denominator);
+  _MathValue add(_MathValue other) => _MathValue(
+      numerator * other.denominator + other.numerator * denominator,
+      denominator * other.denominator);
+  _MathValue multiply(_MathValue other) => _MathValue(
+      numerator * other.numerator, denominator * other.denominator);
+  _MathValue divide(_MathValue other) => _MathValue(
+      numerator * other.denominator, denominator * other.numerator);
 }

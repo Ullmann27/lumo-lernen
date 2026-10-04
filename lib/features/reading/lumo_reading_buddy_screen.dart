@@ -20,7 +20,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_speech_listener.dart';
-import '../../core/lumo_voice.dart';
+import '../../core/lumo_feature_permissions.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import 'reading_text_library.dart';
 import 'voice_reading_evaluator.dart';
@@ -33,7 +33,8 @@ class LumoReadingBuddyScreen extends StatefulWidget {
   State<LumoReadingBuddyScreen> createState() => _LumoReadingBuddyScreenState();
 }
 
-class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen> {
+class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
+    with WidgetsBindingObserver {
   ReadingText? _selectedText;
   final LumoSpeechListener _speech = LumoSpeechListener();
   final VoiceReadingEvaluator _eval = const VoiceReadingEvaluator();
@@ -45,17 +46,19 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen> {
   void initState() {
     super.initState();
     _speech.addListener(_onSpeechUpdate);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
     _speech.removeListener(_onSpeechUpdate);
-    _speech.cancel();
+    WidgetsBinding.instance.removeObserver(this);
+    _speech.dispose();
     super.dispose();
   }
 
   void _onSpeechUpdate() {
-    if (_selectedText == null) return;
+    if (!mounted || _selectedText == null) return;
     setState(() {
       // Hoere auf STT-Aenderungen, recompute progress
       final p = _eval.evaluate(
@@ -73,6 +76,8 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen> {
 
   Future<void> _startListening() async {
     if (_selectedText == null) return;
+    if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
+        !mounted) return;
     HapticFeedback.mediumImpact();
     setState(() {
       _liveText = '';
@@ -81,6 +86,7 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen> {
     });
     await _speech.startListening(
       onResult: (text) {
+        if (!mounted || _selectedText == null) return;
         setState(() {
           _liveText = text;
           _progress = _eval.evaluate(
@@ -90,6 +96,7 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen> {
         });
       },
       onFinalResult: (text) {
+        if (!mounted || _selectedText == null) return;
         setState(() {
           _liveText = text;
           _progress = _eval.evaluate(
@@ -103,6 +110,11 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen> {
 
   Future<void> _stopListening() async {
     await _speech.stopListening();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) _speech.cancel();
   }
 
   void _resetAndPickText() {
@@ -423,8 +435,7 @@ class _ReadingArena extends StatelessWidget {
               if (finished && progress != null)
                 _FinishCard(progress: progress!)
               else
-                _ReadingHeader(
-                    progress: progress, isListening: isListening),
+                _ReadingHeader(progress: progress, isListening: isListening),
               const SizedBox(height: 14),
               _TextDisplay(text: text, progress: progress),
               const SizedBox(height: 16),
@@ -507,8 +518,7 @@ class _ReadingHeader extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xFFEEF2FF),
               shape: BoxShape.circle,
-              border: Border.all(
-                  color: const Color(0xFF6366F1), width: 1.6),
+              border: Border.all(color: const Color(0xFF6366F1), width: 1.6),
             ),
             child: ClipOval(
               child: Image.asset(
@@ -528,9 +538,7 @@ class _ReadingHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isListening
-                      ? 'Lumo hoert zu …'
-                      : 'Bereit zum Lesen?',
+                  isListening ? 'Lumo hoert zu …' : 'Bereit zum Lesen?',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 14,
@@ -836,9 +844,7 @@ class _FinishCard extends StatelessWidget {
                   children: List<Widget>.generate(3, (i) {
                     final filled = i < stars;
                     return Icon(
-                      filled
-                          ? Icons.star_rounded
-                          : Icons.star_outline_rounded,
+                      filled ? Icons.star_rounded : Icons.star_outline_rounded,
                       color: filled
                           ? const Color(0xFFFCD34D)
                           : const Color(0xFFD1D5DB),

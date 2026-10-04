@@ -68,6 +68,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       return ShapeTraceTaskRenderer(
         task: task,
         onSubmitted: widget.onShapeTraced,
+        allowRetry: widget.allowRetry,
       );
     }
 
@@ -79,6 +80,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       LearningSubject.mathematik => const Color(0xFFEA580C),
       LearningSubject.deutsch => const Color(0xFF6366F1),
       LearningSubject.sachkunde => const Color(0xFF059669),
+      LearningSubject.logik => const Color(0xFF7C3AED),
     };
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       // 2026-06-06 FIX: Border mit unterschiedlichen Farben + borderRadius
@@ -219,6 +221,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       LearningSubject.deutsch => 'Deutsch',
       LearningSubject.mathematik => 'Mathematik',
       LearningSubject.sachkunde => 'Sachkunde',
+      LearningSubject.logik => 'Logik',
     };
   }
 }

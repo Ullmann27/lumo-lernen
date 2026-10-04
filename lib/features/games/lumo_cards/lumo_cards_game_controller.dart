@@ -11,7 +11,6 @@
 //  - vsBot=false: 2 Menschen am Tablet (Pass-and-Play wie urspruenglich).
 // ════════════════════════════════════════════════════════════════════════
 
-import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -22,6 +21,7 @@ import 'learning_question_repository.dart';
 import 'lumo_cards_deck.dart';
 import 'lumo_cards_models.dart';
 import 'lumo_cards_rules.dart';
+import '../shared/lumo_game_pause_scope.dart';
 
 class LumoCardsGameController extends ChangeNotifier {
   LumoCardsGameController({
@@ -29,6 +29,7 @@ class LumoCardsGameController extends ChangeNotifier {
     required String player2Name,
     this.vsBot = true,
     this.enableVoice = true,
+    this.grade = 1,
     int? seed,
   })  : _rng = seed == null ? Random() : Random(seed),
         _player1Name = player1Name,
@@ -45,6 +46,7 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Sprachausgabe an/aus.
   final bool enableVoice;
+  final int grade;
 
   static const int _initialHandSize = 7;
 
@@ -52,12 +54,12 @@ class LumoCardsGameController extends ChangeNotifier {
   LumoCardsGameState get state => _state;
 
   /// Bot-Timer (cancelled on dispose).
-  Timer? _botTimer;
+  final turnClock = LumoGameTurnClock();
   DateTime _lastSpeakAt = DateTime(2000);
 
   @override
   void dispose() {
-    _botTimer?.cancel();
+    turnClock.dispose();
     super.dispose();
   }
 
@@ -96,7 +98,11 @@ class LumoCardsGameController extends ChangeNotifier {
     _state = LumoCardsGameState(
       players: [
         LumoPlayer(id: 'p1', name: _player1Name, hand: hand1),
-        LumoPlayer(id: 'p2', name: _player2Name, hand: hand2),
+        LumoPlayer(
+            id: 'p2',
+            name: _player2Name,
+            hand: hand2,
+            kind: vsBot ? LumoPlayerKind.bot : LumoPlayerKind.human),
       ],
       currentPlayerIndex: 0,
       drawPile: drawPile,
@@ -109,19 +115,25 @@ class LumoCardsGameController extends ChangeNotifier {
     );
     _speak(vsBot
         ? 'Willkommen bei Lumo Cards! Du faengst an.'
-        : 'Willkommen bei Lumo Cards! ${_player1Name} faengt an.');
+        : 'Willkommen bei Lumo Cards! $_player1Name faengt an.');
   }
 
   /// Karte spielen (wenn moeglich).
   void playCard(LumoCard card) {
+    if (turnClock.value || (vsBot && _state.currentPlayerIndex != 0)) {
+      return;
+    }
     final wasPlayer1 = _state.currentPlayerIndex == 0;
     final next = LumoCardsRules.applyPlay(
       state: _state,
       card: card,
       rng: _rng,
-      questionPicker: LearningQuestionRepository.instance.random,
+      questionPicker: (rng) =>
+          LearningQuestionRepository.instance.randomForGrade(grade, rng),
     );
-    if (identical(next, _state)) return;
+    if (identical(next, _state)) {
+      return;
+    }
     _state = next;
     _speakForLastAction(playedByPlayer1: wasPlayer1, card: card);
     _playSfxForPlay(card, next);
@@ -131,11 +143,18 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Karte ziehen.
   void drawCard({bool autoPlay = false}) {
+    if (turnClock.value ||
+        _state.phase != GamePhase.playing ||
+        (vsBot && _state.currentPlayerIndex != 0)) {
+      return;
+    }
     final wasPlayer1 = _state.currentPlayerIndex == 0;
     final next = LumoCardsRules.applyDraw(
       state: _state,
       rng: _rng,
       playIfPossible: autoPlay,
+      questionPicker: (rng) =>
+          LearningQuestionRepository.instance.randomForGrade(grade, rng),
     );
     _state = next;
     _speak(wasPlayer1 ? 'Du ziehst eine Karte.' : 'Lumo zieht eine Karte.');
@@ -172,6 +191,11 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Nach Farbzauber: Farbe waehlen.
   void selectColor(LumoCardColor color) {
+    if (turnClock.value ||
+        _state.phase != GamePhase.chooseColor ||
+        (vsBot && _state.currentPlayerIndex != 0)) {
+      return;
+    }
     final next = LumoCardsRules.applyColorChoice(
       state: _state,
       chosen: color,
@@ -184,12 +208,21 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Lernfrage beantworten.
   void answerLearningQuestion(int chosenIndex) {
+    if (turnClock.value ||
+        _state.phase != GamePhase.learningQuestion ||
+        (vsBot && _state.currentPlayerIndex != 0)) {
+      return;
+    }
+    final answeringIndex = _state.currentPlayerIndex;
+    final oldStars = _state.players[answeringIndex].stars;
     final next = LumoCardsRules.applyLearningAnswer(
       state: _state,
       chosenIndex: chosenIndex,
     );
-    final correct = next.players[next.currentPlayerIndex == 0 ? 0 : 1].stars >
-        _state.players[_state.currentPlayerIndex].stars;
+    if (identical(next, _state)) {
+      return;
+    }
+    final correct = next.players[answeringIndex].stars > oldStars;
     _state = next;
     _speak(correct
         ? 'Richtig! Plus einen Stern.'
@@ -201,7 +234,9 @@ class LumoCardsGameController extends ChangeNotifier {
   /// 'Bereit'-Button im Pass-and-Play-Overlay.
   void confirmHandover() {
     final next = LumoCardsRules.confirmHandover(_state);
-    if (identical(next, _state)) return;
+    if (identical(next, _state)) {
+      return;
+    }
     _state = next;
     notifyListeners();
     _maybeRunBotTurn();
@@ -209,7 +244,7 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Nochmal spielen.
   void restart() {
-    _botTimer?.cancel();
+    turnClock.cancel();
     _startNewGame();
     notifyListeners();
   }
@@ -245,16 +280,17 @@ class LumoCardsGameController extends ChangeNotifier {
       _scheduleBotMove();
       return;
     }
-    if (s.phase == GamePhase.playing) {
+    if (s.phase == GamePhase.playing ||
+        s.phase == GamePhase.chooseColor ||
+        s.phase == GamePhase.learningQuestion) {
       _scheduleBotMove();
     }
     // chooseColor und learningQuestion macht der Bot direkt im _doBotMove.
   }
 
   void _scheduleBotMove() {
-    _botTimer?.cancel();
-    // Denkpause damit es sich nach echtem Gegner anfuehlt.
-    _botTimer = Timer(
+    // Denkpause wird beim Android-Hintergrundwechsel angehalten.
+    turnClock.schedule(
       Duration(milliseconds: 900 + _rng.nextInt(700)),
       _doBotMove,
     );
@@ -289,9 +325,7 @@ class LumoCardsGameController extends ChangeNotifier {
         state: s,
         chosenIndex: chosen,
       );
-      _speak(lumoCorrect
-          ? 'Lumo weiss die Antwort!'
-          : 'Lumo hat sich vertan.');
+      _speak(lumoCorrect ? 'Lumo weiss die Antwort!' : 'Lumo hat sich vertan.');
       notifyListeners();
       _maybeRunBotTurn();
       return;
@@ -306,7 +340,8 @@ class LumoCardsGameController extends ChangeNotifier {
         state: s,
         card: best,
         rng: _rng,
-        questionPicker: LearningQuestionRepository.instance.random,
+        questionPicker: (rng) =>
+            LearningQuestionRepository.instance.randomForGrade(grade, rng),
       );
       _speakForLastAction(playedByPlayer1: false, card: best);
       _playSfxForPlay(best, _state);
@@ -317,6 +352,8 @@ class LumoCardsGameController extends ChangeNotifier {
         state: s,
         rng: _rng,
         playIfPossible: true,
+        questionPicker: (rng) =>
+            LearningQuestionRepository.instance.randomForGrade(grade, rng),
       );
       _speak('Lumo zieht eine Karte.');
       LumoSound.instance.play(SoundEffect.cardDraw);
@@ -412,7 +449,8 @@ class LumoCardsGameController extends ChangeNotifier {
     } catch (_) {}
   }
 
-  void _speakForLastAction({required bool playedByPlayer1, required LumoCard card}) {
+  void _speakForLastAction(
+      {required bool playedByPlayer1, required LumoCard card}) {
     final who = playedByPlayer1 ? 'Du' : 'Lumo';
     final color = _colorName(card.color);
     switch (card.type) {

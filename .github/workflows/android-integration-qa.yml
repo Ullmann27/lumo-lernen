@@ -1,26 +1,226 @@
 name: Check unified Android APK in KVM
+
 on:
+  # Explicit recovery run for the frozen Build 280, on this branch only.
+  # Unmarked workflow edits do not start an emulator; manual dispatch is unchanged.
+  # Live snapshots do not wait for animated accessibility events to stop.
+  # Fresh-file and actual-UI flow checks remain mandatory.
+  push:
+    branches: ['codex/lumo-unified-android-2026-10-03']
+    paths: ['.github/workflows/android-integration-qa.yml']
   workflow_dispatch:
     inputs:
       mode:
-        description: Build saved source, or test an existing draft APK
+        description: 'Build saved source in this runner, or test an existing draft APK'
         required: true
         type: choice
         default: build
-        options: [build, download]
+        options:
+          - build
+          - download
       releaseTag:
-        description: Existing draft release tag
+        description: 'Existing draft: empty for build mode; cached candidate or final APK for download'
         required: true
         type: string
       apkSha:
-        description: Required only in download mode
+        description: 'Required in download mode; full SHA-256 of the existing draft APK'
         required: false
         type: string
+
 permissions:
-  contents: read
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: android-integration-qa-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  select_working_branch:
+  exact-apk:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[lumo-qa-280]')
     runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      LUMO_QA_DIR: ${{ github.workspace }}/android-qa-evidence
+      RELEASE_TAG: ${{ github.event_name == 'push' && 'unified-build-280' || inputs.releaseTag }}
+      APK_SHA: ${{ github.event_name == 'push' && '3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48' || inputs.apkSha }}
     steps:
-      - name: Select the saved integration source
-        run: python3 -c "raise SystemExit('Run with branch codex/lumo-unified-android-2026-10-03; its workflow builds and tests the unified APK before draft upload.')"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check all Android QA helper regressions
+        run: |
+          mkdir -p "$LUMO_QA_DIR"
+          python3 -m pip install Pillow
+          python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v 2>&1 | tee "$LUMO_QA_DIR/android-helper-regressions.log"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        if: inputs.mode == 'build'
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install OCR and Android SDK tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y tesseract-ocr xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m pip install Pillow
+          # Re-run with OCR installed so screenshot-backed tests cannot be
+          # silently skipped by the earlier dependency-light regression step.
+          python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v 2>&1 | tee "$LUMO_QA_DIR/android-helper-regressions-with-ocr.log"
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools build-tools;35.0.0 platforms;android-36'
+      - name: Build the isolated read-only accessibility snapshot helper
+        run: python3 tools/android_qa/prepare_ui_snapshot.py build --out "$LUMO_QA_DIR"
+      - name: Check the saved source and empty draft before building
+        if: inputs.mode == 'build'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$LUMO_QA_DIR"
+          python3 tools/android_qa/prepare_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --out "$LUMO_QA_DIR" --preflight 2>&1 | tee "$LUMO_QA_DIR/build-preflight.log"
+      - name: Install the matching pinned Godot engine
+        if: inputs.mode == 'build'
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build the saved source and pinned Godot into one release APK
+        if: inputs.mode == 'build'
+        run: bash scripts/build_unified_apk.sh 2>&1 | tee "$LUMO_QA_DIR/build.log"
+      - name: Verify and freeze the runner-built APK bytes
+        id: built
+        if: inputs.mode == 'build'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/android_qa/prepare_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/freeze-build.log"
+          cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json "$LUMO_QA_DIR"/
+      - name: Cache the exact verified bytes and provenance as an unpublished candidate
+        if: inputs.mode == 'build'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/android_qa/cache_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --evidence "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/candidate-cache.log"
+      - name: Download and verify the supplied APK bytes
+        id: downloaded
+        if: inputs.mode == 'download' || github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$LUMO_QA_DIR"
+          python3 tools/android_qa/download_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/download-check.log"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$LUMO_QA_DIR/tested.apk" > "$LUMO_QA_DIR/signature.txt"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$LUMO_QA_DIR/tested.apk" > "$LUMO_QA_DIR/apk-badging.txt"
+      - name: Record the selected APK hash and signature
+        env:
+          VERIFIED_SHA: ${{ steps.built.outputs.sha256 || steps.downloaded.outputs.sha256 }}
+        run: |
+          test -n "$VERIFIED_SHA"
+          echo "APK_SHA=$VERIFIED_SHA" >> "$GITHUB_ENV"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$LUMO_QA_DIR/tested.apk" > "$LUMO_QA_DIR/signature.txt"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+          ls -l /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+      - name: Start and verify the Mesa software OpenGL display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1280x720x24 -nolisten tcp +extension GLX > "$LUMO_QA_DIR/xvfb.log" 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > "$LUMO_QA_DIR/mesa-renderer.txt" 2>&1; then
+              break
+            fi
+            sleep 0.25
+          done
+          cat "$LUMO_QA_DIR/mesa-renderer.txt"
+          grep -Ei 'OpenGL renderer string:.*llvmpipe' "$LUMO_QA_DIR/mesa-renderer.txt"
+      - name: Install the verified APK and exercise the actual user flow
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          LUMO_UI_SNAPSHOT_REMOTE: '/data/local/tmp/lumo-ui-snapshot.jar'
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          # Official stable 36.3.10 archive; avoid the observed 37.2.12
+          # gfxstream context loss while testing the identical frozen APK.
+          emulator-build: '14472402'
+          disable-animations: true
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          # -no-window launches the separately packaged headless QEMU binary.
+          script: >-
+            bash -e -o pipefail -c 'python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR" --verify-emulator --headless; python3 tools/android_qa/prepare_ui_snapshot.py install --jar "$LUMO_QA_DIR/lumo-ui-snapshot.jar" --out "$LUMO_QA_DIR"; python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
+      - name: Preserve host kernel and emulator crash diagnostics
+        if: always()
+        run: python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR"
+      - name: Upload and re-download the same successfully tested APK into the existing draft
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/android_qa/upload_tested_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --evidence "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/upload-apk-check.log"
+      - name: Save proof ZIP to the existing draft without publishing or changing APK bytes
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/android_qa/upload_proof.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --evidence "$LUMO_QA_DIR" --run-id "$GITHUB_RUN_ID" --attempt "$GITHUB_RUN_ATTEMPT"
+      - name: Stage only the byte-identical successfully tested APK for handover
+        if: success()
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, shutil
+          from pathlib import Path
+          evidence = Path(os.environ['LUMO_QA_DIR'])
+          result = json.loads((evidence/'result.json').read_text())
+          uploaded = json.loads((evidence/'uploaded-apk-download-proof.json').read_text())
+          expected = os.environ['APK_SHA']
+          if (result.get('passed') is not True or result.get('sha256') != expected
+                  or uploaded.get('sha256') != expected
+                  or uploaded.get('passing_test_sha256') != expected
+                  or uploaded.get('qa_harness_commit') != os.environ['GITHUB_SHA']
+                  or uploaded.get('source_kind') != 'final-apk'
+                  or uploaded.get('asset_name') != 'Lumo-Lernen-Neu.apk'
+                  or uploaded.get('release_published') is not False):
+              raise SystemExit('Missing matching successful APK handover proofs')
+          path = evidence/'tested.apk'
+          with path.open('rb') as stream:
+              if hashlib.file_digest(stream, 'sha256').hexdigest() != expected:
+                  raise SystemExit('Handover APK differs from the successful test')
+          destination = Path('handover')
+          destination.mkdir(exist_ok=False)
+          shutil.copyfile(path, destination/'Lumo-Lernen-Neu.apk')
+          shutil.copyfile(evidence/'uploaded-apk-download-proof.json', destination/'apk-download-proof.json')
+          PY
+      - name: Preserve exact proof and successful APK for direct download
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-android-280-check-${{ github.run_id }}
+          path: |
+            android-api35-qa-*.zip
+            handover/
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0

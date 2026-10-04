@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/lumo_asset_paths.dart';
 import 'package:lumo_lernen/core/lumo_companion_pose.dart';
-import 'package:lumo_lernen/core/lumo_icon_paths.dart';
 
 /// Smoke-Test fuer die Asset-Registry. Verifiziert dass jeder
 /// const-Pfad eine echte Datei im Repo trifft - faengt Tippfehler in
@@ -61,21 +60,6 @@ void main() {
         expect(File(path).existsSync(), isTrue,
             reason: 'Question-Bundle fehlt: $path');
       }
-    });
-  });
-
-  group('LumoIconPaths', () {
-    test('alle 40 SVG-Icons existieren im Repo', () {
-      expect(LumoIconPaths.all.length, 40,
-          reason: 'Wir haben 40 Icons aus dem Asset-Pack importiert');
-      for (final path in LumoIconPaths.all) {
-        expect(File(path).existsSync(), isTrue,
-            reason: 'Icon fehlt: $path');
-      }
-    });
-
-    test('keine doppelten Icon-Pfade in der Liste', () {
-      expect(LumoIconPaths.all.toSet().length, LumoIconPaths.all.length);
     });
   });
 

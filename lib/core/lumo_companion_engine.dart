@@ -205,6 +205,7 @@ class LumoCompanionEngine {
     final s = subject.toLowerCase();
     if (s.contains('deutsch') || s.contains('lesen') || s.contains('schreiben') || s.contains('rechtschreibung')) return learning.LearningSubject.deutsch;
     if (s.contains('sach')) return learning.LearningSubject.sachkunde;
+    if (s.contains('logik')) return learning.LearningSubject.logik;
     return learning.LearningSubject.mathematik;
   }
 

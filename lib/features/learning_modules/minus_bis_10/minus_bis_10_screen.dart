@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
+import '../learning_module_progress.dart';
 
 class MinusBis10Screen extends StatefulWidget {
   const MinusBis10Screen({super.key, required this.appState});
@@ -37,6 +38,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
   int _taskIdx = 0;
@@ -55,6 +57,11 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: 'Minus bis 10',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -70,6 +77,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -104,18 +112,23 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   }
 
   void _onAnswer(int answer) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = answer;
       _answered = true;
     });
     final isCorrect = answer == _correct;
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      hintUsed: _showHint,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 5 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(5);
       CosmosWorld.instance.grantReward(
         subjectId: 'm1_minus10',
         isMath: true,
@@ -126,8 +139,10 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       try {
         LumoVoice.instance.speak(phrase);
       } catch (_) {}
-      await Future.delayed(const Duration(milliseconds: 1100));
-      if (!mounted) return;
+      if (!await _progress.feedbackDelay(const Duration(milliseconds: 1100)) ||
+          !mounted) {
+        return;
+      }
       _nextTask();
     } else {
       HapticFeedback.mediumImpact();
@@ -137,12 +152,17 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       try {
         LumoVoice.instance.speak(phrase);
       } catch (_) {}
-      await Future.delayed(const Duration(milliseconds: 1400));
-      if (!mounted) return;
+      if (!await _progress.feedbackDelay(const Duration(milliseconds: 1400)) ||
+          !mounted) {
+        return;
+      }
       if (_wrongAttempts >= 2) {
         setState(() => _showHint = true);
-        await Future.delayed(const Duration(milliseconds: 2400));
-        if (!mounted) return;
+        if (!await _progress
+                .feedbackDelay(const Duration(milliseconds: 2400)) ||
+            !mounted) {
+          return;
+        }
         _nextTask();
       } else {
         setState(() {
@@ -166,21 +186,21 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     _speakTask();
   }
 
-  void _showFinish() {
+  Future<void> _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    final saved =
+        await _progress.saveBonus(stars: stars, xp: _correctCount * 10);
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🎉 Geschafft!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks richtig!',
               style: const TextStyle(
@@ -230,36 +250,38 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildTaskHeader(),
-                  const SizedBox(height: 24),
-                  _buildBonbonsVisualization(),
-                  const SizedBox(height: 32),
-                  _buildAnswerGrid(),
-                  if (_showHint) ...[
-                    const SizedBox(height: 20),
-                    _buildHintCard(),
-                  ],
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildTaskHeader(),
+                      const SizedBox(height: 24),
+                      _buildBonbonsVisualization(),
+                      const SizedBox(height: 32),
+                      _buildAnswerGrid(),
+                      if (_showHint) ...[
+                        const SizedBox(height: 20),
+                        _buildHintCard(),
+                      ],
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -267,8 +289,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
         boxShadow: [
           BoxShadow(
               color: _gradient[0].withOpacity(0.3),
@@ -278,9 +299,9 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () => Navigator.of(context).maybePop(),
         ),
         Expanded(
           child: Column(
@@ -308,8 +329,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -329,8 +349,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
@@ -368,9 +387,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
           width: 38,
           height: 38,
           decoration: BoxDecoration(
-            color: isRemoved
-                ? Colors.grey.shade300
-                : const Color(0xFFFCE7F3),
+            color: isRemoved ? Colors.grey.shade300 : const Color(0xFFFCE7F3),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
                 color: isRemoved
@@ -380,8 +397,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
           ),
           child: Center(
             child: isRemoved
-                ? const Icon(Icons.close_rounded,
-                    color: Colors.red, size: 24)
+                ? const Icon(Icons.close_rounded, color: Colors.red, size: 24)
                 : const Text('🍬', style: TextStyle(fontSize: 22)),
           ),
         );
@@ -417,7 +433,10 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
         textColor = const Color(0xFF991B1B);
         borderColor = const Color(0xFFEF4444);
       }
-    } else if (_answered && isCorrect && _wrongAttempts >= 1) {
+    } else if (_answered && isCorrect && _wrongAttempts >= 2) {
+      // Erst nach dem zweiten Fehlversuch die Loesung zeigen. Mit >= 1 wurde
+      // sie schon beim ersten Fehler gelb markiert (die Wackel-Animation baut
+      // neu), und der zweite Versuch war verraten.
       bgColor = const Color(0xFFFEF3C7);
       borderColor = const Color(0xFFFCD34D);
     }
@@ -478,8 +497,9 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
                   color: const Color(0xFFD97706))),
         ]),
         const SizedBox(height: 8),
-        Text('Du hattest $_a Bonbons. Du isst $_b davon. '
-            'Dann sind ${_correct} übrig.',
+        Text(
+            'Du hattest $_a Bonbons. Du isst $_b davon. '
+            'Dann sind $_correct übrig.',
             style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 15,

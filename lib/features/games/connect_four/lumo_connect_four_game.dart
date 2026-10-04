@@ -20,15 +20,14 @@
 //     Bedrohungen
 // ════════════════════════════════════════════════════════════════════════
 
-import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
-import '../../../app/app_theme.dart';
 import '../../../core/lumo_voice.dart';
+import '../shared/lumo_game_pause_scope.dart';
 
 enum _Cell { empty, kind, lumo }
 
@@ -37,7 +36,8 @@ const int _rows = 6;
 const int _winLength = 4;
 
 class LumoConnectFourScreen extends StatefulWidget {
-  const LumoConnectFourScreen({super.key, required this.appState});
+  const LumoConnectFourScreen({super.key, required this.appState, this.seed});
+  final int? seed;
   final LumoAppState appState;
 
   @override
@@ -49,15 +49,23 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
   _Cell _turn = _Cell.kind;
   bool _busy = false;
   List<List<int>>? _winLine; // Liste von [row, col] der Gewinnsteine
-  final math.Random _rng = math.Random();
+  late final math.Random _rng;
+  final _clock = LumoGameTurnClock();
 
   @override
   void initState() {
     super.initState();
+    _rng = widget.seed == null ? math.Random() : math.Random(widget.seed);
     _resetBoard();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _say('Vier gewinnt! Du bist Gelb, ich bin Rot. Du faengst an.');
     });
+  }
+
+  @override
+  void dispose() {
+    _clock.dispose();
+    super.dispose();
   }
 
   void _say(String text) {
@@ -67,6 +75,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
   }
 
   void _resetBoard() {
+    _clock.cancel();
     _board = List.generate(
       _rows,
       (_) => List<_Cell>.filled(_cols, _Cell.empty),
@@ -77,7 +86,9 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
   }
 
   void _tapColumn(int col) {
-    if (_busy || _turn != _Cell.kind || _winLine != null) return;
+    if (_clock.value || _busy || _turn != _Cell.kind || _winLine != null) {
+      return;
+    }
     if (!_dropPiece(col, _Cell.kind)) return;
     HapticFeedback.lightImpact();
     setState(() {});
@@ -93,7 +104,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
     _turn = _Cell.lumo;
     _busy = true;
     setState(() {});
-    Timer(const Duration(milliseconds: 900), _lumoMove);
+    _clock.schedule(const Duration(milliseconds: 900), _lumoMove);
   }
 
   /// Wirft einen Stein in die Spalte. Gibt false zurueck, wenn die
@@ -130,7 +141,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
   // ──────────────────────────────────────────────────────────────────
 
   void _lumoMove() {
-    if (!mounted) return;
+    if (!mounted || _turn != _Cell.lumo || _winLine != null) return;
     final col = _pickBestColumnForLumo();
     if (col == null) {
       _onDraw();
@@ -261,8 +272,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
           }
           if (ok) {
             return [
-              for (var k = 0; k < _winLength; k++)
-                [r + dr * k, c + dc * k]
+              for (var k = 0; k < _winLength; k++) [r + dr * k, c + dc * k]
             ];
           }
         }
@@ -298,8 +308,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
     widget.appState.addStars(3);
     widget.appState.addXp(20);
     _say('Unentschieden! Beide waren gleich gut. 3 Sterne!');
-    _showFinishDialog(
-        kindWon: false, drawn: true, stars: 3, lumoWon: false);
+    _showFinishDialog(kindWon: false, drawn: true, stars: 3, lumoWon: false);
   }
 
   void _showFinishDialog({
@@ -311,7 +320,8 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => AlertDialog(
+      builder: (_) => LumoGameResultBack(
+          child: AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: Text(
@@ -362,7 +372,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
                     fontSize: 16)),
           ),
         ],
-      ),
+      )),
     );
   }
 
@@ -372,32 +382,37 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEFF6FF),
-      body: SafeArea(
-        child: Column(
-          children: [
-            _buildTopBar(),
-            _buildTurnIndicator(),
-            Expanded(child: Center(child: _buildBoard())),
-            const SizedBox(height: 14),
-          ],
-        ),
-      ),
-    );
+    return LumoGamePauseScope(
+        clock: _clock,
+        onRestart: () => setState(_resetBoard),
+        child: Scaffold(
+          backgroundColor: const Color(0xFFEFF6FF),
+          body: SafeArea(
+            child: Column(
+              children: [
+                _buildTopBar(),
+                _buildTurnIndicator(),
+                Expanded(child: Center(child: _buildBoard())),
+                const SizedBox(height: 14),
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget _buildTopBar() {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: const BoxDecoration(
-        gradient: LinearGradient(colors: [Color(0xFF60A5FA), Color(0xFF3B82F6)]),
+        gradient:
+            LinearGradient(colors: [Color(0xFF60A5FA), Color(0xFF3B82F6)]),
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
           icon: const Icon(Icons.close_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          tooltip: 'Pausieren / Zurück',
+          onPressed: _clock.pause,
         ),
         const Expanded(
           child: Center(
@@ -412,7 +427,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
         IconButton(
           icon: const Icon(Icons.refresh_rounded, color: Colors.white),
           tooltip: 'Neu starten',
-          onPressed: () => setState(_resetBoard),
+          onPressed: _clock.pause,
         ),
       ]),
     );
@@ -432,8 +447,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
               decoration: BoxDecoration(
                 color: isKind ? const Color(0xFFFCD34D) : Colors.white,
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(
-                    color: const Color(0xFFEAB308), width: 2.4),
+                border: Border.all(color: const Color(0xFFEAB308), width: 2.4),
               ),
               child: const Center(
                 child: Text('Du 🟡',
@@ -453,8 +467,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
               decoration: BoxDecoration(
                 color: !isKind ? const Color(0xFFF87171) : Colors.white,
                 borderRadius: BorderRadius.circular(18),
-                border:
-                    Border.all(color: const Color(0xFFEF4444), width: 2.4),
+                border: Border.all(color: const Color(0xFFEF4444), width: 2.4),
               ),
               child: Center(
                 child: Text(_busy && !isKind ? 'Lumo denkt... 🦊' : 'Lumo 🔴',
@@ -462,7 +475,8 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
                         fontFamily: 'Nunito',
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
-                        color: !isKind ? Colors.white : const Color(0xFF7F1D1D))),
+                        color:
+                            !isKind ? Colors.white : const Color(0xFF7F1D1D))),
               ),
             ),
           ),
@@ -473,9 +487,9 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
 
   Widget _buildBoard() {
     return AspectRatio(
-      aspectRatio: _cols / (_rows + 0.6),
+      aspectRatio: _cols / (_rows + 1.2),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         child: LayoutBuilder(builder: (_, constraints) {
           final cellSize = constraints.maxWidth / _cols;
           return Column(
@@ -489,8 +503,10 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
                       _board[0][c] != _Cell.empty;
                   return SizedBox(
                     width: cellSize,
-                    height: cellSize * 0.55,
+                    height: 48,
                     child: IconButton(
+                      key: ValueKey('connect-column-$c'),
+                      tooltip: 'Stein in Spalte ${c + 1}',
                       onPressed: disabled ? null : () => _tapColumn(c),
                       icon: Icon(
                         Icons.arrow_drop_down_rounded,
@@ -544,8 +560,8 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
 
   Widget _buildCell(int r, int c) {
     final cell = _board[r][c];
-    final isWin = _winLine != null &&
-        _winLine!.any((p) => p[0] == r && p[1] == c);
+    final isWin =
+        _winLine != null && _winLine!.any((p) => p[0] == r && p[1] == c);
     final Color color;
     switch (cell) {
       case _Cell.empty:
@@ -563,9 +579,8 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
-        border: isWin
-            ? Border.all(color: const Color(0xFF22C55E), width: 3)
-            : null,
+        border:
+            isWin ? Border.all(color: const Color(0xFF22C55E), width: 3) : null,
         boxShadow: cell != _Cell.empty
             ? [
                 BoxShadow(

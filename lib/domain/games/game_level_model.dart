@@ -10,37 +10,61 @@
 import 'package:flutter/foundation.dart';
 
 enum GameMiniType {
-  starsPath,       // Lumo sammelt Sterne auf Pfad - Aufgaben loesen
-  numberHouse,     // Rechenhaus mit fehlenden Zahlen
-  numberPath,      // Zahlenweg-Sprung
-  wordForest,      // Silben/Woerter
-  mixedQuiz,       // Mix-Quiz mit 5 Aufgaben
-  colorBoxes,      // Anmalen-Mengen: 10 Kaestchen, X anmalen
-  letterFill,      // Buchstaben-Luecke: M_US, BR_T, _PFEL etc.
+  starsPath, // Lumo sammelt Sterne auf Pfad - Aufgaben loesen
+  numberHouse, // Rechenhaus mit fehlenden Zahlen
+  numberPath, // Zahlenweg-Sprung
+  wordForest, // Silben/Woerter
+  mixedQuiz, // Mix-Quiz mit 5 Aufgaben
+  colorBoxes, // Anmalen-Mengen: 10 Kaestchen, X anmalen
+  letterFill, // Buchstaben-Luecke: M_US, BR_T, _PFEL etc.
 }
 
 extension GameMiniTypeMeta on GameMiniType {
+  /// Only types with an actual Flutter game route belong in the selection.
+  bool get isPlayable => switch (this) {
+        GameMiniType.starsPath ||
+        GameMiniType.numberHouse ||
+        GameMiniType.colorBoxes ||
+        GameMiniType.letterFill =>
+          true,
+        _ => false,
+      };
+
   String get germanLabel {
     switch (this) {
-      case GameMiniType.starsPath: return 'Sterne sammeln';
-      case GameMiniType.numberHouse: return 'Rechenhaus bauen';
-      case GameMiniType.numberPath: return 'Zahlenweg';
-      case GameMiniType.wordForest: return 'Woerterwald';
-      case GameMiniType.mixedQuiz: return 'Lumos Mix';
-      case GameMiniType.colorBoxes: return 'Mengen anmalen';
-      case GameMiniType.letterFill: return 'Buchstaben-Luecke';
+      case GameMiniType.starsPath:
+        return 'Sterne sammeln';
+      case GameMiniType.numberHouse:
+        return 'Rechenhaus bauen';
+      case GameMiniType.numberPath:
+        return 'Zahlenweg';
+      case GameMiniType.wordForest:
+        return 'Woerterwald';
+      case GameMiniType.mixedQuiz:
+        return 'Lumos Mix';
+      case GameMiniType.colorBoxes:
+        return 'Mengen anmalen';
+      case GameMiniType.letterFill:
+        return 'Buchstaben-Luecke';
     }
   }
 
   String get emoji {
     switch (this) {
-      case GameMiniType.starsPath: return '⭐';
-      case GameMiniType.numberHouse: return '🏠';
-      case GameMiniType.numberPath: return '🦘';
-      case GameMiniType.wordForest: return '🌲';
-      case GameMiniType.mixedQuiz: return '🎯';
-      case GameMiniType.colorBoxes: return '🎨';
-      case GameMiniType.letterFill: return '🔤';
+      case GameMiniType.starsPath:
+        return '⭐';
+      case GameMiniType.numberHouse:
+        return '🏠';
+      case GameMiniType.numberPath:
+        return '🦘';
+      case GameMiniType.wordForest:
+        return '🌲';
+      case GameMiniType.mixedQuiz:
+        return '🎯';
+      case GameMiniType.colorBoxes:
+        return '🎨';
+      case GameMiniType.letterFill:
+        return '🔤';
     }
   }
 }
@@ -91,8 +115,10 @@ class GameLevelRuntime {
 
   final GameLevel level;
   final bool locked;
+
   /// 0, 1, 2 oder 3.
   final int starsEarned;
+
   /// Markiert das aktive (naechste freie) Level fuer den Lumo-Avatar.
   final bool isCurrent;
 

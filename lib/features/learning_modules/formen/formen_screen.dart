@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
+import '../learning_module_progress.dart';
 
 enum _Shape { kreis, quadrat, dreieck, rechteck, stern, herz }
 
@@ -56,6 +57,7 @@ class _FormenScreenState extends State<FormenScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
   int _taskIdx = 0;
@@ -69,6 +71,11 @@ class _FormenScreenState extends State<FormenScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: 'Formen',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -82,6 +89,7 @@ class _FormenScreenState extends State<FormenScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -109,18 +117,22 @@ class _FormenScreenState extends State<FormenScreen>
   }
 
   void _onAnswer(_Shape s) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = s;
       _answered = true;
     });
     final isCorrect = s == _correctShape;
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 5 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(5);
       try {
         LumoVoice.instance
             .speak('Richtig! Das ist ein ${_correctShape.displayName}!');
@@ -129,12 +141,14 @@ class _FormenScreenState extends State<FormenScreen>
       HapticFeedback.mediumImpact();
       _shakeCtrl.forward(from: 0);
       try {
-        LumoVoice.instance.speak(
-            'Schau nochmal - das ist ein ${_correctShape.displayName}!');
+        LumoVoice.instance
+            .speak('Schau nochmal - das ist ein ${_correctShape.displayName}!');
       } catch (_) {}
     }
-    await Future.delayed(const Duration(milliseconds: 1300));
-    if (!mounted) return;
+    if (!await _progress.feedbackDelay(const Duration(milliseconds: 1300)) ||
+        !mounted) {
+      return;
+    }
     _nextTask();
   }
 
@@ -151,21 +165,21 @@ class _FormenScreenState extends State<FormenScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  Future<void> _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 8);
+    final saved =
+        await _progress.saveBonus(stars: stars, xp: _correctCount * 8);
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🎉 Geschafft!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks Aufgaben richtig!',
               style: const TextStyle(
@@ -215,32 +229,34 @@ class _FormenScreenState extends State<FormenScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildTaskHeader(),
-                  const SizedBox(height: 24),
-                  _buildShapeVisualization(),
-                  const SizedBox(height: 32),
-                  _buildAnswerGrid(),
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildTaskHeader(),
+                      const SizedBox(height: 24),
+                      _buildShapeVisualization(),
+                      const SizedBox(height: 32),
+                      _buildAnswerGrid(),
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -248,14 +264,13 @@ class _FormenScreenState extends State<FormenScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () => Navigator.of(context).maybePop(),
         ),
         Expanded(
           child: Column(
@@ -283,8 +298,7 @@ class _FormenScreenState extends State<FormenScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -304,8 +318,7 @@ class _FormenScreenState extends State<FormenScreen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
@@ -435,7 +448,9 @@ class _ShapePainter extends CustomPainter {
       case _Shape.rechteck:
         canvas.drawRect(
             Rect.fromCenter(
-                center: Offset(w / 2, h / 2), width: w * 0.85, height: h * 0.55),
+                center: Offset(w / 2, h / 2),
+                width: w * 0.85,
+                height: h * 0.55),
             paint);
         break;
       case _Shape.dreieck:
@@ -479,12 +494,11 @@ class _ShapePainter extends CustomPainter {
     final left = center.dx - w / 2;
     final top = center.dy - h / 2.5;
     path.moveTo(center.dx, top + h * 0.3);
-    path.cubicTo(
-        center.dx, top, left, top, left, top + h * 0.35);
+    path.cubicTo(center.dx, top, left, top, left, top + h * 0.35);
     path.cubicTo(
         left, top + h * 0.65, center.dx, top + h * 0.95, center.dx, top + h);
-    path.cubicTo(center.dx, top + h * 0.95, left + w, top + h * 0.65,
-        left + w, top + h * 0.35);
+    path.cubicTo(center.dx, top + h * 0.95, left + w, top + h * 0.65, left + w,
+        top + h * 0.35);
     path.cubicTo(left + w, top, center.dx, top, center.dx, top + h * 0.3);
     canvas.drawPath(path, paint);
   }

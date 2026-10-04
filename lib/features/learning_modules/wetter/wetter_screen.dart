@@ -17,6 +17,7 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_companion_state.dart';
 import '../../../core/lumo_cosmos.dart';
 import '../../../core/lumo_voice.dart';
+import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
 
 class _Wetter {
@@ -110,6 +111,8 @@ class _WetterScreenState extends State<WetterScreen>
     MapEntry('Es ist laut wegen dem Donner', 'Gewitter'),
   ];
 
+  late final LearningModuleProgress _progress;
+
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
@@ -119,6 +122,9 @@ class _WetterScreenState extends State<WetterScreen>
   int _correctCount = 0;
   bool _answered = false;
   int? _selectedIdx;
+  // Kleidungs-Antworten werden einmal pro Aufgabe gemischt. Vorher passierte
+  // das in build(): nach dem Antippen markierte die App eine andere Zeile.
+  List<String> _kleidungOptions = const [];
 
   late _WetterFrageTyp _typ;
   late _Wetter _correctWetter;
@@ -128,6 +134,11 @@ class _WetterScreenState extends State<WetterScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Sachunterricht',
+      unit: 'Wetter',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -141,6 +152,7 @@ class _WetterScreenState extends State<WetterScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -167,8 +179,20 @@ class _WetterScreenState extends State<WetterScreen>
     }
     _lastWetter = _correctWetter;
     final shuffled = List.of(_wetterArten)..shuffle(_rng);
-    _options = [_correctWetter, ...shuffled.where((w) => w != _correctWetter).take(3)]
-      ..shuffle(_rng);
+    _options = [
+      _correctWetter,
+      ...shuffled.where((w) => w != _correctWetter).take(3)
+    ]..shuffle(_rng);
+    if (_typ == _WetterFrageTyp.kleidungWaehlen) {
+      final richtigeKleidung = _correctWetter.kleidung;
+      final wrong = _wetterArten
+          .map((w) => w.kleidung)
+          .toSet()
+          .where((k) => k != richtigeKleidung)
+          .toList()
+        ..shuffle(_rng);
+      _kleidungOptions = [richtigeKleidung, ...wrong.take(3)]..shuffle(_rng);
+    }
     _answered = false;
     _selectedIdx = null;
   }
@@ -193,17 +217,21 @@ class _WetterScreenState extends State<WetterScreen>
   }
 
   void _onAnswer(int idx, bool isCorrect) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedIdx = idx;
       _answered = true;
     });
+    final saved = await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 7 : 0,
+    );
+    if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(7);
       CosmosWorld.instance.grantReward(
         subjectId: 's1_wetter',
         isMath: false,
@@ -211,19 +239,19 @@ class _WetterScreenState extends State<WetterScreen>
       );
       LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
-        LumoVoice.instance
-            .speak('Richtig! Das ist ${_correctWetter.name}!');
+        LumoVoice.instance.speak('Richtig! Das ist ${_correctWetter.name}!');
       } catch (_) {}
     } else {
       HapticFeedback.mediumImpact();
       _shakeCtrl.forward(from: 0);
       try {
-        LumoVoice.instance.speak(
-            'Schau nochmal - das ist ${_correctWetter.name}!');
+        LumoVoice.instance
+            .speak('Schau nochmal - das ist ${_correctWetter.name}!');
       } catch (_) {}
     }
-    await Future.delayed(const Duration(milliseconds: 1400));
-    if (!mounted) return;
+    final canAdvance =
+        await _progress.feedbackDelay(const Duration(milliseconds: 1400));
+    if (!canAdvance || !mounted) return;
     _nextTask();
   }
 
@@ -240,21 +268,23 @@ class _WetterScreenState extends State<WetterScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  void _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+    final saved = await _progress.saveBonus(
+      stars: stars,
+      xp: _correctCount * 10,
+    );
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🌤 Wetter-Quiz fertig!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks richtig!',
               style: const TextStyle(
@@ -304,32 +334,34 @@ class _WetterScreenState extends State<WetterScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) {
-                  return Opacity(opacity: _entryCtrl.value, child: child);
-                },
-                child: Column(children: [
-                  _buildTaskHeader(),
-                  const SizedBox(height: 20),
-                  _buildVisualization(),
-                  const SizedBox(height: 24),
-                  _buildOptions(),
-                ]),
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: SafeArea(
+            child: Column(children: [
+              _buildTopBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: AnimatedBuilder(
+                    animation: _entryCtrl,
+                    builder: (_, child) {
+                      return Opacity(opacity: _entryCtrl.value, child: child);
+                    },
+                    child: Column(children: [
+                      _buildTaskHeader(),
+                      const SizedBox(height: 20),
+                      _buildVisualization(),
+                      const SizedBox(height: 24),
+                      _buildOptions(),
+                    ]),
+                  ),
+                ),
               ),
-            ),
+            ]),
           ),
-        ]),
-      ),
-    );
+        ));
   }
 
   Widget _buildTopBar() {
@@ -337,13 +369,12 @@ class _WetterScreenState extends State<WetterScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
         Expanded(
@@ -370,8 +401,7 @@ class _WetterScreenState extends State<WetterScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -403,8 +433,7 @@ class _WetterScreenState extends State<WetterScreen>
       animation: _shakeCtrl,
       builder: (_, child) {
         final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
-        return Transform.translate(
-            offset: Offset(shake, 0), child: child);
+        return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
@@ -468,10 +497,7 @@ class _WetterScreenState extends State<WetterScreen>
     if (_typ == _WetterFrageTyp.kleidungWaehlen) {
       // 4 Kleidungs-Optionen
       final richtigeKleidung = _correctWetter.kleidung;
-      final allOptions = _wetterArten.map((w) => w.kleidung).toSet().toList();
-      final wrong = allOptions.where((k) => k != richtigeKleidung).toList()
-        ..shuffle(_rng);
-      final options = [richtigeKleidung, ...wrong.take(3)]..shuffle(_rng);
+      final options = _kleidungOptions;
       return Column(
         children: List.generate(options.length, (idx) {
           final opt = options[idx];
@@ -481,15 +507,12 @@ class _WetterScreenState extends State<WetterScreen>
           Color borderColor = _gradient[0].withOpacity(0.3);
           Color textColor = _gradient[1];
           if (_answered && isSelected) {
-            bgColor = isCorrect
-                ? const Color(0xFFD1FAE5)
-                : const Color(0xFFFEE2E2);
-            textColor = isCorrect
-                ? const Color(0xFF065F46)
-                : const Color(0xFF991B1B);
-            borderColor = isCorrect
-                ? const Color(0xFF10B981)
-                : const Color(0xFFEF4444);
+            bgColor =
+                isCorrect ? const Color(0xFFD1FAE5) : const Color(0xFFFEE2E2);
+            textColor =
+                isCorrect ? const Color(0xFF065F46) : const Color(0xFF991B1B);
+            borderColor =
+                isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
           } else if (_answered && isCorrect) {
             bgColor = const Color(0xFFFEF3C7);
             borderColor = const Color(0xFFFCD34D);
@@ -646,8 +669,7 @@ class _WetterBubble extends StatelessWidget {
           ),
         ],
       ),
-      child: Text(icon,
-          style: TextStyle(fontSize: size * 0.55, height: 1.0)),
+      child: Text(icon, style: TextStyle(fontSize: size * 0.55, height: 1.0)),
     );
     if (!bouncing) return card;
     return AnimatedBuilder(

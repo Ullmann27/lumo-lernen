@@ -1,5 +1,7 @@
 import '../lib/core/math_task_templates.dart';
 import '../lib/core/german_task_templates.dart';
+import '../lib/core/school_exercise_generator.dart';
+import '../lib/core/task_quality_guard.dart';
 
 void main() {
   var checked = 0;
@@ -42,7 +44,25 @@ void main() {
       if (!t.choices.contains(t.answer) || t.choices.toSet().length != t.choices.length || t.choices.length < 2) errors.add('${template.id}: ambiguous choices ${t.choices}, answer ${t.answer}');
     }
   }
-  print('Checked $checked generated math and German tasks across all templates and grades.');
+  // Audit the complete active factory too: English, science, reading,
+  // spelling and writing must pass the same gate as cached AI exercises.
+  const guard = TaskQualityGuard();
+  for (var grade = 1; grade <= 4; grade++) {
+    final factory = ExerciseFactory(seed: grade);
+    for (final subject in Curriculum.subjects.entries) {
+      for (final unit in subject.value) {
+        for (var sample = 0; sample < 20; sample++) {
+          final task = factory.next(grade: grade, subject: subject.key, unit: unit);
+          checked++;
+          final problems = guard.problems(task);
+          if (problems.isNotEmpty) {
+            errors.add('${task.subject}/${task.unit}: ${problems.join(', ')}: ${task.prompt}');
+          }
+        }
+      }
+    }
+  }
+  print('Checked $checked generated tasks across all subjects, templates and grades.');
   if (errors.isNotEmpty) throw StateError('${errors.length} failures: ${errors.take(12).join('\n')}');
   print('PASS: exact answers, distinct options, declared number ranges, three-step story calculations.');
 }

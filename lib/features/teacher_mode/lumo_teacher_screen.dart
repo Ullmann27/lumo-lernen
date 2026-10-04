@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../app/lumo_companion_host.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_brain.dart';
 import '../../core/lumo_voice.dart';
@@ -42,6 +43,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   final LumoAiProxyClient _ai = const LumoAiProxyClient();
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollCtrl = ScrollController();
+  final FocusNode _questionFocus = FocusNode();
   final List<_ChatMessage> _messages = [];
   final List<LumoAiChatTurn> _history = [];
 
@@ -78,6 +80,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
 
   @override
   void dispose() {
+    _questionFocus.dispose();
     _controller.dispose();
     _scrollCtrl.dispose();
     _lumoPulseCtrl.dispose();
@@ -85,6 +88,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   }
 
   Future<void> _greet() async {
+    if (!mounted) return;
     final greeting = _buildGreeting();
     setState(() {
       _messages.add(_ChatMessage(text: greeting, isLumo: true));
@@ -132,8 +136,11 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
     // - Bei komplexen Fragen sagt LumoBrain "ich weiss es nicht"
     //   (confident=false) - dann erst ChatGPT.
     // -> spart Render-Tokens, schneller fuer das Kind, funktioniert offline.
-    final brainReply = LumoBrain.instance.ask(trimmed, topicId: widget.topic.id);
-    if (brainReply.confident && brainReply.text.isNotEmpty) {
+    final brainReply =
+        LumoBrain.instance.ask(trimmed, topicId: widget.topic.id);
+    if (!_ai.isConfigured(widget.appState.state.settings) &&
+        brainReply.confident &&
+        brainReply.text.isNotEmpty) {
       setState(() {
         _messages.add(_ChatMessage(text: brainReply.text, isLumo: true));
         _loading = false;
@@ -147,7 +154,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       if (brainReply.imageTopicHint != null) {
         _generateImage(brainReply.imageTopicHint!);
       } else {
-        final isVisualSubject = widget.subject.name.toLowerCase().contains('sachkunde');
+        final isVisualSubject =
+            widget.subject.name.toLowerCase().contains('sachkunde');
         if (LumoImageGenerator.seemsImageRequest(trimmed)) {
           _generateImage(trimmed);
         } else if (isVisualSubject) {
@@ -160,46 +168,41 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       return; // ChatGPT nicht noetig - LumoBrain hat schon geantwortet!
     }
 
-    // ── KONTEXT-INJECTION (Loesung fuer "ChatGPT redet vom falschen Thema") ──
-    // Heinz' Feedback: ChatGPT bekommt Bruchrechnen-Topic aber antwortet
-    // mit "3 Aepfel + 2 Aepfel" (1. Klasse Aufgabe). Grund: Render-Backend
-    // ignoriert extras-Parameter mit der Persona.
-    // Loesung: Wir embedden den kompletten Lehrplan-Kontext direkt in die
-    // Message - so kommt er garantiert beim Modell an.
-    final ctx = TopicCurriculum.of(widget.topic.id);
-    final messageForAi = ctx != null
-        ? '${ctx.buildPromptHeader()}KINDFRAGE: $trimmed'
-        : '[Thema: ${widget.topic.title} aus ${widget.subject.name} Klasse ${widget.grade}]\n$trimmed';
+    // A short context prefix also supports the already deployed proxy, which
+    // predates structured extras; the new server additionally validates extras.
+    final messageForAi = '[Lernkontext: ${widget.subject.name}, '
+        'Klasse ${widget.grade}, Thema ${widget.topic.title}.] $trimmed';
 
     _history.add(LumoAiChatTurn(role: 'user', content: messageForAi));
 
     try {
       final response = await _ai.ask(
         settings: widget.appState.state.settings,
-        state: widget.appState.state,
+        state: widget.appState.state.copyWith(
+            grade: widget.grade,
+            subject: widget.subject.name,
+            unit: widget.topic.title),
         message: messageForAi,
         history: _history,
-        context: LumoAiContext.companion,
+        context: LumoAiContext.learningTutor,
         extras: {
           'mode': 'teacher',
-          'grade': widget.grade,
+          'section': 'learn',
+          'unit': widget.topic.title,
           'subject': widget.subject.name,
           'topic': widget.topic.title,
           'topic_id': widget.topic.id,
         },
       );
 
+      if (!mounted) return;
       final reply = response.reply.trim().isEmpty
           ? 'Hmm, lass uns das nochmal probieren. Frag mich konkreter!'
           : response.reply;
 
       // Heinz-Wunsch: Cloud-Fallback variabler + topic-spezifisch
-      final isCloudFailure = reply.contains('antwortet gerade nicht') ||
-          reply.contains('Cloud weiter') ||
-          reply.contains('Serverantwort');
-      final finalReply = isCloudFailure
-          ? _buildLocalFallback(trimmed)
-          : reply;
+      final isCloudFailure = !response.isCloudAnswer && !response.blocked;
+      final finalReply = isCloudFailure ? _buildLocalFallback(trimmed) : reply;
 
       setState(() {
         _messages.add(_ChatMessage(
@@ -221,7 +224,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       // - Pro-aktiv NUR in Sachkunde (visuelle Topics: Tiere, Wetter,
       //   Verkehr, Koerper, Geografie). NICHT in Mathe/Deutsch wo das
       //   Bild vom Lerninhalt ablenkt (z.B. bei Mehrzahl-Quiz spurios).
-      final isVisualSubject = widget.subject.name.toLowerCase().contains('sachkunde');
+      final isVisualSubject =
+          widget.subject.name.toLowerCase().contains('sachkunde');
       if (LumoImageGenerator.seemsImageRequest(trimmed)) {
         _generateImage(trimmed);
       } else if (isVisualSubject) {
@@ -231,10 +235,10 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
         }
       }
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         _messages.add(_ChatMessage(
-            text:
-                'Ups, ich konnte gerade nicht antworten. Probier es nochmal!',
+            text: 'Ups, ich konnte gerade nicht antworten. Probier es nochmal!',
             isLumo: true,
             isError: true));
         _loading = false;
@@ -252,7 +256,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   /// 3. Erst zuletzt: topic-spezifischer Hint mit freundlichem Ton
   String _buildLocalFallback(String question) {
     // 1. LumoBrain probieren - vielleicht weiss er die Antwort doch
-    final brainReply = LumoBrain.instance.ask(question, topicId: widget.topic.id);
+    final brainReply =
+        LumoBrain.instance.ask(question, topicId: widget.topic.id);
     if (brainReply.confident && brainReply.text.isNotEmpty) {
       return brainReply.text;
     }
@@ -287,18 +292,24 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   /// muss lokal beantwortbar sein, auch wenn die Cloud streikt.
   String? _tryMathSolver(String q) {
     final lower = q.toLowerCase();
-    final nums =
-        RegExp(r'\d+').allMatches(q).map((m) => int.parse(m.group(0)!)).toList();
+    final nums = RegExp(r'\d+')
+        .allMatches(q)
+        .map((m) => int.parse(m.group(0)!))
+        .toList();
 
     // Umfang Quadrat (4 x Seite)
-    if (lower.contains('umfang') && lower.contains('quadrat') && nums.isNotEmpty) {
+    if (lower.contains('umfang') &&
+        lower.contains('quadrat') &&
+        nums.isNotEmpty) {
       final s = nums.first;
       final u = s * 4;
       return 'Der Umfang von einem Quadrat = 4 × Seite. '
           'Bei Seite $s gilt: 4 × $s = $u. Die Antwort ist also $u.';
     }
     // Umfang Rechteck (2*(a+b))
-    if (lower.contains('umfang') && lower.contains('rechteck') && nums.length >= 2) {
+    if (lower.contains('umfang') &&
+        lower.contains('rechteck') &&
+        nums.length >= 2) {
       final a = nums[0];
       final b = nums[1];
       final u = 2 * (a + b);
@@ -329,7 +340,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
           '$a × $b = $f. Das ist die Antwort.';
     }
     // Diagonale Quadrat (a * sqrt(2) - K4 Niveau)
-    if (lower.contains('diagonale') && lower.contains('quadrat') &&
+    if (lower.contains('diagonale') &&
+        lower.contains('quadrat') &&
         nums.isNotEmpty) {
       final s = nums.first;
       return 'Die Diagonale vom Quadrat ist ungefaehr 1,41 × Seite. '
@@ -359,8 +371,10 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       }
     }
     // Halbieren / Doppeln
-    if ((lower.contains('haelfte') || lower.contains('hälfte') ||
-            lower.contains('halbier')) && nums.isNotEmpty) {
+    if ((lower.contains('haelfte') ||
+            lower.contains('hälfte') ||
+            lower.contains('halbier')) &&
+        nums.isNotEmpty) {
       final n = nums.first;
       return 'Die Haelfte von $n ist ${n / 2}. (${n ~/ 2}, wenn ganzzahlig.)';
     }
@@ -381,7 +395,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       final result = LumoImageGenerator.check(childPrompt);
       setState(() {
         _messages.add(_ChatMessage(
-          text: result.hint ?? 'Sag mir was Liebes - ein Tier, eine Blume, ein Spielzeug?',
+          text: result.hint ??
+              'Sag mir was Liebes - ein Tier, eine Blume, ein Spielzeug?',
           isLumo: true,
         ));
       });
@@ -420,6 +435,20 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
             _buildTopBar(),
             Expanded(child: _buildChat()),
             _buildQuickActions(),
+            if (MediaQuery.viewInsetsOf(context).bottom == 0)
+              LumoCompanionHost(
+                appState: widget.appState,
+                section: 'learn',
+                subject: widget.subject.name,
+                unit: widget.topic.title,
+                compact: true,
+                onSection: (_) {},
+                onExplainTask: () => _ask(
+                    'Erkläre mir ${widget.topic.title} in einem kleinen Schritt.'),
+                onSuggestTask: () => _ask(
+                    'Schlage mir eine passende Aufgabe zu ${widget.topic.title} vor.'),
+                onAskLumo: () => _questionFocus.requestFocus(),
+              ),
             _buildInput(),
           ],
         ),
@@ -562,7 +591,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
     // POSITIVER Titel ('Hier ist die Antwort!') statt 'Cloud-Lehrer
     // beschaeftigt'. Nur wenn nur Hinweise drin sind, bleibt der Fallback-Ton.
     if (msg.isCloudOffline) {
-      final hasRealAnswer = RegExp(r'=\s*\d+|\d+\s*[+\-×*·]\s*\d+|Antwort').hasMatch(msg.text);
+      final hasRealAnswer =
+          RegExp(r'=\s*\d+|\d+\s*[+\-×*·]\s*\d+|Antwort').hasMatch(msg.text);
       return Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: LumoEmptyErrorState(
@@ -570,9 +600,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
               ? 'Lumo erklaert es dir direkt'
               : 'Lass uns das gemeinsam machen',
           message: msg.text,
-          icon: hasRealAnswer
-              ? Icons.lightbulb_rounded
-              : Icons.handshake_rounded,
+          icon:
+              hasRealAnswer ? Icons.lightbulb_rounded : Icons.handshake_rounded,
           iconColor: LumoTokens.colors.lumoOrange,
           actionLabel: hasRealAnswer ? 'Noch eine Frage?' : 'Nochmal versuchen',
           onAction: () {
@@ -632,10 +661,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
           ],
           Flexible(
             child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              constraints:
-                  const BoxConstraints(maxWidth: 320),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              constraints: const BoxConstraints(maxWidth: 320),
               decoration: BoxDecoration(
                 color: msg.isError
                     ? const Color(0xFFFEE2E2)
@@ -658,9 +685,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                     : null,
                 boxShadow: [
                   BoxShadow(
-                    color: (isLumo
-                            ? Colors.black
-                            : widget.topic.gradient[0])
+                    color: (isLumo ? Colors.black : widget.topic.gradient[0])
                         .withOpacity(0.08),
                     blurRadius: 8,
                     offset: const Offset(0, 3),
@@ -717,10 +742,9 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                                       size: 48, color: Colors.white),
                                   const SizedBox(height: 8),
                                   const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 12),
-                                    child: Text(
-                                        'Lumos Phantasie laeuft… 🎨',
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 12),
+                                    child: Text('Lumos Phantasie laeuft… 🎨',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontFamily: 'Nunito',
@@ -738,8 +762,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                                 if (progress == null) return child;
                                 return Center(
                                   child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                      strokeWidth: 3),
+                                      color: Colors.white, strokeWidth: 3),
                                 );
                               },
                               // errorBuilder leer -> Hintergrund bleibt.
@@ -802,8 +825,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                       width: 8,
                       height: 8,
                       decoration: BoxDecoration(
-                        color: widget.topic.gradient[0]
-                            .withOpacity(0.4 + v * 0.6),
+                        color:
+                            widget.topic.gradient[0].withOpacity(0.4 + v * 0.6),
                         shape: BoxShape.circle,
                       ),
                     );
@@ -830,8 +853,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
           child: GestureDetector(
             onTap: () => _ask(_quickQuestions[i]),
             child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -881,6 +903,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                 ),
                 child: TextField(
                   controller: _controller,
+                  focusNode: _questionFocus,
                   enabled: !_loading,
                   textInputAction: TextInputAction.send,
                   onSubmitted: _ask,
@@ -925,9 +948,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                         ],
                 ),
                 child: Icon(
-                  _loading
-                      ? Icons.hourglass_top_rounded
-                      : Icons.send_rounded,
+                  _loading ? Icons.hourglass_top_rounded : Icons.send_rounded,
                   color: Colors.white,
                   size: 22,
                 ),
@@ -950,9 +971,11 @@ class _ChatMessage {
   final String text;
   final bool isLumo;
   final bool isError;
+
   /// Wenn true: rendert als LumoEmptyErrorState.cloud() statt Bubble.
   /// Wird gesetzt wenn _buildLocalFallback genutzt wurde.
   final bool isCloudOffline;
+
   /// Wenn gesetzt: Image-Bubble wird im Chat angezeigt (Pollinations.ai URL).
   /// Heinz' Bildgenerator-Feature: nur kindersichere Inhalte.
   final String? imageUrl;

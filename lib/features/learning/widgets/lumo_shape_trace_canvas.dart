@@ -30,12 +30,14 @@ class LumoShapeTraceCanvas extends StatefulWidget {
     required this.shape,
     this.height = 320,
     this.onSubmitted,
+    this.allowRetry = true,
   });
 
   /// Eine von: square, rectangle, circle, triangle, star
   final String shape;
   final double height;
   final ValueChanged<ShapeTraceResult>? onSubmitted;
+  final bool allowRetry;
 
   @override
   State<LumoShapeTraceCanvas> createState() => _LumoShapeTraceCanvasState();
@@ -110,7 +112,7 @@ class _LumoShapeTraceCanvasState extends State<LumoShapeTraceCanvas>
   void _submit() {
     if (_submitted) return;
     final result = _evaluate();
-    setState(() => _submitted = true);
+    setState(() => _submitted = result.correct || !widget.allowRetry);
     widget.onSubmitted?.call(result);
   }
 

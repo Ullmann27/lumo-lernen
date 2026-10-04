@@ -20,7 +20,7 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../app/app_state.dart';
 import '../../core/lumo_brain.dart';
 import '../../core/lumo_cosmos.dart';
-import '../../core/lumo_image_generator.dart';
+import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
@@ -29,17 +29,20 @@ import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 
 enum LiveMode {
-  wordMagic,  // Sprich ein Wort -> Bild + Erklaerung
-  photoQuiz,  // Foto -> 3 Fragen
-  safari,     // Lumo zeigt Tier -> Kind raet
+  wordMagic, // Sprich ein Wort -> Bild + Erklaerung
+  photoQuiz, // Foto -> 3 Fragen
+  safari, // Lumo zeigt Tier -> Kind raet
 }
 
 extension LiveModeMeta on LiveMode {
   String get title {
     switch (this) {
-      case LiveMode.wordMagic: return 'Wort-Magie';
-      case LiveMode.photoQuiz: return 'Foto-Quiz';
-      case LiveMode.safari: return 'Tier-Safari';
+      case LiveMode.wordMagic:
+        return 'Wort-Magie';
+      case LiveMode.photoQuiz:
+        return 'Foto-Quiz';
+      case LiveMode.safari:
+        return 'Tier-Safari';
     }
   }
 
@@ -56,9 +59,12 @@ extension LiveModeMeta on LiveMode {
 
   IconData get icon {
     switch (this) {
-      case LiveMode.wordMagic: return Icons.auto_fix_high_rounded;
-      case LiveMode.photoQuiz: return Icons.camera_alt_rounded;
-      case LiveMode.safari: return Icons.pets_rounded;
+      case LiveMode.wordMagic:
+        return Icons.auto_fix_high_rounded;
+      case LiveMode.photoQuiz:
+        return Icons.camera_alt_rounded;
+      case LiveMode.safari:
+        return Icons.pets_rounded;
     }
   }
 }
@@ -71,7 +77,8 @@ class LumoLiveProScreen extends StatefulWidget {
   State<LumoLiveProScreen> createState() => _LumoLiveProScreenState();
 }
 
-class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
+class _LumoLiveProScreenState extends State<LumoLiveProScreen>
+    with WidgetsBindingObserver {
   final stt.SpeechToText _stt = stt.SpeechToText();
   final ImagePicker _picker = ImagePicker();
   final _rng = math.Random();
@@ -99,21 +106,46 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
   // Lumo redet
   bool _lumoCurrentlySpeaking = false;
 
-  static const List<String> _safariAnimals = [
-    // Savanne / Afrika
-    'Loewe', 'Elefant', 'Giraffe', 'Zebra', 'Affe',
-    'Tiger', 'Baer', 'Wolf', 'Eule', 'Pinguin',
-    'Delfin', 'Schmetterling', 'Hund', 'Katze',
-    'Pferd', 'Kuh', 'Schaf', 'Schwein',
-    // Erweiterung: Zoo + Wasser
-    'Krokodil', 'Nashorn', 'Flusspferd', 'Kaenguru',
-    'Koala', 'Faultier', 'Hai', 'Wal', 'Robbe',
-    // Erweiterung: Polar + Wald
-    'Eisbaer', 'Rentier', 'Fuchs', 'Reh', 'Eichhoernchen',
-    'Igel', 'Frosch', 'Schildkroete',
-    // Erweiterung: Vogel + Insekt
-    'Adler', 'Papagei', 'Storch', 'Biene', 'Marienkaefer',
-  ];
+  static const _animalPictures = <String, String>{
+    'Loewe': '🦁',
+    'Elefant': '🐘',
+    'Giraffe': '🦒',
+    'Zebra': '🦓',
+    'Affe': '🐒',
+    'Tiger': '🐯',
+    'Baer': '🐻',
+    'Wolf': '🐺',
+    'Eule': '🦉',
+    'Pinguin': '🐧',
+    'Delfin': '🐬',
+    'Schmetterling': '🦋',
+    'Hund': '🐕',
+    'Katze': '🐈',
+    'Pferd': '🐎',
+    'Kuh': '🐄',
+    'Schaf': '🐑',
+    'Schwein': '🐖',
+    'Krokodil': '🐊',
+    'Nashorn': '🦏',
+    'Flusspferd': '🦛',
+    'Kaenguru': '🦘',
+    'Koala': '🐨',
+    'Faultier': '🦥',
+    'Hai': '🦈',
+    'Wal': '🐳',
+    'Robbe': '🦭',
+    'Eisbaer': '🐻‍❄️',
+    'Rentier': '🦌',
+    'Fuchs': '🦊',
+    'Eichhoernchen': '🐿️',
+    'Igel': '🦔',
+    'Frosch': '🐸',
+    'Schildkroete': '🐢',
+    'Adler': '🦅',
+    'Papagei': '🦜',
+    'Biene': '🐝',
+    'Marienkaefer': '🐞',
+  };
 
   /// Photo-Quiz-Fragen mit etwas mehr Variation.
   static const List<String> _extendedPhotoQuestions = [
@@ -129,7 +161,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
   @override
   void initState() {
     super.initState();
-    _initStt();
+    WidgetsBinding.instance.addObserver(this);
+    LumoVoice.instance.status.addListener(_voiceStatusChanged);
     // Mood Wechsel demo
     Future.delayed(const Duration(milliseconds: 600), () {
       if (mounted) {
@@ -144,7 +177,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
       final ok = await _stt.initialize(
         onError: (e) => debugPrint('STT-Error: ${e.errorMsg}'),
         onStatus: (s) {
-          if (s == 'notListening' && _listening) {
+          if (mounted && s == 'notListening' && _listening) {
             setState(() => _listening = false);
           }
         },
@@ -180,27 +213,49 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
     }
   }
 
-  void _speak(String text) {
+  Future<void> _speak(String text) async {
+    if (!mounted) return;
     setState(() {
       _lumoMessage = text;
-      _speaking = true;
-      _lumoCurrentlySpeaking = true;
     });
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted || !widget.appState.state.settings.voiceEnabled) return;
     try {
       LumoVoice.instance.speak(text);
     } catch (_) {}
-    // Lippen ca 3s lang animieren
-    Future.delayed(Duration(milliseconds: 80 * text.length.clamp(20, 80)), () {
-      if (mounted) {
-        setState(() {
-          _speaking = false;
-          _lumoCurrentlySpeaking = false;
-        });
-      }
+  }
+
+  void _voiceStatusChanged() {
+    if (!mounted) return;
+    final speaking = LumoVoice.instance.status.value == VoiceStatus.speaking;
+    setState(() {
+      _speaking = speaking;
+      _lumoCurrentlySpeaking = speaking;
     });
   }
 
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      _stt.cancel();
+      LumoVoice.instance.stop();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    LumoVoice.instance.status.removeListener(_voiceStatusChanged);
+    _stt.cancel();
+    LumoVoice.instance.stop();
+    super.dispose();
+  }
+
   Future<void> _startListening() async {
+    if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
+        !mounted) return;
+    if (!_sttReady) await _initStt();
+    if (!mounted) return;
     if (!_sttReady) {
       _speak('Ich brauch dein Mikrofon - bitte erlauben!');
       return;
@@ -230,6 +285,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
   }
 
   Future<void> _onSpeechDone() async {
+    if (!mounted) return;
     setState(() {
       _listening = false;
       _mood = LumoMirrorMood.think;
@@ -241,9 +297,15 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
     }
     // Mode-spezifische Behandlung
     switch (_mode) {
-      case LiveMode.wordMagic: await _handleWordMagic(); break;
-      case LiveMode.photoQuiz: await _handlePhotoQuiz(); break;
-      case LiveMode.safari: await _handleSafariAnswer(); break;
+      case LiveMode.wordMagic:
+        await _handleWordMagic();
+        break;
+      case LiveMode.photoQuiz:
+        await _handlePhotoQuiz();
+        break;
+      case LiveMode.safari:
+        await _handleSafariAnswer();
+        break;
     }
   }
 
@@ -252,17 +314,18 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
   // ────────────────────────────────────────────────────────────────
   Future<void> _handleWordMagic() async {
     final word = _recognized.trim();
-    final url = LumoImageGenerator.instance.buildSafeImageUrl(word);
-    final reply = LumoBrain.instance
-        .ask('Was ist ein $word?', topicId: 's1_tiere');
+    final reply =
+        LumoBrain.instance.ask('Was ist ein $word?', topicId: 's1_tiere');
     setState(() {
-      _generatedImageUrl = url;
+      _generatedImageUrl = null;
       _mood = LumoMirrorMood.happy;
     });
     widget.appState.addStars(1);
     widget.appState.addXp(5);
     CosmosWorld.instance.grantReward(
-      subjectId: 'live_word', isMath: false, isPerfect: false,
+      subjectId: 'live_word',
+      isMath: false,
+      isPerfect: false,
     );
     _speak(reply.text);
   }
@@ -271,12 +334,15 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
   // MODE 2: FOTO-QUIZ
   // ────────────────────────────────────────────────────────────────
   Future<void> _capturePhoto() async {
+    if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
+        !mounted) return;
     try {
       final photo = await _picker.pickImage(
         source: ImageSource.camera,
-        imageQuality: 60, maxWidth: 800,
+        imageQuality: 60,
+        maxWidth: 800,
       );
-      if (photo == null) return;
+      if (photo == null || !mounted) return;
       setState(() {
         _capturedImagePath = photo.path;
         _photoQuizQuestionIdx = 0;
@@ -294,7 +360,9 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
     widget.appState.addStars(1);
     widget.appState.addXp(5);
     CosmosWorld.instance.grantReward(
-      subjectId: 'live_photo', isMath: false, isPerfect: false,
+      subjectId: 'live_photo',
+      isMath: false,
+      isPerfect: false,
     );
     if (_photoQuizQuestionIdx + 1 < _extendedPhotoQuestions.length) {
       _photoQuizQuestionIdx++;
@@ -317,12 +385,11 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
   void _nextSafariAnimal() {
     _safariRound++;
     _safariTotal = _safariRound;
-    final animal = _safariAnimals[_rng.nextInt(_safariAnimals.length)];
-    final url = LumoImageGenerator.instance
-        .buildSafeImageUrl('cute $animal photo style');
+    final animals = _animalPictures.keys.toList(growable: false);
+    final animal = animals[_rng.nextInt(animals.length)];
     setState(() {
       _safariAnimal = animal;
-      _generatedImageUrl = url;
+      _generatedImageUrl = null;
       _recognized = '';
       _mood = LumoMirrorMood.curious;
     });
@@ -348,7 +415,9 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
       widget.appState.addStars(2);
       widget.appState.addXp(10);
       CosmosWorld.instance.grantReward(
-        subjectId: 'live_safari', isMath: false, isPerfect: true,
+        subjectId: 'live_safari',
+        isMath: false,
+        isPerfect: true,
       );
       if (mounted) showLumoRewardBurst(context, stars: 2, xp: 10);
       await Future.delayed(const Duration(milliseconds: 2200));
@@ -365,8 +434,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
     if (a == b) return 0;
     if (a.isEmpty) return b.length;
     if (b.isEmpty) return a.length;
-    final dp = List.generate(
-        a.length + 1, (_) => List<int>.filled(b.length + 1, 0));
+    final dp =
+        List.generate(a.length + 1, (_) => List<int>.filled(b.length + 1, 0));
     for (int i = 0; i <= a.length; i++) dp[i][0] = i;
     for (int j = 0; j <= b.length; j++) dp[0][j] = j;
     for (int i = 1; i <= a.length; i++) {
@@ -411,8 +480,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
                         LumoPremiumCard(
                           gradient: LumoTokens.colors.heroLila,
                           child: Row(children: [
-                            const Text('🦊',
-                                style: TextStyle(fontSize: 28)),
+                            const Text('🦊', style: TextStyle(fontSize: 28)),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(_lumoMessage!,
@@ -452,7 +520,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
                       if (_mode == LiveMode.safari && _safariRound > 0)
                         _buildSafariScore(),
                       // Generiertes / Captured Bild
-                      if (_generatedImageUrl != null || _capturedImagePath != null)
+                      if (_generatedImageUrl != null ||
+                          _capturedImagePath != null)
                         _buildImagePane(),
                     ],
                   ),
@@ -479,11 +548,10 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Lumo LIVE ✨',
-                    style: LumoTokens.typo.headlineMedium),
+                Text('Lumo LIVE ✨', style: LumoTokens.typo.headlineMedium),
                 Text(_mode.subtitle,
-                    style: LumoTokens.typo.bodyMedium.copyWith(
-                        color: LumoTokens.colors.textMuted)),
+                    style: LumoTokens.typo.bodyMedium
+                        .copyWith(color: LumoTokens.colors.textMuted)),
               ],
             ),
           ),
@@ -520,9 +588,11 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(m.icon, color: active
-                          ? Colors.white
-                          : LumoTokens.colors.lumoOrange, size: 22),
+                      Icon(m.icon,
+                          color: active
+                              ? Colors.white
+                              : LumoTokens.colors.lumoOrange,
+                          size: 22),
                       const SizedBox(height: 2),
                       Text(m.title,
                           style: LumoTokens.typo.labelMedium.copyWith(
@@ -554,8 +624,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
           const Icon(Icons.star_rounded, color: Colors.white),
           const SizedBox(width: 4),
           Text('$_safariScore von $_safariTotal',
-              style: LumoTokens.typo.titleMedium.copyWith(
-                  color: Colors.white)),
+              style: LumoTokens.typo.titleMedium.copyWith(color: Colors.white)),
         ],
       ),
     );
@@ -564,6 +633,16 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
   Widget _buildImagePane() {
     final url = _generatedImageUrl;
     final path = _capturedImagePath;
+    if (_mode == LiveMode.safari && _safariAnimal != null) {
+      return AspectRatio(
+        aspectRatio: 1,
+        child: LumoPremiumCard(
+            child: Center(
+          child: Text(_animalPictures[_safariAnimal]!,
+              style: const TextStyle(fontSize: 112)),
+        )),
+      );
+    }
     return AspectRatio(
       aspectRatio: 1,
       child: LumoPremiumCard(
@@ -577,34 +656,31 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
                   loadingBuilder: (_, child, p) {
                     if (p == null) return child;
                     return Container(
-                      decoration: BoxDecoration(
-                          gradient: LumoTokens.colors.bgMagic),
+                      decoration:
+                          BoxDecoration(gradient: LumoTokens.colors.bgMagic),
                       alignment: Alignment.center,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text('🎨',
-                              style: TextStyle(fontSize: 56)),
+                          const Text('🎨', style: TextStyle(fontSize: 56)),
                           const SizedBox(height: 12),
                           Text('Lumo malt...',
                               style: LumoTokens.typo.titleMedium
                                   .copyWith(color: Colors.white)),
                           const SizedBox(height: 12),
-                          const CircularProgressIndicator(
-                              color: Colors.white),
+                          const CircularProgressIndicator(color: Colors.white),
                         ],
                       ),
                     );
                   },
                   errorBuilder: (_, __, ___) => Container(
-                    decoration: BoxDecoration(
-                        gradient: LumoTokens.colors.bgMagic),
+                    decoration:
+                        BoxDecoration(gradient: LumoTokens.colors.bgMagic),
                     alignment: Alignment.center,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text('🎨',
-                            style: TextStyle(fontSize: 64)),
+                        const Text('🎨', style: TextStyle(fontSize: 64)),
                         const SizedBox(height: 8),
                         Text('Bild konnte nicht laden',
                             style: LumoTokens.typo.bodyMedium
@@ -618,8 +694,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
                   : Container(
                       color: LumoTokens.colors.cremeDeep,
                       alignment: Alignment.center,
-                      child: const Text('📷',
-                          style: TextStyle(fontSize: 80)),
+                      child: const Text('📷', style: TextStyle(fontSize: 80)),
                     ),
         ),
       ),
@@ -644,9 +719,9 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen> {
                   onPressed: _listening || _lumoCurrentlySpeaking
                       ? null
                       : _startListening,
-                  icon: Icon(_listening
-                      ? Icons.hearing_rounded
-                      : Icons.mic_rounded, size: 28),
+                  icon: Icon(
+                      _listening ? Icons.hearing_rounded : Icons.mic_rounded,
+                      size: 28),
                   label: Text(_listening ? 'Hoere...' : 'Sprechen'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: LumoTokens.colors.lumoOrange,

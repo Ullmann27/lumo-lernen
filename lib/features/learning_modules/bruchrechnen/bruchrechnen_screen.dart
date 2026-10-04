@@ -13,7 +13,29 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
+import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
+
+String? _fractionValue(String answer) {
+  final match = RegExp(r'^([+-]?\d+)\s*/\s*([+-]?\d+)$')
+      .firstMatch(answer.trim());
+  if (match == null) return null;
+  var numerator = int.tryParse(match[1]!);
+  var denominator = int.tryParse(match[2]!);
+  if (numerator == null || denominator == null || denominator == 0) return null;
+  if (denominator < 0) {
+    numerator = -numerator;
+    denominator = -denominator;
+  }
+  final divisor = numerator.gcd(denominator);
+  return '${numerator ~/ divisor}/${denominator ~/ divisor}';
+}
+
+/// Compare fraction values without rounding or treating 2/4 as different from 1/2.
+bool areEquivalentFractionAnswers(String first, String second) {
+  final value = _fractionValue(first);
+  return value != null && value == _fractionValue(second);
+}
 
 class BruchrechnenScreen extends StatefulWidget {
   const BruchrechnenScreen({super.key, required this.appState});
@@ -31,6 +53,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
   int _taskIdx = 0;
@@ -49,6 +72,11 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: 'Bruchrechnen einfach',
+    );
     _bounceCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
@@ -62,6 +90,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
 
   @override
   void dispose() {
+    _progress.dispose();
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
@@ -81,16 +110,20 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
     _nenner = 2 + _rng.nextInt(maxNenner - 1); // 2..maxNenner
     _gegessen = 1 + _rng.nextInt(_nenner - 1); // 1..nenner-1
 
-    // 3 plausible Falschoptionen
+    // Enumerate a finite pool of distinct values. Equivalent fractions must
+    // neither duplicate each other nor be offered as a wrong answer.
     final correctTxt = _correctText;
-    final wrongs = <String>{};
-    while (wrongs.length < 3) {
-      final n = 2 + _rng.nextInt(7); // nenner 2..8
-      final g = 1 + _rng.nextInt(n - 1);
-      final txt = '$g/$n';
-      if (txt != correctTxt && !wrongs.contains(txt)) wrongs.add(txt);
+    final wrongValues = <String, String>{};
+    for (var denominator = 2; denominator <= 8; denominator++) {
+      for (var numerator = 1; numerator < denominator; numerator++) {
+        final option = '$numerator/$denominator';
+        if (!areEquivalentFractionAnswers(option, correctTxt)) {
+          wrongValues.putIfAbsent(_fractionValue(option)!, () => option);
+        }
+      }
     }
-    _answers = [correctTxt, ...wrongs]..shuffle(_rng);
+    final wrongs = wrongValues.values.toList()..shuffle(_rng);
+    _answers = [correctTxt, ...wrongs.take(3)]..shuffle(_rng);
     _answered = false;
     _selectedAnswer = null;
   }
@@ -103,23 +136,30 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   }
 
   void _onAnswer(String answer) async {
-    if (_answered) return;
+    if (_answered || _progress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = answer;
       _answered = true;
     });
-    final isCorrect = answer == _correctText;
+    final isCorrect = areEquivalentFractionAnswers(answer, _correctText);
+    if (!await _progress.saveAnswer(
+      correct: isCorrect,
+      stars: isCorrect ? 1 : 0,
+      xp: isCorrect ? 10 : 0,
+    ) || !mounted) {
+      return;
+    }
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(10);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
-      await Future.delayed(const Duration(milliseconds: 1300));
-      if (!mounted) return;
+      if (!await _progress.feedbackDelay(const Duration(milliseconds: 1300)) ||
+          !mounted) {
+        return;
+      }
       _nextTask();
     } else {
       HapticFeedback.mediumImpact();
@@ -128,8 +168,10 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
         LumoVoice.instance.speak(
             '${LumoPhrases.wrongGentle()} Das war $_gegessen von $_nenner Stuecken.');
       } catch (_) {}
-      await Future.delayed(const Duration(milliseconds: 2400));
-      if (!mounted) return;
+      if (!await _progress.feedbackDelay(const Duration(milliseconds: 2400)) ||
+          !mounted) {
+        return;
+      }
       _nextTask();
     }
   }
@@ -147,10 +189,12 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
     _speakTask();
   }
 
-  void _showFinish() {
+  void _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 12);
+    if (!await _progress.saveBonus(stars: stars, xp: _correctCount * 12) ||
+        !mounted) {
+      return;
+    }
     showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -204,7 +248,9 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return LearningModuleProgressScope(
+      progress: _progress,
+      child: Scaffold(
       backgroundColor: const Color(0xFFFFFBEB),
       body: SafeArea(
         child: Column(children: [
@@ -239,6 +285,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
             ),
           ),
         ]),
+      ),
       ),
     );
   }
@@ -339,7 +386,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
 
   Widget _buildAnswerButton(String value) {
     final isSelected = _selectedAnswer == value;
-    final isCorrect = value == _correctText;
+    final isCorrect = areEquivalentFractionAnswers(value, _correctText);
     Color bgColor = Colors.white;
     Color textColor = _gradient[1];
     Color borderColor = _gradient[0].withOpacity(0.3);

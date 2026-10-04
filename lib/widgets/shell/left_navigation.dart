@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../design/lumo_design_system.dart';
 
 class LeftNavigation extends StatelessWidget {
   const LeftNavigation({
@@ -16,20 +18,23 @@ class LeftNavigation extends StatelessWidget {
   final ValueChanged<LumoSection> onSelect;
   final double width;
 
-  static const _items = [
+  static const _primaryItems = [
     _NavItem(LumoSection.home, Icons.home_rounded, 'Start'),
-    _NavItem(LumoSection.games, Icons.sports_esports_rounded, 'Spiele'),
     _NavItem(LumoSection.learn, Icons.school_rounded, 'Lernen'),
+    _NavItem(LumoSection.games, Icons.sports_esports_rounded, 'Spielen'),
+    _NavItem(LumoSection.tests, Icons.assignment_turned_in_rounded, 'Tests'),
+    _NavItem(LumoSection.rewards, Icons.star_rounded, 'Belohnungen'),
+    _NavItem(LumoSection.profile, Icons.person_rounded, 'Profil'),
+  ];
+
+  static const _secondaryItems = [
     _NavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesemodus'),
     _NavItem(LumoSection.exercises, Icons.edit_rounded, 'Übungen'),
-    _NavItem(LumoSection.tests, Icons.assignment_turned_in_rounded, 'Test'),
     _NavItem(LumoSection.schoolwork, Icons.description_rounded, 'Schularbeit'),
     _NavItem(LumoSection.scanner, Icons.photo_camera_rounded, 'Foto'),
     _NavItem(LumoSection.missions, Icons.flag_rounded, 'Missionen'),
     _NavItem(LumoSection.progress, Icons.bar_chart_rounded, 'Fortschritt'),
-    _NavItem(LumoSection.rewards, Icons.star_rounded, 'Belohnungen'),
     _NavItem(LumoSection.agent, Icons.smart_toy_rounded, 'Lumo'),
-    _NavItem(LumoSection.profile, Icons.person_rounded, 'Profil'),
     _NavItem(LumoSection.settings, Icons.settings_rounded, 'Eltern'),
   ];
 
@@ -40,13 +45,17 @@ class LeftNavigation extends StatelessWidget {
     final iconOnly = width < 110;
     return Container(
       width: width,
-      decoration: const BoxDecoration(
-        color: LumoColors.leftNavBg,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: LumoVisualTokens.navigation,
+        borderRadius: const BorderRadius.only(
           topRight: Radius.circular(LumoRadius.xl),
           bottomRight: Radius.circular(LumoRadius.xl),
         ),
-        boxShadow: [BoxShadow(color: Color(0x12000000), blurRadius: 24, offset: Offset(8, 0))],
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.22)),
+        boxShadow: const [
+          BoxShadow(
+              color: Color(0x33000000), blurRadius: 24, offset: Offset(8, 0))
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,16 +65,16 @@ class LeftNavigation extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: iconOnly ? 14 : 20),
             child: Row(children: [
               if (!iconOnly) ...[
-                const Text('Lumo', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoColors.orange, height: 1.0)),
+                const Text('LUMO', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, height: 1.0)),
                 const SizedBox(width: 4),
               ],
               Container(
                 width: 14,
                 height: 14,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(colors: [LumoColors.gold, LumoColors.orange]),
+                  color: LumoVisualTokens.cyan,
                   shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: LumoColors.gold.withOpacity(.5), blurRadius: 8)],
+                  boxShadow: [BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.5), blurRadius: 8)],
                 ),
               ),
             ]),
@@ -73,7 +82,7 @@ class LeftNavigation extends StatelessWidget {
           if (!iconOnly)
             const Padding(
               padding: EdgeInsets.only(left: 20, bottom: 16),
-              child: Text('Lernen', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoColors.orange, height: 1.1)),
+              child: Text('Lernen', style: TextStyle(fontFamily: 'Nunito', fontSize: 24, fontWeight: FontWeight.w900, color: LumoVisualTokens.cyanBright, height: 1.1)),
             )
           else
             const SizedBox(height: 16),
@@ -82,7 +91,20 @@ class LeftNavigation extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.only(bottom: 12),
               child: Column(
-                children: _items.map((item) => _NavPill(item: item, isActive: item.section == active, iconOnly: iconOnly, onTap: () => onSelect(item.section))).toList(),
+                children: [
+                  ..._primaryItems.map((item) => _NavPill(
+                        item: item,
+                        isActive: item.section == active,
+                        iconOnly: iconOnly,
+                        onTap: () => onSelect(item.section),
+                      )),
+                  _MoreNavigationRoutes(
+                    items: _secondaryItems,
+                    active: active,
+                    iconOnly: iconOnly,
+                    onSelect: onSelect,
+                  ),
+                ],
               ),
             ),
           ),
@@ -99,6 +121,75 @@ class _NavItem {
   final LumoSection section;
   final IconData icon;
   final String label;
+}
+
+class _MoreNavigationRoutes extends StatefulWidget {
+  const _MoreNavigationRoutes({
+    required this.items,
+    required this.active,
+    required this.iconOnly,
+    required this.onSelect,
+  });
+
+  final List<_NavItem> items;
+  final LumoSection active;
+  final bool iconOnly;
+  final ValueChanged<LumoSection> onSelect;
+
+  @override
+  State<_MoreNavigationRoutes> createState() => _MoreNavigationRoutesState();
+}
+
+class _MoreNavigationRoutesState extends State<_MoreNavigationRoutes> {
+  bool _expanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _expanded = widget.items.any((item) => item.section == widget.active);
+  }
+
+  @override
+  void didUpdateWidget(covariant _MoreNavigationRoutes oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.active != widget.active &&
+        widget.items.any((item) => item.section == widget.active)) {
+      _expanded = true;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => Column(
+        children: [
+          if (!widget.iconOnly)
+            TextButton.icon(
+              onPressed: () => setState(() => _expanded = !_expanded),
+              icon: Icon(
+                _expanded
+                    ? Icons.expand_less_rounded
+                    : Icons.more_horiz_rounded,
+                color: LumoVisualTokens.cyan,
+              ),
+              label: Text(
+                _expanded ? 'Weniger' : 'Mehr',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w800,
+                  color: LumoVisualTokens.muted,
+                ),
+              ),
+            ),
+          if (_expanded)
+            ...widget.items.map(
+              (item) => _NavPill(
+                item: item,
+                isActive: item.section == widget.active,
+                iconOnly: widget.iconOnly,
+                onTap: () => widget.onSelect(item.section),
+              ),
+            ),
+        ],
+      );
 }
 
 class _NavPill extends StatefulWidget {
@@ -154,7 +245,10 @@ class _NavPillState extends State<_NavPill>
               decoration: BoxDecoration(
                 gradient: widget.isActive
                     ? const LinearGradient(
-                        colors: [LumoColors.orange, LumoColors.orangeLight])
+                        colors: [
+                          LumoVisualTokens.cyan,
+                          LumoVisualTokens.cyanBright,
+                        ])
                     : null,
                 color: widget.isActive ? null : Colors.transparent,
                 borderRadius: BorderRadius.circular(LumoRadius.pill),
@@ -162,13 +256,13 @@ class _NavPillState extends State<_NavPill>
                 boxShadow: widget.isActive
                     ? [
                         BoxShadow(
-                          color: LumoColors.orange.withOpacity(0.45 * pulse),
+                          color: LumoVisualTokens.cyan.withOpacity(0.45 * pulse),
                           blurRadius: 22 + pulse * 6,
                           offset: const Offset(0, 4),
                           spreadRadius: 1,
                         ),
                         BoxShadow(
-                          color: LumoColors.orangeLight.withOpacity(0.3),
+                          color: LumoVisualTokens.cyanBright.withOpacity(0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -204,7 +298,9 @@ class _NavPillState extends State<_NavPill>
             overflow: TextOverflow.visible,
             style: widget.isActive
                 ? LumoTextStyles.navItemActive
-                : LumoTextStyles.navItem.copyWith(color: LumoColors.ink700),
+                    .copyWith(color: LumoVisualTokens.night)
+                : LumoTextStyles.navItem
+                    .copyWith(color: LumoVisualTokens.muted),
           ),
         ),
       ],
@@ -231,7 +327,7 @@ class _NavPillState extends State<_NavPill>
             fontSize: 9.5,
             letterSpacing: 0.2,
             height: 1.0,
-            color: widget.isActive ? Colors.white : LumoColors.ink700,
+            color: widget.isActive ? LumoVisualTokens.night : LumoVisualTokens.muted,
           ),
         ),
       ],
@@ -245,12 +341,13 @@ class _NavPillState extends State<_NavPill>
       height: size,
       decoration: BoxDecoration(
         color: widget.isActive
-            ? Colors.white.withOpacity(.28)
-            : LumoColors.orangeSurface,
+            ? Colors.white.withOpacity(.40)
+            : LumoVisualTokens.glassRow,
         borderRadius: BorderRadius.circular(LumoRadius.sm),
       ),
       child: Icon(widget.item.icon,
-          color: widget.isActive ? Colors.white : LumoColors.orange,
+          color:
+              widget.isActive ? LumoVisualTokens.night : LumoVisualTokens.cyan,
           size: size * 0.58),
     );
   }
@@ -265,36 +362,41 @@ class _ProfileChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final initial = name.trim().isEmpty ? 'K' : name.trim().characters.first.toUpperCase();
     final chip = GestureDetector(
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: iconOnly ? 9 : 14),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: LumoColors.orangeSurface,
+          color: LumoVisualTokens.glass,
           borderRadius: BorderRadius.circular(LumoRadius.lg),
-          border: Border.all(color: LumoColors.orange.withOpacity(.15)),
+          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.3)),
         ),
         child: Row(mainAxisAlignment: iconOnly ? MainAxisAlignment.center : MainAxisAlignment.start, children: [
           Container(
             width: 38,
             height: 38,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight], begin: Alignment.topLeft, end: Alignment.bottomRight),
+            decoration: BoxDecoration(
+              color: LumoVisualTokens.glass,
               shape: BoxShape.circle,
+              border: Border.all(color: LumoVisualTokens.cyan, width: 1.5),
             ),
-            child: Center(child: Text(initial, style: const TextStyle(fontFamily: 'Nunito', color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18))),
+            child: const ClipOval(
+              child: LumoFoxPose(
+                pose: LumoDesignFoxPose.avatar,
+                size: 34,
+              ),
+            ),
           ),
           if (!iconOnly) ...[
             const SizedBox(width: 10),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                Text(name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 14, color: LumoColors.ink900)),
-                Text(grade, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.caption),
+                Text(name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 14, color: LumoVisualTokens.white)),
+                Text(grade, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded, size: 18, color: LumoColors.ink300),
+            const Icon(Icons.chevron_right_rounded, size: 18, color: LumoVisualTokens.cyan),
           ],
         ]),
       ),

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Constructed selector regression, not captured Android usage evidence.
+     Picker captions/actions follow LumoColorPicker. Table Rot deliberately
+     exercises a duplicate caption; the current orange discard says Orange.
+     Bounds represent visible 480x800 controls, with text on an action child. -->
+<hierarchy rotation="0">
+  <node class="android.view.View" bounds="[0,0][480,800]" enabled="true" clickable="false">
+    <node content-desc="Rot" bounds="[240,460][278,478]" enabled="true" clickable="false"/>
+    <node content-desc="Lumo Karte, Rot, Zahl 7, nicht spielbar" bounds="[20,610][116,744]" enabled="true" clickable="true"/>
+    <node content-desc="Waehle eine Farbe" bounds="[48,320][432,350]" enabled="true" clickable="false"/>
+    <node bounds="[51,368][135,452]" enabled="true" clickable="true">
+      <node content-desc="Rot" bounds="[70,395][110,419]" enabled="true" clickable="false"/>
+    </node>
+    <node content-desc="Gelb" bounds="[149,368][233,452]" enabled="true" clickable="true"/>
+    <node content-desc="Blau" bounds="[247,368][331,452]" enabled="true" clickable="true"/>
+    <node content-desc="Gruen" bounds="[345,368][429,452]" enabled="true" clickable="true"/>
+  </node>
+</hierarchy>

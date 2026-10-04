@@ -83,7 +83,7 @@ class Voucher {
     required this.starPrice,
     required this.minLevel,
     this.dailyLimit,
-    this.requiresParentPin = true,
+    this.requiresParentApproval = true,
     this.active = true,
   });
 
@@ -94,7 +94,7 @@ class Voucher {
   final int starPrice;
   final int minLevel;
   final int? dailyLimit;
-  final bool requiresParentPin;
+  final bool requiresParentApproval;
   final bool active;
 }
 
@@ -130,6 +130,36 @@ class VoucherVisibilityResult {
 
 class RewardEngine {
   const RewardEngine();
+
+  /// Belohnung einer abgegebenen Antwort unter Berücksichtigung der Sitzung.
+  /// Fehlversuche mit Wiederholungsmöglichkeit bleiben ohne Punkteänderung.
+  /// Eine endgültige falsche Antwort nutzt den bestehenden Abzugspfad und
+  /// darf keine Abschluss-, Schreib- oder Prüfungsboni erhalten.
+  RewardDelta calculateAnswerReward({
+    required TaskResult result,
+    required SkillState before,
+    required SkillState after,
+    required bool allowRetry,
+    required bool firstAttempt,
+    LearningMode mode = LearningMode.practice,
+    bool completedSession = false,
+  }) {
+    if (!result.correct) {
+      if (allowRetry) return const RewardDelta(stars: 0, xp: 0);
+      return calculateWrongAnswerDeduction(
+        firstAttempt: firstAttempt,
+        afterHint: result.helpUsed,
+        mode: mode,
+      );
+    }
+    return calculateTaskReward(
+      result: result,
+      before: before,
+      after: after,
+      mode: mode,
+      completedSession: completedSession,
+    );
+  }
 
   RewardDelta calculateTaskReward({
     required TaskResult result,
@@ -177,7 +207,10 @@ class RewardEngine {
       reasons.add(RewardReason.tutoringSessionFinished);
     }
 
-    if (mode == LearningMode.exam || mode == LearningMode.subjectTest || mode == LearningMode.blitzTest || mode == LearningMode.weaknessTest) {
+    if (mode == LearningMode.exam ||
+        mode == LearningMode.subjectTest ||
+        mode == LearningMode.blitzTest ||
+        mode == LearningMode.weaknessTest) {
       xp += 10;
       reasons.add(RewardReason.completedTest);
     }
@@ -195,7 +228,10 @@ class RewardEngine {
     required int redemptionsToday,
   }) {
     if (!voucher.active) {
-      return const VoucherVisibilityResult(visible: false, redeemable: false, reason: 'Gutschein ist deaktiviert.');
+      return const VoucherVisibilityResult(
+          visible: false,
+          redeemable: false,
+          reason: 'Gutschein ist deaktiviert.');
     }
 
     if (rewardState.level < voucher.minLevel) {
@@ -238,10 +274,10 @@ class RewardEngine {
   RewardState redeemVoucher({
     required Voucher voucher,
     required RewardState rewardState,
-    required bool parentPinApproved,
+    required bool parentApproved,
   }) {
-    if (voucher.requiresParentPin && !parentPinApproved) {
-      throw StateError('Parent PIN required for voucher redemption.');
+    if (voucher.requiresParentApproval && !parentApproved) {
+      throw StateError('Bitte die Familienbelohnung gemeinsam bestätigen.');
     }
     if (rewardState.stars < voucher.starPrice) {
       throw StateError('Not enough stars for voucher redemption.');

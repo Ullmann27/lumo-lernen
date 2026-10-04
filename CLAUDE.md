@@ -1,96 +1,19 @@
-# CLAUDE.md – Build-Schutzregeln fuer Lumo Lernen
+# CLAUDE.md – Regeln für Lumo Lernen
 
-Diese Regeln sind verbindlich, wenn Claude an diesem Repository arbeitet.
-
-## Wichtigste Übergabe-Datei
-
-Claude Code muss zuerst diese Projektübergabe lesen:
-
-```text
-docs/CLAUDE_CODE_HANDOVER_AND_NEXT_STEPS.md
-```
-
-Dort steht konkret:
-
-- was zuletzt gemacht wurde,
-- welche Dateien relevant sind,
-- welche Fehler Heinz in der App gesehen hat,
-- welche Aufgaben als nächstes abzuarbeiten sind,
-- welche Designrichtung gewünscht ist,
-- welche Build- und Sicherheitsregeln gelten.
+Zuerst `CODEX_START.md` lesen: aktueller Auftrag, Rollen und Code-Landkarte.
 
 ## Ziel
+Die App sieht genau aus wie Heinz' Bilder in `docs/design_targets/2026-10-04/`
+(Vorgabe: `docs/DESIGN_ZIEL_2026-10-04.md`) und lebt: animierte Leisten, atmender Fuchs,
+Begrüßung beim Start. Alle Lern- und Spielfunktionen bleiben erhalten.
 
-Der Android-Build muss zuerst gruen sein. Wenn GitHub Actions oder `flutter build apk --debug` rot ist, sind nur kleine Reparatur-Commits erlaubt.
-
-## Aktueller Zustand
-
-Die App ist eine Flutter-/Android-first Kinderlern-App mit stabiler Lumo-Shell, Lernmodus, Übungen, Tests, aktivem Lesen, Writing-Canvas, Elternbereich, Rewards, Tagesplan, ParentReport und Update-Service. Mehrere Features wurden zuletzt eingebaut. Deshalb gilt: erst Stabilität, dann Aufgabenqualität, dann Designausbau.
-
-## Claude darf NICHT mehr
-
-1. Keine grossen Komplettumbauten auf `main`.
-2. Keine neuen Pakete in `pubspec.yaml`, solange der APK-Build rot ist.
-3. ML Kit nicht wieder aktivieren, bis der Build gruen ist.
-4. Keine Imports auf Pakete lassen, die in `pubspec.yaml` nicht aktiv sind.
-5. Keine Bilder als Base64 in Dart-Dateien einbauen.
-6. Keine Pflicht-Fonts in `pubspec.yaml` eintragen, wenn die Font-Dateien nicht im Repo liegen.
-7. Keine Shell-Struktur zerstoeren.
-8. Keine neuen Hauptseiten, die linke Navigation oder rechte Lumo-Buehne ersetzen.
-9. Keine Standard-Flutter-Optik als Ersatz fuer das Lumo-Design.
-10. Keine halb kopierten oder syntaktisch unvollstaendigen Dart-Dateien committen.
-11. Keine geschuetzten Schulbuchseiten oder Verlaglayouts 1:1 kopieren.
-12. Keine Designarbeit fortsetzen, wenn der Build rot ist.
-
-## Shell-Regel
-
-Die Lumo-App bleibt immer in dieser Struktur:
-
-- linke Navigation sichtbar,
-- mittlerer Inhalt wechselt,
-- rechte Lumo-Buehne sichtbar,
-- auf normalen Handys responsive mobile Shell.
-
-Nur die mittlere Content-Zone darf sich je Bereich aendern.
-
-## Build-Regel
-
-Vor jedem Commit pruefen:
-
-- Sind alle Imports vorhanden?
-- Gibt es keine Imports auf entfernte Pakete?
-- Stimmen alle Widget-Konstruktoren?
-- Wenn ein Widget mit `key:` genutzt wird, hat es `super.key`?
-- Sind alle Asset-Pfade vorhanden?
-- Ist `pubspec.yaml` gueltig?
-- Gibt es keine falschen Enum-Werte oder Theme-Tokens?
-
-## Arbeitsreihenfolge ab jetzt
-
-1. Erst Compile-Fehler reparieren.
-2. Dann Android-Build reparieren.
-3. Dann Aufgabenqualität Deutsch/Rechtschreibung prüfen.
-4. Dann Writing-Canvas und Schreibziel synchronisieren.
-5. Dann Wiederholungslogik verbessern.
-6. Dann Overflow/Layout-Fehler reparieren.
-7. Erst danach Design weiter verbessern.
-8. Erst danach OCR/ML Kit wieder aktivieren.
-
-## Aktuelle Schwerpunktdateien
-
-```text
-lib/core/school_exercise_generator.dart
-lib/features/learning/adapters/legacy_lumo_task_adapter.dart
-lib/features/learning/learning_content.dart
-lib/features/learning/renderers/adaptive_task_renderer.dart
-lib/features/learning/renderers/writing_task_renderer.dart
-lib/features/learning/widgets/lumo_writing_canvas.dart
-lib/domain/writing/expanded_writing_template_repository.dart
-lib/app/app_shell.dart
-lib/app/app_state.dart
-lib/app/app_theme.dart
-```
-
-## Commit-Regel
-
-Ein Commit darf nur eine klare Sache reparieren oder verbessern. Wenn GitHub Actions rot ist, darf Claude keine neuen Features bauen, sondern muss zuerst den ersten Buildfehler reparieren.
+## Regeln
+1. Build muss grün sein: `flutter analyze` ohne Fehler, `flutter test` ohne Fehlschläge.
+   Ist er rot, zuerst den ersten Fehler beheben, keine neuen Features.
+2. Kleine Commits, eine Sache pro Commit.
+3. Keine neuen Pakete in `pubspec.yaml` ohne Grund; keine Imports auf nicht aktive Pakete.
+4. Bilder als Dateien unter `assets/`, nie als Base64 im Code. Neue Asset-Ordner in `pubspec.yaml` eintragen.
+5. Echte Daten anzeigen (Sterne, XP, Level, Fortschritt), keine Beispielzahlen aus den Bildern.
+6. Kein Force-Push, kein Merge nach `main`, kein Release ohne Heinz.
+7. Nur Erfolge melden, die tatsächlich geprüft sind.
+8. Toten Code nicht wieder einführen: Jede Datei in `lib/` muss von `lib/main.dart` aus erreichbar sein.

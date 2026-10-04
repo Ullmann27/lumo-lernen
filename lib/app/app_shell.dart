@@ -1,14 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
-// LumoFreeCompanion ausgeblendet (Heinz: "mach diesen lumo weg, der
-// schaut nicht gut aus"). Import bleibt auskommentiert fuer schnelle
-// Re-Aktivierung, falls die Optik spaeter ueberarbeitet ist.
-// import '../widgets/fox/lumo_free_companion.dart';
+import 'lumo_companion_host.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
 import '../core/lumo_asset_paths.dart';
 import '../features/companion/lumo_lottie.dart';
@@ -21,17 +17,17 @@ import '../features/reading/reading_content.dart';
 import '../features/shared/widgets/lumo_section_transition.dart';
 import '../features/sections/section_content.dart';
 import '../features/settings/settings_content.dart';
-import '../features/shared/widgets/lumo_premium_effects.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
-import '../widgets/parental_gate.dart';
 import '../core/achievements/achievement_tracker.dart';
 import '../core/achievements/lumo_achievement.dart';
 import '../core/lumo_ai_proxy_client.dart';
 import '../core/lumo_companion_agent.dart';
 import '../core/lumo_voice.dart';
-import '../core/settings_repository.dart';
 import '../core/user_profile.dart';
+import '../core/embedded_game_service.dart';
+import '../widgets/design/lumo_design_system.dart';
+import '../theme/lumo_visual_tokens.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key, this.profile, this.initialSection});
@@ -51,6 +47,14 @@ class AppShell extends StatefulWidget {
 class _AppShellState extends State<AppShell>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   final _appState = LumoAppState();
+  late final _embeddedGames = EmbeddedGameService(
+    appState: _appState,
+    onDestination: (section) {
+      if (!mounted) return;
+      Navigator.of(context).popUntil((route) => route.isFirst);
+      _navigateTo(section);
+    },
+  );
 
   // Aggressiver Warmup-Layer (Heinz Screenshot 2026-05-21:
   // 'Verbindung zum KI-Server nicht moeglich'). Render Free-Tier
@@ -58,6 +62,7 @@ class _AppShellState extends State<AppShell>
   // im Vordergrund ist.
   final _proxyClient = const LumoAiProxyClient();
   Timer? _keepAliveTimer;
+  StreamSubscription<LumoAchievement>? _achievementSubscription;
 
   late final AnimationController _fadeCtrl = AnimationController(
     vsync: this,
@@ -77,20 +82,29 @@ class _AppShellState extends State<AppShell>
       // wie 'mission_start', 'success_streak', 'wrong_3'). Greeting kommt
       // aus reactToEvent('app_opened') + Personalisierung mit Kindernamen.
       const agent = LumoCompanionAgent();
-      final greeting = 'Hallo ${profile.name}!\n${agent.reactToEvent('app_opened')}';
-      _appState.update(_appState.state.copyWith(
-        childName: profile.name,
-        grade: profile.grade,
-        lumoMessage: greeting,
-      ),
+      final greeting =
+          'Hallo ${profile.name}!\n${agent.reactToEvent('app_opened')}';
+      _appState.update(
+        _appState.state.copyWith(
+          childName: profile.name,
+          grade: profile.grade,
+          lumoMessage: greeting,
+        ),
       );
     }
     // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
     final deepSection = widget.initialSection;
     if (deepSection != null && deepSection != _appState.state.section) {
-      _appState.update(_appState.state.copyWith(section: deepSection));
+      if (_requiresLoadedSettings(deepSection)) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) _navigateTo(deepSection);
+        });
+      } else {
+        _appState.update(_appState.state.copyWith(section: deepSection));
+      }
     }
     _loadSettings();
+    _embeddedGames.start();
     // 2026-06-04: Achievement-Tracker hydrieren + Unlock-Toast-Listener.
     _hydrateAchievements();
     _appState.addListener(_syncAchievementMetrics);
@@ -101,7 +115,9 @@ class _AppShellState extends State<AppShell>
   /// Achievement einen prominenten Toast/Burst zeigt.
   Future<void> _hydrateAchievements() async {
     await AchievementTracker.instance.hydrate();
-    AchievementTracker.instance.unlockStream.listen(_onAchievementUnlock);
+    if (!mounted) return;
+    _achievementSubscription =
+        AchievementTracker.instance.unlockStream.listen(_onAchievementUnlock);
     // Initialen Sterne-Counter syncen (sofort beim Start damit Stars-Achievements
     // greifen wenn das Kind ohne Aktion schon X Sterne im Wallet hat).
     _syncAchievementMetrics();
@@ -194,9 +210,9 @@ class _AppShellState extends State<AppShell>
   }
 
   Future<void> _loadSettings() async {
-    final settings = await SettingsRepository.load();
+    await _appState.ensureSettingsLoaded();
     if (!mounted) return;
-    _appState.updateSettings(settings);
+    final settings = _appState.state.settings;
     await LumoVoice.instance.configure(
       enabled: settings.voiceEnabled,
       rate: settings.voiceRate,
@@ -243,6 +259,7 @@ class _AppShellState extends State<AppShell>
     } else if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.detached) {
       _keepAliveTimer?.cancel();
+      unawaited(LumoVoice.instance.stop());
     }
   }
 
@@ -269,8 +286,10 @@ class _AppShellState extends State<AppShell>
 
   @override
   void dispose() {
+    _embeddedGames.dispose();
     WidgetsBinding.instance.removeObserver(this);
     _keepAliveTimer?.cancel();
+    _achievementSubscription?.cancel();
     _appState.removeListener(_syncAchievementMetrics);
     _appState.dispose();
     _fadeCtrl.dispose();
@@ -286,11 +305,9 @@ class _AppShellState extends State<AppShell>
 
   Future<void> _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
-    if (section == LumoSection.profile || section == LumoSection.settings) {
-      final ok = await ParentalGate.show(context,
-        pin: _appState.state.settings.parentPin,
-      );
-      if (!mounted || !ok) return;
+    if (_requiresLoadedSettings(section)) {
+      await _appState.ensureSettingsLoaded();
+      if (!mounted || !_appState.settingsLoaded) return;
     }
     if (!mounted) return;
     await _fadeCtrl.reverse();
@@ -298,33 +315,34 @@ class _AppShellState extends State<AppShell>
     _appState.setSection(section);
     final settings = _appState.state.settings;
     if (settings.voiceEnabled && settings.autoReadEnabled) {
-      LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '),
+      LumoVoice.instance.speak(
+        _appState.state.lumoMessage.replaceAll('\n', ' '),
       );
     }
     if (mounted) await _fadeCtrl.forward();
   }
 
-  Future<void> _openParentSettings() async {
-    final ok = await ParentalGate.show(context,
-      pin: _appState.state.settings.parentPin,
-    );
-    if (!mounted || !ok) return;
-    await _navigateTo(LumoSection.settings);
-  }
+  bool _requiresLoadedSettings(LumoSection section) =>
+      section == LumoSection.profile || section == LumoSection.settings;
+
+  Future<void> _openParentSettings() => _navigateTo(LumoSection.settings);
 
   Future<void> _handleScannedText(String text) async {
     if (!mounted) return;
-    _appState.update(_appState.state.copyWith(
-      lumoMessage: 'Ich analysiere\ndeine Aufgabe\nkurz und ruhig.',
-      mood: LumoMood.think,
-    ),
+    _appState.update(
+      _appState.state.copyWith(
+        lumoMessage: 'Ich analysiere\ndeine Aufgabe\nkurz und ruhig.',
+        mood: LumoMood.think,
+      ),
     );
 
     final analysis = await _appState.analyzeScannedWork(text);
     if (!mounted) return;
 
     if (_appState.state.settings.voiceEnabled) {
-      LumoVoice.instance.speak(analysis.childSummary, style: analysis.hasWeaknesses ? VoiceStyle.comfort : VoiceStyle.explain,
+      LumoVoice.instance.speak(
+        analysis.childSummary,
+        style: analysis.hasWeaknesses ? VoiceStyle.comfort : VoiceStyle.explain,
       );
     }
 
@@ -339,17 +357,30 @@ class _AppShellState extends State<AppShell>
       case LumoSection.home:
         return HomeContent(appState: _appState, onSection: _navigateTo);
       case LumoSection.games:
-        return GamesContent(appState: _appState);
+        return GamesContent(
+          appState: _appState,
+          onSection: _navigateTo,
+          onGameReturn: _embeddedGames.synchronize,
+        );
       case LumoSection.learn:
         return LumoAkademieScreen(appState: _appState);
       case LumoSection.exercises:
         if (_isReadingMode()) {
-          return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn),
+          return ReadingContent(
+            appState: _appState,
+            onBack: () => _navigateTo(LumoSection.learn),
           );
         }
-        return LearningContent(appState: _appState);
+        final state = _appState.state;
+        return LearningContent(
+          key: ValueKey(
+              '${state.grade}:${state.subject}:${state.unit}:${state.sessionKind.name}'),
+          appState: _appState,
+        );
       case LumoSection.reading:
-        return ReadingContent(appState: _appState, onBack: () => _navigateTo(LumoSection.learn),
+        return ReadingContent(
+          appState: _appState,
+          onBack: () => _navigateTo(LumoSection.learn),
         );
       case LumoSection.agent:
         return LumoAgentContent(appState: _appState, onSection: _navigateTo);
@@ -357,7 +388,8 @@ class _AppShellState extends State<AppShell>
         if (!_appState.state.settings.scannerEnabled) {
           return _FeatureDisabledContent(
             title: 'Foto-Hilfe ist ausgeschaltet',
-            message: 'Diese Funktion kann nur im Elternbereich wieder aktiviert werden.',
+            message:
+                'Diese Funktion kann nur im Elternbereich wieder aktiviert werden.',
             icon: Icons.no_photography_rounded,
             onBack: () => _navigateTo(LumoSection.home),
             onParentSettings: _openParentSettings,
@@ -372,6 +404,7 @@ class _AppShellState extends State<AppShell>
           padding: const EdgeInsets.all(22),
           child: ProfileScreen(
             childName: _appState.state.childName,
+            grade: _appState.state.grade,
             stars: _appState.state.stars,
             xp: _appState.state.xp,
             level: _appState.state.level,
@@ -384,7 +417,10 @@ class _AppShellState extends State<AppShell>
       case LumoSection.settings:
         return SettingsContent(appState: _appState);
       default:
-        return SectionContent(appState: _appState, section: section, onSection: _navigateTo,
+        return SectionContent(
+          appState: _appState,
+          section: section,
+          onSection: _navigateTo,
         );
     }
   }
@@ -394,50 +430,42 @@ class _AppShellState extends State<AppShell>
     return AnimatedBuilder(
       animation: _appState,
       builder: (context, _) {
-        return Scaffold(
-          backgroundColor: LumoColors.appBg,
-          body: SafeArea(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final width = constraints.maxWidth;
-                final mobile = width < 720;
-                final showNav = width >= 720;
-                final navWidth = width < 980 ? 160.0 : 200.0;
-                final gap = width < 980 ? 6.0 : 10.0;
+        if (!_appState.settingsLoaded) {
+          return const Scaffold(
+              body: Center(child: CircularProgressIndicator()));
+        }
+        return PopScope(
+            canPop: _appState.state.section == LumoSection.home,
+            onPopInvokedWithResult: (didPop, _) {
+              if (!didPop) _navigateTo(LumoSection.home);
+            },
+            child: Scaffold(
+              backgroundColor: LumoVisualTokens.night,
+              body: Listener(
+                behavior: HitTestBehavior.translucent,
+                onPointerDown: (event) => LumoCompanionRequests.instance
+                    .requestMoveTo(event.position),
+                child: SafeArea(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final width = constraints.maxWidth;
+                      final mobile = width < 720;
+                      final showNav = width >= 720;
+                      final showProgressSidebar =
+                          width >= 900 &&
+                              _appState.state.section == LumoSection.home;
+                      final navWidth = width < 980 ? 160.0 : 200.0;
+                      final gap = width < 980 ? 6.0 : 10.0;
 
-                if (mobile) {
-                  return Column(children: [
-                    _MobileLumoHeader(appState: _appState, onFoxTap: () {
-                      if (_appState.state.settings.voiceEnabled) {
-                        LumoVoice.instance.speak(_appState.state.lumoMessage.replaceAll('\n', ' '),
-                            );
-                      }
-                    },
-                      ),
-                    Expanded(
-                      child: Listener(
-                        // PARENT-LISTENER (Heinz-Auftrag):
-                        // Passiver Pointer-Beobachter. Verbraucht KEINE
-                        // Events - Buttons/Cards funktionieren weiter.
-                        // Schickt globale Tap-Position an den Companion
-                        // damit Lumo dort hinwandern kann (mit Safe-Zone-
-                        // Check und Cooldown im RequestBus).
-                        behavior: HitTestBehavior.translucent,
-                        onPointerDown: (event) {
-                          // Companion nicht im Lesemodus
-                          if (_appState.state.section ==
-                                  LumoSection.reading ||
-                              _isReadingMode()) {
-                            return;
-                          }
-                          LumoCompanionRequests.instance
-                              .requestMoveTo(event.position,
-                            );
-                        },
-                        child: Stack(children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(LumoRadius.lg,
-                                ),
+                      if (mobile) {
+                        return Column(children: [
+                          _MobileLumoHeader(
+                              appState: _appState,
+                              onFoxTap: () => showLumoConversation(context,
+                                  appState: _appState, onSection: _navigateTo)),
+                          Expanded(
+                              child: ClipRRect(
+                            borderRadius: BorderRadius.circular(LumoRadius.lg),
                             child: FadeTransition(
                               opacity: _fadeCtrl,
                               child: LumoSectionTransition(
@@ -445,69 +473,93 @@ class _AppShellState extends State<AppShell>
                                 child: _buildContent(),
                               ),
                             ),
-                          ),
-                          // Heinz' Wunsch (Screenshot 2026-05-21):
-                          // "mach diesen lumo weg der schaut nicht gut aus".
-                          // Der LumoFreeCompanion (3D-Sprite mit Schultasche
-                          // als bewegliches Overlay) wirkt zu schwer und
-                          // ueberdeckt die schon vorhandenen "Mathe mit Lumo"
-                          // / "Deutsch mit Lumo" Karten. Companion komplett
-                          // ausgeblendet - die Subject-Tiles haben ihre
-                          // eigenen Lumo-Symbole und reichen.
-                        ],
-                          ),
-                      ),
-                    ),
-                    _MobileBottomNavigation(active: _appState.state.section, onSelect: _navigateTo,
-                      ),
-                  ],
-                  );
-                }
+                          )),
+                          LumoCompanionHost(
+                              appState: _appState,
+                              onSection: _navigateTo,
+                              compact: constraints.maxHeight < 650),
+                          LumoBottomNavigation(
+                              active: _appState.state.section,
+                              onSelect: _navigateTo),
+                        ]);
+                      }
 
-                return Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      if (showNav) ...[
-                        LeftNavigation(appState: _appState, onSelect: _navigateTo, width: navWidth,
-                        ),
-                        SizedBox(width: gap),
-                      ],
-                      Expanded(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(LumoRadius.xl),
-                          child: Container(
-                            decoration: BoxDecoration(color: LumoColors.appBg, borderRadius: BorderRadius.circular(LumoRadius.xl,
+                      return Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            if (showNav) ...[
+                              LeftNavigation(
+                                appState: _appState,
+                                onSelect: _navigateTo,
+                                width: navWidth,
+                              ),
+                              SizedBox(width: gap),
+                            ],
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(LumoRadius.xl),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: LumoVisualTokens.night,
+                                    borderRadius: BorderRadius.circular(
+                                      LumoRadius.xl,
+                                    ),
+                                  ),
+                                  child: Column(children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          16, 10, 16, 6),
+                                      child: LumoTopBar(
+                                        appState: _appState,
+                                        onTapStatus: () =>
+                                            showLumoConversation(
+                                          context,
+                                          appState: _appState,
+                                          onSection: _navigateTo,
+                                        ),
+                                        onTapFox: () => showLumoConversation(
+                                          context,
+                                          appState: _appState,
+                                          onSection: _navigateTo,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                        child: FadeTransition(
+                                      opacity: _fadeCtrl,
+                                      child: LumoSectionTransition(
+                                        sectionKey:
+                                            _appState.state.section.name,
+                                        child: _buildContent(),
+                                      ),
+                                    )),
+                                    LumoCompanionHost(
+                                        appState: _appState,
+                                        onSection: _navigateTo,
+                                        compact: constraints.maxHeight < 600),
+                                  ]),
+                                ),
                               ),
                             ),
-                            // ── Stack: Content + Free-Companion-Overlay ──
-                            // Heinz: 'Der rechte feste Kasten muss weg.
-                            // Lumo soll frei beweglich sein.'
-                            // NICHT im Lesemodus (ueberdeckt Schriften)
-                            child: Stack(
-                              children: [
-                                FadeTransition(
-                                  opacity: _fadeCtrl,
-                                  child: LumoSectionTransition(
-                                    sectionKey: _appState.state.section.name,
-                                    child: _buildContent(),
-                                  ),
-                                ),
-                                // LumoFreeCompanion ausgeblendet auf
-                                // Heinz' Wunsch (siehe oben).
-                              ],
-                            ),
-                          ),
+                            if (showProgressSidebar) ...[
+                              SizedBox(width: gap),
+                              LumoFoldProgressPanel(
+                                appState: _appState,
+                                onOpenRewards: () =>
+                                    _navigateTo(LumoSection.rewards),
+                              ),
+                            ],
+                          ],
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
-        );
+                ),
+              ),
+            ));
       },
     );
   }
@@ -537,32 +589,54 @@ class _FeatureDisabledContent extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 560),
           child: Container(
             padding: const EdgeInsets.all(22),
-            decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF8ED), Color(0xFFFFFFFF)],
+            decoration: lumoCard(
+              gradient: const LinearGradient(
+                colors: [Color(0xFFFFF8ED), Color(0xFFFFFFFF)],
               ),
             ),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Container(
-                width: 70,
-                height: 70,
-                decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    color: LumoColors.orangeSurface,
+                    borderRadius: BorderRadius.circular(LumoRadius.lg),
                   ),
-                child: Icon(icon, color: LumoColors.orange, size: 34),
-              ),
-              const SizedBox(height: 14),
-              Text(title, textAlign: TextAlign.center, style: LumoTextStyles.heading2,
+                  child: Icon(icon, color: LumoColors.orange, size: 34),
                 ),
-              const SizedBox(height: 8),
-              Text(message, textAlign: TextAlign.center, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700),
+                const SizedBox(height: 14),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: LumoTextStyles.heading2,
                 ),
-              const SizedBox(height: 18),
-              Wrap(alignment: WrapAlignment.center, spacing: 10, runSpacing: 10, children: [
-                FilledButton.icon(onPressed: onBack, icon: const Icon(Icons.home_rounded), label: const Text('Zurück'),
+                const SizedBox(height: 8),
+                Text(
+                  message,
+                  textAlign: TextAlign.center,
+                  style: LumoTextStyles.body.copyWith(color: LumoColors.ink700),
+                ),
+                const SizedBox(height: 18),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    FilledButton.icon(
+                      onPressed: onBack,
+                      icon: const Icon(Icons.home_rounded),
+                      label: const Text('Zurück'),
                     ),
-                OutlinedButton.icon(onPressed: onParentSettings, icon: const Icon(Icons.lock_rounded), label: const Text('Elternbereich'),
+                    OutlinedButton.icon(
+                      onPressed: onParentSettings,
+                      icon: const Icon(Icons.lock_rounded),
+                      label: const Text('Elternbereich'),
                     ),
+                  ],
+                ),
               ],
-                ),
-            ],
             ),
           ),
         ),
@@ -578,199 +652,14 @@ class _MobileLumoHeader extends StatelessWidget {
   final VoidCallback onFoxTap;
 
   @override
-  Widget build(BuildContext context) {
-    final st = appState.state;
-    return Container(
-      margin: const EdgeInsets.fromLTRB(8, 6, 8, 6),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(colors: [LumoColors.stageBg1, LumoColors.stageBg2],
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+        child: LumoTopBar(
+          appState: appState,
+          onTapStatus: onFoxTap,
+          onTapFox: onFoxTap,
         ),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: Colors.white.withOpacity(.72)),
-        boxShadow: LumoShadow.card,
-      ),
-      child: Row(children: [
-        // Heinz' Premium-Sprung: Lumo schwebt sanft + pulsiert mit Glow.
-        // Tap startet Voice. Wirkt jetzt wie ein echter Begleiter.
-        LumoFloating(
-          amplitude: 3,
-          duration: const Duration(milliseconds: 2800),
-          child: LumoGlowPulse(
-            color: LumoColors.orange,
-            minBlur: 6,
-            maxBlur: 18,
-            child: GestureDetector(
-              onTap: onFoxTap,
-              child: Container(
-                width: 52,
-                height: 52,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(colors: [LumoColors.orange, LumoColors.orangeLight],
-                    ),
-                ),
-                child: const Center(child: Text('🦊', style: TextStyle(fontSize: 28)),
-                  ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-            Text(st.childName, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoColors.ink900,
-                  ),
-                ),
-            const SizedBox(height: 2),
-            Text(st.lumoMessage.replaceAll('\n', ' '), maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink600, height: 1.2,
-                  ),
-                ),
-          ],
-            ),
-        ),
-        const SizedBox(width: 8),
-        Column(mainAxisSize: MainAxisSize.min, children: [
-          Text('⭐ ${st.stars}', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.ink700,
-                ),
-              ),
-          Text('Lv ${st.level}', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: LumoColors.orange,
-                ),
-              ),
-        ],
-          ),
-      ],
-      ),
-    );
-  }
-}
-
-class _MobileBottomNavigation extends StatelessWidget {
-  const _MobileBottomNavigation({required this.active, required this.onSelect});
-
-  final LumoSection active;
-  final ValueChanged<LumoSection> onSelect;
-
-  static const _items = <_MobileNavItem>[
-    _MobileNavItem(LumoSection.home, Icons.home_rounded, 'Start'),
-    _MobileNavItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
-    _MobileNavItem(LumoSection.agent, Icons.auto_awesome_rounded, 'Lumo KI'),
-    _MobileNavItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesen',
-    ),
-    _MobileNavItem(LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil',
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 7),
-      decoration: BoxDecoration(
-        // Premium-Look: leichter Gradient statt einfaches Weiss.
-        gradient: const LinearGradient(
-          colors: [Color(0xFFFFFFFF), Color(0xFFFFFBF0)],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-        borderRadius: BorderRadius.circular(LumoRadius.pill),
-        border: Border.all(color: LumoColors.orange.withOpacity(.25), width: 1.4,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: LumoColors.orange.withOpacity(0.18),
-            blurRadius: 20,
-            offset: const Offset(0, 6),
-            spreadRadius: -4,
-          ),
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-            spreadRadius: -2,
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _items.map((item) {
-          final selected = item.section == active;
-          return Expanded(
-            child: LumoTapBounce(
-              child: GestureDetector(
-                onTap: () {
-                  HapticFeedback.selectionClick();
-                  onSelect(item.section);
-                },
-                behavior: HitTestBehavior.opaque,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 280),
-                  curve: Curves.easeOutCubic,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  margin: const EdgeInsets.symmetric(horizontal: 2),
-                decoration: BoxDecoration(
-                  gradient: selected
-                      ? const LinearGradient(
-                          colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        )
-                      : null,
-                  borderRadius: BorderRadius.circular(LumoRadius.pill),
-                  boxShadow: selected
-                      ? [
-                          BoxShadow(
-                            color: LumoColors.orange.withOpacity(0.5),
-                            blurRadius: 12,
-                            offset: const Offset(0, 4),
-                            spreadRadius: -2,
-                          ),
-                        ]
-                      : null,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AnimatedScale(
-                      scale: selected ? 1.15 : 1.0,
-                      duration: const Duration(milliseconds: 280),
-                      curve: Curves.elasticOut,
-                      child: Icon(
-                        item.icon,
-                        size: 22,
-                        color: selected ? Colors.white : LumoColors.ink500,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      item.label,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 10,
-                        fontWeight: FontWeight.w900,
-                        color: selected ? Colors.white : LumoColors.ink500,
-                        letterSpacing: 0.2,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
-
-class _MobileNavItem {
-  const _MobileNavItem(this.section, this.icon, this.label);
-  final LumoSection section;
-  final IconData icon;
-  final String label;
+      );
 }
 
 // 2026-06-05 Iter 16/A2: Achievement-Burst-Overlay
@@ -794,12 +683,8 @@ class _AchievementBurstOverlay extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  LumoLottie(
-                    asset: LumoAssetPaths.lottieStarBurst,
-                    size: 260),
-                  Text(
-                    achievement.emoji,
-                    style: const TextStyle(fontSize: 92)),
+                  LumoLottie(asset: LumoAssetPaths.lottieStarBurst, size: 260),
+                  Text(achievement.emoji, style: const TextStyle(fontSize: 92)),
                 ],
               ),
             ),

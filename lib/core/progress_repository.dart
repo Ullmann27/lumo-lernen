@@ -13,24 +13,27 @@ class ProgressRepository {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_skillsKey);
     if (raw == null || raw.trim().isEmpty) return <String, SkillRecord>{};
+    final out = <String, SkillRecord>{};
     try {
       final decoded = jsonDecode(raw);
       if (decoded is! Map) {
         await prefs.remove(_skillsKey);
         return <String, SkillRecord>{};
       }
-      final out = <String, SkillRecord>{};
       decoded.forEach((key, value) {
         if (value is! Map) return;
-        final record = SkillRecord.fromJson(Map<String, dynamic>.from(value)).normalized();
+        final record =
+            SkillRecord.fromJson(Map<String, dynamic>.from(value)).normalized();
         out[record.skillId] = record;
       });
-      await saveSkills(out);
-      return out;
     } catch (_) {
       await prefs.remove(_skillsKey);
       return <String, SkillRecord>{};
     }
+    // A failed normalization write is not corrupt input. Preserve the
+    // existing saved profile and report storage failure so Retry can work.
+    await saveSkills(out);
+    return out;
   }
 
   Future<void> saveSkills(Map<String, SkillRecord> skills) async {
@@ -40,32 +43,36 @@ class ProgressRepository {
       final record = entry.value.normalized();
       data[record.skillId] = record.toJson();
     }
-    await prefs.setString(_skillsKey, jsonEncode(data));
+    if (!await prefs.setString(_skillsKey, jsonEncode(data))) {
+      throw StateError('Learning skills were not saved');
+    }
   }
 
   Future<Map<String, int>> loadDaily() async {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_dailyKey);
     if (raw == null || raw.trim().isEmpty) return <String, int>{};
+    final out = <String, int>{};
     try {
       final decoded = jsonDecode(raw);
       if (decoded is! Map) {
         await prefs.remove(_dailyKey);
         return <String, int>{};
       }
-      final out = <String, int>{};
       decoded.forEach((key, value) {
         final textKey = key.toString();
         if (!RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(textKey)) return;
-        final count = value is num ? value.toInt() : int.tryParse(value?.toString() ?? '') ?? 0;
+        final count = value is num
+            ? value.toInt()
+            : int.tryParse(value?.toString() ?? '') ?? 0;
         out[textKey] = count.clamp(0, 500).toInt();
       });
-      await saveDaily(out);
-      return out;
     } catch (_) {
       await prefs.remove(_dailyKey);
       return <String, int>{};
     }
+    await saveDaily(out);
+    return out;
   }
 
   Future<void> saveDaily(Map<String, int> daily) async {
@@ -76,31 +83,33 @@ class ProgressRepository {
         clean[key] = value.clamp(0, 500).toInt();
       }
     });
-    await prefs.setString(_dailyKey, jsonEncode(clean));
+    if (!await prefs.setString(_dailyKey, jsonEncode(clean))) {
+      throw StateError('Daily learning progress was not saved');
+    }
   }
 
   Future<Map<String, String>> loadLastTopics() async {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_lastKey);
     if (raw == null || raw.trim().isEmpty) return <String, String>{};
+    final out = <String, String>{};
     try {
       final decoded = jsonDecode(raw);
       if (decoded is! Map) {
         await prefs.remove(_lastKey);
         return <String, String>{};
       }
-      final out = <String, String>{};
       decoded.forEach((key, value) {
         final k = key.toString().trim();
         final v = value?.toString().trim() ?? '';
         if (k.isNotEmpty && v.isNotEmpty) out[k] = v;
       });
-      await saveLastTopics(out);
-      return out;
     } catch (_) {
       await prefs.remove(_lastKey);
       return <String, String>{};
     }
+    await saveLastTopics(out);
+    return out;
   }
 
   Future<void> saveLastTopics(Map<String, String> last) async {
@@ -111,7 +120,9 @@ class ProgressRepository {
       final v = value.trim();
       if (k.isNotEmpty && v.isNotEmpty) clean[k] = v;
     });
-    await prefs.setString(_lastKey, jsonEncode(clean));
+    if (!await prefs.setString(_lastKey, jsonEncode(clean))) {
+      throw StateError('Last learning topics were not saved');
+    }
   }
 
   Future<void> resetAll() async {
@@ -164,13 +175,16 @@ class SkillRecord {
     final errorRate = wrong / attempts;
     final mastery01 = mastery / 100.0;
     final missesFactor = currentMisses.clamp(0, 5) / 5;
-    return (errorRate * 0.5 + (1.0 - mastery01) * 0.3 + missesFactor * 0.2).clamp(0.0, 1.0);
+    return (errorRate * 0.5 + (1.0 - mastery01) * 0.3 + missesFactor * 0.2)
+        .clamp(0.0, 1.0);
   }
 
   SkillRecord normalized() {
     final cleanSubject = subject.trim().isEmpty ? 'Mathematik' : subject.trim();
     final cleanUnit = unit.trim().isEmpty ? 'Allgemein' : unit.trim();
-    final cleanSkillId = skillId.trim().isEmpty || skillId == 'unknown' ? makeId(cleanSubject, cleanUnit) : skillId.trim();
+    final cleanSkillId = skillId.trim().isEmpty || skillId == 'unknown'
+        ? makeId(cleanSubject, cleanUnit)
+        : skillId.trim();
     return SkillRecord(
       skillId: cleanSkillId,
       subject: cleanSubject,
@@ -203,16 +217,30 @@ class SkillRecord {
       skillId: json['skillId'] as String? ?? 'unknown',
       subject: json['subject'] as String? ?? 'Mathematik',
       unit: json['unit'] as String? ?? 'Allgemein',
-      correct: (json['correct'] as num?)?.toInt() ?? int.tryParse(json['correct']?.toString() ?? '') ?? 0,
-      wrong: (json['wrong'] as num?)?.toInt() ?? int.tryParse(json['wrong']?.toString() ?? '') ?? 0,
-      hintCount: (json['hintCount'] as num?)?.toInt() ?? int.tryParse(json['hintCount']?.toString() ?? '') ?? 0,
-      currentStreak: (json['currentStreak'] as num?)?.toInt() ?? int.tryParse(json['currentStreak']?.toString() ?? '') ?? 0,
-      currentMisses: (json['currentMisses'] as num?)?.toInt() ?? int.tryParse(json['currentMisses']?.toString() ?? '') ?? 0,
-      difficulty: (json['difficulty'] as num?)?.toInt() ?? int.tryParse(json['difficulty']?.toString() ?? '') ?? 1,
-      lastSeen: DateTime.tryParse(json['lastSeen'] as String? ?? '') ?? DateTime.now(),
+      correct: (json['correct'] as num?)?.toInt() ??
+          int.tryParse(json['correct']?.toString() ?? '') ??
+          0,
+      wrong: (json['wrong'] as num?)?.toInt() ??
+          int.tryParse(json['wrong']?.toString() ?? '') ??
+          0,
+      hintCount: (json['hintCount'] as num?)?.toInt() ??
+          int.tryParse(json['hintCount']?.toString() ?? '') ??
+          0,
+      currentStreak: (json['currentStreak'] as num?)?.toInt() ??
+          int.tryParse(json['currentStreak']?.toString() ?? '') ??
+          0,
+      currentMisses: (json['currentMisses'] as num?)?.toInt() ??
+          int.tryParse(json['currentMisses']?.toString() ?? '') ??
+          0,
+      difficulty: (json['difficulty'] as num?)?.toInt() ??
+          int.tryParse(json['difficulty']?.toString() ?? '') ??
+          1,
+      lastSeen: DateTime.tryParse(json['lastSeen'] as String? ?? '') ??
+          DateTime.now(),
     );
     return record.normalized();
   }
 
-  static String makeId(String subject, String unit) => '${subject.toLowerCase()}::${unit.toLowerCase()}';
+  static String makeId(String subject, String unit) =>
+      '${subject.toLowerCase()}::${unit.toLowerCase()}';
 }

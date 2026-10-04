@@ -20,7 +20,6 @@
 //     anfuehlt
 // ════════════════════════════════════════════════════════════════════════
 
-import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -29,9 +28,11 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/lumo_voice.dart';
+import '../shared/lumo_game_pause_scope.dart';
 
 class LumoDiceRaceScreen extends StatefulWidget {
-  const LumoDiceRaceScreen({super.key, required this.appState});
+  const LumoDiceRaceScreen({super.key, required this.appState, this.seed});
+  final int? seed;
   final LumoAppState appState;
 
   @override
@@ -50,23 +51,27 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
   _Player _turn = _Player.kind;
   bool _busy = false;
   String? _hint;
-  final math.Random _rng = math.Random();
+  late final math.Random _rng;
   late AnimationController _diceCtrl;
+  final _clock = LumoGameTurnClock();
 
   @override
   void initState() {
     super.initState();
+    _rng = widget.seed == null ? math.Random() : math.Random(widget.seed);
     _diceCtrl = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 700),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _say('Wuerfel-Wettlauf! Wer zuerst beim Stern ist, gewinnt. Du faengst an!');
+      _say(
+          'Wuerfel-Wettlauf! Wer zuerst beim Stern ist, gewinnt. Du faengst an!');
     });
   }
 
   @override
   void dispose() {
+    _clock.dispose();
     _diceCtrl.dispose();
     super.dispose();
   }
@@ -78,6 +83,8 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
   }
 
   void _resetGame() {
+    _clock.cancel();
+    _diceCtrl.reset();
     setState(() {
       _kindPos = 0;
       _lumoPos = 0;
@@ -88,8 +95,8 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
     });
   }
 
-  Future<void> _rollDice() async {
-    if (_busy) return;
+  void _rollDice() {
+    if (_clock.value || _busy || _turn != _Player.kind) return;
     if (_kindPos >= _goal || _lumoPos >= _goal) return;
     HapticFeedback.lightImpact();
     setState(() {
@@ -97,12 +104,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
       _hint = null;
     });
     // Wuerfel-Animation: rasende Zufallszahlen
-    await _diceCtrl.forward(from: 0);
-    final roll = 1 + _rng.nextInt(6);
-    setState(() => _lastRoll = roll);
-    await Future.delayed(const Duration(milliseconds: 350));
-    if (!mounted) return;
-    _applyRoll(roll);
+    _animateRoll();
   }
 
   void _applyRoll(int roll) {
@@ -124,7 +126,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
       }
       // Lumo dran
       _turn = _Player.lumo;
-      Timer(const Duration(milliseconds: 700), _lumoRoll);
+      _clock.schedule(const Duration(milliseconds: 700), _lumoRoll);
     } else {
       var next = _lumoPos + roll;
       if (next > _goal) next = _goal;
@@ -147,16 +149,23 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
     }
   }
 
-  Future<void> _lumoRoll() async {
-    if (!mounted) return;
+  void _lumoRoll() {
+    if (!mounted || _turn != _Player.lumo) return;
     HapticFeedback.lightImpact();
     setState(() => _hint = 'Lumo wuerfelt 🦊...');
-    await _diceCtrl.forward(from: 0);
-    final roll = 1 + _rng.nextInt(6);
-    setState(() => _lastRoll = roll);
-    await Future.delayed(const Duration(milliseconds: 350));
-    if (!mounted) return;
-    _applyRoll(roll);
+    _animateRoll();
+  }
+
+  void _animateRoll() {
+    _diceCtrl.forward(from: 0);
+    _clock.schedule(const Duration(milliseconds: 700), () {
+      if (!mounted) return;
+      final roll = 1 + _rng.nextInt(6);
+      setState(() => _lastRoll = roll);
+      _clock.schedule(const Duration(milliseconds: 350), () {
+        if (mounted) _applyRoll(roll);
+      });
+    });
   }
 
   void _onWin(_Player who) {
@@ -171,7 +180,8 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => AlertDialog(
+      builder: (_) => LumoGameResultBack(
+          child: AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: Text(kindWon ? '🎉 Du gewinnst!' : '🦊 Lumo gewinnt',
@@ -218,7 +228,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
                     fontSize: 16)),
           ),
         ],
-      ),
+      )),
     );
   }
 
@@ -228,33 +238,38 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF0FDF4),
-      body: SafeArea(
-        child: Column(
-          children: [
-            _buildTopBar(),
-            _buildStatusBar(),
-            const SizedBox(height: 8),
-            Expanded(child: _buildTrack()),
-            _buildDicePanel(),
-          ],
-        ),
-      ),
-    );
+    return LumoGamePauseScope(
+        clock: _clock,
+        onRestart: _resetGame,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFF0FDF4),
+          body: SafeArea(
+            child: Column(
+              children: [
+                _buildTopBar(),
+                _buildStatusBar(),
+                const SizedBox(height: 8),
+                Expanded(child: _buildTrack()),
+                _buildDicePanel(),
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget _buildTopBar() {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: const BoxDecoration(
-        gradient: LinearGradient(colors: [Color(0xFF34D399), Color(0xFF059669)]),
+        gradient:
+            LinearGradient(colors: [Color(0xFF34D399), Color(0xFF059669)]),
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
           icon: const Icon(Icons.close_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          tooltip: 'Pausieren / Zurück',
+          onPressed: _clock.pause,
         ),
         const Expanded(
           child: Center(
@@ -269,7 +284,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
         IconButton(
           icon: const Icon(Icons.refresh_rounded, color: Colors.white),
           tooltip: 'Neu starten',
-          onPressed: _resetGame,
+          onPressed: _clock.pause,
         ),
       ]),
     );
@@ -315,14 +330,14 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
           borderRadius: BorderRadius.circular(18),
           border: Border.all(color: color, width: 2.4),
         ),
-        child: Row(children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(label,
               style: TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 14,
                   fontWeight: FontWeight.w900,
                   color: isActive ? Colors.white : color)),
-          const Spacer(),
+          const SizedBox(height: 4),
           Text('$pos / $_goal',
               style: TextStyle(
                   fontFamily: 'Nunito',
@@ -348,7 +363,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
       final availH = c.maxHeight - 20;
       final wBased = (availW - (cols - 1) * colSpacing) / cols;
       final hBased = (availH - (rowsTotal - 1) * rowSpacing) / rowsTotal;
-      final cellSize = math.min(wBased, hBased).clamp(36.0, 96.0);
+      final cellSize = math.min(wBased, hBased).clamp(12.0, 96.0);
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
         child: Column(
@@ -370,8 +385,8 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
               }
             }
             return Padding(
-              padding: EdgeInsets.only(
-                  bottom: r == rowsTotal - 1 ? 0 : rowSpacing),
+              padding:
+                  EdgeInsets.only(bottom: r == rowsTotal - 1 ? 0 : rowSpacing),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center, children: cells),
             );
@@ -481,8 +496,8 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                        color: const Color(0xFF1F2937), width: 2.4),
+                    border:
+                        Border.all(color: const Color(0xFF1F2937), width: 2.4),
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.18),
@@ -494,8 +509,8 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
                     _lastRoll == null
                         ? '?'
                         : ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'][_lastRoll! - 1],
-                    style: const TextStyle(
-                        fontSize: 42, color: Color(0xFF1F2937)),
+                    style:
+                        const TextStyle(fontSize: 42, color: Color(0xFF1F2937)),
                   ),
                 ),
               );
@@ -504,6 +519,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
           const SizedBox(width: 14),
           Expanded(
             child: ElevatedButton.icon(
+              key: const ValueKey('dice-roll'),
               onPressed: canRoll ? _rollDice : null,
               icon: const Icon(Icons.casino_rounded),
               label: Text(canRoll

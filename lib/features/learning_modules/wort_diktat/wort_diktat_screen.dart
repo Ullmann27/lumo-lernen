@@ -11,7 +11,7 @@
 //   4) Kind selbst-bewertet: 'Das war richtig' / 'Nochmal probieren'
 //   5) Selbst-Bewertung -> Sterne (lernt Selbsteinschaetzung)
 //
-// 10 Woerter pro Session, vom einfachen zum schwierigeren.
+// Bis zu 20 Woerter pro Session, vom einfachen zum schwierigeren.
 // ════════════════════════════════════════════════════════════════════════
 
 import 'dart:math' as math;
@@ -21,6 +21,7 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
+import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
 
 class WortDiktatScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class WortDiktatScreen extends StatefulWidget {
 
 class _WortDiktatScreenState extends State<WortDiktatScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 30;
+  static const int _sessionLimit = 20;
   static const List<Color> _gradient = [
     Color(0xFF06B6D4),
     Color(0xFF0E7490),
@@ -41,26 +42,49 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
 
   // Wortschatz Klasse 1 - vom leicht zum schwer
   static const List<String> _vocabulary = [
-    'MAMA', 'PAPA', 'OMA', 'OPA',
-    'BALL', 'AUTO', 'BAUM', 'SONNE',
-    'HUND', 'KATZE', 'MAUS', 'VOGEL',
-    'HAUS', 'KIND', 'BROT', 'APFEL',
-    'MILCH', 'TISCH', 'STUHL', 'BLUME',
+    'MAMA',
+    'PAPA',
+    'OMA',
+    'OPA',
+    'BALL',
+    'AUTO',
+    'BAUM',
+    'SONNE',
+    'HUND',
+    'KATZE',
+    'MAUS',
+    'VOGEL',
+    'HAUS',
+    'KIND',
+    'BROT',
+    'APFEL',
+    'MILCH',
+    'TISCH',
+    'STUHL',
+    'BLUME',
   ];
+
+  late final LearningModuleProgress _progress;
 
   late final AnimationController _entryCtrl;
   late final AnimationController _revealCtrl;
   final _rng = math.Random();
   late List<String> _sessionWords;
 
+  int get _totalTasks => _sessionWords.length;
+
   int _taskIdx = 0;
   int _correctCount = 0;
 
   // 4 Schreibzeilen wie im Buchstaben-Modul
   final List<List<List<Offset>>> _rows = [
-    <List<Offset>>[], <List<Offset>>[], <List<Offset>>[], <List<Offset>>[],
+    <List<Offset>>[],
+    <List<Offset>>[],
+    <List<Offset>>[],
+    <List<Offset>>[],
   ];
 
+  bool _answerAccepted = false;
   bool _showReveal = false; // wird auf true wenn 'Fertig' gedrueckt
 
   String get _currentWord => _sessionWords[_taskIdx];
@@ -68,18 +92,24 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
   @override
   void initState() {
     super.initState();
+    _progress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Deutsch',
+      unit: 'Erste Wörter',
+    );
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _revealCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 500));
     _sessionWords = List.of(_vocabulary)..shuffle(_rng);
-    _sessionWords = _sessionWords.take(_totalTasks).toList();
+    _sessionWords = _sessionWords.take(_sessionLimit).toList();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _sayWord());
   }
 
   @override
   void dispose() {
+    _progress.dispose();
     _entryCtrl.dispose();
     _revealCtrl.dispose();
     super.dispose();
@@ -88,7 +118,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
   void _sayWord() {
     if (!widget.appState.state.settings.voiceEnabled) return;
     try {
-      LumoVoice.instance.speak('Schreibe das Wort: ${_currentWord.toLowerCase()}');
+      LumoVoice.instance
+          .speak('Schreibe das Wort: ${_currentWord.toLowerCase()}');
     } catch (_) {}
   }
 
@@ -119,7 +150,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: _gradient[1],
         content: const Text('Schreib zuerst das Wort - dann tippe Fertig!',
-            style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w800)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w800)),
         duration: const Duration(seconds: 2),
       ));
       return;
@@ -129,18 +161,24 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
     _revealCtrl.forward(from: 0);
     if (widget.appState.state.settings.voiceEnabled) {
       try {
-        LumoVoice.instance
-            .speak('So sieht das Wort ${_currentWord.toLowerCase()} aus. Vergleiche.');
+        LumoVoice.instance.speak(
+            'So sieht das Wort ${_currentWord.toLowerCase()} aus. Vergleiche.');
       } catch (_) {}
     }
   }
 
   void _onSelfRate(bool wasCorrect) async {
+    if (_answerAccepted || _progress.hasPending || !_showReveal) return;
+    setState(() => _answerAccepted = true);
+    final saved = await _progress.saveAnswer(
+      correct: wasCorrect,
+      stars: wasCorrect ? 1 : 0,
+      xp: wasCorrect ? 8 : 0,
+    );
+    if (!saved || !mounted) return;
     HapticFeedback.lightImpact();
     if (wasCorrect) {
       _correctCount++;
-      widget.appState.addStars(1);
-      widget.appState.addXp(8);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -149,8 +187,9 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
         LumoVoice.instance.speak(LumoPhrases.wrongGentle());
       } catch (_) {}
     }
-    await Future.delayed(const Duration(milliseconds: 600));
-    if (!mounted) return;
+    final canAdvance =
+        await _progress.feedbackDelay(const Duration(milliseconds: 600));
+    if (!canAdvance || !mounted) return;
     _nextTask();
   }
 
@@ -162,6 +201,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
     setState(() {
       _taskIdx++;
       _showReveal = false;
+      _answerAccepted = false;
       for (final r in _rows) {
         r.clear();
       }
@@ -170,21 +210,23 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
     _sayWord();
   }
 
-  void _showFinish() {
+  void _showFinish() async {
     final stars = ((_correctCount / _totalTasks) * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 12);
+    final saved = await _progress.saveBonus(
+      stars: stars,
+      xp: _correctCount * 12,
+    );
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🎉 Diktat fertig!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks richtig geschrieben!',
               style: const TextStyle(
@@ -234,26 +276,28 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: Column(
-        children: [
-          _buildTopBar(),
-          if (!_showReveal) ...[
-            _buildHearWordBox(),
-            Expanded(child: _buildWritingArea()),
-            _buildBottomActions(),
-          ] else
-            Expanded(child: _buildRevealView()),
-        ],
-      ),
-    );
+    return LearningModuleProgressScope(
+        progress: _progress,
+        child: Scaffold(
+          backgroundColor: const Color(0xFFFFFBEB),
+          body: Column(
+            children: [
+              _buildTopBar(),
+              if (!_showReveal) ...[
+                _buildHearWordBox(),
+                Expanded(child: _buildWritingArea()),
+                _buildBottomActions(),
+              ] else
+                Expanded(child: _buildRevealView()),
+            ],
+          ),
+        ));
   }
 
   Widget _buildTopBar() {
     return Container(
-      padding: EdgeInsets.fromLTRB(
-          8, MediaQuery.of(context).padding.top + 4, 16, 8),
+      padding:
+          EdgeInsets.fromLTRB(8, MediaQuery.of(context).padding.top + 4, 16, 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
         boxShadow: [
@@ -265,8 +309,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
         Expanded(
@@ -295,8 +339,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctCount',
                 style: const TextStyle(
@@ -322,7 +365,10 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [_gradient[0].withOpacity(0.10), _gradient[1].withOpacity(0.15)],
+              colors: [
+                _gradient[0].withOpacity(0.10),
+                _gradient[1].withOpacity(0.15)
+              ],
             ),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: _gradient[0].withOpacity(0.4), width: 2),
@@ -412,8 +458,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(14),
-                  border:
-                      Border.all(color: const Color(0xFFD1D5DB), width: 2),
+                  border: Border.all(color: const Color(0xFFD1D5DB), width: 2),
                 ),
                 child: const Center(
                   child: Text('Alles löschen',
@@ -519,8 +564,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
                 decoration: BoxDecoration(
                   color: _gradient[0].withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
-                  border:
-                      Border.all(color: _gradient[0].withOpacity(0.4), width: 1.5),
+                  border: Border.all(
+                      color: _gradient[0].withOpacity(0.4), width: 1.5),
                 ),
                 child: Text(c,
                     style: TextStyle(
@@ -549,8 +594,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
                   decoration: BoxDecoration(
                     color: const Color(0xFFFEF3C7),
                     borderRadius: BorderRadius.circular(18),
-                    border: Border.all(
-                        color: const Color(0xFFFCD34D), width: 2),
+                    border:
+                        Border.all(color: const Color(0xFFFCD34D), width: 2),
                   ),
                   child: const Column(children: [
                     Text('🤔', style: TextStyle(fontSize: 32)),
@@ -575,8 +620,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
                   decoration: BoxDecoration(
                     color: const Color(0xFFD1FAE5),
                     borderRadius: BorderRadius.circular(18),
-                    border: Border.all(
-                        color: const Color(0xFF10B981), width: 2),
+                    border:
+                        Border.all(color: const Color(0xFF10B981), width: 2),
                   ),
                   child: const Column(children: [
                     Text('🎉', style: TextStyle(fontSize: 32)),
@@ -645,8 +690,7 @@ class _WritingRow extends StatelessWidget {
               onPanUpdate: (d) => onPanUpdate(d.localPosition),
               child: CustomPaint(
                 size: Size(c.maxWidth, c.maxHeight),
-                painter: _StrokesPainter(
-                    strokes: strokes, color: gradient[0]),
+                painter: _StrokesPainter(strokes: strokes, color: gradient[0]),
               ),
             ),
           ]);
@@ -719,11 +763,10 @@ class _StrokesPainter extends CustomPainter {
     }
   }
 
+  // Die Strich-Liste wird beim Schreiben direkt veraendert und als dieselbe
+  // Instanz uebergeben. Ein Laengenvergleich old/new war deshalb immer gleich,
+  // der Painter zeichnete nie neu und die Schrift des Kindes blieb unsichtbar.
+  // Neu gebaut wird der Painter nur bei setState, also immer neu zeichnen.
   @override
-  bool shouldRepaint(_StrokesPainter old) =>
-      old.strokes.length != strokes.length ||
-      (strokes.isNotEmpty &&
-          old.strokes.isNotEmpty &&
-          old.strokes.last.length != strokes.last.length) ||
-      old.color != color;
+  bool shouldRepaint(_StrokesPainter old) => true;
 }

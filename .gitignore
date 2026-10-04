@@ -17,3 +17,7 @@ node_modules/
 !*.example
 __pycache__/
 *.pyc
+
+.idea/
+
+*.iml

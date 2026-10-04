@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'writing_path_geometry.dart';
+
 enum WritingMode {
   trace,
   guided,
@@ -159,186 +161,89 @@ class StrokeSmoother {
 class WritingEvaluator {
   const WritingEvaluator();
 
-  WritingEvaluation evaluate({
-    required WritingTemplate template,
-    required WritingAttempt attempt,
-  }) {
-    if (attempt.strokes.isEmpty || attempt.strokes.every((stroke) => stroke.points.isEmpty)) {
-      return const WritingEvaluation(
-        overallScore: 0,
-        startPointScore: 0,
-        directionScore: 0,
-        coverageScore: 0,
-        pathDistanceScore: 0,
-        strokeOrderScore: 0,
-        mirrored: false,
-        incomplete: true,
-        hints: <WritingHint>[
-          WritingHint(type: WritingHintType.incomplete, message: 'Versuche die Spur einmal nachzufahren.'),
-        ],
-      );
+  WritingEvaluation evaluate({required WritingTemplate template, required WritingAttempt attempt}) {
+    final expected = template.strokes
+        .map((stroke) => WritingPathGeometry.resample(WritingPathGeometry.sample(stroke.pathData)))
+        .toList();
+    final actual = attempt.strokes.where((stroke) => stroke.points.length >= 2)
+        .map((stroke) => WritingPathGeometry.resample(stroke.points
+            .map((point) => math.Point<double>(point.x, point.y)).toList()))
+        .toList();
+    if (expected.isEmpty || expected.any((path) => path.isEmpty)) {
+      return _ungraded;
     }
+    if (actual.isEmpty) return _empty;
 
-    final startScore = _startPointScore(template, attempt);
-    final directionScore = _directionScore(template, attempt);
-    final coverageScore = _coverageScore(template, attempt);
-    final pathDistanceScore = _pathDistanceScore(template, attempt);
-    final strokeOrderScore = _strokeOrderScore(template, attempt);
-    final mirrored = _looksMirrored(template, attempt);
-    final incomplete = coverageScore < 0.55;
-
-    final mirrorPenalty = mirrored ? 0.20 : 0.0;
-    final overall = (startScore * 0.18 +
-            directionScore * 0.20 +
-            coverageScore * 0.24 +
-            pathDistanceScore * 0.23 +
-            strokeOrderScore * 0.15 -
-            mirrorPenalty)
-        .clamp(0.0, 1.0);
-
+    // Trace tolerance is 8% of the normalized 100x100 writing area.
+    // Both directions are measured: covering the template alone is not enough
+    // if most of the child's ink is unrelated scribbling elsewhere.
+    const tolerance = 8.0;
+    var coverage = 0.0;
+    var precision = 0.0;
+    var direction = 0.0;
+    var start = 0.0;
+    var reflectedCoverage = 0.0;
+    for (var i = 0; i < expected.length; i++) {
+      if (i >= actual.length) continue;
+      final reference = expected[i];
+      final drawn = actual[i];
+      coverage += _fractionNear(reference, drawn, tolerance);
+      precision += _fractionNear(drawn, reference, tolerance);
+      final pairedDistance = List.generate(reference.length,
+        (j) => reference[j].distanceTo(drawn[j])).reduce((a, b) => a + b) / reference.length;
+      direction += (1 - pairedDistance / 24).clamp(0.0, 1.0);
+      start += (1 - reference.first.distanceTo(drawn.first) / 20).clamp(0.0, 1.0);
+      reflectedCoverage += _fractionNear(reference.map((p) =>
+        math.Point<double>(template.viewBoxWidth - p.x, p.y)).toList(), drawn, tolerance);
+    }
+    coverage /= expected.length;
+    precision /= expected.length;
+    direction /= expected.length;
+    start /= expected.length;
+    reflectedCoverage /= expected.length;
+    final order = (math.min(expected.length, actual.length) /
+        math.max(expected.length, actual.length)).toDouble();
+    final mirrored = coverage < .60 && reflectedCoverage > .82;
+    final incomplete = coverage < .80 || precision < .75 || direction < .60 || actual.length < expected.length;
+    final score = ((coverage * .45 + precision * .35 + direction * .15 + start * .05) *
+        math.min(coverage, precision) * order).clamp(0.0, 1.0).toDouble();
+    final hints = <WritingHint>[];
+    if (mirrored) {
+      hints.add(const WritingHint(type: WritingHintType.mirrored, message: 'Die Spur ist gespiegelt. Schau noch einmal auf die Vorlage.'));
+    } else if (coverage < .80) {
+      hints.add(const WritingHint(type: WritingHintType.coverage, message: 'Fahre die ganze Vorlage nach. Ein Teil der Spur fehlt noch.'));
+    } else if (precision < .75) {
+      hints.add(const WritingHint(type: WritingHintType.linePosition, message: 'Bleib mit deinen Strichen näher an der gezeichneten Spur.'));
+    } else if (direction < .60) {
+      hints.add(const WritingHint(type: WritingHintType.direction, message: 'Starte beim markierten Punkt und folge der Strichrichtung.'));
+    } else if (order < .8) {
+      hints.add(const WritingHint(type: WritingHintType.strokeOrder, message: 'Fahre jeden nummerierten Strich einmal nach.'));
+    } else {
+      hints.add(const WritingHint(type: WritingHintType.coverage, message: 'Du bist nah an der Vorlage.'));
+    }
     return WritingEvaluation(
-      overallScore: overall,
-      startPointScore: startScore,
-      directionScore: directionScore,
-      coverageScore: coverageScore,
-      pathDistanceScore: pathDistanceScore,
-      strokeOrderScore: strokeOrderScore,
-      mirrored: mirrored,
-      incomplete: incomplete,
-      hints: _hints(
-        startScore: startScore,
-        directionScore: directionScore,
-        coverageScore: coverageScore,
-        pathDistanceScore: pathDistanceScore,
-        strokeOrderScore: strokeOrderScore,
-        mirrored: mirrored,
-        incomplete: incomplete,
-      ),
+      overallScore: score, startPointScore: start, directionScore: direction,
+      coverageScore: coverage, pathDistanceScore: precision, strokeOrderScore: order,
+      mirrored: mirrored, incomplete: incomplete, hints: hints,
     );
   }
 
-  double _startPointScore(WritingTemplate template, WritingAttempt attempt) {
-    final expected = template.strokes.isEmpty ? null : template.strokes.first;
-    final actual = attempt.strokes.first.start;
-    if (expected == null || actual == null) return 0;
-    final distance = _distance(actual.x, actual.y, expected.startX, expected.startY);
-    return (1 - distance / 50).clamp(0.0, 1.0);
+  double _fractionNear(List<math.Point<double>> source, List<math.Point<double>> target, double tolerance) {
+    if (source.isEmpty || target.isEmpty) return 0;
+    return source.where((point) => target.any((other) => point.distanceTo(other) <= tolerance)).length / source.length;
   }
 
-  double _directionScore(WritingTemplate template, WritingAttempt attempt) {
-    final count = math.min(template.strokes.length, attempt.strokes.length);
-    if (count == 0) return 0;
-    var sum = 0.0;
-    for (var i = 0; i < count; i++) {
-      final expected = template.strokes[i];
-      final actual = attempt.strokes[i];
-      final start = actual.start;
-      final end = actual.end;
-      if (start == null || end == null) continue;
-      final expectedDx = expected.endX - expected.startX;
-      final expectedDy = expected.endY - expected.startY;
-      final actualDx = end.x - start.x;
-      final actualDy = end.y - start.y;
-      sum += _cosineSimilarity(expectedDx, expectedDy, actualDx, actualDy).clamp(0.0, 1.0);
-    }
-    return (sum / count).clamp(0.0, 1.0);
-  }
-
-  double _coverageScore(WritingTemplate template, WritingAttempt attempt) {
-    final expected = template.strokes.length;
-    if (expected == 0) return 0;
-    final nonEmpty = attempt.strokes.where((stroke) => stroke.points.length >= 2).length;
-    return (nonEmpty / expected).clamp(0.0, 1.0);
-  }
-
-  double _pathDistanceScore(WritingTemplate template, WritingAttempt attempt) {
-    final expectedCount = template.strokes.length;
-    if (expectedCount == 0) return 0;
-    var sum = 0.0;
-    var count = 0;
-    for (var i = 0; i < math.min(expectedCount, attempt.strokes.length); i++) {
-      final expected = template.strokes[i];
-      final actual = attempt.strokes[i];
-      final start = actual.start;
-      final end = actual.end;
-      if (start == null || end == null) continue;
-      final startDistance = _distance(start.x, start.y, expected.startX, expected.startY);
-      final endDistance = _distance(end.x, end.y, expected.endX, expected.endY);
-      final avg = (startDistance + endDistance) / 2;
-      sum += (1 - avg / 60).clamp(0.0, 1.0);
-      count++;
-    }
-    if (count == 0) return 0;
-    return (sum / count).clamp(0.0, 1.0);
-  }
-
-  double _strokeOrderScore(WritingTemplate template, WritingAttempt attempt) {
-    if (template.strokes.length <= 1) return 1;
-    if (attempt.strokes.length < template.strokes.length) {
-      return (attempt.strokes.length / template.strokes.length).clamp(0.0, 1.0);
-    }
-    return 1;
-  }
-
-  bool _looksMirrored(WritingTemplate template, WritingAttempt attempt) {
-    if (template.strokes.isEmpty || attempt.strokes.isEmpty) return false;
-    final expected = template.strokes.first;
-    final actual = attempt.strokes.first;
-    final start = actual.start;
-    final end = actual.end;
-    if (start == null || end == null) return false;
-    final expectedDx = expected.endX - expected.startX;
-    final actualDx = end.x - start.x;
-    return expectedDx.sign != 0 && actualDx.sign != 0 && expectedDx.sign != actualDx.sign;
-  }
-
-  List<WritingHint> _hints({
-    required double startScore,
-    required double directionScore,
-    required double coverageScore,
-    required double pathDistanceScore,
-    required double strokeOrderScore,
-    required bool mirrored,
-    required bool incomplete,
-  }) {
-    final hints = <WritingHint>[];
-    if (startScore < 0.55) {
-      hints.add(const WritingHint(type: WritingHintType.startPoint, message: 'Starte naeher am Anfangspunkt.'));
-    }
-    if (directionScore < 0.55) {
-      hints.add(const WritingHint(type: WritingHintType.direction, message: 'Achte auf die Richtung des Strichs.'));
-    }
-    if (coverageScore < 0.65 || incomplete) {
-      hints.add(const WritingHint(type: WritingHintType.incomplete, message: 'Fahre die ganze Form bis zum Ende nach.'));
-    }
-    if (pathDistanceScore < 0.55) {
-      hints.add(const WritingHint(type: WritingHintType.linePosition, message: 'Bleib noch etwas naeher auf der Spur.'));
-    }
-    if (strokeOrderScore < 0.75) {
-      hints.add(const WritingHint(type: WritingHintType.strokeOrder, message: 'Versuche die Striche in der richtigen Reihenfolge.'));
-    }
-    if (mirrored) {
-      hints.add(const WritingHint(type: WritingHintType.mirrored, message: 'Das sieht gespiegelt aus. Schau auf die Richtung.'));
-    }
-    if (hints.isEmpty) {
-      hints.add(const WritingHint(type: WritingHintType.coverage, message: 'Sehr gut. Du bist nah an der Vorlage.'));
-    }
-    return hints;
-  }
-
-  double _distance(double ax, double ay, double bx, double by) {
-    final dx = ax - bx;
-    final dy = ay - by;
-    return math.sqrt(dx * dx + dy * dy);
-  }
-
-  double _cosineSimilarity(double ax, double ay, double bx, double by) {
-    final dot = ax * bx + ay * by;
-    final magA = math.sqrt(ax * ax + ay * ay);
-    final magB = math.sqrt(bx * bx + by * by);
-    if (magA == 0 || magB == 0) return 0;
-    return dot / (magA * magB);
-  }
+  static const _ungraded = WritingEvaluation(
+    overallScore: 0, startPointScore: 0, directionScore: 0, coverageScore: 0,
+    pathDistanceScore: 0, strokeOrderScore: 0, mirrored: false, incomplete: true,
+    hints: [WritingHint(type: WritingHintType.coverage,
+      message: 'Freie Schreibübung ohne automatische Bewertung. Bitte gemeinsam mit einer erwachsenen Person ansehen.')],
+  );
+  static const _empty = WritingEvaluation(
+    overallScore: 0, startPointScore: 0, directionScore: 0, coverageScore: 0,
+    pathDistanceScore: 0, strokeOrderScore: 0, mirrored: false, incomplete: true,
+    hints: [WritingHint(type: WritingHintType.incomplete, message: 'Fahre die markierte Spur einmal nach.')],
+  );
 }
 
 class WritingTemplateRepository {

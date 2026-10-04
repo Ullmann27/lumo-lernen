@@ -27,13 +27,25 @@ import '../../domain/writing/writing_word_bank.dart';
 import '../../widgets/fox/lumo_idle_fox.dart';
 import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../../widgets/lumo/lumo.dart';
+import '../learning_modules/learning_module_progress.dart';
 import '../learning_modules/lumo_phrases.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
 
 class LumoWritingWordCoachScreen extends StatefulWidget {
-  const LumoWritingWordCoachScreen({super.key, required this.appState});
+  const LumoWritingWordCoachScreen({
+    super.key,
+    required this.appState,
+    this.sessionTasks,
+    this.progressRepository,
+  });
   final LumoAppState appState;
+
+  @visibleForTesting
+  final List<WritingWordTask>? sessionTasks;
+
+  @visibleForTesting
+  final WritingProgressRepository? progressRepository;
 
   @override
   State<LumoWritingWordCoachScreen> createState() =>
@@ -53,7 +65,8 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   late final AnimationController _entryCtrl;
   late final AnimationController _wrongShakeCtrl;
   final _rng = math.Random();
-  final _progressRepo = WritingProgressRepository();
+  late final WritingProgressRepository _progressRepo;
+  late final LearningModuleProgress _learningProgress;
 
   late List<WritingWordTask> _sessionTasks;
   int _taskIdx = 0;
@@ -80,6 +93,10 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   /// Wurde der aktuelle Buchstabe schon einmal falsch geprueft?
   /// Damit zaehlt nur die erste richtige Antwort als 'first try'.
   bool _currentLetterHadMistake = false;
+  bool _currentLetterHintUsed = false;
+  bool _wordHintUsed = false;
+  bool _finishShown = false;
+  bool _finishDismissed = false;
 
   /// Verhindert doppelte _checkLetter-Aufrufe bei schnellen Doppel-Taps.
   bool _checkInFlight = false;
@@ -103,6 +120,12 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   @override
   void initState() {
     super.initState();
+    _progressRepo = widget.progressRepository ?? WritingProgressRepository();
+    _learningProgress = LearningModuleProgress(
+      appState: widget.appState,
+      subject: 'Deutsch',
+      unit: 'Wörter schreiben',
+    );
     _demoCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 2200));
     _pulseCtrl = AnimationController(
@@ -115,7 +138,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     // Heinz-Crash-Bug: Wenn _pickSessionTasks fehlt, soll der Screen
     // nicht crashen sondern Fallback-Tasks bekommen.
     try {
-      _sessionTasks = _pickSessionTasks();
+      _sessionTasks = widget.sessionTasks ?? _pickSessionTasks();
     } catch (e, st) {
       debugPrint('WordCoach picking failed: $e\n$st');
       _sessionTasks = WritingWordBank.all.take(_wordsPerSession).toList();
@@ -143,13 +166,14 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
           _lastFeedback != null;
       setState(() {
         _progress = p;
-        if (!hasStarted && p.weakLetters.isNotEmpty) {
+        if (!hasStarted &&
+            widget.sessionTasks == null &&
+            p.weakLetters.isNotEmpty) {
           try {
             _sessionTasks = _pickSessionTasks();
             if (_sessionTasks.isEmpty) {
-              _sessionTasks = WritingWordBank.all
-                  .take(_wordsPerSession)
-                  .toList();
+              _sessionTasks =
+                  WritingWordBank.all.take(_wordsPerSession).toList();
             }
           } catch (_) {
             // Pool-Pick failed - behalte bisherigen Stand.
@@ -166,6 +190,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   @override
   void dispose() {
+    _learningProgress.dispose();
     _moodResetTimer?.cancel();
     _demoCtrl.dispose();
     _pulseCtrl.dispose();
@@ -189,8 +214,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     // Kandidaten' gezogen.
     final weak = _progress.weakLetters.toSet();
     if (weak.isNotEmpty) {
-      int weakCount(WritingWordTask t) =>
-          t.letters.where(weak.contains).length;
+      int weakCount(WritingWordTask t) => t.letters.where(weak.contains).length;
       pool.sort((a, b) {
         final delta = weakCount(b) - weakCount(a);
         if (delta != 0) return delta;
@@ -235,6 +259,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   bool _drawing = false;
 
   void _onPanStart(DragStartDetails d) {
+    if (_checkInFlight || _learningProgress.hasPending) return;
     setState(() {
       _drawing = true;
       _currentPoints = [d.localPosition];
@@ -246,6 +271,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   }
 
   void _onPanUpdate(DragUpdateDetails d) {
+    if (_checkInFlight || _learningProgress.hasPending) return;
     setState(() => _currentPoints = [..._currentPoints, d.localPosition]);
   }
 
@@ -277,6 +303,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   }
 
   void _clearCanvas() {
+    if (_checkInFlight || _learningProgress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _strokes.clear();
@@ -291,16 +318,22 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     // Re-Entry-Guard: schnelle Doppel-Taps duerfen _checkLetter nicht
     // zweimal parallel laufen lassen. Sonst doppelte XP/Sterne und
     // moegliches Ueberspringen von Buchstaben.
-    if (_checkInFlight) return;
+    if (_checkInFlight || _learningProgress.hasPending) return;
     if (_strokes.isEmpty) return;
     if (_lastFeedback != null && _lastFeedback!.matched) return;
 
-    _checkInFlight = true;
+    setState(() => _checkInFlight = true);
     try {
       final template = _currentTemplate;
       if (template == null) {
-        // Falls Buchstabe nicht im Template-Lexikon - akzeptieren mit kurzer Notiz.
-        await _onLetterCorrect();
+        // An ungraded letter cannot complete a scored word or a daily task.
+        setState(() => _lastFeedback = const WritingFeedback(
+              type: FeedbackType.retry,
+              message:
+                  'Für diesen Buchstaben ist noch keine Prüfung verfügbar.',
+              showDemo: false,
+              matched: false,
+            ));
         return;
       }
       HapticFeedback.lightImpact();
@@ -308,13 +341,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         template: template,
         userStrokes: _strokes,
       );
-      if (WritingFeatureFlags.enableProgressTracking) {
-        // Best-effort, kein await blockierend.
-        unawaited(_progressRepo.recordAttempt(
-          letter: _currentLetter,
-          correct: feedback.matched,
-        ));
-      }
+      final hintUsed = _currentLetterHintUsed;
       setState(() {
         _lastFeedback = feedback;
         _showDemo = feedback.showDemo;
@@ -326,17 +353,62 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         await _onLetterCorrect();
       } else {
         _currentLetterHadMistake = true;
+        final saved = await _learningProgress.saveAnswer(
+          correct: false,
+          hintUsed: hintUsed,
+        );
+        if (!saved || !mounted) return;
+        await _recordWritingAttempt(correct: false);
+        if (!mounted) return;
+        // The correction/demo is help for the following attempt and word.
+        if (feedback.showDemo) _markHintUsed();
         _setMood(LumoReactionMood.think);
         setState(() => _wrongSlot = _letterCursor);
         _wrongShakeCtrl.forward(from: 0);
         if (_showDemo) _demoCtrl.forward(from: 0);
       }
     } finally {
-      _checkInFlight = false;
+      if (mounted) {
+        setState(() => _checkInFlight = false);
+      } else {
+        _checkInFlight = false;
+      }
     }
   }
 
+  Future<void> _recordWritingAttempt({required bool correct}) async {
+    if (!WritingFeatureFlags.enableProgressTracking) return;
+    // Await its serialized mutation, but this legacy repository still swallows
+    // storage errors. Confirmed durability comes from _learningProgress.
+    try {
+      final updated = await _progressRepo.recordAttempt(
+        letter: _currentLetter,
+        correct: correct,
+      );
+      if (mounted) _progress = updated;
+    } catch (_) {}
+  }
+
+  void _markHintUsed() {
+    _currentLetterHintUsed = true;
+    _wordHintUsed = true;
+  }
+
   Future<void> _onLetterCorrect() async {
+    final isLastLetter = _letterCursor + 1 >= _currentTask.letters.length;
+    // The final letter includes its 4 XP and the existing 15 XP word bonus.
+    // Only a complete word is a correct profile answer / daily task.
+    final saved = isLastLetter
+        ? await _learningProgress.saveAnswer(
+            correct: true,
+            hintUsed: _wordHintUsed,
+            stars: 3,
+            xp: 19,
+          )
+        : await _learningProgress.saveReward(stars: 0, xp: 4);
+    if (!saved || !mounted) return;
+    await _recordWritingAttempt(correct: true);
+    if (!mounted) return;
     HapticFeedback.mediumImpact();
     // setState noetig, damit der gerade akzeptierte Slot SOFORT gruen
     // wird. Bei nicht-letzten Buchstaben maskierte das nachfolgende
@@ -349,25 +421,28 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         _firstTryLetters++;
       }
     });
-    widget.appState.addXp(4);
-    final isLastLetter = _letterCursor + 1 >= _currentTask.letters.length;
     if (isLastLetter) {
       _correctWords++;
-      widget.appState.addStars(3);
-      widget.appState.addXp(15);
       if (WritingFeatureFlags.enableProgressTracking) {
-        unawaited(_progressRepo.recordCompletedWord(_currentTask.word));
+        try {
+          _progress =
+              await _progressRepo.recordCompletedWord(_currentTask.word);
+        } catch (_) {}
+        if (!mounted) return;
       }
       _speak('Super! Du hast ${_currentTask.word} geschrieben!');
-      await Future<void>.delayed(const Duration(milliseconds: 1400));
-      if (!mounted) return;
-      _nextTask();
+      final continueFeedback = await _learningProgress
+          .feedbackDelay(const Duration(milliseconds: 1400));
+      if (!continueFeedback || !mounted) return;
+      await _nextTask();
     } else {
-      await Future<void>.delayed(const Duration(milliseconds: 700));
-      if (!mounted) return;
+      final continueFeedback = await _learningProgress
+          .feedbackDelay(const Duration(milliseconds: 700));
+      if (!continueFeedback || !mounted) return;
       setState(() {
         _letterCursor++;
         _currentLetterHadMistake = false;
+        _currentLetterHintUsed = false;
         _strokes.clear();
         _currentPoints = [];
         _lastFeedback = null;
@@ -377,15 +452,17 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     }
   }
 
-  void _nextTask() {
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _sessionTasks.length) {
-      _showFinish();
+      await _showFinish();
       return;
     }
     setState(() {
       _taskIdx++;
       _letterCursor = 0;
       _currentLetterHadMistake = false;
+      _currentLetterHintUsed = false;
+      _wordHintUsed = false;
       _completedSlots.clear();
       _strokes.clear();
       _currentPoints = [];
@@ -398,6 +475,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   }
 
   void _retry() {
+    if (_checkInFlight || _learningProgress.hasPending) return;
     HapticFeedback.lightImpact();
     setState(() {
       _strokes.clear();
@@ -409,16 +487,20 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   }
 
   void _replayDemo() {
+    if (_checkInFlight || _learningProgress.hasPending) return;
     final template = _currentTemplate;
     if (template == null) return;
+    _markHintUsed();
     setState(() => _showDemo = true);
     _demoCtrl.forward(from: 0);
     _speak(template.description);
   }
 
   void _showHint() {
+    if (_checkInFlight || _learningProgress.hasPending) return;
     final hint = _currentTask.hint;
     if (hint == null || hint.isEmpty) return;
+    _markHintUsed();
     _speak(hint);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -431,25 +513,26 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     );
   }
 
-  void _showFinish() {
+  Future<void> _showFinish() async {
+    if (_finishShown) return;
+    _finishShown = true;
     final total = _sessionTasks.length;
     // Sterne basieren auf _firstTryLetters / Gesamtbuchstaben, nicht auf
     // _correctWords. _correctWords ist im Normalfall immer gleich total
     // (weil jedes Wort erst beim letzten korrekten Buchstaben weiterzaehlt),
     // also waere die Sterne-Anzeige sonst immer maximal.
-    final totalLetters = _sessionTasks.fold<int>(
-        0, (sum, task) => sum + task.letters.length);
-    final accuracy =
-        totalLetters > 0 ? _firstTryLetters / totalLetters : 0.0;
+    final totalLetters =
+        _sessionTasks.fold<int>(0, (sum, task) => sum + task.letters.length);
+    final accuracy = totalLetters > 0 ? _firstTryLetters / totalLetters : 0.0;
     final stars = (accuracy * 5).round().clamp(1, 5);
-    widget.appState.addStars(stars);
+    final saved = await _learningProgress.saveBonus(stars: stars, xp: 0);
+    if (!saved || !mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('Wortdiktat fertig!',
             textAlign: TextAlign.center,
             style:
@@ -487,8 +570,10 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
+              if (_finishDismissed || _learningProgress.hasPending) return;
+              _finishDismissed = true;
+              Navigator.of(dialogContext).pop();
+              Navigator.of(context).maybePop();
             },
             child: Text('Fertig',
                 style: TextStyle(
@@ -503,68 +588,78 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              // Heinz' Schreib-Bug: physics auf NeverScrollable solange
-              // ein Strich aktiv ist - sonst klaut Scroll die Pan-Geste.
-              physics: _drawing
-                  ? const NeverScrollableScrollPhysics()
-                  : const ClampingScrollPhysics(),
-              padding: const EdgeInsets.all(16),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) =>
-                    Opacity(opacity: _entryCtrl.value, child: child),
-                child: Column(children: [
-                  _buildPrompt(),
-                  const SizedBox(height: 14),
-                  _buildLetterSlots(),
-                  const SizedBox(height: 16),
-                  _buildCanvas(),
-                  const SizedBox(height: 12),
-                  if (_lastFeedback != null) _buildFeedback(),
-                  const SizedBox(height: 12),
-                  _buildControls(),
-                  const SizedBox(height: 12),
-                  // Lumo-Reaction-Companion - reagiert sichtbar auf jeden
-                  // Buchstabencheck (cheer bei richtig, think bei falsch).
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: LumoReactionCompanion(
-                      mood: _companionMood,
-                      size: 80,
-                      // Phase 3: Tap auf Lumo gibt einen Tipp zum
-                      // aktuellen Diktatwort.
-                      onTap: () {
-                        _setMood(LumoReactionMood.think);
-                        final hint = _currentTask.hint ??
-                            'Hör gut zu was ich sage und schreib Buchstabe für Buchstabe.';
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(SnackBar(
-                            content: Text('🦊 $hint',
-                                style: const TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w800,
-                                    color: Colors.white)),
-                            backgroundColor: _gradient[1],
-                            duration: const Duration(seconds: 4),
-                            behavior: SnackBarBehavior.floating,
-                          ));
-                      },
+    return LearningModuleProgressScope(
+      progress: _learningProgress,
+      child: Scaffold(
+        backgroundColor: const Color(0xFFFFFBEB),
+        body: SafeArea(
+          child: Column(children: [
+            _buildTopBar(),
+            Expanded(
+              child: SingleChildScrollView(
+                // Heinz' Schreib-Bug: physics auf NeverScrollable solange
+                // ein Strich aktiv ist - sonst klaut Scroll die Pan-Geste.
+                physics: _drawing
+                    ? const NeverScrollableScrollPhysics()
+                    : const ClampingScrollPhysics(),
+                padding: const EdgeInsets.all(16),
+                child: AnimatedBuilder(
+                  animation: _entryCtrl,
+                  builder: (_, child) =>
+                      Opacity(opacity: _entryCtrl.value, child: child),
+                  child: Column(children: [
+                    _buildPrompt(),
+                    const SizedBox(height: 14),
+                    _buildLetterSlots(),
+                    const SizedBox(height: 16),
+                    _buildCanvas(),
+                    const SizedBox(height: 12),
+                    if (_lastFeedback != null) _buildFeedback(),
+                    const SizedBox(height: 12),
+                    _buildControls(),
+                    const SizedBox(height: 12),
+                    // Lumo-Reaction-Companion - reagiert sichtbar auf jeden
+                    // Buchstabencheck (cheer bei richtig, think bei falsch).
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: LumoReactionCompanion(
+                        mood: _companionMood,
+                        reducedMotion:
+                            widget.appState.state.settings.reduceAnimations ||
+                                widget.appState.state.settings.calmMode,
+                        size: 80,
+                        // Phase 3: Tap auf Lumo gibt einen Tipp zum
+                        // aktuellen Diktatwort.
+                        onTap: () {
+                          if (_checkInFlight || _learningProgress.hasPending) {
+                            return;
+                          }
+                          _markHintUsed();
+                          _setMood(LumoReactionMood.think);
+                          final hint = _currentTask.hint ??
+                              'Hör gut zu was ich sage und schreib Buchstabe für Buchstabe.';
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                              content: Text('🦊 $hint',
+                                  style: const TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.white)),
+                              backgroundColor: _gradient[1],
+                              duration: const Duration(seconds: 4),
+                              behavior: SnackBarBehavior.floating,
+                            ));
+                        },
+                      ),
                     ),
-                  ),
-                ]),
+                  ]),
+                ),
               ),
             ),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }
@@ -574,14 +669,13 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () => Navigator.of(context).maybePop(),
         ),
         Expanded(
           child: Column(children: [
@@ -607,8 +701,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
+            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
             const SizedBox(width: 4),
             Text('$_correctWords',
                 style: const TextStyle(
@@ -624,16 +717,32 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   }
 
   Widget _buildPrompt() {
-    // Polish: zentrale LumoPromptCard statt ad-hoc Container.
-    // Selbe Optik (Lila Border, Fox links, Label+Title rechts, Speaker rechts),
-    // aber konsistente Tokens. Animierter LumoIdleFox bleibt als `leading`.
-    return LumoPromptCard(
-      label: 'Hör gut zu!',
-      title: 'Schreib Buchstabe ${_letterCursor + 1} von '
-          '${_currentTask.letters.length}.',
-      accent: _gradient[1],
-      leading: const LumoIdleFox(size: 44),
-      onSpeakerTap: _speakPrompt,
+    final voiceEnabled = widget.appState.state.settings.voiceEnabled;
+    final letterPrompt = 'Schreib Buchstabe ${_letterCursor + 1} von '
+        '${_currentTask.letters.length}.';
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LumoPromptCard(
+          label: voiceEnabled
+              ? 'Hör gut zu!'
+              : 'Stimme aus · Du kannst das Wort abschreiben.',
+          title: voiceEnabled
+              ? letterPrompt
+              : 'Schreib das Wort: ${_currentTask.word}',
+          accent: _gradient[1],
+          leading: const LumoIdleFox(size: 44),
+          onSpeakerTap: voiceEnabled ? _speakPrompt : null,
+        ),
+        if (!voiceEnabled) ...[
+          const SizedBox(height: 8),
+          Text(letterPrompt,
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w800)),
+        ],
+      ],
     );
   }
 
@@ -829,20 +938,20 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         _btn(Icons.help_outline_rounded, 'Lumo zeigt', _gradient[0],
             _replayDemo),
         if (_currentTask.hint != null)
-          _btn(Icons.lightbulb_outline_rounded, 'Tipp',
-              const Color(0xFFFCD34D), _showHint),
+          _btn(Icons.lightbulb_outline_rounded, 'Tipp', const Color(0xFFFCD34D),
+              _showHint),
         if (canRetry)
           _btn(Icons.refresh_rounded, 'Nochmal', _gradient[0], _retry),
         if (readyForCheck)
-          _btn(Icons.check_circle_rounded, 'Fertig',
-              const Color(0xFF10B981), _checkLetter),
+          _btn(Icons.check_circle_rounded, 'Fertig', const Color(0xFF10B981),
+              _checkLetter),
       ],
     );
   }
 
   Widget _btn(IconData icon, String label, Color color, VoidCallback onTap) {
     return ElevatedButton.icon(
-      onPressed: onTap,
+      onPressed: _checkInFlight || _learningProgress.hasPending ? null : onTap,
       icon: Icon(icon, color: Colors.white, size: 20),
       label: Text(label,
           style: const TextStyle(
@@ -853,8 +962,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
     );
   }

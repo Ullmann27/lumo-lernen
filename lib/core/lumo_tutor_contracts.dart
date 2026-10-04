@@ -25,6 +25,7 @@ enum LumoTutorSubject {
   lesen,
   sachunterricht,
   englisch,
+  logik,
 }
 
 enum LumoTutorHelpLevel {

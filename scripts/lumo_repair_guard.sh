@@ -21,6 +21,27 @@ require_text() {
   echo "ok connection: $path -> $pattern"
 }
 
+# Dart constructor arguments may span lines and include keys before appState.
+require_state_constructor() {
+  local path="$1" constructor="$2"
+  python3 - "$path" "$constructor" <<'PY_CHECK' || fail "Missing state connection: $path -> $constructor"
+import re, sys
+from pathlib import Path
+source = Path(sys.argv[1]).read_text()
+for call in re.finditer(re.escape(sys.argv[2]) + r'\s*\(', source):
+    depth = 1
+    end = call.end()
+    while depth and end < len(source):
+        depth += (source[end] == '(') - (source[end] == ')')
+        end += 1
+    arguments = source[call.end():end - 1]
+    if re.search(r'\bappState\s*:\s*_appState\b', arguments):
+        raise SystemExit(0)
+raise SystemExit(1)
+PY_CHECK
+  echo "ok state connection: $path -> $constructor"
+}
+
 require_absent() {
   local path="$1"
   local pattern="$2"
@@ -43,7 +64,6 @@ require_file lib/features/reading/reading_content.dart
 require_file lib/features/settings/settings_content.dart
 require_file lib/features/agent/lumo_agent_content.dart
 require_file lib/widgets/shell/left_navigation.dart
-require_file lib/widgets/shell/lumo_stage_panel.dart
 require_file lib/core/lumo_voice.dart
 require_file lib/core/lumo_speech_listener.dart
 require_file lib/core/ai_tutor_service.dart
@@ -58,13 +78,20 @@ require_text lib/main.dart "try {"
 require_text lib/main.dart "profile = null"
 require_text lib/main.dart "AppShell(profile: _profile"
 
-require_text lib/app/app_shell.dart "HomeContent(appState: _appState"
-require_text lib/app/app_shell.dart "LumoAkademieScreen(appState: _appState)"
-require_text lib/app/app_shell.dart "LearningContent(appState: _appState)"
-require_text lib/app/app_shell.dart "ReadingContent(appState: _appState"
-require_text lib/app/app_shell.dart "SettingsContent(appState: _appState)"
-require_text lib/app/app_shell.dart "LumoAgentContent(appState: _appState"
-require_text lib/app/app_shell.dart "ParentalGate.show("
+require_state_constructor lib/app/app_shell.dart HomeContent
+require_state_constructor lib/app/app_shell.dart LumoAkademieScreen
+require_state_constructor lib/app/app_shell.dart LearningContent
+require_state_constructor lib/app/app_shell.dart ReadingContent
+require_state_constructor lib/app/app_shell.dart SettingsContent
+require_state_constructor lib/app/app_shell.dart LumoAgentContent
+require_text lib/app/app_shell.dart "_requiresLoadedSettings(section)"
+require_absent lib/app/app_shell.dart "ParentalGate"
+require_absent lib/core/app_settings.dart "parentPin"
+require_absent lib/core/settings_repository.dart "setParentPin"
+require_text lib/features/rewards/reward_shop_content.dart "ParentApprovalDialog.show("
+if rg -n 'ParentPin|ParentalGate|initialParentPin|parentPin|parentRecoveryCode|requiresParentPin' lib; then
+  fail "Obsolete access-code gate remains in active application code"
+fi
 require_text lib/app/app_shell.dart "ScanScreen("
 
 require_text lib/app/app_state.dart "loadLearningProfile"

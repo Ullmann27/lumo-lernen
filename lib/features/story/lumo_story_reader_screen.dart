@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
-import '../../core/lumo_image_generator.dart';
+import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_story_generator.dart';
 import '../../core/lumo_story_library.dart';
@@ -27,6 +27,7 @@ class LumoStoryReaderScreen extends StatefulWidget {
 
   final LumoStory story;
   final LumoAppState appState;
+
   /// Wenn null: Story ist neu und wird beim Beenden gespeichert.
   /// Wenn gesetzt: Story kommt schon aus der Bibliothek.
   final String? storyId;
@@ -36,7 +37,7 @@ class LumoStoryReaderScreen extends StatefulWidget {
 }
 
 class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   int _pageIdx = 0;
   bool _exerciseDone = false;
   String? _selectedAnswer;
@@ -55,6 +56,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   void initState() {
     super.initState();
     _pageCtrl = PageController();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) => _speak());
   }
 
@@ -64,6 +66,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     _summaryCtrl.dispose();
     _speech.cancel();
     _speech.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    LumoVoice.instance.stop();
     super.dispose();
   }
 
@@ -100,6 +104,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   }
 
   void _startListeningSummary() async {
+    if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
+        !mounted) return;
     try {
       _summaryCtrl.text = '';
       await _speech.startListening(
@@ -113,6 +119,14 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         },
       );
     } catch (_) {}
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      _speech.cancel();
+      LumoVoice.instance.stop();
+    }
   }
 
   void _stopListeningSummary() async {
@@ -130,7 +144,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     final lower = raw.toLowerCase();
     if (lower.isEmpty) {
       try {
-        LumoVoice.instance.speak('Erzaehl mir doch ein paar Sätze, ich hör dir gerne zu!');
+        LumoVoice.instance
+            .speak('Erzaehl mir doch ein paar Sätze, ich hör dir gerne zu!');
       } catch (_) {}
       return;
     }
@@ -213,13 +228,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 borderRadius: LumoTokens.brMedium,
               ),
               child: Row(children: [
-                Icon(Icons.save_rounded,
-                    color: LumoTokens.colors.successDeep),
+                Icon(Icons.save_rounded, color: LumoTokens.colors.successDeep),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text('Heft in deine Bibliothek gespeichert!',
-                      style: LumoTokens.typo.bodyMedium.copyWith(
-                          color: LumoTokens.colors.successDeep)),
+                      style: LumoTokens.typo.bodyMedium
+                          .copyWith(color: LumoTokens.colors.successDeep)),
                 ),
               ]),
             ),
@@ -281,9 +295,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
             children: [
               _buildTopBar(),
               Expanded(
-                child: _inSummaryMode
-                    ? _buildSummaryPage()
-                    : _buildPage(page),
+                child: _inSummaryMode ? _buildSummaryPage() : _buildPage(page),
               ),
               _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
             ],
@@ -295,11 +307,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
 
   Widget _buildTopBar() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(
-          LumoTokens.space12,
-          LumoTokens.space8,
-          LumoTokens.space12,
-          LumoTokens.space8),
+      padding: const EdgeInsets.fromLTRB(LumoTokens.space12, LumoTokens.space8,
+          LumoTokens.space12, LumoTokens.space8),
       child: Row(
         children: [
           IconButton(
@@ -311,7 +320,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               children: [
                 Text(widget.story.title,
                     style: LumoTokens.typo.titleLarge,
-                    maxLines: 1, overflow: TextOverflow.ellipsis),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis),
                 const SizedBox(height: 4),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(4),
@@ -319,8 +329,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                     value: (_pageIdx + 1) / widget.story.pages.length,
                     minHeight: 6,
                     backgroundColor: LumoTokens.colors.outline,
-                    valueColor: AlwaysStoppedAnimation(
-                        LumoTokens.colors.lumoOrange),
+                    valueColor:
+                        AlwaysStoppedAnimation(LumoTokens.colors.lumoOrange),
                   ),
                 ),
               ],
@@ -337,8 +347,6 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   }
 
   Widget _buildPage(LumoStoryPage page) {
-    final imgUrl =
-        LumoImageGenerator.instance.buildSafeImageUrl(page.imagePrompt);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(LumoTokens.space16),
       child: Column(
@@ -350,75 +358,26 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               padding: EdgeInsets.zero,
               child: ClipRRect(
                 borderRadius: LumoTokens.brLarge,
-                child: imgUrl != null
-                    ? Image.network(
-                        imgUrl,
-                        fit: BoxFit.cover,
-                        loadingBuilder: (_, child, p) {
-                          if (p == null) return child;
-                          // Vorher: kleines Indicator-Spin in cremeDeep
-                          // Container - sah aus wie leerer weisser Bereich
-                          // (Heinz' Screenshot). Jetzt: deutlicher Gradient
-                          // mit grossem Buch-Emoji + Text "Lumo malt das Bild".
-                          return Container(
-                            decoration: BoxDecoration(
-                                gradient: LumoTokens.colors.bgMagic),
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Text('📖',
-                                    style: TextStyle(fontSize: 64)),
-                                const SizedBox(height: 12),
-                                Text('Lumo malt das Bild...',
-                                    style: LumoTokens.typo.titleMedium
-                                        .copyWith(color: Colors.white)),
-                                const SizedBox(height: 12),
-                                const CircularProgressIndicator(
-                                    color: Colors.white),
-                              ],
-                            ),
-                          );
-                        },
-                        errorBuilder: (_, __, ___) => Container(
-                          decoration: BoxDecoration(
-                              gradient: LumoTokens.colors.bgMagic),
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text('📖',
-                                  style: TextStyle(fontSize: 80)),
-                              const SizedBox(height: 8),
-                              Text('Bild konnte nicht laden',
-                                  style: LumoTokens.typo.bodyMedium
-                                      .copyWith(color: Colors.white)),
-                            ],
-                          ),
-                        ),
-                      )
-                    : Container(
-                        decoration: BoxDecoration(
-                            gradient: LumoTokens.colors.bgMagic),
-                        alignment: Alignment.center,
-                        child: const Text('📖',
-                            style: TextStyle(fontSize: 80)),
-                      ),
+                child: Container(
+                  decoration:
+                      BoxDecoration(gradient: LumoTokens.colors.bgMagic),
+                  alignment: Alignment.center,
+                  child: const Text('📖', style: TextStyle(fontSize: 80)),
+                ),
               ),
             ),
           ),
           const SizedBox(height: LumoTokens.space16),
           // Seitenzahl
           Container(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 12, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
               color: LumoTokens.colors.lumoOrange.withOpacity(0.15),
               borderRadius: LumoTokens.brPill,
             ),
             child: Text('Seite ${page.pageNum} / ${widget.story.pages.length}',
-                style: LumoTokens.typo.labelMedium.copyWith(
-                    color: LumoTokens.colors.lumoOrangeDeep)),
+                style: LumoTokens.typo.labelMedium
+                    .copyWith(color: LumoTokens.colors.lumoOrangeDeep)),
           ),
           const SizedBox(height: LumoTokens.space12),
           // Lese-Text
@@ -441,15 +400,14 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           if (page.newWord != null) ...[
             const SizedBox(height: LumoTokens.space12),
             Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 16, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
                 gradient: LumoTokens.colors.heroLila,
                 borderRadius: LumoTokens.brPill,
               ),
               child: Text('Neues Wort: ${page.newWord!}',
-                  style: LumoTokens.typo.labelLarge.copyWith(
-                      color: Colors.white)),
+                  style:
+                      LumoTokens.typo.labelLarge.copyWith(color: Colors.white)),
             ),
           ],
         ],
@@ -478,8 +436,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           ),
           const SizedBox(height: 12),
           Text(ex.prompt,
-              style: LumoTokens.typo.titleLarge.copyWith(
-                  color: Colors.white, fontSize: 20),
+              style: LumoTokens.typo.titleLarge
+                  .copyWith(color: Colors.white, fontSize: 20),
               textAlign: TextAlign.center),
           const SizedBox(height: 12),
           if (ex.options != null)
@@ -509,8 +467,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                       borderRadius: LumoTokens.brMedium,
                     ),
                     child: Text(o,
-                        style: LumoTokens.typo.titleLarge.copyWith(
-                            color: LumoTokens.colors.textDark)),
+                        style: LumoTokens.typo.titleLarge
+                            .copyWith(color: LumoTokens.colors.textDark)),
                   ),
                 );
               }).toList(),
@@ -552,8 +510,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
             backgroundColor: LumoTokens.colors.lumoOrange,
             foregroundColor: Colors.white,
             textStyle: LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
-            shape: RoundedRectangleBorder(
-                borderRadius: LumoTokens.brLarge),
+            shape: RoundedRectangleBorder(borderRadius: LumoTokens.brLarge),
           ),
         ),
       ),
@@ -618,7 +575,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                   maxLines: 5,
                   minLines: 3,
                   decoration: const InputDecoration(
-                    hintText: 'Tipp hier deine Zusammenfassung ein oder drück "Sprechen"...',
+                    hintText:
+                        'Tipp hier deine Zusammenfassung ein oder drück "Sprechen"...',
                     border: OutlineInputBorder(),
                   ),
                   style: const TextStyle(
@@ -734,10 +692,9 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 style: ElevatedButton.styleFrom(
                   backgroundColor: LumoTokens.colors.lumoOrange,
                   foregroundColor: Colors.white,
-                  textStyle:
-                      LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: LumoTokens.brLarge),
+                  textStyle: LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
+                  shape:
+                      RoundedRectangleBorder(borderRadius: LumoTokens.brLarge),
                 ),
               )
             : ElevatedButton.icon(
@@ -747,10 +704,9 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 style: ElevatedButton.styleFrom(
                   backgroundColor: LumoTokens.colors.lumoLila,
                   foregroundColor: Colors.white,
-                  textStyle:
-                      LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: LumoTokens.brLarge),
+                  textStyle: LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
+                  shape:
+                      RoundedRectangleBorder(borderRadius: LumoTokens.brLarge),
                 ),
               ),
       ),

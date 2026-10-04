@@ -1,10 +1,13 @@
 import 'dart:math' as math;
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/lumo_asset_diagnostics.dart';
 import '../../core/game_progress_repository.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
@@ -30,9 +33,12 @@ import 'mini_games/stars_path_game.dart';
 ///   - Tap auf entsperrtes Level: zeigt Bottom-Sheet mit Level-Info
 ///     und startet das passende Mini-Game.
 class GamesContent extends StatefulWidget {
-  const GamesContent({super.key, required this.appState});
+  const GamesContent(
+      {super.key, required this.appState, this.onSection, this.onGameReturn});
 
   final LumoAppState appState;
+  final ValueChanged<LumoSection>? onSection;
+  final Future<void> Function()? onGameReturn;
 
   @override
   State<GamesContent> createState() => _GamesContentState();
@@ -43,15 +49,18 @@ class _GamesContentState extends State<GamesContent> {
 
   Map<int, int> _stars = const <int, int>{};
   bool _loaded = false;
+  bool _launchingGame = false;
+  int? _kartGrade;
+  String? _kartSubject;
 
   String get _childId {
     final st = widget.appState.state;
     final safeName = st.childName.trim().isEmpty
         ? 'kind'
         : st.childName.trim().toLowerCase().replaceAll(
-            RegExp(r'[^a-z0-9]+'),
-            '_',
-          );
+              RegExp(r'[^a-z0-9]+'),
+              '_',
+            );
     return 'local_${safeName}_${st.grade}';
   }
 
@@ -63,11 +72,34 @@ class _GamesContentState extends State<GamesContent> {
 
   Future<void> _load() async {
     final s = await _repo.loadStars(_childId);
+    final prefs = await SharedPreferences.getInstance();
+    Map? options;
+    try {
+      final raw = prefs.getString('lumo_kart_launch_v1');
+      if (raw != null) options = jsonDecode(raw) as Map;
+    } catch (_) {}
     if (!mounted) return;
     setState(() {
       _stars = s;
+      final grade = options?['grade'];
+      if (grade is int && grade >= 1 && grade <= 4) _kartGrade = grade;
+      final subject = options?['subject'];
+      if (const ['Mathematik', 'Deutsch', 'Sachunterricht', 'Logik']
+          .contains(subject)) {
+        _kartSubject = subject as String;
+      }
       _loaded = true;
     });
+  }
+
+  Future<void> _saveKartOptions({int? grade, String? subject}) async {
+    setState(() {
+      _kartGrade = grade ?? _kartGrade ?? widget.appState.state.grade;
+      _kartSubject = subject ?? _kartSubject ?? 'Mathematik';
+    });
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('lumo_kart_launch_v1',
+        jsonEncode({'grade': _kartGrade, 'subject': _kartSubject}));
   }
 
   void _onLevelTap(GameLevelRuntime rt) {
@@ -100,14 +132,24 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launch3D(String scene) async {
+    if (_launchingGame) return;
+    setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
     final state = widget.appState.state;
-    await launchLumo3D(
-      context,
-      scene: scene,
-      grade: state.grade,
-      subject: state.subject == 'Deutsch' ? 'Deutsch' : 'Mathematik',
-    );
+    try {
+      final launched = await launchLumo3D(
+        context,
+        scene: scene,
+        grade: _kartGrade ?? state.grade,
+        subject: _kartSubject ??
+            (state.subject == 'Deutsch' ? 'Deutsch' : 'Mathematik'),
+        appState: widget.appState,
+      );
+      if (launched) await widget.onGameReturn?.call();
+    } finally {
+      if (mounted) setState(() => _launchingGame = false);
+    }
+    if (mounted) await _load();
   }
 
   Future<void> _launchMemory() async {
@@ -212,7 +254,7 @@ class _GamesContentState extends State<GamesContent> {
   Widget build(BuildContext context) {
     final runtime = _repo.buildRuntime(_stars);
     final totalStars = runtime.fold<int>(0, (sum, r) => sum + r.starsEarned);
-    final maxStars = GameLevelCatalog.levels.fold<int>(
+    final maxStars = GameLevelCatalog.playableLevels.fold<int>(
       0,
       (s, l) => s + l.maxStars,
     );
@@ -232,7 +274,11 @@ class _GamesContentState extends State<GamesContent> {
             ),
             onPressed: () {
               HapticFeedback.lightImpact();
-              Navigator.of(context).maybePop();
+              if (widget.onSection != null) {
+                widget.onSection!(LumoSection.home);
+              } else {
+                Navigator.of(context).maybePop();
+              }
             },
           ),
           title: const Text(
@@ -256,6 +302,7 @@ class _GamesContentState extends State<GamesContent> {
                       totalStars: totalStars,
                       maxStars: maxStars,
                       unlockedCount: unlockedCount,
+                      levelCount: runtime.length,
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -286,16 +333,48 @@ class _GamesContentState extends State<GamesContent> {
                             ),
                           ),
                           const SizedBox(height: 14),
-                          _VsLumoCard(
-                            title: 'Insel-Cup · 3D-Rennen',
-                            subtitle:
-                                'Kurven, Gegner, Kristalle und Drift-Boosts',
-                            emoji: '🏎️',
-                            gradient: const [
-                              Color(0xFF7762E9),
-                              Color(0xFF44348D),
-                            ],
+                          _KartHeroCard(
+                            launching: _launchingGame,
                             onPlay: () => _launch3D('kart'),
+                          ),
+                          const SizedBox(height: 12),
+                          Wrap(
+                            spacing: 12,
+                            runSpacing: 8,
+                            children: [
+                              DropdownButton<int>(
+                                key: const ValueKey('kart-grade'),
+                                value:
+                                    _kartGrade ?? widget.appState.state.grade,
+                                items: [
+                                  for (var grade = 1; grade <= 4; grade++)
+                                    DropdownMenuItem(
+                                        value: grade,
+                                        child: Text('$grade. Klasse'))
+                                ],
+                                onChanged: _launchingGame
+                                    ? null
+                                    : (grade) => _saveKartOptions(grade: grade),
+                              ),
+                              DropdownButton<String>(
+                                key: const ValueKey('kart-subject'),
+                                value: _kartSubject ?? 'Mathematik',
+                                items: [
+                                  for (final subject in const [
+                                    'Mathematik',
+                                    'Deutsch',
+                                    'Sachunterricht',
+                                    'Logik'
+                                  ])
+                                    DropdownMenuItem(
+                                        value: subject, child: Text(subject))
+                                ],
+                                onChanged: _launchingGame
+                                    ? null
+                                    : (subject) =>
+                                        _saveKartOptions(subject: subject),
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 12),
                           _VsLumoCard(
@@ -339,15 +418,118 @@ class _GamesContentState extends State<GamesContent> {
 
 // ─────────────────── HEADER ───────────────────
 
+class _KartHeroCard extends StatelessWidget {
+  const _KartHeroCard({required this.onPlay, required this.launching});
+  final VoidCallback onPlay;
+  final bool launching;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: const Color(0xFF203E5D),
+      borderRadius: BorderRadius.circular(24),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        key: const ValueKey('launch-lumo-kart'),
+        onTap: launching ? null : onPlay,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Stack(
+              children: [
+                Image.asset(
+                  'assets/images/lumo_kart_cover.png',
+                  width: double.infinity,
+                  height: 190,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, error, __) {
+                    reportLumoAssetError(
+                        'assets/images/lumo_kart_cover.png', error);
+                    return const SizedBox(
+                        height: 190,
+                        child: Center(
+                            child: Icon(Icons.sports_motorsports_rounded,
+                                size: 90, color: Color(0xFFFFC46B))));
+                  },
+                ),
+                Positioned.fill(
+                    child: DecoratedBox(
+                        decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withValues(alpha: .65)
+                      ]),
+                ))),
+                const Positioned(
+                    left: 18,
+                    right: 18,
+                    bottom: 16,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('LUMO KART',
+                              style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white,
+                                  letterSpacing: 1)),
+                          Text('Sonnenhafen-Cup',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  color: Color(0xFFFFE3AE),
+                                  fontWeight: FontWeight.w700)),
+                        ])),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                        'Mit Lumo durch den bunten Hafen: zwei Runden, sechs Fahrer und Lernpausen in deiner Klasse.',
+                        style: TextStyle(
+                            fontSize: 15, color: Colors.white, height: 1.4)),
+                    const SizedBox(height: 14),
+                    Row(children: [
+                      const Expanded(
+                          child: Text('Offline in deiner Lumo-App',
+                              style: TextStyle(
+                                  color: Color(0xFFC6E7DF), fontSize: 13))),
+                      const SizedBox(width: 8),
+                      FilledButton.icon(
+                        onPressed: launching ? null : onPlay,
+                        icon: const Icon(Icons.play_arrow_rounded),
+                        label: Text(launching ? 'Lädt …' : 'Losfahren'),
+                        style: FilledButton.styleFrom(
+                            backgroundColor: const Color(0xFFFFC46B),
+                            foregroundColor: const Color(0xFF173346),
+                            minimumSize: const Size(112, 52)),
+                      ),
+                    ]),
+                  ]),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _HeaderStrip extends StatelessWidget {
   const _HeaderStrip({
     required this.totalStars,
     required this.maxStars,
     required this.unlockedCount,
+    required this.levelCount,
   });
   final int totalStars;
   final int maxStars;
   final int unlockedCount;
+  final int levelCount;
 
   @override
   Widget build(BuildContext context) {
@@ -398,7 +580,7 @@ class _HeaderStrip extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  '$unlockedCount von 50 Levels offen',
+                  '$unlockedCount von $levelCount Lernlevels offen',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 12.5,
@@ -717,7 +899,7 @@ class _PathSegment extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final width = constraints.maxWidth;
-        final cellHeight = 96.0;
+        const cellHeight = 96.0;
         return SizedBox(
           height: cellHeight * levels.length / 2 + cellHeight,
           width: width,
@@ -841,35 +1023,35 @@ class _LevelCircle extends StatelessWidget {
             child: locked
                 ? const Icon(Icons.lock_rounded, color: Colors.white, size: 28)
                 : isCurrent
-                ? const Text('🦊', style: TextStyle(fontSize: 36))
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '${runtime.level.id}',
-                        style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                      if (runtime.starsEarned > 0)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 2),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: List<Widget>.generate(
-                              math.min(runtime.starsEarned, 3),
-                              (_) => const Text(
-                                '⭐',
-                                style: TextStyle(fontSize: 10),
-                              ),
+                    ? const Text('🦊', style: TextStyle(fontSize: 36))
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${runtime.level.id}',
+                            style: const TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
                             ),
                           ),
-                        ),
-                    ],
-                  ),
+                          if (runtime.starsEarned > 0)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: List<Widget>.generate(
+                                  math.min(runtime.starsEarned, 3),
+                                  (_) => const Text(
+                                    '⭐',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
           ),
           if (!locked) ...[
             const SizedBox(height: 2),

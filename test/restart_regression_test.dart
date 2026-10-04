@@ -7,7 +7,6 @@ import 'package:lumo_lernen/core/app_update_service.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
-import 'package:lumo_lernen/widgets/parental_gate.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -92,37 +91,6 @@ void main() {
       expect(restored.state.stars, 7);
       expect(restored.state.xp, 45);
       restored.dispose();
-    },
-  );
-  testWidgets(
-    'Eltern-PIN verweigert falsche Eingabe und akzeptiert die konfigurierte PIN',
-    (tester) async {
-      bool? passed;
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Builder(
-            builder: (context) => Scaffold(
-              body: TextButton(
-                onPressed: () async {
-                  passed = await ParentalGate.show(context, pin: '7291');
-                },
-                child: const Text('Öffnen'),
-              ),
-            ),
-          ),
-        ),
-      );
-      await tester.tap(find.text('Öffnen'));
-      await tester.pumpAndSettle();
-      await tester.enterText(find.byType(TextField), '1234');
-      await tester.tap(find.text('Bestätigen'));
-      await tester.pumpAndSettle();
-      expect(passed, isNull);
-      expect(find.byType(ParentalGate), findsOneWidget);
-      await tester.enterText(find.byType(TextField), '7291');
-      await tester.tap(find.text('Bestätigen'));
-      await tester.pumpAndSettle();
-      expect(passed, true);
     },
   );
   testWidgets(

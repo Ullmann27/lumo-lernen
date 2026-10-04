@@ -1,12 +1,13 @@
 name: lumo_lernen
-description: Lumo Lernen - Lern-App fuer Volksschulkinder (1. und 2. Klasse Oesterreich)
+description: Lumo Lernen - Lern-App mit integrierten Spielen fuer die 1. bis 4. Klasse Volksschule in Oesterreich
 publish_to: none
-version: 0.8.0+9
+version: 0.10.5+280
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
+  crypto: ^3.0.6
   flutter:
     sdk: flutter
   flame: ^1.18.0
@@ -22,29 +23,26 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  shared_preferences_platform_interface: ^2.4.2
 
 flutter:
   uses-material-design: true
   assets:
     - assets/videos/
     - assets/images/
+    - assets/lumo_design/fox/
+    - assets/lumo_design/bg/
+    - assets/lumo_design/logo/
+    - assets/lumo_design/cards/
     - assets/lumo_jump/fox/master/
+    - assets/lumo_jump/fox/sprite_sheets/
     - assets/lumo_jump/fox/idle/
     - assets/lumo_jump/fox/run/
     - assets/lumo_jump/fox/jump/
     - assets/lumo_jump/fox/fall/
     - assets/lumo_jump/fox/duck/
     - assets/lumo_jump/fox/roll/
-    - assets/lumo_jump/fox/shadow/
-    - assets/lumo_kart/kart/
-    - assets/lumo_kart/collectibles/
-    - assets/lumo_kart/track/
-    - assets/lumo_kart/effects/
-    - assets/lumo_kart/environment/
     - assets/lumo_sprite_pack/
-    - assets/lumo_sprite_pack/walk_right/
-    - assets/lumo_sprite_pack/walk_left/
-    - assets/lumo_sprite_pack/run/
     - assets/lumo_sprite_pack/cheer/
     - assets/lumo_cards/
     - assets/lumo_cards/cards/red/
@@ -53,19 +51,9 @@ flutter:
     - assets/lumo_cards/cards/blue/
     - assets/lumo_cards/cards/special/
     - assets/lumo_cards/cards/back/
-    - assets/lumo_cards/ui/
-    - assets/lumo_cards/fx/
     - assets/lumo_cards/avatars/
-    - assets/lumo_cards/table/
-    - assets/lumo_kart/
-    - assets/lumo_kart/kart/
-    - assets/lumo_kart/track/
-    - assets/lumo_kart/environment/
-    - assets/lumo_kart/collectibles/
-    - assets/lumo_kart/effects/
     - assets/audio/sfx/
     - assets/audio/music/
     - assets/companion/
     - assets/lottie/
-    - assets/icons/
     - assets/learning_questions/
