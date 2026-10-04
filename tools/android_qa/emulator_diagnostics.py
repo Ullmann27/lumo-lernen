@@ -42,9 +42,14 @@ def verify_emulator(out, sdk, proc_root=Path('/proc')):
     running = []
     for directory in proc_root.glob('[0-9]*'):
         try:
-            if (directory/'comm').read_text().strip().startswith('qemu-system'):
-                running.append({'pid': int(directory.name),
-                                'executable': str((directory/'exe').resolve(strict=True))})
+            # comm is a mutable (and truncated) thread label, not executable
+            # identity. A running emulator can rename its main thread.
+            executable = (directory/'exe').resolve(strict=True)
+            name = (directory/'comm').read_text().strip()
+            if (executable == qemu or executable.name.startswith('qemu-system')
+                    or name.startswith('qemu-system')):
+                running.append({'pid': int(directory.name), 'name': name,
+                                'executable': str(executable)})
         except (FileNotFoundError, PermissionError, ProcessLookupError):
             continue
     proof = {'version': match.group(1), 'build_id': match.group(2),
@@ -52,9 +57,9 @@ def verify_emulator(out, sdk, proc_root=Path('/proc')):
              'running_qemu': running, 'library_search_paths': libraries,
              'passed': len(running) == 1 and running[0]['executable'] == str(qemu)}
     (out/'emulator-version-proof.json').write_text(json.dumps(proof, indent=2)+'\n')
+    print(json.dumps(proof, indent=2), flush=True)
     if not proof['passed']:
         raise RuntimeError('Running QEMU process does not uniquely match the verified pinned emulator')
-    print(json.dumps(proof, indent=2))
     return proof
 
 
