@@ -107,7 +107,12 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
       final cand = 1 + _rng.nextInt(10);
       if (cand != _correctAnswer) wrong.add(cand);
     }
-    _answers = [_correctAnswer, ...wrong]..shuffle(_rng);
+    // "Welche Zahl ist groesser?": nur die beiden gezeigten Zahlen zur Wahl.
+    // Vorher kamen zufaellige Zahlen dazu, die kleinere fehlte oft, und eine
+    // noch groessere Zahl wurde als falsch gewertet.
+    _answers = _typ == _ZahlAufgabenTyp.groesser
+        ? ([_zahl1, _zahl2]..shuffle(_rng))
+        : ([_correctAnswer, ...wrong]..shuffle(_rng));
     _answered = false;
     _selectedAnswer = null;
   }
