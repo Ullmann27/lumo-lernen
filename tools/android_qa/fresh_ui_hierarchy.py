@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -22,6 +23,8 @@ def read_fresh_hierarchy(adb: Callable, out: Path, *, attempts: int = 3,
                          snapshot_remote: str | None = None) -> ET.Element:
     if not 1 <= attempts <= 5:
         raise ValueError('UI observation attempts must be between one and five')
+    if snapshot_remote is None:
+        snapshot_remote = os.environ.get('LUMO_UI_SNAPSHOT_REMOTE')
     if snapshot_remote not in (None, '/data/local/tmp/lumo-ui-snapshot.jar'):
         raise ValueError('Unexpected read-only snapshot helper path')
     out.mkdir(parents=True, exist_ok=True)
