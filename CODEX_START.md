@@ -2,6 +2,12 @@
 
 Stand: 4. Oktober 2026. Aktiver Anwendungscode: dieses Repository.
 
+## Neuer Auftrag: Grafik nach den zwölf Originalentwürfen
+
+Zuerst [Copilot-Anschlussauftrag und vollständigen Bildindex](docs/COPILOT_GRAFIK_2026-10-04.md) lesen. Die neuere Kart-Grafik liegt in `Ullmann27/lumo-godot`, PR #4, `codex/lumo-holographic-kart-2026-10-03`. Die aktuelle Flutter-/Android-Integration bleibt in diesem Zweig. Den zurückliegenden Flutter-Zweig `codex/lumo-holographic-2026-10-03` nicht ungeprüft als vollständigen aktuellen App-Stand übernehmen. Alle zwölf Originalbilder wurden wiedergefunden und angesehen; ihre PNG-Bytes sind mit dieser Übergabe nicht nach GitHub übertragen. Das neue Dokument unterscheidet Bildziel, vorhandenen Code und tatsächlich bestätigte Tests.
+
+Die folgenden Notizen bewahren den bisherigen APK-/Integrationsnachweis. Die Dokumentationsübergabe hat weder App-Code noch APK-Bytes geändert.
+
 - [Aktuelle APK-Übergabe, frische Android-Bildschirmabfragen und laufender Gesamttest](docs/ANDROID_LIVE_UI_2026-10-04.md).
   Eine echte APK 0.10.5 / Build 280 wurde im Chat mit identischen geprüften Bytes als **Testversion** und ZIP bereitgestellt. Die vollständige Android-Nutzungsprüfung ist noch nicht als bestanden bestätigt. Aktueller Folgelauf: `37181279924`, QA-Commit `b98fd4a4336b660b39006aa81a58d112c8ededf8`. Vor einer neuen Erfolgsaussage seinen Original-Proof lesen; kein bloßer Logauszug ersetzt ihn.
 - [Gemeinsame Flutter-/Godot-Android-App und vorheriger Prüfstand](docs/UNIFIED_ANDROID_2026-10-03.md)
