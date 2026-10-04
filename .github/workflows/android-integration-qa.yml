@@ -3,7 +3,8 @@ name: Check unified Android APK in KVM
 on:
   # Explicit recovery run for the frozen Build 280, on this branch only.
   # Unmarked workflow edits do not start an emulator; manual dispatch is unchanged.
-  # Fresh UI observations are required before subsequent real touches or scrolls.
+  # Live snapshots do not wait for animated accessibility events to stop.
+  # Fresh-file and actual-UI flow checks remain mandatory.
   push:
     branches: ['codex/lumo-unified-android-2026-10-03']
     paths: ['.github/workflows/android-integration-qa.yml']
@@ -77,6 +78,8 @@ jobs:
       - uses: android-actions/setup-android@v3
         with:
           packages: 'platform-tools build-tools;35.0.0 platforms;android-36'
+      - name: Build the isolated read-only accessibility snapshot helper
+        run: python3 tools/android_qa/prepare_ui_snapshot.py build --out "$LUMO_QA_DIR"
       - name: Check the saved source and empty draft before building
         if: inputs.mode == 'build'
         env:
@@ -97,7 +100,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 tools/android_qa/prepare_built_apk.py --repository "$GITHUB_REPOSITORY" --release-tag "$RELEASE_TAG" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/freeze-build.log"
-          cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json "$LUMO_QA_DIR/"
+          cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json "$LUMO_QA_DIR"/
       - name: Cache the exact verified bytes and provenance as an unpublished candidate
         if: inputs.mode == 'build'
         env:
@@ -150,6 +153,7 @@ jobs:
       - name: Install the verified APK and exercise the actual user flow
         uses: reactivecircus/android-emulator-runner@v2
         env:
+          LUMO_UI_SNAPSHOT_REMOTE: '/data/local/tmp/lumo-ui-snapshot.jar'
           DISPLAY: ':99'
           LIBGL_ALWAYS_SOFTWARE: 'true'
           GALLIUM_DRIVER: llvmpipe
@@ -166,7 +170,7 @@ jobs:
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           # -no-window launches the separately packaged headless QEMU binary.
           script: >-
-            bash -e -o pipefail -c 'python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR" --verify-emulator --headless; python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
+            bash -e -o pipefail -c 'python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR" --verify-emulator --headless; python3 tools/android_qa/prepare_ui_snapshot.py install --jar "$LUMO_QA_DIR/lumo-ui-snapshot.jar" --out "$LUMO_QA_DIR"; python3 tools/android_qa/run_ui_checks.py --apk "$LUMO_QA_DIR/tested.apk" --sha256 "$APK_SHA" --out "$LUMO_QA_DIR" 2>&1 | tee "$LUMO_QA_DIR/ui-check-run.log"'
       - name: Preserve host kernel and emulator crash diagnostics
         if: always()
         run: python3 tools/android_qa/emulator_diagnostics.py --out "$LUMO_QA_DIR"
