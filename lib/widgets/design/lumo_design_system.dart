@@ -160,8 +160,11 @@ class LumoColorTile extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(22),
             onTap: onTap,
-            child: Ink(
+            // Ink kennt keinen constraints-Parameter (Compile-Fehler);
+            // Mindesthoehe deshalb per ConstrainedBox.
+            child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 142),
+              child: Ink(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -241,6 +244,7 @@ class LumoColorTile extends StatelessWidget {
                 ],
               ),
             ),
+            ),
           ),
         ),
       );
@@ -271,7 +275,7 @@ class LumoTopBar extends StatelessWidget {
         MediaQuery.disableAnimationsOf(context);
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           flex: 4,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
