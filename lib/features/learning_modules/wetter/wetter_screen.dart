@@ -122,6 +122,9 @@ class _WetterScreenState extends State<WetterScreen>
   int _correctCount = 0;
   bool _answered = false;
   int? _selectedIdx;
+  // Kleidungs-Antworten werden einmal pro Aufgabe gemischt. Vorher passierte
+  // das in build(): nach dem Antippen markierte die App eine andere Zeile.
+  List<String> _kleidungOptions = const [];
 
   late _WetterFrageTyp _typ;
   late _Wetter _correctWetter;
@@ -180,6 +183,16 @@ class _WetterScreenState extends State<WetterScreen>
       _correctWetter,
       ...shuffled.where((w) => w != _correctWetter).take(3)
     ]..shuffle(_rng);
+    if (_typ == _WetterFrageTyp.kleidungWaehlen) {
+      final richtigeKleidung = _correctWetter.kleidung;
+      final wrong = _wetterArten
+          .map((w) => w.kleidung)
+          .toSet()
+          .where((k) => k != richtigeKleidung)
+          .toList()
+        ..shuffle(_rng);
+      _kleidungOptions = [richtigeKleidung, ...wrong.take(3)]..shuffle(_rng);
+    }
     _answered = false;
     _selectedIdx = null;
   }
@@ -484,10 +497,7 @@ class _WetterScreenState extends State<WetterScreen>
     if (_typ == _WetterFrageTyp.kleidungWaehlen) {
       // 4 Kleidungs-Optionen
       final richtigeKleidung = _correctWetter.kleidung;
-      final allOptions = _wetterArten.map((w) => w.kleidung).toSet().toList();
-      final wrong = allOptions.where((k) => k != richtigeKleidung).toList()
-        ..shuffle(_rng);
-      final options = [richtigeKleidung, ...wrong.take(3)]..shuffle(_rng);
+      final options = _kleidungOptions;
       return Column(
         children: List.generate(options.length, (idx) {
           final opt = options[idx];
