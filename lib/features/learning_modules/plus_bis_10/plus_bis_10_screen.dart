@@ -253,7 +253,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   void _handleCorrect() {
     setState(() {
       _answered = true;
-      _correctCount++;
+      // Nur beim ersten Versuch richtig geloeste Aufgaben zaehlen. Vorher
+      // stand am Ende immer "30 von 30", weil jede Aufgabe erst mit der
+      // richtigen Antwort endet.
+      if (_wrongAttempts == 0) _correctCount++;
     });
     _bounceCtrl.forward(from: 0);
     HapticFeedback.mediumImpact();
