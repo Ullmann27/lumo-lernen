@@ -13,6 +13,8 @@ import '../../core/reading_story_memory_repository.dart';
 import '../../domain/agent/lumo_agent_domain.dart';
 import '../../domain/reading/reading_attempt_history.dart';
 import '../../domain/reading/reading_domain.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import 'widgets/reading_active_sentence_view.dart';
 
 class ReadingContent extends StatefulWidget {
@@ -442,62 +444,74 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       animation: _speech,
       builder: (context, _) {
         if (_loadingStory) {
-          return const Center(
-            child: Padding(
-              padding: EdgeInsets.all(32),
-              child: CircularProgressIndicator(color: LumoColors.orange),
+          return const LumoSceneBackground(
+            scene: LumoScene.library,
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(32),
+                child:
+                    CircularProgressIndicator(color: LumoVisualTokens.cyan),
+              ),
             ),
           );
         }
         final progress = _safeProgress;
         final story = progress.story;
         final sentence = progress.currentSentence;
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(22),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 860),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                _ReadingHeader(title: story.title, onBack: widget.onBack),
-                const SizedBox(height: 16),
-                _StoryProgressBar(current: progress.completedSentenceIds.length, total: story.sentences.length),
-                const SizedBox(height: 18),
-                _StoryTextCard(
-                  story: story,
-                  currentIndex: progress.currentSentenceIndex,
-                  activeWordIndex: _activeWordIndex,
-                  liveProblemWord: _liveProblemWord,
-                  listening: _speech.listening,
-                  problemWords: progress.problemWords,
-                ),
-                const SizedBox(height: 16),
-                _ActiveSentenceCard(
-                  sentence: sentence,
-                  attemptNumber: progress.attemptNumber,
-                  lastScore: _lastScore,
-                  lumoLine: _lumoLine,
-                  activeWordIndex: _activeWordIndex,
-                  liveProblemWord: _liveProblemWord,
-                  listening: _speech.listening,
-                ),
-                const SizedBox(height: 14),
-                _MicrophonePanel(
-                  listening: _speech.listening,
-                  enabled: widget.appState.state.settings.microphoneEnabled,
-                  lastTranscript: _lastTranscript,
-                  error: _speech.error,
-                  showNotHeardHint: _showNotHeardHint,
-                  onTap: _finished ? null : _toggleListening,
-                ),
-                if (progress.problemWords.isNotEmpty) ...[
-                  const SizedBox(height: 14),
-                  _ProblemWordsCard(words: progress.problemWords),
-                ],
-                if (_finished) ...[
-                  const SizedBox(height: 18),
-                  _FinishedReadingCard(onBack: widget.onBack),
-                ],
-              ]),
+        return LumoSceneBackground(
+          scene: LumoScene.library,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 860),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _ReadingHeader(title: story.title, onBack: widget.onBack),
+                      const SizedBox(height: 12),
+                      _StoryProgressBar(
+                        current: progress.completedSentenceIds.length,
+                        total: story.sentences.length,
+                      ),
+                      const SizedBox(height: 14),
+                      _StoryTextCard(
+                        story: story,
+                        currentIndex: progress.currentSentenceIndex,
+                        activeWordIndex: _activeWordIndex,
+                        liveProblemWord: _liveProblemWord,
+                        listening: _speech.listening,
+                        problemWords: progress.problemWords,
+                      ),
+                      const SizedBox(height: 14),
+                      _ActiveSentenceCard(
+                        sentence: sentence,
+                        attemptNumber: progress.attemptNumber,
+                        lastScore: _lastScore,
+                        lumoLine: _lumoLine,
+                        activeWordIndex: _activeWordIndex,
+                        liveProblemWord: _liveProblemWord,
+                        listening: _speech.listening,
+                      ),
+                      const SizedBox(height: 12),
+                      _MicrophonePanel(
+                        listening: _speech.listening,
+                        enabled: widget.appState.state.settings.microphoneEnabled,
+                        lastTranscript: _lastTranscript,
+                        error: _speech.error,
+                        showNotHeardHint: _showNotHeardHint,
+                        onTap: _finished ? null : _toggleListening,
+                      ),
+                      if (progress.problemWords.isNotEmpty) ...[
+                        const SizedBox(height: 12),
+                        _ProblemWordsCard(words: progress.problemWords),
+                      ],
+                      if (_finished) ...[
+                        const SizedBox(height: 16),
+                        _FinishedReadingCard(onBack: widget.onBack),
+                      ],
+                    ]),
+              ),
             ),
           ),
         );
@@ -521,23 +535,61 @@ class _ReadingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFEFF6FF), Color(0xFFFFF7ED)])),
-      child: Row(children: [
-        Container(width: 58, height: 58, decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)), child: const Center(child: Text('📖', style: TextStyle(fontSize: 32)))),
-        const SizedBox(width: 14),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('Aktiver Lesemodus', style: TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.orange)),
-            const SizedBox(height: 3),
-            Text(title, style: LumoTextStyles.heading2),
-            const SizedBox(height: 4),
-            Text('Lumo hört Satz für Satz zu und hilft sofort freundlich.', style: LumoTextStyles.body.copyWith(fontSize: 13)),
-          ]),
-        ),
-        IconButton(onPressed: onBack, icon: const Icon(Icons.close_rounded, color: LumoColors.ink500)),
-      ]),
+    return LumoGlassCard(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      child: Row(
+        children: [
+          const LumoFoxPose(
+            pose: LumoDesignFoxPose.pointSide,
+            size: 76,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'DEUTSCH · AKTIV LESEN',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: .6,
+                    color: LumoVisualTokens.cyanBright,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                const Text(
+                  'Lumo hört Satz für Satz zu und hilft freundlich.',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: LumoVisualTokens.muted,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: onBack,
+            icon: const Icon(Icons.close_rounded,
+                color: LumoVisualTokens.white),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -552,17 +604,32 @@ class _StoryProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final safeTotal = total <= 0 ? 1 : total;
     final safeCurrent = current.clamp(0, safeTotal).toInt();
-    return Container(
+    return LumoGlassCard(
       padding: const EdgeInsets.all(14),
-      decoration: lumoCard(),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('Satz $safeCurrent von $total gelesen', style: LumoTextStyles.heading3),
-        const SizedBox(height: 10),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(LumoRadius.pill),
-          child: LinearProgressIndicator(value: safeCurrent / safeTotal, minHeight: 8, color: LumoColors.orange, backgroundColor: LumoColors.orange.withOpacity(.14)),
-        ),
-      ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Satz $safeCurrent von $total gelesen',
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              color: LumoVisualTokens.white,
+              fontSize: 15,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(LumoRadius.pill),
+            child: LinearProgressIndicator(
+              value: safeCurrent / safeTotal,
+              minHeight: 8,
+              color: LumoVisualTokens.cyanBright,
+              backgroundColor: LumoVisualTokens.navigation,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -588,36 +655,48 @@ class _StoryTextCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final problemSet = problemWords.map((w) => w.toLowerCase()).toSet();
     final liveProblem = liveProblemWord?.toLowerCase();
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(18),
-      decoration: lumoCard(color: const Color(0xFFFFFEFA)),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        for (final sentence in story.sentences) ...[
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            decoration: BoxDecoration(color: sentence.index == currentIndex ? LumoColors.orangeSurface : Colors.transparent, borderRadius: BorderRadius.circular(LumoRadius.md)),
-            child: Wrap(
-              spacing: 5,
-              runSpacing: 5,
-              children: sentence.words.asMap().entries.map((entry) {
-                final normalized = entry.value.text.toLowerCase().replaceAll(RegExp(r'[^a-zäöüß]'), '');
-                final isProblem = problemSet.contains(normalized) || normalized == liveProblem || entry.value.isProblemWord;
-                final isCurrent = sentence.index == currentIndex && entry.key == activeWordIndex;
-                return _SyllableWord(
-                  word: entry.value,
-                  active: sentence.index == currentIndex,
-                  current: isCurrent,
-                  listening: listening,
-                  problem: isProblem,
-                );
-              }).toList(),
+    return LumoGlassCard(
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final sentence in story.sentences) ...[
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              decoration: BoxDecoration(
+                color: sentence.index == currentIndex
+                    ? LumoVisualTokens.glassRow
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(LumoRadius.md),
+              ),
+              child: Wrap(
+                spacing: 5,
+                runSpacing: 5,
+                children: sentence.words.asMap().entries.map((entry) {
+                  final normalized = entry.value.text
+                      .toLowerCase()
+                      .replaceAll(RegExp(r'[^a-zäöüß]'), '');
+                  final isProblem = problemSet.contains(normalized) ||
+                      normalized == liveProblem ||
+                      entry.value.isProblemWord;
+                  final isCurrent =
+                      sentence.index == currentIndex &&
+                          entry.key == activeWordIndex;
+                  return _SyllableWord(
+                    word: entry.value,
+                    active: sentence.index == currentIndex,
+                    current: isCurrent,
+                    listening: listening,
+                    problem: isProblem,
+                  );
+                }).toList(),
+              ),
             ),
-          ),
+          ],
         ],
-      ]),
+      ),
     );
   }
 }
@@ -643,7 +722,7 @@ class _SyllableWord extends StatelessWidget {
     final bg = problem
         ? LumoColors.goldSurface
         : highlight
-            ? Colors.white
+            ? LumoVisualTokens.white
             : Colors.transparent;
     final border = problem
         ? Border.all(color: LumoColors.gold.withOpacity(.48), width: 1.4)
@@ -671,10 +750,10 @@ class _SyllableWord extends StatelessWidget {
                 color: problem
                     ? LumoColors.orange
                     : highlight
-                        ? LumoColors.ink900
+                            ? LumoVisualTokens.night
                         : entry.key.isEven
-                            ? LumoColors.blue
-                            : LumoColors.practice,
+                            ? LumoVisualTokens.cyanBright
+                            : LumoVisualTokens.white,
                 decoration: active && !highlight ? TextDecoration.underline : TextDecoration.none,
               ),
             );
@@ -706,26 +785,50 @@ class _ActiveSentenceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(18),
-      decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFF8ED), Color(0xFFFFFFFF)])),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('Jetzt lesen · Versuch ${attemptNumber.clamp(1, 3)} von 3', style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
-        const SizedBox(height: 8),
-        ReadingActiveSentenceView(
-          sentence: sentence,
-          activeWordIndex: activeWordIndex,
-          problemWord: liveProblemWord,
-          listening: listening,
-        ),
-        const SizedBox(height: 12),
-        Text(lumoLine, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w900)),
-        if (lastScore != null) ...[
-          const SizedBox(height: 10),
-          Text('Lesesicherheit: ${(lastScore! * 100).round()}%', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink500)),
+    return LumoGlassCard(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Jetzt lesen · Versuch ${attemptNumber.clamp(1, 3)} von 3',
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              color: LumoVisualTokens.cyanBright,
+              fontSize: 13,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 8),
+          ReadingActiveSentenceView(
+            sentence: sentence,
+            activeWordIndex: activeWordIndex,
+            problemWord: liveProblemWord,
+            listening: listening,
+          ),
+          const SizedBox(height: 12),
+          Text(
+            lumoLine,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              color: LumoVisualTokens.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          if (lastScore != null) ...[
+            const SizedBox(height: 10),
+            Text(
+              'Lesesicherheit: ${(lastScore! * 100).round()}%',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.muted,
+                fontSize: 12,
+              ),
+            ),
+          ],
         ],
-      ]),
+      ),
     );
   }
 }
@@ -770,43 +873,96 @@ class _MicrophonePanel extends StatelessWidget {
       accent = LumoColors.orange;
     }
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: lumoCard(),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(headline, style: LumoTextStyles.heading3.copyWith(color: accent)),
-              const SizedBox(height: 4),
-              Text(subline, style: LumoTextStyles.body.copyWith(color: LumoColors.ink500)),
-            ]),
-          ),
-          const SizedBox(width: 12),
-          GestureDetector(
-            onTap: enabled ? onTap : null,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              width: 72,
-              height: 72,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: !enabled ? LumoColors.ink300 : listening ? LumoColors.practice : LumoColors.orange,
-                boxShadow: enabled ? LumoShadow.pill : null,
+    return LumoGlassCard(
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      headline,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        color: LumoVisualTokens.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subline,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        color: LumoVisualTokens.muted,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              child: Icon(listening ? Icons.stop_rounded : Icons.mic_rounded, color: Colors.white, size: 36),
-            ),
+              const SizedBox(width: 12),
+              GestureDetector(
+                onTap: enabled ? onTap : null,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  width: 64,
+                  height: 64,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: !enabled
+                        ? LumoVisualTokens.glassRow
+                        : listening
+                            ? const Color(0xFF16885A)
+                            : LumoVisualTokens.cyan,
+                    boxShadow: enabled
+                        ? [
+                            BoxShadow(
+                              color: LumoVisualTokens.cyan.withOpacity(.25),
+                              blurRadius: 14,
+                              offset: const Offset(0, 5),
+                            ),
+                          ]
+                        : null,
+                  ),
+                  child: Icon(
+                    listening ? Icons.stop_rounded : Icons.mic_rounded,
+                    color: Colors.white,
+                    size: 32,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ]),
-        if (lastTranscript.isNotEmpty) ...[
-          const SizedBox(height: 12),
-          Text('Gehört: $lastTranscript', style: LumoTextStyles.body.copyWith(color: LumoColors.ink600)),
+          if (lastTranscript.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            Text(
+              'Gehört: $lastTranscript',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.white,
+                fontSize: 13,
+              ),
+            ),
+          ],
+          if (error != null && error != 'error_no_match') ...[
+            const SizedBox(height: 8),
+            Text(
+              'Mikrofon-Hinweis: $error',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.cyanBright,
+                fontSize: 12,
+              ),
+            ),
+          ],
         ],
-        if (error != null && error != 'error_no_match') ...[
-          const SizedBox(height: 8),
-          Text('Mikrofon-Hinweis: $error', style: LumoTextStyles.caption.copyWith(color: LumoColors.practice)),
-        ],
-      ]),
+      ),
     );
   }
 }
