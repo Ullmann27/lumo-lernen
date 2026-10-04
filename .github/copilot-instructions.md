@@ -1,5 +1,7 @@
 # Lumo: aktuelle Arbeitsanweisungen für Copilot
 
+**Vorrang ab 4. Oktober 2026:** Zuerst `docs/DESIGN_ZIEL_2026-10-04.md` lesen. Heinz will, dass die komplette App genau wie die elf Bilder in `docs/design_targets/2026-10-04/` aussieht. Die Bilder liegen jetzt als Dateien im Repo. Etappen, Abnahmepunkte und Regeln stehen in diesem Dokument. Claude koordiniert und prüft jede Etappe.
+
 Vor Änderungen `docs/COPILOT_GRAFIK_2026-10-04.md` und `CODEX_START.md` lesen. Der aktuelle Auftrag ist die echte Kart-/App-Grafik nach zwölf vorhandenen Originalbildern, nicht die Wiederaufnahme alter April-/Juni-Prototypen oder nur eine weitere QA-Helferrunde.
 
 Flutter-Ausgangspunkt: aktueller Head von `codex/lumo-unified-android-2026-10-03`, PR #156. Kart-/Grafikquelle: `Ullmann27/lumo-godot`, `codex/lumo-holographic-kart-2026-10-03`, PR #4; zuletzt geprüfter Commit `08f3f3f60eb9712c7823faceec2350293d292ce5`. Der separate Flutter-Zweig `codex/lumo-holographic-2026-10-03` enthielt beim Vergleich nur einen neueren Godot-Pin und lag bei der Android-Integration 47 Commits zurück. Nicht blind auf diesen Stand zurücksetzen. Frische Heads vergleichen und passende neue Arbeitszweige verwenden.
