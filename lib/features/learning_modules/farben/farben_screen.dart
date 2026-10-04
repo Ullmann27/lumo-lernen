@@ -113,6 +113,10 @@ class _FarbenScreenState extends State<FarbenScreen>
   // Bei objektZuFarbe: 4 Bilder, eines hat die richtige Farbe
   late List<_Farbe> _bildFarben; // Welche Farbe jedes Bild hat
   late int _correctImageIdx;
+  // Bei farbeZuObjekt: 4 Antwortfarben, einmal pro Aufgabe gemischt.
+  // Vorher wurden sie in build() neu gemischt, sodass nach dem Antippen
+  // die Markierung auf einer anderen Farbe landete.
+  List<_Farbe> _colorOptions = const [];
 
   @override
   void initState() {
@@ -147,13 +151,17 @@ class _FarbenScreenState extends State<FarbenScreen>
     _objekt = _objekte[_rng.nextInt(_objekte.length)];
     final shuffled = List.of(_farben)..shuffle(_rng);
     _correctFarbe = shuffled.first;
+    // Drei andere Farben plus die richtige. Vorher stand die richtige Farbe
+    // schon an Index 0 und wurde zusaetzlich an _correctImageIdx gesetzt -
+    // in 3 von 4 Faellen gab es sie doppelt, und einer der beiden richtigen
+    // Kacheln wurde als falsch gewertet.
+    final others = shuffled.skip(1).take(3).toList();
+    _correctImageIdx = _rng.nextInt(4);
+    final withCorrect = [...others]..insert(_correctImageIdx, _correctFarbe);
     if (_typ == _FarbFrageTyp.objektZuFarbe) {
-      // 4 verschieden-farbige Bilder vom selben Objekt
-      _bildFarben = shuffled.take(4).toList();
-      // Korrekte Position der richtigen Farbe
-      _correctImageIdx = _rng.nextInt(4);
-      // Sicherstellen dass die richtige Farbe am richtigen Index ist
-      _bildFarben[_correctImageIdx] = _correctFarbe;
+      _bildFarben = withCorrect;
+    } else {
+      _colorOptions = withCorrect;
     }
     _answered = false;
     _selectedIdx = null;
@@ -452,11 +460,7 @@ class _FarbenScreenState extends State<FarbenScreen>
   }
 
   Widget _buildColorOptions() {
-    final options = (List.of(_farben)..shuffle(_rng)).take(4).toList();
-    if (!options.contains(_correctFarbe)) {
-      options[0] = _correctFarbe;
-      options.shuffle(_rng);
-    }
+    final options = _colorOptions;
     return GridView.count(
       crossAxisCount: 2,
       shrinkWrap: true,
