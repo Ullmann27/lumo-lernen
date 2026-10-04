@@ -1,16 +1,7 @@
 # Lumo Lernen
 
-Flutter/Android-App-Projekt für den Lumo-Lernen-Prototyp.
+Lern-App für Volksschulkinder (Flutter/Android) mit dem Lernfuchs Lumo, Lernmodulen,
+Lesen, Spielen und dem 3D-Spiel Lumo Kart (Godot, eingebettet).
 
-Repository: `Ullmann27/lumo-lernen`
-
-## Nächster Schritt am Handy
-
-Wenn GitHub dich immer in die App zwingt, öffne das Repository im Browser mit aktivierter Desktop-Website und lade dort die ZIP-Datei hoch.
-
-Danach kann der GitHub-Actions-Workflow eine Android-Debug-APK erzeugen.
-
-## Ziel-Artifact
-
-- Name: `lumo-lernen-debug-apk`
-- APK-Pfad: `build/app/outputs/flutter-apk/app-debug.apk`
+Einstieg für Entwickler und KIs: [`CODEX_START.md`](CODEX_START.md).
+Regeln: [`CLAUDE.md`](CLAUDE.md). Datenschutz: [`PRIVACY.md`](PRIVACY.md).

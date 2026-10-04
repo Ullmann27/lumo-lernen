@@ -64,7 +64,6 @@ require_file lib/features/reading/reading_content.dart
 require_file lib/features/settings/settings_content.dart
 require_file lib/features/agent/lumo_agent_content.dart
 require_file lib/widgets/shell/left_navigation.dart
-require_file lib/widgets/shell/lumo_stage_panel.dart
 require_file lib/core/lumo_voice.dart
 require_file lib/core/lumo_speech_listener.dart
 require_file lib/core/ai_tutor_service.dart

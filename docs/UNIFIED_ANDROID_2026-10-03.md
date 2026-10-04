@@ -14,7 +14,7 @@ Flutter-PR #152: `e4d6309b86a4e4365d30771eebdc91c2fce44e9a`;
 Godot-PR #2: `55a35b84aeb0eef737f0f9b5a37415cf9a181dfc`.
 Beide Klone waren zu Beginn sauber; geltende `AGENTS.md` wurden in den
 Projektpfaden nicht gefunden. Die 19 Originaldateien liegen mit Herkunft,
-Prüfsummen und Duplikatzuordnung im [Archiv](../archive/project-sources/2026-10-02/README.md).
+Prüfsummen und Duplikatzuordnung (Archiv entfernt am 4. Oktober, in der Git-Historie).
 Alte ungetestete Entwürfe ersetzten keine weiterentwickelten Repositorydateien.
 
 Fortsetzungszweige: `codex/lumo-unified-android-2026-10-03` und im Godot-Repository
