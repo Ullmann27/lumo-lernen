@@ -40,6 +40,6 @@ jobs:
       - name: Flutter-Abhaengigkeiten holen und pruefen
         run: |
           flutter --version
-          flutter pub get --enforce-lockfile
+          flutter pub get
           # Nur zur Information; Fehler hier duerfen die Umgebung nicht blockieren.
           flutter analyze --no-fatal-infos --no-fatal-warnings || true
