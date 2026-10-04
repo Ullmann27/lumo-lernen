@@ -1,0 +1,67 @@
+name: Inspect frozen Lumo Build 280 bytes
+
+on:
+  push:
+    branches: ['codex/lumo-unified-android-2026-10-03']
+    paths: ['.github/workflows/lumo-build-bytecheck.yml']
+
+# Draft asset reads require authoring access; no release write is performed.
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    if: contains(github.event.head_commit.message, '[lumo-bytecheck-280]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download and verify the original immutable bytes without promotion
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/android_qa/download_apk.py --repository "$GITHUB_REPOSITORY" --release-tag unified-build-280 --sha256 3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48 --out byte-inspection
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs byte-inspection/tested.apk > byte-inspection/signature.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging byte-inspection/tested.apk > byte-inspection/apk-badging.txt
+          python3 - <<'PY'
+          import hashlib, json, re
+          from pathlib import Path
+          folder = Path('byte-inspection')
+          path = folder/'tested.apk'
+          expected = '3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48'
+          certificate = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          with path.open('rb') as stream:
+              actual = hashlib.file_digest(stream, 'sha256').hexdigest()
+          if actual != expected or path.stat().st_size != 148336186:
+              raise RuntimeError('The inspected APK is not the original frozen Build 280')
+          if re.findall(r'Signer #1 certificate SHA-256 digest: ([0-9a-f]{64})', (folder/'signature.txt').read_text()) != [certificate]:
+              raise RuntimeError('The inspected APK signer does not match Lumo')
+          prefix = "package: name='dev.ullmann.lumo.lumo_lernen.coachpreview' versionCode='280' versionName='0.10.5'"
+          if not (folder/'apk-badging.txt').read_text().startswith(prefix):
+              raise RuntimeError('The inspected APK package identity does not match Lumo')
+          path.rename(folder/'Lumo-Build-280-Pruefkandidat.bin')
+          report = {'purpose': 'independent byte inspection, NOT final APK handover',
+                    'sha256': actual, 'bytes': 148336186, 'signer_sha256': certificate,
+                    'byte_and_signature_checks_passed': True,
+                    'full_android_usage_test_passed_by_this_workflow': False,
+                    'release_promoted': False, 'release_published': False,
+                    'app_or_apk_changed': False}
+          (folder/'INSPECTION.json').write_text(json.dumps(report, indent=2)+'\n')
+          print(json.dumps(report, indent=2))
+          PY
+      - name: Preserve only inspected bytes and their provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: Lumo-Build-280-Bytecheck
+          path: byte-inspection/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 3
