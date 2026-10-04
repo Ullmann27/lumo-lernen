@@ -150,7 +150,11 @@ class StoryEngine {
     final random = math.Random(seed);
     final topicIndex = random.nextInt(_topics.length);
     final heroIndex = random.nextInt(_heroes.length);
-    final helperIndex = random.nextInt(_helpers.length);
+    var helperIndex = random.nextInt(_helpers.length);
+    // Nie 'Lumo geht mit Lumo': Held und Helfer sind verschiedene Figuren.
+    if (_helpers[helperIndex] == _heroes[heroIndex]) {
+      helperIndex = (helperIndex + 1) % _helpers.length;
+    }
     final placeIndex = random.nextInt(_places.length);
     final actionIndex = random.nextInt(_actions.length);
     final topic = _topics[topicIndex];
@@ -186,7 +190,21 @@ class StoryEngine {
     ].join('.');
     final title = '${topic.title}: $object';
 
-    final lines = grade <= 1
+    final lines = grade >= 3
+        ? _gradeThreeFourLines(
+            grade: grade,
+            hero: hero,
+            helper: helper,
+            place: place,
+            action: action,
+            object: object,
+            observation: observation,
+            fact: fact,
+            safeRule: safeRule,
+            feeling: feeling,
+            ending: ending,
+          )
+        : grade <= 1
         ? _gradeOneLines(
             hero: hero,
             helper: helper,
@@ -216,7 +234,7 @@ class StoryEngine {
       id: 'generated.$signature',
       title: title,
       grade: grade,
-      level: grade <= 1 ? 1 : 2,
+      level: grade.clamp(1, 4),
       targetSkills: <String>['reading.fluency', 'reading.sentences', topic.skill],
       sentences: _sentences(lines),
       signature: signature,
@@ -270,8 +288,43 @@ class StoryEngine {
       '$hero liest den Satz langsam und deutlich.',
       'Dann erklärt $helper das neue Wissen mit eigenen Worten.',
       safeRule,
-      '$hero ist $feeling, aber er bleibt ruhig.',
+      '$hero ist $feeling und atmet einmal tief durch.',
       'Beim zweiten Lesen klingt der Satz schon flüssiger.',
+      action,
+      ending,
+    ];
+  }
+
+  /// Klasse 3 und 4: längere Sätze mit Nebensätzen, eigene Erklärung und
+  /// Forscherheft; Klasse 4 zusätzlich Vermutung und Nachlesen.
+  List<String> _gradeThreeFourLines({
+    required int grade,
+    required String hero,
+    required String helper,
+    required String place,
+    required String action,
+    required String object,
+    required String observation,
+    required String fact,
+    required String safeRule,
+    required String feeling,
+    required String ending,
+  }) {
+    return <String>[
+      'An einem ruhigen Nachmittag machen sich $hero und $helper auf den Weg zum $place.',
+      'Schon von Weitem entdecken sie $object.',
+      'Weil beide neugierig sind, gehen sie näher heran und beobachten alles genau.',
+      observation,
+      fact,
+      '$helper fragt: Was hast du gerade Neues erfahren?',
+      '$hero überlegt kurz und erklärt es mit eigenen Worten.',
+      safeRule,
+      'Danach schreiben die beiden das Wichtigste in ihr Forscherheft.',
+      if (grade >= 4) ...<String>[
+        '$hero vermutet, dass es dazu noch viel mehr zu entdecken gibt.',
+        'Deshalb wollen sie morgen in der Bücherei nachlesen, ob die Vermutung stimmt.',
+      ],
+      '$hero ist $feeling, weil das Lesen heute schon viel flüssiger klappt.',
       action,
       ending,
     ];

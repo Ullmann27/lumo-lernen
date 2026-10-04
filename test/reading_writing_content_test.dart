@@ -45,4 +45,20 @@ void main() {
     expect(SyllableWordColorizer.simpleSyllables('Banane'), ['Ba', 'na', 'ne']);
     expect(SyllableWordColorizer.simpleSyllables('Garten').length, greaterThan(1));
   });
+
+  test('Geschichten werden ab Klasse 3 länger und Held und Helfer unterscheiden sich', () {
+    const engine = StoryEngine();
+    for (var i = 0; i < 40; i++) {
+      final g2 = engine.pickStory(grade: 2);
+      final g3 = engine.pickStory(grade: 3);
+      final g4 = engine.pickStory(grade: 4);
+      expect(g3.sentences.first.text, contains('machen sich'));
+      expect(g4.sentences.length, greaterThan(g3.sentences.length));
+      expect(g4.level, 4);
+      for (final story in [g2, g3, g4]) {
+        expect(story.sentences.first.text.contains('Lumo und Lumo'), isFalse);
+        expect(story.sentences.first.text.contains('Mia und Mia'), isFalse);
+      }
+    }
+  });
 }
