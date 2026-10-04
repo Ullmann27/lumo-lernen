@@ -64,7 +64,10 @@ class OnboardingCaptionTests(unittest.TestCase):
         shell = (source/'app/app_shell.dart').read_text()
         screen = (source/'features/teacher_mode/lumo_akademie_screen.dart').read_text()
         self.assertRegex(shell, r'case LumoSection\.learn:\s*return LumoAkademieScreen\(appState: _appState\)')
-        self.assertIn("Text('"+LEARNING_SELECTION_CAPTION+"'", screen)
+        self.assertRegex(
+            screen,
+            r"Text\(\s*'"+LEARNING_SELECTION_CAPTION+r"'",
+        )
 
 
 if __name__ == '__main__':
