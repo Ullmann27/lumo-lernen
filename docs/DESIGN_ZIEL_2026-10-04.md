@@ -59,6 +59,19 @@ Bausteine, die auf **allen** Bildschirmen gleich aussehen müssen:
 8. **Tablet/Fold (Bild 10):** Linke Leiste Start/Lernen/Spielen/Tests/Belohnungen/Profil, Mitte wie Handy-Start, rechts Spalte „Dein Lernfortschritt“ (4 Fortschrittsringe), Tägliche Aufgaben, Deine Belohnungen.
 9. **Schrift:** Rund und fett (wie Nunito Black) für Titel, normale Stärke für Unterzeilen. Handschrift-Stil nur in Sprechblasen.
 
+## 2b. Die App lebt (Heinz: „die Balken leben, Lumo lebt, die ganze App lebt“)
+
+Pflicht für jeden Bildschirm, nicht optional:
+
+1. **Begrüßung beim App-Start (ca. 2 s, antippen überspringt):** Nachthimmel blendet ein, Sterne funkeln auf, der LUMO-Schriftzug leuchtet mit kurzem Schimmer auf. `fox_kart_wave` fährt von rechts ins Bild und winkt. Die Sprechblase ploppt auf mit „Hallo {Name}! Bereit für ein neues Abenteuer?“ (echter Name, Stimme spricht den Satz, wenn die Stimme an ist). Danach gleiten Kopfzeile von oben und untere Navigation von unten herein, die Kacheln erscheinen gestaffelt (je 60 ms, von unten mit leichtem Hochfedern).
+2. **Fuchs:** Bewegt sich immer leicht, kein Standbild. Atmen (Skalierung 1,00 ↔ 1,02, ca. 2,5 s), sanftes Schweben (±4 px), kleiner Wipp-Ausschlag. Beim Bildschirmwechsel ein kurzes Einblenden der passenden Pose. Bei richtiger Antwort springt er kurz (Squash & Stretch), bei falscher neigt er tröstend den Kopf.
+3. **Balken und Zahlen:** XP-, Fortschritts- und Segmentbalken füllen sich animiert vom alten auf den neuen Wert (ca. 900 ms, easeOutCubic), mit einem wandernden Glanzlicht. Sterne- und XP-Zahlen zählen hoch. Fortschrittsringe zeichnen sich im Uhrzeigersinn.
+4. **Navigation:** Der aktive Eintrag hat einen leuchtenden Cyan-Hintergrund, der beim Wechsel weich zum neuen Eintrag gleitet. Das Symbol hüpft kurz. Seitenwechsel als Überblendung mit leichtem Schieben, kein harter Schnitt.
+5. **Hintergrund:** Funkelnde Sterne, langsam ziehende Wolken, schwebende Inseln mit leichter Bewegung (Parallax beim Scrollen), über die Rennstrecke laufende Leuchtpfeile.
+6. **Bedienelemente:** Jede Kachel und jeder Knopf federt beim Antippen (Skalierung 0,96 → 1,0), Glas-Karten haben einen langsam wandernden Glanzrand, „Neu!“-Abzeichen pulsieren, Sprechblasen ploppen auf.
+7. **Erfolg:** Bei richtiger Antwort und Belohnung Sternregen beziehungsweise Konfetti und ein „+10 XP“, das zur XP-Pille fliegt.
+8. **Grenzen:** 60 FPS anstreben, `RepaintBoundary` um Dauer-Animationen, alle Controller sauber entsorgen. Die vorhandene Einstellung „Animationen reduzieren“ schaltet Dauer-Animationen ab (nur kurze Übergänge bleiben). Animationen dürfen nie Antworten verdecken oder das Antippen verzögern.
+
 ## 3. Pro Bildschirm: Abnahmepunkte
 
 **01 Start:** Kopfzeile · Fuchs im Kart mit Strecke · Blase „Hallo! Bereit für ein neues Abenteuer?“ · Banner „Lumo Kart – Lernen auf der Überholspur!“ mit Bild und „Neu!“ · 4 Kacheln Lernen/Spielen/Tests/Belohnungen · „Tägliche Aufgaben“ mit 3 Zeilen, Haken und „+XP“ · Motivationskarte „Du kannst das!“ mit zwinkerndem Fuchs · Navigation.
@@ -101,6 +114,8 @@ Ein PR pro Etappe, gestapelt auf `codex/lumo-unified-android-2026-10-03`:
 5. **Spielewelt (06) + Kart-Menü (09).**
 6. **Profil (07).**
 7. **Kart-Rennen-HUD (08)** im Godot-Repo.
+
+Jede Etappe enthält auch die Animationen aus Abschnitt 2b für ihre Bildschirme.
 
 Jeder PR muss enthalten:
 - **Echte Screenshots** des laufenden Bildschirms (Handy 1080×1920 bzw. 941×1672-Verhältnis, bei Etappe 2 zusätzlich breit) **nebeneinander mit der Vorlage**.

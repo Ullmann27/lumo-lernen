@@ -41,7 +41,7 @@ Quelle: ChatGPT-Projekt/Library `App Lumo`, 3. Oktober 2026, 18:33:28–18:33:57
 | 11 | Lumo Kart: Vier fantastische Rennstrecken.png | Sonnenhafen, Zauberwald, Wolkenpass, Holo City; jede Welt eigenständig ausgestaltet. |
 | 12 | Lumo Kart am Sonnenhafen.png | Gameplay: Verfolgerkamera, erkennbarer Fuchs/Kart, dichter Hafen, Mitfahrer, Glas-HUD/Minimap, Lenkung links und Drift/Boost rechts. Nicht Bild 05. |
 
-Die vier älteren Dateien `01_mathe_mit_lumo_target.png` bis `04_pixar_scene_portrait.png` im bisherigen `docs/design_references/` sind nicht diese zwölf neuen Originale.
+Für die Flutter-App gelten Heinz' elf Bilder in `docs/design_targets/2026-10-04/` (siehe `DESIGN_ZIEL_2026-10-04.md`).
 
 ## 4. Verbindliche Grafikarbeit
 

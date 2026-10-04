@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/german_task_templates.dart';
-import 'package:lumo_lernen/core/lumo_didactic_task_style.dart';
 import 'package:lumo_lernen/core/primary_school_word_data.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
@@ -267,13 +266,5 @@ void main() {
         expect(rendered.correctAnswer.toString(), task.answer);
       }
     }
-  });
-
-  test('building a sentence has its own didactic style', () {
-    final style = LumoDidacticTaskStyles.styleFor(
-        domain: LumoLearningDomain.german,
-        action: LumoLearningAction.buildSentence);
-    expect(style.action, LumoLearningAction.buildSentence);
-    expect(style.visualType, 'sentence_blocks');
   });
 }

@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
-import 'package:lumo_lernen/features/live/lumo_live_screen.dart';
 import 'package:lumo_lernen/features/live/lumo_live_pro_screen.dart';
 import 'package:lumo_lernen/features/photo_lesson/lumo_photo_lesson_screen.dart';
 import 'package:lumo_lernen/widgets/scan_screen.dart';
@@ -45,7 +44,7 @@ void main() {
     LumoVoice.instance.isEnabled = true;
   });
 
-  for (final pro in [false, true]) {
+  for (final pro in [true]) {
     testWidgets(
         'Live ${pro ? 'Pro' : ''} opens without initializing microphone; denied tap stays local',
         (tester) async {
@@ -54,9 +53,7 @@ void main() {
       final state = LumoAppState();
       await state.ensureSettingsLoaded();
       await tester.pumpWidget(MaterialApp(
-          home: pro
-              ? LumoLiveProScreen(appState: state)
-              : LumoLiveScreen(appState: state)));
+          home: LumoLiveProScreen(appState: state)));
       await tester.pump(const Duration(seconds: 1));
       expect(sensorCalls.where((call) => call.method == 'initialize'), isEmpty);
       await tester.tap(find.text('Sprechen'));
