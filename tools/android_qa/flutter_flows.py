@@ -165,10 +165,26 @@ class FlutterChecks:
         time.sleep(.3)
         return True
 
-    def top(self):
-        for _ in range(4):
-            if not self.scroll(self.frame('scroll-to-top'), down=False):
+    def top(self, timeout=45):
+        # Navigator can expose an empty Semantics tree during its return
+        # animation. It is not evidence that the retained page cannot scroll.
+        # Wait for real content; never repeat Back or invent a swipe target.
+        deadline = time.monotonic()+timeout
+        gestures = 0
+        while time.monotonic() < deadline:
+            root = self.frame('scroll-to-top')
+            if time.monotonic() >= deadline:
                 break
+            if not labels(root):
+                self.record('await_visible_flutter_content')
+                time.sleep(.4)
+                continue
+            if not self.scroll(root, down=False):
+                return
+            gestures += 1
+            if gestures == 4:
+                return
+        raise RuntimeError('Flutter content did not become visible within the bounded top-scroll check.')
 
     def click(self, phrase, contains=False, scroll=False):
         for _ in range(12 if scroll else 1):
