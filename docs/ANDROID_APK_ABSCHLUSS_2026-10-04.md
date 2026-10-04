@@ -1,50 +1,46 @@
 # Android-APK-Abschluss – 4. Oktober 2026
 
-## Status
+## Aktueller Stand
 
-**Der vollständige Android-Nutzungstest ist noch nicht als bestanden bestätigt. Build 280 bleibt bis dahin ein Prüfkandidat.**
+**Die vollständige Android-Nutzungsprüfung ist noch nicht als bestanden bestätigt. Eine finale APK wurde noch nicht übergeben.**
 
-Projekt: `Ullmann27/lumo-lernen`, PR #156, Zweig `codex/lumo-unified-android-2026-10-03`.
+Projekt `Ullmann27/lumo-lernen`, PR #156, Zweig `codex/lumo-unified-android-2026-10-03`.
 
-Aktueller Gesamtlauf: `37172929269`, Job `111349433409`, QA-Commit `74113f56b41582cbfc341943e27d7b2c49d8364a`.
-Die vorangestellten Android-Testhelfer, Download- und Signaturprüfung sind in diesem Lauf bestanden. Der eigentliche Android-Nutzungstest läuft noch. Ein fertiger Gesamtnachweis darf erst nach Prüfung seiner Originaldateien eingetragen werden.
+Aktueller Gesamtlauf: **37174626790**, QA-Commit `e332e24104345b1d851e2903939c3336ea5dc995`.
+Der zugehörige Transfer wurde durch Commit `3dba7a43111ea73df1e3e7e0e25b777c0e1bd364` gestartet. Er wartet ausschließlich auf diesen konkreten Gesamtlauf und darf eine finale APK nur bei passenden Originalnachweisen übernehmen. Bei einem Fehlschlag wird ausschließlich die Diagnose übertragen.
 
-## Eingefrorene APK
+Unveränderte APK: Version **0.10.5, Build 280**, Entwurf `unified-build-280`, SHA-256 `3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48`.
 
-Entwurf `unified-build-280`; Version 0.10.5, Build 280.
+Die Änderungen dieser Fortsetzung betreffen die Android-Testwerkzeuge und die Dateiübertragung. App-Quellen, APK-Bytes und Signatur wurden nicht geändert. Kein Release wurde veröffentlicht; PR #156 wurde nicht zusammengeführt.
 
-SHA-256: `3c01ba849139583be0b41ef2195e67f68373ebb18d720ce2d1ad1bd638523f48`.
+## Aus Originaldateien nachgewiesene Fortschritte
 
-Die App-Quellen, APK-Bytes, Signatur und Spielstände wurden bei dieser Fortsetzung nicht verändert. Die Änderungen betreffen die Android-Prüfung und die nachvollziehbare Dateiübertragung. Kein Release wurde veröffentlicht und PR #156 wurde nicht zusammengeführt.
+Der Emulator wird anhand seiner tatsächlichen ausführbaren Datei geprüft. `-no-window` verlangt ausdrücklich `qemu-system-x86_64-headless` aus dem verifizierten, gepinnten SDK. Falsche, fehlende und doppelte Prozesse bleiben Fehler. Die Originaldateien der Folgeläufe bestätigen diese Prüfung.
 
-## Verifiziert behobene Prüfprobleme
+Lauf **37172929269** absolvierte ein vollständiges Kart-Rennen mit zwei Runden, vier korrekten Lernantworten, beobachteter Hilfestellung, Ergebnis, Neustart und Rückkehr in die Spieleauswahl. Danach wurde auch die Flutter-Rechenaufgabe mit lokaler Apfel-Erklärung gelöst und `Aufgabe 2 / 30` erreicht. Der Gesamtlauf scheiterte erst beim Prüfen der Rückkehr zur Akademie-Überschrift.
 
-Die Emulatorprüfung erkennt jetzt das tatsächliche `/proc/PID/exe`-Ziel. Bei `-no-window` wird ausdrücklich das separat verpackte `qemu-system-x86_64-headless` geprüft, einschließlich dessen Bibliotheksabhängigkeiten. Es muss weiterhin genau ein passender Prozess existieren; falsche und doppelte Prozesse werden abgewiesen. Das Original-Proof des Laufs `37171778921` bestätigt diese Prüfung mit `passed: true`.
+Der Originaltransfer dieses Laufs (`Lumo-Android-Prueflauf.zip`) hat SHA-256 `55e9a412e11c3e98c2c50941bd36b4796f4d90f2e6a421f3d652245dbd340a4`. Seine 149 Hilfstests hatten keine Fehler, aber acht mangels OCR-Installation übersprungene Bildtests. Das wird nicht als 149 vollständig ausgeführte erfolgreiche Tests ausgegeben.
 
-Im selben Lauf endete die Original-Nutzungsprüfung bei der Erkennung des Kart-Lernfragenwechsels. Der Rohbericht nennt `Später touch did not close the real learning pause`. Die Bilder zeigen zunächst `7 − 2 = ?`, später `3 − 3 = ?` und eine veränderte Rennposition. Die Texterkennung lieferte daneben die fehlerhaften Varianten `7-22?` und `3-35?`.
+Lauf **37173963537** führte nach Installation der OCR-Abhängigkeiten **alle 153 Hilfstests ohne Fehler und ohne Auslassung** aus. Sein tatsächlicher Spieltest endete an einer weiteren Prüferannahme: Eine korrekte Antwort war lesbar, eine falsche Antwort jedoch noch nicht. Dieser Lauf ist deshalb insgesamt nicht bestanden. Originaltransfer `Lumo-Android-Nutzungstest.zip`, SHA-256 `75bb1485c066f0d912e1b4f8c62bc057bf9aa7f766c832ec6bf8c3fb3ea4efec`.
 
-Der bisherige Parser behandelte die fehlerhaften Lesarten ohne Gleichheitszeichen wie eine gleichwertige vollständige Frage. Außerdem versuchte der Später-Zweig, die vorherige Frage erneut aus einem bereits gescheiterten Antwort-Matcher zu gewinnen. Der Nachweis eines Fragenwechsels konnte damit fehlen, obwohl die Bildschirmfolge einen Wechsel zeigt.
+## Gezielte Reparaturen der Testwerkzeuge
 
-Die Korrektur bevorzugt vollständige beobachtete Fragen mit `= ?` gegenüber der toleranten Ersatzlesart ohne Gleichheitszeichen, behält aber widersprüchliche gleichwertige Lesarten als Fehler bei. Die Frage wird unabhängig vom lesbaren Antwortknopf identifiziert; gleiche Fragen mit anderer Leerzeichen- oder Minusdarstellung zählen nicht als Wechsel. Korrekte Antworten erfordern weiterhin den tatsächlich erkannten passenden Antwortknopf. Die vollständigen Rennen, Speicherprüfungen, Fehlerlog-Prüfungen und übrigen Nutzungsanforderungen werden nicht übersprungen.
+Die Kart-Fragenanalyse bevorzugt vollständige beobachtete Fragen mit `= ?` gegenüber schwächeren OCR-Lesarten ohne Gleichheitszeichen. Dadurch werden die aufgezeichneten Varianten `7-22?` und `3-35?` nicht gegen die eindeutig vollständig erkannten Fragen `7-2=?` und `3-3=?` ausgespielt. Widersprüche zwischen gleichwertigen vollständigen Lesarten bleiben Fehler. Ein Fragenwechsel wird unabhängig von lesbaren Antwortknöpfen erkannt; gleiche Fragen mit anderer Leerzeichen- oder Minusdarstellung zählen nicht als Wechsel.
 
-Geänderter Kart-Helfer: Commit `ae3810ac47dc906d89cd1fadfc1e0e6ad67facb1`, Git-Blob `a036db4f937a6573925c84e348138755481171e6`. Die Übernahme war auf den exakten vorherigen Blob `62394336829476558ffcf8174263ca5ef291ca56` und diesen nach lokalem Test festgelegten Ergebnis-Blob begrenzt. Der Übernahmelauf `37172812444` hat zuvor die Android-Helfertests ausgeführt und erfolgreich abgeschlossen.
+Beim Zurückkehren aus dem Flutter-Lernmodul enthielt die erste echte Semantics-Aufnahme vorübergehend keine Beschriftungen und keinen Scrollbereich. Die folgende Aufnahme zeigte die korrekt zurückgekehrte Akademie mit beibehaltener Scrollposition. Die Prüfung wartet nun begrenzt auf tatsächlichen Inhalt, bevor sie höchstens vier echte Aufwärtsgesten innerhalb des beobachteten Scrollbereichs ausführt. Sie wiederholt weder Android Back noch erfindet sie Koordinaten. Der erforderliche Nachweis der Akademie-Überschrift und des gespeicherten Lernfortschritts bleibt bestehen. Quell-Blob `fd613afe0f7a1e00658066502c7402d2f01d5382`; vier neue Regressionen und Replay der Original-XMLs bestanden.
 
-## Tatsächlich ausgeführte lokale Prüfungen
+Fehlantwort und lokale Erklärung sind jetzt eine eigenständig erforderliche Interaktion innerhalb des Rennens. Sind bei einer Frage nur die richtige Antwort und ihr realer Knopf lesbar, wird keine falsche Antwort geraten. Der Fehlantwort-/Hilfenachweis darf an einer späteren eindeutig lesbaren Frage stattfinden, muss aber vor erfolgreichem Rennabschluss tatsächlich vorliegen. Ohne korrekte Lernantwort beziehungsweise ohne verlangten Hilfenachweis bleibt der vollständige Lauf ein Fehler. Quell-Blob `c4192dd84fac9c5111055d0894842c105499b5b8`; 51 Kart-Regressionen einschließlich sechs neuer Nachweisprüfungen bestanden lokal.
 
-78 gezielte Tests bestanden: 26 Emulatorprüfungen, 45 Kartprüfungen einschließlich 12 neuer Fragenidentitätsregressionen und 7 Übertragungsprüfungen. Vier Originalbilder wurden mit ihren bereits gespeicherten OCR-Tabellen erneut ausgewertet, ohne eine neue OCR-Abfrage oder Android-Eingabe. Die ursprünglichen Falschlesarten wurden damit reproduziert und die Korrektur an denselben Rohdaten geprüft.
+Diese Angaben sind Tests der Prüfer und beobachtete Teilabläufe, kein Ersatz für den noch laufenden vollständigen Android-Gesamttest.
 
-Ein lokaler Lauf der damals vorhandenen 137 Helfertests hatte zwei Fehler, weil in der ausschließlich übertragenen Helferkopie die Flutter-App-Quelldateien fehlten. Dieser Lauf wird nicht als vollständig bestanden angegeben. Die gezielten 78 Tests liefen ohne diese fehlenden Dateien erfolgreich; im Repository-Runner ist die vollständige Quelldateistruktur vorhanden.
+## Quellenkorrektur und Grenzen
 
-Frühere Flutter-, Backend- und Lerninhalts-Testzahlen wurden bei dieser Fortsetzung nicht neu ausgeführt.
+Eine frühere Protokollansicht zu Lauf 37171778921 hatte `Can't create ViewModelProvider for detached fragment` behauptet. Seine heruntergeladenen Originaldateien bestätigen diese Diagnose nicht; sie zeigen einen Abbruch beim Erkennen des Kart-Fragenwechsels. Deshalb wurde auf dieser Grundlage keine Godot-/Android-Activity verändert.
 
-## Maßgebliche Rohdaten und Korrektur der ersten Diagnose
+Ein früher lokaler Gesamtlauf der nur übertragenen Helferkopie hatte zwei Fehler wegen fehlender Flutter-App-Quelldateien. Diese lokalen Gesamttests wurden nicht als vollständig bestanden ausgegeben. Die vollständige Quelldateistruktur ist im Repository-Runner vorhanden. Frühere Flutter-, Backend- und Lerninhalts-Testzahlen wurden in dieser Fortsetzung nicht neu ausgeführt.
 
-Der heruntergeladene Originaltransfer `Lumo-Android-Aktuelle-Diagnose.zip` hat SHA-256 `2393e55c245675994d15d8b52d759b5b03817b1f2ca7265868137c91687c5b9c`. Sein verschachteltes Proof `android-api35-qa-37171778921-1.zip` enthält 161 Einträge. `result.json` meldet `passed: false`; es enthält keine freigegebene APK.
+## Noch zu bestätigen
 
-Die zuvor angezeigte Protokollansicht hatte einen Fehler `Can't create ViewModelProvider for detached fragment` und weiter fortgeschrittene Prüfschritte genannt. Diese Darstellung wird durch die heruntergeladenen Originaldateien dieses Laufs nicht bestätigt. Sie ist deshalb nicht Grundlage einer Änderung an der Godot-/Android-Activity. Maßgeblich sind die geprüften Originaldateien und Screenshots; entsprechend wurde die erste Diagnose korrigiert.
+Endergebnis des oben genannten Gesamtlaufs aus seinem Original-Proof lesen: vollständige Lern-/Memory-/Kartenspiel-Abläufe, emulierte Fold-Größen, Offline-Neustart und gespeicherte Fortschritte. Nur bei erfolgreichem, passenden Lauf dieselbe erneut heruntergeladene und SHA-256-geprüfte Datei `Lumo-Lernen-Neu.apk` übergeben. Keine Umbenennung eines fehlgeschlagenen Kandidaten zur fertigen Version.
 
-## Übergabegrenze
-
-Der Übertragungsweg bis zu einer tatsächlich herunterladbaren Chat-Datei wurde geprüft. Eine finale APK darf dieser Weg nur übernehmen, wenn Gesamtlauf, Laufnummer, QA-Commit, Original-Proof, erfolgreicher Nutzungstest, erneuter APK-Download und SHA-256 zusammenpassen. Fehlgeschlagene Prüfungen exportieren nur Diagnoseunterlagen. Die zusätzliche lokale Verpackungsprüfung hat einen solchen fehlgeschlagenen Transfer ohne APK-Ausgabe abgewiesen.
-
-Noch nicht nachgewiesen: vollständiger aktueller Memory-/Kartenspiel-/Offline-/Fold-Nutzungstest, physisches Samsung-Gerät, ein vollständig neuer 3D-Fuchs oder die endgültige gewünschte Premium-Grafik. Diese Punkte werden durch die Reparatur der Testwerkzeuge nicht als erledigt ausgegeben.
+Physische Samsung-Geräte, endgültige Premium-Grafik, ein vollständig neuer 3D-Fuchs sowie sämtliche externen KI-Dienste sind dadurch nicht als getestet oder fertiggestellt nachgewiesen.
