@@ -82,23 +82,10 @@ class Android:
         return result.stdout
 
     def dump(self):
-        # Flutter supplies Semantics nodes. Godot normally exposes only its native view.
-        remote = f'/sdcard/lumo-qa-ui-{os.getpid()}.xml'
-        for attempt in range(3):
-            try:
-                self.adb('shell', 'uiautomator', 'dump', remote)
-                data = self.adb('shell', 'cat', remote)
-                break
-            except RuntimeError:
-                if attempt == 2:
-                    raise
-                time.sleep(2)
-        start = data.find('<?xml')
-        if start < 0:
-            start = data.find('<hierarchy')
-        if start < 0:
-            raise RuntimeError('No UI hierarchy returned')
-        return ET.fromstring(data[start:])
+        # AOSP's dump command may report an idle timeout with exit code zero.
+        # Never read the last request's file: it can contain stale coordinates.
+        from fresh_ui_hierarchy import read_fresh_hierarchy
+        return read_fresh_hierarchy(self.adb, QA_ROOT)
 
     @staticmethod
     def bounds(node):
