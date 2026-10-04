@@ -217,7 +217,7 @@ class StoryEngine {
       title: title,
       grade: grade,
       level: grade <= 1 ? 1 : 2,
-      targetSkills: <String>['reading.flüncy', 'reading.sentences', topic.skill],
+      targetSkills: <String>['reading.fluency', 'reading.sentences', topic.skill],
       sentences: _sentences(lines),
       signature: signature,
     );
@@ -262,7 +262,7 @@ class StoryEngine {
   }) {
     return <String>[
       '$hero und $helper gehen heute zum $place.',
-      'Sie wollen etwas Neüs lernen.',
+      'Sie wollen etwas Neues lernen.',
       'Auf dem Weg entdeckt $hero $object.',
       '$helper bleibt stehen und beobachtet es ruhig.',
       observation,
@@ -322,7 +322,7 @@ class StoryEngine {
 
   static const List<String> _heroes = <String>['Lumo', 'Mia', 'Alina', 'Ben', 'Lina', 'Emil', 'Nora', 'Leo'];
   static const List<String> _helpers = <String>['Lumo', 'Mia', 'Oma', 'Papa', 'Mama', 'Frau Hase'];
-  static const List<String> _places = <String>['Schulgarten', 'Wald', 'Teich', 'Park', 'Baürnhof', 'Klassenraum', 'Wiesenrand', 'Fensterbrett'];
+  static const List<String> _places = <String>['Schulgarten', 'Wald', 'Teich', 'Park', 'Bauernhof', 'Klassenraum', 'Wiesenrand', 'Fensterbrett'];
   static const List<String> _feelings = <String>['mutig', 'ruhig', 'neugierig', 'stolz', 'konzentriert', 'geduldig'];
   static const List<String> _actions = <String>[
     'Danach malt das Kind ein kleines Bild dazu.',
@@ -490,7 +490,7 @@ class StoryEngine {
         'Beim Zählen hilft langsames Zeigen.',
         'Eine Reihe macht Mengen sichtbar.',
         'Zehn Dinge kann man gut in zwei Gruppen teilen.',
-        'Rechnen beginnt oft mit genaüm Schaün.',
+        'Rechnen beginnt oft mit genauem Schauen.',
       ],
       safeRules: <String>[
         'Man zählt ruhig und ohne Hektik.',
@@ -515,7 +515,7 @@ class StoryEngine {
         'Im Weltall gibt es keinen normalen Wind.',
       ],
       safeRules: <String>[
-        'Beim Schaün in den Himmel achtet man auf den Weg.',
+        'Beim Schauen in den Himmel achtet man auf den Weg.',
         'In die Sonne schaut man nie direkt.',
         'Fragen machen Wissenschaft spannend.',
       ],
@@ -569,7 +569,7 @@ class SyllableWordColorizer {
     if (cleaned.length <= 3) return <String>[cleaned.isEmpty ? rawWord : cleaned];
     final parts = <String>[];
     final buffer = StringBuffer();
-    const vowels = 'äiouäöüyÄIOUÄÖÜY';
+    const vowels = 'aeiouäöüyAEIOUÄÖÜY';
     for (var i = 0; i < cleaned.length; i++) {
       buffer.write(cleaned[i]);
       final isVowel = vowels.contains(cleaned[i]);
