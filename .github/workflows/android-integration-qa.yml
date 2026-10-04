@@ -70,6 +70,9 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y tesseract-ocr xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
           python3 -m pip install Pillow
+          # Re-run with OCR installed so screenshot-backed tests cannot be
+          # silently skipped by the earlier dependency-light regression step.
+          python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v 2>&1 | tee "$LUMO_QA_DIR/android-helper-regressions-with-ocr.log"
       - uses: android-actions/setup-android@v3
         with:
           packages: 'platform-tools build-tools;35.0.0 platforms;android-36'
