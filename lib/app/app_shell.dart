@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
@@ -29,6 +28,7 @@ import '../core/lumo_companion_agent.dart';
 import '../core/lumo_voice.dart';
 import '../core/user_profile.dart';
 import '../core/embedded_game_service.dart';
+import '../widgets/design/lumo_design_system.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key, this.profile, this.initialSection});
@@ -476,7 +476,7 @@ class _AppShellState extends State<AppShell>
                               appState: _appState,
                               onSection: _navigateTo,
                               compact: constraints.maxHeight < 650),
-                          _MobileBottomNavigation(
+                          LumoBottomNavigation(
                               active: _appState.state.section,
                               onSelect: _navigateTo),
                         ]);
@@ -759,142 +759,6 @@ class _MobileLumoHeader extends StatelessWidget {
       ),
     );
   }
-}
-
-class _MobileBottomNavigation extends StatelessWidget {
-  const _MobileBottomNavigation({required this.active, required this.onSelect});
-
-  final LumoSection active;
-  final ValueChanged<LumoSection> onSelect;
-
-  static const _items = <_MobileNavItem>[
-    _MobileNavItem(LumoSection.home, Icons.home_rounded, 'Start'),
-    _MobileNavItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
-    _MobileNavItem(LumoSection.agent, Icons.auto_awesome_rounded, 'Lumo KI'),
-    _MobileNavItem(
-      LumoSection.reading,
-      Icons.record_voice_over_rounded,
-      'Lesen',
-    ),
-    _MobileNavItem(
-      LumoSection.profile,
-      Icons.sentiment_satisfied_rounded,
-      'Profil',
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 7),
-      decoration: BoxDecoration(
-        // Premium-Look: leichter Gradient statt einfaches Weiss.
-        gradient: const LinearGradient(
-          colors: [Color(0xFFFFFFFF), Color(0xFFFFFBF0)],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-        borderRadius: BorderRadius.circular(LumoRadius.pill),
-        border: Border.all(
-          color: LumoColors.orange.withOpacity(.25),
-          width: 1.4,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: LumoColors.orange.withOpacity(0.18),
-            blurRadius: 20,
-            offset: const Offset(0, 6),
-            spreadRadius: -4,
-          ),
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-            spreadRadius: -2,
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _items.map((item) {
-          final selected = item.section == active;
-          return Expanded(
-            child: LumoTapBounce(
-              child: GestureDetector(
-                onTap: () {
-                  HapticFeedback.selectionClick();
-                  onSelect(item.section);
-                },
-                behavior: HitTestBehavior.opaque,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 280),
-                  curve: Curves.easeOutCubic,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  margin: const EdgeInsets.symmetric(horizontal: 2),
-                  decoration: BoxDecoration(
-                    gradient: selected
-                        ? const LinearGradient(
-                            colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          )
-                        : null,
-                    borderRadius: BorderRadius.circular(LumoRadius.pill),
-                    boxShadow: selected
-                        ? [
-                            BoxShadow(
-                              color: LumoColors.orange.withOpacity(0.5),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
-                              spreadRadius: -2,
-                            ),
-                          ]
-                        : null,
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      AnimatedScale(
-                        scale: selected ? 1.15 : 1.0,
-                        duration: const Duration(milliseconds: 280),
-                        curve: Curves.elasticOut,
-                        child: Icon(
-                          item.icon,
-                          size: 22,
-                          color: selected ? Colors.white : LumoColors.ink500,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        item.label,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 10,
-                          fontWeight: FontWeight.w900,
-                          color: selected ? Colors.white : LumoColors.ink500,
-                          letterSpacing: 0.2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
-
-class _MobileNavItem {
-  const _MobileNavItem(this.section, this.icon, this.label);
-  final LumoSection section;
-  final IconData icon;
-  final String label;
 }
 
 // 2026-06-05 Iter 16/A2: Achievement-Burst-Overlay
