@@ -69,8 +69,11 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   expect(find.text('Sachkunde'), findsOneWidget);
   await tester.ensureVisible(find.text('1. Klasse'));
   await tester.tap(find.text('1. Klasse'));
-  await tester.ensureVisible(find.text('Plus bis 10'));
   await tester.pump();
+  await tester.ensureVisible(find.text('Mathe'));
+  await tester.tap(find.text('Mathe'));
+  await tester.pump();
+  await tester.ensureVisible(find.text('Plus bis 10'));
   await tester.tap(find.text('Plus bis 10'));
   await _frames(tester);
   expect(find.byType(PlusBis10Screen), findsOneWidget);
@@ -178,7 +181,7 @@ void main() {
     await tester.binding.handlePopRoute();
     await _frames(tester);
     expect(find.byType(PlusBis10Screen), findsNothing);
-    await tester.drag(find.byType(CustomScrollView), const Offset(0, 650));
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, 2000));
     await _frames(tester);
     expect(find.text('LUMO AKADEMIE'), findsOneWidget);
     await _assertStored(tester,

@@ -43,8 +43,8 @@ bool _sameValue(String first, String second) {
 }
 
 List<String> _options(WidgetTester tester) => tester
-    .widgetList<Text>(find.descendant(
-        of: find.byType(GridView), matching: find.byType(Text)))
+    .widgetList<Text>(
+        find.descendant(of: find.byType(GridView), matching: find.byType(Text)))
     .map((text) => text.data ?? '')
     .where((text) => RegExp(r'^\d+/\d+$').hasMatch(text))
     .toList();
@@ -54,8 +54,8 @@ String _pizzaFraction(WidgetTester tester) {
       .widgetList<Text>(find.byType(Text))
       .map((widget) => widget.data ?? '')
       .singleWhere((text) => text.startsWith('Von '));
-  final match = RegExp(r'^Von (\d+) Stücken wurden (\d+) gegessen\.$')
-      .firstMatch(text)!;
+  final match =
+      RegExp(r'^Von (\d+) Stücken wurden (\d+) gegessen\.$').firstMatch(text)!;
   return '${match[2]}/${match[1]}';
 }
 
@@ -66,7 +66,10 @@ Future<void> _frames(WidgetTester tester, [int count = 90]) async {
 }
 
 Future<void> _stored(WidgetTester tester,
-    {required int correct, required int wrong, required int stars, required int xp}) =>
+        {required int correct,
+        required int wrong,
+        required int stars,
+        required int xp}) =>
     tester.runAsync(() async {
       final restored = LumoAppState(walletRepository: RewardWalletRepository());
       await restored.hydrateFromWallet();
@@ -103,14 +106,19 @@ void main() {
     LumoVoice.instance.isEnabled = false;
   });
 
-  test('equivalent fractions are accepted; malformed or zero denominators are rejected',
+  test(
+      'equivalent fractions are accepted; malformed or zero denominators are rejected',
       () {
     for (var denominator = 2; denominator <= 8; denominator++) {
       for (var numerator = 1; numerator < denominator; numerator++) {
         final expected = '$numerator/$denominator';
-        expect(areEquivalentFractionAnswers(
-            '${numerator * 3}/${denominator * 3}', expected), isTrue);
-        for (var otherDenominator = 2; otherDenominator <= 8; otherDenominator++) {
+        expect(
+            areEquivalentFractionAnswers(
+                '${numerator * 3}/${denominator * 3}', expected),
+            isTrue);
+        for (var otherDenominator = 2;
+            otherDenominator <= 8;
+            otherDenominator++) {
           for (var otherNumerator = 1;
               otherNumerator < otherDenominator;
               otherNumerator++) {
@@ -129,7 +137,8 @@ void main() {
     }
   });
 
-  testWidgets('actual grade4 module keeps four distinct fraction values and scores one full session',
+  testWidgets(
+      'actual grade4 module keeps four distinct fraction values and scores one full session',
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(480, 800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -137,7 +146,11 @@ void main() {
     app.update(app.state.copyWith(grade: 4));
     app.updateSettings(const AppSettings(voiceEnabled: false));
     await tester.runAsync(() => app.hydrateFromWallet());
-    await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
+    await tester
+        .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
+    await _frames(tester);
+    await tester.ensureVisible(find.text('Mathe'));
+    await tester.tap(find.text('Mathe'));
     await _frames(tester);
     await tester.ensureVisible(find.text('Bruchrechnen'));
     await tester.tap(find.text('Bruchrechnen'));
@@ -156,8 +169,9 @@ void main() {
           expect(_sameValue(options[i], options[j]), isFalse);
         }
       }
-      final chosen = options.firstWhere((option) =>
-          task == 0 ? !_sameValue(option, expected) : _sameValue(option, expected));
+      final chosen = options.firstWhere((option) => task == 0
+          ? !_sameValue(option, expected)
+          : _sameValue(option, expected));
       final answer = find.descendant(
           of: find.byType(GridView), matching: find.text(chosen));
       await tester.ensureVisible(answer);
@@ -179,7 +193,8 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('fraction answer waits for wallet and profile retry without duplicate credit',
+  testWidgets(
+      'fraction answer waits for wallet and profile retry without duplicate credit',
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(480, 800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -194,10 +209,11 @@ void main() {
       await app.hydrateFromWallet();
       await app.loadLearningProfile();
     });
-    await tester.pumpWidget(MaterialApp(home: BruchrechnenScreen(appState: app)));
+    await tester
+        .pumpWidget(MaterialApp(home: BruchrechnenScreen(appState: app)));
     await _frames(tester);
-    final answer = find.descendant(
-        of: find.byType(GridView), matching: find.text('1/2'));
+    final answer =
+        find.descendant(of: find.byType(GridView), matching: find.text('1/2'));
     await tester.tap(answer);
     await _frames(tester, 190);
     expect(find.text('Bruch 1 / 8'), findsOneWidget);
