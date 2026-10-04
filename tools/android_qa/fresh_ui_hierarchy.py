@@ -18,23 +18,32 @@ import uuid
 import xml.etree.ElementTree as ET
 
 
-def read_fresh_hierarchy(adb: Callable, out: Path, *, attempts: int = 3) -> ET.Element:
+def read_fresh_hierarchy(adb: Callable, out: Path, *, attempts: int = 3,
+                         snapshot_remote: str | None = None) -> ET.Element:
     if not 1 <= attempts <= 5:
         raise ValueError('UI observation attempts must be between one and five')
+    if snapshot_remote not in (None, '/data/local/tmp/lumo-ui-snapshot.jar'):
+        raise ValueError('Unexpected read-only snapshot helper path')
     out.mkdir(parents=True, exist_ok=True)
     last_error: Exception | None = None
     for attempt in range(1, attempts + 1):
         remote = f'/sdcard/lumo-ui-{uuid.uuid4().hex}.xml'
         record = {'attempt': attempt, 'remote': remote,
                   'time_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
-                  'fresh': False, 'compressed': True}
+                  'fresh': False, 'compressed': True,
+                  'method': 'live-accessibility-without-idle' if snapshot_remote else 'uiautomator-idle-dump'}
         root = None
         try:
             # Removing before creation additionally fails closed if a caller
             # supplies a deterministic UUID source for a regression replay.
             adb('shell', 'rm', '-f', remote, timeout=10)
-            output = adb('shell', 'uiautomator', 'dump', '--compressed', remote,
-                         timeout=20)
+            if snapshot_remote:
+                output = adb('shell',
+                             'CLASSPATH=/system/framework/uiautomator.jar:'+snapshot_remote,
+                             'app_process', '/system/bin', 'LumoUiSnapshot', remote, timeout=20)
+            else:
+                output = adb('shell', 'uiautomator', 'dump', '--compressed', remote,
+                             timeout=20)
             record['command_stdout'] = output
             marker = re.compile(r'UI (?:hierchary|hierarchy) dumped to:\s*'
                                 + re.escape(remote))
