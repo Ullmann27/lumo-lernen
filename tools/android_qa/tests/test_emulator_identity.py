@@ -38,14 +38,15 @@ class EmulatorIdentityTests(unittest.TestCase):
         (directory/'comm').write_text(name+'\n')
         (directory/'exe').symlink_to(executable)
 
-    def verify(self):
+    def verify(self, **options):
         self.console = io.StringIO()
-        with patch('emulator_diagnostics.subprocess.run', side_effect=self.results), contextlib.redirect_stdout(self.console):
-            return verify_emulator(self.out, self.sdk, self.proc)
+        with patch('emulator_diagnostics.subprocess.run', side_effect=self.results) as commands, contextlib.redirect_stdout(self.console):
+            self.commands = commands
+            return verify_emulator(self.out, self.sdk, self.proc, **options)
 
-    def assert_rejected(self, count):
+    def assert_rejected(self, count, **options):
         with self.assertRaisesRegex(RuntimeError, 'Running QEMU'):
-            self.verify()
+            self.verify(**options)
         proof = json.loads((self.out/'emulator-version-proof.json').read_text())
         self.assertFalse(proof['passed'])
         self.assertEqual(len(proof['running_qemu']), count)
@@ -93,6 +94,59 @@ class EmulatorIdentityTests(unittest.TestCase):
     def test_disappeared_only_emulator_is_rejected_with_visible_proof(self):
         (self.proc/'42/exe').unlink()
         self.assert_rejected(0)
+
+
+    def headless_binary(self, activate=True):
+        headless = self.qemu.with_name('qemu-system-x86_64-headless')
+        headless.write_text('pinned headless executable fixture')
+        if activate:
+            (self.proc/'42/exe').unlink()
+            (self.proc/'42/exe').symlink_to(headless)
+        return headless
+
+    def test_headless_mode_verifies_exact_running_binary_and_its_dependencies(self):
+        headless = self.headless_binary()
+        proof = self.verify(headless=True)
+        self.assertTrue(proof['passed'])
+        self.assertTrue(proof['headless'])
+        self.assertEqual(proof['expected_qemu'], str(headless))
+        self.assertEqual(proof['running_qemu'][0]['executable'], str(headless))
+        self.assertEqual(self.commands.call_args_list[0].args[0], ['ldd', str(headless)])
+
+    def test_headless_mode_rejects_gui_executable_even_in_same_sdk(self):
+        self.headless_binary(activate=False)
+        self.assert_rejected(1, headless=True)
+
+    def test_gui_mode_rejects_headless_executable_without_explicit_selection(self):
+        self.headless_binary()
+        self.assert_rejected(1)
+
+    def test_headless_mode_rejects_same_basename_in_another_sdk(self):
+        self.headless_binary(activate=False)
+        wrong = self.out/'other-sdk/qemu-system-x86_64-headless'
+        wrong.parent.mkdir()
+        wrong.write_text('different headless executable')
+        (self.proc/'42/exe').unlink()
+        (self.proc/'42/exe').symlink_to(wrong)
+        self.assert_rejected(1, headless=True)
+
+    def test_headless_mode_rejects_two_running_processes(self):
+        headless = self.headless_binary()
+        self.add_process(43, headless, 'AnotherLoop')
+        self.assert_rejected(2, headless=True)
+
+    def test_missing_headless_binary_cannot_fall_back_to_gui(self):
+        with self.assertRaises(FileNotFoundError):
+            self.verify(headless=True)
+        self.commands.assert_not_called()
+
+    def test_headless_mode_rejects_missing_libraries(self):
+        headless = self.headless_binary()
+        self.results[0] = subprocess.CompletedProcess([], 0, 'libpulse.so.0 => not found\n', '')
+        with self.assertRaisesRegex(RuntimeError, 'dependencies are missing'):
+            self.verify(headless=True)
+        self.commands.assert_called_once()
+        self.assertEqual(self.commands.call_args.args[0], ['ldd', str(headless)])
 
 
 if __name__ == '__main__':
