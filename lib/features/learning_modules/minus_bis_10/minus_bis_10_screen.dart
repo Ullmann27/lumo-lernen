@@ -433,7 +433,10 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
         textColor = const Color(0xFF991B1B);
         borderColor = const Color(0xFFEF4444);
       }
-    } else if (_answered && isCorrect && _wrongAttempts >= 1) {
+    } else if (_answered && isCorrect && _wrongAttempts >= 2) {
+      // Erst nach dem zweiten Fehlversuch die Loesung zeigen. Mit >= 1 wurde
+      // sie schon beim ersten Fehler gelb markiert (die Wackel-Animation baut
+      // neu), und der zweite Versuch war verraten.
       bgColor = const Color(0xFFFEF3C7);
       borderColor = const Color(0xFFFCD34D);
     }
