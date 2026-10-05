@@ -5,7 +5,7 @@ Stand: 5. Oktober 2026, Branch `claude/lumo-gesamt`. Status ehrlich: PASS / PART
 ## P0/P1 – Start, Datenverlust, Lernlogik
 | Punkt | Status | Beleg |
 |---|---|---|
-| `flutter analyze` 0 Fehler, `flutter test` grün | PASS | 599 Tests, 4 übersprungen |
+| `flutter analyze` 0 Fehler, `flutter test` grün | PASS | Alle Tests grün (Stand f888b72: Gesamtlauf nach letztem Block siehe Bericht), 4 übersprungen |
 | Aufgabenprotokoll geht bei Fehlern nicht verloren (kaputte Daten, Duplikate) | PASS | `test/domain/school_analysis_test.dart` |
 | Fortschritt nach Neustart vorhanden | PASS (Wallet, Skills, Log) | Repos auf SharedPreferences |
 | Android-APK baut | PASS (Stand 7d5c517, Debug-Signatur) | `dist/Lumo-Lernen-Neu.apk` |
@@ -21,7 +21,8 @@ Stand: 5. Oktober 2026, Branch `claude/lumo-gesamt`. Status ehrlich: PASS / PART
 | Anmeldung, Rollen serverseitig, Abgleich zwischen Geräten, Offline-Sync ohne Duplikate | BLOCKED_BACKEND | Kein Server vorhanden. Regeln liegen in `SchoolAccess`; Attempt-Ids sind synchronisierbar (eindeutig). |
 | Schuladministrator, Eltern-Rolle | NOT EXECUTED | nur Enum |
 | Tests (getrennt von Übungen) mit Themenwahl und Fehleranalyse | PARTIAL | bestehende Testbereiche nutzen noch nicht das Aufgabenprotokoll |
-| Lesen/Schreiben mit Kompetenzprotokoll | PARTIAL | Module protokollieren nur Thema |
+| Kompetenzprotokoll in Übungen, Modulen (Zeit, Aufgabe, Antwort) und Schreiben | PASS | Lesen (Leseflüssigkeit/Verständnis) noch NOT EXECUTED |
+| Lumo spricht das Kind auf Start persönlich an (Hilfe/Lob aus der Analyse) | PASS | `LumoCoachCard`, Test `report_screen_test.dart` |
 | Spielfreischaltung nach Lernfortschritt | PARTIAL | Domain steht (`GameUnlockService`), keine freigegebenen Schwellen |
 
 ## P3 – Visuelle Hauptabweichungen
