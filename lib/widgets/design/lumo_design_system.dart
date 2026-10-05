@@ -224,7 +224,7 @@ class LumoColorTile extends StatelessWidget {
           final centered = iconAsset != null;
           // Kachel-Symbole wie in Bild 01: groß und mittig über dem Titel.
           final iconSize = centered
-              ? (constraints.maxWidth * .42).clamp(20.0, 56.0).toDouble()
+              ? (constraints.maxWidth * .48).clamp(24.0, 68.0).toDouble()
               : compact
                   ? 20.0
                   : 32.0;
@@ -243,17 +243,33 @@ class LumoColorTile extends StatelessWidget {
                     padding: EdgeInsets.all(padding),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [color, Color.lerp(color, Colors.black, .20)!],
+                        colors: [
+                          Color.lerp(color, Colors.white, .08)!,
+                          color,
+                          Color.lerp(
+                              color, LumoVisualTokens.night, .42)!,
+                        ],
+                        stops: const [0, .48, 1],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       borderRadius: BorderRadius.circular(22),
-                      border: Border.all(color: Colors.white.withOpacity(.38)),
+                      border: Border.all(
+                        color: Color.lerp(
+                                color, LumoVisualTokens.cyanBright, .52)!
+                            .withOpacity(.9),
+                        width: 1.25,
+                      ),
                       boxShadow: [
                         BoxShadow(
-                          color: color.withOpacity(.35),
-                          blurRadius: 20,
+                          color: color.withOpacity(.34),
+                          blurRadius: 22,
                           offset: const Offset(0, 8),
+                        ),
+                        BoxShadow(
+                          color: LumoVisualTokens.cyan.withOpacity(.16),
+                          blurRadius: 16,
+                          spreadRadius: -3,
                         ),
                       ],
                     ),
