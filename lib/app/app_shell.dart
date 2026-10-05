@@ -357,6 +357,7 @@ class _AppShellState extends State<AppShell>
   static LumoScene? _fullBleedScene(LumoSection section) => switch (section) {
         LumoSection.learn => LumoScene.learning,
         LumoSection.tests => LumoScene.tests,
+        LumoSection.profile => LumoScene.profile,
         _ => null,
       };
 
@@ -415,19 +416,15 @@ class _AppShellState extends State<AppShell>
           onCancel: () => _navigateTo(LumoSection.home),
         );
       case LumoSection.profile:
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(22),
-          child: ProfileScreen(
-            childName: _appState.state.childName,
-            grade: _appState.state.grade,
-            stars: _appState.state.stars,
-            xp: _appState.state.xp,
-            level: _appState.state.level,
-            progress: _appState.state.progressPercent,
-            solved: _appState.state.solved,
-            practice: _appState.state.weakSkills,
-            lastGrade: _appState.state.lastGrade,
-          ),
+        return ProfileScreen(
+          appState: _appState,
+          onSection: _navigateTo,
+          childName: _appState.state.childName,
+          grade: _appState.state.grade,
+          stars: _appState.state.stars,
+          xp: _appState.state.xp,
+          level: _appState.state.level,
+          drawBackground: !fullBleed,
         );
       case LumoSection.settings:
         return SettingsContent(appState: _appState);
