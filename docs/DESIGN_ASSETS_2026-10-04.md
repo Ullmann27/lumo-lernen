@@ -71,3 +71,24 @@ Belohnungen: `rewards/reward_kart.png`, `reward_backpack.png` (Rucksack mit „L
 `kart_strecken.png`, `kart_garage.png` (Kart in Werkstatt mit Schraubenschlüssel), `kart_missionen.png` (Klemmbrett mit Stern),
 `kart_freunde.png` (Lumo und grauer Wolf-Freund klatschen ab), `test_rechnen.png` („7+3“ leuchtend – Text erlaubt),
 `deutsch_hund.png` (Hund spielt mit rotem Ball auf Wiese).
+
+## F. Einzelbilder aus Heinz' zehn Bildtafeln (4. Oktober, WebP)
+
+Die Originaltafeln liegen byte-gleich unter `docs/design_targets/2026-10-04/tafeln/`. Dort stehen
+auch `manifest.json` (Motiv, Quelle, SHA-256 je Bild) und `uebersicht_einzelbilder.png` zum
+schnellen Nachsehen. Alle Bilder sind transparent, WebP Qualität 90 mit verlustfreiem Alpha.
+`Image.asset('assets/lumo_design/ui/home.webp')` funktioniert wie bei PNG. Test:
+`test/lumo_design_tafeln_test.dart`.
+
+| Ordner | Inhalt | Verwendung |
+|---|---|---|
+| `ui/` (16) | home, book, gamepad, trophy, avatar_fox, settings, star, shield, heart, lock, check, diamond, play, back | Untere Leiste (Start/Lernen/Spielen/Tests/Profil), Sterne-Anzeige, Zahnrad, gesperrt, erledigt, Zurück |
+| `icons/` (+5) | wrench, lightning, gift_box, ticket_star, flag_checkered | Garage, Boost, Belohnungen, Ticket, Kart „Starten“ |
+| `rewards/` (16) | reward_trophy, reward_kart, reward_island, medal_star, crown, treasure_chest, star_glow, coin_star, crystal_blue, rosette_star, shield_star, laurel_star, star_burst, stars_swirl, trophy_alt, star_alt | Profil „Belohnungen/Abzeichen“, Level-Feier, Sternregen |
+| `characters/` (12) | fox_wave, fox_wrench, fox_garage_wrench, fox_kart_front, fox_trophy_jump, fox_point, kart_side, kart_rear, bunny_kart, turtle_kart, cat_kart | Begrüßung, Kart-Modi (k09), Garage (k01), Meine Karts |
+| `garage/` (16) | Reifen, Felge, Spoiler, Schürzen, Auspuff, Unterbodenlicht, Lenkrad, Sitz, Helm, Werkzeug, Farbdose, Reifenstapel, Werkzeugwagen, Nitro | Garage-Reiter (k01) |
+| `kart_items/` (17) | turbo_pad, speed_ring, item_box, star_token, book_token, shield_powerup, turbo_battery, repair_pad, star_orb, star_portal, checkpoint_flag, crystal_* | Kart-Sammelziele (k08), HUD, Godot-Vorlage |
+| `track/`, `deco/`, `buildings/`, `nature/` (60) | Streckenteile, Tore, Ampel, Schilder, Gebäude, Inseln, Wasserfälle, Bäume | Cup-/Streckenkarten (k08) und Deko; die fahrbare Strecke baut Godot |
+
+Lern-Boost-Motive (z. B. `star_portal`, `book_token`) nur als Deko verwenden: Im Kart gibt es
+keine Lernaufgaben (Heinz' Regel).
