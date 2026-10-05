@@ -16,6 +16,8 @@ enum LumoDesignFoxPose {
   thumbWink('fox_thumb_wink', 'Lumo zwinkert und zeigt Daumen hoch'),
   teacherStick('fox_teacher_stick', 'Lumo erklärt mit dem Zeigestab'),
   cheer('fox_cheer', 'Lumo jubelt'),
+  spielweltWave('fox_spielwelt_wave',
+      'Lumo mit Halstuch und Rucksack winkt dich in die Spielwelt'),
   avatar('fox_avatar', 'Lumo, dein Profilbild');
 
   const LumoDesignFoxPose(this.assetName, this.semanticLabel);

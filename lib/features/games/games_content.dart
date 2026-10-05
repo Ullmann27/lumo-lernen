@@ -1,4 +1,3 @@
-import '../../widgets/fox/lumo_character.dart';
 import 'dart:math' as math;
 import 'dart:convert';
 
@@ -10,6 +9,9 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_asset_diagnostics.dart';
 import '../../core/game_progress_repository.dart';
+import '../../core/reward_wallet_repository.dart';
+import '../../domain/games/game_world.dart';
+import 'spielwelt/spielwelt_hub.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -57,6 +59,7 @@ class _GamesContentState extends State<GamesContent> {
   static const _repo = GameProgressRepository();
 
   Map<int, int> _stars = const <int, int>{};
+  Map<GameId, GameUnlockState> _unlocks = const {};
   bool _loaded = false;
   bool _launchingGame = false;
   int? _kartGrade;
@@ -81,6 +84,9 @@ class _GamesContentState extends State<GamesContent> {
 
   Future<void> _load() async {
     final s = await _repo.loadStars(_childId);
+    final wallet = await RewardWalletRepository.instance.load();
+    final unlocks = await const GameUnlockService().load(
+        EarnedProgress(totalEarnedStars: wallet.totalEarnedStars));
     final prefs = await SharedPreferences.getInstance();
     Map? options;
     try {
@@ -90,6 +96,7 @@ class _GamesContentState extends State<GamesContent> {
     if (!mounted) return;
     setState(() {
       _stars = s;
+      _unlocks = unlocks;
       final grade = options?['grade'];
       if (grade is int && grade >= 1 && grade <= 4) _kartGrade = grade;
       final subject = options?['subject'];
@@ -259,6 +266,72 @@ class _GamesContentState extends State<GamesContent> {
     await _load();
   }
 
+  GameUnlockState _unlockOf(GameId id) =>
+      _unlocks[id] ?? const GameUnlockState(unlocked: true);
+
+  void _comingSoon(GameDefinition game) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(
+        content: Text('${game.title} kommt bald!'),
+        backgroundColor: LumoColors.orange,
+        duration: const Duration(seconds: 2),
+      ));
+  }
+
+  void _locked(GameDefinition game, GameUnlockState state) {
+    final text = switch (state.reason) {
+      GameLockReason.needsPreviousGame =>
+        'Spiele zuerst ${GameCatalog.byId(state.previous!).title}.',
+      GameLockReason.needsEarnedStars =>
+        'Dir fehlen noch ${state.missingStars} verdiente Sterne.',
+      GameLockReason.none => '',
+    };
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(
+        content: Text('${game.title} ist noch gesperrt. $text'),
+        backgroundColor: LumoColors.orange,
+        duration: const Duration(seconds: 2),
+      ));
+  }
+
+  /// Öffnet ein Spiel, wenn die Domain es freigibt und es existiert.
+  void _openGame(GameId id, VoidCallback launch) {
+    final game = GameCatalog.byId(id);
+    final state = _unlockOf(id);
+    if (!state.unlocked) return _locked(game, state);
+    if (game.availability != GameAvailability.playable) {
+      return _comingSoon(game);
+    }
+    launch();
+  }
+
+  List<SpielweltPortal> _portals() {
+    VoidCallback? launcher(GameId id) => switch (id) {
+          GameId.memory => _launchMemory,
+          GameId.cards => _launchLumoCards,
+          GameId.jumpRun => _launchAdventure,
+          _ => null,
+        };
+    return [
+      for (final id in const [
+        GameId.memory,
+        GameId.cards,
+        GameId.puzzle,
+        GameId.jumpRun,
+        GameId.rhythm,
+        GameId.treasure,
+        GameId.build,
+      ])
+        SpielweltPortal(
+          game: GameCatalog.byId(id),
+          state: _unlockOf(id),
+          onOpen: () => _openGame(id, launcher(id) ?? () {}),
+        ),
+    ];
+  }
+
   bool get _reduceMotion {
     final settings = widget.appState.state.settings;
     return settings.reduceAnimations ||
@@ -283,7 +356,28 @@ class _GamesContentState extends State<GamesContent> {
         : CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: _GamesHero(reduceMotion: _reduceMotion),
+                child: SpielweltHub(
+                  portals: _portals(),
+                  reduceMotion: _reduceMotion,
+                  onAdventure: () => _openGame(GameId.memory, _launchMemory),
+                  onParents: () => widget.onSection?.call(LumoSection.settings),
+                  onProgress: () => widget.onSection?.call(LumoSection.profile),
+                  onSettings: () => widget.onSection?.call(LumoSection.settings),
+                ),
+              ),
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(16, 6, 16, 4),
+                  child: Text(
+                    'Weitere Spiele',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white,
+                    ),
+                  ),
+                ),
               ),
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
@@ -301,7 +395,7 @@ class _GamesContentState extends State<GamesContent> {
                 sliver: SliverToBoxAdapter(
                   child: _KartWideCard(
                     launching: _launchingGame,
-                    onPlay: () => _launch3D('kart'),
+                    onPlay: () => _openGame(GameId.kart, () => _launch3D('kart')),
                     options: _kartOptions(),
                   ),
                 ),
@@ -417,101 +511,6 @@ class _GamesContentState extends State<GamesContent> {
     ]);
   }
 }
-
-// ─────────────────── KOPF: Lumo Spielewelt (Bild 06) ───────────────────
-
-class _GamesHero extends StatelessWidget {
-  const _GamesHero({required this.reduceMotion});
-  final bool reduceMotion;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final width = constraints.maxWidth;
-      final height = (width * .5).clamp(170.0, 270.0);
-      final foxSize = height * 1.12;
-      final Widget fox = LumoCharacter(
-        pose: LumoDesignFoxPose.armsOpen,
-        size: foxSize,
-        reduceMotion: reduceMotion,
-        // Antippen: Lumo wackelt kitzlig.
-        onTap: () {},
-      );
-      return SizedBox(
-        height: height,
-        child: Stack(clipBehavior: Clip.none, children: [
-          Positioned(
-            left: width * .3,
-            bottom: -foxSize * .08,
-            child: RepaintBoundary(child: fox),
-          ),
-          Positioned(
-            left: 14,
-            top: height * .12,
-            width: width * .44,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Semantics(
-                  label: 'Lumo Spielewelt',
-                  excludeSemantics: true,
-                  child: const FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Lumo\nSpielewelt',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        color: LumoVisualTokens.white,
-                        fontSize: 32,
-                        height: 1.0,
-                        fontWeight: FontWeight.w900,
-                        shadows: [
-                          Shadow(color: LumoVisualTokens.cyan, blurRadius: 14),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Transform.rotate(
-                  angle: -.04,
-                  child: const Text(
-                    'Spannende Spiele.\nStarkes Wissen.\nMit Lumo!',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: LumoVisualTokens.white,
-                      fontSize: 12,
-                      height: 1.2,
-                      fontWeight: FontWeight.w800,
-                      shadows: [
-                        Shadow(color: Color(0xAA000000), blurRadius: 6),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            right: 8,
-            top: height * .08,
-            width: width * .3,
-            child: Transform.rotate(
-              angle: -.06,
-              child: const LumoHeroBubble(
-                text: 'Welches Spiel möchtest du heute spielen?',
-                handwritten: true,
-              ),
-            ),
-          ),
-        ]),
-      );
-    });
-  }
-}
-
-// ─────────────────── SPIELKARTEN 2×2 ───────────────────
 
 class _GameGrid extends StatelessWidget {
   const _GameGrid({
@@ -1311,13 +1310,17 @@ class _BlockBanner extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        Text(
-          title,
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 16,
-            fontWeight: FontWeight.w900,
-            color: LumoVisualTokens.white,
+        Expanded(
+          child: Text(
+            title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 16,
+              fontWeight: FontWeight.w900,
+              color: LumoVisualTokens.white,
+            ),
           ),
         ),
       ],

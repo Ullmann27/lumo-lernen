@@ -9,25 +9,32 @@ void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
   testWidgets('Spielewelt zeigt die vier Spiele und Lumo Kart', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(392, 1200));
+    await tester.binding.setSurfaceSize(const Size(392, 2800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final handle = tester.ensureSemantics();
     final app = LumoAppState();
     await tester.pumpWidget(
         MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
-    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
-    await tester.pump();
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
+    await tester.pump(const Duration(milliseconds: 600));
 
     expect(find.bySemanticsLabel('Lumo Spielewelt'), findsOneWidget);
     for (final title in [
-      'Memory mit Lumo',
-      'Lumo Cards',
+      'Memory',
+      'Cards',
+      'Puzzle',
+      'Jump & Run',
+      'Rhythm Party',
+      'Schatzsuche',
+      'Bauwelt',
       'Vier gewinnt',
       'Würfel-Wettlauf',
       'Lumo Kart',
     ]) {
       expect(find.text(title), findsOneWidget, reason: title);
     }
+    expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
+    expect(find.byKey(const ValueKey('spielwelt-adventure')), findsOneWidget);
     expect(find.text('Wortjagd'), findsNothing,
         reason: 'kein Spiel anzeigen, das es nicht gibt');
     expect(find.bySemanticsLabel(RegExp('Losfahren')), findsOneWidget,
