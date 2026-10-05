@@ -1,3 +1,4 @@
+import '../../widgets/fox/lumo_character.dart';
 import 'dart:math' as math;
 import 'dart:convert';
 
@@ -13,7 +14,6 @@ import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../shared/widgets/lumo_premium_effects.dart' show LumoFloating;
 import '../lumo3d/lumo3d_launcher.dart';
 import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
@@ -430,14 +430,13 @@ class _GamesHero extends StatelessWidget {
       final width = constraints.maxWidth;
       final height = (width * .5).clamp(170.0, 270.0);
       final foxSize = height * 1.12;
-      Widget fox = LumoFoxPose(pose: LumoDesignFoxPose.armsOpen, size: foxSize);
-      if (!reduceMotion) {
-        fox = LumoFloating(
-          amplitude: 4,
-          duration: const Duration(milliseconds: 2600),
-          child: fox,
-        );
-      }
+      final Widget fox = LumoCharacter(
+        pose: LumoDesignFoxPose.armsOpen,
+        size: foxSize,
+        reduceMotion: reduceMotion,
+        // Antippen: Lumo wackelt kitzlig.
+        onTap: () {},
+      );
       return SizedBox(
         height: height,
         child: Stack(clipBehavior: Clip.none, children: [

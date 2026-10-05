@@ -1,10 +1,10 @@
+import '../../widgets/fox/lumo_character.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/test_result_repository.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../shared/widgets/lumo_premium_effects.dart' show LumoFloating;
 
 /// Tests wie in Heinz' Bild 05: Kategorie, Schwierigkeit, Test-Karte und das
 /// echte letzte Ergebnis mit Bestleistung.
@@ -173,15 +173,13 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
       final width = constraints.maxWidth;
       final height = (width * .46).clamp(160.0, 260.0);
       final foxSize = height * 1.12;
-      Widget fox =
-          LumoFoxPose(pose: LumoDesignFoxPose.trophyWink, size: foxSize);
-      if (!_reduceMotion) {
-        fox = LumoFloating(
-          amplitude: 4,
-          duration: const Duration(milliseconds: 2600),
-          child: fox,
-        );
-      }
+      final Widget fox = LumoCharacter(
+        pose: LumoDesignFoxPose.trophyWink,
+        size: foxSize,
+        reduceMotion: _reduceMotion,
+        // Antippen: Lumo wackelt kitzlig.
+        onTap: () {},
+      );
       return SizedBox(
         height: height,
         child: Stack(clipBehavior: Clip.none, children: [

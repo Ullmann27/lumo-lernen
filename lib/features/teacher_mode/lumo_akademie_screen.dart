@@ -11,13 +11,13 @@
 //   4. Pro Thema: Lumo erklärt + Übung
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../widgets/fox/lumo_character.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../shared/widgets/lumo_premium_effects.dart' show LumoFloating;
 import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -683,17 +683,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           final width = constraints.maxWidth;
           final height = (width * .5).clamp(170.0, 270.0);
           final foxSize = height * 1.12;
-          Widget fox = LumoFoxPose(
+          final Widget fox = LumoCharacter(
             pose: LumoDesignFoxPose.tabletThumb,
             size: foxSize,
+            reduceMotion: _reduceMotion,
+            // Antippen: Lumo wackelt kitzlig.
+            onTap: () {},
           );
-          if (!_reduceMotion) {
-            fox = LumoFloating(
-              amplitude: 4,
-              duration: const Duration(milliseconds: 2600),
-              child: fox,
-            );
-          }
           return SizedBox(
             height: height,
             child: Stack(

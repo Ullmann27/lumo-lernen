@@ -12,6 +12,7 @@
 //   - Am Ende: Auswertung mit Sternen
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/fox/lumo_character.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -25,7 +26,6 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
-import '../../shared/widgets/lumo_premium_effects.dart' show LumoFloating;
 import '../lumo_phrases.dart';
 
 class PlusBis10Screen extends StatefulWidget {
@@ -52,6 +52,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+
+  /// Lumo freut sich bei richtigen Antworten und tröstet bei falschen.
+  final _lumo = LumoCharacterController();
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -108,6 +111,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _bounceCtrl.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
+    _lumo.dispose();
     super.dispose();
   }
 
@@ -270,6 +274,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       if (_wrongAttempts == 0) _correctCount++;
     });
     _bounceCtrl.forward(from: 0);
+    _lumo.cheer();
     HapticFeedback.mediumImpact();
     // Cosmos-Belohnung: pflanze einen Baum in der Welt!
     CosmosWorld.instance.grantReward(
@@ -287,6 +292,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   void _handleWrong(int answer) {
     _shakeCtrl.forward(from: 0);
+    _lumo.comfort();
     HapticFeedback.heavyImpact();
     try {
       LumoVoice.instance.speak(LumoPhrases.wrongGentle());
@@ -525,15 +531,14 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       final width = constraints.maxWidth;
       final height = (width * .3).clamp(108.0, 180.0);
       final foxSize = height * 1.3;
-      Widget fox =
-          LumoFoxPose(pose: LumoDesignFoxPose.bookPoint, size: foxSize);
-      if (!_reduceMotion) {
-        fox = LumoFloating(
-          amplitude: 4,
-          duration: const Duration(milliseconds: 2600),
-          child: fox,
-        );
-      }
+      final Widget fox = LumoCharacter(
+        pose: LumoDesignFoxPose.bookPoint,
+        size: foxSize,
+        reduceMotion: _reduceMotion,
+        controller: _lumo,
+        // Antippen: Lumo wackelt kitzlig.
+        onTap: () {},
+      );
       return SizedBox(
         height: height,
         child: Stack(clipBehavior: Clip.none, children: [

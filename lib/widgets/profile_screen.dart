@@ -1,3 +1,4 @@
+import 'fox/lumo_character.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import '../app/app_state.dart';
 import '../core/reward_shop_repository.dart';
 import '../core/reward_wallet_repository.dart';
 import '../domain/rewards/reward_shop.dart';
-import '../features/shared/widgets/lumo_premium_effects.dart' show LumoFloating;
 import '../theme/lumo_visual_tokens.dart';
 import 'design/lumo_design_system.dart';
 
@@ -171,15 +171,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final width = constraints.maxWidth;
       final height = (width * .42).clamp(150.0, 240.0);
       final foxSize = height * 1.18;
-      Widget fox =
-          LumoFoxPose(pose: LumoDesignFoxPose.thumbWink, size: foxSize);
-      if (!_reduceMotion) {
-        fox = LumoFloating(
-          amplitude: 4,
-          duration: const Duration(milliseconds: 2600),
-          child: fox,
-        );
-      }
+      final Widget fox = LumoCharacter(
+        pose: LumoDesignFoxPose.thumbWink,
+        size: foxSize,
+        reduceMotion: _reduceMotion,
+        // Antippen: Lumo wackelt kitzlig.
+        onTap: () {},
+      );
       return SizedBox(
         height: height,
         child: Stack(clipBehavior: Clip.none, children: [

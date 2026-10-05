@@ -7,6 +7,7 @@ import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_character.dart';
 import '../journal/lumo_journal_screen.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
 import '../learning/lumo_rechentricks_poster_screen.dart';
@@ -619,12 +620,12 @@ class _MotivationCard extends StatelessWidget {
                         handwritten: true,
                       ),
                     ),
-                    _BreathingFox(
+                    LumoCharacter(
+                      pose: LumoDesignFoxPose.thumbWink,
+                      size: 68,
                       reduceMotion: reduceMotion,
-                      child: const LumoFoxPose(
-                        pose: LumoDesignFoxPose.thumbWink,
-                        size: 68,
-                      ),
+                      shadow: false,
+                      onTap: () {},
                     ),
                   ],
                 ),
@@ -655,71 +656,6 @@ class _MotivationCard extends StatelessWidget {
             ],
           ),
         ),
-      );
-}
-
-class _BreathingFox extends StatefulWidget {
-  const _BreathingFox({
-    required this.child,
-    required this.reduceMotion,
-  });
-
-  final Widget child;
-  final bool reduceMotion;
-
-  @override
-  State<_BreathingFox> createState() => _BreathingFoxState();
-}
-
-class _BreathingFoxState extends State<_BreathingFox>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2500),
-      value: widget.reduceMotion ? .5 : 0,
-    );
-    if (!widget.reduceMotion) _controller.repeat(reverse: true);
-  }
-
-  @override
-  void didUpdateWidget(covariant _BreathingFox oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.reduceMotion == widget.reduceMotion) return;
-    if (widget.reduceMotion) {
-      _controller.stop();
-      _controller.value = .5;
-    } else {
-      _controller.repeat(reverse: true);
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => AnimatedBuilder(
-        animation: _controller,
-        child: widget.child,
-        builder: (context, child) {
-          final motion = widget.reduceMotion
-              ? 0.0
-              : Curves.easeInOut.transform(_controller.value);
-          return Transform.translate(
-            offset: Offset(0, -4 * motion),
-            child: Transform.scale(
-              scale: 1 + .02 * motion,
-              child: child,
-            ),
-          );
-        },
       );
 }
 
@@ -934,12 +870,13 @@ class _HomeHero extends StatelessWidget {
               Positioned(
                 left: (width - foxSize) / 2 + width * .04,
                 bottom: -foxSize * .04,
-                child: RepaintBoundary(
-                  child: _BreathingFox(
-                    reduceMotion: reduceMotion,
-                    child: LumoFoxPose(
-                        pose: LumoDesignFoxPose.kartWave, size: foxSize),
-                  ),
+                // Im Kart hüpft Lumo, wenn man ihn antippt.
+                child: LumoCharacter(
+                  pose: LumoDesignFoxPose.kartWave,
+                  size: foxSize,
+                  reduceMotion: reduceMotion,
+                  celebratePose: null,
+                  onTap: () {},
                 ),
               ),
               Positioned(

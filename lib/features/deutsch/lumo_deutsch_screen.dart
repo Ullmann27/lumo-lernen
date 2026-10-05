@@ -1,3 +1,4 @@
+import '../../widgets/fox/lumo_character.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -10,7 +11,6 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../learning_modules/lumo_phrases.dart';
 import '../learning_modules/wort_diktat/wort_diktat_screen.dart';
-import '../shared/widgets/lumo_premium_effects.dart' show LumoFloating;
 import '../writing/lumo_writing_coach_screen.dart';
 import 'deutsch_gap_sentences.dart';
 
@@ -44,6 +44,9 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
   bool _solved = false;
   Timer? _next;
 
+  /// Lumo jubelt bei richtigen Wörtern und tröstet bei falschen.
+  final _lumo = LumoCharacterController();
+
   GapSentence get _sentence => _round[_index];
   bool get _finished => _index >= _round.length;
 
@@ -57,6 +60,7 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
   void dispose() {
     _next?.cancel();
     _shake.dispose();
+    _lumo.dispose();
     super.dispose();
   }
 
@@ -103,12 +107,14 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
         _wrongPick = word;
       });
       _shake.forward(from: 0);
+      _lumo.comfort();
       try {
         LumoVoice.instance.speak(LumoPhrases.wrongGentle());
       } catch (_) {}
       return;
     }
     widget.appState.addRewards(stars: 1, xp: 5);
+    _lumo.cheer();
     unawaited(widget.appState.flushRewards().catchError((_) {}));
     setState(() {
       _solved = true;
@@ -183,15 +189,14 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
       final width = constraints.maxWidth;
       final height = (width * .42).clamp(140.0, 230.0);
       final foxSize = height * 1.18;
-      Widget fox =
-          LumoFoxPose(pose: LumoDesignFoxPose.pointSide, size: foxSize);
-      if (!_reduceMotion) {
-        fox = LumoFloating(
-          amplitude: 4,
-          duration: const Duration(milliseconds: 2600),
-          child: fox,
-        );
-      }
+      final Widget fox = LumoCharacter(
+        pose: LumoDesignFoxPose.pointSide,
+        size: foxSize,
+        reduceMotion: _reduceMotion,
+        controller: _lumo,
+        // Antippen: Lumo wackelt kitzlig.
+        onTap: () {},
+      );
       return SizedBox(
         height: height,
         child: Stack(clipBehavior: Clip.none, children: [

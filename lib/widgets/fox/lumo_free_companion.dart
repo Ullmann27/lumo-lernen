@@ -6,6 +6,7 @@ import '../../core/lumo_voice.dart';
 import 'lumo_animated_fox.dart';
 import 'lumo_companion_requests.dart';
 import '../design/lumo_design_system.dart';
+import 'lumo_character.dart';
 import '../../theme/lumo_visual_tokens.dart';
 export '../../core/lumo_companion_guide.dart';
 
@@ -543,9 +544,13 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
           child: Semantics(
             label: 'Lumo, dein Lernfuchs. Hilfe und Ideen öffnen',
             button: true,
-            child: InkWell(
+            child: LumoCharacter(
               key: const ValueKey('lumo-fox-button'),
-              customBorder: const CircleBorder(),
+              pose: LumoDesignFoxPose.avatar,
+              size: 58,
+              reduceMotion: _quiet,
+              shadow: false,
+              celebratePose: null,
               onTap: () =>
                   _showMenu(proposal: _proposal ?? _guide.choose(widget.scene)),
               child: DecoratedBox(
