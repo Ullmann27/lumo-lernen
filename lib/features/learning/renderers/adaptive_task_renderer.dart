@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
@@ -77,10 +78,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     // Jetzt: linker Buch-Spine in Subject-Farbe (vertikaler 8px Streifen),
     // Subject-Label als Chip-Pill statt nur Text, papier-Schatten unten.
     final subjectAccent = switch (task.subject) {
-      LearningSubject.mathematik => const Color(0xFFEA580C),
-      LearningSubject.deutsch => const Color(0xFF6366F1),
-      LearningSubject.sachkunde => const Color(0xFF059669),
-      LearningSubject.logik => const Color(0xFF7C3AED),
+      LearningSubject.mathematik => LumoVisualTokens.cyanBright,
+      LearningSubject.deutsch => const Color(0xFFA78BFA),
+      LearningSubject.sachkunde => const Color(0xFF5EE6B8),
+      LearningSubject.logik => const Color(0xFFC6A8FF),
     };
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       // 2026-06-06 FIX: Border mit unterschiedlichen Farben + borderRadius
@@ -90,34 +91,50 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.50), width: 1.3),
           boxShadow: [
             BoxShadow(
-              color: subjectAccent.withOpacity(0.10),
-              blurRadius: 18,
-              offset: const Offset(0, 8),
+              color: LumoVisualTokens.cyan.withOpacity(0.26),
+              blurRadius: 24,
+              offset: const Offset(0, 10),
+            ),
+            const BoxShadow(
+              color: Color(0x66000000),
+              blurRadius: 22,
+              offset: Offset(0, 12),
             ),
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(24),
           child: IntrinsicHeight(
               child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            // Linker Buch-Spine (5px), eigenes Container
-            Container(width: 5, color: subjectAccent),
+            // Leuchtende Fachkante statt Papier-Buchrücken.
+            Container(
+              width: 5,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [subjectAccent, subjectAccent.withOpacity(.18)],
+                ),
+              ),
+            ),
             // Hauptbereich
             Expanded(
               child: Container(
                 padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFFFF8ED), Color(0xFFFFFEFA)],
+                    colors: [Color(0xEA0B2B58), Color(0xEE071B3D), Color(0xE60A315F)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   border: Border.all(
-                      color: subjectAccent.withOpacity(0.18), width: 1,
-                        ),
+                    color: LumoVisualTokens.cyan.withOpacity(.28),
+                    width: 1,
+                  ),
                 ),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,11 +144,11 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                         horizontal: 10, vertical: 4,
                             ),
                     decoration: BoxDecoration(
-                      color: subjectAccent.withOpacity(0.12),
+                      color: subjectAccent.withOpacity(0.16),
                       borderRadius: BorderRadius.circular(LumoRadius.pill,
                               ),
                       border: Border.all(
-                          color: subjectAccent.withOpacity(0.35),
+                          color: subjectAccent.withOpacity(0.70),
                               ),
                     ),
                     child: Text(
@@ -141,7 +158,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                         fontSize: 12,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 0.6,
-                        color: subjectAccent,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -154,7 +171,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                       fontFamily: 'Nunito',
                       fontSize: _promptSize(task.prompt),
                       fontWeight: FontWeight.w900,
-                      color: LumoColors.ink900,
+                      color: LumoVisualTokens.white,
+                      shadows: const [
+                        Shadow(color: Color(0xAA37D2FD), blurRadius: 12),
+                      ],
                       height: 1.12,
                     ),
                   ),
@@ -246,17 +266,17 @@ class _LocalHelpBanner extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFFFBEB), Color(0xFFFEF3C7)],
+          colors: [Color(0xE60C2D5D), Color(0xE9081C40)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFFCD34D), width: 1.4),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.58), width: 1.4),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFFCD34D).withOpacity(0.25),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
+            color: LumoVisualTokens.cyan.withOpacity(0.22),
+            blurRadius: 18,
+            offset: const Offset(0, 7),
           ),
         ],
       ),
@@ -266,12 +286,12 @@ class _LocalHelpBanner extends StatelessWidget {
           height: 52,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: const Color(0xFF0A315F),
             shape: BoxShape.circle,
-            border: Border.all(color: const Color(0xFFFB923C), width: 1.8),
+            border: Border.all(color: LumoVisualTokens.cyanBright, width: 1.8),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFFB923C).withOpacity(0.35),
+                color: LumoVisualTokens.cyan.withOpacity(0.35),
                 blurRadius: 10,
                 offset: const Offset(0, 3),
               ),
@@ -299,11 +319,11 @@ class _LocalHelpBanner extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4,
                   ),
               decoration: BoxDecoration(
-                color: const Color(0xFFFB923C),
+                color: const Color(0xFF174C8C),
                 borderRadius: BorderRadius.circular(LumoRadius.pill),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFFFB923C).withOpacity(0.35),
+                    color: LumoVisualTokens.cyan.withOpacity(0.35),
                     blurRadius: 6,
                     offset: const Offset(0, 2),
                   ),
@@ -328,7 +348,7 @@ class _LocalHelpBanner extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 13.5,
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF78350F),
+                color: LumoVisualTokens.white,
                 height: 1.35,
               ),
             ),
@@ -621,21 +641,21 @@ class _AnswerButtonState extends State<_AnswerButton>
     final Color textColor;
 
     if (widget.solved && widget.isCorrect) {
-      bg = const Color(0xFFDCFCE7);
-      border = const Color(0xFF22C55E);
-      textColor = const Color(0xFF14532D);
+      bg = const Color(0xFF176C5B);
+      border = const Color(0xFF5FF0BF);
+      textColor = Colors.white;
     } else if (widget.isWrongPicked) {
-      bg = const Color(0xFFFFE4E6);
-      border = const Color(0xFFF43F5E);
-      textColor = const Color(0xFF881337);
+      bg = const Color(0xFF6D2448);
+      border = const Color(0xFFFF7AA5);
+      textColor = Colors.white;
     } else if (widget.solved) {
-      bg = Colors.white;
-      border = LumoColors.ink100;
-      textColor = LumoColors.ink300;
+      bg = const Color(0xFF10294D);
+      border = const Color(0xFF315D86);
+      textColor = const Color(0xFF7895B5);
     } else {
-      bg = Colors.white;
-      border = LumoColors.ink100;
-      textColor = LumoColors.ink900;
+      bg = const Color(0xFF123D79);
+      border = LumoVisualTokens.cyan.withOpacity(.75);
+      textColor = Colors.white;
     }
 
     // 2026-06-05 Iter 17/A5: LumoTiltCard 3D-Neigung um die Antwort-Cards.
@@ -661,8 +681,9 @@ class _AnswerButtonState extends State<_AnswerButton>
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              bg,
-              Color.alphaBlend(Colors.white.withOpacity(0.4), bg)],
+              Color.alphaBlend(Colors.white.withOpacity(0.10), bg),
+              Color.alphaBlend(Colors.black.withOpacity(0.16), bg),
+            ],
           ),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
           border: Border.all(color: border, width: 2),
@@ -676,10 +697,10 @@ class _AnswerButtonState extends State<_AnswerButton>
             ),
             // Subtiler Inner-Glow oben (Glas-Shine) ueber zweite Box-Shadow
             BoxShadow(
-              color: Colors.white.withOpacity(0.7),
-              blurRadius: 1,
+              color: LumoVisualTokens.cyan.withOpacity(0.20),
+              blurRadius: 8,
               offset: const Offset(0, 1),
-              spreadRadius: 0,
+              spreadRadius: -2,
             ),
           ],
         ),
@@ -819,20 +840,123 @@ class _DotsVisual extends StatelessWidget {
       );
     }
 
-    return SchoolbookTaskCard(
+    return _MathQuantityAdventureCard(
       title: operation == 'subtraction' ? 'Wegnehmen-Bild' : 'Mengenbild',
-      subtitle: operation == 'subtraction' ? 'Streiche weg und zähle, was bleibt.' : 'Lege beide Mengen zusammen.',
-      ribbonLabel: operation == 'subtraction' ? '−' : '+',
+      subtitle: operation == 'subtraction'
+          ? 'Streiche weg und zähle, was bleibt.'
+          : 'Lege beide Mengen zusammen.',
+      symbol: operation == 'subtraction' ? '−' : '+',
       child: emoji != null
-          ? _ObjectMathVisual(left: left, right: right, operation: operation, emoji: emoji,
+          ? _ObjectMathVisual(
+              left: left,
+              right: right,
+              operation: operation,
+              emoji: emoji,
             )
-          : QuantityDotsVisual(left: left, operator: operation == 'subtraction' ? '-' : '+', right: right,
+          : QuantityDotsVisual(
+              left: left,
+              operator: operation == 'subtraction' ? '-' : '+',
+              right: right,
             ),
     );
   }
 }
 
-class _ObjectMathVisual extends StatelessWidget {
+class _MathQuantityAdventureCard extends StatelessWidget {
+  const _MathQuantityAdventureCard({
+    required this.title,
+    required this.subtitle,
+    required this.symbol,
+    required this.child,
+  });
+
+  final String title;
+  final String subtitle;
+  final String symbol;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(14, 13, 14, 15),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xDD0D386F), Color(0xE80A244C)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.55), width: 1.3),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withOpacity(.18),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                subtitle,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: LumoVisualTokens.muted,
+                ),
+              ),
+            ]),
+          ),
+          Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: const LinearGradient(
+                colors: [Color(0xFF39DFFF), Color(0xFF2B72FF)],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: LumoVisualTokens.cyan.withOpacity(.42),
+                  blurRadius: 12,
+                ),
+              ],
+            ),
+            child: Text(
+              symbol,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 22,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ]),
+        const SizedBox(height: 13),
+        child,
+      ]),
+    );
+  }
+}
+
+
+$anchor
   const _ObjectMathVisual({required this.left, required this.right, required this.operation, required this.emoji,
   });
 
@@ -853,7 +977,12 @@ class _ObjectMathVisual extends StatelessWidget {
       runSpacing: 10,
       children: [
         _ObjectGroup(count: left, crossed: 0, emoji: emoji),
-        Text('+', style: LumoTextStyles.heading1.copyWith(color: LumoColors.orange, fontWeight: FontWeight.w900,
+        Text(
+          '+',
+          style: LumoTextStyles.heading1.copyWith(
+            color: LumoVisualTokens.cyanBright,
+            fontWeight: FontWeight.w900,
+            shadows: const [Shadow(color: Color(0xAA37D2FD), blurRadius: 10)],
           ),
         ),
         _ObjectGroup(count: right, crossed: 0, emoji: emoji),
@@ -891,9 +1020,13 @@ class _ObjectGroup extends StatelessWidget {
               height: 34,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(.86),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF19538F), Color(0xFF0B315F)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: LumoColors.orange.withOpacity(.18)),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.55)),
               ),
               child: Text(emoji, style: const TextStyle(fontSize: 22)),
             ),
