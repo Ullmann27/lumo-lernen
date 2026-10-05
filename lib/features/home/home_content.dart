@@ -86,11 +86,14 @@ class HomeContent extends StatelessWidget {
               // Bild 01: vier Kacheln in einer Reihe; schmal oder mit großer
               // Schrift zwei pro Reihe, damit die Namen ganz lesbar bleiben.
               final textScale = MediaQuery.textScalerOf(context).scale(1);
-              final columns =
-                  constraints.maxWidth >= 340 && textScale <= 1.2 ? 4 : 2;
+              final columns = wide
+                  ? 4
+                  : constraints.maxWidth >= 340 && textScale <= 1.2
+                      ? 4
+                      : 2;
               final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
-                LumoColorTile(
+                _HomeGlassActionTile(
                   key: const ValueKey('home-learn'),
                   title: 'Lernen',
                   subtitle: 'Mathe, Deutsch und mehr',
@@ -99,7 +102,7 @@ class HomeContent extends StatelessWidget {
                   color: LumoVisualTokens.learning,
                   onTap: () => onSection(LumoSection.learn),
                 ),
-                LumoColorTile(
+                _HomeGlassActionTile(
                   key: const ValueKey('home-games'),
                   title: 'Spielen',
                   subtitle: 'Lumo Kart, Memory und mehr',
@@ -108,7 +111,7 @@ class HomeContent extends StatelessWidget {
                   color: LumoVisualTokens.games,
                   onTap: () => onSection(LumoSection.games),
                 ),
-                LumoColorTile(
+                _HomeGlassActionTile(
                   title: 'Tests',
                   subtitle: 'Wissen überprüfen',
                   icon: Icons.assignment_rounded,
@@ -116,7 +119,7 @@ class HomeContent extends StatelessWidget {
                   color: LumoVisualTokens.tests,
                   onTap: () => onSection(LumoSection.tests),
                 ),
-                LumoColorTile(
+                _HomeGlassActionTile(
                   title: 'Belohnungen',
                   subtitle: 'Sterne und Extras',
                   icon: Icons.star_rounded,
@@ -1085,5 +1088,191 @@ class _KartBanner extends StatelessWidget {
             ),
           ],
         ),
+      );
+}
+
+
+class _HomeGlassActionTile extends StatelessWidget {
+  const _HomeGlassActionTile({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.color,
+    required this.onTap,
+    this.iconAsset,
+  });
+
+  final IconData icon;
+  final String? iconAsset;
+  final String title;
+  final String subtitle;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) {
+          final compact =
+              constraints.hasBoundedHeight && constraints.maxHeight < 132;
+          final iconSize =
+              (constraints.maxWidth * .26).clamp(28.0, 54.0).toDouble();
+          final backgroundTop =
+              Color.lerp(LumoVisualTokens.glass, color, .14)!;
+          final backgroundBottom =
+              Color.lerp(LumoVisualTokens.navigation, color, .06)!;
+          return Semantics(
+            button: true,
+            label: '$title. $subtitle',
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(22),
+                onTap: onTap,
+                child: Ink(
+                  padding: EdgeInsets.all(compact ? 10 : 14),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [backgroundTop, backgroundBottom],
+                    ),
+                    borderRadius: BorderRadius.circular(22),
+                    border: Border.all(
+                      color: Color.lerp(
+                        LumoVisualTokens.cyanBright,
+                        color,
+                        .22,
+                      )!
+                          .withOpacity(.82),
+                      width: 1.2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: LumoVisualTokens.cyanBright.withOpacity(.17),
+                        blurRadius: 22,
+                        spreadRadius: -6,
+                      ),
+                      BoxShadow(
+                        color: color.withOpacity(.13),
+                        blurRadius: 18,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                        child: Container(
+                          width: 4,
+                          decoration: BoxDecoration(
+                            color: color.withOpacity(.92),
+                            borderRadius: BorderRadius.circular(99),
+                            boxShadow: [
+                              BoxShadow(
+                                color: color.withOpacity(.55),
+                                blurRadius: 12,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                padding: EdgeInsets.all(compact ? 7 : 10),
+                                decoration: BoxDecoration(
+                                  color: color.withOpacity(.16),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(
+                                    color: color.withOpacity(.35),
+                                  ),
+                                ),
+                                child: iconAsset == null
+                                    ? Icon(icon,
+                                        color: Colors.white, size: iconSize)
+                                    : Image.asset(
+                                        iconAsset!,
+                                        width: iconSize,
+                                        height: iconSize,
+                                        fit: BoxFit.contain,
+                                        excludeFromSemantics: true,
+                                        errorBuilder: (_, __, ___) => Icon(
+                                          icon,
+                                          color: Colors.white,
+                                          size: iconSize,
+                                        ),
+                                      ),
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w900,
+                                fontSize: compact ? 14 : 18,
+                                color: Colors.white,
+                                shadows: const [
+                                  Shadow(
+                                    color: Color(0x6600D9FF),
+                                    blurRadius: 8,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              subtitle,
+                              maxLines: compact ? 1 : 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w700,
+                                fontSize: compact ? 9.5 : 11.5,
+                                color: Colors.white.withOpacity(.82),
+                              ),
+                            ),
+                            const SizedBox(height: 28),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          width: compact ? 28 : 34,
+                          height: compact ? 28 : 34,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: LumoVisualTokens.cyanBright.withOpacity(.18),
+                            border: Border.all(
+                              color: LumoVisualTokens.cyanBright.withOpacity(.65),
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.arrow_forward_rounded,
+                            color: LumoVisualTokens.white,
+                            size: compact ? 16 : 19,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       );
 }
