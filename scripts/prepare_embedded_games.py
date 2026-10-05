@@ -60,9 +60,12 @@ def prepare(root: Path):
     activity = next((a for a in app.findall('activity') if a.get(attr('name')) == name), None)
     if activity is None:
         activity = ET.SubElement(app, 'activity')
+    # Kart is a landscape-only game. Keep the Android host aligned with
+    # Godot's SCREEN_SENSOR_LANDSCAPE request so fold/unfold resize events do
+    # not start from a contradictory portrait lock.
     for key, value in {
         'name': name, 'exported': 'false', 'process': ':lumo_game',
-        'screenOrientation': 'portrait', 'resizeableActivity': 'true',
+        'screenOrientation': 'sensorLandscape', 'resizeableActivity': 'true',
         'configChanges': 'orientation|screenSize|smallestScreenSize|keyboardHidden|keyboard|navigation|screenLayout|uiMode|colorMode|density|assetsPaths',
         'theme': '@style/LumoGameTheme', 'enableOnBackInvokedCallback': 'false',
     }.items():
