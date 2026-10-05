@@ -65,8 +65,8 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
       ),
       TweenSequenceItem(tween: ConstantTween(1.0), weight: 55),
       TweenSequenceItem(
-        tween: Tween(begin: 1.0, end: 0.0)
-            .chain(CurveTween(curve: Curves.easeIn)),
+        tween:
+            Tween(begin: 1.0, end: 0.0).chain(CurveTween(curve: Curves.easeIn)),
         weight: 20,
       ),
     ]).animate(_ctrl);
@@ -123,73 +123,81 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
                   opacity: _fade.value,
                   child: Transform.scale(
                     scale: _scale.value,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(28),
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color(0xFFFCD34D)
-                                    .withOpacity(glow * 0.5),
-                                blurRadius: 60,
-                                spreadRadius: 8,
+                    // Auf flachen Bildschirmen (Handy quer) skaliert der
+                    // Splash herunter statt unten überzulaufen.
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(28),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color(0xFFFCD34D)
+                                        .withOpacity(glow * 0.5),
+                                    blurRadius: 60,
+                                    spreadRadius: 8,
+                                  ),
+                                  BoxShadow(
+                                    color: const Color(0xFF7C3AED)
+                                        .withOpacity(glow * 0.35),
+                                    blurRadius: 90,
+                                    spreadRadius: 14,
+                                  ),
+                                ],
                               ),
-                              BoxShadow(
-                                color: const Color(0xFF7C3AED)
-                                    .withOpacity(glow * 0.35),
-                                blurRadius: 90,
-                                spreadRadius: 14,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(24),
+                                child: Image.asset(
+                                  LumoCardsAssets.cardBack,
+                                  width: 220,
+                                  height: 308,
+                                  fit: BoxFit.cover,
+                                  cacheWidth: 440,
+                                  errorBuilder: (_, __, ___) => _fallbackCard(),
+                                ),
                               ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: Image.asset(
-                              LumoCardsAssets.cardBack,
-                              width: 220,
-                              height: 308,
-                              fit: BoxFit.cover,
-                              cacheWidth: 440,
-                              errorBuilder: (_, __, ___) => _fallbackCard(),
                             ),
-                          ),
-                        ),
-                        const SizedBox(height: 26),
-                        Text(
-                          'LUMO CARDS',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 36,
-                            fontWeight: FontWeight.w900,
-                            color: const Color(0xFFFCD34D),
-                            letterSpacing: 2.4,
-                            shadows: [
-                              Shadow(
-                                color:
-                                    const Color(0xFF7C3AED).withOpacity(0.8),
-                                blurRadius: 18,
-                                offset: const Offset(0, 3),
+                            const SizedBox(height: 26),
+                            Text(
+                              'LUMO CARDS',
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 36,
+                                fontWeight: FontWeight.w900,
+                                color: const Color(0xFFFCD34D),
+                                letterSpacing: 2.4,
+                                shadows: [
+                                  Shadow(
+                                    color: const Color(0xFF7C3AED)
+                                        .withOpacity(0.8),
+                                    blurRadius: 18,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Opacity(
-                          opacity: 0.7,
-                          child: const Text(
-                            'Tippe zum Starten',
-                            style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              letterSpacing: 1.2,
                             ),
-                          ),
+                            const SizedBox(height: 12),
+                            Opacity(
+                              opacity: 0.7,
+                              child: const Text(
+                                'Tippe zum Starten',
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 );

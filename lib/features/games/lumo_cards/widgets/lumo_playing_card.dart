@@ -216,15 +216,15 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
       // 3x reicht fuer fast alle Handys (DPR 2.5-3.0), groesser waere
       // nur Memory-Verschwendung.
       const cw = 264; // 88 px display * 3
-      const ch = 384; // 128 px display * 3
       return Image.asset(
         assetPath,
         width: widget.width,
         height: widget.height,
         fit: BoxFit.cover,
         gaplessPlayback: true,
+        // Nur die Breite vorgeben: so bleibt das Seitenverhältnis der PNGs
+        // erhalten (vorher wurden sie auf 264×384 gestaucht).
         cacheWidth: cw,
-        cacheHeight: ch,
         errorBuilder: (_, __, ___) =>
             widget.card.isWild ? _buildWildFront() : _buildColorFront(base),
       );
@@ -525,7 +525,6 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
       fit: BoxFit.cover,
       gaplessPlayback: true,
       cacheWidth: 264,
-      cacheHeight: 384,
       errorBuilder: (_, __, ___) => _buildBackFallback(),
     );
   }
