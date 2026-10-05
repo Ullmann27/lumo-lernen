@@ -81,13 +81,17 @@ class HomeContent extends StatelessWidget {
           final recommendation = appState.topLearningRecommendation();
           return LayoutBuilder(
             builder: (context, constraints) {
-              final wide = constraints.maxWidth >= 720;
+              final deviceWide = MediaQuery.sizeOf(context).width >= 720;
+              final wide = deviceWide || constraints.maxWidth >= 720;
               final compact = constraints.maxWidth < 320;
               // Bild 01: vier Kacheln in einer Reihe; schmal oder mit großer
               // Schrift zwei pro Reihe, damit die Namen ganz lesbar bleiben.
               final textScale = MediaQuery.textScalerOf(context).scale(1);
-              final columns =
-                  constraints.maxWidth >= 340 && textScale <= 1.2 ? 4 : 2;
+              final columns = deviceWide
+                  ? 4
+                  : constraints.maxWidth >= 340 && textScale <= 1.2
+                      ? 4
+                      : 2;
               final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
                 LumoColorTile(
@@ -127,7 +131,11 @@ class HomeContent extends StatelessWidget {
               ];
               final list = ListView(
                 key: const PageStorageKey('lumo-home-scroll'),
-                padding: EdgeInsets.fromLTRB(16, compact ? 4 : 12, 16, 24),
+                padding: EdgeInsets.fromLTRB(
+                    deviceWide ? 10 : 16,
+                    compact ? 4 : (deviceWide ? 6 : 12),
+                    deviceWide ? 10 : 16,
+                    24),
                 children: [
                   _HomeEntrance(
                     reduceMotion: reduceMotion,
@@ -157,13 +165,15 @@ class HomeContent extends StatelessWidget {
                     crossAxisCount: columns,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
-                    childAspectRatio: wide
-                        ? 1.02
-                        : columns == 4
-                            ? .74
-                            : textScale > 1.2
-                                ? .9
-                                : 1.1,
+                    childAspectRatio: deviceWide && columns == 4
+                        ? .88
+                        : wide
+                            ? 1.02
+                            : columns == 4
+                                ? .74
+                                : textScale > 1.2
+                                    ? .9
+                                    : 1.1,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
