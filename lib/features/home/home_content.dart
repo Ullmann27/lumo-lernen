@@ -113,6 +113,7 @@ class HomeContent extends StatelessWidget {
                   onTap: () => onSection(LumoSection.games),
                 ),
                 LumoColorTile(
+                  key: const ValueKey('home-tests'),
                   title: 'Tests',
                   subtitle: 'Wissen überprüfen',
                   icon: Icons.assignment_rounded,
@@ -121,6 +122,7 @@ class HomeContent extends StatelessWidget {
                   onTap: () => onSection(LumoSection.tests),
                 ),
                 LumoColorTile(
+                  key: const ValueKey('home-rewards'),
                   title: 'Belohnungen',
                   subtitle: 'Sterne und Extras',
                   icon: Icons.star_rounded,
