@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+dest="${1:-assets/lumo_generated/reference_boards}"
+mkdir -p "$dest"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/c2deab88-41d7-4877-be6f-395af998635d.png' -o "$dest/board_01.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/711e6842-2ffc-4b84-bd79-ea50fbd3aa46.png' -o "$dest/board_02.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/9ea4dae2-a98b-42aa-be2f-1c91aacafe0c.png' -o "$dest/board_03.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/faef4440-3e93-4f05-b665-233ad5cbd434.png' -o "$dest/board_04.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/538d1859-1a05-4c62-94ec-1f71d64e7cde.png' -o "$dest/board_05.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/7d52b44e-9949-418a-a610-76078c8d8535.png' -o "$dest/board_06.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/738c7d56-2790-44a5-9375-4643054a77ce.png' -o "$dest/board_07.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/e011a0fe-7597-4007-8a22-6a7630dd8d67.png' -o "$dest/board_08.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/ac22adf7-8aeb-4c71-af73-9e47f4f9625c.png' -o "$dest/board_09.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/fd5f4bbd-5b3e-466c-a7c0-e50d9c0e42c8.png' -o "$dest/board_10.png"
+curl -fL --retry 3 --retry-delay 2 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/68a0967e-28a4-4fe4-a149-b4a3b7211185.png' -o "$dest/board_11.png"
+echo "Downloaded 11 LUMO reference boards to $dest"
