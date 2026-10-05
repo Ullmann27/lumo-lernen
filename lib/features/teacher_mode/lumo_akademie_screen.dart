@@ -18,6 +18,7 @@ import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../shared/widgets/lumo_premium_effects.dart' show LumoFloating;
+import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import '../writing/lumo_writing_word_coach_screen.dart';
@@ -902,43 +903,48 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               ),
             ),
             const SizedBox(width: 6),
-            Material(
-              color: Colors.transparent,
-              child: InkWell(
-                key: const ValueKey('akademie-continue'),
-                borderRadius: BorderRadius.circular(99),
-                onTap: () => _openTopic(topic, subject),
-                child: Ink(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
-                  decoration: BoxDecoration(
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    key: const ValueKey('akademie-continue'),
                     borderRadius: BorderRadius.circular(99),
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF1E6FD9), Color(0xFF1453B8)],
-                    ),
-                    border: Border.all(color: LumoVisualTokens.cyanBright),
-                    boxShadow: [
-                      BoxShadow(
-                        color: LumoVisualTokens.cyan.withOpacity(.45),
-                        blurRadius: 12,
-                      ),
-                    ],
-                  ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Weiter geht’s!',
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w900,
+                    onTap: () => _openTopic(topic, subject),
+                    child: Ink(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 9),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(99),
+                        gradient: const LinearGradient(
+                          colors: [Color(0xFF1E6FD9), Color(0xFF1453B8)],
                         ),
+                        border: Border.all(color: LumoVisualTokens.cyanBright),
+                        boxShadow: [
+                          BoxShadow(
+                            color: LumoVisualTokens.cyan.withOpacity(.45),
+                            blurRadius: 12,
+                          ),
+                        ],
                       ),
-                      Icon(Icons.chevron_right_rounded,
-                          color: Colors.white, size: 18),
-                    ],
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Weiter geht’s!',
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Icon(Icons.chevron_right_rounded,
+                              color: Colors.white, size: 18),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -977,7 +983,21 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     );
   }
 
+  /// Deutsch öffnet den Bereich aus Bild 04; zurück zeigt die Akademie
+  /// die Deutsch-Themen der gewählten Klasse („Wörter“).
+  Future<void> _openDeutsch() async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute(
+          builder: (_) => LumoDeutschScreen(appState: widget.appState)),
+    );
+    if (mounted) setState(() => _selectedSubjectIndex = 1);
+  }
+
   void _openLearningArea(_LearningArea area) {
+    if (area.subject == 'Deutsch') {
+      _openDeutsch();
+      return;
+    }
     final curriculumIndex = area.curriculumIndex;
     if (curriculumIndex != null) {
       setState(() => _selectedSubjectIndex = curriculumIndex);
@@ -1280,16 +1300,19 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   child: Icon(s.icon, color: Colors.white, size: 22),
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  s.name,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                    color: LumoVisualTokens.white,
+                Expanded(
+                  child: Text(
+                    s.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white,
+                    ),
                   ),
                 ),
-                const Spacer(),
                 Text(
                   '${s.topics.length} Themen',
                   style: const TextStyle(
@@ -1401,62 +1424,77 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   ),
                 ),
                 if (t.isWriting)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFEF3C7),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      '✏️ Schreiben',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF92400E),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFEF3C7),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          '✏️ Schreiben',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF92400E),
+                          ),
+                        ),
                       ),
                     ),
                   )
                 else if (LearningModuleRegistry.hasModule(t.id))
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFD1FAE5),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      '🎮 Übung',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF065F46),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFD1FAE5),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          '🎮 Übung',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF065F46),
+                          ),
+                        ),
                       ),
                     ),
                   )
                 else
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFEDE9FE),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      '💬 Chat',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF5B21B6),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFEDE9FE),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          '💬 Chat',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF5B21B6),
+                          ),
+                        ),
                       ),
                     ),
                   ),
