@@ -68,7 +68,8 @@ void main() {
     expect(find.text('LUM'), findsOneWidget);
     expect(find.text('O'), findsOneWidget);
     expect(find.text('SZENENBILD-PLATZHALTER'), findsOneWidget);
-    expect(find.text('Level 3 · 3. Klasse'), findsOneWidget);
+    expect(find.text('Level 3'), findsOneWidget);
+    expect(find.text('3. Klasse'), findsOneWidget);
     expect(find.text('23'), findsOneWidget);
     expect(find.text('10 / 400 XP'), findsOneWidget);
     expect(find.text('Los geht’s!'), findsOneWidget);
@@ -101,7 +102,8 @@ void main() {
       grade: 4,
     ));
     await tester.pump();
-    expect(find.text('Level 4 · 4. Klasse'), findsOneWidget);
+    expect(find.text('Level 4'), findsOneWidget);
+    expect(find.text('4. Klasse'), findsOneWidget);
     expect(find.text('24'), findsOneWidget);
     expect(find.text('0 / 400 XP'), findsOneWidget);
 
