@@ -81,16 +81,19 @@ class HomeContent extends StatelessWidget {
           final recommendation = appState.topLearningRecommendation();
           return LayoutBuilder(
             builder: (context, constraints) {
-              final wide = constraints.maxWidth >= 720;
+              final deviceWide = MediaQuery.sizeOf(context).width >= 720;
+              final wide = deviceWide || constraints.maxWidth >= 720;
               final compact = constraints.maxWidth < 320;
               // Bild 01: vier Kacheln in einer Reihe; schmal oder mit großer
               // Schrift zwei pro Reihe, damit die Namen ganz lesbar bleiben.
               final textScale = MediaQuery.textScalerOf(context).scale(1);
-              final columns = wide
+              final columns = deviceWide
                   ? 4
-                  : constraints.maxWidth >= 340 && textScale <= 1.2
+                  : wide
                       ? 4
-                      : 2;
+                      : constraints.maxWidth >= 340 && textScale <= 1.2
+                          ? 4
+                          : 2;
               final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
                 _HomeGlassActionTile(
@@ -112,6 +115,7 @@ class HomeContent extends StatelessWidget {
                   onTap: () => onSection(LumoSection.games),
                 ),
                 _HomeGlassActionTile(
+                  key: const ValueKey('home-tests'),
                   title: 'Tests',
                   subtitle: 'Wissen überprüfen',
                   icon: Icons.assignment_rounded,
@@ -120,6 +124,7 @@ class HomeContent extends StatelessWidget {
                   onTap: () => onSection(LumoSection.tests),
                 ),
                 _HomeGlassActionTile(
+                  key: const ValueKey('home-rewards'),
                   title: 'Belohnungen',
                   subtitle: 'Sterne und Extras',
                   icon: Icons.star_rounded,
@@ -160,13 +165,15 @@ class HomeContent extends StatelessWidget {
                     crossAxisCount: columns,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
-                    childAspectRatio: wide
-                        ? 1.02
-                        : columns == 4
-                            ? .74
-                            : textScale > 1.2
-                                ? .9
-                                : 1.1,
+                    childAspectRatio: deviceWide && columns == 4
+                        ? .88
+                        : wide
+                            ? 1.02
+                            : columns == 4
+                                ? .74
+                                : textScale > 1.2
+                                    ? .9
+                                    : 1.1,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
