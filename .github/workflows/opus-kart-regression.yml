@@ -1,0 +1,79 @@
+name: Opus handoff Kart regression
+on:
+  workflow_dispatch:
+  push:
+    branches: ['codex/opus-86c5a33-test-apk']
+    paths: ['.github/workflows/opus-kart-regression.yml', 'config/godot-source.json']
+permissions:
+  contents: read
+concurrency:
+  group: opus-kart-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  kart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned engine
+        run: bash scripts/install_godot_for_build.sh
+      - name: Check out exactly the Godot revision used by the APK
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, subprocess
+          pin = json.loads(pathlib.Path('config/godot-source.json').read_text())
+          subprocess.run(['git', 'init', 'build/kart-regression'], check=True)
+          subprocess.run(['git', '-C', 'build/kart-regression', 'remote', 'add', 'origin', pin['repository']], check=True)
+          subprocess.run(['git', '-C', 'build/kart-regression', 'fetch', '--depth=1', 'origin', pin['revision']], check=True)
+          subprocess.run(['git', '-C', 'build/kart-regression', 'checkout', '--detach', 'FETCH_HEAD'], check=True)
+          actual = subprocess.check_output(['git', '-C', 'build/kart-regression', 'rev-parse', 'HEAD'], text=True).strip()
+          assert actual == pin['revision'], (actual, pin['revision'])
+          pathlib.Path('kart-proof').mkdir()
+          pathlib.Path('kart-proof/source.json').write_text(json.dumps(pin, indent=2) + '\n')
+          PY
+      - name: Import resources
+        run: |
+          set -euo pipefail
+          timeout 240s godot --headless --path build/kart-regression --editor --import --quit 2>&1 | tee kart-proof/import.log
+          ! grep -E 'SCRIPT ERROR:|Parse Error:' kart-proof/import.log
+      - name: Run vehicle, driving, rendered menu, controls and bridge regressions
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, subprocess, sys
+          tests = ['kart_vehicle_regression', 'kart_physics_regression', 'kart_courses_driving_regression', 'kart_menu_flow_regression', 'kart_touch_regression', 'kart_modes_regression', 'kart_race_bridge_regression', 'host_bridge_regression']
+          results = []
+          for name in tests:
+              common = ['--path', 'build/kart-regression', '--script', 'res://scripts/tests/' + name + '.gd']
+              if name == 'kart_menu_flow_regression':
+                  command = ['xvfb-run', '-a', '-s', '-screen 0 1280x1024x24', 'godot', '--rendering-method', 'gl_compatibility', '--audio-driver', 'Dummy'] + common
+              else:
+                  command = ['godot', '--headless'] + common
+              timed_out = False
+              try:
+                  result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=100)
+                  output, code = result.stdout, result.returncode
+              except subprocess.TimeoutExpired as error:
+                  output = error.stdout or b''
+                  if isinstance(output, bytes): output = output.decode('utf-8', 'replace')
+                  output += '\nHARNESS TIMEOUT: test did not complete in 100 seconds.\n'
+                  code, timed_out = 124, True
+              pathlib.Path('kart-proof/' + name + '.log').write_text(output)
+              passed = code == 0 and not any(marker in output for marker in ['SCRIPT ERROR:', 'Assertion failed', 'Parse Error:'])
+              results.append({'test': name, 'passed': passed, 'exit_code': code, 'timeout': timed_out})
+              print('\n=== ' + name + ': ' + ('PASS' if passed else 'FAIL') + ' ===', flush=True)
+              print(output[-12000:], flush=True)
+          pathlib.Path('kart-proof/results.json').write_text(json.dumps(results, indent=2) + '\n')
+          sys.exit(0 if all(item['passed'] for item in results) else 1)
+          PY
+      - name: Upload exact regression evidence and rendered screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: opus-kart-proof-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            kart-proof/
+            build/kart-regression/exports/holographic-proof/menu-flow-*.png
+          if-no-files-found: error
+          retention-days: 14

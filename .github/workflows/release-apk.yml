@@ -2,8 +2,8 @@ name: Build unified Lumo Android APK
 on:
   workflow_dispatch:
   push:
-    branches: ['copilot/5979796457-update-integrationsaudit']
-    paths: ['.github/workflows/release-apk.yml']
+    branches: ['copilot/5979796457-update-integrationsaudit', 'codex/opus-86c5a33-test-apk']
+    paths: ['.github/workflows/release-apk.yml', 'config/godot-source.json', 'lib/**', 'test/**', 'scripts/**']
 permissions:
   contents: read
 concurrency:
@@ -63,6 +63,7 @@ jobs:
         if: success()
         run: |
           {
+            printf 'Opus handoff base: 86c5a332244728d34074fb27423fbdf728390546\n'
             printf 'Source SHA: %s\n' "$(git rev-parse HEAD)"
             printf 'Package build number: %s\n' "$LUMO_BUILD_NUMBER"
             printf 'Package version name: %s\n' "$LUMO_VERSION_NAME"
@@ -86,6 +87,14 @@ jobs:
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
+      - name: Preserve diagnostic test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-probe-test-logs-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lumo-probe-test-logs/
+          if-no-files-found: warn
+          retention-days: 14
       - name: Record artifact handoff location
         if: success()
         run: |

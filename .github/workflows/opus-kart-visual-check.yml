@@ -1,0 +1,65 @@
+name: Opus Kart visual check and diagnostic toolkit
+on:
+  workflow_dispatch:
+  push:
+    branches: ['codex/opus-86c5a33-test-apk']
+    paths: ['.github/workflows/opus-kart-visual-check.yml']
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned engine
+        run: bash scripts/install_godot_for_build.sh
+      - name: Fetch pinned source
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, subprocess
+          pin = json.loads(pathlib.Path('config/godot-source.json').read_text())
+          subprocess.run(['git', 'init', 'build/kart-visual'], check=True)
+          subprocess.run(['git', '-C', 'build/kart-visual', 'remote', 'add', 'origin', pin['repository']], check=True)
+          subprocess.run(['git', '-C', 'build/kart-visual', 'fetch', '--depth=1', 'origin', pin['revision']], check=True)
+          subprocess.run(['git', '-C', 'build/kart-visual', 'checkout', '--detach', 'FETCH_HEAD'], check=True)
+          assert subprocess.check_output(['git', '-C', 'build/kart-visual', 'rev-parse', 'HEAD'], text=True).strip() == pin['revision']
+          PY
+      - name: Package isolated local geometry probe (no fonts or credentials)
+        run: |
+          mkdir -p geometry-toolkit/project/scripts/games geometry-toolkit/project/scripts/tests
+          cp -L "$(command -v godot)" geometry-toolkit/godot
+          cp build/kart-visual/scripts/games/kart_vehicle.gd geometry-toolkit/project/scripts/games/
+          cp build/kart-visual/scripts/tests/kart_vehicle_regression.gd geometry-toolkit/project/scripts/tests/
+          cp config/godot-source.json geometry-toolkit/source.json
+          printf 'config_version=5\n\n[application]\nconfig/name="Isolated Kart Geometry Probe"\n\n[rendering]\nrenderer/rendering_method="gl_compatibility"\n' > geometry-toolkit/project/project.godot
+          tar -C geometry-toolkit -czf geometry-toolkit.tar.gz .
+      - name: Upload minimal diagnostic toolkit
+        uses: actions/upload-artifact@v4
+        with:
+          name: opus-geometry-toolkit-${{ github.run_id }}
+          path: geometry-toolkit.tar.gz
+          retention-days: 3
+      - name: Import project resources
+        run: |
+          mkdir -p visual-proof
+          timeout 120s godot --headless --path build/kart-visual --editor --import --quit > visual-proof/import.log 2>&1
+          ! grep -E 'SCRIPT ERROR:|Parse Error:' visual-proof/import.log
+      - name: Run actual rendered menu pixel-touch regression
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          timeout 100s xvfb-run -a -s '-screen 0 1280x1024x24' godot --path build/kart-visual --rendering-method gl_compatibility --audio-driver Dummy --script res://scripts/tests/kart_menu_flow_regression.gd > visual-proof/menu.log 2>&1
+          cat visual-proof/menu.log
+          ! grep -E 'SCRIPT ERROR:|Assertion failed|Parse Error:' visual-proof/menu.log
+          grep -F '[KartMenuFlow] PASS:' visual-proof/menu.log
+      - name: Upload rendered menu proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: opus-kart-visual-proof-${{ github.run_id }}
+          path: |
+            visual-proof/
+            build/kart-visual/exports/holographic-proof/menu-flow-*.png
+          retention-days: 14
