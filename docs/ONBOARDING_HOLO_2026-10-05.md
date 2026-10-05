@@ -68,9 +68,9 @@ gehen weiterhin direkt in die App. `UserProfile` wurde nicht erweitert.
 
 ### Teststatus
 
-- `flutter analyze`: **FAIL**, Exit 1. 18 Analyzer-Warnungen und weitere Infos betreffen
-  unveränderte Dateien außerhalb des Onboardings; `lumo_onboarding_holo_screen.dart` hat
-  keine Analyzer-Diagnose.
+- `flutter analyze`: **FAIL**, Exit 1. Die 18 Warnungen liegen in anderen Dateien außerhalb
+  des Onboarding-Screens; zusätzlich gibt es Infos, unter anderem in `main.dart`.
+  `lumo_onboarding_holo_screen.dart` hat keine Analyzer-Diagnose.
 - `flutter test`: **PASS**, 613 Tests bestanden, 4 übersprungen.
 - `python3 -m unittest tools.android_qa.tests.test_onboarding_captions -v`: **PASS**, 4 Tests.
 - `python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v`: **PASS**,
