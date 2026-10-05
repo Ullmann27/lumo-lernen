@@ -579,19 +579,31 @@ class _AppShellState extends State<AppShell>
                                           ),
                                         ),
                                         Expanded(
-                                            child: FadeTransition(
-                                          opacity: _fadeCtrl,
-                                          child: LumoSectionTransition(
-                                            sectionKey:
-                                                _appState.state.section.name,
-                                            child: _buildContent(),
+                                          child: Stack(
+                                            children: [
+                                              Positioned.fill(
+                                                child: FadeTransition(
+                                                  opacity: _fadeCtrl,
+                                                  child: LumoSectionTransition(
+                                                    sectionKey: _appState
+                                                        .state.section.name,
+                                                    child: _buildContent(),
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                right: 10,
+                                                bottom: 10,
+                                                child: LumoCompanionHost(
+                                                  appState: _appState,
+                                                  onSection: _navigateTo,
+                                                  compact: true,
+                                                  floating: true,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        )),
-                                        LumoCompanionHost(
-                                            appState: _appState,
-                                            onSection: _navigateTo,
-                                            compact:
-                                                constraints.maxHeight < 600),
+                                        ),
                                       ]),
                                     ),
                                   ),
