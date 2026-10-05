@@ -1029,6 +1029,9 @@ class _LearningContentState extends State<LearningContent> {
     final chip = st.subject == 'Alle'
         ? 'Klasse ${st.grade} • adaptiv'
         : '${st.subject} • $unitDisplay';
+    final progressTitle = st.subject == 'Mathematik'
+        ? 'Mathe-Abenteuer • $unitDisplay'
+        : chip;
 
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 560;
@@ -1082,7 +1085,7 @@ class _LearningContentState extends State<LearningContent> {
               _LessonProgressRow(
                 currentStep: _questionNum,
                 totalSteps: _totalQuestions,
-                subject: chip,
+                subject: progressTitle,
                 lumo: _lumo,
                 reduceMotion: st.settings.reduceAnimations || st.settings.calmMode ||
                     MediaQuery.disableAnimationsOf(context),
@@ -2660,52 +2663,118 @@ class _LessonProgressRow extends StatelessWidget {
     final segments = math.min(totalSteps, 10);
     final filled = (currentStep / totalSteps * segments).ceil();
     return LumoGlassCard(
-      padding: const EdgeInsets.fromLTRB(12, 8, 4, 8),
-      radius: 22,
-      child: Row(children: [
+      padding: const EdgeInsets.fromLTRB(14, 11, 4, 8),
+      radius: 24,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               subject,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, letterSpacing: .4, color: LumoVisualTokens.cyanBright),
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13,
+                fontWeight: FontWeight.w900,
+                letterSpacing: .25,
+                color: LumoVisualTokens.cyanBright,
+                shadows: [Shadow(color: Color(0x8837D2FD), blurRadius: 10)],
+              ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
             Text(
               'Aufgabe $currentStep / $totalSteps',
               key: const ValueKey('lesson-progress-label'),
-              style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: LumoVisualTokens.white),
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 21,
+                fontWeight: FontWeight.w900,
+                color: LumoVisualTokens.white,
+              ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 8),
             Row(children: [
               for (var i = 0; i < segments; i++)
                 Expanded(
                   child: AnimatedContainer(
                     duration: reduceMotion ? Duration.zero : const Duration(milliseconds: 450),
                     curve: Curves.easeOutCubic,
-                    height: 9,
+                    height: 10,
                     margin: const EdgeInsets.symmetric(horizontal: 1.2),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: i < filled ? LumoVisualTokens.cyanBright : const Color(0xFF1C3A66),
+                      borderRadius: BorderRadius.circular(5),
+                      color: i < filled ? LumoVisualTokens.cyanBright : const Color(0xFF16365F),
                       boxShadow: i < filled
-                          ? [BoxShadow(color: LumoVisualTokens.cyan.withValues(alpha: .6), blurRadius: 6)]
+                          ? [
+                              BoxShadow(
+                                color: LumoVisualTokens.cyan.withValues(alpha: .68),
+                                blurRadius: 8,
+                              ),
+                            ]
                           : null,
                     ),
                   ),
                 ),
             ]),
+            const SizedBox(height: 10),
+            const Text(
+              'Gemeinsam Schritt für Schritt.',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+                color: LumoVisualTokens.muted,
+              ),
+            ),
           ]),
         ),
-        const SizedBox(width: 4),
-        LumoCharacter(
-          key: const ValueKey('lesson-lumo'),
-          pose: LumoDesignFoxPose.tabletThumb,
-          size: 84,
-          reduceMotion: reduceMotion,
-          controller: lumo,
-          onTap: () {},
+        const SizedBox(width: 6),
+        SizedBox(
+          width: 118,
+          height: 118,
+          child: Stack(clipBehavior: Clip.none, children: [
+            Positioned(
+              left: 0,
+              right: 8,
+              top: 0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                decoration: BoxDecoration(
+                  color: const Color(0xD90A3A75),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.65)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: LumoVisualTokens.cyan.withOpacity(.20),
+                      blurRadius: 10,
+                    ),
+                  ],
+                ),
+                child: const Text(
+                  'Du schaffst das! ✨',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 9.5,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              right: -4,
+              bottom: -8,
+              child: LumoCharacter(
+                key: const ValueKey('lesson-lumo'),
+                pose: LumoDesignFoxPose.teacherStick,
+                size: 106,
+                reduceMotion: reduceMotion,
+                controller: lumo,
+                onTap: () {},
+              ),
+            ),
+          ]),
         ),
       ]),
     );
