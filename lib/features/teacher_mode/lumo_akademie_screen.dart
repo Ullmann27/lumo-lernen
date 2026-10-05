@@ -707,10 +707,9 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   left: 12,
                   top: height * .08,
                   width: width * .31,
-                  child: const _HeroBubble(
+                  child: const LumoHeroBubble(
                     title: 'Du kannst das!',
                     text: 'Jede Aufgabe bringt dich weiter!',
-                    tailRight: true,
                   ),
                 ),
                 Positioned(
@@ -719,7 +718,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   width: width * .27,
                   child: Transform.rotate(
                     angle: -.08,
-                    child: const _HeroBubble(
+                    child: const LumoHeroBubble(
                       text: 'Kleine Schritte\nGroße Zukunft!',
                       handwritten: true,
                     ),
@@ -1677,74 +1676,4 @@ class _AnimatedRing extends StatelessWidget {
           ],
         ),
       );
-}
-
-/// Glas-Sprechblase mit Cyan-Rand über der Szene.
-class _HeroBubble extends StatelessWidget {
-  const _HeroBubble({
-    required this.text,
-    this.title,
-    this.handwritten = false,
-    this.tailRight = false,
-  });
-
-  final String? title;
-  final String text;
-  final bool handwritten;
-  final bool tailRight;
-
-  @override
-  Widget build(BuildContext context) {
-    final style = TextStyle(
-      fontFamily: 'Nunito',
-      color: LumoVisualTokens.white,
-      fontSize: handwritten ? 12.5 : 11,
-      height: 1.15,
-      fontStyle: handwritten ? FontStyle.italic : FontStyle.normal,
-      fontWeight: handwritten ? FontWeight.w700 : FontWeight.w800,
-    );
-    return Container(
-      padding: const EdgeInsets.fromLTRB(12, 9, 10, 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFF0B3C78).withOpacity(.78),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.8)),
-        boxShadow: [
-          BoxShadow(
-            color: LumoVisualTokens.cyan.withOpacity(.35),
-            blurRadius: 14,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (title != null)
-            Text(
-              title!,
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                color: LumoVisualTokens.white,
-                fontSize: 15,
-                height: 1.05,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          if (title != null) const SizedBox(height: 3),
-          Text.rich(
-              TextSpan(children: [
-                TextSpan(text: '$text '),
-                // Herz wie in den Zielbildern (als Symbol, nicht als Schriftzeichen).
-                WidgetSpan(
-                  alignment: PlaceholderAlignment.middle,
-                  child: Icon(Icons.favorite_border_rounded,
-                      size: style.fontSize! + 3, color: LumoVisualTokens.white),
-                ),
-              ]),
-              style: style),
-        ],
-      ),
-    );
-  }
 }

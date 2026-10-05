@@ -683,6 +683,76 @@ class LumoSpeechBubble extends StatelessWidget {
       );
 }
 
+/// Glas-Sprechblase mit Cyan-Rand über der Szene, mit Herz am Ende
+/// (Bild 02/03: „Du kannst das!“, „Kleine Schritte Große Zukunft!“).
+class LumoHeroBubble extends StatelessWidget {
+  const LumoHeroBubble({
+    super.key,
+    required this.text,
+    this.title,
+    this.handwritten = false,
+  });
+
+  final String? title;
+  final String text;
+  final bool handwritten;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = TextStyle(
+      fontFamily: 'Nunito',
+      color: LumoVisualTokens.white,
+      fontSize: handwritten ? 12.5 : 11,
+      height: 1.15,
+      fontStyle: handwritten ? FontStyle.italic : FontStyle.normal,
+      fontWeight: handwritten ? FontWeight.w700 : FontWeight.w800,
+    );
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12, 9, 10, 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFF0B3C78).withOpacity(.78),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.8)),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withOpacity(.35),
+            blurRadius: 14,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (title != null)
+            Text(
+              title!,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.white,
+                fontSize: 15,
+                height: 1.05,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          if (title != null) const SizedBox(height: 3),
+          Text.rich(
+              TextSpan(children: [
+                TextSpan(text: '$text '),
+                // Herz wie in den Zielbildern (als Symbol, nicht als Schriftzeichen).
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: Icon(Icons.favorite_border_rounded,
+                      size: style.fontSize! + 3, color: LumoVisualTokens.white),
+                ),
+              ]),
+              style: style),
+        ],
+      ),
+    );
+  }
+}
+
 class LumoFoxPose extends StatelessWidget {
   const LumoFoxPose({
     super.key,
