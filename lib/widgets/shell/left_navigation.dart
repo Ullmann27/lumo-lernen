@@ -42,7 +42,7 @@ class LeftNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final active = appState.state.section;
     final childName = appState.state.childName.trim().isEmpty ? 'Kind' : appState.state.childName.trim();
-    final iconOnly = width < 110;
+    final iconOnly = width < 160;
     return Container(
       width: width,
       decoration: BoxDecoration(
