@@ -12,6 +12,11 @@ class MathTaskTemplates {
     ),
     MathTaskTemplate(id: 'g1_sub_10', grade: 1, unit: 'Minus bis 10', kind: MathTemplateKind.subtraction, validRangeA: <int>[3, 10], validRangeB: <int>[1, 7], promptPattern: 'minus-bis-10',
     ),
+    // AT-Lehrplan 2023: Zahlenraum 20 schon in der 1. Schulstufe.
+    MathTaskTemplate(id: 'g1_add_20', grade: 1, unit: 'Plus bis 20', kind: MathTemplateKind.addition, validRangeA: <int>[2, 12], validRangeB: <int>[1, 8], promptPattern: 'plus-bis-20',
+    ),
+    MathTaskTemplate(id: 'g1_sub_20', grade: 1, unit: 'Minus bis 20', kind: MathTemplateKind.subtraction, validRangeA: <int>[10, 20], validRangeB: <int>[1, 9], promptPattern: 'minus-bis-20',
+    ),
     MathTaskTemplate(id: 'g1_number_line', grade: 1, unit: 'Zahlenstrahl', kind: MathTemplateKind.numberLineMissing, validRangeA: <int>[0, 17], validRangeB: <int>[0, 2], promptPattern: 'zahlenstrahl-fehlt',
     ),
     MathTaskTemplate(id: 'g1_quantity_compare', grade: 1, unit: 'Mengenvergleich', kind: MathTemplateKind.quantityCompare, validRangeA: <int>[1, 8], validRangeB: <int>[1, 8], promptPattern: 'menge-vergleichen',
@@ -30,6 +35,14 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g2_add_20', grade: 2, unit: 'Plus bis 20', kind: MathTemplateKind.addition, validRangeA: <int>[2, 18], validRangeB: <int>[1, 12], promptPattern: 'plus-bis-20',
     ),
     MathTaskTemplate(id: 'g2_sub_20', grade: 2, unit: 'Minus bis 20', kind: MathTemplateKind.subtraction, validRangeA: <int>[8, 20], validRangeB: <int>[1, 14], promptPattern: 'minus-bis-20',
+    ),
+    // AT-Lehrplan 2023: Zahlenraum 100 und das kleine Einmaleins gehören in die 2. Schulstufe.
+    // Klasse 3 wiederholt sie weiterhin (g3_add_100, g3_sub_100, g3_tables).
+    MathTaskTemplate(id: 'g2_add_100', grade: 2, unit: 'Plus bis 100', kind: MathTemplateKind.addition, validRangeA: <int>[10, 70], validRangeB: <int>[5, 30], promptPattern: 'plus-bis-100',
+    ),
+    MathTaskTemplate(id: 'g2_sub_100', grade: 2, unit: 'Minus bis 100', kind: MathTemplateKind.subtraction, validRangeA: <int>[30, 100], validRangeB: <int>[5, 29], promptPattern: 'minus-bis-100',
+    ),
+    MathTaskTemplate(id: 'g2_tables', grade: 2, unit: 'Einmaleins', kind: MathTemplateKind.multiplication, validRangeA: <int>[2, 10], validRangeB: <int>[2, 10], promptPattern: 'einmaleins',
     ),
     MathTaskTemplate(id: 'g2_times_prep', grade: 2, unit: 'Einmaleins Vorbereitung', kind: MathTemplateKind.multiplicationPrep, validRangeA: <int>[2, 5], validRangeB: <int>[2, 10], promptPattern: 'wie-oft-in-zahl',
     ),
