@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import '../widgets/lumo_shape_trace_canvas.dart';
 
 /// 2026-06-05 Iter 20: Renderer fuer ShapeTrace-Aufgaben.
@@ -43,7 +44,7 @@ class ShapeTraceTaskRenderer extends StatelessWidget {
         padding: const EdgeInsets.all(18),
         decoration: lumoCard(
           gradient: const LinearGradient(
-            colors: [Color(0xFFFFF8ED), Color(0xFFFFFEFA)],
+            colors: [Color(0xEA0B2B58), Color(0xEE071B3D), Color(0xE60A315F)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -52,7 +53,7 @@ class ShapeTraceTaskRenderer extends StatelessWidget {
           Text(
             'Mathematik · Geometrie',
             style: LumoTextStyles.label
-                .copyWith(color: LumoColors.orange, fontSize: 13),
+                .copyWith(color: LumoVisualTokens.cyanBright, fontSize: 13),
           ),
           const SizedBox(height: 10),
           Text(
@@ -61,8 +62,9 @@ class ShapeTraceTaskRenderer extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 26,
               fontWeight: FontWeight.w900,
-              color: LumoColors.ink900,
+              color: LumoVisualTokens.white,
               height: 1.12,
+              shadows: const [Shadow(color: Color(0x8837D2FD), blurRadius: 10)],
             ),
           ),
           const SizedBox(height: 14),
