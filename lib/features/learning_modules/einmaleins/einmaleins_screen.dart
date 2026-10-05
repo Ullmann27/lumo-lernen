@@ -142,6 +142,9 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       hintUsed: _showHint,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 6 : 0,
+      prompt: '$_a × $_b = ?',
+      given: '$answer',
+      expected: '$_correct',
     );
     if (!saved || !mounted) return;
     if (isCorrect) {

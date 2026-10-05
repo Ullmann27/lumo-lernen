@@ -226,6 +226,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
           correct: correct,
           hintUsed: hintUsed,
           requireSaved: true,
+          prompt: '$_a + $_b = ?',
+          given: '$answer',
+          expected: '$_correct',
         );
       } else {
         await widget.appState.flushLearningProgress();
