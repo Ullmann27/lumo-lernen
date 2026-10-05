@@ -55,7 +55,7 @@ String _pizzaFraction(WidgetTester tester) {
       .map((widget) => widget.data ?? '')
       .singleWhere((text) => text.startsWith('Von '));
   final match =
-      RegExp(r'^Von (\d+) Stücken wurden (\d+) gegessen\.$').firstMatch(text)!;
+      RegExp(r'^Von (\d+) Stücken wurden? (\d+) gegessen\.$').firstMatch(text)!;
   return '${match[2]}/${match[1]}';
 }
 

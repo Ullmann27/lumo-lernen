@@ -42,7 +42,7 @@ class LumoSceneBackground extends StatelessWidget {
     super.key,
     this.scene = LumoScene.home,
     this.backgroundAsset,
-    this.showPlaceholderLabel = true,
+    this.showPlaceholderLabel = false,
     this.dimmed = false,
     this.child,
   });
@@ -149,6 +149,50 @@ class LumoSceneBackground extends StatelessWidget {
             ),
           ),
       ],
+    );
+  }
+}
+
+/// Hintergrund für Lernmodule: die Bibliotheks-Szene und darauf eine helle
+/// „Heftseite“ unter dem farbigen Modul-Kopf. So bleiben die hellen
+/// Aufgabenkarten und farbigen Texte der Module gut lesbar.
+class LumoModuleBackdrop extends StatelessWidget {
+  const LumoModuleBackdrop({super.key, required this.child, this.headerHeight = 78});
+
+  final Widget child;
+  final double headerHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    final top = MediaQuery.paddingOf(context).top + headerHeight;
+    return LumoSceneBackground(
+      scene: LumoScene.library,
+      showPlaceholderLabel: false,
+      dimmed: true,
+      child: Stack(children: [
+        Positioned(
+          left: 8,
+          right: 8,
+          top: top,
+          bottom: MediaQuery.paddingOf(context).bottom + 8,
+          child: IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFFBEB).withValues(alpha: .94),
+                borderRadius: BorderRadius.circular(28),
+                border: Border.all(
+                    color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 1.4),
+                boxShadow: [
+                  BoxShadow(
+                      color: LumoVisualTokens.cyan.withValues(alpha: .25),
+                      blurRadius: 18),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Positioned.fill(child: child),
+      ]),
     );
   }
 }

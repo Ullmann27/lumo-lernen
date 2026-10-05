@@ -7,6 +7,7 @@
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -54,7 +55,8 @@ extension _JahreszeitName on _Jahreszeit {
       case _Jahreszeit.fruehling:
         return const Color(0xFF10B981);
       case _Jahreszeit.sommer:
-        return const Color(0xFFFCD34D);
+        // Dunkleres Sonnengelb: auf weißen Knöpfen gut lesbar.
+        return const Color(0xFFD97706);
       case _Jahreszeit.herbst:
         return const Color(0xFFEA580C);
       case _Jahreszeit.winter:
@@ -324,8 +326,9 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -352,7 +355,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {

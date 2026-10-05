@@ -8,6 +8,7 @@
 // 12 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -276,8 +277,9 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -301,7 +303,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {
@@ -406,7 +408,9 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
             color: _gradient[0].withOpacity(0.1),
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Text(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
               _typ == _Zahl100FrageTyp.nachfolger
                   ? '$_zahl1   →   ?'
                   : '?   →   $_zahl1',
@@ -416,20 +420,27 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
                   fontSize: 56,
                   fontWeight: FontWeight.w900,
                   color: _gradient[1])),
+          ),
         );
       case _Zahl100FrageTyp.vergleich:
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // Schmal oder mit großer Schrift verkleinern statt überlaufen.
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             _bigNumberBox(_zahl1),
+            const SizedBox(width: 16),
             const Text('oder',
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                     color: Color(0xFF6B7280))),
+            const SizedBox(width: 16),
             _bigNumberBox(_zahl2),
           ],
+        ),
         );
       case _Zahl100FrageTyp.zehnerEiner:
         final zehner = _zahl1 ~/ 10;

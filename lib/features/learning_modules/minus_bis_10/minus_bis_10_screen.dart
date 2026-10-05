@@ -6,6 +6,7 @@
 // Bei richtig: Lumo lobt + Sterne. Bei falsch: sanft + Hilfe-Bild.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import '../../../core/lumo_companion_state.dart';
@@ -252,8 +253,9 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -281,7 +283,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {

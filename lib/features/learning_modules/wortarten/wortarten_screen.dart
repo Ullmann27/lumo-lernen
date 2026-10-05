@@ -7,6 +7,7 @@
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ extension _WortartName on _Wortart {
   String get explainer {
     switch (this) {
       case _Wortart.nomen:
-        return 'Etwas das man anfassen kann';
+        return 'Etwas, das man anfassen kann';
       case _Wortart.verb:
         return 'Eine Tätigkeit (was man tut)';
       case _Wortart.adjektiv:
@@ -289,8 +290,9 @@ class _WortartenScreenState extends State<WortartenScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -318,7 +320,7 @@ class _WortartenScreenState extends State<WortartenScreen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {

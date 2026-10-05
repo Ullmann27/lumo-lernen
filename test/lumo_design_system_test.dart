@@ -67,7 +67,8 @@ void main() {
 
     expect(find.text('LUM'), findsOneWidget);
     expect(find.text('O'), findsOneWidget);
-    expect(find.text('SZENENBILD-PLATZHALTER'), findsOneWidget);
+    // Die Szenenbilder sind fertig: kein Platzhalter-Schild mehr.
+    expect(find.text('SZENENBILD-PLATZHALTER'), findsNothing);
     expect(find.text('Level 3'), findsOneWidget);
     expect(find.text('3. Klasse'), findsOneWidget);
     expect(find.text('23'), findsOneWidget);
