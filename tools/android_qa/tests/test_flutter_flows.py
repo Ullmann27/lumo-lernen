@@ -23,7 +23,7 @@ class VisibleUiTests(unittest.TestCase):
         akademie = (source/'features/teacher_mode/lumo_akademie_screen.dart').read_text()
         registry = (source/'features/learning_modules/learning_module_registry.dart').read_text()
         module = (source/'features/learning_modules/plus_bis_10/plus_bis_10_screen.dart').read_text()
-        self.assertIn('return LumoAkademieScreen(appState: _appState)', shell)
+        self.assertRegex(shell, r'return LumoAkademieScreen\(\s*appState: _appState')
         self.assertIn(LEARNING_SELECTION_CAPTION, akademie)
         self.assertIn("id: 'm1_plus10'", akademie)
         self.assertIn('return PlusBis10Screen(appState: appState)', registry)
