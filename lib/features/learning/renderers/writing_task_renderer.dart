@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/writing_target_parser.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import '../../../domain/writing/expanded_writing_template_repository.dart';
 import '../../../domain/writing/writing_domain.dart';
 import '../widgets/lumo_writing_canvas.dart';
@@ -96,7 +97,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         padding: const EdgeInsets.all(18),
         decoration: lumoCard(
           gradient: const LinearGradient(
-            colors: [Color(0xFFFFF4BD), Color(0xFFFFF8DC)],
+            colors: [Color(0xEA0B2B58), Color(0xEE071B3D), Color(0xE60A315F)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -104,7 +105,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             _isSentenceTarget ? 'Schreibsatz' : _isWordTarget ? 'Schreibwort' : 'Schreibaufgabe',
-            style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13),
+            style: LumoTextStyles.label.copyWith(color: LumoVisualTokens.cyanBright, fontSize: 13),
           ),
           const SizedBox(height: 8),
           Text(
@@ -113,8 +114,9 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
               fontFamily: 'Nunito',
               fontSize: 30,
               fontWeight: FontWeight.w900,
-              color: LumoColors.ink900,
+              color: LumoVisualTokens.white,
               height: 1.12,
+              shadows: const [Shadow(color: Color(0x8837D2FD), blurRadius: 10)],
             ),
           ),
           const SizedBox(height: 8),
@@ -126,7 +128,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
               fontFamily: 'Nunito',
               fontSize: 16,
               fontWeight: FontWeight.w900,
-              color: LumoColors.orange,
+              color: LumoVisualTokens.cyanBright,
             ),
           ),
           if (_isWordTarget) ...[
@@ -135,7 +137,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
             const SizedBox(height: 8),
             Text(
               'Schreibe ${_isSentenceTarget ? 'den ganzen Satz' : 'das ganze Wort'} frei auf die Linien. Diese Übung wird nicht automatisch bewertet; vergleiche sie mit einer erwachsenen Person.',
-              style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800),
+              style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted, fontWeight: FontWeight.w800),
             ),
           ],
           if (_isFreeTarget && !_isWordTarget)
