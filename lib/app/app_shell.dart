@@ -481,9 +481,9 @@ class _AppShellState extends State<AppShell>
                           final width = constraints.maxWidth;
                           final mobile = width < 720;
                           final showNav = width >= 720;
-                          final showProgressSidebar = width >= 820 &&
+                          final showProgressSidebar = width >= 760 &&
                               _appState.state.section == LumoSection.home;
-                          final navWidth = width < 980 ? 160.0 : 200.0;
+                          final navWidth = width < 980 ? 140.0 : 190.0;
                           final gap = width < 980 ? 6.0 : 10.0;
 
                           if (mobile) {
