@@ -2,8 +2,8 @@ name: Build unified Lumo Android APK
 on:
   workflow_dispatch:
   push:
-    branches: ['copilot/5979796457-update-integrationsaudit']
-    paths: ['.github/workflows/release-apk.yml']
+    branches: ['copilot/5979796457-update-integrationsaudit', 'claude/design-test-apk']
+    paths: ['.github/workflows/release-apk.yml', 'config/godot-source.json']
 permissions:
   contents: read
 concurrency:
