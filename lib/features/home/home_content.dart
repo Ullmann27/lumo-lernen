@@ -1122,7 +1122,7 @@ class _HomeGlassActionTile extends StatelessWidget {
         builder: (context, constraints) {
           final boundedHeight =
               constraints.hasBoundedHeight ? constraints.maxHeight : 180.0;
-          final ultraCompact = boundedHeight < 92 || constraints.maxWidth < 66;
+          final ultraCompact = boundedHeight < 126 || constraints.maxWidth < 104;
           final compact = boundedHeight < 170 || constraints.maxWidth < 160;
           final iconSize = (constraints.maxWidth * (compact ? .30 : .28))
               .clamp(ultraCompact ? 18.0 : 24.0, compact ? 38.0 : 56.0)
