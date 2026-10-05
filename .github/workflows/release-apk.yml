@@ -1,11 +1,10 @@
 name: Build unified Lumo Android APK
-# Trigger integration probe for Heinz 2026-10-05
 on:
   workflow_dispatch:
   pull_request:
     branches: ['claude/lumo-gesamt']
   push:
-    branches: ['copilot/5979796457-update-integrationsaudit', 'chatgpt/lumo-test-apk-2026-10-05']
+    branches: ['copilot/5979796457-update-integrationsaudit']
     paths: ['.github/workflows/release-apk.yml']
 permissions:
   contents: write
@@ -102,7 +101,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Publish Heinz test APK prerelease
-        if: success()
+        if: success() && github.event_name == 'pull_request' && github.head_ref == 'chatgpt/lumo-test-apk-2026-10-05'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -127,4 +126,3 @@ jobs:
               --title "Lumo Test APK – Hologlass + Fold + Kart" \
               --notes "Testversion aus ${GITHUB_SHA}. Enthält neues Hologlass-Onboarding, Fold-Host-Fix und aktuellen Lumo-Kart-Stand. Kein Produktionsrelease."
           fi
-          echo "APK: https://github.com/${GITHUB_REPOSITORY}/releases/download/$TAG/Lumo-Lernen-Neu.apk" >> "$GITHUB_STEP_SUMMARY"
