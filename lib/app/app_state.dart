@@ -66,6 +66,7 @@ class LumoSessionState {
     this.learningRecommendationSubject,
     this.learningRecommendationUnit,
     this.sessionKind = LumoSessionKind.quickPractice,
+    this.testLevel = 0,
     this.lastScanAnalysis,
   });
 
@@ -87,6 +88,10 @@ class LumoSessionState {
   String? learningRecommendationSubject;
   String? learningRecommendationUnit;
   LumoSessionKind sessionKind;
+
+  /// Schwierigkeit eines Tests: -1 leicht (Aufgaben eine Klasse darunter),
+  /// 0 mittel (eigene Klasse), 1 schwer (eine Klasse darüber).
+  int testLevel;
   ScannedWorkAnalysis? lastScanAnalysis;
 
   int get level => xp ~/ 400 + 1;
@@ -116,6 +121,7 @@ class LumoSessionState {
     String? learningRecommendationSubject,
     String? learningRecommendationUnit,
     LumoSessionKind? sessionKind,
+    int? testLevel,
     ScannedWorkAnalysis? lastScanAnalysis,
   }) =>
       LumoSessionState(
@@ -140,6 +146,7 @@ class LumoSessionState {
         learningRecommendationUnit:
             learningRecommendationUnit ?? this.learningRecommendationUnit,
         sessionKind: sessionKind ?? this.sessionKind,
+        testLevel: testLevel ?? this.testLevel,
         lastScanAnalysis: lastScanAnalysis ?? this.lastScanAnalysis,
       );
 }

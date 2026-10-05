@@ -25,6 +25,7 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
+import '../../shared/widgets/lumo_premium_effects.dart' show LumoFloating;
 import '../lumo_phrases.dart';
 
 class PlusBis10Screen extends StatefulWidget {
@@ -448,78 +449,68 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     );
   }
 
+  bool get _canLeave => _pendingAnswer == null && !_finishSavePending;
+
+  bool get _reduceMotion {
+    final settings = widget.appState.state.settings;
+    return settings.reduceAnimations ||
+        settings.calmMode ||
+        MediaQuery.disableAnimationsOf(context);
+  }
+
+  /// Untere Leiste wie in Bild 02: Sie führt aus der Übung in einen anderen
+  /// Bereich, aber nie mitten aus einer Antwort, die noch gespeichert wird.
+  void _leaveTo(LumoSection section) {
+    if (!_canLeave) return;
+    Navigator.of(context).pop();
+    if (section != LumoSection.learn) widget.appState.setSection(section);
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope<void>(
-        canPop: _pendingAnswer == null && !_finishSavePending,
+        canPop: _canLeave,
         child: Scaffold(
           backgroundColor: LumoVisualTokens.night,
-          body: SafeArea(
-            child: LumoSceneBackground(
-              scene: LumoScene.library,
+          body: LumoSceneBackground(
+            scene: LumoScene.library,
+            showPlaceholderLabel: false,
+            dimmed: true,
+            child: SafeArea(
               child: Column(
                 children: [
-                  _buildTopBar(),
-                  if (_saving || _saveError != null)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 6),
-                      child: Column(children: [
-                        Text(
-                          _saveError ?? 'Wir speichern deine Antwort…',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontFamily: 'Nunito',
-                            color: LumoVisualTokens.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        if (_saveError != null)
-                          FilledButton(
-                            onPressed: _saving ? null : _retrySave,
-                            child: const Text('Erneut versuchen'),
-                          ),
-                      ]),
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+                    child: LumoTopBar(appState: widget.appState),
+                  ),
                   Expanded(
-                    child: AnimatedBuilder(
-                      animation: Listenable.merge([_entryCtrl, _shakeCtrl]),
-                      builder: (_, __) {
-                        final shake = _shakeCtrl.value < 1.0
-                            ? math.sin(_shakeCtrl.value * math.pi * 4) * 8
-                            : 0.0;
-                        return Transform.translate(
-                          offset: Offset(shake, 0),
-                          child: FadeTransition(
-                            opacity: _entryCtrl,
-                            child: LayoutBuilder(
-                              builder: (context, constraints) =>
-                                  SingleChildScrollView(
-                                child: ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                      minHeight: constraints.maxHeight),
-                                  child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        16, 12, 16, 20),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        _buildTaskCard(),
-                                        const SizedBox(height: 14),
-                                        if (_showHint) _buildHintCard(),
-                                        const SizedBox(height: 14),
-                                        _buildAnswerButtons(),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: Column(
+                        children: [
+                          _buildHero(),
+                          AnimatedBuilder(
+                            animation:
+                                Listenable.merge([_entryCtrl, _shakeCtrl]),
+                            builder: (_, child) {
+                              final shake = _shakeCtrl.value < 1.0
+                                  ? math.sin(_shakeCtrl.value * math.pi * 4) * 8
+                                  : 0.0;
+                              return Transform.translate(
+                                offset: Offset(shake, 0),
+                                child: FadeTransition(
+                                    opacity: _entryCtrl, child: child),
+                              );
+                            },
+                            child: _buildAdventureCard(),
                           ),
-                        );
-                      },
+                        ],
+                      ),
                     ),
+                  ),
+                  LumoBottomNavigation(
+                    active: LumoSection.learn,
+                    onSelect: _leaveTo,
                   ),
                 ],
               ),
@@ -528,240 +519,469 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         ));
   }
 
-  Widget _buildTopBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(14, 8, 14, 4),
-      child: LumoGlassCard(
-        padding: const EdgeInsets.fromLTRB(4, 8, 12, 10),
-        radius: 22,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                      color: LumoVisualTokens.white),
-                  onPressed: _pendingAnswer == null && !_finishSavePending
-                      ? () => Navigator.of(context).pop()
-                      : null,
-                ),
-                const Icon(Icons.calculate_rounded,
-                    color: LumoVisualTokens.cyanBright, size: 24),
-                const SizedBox(width: 8),
-                const Expanded(
-                  child: Text(
-                    'Mathe-Abenteuer',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: LumoVisualTokens.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: LumoVisualTokens.glassRow,
-                    borderRadius: BorderRadius.circular(18),
-                    border: Border.all(
-                        color: LumoVisualTokens.cyan.withOpacity(.5)),
-                  ),
-                  child: const Text(
-                    '+5 XP',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: LumoVisualTokens.cyanBright,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(14, 0, 8, 0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                          style: const TextStyle(
-                            fontFamily: 'Nunito',
-                            color: LumoVisualTokens.muted,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        const SizedBox(height: 7),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: LinearProgressIndicator(
-                            value: (_taskIdx + 1) / _totalTasks,
-                            minHeight: 7,
-                            backgroundColor: LumoVisualTokens.navigation,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                                LumoVisualTokens.cyanBright),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: LumoVisualTokens.glassRow,
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                    child: Row(children: [
-                      const Icon(Icons.star_rounded,
-                          color: LumoVisualTokens.gold, size: 18),
-                      const SizedBox(width: 4),
-                      Text(
-                        '$_correctCount',
-                        style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.white,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                    ]),
-                  ),
-                ],
+  /// Lumo zeigt auf das Buch, links seine Sprechblase, rechts der Spruch.
+  Widget _buildHero() {
+    return LayoutBuilder(builder: (context, constraints) {
+      final width = constraints.maxWidth;
+      final height = (width * .3).clamp(108.0, 180.0);
+      final foxSize = height * 1.3;
+      Widget fox =
+          LumoFoxPose(pose: LumoDesignFoxPose.bookPoint, size: foxSize);
+      if (!_reduceMotion) {
+        fox = LumoFloating(
+          amplitude: 4,
+          duration: const Duration(milliseconds: 2600),
+          child: fox,
+        );
+      }
+      return SizedBox(
+        height: height,
+        child: Stack(clipBehavior: Clip.none, children: [
+          Positioned(
+            left: (width - foxSize) / 2,
+            bottom: -foxSize * .1,
+            child: RepaintBoundary(child: fox),
+          ),
+          Positioned(
+            left: 12,
+            top: height * .04,
+            width: width * .3,
+            child: Transform.rotate(
+              angle: -.05,
+              child: const LumoHeroBubble(
+                text: 'Super! Gemeinsam rechnen wir das!',
+                handwritten: true,
               ),
             ),
+          ),
+          Positioned(
+            right: -4,
+            top: height * .18,
+            width: width * .25,
+            child: Transform.rotate(
+              angle: -.08,
+              child: const LumoHeroBubble(
+                text: 'Kleine Schritte\nGroße Zukunft!',
+                handwritten: true,
+              ),
+            ),
+          ),
+        ]),
+      );
+    });
+  }
+
+  Widget _buildAdventureCard() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: LumoGlassCard(
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+        radius: 26,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _buildCardHeader(),
+            const SizedBox(height: 8),
+            _buildProgressRow(),
+            const SizedBox(height: 8),
+            _buildTaskCard(),
+            const SizedBox(height: 8),
+            _buildHelpCard(),
+            if (_saving || _saveError != null) _buildSaveStatus(),
+            const SizedBox(height: 8),
+            _buildAnswerButtons(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildTaskCard() {
-    return LumoGlassCard(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-      child: Column(
-        children: [
-          const Text(
-            'Plus bis 10',
+  Widget _buildCardHeader() {
+    return Row(children: [
+      Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          gradient: const LinearGradient(
+            colors: [Color(0xFF3FA9F5), Color(0xFF1E5FD0)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          border: Border.all(color: Colors.white.withOpacity(.5)),
+          boxShadow: [
+            BoxShadow(
+                color: LumoVisualTokens.cyan.withOpacity(.4), blurRadius: 10),
+          ],
+        ),
+        child:
+            const Icon(Icons.calculate_rounded, color: Colors.white, size: 28),
+      ),
+      const SizedBox(width: 10),
+      const Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Mathe-Abenteuer',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.white,
+                fontSize: 20,
+                height: 1.1,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            Text(
+              'Entdecke Zahlen, löse Aufgaben, werde ein Mathe-Profi!',
+              maxLines: 2,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.white,
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ]);
+  }
+
+  /// „Aufgabe N / M“ mit zehn Leuchtsegmenten und der echten XP pro Aufgabe.
+  Widget _buildProgressRow() {
+    const segments = 10;
+    final filled = ((_taskIdx + 1) / _totalTasks * segments).ceil();
+    return Row(children: [
+      Expanded(
+        child: Container(
+          height: 34,
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          decoration: BoxDecoration(
+            color: LumoVisualTokens.navigation.withOpacity(.7),
+            borderRadius: BorderRadius.circular(99),
+            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.35)),
+          ),
+          child: Row(children: [
+            Text(
+              'Aufgabe ${_taskIdx + 1} / $_totalTasks',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.white,
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Row(children: [
+                for (var i = 0; i < segments; i++)
+                  Expanded(
+                    child: AnimatedContainer(
+                      duration: _reduceMotion
+                          ? Duration.zero
+                          : const Duration(milliseconds: 450),
+                      curve: Curves.easeOutCubic,
+                      height: 9,
+                      margin: const EdgeInsets.symmetric(horizontal: 1),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: i < filled
+                            ? LumoVisualTokens.cyanBright
+                            : const Color(0xFF1C3A66),
+                        boxShadow: i < filled
+                            ? [
+                                BoxShadow(
+                                  color: LumoVisualTokens.cyan.withOpacity(.6),
+                                  blurRadius: 6,
+                                ),
+                              ]
+                            : null,
+                      ),
+                    ),
+                  ),
+              ]),
+            ),
+          ]),
+        ),
+      ),
+      const SizedBox(width: 8),
+      Container(
+        height: 34,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: LumoVisualTokens.glassRow,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.5)),
+        ),
+        child: const Row(children: [
+          Icon(Icons.star_rounded, color: LumoVisualTokens.gold, size: 20),
+          SizedBox(width: 4),
+          Text(
+            '+5 XP',
             style: TextStyle(
               fontFamily: 'Nunito',
-              color: LumoVisualTokens.cyanBright,
-              fontSize: 13,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            '$_a + $_b = ?',
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 54,
-              fontWeight: FontWeight.w900,
               color: LumoVisualTokens.white,
-              letterSpacing: 2,
+              fontWeight: FontWeight.w900,
             ),
           ),
-          const SizedBox(height: 4),
+        ]),
+      ),
+    ]);
+  }
+
+  Widget _buildTaskCard() {
+    const decoStar = Icon(Icons.star_border_rounded,
+        color: LumoVisualTokens.cyanBright, size: 18);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12, 6, 12, 8),
+      decoration: BoxDecoration(
+        color: const Color(0xFF0A3A78).withOpacity(.55),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.6)),
+        boxShadow: [
+          BoxShadow(
+              color: LumoVisualTokens.cyan.withOpacity(.18), blurRadius: 14),
+        ],
+      ),
+      child: Stack(children: [
+        const Positioned(left: 0, top: 4, child: decoStar),
+        const Positioned(right: 0, top: 4, child: decoStar),
+        Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          const SizedBox(width: double.infinity),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              '$_a + $_b = ?',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 42,
+                height: 1.1,
+                fontWeight: FontWeight.w900,
+                color: LumoVisualTokens.white,
+                letterSpacing: 2,
+                shadows: [
+                  Shadow(color: LumoVisualTokens.cyan, blurRadius: 14),
+                ],
+              ),
+            ),
+          ),
           const Text(
             'Wähle die richtige Antwort aus.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Nunito',
-              color: LumoVisualTokens.muted,
-              fontSize: 14,
+              color: LumoVisualTokens.white,
+              fontSize: 13,
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 16),
-          _buildVisualization(),
-        ],
+        ]),
+      ]),
+    );
+  }
+
+  /// Hilfe-Karte aus Bild 02: zwei Apfel-Mengen, „= ?“ und Lumo mit
+  /// Zeigestab. Nach zwei Fehlversuchen oder auf „Tipp“ zählt Lumo vor.
+  Widget _buildHelpCard() {
+    final bubble = _showHint
+        ? 'Zähle alle Äpfel zusammen: '
+            '${List.filled(_a, '🍎').join('')} und '
+            '${List.filled(_b, '🍏').join('')}'
+        : 'Erst $_a … und noch $_b … Wie viele sind es insgesamt?';
+    final scale = MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6);
+    return Container(
+      height: 116 * scale,
+      decoration: BoxDecoration(
+        color: LumoVisualTokens.glassRow.withOpacity(.55),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.4)),
       ),
-    );
-  }
-
-  Widget _buildVisualization() {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: 6,
-      runSpacing: 6,
-      children: [
-        ...List.generate(
-            _a,
-            (i) => const Icon(Icons.apple_rounded,
-                color: Color(0xFFEF4444), size: 38)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6),
-          child: Text('+',
-              style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 36,
-                  fontWeight: FontWeight.w900,
-                  color: LumoVisualTokens.cyanBright)),
-        ),
-        ...List.generate(
-            _b,
-            (i) => const Icon(Icons.apple_rounded,
-                color: Color(0xFF22C55E), size: 38)),
-      ],
-    );
-  }
-
-  Widget _buildHintCard() {
-    return LumoGlassCard(
-      color: LumoVisualTokens.glassRow,
-      child: Row(
-        children: [
-          const LumoFoxPose(
-            pose: LumoDesignFoxPose.teacherStick,
-            size: 76,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
+      child: LayoutBuilder(builder: (context, c) {
+        final side = c.maxWidth * .36;
+        return Stack(clipBehavior: Clip.hardEdge, children: [
+          Positioned(
+            left: 10,
+            top: 8,
+            bottom: 10,
+            right: side,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [
                   const Icon(Icons.lightbulb_rounded,
-                      color: LumoVisualTokens.gold, size: 22),
+                      color: LumoVisualTokens.gold,
+                      size: 22,
+                      shadows: [
+                        Shadow(color: Color(0xAAFFC94A), blurRadius: 10)
+                      ]),
                   const SizedBox(width: 6),
                   Expanded(
-                    child: Text(
-                      LumoPhrases.hint(),
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        color: LumoVisualTokens.gold,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w900,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          _showHint ? LumoPhrases.hint() : 'Hilfe',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const Text(
+                          'Zähle die Äpfel mit Lumo!',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.white,
+                            fontSize: 10.5,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ]),
-                const SizedBox(height: 4),
-                Text(
-                  'Zähle alle Äpfel zusammen: '
-                  '${List.filled(_a, '🍎').join('')} und '
-                  '${List.filled(_b, '🍏').join('')}',
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: LumoVisualTokens.white,
-                  ),
-                ),
+                const Spacer(),
+                Row(children: [
+                  Expanded(child: _appleBox(_a)),
+                  _operator('+'),
+                  Expanded(child: _appleBox(_b)),
+                  _operator('='),
+                  _questionBox(),
+                ]),
               ],
             ),
           ),
-        ],
+          Positioned(
+            right: 6,
+            top: 6,
+            width: side - 8,
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+              decoration: BoxDecoration(
+                color: const Color(0xFF0B3C78).withOpacity(.88),
+                borderRadius: BorderRadius.circular(12),
+                border:
+                    Border.all(color: LumoVisualTokens.cyan.withOpacity(.7)),
+              ),
+              child: Text(
+                bubble,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  color: LumoVisualTokens.white,
+                  fontSize: 10,
+                  height: 1.2,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            right: 0,
+            bottom: -6,
+            child: LumoFoxPose(
+              pose: LumoDesignFoxPose.teacherStick,
+              size: (c.maxHeight * .62).clamp(60.0, 110.0),
+            ),
+          ),
+        ]);
+      }),
+    );
+  }
+
+  Widget _appleBox(int count) {
+    return Container(
+      constraints: const BoxConstraints(minHeight: 46),
+      padding: const EdgeInsets.all(4),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: const Color(0xFF0A3A78).withOpacity(.6),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.55)),
+      ),
+      child: Semantics(
+        label: '$count Äpfel',
+        excludeSemantics: true,
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 1,
+          runSpacing: 1,
+          children: [
+            for (var i = 0; i < count; i++)
+              const Text('🍎', style: TextStyle(fontSize: 15)),
+          ],
+        ),
       ),
     );
   }
 
+  Widget _operator(String symbol) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 3),
+        child: Text(
+          symbol,
+          style: const TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 22,
+            fontWeight: FontWeight.w900,
+            color: LumoVisualTokens.white,
+          ),
+        ),
+      );
+
+  Widget _questionBox() => Container(
+        width: 30,
+        height: 36,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+              color: LumoVisualTokens.white.withOpacity(.85), width: 1.4),
+        ),
+        child: const Text(
+          '?',
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 20,
+            fontWeight: FontWeight.w900,
+            color: LumoVisualTokens.white,
+          ),
+        ),
+      );
+
+  Widget _buildSaveStatus() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Column(children: [
+        Text(
+          _saveError ?? 'Wir speichern deine Antwort…',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontFamily: 'Nunito',
+            color: LumoVisualTokens.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        if (_saveError != null)
+          FilledButton(
+            onPressed: _saving ? null : _retrySave,
+            child: const Text('Erneut versuchen'),
+          ),
+      ]),
+    );
+  }
+
   Widget _buildAnswerButtons() {
+    final canContinue = _answered && _pendingAnswer == null && !_saving;
     return Column(children: [
       GridView.count(
         crossAxisCount: 4,
@@ -769,24 +989,23 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         physics: const NeverScrollableScrollPhysics(),
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
-        childAspectRatio: 1,
+        childAspectRatio: 1.5,
         children: _answers.map((ans) {
           final isSelected = _selectedAnswer == ans;
           final isCorrect = _answered && ans == _correct;
           final isWrong = isSelected && ans != _correct;
 
-          Color bg = LumoVisualTokens.glass.withOpacity(.84);
-          Color textColor = LumoVisualTokens.white;
-          Color borderColor = LumoVisualTokens.cyan.withOpacity(.55);
-
+          var colors = const [Color(0xFF1C5BB8), Color(0xFF0E3A82)];
+          var borderColor = LumoVisualTokens.cyan.withOpacity(.55);
           if (isCorrect) {
-            bg = const Color(0xFF167A58);
-            textColor = Colors.white;
+            colors = const [Color(0xFF1FA27A), Color(0xFF0F6B50)];
             borderColor = const Color(0xFF4BE0A5);
           } else if (isWrong) {
-            bg = const Color(0xFF7B2947);
-            textColor = Colors.white;
+            colors = const [Color(0xFF9B2C55), Color(0xFF6B1D3B)];
             borderColor = const Color(0xFFFF6B8A);
+          } else if (isSelected) {
+            colors = const [Color(0xFF2AA7E8), Color(0xFF1466B8)];
+            borderColor = LumoVisualTokens.cyanBright;
           }
 
           return AnimatedScale(
@@ -797,57 +1016,117 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 decoration: BoxDecoration(
-                  color: bg,
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: borderColor, width: 2),
+                  gradient: LinearGradient(
+                    colors: colors,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: borderColor, width: 1.6),
                   boxShadow: [
                     BoxShadow(
-                        color: borderColor.withOpacity(0.3),
+                        color: borderColor.withOpacity(0.35),
                         blurRadius: 12,
                         offset: const Offset(0, 4))
                   ],
                 ),
                 alignment: Alignment.center,
                 child: Text('$ans',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: 34,
+                      fontSize: 32,
                       fontWeight: FontWeight.w900,
-                      color: textColor,
+                      color: Colors.white,
                     )),
               ),
             ),
           );
         }).toList(),
       ),
-      const SizedBox(height: 10),
+      const SizedBox(height: 12),
       Row(
         children: [
-          OutlinedButton.icon(
-            onPressed: _showHint || _wrongAttempts < 2
+          _pillButton(
+            label: 'Tipp',
+            onPressed: _showHint || _answered
                 ? null
                 : () => setState(() => _showHint = true),
-            icon: const Icon(Icons.lightbulb_outline_rounded),
-            label: const Text('Tipp'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: LumoVisualTokens.gold,
-              side: BorderSide(color: LumoVisualTokens.gold.withOpacity(.65)),
-            ),
+            leading: const Icon(Icons.lightbulb_rounded,
+                color: LumoVisualTokens.gold, size: 24),
+            colors: const [Color(0xFF123F7C), Color(0xFF0B2A5A)],
+            border: LumoVisualTokens.cyan.withOpacity(.6),
           ),
           const Spacer(),
-          FilledButton.icon(
-            onPressed: _answered && _pendingAnswer == null && !_saving
-                ? _continueAfterCorrect
-                : null,
-            icon: const Icon(Icons.arrow_forward_rounded),
-            label: const Text('Weiter'),
-            style: FilledButton.styleFrom(
-              backgroundColor: const Color(0xFF16885A),
-              foregroundColor: Colors.white,
-            ),
+          _pillButton(
+            label: 'Weiter',
+            onPressed: canContinue ? _continueAfterCorrect : null,
+            colors: const [Color(0xFF4FE3C1), Color(0xFF16A889)],
+            border: const Color(0xFFB4FFEE),
+            wide: true,
           ),
         ],
       ),
     ]);
+  }
+
+  /// Glas-Pillen „Tipp“ und „Weiter“ wie in Bild 02; gesperrt wirken sie
+  /// gedämpft.
+  Widget _pillButton({
+    required String label,
+    required VoidCallback? onPressed,
+    required List<Color> colors,
+    required Color border,
+    Widget? leading,
+    bool wide = false,
+  }) {
+    final enabled = onPressed != null;
+    return Opacity(
+      opacity: enabled ? 1 : .55,
+      child: Semantics(
+        button: true,
+        enabled: enabled,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(99),
+            onTap: onPressed,
+            child: Ink(
+              height: 44,
+              padding: EdgeInsets.symmetric(horizontal: wide ? 28 : 16),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: colors,
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                borderRadius: BorderRadius.circular(99),
+                border: Border.all(color: border, width: 1.4),
+                boxShadow: enabled
+                    ? [
+                        BoxShadow(
+                            color: border.withOpacity(.45), blurRadius: 14)
+                      ]
+                    : null,
+              ),
+              child: Row(mainAxisSize: MainAxisSize.min, children: [
+                if (leading != null) ...[leading, const SizedBox(width: 8)],
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: wide ? 20 : 17,
+                    fontWeight: FontWeight.w900,
+                    color: wide ? const Color(0xFF053B33) : Colors.white,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Icon(Icons.chevron_right_rounded,
+                    color: wide ? const Color(0xFF053B33) : Colors.white),
+              ]),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -16,6 +16,7 @@ class LumoCompanionHost extends StatelessWidget {
     required this.appState,
     required this.onSection,
     this.compact = false,
+    this.floating = false,
     this.section,
     this.subject,
     this.unit,
@@ -27,6 +28,7 @@ class LumoCompanionHost extends StatelessWidget {
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
   final bool compact;
+  final bool floating;
   final String? section;
   final String? subject;
   final String? unit;
@@ -64,6 +66,7 @@ class LumoCompanionHost extends StatelessWidget {
         );
         return LumoFreeCompanion(
           compact: compact,
+          floating: floating,
           reducedMotion: state.settings.reduceAnimations ||
               state.settings.calmMode ||
               MediaQuery.disableAnimationsOf(context),

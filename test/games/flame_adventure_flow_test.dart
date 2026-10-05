@@ -42,6 +42,9 @@ Future<LumoFlameJumpGame> _menuAndCollect(
   await tester.pump();
   await tester.pump();
   final card = find.text('Lumos Jump Adventure · 2D');
+  // Die Spielewelt baut Karten unterhalb der Spielkarten erst beim Scrollen.
+  await tester.scrollUntilVisible(card, 300,
+      scrollable: find.byType(Scrollable).first);
   await tester.ensureVisible(card);
   await tester.pump();
   await tester.tap(card);

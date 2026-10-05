@@ -17,6 +17,8 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../shared/widgets/lumo_premium_effects.dart' show LumoFloating;
+import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import '../writing/lumo_writing_word_coach_screen.dart';
@@ -520,8 +522,16 @@ class LumoCurriculum {
 // ════════════════════════════════════════════════════════════════════════
 
 class LumoAkademieScreen extends StatefulWidget {
-  const LumoAkademieScreen({super.key, required this.appState});
+  const LumoAkademieScreen({
+    super.key,
+    required this.appState,
+    this.drawBackground = true,
+  });
   final LumoAppState appState;
+
+  /// Im App-Rahmen malt die Shell die Szene vollflächig hinter Kopfzeile und
+  /// Inhalt; allein geöffnet zeichnet der Bildschirm sie selbst.
+  final bool drawBackground;
 
   @override
   State<LumoAkademieScreen> createState() => _LumoAkademieScreenState();
@@ -529,13 +539,15 @@ class LumoAkademieScreen extends StatefulWidget {
 
 class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     with TickerProviderStateMixin {
+  // Farben und Symbole wie die sechs Fachkacheln in Bild 03.
   static const _learningAreas = <_LearningArea>[
     _LearningArea(
       title: 'Mathe',
       subject: 'Mathematik',
       subtitle: 'Zahlen und Rechnen',
       icon: Icons.calculate_rounded,
-      color: LumoVisualTokens.learning,
+      color: Color(0xFFE08A26),
+      art: _SubjectArtKind.math,
       curriculumIndex: 0,
     ),
     _LearningArea(
@@ -543,7 +555,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       subject: 'Deutsch',
       subtitle: 'Wörter und Sätze',
       icon: Icons.menu_book_rounded,
-      color: LumoVisualTokens.games,
+      color: Color(0xFF6A38D6),
+      art: _SubjectArtKind.book,
       curriculumIndex: 1,
     ),
     _LearningArea(
@@ -551,7 +564,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       subject: 'Lesen',
       subtitle: 'Laut vorlesen',
       icon: Icons.auto_stories_rounded,
-      color: LumoVisualTokens.tests,
+      color: Color(0xFF239A63),
+      art: _SubjectArtKind.books,
       section: LumoSection.reading,
     ),
     _LearningArea(
@@ -559,7 +573,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       subject: 'Schreiben',
       subtitle: 'Schreiben und nachspuren',
       icon: Icons.draw_rounded,
-      color: LumoVisualTokens.rewards,
+      color: Color(0xFFC63A86),
+      art: _SubjectArtKind.pencil,
       section: LumoSection.exercises,
     ),
     _LearningArea(
@@ -567,7 +582,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       subject: 'Englisch',
       subtitle: 'Farben, Tiere und Wörter',
       icon: Icons.public_rounded,
-      color: Color(0xFF167BC0),
+      color: Color(0xFF2B5FD8),
+      art: _SubjectArtKind.hi,
       section: LumoSection.exercises,
     ),
     _LearningArea(
@@ -575,7 +591,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       subject: 'Sachunterricht',
       subtitle: 'Tiere, Natur und Welt',
       icon: Icons.eco_rounded,
-      color: Color(0xFF167A84),
+      color: Color(0xFF14917F),
+      art: _SubjectArtKind.globe,
       curriculumIndex: 2,
     ),
   ];
@@ -603,192 +620,111 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   GradeLevel get _currentGrade =>
       LumoCurriculum.grades.firstWhere((g) => g.grade == _selectedGrade);
 
+  bool get _reduceMotion {
+    final settings = widget.appState.state.settings;
+    return settings.reduceAnimations ||
+        settings.calmMode ||
+        MediaQuery.disableAnimationsOf(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: LumoVisualTokens.night,
-      body: LumoSceneBackground(
-        scene: LumoScene.learning,
-        child: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              // ── HERO BANNER ────────────────────────────────────
-              SliverToBoxAdapter(child: _buildHero()),
-              SliverToBoxAdapter(child: _buildGoals()),
-              // ── KLASSEN-SELECTOR ───────────────────────────────
-              SliverToBoxAdapter(child: _buildGradePicker()),
-              SliverToBoxAdapter(child: _buildLearningAreas()),
-              // ── FACH-KACHELN ───────────────────────────────────
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-                sliver: SliverToBoxAdapter(
-                  child: _buildSubjectSection(
-                    _currentGrade.subjects[_selectedSubjectIndex],
-                    _selectedSubjectIndex,
-                  ),
-                ),
+    final content = SafeArea(
+      top: widget.drawBackground,
+      bottom: false,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: _buildHero()),
+          SliverToBoxAdapter(child: _buildTitleRow()),
+          SliverToBoxAdapter(child: _buildGradePicker()),
+          SliverToBoxAdapter(child: _buildLearningAreas()),
+          SliverToBoxAdapter(child: _buildContinueBanner()),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
+            sliver: SliverToBoxAdapter(
+              child: _buildSubjectSection(
+                _currentGrade.subjects[_selectedSubjectIndex],
+                _selectedSubjectIndex,
               ),
-              SliverToBoxAdapter(child: _buildContinueBanner()),
-              const SliverToBoxAdapter(child: SizedBox(height: 100)),
-            ],
+            ),
           ),
-        ),
+          const SliverToBoxAdapter(child: SizedBox(height: 24)),
+        ],
       ),
+    );
+    return Scaffold(
+      backgroundColor:
+          widget.drawBackground ? LumoVisualTokens.night : Colors.transparent,
+      body: widget.drawBackground
+          ? LumoSceneBackground(
+              scene: LumoScene.learning,
+              showPlaceholderLabel: false,
+              dimmed: true,
+              child: content,
+            )
+          : content,
     );
   }
 
+  /// Bild 03: Lumo mit Tablet in der Mitte, links seine Sprechblase,
+  /// rechts schräg „Kleine Schritte Große Zukunft!“.
   Widget _buildHero() {
     return AnimatedBuilder(
       animation: _heroCtrl,
-      builder: (_, __) {
+      builder: (_, child) {
         final v = Curves.easeOutCubic.transform(_heroCtrl.value);
         return Transform.translate(
-          offset: Offset(0, (1 - v) * 30),
-          child: Opacity(opacity: v, child: _heroContent()),
+          offset: Offset(0, (1 - v) * 24),
+          child: Opacity(opacity: v, child: child),
         );
       },
-    );
-  }
-
-  Widget _heroContent() {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final compact = constraints.maxWidth < 360;
-        return Container(
-          margin: EdgeInsets.fromLTRB(
-            compact ? 12 : 20,
-            compact ? 12 : 16,
-            compact ? 12 : 20,
-            12,
-          ),
-          child: LumoGlassCard(
-            padding: EdgeInsets.fromLTRB(
-              compact ? 12 : 20,
-              compact ? 14 : 18,
-              compact ? 8 : 10,
-              12,
-            ),
-            child: Row(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth;
+          final height = (width * .5).clamp(170.0, 270.0);
+          final foxSize = height * 1.12;
+          Widget fox = LumoFoxPose(
+            pose: LumoDesignFoxPose.tabletThumb,
+            size: foxSize,
+          );
+          if (!_reduceMotion) {
+            fox = LumoFloating(
+              amplitude: 4,
+              duration: const Duration(milliseconds: 2600),
+              child: fox,
+            );
+          }
+          return SizedBox(
+            height: height,
+            child: Stack(
+              clipBehavior: Clip.none,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.school_rounded,
-                              color: LumoVisualTokens.cyan, size: 20),
-                          const SizedBox(width: 7),
-                          Flexible(
-                            child: Text(
-                              'LUMO AKADEMIE',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                color: LumoVisualTokens.cyanBright,
-                                fontSize: compact ? 10 : 12,
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: compact ? .4 : 1.2,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Lernen',
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.white,
-                          fontSize: compact ? 26 : 30,
-                          fontWeight: FontWeight.w900,
-                          height: 1,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      const Text(
-                        'Heute lernen. Morgen mehr können!',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.muted,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
+                Positioned(
+                  left: (width - foxSize) / 2 + width * .03,
+                  bottom: -6,
+                  child: RepaintBoundary(child: fox),
+                ),
+                Positioned(
+                  left: 12,
+                  top: height * .08,
+                  width: width * .31,
+                  child: const LumoHeroBubble(
+                    title: 'Du kannst das!',
+                    text: 'Jede Aufgabe bringt dich weiter!',
                   ),
                 ),
-                LumoFoxPose(
-                  pose: LumoDesignFoxPose.tabletThumb,
-                  size: compact ? 76 : 124,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildGoals() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 18),
-      child: AnimatedBuilder(
-        animation: widget.appState,
-        builder: (context, _) {
-          final done = widget.appState.learningDailyDone();
-          final goal = widget.appState.state.settings.dailyGoal.clamp(1, 500);
-          final progress = (done / goal).clamp(0.0, 1.0).toDouble();
-          return LumoGlassCard(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-            child: Row(
-              children: [
-                const Icon(Icons.track_changes_rounded,
-                    color: LumoVisualTokens.cyanBright, size: 30),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Deine Ziele',
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        '$done von $goal Aufgaben geschafft',
-                        style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.muted,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: LinearProgressIndicator(
-                          value: progress,
-                          minHeight: 7,
-                          backgroundColor: LumoVisualTokens.navigation,
-                          valueColor: const AlwaysStoppedAnimation<Color>(
-                              LumoVisualTokens.cyanBright),
-                        ),
-                      ),
-                    ],
+                Positioned(
+                  right: -4,
+                  top: height * .42,
+                  width: width * .27,
+                  child: Transform.rotate(
+                    angle: -.08,
+                    child: const LumoHeroBubble(
+                      text: 'Kleine Schritte\nGroße Zukunft!',
+                      handwritten: true,
+                    ),
                   ),
                 ),
-                const SizedBox(width: 10),
-                const Icon(Icons.chevron_right_rounded,
-                    color: LumoVisualTokens.cyanBright, size: 28),
               ],
             ),
           );
@@ -797,53 +733,223 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     );
   }
 
-  Widget _buildContinueBanner() {
-    final subject = _currentGrade.subjects[_selectedSubjectIndex];
-    final topic = subject.topics.first;
+  Widget _buildTitleRow() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(24),
-          onTap: () => _openTopic(topic, subject),
-          child: LumoGlassCard(
-            padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
-            child: Row(
+      padding: const EdgeInsets.fromLTRB(16, 2, 16, 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const LumoFoxPose(pose: LumoDesignFoxPose.cheer, size: 82),
+                // Für Bildschirmleser und die Android-Prüfung bleibt der
+                // Bereichsname erhalten, sichtbar ist nur „Lernen“ wie im Bild.
+                Semantics(
+                  container: true,
+                  label: 'LUMO AKADEMIE',
+                  child: const Text(
+                    'Lernen',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.white,
+                      fontSize: 34,
+                      height: 1,
+                      fontWeight: FontWeight.w900,
+                      shadows: [
+                        Shadow(color: Color(0x88000000), blurRadius: 10)
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Heute lernen. Morgen mehr können!',
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.cyanBright,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          Flexible(child: _buildGoals()),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGoals() {
+    return AnimatedBuilder(
+      animation: widget.appState,
+      builder: (context, _) {
+        final done = widget.appState.learningDailyDone();
+        final goal = widget.appState.state.settings.dailyGoal.clamp(1, 500);
+        final progress = (done / goal).clamp(0.0, 1.0).toDouble();
+        return ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 176),
+          child: LumoGlassCard(
+            padding: const EdgeInsets.fromLTRB(10, 8, 6, 8),
+            radius: 18,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: 34,
+                  height: 34,
+                  child: _AnimatedRing(
+                    value: progress,
+                    reduceMotion: _reduceMotion,
+                    strokeWidth: 3.5,
+                    child: const Icon(Icons.track_changes_rounded,
+                        color: LumoVisualTokens.cyanBright, size: 20),
+                  ),
+                ),
                 const SizedBox(width: 8),
-                const Expanded(
+                Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        'Super gemacht!',
+                      const Text(
+                        'Deine Ziele',
+                        maxLines: 1,
                         style: TextStyle(
                           fontFamily: 'Nunito',
                           color: LumoVisualTokens.white,
-                          fontSize: 18,
+                          fontSize: 14,
                           fontWeight: FontWeight.w900,
                         ),
                       ),
-                      Text(
-                        'Du lernst fleißig und machst tolle Fortschritte!',
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.muted,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '$done von $goal Aufgaben geschafft',
+                          style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.muted,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(width: 8),
-                const Icon(Icons.arrow_forward_rounded,
-                    color: LumoVisualTokens.cyanBright),
+                const Icon(Icons.chevron_right_rounded,
+                    color: LumoVisualTokens.cyanBright, size: 22),
               ],
             ),
           ),
+        );
+      },
+    );
+  }
+
+  /// Banner unter den Fächern: Lumo jubelt, „Weiter geht's!“ öffnet das
+  /// erste Thema des gewählten Fachs. Der Text richtet sich nach dem echten
+  /// Tagesfortschritt.
+  Widget _buildContinueBanner() {
+    final subject = _currentGrade.subjects[_selectedSubjectIndex];
+    final topic = subject.topics.first;
+    final done = widget.appState.learningDailyDone();
+    final title = done > 0 ? 'Super gemacht!' : 'Auf geht’s!';
+    final text = done > 0
+        ? 'Du lernst fleißig und machst tolle Fortschritte!'
+        : 'Heute wartet ${topic.title} auf dich.';
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 18),
+      child: LumoGlassCard(
+        padding: const EdgeInsets.fromLTRB(4, 6, 10, 6),
+        radius: 22,
+        child: Row(
+          children: [
+            const LumoFoxPose(pose: LumoDesignFoxPose.cheer, size: 74),
+            const SizedBox(width: 4),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  Text(
+                    text,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.white,
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 6),
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    key: const ValueKey('akademie-continue'),
+                    borderRadius: BorderRadius.circular(99),
+                    onTap: () => _openTopic(topic, subject),
+                    child: Ink(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 9),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(99),
+                        gradient: const LinearGradient(
+                          colors: [Color(0xFF1E6FD9), Color(0xFF1453B8)],
+                        ),
+                        border: Border.all(color: LumoVisualTokens.cyanBright),
+                        boxShadow: [
+                          BoxShadow(
+                            color: LumoVisualTokens.cyan.withOpacity(.45),
+                            blurRadius: 12,
+                          ),
+                        ],
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Weiter geht’s!',
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Icon(Icons.chevron_right_rounded,
+                              color: Colors.white, size: 18),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -851,154 +957,258 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
 
   Widget _buildLearningAreas() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 4),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 2, bottom: 10),
-            child: Text(
-              'Fächer',
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                color: LumoVisualTokens.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          ),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final columns = constraints.maxWidth >= 720 ? 3 : 2;
-              final width =
-                  (constraints.maxWidth - (columns - 1) * 12) / columns;
-              return Wrap(
-                spacing: 12,
-                runSpacing: 12,
-                children: _learningAreas
-                    .map((area) => SizedBox(
-                          width: width,
-                          height: 154,
-                          child: _buildLearningAreaTile(area),
-                        ))
-                    .toList(),
-              );
-            },
-          ),
-        ],
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          const columns = 3;
+          const gap = 10.0;
+          final width = (constraints.maxWidth - (columns - 1) * gap) / columns;
+          final textScale =
+              MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6);
+          final height = (width * 1.02).clamp(112.0, 168.0) * textScale;
+          return Wrap(
+            spacing: gap,
+            runSpacing: gap,
+            children: [
+              for (final area in _learningAreas)
+                SizedBox(
+                  width: width,
+                  height: height,
+                  child: _buildLearningAreaTile(area),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
 
+  /// Deutsch öffnet den Bereich aus Bild 04; zurück zeigt die Akademie
+  /// die Deutsch-Themen der gewählten Klasse („Wörter“).
+  Future<void> _openDeutsch() async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute(
+          builder: (_) => LumoDeutschScreen(appState: widget.appState)),
+    );
+    if (mounted) setState(() => _selectedSubjectIndex = 1);
+  }
+
+  void _openLearningArea(_LearningArea area) {
+    if (area.subject == 'Deutsch') {
+      _openDeutsch();
+      return;
+    }
+    final curriculumIndex = area.curriculumIndex;
+    if (curriculumIndex != null) {
+      setState(() => _selectedSubjectIndex = curriculumIndex);
+      return;
+    }
+    final section = area.section!;
+    final reading = section == LumoSection.reading;
+    widget.appState.update(widget.appState.state.copyWith(
+      section: section,
+      subject: area.subject,
+      unit: reading ? 'Aktives Lesen' : 'Alle',
+      mood: reading ? LumoMood.think : LumoMood.point,
+      lumoMessage: reading
+          ? 'Lies laut vor.\nIch höre dir zu\nund helfe freundlich.'
+          : '${area.title}\nist bereit.\nStarten wir!',
+    ));
+  }
+
+  /// Fachkachel wie in Bild 03: Symbol oben, Ring mit Prozent, Titel,
+  /// Sterne für richtige Antworten und „richtig / geübt“ aus echten Werten.
   Widget _buildLearningAreaTile(_LearningArea area) {
-    final skills = widget.appState.learningSkills().values.where((skill) =>
-        skill.subject.trim().toLowerCase() == area.subject.toLowerCase());
-    final skillList = skills.toList();
-    final completed =
-        skillList.fold<int>(0, (sum, skill) => sum + skill.correct);
+    final skillList = widget.appState
+        .learningSkills()
+        .values
+        .where((skill) =>
+            skill.subject.trim().toLowerCase() == area.subject.toLowerCase())
+        .toList();
+    final correct = skillList.fold<int>(0, (sum, skill) => sum + skill.correct);
+    final attempts =
+        skillList.fold<int>(0, (sum, skill) => sum + skill.attempts);
     final mastery = skillList.isEmpty
         ? 0
         : (skillList.fold<int>(0, (sum, skill) => sum + skill.mastery) ~/
             skillList.length);
-    final subtitle = skillList.isEmpty
-        ? '${area.subtitle} · Noch keine Lernwerte'
-        : '${area.subtitle} · $completed richtig';
-
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: LumoColorTile(
-            icon: area.icon,
-            title: area.title,
-            subtitle: subtitle,
-            color: area.color,
-            onTap: () {
-              final curriculumIndex = area.curriculumIndex;
-              if (curriculumIndex != null) {
-                setState(() => _selectedSubjectIndex = curriculumIndex);
-                return;
-              }
-              final section = area.section!;
-              final reading = section == LumoSection.reading;
-              widget.appState.update(widget.appState.state.copyWith(
-                section: section,
-                subject: area.subject,
-                unit: reading ? 'Aktives Lesen' : 'Alle',
-                mood: reading ? LumoMood.think : LumoMood.point,
-                lumoMessage: reading
-                    ? 'Lies laut vor.\nIch höre dir zu\nund helfe freundlich.'
-                    : '${area.title}\nist bereit.\nStarten wir!',
-              ));
-            },
-          ),
-        ),
-        Positioned(
-          top: 10,
-          right: 10,
-          child: Semantics(
-            label: '$mastery Prozent gemeistert',
-            child: IgnorePointer(
-              child: SizedBox(
-                width: 36,
-                height: 36,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    CircularProgressIndicator(
-                      value: mastery / 100,
-                      strokeWidth: 3,
-                      backgroundColor: Colors.white.withOpacity(.28),
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                          LumoVisualTokens.cyanBright),
-                    ),
-                    Text(
-                      '$mastery%',
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        color: Colors.white,
-                        fontSize: 8,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ],
-                ),
+    final selected = area.curriculumIndex == _selectedSubjectIndex;
+    final dark = Color.lerp(area.color, Colors.black, .35)!;
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: '${area.title}. ${area.subtitle}. $mastery Prozent gemeistert, '
+          '$correct von $attempts richtig',
+      excludeSemantics: true,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          key: ValueKey('learning-area-${area.title.toLowerCase()}'),
+          borderRadius: BorderRadius.circular(20),
+          onTap: () => _openLearningArea(area),
+          child: Ink(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color.lerp(area.color, Colors.white, .12)!, dark],
               ),
+              border: Border.all(
+                color: selected
+                    ? LumoVisualTokens.cyanBright
+                    : Colors.white.withOpacity(.30),
+                width: selected ? 2 : 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: (selected ? LumoVisualTokens.cyan : area.color)
+                      .withOpacity(.40),
+                  blurRadius: selected ? 16 : 12,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: LayoutBuilder(
+              builder: (context, c) {
+                final ring = (c.maxWidth * .3).clamp(30.0, 44.0);
+                return Stack(children: [
+                  // Symbol groß oben, Ring und Titel überlappen es leicht.
+                  Positioned(
+                    top: 4,
+                    left: c.maxWidth * .22,
+                    right: 4,
+                    height: c.maxHeight * .36,
+                    child: Center(child: _SubjectArt(area: area)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 6, 6, 6),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Spacer(),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: ring,
+                              height: ring,
+                              child: _AnimatedRing(
+                                value: mastery / 100,
+                                reduceMotion: _reduceMotion,
+                                strokeWidth: 3.2,
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(
+                                      '$mastery%',
+                                      style: const TextStyle(
+                                        fontFamily: 'Nunito',
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      area.title,
+                                      style: const TextStyle(
+                                        fontFamily: 'Nunito',
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                  ),
+                                  FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(Icons.star_rounded,
+                                            color: LumoVisualTokens.gold,
+                                            size: 15),
+                                        const SizedBox(width: 2),
+                                        Text(
+                                          '$correct',
+                                          style: const TextStyle(
+                                            fontFamily: 'Nunito',
+                                            color: Colors.white,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 3),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '$correct / $attempts richtig',
+                                  style: TextStyle(
+                                    fontFamily: 'Nunito',
+                                    color: Colors.white.withOpacity(.88),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: dark.withOpacity(.75),
+                              ),
+                              child: const Icon(Icons.chevron_right_rounded,
+                                  color: Colors.white, size: 16),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ]);
+              },
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 
   Widget _buildGradePicker() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 4, 20, 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+      child: Row(
         children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(2, 0, 0, 12),
-            child: Text(
-              'Welche Klasse?',
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
-                color: LumoVisualTokens.white,
-              ),
-            ),
-          ),
-          SizedBox(
-            height:
-                110 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              itemCount: LumoCurriculum.grades.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 10),
-              itemBuilder: (_, i) => _buildGradeChip(LumoCurriculum.grades[i]),
-            ),
-          ),
+          for (final g in LumoCurriculum.grades) ...[
+            if (g != LumoCurriculum.grades.first) const SizedBox(width: 8),
+            Expanded(child: _buildGradeChip(g)),
+          ],
         ],
       ),
     );
@@ -1006,92 +1216,63 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
 
   Widget _buildGradeChip(GradeLevel g) {
     final isSelected = g.grade == _selectedGrade;
-    return GestureDetector(
-      onTap: () => setState(() {
-        _selectedGrade = g.grade;
-        _selectedSubjectIndex = 0;
-      }),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 280),
-        curve: Curves.easeOutCubic,
-        width: 130,
-        decoration: BoxDecoration(
-          gradient: isSelected
-              ? LinearGradient(
-                  colors: [
-                    LumoVisualTokens.cyan,
-                    LumoVisualTokens.cyan.withOpacity(0.72),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                )
-              : null,
-          color: isSelected ? null : LumoVisualTokens.glass.withOpacity(0.82),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isSelected
-                ? LumoVisualTokens.cyanBright
-                : LumoVisualTokens.cyan.withOpacity(0.48),
-            width: isSelected ? 2 : 1,
-          ),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: LumoVisualTokens.cyan.withOpacity(0.35),
-                    blurRadius: 16,
-                    offset: const Offset(0, 6),
-                  ),
-                ]
-              : null,
-        ),
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              '${g.grade}.',
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 22,
-                height: 1.0,
-                fontWeight: FontWeight.w900,
-                color: isSelected
-                    ? LumoVisualTokens.night
-                    : LumoVisualTokens.cyanBright,
-              ),
+    return Semantics(
+      button: true,
+      selected: isSelected,
+      label: '${g.title}, ${g.ageRange}',
+      excludeSemantics: true,
+      child: GestureDetector(
+        key: ValueKey('grade-pill-${g.grade}'),
+        onTap: () => setState(() {
+          _selectedGrade = g.grade;
+          _selectedSubjectIndex = 0;
+        }),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 280),
+          curve: Curves.easeOutCubic,
+          height:
+              32 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6),
+          alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(horizontal: 6),
+          decoration: BoxDecoration(
+            gradient: isSelected
+                ? const LinearGradient(
+                    colors: [Color(0xFF7FE9FF), LumoVisualTokens.cyan],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  )
+                : null,
+            color: isSelected ? null : LumoVisualTokens.glass.withOpacity(.72),
+            borderRadius: BorderRadius.circular(99),
+            border: Border.all(
+              color: isSelected
+                  ? Colors.white.withOpacity(.85)
+                  : LumoVisualTokens.cyan.withOpacity(.45),
+              width: isSelected ? 1.6 : 1,
             ),
-            const SizedBox(height: 2),
-            Text(
+            boxShadow: isSelected
+                ? [
+                    BoxShadow(
+                      color: LumoVisualTokens.cyan.withOpacity(.55),
+                      blurRadius: 14,
+                    ),
+                  ]
+                : null,
+          ),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
               g.title,
               style: TextStyle(
                 fontFamily: 'Nunito',
-                fontSize: 12,
-                height: 1.1,
-                fontWeight: FontWeight.w800,
+                fontSize: 13,
+                fontWeight: FontWeight.w900,
                 color: isSelected
                     ? LumoVisualTokens.night
                     : LumoVisualTokens.white,
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
             ),
-            Text(
-              g.ageRange,
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 10,
-                height: 1.1,
-                fontWeight: FontWeight.w600,
-                color: isSelected
-                    ? LumoVisualTokens.night.withOpacity(0.72)
-                    : LumoVisualTokens.muted,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -1119,16 +1300,19 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   child: Icon(s.icon, color: Colors.white, size: 22),
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  s.name,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                    color: LumoVisualTokens.white,
+                Expanded(
+                  child: Text(
+                    s.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white,
+                    ),
                   ),
                 ),
-                const Spacer(),
                 Text(
                   '${s.topics.length} Themen',
                   style: const TextStyle(
@@ -1240,62 +1424,77 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   ),
                 ),
                 if (t.isWriting)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFEF3C7),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      '✏️ Schreiben',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF92400E),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFEF3C7),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          '✏️ Schreiben',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF92400E),
+                          ),
+                        ),
                       ),
                     ),
                   )
                 else if (LearningModuleRegistry.hasModule(t.id))
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFD1FAE5),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      '🎮 Übung',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF065F46),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFD1FAE5),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          '🎮 Übung',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF065F46),
+                          ),
+                        ),
                       ),
                     ),
                   )
                 else
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFEDE9FE),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      '💬 Chat',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF5B21B6),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFEDE9FE),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          '💬 Chat',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF5B21B6),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -1377,10 +1576,12 @@ class _LearningArea {
     required this.subtitle,
     required this.icon,
     required this.color,
+    required this.art,
     this.curriculumIndex,
     this.section,
   });
 
+  final _SubjectArtKind art;
   final String title;
   final String subject;
   final String subtitle;
@@ -1388,4 +1589,129 @@ class _LearningArea {
   final Color color;
   final int? curriculumIndex;
   final LumoSection? section;
+}
+
+enum _SubjectArtKind { math, book, books, pencil, hi, globe }
+
+/// Großes, leuchtendes Fachsymbol oben in der Kachel.
+class _SubjectArt extends StatelessWidget {
+  const _SubjectArt({required this.area});
+
+  final _LearningArea area;
+
+  @override
+  Widget build(BuildContext context) {
+    const glow = [
+      Shadow(color: Color(0x99FFFFFF), blurRadius: 12),
+      Shadow(color: Color(0x66000000), blurRadius: 4, offset: Offset(0, 2)),
+    ];
+    return LayoutBuilder(builder: (context, c) {
+      final size = c.maxHeight.clamp(24.0, 64.0);
+      switch (area.art) {
+        case _SubjectArtKind.math:
+          // + − × ÷ wie die Rechenzeichen im Bild.
+          return SizedBox(
+            width: size * 1.1,
+            height: size,
+            child: FittedBox(
+              child: Text(
+                '+ −\n× ÷',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900,
+                  height: .95,
+                  fontSize: 30,
+                  color: const Color(0xFFFFF0C9),
+                  shadows: [
+                    ...glow,
+                    Shadow(
+                        color: area.color.withOpacity(.9),
+                        blurRadius: 2,
+                        offset: const Offset(1.5, 1.5)),
+                  ],
+                ),
+              ),
+            ),
+          );
+        case _SubjectArtKind.hi:
+          return Container(
+            height: size * .62,
+            padding: EdgeInsets.symmetric(horizontal: size * .18),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(size * .4),
+              boxShadow: const [
+                BoxShadow(color: Color(0x88FFFFFF), blurRadius: 14),
+              ],
+            ),
+            child: FittedBox(
+              child: Text(
+                'Hi!',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900,
+                  fontSize: 22,
+                  color: area.color,
+                ),
+              ),
+            ),
+          );
+        case _SubjectArtKind.book:
+        case _SubjectArtKind.books:
+        case _SubjectArtKind.pencil:
+        case _SubjectArtKind.globe:
+          final icon = switch (area.art) {
+            _SubjectArtKind.book => Icons.menu_book_rounded,
+            _SubjectArtKind.books => Icons.library_books_rounded,
+            _SubjectArtKind.pencil => Icons.edit_rounded,
+            _ => Icons.public_rounded,
+          };
+          final tint = switch (area.art) {
+            _SubjectArtKind.book => const Color(0xFFE9DEFF),
+            _SubjectArtKind.books => const Color(0xFFC9FFE3),
+            _SubjectArtKind.pencil => const Color(0xFFFFD6EC),
+            _ => const Color(0xFFC6F4FF),
+          };
+          return Icon(icon, size: size, color: tint, shadows: glow);
+      }
+    });
+  }
+}
+
+/// Fortschrittsring, der sich im Uhrzeigersinn zum echten Wert zeichnet.
+class _AnimatedRing extends StatelessWidget {
+  const _AnimatedRing({
+    required this.value,
+    required this.reduceMotion,
+    required this.child,
+    this.strokeWidth = 3,
+  });
+
+  final double value;
+  final bool reduceMotion;
+  final double strokeWidth;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: value.clamp(0.0, 1.0)),
+        duration:
+            reduceMotion ? Duration.zero : const Duration(milliseconds: 900),
+        curve: Curves.easeOutCubic,
+        builder: (context, v, _) => Stack(
+          fit: StackFit.expand,
+          children: [
+            CircularProgressIndicator(
+              value: v,
+              strokeWidth: strokeWidth,
+              strokeCap: StrokeCap.round,
+              backgroundColor: Colors.white.withOpacity(.22),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                  LumoVisualTokens.cyanBright),
+            ),
+            Center(child: child),
+          ],
+        ),
+      );
 }

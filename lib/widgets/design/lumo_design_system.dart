@@ -43,12 +43,17 @@ class LumoSceneBackground extends StatelessWidget {
     this.scene = LumoScene.home,
     this.backgroundAsset,
     this.showPlaceholderLabel = true,
+    this.dimmed = false,
     this.child,
   });
 
   final LumoScene scene;
   final String? backgroundAsset;
   final bool showPlaceholderLabel;
+
+  /// Dunkelt die Szene nach unten zum Nachthimmel ab, damit Glas-Karten und
+  /// weiße Schrift lesbar bleiben (wie in den Zielbildern).
+  final bool dimmed;
   final Widget? child;
 
   @override
@@ -67,10 +72,16 @@ class LumoSceneBackground extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Positioned.fill(
+        // Die Szenenbilder haben einen hellen Rand von wenigen Pixeln.
+        Positioned(
+          left: -10,
+          right: -10,
+          top: -10,
+          bottom: -10,
           child: Image.asset(
             asset,
             fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
             errorBuilder: (_, __, ___) => const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -93,6 +104,25 @@ class LumoSceneBackground extends StatelessWidget {
             ),
           ),
         ),
+        if (dimmed)
+          const Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0, .22, .42, .62, 1],
+                  colors: [
+                    Color(0x5503193F),
+                    Color(0x1003193F),
+                    Color(0x6603193F),
+                    Color(0xD903193F),
+                    Color(0xF203193F),
+                  ],
+                ),
+              ),
+            ),
+          ),
         if (child != null) child!,
         if (showPlaceholderLabel)
           Positioned(
@@ -191,9 +221,14 @@ class LumoColorTile extends StatelessWidget {
               constraints.hasBoundedHeight && constraints.maxHeight < 142;
           final padding = compact ? 8.0 : 16.0;
           final iconPadding = compact ? 5.0 : 10.0;
-          final iconSize = compact ? 20.0 : 32.0;
-          final arrowRadius = compact ? 12.0 : 17.0;
           final centered = iconAsset != null;
+          // Kachel-Symbole wie in Bild 01: groß und mittig über dem Titel.
+          final iconSize = centered
+              ? (constraints.maxWidth * .42).clamp(20.0, 56.0).toDouble()
+              : compact
+                  ? 20.0
+                  : 32.0;
+          final arrowRadius = compact ? 12.0 : 17.0;
           return Semantics(
             button: true,
             label: '$title. $subtitle',
@@ -224,83 +259,88 @@ class LumoColorTile extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Column(
-                          crossAxisAlignment: centered
-                              ? CrossAxisAlignment.center
-                              : CrossAxisAlignment.start,
-                          children: [
-                            DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(.18),
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(.16),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(iconPadding),
-                                child: iconAsset == null
-                                    ? Icon(icon,
-                                        size: iconSize, color: Colors.white)
-                                    : Image.asset(
-                                        iconAsset!,
-                                        key: ValueKey(
-                                            'lumo-color-tile-icon-${title.toLowerCase()}'),
-                                        width: iconSize,
-                                        height: iconSize,
-                                        fit: BoxFit.contain,
-                                        excludeFromSemantics: true,
-                                        errorBuilder: (_, __, ___) => Icon(
-                                          icon,
-                                          size: iconSize,
-                                          color: Colors.white,
+                        if (centered)
+                          _centeredContent(compact, iconSize, arrowRadius,
+                              MediaQuery.textScalerOf(context).scale(1) > 1.2)
+                        else
+                          Column(
+                            crossAxisAlignment: centered
+                                ? CrossAxisAlignment.center
+                                : CrossAxisAlignment.start,
+                            children: [
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(.18),
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(.16),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(iconPadding),
+                                  child: iconAsset == null
+                                      ? Icon(icon,
+                                          size: iconSize, color: Colors.white)
+                                      : Image.asset(
+                                          iconAsset!,
+                                          key: ValueKey(
+                                              'lumo-color-tile-icon-${title.toLowerCase()}'),
+                                          width: iconSize,
+                                          height: iconSize,
+                                          fit: BoxFit.contain,
+                                          excludeFromSemantics: true,
+                                          errorBuilder: (_, __, ___) => Icon(
+                                            icon,
+                                            size: iconSize,
+                                            color: Colors.white,
+                                          ),
                                         ),
-                                      ),
+                                ),
                               ),
-                            ),
-                            if (compact)
-                              const SizedBox(height: 3)
-                            else
-                              const Spacer(),
-                            Text(
-                              title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign:
-                                  centered ? TextAlign.center : TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w900,
-                                fontSize: compact ? 12 : 18,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(height: compact ? 0 : 2),
-                            Padding(
-                              padding: centered
-                                  ? EdgeInsets.zero
-                                  : EdgeInsets.only(right: compact ? 22 : 32),
-                              child: Text(
-                                subtitle,
-                                maxLines: compact ? 1 : 2,
+                              if (compact)
+                                const SizedBox(height: 3)
+                              else
+                                const Spacer(),
+                              Text(
+                                title,
+                                maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: centered
                                     ? TextAlign.center
                                     : TextAlign.start,
                                 style: TextStyle(
                                   fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white.withOpacity(.86),
-                                  fontSize: compact ? 9 : 12,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: compact ? 12 : 18,
+                                  color: Colors.white,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                              SizedBox(height: compact ? 0 : 2),
+                              Padding(
+                                padding: centered
+                                    ? EdgeInsets.zero
+                                    : EdgeInsets.only(right: compact ? 22 : 32),
+                                child: Text(
+                                  subtitle,
+                                  maxLines: compact ? 1 : 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: centered
+                                      ? TextAlign.center
+                                      : TextAlign.start,
+                                  style: TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white.withOpacity(.86),
+                                    fontSize: compact ? 9 : 12,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         Positioned(
                           right: 0,
                           bottom: 0,
@@ -319,6 +359,62 @@ class LumoColorTile extends StatelessWidget {
             ),
           );
         },
+      );
+
+  /// Bild 01: großes Symbol mittig, Titel ganz lesbar (notfalls kleiner),
+  /// Unterzeile bis zu drei Zeilen, Platz für den Pfeil unten rechts.
+  Widget _centeredContent(
+          bool compact, double iconSize, double arrowRadius, bool largeText) =>
+      Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Image.asset(
+                  iconAsset!,
+                  key: ValueKey('lumo-color-tile-icon-${title.toLowerCase()}'),
+                  width: iconSize,
+                  height: iconSize,
+                  fit: BoxFit.contain,
+                  excludeFromSemantics: true,
+                  errorBuilder: (_, __, ___) =>
+                      Icon(icon, size: iconSize, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              title,
+              maxLines: 1,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+                fontSize: compact ? 15 : 18,
+                color: Colors.white,
+                shadows: const [
+                  Shadow(color: Color(0x55000000), blurRadius: 4),
+                ],
+              ),
+            ),
+          ),
+          Text(
+            subtitle,
+            maxLines: largeText ? 1 : 3,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w700,
+              color: Colors.white.withOpacity(.9),
+              fontSize: compact ? 9.5 : 12,
+              height: 1.1,
+            ),
+          ),
+          SizedBox(height: arrowRadius * 2 - 2),
+        ],
       );
 }
 
@@ -345,99 +441,100 @@ class LumoTopBar extends StatelessWidget {
     final reduceMotion = state.settings.reduceAnimations ||
         state.settings.calmMode ||
         MediaQuery.disableAnimationsOf(context);
+    final xpInLevel = state.xp % 400;
     return LayoutBuilder(
       builder: (context, constraints) {
         final compact = constraints.maxWidth < 300;
+        final avatarSize = compact ? 32.0 : 52.0;
+        const glow = [Shadow(color: LumoVisualTokens.cyan, blurRadius: 14)];
+        final logoSize = compact ? 24.0 : 34.0;
         return Row(
           children: [
             Expanded(
-              flex: compact ? 5 : 4,
+              flex: compact ? 5 : 9,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Semantics(
                     label: 'LUMO',
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'LUM',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 24,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 1.4,
-                            color: LumoVisualTokens.white,
-                            shadows: [
-                              Shadow(
-                                  color: LumoVisualTokens.cyan, blurRadius: 12),
-                            ],
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'LUM',
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: logoSize,
+                              height: 1.05,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: .6,
+                              color: LumoVisualTokens.white,
+                              shadows: glow,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 29,
-                          height: 30,
-                          child: Stack(
+                          // Das O trägt den Stern wie im Logo der Zielbilder.
+                          Stack(
                             alignment: Alignment.center,
                             children: [
                               Text(
                                 'O',
                                 style: TextStyle(
                                   fontFamily: 'Nunito',
-                                  fontSize: 24,
+                                  fontSize: logoSize,
+                                  height: 1.05,
                                   fontWeight: FontWeight.w900,
                                   color: LumoVisualTokens.white,
-                                  shadows: [
-                                    Shadow(
-                                      color: LumoVisualTokens.cyan,
-                                      blurRadius: 12,
-                                    ),
-                                  ],
+                                  shadows: glow,
                                 ),
                               ),
                               Icon(
                                 Icons.star_rounded,
-                                size: 11,
-                                color: LumoVisualTokens.cyanBright,
+                                size: logoSize * .36,
+                                color: LumoVisualTokens.cyan,
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                  Text(
-                    'Lernen. Spielen. Weiterkommen.',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 10,
-                      fontWeight: FontWeight.w800,
-                      color: LumoVisualTokens.cyan,
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Lernen. Spielen. Weiterkommen.',
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: compact ? 9 : 10.5,
+                        fontWeight: FontWeight.w800,
+                        color: LumoVisualTokens.cyanBright,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(width: compact ? 6 : 10),
+            SizedBox(width: compact ? 6 : 8),
             Expanded(
-              flex: compact ? 5 : 6,
+              flex: compact ? 5 : 11,
               child: Semantics(
                 button: onTapStatus != null,
                 label:
-                    'Level ${state.level}, Klasse ${state.grade}, ${state.stars} Sterne, ${state.xp % 400} von 400 XP',
+                    'Level ${state.level}, Klasse ${state.grade}, ${state.stars} Sterne, $xpInLevel von 400 XP',
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(24),
                     onTap: onTapStatus,
                     child: LumoGlassCard(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: compact ? 6 : 10,
-                        vertical: compact ? 6 : 8,
-                      ),
-                      radius: 24,
+                      padding: EdgeInsets.fromLTRB(
+                          compact ? 4 : 5, compact ? 4 : 5, 4, compact ? 4 : 5),
+                      radius: 26,
                       child: Row(
                         children: [
                           Semantics(
@@ -450,11 +547,11 @@ class LumoTopBar extends StatelessWidget {
                               excludeFromSemantics: true,
                               onTap: onTapFox,
                               child: SizedBox(
-                                width: compact ? 32 : 52,
-                                height: compact ? 32 : 52,
+                                width: avatarSize,
+                                height: avatarSize,
                                 child: ExcludeSemantics(
                                   child: reduceMotion
-                                      ? _avatar(size: compact ? 32 : 52)
+                                      ? _avatar(size: avatarSize)
                                       : LumoFloating(
                                           amplitude: 3,
                                           duration: const Duration(
@@ -462,77 +559,118 @@ class LumoTopBar extends StatelessWidget {
                                           child: LumoGlowPulse(
                                             color: LumoVisualTokens.cyan,
                                             minBlur: 6,
-                                            maxBlur: 18,
-                                            child: _avatar(
-                                                size: compact ? 32 : 52),
+                                            maxBlur: 16,
+                                            child: _avatar(size: avatarSize),
                                           ),
                                         ),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(width: compact ? 4 : 8),
+                          SizedBox(width: compact ? 4 : 7),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
-                                  'Level ${state.level} · ${state.grade}. Klasse',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 11,
-                                    color: LumoVisualTokens.white,
-                                  ),
-                                ),
                                 Row(
                                   children: [
-                                    const Icon(Icons.star_rounded,
-                                        size: 14, color: LumoVisualTokens.gold),
+                                    Expanded(
+                                      child: Text(
+                                        'Level ${state.level}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontFamily: 'Nunito',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: compact ? 10 : 12.5,
+                                          height: 1.1,
+                                          color: LumoVisualTokens.white,
+                                        ),
+                                      ),
+                                    ),
+                                    Icon(Icons.star_rounded,
+                                        size: compact ? 13 : 17,
+                                        color: LumoVisualTokens.gold),
+                                    const SizedBox(width: 2),
                                     Text(
                                       '${state.stars}',
-                                      style: const TextStyle(
+                                      style: TextStyle(
+                                        fontFamily: 'Nunito',
                                         fontWeight: FontWeight.w900,
-                                        fontSize: 11,
+                                        fontSize: compact ? 11 : 14,
+                                        height: 1.1,
                                         color: LumoVisualTokens.white,
                                       ),
                                     ),
-                                    const SizedBox(width: 7),
+                                  ],
+                                ),
+                                Text(
+                                  '${state.grade}. Klasse',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: compact ? 9 : 10.5,
+                                    height: 1.15,
+                                    color: LumoVisualTokens.muted,
+                                  ),
+                                ),
+                                const SizedBox(height: 3),
+                                Row(
+                                  children: [
                                     Expanded(
+                                      flex: 4,
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(5),
-                                        child: LinearProgressIndicator(
-                                          minHeight: 5,
-                                          value: (state.xp % 400) / 400,
-                                          backgroundColor: Colors.white24,
-                                          valueColor:
-                                              const AlwaysStoppedAnimation<
-                                                  Color>(
-                                            LumoVisualTokens.cyanBright,
+                                        child: TweenAnimationBuilder<double>(
+                                          tween: Tween(
+                                              begin: 0, end: xpInLevel / 400),
+                                          duration: reduceMotion
+                                              ? Duration.zero
+                                              : const Duration(
+                                                  milliseconds: 900),
+                                          curve: Curves.easeOutCubic,
+                                          builder: (context, value, _) =>
+                                              LinearProgressIndicator(
+                                            minHeight: 6,
+                                            value: value,
+                                            backgroundColor:
+                                                const Color(0xFF0B2A52),
+                                            valueColor:
+                                                const AlwaysStoppedAnimation<
+                                                    Color>(
+                                              LumoVisualTokens.cyanBright,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 5),
+                                    Flexible(
+                                      flex: 5,
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: Text(
+                                          '$xpInLevel / 400 XP',
+                                          style: TextStyle(
+                                            fontFamily: 'Nunito',
+                                            fontWeight: FontWeight.w800,
+                                            fontSize: compact ? 8 : 10,
+                                            color: LumoVisualTokens.white,
                                           ),
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                Text(
-                                  '${state.xp % 400} / 400 XP',
-                                  style: const TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 9,
-                                    color: LumoVisualTokens.muted,
-                                  ),
-                                ),
                               ],
                             ),
                           ),
                           Icon(Icons.chevron_right_rounded,
-                              color: LumoVisualTokens.cyan,
-                              size: compact ? 16 : 19),
+                              color: LumoVisualTokens.white,
+                              size: compact ? 16 : 20),
                         ],
                       ),
                     ),
@@ -611,6 +749,76 @@ class LumoSpeechBubble extends StatelessWidget {
       );
 }
 
+/// Glas-Sprechblase mit Cyan-Rand über der Szene, mit Herz am Ende
+/// (Bild 02/03: „Du kannst das!“, „Kleine Schritte Große Zukunft!“).
+class LumoHeroBubble extends StatelessWidget {
+  const LumoHeroBubble({
+    super.key,
+    required this.text,
+    this.title,
+    this.handwritten = false,
+  });
+
+  final String? title;
+  final String text;
+  final bool handwritten;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = TextStyle(
+      fontFamily: 'Nunito',
+      color: LumoVisualTokens.white,
+      fontSize: handwritten ? 12.5 : 11,
+      height: 1.15,
+      fontStyle: handwritten ? FontStyle.italic : FontStyle.normal,
+      fontWeight: handwritten ? FontWeight.w700 : FontWeight.w800,
+    );
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12, 9, 10, 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFF0B3C78).withOpacity(.78),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.8)),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withOpacity(.35),
+            blurRadius: 14,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (title != null)
+            Text(
+              title!,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.white,
+                fontSize: 15,
+                height: 1.05,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          if (title != null) const SizedBox(height: 3),
+          Text.rich(
+              TextSpan(children: [
+                TextSpan(text: '$text '),
+                // Herz wie in den Zielbildern (als Symbol, nicht als Schriftzeichen).
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: Icon(Icons.favorite_border_rounded,
+                      size: style.fontSize! + 3, color: LumoVisualTokens.white),
+                ),
+              ]),
+              style: style),
+        ],
+      ),
+    );
+  }
+}
+
 class LumoFoxPose extends StatelessWidget {
   const LumoFoxPose({
     super.key,
@@ -681,12 +889,14 @@ class LumoBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+        // Wie im Zielbild: Leiste über die ganze Breite, oben abgerundet.
+        padding: const EdgeInsets.fromLTRB(4, 6, 4, 4),
         decoration: BoxDecoration(
-          color: LumoVisualTokens.navigation,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.24)),
+          color: LumoVisualTokens.navigation.withOpacity(.96),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(26)),
+          border: Border(
+            top: BorderSide(color: LumoVisualTokens.cyan.withOpacity(.35)),
+          ),
           boxShadow: [
             BoxShadow(
               color: LumoVisualTokens.cyan.withOpacity(.12),
@@ -720,7 +930,16 @@ class LumoBottomNavigation extends StatelessWidget {
                         AnimatedScale(
                           scale: selected ? 1.12 : 1,
                           duration: const Duration(milliseconds: 180),
-                          child: Icon(item.icon, size: 21, color: color),
+                          child: Icon(item.icon,
+                              size: 25,
+                              color: color,
+                              shadows: selected
+                                  ? const [
+                                      Shadow(
+                                          color: LumoVisualTokens.cyan,
+                                          blurRadius: 12)
+                                    ]
+                                  : null),
                         ),
                         const SizedBox(height: 2),
                         Text(
@@ -730,7 +949,7 @@ class LumoBottomNavigation extends StatelessWidget {
                             fontFamily: 'Nunito',
                             fontWeight:
                                 selected ? FontWeight.w900 : FontWeight.w700,
-                            fontSize: 10,
+                            fontSize: 11,
                             color: color,
                             shadows: selected
                                 ? const [

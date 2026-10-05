@@ -1,686 +1,929 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
-import '../core/school_exercise_generator.dart';
-import '../domain/learning/learning_dna.dart';
-import '../features/learning/learning_dna_card.dart';
-import '../features/shared/widgets/lumo_premium_effects.dart';
+
+import '../app/app_state.dart';
+import '../core/reward_shop_repository.dart';
+import '../core/reward_wallet_repository.dart';
+import '../domain/rewards/reward_shop.dart';
+import '../features/shared/widgets/lumo_premium_effects.dart' show LumoFloating;
+import '../theme/lumo_visual_tokens.dart';
+import 'design/lumo_design_system.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
-//  LUMO LERNEN — ProfileScreen
-//  Zeigt: Hero-Card, Stats, Fach-Fortschritt, Test-Note,
-//         Übungs-Schwächen, Achievements
+//  LUMO LERNEN — Profil nach Heinz' Bild 07
+//  Level, Sterne, XP, Abzeichen, Lernserie, nächstes Ziel und eingelöste
+//  Belohnungen, alles aus dem echten Spielstand.
 // ═══════════════════════════════════════════════════════════════════════════
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({
     super.key,
+    required this.appState,
+    required this.onSection,
+    required this.childName,
+    required this.grade,
     required this.stars,
     required this.xp,
     required this.level,
-    required this.progress,
-    required this.solved,
-    required this.practice,
-    required this.lastGrade,
-    required this.childName,
-    required this.grade,
+    this.drawBackground = true,
   });
 
+  final LumoAppState appState;
+  final ValueChanged<LumoSection> onSection;
   final String childName;
   final int grade;
   final int stars;
   final int xp;
   final int level;
-  final int progress;
-  final Map<String, int> solved;
-  final Map<String, int> practice;
-  final int lastGrade;
 
-  int get _totalSolved => solved.values.fold(0, (a, b) => a + b);
+  /// Im App-Rahmen malt die Shell die Szene vollflächig.
+  final bool drawBackground;
+
+  /// Titel zum Level wie „Entdecker:in“ in Bild 07.
+  static String levelTitle(int level) => switch (level) {
+        <= 2 => 'Entdecker:in',
+        <= 4 => 'Forscher:in',
+        <= 7 => 'Lernprofi',
+        _ => 'Lern-Meister:in',
+      };
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _ProfileHeroCard(stars: stars, xp: xp, level: level, totalSolved: _totalSolved, childName: childName, grade: grade),
-        const SizedBox(height: 18),
-
-        // Phase 1 - kindgerechte Lern-DNA-Kurzfassung
-        _ChildDnaSlot(
-          childName: childName,
-          totalCorrect: _totalSolved,
-          stars: stars,
-        ),
-        const SizedBox(height: 18),
-
-        // ── Stats ──
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(children: [
-            _MiniStatCard(label: 'Sterne', value: '$stars / 50', emoji: '⭐',
-                color: const Color(0xffb455f6), percent: stars / 50),
-            const SizedBox(width: 12),
-            _MiniStatCard(label: 'XP Punkte', value: '$xp XP', emoji: '🏅',
-                color: const Color(0xffffb000), percent: ((xp % 1000) / 1000).clamp(0.0, 1.0)),
-            const SizedBox(width: 12),
-            _MiniStatCard(label: 'Level', value: 'Level $level', emoji: '💎',
-                color: const Color(0xff12bfa6), percent: ((level - 1) % 5) / 5),
-            const SizedBox(width: 12),
-            _MiniStatCard(label: 'Fortschritt', value: '$progress %', emoji: '📈',
-                color: const Color(0xff3b8dff), percent: progress / 100),
-          ]),
-        ),
-        const SizedBox(height: 24),
-
-        // ── Fach-Fortschritt ──
-        _SectionTitle(title: 'Fach-Fortschritt 📚', subtitle: '$_totalSolved Aufgaben gelöst'),
-        const SizedBox(height: 10),
-        _SubjectProgressBars(solved: solved),
-        const SizedBox(height: 24),
-
-        // ── Letzte Note ──
-        const _SectionTitle(title: 'Letzter Test 📝'),
-        const SizedBox(height: 10),
-        _TestGradeCard(lastGrade: lastGrade),
-
-        // ── Noch üben ──
-        if (practice.isNotEmpty) ...[
-          const SizedBox(height: 24),
-          const _SectionTitle(title: 'Noch üben 💪'),
-          const SizedBox(height: 10),
-          _PracticeAreasList(practice: practice),
-        ],
-        const SizedBox(height: 24),
-
-        // ── Achievements ──
-        const _SectionTitle(title: 'Erfolge 🏆'),
-        const SizedBox(height: 10),
-        _AchievementsGrid(stars: stars, xp: xp, totalSolved: _totalSolved),
-        const SizedBox(height: 12),
-      ],
-    );
-  }
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Section title
-// ─────────────────────────────────────────────────────────────────────────────
-class _SectionTitle extends StatelessWidget {
-  const _SectionTitle({required this.title, this.subtitle});
+/// Ein Abzeichen: aktueller Wert und die nächste Stufe.
+class _Badge {
+  const _Badge(this.title, this.icon, this.colors, this.current, this.steps);
+
   final String title;
-  final String? subtitle;
+  final IconData icon;
+  final List<Color> colors;
+  final int current;
+  final List<int> steps;
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
-      children: [
-        Text(title, style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
-        if (subtitle != null) ...[
-          const SizedBox(width: 8),
-          Text(subtitle!, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: Color(0xff9ca3af))),
-        ],
-      ],
-    );
-  }
+  bool get started => current > 0;
+  int get next =>
+      steps.firstWhere((s) => s > current, orElse: () => steps.last);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Profile hero card
-// ─────────────────────────────────────────────────────────────────────────────
-class _ProfileHeroCard extends StatelessWidget {
-  const _ProfileHeroCard({
-    required this.stars,
-    required this.xp,
-    required this.level,
-    required this.totalSolved,
-    required this.childName,
-    required this.grade,
-  });
-  final String childName;
-  final int grade;
-  final int stars;
-  final int xp;
-  final int level;
-  final int totalSolved;
+class _ProfileScreenState extends State<ProfileScreen> {
+  List<RedeemedReward> _redeemed = const [];
+  int _gamesPlayed = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  String get _shopChildId {
+    final name = widget.childName.trim().isEmpty
+        ? 'kind'
+        : widget.childName
+            .trim()
+            .toLowerCase()
+            .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    return 'local_${name}_${widget.grade}';
+  }
+
+  Future<void> _load() async {
+    final shop = await const RewardShopRepository().load(_shopChildId);
+    final wallet = await RewardWalletRepository.instance.load();
+    if (!mounted) return;
+    setState(() {
+      _redeemed = shop.redeemed.reversed.take(5).toList();
+      _gamesPlayed = wallet.gameResultIds.length;
+    });
+  }
+
+  bool get _reduceMotion {
+    final settings = widget.appState.state.settings;
+    return settings.reduceAnimations ||
+        settings.calmMode ||
+        MediaQuery.disableAnimationsOf(context);
+  }
+
+  List<_Badge> _badges() {
+    final skills = widget.appState.learningSkills().values;
+    final correct = skills.fold<int>(0, (sum, s) => sum + s.correct);
+    final logic = skills
+        .where((s) => s.subject == 'Logik')
+        .fold<int>(0, (sum, s) => sum + s.correct);
+    return [
+      _Badge(
+          'Lernprofi',
+          Icons.school_rounded,
+          const [Color(0xFF3A8DFF), Color(0xFF1C4FC4)],
+          correct,
+          const [10, 25, 50, 100, 250, 500]),
+      _Badge(
+          'Spieler:in',
+          Icons.sports_esports_rounded,
+          const [Color(0xFFA35BFF), Color(0xFF6A2BD0)],
+          _gamesPlayed,
+          const [1, 5, 10, 25, 50]),
+      _Badge(
+          'Tüftler:in',
+          Icons.check_rounded,
+          const [Color(0xFF2CC9A0), Color(0xFF0F7F67)],
+          logic,
+          const [5, 10, 25, 50]),
+      _Badge(
+          'Sternensammler',
+          Icons.star_rounded,
+          const [Color(0xFFFFC94A), Color(0xFFE08A1E)],
+          widget.stars,
+          const [10, 50, 100, 250, 500]),
+      _Badge(
+          'Held:in',
+          Icons.shield_rounded,
+          const [Color(0xFFFF7A59), Color(0xFFC63A3A)],
+          widget.appState.learningStreakDays(),
+          const [3, 7, 14, 30]),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Heinz-Bugfix: Profil-Name war "Lena" hardcoded.
-    // Jetzt: echter childName aus App-State (z.B. Alina, Zoe).
-    final displayName = childName.trim().isEmpty ? 'Lumo-Freund' : childName.trim();
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xffffd190), Color(0xffffe2af), Color(0xfffff6e8)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: Colors.white.withOpacity(.72), width: 1.5),
-        boxShadow: [
-          BoxShadow(color: const Color(0xffffb96b).withOpacity(.30), blurRadius: 28, offset: const Offset(0, 12)),
-          BoxShadow(color: Colors.white.withOpacity(.90), blurRadius: 8, offset: const Offset(-4, -4)),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Avatar circle - schwebt sanft mit Glow.
-          LumoFloating(
-            amplitude: 3,
-            duration: const Duration(seconds: 3),
-            child: LumoGlowPulse(
-              color: const Color(0xffff6d00),
-              minBlur: 12,
-              maxBlur: 26,
-              child: Container(
-                width: 74,
-                height: 74,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(colors: [Color(0xffff9a5c), Color(0xffff6d00)]),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xffff6d00).withOpacity(.45),
-                      blurRadius: 20,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
-                ),
-                child: const Center(child: Text('🦊', style: TextStyle(fontSize: 36))),
-              ),
-            ),
+    final content = ListView(
+      padding: const EdgeInsets.only(bottom: 20),
+      children: [
+        _buildHero(),
+        _buildProfileCard(),
+        _buildStreakAndGoal(),
+        _buildRewards(),
+        _buildExtras(),
+      ],
+    );
+    return widget.drawBackground
+        ? LumoSceneBackground(
+            scene: LumoScene.profile,
+            showPlaceholderLabel: false,
+            dimmed: true,
+            child: content,
+          )
+        : content;
+  }
+
+  Widget _buildHero() {
+    return LayoutBuilder(builder: (context, constraints) {
+      final width = constraints.maxWidth;
+      final height = (width * .42).clamp(150.0, 240.0);
+      final foxSize = height * 1.18;
+      Widget fox =
+          LumoFoxPose(pose: LumoDesignFoxPose.thumbWink, size: foxSize);
+      if (!_reduceMotion) {
+        fox = LumoFloating(
+          amplitude: 4,
+          duration: const Duration(milliseconds: 2600),
+          child: fox,
+        );
+      }
+      return SizedBox(
+        height: height,
+        child: Stack(clipBehavior: Clip.none, children: [
+          Positioned(
+            right: width * .08,
+            bottom: -foxSize * .08,
+            child: RepaintBoundary(child: fox),
           ),
-          const SizedBox(width: 16),
-          Expanded(
+          Positioned(
+            left: 14,
+            top: height * .2,
+            width: width * .5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(displayName,
-                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
-                const SizedBox(height: 4),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 4,
-                  children: [
-                    _LevelBadge(level: level),
-                    _ClassBadge(grade: grade),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(children: [
-                  _MicroStat(emoji: '⭐', value: '$stars'),
-                  const SizedBox(width: 14),
-                  _MicroStat(emoji: '✅', value: '$totalSolved'),
-                  const SizedBox(width: 14),
-                  _MicroStat(emoji: '🏅', value: '$xp XP'),
-                ]),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LevelBadge extends StatelessWidget {
-  const _LevelBadge({required this.level});
-  final int level;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(colors: [Color(0xffff7a2f), Color(0xffff9a5c)]),
-        borderRadius: BorderRadius.circular(99),
-        boxShadow: [BoxShadow(color: const Color(0xffff7a2f).withOpacity(.35), blurRadius: 10, offset: const Offset(0, 4))],
-      ),
-      child: Text('Level $level Einsteiger',
-          style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: Colors.white)),
-    );
-  }
-}
-
-class _ClassBadge extends StatelessWidget {
-  const _ClassBadge({required this.grade});
-  final int grade;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.70),
-        borderRadius: BorderRadius.circular(99),
-        border: Border.all(color: Colors.white.withOpacity(.80)),
-      ),
-      child: Text('Klasse $grade',
-          style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xff766a61))),
-    );
-  }
-}
-
-class _MicroStat extends StatelessWidget {
-  const _MicroStat({required this.emoji, required this.value});
-  final String emoji;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(mainAxisSize: MainAxisSize.min, children: [
-      Text(emoji, style: const TextStyle(fontSize: 14)),
-      const SizedBox(width: 3),
-      Text(value, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
-    ]);
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Mini stat card
-// ─────────────────────────────────────────────────────────────────────────────
-class _MiniStatCard extends StatelessWidget {
-  const _MiniStatCard({
-    required this.label,
-    required this.value,
-    required this.emoji,
-    required this.color,
-    required this.percent,
-  });
-  final String label;
-  final String value;
-  final String emoji;
-  final Color color;
-  final double percent;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 155,
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.86),
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white.withOpacity(.76)),
-        boxShadow: [
-          BoxShadow(color: color.withOpacity(.12), blurRadius: 18, offset: const Offset(0, 10)),
-          BoxShadow(color: Colors.white.withOpacity(.75), blurRadius: 8, offset: const Offset(-3, -3)),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(children: [
-            Text(emoji, style: const TextStyle(fontSize: 22)),
-            const Spacer(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-              decoration: BoxDecoration(color: color.withOpacity(.14), borderRadius: BorderRadius.circular(99)),
-              child: Text(label, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w900, color: color)),
-            ),
-          ]),
-          const SizedBox(height: 8),
-          Text(value,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: Color(0xff2d2621))),
-          const SizedBox(height: 8),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(99),
-            child: LinearProgressIndicator(
-              value: percent.clamp(0.0, 1.0),
-              minHeight: 7,
-              color: color,
-              backgroundColor: color.withOpacity(.13),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Subject progress bars (grouped by Curriculum)
-// ─────────────────────────────────────────────────────────────────────────────
-class _SubjectProgressBars extends StatelessWidget {
-  const _SubjectProgressBars({required this.solved});
-  final Map<String, int> solved;
-
-  static const _subjectMeta = <String, (String, Color)>{
-    'Mathematik':      ('🔢', Color(0xffff8700)),
-    'Deutsch':         ('📖', Color(0xff8b5cf6)),
-    'Englisch':        ('🌍', Color(0xff10a894)),
-    'Rechtschreibung': ('✏️', Color(0xffec4899)),
-    'Schreiben':       ('🖊️', Color(0xff3b82f6)),
-    'Sachkunde':       ('🌿', Color(0xff22c55e)),
-  };
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: Curriculum.subjects.keys.map((subject) {
-        final meta = _subjectMeta[subject] ?? ('📚', const Color(0xff6b7280));
-        // Sum all solved units that belong to this subject
-        final units = Curriculum.subjects[subject] ?? <String>[];
-        final count = units.fold<int>(0, (sum, u) => sum + (solved[u] ?? 0));
-        final goal = units.length * 3; // rough goal: 3 correct per unit
-        final percent = goal > 0 ? (count / goal).clamp(0.0, 1.0) : 0.0;
-
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.82),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.white.withOpacity(.76)),
-              boxShadow: [
-                BoxShadow(color: meta.$2.withOpacity(.10), blurRadius: 16, offset: const Offset(0, 8)),
-                BoxShadow(color: Colors.white.withOpacity(.75), blurRadius: 6, offset: const Offset(-2, -2)),
-              ],
-            ),
-            child: Row(children: [
-              Container(
-                width: 42, height: 42,
-                decoration: BoxDecoration(
-                  color: meta.$2.withOpacity(.14),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Center(child: Text(meta.$1, style: const TextStyle(fontSize: 20))),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(subject,
-                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: meta.$2)),
-                    Text('$count Aufgaben',
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff9ca3af))),
-                  ]),
-                  const SizedBox(height: 6),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(99),
-                    child: LinearProgressIndicator(
-                      value: percent,
-                      minHeight: 8,
-                      color: meta.$2,
-                      backgroundColor: meta.$2.withOpacity(.13),
+                Transform.rotate(
+                  angle: -.05,
+                  child: const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Du machst\ndas großartig!',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        color: LumoVisualTokens.white,
+                        fontSize: 26,
+                        height: 1.05,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w900,
+                        shadows: [
+                          Shadow(color: Color(0xAA000000), blurRadius: 10),
+                        ],
+                      ),
                     ),
                   ),
-                ]),
-              ),
-            ]),
+                ),
+                const SizedBox(height: 8),
+                const Text.rich(
+                  TextSpan(children: [
+                    TextSpan(
+                        text: 'Jeden Tag ein bisschen schlauer. Weiter so! '),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Icon(Icons.favorite_border_rounded,
+                          size: 15, color: LumoVisualTokens.white),
+                    ),
+                  ]),
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    color: LumoVisualTokens.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    shadows: [Shadow(color: Color(0xAA000000), blurRadius: 6)],
+                  ),
+                ),
+              ],
+            ),
           ),
-        );
-      }).toList(),
+          Positioned(
+            right: 6,
+            top: 4,
+            width: width * .26,
+            child: Transform.rotate(
+              angle: -.06,
+              child: const LumoHeroBubble(
+                text: 'Lernen bringt dich weiter!',
+                handwritten: true,
+              ),
+            ),
+          ),
+        ]),
+      );
+    });
+  }
+
+  Widget _buildProfileCard() {
+    final xpInLevel = widget.xp % 400;
+    final edit = _OutlineButton(
+      key: const ValueKey('profile-edit'),
+      label: 'Profil\nbearbeiten',
+      onTap: () => widget.onSection(LumoSection.settings),
+    );
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+      child: LumoGlassCard(
+        padding: const EdgeInsets.fromLTRB(10, 12, 10, 10),
+        radius: 24,
+        child: LayoutBuilder(builder: (context, constraints) {
+          // Schmal oder mit großer Schrift rutscht der Knopf unter die Zeile.
+          final wide = constraints.maxWidth /
+                  MediaQuery.textScalerOf(context).scale(1) >=
+              330;
+          return Column(children: [
+            Row(children: [
+              Container(
+                width: 76,
+                height: 76,
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: LumoVisualTokens.cyan, width: 2.4),
+                  boxShadow: [
+                    BoxShadow(
+                        color: LumoVisualTokens.cyan.withOpacity(.55),
+                        blurRadius: 16),
+                  ],
+                ),
+                child: const ClipOval(
+                  child: ColoredBox(
+                    color: LumoVisualTokens.glass,
+                    child:
+                        LumoFoxPose(pose: LumoDesignFoxPose.avatar, size: 70),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(children: [
+                      Expanded(
+                        child: Text(
+                          'Level ${widget.level}',
+                          style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                      const Icon(Icons.star_rounded,
+                          color: LumoVisualTokens.gold, size: 24),
+                      const SizedBox(width: 3),
+                      Text(
+                        '${widget.stars}',
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          color: LumoVisualTokens.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ]),
+                    Wrap(
+                      spacing: 6,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Text(
+                          ProfileScreen.levelTitle(widget.level),
+                          style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7, vertical: 1),
+                          decoration: BoxDecoration(
+                            color: LumoVisualTokens.glassRow,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
+                          child: Text(
+                            'Klasse ${widget.grade}',
+                            style: const TextStyle(
+                              fontFamily: 'Nunito',
+                              color: LumoVisualTokens.cyanBright,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 6),
+                    _XpBar(
+                      value: xpInLevel / 400,
+                      label: '$xpInLevel / 400 XP',
+                      reduceMotion: _reduceMotion,
+                    ),
+                  ],
+                ),
+              ),
+              if (wide) ...[const SizedBox(width: 8), edit],
+            ]),
+            if (!wide) Align(alignment: Alignment.centerRight, child: edit),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.fromLTRB(4, 10, 4, 8),
+              decoration: BoxDecoration(
+                color: LumoVisualTokens.navigation.withOpacity(.55),
+                borderRadius: BorderRadius.circular(18),
+                border:
+                    Border.all(color: LumoVisualTokens.cyan.withOpacity(.25)),
+              ),
+              child: Row(children: [
+                for (final badge in _badges())
+                  Expanded(child: _BadgeView(badge: badge)),
+              ]),
+            ),
+          ]);
+        }),
+      ),
     );
   }
-}
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Test grade card
-// ─────────────────────────────────────────────────────────────────────────────
-class _TestGradeCard extends StatelessWidget {
-  const _TestGradeCard({required this.lastGrade});
-  final int lastGrade;
-
-  Color get _color {
-    if (lastGrade == 0) return const Color(0xff9ca3af);
-    if (lastGrade <= 2) return const Color(0xff10b981);
-    if (lastGrade == 3) return const Color(0xffffb800);
-    return const Color(0xffef4444);
-  }
-
-  String get _label {
-    switch (lastGrade) {
-      case 0: return 'Noch kein Test';
-      case 1: return 'Ausgezeichnet! 🎉';
-      case 2: return 'Sehr gut! 🌟';
-      case 3: return 'Gut gemacht! 👍';
-      case 4: return 'Weiter üben! 💪';
-      default: return 'Nicht genügend 📚';
-    }
-  }
-
-  String get _gradeText => lastGrade == 0 ? '–' : '$lastGrade';
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [_color.withOpacity(.12), _color.withOpacity(.04)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: _color.withOpacity(.28), width: 1.5),
-        boxShadow: [BoxShadow(color: _color.withOpacity(.12), blurRadius: 18, offset: const Offset(0, 8))],
-      ),
-      child: Row(children: [
-        // Grade badge
-        Container(
-          width: 66, height: 66,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [_color.withOpacity(.28), _color.withOpacity(.12)]),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: _color.withOpacity(.35)),
-          ),
-          child: Center(
-            child: Text(_gradeText,
-                style: TextStyle(fontSize: 34, fontWeight: FontWeight.w900, color: _color)),
-          ),
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(_label,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: _color)),
-            const SizedBox(height: 4),
-            Text(
-              lastGrade == 0 ? 'Starte deinen ersten Test!' : 'Weiter so – du machst das super!',
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: Color(0xff766a61)),
+  Widget _buildStreakAndGoal() {
+    final streak = widget.appState.learningStreakDays();
+    final daily = widget.appState.learningProfileDailyMap();
+    final today = DateTime.now();
+    final week = [
+      for (var offset = 6; offset >= 0; offset--)
+        DateTime(today.year, today.month, today.day - offset),
+    ];
+    String key(DateTime d) => '${d.year}-${d.month.toString().padLeft(2, '0')}'
+        '-${d.day.toString().padLeft(2, '0')}';
+    final xpInLevel = widget.xp % 400;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+      child: IntrinsicHeight(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Expanded(
+            child: LumoGlassCard(
+              padding: const EdgeInsets.all(10),
+              radius: 20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(children: [
+                    const Icon(Icons.local_fire_department_rounded,
+                        color: Color(0xFFFF9A2E), size: 34),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Lernserie',
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              color: LumoVisualTokens.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              streak == 1 ? '1 Tag' : '$streak Tage',
+                              style: const TextStyle(
+                                fontFamily: 'Nunito',
+                                color: LumoVisualTokens.cyanBright,
+                                fontSize: 22,
+                                height: 1.1,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                  Text(
+                    streak > 0
+                        ? 'Stark dran geblieben!'
+                        : 'Heute startet deine Serie!',
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.white,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const Spacer(),
+                  const SizedBox(height: 6),
+                  Semantics(
+                    label: 'Lerntage der letzten Woche',
+                    child: Row(children: [
+                      for (final day in week)
+                        Expanded(
+                          child: (daily[key(day)] ?? 0) > 0
+                              ? const Icon(Icons.local_fire_department_rounded,
+                                  color: Color(0xFFFFB13B), size: 18)
+                              : const Icon(Icons.circle_outlined,
+                                  color: Color(0xFF8D9BB8), size: 15),
+                        ),
+                    ]),
+                  ),
+                ],
+              ),
             ),
-          ]),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: LumoGlassCard(
+              padding: const EdgeInsets.all(10),
+              radius: 20,
+              child: Stack(children: [
+                Positioned(
+                  right: -4,
+                  bottom: -4,
+                  child: Opacity(
+                    opacity: .95,
+                    child: Image.asset(
+                        'assets/lumo_design/icons/treasure_chest.png',
+                        width: 54,
+                        height: 54),
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(children: [
+                      Icon(Icons.track_changes_rounded,
+                          color: LumoVisualTokens.cyanBright, size: 26),
+                      SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          'Nächstes Ziel',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    Text(
+                      'Level ${widget.level + 1} erreichen',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        color: LumoVisualTokens.cyanBright,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 46),
+                      child: _XpBar(
+                        value: xpInLevel / 400,
+                        label: '$xpInLevel / 400 XP',
+                        reduceMotion: _reduceMotion,
+                        stacked: true,
+                      ),
+                    ),
+                  ],
+                ),
+              ]),
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget _buildRewards() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+      child: LumoGlassCard(
+        padding: const EdgeInsets.fromLTRB(12, 10, 10, 12),
+        radius: 22,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              const Icon(Icons.card_giftcard_rounded,
+                  color: LumoVisualTokens.cyanBright, size: 26),
+              const SizedBox(width: 8),
+              const Expanded(
+                child: Text(
+                  'Meine Belohnungen',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    color: LumoVisualTokens.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              InkWell(
+                key: const ValueKey('profile-rewards-all'),
+                borderRadius: BorderRadius.circular(8),
+                onTap: () => widget.onSection(LumoSection.rewards),
+                child: const Padding(
+                  padding: EdgeInsets.all(4),
+                  child: Row(mainAxisSize: MainAxisSize.min, children: [
+                    Text(
+                      'Alle anzeigen',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        color: LumoVisualTokens.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Icon(Icons.chevron_right_rounded,
+                        color: LumoVisualTokens.white, size: 18),
+                  ]),
+                ),
+              ),
+            ]),
+            const SizedBox(height: 8),
+            if (_redeemed.isEmpty)
+              const Text(
+                'Noch nichts eingelöst. Sammle Sterne und such dir im '
+                'Belohnungs-Laden etwas aus!',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  color: LumoVisualTokens.muted,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                ),
+              )
+            else
+              Row(children: [
+                for (final reward in _redeemed)
+                  Expanded(
+                    child: Column(children: [
+                      Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: const RadialGradient(colors: [
+                            Color(0xFF2E7BE0),
+                            Color(0xFF0B2A5A),
+                          ]),
+                          boxShadow: [
+                            BoxShadow(
+                                color: LumoVisualTokens.cyan.withOpacity(.4),
+                                blurRadius: 10),
+                          ],
+                        ),
+                        child: const Icon(Icons.card_giftcard_rounded,
+                            color: LumoVisualTokens.gold, size: 26),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        reward.title,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          color: LumoVisualTokens.white,
+                          fontSize: 10.5,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ]),
+                  ),
+                for (var i = _redeemed.length; i < 5; i++)
+                  const Expanded(child: SizedBox()),
+              ]),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExtras() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+      child: Row(children: [
+        Expanded(
+          child: _ExtraTile(
+            key: const ValueKey('profile-extras'),
+            title: 'Extras freischalten',
+            text: 'Sammle Sterne und löse sie im Belohnungs-Laden ein!',
+            icon: Icons.confirmation_number_rounded,
+            colors: const [Color(0xFF7A3FE0), Color(0xFF4B1FA6)],
+            onTap: () => widget.onSection(LumoSection.rewards),
+          ),
+        ),
+        const SizedBox(width: 8),
+        const Expanded(
+          child: _ExtraTile(
+            title: 'Dein Avatar',
+            text: 'Neue Outfits und Accessoires – bald verfügbar.',
+            icon: Icons.checkroom_rounded,
+            colors: [Color(0xFF14A08D), Color(0xFF0B6B5E)],
+          ),
         ),
       ]),
     );
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Practice areas (weak units)
-// ─────────────────────────────────────────────────────────────────────────────
-class _PracticeAreasList extends StatelessWidget {
-  const _PracticeAreasList({required this.practice});
-  final Map<String, int> practice;
-
-  @override
-  Widget build(BuildContext context) {
-    final sorted = practice.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
-    final top = sorted.take(6).toList();
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: top.map((e) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [Color(0xffffe8d6), Color(0xffffd6ba)]),
-          borderRadius: BorderRadius.circular(99),
-          border: Border.all(color: const Color(0xffffb96b).withOpacity(.4)),
-          boxShadow: [BoxShadow(color: const Color(0xffff8700).withOpacity(.12), blurRadius: 10, offset: const Offset(0, 4))],
-        ),
-        child: Row(mainAxisSize: MainAxisSize.min, children: [
-          const Text('💪', style: TextStyle(fontSize: 13)),
-          const SizedBox(width: 5),
-          Text(e.key,
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: Color(0xffb45309))),
-          const SizedBox(width: 6),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-            decoration: BoxDecoration(
-              color: const Color(0xffff8700).withOpacity(.2),
-              borderRadius: BorderRadius.circular(99),
-            ),
-            child: Text('${e.value}×',
-                style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xffb45309))),
-          ),
-        ]),
-      )).toList(),
-    );
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Achievements grid
-// ─────────────────────────────────────────────────────────────────────────────
-class _AchievementsGrid extends StatelessWidget {
-  const _AchievementsGrid({required this.stars, required this.xp, required this.totalSolved});
-  final int stars;
-  final int xp;
-  final int totalSolved;
-
-  static const List<_AchievDef> _all = [
-    _AchievDef('Erster Stern',   '⭐', 'Deinen ersten Stern gesammelt',   1,    'stars'),
-    _AchievDef('Sternsammler',   '🌟', '10 Sterne gesammelt',              10,   'stars'),
-    _AchievDef('Sternenregen',   '🌠', '25 Sterne gesammelt',              25,   'stars'),
-    _AchievDef('XP Starter',     '🏅', '100 XP erreicht',                 100,  'xp'),
-    _AchievDef('XP Meister',     '🥇', '500 XP erreicht',                 500,  'xp'),
-    _AchievDef('XP Legende',     '👑', '1000 XP erreicht',                1000, 'xp'),
-    _AchievDef('Fleißige Biene', '✅', 'Erste Aufgabe gelöst',             1,    'solved'),
-    _AchievDef('Lernprofi',      '🧠', '10 Aufgaben gelöst',               10,   'solved'),
-    _AchievDef('Überflieger',    '🚀', '25 Aufgaben gelöst',               25,   'solved'),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: _all.map((a) {
-        final unlocked = switch (a.type) {
-          'stars'  => stars >= a.threshold,
-          'xp'     => xp >= a.threshold,
-          _        => totalSolved >= a.threshold,
-        };
-        return _AchievBadge(def: a, unlocked: unlocked);
-      }).toList(),
-    );
-  }
-}
-
-class _AchievDef {
-  const _AchievDef(this.title, this.emoji, this.desc, this.threshold, this.type);
-  final String title;
-  final String emoji;
-  final String desc;
-  final int threshold;
-  final String type;
-}
-
-class _AchievBadge extends StatelessWidget {
-  const _AchievBadge({required this.def, required this.unlocked});
-  final _AchievDef def;
-  final bool unlocked;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 138,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: unlocked ? Colors.white.withOpacity(.90) : Colors.white.withOpacity(.45),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(
-          color: unlocked
-              ? const Color(0xffffb96b).withOpacity(.45)
-              : Colors.grey.withOpacity(.18),
-          width: 1.2,
-        ),
-        boxShadow: unlocked
-            ? [BoxShadow(color: const Color(0xffffb96b).withOpacity(.22), blurRadius: 16, offset: const Offset(0, 8))]
-            : [],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ColorFiltered(
-            colorFilter: unlocked
-                ? const ColorFilter.mode(Colors.transparent, BlendMode.multiply)
-                : const ColorFilter.matrix(<double>[
-                    0.2126, 0.7152, 0.0722, 0, 0,
-                    0.2126, 0.7152, 0.0722, 0, 0,
-                    0.2126, 0.7152, 0.0722, 0, 0,
-                    0,      0,      0,      0.35, 0,
-                  ]),
-            child: Text(def.emoji, style: const TextStyle(fontSize: 28)),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            def.title,
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w900,
-              color: unlocked ? const Color(0xff2d2621) : const Color(0xffbbbbbb),
-            ),
-          ),
-          const SizedBox(height: 3),
-          Text(
-            def.desc,
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.w700,
-              height: 1.3,
-              color: unlocked ? const Color(0xff766a61) : const Color(0xffcccccc),
-            ),
-          ),
-          if (!unlocked) ...[
-            const SizedBox(height: 5),
-            Icon(Icons.lock_rounded, size: 14, color: Colors.grey.shade400),
-          ],
-        ],
-      ),
-    );
-  }
-}
-
-/// Phase 1 - kindgerechte Lern-DNA-Kurzfassung im Profil.
-/// Approximiert die DNA aus den verfuegbaren Profile-Daten (kein Engine-Zugriff
-/// noetig, da ProfileScreen kein AppState bekommt).
-class _ChildDnaSlot extends StatelessWidget {
-  const _ChildDnaSlot({
-    required this.childName,
-    required this.totalCorrect,
-    required this.stars,
+class _XpBar extends StatelessWidget {
+  const _XpBar({
+    required this.value,
+    required this.label,
+    required this.reduceMotion,
+    this.stacked = false,
   });
-  final String childName;
-  final int totalCorrect;
-  final int stars;
+
+  final double value;
+  final String label;
+  final bool reduceMotion;
+  final bool stacked;
 
   @override
   Widget build(BuildContext context) {
-    // Minimal-DNA fuer Kind-Anzeige.
-    final dna = LearningDna(
-      childName: childName,
-      lastUpdated: DateTime.now(),
-      totalCorrect: totalCorrect,
-      totalIncorrect: 0,
-      nextRubric: totalCorrect < 5 ? '' : 'Plus bis 10 mit Zaehlbild',
-      strengths: totalCorrect >= 10
-          ? const <DnaSkillEntry>[
-              DnaSkillEntry(subject: 'Mathe', skillLabel: 'Plus bis 10', score: 0.8),
-            ]
-          : const <DnaSkillEntry>[],
+    final bar = ClipRRect(
+      borderRadius: BorderRadius.circular(6),
+      child: TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: value.clamp(0.0, 1.0)),
+        duration:
+            reduceMotion ? Duration.zero : const Duration(milliseconds: 900),
+        curve: Curves.easeOutCubic,
+        builder: (context, v, _) => LinearProgressIndicator(
+          value: v,
+          minHeight: 10,
+          backgroundColor: const Color(0xFF0B2A52),
+          valueColor:
+              const AlwaysStoppedAnimation<Color>(LumoVisualTokens.cyanBright),
+        ),
+      ),
     );
-    return LearningDnaChildCard(dna: dna);
+    final text = Text(
+      label,
+      style: const TextStyle(
+        fontFamily: 'Nunito',
+        color: LumoVisualTokens.white,
+        fontSize: 12,
+        fontWeight: FontWeight.w800,
+      ),
+    );
+    if (stacked) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [bar, const SizedBox(height: 4), text],
+      );
+    }
+    return Row(children: [
+      Expanded(child: bar),
+      const SizedBox(width: 8),
+      Flexible(child: FittedBox(fit: BoxFit.scaleDown, child: text)),
+    ]);
   }
+}
+
+/// Sechseck-Abzeichen wie in Bild 07; ohne Fortschritt grau mit Schloss.
+class _BadgeView extends StatelessWidget {
+  const _BadgeView({required this.badge});
+
+  final _Badge badge;
+
+  @override
+  Widget build(BuildContext context) {
+    // Wie im Bild: Held:in bleibt bis zur ersten Lernserie verschlossen,
+    // die anderen zeigen gedämpft, was als Nächstes zu holen ist.
+    final locked = !badge.started && badge.title == 'Held:in';
+    final dimmed = !badge.started && !locked;
+    return Semantics(
+      label: locked
+          ? '${badge.title}: noch nicht begonnen'
+          : '${badge.title}: ${badge.current} von ${badge.next}',
+      excludeSemantics: true,
+      child: Column(children: [
+        Opacity(
+          opacity: dimmed ? .5 : 1,
+          child: SizedBox(
+            width: 50,
+            height: 54,
+            child: ClipPath(
+              clipper: _HexagonClipper(),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: locked
+                        ? const [Color(0xFF6B7690), Color(0xFF3A4258)]
+                        : badge.colors,
+                  ),
+                ),
+                child: Icon(locked ? Icons.lock_rounded : badge.icon,
+                    color: Colors.white, size: 26),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 4),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            badge.title,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              color: LumoVisualTokens.white,
+              fontSize: 11,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+        ),
+        Text(
+          locked ? '?' : '${badge.current}/${badge.next}',
+          style: const TextStyle(
+            fontFamily: 'Nunito',
+            color: LumoVisualTokens.muted,
+            fontSize: 10.5,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+class _HexagonClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    final cx = size.width / 2;
+    final cy = size.height / 2;
+    final r = math.min(size.width, size.height) / 2;
+    for (var i = 0; i < 6; i++) {
+      final angle = math.pi / 3 * i - math.pi / 2;
+      final point = Offset(cx + r * math.cos(angle), cy + r * math.sin(angle));
+      if (i == 0) {
+        path.moveTo(point.dx, point.dy);
+      } else {
+        path.lineTo(point.dx, point.dy);
+      }
+    }
+    return path..close();
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+}
+
+class _OutlineButton extends StatelessWidget {
+  const _OutlineButton({super.key, required this.label, required this.onTap});
+
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: onTap,
+          child: Ink(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: const Color(0xFF0E3D86).withOpacity(.7),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: LumoVisualTokens.cyanBright),
+            ),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              Text(
+                label,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  color: LumoVisualTokens.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const Icon(Icons.chevron_right_rounded,
+                  color: LumoVisualTokens.white, size: 20),
+            ]),
+          ),
+        ),
+      );
+}
+
+class _ExtraTile extends StatelessWidget {
+  const _ExtraTile({
+    super.key,
+    required this.title,
+    required this.text,
+    required this.icon,
+    required this.colors,
+    this.onTap,
+  });
+
+  final String title;
+  final String text;
+  final IconData icon;
+  final List<Color> colors;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) => Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(18),
+          onTap: onTap,
+          child: Ink(
+            padding: const EdgeInsets.fromLTRB(10, 10, 8, 10),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: colors),
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: Colors.white.withOpacity(.3)),
+              boxShadow: [
+                BoxShadow(color: colors.first.withOpacity(.4), blurRadius: 12),
+              ],
+            ),
+            child: Row(children: [
+              Icon(icon, color: Colors.white, size: 30),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      maxLines: 2,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    Text(
+                      text,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        color: Colors.white,
+                        fontSize: 10.5,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (onTap != null)
+                const Icon(Icons.chevron_right_rounded,
+                    color: Colors.white, size: 22),
+            ]),
+          ),
+        ),
+      );
 }

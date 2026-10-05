@@ -63,10 +63,12 @@ class OnboardingCaptionTests(unittest.TestCase):
         source = Path(__file__).resolve().parents[3]/'lib'
         shell = (source/'app/app_shell.dart').read_text()
         screen = (source/'features/teacher_mode/lumo_akademie_screen.dart').read_text()
-        self.assertRegex(shell, r'case LumoSection\.learn:\s*return LumoAkademieScreen\(appState: _appState\)')
+        self.assertRegex(shell, r'case LumoSection\.learn:\s*return LumoAkademieScreen\(\s*appState: _appState')
+        # Bild 03 zeigt nur „Lernen“; der Bereichsname ist die Beschriftung
+        # für Bildschirmleser, die die Android-Prüfung als content-desc liest.
         self.assertRegex(
             screen,
-            r"Text\(\s*'"+LEARNING_SELECTION_CAPTION+r"'",
+            r"label: '"+LEARNING_SELECTION_CAPTION+r"'",
         )
 
 

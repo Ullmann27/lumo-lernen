@@ -184,6 +184,7 @@ void main() {
       expect(find.byType(LumoAkademieScreen), findsOneWidget);
       final layoutError = tester.takeException();
       expect(layoutError, isNull, reason: 'learning screen at $size');
+      // Auf den Zielbild-Seiten steht Lumo als kleiner Fuchs in der Szene.
       expect(find.byType(LumoFreeCompanion), findsOneWidget);
       await tester.tap(find.text('Start').last);
       await settleWork(tester);
