@@ -45,7 +45,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   late final AnimationController _walk = AnimationController(
       vsync: this, duration: const Duration(milliseconds: 1500))
     ..addStatusListener((s) {
-      if (s == AnimationStatus.completed && mounted) setState(() {});
+      if (s == AnimationStatus.completed && mounted && _active) setState(() {});
     });
   Timer? _initiative;
   Timer? _turnTimer;
@@ -58,11 +58,13 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   LumoCompanionProposal? _proposal;
   double _from = 1, _to = 1;
   bool _right = true, _sheetOpen = false, _foreground = true;
+  bool _active = true;
+  double _viewportWidth = 360;
   double get _position =>
       _from + (_to - _from) * Curves.easeInOutCubic.transform(_walk.value);
-  bool get _quiet =>
+  bool get _quiet => !_active ||
       widget.reducedMotion || MediaQuery.disableAnimationsOf(context);
-  bool get _visible =>
+  bool get _visible => _active &&
       _foreground && !_sheetOpen && (ModalRoute.of(context)?.isCurrent ?? true);
 
   @override
@@ -78,7 +80,9 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    setState(() => _foreground = state == AppLifecycleState.resumed);
+    _foreground = state == AppLifecycleState.resumed;
+    if (!mounted || !_active) return;
+    setState(() {});
     if (!_foreground) {
       _turnTimer?.cancel();
       _walk.stop();
@@ -89,6 +93,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _viewportWidth = MediaQuery.sizeOf(context).width;
     if (_quiet) {
       _turnTimer?.cancel();
       _walk.stop();
@@ -137,7 +142,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   }
 
   void _considerIdea() {
-    if (!mounted || !widget.proactive) return;
+    if (!mounted || !_active || !widget.proactive) return;
     if (_proposal != null) {
       _considerQuietWalk();
       return;
@@ -196,7 +201,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       // Settle on both feet facing the child before leaving in the opposite
       // direction. Never instantly mirror a running fox mid-stride.
       _turnTimer = Timer(const Duration(milliseconds: 180), () {
-        if (!mounted || !_foreground) return;
+        if (!mounted || !_active || !_foreground) return;
         setState(() => _startWalk(clamped, newRight));
       });
     } else {
@@ -208,7 +213,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _from = _position;
     _to = target;
     _right = facingRight;
-    final width = MediaQuery.sizeOf(context).width;
+    final width = _viewportWidth;
     final distance = (_to - _from).abs() * math.max(0, width - 90);
     _walk.duration =
         Duration(milliseconds: (700 + distance * 5).round().clamp(700, 2800));
@@ -392,6 +397,20 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
           leading: Icon(icon),
           title: Text(title),
           onTap: () => Navigator.pop(sheetContext, action));
+  @override
+  void activate() {
+    super.activate();
+    _active = true;
+  }
+
+  @override
+  void deactivate() {
+    _active = false;
+    _turnTimer?.cancel();
+    _walk.stop();
+    super.deactivate();
+  }
+
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);

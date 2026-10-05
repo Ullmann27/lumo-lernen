@@ -81,16 +81,19 @@ class HomeContent extends StatelessWidget {
           final recommendation = appState.topLearningRecommendation();
           return LayoutBuilder(
             builder: (context, constraints) {
-              final wide = constraints.maxWidth >= 720;
+              final deviceWide = MediaQuery.sizeOf(context).width >= 720;
+              final wide = deviceWide || constraints.maxWidth >= 720;
               final compact = constraints.maxWidth < 320;
               // Bild 01: vier Kacheln in einer Reihe; schmal oder mit großer
               // Schrift zwei pro Reihe, damit die Namen ganz lesbar bleiben.
               final textScale = MediaQuery.textScalerOf(context).scale(1);
-              final columns = wide
+              final columns = deviceWide
                   ? 4
-                  : constraints.maxWidth >= 340 && textScale <= 1.2
+                  : wide
                       ? 4
-                      : 2;
+                      : constraints.maxWidth >= 340 && textScale <= 1.2
+                          ? 4
+                          : 2;
               final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
                 _HomeGlassActionTile(
@@ -112,6 +115,7 @@ class HomeContent extends StatelessWidget {
                   onTap: () => onSection(LumoSection.games),
                 ),
                 _HomeGlassActionTile(
+                  key: const ValueKey('home-tests'),
                   title: 'Tests',
                   subtitle: 'Wissen überprüfen',
                   icon: Icons.assignment_rounded,
@@ -120,6 +124,7 @@ class HomeContent extends StatelessWidget {
                   onTap: () => onSection(LumoSection.tests),
                 ),
                 _HomeGlassActionTile(
+                  key: const ValueKey('home-rewards'),
                   title: 'Belohnungen',
                   subtitle: 'Sterne und Extras',
                   icon: Icons.star_rounded,
@@ -160,13 +165,15 @@ class HomeContent extends StatelessWidget {
                     crossAxisCount: columns,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
-                    childAspectRatio: wide
-                        ? 1.02
-                        : columns == 4
-                            ? .74
-                            : textScale > 1.2
-                                ? .9
-                                : 1.1,
+                    childAspectRatio: deviceWide && columns == 4
+                        ? .88
+                        : wide
+                            ? 1.02
+                            : columns == 4
+                                ? .74
+                                : textScale > 1.2
+                                    ? .9
+                                    : 1.1,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
@@ -1113,14 +1120,107 @@ class _HomeGlassActionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) {
-          final compact =
-              constraints.hasBoundedHeight && constraints.maxHeight < 132;
-          final iconSize =
-              (constraints.maxWidth * .26).clamp(28.0, 54.0).toDouble();
+          final boundedHeight =
+              constraints.hasBoundedHeight ? constraints.maxHeight : 180.0;
+          final ultraCompact = boundedHeight < 126 || constraints.maxWidth < 104;
+          final compact = boundedHeight < 170 || constraints.maxWidth < 160;
+          final iconSize = (constraints.maxWidth * (compact ? .30 : .28))
+              .clamp(ultraCompact ? 18.0 : 24.0, compact ? 38.0 : 56.0)
+              .toDouble();
           final backgroundTop =
               Color.lerp(LumoVisualTokens.glass, color, .14)!;
           final backgroundBottom =
               Color.lerp(LumoVisualTokens.navigation, color, .06)!;
+
+          Widget iconWidget = iconAsset == null
+              ? Icon(icon, color: Colors.white, size: iconSize)
+              : Image.asset(
+                  iconAsset!,
+                  key: ValueKey(
+                      'lumo-color-tile-icon-${title.toLowerCase()}'),
+                  width: iconSize,
+                  height: iconSize,
+                  fit: BoxFit.contain,
+                  excludeFromSemantics: true,
+                  errorBuilder: (_, __, ___) =>
+                      Icon(icon, color: Colors.white, size: iconSize),
+                );
+
+          final content = ultraCompact
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    iconWidget,
+                    const SizedBox(height: 3),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        title,
+                        maxLines: 1,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w900,
+                          fontSize: 10.5,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        padding: EdgeInsets.all(compact ? 5 : 9),
+                        decoration: BoxDecoration(
+                          color: color.withOpacity(.16),
+                          borderRadius: BorderRadius.circular(compact ? 12 : 16),
+                          border: Border.all(color: color.withOpacity(.35)),
+                        ),
+                        child: iconWidget,
+                      ),
+                    ),
+                    const Spacer(),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        title,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w900,
+                          fontSize: compact ? 12.5 : 18,
+                          color: Colors.white,
+                          shadows: const [
+                            Shadow(
+                              color: Color(0x6600D9FF),
+                              blurRadius: 8,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    if (!compact) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        subtitle,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 11.5,
+                          color: Colors.white.withOpacity(.82),
+                        ),
+                      ),
+                    ],
+                    SizedBox(height: compact ? 20 : 30),
+                  ],
+                );
+
           return Semantics(
             button: true,
             label: '$title. $subtitle',
@@ -1130,7 +1230,11 @@ class _HomeGlassActionTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(22),
                 onTap: onTap,
                 child: Ink(
-                  padding: EdgeInsets.all(compact ? 10 : 14),
+                  padding: EdgeInsets.all(ultraCompact
+                      ? 4
+                      : compact
+                          ? 7
+                          : 14),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -1162,111 +1266,53 @@ class _HomeGlassActionTile extends StatelessWidget {
                   ),
                   child: Stack(
                     children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        child: Container(
-                          width: 4,
-                          decoration: BoxDecoration(
-                            color: color.withOpacity(.92),
-                            borderRadius: BorderRadius.circular(99),
-                            boxShadow: [
-                              BoxShadow(
-                                color: color.withOpacity(.55),
-                                blurRadius: 12,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Align(
-                              alignment: Alignment.center,
-                              child: Container(
-                                padding: EdgeInsets.all(compact ? 7 : 10),
-                                decoration: BoxDecoration(
-                                  color: color.withOpacity(.16),
-                                  borderRadius: BorderRadius.circular(16),
-                                  border: Border.all(
-                                    color: color.withOpacity(.35),
-                                  ),
+                      if (!ultraCompact)
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          bottom: 0,
+                          child: Container(
+                            width: 3,
+                            decoration: BoxDecoration(
+                              color: color.withOpacity(.92),
+                              borderRadius: BorderRadius.circular(99),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: color.withOpacity(.55),
+                                  blurRadius: 12,
                                 ),
-                                child: iconAsset == null
-                                    ? Icon(icon,
-                                        color: Colors.white, size: iconSize)
-                                    : Image.asset(
-                                        iconAsset!,
-                                        width: iconSize,
-                                        height: iconSize,
-                                        fit: BoxFit.contain,
-                                        excludeFromSemantics: true,
-                                        errorBuilder: (_, __, ___) => Icon(
-                                          icon,
-                                          color: Colors.white,
-                                          size: iconSize,
-                                        ),
-                                      ),
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w900,
-                                fontSize: compact ? 14 : 18,
-                                color: Colors.white,
-                                shadows: const [
-                                  Shadow(
-                                    color: Color(0x6600D9FF),
-                                    blurRadius: 8,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              subtitle,
-                              maxLines: compact ? 1 : 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w700,
-                                fontSize: compact ? 9.5 : 11.5,
-                                color: Colors.white.withOpacity(.82),
-                              ),
-                            ),
-                            const SizedBox(height: 28),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        bottom: 0,
-                        child: Container(
-                          width: compact ? 28 : 34,
-                          height: compact ? 28 : 34,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: LumoVisualTokens.cyanBright.withOpacity(.18),
-                            border: Border.all(
-                              color: LumoVisualTokens.cyanBright.withOpacity(.65),
+                              ],
                             ),
                           ),
-                          child: Icon(
-                            Icons.arrow_forward_rounded,
-                            color: LumoVisualTokens.white,
-                            size: compact ? 16 : 19,
+                        ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: ultraCompact ? 0 : 7),
+                        child: content,
+                      ),
+                      if (!ultraCompact)
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: Container(
+                            width: compact ? 22 : 34,
+                            height: compact ? 22 : 34,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:
+                                  LumoVisualTokens.cyanBright.withOpacity(.18),
+                              border: Border.all(
+                                color: LumoVisualTokens.cyanBright
+                                    .withOpacity(.65),
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.arrow_forward_rounded,
+                              color: LumoVisualTokens.white,
+                              size: compact ? 13 : 19,
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ),
