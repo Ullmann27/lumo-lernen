@@ -1,0 +1,2 @@
+# Jump & Run Prompt
+Nutze Board + Key Art + Master. Echter 3D-Platformer: Floating Islands, Wasserfälle, Castle, Sterne, Checkpoints, Grass/Stone/Wood Platforms, Crate/Spring/Crystal/Lantern, Stachelstein und Pilz-Gegner. Mobile Controls: links Stick, rechts Jump, optional Dash. Physik: acceleration/deceleration, Coyote Time, Jump Buffer, Floor Snap, Air Control, stabile Landung. Kamera mit Look-Ahead und Collision. Kein Sprite-Fake für frei drehbare Perspektive.
