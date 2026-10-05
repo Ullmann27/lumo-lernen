@@ -8,7 +8,7 @@ on:
     branches: ['copilot/5979796457-update-integrationsaudit', 'chatgpt/lumo-test-apk-2026-10-05']
     paths: ['.github/workflows/release-apk.yml']
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: unified-apk-${{ github.ref }}
   cancel-in-progress: true
@@ -100,3 +100,31 @@ jobs:
             echo "Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
             echo "Download the artifact from the run's Artifacts section; no release was published."
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish Heinz test APK prerelease
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="lumo-test-apk-2026-10-05-fold-kart"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" \
+              dist/Lumo-Lernen-Neu.apk \
+              dist/SHA256SUMS.txt \
+              dist/APK-VERIFICATION.json \
+              dist/BUILD-PROVENANCE.json \
+              dist/TEST-RESULTS.txt \
+              --clobber
+          else
+            gh release create "$TAG" \
+              dist/Lumo-Lernen-Neu.apk \
+              dist/SHA256SUMS.txt \
+              dist/APK-VERIFICATION.json \
+              dist/BUILD-PROVENANCE.json \
+              dist/TEST-RESULTS.txt \
+              --prerelease \
+              --title "Lumo Test APK – Hologlass + Fold + Kart" \
+              --notes "Testversion aus ${GITHUB_SHA}. Enthält neues Hologlass-Onboarding, Fold-Host-Fix und aktuellen Lumo-Kart-Stand. Kein Produktionsrelease."
+          fi
+          echo "APK: https://github.com/${GITHUB_REPOSITORY}/releases/download/$TAG/Lumo-Lernen-Neu.apk" >> "$GITHUB_STEP_SUMMARY"
