@@ -7,6 +7,7 @@ class CompetencyStat {
   const CompetencyStat({
     required this.competency,
     required this.subject,
+    required this.unit,
     required this.attempts,
     required this.correct,
     required this.hints,
@@ -16,6 +17,9 @@ class CompetencyStat {
 
   final String competency;
   final String subject;
+
+  /// Thema, in dem die zuletzt gelöste Aufgabe dieser Kompetenz stand.
+  final String unit;
   final int attempts;
   final int correct;
   final int hints;
@@ -59,6 +63,22 @@ class PracticeSuggestion {
   final String text;
 }
 
+/// Kurzer Satz von Lumo an das Kind, mit Thema für den Übungsstart.
+class CoachMessage {
+  const CoachMessage({
+    required this.text,
+    required this.subject,
+    required this.unit,
+    required this.isHelp,
+  });
+  final String text;
+  final String subject;
+  final String unit;
+
+  /// true: Lumo bietet Hilfe an; false: Lob für eine sichere Kompetenz.
+  final bool isHelp;
+}
+
 class DayCount {
   const DayCount(this.day, this.total, this.correct);
   final DateTime day;
@@ -94,6 +114,31 @@ class LearningAnalysis {
 
   static const int minReliable = 5;
 
+  /// Persönliche Nachricht für das Kind: zuerst Hilfe bei der größten
+  /// Schwäche, sonst Lob für eine sichere Kompetenz. Nie ohne belastbare Daten.
+  CoachMessage? get coachMessage {
+    final weakest = weak.isEmpty ? null : weak.first;
+    if (weakest != null) {
+      return CoachMessage(
+        text:
+            'Bei „${weakest.competency}“ passieren dir noch Fehler. Wollen wir zwei leichte Aufgaben gemeinsam machen?',
+        subject: weakest.subject,
+        unit: weakest.unit,
+        isHelp: true,
+      );
+    }
+    final best = secure.isEmpty ? null : secure.last;
+    if (best != null) {
+      return CoachMessage(
+        text: 'Bei „${best.competency}“ bist du schon richtig sicher.',
+        subject: best.subject,
+        unit: best.unit,
+        isHelp: false,
+      );
+    }
+    return null;
+  }
+
   /// Hilfsmittel je Kompetenz für die Empfehlung.
   static String _aidFor(String competency) {
     if (competency.contains('Zehnerübergang')) {
@@ -123,6 +168,7 @@ class LearningAnalysis {
       stats.add(CompetencyStat(
         competency: name,
         subject: list.first.subject,
+        unit: list.last.unit,
         attempts: list.length,
         correct: list.where((a) => a.correct).length,
         hints: list.where((a) => a.hintUsed).length,

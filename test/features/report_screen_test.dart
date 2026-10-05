@@ -4,6 +4,7 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/domain/school/attempt.dart';
 import 'package:lumo_lernen/domain/school/learning_analysis.dart';
 import 'package:lumo_lernen/features/report/lernbericht_screen.dart';
+import 'package:lumo_lernen/features/report/lumo_coach_card.dart';
 import 'package:lumo_lernen/features/report/student_report_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -104,6 +105,51 @@ void main() {
     expect(find.text('6'), findsWidgets); // Aufgabenzahl
     expect(find.textContaining('Addition mit Zehnerübergang'), findsWidgets);
     expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+    app.dispose();
+  });
+
+  testWidgets('Lumo bietet bei Schwäche Hilfe an und startet das Thema',
+      (tester) async {
+    late final LumoAppState app;
+    await tester.runAsync(() async {
+      app = LumoAppState();
+      for (var i = 0; i < 8; i++) {
+        await app.recordLearningAnswer(
+            subject: 'Mathematik',
+            unit: 'Plus bis 20',
+            correct: i < 2,
+            prompt: '${i + 4} + 9 = ?');
+      }
+    });
+    String? started;
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+          body: LumoCoachCard(appState: app, onStart: (s, u) => started = '$s/$u')),
+    ));
+    for (var i = 0; i < 3; i++) {
+      await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 40)));
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(find.textContaining('Bei „Addition mit Zehnerübergang“ passieren dir noch Fehler'),
+        findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('lumo-coach-start')));
+    expect(started, 'Mathematik/Plus bis 20');
+    await tester.pumpWidget(const SizedBox());
+    app.dispose();
+  });
+
+  testWidgets('Ohne belastbare Daten schweigt Lumo', (tester) async {
+    late final LumoAppState app;
+    await tester.runAsync(() async => app = LumoAppState());
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(body: LumoCoachCard(appState: app, onStart: (s, u) {})),
+    ));
+    await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 40)));
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(find.byKey(const ValueKey('lumo-coach-card')), findsNothing);
     await tester.pumpWidget(const SizedBox());
     app.dispose();
   });
