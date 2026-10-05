@@ -21,15 +21,38 @@ class StudentReportView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ListView(
+      padding: padding,
+      children: [StudentReportContent(analysis: analysis, attempts: attempts)],
+    );
+  }
+}
+
+/// Inhalt des Berichts als Spalte ohne eigenes Scrollen, damit er auch in
+/// einer längeren Seite (Lehrer-Einzelansicht) stehen kann.
+class StudentReportContent extends StatelessWidget {
+  const StudentReportContent(
+      {super.key,
+      required this.analysis,
+      required this.attempts,
+      this.showSuggestion = true});
+  final LearningAnalysis analysis;
+  final List<Attempt> attempts;
+
+  /// Die Lehrkraft sieht die Empfehlung in einem eigenen Feld mit Knöpfen.
+  final bool showSuggestion;
+
+  @override
+  Widget build(BuildContext context) {
     if (analysis.totalAttempts == 0) {
       return const _EmptyReport();
     }
     final wrongRecent = attempts.reversed.where((a) => !a.correct).take(6);
-    return ListView(
-      padding: padding,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _SummaryRow(analysis: analysis),
-        if (analysis.suggestion != null) ...[
+        if (showSuggestion && analysis.suggestion != null) ...[
           const SizedBox(height: 12),
           _SuggestionCard(suggestion: analysis.suggestion!),
         ],

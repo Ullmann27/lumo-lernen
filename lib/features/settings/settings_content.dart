@@ -16,6 +16,7 @@ import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
+import '../teacher/teacher_dashboard_screen.dart';
 import 'parent_report_card.dart';
 import 'writing_report_card.dart';
 
@@ -389,6 +390,15 @@ class _SettingsContentState extends State<SettingsContent> {
           checking: _checkingUpdate,
           error: _updateError,
           onUpdate: _checkAndUpdate,
+        ),
+        const SizedBox(height: 18),
+        _TeacherAreaCard(
+          onOpen: () => Navigator.of(context).push<void>(
+            MaterialPageRoute<void>(
+              builder: (_) =>
+                  TeacherDashboardScreen(appState: widget.appState),
+            ),
+          ),
         ),
         const SizedBox(height: 18),
         _ProfileResetCard(
@@ -1595,6 +1605,72 @@ class _AppUpdateCard extends StatelessWidget {
 /// Heinz 2026-05-21: 'Profil auf neu zuruecksetzen - extra Option
 /// bei den Eltern.' Danger-Zone Karte mit rotem Akzent, deutlich
 /// abgesetzt vom Update-Bereich.
+class _TeacherAreaCard extends StatelessWidget {
+  const _TeacherAreaCard({required this.onOpen});
+  final VoidCallback onOpen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: 'Lehrerbereich öffnen',
+      excludeSemantics: true,
+      child: InkWell(
+        key: const ValueKey('open-teacher-area'),
+        borderRadius: BorderRadius.circular(20),
+        onTap: onOpen,
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 72),
+          padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Colors.white, Color(0xFFE6F4FF)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: const Color(0xFF1E7FE0).withOpacity(.4), width: 1.4),
+          ),
+          child: Row(children: [
+            Container(
+              width: 44,
+              height: 44,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                    colors: [Color(0xFF63E4FF), Color(0xFF1E7FE0)]),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: const Icon(Icons.school_rounded, color: Colors.white),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Lehrerbereich',
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xFF0B2A5C))),
+                  Text('Klassen, Lernstand und Aufgaben zuweisen',
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF3D5A80))),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right_rounded, color: Color(0xFF0B2A5C)),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
 class _ProfileResetCard extends StatelessWidget {
   const _ProfileResetCard({required this.onReset});
   final VoidCallback onReset;

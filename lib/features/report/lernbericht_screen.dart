@@ -21,7 +21,8 @@ class _LernberichtScreenState extends State<LernberichtScreen> {
   late final Future<(List<Attempt>, LearningAnalysis)> _data = _load();
 
   Future<(List<Attempt>, LearningAnalysis)> _load() async {
-    final attempts = await widget.appState.attemptLog.load(studentId: 'self');
+    final who = await widget.appState.school.activeStudentId() ?? 'self';
+    final attempts = await widget.appState.attemptLog.load(studentId: who);
     return (attempts, LearningAnalysis.analyze(attempts));
   }
 

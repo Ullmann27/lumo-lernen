@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../teacher/student_assignments_card.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
@@ -243,6 +244,12 @@ class HomeContent extends StatelessWidget {
                       recommendation?.subject ?? 'Mathematik',
                       unit: recommendation?.unit,
                     ),
+                  ),
+                  const SizedBox(height: 12),
+                  StudentAssignmentsCard(
+                    appState: appState,
+                    onStart: (subject, unit) =>
+                        _startPractice(subject, unit: unit),
                   ),
                   const SizedBox(height: 20),
                   Text(

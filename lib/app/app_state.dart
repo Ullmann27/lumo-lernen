@@ -11,6 +11,7 @@ import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/attempt_log_repository.dart';
 import '../core/reward_wallet_repository.dart';
+import '../core/school_repository.dart';
 import '../domain/school/attempt.dart';
 import '../domain/school/competency.dart';
 import '../core/scanned_work_analysis.dart';
@@ -165,6 +166,9 @@ class LumoAppState extends ChangeNotifier {
 
   /// Aufgabenprotokoll des Kindes (Grundlage für Lernbericht und Lehrerbereich).
   final AttemptLogRepository attemptLog;
+
+  /// Schulstruktur (Klassen, Gruppen, Aufgaben) und das Kind dieses Geräts.
+  final SchoolRepository school = SchoolRepository();
   int _attemptSerial = 0;
 
   final RewardWalletRepository _walletRepository;
@@ -422,7 +426,7 @@ class LumoAppState extends ChangeNotifier {
       final now = DateTime.now();
       await attemptLog.append(Attempt(
         id: '${now.microsecondsSinceEpoch}-${_attemptSerial++}',
-        studentId: 'self',
+        studentId: await school.activeStudentId() ?? 'self',
         subject: subject,
         unit: unit,
         competency: const CompetencyClassifier()
