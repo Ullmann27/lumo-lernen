@@ -464,9 +464,8 @@ class _AppShellState extends State<AppShell>
                 onPointerDown: (event) => LumoCompanionRequests.instance
                     .requestMoveTo(event.position),
                 child: LayoutBuilder(builder: (context, outer) {
-                  final fullBleedScene = outer.maxWidth < 720
-                      ? _fullBleedScene(_appState.state.section)
-                      : null;
+                  final fullBleedScene =
+                      _fullBleedScene(_appState.state.section);
                   return Stack(children: [
                     if (fullBleedScene != null)
                       Positioned.fill(
@@ -482,7 +481,7 @@ class _AppShellState extends State<AppShell>
                           final width = constraints.maxWidth;
                           final mobile = width < 720;
                           final showNav = width >= 720;
-                          final showProgressSidebar = width >= 900 &&
+                          final showProgressSidebar = width >= 820 &&
                               _appState.state.section == LumoSection.home;
                           final navWidth = width < 980 ? 160.0 : 200.0;
                           final gap = width < 980 ? 6.0 : 10.0;
@@ -553,7 +552,9 @@ class _AppShellState extends State<AppShell>
                                         BorderRadius.circular(LumoRadius.xl),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: LumoVisualTokens.night,
+                                        color: fullBleedScene == null
+                                            ? LumoVisualTokens.night
+                                            : Colors.transparent,
                                         borderRadius: BorderRadius.circular(
                                           LumoRadius.xl,
                                         ),
@@ -584,14 +585,17 @@ class _AppShellState extends State<AppShell>
                                           child: LumoSectionTransition(
                                             sectionKey:
                                                 _appState.state.section.name,
-                                            child: _buildContent(),
+                                            child: _buildContent(
+                                              fullBleed:
+                                                  fullBleedScene != null),
                                           ),
                                         )),
-                                        LumoCompanionHost(
-                                            appState: _appState,
-                                            onSection: _navigateTo,
-                                            compact:
-                                                constraints.maxHeight < 600),
+                                        if (fullBleedScene == null)
+                                          LumoCompanionHost(
+                                              appState: _appState,
+                                              onSection: _navigateTo,
+                                              compact:
+                                                  constraints.maxHeight < 600),
                                       ]),
                                     ),
                                   ),
