@@ -493,6 +493,7 @@ class _LearningContentState extends State<LearningContent> {
         unit: factoryUnit,
         weakSkills: st.weakSkills,
         avoidUnits: attempt < 40 ? avoidUnits : const <String>{},
+        childName: st.childName,
       );
 
       if (!_taskQualityGuard.validate(task)) continue;
@@ -523,6 +524,7 @@ class _LearningContentState extends State<LearningContent> {
       unit: factoryUnit == 'Aktives Lesen' ? 'Satz verstehen' : factoryUnit,
       weakSkills: st.weakSkills,
       avoidUnits: const <String>{},
+      childName: st.childName,
     );
   }
 
