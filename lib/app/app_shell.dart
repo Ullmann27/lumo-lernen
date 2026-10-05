@@ -360,6 +360,7 @@ class _AppShellState extends State<AppShell>
         LumoSection.tests => LumoScene.tests,
         LumoSection.profile => LumoScene.profile,
         LumoSection.games => LumoScene.games,
+        LumoSection.exercises => LumoScene.library,
         _ => null,
       };
 

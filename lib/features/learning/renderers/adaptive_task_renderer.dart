@@ -148,9 +148,11 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                   const SizedBox(height: 12),
                   Text(
                     task.prompt,
-                    style: const TextStyle(
+                    // Kurze Rechnungen groß, lange Geschichten gut lesbar
+                    // ohne dass die Antworten aus dem Bild rutschen.
+                    style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: 30,
+                      fontSize: _promptSize(task.prompt),
                       fontWeight: FontWeight.w900,
                       color: LumoColors.ink900,
                       height: 1.12,
@@ -179,7 +181,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         _wrongAnswers.length >= 2 && !_solved
             ? 'Versuch es nochmal mit Lumos Hilfe:'
             : 'Wähle die richtige Antwort:',
-        style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 14,
+        style: LumoTextStyles.label.copyWith(color: Colors.white, fontSize: 14,
+          shadows: const [Shadow(color: Color(0xAA000000), blurRadius: 6)],
           ),
       ),
       const SizedBox(height: 12),
@@ -521,7 +524,13 @@ class _OptionGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 460;
-      final itemWidth = compact ? constraints.maxWidth : (constraints.maxWidth - 24) / 3;
+      // Kurze Antworten (Zahlen, Wörter) stehen am Handy zu zweit nebeneinander,
+      // damit Aufgabe und alle Antworten gemeinsam ins Bild passen.
+      final shortAnswers = task.options.every((o) => o.label.length <= 14) &&
+          MediaQuery.textScalerOf(context).scale(1) <= 1.3;
+      final itemWidth = compact
+          ? (shortAnswers ? (constraints.maxWidth - 12) / 2 : constraints.maxWidth)
+          : (constraints.maxWidth - 24) / 3;
       return Wrap(
         spacing: 12,
         runSpacing: 12,
@@ -1232,8 +1241,12 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
       );
     }
 
+    // Das Mengenbild passt nur, wenn die Aufgabe wirklich „a + b“ oder
+    // „a − b“ im Zahlenraum bis 20 ist. Vorher erschien es bei jeder
+    // Mathe-Aufgabe mit zwei Zahlen (Zahlenmauer, Uhr, Marktstand, 694 …)
+    // und zeigte dann eine falsche Rechnung.
     final numbers = _allInts(task.prompt);
-    if (task.subject == LearningSubject.mathematik && numbers.length >= 2) {
+    if (task.subject == LearningSubject.mathematik && _simpleTwoNumberSum(task, numbers) != null) {
       return _DotsVisual(task: task);
     }
 
@@ -1268,9 +1281,32 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
   }
 }
 
+/// 'addition' oder 'subtraction', wenn die Antwort genau a + b bzw. a − b der
+/// beiden Zahlen im Text ist und alles im Zahlenraum bis 20 liegt.
+double _promptSize(String prompt) => prompt.length > 110
+    ? 19
+    : prompt.length > 60
+        ? 21
+        : prompt.length > 28
+            ? 24
+            : 30;
+
+String? _simpleTwoNumberSum(TaskInstance task, List<int> numbers) {
+  if (numbers.length != 2) return null;
+  final answer = _readInt(task.correctAnswer);
+  if (answer == null) return null;
+  final a = numbers[0], b = numbers[1];
+  if (a < 0 || b < 0 || a > 20 || b > 20) return null;
+  if (answer == a + b && answer <= 20) return 'addition';
+  if (answer == a - b) return 'subtraction';
+  return null;
+}
+
 String _operationFromTask(TaskInstance task) {
   final dataOperation = task.visualPayload.data['operation']?.toString();
   if (dataOperation == 'subtraction' || dataOperation == 'addition') return dataOperation!;
+  final byAnswer = _simpleTwoNumberSum(task, _allInts(task.prompt));
+  if (byAnswer != null) return byAnswer;
   final p = task.prompt.toLowerCase();
   if (p.contains('-') || p.contains('isst') || p.contains('iszt') || p.contains('weg') || p.contains('bleiben') || p.contains('übrig') || p.contains('gibt') || p.contains('verliert')) {
     return 'subtraction';
