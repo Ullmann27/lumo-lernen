@@ -184,7 +184,13 @@ void main() {
       expect(find.byType(LumoAkademieScreen), findsOneWidget);
       final layoutError = tester.takeException();
       expect(layoutError, isNull, reason: 'learning screen at $size');
-      expect(find.byType(LumoFreeCompanion), findsOneWidget);
+      // Bild 03: Auf dem Handy liegt die Lernen-Szene vollflächig, Lumo
+      // spricht aus der Szene; die Hilfe bleibt über das Fuchs-Bild oben.
+      expect(find.byType(LumoFreeCompanion),
+          size.width < 720 ? findsNothing : findsOneWidget);
+      if (size.width < 720) {
+        expect(find.byKey(const ValueKey('mobile-lumo-button')), findsOneWidget);
+      }
       await tester.tap(find.text('Start').last);
       await settleWork(tester);
       expect(tester.takeException(), isNull);
