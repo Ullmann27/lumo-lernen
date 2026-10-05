@@ -12,6 +12,7 @@ import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
 import '../features/home/home_content.dart';
 import '../features/teacher_mode/lumo_akademie_screen.dart';
+import '../features/tests/lumo_tests_screen.dart';
 import '../features/learning/learning_content.dart';
 import '../features/reading/reading_content.dart';
 import '../features/shared/widgets/lumo_section_transition.dart';
@@ -355,6 +356,7 @@ class _AppShellState extends State<AppShell>
   /// liegt auf dem Handy vollflächig hinter Kopfzeile, Inhalt und Leiste.
   static LumoScene? _fullBleedScene(LumoSection section) => switch (section) {
         LumoSection.learn => LumoScene.learning,
+        LumoSection.tests => LumoScene.tests,
         _ => null,
       };
 
@@ -369,6 +371,11 @@ class _AppShellState extends State<AppShell>
           onSection: _navigateTo,
           onGameReturn: _embeddedGames.synchronize,
         );
+      case LumoSection.tests:
+        return LumoTestsScreen(
+            appState: _appState,
+            onSection: _navigateTo,
+            drawBackground: !fullBleed);
       case LumoSection.learn:
         return LumoAkademieScreen(
             appState: _appState, drawBackground: !fullBleed);
