@@ -956,7 +956,7 @@ class _MathQuantityAdventureCard extends StatelessWidget {
 }
 
 
-$anchor
+class _ObjectMathVisual extends StatelessWidget {
   const _ObjectMathVisual({required this.left, required this.right, required this.operation, required this.emoji,
   });
 
