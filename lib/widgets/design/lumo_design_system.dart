@@ -221,9 +221,14 @@ class LumoColorTile extends StatelessWidget {
               constraints.hasBoundedHeight && constraints.maxHeight < 142;
           final padding = compact ? 8.0 : 16.0;
           final iconPadding = compact ? 5.0 : 10.0;
-          final iconSize = compact ? 20.0 : 32.0;
-          final arrowRadius = compact ? 12.0 : 17.0;
           final centered = iconAsset != null;
+          // Kachel-Symbole wie in Bild 01: groß und mittig über dem Titel.
+          final iconSize = centered
+              ? (constraints.maxWidth * .42).clamp(20.0, 56.0).toDouble()
+              : compact
+                  ? 20.0
+                  : 32.0;
+          final arrowRadius = compact ? 12.0 : 17.0;
           return Semantics(
             button: true,
             label: '$title. $subtitle',
@@ -254,83 +259,88 @@ class LumoColorTile extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Column(
-                          crossAxisAlignment: centered
-                              ? CrossAxisAlignment.center
-                              : CrossAxisAlignment.start,
-                          children: [
-                            DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(.18),
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(.16),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(iconPadding),
-                                child: iconAsset == null
-                                    ? Icon(icon,
-                                        size: iconSize, color: Colors.white)
-                                    : Image.asset(
-                                        iconAsset!,
-                                        key: ValueKey(
-                                            'lumo-color-tile-icon-${title.toLowerCase()}'),
-                                        width: iconSize,
-                                        height: iconSize,
-                                        fit: BoxFit.contain,
-                                        excludeFromSemantics: true,
-                                        errorBuilder: (_, __, ___) => Icon(
-                                          icon,
-                                          size: iconSize,
-                                          color: Colors.white,
+                        if (centered)
+                          _centeredContent(compact, iconSize, arrowRadius,
+                              MediaQuery.textScalerOf(context).scale(1) > 1.2)
+                        else
+                          Column(
+                            crossAxisAlignment: centered
+                                ? CrossAxisAlignment.center
+                                : CrossAxisAlignment.start,
+                            children: [
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(.18),
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(.16),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(iconPadding),
+                                  child: iconAsset == null
+                                      ? Icon(icon,
+                                          size: iconSize, color: Colors.white)
+                                      : Image.asset(
+                                          iconAsset!,
+                                          key: ValueKey(
+                                              'lumo-color-tile-icon-${title.toLowerCase()}'),
+                                          width: iconSize,
+                                          height: iconSize,
+                                          fit: BoxFit.contain,
+                                          excludeFromSemantics: true,
+                                          errorBuilder: (_, __, ___) => Icon(
+                                            icon,
+                                            size: iconSize,
+                                            color: Colors.white,
+                                          ),
                                         ),
-                                      ),
+                                ),
                               ),
-                            ),
-                            if (compact)
-                              const SizedBox(height: 3)
-                            else
-                              const Spacer(),
-                            Text(
-                              title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign:
-                                  centered ? TextAlign.center : TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w900,
-                                fontSize: compact ? 12 : 18,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(height: compact ? 0 : 2),
-                            Padding(
-                              padding: centered
-                                  ? EdgeInsets.zero
-                                  : EdgeInsets.only(right: compact ? 22 : 32),
-                              child: Text(
-                                subtitle,
-                                maxLines: compact ? 1 : 2,
+                              if (compact)
+                                const SizedBox(height: 3)
+                              else
+                                const Spacer(),
+                              Text(
+                                title,
+                                maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: centered
                                     ? TextAlign.center
                                     : TextAlign.start,
                                 style: TextStyle(
                                   fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white.withOpacity(.86),
-                                  fontSize: compact ? 9 : 12,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: compact ? 12 : 18,
+                                  color: Colors.white,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                              SizedBox(height: compact ? 0 : 2),
+                              Padding(
+                                padding: centered
+                                    ? EdgeInsets.zero
+                                    : EdgeInsets.only(right: compact ? 22 : 32),
+                                child: Text(
+                                  subtitle,
+                                  maxLines: compact ? 1 : 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: centered
+                                      ? TextAlign.center
+                                      : TextAlign.start,
+                                  style: TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white.withOpacity(.86),
+                                    fontSize: compact ? 9 : 12,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         Positioned(
                           right: 0,
                           bottom: 0,
@@ -349,6 +359,62 @@ class LumoColorTile extends StatelessWidget {
             ),
           );
         },
+      );
+
+  /// Bild 01: großes Symbol mittig, Titel ganz lesbar (notfalls kleiner),
+  /// Unterzeile bis zu drei Zeilen, Platz für den Pfeil unten rechts.
+  Widget _centeredContent(
+          bool compact, double iconSize, double arrowRadius, bool largeText) =>
+      Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Image.asset(
+                  iconAsset!,
+                  key: ValueKey('lumo-color-tile-icon-${title.toLowerCase()}'),
+                  width: iconSize,
+                  height: iconSize,
+                  fit: BoxFit.contain,
+                  excludeFromSemantics: true,
+                  errorBuilder: (_, __, ___) =>
+                      Icon(icon, size: iconSize, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              title,
+              maxLines: 1,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+                fontSize: compact ? 15 : 18,
+                color: Colors.white,
+                shadows: const [
+                  Shadow(color: Color(0x55000000), blurRadius: 4),
+                ],
+              ),
+            ),
+          ),
+          Text(
+            subtitle,
+            maxLines: largeText ? 1 : 3,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w700,
+              color: Colors.white.withOpacity(.9),
+              fontSize: compact ? 9.5 : 12,
+              height: 1.1,
+            ),
+          ),
+          SizedBox(height: arrowRadius * 2 - 2),
+        ],
       );
 }
 

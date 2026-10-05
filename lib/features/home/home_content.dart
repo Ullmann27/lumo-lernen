@@ -26,10 +26,14 @@ class HomeContent extends StatelessWidget {
     super.key,
     required this.appState,
     required this.onSection,
+    this.drawBackground = true,
   });
 
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
+
+  /// Im App-Rahmen malt die Shell die Szene vollflächig.
+  final bool drawBackground;
 
   void _startPractice(String subject, {String? unit}) {
     final lastUnit = appState.learningProfile.lastTopics[subject];
@@ -79,26 +83,17 @@ class HomeContent extends StatelessWidget {
             builder: (context, constraints) {
               final wide = constraints.maxWidth >= 720;
               final compact = constraints.maxWidth < 320;
-              // Keep the primary labels wide enough to remain whole at phone
-              // and small-tablet widths. The shared tile intentionally keeps
-              // its label as one accessible paragraph, so the Home grid must
-              // provide the width rather than relying on ellipses.
+              // Bild 01: vier Kacheln in einer Reihe; schmal oder mit großer
+              // Schrift zwei pro Reihe, damit die Namen ganz lesbar bleiben.
               final textScale = MediaQuery.textScalerOf(context).scale(1);
               final columns =
-                  (constraints.maxWidth >= 300 && constraints.maxWidth < 360) ||
-                          (textScale > 1.2 &&
-                              constraints.maxWidth >= 300 &&
-                              constraints.maxWidth < 720)
-                      ? 1
-                      : constraints.maxWidth < 720
-                          ? 2
-                          : 4;
+                  constraints.maxWidth >= 340 && textScale <= 1.2 ? 4 : 2;
               final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
                 LumoColorTile(
                   key: const ValueKey('home-learn'),
                   title: 'Lernen',
-                  subtitle: 'Deine Fächer und Aufgaben',
+                  subtitle: 'Mathe, Deutsch und mehr',
                   icon: Icons.menu_book_rounded,
                   iconAsset: 'assets/lumo_design/icons/book_open.png',
                   color: LumoVisualTokens.learning,
@@ -130,393 +125,284 @@ class HomeContent extends StatelessWidget {
                   onTap: () => onSection(LumoSection.rewards),
                 ),
               ];
-              return LumoSceneBackground(
-                scene: LumoScene.home,
-                backgroundAsset: 'assets/lumo_design/bg/bg_home.png',
-                child: ListView(
-                  key: const PageStorageKey('lumo-home-scroll'),
-                  padding: EdgeInsets.fromLTRB(16, compact ? 4 : 12, 16, 24),
-                  children: [
-                    _HomeEntrance(
+              final list = ListView(
+                key: const PageStorageKey('lumo-home-scroll'),
+                padding: EdgeInsets.fromLTRB(16, compact ? 4 : 12, 16, 24),
+                children: [
+                  _HomeEntrance(
+                    reduceMotion: reduceMotion,
+                    child: _HomeHero(
+                      name: name,
+                      compact: compact,
+                      wide: wide,
                       reduceMotion: reduceMotion,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Hallo, $name!',
-                                  key: const ValueKey('home-greeting'),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: LumoTextStyles.heading2.copyWith(
-                                    color: LumoVisualTokens.white,
-                                  ),
-                                ),
-                                Text(
-                                  'Dein Lumo-Tag · ${state.grade}. Klasse',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: LumoTextStyles.body.copyWith(
-                                    color: LumoVisualTokens.muted,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                LumoSpeechBubble(
-                                  text:
-                                      'Hallo! Bereit für ein neues Abenteuer?',
-                                  fontSize: compact ? 12 : null,
-                                  padding: compact
-                                      ? const EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 8)
-                                      : null,
-                                ),
-                              ],
-                            ),
-                          ),
-                          _BreathingFox(
-                            reduceMotion: reduceMotion,
-                            child: LumoFoxPose(
-                              pose: LumoDesignFoxPose.kartWave,
-                              size: wide
-                                  ? 178
-                                  : compact
-                                      ? 88
-                                      : 112,
-                            ),
-                          ),
-                        ],
+                    ),
+                  ),
+                  SizedBox(height: compact ? 4 : 10),
+                  _HomeEntrance(
+                    reduceMotion: reduceMotion,
+                    delay: const Duration(milliseconds: 60),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        key: const ValueKey('home-kart-banner'),
+                        borderRadius: BorderRadius.circular(24),
+                        onTap: () => onSection(LumoSection.games),
+                        child: _KartBanner(compact: compact),
                       ),
                     ),
-                    SizedBox(height: compact ? 4 : 10),
-                    _HomeEntrance(
-                      reduceMotion: reduceMotion,
-                      delay: const Duration(milliseconds: 60),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          key: const ValueKey('home-kart-banner'),
-                          borderRadius: BorderRadius.circular(24),
-                          onTap: () => onSection(LumoSection.games),
-                          child: LumoGlassCard(
-                            padding: const EdgeInsets.all(12),
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.asset(
-                                    'assets/lumo_design/cards/game_kart.png',
-                                    key: const ValueKey('home-kart-image'),
-                                    width: compact ? 48 : 84,
-                                    height: compact ? 42 : 56,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) => const Icon(
-                                      Icons.sports_motorsports_rounded,
-                                      color: LumoVisualTokens.cyanBright,
-                                      size: 38,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Lumo Kart',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: LumoTextStyles.heading2.copyWith(
-                                          color: LumoVisualTokens.white,
-                                          fontSize: compact ? 16 : null,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Lernen auf der Überholspur!',
-                                        maxLines: compact ? 1 : 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: LumoTextStyles.body.copyWith(
-                                          color: LumoVisualTokens.muted,
-                                          fontSize: compact ? 10 : null,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                if (!compact) ...[
-                                  const Icon(Icons.arrow_forward_rounded,
-                                      color: LumoVisualTokens.cyanBright),
-                                  const SizedBox(width: 8),
-                                ],
-                                DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    color: LumoVisualTokens.cyan,
-                                    borderRadius: BorderRadius.circular(14),
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 6),
-                                    child: Text(
-                                      'Neu!',
-                                      style: TextStyle(
-                                        fontFamily: 'Nunito',
-                                        fontWeight: FontWeight.w900,
-                                        color: LumoVisualTokens.night,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                  ),
+                  SizedBox(height: compact ? 6 : 12),
+                  GridView.count(
+                    crossAxisCount: columns,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: wide
+                        ? 1.02
+                        : columns == 4
+                            ? .74
+                            : textScale > 1.2
+                                ? .9
+                                : 1.1,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      for (var i = 0; i < actions.length; i++)
+                        _HomeEntrance(
+                          reduceMotion: reduceMotion,
+                          delay: Duration(milliseconds: 120 + i * 60),
+                          child: actions[i],
                         ),
-                      ),
-                    ),
-                    SizedBox(height: compact ? 6 : 12),
-                    GridView.count(
-                      crossAxisCount: columns,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: wide
-                          ? 1.02
-                          : columns == 4
-                              ? .66
-                              : .84,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        for (var i = 0; i < actions.length; i++)
-                          _HomeEntrance(
-                            reduceMotion: reduceMotion,
-                            delay: Duration(milliseconds: 120 + i * 60),
-                            child: actions[i],
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: TextButton.icon(
-                        key: const ValueKey('home-explanation'),
-                        style: TextButton.styleFrom(
-                          minimumSize: const Size(48, 48),
-                          foregroundColor: LumoVisualTokens.cyanBright,
-                        ),
-                        onPressed: () => LumoCompanionRequests.instance
-                            .requestAppExplanation(),
-                        icon: const Icon(Icons.waving_hand_rounded, size: 20),
-                        label: const Text("Lumo zeigt's dir"),
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    if (constraints.maxWidth >= 360)
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 11,
-                            child: SizedBox(
-                              height: cardHeight,
-                              child: _ProgressCard(
-                                appState: appState,
-                                reduceMotion: reduceMotion,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            flex: 10,
-                            child: _MotivationCard(
-                              reduceMotion: reduceMotion,
-                              onLearn: () => onSection(LumoSection.learn),
-                              height: cardHeight,
-                            ),
-                          ),
-                        ],
-                      )
-                    else ...[
-                      _ProgressCard(
-                        appState: appState,
-                        reduceMotion: reduceMotion,
-                      ),
-                      const SizedBox(height: 12),
-                      _MotivationCard(
-                        reduceMotion: reduceMotion,
-                        onLearn: () => onSection(LumoSection.learn),
-                      ),
                     ],
-                    const SizedBox(height: 20),
-                    Text(
-                      'Das passt heute zu dir',
-                      style: LumoTextStyles.heading3.copyWith(
-                        color: LumoVisualTokens.white,
+                  ),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton.icon(
+                      key: const ValueKey('home-explanation'),
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(48, 48),
+                        foregroundColor: LumoVisualTokens.cyanBright,
                       ),
+                      onPressed: () => LumoCompanionRequests.instance
+                          .requestAppExplanation(),
+                      icon: const Icon(Icons.waving_hand_rounded, size: 20),
+                      label: const Text("Lumo zeigt's dir"),
                     ),
-                    const SizedBox(height: 10),
-                    _RecommendationCard(
-                      message: recommendation?.message ??
-                          'Wähle ein Fach. Wir starten mit kleinen Schritten.',
-                      label: recommendation?.cta ?? 'Kurze Lernrunde',
-                      onTap: () => _startPractice(
-                        recommendation?.subject ?? 'Mathematik',
-                        unit: recommendation?.unit,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      'Deine Lernfächer',
-                      style: LumoTextStyles.heading3.copyWith(
-                        color: LumoVisualTokens.white,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    _ResponsiveCards(
-                      columns: wide ? 2 : 1,
+                  ),
+                  const SizedBox(height: 4),
+                  if (constraints.maxWidth >= 360)
+                    Row(
                       children: [
-                        _SubjectCard(
-                          subject: 'Mathematik',
-                          subtitle: 'Zahlen, Rechnen und Formen',
-                          icon: Icons.calculate_rounded,
-                          color: const Color(0xFF93540C),
-                          completed: _correctFor('Mathematik'),
-                          onTap: () => _startPractice('Mathematik'),
-                        ),
-                        _SubjectCard(
-                          subject: 'Deutsch',
-                          subtitle: 'Buchstaben, Wörter und Sätze',
-                          icon: Icons.menu_book_rounded,
-                          color: const Color(0xFF6D43AC),
-                          completed: _correctFor('Deutsch'),
-                          onTap: () => _startPractice('Deutsch'),
-                        ),
-                        _SubjectCard(
-                          subject: 'Sachunterricht',
-                          subtitle: 'Deine Welt entdecken',
-                          icon: Icons.public_rounded,
-                          color: const Color(0xFF087A6A),
-                          completed: _correctFor('Sachunterricht'),
-                          onTap: () => _startPractice('Sachunterricht'),
-                        ),
-                        _SubjectCard(
-                          subject: 'Logik',
-                          subtitle: 'Muster und knifflige Rätsel',
-                          icon: Icons.extension_rounded,
-                          color: const Color(0xFF326EAC),
-                          completed: _correctFor('Logik'),
-                          onTap: () => _startPractice('Logik'),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Card(
-                      margin: EdgeInsets.zero,
-                      color: LumoVisualTokens.glass,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(22),
-                        side: BorderSide(
-                          color: LumoVisualTokens.cyan.withOpacity(.4),
-                        ),
-                      ),
-                      child: ExpansionTile(
-                        key: const PageStorageKey('home-discover'),
-                        title: Text(
-                          'Mehr mit Lumo entdecken',
-                          style: LumoTextStyles.heading3.copyWith(
-                            color: LumoVisualTokens.white,
+                        Expanded(
+                          flex: 11,
+                          child: SizedBox(
+                            height: cardHeight,
+                            child: _ProgressCard(
+                              appState: appState,
+                              reduceMotion: reduceMotion,
+                            ),
                           ),
                         ),
-                        subtitle: Text('Lesen, Abenteuer und deine Sammlung',
-                            style: LumoTextStyles.body
-                                .copyWith(color: LumoVisualTokens.muted)),
-                        leading: const Icon(Icons.explore_rounded,
-                            color: LumoVisualTokens.cyan),
-                        children: [
-                          _extra('Lesen mit Lumo', 'Geschichten Satz für Satz',
-                              Icons.menu_book_rounded, _startReading),
-                          _extra(
-                              'Quizshow',
-                              'Fragen mit Jokern beantworten',
-                              Icons.quiz_rounded,
-                              () => _open(context,
-                                  QuizShowContent(appState: appState))),
-                          _extra(
-                              'Lumo Kart',
-                              'In der Spieleauswahl starten',
-                              Icons.sports_motorsports_rounded,
-                              () => onSection(LumoSection.games),
-                              key: const ValueKey('home-discover-kart')),
-                          _extra(
-                              'ABC-Tafel',
-                              'Buchstaben anhören und entdecken',
-                              Icons.abc_rounded,
-                              () => _open(context, const LumoAbcTafelScreen())),
-                          _extra(
-                              'Meine Rechentricks',
-                              'Schlaue Wege beim Rechnen',
-                              Icons.lightbulb_rounded,
-                              () => _open(context,
-                                  const LumoRechentricksPosterScreen())),
-                          _extra(
-                              'Meine Erfolge',
-                              'Deine gesammelten Abzeichen',
-                              Icons.emoji_events_rounded,
-                              () => _open(context,
-                                  AchievementsWallScreen(appState: appState))),
-                          _extra(
-                              'Lumo LIVE',
-                              'Sprache und Foto-Hilfe',
-                              Icons.mic_rounded,
-                              () => _open(context,
-                                  LumoLiveProScreen(appState: appState))),
-                          _extra(
-                              'Lumo Journal',
-                              'Dein eigenes Tagebuch',
-                              Icons.edit_note_rounded,
-                              () => _open(context,
-                                  LumoJournalScreen(appState: appState))),
-                          _extra(
-                              'Meine Welt',
-                              'Deine Inseln wachsen beim Lernen',
-                              Icons.landscape_rounded,
-                              () => _open(
-                                  context, LumoWeltScreen(appState: appState))),
-                          _extra(
-                              'Foto-Lektion',
-                              'Übungen zu deinem Heft',
-                              Icons.photo_camera_rounded,
-                              () => _open(context,
-                                  LumoPhotoLessonScreen(appState: appState))),
-                          _extra(
-                              'Laut lesen',
-                              'Lumo hört dir auf Wunsch zu',
-                              Icons.record_voice_over_rounded,
-                              () => _open(context,
-                                  LumoReadingBuddyScreen(appState: appState))),
-                          _extra(
-                              'Lumo Quest',
-                              'Kleine Lernabenteuer',
-                              Icons.auto_awesome_rounded,
-                              () => _open(context,
-                                  LumoQuestHubScreen(appState: appState))),
-                          _extra(
-                              'Lumo Zauberwelt',
-                              'Geschichten und weitere Ideen',
-                              Icons.auto_fix_high_rounded,
-                              () => _open(context,
-                                  LumoMagicHubScreen(appState: appState))),
-                          _extra(
-                              'Lumo 3D Welt',
-                              'Deine Spiele in einer App',
-                              Icons.view_in_ar_rounded,
-                              () => onSection(LumoSection.games)),
-                        ],
-                      ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          flex: 10,
+                          child: _MotivationCard(
+                            reduceMotion: reduceMotion,
+                            onLearn: () => onSection(LumoSection.learn),
+                            height: cardHeight,
+                          ),
+                        ),
+                      ],
+                    )
+                  else ...[
+                    _ProgressCard(
+                      appState: appState,
+                      reduceMotion: reduceMotion,
+                    ),
+                    const SizedBox(height: 12),
+                    _MotivationCard(
+                      reduceMotion: reduceMotion,
+                      onLearn: () => onSection(LumoSection.learn),
                     ),
                   ],
-                ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Das passt heute zu dir',
+                    style: LumoTextStyles.heading3.copyWith(
+                      color: LumoVisualTokens.white,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  _RecommendationCard(
+                    message: recommendation?.message ??
+                        'Wähle ein Fach. Wir starten mit kleinen Schritten.',
+                    label: recommendation?.cta ?? 'Kurze Lernrunde',
+                    onTap: () => _startPractice(
+                      recommendation?.subject ?? 'Mathematik',
+                      unit: recommendation?.unit,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Deine Lernfächer',
+                    style: LumoTextStyles.heading3.copyWith(
+                      color: LumoVisualTokens.white,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  _ResponsiveCards(
+                    columns: wide ? 2 : 1,
+                    children: [
+                      _SubjectCard(
+                        subject: 'Mathematik',
+                        subtitle: 'Zahlen, Rechnen und Formen',
+                        icon: Icons.calculate_rounded,
+                        color: const Color(0xFF93540C),
+                        completed: _correctFor('Mathematik'),
+                        onTap: () => _startPractice('Mathematik'),
+                      ),
+                      _SubjectCard(
+                        subject: 'Deutsch',
+                        subtitle: 'Buchstaben, Wörter und Sätze',
+                        icon: Icons.menu_book_rounded,
+                        color: const Color(0xFF6D43AC),
+                        completed: _correctFor('Deutsch'),
+                        onTap: () => _startPractice('Deutsch'),
+                      ),
+                      _SubjectCard(
+                        subject: 'Sachunterricht',
+                        subtitle: 'Deine Welt entdecken',
+                        icon: Icons.public_rounded,
+                        color: const Color(0xFF087A6A),
+                        completed: _correctFor('Sachunterricht'),
+                        onTap: () => _startPractice('Sachunterricht'),
+                      ),
+                      _SubjectCard(
+                        subject: 'Logik',
+                        subtitle: 'Muster und knifflige Rätsel',
+                        icon: Icons.extension_rounded,
+                        color: const Color(0xFF326EAC),
+                        completed: _correctFor('Logik'),
+                        onTap: () => _startPractice('Logik'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Card(
+                    margin: EdgeInsets.zero,
+                    color: LumoVisualTokens.glass,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22),
+                      side: BorderSide(
+                        color: LumoVisualTokens.cyan.withOpacity(.4),
+                      ),
+                    ),
+                    child: ExpansionTile(
+                      key: const PageStorageKey('home-discover'),
+                      title: Text(
+                        'Mehr mit Lumo entdecken',
+                        style: LumoTextStyles.heading3.copyWith(
+                          color: LumoVisualTokens.white,
+                        ),
+                      ),
+                      subtitle: Text('Lesen, Abenteuer und deine Sammlung',
+                          style: LumoTextStyles.body
+                              .copyWith(color: LumoVisualTokens.muted)),
+                      leading: const Icon(Icons.explore_rounded,
+                          color: LumoVisualTokens.cyan),
+                      children: [
+                        _extra('Lesen mit Lumo', 'Geschichten Satz für Satz',
+                            Icons.menu_book_rounded, _startReading),
+                        _extra(
+                            'Quizshow',
+                            'Fragen mit Jokern beantworten',
+                            Icons.quiz_rounded,
+                            () => _open(
+                                context, QuizShowContent(appState: appState))),
+                        _extra(
+                            'Lumo Kart',
+                            'In der Spieleauswahl starten',
+                            Icons.sports_motorsports_rounded,
+                            () => onSection(LumoSection.games),
+                            key: const ValueKey('home-discover-kart')),
+                        _extra(
+                            'ABC-Tafel',
+                            'Buchstaben anhören und entdecken',
+                            Icons.abc_rounded,
+                            () => _open(context, const LumoAbcTafelScreen())),
+                        _extra(
+                            'Meine Rechentricks',
+                            'Schlaue Wege beim Rechnen',
+                            Icons.lightbulb_rounded,
+                            () => _open(
+                                context, const LumoRechentricksPosterScreen())),
+                        _extra(
+                            'Meine Erfolge',
+                            'Deine gesammelten Abzeichen',
+                            Icons.emoji_events_rounded,
+                            () => _open(context,
+                                AchievementsWallScreen(appState: appState))),
+                        _extra(
+                            'Lumo LIVE',
+                            'Sprache und Foto-Hilfe',
+                            Icons.mic_rounded,
+                            () => _open(context,
+                                LumoLiveProScreen(appState: appState))),
+                        _extra(
+                            'Lumo Journal',
+                            'Dein eigenes Tagebuch',
+                            Icons.edit_note_rounded,
+                            () => _open(context,
+                                LumoJournalScreen(appState: appState))),
+                        _extra(
+                            'Meine Welt',
+                            'Deine Inseln wachsen beim Lernen',
+                            Icons.landscape_rounded,
+                            () => _open(
+                                context, LumoWeltScreen(appState: appState))),
+                        _extra(
+                            'Foto-Lektion',
+                            'Übungen zu deinem Heft',
+                            Icons.photo_camera_rounded,
+                            () => _open(context,
+                                LumoPhotoLessonScreen(appState: appState))),
+                        _extra(
+                            'Laut lesen',
+                            'Lumo hört dir auf Wunsch zu',
+                            Icons.record_voice_over_rounded,
+                            () => _open(context,
+                                LumoReadingBuddyScreen(appState: appState))),
+                        _extra(
+                            'Lumo Quest',
+                            'Kleine Lernabenteuer',
+                            Icons.auto_awesome_rounded,
+                            () => _open(context,
+                                LumoQuestHubScreen(appState: appState))),
+                        _extra(
+                            'Lumo Zauberwelt',
+                            'Geschichten und weitere Ideen',
+                            Icons.auto_fix_high_rounded,
+                            () => _open(context,
+                                LumoMagicHubScreen(appState: appState))),
+                        _extra(
+                            'Lumo 3D Welt',
+                            'Deine Spiele in einer App',
+                            Icons.view_in_ar_rounded,
+                            () => onSection(LumoSection.games)),
+                      ],
+                    ),
+                  ),
+                ],
               );
+              return drawBackground
+                  ? LumoSceneBackground(
+                      scene: LumoScene.home,
+                      showPlaceholderLabel: false,
+                      dimmed: true,
+                      child: list,
+                    )
+                  : list;
             },
           );
         },
@@ -728,8 +614,8 @@ class _MotivationCard extends StatelessWidget {
                 child: Row(
                   children: [
                     const Expanded(
-                      child: LumoSpeechBubble(
-                        text: 'Du kannst das!',
+                      child: LumoHeroBubble(
+                        text: '„Du kannst das!“',
                         handwritten: true,
                       ),
                     ),
@@ -1011,4 +897,193 @@ class _ResponsiveCards extends StatelessWidget {
         ),
     ]);
   }
+}
+
+/// Bild 01: Lumo winkt im Kart, links „Hallo!“, rechts der Spruch.
+class _HomeHero extends StatelessWidget {
+  const _HomeHero({
+    required this.name,
+    required this.compact,
+    required this.wide,
+    required this.reduceMotion,
+  });
+
+  final String name;
+  final bool compact;
+  final bool wide;
+  final bool reduceMotion;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth;
+          // Auf breiten, niedrigen Geräten (Fold quer) bleiben die Kacheln
+          // im ersten Bild sichtbar.
+          final screen = MediaQuery.sizeOf(context).height;
+          final height = compact
+              ? 150.0
+              : (width * (wide ? .32 : .52))
+                  .clamp(150.0, 290.0)
+                  .clamp(0.0, screen * .3)
+                  .clamp(120.0, 290.0)
+                  .toDouble();
+          final foxSize = height * (compact ? 1 : 1.12);
+          return SizedBox(
+            height: height,
+            child: Stack(clipBehavior: Clip.none, children: [
+              Positioned(
+                left: (width - foxSize) / 2 + width * .04,
+                bottom: -foxSize * .04,
+                child: RepaintBoundary(
+                  child: _BreathingFox(
+                    reduceMotion: reduceMotion,
+                    child: LumoFoxPose(
+                        pose: LumoDesignFoxPose.kartWave, size: foxSize),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 0,
+                top: height * .06,
+                width: width * (compact ? .5 : .34),
+                child: Transform.rotate(
+                  angle: -.05,
+                  child: LumoHeroBubble(
+                    key: const ValueKey('home-greeting'),
+                    title: 'Hallo, $name!',
+                    text: 'Bereit für ein neues Abenteuer?',
+                  ),
+                ),
+              ),
+              if (!compact)
+                Positioned(
+                  right: -4,
+                  top: height * .4,
+                  width: width * .25,
+                  child: Transform.rotate(
+                    angle: -.1,
+                    child: const LumoHeroBubble(
+                      text: 'Kleine Schritte\nGroße Zukunft!',
+                      handwritten: true,
+                    ),
+                  ),
+                ),
+            ]),
+          );
+        },
+      );
+}
+
+/// Banner „Lumo Kart – Lernen auf der Überholspur!“ mit Bild und „Neu!“.
+class _KartBanner extends StatelessWidget {
+  const _KartBanner({required this.compact});
+
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) => LumoGlassCard(
+        padding: const EdgeInsets.all(8),
+        radius: 22,
+        child: Row(
+          children: [
+            Container(
+              width: compact ? 36 : 48,
+              height: compact ? 36 : 48,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF3C8DFF), Color(0xFF1846C8)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                border: Border.all(color: Colors.white.withOpacity(.6)),
+              ),
+              child: Icon(Icons.sports_score_rounded,
+                  color: Colors.white, size: compact ? 22 : 30),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Lumo Kart',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: LumoTextStyles.heading2.copyWith(
+                      color: LumoVisualTokens.white,
+                      fontSize: compact ? 16 : 22,
+                      height: 1.1,
+                    ),
+                  ),
+                  Text(
+                    'Lernen auf der Überholspur!',
+                    maxLines: compact ? 1 : 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: LumoTextStyles.body.copyWith(
+                      color: LumoVisualTokens.white,
+                      fontSize: compact ? 10 : 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (!compact)
+              Container(
+                width: 26,
+                height: 26,
+                margin: const EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: LumoVisualTokens.white),
+                ),
+                child: const Icon(Icons.chevron_right_rounded,
+                    color: LumoVisualTokens.white, size: 20),
+              ),
+            SizedBox(
+              width: compact ? 70 : 120,
+              height: compact ? 44 : 66,
+              child: Stack(children: [
+                Positioned.fill(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      'assets/lumo_design/cards/game_kart.png',
+                      key: const ValueKey('home-kart-image'),
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => const Icon(
+                        Icons.sports_motorsports_rounded,
+                        color: LumoVisualTokens.cyanBright,
+                        size: 38,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 4,
+                  top: 4,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: LumoVisualTokens.gold,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      child: Text(
+                        'Neu!',
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 11,
+                          fontWeight: FontWeight.w900,
+                          color: LumoVisualTokens.night,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ]),
+            ),
+          ],
+        ),
+      );
 }

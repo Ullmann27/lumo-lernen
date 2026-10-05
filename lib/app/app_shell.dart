@@ -355,6 +355,7 @@ class _AppShellState extends State<AppShell>
   /// Bildschirme, die schon wie Heinz' Zielbilder aufgebaut sind: Die Szene
   /// liegt auf dem Handy vollflächig hinter Kopfzeile, Inhalt und Leiste.
   static LumoScene? _fullBleedScene(LumoSection section) => switch (section) {
+        LumoSection.home => LumoScene.home,
         LumoSection.learn => LumoScene.learning,
         LumoSection.tests => LumoScene.tests,
         LumoSection.profile => LumoScene.profile,
@@ -366,7 +367,10 @@ class _AppShellState extends State<AppShell>
     final section = _appState.state.section;
     switch (section) {
       case LumoSection.home:
-        return HomeContent(appState: _appState, onSection: _navigateTo);
+        return HomeContent(
+            appState: _appState,
+            onSection: _navigateTo,
+            drawBackground: !fullBleed);
       case LumoSection.games:
         return GamesContent(
           appState: _appState,
@@ -500,14 +504,25 @@ class _AppShellState extends State<AppShell>
                                       onSection: _navigateTo)),
                               Expanded(
                                   child: fullBleed
-                                      ? content
+                                      // Zielbild-Seiten: Lumo steht als kleiner
+                                      // Fuchs in der Szene; sein Menü bietet
+                                      // dieselben Hilfen wie die Leiste.
+                                      ? Stack(children: [
+                                          Positioned.fill(child: content),
+                                          Positioned(
+                                            right: 6,
+                                            bottom: 4,
+                                            child: LumoCompanionHost(
+                                                appState: _appState,
+                                                onSection: _navigateTo,
+                                                floating: true),
+                                          ),
+                                        ])
                                       : ClipRRect(
                                           borderRadius: BorderRadius.circular(
                                               LumoRadius.lg),
                                           child: content,
                                         )),
-                              // Auf den Zielbild-Bildschirmen spricht Lumo aus der
-                              // Szene; Hilfe bleibt über das Fuchs-Bild oben.
                               if (!fullBleed)
                                 LumoCompanionHost(
                                     appState: _appState,
