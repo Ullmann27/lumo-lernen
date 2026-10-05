@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'adventure/lumo_adventure_tasks.dart';
 import 'german_task_templates.dart';
 import 'math_task_templates.dart';
 import 'primary_school_word_data.dart';
@@ -55,6 +56,9 @@ class Curriculum {
       'Minus bis 10000', 'Zahlenraum bis 1 Million', 'Zeit Minuten und Stunden',
       'Hohlmaße Liter und Milliliter', 'Brüche erweitern', 'Mittelwert',
       'Symmetrieachsen',
+      // Lumos Abenteuer-Aufgaben (lumo_adventure_tasks.dart)
+      'Rechengeschichten', 'Zahlenmauer', 'Zahlenrätsel', 'Marktstand',
+      'Platzhalter-Rätsel', 'Größer, kleiner, gleich', 'Uhr-Abenteuer',
     ],
     'Deutsch': <String>[
       'Buchstaben-Lautierung', 'Anfangslaute', 'Endlaute', 'Buchstaben',
@@ -67,6 +71,9 @@ class Curriculum {
       'Satz bauen', 'St oder Sp', 'Wort-Bild schreiben',
       'Wer-Fall und Wen-Fall', 'Großschreibung', 'ie oder i',
       'Die 4 Fälle', 'dass oder das', 'Umstandswörter', 'Vorvergangenheit',
+      'Wortdetektiv', 'Silbenrätsel', 'Begleiter-Rätsel',
+      'Gegenteil-Geschichten', 'Wörter zusammensetzen', 'Wortarten-Jagd',
+      'Satzbaustelle',
     ],
     'Rechtschreibung': <String>[
       'Haeufige Woerter', 'Gross und klein', 'Doppelmitlaut', 'Dehnungen',
@@ -84,10 +91,11 @@ class Curriculum {
       'Wasserkreislauf', 'Bundesländer Österreichs', 'Geografie Österreich',
       'Geschichte', 'Kontinente und Ozeane', 'Ökosysteme', 'Stromkreise',
       'Diagramme lesen',
+      'Wer bin ich?', 'Monate und Wochentage', 'Österreich-Reise',
     ],
     'Logik': <String>[
       'Muster', 'Reihenfolgen', 'Zahlenmuster', 'Schlussfolgern',
-      'Regeln kombinieren',
+      'Regeln kombinieren', 'Was passt nicht?', 'Geheimcode',
     ],
   };
 
@@ -96,6 +104,13 @@ class Curriculum {
   /// This describes app content availability, not an official curriculum.
   static List<String> unitsForGrade(String subject, int grade, {bool currentGradeOnly = false}) {
     final capped = grade.clamp(1, 4).toInt();
+    return <String>{
+      ..._templateUnitsForGrade(subject, capped, currentGradeOnly: currentGradeOnly),
+      ...LumoAdventureTasks.unitsFor(subject, capped, currentGradeOnly: currentGradeOnly),
+    }.toList(growable: false);
+  }
+
+  static List<String> _templateUnitsForGrade(String subject, int capped, {required bool currentGradeOnly}) {
     final lowestGrade = currentGradeOnly ? capped : 1;
     if (subject == 'Logik') {
       return <String>[
@@ -167,6 +182,7 @@ class ExerciseFactory {
   ExerciseFactory({int? seed}) : _random = Random(seed);
   final Random _random;
   int _serial = 0;
+  String? _childName;
 
   LumoTask next({
     required int grade,
@@ -174,7 +190,9 @@ class ExerciseFactory {
     String unit = 'Alle',
     Map<String, int> weakSkills = const <String, int>{},
     Set<String> avoidUnits = const <String>{},
+    String? childName,
   }) {
+    _childName = childName;
     final cappedGrade = grade.clamp(1, 4).toInt();
     final chosenSubject = _chooseSubject(subject, weakSkills);
     final units = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
@@ -191,6 +209,12 @@ class ExerciseFactory {
         : <String>[unit];
     if (candidateUnits.isEmpty) {
       candidateUnits = units.where((u) => !avoidUnits.contains(u)).toList();
+    }
+    // Gemischte Runden: etwa 40 % Lumos Abenteuer-Aufgaben, damit Lernen
+    // spielerisch bleibt (Geschichten, Rätsel, Zahlenmauern …).
+    final adventures = candidateUnits.where((u) => LumoAdventureTasks.handles(chosenSubject, u)).toList();
+    if ((unit == 'Alle' || !availableUnit) && adventures.isNotEmpty && _random.nextInt(10) < 4) {
+      return _build(grade: cappedGrade, subject: chosenSubject, unit: adventures[_random.nextInt(adventures.length)]);
     }
     final chosenUnit = candidateUnits.isEmpty ? units[_random.nextInt(units.length)] : _weightedUnit(candidateUnits, weakSkills);
     return _build(grade: cappedGrade, subject: chosenSubject, unit: chosenUnit);
@@ -257,6 +281,7 @@ class ExerciseFactory {
 
   LumoTask _build({required int grade, required String subject, required String unit}) {
     _serial++;
+    if (LumoAdventureTasks.handles(subject, unit)) return _adventure(grade, subject, unit);
     switch (subject) {
       case 'Mathematik':
         return _math(grade, unit);
@@ -355,6 +380,24 @@ class ExerciseFactory {
         answer,
         'Von links nach rechts ist die Reihenfolge $first – $middle – $last. $answer steht $asked.',
         customChoices: <String>[first, middle, last]);
+  }
+
+  /// Lumos Abenteuer-Aufgaben, auf Wunsch mit dem Namen des Kindes.
+  LumoTask _adventure(int grade, String subject, String unit) {
+    final task = LumoAdventureTasks(_random, childName: _childName)
+        .generate(subject: subject, unit: unit, grade: grade);
+    return LumoTask(
+      id: _id('abenteuer-${task.unit}'),
+      grade: grade,
+      subject: task.subject,
+      unit: task.unit,
+      prompt: task.prompt,
+      choices: _shuffledChoices(task.choices),
+      answer: task.answer,
+      explanation: task.explanation,
+      visual: task.visual,
+      difficulty: grade,
+    );
   }
 
   LumoTask _math(int grade, String unit) {
