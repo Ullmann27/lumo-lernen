@@ -105,4 +105,31 @@ void main() {
     await tester.pumpWidget(const SizedBox());
     app.dispose();
   });
+
+  testWidgets('Pausenfenster im Lumo-Stil passt auch auf 280 px mit großer Schrift',
+      (tester) async {
+    final app = LumoAppState();
+    for (final size in const [Size(280, 640), Size(850, 392)]) {
+      await tester.binding.setSurfaceSize(size);
+      await tester.pumpWidget(MaterialApp(
+        home: MediaQuery(
+          data: MediaQueryData(size: size, textScaler: const TextScaler.linear(1.6)),
+          child: LumoMemoryScreen(
+              key: UniqueKey(), appState: app, seed: 4, difficulty: MemoryDifficulty.leicht),
+        ),
+      ));
+      await tester.pump();
+      await tester.tap(find.byTooltip('Pausieren / Zurück'));
+      await tester.pump();
+      expect(find.byKey(const ValueKey('lumo-pause-panel')), findsOneWidget);
+      expect(find.text('Spiel pausiert'), findsOneWidget);
+      expect(tester.takeException(), isNull, reason: '$size');
+      await tester.tap(find.text('Fortsetzen'));
+      await tester.pump();
+      expect(find.byKey(const ValueKey('lumo-pause-panel')), findsNothing);
+    }
+    await tester.binding.setSurfaceSize(null);
+    await tester.pumpWidget(const SizedBox());
+    app.dispose();
+  });
 }

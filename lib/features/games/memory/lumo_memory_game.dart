@@ -474,23 +474,55 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
 
   Widget _buildPortrait(double w, double h) {
     final roomy = h >= 760;
-    final lumoSize = roomy ? 120.0 : (h >= 620 ? 92.0 : 0.0);
+    // Lumo lehnt sich wie im Zielbild hinter dem Brett hervor: Ein Teil der
+    // Figur verschwindet hinter der Steinplatte, die Pfoten liegen am Rand.
+    final lumoSize = roomy
+        ? math.min(w * .5, 210.0)
+        : (h >= 620 ? math.min(w * .34, 128.0) : 0.0);
+    final hidden = lumoSize * .26;
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
       child: Column(children: [
-        _topBar(logoHeight: roomy ? 72 : 44),
+        _topBar(logoHeight: roomy ? math.min(96, h * .11) : 46),
+        _scores(),
+        const SizedBox(height: 4),
         if (lumoSize > 0)
           SizedBox(
-            height: lumoSize,
-            child: Row(children: [
-              _lumoFigure(lumoSize),
-              const SizedBox(width: 6),
-              Expanded(child: _SpeechBubble(text: _lumoLine)),
-            ]),
+            height: lumoSize - hidden,
+            child: LayoutBuilder(builder: (context, c) {
+              final width = c.maxWidth;
+              // Lumo steht links der Mitte, die Sprechblase rechts daneben –
+              // nichts davon verdeckt sein Gesicht.
+              final lumoLeft = roomy ? width * .30 - lumoSize / 2 + lumoSize * .18 : 0.0;
+              final bubbleLeft = lumoLeft + lumoSize * .78;
+              return Stack(clipBehavior: Clip.none, children: [
+                if (roomy)
+                  Positioned(
+                    left: 0,
+                    top: 6,
+                    width: lumoSize * .40,
+                    child: _FloatingCard(
+                        motif: MemoryMotif.panda,
+                        angle: -.16,
+                        phase: 0,
+                        reduceMotion: _reduceMotion),
+                  ),
+                Positioned(
+                  left: lumoLeft,
+                  top: 0,
+                  width: lumoSize,
+                  height: lumoSize,
+                  child: _lumoFigure(lumoSize),
+                ),
+                Positioned(
+                  left: bubbleLeft,
+                  right: 0,
+                  top: roomy ? lumoSize * .12 : 4,
+                  child: _SpeechBubble(text: _lumoLine),
+                ),
+              ]);
+            }),
           ),
-        const SizedBox(height: 6),
-        _scores(),
-        const SizedBox(height: 8),
         Expanded(child: _board()),
         const SizedBox(height: 6),
         _TurnText(text: _turnText),
@@ -509,12 +541,38 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
         SizedBox(
           width: panelW,
           child: Column(children: [
-            _topBar(logoHeight: math.min(56, h * .14)),
+            _topBar(logoHeight: math.min(84, h * .18)),
             Expanded(
               child: Center(
                 child: SingleChildScrollView(
                   child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    _lumoFigure(lumoSize),
+                    SizedBox(
+                      height: lumoSize,
+                      width: panelW,
+                      child: Stack(clipBehavior: Clip.none, children: [
+                        Positioned(
+                          left: 0,
+                          top: lumoSize * .08,
+                          width: panelW * .28,
+                          child: _FloatingCard(
+                              motif: MemoryMotif.giraffe,
+                              angle: -.18,
+                              phase: .2,
+                              reduceMotion: _reduceMotion),
+                        ),
+                        Positioned(
+                          right: 0,
+                          top: lumoSize * .02,
+                          width: panelW * .28,
+                          child: _FloatingCard(
+                              motif: MemoryMotif.pinguin,
+                              angle: .16,
+                              phase: .7,
+                              reduceMotion: _reduceMotion),
+                        ),
+                        Center(child: _lumoFigure(lumoSize)),
+                      ]),
+                    ),
                     _SpeechBubble(text: _lumoLine),
                   ]),
                 ),
@@ -539,13 +597,16 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
 
   Widget _board() {
     final reduce = _reduceMotion;
+    // Steinplatte: kühles Schiefergrau mit Cyan-Schimmer am Rand, darunter
+    // ein weicher Schatten für Tiefe (Zielbild: Karten liegen auf Stein).
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(26),
         gradient: const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xCC0B2A5C), Color(0xE6071A3E)],
+          colors: [Color(0xF0394866), Color(0xF2222C45), Color(0xF5141B30)],
+          stops: [0, .55, 1],
         ),
         border: Border.all(color: const Color(0xAA37D2FD), width: 1.6),
         boxShadow: [
@@ -1162,6 +1223,65 @@ class _ResultCard extends StatelessWidget {
             ),
           ]),
         ),
+      ),
+    );
+  }
+}
+
+
+/// Schwebende, leicht gedrehte Tierkarte als Deko neben Lumo (Zielbild 02).
+class _FloatingCard extends StatefulWidget {
+  const _FloatingCard({
+    required this.motif,
+    required this.angle,
+    required this.phase,
+    required this.reduceMotion,
+  });
+  final MemoryMotif motif;
+  final double angle;
+  final double phase;
+  final bool reduceMotion;
+
+  @override
+  State<_FloatingCard> createState() => _FloatingCardState();
+}
+
+class _FloatingCardState extends State<_FloatingCard>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 3600));
+
+  @override
+  void initState() {
+    super.initState();
+    if (!widget.reduceMotion) _c.repeat();
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final card = ExcludeSemantics(
+      child: AspectRatio(
+        aspectRatio: .74,
+        child: _CardFront(motif: widget.motif, matched: false),
+      ),
+    );
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: _c,
+        child: card,
+        builder: (context, child) {
+          final t = math.sin((_c.value + widget.phase) * 2 * math.pi);
+          return Transform.translate(
+            offset: Offset(0, t * 4),
+            child: Transform.rotate(angle: widget.angle + t * .03, child: child),
+          );
+        },
       ),
     );
   }
