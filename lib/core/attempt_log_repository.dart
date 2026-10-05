@@ -31,14 +31,27 @@ class AttemptLogRepository {
     }
   }
 
-  Future<void> append(Attempt attempt) async {
+  /// Hängt Einträge an. Wirft [StateError], wenn der Speicher nicht
+  /// schreibt; der Aufrufer behält die Einträge dann und versucht es erneut.
+  Future<void> append(Attempt attempt) => appendAll([attempt]);
+
+  Future<void> appendAll(List<Attempt> attempts) async {
     final all = await load();
-    if (all.any((a) => a.id == attempt.id)) return;
-    all.add(attempt);
+    final known = {for (final a in all) a.id};
+    var added = false;
+    for (final a in attempts) {
+      if (known.add(a.id)) {
+        all.add(a);
+        added = true;
+      }
+    }
+    if (!added) return;
     final kept =
         all.length > maxEntries ? all.sublist(all.length - maxEntries) : all;
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_key, jsonEncode(kept.map((a) => a.toJson()).toList()));
+    final ok = await prefs.setString(
+        _key, jsonEncode(kept.map((a) => a.toJson()).toList()));
+    if (!ok) throw StateError('Aufgabenprotokoll wurde nicht gespeichert');
   }
 
   Future<void> clear() async {

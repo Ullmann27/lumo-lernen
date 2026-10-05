@@ -230,6 +230,8 @@ class _InsightTile extends StatelessWidget {
     final (icon, color) = switch (insight.kind) {
       InsightKind.weakness => (Icons.flag_rounded, const Color(0xFFFFB86B)),
       InsightKind.strength => (Icons.verified_rounded, const Color(0xFF7BE08C)),
+      InsightKind.pattern => (Icons.repeat_rounded, const Color(0xFFFFB86B)),
+      InsightKind.trend => (Icons.trending_up_rounded, LumoVisualTokens.gold),
       InsightKind.comparison => (
           Icons.compare_arrows_rounded,
           LumoVisualTokens.cyanBright
@@ -249,6 +251,22 @@ class _InsightTile extends StatelessWidget {
 class _CompetencyRow extends StatelessWidget {
   const _CompetencyRow({required this.stat});
   final CompetencyStat stat;
+
+  /// Ø-Zeit, Veränderung, zuletzt geübt und beim Lesen Genauigkeit/Tempo.
+  String _details() {
+    final parts = <String>[];
+    final ms = stat.avgMs;
+    if (ms != null) parts.add('Ø ${(ms / 1000).toStringAsFixed(ms < 10000 ? 1 : 0)} s');
+    final t = stat.trend;
+    if (t != null) parts.add(t >= 0 ? 'Trend +$t' : 'Trend −${-t}');
+    final score = stat.avgScore;
+    if (score != null) parts.add('Genauigkeit ${(score * 100).round()}\u00A0%');
+    final wpm = stat.wordsPerMinute;
+    if (wpm != null) parts.add('$wpm Wörter/Min');
+    final days = DateTime.now().difference(stat.lastAt).inDays;
+    parts.add(days == 0 ? 'zuletzt heute' : days == 1 ? 'zuletzt gestern' : 'zuletzt vor $days Tagen');
+    return parts.join(' · ');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -288,6 +306,21 @@ class _CompetencyRow extends StatelessWidget {
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
                 color: color)),
+        if (_details().isNotEmpty)
+          Text(_details(),
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFFD6E8FF))),
+        if (stat.patterns.isNotEmpty)
+          Text(
+              'Häufiger Fehler: ${stat.patterns.first.$1} (${stat.patterns.first.$2}×)',
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFFFFB86B))),
       ]),
     );
   }

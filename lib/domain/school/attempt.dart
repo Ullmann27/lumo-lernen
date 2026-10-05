@@ -17,6 +17,7 @@ class Attempt {
     this.given = '',
     this.expected = '',
     this.durationMs,
+    this.score,
   });
 
   final String id;
@@ -35,6 +36,9 @@ class Attempt {
   final String expected;
   final int? durationMs;
 
+  /// Teilbewertung 0..1, z. B. Lese-Genauigkeit eines vorgelesenen Satzes.
+  final double? score;
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'sid': studentId,
@@ -48,6 +52,7 @@ class Attempt {
         if (given.isNotEmpty) 'a': given,
         if (expected.isNotEmpty) 'e': expected,
         if (durationMs != null) 'ms': durationMs,
+        if (score != null) 'sc': double.parse(score!.toStringAsFixed(3)),
       };
 
   static Attempt? tryFromJson(Object? raw) {
@@ -68,6 +73,7 @@ class Attempt {
       given: '${raw['a'] ?? ''}',
       expected: '${raw['e'] ?? ''}',
       durationMs: (raw['ms'] as num?)?.toInt(),
+      score: (raw['sc'] as num?)?.toDouble(),
     );
   }
 }

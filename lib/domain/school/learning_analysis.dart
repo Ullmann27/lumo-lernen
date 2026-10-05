@@ -1,4 +1,5 @@
 import 'attempt.dart';
+import 'error_patterns.dart';
 
 enum MasteryLevel { unknown, needsHelp, developing, secure }
 
@@ -13,6 +14,10 @@ class CompetencyStat {
     required this.hints,
     required this.lastAt,
     required this.avgMs,
+    this.trend,
+    this.patterns = const [],
+    this.avgScore,
+    this.wordsPerMinute,
   });
 
   final String competency;
@@ -25,6 +30,19 @@ class CompetencyStat {
   final int hints;
   final DateTime lastAt;
   final int? avgMs;
+
+  /// Veränderung der Trefferquote in Prozentpunkten: die letzten Versuche
+  /// gegen die davor (je mindestens vier). null = noch zu wenig Daten.
+  final int? trend;
+
+  /// Wiederkehrende Fehlermuster (mindestens zweimal), häufigstes zuerst.
+  final List<(String, int)> patterns;
+
+  /// Mittlere Teilbewertung 0..1 (z. B. Lese-Genauigkeit), falls erfasst.
+  final double? avgScore;
+
+  /// Lesetempo in Wörtern pro Minute (nur beim Vorlesen von Sätzen).
+  final int? wordsPerMinute;
 
   int get wrong => attempts - correct;
   double get accuracy => attempts == 0 ? 0 : correct / attempts;
@@ -39,7 +57,7 @@ class CompetencyStat {
   }
 }
 
-enum InsightKind { weakness, strength, comparison }
+enum InsightKind { weakness, strength, comparison, pattern, trend }
 
 class Insight {
   const Insight(this.kind, this.text, {this.competency});
@@ -145,6 +163,10 @@ class LearningAnalysis {
       return 'visuellen Zehnerfeldern';
     }
     if (competency == 'Einmaleins') return 'Malreihen zum Anschauen';
+    if (competency == 'Sätze vorlesen' || competency == 'Text vorlesen') {
+      return 'Lumo liest vor, du liest nach';
+    }
+    if (competency == 'Buchstaben schreiben') return 'Buchstaben nachspuren';
     if (competency.contains('Rechtschreib') || competency.contains('Diktat')) {
       return 'Silben zum Mitklatschen';
     }
@@ -153,6 +175,7 @@ class LearningAnalysis {
 
   static LearningAnalysis analyze(List<Attempt> attempts, {DateTime? now}) {
     final today = now ?? DateTime.now();
+    const detector = ErrorPatternDetector();
     final byComp = <String, List<Attempt>>{};
     for (final a in attempts) {
       byComp.putIfAbsent(a.competency, () => []).add(a);
@@ -165,6 +188,44 @@ class LearningAnalysis {
           : (timed.map((a) => a.durationMs!).reduce((x, y) => x + y) /
                   timed.length)
               .round();
+      final ordered = [...list]..sort((x, y) => x.at.compareTo(y.at));
+      int? trend;
+      if (ordered.length >= 8) {
+        final half = (ordered.length / 2).floor().clamp(4, 10).toInt();
+        final recent = ordered.sublist(ordered.length - half);
+        final before = ordered.sublist(
+            (ordered.length - 2 * half).clamp(0, ordered.length).toInt(),
+            ordered.length - half);
+        double rate(List<Attempt> l) =>
+            l.where((a) => a.correct).length / l.length;
+        if (before.length >= 4) {
+          trend = ((rate(recent) - rate(before)) * 100).round();
+        }
+      }
+      final counts = <String, int>{};
+      for (final a in list) {
+        final p = detector.detect(a);
+        if (p != null) counts[p] = (counts[p] ?? 0) + 1;
+      }
+      final patterns = [
+        for (final e in counts.entries)
+          if (e.value >= 2) (e.key, e.value),
+      ]..sort((x, y) => y.$2.compareTo(x.$2));
+      final scored = list.where((a) => a.score != null).toList();
+      final avgScore = scored.isEmpty
+          ? null
+          : scored.map((a) => a.score!).reduce((x, y) => x + y) / scored.length;
+      int? wpm;
+      if (list.first.subject == 'Lesen') {
+        var words = 0, ms = 0;
+        for (final a in timed) {
+          final n = a.prompt.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
+          if (n == 0 || a.durationMs! < 500) continue;
+          words += n;
+          ms += a.durationMs!;
+        }
+        if (words > 0 && ms > 0) wpm = (words / (ms / 60000)).round();
+      }
       stats.add(CompetencyStat(
         competency: name,
         subject: list.first.subject,
@@ -174,6 +235,10 @@ class LearningAnalysis {
         hints: list.where((a) => a.hintUsed).length,
         lastAt: list.map((a) => a.at).reduce((x, y) => x.isAfter(y) ? x : y),
         avgMs: avg,
+        trend: trend,
+        patterns: patterns,
+        avgScore: avgScore,
+        wordsPerMinute: wpm,
       ));
     });
     stats.sort((a, b) => a.accuracy.compareTo(b.accuracy));
@@ -201,6 +266,27 @@ class LearningAnalysis {
         insights.add(Insight(
           InsightKind.strength,
           '„${s.competency}“ sitzt sicher (${s.percent}\u00A0% richtig bei ${s.attempts} Aufgaben).',
+          competency: s.competency,
+        ));
+      }
+    }
+
+    for (final s in stats) {
+      if (s.patterns.isNotEmpty) {
+        final (name, count) = s.patterns.first;
+        insights.add(Insight(
+          InsightKind.pattern,
+          'Wiederholter Fehler bei „${s.competency}“: $name ($count×).',
+          competency: s.competency,
+        ));
+      }
+      final t = s.trend;
+      if (t != null && t.abs() >= 15) {
+        insights.add(Insight(
+          InsightKind.trend,
+          t > 0
+              ? '„${s.competency}“ wird besser (+$t Prozentpunkte).'
+              : '„${s.competency}“ ist zuletzt schwächer geworden (−${-t} Prozentpunkte).',
           competency: s.competency,
         ));
       }

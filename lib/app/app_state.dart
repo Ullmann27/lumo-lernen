@@ -10,6 +10,7 @@ import '../core/learning_profile_engine.dart';
 import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/attempt_log_repository.dart';
+import '../core/lumo_error_log.dart';
 import '../core/reward_wallet_repository.dart';
 import '../core/school_repository.dart';
 import '../domain/school/attempt.dart';
@@ -380,6 +381,7 @@ class LumoAppState extends ChangeNotifier {
     String given = '',
     String expected = '',
     int? durationMs,
+    double? score,
   }) async {
     if (_disposed) return;
     try {
@@ -402,6 +404,7 @@ class LumoAppState extends ChangeNotifier {
         given: given,
         expected: expected,
         durationMs: durationMs,
+        score: score,
       );
       _syncLearningRecommendation();
       _safeNotify();
@@ -410,8 +413,14 @@ class LumoAppState extends ChangeNotifier {
     }
   }
 
-  /// Schreibt die Antwort ins Aufgabenprotokoll. Ein Fehler hier darf den
-  /// Lernfortschritt nie verhindern.
+  /// Einträge, die noch nicht gespeichert werden konnten. Sie gehen nicht
+  /// verloren: Beim nächsten Eintrag (oder [flushAttemptLog]) wird erneut
+  /// geschrieben. Die Oberfläche kann [unsavedAttempts] anzeigen.
+  final List<Attempt> _unsavedAttempts = <Attempt>[];
+  int get unsavedAttempts => _unsavedAttempts.length;
+
+  /// Schreibt die Antwort ins Aufgabenprotokoll. Ein Fehler hier verhindert
+  /// nie den Lernfortschritt, wird aber gemerkt und erneut versucht.
   Future<void> _logAttempt({
     required String subject,
     required String unit,
@@ -421,25 +430,54 @@ class LumoAppState extends ChangeNotifier {
     required String given,
     required String expected,
     int? durationMs,
+    double? score,
   }) async {
+    final now = DateTime.now();
+    String studentId = 'self';
     try {
-      final now = DateTime.now();
-      await attemptLog.append(Attempt(
-        id: '${now.microsecondsSinceEpoch}-${_attemptSerial++}',
-        studentId: await school.activeStudentId() ?? 'self',
-        subject: subject,
-        unit: unit,
-        competency: const CompetencyClassifier()
-            .classify(subject: subject, unit: unit, prompt: prompt),
-        correct: correct,
-        at: now,
-        hintUsed: hintUsed,
-        prompt: prompt,
-        given: given,
-        expected: expected,
-        durationMs: durationMs,
-      ));
-    } catch (_) {}
+      studentId = await school.activeStudentId() ?? 'self';
+    } catch (_) {
+      // Ohne lesbare Zuordnung zählt die Antwort für das Kind dieses Geräts.
+    }
+    _unsavedAttempts.add(Attempt(
+      id: '${now.microsecondsSinceEpoch}-${_attemptSerial++}',
+      studentId: studentId,
+      subject: subject,
+      unit: unit,
+      competency: const CompetencyClassifier()
+          .classify(subject: subject, unit: unit, prompt: prompt),
+      correct: correct,
+      at: now,
+      hintUsed: hintUsed,
+      prompt: prompt,
+      given: given,
+      expected: expected,
+      durationMs: durationMs,
+      score: score,
+    ));
+    await flushAttemptLog();
+  }
+
+  /// Versucht, alle noch offenen Protokolleinträge zu speichern.
+  /// Liefert true, wenn nichts mehr offen ist.
+  Future<bool> flushAttemptLog() async {
+    if (_unsavedAttempts.isEmpty) return true;
+    final batch = List<Attempt>.of(_unsavedAttempts);
+    try {
+      await attemptLog.appendAll(batch);
+      _unsavedAttempts.removeWhere(batch.contains);
+      return _unsavedAttempts.isEmpty;
+    } catch (error, stack) {
+      // Keine Kinderdaten ins Fehlerprotokoll, nur Art und Anzahl.
+      unawaited(LumoErrorLog.instance.record(FlutterErrorDetails(
+        exception: StateError(
+            'Aufgabenprotokoll: ${batch.length} Einträge warten aufs Speichern'),
+        stack: stack,
+        library: 'attempt_log',
+      )));
+      _safeNotify();
+      return false;
+    }
   }
 
   /// Retries the existing learning state without counting the answer again.

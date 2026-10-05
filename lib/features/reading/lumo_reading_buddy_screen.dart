@@ -1,3 +1,4 @@
+import 'dart:async';
 // ════════════════════════════════════════════════════════════════════════
 // LUMO READING BUDDY — Mit-Lese-Coach mit Voice-Recognition
 // ════════════════════════════════════════════════════════════════════════
@@ -70,12 +71,34 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
         _finished = true;
         _speech.cancel();
         HapticFeedback.heavyImpact();
+        _logFinished(p);
       }
     });
   }
 
+  DateTime? _startedAt;
+
+  /// Fertig vorgelesener Text zählt als Aufgabe „Text vorlesen“. Gespeichert
+  /// werden Titel, Genauigkeit und Zeit, keine Aufnahme und kein Transkript.
+  void _logFinished(ReadingProgress p) {
+    final text = _selectedText;
+    if (text == null) return;
+    final started = _startedAt;
+    unawaited(widget.appState.recordLearningAnswer(
+      subject: 'Lesen',
+      unit: 'Text vorlesen',
+      correct: p.accuracy >= .8,
+      prompt: text.title,
+      durationMs: started == null
+          ? null
+          : DateTime.now().difference(started).inMilliseconds.clamp(0, 600000).toInt(),
+      score: p.accuracy,
+    ));
+  }
+
   Future<void> _startListening() async {
     if (_selectedText == null) return;
+    _startedAt = DateTime.now();
     if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
         !mounted) return;
     HapticFeedback.mediumImpact();

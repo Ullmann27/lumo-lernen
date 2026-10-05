@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
-import '../../domain/school/attempt.dart';
 import '../../domain/school/school_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 
