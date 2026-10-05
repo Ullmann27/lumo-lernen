@@ -489,17 +489,26 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   Widget _buildGrid() {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: LayoutBuilder(
-          builder: (_, constraints) => GridView.builder(
+      child: LayoutBuilder(builder: (_, constraints) {
+        // Alle Karten sollen ohne Scrollen ins Bild passen: Die Karten werden
+        // dafür etwas breiter als hoch (bis 4:3); reicht das nicht, darf
+        // das Feld scrollen.
+        final cols = constraints.maxWidth >= 600 ? _cols : 4;
+        final rows = (_totalCards / cols).ceil();
+        final cellW = (constraints.maxWidth - (cols - 1) * 8) / cols;
+        final cellH = (constraints.maxHeight - (rows - 1) * 8) / rows;
+        final aspect = cellH > 0 ? (cellW / cellH).clamp(0.8, 1.34) : 1.0;
+        return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: constraints.maxWidth >= 600 ? _cols : 4,
+                  crossAxisCount: cols,
                   mainAxisSpacing: 8,
                   crossAxisSpacing: 8,
-                  childAspectRatio: 1.0,
+                  childAspectRatio: aspect.toDouble(),
                 ),
                 itemCount: _totalCards,
                 itemBuilder: (_, i) => _buildCard(i),
-              )),
+              );
+      }),
     );
   }
 

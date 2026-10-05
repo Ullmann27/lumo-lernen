@@ -3,7 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════
 // Aufgabentypen:
 //   - 'Wie viel Geld siehst du?' (Muenzen zaehlen, bis 10 Euro)
-//   - 'Welche Muenze ist 2 Euro?' (Muenze finden)
+//   - 'Welche Münze ist 2 Euro?' (Muenze finden)
 //   - 'Du hast X Euro, was kannst du kaufen?' (Kaufen-Aufgabe)
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════

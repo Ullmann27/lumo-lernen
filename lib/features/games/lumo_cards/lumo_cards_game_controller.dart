@@ -495,7 +495,7 @@ class LumoCardsGameController extends ChangeNotifier {
       case LumoCardColor.blue:
         return 'Blau';
       case LumoCardColor.green:
-        return 'Gruen';
+        return 'Grün';
     }
   }
 }

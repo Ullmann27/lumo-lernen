@@ -706,7 +706,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   }
 
   /// Sichtbar = Kind ist dran ODER 2-Mensch-Modus. Bei vsBot+Lumo-dran:
-  /// wir verstecken die Hand und zeigen 'Lumo ueberlegt...'.
+  /// wir verstecken die Hand und zeigen 'Lumo überlegt …'.
   bool _isMyTurnVisible(LumoCardsGameState s) {
     if (!widget.vsBot) return true;
     return s.currentPlayerIndex == 0;

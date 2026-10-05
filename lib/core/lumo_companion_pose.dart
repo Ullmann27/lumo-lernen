@@ -75,11 +75,11 @@ extension LumoCompanionPosePaths on LumoCompanionPose {
       case LumoCompanionPose.cheer:
         return 'Lumo jubelt';
       case LumoCompanionPose.think:
-        return 'Lumo ueberlegt';
+        return 'Lumo überlegt';
       case LumoCompanionPose.sad:
         return 'Lumo ist traurig';
       case LumoCompanionPose.surprised:
-        return 'Lumo ist ueberrascht';
+        return 'Lumo ist überrascht';
     }
   }
 }

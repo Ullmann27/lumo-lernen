@@ -454,7 +454,7 @@ class LumoCardsRules {
     ),
     LearningQuestion(
       prompt: 'Welche Farbe hat eine reife Banane?',
-      options: ['Rot', 'Gelb', 'Blau', 'Gruen'],
+      options: ['Rot', 'Gelb', 'Blau', 'Grün'],
       correctIndex: 1,
       hint: 'Eine reife Banane ist gelb.',
     ),

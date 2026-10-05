@@ -438,7 +438,7 @@ const Map<RechentricksKind, String> kRechentricksDescription =
           'dann den Rest dazu.',
   RechentricksKind.stepByStep:
       'Bei grossen Zahlen: Hunderter, dann Zehner, dann Einer - '
-          'Schritt fuer Schritt.',
+          'Schritt für Schritt.',
   RechentricksKind.decomposeBoth:
       'Beide Zahlen in Hunderter, Zehner und Einer zerlegen, dann '
           'gleiche Teile zusammenrechnen.',

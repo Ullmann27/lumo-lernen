@@ -277,7 +277,7 @@ class VisibleUiTests(unittest.TestCase):
             <node content-desc="Verdeckt"/>
             <node content-desc="Lumo Karte, Rot, Zahl 7, spielbar"/>
             <node content-desc="Lumo gewinnt diesmal!"/>
-            <node content-desc="Nochmal"/><node content-desc="Zurueck"/>
+            <node content-desc="Nochmal"/><node content-desc="Zurück"/>
             </hierarchy>''')
         self.assertEqual(len(described_cards(root)), 1)
         self.assertTrue(is_result(root))

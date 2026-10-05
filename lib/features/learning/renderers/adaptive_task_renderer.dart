@@ -311,7 +311,7 @@ class _LocalHelpBanner extends StatelessWidget {
               ),
               child: Text(
                 wrongCount == 2
-                    ? '💡 Lumo hilft Schritt fuer Schritt'
+                    ? '💡 Lumo hilft Schritt für Schritt'
                     : '💡 Noch ein Tipp von Lumo',
                 style: const TextStyle(
                   fontFamily: 'Nunito',
@@ -357,7 +357,7 @@ class _LocalHelpBanner extends StatelessWidget {
       if (op == 'subtraction') {
         return _pick(task, <String>[
           'Du startest mit $a. Dann nimmst du $b weg. Decke $b Dinge ab oder streiche sie. Was uebrig bleibt, ist die Antwort.',
-          'Stell dir $a Aepfel vor. Du gibst $b weg. Zaehl was uebrig bleibt.',
+          'Stell dir $a Äpfel vor. Du gibst $b weg. Zähl, was übrig bleibt.',
           'Beginne bei $a auf dem Zahlenstrahl und huepfe $b Schritte zurueck.',
         ]);
       }
@@ -365,7 +365,7 @@ class _LocalHelpBanner extends StatelessWidget {
         return _pick(task, <String>[
           'Stell dir $a Gruppen mit je $b Dingen vor. Wie viele insgesamt?',
           'Du kannst auch tauschen: $b × $a ist genau dasselbe.',
-          'Zerlege $a × $b in $a Reihen mit $b Wuerfeln.',
+          'Zerlege $a × $b in $a Reihen mit $b Würfeln.',
         ]);
       }
       return _pick(task, <String>[

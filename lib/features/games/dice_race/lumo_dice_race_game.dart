@@ -65,7 +65,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
     );
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _say(
-          'Wuerfel-Wettlauf! Wer zuerst beim Stern ist, gewinnt. Du faengst an!');
+          'Würfel-Wettlauf! Wer zuerst beim Stern ist, gewinnt. Du fängst an!');
     });
   }
 
@@ -116,7 +116,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
       String? extra;
       if (_kindPos == _lumoPos && _kindPos != _goal && _lumoPos != 0) {
         _lumoPos = 0;
-        extra = 'Du hast Lumo geschickt zurueck zum Start! 🦊';
+        extra = 'Du hast Lumo zurück zum Start geschickt! 🦊';
       }
       _hint = extra ?? 'Du wuerfelst $roll und gehst $roll Felder vor.';
       setState(() {});
@@ -273,7 +273,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
         ),
         const Expanded(
           child: Center(
-            child: Text('Wuerfel-Wettlauf 🎲',
+            child: Text('Würfel-Wettlauf 🎲',
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 18,
@@ -523,7 +523,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
               onPressed: canRoll ? _rollDice : null,
               icon: const Icon(Icons.casino_rounded),
               label: Text(canRoll
-                  ? 'Wuerfeln!'
+                  ? 'Würfeln!'
                   : (_busy
                       ? (_turn == _Player.lumo ? 'Lumo... 🦊' : 'Moment...')
                       : 'Warten')),

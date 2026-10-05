@@ -292,7 +292,7 @@ class _Hero extends StatelessWidget {
                 SizedBox(height: 4),
                 Text(
                   'Lies einen Text laut vor — Lumo hoert dir zu.\n'
-                  'Wort fuer Wort wird gruen markiert.',
+                  'Wort für Wort wird grün markiert.',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 12.5,
