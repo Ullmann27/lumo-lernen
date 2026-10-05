@@ -2,6 +2,8 @@ name: Build unified Lumo Android APK
 # Trigger integration probe for Heinz 2026-10-05
 on:
   workflow_dispatch:
+  pull_request:
+    branches: ['claude/lumo-gesamt']
   push:
     branches: ['copilot/5979796457-update-integrationsaudit', 'chatgpt/lumo-test-apk-2026-10-05']
     paths: ['.github/workflows/release-apk.yml']
