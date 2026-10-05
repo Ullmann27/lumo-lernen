@@ -36,14 +36,20 @@ jobs:
           set -euo pipefail
           timeout 240s godot --headless --path build/kart-regression --editor --import --quit 2>&1 | tee kart-proof/import.log
           ! grep -E 'SCRIPT ERROR:|Parse Error:' kart-proof/import.log
-      - name: Run vehicle, driving, controls and bridge regressions
+      - name: Run vehicle, driving, rendered menu, controls and bridge regressions
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           python3 - <<'PY'
           import json, pathlib, subprocess, sys
           tests = ['kart_vehicle_regression', 'kart_physics_regression', 'kart_courses_driving_regression', 'kart_menu_flow_regression', 'kart_touch_regression', 'kart_modes_regression', 'kart_race_bridge_regression', 'host_bridge_regression']
           results = []
           for name in tests:
-              command = ['godot', '--headless', '--path', 'build/kart-regression', '--script', 'res://scripts/tests/' + name + '.gd']
+              common = ['--path', 'build/kart-regression', '--script', 'res://scripts/tests/' + name + '.gd']
+              if name == 'kart_menu_flow_regression':
+                  command = ['xvfb-run', '-a', '-s', '-screen 0 1280x1024x24', 'godot', '--rendering-method', 'gl_compatibility', '--audio-driver', 'Dummy'] + common
+              else:
+                  command = ['godot', '--headless'] + common
               timed_out = False
               try:
                   result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=100)
@@ -61,11 +67,13 @@ jobs:
           pathlib.Path('kart-proof/results.json').write_text(json.dumps(results, indent=2) + '\n')
           sys.exit(0 if all(item['passed'] for item in results) else 1)
           PY
-      - name: Upload exact regression evidence
+      - name: Upload exact regression evidence and rendered screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: opus-kart-proof-${{ github.run_id }}-${{ github.run_attempt }}
-          path: kart-proof/
+          path: |
+            kart-proof/
+            build/kart-regression/exports/holographic-proof/menu-flow-*.png
           if-no-files-found: error
           retention-days: 14
