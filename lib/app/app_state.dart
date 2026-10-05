@@ -9,7 +9,10 @@ import '../core/app_settings.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
+import '../core/attempt_log_repository.dart';
 import '../core/reward_wallet_repository.dart';
+import '../domain/school/attempt.dart';
+import '../domain/school/competency.dart';
 import '../core/scanned_work_analysis.dart';
 import '../core/settings_repository.dart';
 
@@ -154,9 +157,15 @@ class LumoSessionState {
 class LumoAppState extends ChangeNotifier {
   LumoAppState(
       {RewardWalletRepository? walletRepository,
-      LearningProfileEngine? learningProfile})
+      LearningProfileEngine? learningProfile,
+      AttemptLogRepository? attemptLog})
       : _walletRepository = walletRepository ?? RewardWalletRepository.instance,
-        _learningProfile = learningProfile ?? LearningProfileEngine();
+        _learningProfile = learningProfile ?? LearningProfileEngine(),
+        attemptLog = attemptLog ?? AttemptLogRepository();
+
+  /// Aufgabenprotokoll des Kindes (Grundlage für Lernbericht und Lehrerbereich).
+  final AttemptLogRepository attemptLog;
+  int _attemptSerial = 0;
 
   final RewardWalletRepository _walletRepository;
   LumoSessionState _state = LumoSessionState();
@@ -363,6 +372,10 @@ class LumoAppState extends ChangeNotifier {
     required bool correct,
     bool hintUsed = false,
     bool requireSaved = false,
+    String prompt = '',
+    String given = '',
+    String expected = '',
+    int? durationMs,
   }) async {
     if (_disposed) return;
     try {
@@ -376,11 +389,53 @@ class LumoAppState extends ChangeNotifier {
         isCorrect: correct,
         hintUsed: hintUsed,
       );
+      await _logAttempt(
+        subject: subject,
+        unit: unit,
+        correct: correct,
+        hintUsed: hintUsed,
+        prompt: prompt,
+        given: given,
+        expected: expected,
+        durationMs: durationMs,
+      );
       _syncLearningRecommendation();
       _safeNotify();
     } catch (_) {
       if (requireSaved) rethrow;
     }
+  }
+
+  /// Schreibt die Antwort ins Aufgabenprotokoll. Ein Fehler hier darf den
+  /// Lernfortschritt nie verhindern.
+  Future<void> _logAttempt({
+    required String subject,
+    required String unit,
+    required bool correct,
+    required bool hintUsed,
+    required String prompt,
+    required String given,
+    required String expected,
+    int? durationMs,
+  }) async {
+    try {
+      final now = DateTime.now();
+      await attemptLog.append(Attempt(
+        id: '${now.microsecondsSinceEpoch}-${_attemptSerial++}',
+        studentId: 'self',
+        subject: subject,
+        unit: unit,
+        competency: const CompetencyClassifier()
+            .classify(subject: subject, unit: unit, prompt: prompt),
+        correct: correct,
+        at: now,
+        hintUsed: hintUsed,
+        prompt: prompt,
+        given: given,
+        expected: expected,
+        durationMs: durationMs,
+      ));
+    } catch (_) {}
   }
 
   /// Retries the existing learning state without counting the answer again.
@@ -489,6 +544,7 @@ class LumoAppState extends ChangeNotifier {
   Future<void> resetLearningProfile() async {
     try {
       await _learningProfile.reset();
+      await attemptLog.clear();
     } catch (_) {}
     _safeNotify();
   }

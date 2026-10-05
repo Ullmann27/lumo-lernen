@@ -7,6 +7,7 @@ import '../app/app_state.dart';
 import '../core/reward_shop_repository.dart';
 import '../core/reward_wallet_repository.dart';
 import '../domain/rewards/reward_shop.dart';
+import '../features/report/lernbericht_screen.dart';
 import '../theme/lumo_visual_tokens.dart';
 import 'design/lumo_design_system.dart';
 
@@ -153,6 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         _buildProfileCard(),
         _buildStreakAndGoal(),
         _buildRewards(),
+        _buildReportEntry(),
         _buildExtras(),
       ],
     );
@@ -535,6 +537,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ]),
+      ),
+    );
+  }
+
+  Widget _buildReportEntry() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+      child: Semantics(
+        button: true,
+        label: 'Mein Lernbericht',
+        excludeSemantics: true,
+        child: InkWell(
+          key: const ValueKey('profile-report'),
+          borderRadius: BorderRadius.circular(22),
+          onTap: () => Navigator.of(context).push<void>(
+            MaterialPageRoute<void>(
+              builder: (_) => LernberichtScreen(appState: widget.appState),
+            ),
+          ),
+          child: LumoGlassCard(
+            padding: const EdgeInsets.fromLTRB(14, 12, 10, 12),
+            radius: 22,
+            child: Row(children: [
+              const Icon(Icons.insights_rounded,
+                  color: LumoVisualTokens.cyanBright, size: 28),
+              const SizedBox(width: 10),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Mein Lernbericht',
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900)),
+                    Text('Was sitzt schon sicher? Wobei hilft Lumo?',
+                        style: TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.muted,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700)),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right_rounded,
+                  color: LumoVisualTokens.white),
+            ]),
+          ),
+        ),
       ),
     );
   }

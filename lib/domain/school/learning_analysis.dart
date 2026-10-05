@@ -1,0 +1,226 @@
+import 'attempt.dart';
+
+enum MasteryLevel { unknown, needsHelp, developing, secure }
+
+/// Kennzahlen zu einer Kompetenz.
+class CompetencyStat {
+  const CompetencyStat({
+    required this.competency,
+    required this.subject,
+    required this.attempts,
+    required this.correct,
+    required this.hints,
+    required this.lastAt,
+    required this.avgMs,
+  });
+
+  final String competency;
+  final String subject;
+  final int attempts;
+  final int correct;
+  final int hints;
+  final DateTime lastAt;
+  final int? avgMs;
+
+  int get wrong => attempts - correct;
+  double get accuracy => attempts == 0 ? 0 : correct / attempts;
+  int get percent => (accuracy * 100).round();
+
+  /// Ab fünf Versuchen belastbar; vorher nur „noch unklar“.
+  MasteryLevel get level {
+    if (attempts < 5) return MasteryLevel.unknown;
+    if (accuracy >= .85) return MasteryLevel.secure;
+    if (accuracy >= .6) return MasteryLevel.developing;
+    return MasteryLevel.needsHelp;
+  }
+}
+
+enum InsightKind { weakness, strength, comparison }
+
+class Insight {
+  const Insight(this.kind, this.text, {this.competency});
+  final InsightKind kind;
+  final String text;
+  final String? competency;
+}
+
+/// Vorschlag für die nächste Übung. Eine Lehrkraft kann ihn bestätigen,
+/// ändern oder ignorieren.
+class PracticeSuggestion {
+  const PracticeSuggestion({
+    required this.competency,
+    required this.subject,
+    required this.minutes,
+    required this.text,
+  });
+  final String competency;
+  final String subject;
+  final int minutes;
+  final String text;
+}
+
+class DayCount {
+  const DayCount(this.day, this.total, this.correct);
+  final DateTime day;
+  final int total;
+  final int correct;
+}
+
+class LearningAnalysis {
+  const LearningAnalysis({
+    required this.stats,
+    required this.insights,
+    required this.suggestion,
+    required this.days,
+    required this.totalAttempts,
+    required this.totalMinutes,
+    required this.lastActivity,
+  });
+
+  final List<CompetencyStat> stats;
+  final List<Insight> insights;
+  final PracticeSuggestion? suggestion;
+  final List<DayCount> days;
+  final int totalAttempts;
+
+  /// Geschätzte Lernzeit aus den gemessenen Antwortzeiten.
+  final int totalMinutes;
+  final DateTime? lastActivity;
+
+  List<CompetencyStat> get weak =>
+      stats.where((s) => s.level == MasteryLevel.needsHelp).toList();
+  List<CompetencyStat> get secure =>
+      stats.where((s) => s.level == MasteryLevel.secure).toList();
+
+  static const int minReliable = 5;
+
+  /// Hilfsmittel je Kompetenz für die Empfehlung.
+  static String _aidFor(String competency) {
+    if (competency.contains('Zehnerübergang')) {
+      return 'visuellen Zehnerfeldern';
+    }
+    if (competency == 'Einmaleins') return 'Malreihen zum Anschauen';
+    if (competency.contains('Rechtschreib') || competency.contains('Diktat')) {
+      return 'Silben zum Mitklatschen';
+    }
+    return 'Lumos Bildern und Beispielen';
+  }
+
+  static LearningAnalysis analyze(List<Attempt> attempts, {DateTime? now}) {
+    final today = now ?? DateTime.now();
+    final byComp = <String, List<Attempt>>{};
+    for (final a in attempts) {
+      byComp.putIfAbsent(a.competency, () => []).add(a);
+    }
+    final stats = <CompetencyStat>[];
+    byComp.forEach((name, list) {
+      final timed = list.where((a) => a.durationMs != null).toList();
+      final avg = timed.isEmpty
+          ? null
+          : (timed.map((a) => a.durationMs!).reduce((x, y) => x + y) /
+                  timed.length)
+              .round();
+      stats.add(CompetencyStat(
+        competency: name,
+        subject: list.first.subject,
+        attempts: list.length,
+        correct: list.where((a) => a.correct).length,
+        hints: list.where((a) => a.hintUsed).length,
+        lastAt: list.map((a) => a.at).reduce((x, y) => x.isAfter(y) ? x : y),
+        avgMs: avg,
+      ));
+    });
+    stats.sort((a, b) => a.accuracy.compareTo(b.accuracy));
+
+    final insights = <Insight>[];
+    for (final s in stats) {
+      if (s.level == MasteryLevel.needsHelp) {
+        insights.add(Insight(
+          InsightKind.weakness,
+          'Bei ${s.attempts} Aufgaben zu „${s.competency}“ gab es ${s.wrong} Fehler.',
+          competency: s.competency,
+        ));
+        final sibling = _sibling(s, stats);
+        if (sibling != null) {
+          insights.add(Insight(
+            InsightKind.comparison,
+            'Bei „${sibling.competency}“ liegt die Trefferquote dagegen bei ${sibling.percent}\u00A0%.',
+            competency: sibling.competency,
+          ));
+        }
+      }
+    }
+    for (final s in stats.reversed) {
+      if (s.level == MasteryLevel.secure) {
+        insights.add(Insight(
+          InsightKind.strength,
+          '„${s.competency}“ sitzt sicher (${s.percent}\u00A0% richtig bei ${s.attempts} Aufgaben).',
+          competency: s.competency,
+        ));
+      }
+    }
+
+    PracticeSuggestion? suggestion;
+    CompetencyStat? focus;
+    for (final level in [MasteryLevel.needsHelp, MasteryLevel.developing]) {
+      for (final s in stats) {
+        if (s.level == level) {
+          focus = s;
+          break;
+        }
+      }
+      if (focus != null) break;
+    }
+    if (focus != null) {
+      suggestion = PracticeSuggestion(
+        competency: focus.competency,
+        subject: focus.subject,
+        minutes: 10,
+        text:
+            'Empfehlung: 10 Minuten „${focus.competency}“ mit ${_aidFor(focus.competency)}.',
+      );
+    }
+
+    final days = <DayCount>[];
+    for (var i = 13; i >= 0; i--) {
+      final d = DateTime(today.year, today.month, today.day)
+          .subtract(Duration(days: i));
+      final same = attempts.where((a) =>
+          a.at.year == d.year && a.at.month == d.month && a.at.day == d.day);
+      days.add(DayCount(d, same.length, same.where((a) => a.correct).length));
+    }
+
+    final ms = attempts
+        .where((a) => a.durationMs != null)
+        // Pausen zählen nicht als Lernzeit.
+        .fold<int>(0, (sum, a) => sum + a.durationMs!.clamp(0, 60000));
+    return LearningAnalysis(
+      stats: stats,
+      insights: insights,
+      suggestion: suggestion,
+      days: days,
+      totalAttempts: attempts.length,
+      totalMinutes: (ms / 60000).round(),
+      lastActivity: attempts.isEmpty
+          ? null
+          : attempts.map((a) => a.at).reduce((x, y) => x.isAfter(y) ? x : y),
+    );
+  }
+
+  /// Gegenstück „ohne“ zu „mit“ (z. B. Zehnerübergang), falls belastbar.
+  static CompetencyStat? _sibling(
+      CompetencyStat s, List<CompetencyStat> all) {
+    String? other;
+    if (s.competency.contains(' mit ')) {
+      other = s.competency.replaceFirst(' mit ', ' ohne ');
+    }
+    if (other == null) return null;
+    for (final candidate in all) {
+      if (candidate.competency == other &&
+          candidate.attempts >= minReliable) {
+        return candidate;
+      }
+    }
+    return null;
+  }
+}
