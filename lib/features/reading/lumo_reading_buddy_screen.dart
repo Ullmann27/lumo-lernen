@@ -831,7 +831,7 @@ class _FinishCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '$pct% erkannt · ${progress.matchedCount}/${progress.totalWords} Worter perfekt',
+                  '$pct% erkannt · ${progress.matchedCount}/${progress.totalWords} Wörter perfekt',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 12,

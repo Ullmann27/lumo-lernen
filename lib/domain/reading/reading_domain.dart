@@ -150,7 +150,11 @@ class StoryEngine {
     final random = math.Random(seed);
     final topicIndex = random.nextInt(_topics.length);
     final heroIndex = random.nextInt(_heroes.length);
-    final helperIndex = random.nextInt(_helpers.length);
+    var helperIndex = random.nextInt(_helpers.length);
+    // Nie 'Lumo geht mit Lumo': Held und Helfer sind verschiedene Figuren.
+    if (_helpers[helperIndex] == _heroes[heroIndex]) {
+      helperIndex = (helperIndex + 1) % _helpers.length;
+    }
     final placeIndex = random.nextInt(_places.length);
     final actionIndex = random.nextInt(_actions.length);
     final topic = _topics[topicIndex];
@@ -186,7 +190,21 @@ class StoryEngine {
     ].join('.');
     final title = '${topic.title}: $object';
 
-    final lines = grade <= 1
+    final lines = grade >= 3
+        ? _gradeThreeFourLines(
+            grade: grade,
+            hero: hero,
+            helper: helper,
+            place: place,
+            action: action,
+            object: object,
+            observation: observation,
+            fact: fact,
+            safeRule: safeRule,
+            feeling: feeling,
+            ending: ending,
+          )
+        : grade <= 1
         ? _gradeOneLines(
             hero: hero,
             helper: helper,
@@ -216,8 +234,8 @@ class StoryEngine {
       id: 'generated.$signature',
       title: title,
       grade: grade,
-      level: grade <= 1 ? 1 : 2,
-      targetSkills: <String>['reading.flüncy', 'reading.sentences', topic.skill],
+      level: grade.clamp(1, 4),
+      targetSkills: <String>['reading.fluency', 'reading.sentences', topic.skill],
       sentences: _sentences(lines),
       signature: signature,
     );
@@ -262,7 +280,7 @@ class StoryEngine {
   }) {
     return <String>[
       '$hero und $helper gehen heute zum $place.',
-      'Sie wollen etwas Neüs lernen.',
+      'Sie wollen etwas Neues lernen.',
       'Auf dem Weg entdeckt $hero $object.',
       '$helper bleibt stehen und beobachtet es ruhig.',
       observation,
@@ -270,8 +288,43 @@ class StoryEngine {
       '$hero liest den Satz langsam und deutlich.',
       'Dann erklärt $helper das neue Wissen mit eigenen Worten.',
       safeRule,
-      '$hero ist $feeling, aber er bleibt ruhig.',
+      '$hero ist $feeling und atmet einmal tief durch.',
       'Beim zweiten Lesen klingt der Satz schon flüssiger.',
+      action,
+      ending,
+    ];
+  }
+
+  /// Klasse 3 und 4: längere Sätze mit Nebensätzen, eigene Erklärung und
+  /// Forscherheft; Klasse 4 zusätzlich Vermutung und Nachlesen.
+  List<String> _gradeThreeFourLines({
+    required int grade,
+    required String hero,
+    required String helper,
+    required String place,
+    required String action,
+    required String object,
+    required String observation,
+    required String fact,
+    required String safeRule,
+    required String feeling,
+    required String ending,
+  }) {
+    return <String>[
+      'An einem ruhigen Nachmittag machen sich $hero und $helper auf den Weg zum $place.',
+      'Schon von Weitem entdecken sie $object.',
+      'Weil beide neugierig sind, gehen sie näher heran und beobachten alles genau.',
+      observation,
+      fact,
+      '$helper fragt: Was hast du gerade Neues erfahren?',
+      '$hero überlegt kurz und erklärt es mit eigenen Worten.',
+      safeRule,
+      'Danach schreiben die beiden das Wichtigste in ihr Forscherheft.',
+      if (grade >= 4) ...<String>[
+        '$hero vermutet, dass es dazu noch viel mehr zu entdecken gibt.',
+        'Deshalb wollen sie morgen in der Bücherei nachlesen, ob die Vermutung stimmt.',
+      ],
+      '$hero ist $feeling, weil das Lesen heute schon viel flüssiger klappt.',
       action,
       ending,
     ];
@@ -322,7 +375,7 @@ class StoryEngine {
 
   static const List<String> _heroes = <String>['Lumo', 'Mia', 'Alina', 'Ben', 'Lina', 'Emil', 'Nora', 'Leo'];
   static const List<String> _helpers = <String>['Lumo', 'Mia', 'Oma', 'Papa', 'Mama', 'Frau Hase'];
-  static const List<String> _places = <String>['Schulgarten', 'Wald', 'Teich', 'Park', 'Baürnhof', 'Klassenraum', 'Wiesenrand', 'Fensterbrett'];
+  static const List<String> _places = <String>['Schulgarten', 'Wald', 'Teich', 'Park', 'Bauernhof', 'Klassenraum', 'Wiesenrand', 'Fensterbrett'];
   static const List<String> _feelings = <String>['mutig', 'ruhig', 'neugierig', 'stolz', 'konzentriert', 'geduldig'];
   static const List<String> _actions = <String>[
     'Danach malt das Kind ein kleines Bild dazu.',
@@ -490,7 +543,7 @@ class StoryEngine {
         'Beim Zählen hilft langsames Zeigen.',
         'Eine Reihe macht Mengen sichtbar.',
         'Zehn Dinge kann man gut in zwei Gruppen teilen.',
-        'Rechnen beginnt oft mit genaüm Schaün.',
+        'Rechnen beginnt oft mit genauem Schauen.',
       ],
       safeRules: <String>[
         'Man zählt ruhig und ohne Hektik.',
@@ -515,7 +568,7 @@ class StoryEngine {
         'Im Weltall gibt es keinen normalen Wind.',
       ],
       safeRules: <String>[
-        'Beim Schaün in den Himmel achtet man auf den Weg.',
+        'Beim Schauen in den Himmel achtet man auf den Weg.',
         'In die Sonne schaut man nie direkt.',
         'Fragen machen Wissenschaft spannend.',
       ],
@@ -569,7 +622,7 @@ class SyllableWordColorizer {
     if (cleaned.length <= 3) return <String>[cleaned.isEmpty ? rawWord : cleaned];
     final parts = <String>[];
     final buffer = StringBuffer();
-    const vowels = 'äiouäöüyÄIOUÄÖÜY';
+    const vowels = 'aeiouäöüyAEIOUÄÖÜY';
     for (var i = 0; i < cleaned.length; i++) {
       buffer.write(cleaned[i]);
       final isVowel = vowels.contains(cleaned[i]);
