@@ -358,6 +358,7 @@ class _AppShellState extends State<AppShell>
         LumoSection.learn => LumoScene.learning,
         LumoSection.tests => LumoScene.tests,
         LumoSection.profile => LumoScene.profile,
+        LumoSection.games => LumoScene.games,
         _ => null,
       };
 
@@ -371,6 +372,7 @@ class _AppShellState extends State<AppShell>
           appState: _appState,
           onSection: _navigateTo,
           onGameReturn: _embeddedGames.synchronize,
+          drawBackground: !fullBleed,
         );
       case LumoSection.tests:
         return LumoTestsScreen(
