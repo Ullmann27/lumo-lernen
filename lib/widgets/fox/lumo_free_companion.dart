@@ -472,10 +472,14 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                                                     : 'Tippe mich an. Ich helfe dir gern!'),
                                             maxLines: 3,
                                             overflow: TextOverflow.ellipsis,
+                                            // Hell auf dem dunklen App-Grund.
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodySmall
-                                                ?.copyWith(height: 1.3),
+                                                ?.copyWith(
+                                                    height: 1.3,
+                                                    color: const Color(
+                                                        0xFFE8F1FF)),
                                           )),
                                     ),
                                   )),

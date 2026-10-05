@@ -1561,7 +1561,7 @@ class _AppUpdateCard extends StatelessWidget {
                     ? 'Pruefe…'
                     : hasUpdate
                         ? 'Jetzt aktualisieren'
-                        : 'Auf Update pruefen',
+                        : 'Auf Update prüfen',
                 style: const TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 15,
