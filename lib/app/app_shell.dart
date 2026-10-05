@@ -580,16 +580,36 @@ class _AppShellState extends State<AppShell>
                                           ),
                                         ),
                                         Expanded(
-                                            child: FadeTransition(
-                                          opacity: _fadeCtrl,
-                                          child: LumoSectionTransition(
-                                            sectionKey:
-                                                _appState.state.section.name,
-                                            child: _buildContent(
-                                              fullBleed:
-                                                  fullBleedScene != null),
+                                          child: Stack(
+                                            children: [
+                                              Positioned.fill(
+                                                child: FadeTransition(
+                                                  opacity: _fadeCtrl,
+                                                  child:
+                                                      LumoSectionTransition(
+                                                    sectionKey: _appState
+                                                        .state.section.name,
+                                                    child: _buildContent(
+                                                      fullBleed:
+                                                          fullBleedScene !=
+                                                              null,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              if (fullBleedScene != null)
+                                                Positioned(
+                                                  right: 6,
+                                                  bottom: 4,
+                                                  child: LumoCompanionHost(
+                                                    appState: _appState,
+                                                    onSection: _navigateTo,
+                                                    floating: true,
+                                                  ),
+                                                ),
+                                            ],
                                           ),
-                                        )),
+                                        ),
                                         if (fullBleedScene == null)
                                           LumoCompanionHost(
                                               appState: _appState,
