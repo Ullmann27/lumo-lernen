@@ -268,6 +268,13 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
           correct: feedback.matched,
         ));
       }
+      // Für Lernbericht und Lehrerbereich: jeder Schreibversuch zählt als Aufgabe.
+      unawaited(widget.appState.recordLearningAnswer(
+        subject: 'Schreiben',
+        unit: 'Buchstaben schreiben',
+        correct: feedback.matched,
+        prompt: 'Buchstabe $_currentLetter schreiben',
+      ));
       setState(() {
         _lastFeedback = feedback;
         _showDemo = feedback.showDemo;
