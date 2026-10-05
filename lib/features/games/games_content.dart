@@ -11,6 +11,7 @@ import '../../core/lumo_asset_diagnostics.dart';
 import '../../core/game_progress_repository.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../../domain/games/game_world.dart';
+import '../../widgets/fox/lumo_character.dart';
 import 'spielwelt/spielwelt_hub.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
@@ -270,13 +271,16 @@ class _GamesContentState extends State<GamesContent> {
       _unlocks[id] ?? const GameUnlockState(unlocked: true);
 
   void _comingSoon(GameDefinition game) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(
-        content: Text('${game.title} kommt bald!'),
-        backgroundColor: LumoColors.orange,
-        duration: const Duration(seconds: 2),
-      ));
+    HapticFeedback.selectionClick();
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (_) => _ComingSoonSheet(
+        game: game,
+        reduceMotion: _reduceMotion,
+      ),
+    );
   }
 
   void _locked(GameDefinition game, GameUnlockState state) {
@@ -509,6 +513,78 @@ class _GamesContentState extends State<GamesContent> {
             : (subject) => _saveKartOptions(subject: subject),
       ),
     ]);
+  }
+}
+
+/// „Kommt bald“ für Spiele, die es noch nicht gibt. Beim Rhythmusspiel tanzt
+/// Lumo mit Kopfhörern, sonst winkt er; es wird nichts Spielbares vorgetäuscht.
+class _ComingSoonSheet extends StatelessWidget {
+  const _ComingSoonSheet({required this.game, required this.reduceMotion});
+  final GameDefinition game;
+  final bool reduceMotion;
+
+  @override
+  Widget build(BuildContext context) {
+    final pose = game.id == GameId.rhythm
+        ? LumoDesignFoxPose.spielweltDance
+        : LumoDesignFoxPose.spielweltWave;
+    return SafeArea(
+      child: Container(
+        margin: const EdgeInsets.all(12),
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 18),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(28),
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xF2123F86), Color(0xF2071A3E)],
+          ),
+          border: Border.all(color: const Color(0xCC53DDFD), width: 2),
+        ),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          LumoCharacter(
+            pose: pose,
+            celebratePose: null,
+            size: 150,
+            shadow: false,
+            reduceMotion: reduceMotion,
+          ),
+          Text('${game.title} kommt bald!',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                  color: LumoVisualTokens.white)),
+          const SizedBox(height: 4),
+          Text(game.tagline,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFFE6F4FF))),
+          const SizedBox(height: 14),
+          SizedBox(
+            width: double.infinity,
+            height: 52,
+            child: FilledButton(
+              onPressed: () => Navigator.of(context).pop(),
+              style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xFF1E9BE8),
+                shape: const StadiumBorder(
+                    side: BorderSide(color: Color(0xFFBDF4FF), width: 2)),
+              ),
+              child: const Text('Okay',
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18)),
+            ),
+          ),
+        ]),
+      ),
+    );
   }
 }
 

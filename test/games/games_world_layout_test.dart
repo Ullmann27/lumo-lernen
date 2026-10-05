@@ -43,4 +43,23 @@ void main() {
     expect(tester.takeException(), isNull);
     handle.dispose();
   });
+
+  testWidgets('Rhythm Party ist noch nicht spielbar: Lumo tanzt im Hinweis',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(392, 2800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final app = LumoAppState();
+    await tester.pumpWidget(
+        MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
+    await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 300)));
+    await tester.pump(const Duration(milliseconds: 600));
+    await tester.tap(find.byKey(const ValueKey('spielwelt-portal-rhythm')));
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.text('Rhythm Party kommt bald!'), findsOneWidget);
+    expect(find.bySemanticsLabel(RegExp('tanzt mit Kopfhörern')),
+        findsWidgets,
+        reason: 'beim Rhythmusspiel zeigt der Hinweis den tanzenden Kopfhörer-Lumo');
+    expect(tester.takeException(), isNull);
+  });
 }

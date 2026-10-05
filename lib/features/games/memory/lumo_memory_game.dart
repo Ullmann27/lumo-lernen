@@ -1,53 +1,44 @@
 // ════════════════════════════════════════════════════════════════════════
 // LUMO MEMORY — Karten-Merkspiel mit Lumo als aktivem Gegner
 // ════════════════════════════════════════════════════════════════════════
-// Heinz' Wunsch: "Lumo selbst spielt gegen das Kind, jeder hat einen Zug.
-// Wie Trueffelo. KI deckt aktiv auf. Bei Memory genau jedes Paar zweimal,
-// nicht mehr und nicht weniger."
-//
-// Spielregeln:
-//   - 6x4 Raster = 24 Karten = 12 verschiedene Paare
-//   - Jedes Paar genau zweimal (mathematisch garantiert via Set + shuffle)
-//   - Spieler decken abwechselnd 2 Karten auf
-//   - Paar gefunden -> Karte bleibt offen, gleicher Spieler nochmal
-//   - Kein Paar -> Karten zu, anderer Spieler ist dran
-//   - Lumo merkt sich gesehene Karten (Memory!) und nutzt das fuer
-//     spaetere Zuege - mehr Lernerfolg als reine Zufallszuege
-//   - Sieger: wer am Ende mehr Paare hat
+// Optik nach Heinz' Bild „Lumo Memory“: leuchtende Karten, Tierbilder,
+// Lumo schaut zu und reagiert. Spielregeln:
+//   - Jedes Motiv kommt genau zweimal vor (siehe MemoryBoard.deal).
+//   - Kind und Lumo decken abwechselnd zwei Karten auf.
+//   - Paar gefunden -> Karten bleiben offen, derselbe Spieler ist nochmal dran.
+//   - Kein Paar -> Karten drehen sich ruhig zurück, der andere ist dran.
+//   - Lumo merkt sich gesehene Karten, vergisst aber manchmal (kindgerecht).
+//   - Sieger: wer am Ende mehr Paare hat.
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/app_state.dart';
-import '../../../app/app_theme.dart';
 import '../../../core/lumo_voice.dart';
+import '../../../domain/games/memory_board.dart';
+import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/fox/lumo_character.dart';
 import '../shared/lumo_game_pause_scope.dart';
 
-/// Symbole auf den Karten. Bewusst kindgerechte Emojis statt Asset-Bilder,
-/// damit das Spiel ohne externe Assets funktioniert und visuell stabil
-/// bleibt - jedes Symbol ist klar unterscheidbar.
-const List<String> _kCardSymbols = <String>[
-  '🦊',
-  '⭐',
-  '🎁',
-  '🍎',
-  '🌸',
-  '🌈',
-  '🚀',
-  '🎨',
-  '🎈',
-  '🐝',
-  '🌙',
-  '🍪',
-];
-
 class LumoMemoryScreen extends StatefulWidget {
-  const LumoMemoryScreen({super.key, required this.appState, this.seed});
+  const LumoMemoryScreen({
+    super.key,
+    required this.appState,
+    this.seed,
+    this.difficulty,
+  });
+
   final int? seed;
   final LumoAppState appState;
+
+  /// Feste Stufe (Tests). Ohne Angabe gilt die zuletzt gespielte Stufe.
+  final MemoryDifficulty? difficulty;
 
   @override
   State<LumoMemoryScreen> createState() => _LumoMemoryScreenState();
@@ -56,74 +47,124 @@ class LumoMemoryScreen extends StatefulWidget {
 enum _Player { kind, lumo }
 
 class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
-  static const int _rows = 4;
-  static const int _cols = 6;
-  static const int _totalCards = _rows * _cols; // 24
-  static const int _totalPairs = _totalCards ~/ 2; // 12
+  static const _prefsKey = 'lumo_memory_v2';
+  static const _flip = Duration(milliseconds: 460);
 
-  late List<String> _cards; // Symbol pro Position
-  late List<bool> _matched; // Karte schon als Paar gefunden?
-  late List<bool> _faceUp; // Karte aktuell offen?
-  int? _firstPickIdx; // Erste aufgedeckte Karte des aktuellen Zuges
-  bool _busy = false; // Animation/Verzoegerung laeuft
+  late MemoryDifficulty _difficulty;
+  late List<MemoryMotif> _cards;
+  late List<bool> _matched;
+  late List<bool> _faceUp;
+  int? _firstPickIdx;
+  bool _busy = false;
   _Player _turn = _Player.kind;
   int _kindPairs = 0;
   int _lumoPairs = 0;
+  int _kindMoves = 0;
+  int _generation = 0;
+  String _lumoLine = 'Lass uns Memory spielen! Du fängst an.';
 
-  // Lumo's Gedaechtnis: was hat Lumo schon gesehen?
-  // Map<index, symbol>. Wenn Lumo eine Karte aufdeckt oder beobachtet,
-  // wie das Kind aufdeckt, merkt er sich Position + Symbol.
-  // Realistisch fuer Klasse 1: ~70% Erinnerungsrate, sonst zufaellig.
-  final Map<int, String> _lumoMemory = <int, String>{};
+  /// Beste Zugzahl je Stufe (Name der Stufe -> Züge), gespeichert.
+  Map<String, int> _best = <String, int>{};
+
+  final Map<int, MemoryMotif> _lumoMemory = <int, MemoryMotif>{};
   late final math.Random _rng;
   final _clock = LumoGameTurnClock();
+  final LumoCharacterController _lumo = LumoCharacterController();
   bool _rewardGiven = false;
+
+  int get _total => _difficulty.cards;
+
+  bool get _reduceMotion {
+    final settings = widget.appState.state.settings;
+    return settings.reduceAnimations ||
+        settings.calmMode ||
+        MediaQuery.disableAnimationsOf(context);
+  }
 
   @override
   void initState() {
     super.initState();
     _rng = widget.seed == null ? math.Random() : math.Random(widget.seed);
+    _difficulty = widget.difficulty ?? MemoryDifficulty.schwer;
     _setupBoard();
+    if (widget.difficulty == null) _loadStats();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _say('Lass uns Memory spielen! Du faengst an.');
+      _say('Lass uns Memory spielen! Du fängst an.');
     });
   }
 
   @override
   void dispose() {
     _clock.dispose();
+    _lumo.dispose();
     super.dispose();
   }
 
+  Future<void> _loadStats() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(_prefsKey);
+      if (raw == null || !mounted) return;
+      final json = jsonDecode(raw) as Map<String, dynamic>;
+      final saved = MemoryDifficulty.values
+          .where((d) => d.name == json['difficulty'])
+          .firstOrNull;
+      final best = <String, int>{
+        for (final e in ((json['best'] as Map?) ?? const {}).entries)
+          e.key.toString(): (e.value as num).toInt(),
+      };
+      setState(() {
+        _best = best;
+        // Nur wechseln, solange noch nichts gespielt wurde.
+        if (saved != null &&
+            saved != _difficulty &&
+            _kindMoves == 0 &&
+            !_faceUp.any((up) => up)) {
+          _difficulty = saved;
+          _setupBoard();
+        }
+      });
+    } catch (_) {}
+  }
+
+  Future<void> _saveStats() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(
+          _prefsKey, jsonEncode({'difficulty': _difficulty.name, 'best': _best}));
+    } catch (_) {}
+  }
+
   void _say(String text) {
+    if (mounted) setState(() => _lumoLine = text);
     try {
       LumoVoice.instance.speak(text);
     } catch (_) {}
   }
 
-  /// Baut das 6x4-Board so, dass JEDES Symbol genau zweimal vorkommt.
-  /// Vorher koennten Duplikate >2 entstehen wenn man unsauber sampled.
-  /// Hier: 12 Symbole aus der Liste auswaehlen, jedes verdoppeln,
-  /// shuffeln - mathematisch garantiert 12 Paare a 2 Karten.
   void _setupBoard() {
     _clock.cancel();
     _rewardGiven = false;
-    // Defensive: falls die Symbol-Liste irgendwann erweitert wird,
-    // erste _totalPairs eindeutige nehmen.
-    final symbols = _kCardSymbols.toSet().take(_totalPairs).toList();
-    assert(symbols.length == _totalPairs,
-        'Nicht genug einzigartige Symbole fuer $_totalPairs Paare');
-    final deck = <String>[...symbols, ...symbols]; // jedes Symbol genau 2x
-    deck.shuffle(_rng);
-    _cards = deck;
-    _matched = List<bool>.filled(_totalCards, false);
-    _faceUp = List<bool>.filled(_totalCards, false);
+    _generation++;
+    _cards = MemoryBoard.deal(_difficulty, _rng);
+    _matched = List<bool>.filled(_total, false);
+    _faceUp = List<bool>.filled(_total, false);
     _firstPickIdx = null;
     _busy = false;
     _turn = _Player.kind;
     _kindPairs = 0;
     _lumoPairs = 0;
+    _kindMoves = 0;
     _lumoMemory.clear();
+  }
+
+  void _restart({MemoryDifficulty? difficulty}) {
+    setState(() {
+      if (difficulty != null) _difficulty = difficulty;
+      _setupBoard();
+      _lumoLine = 'Neue Runde! Du fängst an.';
+    });
+    _saveStats();
   }
 
   void _tapCard(int idx) {
@@ -132,7 +173,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
     HapticFeedback.lightImpact();
     setState(() {
       _faceUp[idx] = true;
-      _lumoMemory[idx] = _cards[idx]; // Lumo beobachtet mit
+      _lumoMemory[idx] = _cards[idx];
     });
     _continueTurn();
   }
@@ -145,6 +186,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
     final secondIdx = _findFaceUpUnmatched(excluding: _firstPickIdx);
     if (secondIdx == null) return;
     _busy = true;
+    if (_turn == _Player.kind) _kindMoves++;
     final firstIdx = _firstPickIdx!;
     final isMatch = _cards[firstIdx] == _cards[secondIdx];
     _clock.schedule(const Duration(milliseconds: 850), () {
@@ -170,10 +212,13 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
         return;
       }
       if (isMatch) {
-        _say(_turn == _Player.kind
-            ? 'Super, ein Paar! Du bist nochmal dran.'
-            : 'Ein Paar! Ich bin nochmal dran.');
-        if (_turn == _Player.lumo) {
+        HapticFeedback.mediumImpact();
+        if (_turn == _Player.kind) {
+          _lumo.cheer();
+          _say('Super, ein Paar! Du bist nochmal dran.');
+        } else {
+          _lumo.wiggle();
+          _say('Ein Paar! Ich bin nochmal dran.');
           _clock.schedule(const Duration(milliseconds: 600), _lumoTurn);
         }
       } else {
@@ -191,28 +236,20 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   }
 
   int? _findFaceUpUnmatched({int? excluding}) {
-    for (var i = 0; i < _totalCards; i++) {
+    for (var i = 0; i < _total; i++) {
       if (i == excluding) continue;
       if (_faceUp[i] && !_matched[i]) return i;
     }
     return null;
   }
 
-  // ──────────────────────────────────────────────────────────────────
-  // LUMO-KI
-  // ──────────────────────────────────────────────────────────────────
+  // ── Lumo-KI ──────────────────────────────────────────────────────────
+  // Lumo deckt eine Karte auf; kennt er die Partnerkarte, nimmt er sie –
+  // aber mit 25 % Wahrscheinlichkeit „vergisst“ er sie, damit das Kind
+  // faire Chancen hat.
 
-  /// Lumo's Zug. Strategie:
-  /// 1. Wenn Lumo ein Paar im Gedaechtnis hat -> aufdecken!
-  /// 2. Sonst: eine unbekannte Karte aufdecken, schauen.
-  /// 3. Mit der zweiten Karte: wenn passendes Symbol bekannt -> aufdecken,
-  ///    sonst eine andere unbekannte.
-  ///
-  /// Klasse 1 freundlich: Lumo "vergisst" mit 25% Wahrscheinlichkeit
-  /// eine bekannte Karte, damit das Kind realistische Chancen hat.
   void _lumoTurn() {
     if (!mounted || _turn != _Player.lumo || _isGameOver()) return;
-    // Erste Karte
     final firstIdx = _pickFirstLumoCard();
     if (firstIdx == null) return;
     setState(() {
@@ -222,10 +259,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
     });
     _clock.schedule(const Duration(milliseconds: 900), () {
       if (!mounted || _turn != _Player.lumo) return;
-
-      // Zweite Karte: passend zur ersten?
-      final firstSymbol = _cards[firstIdx];
-      final secondIdx = _pickSecondLumoCard(firstIdx, firstSymbol);
+      final secondIdx = _pickSecondLumoCard(firstIdx, _cards[firstIdx]);
       if (secondIdx == null) return;
       setState(() {
         _faceUp[secondIdx] = true;
@@ -236,64 +270,45 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   }
 
   int? _pickFirstLumoCard() {
-    // Bekannte Paare im Gedaechtnis suchen
     final unmatched = <int>[
-      for (var i = 0; i < _totalCards; i++)
+      for (var i = 0; i < _total; i++)
         if (!_matched[i] && !_faceUp[i]) i
     ];
     if (unmatched.isEmpty) return null;
-
-    // Lumo "vergisst" 25% der Zeit (Klasse-1-freundlich, sonst gewinnt
-    // Lumo zu oft)
-    final useMemory = _rng.nextDouble() > 0.25;
-    if (useMemory) {
-      // Suche zwei bekannte Karten mit gleichem Symbol
-      final knownBySymbol = <String, List<int>>{};
+    if (_rng.nextDouble() > 0.25) {
+      final known = <MemoryMotif, List<int>>{};
       for (final idx in unmatched) {
-        final sym = _lumoMemory[idx];
-        if (sym != null) {
-          knownBySymbol.putIfAbsent(sym, () => <int>[]).add(idx);
-        }
+        final motif = _lumoMemory[idx];
+        if (motif != null) known.putIfAbsent(motif, () => <int>[]).add(idx);
       }
-      for (final entry in knownBySymbol.entries) {
-        if (entry.value.length >= 2) {
-          // Lumo erinnert sich an ein Paar - eine der beiden aufdecken.
-          return entry.value.first;
-        }
+      for (final entry in known.entries) {
+        if (entry.value.length >= 2) return entry.value.first;
       }
     }
-    // Sonst: zufaellige unbekannte Karte
     final unknown = unmatched.where((i) => _lumoMemory[i] == null).toList();
     final pool = unknown.isNotEmpty ? unknown : unmatched;
     return pool[_rng.nextInt(pool.length)];
   }
 
-  int? _pickSecondLumoCard(int firstIdx, String firstSymbol) {
+  int? _pickSecondLumoCard(int firstIdx, MemoryMotif motif) {
     final unmatched = <int>[
-      for (var i = 0; i < _totalCards; i++)
+      for (var i = 0; i < _total; i++)
         if (i != firstIdx && !_matched[i] && !_faceUp[i]) i
     ];
     if (unmatched.isEmpty) return null;
-    // Bekannte Karte mit passendem Symbol?
-    final useMemory = _rng.nextDouble() > 0.25;
-    if (useMemory) {
+    if (_rng.nextDouble() > 0.25) {
       for (final idx in unmatched) {
-        if (_lumoMemory[idx] == firstSymbol) return idx;
+        if (_lumoMemory[idx] == motif) return idx;
       }
     }
-    // Sonst: zufaellige unbekannte Karte
     final unknown = unmatched.where((i) => _lumoMemory[i] == null).toList();
     final pool = unknown.isNotEmpty ? unknown : unmatched;
     return pool[_rng.nextInt(pool.length)];
   }
 
-  // ──────────────────────────────────────────────────────────────────
-  // SPIEL-ENDE
-  // ──────────────────────────────────────────────────────────────────
+  // ── Spielende ────────────────────────────────────────────────────────
 
-  bool _isGameOver() {
-    return _matched.every((m) => m);
-  }
+  bool _isGameOver() => _matched.every((m) => m);
 
   void _onGameOver() {
     if (_rewardGiven) return;
@@ -301,289 +316,852 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
     HapticFeedback.heavyImpact();
     final kindWon = _kindPairs > _lumoPairs;
     final draw = _kindPairs == _lumoPairs;
-    final stars = kindWon ? 5 : (draw ? 3 : 2);
+    final stars = _difficulty.starsFor(won: kindWon, draw: draw);
     widget.appState.addStars(stars);
     widget.appState.addXp(stars * 8);
+    var record = false;
+    if (kindWon) {
+      final old = _best[_difficulty.name];
+      if (old == null || _kindMoves < old) {
+        _best[_difficulty.name] = _kindMoves;
+        record = old != null;
+      }
+    }
+    _saveStats();
+    if (kindWon) {
+      _lumo.cheer();
+    } else if (!draw) {
+      _lumo.comfort();
+    }
     final msg = kindWon
-        ? 'Wow, du hast gewonnen! $stars Sterne fuer dich!'
+        ? 'Wow, du hast gewonnen! $stars Sterne für dich!'
         : draw
             ? 'Unentschieden! Beide gleich gut. $stars Sterne!'
-            : 'Diesmal habe ich gewonnen. Nochmal probieren? $stars Sterne fuer den Mut!';
+            : 'Diesmal habe ich gewonnen. Nochmal probieren? $stars Sterne für den Mut!';
     _say(msg);
+    final title = kindWon
+        ? 'Du hast gewonnen!'
+        : (draw ? 'Unentschieden' : 'Lumo gewinnt');
+    final reduce = _reduceMotion;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => LumoGameResultBack(
-          child: AlertDialog(
-        backgroundColor: const Color(0xFFFFFBEB),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        title: Text(
-          kindWon
-              ? '🎉 Du hast gewonnen!'
-              : (draw ? '🤝 Unentschieden' : '🦊 Lumo gewinnt'),
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-              fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 22),
+      builder: (dialogContext) => LumoGameResultBack(
+        child: Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.all(20),
+          child: _ResultCard(
+            title: title,
+            pairsLine: 'Du: $_kindPairs Paare    Lumo: $_lumoPairs Paare',
+            stars: stars,
+            maxStars: 5,
+            record: record,
+            moves: kindWon ? _kindMoves : null,
+            won: kindWon,
+            reduceMotion: reduce,
+            onAgain: () {
+              Navigator.of(dialogContext).pop();
+              _restart();
+            },
+            onBack: () {
+              Navigator.of(dialogContext).pop();
+              Navigator.of(context).pop();
+            },
+          ),
         ),
-        content: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text('Du: $_kindPairs Paare    Lumo: $_lumoPairs Paare',
-              style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800),
-              textAlign: TextAlign.center),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              5,
-              (i) => Padding(
-                padding: const EdgeInsets.all(2),
-                child: Icon(Icons.star_rounded,
-                    size: 38,
-                    color: i < stars
-                        ? const Color(0xFFFCD34D)
-                        : const Color(0xFFD1D5DB)),
-              ),
-            ),
-          ),
-        ]),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              setState(_setupBoard);
-            },
-            child: const Text('Nochmal!',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.w900,
-                    fontSize: 16)),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-            },
-            child: const Text('Zur Spielewelt',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.w900,
-                    fontSize: 16)),
-          ),
-        ],
-      )),
+      ),
     );
   }
 
-  // ──────────────────────────────────────────────────────────────────
-  // UI
-  // ──────────────────────────────────────────────────────────────────
+  // ── Oberfläche ───────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
     return LumoGamePauseScope(
-        clock: _clock,
-        onRestart: () => setState(_setupBoard),
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
-          body: SafeArea(
-            child: Column(
-              children: [
-                _buildTopBar(),
-                _buildScoreBar(),
-                Expanded(child: _buildGrid()),
-                _buildTurnIndicator(),
-              ],
-            ),
+      clock: _clock,
+      onRestart: () => _restart(),
+      child: Scaffold(
+        backgroundColor: LumoVisualTokens.night,
+        body: LumoSceneBackground(
+          scene: LumoScene.games,
+          dimmed: true,
+          child: SafeArea(
+            child: LayoutBuilder(builder: (context, c) {
+              final landscape = c.maxWidth >= c.maxHeight * 1.12;
+              return landscape
+                  ? _buildLandscape(c.maxWidth, c.maxHeight)
+                  : _buildPortrait(c.maxWidth, c.maxHeight);
+            }),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: const BoxDecoration(
-        gradient:
-            LinearGradient(colors: [Color(0xFFFB923C), Color(0xFFEA580C)]),
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
+  Widget _topBar({required double logoHeight}) {
+    return SizedBox(
+      height: math.max(56.0, logoHeight + 4),
       child: Row(children: [
-        IconButton(
-          icon: const Icon(Icons.close_rounded, color: Colors.white),
+        _RoundIconButton(
+          icon: Icons.close_rounded,
           tooltip: 'Pausieren / Zurück',
-          onPressed: _clock.pause,
+          onTap: _clock.pause,
         ),
-        const Expanded(
+        Expanded(
           child: Center(
-            child: Text('Memory mit Lumo 🦊',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white)),
+            child: Semantics(
+              header: true,
+              label: 'Memory mit Lumo',
+              excludeSemantics: true,
+              child: Image.asset(
+                'assets/lumo_design/memory/logo_memory.png',
+                height: logoHeight,
+                fit: BoxFit.contain,
+                filterQuality: FilterQuality.medium,
+              ),
+            ),
           ),
         ),
-        IconButton(
-          icon: const Icon(Icons.refresh_rounded, color: Colors.white),
+        _RoundIconButton(
+          icon: Icons.refresh_rounded,
           tooltip: 'Neu starten',
-          onPressed: _clock.pause,
+          onTap: _clock.pause,
         ),
       ]),
     );
   }
 
-  Widget _buildScoreBar() {
+  Widget _lumoFigure(double size) => LumoCharacter(
+        key: const ValueKey('memory-lumo'),
+        pose: LumoDesignFoxPose.spielweltWave,
+        celebratePose: LumoDesignFoxPose.spielweltJump,
+        size: size,
+        shadow: false,
+        reduceMotion: _reduceMotion,
+        controller: _lumo,
+        onTap: _lumo.wiggle,
+      );
+
+  Widget _scores() => Row(children: [
+        Expanded(
+          child: _ScorePill(
+            label: 'Du',
+            score: _kindPairs,
+            color: LumoVisualTokens.gold,
+            active: _turn == _Player.kind,
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: _ScorePill(
+            label: 'Lumo',
+            score: _lumoPairs,
+            color: LumoVisualTokens.cyanBright,
+            active: _turn == _Player.lumo,
+          ),
+        ),
+      ]);
+
+  String get _turnText => _turn == _Player.kind
+      ? (_busy ? 'Lass die Karten kurz...' : 'Du bist dran! Tipp 2 Karten.')
+      : (_busy ? 'Lumo denkt nach...' : 'Lumo ist dran!');
+
+  Widget _chips() => _DifficultyChips(
+        selected: _difficulty,
+        best: _best,
+        onSelect: (d) => d == _difficulty ? null : _restart(difficulty: d),
+      );
+
+  Widget _buildPortrait(double w, double h) {
+    final roomy = h >= 760;
+    final lumoSize = roomy ? 120.0 : (h >= 620 ? 92.0 : 0.0);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      child: Row(
-        children: [
-          Expanded(
-              child: _scorePill('Du', _kindPairs, const Color(0xFFFB923C),
-                  isActive: _turn == _Player.kind)),
-          const SizedBox(width: 12),
-          Expanded(
-              child: _scorePill('Lumo 🦊', _lumoPairs, const Color(0xFF8B5CF6),
-                  isActive: _turn == _Player.lumo)),
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+      child: Column(children: [
+        _topBar(logoHeight: roomy ? 72 : 44),
+        if (lumoSize > 0)
+          SizedBox(
+            height: lumoSize,
+            child: Row(children: [
+              _lumoFigure(lumoSize),
+              const SizedBox(width: 6),
+              Expanded(child: _SpeechBubble(text: _lumoLine)),
+            ]),
+          ),
+        const SizedBox(height: 6),
+        _scores(),
+        const SizedBox(height: 8),
+        Expanded(child: _board()),
+        const SizedBox(height: 6),
+        _TurnText(text: _turnText),
+        const SizedBox(height: 4),
+        _chips(),
+      ]),
+    );
+  }
+
+  Widget _buildLandscape(double w, double h) {
+    final panelW = math.min(w * .36, 360.0);
+    final lumoSize = math.min(h * .52, panelW * .8);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+      child: Row(children: [
+        SizedBox(
+          width: panelW,
+          child: Column(children: [
+            _topBar(logoHeight: math.min(56, h * .14)),
+            Expanded(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    _lumoFigure(lumoSize),
+                    _SpeechBubble(text: _lumoLine),
+                  ]),
+                ),
+              ),
+            ),
+            _scores(),
+            const SizedBox(height: 6),
+            _TurnText(text: _turnText),
+          ]),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(children: [
+            Expanded(child: _board()),
+            const SizedBox(height: 8),
+            _chips(),
+          ]),
+        ),
+      ]),
+    );
+  }
+
+  Widget _board() {
+    final reduce = _reduceMotion;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(26),
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xCC0B2A5C), Color(0xE6071A3E)],
+        ),
+        border: Border.all(color: const Color(0xAA37D2FD), width: 1.6),
+        boxShadow: [
+          BoxShadow(
+              color: LumoVisualTokens.cyan.withOpacity(.25), blurRadius: 18),
+          const BoxShadow(
+              color: Color(0x88020A24), blurRadius: 14, offset: Offset(0, 8)),
         ],
       ),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: LayoutBuilder(builder: (context, c) {
+          const gap = 8.0;
+          const aspect = .74;
+          final grid =
+              MemoryBoard.bestGrid(_total, c.maxWidth, c.maxHeight, gap: gap);
+          final cardW = math.min(
+            (c.maxWidth - gap * (grid.cols - 1)) / grid.cols,
+            ((c.maxHeight - gap * (grid.rows - 1)) / grid.rows) * aspect,
+          );
+          final cardH = cardW / aspect;
+          return Center(
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              for (var r = 0; r < grid.rows; r++) ...[
+                if (r > 0) const SizedBox(height: gap),
+                Row(mainAxisSize: MainAxisSize.min, children: [
+                  for (var col = 0; col < grid.cols; col++) ...[
+                    if (col > 0) const SizedBox(width: gap),
+                    SizedBox(
+                      width: cardW,
+                      height: cardH,
+                      child: _card(r * grid.cols + col, reduce),
+                    ),
+                  ],
+                ]),
+              ],
+            ]),
+          );
+        }),
+      ),
     );
   }
 
-  Widget _scorePill(String label, int score, Color color,
-      {required bool isActive}) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      decoration: BoxDecoration(
-        color: isActive ? color : Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: color, width: 2.4),
-        boxShadow: isActive
-            ? [
-                BoxShadow(
-                    color: color.withOpacity(0.32),
-                    blurRadius: 14,
-                    offset: const Offset(0, 4))
-              ]
-            : null,
+  Widget _card(int idx, bool reduce) {
+    final showFront = _faceUp[idx] || _matched[idx];
+    final motif = _cards[idx];
+    return Semantics(
+      label: 'Memory Karte ${idx + 1}'
+          '${showFront ? ', ${motif.label}' : ', verdeckt'}',
+      button: !_matched[idx],
+      excludeSemantics: true,
+      child: GestureDetector(
+        key: ValueKey('memory-card-$idx'),
+        behavior: HitTestBehavior.opaque,
+        onTap: () => _tapCard(idx),
+        child: _MemoryCard(
+          key: ValueKey('memory-card-$_generation-$idx'),
+          index: idx,
+          motif: motif,
+          faceUp: showFront,
+          matched: _matched[idx],
+          reduceMotion: reduce,
+          duration: _flip,
+        ),
       ),
-      child: Row(children: [
-        Text(label,
-            style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 15,
-                fontWeight: FontWeight.w900,
-                color: isActive ? Colors.white : color)),
-        const Spacer(),
-        Text('$score',
-            style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 22,
-                fontWeight: FontWeight.w900,
-                color: isActive ? Colors.white : color)),
+    );
+  }
+}
+
+// ═══════════════════════════ Karte mit 3D-Flip ═══════════════════════════
+
+class _MemoryCard extends StatefulWidget {
+  const _MemoryCard({
+    super.key,
+    required this.index,
+    required this.motif,
+    required this.faceUp,
+    required this.matched,
+    required this.reduceMotion,
+    required this.duration,
+  });
+
+  final int index;
+  final MemoryMotif motif;
+  final bool faceUp;
+  final bool matched;
+  final bool reduceMotion;
+  final Duration duration;
+
+  @override
+  State<_MemoryCard> createState() => _MemoryCardState();
+}
+
+class _MemoryCardState extends State<_MemoryCard> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final w = widget;
+    return Listener(
+      onPointerDown: (_) => setState(() => _pressed = true),
+      onPointerUp: (_) => setState(() => _pressed = false),
+      onPointerCancel: (_) => setState(() => _pressed = false),
+      child: TweenAnimationBuilder<double>(
+        tween: Tween<double>(end: w.faceUp ? 1 : 0),
+        duration: w.reduceMotion ? const Duration(milliseconds: 1) : w.duration,
+        curve: Curves.easeInOutCubic,
+        builder: (context, t, _) {
+          final front = t > .5;
+          final double lift = 1.0 +
+              (w.reduceMotion ? 0.0 : .04 * math.sin(t * math.pi)) +
+              (_pressed && !w.faceUp ? .03 : 0.0);
+          final face = front
+              ? Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()..rotateY(math.pi),
+                  child: _CardFront(motif: w.motif, matched: w.matched),
+                )
+              : _CardBack(index: w.index);
+          return Transform.scale(
+            scale: lift,
+            child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.identity()
+                ..setEntry(3, 2, .0014)
+                ..rotateY(t * math.pi),
+              child: Stack(
+                clipBehavior: Clip.none,
+                fit: StackFit.expand,
+                children: [
+                  face,
+                  if (w.matched && !w.reduceMotion)
+                    Positioned.fill(
+                      child: IgnorePointer(
+                        child: Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.identity()..rotateY(math.pi),
+                          child: const _MatchSparkle(),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _CardBack extends StatelessWidget {
+  const _CardBack({required this.index});
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      key: ValueKey('memory-back-$index'),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(14),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF3C8CFF), Color(0xFF1B52C8)],
+        ),
+        border: Border.all(color: const Color(0xFFBDEBFF), width: 2.2),
+        boxShadow: [
+          BoxShadow(
+              color: LumoVisualTokens.cyan.withOpacity(.55), blurRadius: 12),
+          const BoxShadow(
+              color: Color(0x66020A24), blurRadius: 6, offset: Offset(0, 4)),
+        ],
+      ),
+      child: Stack(fit: StackFit.expand, children: [
+        // Innerer Rahmen wie auf der Kartenrückseite des Zielbilds.
+        Padding(
+          padding: const EdgeInsets.all(5),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: const Color(0x66FFFFFF), width: 1),
+            ),
+          ),
+        ),
+        const Center(
+          child: FractionallySizedBox(
+            widthFactor: .62,
+            child: FittedBox(
+              child: Icon(Icons.star_rounded,
+                  color: Color(0xFF9FE4FF),
+                  shadows: [Shadow(color: Color(0xAAFFFFFF), blurRadius: 12)]),
+            ),
+          ),
+        ),
       ]),
     );
   }
+}
 
-  Widget _buildGrid() {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: LayoutBuilder(builder: (_, constraints) {
-        // Alle Karten sollen ohne Scrollen ins Bild passen: Die Karten werden
-        // dafür etwas breiter als hoch (bis 4:3); reicht das nicht, darf
-        // das Feld scrollen.
-        final cols = constraints.maxWidth >= 600 ? _cols : 4;
-        final rows = (_totalCards / cols).ceil();
-        final cellW = (constraints.maxWidth - (cols - 1) * 8) / cols;
-        final cellH = (constraints.maxHeight - (rows - 1) * 8) / rows;
-        final aspect = cellH > 0 ? (cellW / cellH).clamp(0.8, 1.34) : 1.0;
-        return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: cols,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: aspect.toDouble(),
+class _CardFront extends StatelessWidget {
+  const _CardFront({required this.motif, required this.matched});
+  final MemoryMotif motif;
+  final bool matched;
+
+  @override
+  Widget build(BuildContext context) {
+    final glow = matched ? const Color(0xFFFFD86B) : const Color(0xFF7FE3FF);
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+            color: matched ? const Color(0xFFFFE9A6) : const Color(0xFFD9F6FF),
+            width: 3),
+        boxShadow: [
+          BoxShadow(
+              color: glow.withOpacity(matched ? .85 : .55),
+              blurRadius: matched ? 18 : 12,
+              spreadRadius: matched ? 2 : 0),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(11),
+        child: motif.sticker
+            ? DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [motif.tintLight, motif.tintDark],
+                  ),
                 ),
-                itemCount: _totalCards,
-                itemBuilder: (_, i) => _buildCard(i),
-              );
-      }),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Image.asset(motif.path,
+                      fit: BoxFit.contain, filterQuality: FilterQuality.medium),
+                ),
+              )
+            : Image.asset(motif.path,
+                fit: BoxFit.cover, filterQuality: FilterQuality.medium),
+      ),
     );
   }
+}
 
-  Widget _buildCard(int idx) {
-    final showFront = _faceUp[idx] || _matched[idx];
-    final isMatched = _matched[idx];
-    return Semantics(
-        label:
-            'Memory Karte ${idx + 1}${showFront ? ', ${_cards[idx]}' : ', verdeckt'}',
-        button: !isMatched,
-        child: GestureDetector(
-          key: ValueKey('memory-card-$idx'),
-          onTap: () => _tapCard(idx),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 220),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: showFront
-                    ? (isMatched
-                        ? const [Color(0xFFDCFCE7), Color(0xFFA7F3D0)]
-                        : const [Color(0xFFFEF3C7), Color(0xFFFDE68A)])
-                    : const [Color(0xFFC084FC), Color(0xFF8B5CF6)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: showFront
-                    ? (isMatched
-                        ? const Color(0xFF22C55E)
-                        : const Color(0xFFF59E0B))
-                    : const Color(0xFF6D28D9),
-                width: 2.4,
-              ),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black.withOpacity(0.12),
-                    blurRadius: 6,
-                    offset: const Offset(0, 3)),
-              ],
-            ),
-            alignment: Alignment.center,
-            child: showFront
-                ? Padding(
-                    padding: const EdgeInsets.all(6),
-                    child: FittedBox(
-                        child: Text(_cards[idx],
-                            style: const TextStyle(fontSize: 32))))
-                : const Text('?',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 26,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white)),
-          ),
-        ));
+/// Goldene Funken, die einmal aus einem gefundenen Paar herausfliegen.
+class _MatchSparkle extends StatelessWidget {
+  const _MatchSparkle();
+
+  @override
+  Widget build(BuildContext context) => TweenAnimationBuilder<double>(
+        tween: Tween<double>(begin: 0, end: 1),
+        duration: const Duration(milliseconds: 900),
+        curve: Curves.easeOutCubic,
+        builder: (context, t, _) => CustomPaint(painter: _SparklePainter(t)),
+      );
+}
+
+class _SparklePainter extends CustomPainter {
+  _SparklePainter(this.t);
+  final double t;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (t <= 0 || t >= 1) return;
+    final center = size.center(Offset.zero);
+    final radius = size.shortestSide * (.55 + .5 * t);
+    for (var i = 0; i < 8; i++) {
+      final a = i / 8 * 2 * math.pi + .3;
+      final p = center + Offset(math.cos(a), math.sin(a)) * radius;
+      final fade = (1 - t).clamp(0.0, 1.0);
+      final paint = Paint()..color = const Color(0xFFFFE08A).withOpacity(fade);
+      canvas.drawCircle(p, 2.4 + 2 * fade, paint);
+      canvas.drawRect(
+          Rect.fromCenter(center: p, width: 9 * fade + 2, height: 1.4), paint);
+      canvas.drawRect(
+          Rect.fromCenter(center: p, width: 1.4, height: 9 * fade + 2), paint);
+    }
   }
 
-  Widget _buildTurnIndicator() {
-    final isKind = _turn == _Player.kind;
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(14),
-      child: Text(
-        isKind
-            ? (_busy
-                ? 'Lass die Karten kurz...'
-                : 'Du bist dran! Tipp 2 Karten.')
-            : (_busy ? 'Lumo denkt nach 🦊...' : 'Lumo ist dran!'),
+  @override
+  bool shouldRepaint(_SparklePainter old) => old.t != t;
+}
+
+// ═══════════════════════════ Kleine Bausteine ═══════════════════════════
+
+class _RoundIconButton extends StatelessWidget {
+  const _RoundIconButton(
+      {required this.icon, required this.tooltip, required this.onTap});
+  final IconData icon;
+  final String tooltip;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => IconButton(
+        icon: Icon(icon, color: Colors.white),
+        tooltip: tooltip,
+        onPressed: onTap,
+        constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+        style: IconButton.styleFrom(
+          backgroundColor: const Color(0xCC0B2A5C),
+          side: const BorderSide(color: Color(0xAA37D2FD)),
+        ),
+      );
+}
+
+class _ScorePill extends StatelessWidget {
+  const _ScorePill({
+    required this.label,
+    required this.score,
+    required this.color,
+    required this.active,
+  });
+  final String label;
+  final int score;
+  final Color color;
+  final bool active;
+
+  @override
+  Widget build(BuildContext context) => AnimatedContainer(
+        duration: const Duration(milliseconds: 220),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: active ? const Color(0xF20E3A7A) : const Color(0xB30B2A5C),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+              color: active ? color : const Color(0x6637D2FD),
+              width: active ? 2.4 : 1.2),
+          boxShadow: active
+              ? [BoxShadow(color: color.withOpacity(.55), blurRadius: 14)]
+              : null,
+        ),
+        child: Row(children: [
+          Flexible(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(label,
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white)),
+            ),
+          ),
+          const Spacer(),
+          Icon(Icons.favorite_rounded, color: color, size: 18),
+          const SizedBox(width: 6),
+          Text('$score',
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                  color: color)),
+        ]),
+      );
+}
+
+class _SpeechBubble extends StatelessWidget {
+  const _SpeechBubble({required this.text});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: const Color(0xD90B2A5C),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: const Color(0x9937D2FD)),
+        ),
+        child: Text(
+          text,
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          textScaler:
+              MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.25),
+          style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 14,
+              height: 1.2,
+              fontWeight: FontWeight.w800,
+              color: Colors.white),
+        ),
+      );
+}
+
+class _TurnText extends StatelessWidget {
+  const _TurnText({required this.text});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Text(
+        text,
         textAlign: TextAlign.center,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        textScaler:
+            MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.3),
         style: const TextStyle(
             fontFamily: 'Nunito',
-            fontSize: 16,
-            fontWeight: FontWeight.w800,
-            color: LumoColors.ink700),
+            fontSize: 15,
+            fontWeight: FontWeight.w900,
+            color: Colors.white,
+            shadows: [Shadow(color: Color(0xCC03193F), blurRadius: 6)]),
+      );
+}
+
+class _DifficultyChips extends StatelessWidget {
+  const _DifficultyChips(
+      {required this.selected, required this.best, required this.onSelect});
+  final MemoryDifficulty selected;
+  final Map<String, int> best;
+  final ValueChanged<MemoryDifficulty> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    final record = best[selected.name];
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      Row(children: [
+        for (final d in MemoryDifficulty.values) ...[
+          if (d != MemoryDifficulty.values.first) const SizedBox(width: 6),
+          Expanded(
+            child: Semantics(
+              button: true,
+              selected: d == selected,
+              label: 'Schwierigkeit ${d.label}, ${d.cards} Karten',
+              excludeSemantics: true,
+              child: GestureDetector(
+                key: ValueKey('memory-diff-${d.name}'),
+                onTap: () => onSelect(d),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 180),
+                  constraints: const BoxConstraints(minHeight: 48),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: d == selected
+                        ? const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Color(0xFF63E4FF), Color(0xFF1E7FE0)])
+                        : null,
+                    color: d == selected ? null : const Color(0xB30B2A5C),
+                    border: Border.all(
+                        color: d == selected
+                            ? const Color(0xFFBDF4FF)
+                            : const Color(0x6637D2FD),
+                        width: 1.6),
+                    boxShadow: d == selected
+                        ? [
+                            BoxShadow(
+                                color: LumoVisualTokens.cyan.withOpacity(.55),
+                                blurRadius: 12)
+                          ]
+                        : null,
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      child: Text(d.label,
+                          style: const TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white)),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ]),
+      if (record != null)
+        Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: Text('Dein Rekord: $record Züge',
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFFFFE08A))),
+        ),
+    ]);
+  }
+}
+
+class _ResultCard extends StatelessWidget {
+  const _ResultCard({
+    required this.title,
+    required this.pairsLine,
+    required this.stars,
+    required this.maxStars,
+    required this.record,
+    required this.moves,
+    required this.won,
+    required this.reduceMotion,
+    required this.onAgain,
+    required this.onBack,
+  });
+
+  final String title;
+  final String pairsLine;
+  final int stars;
+  final int maxStars;
+  final bool record;
+  final int? moves;
+  final bool won;
+  final bool reduceMotion;
+  final VoidCallback onAgain;
+  final VoidCallback onBack;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 420),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(20, 14, 20, 18),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(28),
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xF2123F86), Color(0xF2071A3E)],
+          ),
+          border: Border.all(color: const Color(0xCC53DDFD), width: 2),
+          boxShadow: [
+            BoxShadow(
+                color: LumoVisualTokens.cyan.withOpacity(.4), blurRadius: 24),
+          ],
+        ),
+        child: SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            LumoCharacter(
+              pose: won
+                  ? LumoDesignFoxPose.spielweltJump
+                  : LumoDesignFoxPose.spielweltWave,
+              size: 120,
+              shadow: false,
+              reduceMotion: reduceMotion,
+              celebratePose: null,
+            ),
+            const SizedBox(height: 4),
+            Text(title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 26,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white)),
+            const SizedBox(height: 6),
+            Text(pairsLine,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFFE6F4FF))),
+            if (moves != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                    record
+                        ? 'Neuer Rekord: $moves Züge!'
+                        : 'Geschafft in $moves Zügen',
+                    style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xFFFFE08A))),
+              ),
+            const SizedBox(height: 10),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              for (var i = 0; i < maxStars; i++)
+                Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Icon(Icons.star_rounded,
+                      size: 38,
+                      color: i < stars
+                          ? LumoVisualTokens.gold
+                          : const Color(0x55FFFFFF)),
+                ),
+            ]),
+            const SizedBox(height: 14),
+            SizedBox(
+              width: double.infinity,
+              height: 52,
+              child: FilledButton(
+                onPressed: onAgain,
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFF1E9BE8),
+                  shape: const StadiumBorder(
+                      side: BorderSide(color: Color(0xFFBDF4FF), width: 2)),
+                ),
+                child: const Text('Nochmal!',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18)),
+              ),
+            ),
+            const SizedBox(height: 6),
+            SizedBox(
+              height: 48,
+              child: TextButton(
+                onPressed: onBack,
+                child: const Text('Zur Spielewelt',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w900,
+                        fontSize: 16,
+                        color: Colors.white)),
+              ),
+            ),
+          ]),
+        ),
       ),
     );
   }
