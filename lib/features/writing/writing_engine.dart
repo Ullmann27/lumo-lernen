@@ -588,6 +588,85 @@ class LetterTemplates {
     // ────────────────────────────────────────────────────────────────
     // KLEINBUCHSTABEN a-z (26 Templates, Klasse 1 zweite Haelfte)
     // ────────────────────────────────────────────────────────────────
+    // ── UMLAUTE UND ß (deutsche Rechtschreibung, Klasse 1-4) ──────────
+    // Wie beim i zählen die zwei Punkte als "any": sehr kleine Striche werden
+    // vom Analyzer als Punkt erkannt und blockieren die Form nicht.
+    'Ä': LetterTemplate(
+      letter: 'Ä',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.diagonal),
+        _ExpectedStroke(type: _StrokeType.horizontal),
+        _ExpectedStroke(type: _StrokeType.any),
+        _ExpectedStroke(type: _StrokeType.any),
+      ],
+      minStrokes: 4,
+      maxStrokes: 5,
+      demoStrokes: [
+        [Offset(20, 90), Offset(50, 22)],
+        [Offset(50, 22), Offset(80, 90)],
+        [Offset(32, 65), Offset(68, 65)],
+        [Offset(38, 4), Offset(38, 8)],
+        [Offset(62, 4), Offset(62, 8)],
+      ],
+      description: 'Ä wie Äpfel - ein A und zwei Punkte darüber!',
+    ),
+    'Ö': LetterTemplate(
+      letter: 'Ö',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.circle),
+        _ExpectedStroke(type: _StrokeType.any),
+        _ExpectedStroke(type: _StrokeType.any),
+      ],
+      minStrokes: 3,
+      maxStrokes: 4,
+      demoStrokes: [
+        [
+          Offset(50, 22), Offset(73, 30), Offset(82, 56), Offset(73, 82),
+          Offset(50, 90), Offset(27, 82), Offset(18, 56), Offset(27, 30),
+          Offset(50, 22),
+        ],
+        [Offset(38, 4), Offset(38, 8)],
+        [Offset(62, 4), Offset(62, 8)],
+      ],
+      description: 'Ö wie Öl - ein runder Kreis und zwei Punkte darüber!',
+    ),
+    'Ü': LetterTemplate(
+      letter: 'Ü',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.curve),
+        _ExpectedStroke(type: _StrokeType.any),
+        _ExpectedStroke(type: _StrokeType.any),
+      ],
+      minStrokes: 3,
+      maxStrokes: 5,
+      demoStrokes: [
+        [
+          Offset(20, 24), Offset(20, 62), Offset(25, 80), Offset(50, 90),
+          Offset(75, 80), Offset(80, 62), Offset(80, 24),
+        ],
+        [Offset(38, 4), Offset(38, 8)],
+        [Offset(62, 4), Offset(62, 8)],
+      ],
+      description: 'Ü wie Übung - ein U und zwei Punkte darüber!',
+    ),
+    'ß': LetterTemplate(
+      letter: 'ß',
+      expectedStrokes: [
+        _ExpectedStroke(type: _StrokeType.curve),
+      ],
+      minStrokes: 1,
+      maxStrokes: 2,
+      demoStrokes: [
+        [
+          Offset(30, 92), Offset(30, 30), Offset(36, 15), Offset(50, 10),
+          Offset(64, 15), Offset(68, 28), Offset(58, 40), Offset(48, 45),
+          Offset(64, 52), Offset(72, 66), Offset(66, 82), Offset(50, 90),
+          Offset(42, 88),
+        ],
+      ],
+      description: 'ß wie Straße - langer Strich runter, oben ein Bogen, dann ein Bauch!',
+    ),
     'a': LetterTemplate(
       letter: 'a',
       expectedStrokes: [
@@ -1003,6 +1082,10 @@ class LetterShapeAnalyzer {
         issue: _Issue.zuWenigStrokes,
       );
     }
+    // Deutlich mehr Striche als nötig: ein anderer Buchstabe (E statt C).
+    if (n > template.maxStrokes + 1) {
+      return const _AnalysisResult(score: 0.4, matched: false, issue: _Issue.zuVieleStrokes);
+    }
 
     // Stroke-Typen analysieren
     int verticalCount = 0;
@@ -1010,6 +1093,9 @@ class LetterShapeAnalyzer {
     int diagonalCount = 0;
     int curveCount = 0;
     int circleCount = 0;
+    // Gebogene Striche (U, Ü, J …), die wegen ihrer Breite und Höhe als
+    // "diagonal" eingeordnet werden, zählen zusätzlich als Bogen.
+    int bentCount = 0;
     double totalLen = 0;
     for (final s in userStrokes) {
       if (s.points.length < 2) continue;
@@ -1018,14 +1104,25 @@ class LetterShapeAnalyzer {
       if (b.width < 5 && b.height < 5) continue; // Punkt
       if (_isCircleish(s)) {
         circleCount++;
-      } else if (s.isVertical) {
-        verticalCount++;
-      } else if (s.isHorizontal) {
-        horizontalCount++;
-      } else if (s.isDiagonal) {
-        diagonalCount++;
-      } else {
-        curveCount++;
+        continue;
+      }
+      bentCount += _arcCount(s);
+      // a, b, d, g, p, q, 6, 8: Bauch und Strich in einem Zug ergeben eine Schleife.
+      if (_hasLoop(s)) circleCount++;
+      // Kinder schreiben M, N, V, W, Z, L oft in einem Zug: an scharfen Ecken
+      // wird der Strich in seine geraden Teilstriche zerlegt.
+      for (final part in _cornerSegments(s)) {
+        final pb = part.bounds;
+        if (pb.width < 5 && pb.height < 5) continue;
+        if (part.isVertical) {
+          verticalCount++;
+        } else if (part.isHorizontal) {
+          horizontalCount++;
+        } else if (part.isDiagonal) {
+          diagonalCount++;
+        } else {
+          curveCount++;
+        }
       }
     }
 
@@ -1076,7 +1173,10 @@ class LetterShapeAnalyzer {
     }
     if (reqCurve > 0) {
       checks++;
-      if (curveCount + circleCount >= reqCurve) score++;
+      if (curveCount + circleCount >= reqCurve ||
+          curveCount + circleCount + bentCount >= reqCurve) {
+        score++;
+      }
     }
     if (reqCircle > 0) {
       checks++;
@@ -1084,8 +1184,16 @@ class LetterShapeAnalyzer {
       else if (curveCount > 0) score += 0.5;
     }
 
+    // Ein geschlossener Kreis, wo der Buchstabe nur gerade Striche hat
+    // (O statt L), zählt als Fehler.
+    if (reqCurve + reqCircle == 0) {
+      checks++;
+      if (circleCount == 0) score++;
+    }
+
     final normalized = checks > 0 ? score / checks : 0.0;
-    final matched = normalized >= 0.6;
+    // Die Teilstriche stimmen, und das Ganze sieht auch wie die Vorlage aus.
+    final matched = normalized >= 0.6 && shapeDistance(userStrokes, template) < _shapeLimit;
 
     _Issue? issue;
     if (!matched) {
@@ -1109,6 +1217,161 @@ class LetterShapeAnalyzer {
     );
   }
 
+  /// Formabstand zwischen den Strichen des Kindes und der Vorzeige-Schrift:
+  /// beide als Punktwolke (Reihenfolge und Richtung egal), auf gleiche Größe
+  /// gebracht. 0 = gleiche Form, ab etwa 0,2 ein anderer Buchstabe.
+  static double shapeDistance(List<WritingStroke> userStrokes, LetterTemplate template) {
+    final user = _cloud([for (final s in userStrokes) s.points]);
+    final demo = _cloud(template.demoStrokes);
+    if (user.isEmpty || demo.isEmpty) return 1;
+    return math.max(_cloudMatch(user, demo), _cloudMatch(demo, user));
+  }
+
+  static const int _cloudSize = 48;
+  static const double _shapeLimit = 0.12;
+
+  static List<Offset> _cloud(List<List<Offset>> strokes) {
+    final lines = [for (final s in strokes) if (s.isNotEmpty) s];
+    var total = 0.0;
+    for (final s in lines) {
+      for (var i = 1; i < s.length; i++) {
+        total += (s[i] - s[i - 1]).distance;
+      }
+    }
+    final pts = <Offset>[];
+    if (total <= 0) {
+      for (final s in lines) {
+        pts.add(s.first);
+      }
+    } else {
+      // Gleichmäßig verteilte Punkte entlang aller Striche.
+      final step = total / (_cloudSize - 1);
+      var carry = 0.0;
+      for (final s in lines) {
+        pts.add(s.first);
+        for (var i = 1; i < s.length; i++) {
+          var a = s[i - 1];
+          final b = s[i];
+          var d = (b - a).distance;
+          while (carry + d >= step && d > 0) {
+            final t = (step - carry) / d;
+            a = Offset(a.dx + (b.dx - a.dx) * t, a.dy + (b.dy - a.dy) * t);
+            pts.add(a);
+            d = (b - a).distance;
+            carry = 0;
+          }
+          carry += d;
+        }
+      }
+    }
+    var minX = double.infinity, minY = double.infinity;
+    var maxX = -double.infinity, maxY = -double.infinity;
+    var cx = 0.0, cy = 0.0;
+    for (final p in pts) {
+      minX = math.min(minX, p.dx);
+      maxX = math.max(maxX, p.dx);
+      minY = math.min(minY, p.dy);
+      maxY = math.max(maxY, p.dy);
+      cx += p.dx;
+      cy += p.dy;
+    }
+    final scale = math.max(math.max(maxX - minX, maxY - minY), 1e-6);
+    final c = Offset(cx / pts.length, cy / pts.length);
+    return [for (final p in pts) (p - c) / scale];
+  }
+
+  /// Mittlerer Abstand jedes Punkts von [a] zum nächsten Punkt in [b].
+  static double _cloudMatch(List<Offset> a, List<Offset> b) {
+    var sum = 0.0;
+    for (final p in a) {
+      var best = double.infinity;
+      for (final q in b) {
+        best = math.min(best, (p - q).distanceSquared);
+      }
+      sum += math.sqrt(best);
+    }
+    return sum / a.length;
+  }
+
+  /// Der Strich kehrt nach einem Bogen nahe an eine frühere Stelle zurück
+  /// (oder läuft später über seinen Anfang): Er bildet eine Schleife.
+  static bool _hasLoop(WritingStroke s) {
+    final pts = s.points;
+    if (pts.length < 5) return false;
+    final b = s.bounds;
+    final size = math.max(b.width, b.height);
+    if (size < 20) return false;
+    final travelled = <double>[0];
+    for (var i = 1; i < pts.length; i++) {
+      travelled.add(travelled.last + (pts[i] - pts[i - 1]).distance);
+    }
+    for (var i = 0; i < pts.length; i++) {
+      for (var k = 0; k + 1 < pts.length; k++) {
+        // Weg zwischen dem Punkt und dem Teilstück, über beide Richtungen.
+        final gap = k >= i ? travelled[k] - travelled[i] : travelled[i] - travelled[k + 1];
+        if (gap < size * 1.2) continue;
+        if (_segmentDistance(pts[i], pts[k], pts[k + 1]) < size * 0.15) return true;
+      }
+    }
+    return false;
+  }
+
+  static double _segmentDistance(Offset p, Offset a, Offset b) {
+    final ab = b - a;
+    final len2 = ab.dx * ab.dx + ab.dy * ab.dy;
+    if (len2 == 0) return (p - a).distance;
+    final t = (((p.dx - a.dx) * ab.dx + (p.dy - a.dy) * ab.dy) / len2).clamp(0.0, 1.0);
+    return (p - Offset(a.dx + ab.dx * t, a.dy + ab.dy * t)).distance;
+  }
+
+  /// Zahl der Bögen in einem gebogenen Strich: Jeder Wechsel der Drehrichtung
+  /// beginnt einen neuen Bogen (S hat zwei, 3 in einem Zug mindestens zwei).
+  static int _arcCount(WritingStroke s) {
+    if (!_isBent(s)) return 0;
+    var arcs = 1;
+    var lastSign = 0;
+    for (var i = 1; i + 1 < s.points.length; i++) {
+      final a = s.points[i] - s.points[i - 1];
+      final c = s.points[i + 1] - s.points[i];
+      if (a.distance < 3 || c.distance < 3) continue;
+      final cross = (a.dx * c.dy - a.dy * c.dx) / (a.distance * c.distance);
+      if (cross.abs() < 0.2) continue;
+      final sign = cross > 0 ? 1 : -1;
+      if (lastSign != 0 && sign != lastSign) arcs++;
+      lastSign = sign;
+    }
+    return arcs;
+  }
+
+  /// Zerlegt einen Strich an Ecken mit mehr als 65 Grad Richtungswechsel.
+  static List<WritingStroke> _cornerSegments(WritingStroke s) {
+    final parts = <WritingStroke>[];
+    var current = <Offset>[s.points.first];
+    for (var i = 1; i < s.points.length; i++) {
+      current.add(s.points[i]);
+      if (i + 1 >= s.points.length) break;
+      final a = s.points[i] - s.points[i - 1];
+      final b = s.points[i + 1] - s.points[i];
+      if (a.distance < 3 || b.distance < 3) continue;
+      final cos = (a.dx * b.dx + a.dy * b.dy) / (a.distance * b.distance);
+      if (cos < 0.42) {
+        parts.add(WritingStroke(current));
+        current = <Offset>[s.points[i]];
+      }
+    }
+    if (current.length >= 2) parts.add(WritingStroke(current));
+    return parts.isEmpty ? <WritingStroke>[s] : parts;
+  }
+
+  /// Ein Strich ist gebogen, wenn sein Weg deutlich länger ist als die
+  /// Luftlinie zwischen Anfang und Ende.
+  static bool _isBent(WritingStroke s) {
+    final chord = (s.points.last - s.points.first).distance;
+    final path = _strokeLength(s);
+    if (path < 20) return false;
+    return chord < 1 || path / chord > 1.25;
+  }
+
   static double _strokeLength(WritingStroke s) {
     double len = 0;
     for (int i = 1; i < s.points.length; i++) {
@@ -1119,7 +1382,7 @@ class LetterShapeAnalyzer {
 
   /// Heuristik: ist der Stroke ein geschlossener Kreis?
   static bool _isCircleish(WritingStroke s) {
-    if (s.points.length < 8) return false;
+    if (s.points.length < 5) return false;
     final start = s.points.first;
     final end = s.points.last;
     final b = s.bounds;
@@ -1206,6 +1469,9 @@ class WritingFeedbackEngine {
         break;
       case _Issue.diagonaleFehlt:
         msg = 'Da fehlt ein schraeger Strich. ${template.description}';
+        break;
+      case _Issue.zuVieleStrokes:
+        msg = 'Das sind zu viele Striche. ${template.description}';
         break;
       default:
         msg = 'Schau nochmal: ${template.description}';
