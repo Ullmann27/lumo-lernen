@@ -9,6 +9,7 @@ import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/error_breakdown_repository.dart';
+import '../../core/test_result_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_ai_learning_access.dart';
 import '../../core/lumo_ai_learning_policy_bridge.dart';
@@ -95,6 +96,9 @@ class _LearningContentState extends State<LearningContent> {
   LumoFeedbackTurn? _lastFeedback;
   int _questionNum = 1;
   bool _sessionFinished = false;
+  // Test: Fragen, die beim ersten Versuch richtig waren (Tests-Bildschirm).
+  int _testFirstTryCorrect = 0;
+  bool _questionHadWrong = false;
   int _attemptCount = 0;
   String? _tutorHint;
   int _requestedHelpLevel = 0;
@@ -125,7 +129,7 @@ class _LearningContentState extends State<LearningContent> {
     switch (widget.appState.state.sessionKind) {
       case LumoSessionKind.quickPractice: return 10;
       case LumoSessionKind.exerciseSet:   return 20;
-      case LumoSessionKind.test:          return 10;
+      case LumoSessionKind.test:          return kLumoTestQuestions;
       case LumoSessionKind.schoolwork:    return 30;
       case LumoSessionKind.tutoring:      return 8;
     }
@@ -314,8 +318,10 @@ class _LearningContentState extends State<LearningContent> {
     _aiHelpLoading = false;
     _rechentricks = null;
     _attemptCount = 0;
+    _questionHadWrong = false;
     if (resetCounter) {
       _sessionFinished = false;
+      _testFirstTryCorrect = 0;
       _questionNum = 1;
       _attemptCount = 0;
     }
@@ -438,8 +444,17 @@ class _LearningContentState extends State<LearningContent> {
     return 'local_${safeName}_${st.grade}';
   }
 
+  /// Klassenstufe der Aufgaben: Im Test wählt das Kind leicht, mittel oder
+  /// schwer (eine Klasse darunter, die eigene, eine darüber).
+  int get _taskGrade {
+    final st = widget.appState.state;
+    if (st.sessionKind != LumoSessionKind.test) return st.grade;
+    return (st.grade + st.testLevel).clamp(1, 4).toInt();
+  }
+
   LumoTask _nextTask() {
     final st = widget.appState.state;
+    final taskGrade = _taskGrade;
     final factorySubject = _factorySubjectFor(st.subject, st.unit);
     final factoryUnit = _factoryUnitFor(st.subject, st.unit);
 
@@ -450,6 +465,7 @@ class _LearningContentState extends State<LearningContent> {
     final aiSubject = _aiSubjectName(st.subject);
     LumoTask? relaxedFallback;
     if (aiSubject != null && factoryUnit == 'Alle' && _aiQueueScope == _currentAiScope &&
+        taskGrade == st.grade &&
         _aiDraftQueue.isNotEmpty) {
       while (_aiDraftQueue.isNotEmpty) {
         final draft = _aiDraftQueue.removeAt(0);
@@ -472,7 +488,7 @@ class _LearningContentState extends State<LearningContent> {
 
     for (var attempt = 0; attempt < 80; attempt++) {
       final task = _factory.next(
-        grade: st.grade,
+        grade: taskGrade,
         subject: factorySubject,
         unit: factoryUnit,
         weakSkills: st.weakSkills,
@@ -502,7 +518,7 @@ class _LearningContentState extends State<LearningContent> {
     //   2. allgemeiner Fallback aus dem ersten Versuch
     //   3. komplett neuer Generator-Aufruf ohne Vermeidungs-Set
     return relaxedFallback ?? fallback ?? _factory.next(
-      grade: st.grade,
+      grade: taskGrade,
       subject: factorySubject == 'Lesen' ? 'Deutsch' : factorySubject,
       unit: factoryUnit == 'Aktives Lesen' ? 'Satz verstehen' : factoryUnit,
       weakSkills: st.weakSkills,
@@ -740,6 +756,10 @@ class _LearningContentState extends State<LearningContent> {
     final responseTimeMs = DateTime.now().difference(_taskStartedAt).inMilliseconds;
     final errorTypes = correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven);
     final firstAttempt = _attemptCount == 0;
+    if (widget.appState.state.sessionKind == LumoSessionKind.test) {
+      if (correct && !_questionHadWrong) _testFirstTryCorrect++;
+      if (!correct) _questionHadWrong = true;
+    }
     if (correct) {
       _attemptCount = 0;
       // Heinz' Wunsch: Konfetti bei Erfolgen. Wird ueber Trigger-Int
@@ -905,6 +925,18 @@ class _LearningContentState extends State<LearningContent> {
     if (!mounted) return;
     _autoAdvanceTimer?.cancel();
     if (_questionNum >= _totalQuestions) {
+      final st = widget.appState.state;
+      if (st.sessionKind == LumoSessionKind.test) {
+        unawaited(const TestResultRepository().record(
+          st.childName,
+          TestResult(
+            subject: st.subject,
+            correct: _testFirstTryCorrect,
+            total: _totalQuestions,
+            finishedAt: DateTime.now(),
+          ),
+        ));
+      }
       setState(() => _sessionFinished = true);
       _publishTaskContext();
       return;
