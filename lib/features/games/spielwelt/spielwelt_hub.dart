@@ -116,7 +116,7 @@ class _SpielweltHubState extends State<SpielweltHub>
   Widget _fox(double size) => LumoCharacter(
         key: const ValueKey('spielwelt-lumo'),
         pose: LumoDesignFoxPose.spielweltWave,
-        celebratePose: null,
+        celebratePose: LumoDesignFoxPose.spielweltJump,
         size: size,
         shadow: false,
         reduceMotion: widget.reduceMotion,

@@ -16,6 +16,10 @@ enum LumoDesignFoxPose {
   thumbWink('fox_thumb_wink', 'Lumo zwinkert und zeigt Daumen hoch'),
   teacherStick('fox_teacher_stick', 'Lumo erklärt mit dem Zeigestab'),
   cheer('fox_cheer', 'Lumo jubelt'),
+  spielweltDance('fox_spielwelt_dance',
+      'Lumo tanzt mit Kopfhörern, Halstuch und Rucksack'),
+  spielweltJump('fox_spielwelt_jump',
+      'Lumo springt fröhlich mit Halstuch und Rucksack'),
   spielweltWave('fox_spielwelt_wave',
       'Lumo mit Halstuch und Rucksack winkt dich in die Spielwelt'),
   avatar('fox_avatar', 'Lumo, dein Profilbild');
