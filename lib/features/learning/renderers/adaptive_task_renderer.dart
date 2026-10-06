@@ -81,6 +81,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       LearningSubject.mathematik => LumoVisualTokens.cyanBright,
       LearningSubject.deutsch => const Color(0xFFA78BFA),
       LearningSubject.sachkunde => const Color(0xFF5EE6B8),
+      LearningSubject.englisch => const Color(0xFFFFB84D),
       LearningSubject.logik => const Color(0xFFC6A8FF),
     };
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -243,7 +244,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     return switch (subject) {
       LearningSubject.deutsch => 'Deutsch',
       LearningSubject.mathematik => 'Mathematik',
-      LearningSubject.sachkunde => 'Sachkunde',
+      LearningSubject.sachkunde => 'Sachunterricht',
+      LearningSubject.englisch => 'Englisch',
       LearningSubject.logik => 'Logik',
     };
   }
@@ -392,6 +394,22 @@ class _LocalHelpBanner extends StatelessWidget {
         'Zaehle zuerst $a Dinge, dann noch $b dazu. Danach zaehlst du alle zusammen.',
         'Erst $a, dann $b mehr - huepfe auf dem Zahlenstrahl weiter.',
         'Vertausche zur Probe: $b + $a ist genau dasselbe wie $a + $b.',
+      ]);
+    }
+
+    // ── Englisch / lebende Fremdsprache ──
+    if (task.subject == LearningSubject.englisch) {
+      if (prompt.contains('what') || prompt.contains('which') || prompt.contains('choose')) {
+        return _pick(task, <String>[
+          'Lies die Frage langsam. Suche zuerst das Schlüsselwort und dann die passende englische Antwort.',
+          'Sprich die Antwortmöglichkeiten laut. Welche klingt zur Frage passend?',
+          'Nutze das Bild im Kopf: Was würdest du in dieser Alltagssituation sagen?',
+        ]);
+      }
+      return _pick(task, <String>[
+        'Sprich das englische Wort laut und verbinde es mit dem Bild oder der Bedeutung.',
+        'Achte auf das erste und letzte Wort der Frage. Das hilft dir beim Verstehen.',
+        'Wenn du unsicher bist: Lies jede Antwort einmal laut und streiche unpassende Wörter weg.',
       ]);
     }
 
