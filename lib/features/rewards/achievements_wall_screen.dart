@@ -13,6 +13,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/achievements/achievement_tracker.dart';
 import '../../core/achievements/lumo_achievement.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 
 class AchievementsWallScreen extends StatefulWidget {
@@ -57,18 +58,18 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
           progress.where((p) => p.achievement.tier == AchievementTier.gold).toList(),
     };
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF6EE),
+      backgroundColor: LumoVisualTokens.night,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const BackButton(color: Color(0xFF7C2D12)),
+        leading: const BackButton(color: LumoVisualTokens.white),
         title: const Text(
           '🏆 Achievements',
           style: TextStyle(
             fontFamily: 'Nunito',
             fontSize: 22,
             fontWeight: FontWeight.w900,
-            color: Color(0xFF7C2D12),
+            color: LumoVisualTokens.white,
           ),
         ),
       ),
@@ -175,7 +176,11 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 14, 12, 14),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.85),
+        gradient: const LinearGradient(
+          colors: [Color(0xE6123760), Color(0xE609264B)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(color: accent.withOpacity(0.40), width: 1.4),
         boxShadow: [
@@ -223,10 +228,14 @@ class _BadgeCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
       decoration: BoxDecoration(
-        color: unlocked ? accent.withOpacity(0.10) : const Color(0xFFF9FAFB),
+        gradient: LinearGradient(
+          colors: unlocked
+              ? <Color>[accent.withOpacity(.28), const Color(0xD90A2854)]
+              : const <Color>[Color(0xB312365F), Color(0xB3082146)],
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(
-          color: unlocked ? accent.withOpacity(0.50) : const Color(0xFFE5E7EB),
+          color: unlocked ? accent.withOpacity(0.60) : LumoVisualTokens.cyan.withOpacity(.22),
           width: 1.2,
         ),
       ),
@@ -237,7 +246,7 @@ class _BadgeCard extends StatelessWidget {
             width: 52,
             height: 52,
             decoration: BoxDecoration(
-              color: unlocked ? accent.withOpacity(0.20) : const Color(0xFFE5E7EB),
+              color: unlocked ? accent.withOpacity(0.20) : const Color(0x662B466E),
               shape: BoxShape.circle,
               boxShadow: unlocked
                   ? [
@@ -269,7 +278,7 @@ class _BadgeCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 15,
                     fontWeight: FontWeight.w900,
-                    color: unlocked ? const Color(0xFF1F2937) : const Color(0xFF9CA3AF),
+                    color: unlocked ? LumoVisualTokens.white : const Color(0xFF86A0BD),
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -279,7 +288,7 @@ class _BadgeCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
-                    color: unlocked ? const Color(0xFF374151) : const Color(0xFF9CA3AF),
+                    color: unlocked ? LumoVisualTokens.muted : const Color(0xFF7D94AE),
                     height: 1.3,
                   ),
                 ),
@@ -292,7 +301,7 @@ class _BadgeCard extends StatelessWidget {
                         child: LinearProgressIndicator(
                           value: progress.progressPercent,
                           minHeight: 5,
-                          backgroundColor: const Color(0xFFE5E7EB),
+                          backgroundColor: const Color(0x5537D2FD),
                           valueColor: AlwaysStoppedAnimation<Color>(
                             unlocked ? accent : const Color(0xFFFCA5A5),
                           ),
@@ -308,7 +317,7 @@ class _BadgeCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 11,
                         fontWeight: FontWeight.w900,
-                        color: unlocked ? accent : const Color(0xFF6B7280),
+                        color: unlocked ? accent : LumoVisualTokens.muted,
                       ),
                     ),
                   ],
