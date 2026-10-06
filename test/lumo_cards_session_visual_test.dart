@@ -16,6 +16,31 @@ import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_intro_splash.dart';
 
+Future<void> _warmImageFrames(WidgetTester tester) async {
+  // Asset decoding runs outside the fake test clock. Await actual images,
+  // then advance bounded frames so a new modal is not captured at opacity 0.
+  // pumpAndSettle cannot be used while the intentional idle animations run.
+  final images = find.byType(Image).evaluate().toList();
+  await tester.runAsync(() async {
+    await Future.wait(
+      images.map((element) async {
+        Object? failure;
+        await precacheImage(
+          (element.widget as Image).image,
+          element,
+          onError: (error, stack) => failure = error,
+        ).timeout(const Duration(seconds: 15));
+        if (failure != null) throw StateError('Image decode failed: $failure');
+      }),
+    );
+  });
+  for (var frame = 0; frame < 4; frame++) {
+    await tester.pump(const Duration(milliseconds: 200));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+  }
+  expect(tester.takeException(), isNull);
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final shots = <Map<String, Object?>>[];
@@ -51,6 +76,7 @@ void main() {
     Size size,
     String name,
   ) async {
+    await _warmImageFrames(tester);
     final boundary =
         key.currentContext!.findRenderObject()! as RenderRepaintBoundary;
     final image = (await tester.runAsync(
