@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../core/user_profile.dart';
+import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_character.dart';
 
 class LumoOnboardingScreen extends StatefulWidget {
   const LumoOnboardingScreen({super.key, required this.onFinished});
@@ -17,6 +19,7 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
   int _step = 0;
   int _age = 7;
   int _grade = 1;
+  bool _parentSetup = false;
 
   @override
   void dispose() {
@@ -125,19 +128,49 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
           onTap: _next,
         ),
       1 => _Panel(
-          eyebrow: 'Wer bist du?',
-          title: 'Wie heißt du?',
-          subtitle: 'Lumo spricht dich dann persönlich an.',
-          body: TextField(
-            controller: _name,
-            textInputAction: TextInputAction.done,
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 18,
-              fontWeight: FontWeight.w900,
-              color: Colors.white,
-            ),
-            decoration: _inputDecoration(),
+          eyebrow: 'Wer richtet Lumo ein?',
+          title: _parentSetup ? 'Wie heißt dein Kind?' : 'Wie heißt du?',
+          subtitle: _parentSetup
+              ? 'Du richtest jetzt das Kinderprofil ein. Eltern-Einstellungen bleiben später geschützt im Elternbereich.'
+              : 'Lumo spricht dich dann persönlich an.',
+          body: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: _RoleChoice(
+                      icon: Icons.child_care_rounded,
+                      label: 'Ich bin ein Kind',
+                      selected: !_parentSetup,
+                      onTap: () => setState(() => _parentSetup = false),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _RoleChoice(
+                      icon: Icons.family_restroom_rounded,
+                      label: 'Ich bin ein Elternteil',
+                      selected: _parentSetup,
+                      onTap: () => setState(() => _parentSetup = true),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 14),
+              TextField(
+                controller: _name,
+                textInputAction: TextInputAction.done,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+                decoration: _inputDecoration(
+                  hint: _parentSetup ? 'Name des Kindes' : 'Dein Name',
+                ),
+              ),
+            ],
           ),
           button: 'Weiter',
           onTap: _next,
@@ -206,8 +239,8 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
     );
   }
 
-  InputDecoration _inputDecoration() => InputDecoration(
-        hintText: 'Dein Name',
+  InputDecoration _inputDecoration({String hint = 'Dein Name'}) => InputDecoration(
+        hintText: hint,
         hintStyle: const TextStyle(
           color: Color(0xFF7DA4C8),
           fontWeight: FontWeight.w700,
@@ -415,11 +448,21 @@ class _Hero extends StatelessWidget {
                 top: 6,
                 bottom: 4,
               ),
-              child: Image.asset(
-                'assets/images/lumo_fox.png',
-                fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) =>
-                    const Text('🦊', style: TextStyle(fontSize: 92)),
+              child: LumoCharacter(
+                key: ValueKey('onboarding-lumo-$step'),
+                pose: switch (step) {
+                  0 => LumoDesignFoxPose.armsOpen,
+                  1 => LumoDesignFoxPose.pointSide,
+                  2 => LumoDesignFoxPose.bookPoint,
+                  _ => LumoDesignFoxPose.teacherStick,
+                },
+                ambientPoses: const <LumoDesignFoxPose>[
+                  LumoDesignFoxPose.thumbWink,
+                  LumoDesignFoxPose.pointSide,
+                ],
+                size: compact ? 145 : 260,
+                intro: true,
+                idleHops: true,
               ),
             ),
           ),
@@ -593,6 +636,71 @@ class _Info extends StatelessWidget {
         ),
       );
 }
+
+class _RoleChoice extends StatelessWidget {
+  const _RoleChoice({
+    required this.icon,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          constraints: const BoxConstraints(minHeight: 74),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(17),
+            gradient: selected
+                ? const LinearGradient(
+                    colors: [Color(0xDD1686D9), Color(0xDD1745A1)],
+                  )
+                : const LinearGradient(
+                    colors: [Color(0x88163867), Color(0x77203F72)],
+                  ),
+            border: Border.all(
+              color: selected
+                  ? const Color(0xFF75F2FF)
+                  : const Color(0x555ABDE8),
+              width: selected ? 1.7 : 1,
+            ),
+            boxShadow: selected
+                ? const [BoxShadow(color: Color(0x5539E8FF), blurRadius: 16)]
+                : null,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: selected ? const Color(0xFF8EF1FF) : const Color(0xFF8DAAC7),
+                size: 26,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 11,
+                  fontWeight: FontWeight.w900,
+                  color: selected ? Colors.white : const Color(0xFFB8D2E8),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+}
+
 
 class _Choice extends StatelessWidget {
   const _Choice({
