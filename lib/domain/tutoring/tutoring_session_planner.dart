@@ -179,6 +179,7 @@ class TutoringSessionPlanner {
   LearningSubject _subjectForSkill(SkillId skillId, LearningSubject fallback) {
     final value = skillId.value;
     if (value.startsWith('de.')) return LearningSubject.deutsch;
+    if (value.startsWith('en.') || value.startsWith('english.')) return LearningSubject.englisch;
     if (value.startsWith('science.')) return LearningSubject.sachkunde;
     if (value.startsWith('math.')) return LearningSubject.mathematik;
     return fallback;
