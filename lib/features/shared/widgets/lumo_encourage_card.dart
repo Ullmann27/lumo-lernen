@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/fox/lumo_character.dart';
 
 /// Motivations-Karte am Ende der Lernseite ("Weiter so, Alina!")
 class LumoEncourageCard extends StatelessWidget {
@@ -22,15 +25,15 @@ class LumoEncourageCard extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14, 14, 16, 14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFFF6E8), Color(0xFFFFE6CB)],
+          colors: [Color(0xDD123D72), Color(0xEE0A2852)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFFFD9B0)),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.40)),
         boxShadow: [
           BoxShadow(
-            color: accent.withOpacity(0.12),
+            color: accent.withOpacity(0.16),
             blurRadius: 18,
             offset: const Offset(0, 6),
             spreadRadius: -2,
@@ -49,13 +52,17 @@ class LumoEncourageCard extends StatelessWidget {
                 Positioned.fill(
                   child: ClipOval(
                     child: Container(
-                      color: Colors.white,
-                      child: Image.asset(
-                        foxAsset,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const Center(
-                          child: Text('🦊', style: TextStyle(fontSize: 44)),
-                        ),
+                      color: const Color(0xFF0D315F),
+                      child: LumoCharacter(
+                        pose: LumoDesignFoxPose.trophyWink,
+                        ambientPoses: const <LumoDesignFoxPose>[
+                          LumoDesignFoxPose.cheer,
+                          LumoDesignFoxPose.thumbWink,
+                        ],
+                        size: 76,
+                        reduceMotion: MediaQuery.disableAnimationsOf(context),
+                        intro: false,
+                        shadow: false,
                       ),
                     ),
                   ),
@@ -67,8 +74,9 @@ class LumoEncourageCard extends StatelessWidget {
                     width: 32,
                     height: 32,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: const Color(0xFF123D72),
                       shape: BoxShape.circle,
+                      border: Border.all(color: LumoVisualTokens.gold.withOpacity(.55)),
                       boxShadow: [
                         BoxShadow(
                           color: LumoColors.gold.withOpacity(0.40),
@@ -101,7 +109,7 @@ class LumoEncourageCard extends StatelessWidget {
                           fontFamily: 'Nunito',
                           fontSize: 15.5,
                           fontWeight: FontWeight.w900,
-                          color: LumoColors.ink900,
+                          color: LumoVisualTokens.white,
                         ),
                       ),
                     ),
@@ -118,7 +126,7 @@ class LumoEncourageCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
-                    color: LumoColors.ink500,
+                    color: LumoVisualTokens.muted,
                     height: 1.35,
                   ),
                 ),
@@ -131,8 +139,11 @@ class LumoEncourageCard extends StatelessWidget {
             width: 52,
             height: 60,
             decoration: BoxDecoration(
-              color: Colors.white,
+              gradient: const LinearGradient(
+                colors: [Color(0xCC174E8B), Color(0xCC0D356A)],
+              ),
               borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
               boxShadow: [
                 BoxShadow(
                   color: LumoColors.orange.withOpacity(0.18),
@@ -152,7 +163,7 @@ class LumoEncourageCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 10,
                     fontWeight: FontWeight.w900,
-                    color: LumoColors.ink700,
+                    color: LumoVisualTokens.muted,
                   ),
                 ),
               ],
