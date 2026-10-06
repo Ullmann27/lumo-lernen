@@ -235,7 +235,15 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
             _GlowButton(
               key: const ValueKey('cognitive-profile-start'),
               label: 'Start',
-              onTap: null,
+              onTap: () async {
+                await Navigator.of(context).push<void>(
+                  MaterialPageRoute<void>(
+                    builder: (_) =>
+                        CognitiveProfileScreen(appState: widget.appState),
+                  ),
+                );
+                if (mounted) setState(() {});
+              },
             ),
           ],
         ),
