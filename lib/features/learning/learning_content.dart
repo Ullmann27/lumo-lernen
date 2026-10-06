@@ -284,6 +284,53 @@ class _LearningContentState extends State<LearningContent> {
     return name.split(RegExp(r'\s+')).first;
   }
 
+  String get _experienceTitle {
+    final st = widget.appState.state;
+    final subject = st.subject;
+    if (st.sessionKind == LumoSessionKind.schoolwork) {
+      return subject == 'Alle' ? 'Lumo-Schularbeit' : '$subject-Schularbeit';
+    }
+    if (st.sessionKind == LumoSessionKind.test) {
+      return subject == 'Alle' ? 'Lumo-Test' : '$subject-Test';
+    }
+    if (subject == 'Mathematik') {
+      final visual = _task.visual.toLowerCase();
+      final story = visual.contains('story') ||
+          _task.unit.toLowerCase().contains('geschichte') ||
+          _task.prompt.length > 62;
+      return story ? 'Rechen-Geschichte' : 'Mathe-Abenteuer';
+    }
+    return switch (subject) {
+      'Deutsch' || 'Rechtschreibung' || 'Schreiben' => 'Wort-Abenteuer',
+      'Lesen' => 'Lese-Abenteuer',
+      'Englisch' => 'English Adventure',
+      'Sachunterricht' => 'Entdecker-Abenteuer',
+      'Logik' => 'Denk-Abenteuer',
+      'Alle' => 'Lumo-Lernabenteuer',
+      _ => '$subject-Abenteuer',
+    };
+  }
+
+  String get _experienceSubtitle {
+    final st = widget.appState.state;
+    if (st.sessionKind == LumoSessionKind.schoolwork) {
+      return 'Wie in der Schule: konzentriert arbeiten, am Ende gemeinsam auswerten.';
+    }
+    if (st.sessionKind == LumoSessionKind.test) {
+      return 'Zeig, was du schon kannst. Ruhig lesen und selbst entscheiden.';
+    }
+    return switch (st.subject) {
+      'Mathematik' => 'Entdecke Zahlen, löse Aufgaben, werde ein Mathe-Profi!',
+      'Deutsch' || 'Rechtschreibung' || 'Schreiben' =>
+        'Entdecke Wörter, Sätze und Sprache – Schritt für Schritt.',
+      'Lesen' => 'Lies genau, verstehe Geschichten und finde die richtige Spur.',
+      'Englisch' => 'Listen, speak, read and learn – mit Lumo an deiner Seite.',
+      'Sachunterricht' => 'Entdecke Natur, Technik, Österreich und deine Welt.',
+      'Logik' => 'Muster erkennen, kombinieren und clevere Lösungen finden.',
+      _ => 'Lernen, entdecken und jeden Tag ein Stück weiterkommen.',
+    };
+  }
+
   String get _welcomeForKind {
     switch (widget.appState.state.sessionKind) {
       case LumoSessionKind.quickPractice:
@@ -353,6 +400,7 @@ class _LearningContentState extends State<LearningContent> {
     if (!mounted || !_allowHelp || _answered || _sessionFinished) return;
     _requestedHelpLevel = (_requestedHelpLevel + 1).clamp(1, 3);
     final hint = _taskHints.explain(_task, level: _requestedHelpLevel);
+    _lumo.think();
     setState(() => _tutorHint = hint);
     if (widget.appState.state.settings.voiceEnabled) {
       unawaited(LumoVoice.instance.speak(hint, style: VoiceStyle.explain));
@@ -1021,7 +1069,8 @@ class _LearningContentState extends State<LearningContent> {
         ),
       ));
     }
-    final title = st.subject == 'Alle' ? 'Gemischte Übung' : st.subject;
+    final title = _experienceTitle;
+    final experienceSubtitle = _experienceSubtitle;
     // prettifyUnit setzt Umlaute in Code-stabilen Unit-Namen wieder ein
     // (z.B. 'Rechenhaeuser' -> 'Rechenhäuser') ohne die internen Keys
     // zu aendern, die als Lookup in template-Maps weiter funktionieren.
@@ -1060,9 +1109,25 @@ class _LearningContentState extends State<LearningContent> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      _welcomeForKind,
-                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoVisualTokens.white, height: 1.3,
+                      experienceSubtitle,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w900,
+                        color: LumoVisualTokens.cyanBright,
+                        height: 1.3,
                         shadows: [Shadow(color: Color(0xCC000000), blurRadius: 8)],
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      _welcomeForKind,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: LumoVisualTokens.muted,
+                        height: 1.25,
                       ),
                     ),
                   ],
@@ -1076,7 +1141,10 @@ class _LearningContentState extends State<LearningContent> {
                   child: IconButton(
                     tooltip: 'Aufgabe vorlesen',
                     icon: const Icon(Icons.volume_up_rounded, color: Colors.white, size: 24),
-                    onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}'),
+                    onPressed: () {
+                      _lumo.talk();
+                      unawaited(LumoVoice.instance.speak('Aufgabe ${_task.prompt}'));
+                    },
                   ),
                 ),
               ],
@@ -1116,8 +1184,15 @@ class _LearningContentState extends State<LearningContent> {
                 const SizedBox(height: 12),
                 _AiHelpBubble(
                   text: _aiHelpReply!,
-                  onSpeak: () => LumoVoice.instance.speak(_aiHelpReply!, style: VoiceStyle.explain,
-                          ),
+                  onSpeak: () {
+                    _lumo.talk();
+                    unawaited(
+                      LumoVoice.instance.speak(
+                        _aiHelpReply!,
+                        style: VoiceStyle.explain,
+                      ),
+                    );
+                  },
                 ),
               ],
               const SizedBox(height: 12),
@@ -1244,14 +1319,14 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         gradient: const RadialGradient(
-                          colors: [Color(0xFFFFFFFF), Color(0xFFFFF7E6)],
+                          colors: [Color(0xFF184F8D), Color(0xFF0B2C58)],
                           radius: .9,
                         ),
                         shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30), width: 1.5,
+                        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45), width: 1.5,
                             ),
                         boxShadow: [
-                          BoxShadow(color: const Color(0xFFFFB800).withOpacity(.30), blurRadius: 12, offset: const Offset(0, 4),
+                          BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.28), blurRadius: 12, offset: const Offset(0, 4),
                               ),
                         ],
                       ),
@@ -1264,7 +1339,7 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                         Row(children: [
                           const Text(
                             'Lumo erklärt',
-                            style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF78350F), letterSpacing: .2,
+                            style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, letterSpacing: .2,
                                     ),
                           ),
                           const SizedBox(width: 6),
@@ -1272,14 +1347,13 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                             padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2,
                                     ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFF59E0B,
-                                      ).withOpacity(.18),
+                              color: LumoVisualTokens.cyan.withOpacity(.18),
                               borderRadius: BorderRadius.circular(LumoRadius.pill,
                                       ),
                             ),
                             child: const Text(
                               'Tipp',
-                              style: TextStyle(fontFamily: 'Nunito', fontSize: 9, fontWeight: FontWeight.w900, color: Color(0xFF92400E), letterSpacing: .6,
+                              style: TextStyle(fontFamily: 'Nunito', fontSize: 9, fontWeight: FontWeight.w900, color: LumoVisualTokens.cyanBright, letterSpacing: .6,
                                       ),
                             ),
                           ),
@@ -1288,7 +1362,7 @@ class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerPro
                         const SizedBox(height: 5),
                         Text(
                           widget.text,
-                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink700, height: 1.32,
+                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoVisualTokens.white, height: 1.32,
                                 ),
                         ),
                       ],
@@ -2768,10 +2842,15 @@ class _LessonProgressRow extends StatelessWidget {
               child: LumoCharacter(
                 key: const ValueKey('lesson-lumo'),
                 pose: LumoDesignFoxPose.teacherStick,
-                size: 106,
+                ambientPoses: const <LumoDesignFoxPose>[
+                  LumoDesignFoxPose.pointSide,
+                  LumoDesignFoxPose.bookPoint,
+                  LumoDesignFoxPose.thumbWink,
+                ],
+                size: 112,
                 reduceMotion: reduceMotion,
                 controller: lumo,
-                onTap: () {},
+                onTap: lumo.wave,
               ),
             ),
           ]),
