@@ -18,7 +18,7 @@ import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_card_fly.dart
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_discard_pile.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_draw_pile.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_intro_splash.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_opponent_hand.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_player_hud.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_player_hand.dart';
 
 LumoGameTurnClock _clock(WidgetTester tester) => tester
@@ -28,7 +28,8 @@ LumoGameTurnClock _clock(WidgetTester tester) => tester
 List<Object> _board(WidgetTester tester) => [
       tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
       tester.widget<LumoDrawPile>(find.byType(LumoDrawPile)).cardsLeft,
-      tester.widget<LumoOpponentHand>(find.byType(LumoOpponentHand)).cardCount,
+      // Solo mode renders Lumo himself instead of the old opponent fan.
+      tester.widgetList<LumoPlayerHud>(find.byType(LumoPlayerHud)).first.cardCount,
     ];
 
 Future<void> _open(WidgetTester tester,
@@ -94,10 +95,13 @@ void main() {
     await tester.tap(find.byTooltip('Ton einstellen'));
     await tester.pump(const Duration(milliseconds: 350));
     expect(_clock(tester).value, isTrue);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
     await tester.pump(const Duration(seconds: 5));
     expect(_board(tester), before);
     await tester.tap(find.text('Fertig'));
     await tester.pump(const Duration(milliseconds: 350));
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pump();
     expect(find.text('Spiel pausiert'), findsOneWidget);
     expect(_clock(tester).value, isTrue);
     await tester.tap(find.text('Fortsetzen'));
@@ -171,16 +175,10 @@ void main() {
     expect(_clock(tester).value, isTrue);
     expect(tester.takeException(), isNull);
     final path = LumoCardsAssets.allPlayerAvatars.last;
-    final image = find.descendant(
-      of: find.byType(LumoAvatarPicker),
-      matching: find.byWidgetPredicate((widget) =>
-          widget is Image &&
-          widget.image is AssetImage &&
-          (widget.image as AssetImage).assetName == path),
-    );
-    await tester.ensureVisible(image);
+    final choice = find.byKey(ValueKey('cards-avatar-$path'));
+    await tester.ensureVisible(choice);
     await tester.pump();
-    await tester.tap(image);
+    await tester.tap(choice);
     await tester.pump(const Duration(milliseconds: 350));
     expect(find.byType(LumoAvatarPicker), findsNothing);
     expect(find.text('Spiel pausiert'), findsOneWidget);
