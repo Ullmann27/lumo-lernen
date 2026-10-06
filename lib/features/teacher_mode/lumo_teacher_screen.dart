@@ -16,6 +16,7 @@ import '../../core/lumo_brain.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/lumo_image_generator.dart';
 import '../../theme/lumo_design_tokens.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/premium/lumo_empty_error_state.dart';
 import 'lumo_akademie_screen.dart';
 import 'topic_curriculum.dart';
@@ -428,7 +429,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF6EE),
+      backgroundColor: LumoVisualTokens.night,
       body: SafeArea(
         child: Column(
           children: [
@@ -665,8 +666,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
               constraints: const BoxConstraints(maxWidth: 320),
               decoration: BoxDecoration(
                 color: msg.isError
-                    ? const Color(0xFFFEE2E2)
-                    : (isLumo ? Colors.white : widget.topic.gradient[0]),
+                    ? const Color(0xCC4A2233)
+                    : (isLumo ? const Color(0xE60B2A55) : widget.topic.gradient[0]),
                 gradient: !isLumo && !msg.isError
                     ? LinearGradient(colors: widget.topic.gradient)
                     : null,
@@ -681,7 +682,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                       : const Radius.circular(4),
                 ),
                 border: isLumo && !msg.isError
-                    ? Border.all(color: const Color(0xFFE5E7EB))
+                    ? Border.all(color: LumoVisualTokens.cyan.withOpacity(.30))
                     : null,
                 boxShadow: [
                   BoxShadow(
@@ -704,8 +705,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                       fontWeight: FontWeight.w600,
                       height: 1.4,
                       color: msg.isError
-                          ? const Color(0xFFB91C1C)
-                          : (isLumo ? const Color(0xFF1F2937) : Colors.white),
+                          ? const Color(0xFFFFB4B4)
+                          : (isLumo ? LumoVisualTokens.white : Colors.white),
                     ),
                   ),
                   // Bildgenerator-Bubble (Heinz' Feature)
@@ -804,14 +805,14 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color(0xE60B2A55),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(18),
                 topRight: Radius.circular(18),
                 bottomRight: Radius.circular(18),
                 bottomLeft: Radius.circular(4),
               ),
-              border: Border.all(color: const Color(0xFFE5E7EB)),
+              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.28)),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -855,7 +856,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xD90B2A55),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   color: widget.topic.gradient[0].withOpacity(0.4),
@@ -868,7 +869,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                   fontFamily: 'Nunito',
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
-                  color: widget.topic.gradient[0],
+                  color: LumoVisualTokens.white,
                 ),
               ),
             ),
@@ -882,7 +883,8 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xF0061839),
+        border: const Border(top: BorderSide(color: Color(0x4437D2FD))),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
@@ -898,8 +900,9 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF3F4F6),
+                  color: const Color(0xD90B2A55),
                   borderRadius: BorderRadius.circular(24),
+                  border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.28)),
                 ),
                 child: TextField(
                   controller: _controller,
@@ -911,7 +914,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                     hintText: 'Frag Lumo etwas...',
                     hintStyle: TextStyle(
                         fontFamily: 'Nunito',
-                        color: Color(0xFF9CA3AF),
+                        color: LumoVisualTokens.muted,
                         fontWeight: FontWeight.w600),
                     border: InputBorder.none,
                     contentPadding:
@@ -920,6 +923,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
                   style: const TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 15,
+                      color: LumoVisualTokens.white,
                       fontWeight: FontWeight.w600),
                 ),
               ),
