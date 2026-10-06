@@ -1143,15 +1143,46 @@ class _NumberLineVisual extends StatelessWidget {
           width: correct || selected ? 42 : 34,
           height: correct || selected ? 42 : 34,
           decoration: BoxDecoration(
-            color: correct ? const Color(0xFF22C55E) : selected ? LumoColors.orange : Colors.white,
+            gradient: LinearGradient(
+              colors: correct
+                  ? const [Color(0xFF24C997), Color(0xFF116F60)]
+                  : selected
+                      ? const [Color(0xFFFFB52E), Color(0xFFC96B00)]
+                      : const [Color(0xFF19538F), Color(0xFF0C315F)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
             shape: BoxShape.circle,
-            border: Border.all(color: correct ? const Color(0xFF22C55E) : LumoColors.orange.withOpacity(.55), width: 2,
+            border: Border.all(
+              color: correct
+                  ? const Color(0xFF5FF0BF)
+                  : selected
+                      ? LumoVisualTokens.gold
+                      : LumoVisualTokens.cyan.withOpacity(.55),
+              width: 2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: (correct
+                        ? const Color(0xFF5FF0BF)
+                        : selected
+                            ? LumoVisualTokens.gold
+                            : LumoVisualTokens.cyan)
+                    .withOpacity(.22),
+                blurRadius: 8,
               ),
+            ],
           ),
           child: Center(
-            child: Text('$number', style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: correct || selected ? Colors.white : LumoColors.ink900,
-                ),
+            child: Text(
+              '$number',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 15,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
               ),
+            ),
           ),
         );
       }).toList(),
@@ -1202,20 +1233,20 @@ class _ShapeVisual extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: correct
-                    ? const [Color(0xFFDCFCE7), Colors.white]
+                    ? const [Color(0xCC176C5B), Color(0xDD0B3A35)]
                     : selected
-                        ? [LumoColors.orangeSurface, Colors.white]
-                        : [Colors.white, shapeColor.withOpacity(0.06)],
+                        ? const [Color(0xCCD98212), Color(0xDD75420A)]
+                        : const [Color(0xCC174E8B), Color(0xDD0D356A)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               borderRadius: BorderRadius.circular(LumoRadius.lg),
               border: Border.all(
                 color: correct
-                    ? const Color(0xFF22C55E)
+                    ? const Color(0xFF5FF0BF)
                     : selected
-                        ? LumoColors.orange
-                        : shapeColor.withOpacity(0.25),
+                        ? LumoVisualTokens.gold
+                        : shapeColor.withOpacity(0.62),
                 width: 2,
               ),
               boxShadow: [
@@ -1250,7 +1281,7 @@ class _ShapeVisual extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 13,
                     fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
+                    color: LumoVisualTokens.white,
                   ),
                 ),
               ],
