@@ -31,7 +31,9 @@ void main() {
       final file = File('$folder/${entry.value}');
       if (!file.existsSync()) continue;
       final loader = FontLoader(entry.key);
-      loader.addFont(Future.value(ByteData.sublistView(await file.readAsBytes())));
+      loader.addFont(
+        Future.value(ByteData.sublistView(await file.readAsBytes())),
+      );
       await loader.load();
       loadedFonts[entry.key] = entry.value;
     }
@@ -43,14 +45,21 @@ void main() {
     LumoVoice.instance.isEnabled = false;
   });
 
-  Future<void> capture(WidgetTester tester, GlobalKey key, Size size,
-      String name) async {
+  Future<void> capture(
+    WidgetTester tester,
+    GlobalKey key,
+    Size size,
+    String name,
+  ) async {
     final boundary =
         key.currentContext!.findRenderObject()! as RenderRepaintBoundary;
-    final image = (await tester.runAsync(() => boundary.toImage(pixelRatio: 2)))!;
+    final image = (await tester.runAsync(
+      () => boundary.toImage(pixelRatio: 2),
+    ))!;
     try {
-      final data = await tester
-          .runAsync(() => image.toByteData(format: ui.ImageByteFormat.png));
+      final data = await tester.runAsync(
+        () => image.toByteData(format: ui.ImageByteFormat.png),
+      );
       expect(data, isNotNull);
       expect(image.width, size.width.round() * 2);
       expect(image.height, size.height.round() * 2);
@@ -76,19 +85,22 @@ void main() {
     ('landscape', const Size(840, 400)),
     ('tablet', const Size(1024, 800)),
   ]) {
-    testWidgets('render actual Cards and avatar dialog ${entry.$1}',
-        (tester) async {
+    testWidgets('render actual Cards and avatar dialog ${entry.$1}', (
+      tester,
+    ) async {
       await tester.binding.setSurfaceSize(entry.$2);
       addTearDown(() => tester.binding.setSurfaceSize(null));
       final app = LumoAppState(walletRepository: RewardWalletRepository());
       await app.hydrateFromWallet();
       final key = GlobalKey();
-      await tester.pumpWidget(MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: LumoAppTheme.light(),
-        builder: (context, child) => RepaintBoundary(key: key, child: child!),
-        home: LumoCardsScreen(appState: app, seed: 10),
-      ));
+      await tester.pumpWidget(
+        MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: LumoAppTheme.light(),
+          builder: (context, child) => RepaintBoundary(key: key, child: child!),
+          home: LumoCardsScreen(appState: app, seed: 10),
+        ),
+      );
       await tester.pump(const Duration(seconds: 3));
       await tester.pump();
       if (find.byType(LumoIntroSplash).evaluate().isNotEmpty) {
@@ -125,7 +137,8 @@ void main() {
         'emulator_test': false,
         'physical_device_test': false,
         'font_aliases': loadedFonts,
-        'visual_acceptance': 'Manual review required; rendering is not approval.',
+        'visual_acceptance':
+            'Manual review required; rendering is not approval.',
         'shots': shots,
       }),
       flush: true,

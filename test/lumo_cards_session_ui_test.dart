@@ -21,29 +21,32 @@ import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_intro_splash.
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_player_hud.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_player_hand.dart';
 
-LumoGameTurnClock _clock(WidgetTester tester) => tester
-    .widget<LumoGamePauseScope>(find.byType(LumoGamePauseScope))
-    .clock;
+LumoGameTurnClock _clock(WidgetTester tester) =>
+    tester.widget<LumoGamePauseScope>(find.byType(LumoGamePauseScope)).clock;
 
 List<Object> _board(WidgetTester tester) => [
-      tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
-      tester.widget<LumoDrawPile>(find.byType(LumoDrawPile)).cardsLeft,
-      // Solo mode renders Lumo himself instead of the old opponent fan.
-      tester.widgetList<LumoPlayerHud>(find.byType(LumoPlayerHud)).first.cardCount,
-    ];
+  tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
+  tester.widget<LumoDrawPile>(find.byType(LumoDrawPile)).cardsLeft,
+  // Solo mode renders Lumo himself instead of the old opponent fan.
+  tester.widgetList<LumoPlayerHud>(find.byType(LumoPlayerHud)).first.cardCount,
+];
 
-Future<void> _open(WidgetTester tester,
-    {Size size = const Size(360, 780), bool reduceMotion = false}) async {
+Future<void> _open(
+  WidgetTester tester, {
+  Size size = const Size(360, 780),
+  bool reduceMotion = false,
+}) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
   final app = LumoAppState(walletRepository: RewardWalletRepository());
   await app.hydrateFromWallet();
   app.updateSettings(
-      app.state.settings.copyWith(reduceAnimations: reduceMotion));
+    app.state.settings.copyWith(reduceAnimations: reduceMotion),
+  );
   addTearDown(app.dispose);
-  await tester.pumpWidget(MaterialApp(
-    home: LumoCardsScreen(appState: app, seed: 10),
-  ));
+  await tester.pumpWidget(
+    MaterialApp(home: LumoCardsScreen(appState: app, seed: 10)),
+  );
   await tester.pump(const Duration(seconds: 3));
   await tester.pump();
   if (find.byType(LumoIntroSplash).evaluate().isNotEmpty) {
@@ -55,8 +58,13 @@ Future<void> _open(WidgetTester tester,
 
 Future<String> _tapLegalCard(WidgetTester tester) async {
   final hand = tester.widget<LumoPlayerHand>(find.byType(LumoPlayerHand));
-  final card = hand.cards.firstWhere((card) => LumoCardsRules.isPlayable(
-      card: card, topCard: hand.topCard, selectedColor: hand.selectedColor));
+  final card = hand.cards.firstWhere(
+    (card) => LumoCardsRules.isPlayable(
+      card: card,
+      topCard: hand.topCard,
+      selectedColor: hand.selectedColor,
+    ),
+  );
   final finder = find.byKey(ValueKey('hand-${card.id}'));
   await tester.ensureVisible(finder);
   await tester.pump();
@@ -76,7 +84,9 @@ void main() {
       final file = File('$folder/${entry.value}');
       if (!file.existsSync()) continue;
       final loader = FontLoader(entry.key);
-      loader.addFont(Future.value(ByteData.sublistView(await file.readAsBytes())));
+      loader.addFont(
+        Future.value(ByteData.sublistView(await file.readAsBytes())),
+      );
       await loader.load();
     }
   });
@@ -87,7 +97,9 @@ void main() {
     LumoVoice.instance.isEnabled = false;
   });
 
-  testWidgets('Audio sheet freezes the bot until explicit resume', (tester) async {
+  testWidgets('Audio sheet freezes the bot until explicit resume', (
+    tester,
+  ) async {
     await _open(tester);
     await tester.tap(find.text('Ziehen'));
     await tester.pump();
@@ -111,8 +123,9 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('Pausing cancels an uncommitted flight across Fold resize',
-      (tester) async {
+  testWidgets('Pausing cancels an uncommitted flight across Fold resize', (
+    tester,
+  ) async {
     await _open(tester);
     final before = _board(tester);
     final originalHand = tester
@@ -141,50 +154,58 @@ void main() {
     await tester.pump(const Duration(milliseconds: 600));
     expect(_board(tester), before);
     expect(
-        tester.widget<LumoPlayerHand>(find.byType(LumoPlayerHand)).cards.map(
-            (card) => card.id),
-        originalHand);
+      tester
+          .widget<LumoPlayerHand>(find.byType(LumoPlayerHand))
+          .cards
+          .map((card) => card.id),
+      originalHand,
+    );
     final played = await _tapLegalCard(tester);
     await tester.pump(const Duration(milliseconds: 300));
     expect(
-        tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
-        played);
+      tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
+      played,
+    );
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('Reduced motion commits the legal card without a flight delay',
-      (tester) async {
+  testWidgets('Reduced motion commits the legal card without a flight delay', (
+    tester,
+  ) async {
     await _open(tester, reduceMotion: true);
     final played = await _tapLegalCard(tester);
     await tester.pump();
     expect(find.byType(LumoCardFly), findsNothing);
     expect(
-        tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
-        played);
+      tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
+      played,
+    );
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('Landscape avatar picker scrolls, saves and leaves the game paused',
-      (tester) async {
-    await _open(tester, size: const Size(840, 400));
-    await tester.tap(find.byTooltip('Avatar wechseln'));
-    await tester.pump(const Duration(milliseconds: 350));
-    expect(find.byType(LumoAvatarPicker), findsOneWidget);
-    expect(_clock(tester).value, isTrue);
-    expect(tester.takeException(), isNull);
-    final path = LumoCardsAssets.allPlayerAvatars.last;
-    final choice = find.byKey(ValueKey('cards-avatar-$path'));
-    await tester.ensureVisible(choice);
-    await tester.pump();
-    await tester.tap(choice);
-    await tester.pump(const Duration(milliseconds: 350));
-    expect(find.byType(LumoAvatarPicker), findsNothing);
-    expect(find.text('Spiel pausiert'), findsOneWidget);
-    final prefs = await SharedPreferences.getInstance();
-    expect(prefs.getString('lumo_cards_player_avatar'), path);
-    expect(tester.takeException(), isNull);
-    await tester.pumpWidget(const SizedBox());
-  });
+  testWidgets(
+    'Landscape avatar picker scrolls, saves and leaves the game paused',
+    (tester) async {
+      await _open(tester, size: const Size(840, 400));
+      await tester.tap(find.byTooltip('Avatar wechseln'));
+      await tester.pump(const Duration(milliseconds: 350));
+      expect(find.byType(LumoAvatarPicker), findsOneWidget);
+      expect(_clock(tester).value, isTrue);
+      expect(tester.takeException(), isNull);
+      final path = LumoCardsAssets.allPlayerAvatars.last;
+      final choice = find.byKey(ValueKey('cards-avatar-$path'));
+      await tester.ensureVisible(choice);
+      await tester.pump();
+      await tester.tap(choice);
+      await tester.pump(const Duration(milliseconds: 350));
+      expect(find.byType(LumoAvatarPicker), findsNothing);
+      expect(find.text('Spiel pausiert'), findsOneWidget);
+      final prefs = await SharedPreferences.getInstance();
+      expect(prefs.getString('lumo_cards_player_avatar'), path);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
 }

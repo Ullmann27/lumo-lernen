@@ -56,9 +56,7 @@ class LumoAvatarPicker extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: LumoVisualTokens.cyan, width: 2),
-        boxShadow: const [
-          BoxShadow(color: Color(0x4037D2FD), blurRadius: 24),
-        ],
+        boxShadow: const [BoxShadow(color: Color(0x4037D2FD), blurRadius: 24)],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -93,8 +91,10 @@ class LumoAvatarPicker extends StatelessWidget {
               IconButton(
                 tooltip: 'Auswahl schließen',
                 onPressed: () => Navigator.of(context).maybePop(),
-                icon: const Icon(Icons.close_rounded,
-                    color: LumoVisualTokens.white),
+                icon: const Icon(
+                  Icons.close_rounded,
+                  color: LumoVisualTokens.white,
+                ),
               ),
             ],
           ),
@@ -120,7 +120,8 @@ class LumoAvatarPicker extends StatelessWidget {
                 _AvatarChoice(
                   key: ValueKey('cards-avatar-$path'),
                   assetPath: path,
-                  label: 'Avatar ${LumoCardsAssets.allPlayerAvatars.indexOf(path) + 1}',
+                  label:
+                      'Avatar ${LumoCardsAssets.allPlayerAvatars.indexOf(path) + 1}',
                   selected: path == currentAvatarPath,
                   onTap: () => onPick(path),
                 ),
@@ -148,56 +149,56 @@ class _AvatarChoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-        builder: (context, constraints) {
-          // Portrait source files are 512px. Decode for the actual tile/DPR,
-          // without requesting oversized textures on tablets or folded phones.
-          final pixels = (constraints.maxWidth *
-                  MediaQuery.devicePixelRatioOf(context))
+    builder: (context, constraints) {
+      // Portrait source files are 512px. Decode for the actual tile/DPR,
+      // without requesting oversized textures on tablets or folded phones.
+      final pixels =
+          (constraints.maxWidth * MediaQuery.devicePixelRatioOf(context))
               .ceil()
               .clamp(128, 512);
-          return Semantics(
-            label: label,
-            button: true,
-            selected: selected,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: onTap,
-                customBorder: const CircleBorder(),
-                child: AnimatedContainer(
-                  duration: MediaQuery.disableAnimationsOf(context)
-                      ? Duration.zero
-                      : const Duration(milliseconds: 180),
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: LumoVisualTokens.glassRow,
-                    border: Border.all(
-                      color: selected
-                          ? LumoVisualTokens.gold
-                          : LumoVisualTokens.cyan,
-                      width: selected ? 4 : 2,
-                    ),
-                  ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      assetPath,
-                      fit: BoxFit.cover,
-                      cacheWidth: pixels,
-                      cacheHeight: pixels,
-                      filterQuality: FilterQuality.medium,
-                      excludeFromSemantics: true,
-                      errorBuilder: (_, __, ___) => const Icon(
-                        Icons.person_outline_rounded,
-                        color: LumoVisualTokens.white,
-                        size: 44,
-                      ),
-                    ),
+      return Semantics(
+        label: label,
+        button: true,
+        selected: selected,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            customBorder: const CircleBorder(),
+            child: AnimatedContainer(
+              duration: MediaQuery.disableAnimationsOf(context)
+                  ? Duration.zero
+                  : const Duration(milliseconds: 180),
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: LumoVisualTokens.glassRow,
+                border: Border.all(
+                  color: selected
+                      ? LumoVisualTokens.gold
+                      : LumoVisualTokens.cyan,
+                  width: selected ? 4 : 2,
+                ),
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  assetPath,
+                  fit: BoxFit.cover,
+                  cacheWidth: pixels,
+                  cacheHeight: pixels,
+                  filterQuality: FilterQuality.medium,
+                  excludeFromSemantics: true,
+                  errorBuilder: (_, __, ___) => const Icon(
+                    Icons.person_outline_rounded,
+                    color: LumoVisualTokens.white,
+                    size: 44,
                   ),
                 ),
               ),
             ),
-          );
-        },
+          ),
+        ),
       );
+    },
+  );
 }

@@ -25,8 +25,9 @@ void main() {
     LumoVoice.instance.isEnabled = false;
   });
 
-  testWidgets('Paused handover cannot expose or advance the next hand',
-      (tester) async {
+  testWidgets('Paused handover cannot expose or advance the next hand', (
+    tester,
+  ) async {
     final controller = _controller();
     addTearDown(controller.dispose);
     controller.drawCard();
@@ -49,26 +50,29 @@ void main() {
     expect(notifications, 1);
   });
 
-  testWidgets('Disposed controller ignores delayed card and restart callbacks',
-      (tester) async {
-    final controller = _controller(vsBot: true);
-    final previous = controller.state;
-    final tapped = previous.currentPlayer.hand.first;
-    controller.dispose();
+  testWidgets(
+    'Disposed controller ignores delayed card and restart callbacks',
+    (tester) async {
+      final controller = _controller(vsBot: true);
+      final previous = controller.state;
+      final tapped = previous.currentPlayer.hand.first;
+      controller.dispose();
 
-    expect(() => controller.playCard(tapped), returnsNormally);
-    expect(controller.drawCard, returnsNormally);
-    expect(() => controller.selectColor(LumoCardColor.blue), returnsNormally);
-    expect(() => controller.answerLearningQuestion(0), returnsNormally);
-    expect(controller.confirmHandover, returnsNormally);
-    expect(controller.restart, returnsNormally);
-    expect(controller.state, same(previous));
-    await tester.pump(const Duration(seconds: 5));
-    expect(tester.takeException(), isNull);
-  });
+      expect(() => controller.playCard(tapped), returnsNormally);
+      expect(controller.drawCard, returnsNormally);
+      expect(() => controller.selectColor(LumoCardColor.blue), returnsNormally);
+      expect(() => controller.answerLearningQuestion(0), returnsNormally);
+      expect(controller.confirmHandover, returnsNormally);
+      expect(controller.restart, returnsNormally);
+      expect(controller.state, same(previous));
+      await tester.pump(const Duration(seconds: 5));
+      expect(tester.takeException(), isNull);
+    },
+  );
 
-  testWidgets('Deferred navigation disposal cancels the pending bot action',
-      (tester) async {
+  testWidgets('Deferred navigation disposal cancels the pending bot action', (
+    tester,
+  ) async {
     final controller = _controller(vsBot: true);
     var leaving = false;
     controller.addListener(() {
@@ -86,8 +90,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('Paused input stays inert and restart cancels the old bot turn',
-      (tester) async {
+  testWidgets('Paused input stays inert and restart cancels the old bot turn', (
+    tester,
+  ) async {
     final controller = _controller(vsBot: true);
     addTearDown(controller.dispose);
     controller.drawCard();

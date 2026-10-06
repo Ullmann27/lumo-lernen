@@ -11,6 +11,8 @@
 // machen das Spiel sofort spannend.
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,6 +73,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   bool _rewardGiven = false;
   bool _callRewardGiven = false;
   int _roundSerial = 0;
+  Timer? _pendingPlay;
 
   /// Intro-Splash beim Spielstart (Heinz 2026-05-22). Verschwindet nach
   /// ~2 Sekunden automatisch oder per Tap. Wird beim Restart nicht
@@ -136,6 +139,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       grade: widget.appState.state.grade,
     );
     _controller.addListener(_onStateChanged);
+    _controller.turnClock.addListener(_onPauseChanged);
     // Heinz Crash-Bericht 2026-05-22: '_dependents.isEmpty' Assertion.
     // Frueher hat sich beim ersten Start ein Avatar-Picker-Dialog
     // direkt aus addPostFrameCallback geoeffnet. Das fuehrte zu
@@ -166,13 +170,15 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   }
 
   Future<void> _changeAvatar() async {
+    if (!mounted) return;
+    _controller.turnClock.pause();
     final picked = await LumoAvatarPicker.show(
       context,
       title: 'Avatar wechseln',
       currentAvatarPath: _playerAvatarPath,
     );
-    if (picked == null) return;
-    if (mounted) setState(() => _playerAvatarPath = picked);
+    if (picked == null || !mounted) return;
+    setState(() => _playerAvatarPath = picked);
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(_avatarPrefKey, picked);
@@ -181,6 +187,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
 
   @override
   void dispose() {
+    _pendingPlay?.cancel();
+    _controller.turnClock.removeListener(_onPauseChanged);
     _controller.removeListener(_onStateChanged);
     _controller.dispose();
     _lumo.dispose();
@@ -188,6 +196,13 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     // Singleton-Player bleibt offen fuer den naechsten Screen-Eintritt.
     LumoMusic.instance.stop();
     super.dispose();
+  }
+
+  void _onPauseChanged() {
+    if (!mounted || !_controller.turnClock.value) return;
+    _pendingPlay?.cancel();
+    _pendingPlay = null;
+    _clearFly();
   }
 
   void _onStateChanged() {
@@ -274,8 +289,12 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// bereits ein Flug laeuft oder die Discard-Pile noch nicht im Tree
   /// ist, wird die Karte sofort gespielt (Fallback ohne Animation).
   void _playCardWithFly(LumoCard card, Offset globalTapPos) {
-    if (_flyingCard != null) {
+    if (!mounted || _controller.turnClock.value || _flyingCard != null) {
       // Schon ein Flug aktiv - lass ihn fertig laufen, kein zweiter.
+      return;
+    }
+    if (_reduceMotion) {
+      _controller.playCard(card);
       return;
     }
     final discardBox =
@@ -298,8 +317,12 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     // wechselt erst nach Animations-Mitte, dann ueberlappt der Flug-
     // Endpunkt mit der neuen Top-Card.
     final serial = _roundSerial;
-    Future.delayed(const Duration(milliseconds: 220), () {
-      if (!mounted || serial != _roundSerial) return;
+    _pendingPlay?.cancel();
+    _pendingPlay = Timer(const Duration(milliseconds: 220), () {
+      _pendingPlay = null;
+      if (!mounted ||
+          serial != _roundSerial ||
+          _controller.turnClock.value) return;
       _controller.playCard(card);
     });
   }
@@ -318,6 +341,10 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// passt zum aktuellen Lumo-Cards-Kontext. LumoMusic.muted persistiert,
   /// SharedPreferences merken sich die Wahl ueber App-Neustarts hinweg.
   Future<void> _openAudioSettings() async {
+    if (!mounted) return;
+    // Closing the sheet keeps the game paused. Only Fortsetzen resumes it.
+    // This also preserves a lifecycle pause received while the sheet is open.
+    _controller.turnClock.pause();
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
@@ -748,6 +775,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   }
 
   void _restartGame() {
+    _pendingPlay?.cancel();
+    _pendingPlay = null;
     _roundSerial++;
     _lumoReacted = false;
     _rewardGiven = false;
