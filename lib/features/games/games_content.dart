@@ -1017,7 +1017,7 @@ class _KartWideCard extends StatelessWidget {
                         ),
                       ),
                       const Text(
-                        'Lernen auf der Überholspur!',
+                        'Arcade-Rennen in Lumos Welten!',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -1183,17 +1183,21 @@ class _AdventureCardState extends State<_AdventureCard>
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
                   colors: <Color>[
-                    Color(0xFFF97316), // orange
-                    Color(0xFFEC4899), // pink
-                    Color(0xFF7C3AED), // lila
+                    Color(0xF20B315F),
+                    Color(0xF2071A3E),
+                    Color(0xE9142E63),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: LumoVisualTokens.cyan.withOpacity(.58),
+                  width: 1.2,
+                ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFFF97316).withOpacity(0.4 * pulse),
+                    color: LumoVisualTokens.cyan.withOpacity(0.28 * pulse),
                     blurRadius: 24 * pulse,
                     offset: const Offset(0, 8),
                     spreadRadius: -2,
@@ -1204,15 +1208,22 @@ class _AdventureCardState extends State<_AdventureCard>
                 children: [
                   // Animierter Lumo-Avatar
                   Container(
-                    width: 64,
-                    height: 64,
+                    width: 68,
+                    height: 68,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      gradient: const LinearGradient(
+                        colors: [Color(0xAA0D4F79), Color(0xAA13265D)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                       shape: BoxShape.circle,
+                      border: Border.all(
+                        color: LumoVisualTokens.cyanBright.withOpacity(.7),
+                      ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 10,
+                          color: LumoVisualTokens.cyan.withOpacity(.28),
+                          blurRadius: 14,
                           offset: const Offset(0, 4),
                         ),
                       ],
@@ -1220,7 +1231,10 @@ class _AdventureCardState extends State<_AdventureCard>
                     child: Center(
                       child: Transform.scale(
                         scale: pulse,
-                        child: const Text('🦊', style: TextStyle(fontSize: 38)),
+                        child: const LumoFoxPose(
+                          pose: LumoDesignFoxPose.spielweltJump,
+                          size: 62,
+                        ),
                       ),
                     ),
                   ),
@@ -1237,8 +1251,11 @@ class _AdventureCardState extends State<_AdventureCard>
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.25),
+                                color: LumoVisualTokens.cyan.withOpacity(0.18),
                                 borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: LumoVisualTokens.cyanBright.withOpacity(.55),
+                                ),
                               ),
                               child: const Text(
                                 'NEU',
@@ -1246,7 +1263,7 @@ class _AdventureCardState extends State<_AdventureCard>
                                   fontFamily: 'Nunito',
                                   fontSize: 10,
                                   fontWeight: FontWeight.w900,
-                                  color: Colors.white,
+                                  color: LumoVisualTokens.cyanBright,
                                   letterSpacing: 1.2,
                                 ),
                               ),
@@ -1289,13 +1306,22 @@ class _AdventureCardState extends State<_AdventureCard>
                   const SizedBox(width: 10),
                   Container(
                     padding: const EdgeInsets.all(12),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFF2FA8F0), Color(0xFF1466C8)],
+                      ),
                       shape: BoxShape.circle,
+                      border: Border.all(color: LumoVisualTokens.cyanBright),
+                      boxShadow: [
+                        BoxShadow(
+                          color: LumoVisualTokens.cyan.withOpacity(.35),
+                          blurRadius: 12,
+                        ),
+                      ],
                     ),
                     child: const Icon(
                       Icons.play_arrow_rounded,
-                      color: Color(0xFFF97316),
+                      color: Colors.white,
                       size: 26,
                     ),
                   ),
