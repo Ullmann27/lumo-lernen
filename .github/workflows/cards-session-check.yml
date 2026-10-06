@@ -1,0 +1,85 @@
+name: Cards session checks
+
+on:
+  push:
+    branches: [chatgpt/cards-resume-safety-2026-10-06]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cards-session-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Save exact source for reproducible review
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-out
+          git rev-parse HEAD > ci-out/source-sha.txt
+          git status --porcelain > ci-out/status-before.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          selected = [p for p in paths if p and (
+              p.startswith(('lib/', 'test/', 'scripts/', 'tools/', 'config/', '.github/'))
+              or p in ('pubspec.yaml', 'pubspec.lock', 'analysis_options.yaml', 'CODEX_START.md', 'CLAUDE.md')
+              or (p.startswith('docs/') and p.endswith(('.md', '.json'))))]
+          subprocess.run(['git', 'archive', '--format=tar.gz', '-o', 'ci-out/source.tar.gz', 'HEAD', '--', *selected], check=True)
+          PY
+      - name: Upload source snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: cards-session-source-${{ github.sha }}
+          path: |
+            ci-out/source.tar.gz
+            ci-out/source-sha.txt
+            ci-out/status-before.txt
+          if-no-files-found: error
+          retention-days: 7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter --version | tee ci-out/flutter-version.txt
+          flutter pub get 2>&1 | tee ci-out/dependencies.log
+      - name: Analyze exact candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee ci-out/analysis.log
+      - name: Run existing and new Cards tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t tests < <(find test -type f -name '*cards*test.dart' | sort)
+          test "${#tests[@]}" -gt 0
+          printf '%s\n' "${tests[@]}" | tee ci-out/test-selection.txt
+          flutter test --no-pub --reporter=expanded --timeout=45s --concurrency=2 "${tests[@]}" 2>&1 | tee ci-out/cards-tests.log
+      - name: Preserve check evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cards-session-evidence-${{ github.sha }}
+          path: |
+            ci-out/*.txt
+            ci-out/*.log
+            ci-out/*.json
+          if-no-files-found: error
+          retention-days: 7
