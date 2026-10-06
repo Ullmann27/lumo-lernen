@@ -1851,7 +1851,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
       padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFF0F9FF), Color(0xFFE0F2FE)],
+          colors: [Color(0xE60B315F), Color(0xE6082148)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -1901,7 +1901,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                         fontFamily: 'Nunito',
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF0C4A6E),
+                        color: LumoVisualTokens.white,
                       ),
                     ),
                     Text(
@@ -1910,7 +1910,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF075985),
+                        color: LumoVisualTokens.muted,
                       ),
                     ),
                   ],
@@ -1939,7 +1939,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                     hintText: 'Eigene Frage stellen…',
                     border: OutlineInputBorder(borderSide: BorderSide.none),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: const Color(0xD90B2A55),
                     contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 12,
                     ),
                   ),
@@ -1977,9 +1977,9 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xD90B2A55),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFF7DD3FC), width: 1),
+                border: Border.all(color: const Color(0xFF7DD3FC).withOpacity(.48), width: 1),
               ),
               child: Text(
                 widget.reply!,
@@ -1987,7 +1987,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                   fontFamily: 'Nunito',
                   fontSize: 13.5,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF0F172A),
+                  color: LumoVisualTokens.white,
                   height: 1.45,
                 ),
               ),
@@ -2012,9 +2012,9 @@ class _QuickQuestionChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color(0xCC123760),
           borderRadius: BorderRadius.circular(99),
-          border: Border.all(color: const Color(0xFF7DD3FC), width: 1),
+          border: Border.all(color: const Color(0xFF7DD3FC).withOpacity(.45), width: 1),
         ),
         child: Text(
           text,
@@ -2022,7 +2022,7 @@ class _QuickQuestionChip extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 11.5,
             fontWeight: FontWeight.w800,
-            color: Color(0xFF0C4A6E),
+            color: LumoVisualTokens.white,
           ),
         ),
       ),
@@ -2087,9 +2087,9 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
       return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFFAF5FF),
+          color: const Color(0xD914315F),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
-          border: Border.all(color: const Color(0xFFE9D5FF), width: 1.2),
+          border: Border.all(color: const Color(0xFF9C8BFF).withOpacity(.48), width: 1.2),
         ),
         child: Row(
           children: [
@@ -2105,7 +2105,7 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
                   fontFamily: 'Nunito',
                   fontSize: 12.5,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF6D28D9),
+                  color: LumoVisualTokens.muted,
                   height: 1.4,
                 ),
               ),
