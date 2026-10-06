@@ -575,7 +575,7 @@ class _MissionsPage extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 22,
             fontWeight: FontWeight.w900,
-            color: LumoColors.ink900,
+            color: LumoVisualTokens.white,
           ),
         ),
         const SizedBox(height: 4),
@@ -585,7 +585,7 @@ class _MissionsPage extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 14,
             fontWeight: FontWeight.w700,
-            color: LumoColors.ink500,
+            color: LumoVisualTokens.muted,
           ),
         ),
         const SizedBox(height: 14),
@@ -707,7 +707,13 @@ class _ProgressPage extends StatelessWidget {
         const SizedBox(height: 18),
         Container(
           padding: const EdgeInsets.all(18),
-          decoration: lumoCard(),
+          decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xE6123760), Color(0xE609264B)],
+                ),
+                borderRadius: BorderRadius.circular(LumoRadius.xl),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
+              ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const Text('Aktuelle Lernrichtung', style: LumoTextStyles.heading3,
                 ),
@@ -737,7 +743,13 @@ class _ProgressTile extends StatelessWidget {
     return Container(
       width: 210,
       padding: const EdgeInsets.all(16),
-      decoration: lumoCard(),
+      decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xE6123760), Color(0xE609264B)],
+                ),
+                borderRadius: BorderRadius.circular(LumoRadius.xl),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
+              ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [Text(icon, style: const TextStyle(fontSize: 24)), const SizedBox(width: 8), Text(label, style: LumoTextStyles.label.copyWith(color: color)),
             ],
@@ -799,16 +811,27 @@ class _Badge extends StatelessWidget {
     return Container(
       width: 150,
       padding: const EdgeInsets.all(16),
-      decoration: lumoCard(color: unlocked ? Colors.white : const Color(0xFFFFFAF5),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: unlocked
+              ? const <Color>[Color(0xE6143B66), Color(0xE609264B)]
+              : const <Color>[Color(0xAA102D52), Color(0xAA081C38)],
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.xl),
+        border: Border.all(
+          color: unlocked
+              ? LumoVisualTokens.cyan.withOpacity(.42)
+              : LumoVisualTokens.cyan.withOpacity(.16),
+        ),
       ),
       child: Column(children: [
         Opacity(opacity: unlocked ? 1 : .30, child: Text(emoji, style: const TextStyle(fontSize: 42)),
           ),
         const SizedBox(height: 8),
-        Text(label, textAlign: TextAlign.center, style: LumoTextStyles.heading3,
+        Text(label, textAlign: TextAlign.center, style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
           ),
         const SizedBox(height: 4),
-        Text(unlocked ? 'Freigeschaltet' : 'Noch gesperrt', style: LumoTextStyles.caption,
+        Text(unlocked ? 'Freigeschaltet' : 'Noch gesperrt', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
           ),
       ],
       ),
@@ -947,7 +970,13 @@ class _AgentPageState extends State<_AgentPage> {
             const SizedBox(height: 18),
             Container(
               padding: const EdgeInsets.all(18),
-              decoration: lumoCard(),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xE6123760), Color(0xE609264B)],
+                ),
+                borderRadius: BorderRadius.circular(LumoRadius.xl),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
+              ),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 TextField(
                   controller: _controller,
@@ -987,9 +1016,9 @@ class _AgentPageState extends State<_AgentPage> {
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg),
+                    decoration: BoxDecoration(color: const Color(0xD90B2A55), borderRadius: BorderRadius.circular(LumoRadius.lg), border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.25)),
                         ),
-                    child: Text('Mikrofon ist im Elternbereich deaktiviert.', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700,
+                    child: Text('Mikrofon ist im Elternbereich deaktiviert.', style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white,
                           ),
                         ),
                   ),
@@ -997,9 +1026,9 @@ class _AgentPageState extends State<_AgentPage> {
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg),
+                    decoration: BoxDecoration(color: const Color(0xD90B2A55), borderRadius: BorderRadius.circular(LumoRadius.lg), border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.25)),
                         ),
-                    child: Text(_speech.listening ? 'Ich höre: ${_heardText.isEmpty ? '...' : _heardText}' : 'Gehört: $_heardText', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700,
+                    child: Text(_speech.listening ? 'Ich höre: ${_heardText.isEmpty ? '...' : _heardText}' : 'Gehört: $_heardText', style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white,
                           ),
                         ),
                   ),
@@ -1010,7 +1039,7 @@ class _AgentPageState extends State<_AgentPage> {
                       ),
                 ],
                 const SizedBox(height: 16),
-                Text(_answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700,
+                Text(_answer, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white,
               ),
             ),
           ],
@@ -1039,11 +1068,17 @@ class _SettingsPage extends StatelessWidget {
         const SizedBox(height: 18),
         Container(
           padding: const EdgeInsets.all(18),
-          decoration: lumoCard(),
+          decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xE6123760), Color(0xE609264B)],
+                ),
+                borderRadius: BorderRadius.circular(LumoRadius.xl),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
+              ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('Aktiv:', style: LumoTextStyles.heading3),
+            Text('Aktiv:', style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white)),
             const SizedBox(height: 8),
-            Text('• Profil: ${st.childName}, Klasse ${st.grade}\n• Lokales Kinderprofil\n• Alters- und Klassenlogik\n• Sicherer Offline-Lumo-Helfer\n• Mikrofon nur lokal für Spracheingabe\n• Foto-Review ohne Online-Upload', style: LumoTextStyles.body,
+            Text('• Profil: ${st.childName}, Klasse ${st.grade}\n• Lokales Kinderprofil\n• Alters- und Klassenlogik\n• Sicherer Offline-Lumo-Helfer\n• Mikrofon nur lokal für Spracheingabe\n• Foto-Review ohne Online-Upload', style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted),
                 ),
           ],
             ),
