@@ -1,19 +1,11 @@
-// ════════════════════════════════════════════════════════════════════════
-// LUMO AVATAR PICKER — waehle deinen Spieler-Avatar
-// ════════════════════════════════════════════════════════════════════════
-// Heinz 2026-05-22: 'Hauptspieler unten bekommt Avatar, Avatar-Picker
-// am Spielstart'. Zeigt die 4 Avatare aus Heinz' Sub-Asset-Pack als
-// runde Bilder zur Auswahl.
-//
-// Wird als Modal-Bottom-Sheet oder Overlay gezeigt. Auswahl wird in
-// SharedPreferences gespeichert damit das Kind beim naechsten Start
-// nicht nochmal waehlen muss.
-// ════════════════════════════════════════════════════════════════════════
-
 import 'package:flutter/material.dart';
 
+import '../../../../theme/lumo_visual_tokens.dart';
+import '../../../../widgets/design/lumo_design_system.dart';
 import '../lumo_cards_assets.dart';
 
+/// Uses the existing four player portraits. The dialog stays bounded and
+/// scrollable when a Fold changes size or a phone is held in landscape.
 class LumoAvatarPicker extends StatelessWidget {
   const LumoAvatarPicker({
     super.key,
@@ -26,22 +18,27 @@ class LumoAvatarPicker extends StatelessWidget {
   final String? currentAvatarPath;
   final void Function(String assetPath) onPick;
 
-  /// Komfort-Wrapper: zeigt den Picker als Voll-Overlay-Dialog.
   static Future<String?> show(
     BuildContext context, {
     required String title,
     String? currentAvatarPath,
-  }) async {
+  }) {
     return showDialog<String>(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.75),
+      barrierColor: Colors.black.withAlpha(190),
       builder: (dialogContext) => Dialog(
         backgroundColor: Colors.transparent,
+        clipBehavior: Clip.antiAlias,
         insetPadding: const EdgeInsets.all(24),
-        child: LumoAvatarPicker(
-          title: title,
-          currentAvatarPath: currentAvatarPath,
-          onPick: (path) => Navigator.of(dialogContext).pop(path),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 440),
+          child: SingleChildScrollView(
+            child: LumoAvatarPicker(
+              title: title,
+              currentAvatarPath: currentAvatarPath,
+              onPick: (path) => Navigator.of(dialogContext).pop(path),
+            ),
+          ),
         ),
       ),
     );
@@ -50,51 +47,80 @@ class LumoAvatarPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(24, 22, 24, 22),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFFF8E7), Color(0xFFFFE0B8)],
+          colors: [LumoVisualTokens.glass, LumoVisualTokens.night],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFFF7A2F), width: 3),
+        border: Border.all(color: LumoVisualTokens.cyan, width: 2),
         boxShadow: const [
-          BoxShadow(
-            color: Colors.black54,
-            blurRadius: 24,
-            offset: Offset(0, 12),
-          ),
+          BoxShadow(color: Color(0x4037D2FD), blurRadius: 24),
         ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('🦊', style: TextStyle(fontSize: 48)),
-          const SizedBox(height: 6),
-          Text(
-            title,
+          Row(
+            children: [
+              Image.asset(
+                LumoDesignFoxPose.avatar.assetPath,
+                width: 48,
+                height: 48,
+                cacheWidth: 192,
+                cacheHeight: 192,
+                semanticLabel: 'Lumo',
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.person_outline_rounded,
+                  color: LumoVisualTokens.cyan,
+                  size: 40,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                  ),
+                ),
+              ),
+              IconButton(
+                tooltip: 'Auswahl schließen',
+                onPressed: () => Navigator.of(context).maybePop(),
+                icon: const Icon(Icons.close_rounded,
+                    color: LumoVisualTokens.white),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            'Tippe auf dein Bild. Deine Karten bleiben erhalten.',
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'Nunito',
-              fontSize: 22,
-              fontWeight: FontWeight.w900,
-              color: Color(0xFF7C2D12),
+              color: LumoVisualTokens.muted,
+              height: 1.35,
             ),
           ),
           const SizedBox(height: 18),
-          // 2x2 Grid der vier Avatare.
           GridView.count(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 2,
             mainAxisSpacing: 14,
             crossAxisSpacing: 14,
-            childAspectRatio: 1.0,
             children: [
               for (final path in LumoCardsAssets.allPlayerAvatars)
                 _AvatarChoice(
+                  key: ValueKey('cards-avatar-$path'),
                   assetPath: path,
+                  label: 'Avatar ${LumoCardsAssets.allPlayerAvatars.indexOf(path) + 1}',
                   selected: path == currentAvatarPath,
                   onTap: () => onPick(path),
                 ),
@@ -108,52 +134,70 @@ class LumoAvatarPicker extends StatelessWidget {
 
 class _AvatarChoice extends StatelessWidget {
   const _AvatarChoice({
+    super.key,
     required this.assetPath,
+    required this.label,
     required this.selected,
     required this.onTap,
   });
 
   final String assetPath;
+  final String label;
   final bool selected;
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    final ringColor =
-        selected ? const Color(0xFFFCD34D) : const Color(0xFFFF7A2F);
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: ringColor, width: selected ? 4 : 2.5),
-          boxShadow: selected
-              ? [
-                  BoxShadow(
-                    color: const Color(0xFFFCD34D).withOpacity(0.6),
-                    blurRadius: 16,
-                    spreadRadius: 1,
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) {
+          // Portrait source files are 512px. Decode for the actual tile/DPR,
+          // without requesting oversized textures on tablets or folded phones.
+          final pixels = (constraints.maxWidth *
+                  MediaQuery.devicePixelRatioOf(context))
+              .ceil()
+              .clamp(128, 512);
+          return Semantics(
+            label: label,
+            button: true,
+            selected: selected,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: onTap,
+                customBorder: const CircleBorder(),
+                child: AnimatedContainer(
+                  duration: MediaQuery.disableAnimationsOf(context)
+                      ? Duration.zero
+                      : const Duration(milliseconds: 180),
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: LumoVisualTokens.glassRow,
+                    border: Border.all(
+                      color: selected
+                          ? LumoVisualTokens.gold
+                          : LumoVisualTokens.cyan,
+                      width: selected ? 4 : 2,
+                    ),
                   ),
-                ]
-              : null,
-        ),
-        child: ClipOval(
-          child: Image.asset(
-            assetPath,
-            fit: BoxFit.cover,
-            // Tier 1 Foundation 2026-05-23: tighten Decode-Constraints
-            // damit das Bild nicht in voller PNG-Aufloesung dekodiert wird.
-            cacheWidth: 256,
-            cacheHeight: 256,
-            errorBuilder: (_, __, ___) => Container(
-              color: const Color(0xFFFFE0B8),
-              alignment: Alignment.center,
-              child: const Text('🙂', style: TextStyle(fontSize: 32)),
+                  child: ClipOval(
+                    child: Image.asset(
+                      assetPath,
+                      fit: BoxFit.cover,
+                      cacheWidth: pixels,
+                      cacheHeight: pixels,
+                      filterQuality: FilterQuality.medium,
+                      excludeFromSemantics: true,
+                      errorBuilder: (_, __, ___) => const Icon(
+                        Icons.person_outline_rounded,
+                        color: LumoVisualTokens.white,
+                        size: 44,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
+          );
+        },
+      );
 }
