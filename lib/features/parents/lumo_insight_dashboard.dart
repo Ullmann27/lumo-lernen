@@ -22,6 +22,7 @@ import '../../core/error_breakdown_repository.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../../core/lumo_ai_proxy_client.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/premium/lumo_empty_error_state.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../learning/learning_dna_card.dart';
@@ -82,18 +83,18 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF6EE),
+      backgroundColor: LumoVisualTokens.night,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const BackButton(color: Color(0xFF7C2D12)),
+        leading: const BackButton(color: LumoVisualTokens.white),
         title: const Text(
           '🦊 Lumo Insight',
           style: TextStyle(
             fontFamily: 'Nunito',
             fontSize: 22,
             fontWeight: FontWeight.w900,
-            color: Color(0xFF7C2D12),
+            color: LumoVisualTokens.white,
           ),
         ),
       ),
@@ -177,7 +178,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                     fontFamily: 'Nunito',
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
-                    color: Colors.white,
+                    color: const Color(0xE60B2A55),
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -187,7 +188,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                     fontFamily: 'Nunito',
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                    color: const Color(0xE60B2A55),
                     height: 1.3,
                   ),
                 ),
@@ -222,7 +223,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xE60B2A55),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: color.withOpacity(0.40), width: 1.2),
         boxShadow: [
@@ -263,7 +264,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF9E5),
+        color: const Color(0xE614355F),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: const Color(0xFFFCD34D), width: 1.2),
       ),
@@ -282,7 +283,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                 fontFamily: 'Nunito',
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF7C2D12),
+                color: LumoVisualTokens.white,
                 height: 1.4,
               ),
             ),
@@ -297,7 +298,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xE60B2A55),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: const Color(0xFF60A5FA), width: 1.4),
         boxShadow: [
@@ -362,7 +363,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xE60B2A55),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: const Color(0xFFFCA5A5), width: 1.2),
       ),
@@ -379,7 +380,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                   fontFamily: 'Nunito',
                   fontSize: 14,
                   fontWeight: FontWeight.w900,
-                  color: Color(0xFF7C2D12),
+                  color: LumoVisualTokens.white,
                 ),
               ),
             ],
@@ -416,7 +417,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                         fontFamily: 'Nunito',
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF7C2D12),
+                        color: LumoVisualTokens.white,
                       ),
                     ),
                   ),
@@ -484,7 +485,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFF5F3FF), Color(0xFFEDE9FE)],
+          colors: [Color(0xE31D2F69), Color(0xE30C214A)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
