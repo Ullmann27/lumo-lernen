@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/core/lumo_sound.dart';
@@ -65,12 +67,19 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('Listener disposal does not schedule another bot action',
+  testWidgets('Deferred navigation disposal cancels the pending bot action',
       (tester) async {
     final controller = _controller(vsBot: true);
-    // Navigation can synchronously remove a game in response to a state event.
-    controller.addListener(controller.dispose);
+    var leaving = false;
+    controller.addListener(() {
+      // ChangeNotifier forbids disposing during notifyListeners itself.
+      // Navigation tears the owner down after the notification completes.
+      if (leaving) return;
+      leaving = true;
+      scheduleMicrotask(controller.dispose);
+    });
     controller.drawCard();
+    await tester.pump();
     final stopped = controller.state;
     await tester.pump(const Duration(seconds: 5));
     expect(controller.state, same(stopped));
