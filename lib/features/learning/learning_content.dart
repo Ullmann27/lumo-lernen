@@ -263,6 +263,8 @@ class _LearningContentState extends State<LearningContent> {
     final s = stateSubject.trim();
     if (s == 'Mathematik' || s == 'Mathe') return 'Mathematik';
     if (s == 'Deutsch') return 'Deutsch';
+    if (s == 'Englisch') return 'Englisch';
+    if (s == 'Sachunterricht') return 'Sachunterricht';
     return null; // Lesen/Schreiben/Mixed -> Standard-Generator
   }
 
