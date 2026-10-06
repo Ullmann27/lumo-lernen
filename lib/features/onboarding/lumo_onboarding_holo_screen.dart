@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/user_profile.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -267,54 +266,45 @@ class _Background extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final wide = size.width >= 760;
-    Widget layer(String asset, {double opacity = 1}) => Positioned.fill(
-          child: IgnorePointer(
-            child: Opacity(
-              opacity: opacity,
-              child: SvgPicture.asset(asset, fit: BoxFit.cover),
-            ),
-          ),
-        );
+    final baseAsset = wide
+        ? 'assets/lumo_design/bg/bg_wide.png'
+        : 'assets/lumo_design/bg/bg_home.png';
     return Stack(
       fit: StackFit.expand,
       children: [
+        const ColoredBox(color: Color(0xFF020D21)),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: Opacity(
+              opacity: wide ? .54 : .40,
+              child: ColorFiltered(
+                colorFilter: const ColorFilter.mode(
+                  Color(0xB508244A),
+                  BlendMode.srcATop,
+                ),
+                child: Image.asset(baseAsset, fit: BoxFit.cover),
+              ),
+            ),
+          ),
+        ),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: _OnboardingWorldPainter(wide: wide),
+            ),
+          ),
+        ),
         const DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF020D21),
-                Color(0xFF082A55),
-                Color(0xFF07183D),
-                Color(0xFF020C20),
+                Color(0xB3020D21),
+                Color(0x66082A55),
+                Color(0x9907183D),
+                Color(0xE6020C20),
               ],
-            ),
-          ),
-        ),
-        layer(
-          'assets/lumo_design/onboarding/onboarding_constellation_grid.svg',
-          opacity: .72,
-        ),
-        layer(
-          'assets/lumo_design/onboarding/onboarding_holo_islands.svg',
-          opacity: wide ? .82 : .58,
-        ),
-        layer(
-          'assets/lumo_design/onboarding/onboarding_learning_orbits.svg',
-          opacity: wide ? .55 : .34,
-        ),
-        const DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0x19000000),
-                Color(0x00122545),
-                Color(0x8A020B1C),
-              ],
-              stops: [0, .48, 1],
             ),
           ),
         ),
@@ -331,6 +321,133 @@ class _Background extends StatelessWidget {
       ],
     );
   }
+}
+
+class _OnboardingWorldPainter extends CustomPainter {
+  const _OnboardingWorldPainter({required this.wide});
+  final bool wide;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final cyan = const Color(0xFF5CEBFF);
+    final violet = const Color(0xFF7A72FF);
+    final gold = const Color(0xFFFFD66B);
+    final center = Offset(size.width * .52, size.height * .47);
+
+    final orbitPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = wide ? 1.7 : 1.2
+      ..color = cyan.withValues(alpha: wide ? .24 : .16);
+    canvas.save();
+    canvas.translate(center.dx, center.dy);
+    canvas.rotate(-.10);
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset.zero,
+        width: size.width * .88,
+        height: size.height * .34,
+      ),
+      orbitPaint,
+    );
+    canvas.rotate(.30);
+    orbitPaint.color = violet.withValues(alpha: wide ? .18 : .11);
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset.zero,
+        width: size.width * .76,
+        height: size.height * .28,
+      ),
+      orbitPaint,
+    );
+    canvas.restore();
+
+    final grid = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = .7
+      ..color = cyan.withValues(alpha: .08);
+    final horizon = size.height * .73;
+    for (var row = 0; row < 7; row++) {
+      final y = horizon + row * size.height * .035;
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), grid);
+    }
+    for (var ray = -6; ray <= 6; ray++) {
+      canvas.drawLine(
+        Offset(size.width * .5, horizon - 8),
+        Offset(size.width * (.5 + ray * .12), size.height),
+        grid,
+      );
+    }
+
+    final route = Path()
+      ..moveTo(size.width * .02, size.height * .76)
+      ..cubicTo(
+        size.width * .18,
+        size.height * .65,
+        size.width * .29,
+        size.height * .82,
+        size.width * .43,
+        size.height * .70,
+      )
+      ..cubicTo(
+        size.width * .59,
+        size.height * .57,
+        size.width * .72,
+        size.height * .83,
+        size.width * .98,
+        size.height * .61,
+      );
+    canvas.drawPath(
+      route,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round
+        ..strokeWidth = wide ? 12 : 9
+        ..color = const Color(0xFF133B71).withValues(alpha: .52),
+    );
+    canvas.drawPath(
+      route,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round
+        ..strokeWidth = 1.8
+        ..shader = LinearGradient(
+          colors: [
+            cyan.withValues(alpha: .25),
+            cyan.withValues(alpha: .72),
+            gold.withValues(alpha: .66),
+          ],
+        ).createShader(Offset.zero & size),
+    );
+
+    final nodePaint = Paint()..color = gold.withValues(alpha: .82);
+    for (final point in <Offset>[
+      Offset(size.width * .20, size.height * .70),
+      Offset(size.width * .44, size.height * .69),
+      Offset(size.width * .70, size.height * .70),
+      Offset(size.width * .88, size.height * .66),
+    ]) {
+      canvas.drawCircle(point, wide ? 4.0 : 3.0, nodePaint);
+      canvas.drawCircle(
+        point,
+        wide ? 9.0 : 7.0,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1
+          ..color = gold.withValues(alpha: .24),
+      );
+    }
+
+    final star = Paint()..color = Colors.white.withValues(alpha: .55);
+    for (var i = 0; i < 22; i++) {
+      final dx = ((i * 67) % 97) / 100 * size.width;
+      final dy = ((i * 113) % 59) / 100 * size.height * .56;
+      canvas.drawCircle(Offset(dx, dy), i % 5 == 0 ? 1.6 : .8, star);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _OnboardingWorldPainter oldDelegate) =>
+      oldDelegate.wide != wide;
 }
 
 class _Glow extends StatelessWidget {

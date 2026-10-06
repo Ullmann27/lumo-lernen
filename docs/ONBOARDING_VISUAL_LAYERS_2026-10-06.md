@@ -1,6 +1,6 @@
 # Lumo Onboarding Visual Layers — 2026-10-06
 
-Diese drei Assets sind bewusst **keine fertigen Screenshots**. Sie sind zerlegbare Art-Layer hinter nativen Flutter-Widgets:
+Diese drei Assets sind bewusst **keine fertigen Screenshots**. Sie sind zerlegbare, editierbare Art-Layer und dienen als verbindliche Vektorquelle hinter nativen Flutter-Widgets:
 
 - `onboarding_constellation_grid.svg`: Sternbild-/Hologrid-Tiefe.
 - `onboarding_holo_islands.svg`: schwebende Lernwelt, Wasserfälle, entfernte Stadt.
@@ -14,3 +14,12 @@ Verbindliche Regeln:
 - Die Assets sind eigenständige Lumo-Grafik und enthalten keine fremden Franchise-Elemente.
 
 QA-Gate nach sichtbarer Änderung: echte Runtime-Aufnahmen für 360×800, 480×800, 840×560 und 1024×800; erst danach visuelle Abnahme.
+
+
+## Runtime-Umsetzung
+
+Für die App wird **keine zusätzliche SVG-Library** eingeführt. Der produktive Screen kombiniert
+`bg_home.png` / `bg_wide.png` mit einem nativen `CustomPainter`, der dieselben getrennten
+Sternbild-, Orbit-, Hologrid- und Abenteuerpfad-Schichten zeichnet. Dadurch bleibt der bestehende
+`pubspec.lock` unangetastet und der APK-Build mit `--enforce-lockfile` reproduzierbar.
+Die SVG-Dateien bleiben als austauschbare Design-/3D-Handoff-Einzelteile im Repository.
