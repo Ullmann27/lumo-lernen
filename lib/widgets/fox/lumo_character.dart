@@ -243,12 +243,12 @@ class _LumoCharacterState extends State<LumoCharacter>
               : const Duration(milliseconds: 220),
           switchInCurve: Curves.easeOutCubic,
           switchOutCurve: Curves.easeInCubic,
+          // Keep pose transitions transform-free. The outer character Transform is the
+          // single source of movement/rotation, which keeps hit testing and animation
+          // regression measurements stable while poses cross-fade.
           transitionBuilder: (child, animation) => FadeTransition(
             opacity: animation,
-            child: ScaleTransition(
-              scale: Tween<double>(begin: .965, end: 1).animate(animation),
-              child: child,
-            ),
+            child: child,
           ),
           child: LumoFoxPose(
             key: ValueKey(displayPose.assetName),
