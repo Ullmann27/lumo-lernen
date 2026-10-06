@@ -1,106 +1,117 @@
---- a/lib/features/games/lumo_cards/lumo_cards_game_controller.dart
-+++ b/lib/features/games/lumo_cards/lumo_cards_game_controller.dart
-@@ -57,8 +57,12 @@
-   final turnClock = LumoGameTurnClock();
-   DateTime _lastSpeakAt = DateTime(2000);
- 
-+  // Ignore delayed callbacks after the owning route has been removed.
-+  bool _disposed = false;
+--- a/lib/features/games/lumo_cards/lumo_cards_screen.dart
++++ b/lib/features/games/lumo_cards/lumo_cards_screen.dart
+@@ -10,6 +10,8 @@
+ // Heinz 2026-05-21 'zu langweilig' -> Solo-Bot + Streak + Animation
+ // machen das Spiel sofort spannend.
+ // ════════════════════════════════════════════════════════════════════════
 +
++import 'dart:async';
+ 
+ import 'package:flutter/material.dart';
+ import 'package:shared_preferences/shared_preferences.dart';
+@@ -71,6 +73,7 @@
+   bool _rewardGiven = false;
+   bool _callRewardGiven = false;
+   int _roundSerial = 0;
++  Timer? _pendingPlay;
+ 
+   /// Intro-Splash beim Spielstart (Heinz 2026-05-22). Verschwindet nach
+   /// ~2 Sekunden automatisch oder per Tap. Wird beim Restart nicht
+@@ -136,6 +139,7 @@
+       grade: widget.appState.state.grade,
+     );
+     _controller.addListener(_onStateChanged);
++    _controller.turnClock.addListener(_onPauseChanged);
+     // Heinz Crash-Bericht 2026-05-22: '_dependents.isEmpty' Assertion.
+     // Frueher hat sich beim ersten Start ein Avatar-Picker-Dialog
+     // direkt aus addPostFrameCallback geoeffnet. Das fuehrte zu
+@@ -166,13 +170,15 @@
+   }
+ 
+   Future<void> _changeAvatar() async {
++    if (!mounted) return;
++    _controller.turnClock.pause();
+     final picked = await LumoAvatarPicker.show(
+       context,
+       title: 'Avatar wechseln',
+       currentAvatarPath: _playerAvatarPath,
+     );
+-    if (picked == null) return;
+-    if (mounted) setState(() => _playerAvatarPath = picked);
++    if (picked == null || !mounted) return;
++    setState(() => _playerAvatarPath = picked);
+     try {
+       final prefs = await SharedPreferences.getInstance();
+       await prefs.setString(_avatarPrefKey, picked);
+@@ -181,6 +187,8 @@
+ 
    @override
    void dispose() {
-+    _disposed = true;
-     turnClock.dispose();
++    _pendingPlay?.cancel();
++    _controller.turnClock.removeListener(_onPauseChanged);
+     _controller.removeListener(_onStateChanged);
+     _controller.dispose();
+     _lumo.dispose();
+@@ -188,6 +196,13 @@
+     // Singleton-Player bleibt offen fuer den naechsten Screen-Eintritt.
+     LumoMusic.instance.stop();
      super.dispose();
++  }
++
++  void _onPauseChanged() {
++    if (!mounted || !_controller.turnClock.value) return;
++    _pendingPlay?.cancel();
++    _pendingPlay = null;
++    _clearFly();
    }
-@@ -120,7 +124,9 @@
  
-   /// Karte spielen (wenn moeglich).
-   void playCard(LumoCard card) {
--    if (turnClock.value || (vsBot && _state.currentPlayerIndex != 0)) {
-+    if (_disposed ||
-+        turnClock.value ||
-+        (vsBot && _state.currentPlayerIndex != 0)) {
+   void _onStateChanged() {
+@@ -274,8 +289,12 @@
+   /// bereits ein Flug laeuft oder die Discard-Pile noch nicht im Tree
+   /// ist, wird die Karte sofort gespielt (Fallback ohne Animation).
+   void _playCardWithFly(LumoCard card, Offset globalTapPos) {
+-    if (_flyingCard != null) {
++    if (!mounted || _controller.turnClock.value || _flyingCard != null) {
+       // Schon ein Flug aktiv - lass ihn fertig laufen, kein zweiter.
++      return;
++    }
++    if (_reduceMotion) {
++      _controller.playCard(card);
        return;
      }
-     final wasPlayer1 = _state.currentPlayerIndex == 0;
-@@ -143,7 +149,8 @@
- 
-   /// Karte ziehen.
-   void drawCard({bool autoPlay = false}) {
--    if (turnClock.value ||
-+    if (_disposed ||
-+        turnClock.value ||
-         _state.phase != GamePhase.playing ||
-         (vsBot && _state.currentPlayerIndex != 0)) {
-       return;
-@@ -191,7 +198,8 @@
- 
-   /// Nach Farbzauber: Farbe waehlen.
-   void selectColor(LumoCardColor color) {
--    if (turnClock.value ||
-+    if (_disposed ||
-+        turnClock.value ||
-         _state.phase != GamePhase.chooseColor ||
-         (vsBot && _state.currentPlayerIndex != 0)) {
-       return;
-@@ -208,7 +216,8 @@
- 
-   /// Lernfrage beantworten.
-   void answerLearningQuestion(int chosenIndex) {
--    if (turnClock.value ||
-+    if (_disposed ||
-+        turnClock.value ||
-         _state.phase != GamePhase.learningQuestion ||
-         (vsBot && _state.currentPlayerIndex != 0)) {
-       return;
-@@ -233,6 +242,7 @@
- 
-   /// 'Bereit'-Button im Pass-and-Play-Overlay.
-   void confirmHandover() {
-+    if (_disposed || turnClock.value) return;
-     final next = LumoCardsRules.confirmHandover(_state);
-     if (identical(next, _state)) {
-       return;
-@@ -244,6 +254,7 @@
- 
-   /// Nochmal spielen.
-   void restart() {
-+    if (_disposed) return;
-     turnClock.cancel();
-     _startNewGame();
-     notifyListeners();
-@@ -256,7 +267,7 @@
-   /// Wenn vsBot UND Lumo dran ist UND wir nicht in einer Wahl-Phase
-   /// stecken: nach kurzer Denkpause Lumo's Zug ausfuehren.
-   void _maybeRunBotTurn() {
--    if (!vsBot) return;
-+    if (_disposed || !vsBot) return;
-     final s = _state;
-     if (s.phase == GamePhase.gameOver) return;
-     // Heinz Fix 2026-05-22: Im Solo-Modus haengt das Spiel, wenn nach
-@@ -289,6 +300,7 @@
+     final discardBox =
+@@ -298,8 +317,12 @@
+     // wechselt erst nach Animations-Mitte, dann ueberlappt der Flug-
+     // Endpunkt mit der neuen Top-Card.
+     final serial = _roundSerial;
+-    Future.delayed(const Duration(milliseconds: 220), () {
+-      if (!mounted || serial != _roundSerial) return;
++    _pendingPlay?.cancel();
++    _pendingPlay = Timer(const Duration(milliseconds: 220), () {
++      _pendingPlay = null;
++      if (!mounted ||
++          serial != _roundSerial ||
++          _controller.turnClock.value) return;
+       _controller.playCard(card);
+     });
+   }
+@@ -318,6 +341,10 @@
+   /// passt zum aktuellen Lumo-Cards-Kontext. LumoMusic.muted persistiert,
+   /// SharedPreferences merken sich die Wahl ueber App-Neustarts hinweg.
+   Future<void> _openAudioSettings() async {
++    if (!mounted) return;
++    // Closing the sheet keeps the game paused. Only Fortsetzen resumes it.
++    // This also preserves a lifecycle pause received while the sheet is open.
++    _controller.turnClock.pause();
+     await showModalBottomSheet<void>(
+       context: context,
+       showDragHandle: true,
+@@ -748,6 +775,8 @@
    }
  
-   void _scheduleBotMove() {
-+    if (_disposed) return;
-     // Denkpause wird beim Android-Hintergrundwechsel angehalten.
-     turnClock.schedule(
-       Duration(milliseconds: 900 + _rng.nextInt(700)),
-@@ -297,6 +309,7 @@
-   }
- 
-   void _doBotMove() {
-+    if (_disposed || turnClock.value) return;
-     final s = _state;
-     if (s.phase == GamePhase.gameOver) return;
-     if (s.currentPlayerIndex != 1) return;
-@@ -439,7 +452,7 @@
-   // ──────────────────────────────────────────────────────────────────
- 
-   void _speak(String text) {
--    if (!enableVoice) return;
-+    if (_disposed || !enableVoice) return;
-     // Drossel: max 1 Spruch pro 1500ms, sonst wird zu viel geredet.
-     final now = DateTime.now();
-     if (now.difference(_lastSpeakAt).inMilliseconds < 1500) return;
+   void _restartGame() {
++    _pendingPlay?.cancel();
++    _pendingPlay = null;
+     _roundSerial++;
+     _lumoReacted = false;
+     _rewardGiven = false;
