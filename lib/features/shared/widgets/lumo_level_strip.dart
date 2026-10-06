@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 
 /// Level- und Belohnungs-Streifen nach Referenzbild.
 class LumoLevelStrip extends StatelessWidget {
@@ -27,12 +28,16 @@ class LumoLevelStrip extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
           decoration: BoxDecoration(
-            color: Colors.white,
+            gradient: const LinearGradient(
+              colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
             borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: const Color(0xFFF0E0CC)),
+            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.38)),
             boxShadow: [
               BoxShadow(
-                color: accent.withOpacity(0.10),
+                color: accent.withOpacity(0.16),
                 blurRadius: 18,
                 offset: const Offset(0, 6),
                 spreadRadius: -2,
@@ -113,8 +118,8 @@ class _LevelLabel extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text('Level', style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoColors.ink500)),
-        Text('$level', style: const TextStyle(fontFamily: 'Nunito', fontSize: 22, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1)),
+        const Text('Level', style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoVisualTokens.muted)),
+        Text('$level', style: const TextStyle(fontFamily: 'Nunito', fontSize: 22, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, height: 1)),
       ],
     );
   }
@@ -161,13 +166,13 @@ class _XpBar extends StatelessWidget {
             builder: (context, v, _) => LinearProgressIndicator(
               value: v,
               minHeight: 10,
-              backgroundColor: const Color(0xFFFFEFE0),
+              backgroundColor: const Color(0xFF16365F),
               valueColor: AlwaysStoppedAnimation(accent),
             ),
           ),
         ),
         const SizedBox(height: 4),
-        Text('$currentXp / $xpForNextLevel XP', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoColors.ink500)),
+        Text('$currentXp / $xpForNextLevel XP', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoVisualTokens.muted)),
       ],
     );
   }
@@ -185,7 +190,13 @@ class _RewardInfo extends StatelessWidget {
         Container(
           width: 38,
           height: 38,
-          decoration: BoxDecoration(color: const Color(0xFFFFF4D6), borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xCC9A6400), Color(0xCC4A3208)],
+            ),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: LumoVisualTokens.gold.withOpacity(.45)),
+          ),
           child: const Center(child: Text('🎁', style: TextStyle(fontSize: 20))),
         ),
         const SizedBox(width: 6),
@@ -193,8 +204,8 @@ class _RewardInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('Nächste Belohnung', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Nunito', fontSize: 10.5, fontWeight: FontWeight.w800, color: LumoColors.ink700)),
-            Text('Noch $remainingXp XP', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w700, color: LumoColors.ink500)),
+            const Text('Nächste Belohnung', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Nunito', fontSize: 10.5, fontWeight: FontWeight.w800, color: LumoVisualTokens.muted)),
+            Text('Noch $remainingXp XP', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontFamily: 'Nunito', fontSize: 10, fontWeight: FontWeight.w700, color: LumoVisualTokens.muted)),
           ],
         ),
       ],
