@@ -295,7 +295,15 @@ class ExerciseFactory {
     required Map<String, int> weakSkills,
     int count = 14,
   }) {
-    final subjects = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Englisch', 'Sachunterricht', 'Schreiben'];
+    final subjects = <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Rechtschreibung',
+      if (grade >= 3) 'Englisch',
+      'Sachunterricht',
+      'Schreiben',
+    ];
     final tasks = <LumoTask>[];
     final avoid = <String>{};
     for (var i = 0; i < count; i++) {
