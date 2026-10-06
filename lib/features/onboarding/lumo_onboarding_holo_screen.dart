@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/user_profile.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -265,6 +266,15 @@ class _Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    final wide = size.width >= 760;
+    Widget layer(String asset, {double opacity = 1}) => Positioned.fill(
+          child: IgnorePointer(
+            child: Opacity(
+              opacity: opacity,
+              child: SvgPicture.asset(asset, fit: BoxFit.cover),
+            ),
+          ),
+        );
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -282,20 +292,42 @@ class _Background extends StatelessWidget {
             ),
           ),
         ),
-        ...List.generate(
-          18,
-          (i) => Positioned(
-            left: ((i * 67) % 97) / 100 * size.width,
-            top: ((i * 113) % 89) / 100 * size.height,
-            child: Icon(
-              Icons.circle,
-              size: i % 3 == 0 ? 3 : 2,
-              color: Colors.white.withOpacity(i % 4 == 0 ? .72 : .34),
+        layer(
+          'assets/lumo_design/onboarding/onboarding_constellation_grid.svg',
+          opacity: .72,
+        ),
+        layer(
+          'assets/lumo_design/onboarding/onboarding_holo_islands.svg',
+          opacity: wide ? .82 : .58,
+        ),
+        layer(
+          'assets/lumo_design/onboarding/onboarding_learning_orbits.svg',
+          opacity: wide ? .55 : .34,
+        ),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0x19000000),
+                Color(0x00122545),
+                Color(0x8A020B1C),
+              ],
+              stops: [0, .48, 1],
             ),
           ),
         ),
-        const Positioned(left: -100, top: 70, child: _Glow(Color(0x553FE4FF), 290)),
-        const Positioned(right: -90, bottom: 70, child: _Glow(Color(0x444E72FF), 260)),
+        const Positioned(
+          left: -100,
+          top: 70,
+          child: _Glow(Color(0x553FE4FF), 290),
+        ),
+        const Positioned(
+          right: -90,
+          bottom: 70,
+          child: _Glow(Color(0x444E72FF), 260),
+        ),
       ],
     );
   }
