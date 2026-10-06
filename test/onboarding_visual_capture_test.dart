@@ -14,15 +14,19 @@ Future<void> _capture(
   await tester.pump(const Duration(milliseconds: 320));
   final boundary =
       boundaryKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
-  final image = await boundary.toImage(pixelRatio: 1);
-  final data = await image.toByteData(format: ui.ImageByteFormat.png);
-  expect(data, isNotNull);
-  final directory = Directory('.ci-results/onboarding-visual')
-    ..createSync(recursive: true);
-  final file = File('${directory.path}/$name.png');
-  file.writeAsBytesSync(data!.buffer.asUint8List(), flush: true);
-  expect(file.lengthSync(), greaterThan(15000));
-  image.dispose();
+  final image = (await tester.runAsync(() => boundary.toImage(pixelRatio: 1)))!;
+  try {
+    final data = await tester
+        .runAsync(() => image.toByteData(format: ui.ImageByteFormat.png));
+    expect(data, isNotNull);
+    final directory = Directory('.ci-results/onboarding-visual')
+      ..createSync(recursive: true);
+    final file = File('${directory.path}/$name.png');
+    file.writeAsBytesSync(data!.buffer.asUint8List(), flush: true);
+    expect(file.lengthSync(), greaterThan(15000));
+  } finally {
+    image.dispose();
+  }
 }
 
 Future<GlobalKey> _pumpOnboarding(
@@ -56,13 +60,9 @@ Future<void> _tapText(WidgetTester tester, String label) async {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  tearDown(() async {
-    final binding = TestWidgetsFlutterBinding.instance;
-    await binding.setSurfaceSize(null);
-  });
-
   testWidgets('captures real onboarding runtime states at phone size',
       (tester) async {
+    addTearDown(() => tester.binding.setSurfaceSize(null));
     final key = await _pumpOnboarding(tester, const Size(360, 800));
     await _capture(tester, key, 'welcome-360x800');
 
@@ -79,8 +79,10 @@ void main() {
     await _capture(tester, key, 'class-360x800');
   });
 
-  testWidgets('captures responsive onboarding at phone, fold-landscape and wide',
+  testWidgets(
+      'captures responsive onboarding at phone, fold-landscape and wide',
       (tester) async {
+    addTearDown(() => tester.binding.setSurfaceSize(null));
     for (final entry in <(Size, String)>[
       (const Size(480, 800), 'welcome-480x800'),
       (const Size(840, 560), 'welcome-840x560'),

@@ -65,7 +65,9 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                         children: [
                           _Header(
                             step: _step,
-                            onBack: _step == 0 ? null : () => setState(() => _step--),
+                            onBack: _step == 0
+                                ? null
+                                : () => setState(() => _step--),
                           ),
                           const SizedBox(height: 12),
                           Expanded(
@@ -73,16 +75,25 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                               child: wide
                                   ? Row(
                                       children: [
-                                        Expanded(flex: 5, child: _Hero(step: _step)),
+                                        Expanded(
+                                            flex: 5, child: _Hero(step: _step)),
                                         const SizedBox(width: 16),
-                                        Expanded(flex: 6, child: _stepBody()),
+                                        Expanded(
+                                          flex: 6,
+                                          child: c.maxHeight < 620
+                                              ? SingleChildScrollView(
+                                                  child: _stepBody(),
+                                                )
+                                              : _stepBody(),
+                                        ),
                                       ],
                                     )
                                   : Column(
                                       children: [
                                         SizedBox(
                                           height: c.maxHeight < 700 ? 150 : 190,
-                                          child: _Hero(step: _step, compact: true),
+                                          child:
+                                              _Hero(step: _step, compact: true),
                                         ),
                                         const SizedBox(height: 10),
                                         Expanded(
@@ -114,12 +125,14 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
       0 => _Panel(
           eyebrow: 'Willkommen',
           title: 'Bereit für dein\nLernabenteuer?',
-          subtitle: 'Lumo richtet dein Profil ein und passt Aufgaben an dich an.',
+          subtitle:
+              'Lumo richtet dein Profil ein und passt Aufgaben an dich an.',
           body: const Column(
             children: [
               _Info(Icons.auto_awesome_rounded, 'Aufgaben passend zu dir'),
               SizedBox(height: 10),
-              _Info(Icons.sports_esports_rounded, 'Lernen schaltet Spiele frei'),
+              _Info(
+                  Icons.sports_esports_rounded, 'Lernen schaltet Spiele frei'),
               SizedBox(height: 10),
               _Info(Icons.star_rounded, 'Sterne, Belohnungen und Fortschritt'),
             ],
@@ -197,7 +210,8 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
       _ => _Panel(
           eyebrow: 'Dein Lernweg',
           title: 'In welche Klasse gehst du?',
-          subtitle: 'Die Klasse bestimmt den Startpunkt. Du kannst sie später ändern.',
+          subtitle:
+              'Die Klasse bestimmt den Startpunkt. Du kannst sie später ändern.',
           body: LayoutBuilder(
             builder: (context, box) {
               const colors = [
@@ -211,8 +225,9 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                 runSpacing: 10,
                 children: List.generate(4, (i) {
                   final v = i + 1;
+                  final columns = box.maxWidth < 300 ? 1 : 2;
                   return SizedBox(
-                    width: (box.maxWidth - 10) / 2,
+                    width: (box.maxWidth - 10 * (columns - 1)) / columns,
                     child: _GradeChoice(
                       grade: v,
                       color: colors[i],
@@ -239,7 +254,8 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
     );
   }
 
-  InputDecoration _inputDecoration({String hint = 'Dein Name'}) => InputDecoration(
+  InputDecoration _inputDecoration({String hint = 'Dein Name'}) =>
+      InputDecoration(
         hintText: hint,
         hintStyle: const TextStyle(
           color: Color(0xFF7DA4C8),
@@ -282,7 +298,16 @@ class _Background extends StatelessWidget {
                   Color(0xB508244A),
                   BlendMode.srcATop,
                 ),
-                child: Image.asset(baseAsset, fit: BoxFit.cover),
+                child: Image.asset(
+                  baseAsset,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => wide
+                      ? Image.asset(
+                          'assets/lumo_design/bg/bg_home.png',
+                          fit: BoxFit.cover,
+                        )
+                      : const SizedBox.expand(),
+                ),
               ),
             ),
           ),
@@ -721,7 +746,9 @@ class _Panel extends StatelessWidget {
           const SizedBox(height: 22),
           FilledButton.icon(
             onPressed: onTap,
-            icon: Icon(finish ? Icons.rocket_launch_rounded : Icons.arrow_forward_rounded),
+            icon: Icon(finish
+                ? Icons.rocket_launch_rounded
+                : Icons.arrow_forward_rounded),
             label: Text(button),
             style: FilledButton.styleFrom(
               minimumSize: const Size.fromHeight(54),
@@ -816,9 +843,8 @@ class _RoleChoice extends StatelessWidget {
                     colors: [Color(0x88163867), Color(0x77203F72)],
                   ),
             border: Border.all(
-              color: selected
-                  ? const Color(0xFF75F2FF)
-                  : const Color(0x555ABDE8),
+              color:
+                  selected ? const Color(0xFF75F2FF) : const Color(0x555ABDE8),
               width: selected ? 1.7 : 1,
             ),
             boxShadow: selected
@@ -830,7 +856,9 @@ class _RoleChoice extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: selected ? const Color(0xFF8EF1FF) : const Color(0xFF8DAAC7),
+                color: selected
+                    ? const Color(0xFF8EF1FF)
+                    : const Color(0xFF8DAAC7),
                 size: 26,
               ),
               const SizedBox(height: 6),
@@ -849,7 +877,6 @@ class _RoleChoice extends StatelessWidget {
         ),
       );
 }
-
 
 class _Choice extends StatelessWidget {
   const _Choice({
@@ -873,9 +900,8 @@ class _Choice extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(17),
             border: Border.all(
-              color: selected
-                  ? const Color(0xFF71F0FF)
-                  : const Color(0x445ABDE8),
+              color:
+                  selected ? const Color(0xFF71F0FF) : const Color(0x445ABDE8),
               width: selected ? 1.7 : 1,
             ),
             gradient: selected
