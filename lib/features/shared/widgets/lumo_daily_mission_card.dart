@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 
 /// Tagesmissions-Karte nach Referenzbild.
 class LumoDailyMissionCard extends StatelessWidget {
@@ -34,26 +35,20 @@ class LumoDailyMissionCard extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.white,
-                accent.withOpacity(0.06),
+                Color.alphaBlend(accent.withOpacity(.15), const Color(0xDD123D72)),
+                const Color(0xEE0A2852),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: accent.withOpacity(0.20), width: 1.4),
+            border: Border.all(color: accent.withOpacity(0.52), width: 1.4),
             boxShadow: [
               BoxShadow(
-                color: accent.withOpacity(0.18),
+                color: accent.withOpacity(0.20),
                 blurRadius: 20,
                 offset: const Offset(0, 8),
                 spreadRadius: -3,
-              ),
-              BoxShadow(
-                color: Colors.white.withOpacity(0.65),
-                blurRadius: 6,
-                offset: const Offset(-2, -2),
-                spreadRadius: -2,
               ),
             ],
           ),
@@ -98,14 +93,14 @@ class _MissionMain extends StatelessWidget {
           height: 50,
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+              colors: [Color(0xFF38DFFF), Color(0xFF246EFF)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFFF7A2F).withOpacity(0.45),
+                color: LumoVisualTokens.cyan.withOpacity(0.38),
                 blurRadius: 12,
                 offset: const Offset(0, 5),
               ),
@@ -131,7 +126,7 @@ class _MissionMain extends StatelessWidget {
                   fontFamily: 'Nunito',
                   fontSize: 16,
                   fontWeight: FontWeight.w900,
-                  color: LumoColors.ink900,
+                  color: LumoVisualTokens.white,
                   letterSpacing: 0.1,
                 ),
               ),
@@ -147,7 +142,7 @@ class _MissionMain extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: LumoColors.ink500,
+                        color: LumoVisualTokens.muted,
                       ),
                     ),
                   ),
@@ -181,7 +176,7 @@ class _MissionMain extends StatelessWidget {
                   builder: (context, v, _) => LinearProgressIndicator(
                     value: v,
                     minHeight: 8,
-                    backgroundColor: const Color(0xFFFFEFE0),
+                    backgroundColor: const Color(0xFF16365F),
                     valueColor: AlwaysStoppedAnimation(accent),
                   ),
                 ),
@@ -234,7 +229,13 @@ class _RewardChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [color.withOpacity(.32), const Color(0xAA0D315F)],
+        ),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(.38)),
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
