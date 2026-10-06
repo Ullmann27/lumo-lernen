@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/fox/lumo_character.dart';
 import 'lumo_premium_effects.dart';
 
 /// Premium-Hero-Header nach Referenzbild "Mathe mit Lumo" / "Deutsch mit Lumo".
@@ -71,11 +74,11 @@ class LumoHeroHeader extends StatelessWidget {
               if (showBackgroundImage)
                 Positioned.fill(
                   child: DecoratedBox(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          const Color(0xFFFFF8EE).withOpacity(0.78),
-                          const Color(0xFFFFE4C0).withOpacity(0.92),
+                          Color(0x99123D72),
+                          Color(0xE9081D43),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -89,12 +92,12 @@ class LumoHeroHeader extends StatelessWidget {
                   gradient: showBackgroundImage
                       ? null
                       : const LinearGradient(
-                          colors: [Color(0xFFFFF8EE), Color(0xFFFFE4C0)],
+                          colors: [Color(0xEE0D3568), Color(0xF0081D43)],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
                   borderRadius: BorderRadius.circular(28),
-                  border: Border.all(color: Colors.white.withOpacity(0.85), width: 1.6),
+                  border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.58), width: 1.6),
                   boxShadow: [
                     BoxShadow(
                       color: accent.withOpacity(0.18),
@@ -103,7 +106,7 @@ class LumoHeroHeader extends StatelessWidget {
                       spreadRadius: -6,
                     ),
                     BoxShadow(
-                      color: const Color(0xFF3D342C).withOpacity(0.06),
+                      color: const Color(0xFF000814).withOpacity(0.32),
                       blurRadius: 18,
                       offset: const Offset(0, 6),
                     ),
@@ -188,7 +191,7 @@ class _TopBar extends StatelessWidget {
                       fontFamily: 'Nunito',
                       fontSize: 17,
                       fontWeight: FontWeight.w900,
-                      color: LumoColors.ink900,
+                      color: LumoVisualTokens.white,
                     ),
                   ),
                   Flexible(
@@ -216,7 +219,7 @@ class _TopBar extends StatelessWidget {
                   fontFamily: 'Nunito',
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
-                  color: LumoColors.ink500,
+                  color: LumoVisualTokens.muted,
                 ),
               ),
             ],
@@ -342,7 +345,7 @@ class _TitleBlock extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: compact ? 30 : 38,
               fontWeight: FontWeight.w900,
-              color: LumoColors.ink900,
+              color: LumoVisualTokens.white,
               height: 1.05,
             ),
             children: [
@@ -360,7 +363,7 @@ class _TitleBlock extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 13,
             fontWeight: FontWeight.w800,
-            color: LumoColors.ink700,
+            color: LumoVisualTokens.muted,
           ),
         ),
       ],
@@ -387,11 +390,15 @@ class _MiniLumoAvatar extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(2),
           child: Container(
-            decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-            child: Image.asset(
-              asset,
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const Center(child: Text('🦊', style: TextStyle(fontSize: 22))),
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0xFF0D315F),
+            ),
+            child: const ClipOval(
+              child: LumoFoxPose(
+                pose: LumoDesignFoxPose.avatar,
+                size: 40,
+              ),
             ),
           ),
         ),
@@ -412,9 +419,13 @@ class _StatChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 6, 10, 6),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.92),
+        gradient: LinearGradient(
+          colors: [color.withOpacity(.30), const Color(0xCC0D315F)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: color.withOpacity(0.18)),
+        border: Border.all(color: color.withOpacity(0.48)),
         boxShadow: [BoxShadow(color: color.withOpacity(0.10), blurRadius: 10, offset: const Offset(0, 3))],
       ),
       child: Row(
@@ -428,7 +439,7 @@ class _StatChip extends StatelessWidget {
             children: [
               Text(
                 value,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1),
+                style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, height: 1),
               ),
               Text(
                 label,
@@ -459,19 +470,16 @@ class _LumoWithBubble extends StatelessWidget {
           Positioned(
             right: 0,
             bottom: 0,
-            child: LumoFloating(
-              amplitude: 4,
-              duration: const Duration(seconds: 4),
-              child: Image.asset(
-                asset,
-                height: size,
-                fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) => SizedBox(
-                  width: size,
-                  height: size,
-                  child: Center(child: Text('🦊', style: TextStyle(fontSize: size * 0.6))),
-                ),
-              ),
+            child: LumoCharacter(
+              pose: LumoDesignFoxPose.tabletThumb,
+              ambientPoses: const <LumoDesignFoxPose>[
+                LumoDesignFoxPose.teacherStick,
+                LumoDesignFoxPose.thumbWink,
+              ],
+              size: size,
+              reduceMotion: MediaQuery.disableAnimationsOf(context),
+              idleHops: true,
+              intro: false,
             ),
           ),
           Positioned(
@@ -481,16 +489,24 @@ class _LumoWithBubble extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: size * 1.05),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                gradient: const LinearGradient(
+                  colors: [Color(0xEE15477F), Color(0xEE0A2D5C)],
+                ),
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: const Color(0xFFE8DFCF)),
-                boxShadow: [BoxShadow(color: accent.withOpacity(0.10), blurRadius: 14, offset: const Offset(0, 4))],
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.55)),
+                boxShadow: [
+                  BoxShadow(
+                    color: LumoVisualTokens.cyan.withOpacity(.18),
+                    blurRadius: 14,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
               child: Text(
                 message,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w800, color: LumoColors.ink900, height: 1.3),
+                style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w800, color: LumoVisualTokens.white, height: 1.3),
               ),
             ),
           ),
