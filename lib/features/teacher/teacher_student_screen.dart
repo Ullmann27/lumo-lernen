@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/school_repository.dart';
+import '../../core/cognitive_profile_repository.dart';
 import '../../domain/school/attempt.dart';
+import '../../domain/cognitive/cognitive_profile.dart';
 import '../../domain/school/learning_analysis.dart';
 import '../../domain/school/school_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -32,6 +34,7 @@ class TeacherStudentScreen extends StatefulWidget {
 class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
   SchoolDirectory _dir = const SchoolDirectory();
   List<Attempt> _attempts = const [];
+  CognitiveProfileResult? _cognitive;
   String? _activeId;
   bool _loaded = false;
   bool _suggestionHandled = false;
@@ -48,10 +51,12 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
     final dir = await _repo.load();
     final all = await widget.appState.attemptLog.load(studentId: widget.studentId);
     final active = await _repo.activeStudentId();
+    final cognitive = await const CognitiveProfileRepository().latest(widget.studentId);
     if (!mounted) return;
     setState(() {
       _dir = dir;
       _attempts = all;
+      _cognitive = cognitive;
       _activeId = active;
       _loaded = true;
     });
@@ -210,6 +215,10 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
                 ),
               ]),
             ),
+            if (_cognitive != null) ...[
+              const SizedBox(height: 12),
+              _CognitiveTeacherPanel(result: _cognitive!),
+            ],
             const SizedBox(height: 12),
             StudentReportContent(
                 analysis: analysis, attempts: _attempts, showSuggestion: false),
@@ -278,6 +287,59 @@ class _AssignmentRow extends StatelessWidget {
         if (assignment.goal.isNotEmpty)
           Text('Ziel: ${assignment.goal}', style: kTeacherMuted),
       ]),
+    );
+  }
+}
+
+
+
+class _CognitiveTeacherPanel extends StatelessWidget {
+  const _CognitiveTeacherPanel({required this.result});
+  final CognitiveProfileResult result;
+
+  @override
+  Widget build(BuildContext context) {
+    final date = result.finishedAt;
+    return TeacherPanel(
+      title: 'Denkprofil · 50 Aufgaben',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            '${result.totalCorrect} von ${result.totalQuestions} gelöst · '
+            '${date.day}.${date.month}.${date.year}',
+            style: kTeacherLabel.copyWith(fontSize: 14),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'Schulstufenbezogener Lumo-Lerncheck; keine klinisch normierte IQ-Zahl.',
+            style: kTeacherMuted,
+          ),
+          const SizedBox(height: 10),
+          for (final score in result.domainScores) ...[
+            Row(
+              children: [
+                Expanded(
+                  child: Text(score.domain.label,
+                      style: kTeacherLabel.copyWith(fontSize: 13)),
+                ),
+                Text('${score.correct}/${score.total}', style: kTeacherMuted),
+              ],
+            ),
+            const SizedBox(height: 4),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(99),
+              child: LinearProgressIndicator(
+                value: score.ratio,
+                minHeight: 7,
+                backgroundColor: const Color(0x33FFFFFF),
+                color: LumoVisualTokens.cyanBright,
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ],
+      ),
     );
   }
 }

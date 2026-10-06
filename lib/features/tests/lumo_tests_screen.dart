@@ -5,6 +5,7 @@ import '../../app/app_state.dart';
 import '../../core/test_result_repository.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import 'cognitive_profile_screen.dart';
 
 /// Tests wie in Heinz' Bild 05: Kategorie, Schwierigkeit, Test-Karte und das
 /// echte letzte Ergebnis mit Bestleistung.
@@ -155,6 +156,7 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
         _buildHero(),
         _buildCategoryCard(),
         _buildTestCard(),
+        _buildCognitiveProfileCard(),
         _buildLastResult(),
       ],
     );
@@ -166,6 +168,87 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
             child: content,
           )
         : content;
+  }
+
+  Widget _buildCognitiveProfileCard() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+      child: LumoGlassCard(
+        padding: const EdgeInsets.all(14),
+        radius: 22,
+        child: Row(
+          children: [
+            Container(
+              width: 62,
+              height: 62,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF305FD8), Color(0xFF6C4CE6)],
+                ),
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: const [
+                  BoxShadow(color: Color(0x5537D2FD), blurRadius: 16),
+                ],
+              ),
+              child: const Icon(Icons.psychology_alt_rounded,
+                  color: Colors.white, size: 34),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Lumo Denkprofil · 50',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  SizedBox(height: 3),
+                  Text(
+                    '50 Aufgaben in 5 Bereichen: Muster, Zahlen, Sprache, Raum und Merken.',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.muted,
+                      fontSize: 11.5,
+                      height: 1.3,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Schulstufenbezogen · keine erfundene IQ-Zahl',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.cyanBright,
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            _GlowButton(
+              key: const ValueKey('cognitive-profile-start'),
+              label: 'Start',
+              onTap: () async {
+                await Navigator.of(context).push<void>(
+                  MaterialPageRoute<void>(
+                    builder: (_) =>
+                        CognitiveProfileScreen(appState: widget.appState),
+                  ),
+                );
+                if (mounted) setState(() {});
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildHero() {

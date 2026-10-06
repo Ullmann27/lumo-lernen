@@ -20,6 +20,7 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
+import '../learning/curriculum_activities_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import '../writing/lumo_writing_word_coach_screen.dart';
 import '../writing/writing_feature_flags.dart';
@@ -595,6 +596,51 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       art: _SubjectArtKind.globe,
       curriculumIndex: 2,
     ),
+    _LearningArea(
+      title: 'Musik',
+      subject: 'Musik',
+      subtitle: 'Hören, singen, gestalten',
+      icon: Icons.music_note_rounded,
+      color: Color(0xFF9B59E6),
+      art: _SubjectArtKind.music,
+      practical: true,
+    ),
+    _LearningArea(
+      title: 'Kunst',
+      subject: 'Kunst und Gestaltung',
+      subtitle: 'Gestalten und erklären',
+      icon: Icons.palette_rounded,
+      color: Color(0xFFE45A9D),
+      art: _SubjectArtKind.art,
+      practical: true,
+    ),
+    _LearningArea(
+      title: 'Technik',
+      subject: 'Technik und Design',
+      subtitle: 'Planen, bauen, prüfen',
+      icon: Icons.build_rounded,
+      color: Color(0xFF2FBAC8),
+      art: _SubjectArtKind.tools,
+      practical: true,
+    ),
+    _LearningArea(
+      title: 'Bewegung',
+      subject: 'Bewegung und Sport',
+      subtitle: 'Bewegen und fair handeln',
+      icon: Icons.sports_gymnastics_rounded,
+      color: Color(0xFF35B876),
+      art: _SubjectArtKind.sport,
+      practical: true,
+    ),
+    _LearningArea(
+      title: 'Mobilität',
+      subject: 'Verkehrs- und Mobilitätsbildung',
+      subtitle: 'Sicher unterwegs',
+      icon: Icons.directions_walk_rounded,
+      color: Color(0xFFD99A31),
+      art: _SubjectArtKind.traffic,
+      practical: true,
+    ),
   ];
 
   late final AnimationController _heroCtrl;
@@ -992,6 +1038,17 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   void _openLearningArea(_LearningArea area) {
     if (area.subject == 'Deutsch') {
       _openDeutsch();
+      return;
+    }
+    if (area.practical) {
+      Navigator.of(context).push<void>(
+        MaterialPageRoute(
+          builder: (_) => CurriculumActivitiesScreen(
+            grade: _selectedGrade,
+            subject: area.subject,
+          ),
+        ),
+      );
       return;
     }
     final curriculumIndex = area.curriculumIndex;
@@ -1575,6 +1632,7 @@ class _LearningArea {
     required this.art,
     this.curriculumIndex,
     this.section,
+    this.practical = false,
   });
 
   final _SubjectArtKind art;
@@ -1585,9 +1643,10 @@ class _LearningArea {
   final Color color;
   final int? curriculumIndex;
   final LumoSection? section;
+  final bool practical;
 }
 
-enum _SubjectArtKind { math, book, books, pencil, hi, globe }
+enum _SubjectArtKind { math, book, books, pencil, hi, globe, music, art, tools, sport, traffic }
 
 /// Großes, leuchtendes Fachsymbol oben in der Kachel.
 class _SubjectArt extends StatelessWidget {
@@ -1657,16 +1716,31 @@ class _SubjectArt extends StatelessWidget {
         case _SubjectArtKind.books:
         case _SubjectArtKind.pencil:
         case _SubjectArtKind.globe:
+        case _SubjectArtKind.music:
+        case _SubjectArtKind.art:
+        case _SubjectArtKind.tools:
+        case _SubjectArtKind.sport:
+        case _SubjectArtKind.traffic:
           final icon = switch (area.art) {
             _SubjectArtKind.book => Icons.menu_book_rounded,
             _SubjectArtKind.books => Icons.library_books_rounded,
             _SubjectArtKind.pencil => Icons.edit_rounded,
+            _SubjectArtKind.music => Icons.music_note_rounded,
+            _SubjectArtKind.art => Icons.palette_rounded,
+            _SubjectArtKind.tools => Icons.build_rounded,
+            _SubjectArtKind.sport => Icons.sports_gymnastics_rounded,
+            _SubjectArtKind.traffic => Icons.directions_walk_rounded,
             _ => Icons.public_rounded,
           };
           final tint = switch (area.art) {
             _SubjectArtKind.book => const Color(0xFFE9DEFF),
             _SubjectArtKind.books => const Color(0xFFC9FFE3),
             _SubjectArtKind.pencil => const Color(0xFFFFD6EC),
+            _SubjectArtKind.music => const Color(0xFFEAD8FF),
+            _SubjectArtKind.art => const Color(0xFFFFD8EB),
+            _SubjectArtKind.tools => const Color(0xFFD1FBFF),
+            _SubjectArtKind.sport => const Color(0xFFD4FFE6),
+            _SubjectArtKind.traffic => const Color(0xFFFFE8B7),
             _ => const Color(0xFFC6F4FF),
           };
           return Icon(icon, size: size, color: tint, shadows: glow);

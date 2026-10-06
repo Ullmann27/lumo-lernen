@@ -1242,16 +1242,16 @@ class _HealthStatusBadge extends StatelessWidget {
     final Color fg;
     final IconData icon;
     if (status.fullyOk) {
-      bg = const Color(0xFFD9F4D9);
-      fg = const Color(0xFF1F6F1F);
+      bg = const Color(0xCC123E38);
+      fg = const Color(0xFF7BE08C);
       icon = Icons.check_circle_rounded;
     } else if (status.reachable) {
-      bg = const Color(0xFFFFF3CC);
-      fg = const Color(0xFF8A5A00);
+      bg = const Color(0xCC3A3420);
+      fg = const Color(0xFFFFD166);
       icon = Icons.warning_amber_rounded;
     } else {
-      bg = const Color(0xFFFFE0E0);
-      fg = const Color(0xFF8A1F1F);
+      bg = const Color(0xCC44242C);
+      fg = const Color(0xFFFF9D9D);
       icon = Icons.cloud_off_rounded;
     }
     return Container(
@@ -1309,8 +1309,9 @@ class _HealthDiagnosticsCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: const Color(0xFFF1F4F8),
+        color: const Color(0xD90B2A55),
         borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.22)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1321,7 +1322,7 @@ class _HealthDiagnosticsCard extends StatelessWidget {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.w800,
               fontSize: 12,
-              color: Color(0xFF334155),
+              color: LumoVisualTokens.white,
             ),
           ),
           const SizedBox(height: 6),
@@ -1332,7 +1333,7 @@ class _HealthDiagnosticsCard extends StatelessWidget {
                     style: const TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 11,
-                      color: Color(0xFF334155),
+                      color: LumoVisualTokens.white,
                     ),
                     children: [
                       TextSpan(
@@ -1365,8 +1366,8 @@ class _SmokeTestResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ok = result.success;
-    final bg = ok ? const Color(0xFFD9F4D9) : const Color(0xFFFFE0E0);
-    final fg = ok ? const Color(0xFF1F6F1F) : const Color(0xFF8A1F1F);
+    final bg = ok ? const Color(0xCC123E38) : const Color(0xCC44242C);
+    final fg = ok ? const Color(0xFF7BE08C) : const Color(0xFFFF9D9D);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
@@ -1478,8 +1479,8 @@ class _AppUpdateCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white,
-            accent.withOpacity(0.06)],
+            const Color(0xE6123760),
+            Color.alphaBlend(accent.withOpacity(.12), const Color(0xE609264B))],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -1561,9 +1562,9 @@ class _AppUpdateCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               decoration: BoxDecoration(
-                color: const Color(0xFFFEF2F2),
+                color: const Color(0xCC44242C),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: const Color(0xFFFCA5A5)),
+                border: Border.all(color: const Color(0x88FF9D9D)),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1577,7 +1578,7 @@ class _AppUpdateCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 11.5,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFFB91C1C),
+                        color: Color(0xFFFFB4B4),
                       ),
                     ),
                   ),
@@ -1669,7 +1670,7 @@ class _TeacherAreaCard extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Colors.white, Color(0xFFE6F4FF)],
+              colors: [Color(0xE6123760), Color(0xE609264B)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -1698,17 +1699,17 @@ class _TeacherAreaCard extends StatelessWidget {
                           fontFamily: 'Nunito',
                           fontSize: 17,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF0B2A5C))),
+                          color: LumoVisualTokens.white)),
                   Text('Klassen, Lernstand und Aufgaben zuweisen',
                       style: TextStyle(
                           fontFamily: 'Nunito',
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF3D5A80))),
+                          color: LumoVisualTokens.muted)),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: Color(0xFF0B2A5C)),
+            const Icon(Icons.chevron_right_rounded, color: LumoVisualTokens.cyanBright),
           ]),
         ),
       ),
@@ -1727,7 +1728,7 @@ class _ProfileResetCard extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.white, danger.withOpacity(0.05)],
+          colors: [const Color(0xE6123760), Color.alphaBlend(danger.withOpacity(.10), const Color(0xE609264B))],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -1851,7 +1852,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
       padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFF0F9FF), Color(0xFFE0F2FE)],
+          colors: [Color(0xE60B315F), Color(0xE6082148)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -1901,7 +1902,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                         fontFamily: 'Nunito',
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF0C4A6E),
+                        color: LumoVisualTokens.white,
                       ),
                     ),
                     Text(
@@ -1910,7 +1911,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF075985),
+                        color: LumoVisualTokens.muted,
                       ),
                     ),
                   ],
@@ -1939,7 +1940,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                     hintText: 'Eigene Frage stellen…',
                     border: OutlineInputBorder(borderSide: BorderSide.none),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: const Color(0xD90B2A55),
                     contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 12,
                     ),
                   ),
@@ -1977,9 +1978,9 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xD90B2A55),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFF7DD3FC), width: 1),
+                border: Border.all(color: const Color(0xFF7DD3FC).withOpacity(.48), width: 1),
               ),
               child: Text(
                 widget.reply!,
@@ -1987,7 +1988,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                   fontFamily: 'Nunito',
                   fontSize: 13.5,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF0F172A),
+                  color: LumoVisualTokens.white,
                   height: 1.45,
                 ),
               ),
@@ -2012,9 +2013,9 @@ class _QuickQuestionChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color(0xCC123760),
           borderRadius: BorderRadius.circular(99),
-          border: Border.all(color: const Color(0xFF7DD3FC), width: 1),
+          border: Border.all(color: const Color(0xFF7DD3FC).withOpacity(.45), width: 1),
         ),
         child: Text(
           text,
@@ -2022,7 +2023,7 @@ class _QuickQuestionChip extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 11.5,
             fontWeight: FontWeight.w800,
-            color: Color(0xFF0C4A6E),
+            color: LumoVisualTokens.white,
           ),
         ),
       ),
@@ -2087,9 +2088,9 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
       return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFFAF5FF),
+          color: const Color(0xD914315F),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
-          border: Border.all(color: const Color(0xFFE9D5FF), width: 1.2),
+          border: Border.all(color: const Color(0xFF9C8BFF).withOpacity(.48), width: 1.2),
         ),
         child: Row(
           children: [
@@ -2105,7 +2106,7 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
                   fontFamily: 'Nunito',
                   fontSize: 12.5,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF6D28D9),
+                  color: LumoVisualTokens.muted,
                   height: 1.4,
                 ),
               ),
@@ -2227,9 +2228,9 @@ class _ErrorEntryTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: const Color(0xFFFEF2F2),
+        color: const Color(0xCC44242C),
         borderRadius: BorderRadius.circular(LumoRadius.md),
-        border: Border.all(color: const Color(0xFFFCA5A5)),
+        border: Border.all(color: const Color(0x88FF9D9D)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2240,7 +2241,7 @@ class _ErrorEntryTile extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 11,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF7F1D1D),
+              color: Color(0xFFFFC0C0),
             ),
           ),
           const SizedBox(height: 4),
@@ -2250,7 +2251,7 @@ class _ErrorEntryTile extends StatelessWidget {
               fontFamily: 'monospace',
               fontSize: 11.5,
               fontWeight: FontWeight.w700,
-              color: Color(0xFFB91C1C),
+              color: Color(0xFFFFB4B4),
             ),
           ),
           if (entry.context.isNotEmpty) ...[
@@ -2260,7 +2261,7 @@ class _ErrorEntryTile extends StatelessWidget {
               style: const TextStyle(
                 fontFamily: 'monospace',
                 fontSize: 10.5,
-                color: Color(0xFF7F1D1D),
+                color: Color(0xFFFFC0C0),
               ),
             ),
           ],
