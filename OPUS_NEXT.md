@@ -16,6 +16,11 @@ Rennerlebnis mit Intro, Einfahrt, Kamerafahrt und Zieleinlauf.
 - Ausgangsbasis Godot: `b79ec387da593f97d078bd02c7629b1316f3ebd0` (PR 25).
 - APK-Ziel: `0.10.10+1602`, gleiche Preview-Paketkennung und bestehende Signatur.
 - Version 1602 liegt über den vorherigen parallelen Kandidaten 1504 und 1601.
+- Die zwischenzeitlich auseinander gelaufenen App-/Kart-Zweige sind inhaltlich
+  zusammengeführt: Startseitenbilder, vollständige Begrüßung, blaue Lernkacheln
+  und separate Hilfsleiste aus App 1601 bleiben neben der neuen Kart-Vorschau
+  und den neueren nativen Welten erhalten. Die Hilfsleiste überdeckt keine
+  Lernantworten oder Spielbuttons mehr.
 - Die Beschriftung deaktivierter Kart-Aktionen bleibt lesbar; leere und tatsächlich
   eingesetzte Items sowie zusätzliche Cover-/Kompaktgrößen werden geprüft.
 - Der Android-Test wird mit exakter Quell-/Versions-/Hashprüfung durch alle

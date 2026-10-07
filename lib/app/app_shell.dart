@@ -508,22 +508,16 @@ class _AppShellState extends State<AppShell>
                                       // Zielbild-Seiten: Lumo steht als kleiner
                                       // Fuchs in der Szene; sein Menü bietet
                                       // dieselben Hilfen wie die Leiste.
-                                      ? Stack(children: [
-                                          Positioned.fill(child: content),
-                                          Positioned(
-                                            right: 6,
-                                            bottom: 4,
-                                            child: LumoCompanionHost(
-                                                appState: _appState,
-                                                onSection: _navigateTo,
-                                                floating: true),
-                                          ),
-                                        ])
+                                      ? content
                                       : ClipRRect(
                                           borderRadius: BorderRadius.circular(
                                               LumoRadius.lg),
                                           child: content,
                                         )),
+                              if (fullBleed)
+                                _LumoHelpDock(
+                                    appState: _appState,
+                                    onSection: _navigateTo),
                               if (!fullBleed)
                                 LumoCompanionHost(
                                     appState: _appState,
@@ -618,6 +612,46 @@ class _AppShellState extends State<AppShell>
       },
     );
   }
+}
+
+/// Lumo keeps his initiative/menu listeners, with his own space outside the
+/// scrolling page. No game card or answer can be hidden behind the fox.
+class _LumoHelpDock extends StatelessWidget {
+  const _LumoHelpDock({required this.appState, required this.onSection});
+  final LumoAppState appState;
+  final ValueChanged<LumoSection> onSection;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        key: const ValueKey('lumo-help-dock'),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+        decoration: BoxDecoration(
+          color: LumoVisualTokens.navigation.withValues(alpha: .92),
+          border: Border(
+              top: BorderSide(
+                  color: LumoVisualTokens.cyan.withValues(alpha: .2))),
+        ),
+        child: Row(children: [
+          const Icon(Icons.auto_awesome_rounded,
+              color: LumoVisualTokens.cyanBright, size: 21),
+          const SizedBox(width: 12),
+          const Expanded(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                Text('Hilfe & Ideen',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 14)),
+                Text('Frag deinen Lumo',
+                    style:
+                        TextStyle(color: LumoVisualTokens.muted, fontSize: 12)),
+              ])),
+          LumoCompanionHost(
+              appState: appState, onSection: onSection, floating: true),
+        ]),
+      );
 }
 
 class _FeatureDisabledContent extends StatelessWidget {

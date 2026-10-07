@@ -5,14 +5,16 @@ import 'package:lumo_lernen/theme/lumo_visual_tokens.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 
 void main() {
-  test('visual tokens match the 2026-10-04 design specification', () {
+  test(
+      'visual tokens preserve night glass with the requested blue learning accent',
+      () {
     expect(LumoVisualTokens.night, const Color(0xFF03193F));
     expect(LumoVisualTokens.glass, const Color(0xFF063556));
     expect(LumoVisualTokens.glassRow, const Color(0xFF1F3F6C));
     expect(LumoVisualTokens.navigation, const Color(0xFF061839));
     expect(LumoVisualTokens.cyan, const Color(0xFF37D2FD));
     expect(LumoVisualTokens.cyanBright, const Color(0xFF53DDFD));
-    expect(LumoVisualTokens.learning, const Color(0xFFD67920));
+    expect(LumoVisualTokens.learning, const Color(0xFF328DFF));
     expect(LumoVisualTokens.games, const Color(0xFF5F2FBE));
     expect(LumoVisualTokens.tests, const Color(0xFF167A84));
     expect(LumoVisualTokens.rewards, const Color(0xFFB52E73));
@@ -80,8 +82,7 @@ void main() {
         of: find.byType(LumoTopBar),
         matching: find.byWidgetPredicate(
           (widget) =>
-              widget is LumoFoxPose &&
-              widget.pose == LumoDesignFoxPose.avatar,
+              widget is LumoFoxPose && widget.pose == LumoDesignFoxPose.avatar,
         ),
       ),
       findsOneWidget,
@@ -89,8 +90,7 @@ void main() {
     expect(
       find.byWidgetPredicate(
         (widget) =>
-            widget is LumoFoxPose &&
-            widget.pose == LumoDesignFoxPose.thumbWink,
+            widget is LumoFoxPose && widget.pose == LumoDesignFoxPose.thumbWink,
       ),
       findsOneWidget,
     );

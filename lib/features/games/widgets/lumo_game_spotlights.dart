@@ -56,7 +56,9 @@ class LumoGameSpotlights extends StatelessWidget {
                           'Lege passende Karten ab und spiele gegen Lumo.',
                       action: 'Kartenspiel starten',
                       actionKey: 'launch-lumo-cards',
-                      pose: LumoDesignFoxPose.spielweltCards,
+                      pose: LumoDesignFoxPose.cardsWelcome,
+                      previewAsset:
+                          'assets/lumo_design/spielwelt/portal_cards.png',
                       accent: const Color(0xFFB5A1FF),
                       icon: Icons.style_rounded,
                       onPressed: busy ? null : onCards,
@@ -71,6 +73,7 @@ class LumoGameSpotlights extends StatelessWidget {
                           'Entdecke zwölf Rennwelten, drifte durch Kurven und finde dein Lieblingskart.',
                       previewAsset:
                           'assets/lumo_design/gameplay/kart_candy_preview.webp',
+                      showWorldTags: true,
                       action: 'Losfahren',
                       actionKey: 'launch-lumo-kart',
                       pose: LumoDesignFoxPose.kartWave,
@@ -109,9 +112,11 @@ class _Spotlight extends StatelessWidget {
     required this.onPressed,
     required this.reduceMotion,
     this.previewAsset,
+    this.showWorldTags = false,
   });
 
   final String? previewAsset;
+  final bool showWorldTags;
   final String title, eyebrow, description, action, actionKey;
   final LumoDesignFoxPose pose;
   final Color accent;
@@ -207,7 +212,7 @@ class _Spotlight extends StatelessWidget {
                     color: LumoVisualTokens.muted,
                     height: 1.35)),
             const SizedBox(height: 12),
-            if (previewAsset != null) ...[
+            if (showWorldTags) ...[
               Wrap(spacing: 8, runSpacing: 6, children: [
                 _WorldTag(
                     label: '12 Welten',
