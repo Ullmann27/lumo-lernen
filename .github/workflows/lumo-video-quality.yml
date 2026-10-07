@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 65
     env:
-      LUMO_NATIVE_DIRECTORY: ${{ runner.temp }}/lumo-native-visual
+      LUMO_NATIVE_DIRECTORY: /tmp/lumo-native-visual
     steps:
       - uses: actions/checkout@v4
         with:
