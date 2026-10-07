@@ -21,7 +21,7 @@ import traceback
 import unicodedata
 import xml.etree.ElementTree as ET
 
-from PIL import Image
+from PIL import Image, ImageChops
 
 # Keep screenshot recognition from oversubscribing the same software-rendered
 # emulator host. This changes only the independent OCR reader, not the app.
@@ -174,7 +174,17 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     # background. A second read separates their contrast, without changing
     # any screenshot used as evidence or inventing a control coordinate.
     contrast = image.convert('L').point(lambda value: 0 if value >= 170 else 255)
-    for variant, pixels in [('contrast',contrast),('raw',image)]:
+    # A bright cyan button outline can be grouped with its white text as one
+    # unreadable glyph. Separate neutral bright letters by their colour, using
+    # the entire current screenshot and retaining the observed word bounds.
+    red, green, blue = image.split()
+    darkest = ImageChops.darker(ImageChops.darker(red, green), blue)
+    lightest = ImageChops.lighter(ImageChops.lighter(red, green), blue)
+    bright = darkest.point(lambda value: 255 if value >= 150 else 0)
+    neutral = ImageChops.subtract(lightest, darkest).point(
+        lambda value: 255 if value <= 45 else 0)
+    white_text = ImageChops.invert(ImageChops.multiply(bright, neutral))
+    for variant, pixels in [('contrast',contrast),('raw',image),('white-text',white_text)]:
         expanded = out / 'ocr-work.png'
         pixels.resize((image.width*2,image.height*2)).save(expanded)
         prefix = out / (tag+'-ocr-'+variant)
@@ -363,13 +373,14 @@ def main() -> int:
     parser.add_argument('--baseline',type=Path)
     parser.add_argument('--candidate',type=Path)
     parser.add_argument('--ocr-fixture',type=Path)
+    parser.add_argument('--ocr-label',action='append')
     parser.add_argument('--game-scope',choices=('all','build','puzzle','rhythm','treasure','kart'),default='all')
     parser.add_argument('--out',type=Path,required=True)
     args = parser.parse_args()
     out = args.out
     out.mkdir(parents=True,exist_ok=True)
     if args.ocr_fixture:
-        for label in ('LUMO BAUWELT','Bauziele','Mein Bauwerk testen'):
+        for label in args.ocr_label or ('LUMO BAUWELT','Bauziele','Mein Bauwerk testen'):
             wanted=normalized(label)
             lines=image_lines(out,'fixture-'+wanted,wanted,args.ocr_fixture)
             matches=[line for line in lines if wanted in normalized(line['text'])]

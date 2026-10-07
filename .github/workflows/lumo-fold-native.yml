@@ -75,8 +75,16 @@ jobs:
           .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt
           python3 -m py_compile .github/probes/creative_android_probe.py
           cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37643028433
+          name: lumo-fold-native-kart-37643028433
+          path: menu-ocr-fixture/
       - name: Verify actual APK screenshot text and exact word bounds
         run: .probe-venv/bin/python .github/probes/creative_android_probe.py --ocr-fixture ocr-fixture/build-goals-7.png --out native-proof/ocr-regression
+      - name: Verify the outlined Kart button from the observed Android screenshot
+        run: .probe-venv/bin/python .github/probes/creative_android_probe.py --ocr-fixture menu-ocr-fixture/failure.png --ocr-label Weiter --ocr-label Einzelrennen --out native-proof/ocr-kart-regression
       - name: Enable accelerated disposable emulator
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
