@@ -255,7 +255,7 @@ jobs:
           GALLIUM_DRIVER: llvmpipe
           LP_NUM_THREADS: '2'
         with:
-          api-level: 35
+          api-level: ${{ matrix.baseline == '1601' && 36 || 35 }}
           target: google_apis
           arch: x86_64
           profile: pixel_5
