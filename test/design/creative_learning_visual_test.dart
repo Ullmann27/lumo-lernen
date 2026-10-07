@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
+import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/domain/games/game_level_catalog.dart';
 import 'package:lumo_lernen/domain/games/game_lesson_tasks.dart';
 import 'package:lumo_lernen/domain/games/game_world.dart';
@@ -35,6 +36,8 @@ void main() {
     final font = FontLoader('Nunito')..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
       ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'));
     await font.load();
+    final icons = FontLoader('MaterialIcons')..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
+    await icons.load();
   });
   for (final id in [13, 23, 32, 47]) {
     testWidgets('Level $id renders, accepts its task and pauses safely', (tester) async {
@@ -72,8 +75,8 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final opened = <GameId>[];
     await tester.pumpWidget(MaterialApp(theme: LumoAppTheme.light(), home: Scaffold(
-      body: RepaintBoundary(key: boundary, child: SingleChildScrollView(child: LumoCreativeGameShelf(
-        busy: false, unlocked: (_) => true, onOpen: opened.add))))));
+      body: RepaintBoundary(key: boundary, child: LumoSceneBackground(scene: LumoScene.games, dimmed: true, child: SingleChildScrollView(child: LumoCreativeGameShelf(
+        busy: false, unlocked: (_) => true, onOpen: opened.add)))))));
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 250)));
     await tester.pump(const Duration(milliseconds: 500));
     expect(tester.takeException(), isNull);

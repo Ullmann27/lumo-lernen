@@ -73,12 +73,15 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   expect(find.text('Englisch'), findsOneWidget);
   expect(find.text('Sachkunde'), findsOneWidget);
   await tester.ensureVisible(find.text('1. Klasse'));
+  await tester.pump();
   await tester.tap(find.text('1. Klasse'));
   await tester.pump();
   await tester.ensureVisible(find.text('Mathe'));
+  await tester.pump();
   await tester.tap(find.text('Mathe'));
   await tester.pump();
   await tester.ensureVisible(find.text('Plus bis 10'));
+  await tester.pump();
   await tester.tap(find.text('Plus bis 10'));
   await _frames(tester);
   expect(find.byType(PlusBis10Screen), findsOneWidget);
@@ -105,6 +108,7 @@ Finder _button(int value) =>
 
 Future<void> _tap(WidgetTester tester, int answer, {int frames = 120}) async {
   await tester.ensureVisible(_button(answer));
+  await tester.pump();
   await tester.tap(_button(answer));
   await _frames(tester, frames);
 }

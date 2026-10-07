@@ -20,7 +20,11 @@ void main() {
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
     await tester.pump(const Duration(milliseconds: 600));
 
+    expect(find.text('Lumo Kart'), findsOneWidget);
+    expect(find.byKey(const ValueKey('launch-lumo-kart')), findsOneWidget);
+    expect(find.bySemanticsLabel(RegExp('Losfahren')), findsOneWidget);
     await tester.ensureVisible(find.text('Weitere Spielwelten entdecken'));
+    await tester.pump();
     await tester.tap(find.text('Weitere Spielwelten entdecken'));
     await tester.pump(const Duration(milliseconds: 600));
     expect(find.bySemanticsLabel('Lumo Spielewelt'), findsOneWidget);
@@ -34,7 +38,6 @@ void main() {
       'Bauwelt',
       'Vier gewinnt',
       'Würfel-Wettlauf',
-      'Lumo Kart',
     ]) {
       expect(find.text(title), findsWidgets, reason: title);
     }
@@ -42,9 +45,7 @@ void main() {
     expect(find.byKey(const ValueKey('spielwelt-adventure')), findsOneWidget);
     expect(find.text('Wortjagd'), findsNothing,
         reason: 'kein Spiel anzeigen, das es nicht gibt');
-    expect(find.bySemanticsLabel(RegExp('Losfahren')), findsOneWidget,
-        reason: 'Android-Prüfung tippt auf „Losfahren“');
-    expect(find.byKey(const ValueKey('launch-lumo-kart')), findsOneWidget);
+
     expect(tester.takeException(), isNull);
     handle.dispose();
   });

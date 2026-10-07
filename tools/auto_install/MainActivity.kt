@@ -104,6 +104,12 @@ class MainActivity : FlutterActivity() {
                                     if (file.exists() && !file.delete()) throw IllegalStateException("Game reset failed")
                                 }
                             }
+                            val creativeSave = Regex("lumo_(build|puzzle|rhythm|treasure)_[A-Za-z0-9_-]+\\.(json|cfg)(\\.tmp)?")
+                            for (file in filesDir.listFiles().orEmpty()) {
+                                if (file.isFile && creativeSave.matches(file.name) && !file.delete()) {
+                                    throw IllegalStateException("Creative game reset failed")
+                                }
+                            }
                             result.success(true)
                         } catch (error: Exception) { result.error("storage", "Spielstände konnten nicht zurückgesetzt werden.", null) }
                     }

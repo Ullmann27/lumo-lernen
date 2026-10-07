@@ -100,6 +100,10 @@ class _LessonTrailGameState extends State<LessonTrailGame> {
     try {
       await const GameProgressRepository().recordResult(childId: 'local_${name}_${st.grade}',
         levelId: widget.level.id, starsEarned: stars);
+      final stored = await const GameProgressRepository().loadStars('local_${name}_${st.grade}');
+      if ((stored[widget.level.id] ?? 0) < stars) {
+        throw StateError('Learning result was not persisted');
+      }
       if (!_awardIssued) {
         _awardIssued = true;
         widget.appState.addStars(stars);
@@ -258,7 +262,7 @@ class _LearningClock extends CustomPainter {
     canvas.drawCircle(c, r, Paint()..color = LumoVisualTokens.cyanBright..style = PaintingStyle.stroke..strokeWidth = 3);
     for (var n = 1; n <= 12; n++) {
       final angle = n * math.pi / 6 - math.pi / 2;
-      final label = TextPainter(text: TextSpan(text: '$n', style: const TextStyle(color: Colors.white, fontSize: 17)),
+      final label = TextPainter(text: TextSpan(text: '$n', style: const TextStyle(fontFamily: 'Nunito', color: Colors.white, fontSize: 17)),
         textDirection: TextDirection.ltr)..layout();
       final at = c + Offset(math.cos(angle), math.sin(angle)) * r * .77;
       label.paint(canvas, at - Offset(label.width / 2, label.height / 2));

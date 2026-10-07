@@ -84,6 +84,8 @@ void main() {
     font.addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'));
     font.addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'));
     await font.load();
+    final icons = FontLoader('MaterialIcons')..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
+    await icons.load();
   });
   setUp(() {
     SharedPreferences.setMockInitialValues({});
@@ -114,7 +116,7 @@ void main() {
     final app = await stateFor(tester);
     final stars = app.state.stars;
     await mount(tester, SettingsContent(appState: app));
-    final button = find.widgetWithText(FilledButton, 'Profil zuruecksetzen');
+    final button = find.widgetWithText(OutlinedButton, 'Profil zuruecksetzen');
     await tester.ensureVisible(button);
     await tester.pump();
     await tester.tap(button);
@@ -237,6 +239,7 @@ void main() {
     final onPressed = tester.widget<FilledButton>(cardButton).onPressed!;
     onPressed();
     onPressed();
+    await tester.pump();
     await tester.pump(const Duration(seconds: 1));
     expect(observer.count - before, 1);
     expect(find.byType(LumoCardsScreen), findsOneWidget);

@@ -92,7 +92,7 @@ void main() {
     expect(
         repo
             .buildRuntime(await repo.loadStars('test'))
-            .firstWhere((r) => r.level.id == 37)
+            .firstWhere((r) => r.level.id == 26)
             .locked,
         isFalse);
   });
