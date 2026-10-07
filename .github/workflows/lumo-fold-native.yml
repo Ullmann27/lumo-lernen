@@ -1,7 +1,7 @@
 name: Lumo Fold APK update and screen changes
 on:
   push:
-    branches: [chatgpt/fold-native-check-2026-10-07]
+    branches: [chatgpt/fold-apk-android-2026-10-07]
     paths: [.github/workflows/lumo-fold-native.yml, .github/probes/creative_android_probe.py]
   workflow_dispatch:
 permissions:
@@ -32,7 +32,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           for attempt in $(seq 1 90); do
-            status=$(gh api repos/Ullmann27/lumo-lernen/actions/runs/37642031417 --jq '.conclusion // "pending"')
+            status=$(gh api repos/Ullmann27/lumo-lernen/actions/runs/37642782205 --jq '.conclusion // "pending"')
             if [ "$status" = success ]; then exit 0; fi
             if [ "$status" != pending ]; then echo "APK build: $status"; exit 1; fi
             sleep 10
@@ -51,8 +51,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           github-token: ${{ github.token }}
-          run-id: 37642031417
-          name: lumo-fold-apk-37642031417
+          run-id: 37642782205
+          name: lumo-fold-apk-37642782205
           path: candidate/
       - name: Check actual extracted APK paths before starting emulator
         run: |
