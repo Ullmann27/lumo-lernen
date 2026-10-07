@@ -55,4 +55,15 @@ void main() {
       }
     }
   });
+  test('Animal habitats do not offer another valid water habitat', () {
+    final valid = [
+      {'Wasser', 'Teich', 'Meer'}, {'Baum', 'Baumkrone'},
+      {'Wasser', 'Teich'}, {'Erdboden', 'unterirdischer Gang'},
+      {'Wasser', 'Meer'},
+    ];
+    for (var i = 0; i < 5; i++) {
+      final t = GameLessonTasks.task(GameLevelCatalog.byId(33)!, i);
+      expect(t.choices.toSet().intersection(valid[i]), {t.answer});
+    }
+  });
 }

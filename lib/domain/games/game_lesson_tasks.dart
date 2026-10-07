@@ -149,9 +149,22 @@ abstract final class GameLessonTasks {
       case 33:
         final animals = ['Fisch', 'Eichhörnchen', 'Frosch', 'Maulwurf', 'Delfin'];
         final homes = ['Wasser', 'Baum', 'Teich', 'Erdboden', 'Meer'];
-        return make('Wo lebt ein ${animals[i]}?', homes[i],
-          [homes[i], ...['Wasser', 'Baum', 'Teich', 'Erdboden', 'Meer'].where((x) => x != homes[i]).take(3)],
-          'Der ${animals[i]} ist an den Lebensraum ${homes[i]} angepasst.', cue: animals[i], picture: 'animal');
+        final options = [
+          ['Wasser', 'Baumkrone', 'Dach', 'trockene Wiese'],
+          ['Baum', 'Meer', 'Teich', 'unterirdischer Gang'],
+          ['Teich', 'Baumkrone', 'Dach', 'trockener Sand'],
+          ['Erdboden', 'Baumkrone', 'Meer', 'Dach'],
+          ['Meer', 'Baumkrone', 'Wüste', 'Dach'],
+        ];
+        final prompt = i == 1 ? 'Wo baut ein Eichhörnchen gewöhnlich sein Nest?'
+          : i == 2 ? 'Wo findest du gewöhnlich Froschlaich?'
+          : 'Wo lebt ein ${animals[i]}?';
+        final explanations = ['Fische leben im Wasser.',
+          'Eichhörnchen bauen ihre Nester gewöhnlich in Bäumen.',
+          'Froschlaich sind die Eier eines Frosches. Sie liegen gewöhnlich im Wasser eines Teiches.',
+          'Maulwürfe graben ihre Gänge im Erdboden.', 'Dieser Delfin schwimmt im Meer.'];
+        return make(prompt, homes[i], options[i], explanations[i],
+          cue: animals[i], picture: 'animal');
       case 34:
         final prompts = ['Am Himmel fallen Tropfen.', 'Die Sonne scheint ohne Wolken.',
           'Weiße Flocken fallen vom Himmel.', 'Blitz und Donner sind zu hören.', 'Viele Wolken verdecken die Sonne.'];

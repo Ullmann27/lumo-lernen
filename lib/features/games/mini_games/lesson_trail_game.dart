@@ -106,8 +106,7 @@ class _LessonTrailGameState extends State<LessonTrailGame> {
       }
       if (!_awardIssued) {
         _awardIssued = true;
-        widget.appState.addStars(stars);
-        widget.appState.addXp(_total * 8);
+        widget.appState.addRewards(stars: stars, xp: _total * 8);
       }
       await widget.appState.flushRewards();
       _finished = true;
