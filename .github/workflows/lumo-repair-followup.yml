@@ -1,0 +1,131 @@
+name: Lumo 1602 Android follow-up on unchanged APK
+on:
+  push:
+    branches: [chatgpt/repair-android16-qa-2026-10-07]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-repair-followup-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  LUMO_BUILD_NUMBER: '1602'
+  LUMO_VERSION_NAME: '0.10.10'
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - game: kart
+            baseline: '1601'
+          - game: treasure
+            baseline: '1400'
+    env:
+      LUMO_EXPECT_SOURCE: '1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b'
+      LUMO_EXPECT_VERSION: '1602'
+      LUMO_EXPECT_ANDROID_API: ${{ matrix.baseline == '1601' && '36' || '35' }}
+      LUMO_FOLD_PROBE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37674457852
+          name: lumo-visual-apk-37674457852
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        if: matrix.baseline == '1400'
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37576067479
+          name: lumo-install-candidate-37576067479
+          path: baseline/
+      - uses: actions/download-artifact@v4
+        if: matrix.baseline == '1601'
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37644572864
+          name: lumo-complete-apk-37644572864
+          path: baseline/dist/
+      - name: Pin candidate and baseline before starting emulator
+        env:
+          BASELINE_VERSION: ${{ matrix.baseline }}
+        run: |
+          set -euo pipefail
+          test -f baseline/dist/Lumo-Lernen-Neu.apk
+          test -f candidate/Lumo-Lernen-Neu.apk
+          echo "LUMO_EXPECT_GODOT=$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" >> "$GITHUB_ENV"
+          if [ "$BASELINE_VERSION" = 1601 ]; then
+            echo 'LUMO_BASE_DIGEST=7d7883122fb1f487723d2489c64401a9741ff3edde5cd87f2ab734ddaea5e83d' >> "$GITHUB_ENV"
+          fi
+      - name: Prepare independent live UI and screenshot readers
+        timeout-minutes: 8
+        run: |
+          mkdir -p native-proof
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt
+          python3 -m py_compile .github/probes/creative_android_probe.py
+          cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Update exact APK and exercise actual offline native game
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: ${{ matrix.baseline == '1601' && 36 || 35 }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope ${{ matrix.game }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-repair-followup-${{ matrix.game }}-${{ matrix.baseline }}-${{ github.run_id }}
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14

@@ -58,6 +58,21 @@ def capture(out: Path, name: str) -> dict:
     return result
 
 
+def device_rotation(out: Path, tag: str, quarter_turns: int) -> None:
+    """Turn the disposable device; app state and screenshots stay unmodified."""
+    if quarter_turns not in (0, 1):
+        raise ValueError('This probe uses upright and landscape device positions')
+    before = base.adb('shell', 'wm', 'user-rotation')
+    base.adb('shell', 'wm', 'user-rotation', 'lock', str(quarter_turns))
+    after = base.adb('shell', 'wm', 'user-rotation')
+    (out / f'{tag}-device-rotation.json').write_text(json.dumps({
+        'requested_quarter_turns': quarter_turns,
+        'before': before, 'after': after,
+        'note': 'Actual display size and controls are independently checked by screencap/OCR',
+    }, indent=2) + '\n')
+    time.sleep(3)
+
+
 def read_live_nodes(out: Path, name: str) -> list:
     # Retry only a dropped connection to the independent accessibility reader.
     # Keep the app and its data untouched and still require a fresh hierarchy.
@@ -414,6 +429,10 @@ def main() -> int:
         result['apk_sha256'] = digest(args.candidate)
         base.adb('root')
         base.adb('wait-for-device')
+        result['android_sdk'] = int(base.adb('shell', 'getprop', 'ro.build.version.sdk'))
+        expected_sdk = os.environ.get('LUMO_EXPECT_ANDROID_API')
+        if expected_sdk and result['android_sdk'] != int(expected_sdk):
+            raise RuntimeError('Emulator Android API does not match the requested test')
         base.display(1080,2400,480)
         baseline_install = base.adb('install','-r','--no-streaming',str(args.baseline),timeout=180)
         if 'Success' not in baseline_install:
@@ -541,6 +560,11 @@ def main() -> int:
                 raise RuntimeError('Native Kart did not use the 1920x1080 phone surface')
             if os.environ.get('LUMO_FOLD_PROBE') == '1':
                 base.display(1812,2176,420)
+                # Android 16 ignores sensorLandscape for non-game applications
+                # on sw600dp displays. Resizing is not a physical device turn.
+                # Turn the emulator explicitly, then keep all strict screenshot
+                # size and actual control-visibility assertions below.
+                device_rotation(out, 'kart-fold-landscape', 1)
                 for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
                     native_text(out,label,'kart-fold-'+normalized(label))
                 fold = capture(out,'17_kart_fold_open')
@@ -555,6 +579,7 @@ def main() -> int:
                 result['fold_resize'] = {'status':'PASS', 'inner_surface':[2176,1812],
                                          'five_action_labels_visible':True,
                                          'cover_resize_and_return':True,
+                                         'explicit_device_rotation':True,
                                          'scope':'Android emulator surfaces; no physical hinge/FPS claim'}
             base.display(320,640,160)
             native_text(out,'Pause','kart-compact-hud')
@@ -581,6 +606,7 @@ def main() -> int:
             raise RuntimeError('An unfinished creative game incorrectly awarded a reward')
 
         base.adb('shell','am','force-stop',PACKAGE)
+        device_rotation(out, 'final-phone-upright', 0)
         base.display(1080,2400,480)
         base.launch(out,'final-restart')
         if prefs(out,'final').get('flutter.lumo_active_profile') != before_profile:
