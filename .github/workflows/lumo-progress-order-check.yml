@@ -1,0 +1,83 @@
+name: Lumo game progress ordering
+
+on:
+  push:
+    branches: [chatgpt/3d-launch-lifecycle-2026-10-07]
+    paths:
+      - lib/core/game_progress_repository.dart
+      - test/games/game_progress_ordering_test.dart
+      - .github/workflows/lumo-progress-order-check.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-progress-order-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  progress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Record exact source and formatted review copies
+        run: |
+          mkdir -p progress-evidence/formatted
+          git rev-parse HEAD > progress-evidence/source-sha.txt
+          flutter --version > progress-evidence/flutter-version.txt
+          cp lib/core/game_progress_repository.dart progress-evidence/
+          cp test/games/game_progress_ordering_test.dart progress-evidence/
+          cp progress-evidence/*.dart progress-evidence/formatted/
+          dart format progress-evidence/formatted > progress-evidence/format.log
+      - name: Resolve dependencies
+        run: flutter pub get
+      - name: Analyze progress code and tests
+        id: analysis
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings lib/core/game_progress_repository.dart test/games/game_progress_ordering_test.dart 2>&1 | tee progress-evidence/analysis.log
+      - name: Run ordering and existing game progress contracts
+        id: tests
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter expanded --timeout=45s test/games/game_progress_ordering_test.dart test/games/game_math_tasks_test.dart 2>&1 | tee progress-evidence/tests.log
+      - name: Record outcomes and fail closed
+        if: ${{ !cancelled() }}
+        env:
+          ANALYSIS: ${{ steps.analysis.outcome }}
+          TESTS: ${{ steps.tests.outcome }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          evidence = Path('progress-evidence')
+          evidence.mkdir(exist_ok=True)
+          outcomes = {key: os.environ[key] for key in ('SOURCE_SHA', 'ANALYSIS', 'TESTS')}
+          outcomes['scope'] = 'Dart/Flutter tests with in-memory SharedPreferences; no device persistence claim'
+          (evidence / 'outcomes.json').write_text(json.dumps(outcomes, indent=2) + '\n')
+          if outcomes['ANALYSIS'] != 'success' or outcomes['TESTS'] != 'success':
+              raise SystemExit(1)
+          PY
+      - name: Preserve success or failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-progress-order-${{ github.run_id }}
+          path: progress-evidence/
+          if-no-files-found: error
+          retention-days: 14
