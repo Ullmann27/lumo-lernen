@@ -276,7 +276,15 @@ class _NavPillState extends State<_NavPill>
               ),
               child: isUltraCompact
                   ? _compactLayout()
-                  : _fullLayout(),
+                  : LayoutBuilder(builder: (context, constraints) {
+                      // A 160px Fold rail leaves only 56px beside the icon.
+                      // Stack the complete label instead of painting it over
+                      // the neighbouring page; larger system text also wraps.
+                      final enlarged = MediaQuery.textScalerOf(context).scale(14) > 16;
+                      return constraints.maxWidth < 145 || enlarged
+                          ? _compactLayout(fontSize: 14)
+                          : _fullLayout();
+                    }),
             ),
           ),
         );
@@ -295,7 +303,7 @@ class _NavPillState extends State<_NavPill>
             widget.item.label,
             maxLines: 1,
             softWrap: false,
-            overflow: TextOverflow.visible,
+            overflow: TextOverflow.ellipsis,
             style: widget.isActive
                 ? LumoTextStyles.navItemActive
                     .copyWith(color: LumoVisualTokens.night)
@@ -309,7 +317,7 @@ class _NavPillState extends State<_NavPill>
 
   /// Compact-Layout: Icon + kleine Beschriftung darunter.
   /// Heinz: 'Buttons im Tablet-Modus muessen beschriftet werden.'
-  Widget _compactLayout() {
+  Widget _compactLayout({double fontSize = 9.5}) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -318,13 +326,14 @@ class _NavPillState extends State<_NavPill>
         const SizedBox(height: 4),
         Text(
           widget.item.label,
-          maxLines: 1,
+          maxLines: 3,
+          softWrap: true,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Nunito',
             fontWeight: FontWeight.w900,
-            fontSize: 9.5,
+            fontSize: fontSize,
             letterSpacing: 0.2,
             height: 1.0,
             color: widget.isActive ? LumoVisualTokens.night : LumoVisualTokens.muted,

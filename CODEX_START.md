@@ -1,5 +1,9 @@
 # Lumo – Einstieg (für jede KI zuerst lesen)
 
+**Aktueller Auftrag vom 7. Oktober 2026:** Zuerst `OPUS_NEXT.md` und den vollständigen
+`docs/OPUS_ENTWICKLUNGSAUFTRAG.md` lesen. Die unten genannten alten Rollen, Branches
+und Testzahlen sind historisch; für die Fortsetzung gilt die neue Übergabe.
+
 Stand: 4. Oktober 2026. Aufgeräumt: toter Code, ungenutzte Assets, alte Berichte und
 Einmal-Workflows sind entfernt (alles bleibt in der Git-Historie).
 
