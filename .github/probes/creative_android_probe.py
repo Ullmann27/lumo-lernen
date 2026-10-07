@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1500 update.
+"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1501 update.
 
 Only fictional data in a disposable Android emulator is used. Flutter controls
 come from live accessibility; native Godot controls from current screenshot OCR.
@@ -32,8 +32,8 @@ import pr207_android_ui_probe as live
 
 PACKAGE = base.PACKAGE
 BASE_DIGEST = 'd33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e'
-SOURCE = '760a3afa7b0cac0d762693af37397c5516960b0e'
-GODOT = '9136662953a42cd60cfe3cdf05fbd6497b13bfb1'
+SOURCE = 'ba12a001a6c48c2c141df40da533b1ef566d8f7b'
+GODOT = 'dbd472e78ccb196c7492c4c842f8b85e3d642e2c'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 base.ui_nodes = live.live_nodes
 base.tap_label = live.live_tap_label
@@ -55,12 +55,42 @@ def capture(out: Path, name: str) -> dict:
     return result
 
 
+def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
+    # The disposable emulator can show a Pixel Launcher ANR over Lumo's welcome
+    # screen. Dismiss only that exact observed system dialog. A Lumo ANR must
+    # remain a failure, and no application data is cleared.
+    if not any(n.get('package') == 'android' and
+               n.get('text') == "Pixel Launcher isn't responding" for n in nodes):
+        return False
+    records_path = out / 'launcher-recovery.json'
+    records = json.loads(records_path.read_text()) if records_path.exists() else []
+    if len(records) >= 2:
+        raise RuntimeError('Disposable Pixel Launcher repeatedly stopped responding')
+    buttons = [n for n in nodes if n.get('package') == 'android' and
+               n.get('text') == 'Close app' and n.get('enabled') == 'true']
+    if len(buttons) != 1:
+        raise RuntimeError('Observed Pixel Launcher dialog lacks one enabled Close app control')
+    bounds = list(map(int, re.findall(r'\d+', buttons[0].get('bounds', ''))))
+    if len(bounds) != 4 or bounds[2] <= bounds[0] or bounds[3] <= bounds[1]:
+        raise RuntimeError('Pixel Launcher dialog control has invalid observed bounds')
+    evidence = capture(out, tag+'-pixel-launcher-dialog')
+    records.append({'dialog':"Pixel Launcher isn't responding", 'action':'Close app',
+                    'observed_bounds':bounds, 'capture':evidence['file']})
+    records_path.write_text(json.dumps(records, indent=2)+'\n')
+    x0,y0,x1,y1 = bounds
+    base.adb('shell','input','tap',str((x0+x1)//2),str((y0+y1)//2))
+    time.sleep(2)
+    return True
+
+
 def flutter_tap(out: Path, label: str, tag: str) -> None:
     # Search both ends of the actual responsive scroll view. Named controls are
     # tapped only when their enabled live accessibility bounds have been read.
     for direction in (-1, 1):
         for attempt in range(12):
             nodes = live.live_nodes(out, f'{tag}-{direction}-{attempt}')
+            if recover_launcher_dialog(out, nodes, tag):
+                continue
             choices = []
             for node in nodes:
                 values = (node.get('text', ''), node.get('content-desc', ''))
@@ -251,7 +281,7 @@ def package_identity(out: Path, tag: str) -> dict:
 
 
 def onboard(out: Path) -> dict:
-    base.tap_label(out,"Los geht's!",'onboard-welcome')
+    flutter_tap(out,"Los geht's!",'onboard-welcome')
     nodes = live.live_nodes(out,'onboard-name')
     fields = [n for n in nodes if n.get('class') == 'android.widget.EditText'
               and n.get('package') == PACKAGE]
@@ -334,7 +364,7 @@ def main() -> int:
             provenance['tracked_source_clean'] is not True or
             provenance['godot']['revision'] != GODOT or
             provenance['signingCertificateSha256'] != CERT or
-            provenance['versionCode'] != 1500 or
+            provenance['versionCode'] != 1501 or
             provenance['sha256'] != digest(args.candidate)):
             raise RuntimeError('Candidate provenance mismatch')
         result['apk_sha256'] = digest(args.candidate)
@@ -355,7 +385,7 @@ def main() -> int:
         update = base.adb('install','-r','--no-streaming',str(args.candidate),timeout=180)
         (out/'update-install.txt').write_text(update)
         after_package = package_identity(out,'updated')
-        if ('Success' not in update or not after_package['versionCode'].startswith('1500') or
+        if ('Success' not in update or not after_package['versionCode'].startswith('1501') or
             after_package['userId'] != before_package['userId'] or
             after_package['firstInstallTime'] != before_package['firstInstallTime']):
             raise RuntimeError('In-place update with unchanged installation identity failed')
