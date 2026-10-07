@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Observe one digest-pinned APK on a disposable Android emulator.
+"""Check one digest-pinned APK on a disposable Android emulator.
 
-This checks installation, offline startup, size changes, process continuity and
-restart. It is NOT a complete game, progress, physical Fold or FPS acceptance.
-Only fresh emulator data is touched. No production code or device is modified.
+Checks install, offline startup, resizing, actual profile creation and games
+navigation, then profile recovery after restart. No full race/card match,
+physical Fold, hinge, frame-rate or visual-parity acceptance is implied.
+Only disposable emulator data is touched. No source or real device is modified.
 """
 from __future__ import annotations
 
@@ -20,7 +21,7 @@ from pathlib import Path
 from typing import Any
 
 PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
-CODE_SHA = '4a50e01410d5dee3816e1c4fa283dfdf3629b079'
+CODE_SHA = '35a7a0a56a9519fb6c33e35b5aad78cd6f589d08'
 MATRIX = (
     ('01_phone', 1080, 2400, 480),
     ('02_fold_outer', 1080, 2520, 480),
@@ -83,7 +84,6 @@ def pid() -> str:
 
 
 def inspect_installed_icon(out: Path) -> dict[str, Any]:
-    """Launcher UI is accessible independently of Flutter semantics."""
     adb('shell', 'input', 'keyevent', 'KEYCODE_HOME')
     time.sleep(2)
     adb('shell', 'input', 'swipe', '540', '2150', '540', '350', '400')
@@ -102,7 +102,6 @@ def inspect_installed_icon(out: Path) -> dict[str, Any]:
                 break
     except (RuntimeError, subprocess.TimeoutExpired, ET.ParseError) as error:
         detail['inspection_error'] = str(error)
-    # Missing icon evidence is reported as missing, never upgraded to PASS.
     return detail
 
 
@@ -122,6 +121,75 @@ def launch(out: Path, name: str) -> str:
     raise RuntimeError('App did not become foreground within startup deadline')
 
 
+def ui_nodes(out: Path, name: str) -> list:
+    adb('shell', 'uiautomator', 'dump', '/sdcard/lumo-app-ui.xml', timeout=30)
+    xml = adb('exec-out', 'cat', '/sdcard/lumo-app-ui.xml')
+    (out / (name + '.xml')).write_text(xml)
+    return list(ET.fromstring(xml).iter('node'))
+
+
+def accessible_text(nodes: list) -> str:
+    return ' '.join(n.get('text', '') + ' ' + n.get('content-desc', '') for n in nodes)
+
+
+def tap_label(out: Path, label: str, tag: str) -> None:
+    for attempt in range(5):
+        nodes = ui_nodes(out, tag + '-' + str(attempt))
+        candidates = []
+        for node in nodes:
+            texts = (node.get('text', ''), node.get('content-desc', ''))
+            if not any(label == text or label in text.split('\n') for text in texts):
+                continue
+            if node.get('enabled') == 'false':
+                continue
+            match = re.fullmatch(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', node.get('bounds', ''))
+            if match:
+                x0, y0, x1, y1 = map(int, match.groups())
+                if x1 > x0 and y1 > y0:
+                    candidates.append((node.get('clickable') != 'true',
+                                       (x1-x0)*(y1-y0), x0,y0,x1,y1))
+        if candidates:
+            _, _, x0,y0,x1,y1 = min(candidates)
+            adb('shell', 'input', 'tap', str((x0+x1)//2), str((y0+y1)//2))
+            time.sleep(2)
+            return
+        # Only scroll the app's known narrow onboarding content area. Never
+        # invent a coordinate for a missing named button or bypass a gate.
+        adb('shell', 'input', 'swipe', '540', '1960', '540', '1200', '350')
+        time.sleep(1)
+    capture(out, tag + '-missing-control')
+    raise RuntimeError('Accessible control not found after bounded scroll: ' + label)
+
+
+def onboard(out: Path) -> dict[str, Any]:
+    tap_label(out, "Los geht's!", 'onboard-welcome')
+    nodes = ui_nodes(out, 'onboard-name')
+    field = next((n for n in nodes if n.get('class') == 'android.widget.EditText'), None)
+    if field is None:
+        raise RuntimeError('No accessible name field; do not invent coordinate entry')
+    coordinates = list(map(int, re.findall(r'\d+', field.get('bounds', ''))))
+    if len(coordinates) != 4:
+        raise RuntimeError('Name field bounds unavailable')
+    x0,y0,x1,y1 = coordinates
+    adb('shell', 'input', 'tap', str((x0+x1)//2), str((y0+y1)//2))
+    adb('shell', 'input', 'text', 'LumoTest')
+    adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
+    tap_label(out, 'Weiter', 'onboard-name-next')
+    tap_label(out, 'Weiter', 'onboard-age-next')
+    tap_label(out, 'Profil speichern', 'onboard-grade-save')
+    time.sleep(4)
+    home = capture(out, '07_home_after_onboarding')
+    if 'LumoTest' not in accessible_text(ui_nodes(out, 'home-after-onboarding')):
+        raise RuntimeError('Saved profile name not visible on the resulting home screen')
+    tap_label(out, 'Spiele', 'home-to-games')
+    games = capture(out, '08_games_after_navigation')
+    text = accessible_text(ui_nodes(out, 'games-after-navigation'))
+    if not any(value in text for value in ('Lumo Cards', 'Lumo Kart', 'Spielewelt')):
+        raise RuntimeError('Games entry could not be verified after navigation')
+    return {'status': 'PASS', 'profile_name': 'LumoTest', 'captures': [home, games],
+            'scope': 'Actual UI onboarding and games entry; no complete card match or race'}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--apk', type=Path, required=True)
@@ -133,7 +201,7 @@ def main() -> int:
         'status': 'RUNNING', 'apk_source_sha': CODE_SHA,
         'apk_sha256': hashlib.sha256(args.apk.read_bytes()).hexdigest(),
         'package': PACKAGE, 'captures': [],
-        'scope': 'Fresh Android emulator; boot/size/restart smoke only',
+        'scope': 'Fresh Android emulator: install, offline boot, resize, onboarding, games entry, profile restart',
         'not_tested': ['physical Fold', 'hinge posture', 'FPS', 'complete races',
                        'Cards saved-match recovery', 'visual reference parity'],
     }
@@ -155,6 +223,8 @@ def main() -> int:
         adb('shell', 'wm', 'dismiss-keyguard', check=False)
         display(1080, 2400, 480)
         result['launcher'] = inspect_installed_icon(args.out)
+        if not result['launcher']['icon_found']:
+            raise RuntimeError('Installed launcher entry was not found')
         adb('logcat', '-c')
         adb('shell', 'svc', 'wifi', 'disable')
         adb('shell', 'svc', 'data', 'disable')
@@ -181,6 +251,22 @@ def main() -> int:
         image = capture(args.out, '06_offline_restart')
         image.update(process_id=restart_pid, foreground=foreground())
         result['captures'].append(image)
+        result['onboarding'] = onboard(args.out)
+        games_pid = pid()
+        for name, width, height, density in MATRIX[1:]:
+            display(width, height, density)
+            view = capture(args.out, 'games_' + name)
+            current_pid = pid()
+            view.update(process_id=current_pid, same_process=current_pid == games_pid,
+                        foreground=foreground())
+            result['captures'].append(view)
+        adb('shell', 'am', 'force-stop', PACKAGE)
+        display(1080, 2400, 480)
+        launch(args.out, 'profile-restart')
+        profile = capture(args.out, '09_saved_profile_after_restart')
+        if 'LumoTest' not in accessible_text(ui_nodes(args.out, 'saved-profile-after-restart')):
+            raise RuntimeError('Saved profile did not reappear after offline restart')
+        result['onboarding']['profile_restart'] = profile
         crashes = adb('logcat', '-d', '-b', 'crash', check=False)
         (args.out / 'crash-buffer.txt').write_text(crashes)
         if PACKAGE in crashes:
@@ -190,12 +276,16 @@ def main() -> int:
         if not result['resize_process_continuity']:
             raise RuntimeError('App process changed during display resizing')
         result['status'] = 'PASS'
-        print('[PR207AndroidSmoke] PASS: install, boot, display changes, restart; visual review still required')
+        print('[PR207AndroidSmoke] PASS: install, offline boot, resize, UI onboarding, games entry, profile restart; visual review still required')
         return 0
     except Exception as error:
         result['status'] = 'FAIL'
         result['error'] = str(error)
         result['traceback'] = traceback.format_exc()
+        try:
+            result['failure_capture'] = capture(args.out, 'failure_screen')
+        except Exception as capture_error:
+            result['capture_error'] = str(capture_error)
         print('[PR207AndroidSmoke] FAIL:', error)
         return 1
     finally:
