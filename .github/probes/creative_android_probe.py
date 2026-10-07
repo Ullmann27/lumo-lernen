@@ -338,6 +338,43 @@ def package_identity(out: Path, tag: str) -> dict:
     return result
 
 
+def ime_character(out: Path, char: str, tag: str, ime_package: str) -> None:
+    """Tap a freshly observed software key, including an observed Shift key."""
+    shifted = False
+    for attempt in range(20):
+        nodes = live.live_nodes(out, f'{tag}-keyboard-{attempt}')
+        keys = [n for n in nodes if n.get('package') == ime_package and
+                n.get('clickable') == 'true' and n.get('enabled') == 'true']
+        matches = [n for n in keys if n.get('content-desc') == char]
+        action = char
+        if not matches and not shifted and any(
+                n.get('content-desc') == char.swapcase() for n in keys):
+            matches = [n for n in keys if n.get('content-desc') == 'Shift']
+            action = 'Shift'
+        if len(matches) > 1:
+            raise RuntimeError('Ambiguous visible IME key: '+action)
+        if not matches:
+            time.sleep(.5)
+            continue
+        bounds = list(map(int, re.findall(r'-?\d+', matches[0].get('bounds', ''))))
+        if len(bounds) != 4:
+            raise RuntimeError('Observed IME key has no touch bounds')
+        x0,y0,x1,y1 = bounds
+        if min(x0,y0) < 0 or x1 <= x0 or y1 <= y0:
+            raise RuntimeError('Observed IME key is outside the display')
+        record = out / 'profile-ime-taps.json'
+        events = json.loads(record.read_text()) if record.exists() else []
+        events.append({'requested_character':char, 'tapped_label':action,
+                       'package':ime_package, 'observed_bounds':bounds})
+        record.write_text(json.dumps(events, indent=2)+'\n')
+        base.adb('shell','input','tap',str((x0+x1)//2),str((y0+y1)//2))
+        if action == char:
+            return
+        shifted = True
+        time.sleep(.5)
+    raise RuntimeError('Visible IME key was not available: '+char)
+
+
 def onboard(out: Path) -> dict:
     flutter_tap(out,"Los geht's!",'onboard-welcome')
     nodes = live.live_nodes(out,'onboard-name')
@@ -354,9 +391,18 @@ def onboard(out: Path) -> dict:
     x0,y0,x1,y1 = bounds
     base.adb('shell','input','tap',str((x0+x1)//2),str((y0+y1)//2))
     time.sleep(2)
+    android_sdk = int(base.adb('shell', 'getprop', 'ro.build.version.sdk'))
+    ime_package = base.adb('shell', 'settings', 'get', 'secure',
+                           'default_input_method').split('/', 1)[0]
     prefix = ''
     for char in 'LumoTest':
-        base.adb('shell','input','text',char)
+        # On API 36 the raw adb hardware-key path duplicated the first letter
+        # in two recorded baseline runs. Use the actual visible software
+        # keyboard and retain exact per-character/profile persistence checks.
+        if android_sdk >= 36:
+            ime_character(out, char, f'onboard-char-{len(prefix)+1}', ime_package)
+        else:
+            base.adb('shell','input','text',char)
         prefix += char
         for attempt in range(20):
             nodes = live.live_nodes(out,f'onboard-name-written-{len(prefix)}-{attempt}')

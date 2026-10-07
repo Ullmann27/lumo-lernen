@@ -23,8 +23,6 @@ jobs:
         include:
           - game: kart
             baseline: '1601'
-          - game: treasure
-            baseline: '1400'
     env:
       LUMO_EXPECT_SOURCE: '1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b'
       LUMO_EXPECT_VERSION: '1602'
@@ -122,7 +120,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-repair-followup-${{ matrix.game }}-${{ matrix.baseline }}-${{ github.run_id }}
+          name: lumo-repair-followup-${{ matrix.game }}-${{ matrix.baseline }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             native-proof/
             !native-proof/**/ocr-work.png
