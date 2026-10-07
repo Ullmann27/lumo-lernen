@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "version_code": 1400,
+  "version_name": "0.10.7",
+  "signing_certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "base_sha": "b6a0afa421e5e854345bfac5cc2be1813a7c3e50",
+  "previous_builds": {
+    "280": {
+      "run_id": 37566239982,
+      "artifact_name": "lumo-pr207-apk-37566239982",
+      "sha256": "dbd445466a49ed4e23a899f4a166c19d7f11cc4200a3835efc53f1937befd970"
+    },
+    "1291": {
+      "run_id": 37345802156,
+      "artifact_name": "lumo-probe-apk-37345802156-1",
+      "sha256": "42b8656fdff6a503aae2a21c72aa60f053aebd4435608b63592ce8d2eac6f10f"
+    }
+  },
+  "scope": "Installation repair based on PR207 only; not a merge of parallel PR204/PR206.",
+  "future_build_rule": "Any later APK offered as an update to this preview must keep its package/signing identity and use versionCode above 1400. Do not reuse the legacy build-script fallback 280.",
+  "device_cause_status": "NOT CONFIRMED: user screenshot shows file listing, not PackageInstaller error details. Test known downgrade failure and repair without uninstalling or clearing user data."
+}
