@@ -1,0 +1,83 @@
+name: Lumo 1291 to 1400 Android16 recheck
+on:
+  push:
+    branches: [chatgpt/install-upgrade-2026-10-07]
+    paths:
+      - .github/workflows/lumo-install-upgrade-1291.yml
+      - scripts/probes/install_upgrade_1291_20261007.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-update-1291-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  update1291:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Fetch same verified 1400 APK without rebuilding
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37576067479
+          name: lumo-install-candidate-37576067479
+          path: candidate/
+      - name: Fetch original build 1291
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37345802156
+          name: lumo-probe-apk-37345802156-1
+          path: previous/1291/
+      - name: Fetch reported build 280
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37566239982
+          name: lumo-pr207-apk-37566239982
+          path: previous/280/
+      - name: Prepare isolated test adapter and preserve provenance
+        run: |
+          mkdir -p upgrade1291-evidence
+          python3 -m py_compile scripts/probes/install_upgrade_1291_20261007.py scripts/probes/install_upgrade_1321_20261007.py
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0
+          .probe-venv/bin/python -m pip freeze > upgrade1291-evidence/probe-dependencies.txt
+          cp candidate/dist/BUILD-PROVENANCE.json upgrade1291-evidence/new-provenance.json
+          cp previous/1291/BUILD-PROVENANCE.json upgrade1291-evidence/old-provenance.json
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Reproduce rejection and prove real data-preserving update
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: .probe-venv/bin/python scripts/probes/install_upgrade_1291_20261007.py
+      - name: Preserve actual update evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-install-from1291-recheck-${{ github.run_id }}
+          path: upgrade1291-evidence/
+          if-no-files-found: error
+          retention-days: 14

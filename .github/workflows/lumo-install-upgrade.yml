@@ -1,0 +1,259 @@
+name: Lumo preview installation repair
+
+on:
+  push:
+    branches: [chatgpt/install-upgrade-2026-10-07]
+    paths:
+      - .github/workflows/lumo-install-upgrade.yml
+      - config/install-upgrade-2026-10-07.json
+      - scripts/probes/install_upgrade_20261007.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-install-upgrade-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Read reserved forward version and record source
+        run: |
+          mkdir -p install-evidence
+          git rev-parse HEAD > install-evidence/source-sha.txt
+          flutter --version > install-evidence/flutter-version.txt
+          cp config/install-upgrade-2026-10-07.json install-evidence/policy.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = json.loads(Path('config/install-upgrade-2026-10-07.json').read_text())
+          if p['version_code'] <= max(map(int,p['previous_builds'])):
+              raise RuntimeError('Refusing downgrade delivery')
+          with open(os.environ['GITHUB_ENV'],'a') as env:
+              env.write('LUMO_BUILD_NUMBER='+str(p['version_code'])+'\n')
+              env.write('LUMO_VERSION_NAME='+p['version_name']+'\n')
+          PY
+          python3 -m py_compile scripts/probes/install_upgrade_20261007.py
+      - name: Fetch exact prior 1291 candidate
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37345802156
+          name: lumo-probe-apk-37345802156-1
+          path: previous/1291/
+      - name: Fetch exact reported build 280
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37566239982
+          name: lumo-pr207-apk-37566239982
+          path: previous/280/
+      - name: Resolve only committed dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee install-evidence/dependencies.log
+      - name: Test backend and Android preparation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee install-evidence/backend.log
+          python3 -m unittest discover -s scripts/tests 2>&1 | tee install-evidence/android-preparation.log
+          dart scripts/audit_content.dart 2>&1 | tee install-evidence/content-audit.log
+      - name: Analyze and run complete Flutter suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee install-evidence/analyze.log
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee install-evidence/flutter-tests.log
+      - name: Preserve actual rendered test outputs and isolate the build checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, shutil, subprocess
+          from pathlib import Path
+          changed = subprocess.check_output(['git','diff','--name-only','-z','HEAD']).decode().split('\0')
+          changed = [path for path in changed if path]
+          output_root = '.ci-results/onboarding-visual/'
+          unexpected = [path for path in changed if not (path.startswith(output_root) and path.endswith('.png'))]
+          if unexpected:
+              raise RuntimeError('Tests modified tracked non-output files: '+repr(unexpected))
+          evidence = Path('install-evidence')
+          rows = []
+          for source in sorted(Path(output_root).glob('*.png')):
+              destination = evidence/'rendered-onboarding'/source.name
+              destination.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copyfile(source,destination)
+              rows.append({'path':str(source),'sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
+                           'changed_tracked_output':str(source) in changed})
+          (evidence/'test-output-provenance.json').write_text(json.dumps({
+              'changed_tracked_test_outputs':changed,'renders':rows,
+              'note':'Outputs preserved unmodified. APK uses separate clean worktree at identical source SHA; no source reset or weakened build gate.'
+          },indent=2)+'\n')
+          PY
+          build_tree="$RUNNER_TEMP/lumo-install-build"
+          git worktree add --detach "$build_tree" "$GITHUB_SHA"
+          test "$(git -C "$build_tree" rev-parse HEAD)" = "$GITHUB_SHA"
+          git -C "$build_tree" diff --exit-code HEAD --
+          echo "LUMO_BUILD_TREE=$build_tree" >> "$GITHUB_ENV"
+      - name: Install matching Godot engine for the following build step
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/install_godot_for_build.sh 2>&1 | tee install-evidence/godot-install.log
+      - name: Build identical clean source with original package and signing key
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_root="$PWD"
+          (
+            cd "$LUMO_BUILD_TREE"
+            test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+            flutter pub get --enforce-lockfile 2>&1 | tee "$source_root/install-evidence/build-dependencies.log"
+            bash scripts/build_unified_apk.sh 2>&1 | tee "$source_root/install-evidence/build.log"
+            python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk | tee "$source_root/install-evidence/new-verification.json"
+            git diff --exit-code HEAD --
+            mkdir -p "$source_root/dist"
+            cp dist/Lumo-Lernen-Neu.apk dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json dist/SHA256SUMS.txt dist/LAUNCHER-RESOURCES.json "$source_root/dist/"
+          )
+          python3 scripts/probes/install_upgrade_20261007.py verify
+      - name: Upload built candidate and identity proofs (not a release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-install-candidate-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/SHA256SUMS.txt
+            dist/LAUNCHER-RESOURCES.json
+            install-evidence/package-comparison.json
+            install-evidence/source-sha.txt
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+      - name: Preserve actual build evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-install-build-evidence-${{ github.run_id }}
+          path: install-evidence/
+          if-no-files-found: error
+          retention-days: 14
+
+  update:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - baseline: '280'
+            api: 35
+          - baseline: '1291'
+            api: 36
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-install-candidate-${{ github.run_id }}
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37345802156
+          name: lumo-probe-apk-37345802156-1
+          path: previous/1291/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37566239982
+          name: lumo-pr207-apk-37566239982
+          path: previous/280/
+      - name: Install isolated test-only UI adapter
+        run: |
+          mkdir -p upgrade-evidence
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0
+          .probe-venv/bin/python -m pip freeze > upgrade-evidence/probe-dependencies.txt
+          cp config/install-upgrade-2026-10-07.json upgrade-evidence/policy.json
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Real update without uninstall or clearing app data
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: .probe-venv/bin/python scripts/probes/install_upgrade_20261007.py smoke --baseline ${{ matrix.baseline }} --new candidate/dist --comparison candidate/install-evidence/package-comparison.json --out upgrade-evidence
+      - name: Preserve real installer logs, screenshots and profile checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-install-from-${{ matrix.baseline }}-api${{ matrix.api }}-${{ github.run_id }}
+          path: upgrade-evidence/
+          if-no-files-found: error
+          retention-days: 14
+
+  acceptance:
+    needs: [build, update]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Record acceptance only after both update jobs succeeded
+        run: |
+          mkdir acceptance
+          printf '%s\n' \
+            'Source SHA: ${{ github.sha }}' \
+            'Run: ${{ github.run_id }}' \
+            'APK identity/signature/version/provenance: PASS' \
+            'Update build280 -> build1400, API35: PASS' \
+            'Update build1291 -> build1400, API36: PASS' \
+            '1291 -> 280 downgrade rejection reproduced: PASS' \
+            'Existing fictional profile retained, restart and repeat install: PASS' \
+            'No uninstall, no clear-data, no downgrade/signature bypass.' \
+            'Specific user-phone cause, Samsung installer and physical ARM64 device: NOT TESTED.' \
+            'No merged parallel PR204/PR206 or new gameplay/visual completion claim.' \
+            > acceptance/ACCEPTANCE.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-install-acceptance-${{ github.run_id }}
+          path: acceptance/
+          if-no-files-found: error
+          retention-days: 14
