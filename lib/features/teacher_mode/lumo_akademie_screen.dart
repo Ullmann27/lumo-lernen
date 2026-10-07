@@ -1005,7 +1005,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           const gap = 10.0;
           final isWide = constraints.maxWidth >= 720;
           final textScale =
-              MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6);
+              MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6).toDouble();
           final coreAreas =
               _learningAreas.where((area) => !area.practical).toList();
           final practicalAreas =
@@ -1015,14 +1015,14 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           final coreWidth =
               (constraints.maxWidth - (coreColumns - 1) * gap) / coreColumns;
           final coreHeight =
-              (coreWidth * 1.02).clamp(112.0, 168.0) * textScale;
+              (coreWidth * 1.02).clamp(112.0, 168.0).toDouble() * textScale;
 
           Widget practicalStrip() {
             if (isWide) {
               final width = (constraints.maxWidth -
                       (practicalAreas.length - 1) * gap) /
                   practicalAreas.length;
-              final height = (width * .86).clamp(108.0, 148.0) * textScale;
+              final height = (width * .86).clamp(108.0, 148.0).toDouble() * textScale;
               return Wrap(
                 spacing: gap,
                 runSpacing: gap,
@@ -1037,8 +1037,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               );
             }
 
-            final width = (constraints.maxWidth * .34).clamp(108.0, 132.0);
-            final height = (width * .94).clamp(108.0, 124.0) * textScale;
+            final width = (constraints.maxWidth * .34).clamp(108.0, 132.0).toDouble();
+            final height = (width * .94).clamp(108.0, 124.0).toDouble() * textScale;
             return SizedBox(
               height: height,
               child: ListView.separated(
