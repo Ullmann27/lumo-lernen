@@ -28,6 +28,7 @@ import '../core/lumo_voice.dart';
 import '../core/user_profile.dart';
 import '../core/embedded_game_service.dart';
 import '../widgets/design/lumo_design_system.dart';
+import '../widgets/design/lumo_motion.dart';
 import '../theme/lumo_visual_tokens.dart';
 
 class AppShell extends StatefulWidget {
@@ -453,6 +454,8 @@ class _AppShellState extends State<AppShell>
           return const Scaffold(
               body: Center(child: CircularProgressIndicator()));
         }
+        final settings = _appState.state.settings;
+        LumoMotion.appReduced = settings.reduceAnimations || settings.calmMode;
         return PopScope(
             canPop: _appState.state.section == LumoSection.home,
             onPopInvokedWithResult: (didPop, _) {

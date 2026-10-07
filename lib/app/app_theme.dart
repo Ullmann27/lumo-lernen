@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/design/lumo_motion.dart';
+
 // ═══════════════════════════════════════════════════════════
 //  LUMO LERNEN – DESIGN TOKENS
 //  Single source of truth for every visual decision.
@@ -140,6 +142,13 @@ class LumoAppTheme {
       colorScheme: scheme,
       fontFamily: 'Nunito',
       scaffoldBackgroundColor: LumoColors.appBg,
+      pageTransitionsTheme: const PageTransitionsTheme(builders: {
+        TargetPlatform.android: LumoPageTransitionsBuilder(),
+        TargetPlatform.iOS: LumoPageTransitionsBuilder(),
+        TargetPlatform.linux: LumoPageTransitionsBuilder(),
+        TargetPlatform.macOS: LumoPageTransitionsBuilder(),
+        TargetPlatform.windows: LumoPageTransitionsBuilder(),
+      }),
       textTheme: const TextTheme(
         headlineLarge: LumoTextStyles.heading1,
         headlineMedium: LumoTextStyles.heading2,

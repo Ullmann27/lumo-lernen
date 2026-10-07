@@ -5,6 +5,7 @@ import '../../app/app_state.dart';
 import '../../core/progress_repository.dart';
 import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
+import 'lumo_motion.dart';
 
 enum LumoDesignFoxPose {
   cardsWelcome('fox_cards_welcome', 'Lumo lädt dich zum Kartenspiel ein'),
@@ -296,7 +297,9 @@ class LumoColorTile extends StatelessWidget {
         return Semantics(
             button: true,
             label: '$title. $subtitle',
-            child: Material(
+            child: LumoPressable(
+              glowColor: Color.lerp(LumoVisualTokens.cyanBright, color, .35)!,
+              child: Material(
               color: Colors.transparent,
               child: InkWell(
                 onTap: onTap,
@@ -370,7 +373,7 @@ class LumoColorTile extends StatelessWidget {
                       ]),
                 ),
               ),
-            ));
+            )));
       });
 }
 
@@ -1019,12 +1022,15 @@ class LumoFoldProgressPanel extends StatelessWidget {
                         const SizedBox(height: 8),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: LinearProgressIndicator(
+                          child: LumoAnimatedValue(
                             value: (dailyDone / dailyGoal).clamp(0.0, 1.0),
-                            minHeight: 7,
-                            backgroundColor: LumoVisualTokens.navigation,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                              LumoVisualTokens.cyanBright,
+                            builder: (context, v) => LinearProgressIndicator(
+                              value: v,
+                              minHeight: 7,
+                              backgroundColor: LumoVisualTokens.navigation,
+                              valueColor: const AlwaysStoppedAnimation<Color>(
+                                LumoVisualTokens.cyanBright,
+                              ),
                             ),
                           ),
                         ),
@@ -1107,7 +1113,9 @@ class _FoldSkillRing extends StatelessWidget {
             SizedBox(
               width: 62,
               height: 62,
-              child: Stack(
+              child: LumoAnimatedValue(
+                value: value,
+                builder: (context, value) => Stack(
                 alignment: Alignment.center,
                 children: [
                   CircularProgressIndicator(
@@ -1128,6 +1136,7 @@ class _FoldSkillRing extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
               ),
             ),
             const SizedBox(height: 3),
