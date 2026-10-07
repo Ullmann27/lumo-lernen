@@ -20,6 +20,10 @@ concurrency:
   group: lumo-install-upgrade-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  LUMO_BUILD_NUMBER: '1335'
+  LUMO_VERSION_NAME: '0.10.7'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -87,7 +91,7 @@ jobs:
           if sha('dist/Lumo-Lernen-Neu.apk') != proof['sha256']:
               raise RuntimeError('Built APK digest mismatch')
           PY
-          python3 scripts/verify_unified_apk.py baseline/Lumo-Lernen-Neu.apk > install-evidence/baseline-verified.json
+          LUMO_BUILD_NUMBER=1321 LUMO_VERSION_NAME=0.10.6 python3 scripts/verify_unified_apk.py baseline/Lumo-Lernen-Neu.apk > install-evidence/baseline-verified.json
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > install-evidence/candidate-reverified.json
           python3 scripts/preview_version.py --verify install-evidence/candidate-reverified.json --previous install-evidence/baseline-verified.json | tee install-evidence/update-identity.json
       - name: Upload built and statically verified candidate
