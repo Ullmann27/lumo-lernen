@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/lumo-1321-update-audit.yml
       - scripts/probes/lumo_upgrade_install_check.py
+      - scripts/probes/lumo_upgrade_launcher_check.py
   workflow_dispatch:
 
 permissions:
@@ -55,7 +56,7 @@ jobs:
           mkdir -p upgrade-evidence
           git rev-parse HEAD > upgrade-evidence/harness-sha.txt
           cp candidate/dist/BUILD-PROVENANCE.json upgrade-evidence/
-          python3 -m py_compile scripts/probes/lumo_upgrade_install_check.py
+          python3 -m py_compile scripts/probes/lumo_upgrade_install_check.py scripts/probes/lumo_upgrade_launcher_check.py
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0
           .probe-venv/bin/python -m pip freeze > upgrade-evidence/probe-dependencies.txt
@@ -82,7 +83,7 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
-          script: .probe-venv/bin/python scripts/probes/lumo_upgrade_install_check.py --baseline baseline/Lumo-Lernen-Neu.apk --rejected rejected/Lumo-Lernen-Neu.apk --candidate candidate/dist/Lumo-Lernen-Neu.apk --proof candidate/dist/BUILD-PROVENANCE.json --candidate-sha256 d33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e --candidate-source-sha 2beabe722dd40bfe110236a305e66e9122e944b6 --out upgrade-evidence
+          script: .probe-venv/bin/python scripts/probes/lumo_upgrade_launcher_check.py --baseline baseline/Lumo-Lernen-Neu.apk --rejected rejected/Lumo-Lernen-Neu.apk --candidate candidate/dist/Lumo-Lernen-Neu.apk --proof candidate/dist/BUILD-PROVENANCE.json --candidate-sha256 d33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e --candidate-source-sha 2beabe722dd40bfe110236a305e66e9122e944b6 --out upgrade-evidence
       - name: Preserve actual installer output and screenshots on success or failure
         if: always()
         uses: actions/upload-artifact@v4
