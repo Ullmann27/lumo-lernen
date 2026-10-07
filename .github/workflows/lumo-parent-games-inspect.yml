@@ -1,0 +1,59 @@
+name: Lumo parent and games source inspection
+on:
+  push:
+    branches: [chatgpt/parent-games-polish-2026-10-07]
+    paths: [.github/workflows/lumo-parent-games-inspect.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Collect scoped source and design references without credentials or fonts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p inspection/base inspection/pr204 inspection/references
+          python3 - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          base = '5fe85acf57d9478bacd36cc618c544b812ec5ae2'
+          existing = '17ab56f3912694b3226dde702bd6482ac61509dd'
+          root = Path('inspection')
+          sources = subprocess.check_output(['git','ls-tree','-r','--name-only',base],text=True).splitlines()
+          records=[]
+          for name in sources:
+              is_source = (name.startswith(('lib/','test/','scripts/','.github/workflows/','config/')) or name in ('pubspec.yaml','pubspec.lock','analysis_options.yaml','CODEX_START.md','.gitignore','README.md'))
+              is_reference = (name.startswith('docs/design_targets/2026-10-04/') and name.endswith('.png')) or (name.startswith('docs/') and any(x in name for x in ('DESIGN_ZIEL','DESIGN_ASSETS','RESPONSIVE_DEVICE_MATRIX','PIN_FREI')))
+              if name.endswith(('.keystore','.ttf','.otf','.woff','.woff2')):
+                  continue
+              if not (is_source or is_reference):
+                  continue
+              if is_source and not name.endswith(('.dart','.py','.sh','.yml','.yaml','.json','.md','.txt','.lock','.gitignore')):
+                  continue
+              blob = subprocess.check_output(['git','show',base+':'+name])
+              target=root/('references' if is_reference else 'base')/name
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(blob)
+              records.append({'path':name,'bytes':len(blob),'sha256':hashlib.sha256(blob).hexdigest()})
+          for name in ('lib/app/app_theme.dart','lib/features/settings/settings_content.dart'):
+              target=root/'pr204'/name
+              target.parent.mkdir(parents=True,exist_ok=True)
+              target.write_bytes(subprocess.check_output(['git','show',existing+':'+name]))
+          (root/'manifest.json').write_text(json.dumps({'base':base,'reuse_reference':existing,'files':records},indent=2)+'\n')
+          PY
+          git diff 35299467b7c2b9077b00160e4c7dba86c82f3d03 17ab56f3912694b3226dde702bd6482ac61509dd -- lib/app/app_theme.dart lib/features/settings/settings_content.dart > inspection/pr204-visual-only.diff
+          git status --short > inspection/status.txt
+          git rev-parse HEAD > inspection/inspection-sha.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-parent-games-inspection-${{ github.run_id }}
+          path: inspection/
+          if-no-files-found: error
+          retention-days: 14
