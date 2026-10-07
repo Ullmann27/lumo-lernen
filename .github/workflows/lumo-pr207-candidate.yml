@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  CANDIDATE_SHA: 4a50e01410d5dee3816e1c4fa283dfdf3629b079
+  CANDIDATE_SHA: c28212e1ffe1eed9dd67efe0255970ba6be30dfa
   LUMO_BUILD_NUMBER: '280'
   LUMO_VERSION_NAME: '0.10.5'
 
@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 4a50e01410d5dee3816e1c4fa283dfdf3629b079
+          ref: c28212e1ffe1eed9dd67efe0255970ba6be30dfa
           persist-credentials: false
       - uses: actions/setup-java@v4
         with:
@@ -75,7 +75,7 @@ jobs:
         run: |
           set -euo pipefail
           bash scripts/install_godot_for_build.sh 2>&1 | tee probe-evidence/godot-install.log
-      - name: Build and verify existing side-by-side APK
+      - name: Build and verify side-by-side APK with Lumo launcher
         shell: bash
         run: |
           set -euo pipefail
@@ -83,7 +83,10 @@ jobs:
           test -s dist/Lumo-Lernen-Neu.apk
           test -s dist/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
-          cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json dist/SHA256SUMS.txt probe-evidence/
+          cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json dist/SHA256SUMS.txt dist/LAUNCHER-RESOURCES.json probe-evidence/
+          cp android/app/src/main/res/mipmap-xxxhdpi/ic_lumo.png probe-evidence/generated-legacy-icon.png
+          cp android/app/src/main/res/mipmap-xxxhdpi/lumo_foreground.png probe-evidence/generated-foreground.png
+          cp android/app/src/main/res/mipmap-xxxhdpi/lumo_monochrome.png probe-evidence/generated-monochrome.png
       - name: Independently inspect final candidate package
         shell: bash
         run: |
@@ -95,15 +98,31 @@ jobs:
           sys.path.insert(0, 'scripts')
           from verify_android_apk import find_apksigner
           apk = Path('dist/Lumo-Lernen-Neu.apk')
-          proof = json.loads(Path('dist/APK-VERIFICATION.json').read_text())
+          proof = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
           source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
-          if source != os.environ['CANDIDATE_SHA']:
+          if source != os.environ['CANDIDATE_SHA'] or proof['flutter_source_commit'] != source:
               raise RuntimeError('Candidate source changed')
+          if proof['tracked_source_clean'] is not True:
+              raise RuntimeError('Uncommitted source changes: APK not accepted')
           if proof['sha256'] != hashlib.sha256(apk.read_bytes()).hexdigest():
               raise RuntimeError('Post-verification APK digest changed')
+          if proof['launcher']['source_sha256'] != '8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f':
+              raise RuntimeError('Wrong avatar source')
           tools = Path(find_apksigner()).parent
-          badging = subprocess.check_output([str(tools/'aapt'), 'dump', 'badging', str(apk)], text=True)
-          Path('probe-evidence/aapt-badging.txt').write_text(badging)
+          def dump(*args):
+              return subprocess.check_output([str(tools/'aapt'), 'dump', *args], text=True)
+          badging = dump('badging', str(apk))
+          resources = dump('resources', str(apk))
+          manifest = dump('xmltree', str(apk), 'AndroidManifest.xml')
+          for name, value in [('aapt-badging.txt',badging),('aapt-resources.txt',resources),('compiled-manifest.txt',manifest)]:
+              Path('probe-evidence',name).write_text(value)
+          bindings = {}
+          for attr, resource in [('icon','ic_lumo'),('roundIcon','ic_lumo_round')]:
+              entry = re.search(r'resource (0x[0-9a-fA-F]+) [^\s:]+:mipmap/' + resource + ':', resources)
+              link = re.search(r'android:' + attr + r'\([^)]*\)=@(0x[0-9a-fA-F]+)', manifest)
+              if not entry or not link or entry[1].lower() != link[1].lower():
+                  raise RuntimeError('Manifest does not link the Lumo resource: ' + attr)
+              bindings[attr] = {'name':resource,'id':link[1]}
           icons = []
           with zipfile.ZipFile(apk) as z:
               if z.testzip() is not None:
@@ -117,11 +136,14 @@ jobs:
                   if raw.startswith(b'\x89PNG\r\n\x1a\n'):
                       width, height = struct.unpack('>II', raw[16:24])
                       entry.update(width=width, height=height)
-                      output = Path('probe-evidence') / ('apk-icon-' + density + '.png')
-                      output.write_bytes(raw)
+                      Path('probe-evidence', 'apk-icon-' + density + '.png').write_bytes(raw)
+                  else:
+                      Path('probe-evidence', 'apk-icon-' + density + '.xml.txt').write_text(dump('xmltree', str(apk), path))
                   icons.append(entry)
+          if not icons:
+              raise RuntimeError('APK has no launcher icon evidence')
           Path('probe-evidence/icon-resources.json').write_text(json.dumps({
-              'source_sha': source, 'apk_sha256': proof['sha256'], 'icons': icons,
+              'source_sha': source, 'apk_sha256': proof['sha256'], 'icons': icons, 'bindings':bindings,
               'scope': 'Packaged resources, not an installed-launcher or physical-device test'
           }, indent=2) + '\n')
           PY
@@ -129,12 +151,13 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-pr207-apk-4a50e01-${{ github.run_id }}
+          name: lumo-pr207-apk-c28212e-${{ github.run_id }}
           path: |
             dist/Lumo-Lernen-Neu.apk
             dist/APK-VERIFICATION.json
             dist/BUILD-PROVENANCE.json
             dist/SHA256SUMS.txt
+            dist/LAUNCHER-RESOURCES.json
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
