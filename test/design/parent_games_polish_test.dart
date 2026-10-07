@@ -83,6 +83,8 @@ void main() {
     final font = FontLoader('Nunito');
     font.addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'));
     font.addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'));
+    font.addFont(rootBundle.load('assets/fonts/Nunito-ExtraBold.ttf'));
+    font.addFont(rootBundle.load('assets/fonts/Nunito-Black.ttf'));
     await font.load();
     final icons = FontLoader('MaterialIcons')..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
     await icons.load();
@@ -201,7 +203,9 @@ void main() {
     }
     expect(find.text('Lumo Cards'), findsOneWidget);
     expect(find.text('Lumo Kart'), findsOneWidget);
-    expect(find.textContaining('Keine Lernfragen'), findsWidgets);
+    expect(find.textContaining('zwölf Rennwelten'), findsOneWidget);
+    expect(find.text('12 Welten'), findsOneWidget);
+    expect(find.text('5 Spielmodi'), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
   });
@@ -211,6 +215,7 @@ void main() {
     await mount(tester, GamesContent(appState: app));
     final initial = tester.state(find.byType(GamesContent));
     for (final entry in <(String, Size, double)>[
+      ('games_cover', const Size(320, 720), 1),
       ('games_inner', const Size(840, 740), 1),
       ('games_tablet', const Size(1280, 800), 1),
       ('games_large_text', const Size(360, 800), 2),
@@ -221,6 +226,25 @@ void main() {
       expect(tester.state(find.byType(GamesContent)), same(initial));
       expect(tester.takeException(), isNull, reason: entry.$1);
       await capture(tester, entry.$1);
+      for (final name in ['launch-lumo-cards', 'launch-lumo-kart']) {
+        final button = find.byKey(ValueKey(name));
+        await tester.ensureVisible(button);
+        await tester.pump();
+        final rect = tester.getRect(button);
+        expect(rect.height, greaterThanOrEqualTo(48), reason: entry.$1);
+        expect(rect.left, greaterThanOrEqualTo(0), reason: entry.$1);
+        expect(rect.right, lessThanOrEqualTo(entry.$2.width), reason: entry.$1);
+        expect(rect.top, greaterThanOrEqualTo(0), reason: entry.$1);
+        expect(rect.bottom, lessThanOrEqualTo(entry.$2.height), reason: entry.$1);
+        expect(button.hitTestable(), findsOneWidget, reason: entry.$1);
+        final label = tester.getRect(find.descendant(
+          of: button,
+          matching: find.byType(Text),
+        ));
+        expect(rect.contains(label.topLeft), isTrue, reason: entry.$1);
+        expect(rect.contains(label.bottomRight), isTrue, reason: entry.$1);
+      }
+      expect(tester.takeException(), isNull, reason: entry.$1);
     }
     await tester.pumpWidget(const SizedBox());
   });

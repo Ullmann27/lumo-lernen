@@ -50,7 +50,8 @@ class LumoGameSpotlights extends StatelessWidget {
             )),
             SizedBox(width: width, child: _Spotlight(
               title: 'Lumo Kart', eyebrow: '3D-RENNSPIEL',
-              description: 'Fahre Rennen und nutze Items. Keine Lernfragen während der Fahrt.',
+              description: 'Entdecke zwölf Rennwelten, drifte durch Kurven und finde dein Lieblingskart.',
+              previewAsset: 'assets/lumo_design/gameplay/kart_candy_preview.webp',
               action: 'Losfahren', actionKey: 'launch-lumo-kart',
               pose: LumoDesignFoxPose.kartWave,
               accent: LumoVisualTokens.cyanBright,
@@ -78,14 +79,31 @@ class _Spotlight extends StatelessWidget {
     required this.action, required this.actionKey, required this.pose,
     required this.accent, required this.icon, required this.onPressed,
     required this.reduceMotion,
+    this.previewAsset,
   });
 
+  final String? previewAsset;
   final String title, eyebrow, description, action, actionKey;
   final LumoDesignFoxPose pose;
   final Color accent;
   final IconData icon;
   final VoidCallback? onPressed;
   final bool reduceMotion;
+
+  Widget _heading() => Row(children: [
+          ExcludeSemantics(child: RepaintBoundary(child: LumoCharacter(
+            pose: pose, celebratePose: null, size: 82,
+            shadow: false, reduceMotion: reduceMotion,
+          ))),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(eyebrow, style: TextStyle(fontFamily: 'Nunito', fontSize: 11,
+              letterSpacing: .9, fontWeight: FontWeight.w800, color: accent)),
+            const SizedBox(height: 4),
+            Text(title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 23,
+              fontWeight: FontWeight.w900, color: LumoVisualTokens.white)),
+          ])),
+        ]);
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
@@ -104,24 +122,32 @@ class _Spotlight extends StatelessWidget {
     child: Padding(
       padding: const EdgeInsets.all(14),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          ExcludeSemantics(child: RepaintBoundary(child: LumoCharacter(
-            pose: pose, celebratePose: null, size: 82,
-            shadow: false, reduceMotion: reduceMotion,
-          ))),
-          const SizedBox(width: 12),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(eyebrow, style: TextStyle(fontFamily: 'Nunito', fontSize: 11,
-              letterSpacing: .9, fontWeight: FontWeight.w800, color: accent)),
-            const SizedBox(height: 4),
-            Text(title, style: const TextStyle(fontFamily: 'Nunito', fontSize: 23,
-              fontWeight: FontWeight.w900, color: LumoVisualTokens.white)),
-          ])),
-        ]),
+        if (previewAsset != null)
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Stack(children: [
+              Positioned.fill(child: Image.asset(previewAsset!, fit: BoxFit.cover,
+                alignment: const Alignment(0, -.15), excludeFromSemantics: true)),
+              Positioned.fill(child: DecoratedBox(decoration: BoxDecoration(
+                gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                  colors: [const Color(0xFF071A3E).withValues(alpha: .08), const Color(0xFF071A3E).withValues(alpha: .95)]),
+              ))),
+              Padding(padding: const EdgeInsets.fromLTRB(10, 46, 10, 8), child: _heading()),
+            ]),
+          )
+        else
+          _heading(),
         const SizedBox(height: 6),
         Text(description, style: const TextStyle(fontFamily: 'Nunito', fontSize: 14,
           color: LumoVisualTokens.muted, height: 1.35)),
         const SizedBox(height: 12),
+        if (previewAsset != null) ...[
+          Wrap(spacing: 8, runSpacing: 6, children: [
+            _WorldTag(label: '12 Welten', icon: Icons.public_rounded, color: accent),
+            _WorldTag(label: '5 Spielmodi', icon: Icons.flag_rounded, color: accent),
+          ]),
+          const SizedBox(height: 14),
+        ],
         SizedBox(width: double.infinity, child: FilledButton.icon(
           key: ValueKey(actionKey), onPressed: onPressed,
           icon: Icon(icon, size: 22), label: Text(action, textAlign: TextAlign.center),
@@ -135,6 +161,32 @@ class _Spotlight extends StatelessWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           ),
         )),
+      ]),
+    ),
+  );
+}
+
+
+class _WorldTag extends StatelessWidget {
+  const _WorldTag({required this.label, required this.icon, required this.color});
+  final String label;
+  final IconData icon;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) => DecoratedBox(
+    decoration: BoxDecoration(
+      color: color.withValues(alpha: .10),
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: color.withValues(alpha: .24)),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        Icon(icon, size: 17, color: color),
+        const SizedBox(width: 6),
+        Text(label, style: TextStyle(fontFamily: 'Nunito', fontSize: 12,
+          fontWeight: FontWeight.w800, color: color)),
       ]),
     ),
   );

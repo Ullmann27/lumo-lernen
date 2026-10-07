@@ -1,0 +1,94 @@
+name: Lumo video quality APK
+on:
+  push:
+    branches: [chatgpt/kart-video-quality-2026-10-07]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-video-quality-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_BUILD_NUMBER: '1504'
+  LUMO_VERSION_NAME: '0.10.9'
+jobs:
+  verify-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Dependencies and app source analysis
+        run: |
+          set -o pipefail
+          mkdir -p proof/app-renders build-proof
+          git rev-parse HEAD > proof/source-sha.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analysis.log
+      - name: Flutter regression suite and actual app screenshots
+        env:
+          LUMO_POLISH_CAPTURES: ${{ github.workspace }}/proof/app-renders
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee proof/flutter-tests.log
+          python3 -m unittest discover -s scripts/tests 2>&1 | tee proof/native-preparation.log
+          {
+            echo "Flutter source: $(git rev-parse HEAD)"
+            echo 'PASS Flutter source analysis (no errors)'
+            echo 'PASS full Flutter regression suite'
+            echo 'PASS native preparation Python tests'
+            echo 'App render files:'
+            find proof/app-renders -maxdepth 1 -type f -name '*.png' -printf '%f\n' | sort
+          } > proof/TEST-RESULTS.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-app-evidence-${{ github.run_id }}
+          path: proof/
+      - name: Require exact embedded game source to pass real rendering and touch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          GODOT_SHA=$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')
+          for attempt in $(seq 1 100); do
+            conclusion=$(gh api "repos/Ullmann27/lumo-godot/actions/runs?head_sha=$GODOT_SHA&per_page=10" --jq '.workflow_runs[] | select(.name == "Kart video quality and real render") | (.conclusion // "pending")' | head -1)
+            if [ "$conclusion" = success ]; then
+              echo "PASS exact Godot source rendering and touch: $GODOT_SHA" >> proof/TEST-RESULTS.txt
+              exit 0
+            fi
+            if [ -n "$conclusion" ] && [ "$conclusion" != pending ]; then echo "Native verification: $conclusion"; exit 1; fi
+            sleep 10
+          done
+          echo 'Native verification did not finish'; exit 1
+      - name: Install matching Godot engine
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build and verify the unified APK from exact clean source
+        run: |
+          set -o pipefail
+          git rev-parse HEAD > build-proof/source-sha.txt
+          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
+          cp proof/TEST-RESULTS.txt dist/TEST-RESULTS.txt
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: lumo-visual-apk-${{ github.run_id }}
+          path: dist/
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-build-evidence-${{ github.run_id }}
+          path: build-proof/
