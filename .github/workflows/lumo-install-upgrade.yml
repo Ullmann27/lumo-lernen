@@ -84,13 +84,57 @@ jobs:
           set -euo pipefail
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee install-evidence/analyze.log
           flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee install-evidence/flutter-tests.log
-      - name: Build with original package, test key and Godot source
+      - name: Preserve actual rendered test outputs and isolate the build checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, shutil, subprocess
+          from pathlib import Path
+          changed = subprocess.check_output(['git','diff','--name-only','-z','HEAD']).decode().split('\0')
+          changed = [path for path in changed if path]
+          output_root = '.ci-results/onboarding-visual/'
+          unexpected = [path for path in changed if not (path.startswith(output_root) and path.endswith('.png'))]
+          if unexpected:
+              raise RuntimeError('Tests modified tracked non-output files: '+repr(unexpected))
+          evidence = Path('install-evidence')
+          rows = []
+          for source in sorted(Path(output_root).glob('*.png')):
+              destination = evidence/'rendered-onboarding'/source.name
+              destination.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copyfile(source,destination)
+              rows.append({'path':str(source),'sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
+                           'changed_tracked_output':str(source) in changed})
+          (evidence/'test-output-provenance.json').write_text(json.dumps({
+              'changed_tracked_test_outputs':changed,'renders':rows,
+              'note':'Outputs preserved unmodified. APK uses separate clean worktree at identical source SHA; no source reset or weakened build gate.'
+          },indent=2)+'\n')
+          PY
+          build_tree="$RUNNER_TEMP/lumo-install-build"
+          git worktree add --detach "$build_tree" "$GITHUB_SHA"
+          test "$(git -C "$build_tree" rev-parse HEAD)" = "$GITHUB_SHA"
+          git -C "$build_tree" diff --exit-code HEAD --
+          echo "LUMO_BUILD_TREE=$build_tree" >> "$GITHUB_ENV"
+      - name: Install matching Godot engine for the following build step
         shell: bash
         run: |
           set -euo pipefail
           bash scripts/install_godot_for_build.sh 2>&1 | tee install-evidence/godot-install.log
-          bash scripts/build_unified_apk.sh 2>&1 | tee install-evidence/build.log
-          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk | tee install-evidence/new-verification.json
+      - name: Build identical clean source with original package and signing key
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_root="$PWD"
+          (
+            cd "$LUMO_BUILD_TREE"
+            test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+            flutter pub get --enforce-lockfile 2>&1 | tee "$source_root/install-evidence/build-dependencies.log"
+            bash scripts/build_unified_apk.sh 2>&1 | tee "$source_root/install-evidence/build.log"
+            python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk | tee "$source_root/install-evidence/new-verification.json"
+            git diff --exit-code HEAD --
+            mkdir -p "$source_root/dist"
+            cp dist/Lumo-Lernen-Neu.apk dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json dist/SHA256SUMS.txt dist/LAUNCHER-RESOURCES.json "$source_root/dist/"
+          )
           python3 scripts/probes/install_upgrade_20261007.py verify
       - name: Upload built candidate and identity proofs (not a release)
         uses: actions/upload-artifact@v4
