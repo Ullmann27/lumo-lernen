@@ -65,7 +65,7 @@ Future<LumoAppState> stateFor(WidgetTester tester, {Size size = const Size(360, 
 
 Future<void> mount(WidgetTester tester, Widget child, {double textScale = 1}) async {
   await tester.pumpWidget(MaterialApp(
-    theme: LumoAppTheme.light,
+    theme: LumoAppTheme.light(),
     builder: (context, body) => MediaQuery(
       data: MediaQuery.of(context).copyWith(
         textScaler: TextScaler.linear(textScale), disableAnimations: true,
@@ -227,7 +227,7 @@ void main() {
     final app = await stateFor(tester);
     final observer = _PushObserver();
     await tester.pumpWidget(MaterialApp(
-      navigatorObservers: [observer], theme: LumoAppTheme.light,
+      navigatorObservers: [observer], theme: LumoAppTheme.light(),
       home: Scaffold(body: GamesContent(appState: app)),
     ));
     await settleData(tester);
