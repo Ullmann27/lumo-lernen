@@ -17,6 +17,7 @@ import 'package:lumo_lernen/core/user_profile.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_free_companion.dart';
 import 'package:lumo_lernen/widgets/profile_screen.dart';
+import 'package:lumo_lernen/widgets/shell/left_navigation.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -123,6 +124,20 @@ void main() {
       expect(floor.contains(fox.topLeft), isTrue);
       expect(floor.contains(fox.bottomRight - const Offset(.1, .1)), isTrue);
       expect(floor.top, greaterThan(200));
+      final sideNavigation = find.byType(LeftNavigation);
+      if (sideNavigation.evaluate().isNotEmpty) {
+        final caption = find.descendant(
+            of: sideNavigation, matching: find.text('Belohnungen'));
+        final paragraph = tester.renderObject<RenderParagraph>(caption);
+        expect(paragraph.didExceedMaxLines, isFalse);
+        final boxes = paragraph.getBoxesForSelection(
+            const TextSelection(baseOffset: 0, extentOffset: 11));
+        expect(boxes, isNotEmpty);
+        for (final box in boxes) {
+          expect(box.right, lessThanOrEqualTo(paragraph.size.width + .5),
+              reason: 'The complete rewards caption must fit inside the Fold rail.');
+        }
+      }
       final dock = find.byKey(const ValueKey('lumo-help-dock'));
       if (dock.evaluate().isNotEmpty) {
         final content = find.byKey(const PageStorageKey('lumo-home-scroll'));

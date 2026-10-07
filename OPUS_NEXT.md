@@ -21,6 +21,8 @@ Rennerlebnis mit Intro, Einfahrt, Kamerafahrt und Zieleinlauf.
   und separate Hilfsleiste aus App 1601 bleiben neben der neuen Kart-Vorschau
   und den neueren nativen Welten erhalten. Die Hilfsleiste überdeckt keine
   Lernantworten oder Spielbuttons mehr.
+- Schmale Fold-Navigation stellt Symbol und vollständige Beschriftung
+  untereinander dar, statt „Belohnungen“ in die Nachbarseite zu zeichnen.
 - Die Beschriftung deaktivierter Kart-Aktionen bleibt lesbar; leere und tatsächlich
   eingesetzte Items sowie zusätzliche Cover-/Kompaktgrößen werden geprüft.
 - Der Android-Test wird mit exakter Quell-/Versions-/Hashprüfung durch alle
