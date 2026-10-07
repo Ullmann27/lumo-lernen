@@ -27,7 +27,7 @@ import pr207_android_ui_probe as live
 
 PACKAGE = base.PACKAGE
 BASE_DIGEST = 'd33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e'
-SOURCE = 'f9fc43d4e85f6918298dcb9e713b96ac9eaf92ee'
+SOURCE = '760a3afa7b0cac0d762693af37397c5516960b0e'
 GODOT = '9136662953a42cd60cfe3cdf05fbd6497b13bfb1'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 base.ui_nodes = live.live_nodes
@@ -185,10 +185,16 @@ def saves(out: Path, kind: str, tag: str) -> dict[str,dict]:
     return result
 
 
-def package_identity() -> dict:
+def package_identity(out: Path, tag: str) -> dict:
     raw = base.adb('shell','dumpsys','package',PACKAGE)
-    result = {}
-    for key in ('userId','firstInstallTime','versionCode','versionName'):
+    (out/(tag+'-package.txt')).write_text(raw)
+    uid_output = base.adb('shell','cmd','package','list','packages','-U',PACKAGE)
+    (out/(tag+'-package-uid.txt')).write_text(uid_output)
+    uid = re.search(r'^package:'+re.escape(PACKAGE)+r'\s+uid:(\d+)',uid_output,re.M)
+    if not uid:
+        raise RuntimeError('Installed package UID missing from PackageManager')
+    result = {'userId':uid.group(1)}
+    for key in ('firstInstallTime','versionCode','versionName'):
         match = re.search(r'\b'+key+r'=([^\n]+)',raw)
         if not match:
             raise RuntimeError('Installed package metadata missing '+key)
@@ -230,14 +236,14 @@ def main() -> int:
         (out/'baseline-install.txt').write_text(baseline_install)
         base.launch(out,'baseline')
         result['onboarding'] = base.onboard(out)
-        before_package = package_identity()
+        before_package = package_identity(out,'baseline')
         before_profile = prefs(out,'baseline').get('flutter.lumo_active_profile')
         if not before_profile or 'LumoTest' not in before_profile:
             raise RuntimeError('Baseline profile was not actually persisted')
         base.adb('shell','am','force-stop',PACKAGE)
         update = base.adb('install','-r','--no-streaming',str(args.candidate),timeout=180)
         (out/'update-install.txt').write_text(update)
-        after_package = package_identity()
+        after_package = package_identity(out,'updated')
         if ('Success' not in update or not after_package['versionCode'].startswith('1500') or
             after_package['userId'] != before_package['userId'] or
             after_package['firstInstallTime'] != before_package['firstInstallTime']):
