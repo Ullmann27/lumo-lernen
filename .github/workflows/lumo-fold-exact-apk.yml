@@ -1,0 +1,53 @@
+name: Lumo Fold exact source APK
+on:
+  push:
+    branches: [chatgpt/fold-apk-build-2026-10-07]
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_BUILD_NUMBER: '1503'
+  LUMO_VERSION_NAME: '0.10.8'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 48cb82614a31ac7e7daccbe62b872c3ae4b8eb95
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Install matching game engine for subsequent build step
+        run: |
+          set -o pipefail
+          mkdir -p build-proof
+          bash scripts/install_godot_for_build.sh 2>&1 | tee build-proof/engine.log
+      - name: Build exact clean tested source with matching engine
+        run: |
+          set -o pipefail
+          mkdir -p build-proof
+          git rev-parse HEAD > build-proof/source-sha.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee build-proof/dependencies.log
+          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: lumo-fold-apk-${{ github.run_id }}
+          path: dist/
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-fold-build-evidence-${{ github.run_id }}
+          path: build-proof/
