@@ -1,7 +1,7 @@
 name: Lumo Fold APK update and screen changes
 on:
   push:
-    branches: [chatgpt/fold-kart-controls-2026-10-07]
+    branches: [chatgpt/fold-native-check-2026-10-07]
     paths: [.github/workflows/lumo-fold-native.yml, .github/probes/creative_android_probe.py]
   workflow_dispatch:
 permissions:
