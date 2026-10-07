@@ -129,6 +129,45 @@ void main() {
     expect(await repo.loadStars(child), <int, int>{first.id: 2});
   });
 
+  test('upgrade retains earned and next legacy levels around new lessons', () async {
+    SharedPreferences.setMockInitialValues({
+      'lumo.games.stars.$child': '{"9":3,"11":2,"25":3}',
+    });
+    final stars = await repo.loadStars(child);
+    final open = await repo.loadUnlocked(child);
+    final runtime = repo.buildRuntime(stars, preservedUnlocked: open);
+    bool locked(int id) => runtime.singleWhere((r) => r.level.id == id).locked;
+    expect(locked(11), false);
+    expect(locked(12), false);
+    expect(locked(26), false);
+    expect(locked(37), false);
+    expect(locked(27), true);
+    expect(await repo.loadStars(child), {9: 3, 11: 2, 25: 3});
+    expect(await repo.loadUnlocked('other'), isEmpty);
+  });
+
+  test('new profiles follow all 50 lessons without the legacy shortcut', () async {
+    await repo.recordResult(childId: child, levelId: 9, starsEarned: 3);
+    final open = await repo.loadUnlocked(child);
+    expect(open, isEmpty);
+    final runtime = repo.buildRuntime(await repo.loadStars(child),
+        preservedUnlocked: open);
+    expect(runtime.singleWhere((r) => r.level.id == 10).locked, false);
+    expect(runtime.singleWhere((r) => r.level.id == 11).locked, true);
+  });
+
+  test('reset removes migrated unlocks and migration runs only once', () async {
+    SharedPreferences.setMockInitialValues({
+      'lumo.games.stars.$child': '{"25":3}',
+    });
+    expect(await repo.loadUnlocked(child), contains(37));
+    await repo.recordResult(childId: child, levelId: 9, starsEarned: 3);
+    expect(await repo.loadUnlocked(child), isNot(contains(11)));
+    await repo.reset(child);
+    expect(await repo.loadStars(child), isEmpty);
+    expect(await repo.loadUnlocked(child), isEmpty);
+  });
+
   test(
     'corrupt legacy JSON can be read without crashing or changing bytes',
     () async {

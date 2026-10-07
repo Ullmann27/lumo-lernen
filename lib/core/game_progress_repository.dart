@@ -22,6 +22,46 @@ class GameProgressRepository {
   static final Map<String, Future<void>> _pendingByChild = {};
 
   String _starsKey(String childId) => 'lumo.games.stars.$childId';
+  String _unlocksKey(String childId) => 'lumo.games.curriculum50.$childId';
+
+  // The previous 24-level path skipped these newly implemented lesson types.
+  // Preserve its already available levels once, without skipping new lessons
+  // for profiles created after this upgrade.
+  Future<void> _migrateUnlocks(SharedPreferences prefs, String childId,
+      Map<int, int> stars) async {
+    final key = _unlocksKey(childId);
+    if (prefs.containsKey(key)) return;
+    const legacyTypes = {
+      GameMiniType.starsPath,
+      GameMiniType.colorBoxes,
+      GameMiniType.numberHouse,
+      GameMiniType.letterFill,
+    };
+    final open = <int>{};
+    int? previous;
+    for (final level in GameLevelCatalog.levels) {
+      if (!legacyTypes.contains(level.miniType)) continue;
+      if ((stars[level.id] ?? 0) > 0 ||
+          (previous != null && (stars[previous] ?? 0) > 0)) {
+        open.add(level.id);
+      }
+      previous = level.id;
+    }
+    await prefs.setString(key, jsonEncode(open.toList()..sort()));
+  }
+
+  Future<Set<int>> loadUnlocked(String childId) => _ordered(childId, () async {
+    await _readStars(childId);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final decoded = jsonDecode(prefs.getString(_unlocksKey(childId)) ?? '[]');
+      if (decoded is! List) return <int>{};
+      return decoded.whereType<int>()
+          .where((id) => GameLevelCatalog.byId(id) != null).toSet();
+    } catch (_) {
+      return <int>{};
+    }
+  });
 
   Future<T> _ordered<T>(String childId, Future<T> Function() operation) {
     final previous = _pendingByChild[childId] ?? Future<void>.value();
@@ -48,7 +88,10 @@ class GameProgressRepository {
     try {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_starsKey(childId));
-      if (raw == null || raw.isEmpty) return <int, int>{};
+      if (raw == null || raw.isEmpty) {
+        await _migrateUnlocks(prefs, childId, const {});
+        return <int, int>{};
+      }
       final decoded = jsonDecode(raw);
       if (decoded is! Map) return <int, int>{};
       final result = <int, int>{};
@@ -60,6 +103,7 @@ class GameProgressRepository {
           result[id!] = stars.clamp(0, level.maxStars);
         }
       });
+      await _migrateUnlocks(prefs, childId, result);
       return result;
     } catch (_) {
       return <int, int>{};
@@ -74,6 +118,7 @@ class GameProgressRepository {
   Future<void> _writeStars(String childId, Map<int, int> stars) async {
     try {
       final prefs = await SharedPreferences.getInstance();
+      await _migrateUnlocks(prefs, childId, const {});
       final mapped = stars.map((k, v) => MapEntry('$k', v));
       await prefs.setString(_starsKey(childId), jsonEncode(mapped));
     } catch (_) {
@@ -105,7 +150,8 @@ class GameProgressRepository {
   /// Berechnet die Laufzeit-Snapshots aller 50 Level.
   /// Ein Level ist unlocked wenn ID 1 ist, ODER das vorherige Level
   /// mindestens 1 Stern hat.
-  List<GameLevelRuntime> buildRuntime(Map<int, int> stars) {
+  List<GameLevelRuntime> buildRuntime(Map<int, int> stars,
+      {Set<int> preservedUnlocked = const {}}) {
     final result = <GameLevelRuntime>[];
     var currentMarked = false;
     int? previousPlayableId;
@@ -114,8 +160,9 @@ class GameProgressRepository {
           ? 1
           : (stars[previousPlayableId] ?? 0);
       previousPlayableId = level.id;
-      final locked = prevStars <= 0;
       final earned = (stars[level.id] ?? 0).clamp(0, level.maxStars);
+      final locked = prevStars <= 0 && earned <= 0 &&
+          !preservedUnlocked.contains(level.id);
       final isCurrent = !currentMarked && !locked && earned == 0;
       if (isCurrent) currentMarked = true;
       result.add(
@@ -134,6 +181,7 @@ class GameProgressRepository {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_starsKey(childId));
+      await prefs.remove(_unlocksKey(childId));
     } catch (_) {}
   });
 }

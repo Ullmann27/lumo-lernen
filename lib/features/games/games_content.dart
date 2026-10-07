@@ -63,6 +63,7 @@ class _GamesContentState extends State<GamesContent> {
   static const _repo = GameProgressRepository();
 
   Map<int, int> _stars = const <int, int>{};
+  Set<int> _preservedLevels = const {};
   Map<GameId, GameUnlockState> _unlocks = const {};
   bool _loaded = false;
   bool _launchingGame = false;
@@ -88,6 +89,7 @@ class _GamesContentState extends State<GamesContent> {
 
   Future<void> _load() async {
     final s = await _repo.loadStars(_childId);
+    final preserved = await _repo.loadUnlocked(_childId);
     final wallet = await RewardWalletRepository.instance.load();
     final unlocks = await const GameUnlockService().load(
         EarnedProgress(totalEarnedStars: wallet.totalEarnedStars));
@@ -100,6 +102,7 @@ class _GamesContentState extends State<GamesContent> {
     if (!mounted) return;
     setState(() {
       _stars = s;
+      _preservedLevels = preserved;
       _unlocks = unlocks;
       final grade = options?['grade'];
       if (grade is int && grade >= 1 && grade <= 4) _kartGrade = grade;
@@ -351,7 +354,8 @@ class _GamesContentState extends State<GamesContent> {
 
   @override
   Widget build(BuildContext context) {
-    final runtime = _repo.buildRuntime(_stars);
+    final runtime = _repo.buildRuntime(_stars,
+        preservedUnlocked: _preservedLevels);
     final totalStars = runtime.fold<int>(0, (sum, r) => sum + r.starsEarned);
     final maxStars = GameLevelCatalog.playableLevels.fold<int>(
       0,

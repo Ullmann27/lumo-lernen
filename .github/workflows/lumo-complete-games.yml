@@ -66,13 +66,17 @@ jobs:
         with:
           flutter-version: '3.44.9'
           cache: true
+      - name: Install matching game engine for subsequent build step
+        run: |
+          set -o pipefail
+          mkdir -p build-proof
+          bash scripts/install_godot_for_build.sh 2>&1 | tee build-proof/engine.log
       - name: Build exact clean tested source with matching engine
         run: |
           set -o pipefail
           mkdir -p build-proof
           git rev-parse HEAD > build-proof/source-sha.txt
           flutter pub get --enforce-lockfile 2>&1 | tee build-proof/dependencies.log
-          bash scripts/install_godot_for_build.sh 2>&1 | tee build-proof/engine.log
           bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
       - uses: actions/upload-artifact@v4
@@ -86,4 +90,3 @@ jobs:
         with:
           name: lumo-complete-build-evidence-${{ github.run_id }}
           path: build-proof/
-
