@@ -1002,22 +1002,87 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          const columns = 3;
           const gap = 10.0;
-          final width = (constraints.maxWidth - (columns - 1) * gap) / columns;
+          final isWide = constraints.maxWidth >= 720;
           final textScale =
               MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6);
-          final height = (width * 1.02).clamp(112.0, 168.0) * textScale;
-          return Wrap(
-            spacing: gap,
-            runSpacing: gap,
-            children: [
-              for (final area in _learningAreas)
-                SizedBox(
+          final coreAreas =
+              _learningAreas.where((area) => !area.practical).toList();
+          final practicalAreas =
+              _learningAreas.where((area) => area.practical).toList();
+
+          final coreColumns = isWide ? 6 : 3;
+          final coreWidth =
+              (constraints.maxWidth - (coreColumns - 1) * gap) / coreColumns;
+          final coreHeight =
+              (coreWidth * 1.02).clamp(112.0, 168.0) * textScale;
+
+          Widget practicalStrip() {
+            if (isWide) {
+              final width = (constraints.maxWidth -
+                      (practicalAreas.length - 1) * gap) /
+                  practicalAreas.length;
+              final height = (width * .86).clamp(108.0, 148.0) * textScale;
+              return Wrap(
+                spacing: gap,
+                runSpacing: gap,
+                children: [
+                  for (final area in practicalAreas)
+                    SizedBox(
+                      width: width,
+                      height: height,
+                      child: _buildLearningAreaTile(area),
+                    ),
+                ],
+              );
+            }
+
+            final width = (constraints.maxWidth * .34).clamp(108.0, 132.0);
+            final height = (width * .94).clamp(108.0, 124.0) * textScale;
+            return SizedBox(
+              height: height,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: practicalAreas.length,
+                separatorBuilder: (_, __) => const SizedBox(width: gap),
+                itemBuilder: (context, index) => SizedBox(
                   width: width,
                   height: height,
-                  child: _buildLearningAreaTile(area),
+                  child: _buildLearningAreaTile(practicalAreas[index]),
                 ),
+              ),
+            );
+          }
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Wrap(
+                spacing: gap,
+                runSpacing: gap,
+                children: [
+                  for (final area in coreAreas)
+                    SizedBox(
+                      width: coreWidth,
+                      height: coreHeight,
+                      child: _buildLearningAreaTile(area),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              const Padding(
+                padding: EdgeInsets.only(left: 2, bottom: 8),
+                child: Text(
+                  'Weitere Fächer',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    color: LumoVisualTokens.cyanBright,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              practicalStrip(),
             ],
           );
         },
