@@ -3,6 +3,7 @@ import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/task_quality_guard.dart';
 import 'package:lumo_lernen/core/writing_target_parser.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
+import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 
 void main() {
   const guard = TaskQualityGuard();
@@ -40,6 +41,43 @@ void main() {
         }
       }
     }
+  });
+
+
+  test('English is a first-class adaptive subject', () {
+    final task = ExerciseFactory(seed: 7)
+        .next(grade: 4, subject: 'Englisch', unit: 'Wetter');
+    final instance = adapter.toTaskInstance(
+      task: task,
+      childId: 'english-grade-4',
+      difficulty: 3,
+    );
+    expect(instance.subject, LearningSubject.englisch);
+    expect(instance.prompt, isNotEmpty);
+    expect(instance.options, isNotEmpty);
+  });
+
+  test('Austrian primary subject framework exposes foreign language in grades 3 and 4', () {
+    expect(
+      Curriculum.officialSubjectsForGrade(2),
+      contains('Lebende Fremdsprache (verbindliche Übung)'),
+    );
+    expect(
+      Curriculum.officialSubjectsForGrade(4),
+      contains('Lebende Fremdsprache'),
+    );
+    expect(
+      Curriculum.officialSubjectsForGrade(4),
+      containsAll(<String>[
+        'Deutsch',
+        'Sachunterricht',
+        'Mathematik',
+        'Musik',
+        'Kunst und Gestaltung',
+        'Technik und Design',
+        'Bewegung und Sport',
+      ]),
+    );
   });
 
   test('first-grade English school supplies stay within school supplies', () {

@@ -161,9 +161,9 @@ class LumoSceneBackground extends StatelessWidget {
   }
 }
 
-/// Hintergrund für Lernmodule: die Bibliotheks-Szene und darauf eine helle
-/// „Heftseite“ unter dem farbigen Modul-Kopf. So bleiben die hellen
-/// Aufgabenkarten und farbigen Texte der Module gut lesbar.
+/// Hintergrund für Lernmodule: Bibliotheks-/Lernwelt mit einer dunklen
+/// Cyan-Hologlas-Arbeitsfläche. Keine helle Papierinsel mehr – Lernmodule,
+/// Aufgaben und Hilfen bleiben visuell Teil derselben Lumo-Welt.
 class LumoModuleBackdrop extends StatelessWidget {
   const LumoModuleBackdrop({super.key, required this.child, this.headerHeight = 78});
 
@@ -186,14 +186,31 @@ class LumoModuleBackdrop extends StatelessWidget {
           child: IgnorePointer(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: const Color(0xFFFFFBEB).withValues(alpha: .94),
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xE90B315F),
+                    Color(0xF0081C3F),
+                    Color(0xEA0B2A55),
+                  ],
+                ),
                 borderRadius: BorderRadius.circular(28),
                 border: Border.all(
-                    color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 1.4),
+                  color: LumoVisualTokens.cyan.withValues(alpha: .55),
+                  width: 1.4,
+                ),
                 boxShadow: [
                   BoxShadow(
-                      color: LumoVisualTokens.cyan.withValues(alpha: .25),
-                      blurRadius: 18),
+                    color: LumoVisualTokens.cyan.withValues(alpha: .24),
+                    blurRadius: 22,
+                    offset: const Offset(0, 8),
+                  ),
+                  const BoxShadow(
+                    color: Color(0x55000000),
+                    blurRadius: 20,
+                    offset: Offset(0, 12),
+                  ),
                 ],
               ),
             ),

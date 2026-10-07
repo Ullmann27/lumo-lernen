@@ -29,8 +29,11 @@ void main() {
       .last
       .transform;
 
-  String shownPose(WidgetTester tester) =>
-      tester.widget<LumoFoxPose>(find.byType(LumoFoxPose)).pose.assetName;
+  List<String> shownPoses(WidgetTester tester) => tester
+      .widgetList<LumoFoxPose>(find.descendant(
+          of: find.byType(LumoCharacter), matching: find.byType(LumoFoxPose)))
+      .map((pose) => pose.pose.assetName)
+      .toList();
 
   testWidgets('im Leerlauf atmet und schwankt Lumo', (tester) async {
     await pumpLumo(tester);
@@ -49,7 +52,7 @@ void main() {
     controller.cheer();
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 450));
-    expect(shownPose(tester), 'fox_cheer');
+    expect(shownPoses(tester), contains('fox_cheer'));
     // Mitten im Sprung ist Lumo deutlich über dem Boden.
     final lift = tester
         .widgetList<Transform>(find.descendant(
@@ -60,7 +63,7 @@ void main() {
         .y;
     expect(lift, lessThan(-10));
     await tester.pump(const Duration(milliseconds: 800));
-    expect(shownPose(tester), 'fox_thumb_wink');
+    expect(shownPoses(tester), contains('fox_thumb_wink'));
     await tester.pumpWidget(const SizedBox());
   });
 
@@ -99,8 +102,8 @@ void main() {
     // Freude zeigt Lumo dann nur über die Jubel-Pose.
     controller.cheer();
     await tester.pump();
-    expect(shownPose(tester), 'fox_cheer');
+    expect(shownPoses(tester), contains('fox_cheer'));
     await tester.pump(const Duration(seconds: 1));
-    expect(shownPose(tester), 'fox_thumb_wink');
+    expect(shownPoses(tester), contains('fox_thumb_wink'));
   });
 }

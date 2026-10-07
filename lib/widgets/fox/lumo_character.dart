@@ -18,6 +18,15 @@ enum LumoCharacterAction {
 
   /// Kleiner Hüpfer mit Schwung, zum Begrüßen.
   hello,
+
+  /// Erklärbewegung während Lumo eine Aufgabe oder Hilfe vorliest.
+  talk,
+
+  /// Nachdenkliche Reaktion, z. B. vor einem Tipp.
+  think,
+
+  /// Deutliches Winken bei Begrüßung/Navigation.
+  wave,
 }
 
 /// Steuert eine [LumoCharacter]-Figur von außen, z. B. aus einer Aufgabe.
@@ -37,6 +46,10 @@ class LumoCharacterController extends ChangeNotifier {
   void cheer() => play(LumoCharacterAction.cheer);
   void comfort() => play(LumoCharacterAction.comfort);
   void wiggle() => play(LumoCharacterAction.wiggle);
+  void hello() => play(LumoCharacterAction.hello);
+  void talk() => play(LumoCharacterAction.talk);
+  void think() => play(LumoCharacterAction.think);
+  void wave() => play(LumoCharacterAction.wave);
 }
 
 /// Lumo als lebendige Zeichentrickfigur.
@@ -60,6 +73,7 @@ class LumoCharacter extends StatefulWidget {
     this.shadow = true,
     this.idleHops = true,
     this.intro = true,
+    this.ambientPoses = const <LumoDesignFoxPose>[],
     this.child,
   });
 
@@ -76,6 +90,11 @@ class LumoCharacter extends StatefulWidget {
 
   /// Beim Erscheinen mit Schwung hereinploppen.
   final bool intro;
+
+  /// Zusätzliche Posen für den Leerlauf. Damit ist Lumo nicht nur ein
+  /// transformiertes Standbild: er wechselt weich zwischen echten,
+  /// konsistenten Lumo-Posen (z. B. Lehrer -> Zeigen -> Zwinkern).
+  final List<LumoDesignFoxPose> ambientPoses;
 
   /// Statt der Pose ein eigenes Bild bewegen (z. B. das runde Avatar-Bild).
   final Widget? child;
@@ -168,6 +187,9 @@ class _LumoCharacterState extends State<LumoCharacter>
       LumoCharacterAction.comfort => const Duration(milliseconds: 1300),
       LumoCharacterAction.wiggle => const Duration(milliseconds: 650),
       LumoCharacterAction.hello => const Duration(milliseconds: 800),
+      LumoCharacterAction.talk => const Duration(milliseconds: 1450),
+      LumoCharacterAction.think => const Duration(milliseconds: 1250),
+      LumoCharacterAction.wave => const Duration(milliseconds: 1050),
     };
     _action.forward(from: 0);
   }
@@ -213,13 +235,26 @@ class _LumoCharacterState extends State<LumoCharacter>
 
   Widget _frame(double size) {
     final m = _motion(size);
-    final celebrating = _current == LumoCharacterAction.cheer &&
-        widget.celebratePose != null &&
-        _action.value < .92;
+    final displayPose = _displayPose();
     final figure = widget.child ??
-        LumoFoxPose(
-          pose: celebrating ? widget.celebratePose! : widget.pose,
-          size: size,
+        AnimatedSwitcher(
+          duration: widget.reduceMotion
+              ? Duration.zero
+              : const Duration(milliseconds: 220),
+          switchInCurve: Curves.easeOutCubic,
+          switchOutCurve: Curves.easeInCubic,
+          // Keep pose transitions transform-free. The outer character Transform is the
+          // single source of movement/rotation, which keeps hit testing and animation
+          // regression measurements stable while poses cross-fade.
+          transitionBuilder: (child, animation) => FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+          child: LumoFoxPose(
+            key: ValueKey(displayPose.assetName),
+            pose: displayPose,
+            size: size,
+          ),
         );
     return Stack(
         clipBehavior: Clip.none,
@@ -262,6 +297,43 @@ class _LumoCharacterState extends State<LumoCharacter>
             ),
           ),
         ]);
+  }
+
+  LumoDesignFoxPose _displayPose() {
+    if (_current == LumoCharacterAction.cheer &&
+        widget.celebratePose != null &&
+        _action.value < .92) {
+      return widget.celebratePose!;
+    }
+    switch (_current) {
+      case LumoCharacterAction.talk:
+        return LumoDesignFoxPose.teacherStick;
+      case LumoCharacterAction.think:
+        return LumoDesignFoxPose.bookPoint;
+      case LumoCharacterAction.wave:
+      case LumoCharacterAction.hello:
+        return LumoDesignFoxPose.armsOpen;
+      case LumoCharacterAction.wiggle:
+        return LumoDesignFoxPose.thumbWink;
+      case LumoCharacterAction.cheer:
+      case LumoCharacterAction.comfort:
+      case null:
+        break;
+    }
+    if (widget.reduceMotion || widget.ambientPoses.isEmpty) {
+      return widget.pose;
+    }
+    final cycle = _cycle.value;
+    if (cycle >= .50 && cycle < .62) {
+      return widget.ambientPoses.first;
+    }
+    if (widget.ambientPoses.length > 1 && cycle >= .76 && cycle < .89) {
+      return widget.ambientPoses[1];
+    }
+    if (widget.ambientPoses.length > 2 && cycle >= .92) {
+      return widget.ambientPoses[2];
+    }
+    return widget.pose;
   }
 
   /// Rechnet die momentane Haltung aus allen Bewegungsschichten zusammen.
@@ -333,6 +405,24 @@ class _LumoCharacterState extends State<LumoCharacter>
         scaleY *= hop.sy;
         lift = math.max(lift, hop.lift);
         rotation += .07 * math.sin(t * 4 * math.pi) * (1 - t);
+      case LumoCharacterAction.talk:
+        // Sprech-Rhythmus: kleine Betonungen statt hektischem Wackeln.
+        final syllable = math.sin(t * 10 * math.pi) * (1 - .35 * t);
+        dy += -1.8 * math.max(0, syllable);
+        scaleY *= 1 + .018 * syllable;
+        scaleX *= 1 - .009 * syllable;
+        rotation += .018 * math.sin(t * 5 * math.pi) * (1 - t);
+      case LumoCharacterAction.think:
+        final ease = math.sin(t * math.pi);
+        rotation += -.055 * ease;
+        dx += -2.0 * ease;
+        dy += 1.2 * ease;
+      case LumoCharacterAction.wave:
+        final wave = math.sin(t * 7 * math.pi) * (1 - t);
+        rotation += .05 * wave;
+        final hop = _jump(t, height: size * .045);
+        dy += hop.dy;
+        lift = math.max(lift, hop.lift);
       case null:
         break;
     }

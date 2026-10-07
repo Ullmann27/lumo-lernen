@@ -11,6 +11,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/fox/lumo_character.dart';
 
 class LumoTagestippCard extends StatelessWidget {
   const LumoTagestippCard({super.key, this.onTap});
@@ -30,20 +33,19 @@ class LumoTagestippCard extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                tip.color.withOpacity(0.10),
-                tip.color.withOpacity(0.04),
+                Color.alphaBlend(tip.color.withOpacity(.18), const Color(0xDD123D72)),
+                const Color(0xEE0A2852),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(LumoRadius.lg),
-            // 2026-06-06 FIX: non-uniform Border + borderRadius rendert nicht.
-            border: Border.all(color: tip.color.withOpacity(0.45), width: 1.5),
+            border: Border.all(color: tip.color.withOpacity(0.58), width: 1.5),
             boxShadow: [
               BoxShadow(
-                color: tip.color.withOpacity(0.14),
-                blurRadius: 14,
-                offset: const Offset(0, 5),
+                color: tip.color.withOpacity(0.18),
+                blurRadius: 16,
+                offset: const Offset(0, 6),
               ),
             ],
           ),
@@ -52,11 +54,13 @@ class LumoTagestippCard extends StatelessWidget {
             children: [
               // 2026-06-06: echter Lumo-Charakter (errorBuilder -> Emoji-Fallback)
               Container(
-                width: 50,
-                height: 50,
-                padding: const EdgeInsets.all(3),
+                width: 54,
+                height: 54,
+                padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF38DFFF), Color(0xFF246EFF)],
+                  ),
                   shape: BoxShape.circle,
                   border: Border.all(color: tip.color, width: 1.6),
                   boxShadow: [
@@ -67,14 +71,15 @@ class LumoTagestippCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: ClipOval(
-                  child: Image.asset(
-                    'assets/companion/lumo_idle.png',
-                    fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) => const Center(
-                      child: Text('🦊', style: TextStyle(fontSize: 26)),
-                    ),
-                  ),
+                child: LumoCharacter(
+                  pose: LumoDesignFoxPose.bookPoint,
+                  ambientPoses: const <LumoDesignFoxPose>[
+                    LumoDesignFoxPose.thumbWink,
+                  ],
+                  size: 50,
+                  reduceMotion: MediaQuery.disableAnimationsOf(context),
+                  intro: false,
+                  shadow: false,
                 ),
               ),
               const SizedBox(width: 11),
@@ -118,7 +123,7 @@ class LumoTagestippCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 13.5,
                         fontWeight: FontWeight.w800,
-                        color: LumoColors.ink900,
+                        color: LumoVisualTokens.white,
                         height: 1.32,
                       ),
                     ),

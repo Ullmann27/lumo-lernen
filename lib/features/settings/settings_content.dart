@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/app_settings.dart';
@@ -657,24 +658,26 @@ class _Header extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Color(0xFFFFF7ED), Color(0xFFFFE4CC), Color(0xFFFFD1A8)],
+              colors: [Color(0xEE0B315F), Color(0xF0081D43), Color(0xEA0B2A55)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(LumoRadius.lg),
-            border: Border.all(color: const Color(0xFFFFB96B), width: 1.4),
+            border: Border.all(
+              color: LumoVisualTokens.cyan.withOpacity(.52),
+              width: 1.4,
+            ),
             boxShadow: [
               BoxShadow(
-                color: LumoColors.orange.withOpacity(0.25),
+                color: LumoVisualTokens.cyan.withOpacity(.20),
                 blurRadius: 24,
                 offset: const Offset(0, 8),
                 spreadRadius: -4,
               ),
-              BoxShadow(
-                color: Colors.white.withOpacity(0.6),
-                blurRadius: 6,
-                offset: const Offset(-2, -2),
-                spreadRadius: -2,
+              const BoxShadow(
+                color: Color(0x55000000),
+                blurRadius: 18,
+                offset: Offset(0, 10),
               ),
             ],
           ),
@@ -686,14 +689,15 @@ class _Header extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+                    colors: [Color(0xFF38DFFF), Color(0xFF246EFF)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   borderRadius: BorderRadius.circular(compact ? 16 : 20),
+                  border: Border.all(color: Colors.white.withOpacity(.28)),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFFFF7A2F).withOpacity(0.45),
+                      color: LumoVisualTokens.cyan.withOpacity(.42),
                       blurRadius: 14,
                       offset: const Offset(0, 6),
                     ),
@@ -717,7 +721,7 @@ class _Header extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: compact ? 18 : 22,
                         fontWeight: FontWeight.w900,
-                        color: const Color(0xFF7C2D12),
+                        color: LumoVisualTokens.white,
                         letterSpacing: -0.2,
                       ),
                     ),
@@ -728,7 +732,7 @@ class _Header extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: compact ? 12 : 13,
                         fontWeight: FontWeight.w700,
-                        color: const Color(0xFF92400E),
+                        color: LumoVisualTokens.muted,
                         height: 1.35,
                       ),
                     ),
@@ -753,9 +757,27 @@ class _SettingsCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(18),
-      decoration: lumoCard(),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.40)),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withOpacity(.12),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(title, style: LumoTextStyles.heading3),
+        Text(
+          title,
+          style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
+        ),
         const SizedBox(height: 12),
         ...children,
       ],
@@ -781,13 +803,29 @@ class _InfoCard extends StatelessWidget {
     return Container(
       width: width,
       padding: const EdgeInsets.all(16),
-      decoration: lumoCard(),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.40)),
+      ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [Text(emoji, style: const TextStyle(fontSize: 28)), const SizedBox(width: 8), Expanded(child: Text(title, style: LumoTextStyles.heading3)),
+        Row(children: [
+          Text(emoji, style: const TextStyle(fontSize: 28)),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              title,
+              style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
+            ),
+          ),
             ],
           ),
         const SizedBox(height: 10),
-        ...lines.map((line) => Padding(padding: const EdgeInsets.only(bottom: 4), child: Text('• $line', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700,
+        ...lines.map((line) => Padding(padding: const EdgeInsets.only(bottom: 4), child: Text('• $line', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted,
                 ),
               ),
             ),
@@ -820,10 +858,13 @@ class _SwitchRow extends StatelessWidget {
           title,
           style: LumoTextStyles.body.copyWith(
             fontWeight: FontWeight.w900,
-            color: LumoColors.ink900,
+            color: LumoVisualTokens.white,
           ),
         ),
-        subtitle: Text(subtitle, style: LumoTextStyles.caption),
+        subtitle: Text(
+          subtitle,
+          style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
+        ),
         value: value,
         onChanged: onChanged,
       ),
@@ -898,7 +939,7 @@ class _AiTutorStatsPanel extends StatelessWidget {
     required this.onClear,
   });
 
-  static const subjects = <String>['Mathematik', 'Deutsch', 'Sachunterricht'];
+  static const subjects = <String>['Mathematik', 'Deutsch', 'Sachunterricht', 'Englisch'];
   static const AiTaskCache _cache = AiTaskCache();
 
   final String childId;
@@ -943,20 +984,24 @@ class _AiTutorStatsPanel extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.72),
+            gradient: const LinearGradient(
+              colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
             borderRadius: BorderRadius.circular(LumoRadius.md),
-            border: Border.all(color: LumoColors.orange.withOpacity(.18)),
+            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.36)),
           ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              const Icon(Icons.psychology_alt_rounded, color: LumoColors.orange, size: 22,
+              const Icon(Icons.psychology_alt_rounded, color: LumoVisualTokens.cyanBright, size: 22,
                   ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   'KI-Aufgaben-Vorrat',
                   style: LumoTextStyles.caption.copyWith(
-                    color: LumoColors.ink900,
+                    color: LumoVisualTokens.white,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -996,7 +1041,7 @@ class _AiTutorStatsPanel extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 'Nur Eltern sehen diesen Bereich. Der API-Key bleibt ausschließlich auf dem Proxy-Server.',
-                style: LumoTextStyles.caption.copyWith(color: LumoColors.ink500,
+                style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted,
                   ),
               ),
             ],
@@ -1019,11 +1064,11 @@ class _AiStatLine extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Row(children: [
-        Expanded(child: Text(label, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700),
+        Expanded(child: Text(label, style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
             ),
           ),
         const SizedBox(width: 12),
-        Text(value, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w900,
+        Text(value, style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.white, fontWeight: FontWeight.w900,
             ),
           ),
       ],

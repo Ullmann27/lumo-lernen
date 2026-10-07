@@ -268,9 +268,20 @@ void main() {
         }
         continue;
       }
-      if (game.solvedN.value < game.totalQN.value &&
-          game.fox.position.x > game.chest.position.x - 120) {
-        direction = -1;
+      if (game.solvedN.value < game.totalQN.value) {
+        final unresolved = game.questionBlocks.where((b) => !b.cleared).toList()
+          ..sort((a, b) =>
+              (a.position.x - game.fox.position.x).abs().compareTo(
+                    (b.position.x - game.fox.position.x).abs(),
+                  ));
+        if (unresolved.isNotEmpty) {
+          final targetX = unresolved.first.position.x;
+          if ((targetX - game.fox.position.x).abs() > 70) {
+            direction = targetX > game.fox.position.x ? 1 : -1;
+          }
+        }
+      } else {
+        direction = 1;
       }
       stick ??= await tester.startGesture(origin + Offset(64 * direction, 0),
           pointer: 1);

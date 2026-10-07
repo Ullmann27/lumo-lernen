@@ -36,6 +36,59 @@ class LumoTask {
 }
 
 class Curriculum {
+  /// Österreichischer Volksschulrahmen 2026.
+  ///
+  /// Der aktuelle Lehrplan sieht in der 1.–4. Schulstufe u. a. Deutsch,
+  /// Sachunterricht, Mathematik, Musik, Kunst und Gestaltung, Technik und
+  /// Design sowie Bewegung und Sport als Pflichtgegenstände vor. Eine lebende
+  /// Fremdsprache ist in der Grundstufe I verbindliche Übung und in der
+  /// Grundstufe II (3./4. Schulstufe) Pflichtgegenstand.
+  ///
+  /// Lumo verwendet für die automatisiert prüfbaren Kernaufgaben bewusst die
+  /// Bereiche Mathematik, Deutsch/Lesen/Schreiben/Rechtschreibung,
+  /// Sachunterricht, Englisch (als lebende Fremdsprache) und Logik. Kreative
+  /// und körperliche Fächer werden nicht fälschlich als Multiple-Choice-
+  /// Schularbeit modelliert, sondern sind als Aktivitäts-/Projektfächer
+  /// vorgesehen.
+  static List<String> officialSubjectsForGrade(int grade) {
+    final g = grade.clamp(1, 4).toInt();
+    return <String>[
+      'Religion',
+      'Deutsch',
+      'Sachunterricht',
+      'Mathematik',
+      'Musik',
+      'Kunst und Gestaltung',
+      'Technik und Design',
+      'Bewegung und Sport',
+      if (g >= 3) 'Lebende Fremdsprache',
+      if (g <= 2) 'Lebende Fremdsprache (verbindliche Übung)',
+      'Verkehrs- und Mobilitätsbildung',
+    ];
+  }
+
+  static List<String> exerciseSubjectsForGrade(int grade) {
+    final g = grade.clamp(1, 4).toInt();
+    return <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Rechtschreibung',
+      'Schreiben',
+      'Sachunterricht',
+      if (g >= 1) 'Englisch',
+      'Logik',
+    ];
+  }
+
+  static const List<String> activitySubjects = <String>[
+    'Musik',
+    'Kunst und Gestaltung',
+    'Technik und Design',
+    'Bewegung und Sport',
+    'Verkehrs- und Mobilitätsbildung',
+  ];
+
   static const Map<String, List<String>> subjects = <String, List<String>>{
     'Mathematik': <String>[
       'Plus bis 10', 'Minus bis 10', 'Plus bis 20', 'Minus bis 20',
@@ -242,7 +295,15 @@ class ExerciseFactory {
     required Map<String, int> weakSkills,
     int count = 14,
   }) {
-    final subjects = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Englisch', 'Sachunterricht', 'Schreiben'];
+    final subjects = <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Rechtschreibung',
+      if (grade >= 3) 'Englisch',
+      'Sachunterricht',
+      'Schreiben',
+    ];
     final tasks = <LumoTask>[];
     final avoid = <String>{};
     for (var i = 0; i < count; i++) {

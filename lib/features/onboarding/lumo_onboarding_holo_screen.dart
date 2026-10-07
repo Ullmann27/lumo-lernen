@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../core/user_profile.dart';
+import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_character.dart';
 
 class LumoOnboardingScreen extends StatefulWidget {
   const LumoOnboardingScreen({super.key, required this.onFinished});
@@ -17,6 +19,7 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
   int _step = 0;
   int _age = 7;
   int _grade = 1;
+  bool _parentSetup = false;
 
   @override
   void dispose() {
@@ -62,7 +65,9 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                         children: [
                           _Header(
                             step: _step,
-                            onBack: _step == 0 ? null : () => setState(() => _step--),
+                            onBack: _step == 0
+                                ? null
+                                : () => setState(() => _step--),
                           ),
                           const SizedBox(height: 12),
                           Expanded(
@@ -70,16 +75,25 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                               child: wide
                                   ? Row(
                                       children: [
-                                        Expanded(flex: 5, child: _Hero(step: _step)),
+                                        Expanded(
+                                            flex: 5, child: _Hero(step: _step)),
                                         const SizedBox(width: 16),
-                                        Expanded(flex: 6, child: _stepBody()),
+                                        Expanded(
+                                          flex: 6,
+                                          child: c.maxHeight < 620
+                                              ? SingleChildScrollView(
+                                                  child: _stepBody(),
+                                                )
+                                              : _stepBody(),
+                                        ),
                                       ],
                                     )
                                   : Column(
                                       children: [
                                         SizedBox(
                                           height: c.maxHeight < 700 ? 150 : 190,
-                                          child: _Hero(step: _step, compact: true),
+                                          child:
+                                              _Hero(step: _step, compact: true),
                                         ),
                                         const SizedBox(height: 10),
                                         Expanded(
@@ -111,12 +125,14 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
       0 => _Panel(
           eyebrow: 'Willkommen',
           title: 'Bereit für dein\nLernabenteuer?',
-          subtitle: 'Lumo richtet dein Profil ein und passt Aufgaben an dich an.',
+          subtitle:
+              'Lumo richtet dein Profil ein und passt Aufgaben an dich an.',
           body: const Column(
             children: [
               _Info(Icons.auto_awesome_rounded, 'Aufgaben passend zu dir'),
               SizedBox(height: 10),
-              _Info(Icons.sports_esports_rounded, 'Lernen schaltet Spiele frei'),
+              _Info(
+                  Icons.sports_esports_rounded, 'Lernen schaltet Spiele frei'),
               SizedBox(height: 10),
               _Info(Icons.star_rounded, 'Sterne, Belohnungen und Fortschritt'),
             ],
@@ -125,19 +141,49 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
           onTap: _next,
         ),
       1 => _Panel(
-          eyebrow: 'Wer bist du?',
-          title: 'Wie heißt du?',
-          subtitle: 'Lumo spricht dich dann persönlich an.',
-          body: TextField(
-            controller: _name,
-            textInputAction: TextInputAction.done,
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 18,
-              fontWeight: FontWeight.w900,
-              color: Colors.white,
-            ),
-            decoration: _inputDecoration(),
+          eyebrow: 'Wer richtet Lumo ein?',
+          title: _parentSetup ? 'Wie heißt dein Kind?' : 'Wie heißt du?',
+          subtitle: _parentSetup
+              ? 'Du richtest jetzt das Kinderprofil ein. Eltern-Einstellungen bleiben später geschützt im Elternbereich.'
+              : 'Lumo spricht dich dann persönlich an.',
+          body: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: _RoleChoice(
+                      icon: Icons.child_care_rounded,
+                      label: 'Ich bin ein Kind',
+                      selected: !_parentSetup,
+                      onTap: () => setState(() => _parentSetup = false),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _RoleChoice(
+                      icon: Icons.family_restroom_rounded,
+                      label: 'Ich bin ein Elternteil',
+                      selected: _parentSetup,
+                      onTap: () => setState(() => _parentSetup = true),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 14),
+              TextField(
+                controller: _name,
+                textInputAction: TextInputAction.done,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+                decoration: _inputDecoration(
+                  hint: _parentSetup ? 'Name des Kindes' : 'Dein Name',
+                ),
+              ),
+            ],
           ),
           button: 'Weiter',
           onTap: _next,
@@ -164,7 +210,8 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
       _ => _Panel(
           eyebrow: 'Dein Lernweg',
           title: 'In welche Klasse gehst du?',
-          subtitle: 'Die Klasse bestimmt den Startpunkt. Du kannst sie später ändern.',
+          subtitle:
+              'Die Klasse bestimmt den Startpunkt. Du kannst sie später ändern.',
           body: LayoutBuilder(
             builder: (context, box) {
               const colors = [
@@ -178,8 +225,9 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                 runSpacing: 10,
                 children: List.generate(4, (i) {
                   final v = i + 1;
+                  final columns = box.maxWidth < 300 ? 1 : 2;
                   return SizedBox(
-                    width: (box.maxWidth - 10) / 2,
+                    width: (box.maxWidth - 10 * (columns - 1)) / columns,
                     child: _GradeChoice(
                       grade: v,
                       color: colors[i],
@@ -206,8 +254,9 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
     );
   }
 
-  InputDecoration _inputDecoration() => InputDecoration(
-        hintText: 'Dein Name',
+  InputDecoration _inputDecoration({String hint = 'Dein Name'}) =>
+      InputDecoration(
+        hintText: hint,
         hintStyle: const TextStyle(
           color: Color(0xFF7DA4C8),
           fontWeight: FontWeight.w700,
@@ -232,40 +281,198 @@ class _Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    final wide = size.width >= 760;
+    final baseAsset = wide
+        ? 'assets/lumo_design/bg/bg_wide.png'
+        : 'assets/lumo_design/bg/bg_home.png';
     return Stack(
       fit: StackFit.expand,
       children: [
+        const ColoredBox(color: Color(0xFF020D21)),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: Opacity(
+              opacity: wide ? .54 : .40,
+              child: ColorFiltered(
+                colorFilter: const ColorFilter.mode(
+                  Color(0xB508244A),
+                  BlendMode.srcATop,
+                ),
+                child: Image.asset(
+                  baseAsset,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => wide
+                      ? Image.asset(
+                          'assets/lumo_design/bg/bg_home.png',
+                          fit: BoxFit.cover,
+                        )
+                      : const SizedBox.expand(),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: _OnboardingWorldPainter(wide: wide),
+            ),
+          ),
+        ),
         const DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF020D21),
-                Color(0xFF082A55),
-                Color(0xFF07183D),
-                Color(0xFF020C20),
+                Color(0xB3020D21),
+                Color(0x66082A55),
+                Color(0x9907183D),
+                Color(0xE6020C20),
               ],
             ),
           ),
         ),
-        ...List.generate(
-          18,
-          (i) => Positioned(
-            left: ((i * 67) % 97) / 100 * size.width,
-            top: ((i * 113) % 89) / 100 * size.height,
-            child: Icon(
-              Icons.circle,
-              size: i % 3 == 0 ? 3 : 2,
-              color: Colors.white.withOpacity(i % 4 == 0 ? .72 : .34),
-            ),
-          ),
+        const Positioned(
+          left: -100,
+          top: 70,
+          child: _Glow(Color(0x553FE4FF), 290),
         ),
-        const Positioned(left: -100, top: 70, child: _Glow(Color(0x553FE4FF), 290)),
-        const Positioned(right: -90, bottom: 70, child: _Glow(Color(0x444E72FF), 260)),
+        const Positioned(
+          right: -90,
+          bottom: 70,
+          child: _Glow(Color(0x444E72FF), 260),
+        ),
       ],
     );
   }
+}
+
+class _OnboardingWorldPainter extends CustomPainter {
+  const _OnboardingWorldPainter({required this.wide});
+  final bool wide;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final cyan = const Color(0xFF5CEBFF);
+    final violet = const Color(0xFF7A72FF);
+    final gold = const Color(0xFFFFD66B);
+    final center = Offset(size.width * .52, size.height * .47);
+
+    final orbitPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = wide ? 1.7 : 1.2
+      ..color = cyan.withValues(alpha: wide ? .24 : .16);
+    canvas.save();
+    canvas.translate(center.dx, center.dy);
+    canvas.rotate(-.10);
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset.zero,
+        width: size.width * .88,
+        height: size.height * .34,
+      ),
+      orbitPaint,
+    );
+    canvas.rotate(.30);
+    orbitPaint.color = violet.withValues(alpha: wide ? .18 : .11);
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset.zero,
+        width: size.width * .76,
+        height: size.height * .28,
+      ),
+      orbitPaint,
+    );
+    canvas.restore();
+
+    final grid = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = .7
+      ..color = cyan.withValues(alpha: .08);
+    final horizon = size.height * .73;
+    for (var row = 0; row < 7; row++) {
+      final y = horizon + row * size.height * .035;
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), grid);
+    }
+    for (var ray = -6; ray <= 6; ray++) {
+      canvas.drawLine(
+        Offset(size.width * .5, horizon - 8),
+        Offset(size.width * (.5 + ray * .12), size.height),
+        grid,
+      );
+    }
+
+    final route = Path()
+      ..moveTo(size.width * .02, size.height * .76)
+      ..cubicTo(
+        size.width * .18,
+        size.height * .65,
+        size.width * .29,
+        size.height * .82,
+        size.width * .43,
+        size.height * .70,
+      )
+      ..cubicTo(
+        size.width * .59,
+        size.height * .57,
+        size.width * .72,
+        size.height * .83,
+        size.width * .98,
+        size.height * .61,
+      );
+    canvas.drawPath(
+      route,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round
+        ..strokeWidth = wide ? 12 : 9
+        ..color = const Color(0xFF133B71).withValues(alpha: .52),
+    );
+    canvas.drawPath(
+      route,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round
+        ..strokeWidth = 1.8
+        ..shader = LinearGradient(
+          colors: [
+            cyan.withValues(alpha: .25),
+            cyan.withValues(alpha: .72),
+            gold.withValues(alpha: .66),
+          ],
+        ).createShader(Offset.zero & size),
+    );
+
+    final nodePaint = Paint()..color = gold.withValues(alpha: .82);
+    for (final point in <Offset>[
+      Offset(size.width * .20, size.height * .70),
+      Offset(size.width * .44, size.height * .69),
+      Offset(size.width * .70, size.height * .70),
+      Offset(size.width * .88, size.height * .66),
+    ]) {
+      canvas.drawCircle(point, wide ? 4.0 : 3.0, nodePaint);
+      canvas.drawCircle(
+        point,
+        wide ? 9.0 : 7.0,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1
+          ..color = gold.withValues(alpha: .24),
+      );
+    }
+
+    final star = Paint()..color = Colors.white.withValues(alpha: .55);
+    for (var i = 0; i < 22; i++) {
+      final dx = ((i * 67) % 97) / 100 * size.width;
+      final dy = ((i * 113) % 59) / 100 * size.height * .56;
+      canvas.drawCircle(Offset(dx, dy), i % 5 == 0 ? 1.6 : .8, star);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _OnboardingWorldPainter oldDelegate) =>
+      oldDelegate.wide != wide;
 }
 
 class _Glow extends StatelessWidget {
@@ -415,11 +622,21 @@ class _Hero extends StatelessWidget {
                 top: 6,
                 bottom: 4,
               ),
-              child: Image.asset(
-                'assets/images/lumo_fox.png',
-                fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) =>
-                    const Text('🦊', style: TextStyle(fontSize: 92)),
+              child: LumoCharacter(
+                key: ValueKey('onboarding-lumo-$step'),
+                pose: switch (step) {
+                  0 => LumoDesignFoxPose.armsOpen,
+                  1 => LumoDesignFoxPose.pointSide,
+                  2 => LumoDesignFoxPose.bookPoint,
+                  _ => LumoDesignFoxPose.teacherStick,
+                },
+                ambientPoses: const <LumoDesignFoxPose>[
+                  LumoDesignFoxPose.thumbWink,
+                  LumoDesignFoxPose.pointSide,
+                ],
+                size: compact ? 145 : 260,
+                intro: true,
+                idleHops: true,
               ),
             ),
           ),
@@ -529,7 +746,9 @@ class _Panel extends StatelessWidget {
           const SizedBox(height: 22),
           FilledButton.icon(
             onPressed: onTap,
-            icon: Icon(finish ? Icons.rocket_launch_rounded : Icons.arrow_forward_rounded),
+            icon: Icon(finish
+                ? Icons.rocket_launch_rounded
+                : Icons.arrow_forward_rounded),
             label: Text(button),
             style: FilledButton.styleFrom(
               minimumSize: const Size.fromHeight(54),
@@ -594,6 +813,71 @@ class _Info extends StatelessWidget {
       );
 }
 
+class _RoleChoice extends StatelessWidget {
+  const _RoleChoice({
+    required this.icon,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          constraints: const BoxConstraints(minHeight: 74),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(17),
+            gradient: selected
+                ? const LinearGradient(
+                    colors: [Color(0xDD1686D9), Color(0xDD1745A1)],
+                  )
+                : const LinearGradient(
+                    colors: [Color(0x88163867), Color(0x77203F72)],
+                  ),
+            border: Border.all(
+              color:
+                  selected ? const Color(0xFF75F2FF) : const Color(0x555ABDE8),
+              width: selected ? 1.7 : 1,
+            ),
+            boxShadow: selected
+                ? const [BoxShadow(color: Color(0x5539E8FF), blurRadius: 16)]
+                : null,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: selected
+                    ? const Color(0xFF8EF1FF)
+                    : const Color(0xFF8DAAC7),
+                size: 26,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 11,
+                  fontWeight: FontWeight.w900,
+                  color: selected ? Colors.white : const Color(0xFFB8D2E8),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+}
+
 class _Choice extends StatelessWidget {
   const _Choice({
     required this.label,
@@ -616,9 +900,8 @@ class _Choice extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(17),
             border: Border.all(
-              color: selected
-                  ? const Color(0xFF71F0FF)
-                  : const Color(0x445ABDE8),
+              color:
+                  selected ? const Color(0xFF71F0FF) : const Color(0x445ABDE8),
               width: selected ? 1.7 : 1,
             ),
             gradient: selected
