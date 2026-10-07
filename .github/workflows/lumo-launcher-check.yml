@@ -1,0 +1,83 @@
+name: Lumo 3D launcher lifecycle
+
+on:
+  push:
+    branches: [chatgpt/3d-launch-lifecycle-2026-10-07]
+    paths:
+      - lib/features/lumo3d/**
+      - test/lumo3d_launcher_lifecycle_test.dart
+      - .github/workflows/lumo-launcher-check.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-launcher-lifecycle-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  launcher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Record source and toolchain
+        run: |
+          mkdir -p launcher-evidence/formatted
+          git rev-parse HEAD > launcher-evidence/source-sha.txt
+          flutter --version > launcher-evidence/flutter-version.txt
+          cp lib/features/lumo3d/lumo3d_launcher.dart launcher-evidence/
+          cp test/lumo3d_launcher_lifecycle_test.dart launcher-evidence/
+          cp launcher-evidence/*.dart launcher-evidence/formatted/
+          dart format launcher-evidence/formatted > launcher-evidence/format.log
+      - name: Resolve dependencies
+        run: flutter pub get
+      - name: Analyze launcher and regression tests
+        id: analysis
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings lib/features/lumo3d/lumo3d_launcher.dart test/lumo3d_launcher_lifecycle_test.dart 2>&1 | tee launcher-evidence/analysis.log
+      - name: Exercise launcher with controlled native responses
+        id: tests
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter expanded --timeout=45s test/lumo3d_launcher_lifecycle_test.dart 2>&1 | tee launcher-evidence/tests.log
+      - name: Record outcomes and fail closed
+        if: ${{ !cancelled() }}
+        env:
+          ANALYSIS: ${{ steps.analysis.outcome }}
+          TESTS: ${{ steps.tests.outcome }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          evidence = Path('launcher-evidence')
+          evidence.mkdir(exist_ok=True)
+          outcomes = {key: os.environ[key] for key in ('SOURCE_SHA', 'ANALYSIS', 'TESTS')}
+          outcomes['scope'] = 'Flutter widget tests with mocked native channel; no APK or physical-device claim'
+          (evidence / 'outcomes.json').write_text(json.dumps(outcomes, indent=2) + '\n')
+          if outcomes['ANALYSIS'] != 'success' or outcomes['TESTS'] != 'success':
+              raise SystemExit(1)
+          PY
+      - name: Upload actual evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-launcher-${{ github.run_id }}
+          path: launcher-evidence/
+          if-no-files-found: error
+          retention-days: 14

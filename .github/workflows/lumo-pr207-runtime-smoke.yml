@@ -1,0 +1,92 @@
+name: Lumo PR207 Android profile and resize smoke
+
+on:
+  push:
+    branches: [chatgpt/3d-launch-lifecycle-2026-10-07]
+    paths:
+      - .github/workflows/lumo-pr207-runtime-smoke.yml
+      - scripts/probes/pr207_android_smoke.py
+      - scripts/probes/pr207_android_ui_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-pr207-android-smoke
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download exact verified candidate
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37566239982
+          name: lumo-pr207-apk-37566239982
+          path: apk/
+      - name: Set up isolated accessibility test adapter
+        run: |
+          mkdir -p runtime-evidence
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0
+          .probe-venv/bin/python -m pip freeze > runtime-evidence/probe-dependencies.txt
+          python3 -m py_compile scripts/probes/pr207_android_smoke.py scripts/probes/pr207_android_ui_probe.py
+      - name: Verify input and preserve original provenance
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          path = Path('apk/Lumo-Lernen-Neu.apk')
+          expected = 'dbd445466a49ed4e23a899f4a166c19d7f11cc4200a3835efc53f1937befd970'
+          if hashlib.file_digest(path.open('rb'), 'sha256').hexdigest() != expected:
+              raise RuntimeError('Wrong APK artifact')
+          source = json.loads(Path('apk/BUILD-PROVENANCE.json').read_text())
+          if source['flutter_source_commit'] != '35a7a0a56a9519fb6c33e35b5aad78cd6f589d08':
+              raise RuntimeError('Wrong candidate source')
+          if source['tracked_source_clean'] is not True:
+              raise RuntimeError('Source is not clean')
+          Path('runtime-evidence/BUILD-PROVENANCE.json').write_text(json.dumps(source, indent=2) + '\n')
+          Path('runtime-evidence/README.txt').write_text(
+              'Verified candidate from 35a7a0a; test harness has its own source SHA.\n'
+              'A smoke PASS is not a production, visual, full race/card-match or physical Fold approval.\n'
+              'All UI-entered profile data is fictional and remains in the disposable emulator.\n'
+              'uiautomator2 is test-only; controls are read through live accessibility, not guessed.\n')
+          PY
+      - name: Enable emulator acceleration on disposable runner
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install, start offline, onboard, resize and restart
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: .probe-venv/bin/python scripts/probes/pr207_android_ui_probe.py --apk apk/Lumo-Lernen-Neu.apk --sha256 dbd445466a49ed4e23a899f4a166c19d7f11cc4200a3835efc53f1937befd970 --out runtime-evidence
+      - name: Upload real runtime evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-pr207-runtime-${{ github.run_id }}
+          path: runtime-evidence/
+          if-no-files-found: error
+          retention-days: 14
