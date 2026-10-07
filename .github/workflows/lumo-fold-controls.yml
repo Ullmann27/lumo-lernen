@@ -1,0 +1,108 @@
+name: Lumo Fold controls Android candidate
+on:
+  push:
+    branches: [chatgpt/fold-kart-controls-2026-10-07]
+    paths: [lib/**, test/**, tools/**, scripts/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-fold-controls.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-fold-controls-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_BUILD_NUMBER: '1503'
+  LUMO_VERSION_NAME: '0.10.8'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Dependencies and complete source analysis
+        run: |
+          set -o pipefail
+          mkdir -p proof/app-renders
+          git rev-parse HEAD > proof/source-sha.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analysis.log
+      - name: Backend, content and native preparation checks
+        run: |
+          set -o pipefail
+          node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee proof/backend.log
+          python3 -m unittest discover -s scripts/tests 2>&1 | tee proof/native-preparation.log
+          dart scripts/audit_content.dart 2>&1 | tee proof/content.log
+          bash scripts/lumo_repair_guard.sh 2>&1 | tee proof/repair-guard.log
+      - name: Full Flutter suite and actual app screenshots
+        env:
+          LUMO_POLISH_CAPTURES: ${{ github.workspace }}/proof/app-renders
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee proof/flutter-tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-fold-app-evidence-${{ github.run_id }}
+          path: proof/
+  kart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require the exact native control source to pass real render tests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GODOT_SHA: 0ba0422cb673784a3902024bdf73ea33180340f9
+        run: |
+          for attempt in $(seq 1 80); do
+            conclusion=$(gh api "repos/Ullmann27/lumo-godot/actions/runs?head_sha=$GODOT_SHA&per_page=10" --jq '.workflow_runs[] | select(.name == "Kart Fold controls and real render") | (.conclusion // "pending")' | head -1)
+            if [ "$conclusion" = success ]; then exit 0; fi
+            if [ -n "$conclusion" ] && [ "$conclusion" != pending ]; then echo "Native verification: $conclusion"; exit 1; fi
+            sleep 10
+          done
+          echo 'Native verification did not finish'; exit 1
+  build:
+    needs: [check, kart]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Install matching game engine for subsequent build step
+        run: |
+          set -o pipefail
+          mkdir -p build-proof
+          bash scripts/install_godot_for_build.sh 2>&1 | tee build-proof/engine.log
+      - name: Build exact clean tested source with matching engine
+        run: |
+          set -o pipefail
+          mkdir -p build-proof
+          git rev-parse HEAD > build-proof/source-sha.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee build-proof/dependencies.log
+          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: lumo-fold-apk-${{ github.run_id }}
+          path: dist/
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-fold-build-evidence-${{ github.run_id }}
+          path: build-proof/
