@@ -242,6 +242,13 @@ class LumoCardsGameController extends ChangeNotifier {
     _maybeRunBotTurn();
   }
 
+  /// Gespeicherte Partie fortsetzen (Mensch ist am Zug).
+  void restore(LumoCardsGameState saved) {
+    turnClock.cancel();
+    _state = saved;
+    notifyListeners();
+  }
+
   /// Nochmal spielen.
   void restart() {
     turnClock.cancel();

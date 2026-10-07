@@ -24,6 +24,7 @@ import '../../shared/widgets/lumo_premium_effects.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
+import 'lumo_cards_save.dart';
 import '../shared/lumo_game_pause_scope.dart';
 import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_card_burst.dart';
@@ -124,6 +125,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       grade: widget.appState.state.grade,
     );
     _controller.addListener(_onStateChanged);
+    _controller.addListener(_persistGame);
+    if (widget.vsBot) _restoreSavedGame();
     // Heinz Crash-Bericht 2026-05-22: '_dependents.isEmpty' Assertion.
     // Frueher hat sich beim ersten Start ein Avatar-Picker-Dialog
     // direkt aus addPostFrameCallback geoeffnet. Das fuehrte zu
@@ -139,6 +142,29 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => LumoMusic.instance.play(LumoMusicTrack.chillLoop),
     );
+  }
+
+  bool _userActed = false;
+
+  Future<void> _restoreSavedGame() async {
+    try {
+      final saved = await LumoCardsSave.load();
+      // Hat das Kind schon gezogen/gelegt, nicht ueberschreiben.
+      if (saved != null && mounted && !_userActed) {
+        _controller.restore(saved);
+      }
+    } catch (_) {}
+  }
+
+  void _persistGame() {
+    final s = _controller.state;
+    if (!widget.vsBot) return;
+    if (s.phase == GamePhase.gameOver) {
+      LumoCardsSave.clear();
+    } else if (LumoCardsSave.isSavable(s)) {
+      if (s.discardPile.length > 1) _userActed = true;
+      LumoCardsSave.save(s).catchError((_) {});
+    }
   }
 
   Future<void> _loadSavedAvatar() async {
@@ -170,6 +196,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   @override
   void dispose() {
     _controller.removeListener(_onStateChanged);
+    _controller.removeListener(_persistGame);
     _controller.dispose();
     // PR H3: Background-Music stoppen wenn der Screen verlassen wird.
     // Singleton-Player bleibt offen fuer den naechsten Screen-Eintritt.
