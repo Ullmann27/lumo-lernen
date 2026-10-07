@@ -34,6 +34,11 @@ jobs:
           run-id: 37617936184
           name: lumo-complete-apk-37617936184
           path: candidate/
+      - name: Check actual extracted APK paths before starting emulator
+        run: |
+          test -f baseline/dist/Lumo-Lernen-Neu.apk
+          test -f candidate/Lumo-Lernen-Neu.apk
+          test -f candidate/BUILD-PROVENANCE.json
       - name: Prepare isolated UI reader and screenshot OCR
         run: |
           mkdir -p native-proof
@@ -82,7 +87,7 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof
+          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof
       - uses: actions/upload-artifact@v4
         if: always()
         with:
