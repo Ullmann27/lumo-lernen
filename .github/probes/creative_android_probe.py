@@ -146,8 +146,15 @@ def native_text(out: Path, label: str, tag: str, tap: bool = False) -> None:
 
 def enter(out: Path, title: str, header: str, tag: str) -> None:
     flutter_tap(out, title+' spielen', tag+'-launch')
-    for _ in range(15):
-        if 'LumoGameActivity' in base.foreground():
+    for _ in range(60):
+        # Android has no resumed activity during the real portrait/landscape
+        # transition. Wait for the requested native foreground, keeping the
+        # process/header checks below; do not abort on that transient gap.
+        try:
+            foreground = base.foreground()
+        except RuntimeError:
+            foreground = ''
+        if 'LumoGameActivity' in foreground:
             break
         time.sleep(1)
     else:
