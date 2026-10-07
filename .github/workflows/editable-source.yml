@@ -1,0 +1,46 @@
+name: Integration source checkpoint
+on:
+  push:
+    branches: [chatgpt/lumo-complete-games-2026-10-07]
+    paths: [.github/workflows/editable-source.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Integrate immutable app and parent design snapshots
+        run: |
+          git diff 35299467 17ab56f3912694b3226dde702bd6482ac61509dd -- . ':!lib/features/settings/settings_content.dart' | git apply --3way
+          git diff 35299467 589f10c8d0c31f7b8a188210c2dfa8d5fe250bdf | git apply --3way
+          for p in scripts/probes/parent_games_20261007_apply.py lib/widgets/design/lumo_night_scope.dart lib/features/games/widgets/lumo_game_spotlights.dart test/design/parent_games_polish_test.dart; do
+            mkdir -p "$(dirname "$p")"
+            git show 4abda8dda053d9bf77764669d258c6a9fdfe4a2b:"$p" > "$p"
+          done
+          python3 scripts/probes/parent_games_20261007_apply.py
+      - name: Package editable source
+        run: |
+          mkdir -p /tmp/source-pack
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_DEFLATED
+          import subprocess
+          files = set(subprocess.check_output(['git','ls-files'], text=True).splitlines())
+          files.update(subprocess.check_output(['git','ls-files','--others','--exclude-standard'], text=True).splitlines())
+          with ZipFile('/tmp/source-pack/source.zip','w',ZIP_DEFLATED) as z:
+              for name in sorted(files):
+                  p = Path(name)
+                  if not p.is_file() or p.stat().st_size > 1500000: continue
+                  try: p.read_text(encoding='utf-8')
+                  except (UnicodeError, ValueError): continue
+                  z.write(p,name)
+              z.writestr('source-checkpoint.txt',subprocess.check_output(['git','rev-parse','HEAD'], text=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: editable-source
+          path: /tmp/source-pack/source.zip
