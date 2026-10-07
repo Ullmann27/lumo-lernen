@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        creative: [build, puzzle, rhythm, treasure]
+        creative: [build, puzzle, rhythm, treasure, kart]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,8 +35,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           github-token: ${{ github.token }}
-          run-id: 37632335620
-          name: lumo-complete-apk-37632335620
+          run-id: 37638777430
+          name: lumo-complete-apk-37638777430
           path: candidate/
       - name: Check actual extracted APK paths before starting emulator
         run: |

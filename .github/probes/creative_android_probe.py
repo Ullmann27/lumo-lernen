@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1501 update.
+"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1502 update.
 
 Only fictional data in a disposable Android emulator is used. Flutter controls
 come from live accessibility; native Godot controls from current screenshot OCR.
@@ -33,8 +33,8 @@ import pr207_android_ui_probe as live
 
 PACKAGE = base.PACKAGE
 BASE_DIGEST = 'd33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e'
-SOURCE = 'ba12a001a6c48c2c141df40da533b1ef566d8f7b'
-GODOT = 'dbd472e78ccb196c7492c4c842f8b85e3d642e2c'
+SOURCE = '53e294c9a057c0f15012a35c00dcaf666b6f37b4'
+GODOT = '148decd2b34af7bfb5f1504c166d42411f8e99e1'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 base.ui_nodes = live.live_nodes
 base.tap_label = live.live_tap_label
@@ -63,13 +63,13 @@ def read_live_nodes(out: Path, name: str) -> list:
     for attempt in range(3):
         try:
             return _original_live_nodes(out, name)
-        except RemoteDisconnected:
+        except (RemoteDisconnected, json.JSONDecodeError):
             if attempt == 2:
                 raise
             record = out / 'ui-reader-recovery.json'
             events = json.loads(record.read_text()) if record.exists() else []
             events.append({'read':name, 'attempt':attempt+1,
-                           'reason':'accessibility reader connection closed'})
+                           'reason':'accessibility reader returned an incomplete response'})
             record.write_text(json.dumps(events, indent=2)+'\n')
             live._device = None
             time.sleep(1)
@@ -129,7 +129,10 @@ def flutter_tap(out: Path, label: str, tag: str) -> None:
                     choices.append(((x1-x0)*(y1-y0), x0, y0, x1, y1))
             if choices:
                 _, x0, y0, x1, y1 = min(choices)
-                base.adb('shell', 'input', 'tap', str((x0+x1)//2), str((y0+y1)//2))
+                x,y = str((x0+x1)//2),str((y0+y1)//2)
+                # A brief real finger press avoids a zero-duration ADB tap
+                # disappearing between busy software-rendered Flutter frames.
+                base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
                 time.sleep(2)
                 return
             # The assistant panel occupies the bottom of the window. Scroll
@@ -224,8 +227,8 @@ def native_text(out: Path, label: str, tag: str, tap: bool = False) -> None:
     raise RuntimeError('Current native screenshot lacks '+label)
 
 
-def enter(out: Path, title: str, header: str, tag: str) -> None:
-    flutter_tap(out, title+' spielen', tag+'-launch')
+def enter(out: Path, title: str, header: str, tag: str, launch_label: str = '') -> None:
+    flutter_tap(out, launch_label or title+' spielen', tag+'-launch')
     for _ in range(60):
         # Android has no resumed activity during the real portrait/landscape
         # transition. Wait for the requested native foreground, keeping the
@@ -359,7 +362,7 @@ def main() -> int:
     parser.add_argument('--baseline',type=Path)
     parser.add_argument('--candidate',type=Path)
     parser.add_argument('--ocr-fixture',type=Path)
-    parser.add_argument('--game-scope',choices=('all','build','puzzle','rhythm','treasure'),default='all')
+    parser.add_argument('--game-scope',choices=('all','build','puzzle','rhythm','treasure','kart'),default='all')
     parser.add_argument('--out',type=Path,required=True)
     args = parser.parse_args()
     out = args.out
@@ -375,7 +378,7 @@ def main() -> int:
         return 0
     if args.baseline is None or args.candidate is None:
         parser.error('--baseline and --candidate are required for actual Android play')
-    selected=['build','puzzle','rhythm','treasure'] if args.game_scope=='all' else [args.game_scope]
+    selected=['build','puzzle','rhythm','treasure','kart'] if args.game_scope=='all' else [args.game_scope]
     result = {'tested_games':selected,'status':'RUNNING','source':SOURCE,'godot':GODOT,
               'harness':base.command('git','rev-parse','HEAD'),
               'scope':'Actual Android APK update, native scene launches, pause/back, saves and reward replay',
@@ -389,7 +392,7 @@ def main() -> int:
             provenance['tracked_source_clean'] is not True or
             provenance['godot']['revision'] != GODOT or
             provenance['signingCertificateSha256'] != CERT or
-            provenance['versionCode'] != 1501 or
+            provenance['versionCode'] != 1502 or
             provenance['sha256'] != digest(args.candidate)):
             raise RuntimeError('Candidate provenance mismatch')
         result['apk_sha256'] = digest(args.candidate)
@@ -410,7 +413,7 @@ def main() -> int:
         update = base.adb('install','-r','--no-streaming',str(args.candidate),timeout=180)
         (out/'update-install.txt').write_text(update)
         after_package = package_identity(out,'updated')
-        if ('Success' not in update or not after_package['versionCode'].startswith('1501') or
+        if ('Success' not in update or not after_package['versionCode'].startswith('1502') or
             after_package['userId'] != before_package['userId'] or
             after_package['firstInstallTime'] != before_package['firstInstallTime']):
             raise RuntimeError('In-place update with unchanged installation identity failed')
@@ -506,6 +509,33 @@ def main() -> int:
             if any(resumed.get(key) != treasure.get(key) for key in ('chapter','result_id')):
                 raise RuntimeError('Treasure chapter or identity changed on relaunch')
             result['treasure'] = {'status':'PASS','inventory_visible':True,'save_and_relaunch':True}
+
+        if 'kart' in selected:
+            enter(out,'Lumo Kart','LUMO / KART','14_kart',launch_label='Losfahren')
+            for step in range(4):
+                native_text(out,'Weiter',f'kart-setup-{step+1}',tap=True)
+            native_text(out,'Rennen starten','kart-start-race',tap=True)
+            # Natural portrait dimensions rotate into a real 640x320 game
+            # surface. This exercises the shipped APK's short driving layout.
+            base.display(320,640,160)
+            for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
+                native_text(out,label,'kart-compact-'+normalized(label))
+            shot=capture(out,'15_kart_compact_race')
+            if shot['width'] != 640 or shot['height'] != 320:
+                raise RuntimeError('Compact native Kart did not rotate to 640x320')
+            base.adb('shell','input','keyevent','KEYCODE_BACK')
+            native_text(out,'Spiele','kart-compact-return',tap=True)
+            for _ in range(30):
+                if not base.adb('shell','pidof',PACKAGE+':lumo_game',check=False):
+                    break
+                time.sleep(1)
+            else:
+                raise RuntimeError('Kart private process remained after return')
+            base.foreground()
+            capture(out,'16_kart_returned_to_app')
+            result['kart']={'status':'PASS','actual_setup_steps':5,
+                            'native_landscape':[640,320],
+                            'five_action_labels_visible':True,'pause_return':True}
         if wallet(out,'after-unfinished-games') != first_wallet:
             raise RuntimeError('An unfinished creative game incorrectly awarded a reward')
 
