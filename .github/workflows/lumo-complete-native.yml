@@ -1,7 +1,7 @@
 name: Lumo creative games Android update and runtime
 on:
   push:
-    branches: [chatgpt/lumo-complete-games-2026-10-07]
+    branches: [chatgpt/lumo-complete-games-2026-10-07, chatgpt/lumo-complete-verified-2026-10-07]
     paths: [.github/workflows/lumo-complete-native.yml, .github/probes/creative_android_probe.py]
   workflow_dispatch:
 permissions:
