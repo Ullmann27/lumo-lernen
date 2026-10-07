@@ -98,39 +98,59 @@ def flutter_tap(out: Path, label: str, tag: str) -> None:
     raise RuntimeError('No enabled live Flutter control: '+label)
 
 
-def image_lines(out: Path, tag: str) -> list[dict]:
-    snapshot = capture(out, tag)
-    source = out / snapshot['file']
+def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None = None) -> list[dict]:
+    if source_path is None:
+        snapshot = capture(out, tag)
+        source = out / snapshot['file']
+    else:
+        source = source_path
     image = Image.open(source).convert('RGB')
-    expanded = out / (tag+'-ocr-input.png')
-    image.resize((image.width*2, image.height*2)).save(expanded)
-    prefix = out / (tag+'-ocr')
-    base.command('tesseract', str(expanded), str(prefix), '--psm', '11',
-                 '-l', 'deu+eng', 'tsv', timeout=45)
-    groups: dict[tuple, list[dict]] = {}
-    with prefix.with_suffix('.tsv').open() as stream:
-        for word in csv.DictReader(stream, delimiter='\t'):
-            if not word.get('text', '').strip() or float(word['conf']) < 15:
-                continue
-            key = tuple(word[k] for k in ('page_num','block_num','par_num','line_num'))
-            groups.setdefault(key, []).append(word)
     result = []
-    for words in groups.values():
-        words.sort(key=lambda w: int(w['left']))
-        x0 = min(int(w['left']) for w in words)/2
-        y0 = min(int(w['top']) for w in words)/2
-        x1 = max(int(w['left'])+int(w['width']) for w in words)/2
-        y1 = max(int(w['top'])+int(w['height']) for w in words)/2
-        result.append({'text': ' '.join(w['text'] for w in words),
-                       'bounds': [x0,y0,x1,y1]})
-    prefix.with_suffix('.json').write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    # White UI letters on dark glass can disappear among the detailed 3D
+    # background. A second read separates their contrast, without changing
+    # any screenshot used as evidence or inventing a control coordinate.
+    contrast = image.convert('L').point(lambda value: 0 if value >= 170 else 255)
+    for variant, pixels in [('raw',image),('contrast',contrast)]:
+        expanded = out / 'ocr-work.png'
+        pixels.resize((image.width*2,image.height*2)).save(expanded)
+        prefix = out / (tag+'-ocr-'+variant)
+        base.command('tesseract',str(expanded),str(prefix),'--psm','11',
+                     '-l','deu+eng','tsv',timeout=45)
+        groups: dict[tuple,list[dict]] = {}
+        with prefix.with_suffix('.tsv').open() as stream:
+            for word in csv.DictReader(stream,delimiter='\t'):
+                if not word.get('text','').strip() or float(word['conf']) < 15:
+                    continue
+                key=tuple(word[k] for k in ('page_num','block_num','par_num','line_num'))
+                groups.setdefault(key,[]).append(word)
+        for words in groups.values():
+            words.sort(key=lambda word:int(word['left']))
+            spans=[words]
+            # Use the exact phrase's own OCR bounds when adjacent toolbar
+            # buttons appear in the same text line. Its line midpoint could
+            # otherwise land on a different button.
+            for start in range(len(words)):
+                for end in range(start+1,min(len(words),start+8)+1):
+                    span=words[start:end]
+                    if normalized(' '.join(word['text'] for word in span)) == wanted:
+                        spans.append(span)
+            for span in spans:
+                x0=min(int(word['left']) for word in span)/2
+                y0=min(int(word['top']) for word in span)/2
+                x1=max(int(word['left'])+int(word['width']) for word in span)/2
+                y1=max(int(word['top'])+int(word['height']) for word in span)/2
+                result.append({'text':' '.join(word['text'] for word in span),
+                               'bounds':[x0,y0,x1,y1],'variant':variant})
+        if wanted and any(wanted in normalized(line['text']) for line in result):
+            break
+    (out/(tag+'-ocr.json')).write_text(json.dumps(result,indent=2,ensure_ascii=False))
     return result
 
 
 def native_text(out: Path, label: str, tag: str, tap: bool = False) -> None:
     wanted = normalized(label)
     for attempt in range(8):
-        lines = image_lines(out, f'{tag}-{attempt}')
+        lines = image_lines(out, f'{tag}-{attempt}', wanted)
         matches = [line for line in lines if wanted in normalized(line['text'])]
         if matches:
             selected = min(matches, key=lambda line: len(line['text']))
@@ -276,12 +296,24 @@ def onboard(out: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--baseline',type=Path,required=True)
-    parser.add_argument('--candidate',type=Path,required=True)
+    parser.add_argument('--baseline',type=Path)
+    parser.add_argument('--candidate',type=Path)
+    parser.add_argument('--ocr-fixture',type=Path)
     parser.add_argument('--out',type=Path,required=True)
     args = parser.parse_args()
     out = args.out
     out.mkdir(parents=True,exist_ok=True)
+    if args.ocr_fixture:
+        for label in ('LUMO BAUWELT','Bauziele','Mein Bauwerk testen'):
+            wanted=normalized(label)
+            lines=image_lines(out,'fixture-'+wanted,wanted,args.ocr_fixture)
+            matches=[line for line in lines if wanted in normalized(line['text'])]
+            if not matches:
+                raise RuntimeError('Actual APK screenshot OCR regression: '+label)
+            print('[OCRPreflight] PASS:',label,min(matches,key=lambda line:len(line['text'])),flush=True)
+        return 0
+    if args.baseline is None or args.candidate is None:
+        parser.error('--baseline and --candidate are required for actual Android play')
     result = {'status':'RUNNING','source':SOURCE,'godot':GODOT,
               'harness':base.command('git','rev-parse','HEAD'),
               'scope':'Actual Android APK update, native scene launches, pause/back, saves and reward replay',
