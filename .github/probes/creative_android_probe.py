@@ -184,12 +184,16 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     neutral = ImageChops.subtract(lightest, darkest).point(
         lambda value: 255 if value <= 45 else 0)
     white_text = ImageChops.invert(ImageChops.multiply(bright, neutral))
-    for variant, pixels in [('contrast',contrast),('raw',image),('white-text',white_text)]:
+    # The German model can miss short UI phrases that the Latin/English model
+    # reads correctly. Keep both reads, with independent observed word bounds.
+    variants = [('contrast',contrast,'deu+eng'),('raw',image,'deu+eng'),
+                ('white-text',white_text,'deu+eng'),('white-latin',white_text,'eng')]
+    for variant, pixels, language in variants:
         expanded = out / 'ocr-work.png'
         pixels.resize((image.width*2,image.height*2)).save(expanded)
         prefix = out / (tag+'-ocr-'+variant)
         base.command('tesseract',str(expanded),str(prefix),'--psm','11',
-                     '-l','deu+eng','tsv',timeout=45)
+                     '-l',language,'tsv',timeout=45)
         groups: dict[tuple,list[dict]] = {}
         with prefix.with_suffix('.tsv').open() as stream:
             for word in csv.DictReader(stream,delimiter='\t'):
@@ -527,14 +531,14 @@ def main() -> int:
             for step in range(4):
                 native_text(out,'Weiter',f'kart-setup-{step+1}',tap=True)
             native_text(out,'Rennen starten','kart-start-race',tap=True)
-            # Natural portrait dimensions rotate into a real 640x320 game
-            # surface. This exercises the shipped APK's short driving layout.
-            base.display(320,640,160)
+            # Read all five controls on the actual 1920x1080 phone surface.
+            # The tiny 640x320 surface is captured separately below: text OCR
+            # is not a dependable visibility assertion for its small icons.
             for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
-                native_text(out,label,'kart-compact-'+normalized(label))
-            shot=capture(out,'15_kart_compact_race')
-            if shot['width'] != 640 or shot['height'] != 320:
-                raise RuntimeError('Compact native Kart did not rotate to 640x320')
+                native_text(out,label,'kart-phone-'+normalized(label))
+            phone=capture(out,'15_kart_phone_race')
+            if phone['width'] != 1920 or phone['height'] != 1080:
+                raise RuntimeError('Native Kart did not use the 1920x1080 phone surface')
             if os.environ.get('LUMO_FOLD_PROBE') == '1':
                 base.display(1812,2176,420)
                 for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
@@ -546,12 +550,19 @@ def main() -> int:
                 for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
                     native_text(out,label,'kart-cover-'+normalized(label))
                 capture(out,'18_kart_fold_cover')
-                base.display(320,640,160)
-                native_text(out,'GAS','kart-compact-again')
+                base.display(1080,1920,300)
+                native_text(out,'GAS','kart-phone-again')
                 result['fold_resize'] = {'status':'PASS', 'inner_surface':[2176,1812],
                                          'five_action_labels_visible':True,
                                          'cover_resize_and_return':True,
                                          'scope':'Android emulator surfaces; no physical hinge/FPS claim'}
+            base.display(320,640,160)
+            native_text(out,'Pause','kart-compact-hud')
+            compact=capture(out,'19_kart_compact_race')
+            if compact['width'] != 640 or compact['height'] != 320:
+                raise RuntimeError('Compact native Kart did not rotate to 640x320')
+            base.display(1080,1920,300)
+            native_text(out,'GAS','kart-phone-restored')
             base.adb('shell','input','keyevent','KEYCODE_BACK')
             native_text(out,'Spiele','kart-compact-return',tap=True)
             for _ in range(30):
@@ -563,8 +574,9 @@ def main() -> int:
             base.foreground()
             capture(out,'16_kart_returned_to_app')
             result['kart']={'status':'PASS','actual_setup_steps':5,
-                            'native_landscape':[640,320],
-                            'five_action_labels_visible':True,'pause_return':True}
+                            'phone_surface':[1920,1080], 'compact_surface':[640,320],
+                            'five_action_labels_on_phone':True,
+                            'compact_hud_and_capture':True,'pause_return':True}
         if wallet(out,'after-unfinished-games') != first_wallet:
             raise RuntimeError('An unfinished creative game incorrectly awarded a reward')
 

@@ -85,6 +85,14 @@ jobs:
         run: .probe-venv/bin/python .github/probes/creative_android_probe.py --ocr-fixture ocr-fixture/build-goals-7.png --out native-proof/ocr-regression
       - name: Verify the outlined Kart button from the observed Android screenshot
         run: .probe-venv/bin/python .github/probes/creative_android_probe.py --ocr-fixture menu-ocr-fixture/failure.png --ocr-label Weiter --ocr-label Einzelrennen --out native-proof/ocr-kart-regression
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37645734360
+          name: lumo-fold-native-kart-37645734360
+          path: start-ocr-fixture/
+      - name: Verify the actual race-start button with both OCR language models
+        run: .probe-venv/bin/python .github/probes/creative_android_probe.py --ocr-fixture start-ocr-fixture/failure.png --ocr-label 'Rennen starten' --out native-proof/ocr-start-regression
       - name: Enable accelerated disposable emulator
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
