@@ -4,9 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import '../lib/app/app_state.dart';
-import '../lib/features/lumo3d/lumo3d_launcher.dart';
+import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
 
 const _bridge = MethodChannel('lumo_lernen/bridge');
 
@@ -44,12 +43,26 @@ Future<BuildContext> _mount(WidgetTester tester) async {
   return launchContext;
 }
 
+// Reset test-only platform state before Flutter verifies global invariants.
+void launcherTestWidgets(
+  String description,
+  Future<void> Function(WidgetTester) body,
+) {
+  testWidgets(description, (tester) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    try {
+      await body(tester);
+    } finally {
+      debugDefaultTargetPlatformOverride = null;
+    }
+  }, timeout: const Timeout(Duration(seconds: 20)));
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final calls = <MethodCall>[];
 
   setUp(() {
-    debugDefaultTargetPlatformOverride = TargetPlatform.android;
     calls.clear();
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(_bridge, (call) async {
@@ -64,7 +77,8 @@ void main() {
     debugDefaultTargetPlatformOverride = null;
   });
 
-  testWidgets('saves rewards first and waits for native return', (tester) async {
+  launcherTestWidgets('saves rewards first and waits for native return',
+      (tester) async {
     final saved = Completer<void>();
     final returned = Completer<Map<String, Object?>>();
     final state = _ControlledState(() => saved.future);
@@ -88,7 +102,10 @@ void main() {
     await tester.pump();
     expect(calls.single.method, 'launch3D');
     expect(calls.single.arguments, <String, Object?>{
-      'scene': 'jump', 'grade': 3, 'subject': 'Deutsch', 'stars': 27,
+      'scene': 'jump',
+      'grade': 3,
+      'subject': 'Deutsch',
+      'stars': 27,
     });
     expect(finished, isFalse);
     returned.complete(<String, Object?>{'destination': 'games'});
@@ -96,7 +113,8 @@ void main() {
     expect(await result, isTrue);
   });
 
-  testWidgets('does not launch from an already removed context', (tester) async {
+  launcherTestWidgets('does not launch from an already removed context',
+      (tester) async {
     final context = await _mount(tester);
     await tester.pumpWidget(const SizedBox.shrink());
     final result = await launchLumo3D(context);
@@ -104,7 +122,7 @@ void main() {
     expect(result, isFalse);
   });
 
-  testWidgets('leaving during reward save cancels the delayed launch',
+  launcherTestWidgets('leaving during reward save cancels the delayed launch',
       (tester) async {
     final saved = Completer<void>();
     final state = _ControlledState(() => saved.future);
@@ -120,7 +138,7 @@ void main() {
     expect(launched, isFalse);
   });
 
-  testWidgets('a newer route prevents launch from a covered games page',
+  launcherTestWidgets('a newer route prevents launch from a covered games page',
       (tester) async {
     final saved = Completer<void>();
     final state = _ControlledState(() => saved.future);
@@ -140,7 +158,7 @@ void main() {
     expect(launched, isFalse);
   });
 
-  testWidgets('profile change during save cancels old launch request',
+  launcherTestWidgets('profile change during save cancels old launch request',
       (tester) async {
     final saved = Completer<void>();
     final state = _ControlledState(() => saved.future);
@@ -156,7 +174,7 @@ void main() {
     expect(launched, isFalse);
   });
 
-  testWidgets('reset in progress prevents a launch and reward flush',
+  launcherTestWidgets('reset in progress prevents a launch and reward flush',
       (tester) async {
     final state = _ControlledState(() async {})..resetInProgress = true;
     addTearDown(state.dispose);
@@ -167,7 +185,7 @@ void main() {
     expect(result, isFalse);
   });
 
-  testWidgets('two taps while saving start only one native game',
+  launcherTestWidgets('two taps while saving start only one native game',
       (tester) async {
     final saved = Completer<void>();
     final state = _ControlledState(() => saved.future);
@@ -184,7 +202,7 @@ void main() {
     expect(results, <bool>[true, false]);
   });
 
-  testWidgets('recreated games page cannot launch while native game is open',
+  launcherTestWidgets('recreated games page cannot launch while native game is open',
       (tester) async {
     final returned = Completer<Map<String, Object?>>();
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -206,7 +224,7 @@ void main() {
     expect(results, <bool>[true, false]);
   });
 
-  testWidgets('reward save failure blocks launch and explains safe retry',
+  launcherTestWidgets('reward save failure blocks launch and explains safe retry',
       (tester) async {
     var fail = true;
     final state = _ControlledState(() async {
@@ -227,7 +245,8 @@ void main() {
     expect(calls, hasLength(1));
   });
 
-  testWidgets('native busy error is not a restart instruction', (tester) async {
+  launcherTestWidgets('native busy error is not a restart instruction',
+      (tester) async {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(_bridge, (_) async {
       throw PlatformException(code: 'game_running');
@@ -241,7 +260,8 @@ void main() {
     expect(notices, isNot(contains('schließe Lumo')));
   });
 
-  testWidgets('native failure releases lock for a later retry', (tester) async {
+  launcherTestWidgets('native failure releases lock for a later retry',
+      (tester) async {
     var fail = true;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(_bridge, (call) async {
@@ -256,7 +276,7 @@ void main() {
     expect(calls, hasLength(2));
   });
 
-  testWidgets('null native response is not a confirmed successful return',
+  launcherTestWidgets('null native response is not a confirmed successful return',
       (tester) async {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(_bridge, (_) async => null);
@@ -264,10 +284,12 @@ void main() {
     expect(await launchLumo3D(context), isFalse);
   });
 
-  testWidgets('missing native plugin fails safely and remains retryable',
+  launcherTestWidgets('missing native plugin fails safely and remains retryable',
       (tester) async {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(_bridge, null);
+        .setMockMethodCallHandler(_bridge, (_) async {
+      throw MissingPluginException('test missing plugin');
+    });
     final context = await _mount(tester);
     expect(await launchLumo3D(context), isFalse);
     expect(tester.takeException(), isNull);
@@ -277,7 +299,7 @@ void main() {
     expect(await launchLumo3D(context), isTrue);
   });
 
-  testWidgets('non Android does not flush rewards or invoke bridge',
+  launcherTestWidgets('non Android does not flush rewards or invoke bridge',
       (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.linux;
     final state = _ControlledState(() async {});
