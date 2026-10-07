@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../app/app_theme.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../domain/learning/learning_dna.dart';
 
 /// Eltern-Karte: vollstaendige Lern-DNA mit allen Feldern.
@@ -15,12 +16,12 @@ class LearningDnaParentCard extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFAF5FF), Color(0xFFF3E8FF)],
+          colors: [Color(0xE609264B), Color(0xE6082148)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFD8B4FE), width: 1.4),
+        border: Border.all(color: const Color(0xFF7B95DA), width: 1.4),
         boxShadow: [
           BoxShadow(
             color: const Color(0xFF8B5CF6).withOpacity(0.15),
@@ -76,12 +77,12 @@ class LearningDnaParentCard extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Color(0xFFA78BFA), Color(0xFF7C3AED)],
+              colors: [Color(0xFFA78BFA), Color(0xFF9F93FF)],
             ),
             borderRadius: BorderRadius.circular(14),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF7C3AED).withOpacity(0.4),
+                color: const Color(0xFF9F93FF).withOpacity(0.4),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
@@ -100,7 +101,7 @@ class LearningDnaParentCard extends StatelessWidget {
                   fontFamily: 'Nunito',
                   fontSize: 16,
                   fontWeight: FontWeight.w900,
-                  color: Color(0xFF581C87),
+                  color: LumoVisualTokens.white,
                 ),
               ),
               Text(
@@ -109,7 +110,7 @@ class LearningDnaParentCard extends StatelessWidget {
                   fontFamily: 'Nunito',
                   fontSize: 11.5,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF7C3AED),
+                  color: Color(0xFF9F93FF),
                 ),
               ),
             ],
@@ -129,7 +130,7 @@ class LearningDnaParentCard extends StatelessWidget {
           fontFamily: 'Nunito',
           fontSize: 13,
           fontWeight: FontWeight.w700,
-          color: LumoColors.ink700,
+          color: LumoVisualTokens.white,
           height: 1.4,
         ),
       ),
@@ -188,7 +189,7 @@ class LearningDnaParentCard extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 13,
                 fontWeight: FontWeight.w800,
-                color: LumoColors.ink700,
+                color: LumoVisualTokens.white,
               ),
             ),
           ),
@@ -233,7 +234,7 @@ class LearningDnaParentCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: const Color(0xFFFEF3C7),
+        color: const Color(0xFF403421),
         borderRadius: BorderRadius.circular(99),
         border: Border.all(color: const Color(0xFFFCD34D), width: 1),
       ),
@@ -243,7 +244,7 @@ class LearningDnaParentCard extends StatelessWidget {
           fontFamily: 'Nunito',
           fontSize: 11,
           fontWeight: FontWeight.w800,
-          color: Color(0xFF92400E),
+          color: LumoVisualTokens.gold,
         ),
       ),
     );
@@ -259,7 +260,7 @@ class LearningDnaParentCard extends StatelessWidget {
           fontFamily: 'Nunito',
           fontSize: 13,
           fontWeight: FontWeight.w800,
-          color: LumoColors.ink700,
+          color: LumoVisualTokens.white,
         ),
       ),
     );
@@ -269,7 +270,7 @@ class LearningDnaParentCard extends StatelessWidget {
     return _SectionBox(
       title: 'Frustrations-Signale',
       emoji: '⚠️',
-      tintColor: const Color(0xFFFEE2E2),
+      tintColor: const Color(0xFF44242C),
       borderColor: const Color(0xFFFCA5A5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -282,7 +283,7 @@ class LearningDnaParentCard extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 12.5,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFFB91C1C),
+                color: Color(0xFFFFB4B4),
                 height: 1.4,
               ),
             ),
@@ -297,7 +298,7 @@ class LearningDnaParentCard extends StatelessWidget {
     return _SectionBox(
       title: 'Lumo empfiehlt',
       emoji: '✨',
-      tintColor: const Color(0xFFDCFCE7),
+      tintColor: const Color(0xFF123E38),
       borderColor: const Color(0xFF6EE7B7),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -308,7 +309,7 @@ class LearningDnaParentCard extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 14,
               fontWeight: FontWeight.w900,
-              color: Color(0xFF064E3B),
+              color: Color(0xFFB1F0D7),
             ),
           ),
           const SizedBox(height: 3),
@@ -318,7 +319,7 @@ class LearningDnaParentCard extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF065F46),
+              color: Color(0xFFA3E5BF),
               height: 1.4,
             ),
           ),
@@ -349,7 +350,7 @@ class LearningDnaParentCard extends StatelessWidget {
                   fontFamily: 'Nunito',
                   fontSize: 11.5,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF065F46),
+                  color: Color(0xFFA3E5BF),
                 ),
               ),
             ],
@@ -369,7 +370,7 @@ class LearningDnaParentCard extends StatelessWidget {
           fontFamily: 'Nunito',
           fontSize: 13,
           fontWeight: FontWeight.w900,
-          color: LumoColors.ink700,
+          color: LumoVisualTokens.white,
         ),
       ),
     );
@@ -395,10 +396,10 @@ class _SectionBox extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: tintColor ?? Colors.white,
+        color: tintColor ?? LumoVisualTokens.glassRow,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: borderColor ?? const Color(0xFFE9D5FF),
+          color: borderColor ?? const Color(0xFF536DA3),
           width: 1,
         ),
       ),
@@ -416,7 +417,7 @@ class _SectionBox extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 12,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF6D28D9),
+                    color: LumoVisualTokens.muted,
                     letterSpacing: 0.3,
                   ),
                 ),

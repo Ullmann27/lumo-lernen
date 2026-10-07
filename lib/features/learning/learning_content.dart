@@ -1491,7 +1491,7 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       gradient: const RadialGradient(
-                        colors: [Color(0xFFFFFFFF), Color(0xFFEEF2FF)],
+                        colors: [Color(0xFF163E72), Color(0xFF081F49)],
                         radius: .9,
                       ),
                       shape: BoxShape.circle,
@@ -1511,7 +1511,7 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                       Row(children: [
                         const Text(
                           'Lumo zeigt es dir',
-                          style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xFF4338CA), letterSpacing: .8,
+                          style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: LumoVisualTokens.cyanBright, letterSpacing: .8,
                                     ),
                         ),
                         const SizedBox(width: 6),
@@ -1526,7 +1526,7 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                           ),
                           child: const Text(
                             'BILD-HILFE',
-                            style: TextStyle(fontFamily: 'Nunito', fontSize: 8, fontWeight: FontWeight.w900, color: Color(0xFF312E81), letterSpacing: .8,
+                            style: TextStyle(fontFamily: 'Nunito', fontSize: 8, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, letterSpacing: .8,
                                       ),
                           ),
                         ),
@@ -1535,7 +1535,7 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                       const SizedBox(height: 3),
                       Text(
                         widget.aid.title,
-                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF1E1B4B), height: 1.15,
+                        style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, height: 1.15,
                                 ),
                       ),
                     ],
@@ -1552,14 +1552,14 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(.62),
+                    color: const Color(0xCC0A2A55),
                     borderRadius: BorderRadius.circular(LumoRadius.md),
-                    border: Border.all(color: Colors.white.withOpacity(.85), width: 1.0,
+                    border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.38), width: 1.0,
                         ),
                   ),
                   child: Text(
                     widget.aid.explanation,
-                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: Color(0xFF1E1B4B), height: 1.4,
+                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoVisualTokens.white, height: 1.4,
                         ),
                   ),
                 ),
@@ -1624,11 +1624,10 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                                 padding: const EdgeInsets.fromLTRB(14, 10, 14, 12,
                                       ),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(.85),
+                                  color: const Color(0xD10B2D5B),
                                   borderRadius: BorderRadius.circular(LumoRadius.md,
                                         ),
-                                  border: Border.all(color: const Color(0xFF6366F1,
-                                          ).withOpacity(.18), width: 1.0,
+                                  border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.28), width: 1.0,
                                         ),
                                   boxShadow: [
                                     BoxShadow(color: const Color(0xFF6366F1,
@@ -1652,7 +1651,7 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                                   const SizedBox(height: 4),
                                   Text(
                                     step.caption,
-                                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: Color(0xFF1E1B4B), height: 1.3,
+                                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoVisualTokens.white, height: 1.3,
                                             ),
                                   ),
                                 ],
@@ -1765,7 +1764,7 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFFFFFBF0), Color(0xFFFFE5C7)],
+          colors: [Color(0xF00B315F), Color(0xF0061D43), Color(0xF0092A56)],
         ),
       ),
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
@@ -1791,16 +1790,16 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
             ),
           ),
           const SizedBox(width: 8),
-          Text('von $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoColors.ink500,
+          Text('von $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoVisualTokens.muted,
                 ),
               ),
           const Spacer(),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color(0xCC0B2D5B),
               borderRadius: BorderRadius.circular(LumoRadius.pill),
-              border: Border.all(color: LumoColors.orange.withOpacity(.30), width: 1.2,
+              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.38), width: 1.2,
                   ),
             ),
             child: Text(
@@ -1815,7 +1814,7 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
         // SUBJECT-CHIP klein und subtil
         Text(
           widget.subject,
-          style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoColors.ink500, letterSpacing: .3,
+          style: const TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w800, color: LumoVisualTokens.muted, letterSpacing: .3,
             ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
@@ -1835,8 +1834,8 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFFE0F2FE), // Himmel oben (hinten)
-                      Color(0xFFFFF3E0), // Wiese unten (vorne)
+                      Color(0xFF0B3B67), // holografischer Himmel
+                      Color(0xFF061A3E), // dunkler Lernpfad
                     ],
                   ),
                 ),
@@ -2368,9 +2367,9 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8,
                           ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(.85),
+                        color: const Color(0xCC0B2D5B),
                         borderRadius: BorderRadius.circular(LumoRadius.sm),
-                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.30), width: 1.0,
+                        border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.42), width: 1.0,
                             ),
                       ),
                       child: Row(children: [
@@ -2385,7 +2384,7 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                               fontFamily: 'Nunito',
                               fontSize: 14,
                               fontWeight: FontWeight.w900,
-                              color: Color(0xFF92400E),
+                              color: Color(0xFFFFD39A),
                             ),
                           ),
                         ),
@@ -2458,7 +2457,7 @@ class _LearningTipBox extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.72),
+        color: const Color(0xCC0B2D5B),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: (correct ? const Color(0xFF22C55E) : const Color(0xFFF59E0B)).withOpacity(.22),
         ),
@@ -2470,7 +2469,7 @@ class _LearningTipBox extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoColors.ink700, height: 1.28,
+            style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, height: 1.28,
               ),
           ),
         ),
@@ -2506,7 +2505,7 @@ class _InfoPill extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Colors.white.withOpacity(.95), Colors.white.withOpacity(.78),
+          colors: [Color(0xE6173F6A), Color(0xD00A2854),
           ],
         ),
         borderRadius: BorderRadius.circular(LumoRadius.pill),
@@ -2640,12 +2639,12 @@ class _AiHelpBubble extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFF5EFFF), Color(0xFFEDE9FE)],
+          colors: [Color(0xE31D2F69), Color(0xE30C214A)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFC4B5FD), width: 1.4),
+        border: Border.all(color: const Color(0xFF8B9CFF).withOpacity(.66), width: 1.4),
         boxShadow: [
           BoxShadow(
             color: const Color(0xFF8B5CF6).withOpacity(0.18),

@@ -1,3 +1,8 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:crypto/crypto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +26,7 @@ Future<bool> launchLumo3D(
   if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
     _showLaunchMessage(
       context,
-      'Lumo Kart und Wolkeninseln sind in der Android-App enthalten.',
+      'Die 3D-Spielwelten sind in der vollständigen Android-App enthalten.',
     );
     return false;
   }
@@ -43,6 +48,7 @@ Future<bool> launchLumo3D(
       }
       return false;
     }
+    final childKey = await _childSaveKey(appState);
     // Do not open an Activity after leaving the page or resetting the profile
     // while storage was busy. Reward saving itself is never cancelled here.
     if (!context.mounted ||
@@ -57,6 +63,7 @@ Future<bool> launchLumo3D(
       'grade': grade ?? appState?.state.grade ?? 1,
       'subject': subject ?? appState?.state.subject ?? 'Mathematik',
       'stars': appState?.state.stars ?? 0,
+      'childKey': childKey,
     });
     // MainActivity returns a destination map on actual Activity return.
     // Null/malformed replies must not masquerade as successful game returns.
@@ -105,6 +112,22 @@ Future<bool> launchLumo3D(
     // cancellation or error, not while the native game is still active.
     _launchInProgress = false;
   }
+}
+
+Future<String> _childSaveKey(LumoAppState? appState) async {
+  final preferences = await SharedPreferences.getInstance();
+  const key = 'lumo_3d_save_salt_v1';
+  var salt = preferences.getString(key);
+  if (salt == null) {
+    final random = Random.secure();
+    salt = List.generate(24, (_) => random.nextInt(256)
+        .toRadixString(16).padLeft(2, '0')).join();
+    if (!await preferences.setString(key, salt)) {
+      throw StateError('Save identity could not be persisted');
+    }
+  }
+  final state = appState?.state;
+  return 'p_${sha256.convert(utf8.encode('$salt|${state?.childName ?? ''}|${state?.grade ?? 1}')).toString().substring(0, 32)}';
 }
 
 void _showLaunchMessage(BuildContext context, String message) {

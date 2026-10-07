@@ -1,4 +1,4 @@
-name: Integration source checkpoint
+name: Editable source checkpoint
 on:
   push:
     branches: [chatgpt/lumo-complete-games-2026-10-07]
@@ -11,17 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Integrate immutable app and parent design snapshots
-        run: |
-          git diff 35299467 17ab56f3912694b3226dde702bd6482ac61509dd -- . ':!lib/features/settings/settings_content.dart' | git apply --3way
-          git diff 35299467 589f10c8d0c31f7b8a188210c2dfa8d5fe250bdf | git apply --3way
-          for p in scripts/probes/parent_games_20261007_apply.py lib/widgets/design/lumo_night_scope.dart lib/features/games/widgets/lumo_game_spotlights.dart test/design/parent_games_polish_test.dart; do
-            mkdir -p "$(dirname "$p")"
-            git show 4abda8dda053d9bf77764669d258c6a9fdfe4a2b:"$p" > "$p"
-          done
-          python3 scripts/probes/parent_games_20261007_apply.py
       - name: Package editable source
         run: |
           mkdir -p /tmp/source-pack

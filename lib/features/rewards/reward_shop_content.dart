@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/reward_shop_repository.dart';
 import '../../domain/rewards/reward_shop.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/parent_approval_dialog.dart';
 
 /// Belohnungs-Shop Seite.
@@ -361,11 +362,11 @@ class _SectionTitle extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title,
-                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: LumoColors.ink900,
+                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900, color: LumoVisualTokens.white,
                 ),
               ),
               Text(subtitle,
-                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoColors.ink500,
+                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoVisualTokens.muted,
                 ),
               ),
             ],
@@ -393,14 +394,14 @@ class _RewardCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: canAfford
-              ? [Colors.white, color.withOpacity(0.08)]
-              : const [Color(0xFFF8FAFC), Color(0xFFF1F5F9)],
+              ? <Color>[color.withOpacity(.28), const Color(0xE60A2A55)]
+              : const <Color>[Color(0xC912365F), Color(0xC9082146)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: canAfford ? color.withOpacity(0.30) : LumoColors.ink100,
+          color: canAfford ? color.withOpacity(0.48) : LumoVisualTokens.cyan.withOpacity(.22),
           width: 1.4,
         ),
         boxShadow: canAfford
@@ -421,7 +422,7 @@ class _RewardCard extends StatelessWidget {
             height: 56,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: canAfford ? [color.withOpacity(0.25), color.withOpacity(0.10)] : const [Color(0xFFE2E8F0), Color(0xFFF1F5F9)],
+              gradient: LinearGradient(colors: canAfford ? [color.withOpacity(0.25), color.withOpacity(0.10)] : const [Color(0x66304D72), Color(0x6620395F)],
               ),
               borderRadius: BorderRadius.circular(16),
             ),
@@ -435,14 +436,14 @@ class _RewardCard extends StatelessWidget {
                 Text(item.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: canAfford ? LumoColors.ink900 : LumoColors.ink500,
+                    style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: canAfford ? LumoVisualTokens.white : LumoVisualTokens.muted,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(item.description,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoColors.ink500, height: 1.3,
+                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 11.5, fontWeight: FontWeight.w700, color: LumoVisualTokens.muted, height: 1.3,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -497,7 +498,7 @@ class _TestPhotoSummary extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFEDE9FE),
+        gradient: const LinearGradient(colors: [Color(0xE31D2F69), Color(0xE30C214A)]),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: const Color(0xFFC4B5FD), width: 1.4),
       ),
@@ -510,7 +511,7 @@ class _TestPhotoSummary extends StatelessWidget {
               SizedBox(width: 8),
               Text(
                 'Deine letzten Tests',
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: Color(0xFF6D28D9),
+                style: TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w900, color: LumoVisualTokens.white,
                 ),
               ),
             ],

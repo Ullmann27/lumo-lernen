@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
@@ -18,6 +20,9 @@ void main() {
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
     await tester.pump(const Duration(milliseconds: 600));
 
+    await tester.ensureVisible(find.text('Weitere Spielwelten entdecken'));
+    await tester.tap(find.text('Weitere Spielwelten entdecken'));
+    await tester.pump(const Duration(milliseconds: 600));
     expect(find.bySemanticsLabel('Lumo Spielewelt'), findsOneWidget);
     for (final title in [
       'Memory',
@@ -31,7 +36,7 @@ void main() {
       'Würfel-Wettlauf',
       'Lumo Kart',
     ]) {
-      expect(find.text(title), findsOneWidget, reason: title);
+      expect(find.text(title), findsWidgets, reason: title);
     }
     expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
     expect(find.byKey(const ValueKey('spielwelt-adventure')), findsOneWidget);
@@ -44,22 +49,33 @@ void main() {
     handle.dispose();
   });
 
-  testWidgets('Rhythm Party ist noch nicht spielbar: Lumo tanzt im Hinweis',
-      (tester) async {
-    await tester.binding.setSurfaceSize(const Size(392, 2800));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    final app = LumoAppState();
-    await tester.pumpWidget(
-        MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
-    await tester.runAsync(
-        () => Future<void>.delayed(const Duration(milliseconds: 300)));
-    await tester.pump(const Duration(milliseconds: 600));
-    await tester.tap(find.byKey(const ValueKey('spielwelt-portal-rhythm')));
-    await tester.pump(const Duration(milliseconds: 600));
-    expect(find.text('Rhythm Party kommt bald!'), findsOneWidget);
-    expect(find.bySemanticsLabel(RegExp('tanzt mit Kopfhörern')),
-        findsWidgets,
-        reason: 'beim Rhythmusspiel zeigt der Hinweis den tanzenden Kopfhörer-Lumo');
-    expect(tester.takeException(), isNull);
+  testWidgets('Rhythm Party opens the real native rhythm scene', (tester) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    const bridge = MethodChannel('lumo_lernen/bridge');
+    final calls = <MethodCall>[];
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(bridge, (call) async {
+      calls.add(call); return {'destination': 'games'};
+    });
+    try {
+      await tester.binding.setSurfaceSize(const Size(1000, 2400));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final app = LumoAppState(); addTearDown(app.dispose);
+      await tester.pumpWidget(MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
+      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
+      await tester.pump(const Duration(milliseconds: 600));
+      final start = find.byKey(const ValueKey('launch-creative-rhythm'));
+      await tester.ensureVisible(start); await tester.tap(start);
+      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(calls.where((c) => c.method == 'launch3D'), hasLength(1));
+      expect((calls.firstWhere((c) => c.method == 'launch3D').arguments as Map)['scene'], 'rhythm');
+      expect(find.text('Rhythm Party kommt bald!'), findsNothing);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    } finally {
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(bridge, null);
+      debugDefaultTargetPlatformOverride = null;
+    }
   });
 }

@@ -126,8 +126,8 @@ class _ParentReportCardState extends State<ParentReportCard> {
           return Container(
             width: double.infinity,
             padding: const EdgeInsets.all(18),
-            decoration: lumoCard(),
-            child: const Text('Elternbericht wird erstellt …', style: LumoTextStyles.heading3),
+            decoration: lumoCard(color: LumoVisualTokens.glass, border: Border.all(color: LumoVisualTokens.cyan)),
+            child: Text('Elternbericht wird erstellt …', style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.muted)),
           );
         }
         final report = snapshot.data!;
@@ -325,7 +325,7 @@ class _SubjectReportMini extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
+      constraints: const BoxConstraints(maxWidth: 250),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
@@ -382,7 +382,7 @@ class _LumoInsightCta extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+              colors: [Color(0xFF174D75), Color(0xFF09264B)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -461,8 +461,8 @@ class _LumoKiMasterToggle extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: enabled
-              ? const [Color(0xFFFFB96B), Color(0xFFFF7A2F)]
-              : const [Color(0xFFE5E7EB), Color(0xFFD1D5DB)],
+              ? const [Color(0xFF175381), Color(0xFF0B3155)]
+              : const [Color(0xFF173760), Color(0xFF09264B)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

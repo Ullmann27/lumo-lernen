@@ -25,9 +25,11 @@ extension GameMiniTypeMeta on GameMiniType {
         GameMiniType.starsPath ||
         GameMiniType.numberHouse ||
         GameMiniType.colorBoxes ||
-        GameMiniType.letterFill =>
+        GameMiniType.letterFill ||
+        GameMiniType.numberPath ||
+        GameMiniType.wordForest ||
+        GameMiniType.mixedQuiz =>
           true,
-        _ => false,
       };
 
   String get germanLabel {

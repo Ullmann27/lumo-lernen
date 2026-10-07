@@ -120,7 +120,7 @@ class GameCatalog {
       id: GameId.puzzle,
       title: 'Puzzle',
       tagline: 'Stück für Stück die Welt entdecken!',
-      availability: GameAvailability.comingSoon,
+      availability: GameAvailability.playable,
       rule: GameUnlockRule(requires: GameId.cards),
     ),
     GameDefinition(
@@ -134,21 +134,21 @@ class GameCatalog {
       id: GameId.rhythm,
       title: 'Rhythm Party',
       tagline: 'Fühl den Beat!',
-      availability: GameAvailability.comingSoon,
+      availability: GameAvailability.playable,
       rule: GameUnlockRule(requires: GameId.cards),
     ),
     GameDefinition(
       id: GameId.treasure,
       title: 'Schatzsuche',
       tagline: 'Rätsel. Hinweise. Schätze!',
-      availability: GameAvailability.comingSoon,
+      availability: GameAvailability.playable,
       rule: GameUnlockRule(requires: GameId.cards),
     ),
     GameDefinition(
       id: GameId.build,
       title: 'Bauwelt',
       tagline: 'Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt!',
-      availability: GameAvailability.comingSoon,
+      availability: GameAvailability.playable,
       rule: GameUnlockRule(requires: GameId.cards),
     ),
     GameDefinition(

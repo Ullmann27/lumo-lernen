@@ -53,7 +53,7 @@ class SchoolbookTaskCard extends StatelessWidget {
         ],
       ),
       child: Stack(children: [
-        Positioned.fill(child: CustomPaint(painter: _PaperLinesPainter())),
+        Positioned.fill(child: CustomPaint(painter: _HoloGridPainter())),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Expanded(
@@ -682,19 +682,26 @@ class _HouseCell extends StatelessWidget {
   }
 }
 
-class _PaperLinesPainter extends CustomPainter {
+class _HoloGridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = LumoVisualTokens.cyan.withOpacity(.10)
-      ..strokeWidth = 1;
-    for (var y = 52.0; y < size.height; y += 34) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
+    final line = Paint()
+      ..color = LumoVisualTokens.cyan.withOpacity(.075)
+      ..strokeWidth = .8;
+    final node = Paint()..color = LumoVisualTokens.cyanBright.withOpacity(.15);
+    for (var y = 48.0; y < size.height; y += 38) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), line);
+    }
+    for (var x = 34.0; x < size.width; x += 52) {
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), line);
+      for (var y = 48.0; y < size.height; y += 76) {
+        canvas.drawCircle(Offset(x, y), 1.4, node);
+      }
     }
   }
 
   @override
-  bool shouldRepaint(covariant _PaperLinesPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _HoloGridPainter oldDelegate) => false;
 }
 
 class _HouseRoofPainter extends CustomPainter {
@@ -920,24 +927,31 @@ class WordCardRow extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
-            color: isHighlight ? color.withOpacity(.12) : Colors.white,
+            gradient: LinearGradient(
+              colors: isHighlight
+                  ? <Color>[color.withOpacity(.42), color.withOpacity(.18)]
+                  : const <Color>[Color(0xCC123760), Color(0xCC09264B)],
+            ),
             borderRadius: BorderRadius.circular(LumoRadius.sm),
             border: Border.all(
-              color: isHighlight ? color.withOpacity(.55) : LumoColors.ink100,
-              width: isHighlight ? 1.6 : 1.2,
+              color: isHighlight
+                  ? color.withOpacity(.72)
+                  : LumoVisualTokens.cyan.withOpacity(.26),
+              width: isHighlight ? 1.6 : 1.1,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(.04),
-                blurRadius: 6,
-                offset: const Offset(0, 2),
+                color: (isHighlight ? color : LumoVisualTokens.cyan)
+                    .withOpacity(.12),
+                blurRadius: 9,
+                offset: const Offset(0, 3),
               ),
             ],
           ),
           child: Text(
             words[index],
             style: LumoTextStyles.heading3.copyWith(
-              color: isHighlight ? color : LumoColors.ink700,
+              color: isHighlight ? LumoVisualTokens.white : LumoVisualTokens.muted,
               fontWeight: FontWeight.w800,
             ),
           ),

@@ -1,3 +1,4 @@
+import 'mini_games/lesson_trail_game.dart';
 import 'dart:math' as math;
 import 'dart:convert';
 
@@ -7,12 +8,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
-import '../../core/lumo_asset_diagnostics.dart';
 import '../../core/game_progress_repository.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../../domain/games/game_world.dart';
 import '../../widgets/fox/lumo_character.dart';
 import 'spielwelt/spielwelt_hub.dart';
+import 'widgets/lumo_game_spotlights.dart';
+import 'widgets/lumo_creative_game_shelf.dart';
+import '../../widgets/design/lumo_night_scope.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -200,11 +203,14 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchLumoCards() async {
+    if (_launchingGame) return;
+    setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
     // Heinz 2026-05-21 'zu langweilig' -> Solo-Bot ist jetzt der
     // Default. Pass-and-Play (vsBot=false) ist spaeter ueber einen
     // sekundaeren Button erreichbar.
-    await Navigator.of(context).push<void>(
+    try {
+      await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
         builder: (_) => LumoCardsScreen(
           appState: widget.appState,
@@ -214,7 +220,10 @@ class _GamesContentState extends State<GamesContent> {
         ),
       ),
     );
-    if (mounted) await _load();
+      if (mounted) await _load();
+    } finally {
+      if (mounted) setState(() => _launchingGame = false);
+    }
   }
 
   Future<void> _launchLevel(GameLevelRuntime rt) async {
@@ -252,16 +261,8 @@ class _GamesContentState extends State<GamesContent> {
       case GameMiniType.numberPath:
       case GameMiniType.wordForest:
       case GameMiniType.mixedQuiz:
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '${level.miniType.germanLabel} - bald spielbar! Das Spiel kommt im naechsten Update.',
-            ),
-            backgroundColor: LumoColors.orange,
-            duration: const Duration(seconds: 2),
-          ),
-        );
-        return;
+        await Navigator.of(context).push(MaterialPageRoute<void>(
+          builder: (_) => LessonTrailGame(appState: widget.appState, level: level)));
     }
     // Nach Rueckkehr: Fortschritt neu laden damit neue Sterne sichtbar sind.
     await _load();
@@ -302,6 +303,7 @@ class _GamesContentState extends State<GamesContent> {
 
   /// Öffnet ein Spiel, wenn die Domain es freigibt und es existiert.
   void _openGame(GameId id, VoidCallback launch) {
+    if (_launchingGame) return;
     final game = GameCatalog.byId(id);
     final state = _unlockOf(id);
     if (!state.unlocked) return _locked(game, state);
@@ -316,6 +318,10 @@ class _GamesContentState extends State<GamesContent> {
           GameId.memory => _launchMemory,
           GameId.cards => _launchLumoCards,
           GameId.jumpRun => _launchAdventure,
+          GameId.puzzle => () => _launch3D('puzzle'),
+          GameId.build => () => _launch3D('build'),
+          GameId.rhythm => () => _launch3D('rhythm'),
+          GameId.treasure => () => _launch3D('treasure'),
           _ => null,
         };
     return [
@@ -360,14 +366,41 @@ class _GamesContentState extends State<GamesContent> {
         : CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: SpielweltHub(
-                  portals: _portals(),
+                child: LumoGameSpotlights(
+                  onCards: () => _openGame(GameId.cards, _launchLumoCards),
+                  onKart: () => _openGame(GameId.kart, () => _launch3D('kart')),
+                  busy: _launchingGame,
                   reduceMotion: _reduceMotion,
-                  onAdventure: () => _openGame(GameId.memory, _launchMemory),
-                  onParents: () => widget.onSection?.call(LumoSection.settings),
-                  onProgress: () => widget.onSection?.call(LumoSection.profile),
-                  onSettings: () => widget.onSection?.call(LumoSection.settings),
                 ),
+              ),
+              SliverToBoxAdapter(
+                child: LumoCreativeGameShelf(
+                  busy: _launchingGame,
+                  unlocked: (id) => _unlockOf(id).unlocked,
+                  onOpen: (id) => _openGame(id, () => _launch3D(switch (id) {
+                    GameId.build => 'build', GameId.puzzle => 'puzzle',
+                    GameId.treasure => 'treasure', GameId.rhythm => 'rhythm',
+                    _ => 'kart',
+                  })),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: LumoNightScope(child: ExpansionTile(
+                  key: const PageStorageKey('extra-spielwelten'),
+                  title: const Text('Weitere Spielwelten entdecken'),
+                  subtitle: const Text('Alle bisherigen Spiele und Portale'),
+                  collapsedIconColor: LumoVisualTokens.cyanBright,
+                  collapsedTextColor: LumoVisualTokens.white,
+                  textColor: LumoVisualTokens.white,
+                  children: [SpielweltHub(
+                    portals: _portals(),
+                    reduceMotion: _reduceMotion,
+                    onAdventure: () => _openGame(GameId.memory, _launchMemory),
+                    onParents: () => widget.onSection?.call(LumoSection.settings),
+                    onProgress: () => widget.onSection?.call(LumoSection.profile),
+                    onSettings: () => widget.onSection?.call(LumoSection.settings),
+                  )],
+                )),
               ),
               const SliverToBoxAdapter(
                 child: Padding(
@@ -387,8 +420,7 @@ class _GamesContentState extends State<GamesContent> {
                 padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                 sliver: SliverToBoxAdapter(
                   child: _GameGrid(
-                    onMemory: _launchMemory,
-                    onLumoCards: _launchLumoCards,
+                    onMemory: () => _openGame(GameId.memory, _launchMemory),
                     onConnectFour: _launchConnectFour,
                     onDiceRace: _launchDiceRace,
                   ),
@@ -397,11 +429,11 @@ class _GamesContentState extends State<GamesContent> {
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                 sliver: SliverToBoxAdapter(
-                  child: _KartWideCard(
-                    launching: _launchingGame,
-                    onPlay: () => _openGame(GameId.kart, () => _launch3D('kart')),
-                    options: _kartOptions(),
-                  ),
+                  child: LumoNightScope(child: ExpansionTile(
+                    title: const Text('3D-Profiloptionen'),
+                    subtitle: const Text('Keine Aufgaben während des Rennens'),
+                    children: [Padding(padding: const EdgeInsets.all(12), child: _kartOptions())],
+                  )),
                 ),
               ),
               const SliverToBoxAdapter(
@@ -591,13 +623,11 @@ class _ComingSoonSheet extends StatelessWidget {
 class _GameGrid extends StatelessWidget {
   const _GameGrid({
     required this.onMemory,
-    required this.onLumoCards,
     required this.onConnectFour,
     required this.onDiceRace,
   });
 
   final VoidCallback onMemory;
-  final VoidCallback onLumoCards;
   final VoidCallback onConnectFour;
   final VoidCallback onDiceRace;
 
@@ -609,12 +639,6 @@ class _GameGrid extends StatelessWidget {
         subtitle: 'Finde alle Paare!',
         art: const _MemoryArt(),
         onPlay: onMemory,
-      ),
-      _GameTile(
-        title: 'Lumo Cards',
-        subtitle: 'Karten-Duell gegen Lumo!',
-        art: const _CardsArt(),
-        onPlay: onLumoCards,
       ),
       _GameTile(
         title: 'Vier gewinnt',
@@ -632,12 +656,12 @@ class _GameGrid extends StatelessWidget {
     ];
     return LayoutBuilder(builder: (context, constraints) {
       const gap = 10.0;
-      final width = (constraints.maxWidth - gap) / 2;
-      final height = (width * .7).clamp(118.0, 190.0) *
-          MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.5);
+      final largeText = MediaQuery.textScalerOf(context).scale(14) > 21;
+      final columns = constraints.maxWidth >= 620 && !largeText ? 2 : 1;
+      final width = (constraints.maxWidth - gap * (columns - 1)) / columns;
       return Wrap(spacing: gap, runSpacing: gap, children: [
         for (final tile in tiles)
-          SizedBox(width: width, height: height, child: tile),
+          SizedBox(width: width, child: tile),
       ]);
     });
   }
@@ -668,7 +692,7 @@ class _GameTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           onTap: onPlay,
           child: Ink(
-            padding: const EdgeInsets.all(6),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: LumoVisualTokens.glass.withOpacity(.72),
               borderRadius: BorderRadius.circular(20),
@@ -680,14 +704,14 @@ class _GameTile extends StatelessWidget {
               ],
             ),
             child: Row(children: [
-              Expanded(
-                flex: 9,
+              SizedBox(
+                width: 72, height: 80,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: art,
                 ),
               ),
-              const SizedBox(width: 6),
+              const SizedBox(width: 12),
               Expanded(
                 flex: 11,
                 child: Column(
@@ -695,31 +719,29 @@ class _GameTile extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontFamily: 'Nunito',
                         color: LumoVisualTokens.white,
-                        fontSize: 14,
+                        fontSize: 17,
                         height: 1.1,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
                     const SizedBox(height: 3),
-                    Expanded(
-                      child: Text(
+                    Text(
                         subtitle,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontFamily: 'Nunito',
                           color: LumoVisualTokens.white,
-                          fontSize: 10.5,
+                          fontSize: 14,
                           fontWeight: FontWeight.w700,
                         ),
-                      ),
                     ),
-                    const _PlayPill(label: 'Spielen'),
+                    const SizedBox(height: 8),
+                    const Row(children: [
+                      Text('Spielen', style: TextStyle(color: LumoVisualTokens.cyanBright, fontWeight: FontWeight.w800)),
+                      Icon(Icons.arrow_forward_rounded, color: LumoVisualTokens.cyanBright, size: 20),
+                    ]),
                   ],
                 ),
               ),
@@ -731,49 +753,6 @@ class _GameTile extends StatelessWidget {
   }
 }
 
-class _PlayPill extends StatelessWidget {
-  const _PlayPill({required this.label});
-  final String label;
-
-  @override
-  Widget build(BuildContext context) => Container(
-        height: 30,
-        padding: const EdgeInsets.only(left: 12, right: 4),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(99),
-          gradient: const LinearGradient(
-            colors: [Color(0xFF2FA8F0), Color(0xFF1466C8)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-          border: Border.all(color: LumoVisualTokens.cyanBright),
-          boxShadow: [
-            BoxShadow(
-                color: LumoVisualTokens.cyan.withOpacity(.45), blurRadius: 10),
-          ],
-        ),
-        child: Row(children: [
-          Expanded(
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                label,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ),
-          ),
-          const Icon(Icons.chevron_right_rounded,
-              color: Colors.white, size: 20),
-        ]),
-      );
-}
-
-/// Lumo mit zwei leuchtenden Memory-Karten (Pfoten-Motiv wie im Bild).
 class _MemoryArt extends StatelessWidget {
   const _MemoryArt();
 
@@ -855,41 +834,6 @@ class _IconArt extends StatelessWidget {
 }
 
 /// Drei echte Lumo-Cards-Karten im Fächer.
-class _CardsArt extends StatelessWidget {
-  const _CardsArt();
-
-  @override
-  Widget build(BuildContext context) => DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF3B2A8C), Color(0xFF121E5A)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: LayoutBuilder(builder: (context, c) {
-          final h = c.maxHeight * .72;
-          Widget card(String asset, double angle, double dx) => Transform(
-                alignment: Alignment.bottomCenter,
-                transform: Matrix4.identity()
-                  ..translate(dx)
-                  ..rotateZ(angle),
-                child: Image.asset(asset, height: h),
-              );
-          return Center(
-            child: Stack(alignment: Alignment.center, children: [
-              card('assets/lumo_cards/cards/back/card_back_default.png', -.35,
-                  -h * .32),
-              card('assets/lumo_cards/cards/red/red_7.png', 0, 0),
-              card('assets/lumo_cards/cards/special/color_magic.png', .35,
-                  h * .32),
-            ]),
-          );
-        }),
-      );
-}
-
-/// Kleines Vier-gewinnt-Brett aus Leuchtsteinen.
 class _ConnectFourArt extends StatelessWidget {
   const _ConnectFourArt();
 
@@ -952,106 +896,6 @@ class _ConnectFourPainter extends CustomPainter {
 }
 
 // ─────────────────── LUMO KART (breit) ───────────────────
-
-class _KartWideCard extends StatelessWidget {
-  const _KartWideCard({
-    required this.onPlay,
-    required this.launching,
-    required this.options,
-  });
-
-  final VoidCallback onPlay;
-  final bool launching;
-  final Widget options;
-
-  @override
-  Widget build(BuildContext context) {
-    return LumoGlassCard(
-      padding: const EdgeInsets.all(6),
-      radius: 22,
-      child: Column(children: [
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            key: const ValueKey('launch-lumo-kart'),
-            borderRadius: BorderRadius.circular(16),
-            onTap: launching ? null : onPlay,
-            child: SizedBox(
-              height: 128 *
-                  MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.7),
-              child: Row(children: [
-                Expanded(
-                  flex: 11,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Image.asset(
-                      'assets/lumo_design/cards/game_kart.png',
-                      fit: BoxFit.cover,
-                      height: double.infinity,
-                      errorBuilder: (_, error, __) {
-                        reportLumoAssetError(
-                            'assets/lumo_design/cards/game_kart.png', error);
-                        return const Center(
-                            child: Icon(Icons.sports_motorsports_rounded,
-                                size: 64, color: Color(0xFFFFC46B)));
-                      },
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  flex: 10,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Lumo Kart',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      const Text(
-                        'Lernen auf der Überholspur!',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.white,
-                          fontSize: 11.5,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Semantics(
-                        button: true,
-                        label: 'Losfahren',
-                        excludeSemantics: true,
-                        child:
-                            _PlayPill(label: launching ? 'Lädt …' : 'Spielen'),
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-          child: options,
-        ),
-      ]),
-    );
-  }
-}
-
-// ─────────────────── HEADER ───────────────────
 
 class _HeaderStrip extends StatelessWidget {
   const _HeaderStrip({

@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../core/reward_shop_repository.dart';
 import '../../domain/rewards/reward_shop.dart';
 
@@ -89,6 +90,8 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
       return;
     }
     if (_saving) return;
+    final submittedNote = _selectedNote;
+    final submittedImage = _imagePath;
     setState(() => _saving = true);
     try {
       final current = await _repo.load(_childId);
@@ -96,12 +99,12 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
         current,
         subject: subject,
         grade: widget.appState.state.grade,
-        note: _selectedNote,
-        imagePath: _imagePath,
+        note: submittedNote,
+        imagePath: submittedImage,
       );
       await _repo.save(_childId, updated);
       if (!mounted) return;
-      final points = TestPhotoEntry.pointsForNote(_selectedNote);
+      final points = TestPhotoEntry.pointsForNote(submittedNote);
       // Reset Form
       _subjectController.clear();
       setState(() {
@@ -112,7 +115,7 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor:
-              points > 0 ? const Color(0xFF22C55E) : LumoColors.ink500,
+              points > 0 ? const Color(0xFF123E38) : LumoVisualTokens.glassRow,
           content: Row(
             children: [
               const Text('💎', style: TextStyle(fontSize: 22)),
@@ -120,9 +123,9 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
               Expanded(
                 child: Text(
                   points > 0
-                      ? '$points Punkte für Note $_selectedNote in $subject hinzugefügt!'
+                      ? '$points Punkte für Note $submittedNote in $subject hinzugefügt!'
                       : 'Eintrag für $subject gespeichert.',
-                  style: const TextStyle(fontWeight: FontWeight.w900),
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: LumoVisualTokens.white),
                 ),
               ),
             ],
@@ -146,12 +149,12 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
       padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFDF4FF), Color(0xFFFAE8FF)],
+          colors: [Color(0xE6123760), Color(0xE609264B)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFD8B4FE), width: 1.4),
+        border: Border.all(color: const Color(0xFF7B95DA), width: 1.4),
         boxShadow: [
           BoxShadow(
             color: const Color(0xFF8B5CF6).withOpacity(0.15),
@@ -196,7 +199,7 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                         fontFamily: 'Nunito',
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF581C87),
+                        color: LumoVisualTokens.white,
                       ),
                     ),
                     Text(
@@ -205,7 +208,7 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF7C3AED),
+                        color: Color(0xFF9F93FF),
                       ),
                     ),
                   ],
@@ -241,7 +244,7 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
               icon: const Icon(Icons.camera_alt_rounded, size: 18),
               label: const Text('Foto vom Test machen (optional)'),
               style: OutlinedButton.styleFrom(
-                foregroundColor: const Color(0xFF7C3AED),
+                foregroundColor: const Color(0xFF9F93FF),
                 side: const BorderSide(color: Color(0xFFC4B5FD), width: 1.4),
                 padding: const EdgeInsets.symmetric(vertical: 12),
               ),
@@ -262,7 +265,7 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
               hintText: 'z.B. Mathe, Deutsch, Sachunterricht',
               border: OutlineInputBorder(),
               filled: true,
-              fillColor: Colors.white,
+              fillColor: LumoVisualTokens.glassRow,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             ),
@@ -274,7 +277,7 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                 fontFamily: 'Nunito',
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF6D28D9)),
+                color: LumoVisualTokens.muted),
           ),
           const SizedBox(height: 6),
           // Note-Auswahl 1-5
@@ -287,6 +290,7 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                 child: Padding(
                   padding: EdgeInsets.only(right: i < 4 ? 6 : 0),
                   child: InkWell(
+                    key: ValueKey('parent-test-note-$note'),
                     onTap: _saving
                         ? null
                         : () => setState(() => _selectedNote = note),
@@ -296,10 +300,10 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                       decoration: BoxDecoration(
                         gradient: selected
                             ? LinearGradient(
-                                colors: [color, color.withOpacity(0.75)])
+                                colors: [Color.alphaBlend(color.withOpacity(.35), LumoVisualTokens.glass), LumoVisualTokens.navigation])
                             : LinearGradient(colors: [
-                                Colors.white,
-                                Colors.white.withOpacity(0.95)
+                                LumoVisualTokens.glass,
+                                LumoVisualTokens.glassRow
                               ]),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: color, width: 1.6),
@@ -320,7 +324,7 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                             fontFamily: 'Nunito',
                             fontSize: 22,
                             fontWeight: FontWeight.w900,
-                            color: selected ? Colors.white : color,
+                            color: selected ? LumoVisualTokens.white : LumoVisualTokens.muted,
                           ),
                         ),
                       ),
@@ -336,8 +340,8 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
               color: notePoints > 0
-                  ? const Color(0xFFDCFCE7)
-                  : const Color(0xFFFEF2F2),
+                  ? const Color(0xFF123E38)
+                  : const Color(0xFF44242C),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
                 color: notePoints > 0
@@ -361,8 +365,8 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
                       fontSize: 12,
                       fontWeight: FontWeight.w800,
                       color: notePoints > 0
-                          ? const Color(0xFF14532D)
-                          : const Color(0xFFB91C1C),
+                          ? const Color(0xFFA3E5BF)
+                          : const Color(0xFFFFB4B4),
                     ),
                   ),
                 ),

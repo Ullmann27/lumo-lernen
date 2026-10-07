@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
 
@@ -68,6 +69,7 @@ void main() {
 
   setUp(() {
     calls.clear();
+    SharedPreferences.setMockInitialValues({'lumo_3d_save_salt_v1': 'lifecycle-test-salt'});
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(_bridge, (call) async {
           calls.add(call);
@@ -111,12 +113,10 @@ void main() {
     saved.complete();
     await tester.pump();
     expect(calls.single.method, 'launch3D');
-    expect(calls.single.arguments, <String, Object?>{
-      'scene': 'jump',
-      'grade': 3,
-      'subject': 'Deutsch',
-      'stars': 27,
-    });
+    expect(calls.single.arguments, allOf(
+      containsPair('scene', 'jump'), containsPair('grade', 3),
+      containsPair('subject', 'Deutsch'), containsPair('stars', 27),
+      containsPair('childKey', matches(r'^p_[0-9a-f]{32}$'))));
     expect(finished, isFalse);
     returned.complete(<String, Object?>{'destination': 'games'});
     await tester.pump();
