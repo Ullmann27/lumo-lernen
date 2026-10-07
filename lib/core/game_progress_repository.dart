@@ -26,14 +26,18 @@ class GameProgressRepository {
   Future<T> _ordered<T>(String childId, Future<T> Function() operation) {
     final previous = _pendingByChild[childId] ?? Future<void>.value();
     final result = previous.then<T>((_) => operation());
-    final completed =
-        result.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    final completed = result.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace __) {},
+    );
     _pendingByChild[childId] = completed;
-    unawaited(completed.then((_) {
-      if (identical(_pendingByChild[childId], completed)) {
-        _pendingByChild.remove(childId);
-      }
-    }));
+    unawaited(
+      completed.then((_) {
+        if (identical(_pendingByChild[childId], completed)) {
+          _pendingByChild.remove(childId);
+        }
+      }),
+    );
     return result;
   }
 
@@ -84,20 +88,19 @@ class GameProgressRepository {
     required String childId,
     required int levelId,
     required int starsEarned,
-  }) =>
-      _ordered(childId, () async {
-        final current = await _readStars(childId);
-        final level = GameLevelCatalog.byId(levelId);
-        if (level == null || !level.miniType.isPlayable) return current;
-        final earned = starsEarned.clamp(0, level.maxStars);
-        final updated = Map<int, int>.from(current);
-        final existing = updated[levelId] ?? 0;
-        if (earned > existing) {
-          updated[levelId] = earned;
-        }
-        await _writeStars(childId, updated);
-        return updated;
-      });
+  }) => _ordered(childId, () async {
+    final current = await _readStars(childId);
+    final level = GameLevelCatalog.byId(levelId);
+    if (level == null || !level.miniType.isPlayable) return current;
+    final earned = starsEarned.clamp(0, level.maxStars);
+    final updated = Map<int, int>.from(current);
+    final existing = updated[levelId] ?? 0;
+    if (earned > existing) {
+      updated[levelId] = earned;
+    }
+    await _writeStars(childId, updated);
+    return updated;
+  });
 
   /// Berechnet die Laufzeit-Snapshots aller 50 Level.
   /// Ein Level ist unlocked wenn ID 1 ist, ODER das vorherige Level
@@ -107,27 +110,30 @@ class GameProgressRepository {
     var currentMarked = false;
     int? previousPlayableId;
     for (final level in GameLevelCatalog.playableLevels) {
-      final prevStars =
-          previousPlayableId == null ? 1 : (stars[previousPlayableId] ?? 0);
+      final prevStars = previousPlayableId == null
+          ? 1
+          : (stars[previousPlayableId] ?? 0);
       previousPlayableId = level.id;
       final locked = prevStars <= 0;
       final earned = (stars[level.id] ?? 0).clamp(0, level.maxStars);
       final isCurrent = !currentMarked && !locked && earned == 0;
       if (isCurrent) currentMarked = true;
-      result.add(GameLevelRuntime(
-        level: level,
-        locked: locked,
-        starsEarned: earned,
-        isCurrent: isCurrent,
-      ));
+      result.add(
+        GameLevelRuntime(
+          level: level,
+          locked: locked,
+          starsEarned: earned,
+          isCurrent: isCurrent,
+        ),
+      );
     }
     return result;
   }
 
   Future<void> reset(String childId) => _ordered(childId, () async {
-        try {
-          final prefs = await SharedPreferences.getInstance();
-          await prefs.remove(_starsKey(childId));
-        } catch (_) {}
-      });
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(_starsKey(childId));
+    } catch (_) {}
+  });
 }

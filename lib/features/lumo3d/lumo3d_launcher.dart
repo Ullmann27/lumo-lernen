@@ -19,8 +19,10 @@ Future<bool> launchLumo3D(
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
   if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
-    _showLaunchMessage(context,
-        'Lumo Kart und Wolkeninseln sind in der Android-App enthalten.');
+    _showLaunchMessage(
+      context,
+      'Lumo Kart und Wolkeninseln sind in der Android-App enthalten.',
+    );
     return false;
   }
   if (_launchInProgress) return false;
@@ -33,9 +35,11 @@ Future<bool> launchLumo3D(
       await appState?.flushRewards();
     } catch (_) {
       if (context.mounted) {
-        _showLaunchMessage(context,
-            'Deine Sterne konnten noch nicht gespeichert werden. '
-            'Bitte versuche den Spielstart erneut.');
+        _showLaunchMessage(
+          context,
+          'Deine Sterne konnten noch nicht gespeichert werden. '
+          'Bitte versuche den Spielstart erneut.',
+        );
       }
       return false;
     }
@@ -59,9 +63,11 @@ Future<bool> launchLumo3D(
     final destination = response?['destination'];
     if (destination is! String || destination.isEmpty) {
       if (context.mounted) {
-        _showLaunchMessage(context,
-            'Die Rückkehr aus dem Spiel wurde nicht bestätigt. '
-            'Bitte versuche es erneut.');
+        _showLaunchMessage(
+          context,
+          'Die Rückkehr aus dem Spiel wurde nicht bestätigt. '
+          'Bitte versuche es erneut.',
+        );
       }
       return false;
     }
@@ -72,22 +78,26 @@ Future<bool> launchLumo3D(
         context,
         error.code == 'game_running'
             ? 'Ein Spiel ist bereits geöffnet oder wird gerade beendet. '
-                'Bitte versuche es nach der Rückkehr erneut.'
+                  'Bitte versuche es nach der Rückkehr erneut.'
             : 'Das Spiel konnte nicht starten. Bitte versuche es erneut.',
       );
     }
     return false;
   } on MissingPluginException {
     if (context.mounted) {
-      _showLaunchMessage(context,
-          'Dieser App-Version fehlt die Verbindung zum 3D-Spiel. '
-          'Bitte verwende die vollständige Android-App.');
+      _showLaunchMessage(
+        context,
+        'Dieser App-Version fehlt die Verbindung zum 3D-Spiel. '
+        'Bitte verwende die vollständige Android-App.',
+      );
     }
     return false;
   } catch (_) {
     if (context.mounted) {
       _showLaunchMessage(
-          context, 'Das Spiel konnte nicht starten. Bitte versuche es erneut.');
+        context,
+        'Das Spiel konnte nicht starten. Bitte versuche es erneut.',
+      );
     }
     return false;
   } finally {
@@ -101,7 +111,7 @@ void _showLaunchMessage(BuildContext context, String message) {
   if (!context.mounted) return;
   final route = ModalRoute.of(context);
   if (route != null && !route.isCurrent) return;
-  ScaffoldMessenger.maybeOf(context)?.showSnackBar(
-    SnackBar(content: Text(message)),
-  );
+  ScaffoldMessenger.maybeOf(
+    context,
+  )?.showSnackBar(SnackBar(content: Text(message)));
 }
