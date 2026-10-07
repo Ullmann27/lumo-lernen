@@ -90,7 +90,7 @@ class HomeContent extends StatelessWidget {
               // Schrift zwei pro Reihe, damit die Namen ganz lesbar bleiben.
               final textScale = MediaQuery.textScalerOf(context).scale(1);
               final columns =
-                  constraints.maxWidth >= 340 && textScale <= 1.2 ? 4 : 2;
+                  constraints.maxWidth >= 700 && textScale <= 1.2 ? 4 : 2;
               final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
                 LumoColorTile(
@@ -139,9 +139,27 @@ class HomeContent extends StatelessWidget {
                       compact: compact,
                       wide: wide,
                       reduceMotion: reduceMotion,
+                      onLearn: () => onSection(LumoSection.learn),
                     ),
                   ),
                   SizedBox(height: compact ? 4 : 10),
+                  GridView.count(
+                    crossAxisCount: columns,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: textScale > 1.2 ? 1.05 : 1.34,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      for (var i = 0; i < actions.length; i++)
+                        _HomeEntrance(
+                          reduceMotion: reduceMotion,
+                          delay: Duration(milliseconds: 120 + i * 60),
+                          child: actions[i],
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
                   _HomeEntrance(
                     reduceMotion: reduceMotion,
                     delay: const Duration(milliseconds: 60),
@@ -156,28 +174,6 @@ class HomeContent extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: compact ? 6 : 12),
-                  GridView.count(
-                    crossAxisCount: columns,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 8,
-                    childAspectRatio: wide
-                        ? 1.02
-                        : columns == 4
-                            ? .74
-                            : textScale > 1.2
-                                ? .9
-                                : 1.1,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      for (var i = 0; i < actions.length; i++)
-                        _HomeEntrance(
-                          reduceMotion: reduceMotion,
-                          delay: Duration(milliseconds: 120 + i * 60),
-                          child: actions[i],
-                        ),
-                    ],
-                  ),
                   const SizedBox(height: 10),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -194,7 +190,7 @@ class HomeContent extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  if (constraints.maxWidth >= 360)
+                  if (constraints.maxWidth >= 620)
                     Row(
                       children: [
                         Expanded(
@@ -851,78 +847,110 @@ class _ResponsiveCards extends StatelessWidget {
 
 /// Bild 01: Lumo winkt im Kart, links „Hallo!“, rechts der Spruch.
 class _HomeHero extends StatelessWidget {
-  const _HomeHero({
-    required this.name,
-    required this.compact,
-    required this.wide,
-    required this.reduceMotion,
-  });
-
+  const _HomeHero(
+      {required this.name,
+      required this.compact,
+      required this.wide,
+      required this.reduceMotion,
+      required this.onLearn});
   final String name;
   final bool compact;
   final bool wide;
   final bool reduceMotion;
+  final VoidCallback onLearn;
 
   @override
-  Widget build(BuildContext context) => LayoutBuilder(
-        builder: (context, constraints) {
-          final width = constraints.maxWidth;
-          // Auf breiten, niedrigen Geräten (Fold quer) bleiben die Kacheln
-          // im ersten Bild sichtbar.
-          final screen = MediaQuery.sizeOf(context).height;
-          final height = compact
-              ? 150.0
-              : (width * (wide ? .32 : .52))
-                  .clamp(150.0, 290.0)
-                  .clamp(0.0, screen * .3)
-                  .clamp(120.0, 290.0)
-                  .toDouble();
-          final foxSize = height * (compact ? 1 : 1.12);
-          return SizedBox(
-            height: height,
-            child: Stack(clipBehavior: Clip.none, children: [
-              Positioned(
-                left: (width - foxSize) / 2 + width * .04,
-                bottom: -foxSize * .04,
-                // Im Kart hüpft Lumo, wenn man ihn antippt.
+  Widget build(BuildContext context) =>
+      LayoutBuilder(builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final textScale = MediaQuery.textScalerOf(context).scale(1);
+        final height =
+            (width < 340 ? 198.0 : 216.0) * textScale.clamp(1.0, 1.45);
+        final foxSize = (width * .51).clamp(126.0, 258.0).toDouble();
+        return Container(
+          key: const ValueKey('home-adventure-hero'),
+          height: height,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(28),
+            gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xDE173E74),
+                  Color(0xB30A2247),
+                  Color(0x8C135779)
+                ]),
+            border:
+                Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .48)),
+            boxShadow: const [
+              BoxShadow(
+                  color: Color(0x2600CFFF),
+                  blurRadius: 24,
+                  offset: Offset(0, 8))
+            ],
+          ),
+          child: Stack(children: [
+            Positioned(
+                right: 0,
+                bottom: 2,
+                width: foxSize,
+                height: foxSize,
                 child: LumoCharacter(
-                  pose: LumoDesignFoxPose.kartWave,
-                  size: foxSize,
-                  reduceMotion: reduceMotion,
-                  celebratePose: null,
-                  onTap: () {},
-                ),
-              ),
-              Positioned(
-                left: 0,
-                top: height * .06,
-                width: width * (compact ? .5 : .34),
-                child: Transform.rotate(
-                  angle: -.05,
-                  child: LumoHeroBubble(
-                    key: const ValueKey('home-greeting'),
-                    title: 'Hallo, $name!',
-                    text: 'Bereit für ein neues Abenteuer?',
-                  ),
-                ),
-              ),
-              if (!compact)
-                Positioned(
-                  right: -4,
-                  top: height * .4,
-                  width: width * .25,
-                  child: Transform.rotate(
-                    angle: -.1,
-                    child: const LumoHeroBubble(
-                      text: 'Kleine Schritte\nGroße Zukunft!',
-                      handwritten: true,
-                    ),
-                  ),
-                ),
-            ]),
-          );
-        },
-      );
+                    pose: LumoDesignFoxPose.bookWelcome,
+                    size: foxSize,
+                    reduceMotion: reduceMotion,
+                    idleHops: false,
+                    celebratePose: null,
+                    onTap: () => LumoCompanionRequests.instance
+                        .requestAppExplanation())),
+            Positioned(
+                left: 16,
+                top: 18,
+                bottom: 14,
+                width: width * .53,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('DEIN LERNABENTEUER',
+                          style: TextStyle(
+                              fontSize: 10,
+                              letterSpacing: 1.3,
+                              color: LumoVisualTokens.cyanBright,
+                              fontWeight: FontWeight.w800)),
+                      const SizedBox(height: 8),
+                      Text('Hallo, $name!',
+                          key: const ValueKey('home-greeting'),
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: width < 340 ? 21 : 25,
+                              height: 1.08,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white)),
+                      const SizedBox(height: 8),
+                      const Flexible(
+                          child: Text('Bereit für ein neues Abenteuer?',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  height: 1.25,
+                                  color: LumoVisualTokens.muted))),
+                      const Spacer(),
+                      FilledButton.icon(
+                          key: const ValueKey('home-start-learning'),
+                          onPressed: onLearn,
+                          style: FilledButton.styleFrom(
+                              backgroundColor: LumoVisualTokens.cyanBright,
+                              foregroundColor: LumoVisualTokens.navigation,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 13, vertical: 12),
+                              minimumSize: const Size(48, 48)),
+                          icon: const Icon(Icons.play_arrow_rounded, size: 21),
+                          label: const Text('Loslernen',
+                              style: TextStyle(fontWeight: FontWeight.w900))),
+                    ])),
+          ]),
+        );
+      });
 }
 
 /// Banner „Lumo Kart – Lernen auf der Überholspur!“ mit Bild und „Neu!“.
@@ -963,12 +991,12 @@ class _KartBanner extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: LumoTextStyles.heading2.copyWith(
                       color: LumoVisualTokens.white,
-                      fontSize: compact ? 16 : 22,
+                      fontSize: compact ? 16 : 20,
                       height: 1.1,
                     ),
                   ),
                   Text(
-                    'Lernen auf der Überholspur!',
+                    'Dein nächstes Rennabenteuer',
                     maxLines: compact ? 1 : 2,
                     overflow: TextOverflow.ellipsis,
                     style: LumoTextStyles.body.copyWith(
@@ -992,7 +1020,7 @@ class _KartBanner extends StatelessWidget {
                     color: LumoVisualTokens.white, size: 20),
               ),
             SizedBox(
-              width: compact ? 70 : 120,
+              width: compact ? 60 : 82,
               height: compact ? 44 : 66,
               child: Stack(children: [
                 Positioned.fill(

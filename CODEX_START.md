@@ -1,3 +1,11 @@
+# Neuester Fortsetzungsstand – 07.10.2026
+
+Aktiver visueller Arbeitszweig: `chatgpt/lumo-visual-polish-2026-10-07`.
+Basis: integrierter PR210, `da5b103c04eecfbe25b1f7bf82cb0dcf6a3bbe78`.
+Neuer Kandidat: **0.10.9+1600**. Verbindlichen Ist-Stand, Screenshots, Prüfungen
+und verbleibende Lücken in `docs/checkpoints/visual-polish-2026-10-07.md` lesen.
+Ältere HTML-/Flutter-MVP-ZIPs nicht über diesen Stand kopieren.
+
 # Lumo – Einstieg (für jede KI zuerst lesen)
 
 Stand: 4. Oktober 2026. Aufgeräumt: toter Code, ungenutzte Assets, alte Berichte und
