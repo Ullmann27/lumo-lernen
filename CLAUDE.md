@@ -1,6 +1,8 @@
 # CLAUDE.md – Regeln für Lumo Lernen
 
-Zuerst `CODEX_START.md` lesen: aktueller Auftrag, Rollen und Code-Landkarte.
+Zuerst `OPUS_NEXT.md` lesen: aktuelle Übergabe und Heinz' direkter Auftrag an Opus 5.5.
+Danach `docs/OPUS_ENTWICKLUNGSAUFTRAG.md` vollständig lesen und an diesem Auftrag
+weiterarbeiten. `CODEX_START.md` enthält die Code-Landkarte und ältere Grundlagen.
 
 ## Ziel
 Die App sieht genau aus wie Heinz' Bilder in `docs/design_targets/2026-10-04/`

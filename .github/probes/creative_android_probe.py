@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1502 update.
+"""Exercise a source/digest-pinned APK and preserve an actual baseline profile.
 
 Only fictional data in a disposable Android emulator is used. Flutter controls
 come from live accessibility; native Godot controls from current screenshot OCR.
@@ -21,7 +21,7 @@ import traceback
 import unicodedata
 import xml.etree.ElementTree as ET
 
-from PIL import Image
+from PIL import Image, ImageChops
 
 # Keep screenshot recognition from oversubscribing the same software-rendered
 # emulator host. This changes only the independent OCR reader, not the app.
@@ -32,9 +32,10 @@ import pr207_android_smoke as base
 import pr207_android_ui_probe as live
 
 PACKAGE = base.PACKAGE
-BASE_DIGEST = 'd33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e'
-SOURCE = '53e294c9a057c0f15012a35c00dcaf666b6f37b4'
-GODOT = '148decd2b34af7bfb5f1504c166d42411f8e99e1'
+BASE_DIGEST = os.environ.get('LUMO_BASE_DIGEST', 'd33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e')
+SOURCE = os.environ.get('LUMO_EXPECT_SOURCE', '53e294c9a057c0f15012a35c00dcaf666b6f37b4')
+GODOT = os.environ.get('LUMO_EXPECT_GODOT', '148decd2b34af7bfb5f1504c166d42411f8e99e1')
+EXPECTED_VERSION = int(os.environ.get('LUMO_EXPECT_VERSION', '1502'))
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 base.ui_nodes = live.live_nodes
 base.tap_label = live.live_tap_label
@@ -173,12 +174,26 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     # background. A second read separates their contrast, without changing
     # any screenshot used as evidence or inventing a control coordinate.
     contrast = image.convert('L').point(lambda value: 0 if value >= 170 else 255)
-    for variant, pixels in [('contrast',contrast),('raw',image)]:
+    # A bright cyan button outline can be grouped with its white text as one
+    # unreadable glyph. Separate neutral bright letters by their colour, using
+    # the entire current screenshot and retaining the observed word bounds.
+    red, green, blue = image.split()
+    darkest = ImageChops.darker(ImageChops.darker(red, green), blue)
+    lightest = ImageChops.lighter(ImageChops.lighter(red, green), blue)
+    bright = darkest.point(lambda value: 255 if value >= 150 else 0)
+    neutral = ImageChops.subtract(lightest, darkest).point(
+        lambda value: 255 if value <= 45 else 0)
+    white_text = ImageChops.invert(ImageChops.multiply(bright, neutral))
+    # The German model can miss short UI phrases that the Latin/English model
+    # reads correctly. Keep both reads, with independent observed word bounds.
+    variants = [('contrast',contrast,'deu+eng'),('raw',image,'deu+eng'),
+                ('white-text',white_text,'deu+eng'),('white-latin',white_text,'eng')]
+    for variant, pixels, language in variants:
         expanded = out / 'ocr-work.png'
         pixels.resize((image.width*2,image.height*2)).save(expanded)
         prefix = out / (tag+'-ocr-'+variant)
         base.command('tesseract',str(expanded),str(prefix),'--psm','11',
-                     '-l','deu+eng','tsv',timeout=45)
+                     '-l',language,'tsv',timeout=45)
         groups: dict[tuple,list[dict]] = {}
         with prefix.with_suffix('.tsv').open() as stream:
             for word in csv.DictReader(stream,delimiter='\t'):
@@ -362,13 +377,14 @@ def main() -> int:
     parser.add_argument('--baseline',type=Path)
     parser.add_argument('--candidate',type=Path)
     parser.add_argument('--ocr-fixture',type=Path)
+    parser.add_argument('--ocr-label',action='append')
     parser.add_argument('--game-scope',choices=('all','build','puzzle','rhythm','treasure','kart'),default='all')
     parser.add_argument('--out',type=Path,required=True)
     args = parser.parse_args()
     out = args.out
     out.mkdir(parents=True,exist_ok=True)
     if args.ocr_fixture:
-        for label in ('LUMO BAUWELT','Bauziele','Mein Bauwerk testen'):
+        for label in args.ocr_label or ('LUMO BAUWELT','Bauziele','Mein Bauwerk testen'):
             wanted=normalized(label)
             lines=image_lines(out,'fixture-'+wanted,wanted,args.ocr_fixture)
             matches=[line for line in lines if wanted in normalized(line['text'])]
@@ -392,7 +408,7 @@ def main() -> int:
             provenance['tracked_source_clean'] is not True or
             provenance['godot']['revision'] != GODOT or
             provenance['signingCertificateSha256'] != CERT or
-            provenance['versionCode'] != 1502 or
+            provenance['versionCode'] != EXPECTED_VERSION or
             provenance['sha256'] != digest(args.candidate)):
             raise RuntimeError('Candidate provenance mismatch')
         result['apk_sha256'] = digest(args.candidate)
@@ -413,7 +429,7 @@ def main() -> int:
         update = base.adb('install','-r','--no-streaming',str(args.candidate),timeout=180)
         (out/'update-install.txt').write_text(update)
         after_package = package_identity(out,'updated')
-        if ('Success' not in update or not after_package['versionCode'].startswith('1502') or
+        if ('Success' not in update or not after_package['versionCode'].startswith(str(EXPECTED_VERSION)) or
             after_package['userId'] != before_package['userId'] or
             after_package['firstInstallTime'] != before_package['firstInstallTime']):
             raise RuntimeError('In-place update with unchanged installation identity failed')
@@ -515,14 +531,38 @@ def main() -> int:
             for step in range(4):
                 native_text(out,'Weiter',f'kart-setup-{step+1}',tap=True)
             native_text(out,'Rennen starten','kart-start-race',tap=True)
-            # Natural portrait dimensions rotate into a real 640x320 game
-            # surface. This exercises the shipped APK's short driving layout.
-            base.display(320,640,160)
+            # Read all five controls on the actual 1920x1080 phone surface.
+            # The tiny 640x320 surface is captured separately below: text OCR
+            # is not a dependable visibility assertion for its small icons.
             for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
-                native_text(out,label,'kart-compact-'+normalized(label))
-            shot=capture(out,'15_kart_compact_race')
-            if shot['width'] != 640 or shot['height'] != 320:
+                native_text(out,label,'kart-phone-'+normalized(label))
+            phone=capture(out,'15_kart_phone_race')
+            if phone['width'] != 1920 or phone['height'] != 1080:
+                raise RuntimeError('Native Kart did not use the 1920x1080 phone surface')
+            if os.environ.get('LUMO_FOLD_PROBE') == '1':
+                base.display(1812,2176,420)
+                for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
+                    native_text(out,label,'kart-fold-'+normalized(label))
+                fold = capture(out,'17_kart_fold_open')
+                if fold['width'] != 2176 or fold['height'] != 1812:
+                    raise RuntimeError('Inner-display surface did not rotate to 2176x1812')
+                base.display(904,2316,420)
+                for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
+                    native_text(out,label,'kart-cover-'+normalized(label))
+                capture(out,'18_kart_fold_cover')
+                base.display(1080,1920,300)
+                native_text(out,'GAS','kart-phone-again')
+                result['fold_resize'] = {'status':'PASS', 'inner_surface':[2176,1812],
+                                         'five_action_labels_visible':True,
+                                         'cover_resize_and_return':True,
+                                         'scope':'Android emulator surfaces; no physical hinge/FPS claim'}
+            base.display(320,640,160)
+            native_text(out,'Pause','kart-compact-hud')
+            compact=capture(out,'19_kart_compact_race')
+            if compact['width'] != 640 or compact['height'] != 320:
                 raise RuntimeError('Compact native Kart did not rotate to 640x320')
+            base.display(1080,1920,300)
+            native_text(out,'GAS','kart-phone-restored')
             base.adb('shell','input','keyevent','KEYCODE_BACK')
             native_text(out,'Spiele','kart-compact-return',tap=True)
             for _ in range(30):
@@ -534,8 +574,9 @@ def main() -> int:
             base.foreground()
             capture(out,'16_kart_returned_to_app')
             result['kart']={'status':'PASS','actual_setup_steps':5,
-                            'native_landscape':[640,320],
-                            'five_action_labels_visible':True,'pause_return':True}
+                            'phone_surface':[1920,1080], 'compact_surface':[640,320],
+                            'five_action_labels_on_phone':True,
+                            'compact_hud_and_capture':True,'pause_return':True}
         if wallet(out,'after-unfinished-games') != first_wallet:
             raise RuntimeError('An unfinished creative game incorrectly awarded a reward')
 

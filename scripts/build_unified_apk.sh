@@ -8,6 +8,8 @@ require_clean_sources() {
   fi
 }
 require_clean_sources
+version_values=$(python3 scripts/build_version.py)
+read -r lumo_version_name lumo_build_number <<< "$version_values"
 if [ ! -d android ]; then
   # A Flutter scaffold may replace dependency metadata even with --no-pub.
   # Generate outside this repository and copy ONLY its native Android host.
@@ -30,9 +32,9 @@ python3 scripts/export_embedded_game.py "${@}"
 flutter pub get --enforce-lockfile
 require_clean_sources
 flutter build apk --no-pub --release --target-platform android-arm64,android-x64 \
-  --build-number "${LUMO_BUILD_NUMBER:-1504}" --build-name "${LUMO_VERSION_NAME:-0.10.9}" \
-  --dart-define=LUMO_BUILD_NUMBER="${LUMO_BUILD_NUMBER:-1504}" \
-  --dart-define=LUMO_VERSION_NAME="${LUMO_VERSION_NAME:-0.10.9}" \
+  --build-number "$lumo_build_number" --build-name "$lumo_version_name" \
+  --dart-define=LUMO_BUILD_NUMBER="$lumo_build_number" \
+  --dart-define=LUMO_VERSION_NAME="$lumo_version_name" \
   --dart-define=LUMO_SIDE_BY_SIDE=true
 require_clean_sources
 mkdir -p dist
