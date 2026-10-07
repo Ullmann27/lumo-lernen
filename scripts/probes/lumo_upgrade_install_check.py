@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Reproduce 1321->280 rejection; verify a data-preserving 1321->1335 update.
+"""Reproduce 1321->280 rejection; verify a data-preserving 1321->1400 update.
 
 Disposable emulator only. No uninstall, clear-data or downgrade override is used.
 This is an actual package-manager/UI test, not a mock installer or Samsung test.
+The 1400 APK is the same verified artifact from PR208, not built in this lane.
 """
 from __future__ import annotations
 
@@ -20,6 +21,8 @@ import pr207_android_ui_probe as ui
 
 BASELINE_SHA256 = 'c946a008509fc1c1cd322552ed353d39d945192f85fb32ad4429b2a237e63f40'
 REJECTED_SHA256 = 'dbd445466a49ed4e23a899f4a166c19d7f11cc4200a3835efc53f1937befd970'
+CANDIDATE_VERSION = 1400
+CERTIFICATE = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 
 
 def digest(path: Path) -> str:
@@ -69,6 +72,8 @@ def main() -> int:
     parser.add_argument('--rejected', type=Path, required=True)
     parser.add_argument('--candidate', type=Path, required=True)
     parser.add_argument('--proof', type=Path, required=True)
+    parser.add_argument('--candidate-sha256', required=True)
+    parser.add_argument('--candidate-source-sha', required=True)
     parser.add_argument('--out', type=Path, default=Path('upgrade-evidence'))
     args = parser.parse_args()
     out = args.out
@@ -86,8 +91,12 @@ def main() -> int:
         proof = json.loads(args.proof.read_text())
         if digest(args.baseline) != BASELINE_SHA256 or digest(args.rejected) != REJECTED_SHA256:
             raise RuntimeError('Wrong historical artifact bytes')
-        if digest(args.candidate) != proof['sha256'] or proof['versionCode'] != 1335:
-            raise RuntimeError('Wrong repaired candidate')
+        if (digest(args.candidate) != args.candidate_sha256 or
+                proof['sha256'] != args.candidate_sha256 or
+                proof['flutter_source_commit'] != args.candidate_source_sha or
+                proof['versionCode'] != CANDIDATE_VERSION or
+                proof['signingCertificateSha256'] != CERTIFICATE):
+            raise RuntimeError('Candidate differs from the shared verified PR208 artifact')
         if proof['tracked_source_clean'] is not True or proof['package'] != p.PACKAGE:
             raise RuntimeError('Candidate source or package check failed')
         report.update(candidateSourceSha=proof['flutter_source_commit'],
@@ -117,9 +126,10 @@ def main() -> int:
         if package_info(out, 'after_rejection') != before:
             raise RuntimeError('Failed downgrade altered installed package metadata')
         p.adb('shell', 'am', 'force-stop', p.PACKAGE)
-        report['steps'].append(install(args.candidate, out, '03_update_1335'))
+        report['steps'].append(install(args.candidate, out, '03_update_1400'))
         after = package_info(out, 'candidate')
-        if after['versionCode'] != 1335 or after['uid'] != before['uid'] or after['dataDir'] != before['dataDir']:
+        if (after['versionCode'] != CANDIDATE_VERSION or after['uid'] != before['uid'] or
+                after['dataDir'] != before['dataDir']):
             raise RuntimeError('Package identity or data directory changed across update')
         report['installedAfter'] = after
         p.launch(out, 'updated')
@@ -140,7 +150,7 @@ def main() -> int:
         if p.PACKAGE in crash:
             raise RuntimeError('Crash buffer contains the tested package')
         report['status'] = 'PASS'
-        print('[LumoInstallUpgrade] PASS: downgrade reproduced; 1335 updates 1321 without clearing data; original profile restored twice')
+        print('[LumoInstallUpgrade] PASS: downgrade reproduced; 1400 updates 1321 without clearing data; original profile restored twice')
         return 0
     except Exception as error:
         report.update(status='FAIL', error=str(error), traceback=traceback.format_exc())
