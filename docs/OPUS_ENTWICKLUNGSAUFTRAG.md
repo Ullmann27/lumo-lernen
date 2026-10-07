@@ -18,7 +18,7 @@ Die bekannten Repository-Adressen sind:
 
 - App: https://github.com/Ullmann27/lumo-lernen
 - Spiele: https://github.com/Ullmann27/lumo-godot
-- Zuletzt genannte Änderungen: App-PR 211 und Kart-PR 24. Prüfe ihren aktuellen Status und ihre tatsächlichen Inhalte.
+- Aktuelle Reparatur-Übergabe: App-PR 213 und Kart-PR 26, jeweils auf dem Branch `chatgpt/repair-opus-handoff-2026-10-07`. Lies zuerst `OPUS_NEXT.md` und den dort verlinkten Prüfbericht. Frühere PRs 211/212 und 24/25 sind historische Vorstufen.
 
 Die vorhandene Architektur besteht aus einer Flutter-Lern-App und eingebetteten Godot-Spielen. Baue darauf auf. Prüfe die aktuell gepinnten Engine-Versionen, die Android-Integration und den gemeinsamen APK-Build, bevor du etwas änderst.
 
@@ -34,7 +34,11 @@ Sichte außerdem die hochgeladenen App-Dateien, Bildvorlagen und beiden Referenz
 
 Erfasse zuerst Branch, Commit, lokale Änderungen, offene Arbeiten und vorhandene Assets. Sichere fremde oder noch nicht veröffentlichte Änderungen. Dokumentiere knapp, welcher Stand deine Basis ist.
 
-Als zuletzt dokumentierter APK-Kandidat liegt **0.10.8+1503** vor. Installation und Update mit Profilerhalt wurden im Emulator bestanden. Der vollständige Android-Durchlauf brach bei der Erkennung des Item-Buttons ab. Prüfe, ob die Ursache im Layout, im Spielzustand, im Timing oder in der Erkennung des Testwerkzeugs liegt. Ein fehlendes Texterkennungsergebnis beweist noch keinen fehlenden Button. Ein sichtbarer Button beweist wiederum noch keine funktionierende Aktion.
+Die aktuelle Reparatur zielt auf **0.10.10+1602**. Sie führt die zwischenzeitlich getrennten App- und Kart-Verbesserungen zusammen und verhindert einen Versionsrückschritt gegenüber den Kandidaten 1504 und 1601. Der zugehörige APK-Quellstand und die tatsächlich abgeschlossenen Prüfungen stehen in `OPUS_NEXT.md`; verwende sie statt einer älteren APK als Ausgangspunkt.
+
+Der frühere Abbruch bei der Item-Erkennung wurde untersucht: Die Beschriftung deaktivierter Kart-Aktionen ist jetzt kontrastreicher, und der Test prüft zusätzlich das Verhalten eines leeren und eines tatsächlich eingesetzten Items. Ein fehlendes Texterkennungsergebnis beweist noch keinen fehlenden Button. Ein sichtbarer Button beweist wiederum noch keine funktionierende Aktion. Erhalte diese Verhaltensprüfungen bei der weiteren grafischen Überarbeitung.
+
+Der Online-KI-Dienst meldete bei der Reparaturprüfung am 7. Oktober 2026 `openai_quota_exceeded`. Bezeichne die Online-KI erst nach einer erfolgreichen tatsächlichen Anfrage als verfügbar. Offline-Lernen muss unabhängig davon funktionieren. Die neue Stimme, Musik und Renninszenierung gehören zu deinem nachfolgenden Entwicklungsauftrag; ihre Fertigstellung ist durch die Reparatur-APK noch nicht nachgewiesen.
 
 ## 3. Verbindliche Reihenfolge
 
@@ -257,7 +261,7 @@ Vor einem Kontext- oder Sitzungslimit sichere Code und dokumentiere Branch, Comm
 
 Führe die bestehenden relevanten Flutter-, Godot- und Android-Prüfungen aus. Ergänze gezielte Tests dort, wo neue Logik oder ein konkreter Fehler sie rechtfertigen.
 
-Prüfe insbesondere Start, Navigation, Lernaufgabe, Lumo-Stimme, Musik, Stummschaltung, Speicherung, Spieleinstieg, Rennstart, gleichzeitige Touch-Eingaben, Pause, Rückkehr zur App, Bildschirmwechsel, Zieleinlauf und Wiederholung. Kläre den bisherigen Abbruch an der Item-Erkennung und prüfe die Aktion selbst.
+Prüfe insbesondere Start, Navigation, Lernaufgabe, Lumo-Stimme, Musik, Stummschaltung, Speicherung, Spieleinstieg, Rennstart, gleichzeitige Touch-Eingaben, Pause, Rückkehr zur App, Bildschirmwechsel, Zieleinlauf und Wiederholung. Erhalte die reparierte Item-Lesbarkeit und prüfe die Aktion selbst. Bei Android 16 unterscheide eine Änderung der Displaygröße von einer tatsächlichen Gerätedrehung; beides muss mit echten Aufnahmen und Zustandsprüfungen belegt werden.
 
 Baue die gemeinsame APK aus einem dokumentierten, abgestimmten Quellstand. Prüfe Paketkennung, Versionsnummer, Signatur, eingebetteten Godot-Stand und die enthaltenen Assets. Erhalte, soweit die vorhandene App-Konfiguration es ermöglicht, den Updatepfad und die gespeicherten Profile.
 

@@ -68,9 +68,10 @@ jobs:
           name: lumo-visual-app-evidence-${{ github.run_id }}
           path: proof/
       - name: Install matching Godot engine and real renderer
+        timeout-minutes: 8
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y xvfb libgl1-mesa-dri ripgrep
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y xvfb libgl1-mesa-dri ripgrep
           bash scripts/install_godot_for_build.sh
       - name: Import the exact embedded native source
         run: |
@@ -218,10 +219,11 @@ jobs:
             echo 'LUMO_BASE_DIGEST=7d7883122fb1f487723d2489c64401a9741ff3edde5cd87f2ab734ddaea5e83d' >> "$GITHUB_ENV"
           fi
       - name: Prepare independent live UI and screenshot readers
+        timeout-minutes: 8
         run: |
           mkdir -p native-proof
-          sudo apt-get update -qq
-          sudo apt-get install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt

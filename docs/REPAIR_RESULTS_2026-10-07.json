@@ -1,0 +1,623 @@
+{
+  "date": "2026-10-07",
+  "apk_verification": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 1602,
+    "versionName": "0.10.10",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "elf16KiBAligned": true,
+    "resourcesArscAligned": true,
+    "bytes": 187064937,
+    "sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "9ade252e67309d18b17d3226e33b0034b91f3495",
+      "engine": "4.6.3",
+      "pck_sha256": "4303d360d8c89d4265d0bb0abe09dda620756af15ed3f77554c3e917f5a74113",
+      "bytes": 30531688
+    }
+  },
+  "flutter_source_commit": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+  "flutter_tests": {
+    "passed": 707,
+    "skipped": 4
+  },
+  "python_build_tests": {
+    "passed": 9
+  },
+  "backend_tests": {
+    "passed": 22
+  },
+  "content_tasks_checked": 40960,
+  "android_harness_tests": {
+    "passed": 177,
+    "skipped": 8
+  },
+  "flutter_analysis": {
+    "errors": 0,
+    "warnings": 20,
+    "infos": 130
+  },
+  "android_cases": [
+    {
+      "game": "build",
+      "baseline_version": "1400",
+      "android_api": 35,
+      "api_evidence": "workflow emulator configuration",
+      "workflow_run": 37674457852,
+      "result": {
+        "tested_games": [
+          "build"
+        ],
+        "status": "PASS",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "onboarding": {
+          "status": "PASS",
+          "profile_name": "LumoTest",
+          "captures": [
+            {
+              "file": "07_home_after_onboarding.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "5d2e149bde6a5eb3cebd1765a9be71b9bc8074185918dce2c8833405c5159c8a"
+            },
+            {
+              "file": "08_games_after_navigation.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "953d6894e76cce0bd6f36206bd692a3cde08bd72dba1d4386e2d6a010cc6fe2f"
+            }
+          ]
+        },
+        "update": {
+          "status": "PASS",
+          "before": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 19:45:04",
+            "versionCode": "1400 minSdk=24 targetSdk=36",
+            "versionName": "0.10.7"
+          },
+          "after": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 19:45:04",
+            "versionCode": "1602 minSdk=24 targetSdk=36",
+            "versionName": "0.10.10"
+          },
+          "profile_retained": true,
+          "offline": true
+        },
+        "build": {
+          "status": "PASS",
+          "reward_stars": 3,
+          "reward_xp": 24,
+          "save_and_relaunch": true,
+          "replay_deduplicated": true
+        }
+      }
+    },
+    {
+      "game": "puzzle",
+      "baseline_version": "1400",
+      "android_api": 35,
+      "api_evidence": "workflow emulator configuration",
+      "workflow_run": 37674457852,
+      "result": {
+        "tested_games": [
+          "puzzle"
+        ],
+        "status": "PASS",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "onboarding": {
+          "status": "PASS",
+          "profile_name": "LumoTest",
+          "captures": [
+            {
+              "file": "07_home_after_onboarding.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "1c08a8021f687c063216f32b2f9c709f0ad259ef3f6574477f57b71de5fae9df"
+            },
+            {
+              "file": "08_games_after_navigation.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "ad17905a26ad155b87c111e1b2f940e13805ce7d92e12f7afcb259a94627e1b4"
+            }
+          ]
+        },
+        "update": {
+          "status": "PASS",
+          "before": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 19:44:47",
+            "versionCode": "1400 minSdk=24 targetSdk=36",
+            "versionName": "0.10.7"
+          },
+          "after": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 19:44:47",
+            "versionCode": "1602 minSdk=24 targetSdk=36",
+            "versionName": "0.10.10"
+          },
+          "profile_retained": true,
+          "offline": true
+        },
+        "puzzle": {
+          "status": "PASS",
+          "parts": 12,
+          "hints": 1,
+          "save_and_relaunch": true
+        }
+      }
+    },
+    {
+      "game": "rhythm",
+      "baseline_version": "1400",
+      "android_api": 35,
+      "api_evidence": "workflow emulator configuration",
+      "workflow_run": 37674457852,
+      "result": {
+        "tested_games": [
+          "rhythm"
+        ],
+        "status": "PASS",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "onboarding": {
+          "status": "PASS",
+          "profile_name": "LumoTest",
+          "captures": [
+            {
+              "file": "07_home_after_onboarding.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "85e8f1ed58cfed375f05f76c2ecd4b496fc39e4adb0c4e14c2b0764063cf66ae"
+            },
+            {
+              "file": "08_games_after_navigation.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "3ca5b2de9a78ed50093b676eb021e4258a38ddce40bcbee3675af5e20778a7d1"
+            }
+          ]
+        },
+        "update": {
+          "status": "PASS",
+          "before": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 19:44:40",
+            "versionCode": "1400 minSdk=24 targetSdk=36",
+            "versionName": "0.10.7"
+          },
+          "after": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 19:44:40",
+            "versionCode": "1602 minSdk=24 targetSdk=36",
+            "versionName": "0.10.10"
+          },
+          "profile_retained": true,
+          "offline": true
+        },
+        "rhythm": {
+          "status": "PASS",
+          "actual_song_started": true,
+          "pause_return": true
+        }
+      }
+    },
+    {
+      "game": "treasure",
+      "baseline_version": "1400",
+      "android_api": 35,
+      "api_evidence": "runtime getprop",
+      "workflow_run": 37678448599,
+      "result": {
+        "tested_games": [
+          "treasure"
+        ],
+        "status": "PASS",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "4e46b95db1090f061dec308db7cf0ae6e4d2cb7e",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "android_sdk": 35,
+        "onboarding": {
+          "status": "PASS",
+          "profile_name": "LumoTest",
+          "captures": [
+            {
+              "file": "07_home_after_onboarding.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "197d867cd43de461271e6b810c8b7990a9c31d2b5c69d7ab8575e9b545a6fd30"
+            },
+            {
+              "file": "08_games_after_navigation.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "b5991da10569db5366fb73e1ad87e0df2494df60492fae10c7dbe6b47628bf82"
+            }
+          ]
+        },
+        "update": {
+          "status": "PASS",
+          "before": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 20:00:27",
+            "versionCode": "1400 minSdk=24 targetSdk=36",
+            "versionName": "0.10.7"
+          },
+          "after": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 20:00:27",
+            "versionCode": "1602 minSdk=24 targetSdk=36",
+            "versionName": "0.10.10"
+          },
+          "profile_retained": true,
+          "offline": true
+        },
+        "treasure": {
+          "status": "PASS",
+          "inventory_visible": true,
+          "save_and_relaunch": true
+        }
+      }
+    },
+    {
+      "game": "kart",
+      "baseline_version": "1400",
+      "android_api": 35,
+      "api_evidence": "workflow emulator configuration",
+      "workflow_run": 37674457852,
+      "result": {
+        "tested_games": [
+          "kart"
+        ],
+        "status": "PASS",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "onboarding": {
+          "status": "PASS",
+          "profile_name": "LumoTest",
+          "captures": [
+            {
+              "file": "07_home_after_onboarding.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "0c367f67c0ec50c734e3dc29a88579bae0c41798e9a339e841a7c696a3c911c4"
+            },
+            {
+              "file": "08_games_after_navigation.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "0257b6c865aeea616bf08d469d3e5b9f08f7ccc5298abc5a8553bbcb196785a6"
+            }
+          ]
+        },
+        "update": {
+          "status": "PASS",
+          "before": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 19:46:41",
+            "versionCode": "1400 minSdk=24 targetSdk=36",
+            "versionName": "0.10.7"
+          },
+          "after": {
+            "userId": "10209",
+            "firstInstallTime": "2026-10-07 19:46:41",
+            "versionCode": "1602 minSdk=24 targetSdk=36",
+            "versionName": "0.10.10"
+          },
+          "profile_retained": true,
+          "offline": true
+        },
+        "fold_resize": {
+          "status": "PASS",
+          "inner_surface": [
+            2176,
+            1812
+          ],
+          "five_action_labels_visible": true,
+          "cover_resize_and_return": true,
+          "scope": "Android emulator surfaces; no physical hinge/FPS claim"
+        },
+        "kart": {
+          "status": "PASS",
+          "actual_setup_steps": 5,
+          "phone_surface": [
+            1920,
+            1080
+          ],
+          "compact_surface": [
+            640,
+            320
+          ],
+          "five_action_labels_on_phone": true,
+          "compact_hud_and_capture": true,
+          "pause_return": true
+        }
+      }
+    },
+    {
+      "game": "kart",
+      "baseline_version": "1601",
+      "android_api": 36,
+      "api_evidence": "runtime getprop",
+      "workflow_run": 37681087799,
+      "result": {
+        "tested_games": [
+          "kart"
+        ],
+        "status": "PASS",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "9bcd223e2ddab8d60e79972f49e323c4b0fa9023",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "android_sdk": 36,
+        "onboarding": {
+          "status": "PASS",
+          "profile_name": "LumoTest",
+          "captures": [
+            {
+              "file": "07_home_after_onboarding.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "227190f33d6839816073dad67772d2d8b849689c686266e25ec6c4b6d44193df"
+            },
+            {
+              "file": "08_games_after_navigation.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "c0c2507327f8805758495f7c1e65fac3b2e640eb7d862e9a9140926610f3f6e6"
+            }
+          ]
+        },
+        "update": {
+          "status": "PASS",
+          "before": {
+            "userId": "10216",
+            "firstInstallTime": "2026-10-07 20:27:41",
+            "versionCode": "1601 minSdk=24 targetSdk=36",
+            "versionName": "0.10.9"
+          },
+          "after": {
+            "userId": "10216",
+            "firstInstallTime": "2026-10-07 20:27:41",
+            "versionCode": "1602 minSdk=24 targetSdk=36",
+            "versionName": "0.10.10"
+          },
+          "profile_retained": true,
+          "offline": true
+        },
+        "fold_resize": {
+          "status": "PASS",
+          "inner_surface": [
+            2176,
+            1812
+          ],
+          "five_action_labels_visible": true,
+          "cover_resize_and_return": true,
+          "explicit_device_rotation": true,
+          "scope": "Android emulator surfaces; no physical hinge/FPS claim"
+        },
+        "kart": {
+          "status": "PASS",
+          "actual_setup_steps": 5,
+          "phone_surface": [
+            1920,
+            1080
+          ],
+          "compact_surface": [
+            640,
+            320
+          ],
+          "five_action_labels_on_phone": true,
+          "compact_hud_and_capture": true,
+          "pause_return": true
+        }
+      }
+    }
+  ],
+  "prior_failed_attempts": [
+    {
+      "workflow_run": 37674457852,
+      "result": {
+        "tested_games": [
+          "kart"
+        ],
+        "status": "FAIL",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "onboarding": {
+          "status": "PASS",
+          "profile_name": "LumoTest",
+          "captures": [
+            {
+              "file": "07_home_after_onboarding.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "67912df8e03d4938a59a204e9a0c6eb06fd003dc22d83b8d7d95625b285a1d2a"
+            },
+            {
+              "file": "08_games_after_navigation.png",
+              "width": 1080,
+              "height": 2400,
+              "sha256": "1288c2ed6262902f74f5aaf358d351090048f1f2591de020b84442c5615b7f00"
+            }
+          ]
+        },
+        "update": {
+          "status": "PASS",
+          "before": {
+            "userId": "10216",
+            "firstInstallTime": "2026-10-07 19:45:53",
+            "versionCode": "1601 minSdk=24 targetSdk=36",
+            "versionName": "0.10.9"
+          },
+          "after": {
+            "userId": "10216",
+            "firstInstallTime": "2026-10-07 19:45:53",
+            "versionCode": "1602 minSdk=24 targetSdk=36",
+            "versionName": "0.10.10"
+          },
+          "profile_retained": true,
+          "offline": true
+        },
+        "error": "Inner-display surface did not rotate to 2176x1812",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 548, in main\n    raise RuntimeError('Inner-display surface did not rotate to 2176x1812')\nRuntimeError: Inner-display surface did not rotate to 2176x1812\n"
+      }
+    },
+    {
+      "workflow_run": 37678448599,
+      "result": {
+        "tested_games": [
+          "kart"
+        ],
+        "status": "FAIL",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "4e46b95db1090f061dec308db7cf0ae6e4d2cb7e",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "android_sdk": 36,
+        "error": "Real profile typing did not reach L",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 442, in main\n    result['onboarding'] = onboard(out)\n                           ^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 368, in onboard\n    raise RuntimeError('Real profile typing did not reach '+prefix)\nRuntimeError: Real profile typing did not reach L\n"
+      }
+    },
+    {
+      "workflow_run": 37678448599,
+      "result": {
+        "tested_games": [
+          "kart"
+        ],
+        "status": "FAIL",
+        "source": "1f9ab5a8fc0d7b5a8fbf2d0b8a35a92d7f8cdf9b",
+        "godot": "9ade252e67309d18b17d3226e33b0034b91f3495",
+        "harness": "4e46b95db1090f061dec308db7cf0ae6e4d2cb7e",
+        "scope": "Actual Android APK update, native scene launches, pause/back, saves and reward replay",
+        "not_tested": [
+          "physical Samsung/Fold",
+          "60 FPS",
+          "reference-video pixel parity",
+          "full native treasure journey",
+          "full rhythm song with taps",
+          "full puzzle completion"
+        ],
+        "apk_sha256": "82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511",
+        "android_sdk": 36,
+        "error": "Real profile typing did not reach L",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 442, in main\n    result['onboarding'] = onboard(out)\n                           ^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 368, in onboard\n    raise RuntimeError('Real profile typing did not reach '+prefix)\nRuntimeError: Real profile typing did not reach L\n"
+      }
+    }
+  ],
+  "external_ai_health": {
+    "ok": true,
+    "service": "lumo-ai-proxy",
+    "version": "2026-10-02-restart",
+    "openAiConfigured": true,
+    "openAiAvailable": false,
+    "upstreamStatus": "not_checked",
+    "chatModel": "gpt-6-luna",
+    "taskModel": "gpt-6-luna"
+  },
+  "external_ai_chat": {
+    "http_status": 503,
+    "body": {
+      "error": "proxy_error",
+      "reason": "openai_quota_exceeded",
+      "reply": "Ich kann gerade nicht mit dem KI-Server sprechen. Wir können trotzdem Mathe, Deutsch oder Lesen üben."
+    }
+  },
+  "physical_fold_tested": false,
+  "physical_60fps_verified": false,
+  "new_voice_music_and_intros_completed": false
+}
