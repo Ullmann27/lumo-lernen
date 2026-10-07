@@ -209,17 +209,28 @@ def onboard(out: Path) -> dict:
               and n.get('package') == PACKAGE]
     if len(fields) != 1:
         raise RuntimeError('One observed profile name field is required')
-    # One accessibility text action avoids dropping final injected key events
-    # when the slow software-rendered emulator immediately closes its IME.
-    live._device(className='android.widget.EditText',packageName=PACKAGE).set_text('LumoTest')
-    for attempt in range(20):
-        nodes = live.live_nodes(out,f'onboard-name-written-{attempt}')
-        if any(n.get('class') == 'android.widget.EditText' and
-               n.get('text') == 'LumoTest' for n in nodes):
-            break
-        time.sleep(.5)
-    else:
-        raise RuntimeError('Full fictional name was not present in the live field')
+    # Flutter's virtual EditText does not accept Android ACTION_SET_TEXT here.
+    # Use the observed field and real key input, confirming each character in
+    # fresh accessibility before closing the IME on the slow Mesa emulator.
+    bounds = list(map(int,re.findall(r'\d+',fields[0].get('bounds',''))))
+    if len(bounds) != 4:
+        raise RuntimeError('Observed profile field has no touch bounds')
+    x0,y0,x1,y1 = bounds
+    base.adb('shell','input','tap',str((x0+x1)//2),str((y0+y1)//2))
+    time.sleep(2)
+    prefix = ''
+    for char in 'LumoTest':
+        base.adb('shell','input','text',char)
+        prefix += char
+        for attempt in range(20):
+            nodes = live.live_nodes(out,f'onboard-name-written-{len(prefix)}-{attempt}')
+            if any(n.get('class') == 'android.widget.EditText' and
+                   n.get('text') == prefix for n in nodes):
+                break
+            time.sleep(.5)
+        else:
+            raise RuntimeError('Real profile typing did not reach '+prefix)
+    time.sleep(1)
     base.adb('shell','input','keyevent','KEYCODE_BACK')
     time.sleep(1)
     base.tap_label(out,'Weiter','onboard-name-next')
