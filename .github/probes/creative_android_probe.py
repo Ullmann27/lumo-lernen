@@ -11,6 +11,7 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -20,6 +21,10 @@ import unicodedata
 import xml.etree.ElementTree as ET
 
 from PIL import Image
+
+# Keep screenshot recognition from oversubscribing the same software-rendered
+# emulator host. This changes only the independent OCR reader, not the app.
+os.environ.setdefault('OMP_THREAD_LIMIT','1')
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts' / 'probes'))
 import pr207_android_smoke as base
@@ -110,7 +115,7 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     # background. A second read separates their contrast, without changing
     # any screenshot used as evidence or inventing a control coordinate.
     contrast = image.convert('L').point(lambda value: 0 if value >= 170 else 255)
-    for variant, pixels in [('raw',image),('contrast',contrast)]:
+    for variant, pixels in [('contrast',contrast),('raw',image)]:
         expanded = out / 'ocr-work.png'
         pixels.resize((image.width*2,image.height*2)).save(expanded)
         prefix = out / (tag+'-ocr-'+variant)
@@ -299,6 +304,7 @@ def main() -> int:
     parser.add_argument('--baseline',type=Path)
     parser.add_argument('--candidate',type=Path)
     parser.add_argument('--ocr-fixture',type=Path)
+    parser.add_argument('--game-scope',choices=('all','build','puzzle','rhythm','treasure'),default='all')
     parser.add_argument('--out',type=Path,required=True)
     args = parser.parse_args()
     out = args.out
@@ -314,7 +320,8 @@ def main() -> int:
         return 0
     if args.baseline is None or args.candidate is None:
         parser.error('--baseline and --candidate are required for actual Android play')
-    result = {'status':'RUNNING','source':SOURCE,'godot':GODOT,
+    selected=['build','puzzle','rhythm','treasure'] if args.game_scope=='all' else [args.game_scope]
+    result = {'tested_games':selected,'status':'RUNNING','source':SOURCE,'godot':GODOT,
               'harness':base.command('git','rev-parse','HEAD'),
               'scope':'Actual Android APK update, native scene launches, pause/back, saves and reward replay',
               'not_tested':['physical Samsung/Fold','60 FPS','reference-video pixel parity',
@@ -374,67 +381,73 @@ def main() -> int:
         result['update'] = {'status':'PASS','before':before_package,'after':after_package,
                             'profile_retained':True,'offline':True}
 
-        enter(out,'Bauwelt','LUMO BAUWELT','02_build')
-        native_text(out,'Bauziele','build-goals',tap=True)
-        native_text(out,'Ein Zuhause bauen','build-house-goal',tap=True)
-        native_text(out,'Mein Bauwerk testen','build-test-house',tap=True)
-        native_text(out,'Bauziel geschafft','build-house-passed')
-        capture(out,'03_build_house_passed')
-        leave(out,'build-exit')
-        stored_build = saves(out,'build','build-saved')
-        if not any('house' in data.get('completed',[]) for data in stored_build.values()):
-            raise RuntimeError('Completed house was not in the persisted build state')
-        first_wallet = wallet(out,'after-build')
-        if (first_wallet.get('stars',0)-start_wallet.get('stars',0) != 3 or
-            first_wallet.get('xp',0)-start_wallet.get('xp',0) != 24):
-            raise RuntimeError('Completed native build reward was not exactly 3 stars / 24 XP')
-        enter(out,'Bauwelt','LUMO BAUWELT','04_build_resume')
-        native_text(out,'Schon geschafft','build-resumed-goal')
-        native_text(out,'Mein Bauwerk testen','build-repeat-test',tap=True)
-        leave(out,'build-repeat-exit')
-        if wallet(out,'after-build-replay') != first_wallet:
-            raise RuntimeError('Replaying the saved build goal duplicated a reward')
-        result['build'] = {'status':'PASS','reward_stars':3,'reward_xp':24,
-                            'save_and_relaunch':True,'replay_deduplicated':True}
+        first_wallet=start_wallet
 
-        enter(out,'Puzzle-Atelier','LUMOS PUZZLE','05_puzzle')
-        native_text(out,'Neues Puzzle beginnen','puzzle-start',tap=True)
-        native_text(out,'Ein Tipp','puzzle-hint',tap=True)
-        capture(out,'06_puzzle_playing')
-        leave(out,'puzzle-exit')
-        stored_puzzle = saves(out,'puzzle','puzzle-saved')
-        original = next(iter(stored_puzzle.values()))
-        if original.get('count') != 12 or original.get('hints') != 1:
-            raise RuntimeError('Real puzzle choice or hint was not saved')
-        enter(out,'Puzzle-Atelier','LUMOS PUZZLE','07_puzzle_resume')
-        native_text(out,'Gespeichertes Puzzle fortsetzen','puzzle-continue',tap=True)
-        leave(out,'puzzle-resumed-exit')
-        restored = next(iter(saves(out,'puzzle','puzzle-resumed').values()))
-        if any(restored.get(key) != original.get(key)
-               for key in ('count','motif','result_id','hints','pieces')):
-            raise RuntimeError('Puzzle resumed a different stored state')
-        result['puzzle'] = {'status':'PASS','parts':12,'hints':1,'save_and_relaunch':True}
+        if 'build' in selected:
+            enter(out,'Bauwelt','LUMO BAUWELT','02_build')
+            native_text(out,'Bauziele','build-goals',tap=True)
+            native_text(out,'Ein Zuhause bauen','build-house-goal',tap=True)
+            native_text(out,'Mein Bauwerk testen','build-test-house',tap=True)
+            native_text(out,'Bauziel geschafft','build-house-passed')
+            capture(out,'03_build_house_passed')
+            leave(out,'build-exit')
+            stored_build = saves(out,'build','build-saved')
+            if not any('house' in data.get('completed',[]) for data in stored_build.values()):
+                raise RuntimeError('Completed house was not in the persisted build state')
+            first_wallet = wallet(out,'after-build')
+            if (first_wallet.get('stars',0)-start_wallet.get('stars',0) != 3 or
+                first_wallet.get('xp',0)-start_wallet.get('xp',0) != 24):
+                raise RuntimeError('Completed native build reward was not exactly 3 stars / 24 XP')
+            enter(out,'Bauwelt','LUMO BAUWELT','04_build_resume')
+            native_text(out,'Schon geschafft','build-resumed-goal')
+            native_text(out,'Mein Bauwerk testen','build-repeat-test',tap=True)
+            leave(out,'build-repeat-exit')
+            if wallet(out,'after-build-replay') != first_wallet:
+                raise RuntimeError('Replaying the saved build goal duplicated a reward')
+            result['build'] = {'status':'PASS','reward_stars':3,'reward_xp':24,
+                                'save_and_relaunch':True,'replay_deduplicated':True}
 
-        enter(out,'Rhythm Party','LUMO STERNENRHYTHMUS','08_rhythm')
-        native_text(out,'Los geht','rhythm-start',tap=True)
-        time.sleep(7)
-        capture(out,'09_rhythm_notes')
-        leave(out,'rhythm-exit')
-        result['rhythm'] = {'status':'PASS','actual_song_started':True,'pause_return':True}
+        if 'puzzle' in selected:
+            enter(out,'Puzzle-Atelier','LUMOS PUZZLE','05_puzzle')
+            native_text(out,'Neues Puzzle beginnen','puzzle-start',tap=True)
+            native_text(out,'Ein Tipp','puzzle-hint',tap=True)
+            capture(out,'06_puzzle_playing')
+            leave(out,'puzzle-exit')
+            stored_puzzle = saves(out,'puzzle','puzzle-saved')
+            original = next(iter(stored_puzzle.values()))
+            if original.get('count') != 12 or original.get('hints') != 1:
+                raise RuntimeError('Real puzzle choice or hint was not saved')
+            enter(out,'Puzzle-Atelier','LUMOS PUZZLE','07_puzzle_resume')
+            native_text(out,'Gespeichertes Puzzle fortsetzen','puzzle-continue',tap=True)
+            leave(out,'puzzle-resumed-exit')
+            restored = next(iter(saves(out,'puzzle','puzzle-resumed').values()))
+            if any(restored.get(key) != original.get(key)
+                   for key in ('count','motif','result_id','hints','pieces')):
+                raise RuntimeError('Puzzle resumed a different stored state')
+            result['puzzle'] = {'status':'PASS','parts':12,'hints':1,'save_and_relaunch':True}
 
-        enter(out,'Schatzsuche','LUMOS STERNENSCHATZ','10_treasure')
-        native_text(out,'Rucksack','treasure-inventory',tap=True)
-        native_text(out,'Dein Abenteuer','treasure-inventory-visible')
-        capture(out,'11_treasure_inventory')
-        native_text(out,'Weiter erkunden','treasure-inventory-close',tap=True)
-        leave(out,'treasure-exit')
-        treasure = next(iter(saves(out,'treasure','treasure-saved').values()))
-        enter(out,'Schatzsuche','LUMOS STERNENSCHATZ','12_treasure_resume')
-        leave(out,'treasure-resumed-exit')
-        resumed = next(iter(saves(out,'treasure','treasure-resumed').values()))
-        if any(resumed.get(key) != treasure.get(key) for key in ('chapter','result_id')):
-            raise RuntimeError('Treasure chapter or identity changed on relaunch')
-        result['treasure'] = {'status':'PASS','inventory_visible':True,'save_and_relaunch':True}
+        if 'rhythm' in selected:
+            enter(out,'Rhythm Party','LUMO STERNENRHYTHMUS','08_rhythm')
+            native_text(out,'Los geht','rhythm-start',tap=True)
+            time.sleep(7)
+            capture(out,'09_rhythm_notes')
+            leave(out,'rhythm-exit')
+            result['rhythm'] = {'status':'PASS','actual_song_started':True,'pause_return':True}
+
+        if 'treasure' in selected:
+            enter(out,'Schatzsuche','LUMOS STERNENSCHATZ','10_treasure')
+            native_text(out,'Rucksack','treasure-inventory',tap=True)
+            native_text(out,'Dein Abenteuer','treasure-inventory-visible')
+            capture(out,'11_treasure_inventory')
+            native_text(out,'Weiter erkunden','treasure-inventory-close',tap=True)
+            leave(out,'treasure-exit')
+            treasure = next(iter(saves(out,'treasure','treasure-saved').values()))
+            enter(out,'Schatzsuche','LUMOS STERNENSCHATZ','12_treasure_resume')
+            leave(out,'treasure-resumed-exit')
+            resumed = next(iter(saves(out,'treasure','treasure-resumed').values()))
+            if any(resumed.get(key) != treasure.get(key) for key in ('chapter','result_id')):
+                raise RuntimeError('Treasure chapter or identity changed on relaunch')
+            result['treasure'] = {'status':'PASS','inventory_visible':True,'save_and_relaunch':True}
         if wallet(out,'after-unfinished-games') != first_wallet:
             raise RuntimeError('An unfinished creative game incorrectly awarded a reward')
 
@@ -451,7 +464,7 @@ def main() -> int:
         if PACKAGE in crashes:
             raise RuntimeError('App or its native game process appears in crash buffer')
         result['status'] = 'PASS'
-        print('[CreativeAndroid] PASS: in-place update, profile, four native games, save recovery, reward replay',flush=True)
+        print('[CreativeAndroid] PASS: in-place update, profile, selected native game, save/reward guards; scope='+args.game_scope,flush=True)
         return 0
     except Exception as error:
         result.update(status='FAIL',error=str(error),traceback=traceback.format_exc())

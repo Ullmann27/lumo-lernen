@@ -14,6 +14,10 @@ jobs:
   native:
     runs-on: ubuntu-latest
     timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        creative: [build, puzzle, rhythm, treasure]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -95,11 +99,11 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof
+          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope ${{ matrix.creative }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-complete-native-evidence-${{ github.run_id }}
+          name: lumo-complete-native-${{ matrix.creative }}-${{ github.run_id }}
           path: |
             native-proof/
             !native-proof/**/ocr-work.png
