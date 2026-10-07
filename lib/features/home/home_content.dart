@@ -865,7 +865,7 @@ class _HomeHero extends StatelessWidget {
         final width = constraints.maxWidth;
         final textScale = MediaQuery.textScalerOf(context).scale(1);
         final height =
-            (width < 340 ? 198.0 : 216.0) * textScale.clamp(1.0, 1.45);
+            (width < 340 ? 224.0 : 232.0) * textScale.clamp(1.0, 1.45);
         final foxSize = (width * .51).clamp(126.0, 258.0).toDouble();
         return Container(
           key: const ValueKey('home-adventure-hero'),
