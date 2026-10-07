@@ -202,6 +202,44 @@ def package_identity(out: Path, tag: str) -> dict:
     return result
 
 
+def onboard(out: Path) -> dict:
+    base.tap_label(out,"Los geht's!",'onboard-welcome')
+    nodes = live.live_nodes(out,'onboard-name')
+    fields = [n for n in nodes if n.get('class') == 'android.widget.EditText'
+              and n.get('package') == PACKAGE]
+    if len(fields) != 1:
+        raise RuntimeError('One observed profile name field is required')
+    # One accessibility text action avoids dropping final injected key events
+    # when the slow software-rendered emulator immediately closes its IME.
+    live._device(className='android.widget.EditText',packageName=PACKAGE).set_text('LumoTest')
+    for attempt in range(20):
+        nodes = live.live_nodes(out,f'onboard-name-written-{attempt}')
+        if any(n.get('class') == 'android.widget.EditText' and
+               n.get('text') == 'LumoTest' for n in nodes):
+            break
+        time.sleep(.5)
+    else:
+        raise RuntimeError('Full fictional name was not present in the live field')
+    base.adb('shell','input','keyevent','KEYCODE_BACK')
+    time.sleep(1)
+    base.tap_label(out,'Weiter','onboard-name-next')
+    base.tap_label(out,'Weiter','onboard-age-next')
+    base.tap_label(out,'Profil speichern','onboard-grade-save')
+    for attempt in range(20):
+        if 'LumoTest' in base.accessible_text(live.live_nodes(out,f'onboard-home-{attempt}')):
+            break
+        time.sleep(1)
+    else:
+        raise RuntimeError('Saved full profile name missing from actual home UI')
+    home = capture(out,'07_home_after_onboarding')
+    base.tap_label(out,'Spiele','home-to-games')
+    games = capture(out,'08_games_after_navigation')
+    if not any(s in base.accessible_text(live.live_nodes(out,'onboard-games'))
+               for s in ('Lumo Cards','Lumo Kart','Spielewelt')):
+        raise RuntimeError('Actual games entry missing after onboarding')
+    return {'status':'PASS','profile_name':'LumoTest','captures':[home,games]}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--baseline',type=Path,required=True)
@@ -235,7 +273,7 @@ def main() -> int:
             raise RuntimeError('Baseline installation failed')
         (out/'baseline-install.txt').write_text(baseline_install)
         base.launch(out,'baseline')
-        result['onboarding'] = base.onboard(out)
+        result['onboarding'] = onboard(out)
         before_package = package_identity(out,'baseline')
         before_profile = prefs(out,'baseline').get('flutter.lumo_active_profile')
         if not before_profile or 'LumoTest' not in before_profile:
