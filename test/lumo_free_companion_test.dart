@@ -8,6 +8,7 @@ import 'package:lumo_lernen/widgets/fox/lumo_free_companion.dart';
 void main() {
   Future<void> mount(WidgetTester tester,
       {bool reduced = true,
+      bool floating = false,
       double width = 360,
       LumoCompanionScene scene = const LumoCompanionScene(),
       ValueChanged<LumoCompanionAction>? onAction}) async {
@@ -22,6 +23,7 @@ void main() {
               scene: scene,
               onAction: onAction ?? (_) {},
               reducedMotion: reduced,
+              floating: floating,
               proactive: false)),
     ]))));
     await tester.runAsync(
@@ -65,6 +67,19 @@ void main() {
     await tester.pumpAndSettle();
     expect(actions, [LumoCompanionAction.explainTask]);
     expect(find.text('Dein eigener Lernschritt'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+    await tester.binding.setSurfaceSize(null);
+  });
+
+  testWidgets('floating companion uses animated fox and opens the same help menu',
+      (tester) async {
+    await mount(tester, floating: true);
+    expect(find.byKey(const ValueKey('lumo-floating-animated-fox')),
+        findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('lumo-fox-button')));
+    await tester.pumpAndSettle();
+    expect(find.text('Was möchtest du machen?'), findsOneWidget);
+    expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
     await tester.binding.setSurfaceSize(null);
   });

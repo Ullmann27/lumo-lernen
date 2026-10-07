@@ -5,8 +5,6 @@ import '../../core/lumo_companion_guide.dart';
 import '../../core/lumo_voice.dart';
 import 'lumo_animated_fox.dart';
 import 'lumo_companion_requests.dart';
-import '../design/lumo_design_system.dart';
-import 'lumo_character.dart';
 import '../../theme/lumo_visual_tokens.dart';
 export '../../core/lumo_companion_guide.dart';
 
@@ -538,7 +536,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
         ));
   }
 
-  /// Runder Fuchs-Knopf im Stil der Zielbilder (blaue Jacke, Leuchtring).
+  /// Runder Fuchs-Knopf im Stil der Zielbilder. Auch im Floating-Modus
+  /// nutzt Lumo denselben animierten Renderer wie auf seiner Laufleiste.
   Widget _buildFloating() => Material(
         color: Colors.transparent,
         child: SizedBox(
@@ -548,28 +547,33 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
           child: Semantics(
             label: 'Lumo, dein Lernfuchs. Hilfe und Ideen öffnen',
             button: true,
-            child: LumoCharacter(
+            child: InkWell(
               key: const ValueKey('lumo-fox-button'),
-              pose: LumoDesignFoxPose.avatar,
-              size: 58,
-              reduceMotion: _quiet,
-              shadow: false,
-              celebratePose: null,
+              borderRadius: BorderRadius.circular(29),
               onTap: () =>
                   _showMenu(proposal: _proposal ?? _guide.choose(widget.scene)),
-              child: DecoratedBox(
+              child: Ink(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: LumoVisualTokens.glass,
                   border: Border.all(color: LumoVisualTokens.cyan, width: 2.4),
                   boxShadow: [
                     BoxShadow(
-                        color: LumoVisualTokens.cyan.withOpacity(.6),
-                        blurRadius: 14),
+                      color: LumoVisualTokens.cyan.withOpacity(.6),
+                      blurRadius: 14,
+                    ),
                   ],
                 ),
-                child: const ClipOval(
-                  child: LumoFoxPose(pose: LumoDesignFoxPose.avatar, size: 54),
+                child: Center(
+                  child: LumoAnimatedFox(
+                    key: const ValueKey('lumo-floating-animated-fox'),
+                    size: 52,
+                    moving: false,
+                    active: _visible,
+                    voiceEnabled: widget.voiceEnabled,
+                    expression: _reaction ?? widget.expression,
+                    reducedMotion: _quiet,
+                  ),
                 ),
               ),
             ),
