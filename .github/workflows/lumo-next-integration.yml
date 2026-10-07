@@ -1,0 +1,144 @@
+name: Lumo next integration evidence
+on:
+  push:
+    branches: [chatgpt/lumo-next-integration-2026-10-07]
+    paths: [.github/workflows/lumo-next-integration.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-next-integration
+  cancel-in-progress: true
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BASE: 35299467b7c2b9077b00160e4c7dba86c82f3d03
+      APP: b6a0afa421e5e854345bfac5cc2be1813a7c3e50
+      LEARNING: 17ab56f3912694b3226dde702bd6482ac61509dd
+      CARDS: 589f10c8d0c31f7b8a188210c2dfa8d5fe250bdf
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check non-overlap and create local review tree only
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p integration-evidence
+          git config user.name 'Lumo integration review'
+          git config user.email '64243701+Ullmann27@users.noreply.github.com'
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          def git(*args):
+              return subprocess.check_output(['git', *args], text=True).strip()
+          base, app = os.environ['BASE'], os.environ['APP']
+          changed = set(git('diff', '--name-only', base, app).splitlines())
+          grafts = []
+          summaries = []
+          for lane in ('LEARNING','CARDS'):
+              sha = os.environ[lane]
+              if git('merge-base', base, sha) != base:
+                  raise RuntimeError('Unexpected upstream ancestry: '+lane)
+              paths = git('diff','--name-only',base,sha).splitlines()
+              # Import product, tests and documentation, not branch-specific CI.
+              paths = [p for p in paths if not p.startswith('.github/workflows/')]
+              overlap = changed.intersection(paths)
+              if overlap:
+                  raise RuntimeError('Unreviewed overlapping paths: '+str(overlap))
+              for path in paths:
+                  entry = git('ls-tree',sha,'--',path)
+                  if not entry:
+                      raise RuntimeError('Deletion requires explicit review: '+path)
+                  mode, kind, blob_path = entry.split(' ',2)
+                  blob = blob_path.split('\t',1)[0]
+                  if kind != 'blob' or mode != '100644':
+                      raise RuntimeError('Nonregular source needs review: '+path)
+                  grafts.append(dict(path=path,mode=mode,type=kind,sha=blob))
+              changed.update(paths)
+              summaries.append(dict(lane=lane,sha=sha,paths=paths))
+              Path('integration-evidence/'+lane.lower()+'.patch').write_text(
+                  subprocess.check_output(['git','diff',base,sha,'--',*paths],text=True))
+          Path('integration-evidence/graft-entries.json').write_text(json.dumps(grafts,indent=2)+'\n')
+          Path('integration-evidence/inputs.json').write_text(json.dumps(dict(
+              workflow_sha=os.environ['GITHUB_SHA'], base=base, app=app, lanes=summaries,
+              note='Local scratch review only; no remote merge/push or release'),indent=2)+'\n')
+          subprocess.run(['git','checkout','--detach',app],check=True)
+          for summary in summaries:
+              subprocess.run(['git','restore','--source='+summary['sha'],'--staged','--worktree','--',*summary['paths']],check=True)
+          subprocess.run(['git','commit','-m','local review only: PR204+PR206 onto PR207'],check=True)
+          tree=git('rev-parse','HEAD^{tree}')
+          local=git('rev-parse','HEAD')
+          Path('integration-evidence/local-tree.json').write_text(json.dumps(dict(
+              tree=tree, local_scratch_commit=local, not_a_pushed_commit=True),indent=2)+'\n')
+          # Source for manual inspection; never export bundled fonts or keys.
+          paths=git('ls-files').splitlines()
+          selected=[p for p in paths if p.startswith(('lib/','test/','scripts/','config/'))
+                    or p in ('pubspec.yaml','pubspec.lock','analysis_options.yaml','CODEX_START.md')
+                    or (p.startswith('docs/') and p.endswith(('.md','.json')))
+                    or p in ('docs/design_targets/2026-10-04/01_start_home.png',
+                             'docs/design_targets/2026-10-04/06_spielewelt.png',
+                             'docs/design_targets/2026-10-04/10_fold_tablet_home.png')]
+          subprocess.run(['git','archive','--format=tar.gz','-o','integration-evidence/source.tar.gz','HEAD','--',*selected],check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-next-source-${{ github.run_id }}
+          path: integration-evidence/
+          if-no-files-found: error
+          retention-days: 14
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve committed dependencies
+        run: |
+          set -o pipefail
+          flutter --version | tee integration-evidence/flutter-version.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee integration-evidence/dependencies.log
+      - name: Analyze combined source
+        id: analyze
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee integration-evidence/analyze.log
+      - name: Execute all combined Flutter tests
+        id: tests
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          # Screenshot tests compare to actual checked-out source. This is the
+          # explicitly labelled local scratch commit, not the workflow SHA.
+          export GITHUB_SHA="$(git rev-parse HEAD)"
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee integration-evidence/tests.log
+      - name: Record outcomes without upgrading failures to success
+        if: ${{ !cancelled() }}
+        env:
+          ANALYSIS: ${{ steps.analyze.outcome }}
+          TESTS: ${{ steps.tests.outcome }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          data={key:os.environ[key] for key in ('ANALYSIS','TESTS')}
+          data['tracked_diff']=subprocess.check_output(['git','diff','HEAD','--name-only'],text=True)
+          Path('integration-evidence/outcomes.json').write_text(json.dumps(data,indent=2)+'\n')
+          if data['ANALYSIS']!='success' or data['TESTS']!='success' or data['tracked_diff']:
+              raise SystemExit(1)
+          PY
+      - name: Preserve original logs and Flutter-rendered captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-next-results-${{ github.run_id }}
+          path: |
+            integration-evidence/
+            ci-out/cards-visual/
+          if-no-files-found: error
+          retention-days: 14
