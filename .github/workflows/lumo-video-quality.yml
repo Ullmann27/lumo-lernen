@@ -121,7 +121,7 @@ jobs:
         run: |
           set -o pipefail
           git rev-parse HEAD > build-proof/source-sha.txt
-          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+          bash scripts/build_unified_apk.sh --repo "$LUMO_NATIVE_DIRECTORY" 2>&1 | tee build-proof/build.log
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
           cp proof/TEST-RESULTS.txt dist/TEST-RESULTS.txt
       - uses: actions/upload-artifact@v4
