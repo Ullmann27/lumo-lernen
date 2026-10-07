@@ -11,8 +11,10 @@ Quellen: lokale Projektanhänge, Produkt-/Copilotauftrag vom 04.10., aktuelle Gi
 PRs sowie die bereitgestellten Projektgespräche. Der vollständige Abruf der letzten
 zehn Chats war hier nicht verfügbar. Keine vollständige Chatlektüre behaupten.
 
-Basis Flutter: PR210, da5b103c04eecfbe25b1f7bf82cb0dcf6a3bbe78.
-Godot bleibt exakt auf dbd472e78ccb196c7492c4c842f8b85e3d642e2c / 4.6.3 gepinnt.
+Basis Flutter: PR210, zuerst da5b103c04eecfbe25b1f7bf82cb0dcf6a3bbe78,
+danach die während der Arbeit hinzugekommenen Änderungen bis
+53e294c9a057c0f15012a35c00dcaf666b6f37b4 integriert.
+Godot ist auf 148decd2b34af7bfb5f1504c166d42411f8e99e1 / 4.6.3 gepinnt.
 Damit bleiben die bereits integrierten 50 Lernlevel, Cards-Sitzungssicherung,
 Start-/Rückkehrschutz, vier Kreativspiele und zwölf Rennwelten erhalten.
 Diese Sitzung beansprucht Flutter-Oberfläche, neue Einzelgrafiken und zugehörige
@@ -32,6 +34,8 @@ Screenshot-/Layoutprüfungen; kein konkurrierender Renncontroller und kein Merge
 - Screenshotprüfung lädt echte Nunito-Schriften und wartet auf Bilddecoder.
   Vorher konnten Belegbilder fehlende Figuren oder Ahem-Textkästen zeigen.
 - Versionsnummer 0.10.9+1600, bisherige Preview-Paket-/Signaturidentität bleibt.
+- Aktuellste Kart-Reparatur aus PR210: Joystick, Pause und Aktionsknöpfe passen
+  nach dem Garagenstart auch in kurze Querformatflächen und sichere Bildschirmränder.
 
 ## Bildherkunft
 Drei neue Rasterbilder wurden mit dem integrierten Bildgenerator erzeugt und
@@ -56,8 +60,12 @@ Die Godot-Grafikprüfung lief lokal durch und erzeugte sechs echte 1280×720-Bil
 mit llvmpipe/OpenGL. Godot-Prüfrevision 2789b139 hat gegenüber dem gepinnten
 Produkt nur eine Änderung am Android-Prüfharness, keine Spieländerungen.
 
-Vollständige Flutter-Suite, endgültiger APK-Bau und Hash werden im Abschluss
-nachgetragen. Alte CI-Zahlen gelten nicht als Prüfung dieses Kandidaten.
+Vollständige Flutter-Suite lokal: **707 bestanden, 4 übersprungen, 0 fehlgeschlagen**.
+Nach dem Test wurden nur der Godot-Pin, Build-/Probe-/Dokumentationsdateien und
+Belegbilder aktualisiert; der getestete Dart-Code ist unverändert.
+Statische Analyse: keine Fehler, 151 Warnungen/Hinweise verbleiben.
+Launcherprüfung: 8 Tests bestanden. Endgültiger APK-Bau und Hash werden im
+Abschluss nachgetragen. Alte CI-Zahlen gelten nicht als Prüfung dieses Kandidaten.
 
 ## Verbleibende Grenzen
 Der Rennwelt-/Fuchsmodell-Detailgrad liegt weiterhin unter Heinz' Videovorlage.
