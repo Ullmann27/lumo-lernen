@@ -1,0 +1,158 @@
+name: Lumo video quality APK
+on:
+  push:
+    branches: [chatgpt/kart-video-quality-2026-10-07]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-video-quality-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_BUILD_NUMBER: '1504'
+  LUMO_VERSION_NAME: '0.10.9'
+jobs:
+  verify-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      LUMO_NATIVE_DIRECTORY: /tmp/lumo-native-visual
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Dependencies and app source analysis
+        run: |
+          set -o pipefail
+          mkdir -p proof/app-renders build-proof
+          git rev-parse HEAD > proof/source-sha.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analysis.log
+      - name: Flutter regression suite and actual app screenshots
+        env:
+          LUMO_POLISH_CAPTURES: ${{ github.workspace }}/proof/app-renders
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee proof/flutter-tests.log
+          python3 -m unittest discover -s scripts/tests 2>&1 | tee proof/native-preparation.log
+          {
+            echo "Flutter source: $(git rev-parse HEAD)"
+            echo 'PASS Flutter source analysis (no errors)'
+            echo 'PASS full Flutter regression suite'
+            echo 'PASS native preparation Python tests'
+            echo 'App render files:'
+            find proof/app-renders -maxdepth 1 -type f -name '*.png' -printf '%f\n' | sort
+          } > proof/TEST-RESULTS.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-app-evidence-${{ github.run_id }}
+          path: proof/
+      - name: Install matching Godot engine and real renderer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y xvfb libgl1-mesa-dri ripgrep
+          bash scripts/install_godot_for_build.sh
+      - name: Import the exact embedded native source
+        run: |
+          set -euo pipefail
+          GODOT_SHA=$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')
+          godot --version | rg '^4\.6\.3\.'
+          git init "$LUMO_NATIVE_DIRECTORY"
+          git -C "$LUMO_NATIVE_DIRECTORY" remote add origin https://github.com/Ullmann27/lumo-godot.git
+          git -C "$LUMO_NATIVE_DIRECTORY" fetch --depth 1 origin "$GODOT_SHA"
+          git -C "$LUMO_NATIVE_DIRECTORY" checkout --detach FETCH_HEAD
+          test "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)" = "$GODOT_SHA"
+          mkdir -p "$LUMO_NATIVE_DIRECTORY/exports/fold-controls"
+          git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/source-sha.txt"
+          godot --path "$LUMO_NATIVE_DIRECTORY" --headless --editor --import --quit > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log" 2>&1
+          if rg 'SCRIPT ERROR|Parse Error|Failed to load|ERROR:' "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log"; then exit 1; fi
+      - name: Render actual native worlds and menu from the exact APK pin
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          timeout 420s xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy --rendering-method gl_compatibility --script res://scripts/tests/kart_visual_quality_capture.gd 2>&1 | tee exports/fold-controls/visual.log
+          if rg 'SCRIPT ERROR|Assertion failed|Parse Error|Failed to load|ERROR:' exports/fold-controls/visual.log; then exit 1; fi
+          rg -F '[KartVisualQuality] PASS:' exports/fold-controls/visual.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-native-renders-${{ github.run_id }}
+          path: |
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/video-quality/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/visual.log
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/source-sha.txt
+      - name: Exact native Fold, real multi-touch, menu and driving regressions
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          for test in kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression; do
+            timeout 420s xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy --rendering-method gl_compatibility --script "res://scripts/tests/$test.gd" 2>&1 | tee "exports/fold-controls/$test.log"
+            if rg 'SCRIPT ERROR|Assertion failed|Parse Error|Failed to load|ERROR:' "exports/fold-controls/$test.log"; then exit 1; fi
+          done
+          rg -F '[KartFoldControls] PASS:' exports/fold-controls/kart_fold_controls_regression.log
+          rg -F '[KartMenuFlow] PASS:' exports/fold-controls/kart_menu_flow_regression.log
+          rg -F '[KartPhysics] PASS:' exports/fold-controls/kart_physics_regression.log
+          GODOT_SHA=$(cat exports/fold-controls/source-sha.txt)
+          echo "PASS exact Godot source real rendering, Fold touch, menu and physics: $GODOT_SHA" >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-native-verification-${{ github.run_id }}
+          path: |
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/holographic-proof/
+      - name: Build and verify the unified APK from exact clean source
+        run: |
+          set -o pipefail
+          git rev-parse HEAD > build-proof/source-sha.txt
+          mkdir -p build
+          git clone --no-hardlinks "$LUMO_NATIVE_DIRECTORY" build/godot-source
+          test "$(git -C build/godot-source rev-parse HEAD)" = "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)"
+          cp -a "$LUMO_NATIVE_DIRECTORY/.godot" build/godot-source/.godot
+          python3 - <<'PYCODE'
+          import os, shutil, subprocess
+          from pathlib import Path
+          source = Path(os.environ['LUMO_NATIVE_DIRECTORY'])
+          target = Path('build/godot-source')
+          ignored = subprocess.check_output([
+              'git', '-C', str(source), 'ls-files', '--others', '--ignored',
+              '--exclude-standard', '-z',
+          ]).decode().split('\0')
+          for name in ignored:
+              if not name.endswith(('.import', '.translation')) or name.startswith('.godot/'):
+                  continue
+              destination = target / name
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(source / name, destination)
+          PYCODE
+          test -z "$(git -C build/godot-source status --porcelain)"
+          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
+          cp proof/TEST-RESULTS.txt dist/TEST-RESULTS.txt
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: lumo-visual-apk-${{ github.run_id }}
+          path: dist/
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-build-evidence-${{ github.run_id }}
+          path: build-proof/
