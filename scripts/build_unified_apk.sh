@@ -9,10 +9,15 @@ require_clean_sources() {
 }
 require_clean_sources
 if [ ! -d android ]; then
-  # flutter create normally upgrades dependencies: do not mutate pubspec.lock
-  # after the tests have run against the committed dependency graph.
-  flutter create --no-pub --platforms=android --org dev.ullmann.lumo .
+  # A Flutter scaffold may replace dependency metadata even with --no-pub.
+  # Generate outside this repository and copy ONLY its native Android host.
+  host_scaffold="$(mktemp -d "${TMPDIR:-/tmp}/lumo-host.XXXXXXXX")"
+  trap 'rm -rf "$host_scaffold"' EXIT
+  flutter create --no-pub --project-name lumo_lernen --platforms=android \
+    --org dev.ullmann.lumo "$host_scaffold/scaffold"
+  cp -a "$host_scaffold/scaffold/android" android
 fi
+require_clean_sources
 python3 scripts/prepare_android.py --side-by-side
 python3 scripts/prepare_embedded_games.py
 # Isolated build-only image tooling; no global pip or app dependency changes.
