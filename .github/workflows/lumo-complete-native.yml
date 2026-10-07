@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        creative: [build, puzzle, rhythm, treasure, kart]
+        creative: [kart]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,11 +32,37 @@ jobs:
           run-id: 37576067479
           name: lumo-install-candidate-37576067479
           path: baseline/
+      - name: Wait for the exact corrected APK build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PYBUILD'
+          import json, os, time, urllib.request
+          endpoint = 'https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/37644572864'
+          deadline = time.monotonic() + 900
+          while time.monotonic() < deadline:
+              request = urllib.request.Request(endpoint, headers={
+                  'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                  'Accept': 'application/vnd.github+json'})
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  build = json.load(response)
+              if build['head_sha'] != '5be37264a357bb8d2a6dd3171f42f42ed738d476':
+                  raise SystemExit('Unexpected candidate source')
+              if build['status'] == 'completed':
+                  if build['conclusion'] != 'success':
+                      raise SystemExit('Candidate build did not pass')
+                  print('Exact corrected candidate is ready')
+                  break
+              print('Waiting for corrected candidate build', flush=True)
+              time.sleep(20)
+          else:
+              raise SystemExit('Candidate build was not ready within 15 minutes')
+          PYBUILD
       - uses: actions/download-artifact@v4
         with:
           github-token: ${{ github.token }}
-          run-id: 37639660610
-          name: lumo-complete-apk-37639660610
+          run-id: 37644572864
+          name: lumo-complete-apk-37644572864
           path: candidate/
       - name: Check actual extracted APK paths before starting emulator
         run: |

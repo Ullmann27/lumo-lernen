@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1600 update.
+"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1601 update.
 
 Only fictional data in a disposable Android emulator is used. Flutter controls
 come from live accessibility; native Godot controls from current screenshot OCR.
@@ -33,8 +33,8 @@ import pr207_android_ui_probe as live
 
 PACKAGE = base.PACKAGE
 BASE_DIGEST = 'd33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e'
-SOURCE = '36969d8bf87346544ef28a43be2547ce4913c2d3'
-GODOT = '148decd2b34af7bfb5f1504c166d42411f8e99e1'
+SOURCE = '5be37264a357bb8d2a6dd3171f42f42ed738d476'
+GODOT = '9d99fd9b5a0f5383199675ba9213290f5b511f61'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 base.ui_nodes = live.live_nodes
 base.tap_label = live.live_tap_label
@@ -411,7 +411,7 @@ def main() -> int:
             provenance['tracked_source_clean'] is not True or
             provenance['godot']['revision'] != GODOT or
             provenance['signingCertificateSha256'] != CERT or
-            provenance['versionCode'] != 1600 or
+            provenance['versionCode'] != 1601 or
             provenance['sha256'] != digest(args.candidate)):
             raise RuntimeError('Candidate provenance mismatch')
         result['apk_sha256'] = digest(args.candidate)
@@ -432,7 +432,7 @@ def main() -> int:
         update = base.adb('install','-r','--no-streaming',str(args.candidate),timeout=180)
         (out/'update-install.txt').write_text(update)
         after_package = package_identity(out,'updated')
-        if ('Success' not in update or not after_package['versionCode'].startswith('1600') or
+        if ('Success' not in update or not after_package['versionCode'].startswith('1601') or
             after_package['userId'] != before_package['userId'] or
             after_package['firstInstallTime'] != before_package['firstInstallTime']):
             raise RuntimeError('In-place update with unchanged installation identity failed')
