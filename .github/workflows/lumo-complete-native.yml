@@ -38,7 +38,7 @@ jobs:
         run: |
           mkdir -p native-proof
           sudo apt-get update -qq
-          sudo apt-get install -y tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          sudo apt-get install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt
