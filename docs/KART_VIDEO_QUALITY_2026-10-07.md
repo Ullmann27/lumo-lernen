@@ -35,7 +35,7 @@ Der nächste fertige Render des finalen Pins ersetzt nur Vorschau und Herkunft.
 ## Quellen und Build-Nachweis
 
 Die verbindliche Godot-Revision steht in `config/godot-source.json`:
-`0835a91017a5b0002440b5328e89ce12b1bb8a6d` (Godot 4.6.3). Der Build
+`b79ec387da593f97d078bd02c7629b1316f3ebd0` (Godot 4.6.3). Der Build
 exportiert diesen Quellstand in dieselbe APK und prüft Revision und PCK-Hash aus
 den APK-Bytes. Der APK-Prüfer liest die Standardversion aus `pubspec.yaml`;
 explizite Build-Variablen bleiben möglich.
