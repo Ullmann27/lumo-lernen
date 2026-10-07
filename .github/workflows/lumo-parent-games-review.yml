@@ -1,0 +1,132 @@
+name: Lumo parent and games patch review
+on:
+  push:
+    branches: [chatgpt/parent-games-polish-2026-10-07]
+    paths:
+      - .github/workflows/lumo-parent-games-review.yml
+      - scripts/probes/parent_games_20261007*.py
+      - lib/widgets/design/lumo_night_scope.dart
+      - lib/features/games/widgets/lumo_game_spotlights.dart
+      - test/design/parent_games_polish_test.dart
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-parent-games-review
+  cancel-in-progress: true
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Prepare evidence and immutable source list
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p polish-evidence/before polish-evidence/after polish-evidence/sources
+          git rev-parse HEAD > polish-evidence/input-sha.txt
+          flutter --version > polish-evidence/flutter-version.txt
+          cat > polish-evidence/paths.txt <<'EOF'
+          lib/features/games/games_content.dart
+          lib/features/games/widgets/lumo_game_spotlights.dart
+          lib/features/learning/learning_dna_card.dart
+          lib/features/parents/widgets/lumo_ai_policy_selector.dart
+          lib/features/rewards/test_photo_entry_card.dart
+          lib/features/settings/parent_report_card.dart
+          lib/features/settings/settings_content.dart
+          lib/features/settings/writing_report_card.dart
+          lib/widgets/design/lumo_night_scope.dart
+          test/design/parent_games_polish_test.dart
+          test/games/games_world_layout_test.dart
+          EOF
+          flutter pub get --enforce-lockfile 2>&1 | tee polish-evidence/dependencies.log
+      - name: Record actual baseline failures before changing product code
+        id: baseline
+        continue-on-error: true
+        env:
+          LUMO_POLISH_CAPTURES: polish-evidence/before
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=30s test/design/parent_games_polish_test.dart 2>&1 | tee polish-evidence/baseline.log
+      - name: Apply only hash-verified authored changes
+        id: patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/probes/parent_games_20261007_apply.py 2>&1 | tee polish-evidence/patch.log
+          python3 scripts/probes/parent_games_20261007_tests.py 2>&1 | tee -a polish-evidence/patch.log
+          xargs dart format < polish-evidence/paths.txt | tee polish-evidence/format.log
+          git diff --stat > polish-evidence/diff-stat.txt
+          git diff -- $(cat polish-evidence/paths.txt) > polish-evidence/repair.diff
+      - name: Analyze reviewed product and test files
+        id: analysis
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings $(cat polish-evidence/paths.txt) 2>&1 | tee polish-evidence/analysis.log
+      - name: Exercise settings, game entry and complete existing games
+        id: targeted
+        if: steps.analysis.outcome == 'success'
+        continue-on-error: true
+        env:
+          LUMO_POLISH_CAPTURES: polish-evidence/after
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=1 test/design/parent_games_polish_test.dart test/games/games_world_layout_test.dart test/games/games_screen_flow_test.dart 2>&1 | tee polish-evidence/targeted.log
+      - name: Full Flutter regression
+        id: full
+        if: steps.targeted.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee polish-evidence/full-suite.log
+      - name: Preserve exact post-patch source copies and outcomes
+        if: always()
+        env:
+          BASELINE: ${{ steps.baseline.outcome }}
+          PATCH: ${{ steps.patch.outcome }}
+          ANALYSIS: ${{ steps.analysis.outcome }}
+          TARGETED: ${{ steps.targeted.outcome }}
+          FULL: ${{ steps.full.outcome }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, shutil
+          from pathlib import Path
+          root=Path('polish-evidence'); root.mkdir(exist_ok=True)
+          records=[]
+          if (root/'paths.txt').exists():
+              for name in (root/'paths.txt').read_text().splitlines():
+                  path=Path(name)
+                  if not path.is_file(): continue
+                  target=root/'sources'/name
+                  target.parent.mkdir(parents=True,exist_ok=True)
+                  shutil.copyfile(path,target)
+                  records.append({'path':name,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
+          report={key:os.environ[key] for key in ('BASELINE','PATCH','ANALYSIS','TARGETED','FULL')}
+          report.update(scope='Proposed working-tree patch, not yet an APK or product commit; Flutter widget renders only',files=records)
+          (root/'outcomes.json').write_text(json.dumps(report,indent=2)+'\n')
+          if any(report[key]!='success' for key in ('PATCH','ANALYSIS','TARGETED','FULL')):
+              raise SystemExit(1)
+          PY
+      - name: Upload actual sources, failure logs and rendered frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-parent-games-review-${{ github.run_id }}
+          path: polish-evidence/
+          if-no-files-found: error
+          retention-days: 14
