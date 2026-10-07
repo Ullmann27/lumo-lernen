@@ -17,6 +17,7 @@ import uiautomator2 as u2
 import pr207_android_smoke as probe
 
 _device = None
+_original_tap_label = probe.tap_label
 
 
 def live_nodes(out: Path, name: str) -> list:
@@ -37,7 +38,17 @@ def live_nodes(out: Path, name: str) -> list:
     return list(hierarchy.iter('node'))
 
 
+def live_tap_label(out: Path, label: str, tag: str) -> None:
+    # Run37568213986's actual home XML names both game-entry buttons 'Spielen'.
+    # The original fixture used the destination noun 'Spiele' by mistake.
+    # Bind this one logical step to its real label; no fuzzy matching/fake tap.
+    if tag == 'home-to-games' and label == 'Spiele':
+        label = 'Spielen'
+    _original_tap_label(out, label, tag)
+
+
 if __name__ == '__main__':
-    # Replace the harness adapter, not any application behaviour or test gate.
+    # Replace harness adapters, not any application behaviour or test gate.
     probe.ui_nodes = live_nodes
+    probe.tap_label = live_tap_label
     raise SystemExit(probe.main())
