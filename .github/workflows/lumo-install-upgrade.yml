@@ -59,11 +59,16 @@ jobs:
           dart scripts/audit_content.dart 2>&1 | tee install-evidence/content-audit.log
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee install-evidence/flutter-analyze.log
           flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee install-evidence/flutter-tests.log
-      - name: Build using unchanged signing and Godot source
+      - name: Install matching Godot and expose it to the next step
         shell: bash
         run: |
           set -euo pipefail
           bash scripts/install_godot_for_build.sh 2>&1 | tee install-evidence/godot-install.log
+      - name: Build using unchanged signing and Godot source
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v godot
           bash scripts/build_unified_apk.sh 2>&1 | tee install-evidence/build.log
           cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json dist/LAUNCHER-RESOURCES.json dist/SHA256SUMS.txt install-evidence/
       - name: Download actual previous 1321 delivery for comparison
