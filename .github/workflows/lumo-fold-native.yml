@@ -1,0 +1,128 @@
+name: Lumo Fold APK update and screen changes
+on:
+  push:
+    branches: [chatgpt/fold-kart-controls-2026-10-07]
+    paths: [.github/workflows/lumo-fold-native.yml, .github/probes/creative_android_probe.py]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-fold-native-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  LUMO_EXPECT_SOURCE: 48cb82614a31ac7e7daccbe62b872c3ae4b8eb95
+  LUMO_EXPECT_GODOT: 0ba0422cb673784a3902024bdf73ea33180340f9
+  LUMO_EXPECT_VERSION: '1503'
+  LUMO_FOLD_PROBE: '1'
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        creative: [kart]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Wait for the exact checked APK artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in $(seq 1 90); do
+            status=$(gh api repos/Ullmann27/lumo-lernen/actions/runs/37642031417 --jq '.conclusion // "pending"')
+            if [ "$status" = success ]; then exit 0; fi
+            if [ "$status" != pending ]; then echo "APK build: $status"; exit 1; fi
+            sleep 10
+          done
+          exit 1
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37576067479
+          name: lumo-install-candidate-37576067479
+          path: baseline/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37642031417
+          name: lumo-fold-apk-37642031417
+          path: candidate/
+      - name: Check actual extracted APK paths before starting emulator
+        run: |
+          test -f baseline/dist/Lumo-Lernen-Neu.apk
+          test -f candidate/Lumo-Lernen-Neu.apk
+          test -f candidate/BUILD-PROVENANCE.json
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37626273116
+          name: lumo-complete-native-evidence-37626273116
+          path: ocr-fixture/
+      - name: Prepare isolated UI reader and screenshot OCR
+        run: |
+          mkdir -p native-proof
+          sudo apt-get update -qq
+          sudo apt-get install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt
+          python3 -m py_compile .github/probes/creative_android_probe.py
+          cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
+      - name: Verify actual APK screenshot text and exact word bounds
+        run: .probe-venv/bin/python .github/probes/creative_android_probe.py --ocr-fixture ocr-fixture/build-goals-7.png --out native-proof/ocr-regression
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified Mesa software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Update without data clearing and exercise actual native games offline
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope ${{ matrix.creative }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-fold-native-${{ matrix.creative }}-${{ github.run_id }}
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14

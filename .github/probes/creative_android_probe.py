@@ -33,8 +33,9 @@ import pr207_android_ui_probe as live
 
 PACKAGE = base.PACKAGE
 BASE_DIGEST = 'd33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e'
-SOURCE = '53e294c9a057c0f15012a35c00dcaf666b6f37b4'
-GODOT = '148decd2b34af7bfb5f1504c166d42411f8e99e1'
+SOURCE = os.environ.get('LUMO_EXPECT_SOURCE', '53e294c9a057c0f15012a35c00dcaf666b6f37b4')
+GODOT = os.environ.get('LUMO_EXPECT_GODOT', '148decd2b34af7bfb5f1504c166d42411f8e99e1')
+EXPECTED_VERSION = int(os.environ.get('LUMO_EXPECT_VERSION', '1502'))
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 base.ui_nodes = live.live_nodes
 base.tap_label = live.live_tap_label
@@ -392,7 +393,7 @@ def main() -> int:
             provenance['tracked_source_clean'] is not True or
             provenance['godot']['revision'] != GODOT or
             provenance['signingCertificateSha256'] != CERT or
-            provenance['versionCode'] != 1502 or
+            provenance['versionCode'] != EXPECTED_VERSION or
             provenance['sha256'] != digest(args.candidate)):
             raise RuntimeError('Candidate provenance mismatch')
         result['apk_sha256'] = digest(args.candidate)
@@ -413,7 +414,7 @@ def main() -> int:
         update = base.adb('install','-r','--no-streaming',str(args.candidate),timeout=180)
         (out/'update-install.txt').write_text(update)
         after_package = package_identity(out,'updated')
-        if ('Success' not in update or not after_package['versionCode'].startswith('1502') or
+        if ('Success' not in update or not after_package['versionCode'].startswith(str(EXPECTED_VERSION)) or
             after_package['userId'] != before_package['userId'] or
             after_package['firstInstallTime'] != before_package['firstInstallTime']):
             raise RuntimeError('In-place update with unchanged installation identity failed')
@@ -523,6 +524,23 @@ def main() -> int:
             shot=capture(out,'15_kart_compact_race')
             if shot['width'] != 640 or shot['height'] != 320:
                 raise RuntimeError('Compact native Kart did not rotate to 640x320')
+            if os.environ.get('LUMO_FOLD_PROBE') == '1':
+                base.display(1812,2176,420)
+                for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
+                    native_text(out,label,'kart-fold-'+normalized(label))
+                fold = capture(out,'17_kart_fold_open')
+                if fold['width'] != 2176 or fold['height'] != 1812:
+                    raise RuntimeError('Inner-display surface did not rotate to 2176x1812')
+                base.display(904,2316,420)
+                for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
+                    native_text(out,label,'kart-cover-'+normalized(label))
+                capture(out,'18_kart_fold_cover')
+                base.display(320,640,160)
+                native_text(out,'GAS','kart-compact-again')
+                result['fold_resize'] = {'status':'PASS', 'inner_surface':[2176,1812],
+                                         'five_action_labels_visible':True,
+                                         'cover_resize_and_return':True,
+                                         'scope':'Android emulator surfaces; no physical hinge/FPS claim'}
             base.adb('shell','input','keyevent','KEYCODE_BACK')
             native_text(out,'Spiele','kart-compact-return',tap=True)
             for _ in range(30):
