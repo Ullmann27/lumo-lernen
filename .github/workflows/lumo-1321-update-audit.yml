@@ -1,0 +1,93 @@
+name: Lumo independent 1321 to 1400 update audit
+
+on:
+  push:
+    branches: [chatgpt/android-install-upgrade-2026-10-07]
+    paths:
+      - .github/workflows/lumo-1321-update-audit.yml
+      - scripts/probes/lumo_upgrade_install_check.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-1321-update-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download the single shared PR208 delivery artifact (no build here)
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37576067479
+          name: lumo-install-candidate-37576067479
+          path: candidate/
+      - name: Download the real earlier 1321 delivery
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37456545089
+          name: lumo-probe-apk-37456545089-1
+          path: baseline/
+      - name: Download rejected original 280 for negative reproduction
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37566239982
+          name: lumo-pr207-apk-37566239982
+          path: rejected/
+      - name: Isolated test tooling and source manifest
+        run: |
+          mkdir -p upgrade-evidence
+          git rev-parse HEAD > upgrade-evidence/harness-sha.txt
+          cp candidate/dist/BUILD-PROVENANCE.json upgrade-evidence/
+          python3 -m py_compile scripts/probes/lumo_upgrade_install_check.py
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0
+          .probe-venv/bin/python -m pip freeze > upgrade-evidence/probe-dependencies.txt
+          printf '%s\n' \
+            'Same 1400 APK as PR208, product source2beabe7, not rebuilt or resigned.' \
+            'This separate source SHA belongs only to the installer/UI test harness.' \
+            'No competing1335 APK delivery. No uninstall or data clearing.' \
+            'Physical Samsung and the user device installed version remain unverified.' \
+            > upgrade-evidence/README.txt
+      - name: Enable disposable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Actual Android16 update, negative control and preserved UI profile
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: .probe-venv/bin/python scripts/probes/lumo_upgrade_install_check.py --baseline baseline/Lumo-Lernen-Neu.apk --rejected rejected/Lumo-Lernen-Neu.apk --candidate candidate/dist/Lumo-Lernen-Neu.apk --proof candidate/dist/BUILD-PROVENANCE.json --candidate-sha256 d33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e --candidate-source-sha 2beabe722dd40bfe110236a305e66e9122e944b6 --out upgrade-evidence
+      - name: Preserve actual installer output and screenshots on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1321-update-evidence-${{ github.run_id }}
+          path: upgrade-evidence/
+          if-no-files-found: error
+          retention-days: 14
