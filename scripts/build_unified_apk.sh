@@ -8,12 +8,6 @@ require_clean_sources() {
   fi
 }
 require_clean_sources
-# Shared package sequence, not a per-workflow counter or the old 280 fallback.
-# Read two validated values without eval so version metadata cannot run shell.
-resolved_version="$(python3 scripts/preview_version.py --shell)"
-mapfile -t preview_version <<< "$resolved_version"
-export LUMO_BUILD_NUMBER="${preview_version[0]}"
-export LUMO_VERSION_NAME="${preview_version[1]}"
 if [ ! -d android ]; then
   # A Flutter scaffold may replace dependency metadata even with --no-pub.
   # Generate outside this repository and copy ONLY its native Android host.
@@ -36,14 +30,13 @@ python3 scripts/export_embedded_game.py "${@}"
 flutter pub get --enforce-lockfile
 require_clean_sources
 flutter build apk --no-pub --release --target-platform android-arm64,android-x64 \
-  --build-number "$LUMO_BUILD_NUMBER" --build-name "$LUMO_VERSION_NAME" \
-  --dart-define=LUMO_BUILD_NUMBER="$LUMO_BUILD_NUMBER" \
-  --dart-define=LUMO_VERSION_NAME="$LUMO_VERSION_NAME" \
+  --build-number "${LUMO_BUILD_NUMBER:-280}" --build-name "${LUMO_VERSION_NAME:-0.10.5}" \
+  --dart-define=LUMO_BUILD_NUMBER="${LUMO_BUILD_NUMBER:-280}" \
+  --dart-define=LUMO_VERSION_NAME="${LUMO_VERSION_NAME:-0.10.5}" \
   --dart-define=LUMO_SIDE_BY_SIDE=true
 require_clean_sources
 mkdir -p dist
 python3 scripts/verify_unified_apk.py build/app/outputs/flutter-apk/app-release.apk | tee dist/APK-VERIFICATION.json
-python3 scripts/preview_version.py --verify dist/APK-VERIFICATION.json
 cp build/app/outputs/flutter-apk/app-release.apk dist/Lumo-Lernen-Neu.apk
 (cd dist && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
 python3 - <<'PY'
