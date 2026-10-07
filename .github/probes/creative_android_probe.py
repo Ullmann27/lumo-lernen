@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1502 update.
+"""Exercise the digest-pinned creative-games APK and a real 1400 -> 1600 update.
 
 Only fictional data in a disposable Android emulator is used. Flutter controls
 come from live accessibility; native Godot controls from current screenshot OCR.
@@ -21,7 +21,7 @@ import traceback
 import unicodedata
 import xml.etree.ElementTree as ET
 
-from PIL import Image
+from PIL import Image, ImageChops
 
 # Keep screenshot recognition from oversubscribing the same software-rendered
 # emulator host. This changes only the independent OCR reader, not the app.
@@ -33,7 +33,7 @@ import pr207_android_ui_probe as live
 
 PACKAGE = base.PACKAGE
 BASE_DIGEST = 'd33b9f5f04a013bc1bcafb579758d109f511ff69e9c08bc95b68c34d9b1c6e7e'
-SOURCE = '53e294c9a057c0f15012a35c00dcaf666b6f37b4'
+SOURCE = '36969d8bf87346544ef28a43be2547ce4913c2d3'
 GODOT = '148decd2b34af7bfb5f1504c166d42411f8e99e1'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 base.ui_nodes = live.live_nodes
@@ -129,6 +129,18 @@ def flutter_tap(out: Path, label: str, tag: str) -> None:
                     choices.append(((x1-x0)*(y1-y0), x0, y0, x1, y1))
             if choices:
                 _, x0, y0, x1, y1 = min(choices)
+                # Responsive layout and scroll settling can move a semantics
+                # node after it was read. Require two identical fresh bounds
+                # before touching, so an off-screen/clipped old bound is never
+                # substituted for the actually visible button.
+                time.sleep(.8)
+                confirmed = live.live_nodes(out, f'{tag}-confirm-{direction}-{attempt}')
+                if not any((label == n.get('text','') or label in n.get('text','').split('\n')
+                            or label == n.get('content-desc','')
+                            or label in n.get('content-desc','').split('\n'))
+                           and list(map(int,re.findall(r'\d+',n.get('bounds','')))) == [x0,y0,x1,y1]
+                           for n in confirmed):
+                    continue
                 x,y = str((x0+x1)//2),str((y0+y1)//2)
                 # A brief real finger press avoids a zero-duration ADB tap
                 # disappearing between busy software-rendered Flutter frames.
@@ -156,7 +168,7 @@ def flutter_tap(out: Path, label: str, tag: str) -> None:
             start,end = (low,high) if direction == -1 else (high,low)
             base.adb('shell', 'input', 'swipe', str(x), str(round(start)),
                      str(x), str(round(end)), '400')
-            time.sleep(.4)
+            time.sleep(1.2)
     capture(out, tag+'-missing')
     raise RuntimeError('No enabled live Flutter control: '+label)
 
@@ -173,7 +185,12 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     # background. A second read separates their contrast, without changing
     # any screenshot used as evidence or inventing a control coordinate.
     contrast = image.convert('L').point(lambda value: 0 if value >= 170 else 255)
-    for variant, pixels in [('contrast',contrast),('raw',image)]:
+    r,g,b = image.split()
+    # Cyan button outlines otherwise form a closed black box around pale text.
+    # Minimum RGB keeps the actual pale letters while excluding that outline.
+    letters = ImageChops.darker(ImageChops.darker(r,g),b).point(
+        lambda value: 0 if value >= 150 else 255)
+    for variant, pixels in [('contrast',contrast),('letters',letters),('raw',image)]:
         expanded = out / 'ocr-work.png'
         pixels.resize((image.width*2,image.height*2)).save(expanded)
         prefix = out / (tag+'-ocr-'+variant)
@@ -181,7 +198,9 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
                      '-l','deu+eng','tsv',timeout=45)
         groups: dict[tuple,list[dict]] = {}
         with prefix.with_suffix('.tsv').open() as stream:
-            for word in csv.DictReader(stream,delimiter='\t'):
+            # Tesseract TSV is raw tab-separated text, not CSV-quoted.
+            # A recognized quote in scenery must not consume following lines.
+            for word in csv.DictReader(stream, delimiter='\t', quoting=csv.QUOTE_NONE):
                 if not word.get('text','').strip() or float(word['conf']) < 15:
                     continue
                 key=tuple(word[k] for k in ('page_num','block_num','par_num','line_num'))
@@ -392,7 +411,7 @@ def main() -> int:
             provenance['tracked_source_clean'] is not True or
             provenance['godot']['revision'] != GODOT or
             provenance['signingCertificateSha256'] != CERT or
-            provenance['versionCode'] != 1502 or
+            provenance['versionCode'] != 1600 or
             provenance['sha256'] != digest(args.candidate)):
             raise RuntimeError('Candidate provenance mismatch')
         result['apk_sha256'] = digest(args.candidate)
@@ -413,7 +432,7 @@ def main() -> int:
         update = base.adb('install','-r','--no-streaming',str(args.candidate),timeout=180)
         (out/'update-install.txt').write_text(update)
         after_package = package_identity(out,'updated')
-        if ('Success' not in update or not after_package['versionCode'].startswith('1502') or
+        if ('Success' not in update or not after_package['versionCode'].startswith('1600') or
             after_package['userId'] != before_package['userId'] or
             after_package['firstInstallTime'] != before_package['firstInstallTime']):
             raise RuntimeError('In-place update with unchanged installation identity failed')

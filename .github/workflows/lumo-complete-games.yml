@@ -1,7 +1,7 @@
 name: Lumo complete games candidate
 on:
   push:
-    branches: [chatgpt/lumo-complete-games-2026-10-07]
+    branches: [chatgpt/lumo-complete-games-2026-10-07, chatgpt/lumo-visual-polish-2026-10-07]
     paths: [lib/**, test/**, tools/**, scripts/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-complete-games.yml]
   workflow_dispatch:
 permissions:
@@ -13,8 +13,8 @@ concurrency:
 env:
   CI: 'true'
   FLUTTER_SUPPRESS_ANALYTICS: 'true'
-  LUMO_BUILD_NUMBER: '1502'
-  LUMO_VERSION_NAME: '0.10.8'
+  LUMO_BUILD_NUMBER: '1600'
+  LUMO_VERSION_NAME: '0.10.9'
 jobs:
   check:
     runs-on: ubuntu-latest

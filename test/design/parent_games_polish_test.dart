@@ -28,7 +28,8 @@ const boundaryKey = ValueKey('polish-capture');
 const bridge = MethodChannel('lumo_lernen/bridge');
 
 Future<void> settleData(WidgetTester tester) async {
-  await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 350)));
+  await tester
+      .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 350)));
   await tester.pump(const Duration(milliseconds: 500));
   await tester.pump();
 }
@@ -36,8 +37,16 @@ Future<void> settleData(WidgetTester tester) async {
 Future<void> capture(WidgetTester tester, String name) async {
   final directory = Platform.environment['LUMO_POLISH_CAPTURES'];
   if (directory == null) return;
+  // Wait for the actual asset decoders, not a guessed wall-clock delay.
+  // Otherwise a screenshot can capture empty art even though the asset exists.
+  final images = find.byType(Image).evaluate().toList();
+  await tester.runAsync(() async {
+    await Future.wait(images.map(
+        (element) => precacheImage((element.widget as Image).image, element)));
+  });
   await tester.pump();
-  final render = tester.renderObject<RenderRepaintBoundary>(find.byKey(boundaryKey));
+  final render =
+      tester.renderObject<RenderRepaintBoundary>(find.byKey(boundaryKey));
   await tester.runAsync(() async {
     final image = await render.toImage(pixelRatio: 2);
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
@@ -49,26 +58,33 @@ Future<void> capture(WidgetTester tester, String name) async {
   });
 }
 
-Future<LumoAppState> stateFor(WidgetTester tester, {Size size = const Size(360, 800)}) async {
+Future<LumoAppState> stateFor(WidgetTester tester,
+    {Size size = const Size(360, 800)}) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
   final app = LumoAppState();
   app.update(app.state.copyWith(childName: 'Probe', grade: 2));
   app.updateSettings(const AppSettings(
-    reduceAnimations: true, calmMode: true, voiceEnabled: false,
-    soundEnabled: false, autoReadEnabled: false,
+    reduceAnimations: true,
+    calmMode: true,
+    voiceEnabled: false,
+    soundEnabled: false,
+    autoReadEnabled: false,
   ));
   await SettingsRepository.save(app.state.settings);
   addTearDown(app.dispose);
   return app;
 }
 
-Future<void> mount(WidgetTester tester, Widget child, {double textScale = 1}) async {
+Future<void> mount(WidgetTester tester, Widget child,
+    {double textScale = 1}) async {
   await tester.pumpWidget(MaterialApp(
-    theme: ThemeData.light(),
+    theme: ThemeData.light().copyWith(
+        textTheme: ThemeData.light().textTheme.apply(fontFamily: 'Nunito')),
     builder: (context, body) => MediaQuery(
       data: MediaQuery.of(context).copyWith(
-        textScaler: TextScaler.linear(textScale), disableAnimations: true,
+        textScaler: TextScaler.linear(textScale),
+        disableAnimations: true,
       ),
       child: body!,
     ),
@@ -84,7 +100,8 @@ void main() {
     font.addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'));
     font.addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'));
     await font.load();
-    final icons = FontLoader('MaterialIcons')..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
+    final icons = FontLoader('MaterialIcons')
+      ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
     await icons.load();
   });
   setUp(() {
@@ -98,13 +115,16 @@ void main() {
         .setMockMethodCallHandler(bridge, null);
   });
 
-  testWidgets('parent area uses a local dark theme without changing outside theme or permissions', (tester) async {
+  testWidgets(
+      'parent area uses a local dark theme without changing outside theme or permissions',
+      (tester) async {
     final app = await stateFor(tester);
     await mount(tester, SettingsContent(appState: app));
     await capture(tester, 'parent_phone_top');
     final inside = tester.element(find.text('Elternbereich'));
     expect(Theme.of(inside).brightness, Brightness.dark);
-    expect(Theme.of(tester.element(find.byType(Scaffold))).brightness, Brightness.light);
+    expect(Theme.of(tester.element(find.byType(Scaffold))).brightness,
+        Brightness.light);
     expect(app.state.settings.aiProxyEnabled, isFalse);
     expect(app.state.settings.scannerEnabled, isFalse);
     expect(app.state.settings.microphoneEnabled, isFalse);
@@ -112,7 +132,9 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('reset confirmation inherits night style and cancel leaves profile and stars intact', (tester) async {
+  testWidgets(
+      'reset confirmation inherits night style and cancel leaves profile and stars intact',
+      (tester) async {
     final app = await stateFor(tester);
     final stars = app.state.stars;
     await mount(tester, SettingsContent(appState: app));
@@ -124,7 +146,12 @@ void main() {
     final dialog = find.byType(AlertDialog);
     expect(dialog, findsOneWidget);
     expect(Theme.of(tester.element(dialog)).brightness, Brightness.dark);
-    expect(Theme.of(tester.element(dialog)).dialogTheme.backgroundColor!.computeLuminance(), lessThan(.1));
+    expect(
+        Theme.of(tester.element(dialog))
+            .dialogTheme
+            .backgroundColor!
+            .computeLuminance(),
+        lessThan(.1));
     await tester.tap(find.text('Abbrechen'));
     await tester.pump(const Duration(milliseconds: 400));
     expect(app.state.childName, 'Probe');
@@ -134,7 +161,9 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('daily goal remains interactive and persists without enabling online access', (tester) async {
+  testWidgets(
+      'daily goal remains interactive and persists without enabling online access',
+      (tester) async {
     final app = await stateFor(tester);
     await mount(tester, SettingsContent(appState: app));
     final goal = find.text('5 Aufgaben');
@@ -151,16 +180,20 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('test note feedback and persisted note refer to the submitted selection', (tester) async {
+  testWidgets(
+      'test note feedback and persisted note refer to the submitted selection',
+      (tester) async {
     final app = await stateFor(tester, size: const Size(400, 1100));
-    await mount(tester, SingleChildScrollView(child: TestPhotoEntryCard(appState: app)));
+    await mount(tester,
+        SingleChildScrollView(child: TestPhotoEntryCard(appState: app)));
     await tester.enterText(find.byType(TextField), 'Mathe');
     await tester.tap(find.text('2'));
     final save = find.text('Punkte hinzufügen');
     await tester.ensureVisible(save);
     await tester.tap(save);
     await settleData(tester);
-    expect(find.text('25 Punkte für Note 2 in Mathe hinzugefügt!'), findsOneWidget);
+    expect(find.text('25 Punkte für Note 2 in Mathe hinzugefügt!'),
+        findsOneWidget);
     final saved = await const RewardShopRepository().load('local_probe_2');
     expect(saved.testPhotos, hasLength(1));
     expect(saved.testPhotos.single.note, 2);
@@ -169,25 +202,38 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('parent report child surfaces are dark rather than pastel white', (tester) async {
+  testWidgets('parent report child surfaces are dark rather than pastel white',
+      (tester) async {
     await stateFor(tester, size: const Size(400, 1100));
-    const dna = LearningDna(childName: 'Probe', recentProgress: 'Noch keine Aufgaben bearbeitet.');
-    await mount(tester, const SingleChildScrollView(child: Column(children: [
-      WritingReportCard(), LearningDnaParentCard(dna: dna),
-    ])));
+    const dna = LearningDna(
+        childName: 'Probe', recentProgress: 'Noch keine Aufgaben bearbeitet.');
+    await mount(
+        tester,
+        const SingleChildScrollView(
+            child: Column(children: [
+          WritingReportCard(),
+          LearningDnaParentCard(dna: dna),
+        ])));
     for (final type in [WritingReportCard, LearningDnaParentCard]) {
-      final container = find.descendant(of: find.byType(type), matching: find.byType(Container)).first;
-      final box = tester.widget<Container>(container).decoration! as BoxDecoration;
+      final container = find
+          .descendant(of: find.byType(type), matching: find.byType(Container))
+          .first;
+      final box =
+          tester.widget<Container>(container).decoration! as BoxDecoration;
       final gradient = box.gradient! as LinearGradient;
-      expect(gradient.colors.every((color) => color.computeLuminance() < .2), isTrue,
-          reason: '$type must not repaint the night theme with pale backgrounds');
+      expect(gradient.colors.every((color) => color.computeLuminance() < .2),
+          isTrue,
+          reason:
+              '$type must not repaint the night theme with pale backgrounds');
     }
     await capture(tester, 'parent_reports');
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('both real game start controls appear before the decorative world', (tester) async {
+  testWidgets(
+      'both real game start controls appear before the decorative world',
+      (tester) async {
     final app = await stateFor(tester);
     await mount(tester, GamesContent(appState: app));
     await capture(tester, 'games_phone');
@@ -206,7 +252,9 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('game entries resize without replacing state or clipping enlarged labels', (tester) async {
+  testWidgets(
+      'game entries resize without replacing state or clipping enlarged labels',
+      (tester) async {
     final app = await stateFor(tester);
     await mount(tester, GamesContent(appState: app));
     final initial = tester.state(find.byType(GamesContent));
@@ -225,11 +273,15 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('Cards rapid double activation opens one route and permits returning', (tester) async {
+  testWidgets(
+      'Cards rapid double activation opens one route and permits returning',
+      (tester) async {
     final app = await stateFor(tester);
     final observer = _PushObserver();
     await tester.pumpWidget(MaterialApp(
-      navigatorObservers: [observer], theme: ThemeData.light(),
+      navigatorObservers: [observer],
+      theme: ThemeData.light().copyWith(
+          textTheme: ThemeData.light().textTheme.apply(fontFamily: 'Nunito')),
       home: Scaffold(body: GamesContent(appState: app)),
     ));
     await settleData(tester);
@@ -253,7 +305,9 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('Kart spotlight uses the existing native launcher and unlocks after return', (tester) async {
+  testWidgets(
+      'Kart spotlight uses the existing native launcher and unlocks after return',
+      (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     try {
       final app = await stateFor(tester);
@@ -267,7 +321,8 @@ void main() {
       await mount(tester, GamesContent(appState: app));
       final start = find.byKey(const ValueKey('launch-lumo-kart'));
       final onPressed = tester.widget<FilledButton>(start).onPressed!;
-      onPressed(); onPressed();
+      onPressed();
+      onPressed();
       await settleData(tester);
       expect(calls, hasLength(1));
       expect(calls.single.method, 'launch3D');

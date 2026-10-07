@@ -1,5 +1,7 @@
 # Lumo: verbindliches App-Design nach Heinz' Vorlagen (4. Oktober 2026)
 
+**Fortsetzung 07.10.2026:** Der aktuelle Auftrag bekräftigt dunkelblaues Glasdesign ohne orange Grundoberfläche. Die vier Startkacheln verwenden deshalb nun eine gemeinsame dunkelblaue Fläche; Lernen erhält einen blauen Akzent. Die vorhandenen Motive und Funktionen bleiben erhalten. Siehe `docs/checkpoints/visual-polish-2026-10-07.md`.
+
 **Auftrag von Heinz:** Die komplette App soll genau so aussehen wie die elf Bilder in
 `docs/design_targets/2026-10-04/`. Keine Abweichung. Copilot (GPT-6 Luna) setzt um,
 Claude koordiniert, prüft jede Etappe gegen die Bilder und gibt Folgeanweisungen.

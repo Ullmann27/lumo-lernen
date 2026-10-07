@@ -30,9 +30,9 @@ python3 scripts/export_embedded_game.py "${@}"
 flutter pub get --enforce-lockfile
 require_clean_sources
 flutter build apk --no-pub --release --target-platform android-arm64,android-x64 \
-  --build-number "${LUMO_BUILD_NUMBER:-1502}" --build-name "${LUMO_VERSION_NAME:-0.10.8}" \
-  --dart-define=LUMO_BUILD_NUMBER="${LUMO_BUILD_NUMBER:-1502}" \
-  --dart-define=LUMO_VERSION_NAME="${LUMO_VERSION_NAME:-0.10.8}" \
+  --build-number "${LUMO_BUILD_NUMBER:-1600}" --build-name "${LUMO_VERSION_NAME:-0.10.9}" \
+  --dart-define=LUMO_BUILD_NUMBER="${LUMO_BUILD_NUMBER:-1600}" \
+  --dart-define=LUMO_VERSION_NAME="${LUMO_VERSION_NAME:-0.10.9}" \
   --dart-define=LUMO_SIDE_BY_SIDE=true
 require_clean_sources
 mkdir -p dist

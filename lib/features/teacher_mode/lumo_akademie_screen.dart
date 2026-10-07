@@ -730,7 +730,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           final height = (width * .5).clamp(170.0, 270.0);
           final foxSize = height * 1.12;
           final Widget fox = LumoCharacter(
-            pose: LumoDesignFoxPose.tabletThumb,
+            pose: LumoDesignFoxPose.bookWelcome,
             size: foxSize,
             reduceMotion: _reduceMotion,
             // Antippen: Lumo wackelt kitzlig.
