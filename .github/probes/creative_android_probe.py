@@ -72,11 +72,27 @@ def flutter_tap(out: Path, label: str, tag: str) -> None:
                 base.adb('shell', 'input', 'tap', str((x0+x1)//2), str((y0+y1)//2))
                 time.sleep(2)
                 return
-            width, height = live._device.window_size()
-            y0, y1 = ((height*.28, height*.82) if direction == -1
-                      else (height*.82, height*.28))
-            base.adb('shell', 'input', 'swipe', str(width//2), str(int(y0)),
-                     str(width//2), str(int(y1)), '300')
+            # The assistant panel occupies the bottom of the window. Scroll
+            # inside the actual live content viewport, rather than starting
+            # a window-relative swipe on that fixed overlay or the side rail.
+            scrolls = []
+            for node in nodes:
+                if node.get('scrollable') != 'true' or node.get('package') != PACKAGE:
+                    continue
+                bounds = list(map(int,re.findall(r'\d+',node.get('bounds',''))))
+                if len(bounds) == 4:
+                    x0,y0,x1,y1 = bounds
+                    if x1>x0 and y1>y0:
+                        scrolls.append(((x1-x0)*(y1-y0),x0,y0,x1,y1))
+            if not scrolls:
+                time.sleep(.5)
+                continue
+            _,x0,y0,x1,y1 = max(scrolls)
+            x = (x0+x1)//2
+            low,high = y0+(y1-y0)*.2, y1-(y1-y0)*.2
+            start,end = (low,high) if direction == -1 else (high,low)
+            base.adb('shell', 'input', 'swipe', str(x), str(round(start)),
+                     str(x), str(round(end)), '400')
             time.sleep(.4)
     capture(out, tag+'-missing')
     raise RuntimeError('No enabled live Flutter control: '+label)
@@ -311,6 +327,10 @@ def main() -> int:
         capture(out,'01_updated_profile')
         flutter_tap(out,'Spielen','updated-games')
         base.display(1920,1080,240)
+        capture(out,'02_updated_games_landscape')
+        # Keep the emulator's natural surface portrait for sensor-landscape:
+        # Android rotates 1080x1920 into the game's actual 1920x1080 surface.
+        base.display(1080,1920,300)
         start_wallet = wallet(out,'before-build')
         result['update'] = {'status':'PASS','before':before_package,'after':after_package,
                             'profile_retained':True,'offline':True}
