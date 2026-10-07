@@ -35,14 +35,17 @@ Der nächste fertige Render des finalen Pins ersetzt nur Vorschau und Herkunft.
 ## Quellen und Build-Nachweis
 
 Die verbindliche Godot-Revision steht in `config/godot-source.json`:
-`d42bf29446852f3bfd4285d1e0eecb31ece7df30` (Godot 4.6.3). Der Build
+`0835a91017a5b0002440b5328e89ce12b1bb8a6d` (Godot 4.6.3). Der Build
 exportiert diesen Quellstand in dieselbe APK und prüft Revision und PCK-Hash aus
 den APK-Bytes. Der APK-Prüfer liest die Standardversion aus `pubspec.yaml`;
 explizite Build-Variablen bleiben möglich.
 
 Der Workflow `lumo-video-quality.yml` prüft die vollständige Flutter-Suite,
-App-Analyse und native Vorbereitung, erzeugt echte App-Aufnahmen und wartet auf
-erfolgreiches Rendering und Touch-Prüfung des exakt gepinnten Godot-SHA. Das
+App-Analyse und native Vorbereitung und erzeugt echte App-Aufnahmen. Auf
+demselben Runner checkt er den exakt gepinnten Godot-SHA separat aus und prüft
+Import, tatsächliches GL-Rendering, Fold-Multi-Touch, Menüablauf und Fahrphysik.
+Native Aufnahmen und Protokolle werden vor dem APK-Build als eigene Artefakte
+hochgeladen. Die APK wird erst nach erfolgreichen nativen Prüfungen gebaut. Das
 APK-Artefakt enthält `APK-VERIFICATION.json`, `BUILD-PROVENANCE.json`,
 `SHA256SUMS.txt` und `TEST-RESULTS.txt` aus diesem Build.
 

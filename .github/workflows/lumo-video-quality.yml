@@ -17,7 +17,9 @@ env:
 jobs:
   verify-and-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 65
+    env:
+      LUMO_NATIVE_DIRECTORY: ${{ runner.temp }}/lumo-native-visual
     steps:
       - uses: actions/checkout@v4
         with:
@@ -57,23 +59,64 @@ jobs:
         with:
           name: lumo-visual-app-evidence-${{ github.run_id }}
           path: proof/
-      - name: Require exact embedded game source to pass real rendering and touch
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Install matching Godot engine and real renderer
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y xvfb libgl1-mesa-dri ripgrep
+          bash scripts/install_godot_for_build.sh
+      - name: Import the exact embedded native source
+        run: |
+          set -euo pipefail
           GODOT_SHA=$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')
-          for attempt in $(seq 1 100); do
-            conclusion=$(gh api "repos/Ullmann27/lumo-godot/actions/runs?head_sha=$GODOT_SHA&per_page=10" --jq '.workflow_runs[] | select(.name == "Kart video quality and real render") | (.conclusion // "pending")' | head -1)
-            if [ "$conclusion" = success ]; then
-              echo "PASS exact Godot source rendering and touch: $GODOT_SHA" >> proof/TEST-RESULTS.txt
-              exit 0
-            fi
-            if [ -n "$conclusion" ] && [ "$conclusion" != pending ]; then echo "Native verification: $conclusion"; exit 1; fi
-            sleep 10
+          godot --version | rg '^4\.6\.3\.'
+          git init "$LUMO_NATIVE_DIRECTORY"
+          git -C "$LUMO_NATIVE_DIRECTORY" remote add origin https://github.com/Ullmann27/lumo-godot.git
+          git -C "$LUMO_NATIVE_DIRECTORY" fetch --depth 1 origin "$GODOT_SHA"
+          git -C "$LUMO_NATIVE_DIRECTORY" checkout --detach FETCH_HEAD
+          test "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)" = "$GODOT_SHA"
+          mkdir -p "$LUMO_NATIVE_DIRECTORY/exports/fold-controls"
+          git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/source-sha.txt"
+          godot --path "$LUMO_NATIVE_DIRECTORY" --headless --editor --import --quit > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log" 2>&1
+          if rg 'SCRIPT ERROR|Parse Error|Failed to load|ERROR:' "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log"; then exit 1; fi
+      - name: Render actual native worlds and menu from the exact APK pin
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          timeout 420s xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy --rendering-method gl_compatibility --script res://scripts/tests/kart_visual_quality_capture.gd 2>&1 | tee exports/fold-controls/visual.log
+          if rg 'SCRIPT ERROR|Assertion failed|Parse Error|Failed to load|ERROR:' exports/fold-controls/visual.log; then exit 1; fi
+          rg -F '[KartVisualQuality] PASS:' exports/fold-controls/visual.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-native-renders-${{ github.run_id }}
+          path: |
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/video-quality/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/visual.log
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/source-sha.txt
+      - name: Exact native Fold, real multi-touch, menu and driving regressions
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          for test in kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression; do
+            timeout 420s xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy --rendering-method gl_compatibility --script "res://scripts/tests/$test.gd" 2>&1 | tee "exports/fold-controls/$test.log"
+            if rg 'SCRIPT ERROR|Assertion failed|Parse Error|Failed to load|ERROR:' "exports/fold-controls/$test.log"; then exit 1; fi
           done
-          echo 'Native verification did not finish'; exit 1
-      - name: Install matching Godot engine
-        run: bash scripts/install_godot_for_build.sh
+          rg -F '[KartFoldControls] PASS:' exports/fold-controls/kart_fold_controls_regression.log
+          rg -F '[KartMenuFlow] PASS:' exports/fold-controls/kart_menu_flow_regression.log
+          rg -F '[KartPhysics] PASS:' exports/fold-controls/kart_physics_regression.log
+          GODOT_SHA=$(cat exports/fold-controls/source-sha.txt)
+          echo "PASS exact Godot source real rendering, Fold touch, menu and physics: $GODOT_SHA" >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-native-verification-${{ github.run_id }}
+          path: |
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/holographic-proof/
       - name: Build and verify the unified APK from exact clean source
         run: |
           set -o pipefail
