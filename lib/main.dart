@@ -10,6 +10,7 @@ import 'core/lumo_asset_paths.dart';
 import 'core/lumo_error_log.dart';
 import 'core/lumo_music.dart';
 import 'core/lumo_sound.dart';
+import 'core/lumo_voice.dart';
 import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
 import 'features/companion/lumo_lottie.dart';
@@ -130,6 +131,7 @@ class LumoApp extends StatefulWidget {
 }
 
 class _LumoAppState extends State<LumoApp> {
+  final _voiceRouteObserver = LumoVoiceRouteObserver();
   final _repo = ProfileRepository();
   bool _loading = true;
   bool _warmedCache = false;
@@ -281,6 +283,7 @@ class _LumoAppState extends State<LumoApp> {
       title: 'Lumo Lernen',
       debugShowCheckedModeBanner: false,
       theme: LumoAppTheme.light(),
+      navigatorObservers: [_voiceRouteObserver],
       home: home,
     );
   }

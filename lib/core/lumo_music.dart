@@ -26,6 +26,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'lumo_asset_paths.dart';
+import 'lumo_voice.dart';
 
 /// Verfuegbare Background-Tracks.
 enum LumoMusicTrack {
@@ -46,6 +47,9 @@ class LumoMusic {
   static const String _mutePrefKey = 'lumo_music_muted';
   static const double _bgVolume = 0.55;
 
+  /// Lautstärke während Lumo spricht (Ducking).
+  static const double duckedVolume = 0.16;
+
   static String _strip(String fullPath) =>
       fullPath.startsWith('assets/') ? fullPath.substring(7) : fullPath;
 
@@ -61,6 +65,18 @@ class LumoMusic {
   bool _muted = false;
   bool _initialized = false;
   final Set<LumoMusicTrack> _missing = <LumoMusicTrack>{};
+  double _volume = _bgVolume;
+  Timer? _ramp;
+  bool _listening = false;
+
+  /// Ziel-Lautstärke abhängig davon, ob Lumo gerade spricht.
+  double get targetVolume =>
+      LumoVoice.instance.status.value == VoiceStatus.speaking
+          ? duckedVolume
+          : _bgVolume;
+
+  /// Aktuelle (ggf. gerade gleitende) Musiklautstärke.
+  double get volume => _volume;
 
   /// Mute-Toggle. Bei true wird laufendes Audio sofort gestoppt.
   bool get muted => _muted;
@@ -86,12 +102,44 @@ class LumoMusic {
   Future<void> init() async {
     if (_initialized) return;
     _initialized = true;
+    _listenToVoice();
     try {
       final prefs = await SharedPreferences.getInstance();
       _muted = prefs.getBool(_mutePrefKey) ?? false;
     } catch (_) {
       _muted = false;
     }
+  }
+
+  void _listenToVoice() {
+    if (_listening) return;
+    _listening = true;
+    LumoVoice.instance.status.addListener(_onVoiceChanged);
+  }
+
+  void _onVoiceChanged() {
+    // Absenken zügig (250 ms), Anheben sanft (600 ms).
+    final speaking = LumoVoice.instance.status.value == VoiceStatus.speaking;
+    _rampTo(targetVolume, speaking ? 250 : 600);
+  }
+
+  void _rampTo(double target, int ms) {
+    _ramp?.cancel();
+    if (_player == null || _current == null) {
+      _volume = target;
+      return;
+    }
+    final start = _volume;
+    const step = 30;
+    final steps = (ms / step).ceil();
+    var i = 0;
+    _ramp = Timer.periodic(const Duration(milliseconds: step), (t) {
+      i++;
+      final f = (i / steps).clamp(0.0, 1.0);
+      _volume = start + (target - start) * f;
+      unawaited(_player?.setVolume(_volume).catchError((_) {}));
+      if (f >= 1) t.cancel();
+    });
   }
 
   /// Spielt einen Track ab. Bei loop=true wiederholt audioplayers
@@ -104,9 +152,11 @@ class LumoMusic {
     if (path == null) return;
     try {
       _player ??= AudioPlayer();
-      await _player!.setReleaseMode(
-          loop ? ReleaseMode.loop : ReleaseMode.release);
-      await _player!.setVolume(_bgVolume);
+      await _player!
+          .setReleaseMode(loop ? ReleaseMode.loop : ReleaseMode.release);
+      _listenToVoice();
+      _volume = targetVolume;
+      await _player!.setVolume(_volume);
       await _player!.play(AssetSource(path));
       _current = track;
     } catch (e) {
@@ -119,6 +169,7 @@ class LumoMusic {
 
   /// Stoppt das aktuelle Audio (falls etwas laeuft).
   Future<void> stop() async {
+    _ramp?.cancel();
     final p = _player;
     if (p == null) return;
     try {

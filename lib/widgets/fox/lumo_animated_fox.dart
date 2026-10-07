@@ -264,17 +264,22 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
     }
     return RepaintBoundary(
       child: AnimatedBuilder(
-        animation: Listenable.merge([_clock, _transition, _word]),
+        animation: Listenable.merge(
+            [_clock, _transition, _word, LumoVoice.instance.clipMouth]),
         builder: (context, _) {
           final seconds = (_elapsed - _expressionStart + 60) % 60;
+          final clipMouth = LumoVoice.instance.clipMouth.value;
           final mouth = !_animate || !_speaking
               ? 0.0
-              : _nativeWords
-                  ? math.sin(_word.value * math.pi)
-                  :
-                  // Some offline TTS engines report start/end but no word events.
-                  // Their actual speaking status still gates this approximation.
-                  .25 + .65 * math.pow(math.sin(_elapsed * 9), 2);
+              : clipMouth != null
+                  // Vorproduzierte Stimme: Mund folgt der echten Lautstärke.
+                  ? clipMouth
+                  : _nativeWords
+                      ? math.sin(_word.value * math.pi)
+                      :
+                      // Some offline TTS engines report start/end but no word events.
+                      // Their actual speaking status still gates this approximation.
+                      .25 + .65 * math.pow(math.sin(_elapsed * 9), 2);
           final sample = LumoFoxMotionSample(
             elapsed: _quiet ? 0 : _elapsed,
             expressionSeconds: seconds,

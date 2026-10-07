@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'dart:io' show Platform;
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import 'lumo_child_speech_normalizer.dart';
+import 'lumo_voice_clips.dart';
 
 /// Zentrales Voice-System fuer Lumo.
 ///
@@ -12,6 +16,10 @@ import 'lumo_child_speech_normalizer.dart';
 /// - beste verfuegbare deutsche Stimme automatisch waehlen
 /// - emotionale Sprechmodi statt immer gleicher TTS-Ausgabe
 /// - stabiler Fallback ohne neue Build-Risiken
+///
+/// Feste, häufige Sätze kommen als vorproduzierte Lumo-Stimme
+/// ([LumoVoiceClips]); alles andere und jeder Clip-Fehler fällt auf die
+/// Geräte-Sprachausgabe zurück.
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
@@ -33,6 +41,19 @@ class LumoVoice {
   /// This never starts speech or advances while a local timer is running.
   final ValueNotifier<int> spokenWordRevision = ValueNotifier<int>(0);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
+
+  /// Mundöffnung 0–1 aus der Hüllkurve des gerade laufenden Clips;
+  /// null, wenn kein Clip spricht (dann gelten Wortgrenzen der TTS).
+  final ValueNotifier<double?> clipMouth = ValueNotifier<double?>(null);
+
+  /// Vorproduzierte Clips verwenden. In Widget-Tests standardmäßig aus, weil
+  /// dort kein Audio-Plugin läuft; Tests schalten es gezielt ein.
+  bool clipsEnabled =
+      kIsWeb || !Platform.environment.containsKey('FLUTTER_TEST');
+
+  AudioPlayer? _clipPlayer;
+  StreamSubscription<void>? _clipDone;
+  Timer? _clipTicker;
 
   bool get isEnabled => _enabled;
   set isEnabled(bool value) {
@@ -244,6 +265,9 @@ class LumoVoice {
     if (!_enabled || generation != _speechGeneration) return;
     try {
       await _tts.stop();
+      await _stopClip();
+      if (!_enabled || generation != _speechGeneration) return;
+      if (await _speakClip(text, generation)) return;
       if (!_enabled || generation != _speechGeneration) return;
       await _applyStyle(style);
       if (!_enabled || generation != _speechGeneration) return;
@@ -257,6 +281,63 @@ class LumoVoice {
       lastError.value = 'TTS-Fehler: $e';
       status.value = VoiceStatus.error;
     }
+  }
+
+  Future<bool> _speakClip(String text, int generation) async {
+    if (!clipsEnabled) return false;
+    try {
+      await LumoVoiceClips.ensureLoaded();
+      final clip = LumoVoiceClips.lookup(text);
+      if (clip == null || generation != _speechGeneration) return false;
+      final player = _clipPlayer ??= AudioPlayer(playerId: 'lumo-voice')
+        // Die Mundbewegung nutzt eine eigene Uhr; ohne Positions-Updater
+        // plant der Player keine zusätzlichen Frames ein.
+        ..positionUpdater = null;
+      await player.setReleaseMode(ReleaseMode.stop);
+      await player.setVolume(1.0);
+      _clipDone ??= player.onPlayerComplete.listen((_) => _finishClip());
+      if (generation != _speechGeneration) return true;
+      await player.play(AssetSource(clip.assetSource));
+      if (generation != _speechGeneration) {
+        await _stopClip();
+        return true;
+      }
+      clipMouth.value = 0;
+      status.value = VoiceStatus.speaking;
+      final watch = Stopwatch()..start();
+      _clipTicker?.cancel();
+      _clipTicker = Timer.periodic(const Duration(milliseconds: 50), (t) {
+        if (watch.elapsed > clip.duration + const Duration(milliseconds: 400)) {
+          // Sicherheitsnetz, falls das Abschluss-Ereignis ausbleibt.
+          _finishClip();
+          return;
+        }
+        clipMouth.value = clip.mouthAt(watch.elapsed);
+      });
+      return true;
+    } catch (e) {
+      if (kDebugMode) debugPrint('[LumoVoice] Clip fehlgeschlagen, TTS: $e');
+      _finishClip();
+      return false;
+    }
+  }
+
+  void _finishClip() {
+    _clipTicker?.cancel();
+    _clipTicker = null;
+    if (clipMouth.value != null) {
+      clipMouth.value = null;
+      status.value = VoiceStatus.idle;
+    }
+  }
+
+  Future<void> _stopClip() async {
+    final wasPlaying = _clipTicker != null;
+    _finishClip();
+    if (!wasPlaying) return;
+    try {
+      await _clipPlayer?.stop();
+    } catch (_) {}
   }
 
   String _prepareHumanText(String input, VoiceStyle style) {
@@ -296,6 +377,7 @@ class LumoVoice {
   Future<void> stop() async {
     _speechGeneration++;
     status.value = VoiceStatus.idle;
+    await _stopClip();
     try {
       await _tts.stop();
     } catch (_) {}
@@ -306,6 +388,34 @@ class LumoVoice {
         'Hallo! Ich bin Lumo, dein Lernfuchs. Ich spreche jetzt ruhiger, freundlicher und menschlicher.',
         style: VoiceStyle.greeting,
       );
+}
+
+/// Beendet Lumos Sprechen, sobald eine Seite verlassen oder ersetzt wird,
+/// damit alter Text nicht auf der nächsten Seite weiterläuft.
+class LumoVoiceRouteObserver extends NavigatorObserver {
+  LumoVoiceRouteObserver({LumoVoice? voice})
+      : _voice = voice ?? LumoVoice.instance;
+
+  final LumoVoice _voice;
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) =>
+      _stopForPage(route);
+
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) =>
+      _stopForPage(route);
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    if (oldRoute != null) _stopForPage(oldRoute);
+  }
+
+  void _stopForPage(Route<dynamic> route) {
+    // Dialoge und Bottom-Sheets (z. B. Lumo-Gespräch) steuern ihr Sprechen selbst.
+    if (route is! PageRoute) return;
+    if (_voice.status.value == VoiceStatus.speaking) unawaited(_voice.stop());
+  }
 }
 
 enum VoiceStyle { warm, greeting, explain, celebrate, comfort, question }
