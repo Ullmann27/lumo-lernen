@@ -198,7 +198,7 @@ class _LumoResultDialogState extends State<LumoResultDialog>
                 onPressed: widget.onExit,
                 icon: const Icon(Icons.exit_to_app_rounded),
                 label: const Text(
-                  'Zurueck',
+                  'Zurück',
                   style: TextStyle(
                       fontFamily: 'Nunito', fontWeight: FontWeight.w900),
                 ),

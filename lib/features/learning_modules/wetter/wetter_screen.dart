@@ -8,6 +8,7 @@
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -336,8 +337,9 @@ class _WetterScreenState extends State<WetterScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -361,7 +363,7 @@ class _WetterScreenState extends State<WetterScreen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {
@@ -595,12 +597,12 @@ class _WetterScreenState extends State<WetterScreen>
                   children: [
                     Text(w.icon, style: const TextStyle(fontSize: 28)),
                     const SizedBox(width: 8),
-                    Text(w.name,
+                    Flexible(child: FittedBox(fit: BoxFit.scaleDown, child: Text(w.name,
                         style: TextStyle(
                             fontFamily: 'Nunito',
                             fontSize: 16,
                             fontWeight: FontWeight.w900,
-                            color: textColor)),
+                            color: textColor)))),
                   ],
                 ),
               ),

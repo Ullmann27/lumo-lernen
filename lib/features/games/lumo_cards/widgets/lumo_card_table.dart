@@ -13,6 +13,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../../widgets/design/lumo_design_system.dart';
+
 class LumoCardTable extends StatefulWidget {
   const LumoCardTable({super.key, required this.child});
   final Widget child;
@@ -43,31 +45,13 @@ class _LumoCardTableState extends State<LumoCardTable>
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      // ── LUMO CARDS Arena (lila, nach Mockup Bild 3) ──
-      // Radialer Verlauf: warmes Zentrum (Spotlight) -> tiefes Lila Rand.
-      decoration: const BoxDecoration(
-        gradient: RadialGradient(
-          colors: [
-            Color(0xFF6B3FA0), // warmes Lila-Zentrum
-            Color(0xFF3D2270), // mittleres Lila
-            Color(0xFF1E1240), // tiefes Lila Rand
-          ],
-          stops: [0.0, 0.5, 1.0],
-          radius: 1.1,
-          center: Alignment(0, -0.10),
-        ),
-      ),
+    // Nachtwelt wie Bild 03: Szene im Hintergrund, darüber ein runder,
+    // cyan leuchtender Steintisch in der Mitte.
+    return LumoSceneBackground(
+      scene: LumoScene.games,
+      dimmed: true,
       child: Stack(
         children: [
-          // ── Layer 1: Noise/Texture-Overlay (Stoff-Optik) ──
-          Positioned.fill(
-            child: IgnorePointer(
-              child: CustomPaint(
-                painter: _TableNoisePainter(),
-              ),
-            ),
-          ),
 
           // ── Layer 2: Vignette an den Raendern ──
           // Dunkler werden zu den Ecken hin - macht den Tisch zur "Buehne".
@@ -129,9 +113,9 @@ class _LumoCardTableState extends State<LumoCardTable>
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      const Color(0xFFFFE0B8).withOpacity(0.22),
-                      const Color(0xFFFFE0B8).withOpacity(0.08),
-                      const Color(0xFFFFE0B8).withOpacity(0.0),
+                      const Color(0xFF7FE3FF).withOpacity(0.20),
+                      const Color(0xFF7FE3FF).withOpacity(0.07),
+                      const Color(0xFF7FE3FF).withOpacity(0.0),
                     ],
                     stops: const [0.0, 0.25, 0.55],
                     radius: 0.42,
@@ -150,25 +134,52 @@ class _LumoCardTableState extends State<LumoCardTable>
   }
 }
 
-/// Sehr feines Noise-Pattern fuer Stoff-Optik.
-class _TableNoisePainter extends CustomPainter {
+/// Runder Steintisch (Draufsicht leicht schräg) mit leuchtendem Cyan-Ring,
+/// auf dem Nachzieh- und Ablagestapel liegen.
+class LumoRoundTablePainter extends CustomPainter {
+  const LumoRoundTablePainter();
+
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint();
-    // Sehr fein - kaum sichtbar, aber gibt der Flaeche Charakter.
-    // Pseudo-random aber deterministisch (kein flicker).
-    final rng = math.Random(42);
-    for (int i = 0; i < 280; i++) {
-      final x = rng.nextDouble() * size.width;
-      final y = rng.nextDouble() * size.height;
-      final opacity = 0.02 + rng.nextDouble() * 0.04;
-      paint.color = Colors.white.withOpacity(opacity);
-      canvas.drawCircle(Offset(x, y), 0.7, paint);
-    }
+    final center = Offset(size.width / 2, size.height * .5);
+    // Oval passt in die Tischfläche, egal ob hoch oder quer.
+    final w = math.min(math.min(size.width * .98, 620.0), size.height * 1.5);
+    final rect = Rect.fromCenter(center: center, width: w, height: w * .62);
+    canvas.drawOval(
+        rect.shift(const Offset(0, 14)),
+        Paint()
+          ..color = const Color(0x99020A24)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18));
+    canvas.drawOval(
+        rect,
+        Paint()
+          ..shader = const RadialGradient(
+            colors: [Color(0xFF2E3D5E), Color(0xFF1B2643), Color(0xFF111833)],
+            stops: [0, .7, 1],
+          ).createShader(rect));
+    canvas.drawOval(
+        rect.deflate(10),
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 3
+          ..color = const Color(0xCC53DDFD)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4));
+    canvas.drawOval(
+        rect.deflate(10),
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.2
+          ..color = const Color(0xFFBDF4FF));
+    canvas.drawOval(
+        rect.deflate(w * .16),
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1
+          ..color = const Color(0x5537D2FD));
   }
 
   @override
-  bool shouldRepaint(_TableNoisePainter old) => false;
+  bool shouldRepaint(LumoRoundTablePainter oldDelegate) => false;
 }
 
 /// Statische warme Sparkles - wie Kerzenlicht-Reflexe auf dem Tisch.

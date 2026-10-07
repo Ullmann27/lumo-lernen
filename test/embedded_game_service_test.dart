@@ -169,4 +169,27 @@ void main() {
     service.dispose();
     state.dispose();
   });
+  test('new native games award explicit XP once and reject malformed rewards', () async {
+    final wallet = RewardWalletRepository();
+    final state = LumoAppState(walletRepository: wallet);
+    final service = EmbeddedGameService(appState: state, wallet: wallet, onDestination: (_) {});
+    pending['results'] = [
+      for (final game in ['build', 'puzzle', 'rhythm', 'treasure'])
+        {'game': game, 'resultId': 'creative-$game', 'status': 'completed', 'stars': 3, 'xp': 24},
+      {'game': 'build', 'resultId': 'bad-xp', 'status': 'completed', 'stars': 3, 'xp': -1},
+      {'game': 'puzzle', 'resultId': 'bad-stars', 'status': 'completed', 'stars': 101, 'xp': 24},
+    ];
+    failAcknowledgement = true;
+    await service.synchronize();
+    expect(state.state.stars, 12);
+    expect(state.state.xp, 96);
+    failAcknowledgement = false;
+    await service.synchronize();
+    expect(state.state.stars, 12);
+    expect(state.state.xp, 96);
+    expect(acknowledged, hasLength(4));
+    expect((pending['results'] as List).map((e) => e['resultId']), ['bad-xp', 'bad-stars']);
+    service.dispose(); state.dispose();
+  });
+
 }

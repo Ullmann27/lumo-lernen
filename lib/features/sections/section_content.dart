@@ -6,7 +6,6 @@ import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_visual_tokens.dart';
-import '../../widgets/design/lumo_design_system.dart';
 import '../rewards/reward_shop_content.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
 import '../shared/widgets/lumo_subject_tile.dart';
@@ -155,28 +154,6 @@ class SectionContent extends StatelessWidget {
             ),
           ],
         );
-      case LumoSection.tests:
-        return _ActionPage(
-          title: 'Test',
-          subtitle: 'Teste dein Wissen mit kurzen kindgerechten Fragen.',
-          emoji: '📋',
-          accent: LumoVisualTokens.tests,
-          testArena: true,
-          cards: [
-            _ActionData('Mini-Test', '10 gemischte Aufgaben zum Aufwärmen.', 'Starten', Icons.flash_on_rounded, () => _startSession(subject: 'Alle', message: 'Mini-Test\nist bereit.\nDu schaffst das!', sessionKind: LumoSessionKind.test,
-              ),
-            ),
-            _ActionData('Mathe-Test', 'Rechnen, Zahlen und kleine Denkaufgaben.', 'Starten', Icons.calculate_rounded, () => _startSession(subject: 'Mathematik', message: 'Mathe-Test\nist bereit.\nRuhig rechnen.', sessionKind: LumoSessionKind.test,
-              ),
-            ),
-            _ActionData('Deutsch-Test', 'Lesen, Wörter und Satzverständnis.', 'Starten', Icons.menu_book_rounded, () => _startSession(subject: 'Deutsch', message: 'Deutsch-Test\nist bereit.\nLangsam lesen.', sessionKind: LumoSessionKind.test,
-              ),
-            ),
-            _ActionData('Schwächen-Test', 'Lumo übt stärker, was noch schwer war.', 'Los', Icons.psychology_rounded, () => _startSession(subject: 'Alle', message: 'Ich wähle\npassende Aufgaben\nfür dich.', sessionKind: LumoSessionKind.test,
-              ),
-            ),
-          ],
-        );
       case LumoSection.schoolwork:
         return _ActionPage(
           title: 'Schularbeit',
@@ -184,16 +161,73 @@ class SectionContent extends StatelessWidget {
           emoji: '🏆',
           accent: LumoColors.schoolwork,
           cards: [
-            _ActionData('Gemischter Test', '30 Aufgaben aus Mathe, Deutsch und Sachunterricht.', 'Starten', Icons.assignment_rounded, () => _startSession(subject: 'Alle', message: 'Gemischte\nSchularbeit\nstartet jetzt.', sessionKind: LumoSessionKind.schoolwork,
+            _ActionData(
+              'Gemischter Lerncheck',
+              appState.state.grade >= 3
+                  ? '30 Aufgaben aus Mathe, Deutsch, Sachunterricht und Englisch.'
+                  : '30 Aufgaben aus Mathe, Deutsch und Sachunterricht.',
+              'Starten',
+              Icons.assignment_rounded,
+              () => _startSession(
+                subject: 'Alle',
+                message: 'Gemischter\nLerncheck\nstartet jetzt.',
+                sessionKind: LumoSessionKind.schoolwork,
               ),
             ),
-            _ActionData('Mathe-Schularbeit', '30 Aufgaben Rechnen, Geld, Uhrzeit und Zahlen.', 'Starten', Icons.calculate_rounded, () => _startSession(subject: 'Mathematik', message: 'Mathe-Training\nwie Schularbeit.', sessionKind: LumoSessionKind.schoolwork,
+            _ActionData(
+              'Mathe-Schularbeit',
+              '30 Aufgaben: Rechnen, Größen, Geld, Zeit, Geometrie und Sachaufgaben.',
+              'Starten',
+              Icons.calculate_rounded,
+              () => _startSession(
+                subject: 'Mathematik',
+                message: 'Mathe-Training\nwie Schularbeit.',
+                sessionKind: LumoSessionKind.schoolwork,
               ),
             ),
-            _ActionData('Deutsch-Schularbeit', '30 Aufgaben Lesen, Schreiben und Rechtschreibung.', 'Starten', Icons.edit_document, () => _startSession(subject: 'Deutsch', message: 'Deutsch-Training\nwie Schularbeit.', sessionKind: LumoSessionKind.schoolwork,
+            _ActionData(
+              'Deutsch-Schularbeit',
+              '30 Aufgaben: Lesen, Sprache, Rechtschreibung und Schreiben.',
+              'Starten',
+              Icons.edit_document,
+              () => _startSession(
+                subject: 'Deutsch',
+                message: 'Deutsch-Training\nwie Schularbeit.',
+                sessionKind: LumoSessionKind.schoolwork,
               ),
             ),
-            _ActionData('Schnelle Wiederholung', '20 Aufgaben gemischt zum Festigen.', 'Üben', Icons.refresh_rounded, () => _startSession(subject: 'Alle', message: 'Wiederholung\nstartet.', sessionKind: LumoSessionKind.exerciseSet,
+            _ActionData(
+              'Sachunterricht-Lerncheck',
+              'Natur, Körper, Gemeinschaft, Österreich, Verkehr, Technik und Umwelt.',
+              'Starten',
+              Icons.public_rounded,
+              () => _startSession(
+                subject: 'Sachunterricht',
+                message: 'Sachunterricht\nLerncheck\nstartet.',
+                sessionKind: LumoSessionKind.test,
+              ),
+            ),
+            if (appState.state.grade >= 3)
+              _ActionData(
+                'Englisch-Lerncheck',
+                'Hören/Lesen, Wortschatz und einfache Alltagssituationen.',
+                'Starten',
+                Icons.language_rounded,
+                () => _startSession(
+                  subject: 'Englisch',
+                  message: 'English Check\nstarts now.',
+                  sessionKind: LumoSessionKind.test,
+                ),
+              ),
+            _ActionData(
+              'Schnelle Wiederholung',
+              '20 Aufgaben gemischt zum Festigen.',
+              'Üben',
+              Icons.refresh_rounded,
+              () => _startSession(
+                subject: 'Alle',
+                message: 'Wiederholung\nstartet.',
+                sessionKind: LumoSessionKind.exerciseSet,
               ),
             ),
           ],
@@ -344,134 +378,95 @@ class SectionContent extends StatelessWidget {
 }
 
 class _ActionPage extends StatelessWidget {
-  const _ActionPage({required this.title, required this.subtitle, required this.emoji, required this.accent, required this.cards, this.testArena = false,
+  const _ActionPage({required this.title, required this.subtitle, required this.emoji, required this.accent, required this.cards,
   });
   final String title;
   final String subtitle;
   final String emoji;
   final Color accent;
   final List<_ActionData> cards;
-  final bool testArena;
 
   @override
-  Widget build(BuildContext context) {
-    return testArena
-        ? LumoSceneBackground(
-            scene: LumoScene.tests,
-            child: _pageContent(),
-          )
-        : _pageContent();
-  }
-
-  Widget _pageContent() => SingleChildScrollView(
-        padding: EdgeInsets.all(testArena ? 18 : 26),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final cardWidth = testArena
-                ? constraints.maxWidth.clamp(0.0, 230.0).toDouble()
-                : 230.0;
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _Header(
-                  title: title,
-                  subtitle: subtitle,
-                  emoji: emoji,
-                  accent: accent,
-                  testArena: testArena,
-                ),
-                const SizedBox(height: 18),
-                Wrap(
-                  spacing: 14,
-                  runSpacing: 14,
-                  children: cards
-                      .map((c) => _ActionCard(
-                            data: c,
-                            accent: accent,
-                            testArena: testArena,
-                            width: cardWidth,
-                          ))
-                      .toList(),
-                ),
-              ],
-            );
-          },
+  Widget build(BuildContext context) => SingleChildScrollView(
+        padding: const EdgeInsets.all(26),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _Header(title: title, subtitle: subtitle, emoji: emoji, accent: accent),
+            const SizedBox(height: 18),
+            Wrap(
+              spacing: 14,
+              runSpacing: 14,
+              children: cards.map((c) => _ActionCard(data: c, accent: accent)).toList(),
+            ),
+          ],
         ),
       );
 }
 
 class _Header extends StatelessWidget {
-  const _Header({required this.title, required this.subtitle, required this.emoji, required this.accent, this.testArena = false,
+  const _Header({required this.title, required this.subtitle, required this.emoji, required this.accent,
   });
   final String title;
   final String subtitle;
   final String emoji;
   final Color accent;
-  final bool testArena;
 
   @override
   Widget build(BuildContext context) {
-    final content = Row(
-      children: [
-        if (testArena)
-          const LumoFoxPose(
-            pose: LumoDesignFoxPose.trophyWink,
-            size: 84,
-          )
-        else
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xEE0B315F), Color(0xF0081D43), Color(0xEA0B2A55)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.48), width: 1.2),
+        boxShadow: [
+          BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.16), blurRadius: 20, offset: const Offset(0, 8)),
+        ],
+      ),
+      child: Row(
+        children: [
           Container(
             width: 64,
             height: 64,
             decoration: BoxDecoration(
-              color: accent.withOpacity(.14),
-              borderRadius: BorderRadius.circular(LumoRadius.lg),
-            ),
-            child: Center(child: Text(emoji, style: const TextStyle(fontSize: 34))),
-          ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                testArena ? 'LUMO TESTS' : title,
-                style: testArena
-                    ? const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w900,
-                        color: LumoVisualTokens.white,
-                      )
-                    : LumoTextStyles.heading1,
-              ),
-              const SizedBox(height: 6),
-              Text(
-                subtitle,
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 14,
-                  color: testArena ? LumoVisualTokens.muted : LumoColors.ink700,
-                  fontWeight: testArena ? FontWeight.w700 : FontWeight.normal,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-    return testArena
-        ? LumoGlassCard(padding: const EdgeInsets.all(12), child: content)
-        : Container(
-            padding: const EdgeInsets.all(20),
-            decoration: lumoCard(
               gradient: LinearGradient(
-                colors: [Colors.white, accent.withOpacity(.10)],
+                colors: [accent.withOpacity(.82), accent.withOpacity(.34)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
+              borderRadius: BorderRadius.circular(LumoRadius.lg),
+              border: Border.all(color: Colors.white.withOpacity(.30)),
             ),
-            child: content,
-          );
+            child: Center(child: Text(emoji, style: const TextStyle(fontSize: 34))),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: LumoTextStyles.heading1.copyWith(
+                    color: LumoVisualTokens.white,
+                    shadows: const [Shadow(color: Color(0x8837D2FD), blurRadius: 10)],
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  subtitle,
+                  style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w700, color: LumoVisualTokens.muted),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -486,67 +481,57 @@ class _ActionData {
 }
 
 class _ActionCard extends StatelessWidget {
-  const _ActionCard({
-    required this.data,
-    required this.accent,
-    this.testArena = false,
-    this.width = 230,
-  });
+  const _ActionCard({required this.data, required this.accent});
   final _ActionData data;
   final Color accent;
-  final bool testArena;
-  final double width;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: data.onTap,
       child: Container(
-        width: width,
+        width: 230,
         height: 160,
         padding: const EdgeInsets.all(16),
-        decoration: testArena
-            ? BoxDecoration(
-                color: LumoVisualTokens.glass.withOpacity(.78),
-                borderRadius: BorderRadius.circular(22),
-                border: Border.all(
-                  color: LumoVisualTokens.cyan.withOpacity(.48),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: accent.withOpacity(.18),
-                    blurRadius: 18,
-                    offset: const Offset(0, 7),
-                  ),
-                ],
-              )
-            : lumoCard(
-                gradient: LinearGradient(
-                  colors: [Colors.white, accent.withOpacity(.09)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: accent.withOpacity(.55), width: 1.2),
+          boxShadow: [
+            BoxShadow(
+              color: accent.withOpacity(.18),
+              blurRadius: 18,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            Container(width: 38, height: 38, decoration: BoxDecoration(color: testArena ? LumoVisualTokens.glassRow : accent.withOpacity(.13), borderRadius: BorderRadius.circular(LumoRadius.sm),
-                  ), child: Icon(data.icon, color: accent, size: 21),
+            Container(width: 38, height: 38, decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [accent.withOpacity(.75), accent.withOpacity(.25)]),
+                  borderRadius: BorderRadius.circular(LumoRadius.sm),
+                  border: Border.all(color: Colors.white.withOpacity(.22)),
+                  ), child: Icon(data.icon, color: Colors.white, size: 21),
                 ),
             const SizedBox(width: 10),
-            Expanded(child: Text(data.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.heading3.copyWith(color: testArena ? LumoVisualTokens.white : accent),
+            Expanded(child: Text(data.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
                   ),
                 ),
           ],
             ),
           const SizedBox(height: 10),
-          Expanded(child: Text(data.description, style: testArena ? const TextStyle(fontFamily: 'Nunito', fontSize: 12, color: LumoVisualTokens.muted) : LumoTextStyles.cardSub, maxLines: 3, overflow: TextOverflow.ellipsis,
+          Expanded(child: Text(data.description, style: LumoTextStyles.cardSub.copyWith(color: LumoVisualTokens.muted), maxLines: 3, overflow: TextOverflow.ellipsis,
               ),
             ),
           Row(mainAxisSize: MainAxisSize.min, children: [
-            Text(data.cta, style: LumoTextStyles.cta.copyWith(color: testArena ? LumoVisualTokens.cyanBright : accent),
+            Text(data.cta, style: LumoTextStyles.cta.copyWith(color: LumoVisualTokens.cyanBright),
                 ),
             const SizedBox(width: 4),
-            Icon(Icons.arrow_forward_rounded, color: accent, size: 15),
+            const Icon(Icons.arrow_forward_rounded, color: LumoVisualTokens.cyanBright, size: 15),
           ],
             ),
         ],
@@ -590,7 +575,7 @@ class _MissionsPage extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 22,
             fontWeight: FontWeight.w900,
-            color: LumoColors.ink900,
+            color: LumoVisualTokens.white,
           ),
         ),
         const SizedBox(height: 4),
@@ -600,7 +585,7 @@ class _MissionsPage extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 14,
             fontWeight: FontWeight.w700,
-            color: LumoColors.ink500,
+            color: LumoVisualTokens.muted,
           ),
         ),
         const SizedBox(height: 14),
@@ -646,14 +631,22 @@ class _ReadingMissionCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(18),
-        decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFEFF6FF), Color(0xFFFFF7ED)],
-          ),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(colors: [Color(0xE8123D72), Color(0xEE0A2852)]),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45)),
+          boxShadow: [
+            BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.16), blurRadius: 18, offset: const Offset(0, 8)),
+          ],
         ),
         child: Row(children: [
           Container(
             width: 62,
             height: 62,
-            decoration: BoxDecoration(color: Colors.white.withOpacity(.86), borderRadius: BorderRadius.circular(LumoRadius.lg),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(colors: [Color(0xFF2A7EE0), Color(0xFF174B86)]),
+              borderRadius: BorderRadius.circular(LumoRadius.lg),
+              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45)),
               ),
             child: const Center(child: Text('📖', style: TextStyle(fontSize: 34)),
               ),
@@ -661,11 +654,11 @@ class _ReadingMissionCard extends StatelessWidget {
           const SizedBox(width: 14),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('Aktiv lesen mit Lumo', style: LumoTextStyles.heading2.copyWith(color: LumoColors.blue,
+              Text('Aktiv lesen mit Lumo', style: LumoTextStyles.heading2.copyWith(color: LumoVisualTokens.white,
                     ),
                   ),
               const SizedBox(height: 5),
-              Text('Lumo hört Satz für Satz zu, hilft bei Fehlern und merkt sich Übungswörter.', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700,
+              Text('Lumo hört Satz für Satz zu, hilft bei Fehlern und merkt sich Übungswörter.', style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted,
                     ),
                   ),
             ],
@@ -714,7 +707,13 @@ class _ProgressPage extends StatelessWidget {
         const SizedBox(height: 18),
         Container(
           padding: const EdgeInsets.all(18),
-          decoration: lumoCard(),
+          decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xE6123760), Color(0xE609264B)],
+                ),
+                borderRadius: BorderRadius.circular(LumoRadius.xl),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
+              ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const Text('Aktuelle Lernrichtung', style: LumoTextStyles.heading3,
                 ),
@@ -744,7 +743,13 @@ class _ProgressTile extends StatelessWidget {
     return Container(
       width: 210,
       padding: const EdgeInsets.all(16),
-      decoration: lumoCard(),
+      decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xE6123760), Color(0xE609264B)],
+                ),
+                borderRadius: BorderRadius.circular(LumoRadius.xl),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
+              ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [Text(icon, style: const TextStyle(fontSize: 24)), const SizedBox(width: 8), Text(label, style: LumoTextStyles.label.copyWith(color: color)),
             ],
@@ -806,16 +811,27 @@ class _Badge extends StatelessWidget {
     return Container(
       width: 150,
       padding: const EdgeInsets.all(16),
-      decoration: lumoCard(color: unlocked ? Colors.white : const Color(0xFFFFFAF5),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: unlocked
+              ? const <Color>[Color(0xE6143B66), Color(0xE609264B)]
+              : const <Color>[Color(0xAA102D52), Color(0xAA081C38)],
+        ),
+        borderRadius: BorderRadius.circular(LumoRadius.xl),
+        border: Border.all(
+          color: unlocked
+              ? LumoVisualTokens.cyan.withOpacity(.42)
+              : LumoVisualTokens.cyan.withOpacity(.16),
+        ),
       ),
       child: Column(children: [
         Opacity(opacity: unlocked ? 1 : .30, child: Text(emoji, style: const TextStyle(fontSize: 42)),
           ),
         const SizedBox(height: 8),
-        Text(label, textAlign: TextAlign.center, style: LumoTextStyles.heading3,
+        Text(label, textAlign: TextAlign.center, style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
           ),
         const SizedBox(height: 4),
-        Text(unlocked ? 'Freigeschaltet' : 'Noch gesperrt', style: LumoTextStyles.caption,
+        Text(unlocked ? 'Freigeschaltet' : 'Noch gesperrt', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
           ),
       ],
       ),
@@ -954,7 +970,13 @@ class _AgentPageState extends State<_AgentPage> {
             const SizedBox(height: 18),
             Container(
               padding: const EdgeInsets.all(18),
-              decoration: lumoCard(),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xE6123760), Color(0xE609264B)],
+                ),
+                borderRadius: BorderRadius.circular(LumoRadius.xl),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
+              ),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 TextField(
                   controller: _controller,
@@ -994,9 +1016,9 @@ class _AgentPageState extends State<_AgentPage> {
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg),
+                    decoration: BoxDecoration(color: const Color(0xD90B2A55), borderRadius: BorderRadius.circular(LumoRadius.lg), border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.25)),
                         ),
-                    child: Text('Mikrofon ist im Elternbereich deaktiviert.', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700,
+                    child: Text('Mikrofon ist im Elternbereich deaktiviert.', style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white,
                           ),
                         ),
                   ),
@@ -1004,9 +1026,9 @@ class _AgentPageState extends State<_AgentPage> {
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg),
+                    decoration: BoxDecoration(color: const Color(0xD90B2A55), borderRadius: BorderRadius.circular(LumoRadius.lg), border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.25)),
                         ),
-                    child: Text(_speech.listening ? 'Ich höre: ${_heardText.isEmpty ? '...' : _heardText}' : 'Gehört: $_heardText', style: LumoTextStyles.body.copyWith(color: LumoColors.ink700,
+                    child: Text(_speech.listening ? 'Ich höre: ${_heardText.isEmpty ? '...' : _heardText}' : 'Gehört: $_heardText', style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white,
                           ),
                         ),
                   ),
@@ -1017,7 +1039,7 @@ class _AgentPageState extends State<_AgentPage> {
                       ),
                 ],
                 const SizedBox(height: 16),
-                Text(_answer, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700,
+                Text(_answer, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white,
               ),
             ),
           ],
@@ -1046,11 +1068,17 @@ class _SettingsPage extends StatelessWidget {
         const SizedBox(height: 18),
         Container(
           padding: const EdgeInsets.all(18),
-          decoration: lumoCard(),
+          decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xE6123760), Color(0xE609264B)],
+                ),
+                borderRadius: BorderRadius.circular(LumoRadius.xl),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
+              ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('Aktiv:', style: LumoTextStyles.heading3),
+            Text('Aktiv:', style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white)),
             const SizedBox(height: 8),
-            Text('• Profil: ${st.childName}, Klasse ${st.grade}\n• Lokales Kinderprofil\n• Alters- und Klassenlogik\n• Sicherer Offline-Lumo-Helfer\n• Mikrofon nur lokal für Spracheingabe\n• Foto-Review ohne Online-Upload', style: LumoTextStyles.body,
+            Text('• Profil: ${st.childName}, Klasse ${st.grade}\n• Lokales Kinderprofil\n• Alters- und Klassenlogik\n• Sicherer Offline-Lumo-Helfer\n• Mikrofon nur lokal für Spracheingabe\n• Foto-Review ohne Online-Upload', style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted),
                 ),
           ],
             ),

@@ -10,6 +10,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/fox/lumo_character.dart';
 
 class LumoStreakWeekCalendar extends StatelessWidget {
   const LumoStreakWeekCalendar({
@@ -35,16 +38,16 @@ class LumoStreakWeekCalendar extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFFFBEB), Color(0xFFFEF3C7)],
+          colors: [Color(0xDD123D72), Color(0xEE0A2852)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFFCD34D).withOpacity(0.45)),
+        border: Border.all(color: LumoVisualTokens.gold.withOpacity(.42)),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFFCD34D).withOpacity(0.18),
-            blurRadius: 14,
+            color: LumoVisualTokens.gold.withOpacity(.15),
+            blurRadius: 16,
             offset: const Offset(0, 6),
           ),
         ],
@@ -56,15 +59,15 @@ class LumoStreakWeekCalendar extends StatelessWidget {
               // 2026-06-06 Iter 29: bei langem Streak echter Lumo-Cheer
               // statt nur Flammen-Emoji. Asset-Fehler -> Flammen-Fallback.
               if (streakDays >= 5)
-                ClipOval(
-                  child: Image.asset(
-                    'assets/companion/lumo_cheer.png',
-                    width: 38,
-                    height: 38,
-                    fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) =>
-                        const Text('🔥', style: TextStyle(fontSize: 26)),
-                  ),
+                LumoCharacter(
+                  pose: LumoDesignFoxPose.cheer,
+                  ambientPoses: const <LumoDesignFoxPose>[
+                    LumoDesignFoxPose.thumbWink,
+                  ],
+                  size: 46,
+                  reduceMotion: MediaQuery.disableAnimationsOf(context),
+                  intro: false,
+                  shadow: false,
                 )
               else
                 const Text('🔥', style: TextStyle(fontSize: 26)),
@@ -81,7 +84,7 @@ class LumoStreakWeekCalendar extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF7C2D12),
+                        color: LumoVisualTokens.white,
                       ),
                     ),
                     Text(
@@ -94,7 +97,7 @@ class LumoStreakWeekCalendar extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF92400E),
+                        color: LumoVisualTokens.muted,
                       ),
                     ),
                   ],
@@ -162,7 +165,7 @@ class _DayPill extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 11,
             fontWeight: FontWeight.w800,
-            color: isToday ? const Color(0xFF1D4ED8) : LumoColors.ink500,
+            color: isToday ? LumoVisualTokens.cyanBright : LumoVisualTokens.muted,
           ),
         ),
         const SizedBox(height: 4),
@@ -171,15 +174,17 @@ class _DayPill extends StatelessWidget {
           height: 36,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: active
-                ? const Color(0xFFFEF3C7)
-                : Colors.white.withOpacity(0.55),
+            gradient: LinearGradient(
+              colors: active
+                  ? const [Color(0xCC9A6400), Color(0xCC4A3208)]
+                  : const [Color(0xAA174E8B), Color(0xAA0D356A)],
+            ),
             border: Border.all(
               color: isToday
-                  ? const Color(0xFF1D4ED8)
+                  ? LumoVisualTokens.cyanBright
                   : active
-                      ? const Color(0xFFFCD34D)
-                      : const Color(0xFFE5E7EB),
+                      ? LumoVisualTokens.gold
+                      : const Color(0xFF31577A),
               width: isToday ? 2.4 : 1.4,
             ),
             boxShadow: active
@@ -208,7 +213,7 @@ class _DayPill extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 10,
               fontWeight: FontWeight.w900,
-              color: Color(0xFFEA580C),
+              color: LumoVisualTokens.gold,
             ),
           )
         else

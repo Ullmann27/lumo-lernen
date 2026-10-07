@@ -39,19 +39,34 @@ class LearningModuleProgress extends ChangeNotifier
       ? 'Wir speichern deine Belohnung…'
       : 'Wir speichern deine Antwort…';
 
+  /// Zeitpunkt der letzten Antwort (oder des Starts); daraus ergibt sich die
+  /// Bearbeitungszeit der nächsten Aufgabe fürs Aufgabenprotokoll.
+  DateTime _lastAnswerAt = DateTime.now();
+
   Future<bool> saveAnswer({
     required bool correct,
     bool hintUsed = false,
     int stars = 0,
     int xp = 0,
-  }) =>
-      _enqueue(_PendingModuleSave(
-        correct: correct,
-        hintUsed: hintUsed,
-        stars: stars,
-        xp: xp,
-        generation: appState.profileGeneration,
-      ));
+    String prompt = '',
+    String given = '',
+    String expected = '',
+  }) {
+    final now = DateTime.now();
+    final ms = now.difference(_lastAnswerAt).inMilliseconds.clamp(0, 60000);
+    if (_pending == null) _lastAnswerAt = now;
+    return _enqueue(_PendingModuleSave(
+      correct: correct,
+      hintUsed: hintUsed,
+      stars: stars,
+      xp: xp,
+      generation: appState.profileGeneration,
+      prompt: prompt,
+      given: given,
+      expected: expected,
+      durationMs: ms,
+    ));
+  }
 
   /// Session bonuses affect only the wallet, never Daily or skill answers.
   Future<bool> saveBonus({required int stars, required int xp}) {
@@ -139,6 +154,10 @@ class LearningModuleProgress extends ChangeNotifier
             correct: pending.correct!,
             hintUsed: pending.hintUsed,
             requireSaved: true,
+            prompt: pending.prompt,
+            given: pending.given,
+            expected: pending.expected,
+            durationMs: pending.durationMs,
           );
         } else {
           await appState.flushLearningProgress();
@@ -239,7 +258,16 @@ class _PendingModuleSave {
     required this.xp,
     required this.generation,
     this.sessionBonus = false,
+    this.prompt = '',
+    this.given = '',
+    this.expected = '',
+    this.durationMs,
   });
+
+  final String prompt;
+  final String given;
+  final String expected;
+  final int? durationMs;
 
   final bool? correct;
   final bool hintUsed;

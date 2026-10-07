@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/writing_target_parser.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import '../../../domain/writing/expanded_writing_template_repository.dart';
 import '../../../domain/writing/writing_domain.dart';
 import '../widgets/lumo_writing_canvas.dart';
@@ -96,7 +97,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         padding: const EdgeInsets.all(18),
         decoration: lumoCard(
           gradient: const LinearGradient(
-            colors: [Color(0xFFFFF4BD), Color(0xFFFFF8DC)],
+            colors: [Color(0xEA0B2B58), Color(0xEE071B3D), Color(0xE60A315F)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -104,7 +105,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             _isSentenceTarget ? 'Schreibsatz' : _isWordTarget ? 'Schreibwort' : 'Schreibaufgabe',
-            style: LumoTextStyles.label.copyWith(color: LumoColors.orange, fontSize: 13),
+            style: LumoTextStyles.label.copyWith(color: LumoVisualTokens.cyanBright, fontSize: 13),
           ),
           const SizedBox(height: 8),
           Text(
@@ -113,8 +114,9 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
               fontFamily: 'Nunito',
               fontSize: 30,
               fontWeight: FontWeight.w900,
-              color: LumoColors.ink900,
+              color: LumoVisualTokens.white,
               height: 1.12,
+              shadows: const [Shadow(color: Color(0x8837D2FD), blurRadius: 10)],
             ),
           ),
           const SizedBox(height: 8),
@@ -126,7 +128,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
               fontFamily: 'Nunito',
               fontSize: 16,
               fontWeight: FontWeight.w900,
-              color: LumoColors.orange,
+              color: LumoVisualTokens.cyanBright,
             ),
           ),
           if (_isWordTarget) ...[
@@ -135,7 +137,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
             const SizedBox(height: 8),
             Text(
               'Schreibe ${_isSentenceTarget ? 'den ganzen Satz' : 'das ganze Wort'} frei auf die Linien. Diese Übung wird nicht automatisch bewertet; vergleiche sie mit einer erwachsenen Person.',
-              style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w800),
+              style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted, fontWeight: FontWeight.w800),
             ),
           ],
           if (_isFreeTarget && !_isWordTarget)
@@ -223,9 +225,16 @@ class _WordTargetStrip extends StatelessWidget {
                 height: 42,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  gradient: const LinearGradient(
+                    colors: [Color(0xCC174E8B), Color(0xCC0D356A)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                   borderRadius: BorderRadius.circular(LumoRadius.sm),
-                  border: Border.all(color: LumoColors.orange.withOpacity(.28), width: 1.4),
+                  border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45), width: 1.4),
+                  boxShadow: [
+                    BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.14), blurRadius: 8),
+                  ],
                 ),
                 child: Text(
                   letter,
@@ -233,7 +242,7 @@ class _WordTargetStrip extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 21,
                     fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
+                    color: LumoVisualTokens.white,
                   ),
                 ),
               ))
@@ -258,14 +267,28 @@ class _WritingFeedbackCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
-      decoration: lumoCard(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: evaluation.overallScore >= .70
-              ? [const Color(0xFFDCFCE7), const Color(0xFFF0FFF4)]
-              : [const Color(0xFFFFF7ED), const Color(0xFFFFFBEB)],
+              ? const [Color(0xDD176C5B), Color(0xEE0B3A35)]
+              : const [Color(0xDD123D72), Color(0xEE0A2852)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(
+          color: (evaluation.overallScore >= .70
+                  ? const Color(0xFF5FF0BF)
+                  : LumoVisualTokens.cyan)
+              .withOpacity(.48),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withOpacity(.12),
+            blurRadius: 16,
+            offset: const Offset(0, 7),
+          ),
+        ],
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
@@ -289,7 +312,7 @@ class _WritingFeedbackCard extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           primaryHint,
-          style: LumoTextStyles.body.copyWith(color: LumoColors.ink700, fontWeight: FontWeight.w900),
+          style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted, fontWeight: FontWeight.w900),
         ),
         const SizedBox(height: 10),
         ClipRRect(
@@ -334,14 +357,14 @@ class _CanvasLaunchCard extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: hasStrokes
-                ? const [Color(0xFFDCFCE7), Color(0xFFBBF7D0)]
-                : const [Color(0xFFFFF8DC), Color(0xFFFFE08A)],
+                ? const [Color(0xDD176C5B), Color(0xEE0B3A35)]
+                : const [Color(0xDD123D72), Color(0xEE0A2852)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
           border: Border.all(
-            color: hasStrokes ? const Color(0xFF22C55E) : LumoColors.orange,
+            color: hasStrokes ? const Color(0xFF5FF0BF) : LumoVisualTokens.cyanBright,
             width: 1.6,
           ),
           boxShadow: [
@@ -402,14 +425,14 @@ class _CanvasLaunchCard extends StatelessWidget {
                       fontFamily: 'Nunito',
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      color: LumoColors.ink500,
+                      color: LumoVisualTokens.muted,
                       height: 1.3,
                     ),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_rounded, color: LumoColors.orange, size: 28),
+            const Icon(Icons.arrow_forward_rounded, color: LumoVisualTokens.cyanBright, size: 28),
           ],
         ),
       ),
@@ -470,9 +493,9 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFFBF0),
+      backgroundColor: LumoVisualTokens.night,
       appBar: AppBar(
-        backgroundColor: LumoColors.orange,
+        backgroundColor: const Color(0xFF071F46),
         foregroundColor: Colors.white,
         title: Text(
           'Schreibe: ${widget.template.symbol}',
@@ -508,9 +531,13 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  gradient: const LinearGradient(
+                    colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                   borderRadius: BorderRadius.circular(LumoRadius.md),
-                  border: Border.all(color: LumoColors.orange.withOpacity(0.4), width: 1.4),
+                  border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45), width: 1.4),
                 ),
                 child: Row(
                   children: [
@@ -523,7 +550,7 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                           fontFamily: 'Nunito',
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
-                          color: LumoColors.ink700,
+                          color: LumoVisualTokens.white,
                           height: 1.35,
                         ),
                       ),

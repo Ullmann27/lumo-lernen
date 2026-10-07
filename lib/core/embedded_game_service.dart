@@ -75,17 +75,20 @@ class EmbeddedGameService with WidgetsBindingObserver {
             generation != appState.profileGeneration) return;
         if (event is! Map ||
             event['status'] != 'completed' ||
-            !const ['kart', 'jump'].contains(event['game'])) continue;
+            !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
+                .contains(event['game'])) continue;
         final id = event['resultId'];
         final stars = event['stars'];
         final solved = event['solved'];
+        final xp = event.containsKey('xp')
+            ? event['xp']
+            : (solved is int && solved >= 0 && solved <= 100 ? solved * 10 : null);
         if (id is! String ||
             stars is! int ||
-            solved is! int ||
-            solved < 0 ||
-            solved > 100) continue;
+            stars < 0 || stars > 100 ||
+            xp is! int || xp < 0 || xp > 1000) continue;
         await wallet.awardGameResult(
-            resultId: id, stars: stars, xp: (solved * 10).clamp(0, 1000));
+            resultId: id, stars: stars, xp: xp);
         ids.add(id);
       }
       if (_disposed ||

@@ -10,7 +10,12 @@ import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_game_controller.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_models.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_rules.dart';
+import 'package:lumo_lernen/domain/games/memory_board.dart';
 import 'package:lumo_lernen/features/games/memory/lumo_memory_game.dart';
+
+Finder _memoryBacks() => find.byWidgetPredicate((w) =>
+    w.key is ValueKey<String> &&
+    (w.key! as ValueKey<String>).value.startsWith('memory-back-'));
 
 List<LumoCard> _allCards(LumoCardsGameState state) => [
       ...state.players.expand((p) => p.hand),
@@ -165,23 +170,11 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = LumoAppState();
     await app.hydrateFromWallet();
-    const symbols = [
-      '🦊',
-      '⭐',
-      '🎁',
-      '🍎',
-      '🌸',
-      '🌈',
-      '🚀',
-      '🎨',
-      '🎈',
-      '🐝',
-      '🌙',
-      '🍪'
-    ];
-    final deck = [...symbols, ...symbols]..shuffle(Random(9));
-    await tester.pumpWidget(
-        MaterialApp(home: LumoMemoryScreen(appState: app, seed: 9)));
+    final deck = MemoryBoard.deal(MemoryDifficulty.profi, Random(9));
+    final symbols = deck.toSet().toList();
+    await tester.pumpWidget(MaterialApp(
+        home: LumoMemoryScreen(
+            appState: app, seed: 9, difficulty: MemoryDifficulty.profi)));
     await tester.pump();
     for (final symbol in symbols) {
       final indices = [
@@ -195,14 +188,14 @@ void main() {
       }
       await tester.pump(const Duration(milliseconds: 900));
     }
-    expect(find.text('🎉 Du hast gewonnen!'), findsOneWidget);
+    expect(find.text('Du hast gewonnen!'), findsOneWidget);
     expect(find.text('Du: 12 Paare    Lumo: 0 Paare'), findsOneWidget);
     expect(app.state.stars, 5);
     await app.flushRewards();
     expect((await RewardWalletRepository().load()).stars, 5);
     await tester.tap(find.text('Nochmal!'));
     await tester.pump();
-    expect(find.text('?'), findsNWidgets(24));
+    expect(_memoryBacks(), findsNWidgets(24));
     expect(app.state.stars, 5);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
@@ -215,25 +208,12 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(360, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = LumoAppState();
-    await tester.pumpWidget(
-        MaterialApp(home: LumoMemoryScreen(appState: app, seed: 9)));
+    await tester.pumpWidget(MaterialApp(
+        home: LumoMemoryScreen(
+            appState: app, seed: 9, difficulty: MemoryDifficulty.profi)));
     await tester.pump();
     // Seed 9: find two different symbols rather than depending on chance.
-    const symbols = [
-      '🦊',
-      '⭐',
-      '🎁',
-      '🍎',
-      '🌸',
-      '🌈',
-      '🚀',
-      '🎨',
-      '🎈',
-      '🐝',
-      '🌙',
-      '🍪'
-    ];
-    final deck = [...symbols, ...symbols]..shuffle(Random(9));
+    final deck = MemoryBoard.deal(MemoryDifficulty.profi, Random(9));
     final other = deck.indexWhere((s) => s != deck.first);
     await tester.tap(find.byKey(const ValueKey('memory-card-0')));
     await tester.tap(find.byKey(ValueKey('memory-card-$other')));
@@ -244,7 +224,7 @@ void main() {
     await tester.tap(find.text('Neu starten'));
     await tester.pump();
     await tester.pump(const Duration(seconds: 8));
-    expect(find.text('?'), findsNWidgets(24),
+    expect(_memoryBacks(), findsNWidgets(24),
         reason: 'Old mismatch/bot cannot open new board');
     await tester.binding.setSurfaceSize(const Size(720, 840));
     await tester.pump();
@@ -260,37 +240,26 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(360, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = LumoAppState(walletRepository: RewardWalletRepository());
-    await tester.pumpWidget(
-        MaterialApp(home: LumoMemoryScreen(appState: app, seed: 9)));
+    await tester.pumpWidget(MaterialApp(
+        home: LumoMemoryScreen(
+            appState: app, seed: 9, difficulty: MemoryDifficulty.profi)));
     await tester.pump();
-    const symbols = [
-      '🦊',
-      '⭐',
-      '🎁',
-      '🍎',
-      '🌸',
-      '🌈',
-      '🚀',
-      '🎨',
-      '🎈',
-      '🐝',
-      '🌙',
-      '🍪'
-    ];
-    final deck = [...symbols, ...symbols]..shuffle(Random(9));
+    final deck = MemoryBoard.deal(MemoryDifficulty.profi, Random(9));
     final other = deck.indexWhere((s) => s != deck.first);
     await tester.tap(find.byKey(const ValueKey('memory-card-0')));
     await tester.tap(find.byKey(ValueKey('memory-card-$other')));
     await tester.pump(const Duration(milliseconds: 900)); // now Lumo thinks
+    await tester.pump(const Duration(milliseconds: 450)); // cards flipped back
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
     await tester.pump(const Duration(seconds: 8));
-    expect(find.text('?'), findsNWidgets(24));
+    expect(_memoryBacks(), findsNWidgets(24));
     expect(find.text('Spiel pausiert'), findsOneWidget);
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
     await tester.pump();
     await tester.tap(find.text('Fortsetzen'));
     await tester.pump(const Duration(milliseconds: 1000));
-    expect(find.text('?'), findsNWidgets(23)); // only bot's first card is open
+    await tester.pump(const Duration(milliseconds: 600)); // flip finishes
+    expect(_memoryBacks(), findsNWidgets(23)); // only bot's first card is open
     await tester.binding.handlePopRoute();
     await tester.pump();
     expect(find.text('Spiel pausiert'), findsOneWidget);

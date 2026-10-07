@@ -1,13 +1,12 @@
 # Fonts
 
-Die Nunito-TTF-Dateien werden automatisch beim CI-Build heruntergeladen.
-Siehe `.github/workflows/android-debug-apk.yml` (Schritt "Download Nunito font").
+Nunito (Google Fonts, SIL Open Font License 1.1, siehe `OFL.txt`), Zeichensatz Latin
+inklusive ä, ö, ü und ß. Die Dateien liegen fest im Repository und sind in
+`pubspec.yaml` als Schriftfamilie `Nunito` eingetragen:
 
-Falls du lokal entwickelst, lade die Fonts manuell von:
-https://fonts.google.com/specimen/Nunito
-
-Erforderliche Dateien:
 - Nunito-Regular.ttf  (weight 400)
 - Nunito-Bold.ttf     (weight 700)
 - Nunito-ExtraBold.ttf (weight 800)
 - Nunito-Black.ttf    (weight 900)
+
+Quelle: https://fonts.google.com/specimen/Nunito (statische Schnitte über fontsource).

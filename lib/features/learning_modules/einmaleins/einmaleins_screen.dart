@@ -6,6 +6,7 @@
 // 12 Aufgaben pro Session, Multiple-Choice, progressive Schwierigkeit.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -141,6 +142,9 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       hintUsed: _showHint,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 6 : 0,
+      prompt: '$_a × $_b = ?',
+      given: '$answer',
+      expected: '$_correct',
     );
     if (!saved || !mounted) return;
     if (isCorrect) {
@@ -261,8 +265,9 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -290,7 +295,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {

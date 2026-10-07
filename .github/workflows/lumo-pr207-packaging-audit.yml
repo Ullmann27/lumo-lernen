@@ -1,0 +1,76 @@
+name: Lumo PR207 packaging source audit
+on:
+  push:
+    branches: [chatgpt/3d-launch-lifecycle-2026-10-07]
+    paths: [.github/workflows/lumo-pr207-packaging-audit.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 4a50e01410d5dee3816e1c4fa283dfdf3629b079
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Reproduce preparation and preserve per-step tracked differences
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p packaging-audit
+          checkpoint() {
+            git diff HEAD --name-status > "packaging-audit/$1-files.txt"
+            git diff HEAD --summary > "packaging-audit/$1-summary.txt"
+            git diff HEAD -- . ':!assets/fonts/**' ':!tools/lumo-debug.keystore' > "packaging-audit/$1.diff"
+            git status --porcelain=v1 --untracked-files=no > "packaging-audit/$1-status.txt"
+          }
+          git rev-parse HEAD > packaging-audit/source-sha.txt
+          checkpoint 00_checkout
+          flutter pub get --enforce-lockfile > packaging-audit/pubget.log 2>&1
+          checkpoint 01_pubget
+          node --test server/lumo-ai-proxy/test/*.test.js > packaging-audit/backend.log 2>&1
+          python3 -m unittest discover -s scripts/tests > packaging-audit/python-tests.log 2>&1
+          checkpoint 02_preparation_tests
+          dart scripts/audit_content.dart > packaging-audit/content.log 2>&1
+          bash scripts/lumo_repair_guard.sh > packaging-audit/repair-guard.log 2>&1
+          checkpoint 03_repair_guard
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 > packaging-audit/flutter-tests.log 2>&1
+          checkpoint 04_flutter_tests
+          if [ ! -f android/app/build.gradle.kts ]; then
+            flutter create --platforms=android --org dev.ullmann.lumo . > packaging-audit/flutter-create.log 2>&1
+          fi
+          checkpoint 05_flutter_create
+          python3 scripts/prepare_android.py --side-by-side > packaging-audit/android.log 2>&1
+          python3 scripts/prepare_embedded_games.py > packaging-audit/embedded.log 2>&1
+          checkpoint 06_android_preparation
+          flutter pub get --enforce-lockfile > packaging-audit/final-pubget.log 2>&1
+          checkpoint 07_final_pubget
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('packaging-audit')
+          rows = []
+          for file in sorted(root.glob('*-status.txt')):
+              rows.append({'stage': file.name, 'tracked_status': file.read_text()})
+          (root / 'SUMMARY.json').write_text(json.dumps(rows, indent=2) + '\n')
+          print(json.dumps(rows, indent=2))
+          PY
+      - name: Preserve all diagnostics even if a step fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-pr207-packaging-audit-${{ github.run_id }}
+          path: packaging-audit/
+          if-no-files-found: error
+          retention-days: 14

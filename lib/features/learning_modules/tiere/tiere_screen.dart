@@ -12,6 +12,7 @@
 // 10 Aufgaben pro Session, 4 Multiple-Choice (Bilder oder Texte).
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import '../../../core/lumo_companion_state.dart';
@@ -274,8 +275,9 @@ class _TiereScreenState extends State<TiereScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -299,7 +301,7 @@ class _TiereScreenState extends State<TiereScreen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {

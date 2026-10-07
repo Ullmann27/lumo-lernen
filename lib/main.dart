@@ -14,7 +14,7 @@ import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
 import 'features/companion/lumo_lottie.dart';
 import 'features/games/lumo_cards/learning_question_repository.dart';
-import 'features/onboarding/lumo_onboarding_screen.dart';
+import 'features/onboarding/lumo_onboarding_holo_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

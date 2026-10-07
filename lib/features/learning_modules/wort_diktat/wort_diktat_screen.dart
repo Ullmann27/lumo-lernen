@@ -14,6 +14,7 @@
 // Bis zu 20 Woerter pro Session, vom einfachen zum schwierigeren.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -278,8 +279,9 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: Column(
             children: [
               _buildTopBar(),
@@ -291,7 +293,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
                 Expanded(child: _buildRevealView()),
             ],
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {

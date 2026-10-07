@@ -8,6 +8,7 @@
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -306,8 +307,9 @@ class _VerkehrScreenState extends State<VerkehrScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -333,7 +335,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {

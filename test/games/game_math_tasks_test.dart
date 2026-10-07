@@ -6,18 +6,18 @@ import 'package:lumo_lernen/domain/games/game_level_model.dart';
 import 'package:lumo_lernen/domain/games/game_math_tasks.dart';
 
 void main() {
-  test('Only 24 actual game routes appear; unlock skips placeholder IDs', () {
+  test('All 50 actual routes appear and unlock in curriculum order', () {
     final repo = GameProgressRepository();
     final initial = repo.buildRuntime({});
-    expect(initial.length, 24);
+    expect(initial.length, 50);
     expect(initial.every((r) => r.level.miniType.isPlayable), isTrue);
     expect(initial.first.locked, isFalse);
     final after9 = repo.buildRuntime({9: 2});
-    expect(after9.where((r) => r.level.id == 10), isEmpty);
-    expect(after9.firstWhere((r) => r.level.id == 11).locked, isFalse);
-    expect(after9.firstWhere((r) => r.level.id == 12).locked, isTrue);
+    expect(after9.firstWhere((r) => r.level.id == 10).locked, isFalse);
+    expect(after9.firstWhere((r) => r.level.id == 11).locked, isTrue);
     final after25 = repo.buildRuntime({25: 3});
-    expect(after25.firstWhere((r) => r.level.id == 37).locked, isFalse);
+    expect(after25.firstWhere((r) => r.level.id == 26).locked, isFalse);
+    expect(after25.firstWhere((r) => r.level.id == 27).locked, isTrue);
   });
 
   test(
@@ -92,7 +92,7 @@ void main() {
     expect(
         repo
             .buildRuntime(await repo.loadStars('test'))
-            .firstWhere((r) => r.level.id == 37)
+            .firstWhere((r) => r.level.id == 26)
             .locked,
         isFalse);
   });

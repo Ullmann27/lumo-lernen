@@ -57,8 +57,12 @@ class LumoCardsGameController extends ChangeNotifier {
   final turnClock = LumoGameTurnClock();
   DateTime _lastSpeakAt = DateTime(2000);
 
+  // Ignore delayed callbacks after the owning route has been removed.
+  bool _disposed = false;
+
   @override
   void dispose() {
+    _disposed = true;
     turnClock.dispose();
     super.dispose();
   }
@@ -120,7 +124,9 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Karte spielen (wenn moeglich).
   void playCard(LumoCard card) {
-    if (turnClock.value || (vsBot && _state.currentPlayerIndex != 0)) {
+    if (_disposed ||
+        turnClock.value ||
+        (vsBot && _state.currentPlayerIndex != 0)) {
       return;
     }
     final wasPlayer1 = _state.currentPlayerIndex == 0;
@@ -143,7 +149,8 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Karte ziehen.
   void drawCard({bool autoPlay = false}) {
-    if (turnClock.value ||
+    if (_disposed ||
+        turnClock.value ||
         _state.phase != GamePhase.playing ||
         (vsBot && _state.currentPlayerIndex != 0)) {
       return;
@@ -191,7 +198,8 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Nach Farbzauber: Farbe waehlen.
   void selectColor(LumoCardColor color) {
-    if (turnClock.value ||
+    if (_disposed ||
+        turnClock.value ||
         _state.phase != GamePhase.chooseColor ||
         (vsBot && _state.currentPlayerIndex != 0)) {
       return;
@@ -208,7 +216,8 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Lernfrage beantworten.
   void answerLearningQuestion(int chosenIndex) {
-    if (turnClock.value ||
+    if (_disposed ||
+        turnClock.value ||
         _state.phase != GamePhase.learningQuestion ||
         (vsBot && _state.currentPlayerIndex != 0)) {
       return;
@@ -233,6 +242,7 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// 'Bereit'-Button im Pass-and-Play-Overlay.
   void confirmHandover() {
+    if (_disposed || turnClock.value) return;
     final next = LumoCardsRules.confirmHandover(_state);
     if (identical(next, _state)) {
       return;
@@ -244,6 +254,7 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Nochmal spielen.
   void restart() {
+    if (_disposed) return;
     turnClock.cancel();
     _startNewGame();
     notifyListeners();
@@ -256,7 +267,7 @@ class LumoCardsGameController extends ChangeNotifier {
   /// Wenn vsBot UND Lumo dran ist UND wir nicht in einer Wahl-Phase
   /// stecken: nach kurzer Denkpause Lumo's Zug ausfuehren.
   void _maybeRunBotTurn() {
-    if (!vsBot) return;
+    if (_disposed || !vsBot) return;
     final s = _state;
     if (s.phase == GamePhase.gameOver) return;
     // Heinz Fix 2026-05-22: Im Solo-Modus haengt das Spiel, wenn nach
@@ -289,6 +300,7 @@ class LumoCardsGameController extends ChangeNotifier {
   }
 
   void _scheduleBotMove() {
+    if (_disposed) return;
     // Denkpause wird beim Android-Hintergrundwechsel angehalten.
     turnClock.schedule(
       Duration(milliseconds: 900 + _rng.nextInt(700)),
@@ -297,6 +309,7 @@ class LumoCardsGameController extends ChangeNotifier {
   }
 
   void _doBotMove() {
+    if (_disposed || turnClock.value) return;
     final s = _state;
     if (s.phase == GamePhase.gameOver) return;
     if (s.currentPlayerIndex != 1) return;
@@ -439,7 +452,7 @@ class LumoCardsGameController extends ChangeNotifier {
   // ──────────────────────────────────────────────────────────────────
 
   void _speak(String text) {
-    if (!enableVoice) return;
+    if (_disposed || !enableVoice) return;
     // Drossel: max 1 Spruch pro 1500ms, sonst wird zu viel geredet.
     final now = DateTime.now();
     if (now.difference(_lastSpeakAt).inMilliseconds < 1500) return;
@@ -495,7 +508,7 @@ class LumoCardsGameController extends ChangeNotifier {
       case LumoCardColor.blue:
         return 'Blau';
       case LumoCardColor.green:
-        return 'Gruen';
+        return 'Grün';
     }
   }
 }

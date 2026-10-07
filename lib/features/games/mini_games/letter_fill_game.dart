@@ -193,7 +193,7 @@ class _LetterFillGameState extends State<LetterFillGame> {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },
-            child: const Text('Zurueck',
+            child: const Text('Zurück',
                 style: TextStyle(
                     fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
           ),

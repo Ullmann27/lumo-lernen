@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import '../../../core/lumo_ai_learning_access.dart';
 import '../../shared/widgets/lumo_modern_card.dart';
 
@@ -44,15 +45,17 @@ class LumoAiPolicySelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LumoModernCard(
+      color: Theme.of(context).brightness == Brightness.dark ? LumoVisualTokens.glassRow : null,
+      borderColor: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF6486AA) : null,
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Lumo KI-Assistent', style: LumoTextStyles.heading2),
+          Text('Lumo KI-Assistent', style: LumoTextStyles.heading2.copyWith(color: Theme.of(context).colorScheme.onSurface)),
           const SizedBox(height: 6),
           Text(
             'Wähle, wie Lumo dein Kind beim Lernen unterstützen darf.',
-            style: LumoTextStyles.body.copyWith(color: LumoColors.ink600),
+            style: LumoTextStyles.body.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
           ),
           const SizedBox(height: 16),
           Column(
@@ -86,8 +89,13 @@ class _AiPolicyOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = selected ? LumoColors.orange : LumoColors.ink100;
-    final background = selected ? LumoColors.orange.withOpacity(.10) : Colors.white;
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    final borderColor = dark
+        ? (selected ? LumoVisualTokens.cyanBright : const Color(0xFF6486AA))
+        : (selected ? LumoColors.orange : LumoColors.ink100);
+    final background = dark
+        ? (selected ? const Color(0xFF14527B) : LumoVisualTokens.navigation)
+        : (selected ? LumoColors.orange.withOpacity(.10) : Colors.white);
 
     return Material(
       color: background,
@@ -115,14 +123,14 @@ class _AiPolicyOptionTile extends StatelessWidget {
                     Text(
                       option.title,
                       style: LumoTextStyles.heading3.copyWith(
-                        color: selected ? LumoColors.orange : LumoColors.ink900,
+                        color: dark ? LumoVisualTokens.white : (selected ? LumoColors.orange : LumoColors.ink900),
                       ),
                     ),
                     const SizedBox(height: 3),
                     Text(
                       option.description,
                       style: LumoTextStyles.body.copyWith(
-                        color: selected ? LumoColors.ink700 : LumoColors.ink500,
+                        color: dark ? LumoVisualTokens.muted : (selected ? LumoColors.ink700 : LumoColors.ink500),
                       ),
                     ),
                   ],
@@ -131,7 +139,7 @@ class _AiPolicyOptionTile extends StatelessWidget {
               const SizedBox(width: 10),
               Icon(
                 selected ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
-                color: selected ? LumoColors.orange : LumoColors.ink300,
+                color: dark ? LumoVisualTokens.cyanBright : (selected ? LumoColors.orange : LumoColors.ink300),
                 size: 26,
               ),
             ],
@@ -159,7 +167,7 @@ class _AiPolicyIcon extends StatelessWidget {
       height: 48,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: selected ? Colors.white : LumoColors.orangeSurface,
+        color: Theme.of(context).brightness == Brightness.dark ? LumoVisualTokens.glassRow : (selected ? Colors.white : LumoColors.orangeSurface),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         boxShadow: selected ? LumoShadow.pill : null,
       ),

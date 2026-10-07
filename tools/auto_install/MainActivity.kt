@@ -104,6 +104,12 @@ class MainActivity : FlutterActivity() {
                                     if (file.exists() && !file.delete()) throw IllegalStateException("Game reset failed")
                                 }
                             }
+                            val creativeSave = Regex("lumo_(build|puzzle|rhythm|treasure)_[A-Za-z0-9_-]+\\.(json|cfg)(\\.tmp)?")
+                            for (file in filesDir.listFiles().orEmpty()) {
+                                if (file.isFile && creativeSave.matches(file.name) && !file.delete()) {
+                                    throw IllegalStateException("Creative game reset failed")
+                                }
+                            }
                             result.success(true)
                         } catch (error: Exception) { result.error("storage", "Spielstände konnten nicht zurückgesetzt werden.", null) }
                     }
@@ -127,13 +133,14 @@ class MainActivity : FlutterActivity() {
                     try {
                         assets.open("lumo_game.pck").close()
                         val requested = call.argument<String>("scene")
-                        val game = if (requested in setOf("kart", "jump")) requested!! else "kart"
+                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "rhythm", "treasure")) requested!! else "kart"
                         val options = JSONObject()
                             .put("game", game)
                             .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
                             .put("subject", call.argument<String>("subject")?.takeIf { it in setOf("Mathematik", "Deutsch", "Sachunterricht", "Logik") } ?: "Mathematik")
                             .put("sessionId", UUID.randomUUID().toString())
                             .put("stars", (call.argument<Int>("stars") ?: 0).coerceAtLeast(0))
+                            .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
                         val intent = Intent(this, LumoGameActivity::class.java)
                             .putExtra("lumoLaunchOptions", options.toString())
                         pendingGame = result

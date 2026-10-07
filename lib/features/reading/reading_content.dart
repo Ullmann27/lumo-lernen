@@ -35,6 +35,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   );
   final _speech = LumoSpeechListener();
   final _readingRepo = ReadingProgressRepository();
+  DateTime? _listenStartedAt;
   final _storyMemoryRepo = ReadingStoryMemoryRepository();
   final _attemptLedger = ReadingAttemptLedger();
 
@@ -184,6 +185,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       _lumoLine = 'Ich höre zu. Lies den Satz ruhig bis zum Ende.';
     });
 
+    _listenStartedAt ??= DateTime.now();
     await _speech.startListening(
       onResult: (words) {
         if (!mounted) return;
@@ -345,6 +347,13 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     if (attemptDecision.shouldCountAsIntervention) {
       _interventionCount++;
     }
+    _logReadingAttempt(
+      progress: progress,
+      decision: attemptDecision,
+      correct: result.analysis.correctEnough,
+      score: result.analysis.alignmentScore,
+      problemWord: attemptDecision.confirmedProblemWord ?? result.analysis.problemWord,
+    );
 
     setState(() {
       _lastTranscript = text;
@@ -380,6 +389,36 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     LumoVoice.instance.speak(nextMessage).whenComplete(() {
       _processing = false;
     });
+  }
+
+  /// Ein vorgelesener Satz als Aufgabe im Aufgabenprotokoll. Gespeichert werden
+  /// nur Satz, Ergebnis, Genauigkeit, Zeit und – bei Fehlern – das schwierige
+  /// Wort, nie die Sprachaufnahme oder das ganze Transkript.
+  void _logReadingAttempt({
+    required ReadingSessionProgress progress,
+    required ReadingAttemptDecision decision,
+    required bool correct,
+    required double score,
+    String? problemWord,
+  }) {
+    // Undeutliche Aufnahmen sind kein Lesefehler und zählen nicht.
+    if (decision.outcome == ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear) {
+      return;
+    }
+    final started = _listenStartedAt;
+    _listenStartedAt = null;
+    unawaited(widget.appState.recordLearningAnswer(
+      subject: 'Lesen',
+      unit: 'Sätze vorlesen',
+      correct: correct,
+      hintUsed: progress.attemptNumber > 1,
+      prompt: progress.currentSentence.text,
+      given: correct ? '' : (problemWord?.trim() ?? ''),
+      durationMs: started == null
+          ? null
+          : DateTime.now().difference(started).inMilliseconds.clamp(0, 120000).toInt(),
+      score: score,
+    ));
   }
 
   ReadingSessionProgress _progressAfterDecision({

@@ -9,7 +9,12 @@ import '../core/app_settings.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
+import '../core/attempt_log_repository.dart';
+import '../core/lumo_error_log.dart';
 import '../core/reward_wallet_repository.dart';
+import '../core/school_repository.dart';
+import '../domain/school/attempt.dart';
+import '../domain/school/competency.dart';
 import '../core/scanned_work_analysis.dart';
 import '../core/settings_repository.dart';
 
@@ -66,6 +71,7 @@ class LumoSessionState {
     this.learningRecommendationSubject,
     this.learningRecommendationUnit,
     this.sessionKind = LumoSessionKind.quickPractice,
+    this.testLevel = 0,
     this.lastScanAnalysis,
   });
 
@@ -87,6 +93,10 @@ class LumoSessionState {
   String? learningRecommendationSubject;
   String? learningRecommendationUnit;
   LumoSessionKind sessionKind;
+
+  /// Schwierigkeit eines Tests: -1 leicht (Aufgaben eine Klasse darunter),
+  /// 0 mittel (eigene Klasse), 1 schwer (eine Klasse darüber).
+  int testLevel;
   ScannedWorkAnalysis? lastScanAnalysis;
 
   int get level => xp ~/ 400 + 1;
@@ -116,6 +126,7 @@ class LumoSessionState {
     String? learningRecommendationSubject,
     String? learningRecommendationUnit,
     LumoSessionKind? sessionKind,
+    int? testLevel,
     ScannedWorkAnalysis? lastScanAnalysis,
   }) =>
       LumoSessionState(
@@ -140,6 +151,7 @@ class LumoSessionState {
         learningRecommendationUnit:
             learningRecommendationUnit ?? this.learningRecommendationUnit,
         sessionKind: sessionKind ?? this.sessionKind,
+        testLevel: testLevel ?? this.testLevel,
         lastScanAnalysis: lastScanAnalysis ?? this.lastScanAnalysis,
       );
 }
@@ -147,9 +159,18 @@ class LumoSessionState {
 class LumoAppState extends ChangeNotifier {
   LumoAppState(
       {RewardWalletRepository? walletRepository,
-      LearningProfileEngine? learningProfile})
+      LearningProfileEngine? learningProfile,
+      AttemptLogRepository? attemptLog})
       : _walletRepository = walletRepository ?? RewardWalletRepository.instance,
-        _learningProfile = learningProfile ?? LearningProfileEngine();
+        _learningProfile = learningProfile ?? LearningProfileEngine(),
+        attemptLog = attemptLog ?? AttemptLogRepository();
+
+  /// Aufgabenprotokoll des Kindes (Grundlage für Lernbericht und Lehrerbereich).
+  final AttemptLogRepository attemptLog;
+
+  /// Schulstruktur (Klassen, Gruppen, Aufgaben) und das Kind dieses Geräts.
+  final SchoolRepository school = SchoolRepository();
+  int _attemptSerial = 0;
 
   final RewardWalletRepository _walletRepository;
   LumoSessionState _state = LumoSessionState();
@@ -356,6 +377,11 @@ class LumoAppState extends ChangeNotifier {
     required bool correct,
     bool hintUsed = false,
     bool requireSaved = false,
+    String prompt = '',
+    String given = '',
+    String expected = '',
+    int? durationMs,
+    double? score,
   }) async {
     if (_disposed) return;
     try {
@@ -369,10 +395,88 @@ class LumoAppState extends ChangeNotifier {
         isCorrect: correct,
         hintUsed: hintUsed,
       );
+      await _logAttempt(
+        subject: subject,
+        unit: unit,
+        correct: correct,
+        hintUsed: hintUsed,
+        prompt: prompt,
+        given: given,
+        expected: expected,
+        durationMs: durationMs,
+        score: score,
+      );
       _syncLearningRecommendation();
       _safeNotify();
     } catch (_) {
       if (requireSaved) rethrow;
+    }
+  }
+
+  /// Einträge, die noch nicht gespeichert werden konnten. Sie gehen nicht
+  /// verloren: Beim nächsten Eintrag (oder [flushAttemptLog]) wird erneut
+  /// geschrieben. Die Oberfläche kann [unsavedAttempts] anzeigen.
+  final List<Attempt> _unsavedAttempts = <Attempt>[];
+  int get unsavedAttempts => _unsavedAttempts.length;
+
+  /// Schreibt die Antwort ins Aufgabenprotokoll. Ein Fehler hier verhindert
+  /// nie den Lernfortschritt, wird aber gemerkt und erneut versucht.
+  Future<void> _logAttempt({
+    required String subject,
+    required String unit,
+    required bool correct,
+    required bool hintUsed,
+    required String prompt,
+    required String given,
+    required String expected,
+    int? durationMs,
+    double? score,
+  }) async {
+    final now = DateTime.now();
+    String studentId = 'self';
+    try {
+      studentId = await school.activeStudentId() ?? 'self';
+    } catch (_) {
+      // Ohne lesbare Zuordnung zählt die Antwort für das Kind dieses Geräts.
+    }
+    _unsavedAttempts.add(Attempt(
+      id: '${now.microsecondsSinceEpoch}-${_attemptSerial++}',
+      studentId: studentId,
+      subject: subject,
+      unit: unit,
+      competency: const CompetencyClassifier()
+          .classify(subject: subject, unit: unit, prompt: prompt),
+      correct: correct,
+      at: now,
+      hintUsed: hintUsed,
+      prompt: prompt,
+      given: given,
+      expected: expected,
+      durationMs: durationMs,
+      score: score,
+    ));
+    await flushAttemptLog();
+  }
+
+  /// Versucht, alle noch offenen Protokolleinträge zu speichern.
+  /// Liefert true, wenn nichts mehr offen ist.
+  Future<bool> flushAttemptLog() async {
+    if (_unsavedAttempts.isEmpty) return true;
+    final batch = List<Attempt>.of(_unsavedAttempts);
+    try {
+      await attemptLog.appendAll(batch);
+      _unsavedAttempts.removeWhere(batch.contains);
+      return _unsavedAttempts.isEmpty;
+    } catch (error, stack) {
+      // Keine Kinderdaten ins Fehlerprotokoll, nur Art und Anzahl.
+      unawaited(LumoErrorLog.instance.record(FlutterErrorDetails(
+        exception: StateError(
+            'Aufgabenprotokoll: ${batch.length} Einträge warten aufs Speichern'),
+        stack: stack,
+        library: 'attempt_log',
+      )));
+      _safeNotify();
+      return false;
     }
   }
 
@@ -482,6 +586,7 @@ class LumoAppState extends ChangeNotifier {
   Future<void> resetLearningProfile() async {
     try {
       await _learningProfile.reset();
+      await attemptLog.clear();
     } catch (_) {}
     _safeNotify();
   }

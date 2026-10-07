@@ -5,6 +5,9 @@ import '../../core/lumo_companion_guide.dart';
 import '../../core/lumo_voice.dart';
 import 'lumo_animated_fox.dart';
 import 'lumo_companion_requests.dart';
+import '../design/lumo_design_system.dart';
+import 'lumo_character.dart';
+import '../../theme/lumo_visual_tokens.dart';
 export '../../core/lumo_companion_guide.dart';
 
 /// A reserved floor below the content: Lumo walks above his own controls,
@@ -19,6 +22,7 @@ class LumoFreeCompanion extends StatefulWidget {
       this.expression = LumoFoxExpression.idle,
       this.message,
       this.compact = false,
+      this.floating = false,
       this.proactive = true});
   final LumoCompanionScene scene;
   final ValueChanged<LumoCompanionAction> onAction;
@@ -27,6 +31,10 @@ class LumoFreeCompanion extends StatefulWidget {
   final LumoFoxExpression expression;
   final String? message;
   final bool compact;
+
+  /// Nur der Fuchs als Knopf, ohne Laufleiste und Knopfreihe: für die
+  /// vollflächigen Zielbild-Seiten. Das Menü bietet dieselben Hilfen.
+  final bool floating;
   final bool proactive;
   @override
   State<LumoFreeCompanion> createState() => _LumoFreeCompanionState();
@@ -400,6 +408,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.floating) return _buildFloating();
     final foxSize = widget.compact ? 52.0 : 72.0;
     final trackHeight = widget.compact ? 56.0 : 76.0;
     final textScale = MediaQuery.textScalerOf(context).scale(12) / 12;
@@ -463,10 +472,14 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                                                     : 'Tippe mich an. Ich helfe dir gern!'),
                                             maxLines: 3,
                                             overflow: TextOverflow.ellipsis,
+                                            // Hell auf dem dunklen App-Grund.
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodySmall
-                                                ?.copyWith(height: 1.3),
+                                                ?.copyWith(
+                                                    height: 1.3,
+                                                    color: const Color(
+                                                        0xFFE8F1FF)),
                                           )),
                                     ),
                                   )),
@@ -524,6 +537,45 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
           }),
         ));
   }
+
+  /// Runder Fuchs-Knopf im Stil der Zielbilder (blaue Jacke, Leuchtring).
+  Widget _buildFloating() => Material(
+        color: Colors.transparent,
+        child: SizedBox(
+          key: const ValueKey('lumo-companion-floor'),
+          width: 58,
+          height: 58,
+          child: Semantics(
+            label: 'Lumo, dein Lernfuchs. Hilfe und Ideen öffnen',
+            button: true,
+            child: LumoCharacter(
+              key: const ValueKey('lumo-fox-button'),
+              pose: LumoDesignFoxPose.avatar,
+              size: 58,
+              reduceMotion: _quiet,
+              shadow: false,
+              celebratePose: null,
+              onTap: () =>
+                  _showMenu(proposal: _proposal ?? _guide.choose(widget.scene)),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: LumoVisualTokens.glass,
+                  border: Border.all(color: LumoVisualTokens.cyan, width: 2.4),
+                  boxShadow: [
+                    BoxShadow(
+                        color: LumoVisualTokens.cyan.withOpacity(.6),
+                        blurRadius: 14),
+                  ],
+                ),
+                child: const ClipOval(
+                  child: LumoFoxPose(pose: LumoDesignFoxPose.avatar, size: 54),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
 
   Widget _floorButton(
           IconData icon, String label, int index, VoidCallback action) =>

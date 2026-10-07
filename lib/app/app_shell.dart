@@ -12,6 +12,7 @@ import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
 import '../features/home/home_content.dart';
 import '../features/teacher_mode/lumo_akademie_screen.dart';
+import '../features/tests/lumo_tests_screen.dart';
 import '../features/learning/learning_content.dart';
 import '../features/reading/reading_content.dart';
 import '../features/shared/widgets/lumo_section_transition.dart';
@@ -351,19 +352,41 @@ class _AppShellState extends State<AppShell>
     if (mounted) await _fadeCtrl.forward();
   }
 
-  Widget _buildContent() {
+  /// Bildschirme, die schon wie Heinz' Zielbilder aufgebaut sind: Die Szene
+  /// liegt auf dem Handy vollflächig hinter Kopfzeile, Inhalt und Leiste.
+  static LumoScene? _fullBleedScene(LumoSection section) => switch (section) {
+        LumoSection.home => LumoScene.home,
+        LumoSection.learn => LumoScene.learning,
+        LumoSection.tests => LumoScene.tests,
+        LumoSection.profile => LumoScene.profile,
+        LumoSection.games => LumoScene.games,
+        LumoSection.exercises => LumoScene.library,
+        _ => null,
+      };
+
+  Widget _buildContent({bool fullBleed = false}) {
     final section = _appState.state.section;
     switch (section) {
       case LumoSection.home:
-        return HomeContent(appState: _appState, onSection: _navigateTo);
+        return HomeContent(
+            appState: _appState,
+            onSection: _navigateTo,
+            drawBackground: !fullBleed);
       case LumoSection.games:
         return GamesContent(
           appState: _appState,
           onSection: _navigateTo,
           onGameReturn: _embeddedGames.synchronize,
+          drawBackground: !fullBleed,
         );
+      case LumoSection.tests:
+        return LumoTestsScreen(
+            appState: _appState,
+            onSection: _navigateTo,
+            drawBackground: !fullBleed);
       case LumoSection.learn:
-        return LumoAkademieScreen(appState: _appState);
+        return LumoAkademieScreen(
+            appState: _appState, drawBackground: !fullBleed);
       case LumoSection.exercises:
         if (_isReadingMode()) {
           return ReadingContent(
@@ -400,19 +423,15 @@ class _AppShellState extends State<AppShell>
           onCancel: () => _navigateTo(LumoSection.home),
         );
       case LumoSection.profile:
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(22),
-          child: ProfileScreen(
-            childName: _appState.state.childName,
-            grade: _appState.state.grade,
-            stars: _appState.state.stars,
-            xp: _appState.state.xp,
-            level: _appState.state.level,
-            progress: _appState.state.progressPercent,
-            solved: _appState.state.solved,
-            practice: _appState.state.weakSkills,
-            lastGrade: _appState.state.lastGrade,
-          ),
+        return ProfileScreen(
+          appState: _appState,
+          onSection: _navigateTo,
+          childName: _appState.state.childName,
+          grade: _appState.state.grade,
+          stars: _appState.state.stars,
+          xp: _appState.state.xp,
+          level: _appState.state.level,
+          drawBackground: !fullBleed,
         );
       case LumoSection.settings:
         return SettingsContent(appState: _appState);
@@ -445,124 +464,194 @@ class _AppShellState extends State<AppShell>
                 behavior: HitTestBehavior.translucent,
                 onPointerDown: (event) => LumoCompanionRequests.instance
                     .requestMoveTo(event.position),
-                child: SafeArea(
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final width = constraints.maxWidth;
-                      final mobile = width < 720;
-                      final showNav = width >= 720;
-                      final showProgressSidebar =
-                          width >= 900 &&
+                child: LayoutBuilder(builder: (context, outer) {
+                  final fullBleedScene = outer.maxWidth < 720
+                      ? _fullBleedScene(_appState.state.section)
+                      : null;
+                  return Stack(children: [
+                    if (fullBleedScene != null)
+                      Positioned.fill(
+                        child: LumoSceneBackground(
+                          scene: fullBleedScene,
+                          showPlaceholderLabel: false,
+                          dimmed: true,
+                        ),
+                      ),
+                    SafeArea(
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final width = constraints.maxWidth;
+                          final mobile = width < 720;
+                          final showNav = width >= 720;
+                          final showProgressSidebar = width >= 900 &&
                               _appState.state.section == LumoSection.home;
-                      final navWidth = width < 980 ? 160.0 : 200.0;
-                      final gap = width < 980 ? 6.0 : 10.0;
+                          final navWidth = width < 980 ? 160.0 : 200.0;
+                          final gap = width < 980 ? 6.0 : 10.0;
 
-                      if (mobile) {
-                        return Column(children: [
-                          _MobileLumoHeader(
-                              appState: _appState,
-                              onFoxTap: () => showLumoConversation(context,
-                                  appState: _appState, onSection: _navigateTo)),
-                          Expanded(
-                              child: ClipRRect(
-                            borderRadius: BorderRadius.circular(LumoRadius.lg),
-                            child: FadeTransition(
+                          if (mobile) {
+                            final fullBleed = fullBleedScene != null;
+                            final content = FadeTransition(
                               opacity: _fadeCtrl,
                               child: LumoSectionTransition(
                                 sectionKey: _appState.state.section.name,
-                                child: _buildContent(),
+                                child: _buildContent(fullBleed: fullBleed),
                               ),
-                            ),
-                          )),
-                          LumoCompanionHost(
-                              appState: _appState,
-                              onSection: _navigateTo,
-                              compact: constraints.maxHeight < 650),
-                          LumoBottomNavigation(
-                              active: _appState.state.section,
-                              onSelect: _navigateTo),
-                        ]);
-                      }
+                            );
+                            return Column(children: [
+                              _MobileLumoHeader(
+                                  appState: _appState,
+                                  onFoxTap: () => showLumoConversation(context,
+                                      appState: _appState,
+                                      onSection: _navigateTo)),
+                              Expanded(
+                                  child: fullBleed
+                                      // Zielbild-Seiten: Lumo steht als kleiner
+                                      // Fuchs in der Szene; sein Menü bietet
+                                      // dieselben Hilfen wie die Leiste.
+                                      ? content
+                                      : ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                              LumoRadius.lg),
+                                          child: content,
+                                        )),
+                              if (fullBleed)
+                                _LumoHelpDock(
+                                    appState: _appState,
+                                    onSection: _navigateTo),
+                              if (!fullBleed)
+                                LumoCompanionHost(
+                                    appState: _appState,
+                                    onSection: _navigateTo,
+                                    compact: constraints.maxHeight < 650),
+                              LumoBottomNavigation(
+                                  active: _appState.state.section,
+                                  onSelect: _navigateTo),
+                            ]);
+                          }
 
-                      return Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            if (showNav) ...[
-                              LeftNavigation(
-                                appState: _appState,
-                                onSelect: _navigateTo,
-                                width: navWidth,
-                              ),
-                              SizedBox(width: gap),
-                            ],
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.circular(LumoRadius.xl),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: LumoVisualTokens.night,
-                                    borderRadius: BorderRadius.circular(
-                                      LumoRadius.xl,
+                          return Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                if (showNav) ...[
+                                  LeftNavigation(
+                                    appState: _appState,
+                                    onSelect: _navigateTo,
+                                    width: navWidth,
+                                  ),
+                                  SizedBox(width: gap),
+                                ],
+                                Expanded(
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.circular(LumoRadius.xl),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: LumoVisualTokens.night,
+                                        borderRadius: BorderRadius.circular(
+                                          LumoRadius.xl,
+                                        ),
+                                      ),
+                                      child: Column(children: [
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              16, 10, 16, 6),
+                                          child: LumoTopBar(
+                                            appState: _appState,
+                                            onTapStatus: () =>
+                                                showLumoConversation(
+                                              context,
+                                              appState: _appState,
+                                              onSection: _navigateTo,
+                                            ),
+                                            onTapFox: () =>
+                                                showLumoConversation(
+                                              context,
+                                              appState: _appState,
+                                              onSection: _navigateTo,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                            child: FadeTransition(
+                                          opacity: _fadeCtrl,
+                                          child: LumoSectionTransition(
+                                            sectionKey:
+                                                _appState.state.section.name,
+                                            child: _buildContent(),
+                                          ),
+                                        )),
+                                        LumoCompanionHost(
+                                            appState: _appState,
+                                            onSection: _navigateTo,
+                                            compact:
+                                                constraints.maxHeight < 600),
+                                      ]),
                                     ),
                                   ),
-                                  child: Column(children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          16, 10, 16, 6),
-                                      child: LumoTopBar(
-                                        appState: _appState,
-                                        onTapStatus: () =>
-                                            showLumoConversation(
-                                          context,
-                                          appState: _appState,
-                                          onSection: _navigateTo,
-                                        ),
-                                        onTapFox: () => showLumoConversation(
-                                          context,
-                                          appState: _appState,
-                                          onSection: _navigateTo,
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                        child: FadeTransition(
-                                      opacity: _fadeCtrl,
-                                      child: LumoSectionTransition(
-                                        sectionKey:
-                                            _appState.state.section.name,
-                                        child: _buildContent(),
-                                      ),
-                                    )),
-                                    LumoCompanionHost(
-                                        appState: _appState,
-                                        onSection: _navigateTo,
-                                        compact: constraints.maxHeight < 600),
-                                  ]),
                                 ),
-                              ),
+                                if (showProgressSidebar) ...[
+                                  SizedBox(width: gap),
+                                  LumoFoldProgressPanel(
+                                    appState: _appState,
+                                    onOpenRewards: () =>
+                                        _navigateTo(LumoSection.rewards),
+                                  ),
+                                ],
+                              ],
                             ),
-                            if (showProgressSidebar) ...[
-                              SizedBox(width: gap),
-                              LumoFoldProgressPanel(
-                                appState: _appState,
-                                onOpenRewards: () =>
-                                    _navigateTo(LumoSection.rewards),
-                              ),
-                            ],
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                          );
+                        },
+                      ),
+                    ),
+                  ]);
+                }),
               ),
             ));
       },
     );
   }
+}
+
+/// Lumo keeps his initiative/menu listeners, with his own space outside the
+/// scrolling page. No game card or answer can be hidden behind the fox.
+class _LumoHelpDock extends StatelessWidget {
+  const _LumoHelpDock({required this.appState, required this.onSection});
+  final LumoAppState appState;
+  final ValueChanged<LumoSection> onSection;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        key: const ValueKey('lumo-help-dock'),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+        decoration: BoxDecoration(
+          color: LumoVisualTokens.navigation.withValues(alpha: .92),
+          border: Border(
+              top: BorderSide(
+                  color: LumoVisualTokens.cyan.withValues(alpha: .2))),
+        ),
+        child: Row(children: [
+          const Icon(Icons.auto_awesome_rounded,
+              color: LumoVisualTokens.cyanBright, size: 21),
+          const SizedBox(width: 12),
+          const Expanded(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                Text('Hilfe & Ideen',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 14)),
+                Text('Frag deinen Lumo',
+                    style:
+                        TextStyle(color: LumoVisualTokens.muted, fontSize: 12)),
+              ])),
+          LumoCompanionHost(
+              appState: appState, onSection: onSection, floating: true),
+        ]),
+      );
 }
 
 class _FeatureDisabledContent extends StatelessWidget {

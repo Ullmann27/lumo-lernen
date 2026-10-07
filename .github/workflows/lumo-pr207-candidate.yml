@@ -1,0 +1,171 @@
+name: Lumo PR207 checked candidate APK
+
+on:
+  push:
+    branches: [chatgpt/3d-launch-lifecycle-2026-10-07]
+    paths: [.github/workflows/lumo-pr207-candidate.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-pr207-candidate
+  cancel-in-progress: true
+
+env:
+  CANDIDATE_SHA: ${{ github.sha }}
+  LUMO_BUILD_NUMBER: '280'
+  LUMO_VERSION_NAME: '0.10.5'
+
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Record exact source before tests and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p probe-evidence
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+          git rev-parse HEAD | tee probe-evidence/source-sha.txt
+          flutter --version | tee probe-evidence/flutter-version.txt
+          cp config/godot-source.json probe-evidence/
+          printf '%s\n' 'Technical PR207 test candidate, not a published update.' \
+            'Uses unchanged source version 0.10.5+280 and existing test signing.' \
+            'Does not include separate PR204 or PR206 changes.' \
+            'Do not uninstall or clear data to bypass a downgrade rejection.' \
+            'Physical-device install, Fold and FPS checks are NOT EXECUTED.' \
+            > probe-evidence/READ_ME.txt
+      - name: Get locked dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee probe-evidence/dependencies.log
+      - name: Verify original Android preparation and backend
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee probe-evidence/backend.log
+          python3 -m unittest discover -s scripts/tests 2>&1 | tee probe-evidence/android-preparation.log
+          dart scripts/audit_content.dart 2>&1 | tee probe-evidence/content-audit.log
+          bash scripts/lumo_repair_guard.sh 2>&1 | tee probe-evidence/repair-guard.log
+      - name: Analyze and repeat full Flutter suite for this artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee probe-evidence/flutter-analyze.log
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee probe-evidence/flutter-tests.log
+      - name: Install matching Godot engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/install_godot_for_build.sh 2>&1 | tee probe-evidence/godot-install.log
+      - name: Build and verify side-by-side APK with Lumo launcher
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee probe-evidence/build.log
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          cp dist/APK-VERIFICATION.json dist/BUILD-PROVENANCE.json dist/SHA256SUMS.txt dist/LAUNCHER-RESOURCES.json probe-evidence/
+          cp android/app/src/main/res/mipmap-xxxhdpi/ic_lumo.png probe-evidence/generated-legacy-icon.png
+          cp android/app/src/main/res/mipmap-xxxhdpi/lumo_foreground.png probe-evidence/generated-foreground.png
+          cp android/app/src/main/res/mipmap-xxxhdpi/lumo_monochrome.png probe-evidence/generated-monochrome.png
+      - name: Independently inspect final candidate package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk | tee probe-evidence/reverification.json
+          python3 - <<'PY'
+          import hashlib, json, os, re, struct, subprocess, sys, zipfile
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from verify_android_apk import find_apksigner
+          apk = Path('dist/Lumo-Lernen-Neu.apk')
+          proof = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          if source != os.environ['CANDIDATE_SHA'] or proof['flutter_source_commit'] != source:
+              raise RuntimeError('Candidate source changed')
+          if proof['tracked_source_clean'] is not True:
+              raise RuntimeError('Uncommitted source changes: APK not accepted')
+          if proof['sha256'] != hashlib.sha256(apk.read_bytes()).hexdigest():
+              raise RuntimeError('Post-verification APK digest changed')
+          if proof['launcher']['source_sha256'] != '8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f':
+              raise RuntimeError('Wrong avatar source')
+          tools = Path(find_apksigner()).parent
+          def dump(*args):
+              return subprocess.check_output([str(tools/'aapt'), 'dump', *args], text=True)
+          badging = dump('badging', str(apk))
+          resources = dump('resources', str(apk))
+          manifest = dump('xmltree', str(apk), 'AndroidManifest.xml')
+          for name, value in [('aapt-badging.txt',badging),('aapt-resources.txt',resources),('compiled-manifest.txt',manifest)]:
+              Path('probe-evidence',name).write_text(value)
+          bindings = {}
+          for attr, resource in [('icon','ic_lumo'),('roundIcon','ic_lumo_round')]:
+              entry = re.search(r'resource (0x[0-9a-fA-F]+) [^\s:]+:mipmap/' + resource + ':', resources)
+              link = re.search(r'android:' + attr + r'\([^)]*\)=@(0x[0-9a-fA-F]+)', manifest)
+              if not entry or not link or entry[1].lower() != link[1].lower():
+                  raise RuntimeError('Manifest does not link the Lumo resource: ' + attr)
+              bindings[attr] = {'name':resource,'id':link[1]}
+          icons = []
+          with zipfile.ZipFile(apk) as z:
+              if z.testzip() is not None:
+                  raise RuntimeError('Invalid APK archive')
+              for density, path in re.findall(r"application-icon-(\d+):'([^']+)'", badging):
+                  if path not in z.namelist():
+                      raise RuntimeError('Launcher icon resource missing: ' + path)
+                  raw = z.read(path)
+                  entry = {'density': int(density), 'resource': path, 'bytes': len(raw),
+                           'sha256': hashlib.sha256(raw).hexdigest()}
+                  if raw.startswith(b'\x89PNG\r\n\x1a\n'):
+                      width, height = struct.unpack('>II', raw[16:24])
+                      entry.update(width=width, height=height)
+                      Path('probe-evidence', 'apk-icon-' + density + '.png').write_bytes(raw)
+                  else:
+                      Path('probe-evidence', 'apk-icon-' + density + '.xml.txt').write_text(dump('xmltree', str(apk), path))
+                  icons.append(entry)
+          if not icons:
+              raise RuntimeError('APK has no launcher icon evidence')
+          Path('probe-evidence/icon-resources.json').write_text(json.dumps({
+              'source_sha': source, 'apk_sha256': proof['sha256'], 'icons': icons, 'bindings':bindings,
+              'scope': 'Packaged resources, not an installed-launcher or physical-device test'
+          }, indent=2) + '\n')
+          PY
+      - name: Upload only successfully verified APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-pr207-apk-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/SHA256SUMS.txt
+            dist/LAUNCHER-RESOURCES.json
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+      - name: Preserve build and test evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-pr207-build-evidence-${{ github.run_id }}
+          path: probe-evidence/
+          if-no-files-found: error
+          retention-days: 14

@@ -55,7 +55,7 @@ String _pizzaFraction(WidgetTester tester) {
       .map((widget) => widget.data ?? '')
       .singleWhere((text) => text.startsWith('Von '));
   final match =
-      RegExp(r'^Von (\d+) Stücken wurden (\d+) gegessen\.$').firstMatch(text)!;
+      RegExp(r'^Von (\d+) Stücken wurden? (\d+) gegessen\.$').firstMatch(text)!;
   return '${match[2]}/${match[1]}';
 }
 
@@ -150,9 +150,11 @@ void main() {
         .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
     await _frames(tester);
     await tester.ensureVisible(find.text('Mathe'));
+  await tester.pump();
     await tester.tap(find.text('Mathe'));
     await _frames(tester);
     await tester.ensureVisible(find.text('Bruchrechnen'));
+  await tester.pump();
     await tester.tap(find.text('Bruchrechnen'));
     await _frames(tester);
     expect(find.byType(BruchrechnenScreen), findsOneWidget);
@@ -175,6 +177,7 @@ void main() {
       final answer = find.descendant(
           of: find.byType(GridView), matching: find.text(chosen));
       await tester.ensureVisible(answer);
+  await tester.pump();
       await tester.tap(answer);
       await tester.pump();
       if (task == 0) {

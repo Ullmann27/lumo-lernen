@@ -3,11 +3,12 @@
 // ════════════════════════════════════════════════════════════════════════
 // Aufgabentypen:
 //   - 'Wie viel Geld siehst du?' (Muenzen zaehlen, bis 10 Euro)
-//   - 'Welche Muenze ist 2 Euro?' (Muenze finden)
+//   - 'Welche Münze ist 2 Euro?' (Muenze finden)
 //   - 'Du hast X Euro, was kannst du kaufen?' (Kaufen-Aufgabe)
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -298,8 +299,9 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -327,7 +329,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {

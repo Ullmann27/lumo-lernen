@@ -235,4 +235,27 @@ void main() {
     expect(tester.takeException(), isNull);
     app.dispose();
   });
+
+  test('accepted answer lands once in the attempt log with prompt and time',
+      () async {
+    final app = await _app();
+    final progress = _progress(app);
+    final saved = progress.saveAnswer(
+        correct: false,
+        prompt: '13 - 5 = ?',
+        given: '9',
+        expected: '8',
+        stars: 0,
+        xp: 0);
+    await _turns();
+    expect(await saved, isTrue);
+    final log = await app.attemptLog.load();
+    expect(log.length, 1);
+    expect(log.single.prompt, '13 - 5 = ?');
+    expect(log.single.competency, 'Subtraktion mit Zehnerübergang');
+    expect(log.single.durationMs, isNotNull);
+    expect(log.single.correct, isFalse);
+    progress.dispose();
+    app.dispose();
+  });
 }

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'dart:ui' show ImageFilter;
+
 import 'package:flutter/material.dart';
 
 /// One pending turn action. Pausing preserves the remaining thinking time;
@@ -112,58 +114,14 @@ class _LumoGamePauseScopeState extends State<LumoGamePauseScope>
           children: [
             TickerMode(enabled: !paused, child: widget.child),
             if (paused)
-              Material(
-                color: Colors.black54,
-                child: SafeArea(
-                  child: Center(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.all(24),
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 420),
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                const Text('Spiel pausiert',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w800)),
-                                const SizedBox(height: 12),
-                                const Text(
-                                    'Dein aktueller Zug wartet auf dich.',
-                                    textAlign: TextAlign.center),
-                                const SizedBox(height: 20),
-                                FilledButton.icon(
-                                  onPressed: widget.clock.resume,
-                                  icon: const Icon(Icons.play_arrow_rounded),
-                                  label: const Text('Fortsetzen'),
-                                ),
-                                OutlinedButton.icon(
-                                  onPressed: () {
-                                    widget.clock.cancel();
-                                    widget.onRestart();
-                                    widget.clock.resume();
-                                  },
-                                  icon: const Icon(Icons.replay_rounded),
-                                  label: const Text('Neu starten'),
-                                ),
-                                TextButton.icon(
-                                  onPressed: () => Navigator.of(context).pop(),
-                                  icon: const Icon(Icons.arrow_back_rounded),
-                                  label: const Text('Zur Spieleauswahl'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              LumoPausePanel(
+                onResume: widget.clock.resume,
+                onRestart: () {
+                  widget.clock.cancel();
+                  widget.onRestart();
+                  widget.clock.resume();
+                },
+                onLeave: () => Navigator.of(context).pop(),
               ),
           ],
         ),
@@ -188,5 +146,181 @@ class LumoGameResultBack extends StatelessWidget {
           }
         },
         child: child,
+      );
+}
+
+/// Gemeinsames Pausenfenster aller Lumo-Spiele: dunkles Glas, Cyan-Kante,
+/// goldenes Pausensymbol, große Knöpfe (mind. 52 dp). Texte bleiben gleich,
+/// damit Vorlesefunktion und Android-Prüfungen sie wiederfinden.
+class LumoPausePanel extends StatelessWidget {
+  const LumoPausePanel({
+    super.key,
+    required this.onResume,
+    required this.onRestart,
+    required this.onLeave,
+  });
+
+  final VoidCallback onResume;
+  final VoidCallback onRestart;
+  final VoidCallback onLeave;
+
+  static const _label = TextStyle(
+      fontFamily: 'Nunito', fontWeight: FontWeight.w900, color: Colors.white);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.transparency,
+      child: Stack(fit: StackFit.expand, children: [
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            child: const ColoredBox(color: Color(0xA6020A24)),
+          ),
+        ),
+        SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 420),
+                child: Container(
+                  key: const ValueKey('lumo-pause-panel'),
+                  padding: const EdgeInsets.fromLTRB(22, 18, 22, 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(28),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0xF2123F86), Color(0xF2071A3E)],
+                    ),
+                    border: Border.all(color: const Color(0xCC53DDFD), width: 2),
+                    boxShadow: const [
+                      BoxShadow(color: Color(0x6637D2FD), blurRadius: 26),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Center(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [Color(0xFFFFE08A), Color(0xFFF5A623)]),
+                            boxShadow: [
+                              BoxShadow(color: Color(0x88FFD86B), blurRadius: 18),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(12),
+                            child: Icon(Icons.pause_rounded,
+                                color: Color(0xFF0B2A5C), size: 34),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text('Spiel pausiert',
+                          textAlign: TextAlign.center,
+                          style: _label.copyWith(fontSize: 26)),
+                      const SizedBox(height: 6),
+                      const Text('Dein aktueller Zug wartet auf dich.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFFD6E8FF))),
+                      const SizedBox(height: 18),
+                      _PauseButton(
+                        icon: Icons.play_arrow_rounded,
+                        label: 'Fortsetzen',
+                        primary: true,
+                        onTap: onResume,
+                      ),
+                      const SizedBox(height: 10),
+                      _PauseButton(
+                        icon: Icons.replay_rounded,
+                        label: 'Neu starten',
+                        onTap: onRestart,
+                      ),
+                      const SizedBox(height: 4),
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                          minimumSize: const Size.fromHeight(48),
+                          foregroundColor: Colors.white,
+                        ),
+                        onPressed: onLeave,
+                        icon: const Icon(Icons.arrow_back_rounded),
+                        label: Text('Zur Spieleauswahl',
+                            style: _label.copyWith(fontSize: 15)),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+class _PauseButton extends StatelessWidget {
+  const _PauseButton({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.primary = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  final bool primary;
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+        button: true,
+        label: label,
+        excludeSemantics: true,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(99),
+            onTap: onTap,
+            child: Ink(
+              height: 54,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(99),
+                gradient: primary
+                    ? const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0xFF63E4FF), Color(0xFF1E7FE0)])
+                    : null,
+                color: primary ? null : const Color(0x33FFFFFF),
+                border: Border.all(
+                    color: primary
+                        ? const Color(0xFFBDF4FF)
+                        : const Color(0x8837D2FD),
+                    width: 1.6),
+              ),
+              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Icon(icon, color: Colors.white),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(label,
+                      overflow: TextOverflow.ellipsis,
+                      style: LumoPausePanel._label.copyWith(fontSize: 17)),
+                ),
+              ]),
+            ),
+          ),
+        ),
       );
 }

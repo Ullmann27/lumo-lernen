@@ -383,7 +383,7 @@ class _EditorHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '✨ Schreib was du moechtest',
+                  '✨ Schreib, was du möchtest',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 16,

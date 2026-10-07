@@ -6,6 +6,7 @@
 // 8 Aufgaben pro Session, progressive Schwierigkeit.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -166,7 +167,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
       _shakeCtrl.forward(from: 0);
       try {
         LumoVoice.instance.speak(
-            '${LumoPhrases.wrongGentle()} Das war $_gegessen von $_nenner Stuecken.');
+            '${LumoPhrases.wrongGentle()} Das war $_gegessen von $_nenner Stücken.');
       } catch (_) {}
       if (!await _progress.feedbackDelay(const Duration(milliseconds: 2400)) ||
           !mounted) {
@@ -250,8 +251,9 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
       progress: _progress,
-      child: Scaffold(
-      backgroundColor: const Color(0xFFFFFBEB),
+      child: LumoModuleBackdrop(
+          child: Scaffold(
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: Column(children: [
           _buildTopBar(),
@@ -272,7 +274,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
                   const SizedBox(height: 16),
                   _buildPizzaVisualization(),
                   const SizedBox(height: 12),
-                  Text('Von $_nenner Stücken wurden $_gegessen gegessen.',
+                  Text('Von $_nenner Stücken ${_gegessen == 1 ? 'wurde' : 'wurden'} $_gegessen gegessen.',
                       style: const TextStyle(
                           fontFamily: 'Nunito',
                           fontSize: 14,
@@ -286,7 +288,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
           ),
         ]),
       ),
-      ),
+      )),
     );
   }
 

@@ -26,7 +26,7 @@ def described_cards(root):
 
 def is_result(root):
     values = labels(root)
-    return 'Nochmal' in values and 'Zurueck' in values and any('gewinnt' in s for s in values)
+    return 'Nochmal' in values and 'Zurück' in values and any('gewinnt' in s for s in values)
 
 
 def picker_color_button(root, color):
@@ -37,7 +37,7 @@ def picker_color_button(root, color):
     live on a child of the clickable node, so resolve the nearest actionable
     ancestor without inventing coordinates or choosing an ambiguous index.
     """
-    colors = {'Rot', 'Gelb', 'Blau', 'Gruen'}
+    colors = {'Rot', 'Gelb', 'Blau', 'Grün'}
     if color not in colors:
         raise RuntimeError(f'Unknown actual picker color: {color!r}.')
     parents = {child: parent for parent in root.iter() for child in parent}

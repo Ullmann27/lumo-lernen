@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'lumo_premium_effects.dart';
 
 /// Themen-Karte nach Referenzbild "Deutsch mit Lumo".
@@ -71,26 +72,25 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                _surfaceFromAccent(widget.accent),
-                Color.lerp(_surfaceFromAccent(widget.accent), Colors.white, 0.45)!,
+                Color.alphaBlend(widget.accent.withOpacity(.16), const Color(0xEE0D3568)),
+                const Color(0xF0081D43),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: widget.accent.withOpacity(0.22), width: 1.4),
+            border: Border.all(color: widget.accent.withOpacity(0.58), width: 1.4),
             boxShadow: [
               BoxShadow(
                 color: widget.accent.withOpacity(0.22),
-                blurRadius: 20,
+                blurRadius: 22,
                 offset: const Offset(0, 8),
                 spreadRadius: -4,
               ),
-              BoxShadow(
-                color: Colors.white.withOpacity(0.65),
-                blurRadius: 6,
-                offset: const Offset(-2, -2),
-                spreadRadius: -2,
+              const BoxShadow(
+                color: Color(0x55000000),
+                blurRadius: 18,
+                offset: Offset(0, 10),
               ),
             ],
           ),
@@ -106,7 +106,10 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                     height: 36,
                     decoration: BoxDecoration(
                       gradient: RadialGradient(
-                        colors: [Colors.white, _surfaceFromAccent(widget.accent)],
+                        colors: [
+                          widget.accent.withOpacity(.80),
+                          const Color(0xFF12345F),
+                        ],
                         radius: .9,
                       ),
                       shape: BoxShape.circle,
@@ -125,7 +128,7 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w900,
-                          color: widget.accent,
+                          color: LumoVisualTokens.white,
                           height: 1.0,
                         ),
                       ),
@@ -141,7 +144,7 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                         fontFamily: 'Nunito',
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
-                        color: LumoColors.ink900,
+                        color: LumoVisualTokens.white,
                         letterSpacing: 0.1,
                       ),
                     ),
@@ -162,7 +165,7 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                         fontFamily: 'Nunito',
                         fontSize: 12.5,
                         fontWeight: FontWeight.w700,
-                        color: LumoColors.ink500,
+                        color: LumoVisualTokens.muted,
                         height: 1.32,
                       ),
                     ),
@@ -176,8 +179,8 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                     decoration: BoxDecoration(
                       gradient: RadialGradient(
                         colors: [
-                          Colors.white,
-                          _surfaceFromAccent(widget.accent),
+                          widget.accent.withOpacity(.30),
+                          const Color(0xFF0D315F),
                         ],
                         radius: 0.85,
                       ),
@@ -214,9 +217,9 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.92),
+                      color: const Color(0xAA0E3568),
                       borderRadius: BorderRadius.circular(99),
-                      border: Border.all(color: widget.accent.withOpacity(0.20), width: 1.0),
+                      border: Border.all(color: widget.accent.withOpacity(0.45), width: 1.0),
                     ),
                     child: Text(
                       'Level ${widget.level}',
@@ -263,7 +266,7 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
                           fontFamily: 'Nunito',
                           fontSize: 11,
                           fontWeight: FontWeight.w800,
-                          color: LumoColors.ink700,
+                          color: LumoVisualTokens.muted,
                         ),
                       ),
                     ],

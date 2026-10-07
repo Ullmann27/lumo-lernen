@@ -153,7 +153,7 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
     }
     String seasonName = 'Sommer';
     switch (season) {
-      case Season.spring: seasonName = 'Fruehling'; break;
+      case Season.spring: seasonName = 'Frühling'; break;
       case Season.summer: seasonName = 'Sommer'; break;
       case Season.autumn: seasonName = 'Herbst'; break;
       case Season.winter: seasonName = 'Winter'; break;

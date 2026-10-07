@@ -1,0 +1,35 @@
+name: Editable source checkpoint
+on:
+  push:
+    branches: [chatgpt/lumo-complete-games-2026-10-07]
+    paths: [.github/workflows/editable-source.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package editable source
+        run: |
+          mkdir -p /tmp/source-pack
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_DEFLATED
+          import subprocess
+          files = set(subprocess.check_output(['git','ls-files'], text=True).splitlines())
+          files.update(subprocess.check_output(['git','ls-files','--others','--exclude-standard'], text=True).splitlines())
+          with ZipFile('/tmp/source-pack/source.zip','w',ZIP_DEFLATED) as z:
+              for name in sorted(files):
+                  p = Path(name)
+                  if not p.is_file() or p.stat().st_size > 1500000: continue
+                  try: p.read_text(encoding='utf-8')
+                  except (UnicodeError, ValueError): continue
+                  z.write(p,name)
+              z.writestr('source-checkpoint.txt',subprocess.check_output(['git','rev-parse','HEAD'], text=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: editable-source
+          path: /tmp/source-pack/source.zip

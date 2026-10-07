@@ -26,100 +26,85 @@ class LumoTurnBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(14, 14, 14, 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Lumo + Bubble
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Lumo-Fuchs Avatar.
-                Container(
-                  width: 56,
-                  height: 56,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(28),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFFFF7A2F).withOpacity(0.4),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: const Text('🦊', style: TextStyle(fontSize: 28)),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(14),
-                      border: Border.all(
-                          color: const Color(0xFFF59E0B), width: 1.6),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.08),
-                          blurRadius: 8,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          currentPlayerName == 'Du'
-                              ? 'Du bist dran'
-                              : '$currentPlayerName ist dran',
-                          style: const TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 13,
-                            fontWeight: FontWeight.w900,
-                            color: Color(0xFF7C2D12),
-                          ),
-                        ),
-                        if (message.isNotEmpty) ...[
-                          const SizedBox(height: 2),
-                          Text(
-                            message,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF7C2D12),
-                              height: 1.3,
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+    final title =
+        currentPlayerName == 'Du' ? 'Du bist dran' : '$currentPlayerName ist dran';
+    final bubble = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: const Color(0xE60B2A5C),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+            color: isMyTurn ? const Color(0xFFFFD86B) : const Color(0xAA37D2FD),
+            width: 1.6),
+        boxShadow: [
+          BoxShadow(
+            color: (isMyTurn ? const Color(0xFFFFD86B) : const Color(0xFF37D2FD))
+                .withOpacity(.25),
+            blurRadius: 12,
           ),
-          const SizedBox(width: 10),
-          // ── Turn-Pille im HUD-Asset-Stil (Heinz 2026-05-22) ──
-          // Ersetzt die alte Gegner-Karten-Pille - die Karten-Anzahl wird
-          // jetzt durch das Gegner-HUD oben angezeigt (vermeidet doppelte
-          // Info).
-          LumoTurnPill(isMyTurn: isMyTurn),
         ],
       ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 14,
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
+            ),
+          ),
+          if (message.isNotEmpty) ...[
+            const SizedBox(height: 2),
+            Text(
+              message,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFFD6E8FF),
+                height: 1.3,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 6),
+      child: LayoutBuilder(builder: (context, c) {
+        // Schmale Handys: Hinweis über die ganze Breite, Zug-Knopf darunter
+        // rechts – nie Buchstabe für Buchstabe umbrechen.
+        if (c.maxWidth < 380) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              bubble,
+              const SizedBox(height: 6),
+              Align(
+                alignment: Alignment.centerRight,
+                child: LumoTurnPill(isMyTurn: isMyTurn),
+              ),
+            ],
+          );
+        }
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(child: bubble),
+            const SizedBox(width: 10),
+            LumoTurnPill(isMyTurn: isMyTurn),
+          ],
+        );
+      }),
     );
   }
 }

@@ -558,7 +558,7 @@ class _ResultDialog extends StatelessWidget {
                 ),
                 onPressed: onClose,
                 child: const Text(
-                  'Zurueck zur Spielewelt',
+                  'Zurück zur Spielewelt',
                   style: TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 15,

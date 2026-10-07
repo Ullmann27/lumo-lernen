@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 
 /// Schulbuchnahe, aber eigenstaendige Lumo-Visuals.
 ///
@@ -31,12 +32,28 @@ class SchoolbookTaskCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFEFA),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xEE0D315F), Color(0xF0081E43), Color(0xEC0A2A55)],
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoColors.ink100, width: 1.3),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.55), width: 1.3),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withOpacity(.18),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+          const BoxShadow(
+            color: Color(0x55000000),
+            blurRadius: 18,
+            offset: Offset(0, 10),
+          ),
+        ],
       ),
       child: Stack(children: [
-        Positioned.fill(child: CustomPaint(painter: _PaperLinesPainter())),
+        Positioned.fill(child: CustomPaint(painter: _HoloGridPainter())),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Expanded(
@@ -47,7 +64,7 @@ class SchoolbookTaskCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 15,
                     fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
+                    color: LumoVisualTokens.white,
                   ),
                 ),
                 if (subtitle != null) ...[
@@ -58,7 +75,7 @@ class SchoolbookTaskCard extends StatelessWidget {
                       fontFamily: 'Nunito',
                       fontSize: 12,
                       fontWeight: FontWeight.w800,
-                      color: LumoColors.ink500,
+                      color: LumoVisualTokens.muted,
                       height: 1.25,
                     ),
                   ),
@@ -114,7 +131,7 @@ class TwentyFrameVisual extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           'Erst bis zur 10, dann den Rest wegnehmen.',
-          style: LumoTextStyles.body.copyWith(fontSize: 12, color: LumoColors.ink600),
+          style: LumoTextStyles.body.copyWith(fontSize: 12, color: LumoVisualTokens.muted),
         ),
       ],
     ]);
@@ -157,7 +174,7 @@ class NumberLineJumpVisual extends StatelessWidget {
           fontFamily: 'Nunito',
           fontSize: 18,
           fontWeight: FontWeight.w900,
-          color: LumoColors.ink900,
+          color: LumoVisualTokens.white,
         ),
       ),
     ]);
@@ -194,7 +211,7 @@ class NumberHouseVisual extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 26,
                     fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
+                    color: LumoVisualTokens.white,
                   ),
                 ),
               ),
@@ -202,8 +219,8 @@ class NumberHouseVisual extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.9),
-              border: Border.all(color: LumoColors.ink500, width: 1.2),
+              color: const Color(0x99123867),
+              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.42), width: 1.2),
             ),
             child: Column(
               children: List.generate(safeRows.length, (rowIndex) {
@@ -256,9 +273,13 @@ class BlitzlichtGrid extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(.82),
+                gradient: const LinearGradient(
+                  colors: [Color(0xCC174E8B), Color(0xCC0E3568)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 borderRadius: BorderRadius.circular(LumoRadius.sm),
-                border: Border.all(color: LumoColors.ink100),
+                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.38)),
               ),
               child: Text(
                 items[index],
@@ -268,7 +289,7 @@ class BlitzlichtGrid extends StatelessWidget {
                   fontFamily: 'Nunito',
                   fontSize: 15,
                   fontWeight: FontWeight.w900,
-                  color: LumoColors.ink900,
+                  color: LumoVisualTokens.white,
                 ),
               ),
             ),
@@ -295,7 +316,7 @@ class WritingLineBox extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         placeholder,
-        style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoColors.ink700),
+        style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900, color: LumoVisualTokens.white),
       ),
       const SizedBox(height: 8),
       Row(
@@ -304,12 +325,12 @@ class WritingLineBox extends StatelessWidget {
             child: Container(
               height: 48,
               margin: EdgeInsets.only(right: index == safeCells - 1 ? 0 : 4),
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: const Color(0x88123970),
                 border: Border(
-                  left: BorderSide(color: LumoColors.ink100),
-                  right: BorderSide(color: LumoColors.ink100),
-                  bottom: BorderSide(color: LumoColors.ink500, width: 1.4),
+                  left: BorderSide(color: LumoVisualTokens.cyan.withOpacity(.26)),
+                  right: BorderSide(color: LumoVisualTokens.cyan.withOpacity(.26)),
+                  bottom: const BorderSide(color: LumoVisualTokens.cyanBright, width: 1.4),
                 ),
               ),
             ),
@@ -339,11 +360,15 @@ class SoundChoiceCard extends StatelessWidget {
         width: 74,
         height: 74,
         decoration: BoxDecoration(
-          color: LumoColors.orangeSurface,
+          gradient: const LinearGradient(
+            colors: [Color(0xFF2D79D9), Color(0xFF174780)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
-          border: Border.all(color: LumoColors.orange.withOpacity(.22)),
+          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.52)),
         ),
-        child: Icon(icon, color: LumoColors.orange, size: 32),
+        child: Icon(icon, color: LumoVisualTokens.white, size: 32),
       ),
       const SizedBox(width: 12),
       Expanded(
@@ -364,9 +389,11 @@ class SoundChoiceCard extends StatelessWidget {
                 .map((choice) => Container(
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        gradient: const LinearGradient(
+                          colors: [Color(0xCC185291), Color(0xCC0D356A)],
+                        ),
                         borderRadius: BorderRadius.circular(LumoRadius.pill),
-                        border: Border.all(color: LumoColors.ink100, width: 1.4),
+                        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45), width: 1.4),
                       ),
                       child: Text(
                         choice,
@@ -374,7 +401,7 @@ class SoundChoiceCard extends StatelessWidget {
                           fontFamily: 'Nunito',
                           fontSize: 15,
                           fontWeight: FontWeight.w900,
-                          color: LumoColors.ink700,
+                          color: LumoVisualTokens.white,
                         ),
                       ),
                     ))
@@ -397,9 +424,13 @@ class _Ribbon extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
       decoration: BoxDecoration(
-        color: color.withOpacity(.12),
+        gradient: LinearGradient(
+          colors: [color.withOpacity(.42), color.withOpacity(.14)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.sm),
-        border: Border.all(color: color.withOpacity(.30)),
+        border: Border.all(color: color.withOpacity(.70)),
       ),
       child: Text(
         label,
@@ -407,7 +438,7 @@ class _Ribbon extends StatelessWidget {
           fontFamily: 'Nunito',
           fontSize: 12,
           fontWeight: FontWeight.w900,
-          color: color,
+          color: Colors.white,
         ),
       ),
     );
@@ -426,9 +457,13 @@ class _HelperBox extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(.09),
+        gradient: LinearGradient(
+          colors: [color.withOpacity(.18), const Color(0xAA0B2D5B)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.md),
-        border: Border.all(color: color.withOpacity(.18)),
+        border: Border.all(color: color.withOpacity(.48)),
       ),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Icon(Icons.lightbulb_rounded, color: color, size: 18),
@@ -440,7 +475,7 @@ class _HelperBox extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 13,
               fontWeight: FontWeight.w800,
-              color: LumoColors.ink700,
+              color: LumoVisualTokens.white,
               height: 1.30,
             ),
           ),
@@ -461,9 +496,15 @@ class _MathChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: soft ? LumoColors.goldSurface : Colors.white,
+        gradient: LinearGradient(
+          colors: soft
+              ? const [Color(0xCC9A6400), Color(0xCC4A3208)]
+              : const [Color(0xCC174E8B), Color(0xCC0E3568)],
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.sm),
-        border: Border.all(color: soft ? LumoColors.gold.withOpacity(.35) : LumoColors.ink100),
+        border: Border.all(
+          color: soft ? LumoVisualTokens.gold.withOpacity(.72) : LumoVisualTokens.cyan.withOpacity(.45),
+        ),
       ),
       child: Text(
         text,
@@ -486,9 +527,11 @@ class _TenShield extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 7),
       decoration: BoxDecoration(
-        color: Colors.white,
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFB329), Color(0xFFC46A00)],
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.sm),
-        border: Border.all(color: LumoColors.orange, width: 1.6),
+        border: Border.all(color: LumoVisualTokens.gold, width: 1.6),
       ),
       child: const Text(
         '10',
@@ -496,7 +539,7 @@ class _TenShield extends StatelessWidget {
           fontFamily: 'Nunito',
           fontSize: 14,
           fontWeight: FontWeight.w900,
-          color: LumoColors.orange,
+          color: Colors.white,
         ),
       ),
     );
@@ -538,9 +581,11 @@ class _TwentyDots extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBEB),
+        gradient: const LinearGradient(
+          colors: [Color(0xCC173E72), Color(0xCC0C2A56)],
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.md),
-        border: Border.all(color: const Color(0xFFFDE68A), width: 1.4),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45), width: 1.4),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -576,12 +621,12 @@ class _ZwanzigerCube extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 1.5),
             decoration: BoxDecoration(
-              color: filled ? fillColor : Colors.white,
+              color: filled ? LumoVisualTokens.cyanBright : const Color(0x66122E58),
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
                 color: filled
                     ? const Color(0xFF1D4ED8)
-                    : const Color(0xFFE5E7EB),
+                    : const Color(0xFF31577A),
                 width: 1.2,
               ),
               boxShadow: filled
@@ -618,8 +663,8 @@ class _HouseCell extends StatelessWidget {
       height: 38,
       decoration: const BoxDecoration(
         border: Border(
-          right: BorderSide(color: LumoColors.ink100),
-          bottom: BorderSide(color: LumoColors.ink100),
+          right: BorderSide(color: Color(0x554DD8FF)),
+          bottom: BorderSide(color: Color(0x554DD8FF)),
         ),
       ),
       child: Center(
@@ -629,7 +674,7 @@ class _HouseCell extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: hide ? 15 : 20,
             fontWeight: FontWeight.w900,
-            color: hide ? LumoColors.orange : LumoColors.ink900,
+            color: hide ? LumoVisualTokens.gold : LumoVisualTokens.white,
           ),
         ),
       ),
@@ -637,19 +682,26 @@ class _HouseCell extends StatelessWidget {
   }
 }
 
-class _PaperLinesPainter extends CustomPainter {
+class _HoloGridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = LumoColors.ink100.withOpacity(.24)
-      ..strokeWidth = 1;
-    for (var y = 52.0; y < size.height; y += 34) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
+    final line = Paint()
+      ..color = LumoVisualTokens.cyan.withOpacity(.075)
+      ..strokeWidth = .8;
+    final node = Paint()..color = LumoVisualTokens.cyanBright.withOpacity(.15);
+    for (var y = 48.0; y < size.height; y += 38) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), line);
+    }
+    for (var x = 34.0; x < size.width; x += 52) {
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), line);
+      for (var y = 48.0; y < size.height; y += 76) {
+        canvas.drawCircle(Offset(x, y), 1.4, node);
+      }
     }
   }
 
   @override
-  bool shouldRepaint(covariant _PaperLinesPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _HoloGridPainter oldDelegate) => false;
 }
 
 class _HouseRoofPainter extends CustomPainter {
@@ -875,24 +927,31 @@ class WordCardRow extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
-            color: isHighlight ? color.withOpacity(.12) : Colors.white,
+            gradient: LinearGradient(
+              colors: isHighlight
+                  ? <Color>[color.withOpacity(.42), color.withOpacity(.18)]
+                  : const <Color>[Color(0xCC123760), Color(0xCC09264B)],
+            ),
             borderRadius: BorderRadius.circular(LumoRadius.sm),
             border: Border.all(
-              color: isHighlight ? color.withOpacity(.55) : LumoColors.ink100,
-              width: isHighlight ? 1.6 : 1.2,
+              color: isHighlight
+                  ? color.withOpacity(.72)
+                  : LumoVisualTokens.cyan.withOpacity(.26),
+              width: isHighlight ? 1.6 : 1.1,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(.04),
-                blurRadius: 6,
-                offset: const Offset(0, 2),
+                color: (isHighlight ? color : LumoVisualTokens.cyan)
+                    .withOpacity(.12),
+                blurRadius: 9,
+                offset: const Offset(0, 3),
               ),
             ],
           ),
           child: Text(
             words[index],
             style: LumoTextStyles.heading3.copyWith(
-              color: isHighlight ? color : LumoColors.ink700,
+              color: isHighlight ? LumoVisualTokens.white : LumoVisualTokens.muted,
               fontWeight: FontWeight.w800,
             ),
           ),

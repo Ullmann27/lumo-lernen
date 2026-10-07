@@ -7,6 +7,7 @@
 // 10 Aufgaben, gemischte Typen, Pollinations.ai liefert die Bilder.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import '../../../core/lumo_companion_state.dart';
@@ -303,8 +304,9 @@ class _FarbenScreenState extends State<FarbenScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -332,7 +334,7 @@ class _FarbenScreenState extends State<FarbenScreen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {
@@ -501,12 +503,12 @@ class _FarbenScreenState extends State<FarbenScreen>
                   ),
                 ),
                 const SizedBox(width: 10),
-                Text(f.name,
+                Flexible(child: FittedBox(fit: BoxFit.scaleDown, child: Text(f.name,
                     style: TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
-                        color: _gradient[1])),
+                        color: _gradient[1])))),
               ],
             ),
           ),

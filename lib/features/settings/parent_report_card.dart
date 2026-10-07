@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../core/lumo_ai_learning_access.dart';
 import '../../core/lumo_ai_learning_policy_bridge.dart';
 import '../../core/lumo_ai_proxy_client.dart';
@@ -125,8 +126,8 @@ class _ParentReportCardState extends State<ParentReportCard> {
           return Container(
             width: double.infinity,
             padding: const EdgeInsets.all(18),
-            decoration: lumoCard(),
-            child: const Text('Elternbericht wird erstellt …', style: LumoTextStyles.heading3),
+            decoration: lumoCard(color: LumoVisualTokens.glass, border: Border.all(color: LumoVisualTokens.cyan)),
+            child: Text('Elternbericht wird erstellt …', style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.muted)),
           );
         }
         final report = snapshot.data!;
@@ -134,7 +135,22 @@ class _ParentReportCardState extends State<ParentReportCard> {
         return Container(
           width: double.infinity,
           padding: const EdgeInsets.all(18),
-          decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFFFFF), Color(0xFFFFF7ED)])),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xED0B315F), Color(0xF1081D43), Color(0xEA0B2A55)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(LumoRadius.lg),
+            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.42), width: 1.2),
+            boxShadow: [
+              BoxShadow(
+                color: LumoVisualTokens.cyan.withOpacity(.15),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             // 2026-06-03: prominenter CTA zum neuen Lumo-Insight-Dashboard
             // (visuelle Kompetenz-Heatmap, das echte Game-Changer-Feature
@@ -145,18 +161,26 @@ class _ParentReportCardState extends State<ParentReportCard> {
               Container(
                 width: 52,
                 height: 52,
-                decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF38DFFF), Color(0xFF246EFF)],
+                  ),
+                  borderRadius: BorderRadius.circular(LumoRadius.lg),
+                  boxShadow: [
+                    BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.32), blurRadius: 12),
+                  ],
+                ),
                 child: const Center(child: Text('📄', style: TextStyle(fontSize: 30))),
               ),
               const SizedBox(width: 12),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Elternbericht MVP', style: LumoTextStyles.heading2.copyWith(color: LumoColors.ink900)),
+                Text('Elternbericht', style: LumoTextStyles.heading2.copyWith(color: LumoVisualTokens.white)),
                 const SizedBox(height: 4),
-                Text('Lokal erzeugt · ${_date(report.generatedAt)}', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink600)),
+                Text('Lokal erzeugt · ${_date(report.generatedAt)}', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
               ])),
             ]),
             const SizedBox(height: 12),
-            Text(report.summary, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+            Text(report.summary, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
             const SizedBox(height: 14),
             Wrap(spacing: 12, runSpacing: 12, children: [
               _SubjectReportMini(block: report.reading, color: LumoColors.blue),
@@ -184,13 +208,16 @@ class _ParentReportCardState extends State<ParentReportCard> {
               onModeChanged: _saveAiMode,
             ),
             const SizedBox(height: 14),
-            Text('Nächste sinnvolle Schritte', style: LumoTextStyles.heading3),
+            Text(
+              'Nächste sinnvolle Schritte',
+              style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
+            ),
             const SizedBox(height: 8),
             ...report.nextSteps.map((step) => Padding(
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     const Text('• ', style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, color: LumoColors.orange)),
-                    Expanded(child: Text(step, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700))),
+                    Expanded(child: Text(step, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted))),
                   ]),
                 )),
             const SizedBox(height: 18),
@@ -207,12 +234,12 @@ class _ParentReportCardState extends State<ParentReportCard> {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFEFF6FF), Color(0xFFF5F3FF)],
+          colors: [Color(0xDD143F78), Color(0xE80C2752)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFC7D2FE)),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.42)),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
@@ -221,25 +248,28 @@ class _ParentReportCardState extends State<ParentReportCard> {
           Expanded(
               child: Text('KI-Wochenanalyse',
                   style: LumoTextStyles.heading3
-                      .copyWith(color: const Color(0xFF4338CA)))),
+                      .copyWith(color: LumoVisualTokens.white))),
         ]),
         const SizedBox(height: 6),
         Text(
           aiEnabled
               ? 'Lumo-Berater fasst Lernfortschritt + Foerder-Tipp in 3-5 Saetzen zusammen.'
               : 'Lumo-KI-Server im Elternbereich noch nicht aktiviert.',
-          style: LumoTextStyles.caption.copyWith(color: LumoColors.ink600),
+          style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
         ),
         const SizedBox(height: 10),
         if (_aiInsight != null) ...[
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Colors.white,
+              gradient: const LinearGradient(
+                colors: [Color(0xCC174E8B), Color(0xCC0D356A)],
+              ),
               borderRadius: BorderRadius.circular(LumoRadius.md),
+              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.32)),
             ),
             child: Text(_aiInsight!,
-                style: LumoTextStyles.body.copyWith(color: LumoColors.ink900)),
+                style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
           ),
           const SizedBox(height: 8),
         ],
@@ -295,12 +325,16 @@ class _SubjectReportMini extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
+      constraints: const BoxConstraints(maxWidth: 250),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.82),
+        gradient: const LinearGradient(
+          colors: [Color(0xCC174E8B), Color(0xCC0D356A)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: color.withOpacity(.18)),
+        border: Border.all(color: color.withOpacity(.42)),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(block.subject, style: LumoTextStyles.heading3.copyWith(color: color)),
@@ -308,16 +342,16 @@ class _SubjectReportMini extends StatelessWidget {
         if (block.strengths.isNotEmpty) ...[
           Text('Stärken', style: LumoTextStyles.label.copyWith(color: LumoColors.teal)),
           const SizedBox(height: 3),
-          ...block.strengths.take(3).map((item) => Text('✓ $item', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700))),
+          ...block.strengths.take(3).map((item) => Text('✓ $item', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted))),
           const SizedBox(height: 8),
         ],
         if (block.weaknesses.isNotEmpty) ...[
           Text('Förderbedarf', style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
           const SizedBox(height: 3),
-          ...block.weaknesses.take(3).map((item) => Text('• $item', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700))),
+          ...block.weaknesses.take(3).map((item) => Text('• $item', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted))),
           const SizedBox(height: 8),
         ],
-        Text(block.recommendedAction, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w900)),
+        Text(block.recommendedAction, style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.white, fontWeight: FontWeight.w900)),
       ]),
     );
   }
@@ -348,7 +382,7 @@ class _LumoInsightCta extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+              colors: [Color(0xFF174D75), Color(0xFF09264B)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -427,8 +461,8 @@ class _LumoKiMasterToggle extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: enabled
-              ? const [Color(0xFFFFB96B), Color(0xFFFF7A2F)]
-              : const [Color(0xFFE5E7EB), Color(0xFFD1D5DB)],
+              ? const [Color(0xFF175381), Color(0xFF0B3155)]
+              : const [Color(0xFF173760), Color(0xFF09264B)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

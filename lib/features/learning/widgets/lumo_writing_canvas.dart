@@ -218,7 +218,7 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
       Row(children: [
         Expanded(
           child: _CanvasButton(
-            label: 'Zurueck',
+            label: 'Zurück',
             icon: Icons.undo_rounded,
             onTap: _strokes.isEmpty ? null : _undo,
           ),

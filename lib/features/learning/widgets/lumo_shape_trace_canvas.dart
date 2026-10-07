@@ -472,7 +472,7 @@ class _ActionBar extends StatelessWidget {
         children: [
           _PillButton(
             icon: Icons.undo_rounded,
-            label: 'Zurueck',
+            label: 'Zurück',
             color: const Color(0xFF6366F1),
             onTap: hasStrokes && !submitted ? onUndo : null,
           ),

@@ -8,6 +8,7 @@
 // 12 Aufgaben pro Session, Multiple-Choice.
 // ════════════════════════════════════════════════════════════════════════
 
+import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -249,8 +250,9 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
         progress: _progress,
-        child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+        child: LumoModuleBackdrop(
+          child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
@@ -274,7 +276,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
               ),
             ]),
           ),
-        ));
+        )));
   }
 
   Widget _buildTopBar() {
@@ -388,18 +390,25 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
                   color: _gradient[1])),
         );
       case _ZahlAufgabenTyp.groesser:
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // Schmal oder mit großer Schrift wird die Zeile verkleinert statt
+        // über den Rand zu laufen.
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             _buildBigNumber(_zahl1),
+            const SizedBox(width: 16),
             const Text('oder',
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                     color: Color(0xFF6B7280))),
+            const SizedBox(width: 16),
             _buildBigNumber(_zahl2),
           ],
+        ),
         );
     }
   }

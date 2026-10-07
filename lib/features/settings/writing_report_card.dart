@@ -15,6 +15,7 @@
 import 'package:flutter/material.dart';
 
 import '../../app/app_theme.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../core/writing_progress_repository.dart';
 import '../../domain/writing/writing_progress.dart';
 import '../../widgets/fox/lumo_idle_fox.dart';
@@ -57,7 +58,7 @@ class _WritingReportCardState extends State<WritingReportCard> {
           padding: const EdgeInsets.all(18),
           decoration: lumoCard(
             gradient: const LinearGradient(
-              colors: [Color(0xFFFFFFFF), Color(0xFFFAF5FF)],
+              colors: [Color(0xE6123760), Color(0xE609264B)],
             ),
           ),
           child: Column(
@@ -84,7 +85,7 @@ class _WritingReportCardState extends State<WritingReportCard> {
         width: 52,
         height: 52,
         decoration: BoxDecoration(
-          color: const Color(0xFFEDE9FE),
+          color: const Color(0xFF29476E),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
         ),
         child: const Center(child: Text('✏️', style: TextStyle(fontSize: 28))),
@@ -96,13 +97,13 @@ class _WritingReportCardState extends State<WritingReportCard> {
           children: [
             Text('Schreibcoach – Übungsstand',
                 style:
-                    LumoTextStyles.heading2.copyWith(color: LumoColors.ink900)),
+                    LumoTextStyles.heading2.copyWith(color: LumoVisualTokens.white)),
             const SizedBox(height: 4),
             Text(
               progress.lastPracticedAt == null
                   ? 'Noch keine Übung gespeichert'
                   : 'Zuletzt geübt: ${_date(progress.lastPracticedAt!)}',
-              style: LumoTextStyles.caption.copyWith(color: LumoColors.ink600),
+              style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
             ),
           ],
         ),
@@ -110,7 +111,7 @@ class _WritingReportCardState extends State<WritingReportCard> {
       IconButton(
         tooltip: 'Aktualisieren',
         icon:
-            Icon(Icons.refresh_rounded, color: LumoColors.ink600, size: 22),
+            Icon(Icons.refresh_rounded, color: LumoVisualTokens.muted, size: 22),
         onPressed: _refresh,
       ),
     ]);
@@ -119,12 +120,12 @@ class _WritingReportCardState extends State<WritingReportCard> {
   Widget _waiting() => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Text('Lade Übungsdaten …',
-            style: LumoTextStyles.body.copyWith(color: LumoColors.ink600)),
+            style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted)),
       );
 
   Widget _emptyState() => Text(
         'Lumo wartet auf die ersten Schreibversuche. Sobald dein Kind im Schreibcoach oder im Wortdiktat übt, erscheinen hier Stärken und Förderbedarf.',
-        style: LumoTextStyles.body.copyWith(color: LumoColors.ink700),
+        style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white),
       );
 
   Widget _content(WritingProgress progress) {
@@ -143,7 +144,7 @@ class _WritingReportCardState extends State<WritingReportCard> {
           _statChip('Treffer', '$accuracyPct %', const Color(0xFF10B981)),
           if (words.isNotEmpty)
             _statChip('Wörter', '${words.length}', const Color(0xFFFCD34D),
-                ink: const Color(0xFF92400E)),
+                ink: LumoVisualTokens.gold),
         ]),
         const SizedBox(height: 14),
         if (weak.isNotEmpty) ...[
@@ -167,7 +168,7 @@ class _WritingReportCardState extends State<WritingReportCard> {
           const SizedBox(height: 4),
           Text(
             _formatWords(words.take(8).toList()),
-            style: LumoTextStyles.body.copyWith(color: LumoColors.ink700),
+            style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white),
           ),
           const SizedBox(height: 12),
         ],
@@ -175,7 +176,7 @@ class _WritingReportCardState extends State<WritingReportCard> {
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: const Color(0xFFFFF7ED),
+            color: const Color(0xFF403421),
             borderRadius: BorderRadius.circular(LumoRadius.md),
             border: Border.all(color: const Color(0xFFFCD34D), width: 1.5),
           ),
@@ -186,7 +187,7 @@ class _WritingReportCardState extends State<WritingReportCard> {
               child: Text(
                 _recommendation(progress, weak),
                 style: LumoTextStyles.body.copyWith(
-                    color: LumoColors.ink900, fontWeight: FontWeight.w700),
+                    color: LumoVisualTokens.white, fontWeight: FontWeight.w700),
               ),
             ),
           ]),

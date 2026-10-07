@@ -159,7 +159,10 @@ void main() {
     }
     expect(find.byKey(const ValueKey('home-kart-image')), findsOneWidget);
     expect(find.text('Hallo, Mia!'), findsOneWidget);
-    expect(find.text('Hallo! Bereit für ein neues Abenteuer?'), findsOneWidget);
+    expect(
+        find.textContaining('Bereit für ein neues Abenteuer?',
+            findRichText: true),
+        findsOneWidget);
     expect(tester.takeException(), isNull);
 
     await tester.pumpWidget(const SizedBox.shrink());

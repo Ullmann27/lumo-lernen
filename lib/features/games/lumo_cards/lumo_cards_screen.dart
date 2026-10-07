@@ -11,9 +11,13 @@
 // machen das Spiel sofort spannend.
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../widgets/fox/lumo_character.dart';
+import '../../../widgets/design/lumo_design_system.dart' show LumoDesignFoxPose;
 import '../../../app/app_state.dart';
 import '../../../core/lumo_asset_paths.dart';
 import '../../../core/lumo_music.dart';
@@ -69,6 +73,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   bool _rewardGiven = false;
   bool _callRewardGiven = false;
   int _roundSerial = 0;
+  Timer? _pendingPlay;
 
   /// Intro-Splash beim Spielstart (Heinz 2026-05-22). Verschwindet nach
   /// ~2 Sekunden automatisch oder per Tap. Wird beim Restart nicht
@@ -103,6 +108,16 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// Detection ueber Phase-Transition (learningQuestion -> playing) +
   /// Stars-Increment beim Kind. Burst spielt ~1.5 s und entfernt sich
   /// dann via Future.delayed-Aufraeumer.
+  final LumoCharacterController _lumo = LumoCharacterController();
+  bool _lumoReacted = false;
+
+  bool get _reduceMotion {
+    final settings = widget.appState.state.settings;
+    return settings.reduceAnimations ||
+        settings.calmMode ||
+        MediaQuery.disableAnimationsOf(context);
+  }
+
   GamePhase? _prevPhase;
   int _prevKidStars = 0;
   bool _showStarBurst = false;
@@ -124,6 +139,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       grade: widget.appState.state.grade,
     );
     _controller.addListener(_onStateChanged);
+    _controller.turnClock.addListener(_onPauseChanged);
     // Heinz Crash-Bericht 2026-05-22: '_dependents.isEmpty' Assertion.
     // Frueher hat sich beim ersten Start ein Avatar-Picker-Dialog
     // direkt aus addPostFrameCallback geoeffnet. Das fuehrte zu
@@ -154,13 +170,15 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   }
 
   Future<void> _changeAvatar() async {
+    if (!mounted) return;
+    _controller.turnClock.pause();
     final picked = await LumoAvatarPicker.show(
       context,
       title: 'Avatar wechseln',
       currentAvatarPath: _playerAvatarPath,
     );
-    if (picked == null) return;
-    if (mounted) setState(() => _playerAvatarPath = picked);
+    if (picked == null || !mounted) return;
+    setState(() => _playerAvatarPath = picked);
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(_avatarPrefKey, picked);
@@ -169,12 +187,22 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
 
   @override
   void dispose() {
+    _pendingPlay?.cancel();
+    _controller.turnClock.removeListener(_onPauseChanged);
     _controller.removeListener(_onStateChanged);
     _controller.dispose();
+    _lumo.dispose();
     // PR H3: Background-Music stoppen wenn der Screen verlassen wird.
     // Singleton-Player bleibt offen fuer den naechsten Screen-Eintritt.
     LumoMusic.instance.stop();
     super.dispose();
+  }
+
+  void _onPauseChanged() {
+    if (!mounted || !_controller.turnClock.value) return;
+    _pendingPlay?.cancel();
+    _pendingPlay = null;
+    _clearFly();
   }
 
   void _onStateChanged() {
@@ -188,6 +216,12 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
         !_rewardGiven) {
       _rewardGiven = true;
       final kindWon = s.winnerIndex == 0;
+      if (!_lumoReacted) {
+        _lumoReacted = true;
+        // Lumo freut sich mit, wenn das Kind gewinnt; sonst ein kleines
+        // Wackeln statt Schadenfreude.
+        kindWon ? _lumo.cheer() : _lumo.wiggle();
+      }
       widget.appState.recordLumoCardsResult(won: kindWon).then<void>((_) {
         if (mounted) setState(() {});
       }, onError: (Object _, StackTrace __) {
@@ -255,8 +289,12 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// bereits ein Flug laeuft oder die Discard-Pile noch nicht im Tree
   /// ist, wird die Karte sofort gespielt (Fallback ohne Animation).
   void _playCardWithFly(LumoCard card, Offset globalTapPos) {
-    if (_flyingCard != null) {
+    if (!mounted || _controller.turnClock.value || _flyingCard != null) {
       // Schon ein Flug aktiv - lass ihn fertig laufen, kein zweiter.
+      return;
+    }
+    if (_reduceMotion) {
+      _controller.playCard(card);
       return;
     }
     final discardBox =
@@ -279,8 +317,12 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     // wechselt erst nach Animations-Mitte, dann ueberlappt der Flug-
     // Endpunkt mit der neuen Top-Card.
     final serial = _roundSerial;
-    Future.delayed(const Duration(milliseconds: 220), () {
-      if (!mounted || serial != _roundSerial) return;
+    _pendingPlay?.cancel();
+    _pendingPlay = Timer(const Duration(milliseconds: 220), () {
+      _pendingPlay = null;
+      if (!mounted ||
+          serial != _roundSerial ||
+          _controller.turnClock.value) return;
       _controller.playCard(card);
     });
   }
@@ -299,6 +341,10 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// passt zum aktuellen Lumo-Cards-Kontext. LumoMusic.muted persistiert,
   /// SharedPreferences merken sich die Wahl ueber App-Neustarts hinweg.
   Future<void> _openAudioSettings() async {
+    if (!mounted) return;
+    // Closing the sheet keeps the game paused. Only Fortsetzen resumes it.
+    // This also preserves a lifecycle pause received while the sheet is open.
+    _controller.turnClock.pause();
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
@@ -318,6 +364,10 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   Widget build(BuildContext context) {
     final s = _controller.state;
     final compact = MediaQuery.sizeOf(context).height < 760;
+    // Kleine Handys und Handy quer: Hand und Lumo kleiner, damit der Tisch
+    // mit Nachzieh- und Ablagestapel gut erkennbar bleibt.
+    final small = MediaQuery.sizeOf(context).height < 700;
+    final handHeight = small ? 124.0 : (compact ? 148.0 : 180.0);
     final current = s.currentPlayer;
     final topCard = s.topCard;
 
@@ -348,8 +398,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               //  - Arena kleiner damit alles passt
               LumoCardTable(
                 child: SafeArea(
-                  child: Column(
-                    children: [
+                  child: _adaptiveLayout(
+                    context,
+                    [
                       // Premium-Look 2026-05-25: HUD-Header sitzt jetzt auf
                       // einem Glass-Panel (BackdropFilter Blur + warmer Tint),
                       // hebt sich klar vom Velvet-Tisch ab und sieht weniger
@@ -360,7 +411,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                           blur: 14,
                           borderRadius: 22,
                           padding: EdgeInsets.zero,
-                          tintColor: const Color(0xFFFFE0B8),
+                          tintColor: const Color(0xFF0B2A5C),
                           child: LumoCardsScoreHeader(
                             round: 1,
                             totalRounds: 1,
@@ -398,7 +449,20 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                       ),
                       // ── Gegner-Hand-Fan: verdeckte Karten-Rueckseiten ──
                       // (Heinz Wunsch: 'vom Gegner sollte man auch sehen')
-                      if (!compact)
+                      // Gegen den Bot sitzt Lumo selbst mit seinen Karten
+                      // hinter dem Tisch (Bild 03); sonst der Karten-Fächer.
+                      if (widget.vsBot)
+                        LumoCharacter(
+                          key: const ValueKey('cards-lumo'),
+                          pose: LumoDesignFoxPose.spielweltCards,
+                          celebratePose: LumoDesignFoxPose.spielweltJump,
+                          size: small ? 64 : (compact ? 92 : 150),
+                          shadow: false,
+                          reduceMotion: _reduceMotion,
+                          controller: _lumo,
+                          onTap: _lumo.wiggle,
+                        )
+                      else if (!compact)
                         LumoOpponentHand(
                           cardCount: oppPlayer.hand.length,
                           cardWidth: 50,
@@ -415,87 +479,131 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                       // bei wenig vertikalem Platz wird der untere/obere Pfeil
                       // geclippt - kein Crash, nur visuell etwas knapp).
                       Expanded(
-                        child: ClipRect(
-                          child: Center(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: LumoColorArrows(
-                                activeColor: s.selectedColor,
-                                size: 300,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    LumoDrawPile(
-                                      cardsLeft: s.drawPile.length,
-                                      onDraw: s.phase == GamePhase.playing &&
-                                              _isMyTurnVisible(s)
-                                          ? () => _controller.drawCard()
-                                          : null,
-                                    ),
-                                    const SizedBox(width: 16),
-                                    if (topCard != null)
-                                      KeyedSubtree(
-                                        key: _discardKey,
-                                        // Premium-Look 2026-05-25:
-                                        //  - radialer Glow-Halo HINTER der Pile
-                                        //    (96x140 Karte + grosser Spread -
-                                        //    sieht aus wie ein Spot-Strahler)
-                                        //  - LumoFloating: sanftes Schweben +/-4 px,
-                                        //    bricht die statische Optik
-                                        child: SizedBox(
-                                          width: 132,
-                                          height: 172,
-                                          child: Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              IgnorePointer(
-                                                child: Container(
-                                                  width: 112,
-                                                  height: 152,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: const Color(
-                                                                0xFFFFE0B8)
-                                                            .withOpacity(0.55),
-                                                        blurRadius: 48,
-                                                        spreadRadius: 4,
-                                                      ),
-                                                      BoxShadow(
-                                                        color: const Color(
-                                                                0xFFFFB96B)
-                                                            .withOpacity(0.35),
-                                                        blurRadius: 22,
-                                                        spreadRadius: -2,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              LumoFloating(
-                                                amplitude: 4,
-                                                duration:
-                                                    const Duration(seconds: 4),
-                                                child: LumoDiscardPile(
-                                                  topCard: topCard,
-                                                  selectedColor:
-                                                      s.selectedColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                        child: Stack(children: [
+                          // Runder Steintisch mit Cyan-Ring unter den Stapeln.
+                          const Positioned.fill(
+                            child: IgnorePointer(
+                              child: RepaintBoundary(
+                                child: CustomPaint(
+                                    painter: LumoRoundTablePainter()),
+                              ),
+                            ),
+                          ),
+                          // Tierfreunde am Tisch (Bild 03), nur Deko.
+                          if (!compact) ...[
+                            Positioned(
+                              left: -8,
+                              bottom: 0,
+                              height: 120,
+                              child: IgnorePointer(
+                                child: Image.asset(
+                                  'assets/lumo_design/cards_game/friend_panda.png',
+                                  fit: BoxFit.contain,
+                                  filterQuality: FilterQuality.medium,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              right: -6,
+                              bottom: 0,
+                              height: 150,
+                              child: IgnorePointer(
+                                child: Image.asset(
+                                  'assets/lumo_design/cards_game/friend_giraffe.png',
+                                  fit: BoxFit.contain,
+                                  filterQuality: FilterQuality.medium,
+                                ),
+                              ),
+                            ),
+                          ],
+                          Positioned.fill(
+                            child: ClipRect(
+                              child: Center(
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: LumoColorArrows(
+                                    activeColor: s.selectedColor,
+                                    size: 300,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        LumoDrawPile(
+                                          cardsLeft: s.drawPile.length,
+                                          onDraw:
+                                              s.phase == GamePhase.playing &&
+                                                      _isMyTurnVisible(s)
+                                                  ? () => _controller.drawCard()
+                                                  : null,
                                         ),
-                                      ),
-                                  ],
+                                        const SizedBox(width: 16),
+                                        if (topCard != null)
+                                          KeyedSubtree(
+                                            key: _discardKey,
+                                            // Premium-Look 2026-05-25:
+                                            //  - radialer Glow-Halo HINTER der Pile
+                                            //    (96x140 Karte + grosser Spread -
+                                            //    sieht aus wie ein Spot-Strahler)
+                                            //  - LumoFloating: sanftes Schweben +/-4 px,
+                                            //    bricht die statische Optik
+                                            child: SizedBox(
+                                              width: 132,
+                                              height: 172,
+                                              child: Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  IgnorePointer(
+                                                    child: Container(
+                                                      width: 112,
+                                                      height: 152,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: const Color(
+                                                                    0xFFFFE0B8)
+                                                                .withOpacity(
+                                                                    0.55),
+                                                            blurRadius: 48,
+                                                            spreadRadius: 4,
+                                                          ),
+                                                          BoxShadow(
+                                                            color: const Color(
+                                                                    0xFFFFB96B)
+                                                                .withOpacity(
+                                                                    0.35),
+                                                            blurRadius: 22,
+                                                            spreadRadius: -2,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  LumoFloating(
+                                                    amplitude: 4,
+                                                    duration: const Duration(
+                                                        seconds: 4),
+                                                    child: LumoDiscardPile(
+                                                      topCard: topCard,
+                                                      selectedColor:
+                                                          s.selectedColor,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
+                        ]),
                       ),
                       // Hand am Boden - im vsBot-Modus immer die Hand des
                       // Kindes (Spieler 1), egal wer dran ist.
@@ -515,9 +623,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                     widget.vsBot && s.currentPlayerIndex != 0
                                         ? null
                                         : _playCardWithFly,
-                                height: compact ? 148 : 180,
+                                height: handHeight,
                               )
-                            : _buildLumoThinking(compact ? 148 : 180),
+                            : _buildLumoThinking(handHeight),
                       _buildControls(s, viewerIndex),
                     ],
                   ),
@@ -631,8 +739,46 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
         ));
   }
 
+  /// Hochformat: alles untereinander. Querformat (Handy quer, Fold offen
+  /// quer, Tablet): links Kopfzeile, Lumo und Zuganzeige, rechts Tisch,
+  /// Hand und Knöpfe – so bleibt der Tisch groß und nichts läuft über.
+  Widget _adaptiveLayout(BuildContext context, List<Widget> children) {
+    // Entscheidend ist der tatsächlich verfügbare Platz, nicht die
+    // Fenstergröße (Split-Screen, Fold-Übergänge, Tests mit Surface-Größe).
+    return LayoutBuilder(builder: (context, c) {
+      final landscape = c.maxWidth >= c.maxHeight * 1.25 && c.maxWidth >= 640;
+      if (!landscape) return Column(children: children);
+      final arena = children.indexWhere((w) => w is Expanded);
+      if (arena < 0) return Column(children: children);
+      // Die Zuganzeige braucht Breite: sie wandert über den Tisch.
+      final top = [
+        for (final w in children.sublist(0, arena))
+          if (w is! LumoTurnBanner) w,
+      ];
+      final banner = [
+        for (final w in children.sublist(0, arena))
+          if (w is LumoTurnBanner) w,
+      ];
+      final bottom = children.sublist(arena + 1);
+      return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        SizedBox(
+          width: (c.maxWidth * .32).clamp(240.0, 380.0),
+          child: SingleChildScrollView(
+            child: Column(mainAxisSize: MainAxisSize.min, children: top),
+          ),
+        ),
+        Expanded(
+          child: Column(children: [...banner, children[arena], ...bottom]),
+        ),
+      ]);
+    });
+  }
+
   void _restartGame() {
+    _pendingPlay?.cancel();
+    _pendingPlay = null;
     _roundSerial++;
+    _lumoReacted = false;
     _rewardGiven = false;
     _callRewardGiven = false;
     _flyingCard = null;
@@ -706,7 +852,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   }
 
   /// Sichtbar = Kind ist dran ODER 2-Mensch-Modus. Bei vsBot+Lumo-dran:
-  /// wir verstecken die Hand und zeigen 'Lumo ueberlegt...'.
+  /// wir verstecken die Hand und zeigen 'Lumo überlegt …'.
   bool _isMyTurnVisible(LumoCardsGameState s) {
     if (!widget.vsBot) return true;
     return s.currentPlayerIndex == 0;

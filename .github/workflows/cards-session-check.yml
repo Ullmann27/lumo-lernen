@@ -1,0 +1,111 @@
+name: Cards session checks
+
+on:
+  push:
+    branches: [chatgpt/cards-resume-safety-2026-10-06]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cards-session-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Record source and export a reproducible review snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-out
+          git rev-parse HEAD > ci-out/source-sha.txt
+          git diff --name-only > ci-out/status-before.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          selected = [p for p in paths if p and (
+              p.startswith(('lib/', 'test/', 'scripts/', 'tools/', 'config/', '.github/'))
+              or p in ('pubspec.yaml', 'pubspec.lock', 'analysis_options.yaml', 'CODEX_START.md', 'CLAUDE.md')
+              or (p.startswith('docs/') and p.endswith(('.md', '.json'))))]
+          subprocess.run(['git', 'archive', '--format=tar.gz', '-o', 'ci-out/source.tar.gz', 'HEAD', '--', *selected], check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cards-session-source-${{ github.sha }}
+          path: |
+            ci-out/source.tar.gz
+            ci-out/source-sha.txt
+            ci-out/status-before.txt
+          if-no-files-found: error
+          retention-days: 7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter --version | tee ci-out/flutter-version.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee ci-out/dependencies.log
+      - name: Formatting report without changing the checked source
+        shell: bash
+        run: |
+          set -euo pipefail
+          dart format --output=none lib/features/games/lumo_cards/widgets/lumo_avatar_picker.dart \
+            test/lumo_cards_controller_lifecycle_test.dart \
+            test/lumo_cards_session_ui_test.dart test/lumo_cards_session_visual_test.dart \
+            | tee ci-out/format.log
+      - name: Analyze exact candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee ci-out/analysis.log
+      - name: Cards logic, modal lifecycle, complete touch rounds and captures
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t tests < <(find test -type f -name '*cards*test.dart' | sort)
+          test "${#tests[@]}" -gt 0
+          printf '%s\n' "${tests[@]}" | tee ci-out/test-selection.txt
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            "${tests[@]}" test/games/game_round_regression_test.dart \
+            test/games/games_screen_flow_test.dart 2>&1 | tee ci-out/cards-tests.log
+      - name: Validate screenshot identity and source cleanliness
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          manifest = json.loads(Path('ci-out/cards-visual/capture-manifest.json').read_text())
+          assert manifest['source_commit'] == os.environ['GITHUB_SHA'], manifest
+          assert not manifest['tracked_differences']
+          assert len(manifest['shots']) == 12
+          assert len({shot['file'] for shot in manifest['shots']}) == 12
+          for shot in manifest['shots']:
+              assert (Path('ci-out/cards-visual') / shot['file']).is_file()
+          print('12 real Flutter-rendered images from the exact clean commit; no device/FPS claim.')
+          PY
+      - name: Preserve actual check evidence and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cards-session-evidence-${{ github.sha }}
+          path: |
+            ci-out/*.txt
+            ci-out/*.log
+            ci-out/*.json
+            ci-out/cards-visual/
+          if-no-files-found: error
+          retention-days: 7

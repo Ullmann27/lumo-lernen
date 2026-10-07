@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'adventure/lumo_adventure_tasks.dart';
 import 'german_task_templates.dart';
 import 'math_task_templates.dart';
 import 'primary_school_word_data.dart';
@@ -35,6 +36,59 @@ class LumoTask {
 }
 
 class Curriculum {
+  /// Österreichischer Volksschulrahmen 2026.
+  ///
+  /// Der aktuelle Lehrplan sieht in der 1.–4. Schulstufe u. a. Deutsch,
+  /// Sachunterricht, Mathematik, Musik, Kunst und Gestaltung, Technik und
+  /// Design sowie Bewegung und Sport als Pflichtgegenstände vor. Eine lebende
+  /// Fremdsprache ist in der Grundstufe I verbindliche Übung und in der
+  /// Grundstufe II (3./4. Schulstufe) Pflichtgegenstand.
+  ///
+  /// Lumo verwendet für die automatisiert prüfbaren Kernaufgaben bewusst die
+  /// Bereiche Mathematik, Deutsch/Lesen/Schreiben/Rechtschreibung,
+  /// Sachunterricht, Englisch (als lebende Fremdsprache) und Logik. Kreative
+  /// und körperliche Fächer werden nicht fälschlich als Multiple-Choice-
+  /// Schularbeit modelliert, sondern sind als Aktivitäts-/Projektfächer
+  /// vorgesehen.
+  static List<String> officialSubjectsForGrade(int grade) {
+    final g = grade.clamp(1, 4).toInt();
+    return <String>[
+      'Religion',
+      'Deutsch',
+      'Sachunterricht',
+      'Mathematik',
+      'Musik',
+      'Kunst und Gestaltung',
+      'Technik und Design',
+      'Bewegung und Sport',
+      if (g >= 3) 'Lebende Fremdsprache',
+      if (g <= 2) 'Lebende Fremdsprache (verbindliche Übung)',
+      'Verkehrs- und Mobilitätsbildung',
+    ];
+  }
+
+  static List<String> exerciseSubjectsForGrade(int grade) {
+    final g = grade.clamp(1, 4).toInt();
+    return <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Rechtschreibung',
+      'Schreiben',
+      'Sachunterricht',
+      if (g >= 1) 'Englisch',
+      'Logik',
+    ];
+  }
+
+  static const List<String> activitySubjects = <String>[
+    'Musik',
+    'Kunst und Gestaltung',
+    'Technik und Design',
+    'Bewegung und Sport',
+    'Verkehrs- und Mobilitätsbildung',
+  ];
+
   static const Map<String, List<String>> subjects = <String, List<String>>{
     'Mathematik': <String>[
       'Plus bis 10', 'Minus bis 10', 'Plus bis 20', 'Minus bis 20',
@@ -55,6 +109,9 @@ class Curriculum {
       'Minus bis 10000', 'Zahlenraum bis 1 Million', 'Zeit Minuten und Stunden',
       'Hohlmaße Liter und Milliliter', 'Brüche erweitern', 'Mittelwert',
       'Symmetrieachsen',
+      // Lumos Abenteuer-Aufgaben (lumo_adventure_tasks.dart)
+      'Rechengeschichten', 'Zahlenmauer', 'Zahlenrätsel', 'Marktstand',
+      'Platzhalter-Rätsel', 'Größer, kleiner, gleich', 'Uhr-Abenteuer',
     ],
     'Deutsch': <String>[
       'Buchstaben-Lautierung', 'Anfangslaute', 'Endlaute', 'Buchstaben',
@@ -67,6 +124,9 @@ class Curriculum {
       'Satz bauen', 'St oder Sp', 'Wort-Bild schreiben',
       'Wer-Fall und Wen-Fall', 'Großschreibung', 'ie oder i',
       'Die 4 Fälle', 'dass oder das', 'Umstandswörter', 'Vorvergangenheit',
+      'Wortdetektiv', 'Silbenrätsel', 'Begleiter-Rätsel',
+      'Gegenteil-Geschichten', 'Wörter zusammensetzen', 'Wortarten-Jagd',
+      'Satzbaustelle',
     ],
     'Rechtschreibung': <String>[
       'Haeufige Woerter', 'Gross und klein', 'Doppelmitlaut', 'Dehnungen',
@@ -84,10 +144,11 @@ class Curriculum {
       'Wasserkreislauf', 'Bundesländer Österreichs', 'Geografie Österreich',
       'Geschichte', 'Kontinente und Ozeane', 'Ökosysteme', 'Stromkreise',
       'Diagramme lesen',
+      'Wer bin ich?', 'Monate und Wochentage', 'Österreich-Reise',
     ],
     'Logik': <String>[
       'Muster', 'Reihenfolgen', 'Zahlenmuster', 'Schlussfolgern',
-      'Regeln kombinieren',
+      'Regeln kombinieren', 'Was passt nicht?', 'Geheimcode',
     ],
   };
 
@@ -96,6 +157,13 @@ class Curriculum {
   /// This describes app content availability, not an official curriculum.
   static List<String> unitsForGrade(String subject, int grade, {bool currentGradeOnly = false}) {
     final capped = grade.clamp(1, 4).toInt();
+    return <String>{
+      ..._templateUnitsForGrade(subject, capped, currentGradeOnly: currentGradeOnly),
+      ...LumoAdventureTasks.unitsFor(subject, capped, currentGradeOnly: currentGradeOnly),
+    }.toList(growable: false);
+  }
+
+  static List<String> _templateUnitsForGrade(String subject, int capped, {required bool currentGradeOnly}) {
     final lowestGrade = currentGradeOnly ? capped : 1;
     if (subject == 'Logik') {
       return <String>[
@@ -167,6 +235,7 @@ class ExerciseFactory {
   ExerciseFactory({int? seed}) : _random = Random(seed);
   final Random _random;
   int _serial = 0;
+  String? _childName;
 
   LumoTask next({
     required int grade,
@@ -174,7 +243,9 @@ class ExerciseFactory {
     String unit = 'Alle',
     Map<String, int> weakSkills = const <String, int>{},
     Set<String> avoidUnits = const <String>{},
+    String? childName,
   }) {
+    _childName = childName;
     final cappedGrade = grade.clamp(1, 4).toInt();
     final chosenSubject = _chooseSubject(subject, weakSkills);
     final units = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
@@ -191,6 +262,12 @@ class ExerciseFactory {
         : <String>[unit];
     if (candidateUnits.isEmpty) {
       candidateUnits = units.where((u) => !avoidUnits.contains(u)).toList();
+    }
+    // Gemischte Runden: etwa 40 % Lumos Abenteuer-Aufgaben, damit Lernen
+    // spielerisch bleibt (Geschichten, Rätsel, Zahlenmauern …).
+    final adventures = candidateUnits.where((u) => LumoAdventureTasks.handles(chosenSubject, u)).toList();
+    if ((unit == 'Alle' || !availableUnit) && adventures.isNotEmpty && _random.nextInt(10) < 4) {
+      return _build(grade: cappedGrade, subject: chosenSubject, unit: adventures[_random.nextInt(adventures.length)]);
     }
     final chosenUnit = candidateUnits.isEmpty ? units[_random.nextInt(units.length)] : _weightedUnit(candidateUnits, weakSkills);
     return _build(grade: cappedGrade, subject: chosenSubject, unit: chosenUnit);
@@ -218,7 +295,15 @@ class ExerciseFactory {
     required Map<String, int> weakSkills,
     int count = 14,
   }) {
-    final subjects = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Englisch', 'Sachunterricht', 'Schreiben'];
+    final subjects = <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Rechtschreibung',
+      if (grade >= 3) 'Englisch',
+      'Sachunterricht',
+      'Schreiben',
+    ];
     final tasks = <LumoTask>[];
     final avoid = <String>{};
     for (var i = 0; i < count; i++) {
@@ -257,6 +342,7 @@ class ExerciseFactory {
 
   LumoTask _build({required int grade, required String subject, required String unit}) {
     _serial++;
+    if (LumoAdventureTasks.handles(subject, unit)) return _adventure(grade, subject, unit);
     switch (subject) {
       case 'Mathematik':
         return _math(grade, unit);
@@ -355,6 +441,24 @@ class ExerciseFactory {
         answer,
         'Von links nach rechts ist die Reihenfolge $first – $middle – $last. $answer steht $asked.',
         customChoices: <String>[first, middle, last]);
+  }
+
+  /// Lumos Abenteuer-Aufgaben, auf Wunsch mit dem Namen des Kindes.
+  LumoTask _adventure(int grade, String subject, String unit) {
+    final task = LumoAdventureTasks(_random, childName: _childName)
+        .generate(subject: subject, unit: unit, grade: grade);
+    return LumoTask(
+      id: _id('abenteuer-${task.unit}'),
+      grade: grade,
+      subject: task.subject,
+      unit: task.unit,
+      prompt: task.prompt,
+      choices: _shuffledChoices(task.choices),
+      answer: task.answer,
+      explanation: task.explanation,
+      visual: task.visual,
+      difficulty: grade,
+    );
   }
 
   LumoTask _math(int grade, String unit) {

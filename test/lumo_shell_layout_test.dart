@@ -22,22 +22,15 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUpAll(() async {
-    // Nunito is not bundled by the app; Android uses its system fallback.
-    // Load the SDK's Roboto fallback for realistic widths instead of Ahem.
-    final folder =
-        '${File(Platform.resolvedExecutable).parent.parent.parent.path}/material_fonts';
-    for (final entry in {
-      'Nunito': 'Roboto-Regular.ttf',
-      'MaterialIcons': 'MaterialIcons-Regular.otf'
-    }.entries) {
-      final file = File('$folder/${entry.value}');
-      if (file.existsSync()) {
-        final font = FontLoader(entry.key);
-        font.addFont(
-            Future.value(ByteData.sublistView(await file.readAsBytes())));
-        await font.load();
-      }
-    }
+    final font = FontLoader('Nunito')
+      ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
+      ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'))
+      ..addFont(rootBundle.load('assets/fonts/Nunito-ExtraBold.ttf'))
+      ..addFont(rootBundle.load('assets/fonts/Nunito-Black.ttf'));
+    await font.load();
+    await (FontLoader('MaterialIcons')
+          ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf')))
+        .load();
   });
 
   setUp(() async {
@@ -130,6 +123,14 @@ void main() {
       expect(floor.contains(fox.topLeft), isTrue);
       expect(floor.contains(fox.bottomRight - const Offset(.1, .1)), isTrue);
       expect(floor.top, greaterThan(200));
+      final dock = find.byKey(const ValueKey('lumo-help-dock'));
+      if (dock.evaluate().isNotEmpty) {
+        final content = find.byKey(const PageStorageKey('lumo-home-scroll'));
+        expect(tester.getRect(content).bottom,
+            lessThanOrEqualTo(tester.getRect(dock).top),
+            reason:
+                'The fox has reserved space and cannot cover learning or game controls.');
+      }
       if (Platform.environment['LUMO_CAPTURE_SHELL'] == '1') {
         await tester.runAsync(() async {
           final boundary = tester.renderObject<RenderRepaintBoundary>(
@@ -184,6 +185,7 @@ void main() {
       expect(find.byType(LumoAkademieScreen), findsOneWidget);
       final layoutError = tester.takeException();
       expect(layoutError, isNull, reason: 'learning screen at $size');
+      // Auf den Zielbild-Seiten steht Lumo als kleiner Fuchs in der Szene.
       expect(find.byType(LumoFreeCompanion), findsOneWidget);
       await tester.tap(find.text('Start').last);
       await settleWork(tester);

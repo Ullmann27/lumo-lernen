@@ -42,6 +42,11 @@ class _BlockedProgress extends ProgressRepository {
   }
 }
 
+/// Bild 03 zeigt nur „Lernen“; der Bereichsname bleibt für Vorlesen und die
+/// Android-Prüfung als Semantik-Beschriftung erhalten.
+final _akademieCaption = find.byWidgetPredicate(
+    (widget) => widget is Semantics && widget.properties.label == 'LUMO AKADEMIE');
+
 Future<void> _frames(WidgetTester tester, [int count = 90]) async {
   for (var i = 0; i < count; i++) {
     await tester.pump(const Duration(microseconds: 16667));
@@ -56,7 +61,7 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   });
   await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
   await _frames(tester);
-  expect(find.text('LUMO AKADEMIE'), findsOneWidget);
+  expect(_akademieCaption, findsOneWidget);
   expect(find.text('Lernen'), findsOneWidget);
   expect(find.text('Heute lernen. Morgen mehr können!'), findsOneWidget);
   expect(find.text('Deine Ziele'), findsOneWidget);
@@ -68,12 +73,15 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   expect(find.text('Englisch'), findsOneWidget);
   expect(find.text('Sachkunde'), findsOneWidget);
   await tester.ensureVisible(find.text('1. Klasse'));
+  await tester.pump();
   await tester.tap(find.text('1. Klasse'));
   await tester.pump();
   await tester.ensureVisible(find.text('Mathe'));
+  await tester.pump();
   await tester.tap(find.text('Mathe'));
   await tester.pump();
   await tester.ensureVisible(find.text('Plus bis 10'));
+  await tester.pump();
   await tester.tap(find.text('Plus bis 10'));
   await _frames(tester);
   expect(find.byType(PlusBis10Screen), findsOneWidget);
@@ -100,6 +108,7 @@ Finder _button(int value) =>
 
 Future<void> _tap(WidgetTester tester, int answer, {int frames = 120}) async {
   await tester.ensureVisible(_button(answer));
+  await tester.pump();
   await tester.tap(_button(answer));
   await _frames(tester, frames);
 }
@@ -183,7 +192,7 @@ void main() {
     expect(find.byType(PlusBis10Screen), findsNothing);
     await tester.drag(find.byType(CustomScrollView), const Offset(0, 2000));
     await _frames(tester);
-    expect(find.text('LUMO AKADEMIE'), findsOneWidget);
+    expect(_akademieCaption, findsOneWidget);
     await _assertStored(tester,
         correct: 1, wrong: 2, hints: 1, stars: 1, xp: 5);
     await _dispose(tester, app);
