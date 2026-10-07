@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
@@ -36,17 +37,24 @@ void main() {
     final wallet = RewardWalletRepository();
     final app = LumoAppState(walletRepository: wallet);
     addTearDown(app.dispose);
+    const voice = MethodChannel('flutter_tts');
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(voice, (_) async => 1);
+    addTearDown(() => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(voice, null));
     await tester.binding.setSurfaceSize(const Size(840, 740));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final level = GameLevelCatalog.byId(10)!;
     await tester.pumpWidget(MaterialApp(home: LessonTrailGame(appState: app, level: level)));
     for (var i = 0; i < 5; i++) {
+      expect(find.text('${i + 1} / 5'), findsOneWidget);
       final answer = find.byKey(ValueKey('lesson-answer-${GameLessonTasks.task(level, i).answer}'));
       await tester.ensureVisible(answer);
+      await tester.pump();
       await tester.tap(answer);
       await tester.pump();
+      expect(find.text(GameLessonTasks.task(level, i).explanation), findsOneWidget);
       final next = find.text(i == 4 ? 'Ergebnis speichern' : 'Weiter auf dem Weg');
       await tester.ensureVisible(next);
+      await tester.pump();
       await tester.tap(next);
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 100));
@@ -57,6 +65,8 @@ void main() {
     expect((await store.persisted())['xp'], 0);
     expect(app.hasPendingRewards, isTrue);
     expect((await const GameProgressRepository().loadStars('local_lena_1'))[10], 3);
+    await tester.ensureVisible(find.text('Ergebnis speichern'));
+    await tester.pump();
     await tester.tap(find.text('Ergebnis speichern'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 350));
