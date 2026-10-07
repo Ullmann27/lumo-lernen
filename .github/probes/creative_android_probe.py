@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+from http.client import RemoteDisconnected
 import json
 import os
 from pathlib import Path
@@ -37,6 +38,7 @@ GODOT = 'dbd472e78ccb196c7492c4c842f8b85e3d642e2c'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 base.ui_nodes = live.live_nodes
 base.tap_label = live.live_tap_label
+_original_live_nodes = live.live_nodes
 
 
 def digest(path: Path) -> str:
@@ -53,6 +55,29 @@ def capture(out: Path, name: str) -> dict:
     result = base.capture(out, name)
     print('[AndroidCapture]', result['file'], flush=True)
     return result
+
+
+def read_live_nodes(out: Path, name: str) -> list:
+    # Retry only a dropped connection to the independent accessibility reader.
+    # Keep the app and its data untouched and still require a fresh hierarchy.
+    for attempt in range(3):
+        try:
+            return _original_live_nodes(out, name)
+        except RemoteDisconnected:
+            if attempt == 2:
+                raise
+            record = out / 'ui-reader-recovery.json'
+            events = json.loads(record.read_text()) if record.exists() else []
+            events.append({'read':name, 'attempt':attempt+1,
+                           'reason':'accessibility reader connection closed'})
+            record.write_text(json.dumps(events, indent=2)+'\n')
+            live._device = None
+            time.sleep(1)
+    raise RuntimeError('Live accessibility retry exhausted')
+
+
+live.live_nodes = read_live_nodes
+base.ui_nodes = read_live_nodes
 
 
 def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
@@ -418,7 +443,10 @@ def main() -> int:
             native_text(out,'Bauziele','build-goals',tap=True)
             native_text(out,'Ein Zuhause bauen','build-house-goal',tap=True)
             native_text(out,'Mein Bauwerk testen','build-test-house',tap=True)
-            native_text(out,'Bauziel geschafft','build-house-passed')
+            # The durable goal-card state stays legible on dark glass; the
+            # transient white toast can overlap the detailed landscape.
+            # Persisted completion and exact wallet deltas are checked below.
+            native_text(out,'Schon geschafft','build-house-passed')
             capture(out,'03_build_house_passed')
             leave(out,'build-exit')
             stored_build = saves(out,'build','build-saved')
