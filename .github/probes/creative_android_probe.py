@@ -435,8 +435,13 @@ def onboard(out: Path) -> dict:
         else:
             raise RuntimeError('Real profile typing did not reach '+prefix)
     time.sleep(1)
-    base.adb('shell','input','keyevent','KEYCODE_BACK')
-    time.sleep(1)
+    # Close only an IME that is actually in the current accessibility tree.
+    # An unconditional Android Back left the app when typing had already
+    # dismissed the keyboard (recorded run 37762147009, treasure/API35).
+    keyboard_nodes = live.live_nodes(out, 'onboard-ime-before-dismiss')
+    if any(n.get('package') == ime_package for n in keyboard_nodes):
+        base.adb('shell','input','keyevent','KEYCODE_BACK')
+        time.sleep(1)
     base.tap_label(out,'Weiter','onboard-name-next')
     base.tap_label(out,'Weiter','onboard-age-next')
     base.tap_label(out,'Profil speichern','onboard-grade-save')

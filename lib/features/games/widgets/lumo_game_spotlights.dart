@@ -78,13 +78,13 @@ class LumoGameSpotlights extends StatelessWidget {
                       title: 'Lumo Kart',
                       eyebrow: '3D-RENNSPIEL',
                       description:
-                          'Entdecke zwölf Rennwelten, drifte durch Kurven und finde dein Lieblingskart.',
+                          'Fahre mit Lumo ans Meer, durch Wolken und über Vulkanstrecken. Dein nächstes Rennen wartet.',
                       previewAsset:
-                          'assets/lumo_design/gameplay/kart_candy_preview.webp',
+                          'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
                       showWorldTags: true,
                       action: 'Losfahren',
                       actionKey: 'launch-lumo-kart',
-                      pose: LumoDesignFoxPose.kartWave,
+                      pose: LumoDesignFoxPose.kartRear,
                       accent: LumoVisualTokens.cyanBright,
                       icon: Icons.sports_motorsports_rounded,
                       onPressed: busy ? null : onKart,

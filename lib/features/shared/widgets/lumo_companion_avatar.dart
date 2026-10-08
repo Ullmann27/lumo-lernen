@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../../../app/app_theme.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 
 /// Reaktionszustaende des Lumo-Companion.
 enum LumoCompanionMood {
@@ -107,6 +107,24 @@ class _LumoCompanionAvatarState extends State<LumoCompanionAvatar>
       _ctrl
         ..reset()
         ..repeat(reverse: widget.mood != LumoCompanionMood.sad);
+      _syncMotionPreference();
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _syncMotionPreference();
+  }
+
+  void _syncMotionPreference() {
+    final media = MediaQuery.maybeOf(context);
+    if ((media?.disableAnimations ?? false) ||
+        (media?.accessibleNavigation ?? false)) {
+      _ctrl.stop();
+      _ctrl.value = .5;
+    } else if (!_ctrl.isAnimating) {
+      _ctrl.repeat(reverse: widget.mood != LumoCompanionMood.sad);
     }
   }
 
@@ -181,8 +199,8 @@ class _LumoCompanionAvatarState extends State<LumoCompanionAvatar>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: <Color>[
-            LumoColors.orangeLight,
-            LumoColors.orange,
+            const Color(0xFF173B60),
+            LumoVisualTokens.night,
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -190,17 +208,23 @@ class _LumoCompanionAvatarState extends State<LumoCompanionAvatar>
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: LumoColors.orange.withOpacity(0.4),
+            color: LumoVisualTokens.cyanBright.withValues(alpha: .18),
             blurRadius: 16,
             offset: const Offset(0, 6),
             spreadRadius: -2,
           ),
         ],
-        border: Border.all(color: Colors.white, width: 3),
+        border: Border.all(color: LumoVisualTokens.cyanBright, width: 2),
       ),
-      child: Text(
-        widget.mood.emoji,
-        style: TextStyle(fontSize: widget.size * 0.55),
+      child: ClipOval(
+        child: Image.asset(
+          'assets/lumo_design/fox/fox_avatar.png',
+          width: widget.size,
+          height: widget.size,
+          fit: BoxFit.contain,
+          semanticLabel: 'Lumo, dein Fuchs mit blauer Fliegerbrille',
+          filterQuality: FilterQuality.medium,
+        ),
       ),
     );
     final stack = Stack(

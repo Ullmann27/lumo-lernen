@@ -52,10 +52,12 @@ jobs:
           flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/flutter-tests.log"
       - name: Install matching Godot engine
         run: bash scripts/install_godot_for_build.sh
-      - name: Set a fresh side-by-side probe version
+      - name: Use the committed application version
         run: |
-          echo "LUMO_BUILD_NUMBER=$((GITHUB_RUN_NUMBER + 1000))" >> "$GITHUB_ENV"
-          echo "LUMO_VERSION_NAME=0.10.6" >> "$GITHUB_ENV"
+          set -euo pipefail
+          read -r lumo_version_name lumo_build_number < <(python3 scripts/build_version.py)
+          printf 'LUMO_BUILD_NUMBER=%s\nLUMO_VERSION_NAME=%s\n' \
+            "$lumo_build_number" "$lumo_version_name" >> "$GITHUB_ENV"
       - name: Build and verify the single application
         run: bash scripts/build_unified_apk.sh
       - name: Record build proof

@@ -1,8 +1,14 @@
 # Lumo – Einstieg (für jede KI zuerst lesen)
 
-**Aktueller Auftrag vom 7. Oktober 2026:** Zuerst `OPUS_NEXT.md` und den vollständigen
-`docs/OPUS_ENTWICKLUNGSAUFTRAG.md` lesen. Die unten genannten alten Rollen, Branches
-und Testzahlen sind historisch; für die Fortsetzung gilt die neue Übergabe.
+**Aktuelle Fortsetzung vom 8. Oktober 2026:** Zuerst
+`docs/HANDOFF_2026-10-08_STAGE2_ANDROID.md`,
+`docs/HANDOFF_2026-10-08_OPUS.md` und den vollständigen
+`docs/OPUS_ENTWICKLUNGSAUFTRAG.md` lesen. Android-Arbeitsbranch:
+`codex/lumo-kart-stage2-android-2026-10-08`, Kandidat `0.11.1+1800`.
+Der gemeinsame APK-Bau verwendet ausschließlich den Commit in
+`config/godot-source.json`; Build- und Nutzungsnachweise getrennt prüfen.
+`OPUS_NEXT.md` und die unten genannten alten Rollen, Branches und Testzahlen
+sind historisch; für die Fortsetzung gilt die neue Übergabe.
 
 Stand: 4. Oktober 2026. Aufgeräumt: toter Code, ungenutzte Assets, alte Berichte und
 Einmal-Workflows sind entfernt (alles bleibt in der Git-Historie).

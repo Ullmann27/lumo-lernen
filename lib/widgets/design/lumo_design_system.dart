@@ -10,6 +10,7 @@ import 'lumo_motion.dart';
 enum LumoDesignFoxPose {
   cardsWelcome('fox_cards_welcome', 'Lumo lädt dich zum Kartenspiel ein'),
   kartWave('fox_kart_wave', 'Lumo winkt im Kart'),
+  kartRear('fox_kart_rear', 'Lumo fährt in seinem dunkelblauen Kart'),
   tabletThumb('fox_tablet_thumb', 'Lumo zeigt das Tablet und Daumen hoch'),
   bookPoint('fox_book_point', 'Lumo zeigt auf das Buch'),
   bookWelcome('fox_book_welcome',
