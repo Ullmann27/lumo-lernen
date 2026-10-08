@@ -1,4 +1,26 @@
-# Aktueller integrierter Lumo-Kandidat1903 · 8. Oktober2026
+# Aktueller integrierter Lumo-Kandidat 1904 · 8. Oktober 2026
+
+Zuerst [die aktuelle 1904-Übergabe](docs/handoffs/LUMO_INTEGRATED_RUNTIME_1904_2026-10-08.md)
+lesen. Aktive Integrations-PRs sind App216 und Godot29. Maßgeblich sind der
+jeweilige frische Branch-HEAD, `config/godot-source.json` und die tatsächlichen
+APK-/PCK-Bytes. Version der Quelle: `0.12.1+1904`.
+
+APK1903 aus App3e1d0eb3/Godot18238d48 wurde in Actions37817947080 wirklich
+gebaut und unabhängig byteweise geprüft. Bauen/Puzzle/Rhythmus/Schatzsuche35
+bestanden; beide vollständigen Kartläufe bleiben FAIL. Der kleinste Folgefix
+repariert echte Touch-Weitergabe von Pause-/Ergebnisbuttons; identischer
+BASE-Test strikt RED, Kandidat 35 Checks/sechs Drags/14 echte PNGs GREEN.
+Eine getrennte QA-Reparatur prüft den bekannten Emulator vor Fullrace-Reads
+und überbrückt ausschließlich den belegten initialen Offlinefehler begrenzt.
+288 lokale QA-Guards/0 SKIP sind unabhängig bestätigt.
+
+Die neue exakte APK1904 und ihre Android-Renn-/ACK-/Belohnungsprüfung müssen
+im aktuellen Lauf erst gebaut und bestätigt werden. Native Software-GL-Bilder
+sind keine APK-/Zielgeräte-/60-FPS-Nachweise. **VISUAL_GAP / NOT FINISHED**.
+Keine Änderungen an Main oder Releases. Folgende 1903-/1900-Übergaben sind
+historischer Kontext und ersetzen keine aktuelle Provenienzprüfung.
+
+## Integrierter Kandidat 1903 · historische Übergabe
 
 Lies zuerst [die1903-Übergabe](docs/handoffs/LUMO_INTEGRATED_RUNTIME_1903_2026-10-08.md).
 Aktiv sind App-Integrationsbranch/PR216 und Godot-Integrationsbranch/PR29;

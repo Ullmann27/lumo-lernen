@@ -204,13 +204,17 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -euo pipefail
-          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_complete_flow_regression; do
+          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_modal_touch_regression kart_complete_flow_regression; do
             probe_timeout=420
             probe_marker=PASS
             probe_output=''
             if [ "$test" = kart_countdown_pause_regression ]; then
               probe_marker='[KartCountdownPause] PASS:'
               probe_output="$LUMO_NATIVE_DIRECTORY/exports/countdown-pause"
+            fi
+            if [ "$test" = kart_modal_touch_regression ]; then
+              probe_marker='[KartModalTouch] PASS:'
+              probe_output="$LUMO_NATIVE_DIRECTORY/exports/modal-touch"
             fi
             if [ "$test" = kart_fleet_regression ]; then probe_timeout=240; fi
             # Keep every real physics/touch step and all fifteen captures on shared Mesa.
@@ -225,6 +229,7 @@ jobs:
           rg -F '[KartPhysics] PASS:' exports/fold-controls/kart_physics_regression.log
           rg -F '[KartFleet] PASS:' exports/fold-controls/kart_fleet_regression.log
           rg -F '[KartCountdownPause] PASS:' exports/fold-controls/kart_countdown_pause_regression.log
+          rg -F '[KartModalTouch] PASS:' exports/fold-controls/kart_modal_touch_regression.log
           GODOT_SHA=$(cat exports/fold-controls/source-sha.txt)
           echo "PASS exact Godot source real rendering, Fold touch, menu and physics: $GODOT_SHA" >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
       - name: Native harbor, vehicle geometry and detail regressions
@@ -277,6 +282,7 @@ jobs:
               'kart_steering_grip_capture': ('[KartSteeringGripCapture] PASS:',),
               'kart_race_continuity_regression': ('[KartContinuity] PASS:',),
               'kart_countdown_pause_regression': ('[KartCountdownPause] PASS:',),
+              'kart_modal_touch_regression': ('[KartModalTouch] PASS:',),
               'kart_complete_flow_regression': ('[KartCompleteFlow] PASS:',),
               'kart_harbor_regression': ('[KartHarbor] PASS:',),
               'kart_vehicle_regression': ('[KartVehicle] Geometry/colours, shadows, animations, effects, LOD and hysteresis passed',),
@@ -284,7 +290,7 @@ jobs:
               'fleet-capture': ('[FleetCapture] PASS:',),
               'harbor-capture': ('[KartHarbor] PASS:',),
           }
-          assert len(markers) == 20
+          assert len(markers) == 21
           probes = []
           for name, required in markers.items():
               path = Path('exports/fold-controls') / (name + '.log')
@@ -294,6 +300,26 @@ jobs:
               probes.append({'name': name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'status': 'PASS'})
           captures = sorted(Path('exports/countdown-pause').glob('*.png'))
           assert len(captures) == 9, 'Countdown pause proof requires all nine actual rendered frames'
+          modal_directory = Path('exports/modal-touch')
+          modal_path = modal_directory / 'evidence.json'
+          modal = json.loads(modal_path.read_text())
+          modal_captures = sorted(modal_directory.glob('*.png'))
+          assert modal['status'] == 'PASS' and all(check['pass'] is True for check in modal['checks'])
+          assert len(modal_captures) == 14, 'Modal touch proof requires all fourteen actual rendered frames'
+          assert len(modal['captures']) == 14 and set(modal['captures']) == {path.name for path in modal_captures}
+          assert len(modal['cases']) == 6, 'Six genuine button-drag cases required'
+          assert all(case['scroll_before'] != case['scroll_after'] and
+                     case['actions_before'] == case['actions_after'] and
+                     case['state_before'] == case['state_after'] for case in modal['cases'])
+          required_taps = {
+              'Normal Ton tap changes setting exactly once',
+              'Normal Gas tap changes setting exactly once',
+              'Normal Weiterfahren tap resumes exactly once',
+              'Normal result action tap opens the garage exactly once',
+          }
+          assert required_taps <= {check['label'] for check in modal['checks'] if check['pass'] is True}
+          assert modal['physical_android_or_fold'] == 'PHYSICAL_ANDROID_NOT_EXECUTED'
+          assert modal['actual_gesture_latency_or_duration'] == 'NOT MEASURED'
           workspace = Path(os.environ['GITHUB_WORKSPACE'])
           pin = json.loads((workspace / 'config/godot-source.json').read_text())
           native_source = Path('exports/fold-controls/source-sha.txt').read_text().strip()
@@ -302,11 +328,14 @@ jobs:
               'status': 'PASS', 'flutter_source_commit': (workspace / 'proof/source-sha.txt').read_text().strip(),
               'godot_source_commit': native_source, 'strict_native_probes': len(probes), 'probes': probes,
               'countdown_pause_pngs': [{'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()} for path in captures],
+              'modal_touch_evidence_sha256': hashlib.sha256(modal_path.read_bytes()).hexdigest(),
+              'modal_touch_drag_cases': len(modal['cases']),
+              'modal_touch_pngs': [{'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()} for path in modal_captures],
               'physical_device_performance': 'NOT EXECUTED',
           }
           Path('exports/fold-controls/native-check-summary.json').write_text(json.dumps(report, indent=2) + '\n')
           with (workspace / 'proof/TEST-RESULTS.txt').open('a') as stream:
-              stream.write(f'PASS {len(probes)} strict native render/gameplay/capture probes on exact source {native_source}; nine countdown-pause frames.\n')
+              stream.write(f'PASS {len(probes)} strict native render/gameplay/capture probes on exact source {native_source}; nine countdown-pause and fourteen modal-touch frames.\n')
           PYCODE
       - uses: actions/upload-artifact@v4
         if: always()
@@ -323,6 +352,7 @@ jobs:
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/complete-flow/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/steering-grip/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/countdown-pause/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/modal-touch/
       - name: Build and verify the unified APK from exact clean source
         run: |
           set -euo pipefail
