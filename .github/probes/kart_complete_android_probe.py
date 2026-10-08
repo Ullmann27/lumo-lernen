@@ -730,6 +730,10 @@ def main() -> int:
             raise RuntimeError('Native process remained after genuine completed-result return')
         base.foreground()
         creative.capture(out, '13-completed-race-returned-to-app')
+        from flutter_return_readiness import observe_flutter_return, wait_flutter_return
+        result['visible_flutter_return'] = wait_flutter_return(
+            lambda index, timeout: observe_flutter_return(base, creative, out, package, index, timeout=timeout),
+            lambda evidence: write_json('13-visible-flutter-return.json', evidence), package)
         for attempt in range(30):
             if creative.wallet(out, f'replayed-wallet-{attempt}') != rewarded_wallet:
                 raise RuntimeError('Reopening/returning the same completed result duplicated a reward')
