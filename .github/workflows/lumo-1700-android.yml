@@ -13,7 +13,7 @@ concurrency:
 env:
   CI: 'true'
   FLUTTER_SUPPRESS_ANALYTICS: 'true'
-  LUMO_BUILD_NUMBER: '1700'
+  LUMO_BUILD_NUMBER: '1701'
   LUMO_VERSION_NAME: '0.11.0'
 jobs:
   verify-and-build:
@@ -180,7 +180,7 @@ jobs:
             api: 36
     env:
       LUMO_EXPECT_SOURCE: ${{ github.sha }}
-      LUMO_EXPECT_VERSION: '1700'
+      LUMO_EXPECT_VERSION: '1701'
       LUMO_BASE_DIGEST: 82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511
       LUMO_FOLD_PROBE: '1'
     steps:
