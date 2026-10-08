@@ -4,7 +4,8 @@ class LumoCompanionAgent {
   String reactToEvent(String event, {Map<String, int> practice = const <String, int>{}}) {
     switch (event) {
       case 'app_opened':
-        return 'Hallo, ich bin Lumo. Heute reicht eine kleine Mission.';
+        // Die App stellt "Hallo <Name>!" voran; hier kein zweites Hallo.
+        return 'Ich bin Lumo. Heute reicht eine kleine Mission.';
       case 'idle':
         return 'Ich habe eine Idee: Wir machen eine 10-Minuten-Mission. Ich suche passende Aufgaben aus.';
       case 'mission_start':
