@@ -63,9 +63,15 @@ jobs:
           status=$?
           set -e
           test "$status" -ne 0
-          rg -F 'A profile changed while lifetime-wallet storage was pending.' proof/launcher-base-red.log
-          rg -F 'Expected: false' proof/launcher-base-red.log
-          rg 'Actual:.*true' proof/launcher-base-red.log
+          python3 - <<'PYCODE'
+          import re
+          from pathlib import Path
+          text = Path('proof/launcher-base-red.log').read_text()
+          assert 'A profile changed while lifetime-wallet storage was pending.' in text
+          assert 'Expected: false' in text
+          assert re.search(r'Actual:.*true', text)
+          print('PASS: preserved base fails for the exact stale-profile launch regression')
+          PYCODE
           cp "$RUNNER_TEMP/candidate-launcher.dart" "$launcher"
           trap - EXIT
           git diff --exit-code -- "$launcher"
