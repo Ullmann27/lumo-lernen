@@ -96,6 +96,68 @@ def require_race_identity(state: dict, result_id: str) -> None:
         raise RuntimeError('Race progress outside the physical two-lap range')
 
 
+def fresh_race_ready(state: dict, previous_id: str) -> bool:
+    """A preexisting or still-counting save cannot identify the newly started race."""
+    if not isinstance(previous_id, str) or not previous_id:
+        raise RuntimeError('Prior actual race identity is required before starting')
+    if state['result_id'] == previous_id:
+        return False
+    require_race_identity(state, state['result_id'])
+    if (state['checkpoint_index'] != 0 or state['finished'] or state['completed_race']
+            or state['result_payload']):
+        raise RuntimeError('Fresh physical race already advanced or finished before initial setup')
+    if state['countdown'] < 0:
+        raise RuntimeError('Fresh physical race has an invalid countdown')
+    return state['countdown'] == 0 and state['elapsed'] >= 1
+
+
+def wait_fresh_race(read_session, previous_id: str, record, *, timeout: float = 180,
+                    clock=time.monotonic, sleep=time.sleep) -> dict:
+    """Poll untouched runtime saves; two ready reads must retain one new identity."""
+    started = clock()
+    deadline = started + timeout
+    evidence = {'status': 'WAITING', 'previous_result_id': previous_id,
+                'timeout_seconds': timeout, 'observations': [],
+                'scope': 'read-only actual saved identity/countdown; no forced race state'}
+    candidate_id, ready_reads = None, 0
+    try:
+        if timeout <= 0 or not isinstance(previous_id, str) or not previous_id:
+            raise ValueError('A prior race identity and positive readiness deadline are required')
+        index = 0
+        while True:
+            remaining = deadline - clock()
+            if remaining <= 0:
+                raise TimeoutError('Fresh physical race did not become ready before its deadline')
+            tag = '02-race-readiness-%03d' % index
+            state = read_session(tag, timeout=min(10, remaining))
+            if state['result_id'] != previous_id:
+                if candidate_id is not None and candidate_id != state['result_id']:
+                    raise RuntimeError('Fresh race identity changed again while awaiting readiness')
+                candidate_id = state['result_id']
+            elif candidate_id is not None:
+                raise RuntimeError('Fresh race reverted to the prior saved identity')
+            ready = fresh_race_ready(state, previous_id)
+            ready_reads = ready_reads + 1 if ready else 0
+            evidence['observations'].append({'snapshot': tag + '-session.cfg', 'state': state,
+                                             'ready': ready, 'consecutive_ready_reads': ready_reads,
+                                             'wall_seconds': round(clock() - started, 6)})
+            record(evidence)
+            remaining = deadline - clock()
+            if remaining <= 0:
+                raise TimeoutError('Fresh physical race did not become ready before its deadline')
+            if ready_reads >= 2:
+                evidence.update(status='READY', fresh_result_id=candidate_id)
+                return state
+            sleep(min(2, remaining))
+            index += 1
+    except Exception as error:
+        evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        evidence['elapsed_seconds'] = round(clock() - started, 6)
+        record(evidence)
+
+
 def require_completion(trace: list[dict], final: dict, result_id: str) -> dict:
     if len(trace) < 3 or not any(0 < row['checkpoint_index'] < 8 and not row['finished'] for row in trace):
         raise RuntimeError('A genuinely advancing first lap was not observed')
@@ -178,6 +240,16 @@ def require_no_runtime_error(logcat: str) -> None:
               re.search(r'(?:SCRIPT ERROR|USER ERROR|ERROR:|Parse Error|Assertion failed)', line)]
     if errors:
         raise RuntimeError('Actual native runtime logged an error:\n' + '\n'.join(errors[:10]))
+
+
+def require_saved_progress_unchanged(before: dict, after: dict, context: str) -> None:
+    """A resize must not change the actual paused or completed persisted race."""
+    keys = ('result_id', 'distance', 'elapsed', 'checkpoint_index', 'finished',
+            'completed_race', 'mode', 'track_id', 'selected_driver', 'selected_kart',
+            'difficulty', 'result_payload')
+    changed = [key for key in keys if before.get(key) != after.get(key)]
+    if changed:
+        raise RuntimeError(f'{context} resize changed saved race state: ' + ', '.join(changed))
 
 
 class VideoRecorder:
@@ -279,7 +351,7 @@ def main() -> int:
 
     session_path = None
 
-    def session(tag: str) -> dict:
+    def session(tag: str, *, timeout: float = 60) -> dict:
         nonlocal session_path
         if session_path is None:
             paths = base.adb('shell', 'find', f'/data/user/0/{package}', '-maxdepth', '12',
@@ -287,7 +359,7 @@ def main() -> int:
             if len(paths) != 1:
                 raise RuntimeError('One actual persisted Kart session was required')
             session_path = paths[0]
-        raw = base.adb('exec-out', 'cat', session_path)
+        raw = base.adb('exec-out', 'cat', session_path, timeout=timeout)
         (out / (tag + '-session.cfg')).write_text(raw)
         return parse_session(raw)
 
@@ -300,14 +372,12 @@ def main() -> int:
     def tap_native(label: str, tag: str, *, scroll: str | None = None, context: str = 'pause') -> None:
         wanted = creative.normalized(label)
         for attempt in range(10):
-            lines = creative.image_lines(out, f'{tag}-{attempt}', wanted)
+            lines = creative.image_lines(out, f'{tag}-{attempt}', wanted, exact=True)
             matches = [row for row in lines if creative.normalized(row['text']) == wanted]
             if matches:
-                row = min(matches, key=lambda item: len(item['text']))
-                left, top, right, bottom = row['bounds']
-                x, y = str(round((left + right) / 2)), str(round((top + bottom) / 2))
-                base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
-                time.sleep(1.5)
+                # The final action also needs the shared current-full-surface
+                # and two-frame target gate, with this exact caption retained.
+                creative.native_text(out, label, tag + '-stable-action', tap=True, exact=True)
                 return
             if scroll and attempt >= 1:
                 gesture = observed_scroll(lines, scroll, context)
@@ -336,6 +406,30 @@ def main() -> int:
         base.display(1080, 1920, 300)
         creative.enter(out, 'Lumo Kart', 'LUMO / KART', tag, launch_label='Losfahren')
 
+    def fold_cycle(tag: str, labels: tuple[str, ...], saved_before: dict | None = None) -> dict:
+        """Observed outer→inner→outer emulator surfaces, then the normal phone."""
+        captures = []
+        for stage, width, height, density, expected in (
+            ('outer-before', 904, 2316, 420, [2316, 904]),
+            ('inner', 1812, 2176, 420, [2176, 1812]),
+            ('outer-after', 904, 2316, 420, [2316, 904]),
+            ('phone-restored', 1080, 1920, 300, [1920, 1080]),
+        ):
+            base.display(width, height, density)
+            creative.device_rotation(out, tag + '-' + stage + '-landscape', 1)
+            for label in labels:
+                creative.native_text(out, label, tag + '-' + stage + '-' + creative.normalized(label))
+            snapshot = creative.capture(out, tag + '-' + stage)
+            if [snapshot['width'], snapshot['height']] != expected:
+                raise RuntimeError(f'{tag}/{stage} did not render the expected actual emulator surface')
+            captures.append({'stage': stage, 'surface': expected, 'capture': snapshot})
+            if saved_before is not None:
+                require_saved_progress_unchanged(saved_before, session(tag + '-' + stage), tag)
+        return {'status': 'PASS', 'sequence': 'outer → inner → outer → phone',
+                'observed_labels': list(labels), 'captures': captures,
+                'saved_progress_stable': saved_before is not None,
+                'scope': 'actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED'}
+
     try:
         serial = base.adb('get-serialno').strip()
         if not re.fullmatch(r'emulator-\d+', serial):
@@ -363,8 +457,7 @@ def main() -> int:
         if installed != candidate_digest or installed_size != args.candidate.stat().st_size:
             raise RuntimeError('Installed bytes differ from the exact candidate APK')
         result['installed_apk'] = {'sha256': installed, 'bytes': installed_size, 'matches_candidate': True}
-        base.adb('root')
-        base.adb('wait-for-device')
+        result['emulator_root_readiness'] = creative.ensure_rooted_emulator(base.adb, out)
         result['android_sdk'] = int(base.adb('shell', 'getprop', 'ro.build.version.sdk'))
         expected_sdk = os.environ.get('LUMO_EXPECT_ANDROID_API')
         if expected_sdk and result['android_sdk'] != int(expected_sdk):
@@ -378,20 +471,36 @@ def main() -> int:
         if not profile or 'LumoTest' not in profile:
             raise RuntimeError('Existing real LumoTest profile from creative probe is required')
         before_wallet = creative.wallet(out, 'before-race')
+        previous_race = session('00-prior-race-before-garage')
+        result['previous_result_id'] = previous_race['result_id']
         base.adb('logcat', '-c')
         base.launch(out, 'full-race-start')
         open_kart('01-garage')
+        if os.environ.get('LUMO_FOLD_PROBE') == '1':
+            result['menu_resize'] = fold_cycle('01-garage-resize', ('LUMO / KART', 'Dein nächstes Abenteuer', 'Weiter'))
+            result['menu_resize']['preserved_garage_step'] = 'Dein nächstes Abenteuer (step 1 / 5)'
         for step in range(4):
             tap_native('Weiter', f'garage-next-{step + 1}')
         tap_native('Rennen starten', 'garage-start')
+        ready = wait_fresh_race(session, previous_race['result_id'],
+                               lambda evidence: write_json('fresh-race-readiness.json', evidence))
+        result['fresh_race_readiness'] = json.loads((out / 'fresh-race-readiness.json').read_text())
+        creative.native_text(out, 'RUNDE', '02-fresh-race-hud')
+        chase = creative.capture(out, '02-fresh-race-phone')
+        if [chase['width'], chase['height']] != [1920, 1080]:
+            raise RuntimeError('Fresh chase HUD did not use the actual phone surface')
         initial = session('02-new-race')
         result_id = initial['result_id']
         require_race_identity(initial, result_id)
-        if initial['checkpoint_index'] != 0 or initial['finished']:
+        if result_id != ready['result_id'] or not fresh_race_ready(initial, previous_race['result_id']):
             raise RuntimeError('The public garage setup did not start a fresh race')
         result['result_id'] = result_id
         base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
         creative.native_text(out, 'Eine kleine Pause', 'initial-pause')
+        paused_initial = session('02-initial-pause-fresh')
+        require_race_identity(paused_initial, result_id)
+        if not fresh_race_ready(paused_initial, previous_race['result_id']):
+            raise RuntimeError('Initial pause changed the fresh race readiness')
         tap_native('Gas: GAS-Taste halten', 'enable-public-auto-gas', scroll='down')
         creative.native_text(out, 'Gas: automatisch', 'public-auto-gas-confirmed')
         result['automatic_gas'] = {'enabled_by': 'observed native pause button', 'stick': 'neutral'}
@@ -431,7 +540,14 @@ def main() -> int:
                     raise RuntimeError('The saved race progress changed while the actual pause menu was open')
                 if creative.wallet(out, 'during-unfinished-race') != before_wallet:
                     raise RuntimeError('An unfinished race credited a host reward')
+                if os.environ.get('LUMO_FOLD_PROBE') == '1':
+                    result['pause_resize'] = fold_cycle('05-pause-resize', ('Eine kleine Pause', 'Weiterfahren'), paused)
+                    if creative.wallet(out, 'after-pause-resize') != before_wallet:
+                        raise RuntimeError('Resizing an unfinished paused race credited a host reward')
                 tap_native('Weiterfahren', 'mid-race-continue')
+                # Resize/OCR time belongs to genuine pause overhead, not a stall
+                # of the resumed race. Restart only the monitoring deadline.
+                last_progress = time.monotonic()
                 paused_once = True
                 result['pause_resume'] = {'status': 'PASS', 'checkpoint': paused['checkpoint_index'],
                                           'saved_pause_progress_stable': True, 'unfinished_reward_unchanged': True,
@@ -451,21 +567,7 @@ def main() -> int:
         creative.native_text(out, 'Belohnung', 'result-reward')
         creative.capture(out, '06-completed-result-phone')
         if os.environ.get('LUMO_FOLD_PROBE') == '1':
-            base.display(1812, 2176, 420)
-            creative.device_rotation(out, 'finished-fold-landscape', 1)
-            creative.native_text(out, 'Gesamtzeit', 'finished-fold-result-visible')
-            fold = creative.capture(out, '07-completed-result-fold-open')
-            if [fold['width'], fold['height']] != [2176, 1812]:
-                raise RuntimeError('Completed result did not render at the inner emulator surface')
-            base.display(904, 2316, 420)
-            creative.native_text(out, 'Gesamtzeit', 'finished-cover-result-visible')
-            cover = creative.capture(out, '08-completed-result-fold-cover')
-            if [cover['width'], cover['height']] != [2316, 904]:
-                raise RuntimeError('Completed result did not render at the cover emulator surface')
-            base.display(1080, 1920, 300)
-            require_race_identity(session('09-after-result-resize'), result_id)
-            result['result_resize'] = {'status': 'PASS', 'inner': [2176, 1812], 'cover': [2316, 904],
-                                       'scope': 'emulator surfaces and explicit rotation; no physical hinge'}
+            result['result_resize'] = fold_cycle('07-finished-result-resize', ('Gesamtzeit', 'Belohnung'), final)
 
         # Actual interrupted-result recovery: the untouched saved race survives
         # process death. Flutter drains/ACKs the real native result after restart.

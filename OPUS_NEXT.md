@@ -1,4 +1,18 @@
-# Direkte Übergabe an Claude Opus 5.5 · 8. Oktober 2026
+# Aktueller integrierter Lumo-Kandidat1903 · 8. Oktober2026
+
+Lies zuerst [die1903-Übergabe](docs/handoffs/LUMO_INTEGRATED_RUNTIME_1903_2026-10-08.md).
+Aktiv sind App-Integrationsbranch/PR216 und Godot-Integrationsbranch/PR29;
+QA217/218 ist übernommen. Godotpin18238d48, Version0.12.1+1903.
+Build-/Android-Erfolg muss aus dem aktuellen CI-Lauf und dem tatsächlichen APK
+belegt werden. Status beim Commit: VISUAL_GAP / NOT FINISHED.1902 wurde real
+gebaut, hatte aber vier Android-Fails; bestätigter Pausefehler jetzt korrigiert.
+
+Die folgende Übergabe dokumentiert den **historischen Stand vor Integration**.
+Ihre alten Pins, offenen Merge-Schritte und1900-Abnahme ersetzen keine aktuelle
+HEAD-/Claim-/Provenienzprüfung. Die vollständige ursprüngliche Übergabe bleibt
+als Kontext erhalten.
+
+## Direkte Übergabe an Claude Opus 5.5 · 8. Oktober 2026
 
 Lies zuerst [die vollständige aktuelle Übergabe](docs/HANDOFF_CODEX_TO_OPUS_2026-10-08.md).
 Sie enthält Änderungen an App, Lumo, Karts, Steuerung, Kamera und allen zwölf

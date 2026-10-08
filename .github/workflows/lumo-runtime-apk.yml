@@ -120,13 +120,33 @@ jobs:
             echo 'App render files:'
             find proof/app-renders -maxdepth 1 -type f -name '*.png' -printf '%f\n' | sort
           } > proof/TEST-RESULTS.txt
+      - name: Install declared Python QA guard dependencies
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/lumo-qa-guard-venv"
+          qa_python="$RUNNER_TEMP/lumo-qa-guard-venv/bin/python"
+          "$qa_python" -m pip install --disable-pip-version-check --only-binary=:all: Pillow==12.3.0
+          "$qa_python" -m pip freeze > proof/python-qa-dependencies.txt
+          printf 'LUMO_QA_PYTHON=%s\n' "$qa_python" >> "$GITHUB_ENV"
+          "$qa_python" - <<'PYCODE'
+          import json, shutil
+          from pathlib import Path
+          import PIL
+          assert PIL.__version__ == '12.3.0'
+          Path('proof/python-qa-capabilities.json').write_text(json.dumps({
+              'pillow': PIL.__version__,
+              'tesseract': shutil.which('tesseract'),
+              'optional_ocr_skip_reason': 'Actual screenshot OCR requires tesseract and Pillow',
+              'optional_ocr_skip_guards': 'Existing eight screenshot cases remain unchanged; actual skips are recorded by unittest -v.',
+          }, indent=2) + '\n')
+          PYCODE
       - name: Backend, learning content and integration guards
         run: |
           set -euo pipefail
           node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee proof/backend.log
           dart scripts/audit_content.dart 2>&1 | tee proof/content.log
           bash scripts/lumo_repair_guard.sh 2>&1 | tee proof/repair-guard.log
-          python3 -m unittest discover -s tools/android_qa/tests 2>&1 | tee proof/android-harness-tests.log
+          "$LUMO_QA_PYTHON" -m unittest discover -s tools/android_qa/tests -v 2>&1 | tee proof/android-harness-tests.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -176,13 +196,19 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -euo pipefail
-          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_complete_flow_regression; do
+          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_complete_flow_regression; do
             probe_timeout=420
+            probe_marker=PASS
+            probe_output=''
+            if [ "$test" = kart_countdown_pause_regression ]; then
+              probe_marker='[KartCountdownPause] PASS:'
+              probe_output="$LUMO_NATIVE_DIRECTORY/exports/countdown-pause"
+            fi
             if [ "$test" = kart_fleet_regression ]; then probe_timeout=240; fi
             # Keep every real physics/touch step and all fifteen captures on shared Mesa.
             if [ "$test" = kart_driven_capture ]; then probe_timeout=900; fi
-            python3 tools/run_godot_probe.py --log "exports/fold-controls/$test.log" \
-              --timeout "$probe_timeout" -- \
+            LUMO_QA_DIR="$probe_output" python3 tools/run_godot_probe.py --log "exports/fold-controls/$test.log" \
+              --timeout "$probe_timeout" --required "$probe_marker" -- \
               xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
               --rendering-method gl_compatibility --script "res://scripts/tests/$test.gd"
           done
@@ -190,6 +216,7 @@ jobs:
           rg -F '[KartMenuFlow] PASS:' exports/fold-controls/kart_menu_flow_regression.log
           rg -F '[KartPhysics] PASS:' exports/fold-controls/kart_physics_regression.log
           rg -F '[KartFleet] PASS:' exports/fold-controls/kart_fleet_regression.log
+          rg -F '[KartCountdownPause] PASS:' exports/fold-controls/kart_countdown_pause_regression.log
           GODOT_SHA=$(cat exports/fold-controls/source-sha.txt)
           echo "PASS exact Godot source real rendering, Fold touch, menu and physics: $GODOT_SHA" >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
       - name: Native harbor, vehicle geometry and detail regressions
@@ -221,6 +248,58 @@ jobs:
             xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
             --rendering-method gl_compatibility --script res://scripts/tests/kart_harbor_regression.gd -- --capture
           echo 'PASS final native fleet and harbor runtime images from the exact APK pin' >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
+          python3 - <<'PYCODE'
+          import hashlib, json, os, re
+          from pathlib import Path
+          markers = {
+              'visual': ('[KartVisualQuality] PASS:',),
+              'kart_pause_layout_regression': ('[KartPauseLayoutTests] PASS:',),
+              'kart_fold_controls_regression': ('[KartFoldControls] PASS:',),
+              'kart_menu_flow_regression': ('[KartMenuFlow] PASS:',),
+              'kart_physics_regression': ('[KartPhysics] PASS:',),
+              'kart_fleet_regression': ('[KartFleet] PASS:',),
+              'kart_video_visual_regression': (
+                  '[KartVideoGrade] PASS: complete rendered kart bounds',
+                  '[KartVideoGrade] PASS: close chase framing',
+              ),
+              'kart_reference_capture': ('[ReferenceCapture] PASS:',),
+              'kart_driven_capture': ('[DrivenCapture] PASS:',),
+              'kart_steering_grip_regression': ('[KartSteeringGrip] PASS:',),
+              'kart_arm_contact_regression': ('[KartArmContact] PASS:',),
+              'kart_steering_grip_capture': ('[KartSteeringGripCapture] PASS:',),
+              'kart_race_continuity_regression': ('[KartContinuity] PASS:',),
+              'kart_countdown_pause_regression': ('[KartCountdownPause] PASS:',),
+              'kart_complete_flow_regression': ('[KartCompleteFlow] PASS:',),
+              'kart_harbor_regression': ('[KartHarbor] PASS:',),
+              'kart_vehicle_regression': ('[KartVehicle] Geometry/colours, shadows, animations, effects, LOD and hysteresis passed',),
+              'kart_vehicle_detail_regression': ('[KartDetails] PASS:',),
+              'fleet-capture': ('[FleetCapture] PASS:',),
+              'harbor-capture': ('[KartHarbor] PASS:',),
+          }
+          assert len(markers) == 20
+          probes = []
+          for name, required in markers.items():
+              path = Path('exports/fold-controls') / (name + '.log')
+              text = path.read_text()
+              assert not re.search(r'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|\[ProbeRunner\] FAIL', text), name
+              assert all(marker in text for marker in required), name
+              probes.append({'name': name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'status': 'PASS'})
+          captures = sorted(Path('exports/countdown-pause').glob('*.png'))
+          assert len(captures) == 9, 'Countdown pause proof requires all nine actual rendered frames'
+          workspace = Path(os.environ['GITHUB_WORKSPACE'])
+          pin = json.loads((workspace / 'config/godot-source.json').read_text())
+          native_source = Path('exports/fold-controls/source-sha.txt').read_text().strip()
+          assert native_source == pin['revision']
+          report = {
+              'status': 'PASS', 'flutter_source_commit': (workspace / 'proof/source-sha.txt').read_text().strip(),
+              'godot_source_commit': native_source, 'strict_native_probes': len(probes), 'probes': probes,
+              'countdown_pause_pngs': [{'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()} for path in captures],
+              'physical_device_performance': 'NOT EXECUTED',
+          }
+          Path('exports/fold-controls/native-check-summary.json').write_text(json.dumps(report, indent=2) + '\n')
+          with (workspace / 'proof/TEST-RESULTS.txt').open('a') as stream:
+              stream.write(f'PASS {len(probes)} strict native render/gameplay/capture probes on exact source {native_source}; nine countdown-pause frames.\n')
+          PYCODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -235,19 +314,35 @@ jobs:
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/video-reference-grade/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/complete-flow/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/steering-grip/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/countdown-pause/
       - name: Build and verify the unified APK from exact clean source
         run: |
-          set -o pipefail
+          set -euo pipefail
           git rev-parse HEAD > build-proof/source-sha.txt
-          mkdir -p build
-          git clone --no-hardlinks "$LUMO_NATIVE_DIRECTORY" build/godot-source
-          test "$(git -C build/godot-source rev-parse HEAD)" = "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)"
-          cp -a "$LUMO_NATIVE_DIRECTORY/.godot" build/godot-source/.godot
+          python3 - <<'PYCODE'
+          import shutil, subprocess
+          from pathlib import Path
+          changed = subprocess.check_output(['git', 'diff', 'HEAD', '--name-only', '-z']).decode().split('\0')
+          changed = [path for path in changed if path]
+          generated = '.ci-results/onboarding-visual/age-360x800.png'
+          if any(path != generated for path in changed):
+              raise RuntimeError(f'Refuse to build after unexpected tracked changes: {changed}')
+          if generated in changed:
+              shutil.copy2(generated, 'build-proof/generated-age-360x800.png')
+          Path('build-proof/test-generated-files.json').write_text(__import__('json').dumps(changed) + '\n')
+          PYCODE
+          export LUMO_BUILD_CHECKOUT="$RUNNER_TEMP/lumo-clean-apk-source"
+          git clone --no-hardlinks . "$LUMO_BUILD_CHECKOUT"
+          test "$(git -C "$LUMO_BUILD_CHECKOUT" rev-parse HEAD)" = "$(git rev-parse HEAD)"
+          mkdir -p "$LUMO_BUILD_CHECKOUT/build"
+          git clone --no-hardlinks "$LUMO_NATIVE_DIRECTORY" "$LUMO_BUILD_CHECKOUT/build/godot-source"
+          test "$(git -C "$LUMO_BUILD_CHECKOUT/build/godot-source" rev-parse HEAD)" = "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)"
+          cp -a "$LUMO_NATIVE_DIRECTORY/.godot" "$LUMO_BUILD_CHECKOUT/build/godot-source/.godot"
           python3 - <<'PYCODE'
           import os, shutil, subprocess
           from pathlib import Path
           source = Path(os.environ['LUMO_NATIVE_DIRECTORY'])
-          target = Path('build/godot-source')
+          target = Path(os.environ['LUMO_BUILD_CHECKOUT']) / 'build/godot-source'
           ignored = subprocess.check_output([
               'git', '-C', str(source), 'ls-files', '--others', '--ignored',
               '--exclude-standard', '-z',
@@ -259,8 +354,10 @@ jobs:
               destination.parent.mkdir(parents=True, exist_ok=True)
               shutil.copy2(source / name, destination)
           PYCODE
-          test -z "$(git -C build/godot-source status --porcelain)"
-          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+          test -z "$(git -C "$LUMO_BUILD_CHECKOUT/build/godot-source" status --porcelain)"
+          (cd "$LUMO_BUILD_CHECKOUT" && bash scripts/build_unified_apk.sh) 2>&1 | tee build-proof/build.log
+          mkdir -p dist
+          cp -a "$LUMO_BUILD_CHECKOUT/dist/." dist/
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
           cp proof/TEST-RESULTS.txt dist/TEST-RESULTS.txt
       - uses: actions/upload-artifact@v4
