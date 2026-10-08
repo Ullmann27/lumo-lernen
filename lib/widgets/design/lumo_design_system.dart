@@ -45,6 +45,7 @@ enum LumoScene {
   tests,
   games,
   profile,
+  rewards,
   kart,
   wide,
 }
@@ -78,6 +79,7 @@ class LumoSceneBackground extends StatelessWidget {
           LumoScene.tests => 'assets/lumo_design/bg/bg_tests.png',
           LumoScene.games => 'assets/lumo_design/bg/bg_games.png',
           LumoScene.profile => 'assets/lumo_design/bg/bg_profile.png',
+          LumoScene.rewards => 'assets/lumo_design/bg/bg_home.png',
           LumoScene.kart => 'assets/lumo_design/bg/bg_kart.png',
           LumoScene.wide => 'assets/lumo_design/bg/bg_wide.png',
         };
