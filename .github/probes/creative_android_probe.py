@@ -628,6 +628,9 @@ def main() -> int:
             # is not a dependable visibility assertion for its small icons.
             for label in ('GAS','BREMSE','DRIFT','SPEED','ITEM'):
                 native_text(out,label,'kart-phone-'+normalized(label))
+            # The track flyover can still be running on a slow software GPU.
+            # Capture the real chase view only after its actual race HUD appears.
+            native_text(out,'RUNDE','kart-phone-race-hud')
             phone=capture(out,'15_kart_phone_race')
             if phone['width'] != 1920 or phone['height'] != 1080:
                 raise RuntimeError('Native Kart did not use the 1920x1080 phone surface')
