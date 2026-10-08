@@ -626,7 +626,7 @@ def main() -> int:
             # Read all five controls on the actual 1920x1080 phone surface.
             # The tiny 640x320 surface is captured separately below: text OCR
             # is not a dependable visibility assertion for its small icons.
-            for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
+            for label in ('GAS','BREMSE','DRIFT','SPEED','ITEM'):
                 native_text(out,label,'kart-phone-'+normalized(label))
             phone=capture(out,'15_kart_phone_race')
             if phone['width'] != 1920 or phone['height'] != 1080:
@@ -638,13 +638,13 @@ def main() -> int:
                 # Turn the emulator explicitly, then keep all strict screenshot
                 # size and actual control-visibility assertions below.
                 device_rotation(out, 'kart-fold-landscape', 1)
-                for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
+                for label in ('GAS','BREMSE','DRIFT','SPEED','ITEM'):
                     native_text(out,label,'kart-fold-'+normalized(label))
                 fold = capture(out,'17_kart_fold_open')
                 if fold['width'] != 2176 or fold['height'] != 1812:
                     raise RuntimeError('Inner-display surface did not rotate to 2176x1812')
                 base.display(904,2316,420)
-                for label in ('GAS','BREMSE','DRIFT','BOOST','ITEM'):
+                for label in ('GAS','BREMSE','DRIFT','SPEED','ITEM'):
                     native_text(out,label,'kart-cover-'+normalized(label))
                 capture(out,'18_kart_fold_cover')
                 base.display(1080,1920,300)
