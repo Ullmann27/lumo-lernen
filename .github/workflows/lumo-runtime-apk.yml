@@ -49,6 +49,14 @@ jobs:
           set -euo pipefail
           mkdir -p proof
           bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
+      - name: Install ripgrep before source guards
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep
+          command -v rg
+          rg --version
       - name: Dependencies and app source analysis
         run: |
           set -o pipefail

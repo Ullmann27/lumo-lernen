@@ -51,6 +51,17 @@ require_absent() {
   echo "ok absent: $path -> $pattern"
 }
 
+require_no_obsolete_gate() {
+  local path="$1" status=0
+  command -v rg >/dev/null 2>&1 || fail "Required source-scan tool is missing: rg"
+  rg -n 'ParentPin|ParentalGate|initialParentPin|parentPin|parentRecoveryCode|requiresParentPin' "$path" || status=$?
+  case "$status" in
+    0) fail "Obsolete access-code gate remains in active application code" ;;
+    1) echo "ok obsolete access-code scan: $path (no matches)" ;;
+    *) fail "Source scan failed in $path: rg exit $status" ;;
+  esac
+}
+
 mkdir -p assets/images assets/videos dist
 
 require_file pubspec.yaml
@@ -89,9 +100,7 @@ require_absent lib/app/app_shell.dart "ParentalGate"
 require_absent lib/core/app_settings.dart "parentPin"
 require_absent lib/core/settings_repository.dart "setParentPin"
 require_text lib/features/rewards/reward_shop_content.dart "ParentApprovalDialog.show("
-if rg -n 'ParentPin|ParentalGate|initialParentPin|parentPin|parentRecoveryCode|requiresParentPin' lib; then
-  fail "Obsolete access-code gate remains in active application code"
-fi
+require_no_obsolete_gate lib
 require_text lib/app/app_shell.dart "ScanScreen("
 
 require_text lib/app/app_state.dart "loadLearningProfile"
