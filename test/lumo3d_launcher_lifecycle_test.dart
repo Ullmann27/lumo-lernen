@@ -5,10 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
 
 const _bridge = MethodChannel('lumo_lernen/bridge');
+
+/// Delays the actual platform write performed by the first lifetime-wallet load.
+class _DelayedWalletStore extends InMemorySharedPreferencesStore {
+  _DelayedWalletStore()
+      : super.withData({
+          'flutter.lumo_3d_save_salt_v1': 'lifecycle-test-salt',
+        });
+
+  final walletWriteStarted = Completer<void>();
+  final releaseWalletWrite = Completer<void>();
+
+  @override
+  Future<bool> setValue(String valueType, String key, Object value) async {
+    if (key == 'flutter.lumo_reward_wallet_v1') {
+      walletWriteStarted.complete();
+      await releaseWalletWrite.future;
+    }
+    return super.setValue(valueType, key, value);
+  }
+}
 
 class _ControlledState extends LumoAppState {
   _ControlledState(this.save);
@@ -82,6 +103,42 @@ void main() {
         .setMockMethodCallHandler(_bridge, null);
     debugDefaultTargetPlatformOverride = null;
   });
+
+  // Keep this before the other launches: the production lifetime-wallet
+  // singleton performs its first disk load once per Dart isolate.
+  launcherTestWidgets(
+    'profile change during lifetime-wallet load cancels stale native launch',
+    (tester) async {
+      final store = _DelayedWalletStore();
+      SharedPreferencesStorePlatform.instance = store;
+      final state = _ControlledState(() async {});
+      addTearDown(state.dispose);
+      final context = await _mount(tester);
+      final staleLaunch = launchLumo3D(context, appState: state);
+      addTearDown(() async {
+        if (!store.releaseWalletWrite.isCompleted) {
+          store.releaseWalletWrite.complete();
+        }
+        await staleLaunch;
+      });
+      await tester.pump();
+      expect(store.walletWriteStarted.isCompleted, isTrue);
+      expect(calls, isEmpty);
+      state.generation++;
+      state.state.childName = 'Neues Kind';
+      store.releaseWalletWrite.complete();
+      await tester.pump();
+      expect(
+        await staleLaunch,
+        isFalse,
+        reason: 'A profile changed while lifetime-wallet storage was pending.',
+      );
+      expect(calls, isEmpty);
+      // Cancelling the stale request must release the launch lock.
+      expect(await launchLumo3D(context, appState: state), isTrue);
+      expect(calls, hasLength(1));
+    },
+  );
 
   launcherTestWidgets('saves rewards first and waits for native return', (
     tester,

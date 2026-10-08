@@ -68,6 +68,15 @@ Future<bool> launchLumo3D(
         lifetimeStars = wallet.totalEarnedStars;
       }
     } catch (_) {}
+    // Loading lifetime earnings may wait on storage too. Recheck the same
+    // request immediately before launching: its page/profile may have changed
+    // since the child save identity was resolved.
+    if (!context.mounted ||
+        appState?.resetting == true ||
+        appState?.profileGeneration != generation ||
+        (originRoute != null && !originRoute.isCurrent)) {
+      return false;
+    }
     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
       'scene': scene,
       'grade': grade ?? appState?.state.grade ?? 1,
