@@ -26,20 +26,28 @@ class LumoGameSpotlights extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Schatten halten die Überschrift über dem hellen Mond lesbar.
             const Text('Jetzt spielen',
                 style: TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 24,
                   fontWeight: FontWeight.w900,
                   color: LumoVisualTokens.white,
+                  shadows: [Shadow(color: Color(0xCC03122E), blurRadius: 10)],
                 )),
             const SizedBox(height: 4),
             const Text('Karten-Duell oder 3D-Rennen – du entscheidest.',
                 style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    height: 1.4,
-                    color: LumoVisualTokens.muted)),
+                  fontFamily: 'Nunito',
+                  fontSize: 14,
+                  height: 1.4,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xF2FFFFFF),
+                  shadows: [
+                    Shadow(color: Color(0xE603122E), blurRadius: 8),
+                    Shadow(color: Color(0x9903122E), offset: Offset(0, 1)),
+                  ],
+                )),
             const SizedBox(height: 14),
             LayoutBuilder(builder: (context, constraints) {
               final largeText = MediaQuery.textScalerOf(context).scale(14) > 21;
