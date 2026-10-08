@@ -115,36 +115,28 @@ void main() {
       addTearDown(state.dispose);
       final context = await _mount(tester);
       final staleLaunch = launchLumo3D(context, appState: state);
-      addTearDown(() async {
-        debugPrint('[LateWalletTest] cleanup begin');
+      addTearDown(() {
         if (!store.releaseWalletWrite.isCompleted) {
           store.releaseWalletWrite.complete();
         }
-        await staleLaunch;
-        debugPrint('[LateWalletTest] cleanup complete');
       });
       await tester.pump();
-      debugPrint('[LateWalletTest] wallet write waiting');
       expect(store.walletWriteStarted.isCompleted, isTrue);
       expect(calls, isEmpty);
       state.generation++;
       state.state.childName = 'Neues Kind';
       store.releaseWalletWrite.complete();
       await tester.pump();
-      debugPrint('[LateWalletTest] wallet released, awaiting stale launch');
       expect(
         await staleLaunch,
         isFalse,
         reason: 'A profile changed while lifetime-wallet storage was pending.',
       );
       expect(calls, isEmpty);
-      debugPrint('[LateWalletTest] stale launch cancelled');
       // Cancelling the stale request must release the launch lock.
       final retry = launchLumo3D(context, appState: state);
       await tester.pump();
-      debugPrint('[LateWalletTest] retry pumped, calls=${calls.length}');
       expect(await retry, isTrue);
-      debugPrint('[LateWalletTest] retry returned');
       expect(calls, hasLength(1));
     },
   );
