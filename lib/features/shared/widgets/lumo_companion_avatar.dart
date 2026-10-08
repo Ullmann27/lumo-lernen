@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../app/app_theme.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 
 /// Reaktionszustaende des Lumo-Companion.
