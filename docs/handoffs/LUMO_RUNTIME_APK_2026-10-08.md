@@ -1,5 +1,18 @@
 # Lumo – Runtime-, Grafik- und Android-Paket vom 8. Oktober 2026
 
+Aktualisierung nach CI-Lauf `37788488965`: Flutter 750 PASS / 4 SKIP,
+Launcher 15 PASS, Foto-Lektion plus Sensorfreigaben 12 PASS, Backend 22 PASS;
+Python-Harness 196 PASS / 8 SKIP. Der gemeinsame Lauf wurde dennoch korrekt
+vor dem APK-Bau abgebrochen: Die Continuity-Assertions bestanden, danach
+meldete GLES3 vier nicht freigegebene Texturen. Der isolierte Prüfer wartete
+vor Szenenfreigabe und Grafik-Callback nicht auf den vollständig gerenderten
+Zustand. Dieser Testablauf wurde korrigiert; zwei strenge GL-Wiederholungen
+und ein Headless-Lauf bestehen ohne Texture-ERROR. Assertions und Error-Gate
+bleiben unverändert. Alle Produktgrafik-/Physikdateien sind gegenüber
+`4d4bd2ba3ac2b956d35ec74dacbad766199e9f9c` identisch. Der neue tatsächliche
+Godot-Pin ist `649e7dc7e90ad3affe94721012d39140522e717e`;
+APK-Bau und Android-Abnahme bleiben bis zum erneuten CI-Ergebnis PENDING.
+
 **Status: VISUAL_GAP / NOT FINISHED.** Dieses Paket repariert belegte Kontakt- und
 Speicherfehler und erweitert die Abnahme auf eine vollständig gefahrene Runde.
 Es ersetzt weder die bestehende App noch die Godot-Architektur. Ein bestandener
@@ -41,8 +54,8 @@ braucht eine idempotente Einlösung über Wallet und Beleg, keinen bloßen Refun
 | App RESULT SHA / PR | **PENDING – erst nach Commit / PR-Erstellung eintragen** |
 | Godot-Repository / BASE | `Ullmann27/lumo-godot`, `d2ebb85d0dcfeec690c18b7d35135a66f472b170` |
 | Godot-Arbeitsbranch | `codex/lumo-race-continuity-2026-10-08` |
-| Godot RESULT SHA / PR | `4d4bd2ba3ac2b956d35ec74dacbad766199e9f9c`, [Godot PR #28](https://github.com/Ullmann27/lumo-godot/pull/28); veröffentlichter Kandidat mit dem lokal geprüften Baum |
-| Vorgesehener finaler Godot-Pin | `config/godot-source.json`: `4d4bd2ba3ac2b956d35ec74dacbad766199e9f9c`; Root setzt diesen veröffentlichten Kandidaten vor dem gemeinsamen Bau, tatsächlichen PCK-Inhalt danach prüfen |
+| Godot RESULT SHA / PR | `649e7dc7e90ad3affe94721012d39140522e717e`, [Godot PR #28](https://github.com/Ullmann27/lumo-godot/pull/28); veröffentlichter Kandidat mit dem lokal geprüften Baum |
+| Vorgesehener finaler Godot-Pin | `config/godot-source.json`: `649e7dc7e90ad3affe94721012d39140522e717e`; Root setzt diesen veröffentlichten Kandidaten vor dem gemeinsamen Bau, tatsächlichen PCK-Inhalt danach prüfen |
 | Engine / CI-Flutter | Godot `4.6.3.stable.official.7d41c59c4`; Workflow verwendet Flutter `3.44.9` |
 | Geplanter APK-Kandidat | `0.12.1+1901`; Version im Arbeitsstand, noch kein Buildnachweis |
 | Merge / Release | Nicht Bestandteil dieses Pakets |
@@ -235,7 +248,7 @@ nicht kopiert.
 | Nachweis | Status bis tatsächliche Ergebnisse vorliegen |
 | --- | --- |
 | App RESULT SHA | **PENDING** |
-| Godot RESULT SHA / zu prüfender PCK-Pin | `4d4bd2ba3ac2b956d35ec74dacbad766199e9f9c`; tatsächlicher APK-Inhalt **PENDING** |
+| Godot RESULT SHA / zu prüfender PCK-Pin | `649e7dc7e90ad3affe94721012d39140522e717e`; tatsächlicher APK-Inhalt **PENDING** |
 | CI-Run / Jobs / Original-Testzahlen und Skips | **PENDING** |
 | APK-Datei / Bytegröße / SHA-256 | **PENDING** |
 | Paket / versionCode / versionName | **PENDING – erwartetes Preview-Paket, 1901 / 0.12.1 gegen echten APK-Inhalt prüfen** |
@@ -276,7 +289,7 @@ CPU-/GPU-Framezeiten fehlen. Emulatorresize ist kein physischer Fold-Test;
 Software-Renderings sind kein Android-FPS-Nachweis. Keine 60-FPS-Zusage.
 
 Nächster konkreter Integrationsschritt: App-Pin auf den veröffentlichten und
-lokal geprüften Godot-Commit `4d4bd2ba3ac2b956d35ec74dacbad766199e9f9c` setzen und den getrennten App-Kandidaten
+lokal geprüften Godot-Commit `649e7dc7e90ad3affe94721012d39140522e717e` setzen und den getrennten App-Kandidaten
 mit unverändertem Paket/Schlüssel bauen. CI muss den spezifischen Launcher-
 Negativbeweis, die volle Flutter-Suite, exakte native Regressionen und die
 neuen vollständigen Android-Runden tatsächlich abschließen. Danach originale
