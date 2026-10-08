@@ -78,7 +78,7 @@ class LumoGameSpotlights extends StatelessWidget {
                       title: 'Lumo Kart',
                       eyebrow: '3D-RENNSPIEL',
                       description:
-                          'Fahre mit Lumo ans Meer, durch Wolken und über Vulkanstrecken. Dein nächstes Rennen wartet.',
+                          'Erkunde zwölf Rennwelten am Meer, in den Wolken und auf Vulkanstrecken. Dein nächstes Rennen wartet.',
                       previewAsset:
                           'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
                       showWorldTags: true,
