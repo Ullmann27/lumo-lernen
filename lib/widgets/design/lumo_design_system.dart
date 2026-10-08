@@ -293,7 +293,11 @@ class LumoColorTile extends StatelessWidget {
       LayoutBuilder(builder: (context, constraints) {
         final narrow = constraints.maxWidth < 165;
         final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.2;
-        final iconSize = narrow ? 32.0 : 40.0;
+        // Symbol wächst mit der Kachel: auf dem Fold-Innendisplay keine leeren Flächen.
+        final iconSize = constraints.maxHeight.isFinite
+            ? (constraints.maxHeight * 0.30).clamp(32.0, 88.0).toDouble()
+            : (narrow ? 32.0 : 40.0);
+        final titleSize = iconSize >= 60 ? 24.0 : (narrow ? 15.0 : 18.0);
         return Semantics(
             button: true,
             label: '$title. $subtitle',
@@ -315,7 +319,10 @@ class LumoColorTile extends StatelessWidget {
                     gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
+                        stops: const [0.0, 0.18, 1.0],
                         colors: [
+                          // Leichter Glanz an der oberen Kante für Tiefe.
+                          Color.lerp(const Color(0xF0215A8F), color, .22)!,
                           Color.lerp(const Color(0xEE123A68), color, .16)!,
                           const Color(0xF0081D3D)
                         ]),
@@ -332,21 +339,33 @@ class LumoColorTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(children: [
-                          if (iconAsset != null)
-                            Image.asset(iconAsset!,
-                                key: ValueKey(
-                                    'lumo-color-tile-icon-${title.toLowerCase()}'),
-                                width: iconSize,
-                                height: iconSize,
-                                fit: BoxFit.contain,
-                                excludeFromSemantics: true,
-                                errorBuilder: (_, __, ___) => Icon(icon,
-                                    size: iconSize,
-                                    color: LumoVisualTokens.cyanBright))
-                          else
-                            Icon(icon,
-                                size: iconSize,
-                                color: LumoVisualTokens.cyanBright),
+                          // Weicher Lichthof in der Akzentfarbe hinter dem Symbol.
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: RadialGradient(colors: [
+                                color.withValues(alpha: .38),
+                                color.withValues(alpha: 0),
+                              ]),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(iconSize * 0.12),
+                              child: iconAsset != null
+                                  ? Image.asset(iconAsset!,
+                                      key: ValueKey(
+                                          'lumo-color-tile-icon-${title.toLowerCase()}'),
+                                      width: iconSize,
+                                      height: iconSize,
+                                      fit: BoxFit.contain,
+                                      excludeFromSemantics: true,
+                                      errorBuilder: (_, __, ___) => Icon(icon,
+                                          size: iconSize,
+                                          color: LumoVisualTokens.cyanBright))
+                                  : Icon(icon,
+                                      size: iconSize,
+                                      color: LumoVisualTokens.cyanBright),
+                            ),
+                          ),
                           const Spacer(),
                           const Icon(Icons.north_east_rounded,
                               size: 17, color: LumoVisualTokens.cyanBright),
@@ -356,7 +375,7 @@ class LumoColorTile extends StatelessWidget {
                             maxLines: 2,
                             style: TextStyle(
                                 fontFamily: 'Nunito',
-                                fontSize: narrow ? 15 : 18,
+                                fontSize: titleSize,
                                 height: 1.05,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white)),
@@ -365,8 +384,8 @@ class LumoColorTile extends StatelessWidget {
                           Text(subtitle,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  fontSize: 11,
+                              style: TextStyle(
+                                  fontSize: iconSize >= 60 ? 14 : 11,
                                   height: 1.15,
                                   color: LumoVisualTokens.muted)),
                         ],

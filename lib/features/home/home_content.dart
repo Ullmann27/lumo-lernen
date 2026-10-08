@@ -147,7 +147,10 @@ class HomeContent extends StatelessWidget {
                     crossAxisCount: columns,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
-                    childAspectRatio: textScale > 1.2 ? 1.05 : 1.34,
+                    // Breite Zweierspalten (Fold innen) etwas flacher, ohne leere Mitte.
+                    childAspectRatio: textScale > 1.2
+                        ? 1.05
+                        : (columns == 2 && constraints.maxWidth > 600 ? 1.7 : 1.34),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
