@@ -144,6 +144,8 @@ jobs:
           for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_complete_flow_regression; do
             probe_timeout=420
             if [ "$test" = kart_fleet_regression ]; then probe_timeout=240; fi
+            # Keep every real physics/touch step and all fifteen captures on shared Mesa.
+            if [ "$test" = kart_driven_capture ]; then probe_timeout=900; fi
             python3 tools/run_godot_probe.py --log "exports/fold-controls/$test.log" \
               --timeout "$probe_timeout" -- \
               xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \

@@ -15,8 +15,10 @@ dem tatsächlichen Abschluss durch die jeweiligen Originalergebnisse ersetzt wer
 | App `main` bei der Bestandsprüfung | `90c239898c2f5fe7230dda05cb9e499069162208` |
 | Aktiver Vorgänger | [App PR #214](https://github.com/Ullmann27/lumo-lernen/pull/214), `codex/lumo-reference-app-2026-10-08` |
 | Zunächst gelesener App-Head | `9f2dafd51332cc54f02e7ce309b02e0a78d39c51` |
-| Tatsächliche App-BASE nach frischem Fast-forward | `d35f8793b4de65902ba29c592d5f7a3fbd9b628d` |
+| App-BASE nach erstem frischem Fast-forward | `d35f8793b4de65902ba29c592d5f7a3fbd9b628d` |
+| Aktuelle Integrations-BASE bei APK-Verbindung | `f5763658b477258deda2f62465c84daf162a818e`; per Merge übernommen, keine fremde Historie überschrieben |
 | Änderung zwischen diesen App-Basen | Vorhandener Kreativspiel-Prüfer erkennt die aktuelle Kart-Beschriftung `SPEED` statt `BOOST`; eigene Änderungen bleiben erhalten |
+| Neueste Buildkorrektur | Vollständige Drei-Strecken-Fahrt erhält 900 Sekunden auf dem gemeinsamen Software-Renderer; alle Physikschritte und 15 Aufnahmen bleiben Pflicht, gleicher Grenzwert im eigenen Workflow |
 | App-Arbeitsbranch | `codex/lumo-runtime-apk-2026-10-08` |
 | App RESULT SHA / PR | **PENDING – erst nach Commit / PR-Erstellung eintragen** |
 | Godot-Repository / BASE | `Ullmann27/lumo-godot`, `d2ebb85d0dcfeec690c18b7d35135a66f472b170` |

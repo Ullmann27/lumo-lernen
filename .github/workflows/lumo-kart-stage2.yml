@@ -123,6 +123,9 @@ jobs:
           for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture; do
             probe_timeout=420
             if [ "$test" = kart_fleet_regression ]; then probe_timeout=240; fi
+            # This preserves every real touch/physics step and all 15 captures.
+            # Three tracks take >7 minutes on the shared software renderer.
+            if [ "$test" = kart_driven_capture ]; then probe_timeout=900; fi
             python3 tools/run_godot_probe.py --log "exports/fold-controls/$test.log" \
               --timeout "$probe_timeout" -- \
               xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
