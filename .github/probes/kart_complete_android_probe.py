@@ -180,6 +180,16 @@ def require_no_runtime_error(logcat: str) -> None:
         raise RuntimeError('Actual native runtime logged an error:\n' + '\n'.join(errors[:10]))
 
 
+def require_saved_progress_unchanged(before: dict, after: dict, context: str) -> None:
+    """A resize must not change the actual paused or completed persisted race."""
+    keys = ('result_id', 'distance', 'elapsed', 'checkpoint_index', 'finished',
+            'completed_race', 'mode', 'track_id', 'selected_driver', 'selected_kart',
+            'difficulty', 'result_payload')
+    changed = [key for key in keys if before.get(key) != after.get(key)]
+    if changed:
+        raise RuntimeError(f'{context} resize changed saved race state: ' + ', '.join(changed))
+
+
 class VideoRecorder:
     """Segmented raw Android screenrecord; never replace footage with a render."""
     def __init__(self, out: Path, adb):
@@ -336,6 +346,30 @@ def main() -> int:
         base.display(1080, 1920, 300)
         creative.enter(out, 'Lumo Kart', 'LUMO / KART', tag, launch_label='Losfahren')
 
+    def fold_cycle(tag: str, labels: tuple[str, ...], saved_before: dict | None = None) -> dict:
+        """Observed outer→inner→outer emulator surfaces, then the normal phone."""
+        captures = []
+        for stage, width, height, density, expected in (
+            ('outer-before', 904, 2316, 420, [2316, 904]),
+            ('inner', 1812, 2176, 420, [2176, 1812]),
+            ('outer-after', 904, 2316, 420, [2316, 904]),
+            ('phone-restored', 1080, 1920, 300, [1920, 1080]),
+        ):
+            base.display(width, height, density)
+            creative.device_rotation(out, tag + '-' + stage + '-landscape', 1)
+            for label in labels:
+                creative.native_text(out, label, tag + '-' + stage + '-' + creative.normalized(label))
+            snapshot = creative.capture(out, tag + '-' + stage)
+            if [snapshot['width'], snapshot['height']] != expected:
+                raise RuntimeError(f'{tag}/{stage} did not render the expected actual emulator surface')
+            captures.append({'stage': stage, 'surface': expected, 'capture': snapshot})
+            if saved_before is not None:
+                require_saved_progress_unchanged(saved_before, session(tag + '-' + stage), tag)
+        return {'status': 'PASS', 'sequence': 'outer → inner → outer → phone',
+                'observed_labels': list(labels), 'captures': captures,
+                'saved_progress_stable': saved_before is not None,
+                'scope': 'actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED'}
+
     try:
         serial = base.adb('get-serialno').strip()
         if not re.fullmatch(r'emulator-\d+', serial):
@@ -363,8 +397,7 @@ def main() -> int:
         if installed != candidate_digest or installed_size != args.candidate.stat().st_size:
             raise RuntimeError('Installed bytes differ from the exact candidate APK')
         result['installed_apk'] = {'sha256': installed, 'bytes': installed_size, 'matches_candidate': True}
-        base.adb('root')
-        base.adb('wait-for-device')
+        result['emulator_root_readiness'] = creative.ensure_rooted_emulator(base.adb, out)
         result['android_sdk'] = int(base.adb('shell', 'getprop', 'ro.build.version.sdk'))
         expected_sdk = os.environ.get('LUMO_EXPECT_ANDROID_API')
         if expected_sdk and result['android_sdk'] != int(expected_sdk):
@@ -381,6 +414,9 @@ def main() -> int:
         base.adb('logcat', '-c')
         base.launch(out, 'full-race-start')
         open_kart('01-garage')
+        if os.environ.get('LUMO_FOLD_PROBE') == '1':
+            result['menu_resize'] = fold_cycle('01-garage-resize', ('LUMO / KART', 'Dein nächstes Abenteuer', 'Weiter'))
+            result['menu_resize']['preserved_garage_step'] = 'Dein nächstes Abenteuer (step 1 / 5)'
         for step in range(4):
             tap_native('Weiter', f'garage-next-{step + 1}')
         tap_native('Rennen starten', 'garage-start')
@@ -431,7 +467,14 @@ def main() -> int:
                     raise RuntimeError('The saved race progress changed while the actual pause menu was open')
                 if creative.wallet(out, 'during-unfinished-race') != before_wallet:
                     raise RuntimeError('An unfinished race credited a host reward')
+                if os.environ.get('LUMO_FOLD_PROBE') == '1':
+                    result['pause_resize'] = fold_cycle('05-pause-resize', ('Eine kleine Pause', 'Weiterfahren'), paused)
+                    if creative.wallet(out, 'after-pause-resize') != before_wallet:
+                        raise RuntimeError('Resizing an unfinished paused race credited a host reward')
                 tap_native('Weiterfahren', 'mid-race-continue')
+                # Resize/OCR time belongs to genuine pause overhead, not a stall
+                # of the resumed race. Restart only the monitoring deadline.
+                last_progress = time.monotonic()
                 paused_once = True
                 result['pause_resume'] = {'status': 'PASS', 'checkpoint': paused['checkpoint_index'],
                                           'saved_pause_progress_stable': True, 'unfinished_reward_unchanged': True,
@@ -451,21 +494,7 @@ def main() -> int:
         creative.native_text(out, 'Belohnung', 'result-reward')
         creative.capture(out, '06-completed-result-phone')
         if os.environ.get('LUMO_FOLD_PROBE') == '1':
-            base.display(1812, 2176, 420)
-            creative.device_rotation(out, 'finished-fold-landscape', 1)
-            creative.native_text(out, 'Gesamtzeit', 'finished-fold-result-visible')
-            fold = creative.capture(out, '07-completed-result-fold-open')
-            if [fold['width'], fold['height']] != [2176, 1812]:
-                raise RuntimeError('Completed result did not render at the inner emulator surface')
-            base.display(904, 2316, 420)
-            creative.native_text(out, 'Gesamtzeit', 'finished-cover-result-visible')
-            cover = creative.capture(out, '08-completed-result-fold-cover')
-            if [cover['width'], cover['height']] != [2316, 904]:
-                raise RuntimeError('Completed result did not render at the cover emulator surface')
-            base.display(1080, 1920, 300)
-            require_race_identity(session('09-after-result-resize'), result_id)
-            result['result_resize'] = {'status': 'PASS', 'inner': [2176, 1812], 'cover': [2316, 904],
-                                       'scope': 'emulator surfaces and explicit rotation; no physical hinge'}
+            result['result_resize'] = fold_cycle('07-finished-result-resize', ('Gesamtzeit', 'Belohnung'), final)
 
         # Actual interrupted-result recovery: the untouched saved race survives
         # process death. Flutter drains/ACKs the real native result after restart.

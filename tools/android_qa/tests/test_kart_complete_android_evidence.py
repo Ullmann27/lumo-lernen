@@ -133,6 +133,23 @@ class HostRewardEvidenceTests(unittest.TestCase):
 
 
 class ActualNativeInteractionEvidenceTests(unittest.TestCase):
+    def test_resize_cannot_replace_saved_identity_or_advance_paused_progress(self):
+        original = state(4)
+        PROBE.require_saved_progress_unchanged(original, dict(original), 'pause')
+        for key, value in (('result_id', 'replacement-race'), ('distance', original['distance'] + 1),
+                           ('elapsed', original['elapsed'] + 0.1), ('checkpoint_index', 5),
+                           ('mode', 'training'), ('finished', True)):
+            with self.subTest(key=key), self.assertRaisesRegex(RuntimeError, 'pause resize changed saved race state'):
+                PROBE.require_saved_progress_unchanged(original, {**original, key: value}, 'pause')
+
+    def test_resize_cannot_replace_completed_payload_or_drop_finished_state(self):
+        original = state(16, finished=True)
+        changed = {**original, 'result_payload': {**original['result_payload'], 'stars': 0}}
+        with self.assertRaisesRegex(RuntimeError, 'result_payload'):
+            PROBE.require_saved_progress_unchanged(original, changed, 'result')
+        with self.assertRaisesRegex(RuntimeError, 'completed_race'):
+            PROBE.require_saved_progress_unchanged(original, {**original, 'completed_race': False}, 'result')
+
     def test_scroll_uses_only_observed_modal_caption_positions(self):
         lines = [{'text': 'Eine kleine Pause', 'bounds': [300, 200, 500, 220]},
                  {'text': 'Grafik: Hoch', 'bounds': [360, 500, 440, 520]},

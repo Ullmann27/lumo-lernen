@@ -28,6 +28,9 @@ from PIL import Image, ImageChops
 os.environ.setdefault('OMP_THREAD_LIMIT','1')
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts' / 'probes'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools' / 'android_qa'))
+from rooted_emulator import ensure_rooted_emulator
+from native_ocr_tiles import read_tiled_word
 import pr207_android_smoke as base
 import pr207_android_ui_probe as live
 
@@ -246,6 +249,12 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
                                'bounds':[x0,y0,x1,y1],'variant':variant})
         if wanted and any(wanted in normalized(line['text']) for line in result):
             break
+    if wanted and not any(wanted in normalized(line['text']) for line in result):
+        # The API 36 cover frame has a visible empty ITEM caption which all four
+        # whole-frame variants miss among adjacent 3D edges. Read the same full
+        # screenshot through systematic overlapping tiles, retaining actual
+        # word bounds; never guess a button region or manufacture a label.
+        result.extend(read_tiled_word(source, out, tag, wanted, normalized, base.command))
     (out/(tag+'-ocr.json')).write_text(json.dumps(result,indent=2,ensure_ascii=False))
     return result
 
@@ -500,8 +509,7 @@ def main() -> int:
             provenance['sha256'] != digest(args.candidate)):
             raise RuntimeError('Candidate provenance mismatch')
         result['apk_sha256'] = digest(args.candidate)
-        base.adb('root')
-        base.adb('wait-for-device')
+        result['emulator_root_readiness'] = ensure_rooted_emulator(base.adb, out)
         result['android_sdk'] = int(base.adb('shell', 'getprop', 'ro.build.version.sdk'))
         expected_sdk = os.environ.get('LUMO_EXPECT_ANDROID_API')
         if expected_sdk and result['android_sdk'] != int(expected_sdk):
