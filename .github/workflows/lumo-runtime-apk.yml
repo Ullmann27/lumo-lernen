@@ -78,6 +78,32 @@ jobs:
           set -o pipefail
           flutter test --no-pub test/lumo3d_launcher_lifecycle_test.dart \
             --reporter=expanded --timeout=45s 2>&1 | tee proof/launcher-candidate-green.log
+      - name: Reproduce and repair the wrong-subject photo lesson
+        run: |
+          set -euo pipefail
+          lesson=lib/features/photo_lesson/lumo_photo_lesson_screen.dart
+          cp "$lesson" "$RUNNER_TEMP/candidate-photo-lesson.dart"
+          trap 'cp "$RUNNER_TEMP/candidate-photo-lesson.dart" "$lesson"' EXIT
+          git show d35f8793b4de65902ba29c592d5f7a3fbd9b628d:"$lesson" > "$lesson"
+          set +e
+          flutter test --no-pub test/photo_lesson_subject_flow_test.dart \
+            --reporter=expanded --timeout=45s > proof/photo-lesson-base-red.log 2>&1
+          status=$?
+          set -e
+          test "$status" -ne 0
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          text = Path('proof/photo-lesson-base-red.log').read_text()
+          for subject in ('Deutsch', 'Englisch', 'Sachunterricht'):
+              assert f'Photo lesson must keep recognized subject {subject} and topic.' in text
+          print('PASS: preserved photo lesson fails for all three wrong-subject prompts')
+          PYCODE
+          cp "$RUNNER_TEMP/candidate-photo-lesson.dart" "$lesson"
+          trap - EXIT
+          git diff --exit-code -- "$lesson"
+          flutter test --no-pub test/photo_lesson_practice_test.dart \
+            test/photo_lesson_subject_flow_test.dart test/feature_permission_regression_test.dart \
+            --reporter=expanded --timeout=45s 2>&1 | tee proof/photo-lesson-candidate-green.log
       - name: Flutter regression suite and actual app screenshots
         env:
           LUMO_POLISH_CAPTURES: ${{ github.workspace }}/proof/app-renders

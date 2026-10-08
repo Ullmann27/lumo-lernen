@@ -7,6 +7,24 @@ Engine-Test ist keine bestätigte APK-Installation, Referenzgleichheit oder
 60-FPS-Freigabe. Die mit **PENDING** bezeichneten Commit-/Buildfelder müssen nach
 dem tatsächlichen Abschluss durch die jeweiligen Originalergebnisse ersetzt werden.
 
+Nach den zusätzlichen Uploads wurde ein weiterer enger Bereich auf PR #215
+geclaimt: die vorhandene Foto-Lektion. Sie erkannte Deutsch, Englisch oder
+Sachunterricht, generierte anschließend aber immer Mathematikaufgaben. Der
+bestehende Fachgenerator liefert nun fachpassende Aufgaben; die erfolgreiche
+Mathematikroute bleibt erhalten. Fehlende Themen werden als andere Themen
+desselben Fachs ausdrücklich angezeigt, ein unklares Fach erzeugt keine
+versteckten Rechenaufgaben. Sieben Generator- und drei Widgetfälle sowie der
+unveränderte Sensor-Freigabetest erhalten einen eigenen Baseline-/Kandidaten-
+Nachweis in CI. Dies prüft OCR-Textübergabe, Analyse und Oberfläche; echte
+Kamera-/MLKit-Erkennung auf einem Gerät ist damit nicht behauptet.
+
+Die 19 neu bereitgestellten Dateien wurden ausschließlich gelesen. Fünf ZIPs
+enthalten 116 Dateien und keine Produktionsmodelle, Rigs, Texturen, Videos oder
+Audio-Assets. Ältere CSS-/Canvas-/Rive-Platzhalter ersetzen die echte Godot-Welt
+nicht. Der separate Shop-Einlösungs-Speicherfehler wurde als Quellbefund erfasst,
+aber nicht in fremd geclaimte Elternbereiche eingearbeitet; ein sicherer Fix
+braucht eine idempotente Einlösung über Wallet und Beleg, keinen bloßen Refund.
+
 ## 1. Aktueller Quellstand und Koordination
 
 | Ebene | Verifizierter Ausgangspunkt / Status |
