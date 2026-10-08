@@ -1,0 +1,270 @@
+name: Lumo 1700 APK and Android update verification
+on:
+  push:
+    branches: [claude/continue-previous-chat-KtY7p]
+    paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-1700-android.yml, .github/probes/**]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-1700-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_BUILD_NUMBER: '1700'
+  LUMO_VERSION_NAME: '0.11.0'
+jobs:
+  verify-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      LUMO_NATIVE_DIRECTORY: /tmp/lumo-native-visual
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Dependencies and app source analysis
+        run: |
+          set -o pipefail
+          mkdir -p proof/app-renders build-proof
+          git rev-parse HEAD > proof/source-sha.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analysis.log
+      - name: Flutter regression suite and actual app screenshots
+        env:
+          LUMO_POLISH_CAPTURES: ${{ github.workspace }}/proof/app-renders
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee proof/flutter-tests.log
+          python3 -m unittest discover -s scripts/tests 2>&1 | tee proof/native-preparation.log
+          {
+            echo "Flutter source: $(git rev-parse HEAD)"
+            echo 'PASS Flutter source analysis (no errors)'
+            echo 'PASS full Flutter regression suite'
+            echo 'PASS native preparation Python tests'
+            echo 'App render files:'
+            find proof/app-renders -maxdepth 1 -type f -name '*.png' -printf '%f\n' | sort
+          } > proof/TEST-RESULTS.txt
+      - name: Backend, learning content and integration guards
+        run: |
+          set -euo pipefail
+          node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee proof/backend.log
+          dart scripts/audit_content.dart 2>&1 | tee proof/content.log
+          bash scripts/lumo_repair_guard.sh 2>&1 | tee proof/repair-guard.log
+          python3 -m unittest discover -s tools/android_qa/tests 2>&1 | tee proof/android-harness-tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-app-evidence-${{ github.run_id }}
+          path: proof/
+      - name: Install matching Godot engine and real renderer
+        timeout-minutes: 8
+        run: |
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y xvfb libgl1-mesa-dri ripgrep
+          bash scripts/install_godot_for_build.sh
+      - name: Import the exact embedded native source
+        run: |
+          set -euo pipefail
+          GODOT_SHA=$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')
+          godot --version | rg '^4\.6\.3\.'
+          git init "$LUMO_NATIVE_DIRECTORY"
+          git -C "$LUMO_NATIVE_DIRECTORY" remote add origin https://github.com/Ullmann27/lumo-godot.git
+          git -C "$LUMO_NATIVE_DIRECTORY" fetch --depth 1 origin "$GODOT_SHA"
+          git -C "$LUMO_NATIVE_DIRECTORY" checkout --detach FETCH_HEAD
+          test "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)" = "$GODOT_SHA"
+          mkdir -p "$LUMO_NATIVE_DIRECTORY/exports/fold-controls"
+          git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/source-sha.txt"
+          godot --path "$LUMO_NATIVE_DIRECTORY" --headless --editor --import --quit > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log" 2>&1
+          if rg 'SCRIPT ERROR|Parse Error|Failed to load|ERROR:' "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log"; then exit 1; fi
+      - name: Render actual native worlds and menu from the exact APK pin
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          timeout 420s xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy --rendering-method gl_compatibility --script res://scripts/tests/kart_visual_quality_capture.gd 2>&1 | tee exports/fold-controls/visual.log
+          if rg 'SCRIPT ERROR|Assertion failed|Parse Error|Failed to load|ERROR:' exports/fold-controls/visual.log; then exit 1; fi
+          rg -F '[KartVisualQuality] PASS:' exports/fold-controls/visual.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-native-renders-${{ github.run_id }}
+          path: |
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/video-quality/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/visual.log
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/source-sha.txt
+      - name: Exact native Fold, real multi-touch, menu and driving regressions
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          for test in kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression; do
+            timeout 420s xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy --rendering-method gl_compatibility --script "res://scripts/tests/$test.gd" 2>&1 | tee "exports/fold-controls/$test.log"
+            if rg 'SCRIPT ERROR|Assertion failed|Parse Error|Failed to load|ERROR:' "exports/fold-controls/$test.log"; then exit 1; fi
+          done
+          rg -F '[KartFoldControls] PASS:' exports/fold-controls/kart_fold_controls_regression.log
+          rg -F '[KartMenuFlow] PASS:' exports/fold-controls/kart_menu_flow_regression.log
+          rg -F '[KartPhysics] PASS:' exports/fold-controls/kart_physics_regression.log
+          GODOT_SHA=$(cat exports/fold-controls/source-sha.txt)
+          echo "PASS exact Godot source real rendering, Fold touch, menu and physics: $GODOT_SHA" >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-native-verification-${{ github.run_id }}
+          path: |
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/holographic-proof/
+      - name: Build and verify the unified APK from exact clean source
+        run: |
+          set -o pipefail
+          git rev-parse HEAD > build-proof/source-sha.txt
+          mkdir -p build
+          git clone --no-hardlinks "$LUMO_NATIVE_DIRECTORY" build/godot-source
+          test "$(git -C build/godot-source rev-parse HEAD)" = "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)"
+          cp -a "$LUMO_NATIVE_DIRECTORY/.godot" build/godot-source/.godot
+          python3 - <<'PYCODE'
+          import os, shutil, subprocess
+          from pathlib import Path
+          source = Path(os.environ['LUMO_NATIVE_DIRECTORY'])
+          target = Path('build/godot-source')
+          ignored = subprocess.check_output([
+              'git', '-C', str(source), 'ls-files', '--others', '--ignored',
+              '--exclude-standard', '-z',
+          ]).decode().split('\0')
+          for name in ignored:
+              if not name.endswith(('.import', '.translation')) or name.startswith('.godot/'):
+                  continue
+              destination = target / name
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(source / name, destination)
+          PYCODE
+          test -z "$(git -C build/godot-source status --porcelain)"
+          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
+          cp proof/TEST-RESULTS.txt dist/TEST-RESULTS.txt
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: lumo-visual-apk-${{ github.run_id }}
+          path: dist/
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-visual-build-evidence-${{ github.run_id }}
+          path: build-proof/
+  android:
+    needs: verify-and-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        # Update von 1602 (zuletzt ausgelieferte, geprüfte APK) auf 1700.
+        game: [build, puzzle, rhythm, treasure, kart]
+        api: [35]
+        include:
+          - game: kart
+            api: 36
+    env:
+      LUMO_EXPECT_SOURCE: ${{ github.sha }}
+      LUMO_EXPECT_VERSION: '1700'
+      LUMO_BASE_DIGEST: 82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511
+      LUMO_FOLD_PROBE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-visual-apk-${{ github.run_id }}
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37674457852
+          name: lumo-visual-apk-37674457852
+          path: baseline/dist/
+      - name: Pin candidate and baseline before starting emulator
+        run: |
+          set -euo pipefail
+          test -f baseline/dist/Lumo-Lernen-Neu.apk
+          test -f candidate/Lumo-Lernen-Neu.apk
+          echo "LUMO_EXPECT_GODOT=$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" >> "$GITHUB_ENV"
+          echo "$LUMO_BASE_DIGEST  baseline/dist/Lumo-Lernen-Neu.apk" | sha256sum -c -
+      - name: Prepare independent live UI and screenshot readers
+        timeout-minutes: 8
+        run: |
+          mkdir -p native-proof
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt
+          python3 -m py_compile .github/probes/creative_android_probe.py
+          cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Update exact APK and exercise actual offline native game
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: ${{ matrix.api }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope ${{ matrix.game }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1700-android-${{ matrix.game }}-api${{ matrix.api }}-${{ github.run_id }}
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14
