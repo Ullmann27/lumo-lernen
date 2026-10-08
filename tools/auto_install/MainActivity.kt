@@ -97,14 +97,14 @@ class MainActivity : FlutterActivity() {
                             GameEventStore.clear(this)
                             // Only Godot's known progress/settings files belong to the reset.
                             for (name in listOf("kart_sonnenhafen_session.cfg", "jump_session.cfg",
-                                "kart_records.cfg", "progress.cfg", "kart_preferences.cfg", "settings.cfg",
-                                "lumo_host_pending_rewards.cfg")) {
+                                "kart_records.cfg", "kart_holographic_records.cfg", "progress.cfg",
+                                "kart_preferences.cfg", "settings.cfg", "lumo_host_pending_rewards.cfg")) {
                                 for (suffix in listOf("", ".tmp")) {
                                     val file = File(filesDir, name + suffix)
                                     if (file.exists() && !file.delete()) throw IllegalStateException("Game reset failed")
                                 }
                             }
-                            val creativeSave = Regex("lumo_(build|puzzle|rhythm|treasure)_[A-Za-z0-9_-]+\\.(json|cfg)(\\.tmp)?")
+                            val creativeSave = Regex("(lumo_(build|puzzle|rhythm|treasure)_[A-Za-z0-9_-]+\\.(json|cfg)|kart_workshop_[A-Za-z0-9_-]+\\.cfg)(\\.tmp)?")
                             for (file in filesDir.listFiles().orEmpty()) {
                                 if (file.isFile && creativeSave.matches(file.name) && !file.delete()) {
                                     throw IllegalStateException("Creative game reset failed")
@@ -140,6 +140,7 @@ class MainActivity : FlutterActivity() {
                             .put("subject", call.argument<String>("subject")?.takeIf { it in setOf("Mathematik", "Deutsch", "Sachunterricht", "Logik") } ?: "Mathematik")
                             .put("sessionId", UUID.randomUUID().toString())
                             .put("stars", (call.argument<Int>("stars") ?: 0).coerceAtLeast(0))
+                            .put("lifetimeStars", (call.argument<Int>("lifetimeStars") ?: 0).coerceAtLeast(0))
                             .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
                         val intent = Intent(this, LumoGameActivity::class.java)
                             .putExtra("lumoLaunchOptions", options.toString())

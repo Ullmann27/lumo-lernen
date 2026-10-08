@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
+import '../../core/reward_wallet_repository.dart';
 
 // The native channel completes only when the game returns. Keep the guard
 // outside a screen State: navigation/Fold rebuilds may replace that State.
@@ -58,11 +59,21 @@ Future<bool> launchLumo3D(
       return false;
     }
     const bridge = MethodChannel('lumo_lernen/bridge');
+    // Alle je verdienten Sterne (nur steigend): Die Kart-Werkstatt rechnet damit, ohne dass
+    // Tuning dem Kind die Sterne für Belohnungen wegnimmt. Fehlt der Wallet-Stand, gilt der Kontostand.
+    var lifetimeStars = appState?.state.stars ?? 0;
+    try {
+      final wallet = await RewardWalletRepository.instance.load();
+      if (wallet.totalEarnedStars > lifetimeStars) {
+        lifetimeStars = wallet.totalEarnedStars;
+      }
+    } catch (_) {}
     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
       'scene': scene,
       'grade': grade ?? appState?.state.grade ?? 1,
       'subject': subject ?? appState?.state.subject ?? 'Mathematik',
       'stars': appState?.state.stars ?? 0,
+      'lifetimeStars': lifetimeStars,
       'childKey': childKey,
     });
     // MainActivity returns a destination map on actual Activity return.

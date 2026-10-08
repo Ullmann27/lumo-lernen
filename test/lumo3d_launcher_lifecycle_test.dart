@@ -116,6 +116,7 @@ void main() {
     expect(calls.single.arguments, allOf(
       containsPair('scene', 'jump'), containsPair('grade', 3),
       containsPair('subject', 'Deutsch'), containsPair('stars', 27),
+      containsPair('lifetimeStars', greaterThanOrEqualTo(27)),
       containsPair('childKey', matches(r'^p_[0-9a-f]{32}$'))));
     expect(finished, isFalse);
     returned.complete(<String, Object?>{'destination': 'games'});
