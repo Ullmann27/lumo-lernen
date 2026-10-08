@@ -65,6 +65,103 @@ class ReadOnlyKartSaveTests(unittest.TestCase):
             PROBE.parse_session(raw_session(state()).replace('speed=17.0', 'speed=__import__("os")'))
 
 
+class FreshRaceReadinessTests(unittest.TestCase):
+    def setUp(self):
+        self.now = 0.0
+        self.records = []
+        self.calls = []
+
+    def record(self, evidence):
+        self.records.append(json.loads(json.dumps(evidence)))
+
+    def sleep(self, duration):
+        self.now += duration
+
+    def poll(self, states, *, timeout=10):
+        states = iter(states)
+
+        def read(tag, *, timeout):
+            self.calls.append((tag, timeout))
+            return next(states)
+
+        return PROBE.wait_fresh_race(read, 'old', self.record, timeout=timeout,
+                                    clock=lambda: self.now, sleep=self.sleep)
+
+    def test_earlier_countdown_zero_session_cannot_identify_the_new_race(self):
+        old = {**state(result_id='old'), 'elapsed': 15.0, 'countdown': 0.0}
+        self.assertFalse(PROBE.fresh_race_ready(old, 'old'))
+
+    def test_fresh_identity_must_finish_countdown_and_green_start_phase_naturally(self):
+        fresh = {**state(result_id='fresh'), 'elapsed': 5.0}
+        for pending in ({**fresh, 'countdown': 3.5, 'elapsed': 0.0},
+                        {**fresh, 'elapsed': 0.5}):
+            self.assertFalse(PROBE.fresh_race_ready(pending, 'old'))
+        self.assertTrue(PROBE.fresh_race_ready(fresh, 'old'))
+
+    def test_wrong_setup_completed_or_already_advanced_race_is_fatal(self):
+        fresh = {**state(result_id='fresh'), 'elapsed': 5.0}
+        for changes in ({'mode': 'training'}, {'track_id': 'bergwelt'},
+                        {'checkpoint_index': 1}, {'finished': True},
+                        {'completed_race': True}, {'result_payload': {'stars': 3}},
+                        {'countdown': -1.0}):
+            with self.subTest(changes=changes), self.assertRaises(RuntimeError):
+                PROBE.fresh_race_ready({**fresh, **changes}, 'old')
+
+    def test_poll_retains_old_pending_and_two_stable_fresh_ready_observations(self):
+        old = {**state(result_id='old'), 'elapsed': 15.0}
+        pending = {**state(result_id='fresh'), 'countdown': 3.5}
+        ready = {**state(result_id='fresh'), 'elapsed': 5.0}
+        self.assertEqual(self.poll([old, pending, ready, ready]), ready)
+        final = self.records[-1]
+        self.assertEqual(final['status'], 'READY')
+        self.assertEqual(final['previous_result_id'], 'old')
+        self.assertEqual(final['fresh_result_id'], 'fresh')
+        self.assertEqual([row['ready'] for row in final['observations']], [False, False, True, True])
+        self.assertEqual(final['observations'][-1]['consecutive_ready_reads'], 2)
+        self.assertTrue(all(0 < timeout <= 10 for _, timeout in self.calls))
+        self.assertEqual(final['observations'][0]['snapshot'], '02-race-readiness-000-session.cfg')
+
+    def test_another_fresh_identity_change_cannot_satisfy_stable_readiness(self):
+        fresh = {**state(result_id='fresh'), 'elapsed': 5.0}
+        other = {**fresh, 'result_id': 'different-new-race'}
+        with self.assertRaisesRegex(RuntimeError, 'changed again'):
+            self.poll([fresh, other])
+        self.assertEqual(self.records[-1]['status'], 'FAIL')
+
+    def test_runtime_cannot_revert_to_the_prior_saved_race_after_new_identity_seen(self):
+        fresh = {**state(result_id='fresh'), 'countdown': 3.5}
+        with self.assertRaisesRegex(RuntimeError, 'reverted'):
+            self.poll([fresh, state(result_id='old')])
+        self.assertEqual(self.records[-1]['status'], 'FAIL')
+
+    def test_stale_save_wait_is_bounded_and_does_not_manufacture_new_state(self):
+        with self.assertRaises(TimeoutError):
+            self.poll([state(result_id='old')] * 6)
+        self.assertEqual(self.now, 10)
+        self.assertEqual(len(self.calls), 5)
+        self.assertEqual(self.records[-1]['status'], 'FAIL')
+        self.assertNotIn('fresh_result_id', self.records[-1])
+
+    def test_actual_read_failure_is_retained_and_never_treated_as_pending_readiness(self):
+        def read(*args, **kwargs):
+            raise RuntimeError('actual CFG read failed: permission denied')
+
+        with self.assertRaisesRegex(RuntimeError, 'permission denied'):
+            PROBE.wait_fresh_race(read, 'old', self.record, clock=lambda: self.now, sleep=self.sleep)
+        self.assertEqual(self.records[-1]['status'], 'FAIL')
+        self.assertIn('permission denied', self.records[-1]['error'])
+
+    def test_late_command_result_cannot_pass_after_the_readiness_deadline(self):
+        def read(*args, **kwargs):
+            self.now = 11
+            return {**state(result_id='fresh'), 'elapsed': 5.0}
+
+        with self.assertRaises(TimeoutError):
+            PROBE.wait_fresh_race(read, 'old', self.record, timeout=10,
+                                 clock=lambda: self.now, sleep=self.sleep)
+        self.assertEqual(self.records[-1]['status'], 'FAIL')
+
+
 class NaturalKartCompletionTests(unittest.TestCase):
     def test_requires_both_genuinely_in_progress_laps_and_complete_native_result(self):
         final = state(16, finished=True)

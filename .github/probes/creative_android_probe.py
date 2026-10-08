@@ -15,6 +15,7 @@ import json
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 import time
 import traceback
@@ -31,6 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts' / 'probes
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools' / 'android_qa'))
 from rooted_emulator import ensure_rooted_emulator
 from native_ocr_tiles import read_tiled_word
+from native_surface_readiness import inspect_surface, target_observation
 import pr207_android_smoke as base
 import pr207_android_ui_probe as live
 
@@ -55,8 +57,32 @@ def normalized(value: str) -> str:
     return re.sub('[^a-z0-9]', '', plain.lower())
 
 
-def capture(out: Path, name: str) -> dict:
-    result = base.capture(out, name)
+def capture(out: Path, name: str, timeout: float | None = None) -> dict:
+    if timeout is None:
+        result = base.capture(out, name)
+    else:
+        # Reuse the existing complete-PNG check, but constrain each actual ADB
+        # transfer and incomplete-transfer retry to the caller's total budget.
+        deadline = time.monotonic() + timeout
+        for attempt in range(4):
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError('Current native screenshot capture deadline exceeded')
+            data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],
+                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                  timeout=min(45, remaining), check=True).stdout
+            if time.monotonic() >= deadline:
+                raise TimeoutError('Current native screenshot capture deadline exceeded')
+            if base.png_complete(data):
+                width, height = base.png_size(data)
+                path = out / (name + '.png')
+                path.write_bytes(data)
+                result = dict(file=path.name, width=width, height=height,
+                              sha256=hashlib.sha256(data).hexdigest())
+                break
+            time.sleep(min(1, max(0, deadline - time.monotonic())))
+        else:
+            raise RuntimeError('screencap stayed incomplete after 4 transfers')
     print('[AndroidCapture]', result['file'], flush=True)
     return result
 
@@ -190,7 +216,9 @@ def flutter_tap(out: Path, label: str, tag: str) -> None:
     raise RuntimeError('No enabled live Flutter control: '+label)
 
 
-def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None = None) -> list[dict]:
+def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None = None,
+                timeout: float = 225, exact: bool = False) -> list[dict]:
+    deadline = time.monotonic() + timeout
     if source_path is None:
         snapshot = capture(out, tag)
         source = out / snapshot['file']
@@ -217,11 +245,14 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     variants = [('contrast',contrast,'deu+eng'),('raw',image,'deu+eng'),
                 ('white-text',white_text,'deu+eng'),('white-latin',white_text,'eng')]
     for variant, pixels, language in variants:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError('Current native screenshot OCR deadline exceeded')
         expanded = out / 'ocr-work.png'
         pixels.resize((image.width*2,image.height*2)).save(expanded)
         prefix = out / (tag+'-ocr-'+variant)
         base.command('tesseract',str(expanded),str(prefix),'--psm','11',
-                     '-l',language,'tsv',timeout=45)
+                     '-l',language,'tsv',timeout=min(45, remaining))
         groups: dict[tuple,list[dict]] = {}
         with prefix.with_suffix('.tsv').open() as stream:
             for word in csv.DictReader(stream,delimiter='\t'):
@@ -247,42 +278,107 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
                 y1=max(int(word['top'])+int(word['height']) for word in span)/2
                 result.append({'text':' '.join(word['text'] for word in span),
                                'bounds':[x0,y0,x1,y1],'variant':variant})
-        if wanted and any(wanted in normalized(line['text']) for line in result):
+        if wanted and any(wanted == normalized(line['text']) if exact
+                          else wanted in normalized(line['text']) for line in result):
             break
-    if wanted and not any(wanted in normalized(line['text']) for line in result):
+    if wanted and not any(wanted == normalized(line['text']) if exact
+                          else wanted in normalized(line['text']) for line in result):
         # The API 36 cover frame has a visible empty ITEM caption which all four
         # whole-frame variants miss among adjacent 3D edges. Read the same full
         # screenshot through systematic overlapping tiles, retaining actual
         # word bounds; never guess a button region or manufacture a label.
-        result.extend(read_tiled_word(source, out, tag, wanted, normalized, base.command))
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError('Current native screenshot OCR deadline exceeded')
+        result.extend(read_tiled_word(source, out, tag, wanted, normalized, base.command,
+                                     timeout=min(45, remaining)))
     (out/(tag+'-ocr.json')).write_text(json.dumps(result,indent=2,ensure_ascii=False))
     return result
 
 
-def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool = False) -> None:
+def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
+               exact: bool = False) -> None:
+    """Wait for current full-surface evidence and two observed targets, then press once."""
     wanted = normalized(label)
+    anchors = {'rucksack': 'right-toolbar', 'neuespuzzlebeginnen': 'center-panel',
+               'gespeichertespuzzlefortsetzen': 'center-panel'}
+    started = time.monotonic()
+    deadline = started + timeout
+    evidence = {'status': 'WAITING', 'label': label, 'timeout_seconds': timeout,
+                'exact_caption_required': exact,
+                'scope': 'Observed touch prerequisites; post-action assertions still required',
+                'frames': []}
+    journal = out / (tag + '-surface-readiness.json')
     previous = None
-    for attempt in range(10):
-        lines = image_lines(out, f'{tag}-{attempt}', wanted)
-        matches = [line for line in lines if wanted in normalized(line['text'])]
-        if matches:
-            selected = min(matches, key=lambda line: len(line['text']))
-            bounds = selected['bounds']
-            if tap and settle and (previous is None or max(abs(a-b) for a,b in zip(bounds,previous)) > 12):
-                # During the native portrait/landscape switch the engine first draws a
-                # square layout. A button found there moves a moment later (Treasure
-                # 'Rucksack' stayed closed, run 37758657815): tap only when two frames agree.
-                previous = bounds
-                time.sleep(1.5)
+    attempt = 0
+    try:
+        while time.monotonic() < deadline:
+            name = f'{tag}-{attempt}'
+            attempt += 1
+            snapshot = capture(out, name, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = inspect_surface(source)
+            frame['captured_after_seconds'] = round(time.monotonic() - started, 6)
+            evidence['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous = None
+                time.sleep(min(1.5, max(0, deadline - time.monotonic())))
                 continue
-            if tap:
-                x0,y0,x1,y1 = bounds
-                x, y = str(round((x0+x1)/2)), str(round((y0+y1)/2))
-                # A real ~120 ms finger press like flutter_tap: a zero-duration
-                # ADB tap can fall between two busy software-rendered engine
-                # frames (Treasure 'Rucksack' stayed closed, run 37728085923).
-                base.adb('shell','input','swipe',x,y,x,y,'120')
-                time.sleep(1.5)
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                break
+            lines = image_lines(out, name, wanted, source_path=source, timeout=remaining,
+                                exact=exact)
+            matches = [line for line in lines
+                       if (wanted == normalized(line['text']) if exact
+                           else wanted in normalized(line['text']))]
+            if not matches:
+                frame['reasons'].append('actual requested caption not observed')
+                previous = None
+            else:
+                selected = min(matches, key=lambda line: len(line['text']))
+                observed = target_observation(frame, selected['bounds'], previous,
+                                               anchor=anchors.get(wanted, ''))
+                frame['target'] = observed
+                previous = observed
+                if observed['stable_observed_target']:
+                    if digest(source) != frame['source_sha256']:
+                        raise RuntimeError('Current native screenshot changed during target observation')
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        break
+                    x0, y0, x1, y1 = observed['bounds']
+                    x, y = str(round((x0+x1)/2)), str(round((y0+y1)/2))
+                    evidence['final_observed_bounds'] = observed['bounds']
+                    evidence['touch'] = [int(x), int(y)]
+                    base.adb('shell', 'input', 'swipe', x, y, x, y, '120',
+                             timeout=min(15, remaining))
+                    evidence['status'] = 'TOUCH_SENT'
+                    time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                    return
+            time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+        raise TimeoutError('Current native surface/target did not settle before touch: ' + label)
+    except Exception as error:
+        evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        evidence['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + '\n')
+
+
+def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool = False,
+                exact: bool = False) -> None:
+    # All native presses need this guard, including Puzzle's previously
+    # settle=False first start. Keep the existing keyword for callers.
+    if tap:
+        return native_tap(out, label, tag, exact=exact)
+    wanted = normalized(label)
+    for attempt in range(10):
+        lines = image_lines(out, f'{tag}-{attempt}', wanted, exact=exact)
+        matches = [line for line in lines
+                   if (wanted == normalized(line['text']) if exact
+                       else wanted in normalized(line['text']))]
+        if matches:
             return
         time.sleep(2)
     raise RuntimeError('Current native screenshot lacks '+label)
@@ -587,6 +683,12 @@ def main() -> int:
         if 'puzzle' in selected:
             enter(out,'Puzzle-Atelier','LUMOS PUZZLE','05_puzzle')
             native_text(out,'Neues Puzzle beginnen','puzzle-start',tap=True)
+            # The selection screen also has an Ein Tipp toolbar. Observe the
+            # real started model before pressing it; a missed start must fail.
+            native_text(out,'0 / 12 Teile · 0 Tipps','puzzle-started-state')
+            started_puzzle = next(iter(saves(out,'puzzle','puzzle-started').values()))
+            if started_puzzle.get('count') != 12 or len(started_puzzle.get('pieces', [])) != 12:
+                raise RuntimeError('Actual puzzle start did not create and save 12 pieces')
             native_text(out,'Ein Tipp','puzzle-hint',tap=True)
             capture(out,'06_puzzle_playing')
             leave(out,'puzzle-exit')
