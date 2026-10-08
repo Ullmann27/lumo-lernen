@@ -531,10 +531,6 @@ def main() -> int:
                 'scope': 'actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED'}
 
     try:
-        serial = base.adb('get-serialno').strip()
-        if not re.fullmatch(r'emulator-\d+', serial):
-            raise RuntimeError('This probe requires a disposable Android emulator, not a physical device')
-        result['serial'] = serial
         expected_source = os.environ['LUMO_EXPECT_SOURCE']
         expected_godot = os.environ['LUMO_EXPECT_GODOT']
         expected_version = int(os.environ['LUMO_EXPECT_VERSION'])
@@ -548,6 +544,9 @@ def main() -> int:
             raise RuntimeError('Exact candidate provenance mismatch')
         result.update(source=expected_source, godot=expected_godot, apk_sha256=candidate_digest,
                       harness=base.command('git', 'rev-parse', 'HEAD'))
+        result['emulator_root_readiness'] = creative.ensure_rooted_emulator(
+            base.adb, out, previous_readiness=out.parent / 'rooted-emulator.json')
+        result['serial'] = result['emulator_root_readiness']['serial']
         apk_paths = base.adb('shell', 'pm', 'path', package).splitlines()
         apk_bases = [row.removeprefix('package:') for row in apk_paths if row.endswith('/base.apk')]
         if len(apk_bases) != 1:
@@ -557,7 +556,6 @@ def main() -> int:
         if installed != candidate_digest or installed_size != args.candidate.stat().st_size:
             raise RuntimeError('Installed bytes differ from the exact candidate APK')
         result['installed_apk'] = {'sha256': installed, 'bytes': installed_size, 'matches_candidate': True}
-        result['emulator_root_readiness'] = creative.ensure_rooted_emulator(base.adb, out)
         result['android_sdk'] = int(base.adb('shell', 'getprop', 'ro.build.version.sdk'))
         expected_sdk = os.environ.get('LUMO_EXPECT_ANDROID_API')
         if expected_sdk and result['android_sdk'] != int(expected_sdk):
