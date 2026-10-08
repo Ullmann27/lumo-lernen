@@ -49,19 +49,28 @@ class IqProgressHeader extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          'Rätsel ${index + 1} von $total',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: iqText(16, weight: FontWeight.w900, shadows: iqScrim),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Rätsel ${index + 1} von $total',
+                            maxLines: 1,
+                            style: iqText(16, weight: FontWeight.w900, shadows: iqScrim),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Text(
-                        'Bereich $areaNumber von ${IqArea.values.length}',
-                        maxLines: 1,
-                        style: iqText(12.5,
-                            color: const Color(0xFFDCE8F8), shadows: iqScrim),
+                      Flexible(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            'Bereich $areaNumber von ${IqArea.values.length}',
+                            maxLines: 1,
+                            style: iqText(12.5,
+                                color: const Color(0xFFDCE8F8), shadows: iqScrim),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -174,6 +183,118 @@ class _IqPuzzleViewState extends State<IqPuzzleView> {
         ],
       );
 
+  /// Chip und Frage in einer Zeile (für niedrige Bildschirme im Querformat).
+  Widget _inlineIntro() => Padding(
+        padding: const EdgeInsets.fromLTRB(20, 2, 20, 6),
+        child: Row(
+          children: [
+            IqChip(
+              label: _puzzle.area.title,
+              icon: iqAreaStyle(_puzzle.area).icon,
+              color: iqAreaStyle(_puzzle.area).color,
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Semantics(
+                header: true,
+                child: Text(
+                  _puzzle.question,
+                  style: iqText(20,
+                      weight: FontWeight.w900, height: 1.15, shadows: iqScrim),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+  /// Querformat auf dem Telefon: Frage oben in einer Zeile, darunter Rätsel
+  /// und Antworten nebeneinander – ohne Scrollen.
+  Widget _shortBody() {
+    final puzzle = _puzzle;
+    const pad = EdgeInsets.fromLTRB(20, 0, 20, 6);
+    final Widget content;
+    if (puzzle is IqMemoryPuzzle) {
+      content = IqMemoryPlay(
+        puzzle: puzzle,
+        onChanged: (taps) => setState(() => _taps = taps),
+        onInputStart: () => _clock
+          ..reset()
+          ..start(),
+        layout: (context, parts) => Row(
+          children: [
+            Expanded(
+              flex: 4,
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      parts.status,
+                      const SizedBox(height: 10),
+                      parts.controls,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              flex: 5,
+              child: Center(child: AspectRatio(aspectRatio: 1, child: parts.grid)),
+            ),
+          ],
+        ),
+      );
+    } else {
+      final choice = puzzle as IqChoicePuzzle;
+      final hasBoard = _board(140, 200, wide: true) != null;
+      content = hasBoard
+          ? Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: LayoutBuilder(
+                    builder: (context, c) => SingleChildScrollView(
+                      child: _board(140, c.maxHeight, wide: true, snug: true),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  flex: 5,
+                  child: SingleChildScrollView(
+                    child: _options(
+                      choice,
+                      190,
+                      // Flache Karten, damit zwei Reihen ohne Scrollen passen.
+                      aspect: choice is IqNumberPuzzle
+                          ? null
+                          : (choice.optionCount <= 4 ? 1.0 : 1.5),
+                      minItem: 90,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : SingleChildScrollView(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 860),
+                  child: _options(choice, 170, minItem: 90),
+                ),
+              ),
+            );
+    }
+    return Column(
+      children: [
+        _inlineIntro(),
+        Expanded(child: Padding(padding: pad, child: content)),
+      ],
+    );
+  }
+
   Widget _narrowBody(BoxConstraints body) {
     final roomy = body.maxWidth >= 600;
     final puzzle = _puzzle;
@@ -206,7 +327,7 @@ class _IqPuzzleViewState extends State<IqPuzzleView> {
   Widget _wideBody(BoxConstraints body) {
     final puzzle = _puzzle;
     final height = body.maxHeight;
-    final short = height < 330;
+    if (height < 330) return _shortBody();
     const pad = EdgeInsets.fromLTRB(20, 6, 20, 8);
     // Der Inhalt sitzt etwas über der Mitte, damit unten nicht alles leer ist.
     Widget placed(Widget child) => SingleChildScrollView(
@@ -258,7 +379,7 @@ class _IqPuzzleViewState extends State<IqPuzzleView> {
     }
     final choice = puzzle as IqChoicePuzzle;
     final boardHeight = math.max(170.0, height - 112);
-    final board = _board(140, boardHeight, wide: true, snug: short);
+    final board = _board(140, boardHeight, wide: true);
     if (board == null) {
       return placed(
         Center(
@@ -269,7 +390,7 @@ class _IqPuzzleViewState extends State<IqPuzzleView> {
               children: [
                 _intro(),
                 const SizedBox(height: 14),
-                _options(choice, 170, minItem: short ? 90 : 110),
+                _options(choice, 170),
               ],
             ),
           ),
@@ -296,7 +417,6 @@ class _IqPuzzleViewState extends State<IqPuzzleView> {
               choice,
               190,
               aspect: 1.1,
-              minItem: short ? 90 : 110,
             ),
           ),
         ],
@@ -333,27 +453,31 @@ class _IqPuzzleViewState extends State<IqPuzzleView> {
       case IqSeriesPuzzle p:
         return IqPanel(
           strong: true,
+          padding: EdgeInsets.all(snug ? 8 : 16),
           accent: iqAreaStyle(IqArea.series).color,
           child: IqSeriesBoard(
             puzzle: p,
             preview: iqSelectedFigure(p, _choice),
             previewId: _choice,
-            maxTile: maxTile * .9,
+            maxTile: snug ? 54 : maxTile * .9,
           ),
         );
       case IqNumberPuzzle p:
         return IqPanel(
           strong: true,
+          padding: EdgeInsets.all(snug ? 8 : 16),
           accent: iqAreaStyle(IqArea.numbers).color,
           child: IqNumberBoard(
             puzzle: p,
             fill: _choice == null ? null : p.options[_choice!],
+            maxBubble: snug ? 50 : 66,
           ),
         );
       case IqRotationPuzzle p:
         return IqRotationBoard(
           puzzle: p,
-          maxSide: math.max(120, math.min(wide ? 300 : 230, maxHeight / .82)),
+          maxSide: math.max(
+              snug ? 110 : 120, math.min(wide ? 300 : 230, maxHeight / .82)),
         );
       case IqOddOnePuzzle _:
       case IqMemoryPuzzle _:

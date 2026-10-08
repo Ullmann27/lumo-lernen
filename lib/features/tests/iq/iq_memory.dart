@@ -332,7 +332,7 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
             ),
           ),
           SizedBox(
-            width: 168,
+            width: 188,
             child: IqPrimaryButton(
               key: const ValueKey('iq-undo'),
               label: 'Rückgängig',
