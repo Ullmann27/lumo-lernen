@@ -93,6 +93,7 @@ jobs:
         run: |
           set -euo pipefail
           bash scripts/install_godot_for_build.sh
+          export PATH="$RUNNER_TEMP/lumo-godot-engine-4.6.3:$PATH"
           godot --version | tee ../rebuild-proof/godot-version.txt
       - name: Build and verify immutable APK1902 from the clean checkout
         working-directory: candidate-source
