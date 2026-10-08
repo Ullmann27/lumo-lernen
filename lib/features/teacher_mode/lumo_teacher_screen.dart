@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
-import '../../app/app_theme.dart';
 import '../../app/lumo_companion_host.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_brain.dart';

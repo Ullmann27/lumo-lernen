@@ -14,7 +14,6 @@ import '../../core/lumo_error_log.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/settings_repository.dart';
-import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';

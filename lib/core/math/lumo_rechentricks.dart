@@ -6,7 +6,6 @@
 /// einen Catchphrase. Wird im Lernmodus bei schwierigen Aufgaben
 /// oder bei mehreren Fehlversuchen eingeblendet.
 
-import 'dart:math' as math;
 
 enum RechentricksKind {
   /// Emma (K1): "Ich tausche die Zahlen!"

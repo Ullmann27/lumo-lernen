@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 import '../../core/lumo_cosmos.dart';
 import '../../theme/lumo_design_tokens.dart';
-import '../../widgets/premium/lumo_premium_card.dart';
 
 class LumoCosmosScreen extends StatefulWidget {
   const LumoCosmosScreen({super.key});
