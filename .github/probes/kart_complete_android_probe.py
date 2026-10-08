@@ -234,21 +234,45 @@ def scroll_observation(lines: list[dict], direction: str, context: str) -> dict:
                 or not 0 <= bounds[1] < bounds[3]):
             raise RuntimeError('Invalid observed modal caption bounds')
         # OCR variants may describe the same caption with subpixel differences.
-        if any(old['caption'] == caption and max(abs(a-b) for a, b in zip(
-                bounds, old['bounds'])) <= 4 for old in observed):
+        reading = {'text': row['text'], 'variant': row.get('variant'), 'bounds': list(bounds)}
+        same = next((old for old in observed if old['caption'] == caption and
+                     max(abs(a-b) for a, b in zip(bounds, old['bounds'])) <= 4), None)
+        if same is not None:
+            same['ocr_readings'].append(reading)
             continue
-        observed.append({'caption': caption, 'bounds': list(bounds)})
+        observed.append({'caption': caption, 'bounds': list(bounds), 'ocr_readings': [reading]})
     rows = [row for row in observed
             if any(row['caption'].startswith(prefix) for prefix in prefixes)]
     footer = []
+    footer_ocr_evidence = []
     if context == 'pause':
         # Source: PauseNavigation is outside modal_scroll and remains visible
         # while the settings scroll. Its two actual captions bound the content.
         for caption in ('zurspieleauswahl', 'zumlernen'):
             matches = [row for row in observed if row['caption'] == caption]
+            discarded = []
+            if len(matches) > 1:
+                # API36 actual raw OCR absorbed the footer's curved outline.
+                # Accept its contained caption only when independent variants
+                # agree on one tighter box. Separate duplicates remain fatal.
+                known = {'contrast', 'raw', 'white-text', 'white-latin'}
+                corroborated = [row for row in matches if len({reading['variant']
+                    for reading in row['ocr_readings'] if reading['variant'] in known}) >= 2]
+                if len(corroborated) == 1:
+                    selected = corroborated[0]
+                    tight = selected['bounds']
+                    discarded = [row for row in matches if row is not selected]
+                    if len(discarded) == 1 and all(len(row['ocr_readings']) == 1 and
+                           row['ocr_readings'][0]['variant'] == 'raw' and
+                           row['bounds'][0] <= tight[0] and row['bounds'][1] <= tight[1] and
+                           row['bounds'][2] >= tight[2] and row['bounds'][3] >= tight[3]
+                           for row in discarded):
+                        matches = [selected]
             if len(matches) != 1:
                 raise RuntimeError('No observed central modal captions: missing or ambiguous pause footer')
             footer.append(matches[0]['bounds'])
+            footer_ocr_evidence.append({'caption': caption, 'selected': matches[0],
+                                       'contained_raw_overreads': discarded})
         left, right = footer
         if (left[2] >= right[0] or max(left[1], right[1]) >= min(left[3], right[3])):
             raise RuntimeError('Observed pause footer does not form one ordered navigation row')
@@ -271,7 +295,8 @@ def scroll_observation(lines: list[dict], direction: str, context: str) -> dict:
                                min(row['bounds'][1] for row in rows),
                                max(row['bounds'][2] for row in rows),
                                max(row['bounds'][3] for row in rows)],
-            'footer_bounds': footer, 'selected_captions': rows}
+            'footer_bounds': footer, 'footer_ocr_evidence': footer_ocr_evidence,
+            'selected_captions': rows}
 
 
 def observed_scroll(lines: list[dict], direction: str, context: str) -> list[int]:
@@ -545,7 +570,12 @@ def main() -> int:
         result.update(source=expected_source, godot=expected_godot, apk_sha256=candidate_digest,
                       harness=base.command('git', 'rev-parse', 'HEAD'))
         result['emulator_root_readiness'] = creative.ensure_rooted_emulator(
-            base.adb, out, previous_readiness=out.parent / 'rooted-emulator.json')
+            base.adb, out, previous_readiness=out.parent / 'rooted-emulator.json',
+            previous_probe=out.parent / 'result.json', expected_identity={
+                'source': expected_source, 'godot': expected_godot,
+                'apk_sha256': candidate_digest,
+                'android_sdk': int(os.environ['LUMO_EXPECT_ANDROID_API']),
+            })
         result['serial'] = result['emulator_root_readiness']['serial']
         apk_paths = base.adb('shell', 'pm', 'path', package).splitlines()
         apk_bases = [row.removeprefix('package:') for row in apk_paths if row.endswith('/base.apk')]

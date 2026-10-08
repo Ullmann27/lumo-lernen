@@ -33,6 +33,8 @@ def observed_initial_offline(error: Exception) -> bool:
 
 def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
                            previous_readiness: Path | None = None,
+                           previous_probe: Path | None = None,
+                           expected_identity: dict | None = None,
                            clock=time.monotonic, sleep=time.sleep) -> dict:
     if not 10 <= timeout <= 120:
         raise ValueError('Root readiness timeout must be between 10 and 120 seconds')
@@ -86,13 +88,12 @@ def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
         state.setdefault('transport_inventories', []).append({'serial': fields[0], 'state': fields[1]})
         save()
 
-    def prior_serial():
-        raw = previous_readiness.read_bytes()
-        retained = out / 'previous-rooted-emulator.json'
+    def retain_previous(path, name, key):
+        raw = path.read_bytes()
+        retained = out / name
         retained.write_bytes(raw)
-        state['previous_readiness'] = {'source_file': str(previous_readiness),
-                                      'retained_file': retained.name, 'bytes': len(raw),
-                                      'sha256': hashlib.sha256(raw).hexdigest()}
+        state[key] = {'source_file': str(path), 'retained_file': retained.name,
+                      'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
         save()
 
         def unique_object(pairs):
@@ -103,16 +104,42 @@ def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
                 value[key] = item
             return value
 
-        previous = json.loads(raw, object_pairs_hook=unique_object)
+        return json.loads(raw, object_pairs_hook=unique_object)
+
+    def prior_serial():
+        previous = retain_previous(previous_readiness, 'previous-rooted-emulator.json',
+                                   'previous_readiness')
         expected = previous.get('serial') if isinstance(previous, dict) else None
         if (not isinstance(expected, str) or not re.fullmatch(r'emulator-\d+', expected) or
                 previous.get('status') != 'PASS' or type(previous.get('shell_uid')) is not int or
                 previous.get('shell_uid') != 0 or previous.get('boot_completed') is not True or
                 previous.get('last_shell_uid') != '0' or previous.get('last_boot_completed') != '1'):
             raise RuntimeError('Previous probe must have verified one emulator with actual UID0 and boot1')
+        if previous_probe is not None:
+            probe = retain_previous(previous_probe, 'previous-creative-result.json', 'previous_probe')
+            if (not isinstance(probe, dict) or probe.get('status') != 'PASS' or
+                    json.dumps(probe.get('emulator_root_readiness'), sort_keys=True) !=
+                    json.dumps(previous, sort_keys=True) or
+                    any(type(probe.get(key)) is not type(value) or probe.get(key) != value
+                        for key, value in expected_identity.items())):
+                raise RuntimeError('Previous successful Creative probe identity/provenance differs from this candidate')
+            state['expected_identity'] = dict(expected_identity)
         return expected
 
     try:
+        if (previous_probe is None) != (expected_identity is None):
+            raise RuntimeError('Previous Creative probe and expected identity must be supplied together')
+        if previous_probe is not None:
+            if (previous_readiness is None or not isinstance(expected_identity, dict) or
+                    set(expected_identity) != {'source', 'godot', 'apk_sha256', 'android_sdk'} or
+                    any(not isinstance(expected_identity[key], str) or
+                        not re.fullmatch(r'[0-9a-f]{40}', expected_identity[key])
+                        for key in ('source', 'godot')) or
+                    not isinstance(expected_identity['apk_sha256'], str) or
+                    not re.fullmatch(r'[0-9a-f]{64}', expected_identity['apk_sha256']) or
+                    type(expected_identity['android_sdk']) is not int or
+                    expected_identity['android_sdk'] < 24):
+                raise RuntimeError('Exact candidate source, Godot pin, APK digest and Android API are required')
         expected = prior_serial() if previous_readiness is not None else None
         try:
             serial = run('get-serialno')
@@ -130,6 +157,8 @@ def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
             raise RuntimeError('Required root setup is restricted to a disposable emulator')
         if expected is not None and serial != expected:
             raise RuntimeError('Initial emulator serial differs from the previously verified probe')
+        if previous_probe is not None and not state['initial_offline_recovered']:
+            only_expected_transport(expected, ready=True)
         state['serial'] = serial
         try:
             root_output = run('root')
@@ -150,6 +179,12 @@ def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
                 raise RuntimeError('Malformed actual root UID or boot-completed response')
             state.update(last_shell_uid=uid, last_boot_completed=boot)
             if uid == '0' and boot == '1':
+                if previous_probe is not None:
+                    sdk = run('shell', 'getprop', 'ro.build.version.sdk')
+                    if not sdk.isdigit() or int(sdk) != expected_identity['android_sdk']:
+                        raise RuntimeError('Actual Android API differs from the previous verified Creative probe')
+                    only_expected_transport(expected, ready=True)
+                    state['android_sdk'] = int(sdk)
                 state.update(status='PASS', shell_uid=0, boot_completed=True,
                              elapsed_seconds=round(clock() - began, 3))
                 return state

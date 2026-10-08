@@ -1,4 +1,5 @@
 """Guard full-race evidence against stale saves and falsely completed rewards."""
+import copy
 import importlib.util
 import json
 from pathlib import Path
@@ -375,6 +376,131 @@ class ModalScrollReadinessTests(unittest.TestCase):
         changed = {**self.observation(), 'gesture': [1706, 878, 1706, 270]}
         with self.assertRaisesRegex(RuntimeError, 'leaves the visible modal content'):
             PROBE.stable_scroll_observation(self.frame(), changed)
+
+
+class CorroboratedPauseFooterOcrTests(unittest.TestCase):
+    """Replay saved actual OCR and keep genuinely ambiguous positions fatal."""
+    def setUp(self):
+        fixture = Path(__file__).with_name('fixtures') / 'kart-modal-footer-api36-37833445834.json'
+        self.fixture = json.loads(fixture.read_text())
+        self.rows = copy.deepcopy(self.fixture['frames'][1]['ocr_rows'])
+
+    def observation(self, rows=None):
+        return PROBE.scroll_observation(self.rows if rows is None else rows, 'up', 'pause')
+
+    def raw_overread(self, rows):
+        return next(row for row in rows if row['text'] == 'Zur Spieleauswahl } (')
+
+    def test_fixture_records_original_android_artifact_and_both_frame_hashes(self):
+        self.assertEqual(self.fixture['run_id'], 37833445834)
+        self.assertEqual(self.fixture['job_id'], 113515871897)
+        self.assertEqual(self.fixture['artifact_id'], 11576563808)
+        self.assertEqual(self.fixture['artifact_sha256'],
+                         'a6cbaaab3eb34268d33cf2ca2a2924c6777376d335cd1b9c72f6905ef7503b63')
+        self.assertEqual([frame['source_png_sha256'] for frame in self.fixture['frames']], [
+            '614fb046536914e2b98579b061ea455c48a3cc52300972978d75121bc072048e',
+            '3a8c6a0c7299e58378390a160414fa653d4047bd1cf0248eee38735286f6c392'])
+        self.assertEqual([frame['source_ocr_sha256'] for frame in self.fixture['frames']], [
+            '2be81f7fb023aa024b195eaac1bbee9e0fccf968e8332480047399c8f930b0c4',
+            'b109c767c9ce30bd12efa574b96da9918b45c1fa13fdb727f10c0bf84d267cce'])
+        self.assertIn('no new Android execution', self.fixture['scope'])
+
+    def test_actual_raw_outline_overread_uses_corroborated_unchanged_footer_bounds(self):
+        result = self.observation()
+        self.assertEqual(result['footer_bounds'], [[687, 676, 841, 692], [1027, 676, 1124, 689]])
+        self.assertEqual(result['gesture'], [914, 325, 914, 586])
+        left = result['footer_ocr_evidence'][0]
+        self.assertEqual({reading['variant'] for reading in left['selected']['ocr_readings']},
+                         {'contrast', 'white-text', 'white-latin'})
+        self.assertEqual(left['contained_raw_overreads'][0]['ocr_readings'][0], self.raw_overread(self.rows))
+
+    def test_both_actual_saved_frames_keep_two_stable_full_surface_gate(self):
+        previous = None
+        for index, frame in enumerate(self.fixture['frames']):
+            observed = PROBE.scroll_observation(frame['ocr_rows'], 'up', 'pause')
+            # Offline replay of recorded surface dimensions; no ADB input occurs.
+            surface = {'pixels': frame['pixels'], 'source_sha256': frame['source_png_sha256'],
+                       'acceptable_for_target_sampling': True}
+            previous = PROBE.stable_scroll_observation(surface, observed, previous)
+            self.assertIs(previous['stable'], index == 1)
+        self.assertTrue(previous['valid'])
+
+    def test_missing_corroboration_cannot_discard_a_conflicting_raw_box(self):
+        rows = [row for row in self.rows if not (row['text'] == 'Zur Spieleauswahl' and
+                                                 row['variant'] in ('white-text', 'white-latin'))]
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(rows)
+
+    def test_repeating_one_variant_does_not_manufacture_independent_corroboration(self):
+        rows = copy.deepcopy(self.rows)
+        for row in rows:
+            if row['text'] == 'Zur Spieleauswahl':
+                row['variant'] = 'contrast'
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(rows)
+
+    def test_unknown_variant_names_cannot_supply_corroboration(self):
+        rows = copy.deepcopy(self.rows)
+        for row in rows:
+            if row['text'] == 'Zur Spieleauswahl' and row['variant'] != 'contrast':
+                row['variant'] = 'unverified-reader'
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(rows)
+
+    def test_spatially_separate_raw_duplicate_remains_fatal_despite_other_consensus(self):
+        rows = copy.deepcopy(self.rows)
+        self.raw_overread(rows)['bounds'] = [100, 800, 300, 830]
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(rows)
+
+    def test_partly_overlapping_raw_box_cannot_override_the_confirmed_caption(self):
+        rows = copy.deepcopy(self.rows)
+        self.raw_overread(rows)['bounds'] = [686, 648.5, 820, 718.5]
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(rows)
+
+    def test_multiple_nested_raw_overreads_remain_ambiguous(self):
+        extra = copy.deepcopy(self.raw_overread(self.rows))
+        extra['bounds'] = [680, 640, 952, 730]
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(self.rows + [extra])
+
+    def test_even_three_pixel_clipping_cannot_count_as_full_containment(self):
+        for bounds in ([690, 648.5, 944, 718.5], [686, 679, 944, 718.5],
+                       [686, 648.5, 838, 718.5], [686, 648.5, 944, 689]):
+            rows = copy.deepcopy(self.rows)
+            self.raw_overread(rows)['bounds'] = bounds
+            with self.subTest(bounds=bounds), self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+                self.observation(rows)
+
+    def test_two_independently_corroborated_boxes_cannot_be_resolved_by_a_majority(self):
+        rows = copy.deepcopy(self.rows)
+        extra = copy.deepcopy(self.raw_overread(rows))
+        extra['variant'] = 'contrast'
+        rows.append(extra)
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(rows)
+
+    def test_non_raw_expanded_box_remains_ambiguous(self):
+        rows = copy.deepcopy(self.rows)
+        self.raw_overread(rows)['variant'] = 'white-text'
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(rows)
+
+    def test_a_new_distinct_duplicate_is_not_hidden_by_a_contained_overread(self):
+        rows = self.rows + [{'text': 'Zur Spieleauswahl', 'bounds': [50, 100, 250, 120], 'variant': 'raw'}]
+        with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+            self.observation(rows)
+
+    def test_same_geometry_still_rejects_partial_second_surface(self):
+        observation = self.observation()
+        complete = {'pixels': [1920, 1080], 'source_sha256': 'first',
+                    'acceptable_for_target_sampling': True}
+        first = PROBE.stable_scroll_observation(complete, observation)
+        second = PROBE.stable_scroll_observation({**complete, 'acceptable_for_target_sampling': False},
+                                               observation, first)
+        self.assertFalse(second['valid'])
+        self.assertFalse(second['stable'])
 
 
 if __name__ == '__main__':

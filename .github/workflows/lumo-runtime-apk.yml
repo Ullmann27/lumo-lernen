@@ -313,6 +313,7 @@ jobs:
           modal = json.loads(modal_path.read_text())
           modal_captures = sorted(modal_directory.glob('*.png'))
           assert modal['status'] == 'PASS' and all(check['pass'] is True for check in modal['checks'])
+          assert len(modal['checks']) == 37, 'Modal touch proof requires all 35 behaviour checks and both observed Gas-mode preconditions'
           assert len(modal_captures) == 14, 'Modal touch proof requires all fourteen actual rendered frames'
           assert len(modal['captures']) == 14 and set(modal['captures']) == {path.name for path in modal_captures}
           assert len(modal['cases']) == 6, 'Six genuine button-drag cases required'
@@ -324,6 +325,8 @@ jobs:
               'Normal Gas tap changes setting exactly once',
               'Normal Weiterfahren tap resumes exactly once',
               'Normal result action tap opens the garage exactly once',
+              'Observed public Gas mode is manual before race touch ownership',
+              'Observed public Gas mode is automatic before full race',
           }
           assert required_taps <= {check['label'] for check in modal['checks'] if check['pass'] is True}
           assert modal['physical_android_or_fold'] == 'PHYSICAL_ANDROID_NOT_EXECUTED'

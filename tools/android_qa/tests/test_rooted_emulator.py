@@ -367,12 +367,17 @@ class InitialOfflineFullraceIntegrationTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('fullrace_bootstrap_test', path)
         probe = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(probe)
-        device = InitialOfflineDevice()
+        device = InitialOfflineDevice(inventories=[
+            'List of devices attached\nemulator-5554\toffline\n',
+            'List of devices attached\nemulator-5554\tdevice\n',
+            'List of devices attached\nemulator-5554\tdevice\n'])
         calls = []
         stop = 'TEST_STOP_AFTER_VERIFIED_ROOT_BEFORE_INSTALLED_APK_READ'
 
         def adb(*arguments, **kwargs):
             calls.append(arguments)
+            if arguments == ('-s', 'emulator-5554', 'shell', 'getprop', 'ro.build.version.sdk'):
+                return '35'
             if arguments == ('shell', 'pm', 'path', 'test.package'):
                 raise RuntimeError(stop)
             if arguments == ('logcat', '-d'):
@@ -386,9 +391,14 @@ class InitialOfflineFullraceIntegrationTests(unittest.TestCase):
             candidate = root / 'fixture.apk'
             candidate.write_bytes(b'independent readiness unit fixture, not a runtime APK')
             apk_sha = hashlib.sha256(candidate.read_bytes()).hexdigest()
+            source_sha, godot_sha = 'a' * 40, 'b' * 40
+            (root / 'result.json').write_text(json.dumps({
+                'status': 'PASS', 'source': source_sha, 'godot': godot_sha,
+                'apk_sha256': apk_sha, 'android_sdk': 35,
+                'emulator_root_readiness': previous_proof()}) + '\n')
             cert = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
             (root / 'BUILD-PROVENANCE.json').write_text(json.dumps({
-                'flutter_source_commit': 'test-app', 'godot': {'revision': 'test-godot'},
+                'flutter_source_commit': source_sha, 'godot': {'revision': godot_sha},
                 'versionCode': 1903, 'sha256': apk_sha, 'tracked_source_clean': True,
                 'signingCertificateSha256': cert}))
             base = SimpleNamespace(adb=adb, command=lambda *args: 'test-harness')
@@ -396,8 +406,8 @@ class InitialOfflineFullraceIntegrationTests(unittest.TestCase):
                                        digest=lambda path: hashlib.sha256(path.read_bytes()).hexdigest(),
                                        ensure_rooted_emulator=ensure_rooted_emulator,
                                        capture=lambda *args: None)
-            env = {'LUMO_EXPECT_SOURCE': 'test-app', 'LUMO_EXPECT_GODOT': 'test-godot',
-                   'LUMO_EXPECT_VERSION': '1903'}
+            env = {'LUMO_EXPECT_SOURCE': source_sha, 'LUMO_EXPECT_GODOT': godot_sha,
+                   'LUMO_EXPECT_VERSION': '1903', 'LUMO_EXPECT_ANDROID_API': '35'}
             with patch.object(probe, 'load_creative', return_value=creative), \
                     patch.object(sys, 'argv', ['fullrace', '--candidate', str(candidate), '--out', str(out)]), \
                     patch.dict(probe.os.environ, env), patch.object(probe.signal, 'alarm'), \
@@ -407,7 +417,7 @@ class InitialOfflineFullraceIntegrationTests(unittest.TestCase):
             self.assertEqual(result['error'], stop)
             self.assertEqual(result['emulator_root_readiness']['status'], 'PASS')
             self.assertEqual(result['serial'], 'emulator-5554')
-            self.assertEqual(result['source'], 'test-app')
+            self.assertEqual(result['source'], source_sha)
             self.assertEqual(calls[0], ('get-serialno',))
             first_app_read = calls.index(('shell', 'pm', 'path', 'test.package'))
             self.assertLess(calls.index(('-s', 'emulator-5554', 'shell', 'id', '-u')), first_app_read)
