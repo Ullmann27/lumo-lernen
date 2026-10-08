@@ -127,6 +127,7 @@ def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
 def flutter_tap(out: Path, label: str, tag: str) -> None:
     # Search both ends of the actual responsive scroll view. Named controls are
     # tapped only when their enabled live accessibility bounds have been read.
+    settle_waits = 0
     for direction in (-1, 1):
         for attempt in range(12):
             nodes = live.live_nodes(out, f'{tag}-{direction}-{attempt}')
@@ -142,9 +143,18 @@ def flutter_tap(out: Path, label: str, tag: str) -> None:
                     continue
                 x0, y0, x1, y1 = bounds
                 if x1 > x0 and y1 > y0:
-                    choices.append(((x1-x0)*(y1-y0), x0, y0, x1, y1))
+                    choices.append(((x1-x0)*(y1-y0), x0, y0, x1, y1,
+                                    node.get('clickable') == 'true'))
             if choices:
-                _, x0, y0, x1, y1 = min(choices)
+                area, x0, y0, x1, y1, clickable = min(choices)
+                # Flutter withholds tap actions (clickable=false) while its
+                # scroll view still glides after the probe's own swipe; a tap
+                # then only stops the glide. Recorded twice (Puzzle 37710192252,
+                # Rhythm 37712754996). Wait for the settled, tappable control.
+                if not clickable and settle_waits < 10:
+                    settle_waits += 1
+                    time.sleep(.6)
+                    continue
                 x,y = str((x0+x1)//2),str((y0+y1)//2)
                 # A brief real finger press avoids a zero-duration ADB tap
                 # disappearing between busy software-rendered Flutter frames.

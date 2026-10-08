@@ -50,10 +50,26 @@ def png_size(data: bytes) -> tuple[int, int]:
     return struct.unpack('>II', data[16:24])
 
 
+PNG_END = b'\x00\x00\x00\x00IEND\xaeB`\x82'
+
+
+def png_complete(data: bytes) -> bool:
+    """A screencap transfer cut off by a busy emulator lacks the IEND chunk."""
+    return data.startswith(b'\x89PNG\r\n\x1a\n') and data.endswith(PNG_END)
+
+
 def capture(out: Path, name: str) -> dict[str, Any]:
-    data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],
-                          stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                          timeout=45, check=True).stdout
+    # Retry only an incomplete transfer; every saved file is a complete,
+    # unmodified device screenshot. (Recorded failure: "image file is truncated".)
+    for attempt in range(4):
+        data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                              timeout=45, check=True).stdout
+        if png_complete(data):
+            break
+        time.sleep(1)
+    else:
+        raise RuntimeError('screencap stayed incomplete after 4 transfers')
     width, height = png_size(data)
     path = out / (name + '.png')
     path.write_bytes(data)
