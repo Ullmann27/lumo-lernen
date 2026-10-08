@@ -531,10 +531,6 @@ def main() -> int:
                 'scope': 'actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED'}
 
     try:
-        serial = base.adb('get-serialno').strip()
-        if not re.fullmatch(r'emulator-\d+', serial):
-            raise RuntimeError('This probe requires a disposable Android emulator, not a physical device')
-        result['serial'] = serial
         expected_source = os.environ['LUMO_EXPECT_SOURCE']
         expected_godot = os.environ['LUMO_EXPECT_GODOT']
         expected_version = int(os.environ['LUMO_EXPECT_VERSION'])
@@ -548,6 +544,16 @@ def main() -> int:
             raise RuntimeError('Exact candidate provenance mismatch')
         result.update(source=expected_source, godot=expected_godot, apk_sha256=candidate_digest,
                       harness=base.command('git', 'rev-parse', 'HEAD'))
+        from emulator_handoff import ensure_emulator_handoff
+        previous = json.loads((out.parent / 'result.json').read_text())
+        result['emulator_handoff'] = ensure_emulator_handoff(base.adb, out, previous, {
+            'source': expected_source, 'godot': expected_godot,
+            'apk_sha256': candidate_digest,
+            'android_sdk': int(os.environ['LUMO_EXPECT_ANDROID_API']),
+        })
+        serial = result['emulator_handoff']['serial']
+        result['serial'] = serial
+        os.environ['ANDROID_SERIAL'] = serial
         apk_paths = base.adb('shell', 'pm', 'path', package).splitlines()
         apk_bases = [row.removeprefix('package:') for row in apk_paths if row.endswith('/base.apk')]
         if len(apk_bases) != 1:
