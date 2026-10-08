@@ -285,7 +285,7 @@ jobs:
               'fleet-capture': ('[FleetCapture] PASS:',),
               'harbor-capture': ('[KartHarbor] PASS:',),
           }
-          assert len(markers) == 20
+          assert len(markers) == 21, 'Native proof requires all 21 checks, including the real touch-scroll regression'
           probes = []
           for name, required in markers.items():
               path = Path('exports/fold-controls') / (name + '.log')
