@@ -1,7 +1,7 @@
 name: Lumo race continuity APK and full Android race verification
 on:
   push:
-    branches: [codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08]
+    branches: [codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, codex/lumo-visual-fidelity-2026-10-08]
     paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-runtime-apk.yml, .github/probes/**]
   workflow_dispatch:
 permissions:
@@ -204,7 +204,7 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -euo pipefail
-          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_complete_flow_regression; do
+          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_pause_touch_scroll_regression kart_complete_flow_regression; do
             probe_timeout=420
             probe_marker=PASS
             probe_output=''
@@ -277,6 +277,7 @@ jobs:
               'kart_steering_grip_capture': ('[KartSteeringGripCapture] PASS:',),
               'kart_race_continuity_regression': ('[KartContinuity] PASS:',),
               'kart_countdown_pause_regression': ('[KartCountdownPause] PASS:',),
+              'kart_pause_touch_scroll_regression': ('[PauseTouchScroll] PASS:',),
               'kart_complete_flow_regression': ('[KartCompleteFlow] PASS:',),
               'kart_harbor_regression': ('[KartHarbor] PASS:',),
               'kart_vehicle_regression': ('[KartVehicle] Geometry/colours, shadows, animations, effects, LOD and hysteresis passed',),
@@ -323,6 +324,7 @@ jobs:
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/complete-flow/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/steering-grip/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/countdown-pause/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/touch-scroll/
       - name: Build and verify the unified APK from exact clean source
         run: |
           set -euo pipefail

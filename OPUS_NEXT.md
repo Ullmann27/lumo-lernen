@@ -1,4 +1,10 @@
-# Aktueller integrierter Lumo-Kandidat1903 · 8. Oktober2026
+# Aktuelle Iteration 1904 · 8. Oktober 2026
+
+Zuerst [die neue vollständige Änderungs- und Prüfübersicht](docs/handoffs/LUMO_VISUAL_FIDELITY_1904_2026-10-08.md) lesen. Branch `codex/lumo-visual-fidelity-2026-10-08`, Version 0.12.2+1904. Der integrierte 1903-Stand bleibt Basis; dessen zwei Kartfehler sind weiter FAIL dokumentiert. Die neue CI/Android-Abnahme ist beim Commit noch ausständig. Nachfolgende ältere Übergaben sind historisch und ersetzen keine frischen Heads/Actions-Belege.
+
+---
+
+# Aktueller integrierter Lumo-Kandidat1903 · 8. Oktober 2026
 
 Lies zuerst [die1903-Übergabe](docs/handoffs/LUMO_INTEGRATED_RUNTIME_1903_2026-10-08.md).
 Aktiv sind App-Integrationsbranch/PR216 und Godot-Integrationsbranch/PR29;
