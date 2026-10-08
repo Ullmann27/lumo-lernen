@@ -250,15 +250,24 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     return result
 
 
-def native_text(out: Path, label: str, tag: str, tap: bool = False) -> None:
+def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool = False) -> None:
     wanted = normalized(label)
-    for attempt in range(8):
+    previous = None
+    for attempt in range(10):
         lines = image_lines(out, f'{tag}-{attempt}', wanted)
         matches = [line for line in lines if wanted in normalized(line['text'])]
         if matches:
             selected = min(matches, key=lambda line: len(line['text']))
+            bounds = selected['bounds']
+            if tap and settle and (previous is None or max(abs(a-b) for a,b in zip(bounds,previous)) > 12):
+                # During the native portrait/landscape switch the engine first draws a
+                # square layout. A button found there moves a moment later (Treasure
+                # 'Rucksack' stayed closed, run 37758657815): tap only when two frames agree.
+                previous = bounds
+                time.sleep(1.5)
+                continue
             if tap:
-                x0,y0,x1,y1 = selected['bounds']
+                x0,y0,x1,y1 = bounds
                 x, y = str(round((x0+x1)/2)), str(round((y0+y1)/2))
                 # A real ~120 ms finger press like flutter_tap: a zero-duration
                 # ADB tap can fall between two busy software-rendered engine
@@ -591,7 +600,7 @@ def main() -> int:
 
         if 'treasure' in selected:
             enter(out,'Schatzsuche','LUMOS STERNENSCHATZ','10_treasure')
-            native_text(out,'Rucksack','treasure-inventory',tap=True)
+            native_text(out,'Rucksack','treasure-inventory',tap=True,settle=True)
             native_text(out,'Dein Abenteuer','treasure-inventory-visible')
             capture(out,'11_treasure_inventory')
             native_text(out,'Weiter erkunden','treasure-inventory-close',tap=True)
