@@ -100,7 +100,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   int _safariTotal = 0;
 
   // Photo-Quiz state - nutzt jetzt _extendedPhotoQuestions
-  String? _photoQuizSubject;
   int _photoQuizQuestionIdx = 0;
 
   // Lumo redet
@@ -199,7 +198,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       _safariScore = 0;
       _safariRound = 0;
       _safariTotal = 0;
-      _photoQuizSubject = null;
       _photoQuizQuestionIdx = 0;
       _mood = LumoMirrorMood.curious;
     });
@@ -356,7 +354,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
 
   Future<void> _handlePhotoQuiz() async {
     // Nach jeder Antwort: naechste Frage oder Ende
-    setState(() => _photoQuizSubject = _recognized);
+    setState(() {});
     widget.appState.addStars(1);
     widget.appState.addXp(5);
     CosmosWorld.instance.grantReward(

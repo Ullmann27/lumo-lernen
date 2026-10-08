@@ -893,23 +893,18 @@ class _MicrophonePanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final String headline;
     final String subline;
-    final Color accent;
     if (!enabled) {
       headline = 'Mikrofon ausgeschaltet';
       subline = 'Im Elternbereich kann das Mikrofon eingeschaltet werden.';
-      accent = LumoColors.ink500;
     } else if (listening) {
       headline = 'Ich höre zu …';
       subline = 'Lies den Satz ruhig bis zum Ende. Tippe zum Stoppen.';
-      accent = LumoColors.teal;
     } else if (showNotHeardHint) {
       headline = 'Ich habe dich nicht gut gehört.';
       subline = 'Das war kein Fehler. Drück nochmal auf das Mikrofon, wenn du bereit bist.';
-      accent = LumoColors.purple;
     } else {
       headline = 'Bereit zum Lesen';
       subline = 'Drück auf das Mikrofon, wenn du bereit bist.';
-      accent = LumoColors.orange;
     }
 
     return LumoGlassCard(

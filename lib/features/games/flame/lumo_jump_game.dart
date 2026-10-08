@@ -1088,7 +1088,9 @@ class StarCoinComponent extends SpriteAnimationComponent {
     }
   }
 
+  // Rendert komplett prozedural; die Platzhalter-Animation soll nicht zusätzlich erscheinen.
   @override
+  // ignore: must_call_super
   void render(Canvas canvas) {
     if (collected) return;
     final cx = size.x / 2;

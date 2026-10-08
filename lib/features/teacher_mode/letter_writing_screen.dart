@@ -441,7 +441,6 @@ class _LetterPracticeFullScreenState
         if (i > 0) totalLength += (stroke[i] - stroke[i - 1]).distance;
       }
     }
-    final bboxWidth = maxX - minX;
     final bboxHeight = maxY - minY;
     if (totalLength < 80) {
       _hintTryAgain('Schreib das ${widget.letter} groß und deutlich!');

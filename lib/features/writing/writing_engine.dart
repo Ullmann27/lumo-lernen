@@ -1096,11 +1096,9 @@ class LetterShapeAnalyzer {
     // Gebogene Striche (U, Ü, J …), die wegen ihrer Breite und Höhe als
     // "diagonal" eingeordnet werden, zählen zusätzlich als Bogen.
     int bentCount = 0;
-    double totalLen = 0;
     for (final s in userStrokes) {
       if (s.points.length < 2) continue;
       final b = s.bounds;
-      totalLen += _strokeLength(s);
       if (b.width < 5 && b.height < 5) continue; // Punkt
       if (_isCircleish(s)) {
         circleCount++;

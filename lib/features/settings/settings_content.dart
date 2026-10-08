@@ -56,9 +56,6 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   AppUpdateInfo? _updateInfo;
   bool _checkingUpdate = false;
   String? _updateError;
-  // 2026-06-06: Auto-Install-Status fuer Heinz' Ein-Klick-Update.
-  bool _installing = false;
-  double _installProgress = 0;
 
   // KI-Eltern-Berater: spricht mit Eltern, NICHT mit Kind.
   // Mehr fachlich, mit paedagogischen Vorschlaegen.
@@ -284,21 +281,8 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       // ueber MethodChannel den System-Installer aufrufen. Bei Berechtigungs-
       // fehler oeffnet sich automatisch der Einstellungs-Dialog.
       if (info.available && info.hasUsableDownload) {
-        setState(() {
-          _installing = true;
-          _installProgress = 0;
-        });
-        final result = await service.downloadAndInstall(
-          info,
-          onProgress: (p) {
-            if (!mounted) return;
-            setState(() => _installProgress = p);
-          },
-        );
+        final result = await service.downloadAndInstall(info);
         if (!mounted) return;
-        setState(() {
-          _installing = false;
-        });
         if (result.success) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../app/app_theme.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'lumo_premium_effects.dart';
 
@@ -277,18 +276,5 @@ class _LumoSubjectTileState extends State<LumoSubjectTile> {
           ),
         ),
     );
-  }
-
-  Color _surfaceFromAccent(Color a) {
-    if (a == LumoColors.purple) return const Color(0xFFF5EFFF);
-    if (a == LumoColors.gold || a == LumoColors.goldLight) {
-      return const Color(0xFFFFFBE6);
-    }
-    if (a == LumoColors.teal || a == LumoColors.tealLight) {
-      return const Color(0xFFE8FBF3);
-    }
-    if (a == LumoColors.blue) return const Color(0xFFEDF5FF);
-    if (a == LumoColors.practice) return const Color(0xFFFFF0EE);
-    return const Color(0xFFFFF4E8);
   }
 }

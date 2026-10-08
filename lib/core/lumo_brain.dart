@@ -390,7 +390,7 @@ class LumoBrain {
     ' Magst du das ueben?', ' Cool, was?',
   ];
 
-  String _wrap(String core, {String? imageHint}) {
+  String _wrap(String core) {
     final intro = _intros[_rng.nextInt(_intros.length)];
     final outro = _outros[_rng.nextInt(_outros.length)];
     return _prettifyUmlauts('$intro$core$outro');
