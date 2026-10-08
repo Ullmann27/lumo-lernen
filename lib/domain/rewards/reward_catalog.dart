@@ -288,7 +288,7 @@ abstract class RewardCatalog {
     ),
     RewardItem(
       id: 'papa_ausflug',
-      title: 'Papa-Tochter-Ausflug',
+      title: 'Ausflug mit Papa',
       emoji: '👨‍👧',
       description: 'Ein besonderer Ausflug nur mit Papa – wohin du möchtest!',
       cost: 8000,
@@ -300,7 +300,7 @@ abstract class RewardCatalog {
     ),
     RewardItem(
       id: 'mama_ausflug',
-      title: 'Mama-Tochter-Ausflug',
+      title: 'Ausflug mit Mama',
       emoji: '👩‍👧',
       description: 'Ein besonderer Ausflug nur mit Mama – wohin du möchtest!',
       cost: 8000,
