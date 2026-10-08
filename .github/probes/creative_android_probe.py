@@ -259,8 +259,11 @@ def native_text(out: Path, label: str, tag: str, tap: bool = False) -> None:
             selected = min(matches, key=lambda line: len(line['text']))
             if tap:
                 x0,y0,x1,y1 = selected['bounds']
-                base.adb('shell','input','tap',str(round((x0+x1)/2)),
-                         str(round((y0+y1)/2)))
+                x, y = str(round((x0+x1)/2)), str(round((y0+y1)/2))
+                # A real ~120 ms finger press like flutter_tap: a zero-duration
+                # ADB tap can fall between two busy software-rendered engine
+                # frames (Treasure 'Rucksack' stayed closed, run 37728085923).
+                base.adb('shell','input','swipe',x,y,x,y,'120')
                 time.sleep(1.5)
             return
         time.sleep(2)
