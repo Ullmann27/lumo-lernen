@@ -1,6 +1,6 @@
 # Lumo Android 1904 · aktuelle Entwicklungsiteration
 
-Basis-App: 3e1d0eb3c08cb2472b12f08eeae11bb663af62c0, integriert mit Godot 18238d48f96b76c4175b705a9bf05e82e339bdd0. Neue Änderungen liegen auf `codex/lumo-visual-fidelity-2026-10-08`; Basis-PRs 216/29 bleiben erhalten. Aktueller eingebetteter Godot-Pin: `6068f6a482e4294ab2970314dc3a6e1ce72457dd`. Version 0.12.2+1904.
+Basis-App: 3e1d0eb3c08cb2472b12f08eeae11bb663af62c0, integriert mit Godot 18238d48f96b76c4175b705a9bf05e82e339bdd0. Neue Änderungen liegen auf `codex/lumo-visual-fidelity-2026-10-08`; Basis-PRs 216/29 bleiben erhalten. Aktueller eingebetteter Godot-Pin: `7ded3f51cffc265e790d4f1a4c2e91e6d38407eb`. Version 0.12.2+1904.
 
 Die neue APK übernimmt den tatsächlichen Touch-Scrollfix für die native Pause sowie neue Lumo-Farben/feinere Fellsträhnen, braune Iris, saubere Schwanzspitze, kompakte Hecköffnungen, Cyanfelgen/Leuchten, Hauben-L und Küstengelände-Materialkörnung. Die hohe separate Comet-Heckflügelgeometrie entfällt gemäß Kartreferenz. Keine Änderungen an Konten, Profilen, echten Wallets, Lernlogik oder bestehenden Spielständen.
 
@@ -19,3 +19,5 @@ Der Build-Workflow ist für diesen Branch aktiviert, baut das exakte Commit mit 
 ## Weiterarbeiten
 
 Zuerst einen tatsächlich roten Check beheben. Alle fünf nativen Spiele, Profil-/Wallet-/Update-Erhalt und die aktuelle Lern-App bewahren. Danach weitere Fahrzeug-/Gesichts-/Wangen-/Fell-/Streckengeometrie anhand der zehn Originalreferenzen verbessern; echte Laufzeitbilder und Fahrclips vergleichen. Die prozedurale Figur bleibt visuell noch von der Produktionsreferenz abweichend. Kein fertiges referenzidentisches Rig, physischer Samsung/Fold-Hinge-Test oder 60-FPS-Nachweis liegt vor. Kein Merge nach main und kein Release ohne Heinz.
+
+Der erste native CI-Lauf37828516691 bestand die Touch-/Scroll-Aussagen, meldete beim sofortigen Beenden aber zwei noch vom Audiomixer gehaltene Ogg-Ressourcen. Die Testbereinigung wartet nun0,6Sekunden nach dem Szenenausstieg auf den Audiothread; zwei strikte Wiederholungen ohne Leaks bestanden. Der Fehlerfilter bleibt vollständig aktiviert. Die neuen Scrollbilder und -protokolle werden auch im Stage2-Artefakt gesichert.
