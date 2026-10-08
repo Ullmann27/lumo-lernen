@@ -21,3 +21,6 @@ __pycache__/
 .idea/
 
 *.iml
+
+# Testausgaben von test/lumo_cards_session_visual_test.dart (CI lädt sie als Artefakt hoch)
+/ci-out/
