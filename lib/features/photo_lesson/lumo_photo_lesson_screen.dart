@@ -5,7 +5,7 @@
 // fotografiert die Hausaufgabe aus dem Schul-Heft, OCR liest den Text
 // (lokal mit google_mlkit), ScannedWorkAnalysisEngine erkennt Fach +
 // Thema, dann generiert die App 5 aehnliche Aufgaben zum Ueben mit
-// Step-by-Step-Loesung aus dem MathTaskTemplate-System.
+// Erklaerung aus den vorhandenen fachbezogenen Aufgabenvorlagen.
 //
 // Brueckenkopf von 'echtem Schul-Heft' zu 'in-App-Uebung'. Niemand sonst
 // hat diesen Lehrplan-spezifischen Workflow.
@@ -15,12 +15,13 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
-import '../../core/math_task_templates.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../core/scanned_work_analysis.dart';
 import '../../core/progress_repository.dart';
 import '../../core/lumo_feature_permissions.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/scan_screen.dart';
+import 'photo_lesson_practice.dart';
 
 class LumoPhotoLessonScreen extends StatefulWidget {
   const LumoPhotoLessonScreen({super.key, required this.appState});
@@ -32,7 +33,8 @@ class LumoPhotoLessonScreen extends StatefulWidget {
 
 class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
   ScannedWorkAnalysis? _analysis;
-  List<MathConcreteTask> _exercises = const <MathConcreteTask>[];
+  List<LumoTask> _exercises = const <LumoTask>[];
+  String _practiceNotice = '';
   bool _scanning = false;
 
   Future<void> _startScan({bool reset = false}) async {
@@ -42,6 +44,7 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
       if (reset) {
         _analysis = null;
         _exercises = const [];
+        _practiceNotice = '';
       }
       _scanning = true;
     });
@@ -57,28 +60,18 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
     final exercises = _generateExercises(analysis);
     setState(() {
       _analysis = analysis;
-      _exercises = exercises;
+      _exercises = exercises.tasks;
+      _practiceNotice = exercises.notice;
       _scanning = false;
     });
   }
 
-  List<MathConcreteTask> _generateExercises(ScannedWorkAnalysis a) {
-    final out = <MathConcreteTask>[];
-    final unit = a.nextPracticeUnit;
-    for (var i = 0; i < 5; i++) {
-      try {
-        final task = MathTaskTemplates.generate(
-          grade: widget.appState.state.grade,
-          unit: unit,
-          seed: (DateTime.now().millisecondsSinceEpoch + i * 7919) & 0x7fffffff,
-        );
-        out.add(task);
-      } catch (_) {
-        // Skip wenn Template-Engine bei dieser Kombination versagt.
-      }
-    }
-    return out;
-  }
+  PhotoLessonPractice _generateExercises(ScannedWorkAnalysis a) =>
+      PhotoLessonPractice.generate(
+        analysis: a,
+        grade: widget.appState.state.grade,
+        seed: DateTime.now().millisecondsSinceEpoch & 0x7fffffff,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +109,7 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
                     : _ResultsPanel(
                         analysis: _analysis!,
                         exercises: _exercises,
+                        practiceNotice: _practiceNotice,
                         onScanAgain: () => _startScan(reset: true),
                       ),
           ),
@@ -333,11 +327,13 @@ class _ResultsPanel extends StatelessWidget {
   const _ResultsPanel({
     required this.analysis,
     required this.exercises,
+    required this.practiceNotice,
     required this.onScanAgain,
   });
 
   final ScannedWorkAnalysis analysis;
-  final List<MathConcreteTask> exercises;
+  final List<LumoTask> exercises;
+  final String practiceNotice;
   final VoidCallback onScanAgain;
 
   @override
@@ -460,9 +456,9 @@ class _ResultsPanel extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 18),
-        const Text(
-          '5 Übungen zum Trainieren',
-          style: TextStyle(
+        Text(
+          exercises.isEmpty ? 'Passende Übungen' : '${exercises.length} Übungen zum Trainieren',
+          style: const TextStyle(
             fontFamily: 'Nunito',
             fontSize: 16,
             fontWeight: FontWeight.w900,
@@ -470,6 +466,13 @@ class _ResultsPanel extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
+        if (practiceNotice.isNotEmpty && exercises.isNotEmpty) ...[
+          Text(
+            practiceNotice,
+            style: const TextStyle(color: Colors.white, fontFamily: 'Nunito', fontSize: 13),
+          ),
+          const SizedBox(height: 10),
+        ],
         if (exercises.isEmpty)
           Container(
             padding: const EdgeInsets.all(14),
@@ -477,10 +480,11 @@ class _ResultsPanel extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(14),
             ),
-            child: const Text(
-              'Lumo konnte keine passenden Aufgaben generieren. '
-              'Versuch ein anderes Foto oder ein anderes Heft-Bild.',
-              style: TextStyle(
+            child: Text(
+              practiceNotice.isNotEmpty ? practiceNotice :
+                  'Lumo konnte keine passenden Aufgaben generieren. '
+                  'Versuch ein anderes Foto oder ein anderes Heft-Bild.',
+              style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
@@ -532,7 +536,7 @@ class _ResultsPanel extends StatelessWidget {
 class _ExerciseCard extends StatefulWidget {
   const _ExerciseCard({required this.index, required this.task});
   final int index;
-  final MathConcreteTask task;
+  final LumoTask task;
 
   @override
   State<_ExerciseCard> createState() => _ExerciseCardState();
@@ -559,6 +563,11 @@ class _ExerciseCardState extends State<_ExerciseCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            '${widget.task.subject} · ${Curriculum.prettifyUnit(widget.task.unit)}',
+            style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, color: LumoColors.ink600),
+          ),
+          const SizedBox(height: 6),
           Row(
             children: [
               Container(

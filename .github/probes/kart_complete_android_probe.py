@@ -1,0 +1,555 @@
+#!/usr/bin/env python3
+"""Complete a genuine offline Android Kart race and recover its finished result.
+
+Run after creative_android_probe.py in the same disposable emulator. The existing
+LumoTest profile is retained. Only actual Android UI/input operates the game:
+fresh garage setup, the public automatic-gas option, pause, resume and return.
+Unmodified beginner steering/rail assistance drives Sonnenhafen with a neutral
+stick. This is lifecycle evidence, not a steering-quality or device-FPS test.
+
+Application saves/events/preferences are READ ONLY. No score, position, finish,
+unlock, result, acknowledgement or reward is injected. Full completion needs an
+observed first lap, an in-progress second lap, 16 real checkpoints, native result,
+host event, exact wallet change and a deduplicated completed-result replay.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.util
+import json
+import math
+import os
+from pathlib import Path
+import re
+import signal
+import subprocess
+import sys
+import threading
+import time
+import traceback
+
+
+def load_creative():
+    path = Path(__file__).with_name('creative_android_probe.py')
+    spec = importlib.util.spec_from_file_location('lumo_creative_android', path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+SCALAR_FIELDS = {
+    'version', 'result_id', 'distance', 'checkpoint_index', 'lane', 'speed',
+    'countdown', 'elapsed', 'difficulty', 'mode', 'track_id', 'selected_driver',
+    'selected_kart', 'finished', 'completed_race', 'reset_count',
+    'player_heading', 'previous_road_distance',
+}
+
+
+def parse_session(raw: str) -> dict:
+    """Read a Godot ConfigFile without eval or parsing its unrelated Variant data."""
+    if not re.search(r'^\[race\]\s*$', raw, re.M):
+        raise RuntimeError('Read-only save has no race section')
+    race = re.split(r'^\[race\]\s*$', raw, flags=re.M)[1]
+    race = re.split(r'^\[', race, maxsplit=1, flags=re.M)[0]
+    result = {}
+    for key in SCALAR_FIELDS:
+        matches = re.findall(r'^' + re.escape(key) + r'=(.*)$', race, re.M)
+        if len(matches) != 1:
+            raise RuntimeError('Race save needs one field: ' + key)
+        try:
+            result[key] = json.loads(matches[0])
+        except json.JSONDecodeError as error:
+            raise RuntimeError('Invalid scalar in race save: ' + key) from error
+    for key in ('distance', 'lane', 'speed', 'countdown', 'elapsed',
+                'player_heading', 'previous_road_distance'):
+        value = result[key]
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+            raise RuntimeError('Non-finite race field: ' + key)
+    for key in ('version', 'checkpoint_index', 'reset_count'):
+        if type(result[key]) is not int:
+            raise RuntimeError('Non-integer race field: ' + key)
+    for key in ('finished', 'completed_race'):
+        if type(result[key]) is not bool:
+            raise RuntimeError('Non-boolean race field: ' + key)
+    if not isinstance(result['result_id'], str) or not result['result_id']:
+        raise RuntimeError('Race result identity missing')
+    payloads = list(re.finditer(r'^result_payload=', race, re.M))
+    if len(payloads) != 1:
+        raise RuntimeError('Race save needs one result payload')
+    try:
+        payload, _ = json.JSONDecoder().raw_decode(race[payloads[0].end():])
+    except json.JSONDecodeError as error:
+        raise RuntimeError('Race result payload is not a JSON-compatible dictionary') from error
+    if not isinstance(payload, dict):
+        raise RuntimeError('Race result payload is not a dictionary')
+    result['result_payload'] = payload
+    return result
+
+
+def require_race_identity(state: dict, result_id: str) -> None:
+    expected = {'result_id': result_id, 'mode': 'race', 'track_id': 'sonnenhafen',
+                'selected_driver': 'fox', 'selected_kart': 'comet', 'difficulty': 'gemuetlich'}
+    if any(state.get(key) != value for key, value in expected.items()):
+        raise RuntimeError('The observed save belongs to a different race/setup')
+    if not 0 <= state['checkpoint_index'] <= 16 or state['distance'] < 0 or state['elapsed'] < 0:
+        raise RuntimeError('Race progress outside the physical two-lap range')
+
+
+def require_completion(trace: list[dict], final: dict, result_id: str) -> dict:
+    if len(trace) < 3 or not any(0 < row['checkpoint_index'] < 8 and not row['finished'] for row in trace):
+        raise RuntimeError('A genuinely advancing first lap was not observed')
+    if not any(8 <= row['checkpoint_index'] < 16 and not row['finished'] for row in trace):
+        raise RuntimeError('A genuinely advancing second lap was not observed')
+    for row in trace:
+        require_race_identity(row, result_id)
+    if not final['finished'] or not final['completed_race'] or final['checkpoint_index'] != 16:
+        raise RuntimeError('Two laps and all 16 checkpoints were not completed')
+    payload = final['result_payload']
+    expected = {'resultId': result_id, 'status': 'completed', 'game': 'kart',
+                'mode': 'race', 'track': 'sonnenhafen', 'driver': 'fox', 'kart': 'comet',
+                'checkpoints': 16, 'solved': 0, 'stars': 3}
+    if any(payload.get(key) != value for key, value in expected.items()):
+        raise RuntimeError('Native completed result does not match the observed race')
+    if type(payload.get('place')) is not int or not 1 <= payload['place'] <= 6:
+        raise RuntimeError('Native result lacks an actual valid race place')
+    if final['elapsed'] <= 10 or final['distance'] <= trace[0]['distance']:
+        raise RuntimeError('Physical elapsed time/distance did not advance')
+    return payload
+
+
+def require_reward(before: dict, after: dict, payload: dict) -> None:
+    result_id = payload['resultId']
+    before_ids, after_ids = before.get('gameResultIds', []), after.get('gameResultIds', [])
+    if result_id in before_ids or after_ids.count(result_id) != 1:
+        raise RuntimeError('Completed race ID was missing, old or duplicated in the wallet')
+    expected_xp = payload.get('xp', payload['solved'] * 10)
+    for key, change in (('stars', payload['stars']), ('totalEarnedStars', payload['stars']), ('xp', expected_xp)):
+        if after.get(key, 0) - before.get(key, 0) != change:
+            raise RuntimeError('Completed race wallet delta is wrong: ' + key)
+    if set(after_ids) - set(before_ids) != {result_id}:
+        raise RuntimeError('An unrelated result entered the wallet during the isolated race')
+
+
+def require_event(events: dict, payload: dict) -> None:
+    rows = [row for row in events.get('results', []) if row.get('resultId') == payload['resultId']]
+    if len(rows) != 1 or rows[0] != payload:
+        raise RuntimeError('Host did not durably retain exactly this native finish result')
+
+
+def require_ack(events: dict, result_id: str) -> None:
+    if any(row.get('resultId') == result_id for row in events.get('results', [])):
+        raise RuntimeError('Host completed event was not acknowledged after wallet persistence')
+
+
+def observed_scroll(lines: list[dict], direction: str, context: str) -> list[int]:
+    """Gesture within actual observed central settings/result captions."""
+    def norm(text):
+        import unicodedata
+        plain = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode()
+        return re.sub('[^a-z0-9]', '', plain.lower())
+    pause = ('einekleinepause', 'deinrennenwartet', 'weiterfahren', 'ruhigebewegung',
+             'ton', 'grafik', 'tempo', 'gas', 'musik', 'effekte', 'neuefahrtauswahlen',
+             'rennenabbrechen')
+    finished = ('gesamtzeit', 'besterunde', 'sternegesammelt', 'belohnung',
+                'nocheinmalfahren', 'neuefahrtauswahlen', 'zurspieleauswahl', 'zumlernen')
+    prefixes = pause if context == 'pause' else finished
+    rows = [row for row in lines if any(norm(row['text']).startswith(prefix) for prefix in prefixes)
+            and len(row.get('bounds', [])) == 4]
+    if len(rows) < 2:
+        raise RuntimeError('No observed central modal captions provide a safe scrolling gesture')
+    top = min(rows, key=lambda row: row['bounds'][1])
+    bottom = max(rows, key=lambda row: row['bounds'][3])
+    top_y = round((top['bounds'][1] + top['bounds'][3]) / 2)
+    bottom_y = round((bottom['bounds'][1] + bottom['bounds'][3]) / 2)
+    if bottom_y - top_y < 60:
+        raise RuntimeError('Observed modal captions provide too little room to scroll')
+    x = round((bottom['bounds'][0] + bottom['bounds'][2]) / 2)
+    if direction == 'down':
+        return [x, bottom_y, x, top_y]
+    if direction == 'up':
+        return [x, top_y, x, bottom_y]
+    raise ValueError('Scroll direction must be up or down')
+
+
+def require_no_runtime_error(logcat: str) -> None:
+    errors = [line for line in logcat.splitlines()
+              if re.search(r'\b(?:godot|Godot)\b', line) and
+              re.search(r'(?:SCRIPT ERROR|USER ERROR|ERROR:|Parse Error|Assertion failed)', line)]
+    if errors:
+        raise RuntimeError('Actual native runtime logged an error:\n' + '\n'.join(errors[:10]))
+
+
+class VideoRecorder:
+    """Segmented raw Android screenrecord; never replace footage with a render."""
+    def __init__(self, out: Path, adb):
+        self.out, self.adb = out, adb
+        self.stop_event = threading.Event()
+        self.records, self.errors = [], []
+        self.thread = threading.Thread(target=self._run, name='real-android-screenrecord', daemon=True)
+
+    def start(self):
+        if self.adb('shell', 'pidof', 'screenrecord', check=False).strip():
+            raise RuntimeError('Another screenrecord owns this disposable emulator')
+        self.thread.start()
+
+    def _run(self):
+        index = 0
+        while not self.stop_event.is_set():
+            remote = '/sdcard/lumo-full-race-%03d.mp4' % index
+            local = self.out / ('android-race-%03d.mp4' % index)
+            process = subprocess.Popen(['adb', 'shell', 'screenrecord', '--size', '960x540',
+                                        '--bit-rate', '2000000', '--time-limit', '180', remote],
+                                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            started = time.monotonic()
+            try:
+                while process.poll() is None and not self.stop_event.wait(1):
+                    if time.monotonic() - started > 200:
+                        raise RuntimeError('Android screenrecord exceeded its segment deadline')
+                if process.poll() is None:
+                    pids = self.adb('shell', 'pidof', 'screenrecord', check=False).split()
+                    if len(pids) != 1 or not pids[0].isdigit():
+                        raise RuntimeError('Cannot safely identify the owned screenrecord process')
+                    self.adb('shell', 'kill', '-2', pids[0])
+                output, _ = process.communicate(timeout=20)
+                (self.out / ('android-race-%03d-screenrecord.txt' % index)).write_bytes(output)
+                self.adb('pull', remote, str(local), timeout=90)
+                if local.stat().st_size < 1024:
+                    raise RuntimeError('Android screenrecord produced no usable footage')
+                self.records.append({'file': local.name, 'bytes': local.stat().st_size,
+                                     'sha256': hashlib.sha256(local.read_bytes()).hexdigest(),
+                                     'wall_seconds': round(time.monotonic() - started, 2),
+                                     'screenrecord_size': [960, 540], 'exit_code': process.returncode,
+                                     'scope': 'actual emulator display; no FPS or native-resolution claim'})
+            except Exception as error:
+                self.errors.append(str(error))
+                if process.poll() is None:
+                    process.terminate()
+                break
+            index += 1
+
+    def stop(self) -> dict:
+        self.stop_event.set()
+        self.thread.join(timeout=115)
+        if self.thread.is_alive():
+            self.errors.append('Screenrecord collector did not stop within its deadline')
+        return {'segments': self.records, 'errors': self.errors,
+                'status': 'PASS' if self.records and not self.errors else 'NOT_EXECUTED_OR_FAILED'}
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--candidate', type=Path, required=True)
+    parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--timeout', type=int, default=1200)
+    args = parser.parse_args()
+    if not 180 <= args.timeout <= 2400:
+        parser.error('--timeout must be from 180 to 2400 seconds')
+    args.out.mkdir(parents=True, exist_ok=True)
+    out = args.out
+    result = {'status': 'RUNNING', 'scope': 'actual offline Android two-lap race and finished-result recovery',
+              'driver': 'actual public automatic-gas setting; neutral stick; existing beginner/rail assistance',
+              'not_tested': ['physical Samsung/Fold hinge', 'CPU/GPU frame-time or 60 FPS',
+                             'steering quality', 'network/provider failure', 'host storage-failure injection',
+                             'visual reference parity', 'all tracks/karts']}
+    video = None
+    creative = load_creative()
+    base, package = creative.base, creative.PACKAGE
+    original_adb = base.adb
+
+    def logged_adb(*commands, **kwargs):
+        started = time.monotonic()
+        try:
+            return original_adb(*commands, **kwargs)
+        finally:
+            with (out / 'android-actions.jsonl').open('a') as stream:
+                stream.write(json.dumps({'arguments': list(commands),
+                                         'wall_seconds': round(time.monotonic() - started, 3)}) + '\n')
+
+    base.adb = logged_adb
+
+    def deadline(_signal, _frame):
+        raise TimeoutError('Full-race Android probe reached its hard wall-clock deadline')
+
+    previous_alarm = signal.signal(signal.SIGALRM, deadline)
+    signal.alarm(args.timeout)
+
+    def write_json(name: str, value):
+        (out / name).write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
+
+    session_path = None
+
+    def session(tag: str) -> dict:
+        nonlocal session_path
+        if session_path is None:
+            paths = base.adb('shell', 'find', f'/data/user/0/{package}', '-maxdepth', '12',
+                             '-type', 'f', '-name', 'kart_sonnenhafen_session.cfg').splitlines()
+            if len(paths) != 1:
+                raise RuntimeError('One actual persisted Kart session was required')
+            session_path = paths[0]
+        raw = base.adb('exec-out', 'cat', session_path)
+        (out / (tag + '-session.cfg')).write_text(raw)
+        return parse_session(raw)
+
+    def events(tag: str) -> dict:
+        raw = base.adb('exec-out', 'cat', f'/data/user/0/{package}/files/lumo_game_events.json')
+        data = json.loads(raw)
+        write_json(tag + '-host-events.json', data)
+        return data
+
+    def tap_native(label: str, tag: str, *, scroll: str | None = None, context: str = 'pause') -> None:
+        wanted = creative.normalized(label)
+        for attempt in range(10):
+            lines = creative.image_lines(out, f'{tag}-{attempt}', wanted)
+            matches = [row for row in lines if creative.normalized(row['text']) == wanted]
+            if matches:
+                row = min(matches, key=lambda item: len(item['text']))
+                left, top, right, bottom = row['bounds']
+                x, y = str(round((left + right) / 2)), str(round((top + bottom) / 2))
+                base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
+                time.sleep(1.5)
+                return
+            if scroll and attempt >= 1:
+                gesture = observed_scroll(lines, scroll, context)
+                write_json(f'{tag}-{attempt}-observed-scroll.json', {
+                    'target': label, 'direction': scroll, 'observed_captions': lines,
+                    'gesture': gesture, 'scope': 'scrolling the actually visible native modal',
+                })
+                base.adb('shell', 'input', 'swipe', *map(str, gesture), '450')
+                time.sleep(1.5)
+                continue
+            time.sleep(1)
+        raise RuntimeError('Exact current native action caption is missing: ' + label)
+
+    def restarted_home(tag: str):
+        base.adb('shell', 'am', 'force-stop', package)
+        creative.device_rotation(out, tag + '-upright', 0)
+        base.display(1080, 2400, 480)
+        base.launch(out, tag)
+        current = creative.prefs(out, tag).get('flutter.lumo_active_profile')
+        if current != profile:
+            raise RuntimeError('Actual profile changed during offline race recovery')
+        creative.capture(out, tag + '-home')
+
+    def open_kart(tag: str):
+        creative.flutter_tap(out, 'Spielen', tag + '-games')
+        base.display(1080, 1920, 300)
+        creative.enter(out, 'Lumo Kart', 'LUMO / KART', tag, launch_label='Losfahren')
+
+    try:
+        serial = base.adb('get-serialno').strip()
+        if not re.fullmatch(r'emulator-\d+', serial):
+            raise RuntimeError('This probe requires a disposable Android emulator, not a physical device')
+        result['serial'] = serial
+        expected_source = os.environ['LUMO_EXPECT_SOURCE']
+        expected_godot = os.environ['LUMO_EXPECT_GODOT']
+        expected_version = int(os.environ['LUMO_EXPECT_VERSION'])
+        provenance = json.loads((args.candidate.parent / 'BUILD-PROVENANCE.json').read_text())
+        candidate_digest = creative.digest(args.candidate)
+        if (provenance['flutter_source_commit'] != expected_source or
+                provenance['godot']['revision'] != expected_godot or
+                provenance['versionCode'] != expected_version or provenance['sha256'] != candidate_digest or
+                provenance['tracked_source_clean'] is not True or
+                provenance['signingCertificateSha256'] != creative.CERT):
+            raise RuntimeError('Exact candidate provenance mismatch')
+        result.update(source=expected_source, godot=expected_godot, apk_sha256=candidate_digest,
+                      harness=base.command('git', 'rev-parse', 'HEAD'))
+        apk_paths = base.adb('shell', 'pm', 'path', package).splitlines()
+        apk_bases = [row.removeprefix('package:') for row in apk_paths if row.endswith('/base.apk')]
+        if len(apk_bases) != 1:
+            raise RuntimeError('One currently installed candidate base.apk required')
+        installed = base.adb('shell', 'toybox', 'sha256sum', apk_bases[0], timeout=180).split()[0]
+        installed_size = int(base.adb('shell', 'toybox', 'stat', '-c', '%s', apk_bases[0]))
+        if installed != candidate_digest or installed_size != args.candidate.stat().st_size:
+            raise RuntimeError('Installed bytes differ from the exact candidate APK')
+        result['installed_apk'] = {'sha256': installed, 'bytes': installed_size, 'matches_candidate': True}
+        base.adb('root')
+        base.adb('wait-for-device')
+        result['android_sdk'] = int(base.adb('shell', 'getprop', 'ro.build.version.sdk'))
+        expected_sdk = os.environ.get('LUMO_EXPECT_ANDROID_API')
+        if expected_sdk and result['android_sdk'] != int(expected_sdk):
+            raise RuntimeError('Android API differs from the requested probe')
+        base.adb('shell', 'svc', 'wifi', 'disable')
+        base.adb('shell', 'svc', 'data', 'disable')
+        base.adb('shell', 'cmd', 'connectivity', 'airplane-mode', 'enable')
+        if base.adb('shell', 'settings', 'get', 'global', 'airplane_mode_on') != '1':
+            raise RuntimeError('Actual offline mode not confirmed')
+        profile = creative.prefs(out, 'initial').get('flutter.lumo_active_profile')
+        if not profile or 'LumoTest' not in profile:
+            raise RuntimeError('Existing real LumoTest profile from creative probe is required')
+        before_wallet = creative.wallet(out, 'before-race')
+        base.adb('logcat', '-c')
+        base.launch(out, 'full-race-start')
+        open_kart('01-garage')
+        for step in range(4):
+            tap_native('Weiter', f'garage-next-{step + 1}')
+        tap_native('Rennen starten', 'garage-start')
+        initial = session('02-new-race')
+        result_id = initial['result_id']
+        require_race_identity(initial, result_id)
+        if initial['checkpoint_index'] != 0 or initial['finished']:
+            raise RuntimeError('The public garage setup did not start a fresh race')
+        result['result_id'] = result_id
+        base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
+        creative.native_text(out, 'Eine kleine Pause', 'initial-pause')
+        tap_native('Gas: GAS-Taste halten', 'enable-public-auto-gas', scroll='down')
+        creative.native_text(out, 'Gas: automatisch', 'public-auto-gas-confirmed')
+        result['automatic_gas'] = {'enabled_by': 'observed native pause button', 'stick': 'neutral'}
+        creative.capture(out, '03-automatic-gas-pause')
+        video = VideoRecorder(out, base.adb)
+        video.start()
+        tap_native('Weiterfahren', 'race-resume-after-gas-setting', scroll='up')
+
+        trace, paused_once = [initial], False
+        race_started, last_progress = time.monotonic(), time.monotonic()
+        previous = initial
+        for index in range(500):
+            time.sleep(5)
+            if not base.adb('shell', 'pidof', package + ':lumo_game', check=False):
+                raise RuntimeError('Actual native process died during the two-lap race')
+            state = session('race-%03d' % index)
+            require_race_identity(state, result_id)
+            state['wall_seconds_since_resume'] = round(time.monotonic() - race_started, 3)
+            trace.append(state)
+            write_json('race-trace.json', trace)
+            if state['elapsed'] > previous['elapsed'] + 0.1:
+                last_progress = time.monotonic()
+            elif time.monotonic() - last_progress > 180:
+                raise RuntimeError('Physical race stopped advancing for 180 wall-clock seconds')
+            print('[CompleteKartAndroid] checkpoints=%d elapsed=%.2f distance=%.2f finished=%s' %
+                  (state['checkpoint_index'], state['elapsed'], state['distance'], state['finished']), flush=True)
+            if index % 3 == 0 or state['checkpoint_index'] // 8 != previous['checkpoint_index'] // 8:
+                creative.capture(out, '04-driving-%03d' % index)
+            if not paused_once and 0 < state['checkpoint_index'] < 8:
+                base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
+                creative.native_text(out, 'Eine kleine Pause', 'mid-race-pause')
+                paused = session('05-pause-start')
+                creative.capture(out, '05-first-lap-pause')
+                time.sleep(2)
+                still = session('05-pause-still')
+                if any(paused[key] != still[key] for key in ('elapsed', 'distance', 'checkpoint_index', 'result_id')):
+                    raise RuntimeError('The saved race progress changed while the actual pause menu was open')
+                if creative.wallet(out, 'during-unfinished-race') != before_wallet:
+                    raise RuntimeError('An unfinished race credited a host reward')
+                tap_native('Weiterfahren', 'mid-race-continue')
+                paused_once = True
+                result['pause_resume'] = {'status': 'PASS', 'checkpoint': paused['checkpoint_index'],
+                                          'saved_pause_progress_stable': True, 'unfinished_reward_unchanged': True,
+                                          'scope': 'observed pause UI and read-only persisted progress; engine regression checks actual paused physics'}
+            previous = state
+            if state['finished']:
+                final = state
+                break
+        else:
+            raise RuntimeError('Natural two-lap race did not finish before the polling limit')
+        payload = require_completion(trace, final, result_id)
+        if not paused_once:
+            raise RuntimeError('Actual in-progress pause/resume was not executed')
+        result['native_result'] = payload
+        require_event(events('06-native-finish'), payload)
+        creative.native_text(out, 'Gesamtzeit', 'result-total-time')
+        creative.native_text(out, 'Belohnung', 'result-reward')
+        creative.capture(out, '06-completed-result-phone')
+        if os.environ.get('LUMO_FOLD_PROBE') == '1':
+            base.display(1812, 2176, 420)
+            creative.device_rotation(out, 'finished-fold-landscape', 1)
+            creative.native_text(out, 'Gesamtzeit', 'finished-fold-result-visible')
+            fold = creative.capture(out, '07-completed-result-fold-open')
+            if [fold['width'], fold['height']] != [2176, 1812]:
+                raise RuntimeError('Completed result did not render at the inner emulator surface')
+            base.display(904, 2316, 420)
+            creative.native_text(out, 'Gesamtzeit', 'finished-cover-result-visible')
+            cover = creative.capture(out, '08-completed-result-fold-cover')
+            if [cover['width'], cover['height']] != [2316, 904]:
+                raise RuntimeError('Completed result did not render at the cover emulator surface')
+            base.display(1080, 1920, 300)
+            require_race_identity(session('09-after-result-resize'), result_id)
+            result['result_resize'] = {'status': 'PASS', 'inner': [2176, 1812], 'cover': [2316, 904],
+                                       'scope': 'emulator surfaces and explicit rotation; no physical hinge'}
+
+        # Actual interrupted-result recovery: the untouched saved race survives
+        # process death. Flutter drains/ACKs the real native result after restart.
+        restarted_home('10-offline-result-recovery')
+        for attempt in range(30):
+            rewarded_wallet = creative.wallet(out, f'recovery-wallet-{attempt}')
+            if result_id in rewarded_wallet.get('gameResultIds', []):
+                require_reward(before_wallet, rewarded_wallet, payload)
+                pending = events(f'recovery-ack-{attempt}')
+                if not any(row.get('resultId') == result_id for row in pending.get('results', [])):
+                    break
+            time.sleep(1)
+        else:
+            raise RuntimeError('Offline recovery did not persist and acknowledge the finish reward')
+        require_ack(pending, result_id)
+        result['offline_result_recovery'] = {'status': 'PASS', 'reward_stars': 3,
+                                             'reward_xp': payload.get('xp', 0), 'host_acknowledged': True}
+        open_kart('11-reopen-completed-race')
+        tap_native('Gespeichertes Rennen', 'actual-completed-race-resume')
+        reopened = session('12-reopened-finished-result')
+        require_race_identity(reopened, result_id)
+        if not reopened['finished'] or reopened['result_payload'] != payload:
+            raise RuntimeError('The actual saved completed race reopened a different result')
+        creative.native_text(out, 'Gesamtzeit', 'reopened-result-total-time')
+        creative.capture(out, '12-same-completed-result-reopened')
+        tap_native('Zur Spieleauswahl', 'return-completed-result-to-app', scroll='down', context='finished')
+        for _ in range(30):
+            if not base.adb('shell', 'pidof', package + ':lumo_game', check=False):
+                break
+            time.sleep(1)
+        else:
+            raise RuntimeError('Native process remained after genuine completed-result return')
+        base.foreground()
+        creative.capture(out, '13-completed-race-returned-to-app')
+        for attempt in range(30):
+            if creative.wallet(out, f'replayed-wallet-{attempt}') != rewarded_wallet:
+                raise RuntimeError('Reopening/returning the same completed result duplicated a reward')
+            replay_events = events(f'replayed-ack-{attempt}')
+            if not any(row.get('resultId') == result_id for row in replay_events.get('results', [])):
+                break
+            time.sleep(1)
+        else:
+            raise RuntimeError('Replayed completed result was not acknowledged')
+        require_ack(replay_events, result_id)
+        restarted_home('14-final-offline-restart')
+        if creative.wallet(out, 'final-wallet') != rewarded_wallet:
+            raise RuntimeError('Completed/replayed reward changed after the final offline restart')
+        result['replay_deduplication'] = {'status': 'PASS', 'same_completed_result_reopened': True,
+                                         'host_return': True, 'wallet_unchanged': True,
+                                         'host_acknowledged': True, 'final_offline_restart': True}
+        crashes = base.adb('logcat', '-d', '-b', 'crash', check=False)
+        (out / 'crash-buffer.txt').write_text(crashes)
+        if package in crashes:
+            raise RuntimeError('Lumo appears in the actual Android crash buffer')
+        runtime_log = base.adb('logcat', '-d', check=False)
+        (out / 'logcat.txt').write_text(runtime_log)
+        require_no_runtime_error(runtime_log)
+        result['video'] = video.stop()
+        video = None
+        if result['video']['status'] != 'PASS':
+            raise RuntimeError('Actual Android footage collection failed: ' +
+                               '; '.join(result['video']['errors'] or ['no nonempty video segments']))
+        result['status'] = 'PASS'
+        print('[CompleteKartAndroid] PASS: 16 checkpoints, pause, actual result, offline recovery, host ACK and reward deduplication', flush=True)
+        return 0
+    except Exception as error:
+        result.update(status='FAIL', error=str(error), traceback=traceback.format_exc())
+        try:
+            creative.capture(out, 'failure')
+        except Exception as capture_error:
+            result['failure_capture_error'] = str(capture_error)
+        print('[CompleteKartAndroid] FAIL:', error, flush=True)
+        return 1
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, previous_alarm)
+        if video is not None:
+            result['video'] = video.stop()
+        write_json('result.json', result)
+        try:
+            (out / 'logcat.txt').write_text(base.adb('logcat', '-d', check=False))
+        except Exception as error:
+            write_json('logcat-collection-error.json', {'error': str(error)})
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
