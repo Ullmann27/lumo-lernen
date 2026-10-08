@@ -21,7 +21,10 @@ import xml.etree.ElementTree as ET
 
 ZIP_WARNING = ('Warning: An error occurred while preparing SDK package Google APIs Intel '
                'x86_64 Atom System Image: Error on ZipFile unknown archive.')
-IMAGE_FILES = ('system.img', 'vendor.img', 'kernel-ranchu', 'ramdisk.img', 'userdata.img')
+MANDATORY_IMAGE_FILES = ('system.img', 'vendor.img', 'kernel-ranchu', 'ramdisk.img')
+# Retain the legacy initial-image layout; modern packages generate AVD userdata
+# from data/. These constants do not claim that any emulator has booted.
+IMAGE_FILES = (*MANDATORY_IMAGE_FILES, 'userdata.img')
 ERROR_OUTPUT = re.compile(r'warning:|error|exception|not accepted|refused|denied|failed', re.I)
 
 
@@ -48,6 +51,34 @@ def safe_target(sdk: Path, target: Path):
             raise RuntimeError('Refusing a symlinked system-image path')
     if target.is_symlink() or any(p.is_symlink() for p in target.rglob('*')):
         raise RuntimeError('Refusing a symlinked system-image component')
+
+
+def userdata_bootstrap(target: Path) -> dict:
+    """Validate packaged inputs only; never generate or modify an AVD image."""
+    initial, data = target / 'userdata.img', target / 'data'
+    initial_record = None
+    if initial.exists() or initial.is_symlink():
+        if initial.is_symlink() or not initial.is_file() or initial.stat().st_size <= 0:
+            raise RuntimeError('Packaged userdata.img must be a nonempty regular non-symlink file')
+        initial_record = {'file': initial.name, 'bytes': initial.stat().st_size}
+    inputs = []
+    if data.exists() or data.is_symlink():
+        if data.is_symlink() or not data.is_dir():
+            raise RuntimeError('Packaged data must be a non-symlink directory')
+        # AOSP's empty_data_disk is an existence marker, not a disk image.
+        # local.prop is the nonempty canonical companion in the API35 tree.
+        for name, nonempty in (('empty_data_disk', False), ('local.prop', True)):
+            path = data / name
+            if (path.is_symlink() or not path.is_file() or
+                    (nonempty and path.stat().st_size <= 0)):
+                raise RuntimeError('Packaged data/' + name + ' must be a ' +
+                                   ('nonempty ' if nonempty else '') +
+                                   'regular non-symlink file')
+            inputs.append({'file': 'data/' + name, 'bytes': path.stat().st_size})
+    if not initial_record and not inputs:
+        raise RuntimeError('No packaged userdata.img or complete data-directory userdata bootstrap')
+    return {'mode': 'data-directory' if inputs else 'initial-image', 'inputs': inputs,
+            'initial_image': initial_record, 'generation_executed': False}
 
 
 def metadata(target: Path, api: int, *, complete=True) -> dict:
@@ -114,12 +145,16 @@ def metadata(target: Path, api: int, *, complete=True) -> dict:
     if not complete:
         return {'partial_identity_checked': True}
     files = []
-    for name in IMAGE_FILES:
+    for name in MANDATORY_IMAGE_FILES:
         path = target / name
-        if not path.is_file() or path.stat().st_size <= 0:
+        if path.is_symlink() or not path.is_file() or path.stat().st_size <= 0:
             raise RuntimeError('Required nonempty system-image file is missing: ' + name)
         files.append({'file': name, 'bytes': path.stat().st_size})
+    bootstrap = userdata_bootstrap(target)
+    if bootstrap['initial_image']:
+        files.append(bootstrap['initial_image'])
     return {'package': expected, 'revision': props['Pkg.Revision'], 'files': files,
+            'userdata_bootstrap': bootstrap,
             'metadata': [{'file': p.name, 'bytes': p.stat().st_size,
                           'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}
                          for p in (props_path, xml_path)]}
@@ -193,6 +228,18 @@ def prepare_system_image(api: int, out: Path, *, sdk: Path | None = None,
         remaining()
         safe_target(sdk, target)
         observed = metadata(target, api)
+        for record in observed['metadata']:
+            raw = (target / record['file']).read_bytes()
+            if len(raw) != record['bytes'] or hashlib.sha256(raw).hexdigest() != record['sha256']:
+                raise RuntimeError('Installed metadata changed during evidence capture')
+            retained = evidence / ('installed-' + record['file'])
+            retained.write_bytes(raw)
+            record['evidence_file'] = retained.name
+        bootstrap_record = evidence / 'installed-userdata-bootstrap.json'
+        bootstrap_record.write_text(json.dumps(observed['userdata_bootstrap'], indent=2) + '\n')
+        observed['userdata_bootstrap_evidence'] = bootstrap_record.name
+        state['verified_package'] = observed
+        save()
         status, output, error = command('installed-packages', ['--list', '--channel=0'], 60)
         if status != 0 or error.strip() or ERROR_OUTPUT.search(output):
             raise RuntimeError('SDK installed-package listing failed; no recovery')

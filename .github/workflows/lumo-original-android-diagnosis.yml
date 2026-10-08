@@ -64,6 +64,12 @@ jobs:
             const firstDiagnosisJobs = (await github.rest.actions.listJobsForWorkflowRun({...firstDiagnosisArgs, per_page: 100})).data.jobs;
             const sdkBlockedBuild = firstDiagnosisJobs.find(job => job.id === 113568737178);
             if (!sdkBlockedBuild || sdkBlockedBuild.status !== 'completed' || sdkBlockedBuild.conclusion !== 'failure' || !sdkBlockedBuild.name.includes('build') || !sdkBlockedBuild.name.includes('35')) throw new Error('First SDK-blocked Bauen job missing');
+            const imageLayoutArgs = {owner: context.repo.owner, repo: context.repo.repo, run_id: 37857844762};
+            const imageLayoutDiagnosis = (await github.rest.actions.getWorkflowRun(imageLayoutArgs)).data;
+            if (imageLayoutDiagnosis.head_sha !== 'ed7e837338f4be3d3b38c72ddb446c79b19c90d6' || imageLayoutDiagnosis.status !== 'completed' || imageLayoutDiagnosis.conclusion !== 'failure') throw new Error('Actual image-layout-blocked diagnosis changed');
+            const imageLayoutJobs = (await github.rest.actions.listJobsForWorkflowRun({...imageLayoutArgs, per_page: 100})).data.jobs;
+            const imageLayoutBuild = imageLayoutJobs.find(job => job.id === 113586237721);
+            if (!imageLayoutBuild || imageLayoutBuild.status !== 'completed' || imageLayoutBuild.conclusion !== 'failure' || !imageLayoutBuild.name.includes('build') || !imageLayoutBuild.name.includes('35')) throw new Error('Actual image-layout-blocked Bauen job missing');
             const workflowPath = '.github/workflows/lumo-original-android-diagnosis.yml';
             const workflow = (await github.rest.repos.getContent({owner: context.repo.owner, repo: context.repo.repo, path: workflowPath, ref: context.sha})).data;
             if (Array.isArray(workflow) || workflow.type !== 'file' || workflow.encoding !== 'base64') throw new Error('Exact diagnostic workflow bytes unavailable');
@@ -73,9 +79,9 @@ jobs:
             const installerPath = 'tools/android_qa/prepare_system_image.py';
             const installerBytes = fs.readFileSync('workflow-source/' + installerPath);
             const installerSha256 = crypto.createHash('sha256').update(installerBytes).digest('hex');
-            if (installerSha256 !== '6e5e829b84ea01dfd936d37bf153061e238b2696b9899f7d6408633162c74254') throw new Error('Independently validated installer bytes changed');
+            if (installerSha256 !== '8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51') throw new Error('Independently validated installer bytes changed');
             fs.mkdirSync('native-proof', {recursive: true});
-            fs.writeFileSync('native-proof/original-failed-run.json', JSON.stringify({run, failed, first_sdk_blocked_diagnosis: {run: firstDiagnosis, build_job: sdkBlockedBuild}, diagnostic_run_id: context.runId, workflow_commit: context.sha, workflow_path: workflowPath, workflow_blob_sha: workflow.sha, workflow_sha256: crypto.createHash('sha256').update(workflowBytes).digest('hex'), installer: {source_commit: workflowSource, path: installerPath, sha256: installerSha256, license_policy: 'existing accepted SDK licenses required; no license answers or changes'}, apk_and_harness_source: 'f6c4f3350db8153200594b52a9d82606279dc238', reason: 'Independent Bauen reproduction with unchanged original APK, harness, emulator and gates; only system-image preparation added, original failures remain failures.'}, null, 2) + '\n');
+            fs.writeFileSync('native-proof/original-failed-run.json', JSON.stringify({run, failed, first_sdk_blocked_diagnosis: {run: firstDiagnosis, build_job: sdkBlockedBuild}, image_layout_blocked_diagnosis: {run: imageLayoutDiagnosis, build_job: imageLayoutBuild}, diagnostic_run_id: context.runId, workflow_commit: context.sha, workflow_path: workflowPath, workflow_blob_sha: workflow.sha, workflow_sha256: crypto.createHash('sha256').update(workflowBytes).digest('hex'), installer: {source_commit: workflowSource, path: installerPath, sha256: installerSha256, license_policy: 'existing accepted SDK licenses required; no license answers or changes'}, apk_and_harness_source: 'f6c4f3350db8153200594b52a9d82606279dc238', reason: 'Independent Bauen reproduction with unchanged original APK, harness, emulator and gates; only system-image preparation added, original failures remain failures.'}, null, 2) + '\n');
             fs.writeFileSync('native-proof/diagnostic-workflow.yml', workflowBytes);
       - uses: actions/download-artifact@v4
         with:

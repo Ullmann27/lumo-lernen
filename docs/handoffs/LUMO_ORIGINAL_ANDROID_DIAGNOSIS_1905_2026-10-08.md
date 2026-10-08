@@ -31,7 +31,12 @@ Job45min, Emulatorboot300s, Fullrace1200s. Die neue Vorbereitung hat einen
 eigenen 11min-Schritt mit einer gemeinsamen 600s-Frist und höchstens drei
 Installs desselben API35-GoogleAPIs-x86_64-Pakets; Wiederholung ist ausschließlich
 für den tatsächlich beobachteten ZIP-Archivfehler erlaubt. Die gültige lokale
-Paketbeschreibung und nichtleere reguläre Image-Dateien werden geprüft.
+Paketbeschreibung und die vier nichtleeren regulären Image-Dateien werden geprüft.
+Userdata ist entweder ein nichtleeres reguläres `userdata.img` oder ein
+nicht-symlinked `data/`-Verzeichnis mit regulärem `empty_data_disk`-Marker
+(auch leer zulässig) und nichtleerem regulärem `local.prop`. Eine vorhandene
+beschädigte Alternative wird nicht verdeckt. Der Helper erzeugt keine AVD-
+Daten; der ursprüngliche Emulatorrunner bleibt für den tatsächlichen Boot zuständig.
 Keine Orientierungseinstellung oder Gameplay-/Prüfbedingung wird verändert.
 
 Originale Fehler bleiben erhalten: Actions37846382465, Bauenjob113557082619
@@ -64,19 +69,50 @@ Lizenzdateien und liefert bei fehlenden/ungültigen Voraussetzungen FAIL;
 er beantwortet keine Lizenzfrage. Neue tatsächliche SDK-/Lizenzprüfung bleibt
 **NOT EXECUTED**, bis der neue Runner sie ausgeführt hat.
 
-Übernommener Helper ist byteidentisch mit dem unabhängig geprüften korrigierten
-SDK-Commit `744871e420e009ac48135753b46644e5eeb4a377`, Tree
-`454f0736ad818c248c4482caa9d5419e1675a656`:
-SHA256 `6e5e829b84ea01dfd936d37bf153061e238b2696b9899f7d6408633162c74254`.
-38 gezielte Tests,380 Android-QA- und36 Script-Tests PASS/0SKIP/FAIL;
-398 kombinierte Handoff-/SDK-Tests ebenfalls PASS. Diese Zahlen sind
+Übernommener Helper ist byteidentisch mit dem unabhängig geprüften Layoutfolgefix
+SDK-Commit `5767428a42f325b12f4bd2f2e576e25eb7fe51bf`, Tree
+`46db87b6c3fbb84d0beb9a81c97378ea1fd65cfe`:
+SHA256 `8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51`.
+Der unabhängige SDK-Peer bestätigt56 gezielte
+Tests,398 Android-QA- und36 Script-Tests PASS/0SKIP/FAIL;
+416 kombinierte Handoff-/SDK-Tests ebenfalls PASS. Diese Zahlen sind
 kontrollierte lokale Quellen-/Faultprüfungen, keine tatsächliche SDK- oder
 Android-Ausführung. Die vorherige327-Helperquelle blieb wegen zweier FIFO-
 Metadatendateien und eines externen Lizenz-Elternsymlinks BLOCKED; der
 korrigierte Helper verwirft die tatsächlichen drei CLI-Fälle vor jedem SDK-Aufruf.
-Die ursprünglichen33 Assertions bleiben plus fünf zusätzliche Negativtests.
+Die ursprünglichen38 Testmethoden des744-Pakets bleiben erhalten, ergänzt um18
+Layoutfälle. Elf echte Helper-CLI-Aufrufe mit ausdrücklich künstlichen SDK-
+Dateien prüfen Legacy-/Data-Layout und beschädigte Alternativen. Der unabhängige
+Peer prüft zusätzlich18 kontrollierte echte CLI-Aufrufe; das ist keine echte
+SDK-Installation. Sein abgeschlossener Bericht hat SHA256
+`05ca41637936f15fea9436f6916e0d8b13afb119da54dddb6b888be9e28a896a`.
+Validierte
+rohe Paketmetadaten und Bootstrap-JSON werden vor dem Installed-Listing
+erhalten; Listingfehler bleiben FAIL. Kein fremder Emulatorcode wurde kopiert.
 Die Diagnose übernimmt ausschließlich den standaloneHelper; Tests und
 vollständige SDK-Übergabe bleiben im separat geprüften SDK-/1906-Paket.
+
+Die tatsächlich ausgeführte zweite Bauen-Diagnose Actions37857844762,
+Workflowquelle `ed7e837338f4be3d3b38c72ddb446c79b19c90d6`, Job113586237721,
+installiert API35/R09 mit SDKManager-Exit0, scheitert aber weiterhin vor der
+Engine an der alten Helper-Anforderung `userdata.img`. SDKStdout zeigt gekürzte
+`data/empty_dat...`-/`data/local.pro...`-Unzip-Zeilen; ein vollständiges R09-
+Dateiinventar und dessen Größen sind nicht archiviert. Die offizielle API35-
+Prebuiltquelle belegt eine alternative `data/`-Struktur, nennt aber Revision6.
+Dieser neue Fehler ist vom ursprünglichen
+Schatzsuche-ZIP-Fehler und dem ersten Bauen-Diagnose-ZIP-Fehler getrennt;
+alle drei bleiben FAIL. Die neue SDK-Korrektur muss das beobachtete moderne
+Layout streng prüfen und weiterhin die Legacy-Variante unterstützen, ohne
+fehlende/inkonsistente Daten oder geänderte Emulatorbedingungen zu akzeptieren.
+Die offizielle [API35-Prebuiltliste](https://android.googlesource.com/platform/prebuilts/android-emulator-build/system-images/+/refs/heads/main/generic/system-images/android-35/google_apis/x86_64/)
+und [AOSP-Emulatorquelle](https://android.googlesource.com/platform/external/qemu/+/emu-master-dev/android-qemu2-glue/main.cpp)
+begründen ausschließlich die eigene Layoutvalidierung. API35-Prebuilt-Revision6
+ist kein rekonstruierter R09-Nachweis. GPL2-Emulatorimplementierung wurde gelesen,
+aber nicht kopiert. Der korrigierte Helper ist unabhängig bestätigt; der
+gesamte neue Diagnoseworkflow benötigt vor Veröffentlichung noch einen Quellenpeer. Keine
+Bauen-/Spiel-Runtime oder neue APK ist damit bereits bestätigt. Tatsächlicher
+Bootstrap und Zuordnung der gelesenen Emulatorquelle zu Build14472402 bleiben
+NOT EXECUTED/UNKNOWN; der unveränderte tatsächliche Runner muss dies prüfen.
 
 Ziel ist eine echte identische Quellen-/APK-Vergleichsmessung: reproduziert
 der unveränderte neue Emulatorlauf dieselben Fehler, oder unterscheiden sich
