@@ -15,6 +15,11 @@ Build und den Android-Jobs nicht freigegeben. Keine Main-Übernahme oder Release
   `codex/lumo-integrated-runtime-2026-10-08`; Version `0.12.1+1903`.
 - App-RESULT ist der tatsächliche HEAD/saubere CI-Checkout dieses Commits und
   wird im gebauten `BUILD-PROVENANCE.json` gebunden; keinen älteren SHA einsetzen.
+- Folgepaket-BASE: `76daa1fbf005d7ff3b74c17ec7241ef728a46785`,
+  Tree `d652e20ad1521b7779b950b49439a7c4977b0f83`. Freier Arbeitsbranch:
+  `codex/lumo-kart-modal-scroll-2026-10-08`; anschließend gleicher Commit im
+  bestehenden Integrationsbranch/PR216. Version1903 bleibt, weil noch keine
+  1903-APK gebaut wurde. Produkt-Godotpin18238d48 bleibt unverändert.
 
 ## Bestätigte Fehler und kleinstes Folgepaket
 
@@ -47,6 +52,41 @@ und echte ursprüngliche TSV-/Frame-Replays PASS. Das sind keine Android-Runs.
 Der getrennte Followup37810681375 prüft genau die unveränderte alte1902-APK
 (SHA6436beeadc7355b1d4681c4621a160cbfe1136ee764ab57c9801506855f8edd3).
 Sein Erfolg darf nicht als Nachweis des neuen1903-Produktpins ausgegeben werden.
+
+## Belegte Folgefehler und Abbruchkriterien
+
+Followup37810681375: Puzzle35 und Treasure35 PASS; Kart35 und Kart36 FAIL.
+Beide Kartjobs erreichten tatsächlich neue Renn-ID, vollständiges HUD und Pause.
+Danach verwendete die Probe das sichtbare HUD-GAS außerhalb des Pausemodals
+als Scrollanker: zehn unveränderte Frames pro API, keine Fahrt/ACK/Belohnung.
+Die neue Probe verlangt die zwei tatsächlich sichtbaren festen Navigationstexte
+als Modalgrenzen, passende Inhaltstexte und zwei vollständige stabile Frames.
+Beide Swipe-Endpunkte müssen innerhalb des beobachteten Inhalts liegen.
+Bare HUD-GAS, fehlende/mehrdeutige Grenzen, Größenwechsel und unvollständige
+Frames berechtigen keinen Swipe. 40 fokussierte Guards PASS/0SKIP; unabhängige
+Review ohne Blocker. Alle20 Original-PNG/OCR-Paare sind gegen die unveränderten
+ZIP-Memberbytes/Hash/CRC geprüft; ihre neue Geometrie bleibt im Modal.
+Das ist ausschließlich Offline-Geometrieprüfung, kein erfolgreicher Androidlauf.
+
+App76daa1fb, Run37811278021: Quellen und20 Native-Proben PASS, APK-Bau FAIL
+beim tatsächlichen Download von NDK28.2.13676358: `Archive is not a ZIP archive`.
+APK-Schritt und alle Androidjobs SKIPPED. Quelle sauber, generierte Testdateien
+im separaten Buildcheckout leer; Transportursache nicht belegt.
+Neue frühe NDK-Prüfung verwendet ausschließlich das bereits konfigurierte Paket
+und vorhandene offizielle sdkmanager-Syntax. Exakte Paketrevision und tatsächlicher
+Linux-Clang werden geprüft. Nur der belegte ZIP-Fehler auf ausdrücklich disposable
+CI-Runner erlaubt einen begrenzten Reinstall des exakten Pakets. Ursprüngliche
+Logs bleiben erhalten; Timeout, Logverlust, Identitäts-/Compilerfehler, fehlende
+Lizenzen oder anderer Installfehler brechen ab. Keine automatische Lizenzannahme,
+NDK-Ausweichversion oder Löschung fremder SDK-Pakete.
+Quelle: https://developer.android.com/tools/sdkmanager ; eigene kleine Anpassung
+des bestehenden Buildablaufs, kein übernommener fremder Implementierungscode.
+Echte temporäre Fake-SDK-Integrationstests prüfen diese Fehler-/Retrygrenzen;
+20 NDK-Fälle und alle29 Scriptprüfungen lokal PASS/0SKIP; komplette Android-
+Guard-Suite274 lokal PASS/0SKIP. Fokusfälle sind Teilmengen, nicht addieren.
+reale NDK-Installation erst im neuen CI-Lauf. Erfolgsbedingung ist die tatsächlich
+gebaute, verifizierte APK und unverändert strenge Android-Abnahme. Bei neuem
+Fehler zuerst Originaldaten auswerten; keine Tests abschwächen.
 
 ## Neue CI und notwendige Auswertung
 

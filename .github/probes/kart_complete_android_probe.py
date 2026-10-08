@@ -204,20 +204,58 @@ def require_ack(events: dict, result_id: str) -> None:
         raise RuntimeError('Host completed event was not acknowledged after wallet persistence')
 
 
-def observed_scroll(lines: list[dict], direction: str, context: str) -> list[int]:
-    """Gesture within actual observed central settings/result captions."""
+def scroll_observation(lines: list[dict], direction: str, context: str) -> dict:
+    """Locate visible scroll content, excluding the paused HUD and pinned footer."""
     def norm(text):
         import unicodedata
         plain = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode()
         return re.sub('[^a-z0-9]', '', plain.lower())
     pause = ('einekleinepause', 'deinrennenwartet', 'weiterfahren', 'ruhigebewegung',
-             'ton', 'grafik', 'tempo', 'gas', 'musik', 'effekte', 'neuefahrtauswahlen',
+             'tonan', 'tonaus', 'grafik', 'tempo', 'gasautomatisch', 'gasgastastehalten',
+             'musik', 'effekte', 'neuefahrtauswahlen',
              'rennenabbrechen')
     finished = ('gesamtzeit', 'besterunde', 'sternegesammelt', 'belohnung',
                 'nocheinmalfahren', 'neuefahrtauswahlen', 'zurspieleauswahl', 'zumlernen')
+    if context not in ('pause', 'finished'):
+        raise ValueError('Scroll context must be pause or finished')
+    if direction not in ('down', 'up'):
+        raise ValueError('Scroll direction must be up or down')
     prefixes = pause if context == 'pause' else finished
-    rows = [row for row in lines if any(norm(row['text']).startswith(prefix) for prefix in prefixes)
-            and len(row.get('bounds', [])) == 4]
+    observed = []
+    for row in lines:
+        caption = norm(row['text'])
+        if not (any(caption.startswith(prefix) for prefix in prefixes)
+                or caption in ('zurspieleauswahl', 'zumlernen')):
+            continue
+        bounds = row.get('bounds', [])
+        if (not isinstance(bounds, (list, tuple)) or len(bounds) != 4 or any(isinstance(value, bool)
+                or not isinstance(value, (int, float)) or not math.isfinite(value)
+                for value in bounds) or not 0 <= bounds[0] < bounds[2]
+                or not 0 <= bounds[1] < bounds[3]):
+            raise RuntimeError('Invalid observed modal caption bounds')
+        # OCR variants may describe the same caption with subpixel differences.
+        if any(old['caption'] == caption and max(abs(a-b) for a, b in zip(
+                bounds, old['bounds'])) <= 4 for old in observed):
+            continue
+        observed.append({'caption': caption, 'bounds': list(bounds)})
+    rows = [row for row in observed
+            if any(row['caption'].startswith(prefix) for prefix in prefixes)]
+    footer = []
+    if context == 'pause':
+        # Source: PauseNavigation is outside modal_scroll and remains visible
+        # while the settings scroll. Its two actual captions bound the content.
+        for caption in ('zurspieleauswahl', 'zumlernen'):
+            matches = [row for row in observed if row['caption'] == caption]
+            if len(matches) != 1:
+                raise RuntimeError('No observed central modal captions: missing or ambiguous pause footer')
+            footer.append(matches[0]['bounds'])
+        left, right = footer
+        if (left[2] >= right[0] or max(left[1], right[1]) >= min(left[3], right[3])):
+            raise RuntimeError('Observed pause footer does not form one ordered navigation row')
+        left_x, right_x = (left[0]+left[2])/2, (right[0]+right[2])/2
+        footer_top = min(left[1], right[1])
+        rows = [row for row in rows if left_x < (row['bounds'][0]+row['bounds'][2])/2 < right_x
+                and row['bounds'][3] < footer_top]
     if len(rows) < 2:
         raise RuntimeError('No observed central modal captions provide a safe scrolling gesture')
     top = min(rows, key=lambda row: row['bounds'][1])
@@ -227,11 +265,42 @@ def observed_scroll(lines: list[dict], direction: str, context: str) -> list[int
     if bottom_y - top_y < 60:
         raise RuntimeError('Observed modal captions provide too little room to scroll')
     x = round((bottom['bounds'][0] + bottom['bounds'][2]) / 2)
-    if direction == 'down':
-        return [x, bottom_y, x, top_y]
-    if direction == 'up':
-        return [x, top_y, x, bottom_y]
-    raise ValueError('Scroll direction must be up or down')
+    gesture = [x, bottom_y, x, top_y] if direction == 'down' else [x, top_y, x, bottom_y]
+    return {'gesture': gesture, 'context': context, 'direction': direction,
+            'content_bounds': [min(row['bounds'][0] for row in rows),
+                               min(row['bounds'][1] for row in rows),
+                               max(row['bounds'][2] for row in rows),
+                               max(row['bounds'][3] for row in rows)],
+            'footer_bounds': footer, 'selected_captions': rows}
+
+
+def observed_scroll(lines: list[dict], direction: str, context: str) -> list[int]:
+    return scroll_observation(lines, direction, context)['gesture']
+
+
+def stable_scroll_observation(frame: dict, observation: dict, previous: dict | None = None) -> dict:
+    """A swipe requires two complete current frames with matching modal geometry."""
+    result = {'frame': frame, 'observation': observation, 'valid': False, 'stable': False}
+    if not frame.get('acceptable_for_target_sampling'):
+        return result
+    width, height = frame['pixels']
+    for bounds in [observation['content_bounds'], *observation['footer_bounds']]:
+        if not 0 <= bounds[0] < bounds[2] <= width or not 0 <= bounds[1] < bounds[3] <= height:
+            raise RuntimeError('Observed scroll geometry exceeds the current screenshot')
+    x0, y0, x1, y1 = observation['content_bounds']
+    a, b, c, d = observation['gesture']
+    if not (x0 <= a <= x1 and x0 <= c <= x1 and y0 <= b <= y1 and y0 <= d <= y1):
+        raise RuntimeError('Observed swipe leaves the visible modal content')
+    result['valid'] = True
+    if previous and previous['valid'] and previous['frame']['pixels'] == frame['pixels']:
+        old = previous['observation']
+        geometry = lambda value: [*value['gesture'], *value['content_bounds'],
+                                  *(coordinate for bounds in value['footer_bounds'] for coordinate in bounds)]
+        before, after = geometry(old), geometry(observation)
+        result['stable'] = (old['context'] == observation['context'] and old['direction'] == observation['direction']
+                            and len(before) == len(after)
+                            and max(abs(a-b) for a, b in zip(before, after)) <= 12)
+    return result
 
 
 def require_no_runtime_error(logcat: str) -> None:
@@ -371,8 +440,23 @@ def main() -> int:
 
     def tap_native(label: str, tag: str, *, scroll: str | None = None, context: str = 'pause') -> None:
         wanted = creative.normalized(label)
+        deadline, previous_scroll = time.monotonic() + 180, None
         for attempt in range(10):
-            lines = creative.image_lines(out, f'{tag}-{attempt}', wanted, exact=True)
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError('Observed native action preparation exceeded 180 seconds')
+            capture = creative.capture(out, f'{tag}-{attempt}', timeout=remaining)
+            source = out / capture['file']
+            frame = creative.inspect_surface(source)
+            if not frame['acceptable_for_target_sampling']:
+                previous_scroll = None
+                write_json(f'{tag}-{attempt}-observed-scroll.json', {'status': 'SURFACE_REJECTED', 'frame': frame})
+                continue
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError('Observed native action preparation exceeded 180 seconds')
+            lines = creative.image_lines(out, f'{tag}-{attempt}', wanted, exact=True,
+                                         source_path=source, timeout=remaining)
             matches = [row for row in lines if creative.normalized(row['text']) == wanted]
             if matches:
                 # The final action also needs the shared current-full-surface
@@ -380,12 +464,28 @@ def main() -> int:
                 creative.native_text(out, label, tag + '-stable-action', tap=True, exact=True)
                 return
             if scroll and attempt >= 1:
-                gesture = observed_scroll(lines, scroll, context)
-                write_json(f'{tag}-{attempt}-observed-scroll.json', {
+                observation = scroll_observation(lines, scroll, context)
+                current = stable_scroll_observation(frame, observation, previous_scroll)
+                evidence = {
                     'target': label, 'direction': scroll, 'observed_captions': lines,
-                    'gesture': gesture, 'scope': 'scrolling the actually visible native modal',
-                })
-                base.adb('shell', 'input', 'swipe', *map(str, gesture), '450')
+                    'gesture': observation['gesture'], 'current': current,
+                    'previous': previous_scroll, 'status': 'WAITING_FOR_STABLE_MODAL',
+                    'scope': 'two complete current frames; gesture inside observed modal captions',
+                }
+                previous_scroll = current
+                if not current['stable']:
+                    write_json(f'{tag}-{attempt}-observed-scroll.json', evidence)
+                    continue
+                if creative.digest(source) != frame['source_sha256']:
+                    raise RuntimeError('The observed scroll screenshot changed before input')
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError('Observed native action preparation exceeded 180 seconds')
+                base.adb('shell', 'input', 'swipe', *map(str, observation['gesture']), '450',
+                         timeout=min(10, remaining))
+                evidence['status'] = 'SWIPE_SENT'
+                write_json(f'{tag}-{attempt}-observed-scroll.json', evidence)
+                previous_scroll = None
                 time.sleep(1.5)
                 continue
             time.sleep(1)

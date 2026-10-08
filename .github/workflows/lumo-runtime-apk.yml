@@ -41,6 +41,14 @@ jobs:
         with:
           flutter-version: '3.44.9'
           cache: true
+      - name: Verify the required NDK before long source and runtime checks
+        timeout-minutes: 10
+        env:
+          LUMO_NDK_DISPOSABLE_RUNNER: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
       - name: Dependencies and app source analysis
         run: |
           set -o pipefail

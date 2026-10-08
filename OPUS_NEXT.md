@@ -3,6 +3,10 @@
 Lies zuerst [die1903-Übergabe](docs/handoffs/LUMO_INTEGRATED_RUNTIME_1903_2026-10-08.md).
 Aktiv sind App-Integrationsbranch/PR216 und Godot-Integrationsbranch/PR29;
 QA217/218 ist übernommen. Godotpin18238d48, Version0.12.1+1903.
+Der erste 1903-Bau auf App76daa1fb ist am ungültigen NDK-Archiv gescheitert;
+keine 1903-APK ist daraus entstanden. Dieser Folgecommit ergänzt eine frühe
+Prüfung des exakten NDK und korrigiert die anhand echter Androidbilder belegte
+Scrollprüfung innerhalb des Pausemodals. Die alten Fehler bleiben erhalten.
 Build-/Android-Erfolg muss aus dem aktuellen CI-Lauf und dem tatsächlichen APK
 belegt werden. Status beim Commit: VISUAL_GAP / NOT FINISHED.1902 wurde real
 gebaut, hatte aber vier Android-Fails; bestätigter Pausefehler jetzt korrigiert.

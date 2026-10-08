@@ -252,6 +252,7 @@ class ActualNativeInteractionEvidenceTests(unittest.TestCase):
                  {'text': 'Grafik: Hoch', 'bounds': [360, 500, 440, 520]},
                  # Pinned navigation and underlying HUD are outside the settings scroller.
                  {'text': 'Zur Spieleauswahl', 'bounds': [300, 650, 450, 680]},
+                 {'text': 'Zum Lernen', 'bounds': [500, 650, 650, 680]},
                  {'text': 'RUNDE 1 / 2', 'bounds': [10, 10, 200, 35]}]
         self.assertEqual(PROBE.observed_scroll(lines, 'down', 'pause'), [400, 510, 400, 210])
         self.assertEqual(PROBE.observed_scroll(lines, 'up', 'pause'), [400, 210, 400, 510])
@@ -267,6 +268,113 @@ class ActualNativeInteractionEvidenceTests(unittest.TestCase):
                      'E godot : SCRIPT ERROR: Invalid call', 'E Godot : USER ERROR: Assertion failed'):
             with self.subTest(line=line), self.assertRaisesRegex(RuntimeError, 'native runtime logged an error'):
                 PROBE.require_no_runtime_error(line)
+
+
+class ModalScrollReadinessTests(unittest.TestCase):
+    def captions(self):
+        # Caption geometry from both actual failed API35/API36 1902 frames.
+        return [
+            {'text': 'Eine kleine Pause', 'bounds': [625, 260, 861, 280]},
+            {'text': 'Dein Rennen wartet. Du kannst später hier weiterfahren.', 'bounds': [624, 313, 1161, 331]},
+            {'text': 'Weiterfahren', 'bounds': [849, 377, 976, 393]},
+            {'text': 'Ruhige Bewegung: aus', 'bounds': [803, 464, 1023, 484]},
+            {'text': 'Ton: an', 'bounds': [878, 551, 947, 567]},
+            {'text': 'Zur Spieleauswahl', 'bounds': [687, 676, 841, 692]},
+            {'text': 'Zum Lernen', 'bounds': [1027, 676, 1124, 689]},
+            {'text': 'GAS', 'bounds': [1681.5, 870, 1730.5, 886]},
+        ]
+
+    def frame(self, *, pixels=None, complete=True):
+        return {'source_sha256': 'actual-current-frame', 'pixels': pixels or [1920, 1080],
+                'acceptable_for_target_sampling': complete}
+
+    def observation(self):
+        return PROBE.scroll_observation(self.captions(), 'down', 'pause')
+
+    def test_real_hud_gas_cannot_authorize_the_outside_modal_swipe(self):
+        observation = self.observation()
+        self.assertEqual(observation['gesture'], [912, 559, 912, 322])
+        self.assertNotIn('gas', [row['caption'] for row in observation['selected_captions']])
+        self.assertLess(observation['gesture'][0], 1027)
+        self.assertLess(max(observation['gesture'][1::2]), 676)
+
+    def test_full_gas_setting_caption_outside_footer_geometry_is_also_excluded(self):
+        rows = self.captions() + [{'text': 'Gas: automatisch', 'bounds': [1670, 900, 1830, 925]}]
+        self.assertEqual(PROBE.observed_scroll(rows, 'down', 'pause'), self.observation()['gesture'])
+
+    def test_both_visible_gas_modes_are_settings_only_inside_the_modal(self):
+        for caption in ('Gas: automatisch', 'Gas: GAS-Taste halten'):
+            rows = self.captions() + [{'text': caption, 'bounds': [800, 610, 1030, 630]}]
+            with self.subTest(caption=caption):
+                self.assertEqual(PROBE.observed_scroll(rows, 'down', 'pause')[1], 620)
+
+    def test_missing_or_ambiguous_pinned_footer_never_guesses_modal_geometry(self):
+        for rows in (self.captions()[:-2], self.captions() + [
+                {'text': 'Zum Lernen', 'bounds': [100, 800, 230, 820]}]):
+            with self.subTest(rows=rows), self.assertRaisesRegex(RuntimeError, 'missing or ambiguous pause footer'):
+                PROBE.observed_scroll(rows, 'down', 'pause')
+
+    def test_different_ocr_variants_of_one_footer_are_deduplicated_without_guessing(self):
+        rows = self.captions() + [{'text': 'Zum Lernen', 'bounds': [1026, 675, 1124, 690]}]
+        self.assertEqual(PROBE.observed_scroll(rows, 'down', 'pause'), self.observation()['gesture'])
+
+    def test_disordered_or_separate_footer_rows_cannot_bound_the_scroll_content(self):
+        for bounds in ([1027, 750, 1124, 770], [500, 676, 600, 689]):
+            rows = self.captions()
+            rows[6] = {'text': 'Zum Lernen', 'bounds': bounds}
+            with self.subTest(bounds=bounds), self.assertRaisesRegex(RuntimeError, 'ordered navigation row'):
+                PROBE.observed_scroll(rows, 'down', 'pause')
+
+    def test_invalid_relevant_bounds_fail_instead_of_becoming_input_coordinates(self):
+        for bounds in (None, [True, 313, 1161, 331], [624, float('nan'), 1161, 331],
+                       [624, 331, 1161, 313], [-1, 313, 1161, 331]):
+            rows = self.captions()
+            rows[1] = {'text': rows[1]['text'], 'bounds': bounds}
+            with self.subTest(bounds=bounds), self.assertRaisesRegex(RuntimeError, 'Invalid observed modal caption bounds'):
+                PROBE.observed_scroll(rows, 'down', 'pause')
+
+    def test_settings_below_or_beside_the_footer_cannot_supply_a_scroll_path(self):
+        rows = self.captions()[5:7] + [
+            {'text': 'Ton: an', 'bounds': [1600, 500, 1670, 520]},
+            {'text': 'Grafik: Hoch', 'bounds': [800, 800, 1000, 820]}]
+        with self.assertRaisesRegex(RuntimeError, 'No observed central modal captions'):
+            PROBE.observed_scroll(rows, 'down', 'pause')
+
+    def test_one_full_frame_is_insufficient_but_two_stable_current_frames_authorize_swipe(self):
+        first = PROBE.stable_scroll_observation(self.frame(), self.observation())
+        self.assertTrue(first['valid'])
+        self.assertFalse(first['stable'])
+        second = PROBE.stable_scroll_observation(self.frame(), self.observation(), first)
+        self.assertTrue(second['stable'])
+
+    def test_partial_surface_or_resizing_never_reuses_previous_geometry(self):
+        first = PROBE.stable_scroll_observation(self.frame(), self.observation())
+        rejected = PROBE.stable_scroll_observation(self.frame(complete=False), self.observation(), first)
+        self.assertFalse(rejected['valid'])
+        self.assertFalse(PROBE.stable_scroll_observation(self.frame(), self.observation(), rejected)['stable'])
+        self.assertFalse(PROBE.stable_scroll_observation(self.frame(pixels=[2316, 904]), self.observation(), first)['stable'])
+
+    def test_modal_or_footer_movement_requires_new_stable_frames(self):
+        first = PROBE.stable_scroll_observation(self.frame(), self.observation())
+        for key in ('content_bounds', 'footer_bounds', 'gesture'):
+            changed = json.loads(json.dumps(self.observation()))
+            if key == 'footer_bounds':
+                changed[key][0] = [value + 13 for value in changed[key][0]]
+            elif key == 'content_bounds':
+                changed[key][2] += 13
+                changed[key][3] += 13
+            else:
+                changed[key][0] += 13
+                changed[key][2] += 13
+            with self.subTest(key=key):
+                self.assertFalse(PROBE.stable_scroll_observation(self.frame(), changed, first)['stable'])
+
+    def test_clipped_geometry_and_gestures_outside_the_seen_content_fail(self):
+        with self.assertRaisesRegex(RuntimeError, 'exceeds the current screenshot'):
+            PROBE.stable_scroll_observation(self.frame(pixels=[1080, 700]), self.observation())
+        changed = {**self.observation(), 'gesture': [1706, 878, 1706, 270]}
+        with self.assertRaisesRegex(RuntimeError, 'leaves the visible modal content'):
+            PROBE.stable_scroll_observation(self.frame(), changed)
 
 
 if __name__ == '__main__':
