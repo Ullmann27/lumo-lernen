@@ -135,7 +135,9 @@ void main() {
       );
       expect(calls, isEmpty);
       // Cancelling the stale request must release the launch lock.
-      expect(await launchLumo3D(context, appState: state), isTrue);
+      final retry = launchLumo3D(context, appState: state);
+      await tester.pump();
+      expect(await retry, isTrue);
       expect(calls, hasLength(1));
     },
   );

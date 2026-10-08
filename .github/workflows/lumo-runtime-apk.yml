@@ -75,6 +75,9 @@ jobs:
           cp "$RUNNER_TEMP/candidate-launcher.dart" "$launcher"
           trap - EXIT
           git diff --exit-code -- "$launcher"
+          set -o pipefail
+          flutter test --no-pub test/lumo3d_launcher_lifecycle_test.dart \
+            --reporter=expanded --timeout=45s 2>&1 | tee proof/launcher-candidate-green.log
       - name: Flutter regression suite and actual app screenshots
         env:
           LUMO_POLISH_CAPTURES: ${{ github.workspace }}/proof/app-renders
