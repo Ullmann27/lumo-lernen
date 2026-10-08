@@ -420,6 +420,7 @@ def main() -> int:
                              'visual reference parity', 'all tracks/karts']}
     video = None
     creative = load_creative()
+    from runtime_resource_evidence import capture_resources
     base, package = creative.base, creative.PACKAGE
     original_adb = base.adb
 
@@ -590,6 +591,10 @@ def main() -> int:
         expected_sdk = os.environ.get('LUMO_EXPECT_ANDROID_API')
         if expected_sdk and result['android_sdk'] != int(expected_sdk):
             raise RuntimeError('Android API differs from the requested probe')
+        resource_identity = {key: result[key] for key in
+                             ('source', 'godot', 'apk_sha256', 'android_sdk', 'serial')}
+        result['resource_snapshots'] = {}
+        result['resource_observed_states'] = {}
         base.adb('shell', 'svc', 'wifi', 'disable')
         base.adb('shell', 'svc', 'data', 'disable')
         base.adb('shell', 'cmd', 'connectivity', 'airplane-mode', 'enable')
@@ -649,6 +654,15 @@ def main() -> int:
             state['wall_seconds_since_resume'] = round(time.monotonic() - race_started, 3)
             trace.append(state)
             write_json('race-trace.json', trace)
+            if ('first-driving' not in result['resource_snapshots'] and not state['finished']
+                    and state['countdown'] <= 0 and state['elapsed'] > initial['elapsed']
+                    and state['speed'] > 0 and state['distance'] > initial['distance']):
+                # Natural motion in this exact race, before any in-race pause.
+                # A failed diagnostic stays FAIL; it does not alter race gates.
+                result['resource_observed_states']['first-driving'] = dict(state)
+                result['resource_snapshots']['first-driving'] = capture_resources(
+                    base.adb, out, 'first-driving', resource_identity,
+                    result['emulator_root_readiness'], timeout=20)
             if state['elapsed'] > previous['elapsed'] + 0.1:
                 last_progress = time.monotonic()
             elif time.monotonic() - last_progress > 180:
@@ -694,6 +708,10 @@ def main() -> int:
         creative.native_text(out, 'Gesamtzeit', 'result-total-time')
         creative.native_text(out, 'Belohnung', 'result-reward')
         creative.capture(out, '06-completed-result-phone')
+        result['resource_observed_states']['completed-before-fold'] = dict(final)
+        result['resource_snapshots']['completed-before-fold'] = capture_resources(
+            base.adb, out, 'completed-before-fold', resource_identity,
+            result['emulator_root_readiness'], timeout=20)
         if os.environ.get('LUMO_FOLD_PROBE') == '1':
             result['result_resize'] = fold_cycle('07-finished-result-resize', ('Gesamtzeit', 'Belohnung'), final)
 

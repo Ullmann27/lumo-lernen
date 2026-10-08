@@ -1,4 +1,33 @@
-# Aktueller integrierter Lumo-Kandidat 1904 · 8. Oktober 2026
+# Aktueller integrierter Lumo-Kandidat 1905 · 8. Oktober 2026
+
+Zuerst [die aktuelle 1905-Übergabe](docs/handoffs/LUMO_INTEGRATED_RUNTIME_1905_2026-10-08.md)
+lesen. Maßgeblich sind der frische App-Branch-HEAD, der exakte Godot-Pin
+`ad3ee9c9a1e2cfa60a6d2fe4970181b3150a1a1b` und die tatsächlich gebauten
+APK-/PCK-Bytes. Quellversion: `0.12.3+1905`. Dieser freie Anschlussstand
+verbindet die erhaltene App-/Spielarchitektur mit acht selektiv geprüften
+Grafikdateien, der vollständigen 37er-Modalfixture und strenger Android-QA.
+
+Eigene App1be/Godot6873 in Actions37833588822 scheiterte vor der APK am
+belegten Gas-Modusfehler der Fixture: KEINE APK, Android SKIPPED. Die getrennte
+App497/Godot7ded-APK `0.12.2+1904` wurde wirklich gebaut. Ihr vollständiger
+API35-Lauf einschließlich Ergebnis, ACK, einmaliger Belohnung, Offline-Recovery
+und sichtbarer Flutter-Rückkehr ist unabhängig bestätigt; API36 bleibt wegen
+einer zusätzlichen übergroßen Raw-OCR-Fußzeilenbox FAIL. Beides ist historische
+Provenienz und kein Ergebnis dieses neuen Pins.
+
+Der neue Reader korrigiert ausschließlich die belegte OCR-Geometrie bei
+unabhängiger Bestätigung. Zwei frische Flutter-Oberflächen samt exakter
+MainActivity sind vor dem abschließenden Offline-Neustart verpflichtend.
+Zwei begrenzte, rein lesende native Ressourcenaufnahmen erfassen CPU-Zähler
+und Speicher bei beobachteter Fahrt und am Ergebnis vor Fold. Ihre Fehler
+bleiben ausdrücklich FAIL; GPU, Framezeiten, FPS und physische Geräte werden
+daraus nicht abgeleitet. Alle bisherigen Rennen-/Wallet-/ACK-Gates bleiben.
+
+Die exakte neue APK1905, ihre API35/36-Wiederholung und Referenzabnahme sind
+PENDING / NOT EXECUTED. **VISUAL_GAP / NOT FINISHED**. Main und Releases
+bleiben unverändert. Folgende Übergaben sind historische Kontexte.
+
+## Integrierter Kandidat 1904 · historische Übergabe
 
 Zuerst [die aktuelle 1904-Übergabe](docs/handoffs/LUMO_INTEGRATED_RUNTIME_1904_2026-10-08.md)
 lesen. Aktive Integrations-PRs sind App216 und Godot29. Maßgeblich sind der
