@@ -269,6 +269,15 @@ def render_hero(stage,out):
     # VTK OpenGL output is bottom-up.
     im=Image.fromarray(pixels[::-1].copy(),'RGBA')
     result=postprocess(im,stage)
+    # Crop and resample from the actual 3D render: oversized transparent sky
+    # was shrinking the hero art on phone. All geometry remains fully visible.
+    focus = [
+        (130, 245, 820, 935),
+        (100, 150, 860, 910),
+        (75, 90, 885, 900),
+        (45, 60, 920, 935),
+    ][stage]
+    result=result.crop(focus).resize((CANVAS,CANVAS),Image.Resampling.LANCZOS)
     out.parent.mkdir(parents=True,exist_ok=True)
     result.save(out,optimize=True)
     print(out, 'pixels',result.size,'bytes',out.stat().st_size)
