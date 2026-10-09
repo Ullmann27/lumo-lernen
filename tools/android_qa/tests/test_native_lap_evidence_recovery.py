@@ -24,8 +24,18 @@ sys.path.insert(0, str(QA))
 FIXTURES = Path(__file__).with_name('fixtures')
 
 
+# The fixtures are actual evidence of the reviewed historical source 7e600/a9846. Production binds
+# the currently pinned Godot source; the validation logic is tested against the sources these
+# fixtures were really produced from.
+FIXTURE_SOURCE_SHA256 = '7e600e57bcd2c7783da04caca22be4b51004d375e984aabe3b386861ffc1a6db'
+FIXTURE_LAP_PROBE_SHA256 = 'a9846743d90e5fa7dc3cfc678e8e3fa885016b808b4cd36f87bf8799ae434298'
+
+
 def validator():
-    return importlib.import_module('native_lap_evidence_recovery')
+    module = importlib.import_module('native_lap_evidence_recovery')
+    module.SOURCE_SHA256 = FIXTURE_SOURCE_SHA256
+    module.LAP_PROBE_SHA256 = FIXTURE_LAP_PROBE_SHA256
+    return module
 
 
 def fixture(name):
