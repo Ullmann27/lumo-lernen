@@ -96,6 +96,19 @@ void main() {
     expect(LumoTreeProgress.isMastered(skill('Nur richtig', correct: 10)),
         isFalse);
     expect(LumoTreeProgress(<String, SkillRecord>{}).mastered, 0);
+    // A pretty decoration must not be counted as a real mastered skill.
+    expect(p.visibleSkills.length, 3);
+    expect(p.stageIndex, 2);
+    expect(LumoTreeProgress(<String, SkillRecord>{}).stageIndex, 0);
+    final early = LumoTreeProgress({'first': skill('First', correct: 1)});
+    expect(early.stageIndex, 1);
+    final advanced = LumoTreeProgress({
+      for (var n = 0; n < 4; n++)
+        'mastered' + n.toString():
+            skill('Skill ' + n.toString(), correct: 5, streak: 5),
+    });
+    expect(advanced.stageIndex, 3);
+    expect(advanced.visibleSkills.length, 4);
   });
 
   // Regression: breite Messbilder benötigen mehr als eine halbe Fold-Spalte.
@@ -209,6 +222,28 @@ void main() {
         ),
       ));
       await tester.pump();
+      // The first phone screenshot used to capture ONLY floating progress
+      // dots before its asynchronous PNG decode had completed. Catch this.
+      final treeContext =
+          tester.element(find.byKey(const ValueKey('lumo-learning-tree')));
+      await tester.runAsync(() async {
+        await precacheImage(
+          const AssetImage(
+            'assets/lumo_design/learning_world/learning_tree_stage_2.png',
+          ), treeContext,
+        );
+      });
+      await tester.pump();
+      expect(find.byKey(const ValueKey('lumo-tree-3d-image')), findsOneWidget);
+      expect(
+        tester.widgetList<RawImage>(find.byType(RawImage))
+            .any((render) => render.image != null),
+        isTrue, reason: 'The screenshot must contain the decoded 3D scene',
+      );
+      for (var i = 0; i < 3; i++) {
+        expect(find.byKey(ValueKey('lumo-tree-skill-node-$i')),
+            findsOneWidget);
+      }
       expect(find.text('Mein Lernbaum'), findsOneWidget);
       expect(find.byKey(const ValueKey('lumo-tree-mastered')), findsOneWidget);
       expect(find.text('Plus bis 20'), findsOneWidget);

@@ -76,7 +76,27 @@ class LumoWeltScreen extends StatelessWidget {
       body: LumoMagicBackground(
         intensity: 1.0,
         starCount: 22,
-        child: SafeArea(
+        child: Stack(fit: StackFit.expand, children: [
+          Positioned.fill(child: Opacity(
+            opacity: .62,
+            child: Image.asset(
+              'assets/lumo_design/learning_world/learning_world_night.jpg',
+              fit: BoxFit.cover,
+              filterQuality: FilterQuality.medium,
+              errorBuilder: (context, error, stackTrace) =>
+                  const SizedBox.shrink(),
+            ),
+          )),
+          const Positioned.fill(child: DecoratedBox(
+            decoration: BoxDecoration(gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0x9B04112B), Color(0x8C061C45), Color(0xC4081534),
+              ],
+            )),
+          )),
+          SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(14, 12, 14, 26),
             child: Column(
@@ -117,7 +137,8 @@ class LumoWeltScreen extends StatelessWidget {
               ],
             ),
           ),
-        ),
+          ),
+        ]),
       ),
     );
   }
