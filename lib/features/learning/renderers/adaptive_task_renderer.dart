@@ -255,7 +255,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       ],
     );
     return LayoutBuilder(builder: (context, constraints) {
-      final wide = constraints.maxWidth >= 690 &&
+      final wide = constraints.maxWidth >= 610 &&
           MediaQuery.textScalerOf(context).scale(1) <= 1.25;
       if (wide) {
         return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
