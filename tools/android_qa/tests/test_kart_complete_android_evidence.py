@@ -223,6 +223,42 @@ class HostRewardEvidenceTests(unittest.TestCase):
             with self.subTest(rows=rows), self.assertRaisesRegex(RuntimeError, 'exactly this native finish'):
                 PROBE.require_event({'results': rows}, self.payload)
 
+    def test_real_android35_native_and_host_round_trip_may_differ_only_in_last_float_bits(self):
+        # Immutable API35 1908 run 37913484330, forensic run 37922144067:
+        # ConfigFile 75.35000000000001 vs durable Android JSON 75.35.
+        native = {**self.payload, 'elapsedSeconds': 75.35000000000001,
+                  'bestLapSeconds': 37.675000000000004}
+        host = {**native, 'elapsedSeconds': 75.35, 'bestLapSeconds': 37.675}
+        PROBE.require_event({'results': [host]}, native)
+        PROBE.require_event({'results': [native]}, native)
+
+    def test_only_two_actual_timing_fields_accept_sub_nanosecond_json_variance(self):
+        native = {**self.payload, 'elapsedSeconds': 75.35000000000001,
+                  'bestLapSeconds': 37.675000000000004}
+        for updates in (
+            {'elapsedSeconds': 75.350001},
+            {'elapsedSeconds': 75.349999},
+            {'elapsedSeconds': float('nan')},
+            {'elapsedSeconds': float('inf')},
+            {'elapsedSeconds': '75.35'},
+            {'elapsedSeconds': 75},
+            {'bestLapSeconds': 37.675001},
+            {'bestLapSeconds': float('-inf')},
+            {'bestLapSeconds': '37.675'},
+            {'stars': 2},
+            {'resultId': 'another-finish-id'},
+            {'sessionId': 'wrong-session'},
+            {'checkpoints': 15},
+        ):
+            with self.subTest(updates=updates), self.assertRaisesRegex(
+                    RuntimeError, 'exactly this native finish'):
+                PROBE.require_event({'results': [{**native, **updates}]}, native)
+        with self.assertRaisesRegex(RuntimeError, 'exactly this native finish'):
+            PROBE.require_event({'results': [{k: v for k, v in native.items()
+                                              if k != 'stars'}]}, native)
+        with self.assertRaisesRegex(RuntimeError, 'exactly this native finish'):
+            PROBE.require_event({'results': [native, native]}, native)
+
     def test_ack_requires_the_actual_result_to_leave_the_pending_host_queue(self):
         PROBE.require_ack({'results': []}, 'actual-test-race')
         PROBE.require_ack({'results': [{'resultId': 'unrelated'}]}, 'actual-test-race')

@@ -194,9 +194,28 @@ def require_reward(before: dict, after: dict, payload: dict) -> None:
 
 
 def require_event(events: dict, payload: dict) -> None:
+    """Match an actually durable host event, allowing only a sub-nanosecond JSON float round-trip.
+
+    The native ConfigFile can preserve 75.35000000000001 while JSON.stringify /
+    org.json stores 75.35. All identifiers, rewards, fields and other values
+    remain exact. A discrepancy of 1e-9 seconds or greater still fails closed.
+    """
+    failure = 'Host did not durably retain exactly this native finish result'
     rows = [row for row in events.get('results', []) if row.get('resultId') == payload['resultId']]
-    if len(rows) != 1 or rows[0] != payload:
-        raise RuntimeError('Host did not durably retain exactly this native finish result')
+    if len(rows) != 1 or not isinstance(rows[0], dict):
+        raise RuntimeError(failure)
+    stored = rows[0]
+    if set(stored) != set(payload):
+        raise RuntimeError(failure)
+    for key, expected in payload.items():
+        actual = stored[key]
+        if key in ('elapsedSeconds', 'bestLapSeconds'):
+            if (type(expected) is not float or type(actual) is not float
+                    or not math.isfinite(expected) or not math.isfinite(actual)
+                    or not math.isclose(actual, expected, rel_tol=0.0, abs_tol=1e-9)):
+                raise RuntimeError(failure)
+        elif actual != expected:
+            raise RuntimeError(failure)
 
 
 def require_ack(events: dict, result_id: str) -> None:
