@@ -115,15 +115,16 @@ class CognitiveProfileGenerator {
     }
     final price = 4 + i;
     final count = 2 + i % 4;
-    final paid = price * count + 10;
-    const answer = 10;
+    // Das Wechselgeld wechselt von Aufgabe zu Aufgabe (3 bis 9 Euro); früher war es immer 10.
+    final answer = 3 + (i * 2) % 7;
+    final paid = price * count + answer;
     return _choice(
       id: 'g${g}_quant_$i',
       grade: g,
       domain: CognitiveDomain.quantitativeReasoning,
       prompt: '$count gleiche Dinge kosten je $price Euro. Bezahlt werden $paid Euro. Wie viel Wechselgeld bleibt?',
       answer: '$answer',
-      rawChoices: <String>['$answer', '8', '12', '$price'],
+      rawChoices: <String>['$answer', '${answer + 2}', '${price * count}', '${answer + 5}'],
       explanation: '$count × $price = ${price * count}. Von $paid bleiben $answer Euro.',
       difficulty: 1 + i ~/ 2,
       rotate: i + 1,
@@ -141,7 +142,7 @@ class CognitiveProfileGenerator {
         ['kalt', 'klein', 'Gegenteil von warm ist kalt. Gegenteil von groß ist …'],
         ['Mittwoch', 'Donnerstag', 'Montag, Dienstag, Mittwoch – welcher Tag folgt?'],
         ['Farbe', 'Form', 'Rot ist eine Farbe. Kreis ist eine …'],
-        ['Hunger', 'Durst', 'Bei Hunger essen wir. Bei Durst …'],
+        ['essen', 'trinken', 'Bei Hunger können wir essen. Bei Durst können wir …'],
         ['lesen', 'hören', 'Ein Buch kann man lesen. Ein Lied kann man …'],
       ],
       2: <List<String>>[
@@ -158,10 +159,10 @@ class CognitiveProfileGenerator {
       ],
       3: <List<String>>[
         ['Buch', 'Film', 'Kapitel gehört zum Buch. Szene gehört zum …'],
-        ['Temperatur', 'Masse', 'Thermometer misst Temperatur. Waage misst …'],
+        ['Temperatur', 'Gewicht', 'Thermometer misst Temperatur. Waage misst …'],
         ['Folge', 'Antwort', 'Ursache führt zu Folge. Frage führt zu …'],
         ['Richtung', 'Zeit', 'Kompass zeigt Richtung. Uhr zeigt …'],
-        ['wachsen', 'lernen', 'Pflanzen wachsen. Menschen können …'],
+        ['blühen', 'sprechen', 'Pflanzen können blühen. Menschen können …'],
         ['ähnlich', 'entgegengesetzt', 'Synonyme bedeuten ähnlich. Gegenteile bedeuten …'],
         ['Buch', 'Musikstück', 'Autor schreibt ein Buch. Komponist schafft ein …'],
         ['Raum', 'Zeit', 'Landkarte ordnet Raum. Zeitstrahl ordnet …'],
@@ -175,10 +176,10 @@ class CognitiveProfileGenerator {
         ['Umwandlung', 'Kreislauf', 'Energie kann umgewandelt werden. Wasser bewegt sich im …'],
         ['Karte', 'Geschichte', 'Maßstab hilft bei Karten. Zeitachse hilft bei …'],
         ['Absatz', 'Buch', 'Mehrere Sätze bilden einen Absatz. Mehrere Kapitel bilden ein …'],
-        ['Konsequenz', 'Folge', 'Auf eine Ursache kann eine Konsequenz folgen. Auf eine Entscheidung folgt eine …'],
+        ['Ursache', 'Wirkung', 'Regen ist die Ursache. Nasse Straßen sind die …'],
         ['nutzen', 'schützen', 'Ressourcen soll man bewusst nutzen. Umwelt soll man …'],
         ['Hypothese', 'Ergebnis', 'Aus Beobachtungen entsteht eine Hypothese. Durch Prüfung entsteht ein …'],
-        ['Blickwinkel', 'Standpunkt', 'Perspektive bedeutet Blickwinkel. Argument unterstützt einen …'],
+        ['Zufall', 'Standpunkt', 'Perspektive bedeutet Blickwinkel. Ein Argument unterstützt einen …'],
       ],
     };
     final item = banks[g]![i];
@@ -296,8 +297,19 @@ class CognitiveProfileGenerator {
       if (!unique.contains(c)) unique.add(c);
     }
     if (!unique.contains(answer)) unique.insert(0, answer);
-    while (unique.length < 4) {
-      unique.add('—${unique.length + 1}—');
+    // Fehlen nach dem Entfernen von Doppelten Karten, werden sie bei Zahlen mit
+    // plausiblen Nachbarwerten aufgefüllt. Nie mit Platzhaltern: Ein Kind sähe sonst
+    // eine Antwortkarte wie „—4—“ (Test: cognitive_profile_test.dart).
+    final value = int.tryParse(answer);
+    if (value != null) {
+      for (final step in const [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+        for (final candidate in [value + step, value - step]) {
+          if (unique.length < 4 && candidate > 0 && !unique.contains('$candidate')) {
+            unique.add('$candidate');
+          }
+        }
+        if (unique.length >= 4) break;
+      }
     }
     final choices = unique.take(4).toList();
     final shift = rotate % choices.length;

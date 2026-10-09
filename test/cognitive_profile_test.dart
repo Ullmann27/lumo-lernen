@@ -27,6 +27,39 @@ void main() {
       }
     });
 
+    test('Denkprofil Klasse $grade zeigt nie Platzhalter-Antwortkarten', () {
+      // Früher füllte der Generator fehlende Karten mit „—4—“ auf; der Test auf vier
+      // verschiedene Karten blieb dadurch grün. Jede Karte muss eine echte Antwort sein.
+      for (final q in CognitiveProfileGenerator.forGrade(grade)) {
+        for (final choice in q.choices) {
+          expect(choice.trim(), isNotEmpty, reason: q.id);
+          expect(RegExp(r'^[—–-]+\s*\d*\s*[—–-]*$').hasMatch(choice), isFalse,
+              reason: '${q.id}: Platzhalter „$choice“');
+        }
+      }
+    });
+
+    test('Denkprofil Klasse $grade: Wortanalogien verraten die Lösung nicht', () {
+      // Die richtige Antwort darf nicht schon als Wort in der Aufgabenstellung stehen.
+      final words = RegExp(r'[A-Za-zÄÖÜäöüß]+');
+      for (final q in CognitiveProfileGenerator.forGrade(grade)
+          .where((q) => q.domain == CognitiveDomain.verbalReasoning)) {
+        final inPrompt =
+            words.allMatches(q.prompt).map((m) => m.group(0)!.toLowerCase());
+        expect(inPrompt.contains(q.correctAnswer.toLowerCase()), isFalse,
+            reason: '${q.id}: „${q.correctAnswer}“ steht schon in der Frage');
+      }
+    });
+
+    test('Denkprofil Klasse $grade: Rechenaufgaben haben wechselnde Ergebnisse', () {
+      final results = CognitiveProfileGenerator.forGrade(grade)
+          .where((q) => q.domain == CognitiveDomain.quantitativeReasoning)
+          .map((q) => q.correctAnswer)
+          .toList();
+      expect(results.toSet().length, greaterThanOrEqualTo(7),
+          reason: 'Klasse $grade: $results');
+    });
+
     test('Arbeitsgedächtnis Klasse $grade blendet echten Merkstimulus ein', () {
       final memory = CognitiveProfileGenerator.forGrade(grade)
           .where((q) => q.domain == CognitiveDomain.workingMemory)
