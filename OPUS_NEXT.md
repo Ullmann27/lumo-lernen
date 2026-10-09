@@ -1,3 +1,15 @@
+# Integration Claude · 9. Oktober 2026 (AAA-Produktionsauftrag)
+
+Arbeitsbericht mit Integrationsmatrix, SHAs, Prüfungen, Bildvergleichen und offenen Abweichungen:
+[docs/LUMO_VISUAL_EXECUTION_2026-10-09.md](docs/LUMO_VISUAL_EXECUTION_2026-10-09.md).
+Branch `claude/continue-previous-chat-KtY7p` vereint App-PR #227 (Spielstart-Overlay), #228 (Zeitrundung
+in der Host-Prüfung, erweitert um ganzzahlige org.json-Zeiten) und den Codex-1909/1910-Strang
+(#223/#225/#226: Android-Bildleser, Bildschirmfoto-Wiederholung, Profilbudget-Prüfung). Version
+`0.12.7+1913` liegt über allen Reservierungen (1909 gebaut, 1910–1912 vergeben). APK 1909 bleibt der
+unveränderte, geprüfte Rückfallstand. **VISUAL_GAP – NOT ACCEPTED**; Main und Releases unverändert.
+
+---
+
 # Übergabe an ChatGPT Sol 6.1 · 9. Oktober 2026 (Claude-Strang)
 
 Zuerst [die Übergabe von Claude](docs/handoffs/CLAUDE_TO_SOL_2026-10-09.md) lesen: Stände, Nachweise,
@@ -7,6 +19,62 @@ Prüfstand, Action-Parcours, Knobel-Test). **VISUAL_GAP / NOT FINISHED**; Main u
 Die ältere Recovery-Anweisung darunter bleibt gültig, soweit sie hier nicht ersetzt wurde.
 
 # Neuer App-Wiederherstellungsstand1906 · 9. Oktober2026UTC
+
+---
+
+# Aktueller Stand: APK 0.12.6+1909 · 9. Oktober 2026
+
+Die **installierbare, signierte APK 1909 ist gebaut und bereitgestellt**. Aktueller App-PR: [#223](https://github.com/Ullmann27/lumo-lernen/pull/223); Spielstand: [lumo-godot#32](https://github.com/Ullmann27/lumo-godot/pull/32).
+
+- APK-Quellstand: App `aa6519226fded77d5d5022dc6fe8c223e9dc82b8`, Godot `a377b9e2db3337ae46f9439200ef0af17af06cb5`.
+- APK: 203803554 Bytes, SHA256 `b58e055340595ac882fed47d0c11660f2420e41c1528ed2841c5100f13304fb7`; Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version `0.12.6+1909`, ARM64/x86_64, stabil signiert. Der PCK enthält Aquarium, Hütchen und Prüfstand.
+- [Bau und Nachweise](https://github.com/Ullmann27/lumo-lernen/actions/runs/37888592898): 808 Flutter-Tests bestanden (4 vorhandene Skips), 579 QA-/36 Vorbereitungstests, 25 native Proben, 24 Profilbudgetprüfungen; APK-Signatur/Version/Quellstand/16-KiB-Ausrichtung geprüft. Android-Update, Offline-Spiel und Speicher-/Belohnungsschutz für Bauwelt, Puzzle, Rhythmus und Schatzsuche grün.
+- Beide erste Kart-Läufe stoppten vor dem Vollrennen an einem belegten Bildleser-Fehlnegativ für DRIFT. [Reparatur und echte Fehlerbilder](docs/APK_1909_ANDROID_READER.md) sind in Testwerkzeug-Commit `7a570c1fc69b21f0e081ace208b082796bc30057` enthalten. 581 Tests einschließlich beider echten Bildfixtures grün.
+- **Android 16 / API 36: vollständiges Kart-Rennen PASS** in [Job 113699324621](https://github.com/Ullmann27/lumo-lernen/actions/runs/37893374564/job/113699324621): 16 Checkpoints, Pause, Größenwechsel/Rotation, Ergebnis, Offline-Wiederaufnahme, Host-ACK und doppelte Belohnung verhindert. Exakt dieselbe APK; keine physische Fold-/FPS-Messung.
+- **Android 15 / API 35: vollständiges Kart-Rennen PASS** in [Job 113710020612](https://github.com/Ullmann27/lumo-lernen/actions/runs/37896765244/job/113710020612), einschließlich 16 Checkpoints, Pause, Bildschirmwechsel, Ergebnis, Offline-Wiederaufnahme, ACK und Belohnungs-Deduplizierung. 585 QA-Tests lokal und in CI bestanden. Die Testwerkzeuge wurden korrigiert; die APK blieb unverändert. Frühere Fehlläufe und ein zusätzlicher API-36-OCR-Timeout bleiben dokumentiert.
+
+**Abschlussbericht:** [APK_1909_ABSCHLUSS.md](docs/APK_1909_ABSCHLUSS.md) enthält genaue Jobs, Hashes, Testgrenzen und verbleibenden PR-Mergekonflikt. Beide Android-Versionen bestanden in getrennten Nachläufen; kein pauschaler Gesamt-CI-Erfolg.
+
+Neu abgeschlossen: 14er-Flotte und Werkstattanschluss erhalten, kostenloser Prüfstand mit gemeinsamen Fahrformeln, Aquarium mit animiertem Wasser/Fischen und sanfte Hütchen-Hindernisse. [Details](docs/APK_1909_ACTION_WORKSHOP.md).
+
+Physische Fold-Leistung/60 FPS und vollständige Referenzvideo-Gleichheit sind nicht belegt. Kein Main-Merge und kein Release. Ältere Angaben unten zu fehlender APK oder vorläufigem Pin sind historisch; die jeweiligen früheren Designabweichungen bleiben nachvollziehbar dokumentiert.
+
+---
+
+# Gemeinsamer App-Entwurf 1908 · 9. Oktober 2026 UTC
+
+Zuerst [die neue selektive Integrationsübergabe](docs/handoffs/LUMO_SELECTIVE_INTEGRATION_1908_2026-10-09.md)
+lesen. **SOURCE CHECKPOINT / FINAL PIN PENDING / VISUAL_GAP / NOT FINISHED**. Der Entwurf
+führt den tatsächlich aktuellen App-Stand `36391b2d2a332e93f3bac46bf21afb83fad15d8a`
+mit Recovery `4458590063b9e59fc7f36fe9dea4e798b95a192a` zusammen und bewahrt
+die neuen IQ-, Analyze-, FleetStats- und Workshop-Anschlüsse. Quellversion:
+`0.12.5+1908`. Der vorhandene Godot-Pin `99cdb776df10e8cc719d19792c17074c887b5112`
+ist zunächst nur der unveränderte Ausgangspin. Ein endgültiger Pin und neue
+echte Native-Fixtures warten auf den geprüften gemeinsamen Godot-Quellstand.
+Aktuell:579QA+36Scripts PASS,0Fehler/Skips; unabhängige68Quell-/AST-Prüfungen PASS. Keine1908APK oder Android-Abnahme.
+
+Die folgenden 1906-Abschnitte bleiben historische Wiederherstellungsübergaben.
+Nach einem dritten Workspaceverlust wurden die veröffentlichten Quellen erneut
+aus Git wiederhergestellt; verlorene lokale Nachweise gelten nicht als neue
+Prüfungen dieses Entwurfs.
+
+# Neuer App-Wiederherstellungsstand1906 · historischer Kontext vom 9. Oktober2026UTC
+
+Aktuelle Fortsetzung nach **zweitem Workspaceverlust**: vollständiger sauberer
+Recoverycheckout aus `1c5300267b5689d450f67bcf59d700f1c3d6d0d8`/Tree
+`4b92e0531c23c0bf93a75b95179b2353cae4b01a`. Lokale historische Reports sind
+verloren; frühere Testzahlen ersetzen keine neue Ausführung. Der
+[neue Lifecycle-Quellanschluss](docs/handoffs/HANDOFF_LIFECYCLE_SOURCE_PREPARATION_1906_2026-10-09.md)
+ergänzt fünf streng gebundene Summaryfelder und den eigenen JSON-Artefaktpfad.
+Seine neue Testfixture ist ausdrücklich synthetisch. Aktuelle leakfreie
+Godot-/Lifecycle10-GL-Abnahme, finaler Pin und APK1906 bleiben ausstehend.
+Gesamtstatus: **VISUAL_GAP / NOT FINISHED**.
+
+Neue tatsächliche Quellenprüfung nach diesem Verlust:579 Android-QA- und36
+Scriptprüfungen PASS,0 FAIL/0 ERROR/0 SKIP. Darin30 neue ausschließlich
+synthetische Lifecycleguards; alte48 Originaldateien und bisherige86 Lapguards
+bleiben unverändert. Der historische erste NDK-Scriptfehlversuch bleibt im
+neuen Handoff dokumentiert. Kein aktueller Runtime-/APK-Erfolg wird übertragen.
 
 Zuerst [die neue Wiederherstellungsübergabe](docs/handoffs/LUMO_APP_RECOVERY_1906_2026-10-09.md)
 lesen. Status: **RECONSTRUCTED_NEW_SOURCE / VISUAL_GAP / NOT FINISHED**.
@@ -51,6 +119,16 @@ ausschließlich das Schema. Keine finale Godot-/App-Pin- oder APK-Freigabe.
 Dieser neue Entwurf besteht534 Android-QA- und36 Scriptprüfungen PASS ohne
 Skips; darin86 neue Native-Guards. Die48 ursprünglichen Tests/Fixtures bleiben
 bytegleich. Alle22 Bashsteps/sechs Inline-Python-Blöcke sind syntaktisch geprüft.
+
+Der20-Dateien-Checkpoint ist unabhängig bestätigt und als Recoverycommit
+`8abb01a6bf470e46bd279f637ba84f850d98fab0` gesichert. Eine weitere enge
+Reparatur verhindert Kart-PASS bei fehlgeschlagenen Ressourcenaufnahmen:
+beide vorhandenen Phasen, deren Source/API/Serial und drei rohe Reads sind
+vor Final-PASS erforderlich. Identische neue15er-Probe: vorher62 negative
+Kontrollfehler, danach ganze Suite549 PASS/0 FAIL/0 SKIP. Die zwei zulässigen
+Kontrollen bestanden vorher; legitimes RSS-UNAVAILABLE bleibt zulässig.
+Capture-/Rennfristen und originale48 Tests/Fixtures bleiben unverändert.
+Keine echten neuen Ressourcenmessungen oder FPS-Konversionen.
 
 Historische tatsächliche APK1905 wurde in Actions37846382465 gebaut und
 byteweise geprüft (201691346B/SHAf06140353caa1f2d4c0038287b05918402324b26cc9dc5454ca1c13e9597f14c).

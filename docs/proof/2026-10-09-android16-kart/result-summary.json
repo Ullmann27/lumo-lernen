@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "scope": "actual offline Android two-lap race and finished-result recovery",
+  "driver": "actual public automatic-gas setting; neutral stick; existing beginner/rail assistance",
+  "not_tested": [
+    "physical Samsung/Fold hinge",
+    "CPU/GPU frame-time or 60 FPS",
+    "steering quality",
+    "network/provider failure",
+    "host storage-failure injection",
+    "visual reference parity",
+    "all tracks/karts"
+  ],
+  "source": "aa6519226fded77d5d5022dc6fe8c223e9dc82b8",
+  "godot": "a377b9e2db3337ae46f9439200ef0af17af06cb5",
+  "apk_sha256": "b58e055340595ac882fed47d0c11660f2420e41c1528ed2841c5100f13304fb7",
+  "harness": "7a570c1fc69b21f0e081ace208b082796bc30057",
+  "installed_apk": {
+    "sha256": "b58e055340595ac882fed47d0c11660f2420e41c1528ed2841c5100f13304fb7",
+    "bytes": 203803554,
+    "matches_candidate": true
+  },
+  "android_sdk": 36,
+  "native_result": {
+    "bestLapSeconds": 33.85,
+    "checkpoints": 16,
+    "driver": "fox",
+    "elapsedSeconds": 74.983,
+    "game": "kart",
+    "kart": "comet",
+    "mode": "race",
+    "place": 1,
+    "resets": 0,
+    "resultId": "69ca2a43-b5fc-4daa-84c1-62c98b2496f8-1791528312675-207819809",
+    "sessionId": "69ca2a43-b5fc-4daa-84c1-62c98b2496f8",
+    "solved": 0,
+    "starTokens": 15,
+    "stars": 3,
+    "status": "completed",
+    "track": "sonnenhafen"
+  },
+  "result_resize": {
+    "status": "PASS",
+    "sequence": "outer → inner → outer → phone",
+    "observed_labels": [
+      "Gesamtzeit",
+      "Belohnung"
+    ],
+    "captures": [
+      {
+        "stage": "outer-before",
+        "surface": [
+          2316,
+          904
+        ],
+        "capture": {
+          "file": "07-finished-result-resize-outer-before.png",
+          "width": 2316,
+          "height": 904,
+          "sha256": "145b850ca93019998ae48b1750ee635e1dfed0264f3d37f910f082d71f35bffc"
+        }
+      },
+      {
+        "stage": "inner",
+        "surface": [
+          2176,
+          1812
+        ],
+        "capture": {
+          "file": "07-finished-result-resize-inner.png",
+          "width": 2176,
+          "height": 1812,
+          "sha256": "0be5860fc0c371a0f8f52313b1cd960de89a867a84b7fcd08a2c0e86c67a629b"
+        }
+      },
+      {
+        "stage": "outer-after",
+        "surface": [
+          2316,
+          904
+        ],
+        "capture": {
+          "file": "07-finished-result-resize-outer-after.png",
+          "width": 2316,
+          "height": 904,
+          "sha256": "f70bae36e4b5ff034de7e6c2b5a011ecc4e30606d6368d78a1ab5ef719d2ea3e"
+        }
+      },
+      {
+        "stage": "phone-restored",
+        "surface": [
+          1920,
+          1080
+        ],
+        "capture": {
+          "file": "07-finished-result-resize-phone-restored.png",
+          "width": 1920,
+          "height": 1080,
+          "sha256": "b13b3b4f3d521af01bbfba4b1412a62cbbb27a6e0616f68bef05b68cbf596890"
+        }
+      }
+    ],
+    "saved_progress_stable": true,
+    "scope": "actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED"
+  },
+  "offline_result_recovery": {
+    "status": "PASS",
+    "reward_stars": 3,
+    "reward_xp": 0,
+    "host_acknowledged": true
+  },
+  "replay_deduplication": {
+    "status": "PASS",
+    "same_completed_result_reopened": true,
+    "host_return": true,
+    "wallet_unchanged": true,
+    "host_acknowledged": true,
+    "final_offline_restart": true
+  },
+  "evidence": {
+    "run_id": 37893374564,
+    "job_id": 113699324621,
+    "artifact_id": 11601316198,
+    "artifact_sha256": "4ad47d9efc18d1594e94297dedc6946b96cd2918f4c39ec613053168c2fbca40",
+    "report_file": "full-race/result.json",
+    "report_sha256": "877e2f7d12647bdc6d7de899931a6cadde9b914e710f8dafe9a58ec605080e7e",
+    "note": "Selected fields copied from the actual completed Android report. The full original report remains in the Actions artifact and delivered evidence archive."
+  }
+}

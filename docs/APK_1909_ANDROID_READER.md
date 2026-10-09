@@ -1,0 +1,17 @@
+# APK 1909: Android-Bildleser
+
+Die APK aus Actions 37888592898 wurde erfolgreich gebaut: 808 Flutter-Prüfungen bestanden (4 vorgesehene Skips), 579 Android-Werkzeugprüfungen, 36 Vorbereitungstests, 25 native Spielproben und 24 Profilbudget-Prüfungen bestanden. Bauwelt, Puzzle, Rhythmus und Schatzsuche wurden auf Android API 35 mit Installation als Update, erhaltenem Profil, Offline-Start und Save/Reward-Guards geprüft.
+
+Die beiden Kart-Läufe stoppten vor dem Vollrennen an der Bildleser-Meldung `Current native screenshot lacks DRIFT` im Fold-Cover-Layout. In beiden unveränderten Fehleraufnahmen ist DRIFT vollständig vorhanden. Der alte Neutralweiß-Filter entfernte antialiasierte Randpixel unter Helligkeit 150. Ein nachgeschalteter Filter mit Grenze 120 liest dieselben vollständigen Bilder mit unveränderten Wort-, Konfidenz-, Ausschnitt-, Aktualitäts- und Zeitgrenzen. Fehlendes D (RIFT) bleibt unzulässig. Der Originalfilter bleibt zuerst aktiv. Identische Masken werden nicht zweimal gelesen.
+
+Die echten API-35/36-Aufnahmen liegen mit fixierten SHA256-Werten in den neuen Regressionstests. Die alten 579 Prüfungen bleiben erhalten; insgesamt 581 Tests. APK oder Spiel werden durch diese Änderung nicht verändert.
+
+Der neue Workflow `lumo-action-android-qa.yml` führt beide vollständigen bestehenden Android-Proben auf API 35 und 36 erneut gegen exakt die bereits gebaute APK aus: App aa6519226fded77d5d5022dc6fe8c223e9dc82b8, Godot a377b9e2db3337ae46f9439200ef0af17af06cb5, APK SHA256 b58e055340595ac882fed47d0c11660f2420e41c1528ed2841c5100f13304fb7. Quelldaten und Testwerkzeug-Commit werden getrennt protokolliert. Keine Fahr-, Touch-, Speicher- oder Belohnungsprüfung wird entfernt.
+
+Im Nachlauf 37893374564 bestand die API-35-Kart-Probe einschließlich Update, Profil und Save/Reward-Guards. Das anschließende Vollrennen brach beim Screenshot nach dem pausierten Fold-Größenwechsel ab: `adb exec-out screencap -p` lieferte Exit 255. Der Screenshot-Leser wiederholt diesen Leseaufruf innerhalb seiner bereits vorhandenen vier Versuche; andere Rückgabecodes und anhaltende Fehler bleiben Fehler. Vollständige PNG-Daten vom Gerät sind weiterhin zwingend, und eine vorgegebene Gesamtdauer wird nicht verlängert. Fehlercode und Standardfehlerausgabe werden für die Diagnose gespeichert.
+
+Vier zusätzliche Werkzeugtests prüfen erfolgreiche Erholung mit neuen PNG-Daten, nicht wiederholbare Fehler, anhaltende Fehler und unveränderte Zeitgrenzen. Alle 585 Werkzeugtests bestanden lokal. Diese Tests belegen die Fehlerbehandlung des Lesers; der vollständige Android-Rennnachweis bleibt bis zum erfolgreichen Gerätelauf offen.
+
+## Abgeschlossene Geräteläufe
+
+Android 16 bestand in Job 113699324621 / Run 37893374564 mit Werkzeugstand 7a570c1fc69b21f0e081ace208b082796bc30057. Android 15 bestand in Job 113710020612 / Run 37896765244 mit Werkzeugstand 5e5316ce764e189e46fe15297c112141be0e7695. Beide Proben und vollständige Zwei-Runden-Rennen verwenden exakt die unveränderte APK 1909. Der zusätzliche API-36-Versuch im zweiten Run stoppte vor dem Rennen an einem OCR-Zeitlimit; dieser Fehllauf bleibt erhalten. Einzelne erfolgreiche Nachläufe ersetzen keine Behauptung einer insgesamt grünen CI. [Vollständiger Abschlussbericht](APK_1909_ABSCHLUSS.md).
