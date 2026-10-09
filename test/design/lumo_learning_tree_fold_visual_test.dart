@@ -98,6 +98,47 @@ void main() {
     expect(LumoTreeProgress(<String, SkillRecord>{}).mastered, 0);
   });
 
+  // Regression: breite Messbilder benötigen mehr als eine halbe Fold-Spalte.
+  testWidgets('Messbild bleibt beim geöffneten Fold vollständig sichtbar',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(740, 1000));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final task = TaskInstance(
+      taskInstanceId: 'fold-measure',
+      templateId: 'fold-measure',
+      childId: 'local-test',
+      seedHash: 'fold-measure',
+      subject: LearningSubject.mathematik,
+      skillId: const SkillId('math.units'),
+      taskType: TaskType.multipleChoice,
+      difficulty: 3,
+      parameters: const {},
+      prompt: 'Wie viele Gramm sind 3 Kilogramm?',
+      options: const [
+        AnswerOption(id: 'a', label: '3000'),
+        AnswerOption(id: 'b', label: '300'),
+        AnswerOption(id: 'c', label: '30'),
+        AnswerOption(id: 'd', label: '3'),
+      ],
+      correctAnswer: '3000',
+      visualPayload: const VisualPayload(
+        type: VisualType.scaleMeasure, data: {'value': 3}),
+      helpPayload: const HelpPayload(),
+      generatedAt: DateTime(2026, 10, 9),
+    );
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: SingleChildScrollView(
+          child: AdaptiveTaskRenderer(task: task),
+        ),
+      ),
+    ));
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+    expect(find.text('3000'), findsWidgets);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   // Zusätzlich zur isolierten Karte eine Aufnahme im wirklichen App-Kontext:
   // Lumo, Lernhintergrund, Fortschrittszeile, Aufgabe und Antwort-Widgets.
   for (final target in [
