@@ -250,21 +250,38 @@ class LumoGlassCard extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: padding,
         decoration: BoxDecoration(
-          color: (color ?? LumoVisualTokens.glass).withOpacity(.68),
+          // Four restrained glass layers create a stationary specular edge
+          // without blurring text or repainting on every frame. This surface
+          // is shared by the learning, test and games layouts.
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: const [0.0, 0.12, 0.47, 1.0],
+            colors: [
+              Color.lerp(
+                color ?? LumoVisualTokens.glass,
+                LumoVisualTokens.cyanBright,
+                0.19,
+              )!.withOpacity(.91),
+              (color ?? LumoVisualTokens.glass).withOpacity(.84),
+              (color ?? LumoVisualTokens.glass).withOpacity(.78),
+              LumoVisualTokens.navigation.withOpacity(.89),
+            ],
+          ),
           borderRadius: BorderRadius.circular(radius),
           border: Border.all(
-            color: borderColor ?? LumoVisualTokens.cyan.withOpacity(.52),
-            width: 1.2,
+            color: borderColor ?? LumoVisualTokens.cyanBright.withOpacity(.60),
+            width: 1.25,
           ),
           boxShadow: [
             BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(.12),
+              color: LumoVisualTokens.cyan.withOpacity(.16),
               blurRadius: 22,
-              spreadRadius: -4,
+              spreadRadius: -5,
             ),
             const BoxShadow(
-              color: Color(0x33000000),
-              blurRadius: 18,
+              color: Color(0x44000000),
+              blurRadius: 19,
               offset: Offset(0, 9),
             ),
           ],
@@ -325,8 +342,8 @@ class LumoColorTile extends StatelessWidget {
                         stops: const [0.0, 0.18, 1.0],
                         colors: [
                           // Leichter Glanz an der oberen Kante für Tiefe.
-                          Color.lerp(const Color(0xF0215A8F), color, .22)!,
-                          Color.lerp(const Color(0xEE123A68), color, .16)!,
+                          Color.lerp(const Color(0xF0215A8F), color, .68)!,
+                          Color.lerp(const Color(0xEE123A68), color, .42)!,
                           const Color(0xF0081D3D)
                         ]),
                     border: Border.all(
