@@ -91,7 +91,16 @@ class CognitiveProfileGenerator {
         domain: CognitiveDomain.quantitativeReasoning,
         prompt: '$groups gleiche Gruppen haben je $each Punkte. Wie viele Punkte sind es?',
         answer: '$answer',
-        rawChoices: <String>['$answer', '${answer + each}', '${answer - each}', '${groups + each}'],
+        rawChoices: <String>[
+          '$answer',
+          '${answer + each}',
+          '${answer - each}',
+          '${groups + each}',
+          // Bei 2 × 2 sind Ergebnis und „Gruppen + je“ beide 4.
+          // Echte Rechenfehler anbieten statt Platzhalter zu brauchen.
+          '${answer + 1}',
+          '${answer - 1}',
+        ],
         explanation: '$groups × $each = $answer.',
         difficulty: 1 + i ~/ 2,
         rotate: i + 1,
