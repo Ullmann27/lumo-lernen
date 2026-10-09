@@ -14,6 +14,14 @@ class LumoTreeProgress {
   int get mastered => records.where(isMastered).length;
   int get needsPractice => records.where(needsReview).length;
   int get attempts => records.fold(0, (int n, SkillRecord s) => n + s.attempts);
+  int get stageIndex => practiced == 0 ? 0
+      : mastered >= 4 ? 3 : mastered >= 1 || practiced >= 5 ? 2 : 1;
+  List<SkillRecord> get visibleSkills =>
+      records.take(10).toList(growable: false);
+  String get paintSignature => visibleSkills.map((r) =>
+      r.skillId.toString() + ':' + r.correct.toString() + ':' +
+      r.wrong.toString() + ':' + r.currentStreak.toString() + ':' +
+      r.currentMisses.toString()).join('|');
 
   static bool isMastered(SkillRecord r) =>
       r.currentStreak >= 5 && r.mastery >= 75;
@@ -98,16 +106,8 @@ class LumoLearningTreeCard extends StatelessWidget {
         const SizedBox(height: 6),
         LayoutBuilder(builder: (context, constraints) {
           final wide = constraints.maxWidth >= 600;
-          final picture = Semantics(
-            label: 'Lernbaum: ' + progress.practiced.toString() +
-                ' Themen begonnen, ' + progress.mastered.toString() +
-                ' sicher geübt, ' + progress.needsPractice.toString() +
-                ' zum Wiederholen.',
-            child: ExcludeSemantics(child: SizedBox(
-              height: wide ? 220 : (compact ? 162 : 206),
-              width: double.infinity,
-              child: CustomPaint(painter: _TreePainter(progress)),
-            )),
+          final picture = _LearningTreeWorldArt(
+            progress: progress, compact: compact, wide: wide,
           );
           final details = _details(progress);
           if (wide) {
@@ -122,8 +122,8 @@ class LumoLearningTreeCard extends StatelessWidget {
           ]);
         }),
         const SizedBox(height: 7),
-        const Text('Jedes Blatt steht für ein wirklich geübtes Thema. '
-            'Die Einschätzung stammt aus Lernantworten auf diesem Gerät.',
+        const Text('Jeder Leuchtpunkt entspricht einem wirklich geübten Thema '
+             '(maximal 10 sichtbar). Der Baum wächst durch echte Lernantworten.',
             style: TextStyle(fontFamily: 'Nunito', fontSize: 10.5,
               height: 1.35, fontWeight: FontWeight.w700,
               color: LumoVisualTokens.muted)),
@@ -213,6 +213,111 @@ class _SkillRow extends StatelessWidget {
           fontFamily: 'Nunito', fontSize: 10,
           color: color, fontWeight: FontWeight.w900)),
       ]),
+    );
+  }
+}
+
+/// Four separately rendered 3D stages plus live, truthful competence overlays.
+class _LearningTreeWorldArt extends StatelessWidget {
+  const _LearningTreeWorldArt({
+    required this.progress, required this.compact, required this.wide,
+  });
+  final LumoTreeProgress progress;
+  final bool compact;
+  final bool wide;
+  static const _points = <Offset>[
+    Offset(.37, .35), Offset(.53, .30), Offset(.65, .38),
+    Offset(.34, .46), Offset(.62, .47), Offset(.47, .41),
+    Offset(.54, .53), Offset(.27, .43), Offset(.70, .42),
+    Offset(.44, .26),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final height = wide ? 290.0 : (compact ? 246.0 : 310.0);
+    final resource = 'assets/lumo_design/learning_world/'
+        'learning_tree_stage_' + progress.stageIndex.toString() + '.png';
+    final a11y = 'Lernbaum: ' + progress.practiced.toString() +
+        ' Themen begonnen, ' + progress.mastered.toString() +
+        ' sicher geübt, ' + progress.needsPractice.toString() +
+        ' zum Wiederholen. ' + progress.visibleSkills.length.toString() +
+        ' unterschiedliche Leuchtpunkte sichtbar.';
+    return Semantics(
+      label: a11y,
+      child: ExcludeSemantics(child: SizedBox(
+        height: height,
+        child: Center(child: AspectRatio(
+          aspectRatio: 1,
+          child: LayoutBuilder(builder: (context, c) {
+            final dim = c.biggest.shortestSide;
+            return Stack(fit: StackFit.expand, children: [
+              DecoratedBox(decoration: BoxDecoration(
+                gradient: const RadialGradient(
+                  colors: [
+                    Color(0x663DCFC8), Color(0x27267DAF), Color(0x00081B40)
+                  ], stops: [0, .60, 1],
+                ),
+                borderRadius: BorderRadius.circular(24),
+              )),
+              Image.asset(
+                resource,
+                key: const ValueKey('lumo-tree-3d-image'),
+                fit: BoxFit.contain,
+                filterQuality: FilterQuality.high,
+                errorBuilder: (context, error, stackTrace) =>
+                    CustomPaint(painter: _TreePainter(progress)),
+              ),
+              for (var i = 0; i < progress.visibleSkills.length; i++)
+                Positioned(
+                  left: dim * _points[i].dx - 11,
+                  top: dim * _points[i].dy - 11,
+                  child: _TreeSkillBeacon(
+                    index: i, record: progress.visibleSkills[i],
+                  ),
+                ),
+            ]);
+          }),
+        )),
+      )),
+    );
+  }
+}
+
+class _TreeSkillBeacon extends StatelessWidget {
+  const _TreeSkillBeacon({required this.index, required this.record});
+  final int index;
+  final SkillRecord record;
+
+  @override
+  Widget build(BuildContext context) {
+    final mastered = LumoTreeProgress.isMastered(record);
+    final review = LumoTreeProgress.needsReview(record);
+    final glow = mastered ? const Color(0xFFFFE38B)
+        : review ? const Color(0xFFF4A7CE) : const Color(0xFF6EFFE4);
+    return Tooltip(
+      message: record.subject + ': ' + record.unit + ' – ' +
+          LumoTreeProgress.status(record),
+      child: Container(
+        key: ValueKey('lumo-tree-skill-node-' + index.toString()),
+        width: 22, height: 22,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: RadialGradient(colors: [
+            Colors.white, glow, glow.withValues(alpha: .22),
+          ], stops: const [0, .3, 1]),
+          border: Border.all(color: glow.withValues(alpha: .78)),
+          boxShadow: [BoxShadow(
+            color: glow.withValues(alpha: .88),
+            blurRadius: 15, spreadRadius: 3,
+          )],
+        ),
+        child: Center(child: Icon(
+          mastered ? Icons.star_rounded
+              : review ? Icons.refresh_rounded : Icons.circle,
+          size: mastered ? 11 : 7,
+          color: const Color(0xFF103057),
+        )),
+      ),
     );
   }
 }
@@ -356,8 +461,5 @@ class _TreePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _TreePainter oldDelegate) =>
-      oldDelegate.progress.practiced != progress.practiced ||
-      oldDelegate.progress.mastered != progress.mastered ||
-      oldDelegate.progress.needsPractice != progress.needsPractice ||
-      oldDelegate.progress.attempts != progress.attempts;
+      oldDelegate.progress.paintSignature != progress.paintSignature;
 }
