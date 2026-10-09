@@ -5,6 +5,8 @@ https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main
 No external code is copied. Only the exact recorded rc1/closed response is
 recoverable after root. Initial device-offline is recoverable only for the one
 emulator already verified by the preceding probe, with a strict live inventory.
+The exact initial missing-serial response additionally requires the preceding
+Creative PASS for this candidate; only its first inventory may be temporarily empty.
 APK/gameplay checks still require an actual UID0 shell and boot1.
 """
 from __future__ import annotations
@@ -31,6 +33,12 @@ def observed_initial_offline(error: Exception) -> bool:
     return str(error).strip() == expected
 
 
+def observed_initial_missing(error: Exception, serial: str) -> bool:
+    expected = ("Command failed (1): ('adb', 'get-serialno')\n"
+                + f"error: device '{serial}' not found")
+    return str(error).strip() == expected
+
+
 def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
                            previous_readiness: Path | None = None,
                            previous_probe: Path | None = None,
@@ -42,6 +50,7 @@ def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
     deadline = began + timeout
     state = {'status': 'RUNNING', 'attempts': [], 'root_transport_recovered': False,
              'initial_offline_recovered': False,
+             'initial_missing_recovered': False,
              'verification': 'actual shell id -u == 0 and sys.boot_completed == 1',
              'scope': 'disposable emulator setup; this does not pass installation or gameplay'}
     out.mkdir(parents=True, exist_ok=True)
@@ -70,14 +79,22 @@ def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
             elif args == ('get-serialno',) and serial is None and observed_initial_offline(error):
                 record.update(return_code=1, output=INITIAL_OFFLINE,
                               classification='exact observed initial device-offline response; not readiness')
+            elif (args == ('get-serialno',) and serial is None and expected is not None and
+                  observed_initial_missing(error, expected)):
+                record.update(return_code=1, output=f"error: device '{expected}' not found",
+                              classification='exact observed initial missing-emulator response; not readiness')
             raise
         finally:
             state['attempts'].append(record)
             save()
 
-    def only_expected_transport(expected, *, ready=False):
+    def only_expected_transport(expected, *, ready=False, allow_absent=False):
         output = run('devices', unbound=True)
         lines = [line.strip() for line in output.splitlines() if line.strip()]
+        if allow_absent and not ready and lines == ['List of devices attached']:
+            state.setdefault('transport_inventories', []).append({'serial': None, 'state': 'absent'})
+            save()
+            return
         if len(lines) != 2 or lines[0] != 'List of devices attached':
             raise RuntimeError('Initial offline bootstrap requires exactly one observed transport')
         fields = lines[1].split()
@@ -144,20 +161,25 @@ def ensure_rooted_emulator(adb, out: Path, *, timeout: float = 60,
         try:
             serial = run('get-serialno')
         except RuntimeError as error:
-            if expected is None or not observed_initial_offline(error):
+            offline = observed_initial_offline(error)
+            missing = (expected is not None and previous_probe is not None and
+                       observed_initial_missing(error, expected))
+            if expected is None or not (offline or missing):
                 raise
-            only_expected_transport(expected)
+            only_expected_transport(expected, allow_absent=missing)
             serial = expected
             run('wait-for-device')
             if run('get-serialno') != expected:
                 raise RuntimeError('Recovered emulator identity differs from the previously verified serial')
             only_expected_transport(expected, ready=True)
-            state['initial_offline_recovered'] = True
+            state['initial_offline_recovered'] = offline
+            state['initial_missing_recovered'] = missing
         if not re.fullmatch(r'emulator-\d+', serial):
             raise RuntimeError('Required root setup is restricted to a disposable emulator')
         if expected is not None and serial != expected:
             raise RuntimeError('Initial emulator serial differs from the previously verified probe')
-        if previous_probe is not None and not state['initial_offline_recovered']:
+        if previous_probe is not None and not (
+                state['initial_offline_recovered'] or state['initial_missing_recovered']):
             only_expected_transport(expected, ready=True)
         state['serial'] = serial
         try:

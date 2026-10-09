@@ -495,6 +495,13 @@ jobs:
             sleep 0.25
           done
           rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Prepare the exact existing system image before original emulator runner
+        timeout-minutes: 11
+        run: |
+          set -euo pipefail
+          mkdir -p native-proof/system-image
+          echo '8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51  tools/android_qa/prepare_system_image.py' | sha256sum -c -
+          python3 tools/android_qa/prepare_system_image.py --api '${{ matrix.api }}' --out native-proof/system-image --timeout 600
       - name: Update exact APK and exercise actual offline native game
         uses: reactivecircus/android-emulator-runner@v2
         env:

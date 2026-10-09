@@ -1,4 +1,46 @@
-# Aktueller integrierter Lumo-Kandidat 1905 · 8. Oktober 2026
+# Neuer App-Wiederherstellungsstand1906 · 9. Oktober2026UTC
+
+Zuerst [die neue Wiederherstellungsübergabe](docs/handoffs/LUMO_APP_RECOVERY_1906_2026-10-09.md)
+lesen. Status: **RECONSTRUCTED_NEW_SOURCE / VISUAL_GAP / NOT FINISHED**.
+Veröffentlichte App-Basis ist `f6c4f3350db8153200594b52a9d82606279dc238`;
+die neue Quellversion ist `0.12.4+1906`. Der Original-Godot-Pin
+`ad3ee9c9a1e2cfa60a6d2fe4970181b3150a1a1b` bleibt zunächst als Baseline
+erhalten. Ein finaler Pin wartet den tatsächlich veröffentlichten, neu
+geprüften Godot-Wiederherstellungsstand. Noch kein neuer App-Quellfreeze.
+
+Der ursprüngliche Arbeitsbereich ging nach geschlossenen Prüfungen verloren.
+Alte lokale App45-/SDK576-/436-/47-/Godot103-Nachweise sind historische
+Ausführungen und werden nicht auf neue rekonstruierte Dateibytes übertragen.
+Der aktuelle Teilbestand wurde aus dem exakten veröffentlichten f6-Quellstand
+mit Git-Blob-/Byteprüfung wiederhergestellt. Alle ursprünglichen Tests und
+Bildfixtures bleiben unverändert. Ein späterer vollständiger Quellabschluss
+benötigt ein neues Dateiinventar und neue unabhängige Prüfberichte.
+
+SDK-Helper16572B/SHA8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51
+ist exakt aus veröffentlichtem7cff wiederhergestellt. Neue eigenständige
+SDK-Tests:58 PASS/0 FAIL/0 SKIP, davon fünf kontrollierte lokale CLI-Prozesse.
+Neue enge Emulator-Handoff-Probe: unveränderte neue15er-Probe f6 RED→15/0
+GREEN; ursprüngliche Root23/Handoff13/Identity14/CompleteEvidence54 ebenfalls
+PASS. Die separate Gas-Recovery wird noch geprüft. Originalrunner/API35/36,
+Emulator14472402, Java/Abhängigkeiten,45-Minuten-Job, Renn-/ACK-/Wallet-/Fold-
+und Ressourcengates bleiben erhalten. Keine echte Android-Ausführung hier.
+
+Historische tatsächliche APK1905 wurde in Actions37846382465 gebaut und
+byteweise geprüft (201691346B/SHAf06140353caa1f2d4c0038287b05918402324b26cc9dc5454ca1c13e9597f14c).
+Der unveränderte Bauen-Diagnoselauf37861486692/7cff bestand sichtbar; Haus161
+Teile/einmal3 Sterne24XP/Replay/finaler Offline-Neustart. Das ersetzt keinen
+neuen Kart-/APK1906-/Fold-/Performance-Nachweis. Abbruch im unfertigen Spiel,
+expliziter ACK-Payload und Bootstrap-Input-Contenthashes sind dabei nicht belegt.
+
+Neue exakte APK1906, vollständige Androidläufe, physisches Fold, Geräte-FPS,
+Referenzbewegung und verbleibende Modell-/Licht-/Audioabnahme: **NOT EXECUTED**.
+Nächster Schritt: neue Gas-/Handoff-/SDK-Peers und gesamte Quellenprüfung,
+neue Godot-Proben/Pin,22 Nativeprüfungen mit erhaltenen alten21, neue APK mit
+eigenen Byte-/Runtimebelegen. Main und Releases bleiben unverändert.
+
+Die folgende veröffentlichte1905-Anweisung ist historischer Kontext.
+
+# Integrierter Lumo-Kandidat 1905 · historische Anweisung vom8. Oktober2026
 
 Zuerst [die aktuelle 1905-Übergabe](docs/handoffs/LUMO_INTEGRATED_RUNTIME_1905_2026-10-08.md)
 lesen. Maßgeblich sind der frische App-Branch-HEAD, der exakte Godot-Pin
