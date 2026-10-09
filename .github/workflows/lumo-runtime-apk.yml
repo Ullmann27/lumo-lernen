@@ -238,6 +238,28 @@ jobs:
           }, indent=2) + '\n')
           print('[ProgressProfileLifetime] PASS: 24 source-bound headless profile/workshop checks')
           PYCODE
+      - name: Check physical finish coast and reduced-motion camera
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        run: |
+          set -euo pipefail
+          finish_output="$LUMO_NATIVE_DIRECTORY/exports/fold-controls/finish-coast"
+          mkdir -p "$finish_output"
+          LUMO_QA_DIR="$finish_output" python3 tools/run_godot_probe.py \
+            --log exports/fold-controls/finish-coast/engine.log --timeout 240 \
+            --required '[PhysicalFinishCoast] PASS: 16 numerical controls, 0 failures' -- \
+            godot --headless --audio-driver Dummy --rendering-method gl_compatibility \
+            --script res://scripts/tests/kart_finish_coast_regression.gd
+          godot_revision=$(python3 -c 'import json, os; from pathlib import Path; print(json.loads((Path(os.environ["GITHUB_WORKSPACE"]) / "config/godot-source.json").read_text())["revision"])')
+          test "$(git rev-parse HEAD)" = "$godot_revision"
+          python3 "$GITHUB_WORKSPACE/tools/android_qa/finish_coast_evidence.py" \
+            --project . --engine "$(command -v godot)" \
+            --evidence exports/fold-controls/finish-coast/numerical-evidence.json \
+            --motion exports/fold-controls/finish-coast/motion-frames.json \
+            --log exports/fold-controls/finish-coast/engine.log \
+            --source-revision-file exports/fold-controls/source-sha.txt \
+            --expected-source-revision "$godot_revision" \
+            --summary exports/fold-controls/finish-coast/finish-coast-summary.json
+
       - name: Render actual native worlds and menu from the exact APK pin
         working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
         env:

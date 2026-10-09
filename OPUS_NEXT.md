@@ -1,14 +1,24 @@
 # Gemeinsamer App-Entwurf 1908 · 9. Oktober 2026 UTC
 
 Zuerst [die neue selektive Integrationsübergabe](docs/handoffs/LUMO_SELECTIVE_INTEGRATION_1908_2026-10-09.md)
-lesen. **SOURCE CHECKPOINT / FINAL PIN PENDING / VISUAL_GAP / NOT FINISHED**. Der Entwurf
+lesen. **SOURCE READY / LINUX RUNTIME PASS / VISUAL_GAP / NOT FINISHED**. Der Entwurf
 führt den tatsächlich aktuellen App-Stand `36391b2d2a332e93f3bac46bf21afb83fad15d8a`
 mit Recovery `4458590063b9e59fc7f36fe9dea4e798b95a192a` zusammen und bewahrt
 die neuen IQ-, Analyze-, FleetStats- und Workshop-Anschlüsse. Quellversion:
-`0.12.5+1908`. Der vorhandene Godot-Pin `99cdb776df10e8cc719d19792c17074c887b5112`
-ist zunächst nur der unveränderte Ausgangspin. Ein endgültiger Pin und neue
-echte Native-Fixtures warten auf den geprüften gemeinsamen Godot-Quellstand.
-Aktuell:579QA+36Scripts PASS,0Fehler/Skips; unabhängige68Quell-/AST-Prüfungen PASS. Keine1908APK oder Android-Abnahme.
+`0.12.5+1908`. Der endgültige Godot-Pin ist
+`3f9ff57b15e27b373e4baf696c43af3fa0ef9ca0`; sein Freeze enthält 915 exakte
+Quellpfade. Alle 24 Linux-Native-Einträge einschließlich der unveränderten
+17 GL-Schleifenproben sind geschlossen PASS. Die aktuellen Produktionsreader
+akzeptieren GL104/Lifecycle10/Flow9/Time29 samt JSON, PNG und Logs ohne
+historische Overrides; 22 aktuelle Positiv-/Negativkontrollen PASS.
+Aktuell: 579 QA + 36 Scripts PASS, 0 Fehler/Skips. Der separate Finish16-Reader
+und CI-Schritt ergänzen Profile24; 94 Readerkontrollen PASS. Die ursprünglichen
+17 GL-/24 Native-Verträge bleiben erhalten. Keine 1908-APK oder Android-Abnahme.
+Referenzbewegung, physisches Fold und Geräteperformance: **NOT EXECUTED**.
+Der Android-Prüfer vermeidet nach 49 lokalen und unabhängig geprüften Kontrollen
+35 redundante Aufnahmen im stabilen Ablauf und erfasst optionale Aufrufzeiten.
+Die unveränderte 1200-Sekunden-Grenze bleibt verbindlich; eine Lösung des alten
+API36-Timeouts ist erst mit dem neuen tatsächlichen Android-Lauf nachgewiesen.
 
 Die folgenden 1906-Abschnitte bleiben historische Wiederherstellungsübergaben.
 Nach einem dritten Workspaceverlust wurden die veröffentlichten Quellen erneut

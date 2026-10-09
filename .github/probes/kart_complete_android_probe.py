@@ -486,6 +486,8 @@ def main() -> int:
     video = None
     creative = load_creative()
     from runtime_resource_evidence import capture_resources
+    from android_phase_timing_recovery import TimingJournal
+    timing = TimingJournal(out / 'call-timing.jsonl')
     base, package = creative.base, creative.PACKAGE
     original_adb = base.adb
 
@@ -523,6 +525,8 @@ def main() -> int:
         (out / (tag + '-session.cfg')).write_text(raw)
         return parse_session(raw)
 
+    session = timing.wrap('session-read', session, tag_index=0)
+
     def events(tag: str) -> dict:
         raw = base.adb('exec-out', 'cat', f'/data/user/0/{package}/files/lumo_game_events.json')
         data = json.loads(raw)
@@ -530,6 +534,11 @@ def main() -> int:
         return data
 
     def tap_native(label: str, tag: str, *, scroll: str | None = None, context: str = 'pause') -> None:
+        if scroll is None:
+            # The shared guard already observes two current complete frames.
+            # Avoid a separate third OCR preflight for actions needing no scroll.
+            creative.native_text(out, label, tag + '-stable-action', tap=True, exact=True)
+            return
         wanted = creative.normalized(label)
         deadline, previous_scroll = time.monotonic() + 180, None
         for attempt in range(10):
@@ -596,6 +605,8 @@ def main() -> int:
             time.sleep(1)
         raise RuntimeError('Exact current native action caption is missing: ' + label)
 
+    tap_native = timing.wrap('native-action', tap_native)
+
     def restarted_home(tag: str):
         base.adb('shell', 'am', 'force-stop', package)
         creative.device_rotation(out, tag + '-upright', 0)
@@ -622,11 +633,33 @@ def main() -> int:
         ):
             base.display(width, height, density)
             creative.device_rotation(out, tag + '-' + stage + '-landscape', 1)
-            for label in labels:
-                creative.native_text(out, label, tag + '-' + stage + '-' + creative.normalized(label))
-            snapshot = creative.capture(out, tag + '-' + stage)
-            if [snapshot['width'], snapshot['height']] != expected:
-                raise RuntimeError(f'{tag}/{stage} did not render the expected actual emulator surface')
+            for attempt in range(10):
+                name = tag + '-' + stage + ('' if attempt == 0 else f'-retry-{attempt}')
+                snapshot = creative.capture(out, name)
+                source = out / snapshot['file']
+                frame = creative.inspect_surface(source)
+                if ([snapshot['width'], snapshot['height']] != expected
+                        or not frame['acceptable_for_target_sampling']):
+                    time.sleep(2)
+                    continue
+                observations = {}
+                for label in labels:
+                    wanted = creative.normalized(label)
+                    lines = creative.image_lines(out, name + '-' + wanted, wanted,
+                                                 source_path=source)
+                    observations[label] = [row for row in lines
+                                           if wanted in creative.normalized(row['text'])]
+                if creative.digest(source) != frame['source_sha256']:
+                    raise RuntimeError('The observed Fold screenshot changed during label reads')
+                write_json(name + '-same-frame-labels.json', {
+                    'source': snapshot, 'observed_labels': observations,
+                    'scope': 'All required captions and dimensions from one current complete frame',
+                })
+                if all(observations.values()):
+                    break
+                time.sleep(2)
+            else:
+                raise RuntimeError(f'{tag}/{stage} did not render the expected actual emulator surface and captions')
             captures.append({'stage': stage, 'surface': expected, 'capture': snapshot})
             if saved_before is not None:
                 require_saved_progress_unchanged(saved_before, session(tag + '-' + stage), tag)
@@ -635,6 +668,7 @@ def main() -> int:
                 'saved_progress_stable': saved_before is not None,
                 'scope': 'actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED'}
 
+    timing.phase('probe-setup-start')
     try:
         expected_source = os.environ['LUMO_EXPECT_SOURCE']
         expected_godot = os.environ['LUMO_EXPECT_GODOT']
@@ -674,6 +708,25 @@ def main() -> int:
                              ('source', 'godot', 'apk_sha256', 'android_sdk', 'serial')}
         result['resource_snapshots'] = {}
         result['resource_observed_states'] = {}
+        # Preserve the verified-root/installed-identity bootstrap boundary.
+        # Optional UI observation starts before the first actual game launch.
+        for category, attribute in (
+            ('screenshot', 'capture'), ('screenshot-ocr', 'image_lines'),
+            ('native-target', 'native_tap'), ('native-readability', 'native_text'),
+            ('flutter-action', 'flutter_tap'), ('live-ui-read', 'read_live_nodes'),
+        ):
+            setattr(creative, attribute, timing.wrap(category, getattr(creative, attribute)))
+        # These aliases were assigned when the creative module was loaded.
+        creative.live.live_nodes = creative.read_live_nodes
+        base.ui_nodes = creative.read_live_nodes
+        base.launch = timing.wrap('host-launch', base.launch)
+        original_command = base.command
+        def timed_command(*commands, **kwargs):
+            if commands and commands[0] == 'tesseract':
+                tag = Path(str(commands[2])).name if len(commands) > 2 else 'tesseract'
+                return timing.call('ocr-command', tag, original_command, *commands, **kwargs)
+            return original_command(*commands, **kwargs)
+        base.command = timed_command
         base.adb('shell', 'svc', 'wifi', 'disable')
         base.adb('shell', 'svc', 'data', 'disable')
         base.adb('shell', 'cmd', 'connectivity', 'airplane-mode', 'enable')
@@ -687,15 +740,18 @@ def main() -> int:
         result['previous_result_id'] = previous_race['result_id']
         base.adb('logcat', '-c')
         base.launch(out, 'full-race-start')
+        timing.phase('garage-open-start')
         open_kart('01-garage')
         if os.environ.get('LUMO_FOLD_PROBE') == '1':
             result['menu_resize'] = fold_cycle('01-garage-resize', ('LUMO / KART', 'Dein nächstes Abenteuer', 'Weiter'))
             result['menu_resize']['preserved_garage_step'] = 'Dein nächstes Abenteuer (step 1 / 5)'
+        timing.phase('garage-selection-start')
         for step in range(4):
             tap_native('Weiter', f'garage-next-{step + 1}')
         tap_native('Rennen starten', 'garage-start')
-        ready = wait_fresh_race(session, previous_race['result_id'],
-                               lambda evidence: write_json('fresh-race-readiness.json', evidence))
+        ready = timing.call('readiness', 'fresh-race', wait_fresh_race,
+                            session, previous_race['result_id'],
+                            lambda evidence: write_json('fresh-race-readiness.json', evidence))
         result['fresh_race_readiness'] = json.loads((out / 'fresh-race-readiness.json').read_text())
         creative.native_text(out, 'RUNDE', '02-fresh-race-hud')
         chase = creative.capture(out, '02-fresh-race-phone')
@@ -721,6 +777,7 @@ def main() -> int:
         video.start()
         tap_native('Weiterfahren', 'race-resume-after-gas-setting', scroll='up')
 
+        timing.phase('race-driving-start')
         trace, paused_once = [initial], False
         race_started, last_progress = time.monotonic(), time.monotonic()
         previous = initial
@@ -779,6 +836,7 @@ def main() -> int:
                 break
         else:
             raise RuntimeError('Natural two-lap race did not finish before the polling limit')
+        timing.phase('race-physically-finished')
         payload = require_completion(trace, final, result_id)
         if not paused_once:
             raise RuntimeError('Actual in-progress pause/resume was not executed')
@@ -796,6 +854,7 @@ def main() -> int:
 
         # Actual interrupted-result recovery: the untouched saved race survives
         # process death. Flutter drains/ACKs the real native result after restart.
+        timing.phase('offline-result-recovery-start')
         restarted_home('10-offline-result-recovery')
         for attempt in range(30):
             rewarded_wallet = creative.wallet(out, f'recovery-wallet-{attempt}')
@@ -861,6 +920,7 @@ def main() -> int:
                                '; '.join(result['video']['errors'] or ['no nonempty video segments']))
         require_resource_snapshots(result)
         result['status'] = 'PASS'
+        timing.phase('all-required-assertions-passed')
         print('[CompleteKartAndroid] PASS: 16 checkpoints, pause, actual result, offline recovery, host ACK and reward deduplication', flush=True)
         return 0
     except Exception as error:
@@ -876,6 +936,7 @@ def main() -> int:
         signal.signal(signal.SIGALRM, previous_alarm)
         if video is not None:
             result['video'] = video.stop()
+        result['call_timing'] = timing.summary()
         write_json('result.json', result)
         try:
             (out / 'logcat.txt').write_text(base.adb('logcat', '-d', check=False))
