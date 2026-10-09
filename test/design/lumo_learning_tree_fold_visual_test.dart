@@ -62,14 +62,14 @@ void main() {
   test('Lernbaum trennt Aktivität und sichere Beherrschung', () {
     final r = {
       'a': skill('Plus bis 20', correct: 5, streak: 5),
-      'b': skill('Minus bis 20', correct: 8, wrong: 8),
+      'b': skill('Minus bis 20', correct: 2, wrong: 8),
       'c': skill('Einmaleins', wrong: 3, misses: 3),
     };
     final p = LumoTreeProgress(r);
     expect(p.practiced, 3);
     expect(p.mastered, 1);
     expect(p.needsPractice, 2);
-    expect(p.attempts, 24);
+    expect(p.attempts, 18);
     expect(LumoTreeProgress.status(r['a']!), 'Sicher geübt');
     expect(LumoTreeProgress.status(r['b']!), 'Noch üben');
     expect(LumoTreeProgress.status(r['c']!), 'Noch üben');
