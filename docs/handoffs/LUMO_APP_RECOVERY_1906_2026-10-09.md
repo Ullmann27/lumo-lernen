@@ -38,14 +38,28 @@ Sekunden Helper-Limit, ursprüngliches API35/36/google_apis/x86_64. Runner,
 Emulatorbuild14472402, Java, Abhängigkeiten, Display, Scripts, deren45-Minuten-
 Jobgrenze und die ursprünglichen Spiel-/ACK-/Wallet-/Ressourcengates bleiben.
 
-Zwei weitere kleine QA-Reparaturen entstehen neu aus den erneut gelesenen
+Zwei weitere kleine QA-Reparaturen wurden neu aus den erneut gelesenen
 Originaljobs von Actions37846382465: Kart35 Job113557082538 verliert den
 bereits verifizierten `emulator-5554` beim Fullrace-Einstieg; Kart36
 Job113557082644 verliert die sichtbare Gas-Beschriftung zwischen Vorbereitung
 und sicherer Touch-Abnahme. Ihre neuen RED/GREEN-Proofs müssen die genaue
 Identität, gemeinsame Fristen, frische vollständige Screens und bestehende
 Touch-/Scrollgates erhalten. Alle ursprünglichen Tests bleiben unverändert.
-Die Freigabe dieser Änderungen wartet deren neue geschlossene Prüfberichte.
+Die identische neue15er-Handoffprobe liefert f6 RED→15/0 GREEN; dazu bestehen
+die unveränderten Root23/Handoff13/Identity14/CompleteEvidence54. Die neue
+[Gas-Recovery](GAS_CAPTION_SCROLL_RECOVERY_1906_2026-10-09.md) liefert einen
+identischen echten Funktions-Test f6 Timeout→GREEN,33 neue Guards und82
+unveränderte Native-/Kart-/OCR-/Captureguards PASS. Sie erlaubt höchstens zwei
+nach frischen vollständigen Screens beobachtete Rückwärts-Scrollgesten innerhalb
+der bestehenden nativen Frist. Der endgültige Tap benötigt weiterhin zwei
+frische passende Zielbeobachtungen und unveränderte PNG-Bytes. Es wurden keine
+Taps oder Spielzustände in eine laufende App injiziert. Die tatsächlich neue
+ganze Suite besteht448 Android-QA-Prüfungen/0 FAIL/0 SKIP, dazu36 Scriptprüfungen
+PASS/0 FAIL/0 SKIP. Ein erster Teilcheckout-Versuch scheiterte in einem
+unveränderten Originaltest an einer noch fehlenden originalen Dart-Registry.
+Der Fehler bleibt erhalten; Registry und PlusScreen wurden exakt aus dem
+verifizierten vollständigen f6-Checkout ergänzt, kein Test wurde verändert.
+Unabhängige Quellenpeers und der neue Godot-Anschluss stehen noch aus.
 
 Historische tatsächliche Runtime: APK1905 aus Actions37846382465,
 201691346 Bytes/SHA256

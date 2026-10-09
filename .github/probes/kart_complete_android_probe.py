@@ -487,7 +487,21 @@ def main() -> int:
             if matches:
                 # The final action also needs the shared current-full-surface
                 # and two-frame target gate, with this exact caption retained.
-                creative.native_text(out, label, tag + '-stable-action', tap=True, exact=True)
+                from caption_scroll_recovery import make_gas_caption_recovery
+                recovery = make_gas_caption_recovery(
+                    label, scroll=scroll, context=context,
+                    scroll_observation=scroll_observation,
+                    stable_scroll_observation=stable_scroll_observation,
+                    digest=creative.digest, swipe=base.adb, clock=time.monotonic)
+                if recovery is None:
+                    creative.native_text(out, label, tag + '-stable-action', tap=True, exact=True)
+                else:
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        raise TimeoutError('Observed native action preparation exceeded 180 seconds')
+                    creative.native_tap(out, label, tag + '-stable-action',
+                                        timeout=min(120, remaining), exact=True,
+                                        missing_caption=recovery)
                 return
             if scroll and attempt >= 1:
                 observation = scroll_observation(lines, scroll, context)

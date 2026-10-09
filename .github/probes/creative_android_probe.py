@@ -297,7 +297,7 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
 
 
 def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
-               exact: bool = False) -> None:
+               exact: bool = False, missing_caption=None) -> None:
     """Wait for current full-surface evidence and two observed targets, then press once."""
     wanted = normalized(label)
     anchors = {'rucksack': 'right-toolbar', 'neuespuzzlebeginnen': 'center-panel',
@@ -310,6 +310,7 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
                 'frames': []}
     journal = out / (tag + '-surface-readiness.json')
     previous = None
+    previous_missing_frame = None
     attempt = 0
     try:
         while time.monotonic() < deadline:
@@ -322,6 +323,7 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
             evidence['frames'].append(frame)
             if not frame['acceptable_for_target_sampling']:
                 previous = None
+                previous_missing_frame = None
                 time.sleep(min(1.5, max(0, deadline - time.monotonic())))
                 continue
             remaining = deadline - time.monotonic()
@@ -335,7 +337,15 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
             if not matches:
                 frame['reasons'].append('actual requested caption not observed')
                 previous = None
+                if missing_caption is not None:
+                    if deadline - time.monotonic() <= 0:
+                        break
+                    recovery = missing_caption(frame, lines, source, deadline=deadline,
+                                               previous_missing_frame=previous_missing_frame)
+                    frame['missing_caption_recovery'] = recovery
+                    previous_missing_frame = None if recovery.get('status') == 'SWIPE_SENT' else frame
             else:
+                previous_missing_frame = None
                 selected = min(matches, key=lambda line: len(line['text']))
                 observed = target_observation(frame, selected['bounds'], previous,
                                                anchor=anchors.get(wanted, ''))

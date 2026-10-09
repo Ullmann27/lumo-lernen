@@ -21,7 +21,12 @@ ist exakt aus veröffentlichtem7cff wiederhergestellt. Neue eigenständige
 SDK-Tests:58 PASS/0 FAIL/0 SKIP, davon fünf kontrollierte lokale CLI-Prozesse.
 Neue enge Emulator-Handoff-Probe: unveränderte neue15er-Probe f6 RED→15/0
 GREEN; ursprüngliche Root23/Handoff13/Identity14/CompleteEvidence54 ebenfalls
-PASS. Die separate Gas-Recovery wird noch geprüft. Originalrunner/API35/36,
+PASS. Die neue Gas-Recovery besteht33 Guards plus82 unveränderte Originalguards;
+identischer echter Funktions-Test f6 RED→GREEN. Die neue ganze Quellenprüfung
+liefert448 Android-QA- und36 Scriptprüfungen PASS/0 FAIL/0 SKIP. Ein erster
+Teilcheckout-Versuch hatte eine fehlende originale Dart-Datei; dieser Fehler
+bleibt dokumentiert, die Originaldateien wurden bytegenau ergänzt. Unabhängige
+neue Peers und finaler Godot-Anschluss stehen aus. Originalrunner/API35/36,
 Emulator14472402, Java/Abhängigkeiten,45-Minuten-Job, Renn-/ACK-/Wallet-/Fold-
 und Ressourcengates bleiben erhalten. Keine echte Android-Ausführung hier.
 
