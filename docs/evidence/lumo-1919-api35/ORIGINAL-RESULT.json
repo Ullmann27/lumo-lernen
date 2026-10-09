@@ -1,0 +1,2329 @@
+{
+  "status": "PASS",
+  "scope": "actual offline Android two-lap race and finished-result recovery",
+  "driver": "actual public automatic-gas setting; neutral stick; existing beginner/rail assistance",
+  "not_tested": [
+    "physical Samsung/Fold hinge",
+    "CPU/GPU frame-time or 60 FPS",
+    "steering quality",
+    "network/provider failure",
+    "host storage-failure injection",
+    "visual reference parity",
+    "all tracks/karts"
+  ],
+  "source": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+  "godot": "d140e5b05cb5afacfe675559b78da4254cb1daed",
+  "apk_sha256": "8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa",
+  "harness": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+  "emulator_root_readiness": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.002,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "devices"
+        ],
+        "elapsed_seconds": 0.006,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "List of devices attached\nemulator-5554\tdevice"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.012,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "adbd is already running as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 0.206,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 0.215,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 0.264,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "ro.build.version.sdk"
+        ],
+        "elapsed_seconds": 0.555,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "35"
+      },
+      {
+        "arguments": [
+          "devices"
+        ],
+        "elapsed_seconds": 0.6,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "List of devices attached\nemulator-5554\tdevice"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "previous_readiness": {
+      "source_file": "native-proof/rooted-emulator.json",
+      "retained_file": "previous-rooted-emulator.json",
+      "bytes": 1545,
+      "sha256": "ad39f0a5e3256f58f6533b7e45375219035cf548569a59fb4f21587abcba6fc9"
+    },
+    "previous_probe": {
+      "source_file": "native-proof/result.json",
+      "retained_file": "previous-creative-result.json",
+      "bytes": 3858,
+      "sha256": "b95253fb45542bb86504507ad19db0f2aaf36a615ba2406c3db4cab0e6490481"
+    },
+    "expected_identity": {
+      "source": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+      "godot": "d140e5b05cb5afacfe675559b78da4254cb1daed",
+      "apk_sha256": "8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa",
+      "android_sdk": 35
+    },
+    "transport_inventories": [
+      {
+        "serial": "emulator-5554",
+        "state": "device"
+      },
+      {
+        "serial": "emulator-5554",
+        "state": "device"
+      }
+    ],
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "android_sdk": 35,
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 0.608
+  },
+  "serial": "emulator-5554",
+  "installed_apk": {
+    "sha256": "8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa",
+    "bytes": 205316096,
+    "matches_candidate": true
+  },
+  "android_sdk": 35,
+  "resource_snapshots": {
+    "first-driving": {
+      "status": "PASS",
+      "identity": {
+        "source": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+        "godot": "d140e5b05cb5afacfe675559b78da4254cb1daed",
+        "apk_sha256": "8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa",
+        "android_sdk": 35,
+        "serial": "emulator-5554"
+      },
+      "phase": "first-driving",
+      "reads": [
+        {
+          "name": "pid",
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+          ],
+          "started_utc": "2026-10-09T19:51:31.521426+00:00",
+          "raw": "5964",
+          "finished_utc": "2026-10-09T19:51:31.568195+00:00"
+        },
+        {
+          "name": "proc_stat",
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "shell",
+            "cat",
+            "/proc/5964/stat"
+          ],
+          "started_utc": "2026-10-09T19:51:31.568378+00:00",
+          "raw": "5964 (eview:lumo_game) S 360 360 0 0 -1 4194624 311038 0 647 0 1451 51040 0 0 10 -10 27 0 68999 16684244992 83011 18446744073709551615 93882545078272 93882545082624 140721408504016 0 0 0 4612 1 1073775864 0 0 0 17 0 0 0 0 0 0 93882545111040 93882545111064 93882730205184 140721408511413 140721408511512 140721408511512 140721408516062 0",
+          "finished_utc": "2026-10-09T19:51:31.609995+00:00"
+        },
+        {
+          "name": "meminfo",
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "shell",
+            "dumpsys",
+            "meminfo",
+            "5964"
+          ],
+          "started_utc": "2026-10-09T19:51:31.610258+00:00",
+          "raw": "Applications Memory Usage (in Kilobytes):\nUptime: 1317623 Realtime: 1317623\n\n** MEMINFO in pid 5964 [dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game] **\n                   Pss  Private  Private  SwapPss      Rss     Heap     Heap     Heap\n                 Total    Dirty    Clean    Dirty    Total     Size    Alloc     Free\n                ------   ------   ------   ------   ------   ------   ------   ------\n  Native Heap   170898   170816       16      166   171720   256484   185474    64532\n  Dalvik Heap     1454     1384       24      196     1956     4418     2209     2209\n Dalvik Other      875      784       12       67     1404                           \n        Stack      509      508        0       24      516                           \n       Ashmem      141        0        0        0      420                           \n    Other dev       14        0        4        0      244                           \n     .so mmap    59377     1668    51820       38    86328                           \n    .jar mmap     4383        0      192        0    32908                           \n    .apk mmap      747        0       84        0     2196                           \n    .ttf mmap       64        0       20        0      160                           \n    .dex mmap     1151        4       28        0     2992                           \n    .oat mmap     1302        0       16        0    11604                           \n    .art mmap     1547      576      132      392    15620                           \n   Other mmap       94        4        0        0      800                           \n      Unknown     2608     2544        0      232     2960                           \n        TOTAL   246279   178288    52348     1115   331828   260902   187683    66741\n \n App Summary\n                       Pss(KB)                        Rss(KB)\n                        ------                         ------\n           Java Heap:     2092                          17576\n         Native Heap:   170816                         171720\n                Code:    53832                         136324\n               Stack:      508                            516\n            Graphics:        0                              0\n       Private Other:     3388\n              System:    15643\n             Unknown:                                    5692\n \n           TOTAL PSS:   246279            TOTAL RSS:   331828       TOTAL SWAP PSS:     1115\n \n Objects\n               Views:        8         ViewRootImpl:        1\n         AppContexts:        5           Activities:        1\n              Assets:       20        AssetManagers:        0\n       Local Binders:       14        Proxy Binders:       62\n       Parcel memory:        6         Parcel count:       24\n    Death Recipients:        0             WebViews:        0\n \n SQL\n         MEMORY_USED:        0\n  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0",
+          "finished_utc": "2026-10-09T19:51:32.167010+00:00"
+        }
+      ],
+      "scope": "Emulator native CPU counters/memory snapshot only; hardware/GPU/FPS NOT EXECUTED",
+      "cpu_ticks_per_second": null,
+      "page_size_bytes": null,
+      "conversion_status": "UNAVAILABLE: no OS Hz/page-size value captured",
+      "pid": 5964,
+      "user_cpu_ticks": 1451,
+      "system_cpu_ticks": 51040,
+      "process_start_ticks": 68999,
+      "rss_pages": 83011,
+      "pss_kib": 246279,
+      "rss_kib": 331828,
+      "rss_kib_status": "PASS",
+      "elapsed_seconds": 0.646362
+    },
+    "completed-before-fold": {
+      "status": "PASS",
+      "identity": {
+        "source": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+        "godot": "d140e5b05cb5afacfe675559b78da4254cb1daed",
+        "apk_sha256": "8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa",
+        "android_sdk": 35,
+        "serial": "emulator-5554"
+      },
+      "phase": "completed-before-fold",
+      "reads": [
+        {
+          "name": "pid",
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+          ],
+          "started_utc": "2026-10-09T20:05:20.697349+00:00",
+          "raw": "5964",
+          "finished_utc": "2026-10-09T20:05:20.726794+00:00"
+        },
+        {
+          "name": "proc_stat",
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "shell",
+            "cat",
+            "/proc/5964/stat"
+          ],
+          "started_utc": "2026-10-09T20:05:20.726828+00:00",
+          "raw": "5964 (eview:lumo_game) S 360 360 0 0 -1 4194624 317350 0 2909 0 3069 117965 0 0 10 -10 28 0 68999 16679444480 62109 18446744073709551615 93882545078272 93882545082624 140721408504016 0 0 0 4612 1 1073775864 0 0 0 17 0 0 0 0 0 0 93882545111040 93882545111064 93882730205184 140721408511413 140721408511512 140721408511512 140721408516062 0",
+          "finished_utc": "2026-10-09T20:05:20.753036+00:00"
+        },
+        {
+          "name": "meminfo",
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "shell",
+            "dumpsys",
+            "meminfo",
+            "5964"
+          ],
+          "started_utc": "2026-10-09T20:05:20.753122+00:00",
+          "raw": "Applications Memory Usage (in Kilobytes):\nUptime: 2146749 Realtime: 2146749\n\n** MEMINFO in pid 5964 [dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game] **\n                   Pss  Private  Private  SwapPss      Rss     Heap     Heap     Heap\n                 Total    Dirty    Clean    Dirty    Total     Size    Alloc     Free\n                ------   ------   ------   ------   ------   ------   ------   ------\n  Native Heap   139627   139576       12    26439   140408   251244   179755    65132\n  Dalvik Heap     6668     1312     5228       40     7304     4426     2213     2213\n Dalvik Other      950      772       60       66     1524                           \n        Stack      400      400        0      160      408                           \n       Ashmem       12        0        0        0       60                           \n    Other dev       14        0       12        0      232                           \n     .so mmap    18444      856    14628      849    39912                           \n    .jar mmap     1920        0      136        0    23836                           \n    .apk mmap      403        0       12        0     1276                           \n    .ttf mmap       13        0        0        0       52                           \n    .dex mmap      906        0      296        4     2200                           \n    .oat mmap      783        0        0        0     9856                           \n    .art mmap     4500      500     2904      361    19052                           \n   Other mmap       85        4        0        0      788                           \n      Unknown     1499     1492        4     1291     1672                           \n        TOTAL   205434   144912    23292    29210   248580   255670   181968    67345\n \n App Summary\n                       Pss(KB)                        Rss(KB)\n                        ------                         ------\n           Java Heap:     4716                          26356\n         Native Heap:   139576                         140408\n                Code:    15928                          77336\n               Stack:      400                            408\n            Graphics:        0                              0\n       Private Other:     7584\n              System:    37230\n             Unknown:                                    4072\n \n           TOTAL PSS:   205434            TOTAL RSS:   248580       TOTAL SWAP PSS:    29210\n \n Objects\n               Views:        8         ViewRootImpl:        1\n         AppContexts:        5           Activities:        1\n              Assets:       20        AssetManagers:        0\n       Local Binders:       14        Proxy Binders:       62\n       Parcel memory:        6         Parcel count:       26\n    Death Recipients:        0             WebViews:        0\n \n SQL\n         MEMORY_USED:        0\n  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0",
+          "finished_utc": "2026-10-09T20:05:20.874813+00:00"
+        }
+      ],
+      "scope": "Emulator native CPU counters/memory snapshot only; hardware/GPU/FPS NOT EXECUTED",
+      "cpu_ticks_per_second": null,
+      "page_size_bytes": null,
+      "conversion_status": "UNAVAILABLE: no OS Hz/page-size value captured",
+      "pid": 5964,
+      "user_cpu_ticks": 3069,
+      "system_cpu_ticks": 117965,
+      "process_start_ticks": 68999,
+      "rss_pages": 62109,
+      "pss_kib": 205434,
+      "rss_kib": 248580,
+      "rss_kib_status": "PASS",
+      "elapsed_seconds": 0.177746
+    }
+  },
+  "resource_observed_states": {
+    "first-driving": {
+      "speed": 17.015,
+      "track_id": "sonnenhafen",
+      "elapsed": 6.016666666666651,
+      "distance": 57.654442677725456,
+      "countdown": 0,
+      "finished": false,
+      "reset_count": 0,
+      "player_heading": -0.9159385278506367,
+      "selected_kart": "comet",
+      "mode": "race",
+      "difficulty": "gemuetlich",
+      "selected_driver": "fox",
+      "checkpoint_index": 0,
+      "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+      "previous_road_distance": 57.653655372196226,
+      "completed_race": false,
+      "version": 4,
+      "lane": 3.766176,
+      "result_payload": {},
+      "wall_seconds_since_resume": 58.563
+    },
+    "completed-before-fold": {
+      "speed": 17.015,
+      "track_id": "sonnenhafen",
+      "elapsed": 70.31666666666396,
+      "distance": 1089.7797413938533,
+      "countdown": 0,
+      "finished": true,
+      "reset_count": 0,
+      "player_heading": 11.321625440397519,
+      "selected_kart": "comet",
+      "mode": "race",
+      "difficulty": "gemuetlich",
+      "selected_driver": "fox",
+      "checkpoint_index": 16,
+      "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+      "previous_road_distance": 0.25649315082409885,
+      "completed_race": true,
+      "version": 4,
+      "lane": 3.3307252,
+      "result_payload": {
+        "bestLapSeconds": 33.9,
+        "checkpoints": 16,
+        "driver": "fox",
+        "elapsedSeconds": 70.31700000000001,
+        "game": "kart",
+        "kart": "comet",
+        "mode": "race",
+        "place": 1,
+        "resets": 0,
+        "resultId": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+        "sessionId": "4e810206-f7e3-402c-be22-65960e513344",
+        "solved": 0,
+        "starTokens": 15,
+        "stars": 3,
+        "status": "completed",
+        "track": "sonnenhafen"
+      },
+      "wall_seconds_since_resume": 822.668
+    }
+  },
+  "previous_result_id": "1d2edda7-12a8-4a07-833b-633dcacbd30e-1791574506563-128075186",
+  "menu_resize": {
+    "status": "PASS",
+    "sequence": "outer → inner → outer → phone",
+    "observed_labels": [
+      "LUMO / KART",
+      "Dein nächstes Abenteuer",
+      "Weiter"
+    ],
+    "captures": [
+      {
+        "stage": "outer-before",
+        "surface": [
+          2316,
+          904
+        ],
+        "capture": {
+          "file": "01-garage-resize-outer-before.png",
+          "width": 2316,
+          "height": 904,
+          "sha256": "5ba96fbc9a5906a489b1b202718bed89b40546d944973e1e240ed90e810913b9"
+        }
+      },
+      {
+        "stage": "inner",
+        "surface": [
+          2176,
+          1812
+        ],
+        "capture": {
+          "file": "01-garage-resize-inner.png",
+          "width": 2176,
+          "height": 1812,
+          "sha256": "ff74353a6bd34262d527294fdd01c23f85148d3137c498fbffe4826713402e81"
+        }
+      },
+      {
+        "stage": "outer-after",
+        "surface": [
+          2316,
+          904
+        ],
+        "capture": {
+          "file": "01-garage-resize-outer-after.png",
+          "width": 2316,
+          "height": 904,
+          "sha256": "b8601aeb10ba112b0ea100e29447deedb9135fab6bbdccbbd1667ceb7f84c228"
+        }
+      },
+      {
+        "stage": "phone-restored",
+        "surface": [
+          1920,
+          1080
+        ],
+        "capture": {
+          "file": "01-garage-resize-phone-restored.png",
+          "width": 1920,
+          "height": 1080,
+          "sha256": "34b7c9cd5313799a996d15793e2bbc8e4a9ae45883d01a08c69b3f2bf9be67fd"
+        }
+      }
+    ],
+    "saved_progress_stable": false,
+    "scope": "actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED",
+    "preserved_garage_step": "Dein nächstes Abenteuer (step 1 / 5)"
+  },
+  "fresh_race_readiness": {
+    "status": "READY",
+    "previous_result_id": "1d2edda7-12a8-4a07-833b-633dcacbd30e-1791574506563-128075186",
+    "timeout_seconds": 180,
+    "observations": [
+      {
+        "snapshot": "02-race-readiness-000-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 10.700000000000111,
+          "distance": 0.1905196653533494,
+          "countdown": 0,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "1d2edda7-12a8-4a07-833b-633dcacbd30e-1791574506563-128075186",
+          "previous_road_distance": 0.18973235982412007,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0.04477354,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 0.019722
+      },
+      {
+        "snapshot": "02-race-readiness-001-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 10.700000000000111,
+          "distance": 0.1905196653533494,
+          "countdown": 0,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "1d2edda7-12a8-4a07-833b-633dcacbd30e-1791574506563-128075186",
+          "previous_road_distance": 0.18973235982412007,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0.04477354,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 2.035952
+      },
+      {
+        "snapshot": "02-race-readiness-002-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 10.700000000000111,
+          "distance": 0.1905196653533494,
+          "countdown": 0,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "1d2edda7-12a8-4a07-833b-633dcacbd30e-1791574506563-128075186",
+          "previous_road_distance": 0.18973235982412007,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0.04477354,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 4.051985
+      },
+      {
+        "snapshot": "02-race-readiness-003-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 6.068853
+      },
+      {
+        "snapshot": "02-race-readiness-004-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 8.712487
+      },
+      {
+        "snapshot": "02-race-readiness-005-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 10.740481
+      },
+      {
+        "snapshot": "02-race-readiness-006-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 13.375338
+      },
+      {
+        "snapshot": "02-race-readiness-007-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 15.403355
+      },
+      {
+        "snapshot": "02-race-readiness-008-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 17.431614
+      },
+      {
+        "snapshot": "02-race-readiness-009-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 20.362776
+      },
+      {
+        "snapshot": "02-race-readiness-010-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 22.933543
+      },
+      {
+        "snapshot": "02-race-readiness-011-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 25.006877
+      },
+      {
+        "snapshot": "02-race-readiness-012-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 27.031489
+      },
+      {
+        "snapshot": "02-race-readiness-013-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 29.562382
+      },
+      {
+        "snapshot": "02-race-readiness-014-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 32.240186
+      },
+      {
+        "snapshot": "02-race-readiness-015-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 35.377332
+      },
+      {
+        "snapshot": "02-race-readiness-016-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 38.938536
+      },
+      {
+        "snapshot": "02-race-readiness-017-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 40.962253
+      },
+      {
+        "snapshot": "02-race-readiness-018-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 44.048961
+      },
+      {
+        "snapshot": "02-race-readiness-019-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 47.39762
+      },
+      {
+        "snapshot": "02-race-readiness-020-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 50.389452
+      },
+      {
+        "snapshot": "02-race-readiness-021-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 52.669679
+      },
+      {
+        "snapshot": "02-race-readiness-022-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 54.696414
+      },
+      {
+        "snapshot": "02-race-readiness-023-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 56.722083
+      },
+      {
+        "snapshot": "02-race-readiness-024-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 58.749316
+      },
+      {
+        "snapshot": "02-race-readiness-025-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 60.774602
+      },
+      {
+        "snapshot": "02-race-readiness-026-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 62.797233
+      },
+      {
+        "snapshot": "02-race-readiness-027-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 64.824817
+      },
+      {
+        "snapshot": "02-race-readiness-028-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 66.861417
+      },
+      {
+        "snapshot": "02-race-readiness-029-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 68.887617
+      },
+      {
+        "snapshot": "02-race-readiness-030-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 70.910808
+      },
+      {
+        "snapshot": "02-race-readiness-031-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 72.934784
+      },
+      {
+        "snapshot": "02-race-readiness-032-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 74.972986
+      },
+      {
+        "snapshot": "02-race-readiness-033-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 76.999428
+      },
+      {
+        "snapshot": "02-race-readiness-034-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 79.107399
+      },
+      {
+        "snapshot": "02-race-readiness-035-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 81.130408
+      },
+      {
+        "snapshot": "02-race-readiness-036-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 83.175136
+      },
+      {
+        "snapshot": "02-race-readiness-037-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 85.204394
+      },
+      {
+        "snapshot": "02-race-readiness-038-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 87.237534
+      },
+      {
+        "snapshot": "02-race-readiness-039-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 89.286503
+      },
+      {
+        "snapshot": "02-race-readiness-040-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 91.344986
+      },
+      {
+        "snapshot": "02-race-readiness-041-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 93.376825
+      },
+      {
+        "snapshot": "02-race-readiness-042-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 95.400961
+      },
+      {
+        "snapshot": "02-race-readiness-043-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 97.449749
+      },
+      {
+        "snapshot": "02-race-readiness-044-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 99.4805
+      },
+      {
+        "snapshot": "02-race-readiness-045-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 0,
+          "distance": 0,
+          "countdown": 3.5,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0,
+          "result_payload": {}
+        },
+        "ready": false,
+        "consecutive_ready_reads": 0,
+        "wall_seconds": 101.505483
+      },
+      {
+        "snapshot": "02-race-readiness-046-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 1.0000000000000013,
+          "distance": 0.07016941437905189,
+          "countdown": 0,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0.06938210884982254,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0.17346953,
+          "result_payload": {}
+        },
+        "ready": true,
+        "consecutive_ready_reads": 1,
+        "wall_seconds": 103.533004
+      },
+      {
+        "snapshot": "02-race-readiness-047-session.cfg",
+        "state": {
+          "speed": 0,
+          "track_id": "sonnenhafen",
+          "elapsed": 1.0000000000000013,
+          "distance": 0.07016941437905189,
+          "countdown": 0,
+          "finished": false,
+          "reset_count": 0,
+          "player_heading": -1.3991293242035483,
+          "selected_kart": "comet",
+          "mode": "race",
+          "difficulty": "gemuetlich",
+          "selected_driver": "fox",
+          "checkpoint_index": 0,
+          "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+          "previous_road_distance": 0.06938210884982254,
+          "completed_race": false,
+          "version": 4,
+          "lane": 0.17346953,
+          "result_payload": {}
+        },
+        "ready": true,
+        "consecutive_ready_reads": 2,
+        "wall_seconds": 105.55989
+      }
+    ],
+    "scope": "read-only actual saved identity/countdown; no forced race state",
+    "fresh_result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+    "elapsed_seconds": 105.562193
+  },
+  "result_id": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+  "automatic_gas": {
+    "enabled_by": "observed native pause button",
+    "stick": "neutral"
+  },
+  "pause_resize": {
+    "status": "PASS",
+    "sequence": "outer → inner → outer → phone",
+    "observed_labels": [
+      "Eine kleine Pause",
+      "Weiterfahren"
+    ],
+    "captures": [
+      {
+        "stage": "outer-before",
+        "surface": [
+          2316,
+          904
+        ],
+        "capture": {
+          "file": "05-pause-resize-outer-before.png",
+          "width": 2316,
+          "height": 904,
+          "sha256": "aa65731acbf6872b23979681a92dc2f695159b1772a8390d8c4e3af749354b72"
+        }
+      },
+      {
+        "stage": "inner",
+        "surface": [
+          2176,
+          1812
+        ],
+        "capture": {
+          "file": "05-pause-resize-inner.png",
+          "width": 2176,
+          "height": 1812,
+          "sha256": "9fd4f110ca7919d09a23b86a82f784bb3f88e5a39b5f7b85404bd9376992704b"
+        }
+      },
+      {
+        "stage": "outer-after",
+        "surface": [
+          2316,
+          904
+        ],
+        "capture": {
+          "file": "05-pause-resize-outer-after.png",
+          "width": 2316,
+          "height": 904,
+          "sha256": "d9c16337b547762e9e416090ff88a053a2bd2ac40bd67a5b0b5fd98c7244060e"
+        }
+      },
+      {
+        "stage": "phone-restored",
+        "surface": [
+          1920,
+          1080
+        ],
+        "capture": {
+          "file": "05-pause-resize-phone-restored.png",
+          "width": 1920,
+          "height": 1080,
+          "sha256": "cc697a89fa7810b09887909b0c787de43c93317008ae5bdc40f8ffaa287eb2b0"
+        }
+      }
+    ],
+    "saved_progress_stable": true,
+    "scope": "actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED"
+  },
+  "pause_resume": {
+    "status": "PASS",
+    "checkpoint": 2,
+    "saved_pause_progress_stable": true,
+    "unfinished_reward_unchanged": true,
+    "scope": "observed pause UI and read-only persisted progress; engine regression checks actual paused physics"
+  },
+  "native_result": {
+    "bestLapSeconds": 33.9,
+    "checkpoints": 16,
+    "driver": "fox",
+    "elapsedSeconds": 70.31700000000001,
+    "game": "kart",
+    "kart": "comet",
+    "mode": "race",
+    "place": 1,
+    "resets": 0,
+    "resultId": "4e810206-f7e3-402c-be22-65960e513344-1791575095445-230604814",
+    "sessionId": "4e810206-f7e3-402c-be22-65960e513344",
+    "solved": 0,
+    "starTokens": 15,
+    "stars": 3,
+    "status": "completed",
+    "track": "sonnenhafen"
+  },
+  "result_resize": {
+    "status": "PASS",
+    "sequence": "outer → inner → outer → phone",
+    "observed_labels": [
+      "Gesamtzeit",
+      "Belohnung"
+    ],
+    "captures": [
+      {
+        "stage": "outer-before",
+        "surface": [
+          2316,
+          904
+        ],
+        "capture": {
+          "file": "07-finished-result-resize-outer-before.png",
+          "width": 2316,
+          "height": 904,
+          "sha256": "c09d8dd7c4961d4b36a75bbbe19b5881f12dd3f8555125b7ba1e1e211ca7f994"
+        }
+      },
+      {
+        "stage": "inner",
+        "surface": [
+          2176,
+          1812
+        ],
+        "capture": {
+          "file": "07-finished-result-resize-inner.png",
+          "width": 2176,
+          "height": 1812,
+          "sha256": "cf38d2d18a311ea210c79f9033100d1047e9228299da3337723fc3846fe123a3"
+        }
+      },
+      {
+        "stage": "outer-after",
+        "surface": [
+          2316,
+          904
+        ],
+        "capture": {
+          "file": "07-finished-result-resize-outer-after.png",
+          "width": 2316,
+          "height": 904,
+          "sha256": "4c4a47ac40db9f9baed77d070b9ccbdd8321afe494eb5859819e4f8e114e1093"
+        }
+      },
+      {
+        "stage": "phone-restored",
+        "surface": [
+          1920,
+          1080
+        ],
+        "capture": {
+          "file": "07-finished-result-resize-phone-restored.png",
+          "width": 1920,
+          "height": 1080,
+          "sha256": "2bf914518c68fa31aa4f84c5208739e8a3462cf46abb5e38f0736c7bc4fe6453"
+        }
+      }
+    ],
+    "saved_progress_stable": true,
+    "scope": "actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED"
+  },
+  "offline_result_recovery": {
+    "status": "PASS",
+    "reward_stars": 3,
+    "reward_xp": 0,
+    "host_acknowledged": true
+  },
+  "visible_flutter_return": {
+    "status": "PASS",
+    "observations": [
+      {
+        "observed": {
+          "foreground": "ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)\nDisplay #0 (activities from top to bottom):\n  * Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1}\n    mLastNonFullscreenBounds=Rect(274, 692 - 806, 1772)\n    isSleeping=false\n    topResumedActivity=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n    * Hist  #0: ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n      packageName=dev.ullmann.lumo.lumo_lernen.coachpreview processName=dev.ullmann.lumo.lumo_lernen.coachpreview\n      launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0\n      app=ProcessRecord{468678f 9143:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209}\n      Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity }\n      rootOfTask=true task=Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n      taskAffinity=null\n      mActivityComponent=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity\n      baseDir=/data/app/~~NFGXctvMCgH2boiL0zL3ig==/dev.ullmann.lumo.lumo_lernen.coachpreview-3scqvB7pD7cyU_YN00HYkw==/base.apk\n      dataDir=/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview\n      stateNotNeeded=false componentSpecified=true mActivityType=standard\n      compat={300dpi always-compat} theme=0x7f0e00a3\n      mLastReportedConfigurations:\n        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2221 fontWeightAdjustment=0}\n        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.16 fontWeightAdjustment=0}\n      mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 1920), taskFragmentBounds=Rect(0, 0 - 1080, 1920)}\n      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.16 fontWeightAdjustment=0}\n      RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=standard mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}\n      taskDescription: label=\"Lumo Lernen\" icon=null iconResource=dev.ullmann.lumo.lumo_lernen.coachpreview/0 iconFilename=null primaryColor=ff03193f\n        backgroundColor=ffffffff statusBarColor=ff000000 navigationBarColor=808080\n       backgroundColorFloating=ffffffff\n      launchFailed=false launchCount=0 lastLaunchTime=-3m8s762ms\n      mHaveState=false mIcicle=null\n      state=RESUMED delayedResume=false finishing=false\n      keysPaused=false inHistory=true idle=true\n      occludesParent=true noDisplay=false immersive=false launchMode=1\n      mActivityType=standard\n      mImeInsetsFrozenUntilStartInput=false\n      windows=[Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}]\n      windowType=2\n      mOccludesParent=true\n      overrideOrientation=SCREEN_ORIENTATION_USER\n      requestedOrientation=SCREEN_ORIENTATION_USER\n      mVisibleRequested=true mVisible=true mClientVisible=true reportedDrawn=true reportedVisible=true\n      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)\n      startingData=null firstWindowDrawn=true mIsExiting=false\n      nowVisible=true lastVisibleTime=-3s264ms\n      resizeMode=RESIZE_MODE_RESIZEABLE\n      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false\n      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA\n      configChanges=0x40003fb7\n      neverSandboxDisplayApis=false\n      alwaysSandboxDisplayApis=false\n      areBoundsLetterboxed=false\n      mCameraCompatControlState=hidden\n      mCameraCompatControlEnabled=true\n\n  * Task{2a3247f #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}\n    * Task{2923dd7 #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}\n      mLastPausedActivity: ActivityRecord{2da2771 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n      mLastNonFullscreenBounds=Rect(284, 663 - 796, 1743)\n      isSleeping=false\n      * Hist  #1: ActivityRecord{2da2771 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n        packageName=com.google.android.apps.nexuslauncher processName=com.google.android.apps.nexuslauncher\n        launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0\n        app=ProcessRecord{ae9758f 3965:com.google.android.apps.nexuslauncher/u0a179}\n        Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity (has extras) }\n        rootOfTask=true task=Task{2923dd7 #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity}\n        taskAffinity=null\n        mActivityComponent=com.google.android.apps.nexuslauncher/.NexusLauncherActivity\n        baseDir=/system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk\n        dataDir=/data/user/0/com.google.android.apps.nexuslauncher\n        stateNotNeeded=true componentSpecified=true mActivityType=home\n        compat={300dpi always-compat} theme=0x7f140019\n        mLastReportedConfigurations:\n          mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2079 fontWeightAdjustment=0}\n          mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.62 fontWeightAdjustment=0}\n        mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 1920), taskFragmentBounds=Rect(0, 0 - 1080, 1920)}\n        CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.66 fontWeightAdjustment=0}\n        RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=home mAlwaysOnTop=undefined mRotation=undefined} as.3 ?fontWeightAdjustment}\n        taskDescription: label=\"null\" icon=null iconResource=/0 iconFilename=null primaryColor=fff1f0f7\n          backgroundColor=fff1f0f7 statusBarColor=0 navigationBarColor=0\n         backgroundColorFloating=fff1f0f7\n        launchFailed=false launchCount=0 lastLaunchTime=-38m30s122ms\n        mHaveState=true mIcicle=Bundle[mParcelledData.dataSize=6448]\n        state=STOPPED delayedResume=false finishing=false\n        keysPaused=false inHistory=true idle=true\n        occludesParent=true noDisplay=false immersive=false launchMode=2\n        mActivityType=home\n        mImeInsetsFrozenUntilStartInput=true\n        windows=[Window{16cc64d u0 com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}]\n        windowType=2\n        mOccludesParent=true\n        overrideOrientation=SCREEN_ORIENTATION_NOSENSOR\n        requestedOrientation=SCREEN_ORIENTATION_NOSENSOR\n        mVisibleRequested=false mVisible=false mClientVisible=false reportedDrawn=false reportedVisible=false\n        mAppStopped=true\n        mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=false lastAllDrawn=false)\n        nowVisible=false lastVisibleTime=-3m11s345ms\n        connections={ConnectionRecord{f54daaa u0 com.google.android.apps.nexuslauncher/com.android.quickstep.TouchInteractionService:@e85f995 flags=0x0}}\n        resizeMode=RESIZE_MODE_RESIZEABLE\n        mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false\n        supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA\n        configChanges=0xdf3\n        neverSandboxDisplayApis=false\n        alwaysSandboxDisplayApis=false\n        areBoundsLetterboxed=false\n        mCameraCompatControlState=hidden\n        mCameraCompatControlEnabled=true\n      * TaskFragment{f2b87b9 mode=multi-window organizerUid=10179 organizerProc=com.google.android.apps.nexuslauncher}\n\n  * Task{a65303e #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}\n    mCreatedByOrganizer=true\n    * Task{99e2bec #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}\n      mBounds=Rect(0, 2340 - 1080, 3510)\n      mCreatedByOrganizer=true\n      isSleeping=false\n    * Task{fbc9e9f #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}\n      mCreatedByOrganizer=true\n      isSleeping=false\n\n  Resumed activities in task display areas (from top to bottom):\n    Resumed: ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n\n  ResumedActivity: ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n\nActivityTaskSupervisor state:\n  topDisplayFocusedRootTask=Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n  Display: mDisplayId=0 (organized)\n    init=1080x2340 440dpi mMinSizeOfResizeableTaskDp=220 base=1080x1920 300dpi cur=1080x1920 app=1080x1920 rng=1080x1080-1920x1920\n    deferred=false mLayoutNeeded=false\n  mLastOrientationSource=WindowedMagnification:0:31@105739225\n  deepestLastOrientationSource=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n  overrideConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2190 fontWeightAdjustment=0}\n  mLayoutSeq=1054\n  mCurrentFocus=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n  mFocusedApp=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n\n  mHoldScreenWindow=null\n  mObscuringWindow=null\n  mLastWakeLockHoldingWindow=null\n  mLastWakeLockObscuringWindow=null\n\n  displayId=0\n  mWallpaperTarget=null\n  mLastWallpaperZoomOut=0.0\n  token WallpaperWindowToken{8b7f67c token=android.os.Binder@3ebb96f}:\n    canShowWhenLocked=true\n    mWallpaperX=0.0\n    mWallpaperY=0.5\n    mWallpaperXStep=0.33333334\n    mWallpaperYStep=1.0\n    mWallpaperDisplayOffsetX=NA\n    mWallpaperDisplayOffsetY=NA\n\n  mSystemGestureExclusion=SkRegion()\n\n  Display areas in top down Z order:\n    * Leaf:36:36\n    * HideDisplayCutout:32:35\n      * OneHanded:34:35\n        * FullscreenMagnification:34:35\n          * Leaf:34:35\n      * FullscreenMagnification:33:33\n        * Leaf:33:33\n      * OneHanded:32:32\n        * Leaf:32:32\n    * WindowedMagnification:0:31\n      * HideDisplayCutout:26:31\n        * OneHanded:26:31\n          * FullscreenMagnification:29:31\n            * Leaf:29:31\n          * Leaf:28:28\n          * FullscreenMagnification:26:27\n            * Leaf:26:27\n      * Leaf:24:25\n      * HideDisplayCutout:18:23\n        * OneHanded:18:23\n          * FullscreenMagnification:18:23\n            * Leaf:18:23\n      * OneHanded:17:17\n        * FullscreenMagnification:17:17\n          * Leaf:17:17\n      * HideDisplayCutout:16:16\n        * OneHanded:16:16\n          * FullscreenMagnification:16:16\n            * Leaf:16:16\n      * OneHanded:15:15\n        * FullscreenMagnification:15:15\n          * Leaf:15:15\n      * HideDisplayCutout:0:14\n        * OneHanded:0:14\n          * ImePlaceholder:13:14\n            * ImeContainer\n          * FullscreenMagnification:0:12\n            * Leaf:3:12\n            * DefaultTaskDisplayArea (organized)\n            * Leaf:0:1\n\n  Task display areas in top down Z order:\n    TaskDisplayArea DefaultTaskDisplayArea\n      overrideConfig={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}\n      mPreferredTopFocusableRootTask=Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n      mLastFocusedRootTask=Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n      Application tokens in top down Z order:\n      * Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1}\n        bounds=[0,0][1080,1920]\n        * ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n      * Task{2a3247f #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}\n        bounds=[0,0][1080,1920]\n        * Task{2923dd7 #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}\n          bounds=[0,0][1080,1920]\n          * ActivityRecord{2da2771 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n          * TaskFragment{f2b87b9 mode=multi-window organizerUid=10179 organizerProc=com.google.android.apps.nexuslauncher}\n            bounds=[0,0][1080,1920]\n      * Task{a65303e #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}\n        bounds=[0,0][1080,1920]\n        * Task{99e2bec #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}\n          bounds=[0,2340][1080,3510]\n        * Task{fbc9e9f #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}\n          bounds=[0,0][1080,1920]\n\n  no ScreenRotationAnimation \n\n  rootHomeTask=Task=1\n\n  PinnedTaskController\n    mIsImeShowing=false\n    mImeHeight=0\n    mMinAspectRatio=0.41841003\n    mMaxAspectRatio=2.39\n\n  DisplayFrames w=1080 h=1920 r=0\n\n  DisplayPolicy\n    mCarDockEnablesAccelerometer=true mDeskDockEnablesAccelerometer=true\n    mDockMode=EXTRA_DOCK_STATE_UNDOCKED mLidState=LID_OPEN\n    mAwake=true mScreenOnEarly=true mScreenOnFully=true\n    mKeyguardDrawComplete=true mWindowManagerDrawComplete=true\n    mHdmiPlugged=false\n    mLastAppearance=LIGHT_NAVIGATION_BARS FORCE_LIGHT_NAVIGATION_BARS\n    mLastBehavior=DEFAULT\n    mShowingDream=false mDreamingLockscreen=false\n    mStatusBar=Window{7a7ca1a u0 StatusBar}\n    mExpandedPanel=Window{819dd09 u0 NotificationShade}\n    isKeyguardShowing=false\n    mNavigationBar=Window{f4d14af u0 Taskbar}\n    mNavBarOpacityMode=2\n    mNavigationBarCanMove=false\n    mNavigationBarPosition=4\n    mLeftGestureHost=Window{f4d14af u0 Taskbar}\n    mTopGestureHost=Window{7a7ca1a u0 StatusBar}\n    mRightGestureHost=Window{f4d14af u0 Taskbar}\n    mBottomGestureHost=Window{f4d14af u0 Taskbar}\n    mFocusedWindow=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mTopFullscreenOpaqueWindowState=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mSystemBarColorApps={ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}}\n    mNavBarColorWindowCandidate=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mNavBarBackgroundWindowCandidate=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mLastStatusBarAppearanceRegions=\n      AppearanceRegion{ bounds=[0,0][1080,1920]}\n    mLastLetterboxDetails=\n    mStatusBarBackgroundWindows=\n      Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mTopIsFullscreen=false\n    mImeInsetsConsumed=false\n    mForceShowNavigationBarEnabled=false mAllowLockscreenWhenOn=false\n    mRemoteInsetsControllerControlsSystemBars=false\n    mDecorInsetsInfo:\n      ROTATION_0={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,112][0,45], configInsets=[0,0][0,0], overrideConfigInsets=[0,112][0,45], nonDecorFrame=[0,0][1080,1920], overrideNonDecorFrame=[0,112][1080,1875], configFrame=[0,0][1080,1920], overrideConfigFrame=[0,112][1080,1875]}\n      ROTATION_90={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[112,0][0,45], configInsets=[0,0][0,0], overrideConfigInsets=[112,45][0,45], nonDecorFrame=[0,0][1920,1080], overrideNonDecorFrame=[112,0][1920,1035], configFrame=[0,0][1920,1080], overrideConfigFrame=[112,45][1920,1035]}\n      ROTATION_180={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,112], configInsets=[0,0][0,0], overrideConfigInsets=[0,45][0,112], nonDecorFrame=[0,0][1080,1920], overrideNonDecorFrame=[0,0][1080,1808], configFrame=[0,0][1080,1920], overrideConfigFrame=[0,45][1080,1808]}\n      ROTATION_270={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][112,45], configInsets=[0,0][0,0], overrideConfigInsets=[0,45][112,45], nonDecorFrame=[0,0][1920,1080], overrideNonDecorFrame=[0,0][1808,1035], configFrame=[0,0][1920,1080], overrideConfigFrame=[0,45][1808,1035]}\n    SystemGestures:\n      mDisplayCutoutTouchableRegionSize=23\n      mSwipeStartThreshold=Rect(45, 135 - 45, 45)\n      mSwipeDistanceThreshold=45\n\n  DisplayRotation\n    mCurrentAppOrientation=SCREEN_ORIENTATION_USER\n    mLastOrientation=2\n    mRotation=0 mDeferredRotationPauseCount=0\n    mLandscapeRotation=ROTATION_90 mSeascapeRotation=ROTATION_270\n    mPortraitRotation=ROTATION_0 mUpsideDownRotation=ROTATION_180\n    mSupportAutoRotation=true\n    WindowOrientationListener\n      mEnabled=true\n      mCurrentRotation=ROTATION_0\n      mSensorType=null\n      mSensor={Sensor name=\"Goldfish 3-axis Accelerometer\", vendor=\"The Android Open Source Project\", version=1, type=1, maxRange=39.300102, resolution=2.480159E-4, power=3.0, minDelay=10000}\n      mRate=2\n      AccelSensorJudge\n        mProposedRotation=0\n        mPredictedRotation=0\n        mLastFilteredX=0.0\n        mLastFilteredY=9.776321\n        mLastFilteredZ=0.812345\n        mLastFilteredTimestampNanos=2429876653346 (16.123575ms ago)\n        mTiltHistory={last: 5.0}\n        mFlat=false\n        mSwinging=false\n        mAccelerating=false\n        mOverhead=false\n        mTouched=false\n        mTiltToleranceConfig=[[-25, 70], [-25, 65], [-25, 60], [-25, 65]]\n\n    mCarDockRotation=-1 mDeskDockRotation=-1\n    mUserRotationMode=USER_ROTATION_FREE mUserRotation=ROTATION_0 mCameraRotationMode=0 mAllowAllRotations=unknown\n    mDemoHdmiRotation=ROTATION_90 mDemoHdmiRotationLock=false mUndockedHdmiRotation=-1\n    mLidOpenRotation=-1\n    mFixedToUserRotation=false\n  FoldController\n    mPauseAutorotationDuringUnfolding=false\n    mShouldDisableRotationSensor=false\n    mShouldIgnoreSensorRotation=false\n    mLastDisplaySwitchTime=0\n    mLastHingeAngleEventTime=0\n    mDeviceState=FOLDED\n\n    RotationHistory\n      10-09 19:41:08.411 ROTATION_0 to ROTATION_90\n        source=ActivityRecord{913765d u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t10} SCREEN_ORIENTATION_USER_LANDSCAPE\n        mode=USER_ROTATION_FREE user=ROTATION_90 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:06:47.855 ROTATION_90 to ROTATION_0\n        source=ActivityRecord{2da2771 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7} SCREEN_ORIENTATION_NOSENSOR\n        mode=USER_ROTATION_LOCKED user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR true, CAMERA false HALF_FOLD false\n      10-09 20:06:54.529 ROTATION_0 to ROTATION_90\n        source=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11} SCREEN_ORIENTATION_UNSPECIFIED\n        mode=USER_ROTATION_LOCKED user=ROTATION_90 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:06:55.186 ROTATION_90 to ROTATION_0\n        source=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11} SCREEN_ORIENTATION_UNSPECIFIED\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:07:10.498 ROTATION_0 to ROTATION_90\n        source=ActivityRecord{3d50498 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t11} SCREEN_ORIENTATION_SENSOR_LANDSCAPE\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:07:11.937 ROTATION_90 to ROTATION_0\n        source=ActivityRecord{3d50498 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t11} SCREEN_ORIENTATION_PORTRAIT\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:07:14.597 ROTATION_0 to ROTATION_90\n        source=ActivityRecord{3d50498 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t11} SCREEN_ORIENTATION_USER_LANDSCAPE\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:10:00.445 ROTATION_90 to ROTATION_0\n        source=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11} SCREEN_ORIENTATION_USER\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n\n        RotationLockHistory\n          10-09 20:05:47.439: mode=USER_ROTATION_LOCKED, rotation=ROTATION_90, caller=WindowManagerShellCommand#lock\n          10-09 20:06:14.110: mode=USER_ROTATION_LOCKED, rotation=ROTATION_90, caller=WindowManagerShellCommand#lock\n          10-09 20:06:33.245: mode=USER_ROTATION_LOCKED, rotation=ROTATION_90, caller=WindowManagerShellCommand#lock\n          10-09 20:06:47.458: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=WindowManagerShellCommand#lock\n          10-09 20:06:47.913: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=RotationButtonController#onRotationWatcherChanged\n          10-09 20:06:54.493: mode=USER_ROTATION_LOCKED, rotation=ROTATION_90, caller=DisplayRotationReversionController#revertOverride\n          10-09 20:06:54.518: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent\n          10-09 20:06:54.871: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent\n\n  InputConsumers:\n    name=recents_animation_input_consumer pid=3965 user=UserHandle{0}\n\n  WindowInsetsStateController\n    InsetsState\n      mDisplayFrame=Rect(0, 0 - 1080, 1920)\n      mDisplayCutout=DisplayCutout{insets=Rect(0, 112 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 112, 112), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=1920 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.75} cutoutSpec={M 41,77 a 40,40 0 1 0 80,0 40,40 0 1 0 -80,0 Z @left} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={0.82051283}}} sideOverrides={}}\n      mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}\n      mRoundedCornerFrame=Rect(0, 0 - 0, 0)\n      mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(887, 0 - 1041, 112) rotation=0}\n      mDisplayShape=DisplayShape{ spec=-1084927657 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}\n        InsetsSource id=91010001 type=navigationBars frame=[0,1875][1080,1920] visible=true flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null\n        InsetsSource id=91010004 type=systemGestures frame=[0,0][56,1920] visible=true flags= sideHint=LEFT boundingRects=null\n        InsetsSource id=91010005 type=mandatorySystemGestures frame=[0,1860][1080,1920] visible=true flags= sideHint=BOTTOM boundingRects=null\n        InsetsSource id=91010006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null\n        InsetsSource id=91010024 type=systemGestures frame=[1024,0][1080,1920] visible=true flags= sideHint=RIGHT boundingRects=null\n        InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null\n        InsetsSource id=27 type=displayCutout frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n        InsetsSource id=9320000 type=statusBars frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n        InsetsSource id=9320005 type=mandatorySystemGestures frame=[0,0][1080,145] visible=true flags= sideHint=TOP boundingRects=null\n        InsetsSource id=9320006 type=tappableElement frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n    Control map:\n      Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}:\n        InsetsSourceControl: {3 mType=ime mSurfacePosition=Point(0, 136) mInsetsHint=Insets{left=0, top=0, right=0, bottom=909}}\n        InsetsSourceControl: {91010001 mType=navigationBars initiallyVisible mSurfacePosition=Point(0, 1875) mInsetsHint=Insets{left=0, top=0, right=0, bottom=45}}\n        InsetsSourceControl: {9320000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=112, right=0, bottom=0}}\n    InsetsSourceProviders:\n      InsetsSourceProvider\n        mSource=InsetsSource id=9320006 type=tappableElement frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n        mSourceFrame=Rect(0, 0 - 1080, 112)\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{7a7ca1a u0 StatusBar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=9320005 type=mandatorySystemGestures frame=[0,0][1080,145] visible=true flags= sideHint=TOP boundingRects=null\n        mSourceFrame=Rect(0, 0 - 1080, 145)\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{7a7ca1a u0 StatusBar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=9320000 type=statusBars frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n        mSourceFrame=Rect(0, 0 - 1080, 112)\n        mControl=InsetsSourceControl mId=9320000 mType=statusBars mLeash=Surface(name=Surface(name=7a7ca1a StatusBar)/@0xdc5e535 - animation-leash of insets_animation)/@0xdcd391 mInitiallyVisible=true mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=112, right=0, bottom=0} mSkipAnimationOnce=false\n        mInsetsHint=Insets{left=0, top=112, right=0, bottom=0}\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{7a7ca1a u0 StatusBar}\n        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=7a7ca1a StatusBar)/@0xdc5e535 - animation-leash of insets_animation)/@0xdcd391\n        mControlTarget=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n      ImeInsetsSourceProvider\n        mSource=InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null\n        mSourceFrame=Rect(0, 2310 - 1080, 2400)\n        mControl=InsetsSourceControl mId=3 mType=ime mLeash=Surface(name=Surface(name=483e0fc InputMethod)/@0xac2f5da - animation-leash of insets_animation)/@0x88d592 mInitiallyVisible=false mSurfacePosition=Point(0, 136) mInsetsHint=Insets{left=0, top=0, right=0, bottom=909} mSkipAnimationOnce=false\n        mInsetsHint=Insets{left=0, top=0, right=0, bottom=909} stale\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{483e0fc u0 InputMethod}\n        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=483e0fc InputMethod)/@0xac2f5da - animation-leash of insets_animation)/@0x88d592\n        mControlTarget=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n        mImeShowing=false        showImePostLayout not scheduled, mImeRequester=null\n\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010024 type=systemGestures frame=[1024,0][1080,1920] visible=true flags= sideHint=RIGHT boundingRects=null\n        mSourceFrame=Rect(1024, 0 - 1080, 1920)\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null\n        mSourceFrame=Rect(0, 0 - 0, 0)\n        mOverrideFrames={2011=Rect(0, 1875 - 1080, 1920), 2031=Rect(0, 0 - 0, 0)}\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010005 type=mandatorySystemGestures frame=[0,1860][1080,1920] visible=true flags= sideHint=BOTTOM boundingRects=null\n        mSourceFrame=Rect(0, 1860 - 1080, 1920)\n        mOverrideFrames={2011=Rect(0, 1875 - 1080, 1920), 2031=Rect(0, 1860 - 1080, 1920)}\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010004 type=systemGestures frame=[0,0][56,1920] visible=true flags= sideHint=LEFT boundingRects=null\n        mSourceFrame=Rect(0, 0 - 56, 1920)\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010001 type=navigationBars frame=[0,1875][1080,1920] visible=true flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null\n        mSourceFrame=Rect(0, 1875 - 1080, 1920)\n        mOverrideFrames={2011=Rect(0, 1875 - 1080, 1920), 2031=Rect(0, 1875 - 1080, 1920)}\n        mControl=InsetsSourceControl mId=91010001 mType=navigationBars mLeash=Surface(name=Surface(name=f4d14af Taskbar)/@0x7e8bca8 - animation-leash of insets_animation)/@0x97616f7 mInitiallyVisible=true mSurfacePosition=Point(0, 1875) mInsetsHint=Insets{left=0, top=0, right=0, bottom=45} mSkipAnimationOnce=false\n        mInsetsHint=Insets{left=0, top=0, right=0, bottom=45}\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=f4d14af Taskbar)/@0x7e8bca8 - animation-leash of insets_animation)/@0x97616f7\n        mControlTarget=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n  InsetsPolicy\n    status: WINDOW_STATE_SHOWING\n    nav: WINDOW_STATE_SHOWING\n\n  KeyguardController:\n    mKeyguardShowing=false\n    mAodShowing=false\n    mKeyguardGoingAway=false\n   KeyguardShowing=false AodShowing=false KeyguardGoingAway=false DismissalRequested=false  Occluded=false DismissingKeyguardActivity=null TurnScreenOnActivity=null at display=0\n    mDismissalRequested=false\n\n  LockTaskController:\n    mLockTaskModeState=NONE\n    mLockTaskModeTasks=\n    mLockTaskPackages (userId:packages)=\n\n  mCurTaskIdForUser={0=11}\n  mUserRootTaskInFront={}\n  mVisibilityTransactionDepth=0\n  isHomeRecentsComponent=true\n  mNoHistoryActivities=[]\n\n  TaskOrganizerController:\n      android.window.ITaskOrganizer$Stub$Proxy@4706329 uid=10181 (active):\n        (fullscreen) Task{2a3247f #1 type=home}\n        (fullscreen) Task{a65303e #2 type=undefined}\n        (multi-window) Task{fbc9e9f #3 type=undefined}\n        (multi-window) Task{99e2bec #4 type=undefined}\n        (fullscreen) Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n\n  VisibleActivityProcess:[ ProcessRecord{468678f 9143:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209}]\n  NumNonAppVisibleWindowUidMap:[ 10181:1 10179:1]",
+          "foreground_file": "13-flutter-return-00-foreground.txt",
+          "foreground_sha256": "d48b8af77c5cc76b5a52b0ce24f8fa5d74e938e09ae9dd415d49565b26dc37c6",
+          "native_process": "",
+          "xml_file": "13-flutter-return-00.xml",
+          "xml_sha256": "a2070efb4d8b78e1a2951c389e4dbe89fa0e66c8b3746c680a4557b16ad82415",
+          "capture": {
+            "file": "13-flutter-return-00.png",
+            "width": 1080,
+            "height": 1920,
+            "sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43"
+          },
+          "surface": {
+            "source": "13-flutter-return-00.png",
+            "source_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+            "source_bytes": 1689442,
+            "pixels": [
+              1080,
+              1920
+            ],
+            "sample_rows": [
+              230,
+              422,
+              614,
+              806,
+              998,
+              1190,
+              1382,
+              1574
+            ],
+            "blank_edge_columns": {
+              "left": 0,
+              "right": 0
+            },
+            "blank_threshold_rgb_max": 8,
+            "blank_required_rows": 7,
+            "acceptable_for_target_sampling": true,
+            "reasons": [],
+            "scope": "Actual complete Flutter PNG and blank-edge check; portrait is allowed",
+            "complete_png": true
+          },
+          "semantics": {
+            "start": [
+              8,
+              1763,
+              221,
+              1868
+            ],
+            "lernen": [
+              221,
+              1763,
+              434,
+              1868
+            ],
+            "spielen": [
+              434,
+              1763,
+              647,
+              1868
+            ],
+            "profil": [
+              860,
+              1763,
+              1073,
+              1868
+            ]
+          },
+          "pixel_captions": {
+            "start": {
+              "matches": [
+                [
+                  90,
+                  1833,
+                  139.5,
+                  1847
+                ]
+              ],
+              "source_bounds": [
+                8,
+                1763,
+                221,
+                1868
+              ],
+              "source_png_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+              "crop": "13-flutter-return-00-start-crop.png",
+              "crop_sha256": "62776ef3901f196a617a50f7d8fa844da87609bcf901dec3e5b4bd980c9c9bde",
+              "tsv": "13-flutter-return-00-start-ocr.tsv",
+              "tsv_sha256": "827d6e92121080606de2187daffd06b14045908197d05a5f5da235318f58281d"
+            },
+            "lernen": {
+              "matches": [
+                [
+                  294,
+                  1833,
+                  360,
+                  1847
+                ]
+              ],
+              "source_bounds": [
+                221,
+                1763,
+                434,
+                1868
+              ],
+              "source_png_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+              "crop": "13-flutter-return-00-lernen-crop.png",
+              "crop_sha256": "571abde8f16be7047c80cb2b1b7f308b356cd11c39302ee279117a13534cd24b",
+              "tsv": "13-flutter-return-00-lernen-ocr.tsv",
+              "tsv_sha256": "3b75f060adbe414b8d6eb38f1fab606c309e09b71cfae4aceab211325e044915"
+            },
+            "spielen": {
+              "matches": [
+                [
+                  502,
+                  1830,
+                  578,
+                  1851
+                ]
+              ],
+              "source_bounds": [
+                434,
+                1763,
+                647,
+                1868
+              ],
+              "source_png_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+              "crop": "13-flutter-return-00-spielen-crop.png",
+              "crop_sha256": "9ef33c0c4437a178ac8d1929dca6170324833d68f5e03ca4d70c5d0d67c0d205",
+              "tsv": "13-flutter-return-00-spielen-ocr.tsv",
+              "tsv_sha256": "0d607e2d33a222587f5dd059883e3fdf05c7dc3c482e283fa65c5d499de8e25e"
+            },
+            "profil": {
+              "matches": [
+                [
+                  940,
+                  1832.5,
+                  993.5,
+                  1847
+                ]
+              ],
+              "source_bounds": [
+                860,
+                1763,
+                1073,
+                1868
+              ],
+              "source_png_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+              "crop": "13-flutter-return-00-profil-crop.png",
+              "crop_sha256": "db14be5aae9db01a5c947a17e6774eed1bac9c8ed7fba914ede68f86982bf344",
+              "tsv": "13-flutter-return-00-profil-ocr.tsv",
+              "tsv_sha256": "ab4f464882dd259276a9ea7fc2af9d05d6866cfb30c955aed2384872f32287e8"
+            }
+          }
+        },
+        "valid": true,
+        "stable": false,
+        "reasons": []
+      },
+      {
+        "observed": {
+          "foreground": "ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)\nDisplay #0 (activities from top to bottom):\n  * Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1}\n    mLastNonFullscreenBounds=Rect(274, 692 - 806, 1772)\n    isSleeping=false\n    topResumedActivity=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n    * Hist  #0: ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n      packageName=dev.ullmann.lumo.lumo_lernen.coachpreview processName=dev.ullmann.lumo.lumo_lernen.coachpreview\n      launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0\n      app=ProcessRecord{468678f 9143:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209}\n      Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity }\n      rootOfTask=true task=Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n      taskAffinity=null\n      mActivityComponent=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity\n      baseDir=/data/app/~~NFGXctvMCgH2boiL0zL3ig==/dev.ullmann.lumo.lumo_lernen.coachpreview-3scqvB7pD7cyU_YN00HYkw==/base.apk\n      dataDir=/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview\n      stateNotNeeded=false componentSpecified=true mActivityType=standard\n      compat={300dpi always-compat} theme=0x7f0e00a3\n      mLastReportedConfigurations:\n        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2221 fontWeightAdjustment=0}\n        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.16 fontWeightAdjustment=0}\n      mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 1920), taskFragmentBounds=Rect(0, 0 - 1080, 1920)}\n      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.16 fontWeightAdjustment=0}\n      RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=standard mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}\n      taskDescription: label=\"Lumo Lernen\" icon=null iconResource=dev.ullmann.lumo.lumo_lernen.coachpreview/0 iconFilename=null primaryColor=ff03193f\n        backgroundColor=ffffffff statusBarColor=ff000000 navigationBarColor=808080\n       backgroundColorFloating=ffffffff\n      launchFailed=false launchCount=0 lastLaunchTime=-3m18s168ms\n      mHaveState=false mIcicle=null\n      state=RESUMED delayedResume=false finishing=false\n      keysPaused=false inHistory=true idle=true\n      occludesParent=true noDisplay=false immersive=false launchMode=1\n      mActivityType=standard\n      mImeInsetsFrozenUntilStartInput=false\n      windows=[Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}]\n      windowType=2\n      mOccludesParent=true\n      overrideOrientation=SCREEN_ORIENTATION_USER\n      requestedOrientation=SCREEN_ORIENTATION_USER\n      mVisibleRequested=true mVisible=true mClientVisible=true reportedDrawn=true reportedVisible=true\n      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)\n      startingData=null firstWindowDrawn=true mIsExiting=false\n      nowVisible=true lastVisibleTime=-12s670ms\n      resizeMode=RESIZE_MODE_RESIZEABLE\n      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false\n      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA\n      configChanges=0x40003fb7\n      neverSandboxDisplayApis=false\n      alwaysSandboxDisplayApis=false\n      areBoundsLetterboxed=false\n      mCameraCompatControlState=hidden\n      mCameraCompatControlEnabled=true\n\n  * Task{2a3247f #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}\n    * Task{2923dd7 #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}\n      mLastPausedActivity: ActivityRecord{2da2771 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n      mLastNonFullscreenBounds=Rect(284, 663 - 796, 1743)\n      isSleeping=false\n      * Hist  #1: ActivityRecord{2da2771 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n        packageName=com.google.android.apps.nexuslauncher processName=com.google.android.apps.nexuslauncher\n        launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0\n        app=ProcessRecord{ae9758f 3965:com.google.android.apps.nexuslauncher/u0a179}\n        Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity (has extras) }\n        rootOfTask=true task=Task{2923dd7 #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity}\n        taskAffinity=null\n        mActivityComponent=com.google.android.apps.nexuslauncher/.NexusLauncherActivity\n        baseDir=/system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk\n        dataDir=/data/user/0/com.google.android.apps.nexuslauncher\n        stateNotNeeded=true componentSpecified=true mActivityType=home\n        compat={300dpi always-compat} theme=0x7f140019\n        mLastReportedConfigurations:\n          mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2079 fontWeightAdjustment=0}\n          mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.62 fontWeightAdjustment=0}\n        mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1080, 1920), taskFragmentBounds=Rect(0, 0 - 1080, 1920)}\n        CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.66 fontWeightAdjustment=0}\n        RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=home mAlwaysOnTop=undefined mRotation=undefined} as.3 ?fontWeightAdjustment}\n        taskDescription: label=\"null\" icon=null iconResource=/0 iconFilename=null primaryColor=fff1f0f7\n          backgroundColor=fff1f0f7 statusBarColor=0 navigationBarColor=0\n         backgroundColorFloating=fff1f0f7\n        launchFailed=false launchCount=0 lastLaunchTime=-38m39s511ms\n        mHaveState=true mIcicle=Bundle[mParcelledData.dataSize=6448]\n        state=STOPPED delayedResume=false finishing=false\n        keysPaused=false inHistory=true idle=true\n        occludesParent=true noDisplay=false immersive=false launchMode=2\n        mActivityType=home\n        mImeInsetsFrozenUntilStartInput=true\n        windows=[Window{16cc64d u0 com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}]\n        windowType=2\n        mOccludesParent=true\n        overrideOrientation=SCREEN_ORIENTATION_NOSENSOR\n        requestedOrientation=SCREEN_ORIENTATION_NOSENSOR\n        mVisibleRequested=false mVisible=false mClientVisible=false reportedDrawn=false reportedVisible=false\n        mAppStopped=true\n        mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=false lastAllDrawn=false)\n        nowVisible=false lastVisibleTime=-3m20s734ms\n        connections={ConnectionRecord{f54daaa u0 com.google.android.apps.nexuslauncher/com.android.quickstep.TouchInteractionService:@e85f995 flags=0x0}}\n        resizeMode=RESIZE_MODE_RESIZEABLE\n        mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false\n        supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA\n        configChanges=0xdf3\n        neverSandboxDisplayApis=false\n        alwaysSandboxDisplayApis=false\n        areBoundsLetterboxed=false\n        mCameraCompatControlState=hidden\n        mCameraCompatControlEnabled=true\n      * TaskFragment{f2b87b9 mode=multi-window organizerUid=10179 organizerProc=com.google.android.apps.nexuslauncher}\n\n  * Task{a65303e #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}\n    mCreatedByOrganizer=true\n    * Task{99e2bec #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}\n      mBounds=Rect(0, 2340 - 1080, 3510)\n      mCreatedByOrganizer=true\n      isSleeping=false\n    * Task{fbc9e9f #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}\n      mCreatedByOrganizer=true\n      isSleeping=false\n\n  Resumed activities in task display areas (from top to bottom):\n    Resumed: ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n\n  ResumedActivity: ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n\nActivityTaskSupervisor state:\n  topDisplayFocusedRootTask=Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n  Display: mDisplayId=0 (organized)\n    init=1080x2340 440dpi mMinSizeOfResizeableTaskDp=220 base=1080x1920 300dpi cur=1080x1920 app=1080x1920 rng=1080x1080-1920x1920\n    deferred=false mLayoutNeeded=false\n  mLastOrientationSource=WindowedMagnification:0:31@105739225\n  deepestLastOrientationSource=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n  overrideConfig={1.0 310mcc260mnc [en_US] ldltr sw576dp w576dp h1024dp 300dpi lrg long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1920) mMaxBounds=Rect(0, 0 - 1080, 1920) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.2190 fontWeightAdjustment=0}\n  mLayoutSeq=1054\n  mCurrentFocus=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n  mFocusedApp=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n\n  mHoldScreenWindow=null\n  mObscuringWindow=null\n  mLastWakeLockHoldingWindow=null\n  mLastWakeLockObscuringWindow=null\n\n  displayId=0\n  mWallpaperTarget=null\n  mLastWallpaperZoomOut=0.0\n  token WallpaperWindowToken{8b7f67c token=android.os.Binder@3ebb96f}:\n    canShowWhenLocked=true\n    mWallpaperX=0.0\n    mWallpaperY=0.5\n    mWallpaperXStep=0.33333334\n    mWallpaperYStep=1.0\n    mWallpaperDisplayOffsetX=NA\n    mWallpaperDisplayOffsetY=NA\n\n  mSystemGestureExclusion=SkRegion()\n\n  Display areas in top down Z order:\n    * Leaf:36:36\n    * HideDisplayCutout:32:35\n      * OneHanded:34:35\n        * FullscreenMagnification:34:35\n          * Leaf:34:35\n      * FullscreenMagnification:33:33\n        * Leaf:33:33\n      * OneHanded:32:32\n        * Leaf:32:32\n    * WindowedMagnification:0:31\n      * HideDisplayCutout:26:31\n        * OneHanded:26:31\n          * FullscreenMagnification:29:31\n            * Leaf:29:31\n          * Leaf:28:28\n          * FullscreenMagnification:26:27\n            * Leaf:26:27\n      * Leaf:24:25\n      * HideDisplayCutout:18:23\n        * OneHanded:18:23\n          * FullscreenMagnification:18:23\n            * Leaf:18:23\n      * OneHanded:17:17\n        * FullscreenMagnification:17:17\n          * Leaf:17:17\n      * HideDisplayCutout:16:16\n        * OneHanded:16:16\n          * FullscreenMagnification:16:16\n            * Leaf:16:16\n      * OneHanded:15:15\n        * FullscreenMagnification:15:15\n          * Leaf:15:15\n      * HideDisplayCutout:0:14\n        * OneHanded:0:14\n          * ImePlaceholder:13:14\n            * ImeContainer\n          * FullscreenMagnification:0:12\n            * Leaf:3:12\n            * DefaultTaskDisplayArea (organized)\n            * Leaf:0:1\n\n  Task display areas in top down Z order:\n    TaskDisplayArea DefaultTaskDisplayArea\n      overrideConfig={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}\n      mPreferredTopFocusableRootTask=Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n      mLastFocusedRootTask=Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n      Application tokens in top down Z order:\n      * Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1}\n        bounds=[0,0][1080,1920]\n        * ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}\n      * Task{2a3247f #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}\n        bounds=[0,0][1080,1920]\n        * Task{2923dd7 #7 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}\n          bounds=[0,0][1080,1920]\n          * ActivityRecord{2da2771 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n          * TaskFragment{f2b87b9 mode=multi-window organizerUid=10179 organizerProc=com.google.android.apps.nexuslauncher}\n            bounds=[0,0][1080,1920]\n      * Task{a65303e #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}\n        bounds=[0,0][1080,1920]\n        * Task{99e2bec #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}\n          bounds=[0,2340][1080,3510]\n        * Task{fbc9e9f #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}\n          bounds=[0,0][1080,1920]\n\n  no ScreenRotationAnimation \n\n  rootHomeTask=Task=1\n\n  PinnedTaskController\n    mIsImeShowing=false\n    mImeHeight=0\n    mMinAspectRatio=0.41841003\n    mMaxAspectRatio=2.39\n\n  DisplayFrames w=1080 h=1920 r=0\n\n  DisplayPolicy\n    mCarDockEnablesAccelerometer=true mDeskDockEnablesAccelerometer=true\n    mDockMode=EXTRA_DOCK_STATE_UNDOCKED mLidState=LID_OPEN\n    mAwake=true mScreenOnEarly=true mScreenOnFully=true\n    mKeyguardDrawComplete=true mWindowManagerDrawComplete=true\n    mHdmiPlugged=false\n    mLastAppearance=LIGHT_NAVIGATION_BARS FORCE_LIGHT_NAVIGATION_BARS\n    mLastBehavior=DEFAULT\n    mShowingDream=false mDreamingLockscreen=false\n    mStatusBar=Window{7a7ca1a u0 StatusBar}\n    mExpandedPanel=Window{819dd09 u0 NotificationShade}\n    isKeyguardShowing=false\n    mNavigationBar=Window{f4d14af u0 Taskbar}\n    mNavBarOpacityMode=2\n    mNavigationBarCanMove=false\n    mNavigationBarPosition=4\n    mLeftGestureHost=Window{f4d14af u0 Taskbar}\n    mTopGestureHost=Window{7a7ca1a u0 StatusBar}\n    mRightGestureHost=Window{f4d14af u0 Taskbar}\n    mBottomGestureHost=Window{f4d14af u0 Taskbar}\n    mFocusedWindow=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mTopFullscreenOpaqueWindowState=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mSystemBarColorApps={ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}}\n    mNavBarColorWindowCandidate=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mNavBarBackgroundWindowCandidate=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mLastStatusBarAppearanceRegions=\n      AppearanceRegion{ bounds=[0,0][1080,1920]}\n    mLastLetterboxDetails=\n    mStatusBarBackgroundWindows=\n      Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n    mTopIsFullscreen=false\n    mImeInsetsConsumed=false\n    mForceShowNavigationBarEnabled=false mAllowLockscreenWhenOn=false\n    mRemoteInsetsControllerControlsSystemBars=false\n    mDecorInsetsInfo:\n      ROTATION_0={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,112][0,45], configInsets=[0,0][0,0], overrideConfigInsets=[0,112][0,45], nonDecorFrame=[0,0][1080,1920], overrideNonDecorFrame=[0,112][1080,1875], configFrame=[0,0][1080,1920], overrideConfigFrame=[0,112][1080,1875]}\n      ROTATION_90={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[112,0][0,45], configInsets=[0,0][0,0], overrideConfigInsets=[112,45][0,45], nonDecorFrame=[0,0][1920,1080], overrideNonDecorFrame=[112,0][1920,1035], configFrame=[0,0][1920,1080], overrideConfigFrame=[112,45][1920,1035]}\n      ROTATION_180={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,112], configInsets=[0,0][0,0], overrideConfigInsets=[0,45][0,112], nonDecorFrame=[0,0][1080,1920], overrideNonDecorFrame=[0,0][1080,1808], configFrame=[0,0][1080,1920], overrideConfigFrame=[0,45][1080,1808]}\n      ROTATION_270={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][112,45], configInsets=[0,0][0,0], overrideConfigInsets=[0,45][112,45], nonDecorFrame=[0,0][1920,1080], overrideNonDecorFrame=[0,0][1808,1035], configFrame=[0,0][1920,1080], overrideConfigFrame=[0,45][1808,1035]}\n    SystemGestures:\n      mDisplayCutoutTouchableRegionSize=23\n      mSwipeStartThreshold=Rect(45, 135 - 45, 45)\n      mSwipeDistanceThreshold=45\n\n  DisplayRotation\n    mCurrentAppOrientation=SCREEN_ORIENTATION_USER\n    mLastOrientation=2\n    mRotation=0 mDeferredRotationPauseCount=0\n    mLandscapeRotation=ROTATION_90 mSeascapeRotation=ROTATION_270\n    mPortraitRotation=ROTATION_0 mUpsideDownRotation=ROTATION_180\n    mSupportAutoRotation=true\n    WindowOrientationListener\n      mEnabled=true\n      mCurrentRotation=ROTATION_0\n      mSensorType=null\n      mSensor={Sensor name=\"Goldfish 3-axis Accelerometer\", vendor=\"The Android Open Source Project\", version=1, type=1, maxRange=39.300102, resolution=2.480159E-4, power=3.0, minDelay=10000}\n      mRate=2\n      AccelSensorJudge\n        mProposedRotation=0\n        mPredictedRotation=0\n        mLastFilteredX=0.0\n        mLastFilteredY=9.776321\n        mLastFilteredZ=0.812345\n        mLastFilteredTimestampNanos=2439210033346 (52.63528ms ago)\n        mTiltHistory={last: 5.0}\n        mFlat=false\n        mSwinging=false\n        mAccelerating=false\n        mOverhead=false\n        mTouched=false\n        mTiltToleranceConfig=[[-25, 70], [-25, 65], [-25, 60], [-25, 65]]\n\n    mCarDockRotation=-1 mDeskDockRotation=-1\n    mUserRotationMode=USER_ROTATION_FREE mUserRotation=ROTATION_0 mCameraRotationMode=0 mAllowAllRotations=unknown\n    mDemoHdmiRotation=ROTATION_90 mDemoHdmiRotationLock=false mUndockedHdmiRotation=-1\n    mLidOpenRotation=-1\n    mFixedToUserRotation=false\n  FoldController\n    mPauseAutorotationDuringUnfolding=false\n    mShouldDisableRotationSensor=false\n    mShouldIgnoreSensorRotation=false\n    mLastDisplaySwitchTime=0\n    mLastHingeAngleEventTime=0\n    mDeviceState=FOLDED\n\n    RotationHistory\n      10-09 19:41:08.411 ROTATION_0 to ROTATION_90\n        source=ActivityRecord{913765d u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t10} SCREEN_ORIENTATION_USER_LANDSCAPE\n        mode=USER_ROTATION_FREE user=ROTATION_90 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:06:47.855 ROTATION_90 to ROTATION_0\n        source=ActivityRecord{2da2771 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7} SCREEN_ORIENTATION_NOSENSOR\n        mode=USER_ROTATION_LOCKED user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR true, CAMERA false HALF_FOLD false\n      10-09 20:06:54.529 ROTATION_0 to ROTATION_90\n        source=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11} SCREEN_ORIENTATION_UNSPECIFIED\n        mode=USER_ROTATION_LOCKED user=ROTATION_90 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:06:55.186 ROTATION_90 to ROTATION_0\n        source=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11} SCREEN_ORIENTATION_UNSPECIFIED\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:07:10.498 ROTATION_0 to ROTATION_90\n        source=ActivityRecord{3d50498 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t11} SCREEN_ORIENTATION_SENSOR_LANDSCAPE\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:07:11.937 ROTATION_90 to ROTATION_0\n        source=ActivityRecord{3d50498 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t11} SCREEN_ORIENTATION_PORTRAIT\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:07:14.597 ROTATION_0 to ROTATION_90\n        source=ActivityRecord{3d50498 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t11} SCREEN_ORIENTATION_USER_LANDSCAPE\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n      10-09 20:10:00.445 ROTATION_90 to ROTATION_0\n        source=ActivityRecord{4de6b16 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11} SCREEN_ORIENTATION_USER\n        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0\n       halfFoldSavedRotation=-1 mInHalfFoldTransition=false mFoldState=FOLDED\n      DisplayRotationCompatPolicy{ isTreatmentEnabledForDisplay=false }\n       reversionSlots= NOSENSOR false, CAMERA false HALF_FOLD false\n\n        RotationLockHistory\n          10-09 20:05:47.439: mode=USER_ROTATION_LOCKED, rotation=ROTATION_90, caller=WindowManagerShellCommand#lock\n          10-09 20:06:14.110: mode=USER_ROTATION_LOCKED, rotation=ROTATION_90, caller=WindowManagerShellCommand#lock\n          10-09 20:06:33.245: mode=USER_ROTATION_LOCKED, rotation=ROTATION_90, caller=WindowManagerShellCommand#lock\n          10-09 20:06:47.458: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=WindowManagerShellCommand#lock\n          10-09 20:06:47.913: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=RotationButtonController#onRotationWatcherChanged\n          10-09 20:06:54.493: mode=USER_ROTATION_LOCKED, rotation=ROTATION_90, caller=DisplayRotationReversionController#revertOverride\n          10-09 20:06:54.518: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent\n          10-09 20:06:54.871: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=MonkeyRotationEven#injectEvent\n\n  InputConsumers:\n    name=recents_animation_input_consumer pid=3965 user=UserHandle{0}\n\n  WindowInsetsStateController\n    InsetsState\n      mDisplayFrame=Rect(0, 0 - 1080, 1920)\n      mDisplayCutout=DisplayCutout{insets=Rect(0, 112 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 112, 112), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=1920 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.75} cutoutSpec={M 41,77 a 40,40 0 1 0 80,0 40,40 0 1 0 -80,0 Z @left} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={0.82051283}}} sideOverrides={}}\n      mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}\n      mRoundedCornerFrame=Rect(0, 0 - 0, 0)\n      mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(887, 0 - 1041, 112) rotation=0}\n      mDisplayShape=DisplayShape{ spec=-1084927657 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}\n        InsetsSource id=91010001 type=navigationBars frame=[0,1875][1080,1920] visible=true flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null\n        InsetsSource id=91010004 type=systemGestures frame=[0,0][56,1920] visible=true flags= sideHint=LEFT boundingRects=null\n        InsetsSource id=91010005 type=mandatorySystemGestures frame=[0,1860][1080,1920] visible=true flags= sideHint=BOTTOM boundingRects=null\n        InsetsSource id=91010006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null\n        InsetsSource id=91010024 type=systemGestures frame=[1024,0][1080,1920] visible=true flags= sideHint=RIGHT boundingRects=null\n        InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null\n        InsetsSource id=27 type=displayCutout frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n        InsetsSource id=9320000 type=statusBars frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n        InsetsSource id=9320005 type=mandatorySystemGestures frame=[0,0][1080,145] visible=true flags= sideHint=TOP boundingRects=null\n        InsetsSource id=9320006 type=tappableElement frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n    Control map:\n      Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}:\n        InsetsSourceControl: {3 mType=ime mSurfacePosition=Point(0, 136) mInsetsHint=Insets{left=0, top=0, right=0, bottom=909}}\n        InsetsSourceControl: {91010001 mType=navigationBars initiallyVisible mSurfacePosition=Point(0, 1875) mInsetsHint=Insets{left=0, top=0, right=0, bottom=45}}\n        InsetsSourceControl: {9320000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=112, right=0, bottom=0}}\n    InsetsSourceProviders:\n      InsetsSourceProvider\n        mSource=InsetsSource id=9320006 type=tappableElement frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n        mSourceFrame=Rect(0, 0 - 1080, 112)\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{7a7ca1a u0 StatusBar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=9320005 type=mandatorySystemGestures frame=[0,0][1080,145] visible=true flags= sideHint=TOP boundingRects=null\n        mSourceFrame=Rect(0, 0 - 1080, 145)\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{7a7ca1a u0 StatusBar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=9320000 type=statusBars frame=[0,0][1080,112] visible=true flags= sideHint=TOP boundingRects=null\n        mSourceFrame=Rect(0, 0 - 1080, 112)\n        mControl=InsetsSourceControl mId=9320000 mType=statusBars mLeash=Surface(name=Surface(name=7a7ca1a StatusBar)/@0xdc5e535 - animation-leash of insets_animation)/@0xdcd391 mInitiallyVisible=true mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=112, right=0, bottom=0} mSkipAnimationOnce=false\n        mInsetsHint=Insets{left=0, top=112, right=0, bottom=0}\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{7a7ca1a u0 StatusBar}\n        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=7a7ca1a StatusBar)/@0xdc5e535 - animation-leash of insets_animation)/@0xdcd391\n        mControlTarget=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n      ImeInsetsSourceProvider\n        mSource=InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null\n        mSourceFrame=Rect(0, 2310 - 1080, 2400)\n        mControl=InsetsSourceControl mId=3 mType=ime mLeash=Surface(name=Surface(name=483e0fc InputMethod)/@0xac2f5da - animation-leash of insets_animation)/@0x88d592 mInitiallyVisible=false mSurfacePosition=Point(0, 136) mInsetsHint=Insets{left=0, top=0, right=0, bottom=909} mSkipAnimationOnce=false\n        mInsetsHint=Insets{left=0, top=0, right=0, bottom=909} stale\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{483e0fc u0 InputMethod}\n        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=483e0fc InputMethod)/@0xac2f5da - animation-leash of insets_animation)/@0x88d592\n        mControlTarget=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n        mImeShowing=false        showImePostLayout not scheduled, mImeRequester=null\n\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010024 type=systemGestures frame=[1024,0][1080,1920] visible=true flags= sideHint=RIGHT boundingRects=null\n        mSourceFrame=Rect(1024, 0 - 1080, 1920)\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null\n        mSourceFrame=Rect(0, 0 - 0, 0)\n        mOverrideFrames={2011=Rect(0, 1875 - 1080, 1920), 2031=Rect(0, 0 - 0, 0)}\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010005 type=mandatorySystemGestures frame=[0,1860][1080,1920] visible=true flags= sideHint=BOTTOM boundingRects=null\n        mSourceFrame=Rect(0, 1860 - 1080, 1920)\n        mOverrideFrames={2011=Rect(0, 1875 - 1080, 1920), 2031=Rect(0, 1860 - 1080, 1920)}\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010004 type=systemGestures frame=[0,0][56,1920] visible=true flags= sideHint=LEFT boundingRects=null\n        mSourceFrame=Rect(0, 0 - 56, 1920)\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n      InsetsSourceProvider\n        mSource=InsetsSource id=91010001 type=navigationBars frame=[0,1875][1080,1920] visible=true flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null\n        mSourceFrame=Rect(0, 1875 - 1080, 1920)\n        mOverrideFrames={2011=Rect(0, 1875 - 1080, 1920), 2031=Rect(0, 1875 - 1080, 1920)}\n        mControl=InsetsSourceControl mId=91010001 mType=navigationBars mLeash=Surface(name=Surface(name=f4d14af Taskbar)/@0x7e8bca8 - animation-leash of insets_animation)/@0x97616f7 mInitiallyVisible=true mSurfacePosition=Point(0, 1875) mInsetsHint=Insets{left=0, top=0, right=0, bottom=45} mSkipAnimationOnce=false\n        mInsetsHint=Insets{left=0, top=0, right=0, bottom=45}\n        mIsLeashReadyForDispatching=true mHasPendingPosition=false\n        mWindowContainer=Window{f4d14af u0 Taskbar}\n        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=f4d14af Taskbar)/@0x7e8bca8 - animation-leash of insets_animation)/@0x97616f7\n        mControlTarget=Window{7cd1234 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n  InsetsPolicy\n    status: WINDOW_STATE_SHOWING\n    nav: WINDOW_STATE_SHOWING\n\n  KeyguardController:\n    mKeyguardShowing=false\n    mAodShowing=false\n    mKeyguardGoingAway=false\n   KeyguardShowing=false AodShowing=false KeyguardGoingAway=false DismissalRequested=false  Occluded=false DismissingKeyguardActivity=null TurnScreenOnActivity=null at display=0\n    mDismissalRequested=false\n\n  LockTaskController:\n    mLockTaskModeState=NONE\n    mLockTaskModeTasks=\n    mLockTaskPackages (userId:packages)=\n\n  mCurTaskIdForUser={0=11}\n  mUserRootTaskInFront={}\n  mVisibilityTransactionDepth=0\n  isHomeRecentsComponent=true\n  mNoHistoryActivities=[]\n\n  TaskOrganizerController:\n      android.window.ITaskOrganizer$Stub$Proxy@4706329 uid=10181 (active):\n        (fullscreen) Task{2a3247f #1 type=home}\n        (fullscreen) Task{a65303e #2 type=undefined}\n        (multi-window) Task{fbc9e9f #3 type=undefined}\n        (multi-window) Task{99e2bec #4 type=undefined}\n        (fullscreen) Task{587c97 #11 type=standard I=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity}\n\n  VisibleActivityProcess:[ ProcessRecord{468678f 9143:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209}]\n  NumNonAppVisibleWindowUidMap:[ 10181:1 10179:1]",
+          "foreground_file": "13-flutter-return-01-foreground.txt",
+          "foreground_sha256": "a964cfd4e0e1cbbe8acc765e82d66227dc9b188b45eeeb7a50fd3af6d532cf00",
+          "native_process": "",
+          "xml_file": "13-flutter-return-01.xml",
+          "xml_sha256": "a2070efb4d8b78e1a2951c389e4dbe89fa0e66c8b3746c680a4557b16ad82415",
+          "capture": {
+            "file": "13-flutter-return-01.png",
+            "width": 1080,
+            "height": 1920,
+            "sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43"
+          },
+          "surface": {
+            "source": "13-flutter-return-01.png",
+            "source_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+            "source_bytes": 1689442,
+            "pixels": [
+              1080,
+              1920
+            ],
+            "sample_rows": [
+              230,
+              422,
+              614,
+              806,
+              998,
+              1190,
+              1382,
+              1574
+            ],
+            "blank_edge_columns": {
+              "left": 0,
+              "right": 0
+            },
+            "blank_threshold_rgb_max": 8,
+            "blank_required_rows": 7,
+            "acceptable_for_target_sampling": true,
+            "reasons": [],
+            "scope": "Actual complete Flutter PNG and blank-edge check; portrait is allowed",
+            "complete_png": true
+          },
+          "semantics": {
+            "start": [
+              8,
+              1763,
+              221,
+              1868
+            ],
+            "lernen": [
+              221,
+              1763,
+              434,
+              1868
+            ],
+            "spielen": [
+              434,
+              1763,
+              647,
+              1868
+            ],
+            "profil": [
+              860,
+              1763,
+              1073,
+              1868
+            ]
+          },
+          "pixel_captions": {
+            "start": {
+              "matches": [
+                [
+                  90,
+                  1833,
+                  139.5,
+                  1847
+                ]
+              ],
+              "source_bounds": [
+                8,
+                1763,
+                221,
+                1868
+              ],
+              "source_png_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+              "crop": "13-flutter-return-01-start-crop.png",
+              "crop_sha256": "62776ef3901f196a617a50f7d8fa844da87609bcf901dec3e5b4bd980c9c9bde",
+              "tsv": "13-flutter-return-01-start-ocr.tsv",
+              "tsv_sha256": "827d6e92121080606de2187daffd06b14045908197d05a5f5da235318f58281d"
+            },
+            "lernen": {
+              "matches": [
+                [
+                  294,
+                  1833,
+                  360,
+                  1847
+                ]
+              ],
+              "source_bounds": [
+                221,
+                1763,
+                434,
+                1868
+              ],
+              "source_png_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+              "crop": "13-flutter-return-01-lernen-crop.png",
+              "crop_sha256": "571abde8f16be7047c80cb2b1b7f308b356cd11c39302ee279117a13534cd24b",
+              "tsv": "13-flutter-return-01-lernen-ocr.tsv",
+              "tsv_sha256": "3b75f060adbe414b8d6eb38f1fab606c309e09b71cfae4aceab211325e044915"
+            },
+            "spielen": {
+              "matches": [
+                [
+                  502,
+                  1830,
+                  578,
+                  1851
+                ]
+              ],
+              "source_bounds": [
+                434,
+                1763,
+                647,
+                1868
+              ],
+              "source_png_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+              "crop": "13-flutter-return-01-spielen-crop.png",
+              "crop_sha256": "9ef33c0c4437a178ac8d1929dca6170324833d68f5e03ca4d70c5d0d67c0d205",
+              "tsv": "13-flutter-return-01-spielen-ocr.tsv",
+              "tsv_sha256": "0d607e2d33a222587f5dd059883e3fdf05c7dc3c482e283fa65c5d499de8e25e"
+            },
+            "profil": {
+              "matches": [
+                [
+                  940,
+                  1832.5,
+                  993.5,
+                  1847
+                ]
+              ],
+              "source_bounds": [
+                860,
+                1763,
+                1073,
+                1868
+              ],
+              "source_png_sha256": "0e6d0b7c985aa670a4b6125ff7ac167b8728fe8a268cf5a628ba86f6df10ca43",
+              "crop": "13-flutter-return-01-profil-crop.png",
+              "crop_sha256": "db14be5aae9db01a5c947a17e6774eed1bac9c8ed7fba914ede68f86982bf344",
+              "tsv": "13-flutter-return-01-profil-ocr.tsv",
+              "tsv_sha256": "ab4f464882dd259276a9ea7fc2af9d05d6866cfb30c955aed2384872f32287e8"
+            }
+          }
+        },
+        "valid": true,
+        "stable": true,
+        "reasons": []
+      }
+    ],
+    "scope": "read-only MainActivity, fresh live XML and two complete pixel-confirmed Flutter frames; no restart",
+    "elapsed_seconds": 17.367546
+  },
+  "replay_deduplication": {
+    "status": "PASS",
+    "same_completed_result_reopened": true,
+    "host_return": true,
+    "wallet_unchanged": true,
+    "host_acknowledged": true,
+    "final_offline_restart": true
+  },
+  "video": {
+    "segments": [
+      {
+        "file": "android-race-000.mp4",
+        "bytes": 1178103,
+        "sha256": "2f3fba5ca853a599e646edf851e18d5a13965196f3b42723d8e575032bfd84e9",
+        "wall_seconds": 182.07,
+        "screenrecord_size": [
+          960,
+          540
+        ],
+        "exit_code": 0,
+        "scope": "actual emulator display; no FPS or native-resolution claim"
+      },
+      {
+        "file": "android-race-001.mp4",
+        "bytes": 2396336,
+        "sha256": "fb795c78f524a5018c4b26c5629e95fd4d013629122a57a9477855ecc0f3cad7",
+        "wall_seconds": 181.78,
+        "screenrecord_size": [
+          960,
+          540
+        ],
+        "exit_code": 0,
+        "scope": "actual emulator display; no FPS or native-resolution claim"
+      },
+      {
+        "file": "android-race-002.mp4",
+        "bytes": 970348,
+        "sha256": "56126156bc333a9f8969921647441d5b839aecb1fa3da9f12b9d958da92b003d",
+        "wall_seconds": 182.35,
+        "screenrecord_size": [
+          960,
+          540
+        ],
+        "exit_code": 0,
+        "scope": "actual emulator display; no FPS or native-resolution claim"
+      },
+      {
+        "file": "android-race-003.mp4",
+        "bytes": 845627,
+        "sha256": "626c3e073680eadbeac3dc31d1432068cbe608fb45d11e6dd23cd8ace1e66b58",
+        "wall_seconds": 182.08,
+        "screenrecord_size": [
+          960,
+          540
+        ],
+        "exit_code": 0,
+        "scope": "actual emulator display; no FPS or native-resolution claim"
+      },
+      {
+        "file": "android-race-004.mp4",
+        "bytes": 878071,
+        "sha256": "9c94e38834a04f44c427b0aa3e0018f9f59e421b06bcab99ee94dd145f424d93",
+        "wall_seconds": 181.08,
+        "screenrecord_size": [
+          960,
+          540
+        ],
+        "exit_code": 0,
+        "scope": "actual emulator display; no FPS or native-resolution claim"
+      },
+      {
+        "file": "android-race-005.mp4",
+        "bytes": 2905416,
+        "sha256": "2e5b9c5e1ddd91744a3669247cd4321a9b365e83ed6f463cb1f4a45ca27973a0",
+        "wall_seconds": 181.08,
+        "screenrecord_size": [
+          960,
+          540
+        ],
+        "exit_code": 0,
+        "scope": "actual emulator display; no FPS or native-resolution claim"
+      },
+      {
+        "file": "android-race-006.mp4",
+        "bytes": 1761120,
+        "sha256": "62921a6d8218a34bd1e8b9bbf91a340a795265014486afece03a0d5008fb2e7e",
+        "wall_seconds": 181.08,
+        "screenrecord_size": [
+          960,
+          540
+        ],
+        "exit_code": 0,
+        "scope": "actual emulator display; no FPS or native-resolution claim"
+      },
+      {
+        "file": "android-race-007.mp4",
+        "bytes": 407820,
+        "sha256": "94be321ef7f83493def00deaa3baeafb04518afc53521c1bbb77bf40e3e402dd",
+        "wall_seconds": 15.98,
+        "screenrecord_size": [
+          960,
+          540
+        ],
+        "exit_code": 0,
+        "scope": "actual emulator display; no FPS or native-resolution claim"
+      }
+    ],
+    "errors": [],
+    "status": "PASS"
+  }
+}

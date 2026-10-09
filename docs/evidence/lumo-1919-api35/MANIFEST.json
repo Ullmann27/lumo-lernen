@@ -1,0 +1,46 @@
+{
+  "status": "ORIGINAL_API35_RACE_EVIDENCE_VERIFIED",
+  "app_commit": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+  "godot_commit": "d140e5b05cb5afacfe675559b78da4254cb1daed",
+  "harness_commit": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+  "apk_sha256": "8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa",
+  "apk_bytes": 205316096,
+  "original_run": 37975946198,
+  "original_run_conclusion": "failure",
+  "original_job": 113988997714,
+  "original_job_conclusion": "success",
+  "artifact": {
+    "id": 11641449935,
+    "bytes": 266654314,
+    "sha256": "e02a93fb191c9cb2173b3566c272599cb8fd50976f69adf3f8f27d363d32ca31"
+  },
+  "byte_audit_run": 37985733243,
+  "byte_audit_job": 114007130541,
+  "frames": [
+    {
+      "file": "android-api35/01-garage-resize-outer-before.png",
+      "width": 2316,
+      "height": 904,
+      "bytes": 887869,
+      "sha256": "5ba96fbc9a5906a489b1b202718bed89b40546d944973e1e240ed90e810913b9",
+      "artifact_id": 11641449935,
+      "archive_member": "full-race/01-garage-resize-outer-before.png",
+      "key": "frame1",
+      "chunks": 24,
+      "repo_file": "01-kart-start-android.png"
+    },
+    {
+      "file": "android-api35/06-completed-result-phone.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 923455,
+      "sha256": "fc4fbb4ef04aba7910c1d0b1f1093a966c6301cc9cc7596fd43baba0aaca670b",
+      "artifact_id": 11641449935,
+      "archive_member": "full-race/06-completed-result-phone.png",
+      "key": "frame4",
+      "chunks": 25,
+      "repo_file": "02-race-result-android.png"
+    }
+  ],
+  "scope": "Unchanged original Android API35 emulator captures. Root independently decoded and SHA-256 verified each PNG. The original API36 job remains failed; no physical Fold7 validation."
+}
