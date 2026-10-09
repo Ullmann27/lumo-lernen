@@ -81,7 +81,9 @@ String iqPracticeTip(IqArea area) => switch (area) {
 const iqParentNote =
     'Das ist ein spielerischer Denktest und kein klinisch normierter '
     'Intelligenztest. Er zeigt Stärken und erzeugt bewusst keine erfundene '
-    'IQ-Zahl. Vergleiche sind nur mit früheren Knobel-Tests sinnvoll.';
+    'IQ-Zahl. Vergleiche sind nur mit früheren Knobel-Tests sinnvoll, und '
+    'eine Wiederholung lohnt sich erst nach einigen Monaten. Bei Fragen zu '
+    'Begabung oder Förderung hilft die Schulpsychologie.';
 
 /// Schrift im Lumo-Stil.
 TextStyle iqText(

@@ -35,7 +35,7 @@ class IqTestsCard extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
       child: Semantics(
         button: true,
-        label: 'Lumo Knobel-Test · IQ-Test für Kinder. $lastLine'
+        label: 'Lumo Knobel-Test · Rätsel wie im IQ-Test. $lastLine'
             '${dateLine == null ? '' : ', $dateLine'}',
         excludeSemantics: true,
         onTap: onOpen,
@@ -119,7 +119,7 @@ class IqTestsCard extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
-                                      'IQ-Test für Kinder',
+                                      'Rätsel wie im IQ-Test',
                                       style: iqText(
                                         14,
                                         color: LumoVisualTokens.cyanBright,
