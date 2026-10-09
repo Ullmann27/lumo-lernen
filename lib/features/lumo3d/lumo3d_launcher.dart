@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../core/reward_wallet_repository.dart';
+import 'lumo_game_entry_overlay.dart';
 
 // The native channel completes only when the game returns. Keep the guard
 // outside a screen State: navigation/Fold rebuilds may replace that State.
@@ -36,6 +37,13 @@ Future<bool> launchLumo3D(
   final originRoute = ModalRoute.of(context);
   final generation = appState?.profileGeneration;
   _launchInProgress = true;
+  final entry = LumoGameEntryHandle.show(
+    context,
+    scene: scene,
+    reduceMotion: (appState?.state.settings.reduceAnimations ?? false) ||
+        (appState?.state.settings.calmMode ?? false) ||
+        (MediaQuery.maybeOf(context)?.disableAnimations ?? false),
+  );
   try {
     try {
       await appState?.flushRewards();
@@ -49,6 +57,7 @@ Future<bool> launchLumo3D(
       }
       return false;
     }
+    entry?.setPhase(LumoGameEntryPhase.preparing);
     final childKey = await _childSaveKey(appState);
     // Do not open an Activity after leaving the page or resetting the profile
     // while storage was busy. Reward saving itself is never cancelled here.
@@ -77,6 +86,7 @@ Future<bool> launchLumo3D(
         (originRoute != null && !originRoute.isCurrent)) {
       return false;
     }
+    entry?.setPhase(LumoGameEntryPhase.opening);
     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
       'scene': scene,
       'grade': grade ?? appState?.state.grade ?? 1,
@@ -130,6 +140,7 @@ Future<bool> launchLumo3D(
   } finally {
     // No timeout: a healthy race may run for any duration. Unlock on return,
     // cancellation or error, not while the native game is still active.
+    entry?.close();
     _launchInProgress = false;
   }
 }
