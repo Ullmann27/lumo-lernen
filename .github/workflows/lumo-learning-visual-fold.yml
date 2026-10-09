@@ -1,7 +1,7 @@
 name: Lumo learning tree and Fold visual proof
 on:
   push:
-    branches: [chatgpt/learning-visual-fold-tree-2026-10-09, chatgpt/learning-tree-cinematic-qa-2026-10-09, chatgpt/learning-tablet-answer-grid-2026-10-09, chatgpt/learning-symbols-ui-2026-10-09]
+    branches: [chatgpt/learning-visual-fold-tree-2026-10-09, chatgpt/learning-tree-cinematic-qa-2026-10-09, chatgpt/learning-tablet-answer-grid-2026-10-09, chatgpt/learning-symbols-ui-2026-10-09, chatgpt/learning-number-compare-responsive-2026-10-09]
     paths:
       - lib/features/learning/**
       - assets/lumo_design/learning_world/**
@@ -67,7 +67,11 @@ jobs:
               'real_learning_phone.png', 'real_learning_fold_open.png'):
               p = folder / name
               assert p.is_file() and p.stat().st_size > 3000, name
-          print('All eight actual Flutter visual snapshots exist.')
+          for name in ('number_compare_small_phone.png', 'number_compare_phone.png',
+              'number_compare_fold.png'):
+              p = folder / name
+              assert p.is_file() and p.stat().st_size > 3000, name
+          print('All eight full-page views and three numeric regression captures exist.')
           PY
       - name: Save source-exact visual evidence
         if: always()

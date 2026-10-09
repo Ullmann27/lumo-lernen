@@ -13,6 +13,7 @@ import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
+import 'package:lumo_lernen/features/learning/renderers/lumo_premium_visuals.dart';
 import 'package:lumo_lernen/features/learning/widgets/lumo_learning_tree_card.dart';
 
 const captureKey = ValueKey('learning-visual-capture');
@@ -78,6 +79,56 @@ void main() {
       ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
     await icons.load();
   });
+  // Regression: a random third-grade task previously sent a nine-digit
+  // number comparison beyond the right boundary of the learning card.
+  for (final target in [
+    (320.0, 'small_phone'),
+    (360.0, 'phone'),
+    (740.0, 'fold'),
+  ]) {
+    testWidgets('Langer Zahlenvergleich passt auf ' + target.$2,
+        (tester) async {
+      await tester.binding.setSurfaceSize(Size(target.$1, 760));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final task = TaskInstance(
+        taskInstanceId: 'large-number-visual',
+        templateId: 'number-compare-regression',
+        childId: 'visual-child',
+        seedHash: 'responsive-layout',
+        subject: LearningSubject.mathematik,
+        skillId: const SkillId('math.compare'),
+        taskType: TaskType.multipleChoice,
+        difficulty: 3,
+        parameters: const {},
+        prompt: '987654321 > 123456789',
+        options: const [],
+        correctAnswer: '>',
+        visualPayload: const VisualPayload(type: VisualType.none),
+        helpPayload: const HelpPayload(shortHint: 'Vergleiche von links.'),
+        generatedAt: DateTime(2026, 10, 9),
+      );
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: SizedBox(
+              width: target.$1 - 16,
+              child: RepaintBoundary(
+                key: captureKey,
+                child: NumberCompareVisual(task: task),
+              ),
+            ),
+          ),
+        ),
+      ));
+      await tester.pump();
+      expect(find.text('987654321'), findsOneWidget);
+      expect(find.text('123456789'), findsOneWidget);
+      expect(find.text('>'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await captureVisual(tester, 'number_compare_' + target.$2);
+    });
+  }
+
   test('Lernbaum trennt Aktivität und sichere Beherrschung', () {
     final r = {
       'a': skill('Plus bis 20', correct: 5, streak: 5),
