@@ -1,7 +1,7 @@
 name: Lumo race continuity APK and full Android race verification
 on:
   push:
-    branches: [codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08]
+    branches: [codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, claude/continue-previous-chat-KtY7p]
     paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-runtime-apk.yml, .github/probes/**]
   workflow_dispatch:
 permissions:
@@ -212,7 +212,7 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -euo pipefail
-          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_modal_touch_regression kart_complete_flow_regression; do
+          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_modal_touch_regression kart_complete_flow_regression kart_fleet_stats_regression kart_workshop_regression; do
             probe_timeout=420
             probe_marker=PASS
             probe_output=''
@@ -238,6 +238,8 @@ jobs:
           rg -F '[KartFleet] PASS:' exports/fold-controls/kart_fleet_regression.log
           rg -F '[KartCountdownPause] PASS:' exports/fold-controls/kart_countdown_pause_regression.log
           rg -F '[KartModalTouch] PASS:' exports/fold-controls/kart_modal_touch_regression.log
+          rg -F '[KartFleetStats] PASS:' exports/fold-controls/kart_fleet_stats_regression.log
+          rg -F '[KartWorkshop] PASS:' exports/fold-controls/kart_workshop_regression.log
           GODOT_SHA=$(cat exports/fold-controls/source-sha.txt)
           echo "PASS exact Godot source real rendering, Fold touch, menu and physics: $GODOT_SHA" >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
       - name: Native harbor, vehicle geometry and detail regressions
@@ -309,6 +311,10 @@ jobs:
           assert len(markers) == 21
           markers['kart_time_format_regression'] = ('[KartTimeFormat] PASS:',)
           assert len(markers) == 22
+          # Flotte mit Werten und Werkstatt (Claude-Integration) laufen im selben strengen Runner.
+          markers['kart_fleet_stats_regression'] = ('[KartFleetStats] PASS:',)
+          markers['kart_workshop_regression'] = ('[KartWorkshop] PASS:',)
+          assert len(markers) == 24
           probes = []
           for name, required in markers.items():
               path = Path('exports/fold-controls') / (name + '.log')
