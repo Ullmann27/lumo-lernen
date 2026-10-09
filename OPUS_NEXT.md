@@ -1,3 +1,19 @@
+# Aktueller Stand: APK 0.12.6+1909 · 9. Oktober 2026
+
+Die **installierbare, signierte APK 1909 ist gebaut und bereitgestellt**. Aktueller App-PR: [#223](https://github.com/Ullmann27/lumo-lernen/pull/223); Spielstand: [lumo-godot#32](https://github.com/Ullmann27/lumo-godot/pull/32).
+
+- APK-Quellstand: App `aa6519226fded77d5d5022dc6fe8c223e9dc82b8`, Godot `a377b9e2db3337ae46f9439200ef0af17af06cb5`.
+- APK: 203803554 Bytes, SHA256 `b58e055340595ac882fed47d0c11660f2420e41c1528ed2841c5100f13304fb7`; Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version `0.12.6+1909`, ARM64/x86_64, stabil signiert. Der PCK enthält Aquarium, Hütchen und Prüfstand.
+- [Bau und Nachweise](https://github.com/Ullmann27/lumo-lernen/actions/runs/37888592898): 808 Flutter-Tests bestanden (4 vorhandene Skips), 579 QA-/36 Vorbereitungstests, 25 native Proben, 24 Profilbudgetprüfungen; APK-Signatur/Version/Quellstand/16-KiB-Ausrichtung geprüft. Android-Update, Offline-Spiel und Speicher-/Belohnungsschutz für Bauwelt, Puzzle, Rhythmus und Schatzsuche grün.
+- Beide erste Kart-Läufe stoppten vor dem Vollrennen an einem belegten Bildleser-Fehlnegativ für DRIFT. [Reparatur und echte Fehlerbilder](docs/APK_1909_ANDROID_READER.md) sind in Testwerkzeug-Commit `7a570c1fc69b21f0e081ace208b082796bc30057` enthalten. 581 Tests einschließlich beider echten Bildfixtures grün.
+- **Android-Kart-Nachlauf: läuft noch** in [Actions 37893374564](https://github.com/Ullmann27/lumo-lernen/actions/runs/37893374564), auf API 35 und 36 gegen exakt dieselbe APK. Vor einem vollständigen Android-PASS diese Ergebnisse prüfen.
+
+Neu abgeschlossen: 14er-Flotte und Werkstattanschluss erhalten, kostenloser Prüfstand mit gemeinsamen Fahrformeln, Aquarium mit animiertem Wasser/Fischen und sanfte Hütchen-Hindernisse. [Details](docs/APK_1909_ACTION_WORKSHOP.md).
+
+Physische Fold-Leistung/60 FPS und vollständige Referenzvideo-Gleichheit sind nicht belegt. Kein Main-Merge und kein Release. Ältere Angaben unten zu fehlender APK oder vorläufigem Pin sind historisch; die jeweiligen früheren Designabweichungen bleiben nachvollziehbar dokumentiert.
+
+---
+
 # Gemeinsamer App-Entwurf 1908 · 9. Oktober 2026 UTC
 
 Zuerst [die neue selektive Integrationsübergabe](docs/handoffs/LUMO_SELECTIVE_INTEGRATION_1908_2026-10-09.md)
