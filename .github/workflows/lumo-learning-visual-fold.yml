@@ -1,0 +1,63 @@
+name: Lumo learning tree and Fold visual proof
+on:
+  push:
+    branches: [chatgpt/learning-visual-fold-tree-2026-10-09]
+    paths:
+      - lib/features/learning/**
+      - lib/features/teacher_mode/lumo_akademie_screen.dart
+      - lib/features/lumo_welt/lumo_welt_screen.dart
+      - lib/app/app_shell.dart
+      - test/design/lumo_learning_tree_fold_visual_test.dart
+      - .github/workflows/lumo-learning-visual-fold.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-learning-fold-probe
+  cancel-in-progress: true
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      LUMO_LEARNING_CAPTURES: proof/learning
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Exact source and dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p proof/learning
+          git rev-parse HEAD > proof/learning/source-sha.txt
+          flutter pub get --enforce-lockfile
+      - name: Flutter analyze, errors fail
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Phone and Fold widget regressions with real renders
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=50s test/design/lumo_learning_tree_fold_visual_test.dart 2>&1 | tee proof/learning/test-log.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          folder = Path('proof/learning')
+          for name in ('learning_tree_phone.png', 'learning_tree_fold_content.png',
+              'learning_tree_tablet.png', 'math_task_phone.png',
+              'math_task_fold_content.png', 'math_task_tablet.png',
+              'real_learning_phone.png', 'real_learning_fold_open.png'):
+              p = folder / name
+              assert p.is_file() and p.stat().st_size > 3000, name
+          print('All six actual Flutter visual snapshots exist.')
+          PY
+      - name: Save source-exact visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-learning-fold-visual-proof
+          path: proof/learning
+          if-no-files-found: error
+          retention-days: 60

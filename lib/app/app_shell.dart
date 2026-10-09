@@ -469,8 +469,15 @@ class _AppShellState extends State<AppShell>
                 onPointerDown: (event) => LumoCompanionRequests.instance
                     .requestMoveTo(event.position),
                 child: LayoutBuilder(builder: (context, outer) {
-                  final fullBleedScene = outer.maxWidth < 720
-                      ? _fullBleedScene(_appState.state.section)
+                  // Im geöffneten Fold haben Lernaufgaben Vorrang vor der
+                  // Seitenleiste. Spiele, Home und andere Bereiche bleiben
+                  // beim bisherigen responsiven Layout.
+                  final section = _appState.state.section;
+                  final study = section == LumoSection.learn ||
+                      section == LumoSection.exercises;
+                  final fullBleedScene = outer.maxWidth < 720 ||
+                          (study && outer.maxWidth < 880)
+                      ? _fullBleedScene(section)
                       : null;
                   return Stack(children: [
                     if (fullBleedScene != null)
@@ -485,8 +492,8 @@ class _AppShellState extends State<AppShell>
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
-                          final mobile = width < 720;
-                          final showNav = width >= 720;
+                          final mobile = width < 720 || (study && width < 880);
+                          final showNav = !mobile;
                           final showProgressSidebar = width >= 900 &&
                               _appState.state.section == LumoSection.home;
                           final navWidth = width < 980 ? 160.0 : 200.0;

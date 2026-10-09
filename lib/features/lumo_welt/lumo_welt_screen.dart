@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/progress_repository.dart';
+import '../learning/widgets/lumo_learning_tree_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 
 class LumoWeltScreen extends StatelessWidget {
@@ -83,10 +84,35 @@ class LumoWeltScreen extends StatelessWidget {
               children: [
                 _Hero(totalItems: mathTotal + germanTotal + scienceTotal),
                 const SizedBox(height: 14),
-                for (final island in islands) ...[
-                  _IslandCard(data: island),
-                  const SizedBox(height: 14),
-                ],
+                // Nur die Baumkarte ist kompetenzbasiert. Die bestehenden
+                // Dekorationsinseln bleiben weiterhin reine Sammelbelohnungen.
+                LumoLearningTreeCard(
+                  skills: skills,
+                  compact: false,
+                ),
+                const SizedBox(height: 14),
+                LayoutBuilder(builder: (context, c) {
+                  // Aufgeklapptes Fold: drei Inseln nebeneinander statt
+                  // gestreckte Handy-Karten untereinander.
+                  if (c.maxWidth >= 760) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (final island in islands) ...[
+                          Expanded(child: _IslandCard(data: island)),
+                          if (island != islands.last)
+                            const SizedBox(width: 12),
+                        ],
+                      ],
+                    );
+                  }
+                  return Column(children: [
+                    for (final island in islands) ...[
+                      _IslandCard(data: island),
+                      const SizedBox(height: 14),
+                    ],
+                  ]);
+                }),
                 const _FooterTip(),
               ],
             ),
