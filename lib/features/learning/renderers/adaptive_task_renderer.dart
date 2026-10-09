@@ -258,7 +258,20 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       ],
     );
     return LayoutBuilder(builder: (context, constraints) {
-      final wide = constraints.maxWidth >= 610 &&
+      // Nicht jede Aufgaben-Visualisierung ist in 300dp sicher teilbar:
+      // z. B. Mess- und Bruchbilder enthalten breite Vergleichsflächen.
+      // Nur einfache Bilder teilen das aufgeklappte Fold in zwei Spalten.
+      final simpleVisual = switch (task.visualPayload.type) {
+        VisualType.none ||
+        VisualType.dots ||
+        VisualType.tenOnes ||
+        VisualType.numberLine ||
+        VisualType.syllables ||
+        VisualType.shape ||
+        VisualType.quantityCompare => true,
+        _ => false,
+      };
+      final wide = constraints.maxWidth >= (simpleVisual ? 610 : 1260) &&
           MediaQuery.textScalerOf(context).scale(1) <= 1.25;
       if (wide) {
         return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
