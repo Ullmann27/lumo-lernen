@@ -152,7 +152,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       } catch (_) {}
       // Bild dazu wenn Brain einen Allowlist-Hint mitliefert
       if (brainReply.imageTopicHint != null) {
-        _generateImage(brainReply.imageTopicHint!);
+        _generateImage(brainReply.imageTopicHint!, requested: false);
       } else {
         final isVisualSubject =
             widget.subject.name.toLowerCase().contains('sachkunde');
@@ -161,7 +161,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
         } else if (isVisualSubject) {
           final mainTopic = LumoImageGenerator.extractMainTopic(trimmed);
           if (mainTopic != null) {
-            _generateImage(mainTopic);
+            _generateImage(mainTopic, requested: false);
           }
         }
       }
@@ -231,7 +231,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       } else if (isVisualSubject) {
         final mainTopic = LumoImageGenerator.extractMainTopic(trimmed);
         if (mainTopic != null) {
-          _generateImage(mainTopic);
+          _generateImage(mainTopic, requested: false);
         }
       }
     } catch (e) {
@@ -388,8 +388,25 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   /// Bildgenerator-Helfer (Heinz-Auftrag).
   /// Positive Allowlist: nur Tiere, Pflanzen, Essen, Spielzeug, etc.
   /// werden gemalt. Kein Negativ-Wortschatz im Code.
-  void _generateImage(String childPrompt) {
-    final url = LumoImageGenerator.instance.buildSafeImageUrl(childPrompt);
+  void _generateImage(String childPrompt, {bool requested = true}) {
+    final online = widget.appState.state.settings.aiProxyEnabled;
+    final url = LumoImageGenerator.instance
+        .buildSafeImageUrl(childPrompt, allowOnline: online);
+    if (!online) {
+      // Online-Bilder sind Online-KI und brauchen die Freigabe der Eltern. Nur wenn das Kind
+      // ausdrücklich nach einem Bild gefragt hat, sagt Lumo das; von sich aus bleibt er still.
+      if (requested) {
+        setState(() {
+          _messages.add(_ChatMessage(
+            text: 'Bilder aus dem Internet sind ausgeschaltet. Deine Eltern können '
+                'sie in den Einstellungen freigeben. Ich beschreibe dir gern, wie es aussieht!',
+            isLumo: true,
+          ));
+        });
+        _scrollToBottom();
+      }
+      return;
+    }
     if (url == null) {
       // Nicht in Allowlist -> positiver Hinweis (kein Schimpfen)
       final result = LumoImageGenerator.check(childPrompt);

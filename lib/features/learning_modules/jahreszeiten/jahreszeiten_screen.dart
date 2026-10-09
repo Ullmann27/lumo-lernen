@@ -439,8 +439,10 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
   }
 
   Widget _buildSeasonImage() {
-    final url = LumoImageGenerator.instance
-        .buildSafeImageUrl(_correctJz.pollinationsPrompt);
+    final url = LumoImageGenerator.instance.buildSafeImageUrl(
+      _correctJz.pollinationsPrompt,
+      allowOnline: widget.appState.state.settings.aiProxyEnabled,
+    );
     return Container(
       width: 240,
       height: 240,

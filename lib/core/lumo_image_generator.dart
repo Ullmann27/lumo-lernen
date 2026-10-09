@@ -210,8 +210,15 @@ class LumoImageGenerator {
   /// "orange-colored", Topic "apple" -> Prompt "orange-colored apple,
   /// cute kid-friendly cartoon..." -> Pollinations rendert einen
   /// orangefarbenen Apfel statt einer Orange-Frucht oder roten Apfel.
+  ///
+  /// Datenschutz: Die Adresse zeigt auf einen Online-Dienst (pollinations.ai, IP-Adresse und
+  /// Themenwort verlassen das Gerät). Das ist Online-KI und gehört wie alle Online-Funktionen
+  /// hinter den Elternschalter („Online-KI“, aus in frischen Einstellungen, siehe
+  /// docs/PIN_FREI_2026-10-03.md). Ohne `allowOnline: true` liefert die Methode deshalb immer
+  /// `null`; Aufrufer zeigen dann ihr lokales Ersatzbild.
   String? buildSafeImageUrl(String childPrompt,
-      {int width = 512, int height = 512}) {
+      {int width = 512, int height = 512, bool allowOnline = false}) {
+    if (!allowOnline) return null;
     final result = check(childPrompt);
     if (!result.allowed) return null;
 
