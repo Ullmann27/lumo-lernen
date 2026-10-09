@@ -30,7 +30,7 @@ void main() {
     const Size(640, 320), // Short Android landscape
   ]) {
     testWidgets('branded launch artwork and progress fit $size', (tester) async {
-      await tester.view.physicalSize = size;
+      tester.view.physicalSize = size;
       tester.view.devicePixelRatio = 1;
       addTearDown(() {
         tester.view.resetPhysicalSize();
