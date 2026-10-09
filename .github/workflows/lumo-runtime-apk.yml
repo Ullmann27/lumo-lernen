@@ -1,7 +1,7 @@
 name: Lumo race continuity APK and full Android race verification
 on:
   push:
-    branches: [codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, claude/continue-previous-chat-KtY7p]
+    branches: [codex/lumo-action-apk-2026-10-09, codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, claude/continue-previous-chat-KtY7p]
     paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-runtime-apk.yml, .github/probes/**]
   workflow_dispatch:
 permissions:
@@ -262,7 +262,7 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -euo pipefail
-          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_modal_touch_regression kart_complete_flow_regression kart_fleet_stats_regression kart_workshop_regression; do
+          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_modal_touch_regression kart_complete_flow_regression kart_fleet_stats_regression kart_workshop_regression kart_action_workshop_regression; do
             probe_timeout=420
             probe_marker=PASS
             probe_output=''
@@ -365,6 +365,8 @@ jobs:
           markers['kart_fleet_stats_regression'] = ('[KartFleetStats] PASS:',)
           markers['kart_workshop_regression'] = ('[KartWorkshop] PASS:',)
           assert len(markers) == 24
+          markers['kart_action_workshop_regression'] = ('[ActionWorkshop] PASS:',)
+          assert len(markers) == 25
           probes = []
           for name, required in markers.items():
               path = Path('exports/fold-controls') / (name + '.log')
@@ -431,6 +433,7 @@ jobs:
           path: |
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fold-controls/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/holographic-proof/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/action-workshop/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fleet-proof/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/fleet-models/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/harbor-proof/
@@ -502,7 +505,7 @@ jobs:
   android:
     needs: verify-and-build
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 65
     strategy:
       fail-fast: false
       matrix:
@@ -601,7 +604,7 @@ jobs:
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: |
             .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope ${{ matrix.game }}
-            if [ '${{ matrix.game }}' = kart ]; then .probe-venv/bin/python .github/probes/kart_complete_android_probe.py --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof/full-race --timeout 1200; fi
+            if [ '${{ matrix.game }}' = kart ]; then .probe-venv/bin/python .github/probes/kart_complete_android_probe.py --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof/full-race --timeout 2400; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:

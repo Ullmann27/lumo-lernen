@@ -56,7 +56,13 @@ SUMMARY_KEYS = {'handoff_lifecycle_checks', 'handoff_lifecycle_evidence_sha256',
 
 
 def validator():
-    return importlib.import_module('native_handoff_evidence_recovery')
+    module = importlib.import_module('native_handoff_evidence_recovery')
+    # These unchanged synthetic inputs describe their original source checkpoint.
+    # The production reader binds the new runtime source in a fresh process.
+    module.SOURCE_SHA256 = SOURCE_SHA
+    module.PROBE_SHA256 = PROBE_SHA
+    module.HELPER_SHA256 = HELPER_SHA
+    return module
 
 
 def fixture():

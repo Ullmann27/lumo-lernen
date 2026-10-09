@@ -12,9 +12,9 @@ from native_lap_evidence_recovery import (
     bound_file, equal, evidence_guard, load_evidence, regular_bytes, require, subset,
 )
 
-SOURCE_SHA256 = "7247dd551b900194936d60d31e4436d0e2a9dc74fb4c91e2306d94f6d8689c8c"
-PROBE_SHA256 = "f82c717207786cf666f66ff33dbbda5992e11b17623f5481ab58750dc263441f"
-HELPER_SHA256 = "fb78dcba3a212ef8b540a2b125fe7baabe123d1f85975451ebaddde9a3d96cef"
+SOURCE_SHA256 = "dbe0b6049c98c486d6277da857cea992a43a0a1688967939f832e65fcdc7db42"
+PROBE_SHA256 = "8129eea26ded1a9ddba71d7cb3dd11f38a12a89d09d89218d726354ec318c245"
+HELPER_SHA256 = "16e7349c0cfa65f0d585c8f528b9fb069b8b3d2069380d0776d83bc90342507f"
 PROBE_PATH = "res://scripts/tests/kart_race_continuity_regression.gd"
 FIXTURE_SCOPE = (
     "Assigned elapsed/checkpoint/distance state; real _finish, return, "
