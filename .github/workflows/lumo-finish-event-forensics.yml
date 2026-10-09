@@ -1,0 +1,100 @@
+name: Lumo Android finish-event forensics (read-only)
+on:
+  push:
+    branches: [codex/lumo-kart-event-forensics-2026-10-09]
+    paths: [.github/workflows/lumo-finish-event-forensics.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect:
+    name: Compare immutable API35 and API36 race evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Read API35 failing evidence, without restarting or altering the race
+        uses: actions/download-artifact@v4
+        with:
+          name: lumo-kart-stage2-android-kart-api35-37913484330
+          path: evidence/android35
+          run-id: '37913484330'
+          github-token: ${{ github.token }}
+      - name: Read API36 passing evidence from the same immutable APK
+        uses: actions/download-artifact@v4
+        with:
+          name: lumo-kart-stage2-android-kart-api36-37913484330
+          path: evidence/android36
+          run-id: '37913484330'
+          github-token: ${{ github.token }}
+      - name: Compare the actual persisted host payload with the native finish result
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import re
+          from pathlib import Path
+
+          root = Path('evidence')
+          report = {}
+          for label in ('android35', 'android36'):
+              base = root / label
+              events_files = list(base.rglob('06-native-finish-host-events.json'))
+              result_files = list(base.rglob('result.json'))
+              log_files = list(base.rglob('logcat.txt'))
+              print(f'[FORENSIC] {label}: evidence_files={sum(1 for f in base.rglob("*") if f.is_file())}')
+              print(f'[FORENSIC] {label}: event_paths={[str(p) for p in events_files]}')
+              print(f'[FORENSIC] {label}: result_paths={[str(p) for p in result_files]}')
+              if len(events_files) != 1 or not result_files:
+                  report[label] = {'status': 'EVIDENCE_INCOMPLETE'}
+                  continue
+              events = json.loads(events_files[0].read_text())
+              results = events.get('results', [])
+              selected = None
+              for p in result_files:
+                  d = json.loads(p.read_text())
+                  if 'native_result' in d:
+                      selected = d
+                      break
+              if selected is None:
+                  report[label] = {'status': 'MISSING_FINISH_RESULT', 'host_event_count': len(results)}
+                  continue
+              target = selected['native_result']
+              rid = target.get('resultId')
+              rows = [r for r in results if r.get('resultId') == rid]
+              matching = len(rows) == 1 and rows[0] == target
+              print(f'[FORENSIC] {label}: probe_status={selected.get("status")} probe_error={selected.get("error")}')
+              print(f'[FORENSIC] {label}: host_event_count={len(results)} matching_id_count={len(rows)} exact_payload_match={matching}')
+              print(f'[FORENSIC] {label}: result_id_sha256={hashlib.sha256(str(rid).encode()).hexdigest()}')
+              for index, row in enumerate(results[:12]):
+                  print(f'[FORENSIC] {label}: event_{index}_id_sha256={hashlib.sha256(str(row.get("resultId")).encode()).hexdigest()} game={row.get("game")} status={row.get("status")} stars={row.get("stars")}')
+              if rows and rows[0] != target:
+                  host = rows[0]
+                  print(f'[FORENSIC] {label}: native_keys={sorted(target)} host_keys={sorted(host)}')
+                  for key in sorted(set(target)|set(host)):
+                      if target.get(key) != host.get(key):
+                          print(f'[FORENSIC] {label}: DIFFERENT key={key} native_type={type(target.get(key)).__name__} host_type={type(host.get(key)).__name__} native_value={str(target.get(key))[:80]} host_value={str(host.get(key))[:80]}')
+              if log_files:
+                  lines=log_files[0].read_text(errors='replace').splitlines()
+                  relevant=[line for line in lines if re.search(r'LumoHost|GameEventStore|reward not saved|reward reported|Could not save game reward|lumo_game_events|lumo_lernen/bridge|Failed to.*write|FATAL EXCEPTION',line,re.I)]
+                  print(f'[FORENSIC] {label}: logcat_relevant_count={len(relevant)}')
+                  for line in relevant[-75:]:
+                      print('[LOGCHECK] '+line[-700:])
+              report[label] = {'probe_status': selected.get('status'), 'probe_error': selected.get('error'),
+                               'host_event_count': len(results), 'matching_id_count': len(rows),
+                               'exact_payload_match': matching, 'event_file': str(events_files[0]),
+                               'native_result_keys': sorted(target)}
+          Path('forensic-report.json').write_text(json.dumps(report,indent=2)+'\n')
+          print('[FORENSIC] Comparison completed; original game evidence was not modified.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-race-event-forensics-${{ github.run_id }}
+          path: forensic-report.json
+          if-no-files-found: warn
