@@ -26,7 +26,7 @@ jobs:
         run: |
           set -euo pipefail
           git merge-base --is-ancestor "f16884e7521b128e5dd732465bcd3a409d67fbb3" HEAD
-          test "$(git diff --name-only f16884e7521b128e5dd732465bcd3a409d67fbb3..HEAD)" = "$(printf '%s\\n' '.github/workflows/lumo-1917-apk-artifact.yml' 'pubspec.yaml')"
+          test "$(git diff --name-only f16884e7521b128e5dd732465bcd3a409d67fbb3..HEAD)" = "$(printf '%s\n' '.github/workflows/lumo-1917-apk-artifact.yml' 'pubspec.yaml')"
           test "$(sed -n 's/^version: //p' pubspec.yaml)" = "0.12.10+1917"
           mkdir -p proof
           git rev-parse HEAD | tee proof/build-source-sha.txt
