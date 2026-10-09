@@ -2574,7 +2574,12 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
                   ),
                 )
               else
-                const Text('✨', style: TextStyle(fontSize: 20)),
+                const Icon(
+                  Icons.auto_awesome_rounded,
+                  key: ValueKey('lumo-help-sparkle'),
+                  size: 20,
+                  color: Colors.white,
+                ),
               const SizedBox(width: 8),
               Text(
                 widget.loading ? 'Lumo denkt nach…' : 'Lumo, hilf mir',
@@ -2793,15 +2798,29 @@ class _LessonProgressRow extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Text(
-                  'Du schaffst das! ✨',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 9.5,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.auto_awesome_rounded,
+                      key: ValueKey('lesson-encouragement-sparkle'),
+                      size: 10,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 3),
+                    Flexible(
+                      child: Text(
+                        'Du schaffst das!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 9.5,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

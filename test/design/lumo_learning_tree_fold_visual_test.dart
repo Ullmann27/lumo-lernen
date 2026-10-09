@@ -146,6 +146,10 @@ void main() {
       await tester.pump(const Duration(milliseconds: 750));
       expect(find.byType(LearningContent), findsOneWidget);
       expect(find.byType(AdaptiveTaskRenderer), findsOneWidget);
+      expect(find.byKey(const ValueKey('lumo-help-sparkle')), findsOneWidget);
+      expect(find.byKey(const ValueKey('lesson-encouragement-sparkle')),
+          findsOneWidget);
+      expect(find.text('Du schaffst das!'), findsOneWidget);
       expect(tester.takeException(), isNull);
       await captureVisual(tester, 'real_learning_' + target.$2);
       await tester.pumpWidget(const SizedBox.shrink());

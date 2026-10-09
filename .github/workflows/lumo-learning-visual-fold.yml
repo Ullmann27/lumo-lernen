@@ -1,7 +1,7 @@
 name: Lumo learning tree and Fold visual proof
 on:
   push:
-    branches: [chatgpt/learning-visual-fold-tree-2026-10-09, chatgpt/learning-tree-cinematic-qa-2026-10-09, chatgpt/learning-tablet-answer-grid-2026-10-09]
+    branches: [chatgpt/learning-visual-fold-tree-2026-10-09, chatgpt/learning-tree-cinematic-qa-2026-10-09, chatgpt/learning-tablet-answer-grid-2026-10-09, chatgpt/learning-symbols-ui-2026-10-09]
     paths:
       - lib/features/learning/**
       - assets/lumo_design/learning_world/**
