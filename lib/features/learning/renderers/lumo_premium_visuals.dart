@@ -1376,20 +1376,38 @@ class NumberCompareVisual extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
       decoration: _stageDecoration(const Color(0xFFEC4899)),
+      // The learning task can contain large numbers even on a compact phone.
+      // Keep each number inside its own flexible viewport instead of letting
+      // an intrinsic-width row overflow the right edge of the learning card.
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _numberChip(a, color: const Color(0xFF9D174D)),
-          Text(
-            symbol,
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 56,
-              fontWeight: FontWeight.w900,
-              color: Color(0xFF7C2D12),
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.center,
+              child: _numberChip(a, color: const Color(0xFF9D174D)),
             ),
           ),
-          _numberChip(b, color: const Color(0xFFA855F7)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
+              symbol,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 44,
+                fontWeight: FontWeight.w900,
+                color: Color(0xFF7C2D12),
+              ),
+            ),
+          ),
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.center,
+              child: _numberChip(b, color: const Color(0xFFA855F7)),
+            ),
+          ),
         ],
       ),
     );
