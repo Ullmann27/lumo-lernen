@@ -40,7 +40,11 @@ class LumoCardsScoreHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return LayoutBuilder(builder: (context, bounds) {
+      // Landscape puts this scoreboard into a narrow side pane.
+      // The larger player portrait remains visible immediately below.
+      final narrowPane = bounds.maxWidth < 300;
+      return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -49,7 +53,8 @@ class LumoCardsScoreHeader extends StatelessWidget {
             children: [
               _action(Icons.arrow_back_rounded, 'Pausieren / Zurück', onClose),
               const SizedBox(width: 2),
-              Container(
+              if (!narrowPane)
+                Container(
                 width: 34,
                 height: 34,
                 padding: const EdgeInsets.all(1.5),
@@ -75,8 +80,8 @@ class LumoCardsScoreHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 9),
-              const Expanded(
+              SizedBox(width: narrowPane ? 4 : 9),
+              Expanded(
                 child: Text(
                   'Lumo Cards',
                   key: ValueKey('lumo-cards-brand'),
@@ -84,7 +89,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 19,
+                    fontSize: narrowPane ? 15 : 19,
                     fontWeight: FontWeight.w900,
                     color: LumoVisualTokens.white,
                     shadows: [
@@ -139,6 +144,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
           ),
         ],
       ),
-    );
+      );
+    });
   }
 }
