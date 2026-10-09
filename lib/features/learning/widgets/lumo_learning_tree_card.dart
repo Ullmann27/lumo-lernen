@@ -295,11 +295,11 @@ class _TreePainter extends CustomPainter {
       canvas.save();
       canvas.translate(p.dx, p.dy);
       canvas.rotate((i.isEven ? 1 : -1) * .38);
-      canvas.drawOval(const Rect.fromCenter(
+      canvas.drawOval(Rect.fromCenter(
           center: Offset.zero, width: 40, height: 25),
         Paint()..color = color.withValues(alpha: .27)
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 13));
-      canvas.drawOval(const Rect.fromCenter(
+      canvas.drawOval(Rect.fromCenter(
           center: Offset.zero, width: 29, height: 16),
         Paint()..shader = LinearGradient(colors: [
           Color.lerp(color, Colors.white, .35)!,
