@@ -36,11 +36,11 @@ KI-Anbieter übermittelt werden und wann sie gelöscht werden, muss
 vor einer Veröffentlichung am Server und mit den Dienstleistern geprüft
 und transparent erklärt werden.
 
-**Sicherheitsbefund:** Der Einstellungs- und HTTP-Client-Code lässt
-gegenwärtig auch benutzerdefinierte `http://`-URLs zu. Vor einem
-öffentlichen Kinder-App-Release müssen unverschlüsselte externe
-Proxyverbindungen verhindert und die Auswirkungen auf lokale Tests
-getrennt abgesichert werden.
+**Technische Absicherung dieser Übernahme:** Der URL-Sanitizer nimmt für
+externe KI-Proxy-Hosts nur noch HTTPS an. Unverschlüsseltes HTTP wird nur
+für lokale Loopback-Tests an `localhost`, `127.0.0.1` oder `::1` akzeptiert.
+Die Einschränkung wird durch Regressionstests abgesichert, ersetzt aber
+**keine** Prüfung des KI-Servers, seiner Berechtigungen oder der Elternzustimmung.
 
 ## Noch nicht abschließend nachgewiesen
 

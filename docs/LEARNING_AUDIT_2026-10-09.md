@@ -33,7 +33,7 @@
 
 - `CODE CONFIRMED`: `PRIVACY.md` behauptete irreführend „keine Serververbindung“ und „kein Audio“. `LumoAiProxyClient` versendet bei aktivierter KI Nachricht, Klassenstufe, Gesprächsverlauf und Kontext. `AppSettings.aiProxyEnabled` ist standardmäßig `false`. Die Dokumentation wurde auf nachgewiesene Datenflüsse umgestellt.
 - `OPEN / HOCH`: `ProgressRepository` verwendet feste Schlüssel `lumo_progress_skills`, `lumo_progress_daily`, `lumo_progress_last`. Auch `CosmosWorld` verwendet globale Schlüssel. Diese Speicherpfade belegen derzeit **keine per-Kind-Isolation**; vor Mehrkindfreigabe End-to-End testen und mittels Namespace/Migration absichern.
-- `OPEN / HOCH`: Benutzerdefinierte externe Proxy-URLs dürfen noch unverschlüsseltes HTTP sein. Vor Play-Release HTTPS erzwingen (mit Loopback-Ausnahme für lokale Testserver oder entsprechender Testanpassung).
+- `CODE FIX / TEST PENDING`: Im neuen Änderungsstand verbietet `AppSettings.sanitizeProxyUrl` unverschlüsseltes HTTP zu externen KI-Proxy-Hosts; `localhost`, `127.0.0.1` und `::1` bleiben für lokale Tests zugelassen. Sicherheits-Regressionstests stehen in `test/app_settings_ai_mode_test.dart`. Die produktive Serverkonfiguration und Einwilligungsabläufe sind dennoch offen.
 - `NOT EXECUTED`: Kein vollständiges Traffic-Audit und keine juristische Compliance-Zertifizierung.
 
 ## 6. Markt und pädagogischer Nutzen – differenzierte Chance
