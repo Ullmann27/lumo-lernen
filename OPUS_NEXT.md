@@ -44,6 +44,16 @@ Dieser neue Entwurf besteht534 Android-QA- und36 Scriptprüfungen PASS ohne
 Skips; darin86 neue Native-Guards. Die48 ursprünglichen Tests/Fixtures bleiben
 bytegleich. Alle22 Bashsteps/sechs Inline-Python-Blöcke sind syntaktisch geprüft.
 
+Der20-Dateien-Checkpoint ist unabhängig bestätigt und als Recoverycommit
+`8abb01a6bf470e46bd279f637ba84f850d98fab0` gesichert. Eine weitere enge
+Reparatur verhindert Kart-PASS bei fehlgeschlagenen Ressourcenaufnahmen:
+beide vorhandenen Phasen, deren Source/API/Serial und drei rohe Reads sind
+vor Final-PASS erforderlich. Identische neue15er-Probe: vorher62 negative
+Kontrollfehler, danach ganze Suite549 PASS/0 FAIL/0 SKIP. Die zwei zulässigen
+Kontrollen bestanden vorher; legitimes RSS-UNAVAILABLE bleibt zulässig.
+Capture-/Rennfristen und originale48 Tests/Fixtures bleiben unverändert.
+Keine echten neuen Ressourcenmessungen oder FPS-Konversionen.
+
 Historische tatsächliche APK1905 wurde in Actions37846382465 gebaut und
 byteweise geprüft (201691346B/SHAf06140353caa1f2d4c0038287b05918402324b26cc9dc5454ca1c13e9597f14c).
 Der unveränderte Bauen-Diagnoselauf37861486692/7cff bestand sichtbar; Haus161

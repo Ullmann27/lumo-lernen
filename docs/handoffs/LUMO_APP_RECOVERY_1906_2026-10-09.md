@@ -78,6 +78,24 @@ Originaltests/Fixtures bleiben bytegenau erhalten. Die ursprünglichen21 Marker
 werden vor dem ergänzten22. Marker separat geprüft. Alle22 Bashsteps und sechs
 Inline-Python-Blöcke haben neue Syntaxprüfungen bestanden.
 
+Der unabhängig bestätigte20-Dateien-Stand ist auf dem Recoverybranch als
+`8abb01a6bf470e46bd279f637ba84f850d98fab0`, Tree
+`55b1fbec852872386478b5825077c6349f683146`, gesichert. Er bleibt eine Vorstufe
+mit unverändertem Baselinepin; die neue Quelländerung danach schließt einen
+konkret belegten Ressourcen-Gatefehler im echten Kart-Final-PASS-Pfad.
+capture_resources konnte FAIL zurückgeben, ohne das gesamte Rennurteil zu
+blockieren. Die neue15er-Probe führt den tatsächlichen Final-PASS-AST aus:
+gleiche kontrollierte Eingaben liefern vor der Änderung62 Fehler ausschließlich
+in diesen neuen negativen Fällen und danach eine ganze Suite mit549 PASS/
+0 FAIL/0 SKIP. Die zwei zulässigen Kontrollen bestanden bereits vorher.
+Beide bestehenden Phasen first-driving und completed-before-fold benötigen
+nun PASS, aktuelle Source-/Godot-/APK-/API-/Serialbindung und alle drei rohen
+Readinputs. Gespeicherte CPU-/Speicherwerte müssen zu den vorhandenen Parsern
+und Raw-Inputs passen. Ein legitim fehlender RSS-Wert bleibt UNAVAILABLE.
+Die Capture-Platzierung,20-Sekunden-Frist, drei Reads, Rennkriterien und fehlende
+Hz-/Seitengrößenkonversion bleiben erhalten. Es wurden keine Gerätemessungen
+ausgeführt und keine Werte als reale Performance ausgegeben.
+
 Historische tatsächliche Runtime: APK1905 aus Actions37846382465,
 201691346 Bytes/SHA256
 `f06140353caa1f2d4c0038287b05918402324b26cc9dc5454ca1c13e9597f14c`.
