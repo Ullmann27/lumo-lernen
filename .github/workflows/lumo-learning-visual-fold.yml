@@ -6,6 +6,7 @@ on:
       - lib/features/learning/**
       - lib/features/teacher_mode/lumo_akademie_screen.dart
       - lib/features/lumo_welt/lumo_welt_screen.dart
+      - lib/app/app_shell.dart
       - test/design/lumo_learning_tree_fold_visual_test.dart
       - .github/workflows/lumo-learning-visual-fold.yml
   workflow_dispatch:
@@ -46,7 +47,8 @@ jobs:
           folder = Path('proof/learning')
           for name in ('learning_tree_phone.png', 'learning_tree_fold_content.png',
               'learning_tree_tablet.png', 'math_task_phone.png',
-              'math_task_fold_content.png', 'math_task_tablet.png'):
+              'math_task_fold_content.png', 'math_task_tablet.png',
+              'real_learning_phone.png', 'real_learning_fold_open.png'):
               p = folder / name
               assert p.is_file() and p.stat().st_size > 3000, name
           print('All six actual Flutter visual snapshots exist.')
