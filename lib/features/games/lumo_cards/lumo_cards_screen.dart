@@ -348,7 +348,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
-      backgroundColor: const Color(0xFFFFF6EE),
+      backgroundColor: const Color(0xFF03193F),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
