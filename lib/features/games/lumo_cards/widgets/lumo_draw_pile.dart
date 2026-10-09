@@ -114,7 +114,7 @@ class _LumoDrawPileState extends State<LumoDrawPile>
             fontFamily: 'Nunito',
             fontSize: 12,
             fontWeight: FontWeight.w900,
-            color: Color(0xFF7C2D12),
+            color: Color(0xFFF7FBFF),
           ),
         ),
       ],
