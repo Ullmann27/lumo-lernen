@@ -14,8 +14,8 @@ Status: **VISUAL_GAP – NOT ACCEPTED**. Kein Merge nach `main`, kein Release.
 | #223 | `codex/lumo-action-android-qa` → main | `0a4f988` | APK 1909 (Quelle `aa65192`, Godot `a377b9e`), Android-Bildleser, screencap-Wiederholung | APK 1909 gebaut, SHA-256 `b58e0553…`; Kart API 36 PASS (Run 37893374564), API 35 PASS (Run 37896765244) |
 | #225 | `codex/lumo-apk-1910` → #223 | `f38bb1a` | Pin Godot `75e563e` (#35), Version 1910 | Build-Run 37914387612 FAIL (Quellhash-Abweichung in der nativen Phase) |
 | #226 | `codex/lumo-game-entry-polish` → #225 | `c9a8231` | Spielstart-Overlay mit Spielbildern, ehrliche Ladeanzeige | nur Flutter-Prüfung |
-| #227 | `codex/lumo-claude-game-entry` → Claude | `bc63170` | dasselbe Overlay auf Claudes 1908, Pin `f9d2b90`, Version 1911 | Run 37921146749: Build PASS, Kart API 36 PASS, **Kart API 35 FAIL** (`Host did not durably retain …` = Float-Vergleich) |
-| #228 | `codex/lumo-host-finish-numeric` → #227 | `fc33aa4` | Zeitrundung in `require_event` (elapsed + bestLap), Version 1912 | Run 37922666531 läuft |
+| #227 | `codex/lumo-claude-game-entry` → Claude | `bc63170` | dasselbe Overlay auf Claudes 1908, Pin `f9d2b90`, Version 1911 (gemergt `5a97a5d`) | Run 37921146749: Build PASS, Kart API 36 PASS, **Kart API 35 FAIL** (`Host did not durably retain …` = Float-Vergleich) |
+| #228 | `codex/lumo-host-finish-numeric` → #227 | `fc33aa4` | Zeitrundung in `require_event` (elapsed + bestLap), Version 1912 | gewählt und gemergt (`54f467e`), um ganzzahlige org.json-Zeiten erweitert (`6d2d1f0`); Unit-Tests grün |
 | #229 | `codex/lumo-host-time-precision` → #227 | `280b242` | Alternative: nur `elapsedSeconds` | nur Unit-Tests |
 | #224 | `codex/lumo-return-frame-recovery` → integrated-runtime | `2fea2da` | Rückkehr-Frames der Kreativspiele | nicht im Kart-Pfad |
 
@@ -82,9 +82,10 @@ Beim ersten Lauf war `kart_modal_backdrop_regression` rot, weil mein Läufer `LU
 binden `kart_island.gd` (jetzt `d71ee4d9…`) und die Proben. Beide wurden gegen echte Exporte des Merge-Stands
 geprüft: 104 Rundenprüfungen, 29 Zeitformatfälle, 6 Bilder des vollständigen Ablaufs, 10 Handoff-Fälle.
 
-**App `80cb151` plus Umbindung.** `flutter pub get --enforce-lockfile` ok; `flutter analyze`: 0 Fehler,
-0 Warnungen, 131 Hinweise (die CI läuft mit `--no-fatal-infos`); `flutter test`: Exit 0, 21 übersprungen;
-Python `tools/android_qa/tests`: 590 Tests (9 übersprungen), `scripts/tests`: 36 Tests.
+**App (Stand 1914).** `flutter pub get --enforce-lockfile` ok; `flutter analyze`: **No issues found** (vorher 131 Hinweise);
+`flutter test`: **816 bestanden, 21 übersprungen, 0 fehlgeschlagen**; Python `tools/android_qa/tests`: 594 Tests (9 übersprungen),
+`scripts/tests`: 36 Tests. Importgraph ab `main.dart`: 315 von 315 Dateien erreichbar. Reparaturen und Belege:
+`docs/LERNAPP_PRUEFBERICHT_2026-10-09.md`.
 
 **Nicht geprüft:** physisches Gerät, Bildrate, Fahrgefühl, Musik, Android-Lauf dieses Stands (folgt aus der CI).
 
@@ -116,7 +117,19 @@ Spielstart: Overlay und Boot-Bild sind integriert, Splash-Animation und Menü Ph
 
 ## 6. APK-Status
 
-Version `0.12.7+1913`. Die APK wird von der CI aus dem gepushten Stand gebaut; Herkunft, SHA-256 und
-Android-Läufe stehen erst nach dem Lauf fest und werden dann hier ergänzt. APK 1909 bleibt unverändert
-der geprüfte Rückfallstand. **Technisch fertig** und **visuell abgenommen** sind getrennt: Letzteres ist
-ausdrücklich nicht der Fall.
+**APK 1913** (App `b04bee5`, Godot `de91cc9`; Run 37937263563, Artefakt `lumo-visual-apk-37937263563`, 11621664190):
+- Datei `Lumo-Lernen-Neu.apk`, 203.837.110 Bytes, SHA-256 `bc6dfc93fd20e39fa01e088f35215066884bf59e649d4bde76428318e59b9fb1`.
+- Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version 0.12.7 (1913), minSdk 24, targetSdk 36, ABIs arm64-v8a und x86_64,
+  16-KiB-ausgerichtet. Signatur-SHA-256 `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702` (gleich wie 1908).
+- Eingebettetes PCK `c517a9ed5e38ad04a076830375c50cdec606a5f96fd744fdea85519ed668980e` (41.248.792 Bytes), Godot-Pin `de91cc9`.
+- Im Bau grün: Flutter-Analyse, komplette Flutter-Suite, Python-Vorbereitungstests, 26 strenge native Spiel-/Render-Proben auf dem
+  exakten Pin; Android 15: Bauwelt, Puzzle, Rhythmus, Schatzsuche; Android 16: komplettes Kart-Rennen.
+- **Android 15 Kart: rot.** Das Rennen lief komplett durch (16 Checkpoints, Ergebnis, Größenwechsel, Offline-Neustart); beim Abholen des
+  letzten Aufnahme-Segments meldete der Emulator `adb: error: failed to get feature set: device offline`. Das ist ein
+  Testumgebungs-Aussetzer. Ein Neulauf ist mit den Rechten dieser Sitzung nicht möglich (HTTP 403). Abgesichert in `78adcad`.
+
+**APK 1914** (App Version 0.12.7+1914, gleicher Godot-Pin): enthält die Reparaturen des Lernapp-Berichts und das abgesicherte Abholen.
+Der Lauf entsteht aus dem nächsten Push; sein Ergebnis steht in den Actions und wird hier ergänzt.
+
+APK 1909 bleibt unverändert der geprüfte Rückfallstand. **Technisch fertig** und **visuell abgenommen** sind getrennt: Letzteres ist
+ausdrücklich nicht der Fall (VISUAL_GAP, siehe Abschnitt 5 und `docs/wip/2026-10-09-lumo-gesicht/` im Godot-Repo).
