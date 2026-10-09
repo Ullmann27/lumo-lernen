@@ -26,9 +26,23 @@ identischer echter Funktions-Test f6 RED→GREEN. Die neue ganze Quellenprüfung
 liefert448 Android-QA- und36 Scriptprüfungen PASS/0 FAIL/0 SKIP. Ein erster
 Teilcheckout-Versuch hatte eine fehlende originale Dart-Datei; dieser Fehler
 bleibt dokumentiert, die Originaldateien wurden bytegenau ergänzt. Unabhängige
-neue Peers und finaler Godot-Anschluss stehen aus. Originalrunner/API35/36,
+Quellenpeers haben den14-Dateien-Checkpoint unabhängig mit448/36 bestätigt;
+Recoverycommit `4fe583ff84756250cbd85188ea56360db5672a7d` ist gesichert.
+Der finale Godot-Anschluss steht aus. Originalrunner/API35/36,
 Emulator14472402, Java/Abhängigkeiten,45-Minuten-Job, Renn-/ACK-/Wallet-/Fold-
 und Ressourcengates bleiben erhalten. Keine echte Android-Ausführung hier.
+
+Der folgende neue Entwurf ergänzt einen eigenständigen typed Native-Guard
+und die Zeitformatprobe als22. Prüfung; die ursprüngliche15er-GL-Schleife,
+alle21 alten Marker und Modal37/14 sowie Countdown9 bleiben erhalten.
+[Der Native-Vertrag](docs/handoffs/NATIVE_LAP_EVIDENCE_RECOVERY_1906_2026-10-09.md)
+bindet neue Continuity104-/Formatter29-Quellen und echte JSON-/PNG-Dateien.
+Flow bleibt wegen tatsächlicher ursprünglicher ACK-Assertion-Fehler und
+Teardown-Reproduktion blockiert; seine geschlossene Rerun-Fixture belegt
+ausschließlich das Schema. Keine finale Godot-/App-Pin- oder APK-Freigabe.
+Dieser neue Entwurf besteht534 Android-QA- und36 Scriptprüfungen PASS ohne
+Skips; darin86 neue Native-Guards. Die48 ursprünglichen Tests/Fixtures bleiben
+bytegleich. Alle22 Bashsteps/sechs Inline-Python-Blöcke sind syntaktisch geprüft.
 
 Historische tatsächliche APK1905 wurde in Actions37846382465 gebaut und
 byteweise geprüft (201691346B/SHAf06140353caa1f2d4c0038287b05918402324b26cc9dc5454ca1c13e9597f14c).

@@ -254,6 +254,14 @@ jobs:
               --script "res://scripts/tests/$test.gd"
           done
           echo 'PASS exact native harbor, vehicle geometry and detail regressions' >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
+      - name: Check the unchanged time formatter against all 29 boundary cases
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        run: |
+          set -euo pipefail
+          LUMO_QA_DIR="$LUMO_NATIVE_DIRECTORY/exports/time-format" \
+            python3 tools/run_godot_probe.py --log exports/fold-controls/kart_time_format_regression.log \
+            --timeout 240 --required '[KartTimeFormat] PASS:' -- \
+            godot --headless --audio-driver Dummy --script res://scripts/tests/kart_time_format_regression.gd
       - name: Capture the final native fleet and harbor from the exact APK pin
         working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
         env:
@@ -299,6 +307,8 @@ jobs:
               'harbor-capture': ('[KartHarbor] PASS:',),
           }
           assert len(markers) == 21
+          markers['kart_time_format_regression'] = ('[KartTimeFormat] PASS:',)
+          assert len(markers) == 22
           probes = []
           for name, required in markers.items():
               path = Path('exports/fold-controls') / (name + '.log')
@@ -344,6 +354,12 @@ jobs:
               'modal_touch_pngs': [{'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()} for path in modal_captures],
               'physical_device_performance': 'NOT EXECUTED',
           }
+          import importlib.util
+          helper = workspace / 'tools/android_qa/native_lap_evidence_recovery.py'
+          spec = importlib.util.spec_from_file_location('native_lap_evidence_recovery', helper)
+          lap_evidence = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(lap_evidence)
+          report.update(lap_evidence.summarize_native_lap_evidence(Path.cwd()))
           Path('exports/fold-controls/native-check-summary.json').write_text(json.dumps(report, indent=2) + '\n')
           with (workspace / 'proof/TEST-RESULTS.txt').open('a') as stream:
               stream.write(f'PASS {len(probes)} strict native render/gameplay/capture probes on exact source {native_source}; nine countdown-pause and fourteen modal-touch frames.\n')
@@ -361,6 +377,8 @@ jobs:
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/reference-design/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/video-reference-grade/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/complete-flow/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/race-continuity/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/time-format/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/steering-grip/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/countdown-pause/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/modal-touch/

@@ -32,7 +32,7 @@ Diese Fälle installieren kein SDK und starten keinen Emulator.
 Die [neue SDK-Beschreibung](SYSTEM_IMAGE_PREPARATION_RECOVERY_1906_2026-10-09.md)
 erklärt Pflichtimages, beide zulässigen Bootstrapformen und die erhaltene Frist.
 
-Der Workflow fügt ausschließlich den hashgebundenen SDK-Vorlauf vor dem
+Der frühe 14-Dateien-Checkpoint fügte den hashgebundenen SDK-Vorlauf vor dem
 ursprünglichen Emulator-Runner hinzu: elf Minuten Step-Limit, insgesamt600
 Sekunden Helper-Limit, ursprüngliches API35/36/google_apis/x86_64. Runner,
 Emulatorbuild14472402, Java, Abhängigkeiten, Display, Scripts, deren45-Minuten-
@@ -59,7 +59,24 @@ PASS/0 FAIL/0 SKIP. Ein erster Teilcheckout-Versuch scheiterte in einem
 unveränderten Originaltest an einer noch fehlenden originalen Dart-Registry.
 Der Fehler bleibt erhalten; Registry und PlusScreen wurden exakt aus dem
 verifizierten vollständigen f6-Checkout ergänzt, kein Test wurde verändert.
-Unabhängige Quellenpeers und der neue Godot-Anschluss stehen noch aus.
+Dieser 14-Dateien-Checkpoint ist inzwischen unabhängig mit denselben448/36
+und erhaltenen48 Originaltests/Fixtures bestätigt. Er ist auf dem separaten
+Recoverybranch als `4fe583ff84756250cbd85188ea56360db5672a7d`, Tree
+`0bde72a889f269465c5b8e22494540826800c216`, PR221 gesichert. Das ist kein
+finaler App-/Godot-Pin und löst keinen primären APK-Build aus.
+
+Der folgende neue Entwurf ergänzt die Zeitformatprobe als22. native Prüfung,
+einen eigenständigen typisierten Runden-/Result-Guard und die tatsächlichen
+JSON-/PNG-Artefaktbindungen. Die ursprüngliche native15er-GL-Schleife und alle
+21 alten Marker/Modalgates bleiben erhalten. Die [neue Native-Übergabe](NATIVE_LAP_EVIDENCE_RECOVERY_1906_2026-10-09.md)
+trennt die geschlossene Continuity104-/Formatter29-Prüfung vom weiterhin
+blockierten Flow-ACK. Neue App-Tests prüfen derzeit den Quellenvertrag und
+ausschließlich eine geschlossene Flow-Schema-Fixture. Das ist keine finale
+Runtime-Abnahme. Der neue Entwurf besteht neu tatsächlich534 Android-QA- und36
+Scriptprüfungen PASS/0 FAIL/0 SKIP, darunter86 neue Native-Guards. Alte48 f6-
+Originaltests/Fixtures bleiben bytegenau erhalten. Die ursprünglichen21 Marker
+werden vor dem ergänzten22. Marker separat geprüft. Alle22 Bashsteps und sechs
+Inline-Python-Blöcke haben neue Syntaxprüfungen bestanden.
 
 Historische tatsächliche Runtime: APK1905 aus Actions37846382465,
 201691346 Bytes/SHA256
@@ -75,12 +92,13 @@ begrenzt und ist keine APK1906-, Kart-, Fold- oder Performance-Abnahme.
 
 ## Nächste konkrete Integration
 
-1. Neue Handoff-/Gas-Reparaturen schließen und unabhängig prüfen; alle
-   ursprünglichen Android-QA- und36 Scriptprüfungen ohne Abschwächung ausführen.
+1. Den neuen Native-App-Entwurf schließen und unabhängig prüfen; alle
+   ursprünglichen Android-QA- und36 Scriptprüfungen ohne Abschwächung erhalten.
 2. Godot-Wiederherstellung einschließlich der verlorenen zwei Proben neu
    prüfen, tatsächlich veröffentlichen und erst dessen exakten SHA pinnen.
-3. Zeitformatprobe als22. native Prüfung ergänzen; die ursprünglichen21 Marker,
-   Modal37/sechs Drags/14 PNGs und neun Countdownbilder erhalten. Neue Runden-
+3. Den ergänzten Zeitformat-/Runden-Guard nach dem tatsächlichen ACK-Fix erneut
+   prüfen; die ursprünglichen21 Marker, Modal37/sechs Drags/14 PNGs und neun
+   Countdownbilder erhalten. Neue Runden-
    und Result-Reopen-Belege strikt an tatsächliche Quelle, Proben, JSONs und
    PNGs binden. Keine historischen103-/29-/47-Werte übertragen.
 4. Neues f6..RESULT-Inventar mit Dateibytes/SHA256/Git-Blob/Modus/Tree und
