@@ -384,6 +384,14 @@ class LumoAppState extends ChangeNotifier {
     double? score,
   }) async {
     if (_disposed) return;
+    // Capture the answer's owner before progress loading or saving can yield.
+    // A teacher may reassign the device while those operations are pending.
+    String studentId = 'self';
+    try {
+      studentId = await school.activeStudentId() ?? 'self';
+    } catch (_) {
+      // Preserve the existing attribution for an unassigned local device.
+    }
     try {
       if (!_learningProfileLoaded) {
         await _learningProfile.load();
@@ -396,6 +404,7 @@ class LumoAppState extends ChangeNotifier {
         hintUsed: hintUsed,
       );
       await _logAttempt(
+        studentId: studentId,
         subject: subject,
         unit: unit,
         correct: correct,
@@ -422,6 +431,7 @@ class LumoAppState extends ChangeNotifier {
   /// Schreibt die Antwort ins Aufgabenprotokoll. Ein Fehler hier verhindert
   /// nie den Lernfortschritt, wird aber gemerkt und erneut versucht.
   Future<void> _logAttempt({
+    required String studentId,
     required String subject,
     required String unit,
     required bool correct,
@@ -433,12 +443,6 @@ class LumoAppState extends ChangeNotifier {
     double? score,
   }) async {
     final now = DateTime.now();
-    String studentId = 'self';
-    try {
-      studentId = await school.activeStudentId() ?? 'self';
-    } catch (_) {
-      // Ohne lesbare Zuordnung zählt die Antwort für das Kind dieses Geräts.
-    }
     _unsavedAttempts.add(Attempt(
       id: '${now.microsecondsSinceEpoch}-${_attemptSerial++}',
       studentId: studentId,
