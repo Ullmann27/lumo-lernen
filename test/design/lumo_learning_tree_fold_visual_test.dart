@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
@@ -59,6 +60,19 @@ TaskInstance exampleTask() => TaskInstance(
 );
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(() async {
+    // Tests laden dieselbe Nunito-Schrift + Icons wie die echte App.
+    // Sonst zeigt der Screenshot nur rechteckige Platzhalter.
+    final nunito = FontLoader('Nunito')
+      ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
+      ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'))
+      ..addFont(rootBundle.load('assets/fonts/Nunito-Black.ttf'));
+    await nunito.load();
+    final icons = FontLoader('MaterialIcons')
+      ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
+    await icons.load();
+  });
   test('Lernbaum trennt Aktivität und sichere Beherrschung', () {
     final r = {
       'a': skill('Plus bis 20', correct: 5, streak: 5),
