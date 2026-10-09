@@ -46,6 +46,71 @@ SCALAR_FIELDS = {
 }
 
 
+def require_resource_snapshots(result: dict) -> None:
+    """Require both existing read-only captures before declaring the race PASS.
+
+    No new device reads, conversions or performance thresholds are introduced.
+    RSS may remain unavailable in the documented Android PSS table format.
+    """
+    from runtime_resource_evidence import PROCESS, parse_meminfo, parse_proc_stat
+
+    def require(condition, message):
+        if not condition:
+            raise RuntimeError('Complete race resource evidence: ' + message)
+
+    try:
+        keys = ('source', 'godot', 'apk_sha256', 'android_sdk', 'serial')
+        identity = {key: result[key] for key in keys}
+        require(all(type(identity[key]) is str and re.fullmatch(pattern, identity[key])
+                    for key, pattern in (('source', r'[0-9a-f]{40}'),
+                                         ('godot', r'[0-9a-f]{40}'),
+                                         ('apk_sha256', r'[0-9a-f]{64}'),
+                                         ('serial', r'emulator-\d+'))),
+                'current source, pin, APK and emulator identity required')
+        require(type(identity['android_sdk']) is int and identity['android_sdk'] >= 24,
+                'current Android API must be an integer')
+        snapshots = result['resource_snapshots']
+        phases = ('first-driving', 'completed-before-fold')
+        require(type(snapshots) is dict and set(snapshots) == set(phases),
+                'exactly first-driving and completed-before-fold captures required')
+        for phase in phases:
+            snapshot = snapshots[phase]
+            require(type(snapshot) is dict and snapshot.get('status') == 'PASS'
+                    and 'error' not in snapshot, phase + ' must be a successful capture')
+            require(snapshot.get('phase') == phase, phase + ' phase identity differs')
+            captured_identity = snapshot.get('identity')
+            require(type(captured_identity) is dict and set(captured_identity) == set(keys)
+                    and all(type(captured_identity[key]) is type(identity[key])
+                            and captured_identity[key] == identity[key] for key in keys),
+                    phase + ' source/API/serial identity differs')
+            pid = snapshot['pid']
+            require(type(pid) is int and pid > 0, phase + ' needs an actual native PID')
+            reads = snapshot['reads']
+            require(type(reads) is list and len(reads) == 3, phase + ' needs all three raw reads')
+            commands = (('pid', ['-s', identity['serial'], 'shell', 'pidof', PROCESS]),
+                        ('proc_stat', ['-s', identity['serial'], 'shell', 'cat', f'/proc/{pid}/stat']),
+                        ('meminfo', ['-s', identity['serial'], 'shell', 'dumpsys', 'meminfo', str(pid)]))
+            for read, (name, arguments) in zip(reads, commands):
+                require(type(read) is dict and read.get('name') == name
+                        and read.get('arguments') == arguments and 'error' not in read,
+                        phase + ' raw read command/identity differs')
+                require(type(read.get('raw')) is str and bool(read['raw'].strip())
+                        and all(type(read.get(key)) is str and read[key]
+                                for key in ('started_utc', 'finished_utc')),
+                        phase + ' raw input and timestamps required')
+            require(reads[0]['raw'].strip() == str(pid), phase + ' raw native PID differs')
+            parsed = {**parse_proc_stat(reads[1]['raw'], str(pid)),
+                      **parse_meminfo(reads[2]['raw'], str(pid))}
+            require(all(key in snapshot and type(snapshot[key]) is type(value)
+                        and snapshot[key] == value for key, value in parsed.items()),
+                    phase + ' parsed counters/memory differ from the raw inputs')
+            elapsed = snapshot['elapsed_seconds']
+            require(type(elapsed) in (int, float) and math.isfinite(elapsed)
+                    and 0 <= elapsed <= 20, phase + ' shared capture budget differs')
+    except (KeyError, TypeError, ValueError, AttributeError, OverflowError) as error:
+        raise RuntimeError('Complete race resource evidence is incomplete: ' + str(error)) from error
+
+
 def parse_session(raw: str) -> dict:
     """Read a Godot ConfigFile without eval or parsing its unrelated Variant data."""
     if not re.search(r'^\[race\]\s*$', raw, re.M):
@@ -794,6 +859,7 @@ def main() -> int:
         if result['video']['status'] != 'PASS':
             raise RuntimeError('Actual Android footage collection failed: ' +
                                '; '.join(result['video']['errors'] or ['no nonempty video segments']))
+        require_resource_snapshots(result)
         result['status'] = 'PASS'
         print('[CompleteKartAndroid] PASS: 16 checkpoints, pause, actual result, offline recovery, host ACK and reward deduplication', flush=True)
         return 0

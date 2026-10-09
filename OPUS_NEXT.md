@@ -1,4 +1,37 @@
-# Neuer App-Wiederherstellungsstand1906 · 9. Oktober2026UTC
+# Gemeinsamer App-Entwurf 1908 · 9. Oktober 2026 UTC
+
+Zuerst [die neue selektive Integrationsübergabe](docs/handoffs/LUMO_SELECTIVE_INTEGRATION_1908_2026-10-09.md)
+lesen. **SOURCE CHECKPOINT / FINAL PIN PENDING / VISUAL_GAP / NOT FINISHED**. Der Entwurf
+führt den tatsächlich aktuellen App-Stand `36391b2d2a332e93f3bac46bf21afb83fad15d8a`
+mit Recovery `4458590063b9e59fc7f36fe9dea4e798b95a192a` zusammen und bewahrt
+die neuen IQ-, Analyze-, FleetStats- und Workshop-Anschlüsse. Quellversion:
+`0.12.5+1908`. Der vorhandene Godot-Pin `99cdb776df10e8cc719d19792c17074c887b5112`
+ist zunächst nur der unveränderte Ausgangspin. Ein endgültiger Pin und neue
+echte Native-Fixtures warten auf den geprüften gemeinsamen Godot-Quellstand.
+Aktuell:579QA+36Scripts PASS,0Fehler/Skips; unabhängige68Quell-/AST-Prüfungen PASS. Keine1908APK oder Android-Abnahme.
+
+Die folgenden 1906-Abschnitte bleiben historische Wiederherstellungsübergaben.
+Nach einem dritten Workspaceverlust wurden die veröffentlichten Quellen erneut
+aus Git wiederhergestellt; verlorene lokale Nachweise gelten nicht als neue
+Prüfungen dieses Entwurfs.
+
+# Neuer App-Wiederherstellungsstand1906 · historischer Kontext vom 9. Oktober2026UTC
+
+Aktuelle Fortsetzung nach **zweitem Workspaceverlust**: vollständiger sauberer
+Recoverycheckout aus `1c5300267b5689d450f67bcf59d700f1c3d6d0d8`/Tree
+`4b92e0531c23c0bf93a75b95179b2353cae4b01a`. Lokale historische Reports sind
+verloren; frühere Testzahlen ersetzen keine neue Ausführung. Der
+[neue Lifecycle-Quellanschluss](docs/handoffs/HANDOFF_LIFECYCLE_SOURCE_PREPARATION_1906_2026-10-09.md)
+ergänzt fünf streng gebundene Summaryfelder und den eigenen JSON-Artefaktpfad.
+Seine neue Testfixture ist ausdrücklich synthetisch. Aktuelle leakfreie
+Godot-/Lifecycle10-GL-Abnahme, finaler Pin und APK1906 bleiben ausstehend.
+Gesamtstatus: **VISUAL_GAP / NOT FINISHED**.
+
+Neue tatsächliche Quellenprüfung nach diesem Verlust:579 Android-QA- und36
+Scriptprüfungen PASS,0 FAIL/0 ERROR/0 SKIP. Darin30 neue ausschließlich
+synthetische Lifecycleguards; alte48 Originaldateien und bisherige86 Lapguards
+bleiben unverändert. Der historische erste NDK-Scriptfehlversuch bleibt im
+neuen Handoff dokumentiert. Kein aktueller Runtime-/APK-Erfolg wird übertragen.
 
 Zuerst [die neue Wiederherstellungsübergabe](docs/handoffs/LUMO_APP_RECOVERY_1906_2026-10-09.md)
 lesen. Status: **RECONSTRUCTED_NEW_SOURCE / VISUAL_GAP / NOT FINISHED**.
@@ -43,6 +76,16 @@ ausschließlich das Schema. Keine finale Godot-/App-Pin- oder APK-Freigabe.
 Dieser neue Entwurf besteht534 Android-QA- und36 Scriptprüfungen PASS ohne
 Skips; darin86 neue Native-Guards. Die48 ursprünglichen Tests/Fixtures bleiben
 bytegleich. Alle22 Bashsteps/sechs Inline-Python-Blöcke sind syntaktisch geprüft.
+
+Der20-Dateien-Checkpoint ist unabhängig bestätigt und als Recoverycommit
+`8abb01a6bf470e46bd279f637ba84f850d98fab0` gesichert. Eine weitere enge
+Reparatur verhindert Kart-PASS bei fehlgeschlagenen Ressourcenaufnahmen:
+beide vorhandenen Phasen, deren Source/API/Serial und drei rohe Reads sind
+vor Final-PASS erforderlich. Identische neue15er-Probe: vorher62 negative
+Kontrollfehler, danach ganze Suite549 PASS/0 FAIL/0 SKIP. Die zwei zulässigen
+Kontrollen bestanden vorher; legitimes RSS-UNAVAILABLE bleibt zulässig.
+Capture-/Rennfristen und originale48 Tests/Fixtures bleiben unverändert.
+Keine echten neuen Ressourcenmessungen oder FPS-Konversionen.
 
 Historische tatsächliche APK1905 wurde in Actions37846382465 gebaut und
 byteweise geprüft (201691346B/SHAf06140353caa1f2d4c0038287b05918402324b26cc9dc5454ca1c13e9597f14c).
