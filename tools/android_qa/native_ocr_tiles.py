@@ -80,7 +80,7 @@ def observed_matches(rows, box: tuple, scale: int, frame: tuple, wanted: str,
 
 def read_tiled_word(source: Path, out: Path, tag: str, wanted: str, normalize,
                     command, *, timeout: float = 45, clock=time.monotonic) -> list[dict]:
-    """Read the unchanged current image with six overlapping neutral-text tiles."""
+    """Read the unchanged frame with overlapping neutral-text tiles and a dim-text fallback."""
     started = clock()
     deadline = started + timeout
     before = hashlib.sha256(source.read_bytes()).hexdigest()
@@ -91,6 +91,15 @@ def read_tiled_word(source: Path, out: Path, tag: str, wanted: str, normalize,
     bright = darkest.point(lambda value: 255 if value >= 150 else 0)
     neutral = ImageChops.subtract(lightest, darkest).point(lambda value: 255 if value <= 45 else 0)
     white_text = ImageChops.invert(ImageChops.multiply(bright, neutral))
+    dim_bright = darkest.point(lambda value: 255 if value >= 120 else 0)
+    dim_text = ImageChops.invert(ImageChops.multiply(dim_bright, neutral))
+    masks = [('white-latin', white_text)]
+    # Antialiased white lettering can have neutral edge pixels below 150.
+    # Preserve the original reader first, then use the same geometry and exact
+    # word/confidence guards on the less aggressively thresholded image.
+    # Identical masks (including empty frames) need no duplicate OCR work.
+    if ImageChops.difference(white_text, dim_text).getbbox():
+        masks.append(('white-latin-dim', dim_text))
     evidence = {'status': 'READING', 'scope': 'Independent OCR; no gameplay or visibility PASS',
                 'source': source.name, 'source_sha256': before,
                 'surface': [image.width, image.height], 'wanted': wanted,
@@ -100,33 +109,36 @@ def read_tiled_word(source: Path, out: Path, tag: str, wanted: str, normalize,
     try:
         if not wanted or timeout <= 0:
             raise ValueError('A requested word and positive OCR deadline are required')
-        for index, box in enumerate(tile_boxes(image.width, image.height)):
-            remaining = deadline - clock()
-            if remaining <= 0:
-                raise TimeoutError('Screenshot tile OCR deadline exceeded')
-            variant = 'white-latin-tile-' + str(index)
-            prefix = out / (tag + '-ocr-' + variant)
-            pixels = white_text.crop(box)
-            pixels.resize((pixels.width * 3, pixels.height * 3)).save(prefix.with_suffix('.png'))
-            attempt = {'index': index, 'bounds': list(box), 'image': prefix.with_suffix('.png').name,
-                       'tsv': prefix.with_suffix('.tsv').name, 'status': 'READING'}
-            evidence['tiles'].append(attempt)
-            tile_started = clock()
-            remaining = deadline - tile_started
-            if remaining <= 0:
-                raise TimeoutError('Screenshot tile OCR deadline exceeded')
-            attempt['output'] = command('tesseract', str(prefix.with_suffix('.png')), str(prefix),
-                                        '--psm', '11', '-l', 'eng', 'tsv',
-                                        timeout=min(15, remaining))
-            with prefix.with_suffix('.tsv').open() as stream:
-                matches = observed_matches(csv.DictReader(stream, delimiter='\t'), box, 3,
-                                           image.size, wanted, normalize, variant)
-            attempt.update(status='READ', elapsed_seconds=round(clock() - tile_started, 6),
-                           matches=matches)
-            evidence['matches'].extend(matches)
-            if clock() > deadline:
-                raise TimeoutError('Screenshot tile OCR deadline exceeded')
-            if matches:
+        for mask_name, mask in masks:
+            for index, box in enumerate(tile_boxes(image.width, image.height)):
+                remaining = deadline - clock()
+                if remaining <= 0:
+                    raise TimeoutError('Screenshot tile OCR deadline exceeded')
+                variant = mask_name + '-tile-' + str(index)
+                prefix = out / (tag + '-ocr-' + variant)
+                pixels = mask.crop(box)
+                pixels.resize((pixels.width * 3, pixels.height * 3)).save(prefix.with_suffix('.png'))
+                attempt = {'index': index, 'bounds': list(box), 'image': prefix.with_suffix('.png').name,
+                           'tsv': prefix.with_suffix('.tsv').name, 'status': 'READING'}
+                evidence['tiles'].append(attempt)
+                tile_started = clock()
+                remaining = deadline - tile_started
+                if remaining <= 0:
+                    raise TimeoutError('Screenshot tile OCR deadline exceeded')
+                attempt['output'] = command('tesseract', str(prefix.with_suffix('.png')), str(prefix),
+                                            '--psm', '11', '-l', 'eng', 'tsv',
+                                            timeout=min(15, remaining))
+                with prefix.with_suffix('.tsv').open() as stream:
+                    matches = observed_matches(csv.DictReader(stream, delimiter='\t'), box, 3,
+                                               image.size, wanted, normalize, variant)
+                attempt.update(status='READ', elapsed_seconds=round(clock() - tile_started, 6),
+                               matches=matches)
+                evidence['matches'].extend(matches)
+                if clock() > deadline:
+                    raise TimeoutError('Screenshot tile OCR deadline exceeded')
+                if matches:
+                    break
+            if evidence['matches']:
                 break
         if hashlib.sha256(source.read_bytes()).hexdigest() != before:
             raise RuntimeError('Current screenshot changed during OCR')
