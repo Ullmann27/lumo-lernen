@@ -716,6 +716,19 @@ void main() {
       expect(session.records.last.correct, isFalse);
       expectNoVerdict();
     });
+    testWidgets('„Nochmal zeigen“ gibt es nur einmal (sonst würde nur abgeschrieben)', (tester) async {
+      final session = await sessionAtMemory(tester);
+      final puzzle = session.current as IqMemoryPuzzle;
+      await waitForMemoryShow(tester, puzzle);
+      await tester.tap(find.byKey(const ValueKey('iq-replay')));
+      await tester.pump();
+      await waitForMemoryShow(tester, puzzle);
+      expect(find.text('Jetzt du!'), findsOneWidget);
+      await tester.tap(find.byKey(const ValueKey('iq-replay')), warnIfMissed: false);
+      await tester.pump();
+      expect(find.text('Jetzt du!'), findsOneWidget);
+      expect(find.text('Schau genau hin!'), findsNothing);
+    });
   });
 
   // ------------------------------------------------------ Bedienung, Semantik

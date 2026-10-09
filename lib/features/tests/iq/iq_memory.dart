@@ -33,7 +33,7 @@ class IqMemoryParts {
 
 /// Merk-Blitz zum Spielen: Die Felder leuchten nacheinander auf, danach tippt
 /// das Kind sie in derselben Reihenfolge an. „Nochmal zeigen“ spielt alles
-/// noch einmal ab; die Zeit zählt erst ab dem Ende der letzten Vorführung.
+/// einmal erneut ab; die Zeit zählt erst ab dem Ende der letzten Vorführung.
 class IqMemoryPlay extends StatefulWidget {
   const IqMemoryPlay({
     super.key,
@@ -70,6 +70,11 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
   int? _lit;
   int _litStep = -1;
   int? _flash;
+
+  /// „Nochmal zeigen“ gibt es genau einmal je Rätsel: Ein Kind, das die Reihenfolge beliebig oft
+  /// ansehen darf, schreibt sie nur ab, und der Merk-Blitz würde kein Arbeitsgedächtnis messen.
+  static const int _maxReplays = 1;
+  int _replays = 0;
 
   IqMemoryPuzzle get _puzzle => widget.puzzle;
 
@@ -122,6 +127,8 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
   }
 
   void _replay() {
+    if (_replays >= _maxReplays) return;
+    _replays++;
     _cancelTimers();
     setState(() {
       _phase = IqMemoryPhase.showing;
@@ -328,7 +335,7 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
               outlined: true,
               height: 50,
               fontSize: 15,
-              onPressed: _replay,
+              onPressed: _replays >= _maxReplays ? null : _replay,
             ),
           ),
           SizedBox(
