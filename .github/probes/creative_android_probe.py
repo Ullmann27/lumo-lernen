@@ -428,7 +428,49 @@ def leave(out: Path, tag: str, already_menu: bool = False) -> None:
         raise RuntimeError('Private game process did not stop after returning')
     if 'LumoGameActivity' in base.foreground():
         raise RuntimeError('Game activity is still foreground')
-    capture(out,tag+'-returned-to-app')
+    # Process exit can precede the actual Flutter compositor/rotation handoff.
+    # Reuse the existing read-only two-frame host guard in a unique directory;
+    # its default Kart caller and its evidence names remain unchanged.
+    from types import SimpleNamespace
+    from flutter_return_readiness import observe_flutter_return, wait_flutter_return
+    observations = out / (tag+'-flutter-return')
+    observations.mkdir()
+    journal = out / (tag+'-flutter-return.json')
+
+    def record(evidence):
+        journal.write_text(json.dumps({**evidence,
+            'observation_directory': observations.name}, indent=2)+'\n')
+
+    evidence = {}
+    try:
+        evidence = wait_flutter_return(
+            lambda index, timeout: observe_flutter_return(
+                base, SimpleNamespace(capture=capture), observations, PACKAGE,
+                index, timeout=timeout),
+            record, PACKAGE)
+        final = evidence['observations'][-1]['observed']
+        current = observations / final['capture']['file']
+        raw = current.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != final['surface']['source_sha256']:
+            raise RuntimeError('Confirmed Flutter return screenshot changed before publication')
+        published = out / (tag+'-returned-to-app.png')
+        if published.exists():
+            raise RuntimeError('Flutter return publication requires a fresh evidence path')
+        # Keep the established artifact filename without a third unchecked
+        # screenshot or a second OCR pass over the same accepted pixels.
+        published.write_bytes(raw)
+        evidence['published_capture'] = {
+            'file': published.name, 'source_file': current.relative_to(out).as_posix(),
+            'sha256': final['surface']['source_sha256'],
+            'pixels': final['surface']['pixels'],
+        }
+    except Exception as error:
+        if evidence:
+            evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        if evidence:
+            record(evidence)
 
 
 def prefs(out: Path, tag: str) -> dict:
