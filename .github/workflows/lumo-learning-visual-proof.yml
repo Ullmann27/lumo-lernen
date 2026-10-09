@@ -1,0 +1,92 @@
+name: Lumo Learning & Cards real visual proof
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/lumo-learning-visual-proof.yml"
+      - "lib/widgets/design/lumo_design_system.dart"
+      - "lib/features/home/**"
+      - "lib/features/games/lumo_cards/**"
+      - "test/design/lumo_learning_cards_glass_test.dart"
+      - "test/design/app_tour_capture_test.dart"
+      - "test/lumo_cards_session_visual_test.dart"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  flutter-visual-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.9"
+          channel: stable
+          cache: true
+
+      - name: Exact source and assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-out/learning-visual
+          git rev-parse HEAD | tee ci-out/learning-visual/SOURCE.txt
+          flutter --version | tee ci-out/learning-visual/FLUTTER.txt
+          flutter pub get --enforce-lockfile
+          test -s assets/lumo_design/fox/fox_avatar.png
+          test -s assets/lumo_design/fox/fox_cards_welcome.png
+
+      - name: Hologlass and Cards UI regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded \
+            test/design/lumo_learning_cards_glass_test.dart \
+            2>&1 | tee ci-out/learning-visual/glass-test.log
+          if grep -E 'Some tests failed|Test failed' ci-out/learning-visual/glass-test.log; then exit 1; fi
+
+      - name: Actual Lumo Learning App screens at phone and Fold sizes
+        shell: bash
+        env:
+          LUMO_TOUR_DIR: ci-out/learning-visual/app
+        run: |
+          set -euo pipefail
+          mkdir -p "$LUMO_TOUR_DIR"
+          flutter test --no-pub --reporter=expanded \
+            test/design/app_tour_capture_test.dart \
+            2>&1 | tee ci-out/learning-visual/app-capture.log
+          for device in phone fold; do
+            for area in home learn games tests rewards profile; do
+              test -s "$LUMO_TOUR_DIR/${device}_${area}.png"
+            done
+          done
+
+      - name: Actual Lumo Cards game frames and responsive states
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded \
+            test/lumo_cards_session_visual_test.dart \
+            2>&1 | tee ci-out/learning-visual/cards-capture.log
+          for device in phone fold landscape tablet; do
+            test -s "ci-out/cards-visual/cards-${device}.png"
+            test -s "ci-out/cards-visual/avatar-${device}.png"
+            test -s "ci-out/cards-visual/paused-${device}.png"
+          done
+          test -s ci-out/cards-visual/capture-manifest.json
+
+      - name: Upload actual widget renders and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-learning-cards-screens-${{ github.run_id }}
+          path: |
+            ci-out/learning-visual/
+            ci-out/cards-visual/
+          if-no-files-found: warn
+          retention-days: 14

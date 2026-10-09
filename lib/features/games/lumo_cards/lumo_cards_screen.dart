@@ -348,7 +348,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
-      backgroundColor: const Color(0xFFFFF6EE),
+      backgroundColor: const Color(0xFF03193F),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -442,9 +442,11 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                           isActive: oppActive,
                           compact: true,
                           avatarAssetPath: widget.vsBot
-                              ? null
+                              ? 'assets/lumo_design/fox/fox_avatar.png'
                               : LumoCardsAssets.avatarRedGirl,
-                          ringColor: const Color(0xFF8B5CF6),
+                          ringColor: widget.vsBot
+                              ? const Color(0xFF53DDFD)
+                              : const Color(0xFF8B5CF6),
                         ),
                       ),
                       // ── Gegner-Hand-Fan: verdeckte Karten-Rueckseiten ──
