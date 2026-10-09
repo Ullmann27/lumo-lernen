@@ -3,7 +3,7 @@
 ## Exact sources
 
 - Application base: `ab21b2295ca5307bae5e07c0c8a01c3017ee91a3`, the source of APK 1918 in [PR 240](https://github.com/Ullmann27/lumo-lernen/pull/240).
-- Embedded Godot: [`40c8ec4aad83f73a1bdc1a9feb488a50d17e5e96`](https://github.com/Ullmann27/lumo-godot/commit/40c8ec4aad83f73a1bdc1a9feb488a50d17e5e96), [Godot PR 42](https://github.com/Ullmann27/lumo-godot/pull/42), engine 4.6.3.
+- Embedded Godot: [`d140e5b05cb5afacfe675559b78da4254cb1daed`](https://github.com/Ullmann27/lumo-godot/commit/d140e5b05cb5afacfe675559b78da4254cb1daed), [Godot PR 42](https://github.com/Ullmann27/lumo-godot/pull/42), engine 4.6.3.
 - Version: `0.12.12+1919`. This file describes the candidate and its gates; it does not assert that a build or Android test has already passed.
 
 The source selection was checked live on GitHub. APK run [37961627110](https://github.com/Ullmann27/lumo-lernen/actions/runs/37961627110) succeeded on the application base. Full workflow [37956116041](https://github.com/Ullmann27/lumo-lernen/actions/runs/37956116041) succeeded on `4b2f837a3475c14033806c13f25e1a77b89a307a`, a different source. Those historical results must not be substituted for this candidate's checks.
@@ -35,6 +35,14 @@ The official Godot 4.6.3 release archive was checksum-verified. Actual captures 
 The local Flutter bootstrap was blocked by automatic approval review after unexpected cloud-metadata access. It was stopped and not retried. No local Flutter result is claimed. The safe, existing GitHub-hosted workflow supplies the required RED/GREEN and full integration evidence.
 
 ## Build and acceptance contract
+
+### First full run and correction
+
+The first candidate `f3677fff127d0348418f27c785bb774bacdc066f`, with Godot `40c8ec4`, reached the native regression stage in [run 37972626153](https://github.com/Ullmann27/lumo-lernen/actions/runs/37972626153). Its actual profile RED phase reproduced both expected `student-a`/`student-b` assertion failures; the identical candidate test passed all 3 cases. The six additional profile suites passed 58 tests. The complete Flutter suite passed 836 tests with 4 existing explicit skips. None of these results substitutes for APK installation.
+
+The third existing native probe then found a genuine start-menu safe-area regression: at 1280×720 with vertical system insets, the welcome needed 685 px inside 640 available pixels and its Next action exceeded the safe area by 23 px. The build and Android matrix were skipped, so that run produced no APK.
+
+The updated pin fixes the welcome's actual height budget and moves its direct Play action into the existing header on very short landscape surfaces. The unchanged original five-step assertions now pass locally at 1280×720, 800×480 and 640×320, including parent insets and the transition to real race controls. An additional actual-touch case starts the selected Cup at an explicitly verified physical 640×320. StartHero also passes all 69 real-GL checks. Godot Stage2 now runs the inset-aware menu probe as well. The complete app workflow, all 26 native probes, all profile gates and the Android matrix remain intact and must run again on this new exact source pin.
 
 The existing full runtime workflow retains all 26 native probes and the Android kart API 35/API 36 plus build/puzzle/rhythm/treasure matrix. Added character and aquarium probes use the exact committed Godot pin. Their manifest includes source hashes, actual image dimensions and SHA-256 values for 20 PNGs, and explicitly marks physical hardware as not executed.
 
