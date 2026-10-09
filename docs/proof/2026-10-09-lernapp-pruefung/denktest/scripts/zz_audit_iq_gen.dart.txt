@@ -1,0 +1,416 @@
+// AUDIT A3 (temporär, nicht committen): unabhängige Prüfung des IQ-Rätsel-Generators.
+// Aufruf: dart run -DN=400 test/zz_audit_iq_gen.dart
+import 'dart:io';
+import 'dart:math';
+
+import 'package:lumo_lernen/core/iq/iq_puzzle_generator.dart';
+import 'package:lumo_lernen/domain/iq/iq_puzzle.dart';
+
+const n = int.fromEnvironment('N', defaultValue: 400);
+
+int _turns(IqFigure f) => f.shape.directional ? f.turns % 8 : 0;
+final attrs = <String, int Function(IqFigure)>{
+  'shape': (f) => f.shape.index,
+  'tint': (f) => f.tint.index,
+  'count': (f) => f.count,
+  'turns': _turns,
+  'size': (f) => f.size,
+  'filled': (f) => f.filled ? 1 : 0,
+};
+const modOf = <String, int>{'turns': 8};
+const numericAttr = {'count', 'turns'};
+
+int _m(int v, int? mod) => mod == null ? v : ((v % mod) + mod) % mod;
+
+// ------------------------------------------------------------ Matrix-Löser
+/// Mögliche Werte des fehlenden Felds (letztes Feld) nach allen natürlichen Regelfamilien.
+Map<String, Set<int>> matrixPlausible(List<IqFigure?> cells, int dim) {
+  final res = <String, Set<int>>{};
+  for (final entry in attrs.entries) {
+    final a = entry.key;
+    final mod = modOf[a];
+    final numeric = numericAttr.contains(a);
+    final v = [for (final c in cells) c == null ? null : entry.value(c)];
+    int at(int r, int c) => v[r * dim + c]!;
+    final out = <int>{};
+    final known = [for (final x in v) if (x != null) x];
+    // KONST
+    if (known.toSet().length == 1) out.add(known.first);
+    // Reihe konstant
+    {
+      var ok = true;
+      for (var r = 0; r < dim && ok; r++) {
+        for (var c = 1; c < dim; c++) {
+          if (r == dim - 1 && c == dim - 1) continue;
+          if (at(r, c) != at(r, 0)) ok = false;
+        }
+      }
+      if (ok) out.add(at(dim - 1, 0));
+    }
+    // Spalte konstant
+    {
+      var ok = true;
+      for (var c = 0; c < dim && ok; c++) {
+        for (var r = 1; r < dim; r++) {
+          if (r == dim - 1 && c == dim - 1) continue;
+          if (at(r, c) != at(0, c)) ok = false;
+        }
+      }
+      if (ok) out.add(at(0, dim - 1));
+    }
+    // Latein (jede Reihe/Spalte dieselben dim verschiedenen Werte)
+    {
+      final s = <int>{for (var c = 0; c < dim; c++) at(0, c)};
+      var ok = s.length == dim;
+      for (var r = 0; r < dim - 1 && ok; r++) {
+        final rs = <int>{for (var c = 0; c < dim; c++) at(r, c)};
+        if (rs.length != dim || !rs.containsAll(s)) ok = false;
+      }
+      for (var c = 0; c < dim - 1 && ok; c++) {
+        final cs = <int>{for (var r = 0; r < dim; r++) at(r, c)};
+        if (cs.length != dim || !cs.containsAll(s)) ok = false;
+      }
+      if (ok) {
+        final lastRow = [for (var c = 0; c < dim - 1; c++) at(dim - 1, c)];
+        final lastCol = [for (var r = 0; r < dim - 1; r++) at(r, dim - 1)];
+        if (lastRow.toSet().length == dim - 1 &&
+            lastCol.toSet().length == dim - 1 &&
+            s.containsAll(lastRow) &&
+            s.containsAll(lastCol)) {
+          final p1 = s.difference(lastRow.toSet());
+          final p2 = s.difference(lastCol.toSet());
+          if (p1.length == 1 && p1.first == p2.first) out.add(p1.first);
+        }
+      }
+    }
+    // Reihe-Fortschritt / Spalten-Fortschritt (numerisch)
+    if (numeric) {
+      final d = _m(at(0, 1) - at(0, 0), mod);
+      var ok = true;
+      for (var r = 0; r < dim && ok; r++) {
+        for (var c = 0; c < dim - 1; c++) {
+          if (r == dim - 1 && c == dim - 2) continue;
+          if (_m(at(r, c + 1) - at(r, c), mod) != d) ok = false;
+        }
+      }
+      if (ok) {
+        final p = _m(at(dim - 1, dim - 2) + d, mod);
+        if (a != 'count' || (p >= 1 && p <= 6)) out.add(p);
+      }
+      final e = _m(at(1, 0) - at(0, 0), mod);
+      var ok2 = true;
+      for (var c = 0; c < dim && ok2; c++) {
+        for (var r = 0; r < dim - 1; r++) {
+          if (c == dim - 1 && r == dim - 2) continue;
+          if (_m(at(r + 1, c) - at(r, c), mod) != e) ok2 = false;
+        }
+      }
+      if (ok2) {
+        final p = _m(at(dim - 2, dim - 1) + e, mod);
+        if (a != 'count' || (p >= 1 && p <= 6)) out.add(p);
+      }
+    }
+    res[a] = out;
+  }
+  return res;
+}
+
+// ------------------------------------------------------------ Folgen-Löser
+Map<String, Set<int>> seriesPlausible(List<IqFigure> shown) {
+  final res = <String, Set<int>>{};
+  for (final entry in attrs.entries) {
+    final a = entry.key;
+    final mod = modOf[a];
+    final v = [for (final f in shown) entry.value(f)];
+    final len = v.length;
+    final out = <int>{};
+    if (v.toSet().length == 1) out.add(v.last);
+    for (var k = 2; k <= 4; k++) {
+      if (len < k + 1) continue;
+      var ok = true;
+      for (var i = k; i < len && ok; i++) {
+        if (v[i] != v[i - k]) ok = false;
+      }
+      if (ok) out.add(v[len - k]);
+    }
+    if (numericAttr.contains(a)) {
+      final d = _m(v[1] - v[0], mod);
+      var ok = true;
+      for (var i = 1; i < len && ok; i++) {
+        if (_m(v[i] - v[i - 1], mod) != d) ok = false;
+      }
+      if (ok) {
+        final p = _m(v.last + d, mod);
+        if (a != 'count' || (p >= 1 && p <= 6)) out.add(p);
+      }
+    }
+    res[a] = out;
+  }
+  return res;
+}
+
+bool optionPlausible(IqFigure o, Map<String, Set<int>> plaus) {
+  for (final e in attrs.entries) {
+    if (!plaus[e.key]!.contains(e.value(o))) return false;
+  }
+  return true;
+}
+
+// ------------------------------------------------------------ Zahlen-Löser
+bool _arith(List<int> s) {
+  if (s.length < 3) return false;
+  final d = s[1] - s[0];
+  for (var i = 2; i < s.length; i++) {
+    if (s[i] - s[i - 1] != d) return false;
+  }
+  return true;
+}
+
+Set<String> numberFamilies(List<int> s) {
+  final f = <String>{};
+  if (_arith(s)) f.add('arith');
+  if (s.length >= 4 && s.every((x) => x > 0)) {
+    final r = s[1] / s[0];
+    if (r > 1 && s.indexed.skip(1).every((e) => (s[e.$1] / s[e.$1 - 1] - r).abs() < 1e-9)) f.add('geom');
+  }
+  if (s.length >= 5) {
+    final d = [for (var i = 1; i < s.length; i++) s[i] - s[i - 1]];
+    if (_arith(d) && d[1] - d[0] != 0) f.add('arith2');
+    if (d.length >= 4) {
+      var alt = true;
+      for (var i = 2; i < d.length; i++) {
+        if (d[i] != d[i - 2]) alt = false;
+      }
+      if (alt && d[0] != d[1]) f.add('alt');
+    }
+  }
+  if (s.length >= 5) {
+    var fib = true;
+    for (var i = 2; i < s.length; i++) {
+      if (s[i] != s[i - 1] + s[i - 2]) fib = false;
+    }
+    if (fib) f.add('fib');
+  }
+  if (s.length >= 6) {
+    final ev = [for (var i = 0; i < s.length; i += 2) s[i]];
+    final od = [for (var i = 1; i < s.length; i += 2) s[i]];
+    if (ev.length >= 3 && od.length >= 3 && _arith(ev) && _arith(od) && !_arith(s)) f.add('interleave');
+  }
+  return f;
+}
+
+/// Alle Werte, die die Lücke natürlich füllen, mit den passenden Regelnamen.
+Map<int, Set<String>> numberPlausible(List<int?> nums) {
+  final miss = nums.indexOf(null);
+  final res = <int, Set<String>>{};
+  for (var v = 1; v <= 3000; v++) {
+    final s = [for (var i = 0; i < nums.length; i++) i == miss ? v : nums[i]!];
+    final fam = numberFamilies(s);
+    if (fam.isNotEmpty) res[v] = fam;
+  }
+  return res;
+}
+
+// ------------------------------------------------------------ Zählwerk
+class Counter {
+  final Map<String, int> bad = {};
+  final Map<String, String> repro = {};
+  int total = 0;
+  void note(String key, bool failed, String reproduction) {
+    if (failed) {
+      bad[key] = (bad[key] ?? 0) + 1;
+      repro.putIfAbsent(key, () => reproduction);
+    }
+  }
+}
+
+String sig(IqPuzzle p) => switch (p) {
+      IqMatrixPuzzle m => 'M${m.columns}|${m.cells.map((c) => c?.key ?? '?').join(',')}|${m.options.map((o) => o.key).join(',')}',
+      IqSeriesPuzzle s => 'S|${s.shown.map((c) => c.key).join(',')}|${s.options.map((o) => o.key).join(',')}',
+      IqOddOnePuzzle o => 'O|${o.figures.map((c) => c.key).join(',')}',
+      IqRotationPuzzle r => 'R|${r.target.key}|${r.options.map((o) => o.key).join(';')}',
+      IqNumberPuzzle z => 'N|${z.numbers.join(',')}|${z.options.join(',')}',
+      IqMemoryPuzzle m => 'Y|${m.gridSize}|${m.sequence.join(',')}',
+    };
+
+String describePuzzle(IqPuzzle p) => switch (p) {
+      IqMatrixPuzzle m => 'cells=[${m.cells.map((c) => c?.key ?? '?').join(' ')}] options=[${m.options.map((o) => o.key).join(' ')}] answer=${m.answer}',
+      IqSeriesPuzzle s => 'shown=[${s.shown.map((c) => c.key).join(' ')}] options=[${s.options.map((o) => o.key).join(' ')}] answer=${s.answer}',
+      IqOddOnePuzzle o => 'figures=[${o.figures.map((c) => c.key).join(' ')}] answer=${o.answer}',
+      IqRotationPuzzle r => 'target=${r.target.key} options=[${r.options.map((o) => o.key).join(' | ')}] answer=${r.answer}',
+      IqNumberPuzzle z => 'numbers=${z.numbers} options=${z.options} answer=${z.answer}',
+      IqMemoryPuzzle m => 'grid=${m.gridSize} seq=${m.sequence}',
+    };
+
+void main() {
+  final sb = StringBuffer();
+  void out(String s) {
+    sb.writeln(s);
+    print(s);
+  }
+
+  out('=== AUDIT A3: IQ-Generator, N=$n je Bereich und Stufe ===');
+  final summary = <String, Counter>{};
+  for (final area in IqArea.values) {
+    for (var level = 1; level <= 8; level++) {
+      final c = Counter();
+      summary['${area.name}/L$level'] = c;
+      for (var seed = 0; seed < n; seed++) {
+        final p = IqPuzzleGenerator(Random(seed)).generate(area, level, 'x');
+        c.total++;
+        final r = 'IqPuzzleGenerator(Random($seed)).generate(IqArea.${area.name}, $level, "x") -> ${describePuzzle(p)}';
+        switch (p) {
+          case IqMatrixPuzzle m:
+            final plaus = matrixPlausible(m.cells, m.columns);
+            final correct = m.options[m.answer];
+            c.note('A_loesung_nicht_aus_regel_ableitbar', !optionPlausible(correct, plaus), r);
+            c.note('B_unerklaerte_Eigenschaft', plaus.values.any((s) => s.isEmpty), r);
+            final matching = [for (var i = 0; i < m.options.length; i++) if (optionPlausible(m.options[i], plaus)) i];
+            c.note('C_zweite_Option_erfuellt_Regel', matching.length > 1, '$r matching=$matching');
+            c.note('D_Regel_mehrdeutig(>1 Wert je Eigenschaft)', plaus.values.any((s) => s.length > 1), '$r plaus=$plaus');
+            c.note('E_doppelte_Option', m.options.map((o) => o.key).toSet().length != m.options.length, r);
+          case IqSeriesPuzzle s:
+            final plaus = seriesPlausible(s.shown);
+            final correct = s.options[s.answer];
+            c.note('A_loesung_nicht_aus_regel_ableitbar', !optionPlausible(correct, plaus), r);
+            c.note('B_unerklaerte_Eigenschaft', plaus.values.any((x) => x.isEmpty), r);
+            final matching = [for (var i = 0; i < s.options.length; i++) if (optionPlausible(s.options[i], plaus)) i];
+            c.note('C_zweite_Option_erfuellt_Regel', matching.length > 1, '$r matching=$matching');
+            c.note('D_Regel_mehrdeutig(>1 Wert je Eigenschaft)', plaus.values.any((x) => x.length > 1), '$r plaus=$plaus');
+            c.note('E_doppelte_Option', s.options.map((o) => o.key).toSet().length != s.options.length, r);
+          case IqOddOnePuzzle o:
+            final singled = <int>{};
+            final attrKinds = <String>{};
+            for (final e in attrs.entries) {
+              final vals = o.figures.map(e.value).toList();
+              for (var i = 0; i < vals.length; i++) {
+                final others = [...vals]..removeAt(i);
+                if (others.toSet().length == 1 && others.first != vals[i]) {
+                  singled.add(i);
+                  attrKinds.add(e.key);
+                }
+              }
+            }
+            c.note('A_loesung_nicht_aus_regel_ableitbar', !singled.contains(o.answer), r);
+            c.note('C_zweite_Figur_erfuellt_Regel', singled.length != 1, '$r singled=$singled');
+            // Farbe als einzige Regeleigenschaft?
+            c.note('F_Regel_nur_Farbe', attrKinds.length == 1 && attrKinds.first == 'tint', r);
+          case IqRotationPuzzle rp:
+            var rot = 0, mir = 0, other = 0;
+            final rotIdx = <int>[];
+            for (var i = 0; i < rp.options.length; i++) {
+              final op = rp.options[i];
+              if (op.sameAsRotationOf(rp.target)) {
+                rot++;
+                rotIdx.add(i);
+              } else if (op.sameAsRotationOf(rp.target.mirrored())) {
+                mir++;
+              } else {
+                other++;
+              }
+            }
+            c.note('A_loesung_nicht_aus_regel_ableitbar', !rp.options[rp.answer].sameAsRotationOf(rp.target), r);
+            c.note('C_zweite_Option_erfuellt_Regel', rot != 1, '$r rot=$rotIdx');
+            c.note('E_doppelte_Option', rp.options.map((o) => o.key).toSet().length != rp.options.length, r);
+            c.note('G_Antwort_ungedreht_gleich_Vorlage', rp.options[rp.answer].key == rp.target.key, r);
+            c.note('H_andere_Zellzahl_in_Option', rp.options.any((o) => o.cells.length != rp.target.cells.length), r);
+            c.note('I_kein_Spiegelbild_trotz_Stufe>=3', level >= 3 && mir == 0, r);
+          case IqNumberPuzzle z:
+            final plaus = numberPlausible(z.numbers);
+            final correct = z.options[z.answer];
+            c.note('A_loesung_nicht_aus_regel_ableitbar', !plaus.containsKey(correct), r);
+            final matching = [for (var i = 0; i < z.options.length; i++) if (plaus.containsKey(z.options[i])) i];
+            c.note('C_zweite_Option_erfuellt_Regel', matching.length > 1, '$r matching=$matching plaus=$plaus');
+            c.note('D_Regel_mehrdeutig(>1 Fuellwert)', plaus.length > 1, '$r plaus=$plaus');
+            c.note('E_doppelte_Option', z.options.toSet().length != z.options.length, r);
+            c.note('J_Zahl_nicht_positiv', z.options.any((x) => x <= 0), r);
+          case IqMemoryPuzzle y:
+            c.note('E_doppelte_Felder', y.sequence.toSet().length != y.sequence.length, r);
+            c.note('K_Feld_ausserhalb', y.sequence.any((i) => i < 0 || i >= y.gridSize * y.gridSize), r);
+        }
+      }
+    }
+  }
+  out('\n--- Befunde je Bereich/Stufe (Anzahl von $n; nur Zeilen mit Funden) ---');
+  var anyBad = false;
+  for (final e in summary.entries) {
+    for (final b in e.value.bad.entries) {
+      anyBad = true;
+      out('${e.key.padRight(16)} ${b.key.padRight(46)} ${b.value}/${e.value.total} = ${(100 * b.value / e.value.total).toStringAsFixed(1)} %   Repro: ${e.value.repro[b.key]}');
+    }
+  }
+  if (!anyBad) out('(keine Funde)');
+
+  // ----------------------------------------------- Positions-Bias der Antwort
+  out('\n--- Lage der richtigen Antwort (Gleichverteilung?) ---');
+  for (final area in IqArea.values) {
+    if (area == IqArea.memory) continue;
+    final hist = <int, int>{};
+    var tot = 0;
+    for (var level = 1; level <= 8; level++) {
+      for (var seed = 0; seed < n; seed++) {
+        final p = IqPuzzleGenerator(Random(seed + 100000)).generate(area, level, 'x') as IqChoicePuzzle;
+        hist[p.answer] = (hist[p.answer] ?? 0) + 1;
+        tot++;
+      }
+    }
+    out('${area.name.padRight(10)} ${hist.entries.toList()..sort((a, b) => a.key - b.key)}'
+        .replaceAll('MapEntry(', '')
+        .replaceAll(')', ''));
+  }
+
+  // ----------------------------------------------- Ratestrategien (Test-Wiseness)
+  out('\n--- Ratestrategien ohne Regelwissen (Trefferquote vs. Zufall) ---');
+  for (final area in [IqArea.matrix, IqArea.series, IqArea.numbers]) {
+    for (var level = 1; level <= 8; level++) {
+      double hub = 0, notSeen = 0, mostSeenOverlap = 0, chance = 0, median = 0, hubNum = 0;
+      for (var seed = 0; seed < n; seed++) {
+        final p = IqPuzzleGenerator(Random(seed + 200000)).generate(area, level, 'x');
+        if (p is IqMatrixPuzzle || p is IqSeriesPuzzle) {
+          final List<IqFigure> options = p is IqMatrixPuzzle ? p.options : (p as IqSeriesPuzzle).options;
+          final List<IqFigure> seen = p is IqMatrixPuzzle ? [for (final c in p.cells) if (c != null) c] : (p as IqSeriesPuzzle).shown;
+          final answer = (p as IqChoicePuzzle).answer;
+          chance += 1 / options.length;
+          int ham(IqFigure a, IqFigure b) => attrs.values.where((f) => f(a) != f(b)).length;
+          final sums = [for (final o in options) options.fold<int>(0, (s, q) => s + ham(o, q))];
+          final minSum = sums.reduce(min);
+          final best = [for (var i = 0; i < sums.length; i++) if (sums[i] == minSum) i];
+          if (best.contains(answer)) hub += 1 / best.length;
+          final unseen = [for (var i = 0; i < options.length; i++) if (!seen.any((s) => s.key == options[i].key)) i];
+          if (unseen.isNotEmpty && unseen.contains(answer)) notSeen += 1 / unseen.length;
+          final overlap = [for (final o in options) seen.fold<int>(0, (s, q) => s + attrs.values.where((f) => f(o) == f(q)).length)];
+          final maxO = overlap.reduce(max);
+          final bo = [for (var i = 0; i < overlap.length; i++) if (overlap[i] == maxO) i];
+          if (bo.contains(answer)) mostSeenOverlap += 1 / bo.length;
+        } else if (p is IqNumberPuzzle) {
+          final o = p.options;
+          chance += 1 / o.length;
+          final sorted = [...o]..sort();
+          final med = (sorted[1] + sorted[2]) / 2;
+          final dist = [for (final x in o) (x - med).abs()];
+          final minD = dist.reduce(min);
+          final bm = [for (var i = 0; i < o.length; i++) if (dist[i] == minD) i];
+          if (bm.contains(p.answer)) median += 1 / bm.length;
+          final sums = [for (final x in o) o.fold<double>(0, (s, q) => s + (x - q).abs())];
+          final ms = sums.reduce(min);
+          final bh = [for (var i = 0; i < o.length; i++) if (sums[i] == ms) i];
+          if (bh.contains(p.answer)) hubNum += 1 / bh.length;
+          final seenN = p.numbers.whereType<int>().toSet();
+          final unseen = [for (var i = 0; i < o.length; i++) if (!seenN.contains(o[i])) i];
+          if (unseen.isNotEmpty && unseen.contains(p.answer)) notSeen += 1 / unseen.length;
+        }
+      }
+      String pct(double x) => '${(100 * x / n).toStringAsFixed(0)}%';
+      if (area == IqArea.numbers) {
+        out('${area.name.padRight(8)} L$level  Zufall ${pct(chance)}  Median-Option ${pct(median)}  Mitte-der-Optionen ${pct(hubNum)}  nicht-in-Folge ${pct(notSeen)}');
+      } else {
+        out('${area.name.padRight(8)} L$level  Zufall ${pct(chance)}  Mitte-der-Optionen(Hub) ${pct(hub)}  nicht-im-Raster ${pct(notSeen)}  meiste-Gemeinsamkeit-mit-Raster ${pct(mostSeenOverlap)}');
+      }
+    }
+  }
+  _writeFile('/tmp/claude-0/-home-user-lumo-lernen/4576454b-cf5b-5cb6-b1b8-7f01cfa36b92/scratchpad/audit/a3/gen_audit_log.txt', sb.toString());
+}
+
+void _writeFile(String path, String content) {
+  File(path).writeAsStringSync(content);
+}

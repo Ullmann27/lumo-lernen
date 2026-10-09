@@ -1,0 +1,10 @@
+// AUDIT A3 (temporär): Was liefert der Aufgabenfabrik für den Coach-Start "IQ-Rätsel"?
+import 'package:lumo_lernen/core/school_exercise_generator.dart';
+
+void main() {
+  final f = ExerciseFactory(seed: 5);
+  for (var i = 0; i < 4; i++) {
+    final t = f.next(grade: 2, subject: 'IQ-Rätsel', unit: 'Muster-Matrix');
+    print('Fach=${t.subject} Thema=${t.unit} | ${t.prompt.replaceAll('\n', ' ')} | ${t.choices}');
+  }
+}

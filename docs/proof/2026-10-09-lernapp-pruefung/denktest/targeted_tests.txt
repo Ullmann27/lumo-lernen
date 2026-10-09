@@ -1,0 +1,50 @@
+Resolving dependencies...
+Downloading packages...
+  clock 1.1.2 (1.1.3 available)
+  code_assets 1.2.1 (2.1.0 available)
+  cross_file 0.3.5+5 (0.4.0 available)
+  flutter_lints 4.0.0 (6.0.0 available)
+  google_mlkit_commons 0.8.1 (0.13.0 available)
+  google_mlkit_text_recognition 0.13.1 (0.17.1 available)
+  hooks 2.0.2 (2.2.0 available)
+  image_picker 1.2.3 (1.2.4 available)
+  image_picker_platform_interface 2.11.1 (2.11.2 available)
+  jni_flutter 1.0.3 (1.0.4+1 available)
+  lints 4.0.0 (6.1.0 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  meta 1.18.0 (1.19.0 available)
+  objective_c 9.5.0 (9.6.2 available)
+  record_use 0.6.0 (1.1.1 available)
+  shared_preferences 2.5.5 (2.5.6 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.14 available)
+  vector_math 2.2.0 (2.4.3 available)
+Got dependencies!
+20 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart
+00:00 +0: /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart: Bauteile für Drehen im Kopf alle Bauteile sind zusammenhängend, händig und verschieden
+00:00 +1: /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart: Bauteile für Drehen im Kopf vier Vierteldrehungen ergeben wieder das Teil
+00:00 +2: /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart: Rätselgenerator jede Stufe jedes Bereichs: genau eine richtige, lauter verschiedene Antworten
+00:00 +3: /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart: Rätselgenerator Matrix-Lösung folgt der Regel (Stufe 3: Spalte = Form, Reihe = Farbe)
+00:00 +4: /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart: Rätselgenerator Zahlenrätsel Stufe 4 verdoppelt
+00:00 +5: /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart: Ablauf und Auswertung Startstufe nach Schulstufe, Anpassung nach oben und unten
+00:00 +6: /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart: Ablauf und Auswertung kompletter Durchlauf liefert ehrliche Auswertung und JSON-Rundreise
+00:00 +7: /home/user/aud-a3/test/iq/iq_puzzle_generator_test.dart: Ablauf und Auswertung gleicher Startwert ergibt dieselben Rätsel
+00:01 +8: /home/user/aud-a3/test/cognitive_profile_test.dart: Denkprofil Klasse 1 enthält exakt 50 ausbalancierte Fragen
+00:01 +9: /home/user/aud-a3/test/cognitive_profile_test.dart: Arbeitsgedächtnis Klasse 1 blendet echten Merkstimulus ein
+00:01 +10: /home/user/aud-a3/test/cognitive_profile_test.dart: Scorer Klasse 1 liefert fünf Bereichswerte statt IQ-Zahl
+00:01 +11: /home/user/aud-a3/test/cognitive_profile_test.dart: Denkprofil Klasse 2 enthält exakt 50 ausbalancierte Fragen
+00:01 +12: /home/user/aud-a3/test/cognitive_profile_test.dart: Arbeitsgedächtnis Klasse 2 blendet echten Merkstimulus ein
+00:01 +13: /home/user/aud-a3/test/cognitive_profile_test.dart: Scorer Klasse 2 liefert fünf Bereichswerte statt IQ-Zahl
+00:01 +14: /home/user/aud-a3/test/cognitive_profile_test.dart: Denkprofil Klasse 3 enthält exakt 50 ausbalancierte Fragen
+00:01 +15: /home/user/aud-a3/test/cognitive_profile_test.dart: Arbeitsgedächtnis Klasse 3 blendet echten Merkstimulus ein
+00:01 +16: /home/user/aud-a3/test/cognitive_profile_test.dart: Scorer Klasse 3 liefert fünf Bereichswerte statt IQ-Zahl
+00:01 +17: /home/user/aud-a3/test/cognitive_profile_test.dart: Denkprofil Klasse 4 enthält exakt 50 ausbalancierte Fragen
+00:01 +18: /home/user/aud-a3/test/cognitive_profile_test.dart: Arbeitsgedächtnis Klasse 4 blendet echten Merkstimulus ein
+00:01 +19: /home/user/aud-a3/test/cognitive_profile_test.dart: Scorer Klasse 4 liefert fünf Bereichswerte statt IQ-Zahl
+00:02 +20: /home/user/aud-a3/test/lumo_tests_screen_test.dart: Ergebnisse: letztes Ergebnis und Bestleistung pro Fach
+00:02 +21: /home/user/aud-a3/test/lumo_tests_screen_test.dart: Kategorie und Schwierigkeit starten einen echten Test
+00:04 +22: /home/user/aud-a3/test/lumo_tests_screen_test.dart: Gespeichertes Ergebnis erscheint mit Bestleistung
+00:04 +23: All tests passed!

@@ -1,0 +1,64 @@
+// AUDIT A3 (temporär): Denkprofil-50 (CognitiveProfileGenerator) - Qualität der Aufgaben.
+import 'dart:io';
+
+import 'package:lumo_lernen/core/cognitive_profile_generator.dart';
+import 'package:lumo_lernen/domain/cognitive/cognitive_profile.dart';
+
+void main() {
+  final sb = StringBuffer();
+  void out(String s) {
+    sb.writeln(s);
+    print(s);
+  }
+
+  out('=== AUDIT A3: Denkprofil-50 ===');
+  for (var g = 1; g <= 4; g++) {
+    final a = CognitiveProfileGenerator.forGrade(g);
+    final b = CognitiveProfileGenerator.forGrade(g);
+    final same = [for (var i = 0; i < a.length; i++) a[i].prompt == b[i].prompt && a[i].choices.join('|') == b[i].choices.join('|')].every((x) => x);
+    out('\nKlasse $g: ${a.length} Fragen, zweimal erzeugt identisch: $same (kein Zufall, jede Wiederholung dieselben 50 Fragen)');
+    final ansPos = <int, int>{};
+    var placeholders = 0;
+    for (final q in a) {
+      final idx = q.choices.indexOf(q.correctAnswer);
+      ansPos[idx] = (ansPos[idx] ?? 0) + 1;
+      final hits = q.choices.where((c) => RegExp(r'^—\d+—$').hasMatch(c)).length;
+      if (hits > 0) {
+        placeholders++;
+        out('  PLATZHALTER-ANTWORT: ${q.id}: "${q.prompt}" choices=${q.choices} answer=${q.correctAnswer}');
+      }
+      if (q.choices.toSet().length != q.choices.length) out('  DOPPELTE ANTWORT: ${q.id} ${q.choices}');
+      if (q.choices.where((c) => c == q.correctAnswer).length != 1) out('  RICHTIGE ANTWORT ${q.choices.where((c) => c == q.correctAnswer).length}x in Optionen: ${q.id}');
+    }
+    out('  Lage der richtigen Antwort (Index:Anzahl): ${(ansPos.entries.toList()..sort((x, y) => x.key - y.key)).map((e) => '${e.key}:${e.value}').join(' ')}   Fragen mit Platzhalter-Antwort: $placeholders');
+    // konstante Antwort je Domäne?
+    for (final d in CognitiveDomain.values) {
+      final answers = a.where((q) => q.domain == d).map((q) => q.correctAnswer).toList();
+      final distinct = answers.toSet().length;
+      if (distinct <= 2) out('  ${d.name}: nur $distinct verschiedene richtige Antworten über 10 Fragen: ${answers.toSet()}');
+    }
+    // numerische Optionen: Median-Strategie
+    var numQ = 0;
+    var medianHit = 0.0;
+    for (final q in a) {
+      final nums = q.choices.map(int.tryParse).toList();
+      if (nums.any((x) => x == null)) continue;
+      numQ++;
+      final s = [...nums.cast<int>()]..sort();
+      final med = (s[1] + s[2]) / 2;
+      final dist = [for (final x in nums.cast<int>()) (x - med).abs()];
+      final mn = dist.reduce((x, y) => x < y ? x : y);
+      final best = [for (var i = 0; i < dist.length; i++) if (dist[i] == mn) i];
+      if (best.contains(q.choices.indexOf(q.correctAnswer))) medianHit += 1 / best.length;
+    }
+    out('  Zahlen-Fragen: $numQ, Median-Strategie ohne Rechnen trifft ${(100 * medianHit / numQ).toStringAsFixed(0)} % (Zufall 25 %)');
+  }
+
+  out('\n--- Sprach-Fragen aller Klassen mit Antwortoptionen (zur manuellen Prüfung) ---');
+  for (var g = 1; g <= 4; g++) {
+    for (final q in CognitiveProfileGenerator.forGrade(g).where((q) => q.domain == CognitiveDomain.verbalReasoning)) {
+      out('K$g ${q.id.split('_').last}: ${q.prompt}  -> richtig: ${q.correctAnswer} | Optionen: ${q.choices.join(', ')}');
+    }
+  }
+  File('/tmp/claude-0/-home-user-lumo-lernen/4576454b-cf5b-5cb6-b1b8-7f01cfa36b92/scratchpad/audit/a3/cog_audit_log.txt').writeAsStringSync(sb.toString());
+}

@@ -1,0 +1,313 @@
+// AUDIT A3 (temporär): Sitzungssimulation, Messgenauigkeit, Farbsehen.
+// Aufruf: dart run -DS=3000 test/zz_audit_iq_sim.dart
+import 'dart:io';
+import 'dart:math';
+
+import 'package:lumo_lernen/core/iq/iq_puzzle_generator.dart';
+import 'package:lumo_lernen/core/iq/iq_test_session.dart';
+import 'package:lumo_lernen/domain/iq/iq_puzzle.dart';
+
+import 'zz_audit_iq_gen.dart' show sig, attrs;
+
+const sessions = int.fromEnvironment('S', defaultValue: 3000);
+final sb = StringBuffer();
+void out(String s) {
+  sb.writeln(s);
+  print(s);
+}
+
+double _gauss(Random r) {
+  final u = 1 - r.nextDouble(), v = r.nextDouble();
+  return sqrt(-2 * log(u)) * cos(2 * pi * v);
+}
+
+double pCorrect(IqPuzzle p, double theta) {
+  final g = p is IqChoicePuzzle ? 1 / p.optionCount : 0.03;
+  return g + (1 - g) / (1 + exp(-1.2 * (theta - p.level)));
+}
+
+class Run {
+  Run(this.session, this.points, this.solved, this.areaBest, this.dupAreas, this.levels);
+  final IqTestSession session;
+  final int points;
+  final int solved;
+  final List<int> areaBest;
+  final int dupAreas;
+  final List<int> levels;
+}
+
+Run runSession(int grade, List<double> thetaByArea, Random rnd, int seed) {
+  final s = IqTestSession(grade: grade, seed: seed);
+  final seen = <String>{};
+  var dups = 0;
+  final levels = <int>[];
+  while (!s.finished) {
+    final p = s.current;
+    if (!seen.add(sig(p))) dups++;
+    levels.add(p.level);
+    final theta = thetaByArea[IqArea.values.indexOf(p.area)];
+    final ok = rnd.nextDouble() < pCorrect(p, theta);
+    final resp = ok
+        ? (p is IqChoicePuzzle ? [p.answer] : (p as IqMemoryPuzzle).sequence)
+        : (p is IqChoicePuzzle ? [(p.answer + 1) % p.optionCount] : [-1]);
+    s.answer(resp, durationMs: 1000);
+  }
+  final r = s.result(id: 'x', studentId: 'x', finishedAt: DateTime(2026, 10, 9), durationMs: 1);
+  return Run(s, r.thinkingPoints, r.solved, [for (final a in r.areaScores) a.bestLevel], dups, levels);
+}
+
+double pearson(List<double> x, List<double> y) {
+  final mx = x.reduce((a, b) => a + b) / x.length, my = y.reduce((a, b) => a + b) / y.length;
+  var sxy = 0.0, sxx = 0.0, syy = 0.0;
+  for (var i = 0; i < x.length; i++) {
+    sxy += (x[i] - mx) * (y[i] - my);
+    sxx += (x[i] - mx) * (x[i] - mx);
+    syy += (y[i] - my) * (y[i] - my);
+  }
+  return sxy / sqrt(sxx * syy);
+}
+
+double sd(List<num> v) {
+  final m = v.fold<double>(0, (a, b) => a + b) / v.length;
+  return sqrt(v.fold<double>(0, (a, b) => a + (b - m) * (b - m)) / v.length);
+}
+
+// ---------------------------------------------------------------- Farbsehen
+const base = <IqTint, int>{
+  IqTint.orange: 0xFF8F3D,
+  IqTint.cyan: 0x35D6FF,
+  IqTint.violet: 0x9170FF,
+  IqTint.green: 0x46D36B,
+  IqTint.pink: 0xFF5FA8,
+  IqTint.gold: 0xFFD43B,
+};
+double lin(double c) => c <= 0.04045 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4).toDouble();
+List<double> rgb(int hex) => [for (final s in [16, 8, 0]) lin(((hex >> s) & 255) / 255)];
+const mats = <String, List<List<double>>>{
+  'normal': [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+  'protan': [[0.152286, 1.052583, -0.204868], [0.114503, 0.786281, 0.099216], [-0.003882, -0.048116, 1.051998]],
+  'deutan': [[0.367322, 0.860646, -0.227968], [0.280085, 0.672501, 0.047413], [-0.011820, 0.042940, 0.968881]],
+  'tritan': [[1.255528, -0.076749, -0.178779], [-0.078411, 0.930809, 0.147602], [0.004733, 0.691367, 0.303900]],
+};
+List<double> lab(List<double> c) {
+  final x = 0.4124 * c[0] + 0.3576 * c[1] + 0.1805 * c[2];
+  final y = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  final z = 0.0193 * c[0] + 0.1192 * c[1] + 0.9505 * c[2];
+  double f(double t) => t > 0.008856 ? pow(t, 1 / 3).toDouble() : 7.787 * t + 16 / 116;
+  final fx = f(x / 0.95047), fy = f(y), fz = f(z / 1.08883);
+  return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
+}
+
+List<double> sim(IqTint t, String kind) {
+  final c = rgb(base[t]!);
+  final m = mats[kind]!;
+  return lab([for (var i = 0; i < 3; i++) (m[i][0] * c[0] + m[i][1] * c[1] + m[i][2] * c[2]).clamp(0.0, 1.0)]);
+}
+
+double dE(IqTint a, IqTint b, String kind) {
+  final x = sim(a, kind), y = sim(b, kind);
+  return sqrt(pow(x[0] - y[0], 2) + pow(x[1] - y[1], 2) + pow(x[2] - y[2], 2));
+}
+
+double worstCvd(IqTint a, IqTint b) => ['protan', 'deutan', 'tritan'].map((k) => dE(a, b, k)).reduce(min);
+double worstRG(IqTint a, IqTint b) => ['protan', 'deutan'].map((k) => dE(a, b, k)).reduce(min);
+
+void main() {
+  out('=== AUDIT A3: Sitzungssimulation (S=$sessions je Zelle) ===');
+  // ---- A: Lage der Antwort mit EINEM Zufallsstrom (wie in der App)
+  out('\n--- A: Lage der richtigen Antwort, ein Random-Strom je Bereich (8 Stufen x 1500) ---');
+  for (final area in IqArea.values.where((a) => a != IqArea.memory)) {
+    final g = IqPuzzleGenerator(Random(424242));
+    for (var level = 1; level <= 8; level++) {
+      final hist = <int, int>{};
+      var opts = 0;
+      for (var i = 0; i < 1500; i++) {
+        final p = g.generate(area, level, 'x') as IqChoicePuzzle;
+        hist[p.answer] = (hist[p.answer] ?? 0) + 1;
+        opts = p.optionCount;
+      }
+      final exp = 1500 / opts;
+      final chi = hist.values.fold<double>(0, (s, v) => s + (v - exp) * (v - exp) / exp);
+      final crit = {4: 7.81, 5: 9.49, 6: 11.07}[opts] ?? 99; // p=.05
+      out('${area.name.padRight(10)} L$level  Optionen=$opts  Verteilung=${(hist.entries.toList()..sort((a, b) => a.key - b.key)).map((e) => e.value).toList()}  chi2=${chi.toStringAsFixed(1)} ${chi > crit ? "AUFFÄLLIG" : "ok"}');
+    }
+  }
+
+  // ---- B: Obergrenzen je Klasse (alles richtig) und Untergrenze
+  out('\n--- B: Wertebereich je Klasse (perfekt / alles falsch) ---');
+  for (var grade = 1; grade <= 4; grade++) {
+    final rnd = Random(1);
+    final perfect = runSession(grade, List.filled(6, 99.0), rnd, 7);
+    final worst = runSession(grade, List.filled(6, -99.0), rnd, 7);
+    out('Klasse $grade: Startstufe ${IqTestSession.startLevelFor(grade)}  perfekt: ${perfect.points} Denkpunkte, höchste Stufe je Bereich ${perfect.areaBest}, Stufenfolge im 1. Bereich ${perfect.levels.take(4).toList()}   alles falsch: ${worst.points} Punkte (Stufen ${worst.levels.take(4).toList()}), Bereichsstufen ${worst.areaBest}');
+  }
+
+  // ---- C: Dopplungen in einer Sitzung und Messgenauigkeit
+  out('\n--- C: Dopplungen und Messgenauigkeit (Fähigkeit θ wie Stufe; P(richtig)=Raten+(1-Raten)*Logistik) ---');
+  final rnd = Random(2026);
+  for (var grade = 1; grade <= 4; grade++) {
+    var dupSessions = 0, dupTotal = 0;
+    final byArea = <IqArea, int>{for (final a in IqArea.values) a: 0};
+    final p1 = <double>[], p2 = <double>[];
+    var diffs = <int>[];
+    final areaBest1 = <double>[], areaBest2 = <double>[];
+    var top1Hit = 0, top1N = 0;
+    final labelUniform = <IqArea, int>{for (final a in IqArea.values) a: 0};
+    final mu = grade + 1.0; // typische Fähigkeit ≈ Startstufe
+    for (var i = 0; i < sessions; i++) {
+      final theta = mu + 1.2 * _gauss(rnd);
+      final delta = [for (var k = 0; k < 6; k++) 0.6 * _gauss(rnd)];
+      final th = [for (var k = 0; k < 6; k++) theta + delta[k]];
+      final a = runSession(grade, th, rnd, rnd.nextInt(1 << 30));
+      final b = runSession(grade, th, rnd, rnd.nextInt(1 << 30));
+      if (a.dupAreas > 0) dupSessions++;
+      dupTotal += a.dupAreas;
+      p1.add(a.points.toDouble());
+      p2.add(b.points.toDouble());
+      diffs.add(b.points - a.points);
+      for (var k = 0; k < 6; k++) {
+        areaBest1.add(a.areaBest[k].toDouble());
+        areaBest2.add(b.areaBest[k].toDouble());
+      }
+      // stärkster Bereich laut Test vs. wahrer stärkster Bereich
+      final trueTop = th.indexOf(th.reduce(max));
+      final reported = a.session.result(id: 'x', studentId: 'x', finishedAt: DateTime(2026), durationMs: 1).strongest.area.index;
+      top1N++;
+      if (reported == trueTop) top1Hit++;
+      // Kind ohne Profilunterschied: Ehrentitel-Verteilung
+      final flat = runSession(grade, List.filled(6, theta), rnd, rnd.nextInt(1 << 30));
+      labelUniform[flat.session.result(id: 'x', studentId: 'x', finishedAt: DateTime(2026), durationMs: 1).strongest.area] =
+          labelUniform[flat.session.result(id: 'x', studentId: 'x', finishedAt: DateTime(2026), durationMs: 1).strongest.area]! + 1;
+    }
+    out('Klasse $grade (θ~N(${mu.toStringAsFixed(1)},1.2), Bereichsabweichung SD 0.6):');
+    out('   Sitzungen mit ≥1 identischem Rätsel (gleiche Aufgabe + gleiche Antworten) in derselben Sitzung: ${(100 * dupSessions / sessions).toStringAsFixed(1)} % (identische Paare gesamt/Sitzung ${(dupTotal / sessions).toStringAsFixed(3)})');
+    out('   Denkpunkte: Mittel ${(p1.reduce((a, b) => a + b) / p1.length).toStringAsFixed(1)}, SD ${sd(p1).toStringAsFixed(1)};  Retest-Korrelation (gleiches Kind, 2 Tests) r=${pearson(p1, p2).toStringAsFixed(2)};  SD der Differenz Test2-Test1 = ${sd(diffs).toStringAsFixed(1)} Punkte');
+    out('   Bereichsstufe (Sechseck, nur 4 Rätsel je Bereich): Retest-r=${pearson(areaBest1, areaBest2).toStringAsFixed(2)}');
+    out('   „Stärkster Bereich/Ehrentitel“ trifft den wahren stärksten Bereich in ${(100 * top1Hit / top1N).toStringAsFixed(0)} % (Zufall 17 %)');
+    out('   Kind mit überall gleichem Können, Ehrentitel-Verteilung: ${labelUniform.entries.map((e) => '${e.key.name}:${(100 * e.value / sessions).toStringAsFixed(0)}%').join(' ')}');
+  }
+
+  // ---- D: Farbsehen
+  out('\n--- D: Farbsehen, ΔE76 der sechs Figurenfarben (Basisfarbe; <15 = schwer unterscheidbar, <8 = praktisch gleich) ---');
+  final tints = IqTint.values;
+  out('Luminanz L* (normal): ${tints.map((t) => '${t.name}=${sim(t, 'normal')[0].toStringAsFixed(0)}').join('  ')}');
+  for (var i = 0; i < tints.length; i++) {
+    for (var j = i + 1; j < tints.length; j++) {
+      final a = tints[i], b = tints[j];
+      final vals = ['normal', 'protan', 'deutan', 'tritan'].map((k) => '$k ${dE(a, b, k).toStringAsFixed(0)}').join(' | ');
+      final flag = worstRG(a, b) < 15 ? '  <-- Rot/Grün-Schwäche: SCHWER' : (worstCvd(a, b) < 15 ? '  <-- Blau/Gelb: schwer' : '');
+      out('${a.name.padRight(7)}/${b.name.padRight(7)} $vals$flag');
+    }
+  }
+  // Wie oft ist die einzige Unterscheidung nur die Farbe, und sind diese Farben verwechselbar?
+  out('\n--- D2: Farbe als einziges Unterscheidungsmerkmal (N=$sessions Rätsel je Zelle, Seeds 0..N-1) ---');
+  for (final area in [IqArea.matrix, IqArea.series, IqArea.oddOneOut]) {
+    for (var level = 1; level <= 8; level++) {
+      var withColorOnlyPair = 0, withConfusablePair = 0, ruleColorConfusable = 0, ruleUsesColor = 0, conf30 = 0, rule30 = 0;
+      for (var seed = 0; seed < sessions; seed++) {
+        final p = IqPuzzleGenerator(Random(seed)).generate(area, level, 'x');
+        List<IqFigure> options = const [];
+        IqFigure? correct;
+        List<IqFigure> visible = const [];
+        if (p is IqMatrixPuzzle) {
+          options = p.options;
+          correct = p.options[p.answer];
+          visible = [for (final c in p.cells) if (c != null) c];
+        } else if (p is IqSeriesPuzzle) {
+          options = p.options;
+          correct = p.options[p.answer];
+          visible = p.shown;
+        } else if (p is IqOddOnePuzzle) {
+          options = p.figures;
+          correct = p.figures[p.answer];
+          visible = p.figures;
+        }
+        var colorOnly = false, confusable = false, c30 = false;
+        for (final o in options) {
+          if (identical(o, correct)) continue;
+          if (o.key == correct!.key) continue;
+          final diffAttrs = attrs.entries.where((e) => e.value(o) != e.value(correct!)).map((e) => e.key).toList();
+          if (diffAttrs.length == 1 && diffAttrs.first == 'tint') {
+            colorOnly = true;
+            if (worstRG(o.tint, correct.tint) < 15) confusable = true;
+            if (worstRG(o.tint, correct.tint) < 30) c30 = true;
+          }
+        }
+        if (colorOnly) withColorOnlyPair++;
+        if (confusable) withConfusablePair++;
+        if (c30) conf30++;
+        // Regel hängt an Farbe: es kommen mehrere Farben im sichtbaren Teil vor
+        final usedTints = visible.map((f) => f.tint).toSet().toList();
+        if (usedTints.length > 1) {
+          ruleUsesColor++;
+          var minDe = 999.0;
+          for (var i = 0; i < usedTints.length; i++) {
+            for (var j = i + 1; j < usedTints.length; j++) {
+              minDe = min(minDe, worstRG(usedTints[i], usedTints[j]));
+            }
+          }
+          if (minDe < 15) ruleColorConfusable++;
+          if (minDe < 30) rule30++;
+        }
+      }
+      String pct(int x) => '${(100 * x / sessions).toStringAsFixed(0)}%';
+      out('${area.name.padRight(10)} L$level  Richtige-vs-Falsche nur durch Farbe verschieden: ${pct(withColorOnlyPair).padLeft(4)}  davon Rot/Grün-verwechselbar (ΔE<15): ${pct(withConfusablePair).padLeft(4)}   Rätsel mit ≥2 Farben im Bild: ${pct(ruleUsesColor).padLeft(4)}, darunter Paar ΔE<15: ${pct(ruleColorConfusable).padLeft(4)} / ΔE<30: ${pct(rule30).padLeft(4)};  Farb-nur-Falschoption ΔE<30: ${pct(conf30).padLeft(4)}');
+    }
+  }
+
+  // ---- E: gleiche Aufgabe (ohne Antwortoptionen) in einer Sitzung, je Fähigkeit
+  out('\n--- E: gleiche Aufgabenstellung (gleiches Bild, evtl. andere Antwortkarten) mehrfach in einer Sitzung ---');
+  String stem(IqPuzzle p) => switch (p) {
+        IqMatrixPuzzle m => 'M${m.columns}|${m.cells.map((c) => c?.key ?? '?').join(',')}',
+        IqSeriesPuzzle s => 'S|${s.shown.map((c) => c.key).join(',')}',
+        IqOddOnePuzzle o => 'O|${o.figures.map((c) => c.key).join(',')}',
+        IqRotationPuzzle r => 'R|${r.target.key}',
+        IqNumberPuzzle z => 'N|${z.numbers.join(',')}',
+        IqMemoryPuzzle y => 'Y|${y.gridSize}|${y.sequence.join(',')}',
+      };
+  for (final grade in [1, 2, 3, 4]) {
+    final line = StringBuffer('Klasse $grade: ');
+    for (final theta in [0.0, 2.0, 4.0, 6.0]) {
+      var dup = 0;
+      final per = <IqArea, int>{for (final a in IqArea.values) a: 0};
+      for (var i = 0; i < sessions; i++) {
+        final s = IqTestSession(grade: grade, seed: rnd.nextInt(1 << 30));
+        final seen = <String>{};
+        var d = false;
+        while (!s.finished) {
+          final p = s.current;
+          if (!seen.add(stem(p))) {
+            d = true;
+            per[p.area] = per[p.area]! + 1;
+          }
+          final ok = rnd.nextDouble() < pCorrect(p, theta);
+          s.answer(ok ? (p is IqChoicePuzzle ? [p.answer] : (p as IqMemoryPuzzle).sequence) : [-1], durationMs: 1);
+        }
+        if (d) dup++;
+      }
+      line.write('θ=$theta: ${(100 * dup / sessions).toStringAsFixed(1)} % [${per.entries.where((e) => e.value > 0).map((e) => '${e.key.name}:${e.value}').join(' ')}]   ');
+    }
+    out(line.toString());
+  }
+
+  // ---- F: Kind mit überall gleichem Können: wer bekommt „Hier hilft Üben“?
+  out('\n--- F: Kind mit überall gleichem wahren Können: Bereich „Hier hilft Üben“ und mittlere Bereichsstufe ---');
+  for (final grade in [2, 4]) {
+    final practice = <IqArea, int>{for (final a in IqArea.values) a: 0};
+    final meanBest = List<double>.filled(6, 0);
+    const reps = 3000;
+    for (var i = 0; i < reps; i++) {
+      final theta = grade + 1.0 + 1.0 * _gauss(rnd);
+      final r = runSession(grade, List.filled(6, theta), rnd, rnd.nextInt(1 << 30));
+      final res = r.session.result(id: 'x', studentId: 'x', finishedAt: DateTime(2026), durationMs: 1);
+      practice[res.practice.area] = practice[res.practice.area]! + 1;
+      for (var k = 0; k < 6; k++) {
+        meanBest[k] += r.areaBest[k] / reps;
+      }
+    }
+    out('Klasse $grade: mittlere Bereichsstufe ${[for (var k = 0; k < 6; k++) '${IqArea.values[k].name}=${meanBest[k].toStringAsFixed(2)}'].join(' ')}');
+    out('          „Hier hilft Üben“-Verteilung: ${practice.entries.map((e) => '${e.key.name}:${(100 * e.value / reps).toStringAsFixed(0)}%').join(' ')}');
+  }
+
+  File('/tmp/claude-0/-home-user-lumo-lernen/4576454b-cf5b-5cb6-b1b8-7f01cfa36b92/scratchpad/audit/a3/sim_audit_log.txt').writeAsStringSync(sb.toString());
+}

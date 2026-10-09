@@ -1,0 +1,28 @@
+// AUDIT A3 (temporär): Stufe 8 "Was passt nicht?" - Größe vs. Anzahl (Würfelaugen-Anordnung)
+import 'dart:math';
+import 'package:lumo_lernen/core/iq/iq_puzzle_generator.dart';
+import 'package:lumo_lernen/domain/iq/iq_puzzle.dart';
+
+// Konstanten aus lib/features/tests/iq/iq_figure_painter.dart:121-140
+const dice = {1: .46, 2: .25, 3: .165, 4: .20, 5: .165, 6: .13};
+const k = [.50, .74, .94];
+double elem(IqFigure f) => dice[f.count]! * k[f.size];
+
+void main() {
+  var contradict = 0, total = 0, example = '';
+  for (var seed = 0; seed < 2000; seed++) {
+    final p = IqPuzzleGenerator(Random(seed)).generate(IqArea.oddOneOut, 8, 'x') as IqOddOnePuzzle;
+    total++;
+    final odd = p.figures[p.answer];
+    final others = [for (var i = 0; i < p.figures.length; i++) if (i != p.answer) p.figures[i]];
+    final oe = elem(odd);
+    final big = odd.size == 2;
+    final ok = big ? others.every((o) => oe > elem(o)) : others.every((o) => oe < elem(o));
+    if (!ok) {
+      contradict++;
+      if (example.isEmpty) example = 'seed=$seed odd=${odd.key} elem=${oe.toStringAsFixed(3)} others=${others.map((o) => '${o.key} elem=${elem(o).toStringAsFixed(3)}').join(' ; ')}';
+    }
+  }
+  print('Stufe 8: Bei $contradict von $total Rätseln (${(100 * contradict / total).toStringAsFixed(0)} %) widerspricht die Elementgröße der Regel "Größe" (Einzelform der "kleinen" Figur größer als Einzelform der "großen" Figur bzw. umgekehrt).');
+  print('Beispiel: $example');
+}

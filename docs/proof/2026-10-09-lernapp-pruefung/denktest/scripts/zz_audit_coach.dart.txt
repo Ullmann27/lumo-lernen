@@ -1,0 +1,58 @@
+// AUDIT A3 (temporär): Wirkung der IQ-Rätsel-Protokolleinträge auf Lernanalyse / Lumo-Coach.
+import 'dart:math';
+import 'package:lumo_lernen/core/iq/iq_test_session.dart';
+import 'package:lumo_lernen/domain/iq/iq_puzzle.dart';
+import 'package:lumo_lernen/domain/school/attempt.dart';
+import 'package:lumo_lernen/domain/school/learning_analysis.dart';
+import 'zz_audit_iq_sim.dart' show pCorrect;
+
+void main() {
+  final rnd = Random(77);
+  for (final tests in [1, 2, 3]) {
+    for (final grade in [2, 4]) {
+      var weakKids = 0, coachHelp = 0;
+      final weakNames = <String, int>{};
+      const kids = 1000;
+      String? example;
+      for (var k = 0; k < kids; k++) {
+        final theta = grade + 1.0 + 1.0 * (rnd.nextDouble() * 2 - 1) * 1.5;
+        final attempts = <Attempt>[];
+        for (var t = 0; t < tests; t++) {
+          final s = IqTestSession(grade: grade, seed: rnd.nextInt(1 << 30));
+          var n = 0;
+          while (!s.finished) {
+            final p = s.current;
+            final ok = rnd.nextDouble() < pCorrect(p, theta);
+            attempts.add(Attempt(
+              id: 'a$k-$t-$n',
+              studentId: 'x',
+              subject: 'IQ-Rätsel',
+              unit: p.area.title,
+              competency: p.area.skill,
+              correct: ok,
+              at: DateTime(2026, 10, 9 + t, 10, n),
+              durationMs: 9000,
+            ));
+            s.answer(ok ? (p is IqChoicePuzzle ? [p.answer] : (p as IqMemoryPuzzle).sequence) : [-1], durationMs: 9000);
+            n++;
+          }
+        }
+        final an = LearningAnalysis.analyze(attempts, now: DateTime(2026, 10, 20));
+        if (an.weak.isNotEmpty) {
+          weakKids++;
+          for (final w in an.weak) {
+            weakNames[w.competency] = (weakNames[w.competency] ?? 0) + 1;
+          }
+        }
+        final c = an.coachMessage;
+        if (c != null && c.isHelp) {
+          coachHelp++;
+          example ??= '${c.text}  [Start: Fach=${c.subject}, Thema=${c.unit}]';
+        }
+      }
+      print('Klasse $grade, $tests Test(s): Kinder mit mind. einer als „braucht Hilfe“ markierten IQ-Kompetenz: ${(100 * weakKids / kids).toStringAsFixed(0)} %; Coach-Karte mit Hilfsangebot: ${(100 * coachHelp / kids).toStringAsFixed(0)} %');
+      if (weakNames.isNotEmpty) print('   markiert: $weakNames');
+      if (example != null) print('   Beispieltext Coach: $example');
+    }
+  }
+}

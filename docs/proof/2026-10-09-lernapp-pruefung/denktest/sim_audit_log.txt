@@ -1,0 +1,131 @@
+=== AUDIT A3: Sitzungssimulation (S=1500 je Zelle) ===
+
+--- A: Lage der richtigen Antwort, ein Random-Strom je Bereich (8 Stufen x 1500) ---
+matrix     L1  Optionen=4  Verteilung=[384, 387, 367, 362]  chi2=1.2 ok
+matrix     L2  Optionen=4  Verteilung=[377, 368, 378, 377]  chi2=0.2 ok
+matrix     L3  Optionen=4  Verteilung=[390, 353, 378, 379]  chi2=2.0 ok
+matrix     L4  Optionen=4  Verteilung=[357, 359, 397, 387]  chi2=3.2 ok
+matrix     L5  Optionen=6  Verteilung=[243, 248, 256, 232, 266, 255]  chi2=2.8 ok
+matrix     L6  Optionen=6  Verteilung=[267, 282, 241, 245, 238, 227]  chi2=8.4 ok
+matrix     L7  Optionen=6  Verteilung=[251, 263, 239, 277, 231, 239]  chi2=6.0 ok
+matrix     L8  Optionen=6  Verteilung=[251, 227, 248, 267, 238, 269]  chi2=5.3 ok
+series     L1  Optionen=4  Verteilung=[391, 346, 387, 376]  chi2=3.3 ok
+series     L2  Optionen=4  Verteilung=[369, 366, 368, 397]  chi2=1.7 ok
+series     L3  Optionen=4  Verteilung=[370, 395, 362, 373]  chi2=1.6 ok
+series     L4  Optionen=4  Verteilung=[379, 380, 377, 364]  chi2=0.4 ok
+series     L5  Optionen=5  Verteilung=[294, 302, 290, 315, 299]  chi2=1.2 ok
+series     L6  Optionen=5  Verteilung=[285, 291, 310, 296, 318]  chi2=2.5 ok
+series     L7  Optionen=5  Verteilung=[303, 272, 308, 316, 301]  chi2=3.7 ok
+series     L8  Optionen=5  Verteilung=[274, 313, 294, 307, 312]  chi2=3.6 ok
+oddOneOut  L1  Optionen=4  Verteilung=[379, 355, 388, 378]  chi2=1.6 ok
+oddOneOut  L2  Optionen=4  Verteilung=[337, 379, 379, 405]  chi2=6.3 ok
+oddOneOut  L3  Optionen=4  Verteilung=[373, 388, 361, 378]  chi2=1.0 ok
+oddOneOut  L4  Optionen=5  Verteilung=[313, 311, 300, 290, 286]  chi2=2.0 ok
+oddOneOut  L5  Optionen=5  Verteilung=[265, 303, 321, 312, 299]  chi2=6.1 ok
+oddOneOut  L6  Optionen=5  Verteilung=[280, 276, 306, 309, 329]  chi2=6.4 ok
+oddOneOut  L7  Optionen=5  Verteilung=[310, 298, 302, 297, 293]  chi2=0.6 ok
+oddOneOut  L8  Optionen=5  Verteilung=[317, 304, 291, 281, 307]  chi2=2.7 ok
+rotation   L1  Optionen=4  Verteilung=[369, 384, 372, 375]  chi2=0.3 ok
+rotation   L2  Optionen=4  Verteilung=[387, 390, 384, 339]  chi2=4.7 ok
+rotation   L3  Optionen=4  Verteilung=[393, 331, 418, 358]  chi2=11.7 AUFFÄLLIG
+rotation   L4  Optionen=4  Verteilung=[384, 367, 385, 364]  chi2=1.0 ok
+rotation   L5  Optionen=4  Verteilung=[353, 389, 354, 404]  chi2=5.2 ok
+rotation   L6  Optionen=4  Verteilung=[370, 375, 381, 374]  chi2=0.2 ok
+rotation   L7  Optionen=5  Verteilung=[289, 326, 293, 301, 291]  chi2=3.1 ok
+rotation   L8  Optionen=5  Verteilung=[300, 294, 313, 307, 286]  chi2=1.5 ok
+numbers    L1  Optionen=4  Verteilung=[367, 369, 383, 381]  chi2=0.5 ok
+numbers    L2  Optionen=4  Verteilung=[394, 365, 384, 357]  chi2=2.3 ok
+numbers    L3  Optionen=4  Verteilung=[362, 379, 386, 373]  chi2=0.8 ok
+numbers    L4  Optionen=4  Verteilung=[353, 384, 401, 362]  chi2=3.8 ok
+numbers    L5  Optionen=4  Verteilung=[379, 354, 392, 375]  chi2=2.0 ok
+numbers    L6  Optionen=4  Verteilung=[369, 378, 361, 392]  chi2=1.4 ok
+numbers    L7  Optionen=4  Verteilung=[374, 365, 367, 394]  chi2=1.4 ok
+numbers    L8  Optionen=4  Verteilung=[384, 352, 387, 377]  chi2=2.0 ok
+
+--- B: Wertebereich je Klasse (perfekt / alles falsch) ---
+Klasse 1: Startstufe 2  perfekt: 84 Denkpunkte, höchste Stufe je Bereich [5, 5, 5, 5, 5, 5], Stufenfolge im 1. Bereich [2, 3, 4, 5]   alles falsch: 4 Punkte (Stufen [2, 1, 1, 2]), Bereichsstufen [1, 2, 0, 1, 0, 0]
+Klasse 2: Startstufe 3  perfekt: 108 Denkpunkte, höchste Stufe je Bereich [6, 6, 6, 6, 6, 6], Stufenfolge im 1. Bereich [3, 4, 5, 6]   alles falsch: 5 Punkte (Stufen [3, 2, 1, 2]), Bereichsstufen [1, 3, 0, 1, 0, 0]
+Klasse 3: Startstufe 4  perfekt: 132 Denkpunkte, höchste Stufe je Bereich [7, 7, 7, 7, 7, 7], Stufenfolge im 1. Bereich [4, 5, 6, 7]   alles falsch: 7 Punkte (Stufen [4, 3, 2, 3]), Bereichsstufen [2, 4, 0, 1, 0, 0]
+Klasse 4: Startstufe 5  perfekt: 156 Denkpunkte, höchste Stufe je Bereich [8, 8, 8, 8, 8, 8], Stufenfolge im 1. Bereich [5, 6, 7, 8]   alles falsch: 10 Punkte (Stufen [5, 4, 3, 4]), Bereichsstufen [3, 5, 0, 2, 0, 0]
+
+--- C: Dopplungen und Messgenauigkeit (Fähigkeit θ wie Stufe; P(richtig)=Raten+(1-Raten)*Logistik) ---
+Klasse 1 (θ~N(2.0,1.2), Bereichsabweichung SD 0.6):
+   Sitzungen mit ≥1 identischem Rätsel (gleiche Aufgabe + gleiche Antworten) in derselben Sitzung: 1.5 % (identische Paare gesamt/Sitzung 0.015)
+   Denkpunkte: Mittel 29.5, SD 13.4;  Retest-Korrelation (gleiches Kind, 2 Tests) r=0.80;  SD der Differenz Test2-Test1 = 8.5 Punkte
+   Bereichsstufe (Sechseck, nur 4 Rätsel je Bereich): Retest-r=0.43
+   „Stärkster Bereich/Ehrentitel“ trifft den wahren stärksten Bereich in 30 % (Zufall 17 %)
+   Kind mit überall gleichem Können, Ehrentitel-Verteilung: matrix:31% series:23% oddOneOut:16% rotation:15% numbers:12% memory:3%
+Klasse 2 (θ~N(3.0,1.2), Bereichsabweichung SD 0.6):
+   Sitzungen mit ≥1 identischem Rätsel (gleiche Aufgabe + gleiche Antworten) in derselben Sitzung: 0.7 % (identische Paare gesamt/Sitzung 0.007)
+   Denkpunkte: Mittel 41.8, SD 17.1;  Retest-Korrelation (gleiches Kind, 2 Tests) r=0.80;  SD der Differenz Test2-Test1 = 10.7 Punkte
+   Bereichsstufe (Sechseck, nur 4 Rätsel je Bereich): Retest-r=0.45
+   „Stärkster Bereich/Ehrentitel“ trifft den wahren stärksten Bereich in 31 % (Zufall 17 %)
+   Kind mit überall gleichem Können, Ehrentitel-Verteilung: matrix:31% series:21% oddOneOut:17% rotation:15% numbers:12% memory:4%
+Klasse 3 (θ~N(4.0,1.2), Bereichsabweichung SD 0.6):
+   Sitzungen mit ≥1 identischem Rätsel (gleiche Aufgabe + gleiche Antworten) in derselben Sitzung: 0.5 % (identische Paare gesamt/Sitzung 0.005)
+   Denkpunkte: Mittel 54.0, SD 20.8;  Retest-Korrelation (gleiches Kind, 2 Tests) r=0.82;  SD der Differenz Test2-Test1 = 12.5 Punkte
+   Bereichsstufe (Sechseck, nur 4 Rätsel je Bereich): Retest-r=0.46
+   „Stärkster Bereich/Ehrentitel“ trifft den wahren stärksten Bereich in 30 % (Zufall 17 %)
+   Kind mit überall gleichem Können, Ehrentitel-Verteilung: matrix:25% series:23% oddOneOut:18% rotation:17% numbers:13% memory:4%
+Klasse 4 (θ~N(5.0,1.2), Bereichsabweichung SD 0.6):
+   Sitzungen mit ≥1 identischem Rätsel (gleiche Aufgabe + gleiche Antworten) in derselben Sitzung: 0.1 % (identische Paare gesamt/Sitzung 0.001)
+   Denkpunkte: Mittel 67.4, SD 23.8;  Retest-Korrelation (gleiches Kind, 2 Tests) r=0.82;  SD der Differenz Test2-Test1 = 14.2 Punkte
+   Bereichsstufe (Sechseck, nur 4 Rätsel je Bereich): Retest-r=0.44
+   „Stärkster Bereich/Ehrentitel“ trifft den wahren stärksten Bereich in 30 % (Zufall 17 %)
+   Kind mit überall gleichem Können, Ehrentitel-Verteilung: matrix:27% series:21% oddOneOut:18% rotation:16% numbers:14% memory:3%
+
+--- D: Farbsehen, ΔE76 der sechs Figurenfarben (Basisfarbe; <15 = schwer unterscheidbar, <8 = praktisch gleich) ---
+Luminanz L* (normal): orange=70  cyan=80  violet=57  green=75  pink=64  gold=86
+orange /cyan    normal 111 | protan 83 | deutan 98 | tritan 104
+orange /violet  normal 128 | protan 123 | deutan 131 | tritan 69
+orange /green   normal 98 | protan 15 | deutan 26 | tritan 102  <-- Rot/Grün-Schwäche: SCHWER
+orange /pink    normal 73 | protan 76 | deutan 62 | tritan 18
+orange /gold    normal 42 | protan 32 | deutan 19 | tritan 37
+cyan   /violet  normal 84 | protan 49 | deutan 39 | tritan 48
+cyan   /green   normal 79 | protan 75 | deutan 72 | tritan 13  <-- Blau/Gelb: schwer
+cyan   /pink    normal 98 | protan 28 | deutan 37 | tritan 117
+cyan   /gold    normal 111 | protan 107 | deutan 110 | tritan 70
+violet /green   normal 152 | protan 118 | deutan 106 | tritan 50
+violet /pink    normal 64 | protan 47 | deutan 70 | tritan 78
+violet /gold    normal 153 | protan 150 | deutan 146 | tritan 48
+green  /pink    normal 136 | protan 73 | deutan 36 | tritan 117
+green  /gold    normal 71 | protan 32 | deutan 41 | tritan 69
+pink   /gold    normal 108 | protan 105 | deutan 76 | tritan 53
+
+--- D2: Farbe als einziges Unterscheidungsmerkmal (N=1500 Rätsel je Zelle, Seeds 0..N-1) ---
+matrix     L1  Richtige-vs-Falsche nur durch Farbe verschieden: 100%  davon Rot/Grün-verwechselbar (ΔE<15):  12%   Rätsel mit ≥2 Farben im Bild:   0%, darunter Paar ΔE<15:   0% / ΔE<30:   0%;  Farb-nur-Falschoption ΔE<30:  22%
+matrix     L2  Richtige-vs-Falsche nur durch Farbe verschieden:  95%  davon Rot/Grün-verwechselbar (ΔE<15):  11%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:   8% / ΔE<30:  16%;  Farb-nur-Falschoption ΔE<30:  21%
+matrix     L3  Richtige-vs-Falsche nur durch Farbe verschieden:  90%  davon Rot/Grün-verwechselbar (ΔE<15):   9%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:  19%
+matrix     L4  Richtige-vs-Falsche nur durch Farbe verschieden:  61%  davon Rot/Grün-verwechselbar (ΔE<15):   5%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:  10%
+matrix     L5  Richtige-vs-Falsche nur durch Farbe verschieden:  81%  davon Rot/Grün-verwechselbar (ΔE<15):   8%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:  17%
+matrix     L6  Richtige-vs-Falsche nur durch Farbe verschieden: 100%  davon Rot/Grün-verwechselbar (ΔE<15):  14%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:  30%
+matrix     L7  Richtige-vs-Falsche nur durch Farbe verschieden: 100%  davon Rot/Grün-verwechselbar (ΔE<15):  16%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:  31%
+matrix     L8  Richtige-vs-Falsche nur durch Farbe verschieden:  78%  davon Rot/Grün-verwechselbar (ΔE<15):   8%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:  15%
+series     L1  Richtige-vs-Falsche nur durch Farbe verschieden: 100%  davon Rot/Grün-verwechselbar (ΔE<15):  11%   Rätsel mit ≥2 Farben im Bild:   0%, darunter Paar ΔE<15:   0% / ΔE<30:   0%;  Farb-nur-Falschoption ΔE<30:  22%
+series     L2  Richtige-vs-Falsche nur durch Farbe verschieden: 100%  davon Rot/Grün-verwechselbar (ΔE<15):  21%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:  50%
+series     L3  Richtige-vs-Falsche nur durch Farbe verschieden:  87%  davon Rot/Grün-verwechselbar (ΔE<15):   8%   Rätsel mit ≥2 Farben im Bild:   0%, darunter Paar ΔE<15:   0% / ΔE<30:   0%;  Farb-nur-Falschoption ΔE<30:  17%
+series     L4  Richtige-vs-Falsche nur durch Farbe verschieden:  57%  davon Rot/Grün-verwechselbar (ΔE<15):   4%   Rätsel mit ≥2 Farben im Bild:   0%, darunter Paar ΔE<15:   0% / ΔE<30:   0%;  Farb-nur-Falschoption ΔE<30:  10%
+series     L5  Richtige-vs-Falsche nur durch Farbe verschieden:  98%  davon Rot/Grün-verwechselbar (ΔE<15):  11%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:   8% / ΔE<30:  16%;  Farb-nur-Falschoption ΔE<30:  23%
+series     L6  Richtige-vs-Falsche nur durch Farbe verschieden:  44%  davon Rot/Grün-verwechselbar (ΔE<15):   4%   Rätsel mit ≥2 Farben im Bild:   0%, darunter Paar ΔE<15:   0% / ΔE<30:   0%;  Farb-nur-Falschoption ΔE<30:   8%
+series     L7  Richtige-vs-Falsche nur durch Farbe verschieden:  82%  davon Rot/Grün-verwechselbar (ΔE<15):   7%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:  16%
+series     L8  Richtige-vs-Falsche nur durch Farbe verschieden:  46%  davon Rot/Grün-verwechselbar (ΔE<15):   4%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  23% / ΔE<30:  48%;  Farb-nur-Falschoption ΔE<30:   7%
+oddOneOut  L1  Richtige-vs-Falsche nur durch Farbe verschieden:   0%  davon Rot/Grün-verwechselbar (ΔE<15):   0%   Rätsel mit ≥2 Farben im Bild:   0%, darunter Paar ΔE<15:   0% / ΔE<30:   0%;  Farb-nur-Falschoption ΔE<30:   0%
+oddOneOut  L2  Richtige-vs-Falsche nur durch Farbe verschieden: 100%  davon Rot/Grün-verwechselbar (ΔE<15):   7%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:   7% / ΔE<30:  20%;  Farb-nur-Falschoption ΔE<30:  20%
+oddOneOut  L3  Richtige-vs-Falsche nur durch Farbe verschieden:   0%  davon Rot/Grün-verwechselbar (ΔE<15):   0%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  41% / ΔE<30:  88%;  Farb-nur-Falschoption ΔE<30:   0%
+oddOneOut  L4  Richtige-vs-Falsche nur durch Farbe verschieden:   0%  davon Rot/Grün-verwechselbar (ΔE<15):   0%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:   7% / ΔE<30:  20%;  Farb-nur-Falschoption ΔE<30:   0%
+oddOneOut  L5  Richtige-vs-Falsche nur durch Farbe verschieden:   0%  davon Rot/Grün-verwechselbar (ΔE<15):   0%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  67% / ΔE<30: 100%;  Farb-nur-Falschoption ΔE<30:   0%
+oddOneOut  L6  Richtige-vs-Falsche nur durch Farbe verschieden:   0%  davon Rot/Grün-verwechselbar (ΔE<15):   0%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  67% / ΔE<30: 100%;  Farb-nur-Falschoption ΔE<30:   0%
+oddOneOut  L7  Richtige-vs-Falsche nur durch Farbe verschieden:   0%  davon Rot/Grün-verwechselbar (ΔE<15):   0%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  67% / ΔE<30: 100%;  Farb-nur-Falschoption ΔE<30:   0%
+oddOneOut  L8  Richtige-vs-Falsche nur durch Farbe verschieden:   0%  davon Rot/Grün-verwechselbar (ΔE<15):   0%   Rätsel mit ≥2 Farben im Bild: 100%, darunter Paar ΔE<15:  67% / ΔE<30: 100%;  Farb-nur-Falschoption ΔE<30:   0%
+
+--- E: gleiche Aufgabenstellung (gleiches Bild, evtl. andere Antwortkarten) mehrfach in einer Sitzung ---
+Klasse 1: θ=0.0: 82.3 % [matrix:8 series:13 oddOneOut:2 rotation:1449 numbers:377 memory:43]   θ=2.0: 77.7 % [matrix:2 series:23 oddOneOut:2 rotation:1425 numbers:173 memory:10]   θ=4.0: 65.6 % [matrix:1 series:21 rotation:1141 numbers:81 memory:2]   θ=6.0: 53.3 % [series:7 rotation:864 numbers:6]   
+Klasse 2: θ=0.0: 79.4 % [matrix:4 series:19 oddOneOut:1 rotation:1462 numbers:225 memory:17]   θ=2.0: 76.5 % [matrix:3 series:32 rotation:1357 numbers:238 memory:6]   θ=4.0: 64.5 % [matrix:1 series:33 rotation:976 numbers:318 memory:2]   θ=6.0: 37.1 % [series:14 rotation:513 numbers:123]   
+Klasse 3: θ=0.0: 69.7 % [series:15 rotation:1193 numbers:235]   θ=2.0: 69.4 % [matrix:1 series:28 rotation:1170 numbers:291]   θ=4.0: 53.7 % [series:12 rotation:629 numbers:403 memory:2]   θ=6.0: 19.7 % [series:3 rotation:195 numbers:119]   
+Klasse 4: θ=0.0: 42.5 % [series:2 rotation:560 numbers:161]   θ=2.0: 45.0 % [series:11 rotation:540 numbers:229]   θ=4.0: 38.0 % [series:6 rotation:394 numbers:266 memory:2]   θ=6.0: 22.1 % [series:10 rotation:253 numbers:101]   
+
+--- F: Kind mit überall gleichem wahren Können: Bereich „Hier hilft Üben“ und mittlere Bereichsstufe ---
+Klasse 2: mittlere Bereichsstufe matrix=3.33 series=3.35 oddOneOut=3.31 rotation=3.38 numbers=3.38 memory=2.92
+          „Hier hilft Üben“-Verteilung: matrix:26% series:19% oddOneOut:17% rotation:12% numbers:10% memory:16%
+Klasse 4: mittlere Bereichsstufe matrix=5.16 series=5.26 oddOneOut=5.23 rotation=5.30 numbers=5.33 memory=4.88
+          „Hier hilft Üben“-Verteilung: matrix:27% series:19% oddOneOut:16% rotation:12% numbers:10% memory:16%

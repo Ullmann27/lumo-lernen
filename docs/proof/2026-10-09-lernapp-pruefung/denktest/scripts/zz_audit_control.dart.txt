@@ -1,0 +1,25 @@
+// Negativkontrolle: erkennt der Löser bewusst mehrdeutige Aufgaben?
+import 'package:lumo_lernen/domain/iq/iq_puzzle.dart';
+import 'zz_audit_iq_gen.dart' show numberPlausible, seriesPlausible, matrixPlausible, optionPlausible;
+
+void main() {
+  // Zahlen: 1,2,4,?,16 (Verdopplung) - nur 8
+  print('1,2,4,?,16 -> ${numberPlausible([1, 2, 4, null, 16])}');
+  // Zahlen: 2,4,?,... mehrdeutig: 1,2,4,7,? (zweite Differenz) vs 1,2,4,8,? -> letzte Stelle
+  print('1,2,4,7,? -> ${numberPlausible([1, 2, 4, 7, null])}');
+  print('1,2,4,8,? -> ${numberPlausible([1, 2, 4, 8, null])}');
+  // bewusst mehrdeutig: 1,1,2,3,? (Fibonacci=5, arith2: 4?)
+  print('1,1,2,3,? -> ${numberPlausible([1, 1, 2, 3, null])}');
+  // Serie: A B A B A -> B ; A A B B A A -> ? (Zyklus 4: B ; Zyklus 2? nein)
+  const a = IqFigure(IqShape.circle), b = IqFigure(IqShape.square);
+  final p = seriesPlausible([a, b, a, b, a]);
+  print('Serie ABABA shape-plausible: ${p['shape']} (square=${IqShape.square.index})');
+  final p2 = seriesPlausible([a, a, b, b, a, a]);
+  print('Serie AABBAA shape-plausible: ${p2['shape']}');
+  // Matrix 2x2: [[a,b],[b,?]] latein -> a ; [[a,a],[b,?]] -> b (zeilenkonst) und Latein? 
+  final m = matrixPlausible([a, b, b, null], 2);
+  print('2x2 [[a,b],[b,?]] shape-plausible: ${m['shape']} (circle=${IqShape.circle.index}, square=${IqShape.square.index})');
+  final m2 = matrixPlausible([a, a, b, null], 2);
+  print('2x2 [[a,a],[b,?]] shape-plausible: ${m2['shape']}');
+  print('optionPlausible circle in m2: ${optionPlausible(a, m2)}  square: ${optionPlausible(b, m2)}');
+}

@@ -1,0 +1,38 @@
+=== AUDIT A3: IQ-Generator, N=300 je Bereich und Stufe ===
+
+--- Befunde je Bereich/Stufe (Anzahl von 300; nur Zeilen mit Funden) ---
+oddOneOut/L2     F_Regel_nur_Farbe                              300/300 = 100.0 %   Repro: IqPuzzleGenerator(Random(0)).generate(IqArea.oddOneOut, 2, "x") -> figures=[square/green/1/0/1/1 square/green/1/0/1/1 square/green/1/0/1/1 square/violet/1/0/1/1] answer=3
+oddOneOut/L4     F_Regel_nur_Farbe                              300/300 = 100.0 %   Repro: IqPuzzleGenerator(Random(0)).generate(IqArea.oddOneOut, 4, "x") -> figures=[square/orange/1/0/1/1 diamond/green/1/0/1/1 circle/green/1/0/1/1 triangle/green/1/0/1/1 plus/green/1/0/1/1] answer=0
+
+--- Lage der richtigen Antwort (Gleichverteilung?) ---
+matrix     [0: 510, 1: 526, 2: 507, 3: 495, 4: 172, 5: 190]
+series     [0: 523, 1: 573, 2: 549, 3: 552, 4: 203]
+oddOneOut  [0: 492, 1: 521, 2: 553, 3: 509, 4: 325]
+rotation   [0: 606, 1: 565, 2: 559, 3: 556, 4: 114]
+numbers    [0: 519, 1: 679, 2: 602, 3: 600]
+
+--- Ratestrategien ohne Regelwissen (Trefferquote vs. Zufall) ---
+matrix   L1  Zufall 25%  Mitte-der-Optionen(Hub) 100%  nicht-im-Raster 0%  meiste-Gemeinsamkeit-mit-Raster 0%
+matrix   L2  Zufall 25%  Mitte-der-Optionen(Hub) 78%  nicht-im-Raster 49%  meiste-Gemeinsamkeit-mit-Raster 0%
+matrix   L3  Zufall 25%  Mitte-der-Optionen(Hub) 72%  nicht-im-Raster 100%  meiste-Gemeinsamkeit-mit-Raster 0%
+matrix   L4  Zufall 25%  Mitte-der-Optionen(Hub) 63%  nicht-im-Raster 38%  meiste-Gemeinsamkeit-mit-Raster 0%
+matrix   L5  Zufall 17%  Mitte-der-Optionen(Hub) 65%  nicht-im-Raster 35%  meiste-Gemeinsamkeit-mit-Raster 0%
+matrix   L6  Zufall 17%  Mitte-der-Optionen(Hub) 84%  nicht-im-Raster 89%  meiste-Gemeinsamkeit-mit-Raster 0%
+matrix   L7  Zufall 17%  Mitte-der-Optionen(Hub) 85%  nicht-im-Raster 91%  meiste-Gemeinsamkeit-mit-Raster 0%
+matrix   L8  Zufall 17%  Mitte-der-Optionen(Hub) 66%  nicht-im-Raster 25%  meiste-Gemeinsamkeit-mit-Raster 0%
+series   L1  Zufall 25%  Mitte-der-Optionen(Hub) 100%  nicht-im-Raster 0%  meiste-Gemeinsamkeit-mit-Raster 50%
+series   L2  Zufall 25%  Mitte-der-Optionen(Hub) 25%  nicht-im-Raster 0%  meiste-Gemeinsamkeit-mit-Raster 0%
+series   L3  Zufall 25%  Mitte-der-Optionen(Hub) 92%  nicht-im-Raster 39%  meiste-Gemeinsamkeit-mit-Raster 0%
+series   L4  Zufall 25%  Mitte-der-Optionen(Hub) 70%  nicht-im-Raster 0%  meiste-Gemeinsamkeit-mit-Raster 39%
+series   L5  Zufall 20%  Mitte-der-Optionen(Hub) 61%  nicht-im-Raster 64%  meiste-Gemeinsamkeit-mit-Raster 0%
+series   L6  Zufall 20%  Mitte-der-Optionen(Hub) 71%  nicht-im-Raster 38%  meiste-Gemeinsamkeit-mit-Raster 0%
+series   L7  Zufall 20%  Mitte-der-Optionen(Hub) 42%  nicht-im-Raster 33%  meiste-Gemeinsamkeit-mit-Raster 0%
+series   L8  Zufall 20%  Mitte-der-Optionen(Hub) 41%  nicht-im-Raster 33%  meiste-Gemeinsamkeit-mit-Raster 0%
+numbers  L1  Zufall 25%  Median-Option 45%  Mitte-der-Optionen 45%  nicht-in-Folge 37%
+numbers  L2  Zufall 25%  Median-Option 45%  Mitte-der-Optionen 45%  nicht-in-Folge 27%
+numbers  L3  Zufall 25%  Median-Option 45%  Mitte-der-Optionen 45%  nicht-in-Folge 27%
+numbers  L4  Zufall 25%  Median-Option 44%  Mitte-der-Optionen 44%  nicht-in-Folge 25%
+numbers  L5  Zufall 25%  Median-Option 45%  Mitte-der-Optionen 45%  nicht-in-Folge 34%
+numbers  L6  Zufall 25%  Median-Option 50%  Mitte-der-Optionen 50%  nicht-in-Folge 26%
+numbers  L7  Zufall 25%  Median-Option 36%  Mitte-der-Optionen 36%  nicht-in-Folge 33%
+numbers  L8  Zufall 25%  Median-Option 49%  Mitte-der-Optionen 49%  nicht-in-Folge 27%

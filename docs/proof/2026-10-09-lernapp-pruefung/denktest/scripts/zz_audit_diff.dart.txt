@@ -1,0 +1,68 @@
+// AUDIT A3 (temporär): Schwierigkeits-Proxy je Stufe (Zahl der sich ändernden Merkmale, Optionen, Rasterfelder).
+import 'dart:math';
+import 'package:lumo_lernen/core/iq/iq_puzzle_generator.dart';
+import 'package:lumo_lernen/domain/iq/iq_puzzle.dart';
+import 'zz_audit_iq_gen.dart' show attrs;
+
+void main() {
+  for (final area in [IqArea.matrix, IqArea.series, IqArea.oddOneOut]) {
+    final row = StringBuffer('${area.name.padRight(9)} sich ändernde Merkmale (Ø) / Optionen / sichtbare Felder je Stufe 1..8:  ');
+    for (var level = 1; level <= 8; level++) {
+      var vary = 0.0, opts = 0, vis = 0;
+      const n = 300;
+      for (var s = 0; s < n; s++) {
+        final p = IqPuzzleGenerator(Random(s)).generate(area, level, 'x');
+        List<IqFigure> fig;
+        if (p is IqMatrixPuzzle) {
+          fig = [for (final c in p.cells) if (c != null) c];
+          opts = p.options.length;
+        } else if (p is IqSeriesPuzzle) {
+          fig = p.shown;
+          opts = p.options.length;
+        } else {
+          fig = (p as IqOddOnePuzzle).figures;
+          opts = p.figures.length;
+        }
+        vis = fig.length;
+        vary += attrs.values.where((f) => fig.map(f).toSet().length > 1).length / n;
+      }
+      row.write('L$level: ${vary.toStringAsFixed(1)}/$opts/$vis  ');
+    }
+    print(row);
+  }
+  // Drehen: Blöcke, Spiegelfallen, Optionen
+  final r = StringBuffer('rotation  Blöcke/Spiegel-Fallen/Optionen/mögliche verschiedene Zielteile: ');
+  for (var level = 1; level <= 8; level++) {
+    final targets = <String>{};
+    var mir = 0, opts = 0, blocks = 0;
+    for (var s = 0; s < 3000; s++) {
+      final p = IqPuzzleGenerator(Random(s)).generate(IqArea.rotation, level, 'x') as IqRotationPuzzle;
+      targets.add(p.target.key);
+      if (s < 300) {
+        mir += p.options.where((o) => o.sameAsRotationOf(p.target.mirrored())).length;
+        opts = p.options.length;
+        blocks = p.target.cells.length;
+      }
+    }
+    r.write('L$level: $blocks/${(mir / 300).toStringAsFixed(1)}/$opts/${targets.length}  ');
+  }
+  print(r);
+  // Zahlen: mögliche Folgen je Stufe
+  final z = StringBuffer('numbers   verschiedene Zahlenfolgen (Aufgabenstamm) je Stufe: ');
+  for (var level = 1; level <= 8; level++) {
+    final stems = <String>{};
+    for (var s = 0; s < 5000; s++) {
+      final p = IqPuzzleGenerator(Random(s)).generate(IqArea.numbers, level, 'x') as IqNumberPuzzle;
+      stems.add(p.numbers.join(','));
+    }
+    z.write('L$level: ${stems.length}  ');
+  }
+  print(z);
+  final m = StringBuffer('memory    Rastergröße x Länge, Zeigedauer gesamt (ms) je Stufe: ');
+  for (var level = 1; level <= 8; level++) {
+    final p = IqPuzzleGenerator(Random(1)).generate(IqArea.memory, level, 'x') as IqMemoryPuzzle;
+    final total = 650 + p.sequence.length * (p.showMs + p.gapMs);
+    m.write('L$level: ${p.gridSize}x${p.gridSize} ×${p.sequence.length} ${total}ms  ');
+  }
+  print(m);
+}

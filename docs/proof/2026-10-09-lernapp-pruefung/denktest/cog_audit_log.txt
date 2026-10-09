@@ -1,0 +1,67 @@
+=== AUDIT A3: Denkprofil-50 ===
+
+Klasse 1: 50 Fragen, zweimal erzeugt identisch: true (kein Zufall, jede Wiederholung dieselben 50 Fragen)
+  Lage der richtigen Antwort (Index:Anzahl): 0:15 1:9 2:13 3:13   Fragen mit Platzhalter-Antwort: 0
+  spatialReasoning: nur 2 verschiedene richtige Antworten über 10 Fragen: {↓, ↑}
+  Zahlen-Fragen: 20, Median-Strategie ohne Rechnen trifft 45 % (Zufall 25 %)
+
+Klasse 2: 50 Fragen, zweimal erzeugt identisch: true (kein Zufall, jede Wiederholung dieselben 50 Fragen)
+  PLATZHALTER-ANTWORT: g2_quant_4: "2 gleiche Gruppen haben je 2 Punkte. Wie viele Punkte sind es?" choices=[6, 2, —4—, 4] answer=4
+  PLATZHALTER-ANTWORT: g2_quant_5: "3 gleiche Gruppen haben je 3 Punkte. Wie viele Punkte sind es?" choices=[6, —4—, 9, 12] answer=9
+  Lage der richtigen Antwort (Index:Anzahl): 0:15 1:12 2:12 3:11   Fragen mit Platzhalter-Antwort: 2
+  spatialReasoning: nur 2 verschiedene richtige Antworten über 10 Fragen: {←, →}
+  Zahlen-Fragen: 18, Median-Strategie ohne Rechnen trifft 44 % (Zufall 25 %)
+
+Klasse 3: 50 Fragen, zweimal erzeugt identisch: true (kein Zufall, jede Wiederholung dieselben 50 Fragen)
+  Lage der richtigen Antwort (Index:Anzahl): 0:10 1:10 2:13 3:17   Fragen mit Platzhalter-Antwort: 0
+  Zahlen-Fragen: 20, Median-Strategie ohne Rechnen trifft 40 % (Zufall 25 %)
+
+Klasse 4: 50 Fragen, zweimal erzeugt identisch: true (kein Zufall, jede Wiederholung dieselben 50 Fragen)
+  PLATZHALTER-ANTWORT: g4_quant_4: "2 gleiche Dinge kosten je 8 Euro. Bezahlt werden 26 Euro. Wie viel Wechselgeld bleibt?" choices=[8, 12, —4—, 10] answer=10
+  PLATZHALTER-ANTWORT: g4_quant_6: "4 gleiche Dinge kosten je 10 Euro. Bezahlt werden 50 Euro. Wie viel Wechselgeld bleibt?" choices=[—4—, 10, 8, 12] answer=10
+  PLATZHALTER-ANTWORT: g4_quant_8: "2 gleiche Dinge kosten je 12 Euro. Bezahlt werden 34 Euro. Wie viel Wechselgeld bleibt?" choices=[8, 12, —4—, 10] answer=10
+  Lage der richtigen Antwort (Index:Anzahl): 0:19 1:7 2:13 3:11   Fragen mit Platzhalter-Antwort: 3
+  quantitativeReasoning: nur 1 verschiedene richtige Antworten über 10 Fragen: {10}
+  Zahlen-Fragen: 17, Median-Strategie ohne Rechnen trifft 41 % (Zufall 25 %)
+
+--- Sprach-Fragen aller Klassen mit Antwortoptionen (zur manuellen Prüfung) ---
+K1 0: Hund verhält sich zu Welpe wie Katze zu …  -> richtig: Kätzchen | Optionen: hören, dunkel, Kätzchen, Welpe
+K1 1: Tag ist meist hell. Nacht ist meist …  -> richtig: dunkel | Optionen: Gemüse, dunkel, hell, Kätzchen
+K1 2: Apfel gehört zu Obst. Karotte gehört zu …  -> richtig: Gemüse | Optionen: Gemüse, Obst, dunkel, schwimmt
+K1 3: Vogel fliegt. Fisch …  -> richtig: schwimmt | Optionen: fliegt, Gemüse, Hand, schwimmt
+K1 4: Schuh gehört zum Fuß. Handschuh gehört zur …  -> richtig: Hand | Optionen: schwimmt, klein, Hand, Fuß
+K1 5: Gegenteil von warm ist kalt. Gegenteil von groß ist …  -> richtig: klein | Optionen: Donnerstag, klein, kalt, Hand
+K1 6: Montag, Dienstag, Mittwoch – welcher Tag folgt?  -> richtig: Donnerstag | Optionen: Donnerstag, Mittwoch, klein, Form
+K1 7: Rot ist eine Farbe. Kreis ist eine …  -> richtig: Form | Optionen: Farbe, Donnerstag, Durst, Form
+K1 8: Bei Hunger essen wir. Bei Durst …  -> richtig: Durst | Optionen: Form, hören, Durst, Hunger
+K1 9: Ein Buch kann man lesen. Ein Lied kann man …  -> richtig: hören | Optionen: Kätzchen, hören, lesen, Durst
+K2 0: Biene passt zu Honig. Kuh passt zu …  -> richtig: Milch | Optionen: Lösung, Winter, Milch, Honig
+K2 1: Frühling, Sommer, Herbst – was folgt?  -> richtig: Winter | Optionen: Wasser, Winter, Herbst, Milch
+K2 2: Auto fährt auf der Straße. Schiff fährt auf …  -> richtig: Wasser | Optionen: Wasser, Straße, Winter, schnell
+K2 3: Leise ist das Gegenteil von laut. Langsam ist das Gegenteil von …  -> richtig: schnell | Optionen: laut, Wasser, Möbel, schnell
+K2 4: Bäcker macht Brot. Tischler macht …  -> richtig: Möbel | Optionen: schnell, Stadt, Möbel, Brot
+K2 5: Viele Bäume bilden einen Wald. Viele Häuser bilden eine …  -> richtig: Stadt | Optionen: Schule, Stadt, Wald, Möbel
+K2 6: Arzt arbeitet in einer Praxis. Lehrer arbeitet in einer …  -> richtig: Schule | Optionen: Schule, Praxis, Stadt, hören
+K2 7: Mit dem Auge sehen wir. Mit dem Ohr …  -> richtig: hören | Optionen: sehen, Schule, Länge, hören
+K2 8: Minute misst Zeit. Meter misst …  -> richtig: Länge | Optionen: hören, Lösung, Länge, Zeit
+K2 9: Auf eine Frage folgt eine Antwort. Zu einem Problem suchen wir eine …  -> richtig: Lösung | Optionen: Milch, Lösung, Antwort, Länge
+K3 0: Kapitel gehört zum Buch. Szene gehört zum …  -> richtig: Film | Optionen: Ergebnis, Masse, Film, Buch
+K3 1: Thermometer misst Temperatur. Waage misst …  -> richtig: Masse | Optionen: Antwort, Masse, Temperatur, Film
+K3 2: Ursache führt zu Folge. Frage führt zu …  -> richtig: Antwort | Optionen: Antwort, Folge, Masse, Zeit
+K3 3: Kompass zeigt Richtung. Uhr zeigt …  -> richtig: Zeit | Optionen: Richtung, Antwort, lernen, Zeit
+K3 4: Pflanzen wachsen. Menschen können …  -> richtig: lernen | Optionen: Zeit, entgegengesetzt, lernen, wachsen
+K3 5: Synonyme bedeuten ähnlich. Gegenteile bedeuten …  -> richtig: entgegengesetzt | Optionen: Musikstück, entgegengesetzt, ähnlich, lernen
+K3 6: Autor schreibt ein Buch. Komponist schafft ein …  -> richtig: Musikstück | Optionen: Musikstück, Buch, entgegengesetzt, Zeit
+K3 7: Landkarte ordnet Raum. Zeitstrahl ordnet …  -> richtig: Zeit | Optionen: Raum, Musikstück, Beleg, Zeit
+K3 8: Ein Argument braucht Begründung. Eine Behauptung braucht einen …  -> richtig: Beleg | Optionen: Zeit, Ergebnis, Beleg, Begründung
+K3 9: Experiment liefert Beobachtung. Rechnung liefert …  -> richtig: Ergebnis | Optionen: Film, Ergebnis, Beobachtung, Beleg
+K4 0: Demokratie nutzt Abstimmungen. Wissenschaft nutzt …  -> richtig: Experiment | Optionen: Standpunkt, Verbrauch, Experiment, Abstimmung
+K4 1: Produktion bedeutet Herstellung. Konsum bedeutet …  -> richtig: Verbrauch | Optionen: Untersuchung, Verbrauch, Herstellung, Experiment
+K4 2: Eine These braucht Begründung. Eine Frage braucht oft eine …  -> richtig: Untersuchung | Optionen: Untersuchung, Begründung, Verbrauch, Kreislauf
+K4 3: Energie kann umgewandelt werden. Wasser bewegt sich im …  -> richtig: Kreislauf | Optionen: Umwandlung, Untersuchung, Geschichte, Kreislauf
+K4 4: Maßstab hilft bei Karten. Zeitachse hilft bei …  -> richtig: Geschichte | Optionen: Kreislauf, Buch, Geschichte, Karte
+K4 5: Mehrere Sätze bilden einen Absatz. Mehrere Kapitel bilden ein …  -> richtig: Buch | Optionen: Folge, Buch, Absatz, Geschichte
+K4 6: Auf eine Ursache kann eine Konsequenz folgen. Auf eine Entscheidung folgt eine …  -> richtig: Folge | Optionen: Folge, Konsequenz, Buch, schützen
+K4 7: Ressourcen soll man bewusst nutzen. Umwelt soll man …  -> richtig: schützen | Optionen: nutzen, Folge, Ergebnis, schützen
+K4 8: Aus Beobachtungen entsteht eine Hypothese. Durch Prüfung entsteht ein …  -> richtig: Ergebnis | Optionen: schützen, Standpunkt, Ergebnis, Hypothese
+K4 9: Perspektive bedeutet Blickwinkel. Argument unterstützt einen …  -> richtig: Standpunkt | Optionen: Experiment, Standpunkt, Blickwinkel, Ergebnis
