@@ -22,8 +22,8 @@ jobs:
       - name: Prove this APK uses the same source as the full native QA
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "4b2f837a3475c14033806c13f25e1a77b89a307a"
-          test "$(git diff-tree --no-commit-id --name-only -r HEAD)" = ".github/workflows/lumo-1916-apk-artifact.yml"
+          git merge-base --is-ancestor "4b2f837a3475c14033806c13f25e1a77b89a307a" HEAD
+          test "$(git diff --name-only 4b2f837a3475c14033806c13f25e1a77b89a307a..HEAD)" = ".github/workflows/lumo-1916-apk-artifact.yml"
           test "$(sed -n 's/^version: //p' pubspec.yaml)" = "0.12.9+1916"
           mkdir -p proof
           git rev-parse HEAD | tee proof/build-source-sha.txt
@@ -62,7 +62,7 @@ jobs:
           set -euo pipefail
           bash scripts/build_unified_apk.sh 2>&1 | tee proof/apk-build.log
           test -s dist/Lumo-Lernen-Neu.apk
-          sha256sum -c dist/SHA256SUMS.txt --ignore-missing
+          (cd dist && sha256sum -c SHA256SUMS.txt)
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk | tee proof/apk-verify.txt
       - name: Upload real APK with provenance, not just a screenshot
         if: success()
