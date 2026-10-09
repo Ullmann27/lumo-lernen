@@ -107,9 +107,9 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
           decoration: const BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color(0xFF3D2270),
-                Color(0xFF1E1240),
-                Color(0xFF0A0420),
+                Color(0xFF145B94),
+                Color(0xFF06345F),
+                Color(0xFF03193F),
               ],
               radius: 1.2,
             ),
@@ -132,6 +132,24 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            // Use the very same original Lumo that welcomes
+                            // children in the learning app – no emoji fox.
+                            Image.asset(
+                              'assets/lumo_design/fox/fox_cards_welcome.png',
+                              key: const ValueKey('lumo-cards-intro-fox'),
+                              width: 280,
+                              height: 175,
+                              fit: BoxFit.contain,
+                              errorBuilder: (_, __, ___) => const SizedBox(
+                                width: 280,
+                                height: 175,
+                                child: Center(
+                                  child: Icon(Icons.pets_rounded,
+                                      size: 70, color: Color(0xFF53DDFD)),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 5),
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(28),
@@ -143,10 +161,10 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
                                     spreadRadius: 8,
                                   ),
                                   BoxShadow(
-                                    color: const Color(0xFF7C3AED)
-                                        .withOpacity(glow * 0.35),
-                                    blurRadius: 90,
-                                    spreadRadius: 14,
+                                    color: const Color(0xFF37D2FD)
+                                        .withOpacity(glow * 0.36),
+                                    blurRadius: 66,
+                                    spreadRadius: 9,
                                   ),
                                 ],
                               ),
@@ -154,15 +172,15 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
                                 borderRadius: BorderRadius.circular(24),
                                 child: Image.asset(
                                   LumoCardsAssets.cardBack,
-                                  width: 220,
-                                  height: 308,
+                                  width: 170,
+                                  height: 238,
                                   fit: BoxFit.cover,
-                                  cacheWidth: 440,
+                                  cacheWidth: 340,
                                   errorBuilder: (_, __, ___) => _fallbackCard(),
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 26),
+                            const SizedBox(height: 16),
                             Text(
                               'LUMO CARDS',
                               style: TextStyle(
@@ -173,7 +191,7 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
                                 letterSpacing: 2.4,
                                 shadows: [
                                   Shadow(
-                                    color: const Color(0xFF7C3AED)
+                                    color: const Color(0xFF37D2FD)
                                         .withOpacity(0.8),
                                     blurRadius: 18,
                                     offset: const Offset(0, 3),
@@ -211,20 +229,21 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
 
   Widget _fallbackCard() {
     return Container(
-      width: 220,
-      height: 308,
+      width: 170,
+      height: 238,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF7C3AED), Color(0xFF1E1240)],
+          colors: [Color(0xFF1367AE), Color(0xFF03193F)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
       ),
       child: const Center(
-        child: Text(
-          '🦊',
-          style: TextStyle(fontSize: 110),
+        child: Icon(
+          Icons.style_rounded,
+          color: Color(0xFF53DDFD),
+          size: 96,
         ),
       ),
     );
