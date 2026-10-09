@@ -223,6 +223,55 @@ class HostRewardEvidenceTests(unittest.TestCase):
             with self.subTest(rows=rows), self.assertRaisesRegex(RuntimeError, 'exactly this native finish'):
                 PROBE.require_event({'results': rows}, self.payload)
 
+    def test_api35_actual_finish_time_roundtrip_preserves_exact_event_identity(self):
+        # Real immutable API35 1908 evidence: the persisted Android event was
+        # present, but one double survived JSON round-tripping at 75.35 rather
+        # than Godot's 75.35000000000001. No other field may differ.
+        native = {**self.payload, 'elapsedSeconds': 75.35000000000001}
+        android = {**native, 'elapsedSeconds': 75.35}
+        PROBE.require_event({'results': [android]}, native)
+        self.assertNotEqual(native, android)  # The original check was RED.
+
+    def test_host_time_rounding_is_strictly_subnanosecond_and_finite(self):
+        native = {**self.payload, 'elapsedSeconds': 75.35000000000001}
+        for wrong in (75.350000002, 75.349999998, 75.351, 75.34,
+                      80, True, None, '75.35', float('nan'),
+                      float('inf'), float('-inf')):
+            with self.subTest(value=wrong), self.assertRaisesRegex(
+                RuntimeError, 'exactly this native finish'
+            ):
+                PROBE.require_event(
+                    {'results': [{**native, 'elapsedSeconds': wrong}]}, native)
+
+        for native_wrong in (True, '75.35', float('nan'), float('inf')):
+            with self.subTest(native=native_wrong), self.assertRaisesRegex(
+                RuntimeError, 'exactly this native finish'
+            ):
+                PROBE.require_event(
+                    {'results': [{**native, 'elapsedSeconds': native_wrong}]},
+                    {**native, 'elapsedSeconds': native_wrong})
+
+    def test_host_time_tolerance_never_accepts_changed_fields_or_duplicates(self):
+        native = {**self.payload, 'elapsedSeconds': 75.35000000000001}
+        retained = {**native, 'elapsedSeconds': 75.35}
+        for key, value in (('resultId', 'old-race'), ('stars', 2),
+                           ('checkpoints', 15), ('sessionId', 'unexpected'),
+                           ('status', 'abandoned'), ('track', 'wrong-world'),
+                           ('solved', 1), ('bestLapSeconds', 0.0)):
+            altered = {**retained, key: value}
+            with self.subTest(field=key), self.assertRaisesRegex(
+                RuntimeError, 'exactly this native finish'
+            ):
+                PROBE.require_event({'results': [altered]}, native)
+        for rows in ([retained, retained],
+                     [retained, {**retained, 'resultId': native['resultId']}],
+                     [{**retained, 'extraField': 'unexpected'}],
+                     [{key: value for key, value in retained.items() if key != 'mode'}]):
+            with self.subTest(rows=rows), self.assertRaisesRegex(
+                RuntimeError, 'exactly this native finish'
+            ):
+                PROBE.require_event({'results': rows}, native)
+
     def test_ack_requires_the_actual_result_to_leave_the_pending_host_queue(self):
         PROBE.require_ack({'results': []}, 'actual-test-race')
         PROBE.require_ack({'results': [{'resultId': 'unrelated'}]}, 'actual-test-race')
