@@ -34,6 +34,8 @@ import 'renderers/adaptive_task_renderer.dart';
 import 'renderers/shape_trace_task_renderer.dart';
 import 'renderers/writing_task_renderer.dart';
 import 'widgets/rechentricks_mentor_card.dart';
+import 'widgets/lumo_learning_tree_card.dart';
+import '../lumo_welt/lumo_welt_screen.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
@@ -1031,45 +1033,128 @@ class _LearningContentState extends State<LearningContent> {
   Widget build(BuildContext context) {
     final st = widget.appState.state;
     if (_sessionFinished) {
-      return Center(child: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: LumoGlassCard(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
-          radius: 26,
+      // Diese Anzeige verwendet ausschließlich echte Konto-/Lernwerte.
+      // Keine erfundenen "+25 XP" oder vorgetäuschten Freischaltungen.
+      Widget stat(IconData icon, String label, String value, Color accent) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 12),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xEE154886), Color(0xEE081D43)]),
+            borderRadius: BorderRadius.circular(19),
+            border: Border.all(color: accent.withValues(alpha: .65)),
+            boxShadow: [BoxShadow(color: accent.withValues(alpha: .16),
+                blurRadius: 15)],
+          ),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Icon(icon, color: accent, size: 27),
+            const SizedBox(height: 6),
+            Text(value, style: const TextStyle(fontFamily: 'Nunito',
+              color: Colors.white, fontWeight: FontWeight.w900, fontSize: 21)),
+            Text(label, textAlign: TextAlign.center, style: const TextStyle(
+              fontFamily: 'Nunito', color: LumoVisualTokens.muted,
+              fontWeight: FontWeight.w800, fontSize: 11)),
+          ]),
+        );
+      }
+      final header = LumoGlassCard(
+        padding: const EdgeInsets.fromLTRB(14, 16, 14, 17),
+        radius: 25,
+        child: Column(children: [
+          Row(children: [
             LumoCharacter(
               pose: LumoDesignFoxPose.cheer,
-              size: 150,
+              size: 112,
               reduceMotion: st.settings.reduceAnimations || st.settings.calmMode,
               onTap: () {},
             ),
-            const SizedBox(height: 8),
-            const Text('Einheit beendet', textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 26, fontWeight: FontWeight.w900, color: LumoVisualTokens.white)),
-            const SizedBox(height: 8),
-            Text('Du hast $_totalQuestions Aufgaben bearbeitet. Zeit für eine kurze Pause!',
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w700, color: LumoVisualTokens.white)),
-            const SizedBox(height: 18),
-            FilledButton.icon(
-              style: FilledButton.styleFrom(
-                backgroundColor: LumoVisualTokens.cyan,
-                foregroundColor: LumoVisualTokens.night,
-                minimumSize: const Size(48, 48),
-              ),
-              onPressed: () => setState(() {
-                _sessionTaskKeys.clear();
-                _loadNextTask(resetCounter: true);
-              }),
-              icon: const Icon(Icons.refresh_rounded),
-              label: const Text('Neue Einheit starten'),
-            ),
-            const SizedBox(height: 10),
-            const Text('Du kannst im Menü auch ein anderes Thema auswählen.', textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w700, color: LumoVisualTokens.muted)),
+            const SizedBox(width: 6),
+            const Expanded(child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Einheit beendet', style: TextStyle(
+                  fontFamily: 'Nunito', color: LumoVisualTokens.cyanBright,
+                  fontWeight: FontWeight.w900, fontSize: 13)),
+                SizedBox(height: 4),
+                Text('Lektion abgeschlossen!', style: TextStyle(
+                  fontFamily: 'Nunito', color: Colors.white,
+                  fontWeight: FontWeight.w900, fontSize: 24)),
+                SizedBox(height: 4),
+                Text('Super gemacht – weiter so!', style: TextStyle(
+                  fontFamily: 'Nunito', color: LumoVisualTokens.muted,
+                  fontWeight: FontWeight.w700, fontSize: 12)),
+              ],
+            )),
           ]),
+          const SizedBox(height: 10),
+          Text('Du hast $_totalQuestions Aufgaben bearbeitet.',
+            textAlign: TextAlign.center, style: const TextStyle(
+              fontFamily: 'Nunito', color: Colors.white,
+              fontWeight: FontWeight.w800, fontSize: 14)),
+          const SizedBox(height: 15),
+          Row(children: [
+            Expanded(child: stat(Icons.star_rounded, 'Sterne gesamt',
+                st.stars.toString(), LumoVisualTokens.gold)),
+            const SizedBox(width: 8),
+            Expanded(child: stat(Icons.bolt_rounded, 'XP gesamt',
+                st.xp.toString(), LumoVisualTokens.cyanBright)),
+            const SizedBox(width: 8),
+            Expanded(child: stat(Icons.local_fire_department_rounded,
+                'Lerntage in Folge',
+                widget.appState.learningStreakDays().toString(),
+                const Color(0xFFFFB36D))),
+          ]),
+          const SizedBox(height: 18),
+          SizedBox(width: double.infinity, child: FilledButton.icon(
+            style: FilledButton.styleFrom(
+              backgroundColor: LumoVisualTokens.cyanBright,
+              foregroundColor: LumoVisualTokens.night,
+              minimumSize: const Size(48, 56),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(17)),
+            ),
+            onPressed: () => setState(() {
+              _sessionTaskKeys.clear();
+              _loadNextTask(resetCounter: true);
+            }),
+            icon: const Icon(Icons.play_arrow_rounded),
+            label: const Text('Neue Einheit starten', style: TextStyle(
+                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+          )),
+          const SizedBox(height: 7),
+          const Text('Du kannst im Menü auch ein anderes Thema auswählen.',
+            textAlign: TextAlign.center, style: TextStyle(
+              fontFamily: 'Nunito', color: LumoVisualTokens.muted,
+              fontWeight: FontWeight.w700, fontSize: 11)),
+        ]),
+      );
+      final tree = LumoLearningTreeCard(
+        skills: widget.appState.learningSkills(),
+        compact: true,
+        onOpenWorld: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => LumoWeltScreen(appState: widget.appState),
+          ),
         ),
-      ));
+      );
+      return LayoutBuilder(builder: (context, constraints) {
+        final wide = constraints.maxWidth >= 760;
+        return Center(child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 950),
+            child: wide
+                ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Expanded(child: header),
+                    const SizedBox(width: 15),
+                    Expanded(child: tree),
+                  ])
+                : Column(children: [
+                    header, const SizedBox(height: 13), tree,
+                  ]),
+          ),
+        ));
+      });
     }
     final title = _experienceTitle;
     final experienceSubtitle = _experienceSubtitle;
