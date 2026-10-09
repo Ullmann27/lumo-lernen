@@ -192,7 +192,8 @@ with archive(artifact) as z:
     for name in ("01-garage-resize-outer-before.png", "02-fresh-race-phone.png",
                  "04-driving-060.png", "06-completed-result-phone.png",
                  "07-finished-result-resize-inner.png", "14-final-offline-restart-home.png"):
-        png(z, "full-race/" + name, "android-api35/" + name, artifact["id"], display=True)
+        png(z, "full-race/" + name, "android-api35/" + name, artifact["id"],
+            display=name in ("01-garage-resize-outer-before.png", "06-completed-result-phone.png"))
 summary = {"status": "ORIGINAL_API35_RACE_EVIDENCE_VERIFIED", "parent_run": RUN,
            "parent_run_conclusion": "failure", "job_id": selected[0]["id"],
            "source_app": APP, "source_godot": GODOT, "apk_sha256": APK_SHA,
