@@ -54,9 +54,12 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
-          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep tesseract-ocr tesseract-ocr-deu
           command -v rg
           rg --version
+          command -v tesseract
+          tesseract --version
+          tesseract --list-langs | rg -x deu
       - name: Dependencies and app source analysis
         run: |
           set -o pipefail
@@ -149,6 +152,7 @@ jobs:
           from pathlib import Path
           import PIL
           assert PIL.__version__ == '12.3.0'
+          assert shutil.which('tesseract') is not None, 'Declared screenshot OCR dependency is missing'
           Path('proof/python-qa-capabilities.json').write_text(json.dumps({
               'pillow': PIL.__version__,
               'tesseract': shutil.which('tesseract'),
@@ -188,6 +192,52 @@ jobs:
           git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/source-sha.txt"
           godot --path "$LUMO_NATIVE_DIRECTORY" --headless --editor --import --quit > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log" 2>&1
           if rg 'SCRIPT ERROR|Parse Error|Failed to load|ERROR:' "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log"; then exit 1; fi
+      - name: Check per-profile lifetime and workshop budgets
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        run: |
+          set -euo pipefail
+          python3 tools/run_godot_probe.py --log exports/fold-controls/progress_profile_lifetime_regression.log \
+            --timeout 240 --required '[ProgressProfileLifetime] checks=24 failures=0' -- \
+            godot --headless --audio-driver Dummy --script res://scripts/tests/progress_profile_lifetime_regression.gd -- \
+            --output=res://exports/fold-controls/profile-lifetime-evidence.json
+          python3 - <<'PYCODE'
+          import hashlib, json, re
+          from pathlib import Path
+          sources = {
+              'scripts/systems/progress_store.gd': '9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811',
+              'scripts/tests/progress_profile_lifetime_regression.gd': '07d69051010e787492ccc6250a427e8cf55de744f583e5ac0099cb7442824c60',
+          }
+          for path, expected in sources.items():
+              assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == expected, path
+          evidence_path = Path('exports/fold-controls/profile-lifetime-evidence.json')
+          evidence_raw = evidence_path.read_bytes()
+          data = json.loads(evidence_raw)
+          assert type(data) is dict and set(data) == {'check_count', 'failure_count', 'checks'}
+          assert type(data['check_count']) is int and data['check_count'] == 24
+          assert type(data['failure_count']) is int and data['failure_count'] == 0
+          checks = data['checks']
+          assert type(checks) is list and len(checks) == 24
+          assert all(type(row) is dict and set(row) == {'name', 'ok'} and row['ok'] is True
+                     and type(row['name']) is str and row['name'] for row in checks)
+          expected_names = re.findall(r'_check\([^\n]*, "([^"]+)"\)',
+                                      Path('scripts/tests/progress_profile_lifetime_regression.gd').read_text())
+          assert len(expected_names) == len(set(expected_names)) == 24
+          assert [row['name'] for row in checks] == expected_names
+          log_raw = Path('exports/fold-controls/progress_profile_lifetime_regression.log').read_bytes()
+          log = log_raw.decode('utf-8')
+          assert log.splitlines().count('[ProgressProfileLifetime] checks=24 failures=0') == 1
+          assert not re.search(r'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|\[ProbeRunner\] FAIL|'
+                               r'\[ProbeRunner\] timeout|ObjectDB instances leaked at exit|resources still in use at exit', log)
+          source = Path('exports/fold-controls/source-sha.txt').read_text().strip()
+          assert re.fullmatch(r'[0-9a-f]{40}', source)
+          Path('exports/fold-controls/profile-lifetime-summary.json').write_text(json.dumps({
+              'status': 'PASS', 'godot_source': source, 'checks': 24,
+              'source_sha256': sources, 'evidence_sha256': hashlib.sha256(evidence_raw).hexdigest(),
+              'log_sha256': hashlib.sha256(log_raw).hexdigest(),
+              'scope': 'Assigned profile lifetime/workshop states; headless; separate from native race entrypoints',
+          }, indent=2) + '\n')
+          print('[ProgressProfileLifetime] PASS: 24 source-bound headless profile/workshop checks')
+          PYCODE
       - name: Render actual native worlds and menu from the exact APK pin
         working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
         env:
