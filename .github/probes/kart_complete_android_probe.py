@@ -194,8 +194,26 @@ def require_reward(before: dict, after: dict, payload: dict) -> None:
 
 
 def require_event(events: dict, payload: dict) -> None:
+    """Demand an identical durable event except for JSON double round-tripping.
+
+    The actual API35 capture contained native elapsedSeconds=75.35000000000001
+    and durable Android JSON elapsedSeconds=75.35. Those are the same race to
+    well under one nanosecond; literal dict equality falsely rejected the
+    successfully saved event. All other fields remain exactly equal, the
+    result ID must be unique, and times must be real, finite and within 1 ns.
+    """
     rows = [row for row in events.get('results', []) if row.get('resultId') == payload['resultId']]
-    if len(rows) != 1 or rows[0] != payload:
+    if len(rows) != 1:
+        raise RuntimeError('Host did not durably retain exactly this native finish result')
+    actual = rows[0]
+    elapsed = payload.get('elapsedSeconds')
+    retained = actual.get('elapsedSeconds')
+    if (set(actual) != set(payload)
+            or type(elapsed) not in (int, float) or type(retained) not in (int, float)
+            or not math.isfinite(elapsed) or not math.isfinite(retained)
+            or not math.isclose(float(elapsed), float(retained), rel_tol=0.0, abs_tol=1e-9)
+            or any(actual[key] != expected for key, expected in payload.items()
+                   if key != 'elapsedSeconds')):
         raise RuntimeError('Host did not durably retain exactly this native finish result')
 
 
