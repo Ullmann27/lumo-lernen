@@ -687,7 +687,18 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           SliverToBoxAdapter(child: _buildGradePicker()),
           SliverToBoxAdapter(child: _buildLearningAreas()),
           SliverToBoxAdapter(child: _buildContinueBanner()),
-          // Bestehende Navigation bleibt. Darunter wächst der Kompetenzbaum
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
+            sliver: SliverToBoxAdapter(
+              child: _buildSubjectSection(
+                _currentGrade.subjects[_selectedSubjectIndex],
+                _selectedSubjectIndex,
+              ),
+            ),
+          ),
+          // Die Fach-/Themen-Navigation muss vor dem großen Bildbaustein bleiben:
+          // Andernfalls sind Lazy-Sliver-Themen auf schmalen Geräten nicht auffindbar.
+          // Darunter wächst der Kompetenzbaum
           // aus echten lokalen Lernwerten, nicht aus Deko-/Sterne-Zählern.
           SliverToBoxAdapter(
             child: Padding(
@@ -703,15 +714,6 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-            sliver: SliverToBoxAdapter(
-              child: _buildSubjectSection(
-                _currentGrade.subjects[_selectedSubjectIndex],
-                _selectedSubjectIndex,
               ),
             ),
           ),
