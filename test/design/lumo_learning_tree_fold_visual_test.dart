@@ -5,6 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/features/learning/learning_content.dart';
+import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
@@ -92,6 +97,48 @@ void main() {
         isFalse);
     expect(LumoTreeProgress(<String, SkillRecord>{}).mastered, 0);
   });
+
+  // Zusätzlich zur isolierten Karte eine Aufnahme im wirklichen App-Kontext:
+  // Lumo, Lernhintergrund, Fortschrittszeile, Aufgabe und Antwort-Widgets.
+  for (final target in [
+    (Size(400, 1000), 'phone'),
+    (Size(840, 760), 'fold_open'),
+  ]) {
+    testWidgets('Echte Lumo-Lernseite zeigt korrekte Aufgabe auf ' + target.$2,
+        (tester) async {
+      SharedPreferences.setMockInitialValues({});
+      LumoVoice.instance.isEnabled = false;
+      addTearDown(() => LumoVoice.instance.isEnabled = true);
+      await tester.binding.setSurfaceSize(target.$1);
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final app = LumoAppState();
+      addTearDown(app.dispose);
+      app.update(app.state.copyWith(
+        subject: 'Mathematik',
+        unit: 'Plus bis 10',
+        sessionKind: LumoSessionKind.quickPractice,
+      ));
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: RepaintBoundary(
+            key: captureKey,
+            child: LumoSceneBackground(
+              scene: LumoScene.learning,
+              dimmed: true,
+              child: LearningContent(appState: app),
+            ),
+          ),
+        ),
+      ));
+      await tester.pump(const Duration(milliseconds: 750));
+      expect(find.byType(LearningContent), findsOneWidget);
+      expect(find.byType(AdaptiveTaskRenderer), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await captureVisual(tester, 'real_learning_' + target.$2);
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+    });
+  }
 
   for (final target in [
     (Size(360, 1100), 'phone'),
