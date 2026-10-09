@@ -237,7 +237,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
               child: OutlinedButton.icon(
                 key: const ValueKey('lesson-hint-button'),
                 icon: const Icon(Icons.lightbulb_rounded),
-                label: const Text('Tipp von Lumo'),
+                label: const Text('Tipp von Lumo', style: TextStyle(
+                  fontFamily: 'Nunito', fontSize: 14,
+                  fontWeight: FontWeight.w900,
+                )),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: const Color(0xFFFFD36A),
                   side: const BorderSide(color: Color(0xB3FFDA7B)),
