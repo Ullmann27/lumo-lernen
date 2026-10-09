@@ -80,7 +80,13 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   await tester.pump();
   await tester.tap(find.text('Mathe'));
   await tester.pump();
-  await tester.ensureVisible(find.text('Plus bis 10'));
+  // Die Themenkarten werden in einem Lazy-Sliver erst beim Scrollen gebaut.
+  // Wie ein Kind die Akademie wirklich benutzt: bis zum Thema scrollen.
+  await tester.scrollUntilVisible(
+    find.text('Plus bis 10'),
+    220,
+    scrollable: find.byType(Scrollable).first,
+  );
   await tester.pump();
   await tester.tap(find.text('Plus bis 10'));
   await _frames(tester);
