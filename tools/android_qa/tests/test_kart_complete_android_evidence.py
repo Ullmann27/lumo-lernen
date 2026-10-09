@@ -4,6 +4,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+from unittest import mock
 
 PATH = Path(__file__).resolve().parents[3] / '.github/probes/kart_complete_android_probe.py'
 SPEC = importlib.util.spec_from_file_location('kart_complete_android_probe', PATH)
@@ -37,6 +38,61 @@ def raw_session(value):
                'opponent_positions=Array[Vector3]([Vector3(4, 5, 6)])',
                'collected={', '5: true,', '11: true', '}']
     return '\n'.join(fields) + '\n'
+
+
+class FootagePullRecoveryTests(unittest.TestCase):
+    """Das Abholen der Aufnahme übersteht kurzes „device offline“, aber nichts sonst."""
+
+    OFFLINE = ("Command failed (1): ('adb', 'pull', '/sdcard/lumo-full-race-001.mp4', 'x.mp4')\n"
+               'adb: error: failed to get feature set: device offline')
+
+    def recorder(self, outcomes):
+        calls = []
+
+        def adb(*args, timeout=60, check=True):
+            calls.append(args)
+            if args[0] == 'pull':
+                outcome = outcomes.pop(0)
+                if outcome is not None:
+                    raise RuntimeError(outcome)
+            return ''
+
+        return PROBE.VideoRecorder(Path('/tmp/unused'), adb), calls
+
+    def setUp(self):
+        sleeper = mock.patch.object(PROBE.time, 'sleep', lambda _seconds: None)
+        sleeper.start()
+        self.addCleanup(sleeper.stop)
+
+    def test_two_offline_reports_are_recovered_with_reconnect_and_wait(self):
+        recorder, calls = self.recorder([self.OFFLINE, self.OFFLINE, None])
+        recorder._pull('/sdcard/a.mp4', Path('/tmp/a.mp4'))
+        self.assertEqual([c[0] for c in calls],
+                         ['pull', 'reconnect', 'wait-for-device', 'pull',
+                          'reconnect', 'wait-for-device', 'pull'])
+        self.assertEqual(len(recorder.recoveries), 2)
+        self.assertIn('device offline', recorder.recoveries[0]['error'])
+
+    def test_a_permanently_offline_device_still_fails_after_three_attempts(self):
+        recorder, calls = self.recorder([self.OFFLINE] * 3)
+        with self.assertRaisesRegex(RuntimeError, 'device offline'):
+            recorder._pull('/sdcard/a.mp4', Path('/tmp/a.mp4'))
+        self.assertEqual([c[0] for c in calls].count('pull'), 3)
+
+    def test_other_pull_errors_are_never_retried_or_masked(self):
+        missing = ("Command failed (1): ('adb', 'pull', '/sdcard/a.mp4', 'a.mp4')\n"
+                   "adb: error: remote object '/sdcard/a.mp4' does not exist")
+        recorder, calls = self.recorder([missing])
+        with self.assertRaisesRegex(RuntimeError, 'does not exist'):
+            recorder._pull('/sdcard/a.mp4', Path('/tmp/a.mp4'))
+        self.assertEqual([c[0] for c in calls], ['pull'])
+        self.assertEqual(recorder.recoveries, [])
+
+    def test_recoveries_are_part_of_the_recorded_evidence(self):
+        recorder, _ = self.recorder([None])
+        recorder.recoveries.append({'attempt': 1})
+        recorder.thread = mock.Mock(join=lambda timeout=None: None, is_alive=lambda: False)
+        self.assertEqual(recorder.stop()['recoveries'], [{'attempt': 1}])
 
 
 class ReadOnlyKartSaveTests(unittest.TestCase):

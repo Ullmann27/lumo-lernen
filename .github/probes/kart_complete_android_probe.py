@@ -440,16 +440,44 @@ def require_saved_progress_unchanged(before: dict, after: dict, context: str) ->
 
 class VideoRecorder:
     """Segmented raw Android screenrecord; never replace footage with a render."""
+    # Meldungen, die ein kurz nicht erreichbares Gerät beschreiben (nicht: Datei fehlt).
+    OFFLINE_MARKERS = ('device offline', 'no devices/emulators found', 'device not found',
+                       'device still authorizing')
+
     def __init__(self, out: Path, adb):
         self.out, self.adb = out, adb
         self.stop_event = threading.Event()
-        self.records, self.errors = [], []
+        self.records, self.errors, self.recoveries = [], [], []
         self.thread = threading.Thread(target=self._run, name='real-android-screenrecord', daemon=True)
 
     def start(self):
         if self.adb('shell', 'pidof', 'screenrecord', check=False).strip():
             raise RuntimeError('Another screenrecord owns this disposable emulator')
         self.thread.start()
+
+    def _pull(self, remote: str, local: Path, attempts: int = 3) -> None:
+        """adb pull mit begrenzter Wiederverbindung.
+
+        Ein belasteter Emulator meldet am Ende eines langen Laufs kurz „device offline“
+        (Run 37937263563, Android 15: Rennen, Ergebnis, Größenwechsel und Offline-Neustart waren
+        fertig, nur das Abholen des letzten Segments scheiterte). Es gibt höchstens `attempts`
+        Versuche mit `adb reconnect offline` und `adb wait-for-device` dazwischen. Jeder andere
+        Fehler (Datei fehlt, leere Datei) und ein dauerhaft toter Emulator scheitern weiterhin
+        sofort bzw. nach dem letzten Versuch; es wird nichts ersetzt oder übersprungen.
+        """
+        for attempt in range(1, attempts + 1):
+            try:
+                self.adb('pull', remote, str(local), timeout=90)
+                return
+            except RuntimeError as error:
+                offline = any(marker in str(error).lower() for marker in self.OFFLINE_MARKERS)
+                if attempt == attempts or not offline:
+                    raise
+                self.recoveries.append({'attempt': attempt, 'remote': remote,
+                                        'error': str(error).strip().splitlines()[-1][:200]})
+                self.adb('reconnect', 'offline', timeout=30, check=False)
+                self.adb('wait-for-device', timeout=60, check=False)
+                time.sleep(2)
 
     def _run(self):
         index = 0
@@ -471,7 +499,7 @@ class VideoRecorder:
                     self.adb('shell', 'kill', '-2', pids[0])
                 output, _ = process.communicate(timeout=20)
                 (self.out / ('android-race-%03d-screenrecord.txt' % index)).write_bytes(output)
-                self.adb('pull', remote, str(local), timeout=90)
+                self._pull(remote, local)
                 if local.stat().st_size < 1024:
                     raise RuntimeError('Android screenrecord produced no usable footage')
                 self.records.append({'file': local.name, 'bytes': local.stat().st_size,
@@ -491,7 +519,7 @@ class VideoRecorder:
         self.thread.join(timeout=115)
         if self.thread.is_alive():
             self.errors.append('Screenrecord collector did not stop within its deadline')
-        return {'segments': self.records, 'errors': self.errors,
+        return {'segments': self.records, 'errors': self.errors, 'recoveries': self.recoveries,
                 'status': 'PASS' if self.records and not self.errors else 'NOT_EXECUTED_OR_FAILED'}
 
 
