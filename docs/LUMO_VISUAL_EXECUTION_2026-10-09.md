@@ -91,8 +91,8 @@ geprüft: 104 Rundenprüfungen, 29 Zeitformatfälle, 6 Bilder des vollständigen
 
 ## 4. Lumo und COMET gegen die Referenz
 
-Status: **in Arbeit, nicht abgenommen** (VISUAL_GAP). Die Änderungen liegen noch nicht im Integrationszweig,
-sondern uncommittet in einem eigenen Arbeitsbaum. Stand der Messung am gerenderten Kopf (Frontansicht, lange
+Status: **in Arbeit, nicht abgenommen** (VISUAL_GAP). Die Änderungen sind **nicht** im Spiel und nicht in der APK; sie liegen
+als Patch mit Engine-Bildern VORHER/NACHHER im Godot-Repo (`docs/wip/2026-10-09-lumo-gesicht/`, Commit `4a4bf98`). Stand der Messung am gerenderten Kopf (Frontansicht, lange
 Brennweite, Engine-Bild ohne Nachbearbeitung):
 
 | Maß | Vorher | Nachher (Zwischenstand) |
