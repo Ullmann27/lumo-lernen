@@ -21,6 +21,8 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../learning/curriculum_activities_screen.dart';
+import '../learning/widgets/lumo_learning_tree_card.dart';
+import '../lumo_welt/lumo_welt_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import '../writing/lumo_writing_word_coach_screen.dart';
 import '../writing/writing_feature_flags.dart';
@@ -685,6 +687,25 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           SliverToBoxAdapter(child: _buildGradePicker()),
           SliverToBoxAdapter(child: _buildLearningAreas()),
           SliverToBoxAdapter(child: _buildContinueBanner()),
+          // Bestehende Navigation bleibt. Darunter wächst der Kompetenzbaum
+          // aus echten lokalen Lernwerten, nicht aus Deko-/Sterne-Zählern.
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 2, 16, 15),
+              child: AnimatedBuilder(
+                animation: widget.appState,
+                builder: (context, _) => LumoLearningTreeCard(
+                  skills: widget.appState.learningSkills(),
+                  compact: true,
+                  onOpenWorld: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => LumoWeltScreen(appState: widget.appState),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
             sliver: SliverToBoxAdapter(
