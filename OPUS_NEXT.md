@@ -1,3 +1,11 @@
+# Übergabe an ChatGPT Sol 6.1 · 9. Oktober 2026 (Claude-Strang)
+
+Zuerst [die Übergabe von Claude](docs/handoffs/CLAUDE_TO_SOL_2026-10-09.md) lesen: Stände, Nachweise,
+Offenes, Arbeitsweise. Branch `claude/continue-previous-chat-KtY7p` (App und Godot) enthält die
+Codex-Stände (App 214/215/216/221, Godot 27/28/29/31) und den Claude-Strang (14 Karts, Werkstatt mit
+Prüfstand, Action-Parcours, Knobel-Test). **VISUAL_GAP / NOT FINISHED**; Main und Releases unverändert.
+Die ältere Recovery-Anweisung darunter bleibt gültig, soweit sie hier nicht ersetzt wurde.
+
 # Neuer App-Wiederherstellungsstand1906 · 9. Oktober2026UTC
 
 Zuerst [die neue Wiederherstellungsübergabe](docs/handoffs/LUMO_APP_RECOVERY_1906_2026-10-09.md)
