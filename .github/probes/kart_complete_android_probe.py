@@ -193,12 +193,21 @@ def require_reward(before: dict, after: dict, payload: dict) -> None:
         raise RuntimeError('An unrelated result entered the wallet during the isolated race')
 
 
+TIMING_FIELDS = ('elapsedSeconds', 'bestLapSeconds')
+
+
+def _finite_number(value) -> bool:
+    # bool is a subclass of int; type() keeps True/False out.
+    return type(value) in (int, float) and math.isfinite(value)
+
+
 def require_event(events: dict, payload: dict) -> None:
-    """Match an actually durable host event, allowing only a sub-nanosecond JSON float round-trip.
+    """Match an actually durable host event, allowing only a sub-nanosecond JSON number round-trip.
 
     The native ConfigFile can preserve 75.35000000000001 while JSON.stringify /
-    org.json stores 75.35. All identifiers, rewards, fields and other values
-    remain exact. A discrepancy of 1e-9 seconds or greater still fails closed.
+    org.json stores 75.35, and Android's org.json writes an integral double such
+    as 76.0 as 76. Only the two timing fields may differ, by less than 1e-9 s;
+    all identifiers, rewards, fields and other values remain exact.
     """
     failure = 'Host did not durably retain exactly this native finish result'
     rows = [row for row in events.get('results', []) if row.get('resultId') == payload['resultId']]
@@ -209,10 +218,9 @@ def require_event(events: dict, payload: dict) -> None:
         raise RuntimeError(failure)
     for key, expected in payload.items():
         actual = stored[key]
-        if key in ('elapsedSeconds', 'bestLapSeconds'):
-            if (type(expected) is not float or type(actual) is not float
-                    or not math.isfinite(expected) or not math.isfinite(actual)
-                    or not math.isclose(actual, expected, rel_tol=0.0, abs_tol=1e-9)):
+        if key in TIMING_FIELDS:
+            if (not _finite_number(expected) or not _finite_number(actual)
+                    or not math.isclose(float(actual), float(expected), rel_tol=0.0, abs_tol=1e-9)):
                 raise RuntimeError(failure)
         elif actual != expected:
             raise RuntimeError(failure)
