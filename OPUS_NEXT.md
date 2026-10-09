@@ -4,6 +4,7 @@
 1. [docs/LUMO_VISUAL_EXECUTION_2026-10-09.md](docs/LUMO_VISUAL_EXECUTION_2026-10-09.md) – Bestandsaufnahme der PRs, Integrationsmatrix, Prüfungen, APK-Stand.
 2. [docs/LERNAPP_PRUEFBERICHT_2026-10-09.md](docs/LERNAPP_PRUEFBERICHT_2026-10-09.md) – Lernapp: was geprüft, behoben und offen ist, Markt/Evidenz und die Idee fürs Alleinstellungsmerkmal.
 3. Godot-Repo `docs/wip/2026-10-09-lumo-gesicht/README.md` – Lumo-Gesicht und Anzug als Patch (Zwischenstand, **nicht** im Spiel).
+4. [docs/CHATGPT_UEBERGABE_2026-10-09.md](docs/CHATGPT_UEBERGABE_2026-10-09.md) – fertige Startnachricht für ChatGPT mit Regeln, Stand, Reihenfolge und Abnahmekriterien.
 
 **Stände:** App und Godot auf `claude/continue-previous-chat-KtY7p`. Die App pinnt Godot `de91cc9` (Claude-Strang + Codex-1909/1910-Strang +
 Spielstart-Branding); das Godot-Repo liegt inzwischen bei `4a4bf98` (nur Doku). Eingearbeitet: App-PR #227 und #228, der Codex-Strang (#223/#225/#226)
