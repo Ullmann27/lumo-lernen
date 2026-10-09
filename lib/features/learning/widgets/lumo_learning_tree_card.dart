@@ -264,6 +264,11 @@ class _LearningTreeWorldArt extends StatelessWidget {
                 key: const ValueKey('lumo-tree-3d-image'),
                 fit: BoxFit.contain,
                 filterQuality: FilterQuality.high,
+                // Visible fallback until the real 3D art decodes.
+                frameBuilder: (context, child, frame, synchronous) =>
+                    frame == null && !synchronous
+                        ? CustomPaint(painter: _TreePainter(progress))
+                        : child,
                 errorBuilder: (context, error, stackTrace) =>
                     CustomPaint(painter: _TreePainter(progress)),
               ),
