@@ -36,7 +36,12 @@ class LumoDiscardPile extends StatelessWidget {
                   width: 92,
                   height: 132,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE5B07A),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0xFF1F4C86), Color(0xFF061839)],
+                    ),
+                    border: Border.all(color: const Color(0xFF53DDFD)),
                     borderRadius: BorderRadius.circular(14),
                   ),
                 ),
@@ -90,6 +95,12 @@ class LumoDiscardPile extends StatelessWidget {
                 color: _colorOf(selectedColor),
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.white, width: 2),
+                boxShadow: [
+                  BoxShadow(
+                    color: _colorOf(selectedColor).withOpacity(0.60),
+                    blurRadius: 10,
+                  ),
+                ],
               ),
             ),
             const SizedBox(width: 6),
@@ -99,7 +110,7 @@ class LumoDiscardPile extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 12,
                 fontWeight: FontWeight.w900,
-                color: Color(0xFF7C2D12),
+                color: Color(0xFFF7FBFF),
               ),
             ),
           ],
@@ -111,9 +122,9 @@ class LumoDiscardPile extends StatelessWidget {
   static Color _colorOf(LumoCardColor c) {
     switch (c) {
       case LumoCardColor.orange:
-        return const Color(0xFFFF4D4F); // Rot
+        return const Color(0xFFFF8A27); // Orange
       case LumoCardColor.purple:
-        return const Color(0xFFFFC83D); // Gelb
+        return const Color(0xFFA35FFF); // Lila
       case LumoCardColor.blue:
         return const Color(0xFF2D7BFF); // Blau
       case LumoCardColor.green:
