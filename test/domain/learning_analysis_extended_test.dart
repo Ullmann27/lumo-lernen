@@ -31,8 +31,47 @@ Attempt _m(int i, bool ok, {String given = '3', String expected = '13'}) =>
       durationMs: 5000,
     );
 
+Attempt _knobel(int i, bool ok) => Attempt(
+      id: 'k$i',
+      studentId: 'self',
+      subject: 'IQ-Rätsel',
+      unit: 'Muster-Matrix',
+      competency: 'Logisches Schließen',
+      correct: ok,
+      at: DateTime(2026, 10, 3).add(Duration(minutes: i)),
+      prompt: 'Welches Teil fehlt?',
+      given: ok ? 'a' : 'b',
+      expected: 'a',
+      durationMs: 9000,
+    );
+
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  test('Knobel-Test (adaptiv, ~50 % richtig) löst weder Coach noch Empfehlung aus', () {
+    // Ein adaptiver Test landet bauartbedingt bei etwa der Hälfte richtig: 24 Rätsel, 12 falsch.
+    final knobel = [for (var i = 0; i < 24; i++) _knobel(i, i.isEven)];
+    final r = LearningAnalysis.analyze(knobel, now: DateTime(2026, 10, 4));
+    expect(r.stats, isEmpty);
+    expect(r.weak, isEmpty);
+    expect(r.coachMessage, isNull);
+    expect(r.suggestion, isNull);
+    expect(r.insights, isEmpty);
+    expect(r.totalAttempts, 0);
+  });
+
+  test('Knobel-Test verdrängt echte Lernkompetenzen nicht aus Coach und Empfehlung', () {
+    final list = [
+      for (var i = 0; i < 24; i++) _knobel(i, i.isEven),
+      for (var i = 0; i < 6; i++) _m(i, true),
+    ];
+    final r = LearningAnalysis.analyze(list, now: DateTime(2026, 10, 4));
+    expect(r.stats.map((s) => s.subject).toSet(), {'Mathematik'});
+    expect(r.coachMessage?.subject, 'Mathematik');
+    expect(r.coachMessage?.isHelp, isFalse);
+    expect(r.suggestion, isNull);
+    expect(r.totalAttempts, 6);
+  });
 
   test('Trend: früher viele Fehler, zuletzt sicher → positiver Trend', () {
     final list = [

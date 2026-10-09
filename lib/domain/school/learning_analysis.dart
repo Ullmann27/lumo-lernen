@@ -173,7 +173,19 @@ class LearningAnalysis {
     return 'Lumos Bildern und Beispielen';
   }
 
-  static LearningAnalysis analyze(List<Attempt> attempts, {DateTime? now}) {
+  /// Fächer, die etwas messen, aber nichts üben. Der Knobel-Test arbeitet adaptiv (richtig →
+  /// schwerer, falsch → leichter); seine Trefferquote liegt deshalb bauartbedingt bei rund
+  /// 50 %. Würde er hier mitgezählt, stünde nach zwei Tests fast jedes Kind bei „braucht
+  /// Hilfe“, und Lumo sagte „Bei Logisches Schließen passieren dir noch Fehler“. Die Einträge
+  /// bleiben im Aufgabenprotokoll (Verlauf des Tests), fließen aber nicht in Kompetenzstufen,
+  /// Empfehlung, Coach-Satz, Tage oder Lernzeit ein.
+  static const Set<String> assessmentSubjects = {'IQ-Rätsel'};
+
+  static LearningAnalysis analyze(List<Attempt> allAttempts, {DateTime? now}) {
+    final attempts = [
+      for (final a in allAttempts)
+        if (!assessmentSubjects.contains(a.subject)) a,
+    ];
     final today = now ?? DateTime.now();
     const detector = ErrorPatternDetector();
     final byComp = <String, List<Attempt>>{};
