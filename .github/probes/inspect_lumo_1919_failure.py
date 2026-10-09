@@ -179,8 +179,10 @@ with archive(artifact) as z:
     inventory = [n for n in z.namelist() if n.endswith(".png") and "full-race/" in n]
     print("LUMO_DIAG_PNG_INDEX " + json.dumps(inventory), flush=True)
     print("LUMO_DIAG_RESULT " + json.dumps(result, ensure_ascii=False), flush=True)
-    for suffix in ("enable-public-auto-gas-0.png", "enable-public-auto-gas-3.png",
-                   "enable-public-auto-gas-6.png", "enable-public-auto-gas-9.png", "failure.png"):
+    for name in sorted(z.namelist()):
+        if "full-race/enable-public-auto-gas-" in name and name.endswith("-observed-scroll.json"):
+            print("LUMO_SCROLL_OBSERVATION_JSON " + json.dumps({"file": name, "data": json.loads(z.read(name))}, ensure_ascii=False), flush=True)
+    for suffix in ("enable-public-auto-gas-4.png", "enable-public-auto-gas-5.png"):
         png(z, "full-race/" + suffix, "android-api36/" + suffix, artifact["id"], display=True)
 summary = {"status": "INSPECTION_OF_FAILED_ANDROID_JOB", "parent_run": RUN,
            "job_id": failed[0]["id"], "source_app": APP, "source_godot": GODOT,
@@ -189,4 +191,4 @@ summary = {"status": "INSPECTION_OF_FAILED_ANDROID_JOB", "parent_run": RUN,
            "files": FILES, "images": IMAGES, "original_result": result,
            "scope": "Read-only extraction of exact original failure evidence; no rerun, repair or approval"}
 (OUT / "DIAGNOSTIC-AUDIT.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n")
-print("[Lumo1919Diagnostic] Original failed-job bytes and five unchanged screenshots verified", flush=True)
+print("[Lumo1919Diagnostic] Original failed-job bytes and additional unchanged screenshots verified", flush=True)
