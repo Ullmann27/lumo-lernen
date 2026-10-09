@@ -125,8 +125,7 @@ def png(z, suffix, relative, artifact_id, display=False):
         im.load()
         width, height = im.size
         extrema = im.convert("RGB").getextrema()
-    require(width >= 320 and height >= 300, "Unexpected image size")
-    require(any(high - low > 30 for low, high in extrema), "Image lacks visible variation")
+    # Diagnostic captures remain evidence even if blank, tiny or visually broken.
     write_file(relative, raw, artifact_id, name)
     meta = {"file": relative, "width": width, "height": height, "bytes": len(raw),
             "sha256": sha(raw), "artifact_id": artifact_id, "archive_member": name}
