@@ -309,14 +309,29 @@ class LumoGameEntryHandle {
     final overlay = Overlay.maybeOf(context);
     if (overlay == null) return null;
     final phase = ValueNotifier(LumoGameEntryPhase.saving);
+    // A route change must not leave an indeterminate animation in front of
+    // the next page. The original route's secondary animation changes when
+    // a new route is pushed, so the existing launcher lifecycle can still
+    // cancel the pending request without keeping pumpAndSettle alive.
+    final originRoute = ModalRoute.of(context);
+    final routeAnimation = originRoute?.secondaryAnimation ??
+        const AlwaysStoppedAnimation<double>(0.0);
     final entry = OverlayEntry(
-      builder: (_) => ValueListenableBuilder<LumoGameEntryPhase>(
-        valueListenable: phase,
-        builder: (_, value, __) => LumoGameEntryOverlay(
-          scene: scene,
-          phase: value,
-          reduceMotion: reduceMotion,
-        ),
+      builder: (_) => AnimatedBuilder(
+        animation: routeAnimation,
+        builder: (_, __) {
+          if (originRoute != null && !originRoute.isCurrent) {
+            return const SizedBox.shrink();
+          }
+          return ValueListenableBuilder<LumoGameEntryPhase>(
+            valueListenable: phase,
+            builder: (_, value, __) => LumoGameEntryOverlay(
+              scene: scene,
+              phase: value,
+              reduceMotion: reduceMotion,
+            ),
+          );
+        },
       ),
     );
     overlay.insert(entry);
