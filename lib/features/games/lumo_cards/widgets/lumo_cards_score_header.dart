@@ -40,7 +40,11 @@ class LumoCardsScoreHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return LayoutBuilder(builder: (context, bounds) {
+      // Landscape puts this scoreboard into a narrow side pane.
+      // The larger player portrait remains visible immediately below.
+      final narrowPane = bounds.maxWidth < 300;
+      return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -49,7 +53,8 @@ class LumoCardsScoreHeader extends StatelessWidget {
             children: [
               _action(Icons.arrow_back_rounded, 'Pausieren / Zurück', onClose),
               const SizedBox(width: 2),
-              Container(
+              if (!narrowPane)
+                Container(
                 width: 34,
                 height: 34,
                 padding: const EdgeInsets.all(1.5),
@@ -75,8 +80,8 @@ class LumoCardsScoreHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 9),
-              const Expanded(
+              SizedBox(width: narrowPane ? 4 : 9),
+              Expanded(
                 child: Text(
                   'Lumo Cards',
                   key: ValueKey('lumo-cards-brand'),
@@ -84,7 +89,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 19,
+                    fontSize: narrowPane ? 14 : 19,
                     fontWeight: FontWeight.w900,
                     color: LumoVisualTokens.white,
                     shadows: [
@@ -93,14 +98,30 @@ class LumoCardsScoreHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              if (onEmoji != null)
+              if (!narrowPane && onEmoji != null)
                 _action(Icons.face_rounded, 'Avatar', onEmoji),
-              if (onAudioSettings != null)
+              if (!narrowPane && onAudioSettings != null)
                 _action(Icons.volume_up_rounded, 'Ton einstellen', onAudioSettings),
-              if (onSettings != null)
+              if (!narrowPane && onSettings != null)
                 _action(Icons.pause_rounded, 'Pause und Neustart', onSettings),
             ],
           ),
+          // A Fold landscape side pane cannot fit the name and up to three
+          // 44dp controls on one line. Wrap actions onto their own row instead
+          // of truncating the mascot's name or shrinking touch targets.
+          if (narrowPane &&
+              (onEmoji != null || onAudioSettings != null || onSettings != null))
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (onEmoji != null)
+                  _action(Icons.face_rounded, 'Avatar', onEmoji),
+                if (onAudioSettings != null)
+                  _action(Icons.volume_up_rounded, 'Ton einstellen', onAudioSettings),
+                if (onSettings != null)
+                  _action(Icons.pause_rounded, 'Pause und Neustart', onSettings),
+              ],
+            ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -139,6 +160,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
           ),
         ],
       ),
-    );
+      );
+    });
   }
 }

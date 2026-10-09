@@ -135,4 +135,44 @@ void main() {
     expect(completed, 1);
     expect(tester.takeException(), isNull);
   });
+  testWidgets('Fold landscape keeps the complete Lumo Cards title',
+      (tester) async {
+    var audioTaps = 0;
+    var pauseTaps = 0;
+    await tester.binding.setSurfaceSize(const Size(250, 420));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        backgroundColor: LumoVisualTokens.night,
+        body: SafeArea(
+          child: LumoCardsScoreHeader(
+            round: 1,
+            totalRounds: 2,
+            targetPoints: 9,
+            onAudioSettings: () => audioTaps++,
+            onSettings: () => pauseTaps++,
+          ),
+        ),
+      ),
+    ));
+    await tester.pump();
+    final brandFinder = find.byKey(const ValueKey('lumo-cards-brand'));
+    final brand = tester.widget<Text>(brandFinder);
+    final painter = TextPainter(
+      text: TextSpan(text: brand.data!, style: brand.style),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    expect(tester.getSize(brandFinder).width,
+        greaterThanOrEqualTo(painter.width),
+        reason: 'Landscape title must not end in an ellipsis.');
+    painter.dispose();
+    expect(find.text('Lumo Cards'), findsOneWidget);
+    expect(find.text('Runde 1/2'), findsOneWidget);
+    expect(find.text('9 Sterne'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip('Ton einstellen'));
+    await tester.tap(find.byTooltip('Pause und Neustart'));
+    expect([audioTaps, pauseTaps], [1, 1]);
+  });
+
 }
