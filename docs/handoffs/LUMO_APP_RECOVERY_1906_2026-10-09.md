@@ -1,5 +1,14 @@
 # Lumo 1906 · neuer App-Wiederherstellungsstand vom 9. Oktober 2026 UTC
 
+Aktuelle Ergänzung: Nach einem **zweiten Workspaceverlust** wurde die vollständige
+App21-Quelle aus Recoverycommit `1c5300267b5689d450f67bcf59d700f1c3d6d0d8`,
+Tree `4b92e0531c23c0bf93a75b95179b2353cae4b01a`, sauber wiederhergestellt.
+Die folgenden früheren Teilcheckout-/Reportangaben bleiben historische Kontexte.
+Verlorene lokale Reports sind nicht wieder verfügbar. Der
+[neue Lifecycle10-Anschluss](HANDOFF_LIFECYCLE_SOURCE_PREPARATION_1906_2026-10-09.md)
+hat vorerst nur synthetische Readerguards; seine aktuelle strikte GL-Abnahme
+ist wegen Ressourcenleaks noch blockiert. Finale Pin-/APK-Freigabe steht aus.
+
 Status: **RECONSTRUCTED_NEW_SOURCE / VISUAL_GAP / NOT FINISHED**. Dieser
 Anschluss ist nach dem Verlust des ursprünglichen Arbeitsbereichs neu erstellt.
 Die früheren lokalen App45-/SDK576-/436-/47-Abnahmen sind historische

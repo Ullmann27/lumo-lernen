@@ -355,11 +355,15 @@ jobs:
               'physical_device_performance': 'NOT EXECUTED',
           }
           import importlib.util
+          import sys
           helper = workspace / 'tools/android_qa/native_lap_evidence_recovery.py'
+          sys.path.insert(0, str(helper.parent))
           spec = importlib.util.spec_from_file_location('native_lap_evidence_recovery', helper)
           lap_evidence = importlib.util.module_from_spec(spec)
           spec.loader.exec_module(lap_evidence)
           report.update(lap_evidence.summarize_native_lap_evidence(Path.cwd()))
+          import native_handoff_evidence_recovery
+          report.update(native_handoff_evidence_recovery.summarize_handoff_lifecycle(Path.cwd()))
           Path('exports/fold-controls/native-check-summary.json').write_text(json.dumps(report, indent=2) + '\n')
           with (workspace / 'proof/TEST-RESULTS.txt').open('a') as stream:
               stream.write(f'PASS {len(probes)} strict native render/gameplay/capture probes on exact source {native_source}; nine countdown-pause and fourteen modal-touch frames.\n')
@@ -378,6 +382,7 @@ jobs:
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/video-reference-grade/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/complete-flow/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/race-continuity/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/race-bridge/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/time-format/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/steering-grip/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/countdown-pause/

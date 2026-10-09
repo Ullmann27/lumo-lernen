@@ -1,5 +1,21 @@
 # Neuer App-Wiederherstellungsstand1906 · 9. Oktober2026UTC
 
+Aktuelle Fortsetzung nach **zweitem Workspaceverlust**: vollständiger sauberer
+Recoverycheckout aus `1c5300267b5689d450f67bcf59d700f1c3d6d0d8`/Tree
+`4b92e0531c23c0bf93a75b95179b2353cae4b01a`. Lokale historische Reports sind
+verloren; frühere Testzahlen ersetzen keine neue Ausführung. Der
+[neue Lifecycle-Quellanschluss](docs/handoffs/HANDOFF_LIFECYCLE_SOURCE_PREPARATION_1906_2026-10-09.md)
+ergänzt fünf streng gebundene Summaryfelder und den eigenen JSON-Artefaktpfad.
+Seine neue Testfixture ist ausdrücklich synthetisch. Aktuelle leakfreie
+Godot-/Lifecycle10-GL-Abnahme, finaler Pin und APK1906 bleiben ausstehend.
+Gesamtstatus: **VISUAL_GAP / NOT FINISHED**.
+
+Neue tatsächliche Quellenprüfung nach diesem Verlust:579 Android-QA- und36
+Scriptprüfungen PASS,0 FAIL/0 ERROR/0 SKIP. Darin30 neue ausschließlich
+synthetische Lifecycleguards; alte48 Originaldateien und bisherige86 Lapguards
+bleiben unverändert. Der historische erste NDK-Scriptfehlversuch bleibt im
+neuen Handoff dokumentiert. Kein aktueller Runtime-/APK-Erfolg wird übertragen.
+
 Zuerst [die neue Wiederherstellungsübergabe](docs/handoffs/LUMO_APP_RECOVERY_1906_2026-10-09.md)
 lesen. Status: **RECONSTRUCTED_NEW_SOURCE / VISUAL_GAP / NOT FINISHED**.
 Veröffentlichte App-Basis ist `f6c4f3350db8153200594b52a9d82606279dc238`;
