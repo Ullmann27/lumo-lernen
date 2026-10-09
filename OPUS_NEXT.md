@@ -1,3 +1,17 @@
+# Aktueller Flutter-Rueckkehr-Versuch · 9. Oktober 2026 UTC
+
+Zuerst [die neue Rueckkehr-Uebergabe](docs/handoffs/LUMO_RETURN_FRAME_REPAIR_2026-10-09.md)
+lesen. **DRAFT SOURCE PASS / ANDROID NOT EXECUTED / VISUAL_GAP / NOT FINISHED**.
+Dieser kleine Entwurf baut auf App `2b60f28a558c4b2a414b100d73903fa6abb41ce1` auf.
+Er korrigiert ausschliesslich den Nachweis der sichtbaren Flutter-Rueckkehr:
+zwei frische stabile Host-Frames statt eines ungeprueften compositoralten Bildes.
+597 QA + 36 Scripts PASS; alle bisherigen 615 Methoden bleiben enthalten.
+Godot-Pin, Version `0.12.5+1908`, Laufgrenzen und Renn-/ACK-/Wallet-Gates unveraendert.
+Die inzwischen tatsaechlich gebaute APK 1908 ist binaer/nativ bestaetigt, aber ihr
+eigener Android-35/36-Vollrennlauf `37892031317` scheiterte jeweils nach 1200 Sekunden
+im weiterfahrenden Rennen. Keine APK-Freigabe oder abgeschlossene Android-Abnahme.
+Die folgenden Quellabschlussabschnitte beschreiben ihren damaligen Zeitpunkt.
+
 # Gemeinsamer App-Entwurf 1908 · 9. Oktober 2026 UTC
 
 Zuerst [die neue selektive Integrationsübergabe](docs/handoffs/LUMO_SELECTIVE_INTEGRATION_1908_2026-10-09.md)
