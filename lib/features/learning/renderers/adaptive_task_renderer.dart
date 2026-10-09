@@ -626,9 +626,18 @@ class _OptionGrid extends StatelessWidget {
       // damit Aufgabe und alle Antworten gemeinsam ins Bild passen.
       final shortAnswers = task.options.every((o) => o.label.length <= 14) &&
           MediaQuery.textScalerOf(context).scale(1) <= 1.3;
-      final itemWidth = compact
-          ? (shortAnswers ? (constraints.maxWidth - 12) / 2 : constraints.maxWidth)
-          : (constraints.maxWidth - 24) / 3;
+      // Vier kurze Antwortkacheln bleiben auch auf Tablets ein
+      // ausgewogenes 2×2-Raster statt einer unruhigen 3+1-Anordnung.
+      // Längere Antworttexte und andere Auswahlanzahlen behalten ihre
+      // bisherigen responsiven Regeln.
+      final balancedFour = shortAnswers && task.options.length == 4;
+      final itemWidth = balancedFour
+          ? (constraints.maxWidth - 12) / 2
+          : compact
+              ? (shortAnswers
+                  ? (constraints.maxWidth - 12) / 2
+                  : constraints.maxWidth)
+              : (constraints.maxWidth - 24) / 3;
       return Wrap(
         spacing: 12,
         runSpacing: 12,

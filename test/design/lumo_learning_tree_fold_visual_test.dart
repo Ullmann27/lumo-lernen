@@ -234,6 +234,15 @@ void main() {
       expect(find.text('7 + 5 = ?'), findsOneWidget);
       expect(find.byKey(const ValueKey('lesson-hint-button')), findsOneWidget);
       expect(tester.takeException(), isNull);
+      // Four short answers must form two balanced rows on phone, open Fold,
+      // and tablet. In particular, tablet must not render three above one.
+      final first = tester.getTopLeft(find.text('10'));
+      final second = tester.getTopLeft(find.text('11'));
+      final third = tester.getTopLeft(find.text('12'));
+      final fourth = tester.getTopLeft(find.text('13'));
+      expect((first.dy - second.dy).abs(), lessThan(1));
+      expect((third.dy - fourth.dy).abs(), lessThan(1));
+      expect(third.dy, greaterThan(first.dy + 12));
       await captureVisual(tester, 'math_task_' + target.$2);
       await tester.ensureVisible(find.byKey(const ValueKey('lesson-hint-button')));
       await tester.tap(find.byKey(const ValueKey('lesson-hint-button')));
