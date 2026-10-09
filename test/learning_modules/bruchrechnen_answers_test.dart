@@ -153,7 +153,13 @@ void main() {
   await tester.pump();
     await tester.tap(find.text('Mathe'));
     await _frames(tester);
-    await tester.ensureVisible(find.text('Bruchrechnen'));
+    // Themen weit unterhalb der Falz werden im Lazy-Sliver später gebaut.
+    // scrollUntilVisible findet auch noch nicht erzeugte Listenelemente.
+    await tester.scrollUntilVisible(
+      find.text('Bruchrechnen'),
+      220,
+      scrollable: find.byType(Scrollable).first,
+    );
   await tester.pump();
     await tester.tap(find.text('Bruchrechnen'));
     await _frames(tester);
