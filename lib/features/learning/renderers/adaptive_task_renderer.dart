@@ -48,6 +48,7 @@ class AdaptiveTaskRenderer extends StatefulWidget {
 class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
   Object? _picked;
   final Set<String> _wrongAnswers = <String>{};
+  bool _showGentleHint = false;
 
   bool get _solved => _picked != null && '$_picked' == '${widget.task.correctAnswer}';
 
@@ -84,7 +85,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       LearningSubject.englisch => const Color(0xFFFFB84D),
       LearningSubject.logik => const Color(0xFFC6A8FF),
     };
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    // Fold innen: zwei richtige Arbeitsflächen, Handy: vertikal.
+    final questionCard = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
       // 2026-06-06 FIX: Border mit unterschiedlichen Farben + borderRadius
       // crasht Flutter silent (Widget unsichtbar). Loesung: Outer Container
       // mit border-Side links als separate child, dann inner Card mit
@@ -128,7 +132,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                 padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xEA0B2B58), Color(0xEE071B3D), Color(0xE60A315F)],
+                    colors: [Color(0xF00F3F7A), Color(0xF4092150), Color(0xED0C356A)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -168,9 +172,16 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                     task.prompt,
                     // Kurze Rechnungen groß, lange Geschichten gut lesbar
                     // ohne dass die Antworten aus dem Bild rutschen.
+                    textAlign: task.subject == LearningSubject.mathematik &&
+                            task.prompt.length < 24
+                        ? TextAlign.center
+                        : TextAlign.start,
                     style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: _promptSize(task.prompt),
+                      fontSize: task.subject == LearningSubject.mathematik &&
+                              task.prompt.length < 24
+                          ? math.min(41, _promptSize(task.prompt) * 1.2)
+                          : _promptSize(task.prompt),
                       fontWeight: FontWeight.w900,
                       color: LumoVisualTokens.white,
                       shadows: const [
@@ -197,7 +208,11 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             ),
         ),
       ),
-      const SizedBox(height: 18),
+      ],
+    );
+    final answerPanel = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
       Text(
         _wrongAnswers.length >= 2 && !_solved
             ? 'Versuch es nochmal mit Lumos Hilfe:'
@@ -214,8 +229,47 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         solved: _solved,
         onPick: _pick,
       ),
-    ],
+        if (widget.allowRetry && !_solved && !_showGentleHint)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: OutlinedButton.icon(
+                key: const ValueKey('lesson-hint-button'),
+                icon: const Icon(Icons.lightbulb_rounded),
+                label: const Text('Tipp von Lumo'),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: const Color(0xFFFFD36A),
+                  side: const BorderSide(color: Color(0xB3FFDA7B)),
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+                ),
+                onPressed: () => setState(() => _showGentleHint = true),
+              ),
+            ),
+          ),
+        if (widget.allowRetry && _showGentleHint && !_solved)
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: _LocalHelpBanner(task: task, wrongCount: 0),
+          ),
+      ],
     );
+    return LayoutBuilder(builder: (context, constraints) {
+      final wide = constraints.maxWidth >= 690 &&
+          MediaQuery.textScalerOf(context).scale(1) <= 1.25;
+      if (wide) {
+        return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(child: questionCard),
+          const SizedBox(width: 16),
+          Expanded(child: answerPanel),
+        ]);
+      }
+      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        questionCard,
+        const SizedBox(height: 17),
+        answerPanel,
+      ]);
+    });
   }
 
   void _pick(AnswerOption option) {
@@ -235,7 +289,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
 
     widget.onAnswered?.call(
         AdaptiveTaskAnswer(task: widget.task, answer: answer, correct: correct,
-        hintUsed: widget.allowRetry && _wrongAnswers.length >= 2,
+        hintUsed: _showGentleHint ||
+            (widget.allowRetry && _wrongAnswers.length >= 2),
       ),
       );
     }
@@ -332,7 +387,9 @@ class _LocalHelpBanner extends StatelessWidget {
                 ],
               ),
               child: Text(
-                wrongCount == 2
+                wrongCount == 0
+                    ? '💡 Ein Tipp von Lumo'
+                    : wrongCount == 2
                     ? '💡 Lumo hilft Schritt für Schritt'
                     : '💡 Noch ein Tipp von Lumo',
                 style: const TextStyle(
@@ -671,7 +728,7 @@ class _AnswerButtonState extends State<_AnswerButton>
       border = const Color(0xFF315D86);
       textColor = const Color(0xFF7895B5);
     } else {
-      bg = const Color(0xFF123D79);
+      bg = const Color(0xFF1552A3);
       border = LumoVisualTokens.cyan.withOpacity(.75);
       textColor = Colors.white;
     }
@@ -693,7 +750,8 @@ class _AnswerButtonState extends State<_AnswerButton>
             : Colors.black;
     final card = AnimatedContainer(
         duration: const Duration(milliseconds: 180),
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+        constraints: const BoxConstraints(minHeight: 80),
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 18),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -739,7 +797,7 @@ class _AnswerButtonState extends State<_AnswerButton>
             child: Text(
               widget.label,
               textAlign: TextAlign.center,
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontFamily: 'Nunito',
