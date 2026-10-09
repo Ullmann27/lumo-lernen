@@ -54,6 +54,7 @@ jobs:
             ':(exclude).github/probes/kart_complete_android_probe.py' \
             ':(exclude).github/probes/prepare_lumo_1919_gas_replay.py' \
             ':(exclude).github/probes/replay_lumo_1919_gas_search.py' \
+            ':(exclude).github/probes/fixtures/lumo-1919-baseline-apksigner.txt' \
             ':(exclude)tools/android_qa/tests/test_gas_caption_scroll_recovery.py' \
             ':(exclude).github/workflows/lumo-1919-gas-recovery.yml' \
             ':(exclude)docs/LUMO_1919_ANDROID_GAS_RECOVERY.md'
@@ -244,6 +245,42 @@ jobs:
           godot = os.environ['LUMO_EXPECT_GODOT']
           cert = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 
+          def require_certificate_output(output, expected):
+              counts = re.findall(r'(?m)^Number of signers:\s*([0-9]+)\s*$', output)
+              digests = re.findall(
+                  r'(?m)^[^\r\n]*certificate SHA-256 digest:\s*([0-9a-fA-F]{64})\s*$',
+                  output)
+              assert counts == ['1'], 'Expected one actual APK signer'
+              assert digests and {value.lower() for value in digests} == {expected}, \
+                  'Actual APK certificate digest differs or is missing'
+
+          # Exact original stdout: the SDK reports "V2 Signer:" instead of
+          # the old reader's "Signer #1". This is a reader-only regression.
+          fixture = Path('.github/probes/fixtures/lumo-1919-baseline-apksigner.txt')
+          assert sha(fixture) == '1ac4fe5ab6155243edbd95a6e6e77d5fdba009c089703835d0b7029f1b1e1eaf'
+          recorded = fixture.read_text()
+          assert re.search(
+              r'Signer #1 certificate SHA-256 digest:\s*([0-9a-fA-F]{64})',
+              recorded) is None
+          require_certificate_output(recorded, cert)
+          certificate_line = next(line for line in recorded.splitlines()
+                                  if 'certificate SHA-256 digest:' in line)
+          rejected = [
+              recorded.replace(cert, '0' * 64),
+              recorded.replace(certificate_line + '\n', ''),
+              recorded.replace(certificate_line, certificate_line.replace('certificate', 'public key')),
+              recorded.replace('Number of signers: 1', 'Number of signers: 2'),
+              recorded + 'V2 Signer: certificate SHA-256 digest: ' + '0' * 64 + '\n',
+          ]
+          for malformed in rejected:
+              try:
+                  require_certificate_output(malformed, cert)
+              except AssertionError:
+                  pass
+              else:
+                  raise RuntimeError('Signer reader accepted an invalid certificate summary')
+          print('[SignerOutputRegression] PASS: exact recorded V2 certificate and five negative cases')
+
           assert sha(apk) == expected_sha
           assert apk.stat().st_size == 205316096
           assert sha(baseline) == os.environ['LUMO_BASE_DIGEST']
@@ -273,10 +310,8 @@ jobs:
                   [str(signers[-1]), 'verify', '--verbose', '--print-certs',
                    str(path)], text=True, stderr=subprocess.STDOUT)
               Path(f'native-proof/{label}-signature.txt').write_text(output)
-              match = re.search(
-                  r'Signer #1 certificate SHA-256 digest:\s*([0-9a-fA-F]{64})',
-                  output)
-              assert match and match.group(1).lower() == cert
+              require_certificate_output(output, cert)
+              print('[ApkSignature] Verified fixed certificate for ' + label)
 
           harness = subprocess.check_output(
               ['git', 'rev-parse', 'HEAD'], text=True).strip()
