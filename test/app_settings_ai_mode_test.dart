@@ -11,6 +11,29 @@ void main() {
       expect(settings.toJson()['aiLearningMode'], 'chatOnly');
     });
 
+    test('AI proxy disallows plaintext HTTP to remote servers', () {
+      expect(
+        AppSettings.sanitizeProxyUrl('http://example.org/chat'),
+        AppSettings.defaultAiProxyUrl,
+      );
+      expect(
+        AppSettings.sanitizeProxyUrl('http://localhost.evil.example/chat'),
+        AppSettings.defaultAiProxyUrl,
+      );
+      expect(
+        AppSettings.sanitizeProxyUrl('https://example.org/health'),
+        'https://example.org',
+      );
+      expect(
+        AppSettings.sanitizeProxyUrl('http://127.0.0.1:8080/chat'),
+        'http://127.0.0.1:8080',
+      );
+      expect(
+        AppSettings.sanitizeProxyUrl('http://localhost:8080/chat'),
+        'http://localhost:8080',
+      );
+    });
+
     test('persists and restores fullCoach mode', () {
       const settings = AppSettings(
         aiProxyEnabled: true,

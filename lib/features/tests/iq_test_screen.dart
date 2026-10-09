@@ -18,7 +18,7 @@ import 'iq/iq_widgets.dart';
 
 enum _Phase { start, areaIntro, puzzle, saving, result, review }
 
-/// Lumo Knobel-Test: der IQ-Test für Kinder.
+/// Lumo Knobel-Test: spielerisches Denk-Abenteuer ohne normierten IQ-Wert.
 ///
 /// 24 Rätsel in sechs Bereichen, ohne Zeitdruck und ohne „richtig/falsch“
 /// zwischendurch. Am Ende gibt es ein Denk-Profil, aber bewusst keine

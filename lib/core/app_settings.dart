@@ -174,6 +174,15 @@ class AppSettings {
     if (uri == null || !uri.hasScheme || uri.host.isEmpty)
       return defaultAiProxyUrl;
     if (uri.scheme != 'https' && uri.scheme != 'http') return defaultAiProxyUrl;
+    // Kinderfragen und Chat-Verläufe dürfen nie unverschlüsselt an einen
+    // frei konfigurierbaren externen Server gesendet werden. HTTP bleibt
+    // ausschließlich für lokale Entwicklungs-/Loopback-Tests erlaubt.
+    if (uri.scheme == 'http' &&
+        uri.host != 'localhost' &&
+        uri.host != '127.0.0.1' &&
+        uri.host != '::1') {
+      return defaultAiProxyUrl;
+    }
     if (uri.userInfo.isNotEmpty) return defaultAiProxyUrl;
     // Eingefuegte Health-Links enthalten oft '?' oder einen Fragment-Anker.
     // Nur der Pfad wird bereinigt; Query und Fragment gehoeren nicht zur Basis.

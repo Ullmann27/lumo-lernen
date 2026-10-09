@@ -139,7 +139,7 @@ void main() {
       await tester.pumpWidget(iqScreenApp(iqTestApp(), session: IqTestSession(grade: 2, seed: 3)));
       await settleIq(tester);
       expect(find.text('Lumo Knobel-Test'), findsOneWidget);
-      expect(find.text('Der IQ-Test für Kinder'), findsOneWidget);
+      expect(find.text('Spielerisches Denk-Abenteuer'), findsOneWidget);
       for (final area in IqArea.values) {
         expect(find.text(area.title), findsOneWidget, reason: area.title);
       }
@@ -863,7 +863,7 @@ void main() {
       final card = find.byKey(const ValueKey('iq-test-start'));
       expect(card, findsOneWidget);
       expect(find.text('Lumo Knobel-Test'), findsOneWidget);
-      expect(find.text('IQ-Test für Kinder'), findsOneWidget);
+      expect(find.text('Denk-Abenteuer für Kinder'), findsOneWidget);
       expect(find.text('Noch nicht gemacht'), findsOneWidget);
       // Über der bestehenden Denkprofil-Karte, die unverändert bleibt.
       expect(tester.getTopLeft(card).dy,
@@ -888,7 +888,7 @@ void main() {
       await settleIq(tester);
       expect(find.byType(IqTestScreen), findsOneWidget);
       expect(find.byKey(const ValueKey('iq-start-button')), findsOneWidget);
-      expect(find.text('Der IQ-Test für Kinder'), findsOneWidget);
+      expect(find.text('Spielerisches Denk-Abenteuer'), findsOneWidget);
       // Zurück führt zur Tests-Seite, die Karte ist wieder da.
       await tapKey(tester, 'iq-back');
       expect(find.byType(IqTestScreen), findsNothing);

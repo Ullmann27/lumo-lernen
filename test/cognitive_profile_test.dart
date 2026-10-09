@@ -22,6 +22,12 @@ void main() {
         expect(q.grade, grade);
         expect(q.choices.length, 4);
         expect(q.choices.toSet().length, 4);
+        expect(
+          q.choices.every((choice) =>
+              !RegExp(r'^—\d+—$').hasMatch(choice) && choice.trim().isNotEmpty),
+          isTrue,
+          reason: 'Keine Platzhalter oder Leerantworten bei ${q.id}',
+        );
         expect(q.choices, contains(q.correctAnswer));
         expect(q.difficulty, inInclusiveRange(1, 5));
       }
@@ -34,6 +40,28 @@ void main() {
       expect(memory.length, 10);
       expect(memory.every((q) => q.stimulus != null), isTrue);
       expect(memory.every((q) => q.stimulusVisibleMs >= 3500), isTrue);
+      for (final q in memory) {
+        expect(q.choices.length, 4, reason: q.id);
+        expect(
+          q.choices.every((choice) =>
+              RegExp(r'^\d+(?:\s*–\s*\d+)*$').hasMatch(choice)),
+          isTrue,
+          reason: 'Die Merkauswahl muss aus Ziffernfolgen bestehen: ${q.id}',
+        );
+      }
+    });
+
+    test('Geld-/Wechselgeldantworten Klasse $grade sind echte Beträge', () {
+      for (final q in CognitiveProfileGenerator.forGrade(grade).where(
+        (q) => q.domain == CognitiveDomain.quantitativeReasoning,
+      )) {
+        expect(q.choices.length, 4);
+        expect(
+          q.choices.every((choice) => int.tryParse(choice) != null),
+          isTrue,
+          reason: q.id,
+        );
+      }
     });
 
     test('Scorer Klasse $grade liefert fünf Bereichswerte statt IQ-Zahl', () {
