@@ -294,19 +294,61 @@ class _TreePainter extends CustomPainter {
       final p = leaves[i];
       canvas.save();
       canvas.translate(p.dx, p.dy);
-      canvas.rotate((i.isEven ? 1 : -1) * .38);
-      canvas.drawOval(Rect.fromCenter(
-          center: Offset.zero, width: 40, height: 25),
-        Paint()..color = color.withValues(alpha: .27)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 13));
-      canvas.drawOval(Rect.fromCenter(
-          center: Offset.zero, width: 29, height: 16),
-        Paint()..shader = LinearGradient(colors: [
-          Color.lerp(color, Colors.white, .35)!,
-          color, Color.lerp(color, Colors.black, .2)!
-        ]).createShader(const Rect.fromLTWH(-15, -8, 30, 16)));
-      canvas.drawLine(const Offset(-9, 0), const Offset(9, 0),
-        Paint()..color = Colors.white.withValues(alpha: .4)..strokeWidth = 1);
+      canvas.rotate((i.isEven ? 1 : -1) * .15);
+      final mastered = r != null && LumoTreeProgress.isMastered(r);
+      final review = r != null && LumoTreeProgress.needsReview(r);
+      // Mehrlagige Blätterbüschel statt einzelner schematischer Ellipsen.
+      // Wachstum orientiert sich an echten Lernversuchen.
+      final leafCount = r == null
+          ? 3 : math.min(9, 4 + (r.attempts ~/ 2));
+      canvas.drawOval(
+        Rect.fromCenter(center: Offset.zero, width: 53, height: 44),
+        Paint()
+          ..color = color.withValues(alpha: mastered ? .40 : .24)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 16),
+      );
+      for (var k = 0; k < leafCount; k++) {
+        final angle = 2 * math.pi * k / leafCount;
+        final dx = math.cos(angle) * 12;
+        final dy = math.sin(angle) * 9;
+        canvas.save();
+        canvas.translate(dx, dy);
+        canvas.rotate(angle * .33);
+        final leafColor = Color.lerp(
+          color, k.isEven ? const Color(0xFF75EFCB) : const Color(0xFF157E78),
+          k.isEven ? .36 : .24,
+        )!;
+        canvas.drawOval(
+          Rect.fromCenter(center: Offset.zero, width: 26, height: 19),
+          Paint()
+            ..shader = LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color.lerp(leafColor, Colors.white, .38)!,
+                leafColor,
+                Color.lerp(leafColor, Colors.black, .33)!,
+              ],
+            ).createShader(const Rect.fromLTWH(-13, -10, 26, 20)),
+        );
+        canvas.drawOval(
+          Rect.fromCenter(center: const Offset(-3, -4), width: 7, height: 3),
+          Paint()..color = Colors.white.withValues(alpha: .34),
+        );
+        canvas.restore();
+      }
+      // Der Kern markiert die diagnostische Kompetenzstufe.
+      if (r != null) {
+        canvas.drawCircle(Offset.zero, mastered ? 8 : 5.5,
+          Paint()
+            ..color = color.withValues(alpha: .60)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8));
+        canvas.drawCircle(Offset.zero, mastered ? 5.5 : 3.5,
+          Paint()..color = mastered
+              ? const Color(0xFFFFF3AB)
+              : review ? const Color(0xFFFFB4D9)
+                  : const Color(0xFF8CFFF0));
+      }
       canvas.restore();
     }
     canvas.restore();
