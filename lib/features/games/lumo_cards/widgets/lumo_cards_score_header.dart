@@ -98,14 +98,30 @@ class LumoCardsScoreHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              if (onEmoji != null)
+              if (!narrowPane && onEmoji != null)
                 _action(Icons.face_rounded, 'Avatar', onEmoji),
-              if (onAudioSettings != null)
+              if (!narrowPane && onAudioSettings != null)
                 _action(Icons.volume_up_rounded, 'Ton einstellen', onAudioSettings),
-              if (onSettings != null)
+              if (!narrowPane && onSettings != null)
                 _action(Icons.pause_rounded, 'Pause und Neustart', onSettings),
             ],
           ),
+          // A Fold landscape side pane cannot fit the name and up to three
+          // 44dp controls on one line. Wrap actions onto their own row instead
+          // of truncating the mascot's name or shrinking touch targets.
+          if (narrowPane &&
+              (onEmoji != null || onAudioSettings != null || onSettings != null))
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (onEmoji != null)
+                  _action(Icons.face_rounded, 'Avatar', onEmoji),
+                if (onAudioSettings != null)
+                  _action(Icons.volume_up_rounded, 'Ton einstellen', onAudioSettings),
+                if (onSettings != null)
+                  _action(Icons.pause_rounded, 'Pause und Neustart', onSettings),
+              ],
+            ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
