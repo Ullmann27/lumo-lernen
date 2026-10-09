@@ -89,7 +89,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: narrowPane ? 15 : 19,
+                    fontSize: narrowPane ? 14 : 19,
                     fontWeight: FontWeight.w900,
                     color: LumoVisualTokens.white,
                     shadows: [
