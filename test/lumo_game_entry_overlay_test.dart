@@ -54,6 +54,35 @@ void main() {
     });
   }
 
+  testWidgets('covering the old page hides animation and lets navigation settle',
+      (tester) async {
+    late BuildContext launchContext;
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(body: Builder(builder: (context) {
+        launchContext = context;
+        return const Text('Spielewelt');
+      })),
+    ));
+    final handle = LumoGameEntryHandle.show(
+      launchContext, scene: 'kart', reduceMotion: false,
+    );
+    expect(handle, isNotNull);
+    await tester.pump();
+    expect(find.byType(LumoGameEntryOverlay), findsOneWidget);
+
+    // Route change happens while wallet/save completion is still pending.
+    // The progress animation must no longer keep the new page spinning.
+    Navigator.of(launchContext).push<void>(MaterialPageRoute(
+      builder: (_) => const Scaffold(body: Text('Andere Seite')),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.text('Andere Seite'), findsOneWidget);
+    expect(find.byType(LumoGameEntryOverlay), findsNothing);
+    handle!.close();
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('overlay stays until explicitly closed; phase is not fake percent',
       (tester) async {
     late BuildContext launchContext;
