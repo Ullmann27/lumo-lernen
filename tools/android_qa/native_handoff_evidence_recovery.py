@@ -12,7 +12,7 @@ from native_lap_evidence_recovery import (
     bound_file, equal, evidence_guard, load_evidence, regular_bytes, require, subset,
 )
 
-SOURCE_SHA256 = "dbe0b6049c98c486d6277da857cea992a43a0a1688967939f832e65fcdc7db42"
+SOURCE_SHA256 = "d71ee4d97e82ea95dd06f0a170525d19b8330dbb0c8e2b5ecaf85ce7590b5d7d"
 PROBE_SHA256 = "8129eea26ded1a9ddba71d7cb3dd11f38a12a89d09d89218d726354ec318c245"
 HELPER_SHA256 = "16e7349c0cfa65f0d585c8f528b9fb069b8b3d2069380d0776d83bc90342507f"
 PROBE_PATH = "res://scripts/tests/kart_race_continuity_regression.gd"
