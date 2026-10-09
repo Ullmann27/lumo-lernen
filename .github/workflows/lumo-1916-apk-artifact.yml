@@ -4,6 +4,9 @@ on:
     branches: [chatgpt/lumo-1916-apk-artifact-2026-10-09]
     paths: [.github/workflows/lumo-1916-apk-artifact.yml]
   workflow_dispatch:
+concurrency:
+  group: lumo-1916-quick-artifact-build
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -18,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-          fetch-depth: 2
+          fetch-depth: 12
       - name: Prove this APK uses the same source as the full native QA
         run: |
           set -euo pipefail
