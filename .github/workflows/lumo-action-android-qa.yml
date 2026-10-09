@@ -2,7 +2,7 @@ name: Verify APK 1909 Android reader recovery
 on:
   push:
     branches: [codex/lumo-action-android-qa-2026-10-09]
-    paths: [tools/android_qa/**, .github/workflows/lumo-action-android-qa.yml]
+    paths: [tools/android_qa/**, .github/probes/**, scripts/probes/**, .github/workflows/lumo-action-android-qa.yml]
   workflow_dispatch:
 permissions:
   contents: read

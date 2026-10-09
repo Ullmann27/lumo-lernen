@@ -64,13 +64,23 @@ def capture(out: Path, name: str, timeout: float | None = None) -> dict:
         # Reuse the existing complete-PNG check, but constrain each actual ADB
         # transfer and incomplete-transfer retry to the caller's total budget.
         deadline = time.monotonic() + timeout
+        errors = []
         for attempt in range(4):
             remaining = deadline - time.monotonic()
             if remaining <= 0:
                 raise TimeoutError('Current native screenshot capture deadline exceeded')
-            data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],
-                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                  timeout=min(45, remaining), check=True).stdout
+            try:
+                data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],
+                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                      timeout=min(45, remaining), check=True).stdout
+            except subprocess.CalledProcessError as error:
+                errors.append({'attempt': attempt + 1, 'return_code': error.returncode,
+                               'stderr': (error.stderr or b'').decode('utf-8', errors='replace')})
+                (out / (name + '-screencap-recovery.json')).write_text(json.dumps(errors, indent=2))
+                if error.returncode != 255 or attempt == 3:
+                    raise
+                time.sleep(min(1, max(0, deadline - time.monotonic())))
+                continue
             if time.monotonic() >= deadline:
                 raise TimeoutError('Current native screenshot capture deadline exceeded')
             if base.png_complete(data):

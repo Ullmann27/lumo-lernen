@@ -59,12 +59,22 @@ def png_complete(data: bytes) -> bool:
 
 
 def capture(out: Path, name: str) -> dict[str, Any]:
-    # Retry only an incomplete transfer; every saved file is a complete,
-    # unmodified device screenshot. (Recorded failure: "image file is truncated".)
+    # A display resize can also return screencap exit 255 (SurfaceFlinger/Binder).
+    # Both incomplete PNGs and this read failure share the same four attempts.
+    errors = []
     for attempt in range(4):
-        data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],
-                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                              timeout=45, check=True).stdout
+        try:
+            data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],
+                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                  timeout=45, check=True).stdout
+        except subprocess.CalledProcessError as error:
+            errors.append({'attempt': attempt + 1, 'return_code': error.returncode,
+                           'stderr': (error.stderr or b'').decode('utf-8', errors='replace')})
+            (out / (name + '-screencap-recovery.json')).write_text(json.dumps(errors, indent=2))
+            if error.returncode != 255 or attempt == 3:
+                raise
+            time.sleep(1)
+            continue
         if png_complete(data):
             break
         time.sleep(1)
