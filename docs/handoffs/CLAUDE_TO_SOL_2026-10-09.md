@@ -130,10 +130,25 @@ Dieser Lauf bestätigt:
 - **PASS:** Build-Job (Flutter-Analyse, volle Flutter-Suite, Python-Vorbereitungstests, 25 strenge
   native Proben auf Godot 9a3dcbd, Aufnahmen Flotte und Hafen) sowie auf Android API 35 Bauwelt, Puzzle,
   Rhythmus und Schatzsuche.
-- **OFFEN beim Abschluss:** Android Kart API 35 und API 36 (Vollrennen, Pause, Ergebnis, ACK, Belohnung,
-  Neustart) liefen noch. Ihr Ergebnis steht im Lauf 37913484330 und ist hier nicht eingetragen; bis es
-  gelesen ist, gilt die Kart-Android-Abnahme dieses Builds als **NOT CONFIRMED**. Beim Vorgängerbuild
-  1907 bestand API 35, API 36 scheiterte an der Wartefrist (Frist inzwischen von 1200 auf 2100 s).
+- **Android Kart API 36: PASS** (Lauf 37913484330, Wartefrist 2100 s). Das ist das Ergebnis der angehobenen
+  Frist: Beim Vorgängerbuild 1907 scheiterte derselbe Test an der Wartefrist.
+- **Android Kart API 35: FAIL** bei 06-native-finish. Das Rennen war vollständig gefahren (16 Tore,
+  Platz 1, 75,35 s Spielzeit, 859 s Wartezeit), die Prüfung `require_event` in
+  `.github/probes/kart_complete_android_probe.py` (Zeile ~197) verlangte jedoch exakte Gleichheit
+  von Native-Ergebnis und vom Host gespeichertem Ergebnis. Die beiden unterscheiden sich in genau
+  einem Wert und nur in der Schreibweise: `elapsedSeconds` 75.35000000000001 (Native-Speicherstand,
+  voller Double) gegen 75.35 (Host-Eintrag; die Zahl läuft über `JSON.stringify` und wird kürzer
+  geschrieben). Belege: `full-race/06-native-finish-host-events.json` und `full-race/race-trace.json`
+  im Artefakt `lumo-kart-stage2-android-kart-api35-37913484330` (ID 11611422432). Alle anderen Felder
+  waren gleich. Das erklärt sehr wahrscheinlich den „sporadischen ACK-Save-Fehler“ der Recovery-Übergabe:
+  Je nach Rennzeit ist die Zahl zufällig genau darstellbar (Build 1907 hatte 75,5 → bestanden) oder nicht.
+  **Das ist eine Vermutung aus diesen zwei Läufen, nicht in einem Lauf bewiesen.**
+  Vorgeschlagene Behebung (nicht umgesetzt, weil ich auf Heinz' Anweisung hier aufgehört habe):
+  in `require_event` alle Felder exakt vergleichen und nur Zahlen mit Fließkomma-Rundung (Betrag
+  ≤ 1e-9 relativ) gleichsetzen, danach neuen Lauf abwarten. Das lockert keine Rennbedingung:
+  Ergebnis-ID, Status, Sterne, Platz, Tore bleiben exakt. Auch `tools/android_qa/native_lap_evidence_recovery.py`
+  kennt diese Schreibweise bereits (`host_numbers`). Eine Änderung an `.github/probes/**` löst einen
+  neuen vollständigen Lauf aus (ca. 75 Minuten).
 - **Nicht in der APK getestet:** Action-Parcours auf Android (Sonnenhafen, die Strecke der Android-Probe,
   hat ihn bewusst nicht), physisches Fold, Bildrate.
 
@@ -143,9 +158,8 @@ Der Ablauf zum Abholen: Artefakt `lumo-visual-apk-37913484330` herunterladen (Gi
 
 ## Erste Schritte für Sol 6.1
 
-1. Ergebnis der Jobs „android (kart, 35)“ und „android (kart, 36)“ im Lauf 37913484330 lesen. Bei
-   Rot zuerst die Ursache aus `native-proof/full-race/result.json` und `race-trace.json` ablesen;
-   Wartefristen und Rennbedingungen getrennt bewerten.
+1. `require_event` auf Zahlen-Schreibweise prüfen und beheben (siehe oben), dann einen neuen Lauf
+   abwarten: Kart API 35 und 36 müssen im selben Lauf bestehen, bevor die APK als geprüft gilt.
 2. Die vier Grundstrecken verlängern (siehe 4.2) und Sonnenhafen mit Parcours neu abnehmen.
 3. Referenzgleichheit von Lumo und Kart gegen die Bilder in
    `docs/design_targets/2026-10-08-kart-fahrzeuge/` angehen (4.1).
