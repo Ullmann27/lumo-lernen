@@ -183,7 +183,7 @@ class _Hero extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            'Der IQ-Test für Kinder',
+            'Spielerisches Denk-Abenteuer',
             textAlign: TextAlign.center,
             style: iqText(17,
                 color: LumoVisualTokens.cyanBright, shadows: iqScrim),

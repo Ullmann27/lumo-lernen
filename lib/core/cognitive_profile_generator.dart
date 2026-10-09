@@ -123,7 +123,7 @@ class CognitiveProfileGenerator {
       domain: CognitiveDomain.quantitativeReasoning,
       prompt: '$count gleiche Dinge kosten je $price Euro. Bezahlt werden $paid Euro. Wie viel Wechselgeld bleibt?',
       answer: '$answer',
-      rawChoices: <String>['$answer', '8', '12', '$price'],
+      rawChoices: <String>['$answer', '8', '12', '$price', '6', '14'],
       explanation: '$count × $price = ${price * count}. Von $paid bleiben $answer Euro.',
       difficulty: 1 + i ~/ 2,
       rotate: i + 1,
@@ -192,7 +192,15 @@ class CognitiveProfileGenerator {
       domain: CognitiveDomain.verbalReasoning,
       prompt: item[2],
       answer: answer,
-      rawChoices: <String>[answer, distractorA, distractorB, distractorC],
+      rawChoices: <String>[
+        answer,
+        distractorA,
+        distractorB,
+        distractorC,
+        // Weitere echte Begriffe statt künstlicher Platzhalter, falls
+        // eine Antwort in den benachbarten Wortpaaren doppelt vorkommt.
+        ...banks[g]!.map((entry) => entry[1]),
+      ],
       explanation: 'Die Beziehung muss auf beide Wortpaare gleich passen.',
       difficulty: 1 + i ~/ 2,
       rotate: i + 2,
@@ -245,7 +253,11 @@ class CognitiveProfileGenerator {
         domain: CognitiveDomain.workingMemory,
         prompt: 'Welche Zahl stand an Position $position?',
         answer: answer,
-        rawChoices: options,
+        rawChoices: <String>[
+          ...options,
+          // Eine Merkaufgabe braucht vier verschiedene echte Ziffern.
+          for (var digit = 1; digit <= 9; digit++) '$digit',
+        ],
         explanation: 'Die Merkfolge wurde nur kurz gezeigt.',
         difficulty: 1 + i ~/ 2,
         rotate: i,
@@ -269,7 +281,13 @@ class CognitiveProfileGenerator {
       domain: CognitiveDomain.workingMemory,
       prompt: 'Welche Antwort zeigt die gemerkte Folge rückwärts?',
       answer: reversed,
-      rawChoices: raw,
+      rawChoices: <String>[
+        ...raw,
+        // Weitere plausible Merkfolgen mit genau einer falschen Ziffer.
+        // Die vollständige Sequenz bleibt lesbar, auch bei Dopplungen.
+        for (var offset = 1; offset <= 8; offset++)
+          '${(digits.last + offset - 1) % 9 + 1} – ${digits.reversed.skip(1).join(' – ')}',
+      ],
       explanation: 'Beginne bei der letzten Zahl und gehe zur ersten zurück.',
       difficulty: 1 + i ~/ 2,
       rotate: i,
@@ -291,13 +309,17 @@ class CognitiveProfileGenerator {
     String? stimulus,
     int stimulusVisibleMs = 0,
   }) {
-    final unique = <String>[];
-    for (final c in rawChoices) {
-      if (!unique.contains(c)) unique.add(c);
+    // Die richtige Lösung gehört immer in die ersten vier Auswahlfelder.
+    // Fehlende Ablenker sind ein Fehler im jeweiligen Aufgabentyp – niemals
+    // bedeutungslose Platzhalter für Kinder erzeugen.
+    final unique = <String>[answer];
+    for (final candidate in rawChoices) {
+      if (candidate.trim().isNotEmpty && !unique.contains(candidate)) {
+        unique.add(candidate);
+      }
     }
-    if (!unique.contains(answer)) unique.insert(0, answer);
-    while (unique.length < 4) {
-      unique.add('—${unique.length + 1}—');
+    if (unique.length < 4) {
+      throw StateError('Weniger als vier echte Antworten für $id');
     }
     final choices = unique.take(4).toList();
     final shift = rotate % choices.length;

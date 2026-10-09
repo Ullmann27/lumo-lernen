@@ -1,45 +1,57 @@
-# Datenschutz - Lumo Lernen
+# Datenschutz und Datenflüsse – Lumo Lernen (Entwicklungsstand)
+ 
+**Geprüfter Quellstand:** `claude/continue-previous-chat-KtY7p`, 9. Oktober 2026.  
+**Wichtig:** Diese Bestandsaufnahme ersetzt keine rechtliche Datenschutzerklärung,
+DSGVO-Prüfung, Prüfung von Auftragsverarbeitern oder Freigabe für den Play Store.
 
-**Stand:** 28. April 2026
-**Verantwortlich:** Heinz Ullmann, 2230 Gänserndorf, Österreich
+## Standardbetrieb ohne aktivierte Online-KI
 
-## Wir sammeln keine personenbezogenen Daten von Kindern
+- Lernstände, Einstellungen, Belohnungen und Kinderprofile werden in der App
+  lokal gespeichert (unter anderem `shared_preferences`).
+- Der KI-Proxy ist in den Standardeinstellungen **deaktiviert**
+  (`AppSettings.aiProxyEnabled = false`).
+- Lokale Lernaufgaben und die eingebundenen Godot-Spiele sind grundsätzlich
+  ohne aktive KI-Verbindung vorgesehen. Daraus folgt **nicht**, dass alle
+  App-Funktionen in jeder Situation garantiert ohne Internet auskommen.
+- Kamerazugriff, Mikrofon/Spracherkennung und KI müssen getrennt geprüft und
+  jeweils kontrolliert freigegeben werden. Eine System-Spracherkennung kann,
+  abhängig von Gerät/Dienst, eine Netzwerkverarbeitung verwenden.
 
-Lumo Lernen ist eine Lern-App für Volksschulkinder. Die App ist konform zum Google Play **Designed for Families**-Programm und zur DSGVO/COPPA.
+## Optionale KI-Funktion – tatsächlich implementierter Datenfluss
 
-## Was die App tut
+Wenn der KI-Proxy in den Einstellungen aktiviert und für den jeweiligen
+Bereich freigegeben wird, sendet `LumoAiProxyClient.ask()` einen HTTP-POST
+an `<konfigurierter Proxy>/chat`. Aus dem Code geht hervor, dass das
+JSON unter anderem Folgendes enthält:
 
-- **Lernfortschritt** wird **nur lokal** auf dem Gerät gespeichert (`shared_preferences`).
-- **Foto-Scans** der Hausaufgaben werden **nur lokal** verarbeitet. Die Texterkennung (OCR) läuft on-device über Google ML Kit. Es werden **keine** Bilder an externe Server übertragen.
-- **Sprachausgabe** erfolgt durch das Betriebssystem selbst (Android Text-to-Speech). Es wird **kein** Audio aufgenommen oder versendet.
-- **Kamera-Zugriff** wird nur dann angefragt, wenn das Kind aktiv eine Aufgabe fotografieren möchte.
+- Frage/Nachricht und bis zu acht letzte Chat-Nachrichten;
+- Schulstufe (`childProfile.grade`), den genutzten Kontext und gegebenenfalls
+  begrenzte Informationen zu Schulfach, Thema oder Einheit.
 
-## Was die App **NICHT** tut
+Ein Feld für den **Kindernamen** wird im gezeigten Chat-Payload nicht explizit
+gesendet. Freitexte können trotzdem Namen oder sensible Informationen enthalten.
+Der Standard-Endpunkt ist `https://lumo-ai-proxy.onrender.com`.
+Welche Daten dort protokolliert, weiterverarbeitet oder an einen
+KI-Anbieter übermittelt werden und wann sie gelöscht werden, muss
+vor einer Veröffentlichung am Server und mit den Dienstleistern geprüft
+und transparent erklärt werden.
 
-- ❌ Kein Cloud-Upload, kein Server-Sync
-- ❌ Keine Werbung
-- ❌ Kein Tracking, keine Analytics, keine SDKs Dritter zur Werbung
-- ❌ Keine In-App-Käufe
-- ❌ Keine Social-Media-Logins
-- ❌ Keine Standorterfassung
-- ❌ Keine externen Links ohne Erwachsenen-Freigabe (Parental Gate)
+**Sicherheitsbefund:** Der Einstellungs- und HTTP-Client-Code lässt
+gegenwärtig auch benutzerdefinierte `http://`-URLs zu. Vor einem
+öffentlichen Kinder-App-Release müssen unverschlüsselte externe
+Proxyverbindungen verhindert und die Auswirkungen auf lokale Tests
+getrennt abgesichert werden.
 
-## Berechtigungen
+## Noch nicht abschließend nachgewiesen
 
-| Berechtigung | Zweck | Pflicht? |
-|---|---|---|
-| KAMERA | Foto der Hausaufgabe für lokale Texterkennung | Optional (nur bei Scan-Funktion) |
-| FOTOS / GALERIE | Bestehendes Foto auswählen für Texterkennung | Optional |
-| INTERNET | Nicht benötigt (App läuft komplett offline) | — |
+- Alle möglichen ausgehenden Verbindungen von nativen Plugins, ML Kit,
+  Spracherkennung und KI-Diagnose;
+- tatsächliche Lösch- und Aufbewahrungsfristen des Proxys, Unterauftragsverarbeiter,
+  Hostingstandort, AV-Verträge, Betroffenenrechte und Elternzustimmung;
+- korrekte Datentrennung bei mehreren Kinderprofilen auf einem Gerät;
+- Einhaltung der jeweils einschlägigen DSGVO-, Jugendschutz- und
+  Google-Play-Vorgaben (nicht pauschal behaupten).
 
-## Kontakt
-
-Bei Fragen oder Anliegen: Heinz Ullmann, 2230 Gänserndorf, Leo-Porsch-Gasse 1/1/7
-
-## Bezug zu Google Play
-
-Lumo Lernen erfüllt die Anforderungen des **"Designed for Families"-Programms**:
-- Zielgruppe: Kinder unter 13
-- Inhalte: ausschließlich altersgerecht (Lerninhalte 1./2. Klasse)
-- Kein Datentransfer an Dritte
-- Erwachsenen-Schranke (Parental Gate) vor sensiblen Bereichen
+Für eine produktive Datenschutzerklärung braucht es nach dieser technischen
+Bestandsaufnahme eine eigene datenschutzrechtliche Prüfung und einen
+klar benannten Verantwortlichen samt Kontaktmöglichkeit.
