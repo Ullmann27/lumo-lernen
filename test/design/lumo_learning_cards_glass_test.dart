@@ -4,6 +4,7 @@ import 'package:lumo_lernen/theme/lumo_visual_tokens.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_cards_score_header.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_intro_splash.dart';
+import 'package:lumo_lernen/features/shared/widgets/lumo_audio_settings_sheet.dart';
 
 void main() {
   testWidgets('learning glass stays readable and tiles retain their actions',
@@ -84,6 +85,36 @@ void main() {
     await tester.tap(find.byTooltip('Pause und Neustart'));
     await tester.tap(find.byTooltip('Ton einstellen'));
     expect([back, pause, audio], [1, 1, 1]);
+  });
+
+  testWidgets('Cards audio panel uses readable blue glass instead of paper',
+      (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          backgroundColor: LumoVisualTokens.night,
+          body: SafeArea(child: LumoAudioSettingsSheet()),
+        ),
+      ),
+    );
+    await tester.pump();
+    expect(find.text('Ton'), findsOneWidget);
+    expect(find.text('Musik'), findsOneWidget);
+    expect(find.text('Sound-Effekte'), findsOneWidget);
+    expect(find.text('Fertig'), findsOneWidget);
+    final decorations = tester
+        .widgetList<Container>(find.byType(Container))
+        .map((e) => e.decoration)
+        .whereType<BoxDecoration>()
+        .toList();
+    expect(
+      decorations.any((d) =>
+          d.gradient is LinearGradient &&
+          d.border?.top.color == LumoVisualTokens.cyan.withOpacity(0.42)),
+      isTrue,
+      reason: 'Audio controls must use the shared dark-blue/cyan design.',
+    );
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('Cards intro uses the original fox and can be skipped once',
