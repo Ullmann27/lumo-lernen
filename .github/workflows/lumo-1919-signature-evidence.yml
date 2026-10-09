@@ -1,0 +1,29 @@
+name: Lumo 1919 original signature setup evidence
+on:
+  push:
+    branches: [audit/lumo-1919-diagnostics-2026-10-09]
+    paths: [.github/workflows/lumo-1919-signature-evidence.yml, .github/probes/inspect_lumo_1919_signature.py]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Use the existing pinned PNG decoder
+        run: python3 -m pip install --disable-pip-version-check Pillow==12.3.0
+      - name: Inspect original failed-job artifacts without modifying or rerunning the app
+        env:
+          LUMO_READ_TOKEN: ${{ github.token }}
+        run: python3 .github/probes/inspect_lumo_1919_signature.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Lumo-1919-Signaturdiagnose
+          path: audit-output/
+          if-no-files-found: error
+          retention-days: 30
