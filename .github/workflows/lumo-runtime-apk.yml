@@ -1,7 +1,7 @@
 name: Lumo race continuity APK and full Android race verification
 on:
   push:
-    branches: [codex/lumo-action-apk-2026-10-09, codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, claude/continue-previous-chat-KtY7p]
+    branches: [codex/lumo-action-apk-2026-10-09, codex/lumo-apk-1910-2026-10-09, codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, claude/continue-previous-chat-KtY7p]
     paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-runtime-apk.yml, .github/probes/**]
   workflow_dispatch:
 permissions:
