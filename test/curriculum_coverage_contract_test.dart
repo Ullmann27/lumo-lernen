@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/curriculum/primary_activity_catalog.dart';
-import 'package:lumo_lernen/core/curriculum/primary_curriculum_support.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
+
+import 'support/primary_curriculum_support.dart';
 
 void main() {
   group('Österreichischer Volksschulrahmen 1-4', () {

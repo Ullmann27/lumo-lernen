@@ -21,7 +21,7 @@ Die Laufzeitimplementierung rendert Text, Eingabefelder, Buttons, Alter und Klas
 ## Aktueller Code
 - `lib/features/onboarding/lumo_onboarding_holo_screen.dart`
 - `lib/main.dart` nutzt diesen Flow im First Run.
-- Der alte `lumo_onboarding_screen.dart` bleibt vorerst als Vergleich und Fallback im Repo.
+- Der alte `lumo_onboarding_screen.dart` samt `widgets/lumo_step_indicator.dart` wurde am 9. Oktober 2026 entfernt (Projektregel 8: keine Datei in `lib/` ohne Weg von `main.dart`). Er war seit der Holo-Umstellung von nichts mehr aufgerufen; die Git-Historie enthält ihn weiterhin.
 
 ## Funktionsvertrag unverändert
 Persistiert werden weiterhin ausschließlich die vorhandenen `UserProfile`-Felder:
