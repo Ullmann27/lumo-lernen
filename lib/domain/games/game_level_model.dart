@@ -6,6 +6,7 @@
 ///   21-30 Lesen + Silben
 ///   31-40 Sachaufgaben + Logik
 ///   41-50 gemischte Challenges
+library;
 
 import 'package:flutter/foundation.dart';
 

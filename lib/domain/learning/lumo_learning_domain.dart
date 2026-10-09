@@ -2,6 +2,7 @@
 ///
 /// This file is intentionally UI-free. It can be tested without Flutter widgets
 /// and later backed by Drift/Isar repositories.
+library;
 
 enum LearningSubject {
   deutsch,

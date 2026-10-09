@@ -47,13 +47,16 @@ void main() {
                     ? a * b
                     : a + b,
             reason: 'Level ${level.id}: ${task.prompt}');
-        if (level.id == 1 || level.id == 11)
+        if (level.id == 1 || level.id == 11) {
           expect(a + (subtract ? 0 : b), lessThanOrEqualTo(5));
+        }
         if (level.id == 3) expect(a + b, lessThanOrEqualTo(7));
-        if ([16, 17].contains(level.id))
+        if ([16, 17].contains(level.id)) {
           expect(a + (subtract ? 0 : b), lessThanOrEqualTo(20));
-        if ([39, 45].contains(level.id))
+        }
+        if ([39, 45].contains(level.id)) {
           expect(a + (subtract ? 0 : b), lessThanOrEqualTo(100));
+        }
         if (level.id == 41) expect(a, isIn([2, 5]));
         if (level.id == 42) expect(a, 3);
         if (level.id == 46) expect(a, isIn([10, 4]));

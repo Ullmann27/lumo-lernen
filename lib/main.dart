@@ -66,7 +66,7 @@ class _LumoFallbackErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDebug = kDebugMode;
+    const isDebug = kDebugMode;
     return Material(
       color: const Color(0xFFFFF6EE),
       child: Padding(

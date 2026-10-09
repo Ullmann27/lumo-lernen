@@ -39,7 +39,9 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
 
   Future<void> _startScan({bool reset = false}) async {
     if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
-        !mounted) return;
+        !mounted) {
+      return;
+    }
     setState(() {
       if (reset) {
         _analysis = null;
@@ -51,7 +53,7 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
   }
 
   void _onTextDetected(String text) {
-    final engine = const ScannedWorkAnalysisEngine();
+    const engine = ScannedWorkAnalysisEngine();
     final analysis = engine.analyze(
       rawText: text,
       grade: widget.appState.state.grade,

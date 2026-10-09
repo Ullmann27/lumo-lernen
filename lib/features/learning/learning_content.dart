@@ -422,8 +422,9 @@ class _LearningContentState extends State<LearningContent> {
   /// Heinz' Wunsch: pro Bereich zugeschnittener Helfer.
   /// Wenn aiProxyEnabled = false: lokaler Hinweis wird gezeigt.
   Future<void> _askAiTutor() async {
-    if (_aiHelpLoading || !_allowHelp || _answered || !_cloudHelpAllowed)
+    if (_aiHelpLoading || !_allowHelp || _answered || !_cloudHelpAllowed) {
       return;
+    }
     if (!mounted) return;
     final taskId = _taskInstance.taskInstanceId;
     setState(() => _aiHelpLoading = true);

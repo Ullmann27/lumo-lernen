@@ -100,7 +100,9 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
     if (_selectedText == null) return;
     _startedAt = DateTime.now();
     if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
-        !mounted) return;
+        !mounted) {
+      return;
+    }
     HapticFeedback.mediumImpact();
     setState(() {
       _liveText = '';

@@ -166,7 +166,7 @@ class TutoringFlowCard extends StatelessWidget {
   /// Wenn keine echten Skills vorliegen, nutzt der Planner einen
   /// sinnvollen Fallback (math.addition).
   TutoringSessionPlan _buildPlan() {
-    final planner = const TutoringSessionPlanner();
+    const planner = TutoringSessionPlanner();
     final skillStates = _deriveSkillStates();
     final st = appState.state;
     final childId = 'local_${st.childName.toLowerCase()}_${st.grade}';

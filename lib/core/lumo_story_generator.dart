@@ -218,9 +218,9 @@ class LumoStoryGenerator {
       String hero, String location, String theme, int gradeLevel) {
     final themeIntro = _themeIntro(theme);
     final art = _heroArticle(hero);
-    final Art = art[0].toUpperCase() + art.substring(1);
+    final artCap = art[0].toUpperCase() + art.substring(1);
     final pron = _heroPronoun(hero);
-    final Pron = pron[0].toUpperCase() + pron.substring(1);
+    final pronCap = pron[0].toUpperCase() + pron.substring(1);
     final poss = _heroPossessive(hero); // sein/ihr
     final atmo = _locationAtmosphere(location); // 1-Satz-Stimmung des Ortes
     return [
@@ -230,7 +230,7 @@ class LumoStoryGenerator {
           'Es war einmal $art $hero, $art mitten im $location lebte. $atmo. '
           'Jeden Morgen wachte $art $hero auf und freute sich auf den neuen Tag. '
           'Doch heute war alles ein bisschen anders: $art $hero $themeIntro. '
-          '$Pron wusste noch nicht, was an diesem Tag alles passieren würde!',
+          '$pronCap wusste noch nicht, was an diesem Tag alles passieren würde!',
         imagePrompt: 'cute $hero in $location, story book style',
         newWord: hero.toLowerCase(),
       ),
@@ -239,7 +239,7 @@ class LumoStoryGenerator {
         text:
           'Plötzlich, mitten am Vormittag, hörte $art $hero ein leises Rufen. '
           '"Hilfe, bitte hilf mir!", rief eine Stimme aus der Ferne. '
-          '$Art $hero spitzte $poss Ohren und lauschte ganz genau. '
+          '$artCap $hero spitzte $poss Ohren und lauschte ganz genau. '
           'Da war es wieder! Ohne lange zu zögern, lief $pron in die Richtung, '
           'aus der das Rufen kam. Was würde $pron wohl finden?',
         imagePrompt: 'cute $hero running in $location',
@@ -249,7 +249,7 @@ class LumoStoryGenerator {
         text:
           'Hinter einem großen Baum saß ein kleines Wesen und weinte. '
           '"Ich habe mich verlaufen", schluchzte es. '
-          '$Art $hero setzte sich daneben und sagte ganz ruhig: '
+          '$artCap $hero setzte sich daneben und sagte ganz ruhig: '
           '"Keine Sorge, ich helfe dir nach Hause." '
           'Sie schauten sich an, lächelten - und ab jetzt waren sie Freunde fürs Leben.',
         imagePrompt: 'cute $hero with cute friend in $location',
@@ -271,7 +271,7 @@ class LumoStoryGenerator {
         text:
           'Auf der anderen Seite des Tors leuchteten überall kleine Steine im Gras. '
           'Es waren magische Steine, die nur funkelten, wenn jemand etwas Gutes tat. '
-          '$Art $hero und $poss Freund sammelten gemeinsam viele bunte Steine. '
+          '$artCap $hero und $poss Freund sammelten gemeinsam viele bunte Steine. '
           'Mit jedem Stein fühlte $pron sich stärker, mutiger und glücklicher. '
           'Eine warme Sonne schien auf die beiden herab.',
         imagePrompt: 'cute $hero with magic stones in $location',
@@ -291,10 +291,10 @@ class LumoStoryGenerator {
       _StoryArc(
         text:
           'Als der Schatten ganz verschwunden war, blieben nur leuchtende Lichter zurück. '
-          '$Art $hero und $poss Freund hatten es geschafft - sie waren tapfer geblieben! '
+          '$artCap $hero und $poss Freund hatten es geschafft - sie waren tapfer geblieben! '
           'Aus allen Ecken des $location kamen Tiere und Wesen herbei und jubelten ihnen zu. '
           'Sie klatschten in die Hände und riefen laut: "Was für ein Mut!" '
-          '$Art $hero strahlte über das ganze Gesicht. Heute war wirklich ein besonderer Tag.',
+          '$artCap $hero strahlte über das ganze Gesicht. Heute war wirklich ein besonderer Tag.',
         imagePrompt: 'cute happy $hero celebrating in $location',
       ),
       // Seite 8: Ende - Heimkehr

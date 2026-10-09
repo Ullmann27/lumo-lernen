@@ -1,7 +1,9 @@
-import '../lib/core/math_task_templates.dart';
-import '../lib/core/german_task_templates.dart';
-import '../lib/core/school_exercise_generator.dart';
-import '../lib/core/task_quality_guard.dart';
+// ignore_for_file: avoid_print
+// Kommandozeilen-Werkzeug (dart run scripts/audit_content.dart): Ausgabe per print ist hier gewollt.
+import 'package:lumo_lernen/core/math_task_templates.dart';
+import 'package:lumo_lernen/core/german_task_templates.dart';
+import 'package:lumo_lernen/core/school_exercise_generator.dart';
+import 'package:lumo_lernen/core/task_quality_guard.dart';
 
 void main() {
   var checked = 0;

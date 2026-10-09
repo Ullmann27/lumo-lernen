@@ -52,8 +52,10 @@ class _LessonTrailGameState extends State<LessonTrailGame> {
       await _tts.setSpeechRate(.38);
       if (mounted && !_clock.value) await _tts.speak(_task.speech.isEmpty ? _task.cue : _task.speech);
     } catch (_) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Die Sprachausgabe ist gerade nicht verfügbar. Lies das Wort gemeinsam mit einem Erwachsenen.')));
+      }
     }
   }
 
@@ -111,10 +113,12 @@ class _LessonTrailGameState extends State<LessonTrailGame> {
       await widget.appState.flushRewards();
       _finished = true;
     } catch (_) {
-      if (mounted) setState(() {
+      if (mounted) {
+        setState(() {
         _saving = false;
         _saveError = 'Das Ergebnis konnte noch nicht vollständig gespeichert werden. Bitte erneut versuchen.';
       });
+      }
       return;
     }
     if (!mounted) return;

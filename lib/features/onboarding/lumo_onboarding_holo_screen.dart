@@ -354,9 +354,9 @@ class _OnboardingWorldPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final cyan = const Color(0xFF5CEBFF);
-    final violet = const Color(0xFF7A72FF);
-    final gold = const Color(0xFFFFD66B);
+    const cyan = Color(0xFF5CEBFF);
+    const violet = Color(0xFF7A72FF);
+    const gold = Color(0xFFFFD66B);
     final center = Offset(size.width * .52, size.height * .47);
 
     final orbitPaint = Paint()

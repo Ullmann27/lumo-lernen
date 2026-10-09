@@ -16,13 +16,13 @@ void main() {
     final positions = <int>{};
     for (var grade = 1; grade <= 4; grade++) {
       final allowed = grade <= 2
-          ? [
+          ? <dynamic>{
               for (final subject in ['math', 'german'])
                 ...(jsonDecode(File(
                             'assets/learning_questions/grade${grade}_$subject.json')
                         .readAsStringSync()) as List)
                     .map((q) => (q as Map)['prompt'])
-            ].toSet()
+            }
           : <Object?>{};
       for (var seed = 0; seed < 100; seed++) {
         final q = repo.randomForGrade(grade, Random(seed));

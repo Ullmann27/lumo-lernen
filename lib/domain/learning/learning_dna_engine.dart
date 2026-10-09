@@ -6,6 +6,7 @@
 ///   - Error Breakdown (kommt aus error_detective.dart in Phase 2)
 ///
 /// KEINE neuen Daten-Streams - nur Aggregation aus bestehenden.
+library;
 
 import '../../app/app_state.dart';
 import 'learning_dna.dart';

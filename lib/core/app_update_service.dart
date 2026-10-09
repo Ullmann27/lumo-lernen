@@ -254,8 +254,9 @@ class AppUpdateService {
 
   Future<bool> openUpdate(AppUpdateInfo info) async {
     final url = info.hasUsableDownload ? info.apkUrl : info.releaseUrl;
-    if (url.toString().isEmpty || _trustedUri(url.toString()) == null)
+    if (url.toString().isEmpty || _trustedUri(url.toString()) == null) {
       return false;
+    }
     return launchUrl(url, mode: LaunchMode.externalApplication);
   }
 

@@ -276,10 +276,8 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
           TextButton(
             onPressed: () async {
               await LumoStoryLibrary.instance.delete(s.id);
-              if (mounted) {
-                Navigator.pop(ctx);
-                setState(() {});
-              }
+              if (ctx.mounted) Navigator.pop(ctx);
+              if (mounted) setState(() {});
             },
             child: Text('Loeschen',
                 style: TextStyle(color: LumoTokens.colors.errorSoftDeep)),

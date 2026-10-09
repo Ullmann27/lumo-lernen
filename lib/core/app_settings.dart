@@ -171,8 +171,9 @@ class AppSettings {
     final trimmed = raw?.trim() ?? '';
     if (trimmed.isEmpty) return defaultAiProxyUrl;
     final uri = Uri.tryParse(trimmed);
-    if (uri == null || !uri.hasScheme || uri.host.isEmpty)
+    if (uri == null || !uri.hasScheme || uri.host.isEmpty) {
       return defaultAiProxyUrl;
+    }
     if (uri.scheme != 'https' && uri.scheme != 'http') return defaultAiProxyUrl;
     if (uri.userInfo.isNotEmpty) return defaultAiProxyUrl;
     // Eingefuegte Health-Links enthalten oft '?' oder einen Fragment-Anker.

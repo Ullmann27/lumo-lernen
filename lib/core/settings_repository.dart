@@ -38,8 +38,9 @@ class SettingsRepository {
   static Future<void> save(AppSettings settings) async {
     final prefs = await SharedPreferences.getInstance();
     final saved = await prefs.setString(_key, jsonEncode(settings.toJson()));
-    if (!saved)
+    if (!saved) {
       throw StateError('Einstellungen konnten nicht gespeichert werden.');
+    }
   }
 
   static Future<void> reset() async {

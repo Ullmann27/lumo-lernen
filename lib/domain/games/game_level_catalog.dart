@@ -6,6 +6,7 @@
 ///   21-30 Lesen + Silben + Wort-Bild (Klasse 1-2)
 ///   31-40 Sachaufgaben + Logik (Klasse 2-3)
 ///   41-50 gemischte Herausforderungen (Klasse 3-4)
+library;
 
 import 'game_level_model.dart';
 

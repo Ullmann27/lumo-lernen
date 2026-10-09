@@ -64,7 +64,7 @@ class ShapeTraceTaskRenderer extends StatelessWidget {
               fontWeight: FontWeight.w900,
               color: LumoVisualTokens.white,
               height: 1.12,
-              shadows: const [Shadow(color: Color(0x8837D2FD), blurRadius: 10)],
+              shadows: [Shadow(color: Color(0x8837D2FD), blurRadius: 10)],
             ),
           ),
           const SizedBox(height: 14),

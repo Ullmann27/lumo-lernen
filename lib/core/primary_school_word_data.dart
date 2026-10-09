@@ -210,8 +210,9 @@ class PrimarySchoolWordData {
   static List<String> nounsForGrade(int grade) {
     if (grade <= 1) return grade1Nouns;
     if (grade == 2) return <String>[...grade1Nouns, ...grade2Nouns];
-    if (grade == 3)
+    if (grade == 3) {
       return <String>[...grade1Nouns, ...grade2Nouns, ...grade3Nouns];
+    }
     return <String>[
       ...grade1Nouns,
       ...grade2Nouns,

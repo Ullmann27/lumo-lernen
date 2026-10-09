@@ -31,8 +31,10 @@ Future<void> showLumoRewardBurst(
       transitionDuration: const Duration(milliseconds: 250),
     ),
   );
+  // Den Navigator vor der Wartezeit merken: Der BuildContext kann nach 1,8 s schon weg sein.
+  final navigator = Navigator.of(context);
   Future.delayed(const Duration(milliseconds: 1800), () {
-    if (Navigator.canPop(context)) Navigator.of(context).pop();
+    if (navigator.mounted && navigator.canPop()) navigator.pop();
   });
   return completer;
 }

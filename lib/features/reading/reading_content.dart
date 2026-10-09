@@ -123,7 +123,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   ReadingSessionProgress get _safeProgress {
     final progress = _progress;
     if (progress == null) {
-      final story = const Story(
+      const story = Story(
         id: 'loading',
         title: 'Lade Lesetext',
         grade: 1,
