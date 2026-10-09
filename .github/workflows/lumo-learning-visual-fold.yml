@@ -1,9 +1,12 @@
 name: Lumo learning tree and Fold visual proof
 on:
   push:
-    branches: [chatgpt/learning-visual-fold-tree-2026-10-09]
+    branches: [chatgpt/learning-visual-fold-tree-2026-10-09, chatgpt/learning-tree-cinematic-qa-2026-10-09]
     paths:
       - lib/features/learning/**
+      - assets/lumo_design/learning_world/**
+      - scripts/render_learning_island.py
+      - pubspec.yaml
       - lib/features/teacher_mode/lumo_akademie_screen.dart
       - lib/features/lumo_welt/lumo_welt_screen.dart
       - lib/app/app_shell.dart
@@ -13,7 +16,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: lumo-learning-fold-probe
+  group: lumo-learning-fold-probe-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   visual-qa:
@@ -36,6 +39,19 @@ jobs:
           mkdir -p proof/learning
           git rev-parse HEAD > proof/learning/source-sha.txt
           flutter pub get --enforce-lockfile
+      - name: Verify 3D-art source and image payloads
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          d = Path('assets/lumo_design/learning_world')
+          for i in range(4):
+              p = d / f'learning_tree_stage_{i}.png'
+              assert p.is_file() and p.stat().st_size > 55000, p
+              assert p.read_bytes()[:8] == b'\x89PNG\r\n\x1a\n', p
+          p = d / 'learning_world_night.jpg'
+          assert p.is_file() and p.stat().st_size > 55000, p
+          print('All exact 3D growth stages and world scenery are packaged')
+          PY
       - name: Flutter analyze, errors fail
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
       - name: Phone and Fold widget regressions with real renders
@@ -51,7 +67,7 @@ jobs:
               'real_learning_phone.png', 'real_learning_fold_open.png'):
               p = folder / name
               assert p.is_file() and p.stat().st_size > 3000, name
-          print('All six actual Flutter visual snapshots exist.')
+          print('All eight actual Flutter visual snapshots exist.')
           PY
       - name: Save source-exact visual evidence
         if: always()
