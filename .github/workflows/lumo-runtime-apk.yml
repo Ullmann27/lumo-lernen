@@ -1,7 +1,7 @@
 name: Lumo race continuity APK and full Android race verification
 on:
   push:
-    branches: [codex/lumo-runtime-apk-2026-10-08]
+    branches: [codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, claude/continue-previous-chat-KtY7p]
     paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-runtime-apk.yml, .github/probes/**]
   workflow_dispatch:
 permissions:
@@ -41,6 +41,25 @@ jobs:
         with:
           flutter-version: '3.44.9'
           cache: true
+      - name: Verify the required NDK before long source and runtime checks
+        timeout-minutes: 10
+        env:
+          LUMO_NDK_DISPOSABLE_RUNNER: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
+      - name: Install ripgrep before source guards
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep tesseract-ocr tesseract-ocr-deu
+          command -v rg
+          rg --version
+          command -v tesseract
+          tesseract --version
+          tesseract --list-langs | rg -x deu
       - name: Dependencies and app source analysis
         run: |
           set -o pipefail
@@ -120,13 +139,34 @@ jobs:
             echo 'App render files:'
             find proof/app-renders -maxdepth 1 -type f -name '*.png' -printf '%f\n' | sort
           } > proof/TEST-RESULTS.txt
+      - name: Install declared Python QA guard dependencies
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/lumo-qa-guard-venv"
+          qa_python="$RUNNER_TEMP/lumo-qa-guard-venv/bin/python"
+          "$qa_python" -m pip install --disable-pip-version-check --only-binary=:all: Pillow==12.3.0
+          "$qa_python" -m pip freeze > proof/python-qa-dependencies.txt
+          printf 'LUMO_QA_PYTHON=%s\n' "$qa_python" >> "$GITHUB_ENV"
+          "$qa_python" - <<'PYCODE'
+          import json, shutil
+          from pathlib import Path
+          import PIL
+          assert PIL.__version__ == '12.3.0'
+          assert shutil.which('tesseract') is not None, 'Declared screenshot OCR dependency is missing'
+          Path('proof/python-qa-capabilities.json').write_text(json.dumps({
+              'pillow': PIL.__version__,
+              'tesseract': shutil.which('tesseract'),
+              'optional_ocr_skip_reason': 'Actual screenshot OCR requires tesseract and Pillow',
+              'optional_ocr_skip_guards': 'Existing eight screenshot cases remain unchanged; actual skips are recorded by unittest -v.',
+          }, indent=2) + '\n')
+          PYCODE
       - name: Backend, learning content and integration guards
         run: |
           set -euo pipefail
           node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee proof/backend.log
           dart scripts/audit_content.dart 2>&1 | tee proof/content.log
           bash scripts/lumo_repair_guard.sh 2>&1 | tee proof/repair-guard.log
-          python3 -m unittest discover -s tools/android_qa/tests 2>&1 | tee proof/android-harness-tests.log
+          "$LUMO_QA_PYTHON" -m unittest discover -s tools/android_qa/tests -v 2>&1 | tee proof/android-harness-tests.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -152,6 +192,74 @@ jobs:
           git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/source-sha.txt"
           godot --path "$LUMO_NATIVE_DIRECTORY" --headless --editor --import --quit > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log" 2>&1
           if rg 'SCRIPT ERROR|Parse Error|Failed to load|ERROR:' "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log"; then exit 1; fi
+      - name: Check per-profile lifetime and workshop budgets
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        run: |
+          set -euo pipefail
+          python3 tools/run_godot_probe.py --log exports/fold-controls/progress_profile_lifetime_regression.log \
+            --timeout 240 --required '[ProgressProfileLifetime] checks=24 failures=0' -- \
+            godot --headless --audio-driver Dummy --script res://scripts/tests/progress_profile_lifetime_regression.gd -- \
+            --output=res://exports/fold-controls/profile-lifetime-evidence.json
+          python3 - <<'PYCODE'
+          import hashlib, json, re
+          from pathlib import Path
+          sources = {
+              'scripts/systems/progress_store.gd': '9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811',
+              'scripts/tests/progress_profile_lifetime_regression.gd': '07d69051010e787492ccc6250a427e8cf55de744f583e5ac0099cb7442824c60',
+          }
+          for path, expected in sources.items():
+              assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == expected, path
+          evidence_path = Path('exports/fold-controls/profile-lifetime-evidence.json')
+          evidence_raw = evidence_path.read_bytes()
+          data = json.loads(evidence_raw)
+          assert type(data) is dict and set(data) == {'check_count', 'failure_count', 'checks'}
+          assert type(data['check_count']) is int and data['check_count'] == 24
+          assert type(data['failure_count']) is int and data['failure_count'] == 0
+          checks = data['checks']
+          assert type(checks) is list and len(checks) == 24
+          assert all(type(row) is dict and set(row) == {'name', 'ok'} and row['ok'] is True
+                     and type(row['name']) is str and row['name'] for row in checks)
+          expected_names = re.findall(r'_check\([^\n]*, "([^"]+)"\)',
+                                      Path('scripts/tests/progress_profile_lifetime_regression.gd').read_text())
+          assert len(expected_names) == len(set(expected_names)) == 24
+          assert [row['name'] for row in checks] == expected_names
+          log_raw = Path('exports/fold-controls/progress_profile_lifetime_regression.log').read_bytes()
+          log = log_raw.decode('utf-8')
+          assert log.splitlines().count('[ProgressProfileLifetime] checks=24 failures=0') == 1
+          assert not re.search(r'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|\[ProbeRunner\] FAIL|'
+                               r'\[ProbeRunner\] timeout|ObjectDB instances leaked at exit|resources still in use at exit', log)
+          source = Path('exports/fold-controls/source-sha.txt').read_text().strip()
+          assert re.fullmatch(r'[0-9a-f]{40}', source)
+          Path('exports/fold-controls/profile-lifetime-summary.json').write_text(json.dumps({
+              'status': 'PASS', 'godot_source': source, 'checks': 24,
+              'source_sha256': sources, 'evidence_sha256': hashlib.sha256(evidence_raw).hexdigest(),
+              'log_sha256': hashlib.sha256(log_raw).hexdigest(),
+              'scope': 'Assigned profile lifetime/workshop states; headless; separate from native race entrypoints',
+          }, indent=2) + '\n')
+          print('[ProgressProfileLifetime] PASS: 24 source-bound headless profile/workshop checks')
+          PYCODE
+      - name: Check physical finish coast and reduced-motion camera
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        run: |
+          set -euo pipefail
+          finish_output="$LUMO_NATIVE_DIRECTORY/exports/fold-controls/finish-coast"
+          mkdir -p "$finish_output"
+          LUMO_QA_DIR="$finish_output" python3 tools/run_godot_probe.py \
+            --log exports/fold-controls/finish-coast/engine.log --timeout 240 \
+            --required '[PhysicalFinishCoast] PASS: 16 numerical controls, 0 failures' -- \
+            godot --headless --audio-driver Dummy --rendering-method gl_compatibility \
+            --script res://scripts/tests/kart_finish_coast_regression.gd
+          godot_revision=$(python3 -c 'import json, os; from pathlib import Path; print(json.loads((Path(os.environ["GITHUB_WORKSPACE"]) / "config/godot-source.json").read_text())["revision"])')
+          test "$(git rev-parse HEAD)" = "$godot_revision"
+          python3 "$GITHUB_WORKSPACE/tools/android_qa/finish_coast_evidence.py" \
+            --project . --engine "$(command -v godot)" \
+            --evidence exports/fold-controls/finish-coast/numerical-evidence.json \
+            --motion exports/fold-controls/finish-coast/motion-frames.json \
+            --log exports/fold-controls/finish-coast/engine.log \
+            --source-revision-file exports/fold-controls/source-sha.txt \
+            --expected-source-revision "$godot_revision" \
+            --summary exports/fold-controls/finish-coast/finish-coast-summary.json
+
       - name: Render actual native worlds and menu from the exact APK pin
         working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
         env:
@@ -176,13 +284,23 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -euo pipefail
-          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_complete_flow_regression; do
+          for test in kart_pause_layout_regression kart_fold_controls_regression kart_menu_flow_regression kart_physics_regression kart_fleet_regression kart_video_visual_regression kart_reference_capture kart_driven_capture kart_steering_grip_regression kart_arm_contact_regression kart_steering_grip_capture kart_race_continuity_regression kart_countdown_pause_regression kart_modal_touch_regression kart_complete_flow_regression kart_fleet_stats_regression kart_workshop_regression; do
             probe_timeout=420
+            probe_marker=PASS
+            probe_output=''
+            if [ "$test" = kart_countdown_pause_regression ]; then
+              probe_marker='[KartCountdownPause] PASS:'
+              probe_output="$LUMO_NATIVE_DIRECTORY/exports/countdown-pause"
+            fi
+            if [ "$test" = kart_modal_touch_regression ]; then
+              probe_marker='[KartModalTouch] PASS:'
+              probe_output="$LUMO_NATIVE_DIRECTORY/exports/modal-touch"
+            fi
             if [ "$test" = kart_fleet_regression ]; then probe_timeout=240; fi
             # Keep every real physics/touch step and all fifteen captures on shared Mesa.
             if [ "$test" = kart_driven_capture ]; then probe_timeout=900; fi
-            python3 tools/run_godot_probe.py --log "exports/fold-controls/$test.log" \
-              --timeout "$probe_timeout" -- \
+            LUMO_QA_DIR="$probe_output" python3 tools/run_godot_probe.py --log "exports/fold-controls/$test.log" \
+              --timeout "$probe_timeout" --required "$probe_marker" -- \
               xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
               --rendering-method gl_compatibility --script "res://scripts/tests/$test.gd"
           done
@@ -190,6 +308,10 @@ jobs:
           rg -F '[KartMenuFlow] PASS:' exports/fold-controls/kart_menu_flow_regression.log
           rg -F '[KartPhysics] PASS:' exports/fold-controls/kart_physics_regression.log
           rg -F '[KartFleet] PASS:' exports/fold-controls/kart_fleet_regression.log
+          rg -F '[KartCountdownPause] PASS:' exports/fold-controls/kart_countdown_pause_regression.log
+          rg -F '[KartModalTouch] PASS:' exports/fold-controls/kart_modal_touch_regression.log
+          rg -F '[KartFleetStats] PASS:' exports/fold-controls/kart_fleet_stats_regression.log
+          rg -F '[KartWorkshop] PASS:' exports/fold-controls/kart_workshop_regression.log
           GODOT_SHA=$(cat exports/fold-controls/source-sha.txt)
           echo "PASS exact Godot source real rendering, Fold touch, menu and physics: $GODOT_SHA" >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
       - name: Native harbor, vehicle geometry and detail regressions
@@ -206,6 +328,14 @@ jobs:
               --script "res://scripts/tests/$test.gd"
           done
           echo 'PASS exact native harbor, vehicle geometry and detail regressions' >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
+      - name: Check the unchanged time formatter against all 29 boundary cases
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        run: |
+          set -euo pipefail
+          LUMO_QA_DIR="$LUMO_NATIVE_DIRECTORY/exports/time-format" \
+            python3 tools/run_godot_probe.py --log exports/fold-controls/kart_time_format_regression.log \
+            --timeout 240 --required '[KartTimeFormat] PASS:' -- \
+            godot --headless --audio-driver Dummy --script res://scripts/tests/kart_time_format_regression.gd
       - name: Capture the final native fleet and harbor from the exact APK pin
         working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
         env:
@@ -221,6 +351,101 @@ jobs:
             xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
             --rendering-method gl_compatibility --script res://scripts/tests/kart_harbor_regression.gd -- --capture
           echo 'PASS final native fleet and harbor runtime images from the exact APK pin' >> "$GITHUB_WORKSPACE/proof/TEST-RESULTS.txt"
+          python3 - <<'PYCODE'
+          import hashlib, json, os, re
+          from pathlib import Path
+          markers = {
+              'visual': ('[KartVisualQuality] PASS:',),
+              'kart_pause_layout_regression': ('[KartPauseLayoutTests] PASS:',),
+              'kart_fold_controls_regression': ('[KartFoldControls] PASS:',),
+              'kart_menu_flow_regression': ('[KartMenuFlow] PASS:',),
+              'kart_physics_regression': ('[KartPhysics] PASS:',),
+              'kart_fleet_regression': ('[KartFleet] PASS:',),
+              'kart_video_visual_regression': (
+                  '[KartVideoGrade] PASS: complete rendered kart bounds',
+                  '[KartVideoGrade] PASS: close chase framing',
+              ),
+              'kart_reference_capture': ('[ReferenceCapture] PASS:',),
+              'kart_driven_capture': ('[DrivenCapture] PASS:',),
+              'kart_steering_grip_regression': ('[KartSteeringGrip] PASS:',),
+              'kart_arm_contact_regression': ('[KartArmContact] PASS:',),
+              'kart_steering_grip_capture': ('[KartSteeringGripCapture] PASS:',),
+              'kart_race_continuity_regression': ('[KartContinuity] PASS:',),
+              'kart_countdown_pause_regression': ('[KartCountdownPause] PASS:',),
+              'kart_modal_touch_regression': ('[KartModalTouch] PASS:',),
+              'kart_complete_flow_regression': ('[KartCompleteFlow] PASS:',),
+              'kart_harbor_regression': ('[KartHarbor] PASS:',),
+              'kart_vehicle_regression': ('[KartVehicle] Geometry/colours, shadows, animations, effects, LOD and hysteresis passed',),
+              'kart_vehicle_detail_regression': ('[KartDetails] PASS:',),
+              'fleet-capture': ('[FleetCapture] PASS:',),
+              'harbor-capture': ('[KartHarbor] PASS:',),
+          }
+          assert len(markers) == 21
+          markers['kart_time_format_regression'] = ('[KartTimeFormat] PASS:',)
+          assert len(markers) == 22
+          # Flotte mit Werten und Werkstatt (Claude-Integration) laufen im selben strengen Runner.
+          markers['kart_fleet_stats_regression'] = ('[KartFleetStats] PASS:',)
+          markers['kart_workshop_regression'] = ('[KartWorkshop] PASS:',)
+          assert len(markers) == 24
+          probes = []
+          for name, required in markers.items():
+              path = Path('exports/fold-controls') / (name + '.log')
+              text = path.read_text()
+              assert not re.search(r'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|\[ProbeRunner\] FAIL', text), name
+              assert all(marker in text for marker in required), name
+              probes.append({'name': name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'status': 'PASS'})
+          captures = sorted(Path('exports/countdown-pause').glob('*.png'))
+          assert len(captures) == 9, 'Countdown pause proof requires all nine actual rendered frames'
+          modal_directory = Path('exports/modal-touch')
+          modal_path = modal_directory / 'evidence.json'
+          modal = json.loads(modal_path.read_text())
+          modal_captures = sorted(modal_directory.glob('*.png'))
+          assert modal['status'] == 'PASS' and all(check['pass'] is True for check in modal['checks'])
+          assert len(modal['checks']) == 37, 'Modal touch proof requires all 35 behaviour checks and both observed Gas-mode preconditions'
+          assert len(modal_captures) == 14, 'Modal touch proof requires all fourteen actual rendered frames'
+          assert len(modal['captures']) == 14 and set(modal['captures']) == {path.name for path in modal_captures}
+          assert len(modal['cases']) == 6, 'Six genuine button-drag cases required'
+          assert all(case['scroll_before'] != case['scroll_after'] and
+                     case['actions_before'] == case['actions_after'] and
+                     case['state_before'] == case['state_after'] for case in modal['cases'])
+          required_taps = {
+              'Normal Ton tap changes setting exactly once',
+              'Normal Gas tap changes setting exactly once',
+              'Normal Weiterfahren tap resumes exactly once',
+              'Normal result action tap opens the garage exactly once',
+              'Observed public Gas mode is manual before race touch ownership',
+              'Observed public Gas mode is automatic before full race',
+          }
+          assert required_taps <= {check['label'] for check in modal['checks'] if check['pass'] is True}
+          assert modal['physical_android_or_fold'] == 'PHYSICAL_ANDROID_NOT_EXECUTED'
+          assert modal['actual_gesture_latency_or_duration'] == 'NOT MEASURED'
+          workspace = Path(os.environ['GITHUB_WORKSPACE'])
+          pin = json.loads((workspace / 'config/godot-source.json').read_text())
+          native_source = Path('exports/fold-controls/source-sha.txt').read_text().strip()
+          assert native_source == pin['revision']
+          report = {
+              'status': 'PASS', 'flutter_source_commit': (workspace / 'proof/source-sha.txt').read_text().strip(),
+              'godot_source_commit': native_source, 'strict_native_probes': len(probes), 'probes': probes,
+              'countdown_pause_pngs': [{'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()} for path in captures],
+              'modal_touch_evidence_sha256': hashlib.sha256(modal_path.read_bytes()).hexdigest(),
+              'modal_touch_drag_cases': len(modal['cases']),
+              'modal_touch_pngs': [{'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()} for path in modal_captures],
+              'physical_device_performance': 'NOT EXECUTED',
+          }
+          import importlib.util
+          import sys
+          helper = workspace / 'tools/android_qa/native_lap_evidence_recovery.py'
+          sys.path.insert(0, str(helper.parent))
+          spec = importlib.util.spec_from_file_location('native_lap_evidence_recovery', helper)
+          lap_evidence = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(lap_evidence)
+          report.update(lap_evidence.summarize_native_lap_evidence(Path.cwd()))
+          import native_handoff_evidence_recovery
+          report.update(native_handoff_evidence_recovery.summarize_handoff_lifecycle(Path.cwd()))
+          Path('exports/fold-controls/native-check-summary.json').write_text(json.dumps(report, indent=2) + '\n')
+          with (workspace / 'proof/TEST-RESULTS.txt').open('a') as stream:
+              stream.write(f'PASS {len(probes)} strict native render/gameplay/capture probes on exact source {native_source}; nine countdown-pause and fourteen modal-touch frames.\n')
+          PYCODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -234,20 +459,40 @@ jobs:
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/reference-design/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/video-reference-grade/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/complete-flow/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/race-continuity/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/race-bridge/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/time-format/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/steering-grip/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/countdown-pause/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/modal-touch/
       - name: Build and verify the unified APK from exact clean source
         run: |
-          set -o pipefail
+          set -euo pipefail
           git rev-parse HEAD > build-proof/source-sha.txt
-          mkdir -p build
-          git clone --no-hardlinks "$LUMO_NATIVE_DIRECTORY" build/godot-source
-          test "$(git -C build/godot-source rev-parse HEAD)" = "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)"
-          cp -a "$LUMO_NATIVE_DIRECTORY/.godot" build/godot-source/.godot
+          python3 - <<'PYCODE'
+          import shutil, subprocess
+          from pathlib import Path
+          changed = subprocess.check_output(['git', 'diff', 'HEAD', '--name-only', '-z']).decode().split('\0')
+          changed = [path for path in changed if path]
+          generated = '.ci-results/onboarding-visual/age-360x800.png'
+          if any(path != generated for path in changed):
+              raise RuntimeError(f'Refuse to build after unexpected tracked changes: {changed}')
+          if generated in changed:
+              shutil.copy2(generated, 'build-proof/generated-age-360x800.png')
+          Path('build-proof/test-generated-files.json').write_text(__import__('json').dumps(changed) + '\n')
+          PYCODE
+          export LUMO_BUILD_CHECKOUT="$RUNNER_TEMP/lumo-clean-apk-source"
+          git clone --no-hardlinks . "$LUMO_BUILD_CHECKOUT"
+          test "$(git -C "$LUMO_BUILD_CHECKOUT" rev-parse HEAD)" = "$(git rev-parse HEAD)"
+          mkdir -p "$LUMO_BUILD_CHECKOUT/build"
+          git clone --no-hardlinks "$LUMO_NATIVE_DIRECTORY" "$LUMO_BUILD_CHECKOUT/build/godot-source"
+          test "$(git -C "$LUMO_BUILD_CHECKOUT/build/godot-source" rev-parse HEAD)" = "$(git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD)"
+          cp -a "$LUMO_NATIVE_DIRECTORY/.godot" "$LUMO_BUILD_CHECKOUT/build/godot-source/.godot"
           python3 - <<'PYCODE'
           import os, shutil, subprocess
           from pathlib import Path
           source = Path(os.environ['LUMO_NATIVE_DIRECTORY'])
-          target = Path('build/godot-source')
+          target = Path(os.environ['LUMO_BUILD_CHECKOUT']) / 'build/godot-source'
           ignored = subprocess.check_output([
               'git', '-C', str(source), 'ls-files', '--others', '--ignored',
               '--exclude-standard', '-z',
@@ -259,8 +504,10 @@ jobs:
               destination.parent.mkdir(parents=True, exist_ok=True)
               shutil.copy2(source / name, destination)
           PYCODE
-          test -z "$(git -C build/godot-source status --porcelain)"
-          bash scripts/build_unified_apk.sh 2>&1 | tee build-proof/build.log
+          test -z "$(git -C "$LUMO_BUILD_CHECKOUT/build/godot-source" status --porcelain)"
+          (cd "$LUMO_BUILD_CHECKOUT" && bash scripts/build_unified_apk.sh) 2>&1 | tee build-proof/build.log
+          mkdir -p dist
+          cp -a "$LUMO_BUILD_CHECKOUT/dist/." dist/
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
           cp proof/TEST-RESULTS.txt dist/TEST-RESULTS.txt
       - uses: actions/upload-artifact@v4
@@ -349,6 +596,13 @@ jobs:
             sleep 0.25
           done
           rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Prepare the exact existing system image before original emulator runner
+        timeout-minutes: 11
+        run: |
+          set -euo pipefail
+          mkdir -p native-proof/system-image
+          echo '8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51  tools/android_qa/prepare_system_image.py' | sha256sum -c -
+          python3 tools/android_qa/prepare_system_image.py --api '${{ matrix.api }}' --out native-proof/system-image --timeout 600
       - name: Update exact APK and exercise actual offline native game
         uses: reactivecircus/android-emulator-runner@v2
         env:

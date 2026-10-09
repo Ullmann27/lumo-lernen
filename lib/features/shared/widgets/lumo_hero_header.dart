@@ -3,7 +3,6 @@ import '../../../app/app_theme.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/fox/lumo_character.dart';
-import 'lumo_premium_effects.dart';
 
 /// Premium-Hero-Header nach Referenzbild "Mathe mit Lumo" / "Deutsch mit Lumo".
 ///

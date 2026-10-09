@@ -9,7 +9,6 @@ import '../../core/lumo_story_generator.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
-import '../../widgets/premium/lumo_premium_card.dart';
 import 'lumo_story_reader_screen.dart';
 
 class LumoStorySetupScreen extends StatefulWidget {

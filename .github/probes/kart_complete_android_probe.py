@@ -46,6 +46,71 @@ SCALAR_FIELDS = {
 }
 
 
+def require_resource_snapshots(result: dict) -> None:
+    """Require both existing read-only captures before declaring the race PASS.
+
+    No new device reads, conversions or performance thresholds are introduced.
+    RSS may remain unavailable in the documented Android PSS table format.
+    """
+    from runtime_resource_evidence import PROCESS, parse_meminfo, parse_proc_stat
+
+    def require(condition, message):
+        if not condition:
+            raise RuntimeError('Complete race resource evidence: ' + message)
+
+    try:
+        keys = ('source', 'godot', 'apk_sha256', 'android_sdk', 'serial')
+        identity = {key: result[key] for key in keys}
+        require(all(type(identity[key]) is str and re.fullmatch(pattern, identity[key])
+                    for key, pattern in (('source', r'[0-9a-f]{40}'),
+                                         ('godot', r'[0-9a-f]{40}'),
+                                         ('apk_sha256', r'[0-9a-f]{64}'),
+                                         ('serial', r'emulator-\d+'))),
+                'current source, pin, APK and emulator identity required')
+        require(type(identity['android_sdk']) is int and identity['android_sdk'] >= 24,
+                'current Android API must be an integer')
+        snapshots = result['resource_snapshots']
+        phases = ('first-driving', 'completed-before-fold')
+        require(type(snapshots) is dict and set(snapshots) == set(phases),
+                'exactly first-driving and completed-before-fold captures required')
+        for phase in phases:
+            snapshot = snapshots[phase]
+            require(type(snapshot) is dict and snapshot.get('status') == 'PASS'
+                    and 'error' not in snapshot, phase + ' must be a successful capture')
+            require(snapshot.get('phase') == phase, phase + ' phase identity differs')
+            captured_identity = snapshot.get('identity')
+            require(type(captured_identity) is dict and set(captured_identity) == set(keys)
+                    and all(type(captured_identity[key]) is type(identity[key])
+                            and captured_identity[key] == identity[key] for key in keys),
+                    phase + ' source/API/serial identity differs')
+            pid = snapshot['pid']
+            require(type(pid) is int and pid > 0, phase + ' needs an actual native PID')
+            reads = snapshot['reads']
+            require(type(reads) is list and len(reads) == 3, phase + ' needs all three raw reads')
+            commands = (('pid', ['-s', identity['serial'], 'shell', 'pidof', PROCESS]),
+                        ('proc_stat', ['-s', identity['serial'], 'shell', 'cat', f'/proc/{pid}/stat']),
+                        ('meminfo', ['-s', identity['serial'], 'shell', 'dumpsys', 'meminfo', str(pid)]))
+            for read, (name, arguments) in zip(reads, commands):
+                require(type(read) is dict and read.get('name') == name
+                        and read.get('arguments') == arguments and 'error' not in read,
+                        phase + ' raw read command/identity differs')
+                require(type(read.get('raw')) is str and bool(read['raw'].strip())
+                        and all(type(read.get(key)) is str and read[key]
+                                for key in ('started_utc', 'finished_utc')),
+                        phase + ' raw input and timestamps required')
+            require(reads[0]['raw'].strip() == str(pid), phase + ' raw native PID differs')
+            parsed = {**parse_proc_stat(reads[1]['raw'], str(pid)),
+                      **parse_meminfo(reads[2]['raw'], str(pid))}
+            require(all(key in snapshot and type(snapshot[key]) is type(value)
+                        and snapshot[key] == value for key, value in parsed.items()),
+                    phase + ' parsed counters/memory differ from the raw inputs')
+            elapsed = snapshot['elapsed_seconds']
+            require(type(elapsed) in (int, float) and math.isfinite(elapsed)
+                    and 0 <= elapsed <= 20, phase + ' shared capture budget differs')
+    except (KeyError, TypeError, ValueError, AttributeError, OverflowError) as error:
+        raise RuntimeError('Complete race resource evidence is incomplete: ' + str(error)) from error
+
+
 def parse_session(raw: str) -> dict:
     """Read a Godot ConfigFile without eval or parsing its unrelated Variant data."""
     if not re.search(r'^\[race\]\s*$', raw, re.M):
@@ -96,6 +161,68 @@ def require_race_identity(state: dict, result_id: str) -> None:
         raise RuntimeError('Race progress outside the physical two-lap range')
 
 
+def fresh_race_ready(state: dict, previous_id: str) -> bool:
+    """A preexisting or still-counting save cannot identify the newly started race."""
+    if not isinstance(previous_id, str) or not previous_id:
+        raise RuntimeError('Prior actual race identity is required before starting')
+    if state['result_id'] == previous_id:
+        return False
+    require_race_identity(state, state['result_id'])
+    if (state['checkpoint_index'] != 0 or state['finished'] or state['completed_race']
+            or state['result_payload']):
+        raise RuntimeError('Fresh physical race already advanced or finished before initial setup')
+    if state['countdown'] < 0:
+        raise RuntimeError('Fresh physical race has an invalid countdown')
+    return state['countdown'] == 0 and state['elapsed'] >= 1
+
+
+def wait_fresh_race(read_session, previous_id: str, record, *, timeout: float = 180,
+                    clock=time.monotonic, sleep=time.sleep) -> dict:
+    """Poll untouched runtime saves; two ready reads must retain one new identity."""
+    started = clock()
+    deadline = started + timeout
+    evidence = {'status': 'WAITING', 'previous_result_id': previous_id,
+                'timeout_seconds': timeout, 'observations': [],
+                'scope': 'read-only actual saved identity/countdown; no forced race state'}
+    candidate_id, ready_reads = None, 0
+    try:
+        if timeout <= 0 or not isinstance(previous_id, str) or not previous_id:
+            raise ValueError('A prior race identity and positive readiness deadline are required')
+        index = 0
+        while True:
+            remaining = deadline - clock()
+            if remaining <= 0:
+                raise TimeoutError('Fresh physical race did not become ready before its deadline')
+            tag = '02-race-readiness-%03d' % index
+            state = read_session(tag, timeout=min(10, remaining))
+            if state['result_id'] != previous_id:
+                if candidate_id is not None and candidate_id != state['result_id']:
+                    raise RuntimeError('Fresh race identity changed again while awaiting readiness')
+                candidate_id = state['result_id']
+            elif candidate_id is not None:
+                raise RuntimeError('Fresh race reverted to the prior saved identity')
+            ready = fresh_race_ready(state, previous_id)
+            ready_reads = ready_reads + 1 if ready else 0
+            evidence['observations'].append({'snapshot': tag + '-session.cfg', 'state': state,
+                                             'ready': ready, 'consecutive_ready_reads': ready_reads,
+                                             'wall_seconds': round(clock() - started, 6)})
+            record(evidence)
+            remaining = deadline - clock()
+            if remaining <= 0:
+                raise TimeoutError('Fresh physical race did not become ready before its deadline')
+            if ready_reads >= 2:
+                evidence.update(status='READY', fresh_result_id=candidate_id)
+                return state
+            sleep(min(2, remaining))
+            index += 1
+    except Exception as error:
+        evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        evidence['elapsed_seconds'] = round(clock() - started, 6)
+        record(evidence)
+
+
 def require_completion(trace: list[dict], final: dict, result_id: str) -> dict:
     if len(trace) < 3 or not any(0 < row['checkpoint_index'] < 8 and not row['finished'] for row in trace):
         raise RuntimeError('A genuinely advancing first lap was not observed')
@@ -142,20 +269,82 @@ def require_ack(events: dict, result_id: str) -> None:
         raise RuntimeError('Host completed event was not acknowledged after wallet persistence')
 
 
-def observed_scroll(lines: list[dict], direction: str, context: str) -> list[int]:
-    """Gesture within actual observed central settings/result captions."""
+def scroll_observation(lines: list[dict], direction: str, context: str) -> dict:
+    """Locate visible scroll content, excluding the paused HUD and pinned footer."""
     def norm(text):
         import unicodedata
         plain = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode()
         return re.sub('[^a-z0-9]', '', plain.lower())
     pause = ('einekleinepause', 'deinrennenwartet', 'weiterfahren', 'ruhigebewegung',
-             'ton', 'grafik', 'tempo', 'gas', 'musik', 'effekte', 'neuefahrtauswahlen',
+             'tonan', 'tonaus', 'grafik', 'tempo', 'gasautomatisch', 'gasgastastehalten',
+             'musik', 'effekte', 'neuefahrtauswahlen',
              'rennenabbrechen')
     finished = ('gesamtzeit', 'besterunde', 'sternegesammelt', 'belohnung',
                 'nocheinmalfahren', 'neuefahrtauswahlen', 'zurspieleauswahl', 'zumlernen')
+    if context not in ('pause', 'finished'):
+        raise ValueError('Scroll context must be pause or finished')
+    if direction not in ('down', 'up'):
+        raise ValueError('Scroll direction must be up or down')
     prefixes = pause if context == 'pause' else finished
-    rows = [row for row in lines if any(norm(row['text']).startswith(prefix) for prefix in prefixes)
-            and len(row.get('bounds', [])) == 4]
+    observed = []
+    for row in lines:
+        caption = norm(row['text'])
+        if not (any(caption.startswith(prefix) for prefix in prefixes)
+                or caption in ('zurspieleauswahl', 'zumlernen')):
+            continue
+        bounds = row.get('bounds', [])
+        if (not isinstance(bounds, (list, tuple)) or len(bounds) != 4 or any(isinstance(value, bool)
+                or not isinstance(value, (int, float)) or not math.isfinite(value)
+                for value in bounds) or not 0 <= bounds[0] < bounds[2]
+                or not 0 <= bounds[1] < bounds[3]):
+            raise RuntimeError('Invalid observed modal caption bounds')
+        # OCR variants may describe the same caption with subpixel differences.
+        reading = {'text': row['text'], 'variant': row.get('variant'), 'bounds': list(bounds)}
+        same = next((old for old in observed if old['caption'] == caption and
+                     max(abs(a-b) for a, b in zip(bounds, old['bounds'])) <= 4), None)
+        if same is not None:
+            same['ocr_readings'].append(reading)
+            continue
+        observed.append({'caption': caption, 'bounds': list(bounds), 'ocr_readings': [reading]})
+    rows = [row for row in observed
+            if any(row['caption'].startswith(prefix) for prefix in prefixes)]
+    footer = []
+    footer_ocr_evidence = []
+    if context == 'pause':
+        # Source: PauseNavigation is outside modal_scroll and remains visible
+        # while the settings scroll. Its two actual captions bound the content.
+        for caption in ('zurspieleauswahl', 'zumlernen'):
+            matches = [row for row in observed if row['caption'] == caption]
+            discarded = []
+            if len(matches) > 1:
+                # API36 actual raw OCR absorbed the footer's curved outline.
+                # Accept its contained caption only when independent variants
+                # agree on one tighter box. Separate duplicates remain fatal.
+                known = {'contrast', 'raw', 'white-text', 'white-latin'}
+                corroborated = [row for row in matches if len({reading['variant']
+                    for reading in row['ocr_readings'] if reading['variant'] in known}) >= 2]
+                if len(corroborated) == 1:
+                    selected = corroborated[0]
+                    tight = selected['bounds']
+                    discarded = [row for row in matches if row is not selected]
+                    if len(discarded) == 1 and all(len(row['ocr_readings']) == 1 and
+                           row['ocr_readings'][0]['variant'] == 'raw' and
+                           row['bounds'][0] <= tight[0] and row['bounds'][1] <= tight[1] and
+                           row['bounds'][2] >= tight[2] and row['bounds'][3] >= tight[3]
+                           for row in discarded):
+                        matches = [selected]
+            if len(matches) != 1:
+                raise RuntimeError('No observed central modal captions: missing or ambiguous pause footer')
+            footer.append(matches[0]['bounds'])
+            footer_ocr_evidence.append({'caption': caption, 'selected': matches[0],
+                                       'contained_raw_overreads': discarded})
+        left, right = footer
+        if (left[2] >= right[0] or max(left[1], right[1]) >= min(left[3], right[3])):
+            raise RuntimeError('Observed pause footer does not form one ordered navigation row')
+        left_x, right_x = (left[0]+left[2])/2, (right[0]+right[2])/2
+        footer_top = min(left[1], right[1])
+        rows = [row for row in rows if left_x < (row['bounds'][0]+row['bounds'][2])/2 < right_x
+                and row['bounds'][3] < footer_top]
     if len(rows) < 2:
         raise RuntimeError('No observed central modal captions provide a safe scrolling gesture')
     top = min(rows, key=lambda row: row['bounds'][1])
@@ -165,11 +354,43 @@ def observed_scroll(lines: list[dict], direction: str, context: str) -> list[int
     if bottom_y - top_y < 60:
         raise RuntimeError('Observed modal captions provide too little room to scroll')
     x = round((bottom['bounds'][0] + bottom['bounds'][2]) / 2)
-    if direction == 'down':
-        return [x, bottom_y, x, top_y]
-    if direction == 'up':
-        return [x, top_y, x, bottom_y]
-    raise ValueError('Scroll direction must be up or down')
+    gesture = [x, bottom_y, x, top_y] if direction == 'down' else [x, top_y, x, bottom_y]
+    return {'gesture': gesture, 'context': context, 'direction': direction,
+            'content_bounds': [min(row['bounds'][0] for row in rows),
+                               min(row['bounds'][1] for row in rows),
+                               max(row['bounds'][2] for row in rows),
+                               max(row['bounds'][3] for row in rows)],
+            'footer_bounds': footer, 'footer_ocr_evidence': footer_ocr_evidence,
+            'selected_captions': rows}
+
+
+def observed_scroll(lines: list[dict], direction: str, context: str) -> list[int]:
+    return scroll_observation(lines, direction, context)['gesture']
+
+
+def stable_scroll_observation(frame: dict, observation: dict, previous: dict | None = None) -> dict:
+    """A swipe requires two complete current frames with matching modal geometry."""
+    result = {'frame': frame, 'observation': observation, 'valid': False, 'stable': False}
+    if not frame.get('acceptable_for_target_sampling'):
+        return result
+    width, height = frame['pixels']
+    for bounds in [observation['content_bounds'], *observation['footer_bounds']]:
+        if not 0 <= bounds[0] < bounds[2] <= width or not 0 <= bounds[1] < bounds[3] <= height:
+            raise RuntimeError('Observed scroll geometry exceeds the current screenshot')
+    x0, y0, x1, y1 = observation['content_bounds']
+    a, b, c, d = observation['gesture']
+    if not (x0 <= a <= x1 and x0 <= c <= x1 and y0 <= b <= y1 and y0 <= d <= y1):
+        raise RuntimeError('Observed swipe leaves the visible modal content')
+    result['valid'] = True
+    if previous and previous['valid'] and previous['frame']['pixels'] == frame['pixels']:
+        old = previous['observation']
+        geometry = lambda value: [*value['gesture'], *value['content_bounds'],
+                                  *(coordinate for bounds in value['footer_bounds'] for coordinate in bounds)]
+        before, after = geometry(old), geometry(observation)
+        result['stable'] = (old['context'] == observation['context'] and old['direction'] == observation['direction']
+                            and len(before) == len(after)
+                            and max(abs(a-b) for a, b in zip(before, after)) <= 12)
+    return result
 
 
 def require_no_runtime_error(logcat: str) -> None:
@@ -178,6 +399,16 @@ def require_no_runtime_error(logcat: str) -> None:
               re.search(r'(?:SCRIPT ERROR|USER ERROR|ERROR:|Parse Error|Assertion failed)', line)]
     if errors:
         raise RuntimeError('Actual native runtime logged an error:\n' + '\n'.join(errors[:10]))
+
+
+def require_saved_progress_unchanged(before: dict, after: dict, context: str) -> None:
+    """A resize must not change the actual paused or completed persisted race."""
+    keys = ('result_id', 'distance', 'elapsed', 'checkpoint_index', 'finished',
+            'completed_race', 'mode', 'track_id', 'selected_driver', 'selected_kart',
+            'difficulty', 'result_payload')
+    changed = [key for key in keys if before.get(key) != after.get(key)]
+    if changed:
+        raise RuntimeError(f'{context} resize changed saved race state: ' + ', '.join(changed))
 
 
 class VideoRecorder:
@@ -254,6 +485,9 @@ def main() -> int:
                              'visual reference parity', 'all tracks/karts']}
     video = None
     creative = load_creative()
+    from runtime_resource_evidence import capture_resources
+    from android_phase_timing_recovery import TimingJournal
+    timing = TimingJournal(out / 'call-timing.jsonl')
     base, package = creative.base, creative.PACKAGE
     original_adb = base.adb
 
@@ -279,7 +513,7 @@ def main() -> int:
 
     session_path = None
 
-    def session(tag: str) -> dict:
+    def session(tag: str, *, timeout: float = 60) -> dict:
         nonlocal session_path
         if session_path is None:
             paths = base.adb('shell', 'find', f'/data/user/0/{package}', '-maxdepth', '12',
@@ -287,9 +521,11 @@ def main() -> int:
             if len(paths) != 1:
                 raise RuntimeError('One actual persisted Kart session was required')
             session_path = paths[0]
-        raw = base.adb('exec-out', 'cat', session_path)
+        raw = base.adb('exec-out', 'cat', session_path, timeout=timeout)
         (out / (tag + '-session.cfg')).write_text(raw)
         return parse_session(raw)
+
+    session = timing.wrap('session-read', session, tag_index=0)
 
     def events(tag: str) -> dict:
         raw = base.adb('exec-out', 'cat', f'/data/user/0/{package}/files/lumo_game_events.json')
@@ -298,28 +534,78 @@ def main() -> int:
         return data
 
     def tap_native(label: str, tag: str, *, scroll: str | None = None, context: str = 'pause') -> None:
+        if scroll is None:
+            # The shared guard already observes two current complete frames.
+            # Avoid a separate third OCR preflight for actions needing no scroll.
+            creative.native_text(out, label, tag + '-stable-action', tap=True, exact=True)
+            return
         wanted = creative.normalized(label)
+        deadline, previous_scroll = time.monotonic() + 180, None
         for attempt in range(10):
-            lines = creative.image_lines(out, f'{tag}-{attempt}', wanted)
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError('Observed native action preparation exceeded 180 seconds')
+            capture = creative.capture(out, f'{tag}-{attempt}', timeout=remaining)
+            source = out / capture['file']
+            frame = creative.inspect_surface(source)
+            if not frame['acceptable_for_target_sampling']:
+                previous_scroll = None
+                write_json(f'{tag}-{attempt}-observed-scroll.json', {'status': 'SURFACE_REJECTED', 'frame': frame})
+                continue
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError('Observed native action preparation exceeded 180 seconds')
+            lines = creative.image_lines(out, f'{tag}-{attempt}', wanted, exact=True,
+                                         source_path=source, timeout=remaining)
             matches = [row for row in lines if creative.normalized(row['text']) == wanted]
             if matches:
-                row = min(matches, key=lambda item: len(item['text']))
-                left, top, right, bottom = row['bounds']
-                x, y = str(round((left + right) / 2)), str(round((top + bottom) / 2))
-                base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
-                time.sleep(1.5)
+                # The final action also needs the shared current-full-surface
+                # and two-frame target gate, with this exact caption retained.
+                from caption_scroll_recovery import make_gas_caption_recovery
+                recovery = make_gas_caption_recovery(
+                    label, scroll=scroll, context=context,
+                    scroll_observation=scroll_observation,
+                    stable_scroll_observation=stable_scroll_observation,
+                    digest=creative.digest, swipe=base.adb, clock=time.monotonic)
+                if recovery is None:
+                    creative.native_text(out, label, tag + '-stable-action', tap=True, exact=True)
+                else:
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        raise TimeoutError('Observed native action preparation exceeded 180 seconds')
+                    creative.native_tap(out, label, tag + '-stable-action',
+                                        timeout=min(120, remaining), exact=True,
+                                        missing_caption=recovery)
                 return
             if scroll and attempt >= 1:
-                gesture = observed_scroll(lines, scroll, context)
-                write_json(f'{tag}-{attempt}-observed-scroll.json', {
+                observation = scroll_observation(lines, scroll, context)
+                current = stable_scroll_observation(frame, observation, previous_scroll)
+                evidence = {
                     'target': label, 'direction': scroll, 'observed_captions': lines,
-                    'gesture': gesture, 'scope': 'scrolling the actually visible native modal',
-                })
-                base.adb('shell', 'input', 'swipe', *map(str, gesture), '450')
+                    'gesture': observation['gesture'], 'current': current,
+                    'previous': previous_scroll, 'status': 'WAITING_FOR_STABLE_MODAL',
+                    'scope': 'two complete current frames; gesture inside observed modal captions',
+                }
+                previous_scroll = current
+                if not current['stable']:
+                    write_json(f'{tag}-{attempt}-observed-scroll.json', evidence)
+                    continue
+                if creative.digest(source) != frame['source_sha256']:
+                    raise RuntimeError('The observed scroll screenshot changed before input')
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError('Observed native action preparation exceeded 180 seconds')
+                base.adb('shell', 'input', 'swipe', *map(str, observation['gesture']), '450',
+                         timeout=min(10, remaining))
+                evidence['status'] = 'SWIPE_SENT'
+                write_json(f'{tag}-{attempt}-observed-scroll.json', evidence)
+                previous_scroll = None
                 time.sleep(1.5)
                 continue
             time.sleep(1)
         raise RuntimeError('Exact current native action caption is missing: ' + label)
+
+    tap_native = timing.wrap('native-action', tap_native)
 
     def restarted_home(tag: str):
         base.adb('shell', 'am', 'force-stop', package)
@@ -336,11 +622,54 @@ def main() -> int:
         base.display(1080, 1920, 300)
         creative.enter(out, 'Lumo Kart', 'LUMO / KART', tag, launch_label='Losfahren')
 
+    def fold_cycle(tag: str, labels: tuple[str, ...], saved_before: dict | None = None) -> dict:
+        """Observed outer→inner→outer emulator surfaces, then the normal phone."""
+        captures = []
+        for stage, width, height, density, expected in (
+            ('outer-before', 904, 2316, 420, [2316, 904]),
+            ('inner', 1812, 2176, 420, [2176, 1812]),
+            ('outer-after', 904, 2316, 420, [2316, 904]),
+            ('phone-restored', 1080, 1920, 300, [1920, 1080]),
+        ):
+            base.display(width, height, density)
+            creative.device_rotation(out, tag + '-' + stage + '-landscape', 1)
+            for attempt in range(10):
+                name = tag + '-' + stage + ('' if attempt == 0 else f'-retry-{attempt}')
+                snapshot = creative.capture(out, name)
+                source = out / snapshot['file']
+                frame = creative.inspect_surface(source)
+                if ([snapshot['width'], snapshot['height']] != expected
+                        or not frame['acceptable_for_target_sampling']):
+                    time.sleep(2)
+                    continue
+                observations = {}
+                for label in labels:
+                    wanted = creative.normalized(label)
+                    lines = creative.image_lines(out, name + '-' + wanted, wanted,
+                                                 source_path=source)
+                    observations[label] = [row for row in lines
+                                           if wanted in creative.normalized(row['text'])]
+                if creative.digest(source) != frame['source_sha256']:
+                    raise RuntimeError('The observed Fold screenshot changed during label reads')
+                write_json(name + '-same-frame-labels.json', {
+                    'source': snapshot, 'observed_labels': observations,
+                    'scope': 'All required captions and dimensions from one current complete frame',
+                })
+                if all(observations.values()):
+                    break
+                time.sleep(2)
+            else:
+                raise RuntimeError(f'{tag}/{stage} did not render the expected actual emulator surface and captions')
+            captures.append({'stage': stage, 'surface': expected, 'capture': snapshot})
+            if saved_before is not None:
+                require_saved_progress_unchanged(saved_before, session(tag + '-' + stage), tag)
+        return {'status': 'PASS', 'sequence': 'outer → inner → outer → phone',
+                'observed_labels': list(labels), 'captures': captures,
+                'saved_progress_stable': saved_before is not None,
+                'scope': 'actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED'}
+
+    timing.phase('probe-setup-start')
     try:
-        serial = base.adb('get-serialno').strip()
-        if not re.fullmatch(r'emulator-\d+', serial):
-            raise RuntimeError('This probe requires a disposable Android emulator, not a physical device')
-        result['serial'] = serial
         expected_source = os.environ['LUMO_EXPECT_SOURCE']
         expected_godot = os.environ['LUMO_EXPECT_GODOT']
         expected_version = int(os.environ['LUMO_EXPECT_VERSION'])
@@ -354,6 +683,14 @@ def main() -> int:
             raise RuntimeError('Exact candidate provenance mismatch')
         result.update(source=expected_source, godot=expected_godot, apk_sha256=candidate_digest,
                       harness=base.command('git', 'rev-parse', 'HEAD'))
+        result['emulator_root_readiness'] = creative.ensure_rooted_emulator(
+            base.adb, out, previous_readiness=out.parent / 'rooted-emulator.json',
+            previous_probe=out.parent / 'result.json', expected_identity={
+                'source': expected_source, 'godot': expected_godot,
+                'apk_sha256': candidate_digest,
+                'android_sdk': int(os.environ['LUMO_EXPECT_ANDROID_API']),
+            })
+        result['serial'] = result['emulator_root_readiness']['serial']
         apk_paths = base.adb('shell', 'pm', 'path', package).splitlines()
         apk_bases = [row.removeprefix('package:') for row in apk_paths if row.endswith('/base.apk')]
         if len(apk_bases) != 1:
@@ -363,12 +700,33 @@ def main() -> int:
         if installed != candidate_digest or installed_size != args.candidate.stat().st_size:
             raise RuntimeError('Installed bytes differ from the exact candidate APK')
         result['installed_apk'] = {'sha256': installed, 'bytes': installed_size, 'matches_candidate': True}
-        base.adb('root')
-        base.adb('wait-for-device')
         result['android_sdk'] = int(base.adb('shell', 'getprop', 'ro.build.version.sdk'))
         expected_sdk = os.environ.get('LUMO_EXPECT_ANDROID_API')
         if expected_sdk and result['android_sdk'] != int(expected_sdk):
             raise RuntimeError('Android API differs from the requested probe')
+        resource_identity = {key: result[key] for key in
+                             ('source', 'godot', 'apk_sha256', 'android_sdk', 'serial')}
+        result['resource_snapshots'] = {}
+        result['resource_observed_states'] = {}
+        # Preserve the verified-root/installed-identity bootstrap boundary.
+        # Optional UI observation starts before the first actual game launch.
+        for category, attribute in (
+            ('screenshot', 'capture'), ('screenshot-ocr', 'image_lines'),
+            ('native-target', 'native_tap'), ('native-readability', 'native_text'),
+            ('flutter-action', 'flutter_tap'), ('live-ui-read', 'read_live_nodes'),
+        ):
+            setattr(creative, attribute, timing.wrap(category, getattr(creative, attribute)))
+        # These aliases were assigned when the creative module was loaded.
+        creative.live.live_nodes = creative.read_live_nodes
+        base.ui_nodes = creative.read_live_nodes
+        base.launch = timing.wrap('host-launch', base.launch)
+        original_command = base.command
+        def timed_command(*commands, **kwargs):
+            if commands and commands[0] == 'tesseract':
+                tag = Path(str(commands[2])).name if len(commands) > 2 else 'tesseract'
+                return timing.call('ocr-command', tag, original_command, *commands, **kwargs)
+            return original_command(*commands, **kwargs)
+        base.command = timed_command
         base.adb('shell', 'svc', 'wifi', 'disable')
         base.adb('shell', 'svc', 'data', 'disable')
         base.adb('shell', 'cmd', 'connectivity', 'airplane-mode', 'enable')
@@ -378,20 +736,39 @@ def main() -> int:
         if not profile or 'LumoTest' not in profile:
             raise RuntimeError('Existing real LumoTest profile from creative probe is required')
         before_wallet = creative.wallet(out, 'before-race')
+        previous_race = session('00-prior-race-before-garage')
+        result['previous_result_id'] = previous_race['result_id']
         base.adb('logcat', '-c')
         base.launch(out, 'full-race-start')
+        timing.phase('garage-open-start')
         open_kart('01-garage')
+        if os.environ.get('LUMO_FOLD_PROBE') == '1':
+            result['menu_resize'] = fold_cycle('01-garage-resize', ('LUMO / KART', 'Dein nächstes Abenteuer', 'Weiter'))
+            result['menu_resize']['preserved_garage_step'] = 'Dein nächstes Abenteuer (step 1 / 5)'
+        timing.phase('garage-selection-start')
         for step in range(4):
             tap_native('Weiter', f'garage-next-{step + 1}')
         tap_native('Rennen starten', 'garage-start')
+        ready = timing.call('readiness', 'fresh-race', wait_fresh_race,
+                            session, previous_race['result_id'],
+                            lambda evidence: write_json('fresh-race-readiness.json', evidence))
+        result['fresh_race_readiness'] = json.loads((out / 'fresh-race-readiness.json').read_text())
+        creative.native_text(out, 'RUNDE', '02-fresh-race-hud')
+        chase = creative.capture(out, '02-fresh-race-phone')
+        if [chase['width'], chase['height']] != [1920, 1080]:
+            raise RuntimeError('Fresh chase HUD did not use the actual phone surface')
         initial = session('02-new-race')
         result_id = initial['result_id']
         require_race_identity(initial, result_id)
-        if initial['checkpoint_index'] != 0 or initial['finished']:
+        if result_id != ready['result_id'] or not fresh_race_ready(initial, previous_race['result_id']):
             raise RuntimeError('The public garage setup did not start a fresh race')
         result['result_id'] = result_id
         base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
         creative.native_text(out, 'Eine kleine Pause', 'initial-pause')
+        paused_initial = session('02-initial-pause-fresh')
+        require_race_identity(paused_initial, result_id)
+        if not fresh_race_ready(paused_initial, previous_race['result_id']):
+            raise RuntimeError('Initial pause changed the fresh race readiness')
         tap_native('Gas: GAS-Taste halten', 'enable-public-auto-gas', scroll='down')
         creative.native_text(out, 'Gas: automatisch', 'public-auto-gas-confirmed')
         result['automatic_gas'] = {'enabled_by': 'observed native pause button', 'stick': 'neutral'}
@@ -400,6 +777,7 @@ def main() -> int:
         video.start()
         tap_native('Weiterfahren', 'race-resume-after-gas-setting', scroll='up')
 
+        timing.phase('race-driving-start')
         trace, paused_once = [initial], False
         race_started, last_progress = time.monotonic(), time.monotonic()
         previous = initial
@@ -412,6 +790,15 @@ def main() -> int:
             state['wall_seconds_since_resume'] = round(time.monotonic() - race_started, 3)
             trace.append(state)
             write_json('race-trace.json', trace)
+            if ('first-driving' not in result['resource_snapshots'] and not state['finished']
+                    and state['countdown'] <= 0 and state['elapsed'] > initial['elapsed']
+                    and state['speed'] > 0 and state['distance'] > initial['distance']):
+                # Natural motion in this exact race, before any in-race pause.
+                # A failed diagnostic stays FAIL; it does not alter race gates.
+                result['resource_observed_states']['first-driving'] = dict(state)
+                result['resource_snapshots']['first-driving'] = capture_resources(
+                    base.adb, out, 'first-driving', resource_identity,
+                    result['emulator_root_readiness'], timeout=20)
             if state['elapsed'] > previous['elapsed'] + 0.1:
                 last_progress = time.monotonic()
             elif time.monotonic() - last_progress > 180:
@@ -431,7 +818,14 @@ def main() -> int:
                     raise RuntimeError('The saved race progress changed while the actual pause menu was open')
                 if creative.wallet(out, 'during-unfinished-race') != before_wallet:
                     raise RuntimeError('An unfinished race credited a host reward')
+                if os.environ.get('LUMO_FOLD_PROBE') == '1':
+                    result['pause_resize'] = fold_cycle('05-pause-resize', ('Eine kleine Pause', 'Weiterfahren'), paused)
+                    if creative.wallet(out, 'after-pause-resize') != before_wallet:
+                        raise RuntimeError('Resizing an unfinished paused race credited a host reward')
                 tap_native('Weiterfahren', 'mid-race-continue')
+                # Resize/OCR time belongs to genuine pause overhead, not a stall
+                # of the resumed race. Restart only the monitoring deadline.
+                last_progress = time.monotonic()
                 paused_once = True
                 result['pause_resume'] = {'status': 'PASS', 'checkpoint': paused['checkpoint_index'],
                                           'saved_pause_progress_stable': True, 'unfinished_reward_unchanged': True,
@@ -442,6 +836,7 @@ def main() -> int:
                 break
         else:
             raise RuntimeError('Natural two-lap race did not finish before the polling limit')
+        timing.phase('race-physically-finished')
         payload = require_completion(trace, final, result_id)
         if not paused_once:
             raise RuntimeError('Actual in-progress pause/resume was not executed')
@@ -450,25 +845,16 @@ def main() -> int:
         creative.native_text(out, 'Gesamtzeit', 'result-total-time')
         creative.native_text(out, 'Belohnung', 'result-reward')
         creative.capture(out, '06-completed-result-phone')
+        result['resource_observed_states']['completed-before-fold'] = dict(final)
+        result['resource_snapshots']['completed-before-fold'] = capture_resources(
+            base.adb, out, 'completed-before-fold', resource_identity,
+            result['emulator_root_readiness'], timeout=20)
         if os.environ.get('LUMO_FOLD_PROBE') == '1':
-            base.display(1812, 2176, 420)
-            creative.device_rotation(out, 'finished-fold-landscape', 1)
-            creative.native_text(out, 'Gesamtzeit', 'finished-fold-result-visible')
-            fold = creative.capture(out, '07-completed-result-fold-open')
-            if [fold['width'], fold['height']] != [2176, 1812]:
-                raise RuntimeError('Completed result did not render at the inner emulator surface')
-            base.display(904, 2316, 420)
-            creative.native_text(out, 'Gesamtzeit', 'finished-cover-result-visible')
-            cover = creative.capture(out, '08-completed-result-fold-cover')
-            if [cover['width'], cover['height']] != [2316, 904]:
-                raise RuntimeError('Completed result did not render at the cover emulator surface')
-            base.display(1080, 1920, 300)
-            require_race_identity(session('09-after-result-resize'), result_id)
-            result['result_resize'] = {'status': 'PASS', 'inner': [2176, 1812], 'cover': [2316, 904],
-                                       'scope': 'emulator surfaces and explicit rotation; no physical hinge'}
+            result['result_resize'] = fold_cycle('07-finished-result-resize', ('Gesamtzeit', 'Belohnung'), final)
 
         # Actual interrupted-result recovery: the untouched saved race survives
         # process death. Flutter drains/ACKs the real native result after restart.
+        timing.phase('offline-result-recovery-start')
         restarted_home('10-offline-result-recovery')
         for attempt in range(30):
             rewarded_wallet = creative.wallet(out, f'recovery-wallet-{attempt}')
@@ -500,6 +886,10 @@ def main() -> int:
             raise RuntimeError('Native process remained after genuine completed-result return')
         base.foreground()
         creative.capture(out, '13-completed-race-returned-to-app')
+        from flutter_return_readiness import observe_flutter_return, wait_flutter_return
+        result['visible_flutter_return'] = wait_flutter_return(
+            lambda index, timeout: observe_flutter_return(base, creative, out, package, index, timeout=timeout),
+            lambda evidence: write_json('13-visible-flutter-return.json', evidence), package)
         for attempt in range(30):
             if creative.wallet(out, f'replayed-wallet-{attempt}') != rewarded_wallet:
                 raise RuntimeError('Reopening/returning the same completed result duplicated a reward')
@@ -528,7 +918,9 @@ def main() -> int:
         if result['video']['status'] != 'PASS':
             raise RuntimeError('Actual Android footage collection failed: ' +
                                '; '.join(result['video']['errors'] or ['no nonempty video segments']))
+        require_resource_snapshots(result)
         result['status'] = 'PASS'
+        timing.phase('all-required-assertions-passed')
         print('[CompleteKartAndroid] PASS: 16 checkpoints, pause, actual result, offline recovery, host ACK and reward deduplication', flush=True)
         return 0
     except Exception as error:
@@ -544,6 +936,7 @@ def main() -> int:
         signal.signal(signal.SIGALRM, previous_alarm)
         if video is not None:
             result['video'] = video.stop()
+        result['call_timing'] = timing.summary()
         write_json('result.json', result)
         try:
             (out / 'logcat.txt').write_text(base.adb('logcat', '-d', check=False))

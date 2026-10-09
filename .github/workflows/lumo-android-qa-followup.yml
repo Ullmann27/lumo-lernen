@@ -1,0 +1,150 @@
+name: Retry failed Android flows on unchanged actual APK1902
+on:
+  push:
+    branches: [codex/lumo-android-qa-followup-2026-10-08]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-android-qa-followup-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        # Exact APK source 22b221b; test every native game and Kart surface/recovery cycles.
+        game: [kart, puzzle, treasure]
+        api: [35]
+        include:
+          - game: kart
+            api: 36
+    env:
+      LUMO_EXPECT_SOURCE: 22b221b2ebe5c85562f359e471c8ca2d44ee8354
+      LUMO_EXPECT_VERSION: '1902'
+      LUMO_EXPECT_GODOT: 9f17cd2f7af652917a0c1290e506e1211a08fb3f
+      LUMO_EXPECT_ANDROID_API: ${{ matrix.api }}
+      LUMO_BASE_DIGEST: 82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511
+      LUMO_FOLD_PROBE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Preserve the actual failed run and identify its successful APK build
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const args = {owner: context.repo.owner, repo: context.repo.repo, run_id: 37803223814};
+            const run = (await github.rest.actions.getWorkflowRun(args)).data;
+            if (run.head_sha !== '4f7108f9d0450b6125005417cbca3822691e0871' || run.status !== 'completed' || run.conclusion !== 'failure') throw new Error('Original failed run changed');
+            const jobs = (await github.rest.actions.listJobsForWorkflowRun({...args, per_page: 100})).data.jobs;
+            const build = jobs.find(x => x.id === 113400615297 && x.name === 'build-clean-source');
+            if (!build || build.conclusion !== 'success') throw new Error('Successful original APK build missing');
+            const failed = jobs.filter(x => x.name.startsWith('android (') && x.conclusion === 'failure');
+            if (failed.length !== 4) throw new Error('The original four Android failures must remain recorded');
+            fs.mkdirSync('native-proof', {recursive: true});
+            fs.writeFileSync('native-proof/original-failed-run.json', JSON.stringify({run, build, failed, followup_workflow_source: context.sha, apk_source: '22b221b2ebe5c85562f359e471c8ca2d44ee8354', reason: 'Re-exercise the same actual APK using observed full-surface and fresh-session readiness; the reproduced production pause defect is fixed separately in APK1903.'}, null, 2));
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37803223814
+          name: lumo-visual-apk-37803223814
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37674457852
+          name: lumo-visual-apk-37674457852
+          path: baseline/dist/
+      - name: Pin candidate and baseline before starting emulator
+        run: |
+          set -euo pipefail
+          test -f baseline/dist/Lumo-Lernen-Neu.apk
+          test -f candidate/Lumo-Lernen-Neu.apk
+          echo "6436beeadc7355b1d4681c4621a160cbfe1136ee764ab57c9801506855f8edd3  candidate/Lumo-Lernen-Neu.apk" | sha256sum -c -
+          test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = "$LUMO_EXPECT_GODOT"
+          echo "$LUMO_BASE_DIGEST  baseline/dist/Lumo-Lernen-Neu.apk" | sha256sum -c -
+          python3 - <<'PYCODE'
+          import json, os
+          from pathlib import Path
+          p = json.loads(Path('candidate/BUILD-PROVENANCE.json').read_text())
+          assert p['flutter_source_commit'] == os.environ['LUMO_EXPECT_SOURCE']
+          assert p['godot']['revision'] == os.environ['LUMO_EXPECT_GODOT']
+          assert str(p['versionCode']) == os.environ['LUMO_EXPECT_VERSION']
+          assert p['tracked_source_clean'] is True
+          assert p['sha256'] == '6436beeadc7355b1d4681c4621a160cbfe1136ee764ab57c9801506855f8edd3'
+          PYCODE
+      - name: Prepare independent live UI and screenshot readers
+        timeout-minutes: 8
+        run: |
+          mkdir -p native-proof
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt
+          python3 -m py_compile .github/probes/creative_android_probe.py
+          python3 -m unittest discover -s tools/android_qa/tests -p 'test_rooted_emulator.py' -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -v
+          cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Update exact APK and exercise actual offline native game
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: ${{ matrix.api }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope ${{ matrix.game }}
+            if [ '${{ matrix.game }}' = kart ]; then .probe-venv/bin/python .github/probes/kart_complete_android_probe.py --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof/full-race --timeout 1200; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-kart-stage2-android-${{ matrix.game }}-api${{ matrix.api }}-${{ github.run_id }}
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14

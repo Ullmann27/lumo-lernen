@@ -1,0 +1,93 @@
+{
+  "fixture_provenance": "SYNTHETIC_SOURCE_CONTRACT_NOT_RUNTIME",
+  "evidence": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "accepted completed return initially removes the session",
+        "passed": true,
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "accepted return retains one reward and original result ID",
+        "passed": true,
+        "expected": {
+          "reward_calls": 1,
+          "returns": 1,
+          "resultId": "natural-ack-state-fixture-1700000000000-12345"
+        },
+        "actual": {
+          "reward_calls": 1,
+          "returns": 1,
+          "resultId": "natural-ack-state-fixture-1700000000000-12345"
+        }
+      },
+      {
+        "name": "natural scene teardown cannot recreate an accepted completed session",
+        "passed": true,
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "fresh garage cannot offer an already handed-off result",
+        "passed": true,
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "failed host return retains a durable completed session after teardown",
+        "passed": true,
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "accepted unfinished paused return retains resumable progress",
+        "passed": true,
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "accepted cup result retains continuation state",
+        "passed": true,
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "new race after handoff can persist its fresh identity",
+        "passed": true,
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "standalone return performs the real SceneRouter transition",
+        "passed": true,
+        "expected": "res://scenes/games/game_hub.tscn",
+        "actual": "res://scenes/games/game_hub.tscn"
+      },
+      {
+        "name": "standalone accepted route teardown cannot recreate its completed session",
+        "passed": true,
+        "expected": false,
+        "actual": false
+      }
+    ],
+    "fixture_scope": "Assigned elapsed/checkpoint/distance state; real _finish, return, natural queue_free and fresh garage; no driven-lap claim",
+    "source_sha256": "00e4c7223465f4fcab165b2a603b17bc7bc9eb1727c4a9f5291fffc9d671fee2",
+    "probe_sha256": "8129eea26ded1a9ddba71d7cb3dd11f38a12a89d09d89218d726354ec318c245",
+    "probe_path": "res://scripts/tests/kart_race_continuity_regression.gd",
+    "helper_sha256": "16e7349c0cfa65f0d585c8f528b9fb069b8b3d2069380d0776d83bc90342507f",
+    "engine": {
+      "major": 4,
+      "minor": 6,
+      "patch": 3,
+      "status": "stable",
+      "build": "official",
+      "string": "4.6.3-stable (official)",
+      "hash": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+      "hex": 263683,
+      "timestamp": 0
+    },
+    "display_server": "X11"
+  }
+}

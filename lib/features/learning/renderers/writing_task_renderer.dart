@@ -45,8 +45,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
     final raw = widget.task.visualPayload.data['symbol'] ??
         widget.task.parameters['symbol'] ??
         WritingTargetParser.parse(widget.task.prompt);
-    final value = raw?.toString().trim();
-    return value ?? '';
+    return raw.toString().trim();
   }
 
   bool get _isWordTarget {

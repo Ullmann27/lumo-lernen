@@ -32,7 +32,7 @@ void main() {
 
   Future<LumoAppState> pumpScreen(WidgetTester tester,
       {required List<LumoSection> sections}) async {
-    await tester.binding.setSurfaceSize(const Size(392, 900));
+    await tester.binding.setSurfaceSize(const Size(392, 1200));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = LumoAppState();
     app.update(app.state.copyWith(childName: 'Mia', grade: 2));

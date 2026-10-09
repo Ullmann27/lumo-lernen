@@ -1,0 +1,1700 @@
+{
+  "check_count": 104,
+  "checks": [
+    {
+      "actual": {
+        "checkpoint_index": 0,
+        "distance": 0.0,
+        "elapsed": 0.0,
+        "lap_started_at": 0.0,
+        "lap_times": [],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "expected": {
+        "lap_started_at": 0.0,
+        "lap_times": []
+      },
+      "name": "new race starts with empty known lap timing",
+      "passed": true
+    },
+    {
+      "actual": [
+        {
+          "distance": 68.1464592607226,
+          "gate": 1,
+          "seconds": 4.43333333333332
+        },
+        {
+          "distance": 136.350951069733,
+          "gate": 2,
+          "seconds": 7.24999999999998
+        },
+        {
+          "distance": 204.524991819402,
+          "gate": 3,
+          "seconds": 10.5833333333334
+        },
+        {
+          "distance": 272.397461605957,
+          "gate": 4,
+          "seconds": 13.4000000000002
+        },
+        {
+          "distance": 340.729320851853,
+          "gate": 5,
+          "seconds": 16.6833333333337
+        },
+        {
+          "distance": 408.724778217962,
+          "gate": 6,
+          "seconds": 20.0166666666668
+        },
+        {
+          "distance": 476.701738353586,
+          "gate": 7,
+          "seconds": 22.7666666666667
+        },
+        {
+          "distance": 544.934699292993,
+          "gate": 8,
+          "seconds": 26.1166666666665
+        },
+        {
+          "distance": 612.942283313489,
+          "gate": 9,
+          "seconds": 29.4333333333329
+        },
+        {
+          "distance": 681.146038207924,
+          "gate": 10,
+          "seconds": 32.2499999999995
+        }
+      ],
+      "expected": true,
+      "name": "physical driving reaches the first lap boundary",
+      "passed": true
+    },
+    {
+      "actual": {
+        "checkpoint_index": 10,
+        "finished": false
+      },
+      "expected": {
+        "checkpoint_index": 10,
+        "finished": false
+      },
+      "name": "physical driving reaches lap two before saving",
+      "passed": true
+    },
+    {
+      "actual": [
+        26.1166666666665
+      ],
+      "expected": [
+        26.1166666666665
+      ],
+      "name": "the first completed lap is measured from gate eight",
+      "passed": true
+    },
+    {
+      "actual": 26.1166666666665,
+      "expected": 26.1166666666665,
+      "name": "the current lap starts exactly at gate eight",
+      "passed": true
+    },
+    {
+      "actual": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "expected": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "name": "pause freezes both lap timing and race state",
+      "passed": true
+    },
+    {
+      "actual": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "expected": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "name": "quality rebuild preserves lap timing",
+      "passed": true
+    },
+    {
+      "actual": "recovered-lap-continuity-1791509192151-19679156",
+      "expected": "recovered-lap-continuity-1791509192151-19679156",
+      "name": "quality rebuild preserves race result ID",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "lap-two atomic ConfigFile exists",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ]
+      },
+      "expected": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "name": "ConfigFile stores completed laps and current start",
+      "passed": true
+    },
+    {
+      "actual": {
+        "checkpoint_index": 10,
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "expected": {
+        "checkpoint_index": 10,
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "name": "lap-two save retains legitimate gate progress and identity",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "a new instance offers the saved lap-two race",
+      "passed": true
+    },
+    {
+      "actual": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "expected": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "name": "new-instance resume restores frozen progress and identity",
+      "passed": true
+    },
+    {
+      "actual": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "expected": {
+        "checkpoint_index": 10,
+        "distance": 681.146038207924,
+        "elapsed": 32.2499999999995,
+        "lap_started_at": 26.1166666666665,
+        "lap_times": [
+          26.1166666666665
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "name": "new-instance resume restores both lap timing fields",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "a paused resume never awards a result",
+      "passed": true
+    },
+    {
+      "actual": 32.2499999999995,
+      "expected": 32.2499999999995,
+      "name": "resume itself does not advance elapsed time",
+      "passed": true
+    },
+    {
+      "actual": 16,
+      "expected": 16,
+      "name": "resumed physical driving completes sixteen gates",
+      "passed": true
+    },
+    {
+      "actual": [
+        {
+          "distance": 68.1464592607226,
+          "gate": 1,
+          "seconds": 4.43333333333332
+        },
+        {
+          "distance": 136.350951069733,
+          "gate": 2,
+          "seconds": 7.24999999999998
+        },
+        {
+          "distance": 204.524991819402,
+          "gate": 3,
+          "seconds": 10.5833333333334
+        },
+        {
+          "distance": 272.397461605957,
+          "gate": 4,
+          "seconds": 13.4000000000002
+        },
+        {
+          "distance": 340.729320851853,
+          "gate": 5,
+          "seconds": 16.6833333333337
+        },
+        {
+          "distance": 408.724778217962,
+          "gate": 6,
+          "seconds": 20.0166666666668
+        },
+        {
+          "distance": 476.701738353586,
+          "gate": 7,
+          "seconds": 22.7666666666667
+        },
+        {
+          "distance": 544.934699292993,
+          "gate": 8,
+          "seconds": 26.1166666666665
+        },
+        {
+          "distance": 612.942283313489,
+          "gate": 9,
+          "seconds": 29.4333333333329
+        },
+        {
+          "distance": 681.146038207924,
+          "gate": 10,
+          "seconds": 32.2499999999995
+        },
+        {
+          "distance": 749.080779727316,
+          "gate": 11,
+          "seconds": 35.6666666666659
+        },
+        {
+          "distance": 817.293256085133,
+          "gate": 12,
+          "seconds": 38.4999999999991
+        },
+        {
+          "distance": 885.285874377703,
+          "gate": 13,
+          "seconds": 41.7666666666656
+        },
+        {
+          "distance": 953.680090110516,
+          "gate": 14,
+          "seconds": 45.1166666666654
+        },
+        {
+          "distance": 1021.5984950799,
+          "gate": 15,
+          "seconds": 47.8666666666652
+        },
+        {
+          "distance": 1089.83307770523,
+          "gate": 16,
+          "seconds": 51.216666666665
+        }
+      ],
+      "expected": true,
+      "name": "all physically crossed gates are ordered and monotonic",
+      "passed": true
+    },
+    {
+      "actual": [
+        26.1166666666665,
+        25.0999999999986
+      ],
+      "expected": [
+        26.1166666666665,
+        25.0999999999986
+      ],
+      "name": "two completed laps equal independently measured gate intervals",
+      "passed": true
+    },
+    {
+      "actual": 25.1,
+      "expected": 25.1,
+      "name": "published best lap agrees with the two measured laps",
+      "passed": true
+    },
+    {
+      "actual": {
+        "elapsedSeconds": 51.217,
+        "text": "Gesamtzeit   00:51.217\nBeste Runde   00:25.100\nSterne gesammelt   20\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "elapsedSeconds": 51.217,
+        "line": "Gesamtzeit   00:51.217"
+      },
+      "name": "published milliseconds and the visible total agree with gate sixteen",
+      "passed": true
+    },
+    {
+      "actual": {
+        "bestLapSeconds": 25.1,
+        "checkpoints": 16,
+        "driver": "fox",
+        "elapsedSeconds": 51.217,
+        "game": "kart",
+        "kart": "comet",
+        "mode": "race",
+        "place": 1,
+        "resets": 0,
+        "resultId": "recovered-lap-continuity-1791509192151-19679156",
+        "sessionId": "",
+        "solved": 0,
+        "starTokens": 20,
+        "stars": 3,
+        "status": "completed",
+        "track": "sonnenhafen"
+      },
+      "expected": {
+        "resets": 0,
+        "resultId": "recovered-lap-continuity-1791509192151-19679156",
+        "solved": 0,
+        "stars": 3
+      },
+      "name": "the legitimate race keeps ID, integer solved zero, three stars and zero resets",
+      "passed": true
+    },
+    {
+      "actual": 1,
+      "expected": 1,
+      "name": "the driven race awards exactly one host reward",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_started_at": 51.216666666665,
+        "lap_times": [
+          26.1166666666665,
+          25.0999999999986
+        ]
+      },
+      "expected": {
+        "checkpoint_index": 16,
+        "distance": 1089.83307770523,
+        "elapsed": 51.216666666665,
+        "lap_started_at": 51.216666666665,
+        "lap_times": [
+          26.1166666666665,
+          25.0999999999986
+        ],
+        "result_id": "recovered-lap-continuity-1791509192151-19679156"
+      },
+      "name": "finished ConfigFile retains both completed laps",
+      "passed": true
+    },
+    {
+      "actual": {
+        "bestLapSeconds": 25.1,
+        "checkpoints": 16,
+        "driver": "fox",
+        "elapsedSeconds": 51.217,
+        "game": "kart",
+        "kart": "comet",
+        "mode": "race",
+        "place": 1,
+        "resets": 0,
+        "resultId": "recovered-lap-continuity-1791509192151-19679156",
+        "sessionId": "",
+        "solved": 0,
+        "starTokens": 20,
+        "stars": 3,
+        "status": "completed",
+        "track": "sonnenhafen"
+      },
+      "expected": {
+        "bestLapSeconds": 25.1,
+        "checkpoints": 16,
+        "driver": "fox",
+        "elapsedSeconds": 51.217,
+        "game": "kart",
+        "kart": "comet",
+        "mode": "race",
+        "place": 1,
+        "resets": 0,
+        "resultId": "recovered-lap-continuity-1791509192151-19679156",
+        "sessionId": "",
+        "solved": 0,
+        "starTokens": 20,
+        "stars": 3,
+        "status": "completed",
+        "track": "sonnenhafen"
+      },
+      "name": "finished reopen retains the original public payload",
+      "passed": true
+    },
+    {
+      "actual": {
+        "text": "Gesamtzeit   00:51.217\nBeste Runde   00:25.100\nSterne gesammelt   20\nBelohnung   +3 Sterne",
+        "visible": true
+      },
+      "expected": {
+        "best": "00:25.100",
+        "total": "00:51.217",
+        "visible": true
+      },
+      "name": "finished reopen visibly retains both best and total result lines",
+      "passed": true
+    },
+    {
+      "actual": {
+        "host_rewards": 1,
+        "local_stars": 3
+      },
+      "expected": {
+        "host_rewards": 1,
+        "local_stars": 3
+      },
+      "name": "finished reopen never awards another local or host reward",
+      "passed": true
+    },
+    {
+      "actual": [
+        false,
+        false
+      ],
+      "expected": [
+        false,
+        false
+      ],
+      "name": "saved finished result hides driving controls immediately and after tick",
+      "passed": true
+    },
+    {
+      "actual": [
+        "1. PLATZ!",
+        "1. PLATZ!"
+      ],
+      "expected": [
+        "1. PLATZ!",
+        "1. PLATZ!"
+      ],
+      "name": "saved finished result shows the result heading immediately and after tick",
+      "passed": true
+    },
+    {
+      "actual": {
+        "after_tick": {
+          "action_disabled": {
+            "boost": true,
+            "brake": true,
+            "drift": true,
+            "gas": true,
+            "item": true
+          },
+          "controls_visible": false,
+          "displayed_speed_kmh": 0,
+          "expected_message_text": "1. PLATZ!",
+          "hud_text": "RUNDE 2 / 2    PLATZ 1 / 6    0 km/h    ★ 20",
+          "message_text": "1. PLATZ!",
+          "raw_speed": 20.5
+        },
+        "immediate": {
+          "action_disabled": {
+            "boost": true,
+            "brake": true,
+            "drift": true,
+            "gas": true,
+            "item": true
+          },
+          "controls_visible": false,
+          "displayed_speed_kmh": 0,
+          "expected_message_text": "1. PLATZ!",
+          "hud_text": "RUNDE 2 / 2    PLATZ 1 / 6    0 km/h    ★ 20",
+          "message_text": "1. PLATZ!",
+          "raw_speed": 20.5
+        }
+      },
+      "expected": {
+        "action_disabled": {
+          "boost": true,
+          "brake": true,
+          "drift": true,
+          "gas": true,
+          "item": true
+        },
+        "displayed_speed_kmh": 0
+      },
+      "name": "saved finished result disables every driving action and displays stopped speed immediately",
+      "passed": true
+    },
+    {
+      "actual": {
+        "returns": [
+          {
+            "bestLapSeconds": 25.1,
+            "checkpoints": 16.0,
+            "driver": "fox",
+            "elapsedSeconds": 51.217,
+            "game": "kart",
+            "kart": "comet",
+            "mode": "race",
+            "place": 1.0,
+            "resets": 0.0,
+            "resultId": "recovered-lap-continuity-1791509192151-19679156",
+            "sessionId": "recovered-lap-continuity",
+            "solved": 0.0,
+            "starTokens": 20.0,
+            "stars": 3.0,
+            "status": "completed",
+            "track": "sonnenhafen"
+          }
+        ],
+        "save_exists": false
+      },
+      "expected": {
+        "resultId": "recovered-lap-continuity-1791509192151-19679156",
+        "save_exists": false,
+        "status": "completed"
+      },
+      "name": "completed ACK removes the durable save without a duplicate award",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: valid measured pair",
+      "passed": true
+    },
+    {
+      "actual": [
+        [
+          30.0
+        ],
+        30.0
+      ],
+      "expected": [
+        [
+          30.0
+        ],
+        30.0
+      ],
+      "name": "validated timing pair: valid measured pair",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: both timing keys absent",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: both timing keys absent",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: history key absent",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: history key absent",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: start key absent",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: start key absent",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: history is a string",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: history is a string",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: start is a string",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: start is a string",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: start is a boolean",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: start is a boolean",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: interval is a boolean",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: interval is a boolean",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: interval is a string",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: interval is a string",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: zero interval",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: zero interval",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: negative interval",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: negative interval",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: NaN interval",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: NaN interval",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: infinite interval",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: infinite interval",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: NaN start",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: NaN start",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: infinite start",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: infinite start",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: invalid negative start",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: invalid negative start",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: future start",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: future start",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: history exceeds start",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: history exceeds start",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: more history than completed gates",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: more history than completed gates",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "name": "optional timing data still restores: later lap cannot begin at race start zero",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "validated timing pair: later lap cannot begin at race start zero",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "legacy lap-two duration stays explicitly unknown",
+      "passed": true
+    },
+    {
+      "actual": -1.0,
+      "expected": -1.0,
+      "name": "resave stores the unknown sentinel",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "new-instance resave round-trip keeps the unknown sentinel",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        60.0
+      ],
+      "expected": [
+        [],
+        60.0
+      ],
+      "name": "the unknown partial lap is skipped at its legitimate boundary",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        60.0
+      ],
+      "expected": [
+        [],
+        60.0
+      ],
+      "name": "a new known boundary can be saved without invented history",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        60.0
+      ],
+      "expected": [
+        [],
+        60.0
+      ],
+      "name": "known start with shorter legacy history restores",
+      "passed": true
+    },
+    {
+      "actual": [
+        [
+          30.0
+        ],
+        90.0
+      ],
+      "expected": [
+        [
+          30.0
+        ],
+        90.0
+      ],
+      "name": "only the subsequent full legacy lap is recorded",
+      "passed": true
+    },
+    {
+      "actual": [
+        [
+          30.0
+        ],
+        90.0
+      ],
+      "expected": [
+        [
+          30.0
+        ],
+        90.0
+      ],
+      "name": "the subsequently measured legacy lap survives another restore",
+      "passed": true
+    },
+    {
+      "actual": {
+        "bestLapSeconds": 0.0,
+        "lap_times": []
+      },
+      "expected": {
+        "bestLapSeconds": 0.0,
+        "lap_times": []
+      },
+      "name": "finishing an unknown partial legacy lap never invents a best time",
+      "passed": true
+    },
+    {
+      "actual": {
+        "gate": 10,
+        "restored": true
+      },
+      "expected": {
+        "gate": 10,
+        "restored": true
+      },
+      "name": "legacy gate correction precedes timing: v1",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "legacy later lap remains unmeasured: v1",
+      "passed": true
+    },
+    {
+      "actual": {
+        "gate": 10,
+        "restored": true
+      },
+      "expected": {
+        "gate": 10,
+        "restored": true
+      },
+      "name": "legacy gate correction precedes timing: v2",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "legacy later lap remains unmeasured: v2",
+      "passed": true
+    },
+    {
+      "actual": {
+        "gate": 10,
+        "restored": true
+      },
+      "expected": {
+        "gate": 10,
+        "restored": true
+      },
+      "name": "legacy gate correction precedes timing: v3",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "legacy later lap remains unmeasured: v3",
+      "passed": true
+    },
+    {
+      "actual": {
+        "gate": 10,
+        "restored": true
+      },
+      "expected": {
+        "gate": 10,
+        "restored": true
+      },
+      "name": "legacy gate correction precedes timing: v4",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        -1.0
+      ],
+      "expected": [
+        [],
+        -1.0
+      ],
+      "name": "legacy later lap remains unmeasured: v4",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nBeste Runde   00:28.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": true,
+        "line": "00:28.000"
+      },
+      "name": "legacy result displays only a valid known payload best: 28.0",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": false,
+        "line": ""
+      },
+      "name": "legacy result displays only a valid known payload best: 0.0",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": false,
+        "line": ""
+      },
+      "name": "legacy result displays only a valid known payload best: -1.0",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": false,
+        "line": ""
+      },
+      "name": "legacy result displays only a valid known payload best: 28",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": false,
+        "line": ""
+      },
+      "name": "legacy result displays only a valid known payload best: true",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": false,
+        "line": ""
+      },
+      "name": "legacy result displays only a valid known payload best: inf",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": false,
+        "line": ""
+      },
+      "name": "legacy result displays only a valid known payload best: nan",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": false,
+        "line": ""
+      },
+      "name": "legacy result displays only a valid known payload best: 1000.0",
+      "passed": true
+    },
+    {
+      "actual": {
+        "lap_times": [],
+        "text": "Gesamtzeit   00:58.000\nSterne gesammelt   0\nBelohnung   +3 Sterne"
+      },
+      "expected": {
+        "has_best": false,
+        "line": ""
+      },
+      "name": "legacy result displays only a valid known payload best: 100000000000000001097906362944045541740492309677311846336810682903157585404911491537163328978494688899061249669721172515611590283743140088328307009198146046031271664502933027185697489699588559043338384466165001178426897626212945177628091195786707458122783970171784415105291802893207873272974885715430223118336.0",
+      "passed": true
+    },
+    {
+      "actual": [
+        [],
+        0.0
+      ],
+      "expected": [
+        [],
+        0.0
+      ],
+      "name": "first-lap legacy retains the known original start",
+      "passed": true
+    },
+    {
+      "actual": [
+        [
+          30.0
+        ],
+        60.0
+      ],
+      "expected": [
+        [
+          30.0
+        ],
+        60.0
+      ],
+      "name": "known later start accepts shorter history after legacy gaps",
+      "passed": true
+    },
+    {
+      "actual": [
+        [
+          30.0,
+          20.0
+        ],
+        30.0
+      ],
+      "expected": [
+        [
+          30.0,
+          20.0
+        ],
+        30.0
+      ],
+      "name": "finished training retains its deliberately completed partial lap",
+      "passed": true
+    },
+    {
+      "actual": {
+        "after_tick": {
+          "action_disabled": {
+            "boost": true,
+            "brake": true,
+            "drift": true,
+            "gas": true,
+            "item": true
+          },
+          "controls_visible": false,
+          "displayed_speed_kmh": 0,
+          "expected_message_text": "Ziel!",
+          "hud_text": "ZEITFAHREN    RUNDE 1 / 2    0.00 s    0 km/h",
+          "message_text": "Ziel!",
+          "raw_speed": 12.0
+        },
+        "driving": {
+          "action_disabled": {
+            "boost": false,
+            "brake": false,
+            "drift": false,
+            "gas": false,
+            "item": true
+          },
+          "controls_visible": true,
+          "displayed_speed_kmh": 43,
+          "expected_message_text": "Ziel!",
+          "hud_text": "ZEITFAHREN    RUNDE 1 / 2    0.00 s    43 km/h",
+          "message_text": "W: Gas · S: Bremse · A/D: lenken · Umschalt: Drift · Leertaste: Boost · E: Item",
+          "raw_speed": 12.0
+        },
+        "finished": {
+          "action_disabled": {
+            "boost": true,
+            "brake": true,
+            "drift": true,
+            "gas": true,
+            "item": true
+          },
+          "controls_visible": false,
+          "displayed_speed_kmh": 0,
+          "expected_message_text": "Ziel!",
+          "hud_text": "ZEITFAHREN    RUNDE 1 / 2    0.00 s    0 km/h",
+          "message_text": "Ziel!",
+          "raw_speed": 12.0
+        },
+        "paused": {
+          "action_disabled": {
+            "boost": true,
+            "brake": true,
+            "drift": true,
+            "gas": true,
+            "item": true
+          },
+          "controls_visible": true,
+          "displayed_speed_kmh": 43,
+          "expected_message_text": "Ziel!",
+          "hud_text": "ZEITFAHREN    RUNDE 1 / 2    0.00 s    43 km/h",
+          "message_text": "W: Gas · S: Bremse · A/D: lenken · Umschalt: Drift · Leertaste: Boost · E: Item",
+          "raw_speed": 12.0
+        }
+      },
+      "expected": {
+        "after_tick": 0,
+        "driving": 43,
+        "finished": 0,
+        "paused": 43,
+        "raw_speed": 12.0
+      },
+      "name": "time-trial HUD only changes finished display without mutating speed",
+      "passed": true
+    },
+    {
+      "actual": [
+        false,
+        false
+      ],
+      "expected": [
+        false,
+        false
+      ],
+      "name": "direct noncinematic result hides driving controls immediately and after tick",
+      "passed": true
+    },
+    {
+      "actual": [
+        "Ziel!",
+        "Ziel!"
+      ],
+      "expected": [
+        "Ziel!",
+        "Ziel!"
+      ],
+      "name": "direct noncinematic result shows the result heading immediately and after tick",
+      "passed": true
+    },
+    {
+      "actual": {
+        "after_tick": {
+          "action_disabled": {
+            "boost": true,
+            "brake": true,
+            "drift": true,
+            "gas": true,
+            "item": true
+          },
+          "controls_visible": false,
+          "displayed_speed_kmh": 0,
+          "expected_message_text": "Ziel!",
+          "hud_text": "FREIES TRAINING    0 km/h    ★ 0    PAUSE → BEENDEN",
+          "message_text": "Ziel!",
+          "raw_speed": 10.0
+        },
+        "immediate": {
+          "action_disabled": {
+            "boost": true,
+            "brake": true,
+            "drift": true,
+            "gas": true,
+            "item": true
+          },
+          "controls_visible": false,
+          "displayed_speed_kmh": 0,
+          "expected_message_text": "Ziel!",
+          "hud_text": "FREIES TRAINING    0 km/h    ★ 0    PAUSE → BEENDEN",
+          "message_text": "Ziel!",
+          "raw_speed": 10.0
+        }
+      },
+      "expected": {
+        "action_disabled": {
+          "boost": true,
+          "brake": true,
+          "drift": true,
+          "gas": true,
+          "item": true
+        },
+        "displayed_speed_kmh": 0
+      },
+      "name": "direct noncinematic result disables every driving action and displays stopped speed immediately",
+      "passed": true
+    }
+  ],
+  "direct_result_ui": {
+    "action_disabled": {
+      "boost": true,
+      "brake": true,
+      "drift": true,
+      "gas": true,
+      "item": true
+    },
+    "after_tick": {
+      "action_disabled": {
+        "boost": true,
+        "brake": true,
+        "drift": true,
+        "gas": true,
+        "item": true
+      },
+      "controls_visible": false,
+      "displayed_speed_kmh": 0,
+      "expected_message_text": "Ziel!",
+      "hud_text": "FREIES TRAINING    0 km/h    ★ 0    PAUSE → BEENDEN",
+      "message_text": "Ziel!",
+      "raw_speed": 10.0
+    },
+    "controls_visible": false,
+    "displayed_speed_kmh": 0,
+    "expected_message_text": "Ziel!",
+    "hud_text": "FREIES TRAINING    0 km/h    ★ 0    PAUSE → BEENDEN",
+    "message_text": "Ziel!",
+    "raw_speed": 10.0
+  },
+  "display_server": "X11",
+  "driven_frames": 3073,
+  "engine": "4.6.3-stable (official)",
+  "expected_laps": [
+    26.1166666666665,
+    25.0999999999986
+  ],
+  "failed_checks": 0,
+  "finished_elapsed_seconds": 51.216666666665,
+  "finished_payload": {
+    "bestLapSeconds": 25.1,
+    "checkpoints": 16,
+    "driver": "fox",
+    "elapsedSeconds": 51.217,
+    "game": "kart",
+    "kart": "comet",
+    "mode": "race",
+    "place": 1,
+    "resets": 0,
+    "resultId": "recovered-lap-continuity-1791509192151-19679156",
+    "sessionId": "",
+    "solved": 0,
+    "starTokens": 20,
+    "stars": 3,
+    "status": "completed",
+    "track": "sonnenhafen"
+  },
+  "fixture_probe_sha256": "b9155b5ddb7332875d96a7785f0ea3fb7749a7670fac18562815f88bc88a2ff9",
+  "fixture_scope": "20 ConfigFile pair fixtures and legacy/UI state fixtures are assigned; ordered_gates alone records actual driven progress",
+  "historical_unrecovered_probe_sha256": "a6f17131675e84a7576e8db770a02823f66623b062164287908866b802a4e8a3",
+  "lap2_before": {
+    "checkpoint_index": 10,
+    "distance": 681.146038207924,
+    "elapsed": 32.2499999999995,
+    "lap_started_at": 26.1166666666665,
+    "lap_times": [
+      26.1166666666665
+    ],
+    "result_id": "recovered-lap-continuity-1791509192151-19679156"
+  },
+  "lap2_restored": {
+    "checkpoint_index": 10,
+    "distance": 681.146038207924,
+    "elapsed": 32.2499999999995,
+    "lap_started_at": 26.1166666666665,
+    "lap_times": [
+      26.1166666666665
+    ],
+    "result_id": "recovered-lap-continuity-1791509192151-19679156"
+  },
+  "ordered_gates": [
+    {
+      "distance": 68.1464592607226,
+      "gate": 1,
+      "seconds": 4.43333333333332
+    },
+    {
+      "distance": 136.350951069733,
+      "gate": 2,
+      "seconds": 7.24999999999998
+    },
+    {
+      "distance": 204.524991819402,
+      "gate": 3,
+      "seconds": 10.5833333333334
+    },
+    {
+      "distance": 272.397461605957,
+      "gate": 4,
+      "seconds": 13.4000000000002
+    },
+    {
+      "distance": 340.729320851853,
+      "gate": 5,
+      "seconds": 16.6833333333337
+    },
+    {
+      "distance": 408.724778217962,
+      "gate": 6,
+      "seconds": 20.0166666666668
+    },
+    {
+      "distance": 476.701738353586,
+      "gate": 7,
+      "seconds": 22.7666666666667
+    },
+    {
+      "distance": 544.934699292993,
+      "gate": 8,
+      "seconds": 26.1166666666665
+    },
+    {
+      "distance": 612.942283313489,
+      "gate": 9,
+      "seconds": 29.4333333333329
+    },
+    {
+      "distance": 681.146038207924,
+      "gate": 10,
+      "seconds": 32.2499999999995
+    },
+    {
+      "distance": 749.080779727316,
+      "gate": 11,
+      "seconds": 35.6666666666659
+    },
+    {
+      "distance": 817.293256085133,
+      "gate": 12,
+      "seconds": 38.4999999999991
+    },
+    {
+      "distance": 885.285874377703,
+      "gate": 13,
+      "seconds": 41.7666666666656
+    },
+    {
+      "distance": 953.680090110516,
+      "gate": 14,
+      "seconds": 45.1166666666654
+    },
+    {
+      "distance": 1021.5984950799,
+      "gate": 15,
+      "seconds": 47.8666666666652
+    },
+    {
+      "distance": 1089.83307770523,
+      "gate": 16,
+      "seconds": 51.216666666665
+    }
+  ],
+  "physical_device_performance": "NOT EXECUTED",
+  "probe_sha256": "a9846743d90e5fa7dc3cfc678e8e3fa885016b808b4cd36f87bf8799ae434298",
+  "provenance": "NEW_TEST_IMPLEMENTATION_AFTER_WORKSPACE_LOSS",
+  "renderer_setting": "forward_plus",
+  "rendering_method": "gl_compatibility",
+  "reopened_result_elapsed_seconds": 51.216666666665,
+  "reopened_result_payload": {
+    "bestLapSeconds": 25.1,
+    "checkpoints": 16,
+    "driver": "fox",
+    "elapsedSeconds": 51.217,
+    "game": "kart",
+    "kart": "comet",
+    "mode": "race",
+    "place": 1,
+    "resets": 0,
+    "resultId": "recovered-lap-continuity-1791509192151-19679156",
+    "sessionId": "",
+    "solved": 0,
+    "starTokens": 20,
+    "stars": 3,
+    "status": "completed",
+    "track": "sonnenhafen"
+  },
+  "reopened_result_stats_text": "Gesamtzeit   00:51.217\nBeste Runde   00:25.100\nSterne gesammelt   20\nBelohnung   +3 Sterne",
+  "reopened_result_stats_visible": true,
+  "reopened_result_ui": {
+    "action_disabled": {
+      "boost": true,
+      "brake": true,
+      "drift": true,
+      "gas": true,
+      "item": true
+    },
+    "after_tick": {
+      "action_disabled": {
+        "boost": true,
+        "brake": true,
+        "drift": true,
+        "gas": true,
+        "item": true
+      },
+      "controls_visible": false,
+      "displayed_speed_kmh": 0,
+      "expected_message_text": "1. PLATZ!",
+      "hud_text": "RUNDE 2 / 2    PLATZ 1 / 6    0 km/h    ★ 20",
+      "message_text": "1. PLATZ!",
+      "raw_speed": 20.5
+    },
+    "controls_visible": false,
+    "displayed_speed_kmh": 0,
+    "expected_message_text": "1. PLATZ!",
+    "hud_text": "RUNDE 2 / 2    PLATZ 1 / 6    0 km/h    ★ 20",
+    "message_text": "1. PLATZ!",
+    "raw_speed": 20.5
+  },
+  "result_reopen_png": "result_reopen.png",
+  "result_reopen_png_sha256": "44a21e16a93ac1151672454be7c88db2620e00eb8e92eae08bcd5ea3e243b7a5",
+  "reward_calls": 1,
+  "source_sha256": "7e600e57bcd2c7783da04caca22be4b51004d375e984aabe3b386861ffc1a6db",
+  "status": "PASS"
+}

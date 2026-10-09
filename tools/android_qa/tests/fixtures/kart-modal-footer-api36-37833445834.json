@@ -1,0 +1,528 @@
+{
+  "scope": "Original OCR caption excerpt for offline regression replay; no new Android execution",
+  "run_id": 37833445834,
+  "job_id": 113515871897,
+  "artifact_id": 11576563808,
+  "artifact_bytes": 121360715,
+  "artifact_sha256": "a6cbaaab3eb34268d33cf2ca2a2924c6777376d335cd1b9c72f6905ef7503b63",
+  "app_source": "4973346678eaca8e47ab7023f7439b4262453d21",
+  "godot_source": "7ded3f51cffc265e790d4f1a4c2e91e6d38407eb",
+  "apk_sha256": "68cab1b45a6ea9172c647c56cbf67bd28f647ba815a23ef97b6beb6191de4c25",
+  "android_sdk": 36,
+  "frames": [
+    {
+      "source_png": "race-resume-after-gas-setting-0.png",
+      "source_png_sha256": "614fb046536914e2b98579b061ea455c48a3cc52300972978d75121bc072048e",
+      "source_ocr": "race-resume-after-gas-setting-0-ocr.json",
+      "source_ocr_sha256": "2be81f7fb023aa024b195eaac1bbee9e0fccf968e8332480047399c8f930b0c4",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "source_row_count": 52,
+      "source_row_indexes": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        21,
+        26,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "ocr_rows": [
+        {
+          "text": "Ton: an",
+          "bounds": [
+            878.0,
+            317.0,
+            947.0,
+            333.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Grafik: Hoch",
+          "bounds": [
+            853.0,
+            404.0,
+            971.0,
+            420.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Tempo: gemütlich",
+          "bounds": [
+            825.0,
+            491.0,
+            998.0,
+            511.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Gas: automatisch",
+          "bounds": [
+            831.0,
+            578.0,
+            996.0,
+            594.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Zur Spieleauswahl",
+          "bounds": [
+            687.0,
+            676.0,
+            841.0,
+            692.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Zum Lernen",
+          "bounds": [
+            1027.0,
+            676.0,
+            1124.0,
+            689.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Ton: an",
+          "bounds": [
+            877.0,
+            317.0,
+            947.0,
+            333.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Grafik: Hoch",
+          "bounds": [
+            853.0,
+            404.0,
+            971.5,
+            420.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Ton: an",
+          "bounds": [
+            878.0,
+            317.0,
+            947.0,
+            333.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Grafik: Hoch",
+          "bounds": [
+            853.0,
+            404.0,
+            971.0,
+            420.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Tempo: gemütlich",
+          "bounds": [
+            825.0,
+            491.0,
+            998.0,
+            511.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Gas: automatisch",
+          "bounds": [
+            831.0,
+            578.0,
+            996.0,
+            594.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Zur Spieleauswahl",
+          "bounds": [
+            687.0,
+            676.0,
+            841.0,
+            692.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Zum Lernen",
+          "bounds": [
+            1027.0,
+            676.0,
+            1124.0,
+            689.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Ton: an",
+          "bounds": [
+            878.0,
+            317.0,
+            947.0,
+            333.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Grafik: Hoch",
+          "bounds": [
+            853.0,
+            404.0,
+            971.0,
+            420.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Tempo: gemiutlich",
+          "bounds": [
+            825.0,
+            491.0,
+            998.0,
+            511.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Gas: automatisch",
+          "bounds": [
+            831.0,
+            578.0,
+            996.0,
+            594.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Zur Spieleauswahl",
+          "bounds": [
+            687.0,
+            676.0,
+            841.0,
+            692.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Zum Lernen",
+          "bounds": [
+            1027.0,
+            676.0,
+            1124.0,
+            689.0
+          ],
+          "variant": "white-latin"
+        }
+      ]
+    },
+    {
+      "source_png": "race-resume-after-gas-setting-1.png",
+      "source_png_sha256": "3a8c6a0c7299e58378390a160414fa653d4047bd1cf0248eee38735286f6c392",
+      "source_ocr": "race-resume-after-gas-setting-1-ocr.json",
+      "source_ocr_sha256": "b109c767c9ce30bd12efa574b96da9918b45c1fa13fdb727f10c0bf84d267cce",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "source_row_count": 77,
+      "source_row_indexes": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        21,
+        26,
+        29,
+        31,
+        33,
+        36,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "ocr_rows": [
+        {
+          "text": "Ton: an",
+          "bounds": [
+            878.0,
+            317.0,
+            947.0,
+            333.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Grafik: Hoch",
+          "bounds": [
+            853.0,
+            404.0,
+            971.0,
+            420.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Tempo: gemütlich",
+          "bounds": [
+            825.0,
+            491.0,
+            998.0,
+            511.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Gas: automatisch",
+          "bounds": [
+            831.0,
+            578.0,
+            996.0,
+            594.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Zur Spieleauswahl",
+          "bounds": [
+            687.0,
+            676.0,
+            841.0,
+            692.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Zum Lernen",
+          "bounds": [
+            1027.0,
+            676.0,
+            1124.0,
+            689.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Ton: an",
+          "bounds": [
+            877.0,
+            317.0,
+            947.0,
+            333.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Grafik: Hoch",
+          "bounds": [
+            853.0,
+            404.0,
+            971.5,
+            420.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Tempo: gemütlich",
+          "bounds": [
+            825.0,
+            491.0,
+            998.0,
+            511.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Gas: automatisch",
+          "bounds": [
+            830.0,
+            577.5,
+            996.5,
+            594.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Zum Lernen",
+          "bounds": [
+            1026.5,
+            676.0,
+            1125.0,
+            689.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Zur Spieleauswahl } (",
+          "bounds": [
+            686.0,
+            648.5,
+            944.0,
+            718.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Ton: an",
+          "bounds": [
+            878.0,
+            317.0,
+            947.0,
+            333.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Grafik: Hoch",
+          "bounds": [
+            853.0,
+            404.0,
+            971.0,
+            420.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Tempo: gemütlich",
+          "bounds": [
+            825.0,
+            491.0,
+            998.0,
+            511.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Gas: automatisch",
+          "bounds": [
+            831.0,
+            578.0,
+            996.0,
+            594.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Zur Spieleauswahl",
+          "bounds": [
+            687.0,
+            676.0,
+            841.0,
+            692.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Zum Lernen",
+          "bounds": [
+            1027.0,
+            676.0,
+            1124.0,
+            689.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Ton: an",
+          "bounds": [
+            878.0,
+            317.0,
+            947.0,
+            333.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Grafik: Hoch",
+          "bounds": [
+            853.0,
+            404.0,
+            971.0,
+            420.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Tempo: gemiutlich",
+          "bounds": [
+            825.0,
+            491.0,
+            998.0,
+            511.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Gas: automatisch",
+          "bounds": [
+            831.0,
+            578.0,
+            996.0,
+            594.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Zur Spieleauswahl",
+          "bounds": [
+            687.0,
+            676.0,
+            841.0,
+            692.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Zum Lernen",
+          "bounds": [
+            1027.0,
+            676.0,
+            1124.0,
+            689.0
+          ],
+          "variant": "white-latin"
+        }
+      ]
+    }
+  ]
+}

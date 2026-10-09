@@ -1,8 +1,6 @@
 name: Lumo 1700 APK and Android update verification
+# Abgelöst durch lumo-runtime-apk.yml (Version aus pubspec, vollständige Rennprüfung); nur noch manuell.
 on:
-  push:
-    branches: [claude/continue-previous-chat-KtY7p]
-    paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-1700-android.yml, .github/probes/**]
   workflow_dispatch:
 permissions:
   contents: read

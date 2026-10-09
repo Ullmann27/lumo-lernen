@@ -2,10 +2,14 @@ import '../../widgets/fox/lumo_character.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
+import '../../core/iq/iq_test_repository.dart';
 import '../../core/test_result_repository.dart';
+import '../../domain/iq/iq_puzzle.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import 'cognitive_profile_screen.dart';
+import 'iq/iq_tests_card.dart';
+import 'iq_test_screen.dart';
 
 /// Tests wie in Heinz' Bild 05: Kategorie, Schwierigkeit, Test-Karte und das
 /// echte letzte Ergebnis mit Bestleistung.
@@ -16,6 +20,7 @@ class LumoTestsScreen extends StatefulWidget {
     required this.onSection,
     this.drawBackground = true,
     this.results = const TestResultRepository(),
+    this.iqResults = const IqTestRepository(),
   });
 
   final LumoAppState appState;
@@ -24,6 +29,9 @@ class LumoTestsScreen extends StatefulWidget {
   /// Im App-Rahmen malt die Shell die Szene vollflächig.
   final bool drawBackground;
   final TestResultRepository results;
+
+  /// Gespeicherte Ergebnisse des Lumo Knobel-Tests.
+  final IqTestRepository iqResults;
 
   @override
   State<LumoTestsScreen> createState() => _LumoTestsScreenState();
@@ -111,6 +119,7 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
   _TestCategory _selected = _categories.first;
   bool _showAll = false;
   TestResultSummary _summary = const TestResultSummary();
+  IqTestResult? _iqLast;
 
   List<_TestCategory> get _visible =>
       _showAll ? const [..._categories, _mixed] : _categories;
@@ -119,11 +128,31 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
   void initState() {
     super.initState();
     _loadResults();
+    _loadIq();
   }
 
   Future<void> _loadResults() async {
     final summary = await widget.results.load(widget.appState.state.childName);
     if (mounted) setState(() => _summary = summary);
+  }
+
+  /// Das letzte echte Ergebnis des Knobel-Tests für die Karte.
+  Future<void> _loadIq() async {
+    final id = await IqTestScreen.studentIdFor(widget.appState);
+    final last = await widget.iqResults.latest(id);
+    if (mounted) setState(() => _iqLast = last);
+  }
+
+  Future<void> _openIq() async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => IqTestScreen(
+          appState: widget.appState,
+          repository: widget.iqResults,
+        ),
+      ),
+    );
+    if (mounted) _loadIq();
   }
 
   bool get _reduceMotion {
@@ -156,6 +185,11 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
         _buildHero(),
         _buildCategoryCard(),
         _buildTestCard(),
+        IqTestsCard(
+          key: const ValueKey('iq-test-start'),
+          last: _iqLast,
+          onOpen: _openIq,
+        ),
         _buildCognitiveProfileCard(),
         _buildLastResult(),
       ],
