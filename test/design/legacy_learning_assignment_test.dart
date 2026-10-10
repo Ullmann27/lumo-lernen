@@ -229,6 +229,12 @@ void main() {
     await tester.tap(find.text('Als Erwachsene:r zuordnen'));
     await _settle(tester);
     expect(find.text('Lernstand zugeordnet'), findsOneWidget);
+    final successCard = tester.getRect(
+        find.byKey(const ValueKey('legacy-learning-assignment')));
+    final viewport = tester.getRect(find.byKey(_captureKey));
+    expect(successCard.top, greaterThanOrEqualTo(viewport.top));
+    expect(successCard.bottom, lessThanOrEqualTo(viewport.bottom));
+    expect(find.text('Lernstand zugeordnet').hitTestable(), findsOneWidget);
     await app.school.setActiveStudent('student-a');
     await app.loadLearningProfile();
     expect(app.learningSkills()['mathematik::plus bis 10']?.correct, 6);

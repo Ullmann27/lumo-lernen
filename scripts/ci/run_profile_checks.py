@@ -214,8 +214,8 @@ def run_history(source: Path, output: Path) -> dict:
                     ['git', '-C', str(source), 'show', f'{REPAIRED_COMMIT}:{IDENTITY_TEST}']))
             require(digest(root / IDENTITY_TEST) == HISTORICAL_TEST_SHA256,
                     'Historical identity test must have its original exact bytes')
-            shutil.copyfile(root / STATE, output / f'{phase}-app_state.dart')
-            shutil.copyfile(root / IDENTITY_TEST, output / f'{phase}-identity-test.dart')
+            shutil.copyfile(root / STATE, output / f'{phase}-app_state.dart.txt')
+            shutil.copyfile(root / IDENTITY_TEST, output / f'{phase}-identity-test.dart.txt')
             with (output / f'{phase}-dependencies.log').open('wb') as log:
                 subprocess.run(['flutter', 'pub', 'get', '--enforce-lockfile'], cwd=root,
                                stdout=log, stderr=subprocess.STDOUT, check=True)

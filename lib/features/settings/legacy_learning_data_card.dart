@@ -151,6 +151,11 @@ class _LegacyLearningDataCardState extends State<LegacyLearningDataCard> {
       if (confirmed != true || !mounted) return;
       await widget.appState.resolveLegacyLearningData(ownerId);
       await _load();
+      // The completed card is shorter than the form. Keep its confirmation in
+      // view even when the parent scrolled down to the assignment button.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) Scrollable.ensureVisible(context);
+      });
     } on LegacyLearningDataException catch (error) {
       if (mounted) setState(() => _error = _errorText(error.code));
       await _load(clearError: false);
