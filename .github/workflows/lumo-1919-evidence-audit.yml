@@ -1,0 +1,63 @@
+name: Lumo 1919 source-bound APK evidence aggregation
+on:
+  push:
+    branches: [audit/lumo-1919-verified-package-2026-10-09]
+    paths:
+      - .github/workflows/lumo-1919-evidence-audit.yml
+      - .github/probes/collect_lumo_1919_evidence.py
+      - .github/probes/replay_lumo_1919_recorder_protocol.py
+      - .github/probes/lumo_1919_aggregation_lock.json
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-1919-verified-package-${{ github.ref }}
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  evidence:
+    name: Bind unchanged APK to original and targeted Android evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Require the exact aggregation checkout and compile the verifier
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git diff --exit-code HEAD --
+          python3 -m py_compile .github/probes/collect_lumo_1919_evidence.py \
+            .github/probes/replay_lumo_1919_recorder_protocol.py
+      - name: Verify the required recorder process phases
+        run: |
+          set -euo pipefail
+          python3 .github/probes/replay_lumo_1919_recorder_protocol.py \
+            --source .github/probes/collect_lumo_1919_evidence.py \
+            --out aggregation-tests/recorder-protocol.json
+      - name: Preserve the protocol regression result
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1919-aggregation-protocol-${{ github.run_id }}
+          path: aggregation-tests/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Prepare the existing pinned PNG decoder
+        run: python3 -m pip install --disable-pip-version-check Pillow==12.3.0
+      - name: Verify original bytes, locked runs, reports and screenshots
+        env:
+          LUMO_READ_TOKEN: ${{ github.token }}
+          LUMO_EMIT_FOUR_VIEWS: '1'
+        run: python3 .github/probes/collect_lumo_1919_evidence.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-Lernen-0.12.12-1919-Android-APK
+          path: verified-package/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0

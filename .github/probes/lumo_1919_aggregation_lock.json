@@ -1,0 +1,25 @@
+{
+  "schema": "lumo.1919-aggregation-lock.v1",
+  "app_commit": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+  "godot_commit": "d140e5b05cb5afacfe675559b78da4254cb1daed",
+  "apk_sha256": "8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa",
+  "recovery_run_id": 38015042640,
+  "recovery_run_attempt": 1,
+  "recovery_head_sha": "2247999b902d4c9a756df0c17318d0dd60bebf86",
+  "replay_job_id": 114103321767,
+  "android_job_id": 114103433871,
+  "artifacts": {
+    "replay": {
+      "id": 11655960089,
+      "name": "lumo-1919-gas-replay-38015042640",
+      "bytes": 8967049,
+      "sha256": "dd31e2884b61a2069ba3972d8de9448d9aaf0471498545d3bb72b603d34d9aa9"
+    },
+    "android": {
+      "id": 11656893224,
+      "name": "lumo-1919-api36-gas-recovery-38015042640",
+      "bytes": 271532714,
+      "sha256": "b072cba37ddec4444102d5fec37669484f52d483df728795e69f3118cfcf5886"
+    }
+  }
+}
