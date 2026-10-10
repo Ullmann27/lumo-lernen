@@ -5,8 +5,8 @@ on:
     branches: ['claude/lumo-gesamt']
   push:
     # One isolated, already validated Godot->Flutter recovery candidate.
-    branches: ['copilot/5979796457-update-integrationsaudit', 'chatgpt/lumo-aaa-kart-integration-2026-10-10']
-    paths: ['.github/workflows/release-apk.yml', 'config/godot-source.json', 'pubspec.yaml']
+    branches: ['copilot/5979796457-update-integrationsaudit', 'chatgpt/lumo-aaa-kart-integration-2026-10-10', 'chatgpt/lumo-onboarding-voice-1924-2026-10-10']
+    paths: ['.github/workflows/release-apk.yml', 'config/godot-source.json', 'pubspec.yaml', 'lib/features/onboarding/**', 'lib/core/lumo_voice.dart', 'test/onboarding_visual_capture_test.dart', 'test/lumo_voice_clips_test.dart']
 permissions:
   contents: write
 concurrency:
