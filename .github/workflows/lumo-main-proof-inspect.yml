@@ -1,0 +1,143 @@
+name: Lumo read saved main delivery reports
+
+on:
+  push:
+    branches: [codex/lumo-main-proof-read-2026-10-10]
+    paths: [.github/workflows/lumo-main-proof-inspect.yml]
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  LUMO_DIAG_RUN: '38033953828'
+  LUMO_DIAG_SOURCE: '554c2b6a0a12e36a2b5497c787acb14f6f6d85fd'
+
+jobs:
+  inspect:
+    if: github.ref == 'refs/heads/codex/lumo-main-proof-read-2026-10-10'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require the completed original source run
+        env:
+          LUMO_READ_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, urllib.request
+          url = (f"{os.environ['GITHUB_API_URL']}/repos/"
+                 f"{os.environ['GITHUB_REPOSITORY']}/actions/runs/"
+                 f"{os.environ['LUMO_DIAG_RUN']}")
+          request = urllib.request.Request(url, headers={
+              'Authorization': 'Bearer ' + os.environ['LUMO_READ_TOKEN'],
+              'Accept': 'application/vnd.github+json',
+          })
+          with urllib.request.urlopen(request, timeout=30) as response:
+              run = json.load(response)
+          assert str(run['id']) == os.environ['LUMO_DIAG_RUN']
+          assert run['head_sha'] == os.environ['LUMO_DIAG_SOURCE']
+          assert run['status'] == 'completed', 'Original run is still active'
+          print('LUMO_MAIN_INPUT ' + json.dumps({
+              key: run[key] for key in
+              ('id', 'head_sha', 'status', 'conclusion', 'html_url')
+          }))
+          PY
+
+      - name: Download the six original Android artifacts separately
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ env.LUMO_DIAG_RUN }}
+          pattern: lumo-kart-stage2-android-*-api*-38033953828
+          merge-multiple: false
+          path: proof/android/
+
+      - name: Download the final packaged APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ env.LUMO_DIAG_RUN }}
+          name: LUMO-Lernen-0.12.13-1920-Android-APK
+          path: proof/apk/
+
+      - name: Log original JSON reports and their actual byte hashes
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+
+          root = Path('proof')
+          assert root.is_dir() and not root.is_symlink(), 'Invalid proof directory'
+          root = root.resolve()
+          android = root / 'android'
+          assert android.is_dir() and not android.is_symlink(), 'Invalid Android directory'
+          cases = [
+              ('build', 35), ('puzzle', 35), ('rhythm', 35),
+              ('treasure', 35), ('kart', 35), ('kart', 36),
+          ]
+          def artifact(game, api):
+              return f'lumo-kart-stage2-android-{game}-api{api}-38033953828'
+
+          def regular_file(path):
+              relative = path.relative_to(root)
+              assert relative.parts and '..' not in relative.parts, str(path)
+              current = root
+              for part in relative.parts:
+                  current = current / part
+                  assert not current.is_symlink(), str(current)
+              assert path.is_file(), str(path)
+              return path
+
+          expected = {artifact(game, api) for game, api in cases}
+          assert {path.name for path in android.iterdir()} == expected, \
+              'Expected exactly the six original Android artifact directories'
+
+          apk = regular_file(root / 'apk' / 'LUMO-Lernen-0.12.13-1920.apk')
+          apk_hash = hashlib.sha256()
+          apk_bytes = 0
+          with apk.open('rb') as stream:
+              for chunk in iter(lambda: stream.read(1024 * 1024), b''):
+                  apk_hash.update(chunk)
+                  apk_bytes += len(chunk)
+          apk_digest = apk_hash.hexdigest()
+          print('LUMO_MAIN_APK_BYTES ' + json.dumps({
+              'file': apk.relative_to(root).as_posix(),
+              'bytes': apk_bytes, 'sha256': apk_digest,
+          }), flush=True)
+          assert apk_bytes == 205386748, 'Unexpected actual APK byte count'
+          assert apk_digest == '5849e95675adbaad1fdd3a526c53606f6192a2ce66d22d88d13cf71323ed60c8', \
+              'Unexpected actual APK SHA256'
+
+          reports = [
+              android / artifact(game, api) / 'result.json'
+              for game, api in cases
+          ]
+          reports += [
+              android / artifact('kart', api) / 'full-race' / 'result.json'
+              for api in (35, 36)
+          ]
+          reports += [
+              root / 'apk' / name for name in
+              ('QA-RESULTS.json', 'BUILD-PROVENANCE.json',
+               'APK-VERIFICATION.json')
+          ]
+
+          for path in reports:
+              with regular_file(path).open('rb') as stream:
+                  raw = stream.read(4 * 1024 * 1024 + 1)
+              assert len(raw) <= 4 * 1024 * 1024, 'JSON exceeds 4 MiB: ' + str(path)
+              json.loads(raw)
+              metadata = {
+                  'file': path.relative_to(root).as_posix(),
+                  'bytes': len(raw),
+                  'sha256': hashlib.sha256(raw).hexdigest(),
+              }
+              print('LUMO_MAIN_JSON_BEGIN ' + json.dumps(metadata), flush=True)
+              for line in raw.decode('utf-8').splitlines():
+                  print('LUMO_MAIN_JSON_DATA ' + line)
+              print('LUMO_MAIN_JSON_END ' + metadata['file'], flush=True)
+
+          print('LUMO_MAIN_READ_COMPLETE files=' + str(len(reports)), flush=True)
+          PY
