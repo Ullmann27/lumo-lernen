@@ -86,11 +86,10 @@ Future<LumoAppState> _app({
 
 Future<void> _frames(WidgetTester tester, [int count = 15]) async {
   for (var i = 0; i < count; i++) {
-    // SharedPreferences was hydrated in the real async zone. Let its platform
-    // futures resolve as well as pumping the feedback clock in fake time.
-    if (i % 5 == 0) {
-      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
-    }
+    // SharedPreferences was hydrated in the real async zone. Give its queued
+    // profile/log writes a turn each frame before _stored opens another reader
+    // in runAsync; otherwise that reader can wait on unpumped fake-zone work.
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
     await tester.pump(const Duration(milliseconds: 20));
   }
 }
