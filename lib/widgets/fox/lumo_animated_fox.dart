@@ -271,15 +271,12 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
           final clipMouth = LumoVoice.instance.clipMouth.value;
           final mouth = !_animate || !_speaking
               ? 0.0
-              : clipMouth != null
-                  // Vorproduzierte Stimme: Mund folgt der echten Lautstärke.
-                  ? clipMouth
-                  : _nativeWords
+              : clipMouth ?? (_nativeWords
                       ? math.sin(_word.value * math.pi)
                       :
                       // Some offline TTS engines report start/end but no word events.
                       // Their actual speaking status still gates this approximation.
-                      .25 + .65 * math.pow(math.sin(_elapsed * 9), 2);
+                      .25 + .65 * math.pow(math.sin(_elapsed * 9), 2));
           final sample = LumoFoxMotionSample(
             elapsed: _quiet ? 0 : _elapsed,
             expressionSeconds: seconds,

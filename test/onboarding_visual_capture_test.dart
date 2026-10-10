@@ -19,7 +19,10 @@ Future<void> _capture(
     final data = await tester
         .runAsync(() => image.toByteData(format: ui.ImageByteFormat.png));
     expect(data, isNotNull);
-    final directory = Directory('.ci-results/onboarding-visual')
+    // Never rewrite committed visual evidence during an ordinary test run.
+    final directory = Directory(
+        Platform.environment['LUMO_ONBOARDING_CAPTURES'] ??
+            'build/test-captures/onboarding-visual')
       ..createSync(recursive: true);
     final file = File('${directory.path}/$name.png');
     file.writeAsBytesSync(data!.buffer.asUint8List(), flush: true);

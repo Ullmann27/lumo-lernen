@@ -6,6 +6,7 @@
 ///   Milestone 3 (Frage 15): grosse Belohnungen (Spielzeug, Lego, Erlebnisbad)
 ///
 /// Bei Erreichen einer Schwelle wird ZUFAELLIG ein Coupon aus dem Pool gezogen.
+library;
 
 import 'package:flutter/foundation.dart';
 

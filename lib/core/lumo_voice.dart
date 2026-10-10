@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-import 'lumo_child_speech_normalizer.dart';
 import 'lumo_voice_clips.dart';
+import 'lumo_voice_policy.dart';
 
 /// Zentrales Voice-System fuer Lumo.
 ///
@@ -33,6 +33,7 @@ class LumoVoice {
   String? _selectedVoiceName;
   String? _selectedLocale;
   int _speechGeneration = 0;
+  Future<void> _outputQueue = Future<void>.value();
 
   final ValueNotifier<VoiceStatus> status =
       ValueNotifier<VoiceStatus>(VoiceStatus.idle);
@@ -173,7 +174,12 @@ class LumoVoice {
             final locale =
                 (voice['locale'] ?? voice['language'] ?? '').toString();
             if (name.isEmpty && locale.isEmpty) return null;
-            return <String, String>{'name': name, 'locale': locale};
+            return <String, String>{
+              for (final entry in voice.entries)
+                entry.key.toString(): entry.value.toString(),
+              'name': name,
+              'locale': locale,
+            };
           }
           return null;
         })
@@ -190,31 +196,7 @@ class LumoVoice {
   }
 
   int _scoreVoice(Map<String, String> voice) {
-    final name = (voice['name'] ?? '').toLowerCase();
-    final locale = (voice['locale'] ?? '').toLowerCase();
-    var score = 0;
-
-    if (locale == 'de-at') score += 120;
-    if (locale == 'de-de') score += 100;
-    if (locale.startsWith('de')) score += 80;
-
-    if (name.contains('google')) score += 45;
-    if (name.contains('neural')) score += 45;
-    if (name.contains('natural')) score += 40;
-    if (name.contains('enhanced')) score += 35;
-    if (name.contains('premium')) score += 30;
-    if (name.contains('female')) score += 22;
-    if (name.contains('frau')) score += 22;
-    if (name.contains('anna')) score += 18;
-    if (name.contains('marlene')) score += 18;
-    if (name.contains('katja')) score += 18;
-    if (name.contains('vicki')) score += 18;
-
-    if (name.contains('network')) score -= 15;
-    if (name.contains('compact')) score -= 20;
-    if (name.contains('default')) score -= 8;
-
-    return score;
+    return LumoVoicePolicy.score(voice);
   }
 
   Future<void> _applyStyle(VoiceStyle style) async {
@@ -223,7 +205,7 @@ class LumoVoice {
     // Jetzt 0.46-0.60 - normales Sprechtempo, aber noch kindgerecht.
     switch (style) {
       case VoiceStyle.greeting:
-        await _set(rate: 0.50, pitch: 1.05, volume: 1.0);
+        await _set(rate: 0.51, pitch: 1.04, volume: 0.95);
         break;
       case VoiceStyle.explain:
         // Erklaer-Modus etwas langsamer als greeting, damit Kinder folgen koennen.
@@ -231,18 +213,18 @@ class LumoVoice {
         break;
       case VoiceStyle.celebrate:
         // Bei Erfolg: schnell und froh.
-        await _set(rate: 0.58, pitch: 1.10, volume: 1.0);
+        await _set(rate: 0.54, pitch: 1.07, volume: 0.95);
         break;
       case VoiceStyle.comfort:
         // Bei Problemen: ruhig aber nicht mehr so langsam wie vorher.
-        await _set(rate: 0.44, pitch: 0.98, volume: 0.96);
+        await _set(rate: 0.47, pitch: 1.01, volume: 0.92);
         break;
       case VoiceStyle.question:
         await _set(rate: 0.50, pitch: 1.04, volume: 1.0);
         break;
       case VoiceStyle.warm:
         // Standard-Lese-Modus: natuerliches Sprechtempo.
-        await _set(rate: 0.50, pitch: 1.03, volume: 1.0);
+        await _set(rate: 0.49, pitch: 1.02, volume: 0.95);
         break;
     }
   }
@@ -263,24 +245,31 @@ class LumoVoice {
     final generation = ++_speechGeneration;
     await _ensureReady();
     if (!_enabled || generation != _speechGeneration) return;
-    try {
-      await _tts.stop();
-      await _stopClip();
+    _outputQueue = _outputQueue.then((_) async {
       if (!_enabled || generation != _speechGeneration) return;
-      if (await _speakClip(text, generation)) return;
-      if (!_enabled || generation != _speechGeneration) return;
-      await _applyStyle(style);
-      if (!_enabled || generation != _speechGeneration) return;
-      final prepared = _prepareHumanText(text, style);
-      final result = await _tts.speak(prepared);
-      if (kDebugMode) {
-        debugPrint(
-            '[LumoVoice] voice=$_selectedVoiceName locale=$_selectedLocale style=$style -> $result');
+      try {
+        lastError.value = null;
+        await _tts.stop();
+        await _stopClip();
+        if (!_enabled || generation != _speechGeneration) return;
+        if (await _speakClip(text, generation)) return;
+        if (!_enabled || generation != _speechGeneration) return;
+        await _applyStyle(style);
+        if (!_enabled || generation != _speechGeneration) return;
+        final prepared = _prepareHumanText(text, style);
+        if (prepared.isEmpty) return;
+        final result = await _tts.speak(prepared);
+        if (kDebugMode) {
+          debugPrint(
+              '[LumoVoice] voice=$_selectedVoiceName locale=$_selectedLocale style=$style -> $result');
+        }
+      } catch (e) {
+        if (generation != _speechGeneration) return;
+        lastError.value = 'TTS-Fehler: $e';
+        status.value = VoiceStatus.error;
       }
-    } catch (e) {
-      lastError.value = 'TTS-Fehler: $e';
-      status.value = VoiceStatus.error;
-    }
+    });
+    await _outputQueue;
   }
 
   Future<bool> _speakClip(String text, int generation) async {
@@ -288,7 +277,9 @@ class LumoVoice {
     try {
       await LumoVoiceClips.ensureLoaded();
       final clip = LumoVoiceClips.lookup(text);
-      if (clip == null || generation != _speechGeneration) return false;
+      if (!_enabled || clip == null || generation != _speechGeneration) {
+        return false;
+      }
       final player = _clipPlayer ??= AudioPlayer(playerId: 'lumo-voice')
         // Die Mundbewegung nutzt eine eigene Uhr; ohne Positions-Updater
         // plant der Player keine zusätzlichen Frames ein.
@@ -296,9 +287,9 @@ class LumoVoice {
       await player.setReleaseMode(ReleaseMode.stop);
       await player.setVolume(1.0);
       _clipDone ??= player.onPlayerComplete.listen((_) => _finishClip());
-      if (generation != _speechGeneration) return true;
+      if (!_enabled || generation != _speechGeneration) return true;
       await player.play(AssetSource(clip.assetSource));
-      if (generation != _speechGeneration) {
+      if (!_enabled || generation != _speechGeneration) {
         await _stopClip();
         return true;
       }
@@ -332,46 +323,16 @@ class LumoVoice {
   }
 
   Future<void> _stopClip() async {
-    final wasPlaying = _clipTicker != null;
     _finishClip();
-    if (!wasPlaying) return;
+    // A player can already be starting while no envelope ticker exists.
+    // Always stop the native player, including that startup window.
     try {
       await _clipPlayer?.stop();
     } catch (_) {}
   }
 
   String _prepareHumanText(String input, VoiceStyle style) {
-    // Erst Mathezeichen, Geld, Uhrzeit, Brueche, Emojis schoener machen.
-    // LumoChildSpeechNormalizer.forSpeech() macht aus '3 + 4 = ?' einen
-    // natuerlichen Satz: 'drei plus vier. Was kommt heraus?'
-    final beautified = LumoChildSpeechNormalizer.forSpeech(input);
-
-    var text = beautified
-        .replaceAll('\n', '. ')
-        .replaceAll('  ', ' ')
-        .replaceAll('⭐', '')
-        .replaceAll('🚀', '')
-        .replaceAll('🦊', 'Lumo')
-        .trim();
-
-    while (text.contains('..')) {
-      text = text.replaceAll('..', '.');
-    }
-
-    switch (style) {
-      case VoiceStyle.greeting:
-        return 'Hallo. $text';
-      case VoiceStyle.celebrate:
-        return 'Juhu! $text';
-      case VoiceStyle.comfort:
-        return 'Ganz ruhig. $text';
-      case VoiceStyle.question:
-        return '$text. Was denkst du?';
-      case VoiceStyle.explain:
-        return text;
-      case VoiceStyle.warm:
-        return text;
-    }
+    return LumoVoicePolicy.prepare(input);
   }
 
   Future<void> stop() async {
@@ -385,7 +346,7 @@ class LumoVoice {
   }
 
   Future<void> test() => speak(
-        'Hallo! Ich bin Lumo, dein Lernfuchs. Ich spreche jetzt ruhiger, freundlicher und menschlicher.',
+        'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!',
         style: VoiceStyle.greeting,
       );
 }

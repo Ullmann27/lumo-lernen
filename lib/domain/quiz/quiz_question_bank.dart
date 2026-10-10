@@ -16,6 +16,7 @@
 ///   - lib/core/math_task_templates.dart (33 Templates, NICHT MODIFIZIEREN)
 ///   - lib/core/german_task_templates.dart (40 Templates, NICHT MODIFIZIEREN)
 ///   - lib/core/primary_school_word_data.dart (800+ Woerter, NICHT MODIFIZIEREN)
+library;
 
 import 'dart:math' as math;
 

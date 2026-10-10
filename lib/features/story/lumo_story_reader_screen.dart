@@ -105,7 +105,9 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
 
   void _startListeningSummary() async {
     if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
-        !mounted) return;
+        !mounted) {
+      return;
+    }
     try {
       _summaryCtrl.text = '';
       await _speech.startListening(

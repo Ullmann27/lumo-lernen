@@ -155,8 +155,8 @@ class _NumberLinePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final padL = 8.0;
-    final padR = 8.0;
+    const padL = 8.0;
+    const padR = 8.0;
     final lineY = size.height * 0.65;
     final usable = size.width - padL - padR;
     final step = max == 0 ? usable : usable / max;

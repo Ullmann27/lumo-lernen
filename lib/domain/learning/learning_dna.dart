@@ -8,6 +8,7 @@
 ///   - LearningProfileEngine (Skill-State pro Subject)
 ///   - RecentTaskRepository (letzte Aufgaben)
 ///   - ErrorDetective (Fehlertypen, kommt in Phase 2)
+library;
 
 import 'package:flutter/foundation.dart';
 

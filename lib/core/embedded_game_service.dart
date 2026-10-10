@@ -65,18 +65,24 @@ class EmbeddedGameService with WidgetsBindingObserver {
       if (raw == null ||
           _disposed ||
           appState.resetting ||
-          generation != appState.profileGeneration) return;
+          generation != appState.profileGeneration) {
+        return;
+      }
       final pending = jsonDecode(raw) as Map<String, dynamic>;
       final ids = <String>[];
       await appState.flushRewards();
       for (final event in pending['results'] as List? ?? const []) {
         if (_disposed ||
             appState.resetting ||
-            generation != appState.profileGeneration) return;
+            generation != appState.profileGeneration) {
+          return;
+        }
         if (event is! Map ||
             event['status'] != 'completed' ||
             !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
-                .contains(event['game'])) continue;
+                .contains(event['game'])) {
+          continue;
+        }
         final id = event['resultId'];
         final stars = event['stars'];
         final solved = event['solved'];
@@ -86,18 +92,24 @@ class EmbeddedGameService with WidgetsBindingObserver {
         if (id is! String ||
             stars is! int ||
             stars < 0 || stars > 100 ||
-            xp is! int || xp < 0 || xp > 1000) continue;
+            xp is! int || xp < 0 || xp > 1000) {
+          continue;
+        }
         await wallet.awardGameResult(
             resultId: id, stars: stars, xp: xp);
         ids.add(id);
       }
       if (_disposed ||
           appState.resetting ||
-          generation != appState.profileGeneration) return;
+          generation != appState.profileGeneration) {
+        return;
+      }
       await appState.hydrateFromWallet();
       if (_disposed ||
           appState.resetting ||
-          generation != appState.profileGeneration) return;
+          generation != appState.profileGeneration) {
+        return;
+      }
       final destination = pending['destination'];
       if (destination == 'learn' || destination == 'games') {
         onDestination(

@@ -52,7 +52,9 @@ class TaskQualityGuard {
         prompt.toLowerCase().contains('schreibweise') ||
         prompt.toLowerCase().contains('schreibt man');
     if (!choices.any((choice) => _choiceKey(choice, preserveCase: preserveCase) ==
-        _choiceKey(answer, preserveCase: preserveCase))) issues.add('answer_not_in_choices');
+        _choiceKey(answer, preserveCase: preserveCase))) {
+      issues.add('answer_not_in_choices');
+    }
     if (_hasDuplicateChoices(choices, preserveCase: preserveCase)) issues.add('duplicate_choices');
 
     issues.addAll(_numericProblems(prompt, answer, choices));

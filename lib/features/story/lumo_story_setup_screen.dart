@@ -116,7 +116,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                                     : LumoTokens.colors.outline,
                                 width: 2),
                           ),
-                          child: Text('${g}. Klasse',
+                          child: Text('$g. Klasse',
                               style: LumoTokens.typo.titleMedium.copyWith(
                                   color: active
                                       ? Colors.white

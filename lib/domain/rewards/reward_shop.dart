@@ -4,6 +4,7 @@
 /// Tier-System: micro -> small -> medium -> big -> premium
 ///
 /// Grosse und Premium-Belohnungen benoetigen Eltern-Freigabe.
+library;
 
 import 'reward_catalog.dart';
 

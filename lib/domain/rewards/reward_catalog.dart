@@ -1,6 +1,7 @@
 /// Katalog aller Belohnungen fuer Heinz' Toechter.
 /// Neues 5-Tier-System mit Sterne-Waehrung.
 /// Alle Kosten in Sternen (~10 Sterne pro Lernaufgabe).
+library;
 
 import 'reward_shop.dart';
 

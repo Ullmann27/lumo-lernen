@@ -9,6 +9,7 @@
 /// Lumo Nachhilfe+ ist kein offener Chat. Die KI wird nur über kontrollierte
 /// Tutor-Modi, Kindersicherheitsfilter und lokal gerenderte Visual-Pläne
 /// eingesetzt.
+library;
 
 enum LumoTutorMode {
   practiceHint,

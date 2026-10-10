@@ -26,7 +26,7 @@ Future<void> captureVisual(WidgetTester tester, String name) async {
   await tester.runAsync(() async {
     final image = await target.toImage(pixelRatio: 1.5);
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-    final file = File(folder + '/' + name + '.png');
+    final file = File('$folder/$name.png');
     await file.parent.create(recursive: true);
     await file.writeAsBytes(bytes!.buffer.asUint8List());
     image.dispose();
@@ -86,7 +86,7 @@ void main() {
     (360.0, 'phone'),
     (740.0, 'fold'),
   ]) {
-    testWidgets('Langer Zahlenvergleich passt auf ' + target.$2,
+    testWidgets('Langer Zahlenvergleich passt auf ${target.$2}',
         (tester) async {
       await tester.binding.setSurfaceSize(Size(target.$1, 760));
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -125,7 +125,7 @@ void main() {
       expect(find.text('123456789'), findsOneWidget);
       expect(find.text('>'), findsOneWidget);
       expect(tester.takeException(), isNull);
-      await captureVisual(tester, 'number_compare_' + target.$2);
+      await captureVisual(tester, 'number_compare_${target.$2}');
     });
   }
 
@@ -155,8 +155,8 @@ void main() {
     expect(early.stageIndex, 1);
     final advanced = LumoTreeProgress({
       for (var n = 0; n < 4; n++)
-        'mastered' + n.toString():
-            skill('Skill ' + n.toString(), correct: 5, streak: 5),
+        'mastered$n':
+            skill('Skill $n', correct: 5, streak: 5),
     });
     expect(advanced.stageIndex, 3);
     expect(advanced.visibleSkills.length, 4);
@@ -168,7 +168,7 @@ void main() {
     (Size(400, 1000), 'phone'),
     (Size(840, 760), 'fold_open'),
   ]) {
-    testWidgets('Echte Lumo-Lernseite zeigt korrekte Aufgabe auf ' + target.$2,
+    testWidgets('Echte Lumo-Lernseite zeigt korrekte Aufgabe auf ${target.$2}',
         (tester) async {
       SharedPreferences.setMockInitialValues({});
       LumoVoice.instance.isEnabled = false;
@@ -202,7 +202,7 @@ void main() {
           findsOneWidget);
       expect(find.text('Du schaffst das!'), findsOneWidget);
       expect(tester.takeException(), isNull);
-      await captureVisual(tester, 'real_learning_' + target.$2);
+      await captureVisual(tester, 'real_learning_${target.$2}');
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump();
     });
@@ -213,7 +213,7 @@ void main() {
     (Size(740, 1000), 'fold_content'),
     (Size(1000, 900), 'tablet'),
   ]) {
-    testWidgets('Lernbaum ohne Überlauf auf ' + target.$2, (tester) async {
+    testWidgets('Lernbaum ohne Überlauf auf ${target.$2}', (tester) async {
       await tester.binding.setSurfaceSize(target.$1);
       addTearDown(() => tester.binding.setSurfaceSize(null));
       final skills = {
@@ -262,11 +262,11 @@ void main() {
       expect(find.byKey(const ValueKey('lumo-tree-mastered')), findsOneWidget);
       expect(find.text('Plus bis 20'), findsOneWidget);
       expect(tester.takeException(), isNull);
-      await captureVisual(tester, 'learning_tree_' + target.$2);
+      await captureVisual(tester, 'learning_tree_${target.$2}');
       await tester.pumpWidget(const SizedBox.shrink());
     });
 
-    testWidgets('Aufgaben haben echtes Handy-/Fold-Layout ' + target.$2,
+    testWidgets('Aufgaben haben echtes Handy-/Fold-Layout ${target.$2}',
         (tester) async {
       await tester.binding.setSurfaceSize(target.$1);
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -298,7 +298,7 @@ void main() {
       expect((first.dy - second.dy).abs(), lessThan(1));
       expect((third.dy - fourth.dy).abs(), lessThan(1));
       expect(third.dy, greaterThan(first.dy + 12));
-      await captureVisual(tester, 'math_task_' + target.$2);
+      await captureVisual(tester, 'math_task_${target.$2}');
       await tester.ensureVisible(find.byKey(const ValueKey('lesson-hint-button')));
       await tester.tap(find.byKey(const ValueKey('lesson-hint-button')));
       await tester.pump();

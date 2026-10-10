@@ -5,6 +5,7 @@
 /// Mathematik 1 + 3. Jede Figur hat einen eigenen Strategie-Stil und
 /// einen Catchphrase. Wird im Lernmodus bei schwierigen Aufgaben
 /// oder bei mehreren Fehlversuchen eingeblendet.
+library;
 
 
 enum RechentricksKind {
