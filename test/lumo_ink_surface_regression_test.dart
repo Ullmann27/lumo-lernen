@@ -29,7 +29,7 @@ void main() {
                   child: const ColoredBox(color: Colors.white),
                 ),
               ),
-              const SizedBox(height: 620),
+              const ColoredBox(color: Colors.white, child: SizedBox(height: 620)),
             ]),
           ),
         ),
@@ -45,7 +45,7 @@ void main() {
     expect(ended, 1);
 
     // Swiping OUTSIDE the ink canvas still scrolls the lesson normally.
-    await tester.dragFrom(const Offset(50, 60), const Offset(0, -70));
+    await tester.dragFrom(const Offset(50, 370), const Offset(0, -70));
     await tester.pumpAndSettle();
     expect(scroll.offset, greaterThan(0));
   });
