@@ -506,7 +506,6 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           const SizedBox(height: 8),
           Text('Aktuelle Stimme: Sulafat (Originalaufnahme + freigegebene Sulafat-Synthese). Bei Verbindungsfehlern wird keine andere Stimme eingesetzt.',
               style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
-                ),
         ],
             ),
         const SizedBox(height: 14),
