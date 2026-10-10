@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/app_settings.dart';
 import '../core/learning_profile_engine.dart';
+import '../core/legacy_learning_data.dart';
+import '../core/lumo_cosmos.dart';
 import '../core/progress_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/attempt_log_repository.dart';
@@ -156,14 +158,123 @@ class LumoSessionState {
       );
 }
 
+/// An accepted learning action keeps this owner through every asynchronous
+/// write. A selection change invalidates UI continuations, not its ownership.
+class LearningProfileLease {
+  LearningProfileLease._(
+    this._session,
+    this.generation,
+    this._resetEpoch,
+    this._sessionEpoch,
+    this.logStudentId,
+  );
+
+  final _LearningSession _session;
+  final int generation;
+  final int _resetEpoch;
+  final int _sessionEpoch;
+  final String logStudentId;
+  String get studentId => _session.studentId;
+  LearningProfileEngine get profile => _session.profile;
+  CosmosWorld get cosmos => _session.cosmos;
+}
+
+class _LearningSession {
+  _LearningSession(this.studentId, this.profile)
+    : cosmos = CosmosWorld(studentId: studentId);
+  final String studentId;
+  final LearningProfileEngine profile;
+  final CosmosWorld cosmos;
+  int epoch = 0;
+}
+
+/// An accepted module action keeps its original selection across storage
+/// retries and reserves that child's destination until the action settles.
+class LearningProfileAction {
+  LearningProfileAction._(this._app)
+    : _generation = _app._profileGeneration,
+      _resetEpoch = _app._learningResetEpoch,
+      _selection = _app.school.activeStudentId(),
+      _selectionKnown = _app.school.hasLoadedSelection,
+      _schoolStudentId = _app.school.cachedActiveStudentId;
+
+  final LumoAppState _app;
+  final int _generation;
+  final int _resetEpoch;
+  Future<String?>? _selection;
+  bool _selectionKnown;
+  String? _schoolStudentId;
+  LearningProfileLease? _lease;
+  Future<LearningProfileLease>? _resolving;
+  bool _closed = false;
+
+  bool get invalidated =>
+      _closed ||
+      _app._resetting ||
+      _resetEpoch != _app._learningResetEpoch ||
+      (_lease != null && !_app.canUseLearningLease(_lease!)) ||
+      (!_selectionKnown &&
+          _selection == null &&
+          _generation != _app._profileGeneration);
+
+  bool _mayBelongTo(String id) => _lease != null
+      ? _lease!.studentId == id
+      : !_selectionKnown || _schoolStudentId == null || _schoolStudentId == id;
+
+  Future<LearningProfileLease> resolve() {
+    if (invalidated) {
+      return Future.error(StateError('Learning action was reset'));
+    }
+    if (_lease != null) return Future.value(_lease);
+    return _resolving ??= _app._trackLearning(_resolve());
+  }
+
+  Future<LearningProfileLease> _resolve() async {
+    try {
+      if (!_selectionKnown) {
+        try {
+          _schoolStudentId = await (_selection ??= _app.school
+              .activeStudentId());
+          _selectionKnown = true;
+        } catch (_) {
+          _selection = null;
+          rethrow;
+        }
+      }
+      final lease = await _app._captureLearningProfile(
+        Future.value(_schoolStudentId),
+        _generation,
+        _resetEpoch,
+      );
+      if (invalidated) throw StateError('Learning action was reset');
+      _lease = lease;
+      return lease;
+    } finally {
+      // A failed local-ID/platform read may be retried, without selecting the
+      // child who happened to become visible during the failed write.
+      _resolving = null;
+    }
+  }
+
+  void close() {
+    _closed = true;
+    _app._learningActions.remove(this);
+  }
+}
+
 class LumoAppState extends ChangeNotifier {
   LumoAppState(
       {RewardWalletRepository? walletRepository,
       LearningProfileEngine? learningProfile,
+      LearningProfileEngine Function(String studentId)? learningProfileFactory,
       AttemptLogRepository? attemptLog})
       : _walletRepository = walletRepository ?? RewardWalletRepository.instance,
         _learningProfile = learningProfile ?? LearningProfileEngine(),
-        attemptLog = attemptLog ?? AttemptLogRepository();
+        _learningProfileFactory = learningProfileFactory,
+        attemptLog = attemptLog ?? AttemptLogRepository() {
+    _localProfileSeed = _learningProfile;
+    school.addListener(_schoolSelectionChanged);
+  }
 
   /// Aufgabenprotokoll des Kindes (Grundlage für Lernbericht und Lehrerbereich).
   final AttemptLogRepository attemptLog;
@@ -176,7 +287,17 @@ class LumoAppState extends ChangeNotifier {
   LumoSessionState _state = LumoSessionState();
   LumoSessionState get state => _state;
 
-  final LearningProfileEngine _learningProfile;
+  LearningProfileEngine _learningProfile;
+  late LearningProfileEngine _localProfileSeed;
+  final LearningProfileEngine Function(String)? _learningProfileFactory;
+  final LegacyLearningDataRepository legacyLearningData = LegacyLearningDataRepository();
+  final Map<String, _LearningSession> _learningSessions = {};
+  final Set<Future<dynamic>> _learningOperations = {};
+  final Set<LearningProfileAction> _learningActions = {};
+  final Set<String> _resolvingLegacy = {};
+  _LearningSession? _activeLearningSession;
+  int _learningResetEpoch = 0;
+
   final ScannedWorkAnalysisEngine _scanAnalysis =
       const ScannedWorkAnalysisEngine();
   bool _learningProfileLoaded = false;
@@ -354,21 +475,174 @@ class LumoAppState extends ChangeNotifier {
     }
   }
 
-  Future<void> loadLearningProfile() async {
-    if (_learningProfileLoaded || _disposed) return;
-    try {
-      await _learningProfile.load();
-      if (_disposed) return;
+  _LearningSession _sessionFor(String studentId, {required bool local}) =>
+      _learningSessions.putIfAbsent(
+        studentId,
+        () => _LearningSession(
+          studentId,
+          _learningProfileFactory?.call(studentId) ??
+              (local
+                  ? _localProfileSeed
+                  : LearningProfileEngine(
+                      repository: ProgressRepository(studentId: studentId),
+                    )),
+        ),
+      );
+
+  /// Starts identity capture synchronously, before the caller's first await.
+  Future<LearningProfileLease> captureLearningProfile() {
+    final selected = school.activeStudentId();
+    final generation = _profileGeneration;
+    final epoch = _learningResetEpoch;
+    return _trackLearning(_captureLearningProfile(selected, generation, epoch));
+  }
+
+  LearningProfileAction beginLearningAction() {
+    final action = LearningProfileAction._(this);
+    _learningActions.add(action);
+    return action;
+  }
+
+  Future<LearningProfileLease> _captureLearningProfile(
+    Future<String?> selected,
+    int generation,
+    int epoch,
+  ) async {
+    final schoolId = await selected;
+    final id = schoolId ?? await legacyLearningData.localStudentId();
+    if (_resolvingLegacy.contains(id)) {
+      throw LegacyLearningDataException('assignment-busy');
+    }
+    final session = _sessionFor(id, local: schoolId == null);
+    return LearningProfileLease._(
+      session,
+      generation,
+      epoch,
+      session.epoch,
+      schoolId ?? 'self',
+    );
+  }
+
+  bool canUseLearningLease(LearningProfileLease lease) =>
+      !_resetting &&
+      lease._resetEpoch == _learningResetEpoch &&
+      lease._sessionEpoch == lease._session.epoch &&
+      !_resolvingLegacy.contains(lease.studentId);
+
+  bool isCurrentLearningLease(LearningProfileLease lease) =>
+      !_disposed &&
+      canUseLearningLease(lease) &&
+      lease.generation == _profileGeneration &&
+      identical(_activeLearningSession, lease._session);
+
+  Future<T> _trackLearning<T>(Future<T> operation) {
+    _learningOperations.add(operation);
+    unawaited(
+      operation.then<void>(
+        (_) => _learningOperations.remove(operation),
+        onError: (Object _, StackTrace __) {
+          _learningOperations.remove(operation);
+        },
+      ),
+    );
+    return operation;
+  }
+
+  Future<void> _drainLearningOperations() async {
+    while (_learningOperations.isNotEmpty) {
+      final pending = List<Future<dynamic>>.of(_learningOperations);
+      await Future.wait(
+        pending.map(
+          (operation) => operation.then<void>(
+            (_) {},
+            onError: (Object _, StackTrace __) {},
+          ),
+        ),
+      );
+    }
+  }
+
+  void _clearLearningDisplay() {
+    _state = _state.copyWith(
+      solved: {},
+      weakSkills: {},
+      practiceErrors: 0,
+      lastGrade: 0,
+    );
+    _state.learningRecommendationText = null;
+    _state.learningRecommendationSubject = null;
+    _state.learningRecommendationUnit = null;
+    _state.lastScanAnalysis = null;
+  }
+
+  void _schoolSelectionChanged() {
+    if (_disposed || _resetting) return;
+    _profileGeneration++;
+    _activeLearningSession = null;
+    _learningProfileLoaded = false;
+    final selected = school.cachedActiveStudentId;
+    _learningProfile = selected == null
+        ? _localProfileSeed
+        : _sessionFor(selected, local: false).profile;
+    _clearLearningDisplay();
+    _safeNotify();
+    unawaited(loadLearningProfile());
+  }
+
+  void _installLearningLease(LearningProfileLease lease) {
+    if (_disposed ||
+        !canUseLearningLease(lease) ||
+        lease.generation != _profileGeneration) {
+      return;
+    }
+    if (!identical(_activeLearningSession, lease._session)) {
+      _clearLearningDisplay();
+    }
+    _activeLearningSession = lease._session;
+    _learningProfile = lease.profile;
+    _learningProfileLoaded = lease.profile.isLoaded;
+  }
+
+  Future<void> prepareLearningLease(LearningProfileLease lease) =>
+      _trackLearning(_prepareLearningLease(lease));
+
+  Future<void> _prepareLearningLease(LearningProfileLease lease) async {
+    if (!canUseLearningLease(lease)) {
+      throw StateError('Learning profile was reset or is being assigned');
+    }
+    _installLearningLease(lease);
+    await lease.profile.load();
+    if (isCurrentLearningLease(lease)) {
       _learningProfileLoaded = true;
       _syncLearningRecommendation();
+      _safeNotify();
+    }
+  }
+
+  Future<void> loadLearningProfile() {
+    if (_disposed || _resetting) return Future<void>.value();
+    final lease = captureLearningProfile();
+    return _trackLearning(_loadActiveLearningProfile(lease));
+  }
+
+  Future<void> _loadActiveLearningProfile(
+    Future<LearningProfileLease> source,
+  ) async {
+    LearningProfileLease? lease;
+    try {
+      lease = await source;
+      await _prepareLearningLease(lease);
     } catch (_) {
-      if (_disposed) return;
+      if (_disposed ||
+          (lease != null && lease.generation != _profileGeneration)) {
+        return;
+      }
       _state = _state.copyWith(
         mood: LumoMood.comfort,
         lumoMessage: 'Ich starte sicher.\nGleich geht es weiter.',
       );
+      _safeNotify();
     }
-    _safeNotify();
   }
 
   Future<void> recordLearningAnswer({
@@ -382,44 +656,147 @@ class LumoAppState extends ChangeNotifier {
     String expected = '',
     int? durationMs,
     double? score,
-  }) async {
-    if (_disposed) return;
-    // Capture the answer's owner before progress loading or saving can yield.
-    // A teacher may reassign the device while those operations are pending.
-    String studentId = 'self';
-    try {
-      studentId = await school.activeStudentId() ?? 'self';
-    } catch (_) {
-      // Preserve the existing attribution for an unassigned local device.
-    }
-    try {
-      if (!_learningProfileLoaded) {
-        await _learningProfile.load();
-        _learningProfileLoaded = true;
+    LearningProfileLease? lease,
+  }) {
+    if (_disposed || _resetting) return Future<void>.value();
+    final source = lease == null
+        ? captureLearningProfile()
+        : Future<LearningProfileLease>.value(lease);
+    Future<void> record() async {
+      LearningProfileLease? owner;
+      try {
+        owner = await source;
+        await _prepareLearningLease(owner);
+        if (!canUseLearningLease(owner)) return;
+        try {
+          await owner.profile.recordAnswer(
+            subject: subject,
+            unit: unit,
+            isCorrect: correct,
+            hintUsed: hintUsed,
+          );
+        } finally {
+          // A failed progress write is retried without counting again. Keep
+          // this accepted attempt's original owner in its log during retry.
+          await _logAttempt(
+            studentId: owner.logStudentId,
+            subject: subject,
+            unit: unit,
+            correct: correct,
+            hintUsed: hintUsed,
+            prompt: prompt,
+            given: given,
+            expected: expected,
+            durationMs: durationMs,
+            score: score,
+          );
+        }
+        if (isCurrentLearningLease(owner)) {
+          _syncLearningRecommendation();
+          _safeNotify();
+        }
+      } catch (_) {
+        if (requireSaved) rethrow;
       }
-      await _learningProfile.recordAnswer(
-        subject: subject,
-        unit: unit,
-        isCorrect: correct,
-        hintUsed: hintUsed,
-      );
-      await _logAttempt(
-        studentId: studentId,
-        subject: subject,
-        unit: unit,
-        correct: correct,
-        hintUsed: hintUsed,
-        prompt: prompt,
-        given: given,
-        expected: expected,
-        durationMs: durationMs,
-        score: score,
-      );
-      _syncLearningRecommendation();
-      _safeNotify();
-    } catch (_) {
-      if (requireSaved) rethrow;
     }
+
+    return _trackLearning(record());
+  }
+
+  Future<void> grantCosmosReward({
+    required String subjectId,
+    required bool isMath,
+    required bool isPerfect,
+    LearningProfileLease? lease,
+    bool requireSaved = false,
+  }) {
+    if (_disposed || _resetting) return Future<void>.value();
+    final source = lease == null
+        ? captureLearningProfile()
+        : Future<LearningProfileLease>.value(lease);
+    Future<void> grant() async {
+      LearningProfileLease? owner;
+      try {
+        owner = await source;
+        if (!canUseLearningLease(owner)) return;
+        await owner.cosmos.load();
+        if (!canUseLearningLease(owner)) return;
+        await owner.cosmos.grantReward(
+          subjectId: subjectId,
+          isMath: isMath,
+          isPerfect: isPerfect,
+        );
+        if (isCurrentLearningLease(owner)) _safeNotify();
+      } catch (_) {
+        if (owner != null && isCurrentLearningLease(owner)) {
+          _state = _state.copyWith(
+            mood: LumoMood.comfort,
+            lumoMessage: 'Deine Lernwelt wartet noch aufs Speichern.',
+          );
+          _safeNotify();
+        }
+        if (requireSaved) rethrow;
+      }
+    }
+
+    return _trackLearning(grant());
+  }
+
+  Future<void> flushCosmos({LearningProfileLease? lease}) {
+    final source = lease == null
+        ? captureLearningProfile()
+        : Future<LearningProfileLease>.value(lease);
+    return _trackLearning(() async {
+      final owner = await source;
+      if (!canUseLearningLease(owner)) return;
+      await owner.cosmos.flush();
+      if (isCurrentLearningLease(owner)) _safeNotify();
+    }());
+  }
+
+  Future<void> loadCosmos({required LearningProfileLease lease}) =>
+      _trackLearning(() async {
+        await _prepareLearningLease(lease);
+        if (!canUseLearningLease(lease)) return;
+        await lease.cosmos.load();
+      }());
+
+  /// Called only after the parent's explicit destination confirmation.
+  Future<void> resolveLegacyLearningData(String studentId) async {
+    final id = studentId.trim();
+    if (_learningActions.any((action) => action._mayBelongTo(id))) {
+      throw LegacyLearningDataException('assignment-busy');
+    }
+    if (_resetting || !_resolvingLegacy.add(id)) {
+      throw LegacyLearningDataException('assignment-busy');
+    }
+    try {
+      await _drainLearningOperations();
+      if (_learningActions.any((action) => action._mayBelongTo(id))) {
+        throw LegacyLearningDataException('assignment-busy');
+      }
+      final existing = _learningSessions[id];
+      if ((existing?.profile.hasUnsavedChanges ?? false) ||
+          (existing?.cosmos.hasPendingSave ?? false)) {
+        throw LegacyLearningDataException('destination-not-empty');
+      }
+      await legacyLearningData.assignTo(id);
+      if (existing != null) existing.epoch++;
+      _learningSessions.remove(id);
+      if (id == await legacyLearningData.localStudentId()) {
+        _localProfileSeed = LearningProfileEngine();
+      }
+      if (_activeLearningSession?.studentId == id) {
+        _activeLearningSession = null;
+        _learningProfileLoaded = false;
+        _profileGeneration++;
+        _clearLearningDisplay();
+      }
+    } finally {
+      _resolvingLegacy.remove(id);
+    }
+    await loadLearningProfile();
+    _safeNotify();
   }
 
   /// Einträge, die noch nicht gespeichert werden konnten. Sie gehen nicht
@@ -485,25 +862,32 @@ class LumoAppState extends ChangeNotifier {
   }
 
   /// Retries the existing learning state without counting the answer again.
-  Future<void> flushLearningProgress() async {
-    await _learningProfile.flush();
-    if (_disposed) return;
-    _syncLearningRecommendation();
-    _safeNotify();
+  Future<void> flushLearningProgress({LearningProfileLease? lease}) {
+    final source = lease == null
+        ? captureLearningProfile()
+        : Future<LearningProfileLease>.value(lease);
+    return _trackLearning(() async {
+      final owner = await source;
+      if (!canUseLearningLease(owner)) return;
+      await owner.profile.flush();
+      await flushAttemptLog();
+      if (isCurrentLearningLease(owner)) {
+        _syncLearningRecommendation();
+        _safeNotify();
+      }
+    }());
   }
 
   Future<ScannedWorkAnalysis> analyzeScannedWork(String rawText) async {
-    if (!_learningProfileLoaded) {
-      try {
-        await _learningProfile.load();
-        _learningProfileLoaded = true;
-      } catch (_) {}
-    }
+    final lease = await captureLearningProfile();
+    try {
+      await prepareLearningLease(lease);
+    } catch (_) {}
     final analysis = _scanAnalysis.analyze(
       rawText: rawText,
       grade: _state.grade,
-      existingSkills: _learningProfileLoaded
-          ? _learningProfile.skills
+      existingSkills: lease.profile.isLoaded
+          ? lease.profile.skills
           : <String, SkillRecord>{},
     );
     final newWeak = Map<String, int>.from(_state.weakSkills);
@@ -513,6 +897,7 @@ class LumoAppState extends ChangeNotifier {
         subject: analysis.nextPracticeSubject,
         unit: unit,
         correct: false,
+        lease: lease,
       );
     }
     for (final unit in analysis.strengthUnits) {
@@ -520,8 +905,10 @@ class LumoAppState extends ChangeNotifier {
         subject: analysis.nextPracticeSubject,
         unit: unit,
         correct: true,
+        lease: lease,
       );
     }
+    if (!isCurrentLearningLease(lease)) return analysis;
     update(
       _state.copyWith(
         section: LumoSection.exercises,
@@ -530,7 +917,8 @@ class LumoAppState extends ChangeNotifier {
         weakSkills: newWeak,
         mood: analysis.hasWeaknesses ? LumoMood.comfort : LumoMood.point,
         lumoMessage: analysis.childSummary,
-        sessionKind: analysis.workType == ScannedWorkType.schoolwork ||
+        sessionKind:
+            analysis.workType == ScannedWorkType.schoolwork ||
                 analysis.workType == ScannedWorkType.test
             ? LumoSessionKind.test
             : LumoSessionKind.quickPractice,
@@ -548,7 +936,12 @@ class LumoAppState extends ChangeNotifier {
 
   void _syncLearningRecommendation() {
     final recommendation = topLearningRecommendation();
-    if (recommendation == null) return;
+    if (recommendation == null) {
+      _state.learningRecommendationText = null;
+      _state.learningRecommendationSubject = null;
+      _state.learningRecommendationUnit = null;
+      return;
+    }
     _state = _state.copyWith(
       learningRecommendationText: recommendation.message,
       learningRecommendationSubject: recommendation.subject,
@@ -588,10 +981,30 @@ class LumoAppState extends ChangeNotifier {
   }
 
   Future<void> resetLearningProfile() async {
+    if (_disposed || _resetting) return;
+    final owner = await captureLearningProfile();
+    if (!canUseLearningLease(owner)) return;
+    final id = owner.studentId;
+    if (!_resolvingLegacy.add(id)) return;
+    owner._session.epoch++;
     try {
-      await _learningProfile.reset();
-      await attemptLog.clear();
-    } catch (_) {}
+      await _drainLearningOperations();
+      await owner.profile.reset();
+      await owner.cosmos.reset();
+      await attemptLog.clear(studentId: owner.logStudentId);
+      _unsavedAttempts.removeWhere(
+        (attempt) => attempt.studentId == owner.logStudentId,
+      );
+      if (_activeLearningSession?.studentId == id) {
+        _profileGeneration++;
+        _activeLearningSession = null;
+        _learningProfileLoaded = false;
+        _clearLearningDisplay();
+      }
+    } finally {
+      _resolvingLegacy.remove(id);
+    }
+    await loadLearningProfile();
     _safeNotify();
   }
 
@@ -605,6 +1018,7 @@ class LumoAppState extends ChangeNotifier {
     if (_disposed || _resetting) return;
     _resetting = true;
     _profileGeneration++;
+    _learningResetEpoch++;
     try {
       if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
         await const MethodChannel('lumo_lernen/bridge')
@@ -620,21 +1034,33 @@ class LumoAppState extends ChangeNotifier {
       // Drain old writes before deleting their storage, then reset the cached
       // singleton too; otherwise the next earned star restores the old balance.
       await _pendingRewards;
+      await school.pauseSelectionForReset();
+      await _drainLearningOperations();
       if (_settingsLoad != null) await _settingsLoad;
       await _walletRepository.reset();
-      try {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.clear();
-      } catch (_) {}
-      try {
-        await _learningProfile.reset();
-      } catch (_) {}
+      for (final session in _learningSessions.values) {
+        try { await session.profile.reset(); } catch (_) {}
+        try { await session.cosmos.reset(); } catch (_) {}
+        session.epoch++;
+      }
+      final prefs = await SharedPreferences.getInstance();
+      if (!await prefs.clear()) throw StateError('Profile reset was not saved');
+      school.resetSelectionCache();
+      _learningSessions.clear();
+      for (final action in _learningActions.toList()) {
+        action.close();
+      }
+      _activeLearningSession = null;
+      _localProfileSeed = LearningProfileEngine();
+      _learningProfile = _localProfileSeed;
+      _unsavedAttempts.clear();
       _state = LumoSessionState();
       _lumoCardsWinStreak = 0;
       _learningProfileLoaded = false;
       _settingsLoaded = false;
       _settingsLoad = null;
     } finally {
+      school.resumeSelectionAfterReset();
       _resetting = false;
     }
     await ensureSettingsLoaded();
@@ -734,6 +1160,8 @@ class LumoAppState extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    school.removeListener(_schoolSelectionChanged);
+    school.dispose();
     super.dispose();
   }
 }

@@ -2,15 +2,19 @@
 // LUMO COSMOS VIEW — Anzeige der wachsenden Lern-Welt
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../app/app_state.dart';
 import '../../core/lumo_cosmos.dart';
 import '../../theme/lumo_design_tokens.dart';
 
 class LumoCosmosScreen extends StatefulWidget {
-  const LumoCosmosScreen({super.key});
+  const LumoCosmosScreen({super.key, required this.appState});
+
+  final LumoAppState appState;
 
   @override
   State<LumoCosmosScreen> createState() => _LumoCosmosScreenState();
@@ -20,6 +24,10 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animCtrl;
   bool _loaded = false;
+  LearningProfileLease? _lease;
+  int _generation = 0;
+  int _loadSerial = 0;
+  String? _loadError;
 
   @override
   void initState() {
@@ -27,16 +35,71 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
     _animCtrl = AnimationController(
         vsync: this, duration: const Duration(seconds: 10))
       ..repeat();
-    _load();
+    _generation = widget.appState.profileGeneration;
+    widget.appState.addListener(_profileChanged);
+    unawaited(_load());
   }
 
   Future<void> _load() async {
-    await CosmosWorld.instance.load();
-    if (mounted) setState(() => _loaded = true);
+    final serial = ++_loadSerial;
+    try {
+      final lease = await widget.appState.captureLearningProfile();
+      await widget.appState.loadCosmos(lease: lease);
+      if (!mounted || serial != _loadSerial ||
+          !widget.appState.isCurrentLearningLease(lease)) {
+        return;
+      }
+      _lease?.cosmos.removeListener(_worldChanged);
+      lease.cosmos.addListener(_worldChanged);
+      setState(() {
+        _lease = lease;
+        _loaded = true;
+        _loadError = null;
+      });
+    } catch (_) {
+      if (!mounted || serial != _loadSerial) return;
+      setState(() => _loadError = 'Deine Lernwelt konnte noch nicht geladen werden.');
+    }
+  }
+
+  void _profileChanged() {
+    if (!mounted) return;
+    if (_generation != widget.appState.profileGeneration) {
+      _generation = widget.appState.profileGeneration;
+      _lease?.cosmos.removeListener(_worldChanged);
+      setState(() {
+        _lease = null;
+        _loaded = false;
+        _loadError = null;
+      });
+      unawaited(_load());
+    } else if (_loaded) {
+      setState(() {});
+    }
+  }
+
+  void _worldChanged(List<CosmosItem> items) {
+    final lease = _lease;
+    if (mounted && lease != null && widget.appState.isCurrentLearningLease(lease)) {
+      setState(() {});
+    }
+  }
+
+  Future<void> _retrySave() async {
+    final lease = _lease;
+    if (lease == null) return;
+    try {
+      await widget.appState.flushCosmos(lease: lease);
+    } catch (_) {
+      // The same pending world remains available for another retry.
+    }
+    if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
+    widget.appState.removeListener(_profileChanged);
+    _lease?.cosmos.removeListener(_worldChanged);
     _animCtrl.dispose();
     super.dispose();
   }
@@ -44,9 +107,18 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
   @override
   Widget build(BuildContext context) {
     if (!_loaded) {
+      if (_loadError != null) {
+        return Scaffold(
+          appBar: AppBar(title: const Text('Deine Lernwelt')),
+          body: Center(child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Text(_loadError!, textAlign: TextAlign.center),
+            FilledButton(onPressed: _load, child: const Text('Erneut versuchen')),
+          ])),
+        );
+      }
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
-    final world = CosmosWorld.instance;
+    final world = _lease!.cosmos;
     final period = currentDayPeriod();
     final season = currentSeason();
     final skyColors = _skyForPeriod(period);
@@ -57,6 +129,15 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
         child: Column(
           children: [
             _buildTopBar(world, period, season),
+            if (world.hasPendingSave)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Wrap(alignment: WrapAlignment.center, children: [
+                  Text(world.saveError ?? 'Deine Lernwelt wartet noch aufs Speichern.'),
+                  TextButton(onPressed: _retrySave,
+                      child: const Text('Erneut versuchen')),
+                ]),
+              ),
             Expanded(
               child: Stack(
                 children: [

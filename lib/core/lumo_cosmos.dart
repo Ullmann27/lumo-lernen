@@ -8,10 +8,11 @@
 // Items werden in 2D-Welt via CustomPainter gerendert.
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'legacy_learning_data.dart';
 
 /// Item-Typen die in der Welt wachsen koennen.
 enum CosmosItemType {
@@ -123,10 +124,14 @@ Season currentSeason() {
 
 /// Persistente Lern-Welt des Kindes.
 class CosmosWorld {
-  CosmosWorld._();
-  static final CosmosWorld instance = CosmosWorld._();
+  CosmosWorld({String? studentId})
+      : _namespace = LearningDataNamespace(studentId: studentId);
+
+  final LearningDataNamespace _namespace;
+  Future<String> get studentId => _namespace.studentId;
 
   static const _key = 'lumo_cosmos_items_v1';
+  static const _snapshotKey = 'lumo_cosmos_v2';
   static const _meta = 'lumo_cosmos_meta_v1';
   final _rng = math.Random();
 
@@ -135,6 +140,15 @@ class CosmosWorld {
   int _streakDays = 0;
   String? _lastVisitDate; // YYYY-MM-DD
   bool _loaded = false;
+  Future<void>? _loading;
+  Future<void> _operationTail = Future<void>.value();
+  bool _dirty = false;
+  String? _saveError;
+  final List<CosmosItem> _pendingNotifications = [];
+
+  bool get isLoaded => _loaded;
+  bool get hasPendingSave => _dirty;
+  String? get saveError => _saveError;
 
   /// Listeners die nach grantReward benachrichtigt werden (z.B. fuer
   /// Toast 'Du hast einen Baum gepflanzt!' in Modul-Screens).
@@ -165,26 +179,50 @@ class CosmosWorld {
     return 'Unendliche Welt';
   }
 
-  Future<void> load() async {
-    if (_loaded) return;
-    final p = await SharedPreferences.getInstance();
-    final raw = p.getString(_key);
+  Future<void> load() {
+    if (_loaded) return Future<void>.value();
+    return _loading ??= _load();
+  }
+
+  Future<void> _load() async {
+    try {
+      await _loadSnapshot();
+    } finally {
+      _loading = null;
+    }
+  }
+
+  Future<void> _loadSnapshot() async {
+    final stored = await _namespace.read(_snapshotKey);
+    Map<String, dynamic>? snapshot;
+    if (stored != null) {
+      snapshot = jsonDecode(stored) as Map<String, dynamic>;
+    }
+    final raw = snapshot == null
+        ? await _namespace.read(_key) : jsonEncode(snapshot['items']);
+    _items = [];
+    _totalCorrect = 0;
+    _streakDays = 0;
+    _lastVisitDate = null;
     if (raw != null) {
       try {
         final list = (jsonDecode(raw) as List).cast<Map<String, dynamic>>();
         _items = list.map(CosmosItem.fromJson).toList();
       } catch (_) {
-        _items = [];
+        throw StateError('Stored learning world could not be read');
       }
     }
-    final metaRaw = p.getString(_meta);
+    final metaRaw = snapshot == null
+        ? await _namespace.read(_meta) : jsonEncode(snapshot['meta']);
     if (metaRaw != null) {
       try {
         final m = jsonDecode(metaRaw) as Map<String, dynamic>;
         _totalCorrect = m['c'] as int? ?? 0;
         _streakDays = m['s'] as int? ?? 0;
         _lastVisitDate = m['d'] as String?;
-      } catch (_) {}
+      } catch (_) {
+        throw StateError('Stored learning world metadata could not be read');
+      }
     }
     // Streak-Check: Wenn lastVisit gestern war, dann +1.
     // Wenn schon heute, kein Update. Wenn aelter, reset.
@@ -200,7 +238,13 @@ class CosmosWorld {
         _streakDays = 1;
       }
       _lastVisitDate = today;
-      await save();
+      // Opening an untouched world must not claim a child's destination and
+      // prevent the parent from assigning preserved legacy history. The first
+      // real reward persists its visit and world together.
+      if (stored != null || raw != null || metaRaw != null) {
+        _dirty = true;
+        await _save();
+      }
     }
     _loaded = true;
   }
@@ -209,16 +253,45 @@ class CosmosWorld {
   String _dateString(DateTime d) =>
       '${d.year}-${d.month.toString().padLeft(2, "0")}-${d.day.toString().padLeft(2, "0")}';
 
-  Future<void> save() async {
-    final p = await SharedPreferences.getInstance();
-    await p.setString(_key,
-        jsonEncode(_items.map((i) => i.toJson()).toList()));
-    await p.setString(_meta,
-        jsonEncode({
-          'c': _totalCorrect,
-          's': _streakDays,
-          'd': _lastVisitDate,
-        }));
+  Future<T> _enqueue<T>(Future<T> Function() action) {
+    final pending = _operationTail.then((_) => action());
+    _operationTail = pending.then<void>((_) {},
+        onError: (Object _, StackTrace __) {});
+    return pending;
+  }
+
+  /// Retries the same pending snapshot; it never grants a second reward.
+  Future<void> flush() => _enqueue(() async {
+    await load();
+    if (_dirty) await _save();
+    _publishPending();
+  });
+
+  Future<void> save() => flush();
+
+  Future<void> _save() async {
+    try {
+      // Items and counters are one atomic platform write.
+      await _namespace.write(_snapshotKey, jsonEncode({
+        'items': _items.map((item) => item.toJson()).toList(),
+        'meta': {'c': _totalCorrect, 's': _streakDays, 'd': _lastVisitDate},
+      }));
+      _dirty = false;
+      _saveError = null;
+    } catch (_) {
+      _dirty = true;
+      _saveError = 'Deine Lernwelt wartet noch aufs Speichern.';
+      rethrow;
+    }
+  }
+
+  void _publishPending() {
+    if (_pendingNotifications.isEmpty) return;
+    final items = List<CosmosItem>.unmodifiable(_pendingNotifications);
+    _pendingNotifications.clear();
+    for (final callback in List.of(_listeners)) {
+      callback(items);
+    }
   }
 
   /// Hauptmethode: Kind hat richtig geantwortet -> Welt waechst.
@@ -229,7 +302,8 @@ class CosmosWorld {
     required String subjectId,
     required bool isMath,
     required bool isPerfect,
-  }) async {
+  }) => _enqueue(() async {
+    await load();
     final newItems = <CosmosItem>[];
     _totalCorrect++;
     final season = currentSeason();
@@ -314,17 +388,19 @@ class CosmosWorld {
     }
 
     _items.addAll(newItems);
-    await save();
-    for (final cb in _listeners) {
-      cb(newItems);
-    }
+    _pendingNotifications.addAll(newItems);
+    _dirty = true;
+    await _save();
+    _publishPending();
     return newItems;
-  }
+  });
 
-  Future<void> recordStreak() async {
+  Future<void> recordStreak() => _enqueue(() async {
+    await load();
     _streakDays++;
-    await save();
-  }
+    _dirty = true;
+    await _save();
+  });
 
   CosmosItem _randomItem(CosmosItemType type) {
     // Y-Verteilung passt zum Item-Typ
@@ -357,10 +433,15 @@ class CosmosWorld {
   }
 
   /// Reset fuer Tests / Eltern.
-  Future<void> reset() async {
+  Future<void> reset() => _enqueue(() async {
+    if (_loading != null) await _loading;
     _items = [];
     _totalCorrect = 0;
     _streakDays = 0;
-    await save();
-  }
+    _lastVisitDate = null;
+    _pendingNotifications.clear();
+    _dirty = true;
+    await _save();
+    _loaded = true;
+  });
 }

@@ -33,8 +33,11 @@ final _modules = <(String, _Screen, int)>[
 ];
 
 Future<void> _frames(WidgetTester tester, [int count = 90]) async {
+  // _open creates cached storage Futures in runAsync. Let that event loop
+  // complete its awaits between the unchanged fake UI/feedback frames.
   for (var i = 0; i < count; i++) {
     await tester.pump(const Duration(microseconds: 16667));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   }
 }
 

@@ -165,7 +165,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const LumoCosmosScreen(),
+                    builder: (_) => LumoCosmosScreen(appState: widget.appState),
                   ),
                 ),
               ),

@@ -1,7 +1,7 @@
 name: Lumo race continuity APK and full Android race verification
 on:
   push:
-    branches: [codex/lumo-action-apk-2026-10-09, codex/lumo-apk-1910-2026-10-09, codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, chatgpt/lumo-apk-1914-qa-2026-10-09, chatgpt/learning-tree-cinematic-qa-2026-10-09, chatgpt/lumo-character-apk-1919-2026-10-09, claude/continue-previous-chat-KtY7p, codex/lumo-claude-game-entry-2026-10-09, codex/lumo-host-finish-numeric-2026-10-09]
+    branches: [codex/lumo-next-2026-10-10, codex/lumo-action-apk-2026-10-09, codex/lumo-apk-1910-2026-10-09, codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, chatgpt/lumo-apk-1914-qa-2026-10-09, chatgpt/learning-tree-cinematic-qa-2026-10-09, chatgpt/lumo-character-apk-1919-2026-10-09, claude/continue-previous-chat-KtY7p, codex/lumo-claude-game-entry-2026-10-09, codex/lumo-host-finish-numeric-2026-10-09]
     paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-runtime-apk.yml, .github/probes/**]
   workflow_dispatch:
 permissions:
@@ -69,184 +69,33 @@ jobs:
           git rev-parse HEAD > proof/source-sha.txt
           flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analysis.log
-      - name: Prove student attribution with identical tests on original and candidate source
+      - name: Install declared Python QA guard dependencies
         run: |
           set -euo pipefail
-          lumo_profile_state=lib/app/app_state.dart
-          lumo_profile_test=test/app_state_student_identity_test.dart
-          lumo_profile_proof=proof/profile-identity
-          lumo_profile_backup="$RUNNER_TEMP/lumo-profile-candidate-app-state.dart"
-          mkdir -p "$lumo_profile_proof"
-          git ls-files --error-unmatch "$lumo_profile_state" "$lumo_profile_test"
-          git diff --exit-code -- "$lumo_profile_state" "$lumo_profile_test"
-          printf '%s  %s\n' \
-            7a82a25d0932e2db45717472c4016dbae8453190c7a4283db66901780ad19d6a "$lumo_profile_test" \
-            49a5f51bb39da8bd1319271290a03c495facba38a76b1db84650e98b0a214eb5 "$lumo_profile_state" \
-            > "$lumo_profile_proof/candidate-inputs.sha256"
-          sha256sum -c "$lumo_profile_proof/candidate-inputs.sha256"
-          cp "$lumo_profile_state" "$lumo_profile_backup"
-          restore_profile_candidate() {
-            cp "$lumo_profile_backup" "$lumo_profile_state" &&
-              cmp -s "$lumo_profile_backup" "$lumo_profile_state"
-          }
-          trap 'lumo_profile_exit=$?; trap - EXIT; if ! restore_profile_candidate; then exit 1; fi; exit "$lumo_profile_exit"' EXIT
-          trap 'exit 130' INT
-          trap 'exit 143' TERM
-          cp "$lumo_profile_backup" "$lumo_profile_proof/candidate-app_state.dart"
-          cp "$lumo_profile_test" "$lumo_profile_proof/identity-test.dart"
-          git fetch --depth 1 origin ab21b2295ca5307bae5e07c0c8a01c3017ee91a3
-          git show "ab21b2295ca5307bae5e07c0c8a01c3017ee91a3:$lumo_profile_state" \
-            > "$lumo_profile_proof/original-app_state.dart"
-          printf '%s  %s\n' \
-            26045518fded02d6b588dcbd03898312b6a2103d173873a67413102a8583d0ab \
-            "$lumo_profile_proof/original-app_state.dart" \
-            | sha256sum -c -
-          cat > "$lumo_profile_proof/verify-profile-events.py" <<'PYCODE'
-          import hashlib, json, re, subprocess, sys
+          python3 -m venv "$RUNNER_TEMP/lumo-qa-guard-venv"
+          qa_python="$RUNNER_TEMP/lumo-qa-guard-venv/bin/python"
+          "$qa_python" -m pip install --disable-pip-version-check --only-binary=:all: Pillow==12.3.0
+          "$qa_python" -m pip freeze > proof/python-qa-dependencies.txt
+          printf 'LUMO_QA_PYTHON=%s\n' "$qa_python" >> "$GITHUB_ENV"
+          "$qa_python" - <<'PYCODE'
+          import json, shutil
           from pathlib import Path
-          BASE = 'ab21b2295ca5307bae5e07c0c8a01c3017ee91a3'
-          ORIGINAL_SHA = '26045518fded02d6b588dcbd03898312b6a2103d173873a67413102a8583d0ab'
-          CANDIDATE_SHA = '49a5f51bb39da8bd1319271290a03c495facba38a76b1db84650e98b0a214eb5'
-          TEST_SHA = '7a82a25d0932e2db45717472c4016dbae8453190c7a4283db66901780ad19d6a'
-          TEST = Path('test/app_state_student_identity_test.dart')
-          STATE = Path('lib/app/app_state.dart')
-          PROOF = Path('proof/profile-identity')
-          CASES = (
-              'answer keeps its student when assignment changes during progress load',
-              'answer keeps its student when assignment changes during progress save',
-              'unassigned answers retain the existing local log attribution',
-          )
-          REGRESSIONS = (
-              'test/progress_repository_storage_test.dart',
-              'test/learning_modules/learning_module_progress_test.dart',
-              'test/domain/school_model_test.dart',
-              'test/domain/school_analysis_test.dart',
-              'test/domain/learning_analysis_extended_test.dart',
-              'test/reward_wallet_transaction_test.dart',
-          )
-          def require(value, message):
-              if not value:
-                  raise ValueError(message)
-          def digest(path):
-              return hashlib.sha256(path.read_bytes()).hexdigest()
-          phase, exit_code = sys.argv[1], int(sys.argv[2])
-          require(phase in ('red', 'green', 'regressions'), 'Unknown profile evidence phase')
-          require(digest(TEST) == TEST_SHA, 'Identity test bytes changed')
-          require(digest(PROOF / 'identity-test.dart') == TEST_SHA, 'Preserved test bytes changed')
-          require(digest(STATE) == (ORIGINAL_SHA if phase == 'red' else CANDIDATE_SHA),
-                  'Active application source does not match the phase')
-          require(digest(PROOF / 'original-app_state.dart') == ORIGINAL_SHA, 'Original snapshot changed')
-          require(digest(PROOF / 'candidate-app_state.dart') == CANDIDATE_SHA, 'Candidate snapshot changed')
-          raw = (PROOF / (phase + '.jsonl')).read_bytes()
-          events = [json.loads(line) for line in raw.decode('utf-8').splitlines() if line.strip()]
-          require(events and all(type(event) is dict for event in events), 'Missing JSON reporter events')
-          done = [event for event in events if event.get('type') == 'done']
-          require(len(done) == 1 and events[-1] == done[0], 'Test runner did not complete')
-          starts = [event['test'] for event in events if event.get('type') == 'testStart']
-          finishes = [event for event in events if event.get('type') == 'testDone']
-          tests = {test['id']: test for test in starts}
-          require(len(tests) == len(starts), 'Duplicate test starts')
-          require(len(finishes) == len(tests) and
-                  {event['testID'] for event in finishes} == set(tests), 'Incomplete or duplicate test results')
-          require(all(event.get('skipped') is False and type(event.get('hidden')) is bool
-                      for event in finishes), 'Skipped or malformed test result')
-          require(all(event['result'] == 'success' for event in finishes if event['hidden']),
-                  'Loading, setup or teardown failed')
-          visible = [event for event in finishes if not event['hidden']]
-          names = [tests[event['testID']]['name'] for event in visible]
-          errors = [event for event in events if event.get('type') == 'error']
-          cases = [{'name': tests[event['testID']]['name'], 'result': event['result']} for event in visible]
-          if phase in ('red', 'green'):
-              require(len(names) == 3 and set(names) == set(CASES), 'Expected all three exact identity tests')
-              results = {tests[event['testID']]['name']: event['result'] for event in visible}
-              if phase == 'red':
-                  require(exit_code == 1 and done[0].get('success') is False, 'Original run was not completed RED')
-                  require(results == {CASES[0]: 'failure', CASES[1]: 'failure', CASES[2]: 'success'},
-                          'Original must fail only both attribution cases and pass local compatibility')
-                  expected_ids = {event['testID'] for event in visible
-                                  if tests[event['testID']]['name'] in CASES[:2]}
-                  require(len(errors) == 2 and {event.get('testID') for event in errors} == expected_ids,
-                          'Unexpected compiler, bootstrap, asynchronous or additional test error')
-                  for event in errors:
-                      require(event.get('isFailure') is True, 'Non-assertion error cannot prove RED')
-                      message = event.get('error', '')
-                      require(re.search(r"(?m)^Expected:\s*'student-a'\s*$", message) is not None and
-                              re.search(r"(?m)^\s*Actual:\s*'student-b'\s*$", message) is not None,
-                              'RED must be the exact student-a versus student-b attribution failure')
-                      require('app_state_student_identity_test.dart' in event.get('stackTrace', ''),
-                              'Attribution assertion must come from the unchanged regression test')
-              else:
-                  require(exit_code == 0 and done[0].get('success') is True and not errors and
-                          all(result == 'success' for result in results.values()),
-                          'Candidate must pass all three unchanged identity tests without errors')
-          else:
-              require(exit_code == 0 and done[0].get('success') is True and not errors and visible and
-                      all(event['result'] == 'success' for event in visible),
-                      'Existing regressions did not all pass without errors or skips')
-              suites = {event['suite']['id']: event['suite'] for event in events if event.get('type') == 'suite'}
-              paths = {Path(suites[tests[event['testID']]['suiteID']]['path']).resolve() for event in visible}
-              require(paths == {Path(name).resolve() for name in REGRESSIONS},
-                      'Every required storage, module, school and wallet suite must execute')
-          report = {
-              'status': 'EXPECTED_RED' if phase == 'red' else 'PASS',
-              'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
-              'test_sha256': digest(TEST), 'app_state_sha256': digest(STATE),
-              'exit_code': exit_code, 'visible_tests': len(visible), 'skipped': 0,
-              'json_reporter_sha256': hashlib.sha256(raw).hexdigest(),
-              'stderr_sha256': digest(PROOF / (phase + '-stderr.log')),
-              'cases': cases,
-          }
-          if phase == 'red':
-              report['errors'] = [{'test': tests[event['testID']]['name'], 'is_failure': event['isFailure'],
-                                   'error': event['error']} for event in errors]
-          (PROOF / (phase + '-verification.json')).write_text(json.dumps(report, indent=2) + '\n')
-          if phase == 'regressions':
-              red = json.loads((PROOF / 'red-verification.json').read_text())
-              green = json.loads((PROOF / 'green-verification.json').read_text())
-              require(red['status'] == 'EXPECTED_RED' and green['status'] == 'PASS', 'Missing RED/GREEN evidence')
-              require(red['test_sha256'] == green['test_sha256'] == TEST_SHA, 'Different tests cannot prove the repair')
-              require(red['source_commit'] == green['source_commit'] == report['source_commit'],
-                      'Evidence belongs to different candidate commits')
-              summary = {
-                  'status': 'PASS',
-                  'scope': 'Pending answer-log student attribution during progress load/save; existing unassigned attribution preserved',
-                  'flutter_source_commit': report['source_commit'],
-                  'original_commit': BASE, 'original_app_state_sha256': ORIGINAL_SHA,
-                  'candidate_app_state_sha256': CANDIDATE_SHA, 'unchanged_test_sha256': TEST_SHA,
-                  'red': red, 'green': green,
-                  'existing_regressions': {key: value for key, value in report.items() if key != 'cases'},
-                  'regression_source_sha256': {name: digest(Path(name)) for name in REGRESSIONS},
-              }
-              (PROOF / 'PROFILE-IDENTITY-EVIDENCE.json').write_text(json.dumps(summary, indent=2) + '\n')
-          print(f'[ProfileIdentity] {phase}: {report["status"]}, {len(visible)} visible tests, no skips')
+          import PIL
+          assert PIL.__version__ == '12.3.0'
+          assert shutil.which('tesseract') is not None, 'Declared screenshot OCR dependency is missing'
+          Path('proof/python-qa-capabilities.json').write_text(json.dumps({
+              'pillow': PIL.__version__,
+              'tesseract': shutil.which('tesseract'),
+              'optional_ocr_skip_reason': 'Actual screenshot OCR requires tesseract and Pillow',
+              'optional_ocr_skip_guards': 'Existing eight screenshot cases remain unchanged; actual skips are recorded by unittest -v.',
+          }, indent=2) + '\n')
           PYCODE
-          run_profile_phase() {
-            local lumo_profile_phase="$1"
-            shift
-            set +e
-            flutter test --no-pub --reporter=json --timeout=60s --concurrency=1 "$@" \
-              > "$lumo_profile_proof/$lumo_profile_phase.jsonl" \
-              2> "$lumo_profile_proof/$lumo_profile_phase-stderr.log"
-            local lumo_profile_status=$?
-            set -e
-            printf '%s\n' "$lumo_profile_status" > "$lumo_profile_proof/$lumo_profile_phase-exit-code.txt"
-            python3 "$lumo_profile_proof/verify-profile-events.py" "$lumo_profile_phase" "$lumo_profile_status"
-          }
-          cp "$lumo_profile_proof/original-app_state.dart" "$lumo_profile_state"
-          run_profile_phase red "$lumo_profile_test"
-          restore_profile_candidate
-          git diff --exit-code -- "$lumo_profile_state" "$lumo_profile_test"
-          sha256sum -c "$lumo_profile_proof/candidate-inputs.sha256"
-          run_profile_phase green "$lumo_profile_test"
-          run_profile_phase regressions \
-            test/progress_repository_storage_test.dart \
-            test/learning_modules/learning_module_progress_test.dart \
-            test/domain/school_model_test.dart \
-            test/domain/school_analysis_test.dart \
-            test/domain/learning_analysis_extended_test.dart \
-            test/reward_wallet_transaction_test.dart
-          sha256sum -c "$lumo_profile_proof/candidate-inputs.sha256"
-          git diff --exit-code -- "$lumo_profile_state" "$lumo_profile_test"
+      - name: Current profile isolation and exact historical attribution regressions
+        env:
+          LUMO_PROFILE_CAPTURES: ${{ github.workspace }}/proof/profile-identity/captures
+        run: |
+          set -euo pipefail
+          "$LUMO_QA_PYTHON" scripts/ci/run_profile_checks.py --out proof/profile-identity
       - name: Reproduce the late-storage launch regression on the preserved base
         run: |
           set -euo pipefail
@@ -319,27 +168,6 @@ jobs:
             echo 'App render files:'
             find proof/app-renders -maxdepth 1 -type f -name '*.png' -printf '%f\n' | sort
           } > proof/TEST-RESULTS.txt
-      - name: Install declared Python QA guard dependencies
-        run: |
-          set -euo pipefail
-          python3 -m venv "$RUNNER_TEMP/lumo-qa-guard-venv"
-          qa_python="$RUNNER_TEMP/lumo-qa-guard-venv/bin/python"
-          "$qa_python" -m pip install --disable-pip-version-check --only-binary=:all: Pillow==12.3.0
-          "$qa_python" -m pip freeze > proof/python-qa-dependencies.txt
-          printf 'LUMO_QA_PYTHON=%s\n' "$qa_python" >> "$GITHUB_ENV"
-          "$qa_python" - <<'PYCODE'
-          import json, shutil
-          from pathlib import Path
-          import PIL
-          assert PIL.__version__ == '12.3.0'
-          assert shutil.which('tesseract') is not None, 'Declared screenshot OCR dependency is missing'
-          Path('proof/python-qa-capabilities.json').write_text(json.dumps({
-              'pillow': PIL.__version__,
-              'tesseract': shutil.which('tesseract'),
-              'optional_ocr_skip_reason': 'Actual screenshot OCR requires tesseract and Pillow',
-              'optional_ocr_skip_guards': 'Existing eight screenshot cases remain unchanged; actual skips are recorded by unittest -v.',
-          }, indent=2) + '\n')
-          PYCODE
       - name: Backend, learning content and integration guards
         run: |
           set -euo pipefail
@@ -843,6 +671,8 @@ jobs:
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
           cp proof/TEST-RESULTS.txt dist/TEST-RESULTS.txt
           cp proof/profile-identity/PROFILE-IDENTITY-EVIDENCE.json dist/PROFILE-IDENTITY-EVIDENCE.json
+          cp -a proof/profile-identity/captures dist/profile-captures
+          cp proof/profile-identity/PROFILE-CAPTURE-EVIDENCE.json dist/profile-captures/PROFILE-CAPTURE-EVIDENCE.json
           cp -a "$LUMO_NATIVE_DIRECTORY/exports/character-review" dist/character-review
       - uses: actions/upload-artifact@v4
         if: success()
@@ -1012,14 +842,40 @@ jobs:
           assert provenance['tracked_source_clean'] is True
           profile_path = candidate / 'PROFILE-IDENTITY-EVIDENCE.json'
           profile = json.loads(profile_path.read_text())
+          assert profile['schema'] == 'lumo.profile-checks.v2'
           assert profile['status'] == 'PASS' and profile['flutter_source_commit'] == source
-          assert profile['candidate_app_state_sha256'] == hashlib.sha256(
-              Path('lib/app/app_state.dart').read_bytes()).hexdigest()
-          assert profile['unchanged_test_sha256'] == hashlib.sha256(
-              Path('test/app_state_student_identity_test.dart').read_bytes()).hexdigest()
-          assert profile['red']['status'] == 'EXPECTED_RED' and profile['red']['exit_code'] == 1
-          assert profile['red']['visible_tests'] == profile['green']['visible_tests'] == 3
-          assert profile['green']['status'] == profile['existing_regressions']['status'] == 'PASS'
+          current_profile = profile['current']
+          assert current_profile['source_commit'] == source and current_profile['status'] == 'PASS'
+          assert current_profile['exit_code'] == 0 and current_profile['skipped'] == 0
+          for name, expected in current_profile['input_sha256'].items():
+              assert hashlib.sha256(Path(name).read_bytes()).hexdigest() == expected, name
+          profile_capture_path = candidate / 'profile-captures/PROFILE-CAPTURE-EVIDENCE.json'
+          assert hashlib.sha256(profile_capture_path.read_bytes()).hexdigest() == profile['widget_capture_evidence_sha256']
+          profile_captures = json.loads(profile_capture_path.read_text())
+          assert profile_captures['status'] == 'PASS' and profile_captures['flutter_source_commit'] == source
+          assert profile_captures['test_path'] == 'test/design/legacy_learning_assignment_test.dart'
+          assert profile_captures['test_sha256'] == current_profile['input_sha256'][profile_captures['test_path']]
+          expected_profile_captures = {'legacy_parent_phone.png', 'legacy_parent_fold_confirm.png',
+                                       'legacy_parent_fold_assigned.png', 'legacy_parent_large_text.png'}
+          assert len(profile_captures['captures']) == 4
+          assert {frame['file'] for frame in profile_captures['captures']} == expected_profile_captures
+          for frame in profile_captures['captures']:
+              image = candidate / 'profile-captures' / frame['file']
+              assert image.stat().st_size == frame['bytes']
+              assert hashlib.sha256(image.read_bytes()).hexdigest() == frame['sha256']
+          historical_profile = profile['historical']
+          assert historical_profile['original_commit'] == 'ab21b2295ca5307bae5e07c0c8a01c3017ee91a3'
+          assert historical_profile['repaired_commit'] == 'd07b2b48593b939a2a0446fcb83a25a2b2a59db6'
+          assert historical_profile['red']['status'] == 'EXPECTED_RED'
+          assert historical_profile['red']['exit_code'] == 1
+          assert historical_profile['green']['status'] == 'PASS'
+          assert historical_profile['green']['exit_code'] == 0
+          assert historical_profile['red']['visible_tests'] == historical_profile['green']['visible_tests'] == 3
+          for phase in ('red', 'green'):
+              expected_commit = historical_profile['original_commit' if phase == 'red' else 'repaired_commit']
+              assert historical_profile[phase]['source_commit'] == expected_commit
+              assert historical_profile[phase]['input_sha256']['test/app_state_student_identity_test.dart'] == \
+                  historical_profile['unchanged_test_sha256']
           character = json.loads((candidate / 'character-review/CHARACTER-EVIDENCE.json').read_text())
           assert character['status'] == 'PASS'
           assert character['flutter_source_commit'] == source
@@ -1054,6 +910,7 @@ jobs:
               'status': 'PASS', 'apk_file': filename, 'apk_sha256': actual_sha,
               'flutter_source_commit': source, 'godot_source_commit': pin['revision'],
               'profile_identity_evidence_sha256': hashlib.sha256(profile_path.read_bytes()).hexdigest(),
+              'profile_widget_capture_evidence_sha256': hashlib.sha256(profile_capture_path.read_bytes()).hexdigest(),
               'workflow_run': f"{os.environ['GITHUB_SERVER_URL']}/{repository}/actions/runs/{run_id}",
               'verified_jobs': [{'name': job['name'], 'job_id': job['id'],
                                  'url': job['html_url'], 'conclusion': job['conclusion']}

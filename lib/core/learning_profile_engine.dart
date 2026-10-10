@@ -39,6 +39,11 @@ class LearningProfileEngine {
   Map<String, int> _daily = {};
   Map<String, String> _lastTopics = {};
   bool _loaded = false;
+  Future<void>? _loading;
+  bool _dirty = false;
+
+  Future<String> get studentId => _repo.studentId;
+  bool get hasUnsavedChanges => _dirty;
   Future<void> _saveTail = Future<void>.value();
 
   bool get isLoaded => _loaded;
@@ -47,11 +52,23 @@ class LearningProfileEngine {
   Map<String, String> get lastTopics => Map.unmodifiable(_lastTopics);
 
   /// Lädt alle Daten aus dem lokalen Speicher.
-  Future<void> load() async {
-    _skills = await _repo.loadSkills();
-    _daily = await _repo.loadDaily();
-    _lastTopics = await _repo.loadLastTopics();
-    _loaded = true;
+  Future<void> load() {
+    if (_loaded) return Future<void>.value();
+    return _loading ??= _load();
+  }
+
+  Future<void> _load() async {
+    try {
+      final skills = await _repo.loadSkills();
+      final daily = await _repo.loadDaily();
+      final lastTopics = await _repo.loadLastTopics();
+      _skills = skills;
+      _daily = daily;
+      _lastTopics = lastTopics;
+      _loaded = true;
+    } finally {
+      _loading = null;
+    }
   }
 
   /// Erfasst eine beantwortete Aufgabe und schreibt sofort weg.
@@ -62,6 +79,7 @@ class LearningProfileEngine {
     required bool isCorrect,
     bool hintUsed = false,
   }) async {
+    await load();
     final id = SkillRecord.makeId(subject, unit);
     final existing =
         _skills[id] ?? SkillRecord(skillId: id, subject: subject, unit: unit);
@@ -89,6 +107,7 @@ class LearningProfileEngine {
       _daily[today] = (_daily[today] ?? 0) + 1;
     }
 
+    _dirty = true;
     await _persist();
     return existing;
   }
@@ -136,10 +155,16 @@ class LearningProfileEngine {
 
   /// Setzt alle Lerndaten zurück. Vorher ausdrücklich bestätigen lassen.
   Future<void> reset() async {
+    if (_loading != null) await _loading;
+    try {
+      await _saveTail;
+    } catch (_) {}
     await _repo.resetAll();
     _skills = {};
     _daily = {};
     _lastTopics = {};
+    _dirty = false;
+    _loaded = true;
   }
 
   // ── interne helpers ───────────────────────────────────────
@@ -150,6 +175,7 @@ class LearningProfileEngine {
       await _repo.saveSkills(_skills);
       await _repo.saveDaily(_daily);
       await _repo.saveLastTopics(_lastTopics);
+      _dirty = false;
     }
 
     // A failed write remains visible to its caller but does not poison retry.
