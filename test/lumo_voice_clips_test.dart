@@ -65,6 +65,13 @@ void main() {
         envelope: [0, .5, 1, .5, 0, 0, .7, .2, 0, 0, 0, 0],
         fps: 20,
       ),
+      LumoVoiceClips.keyFor('Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!'): const LumoVoiceClip(
+        id: 'c3034465f7dd',
+        text: 'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!',
+        duration: Duration(milliseconds: 6379),
+        envelope: [0, .5, 1, .7, .5, .2, 0],
+        fps: 20,
+      ),
     });
     LumoVoice.instance
       ..clipsEnabled = true
@@ -133,6 +140,27 @@ void main() {
     await LumoVoice.instance.speak('7 plus 8 ist fünfzehn');
     expect(ttsSpoken.single, contains('fünfzehn'));
     expect(playerCalls, isNot(contains('resume')));
+  });
+
+  test('Eltern-Stimmprobe verwendet die originale Lumo-Stimme', () async {
+    final voice = LumoVoice.instance;
+    await voice.configure(enabled: true, rate: 0.50, pitch: 1.15);
+    await voice.test();
+    expect(ttsSpoken, isEmpty, reason: 'Lumo-Stimmprobe nicht durch TTS ersetzen');
+    expect(playerCalls, contains('resume'), reason: 'Originalaufnahme erwartet');
+    expect(voice.status.value, VoiceStatus.speaking);
+    await voice.stop();
+    await voice.configure(rate: 0.35, pitch: 1.0);
+  });
+
+  test('allen Modulen stehen unterschiedliche emotionale Sprechweisen zur Verfuegung', () {
+    expect(LumoVoice.suggestedStyle('Super!'), VoiceStyle.celebrate);
+    expect(LumoVoice.suggestedStyle('Fast! Schau nochmal.'), VoiceStyle.comfort);
+    expect(LumoVoice.suggestedStyle('Hallo!'), VoiceStyle.greeting);
+    expect(LumoVoice.suggestedStyle('Wie viele sind das?'), VoiceStyle.question);
+    expect(LumoVoice.suggestedStyle('Schau mal so:'), VoiceStyle.explain);
+    expect(LumoVoice.suggestedStyle('Drei plus vier ist sieben.'),
+        VoiceStyle.warm);
   });
 
   test('stumm geschaltet spricht weder Clip noch Synthese', () async {

@@ -46,7 +46,11 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Collapse only the decorative hero while the Android keyboard is open.
+    // Preserve the live editable name TextField during IME resize.
+    final keyboardVisible = MediaQuery.viewInsetsOf(context).bottom > 0;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xFF031229),
       body: Stack(
         fit: StackFit.expand,
@@ -75,25 +79,31 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
                               child: wide
                                   ? Row(
                                       children: [
-                                        Expanded(
-                                            flex: 5, child: _Hero(step: _step)),
-                                        const SizedBox(width: 16),
+                                        SizedBox(
+                                            width: keyboardVisible ? 0 : c.maxWidth * 0.42,
+                                            child: keyboardVisible
+                                                ? const SizedBox.shrink()
+                                                : _Hero(step: _step),
+                                        ),
+                                        SizedBox(width: keyboardVisible ? 0 : 16),
                                         Expanded(
                                           flex: 6,
-                                          child: c.maxHeight < 620
-                                              ? SingleChildScrollView(
-                                                  child: _stepBody(),
-                                                )
-                                              : _stepBody(),
+                                          child: SingleChildScrollView(
+                                            // Stable widget ancestry keeps text focus as IME opens.
+                                            child: _stepBody(),
+                                          ),
                                         ),
                                       ],
                                     )
                                   : Column(
                                       children: [
                                         SizedBox(
-                                          height: c.maxHeight < 700 ? 150 : 190,
-                                          child:
-                                              _Hero(step: _step, compact: true),
+                                          height: keyboardVisible
+                                              ? 0
+                                              : (c.maxHeight < 700 ? 150 : 190),
+                                          child: keyboardVisible
+                                              ? const SizedBox.shrink()
+                                              : _Hero(step: _step, compact: true),
                                         ),
                                         const SizedBox(height: 10),
                                         Expanded(
@@ -171,7 +181,13 @@ class _LumoOnboardingScreenState extends State<LumoOnboardingScreen> {
               ),
               const SizedBox(height: 14),
               TextField(
+                key: const ValueKey('lumo-onboarding-name-input'),
                 controller: _name,
+                enabled: true,
+                readOnly: false,
+                keyboardType: TextInputType.name,
+                textCapitalization: TextCapitalization.words,
+                scrollPadding: const EdgeInsets.all(32),
                 textInputAction: TextInputAction.done,
                 style: const TextStyle(
                   fontFamily: 'Nunito',

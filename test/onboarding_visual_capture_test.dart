@@ -97,4 +97,52 @@ void main() {
       await _capture(tester, key, entry.$2);
     }
   });
+
+  // Real editable input, not just a screenshot of the name page.
+  // Simulates Samsung keyboard occupying the bottom of the Fold/phone.
+  for (final size in <Size>[
+    const Size(320, 568),
+    const Size(360, 800),
+    const Size(840, 560),
+  ]) {
+    testWidgets('name input keeps keyboard focus at ${size.width}x${size.height}',
+        (tester) async {
+      addTearDown(() async {
+        tester.view.resetViewInsets();
+        await tester.binding.setSurfaceSize(null);
+      });
+      await _pumpOnboarding(tester, size);
+      await _tapText(tester, "Los geht's!");
+      final nameField = find.byKey(const ValueKey('lumo-onboarding-name-input'));
+      expect(nameField, findsOneWidget);
+      await tester.ensureVisible(nameField);
+      await tester.tap(nameField);
+      await tester.pump();
+      expect(
+        tester.widget<EditableText>(find.byType(EditableText)).focusNode.hasFocus,
+        isTrue,
+        reason: 'Keyboard must focus the editable name field',
+      );
+
+      tester.view.viewInsets = FakeViewPadding(bottom: 280);
+      await tester.pump(const Duration(milliseconds: 350));
+      expect(nameField, findsOneWidget);
+      expect(
+        tester.widget<EditableText>(find.byType(EditableText)).focusNode.hasFocus,
+        isTrue,
+        reason: 'Focus must survive the Android keyboard resizing the screen',
+      );
+      await tester.enterText(nameField, 'Mia');
+      await tester.pump();
+      expect(find.text('Mia'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+
+      tester.view.resetViewInsets();
+      await tester.pump(const Duration(milliseconds: 320));
+      await _tapText(tester, 'Weiter');
+      expect(find.text('Wie alt bist du?'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
 }

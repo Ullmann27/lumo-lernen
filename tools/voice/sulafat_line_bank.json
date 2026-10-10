@@ -1,0 +1,404 @@
+{
+  "version": 1,
+  "voice_id": "lumo-warm-sulafat",
+  "voice_generation": "Gemini TTS / Sulafat",
+  "purpose": "Offline spoken lines in the existing original Lumo vocal identity; no child data or runtime network calls",
+  "production_note": "For every line produce clip-<id>.mp3 with the SAME speaker identity. Use warm, natural child-friendly German. Match the communication intent (celebrate/comfort/explain/question/game/reading/writing/onboarding) without exaggeration; check exact words, articulation and audio level before import.",
+  "lines": [
+    {
+      "id": "celebrate-01",
+      "style": "celebrate",
+      "text": "Super!"
+    },
+    {
+      "id": "celebrate-02",
+      "style": "celebrate",
+      "text": "Toll gemacht!"
+    },
+    {
+      "id": "celebrate-03",
+      "style": "celebrate",
+      "text": "Genau richtig!"
+    },
+    {
+      "id": "celebrate-04",
+      "style": "celebrate",
+      "text": "Wow, du bist gut!"
+    },
+    {
+      "id": "celebrate-05",
+      "style": "celebrate",
+      "text": "Bravo!"
+    },
+    {
+      "id": "celebrate-06",
+      "style": "celebrate",
+      "text": "Klasse!"
+    },
+    {
+      "id": "celebrate-07",
+      "style": "celebrate",
+      "text": "Stark!"
+    },
+    {
+      "id": "celebrate-08",
+      "style": "celebrate",
+      "text": "Genial!"
+    },
+    {
+      "id": "celebrate-09",
+      "style": "celebrate",
+      "text": "Perfekt!"
+    },
+    {
+      "id": "celebrate-10",
+      "style": "celebrate",
+      "text": "Wahnsinn, weiter so!"
+    },
+    {
+      "id": "celebrate-11",
+      "style": "celebrate",
+      "text": "Ich bin stolz auf dich!"
+    },
+    {
+      "id": "celebrate-12",
+      "style": "celebrate",
+      "text": "Voll richtig!"
+    },
+    {
+      "id": "celebrate-13",
+      "style": "celebrate",
+      "text": "Mega! Du hast es geschafft!"
+    },
+    {
+      "id": "celebrate-14",
+      "style": "celebrate",
+      "text": "Wow, was für eine Leistung!"
+    },
+    {
+      "id": "celebrate-15",
+      "style": "celebrate",
+      "text": "Du bist ein Lern-Profi!"
+    },
+    {
+      "id": "celebrate-16",
+      "style": "celebrate",
+      "text": "Hammer! Geht doch!"
+    },
+    {
+      "id": "celebrate-17",
+      "style": "celebrate",
+      "text": "Spitze, weiter so!"
+    },
+    {
+      "id": "comfort-01",
+      "style": "comfort",
+      "text": "Fast! Schau nochmal."
+    },
+    {
+      "id": "comfort-02",
+      "style": "comfort",
+      "text": "Knapp daneben, versuchen wir es nochmal!"
+    },
+    {
+      "id": "comfort-03",
+      "style": "comfort",
+      "text": "Hmm, nochmal probieren?"
+    },
+    {
+      "id": "comfort-04",
+      "style": "comfort",
+      "text": "Das war fast richtig. Probier nochmal!"
+    },
+    {
+      "id": "comfort-05",
+      "style": "comfort",
+      "text": "Kein Problem, wir schaffen das zusammen."
+    },
+    {
+      "id": "comfort-06",
+      "style": "comfort",
+      "text": "Nicht ganz - aber du bist nah dran!"
+    },
+    {
+      "id": "comfort-07",
+      "style": "comfort",
+      "text": "Schau noch einmal genau hin."
+    },
+    {
+      "id": "comfort-08",
+      "style": "comfort",
+      "text": "Kein Problem - jeder fängt mal an."
+    },
+    {
+      "id": "comfort-09",
+      "style": "comfort",
+      "text": "Das war schwierig. Versuchen wir es einfacher."
+    },
+    {
+      "id": "comfort-10",
+      "style": "comfort",
+      "text": "Wir lernen zusammen. Kein Stress."
+    },
+    {
+      "id": "comfort-11",
+      "style": "comfort",
+      "text": "Du wirst das bald können!"
+    },
+    {
+      "id": "comfort-12",
+      "style": "comfort",
+      "text": "Ruhig - wir machen einen kleinen Schritt."
+    },
+    {
+      "id": "explain-01",
+      "style": "explain",
+      "text": "Hier ist ein kleiner Tipp:"
+    },
+    {
+      "id": "explain-02",
+      "style": "explain",
+      "text": "Lass mich dir helfen:"
+    },
+    {
+      "id": "explain-03",
+      "style": "explain",
+      "text": "Schau mal so:"
+    },
+    {
+      "id": "explain-04",
+      "style": "explain",
+      "text": "Probier es so:"
+    },
+    {
+      "id": "explain-05",
+      "style": "explain",
+      "text": "Tipp:"
+    },
+    {
+      "id": "explain-06",
+      "style": "explain",
+      "text": "Schau dir die Aufgabe noch einmal an."
+    },
+    {
+      "id": "explain-07",
+      "style": "explain",
+      "text": "Wir zerlegen das in kleine Schritte."
+    },
+    {
+      "id": "explain-08",
+      "style": "explain",
+      "text": "Hör genau hin. Welchen Laut hörst du am Anfang?"
+    },
+    {
+      "id": "explain-09",
+      "style": "explain",
+      "text": "Lass uns die Zehn zuerst voll machen."
+    },
+    {
+      "id": "explain-10",
+      "style": "explain",
+      "text": "Zähl die Punkte einmal langsam ab."
+    },
+    {
+      "id": "explain-11",
+      "style": "explain",
+      "text": "Lies erst den ganzen Satz, dann das Wort."
+    },
+    {
+      "id": "explain-12",
+      "style": "explain",
+      "text": "Wie wäre es, wenn du zuerst die Einer zählst?"
+    },
+    {
+      "id": "explain-13",
+      "style": "explain",
+      "text": "Schau auf die Buchstaben, nicht nur auf das Bild."
+    },
+    {
+      "id": "greeting-01",
+      "style": "greeting",
+      "text": "Hi! Lass uns gemeinsam üben!"
+    },
+    {
+      "id": "greeting-02",
+      "style": "greeting",
+      "text": "Hallo! Heute lernen wir etwas Tolles."
+    },
+    {
+      "id": "greeting-03",
+      "style": "greeting",
+      "text": "Schön dich zu sehen! Bereit?"
+    },
+    {
+      "id": "greeting-04",
+      "style": "greeting",
+      "text": "Komm, wir machen das zusammen!"
+    },
+    {
+      "id": "greeting-05",
+      "style": "greeting",
+      "text": "Auf gehts! Du schaffst das."
+    },
+    {
+      "id": "greeting-06",
+      "style": "greeting",
+      "text": "Willkommen zurück in unserer Lernwelt!"
+    },
+    {
+      "id": "greeting-07",
+      "style": "greeting",
+      "text": "Na, Lust auf eine neue Entdeckung?"
+    },
+    {
+      "id": "question-01",
+      "style": "question",
+      "text": "Wie möchtest du heute anfangen?"
+    },
+    {
+      "id": "question-02",
+      "style": "question",
+      "text": "Willst du einen kleinen Tipp?"
+    },
+    {
+      "id": "question-03",
+      "style": "question",
+      "text": "Sollen wir es zusammen versuchen?"
+    },
+    {
+      "id": "question-04",
+      "style": "question",
+      "text": "Möchtest du die Aufgabe noch einmal hören?"
+    },
+    {
+      "id": "question-05",
+      "style": "question",
+      "text": "Bist du bereit für die nächste Aufgabe?"
+    },
+    {
+      "id": "question-06",
+      "style": "question",
+      "text": "Was glaubst du, welche Antwort passt?"
+    },
+    {
+      "id": "game-01",
+      "style": "game",
+      "text": "Lumo Kart startet! Bereit für die Rennstrecke?"
+    },
+    {
+      "id": "game-02",
+      "style": "game",
+      "text": "Drei, zwei, eins! Los geht's!"
+    },
+    {
+      "id": "game-03",
+      "style": "game",
+      "text": "Kurve voraus! Jetzt gut lenken!"
+    },
+    {
+      "id": "game-04",
+      "style": "game",
+      "text": "Toller Drift!"
+    },
+    {
+      "id": "game-05",
+      "style": "game",
+      "text": "Du hast einen Turbo eingesammelt!"
+    },
+    {
+      "id": "game-06",
+      "style": "game",
+      "text": "Wow, was für ein Sprung!"
+    },
+    {
+      "id": "game-07",
+      "style": "game",
+      "text": "Vorsicht, eine Überraschung auf der Strecke!"
+    },
+    {
+      "id": "game-08",
+      "style": "game",
+      "text": "Zielgerade! Gib alles!"
+    },
+    {
+      "id": "game-09",
+      "style": "game",
+      "text": "Super Rennen! Du hast toll durchgehalten!"
+    },
+    {
+      "id": "game-10",
+      "style": "game",
+      "text": "Vier gewinnt! Du spielst mit Cyan, Lumo mit Gold. Du fängst an!"
+    },
+    {
+      "id": "game-11",
+      "style": "game",
+      "text": "Du bist dran! Schau mal, wo dein Stein am besten passt."
+    },
+    {
+      "id": "reading-01",
+      "style": "reading",
+      "text": "Lies das Wort in deinem Tempo."
+    },
+    {
+      "id": "reading-02",
+      "style": "reading",
+      "text": "Probier zuerst die erste Silbe."
+    },
+    {
+      "id": "reading-03",
+      "style": "reading",
+      "text": "Klasse, du hast den Satz richtig gelesen!"
+    },
+    {
+      "id": "reading-04",
+      "style": "reading",
+      "text": "Sollen wir den Satz gemeinsam lesen?"
+    },
+    {
+      "id": "reading-05",
+      "style": "reading",
+      "text": "Hör dir den Satz einmal genau an."
+    },
+    {
+      "id": "writing-01",
+      "style": "writing",
+      "text": "Fang oben an und zeichne den Buchstaben."
+    },
+    {
+      "id": "writing-02",
+      "style": "writing",
+      "text": "Schau auf den Anfang vom Wort."
+    },
+    {
+      "id": "writing-03",
+      "style": "writing",
+      "text": "Beim Schreiben nehmen wir uns Zeit."
+    },
+    {
+      "id": "writing-04",
+      "style": "writing",
+      "text": "Das war schon ganz nah dran."
+    },
+    {
+      "id": "onboarding-01",
+      "style": "onboarding",
+      "text": "Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!"
+    },
+    {
+      "id": "onboarding-02",
+      "style": "onboarding",
+      "text": "Wie darf ich dich nennen?"
+    },
+    {
+      "id": "onboarding-03",
+      "style": "onboarding",
+      "text": "Wie alt bist du?"
+    },
+    {
+      "id": "onboarding-04",
+      "style": "onboarding",
+      "text": "Ich freue mich darauf, mit dir zu lernen!"
+    }
+  ]
+}
