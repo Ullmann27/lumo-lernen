@@ -33,6 +33,33 @@ Future<LumoAppState> setupGame(WidgetTester tester,
 }
 
 void main() {
+  testWidgets('tapping the board selects its column and locks repeated taps',
+      (tester) async {
+    final app = await setupGame(tester);
+    await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
+    await tester.pump();
+    await tester.tap(find.byKey(const ValueKey('connect-cell-0-4')));
+    await tester.pump();
+    await tester.tap(find.byKey(const ValueKey('connect-cell-0-2')));
+    await tester.pump();
+    expect(pieces(tester, 'child'), 1);
+    expect(pieces(tester, 'lumo'), 0);
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-4')))
+            .properties
+            .label,
+        endsWith(': child'));
+    await tester.pump(const Duration(milliseconds: 400));
+    await tester.tap(find.byKey(const ValueKey('connect-cell-0-2')));
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(pieces(tester, 'child'), 1);
+    expect(pieces(tester, 'lumo'), 1);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+    app.dispose();
+  });
+
   testWidgets('double taps are locked and paused bot never advances',
       (tester) async {
     final app = await setupGame(tester);

@@ -61,6 +61,10 @@ BuildContext nach asynchronen Operationen.
 Die Begleitfigur richtet sich im Querformat nach den tatsächlich verfügbaren
 Panel-Grenzen, nicht nach einer möglicherweise größeren MediaQuery-Fläche.
 Die Layout-Regression prüft den vollständigen Fuchs oberhalb der Steuerung.
+Brett und Einwurfsteuerung verwenden denselben gemessenen Bereich; alle
+sieben Button-Mittelpunkte werden auf Übereinstimmung mit ihren Spalten
+geprüft. Die ganze Brettspalte ist zusätzlich direkt antippbar, mit derselben
+Zug-/Animationssperre wie die Buttons.
 
 ## Prüfbefehle
 

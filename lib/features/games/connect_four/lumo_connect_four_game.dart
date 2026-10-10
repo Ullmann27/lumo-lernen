@@ -257,20 +257,19 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                           horizontal: wide ? 20 : 12, vertical: 8),
                       child: wide
                           ? Row(children: [
-                              Expanded(flex: 3, child: _board()),
+                              Expanded(flex: 3, child: _playArea()),
                               const SizedBox(width: 20),
                               Expanded(flex: 2, child: _companion(wide: true)),
                             ])
                           : Column(children: [
                               _turnLabel(),
                               const SizedBox(height: 12),
-                              Expanded(child: _board()),
+                              Expanded(child: _playArea()),
                               const SizedBox(height: 8),
                               _companion(wide: false),
                             ]),
                     ),
                   ),
-                  _columnControls(),
                   const SizedBox(height: 8),
                 ]);
               }),
@@ -408,11 +407,23 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     ]);
   }
 
-  Widget _columnControls() => Center(
+  Widget _playArea() => LayoutBuilder(builder: (context, constraints) {
+        final availableHeight = math.max(0.0, constraints.maxHeight - 56);
+        final width = math.min(constraints.maxWidth, availableHeight * 7 / 6);
+        return Center(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            SizedBox(width: width, height: width * 6 / 7, child: _board()),
+            const SizedBox(height: 8),
+            SizedBox(width: width, child: _columnControls(maxWidth: width)),
+          ]),
+        );
+      });
+
+  Widget _columnControls({double maxWidth = 560}) => Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 560),
+          constraints: BoxConstraints(maxWidth: maxWidth),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(children: [
               for (var c = 0; c < ConnectFourEngine.columns; c++)
                 Expanded(
@@ -473,45 +484,54 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                 final w = constraints.maxWidth / 7;
                 final h = constraints.maxHeight / 6;
                 final diameter = math.min(w, h) * .80;
-                return Stack(clipBehavior: Clip.none, children: [
-                  for (var r = 0; r < 6; r++)
-                    for (var c = 0; c < 7; c++)
-                      Positioned(
-                        left: c * w + (w - diameter) / 2,
-                        top: r * h + (h - diameter) / 2,
-                        width: diameter,
-                        height: diameter,
-                        child: Semantics(
-                          label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
-                              '${_game.at(r, c).name}',
-                          child: _disc(
-                            _fallPosition == (row: r, column: c)
-                                ? ConnectPiece.empty
-                                : _game.at(r, c),
-                            winner:
-                                _game.winningLine.contains((row: r, column: c)),
-                          ),
-                        ),
-                      ),
-                  if (_fallPosition case final position?)
-                    AnimatedBuilder(
-                      animation: _fall,
-                      builder: (context, _) {
-                        final progress =
-                            Curves.bounceOut.transform(_fall.value.clamp(0, 1));
-                        final top = -diameter +
-                            (position.row * h + (h - diameter) / 2 + diameter) *
-                                progress;
-                        return Positioned(
-                          left: position.column * w + (w - diameter) / 2,
-                          top: top,
+                return GestureDetector(
+                  key: const ValueKey('connect-board-tap-area'),
+                  behavior: HitTestBehavior.opaque,
+                  onTapUp: (details) =>
+                      _tapColumn((details.localPosition.dx / w).floor()),
+                  child: Stack(clipBehavior: Clip.none, children: [
+                    for (var r = 0; r < 6; r++)
+                      for (var c = 0; c < 7; c++)
+                        Positioned(
+                          left: c * w + (w - diameter) / 2,
+                          top: r * h + (h - diameter) / 2,
                           width: diameter,
                           height: diameter,
-                          child: _disc(_fallPiece),
-                        );
-                      },
-                    ),
-                ]);
+                          child: Semantics(
+                            key: ValueKey('connect-cell-$r-$c'),
+                            label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
+                                '${_game.at(r, c).name}',
+                            child: _disc(
+                              _fallPosition == (row: r, column: c)
+                                  ? ConnectPiece.empty
+                                  : _game.at(r, c),
+                              winner: _game.winningLine
+                                  .contains((row: r, column: c)),
+                            ),
+                          ),
+                        ),
+                    if (_fallPosition case final position?)
+                      AnimatedBuilder(
+                        animation: _fall,
+                        builder: (context, _) {
+                          final progress = Curves.bounceOut
+                              .transform(_fall.value.clamp(0, 1));
+                          final top = -diameter +
+                              (position.row * h +
+                                      (h - diameter) / 2 +
+                                      diameter) *
+                                  progress;
+                          return Positioned(
+                            left: position.column * w + (w - diameter) / 2,
+                            top: top,
+                            width: diameter,
+                            height: diameter,
+                            child: _disc(_fallPiece),
+                          );
+                        },
+                      ),
+                  ]),
+                );
               }),
             ),
           ),

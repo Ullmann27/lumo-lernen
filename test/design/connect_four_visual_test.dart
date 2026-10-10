@@ -72,6 +72,14 @@ void main() {
         expect(fox.bottom, lessThanOrEqualTo(controls.top),
             reason: 'The complete mascot must fit above the game controls.');
       }
+      for (var column = 0; column < 7; column++) {
+        final cell =
+            tester.getRect(find.byKey(ValueKey('connect-cell-5-$column')));
+        final control =
+            tester.getRect(find.byKey(ValueKey('connect-column-$column')));
+        expect(control.center.dx, closeTo(cell.center.dx, 1),
+            reason: 'Each drop button must align with its board column.');
+      }
       final folder = Platform.environment['LUMO_CONNECT_CAPTURES'];
       if (folder != null) {
         final boundary =
