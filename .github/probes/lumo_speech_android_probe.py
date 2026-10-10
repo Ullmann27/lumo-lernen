@@ -72,11 +72,17 @@ def parents(out):
         if any(label == value or label in value.split("\n")
                for n in nodes for value in (n.get("text", ""), n.get("content-desc", ""))):
             existing.flutter_tap(out, label, "parents-direct")
-            return
+            return "direct_observed_control"
     # Actual 360dp bottom navigation from run38071976928 has Profil, not Eltern.
     # Do not press Back repeatedly: that exits Lumo instead of opening settings.
-    existing.flutter_tap(out, "Profil", "parents-profile")
-    existing.flutter_tap(out, "Profil\nbearbeiten", "parents-profile-edit")
+    # The next real run also showed Profile's edit text merged into the
+    # non-actionable whole-card node. Do not tap that card's guessed midpoint.
+    # Use the existing full sidebar, then test voice controls in cover layout.
+    existing.base.display(1200, 1600, 160)
+    existing.flutter_tap(out, "Mehr", "parents-wide-more")
+    existing.flutter_tap(out, "Eltern", "parents-wide")
+    existing.base.display(360, 800, 160)
+    return "existing_wide_sidebar_then_cover_voice_controls"
 
 
 def main():
@@ -136,7 +142,7 @@ def main():
         result["update_retained"] = {"profile": True, "wallet": True,
             "package_uid": True, "first_install_time": True}
         existing.capture(out, "00_candidate_after_in_place_update")
-        parents(out)
+        result["parent_navigation"] = parents(out)
         existing.flutter_tap(out, "App und Sprachserver prüfen", "diagnose")
         time.sleep(8)
         text = read_in_scroll(out, "diagnosis-result",
