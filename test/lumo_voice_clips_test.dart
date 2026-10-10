@@ -65,6 +65,13 @@ void main() {
         envelope: [0, .5, 1, .5, 0, 0, .7, .2, 0, 0, 0, 0],
         fps: 20,
       ),
+      LumoVoiceClips.keyFor('Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!'): const LumoVoiceClip(
+        id: 'c3034465f7dd',
+        text: 'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!',
+        duration: Duration(milliseconds: 6379),
+        envelope: [0, .5, 1, .7, .5, .2, 0],
+        fps: 20,
+      ),
     });
     LumoVoice.instance
       ..clipsEnabled = true
@@ -135,20 +142,14 @@ void main() {
     expect(playerCalls, isNot(contains('resume')));
   });
 
-  test('parents voice preview and normal lessons use the same native TTS', () async {
+  test('Eltern-Stimmprobe verwendet die originale Lumo-Stimme', () async {
     final voice = LumoVoice.instance;
-    // The legacy clip catalog contains this exact utterance. The regular
-    // app must nevertheless honour the pitch/tempo from parents settings.
-    voice.clipsEnabled = false;
     await voice.configure(enabled: true, rate: 0.50, pitch: 1.15);
-    await voice.speak('Super!');
-    expect(ttsSpoken.single, contains('Super!'));
-    expect(playerCalls, isNot(contains('resume')),
-        reason: 'Recorded voice cannot override chosen TTS');
-    ttsSpoken.clear();
     await voice.test();
-    expect(ttsSpoken.single, contains('Ich bin Lumo'));
-    expect(playerCalls, isNot(contains('resume')));
+    expect(ttsSpoken, isEmpty, reason: 'Lumo-Stimmprobe nicht durch TTS ersetzen');
+    expect(playerCalls, contains('resume'), reason: 'Originalaufnahme erwartet');
+    expect(voice.status.value, VoiceStatus.speaking);
+    await voice.stop();
     await voice.configure(rate: 0.35, pitch: 1.0);
   });
 
