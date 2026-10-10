@@ -24,7 +24,7 @@ Stand: 10.10.2026 · Vorgabe des Auftraggebers. Gilt für Flutter-App, Godot, Lu
 | `50288.png` | Kart-Erlebnis einschließlich Strecken-, Renn-, Werkstatt-, Ergebnis- und Introansichten. |
 | `50502.png` | Test- und Kategorieauswahl der Lern-App. |
 
-**Wichtig:** Diese Uploads sind bislang nicht als Binärbilder Bestandteil dieses GitHub-Commits. Andere Agenten erhalten das Referenz-ZIP zusätzlich. Keine Behauptung über Upload oder Pixelgleichheit ohne Quellprüfung.
+**Stand nach dem geprüften GitHub-Import:** Alle zehn Originalbilder liegen unverändert unter `docs/design/2026-10-10-lumo-games/references/`; jede Datei wurde im CI-Lauf 38045270201 mit `references/SHA256SUMS` gegen das originale Chat-Attachment geprüft. Die Bilder sind Referenzen, keine Behauptung über vorhandene Pixelidentität der App-Runtime.
 
 ## Verbindliche Designelemente
 
