@@ -24,6 +24,7 @@ const _boundary = ValueKey('lumo-app-tour');
 const sizes = <String, Size>{
   'phone': Size(412, 915),
   'fold': Size(690, 829),
+  'reference-phone': Size(360, 800),
 };
 const sections = <LumoSection>[
   LumoSection.home,
@@ -77,7 +78,10 @@ void main() {
     final render =
         tester.renderObject<RenderRepaintBoundary>(find.byKey(_boundary));
     await tester.runAsync(() async {
-      final image = await render.toImage(pixelRatio: 2);
+      final image = await render.toImage(
+        pixelRatio:
+            double.parse(Platform.environment['LUMO_TOUR_CAPTURE_SCALE'] ?? '2'),
+      );
       final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
       final file = File('$_out/$name.png');
       await file.parent.create(recursive: true);

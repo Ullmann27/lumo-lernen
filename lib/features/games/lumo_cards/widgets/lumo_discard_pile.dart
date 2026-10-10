@@ -94,12 +94,12 @@ class LumoDiscardPile extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(
-              _labelOf(selectedColor),
+              selectedColor.displayName,
               style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 12,
                 fontWeight: FontWeight.w900,
-                color: Color(0xFF7C2D12),
+                color: Color(0xFFF3F8FF),
               ),
             ),
           ],
@@ -121,16 +121,4 @@ class LumoDiscardPile extends StatelessWidget {
     }
   }
 
-  static String _labelOf(LumoCardColor c) {
-    switch (c) {
-      case LumoCardColor.orange:
-        return 'Orange';
-      case LumoCardColor.purple:
-        return 'Lila';
-      case LumoCardColor.blue:
-        return 'Blau';
-      case LumoCardColor.green:
-        return 'Grün';
-    }
-  }
 }

@@ -10,6 +10,17 @@
 /// Die vier Lumo-Kartenfarben.
 enum LumoCardColor { orange, purple, blue, green }
 
+/// Visible names match the existing card artwork. Keep historical enum names
+/// and ordering stable: they are domain/save identifiers, not display labels.
+extension LumoCardColorDisplay on LumoCardColor {
+  String get displayName => switch (this) {
+        LumoCardColor.orange => 'Rot',
+        LumoCardColor.purple => 'Gelb',
+        LumoCardColor.blue => 'Blau',
+        LumoCardColor.green => 'Grün',
+      };
+}
+
 /// Kartentypen. `number` hat eine Zahl, alle anderen sind Spezialkarten.
 enum LumoCardType {
   number,
