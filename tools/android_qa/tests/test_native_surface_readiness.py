@@ -279,10 +279,34 @@ class NativeSurfaceReadinessTests(unittest.TestCase):
                     {'text': 'Weiter', 'bounds': [80, 30, 100, 40], 'variant': 'tile'}]) as tiles:
             result = probe.image_lines(self.out, 'fallback-exact', 'weiter',
                                        source_path=self.full, exact=True)
-        self.assertEqual(reader.call_count, 4)
+        self.assertEqual(reader.call_count, 5)
         tiles.assert_called_once()
         self.assertEqual(tiles.call_args.args[0], self.full)
         self.assertTrue(any(line['text'] == 'Weiter' for line in result))
+
+    def test_navy_read_keeps_original_frame_and_requires_observed_exact_word(self):
+        probe = self.load_probe()
+        original = self.full.read_bytes()
+        header = 'page_num\tblock_num\tpar_num\tline_num\tleft\ttop\twidth\theight\tconf\ttext\n'
+        calls = []
+
+        def command(*args, **kwargs):
+            calls.append(args)
+            text = 'Weiter' if str(args[2]).endswith('navy-latin') else 'Weiterfahren'
+            Path(args[2]).with_suffix('.tsv').write_text(
+                header + '1\t1\t1\t1\t160\t60\t40\t20\t95\t' + text + '\n')
+
+        with patch.object(probe.base, 'command', command), \
+                patch.object(probe, 'read_tiled_word') as tiles:
+            result = probe.image_lines(self.out, 'navy-exact', 'weiter',
+                                       source_path=self.full, exact=True)
+        self.assertEqual(len(calls), 5)
+        tiles.assert_not_called()
+        self.assertEqual(self.full.read_bytes(), original)
+        observed = [line for line in result if line['text'] == 'Weiter']
+        self.assertTrue(observed)
+        self.assertEqual({(line['variant'], tuple(line['bounds'])) for line in observed},
+                         {('navy-latin', (80, 30, 100, 40))})
 
 
 if __name__ == '__main__':

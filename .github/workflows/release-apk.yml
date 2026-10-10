@@ -7,6 +7,11 @@ on:
         type: boolean
         required: false
         default: false
+      runtime_only_build_run:
+        description: '1928 QA only: recheck an exact verified existing APK without rebuilding'
+        type: string
+        required: false
+        default: ''
   pull_request:
     branches: ['claude/lumo-gesamt']
   push:
@@ -20,6 +25,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
+    if: github.event.inputs.runtime_only_build_run == ''
     runs-on: ubuntu-latest
     timeout-minutes: 40
     permissions:
@@ -59,7 +65,10 @@ jobs:
             })).data;
             const allowed = new Set([
               '.github/workflows/release-apk.yml', 'scripts/prepare_embedded_games.py',
-              'scripts/tests/test_embedded_android.py', 'docs/LUMO_KART_ANDROID_1928.md'
+              'scripts/tests/test_embedded_android.py', 'docs/LUMO_KART_ANDROID_1928.md',
+              '.github/probes/creative_android_probe.py',
+              'tools/android_qa/tests/test_native_surface_readiness.py',
+              'tools/android_qa/tests/test_native_ocr_tiles.py'
             ]);
             if (!['ahead', 'identical'].includes(comparison.status) || !comparison.files ||
                 comparison.files.length >= 300 || comparison.files.some(f => !allowed.has(f.filename) || f.status === 'renamed')) {
@@ -212,7 +221,7 @@ jobs:
   android-kart-smoke:
     name: Android16 Kart update, entry and Fold surface evidence
     needs: verify
-    if: github.ref_name == 'computer/lumo-kart-android-1928-2026-10-11'
+    if: always() && github.ref_name == 'computer/lumo-kart-android-1928-2026-10-11' && (needs.verify.result == 'success' || (needs.verify.result == 'skipped' && github.event.inputs.runtime_only_build_run != ''))
     runs-on: ubuntu-latest
     timeout-minutes: 40
     permissions:
@@ -233,9 +242,52 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Verify exact existing build before runtime-only QA
+        id: apk-source
+        if: github.event.inputs.runtime_only_build_run != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const requested = context.payload.inputs.runtime_only_build_run;
+            if (!/^\d+$/.test(requested)) throw new Error('An exact numeric build run is required');
+            const params = {owner: context.repo.owner, repo: context.repo.repo, run_id: Number(requested)};
+            const run = (await github.rest.actions.getWorkflowRun(params)).data;
+            if (run.head_branch !== 'computer/lumo-kart-android-1928-2026-10-11' ||
+                !/^[0-9a-f]{40}$/.test(run.head_sha) || run.path !== '.github/workflows/release-apk.yml') {
+              throw new Error('The existing APK must be the reviewed update-compatible 1928 build');
+            }
+            const jobs = (await github.rest.actions.listJobsForWorkflowRun({...params, per_page: 100})).data.jobs;
+            if (!jobs.some(j => j.name === 'verify' && j.status === 'completed' && j.conclusion === 'success')) {
+              throw new Error('The exact existing build and APK verification did not succeed');
+            }
+            const comparison = (await github.rest.repos.compareCommitsWithBasehead({
+              owner: context.repo.owner, repo: context.repo.repo, basehead: `${run.head_sha}...${context.sha}`
+            })).data;
+            const allowed = new Set([
+              '.github/workflows/release-apk.yml', '.github/probes/creative_android_probe.py',
+              'docs/LUMO_KART_ANDROID_1928.md',
+              'tools/android_qa/tests/test_native_surface_readiness.py',
+              'tools/android_qa/tests/test_native_ocr_tiles.py'
+            ]);
+            if (!['ahead','identical'].includes(comparison.status) || !comparison.files ||
+                comparison.files.length >= 300 || comparison.files.some(f => !allowed.has(f.filename) || f.status === 'renamed')) {
+              throw new Error('APK/application inputs changed; a new build is required');
+            }
+            const fs = require('fs');
+            fs.mkdirSync('native-proof', {recursive:true});
+            fs.writeFileSync('native-proof/EXISTING-APK-SOURCE.json', JSON.stringify({
+              build_run: run.id, build_run_url: run.html_url, build_source: run.head_sha,
+              qa_source: context.sha, application_inputs_unchanged: true,
+              changed_files: comparison.files.map(f => f.filename)
+            }, null, 2));
+            fs.appendFileSync(process.env.GITHUB_ENV, `LUMO_EXPECT_SOURCE=${run.head_sha}\n`);
+            core.setOutput('run', String(run.id));
+            core.setOutput('attempt', String(run.run_attempt));
       - uses: actions/download-artifact@v4
         with:
-          name: lumo-emulator-apk-${{ github.run_id }}-${{ github.run_attempt }}
+          name: lumo-emulator-apk-${{ steps.apk-source.outputs.run || github.run_id }}-${{ steps.apk-source.outputs.attempt || github.run_attempt }}
+          run-id: ${{ steps.apk-source.outputs.run || github.run_id }}
+          github-token: ${{ github.token }}
           path: candidate/
       - name: Pin last test APK and prepare independent runtime readers
         run: |
@@ -258,6 +310,8 @@ jobs:
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           python3 -m py_compile .github/probes/creative_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_native_surface_readiness.py'
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_native_ocr_tiles.py'
           cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
       - name: Enable KVM and prepare Android16 image
         run: |

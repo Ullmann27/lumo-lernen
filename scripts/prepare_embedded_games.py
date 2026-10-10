@@ -36,12 +36,10 @@ dependencies {
 // These are in-place test updates, not Play Store multi-APK version offsets.
 // Keep the committed build number so a later universal APK can still update.
 if (project.findProperty("split-per-abi") == "true") {
-    afterEvaluate {
-        android.applicationVariants.all {
-            outputs.all {
-                @Suppress("DEPRECATION")
-                val apkOutput = this as com.android.build.gradle.api.ApkVariantOutput
-                apkOutput.versionCodeOverride = flutter.versionCode
+    androidComponents {
+        onVariants { variant ->
+            variant.outputs.forEach { output ->
+                output.versionCode.set(flutter.versionCode)
             }
         }
     }
