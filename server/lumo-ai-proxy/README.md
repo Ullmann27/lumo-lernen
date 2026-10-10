@@ -36,3 +36,33 @@ node --test test/*.test.js
 ```
 
 Die Tests prüfen Modellmigration und Parameter, fehlende Schlüssel, tatsächliche Erreichbarkeit, Fehlerdiagnose, Eingabegrenzen einschließlich unvollständiger TCP-Uploads, Kinderschutz einschließlich deutscher Komposita, Rechnungen, Aufgabenfilter und parallele Aufgabenanfragen. Sie ersetzen keinen echten Render-Aufruf und keinen pädagogischen Unterrichtstest.
+
+## Sulafat-Stimme (Build nach 1925)
+
+Die originale Stimme aus „Stimme testen“ ist **Gemini TTS / Sulafat** und bleibt
+als Offline-Aufnahme erhalten. Für individuelle Unterrichtstexte bietet der
+gleiche Proxy `POST /speech`: JSON `{"text":"...","style":"explain"}`; Antwort
+`{"voice":"Sulafat","format":"audio/wav","audioBase64":"..."}`.
+Weder der Android-TTS-Provider noch eine andere Sprecherstimme wird verwendet.
+
+**Render-Konfiguration, nur nach Zustimmung zum richtigen Workspace:**
+
+- `GEMINI_API_KEY`: Gemini API-Key ausschließlich als serverseitiges Secret.
+- `LUMO_TTS_ENABLED=1`: aktiviert den Endpoint; ohne diesen Wert bleibt er gesperrt.
+- `GEMINI_TTS_MODEL=gemini-3.1-flash-tts-preview` (oder freigegebenes neues Gemini-TTS-Modell; eine Hörprobe pro Modell ist zwingend).
+- `LUMO_TTS_PER_IP_DAY` (Standard 200), `LUMO_TTS_TOTAL_DAY` (Standard 1600) begrenzen die Kosten. Für öffentliche Bereitstellung zusätzlich Missbrauchsschutz und authentifizierte Clients prüfen.
+
+**Eltern-Freigabe:** Im Elternbereich den neuen Schalter „Online-Lumo-Stimme
+(Sulafat)“ aktivieren. Nur dann wird der jeweils vorzulesende Text über den
+Lumo-Server an Gemini geschickt. Ohne diese Freigabe bleiben neue dynamische
+Sätze stumm, statt mit Android zu sprechen. Die App sollte im Fehlerfall auf
+die fehlende Online-Stimme hinweisen. Das Cloud-Angebot braucht Internet,
+kann Kosten verursachen und darf nicht ohne Datenschutz-/Einwilligungsprüfung
+für Kinder freigegeben werden. Keine Kindertexte im Provider-Diagnoselog.
+
+Für die 3D-Lernspiele werden außerdem die **52 Legacy-WAVs** im separaten
+`Ullmann27/lumo-godot` PR #48 durch Sulafat-WAVs ersetzt. Dessen
+`sulafat_manifest.json` muss vollständig sein und jede Datei via SHA-256
+verifizieren, bevor diese Godot-Revision in die integrierte Android-APK
+übernommen werden darf. Niemals nur die Flutter-Stimmprobe als vollständige
+app-weite Hörprüfung ausgeben.
