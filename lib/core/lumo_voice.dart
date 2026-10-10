@@ -1,208 +1,85 @@
 import 'dart:async';
-import 'dart:io' show Platform;
+import 'dart:math' as math;
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 
+import 'lumo_sulafat_client.dart';
 import 'lumo_voice_clips.dart';
 import 'lumo_voice_policy.dart';
 
-/// Zentrales Voice-System fuer Lumo.
-///
-/// Ziel:
-/// - deutlich weniger robotisch
-/// - kindgerechter, waermer, ruhiger
-/// - beste verfuegbare deutsche Stimme automatisch waehlen
-/// - emotionale Sprechmodi statt immer gleicher TTS-Ausgabe
-/// - stabiler Fallback ohne neue Build-Risiken
-///
-/// Die Original-Lumo-Stimme (vorproduzierte Sulafat-Aufnahmen) hat Vorrang.
-/// Bekannte Saetze verwenden die Originalaufnahme und bewegen den Mund;
-/// dynamische Lerntexte werden vorerst mit lokaler deutscher TTS gesprochen.
-/// Die Eltern-Stimmprobe spielt dieselbe Originalaufnahme wie die Lern-App.
+/// Einheitliche Lumo-Sprecheridentitaet: Gemini TTS / Sulafat.
+/// Die Begruessungs-Stimmprobe bleibt die originale M4A-Datei.
+/// Andere Saetze kommen ausschliesslich aus demselben Sulafat-Clipkatalog
+/// oder (nach aktiver Elternfreigabe) aus der Sulafat-Server-Synthese.
+/// Keine Android-TTS-Stimme, kein heimlicher Ersatz bei Netzfehlern.
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
 
-  final FlutterTts _tts = FlutterTts();
-  Future<void>? _initFuture;
+  final LumoSulafatClient _client = const LumoSulafatClient();
   bool _enabled = true;
-  bool _voiceSelected = false;
-  double _rateFactor = 1.0;
-  double _pitchOffset = 0.0;
-  String? _selectedVoiceName;
-  String? _selectedLocale;
+  bool _cloudVoiceEnabled = false;
+  String _serverUrl = 'https://lumo-ai-proxy.onrender.com';
+  double _playbackRate = 1.0;
   int _speechGeneration = 0;
-  Future<void> _outputQueue = Future<void>.value();
+
+  AudioPlayer? _player;
+  StreamSubscription<void>? _doneSubscription;
+  Completer<void>? _playbackFinished;
+  Timer? _mouthTicker;
 
   final ValueNotifier<VoiceStatus> status =
       ValueNotifier<VoiceStatus>(VoiceStatus.idle);
-
-  /// Native TTS word boundaries, used by Lumo's approximate mouth animation.
-  /// This never starts speech or advances while a local timer is running.
   final ValueNotifier<int> spokenWordRevision = ValueNotifier<int>(0);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
-
-  /// Mundöffnung 0–1 aus der Hüllkurve des gerade laufenden Clips;
-  /// null, wenn kein Clip spricht (dann gelten Wortgrenzen der TTS).
   final ValueNotifier<double?> clipMouth = ValueNotifier<double?>(null);
 
-  /// Original-Lumo-Aufnahmen in der App verwenden, auch bei `Stimme testen`.
-  /// Nur in Flutter-Unit-Tests ohne Audio-Plugin standardmaessig deaktiviert.
-  bool clipsEnabled =
-      kIsWeb || !Platform.environment.containsKey('FLUTTER_TEST');
-
-  AudioPlayer? _clipPlayer;
-  StreamSubscription<void>? _clipDone;
-  Timer? _clipTicker;
+  /// Tests koennen Clip-Audio isoliert deaktivieren, niemals eine
+  /// unpassende Stimme als Ersatz aktivieren.
+  bool clipsEnabled = true;
 
   bool get isEnabled => _enabled;
+  bool get cloudVoiceEnabled => _cloudVoiceEnabled;
+  String get selectedVoiceName => 'Sulafat';
+  String get selectedLocale => 'de-DE';
+
   set isEnabled(bool value) {
     _enabled = value;
     if (!value) unawaited(stop());
   }
 
-  String? get selectedVoiceName => _selectedVoiceName;
-  String? get selectedLocale => _selectedLocale;
-
-  Future<void> configure({bool? enabled, double? rate, double? pitch}) async {
+  Future<void> configure({
+    bool? enabled,
+    double? rate,
+    double? pitch,
+    bool? cloudVoiceEnabled,
+    String? voiceServerUrl,
+  }) async {
     if (enabled != null) {
       _enabled = enabled;
       if (!enabled) await stop();
     }
-    if (rate != null) _rateFactor = (rate / 0.35).clamp(0.70, 1.55).toDouble();
-    if (pitch != null) {
-      _pitchOffset = (pitch - 1.0).clamp(-0.20, 0.20).toDouble();
-    }
-    if (_initFuture != null) {
-      await _applyStyle(VoiceStyle.warm);
-    }
-  }
-
-  Future<void> _ensureReady() {
-    return _initFuture ??= _doInit();
-  }
-
-  Future<void> _doInit() async {
-    try {
-      _tts.setStartHandler(() =>
-          status.value = _enabled ? VoiceStatus.speaking : VoiceStatus.idle);
-      _tts.setCompletionHandler(() => status.value = VoiceStatus.idle);
-      _tts.setCancelHandler(() => status.value = VoiceStatus.idle);
-      _tts.setPauseHandler(() => status.value = VoiceStatus.idle);
-      _tts.setContinueHandler(() =>
-          status.value = _enabled ? VoiceStatus.speaking : VoiceStatus.idle);
-      _tts.setProgressHandler((text, start, end, word) {
-        if (_enabled &&
-            status.value == VoiceStatus.speaking &&
-            word.trim().isNotEmpty) {
-          spokenWordRevision.value++;
-        }
-      });
-      _tts.setErrorHandler((msg) {
-        lastError.value = msg.toString();
-        status.value = VoiceStatus.error;
-      });
-
-      await _selectBestGermanVoice();
-      await _applyStyle(VoiceStyle.warm);
-
+    if (rate != null) {
+      // Real speed control for BOTH pre-recorded and generated audio.
+      // The device-specific TTS voice (and its pitch controls) is removed.
+      _playbackRate = (rate / 0.35).clamp(0.75, 1.30).toDouble();
       try {
-        await _tts.awaitSpeakCompletion(false);
-      } catch (_) {}
-
-      status.value = VoiceStatus.idle;
-    } catch (e) {
-      lastError.value = 'TTS-Init fehlgeschlagen: $e';
-      status.value = VoiceStatus.error;
-    }
-  }
-
-  Future<void> _selectBestGermanVoice() async {
-    if (_voiceSelected) return;
-
-    final fallbackLanguages = <String>['de-AT', 'de-DE', 'de'];
-
-    try {
-      final rawVoices = await _tts.getVoices;
-      final voices = _normaliseVoices(rawVoices);
-      final germanVoices = voices.where(_isGermanVoice).toList();
-
-      if (germanVoices.isNotEmpty) {
-        germanVoices.sort((a, b) => _scoreVoice(b).compareTo(_scoreVoice(a)));
-        final best = germanVoices.first;
-        final name = best['name'];
-        final locale = best['locale'];
-
-        if (name != null && locale != null) {
-          await _tts.setVoice({'name': name, 'locale': locale});
-          _selectedVoiceName = name;
-          _selectedLocale = locale;
-          _voiceSelected = true;
-          return;
-        }
-      }
-    } catch (e) {
-      if (kDebugMode) debugPrint('[LumoVoice] Voice scan failed: $e');
-    }
-
-    for (final lang in fallbackLanguages) {
-      try {
-        final available = await _tts.isLanguageAvailable(lang);
-        if (available == true || available == 1) {
-          await _tts.setLanguage(lang);
-          _selectedLocale = lang;
-          _voiceSelected = true;
-          return;
-        }
+        await _player?.setPlaybackRate(_playbackRate);
       } catch (_) {}
     }
-
-    try {
-      await _tts.setLanguage('de-DE');
-      _selectedLocale = 'de-DE';
-    } catch (_) {}
-    _voiceSelected = true;
+    // Pitch is retained as a call parameter for older callers/settings.
+    // We do not pretend it changes prerecorded Sulafat voice identity.
+    if (cloudVoiceEnabled != null) {
+      _cloudVoiceEnabled = cloudVoiceEnabled;
+      if (!cloudVoiceEnabled) await stop();
+    }
+    if (voiceServerUrl != null && voiceServerUrl.trim().isNotEmpty) {
+      _serverUrl = voiceServerUrl.trim();
+    }
   }
 
-  List<Map<String, String>> _normaliseVoices(dynamic rawVoices) {
-    if (rawVoices is! List) return const <Map<String, String>>[];
-    return rawVoices
-        .map<Map<String, String>?>((voice) {
-          if (voice is Map) {
-            final name = (voice['name'] ?? voice['voice'] ?? '').toString();
-            final locale =
-                (voice['locale'] ?? voice['language'] ?? '').toString();
-            if (name.isEmpty && locale.isEmpty) return null;
-            return <String, String>{
-              for (final entry in voice.entries)
-                entry.key.toString(): entry.value.toString(),
-              'name': name,
-              'locale': locale,
-            };
-          }
-          return null;
-        })
-        .whereType<Map<String, String>>()
-        .toList();
-  }
-
-  bool _isGermanVoice(Map<String, String> voice) {
-    final locale = (voice['locale'] ?? '').toLowerCase();
-    final name = (voice['name'] ?? '').toLowerCase();
-    return locale.startsWith('de') ||
-        name.contains('german') ||
-        name.contains('deutsch');
-  }
-
-  int _scoreVoice(Map<String, String> voice) {
-    return LumoVoicePolicy.score(voice);
-  }
-
-  /// Zentrale Sprechabsicht fuer kurze Standardreaktionen aller Bereiche.
-  /// Lerntasks und Diktattexte werden nicht umgeschrieben; das vermeidet
-  /// inhaltlich falsche Antworten oder ungewollte zusaetzliche Saetze.
   @visibleForTesting
   static VoiceStyle suggestedStyle(String text) {
     final s = text.trim().toLowerCase();
@@ -223,161 +100,163 @@ class LumoVoice {
     return VoiceStyle.warm;
   }
 
-  Future<void> _applyStyle(VoiceStyle style) async {
-    // Heinz wollte schnellere Stimme. Alle Raten um ~25-35% erhoeht.
-    // Vorher waren die Werte zwischen 0.30-0.42 - zu langsam.
-    // Jetzt 0.46-0.60 - normales Sprechtempo, aber noch kindgerecht.
-    switch (style) {
-      case VoiceStyle.greeting:
-        await _set(rate: 0.51, pitch: 1.04, volume: 0.95);
-        break;
-      case VoiceStyle.explain:
-        // Erklaer-Modus etwas langsamer als greeting, damit Kinder folgen koennen.
-        await _set(rate: 0.46, pitch: 1.00, volume: 1.0);
-        break;
-      case VoiceStyle.celebrate:
-        // Bei Erfolg: schnell und froh.
-        await _set(rate: 0.54, pitch: 1.07, volume: 0.95);
-        break;
-      case VoiceStyle.comfort:
-        // Bei Problemen: ruhig aber nicht mehr so langsam wie vorher.
-        await _set(rate: 0.47, pitch: 1.01, volume: 0.92);
-        break;
-      case VoiceStyle.question:
-        await _set(rate: 0.50, pitch: 1.04, volume: 1.0);
-        break;
-      case VoiceStyle.warm:
-        // Standard-Lese-Modus: natuerliches Sprechtempo.
-        await _set(rate: 0.49, pitch: 1.02, volume: 0.95);
-        break;
-    }
-  }
-
-  Future<void> _set(
-      {required double rate,
-      required double pitch,
-      required double volume}) async {
-    // Clamp-Obergrenze von 0.60 auf 0.85 erhoeht, damit schnellere Raten
-    // ueberhaupt durchkommen. Untergrenze 0.30 reicht fuer comfort-Modus.
-    await _tts.setSpeechRate((rate * _rateFactor).clamp(0.30, 0.85).toDouble());
-    await _tts.setPitch((pitch + _pitchOffset).clamp(0.80, 1.25).toDouble());
-    await _tts.setVolume(volume);
+  AudioPlayer _ensurePlayer() {
+    final player = _player ??= AudioPlayer(playerId: 'lumo-sulafat')
+      ..positionUpdater = null;
+    _doneSubscription ??= player.onPlayerComplete.listen((_) => _finishAudio());
+    return player;
   }
 
   Future<void> speak(String text, {VoiceStyle style = VoiceStyle.warm}) async {
     if (!_enabled || text.trim().isEmpty) return;
     final generation = ++_speechGeneration;
-    await _ensureReady();
+    await _stopPlayback();
     if (!_enabled || generation != _speechGeneration) return;
-    _outputQueue = _outputQueue.then((_) async {
-      if (!_enabled || generation != _speechGeneration) return;
-      try {
-        lastError.value = null;
-        await _tts.stop();
-        await _stopClip();
-        if (!_enabled || generation != _speechGeneration) return;
-        if (await _speakClip(text, generation)) return;
-        if (!_enabled || generation != _speechGeneration) return;
-        // Alle Lernmodule laufen durch dieselbe expressive Engine. Kurztexte
-        // werden nach ihrer kommunikativen Funktion betont, sofern der
-        // Aufrufer nicht selbst bereits einen Sprechmodus festlegt.
-        final effectiveStyle =
-            style == VoiceStyle.warm ? suggestedStyle(text) : style;
-        await _applyStyle(effectiveStyle);
-        if (!_enabled || generation != _speechGeneration) return;
-        final prepared = _prepareHumanText(text, effectiveStyle);
-        if (prepared.isEmpty) return;
-        final result = await _tts.speak(prepared);
-        if (kDebugMode) {
-          debugPrint(
-              '[LumoVoice] voice=$_selectedVoiceName locale=$_selectedLocale style=$style -> $result');
-        }
-      } catch (e) {
-        if (generation != _speechGeneration) return;
-        lastError.value = 'TTS-Fehler: $e';
-        status.value = VoiceStatus.error;
-      }
-    });
-    await _outputQueue;
-  }
+    lastError.value = null;
 
-  Future<bool> _speakClip(String text, int generation) async {
-    if (!clipsEnabled) return false;
     try {
       await LumoVoiceClips.ensureLoaded();
-      final clip = LumoVoiceClips.lookup(text);
-      if (!_enabled || clip == null || generation != _speechGeneration) {
-        return false;
+      final original = clipsEnabled ? LumoVoiceClips.lookup(text) : null;
+      if (!_enabled || generation != _speechGeneration) return;
+      if (original != null) {
+        await _play(
+          AssetSource(original.assetSource),
+          generation,
+          duration: original.duration,
+          mouth: original.mouthAt,
+        );
+        return;
       }
-      final player = _clipPlayer ??= AudioPlayer(playerId: 'lumo-voice')
-        // Die Mundbewegung nutzt eine eigene Uhr; ohne Positions-Updater
-        // plant der Player keine zusätzlichen Frames ein.
-        ..positionUpdater = null;
-      await player.setReleaseMode(ReleaseMode.stop);
-      await player.setVolume(1.0);
-      _clipDone ??= player.onPlayerComplete.listen((_) => _finishClip());
-      if (!_enabled || generation != _speechGeneration) return true;
-      await player.play(AssetSource(clip.assetSource));
-      if (!_enabled || generation != _speechGeneration) {
-        await _stopClip();
-        return true;
+      if (!_cloudVoiceEnabled) {
+        // Conscious silence is safer than an entirely different old speaker.
+        lastError.value =
+            'Für freie Sulafat-Sätze bitte Online-Lumo-Stimme im Elternbereich freigeben.';
+        status.value = VoiceStatus.error;
+        return;
       }
-      clipMouth.value = 0;
-      status.value = VoiceStatus.speaking;
-      final watch = Stopwatch()..start();
-      _clipTicker?.cancel();
-      _clipTicker = Timer.periodic(const Duration(milliseconds: 50), (t) {
-        if (watch.elapsed > clip.duration + const Duration(milliseconds: 400)) {
-          // Sicherheitsnetz, falls das Abschluss-Ereignis ausbleibt.
-          _finishClip();
-          return;
-        }
-        clipMouth.value = clip.mouthAt(watch.elapsed);
-      });
-      return true;
+      unawaited(_speakDynamic(text,
+          style == VoiceStyle.warm ? suggestedStyle(text) : style, generation));
     } catch (e) {
-      if (kDebugMode) debugPrint('[LumoVoice] Clip fehlgeschlagen, TTS: $e');
-      _finishClip();
-      return false;
+      if (generation != _speechGeneration) return;
+      lastError.value = 'Sulafat-Audio konnte nicht gestartet werden.';
+      status.value = VoiceStatus.error;
     }
   }
 
-  void _finishClip() {
-    _clipTicker?.cancel();
-    _clipTicker = null;
-    if (clipMouth.value != null) {
-      clipMouth.value = null;
-      status.value = VoiceStatus.idle;
+  Future<void> _speakDynamic(
+      String text, VoiceStyle style, int generation) async {
+    final cleaned = LumoVoicePolicy.prepare(text);
+    final fragments = LumoSulafatClient.segments(cleaned);
+    for (final fragment in fragments) {
+      if (!_enabled || !_cloudVoiceEnabled || generation != _speechGeneration) return;
+      try {
+        final audio = await _client.synthesize(
+          text: fragment,
+          style: style.name,
+          baseUrl: _serverUrl,
+        );
+        if (!_enabled || !_cloudVoiceEnabled || generation != _speechGeneration) return;
+        final ms = _wavDuration(audio);
+        final end = Completer<void>();
+        await _play(BytesSource(audio), generation, duration: Duration(milliseconds: ms),
+            onFinished: end);
+        await end.future.timeout(Duration(milliseconds: ms + 5000), onTimeout: () {});
+      } catch (e) {
+        if (!_enabled || generation != _speechGeneration) return;
+        // No Android fallback, even if the provider, network or cache fails.
+        lastError.value = 'Sulafat ist derzeit nicht erreichbar. '
+            'Bitte Online-Stimme im Elternbereich und die Serververbindung prüfen.';
+        status.value = VoiceStatus.error;
+        return;
+      }
     }
   }
 
-  Future<void> _stopClip() async {
-    _finishClip();
-    // A player can already be starting while no envelope ticker exists.
-    // Always stop the native player, including that startup window.
+  static int _wavDuration(Uint8List audio) {
+    if (audio.length < 44) return 1000;
+    final data = ByteData.sublistView(audio);
+    final bytesPerSecond = data.getUint32(28, Endian.little);
+    final dataSize = data.getUint32(40, Endian.little);
+    if (bytesPerSecond < 1000 || dataSize < 20) return 1000;
+    return (dataSize * 1000 / bytesPerSecond).ceil().clamp(250, 120000).toInt();
+  }
+
+  Future<void> _play(
+    Source source,
+    int generation, {
+    required Duration duration,
+    double Function(Duration)? mouth,
+    Completer<void>? onFinished,
+  }) async {
+    if (!_enabled || generation != _speechGeneration) return;
+    final player = _ensurePlayer();
+    _playbackFinished = onFinished;
+    await player.setReleaseMode(ReleaseMode.stop);
+    await player.setVolume(1);
+    if (!_enabled || generation != _speechGeneration) return;
+    await player.play(source);
+    if (!_enabled || generation != _speechGeneration) {
+      await player.stop();
+      _finishAudio();
+      return;
+    }
     try {
-      await _clipPlayer?.stop();
+      await player.setPlaybackRate(_playbackRate);
     } catch (_) {}
+    status.value = VoiceStatus.speaking;
+    clipMouth.value = 0;
+    final watch = Stopwatch()..start();
+    _mouthTicker?.cancel();
+    final playbackMax = Duration(
+      milliseconds: (duration.inMilliseconds / _playbackRate).ceil() + 400,
+    );
+    _mouthTicker = Timer.periodic(const Duration(milliseconds: 50), (t) {
+      if (generation != _speechGeneration || watch.elapsed > playbackMax) {
+        unawaited(player.stop());
+        _finishAudio();
+        return;
+      }
+      final scaled = Duration(
+        milliseconds: (watch.elapsedMilliseconds * _playbackRate).round(),
+      );
+      clipMouth.value = mouth != null
+          ? mouth(scaled)
+          : (0.24 + 0.55 * (0.5 + 0.5 *
+                  math.sin(watch.elapsedMilliseconds * 0.028))).clamp(0.0, 1.0);
+      if (mouth == null) spokenWordRevision.value++;
+    });
   }
 
-  String _prepareHumanText(String input, VoiceStyle style) {
-    return LumoVoicePolicy.prepare(input);
+  void _finishAudio() {
+    _mouthTicker?.cancel();
+    _mouthTicker = null;
+    clipMouth.value = null;
+    if (_playbackFinished != null && !_playbackFinished!.isCompleted) {
+      _playbackFinished!.complete();
+    }
+    _playbackFinished = null;
+    if (status.value == VoiceStatus.speaking) status.value = VoiceStatus.idle;
+  }
+
+  Future<void> _stopPlayback() async {
+    _finishAudio();
+    try {
+      await _player?.stop();
+    } catch (_) {}
+    if (status.value != VoiceStatus.error) status.value = VoiceStatus.idle;
   }
 
   Future<void> stop() async {
-    _speechGeneration++;
-    status.value = VoiceStatus.idle;
-    await _stopClip();
-    try {
-      await _tts.stop();
-    } catch (_) {}
+    ++_speechGeneration;
+    await _stopPlayback();
     status.value = VoiceStatus.idle;
   }
 
+  /// Keinesfalls aendern: genau die Originalaufnahme des Nutzerwunsches.
   Future<void> test() => speak(
-        'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!',
-        style: VoiceStyle.greeting,
-      );
+    'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!',
+    style: VoiceStyle.greeting,
+  );
 }
 
 /// Beendet Lumos Sprechen, sobald eine Seite verlassen oder ersetzt wird,
@@ -404,7 +283,9 @@ class LumoVoiceRouteObserver extends NavigatorObserver {
   void _stopForPage(Route<dynamic> route) {
     // Dialoge und Bottom-Sheets (z. B. Lumo-Gespräch) steuern ihr Sprechen selbst.
     if (route is! PageRoute) return;
-    if (_voice.status.value == VoiceStatus.speaking) unawaited(_voice.stop());
+    // Auch eine noch laufende Online-Synthese abbrechen, bevor sie auf
+    // einer anderen Seite versehentlich abgespielt werden koennte.
+    unawaited(_voice.stop());
   }
 }
 

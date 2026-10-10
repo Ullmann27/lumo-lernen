@@ -45,7 +45,7 @@ void main() {
     });
     messenger.setMockMethodCallHandler(global, (call) async => null);
     messenger.setMockStreamHandler(
-        const EventChannel('xyz.luan/audioplayers/events/lumo-voice'),
+        const EventChannel('xyz.luan/audioplayers/events/lumo-sulafat'),
         MockStreamHandler.inline(onListen: (_, sink) {
       playerEvents = sink;
     }));
@@ -136,10 +136,12 @@ void main() {
     expect(playerCalls, contains('stop'));
   });
 
-  test('unbekannter Text fällt auf Sprachsynthese zurück', () async {
+  test('unbekannter Text fällt niemals auf die alte Android-Stimme zurück', () async {
+    await LumoVoice.instance.configure(cloudVoiceEnabled: false);
     await LumoVoice.instance.speak('7 plus 8 ist fünfzehn');
-    expect(ttsSpoken.single, contains('fünfzehn'));
+    expect(ttsSpoken, isEmpty);
     expect(playerCalls, isNot(contains('resume')));
+    expect(LumoVoice.instance.status.value, VoiceStatus.error);
   });
 
   test('Eltern-Stimmprobe verwendet die originale Lumo-Stimme', () async {

@@ -258,7 +258,9 @@ void main() {
     expect(find.text('Hör gut zu!'), findsOneWidget);
     expect(find.text('Schreibe Buchstabe 1 von 4 nach Gehör.'), findsOneWidget);
     expect(find.byTooltip('Nochmal hören'), findsOneWidget);
-    expect(calls.where((call) => call.method == 'speak'), hasLength(1));
+    // There is no Android voice fallback. Dynamic Sulafat requires
+    // explicit parental cloud consent and a configured speech server.
+    expect(calls.where((call) => call.method == 'speak'), isEmpty);
     await tester.pumpWidget(const SizedBox.shrink());
     app.dispose();
     expect(tester.takeException(), isNull);

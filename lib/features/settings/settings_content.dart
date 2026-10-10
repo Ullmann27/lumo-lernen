@@ -105,6 +105,8 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       enabled: next.voiceEnabled,
       rate: next.voiceRate,
       pitch: next.voicePitch,
+      cloudVoiceEnabled: next.cloudVoiceEnabled,
+      voiceServerUrl: next.aiProxyUrl,
     );
     await SettingsRepository.save(next);
     if (mounted) setState(() => _saving = false);
@@ -483,8 +485,16 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           const SizedBox(height: 10),
           _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.55, onChanged: (v) => _save(_settings.copyWith(voiceRate: v)),
                 ),
-          _SliderRow(title: 'Stimmhöhe', value: _settings.voicePitch, min: 0.85, max: 1.18, onChanged: (v) => _save(_settings.copyWith(voicePitch: v)),
-                ),
+          const SizedBox(height: 6),
+          const Text('Original-Lumo-Stimme: Sulafat. Die Stimmhöhe bleibt zur Wahrung des Originalklangs fest eingestellt. Das Sprechtempo gilt auch für die Stimmprobe.',
+              style: TextStyle(fontSize: 12)),
+          const SizedBox(height: 10),
+          _SwitchRow(
+            title: 'Online-Lumo-Stimme (Sulafat)',
+            subtitle: 'Für neue, individuelle Sätze wird ausschließlich der vorzulesende Text über deinen Lumo-Server an Google Gemini TTS gesendet. Elternfreigabe erforderlich. Ohne diese Freigabe spricht Lumo nur vorhandene Originalaufnahmen, niemals die alte Android-Stimme.',
+            value: _settings.cloudVoiceEnabled,
+            onChanged: (v) => _save(_settings.copyWith(cloudVoiceEnabled: v)),
+          ),
           const SizedBox(height: 10),
           Wrap(spacing: 10, runSpacing: 10, children: [
             FilledButton.icon(onPressed: _settings.voiceEnabled ? () => LumoVoice.instance.test() : null, icon: const Icon(Icons.volume_up_rounded), label: const Text('Stimme testen'),
@@ -494,8 +504,8 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           ],
                 ),
           const SizedBox(height: 8),
-          Text('Aktuelle Stimme: ${LumoVoice.instance.selectedVoiceName ?? 'Systemstandard'} (${LumoVoice.instance.selectedLocale ?? 'de'})', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
-                ),
+          Text('Aktuelle Stimme: Sulafat (Originalaufnahme + freigegebene Sulafat-Synthese). Bei Verbindungsfehlern wird keine andere Stimme eingesetzt.',
+              style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
         ],
             ),
         const SizedBox(height: 14),

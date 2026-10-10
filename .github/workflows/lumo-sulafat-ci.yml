@@ -1,0 +1,61 @@
+name: Sulafat voice API tests
+on:
+  push:
+    branches:
+      - chatgpt/lumo-sulafat-everywhere-2026-10-10
+    paths:
+      - .github/workflows/lumo-sulafat-ci.yml
+      - lib/core/lumo_voice.dart
+      - lib/core/lumo_sulafat_client.dart
+      - lib/features/settings/settings_content.dart
+      - lib/features/games/mini_games/lesson_trail_game.dart
+      - test/lumo_sulafat_client_test.dart
+      - server/lumo-ai-proxy/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  node-voice-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test complete child-safe proxy and Sulafat endpoint
+        run: |
+          set -euo pipefail
+          cd server/lumo-ai-proxy
+          node --test test/*.test.js
+      - name: No accidental dynamic voice fallback in Flutter
+        run: |
+          set -euo pipefail
+          ! grep -R -n -E 'import .*flutter_tts|FlutterTts\\(' lib
+          ! grep -n 'flutter_tts:' pubspec.yaml
+          grep -q "voiceName: SULAFAT_VOICE" server/lumo-ai-proxy/src/sulafatTts.js
+          grep -q "bool _cloudVoiceEnabled = false" lib/core/lumo_voice.dart
+          grep -q "cloudVoiceEnabled = false" lib/core/app_settings.dart
+  flutter-sulafat-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Check dependency lock, analyzer and critical voice regressions
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+          flutter test --no-pub --reporter=expanded --timeout=40s \
+            test/lumo_voice_clips_test.dart \
+            test/voice_mute_regression_test.dart \
+            test/lumo_voice_word_boundary_test.dart \
+            test/lumo_sulafat_client_test.dart \
+            test/writing_word_progress_test.dart

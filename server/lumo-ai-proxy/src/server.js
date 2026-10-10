@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+import { synthesizeSulafat, validateSpeechRequest, DEFAULT_TTS_MODEL } from './sulafatTts.js';
 import { pathToFileURL } from 'node:url';
 import { normalizePrompt, buildCalculationTask } from './taskValidation.js';
 import { inspectChildSafety, buildLumoSystemPrompt, allowedTopicHints } from './childSafetyPolicy.js';
@@ -348,15 +349,69 @@ async function generateTaskBatch({ subject, grade, units: safeUnits, count: safe
   }
 }
 
-export function createLumoServer({ apiKey = openAiApiKey, fetchImpl = fetch } = {}) {
+export function createLumoServer({
+  apiKey = openAiApiKey,
+  fetchImpl = fetch,
+  ttsApiKey = process.env.GEMINI_API_KEY || '',
+  ttsEnabled = process.env.LUMO_TTS_ENABLED === '1',
+  ttsModel = process.env.GEMINI_TTS_MODEL || DEFAULT_TTS_MODEL,
+} = {}) {
 let upstreamStatus = 'not_checked';
 const taskHistory = new Map();
 const batchInFlight = new Map();
+// In-memory hard daily budget + per-IP guard; an endpoint without a persistent
+// authenticated identity MUST be disabled by default at deployment.
+const speechBudgets = new Map();
+let speechDay = '';
+let speechTotal = 0;
+function speechBudgetFor(req) {
+  const today = new Date().toISOString().slice(0, 10);
+  if (speechDay !== today) {
+    speechDay = today;
+    speechTotal = 0;
+    speechBudgets.clear();
+  }
+  const clientIp = req.socket?.remoteAddress || 'unknown';
+  const current = speechBudgets.get(clientIp) || 0;
+  const perIpCap = Math.max(1, Math.min(1000, Number(process.env.LUMO_TTS_PER_IP_DAY) || 200));
+  const totalCap = Math.max(1, Math.min(20000, Number(process.env.LUMO_TTS_TOTAL_DAY) || 1600));
+  if (current >= perIpCap || speechTotal >= totalCap) return false;
+  speechBudgets.set(clientIp, current + 1);
+  speechTotal++;
+  return true;
+}
 return createServer(async (req, res) => {
   const path = requestPath(req);
   if (req.method === 'OPTIONS') return json(res, 204, {});
   if (req.method === 'GET' && (path === '/' || path === '/health')) {
     return json(res, 200, healthPayload(apiKey, upstreamStatus));
+  }
+  if (req.method === 'POST' && path === '/speech') {
+    // Opt-in server flag AND an API key are mandatory. Without both,
+    // report unavailability; NEVER substitute another voice.
+    if (!ttsEnabled || !ttsApiKey) return json(res, 503, {
+      error: 'sulafat_not_configured', voice: 'Sulafat',
+    });
+    try {
+      const body = await readJson(req);
+      const checked = validateSpeechRequest(body);
+      if (!checked) return json(res, 400, { error: 'invalid_speech_text' });
+      if (!speechBudgetFor(req)) return json(res, 429, { error: 'sulafat_quota_exceeded' });
+      const wave = await synthesizeSulafat({
+        ...checked, apiKey: ttsApiKey, model: ttsModel, fetchImpl,
+      });
+      return json(res, 200, {
+        voice: 'Sulafat', format: 'audio/wav', audioBase64: wave.toString('base64'),
+      });
+    } catch (e) {
+      const code = e?.message === 'invalid_json' || e?.message === 'body_too_large'
+        ? e.message : 'sulafat_unavailable';
+      // Never log the user's speech text or the provider's raw response.
+      console.warn('[lumo-ai-proxy] /speech failed (' + code + ')');
+      return json(res, code === 'invalid_json' ? 400 : code === 'body_too_large' ? 413 : 502, {
+        error: code, voice: 'Sulafat',
+      });
+    }
   }
   if (req.method === 'POST' && path === '/tasks') {
     console.log(`[lumo-ai-proxy] /tasks request received at ${new Date().toISOString()}`);
