@@ -764,7 +764,16 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       final shortLandscape = c.maxHeight <= 400;
       final top = [
         for (final w in children.sublist(0, arena))
-          if (shortLandscape || w is! LumoTurnBanner) w,
+          if (shortLandscape && w is LumoTurnBanner)
+            LumoTurnBanner(
+              currentPlayerName: w.currentPlayerName,
+              message: w.message,
+              isMyTurn: w.isMyTurn,
+              reduceMotion: w.reduceMotion,
+              compact: true,
+            )
+          else if (w is! LumoTurnBanner)
+            w,
       ];
       final banner = [
         for (final w in children.sublist(0, arena))

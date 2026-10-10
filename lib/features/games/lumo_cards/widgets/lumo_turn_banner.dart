@@ -15,11 +15,16 @@ class LumoTurnBanner extends StatelessWidget {
     required this.message,
     this.isMyTurn = true,
     this.reduceMotion = false,
+    this.compact = false,
   });
 
   final String currentPlayerName;
   final String message;
   final bool reduceMotion;
+
+  /// Short-landscape sidebar already announces the turn in the speech bubble.
+  /// Omit the redundant pill so the complete action message remains visible.
+  final bool compact;
 
   /// Heinz HUD-Asset 2026-05-22: prominente "DEIN ZUG"/"GEGNER"-Pille.
   /// Steuerung kommt vom Screen, da der Banner sonst nicht weiss wer
@@ -81,6 +86,12 @@ class LumoTurnBanner extends StatelessWidget {
         ],
       ),
     );
+    if (compact) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
+        child: bubble,
+      );
+    }
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 6),
       child: LayoutBuilder(builder: (context, c) {

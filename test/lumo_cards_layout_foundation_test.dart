@@ -12,6 +12,7 @@ import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_intro_splash.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_turn_pill.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_turn_banner.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -54,9 +55,11 @@ void main() {
       final arena = tester.getRect(find.byKey(const ValueKey('cards-arena')));
       expect(arena.height, greaterThanOrEqualTo(160));
       final title = tester.renderObject<RenderParagraph>(
-        find.text('🦊 Lumo Cards'),
+        find.text('Lumo Cards'),
       );
       expect(title.didExceedMaxLines, isFalse);
+      final turn = tester.getRect(find.byType(LumoTurnBanner));
+      expect(turn.bottom, lessThanOrEqualTo(size.height));
       for (final tooltip in [
         'Ton einstellen',
         'Pausieren / Zurück',

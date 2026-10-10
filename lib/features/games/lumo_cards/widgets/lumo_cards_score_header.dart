@@ -33,14 +33,16 @@ class LumoCardsScoreHeader extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_rounded),
         ),
         const Expanded(
-            child: Text('🦊 Lumo Cards',
+            child: Text('Lumo Cards',
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis)),
         if (!narrow) ...actions,
       ]);
       final score = Text(
-        'Runde $round/$totalRounds · $targetPoints gesammelte Sterne',
+        narrow
+            ? 'Runde $round/$totalRounds\n$targetPoints Sterne'
+            : 'Runde $round/$totalRounds · $targetPoints gesammelte Sterne',
         style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
       );
       return Padding(
