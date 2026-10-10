@@ -13,7 +13,14 @@ BLOCK = '''// BEGIN LUMO EMBEDDED GODOT
 android {
     defaultConfig {
         minSdk = 24
-        ndk { abiFilters.clear(); abiFilters.addAll(listOf("arm64-v8a", "x86_64")) }
+        ndk {
+            abiFilters.clear()
+            // Flutter passes -Psplit-per-abi=true and owns the split filters.
+            // Universal builds keep the previous exact two-architecture set.
+            if (project.findProperty("split-per-abi") != "true") {
+                abiFilters.addAll(listOf("arm64-v8a", "x86_64"))
+            }
+        }
     }
     androidResources { noCompress += "pck" }
     packaging {
