@@ -22,6 +22,9 @@ Referenzarchiv-Zweig auf der 1921/1920-Entwicklungslinie, nicht das ältere
   Hüllkurven, SHA-256 und Entfernung ersetzter Katalogaufnahmen.
 - `scripts/audit_source.mjs`: Erreichbarkeit ab `main.dart`, aktive Pakete,
   fehlende/verwaiste Sprachdateien.
+- `scripts/export_embedded_game.py`: wiederholbarer Export mit gezielter
+  Bereinigung ausschließlich selbst erzeugter UID-Sidecars; fremde,
+  bereits vorhandene und getrackte Änderungen werden nicht entfernt.
 
 ## Design und Audio
 
@@ -54,6 +57,10 @@ Der Belohnungs-Burst entfernt nur noch seine eigene Route, statt nach
 1,8 Sekunden eventuell eine inzwischen geöffnete Seite zu schließen.
 Einstellungen und Löschdialog prüfen den tatsächlich verwendeten
 BuildContext nach asynchronen Operationen.
+
+Die Begleitfigur richtet sich im Querformat nach den tatsächlich verfügbaren
+Panel-Grenzen, nicht nach einer möglicherweise größeren MediaQuery-Fläche.
+Die Layout-Regression prüft den vollständigen Fuchs oberhalb der Steuerung.
 
 ## Prüfbefehle
 
