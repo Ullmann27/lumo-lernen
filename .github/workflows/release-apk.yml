@@ -28,6 +28,11 @@ jobs:
           cache: true
       - name: Get locked dependencies
         run: flutter pub get --enforce-lockfile
+      - name: Install required source scan tool
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ripgrep
+          rg --version
       - name: Backend and Android preparation tests
         run: |
           set -euo pipefail
