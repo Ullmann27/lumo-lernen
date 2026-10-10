@@ -423,7 +423,10 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     // Rebuild passiert - der finale Slot blieb leer (Codex P2).
     setState(() {
       _completedSlots.add(_letterCursor);
-      if (!_currentLetterHadMistake) {
+      // A shown letter is a valid help, not a first-try-independent success.
+      // Without this guard a child could reveal every letter and still earn
+      // full no-hint accuracy stars.
+      if (!_currentLetterHadMistake && !_currentLetterHintUsed) {
         _firstTryLetters++;
       }
     });
