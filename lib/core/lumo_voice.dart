@@ -209,7 +209,7 @@ class LumoVoice {
     final watch = Stopwatch()..start();
     _mouthTicker?.cancel();
     final playbackMax = Duration(
-      milliseconds: (duration.inMilliseconds / _playbackRate).ceil() + 700,
+      milliseconds: (duration.inMilliseconds / _playbackRate).ceil() + 400,
     );
     _mouthTicker = Timer.periodic(const Duration(milliseconds: 50), (t) {
       if (generation != _speechGeneration || watch.elapsed > playbackMax) {
