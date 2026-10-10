@@ -442,6 +442,7 @@ class VideoRecorder:
     """Segmented raw Android screenrecord; never replace footage with a render."""
     def __init__(self, out: Path, adb):
         self.out, self.adb = out, adb
+        self.remote_id = os.urandom(16).hex()
         self.stop_event = threading.Event()
         self.records, self.errors = [], []
         self.thread = threading.Thread(target=self._run, name='real-android-screenrecord', daemon=True)
@@ -451,26 +452,96 @@ class VideoRecorder:
             raise RuntimeError('Another screenrecord owns this disposable emulator')
         self.thread.start()
 
+    def _observe_process(self, index: int, phase: str, **values) -> None:
+        with (self.out / 'android-screenrecord-processes.jsonl').open('a') as stream:
+            stream.write(json.dumps({'segment': index, 'phase': phase,
+                                     'monotonic_seconds': time.monotonic(), **values}) + '\n')
+
+    @staticmethod
+    def _finish_remaining(deadline: float) -> float:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError('Android screenrecord exceeded its 20-second collection deadline')
+        return remaining
+
+    def _process_command(self, index: int, phase: str, args: list[str], deadline: float):
+        try:
+            result = subprocess.run(['adb', *args], stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE,
+                                    timeout=self._finish_remaining(deadline))
+        except subprocess.TimeoutExpired as error:
+            self._observe_process(index, phase, arguments=args, timeout=True,
+                                  stdout=(error.stdout or b'').decode('utf-8', errors='replace'),
+                                  stderr=(error.stderr or b'').decode('utf-8', errors='replace'),
+                                  stdout_hex=(error.stdout or b'').hex(),
+                                  stderr_hex=(error.stderr or b'').hex())
+            raise
+        self._observe_process(index, phase, arguments=args, returncode=result.returncode,
+                              stdout=result.stdout.decode('utf-8', errors='replace'),
+                              stderr=result.stderr.decode('utf-8', errors='replace'),
+                              stdout_hex=result.stdout.hex(), stderr_hex=result.stderr.hex())
+        self._finish_remaining(deadline)
+        return result
+
+    def _finish_process(self, process, index: int, expected_argv: list[str]) -> bytes:
+        # A remote process can finish before its local ADB client reports exit.
+        # All observations and the final wait share the existing 20-second cap.
+        deadline = time.monotonic() + 20
+        before = process.poll()
+        self._observe_process(index, 'finish-start', client_returncode=before,
+                              expected_argv=expected_argv)
+        if before is None:
+            query = self._process_command(index, 'pidof',
+                                          ['shell', 'pidof', 'screenrecord'], deadline)
+            pid_bytes = query.stdout.strip()
+            if query.returncode == 1 and not query.stdout and not query.stderr:
+                # No signal is needed or safe. Require our own client to finish
+                # successfully below; an absent PID alone never proves success.
+                self._observe_process(index, 'remote-absent', client_returncode=process.poll())
+            elif (query.returncode == 0 and not query.stderr and
+                  re.fullmatch(rb'[1-9][0-9]*', pid_bytes)):
+                pid = pid_bytes.decode('ascii')
+                command = self._process_command(index, 'cmdline',
+                                                ['exec-out', 'cat', f'/proc/{pid}/cmdline'], deadline)
+                expected = b'\x00'.join(arg.encode('utf-8') for arg in expected_argv) + b'\x00'
+                if command.returncode or command.stderr or command.stdout != expected:
+                    raise RuntimeError('Cannot safely identify the owned screenrecord process: '
+                                       'the exact remote command and target did not match')
+                before_signal = process.poll()
+                self._observe_process(index, 'owner-confirmed', pid=pid,
+                                      client_returncode=before_signal)
+                if before_signal is None:
+                    stopped = self._process_command(index, 'sigint',
+                                                    ['shell', 'kill', '-2', pid], deadline)
+                    if stopped.returncode or stopped.stdout or stopped.stderr:
+                        raise RuntimeError('Owned Android screenrecord SIGINT failed')
+            else:
+                raise RuntimeError('Cannot safely identify the owned screenrecord process: '
+                                   'pidof was ambiguous or failed; see process observations')
+        output, _ = process.communicate(timeout=self._finish_remaining(deadline))
+        self._observe_process(index, 'client-finished', client_returncode=process.returncode)
+        self._finish_remaining(deadline)
+        return output
+
     def _run(self):
         index = 0
         while not self.stop_event.is_set():
-            remote = '/sdcard/lumo-full-race-%03d.mp4' % index
+            remote = '/sdcard/lumo-full-race-%s-%03d.mp4' % (self.remote_id, index)
             local = self.out / ('android-race-%03d.mp4' % index)
-            process = subprocess.Popen(['adb', 'shell', 'screenrecord', '--size', '960x540',
-                                        '--bit-rate', '2000000', '--time-limit', '180', remote],
-                                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            started = time.monotonic()
+            command = ['/system/bin/screenrecord', '--size', '960x540',
+                       '--bit-rate', '2000000', '--time-limit', '180', remote]
+            process = None
             try:
+                process = subprocess.Popen(['adb', 'shell', *command],
+                                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                started = time.monotonic()
                 while process.poll() is None and not self.stop_event.wait(1):
                     if time.monotonic() - started > 200:
                         raise RuntimeError('Android screenrecord exceeded its segment deadline')
-                if process.poll() is None:
-                    pids = self.adb('shell', 'pidof', 'screenrecord', check=False).split()
-                    if len(pids) != 1 or not pids[0].isdigit():
-                        raise RuntimeError('Cannot safely identify the owned screenrecord process')
-                    self.adb('shell', 'kill', '-2', pids[0])
-                output, _ = process.communicate(timeout=20)
+                output = self._finish_process(process, index, command)
                 (self.out / ('android-race-%03d-screenrecord.txt' % index)).write_bytes(output)
+                if process.returncode != 0:
+                    raise RuntimeError(f'Android screenrecord client exited with {process.returncode}')
                 self.adb('pull', remote, str(local), timeout=90)
                 if local.stat().st_size < 1024:
                     raise RuntimeError('Android screenrecord produced no usable footage')
@@ -481,7 +552,10 @@ class VideoRecorder:
                                      'scope': 'actual emulator display; no FPS or native-resolution claim'})
             except Exception as error:
                 self.errors.append(str(error))
-                if process.poll() is None:
+                self._observe_process(index, 'collection-failed', error=str(error),
+                                      client_created=process is not None,
+                                      client_returncode=process.poll() if process is not None else None)
+                if process is not None and process.poll() is None:
                     process.terminate()
                 break
             index += 1
@@ -558,6 +632,10 @@ def main() -> int:
 
     def tap_native(label: str, tag: str, *, scroll: str | None = None, context: str = 'pause') -> None:
         wanted = creative.normalized(label)
+        initial_gas_search = (
+            label == 'Gas: GAS-Taste halten' and scroll == 'down' and context == 'pause'
+        )
+        initial_gas_direction = 'down'
         deadline, previous_scroll = time.monotonic() + 180, None
         for attempt in range(10):
             remaining = deadline - time.monotonic()
@@ -596,10 +674,33 @@ def main() -> int:
                                         missing_caption=recovery)
                 return
             if scroll and attempt >= 1:
-                observation = scroll_observation(lines, scroll, context)
+                direction = initial_gas_direction if initial_gas_search else scroll
+                observation = scroll_observation(lines, direction, context)
+                swipe_duration = 450
+                if initial_gas_search:
+                    # Use only captions that passed the existing current-modal
+                    # footer and bounds checks. Keep the recovery direction
+                    # after the list end leaves the following viewport.
+                    captions = {row['caption'] for row in observation['selected_captions']}
+                    if {'neuefahrtauswahlen', 'rennenabbrechen'} <= captions:
+                        initial_gas_direction = 'up'
+                        observation = scroll_observation(lines, initial_gas_direction, context)
+                    # A slow half-span drag keeps consecutive settings views
+                    # overlapping instead of flinging past the middle rows.
+                    full_gesture = list(observation['gesture'])
+                    x0, y0, x1, y1 = full_gesture
+                    distance = max(1, abs(y1 - y0) // 2)
+                    bounded_y1 = y0 + (distance if y1 > y0 else -distance)
+                    observation = {
+                        **observation,
+                        'gesture': [x0, y0, x1, bounded_y1],
+                        'unbounded_gesture': full_gesture,
+                        'drag_duration_ms': 900,
+                    }
+                    swipe_duration = 900
                 current = stable_scroll_observation(frame, observation, previous_scroll)
                 evidence = {
-                    'target': label, 'direction': scroll, 'observed_captions': lines,
+                    'target': label, 'direction': observation['direction'], 'observed_captions': lines,
                     'gesture': observation['gesture'], 'current': current,
                     'previous': previous_scroll, 'status': 'WAITING_FOR_STABLE_MODAL',
                     'scope': 'two complete current frames; gesture inside observed modal captions',
@@ -613,7 +714,7 @@ def main() -> int:
                 remaining = deadline - time.monotonic()
                 if remaining <= 0:
                     raise TimeoutError('Observed native action preparation exceeded 180 seconds')
-                base.adb('shell', 'input', 'swipe', *map(str, observation['gesture']), '450',
+                base.adb('shell', 'input', 'swipe', *map(str, observation['gesture']), str(swipe_duration),
                          timeout=min(10, remaining))
                 evidence['status'] = 'SWIPE_SENT'
                 write_json(f'{tag}-{attempt}-observed-scroll.json', evidence)

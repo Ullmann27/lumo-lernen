@@ -1,0 +1,531 @@
+name: Lumo 1919 API36 exact-APK verification
+
+on:
+  push:
+    branches: [audit/lumo-1919-gas-recovery-2026-10-09]
+    paths:
+      - .github/probes/**
+      - tools/android_qa/tests/test_gas_caption_scroll_recovery.py
+      - tools/android_qa/tests/test_kart_video_recorder.py
+      - .github/workflows/lumo-1919-gas-recovery.yml
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-1919-gas-recovery-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CI: 'true'
+  LUMO_EXPECT_SOURCE: d07b2b48593b939a2a0446fcb83a25a2b2a59db6
+  LUMO_EXPECT_GODOT: d140e5b05cb5afacfe675559b78da4254cb1daed
+  LUMO_EXPECT_VERSION: '1919'
+  LUMO_EXPECT_ANDROID_API: '36'
+  LUMO_APK_SHA256: 8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa
+  LUMO_BASE_DIGEST: 82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511
+  LUMO_FOLD_PROBE: '1'
+
+jobs:
+  replay:
+    name: Original failure replay and harness regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Require unchanged product sources and bind the harness
+        run: |
+          set -euo pipefail
+          mkdir -p gas-replay-evidence
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor "$LUMO_EXPECT_SOURCE" HEAD
+          git diff --exit-code HEAD --
+          git diff --exit-code "$LUMO_EXPECT_SOURCE" HEAD -- . \
+            ':(exclude).github/probes/kart_complete_android_probe.py' \
+            ':(exclude).github/probes/prepare_lumo_1919_gas_replay.py' \
+            ':(exclude).github/probes/replay_lumo_1919_gas_search.py' \
+            ':(exclude).github/probes/fixtures/lumo-1919-baseline-apksigner.txt' \
+            ':(exclude)tools/android_qa/tests/test_gas_caption_scroll_recovery.py' \
+            ':(exclude)tools/android_qa/tests/test_kart_video_recorder.py' \
+            ':(exclude).github/workflows/lumo-1919-gas-recovery.yml' \
+            ':(exclude)docs/LUMO_1919_ANDROID_GAS_RECOVERY.md'
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess
+          from pathlib import Path
+
+          def git(*args):
+              return subprocess.check_output(
+                  ['git', *args], text=True).strip()
+
+          pin = json.loads(Path('config/godot-source.json').read_text())
+          assert pin['revision'] == os.environ['LUMO_EXPECT_GODOT']
+
+          files = [
+              p for folder in ('.github/probes', 'tools/android_qa')
+              for p in Path(folder).rglob('*.py')
+          ]
+          files.append(Path('.github/workflows/lumo-1919-gas-recovery.yml'))
+          binding = {
+              'scope': 'Harness-only retest of the unchanged existing APK',
+              'source': os.environ['LUMO_EXPECT_SOURCE'],
+              'source_tree': git(
+                  'rev-parse', os.environ['LUMO_EXPECT_SOURCE'] + '^{tree}'),
+              'godot': os.environ['LUMO_EXPECT_GODOT'],
+              'harness': git('rev-parse', 'HEAD'),
+              'harness_tree': git('rev-parse', 'HEAD^{tree}'),
+              'changed_paths': git(
+                  'diff', '--name-only', '--no-renames',
+                  os.environ['LUMO_EXPECT_SOURCE'], 'HEAD').splitlines(),
+              'sha256': {
+                  str(p): hashlib.sha256(p.read_bytes()).hexdigest()
+                  for p in sorted(files)
+              },
+          }
+          assert binding['harness'] == os.environ['GITHUB_SHA']
+          Path('gas-replay-evidence/HARNESS-BINDING.json').write_text(
+              json.dumps(binding, indent=2) + '\n')
+          PY
+
+      - name: Prepare the existing probe dependencies
+        run: |
+          set -euo pipefail
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install \
+            --disable-pip-version-check \
+            uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze \
+            > gas-replay-evidence/dependencies.txt
+          .probe-venv/bin/python -m py_compile \
+            .github/probes/kart_complete_android_probe.py \
+            .github/probes/prepare_lumo_1919_gas_replay.py \
+            .github/probes/replay_lumo_1919_gas_search.py
+          .probe-venv/bin/python -m py_compile \
+            tools/android_qa/tests/test_kart_video_recorder.py
+
+      - name: Run targeted regressions before any emulator
+        run: |
+          set -euo pipefail
+          .probe-venv/bin/python - <<'PY' 2>&1 | tee gas-replay-evidence/unit-tests.log
+          import unittest
+
+          patterns = (
+              'test_gas_caption_scroll_recovery.py',
+              'test_kart_complete_android_evidence.py',
+              'test_native_surface_readiness.py',
+          )
+          for pattern in patterns:
+              suite = unittest.TestLoader().discover(
+                  'tools/android_qa/tests', pattern=pattern)
+              if suite.countTestCases() == 0:
+                  raise RuntimeError('No tests discovered for ' + pattern)
+              result = unittest.TextTestRunner(verbosity=2).run(suite)
+              if not result.wasSuccessful():
+                  raise SystemExit(1)
+          PY
+
+      - name: Require recorder regression on identical constructed schedules
+        run: |
+          set -euo pipefail
+          git show \
+            d40519d011500246bb4c7ad5a39ad684aa9477bd:.github/probes/kart_complete_android_probe.py \
+            > gas-replay-evidence/original-recorder-probe.py
+          echo '4e19fed0117bbb878b1b79c0fa3e3e2c0e72da53380d5402b31d8370d9bb3b7f  gas-replay-evidence/original-recorder-probe.py' \
+            | sha256sum -c -
+
+          set +e
+          LUMO_RECORDER_PROBE_SOURCE="$PWD/gas-replay-evidence/original-recorder-probe.py" \
+          LUMO_RECORDER_TEST_REPORT="$PWD/gas-replay-evidence/original-recorder-tests.json" \
+            .probe-venv/bin/python tools/android_qa/tests/test_kart_video_recorder.py -v \
+            2>&1 | tee gas-replay-evidence/original-recorder-tests.log
+          lumo_original_recorder_status=${PIPESTATUS[0]}
+          set -e
+          test "$lumo_original_recorder_status" -eq 1
+
+          LUMO_RECORDER_PROBE_SOURCE="$PWD/.github/probes/kart_complete_android_probe.py" \
+          LUMO_RECORDER_TEST_REPORT="$PWD/gas-replay-evidence/candidate-recorder-tests.json" \
+            .probe-venv/bin/python tools/android_qa/tests/test_kart_video_recorder.py -v \
+            2>&1 | tee gas-replay-evidence/candidate-recorder-tests.log
+
+          .probe-venv/bin/python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+
+          def sha(path):
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+          evidence = Path('gas-replay-evidence')
+          old = json.loads((evidence / 'original-recorder-tests.json').read_text())
+          new = json.loads((evidence / 'candidate-recorder-tests.json').read_text())
+          test_sha = sha('tools/android_qa/tests/test_kart_video_recorder.py')
+          for report in (old, new):
+              assert report['schema'] == 'lumo.screenrecord-constructed-schedules.v1'
+              assert report['application_or_gameplay_pass'] is False
+              assert report['fixture_kind'] == (
+                  'constructed deterministic subprocess schedules; '
+                  'actual failure PID response was not saved')
+              assert report['test']['sha256'] == test_sha
+              assert report['tests_run'] == 19
+              assert report['errors'] == [] and report['skipped'] == []
+          assert old['status'] == 'FAIL' and old['failures']
+          assert old['source']['sha256'] == (
+              '4e19fed0117bbb878b1b79c0fa3e3e2c0e72da53380d5402b31d8370d9bb3b7f')
+          expected_red = {
+              'test_clean_remote_exit_with_delayed_host_observation_collects_without_signal',
+              'test_single_pid_for_another_remote_recording_is_never_signalled',
+              'test_own_client_nonzero_exit_is_never_usable_footage',
+              'test_later_segment_launch_failure_cannot_pass_using_earlier_footage',
+          }
+          observed_red = {failure['test'].split('.')[-1] for failure in old['failures']}
+          assert expected_red <= observed_red
+          assert new['status'] == 'PASS' and new['failures'] == []
+          assert new['source']['sha256'] == sha('.github/probes/kart_complete_android_probe.py')
+          before = (evidence / 'original-recorder-probe.py').read_text()
+          after = Path('.github/probes/kart_complete_android_probe.py').read_text()
+          def outside_recorder(source):
+              prefix, recorder = source.split('class VideoRecorder:', 1)
+              _, suffix = recorder.split('\n\ndef main() -> int:', 1)
+              return prefix, suffix
+          assert outside_recorder(before) == outside_recorder(after)
+          print('[RecorderRegression] PASS: identical 19 constructed schedules; '
+                'original RED, candidate GREEN; only VideoRecorder changed since d405')
+          PY
+
+      - name: Retrieve the pinned original API36 failure fixtures
+        env:
+          LUMO_READ_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          .probe-venv/bin/python \
+            .github/probes/prepare_lumo_1919_gas_replay.py
+          test -s gas-replay-fixture/MANIFEST.json
+
+      - name: Require the original regression and candidate recovery
+        run: |
+          set -euo pipefail
+          git show \
+            "$LUMO_EXPECT_SOURCE:.github/probes/kart_complete_android_probe.py" \
+            > gas-replay-evidence/original-kart-probe.py
+
+          set +e
+          .probe-venv/bin/python \
+            .github/probes/replay_lumo_1919_gas_search.py \
+            --source gas-replay-evidence/original-kart-probe.py \
+            --fixtures gas-replay-fixture \
+            --manifest gas-replay-fixture/MANIFEST.json \
+            --out gas-replay-evidence/original.json \
+            2>&1 | tee gas-replay-evidence/original.log
+          lumo_original_status=${PIPESTATUS[0]}
+          set -e
+          test "$lumo_original_status" -eq 1
+          .probe-venv/bin/python - <<'PY'
+          from pathlib import Path
+          marker = '[GasScrollReplay] FAIL: Recorded list end received another downward search'
+          assert marker in Path('gas-replay-evidence/original.log').read_text()
+          PY
+
+          .probe-venv/bin/python \
+            .github/probes/replay_lumo_1919_gas_search.py \
+            --source .github/probes/kart_complete_android_probe.py \
+            --fixtures gas-replay-fixture \
+            --manifest gas-replay-fixture/MANIFEST.json \
+            --out gas-replay-evidence/candidate.json \
+            2>&1 | tee gas-replay-evidence/candidate.log
+          .probe-venv/bin/python - <<'PY'
+          from pathlib import Path
+          marker = '[GasScrollReplay] PASS: recorded API36 Gas search and unchanged other scopes'
+          assert marker in Path('gas-replay-evidence/candidate.log').read_text()
+          PY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1919-gas-replay-${{ github.run_id }}
+          path: |
+            gas-replay-evidence/
+            gas-replay-fixture/
+          if-no-files-found: error
+          retention-days: 14
+
+  android-api36:
+    name: Existing APK 1919 full Android race on API36
+    needs: replay
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 37975946198
+          artifact-ids: '11639898022'
+          merge-multiple: true
+          path: candidate/
+
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 37674457852
+          name: lumo-visual-apk-37674457852
+          path: baseline/dist/
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-1919-gas-replay-${{ github.run_id }}
+          path: native-proof/replay/
+
+      - name: Verify the exact APK, provenance, baseline and signatures
+        run: |
+          set -euo pipefail
+          mkdir -p native-proof
+          python3 - <<'PY'
+          import hashlib, json, os, re, shutil, subprocess
+          from pathlib import Path
+
+          def sha(path):
+              with path.open('rb') as stream:
+                  return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+          candidate = Path('candidate')
+          apk = candidate / 'Lumo-Lernen-Neu.apk'
+          baseline = Path('baseline/dist/Lumo-Lernen-Neu.apk')
+          expected_sha = os.environ['LUMO_APK_SHA256']
+          source = os.environ['LUMO_EXPECT_SOURCE']
+          godot = os.environ['LUMO_EXPECT_GODOT']
+          cert = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+
+          def require_certificate_output(output, expected):
+              counts = re.findall(r'(?m)^Number of signers:\s*([0-9]+)\s*$', output)
+              digests = re.findall(
+                  r'(?m)^[^\r\n]*certificate SHA-256 digest:\s*([0-9a-fA-F]{64})\s*$',
+                  output)
+              assert counts == ['1'], 'Expected one actual APK signer'
+              assert digests and {value.lower() for value in digests} == {expected}, \
+                  'Actual APK certificate digest differs or is missing'
+
+          # Exact original stdout: the SDK reports "V2 Signer:" instead of
+          # the old reader's "Signer #1". This is a reader-only regression.
+          fixture = Path('.github/probes/fixtures/lumo-1919-baseline-apksigner.txt')
+          assert sha(fixture) == '1ac4fe5ab6155243edbd95a6e6e77d5fdba009c089703835d0b7029f1b1e1eaf'
+          recorded = fixture.read_text()
+          assert re.search(
+              r'Signer #1 certificate SHA-256 digest:\s*([0-9a-fA-F]{64})',
+              recorded) is None
+          require_certificate_output(recorded, cert)
+          certificate_line = next(line for line in recorded.splitlines()
+                                  if 'certificate SHA-256 digest:' in line)
+          rejected = [
+              recorded.replace(cert, '0' * 64),
+              recorded.replace(certificate_line + '\n', ''),
+              recorded.replace(certificate_line, certificate_line.replace('certificate', 'public key')),
+              recorded.replace('Number of signers: 1', 'Number of signers: 2'),
+              recorded + 'V2 Signer: certificate SHA-256 digest: ' + '0' * 64 + '\n',
+          ]
+          for malformed in rejected:
+              try:
+                  require_certificate_output(malformed, cert)
+              except AssertionError:
+                  pass
+              else:
+                  raise RuntimeError('Signer reader accepted an invalid certificate summary')
+          print('[SignerOutputRegression] PASS: exact recorded V2 certificate and five negative cases')
+
+          assert sha(apk) == expected_sha
+          assert apk.stat().st_size == 205316096
+          assert sha(baseline) == os.environ['LUMO_BASE_DIGEST']
+          assert json.loads(
+              Path('config/godot-source.json').read_text())['revision'] == godot
+
+          provenance = json.loads(
+              (candidate / 'BUILD-PROVENANCE.json').read_text())
+          verification = json.loads(
+              (candidate / 'APK-VERIFICATION.json').read_text())
+          for report in (provenance, verification):
+              assert report['sha256'] == expected_sha
+              assert report['bytes'] == apk.stat().st_size
+              assert report['versionCode'] == 1919
+              assert report['versionName'] == '0.12.12'
+              assert report['godot']['revision'] == godot
+          assert provenance['flutter_source_commit'] == source
+          assert provenance['tracked_source_clean'] is True
+          assert provenance['signingCertificateSha256'] == cert
+
+          sdk = Path(
+              os.environ.get('ANDROID_HOME') or os.environ['ANDROID_SDK_ROOT'])
+          signers = sorted((sdk / 'build-tools').glob('*/apksigner'))
+          assert signers, 'Android SDK apksigner is required before emulator startup'
+          for label, path in (('baseline', baseline), ('candidate', apk)):
+              output = subprocess.check_output(
+                  [str(signers[-1]), 'verify', '--verbose', '--print-certs',
+                   str(path)], text=True, stderr=subprocess.STDOUT)
+              Path(f'native-proof/{label}-signature.txt').write_text(output)
+              require_certificate_output(output, cert)
+              print('[ApkSignature] Verified fixed certificate for ' + label)
+
+          harness = subprocess.check_output(
+              ['git', 'rev-parse', 'HEAD'], text=True).strip()
+          assert harness == os.environ['GITHUB_SHA']
+          binding = {
+              'source': source,
+              'godot': godot,
+              'harness': harness,
+              'candidate_artifact_id': 11639898022,
+              'candidate_run_id': 37975946198,
+              'apk_sha256': expected_sha,
+              'apk_bytes': apk.stat().st_size,
+              'versionName': '0.12.12',
+              'versionCode': 1919,
+              'baseline_run_id': 37674457852,
+              'baseline_sha256': sha(baseline),
+              'signingCertificateSha256': cert,
+              'binary_signatures_verified': True,
+              'scope': 'Existing APK; repaired input-search and recorder harness; API36',
+          }
+          Path('native-proof/APK-RETEST-BINDING.json').write_text(
+              json.dumps(binding, indent=2) + '\n')
+          for name in ('BUILD-PROVENANCE.json', 'APK-VERIFICATION.json'):
+              shutil.copy2(candidate / name, Path('native-proof') / name)
+          PY
+
+      - name: Prepare independent live UI and screenshot readers
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          sudo apt-get \
+            -o Acquire::Retries=2 \
+            -o Acquire::http::Timeout=20 \
+            -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get \
+            -o Acquire::Retries=2 \
+            -o Acquire::http::Timeout=20 \
+            -o Acquire::https::Timeout=20 install -y \
+            ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils \
+            libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install \
+            --disable-pip-version-check \
+            uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze \
+            > native-proof/dependencies.txt
+
+      - name: Enable accelerated disposable emulator
+        run: |
+          set -euo pipefail
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' \
+            | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+
+      - name: Start verified software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX \
+            > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then
+              break
+            fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' \
+            native-proof/mesa-renderer.txt
+
+      - name: Prepare the same API36 system image
+        timeout-minutes: 11
+        run: |
+          set -euo pipefail
+          mkdir -p native-proof/system-image
+          echo '8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51  tools/android_qa/prepare_system_image.py' \
+            | sha256sum -c -
+          python3 tools/android_qa/prepare_system_image.py \
+            --api 36 --out native-proof/system-image --timeout 600
+
+      - name: Update exact APK and exercise the complete offline Kart flow
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope kart
+            .probe-venv/bin/python .github/probes/kart_complete_android_probe.py --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof/full-race --timeout 2400
+
+      - name: Require both actual results and the installed APK readback
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          paths = (
+              Path('native-proof/result.json'),
+              Path('native-proof/full-race/result.json'),
+          )
+          reports = [json.loads(path.read_text()) for path in paths]
+          for report in reports:
+              assert report['status'] == 'PASS'
+              assert report['source'] == os.environ['LUMO_EXPECT_SOURCE']
+              assert report['godot'] == os.environ['LUMO_EXPECT_GODOT']
+              assert report['harness'] == os.environ['GITHUB_SHA']
+              assert report['apk_sha256'] == os.environ['LUMO_APK_SHA256']
+              assert report['android_sdk'] == 36
+          installed = reports[1]['installed_apk']
+          assert installed['matches_candidate'] is True
+          assert installed['sha256'] == os.environ['LUMO_APK_SHA256']
+          assert installed['bytes'] == 205316096
+          print(
+              '[Lumo1919API36Retest] PASS: exact existing APK, '
+              'separate source/harness, both Android probes and installed readback')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1919-api36-gas-recovery-${{ github.run_id }}
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14
