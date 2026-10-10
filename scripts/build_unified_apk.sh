@@ -37,7 +37,13 @@ python3 scripts/export_embedded_game.py "${@}"
 flutter pub get --enforce-lockfile
 require_clean_sources
 split_options=()
-if [ "$split_apks" = 1 ]; then split_options+=(--split-per-abi); fi
+if [ "$split_apks" = 1 ]; then
+  split_options+=(--split-per-abi)
+  # Validate the actual fully configured Gradle outputs before compiling.
+  # This is a configuration-only task: no second Flutter/native APK build.
+  (cd android && ./gradlew :app:verifyLumoSplitVersionCodes \
+    -Psplit-per-abi=true -Ptarget-platform=android-arm64,android-x64)
+fi
 flutter build apk --no-pub --release --target-platform android-arm64,android-x64 \
   "${split_options[@]}" \
   --build-number "$lumo_build_number" --build-name "$lumo_version_name" \

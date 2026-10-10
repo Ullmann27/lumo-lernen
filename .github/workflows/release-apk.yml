@@ -67,6 +67,7 @@ jobs:
               '.github/workflows/release-apk.yml', 'scripts/prepare_embedded_games.py',
               'scripts/tests/test_embedded_android.py', 'docs/LUMO_KART_ANDROID_1928.md',
               '.github/probes/creative_android_probe.py',
+              'scripts/build_unified_apk.sh', 'scripts/verify_unified_apk.py',
               'tools/android_qa/tests/test_native_surface_readiness.py',
               'tools/android_qa/tests/test_native_ocr_tiles.py'
             ]);

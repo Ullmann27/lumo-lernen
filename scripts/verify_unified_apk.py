@@ -37,7 +37,9 @@ def verify(path: Path, expected_abis: set[str] | None = None):
     expected_code = os.environ.get('LUMO_BUILD_NUMBER', version.group(2))
     expected_name = os.environ.get('LUMO_VERSION_NAME', version.group(1))
     if package.group(2) != expected_code or package.group(3) != expected_name:
-        raise RuntimeError('Wrong Android version')
+        raise RuntimeError(
+            f'Wrong Android version: {package.group(3)}+{package.group(2)}, '
+            f'expected {expected_name}+{expected_code}')
     if "sdkVersion:'24'" not in badging:
         raise RuntimeError('Unexpected minimum Android version')
     if "targetSdkVersion:'36'" not in badging:
