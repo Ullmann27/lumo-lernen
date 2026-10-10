@@ -61,6 +61,8 @@ class EmbeddedAndroidTest(unittest.TestCase):
             self.assertIn('if (project.findProperty("split-per-abi") != "true") {', gradle.read_text())
             self.assertIn('abiFilters.addAll(listOf("arm64-v8a", "x86_64"))', gradle.read_text())
             self.assertNotIn('ndk { abiFilters.clear(); abiFilters.addAll', gradle.read_text())
+            self.assertIn('apkOutput.versionCodeOverride = flutter.versionCode', gradle.read_text())
+            self.assertEqual(gradle.read_text().count('apkOutput.versionCodeOverride'), 1)
 
 
 if __name__ == '__main__':
