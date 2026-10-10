@@ -1,4 +1,4 @@
-name: Lumo 1919 API36 Gas-search verification
+name: Lumo 1919 API36 exact-APK verification
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
     paths:
       - .github/probes/**
       - tools/android_qa/tests/test_gas_caption_scroll_recovery.py
+      - tools/android_qa/tests/test_kart_video_recorder.py
       - .github/workflows/lumo-1919-gas-recovery.yml
 
 permissions:
@@ -56,6 +57,7 @@ jobs:
             ':(exclude).github/probes/replay_lumo_1919_gas_search.py' \
             ':(exclude).github/probes/fixtures/lumo-1919-baseline-apksigner.txt' \
             ':(exclude)tools/android_qa/tests/test_gas_caption_scroll_recovery.py' \
+            ':(exclude)tools/android_qa/tests/test_kart_video_recorder.py' \
             ':(exclude).github/workflows/lumo-1919-gas-recovery.yml' \
             ':(exclude)docs/LUMO_1919_ANDROID_GAS_RECOVERY.md'
           python3 - <<'PY'
@@ -108,6 +110,8 @@ jobs:
             .github/probes/kart_complete_android_probe.py \
             .github/probes/prepare_lumo_1919_gas_replay.py \
             .github/probes/replay_lumo_1919_gas_search.py
+          .probe-venv/bin/python -m py_compile \
+            tools/android_qa/tests/test_kart_video_recorder.py
 
       - name: Run targeted regressions before any emulator
         run: |
@@ -128,6 +132,73 @@ jobs:
               result = unittest.TextTestRunner(verbosity=2).run(suite)
               if not result.wasSuccessful():
                   raise SystemExit(1)
+          PY
+
+      - name: Require recorder regression on identical constructed schedules
+        run: |
+          set -euo pipefail
+          git show \
+            d40519d011500246bb4c7ad5a39ad684aa9477bd:.github/probes/kart_complete_android_probe.py \
+            > gas-replay-evidence/original-recorder-probe.py
+          echo '4e19fed0117bbb878b1b79c0fa3e3e2c0e72da53380d5402b31d8370d9bb3b7f  gas-replay-evidence/original-recorder-probe.py' \
+            | sha256sum -c -
+
+          set +e
+          LUMO_RECORDER_PROBE_SOURCE="$PWD/gas-replay-evidence/original-recorder-probe.py" \
+          LUMO_RECORDER_TEST_REPORT="$PWD/gas-replay-evidence/original-recorder-tests.json" \
+            .probe-venv/bin/python tools/android_qa/tests/test_kart_video_recorder.py -v \
+            2>&1 | tee gas-replay-evidence/original-recorder-tests.log
+          lumo_original_recorder_status=${PIPESTATUS[0]}
+          set -e
+          test "$lumo_original_recorder_status" -eq 1
+
+          LUMO_RECORDER_PROBE_SOURCE="$PWD/.github/probes/kart_complete_android_probe.py" \
+          LUMO_RECORDER_TEST_REPORT="$PWD/gas-replay-evidence/candidate-recorder-tests.json" \
+            .probe-venv/bin/python tools/android_qa/tests/test_kart_video_recorder.py -v \
+            2>&1 | tee gas-replay-evidence/candidate-recorder-tests.log
+
+          .probe-venv/bin/python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+
+          def sha(path):
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+          evidence = Path('gas-replay-evidence')
+          old = json.loads((evidence / 'original-recorder-tests.json').read_text())
+          new = json.loads((evidence / 'candidate-recorder-tests.json').read_text())
+          test_sha = sha('tools/android_qa/tests/test_kart_video_recorder.py')
+          for report in (old, new):
+              assert report['schema'] == 'lumo.screenrecord-constructed-schedules.v1'
+              assert report['application_or_gameplay_pass'] is False
+              assert report['fixture_kind'] == (
+                  'constructed deterministic subprocess schedules; '
+                  'actual failure PID response was not saved')
+              assert report['test']['sha256'] == test_sha
+              assert report['tests_run'] == 19
+              assert report['errors'] == [] and report['skipped'] == []
+          assert old['status'] == 'FAIL' and old['failures']
+          assert old['source']['sha256'] == (
+              '4e19fed0117bbb878b1b79c0fa3e3e2c0e72da53380d5402b31d8370d9bb3b7f')
+          expected_red = {
+              'test_clean_remote_exit_with_delayed_host_observation_collects_without_signal',
+              'test_single_pid_for_another_remote_recording_is_never_signalled',
+              'test_own_client_nonzero_exit_is_never_usable_footage',
+              'test_later_segment_launch_failure_cannot_pass_using_earlier_footage',
+          }
+          observed_red = {failure['test'].split('.')[-1] for failure in old['failures']}
+          assert expected_red <= observed_red
+          assert new['status'] == 'PASS' and new['failures'] == []
+          assert new['source']['sha256'] == sha('.github/probes/kart_complete_android_probe.py')
+          before = (evidence / 'original-recorder-probe.py').read_text()
+          after = Path('.github/probes/kart_complete_android_probe.py').read_text()
+          def outside_recorder(source):
+              prefix, recorder = source.split('class VideoRecorder:', 1)
+              _, suffix = recorder.split('\n\ndef main() -> int:', 1)
+              return prefix, suffix
+          assert outside_recorder(before) == outside_recorder(after)
+          print('[RecorderRegression] PASS: identical 19 constructed schedules; '
+                'original RED, candidate GREEN; only VideoRecorder changed since d405')
           PY
 
       - name: Retrieve the pinned original API36 failure fixtures
@@ -330,7 +401,7 @@ jobs:
               'baseline_sha256': sha(baseline),
               'signingCertificateSha256': cert,
               'binary_signatures_verified': True,
-              'scope': 'Existing APK; repaired input-search harness; API36',
+              'scope': 'Existing APK; repaired input-search and recorder harness; API36',
           }
           Path('native-proof/APK-RETEST-BINDING.json').write_text(
               json.dumps(binding, indent=2) + '\n')

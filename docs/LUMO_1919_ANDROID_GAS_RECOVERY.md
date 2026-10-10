@@ -50,3 +50,28 @@ Die Ergebnisdateien protokollieren `source` als ursprüngliche App-Quelle und `h
 Die tatsächlichen Ausgänge stehen in den Artefakten und Logs des Workflows `lumo-1919-gas-recovery.yml`. Diese Beschreibung enthält keine vorweggenommene Erfolgsmeldung. Ein später erfolgreicher Nachprüflauf macht den historischen Gesamtworkflow **37975946198** nicht rückwirkend erfolgreich. Seine API-36-Fehlermeldung und der übersprungene Packaging-Job bleiben erhalten.
 
 Die bereits erfolgreiche ursprüngliche API-35-Rennprüfung steht [separat dokumentiert mit echten Android-Aufnahmen](https://github.com/Ullmann27/lumo-lernen/blob/a5a8e25add924896ae4d5513303ee496f86f3267/docs/evidence/lumo-1919-api35/README.md). Es wurde kein physisches Fold7 geprüft.
+
+## Recorder-Abschluss: tatsächlich beobachteter Fehler vom 9. Oktober
+
+Der Nachprüflauf [37987900281, Android-Job 114014576709](https://github.com/Ullmann27/lumo-lernen/actions/runs/37987900281/job/114014576709) mit Harness `d40519d011500246bb4c7ad5a39ad684aa9477bd` blieb insgesamt **FAILURE**. Die sichtbare Gas-Auswahl funktionierte. Der tatsächliche Rennablauf erreichte 16 Kontrollpunkte und zwei Runden; Pause/Wiederaufnahme, Ergebnis, Offline-Wiederaufnahme, Host-ACK und Schutz vor doppelter Belohnung bestanden. Der Abschluss scheiterte anschließend bei der Sammlung des Videos:
+
+`Actual Android footage collection failed: Cannot safely identify the owned screenrecord process`
+
+Das unveränderte Fehlerartefakt **11645193524** umfasst 261.443.909 Bytes, ZIP-SHA-256 `1560e0abaa807a6be31c52165c983ddf788c25b6fbb2a208ab82f6233a78b865`. Fünf Videoabschnitte waren gesammelt; der letzte Abschnitt wurde nicht übernommen. Die alte Implementierung speicherte die betreffende `pidof`-Antwort nicht. Daher ist aus diesem Lauf keine eindeutige Unterscheidung zwischen einem zeitlichen Prozessübergang und einer Transportdiagnose möglich. Die Ressourcen-Rohdaten liegen vor, aber ihr abschließendes Gate hinter der Videosammlung wurde in diesem Lauf nicht ausgeführt.
+
+### Kleine, gesondert geprüfte Recorder-Korrektur
+
+Nur die Klasse `VideoRecorder` wird gegenüber d405 geändert:
+
+- Jeder Recorder erhält einen eindeutigen Remote-Dateinamen. Ein Signal ist nur für eine einzelne positive PID mit exakt passender, NUL-getrennter Befehlszeile und genau dieser Zieldatei erlaubt.
+- stdout, stderr und Rückgabecode der Prozessabfragen werden getrennt gespeichert; zusätzlich werden ihre Hexbytes verlustfrei erhalten.
+- Meldet `pidof` ohne Ausgabe und ohne stderr den Status 1, wird kein fremder Prozess gesucht oder beendet. Innerhalb derselben 20-Sekunden-Frist muss der eigene ADB-Prozess erfolgreich enden.
+- Erst tatsächlicher Exit 0 und eine erfolgreich geladene Videodatei von mindestens 1024 Bytes erlauben einen gesammelten Abschnitt.
+- Ein Fehler beim Start eines späteren ADB-Prozesses wird erfasst und kann nicht durch frühere Aufnahmen zu einem falschen PASS werden.
+- Aufnahmegröße 960 × 540, Bitrate, 180-Sekunden-Abschnitte sowie die bisherigen Grenzen 200/20/90/115 Sekunden bleiben erhalten. Die getrennte cmdline-Prüfung und Signalzustellung stellen keine atomare PID-Reuse-Garantie dar.
+
+`tools/android_qa/tests/test_kart_video_recorder.py` führt die echte Recorder-Implementierung mit **19 konstruierten, deterministischen Prozessabläufen** aus. Dieselben Testbytes laufen gegen die exakten Originalbytes von d405 (54.526 Bytes, SHA-256 `4e19fed0117bbb878b1b79c0fa3e3e2c0e72da53380d5402b31d8370d9bb3b7f`) und den Kandidaten. Die Tests ersetzen ausschließlich Betriebssystem- und ADB-Grenzen. Ihre synthetischen Dateibytes sind kein Videonachweis und gelangen nicht in die Android-Belegsammlung.
+
+Die CI verlangt zuerst das spezifische erwartete RED des Originals, anschließend GREEN des Kandidaten, Hashgleichheit der Tests und Bytegleichheit aller Probe-Bereiche außerhalb der Recorder-Klasse. Prozessfehler, fremde oder mehrdeutige PIDs, nicht erfolgreiche Beendigung und Zeitüberschreitungen müssen weiterhin scheitern.
+
+Der neue Android-Lauf prüft danach **dieselbe unveränderte APK**. Es wird erst nach einem tatsächlichen erfolgreichen Emulatorlauf ein Gesamtnachweis erstellt. Die Fehlerrunden 37975946198, 37987154620 und 37987900281 bleiben als Historie sichtbar.
