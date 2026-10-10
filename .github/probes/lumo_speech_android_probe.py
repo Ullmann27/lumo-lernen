@@ -65,15 +65,18 @@ def playback_count(text):
 
 
 def parents(out):
-    for attempt in range(8):
-        nodes = existing.live.live_nodes(out, f"parents-entry-{attempt}")
-        for label in ("Eltern", "Elternbereich", "Elternbereich öffnen", "Einstellungen"):
-            if any(label in (n.get("text", ""), n.get("content-desc", "")) for n in nodes):
-                existing.flutter_tap(out, label, "parents-entry")
-                return
-        existing.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
-        time.sleep(1)
-    raise RuntimeError("No observed parent navigation control")
+    if existing.PACKAGE not in existing.base.foreground():
+        raise RuntimeError("App not foreground before actual parent navigation")
+    nodes = existing.live.live_nodes(out, "parents-entry")
+    for label in ("Eltern", "Elternbereich", "Elternbereich öffnen", "Einstellungen"):
+        if any(label == value or label in value.split("\n")
+               for n in nodes for value in (n.get("text", ""), n.get("content-desc", ""))):
+            existing.flutter_tap(out, label, "parents-direct")
+            return
+    # Actual 360dp bottom navigation from run38071976928 has Profil, not Eltern.
+    # Do not press Back repeatedly: that exits Lumo instead of opening settings.
+    existing.flutter_tap(out, "Profil", "parents-profile")
+    existing.flutter_tap(out, "Profil\nbearbeiten", "parents-profile-edit")
 
 
 def main():
@@ -130,6 +133,9 @@ def main():
             raise RuntimeError("Profile changed in update")
         if existing.wallet(out, "after-update") != before_wallet:
             raise RuntimeError("Wallet changed in update")
+        result["update_retained"] = {"profile": True, "wallet": True,
+            "package_uid": True, "first_install_time": True}
+        existing.capture(out, "00_candidate_after_in_place_update")
         parents(out)
         existing.flutter_tap(out, "App und Sprachserver prüfen", "diagnose")
         time.sleep(8)
