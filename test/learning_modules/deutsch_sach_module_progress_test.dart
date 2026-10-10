@@ -102,9 +102,12 @@ const _articles = {
 };
 
 Future<void> _frames(WidgetTester tester, [int count = 200]) async {
-  // Pump small frames so persistence microtasks finish before feedback timers.
+  // UI/feedback use the fake clock, while _open loads cached storage Futures
+  // in runAsync. Give that real event loop a turn between frames so an awaited
+  // profile selection/save can finish before advancing the feedback clock.
   for (var frame = 0; frame < count; frame++) {
     await tester.pump(const Duration(microseconds: 16667));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   }
 }
 
