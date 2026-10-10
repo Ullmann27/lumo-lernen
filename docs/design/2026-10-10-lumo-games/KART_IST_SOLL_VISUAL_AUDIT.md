@@ -2,6 +2,12 @@
 
 **Referenz-/Vergleichsdatum:** 10. Oktober 2026. Der Auftraggeber hat einen 3×2-Vergleich echter Godot-Laufzeitbilder eingereicht (Holo City, Himmelsinseln, Sonnenhafen, Zauberwald und reduzierte Bewegung). Die Rennszenen stammen aus dem GitHub-Lauf [Kart Video Reference Grade](https://github.com/Ullmann27/lumo-godot/actions/runs/38045869261), der die tatsächliche Geometrie und Kamera prüft. Die **Designziele** stehen in den unverändert archivierten Bildern unter `references/`; die sechs Rennbilder sind eine **Ist-Aufnahme**, nicht die Zielqualität.
 
+## Reproduzierbarer Ist-Zustand
+
+![Sechs echte Godot-Laufzeitaufnahmen im 3×2-Vergleich](references/KART_RUNTIME_6_TRACKS_2026-10-10.png)
+
+Der unveränderte vom Auftraggeber übermittelte PNG-Vergleich wurde im GitHub-Importlauf [38046808221](https://github.com/Ullmann27/lumo-lernen/actions/runs/38046808221) mit SHA-256 `7a7e87559ca49effdab520b7ad49c568d88395b378581d910627eb5d311a1e63` gesichert. **Ist-Zustand der Engine**, nicht gewünschte finale Bildqualität.
+
 ## Festgestellte Abweichungen aus dem 3×2-Vergleich
 
 | Welt / Aufnahme | Im tatsächlichen Renderer erkennbar | Konkrete nächste Produktionsmaßnahme |
