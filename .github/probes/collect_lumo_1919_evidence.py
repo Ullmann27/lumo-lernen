@@ -145,6 +145,25 @@ def png(z, suffix, relative, artifact_id, display=False):
         emit_png(meta, raw)
     return meta
 
+def copy_flutter_return(full, z, prefix, artifact_id):
+    """Copy the observed Flutter frame, separately from native return controls."""
+    returned = full["visible_flutter_return"]
+    require(returned["status"] == "PASS" and returned["observations"],
+            "Missing visible Flutter return observations")
+    final = returned["observations"][-1]
+    require(final["valid"] is True and final["stable"] is True,
+            "The final Flutter return frame is not stable and valid")
+    captured = final["observed"]["capture"]
+    name = captured["file"]
+    require(re.fullmatch(r"13-flutter-return-[0-9]{2}\.png", name) is not None,
+            "Expected the actual observed Flutter return capture")
+    raw = z.read(member(z, "full-race/" + name))
+    require(sha(raw) == captured["sha256"], "Flutter return PNG differs from its observation")
+    meta = png(z, "full-race/" + name, prefix + "/returned-to-app.png", artifact_id)
+    require((meta["width"], meta["height"]) == (captured["width"], captured["height"]),
+            "Flutter return PNG dimensions differ from its observation")
+    return meta
+
 def emit_png(meta, raw):
     require(len(raw) < 4000000, "Visual transfer budget")
     encoded = base64.b64encode(raw).decode("ascii")
@@ -998,8 +1017,10 @@ def main():
                         ("04-driving-000.png", "race"),
                         ("06-completed-result-phone.png", "result"),
                         ("12-same-completed-result-reopened.png", "reopened-result"),
-                        ("13-completed-race-returned-to-app.png", "returned-to-app")):
+                        ("13-completed-race-returned-to-app.png", "native-return-controls")):
                     png(z, "full-race/" + suffix, "android/" + key + "/" + title + ".png", artifact["id"])
+                ANDROID[key]["visible_flutter_return_capture"] = copy_flutter_return(
+                    full, z, "android/" + key, artifact["id"])
 
     artifact = checked_artifact(old_artifacts, RUN, APP, ORIGINAL_ARTIFACTS["failed-api36"])
     with archive(artifact, RUN, APP) as z:
@@ -1066,11 +1087,13 @@ def main():
         for suffix, title in (
                 ("04-driving-000.png", "race"), ("06-completed-result-phone.png", "result"),
                 ("12-same-completed-result-reopened.png", "reopened-result"),
-                ("13-completed-race-returned-to-app.png", "returned-to-app")):
+                ("13-completed-race-returned-to-app.png", "native-return-controls")):
             png(z, "full-race/" + suffix, "android/kart-api36/" + title + ".png", artifact["id"])
         ANDROID["kart-api36"] = {"status": "PASS", "source": APP, "harness": harness,
                                 "android_sdk": 36, "artifact_id": artifact["id"],
                                 "tested_games": ["kart"], "full_race": full_summary}
+        ANDROID["kart-api36"]["visible_flutter_return_capture"] = copy_flutter_return(
+            full, z, "android/kart-api36", artifact["id"])
     require(set(ANDROID) == {"build-api35", "puzzle-api35", "rhythm-api35", "treasure-api35",
                              "kart-api35", "kart-api36"}, "Final required Android coverage differs")
     require(sha((OUT / APK_NAME).read_bytes()) == APK_SHA, "Output APK changed")
