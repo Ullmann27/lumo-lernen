@@ -16,6 +16,8 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    env:
+      LUMO_SPLIT_PER_ABI: ${{ github.ref_name == 'computer/lumo-kart-android-1928-2026-10-11' && '1' || '0' }}
     outputs:
       apk-sha: ${{ steps.apk-identity.outputs.sha }}
     steps:
@@ -71,7 +73,11 @@ jobs:
       - name: Record build proof
         id: apk-identity
         run: |
-          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk >> "$GITHUB_STEP_SUMMARY"
+          if [ "$LUMO_SPLIT_PER_ABI" = 1 ]; then
+            python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a >> "$GITHUB_STEP_SUMMARY"
+          else
+            python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk >> "$GITHUB_STEP_SUMMARY"
+          fi
           echo "sha=$(sha256sum dist/Lumo-Lernen-Neu.apk | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - name: Record compact test outcomes
         if: success()
@@ -112,6 +118,16 @@ jobs:
             echo "Download the artifact from the run's Artifacts section; no release was published."
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Upload separately verified emulator APK from the same build
+        if: success() && env.LUMO_SPLIT_PER_ABI == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-emulator-apk-${{ github.run_id }}-${{ github.run_attempt }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
       - name: Publish Heinz test APK prerelease
         if: success() && github.event_name == 'pull_request' && github.head_ref == 'chatgpt/lumo-test-apk-2026-10-05'
         env:
@@ -137,6 +153,106 @@ jobs:
               --prerelease \
               --title "Lumo Test APK – Hologlass + Fold + Kart" \
             --notes "Testversion aus ${GITHUB_SHA}. Enthält neues Hologlass-Onboarding, Fold-Host-Fix und aktuellen Lumo-Kart-Stand. Kein Produktionsrelease."
+
+  android-kart-smoke:
+    name: Android16 Kart update, entry and Fold surface evidence
+    needs: verify
+    if: github.ref_name == 'computer/lumo-kart-android-1928-2026-10-11'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: read
+      actions: read
+    env:
+      LUMO_EXPECT_SOURCE: ${{ github.sha }}
+      LUMO_EXPECT_VERSION: '1928'
+      LUMO_EXPECT_GODOT: b7c41149cc78f9884b52a62f06a6e30421057f87
+      LUMO_EXPECT_ANDROID_API: '36'
+      LUMO_BASE_DIGEST: 8d88637daaea63944213f86de90508c6f78e5deeb4d696af1f197e3a16957370
+      LUMO_FOLD_PROBE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-emulator-apk-${{ github.run_id }}-${{ github.run_attempt }}
+          path: candidate/
+      - name: Pin last test APK and prepare independent runtime readers
+        run: |
+          set -euo pipefail
+          mkdir -p baseline native-proof
+          curl -fL --max-time 180 'https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.20-1927-context-voice-technical-test/Lumo-Lernen-Neu.apk' -o baseline/Lumo-Lernen-Neu.apk
+          echo "$LUMO_BASE_DIGEST  baseline/Lumo-Lernen-Neu.apk" | sha256sum -c -
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          proof = json.loads(Path('candidate/BUILD-PROVENANCE.json').read_text())
+          assert proof['flutter_source_commit'] == os.environ['LUMO_EXPECT_SOURCE']
+          assert proof['godot']['revision'] == os.environ['LUMO_EXPECT_GODOT']
+          assert proof['versionCode'] == int(os.environ['LUMO_EXPECT_VERSION'])
+          assert proof['abis'] == ['x86_64'] and proof['tracked_source_clean'] is True
+          assert proof['sha256'] == hashlib.file_digest(Path('candidate/Lumo-Lernen-Neu.apk').open('rb'), 'sha256').hexdigest()
+          PY
+          sudo apt-get update -qq
+          sudo apt-get install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/creative_android_probe.py
+          cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
+      - name: Enable KVM and prepare Android16 image
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo chmod a+rw /dev/kvm
+          python3 tools/android_qa/prepare_system_image.py --api 36 --out native-proof/system-image --timeout 600
+      - name: Prepare actual software-rendered display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 2500x2200x24 -nolisten tcp +extension GLX > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Update without uninstall and exercise actual Kart/Fold controls
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope kart
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1928-android16-kart-proof-${{ github.run_id }}
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14
 
   android-voice-smoke:
     name: Android16 voice controls and update evidence
