@@ -219,6 +219,8 @@ class _AppShellState extends State<AppShell>
       enabled: settings.voiceEnabled,
       rate: settings.voiceRate,
       pitch: settings.voicePitch,
+      cloudVoiceEnabled: settings.cloudVoiceEnabled,
+      voiceServerUrl: settings.aiProxyUrl,
     );
     try {
       await _appState.loadLearningProfile();
