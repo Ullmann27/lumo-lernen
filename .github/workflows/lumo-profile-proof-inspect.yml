@@ -1,0 +1,71 @@
+name: Lumo inspect saved Android profile proof
+
+on:
+  push:
+    branches: [codex/lumo-profile-diagnostics-2026-10-10]
+    paths: [.github/workflows/lumo-profile-proof-inspect.yml]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  inspect:
+    if: github.ref == 'refs/heads/codex/lumo-profile-diagnostics-2026-10-10'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38037381987
+          name: lumo-1920-android-profile-38037381987
+          path: proof/
+      - name: Read the saved failure without starting or modifying the app
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, hashlib, json, struct
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          root = Path('proof').resolve()
+          package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+          print('LUMO_DIAG_INPUT ' + json.dumps({'run':38037381987,'artifact':11664299936,'qa_commit':'7827bcd74b048966428feb2d192d0ea8ed5e33bf'}))
+          def read(path, limit):
+              assert path.resolve().parent == root and not path.is_symlink(), str(path)
+              data = path.read_bytes()
+              assert len(data) <= limit, (path.name, len(data))
+              print('LUMO_DIAG_FILE ' + json.dumps({'name':path.name,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}))
+              return data
+          result = json.loads(read(root / 'result.json', 2000000))
+          assert result['qa_commit'] == '7827bcd74b048966428feb2d192d0ea8ed5e33bf', 'Unexpected QA source'
+          assert result['apk_source_commit'] == '554c2b6a0a12e36a2b5497c787acb14f6f6d85fd', 'Unexpected APK source'
+          print('LUMO_DIAG_RESULT ' + json.dumps(result, ensure_ascii=False))
+          for name in ('QA-RUN.json', 'WORKFLOW-STATUS.json'):
+              print('LUMO_DIAG_MANIFEST ' + name + ' ' + read(root / name, 100000).decode())
+          actions = read(root / 'ui-actions.jsonl', 2000000).decode().splitlines()
+          for row in actions[-40:]:
+              print('LUMO_DIAG_ACTION ' + row)
+          selected = set()
+          for pattern in ('baseline-school-profile-ui-*.xml','baseline-school-edit-ui-*.xml','failure-ui-*.xml'):
+              files = sorted(root.glob(pattern))
+              assert files, 'Missing saved hierarchy: ' + pattern
+              selected.update(files[:2] + files[-2:])
+          for path in sorted(selected):
+              raw = read(path, 2000000)
+              tree = ET.fromstring(raw)
+              print('LUMO_DIAG_XML_BEGIN ' + path.name)
+              print(raw.decode())
+              print('LUMO_DIAG_XML_END ' + path.name)
+              for node in tree.iter('node'):
+                  if node.get('package') == package and (node.get('text') or node.get('content-desc')):
+                      print('LUMO_DIAG_NODE ' + json.dumps(dict(node.attrib), ensure_ascii=False))
+          png = read(root / 'failure.png', 2000000)
+          assert png[:8] == b'\x89PNG\r\n\x1a\n' and png[12:16] == b'IHDR', 'Not the original PNG'
+          width, height = struct.unpack('>II', png[16:24])
+          print('LUMO_DIAG_PNG_BEGIN ' + json.dumps({'file':'failure.png','bytes':len(png),'sha256':hashlib.sha256(png).hexdigest(),'width':width,'height':height}))
+          encoded = base64.b64encode(png).decode('ascii')
+          for offset in range(0, len(encoded), 1000):
+              print('LUMO_DIAG_PNG_DATA ' + encoded[offset:offset+1000])
+          print('LUMO_DIAG_PNG_END')
+          PY
