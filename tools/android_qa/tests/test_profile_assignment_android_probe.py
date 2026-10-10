@@ -244,6 +244,80 @@ class VisibleAnswerReaderTests(unittest.TestCase):
             self.assertTrue(all(row == {'scroll': False} for row in reads))
 
 
+class ProfileEditFocusReaderTests(unittest.TestCase):
+    def card(self, **changes):
+        # Exact merged label/bounds from baseline-school-edit-ui-0045.xml.
+        attributes = {
+            'content-desc': 'Level 1\n2\nEntdecker:in\nKlasse 1\n10 / 400 XP\n'
+                            'Profil\nbearbeiten\nLernprofi: 2 von 10\nSpieler:in: 0 von 1\n'
+                            'Tüftler:in: 0 von 5\nSternensammler: 2 von 10\nHeld:in: 1 von 3',
+            'focusable': 'true', 'focused': 'false',
+        }
+        attributes.update(changes)
+        return node(bounds='[0,831][1080,1678]', clickable=True, **attributes)
+
+    def test_actual_merged_card_is_ready_without_authorizing_activation(self):
+        card = self.card()
+        ready = PROBE.profile_edit_target([card], 1080, 2400)
+        self.assertEqual(ready['bounds'], [0, 831, 1080, 1678])
+        self.assertEqual(ready['label'], 'Profil\nbearbeiten')
+        self.assertFalse(ready['focused'])
+        self.assertIsNone(PROBE.profile_edit_target([card], 1080, 2400, require_focused=True))
+        self.assertEqual(PROBE.matching([card], 'Profil\nbearbeiten', 1080, 2400), [])
+
+    def test_only_explicit_input_focus_authorizes_enter(self):
+        card = self.card(selected='true')
+        for focused in (None, 'false', 'true'):
+            if focused is None:
+                card.attrib.pop('focused', None)
+            else:
+                card.set('focused', focused)
+            target = PROBE.profile_edit_target([card], 1080, 2400, require_focused=True)
+            with self.subTest(focused=focused):
+                self.assertEqual(target is not None, focused == 'true')
+
+    def test_disabled_missing_foreign_clipped_and_nonclickable_cards_are_rejected(self):
+        for attribute, value in (('enabled', 'false'), ('enabled', None),
+                                 ('clickable', 'false'), ('clickable', None),
+                                 ('package', 'other.app'), ('bounds', '[0,-10][1080,800]'),
+                                 ('bounds', '[0,2200][1080,2500]'),
+                                 ('visible-to-user', 'false')):
+            card = self.card(focused='true')
+            if value is None:
+                del card.attrib[attribute]
+            else:
+                card.set(attribute, value)
+            with self.subTest(attribute=attribute, value=value):
+                self.assertIsNone(PROBE.profile_edit_target([card], 1080, 2400))
+                self.assertIsNone(PROBE.profile_edit_target(
+                    [card], 1080, 2400, require_focused=True))
+
+    def test_label_requires_exact_adjacent_lines_in_one_attribute(self):
+        for text in ('Profil bearbeiten', 'Profil\nanderes\nbearbeiten',
+                     'bearbeiten\nProfil', 'Profilbild\nbearbeiten', 'Profil\nBearbeiten'):
+            card = self.card(**{'content-desc': text})
+            with self.subTest(text=text):
+                self.assertIsNone(PROBE.profile_edit_target([card], 1080, 2400))
+        card = self.card(**{'content-desc': 'bearbeiten'})
+        card.set('text', 'Profil')
+        self.assertIsNone(PROBE.profile_edit_target([card], 1080, 2400))
+
+    def test_multiple_edit_targets_are_ambiguous_even_when_only_one_is_focused(self):
+        cards = [self.card(focused='true'), self.card()]
+        for focused in (False, True):
+            with self.subTest(require_focused=focused), self.assertRaisesRegex(
+                    RuntimeError, 'Ambiguous profile edit focus target'):
+                PROBE.profile_edit_target(cards, 1080, 2400, require_focused=focused)
+
+    def test_focus_on_navigation_or_foreign_edit_does_not_authorize_the_card(self):
+        card = self.card()
+        navigation = node('Profil', '[857,2148][1068,2316]', clickable=True, focused='true')
+        foreign = self.card(focused='true')
+        foreign.set('package', 'other.app')
+        self.assertIsNone(PROBE.profile_edit_target(
+            [card, navigation, foreign], 1080, 2400, require_focused=True))
+
+
 class FailClosedEntryTests(unittest.TestCase):
     def test_existing_evidence_is_not_overwritten_by_a_failed_second_invocation(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(

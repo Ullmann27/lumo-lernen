@@ -170,6 +170,51 @@ jobs:
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: .probe-venv/bin/python .github/probes/profile_assignment_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out profile-proof
+      - name: Log saved profile evidence for remote review
+        if: always()
+        # Diagnostic logging cannot turn a failed app probe into a passing job.
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, json, struct
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          root = Path('profile-proof').resolve()
+          result_path = root / 'result.json'
+          if not result_path.is_file():
+              print('LUMO_PROFILE_NO_RESULT: probe did not produce a result')
+              raise SystemExit(0)
+          def read(path, limit):
+              assert path.resolve().parent == root and not path.is_symlink(), path.name
+              raw = path.read_bytes()
+              assert len(raw) <= limit, (path.name, len(raw))
+              print('LUMO_PROFILE_FILE ' + json.dumps({'name':path.name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}))
+              return raw
+          result = json.loads(read(result_path, 4000000))
+          print('LUMO_PROFILE_RESULT ' + json.dumps(result, ensure_ascii=False))
+          if result.get('status') != 'PASS':
+              files = sorted(root.glob('failure-ui-*.xml'))[-1:]
+              for path in files:
+                  for node in ET.fromstring(read(path, 2000000)).iter('node'):
+                      if node.get('text') or node.get('content-desc') or node.get('focused') == 'true':
+                          keys = ('text','content-desc','class','package','bounds','enabled','clickable','focused','scrollable','visible-to-user')
+                          print('LUMO_PROFILE_NODE ' + json.dumps({k:node.get(k) for k in keys}, ensure_ascii=False))
+          names = (('assignment-success-no-test-scroll.png', 'final-B-has-one.png')
+                   if result.get('status') == 'PASS' else ('failure.png',))
+          for name in names:
+              path = root / name
+              if not path.is_file():
+                  print('LUMO_PROFILE_IMAGE_MISSING ' + name)
+                  continue
+              png = read(path, 4000000)
+              assert png[:8] == b'\x89PNG\r\n\x1a\n' and png[12:16] == b'IHDR'
+              width, height = struct.unpack('>II', png[16:24])
+              print('LUMO_PROFILE_PNG_BEGIN ' + json.dumps({'name':name,'bytes':len(png),'sha256':hashlib.sha256(png).hexdigest(),'width':width,'height':height}))
+              encoded = base64.b64encode(png).decode('ascii')
+              for offset in range(0, len(encoded), 1000):
+                  print('LUMO_PROFILE_PNG_DATA ' + encoded[offset:offset+1000])
+              print('LUMO_PROFILE_PNG_END ' + name)
+          PY
       - name: Preserve final workflow status
         if: always()
         env:

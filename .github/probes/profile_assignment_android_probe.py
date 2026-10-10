@@ -256,6 +256,31 @@ def matching(nodes, label: str, width: int, height: int):
             node_bounds(node, width, height)]
 
 
+def profile_edit_target(nodes, width: int, height: int, *, require_focused=False):
+    """Recognize the actual merged card; only observed input focus authorizes Enter."""
+    candidates = []
+    for node in nodes:
+        if (node.get('package') != PACKAGE or node.get('enabled') != 'true' or
+                node.get('clickable') != 'true' or not node_bounds(node, width, height)):
+            continue
+        for attribute in ('text', 'content-desc'):
+            lines = [value.strip() for value in node.get(attribute, '').split('\n')]
+            if any(left == 'Profil' and right == 'bearbeiten'
+                   for left, right in zip(lines, lines[1:])):
+                candidates.append(node)
+                break
+    require(len(candidates) <= 1, 'Ambiguous profile edit focus target')
+    if not candidates:
+        return None
+    node = candidates[0]
+    if require_focused and node.get('focused') != 'true':
+        return None
+    return {'label': 'Profil\nbearbeiten',
+            'bounds': list(node_bounds(node, width, height)),
+            'text': node.get('text', ''), 'content_desc': node.get('content-desc', ''),
+            'focused': node.get('focused') == 'true'}
+
+
 def plus_question(nodes, width: int, height: int):
     """A visible prompt plus four distinct clickable options, below that prompt."""
     prompts, indexes = {}, set()
@@ -513,8 +538,50 @@ class AndroidProbe:
 
     def parent(self, tag: str) -> None:
         self.tap('Profil', tag + '-profile', navigation=True)
-        self.tap('Profil\nbearbeiten', tag + '-edit')
-        self.see('Lehrerbereich öffnen', tag + '-teacher-entry', scroll=True)
+        # Run 38037381987 exposes the edit InkWell in the whole profile card.
+        # Its merged bounds cannot locate the button for a finger press.
+        _, _, ready = self.seek(
+            tag + '-profile-ready',
+            lambda nodes: profile_edit_target(nodes, self.width, self.height), scroll=True)
+        self.checkpoint(tag + '-profile-ready')
+
+        def press(keycode, observations, target=None):
+            require(keycode in ('KEYCODE_TAB', 'KEYCODE_ENTER'), 'Unexpected profile key')
+            if keycode == 'KEYCODE_ENTER':
+                require(target is not None and target['focused'] is True,
+                        'Profile edit activation requires observed input focus')
+            event = {'tag': tag + '-edit-' + keycode, 'keycode': keycode,
+                     'input': 'real Android hardware-key event',
+                     'fresh_observations': observations, 'target': target}
+            with (self.out / 'ui-actions.jsonl').open('a') as stream:
+                stream.write(json.dumps(event, ensure_ascii=False) + '\n')
+            self.adb('shell', 'input', 'keyevent', keycode)
+
+        focused_target = lambda nodes: profile_edit_target(
+            nodes, self.width, self.height, require_focused=True)
+        for tab_count in range(25):
+            nodes, xml = self.nodes(tag + '-edit-focus-' + str(tab_count))
+            if focused_target(nodes) is not None:
+                focused, _, _ = self.seek(
+                    tag + '-edit-focus-stable', focused_target, timeout=15)
+                self.checkpoint(tag + '-edit-focused')
+                # Capture/storage reads take time; obtain a new stable pair before Enter.
+                fresh, _, observations = self.seek(
+                    tag + '-edit-focus-fresh', focused_target, timeout=15)
+                require(fresh == focused, 'Profile edit focus changed before activation')
+                press('KEYCODE_ENTER', observations, fresh)
+                time.sleep(2)
+                _, _, teacher = self.see(
+                    'Lehrerbereich öffnen', tag + '-teacher-entry', scroll=True)
+                self.result.setdefault('profile_edit_keyboard', []).append({
+                    'tag': tag, 'tab_count': tab_count, 'activation_key': 'KEYCODE_ENTER',
+                    'focused_target': fresh, 'ready_observations': ready,
+                    'activation_observations': observations, 'teacher_entry_observations': teacher,
+                })
+                return
+            require(tab_count < 24, 'Profile edit has no observed input focus after 24 Tab keys')
+            press('KEYCODE_TAB', [xml])
+            time.sleep(.65)
 
     def teacher(self, tag: str) -> None:
         self.parent(tag)
