@@ -5,6 +5,12 @@ on:
       - chatgpt/lumo-sulafat-everywhere-2026-10-10
     paths:
       - .github/workflows/lumo-sulafat-ci.yml
+      - lib/core/lumo_voice.dart
+      - lib/core/lumo_sulafat_client.dart
+      - lib/features/settings/settings_content.dart
+      - lib/features/games/mini_games/lesson_trail_game.dart
+      - test/lumo_sulafat_client_test.dart
+      - server/lumo-ai-proxy/**
   workflow_dispatch:
 
 permissions:
