@@ -86,7 +86,7 @@ class LumoColorPicker extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Text(
-          _labelOf(c),
+          c.displayName,
           style: const TextStyle(
             fontFamily: 'Nunito',
             fontSize: 13,
@@ -111,16 +111,4 @@ class LumoColorPicker extends StatelessWidget {
     }
   }
 
-  static String _labelOf(LumoCardColor c) {
-    switch (c) {
-      case LumoCardColor.orange:
-        return 'Rot';
-      case LumoCardColor.purple:
-        return 'Gelb';
-      case LumoCardColor.blue:
-        return 'Blau';
-      case LumoCardColor.green:
-        return 'Grün';
-    }
-  }
 }

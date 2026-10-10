@@ -35,3 +35,21 @@ sein; IDs, Enum-Reihenfolge, Regelverhalten und gespeicherte Daten bleiben.
 IN_ARBEIT / VISUAL_GAP. Keine finale Grafik- oder APK-Freigabe.
 Geräteinstallation, Update und Gameplay auf identischer APK müssen getrennt
 von erfolgreichen Unit- und Screenshot-Tests nachgewiesen werden.
+
+## Cards-Farbkorrektur
+
+Ein gemeinsamer Anzeigename verbindet jetzt Kartensemantik, Farbwahl,
+Ablagestapel und Sprachansage. Historische Domain-IDs bleiben unverändert.
+Die vier Richtungspfeile verwenden dieselbe vorhandene Palette wie die
+Karten-PNGs; der kleine Farbtext ist auf dem dunklen Tisch nun hell lesbar.
+Vorherige Regression: Rot und Gelb fehlten am Ablagestapel, 2 von 4 Tests rot.
+Nach Korrektur: 59 ausgewählte Regeln-, Deck-, Lifecycle-, Semantik- und
+Screenshot-Tests bestanden. Zusätzliche Guard-Prüfung schützt Enum-Namen
+und -Reihenfolge vor versehentlicher Datenmigration.
+
+Nachher und Vergleich in `docs/qa/visual/aaa/2026-10-10/cards-color/`.
+Gleicher Seed, App-Zustand, Font, Kamera und Pixelgröße wie die Baseline.
+Kein Ersatz der vorhandenen Illustrationen. Bekannte Restabweichungen:
+sehr kleine Tischansicht bei 640×360; Emoji-Platzhalter werden in der
+Desktop-Testengine ohne Emoji-Font als Kästchen dargestellt. Android-
+Darstellung und Bedientargets werden getrennt geprüft.

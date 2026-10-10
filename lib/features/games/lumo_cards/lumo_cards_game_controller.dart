@@ -499,16 +499,5 @@ class LumoCardsGameController extends ChangeNotifier {
     }
   }
 
-  String _colorName(LumoCardColor c) {
-    switch (c) {
-      case LumoCardColor.orange:
-        return 'Orange';
-      case LumoCardColor.purple:
-        return 'Lila';
-      case LumoCardColor.blue:
-        return 'Blau';
-      case LumoCardColor.green:
-        return 'Grün';
-    }
-  }
+  String _colorName(LumoCardColor c) => c.displayName;
 }
