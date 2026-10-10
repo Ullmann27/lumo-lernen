@@ -44,8 +44,9 @@ void main() {
           pending['results'] = (pending['results'] as List)
               .where((event) => !acknowledged.contains(event['resultId']))
               .toList();
-          if (pending['destination'] == call.arguments['destination'])
+          if (pending['destination'] == call.arguments['destination']) {
             pending.remove('destination');
+          }
           return true;
         case 'clearGameEvents':
           pending = {'results': []};

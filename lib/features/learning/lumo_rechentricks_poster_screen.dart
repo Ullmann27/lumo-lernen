@@ -20,7 +20,7 @@ class LumoRechentricksPosterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tricks = const LumoRechentricks();
+    const tricks = LumoRechentricks();
     // Pro Mentor 2 Beispiel-Aufgaben generieren.
     final entries = <_PosterEntry>[];
     for (final m in kAllRechentricksMentors) {

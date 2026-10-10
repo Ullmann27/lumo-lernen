@@ -107,7 +107,7 @@ class LumoLearningFeedbackEngine {
         'Noch nicht richtig, aber wertvoll: Jetzt wissen wir genauer, was Lumo mit dir üben soll.',
       ],
       LumoFeedbackTone.streak => <String>[
-        'Das ist schon die ${_correctStreak}. richtige Antwort in Folge. Du bleibst richtig konzentriert.',
+        'Das ist schon die $_correctStreak. richtige Antwort in Folge. Du bleibst richtig konzentriert.',
         'Starke Serie! Du löst nicht nur, du erkennst das Muster immer schneller.',
         'Lumo merkt sich: $unit klappt gerade richtig gut. Wir dürfen bald etwas schwerer werden.',
       ],

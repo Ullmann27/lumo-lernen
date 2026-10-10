@@ -213,7 +213,7 @@ class LumoCompanionState {
     }
     // Favorit
     if (_favoriteTopic != null && greetings.length < 2) {
-      greetings.add('Heute wieder ${_favoriteTopic}?');
+      greetings.add('Heute wieder $_favoriteTopic?');
     }
     if (greetings.isEmpty) {
       greetings.add('Hallo $_childName!');

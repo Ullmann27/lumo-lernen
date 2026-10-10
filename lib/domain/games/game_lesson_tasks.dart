@@ -192,10 +192,14 @@ abstract final class GameLessonTasks {
       case 50:
         if (i == 0) return number('23 + 18 = ?', 41, '23 + 10 = 33, dann + 8 = 41.');
         if (i == 1) return number('7 × 4 = ?', 28, '7 + 7 + 7 + 7 = 28.');
-        if (i == 2) return task(const GameLevel(id: 43, title: '', gradeFloor: 3,
+        if (i == 2) {
+          return task(const GameLevel(id: 43, title: '', gradeFloor: 3,
           miniType: GameMiniType.wordForest, subject: 'Deutsch', learningGoal: ''), 2);
-        if (i == 3) return task(const GameLevel(id: 35, title: '', gradeFloor: 2,
+        }
+        if (i == 3) {
+          return task(const GameLevel(id: 35, title: '', gradeFloor: 2,
           miniType: GameMiniType.mixedQuiz, subject: 'Sachunterricht', learningGoal: ''), 3);
+        }
         return number('54 − 27 = ?', 27, '54 − 20 = 34, dann − 7 = 27.');
       default:
         throw ArgumentError('No lesson trail for level ${level.id}');

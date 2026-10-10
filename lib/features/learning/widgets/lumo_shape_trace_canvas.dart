@@ -566,7 +566,7 @@ class _ShapeDemoPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final pad = 24.0;
+    const pad = 24.0;
     final w = size.width - pad * 2;
     final h = size.height - pad * 2;
     final origin = Offset(pad, pad);

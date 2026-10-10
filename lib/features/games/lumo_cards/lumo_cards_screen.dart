@@ -322,7 +322,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       _pendingPlay = null;
       if (!mounted ||
           serial != _roundSerial ||
-          _controller.turnClock.value) return;
+          _controller.turnClock.value) {
+        return;
+      }
       _controller.playCard(card);
     });
   }

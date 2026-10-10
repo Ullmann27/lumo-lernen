@@ -19,8 +19,8 @@ Future<void> showLumoRewardBurst(
   int? xp,
   String? message,
 }) {
-  final completer = Navigator.of(context).push(
-    PageRouteBuilder(
+  final navigator = Navigator.of(context);
+  final route = PageRouteBuilder<void>(
       opaque: false,
       barrierDismissible: false,
       pageBuilder: (_, __, ___) => _RewardBurstOverlay(
@@ -29,10 +29,17 @@ Future<void> showLumoRewardBurst(
         message: message,
       ),
       transitionDuration: const Duration(milliseconds: 250),
-    ),
   );
+  final completer = navigator.push<void>(route);
   Future.delayed(const Duration(milliseconds: 1800), () {
-    if (Navigator.canPop(context)) Navigator.of(context).pop();
+    // The child may dismiss this overlay and navigate elsewhere first.
+    // Only remove our own route, never whatever now happens to be on top.
+    if (!navigator.mounted || !route.isActive) return;
+    if (route.isCurrent) {
+      navigator.pop();
+    } else {
+      navigator.removeRoute(route);
+    }
   });
   return completer;
 }

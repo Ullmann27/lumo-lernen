@@ -8,6 +8,7 @@
 ///       Frage 15 -> grosser Coupon (Spielzeug, Lego)
 ///   - 3 Joker: 50:50, Publikum, Lumo-Anruf
 ///   - Falsche Antwort = zurueck auf letzte Schwelle
+library;
 
 import 'package:flutter/foundation.dart';
 

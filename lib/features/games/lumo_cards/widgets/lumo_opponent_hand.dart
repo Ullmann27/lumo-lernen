@@ -33,7 +33,7 @@ class LumoOpponentHand extends StatelessWidget {
     final visible = cardCount.clamp(0, 9);
     final extra = cardCount - visible;
     final overlap = visible > 5 ? -28.0 : -14.0;
-    final dummyCard = _dummyCard;
+    const dummyCard = _dummyCard;
 
     // Heinz Crash 2026-05-22: negatives Padding (overlap) ist verboten.
     // Fix: Stack + Positioned mit fester Breite fuer die ueberlappenden

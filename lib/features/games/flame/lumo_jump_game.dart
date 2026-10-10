@@ -819,7 +819,7 @@ class PlatformTileComponent extends PositionComponent {
     // ── 3D-ISO-SEITENWAND (rechte Seite, fuer Tiefen-Effekt) ──
     // Schraege Wand-Flaeche rechts mit dunklerer Erde - simuliert
     // dass die Plattform ein 3D-Quader ist von oben gesehen.
-    final isoOffset = 12.0;  // Pseudo-3D Tiefe
+    const isoOffset = 12.0;  // Pseudo-3D Tiefe
     canvas.drawPath(
         Path()
           ..moveTo(w, 0)
@@ -921,7 +921,7 @@ class PlatformTileComponent extends PositionComponent {
     // Blumen-Akzente (kleine bunte Punkte)
     for (var i = 0; i < (w / 100).floor(); i++) {
       final fx = 30 + i * 90 + rng.nextInt(40);
-      final fy = -1.0;
+      const fy = -1.0;
       final colors = <Color>[
         const Color(0xFFFB7185),
         const Color(0xFFA78BFA),
@@ -1697,7 +1697,7 @@ class FoxPlayerComponent
       // leer damit beliebige Pfade unter assets/ funktionieren.
       game.images.prefix = '';
 
-      Future<SpriteAnimation> _loadAnim(
+      Future<SpriteAnimation> loadAnim(
           String dir, int count, double fps) async {
         final sprites = <Sprite>[];
         for (var i = 1; i <= count; i++) {
@@ -1709,12 +1709,12 @@ class FoxPlayerComponent
         return SpriteAnimation.spriteList(sprites, stepTime: 1.0 / fps);
       }
 
-      final idle = await _loadAnim('idle', 8, 8);
-      final run  = await _loadAnim('run', 12, 16);
-      final jump = await _loadAnim('jump', 4, 10);
-      final fall = await _loadAnim('fall', 4, 10);
-      final duck = await _loadAnim('duck', 3, 6);
-      final roll = await _loadAnim('roll', 8, 16);
+      final idle = await loadAnim('idle', 8, 8);
+      final run  = await loadAnim('run', 12, 16);
+      final jump = await loadAnim('jump', 4, 10);
+      final fall = await loadAnim('fall', 4, 10);
+      final duck = await loadAnim('duck', 3, 6);
+      final roll = await loadAnim('roll', 8, 16);
 
       // Setze die echten Animationen
       animations = {

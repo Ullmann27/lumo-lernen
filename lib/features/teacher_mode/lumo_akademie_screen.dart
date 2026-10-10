@@ -1402,7 +1402,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             ),
           ),
           // Topics
-          ...s.topics.map((t) => _buildTopicCard(t, s)).toList(),
+          ...s.topics.map((t) => _buildTopicCard(t, s)),
         ],
       ),
     );

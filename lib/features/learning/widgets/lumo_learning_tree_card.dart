@@ -19,9 +19,7 @@ class LumoTreeProgress {
   List<SkillRecord> get visibleSkills =>
       records.take(10).toList(growable: false);
   String get paintSignature => visibleSkills.map((r) =>
-      r.skillId.toString() + ':' + r.correct.toString() + ':' +
-      r.wrong.toString() + ':' + r.currentStreak.toString() + ':' +
-      r.currentMisses.toString()).join('|');
+      '${r.skillId}:${r.correct}:${r.wrong}:${r.currentStreak}:${r.currentMisses}').join('|');
 
   static bool isMastered(SkillRecord r) =>
       r.currentStreak >= 5 && r.mastery >= 75;
@@ -167,7 +165,7 @@ class LumoLearningTreeCard extends StatelessWidget {
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Icon(icon, size: 15, color: color),
       const SizedBox(width: 3),
-      Text(value.toString() + ' ' + label, style: const TextStyle(
+      Text('$value $label', style: const TextStyle(
         fontFamily: 'Nunito', fontSize: 10.5, fontWeight: FontWeight.w900,
         color: Colors.white)),
     ]),
@@ -202,8 +200,7 @@ class _SkillRow extends StatelessWidget {
             Text(record.unit, maxLines: 1, overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontFamily: 'Nunito', fontSize: 12,
                 color: Colors.white, fontWeight: FontWeight.w900)),
-            Text(record.subject + ' · ' + record.correct.toString() +
-                    '/' + record.attempts.toString() + ' richtig',
+            Text('${record.subject} · ${record.correct}/${record.attempts} richtig',
               maxLines: 1, overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontFamily: 'Nunito', fontSize: 10,
                 color: LumoVisualTokens.muted, fontWeight: FontWeight.w700)),
@@ -235,13 +232,8 @@ class _LearningTreeWorldArt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = wide ? 290.0 : (compact ? 246.0 : 310.0);
-    final resource = 'assets/lumo_design/learning_world/'
-        'learning_tree_stage_' + progress.stageIndex.toString() + '.png';
-    final a11y = 'Lernbaum: ' + progress.practiced.toString() +
-        ' Themen begonnen, ' + progress.mastered.toString() +
-        ' sicher geübt, ' + progress.needsPractice.toString() +
-        ' zum Wiederholen. ' + progress.visibleSkills.length.toString() +
-        ' unterschiedliche Leuchtpunkte sichtbar.';
+    final resource = 'assets/lumo_design/learning_world/learning_tree_stage_${progress.stageIndex}.png';
+    final a11y = 'Lernbaum: ${progress.practiced} Themen begonnen, ${progress.mastered} sicher geübt, ${progress.needsPractice} zum Wiederholen. ${progress.visibleSkills.length} unterschiedliche Leuchtpunkte sichtbar.';
     return Semantics(
       label: a11y,
       child: ExcludeSemantics(child: SizedBox(
@@ -300,10 +292,9 @@ class _TreeSkillBeacon extends StatelessWidget {
     final glow = mastered ? const Color(0xFFFFE38B)
         : review ? const Color(0xFFF4A7CE) : const Color(0xFF6EFFE4);
     return Tooltip(
-      message: record.subject + ': ' + record.unit + ' – ' +
-          LumoTreeProgress.status(record),
+      message: '${record.subject}: ${record.unit} – ${LumoTreeProgress.status(record)}',
       child: Container(
-        key: ValueKey('lumo-tree-skill-node-' + index.toString()),
+        key: ValueKey('lumo-tree-skill-node-$index'),
         width: 22, height: 22,
         decoration: BoxDecoration(
           shape: BoxShape.circle,

@@ -262,7 +262,7 @@ class BlitzlichtGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final safeColumns = columns.clamp(1, 4).toInt();
     return LayoutBuilder(builder: (context, constraints) {
-      final spacing = 8.0;
+      const spacing = 8.0;
       final itemWidth = (constraints.maxWidth - spacing * (safeColumns - 1)) / safeColumns;
       return Wrap(
         spacing: spacing,
@@ -749,7 +749,7 @@ class _NumberLineJumpPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final baseY = size.height * .72;
-    final left = 14.0;
+    const left = 14.0;
     final right = size.width - 14;
     final step = (right - left) / 20;
     final linePaint = Paint()

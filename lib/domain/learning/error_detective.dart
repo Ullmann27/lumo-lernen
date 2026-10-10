@@ -17,6 +17,7 @@
 ///
 /// Verwendung: `ErrorDetective().analyze(prompt, correctAnswer, givenAnswer, subject)`
 /// liefert ein ErrorDetection-Objekt mit kindgerechter Message.
+library;
 
 import 'package:flutter/foundation.dart';
 

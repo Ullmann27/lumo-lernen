@@ -653,7 +653,7 @@ class SyllableClapVisual extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: syllables.asMap().entries.map((e) {
-              final colors = const [Color(0xFFF472B6), Color(0xFF60A5FA), Color(0xFF34D399), Color(0xFFFFB800)];
+              const colors = [Color(0xFFF472B6), Color(0xFF60A5FA), Color(0xFF34D399), Color(0xFFFFB800)];
               return _SyllableChip(text: e.value, color: colors[e.key % colors.length]);
             }).toList(growable: false),
           ),
@@ -777,7 +777,7 @@ class SentenceBlocksVisual extends StatelessWidget {
         spacing: 6,
         runSpacing: 6,
         children: words.asMap().entries.map((e) {
-          final colors = const [
+          const colors = [
             Color(0xFFFF7A2F), Color(0xFF60A5FA), Color(0xFF34D399),
             Color(0xFFF472B6), Color(0xFFFFB800), Color(0xFF8B5CF6),
           ];
@@ -985,12 +985,12 @@ class _RectangleMeasurePainter extends CustomPainter {
       ..color = const Color(0xFF065F46)
       ..strokeWidth = 2;
     // Oben: Laenge
-    final topY = margin - 14;
+    const topY = margin - 14;
     canvas.drawLine(Offset(rect.left, topY), Offset(rect.right, topY), guide);
     _drawArrow(canvas, Offset(rect.left, topY), const Offset(-1, 0), guide);
     _drawArrow(canvas, Offset(rect.right, topY), const Offset(1, 0), guide);
     // Links: Breite
-    final leftX = margin - 14;
+    const leftX = margin - 14;
     canvas.drawLine(Offset(leftX, rect.top), Offset(leftX, rect.bottom), guide);
     _drawArrow(canvas, Offset(leftX, rect.top), const Offset(0, -1), guide);
     _drawArrow(canvas, Offset(leftX, rect.bottom), const Offset(0, 1), guide);

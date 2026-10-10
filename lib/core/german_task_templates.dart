@@ -520,7 +520,7 @@ class GermanTaskTemplate {
       case GermanTemplateKind.verbForm:
         final item = _verbForms[_positive(seed, _verbForms.length)];
         return _choice(
-            '${item.prompt}',
+            item.prompt,
             item.answer,
             <String>[item.answer, ...item.distractors],
             'Das Tunwort muss zur Person passen.',
@@ -664,7 +664,9 @@ class GermanTaskTemplate {
     for (final choice in rawChoices) {
       if (choice.trim().isNotEmpty &&
           choice != answer &&
-          !choices.contains(choice)) choices.add(choice);
+          !choices.contains(choice)) {
+        choices.add(choice);
+      }
       if (choices.length == 4) break;
     }
     assert(choices.length >= 3,

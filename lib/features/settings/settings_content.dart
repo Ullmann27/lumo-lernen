@@ -248,7 +248,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     if (confirmed != true) return;
     if (!mounted) return;
     await widget.appState.resetAllProfile();
-    if (!mounted) return;
+    if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Profil zurueckgesetzt. App startet beim naechsten Oeffnen neu.',
@@ -270,7 +270,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       _updateError = null;
     });
     try {
-      final service = const AppUpdateService();
+      const service = AppUpdateService();
       final info = await service.checkLatest();
       if (!mounted) return;
       setState(() {
@@ -1941,7 +1941,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                     hintText: 'Eigene Frage stellen…',
                     border: OutlineInputBorder(borderSide: BorderSide.none),
                     filled: true,
-                    fillColor: const Color(0xD90B2A55),
+                    fillColor: Color(0xD90B2A55),
                     contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 12,
                     ),
                   ),

@@ -212,7 +212,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   void _speakPrompt() {
     if (!widget.appState.state.settings.voiceEnabled) return;
     try {
-      LumoVoice.instance.speak('Schreib ein ${_currentLetter}!');
+      LumoVoice.instance.speak('Schreib ein $_currentLetter!');
     } catch (_) {}
   }
 
