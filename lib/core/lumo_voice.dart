@@ -212,6 +212,7 @@ class LumoVoice {
     );
     _mouthTicker = Timer.periodic(const Duration(milliseconds: 50), (t) {
       if (generation != _speechGeneration || watch.elapsed > playbackMax) {
+        unawaited(player.stop());
         _finishAudio();
         return;
       }
@@ -282,7 +283,9 @@ class LumoVoiceRouteObserver extends NavigatorObserver {
   void _stopForPage(Route<dynamic> route) {
     // Dialoge und Bottom-Sheets (z. B. Lumo-Gespräch) steuern ihr Sprechen selbst.
     if (route is! PageRoute) return;
-    if (_voice.status.value == VoiceStatus.speaking) unawaited(_voice.stop());
+    // Auch eine noch laufende Online-Synthese abbrechen, bevor sie auf
+    // einer anderen Seite versehentlich abgespielt werden koennte.
+    unawaited(_voice.stop());
   }
 }
 
