@@ -1,123 +1,29 @@
-name: Hand off the exact verified Lumo 1927 technical APK
+name: Relay exact Lumo 1927 Android failure evidence
 on:
   workflow_dispatch:
 permissions:
   contents: write
   actions: read
-concurrency:
-  group: lumo-1927-exact-apk-handoff
-  cancel-in-progress: false
 jobs:
-  handoff:
+  relay:
     if: github.ref_name == 'computer/lumo-1927-apk-handoff-2026-10-10'
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 5
     env:
       GH_TOKEN: ${{ github.token }}
       REPO: Ullmann27/lumo-lernen
-      SOURCE: 8408f37772d8ec4067f49f3b9d506190b3de94c5
-      SOURCE_RUN: '38071976928'
-      ARTIFACT_ID: '11676944402'
-      ARCHIVE_SHA: 497189d0e25f5a66481a79f6014003290126872cb5155012813fca3d7be4f8c9
       TAG: lumo-0.12.20-1927-context-voice-technical-test
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: 8408f37772d8ec4067f49f3b9d506190b3de94c5
-          persist-credentials: false
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-      - name: Check original build and download its immutable archive
+      - name: Relay immutable fictional-emulator evidence, never an APK rebuild
         run: |
           set -euo pipefail
-          mkdir -p handoff
-          gh api "repos/$REPO/actions/runs/$SOURCE_RUN" > handoff/source-run.json
-          gh api "repos/$REPO/actions/runs/$SOURCE_RUN/jobs" > handoff/source-jobs.json
-          gh api "repos/$REPO/actions/artifacts/$ARTIFACT_ID" > handoff/source-artifact.json
+          gh api "repos/$REPO/actions/artifacts/11677331830/zip" > ANDROID-VOICE-QA-ORIGINAL.zip
+          echo 'f72a333d9b90ff3ab1befcb3ba844fbf0bb909f599d4e1eb5a926cef25d770f8  ANDROID-VOICE-QA-ORIGINAL.zip' | sha256sum -c -
+          gh release upload "$TAG" ANDROID-VOICE-QA-ORIGINAL.zip --repo "$REPO"
           python3 - <<'PY'
-          import json, os
-          from pathlib import Path
-          run = json.loads(Path('handoff/source-run.json').read_text())
-          jobs = json.loads(Path('handoff/source-jobs.json').read_text())['jobs']
-          artifact = json.loads(Path('handoff/source-artifact.json').read_text())
-          assert run['head_sha'] == os.environ['SOURCE']
-          assert run['repository']['full_name'] == os.environ['REPO']
-          assert any(j['name'] == 'verify' and j['conclusion'] == 'success' for j in jobs)
-          assert artifact['name'] == 'lumo-probe-apk-38071976928-1'
-          assert artifact['workflow_run']['id'] == int(os.environ['SOURCE_RUN'])
-          assert artifact['digest'] == 'sha256:' + os.environ['ARCHIVE_SHA']
-          assert artifact['expired'] is False
+          import zipfile
+          with zipfile.ZipFile('ANDROID-VOICE-QA-ORIGINAL.zip') as z:
+              for n in z.namelist():
+                  if n.endswith('speech-android-result.json'):
+                      print(z.read(n).decode())
           PY
-          gh api "repos/$REPO/actions/artifacts/$ARTIFACT_ID/zip" > "$RUNNER_TEMP/lumo-1927-exact-artifact.zip"
-          echo "$ARCHIVE_SHA  $RUNNER_TEMP/lumo-1927-exact-artifact.zip" | sha256sum -c -
-          python3 - <<'PY'
-          import os, zipfile
-          from pathlib import Path
-          expected = {'Lumo-Lernen-Neu.apk', 'SHA256SUMS.txt', 'APK-VERIFICATION.json',
-                      'BUILD-PROVENANCE.json', 'TEST-RESULTS.txt'}
-          with zipfile.ZipFile(Path(os.environ['RUNNER_TEMP']) / 'lumo-1927-exact-artifact.zip') as archive:
-              assert set(archive.namelist()) == expected
-              assert sum(i.file_size for i in archive.infolist()) < 300_000_000
-              assert archive.testzip() is None
-              archive.extractall('handoff/apk')
-          PY
-      - name: Verify the existing APK, never rebuild or resign it
-        run: |
-          set -euo pipefail
-          (cd handoff/apk && sha256sum -c SHA256SUMS.txt)
-          python3 scripts/verify_unified_apk.py handoff/apk/Lumo-Lernen-Neu.apk > handoff/independent-verification.json
-          python3 - <<'PY'
-          import json, os
-          from pathlib import Path
-          original = json.loads(Path('handoff/apk/BUILD-PROVENANCE.json').read_text())
-          checked = json.loads(Path('handoff/independent-verification.json').read_text())
-          assert original['flutter_source_commit'] == os.environ['SOURCE']
-          assert original['tracked_source_clean'] is True
-          assert checked['versionCode'] == 1927 and checked['versionName'] == '0.12.20'
-          assert checked['godot']['revision'] == 'e37674692c047c41a6fb1485e499be1ed0c0f758'
-          assert checked['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
-          assert checked['sha256'] == original['sha256']
-          print(json.dumps(checked, indent=2))
-          PY
-      - name: Publish explicitly unfinished technical test delivery
-        run: |
-          set -euo pipefail
-          if gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
-            echo 'A release with this tag already exists; refuse to overwrite.'
-            exit 1
-          fi
-          printf '%s\n' \
-            '# Lumo Lernen 0.12.20, Build 1927: technischer Sprach-/Kontexttest' \
-            '' \
-            'Exakt die APK aus Run 38071976928, Quellstand 8408f37772d8ec4067f49f3b9d506190b3de94c5. Kein erneuter Build und keine neue Signatur.' \
-            '' \
-            'Enthält Sulafat-Profilprüfung, echte Audiopegel-/Positionsanimation, unterbrechbare Dialoge mit tatsächlichem Aufgabenkontext, lokale Mikrofon-Voraussetzung und Android-App-/Sprachdiagnose. Original-Stimmprobe, Lernfunktionen, Cards und Kart bleiben erhalten.' \
-            '' \
-            'WICHTIG: Keine vollständig freigeschaltete Online-Stimme. Der Gemini-Zugang und der tatsächliche Render-Deploy sind noch offen; die 52 neuen Godot-Aufnahmen sind noch nicht erzeugt. Keine andere Ersatzstimme bei Ausfall.' \
-            '' \
-            'Analyse, vollständige Flutter-Suite, Backend-/Android-Vorbereitung, Build und Signatur-/PCK-Prüfung sind bestanden. Der separate Android16-Update-/Voice-Probe wird im ursprünglichen Run dokumentiert; diese Übergabe behauptet keinen akustischen Stimmenvergleich und keinen physischen Samsung-Fold-Test.' \
-            '' \
-            'APK-Paket: dev.ullmann.lumo.lumo_lernen.coachpreview. Installation als Update, nicht vorher deinstallieren. Vollständige Lernstands-Migration und hörbare Stimme auf dem Samsung sind noch eigene Abnahmen.' \
-            '' \
-            'Prüflauf: https://github.com/Ullmann27/lumo-lernen/actions/runs/38071976928' \
-            'Umsetzungsstand: https://github.com/Ullmann27/lumo-lernen/blob/8408f37772d8ec4067f49f3b9d506190b3de94c5/docs/LUMO_SULAFAT_CONTEXT_1927.md' \
-            > handoff/RELEASE-NOTES.md
-          gh release create "$TAG" --repo "$REPO" --target "$SOURCE" --prerelease \
-            --title 'Lumo Lernen 0.12.20 (1927): technischer Sulafat-/Kontexttest' \
-            --notes-file handoff/RELEASE-NOTES.md \
-            handoff/apk/Lumo-Lernen-Neu.apk \
-            handoff/apk/SHA256SUMS.txt \
-            handoff/apk/APK-VERIFICATION.json \
-            handoff/apk/BUILD-PROVENANCE.json \
-            handoff/apk/TEST-RESULTS.txt \
-            handoff/independent-verification.json
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: lumo-1927-exact-handoff-${{ github.run_id }}
-          path: |
-            handoff/*.json
-            handoff/*.md
-          retention-days: 14
