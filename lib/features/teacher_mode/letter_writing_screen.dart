@@ -535,7 +535,7 @@ class _LetterPracticeFullScreenState
                       fontSize: 11,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.4)),
-              Text('Schreibe den Buchstaben ${widget.letter}'
+              Text('Schreibe den Buchstaben ${widget.letter}',
                   style: const TextStyle(
                       fontFamily: 'Nunito',
                       color: Colors.white,
