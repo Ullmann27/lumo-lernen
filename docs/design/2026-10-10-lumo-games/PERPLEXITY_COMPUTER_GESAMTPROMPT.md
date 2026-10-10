@@ -223,3 +223,41 @@ M6: Flutter/Godot/Android volle Tests, tatsächlich installierte und gestartete 
 In jedem Meilenstein sichtbare Nutzerkontrolle: Referenzlink, VORHER-Link, NACHHER-Link, VERGLEICH-Link, Commit und Screenshots aus echten Runtime-Fenstern. Release nur als 'fertig', wenn die Funktion vollständig läuft, keine großen unkorrigierten Abweichungen zum gewünschten Stil verbleiben, die Interaktion auf Fold nicht abgeschnitten ist und die Android-Installation verifiziert wurde.
 
 **SOFORT AUSFÜHREN:** Tool Capability Inventory, GitHub-Status und echten Kart-Menü-Vorher-Screenshot ermitteln, direkt zeigen, einen markentreuen 3D-/HUD-Fix implementieren und das erste Nachher-Bild zur Nutzerkontrolle ausgeben.
+
+---
+
+# ANHANG D — PRODUKTIONSREIFE, KONKRETE QA-AKZEPTANZ UND SCREENSHOT-FREIGABE
+
+## D.1 REALER NEUSTER PRÜFBEFUND (10.10.2026)
+Der App-Workflow \`Build unified Lumo Android APK\` Lauf **38051726194** endete mit \`success\` und einem Build-Artefakt \`lumo-probe-apk-38051726194-1\`. **Daraus folgt weder eine nachgewiesene Installation auf dem Nutzergerät noch eine abgenommene Kart-3D-Grafik.** Prüfe beim Arbeitsstart den jeweils neueren Lauf.
+Der Godot-Branch \`codex/lumo-aaa-safe-visuals-2026-10-10\` zeigt im Lauf **38047929660** (Stage-2-Test) und **38047926808** (Fold-Menü) jeweils einen Fehler. Laut den jeweils betroffenen Job-Logs wurden die fünf echten Touch-Menüschritte und der direkte Cup-Start erfolgreich gemeldet, auch bei 640×320 (zusätzlich 800×480 und 1280×720). Danach meldete der ProbeRunner jedoch \`FAIL: clean exit and required success marker were not both present\` und Godot \`ERROR: 4 RID allocations ... RendererSceneCull::Instance ... were leaked at exit\`. **Diagnose:** Der sichtbare Menüablauf besteht nach den Logmeldungen, der Prozess-/Renderer-Cleanup ist nicht sauber; die volle Pipeline bleibt rot. Ursache systematisch isolieren, z. B. noch registrierte \`VisualInstance3D\`/\`MultiMeshInstance3D\`, RenderServer-RIDs, temporäre Viewports, noch an SceneTree hängende Child-Nodes, deferred \`queue_free\` ohne finalen freien Frame, überlebende Szenenreferenzen. Nicht ungeprüft nur die CI-Fehlererkennung ausblenden. Die neue Shader-/Neonbogen-Dekoration auf dem Grafikzweig ist ein möglicher Untersuchungsbereich, **nicht als gesicherte Ursache behaupten**. Fix mit kleiner nachvollziehbarer Änderung, danach Stage 2 und Fold auf identischem Commit vollständig grün plus echte Screenshots.
+
+## D.2 ART-DIRECTION-ACCEPTANCE-MATRIX (ZIEL IST REFERENZTREUE, KEINE FIKTIVE PROZENTZAHL)
+Für jedes Motiv ein \`visual-acceptance.json\` oder Markdown-Evidence-Sheet anlegen:
+- \`kart-character\`: Lumo-Silhouette, Schnauze, Augenabstand, blaue Brille, Ohren, Schweif, Gesichtsausdruck stimmen aus 3/4, Front und Seitenansicht sichtbar mit Original überein.
+- \`kart-vehicle\`: echte geometrische Reifen, Felgen, Kartkörper, Cyan-Licht, Bevel/Material, Fahrerhaltung, Hand-/Lenkradpositionen; Bild und Material in realer Godot-Szene.
+- \`garage-menu\`: alle fünf Karten links vollständig im Safe-Area, genau ein Weiter-Button, 3D-Lumo-Kart rechts, Bühnenlicht/Holo-Podest, Top-Navigation und echte Profilwerte.
+- \`sonnenhafen\`: Wasserfall, Häuser/Skyline, Palmen, Hafen, Landmarken, Fahrbahnbelag, Strecke mit eigenständiger lesbarer Rennlinie; mindestens Startgerade, 2 Kurven, Brücke und Ziellinie.
+- \`skyline-loop\`: Rampen-/Looping-Geometrie, Kamera, Kollision, Air-Steering; Anfahrt → Loop → Ausfahrt ohne Teleport.
+- \`ice/candy\`: eindeutig unterscheidbare Weltgrafik, befahrbare Geometrie, gute Lesbarkeit.
+- \`race-hud\`: Lesbarkeit Position/Runde/Powerup/Speed/Minimap, Fold-Touchtargets, Gas/Bremse/Drift/Boost erkennbar und groß genug.
+- \`race-result\`: Platz 1 nur bei echtem Resultat, goldener Lorbeer, tatsächliche Werte, XP-/Sterntransaktion nur einmal verbucht.
+- \`learning-app\`: Start, Weltkarte, Mathe/Deutschaufgabe, Belohnungsansicht, Eltern-/Kinderprofile, Fortschritts- und Datenerhalt.
+Jeder Eintrag: Soll-Bildpfad, Vorher-, Nachher-, Vergleichsbild, Commit, Reviewer-Status und technische Mängel. **Keinen automatischen fiktiven „95 % AAA“-Score** verwenden; nenne konkrete sichtbare Abweichungen, Korrekturbedarf und verifizierte Funktionen.
+
+## D.3 ZEITPUNKTE, KAMERA UND EINZELBILDER
+Erstelle einen reproduzierbaren Godot Screenshot Harness, der per Testszene/CLI die benötigte Kamera, FOV, Zeitschritt/Position, Fahrzeug-/Strecken-Seed und Auflösung festsetzt, einen stabilen Render-Frame abwartet, dann PNG speichert. Vergleiche mit identisch erfasster unveränderter Baseline. Nicht manipulierte Einzelbilder VORHER und NACHHER. Side-by-Side nur zusätzlich; bei Referenz-Art eine dreiteilige Ansicht \`SOLL (Referenz)/IST vorher/IST nachher\` separat anbieten. JPG/WebP-Kompression nur für Kopien, Master-PNGs behalten. Eigene Screenshot-URL pro Bild und kurz beschreiben, was tatsächlich auf dem Frame zu sehen ist. Wenn die Entwicklungsumgebung keine echte Grafikaufnahme ermöglicht, die Einschränkung sofort erklären, einen CI-Runner mit Display/Xvfb oder Android-Emulator konfigurieren und zuerst dieses Hindernis beheben.
+
+## D.4 SPIELGEFÜHL: MESSBARE ECHTE AKZEPTANZ
+Je Rennmodus einen reproduzierbaren End-to-End-Test: Menü → Modus → Fahrer/Kart/Welt/Tempo → Startampel → 3 vollständige Runden bzw. zur Spielart passende Endbedingung → Platzierung/Belohnung → zurück zur Garage. Für Sprünge wiederholbar unterschiedliche Einfahrgeschwindigkeiten testen; jede erfolgreiche Landung muss ohne permanente Lenksperre weiterfahrbar sein. 90°-Kurven, Kollisionsgrenzen, verlorene Bodenhaftung und Reposition nach Sturz prüfen. Gegner-KI darf Rundenwertung nicht manipulieren. \`TimeTrial\` mit echter Uhr/Bestzeiten, \`Cup\` mit echter Punktewertung, \`Arena\` mit eindeutigen Siegbedingungen. Jede UI-Funktion muss zur richtigen Spielregel führen. Bei Zielkonflikten Spielbarkeit vor einem rein dekorativen Effekt priorisieren.
+
+## D.5 MOBILE LEISTUNG UND PROOF
+Auf mindestens zwei repräsentativen verfügbaren Renderprofilen reale FPS und Framezeiten protokollieren (Hardwaretyp, Renderer, Auflösung, Track, Karts, Shader-Qualität, Temperatur/Testdauer). Kein pauschales Leistungsversprechen ohne Messung. Animation ohne Standbild-Hacks, stabile Kamera, nachvollziehbares Bild bei Nebel/Wasser/Glas, Partikelbudget und Texture-Memory. Fallback ohne anspruchsvolles GI/SSR, wenn das mobile Profil sie nicht unterstützt. Android Fold-Gas/Boost/Lenktasten mit tatsächlichen Touch-Rechtecken testen; keine Überschneidungen. Nutzergerät (SM-F966B) nur als Zielreferenz, nicht als heimlich getestetes Gerät bezeichnen, wenn ein physischer Test nicht möglich war.
+
+## D.6 AUSGABE JE VISUELLEM MEILENSTEIN
+Im Perplexity-Chat eine Nachricht mit: **(1) Referenz [URL], (2) VORHER [URL], (3) NACHHER [URL], (4) Vergleich [URL], (5) reale laufende Szene und Commit, (6) was verbessert wurde, (7) was noch falsch aussieht, (8) welcher Test grün/rot ist, (9) genaue Gelegenheit zur Korrektur durch den Nutzer.** Veröffentlichung *während* der Programmierung, nicht erst nach finaler APK. Bei Kritik Feature-Snapshot sichern und diesen visuellen Bereich priorisiert korrigieren. Bilder als echte GitHub-PNG/WebP-Dateien oder stabile Preview-URLs bereitstellen, nicht nur in schwer zu entpackenden ZIP-Archiven.
+
+## D.7 LEISTUNGS- UND CREDIT-WATCH
+Bevor mehrere aufwendige KI-Bild- oder Videojobs ausgeführt werden, kleine billige Qualitätsprobe am ORIGINAL-LUMO mit denselben 3 Ansichten erzeugen, visuell vergleichen und nur erfolgreiches Verfahren skalieren. Wiederverwendung vor Generierung. Bestehendes GitHub-Artefakt vor Rebuild prüfen. Neue lizenzpflichtige Werkzeuge nur nach Freigabe. In Statusmeldung Kosten/Verbrauch nur nennen, wenn der Cloud-Dienst den tatsächlichen Betrag ausweist. Identitätsverändernde neue 3D-Lumo-Meshes niemals ohne Vorher-/Nachher-Freigabe in die App übernehmen.
+
+**JETZT IN DIESER REIHENFOLGE AUSFÜHREN:** GitHub-CI-Leaks im Godot-Menü repro/fixen → echte Baseline-Screenshots und stabilen Capture-Harness einrichten → Lumo/Kart/Menü-Hero-Ansicht als erste vertikale Qualitätsprobe → Vorher/Nachher im Perplexity-Chat → Nutzerfeedback annehmen → Sonnenhafen mit echter Fahrphysik nachziehen → weitere Rennwelten/Audio/Ergebnisse → Fold-/Android-Endtests und tatsächlich installierte APK.
