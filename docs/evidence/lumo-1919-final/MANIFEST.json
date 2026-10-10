@@ -1,0 +1,61 @@
+{
+  "schema": "lumo.final-github-evidence.v1",
+  "status": "VERIFIED_BY_AGGREGATION",
+  "app_commit": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+  "godot_commit": "d140e5b05cb5afacfe675559b78da4254cb1daed",
+  "harness_commit": "2247999b902d4c9a756df0c17318d0dd60bebf86",
+  "aggregation_commit": "8e4f20c3f7ddcb8d671e9d19911bc8f9c58aa684",
+  "aggregation_run_id": 38018373892,
+  "apk_sha256": "8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa",
+  "all_source_runs_successful": false,
+  "files": [
+    {
+      "file": "QA-RESULTS.json",
+      "bytes": 445294,
+      "sha256": "d67fa0d90ab12f52d684ac5ff848fabf04d27a74fd469c9932160c023e631d44",
+      "git_blob_sha1": "20bf295e96dcb7e25a89c9f8fa82771d61ddf0fe",
+      "kind": "original successful aggregation report",
+      "artifact_id": 11657121749
+    },
+    {
+      "file": "06-completed-result-phone.png",
+      "bytes": 930937,
+      "sha256": "9182c819ccf3d7587b77ec9eed5165efc6573a6c0400e7a8c69d91e5d1adb4bc",
+      "git_blob_sha1": "6a1959cd1d4a1ac5251ed91b771323c59f296160",
+      "kind": "unchanged actual API36 native result image",
+      "artifact_id": 11656893224
+    },
+    {
+      "file": "13-flutter-return-01.png",
+      "bytes": 1689037,
+      "sha256": "791b6da7547d21b0f9bc9ec9a583c9992341d7407e28a23587ebff7ebb55faa6",
+      "git_blob_sha1": "b248ac450e35c8d717eb25ba6b1ce25460ea1ceb",
+      "kind": "unchanged actual API36 Flutter return image",
+      "artifact_id": 11656893224
+    },
+    {
+      "file": "AGGREGATION-LOCK.json",
+      "bytes": 893,
+      "sha256": "83ee18f5ef480b22d571f32b074e296287a003fe34ccd0d04ddc49dea4287f19",
+      "git_blob_sha1": "92bb1778351c51008d780d1c5bc77f40bf4d23e2",
+      "kind": "original aggregation source and artifact lock",
+      "artifact_id": 11657121749
+    },
+    {
+      "file": "VISUAL-ACCEPTANCE.md",
+      "bytes": 21223,
+      "sha256": "748a7a23dcd007ab4342b515b847331a4363d46ac6d9f447cdd0df5ed2cd5b61",
+      "git_blob_sha1": "7f28e44103e3c688087810ec832b2716eeb1a249",
+      "kind": "independent visual review with preserved historical findings",
+      "artifact_id": null
+    },
+    {
+      "file": "README.md",
+      "bytes": 5698,
+      "sha256": "8f62a034486ede7d56b58e38d5cb49b33bcda33589d951b268f4aa7843d0443c",
+      "git_blob_sha1": "5210c6c3ef3d503d15876195ba91c495b2f78955",
+      "kind": "authored final source and evidence guide",
+      "artifact_id": null
+    }
+  ]
+}
