@@ -29,12 +29,22 @@ def read_in_scroll(out, tag, required):
     """Read actual accessible content, scrolling only observed app viewports."""
     seen = ""
     for direction in (-1, 1):
-        for attempt in range(12):
+        previous = None
+        unchanged = 0
+        for attempt in range(40):
             nodes = existing.live.live_nodes(out, f"{tag}-{direction}-{attempt}")
             current = existing.base.accessible_text(nodes)
             seen += "\n" + current
             if all(value in seen for value in required):
                 return seen
+            observed = [(n.get("text", ""), n.get("content-desc", ""),
+                         n.get("bounds", "")) for n in nodes
+                        if n.get("package") == existing.PACKAGE and
+                        (n.get("text") or n.get("content-desc"))]
+            unchanged = unchanged + 1 if observed == previous else 0
+            previous = observed
+            if unchanged >= 2:
+                break
             scrolls = []
             for node in nodes:
                 if node.get("scrollable") != "true" or node.get("package") != existing.PACKAGE:
@@ -143,6 +153,7 @@ def main():
             "package_uid": True, "first_install_time": True}
         existing.capture(out, "00_candidate_after_in_place_update")
         result["parent_navigation"] = parents(out)
+        read_in_scroll(out, "find-diagnose", ["App und Sprachserver prüfen"])
         existing.flutter_tap(out, "App und Sprachserver prüfen", "diagnose")
         time.sleep(8)
         text = read_in_scroll(out, "diagnosis-result",
@@ -151,6 +162,7 @@ def main():
              "Bestätigte Wiedergabestarts:"])
         starts_before = playback_count(text)
         existing.capture(out, "01_android16_voice_diagnosis")
+        read_in_scroll(out, "find-original-preview", ["Stimme testen"])
         existing.flutter_tap(out, "Stimme testen", "original-voice-test")
         time.sleep(1)
         text = read_in_scroll(out, "original-voice-state",
@@ -159,6 +171,7 @@ def main():
         if starts_after != starts_before + 1:
             raise RuntimeError("Original preview did not produce exactly one new native start")
         result["original_preview_native_starts"] = [starts_before, starts_after]
+        read_in_scroll(out, "find-stop", ["Stopp"])
         existing.flutter_tap(out, "Stopp", "voice-stop")
         time.sleep(1)
         read_in_scroll(out, "stopped-voice-state", ["Sprachstatus: Ruhe"])
@@ -176,6 +189,10 @@ def main():
     except Exception:
         result["status"] = "FAIL"
         result["error"] = traceback.format_exc()
+        try:
+            existing.capture(out, "failure-current-screen")
+        except Exception as capture_error:
+            result["failure_capture_error"] = str(capture_error)
         return 1
     finally:
         (out / "speech-android-result.json").write_text(json.dumps(result, indent=2) + "\n")
