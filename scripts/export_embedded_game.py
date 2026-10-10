@@ -68,8 +68,9 @@ def export(repo: Path, binary: str):
         print(json.dumps(proof))
     finally:
         remove_generated_sidecars(repo, before)
-    if subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip():
-        raise RuntimeError('Godot import changed sources; refuse exported candidate')
+    remaining = subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()
+    if remaining:
+        raise RuntimeError('Godot import changed sources; refuse exported candidate:\n' + remaining)
 
 
 if __name__ == '__main__':
