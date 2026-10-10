@@ -36,7 +36,8 @@ jobs:
           git rev-parse HEAD | tee proof/build-source-sha.txt
           git merge-base --is-ancestor 7ecad048179cae5e68ae43f0f16d09f1a9a29cf0 HEAD
           test "$(sed -n 's/^version: //p' pubspec.yaml)" = "0.12.18+1925"
-          git status --short > proof/tracked-before.txt
+          git diff --exit-code --quiet HEAD --
+          git status --porcelain --untracked-files=no > proof/tracked-before.txt
           test ! -s proof/tracked-before.txt
       - name: Configure Java 17
         uses: actions/setup-java@v4
