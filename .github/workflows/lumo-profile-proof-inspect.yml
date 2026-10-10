@@ -60,7 +60,7 @@ jobs:
               for node in tree.iter('node'):
                   if node.get('package') == package and (node.get('text') or node.get('content-desc')):
                       print('LUMO_DIAG_NODE ' + json.dumps(dict(node.attrib), ensure_ascii=False))
-          png = read(root / 'failure.png', 2000000)
+          png = read(root / 'failure.png', 3000000)
           assert png[:8] == b'\x89PNG\r\n\x1a\n' and png[12:16] == b'IHDR', 'Not the original PNG'
           width, height = struct.unpack('>II', png[16:24])
           print('LUMO_DIAG_PNG_BEGIN ' + json.dumps({'file':'failure.png','bytes':len(png),'sha256':hashlib.sha256(png).hexdigest(),'width':width,'height':height}))
