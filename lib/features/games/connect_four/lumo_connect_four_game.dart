@@ -313,7 +313,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         ]),
       );
 
-  Widget _modes() => Padding(
+  Widget _modes({bool compact = false}) => Padding(
         padding: const EdgeInsets.only(top: 8),
         child: Wrap(alignment: WrapAlignment.center, runSpacing: 8, children: [
           for (final mode in [(false, 'Mit Lumo'), (true, 'Zu zweit')])
@@ -324,12 +324,13 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                 child: FilledButton(
                   key: ValueKey('connect-mode-${mode.$1}'),
                   style: FilledButton.styleFrom(
-                    minimumSize: const Size(116, 44),
+                    minimumSize: Size(compact ? 104 : 116, 44),
                     textStyle: const TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 16,
                         fontWeight: FontWeight.w900),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: compact ? 12 : 16),
                     backgroundColor: _twoPlayers == mode.$1 ? _gold : _panel,
                     foregroundColor:
                         _twoPlayers == mode.$1 ? _ink : Colors.white,
@@ -370,18 +371,21 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       );
 
   Widget _companion({required bool wide}) {
+    final compact = wide && MediaQuery.sizeOf(context).height < 440;
     final fox = RepaintBoundary(
       child: Image.asset('assets/lumo_design/fox/fox_thumb_wink.png',
           height: wide
-              ? MediaQuery.sizeOf(context).height > 600 ? 210 : 100
+              ? compact
+                  ? 64
+                  : 210
               : 80,
           fit: BoxFit.contain),
     );
     return wide
         ? SingleChildScrollView(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-              _modes(),
-              const SizedBox(height: 12),
+              _modes(compact: compact),
+              SizedBox(height: compact ? 4 : 12),
               _turnLabel(),
               const SizedBox(height: 8),
               fox,

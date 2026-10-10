@@ -55,6 +55,14 @@ void main() {
         }
       });
       await tester.pump();
+      // Capture actual gameplay, not an empty concept board.
+      await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
+      await tester.pump();
+      for (final column in [3, 2, 3, 2, 4, 5]) {
+        await tester.tap(find.byKey(ValueKey('connect-column-$column')));
+        await tester.pump(const Duration(milliseconds: 400));
+        await tester.pump();
+      }
       final folder = Platform.environment['LUMO_CONNECT_CAPTURES'];
       if (folder != null) {
         final boundary =
