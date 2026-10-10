@@ -1,0 +1,38 @@
+{
+  "source_commit": "dcebfbc469c3f6d2fdee39cc33e3c5eef0b6cf7e",
+  "tracked_differences": "",
+  "renderer": "Flutter test engine, real app widgets and theme",
+  "emulator_test": false,
+  "physical_device_test": false,
+  "font_aliases": {
+    "Nunito-Regular": "assets/fonts/Nunito-Regular.ttf",
+    "Nunito-Bold": "assets/fonts/Nunito-Bold.ttf",
+    "Nunito-ExtraBold": "assets/fonts/Nunito-ExtraBold.ttf",
+    "Nunito-Black": "assets/fonts/Nunito-Black.ttf",
+    "MaterialIcons": "fonts/MaterialIcons-Regular.otf"
+  },
+  "visual_acceptance": "Manual review required; rendering is not approval.",
+  "shots": [
+    {
+      "file": "cards-reference-compact.png",
+      "logical_width": 640.0,
+      "logical_height": 360.0,
+      "pixel_width": 640,
+      "pixel_height": 360
+    },
+    {
+      "file": "avatar-reference-compact.png",
+      "logical_width": 640.0,
+      "logical_height": 360.0,
+      "pixel_width": 640,
+      "pixel_height": 360
+    },
+    {
+      "file": "paused-reference-compact.png",
+      "logical_width": 640.0,
+      "logical_height": 360.0,
+      "pixel_width": 640,
+      "pixel_height": 360
+    }
+  ]
+}

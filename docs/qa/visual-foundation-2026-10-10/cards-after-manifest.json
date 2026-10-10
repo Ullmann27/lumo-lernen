@@ -1,0 +1,101 @@
+{
+  "source_commit": "63fae07783b5458b9ea66e3798bc29c610e41546",
+  "tracked_differences": "",
+  "renderer": "Flutter test engine, real app widgets and theme",
+  "emulator_test": false,
+  "physical_device_test": false,
+  "font_aliases": {
+    "Nunito-Regular": "assets/fonts/Nunito-Regular.ttf",
+    "Nunito-Bold": "assets/fonts/Nunito-Bold.ttf",
+    "Nunito-ExtraBold": "assets/fonts/Nunito-ExtraBold.ttf",
+    "Nunito-Black": "assets/fonts/Nunito-Black.ttf",
+    "MaterialIcons": "fonts/MaterialIcons-Regular.otf"
+  },
+  "visual_acceptance": "Manual review required; rendering is not approval.",
+  "shots": [
+    {
+      "file": "cards-reference-phone.png",
+      "logical_width": 360.0,
+      "logical_height": 800.0,
+      "pixel_width": 360,
+      "pixel_height": 800
+    },
+    {
+      "file": "avatar-reference-phone.png",
+      "logical_width": 360.0,
+      "logical_height": 800.0,
+      "pixel_width": 360,
+      "pixel_height": 800
+    },
+    {
+      "file": "paused-reference-phone.png",
+      "logical_width": 360.0,
+      "logical_height": 800.0,
+      "pixel_width": 360,
+      "pixel_height": 800
+    },
+    {
+      "file": "cards-reference-compact.png",
+      "logical_width": 640.0,
+      "logical_height": 360.0,
+      "pixel_width": 640,
+      "pixel_height": 360
+    },
+    {
+      "file": "avatar-reference-compact.png",
+      "logical_width": 640.0,
+      "logical_height": 360.0,
+      "pixel_width": 640,
+      "pixel_height": 360
+    },
+    {
+      "file": "paused-reference-compact.png",
+      "logical_width": 640.0,
+      "logical_height": 360.0,
+      "pixel_width": 640,
+      "pixel_height": 360
+    },
+    {
+      "file": "cards-reference-wide.png",
+      "logical_width": 1280.0,
+      "logical_height": 720.0,
+      "pixel_width": 1280,
+      "pixel_height": 720
+    },
+    {
+      "file": "avatar-reference-wide.png",
+      "logical_width": 1280.0,
+      "logical_height": 720.0,
+      "pixel_width": 1280,
+      "pixel_height": 720
+    },
+    {
+      "file": "paused-reference-wide.png",
+      "logical_width": 1280.0,
+      "logical_height": 720.0,
+      "pixel_width": 1280,
+      "pixel_height": 720
+    },
+    {
+      "file": "cards-reference-fold.png",
+      "logical_width": 1200.0,
+      "logical_height": 896.0,
+      "pixel_width": 1200,
+      "pixel_height": 896
+    },
+    {
+      "file": "avatar-reference-fold.png",
+      "logical_width": 1200.0,
+      "logical_height": 896.0,
+      "pixel_width": 1200,
+      "pixel_height": 896
+    },
+    {
+      "file": "paused-reference-fold.png",
+      "logical_width": 1200.0,
+      "logical_height": 896.0,
+      "pixel_width": 1200,
+      "pixel_height": 896
+    }
+  ]
+}
