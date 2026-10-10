@@ -14,10 +14,12 @@ class LumoTurnBanner extends StatelessWidget {
     required this.currentPlayerName,
     required this.message,
     this.isMyTurn = true,
+    this.reduceMotion = false,
   });
 
   final String currentPlayerName;
   final String message;
+  final bool reduceMotion;
 
   /// Heinz HUD-Asset 2026-05-22: prominente "DEIN ZUG"/"GEGNER"-Pille.
   /// Steuerung kommt vom Screen, da der Banner sonst nicht weiss wer
@@ -26,8 +28,9 @@ class LumoTurnBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title =
-        currentPlayerName == 'Du' ? 'Du bist dran' : '$currentPlayerName ist dran';
+    final title = currentPlayerName == 'Du'
+        ? 'Du bist dran'
+        : '$currentPlayerName ist dran';
     final bubble = Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
@@ -38,8 +41,9 @@ class LumoTurnBanner extends StatelessWidget {
             width: 1.6),
         boxShadow: [
           BoxShadow(
-            color: (isMyTurn ? const Color(0xFFFFD86B) : const Color(0xFF37D2FD))
-                .withOpacity(.25),
+            color:
+                (isMyTurn ? const Color(0xFFFFD86B) : const Color(0xFF37D2FD))
+                    .withOpacity(.25),
             blurRadius: 12,
           ),
         ],
@@ -91,7 +95,8 @@ class LumoTurnBanner extends StatelessWidget {
               const SizedBox(height: 6),
               Align(
                 alignment: Alignment.centerRight,
-                child: LumoTurnPill(isMyTurn: isMyTurn),
+                child: LumoTurnPill(
+                    isMyTurn: isMyTurn, reduceMotion: reduceMotion),
               ),
             ],
           );
@@ -101,7 +106,7 @@ class LumoTurnBanner extends StatelessWidget {
           children: [
             Expanded(child: bubble),
             const SizedBox(width: 10),
-            LumoTurnPill(isMyTurn: isMyTurn),
+            LumoTurnPill(isMyTurn: isMyTurn, reduceMotion: reduceMotion),
           ],
         );
       }),

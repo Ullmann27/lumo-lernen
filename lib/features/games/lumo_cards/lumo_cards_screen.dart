@@ -320,9 +320,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     _pendingPlay?.cancel();
     _pendingPlay = Timer(const Duration(milliseconds: 220), () {
       _pendingPlay = null;
-      if (!mounted ||
-          serial != _roundSerial ||
-          _controller.turnClock.value) {
+      if (!mounted || serial != _roundSerial || _controller.turnClock.value) {
         return;
       }
       _controller.playCard(card);
@@ -399,6 +397,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               //    man auch sehen')
               //  - Arena kleiner damit alles passt
               LumoCardTable(
+                reduceMotion: _reduceMotion,
                 child: SafeArea(
                   child: _adaptiveLayout(
                     context,
@@ -473,6 +472,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                       LumoTurnBanner(
                         currentPlayerName: current.name,
                         message: s.lastActionMessage ?? '',
+                        reduceMotion: _reduceMotion,
                         isMyTurn: s.currentPlayerIndex == viewerIndex &&
                             s.phase == GamePhase.playing,
                       ),
@@ -481,131 +481,137 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                       // bei wenig vertikalem Platz wird der untere/obere Pfeil
                       // geclippt - kein Crash, nur visuell etwas knapp).
                       Expanded(
-                        child: Stack(children: [
-                          // Runder Steintisch mit Cyan-Ring unter den Stapeln.
-                          const Positioned.fill(
-                            child: IgnorePointer(
-                              child: RepaintBoundary(
-                                child: CustomPaint(
-                                    painter: LumoRoundTablePainter()),
-                              ),
-                            ),
-                          ),
-                          // Tierfreunde am Tisch (Bild 03), nur Deko.
-                          if (!compact) ...[
-                            Positioned(
-                              left: -8,
-                              bottom: 0,
-                              height: 120,
-                              child: IgnorePointer(
-                                child: Image.asset(
-                                  'assets/lumo_design/cards_game/friend_panda.png',
-                                  fit: BoxFit.contain,
-                                  filterQuality: FilterQuality.medium,
+                        child: Stack(
+                            key: const ValueKey('cards-arena'),
+                            children: [
+                              // Runder Steintisch mit Cyan-Ring unter den Stapeln.
+                              const Positioned.fill(
+                                child: IgnorePointer(
+                                  child: RepaintBoundary(
+                                    child: CustomPaint(
+                                        painter: LumoRoundTablePainter()),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              right: -6,
-                              bottom: 0,
-                              height: 150,
-                              child: IgnorePointer(
-                                child: Image.asset(
-                                  'assets/lumo_design/cards_game/friend_giraffe.png',
-                                  fit: BoxFit.contain,
-                                  filterQuality: FilterQuality.medium,
+                              // Tierfreunde am Tisch (Bild 03), nur Deko.
+                              if (!compact) ...[
+                                Positioned(
+                                  left: -8,
+                                  bottom: 0,
+                                  height: 120,
+                                  child: IgnorePointer(
+                                    child: Image.asset(
+                                      'assets/lumo_design/cards_game/friend_panda.png',
+                                      fit: BoxFit.contain,
+                                      filterQuality: FilterQuality.medium,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ],
-                          Positioned.fill(
-                            child: ClipRect(
-                              child: Center(
-                                child: FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: LumoColorArrows(
-                                    activeColor: s.selectedColor,
-                                    size: 300,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        LumoDrawPile(
-                                          cardsLeft: s.drawPile.length,
-                                          onDraw:
-                                              s.phase == GamePhase.playing &&
+                                Positioned(
+                                  right: -6,
+                                  bottom: 0,
+                                  height: 150,
+                                  child: IgnorePointer(
+                                    child: Image.asset(
+                                      'assets/lumo_design/cards_game/friend_giraffe.png',
+                                      fit: BoxFit.contain,
+                                      filterQuality: FilterQuality.medium,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              Positioned.fill(
+                                child: ClipRect(
+                                  child: Center(
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: LumoColorArrows(
+                                        activeColor: s.selectedColor,
+                                        size: 300,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            LumoDrawPile(
+                                              cardsLeft: s.drawPile.length,
+                                              onDraw: s.phase ==
+                                                          GamePhase.playing &&
                                                       _isMyTurnVisible(s)
                                                   ? () => _controller.drawCard()
                                                   : null,
-                                        ),
-                                        const SizedBox(width: 16),
-                                        if (topCard != null)
-                                          KeyedSubtree(
-                                            key: _discardKey,
-                                            // Premium-Look 2026-05-25:
-                                            //  - radialer Glow-Halo HINTER der Pile
-                                            //    (96x140 Karte + grosser Spread -
-                                            //    sieht aus wie ein Spot-Strahler)
-                                            //  - LumoFloating: sanftes Schweben +/-4 px,
-                                            //    bricht die statische Optik
-                                            child: SizedBox(
-                                              width: 132,
-                                              height: 172,
-                                              child: Stack(
-                                                alignment: Alignment.center,
-                                                children: [
-                                                  IgnorePointer(
-                                                    child: Container(
-                                                      width: 112,
-                                                      height: 152,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: const Color(
-                                                                    0xFFFFE0B8)
-                                                                .withOpacity(
-                                                                    0.55),
-                                                            blurRadius: 48,
-                                                            spreadRadius: 4,
-                                                          ),
-                                                          BoxShadow(
-                                                            color: const Color(
-                                                                    0xFFFFB96B)
-                                                                .withOpacity(
-                                                                    0.35),
-                                                            blurRadius: 22,
-                                                            spreadRadius: -2,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  LumoFloating(
-                                                    amplitude: 4,
-                                                    duration: const Duration(
-                                                        seconds: 4),
-                                                    child: LumoDiscardPile(
-                                                      topCard: topCard,
-                                                      selectedColor:
-                                                          s.selectedColor,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
                                             ),
-                                          ),
-                                      ],
+                                            const SizedBox(width: 16),
+                                            if (topCard != null)
+                                              KeyedSubtree(
+                                                key: _discardKey,
+                                                // Premium-Look 2026-05-25:
+                                                //  - radialer Glow-Halo HINTER der Pile
+                                                //    (96x140 Karte + grosser Spread -
+                                                //    sieht aus wie ein Spot-Strahler)
+                                                //  - LumoFloating: sanftes Schweben +/-4 px,
+                                                //    bricht die statische Optik
+                                                child: SizedBox(
+                                                  width: 132,
+                                                  height: 172,
+                                                  child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      IgnorePointer(
+                                                        child: Container(
+                                                          width: 112,
+                                                          height: 152,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                color: const Color(
+                                                                        0xFFFFE0B8)
+                                                                    .withOpacity(
+                                                                        0.55),
+                                                                blurRadius: 48,
+                                                                spreadRadius: 4,
+                                                              ),
+                                                              BoxShadow(
+                                                                color: const Color(
+                                                                        0xFFFFB96B)
+                                                                    .withOpacity(
+                                                                        0.35),
+                                                                blurRadius: 22,
+                                                                spreadRadius:
+                                                                    -2,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      LumoFloating(
+                                                        amplitude: 4,
+                                                        duration:
+                                                            const Duration(
+                                                                seconds: 4),
+                                                        child: LumoDiscardPile(
+                                                          topCard: topCard,
+                                                          selectedColor:
+                                                              s.selectedColor,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ]),
+                            ]),
                       ),
                       // Hand am Boden - im vsBot-Modus immer die Hand des
                       // Kindes (Spieler 1), egal wer dran ist.
@@ -752,14 +758,17 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       if (!landscape) return Column(children: children);
       final arena = children.indexWhere((w) => w is Expanded);
       if (arena < 0) return Column(children: children);
-      // Die Zuganzeige braucht Breite: sie wandert über den Tisch.
+      // Short landscape reserves the right column for the actual game.
+      // A narrow banner above the table used to wrap into two rows and
+      // consume nearly all of the remaining arena height at 640x360.
+      final shortLandscape = c.maxHeight <= 400;
       final top = [
         for (final w in children.sublist(0, arena))
-          if (w is! LumoTurnBanner) w,
+          if (shortLandscape || w is! LumoTurnBanner) w,
       ];
       final banner = [
         for (final w in children.sublist(0, arena))
-          if (w is LumoTurnBanner) w,
+          if (!shortLandscape && w is LumoTurnBanner) w,
       ];
       final bottom = children.sublist(arena + 1);
       return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -796,6 +805,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       padding: const EdgeInsets.fromLTRB(12, 4, 12, 8),
       child: Row(children: [
         IconButton(
+          constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+          visualDensity: VisualDensity.standard,
           tooltip: 'Avatar wechseln',
           onPressed: _changeAvatar,
           icon: const Icon(Icons.face_rounded, color: Colors.white),
