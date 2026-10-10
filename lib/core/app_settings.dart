@@ -11,6 +11,7 @@ class AppSettings {
     this.soundEnabled = true,
     this.voiceEnabled = true,
     this.autoReadEnabled = true,
+    this.cloudVoiceEnabled = false,
     this.microphoneEnabled = false,
     this.scannerEnabled = false,
     this.aiProxyEnabled = false,
@@ -27,6 +28,8 @@ class AppSettings {
   final bool soundEnabled;
   final bool voiceEnabled;
   final bool autoReadEnabled;
+  /// Parent-controlled transfer of the currently spoken text to the Sulafat TTS server.
+  final bool cloudVoiceEnabled;
   final bool microphoneEnabled;
   final bool scannerEnabled;
   final bool aiProxyEnabled;
@@ -44,6 +47,7 @@ class AppSettings {
     bool? soundEnabled,
     bool? voiceEnabled,
     bool? autoReadEnabled,
+    bool? cloudVoiceEnabled,
     bool? microphoneEnabled,
     bool? scannerEnabled,
     bool? aiProxyEnabled,
@@ -61,6 +65,7 @@ class AppSettings {
       soundEnabled: soundEnabled ?? this.soundEnabled,
       voiceEnabled: voiceEnabled ?? this.voiceEnabled,
       autoReadEnabled: autoReadEnabled ?? this.autoReadEnabled,
+      cloudVoiceEnabled: cloudVoiceEnabled ?? this.cloudVoiceEnabled,
       microphoneEnabled: microphoneEnabled ?? this.microphoneEnabled,
       scannerEnabled: scannerEnabled ?? this.scannerEnabled,
       aiProxyEnabled: aiProxyEnabled ?? this.aiProxyEnabled,
@@ -80,6 +85,7 @@ class AppSettings {
         'soundEnabled': soundEnabled,
         'voiceEnabled': voiceEnabled,
         'autoReadEnabled': autoReadEnabled,
+        'cloudVoiceEnabled': cloudVoiceEnabled,
         'microphoneEnabled': microphoneEnabled,
         'scannerEnabled': scannerEnabled,
         'aiProxyEnabled': aiProxyEnabled,
@@ -103,6 +109,7 @@ class AppSettings {
       soundEnabled: _bool(json['soundEnabled'], fallback: true),
       voiceEnabled: _bool(json['voiceEnabled'], fallback: true),
       autoReadEnabled: _bool(json['autoReadEnabled'], fallback: true),
+      cloudVoiceEnabled: _bool(json['cloudVoiceEnabled'], fallback: false),
       microphoneEnabled: _bool(json['microphoneEnabled'], fallback: false),
       scannerEnabled: _bool(json['scannerEnabled'], fallback: false),
       aiProxyEnabled: _bool(json['aiProxyEnabled'], fallback: false),
