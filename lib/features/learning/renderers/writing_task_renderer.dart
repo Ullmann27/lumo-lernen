@@ -95,7 +95,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
   @override
   Widget build(BuildContext context) {
     if (_target.isEmpty) {
-      return const Semantics(
+      return Semantics(
         label: 'Schreibaufgabe ohne Zielbuchstaben',
         child: Padding(
           padding: EdgeInsets.all(16),
