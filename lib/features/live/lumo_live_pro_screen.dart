@@ -19,7 +19,6 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import '../../app/app_state.dart';
 import '../../core/lumo_brain.dart';
-import '../../core/lumo_cosmos.dart';
 import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
@@ -250,10 +249,20 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   }
 
   Future<void> _startListening() async {
+    if (_listening) return;
+    final source = widget.appState.captureLearningProfile();
+    LearningProfileLease owner;
+    try {
+      owner = await source;
+      await widget.appState.prepareLearningLease(owner);
+    } catch (_) {
+      return;
+    }
+    if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
     if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
         !mounted) return;
     if (!_sttReady) await _initStt();
-    if (!mounted) return;
+    if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
     if (!_sttReady) {
       _speak('Ich brauch dein Mikrofon - bitte erlauben!');
       return;
@@ -270,9 +279,9 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
         localeId: 'de_DE',
         listenFor: const Duration(seconds: 8),
         onResult: (r) {
-          if (mounted) {
+          if (mounted && widget.appState.isCurrentLearningLease(owner)) {
             setState(() => _recognized = r.recognizedWords);
-            if (r.finalResult) _onSpeechDone();
+            if (r.finalResult) _onSpeechDone(owner);
           }
         },
       );
@@ -282,8 +291,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     }
   }
 
-  Future<void> _onSpeechDone() async {
-    if (!mounted) return;
+  Future<void> _onSpeechDone(LearningProfileLease owner) async {
+    if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
     setState(() {
       _listening = false;
       _mood = LumoMirrorMood.think;
@@ -296,13 +305,13 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     // Mode-spezifische Behandlung
     switch (_mode) {
       case LiveMode.wordMagic:
-        await _handleWordMagic();
+        await _handleWordMagic(owner);
         break;
       case LiveMode.photoQuiz:
-        await _handlePhotoQuiz();
+        await _handlePhotoQuiz(owner);
         break;
       case LiveMode.safari:
-        await _handleSafariAnswer();
+        await _handleSafariAnswer(owner);
         break;
     }
   }
@@ -310,7 +319,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   // ────────────────────────────────────────────────────────────────
   // MODE 1: WORT-MAGIE
   // ────────────────────────────────────────────────────────────────
-  Future<void> _handleWordMagic() async {
+  Future<void> _handleWordMagic(LearningProfileLease owner) async {
     final word = _recognized.trim();
     final reply =
         LumoBrain.instance.ask('Was ist ein $word?', topicId: 's1_tiere');
@@ -320,7 +329,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     });
     widget.appState.addStars(1);
     widget.appState.addXp(5);
-    CosmosWorld.instance.grantReward(
+    widget.appState.grantCosmosReward(
+      lease: owner,
       subjectId: 'live_word',
       isMath: false,
       isPerfect: false,
@@ -352,12 +362,13 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     }
   }
 
-  Future<void> _handlePhotoQuiz() async {
+  Future<void> _handlePhotoQuiz(LearningProfileLease owner) async {
     // Nach jeder Antwort: naechste Frage oder Ende
     setState(() {});
     widget.appState.addStars(1);
     widget.appState.addXp(5);
-    CosmosWorld.instance.grantReward(
+    widget.appState.grantCosmosReward(
+      lease: owner,
       subjectId: 'live_photo',
       isMath: false,
       isPerfect: false,
@@ -366,6 +377,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       _photoQuizQuestionIdx++;
       setState(() => _mood = LumoMirrorMood.happy);
       await Future.delayed(const Duration(milliseconds: 1500));
+      if (!mounted || !widget.appState.isCurrentLearningLease(owner)) return;
       _speak(_extendedPhotoQuestions[_photoQuizQuestionIdx]);
     } else {
       setState(() => _mood = LumoMirrorMood.cheer);
@@ -394,7 +406,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     _speak('Welches Tier siehst du? Sag mir den Namen!');
   }
 
-  Future<void> _handleSafariAnswer() async {
+  Future<void> _handleSafariAnswer(LearningProfileLease owner) async {
     if (_safariAnimal == null) return;
     final said = _recognized.toLowerCase().trim();
     final correct = _safariAnimal!.toLowerCase();
@@ -412,19 +424,20 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       _speak('Richtig! Das ist ein $_safariAnimal!');
       widget.appState.addStars(2);
       widget.appState.addXp(10);
-      CosmosWorld.instance.grantReward(
+      widget.appState.grantCosmosReward(
+      lease: owner,
         subjectId: 'live_safari',
         isMath: false,
         isPerfect: true,
       );
       if (mounted) showLumoRewardBurst(context, stars: 2, xp: 10);
       await Future.delayed(const Duration(milliseconds: 2200));
-      if (mounted) _nextSafariAnimal();
+      if (mounted && widget.appState.isCurrentLearningLease(owner)) _nextSafariAnimal();
     } else {
       setState(() => _mood = LumoMirrorMood.sad);
       _speak('Hmm, nicht ganz. Es ist ein $_safariAnimal. Versuch noch eins!');
       await Future.delayed(const Duration(milliseconds: 2500));
-      if (mounted) _nextSafariAnimal();
+      if (mounted && widget.appState.isCurrentLearningLease(owner)) _nextSafariAnimal();
     }
   }
 

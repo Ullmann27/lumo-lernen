@@ -15,7 +15,6 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_companion_state.dart';
-import '../../../core/lumo_cosmos.dart';
 import '../../../core/lumo_image_generator.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
@@ -214,6 +213,8 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      cosmosSubjectId: 's1_jahreszeiten',
+      cosmosIsMath: false,
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -222,11 +223,6 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      CosmosWorld.instance.grantReward(
-        subjectId: 's1_jahreszeiten',
-        isMath: false,
-        isPerfect: false,
-      );
       LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
         LumoVoice.instance.speak('Richtig! Das ist ${_correctJz.label}!');

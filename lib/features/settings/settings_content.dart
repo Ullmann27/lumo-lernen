@@ -18,6 +18,7 @@ import '../../domain/learning/learning_dna_engine.dart';
 import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import '../teacher/teacher_dashboard_screen.dart';
+import 'legacy_learning_data_card.dart';
 import 'parent_report_card.dart';
 import 'writing_report_card.dart';
 
@@ -69,6 +70,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   /// gespeichert/Enter gedrueckt hat.
   String _currentUrlInField = '';
   int _aiStatsRevision = 0;
+  int _legacyDataRevision = 0;
   static const LumoAiProxyClient _proxyClient = LumoAiProxyClient();
   static const AiTaskCache _aiTaskCache = AiTaskCache();
 
@@ -389,12 +391,19 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         ),
         const SizedBox(height: 18),
         _TeacherAreaCard(
-          onOpen: () => Navigator.of(context).push<void>(
-            MaterialPageRoute<void>(
-              builder: (_) =>
-                  TeacherDashboardScreen(appState: widget.appState),
-            ),
-          ),
+          onOpen: () async {
+            await Navigator.of(context).push<void>(
+              MaterialPageRoute<void>(
+                builder: (_) =>
+                    TeacherDashboardScreen(appState: widget.appState),
+              ),
+            );
+            if (mounted) setState(() => _legacyDataRevision++);
+          },
+        ),
+        LegacyLearningDataCard(
+          appState: widget.appState,
+          refreshRevision: _legacyDataRevision,
         ),
         const SizedBox(height: 18),
         _ProfileResetCard(

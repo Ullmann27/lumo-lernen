@@ -17,7 +17,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import '../../../core/lumo_companion_state.dart';
-import '../../../core/lumo_cosmos.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -63,6 +62,8 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   bool _answered = false;
   int? _selectedAnswer;
   int? _pendingAnswer;
+  LearningProfileAction? _pendingLease;
+  bool _cosmosRecorded = false;
   bool _pendingHintUsed = false;
   bool _saving = false;
   bool _rewardBooked = false;
@@ -106,6 +107,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   @override
   void dispose() {
+    if (!_saving) _pendingLease?.close();
     WidgetsBinding.instance.removeObserver(this);
     _feedbackTimer?.cancel();
     _bounceCtrl.dispose();
@@ -150,6 +152,8 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _selectedAnswer = null;
     _wrongAttempts = 0;
     _pendingAnswer = null;
+    _pendingLease = null;
+    _cosmosRecorded = false;
     _rewardBooked = false;
     _profileRecorded = false;
     _saveError = null;
@@ -185,6 +189,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   void _handleAnswer(int answer) {
     if (_answered || _pendingAnswer != null || _afterFeedback != null) return;
+    if (widget.appState.resetting) return;
+    _pendingLease = widget.appState.beginLearningAction();
+    _cosmosRecorded = false;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = answer;
@@ -203,6 +210,11 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     final correct = answer == _correct;
     final hintUsed = _pendingHintUsed;
     try {
+      final owner = await _pendingLease!.resolve();
+      if (!widget.appState.canUseLearningLease(owner)) {
+        _cancelPendingAnswer();
+        return;
+      }
       if (correct) {
         if (!_rewardBooked) {
           _rewardBooked = true;
@@ -210,11 +222,14 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         }
         await widget.appState.flushRewards();
       }
-      if (!widget.appState.learningProfileLoaded) {
-        await widget.appState.loadLearningProfile();
-        if (!widget.appState.learningProfileLoaded) {
-          throw StateError('Learning profile could not be loaded');
-        }
+      if (!widget.appState.canUseLearningLease(owner)) {
+        _cancelPendingAnswer();
+        return;
+      }
+      await widget.appState.prepareLearningLease(owner);
+      if (!widget.appState.canUseLearningLease(owner)) {
+        _cancelPendingAnswer();
+        return;
       }
       if (!_profileRecorded) {
         // recordAnswer mutates its in-memory counters before saving. A retry
@@ -226,13 +241,35 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
           correct: correct,
           hintUsed: hintUsed,
           requireSaved: true,
+          lease: owner,
           prompt: '$_a + $_b = ?',
           given: '$answer',
           expected: '$_correct',
         );
       } else {
-        await widget.appState.flushLearningProgress();
+        await widget.appState.flushLearningProgress(lease: owner);
       }
+      if (correct) {
+        await owner.cosmos.load();
+        if (!widget.appState.canUseLearningLease(owner)) {
+          _cancelPendingAnswer();
+          return;
+        }
+        if (!_cosmosRecorded) {
+          _cosmosRecorded = true;
+          await widget.appState.grantCosmosReward(
+            subjectId: 'm1_plus10', isMath: true, isPerfect: false,
+            lease: owner, requireSaved: true,
+          );
+        } else {
+          await widget.appState.flushCosmos(lease: owner);
+        }
+      }
+      if (!widget.appState.isCurrentLearningLease(owner)) {
+        _cancelPendingAnswer();
+        return;
+      }
+      _pendingLease?.close();
       if (!mounted) return;
       setState(() {
         _pendingAnswer = null;
@@ -245,13 +282,32 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         _handleWrong(answer);
       }
     } catch (_) {
-      if (!mounted) return;
+      if (_pendingLease?.invalidated ?? true) {
+        _cancelPendingAnswer();
+        return;
+      }
+      if (!mounted) {
+        _pendingLease?.close();
+        return;
+      }
       setState(() {
         _saving = false;
         _saveError = 'Deine Antwort wartet noch aufs Speichern. '
             'Wir versuchen es gemeinsam erneut.';
       });
     }
+  }
+
+  void _cancelPendingAnswer() {
+    _pendingLease?.close();
+    if (!mounted) return;
+    setState(() {
+      _pendingAnswer = null;
+      _pendingLease = null;
+      _saving = false;
+      _saveError = null;
+      _answered = true;
+    });
   }
 
   void _retrySave() {
@@ -279,12 +335,6 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _bounceCtrl.forward(from: 0);
     _lumo.cheer();
     HapticFeedback.mediumImpact();
-    // Cosmos-Belohnung: pflanze einen Baum in der Welt!
-    CosmosWorld.instance.grantReward(
-      subjectId: 'm1_plus10',
-      isMath: true,
-      isPerfect: false,
-    );
     LumoCompanionState.instance.recordCorrect(topic: 'math');
     try {
       LumoVoice.instance.speak(LumoPhrases.correct());

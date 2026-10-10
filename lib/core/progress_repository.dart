@@ -1,23 +1,28 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'legacy_learning_data.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
 /// Offline-first. Keine Cloud. Kein Tracking.
 class ProgressRepository {
+  ProgressRepository({String? studentId})
+      : _namespace = LearningDataNamespace(studentId: studentId);
+
+  final LearningDataNamespace _namespace;
+  Future<String> get studentId => _namespace.studentId;
+
   static const _skillsKey = 'lumo_progress_skills';
   static const _dailyKey = 'lumo_progress_daily';
   static const _lastKey = 'lumo_progress_last';
 
   Future<Map<String, SkillRecord>> loadSkills() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_skillsKey);
+    final raw = await _namespace.read(_skillsKey);
     if (raw == null || raw.trim().isEmpty) return <String, SkillRecord>{};
     final out = <String, SkillRecord>{};
     try {
       final decoded = jsonDecode(raw);
       if (decoded is! Map) {
-        await prefs.remove(_skillsKey);
+        await _namespace.write(_skillsKey, '{}');
         return <String, SkillRecord>{};
       }
       decoded.forEach((key, value) {
@@ -27,7 +32,7 @@ class ProgressRepository {
         out[record.skillId] = record;
       });
     } catch (_) {
-      await prefs.remove(_skillsKey);
+      await _namespace.write(_skillsKey, '{}');
       return <String, SkillRecord>{};
     }
     // A failed normalization write is not corrupt input. Preserve the
@@ -37,26 +42,22 @@ class ProgressRepository {
   }
 
   Future<void> saveSkills(Map<String, SkillRecord> skills) async {
-    final prefs = await SharedPreferences.getInstance();
     final data = <String, Map<String, dynamic>>{};
     for (final entry in skills.entries) {
       final record = entry.value.normalized();
       data[record.skillId] = record.toJson();
     }
-    if (!await prefs.setString(_skillsKey, jsonEncode(data))) {
-      throw StateError('Learning skills were not saved');
-    }
+    await _namespace.write(_skillsKey, jsonEncode(data));
   }
 
   Future<Map<String, int>> loadDaily() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_dailyKey);
+    final raw = await _namespace.read(_dailyKey);
     if (raw == null || raw.trim().isEmpty) return <String, int>{};
     final out = <String, int>{};
     try {
       final decoded = jsonDecode(raw);
       if (decoded is! Map) {
-        await prefs.remove(_dailyKey);
+        await _namespace.write(_dailyKey, '{}');
         return <String, int>{};
       }
       decoded.forEach((key, value) {
@@ -68,7 +69,7 @@ class ProgressRepository {
         out[textKey] = count.clamp(0, 500).toInt();
       });
     } catch (_) {
-      await prefs.remove(_dailyKey);
+      await _namespace.write(_dailyKey, '{}');
       return <String, int>{};
     }
     await saveDaily(out);
@@ -76,27 +77,23 @@ class ProgressRepository {
   }
 
   Future<void> saveDaily(Map<String, int> daily) async {
-    final prefs = await SharedPreferences.getInstance();
     final clean = <String, int>{};
     daily.forEach((key, value) {
       if (RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(key)) {
         clean[key] = value.clamp(0, 500).toInt();
       }
     });
-    if (!await prefs.setString(_dailyKey, jsonEncode(clean))) {
-      throw StateError('Daily learning progress was not saved');
-    }
+    await _namespace.write(_dailyKey, jsonEncode(clean));
   }
 
   Future<Map<String, String>> loadLastTopics() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_lastKey);
+    final raw = await _namespace.read(_lastKey);
     if (raw == null || raw.trim().isEmpty) return <String, String>{};
     final out = <String, String>{};
     try {
       final decoded = jsonDecode(raw);
       if (decoded is! Map) {
-        await prefs.remove(_lastKey);
+        await _namespace.write(_lastKey, '{}');
         return <String, String>{};
       }
       decoded.forEach((key, value) {
@@ -105,7 +102,7 @@ class ProgressRepository {
         if (k.isNotEmpty && v.isNotEmpty) out[k] = v;
       });
     } catch (_) {
-      await prefs.remove(_lastKey);
+      await _namespace.write(_lastKey, '{}');
       return <String, String>{};
     }
     await saveLastTopics(out);
@@ -113,23 +110,19 @@ class ProgressRepository {
   }
 
   Future<void> saveLastTopics(Map<String, String> last) async {
-    final prefs = await SharedPreferences.getInstance();
     final clean = <String, String>{};
     last.forEach((key, value) {
       final k = key.trim();
       final v = value.trim();
       if (k.isNotEmpty && v.isNotEmpty) clean[k] = v;
     });
-    if (!await prefs.setString(_lastKey, jsonEncode(clean))) {
-      throw StateError('Last learning topics were not saved');
-    }
+    await _namespace.write(_lastKey, jsonEncode(clean));
   }
 
   Future<void> resetAll() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_skillsKey);
-    await prefs.remove(_dailyKey);
-    await prefs.remove(_lastKey);
+    await _namespace.write(_skillsKey, '{}');
+    await _namespace.write(_dailyKey, '{}');
+    await _namespace.write(_lastKey, '{}');
   }
 }
 

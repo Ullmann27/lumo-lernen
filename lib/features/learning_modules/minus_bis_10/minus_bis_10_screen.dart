@@ -10,7 +10,6 @@ import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import '../../../core/lumo_companion_state.dart';
-import '../../../core/lumo_cosmos.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -121,6 +120,8 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     });
     final isCorrect = answer == _correct;
     final saved = await _progress.saveAnswer(
+      cosmosSubjectId: 'm1_minus10',
+      cosmosIsMath: true,
       correct: isCorrect,
       hintUsed: _showHint,
       stars: isCorrect ? 1 : 0,
@@ -130,11 +131,6 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      CosmosWorld.instance.grantReward(
-        subjectId: 'm1_minus10',
-        isMath: true,
-        isPerfect: false,
-      );
       LumoCompanionState.instance.recordCorrect(topic: 'math');
       final phrase = LumoPhrases.correct();
       try {

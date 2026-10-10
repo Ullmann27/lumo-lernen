@@ -9,7 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Holds a real progress read or write while the device changes students.
 class _PausedProgressRepository extends ProgressRepository {
-  _PausedProgressRepository({required this.pauseLoad});
+  _PausedProgressRepository({required this.pauseLoad})
+      : super(studentId: 'student-a');
 
   final bool pauseLoad;
   final entered = Completer<void>();
@@ -39,11 +40,16 @@ void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
   for (final pauseLoad in [true, false]) {
-    test('answer keeps its student when assignment changes during progress '
+    test(
+        'answer keeps its student when assignment changes during progress '
         '${pauseLoad ? 'load' : 'save'}', () async {
       final repository = _PausedProgressRepository(pauseLoad: pauseLoad);
       final app = LumoAppState(
-        learningProfile: LearningProfileEngine(repository: repository),
+        learningProfileFactory: (studentId) => LearningProfileEngine(
+          repository: studentId == 'student-a'
+              ? repository
+              : ProgressRepository(studentId: studentId),
+        ),
       );
       addTearDown(() {
         if (!repository.release.isCompleted) repository.release.complete();
@@ -71,8 +77,14 @@ void main() {
       expect(first.single.studentId, 'student-a');
       expect(first.single.prompt, '2 + 3 = ?');
       expect(await app.attemptLog.load(studentId: 'student-b'), isEmpty);
-      expect(app.learningSkills()['mathematik::plus bis 10']!.correct, 1);
-      expect(app.learningDailyDone(), 1);
+      await app.loadLearningProfile();
+      expect(app.learningSkills(), isEmpty); // Visible B has no answer yet.
+      expect(app.learningDailyDone(), 0);
+      final restoredA = LearningProfileEngine(
+          repository: ProgressRepository(studentId: 'student-a'));
+      await restoredA.load();
+      expect(restoredA.skills['mathematik::plus bis 10']!.correct, 1);
+      expect(restoredA.dailyDone(), 1);
 
       // The next answer uses the new student; no app restart is required.
       await app.recordLearningAnswer(

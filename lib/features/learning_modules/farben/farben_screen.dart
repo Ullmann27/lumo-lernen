@@ -11,7 +11,6 @@ import '../../../widgets/design/lumo_design_system.dart';
 import 'dart:math' as math;
 
 import '../../../core/lumo_companion_state.dart';
-import '../../../core/lumo_cosmos.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -192,6 +191,8 @@ class _FarbenScreenState extends State<FarbenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      cosmosSubjectId: 's1_farben',
+      cosmosIsMath: false,
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -200,11 +201,6 @@ class _FarbenScreenState extends State<FarbenScreen>
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       _correctCount++;
-      CosmosWorld.instance.grantReward(
-        subjectId: 's1_farben',
-        isMath: false,
-        isPerfect: false,
-      );
       LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
         LumoVoice.instance.speak('Richtig! Das ist ${_correctFarbe.name}!');

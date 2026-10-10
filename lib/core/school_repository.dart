@@ -1,12 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/school/school_model.dart';
+import 'legacy_learning_data.dart';
 
 /// Lokale Ablage der Schuldaten. Alle Änderungen laufen über diese Klasse,
 /// damit Berechtigung und Persistenz an einer Stelle liegen.
-class SchoolRepository {
+class SchoolRepository extends ChangeNotifier {
   static const _key = 'lumo_school_v1';
   static const _activeKey = 'lumo_school_active_student_v1';
 
@@ -14,6 +16,44 @@ class SchoolRepository {
   static const localTeacherId = 'teacher-local';
 
   int _serial = 0;
+  String? _activeStudent;
+  bool _selectionLoaded = false;
+  Future<void>? _selectionTail;
+  bool _selectionResetting = false;
+
+  String? get cachedActiveStudentId => _activeStudent;
+  bool get hasLoadedSelection => _selectionLoaded;
+
+  Future<T> _selectionOperation<T>(Future<T> Function() action) {
+    final previous = _selectionTail;
+    Future<T> perform() async {
+      if (previous != null) await previous;
+      return action();
+    }
+
+    final pending = perform();
+    final tail =
+        pending.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    _selectionTail = tail;
+    tail.then((_) {
+      if (identical(_selectionTail, tail)) _selectionTail = null;
+    });
+    return pending;
+  }
+
+  Future<void> pauseSelectionForReset() async {
+    _selectionResetting = true;
+    while (_selectionTail != null) {
+      await _selectionTail;
+    }
+  }
+
+  void resumeSelectionAfterReset() => _selectionResetting = false;
+
+  void resetSelectionCache() {
+    _activeStudent = null;
+    _selectionLoaded = false;
+  }
 
   String newId(String prefix) =>
       '$prefix-${DateTime.now().microsecondsSinceEpoch}-${_serial++}';
@@ -36,18 +76,40 @@ class SchoolRepository {
   }
 
   /// Welches Schulkind dieses Gerät gerade benutzt (null = niemand zugeordnet).
-  Future<String?> activeStudentId() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_activeKey);
+  Future<String?> activeStudentId() {
+    // Capture the committed selection now, rather than after the caller's
+    // wallet/progress awaits. A pending switch does not become active early.
+    if (_selectionLoaded) return Future<String?>.value(_activeStudent);
+    return _selectionOperation(() async {
+      final prefs = await SharedPreferences.getInstance();
+      _activeStudent = prefs.getString(_activeKey)?.trim();
+      if (_activeStudent?.isEmpty ?? false) _activeStudent = null;
+      _selectionLoaded = true;
+      return _activeStudent;
+    });
   }
 
-  Future<void> setActiveStudent(String? id) async {
-    final prefs = await SharedPreferences.getInstance();
-    if (id == null) {
-      await prefs.remove(_activeKey);
-    } else {
-      await prefs.setString(_activeKey, id);
+  Future<void> setActiveStudent(String? id) {
+    if (_selectionResetting) {
+      return Future.error(StateError('Profile is being reset'));
     }
+    return _selectionOperation(() async {
+      final prefs = await SharedPreferences.getInstance();
+      final selected = id?.trim();
+      if (selected == null || selected.isEmpty) {
+        if (!await prefs.remove(_activeKey)) {
+          await prefs.reload();
+          throw StateError('Student selection was not saved');
+        }
+      } else {
+        await LearningStorage.write(prefs, _activeKey, selected);
+      }
+      final next = selected == null || selected.isEmpty ? null : selected;
+      final changed = !_selectionLoaded || _activeStudent != next;
+      _activeStudent = next;
+      _selectionLoaded = true;
+      if (changed) notifyListeners();
+    });
   }
 
   // ── Änderungen ──────────────────────────────────────────────────────
@@ -93,9 +155,8 @@ class SchoolRepository {
       students: d.students.where((s) => s.id != studentId).toList(),
       groups: d.groups,
       assignments: d.assignments
-          .where((a) =>
-              !(a.targetKind == AssignmentTargetKind.student &&
-                  a.targetId == studentId))
+          .where((a) => !(a.targetKind == AssignmentTargetKind.student &&
+              a.targetId == studentId))
           .toList(),
     );
     await save(next);

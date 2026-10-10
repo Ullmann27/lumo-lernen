@@ -1,3 +1,15 @@
+# Fortsetzung · 10. Oktober 2026 · Quellkandidat 0.12.13+1920
+
+Zuerst [die Fortsetzungsnotiz für Build 1920](docs/CONTINUATION_2026-10-10_BUILD_1920.md)
+lesen. App-Branch `codex/lumo-next-2026-10-10` setzt auf dem geprüften
+1919-Quellstand `d07b2b4` auf. Godot-Pin `6b401531` behebt die unterbrochene
+helle Wange; sechs echte GL-Aufnahmen, 68 Oberflächenprüfungen sowie Vehicle
+und Stage 2 sind grün. Profilisolierung und ausdrückliche Elternzuordnung
+älterer Lerndaten sind in Arbeit. **Die vollständige neue App-/APK-Abnahme
+steht noch aus.** Ältere APK-Nachweise darunter bleiben historisch.
+
+---
+
 # Integration Claude · 9. Oktober 2026 (AAA-Produktionsauftrag)
 
 Arbeitsbericht mit Integrationsmatrix, SHAs, Prüfungen, Bildvergleichen und offenen Abweichungen:
