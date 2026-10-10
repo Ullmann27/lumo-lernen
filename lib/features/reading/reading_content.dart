@@ -15,6 +15,7 @@ import '../../domain/reading/reading_attempt_history.dart';
 import '../../domain/reading/reading_domain.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
 import 'widgets/reading_active_sentence_view.dart';
 
 class ReadingContent extends StatefulWidget {
@@ -56,6 +57,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   bool _processing = false;
   bool _loadingStory = true;
   Timer? _listenTimer;
+  LumoCompanionTaskContext? _visibleReadingContext;
 
   @override
   void initState() {
@@ -90,6 +92,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       _liveProblemWord = null;
       _loadingStory = false;
     });
+    _publishReadingContext();
 
     await _speakOnly('Wir lesen jetzt ${story.title}. Wenn du bereit bist, drück auf das Mikrofon und lies den Satz vor.');
     await _persistReadingProgress(latestScore: 0);
@@ -97,12 +100,39 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
 
   @override
   void dispose() {
+    if (identical(LumoCompanionRequests.instance.taskContext.value, _visibleReadingContext)) {
+      LumoCompanionRequests.instance.taskContext.value = null;
+    }
     _listenTimer?.cancel();
     _speech.cancel();
     _speech.dispose();
     WidgetsBinding.instance.removeObserver(this);
     LumoVoice.instance.stop();
     super.dispose();
+  }
+
+  void _publishReadingContext() {
+    final progress = _progress;
+    if (progress == null) return;
+    final current = LumoCompanionTaskContext(
+      ownerSection: 'reading',
+      subject: 'Lesen',
+      unit: progress.story.title,
+      prompt: progress.currentSentence.text,
+      taskId: progress.currentSentence.id,
+      answering: !_finished,
+      attempts: (progress.attemptNumber - 1).clamp(0, 20),
+      previousHelp: _lumoLine,
+      localHelp: 'Lies den sichtbaren Satz langsam, Wort für Wort. '
+          'Tippe auf das Mikrofon, wenn du bereit bist.',
+      activity: 'reading',
+    );
+    _visibleReadingContext = current;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && identical(_visibleReadingContext, current)) {
+        LumoCompanionRequests.instance.taskContext.value = current;
+      }
+    });
   }
 
   @override
@@ -152,7 +182,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       mood: LumoMood.point,
       lumoMessage: message,
     ));
-    await LumoVoice.instance.speak(message);
+    await LumoVoice.instance.speakAndWait(message);
   }
 
   Future<void> _toggleListening() async {
@@ -186,6 +216,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     });
 
     _listenStartedAt ??= DateTime.now();
+    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.readingStarted);
     await _speech.startListening(
       onResult: (words) {
         if (!mounted) return;
@@ -375,6 +406,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     });
 
     _persistReadingProgress(latestScore: result.analysis.alignmentScore);
+    _publishReadingContext();
 
     widget.appState.update(widget.appState.state.copyWith(
       mood: adjustedProgress.isComplete
@@ -386,7 +418,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     ));
 
     final nextMessage = adjustedProgress.isComplete ? _lumoLine : childMessage;
-    LumoVoice.instance.speak(nextMessage).whenComplete(() {
+    LumoVoice.instance.speakAndWait(nextMessage).whenComplete(() {
       _processing = false;
     });
   }

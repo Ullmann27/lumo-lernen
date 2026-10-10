@@ -14,6 +14,9 @@ import io.flutter.plugin.common.MethodChannel
 import java.io.File
 import org.json.JSONObject
 import java.util.UUID
+import java.security.MessageDigest
+import android.content.pm.PackageManager
+import android.speech.SpeechRecognizer
 
 class MainActivity : FlutterActivity() {
     private val installerChannel = "lumo_lernen/installer"
@@ -28,6 +31,39 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "lumo_lernen/diagnostics")
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "onDeviceSpeechAvailable" -> result.success(
+                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+                            SpeechRecognizer.isOnDeviceRecognitionAvailable(this))
+                    "runtimeIdentity" -> {
+                        try {
+                            @Suppress("DEPRECATION")
+                            val info = packageManager.getPackageInfo(packageName,
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
+                                    PackageManager.GET_SIGNING_CERTIFICATES else PackageManager.GET_SIGNATURES)
+                            @Suppress("DEPRECATION")
+                            val signatures = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
+                                info.signingInfo?.apkContentsSigners else info.signatures
+                            val certificate = signatures?.firstOrNull()?.toByteArray()
+                            val sha = certificate?.let {
+                                MessageDigest.getInstance("SHA-256").digest(it)
+                                    .joinToString("") { byte -> "%02x".format(byte.toInt() and 0xff) }
+                            }
+                            @Suppress("DEPRECATION")
+                            val version = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
+                                info.longVersionCode else info.versionCode.toLong()
+                            result.success(mapOf("package" to packageName, "versionCode" to version,
+                                "versionName" to info.versionName, "certificateSha256" to sha,
+                                "androidApi" to Build.VERSION.SDK_INT))
+                        } catch (_: Exception) {
+                            result.error("identity", "App-Identität nicht lesbar.", null)
+                        }
+                    }
+                    else -> result.notImplemented()
+                }
+            }
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             installerChannel

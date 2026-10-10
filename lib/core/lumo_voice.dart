@@ -1,13 +1,12 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import 'lumo_sulafat_client.dart';
 import 'lumo_voice_clips.dart';
 import 'lumo_voice_policy.dart';
+import 'lumo_wav_audio.dart';
 
 /// Einheitliche Lumo-Sprecheridentitaet: Gemini TTS / Sulafat.
 /// Die Begruessungs-Stimmprobe bleibt die originale M4A-Datei.
@@ -23,11 +22,18 @@ class LumoVoice {
   bool _cloudVoiceEnabled = false;
   String _serverUrl = 'https://lumo-ai-proxy.onrender.com';
   double _playbackRate = 1.0;
+  String? lastStartedAudioIdentity;
+  int _startedPlaybackCount = 0;
   int _speechGeneration = 0;
 
   AudioPlayer? _player;
   StreamSubscription<void>? _doneSubscription;
+  StreamSubscription<Duration>? _positionSubscription;
+  Duration _mediaPosition = Duration.zero;
+  LumoSpeechCancellation? _pendingRequest;
   Completer<void>? _playbackFinished;
+  Future<void> _startup = Future<void>.value();
+  int? _playingGeneration;
   Timer? _mouthTicker;
 
   final ValueNotifier<VoiceStatus> status =
@@ -42,6 +48,9 @@ class LumoVoice {
 
   bool get isEnabled => _enabled;
   bool get cloudVoiceEnabled => _cloudVoiceEnabled;
+
+  /// Counts confirmed native starts, not requests or historical source labels.
+  int get startedPlaybackCount => _startedPlaybackCount;
   String get selectedVoiceName => 'Sulafat';
   String get selectedLocale => 'de-DE';
 
@@ -64,7 +73,7 @@ class LumoVoice {
     if (rate != null) {
       // Real speed control for BOTH pre-recorded and generated audio.
       // The device-specific TTS voice (and its pitch controls) is removed.
-      _playbackRate = (rate / 0.35).clamp(0.75, 1.30).toDouble();
+      _playbackRate = (rate / 0.35).clamp(0.70, 1.60).toDouble();
       try {
         await _player?.setPlaybackRate(_playbackRate);
       } catch (_) {}
@@ -84,30 +93,49 @@ class LumoVoice {
   static VoiceStyle suggestedStyle(String text) {
     final s = text.trim().toLowerCase();
     if (s.isEmpty || s.length > 140) return VoiceStyle.warm;
-    if (RegExp(r'^(super|toll gemacht|genau richtig|wow|bravo|klasse|stark|genial|perfekt|wahnsinn|voll richtig|mega|spitze|ich bin stolz)').hasMatch(s)) {
+    if (RegExp(
+            r'^(super|toll gemacht|genau richtig|wow|bravo|klasse|stark|genial|perfekt|wahnsinn|voll richtig|mega|spitze|ich bin stolz)')
+        .hasMatch(s)) {
       return VoiceStyle.celebrate;
     }
-    if (RegExp(r'^(fast|knapp daneben|hmm|nicht ganz|kein problem|das war fast|du schaffst|das war schwierig|ruhig)').hasMatch(s)) {
+    if (RegExp(
+            r'^(fast|knapp daneben|hmm|nicht ganz|kein problem|das war fast|du schaffst|das war schwierig|ruhig)')
+        .hasMatch(s)) {
       return VoiceStyle.comfort;
     }
     if (RegExp(r'^(hallo|hi!|guten morgen|schön dich zu sehen)').hasMatch(s)) {
       return VoiceStyle.greeting;
     }
     if (s.endsWith('?')) return VoiceStyle.question;
-    if (RegExp(r'^(schau|hier ist|lass uns|probier|zuerst|bei plus|bei minus)').hasMatch(s)) {
+    if (RegExp(r'^(schau|hier ist|lass uns|probier|zuerst|bei plus|bei minus)')
+        .hasMatch(s)) {
       return VoiceStyle.explain;
     }
     return VoiceStyle.warm;
   }
 
   AudioPlayer _ensurePlayer() {
-    final player = _player ??= AudioPlayer(playerId: 'lumo-sulafat')
-      ..positionUpdater = null;
-    _doneSubscription ??= player.onPlayerComplete.listen((_) => _finishAudio());
+    final player = _player ??= AudioPlayer(playerId: 'lumo-sulafat');
+    if (_positionSubscription == null) {
+      player.positionUpdater = TimerPositionUpdater(
+        interval: const Duration(milliseconds: 50),
+        getPosition: player.getCurrentPosition,
+      );
+      _positionSubscription = player.onPositionChanged.listen((position) {
+        if (status.value == VoiceStatus.speaking) _mediaPosition = position;
+      });
+    }
+    _doneSubscription ??= player.onPlayerComplete.listen((_) {
+      if (status.value == VoiceStatus.speaking) _finishAudio();
+    });
     return player;
   }
 
-  Future<void> speak(String text, {VoiceStyle style = VoiceStyle.warm}) async {
+  Future<void> speak(
+    String text, {
+    VoiceStyle style = VoiceStyle.warm,
+    bool waitForCompletion = false,
+  }) async {
     if (!_enabled || text.trim().isEmpty) return;
     final generation = ++_speechGeneration;
     await _stopPlayback();
@@ -119,12 +147,15 @@ class LumoVoice {
       final original = clipsEnabled ? LumoVoiceClips.lookup(text) : null;
       if (!_enabled || generation != _speechGeneration) return;
       if (original != null) {
+        final end = Completer<void>();
         await _play(
           AssetSource(original.assetSource),
           generation,
           duration: original.duration,
           mouth: original.mouthAt,
+          onFinished: end,
         );
+        if (waitForCompletion) await end.future;
         return;
       }
       if (!_cloudVoiceEnabled) {
@@ -134,8 +165,14 @@ class LumoVoice {
         status.value = VoiceStatus.error;
         return;
       }
-      unawaited(_speakDynamic(text,
-          style == VoiceStyle.warm ? suggestedStyle(text) : style, generation));
+      status.value = VoiceStatus.preparing;
+      final operation = _speakDynamic(text,
+          style == VoiceStyle.warm ? suggestedStyle(text) : style, generation);
+      if (waitForCompletion) {
+        await operation;
+      } else {
+        unawaited(operation);
+      }
     } catch (e) {
       if (generation != _speechGeneration) return;
       lastError.value = 'Sulafat-Audio konnte nicht gestartet werden.';
@@ -148,19 +185,27 @@ class LumoVoice {
     final cleaned = LumoVoicePolicy.prepare(text);
     final fragments = LumoSulafatClient.segments(cleaned);
     for (final fragment in fragments) {
-      if (!_enabled || !_cloudVoiceEnabled || generation != _speechGeneration) return;
+      if (!_enabled || !_cloudVoiceEnabled || generation != _speechGeneration)
+        return;
       try {
+        final cancellation = LumoSpeechCancellation();
+        _pendingRequest = cancellation;
         final audio = await _client.synthesize(
           text: fragment,
           style: style.name,
           baseUrl: _serverUrl,
+          cancellation: cancellation,
         );
-        if (!_enabled || !_cloudVoiceEnabled || generation != _speechGeneration) return;
-        final ms = _wavDuration(audio);
+        if (identical(_pendingRequest, cancellation)) _pendingRequest = null;
+        if (!_enabled || !_cloudVoiceEnabled || generation != _speechGeneration)
+          return;
+        final pcm = LumoWavAudio.parse(audio);
         final end = Completer<void>();
-        await _play(BytesSource(audio), generation, duration: Duration(milliseconds: ms),
-            onFinished: end);
-        await end.future.timeout(Duration(milliseconds: ms + 5000), onTimeout: () {});
+        await _play(BytesSource(audio), generation,
+            duration: pcm.duration, mouth: pcm.mouthAt, onFinished: end);
+        await end.future.timeout(Duration(
+          milliseconds: (pcm.duration.inMilliseconds / 0.70).ceil() + 6000,
+        ));
       } catch (e) {
         if (!_enabled || generation != _speechGeneration) return;
         // No Android fallback, even if the provider, network or cache fails.
@@ -172,14 +217,9 @@ class LumoVoice {
     }
   }
 
-  static int _wavDuration(Uint8List audio) {
-    if (audio.length < 44) return 1000;
-    final data = ByteData.sublistView(audio);
-    final bytesPerSecond = data.getUint32(28, Endian.little);
-    final dataSize = data.getUint32(40, Endian.little);
-    if (bytesPerSecond < 1000 || dataSize < 20) return 1000;
-    return (dataSize * 1000 / bytesPerSecond).ceil().clamp(250, 120000).toInt();
-  }
+  Future<void> speakAndWait(String text,
+          {VoiceStyle style = VoiceStyle.warm}) =>
+      speak(text, style: style, waitForCompletion: true);
 
   Future<void> _play(
     Source source,
@@ -188,46 +228,97 @@ class LumoVoice {
     double Function(Duration)? mouth,
     Completer<void>? onFinished,
   }) async {
-    if (!_enabled || generation != _speechGeneration) return;
+    // Serialize only native startup. stop() must stay independent so muting
+    // while the platform is still preparing never waits for that preparation.
+    final previous = _startup;
+    final ready = Completer<void>();
+    _startup = ready.future;
+    try {
+      await previous;
+      await _playReady(source, generation,
+          duration: duration, mouth: mouth, onFinished: onFinished);
+    } catch (_) {
+      if (onFinished != null && !onFinished.isCompleted) onFinished.complete();
+      _finishAudio(generation: generation);
+      rethrow;
+    } finally {
+      ready.complete();
+    }
+  }
+
+  Future<void> _playReady(
+    Source source,
+    int generation, {
+    required Duration duration,
+    double Function(Duration)? mouth,
+    Completer<void>? onFinished,
+  }) async {
+    void completeCancelled() {
+      if (onFinished != null && !onFinished.isCompleted) onFinished.complete();
+    }
+
+    if (!_enabled || generation != _speechGeneration) {
+      completeCancelled();
+      return;
+    }
     final player = _ensurePlayer();
     _playbackFinished = onFinished;
+    _playingGeneration = generation;
+    _mediaPosition = Duration.zero;
     await player.setReleaseMode(ReleaseMode.stop);
     await player.setVolume(1);
-    if (!_enabled || generation != _speechGeneration) return;
+    if (!_enabled || generation != _speechGeneration) {
+      completeCancelled();
+      _finishAudio(generation: generation);
+      return;
+    }
     await player.play(source);
     if (!_enabled || generation != _speechGeneration) {
       await player.stop();
-      _finishAudio();
+      completeCancelled();
+      _finishAudio(generation: generation);
       return;
     }
     try {
       await player.setPlaybackRate(_playbackRate);
     } catch (_) {}
+    if (!_enabled || generation != _speechGeneration) {
+      await player.stop();
+      completeCancelled();
+      _finishAudio(generation: generation);
+      return;
+    }
+    lastStartedAudioIdentity = source is AssetSource
+        ? 'Originalaufnahme ${source.path.split('/').last}'
+        : 'Sulafat / ${LumoSulafatClient.referenceProfile} / ${LumoSulafatClient.referenceModel}';
+    ++_startedPlaybackCount;
     status.value = VoiceStatus.speaking;
     clipMouth.value = 0;
     final watch = Stopwatch()..start();
     _mouthTicker?.cancel();
     final playbackMax = Duration(
-      milliseconds: (duration.inMilliseconds / _playbackRate).ceil() + 400,
+      // Slowest supported rate also covers a tempo change during playback.
+      milliseconds: (duration.inMilliseconds / 0.70).ceil() + 400,
     );
     _mouthTicker = Timer.periodic(const Duration(milliseconds: 50), (t) {
-      if (generation != _speechGeneration || watch.elapsed > playbackMax) {
-        unawaited(player.stop());
-        _finishAudio();
+      if (generation != _speechGeneration) {
+        t.cancel();
         return;
       }
-      final scaled = Duration(
-        milliseconds: (watch.elapsedMilliseconds * _playbackRate).round(),
-      );
-      clipMouth.value = mouth != null
-          ? mouth(scaled)
-          : (0.24 + 0.55 * (0.5 + 0.5 *
-                  math.sin(watch.elapsedMilliseconds * 0.028))).clamp(0.0, 1.0);
-      if (mouth == null) spokenWordRevision.value++;
+      if (watch.elapsed > playbackMax) {
+        unawaited(player.stop());
+        _finishAudio(generation: generation);
+        return;
+      }
+      // The timer only samples the native media position. Silence in the
+      // waveform closes the mouth; no sine-wave animation or fake word events.
+      clipMouth.value = mouth?.call(_mediaPosition) ?? 0;
     });
   }
 
-  void _finishAudio() {
+  void _finishAudio({int? generation}) {
+    if (generation != null && generation != _playingGeneration) return;
+    _playingGeneration = null;
     _mouthTicker?.cancel();
     _mouthTicker = null;
     clipMouth.value = null;
@@ -239,6 +330,8 @@ class LumoVoice {
   }
 
   Future<void> _stopPlayback() async {
+    _pendingRequest?.cancel();
+    _pendingRequest = null;
     _finishAudio();
     try {
       await _player?.stop();
@@ -254,9 +347,9 @@ class LumoVoice {
 
   /// Keinesfalls aendern: genau die Originalaufnahme des Nutzerwunsches.
   Future<void> test() => speak(
-    'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!',
-    style: VoiceStyle.greeting,
-  );
+        'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!',
+        style: VoiceStyle.greeting,
+      );
 }
 
 /// Beendet Lumos Sprechen, sobald eine Seite verlassen oder ersetzt wird,
@@ -266,6 +359,10 @@ class LumoVoiceRouteObserver extends NavigatorObserver {
       : _voice = voice ?? LumoVoice.instance;
 
   final LumoVoice _voice;
+
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) =>
+      _stopForPage(route);
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) =>
@@ -291,4 +388,4 @@ class LumoVoiceRouteObserver extends NavigatorObserver {
 
 enum VoiceStyle { warm, greeting, explain, celebrate, comfort, question }
 
-enum VoiceStatus { idle, speaking, error }
+enum VoiceStatus { idle, preparing, speaking, error }

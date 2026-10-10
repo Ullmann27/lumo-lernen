@@ -16,6 +16,8 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    outputs:
+      apk-sha: ${{ steps.apk-identity.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -67,8 +69,10 @@ jobs:
       - name: Build and verify the single application
         run: bash scripts/build_unified_apk.sh
       - name: Record build proof
+        id: apk-identity
         run: |
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk >> "$GITHUB_STEP_SUMMARY"
+          echo "sha=$(sha256sum dist/Lumo-Lernen-Neu.apk | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - name: Record compact test outcomes
         if: success()
         run: |
@@ -132,5 +136,70 @@ jobs:
               dist/TEST-RESULTS.txt \
               --prerelease \
               --title "Lumo Test APK – Hologlass + Fold + Kart" \
-              --notes "Testversion aus ${GITHUB_SHA}. Enthält neues Hologlass-Onboarding, Fold-Host-Fix und aktuellen Lumo-Kart-Stand. Kein Produktionsrelease."
-          fi
+            --notes "Testversion aus ${GITHUB_SHA}. Enthält neues Hologlass-Onboarding, Fold-Host-Fix und aktuellen Lumo-Kart-Stand. Kein Produktionsrelease."
+
+  android-voice-smoke:
+    name: Android16 voice controls and update evidence
+    needs: verify
+    if: github.ref_name == 'computer/lumo-context-sulafat-2026-10-10'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      actions: read
+    env:
+      LUMO_EXPECT_SOURCE: ${{ github.sha }}
+      LUMO_EXPECT_APK_SHA: ${{ needs.verify.outputs.apk-sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.run_id }}
+          name: lumo-probe-apk-${{ github.run_id }}-${{ github.run_attempt }}
+          path: candidate/
+      - name: Fetch digest-pinned 1926 baseline and isolated UI readers
+        run: |
+          set -euo pipefail
+          mkdir -p baseline voice-proof
+          curl -fL --max-time 120 'https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.19-1926-sulafat-test/Lumo-Lernen-Neu.apk' -o baseline/Lumo-Lernen-Neu.apk
+          echo '9dfd5f58a8879b3fa95b505ad92bc9cb20ee433298c92797404d3f588c38b1f4  baseline/Lumo-Lernen-Neu.apk' | sha256sum -c -
+          echo "$LUMO_EXPECT_APK_SHA  candidate/Lumo-Lernen-Neu.apk" | sha256sum -c -
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/lumo_speech_android_probe.py
+      - name: Enable KVM for a disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo chmod a+rw /dev/kvm
+      - name: Prepare declared Android16 image
+        run: python3 tools/android_qa/prepare_system_image.py --api 36 --out voice-proof/system-image --timeout 600
+      - name: Update exact APK and use actual parent voice controls
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_speech_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out voice-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1927-android16-voice-proof-${{ github.run_id }}
+          path: voice-proof/
+          if-no-files-found: error
+          retention-days: 14

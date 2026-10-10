@@ -65,9 +65,13 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False):
     queries = doc.find('queries')
     if queries is None:
         queries = ET.SubElement(doc, 'queries')
-    if not any(e.get(attr('name')) == 'android.intent.action.TTS_SERVICE' for e in queries.findall('intent/action')):
+    for intent in list(queries.findall('intent')):
+        if any(e.get(attr('name')) == 'android.intent.action.TTS_SERVICE'
+               for e in intent.findall('action')):
+            queries.remove(intent)
+    if not any(e.get(attr('name')) == 'android.speech.RecognitionService' for e in queries.findall('intent/action')):
         intent = ET.SubElement(queries, 'intent')
-        ET.SubElement(intent, 'action', {attr('name'): 'android.intent.action.TTS_SERVICE'})
+        ET.SubElement(intent, 'action', {attr('name'): 'android.speech.RecognitionService'})
     if not any(e.get(attr('name')) == 'dev.ullmann.lumo3d' for e in queries.findall('package')):
         ET.SubElement(queries, 'package', {attr('name'): 'dev.ullmann.lumo3d'})
     if not any(e.get(attr('name')) == 'io.flutter.embedding.android.EnableImpeller' for e in application.findall('meta-data')):

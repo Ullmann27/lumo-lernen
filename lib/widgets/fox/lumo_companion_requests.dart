@@ -17,7 +17,12 @@
 
 import 'package:flutter/widgets.dart';
 
-/// Current visible task; no answer or child identifier is shared here.
+enum LumoInteractionKind {
+  taskOpened, answerChecked, helpRequested, readingStarted,
+  gameRequested, lockedGameTapped,
+}
+
+/// Local visible task. Never carries the correct answer or child identity.
 class LumoCompanionTaskContext {
   const LumoCompanionTaskContext({
     required this.subject,
@@ -25,6 +30,15 @@ class LumoCompanionTaskContext {
     required this.prompt,
     this.isExam = false,
     this.answering = true,
+    this.taskId = '',
+    this.attempts = 0,
+    this.helpLevel = 0,
+    this.lastAnswer,
+    this.lastCorrect,
+    this.previousHelp,
+    this.localHelp,
+    this.activity = 'learning',
+    this.ownerSection = 'exercises',
   });
 
   final String subject;
@@ -32,6 +46,15 @@ class LumoCompanionTaskContext {
   final String prompt;
   final bool isExam;
   final bool answering;
+  final String taskId;
+  final int attempts;
+  final int helpLevel;
+  final String? lastAnswer;
+  final bool? lastCorrect;
+  final String? previousHelp;
+  final String? localHelp;
+  final String activity;
+  final String ownerSection;
 }
 
 class LumoCompanionRequests {
@@ -48,6 +71,16 @@ class LumoCompanionRequests {
       ValueNotifier<LumoCompanionTaskContext?>(null);
 
   final ValueNotifier<int> appExplanationRequested = ValueNotifier<int>(0);
+  /// Bounded semantic trace in RAM. Pointer coordinates remain in moveTarget
+  /// only and are never copied into this trace or sent to a provider.
+  final ValueNotifier<List<LumoInteractionKind>> recentInteractions =
+      ValueNotifier<List<LumoInteractionKind>>([]);
+
+  void recordInteraction(LumoInteractionKind kind) {
+    final next = [...recentInteractions.value, kind];
+    recentInteractions.value = List.unmodifiable(
+        next.skip(next.length > 12 ? next.length - 12 : 0));
+  }
 
   void requestTaskHelp() => helpRequested.value++;
   void requestAppExplanation() => appExplanationRequested.value++;

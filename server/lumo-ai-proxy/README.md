@@ -49,8 +49,15 @@ Weder der Android-TTS-Provider noch eine andere Sprecherstimme wird verwendet.
 
 - `GEMINI_API_KEY`: Gemini API-Key ausschließlich als serverseitiges Secret.
 - `LUMO_TTS_ENABLED=1`: aktiviert den Endpoint; ohne diesen Wert bleibt er gesperrt.
-- `GEMINI_TTS_MODEL=gemini-3.1-flash-tts-preview` (oder freigegebenes neues Gemini-TTS-Modell; eine Hörprobe pro Modell ist zwingend).
+- `GEMINI_TTS_MODEL=gemini-2.5-pro-preview-tts`: Referenzmodell der unveränderten Original-Stimmprobe. Ein Modellwechsel benötigt einen erneuten akustischen Vergleich und darf nicht stillschweigend erfolgen.
 - `LUMO_TTS_PER_IP_DAY` (Standard 200), `LUMO_TTS_TOTAL_DAY` (Standard 1600) begrenzen die Kosten. Für öffentliche Bereitstellung zusätzlich Missbrauchsschutz und authentifizierte Clients prüfen.
+
+`GET /speech/status` prüft ausschließlich die Konfiguration und verursacht keinen
+Provider-Aufruf. `configured: true` bedeutet nicht, dass eine Hörprobe bestanden
+wurde; `providerVerified` bleibt bewusst false. Die App diagnostiziert alte Server
+ohne diesen Endpunkt getrennt von der Chat-KI. Ausgaben verwenden das feste Profil
+`lumo-sulafat-reference-v1`; komprimierte oder falsch deklarierte Audiodaten werden
+abgelehnt, statt als PCM abgespielt. Client-Abbruch beendet auch den Provider-Request.
 
 **Eltern-Freigabe:** Im Elternbereich den neuen Schalter „Online-Lumo-Stimme
 (Sulafat)“ aktivieren. Nur dann wird der jeweils vorzulesende Text über den
@@ -60,9 +67,10 @@ die fehlende Online-Stimme hinweisen. Das Cloud-Angebot braucht Internet,
 kann Kosten verursachen und darf nicht ohne Datenschutz-/Einwilligungsprüfung
 für Kinder freigegeben werden. Keine Kindertexte im Provider-Diagnoselog.
 
-Für die 3D-Lernspiele werden außerdem die **52 Legacy-WAVs** im separaten
-`Ullmann27/lumo-godot` PR #48 durch Sulafat-WAVs ersetzt. Dessen
-`sulafat_manifest.json` muss vollständig sein und jede Datei via SHA-256
-verifizieren, bevor diese Godot-Revision in die integrierte Android-APK
-übernommen werden darf. Niemals nur die Flutter-Stimmprobe als vollständige
-app-weite Hörprüfung ausgeben.
+Für die 3D-Lernspiele ist der Austausch der **52 Legacy-WAVs** aus
+`Ullmann27/lumo-godot` PR #48 vorbereitet, aber ohne tatsächliche Synthese
+und Hörprüfung noch nicht abgeschlossen. Der aktuelle Runtime-Guard blockiert
+die alten Stimmen. Eine technische Test-APK mit dieser Sperre ist kein fertiges
+app-weites Sprachrelease: Dafür muss `sulafat_manifest.json` vollständig sein
+und jede neue Datei, das Referenzmodell und das Profil verifizieren.
+Niemals nur die Flutter-Stimmprobe als vollständige app-weite Hörprüfung ausgeben.

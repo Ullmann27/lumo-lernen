@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_ai_proxy_client.dart';
-import '../../core/lumo_companion_engine.dart';
+import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_context_engine.dart';
+import '../../core/lumo_conversation_controller.dart';
 
 class LumoAgentContent extends StatefulWidget {
   const LumoAgentContent(
@@ -20,12 +21,13 @@ class LumoAgentContent extends StatefulWidget {
   State<LumoAgentContent> createState() => _LumoAgentContentState();
 }
 
-class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBindingObserver {
+class _LumoAgentContentState extends State<LumoAgentContent>
+    with WidgetsBindingObserver {
   final TextEditingController _controller = TextEditingController();
   final LumoAiProxyClient _proxy = const LumoAiProxyClient();
-  final LumoCompanionEngine _localEngine = const LumoCompanionEngine();
-  final List<LumoAiChatTurn> _history = <LumoAiChatTurn>[];
-  final stt.SpeechToText _speech = stt.SpeechToText();
+  late final LumoContextEngine _contextEngine;
+  late final LumoConversationController _conversation;
+  final LumoSpeechListener _speech = LumoSpeechListener();
 
   bool _loading = false;
   bool _speechReady = false;
@@ -40,11 +42,16 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
   bool _blocked = false;
   bool _verifiedCloudReply = false;
   bool _foreground = true;
+  int _questionGeneration = 0;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _contextEngine = LumoContextEngine(widget.appState);
+    _conversation = LumoConversationController(_contextEngine);
+    _contextEngine.addListener(_situationChanged);
+    _speech.addListener(_speechChanged);
     // Render-Warmup: Wenn KI freigegeben ist, Server bereits beim
     // Öffnen anstoßen. Dann ist der erste Chat warm und Heinz
     // sieht keinen 30s-Cold-Start.
@@ -57,7 +64,12 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    unawaited(_speech.cancel());
+    _questionGeneration++;
+    _contextEngine.removeListener(_situationChanged);
+    _conversation.dispose();
+    _contextEngine.dispose();
+    _speech.removeListener(_speechChanged);
+    _speech.dispose();
     unawaited(LumoVoice.instance.stop());
     _controller.dispose();
     super.dispose();
@@ -67,9 +79,31 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
     if (!_foreground) {
+      _questionGeneration++;
+      _conversation.pause();
       unawaited(_speech.cancel());
       unawaited(LumoVoice.instance.stop());
-      if (mounted) setState(() => _speechListening = false);
+      if (mounted)
+        setState(() {
+          _speechListening = false;
+          _loading = false;
+        });
+    } else {
+      _conversation.resume();
+    }
+  }
+
+  void _situationChanged() {
+    _questionGeneration++;
+    unawaited(_speech.cancel());
+    _controller.clear();
+    if (mounted) {
+      setState(() {
+        _loading = false;
+        _speechListening = false;
+        _answer = 'Die Situation hat sich geändert. Frag mich zur aktuellen Aufgabe.';
+        _verifiedCloudReply = false;
+      });
     }
   }
 
@@ -77,39 +111,19 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
     if (_speechReady || _speechInitStarted) return;
     _speechInitStarted = true;
     try {
-      final available = await _speech.initialize(
-        debugLogging: false,
-        onStatus: (status) {
-          if (!mounted) return;
-          final normalized = status.toLowerCase();
-          if (normalized == 'listening') {
-            setState(() => _speechListening = true);
-          }
-          if (normalized == 'done' || normalized == 'notlistening') {
-            setState(() => _speechListening = false);
-          }
-        },
-        onError: (error) {
-          if (!mounted) return;
-          setState(() {
-            _speechListening = false;
-            _speechError = 'Spracherkennung: ${error.errorMsg}';
-          });
-        },
-      );
+      final available = await _speech.initialize();
 
       if (!available) {
         if (!mounted) return;
         setState(() {
           _speechReady = false;
-          _speechError =
-              'Mikrofon klappt auf diesem Gerät nicht. Du kannst Lumo aber tippen.';
+          _speechError = _speech.error ??
+              'Die lokale Spracherkennung ist nicht verfügbar. Du kannst Lumo tippen.';
         });
         return;
       }
 
-      final locales = await _speech.locales();
-      final bestLocale = _bestGermanLocaleId(locales);
+      final bestLocale = _speech.bestLocaleId;
       if (!mounted) return;
       setState(() {
         _speechReady = true;
@@ -127,44 +141,13 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
     }
   }
 
-  String? _bestGermanLocaleId(List<dynamic> locales) {
-    if (locales.isEmpty) return null;
-    final ranked = List<dynamic>.from(locales);
-    ranked
-        .sort((a, b) => _speechLocaleScore(b).compareTo(_speechLocaleScore(a)));
-    final best = ranked.first;
-    final id = _localeId(best);
-    return id.isEmpty ? null : id;
-  }
-
-  int _speechLocaleScore(dynamic locale) {
-    final id = _localeId(locale).toLowerCase().replaceAll('_', '-');
-    final name = _localeName(locale).toLowerCase();
-    var score = 0;
-    if (id == 'de-at') score += 140;
-    if (id == 'de-de') score += 130;
-    if (id.startsWith('de-at')) score += 120;
-    if (id.startsWith('de-de')) score += 115;
-    if (id.startsWith('de')) score += 90;
-    if (name.contains('österreich') || name.contains('austria')) score += 30;
-    if (name.contains('deutsch') || name.contains('german')) score += 20;
-    return score;
-  }
-
-  String _localeId(dynamic locale) {
-    try {
-      return (locale.localeId ?? '').toString();
-    } catch (_) {
-      return '';
-    }
-  }
-
-  String _localeName(dynamic locale) {
-    try {
-      return (locale.name ?? '').toString();
-    } catch (_) {
-      return '';
-    }
+  void _speechChanged() {
+    if (!mounted || !_foreground) return;
+    _conversation.listening(_speech.listening);
+    setState(() {
+      _speechListening = _speech.listening;
+      _speechError = _speech.error;
+    });
   }
 
   Future<void> _startVoiceQuestion() async {
@@ -189,23 +172,17 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
     });
 
     try {
-      await _speech.listen(
-        localeId: _speechLocale,
-        listenFor: const Duration(seconds: 35),
-        pauseFor: const Duration(seconds: 4),
-        partialResults: true,
-        cancelOnError: true,
-        listenMode: stt.ListenMode.confirmation,
-        onResult: (result) {
+      await _speech.startListening(
+        onResult: (recognized) {
           if (!mounted || !_foreground) return;
-          final words = result.recognizedWords.trim();
+          final words = recognized.trim();
           setState(() {
             _liveSpeech = words;
             if (words.isNotEmpty) _controller.text = words;
           });
-          if (result.finalResult && words.isNotEmpty) {
-            unawaited(_finishVoiceQuestion(words));
-          }
+        },
+        onFinalResult: (words) {
+          if (mounted && _foreground) unawaited(_finishVoiceQuestion(words));
         },
       );
     } catch (e) {
@@ -219,7 +196,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
 
   Future<void> _finishVoiceQuestion(String words) async {
     try {
-      await _speech.stop();
+      await _speech.stopListening();
     } catch (_) {}
     if (!mounted || !_foreground) return;
     setState(() => _speechListening = false);
@@ -228,7 +205,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
 
   Future<void> _stopVoiceQuestion() async {
     try {
-      await _speech.stop();
+      await _speech.stopListening();
     } catch (_) {}
     if (!mounted) return;
     final words = _liveSpeech.trim().isNotEmpty
@@ -242,73 +219,32 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
 
   Future<void> _ask([String? raw]) async {
     final question = (raw ?? _controller.text).trim();
-    if (question.isEmpty || _loading) return;
+    if (question.isEmpty || _loading || !_foreground) return;
+    final generation = ++_questionGeneration;
     FocusManager.instance.primaryFocus?.unfocus();
 
-    final settings = widget.appState.state.settings;
     setState(() {
       _loading = true;
       _blocked = false;
       _answer = 'Ich denke kurz nach ...';
     });
 
-    if (_proxy.isConfigured(settings)) {
-      final response = await _proxy.ask(
-        settings: settings,
-        state: widget.appState.state,
-        message: question,
-        history: List<LumoAiChatTurn>.unmodifiable(_history),
-        context: LumoAiContext.companion,
-        extras: {
-          'section': widget.appState.state.section.name,
-          'subject': widget.appState.state.subject,
-          'unit': widget.appState.state.unit,
-        },
-      );
-      if (!mounted) return;
-      _remember(question, response.reply);
-      setState(() {
-        _answer = response.reply;
-        _source = response.source;
-        _verifiedCloudReply = response.isCloudAnswer;
-        _blocked = response.blocked;
-        _loading = false;
-        _liveSpeech = '';
-      });
-      _applyReply(response.reply, blocked: response.blocked);
+    final response = await _conversation.ask(question);
+    if (!mounted || !_foreground || generation != _questionGeneration) return;
+    if (response.source == 'cancelled') {
+      setState(() => _loading = false);
       return;
     }
-
-    final local =
-        _localEngine.answer(input: question, state: widget.appState.state);
-    if (!mounted) return;
-    _remember(question, local.text);
+    _controller.clear();
     setState(() {
-      _answer =
-          '${local.text}\n\nHinweis für Eltern: Die erweiterte Lumo-KI ist im Elternbereich ausgeschaltet.';
-      _source = 'local_companion';
-      _verifiedCloudReply = false;
-      _blocked = false;
+      _answer = response.reply;
+      _source = response.source;
+      _verifiedCloudReply = response.isCloudAnswer;
+      _blocked = response.blocked;
       _loading = false;
       _liveSpeech = '';
     });
-    widget.appState.update(widget.appState.state.copyWith(
-      lumoMessage: local.text,
-      mood: local.mood,
-    ));
-    if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(
-          LumoVoice.instance.speak(local.text, style: VoiceStyle.explain));
-    }
-  }
-
-  void _remember(String question, String reply) {
-    _history.add(LumoAiChatTurn(role: 'user', content: question));
-    _history.add(LumoAiChatTurn(role: 'assistant', content: reply));
-    while (_history.length > 8) {
-      _history.removeAt(0);
-    }
-    _controller.clear();
+    _applyReply(response.reply, blocked: response.blocked);
   }
 
   void _applyReply(String reply, {required bool blocked}) {
@@ -317,7 +253,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
       mood: blocked ? LumoMood.comfort : LumoMood.greet,
     ));
     if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(LumoVoice.instance.speak(reply,
+      unawaited(_conversation.speak(reply,
           style: blocked ? VoiceStyle.comfort : VoiceStyle.explain));
     }
   }

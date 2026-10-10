@@ -107,6 +107,8 @@ class _LearningContentState extends State<LearningContent> {
   int _testFirstTryCorrect = 0;
   bool _questionHadWrong = false;
   int _attemptCount = 0;
+  int _totalTaskAttempts = 0;
+  String? _lastGivenAnswer;
   String? _tutorHint;
   int _requestedHelpLevel = 0;
   // Bildhilfe-Karte als 4. Hilfsstufe nach 5+ Fehlversuchen.
@@ -374,6 +376,8 @@ class _LearningContentState extends State<LearningContent> {
     _aiHelpLoading = false;
     _rechentricks = null;
     _attemptCount = 0;
+    _totalTaskAttempts = 0;
+    _lastGivenAnswer = null;
     _questionHadWrong = false;
     if (resetCounter) {
       _sessionFinished = false;
@@ -391,10 +395,24 @@ class _LearningContentState extends State<LearningContent> {
       prompt: _task.prompt,
       isExam: !_allowHelp,
       answering: !_answered && !_sessionFinished,
+      taskId: _taskInstance.taskInstanceId,
+      attempts: _totalTaskAttempts,
+      helpLevel: _requestedHelpLevel,
+      lastAnswer: _lastGivenAnswer,
+      lastCorrect: _lastCorrect,
+      previousHelp: _tutorHint,
+      localHelp: _allowHelp
+          ? _taskHints.explain(_task,
+              level: (_requestedHelpLevel + 1).clamp(1, 3))
+          : null,
+      activity: _task.visual.contains('writ') ? 'writing' : 'learning',
     );
     _publishedTaskContext = context;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted && identical(_publishedTaskContext, context)) {
+        if (LumoCompanionRequests.instance.taskContext.value?.taskId != context.taskId) {
+          LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.taskOpened);
+        }
         LumoCompanionRequests.instance.taskContext.value = context;
       }
     });
@@ -406,6 +424,8 @@ class _LearningContentState extends State<LearningContent> {
     final hint = _taskHints.explain(_task, level: _requestedHelpLevel);
     _lumo.think();
     setState(() => _tutorHint = hint);
+    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.helpRequested);
+    _publishTaskContext();
     if (widget.appState.state.settings.voiceEnabled) {
       unawaited(LumoVoice.instance.speak(hint, style: VoiceStyle.explain));
     }
@@ -804,6 +824,9 @@ class _LearningContentState extends State<LearningContent> {
     required Object answerGiven,
     double? handwritingScore,
   }) {
+    _totalTaskAttempts++;
+    _lastGivenAnswer = '$answerGiven';
+    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.answerChecked);
     final before = _skillStates[_taskInstance.skillId.value] ??
         SkillState(
           childId: _childId,

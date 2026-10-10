@@ -1,6 +1,7 @@
 import '../app/app_state.dart';
 import '../domain/companion/lumo_companion_core.dart' as companion;
 import '../domain/learning/lumo_learning_domain.dart' as learning;
+import '../widgets/fox/lumo_companion_requests.dart';
 
 class LumoCompanionEngine {
   const LumoCompanionEngine();
@@ -10,6 +11,7 @@ class LumoCompanionEngine {
   LumoReply answer({
     required String input,
     required LumoSessionState state,
+    LumoCompanionTaskContext? task,
   }) {
     final q = input.trim().toLowerCase();
     final name = state.childName.trim().isEmpty ? 'du' : state.childName.trim();
@@ -45,6 +47,43 @@ class LumoCompanionEngine {
       );
     }
 
+    if (task != null &&
+        _containsAny(q, [
+          'hier machen',
+          'muss ich',
+          'was soll ich',
+          'verstehe',
+          'erklär',
+          'erklär',
+          'noch einmal',
+          'nochmal',
+          'warum',
+          'hilf mir',
+        ])) {
+      if (task.isExam) {
+        return const LumoReply(
+            text: 'Im Test probierst du es selbst. Danach '
+                'können wir die Aufgabe gemeinsam anschauen.',
+            mood: LumoMood.comfort);
+      }
+      if (!task.answering) {
+        return const LumoReply(
+            text: 'Diese Aufgabe ist schon abgeschlossen. '
+                'Mit Weiter öffnest du die nächste Aufgabe.',
+            mood: LumoMood.point);
+      }
+      final hint = task.localHelp?.trim();
+      final opening = task.lastCorrect == false
+          ? task.attempts >= 2
+              ? 'Wir versuchen einen kleinen anderen Schritt.'
+              : 'Noch nicht ganz. Wir schauen es gemeinsam an.'
+          : 'Wir schauen auf deine Aufgabe.';
+      return LumoReply(
+        text: '$opening ${hint?.isNotEmpty == true ? hint : task.prompt}',
+        mood: task.lastCorrect == false ? LumoMood.comfort : LumoMood.point,
+      );
+    }
+
     if (q.isEmpty) {
       return LumoReply(
         text: coreTurn.response.text,
@@ -65,7 +104,8 @@ class LumoCompanionEngine {
       final recommendationText = state.learningRecommendationText;
       if (recommendationText == null || recommendationText.trim().isEmpty) {
         return LumoReply(
-          text: '${coreTurn.response.text} Ich kenne deinen Lernweg noch nicht gut genug. Lass uns mit drei gemischten Aufgaben starten.',
+          text:
+              '${coreTurn.response.text} Ich kenne deinen Lernweg noch nicht gut genug. Lass uns mit drei gemischten Aufgaben starten.',
           mood: LumoMood.think,
           suggestedSubject: 'Alle',
           suggestedUnit: 'Alle',
@@ -81,7 +121,16 @@ class LumoCompanionEngine {
       );
     }
 
-    if (_containsAny(q, ['traurig', 'schaff', 'dumm', 'blöd', 'angst', 'kann nicht', 'zu schwer', 'verstehe nicht'])) {
+    if (_containsAny(q, [
+      'traurig',
+      'schaff',
+      'dumm',
+      'blöd',
+      'angst',
+      'kann nicht',
+      'zu schwer',
+      'verstehe nicht'
+    ])) {
       return LumoReply(
         text: coreTurn.response.text,
         mood: LumoMood.comfort,
@@ -93,7 +142,8 @@ class LumoCompanionEngine {
 
     if (_containsAny(q, ['plus', 'addieren', '+', 'zusammenzählen'])) {
       return LumoReply(
-        text: '${coreTurn.response.text} Bei Plus kommen zwei Mengen zusammen. Ich zeige dir das mit Punkten.',
+        text:
+            '${coreTurn.response.text} Bei Plus kommen zwei Mengen zusammen. Ich zeige dir das mit Punkten.',
         mood: LumoMood.think,
         suggestedSubject: 'Mathematik',
         suggestedUnit: 'Plus bis 20',
@@ -103,7 +153,8 @@ class LumoCompanionEngine {
 
     if (_containsAny(q, ['minus', 'subtrahieren', '-', 'wegnehmen'])) {
       return LumoReply(
-        text: '${coreTurn.response.text} Bei Minus ist zuerst eine Menge da, dann geht etwas weg. Ich zeige dir das mit Beeren.',
+        text:
+            '${coreTurn.response.text} Bei Minus ist zuerst eine Menge da, dann geht etwas weg. Ich zeige dir das mit Beeren.',
         mood: LumoMood.think,
         suggestedSubject: 'Mathematik',
         suggestedUnit: 'Minus bis 20',
@@ -113,7 +164,8 @@ class LumoCompanionEngine {
 
     if (_containsAny(q, ['mal', 'einmaleins', 'multiplikation', 'times'])) {
       return LumoReply(
-        text: '${coreTurn.response.text} Malrechnen heisst: gleiche Gruppen zaehlen. Wir ueben das langsam.',
+        text:
+            '${coreTurn.response.text} Malrechnen heisst: gleiche Gruppen zaehlen. Wir ueben das langsam.',
         mood: LumoMood.think,
         suggestedSubject: 'Mathematik',
         suggestedUnit: 'Einmaleins',
@@ -123,7 +175,8 @@ class LumoCompanionEngine {
 
     if (_containsAny(q, ['geteilt', 'division', 'teilen'])) {
       return LumoReply(
-        text: '${coreTurn.response.text} Beim Teilen verteilst du gerecht. Ich mache daraus eine kleine Aufgabe.',
+        text:
+            '${coreTurn.response.text} Beim Teilen verteilst du gerecht. Ich mache daraus eine kleine Aufgabe.',
         mood: LumoMood.think,
         suggestedSubject: 'Mathematik',
         suggestedUnit: 'Teilen',
@@ -133,7 +186,8 @@ class LumoCompanionEngine {
 
     if (_containsAny(q, ['lesen', 'deutsch', 'text', 'wort', 'silbe'])) {
       return LumoReply(
-        text: '${coreTurn.response.text} Beim Lesen machen wir es in kleinen Silben. Erst langsam, dann schneller.',
+        text:
+            '${coreTurn.response.text} Beim Lesen machen wir es in kleinen Silben. Erst langsam, dann schneller.',
         mood: LumoMood.think,
         suggestedSubject: 'Deutsch',
         suggestedUnit: 'Silben',
@@ -141,9 +195,11 @@ class LumoCompanionEngine {
       );
     }
 
-    if (_containsAny(q, ['rechtschreibung', 'schreiben', 'buchstabe', 'diktat'])) {
+    if (_containsAny(
+        q, ['rechtschreibung', 'schreiben', 'buchstabe', 'diktat'])) {
       return LumoReply(
-        text: '${coreTurn.response.text} Beim Schreiben schauen wir auf Startpunkt, Richtung und die ganze Form.',
+        text:
+            '${coreTurn.response.text} Beim Schreiben schauen wir auf Startpunkt, Richtung und die ganze Form.',
         mood: LumoMood.think,
         suggestedSubject: 'Deutsch',
         suggestedUnit: 'Buchstaben schreiben',
@@ -155,15 +211,18 @@ class LumoCompanionEngine {
       return LumoReply(
         text: coreTurn.response.text,
         mood: LumoMood.celebrate,
-        suggestedSubject: state.subject == 'Alle' ? 'Mathematik' : state.subject,
+        suggestedSubject:
+            state.subject == 'Alle' ? 'Mathematik' : state.subject,
         suggestedUnit: state.unit,
         suggestedSection: LumoSection.missions,
       );
     }
 
-    if (_containsAny(q, ['foto', 'kamera', 'scannen', 'aufgabe fotografieren'])) {
+    if (_containsAny(
+        q, ['foto', 'kamera', 'scannen', 'aufgabe fotografieren'])) {
       return const LumoReply(
-        text: 'Du kannst deine Aufgabe fotografieren. Dann schauen wir sie gemeinsam an und ich helfe dir Schritt für Schritt.',
+        text:
+            'Du kannst deine Aufgabe fotografieren. Dann schauen wir sie gemeinsam an und ich helfe dir Schritt für Schritt.',
         mood: LumoMood.point,
         suggestedSection: LumoSection.scanner,
       );
@@ -171,7 +230,8 @@ class LumoCompanionEngine {
 
     if (_containsAny(q, ['test', 'schularbeit', 'prüfung'])) {
       return LumoReply(
-        text: '${coreTurn.response.text} Wir machen das ruhig wie in der Schule: genau lesen, dann antworten.',
+        text:
+            '${coreTurn.response.text} Wir machen das ruhig wie in der Schule: genau lesen, dann antworten.',
         mood: LumoMood.think,
         suggestedSubject: 'Alle',
         suggestedUnit: 'Alle',
@@ -181,7 +241,8 @@ class LumoCompanionEngine {
 
     if (_containsAny(q, ['belohnung', 'stern', 'xp', 'level'])) {
       return const LumoReply(
-        text: 'Du bekommst Sterne und XP für Lernen, Dranbleiben und besser werden. Nicht nur für perfekte Antworten.',
+        text:
+            'Du bekommst Sterne und XP für Lernen, Dranbleiben und besser werden. Nicht nur für perfekte Antworten.',
         mood: LumoMood.celebrate,
         suggestedSection: LumoSection.rewards,
       );
@@ -192,19 +253,31 @@ class LumoCompanionEngine {
       mood: _moodFor(coreTurn),
       suggestedSubject: state.subject,
       suggestedUnit: state.unit,
-      suggestedSection: coreTurn.plan.shouldGenerateTask ? LumoSection.exercises : LumoSection.learn,
+      suggestedSection: coreTurn.plan.shouldGenerateTask
+          ? LumoSection.exercises
+          : LumoSection.learn,
     );
   }
 
   String _childId(LumoSessionState state) {
-    final safeName = state.childName.trim().isEmpty ? 'kind' : state.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    final safeName = state.childName.trim().isEmpty
+        ? 'kind'
+        : state.childName
+            .trim()
+            .toLowerCase()
+            .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     return 'local_${safeName}_${state.grade}';
   }
 
   learning.LearningSubject _learningSubject(String subject) {
     final s = subject.toLowerCase();
-    if (s.contains('deutsch') || s.contains('lesen') || s.contains('schreiben') || s.contains('rechtschreibung')) return learning.LearningSubject.deutsch;
-    if (s.contains('englisch') || s.contains('english') || s.contains('fremdsprache')) return learning.LearningSubject.englisch;
+    if (s.contains('deutsch') ||
+        s.contains('lesen') ||
+        s.contains('schreiben') ||
+        s.contains('rechtschreibung')) return learning.LearningSubject.deutsch;
+    if (s.contains('englisch') ||
+        s.contains('english') ||
+        s.contains('fremdsprache')) return learning.LearningSubject.englisch;
     if (s.contains('sach')) return learning.LearningSubject.sachkunde;
     if (s.contains('logik')) return learning.LearningSubject.logik;
     return learning.LearningSubject.mathematik;
@@ -212,27 +285,42 @@ class LumoCompanionEngine {
 
   learning.SkillId? _skillFromState(LumoSessionState state) {
     if (state.unit == 'Alle') return null;
-    return learning.SkillId('${state.subject}.${state.unit}'.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_'));
+    return learning.SkillId('${state.subject}.${state.unit}'
+        .toLowerCase()
+        .replaceAll(RegExp(r'[^a-z0-9]+'), '_'));
   }
 
   List<learning.SkillId> _weakSkills(LumoSessionState state) {
-    final entries = state.weakSkills.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
-    return entries.take(5).map((entry) => learning.SkillId(entry.key.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_'))).toList(growable: false);
+    final entries = state.weakSkills.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    return entries
+        .take(5)
+        .map((entry) => learning.SkillId(
+            entry.key.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_')))
+        .toList(growable: false);
   }
 
   LumoMood _moodFor(companion.LumoTurnResult turn) {
-    if (turn.emotion.emotion == companion.ChildEmotion.frustrated || turn.emotion.emotion == companion.ChildEmotion.unsure) return LumoMood.comfort;
-    if (turn.emotion.emotion == companion.ChildEmotion.happy) return LumoMood.celebrate;
-    if (turn.plan.visualAction == companion.VisualActionType.showMiniGame) return LumoMood.celebrate;
+    if (turn.emotion.emotion == companion.ChildEmotion.frustrated ||
+        turn.emotion.emotion == companion.ChildEmotion.unsure)
+      return LumoMood.comfort;
+    if (turn.emotion.emotion == companion.ChildEmotion.happy)
+      return LumoMood.celebrate;
+    if (turn.plan.visualAction == companion.VisualActionType.showMiniGame)
+      return LumoMood.celebrate;
     if (turn.plan.tone == companion.LumoTone.tutoring) return LumoMood.think;
-    if (turn.intent.intent == companion.CompanionIntent.greeting) return LumoMood.greet;
+    if (turn.intent.intent == companion.CompanionIntent.greeting)
+      return LumoMood.greet;
     return LumoMood.wave;
   }
 
   String? _suggestSubject(String q) {
-    if (_containsAny(q, ['plus', 'minus', 'mathe', 'rechnen', 'zahl'])) return 'Mathematik';
-    if (_containsAny(q, ['lesen', 'deutsch', 'wort', 'silbe', 'buchstabe'])) return 'Deutsch';
-    if (_containsAny(q, ['tier', 'wetter', 'pflanze', 'sach'])) return 'Sachunterricht';
+    if (_containsAny(q, ['plus', 'minus', 'mathe', 'rechnen', 'zahl']))
+      return 'Mathematik';
+    if (_containsAny(q, ['lesen', 'deutsch', 'wort', 'silbe', 'buchstabe']))
+      return 'Deutsch';
+    if (_containsAny(q, ['tier', 'wetter', 'pflanze', 'sach']))
+      return 'Sachunterricht';
     return null;
   }
 
@@ -240,11 +328,13 @@ class LumoCompanionEngine {
     if (_containsAny(q, ['plus'])) return 'Plus bis 20';
     if (_containsAny(q, ['minus', 'wegnehmen'])) return 'Minus bis 20';
     if (_containsAny(q, ['silbe'])) return 'Silben';
-    if (_containsAny(q, ['buchstabe', 'schreiben'])) return 'Buchstaben schreiben';
+    if (_containsAny(q, ['buchstabe', 'schreiben']))
+      return 'Buchstaben schreiben';
     return null;
   }
 
-  bool _containsAny(String value, List<String> words) => words.any(value.contains);
+  bool _containsAny(String value, List<String> words) =>
+      words.any(value.contains);
 }
 
 class LumoReply {

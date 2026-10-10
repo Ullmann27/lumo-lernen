@@ -21,6 +21,7 @@ import '../teacher/teacher_dashboard_screen.dart';
 import 'legacy_learning_data_card.dart';
 import 'parent_report_card.dart';
 import 'writing_report_card.dart';
+import 'lumo_voice_diagnostics_card.dart';
 
 /// All settings, sheets and dialogs share the same night surface.
 /// The State must live below the scope so showDialog captures this Theme.
@@ -506,6 +507,8 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           const SizedBox(height: 8),
           Text('Aktuelle Stimme: Sulafat (Originalaufnahme + freigegebene Sulafat-Synthese). Bei Verbindungsfehlern wird keine andere Stimme eingesetzt.',
               style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
+          const SizedBox(height: 12),
+          LumoVoiceDiagnosticsCard(serverUrl: _settings.aiProxyUrl),
         ],
             ),
         const SizedBox(height: 14),

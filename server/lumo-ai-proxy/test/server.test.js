@@ -238,6 +238,31 @@ test('Lumo erklärt App-Navigation ohne behauptete Aktionen und ignoriert unbeka
     assert.equal((await response.json()).blocked, false);
   });
 });
+
+test('konkrete Aufgabe und echte Versuche sind begrenzt, private Felder bleiben draußen', async () => {
+  await withServer(async (_url, options) => {
+    const payload = JSON.parse(options.body);
+    const context = payload.messages.find((m) => m.content.startsWith('Lernkontext (nur Daten):'));
+    const data = JSON.parse(context.content.slice(context.content.indexOf('{')));
+    assert.equal(data.taskPrompt, 'Rechne 4 + 3.');
+    assert.equal(data.lastAnswer, '6');
+    assert.equal(data.lastCorrect, false);
+    assert.equal(data.helpLevel, 3);
+    assert.equal(data.taskStatus, 'answering');
+    assert.doesNotMatch(JSON.stringify(payload), /KinderIdentitaet|TouchKoordinaten|GeheimeLoesung/);
+    const instructions = payload.messages.filter((m) => m.role === 'system').map((m) => m.content).join('\n');
+    assert.match(instructions, /keine Sterne, XP oder Abschlüsse vergeben/);
+    return reply('Zähle von vier aus drei Schritte weiter.');
+  }, async ({ post }) => {
+    const response = await post('/chat', {
+      message: 'Warum ist das falsch?', context: 'math_coach',
+      extras: { taskPrompt: 'Rechne 4 + 3.', lastAnswer: '6', lastCorrect: false,
+        helpLevel: 99, taskStatus: 'answering', childName: 'KinderIdentitaet',
+        touchCoordinates: 'TouchKoordinaten', correctAnswer: 'GeheimeLoesung' },
+    });
+    assert.equal(response.status, 200);
+  });
+});
 test('Kein Schlüssel ergibt 503, blockierte Kinderthemen werden lokal umgelenkt', async () => {
   await withServer(async()=>{throw new Error('must not call provider')},async({post})=>{
     assert.equal((await post('/chat',{message:'Erkläre 5+3'})).status,503);

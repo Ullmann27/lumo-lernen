@@ -12,6 +12,8 @@ import '../../core/game_progress_repository.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../../domain/games/game_world.dart';
 import '../../widgets/fox/lumo_character.dart';
+import '../../widgets/fox/lumo_companion_requests.dart';
+import '../../core/lumo_voice.dart';
 import 'spielwelt/spielwelt_hub.dart';
 import 'widgets/lumo_game_spotlights.dart';
 import 'widgets/lumo_creative_game_shelf.dart';
@@ -288,6 +290,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   void _locked(GameDefinition game, GameUnlockState state) {
+    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.lockedGameTapped);
     final text = switch (state.reason) {
       GameLockReason.needsPreviousGame =>
         'Spiele zuerst ${GameCatalog.byId(state.previous!).title}.',
@@ -295,6 +298,10 @@ class _GamesContentState extends State<GamesContent> {
         'Dir fehlen noch ${state.missingStars} verdiente Sterne.',
       GameLockReason.none => '',
     };
+    if (widget.appState.state.settings.voiceEnabled) {
+      LumoVoice.instance.speak('${game.title} ist noch gesperrt. $text',
+          style: VoiceStyle.explain);
+    }
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(
@@ -313,6 +320,7 @@ class _GamesContentState extends State<GamesContent> {
     if (game.availability != GameAvailability.playable) {
       return _comingSoon(game);
     }
+    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.gameRequested);
     launch();
   }
 

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
 import { createLumoServer } from '../src/server.js';
-import { synthesizeSulafat, wavFromPcm, validateSpeechRequest } from '../src/sulafatTts.js';
+import { synthesizeSulafat, wavFromPcm, validateSpeechRequest, DEFAULT_TTS_MODEL } from '../src/sulafatTts.js';
 
 const pcm = Buffer.alloc(24000, 0x10);
 const modelReply = () => new Response(JSON.stringify({
@@ -20,6 +20,7 @@ test('Sulafat calls same speaker for dynamic texts and emits playable WAV', asyn
     fetchImpl: async (url, options) => {
       calls++;
       assert.match(url, /^https:\/\/generativelanguage\.googleapis\.com\//);
+      assert.ok(url.includes(DEFAULT_TTS_MODEL));
       assert.equal(options.headers['x-goog-api-key'], 'server-only-placeholder');
       const body = JSON.parse(options.body);
       assert.equal(body.generationConfig.speechConfig.voiceConfig.prebuiltVoiceConfig.voiceName, 'Sulafat');
@@ -32,6 +33,38 @@ test('Sulafat calls same speaker for dynamic texts and emits playable WAV', asyn
   assert.equal(audio.subarray(0, 4).toString(), 'RIFF');
   assert.equal(audio.subarray(8, 12).toString(), 'WAVE');
   assert.equal(audio.readUInt32LE(40), pcm.length);
+});
+
+test('compressed, missing-format and wrong-rate audio never masquerade as PCM', async () => {
+  for (const mimeType of ['audio/mpeg', '', 'audio/pcm;rate=16000']) {
+    await assert.rejects(synthesizeSulafat({
+      text: 'Hallo!', apiKey: 'placeholder',
+      fetchImpl: async () => new Response(JSON.stringify({
+        candidates: [{ content: { parts: [{ inlineData: {
+          mimeType, data: pcm.toString('base64'),
+        } }] } }],
+      })),
+    }), /tts_unsupported_audio/);
+  }
+});
+
+test('status distinguishes configured Sulafat from an unverified provider without spending', async () => {
+  let calls = 0;
+  const server = createLumoServer({ apiKey: '', ttsEnabled: true,
+    ttsApiKey: 'placeholder', fetchImpl: async () => { calls++; return modelReply(); } });
+  server.listen(0, '127.0.0.1');
+  await once(server, 'listening');
+  try {
+    const response = await fetch(`http://127.0.0.1:${server.address().port}/speech/status`);
+    const status = await response.json();
+    assert.equal(status.voice, 'Sulafat');
+    assert.equal(status.configured, true);
+    assert.equal(status.providerVerified, false);
+    assert.equal(status.model, DEFAULT_TTS_MODEL);
+    assert.equal(calls, 0);
+  } finally {
+    await new Promise((resolve) => server.close(resolve));
+  }
 });
 
 test('Never synthesize invalid, unsafe or oversized child texts', async () => {

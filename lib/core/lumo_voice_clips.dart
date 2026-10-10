@@ -6,9 +6,9 @@ import 'package:flutter/services.dart';
 /// Pre-produced German Lumo speech. Runtime is entirely offline; no child's
 /// text is submitted to the generation service.
 ///
-/// Der Katalog `assets/audio/voice/lumo/catalog.json` wird von
-/// `tools/voice/lumo_voice_gen.py` erzeugt. Variable Texte (Aufgaben,
-/// KI-Antworten) bleiben bei der Geräte-Sprachausgabe.
+/// Der bestehende Sulafat-Katalog ist die Offline-Quelle. Variable Texte
+/// dürfen ausschließlich über den freigegebenen Sulafat-Server gesprochen
+/// werden, niemals durch eine Geräte-Ersatzstimme.
 class LumoVoiceClips {
   LumoVoiceClips._();
 

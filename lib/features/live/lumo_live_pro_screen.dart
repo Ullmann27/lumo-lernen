@@ -15,7 +15,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
+import '../../core/lumo_speech_listener.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_brain.dart';
@@ -78,7 +78,7 @@ class LumoLiveProScreen extends StatefulWidget {
 
 class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     with WidgetsBindingObserver {
-  final stt.SpeechToText _stt = stt.SpeechToText();
+  final LumoSpeechListener _stt = LumoSpeechListener();
   final ImagePicker _picker = ImagePicker();
   final _rng = math.Random();
 
@@ -161,6 +161,7 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     LumoVoice.instance.status.addListener(_voiceStatusChanged);
+    _stt.addListener(_speechStatusChanged);
     // Mood Wechsel demo
     Future.delayed(const Duration(milliseconds: 600), () {
       if (mounted) {
@@ -172,18 +173,15 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
 
   Future<void> _initStt() async {
     try {
-      final ok = await _stt.initialize(
-        onError: (e) => debugPrint('STT-Error: ${e.errorMsg}'),
-        onStatus: (s) {
-          if (mounted && s == 'notListening' && _listening) {
-            setState(() => _listening = false);
-          }
-        },
-      );
+      final ok = await _stt.initialize();
       if (mounted) setState(() => _sttReady = ok);
     } catch (e) {
       debugPrint('STT init error: $e');
     }
+  }
+
+  void _speechStatusChanged() {
+    if (mounted) setState(() => _listening = _stt.listening);
   }
 
   void _switchMode(LiveMode m) {
@@ -243,7 +241,8 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     LumoVoice.instance.status.removeListener(_voiceStatusChanged);
-    _stt.cancel();
+    _stt.removeListener(_speechStatusChanged);
+    _stt.dispose();
     LumoVoice.instance.stop();
     super.dispose();
   }
@@ -277,19 +276,16 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       _mood = LumoMirrorMood.curious;
     });
     try {
-      await _stt.listen(
-        localeId: 'de_DE',
-        listenFor: const Duration(seconds: 8),
-        onResult: (r) {
+      await _stt.startListening(
+        onResult: (words) {
           if (mounted && widget.appState.isCurrentLearningLease(owner)) {
-            setState(() => _recognized = r.recognizedWords);
-            if (r.finalResult) _onSpeechDone(owner);
+            setState(() => _recognized = words);
           }
         },
+        onFinalResult: (_) => _onSpeechDone(owner),
       );
     } catch (e) {
-      debugPrint('Listen error: $e');
-      setState(() => _listening = false);
+      if (mounted) setState(() => _listening = false);
     }
   }
 

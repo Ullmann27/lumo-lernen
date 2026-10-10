@@ -16,19 +16,4 @@ void main() {
     expect(text, isNot(contains('..')));
     expect(text, contains('Schau mal'));
   });
-  test('natural offline voice beats network-only premium voice', () {
-    expect(
-        LumoVoicePolicy.score({
-          'name': 'natural local',
-          'locale': 'de-DE',
-          'quality': '400',
-          'network_required': 'false',
-        }),
-        greaterThan(LumoVoicePolicy.score({
-          'name': 'premium neural google network',
-          'locale': 'de-AT',
-          'quality': '500',
-          'network_required': 'true',
-        })));
-  });
 }
