@@ -179,7 +179,7 @@ class LumoVoice {
     final bytesPerSecond = data.getUint32(28, Endian.little);
     final dataSize = data.getUint32(40, Endian.little);
     if (bytesPerSecond < 1000 || dataSize < 20) return 1000;
-    return (dataSize * 1000 / bytesPerSecond).ceil().clamp(250, 120000);
+    return (dataSize * 1000 / bytesPerSecond).ceil().clamp(250, 120000).toInt();
   }
 
   Future<void> _play(
