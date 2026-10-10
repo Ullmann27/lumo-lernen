@@ -23,6 +23,7 @@ import '../../core/lumo_voice.dart';
 import '../../core/writing_progress_repository.dart';
 import '../../widgets/lumo/lumo.dart';
 import '../learning_modules/lumo_phrases.dart';
+import 'widgets/lumo_ink_surface.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
 
@@ -216,25 +217,26 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
     } catch (_) {}
   }
 
-  void _onPanStart(DragStartDetails d) {
-    setState(() {
-      _currentPoints = [d.localPosition];
-    });
+  void _onPanStart(Offset localPosition) {
+    setState(() => _currentPoints = [localPosition]);
   }
 
-  void _onPanUpdate(DragUpdateDetails d) {
-    setState(() {
-      _currentPoints = [..._currentPoints, d.localPosition];
-    });
+  void _onPanUpdate(Offset localPosition) {
+    if (_currentPoints.isEmpty) return;
+    setState(() => _currentPoints = [..._currentPoints, localPosition]);
   }
 
-  void _onPanEnd(DragEndDetails d) {
-    if (_currentPoints.length > 1) {
-      setState(() {
+  void _onPanEnd() {
+    setState(() {
+      if (_currentPoints.length > 1) {
         _strokes.add(WritingStroke(List.of(_currentPoints)));
-        _currentPoints = [];
-      });
-    }
+      }
+      _currentPoints = [];
+    });
+  }
+
+  void _onPanCancel() {
+    if (_currentPoints.isNotEmpty) setState(() => _currentPoints = []);
   }
 
   void _clearCanvas() {
@@ -490,7 +492,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
     // Title unten (gross + Akzentfarbe). Speaker-Icon rechts.
     return LumoPromptCard(
       label: 'Mit dem Finger - keine Eile!',
-      title: 'Schreib ein $_currentLetter!',
+      title: 'Schreibe den Buchstaben $_currentLetter.',
       accent: _gradient[1],
       onSpeakerTap: _speakPrompt,
     );
@@ -586,10 +588,12 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(17),
-          child: GestureDetector(
-            onPanStart: _onPanStart,
-            onPanUpdate: _onPanUpdate,
-            onPanEnd: _onPanEnd,
+          child: LumoInkSurface(
+            key: const ValueKey('lumo-letter-ink-surface'),
+            onStart: _onPanStart,
+            onUpdate: _onPanUpdate,
+            onEnd: _onPanEnd,
+            onCancel: _onPanCancel,
             child: AnimatedBuilder(
               animation: _demoCtrl,
               builder: (ctx, child) {
