@@ -106,7 +106,7 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
   void _showFinish() {
     final stars = (_correctCount / widget.topic.writingChars.length * 5)
         .round()
-        .clamp(1, 5);
+        .clamp(0, 5);
     // Skipped letters must not grant stars or XP.
     if (_correctCount > 0) {
       widget.appState.addStars(stars);
