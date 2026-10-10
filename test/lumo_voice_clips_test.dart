@@ -153,6 +153,16 @@ void main() {
     await voice.configure(rate: 0.35, pitch: 1.0);
   });
 
+  test('allen Modulen stehen unterschiedliche emotionale Sprechweisen zur Verfuegung', () {
+    expect(LumoVoice.suggestedStyle('Super!'), VoiceStyle.celebrate);
+    expect(LumoVoice.suggestedStyle('Fast! Schau nochmal.'), VoiceStyle.comfort);
+    expect(LumoVoice.suggestedStyle('Hallo!'), VoiceStyle.greeting);
+    expect(LumoVoice.suggestedStyle('Wie viele sind das?'), VoiceStyle.question);
+    expect(LumoVoice.suggestedStyle('Schau mal so:'), VoiceStyle.explain);
+    expect(LumoVoice.suggestedStyle('Drei plus vier ist sieben.'),
+        VoiceStyle.warm);
+  });
+
   test('stumm geschaltet spricht weder Clip noch Synthese', () async {
     LumoVoice.instance.isEnabled = false;
     await LumoVoice.instance.speak('Super!');
