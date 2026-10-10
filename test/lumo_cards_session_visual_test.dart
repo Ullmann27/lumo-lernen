@@ -45,23 +45,23 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final shots = <Map<String, Object?>>[];
   final loadedFonts = <String, String>{};
+  final captureScale =
+      double.parse(Platform.environment['LUMO_CARDS_CAPTURE_SCALE'] ?? '2');
+  final output =
+      Platform.environment['LUMO_CARDS_CAPTURE_DIR'] ?? 'ci-out/cards-visual';
   setUpAll(() async {
-    // Match the documented Android fallback; do not call this bundled Nunito.
-    final folder =
-        '${File(Platform.resolvedExecutable).parent.parent.parent.path}/material_fonts';
-    for (final entry in {
-      'Nunito': 'Roboto-Regular.ttf',
-      'MaterialIcons': 'MaterialIcons-Regular.otf',
-    }.entries) {
-      final file = File('$folder/${entry.value}');
-      if (!file.existsSync()) continue;
-      final loader = FontLoader(entry.key);
-      loader.addFont(
-        Future.value(ByteData.sublistView(await file.readAsBytes())),
-      );
-      await loader.load();
-      loadedFonts[entry.key] = entry.value;
+    // Use the same bundled font family as the APK, never alias Roboto to Nunito.
+    final nunito = FontLoader('Nunito');
+    for (final weight in ['Regular', 'Bold', 'ExtraBold', 'Black']) {
+      final path = 'assets/fonts/Nunito-$weight.ttf';
+      nunito.addFont(rootBundle.load(path));
+      loadedFonts['Nunito-$weight'] = path;
     }
+    await nunito.load();
+    await (FontLoader('MaterialIcons')
+          ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf')))
+        .load();
+    loadedFonts['MaterialIcons'] = 'fonts/MaterialIcons-Regular.otf';
   });
   setUp(() {
     SharedPreferences.setMockInitialValues({});
@@ -80,16 +80,16 @@ void main() {
     final boundary =
         key.currentContext!.findRenderObject()! as RenderRepaintBoundary;
     final image = (await tester.runAsync(
-      () => boundary.toImage(pixelRatio: 2),
+      () => boundary.toImage(pixelRatio: captureScale),
     ))!;
     try {
       final data = await tester.runAsync(
         () => image.toByteData(format: ui.ImageByteFormat.png),
       );
       expect(data, isNotNull);
-      expect(image.width, size.width.round() * 2);
-      expect(image.height, size.height.round() * 2);
-      final dir = Directory('ci-out/cards-visual')..createSync(recursive: true);
+      expect(image.width, (size.width * captureScale).round());
+      expect(image.height, (size.height * captureScale).round());
+      final dir = Directory(output)..createSync(recursive: true);
       final file = File('${dir.path}/$name.png');
       file.writeAsBytesSync(data!.buffer.asUint8List(), flush: true);
       expect(file.lengthSync(), greaterThan(10000));
@@ -110,6 +110,10 @@ void main() {
     ('fold', const Size(720, 840)),
     ('landscape', const Size(840, 400)),
     ('tablet', const Size(1024, 800)),
+    ('reference-phone', const Size(360, 800)),
+    ('reference-compact', const Size(640, 360)),
+    ('reference-wide', const Size(1280, 720)),
+    ('reference-fold', const Size(1200, 896)),
   ]) {
     testWidgets('render actual Cards and avatar dialog ${entry.$1}', (
       tester,
@@ -152,7 +156,7 @@ void main() {
   tearDownAll(() {
     final dirty = Process.runSync('git', ['diff', '--name-only']);
     final sha = Process.runSync('git', ['rev-parse', 'HEAD']);
-    final dir = Directory('ci-out/cards-visual')..createSync(recursive: true);
+    final dir = Directory(output)..createSync(recursive: true);
     File('${dir.path}/capture-manifest.json').writeAsStringSync(
       const JsonEncoder.withIndent('  ').convert({
         'source_commit': dirty.stdout.toString().trim().isEmpty

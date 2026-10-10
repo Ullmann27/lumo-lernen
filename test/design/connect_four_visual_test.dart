@@ -26,6 +26,7 @@ void main() {
     Size(640, 360),
     Size(1280, 720),
     Size(740, 840),
+    Size(1200, 896),
   ]) {
     testWidgets('Connect Four layout ${size.width}x${size.height}',
         (tester) async {
