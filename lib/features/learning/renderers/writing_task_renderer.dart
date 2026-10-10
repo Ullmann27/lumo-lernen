@@ -42,10 +42,17 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
   WritingEvaluation? _evaluation;
 
   String get _target {
-    final raw = widget.task.visualPayload.data['symbol'] ??
-        widget.task.parameters['symbol'] ??
-        WritingTargetParser.parse(widget.task.prompt);
-    return raw.toString().trim();
+    // A blank symbol may be present in imported task payloads. Do not let
+    // it suppress the real letter present in the prompt, or invent 'A'.
+    for (final raw in <Object?>[
+      widget.task.visualPayload.data['symbol'],
+      widget.task.parameters['symbol'],
+      WritingTargetParser.parse(widget.task.prompt),
+    ]) {
+      final text = raw?.toString().trim() ?? '';
+      if (text.isNotEmpty && text.toLowerCase() != 'null') return text;
+    }
+    return '';
   }
 
   bool get _isWordTarget {
@@ -87,6 +94,20 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
 
   @override
   Widget build(BuildContext context) {
+    if (_target.isEmpty) {
+      return const Semantics(
+        label: 'Schreibaufgabe ohne Zielbuchstaben',
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Text(
+            'Für diese Schreibaufgabe fehlt der Zielbuchstabe. '
+            'Bitte wähle eine neue Aufgabe. Wir zeigen keinen zufälligen '
+            'Buchstaben als angeblich richtige Lösung.',
+            style: TextStyle(fontFamily: 'Nunito', fontSize: 16),
+          ),
+        ),
+      );
+    }
     final template = _template;
     final evaluation = _evaluation;
 
