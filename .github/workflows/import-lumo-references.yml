@@ -1,0 +1,55 @@
+name: Import exact Lumo visual references
+on:
+  push:
+    branches: [codex/lumo-reference-assets-2026-10-10]
+    paths: ['.github/workflows/import-lumo-references.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  store-original-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download originals, validate SHA256 and check in binary files
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest=docs/design/2026-10-10-lumo-games/references
+          mkdir -p "$dest"
+          cat > "$RUNNER_TEMP/lumo_sources.tsv" <<'LUMO_SOURCES'
+50666.gif	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/3b7f4bd6-c8ce-42f2-8fb9-934e19351a49.gif	eb5d4bba89e02e32e80fec3d7df999fb58bfa526c2524f17b3ce4e5f64a6d771
+50610.png	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/5b239b14-a23a-41be-9d7e-cbaf3d7af128.png	dae91e44f26139e4b1c4a27b9607878e82c7a08f56058ecbca7f00bea5b805de
+50608.png	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/7aacbe5c-f3cb-44a2-93d2-cf95d07f154e.png	d05e4cab8057250e13db22a0bffbdd9cba32304c61487dfe1ce1cbc127ff0ade
+50609.png	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/384339a1-cf31-43ff-a4b1-eaffa028ba89.png	25f478f9b0f9d9ca13f4ac26e4221914dd8e93ca15d35b57d0ffa6b75a51bfe4
+50607.png	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/1202d4a8-a3a6-4ad0-b693-94187e869a29.png	85a18ebeaf07d2d86247d6af639c6f2285d4a5233e8e7cfcad81f695978c98e1
+50632.jpg	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/6f10b8c7-46d0-42e3-ad91-75b238be599b.jpg	cdc4ed57abe9453b3858bb88ab5d6d4c2b42c809ea32497ef88643e0a3728a3c
+50294.png	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/daa23622-5d21-4340-919b-fd2d0aa9df37.png	cab528c30b2df25b2a7df59633e8169e4108a1cc97f30461b662234f5229a366
+50297.png	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/d23f389a-d605-4499-99bf-7c081db15b18.png	197c4dccfbc4997e5f9c04f316f30e1e2bfe5b42cec15480f09bebd557106935
+50288.png	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/467ab7c7-d247-4b71-97f6-cb8ae214c473.png	32670e1fa1cf58dcbb799ecb05517d0840f094eb5e2f022555b74b7c855ee769
+50502.png	https://d2ol7oe51mr4n9.cloudfront.net/user_3JBiq3Q9vttoZVrKhdbYLuTHXre/6a4cfbfa-83d3-4348-9b40-90ccc1b05a7e.png	858a6a6c2e54fd7f90ccfe3404c8473ba908cbef2ec06e611a30d21cf38e96ea
+LUMO_SOURCES
+          : > "$dest/SHA256SUMS"
+          while IFS=$'\t' read -r filename download_url expected_hash; do
+            curl -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 180 -o "$dest/$filename" "$download_url"
+            echo "$expected_hash  $dest/$filename" | sha256sum -c -
+            echo "$expected_hash  $filename" >> "$dest/SHA256SUMS"
+          done < "$RUNNER_TEMP/lumo_sources.tsv"
+          test "$(find "$dest" -maxdepth 1 -type f | wc -l)" -eq 11
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$dest"
+          if ! git diff --cached --quiet; then
+            git commit -m 'assets: preserve 10 original user-supplied Lumo visual references'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+      - name: Verify original files from committed Git tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd docs/design/2026-10-10-lumo-games/references
+          sha256sum -c SHA256SUMS
+          git status --short
