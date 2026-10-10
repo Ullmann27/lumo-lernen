@@ -200,6 +200,29 @@ class LumoVoice {
     return LumoVoicePolicy.score(voice);
   }
 
+  /// Zentrale Sprechabsicht fuer kurze Standardreaktionen aller Bereiche.
+  /// Lerntasks und Diktattexte werden nicht umgeschrieben; das vermeidet
+  /// inhaltlich falsche Antworten oder ungewollte zusaetzliche Saetze.
+  @visibleForTesting
+  static VoiceStyle suggestedStyle(String text) {
+    final s = text.trim().toLowerCase();
+    if (s.isEmpty || s.length > 140) return VoiceStyle.warm;
+    if (RegExp(r'^(super|toll gemacht|genau richtig|wow|bravo|klasse|stark|genial|perfekt|wahnsinn|voll richtig|mega|spitze|ich bin stolz)').hasMatch(s)) {
+      return VoiceStyle.celebrate;
+    }
+    if (RegExp(r'^(fast|knapp daneben|hmm|nicht ganz|kein problem|das war fast|du schaffst|das war schwierig|ruhig)').hasMatch(s)) {
+      return VoiceStyle.comfort;
+    }
+    if (RegExp(r'^(hallo|hi!|guten morgen|schön dich zu sehen)').hasMatch(s)) {
+      return VoiceStyle.greeting;
+    }
+    if (s.endsWith('?')) return VoiceStyle.question;
+    if (RegExp(r'^(schau|hier ist|lass uns|probier|zuerst|bei plus|bei minus)').hasMatch(s)) {
+      return VoiceStyle.explain;
+    }
+    return VoiceStyle.warm;
+  }
+
   Future<void> _applyStyle(VoiceStyle style) async {
     // Heinz wollte schnellere Stimme. Alle Raten um ~25-35% erhoeht.
     // Vorher waren die Werte zwischen 0.30-0.42 - zu langsam.
@@ -255,9 +278,14 @@ class LumoVoice {
         if (!_enabled || generation != _speechGeneration) return;
         if (await _speakClip(text, generation)) return;
         if (!_enabled || generation != _speechGeneration) return;
-        await _applyStyle(style);
+        // Alle Lernmodule laufen durch dieselbe expressive Engine. Kurztexte
+        // werden nach ihrer kommunikativen Funktion betont, sofern der
+        // Aufrufer nicht selbst bereits einen Sprechmodus festlegt.
+        final effectiveStyle =
+            style == VoiceStyle.warm ? suggestedStyle(text) : style;
+        await _applyStyle(effectiveStyle);
         if (!_enabled || generation != _speechGeneration) return;
-        final prepared = _prepareHumanText(text, style);
+        final prepared = _prepareHumanText(text, effectiveStyle);
         if (prepared.isEmpty) return;
         final result = await _tts.speak(prepared);
         if (kDebugMode) {
