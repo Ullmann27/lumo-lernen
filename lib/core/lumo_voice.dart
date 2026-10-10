@@ -17,9 +17,9 @@ import 'lumo_voice_policy.dart';
 /// - emotionale Sprechmodi statt immer gleicher TTS-Ausgabe
 /// - stabiler Fallback ohne neue Build-Risiken
 ///
-/// Feste, häufige Sätze kommen als vorproduzierte Lumo-Stimme
-/// ([LumoVoiceClips]); alles andere und jeder Clip-Fehler fällt auf die
-/// Geräte-Sprachausgabe zurück.
+/// Dieselbe einstellbare deutsche TTS-Stimme wird für Vorschau und Lern-App
+/// verwendet. Historische vorproduzierte Clips sind standardmäßig deaktiviert,
+/// damit sie die gewählte Stimme und Frequenz nicht mehr überschreiben.
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
@@ -47,10 +47,12 @@ class LumoVoice {
   /// null, wenn kein Clip spricht (dann gelten Wortgrenzen der TTS).
   final ValueNotifier<double?> clipMouth = ValueNotifier<double?>(null);
 
-  /// Vorproduzierte Clips verwenden. In Widget-Tests standardmäßig aus, weil
-  /// dort kein Audio-Plugin läuft; Tests schalten es gezielt ein.
-  bool clipsEnabled =
-      kIsWeb || !Platform.environment.containsKey('FLUTTER_TEST');
+  /// The parents' `Stimme testen` preview uses native German TTS. Always
+  /// use that SAME device voice, tempo and pitch throughout the app by
+  /// default. Previously automatic canned audio clips bypassed all sliders
+  /// and unexpectedly sounded like an entirely different Lumo.
+  /// Explicit test/legacy preview callers may still opt in to clip playback.
+  bool clipsEnabled = false;
 
   AudioPlayer? _clipPlayer;
   StreamSubscription<void>? _clipDone;
@@ -252,7 +254,7 @@ class LumoVoice {
         await _tts.stop();
         await _stopClip();
         if (!_enabled || generation != _speechGeneration) return;
-        if (await _speakClip(text, generation)) return;
+        if (clipsEnabled && await _speakClip(text, generation)) return;
         if (!_enabled || generation != _speechGeneration) return;
         await _applyStyle(style);
         if (!_enabled || generation != _speechGeneration) return;
