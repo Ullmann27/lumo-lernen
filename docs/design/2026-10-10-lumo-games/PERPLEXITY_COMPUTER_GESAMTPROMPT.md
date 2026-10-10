@@ -145,3 +145,81 @@ Ein „visuell fertig“ oder „APK final“ ist unzulässig, solange ein wesen
 **Qualität und Veröffentlichung:** Vor finalem Commit unbenutzte Importe und toten Code nur löschen, wenn nachvollziehbar unreferenziert und migrationssicher. Echte Testläufe, echte GitHub-Commits und echte Android-Installation; kein behaupteter APK-Link ohne nachgewiesenes Artefakt. Alle wesentlichen Vorher-/Nachher-Aufnahmen während des Programmierens mit direktem Link posten. Bei Nutzerkritik den betroffenen Designbereich pausieren, andere unabhängige Aufgaben dürfen fortfahren.
 
 **Prioritäten:** 1. Originalbilder und Lumo-Identität. 2. Wirklich spielbarer Godot-/Flutter-Code. 3. Automatisch und visuell bestandene Tests. 4. Android-Kompatibilität/Fold. 5. Freigegebene APK. Screenshots sind wiederholt schon in den Phasen 1–4 zu liefern; niemals erst ganz zum Schluss.
+
+
+
+---
+
+# ANHANG C — AAA-ART-PRODUCTION-PIPELINE, INTELLIGENTES WERKZEUG-ROUTING UND CREDIT-CONTROLLING
+**Dieser Anhang ist Bestandteil des AUSFÜHRUNGSAUFTRAGS. Er ergänzt die Kapitel über Figuren, Strecken, Audio, Rendering, Android und Screenshots. Bei Widerspruch gelten Nutzer-Originalbilder, Markenschutz, sichere Nutzerdaten und echte Runtime-Abnahme zuerst.**
+
+## C.1 KI-ORCHESTRATOR: DAS BESTE GEEIGNETE WERKZEUG PRO TEILAUFGABE
+Du bist Perplexity Computer. Erstelle zu Beginn ein Tool Capability Inventory aus den tatsächlich verbundenen Diensten und installierten bzw. ausführbaren Werkzeugen: Name, Version, Ausführungsort, Lizenzstatus, API/CLI, Exportformat, mögliche GPU/VRAM-Grenzen, geschätzte Credit-/Cloud-Kosten. Behaupte keine Integration, bis ein Testaufruf erfolgreich ist. Perplexity-Computer-Subagents und Cloud-Computer nur nach tatsächlicher Verfügbarkeit verwenden. Wenn ein Werkzeug nicht verfügbar ist: kostenlose/Open-Source-Alternative wählen; bezahlte Anmeldung oder Lizenz ausdrücklich vorher genehmigen lassen. Never spend third-party paid credits, install unsafe plug-ins or register third-party accounts autonomously.
+
+Verteile unabhängig voneinander: (1) Repo-/Gameplay-Audit, (2) Character & Kart, (3) World/track environment art, (4) Materials/VFX, (5) Flutter HUD/result UI & audio, (6) Godot/Android integration, (7) QA screenshot comparison. Steuere Abhängigkeiten per gemeinsamem Art-Bible/Asset-Manifest und gesperrten Merge-Gates; keine Agenten editieren dieselben Zielassets gleichzeitig. Für einfache Code-/Testjobs kosteneffizientes Coding-Modell; leistungsstarkes Reasoning-Modell nur für komplexe Architektur/Shader-Bottlenecks; spezialisiertes visuelles Modell nur für Originaltreue/Lookdev; Bild-/3D-KI nur mit klarer Asset-Lücke. `Sol 6.1` oder `Astra` nur verwenden, wenn diese Modellnamen im Perplexity-Konto tatsächlich angeboten werden und Credits/Abrechnung bekannt sind; keine erfundenen Preisfaktoren.
+
+## C.2 PROFESSIONELLE TOOLS – TASK-BASED, NIE BLIND ODER ALLE GLEICHZEITIG
+**3D-Modellierung/Hard Surface:** Blender bevorzugt für reproduceable .blend, Python-Automation, Modelling, Bevels, Rigging, UV und Geometry Nodes; Autodesk Maya und 3ds Max als optionale lizenzierte Alternativen, wenn tatsächlich verfügbar und der Nutzen klar ist. Rennkart als echter High-Poly/Low-Poly-Workflow, separate bewegliche Räder, Lenkrad, Scheinwerfer, Motor-/Boost-Geometrie, Cockpit und Sitz mit korrekt positioniertem Lumo. Bevel + weighted normals, UV2/Lightmaps, Material-IDs, pivot/origin, collision proxy.
+
+**Charakter-Sculpt/Rigging:** Maxon ZBrush (lizenziert) für Sculpt/Retopology oder Blender Sculpt kostenlos. Topologie gesichts- und animationsgerecht; Konsistenz mit `assets/characters/lumo/reference/01_master_character_sheet.png`. Outfits, Brille, Ohr-, Schwanz-, Mimik- und Griffanimation korrekt riggen. Ergänzend gegebenenfalls Autodesk Maya Animation, Cascadeur oder Mixamo nach Prüfung der Nutzungsrechte; Blender Rigify/NLA als bevorzugte offene Alternative. Keine eigenmächtige Neugestaltung Lumos.
+
+**PBR-Texturen/Materialien:** Adobe Substance 3D Painter für Layered 3D-Painting und Baking, Substance 3D Designer für prozedurale Materialien, Substance Sampler für Material-Rekonstruktion; nur mit gültiger Lizenz. Blender Texture Paint, Material Nodes, Baking, Krita/GIMP als Open-Source-Fallback. Erstelle BaseColor, ORM (Occlusion/Roughness/Metallic), Normal (korrekte Tangent-/Y-Konvention), Emission und ggf. Alpha-Masks; Farbmanagement mit sRGB/linear beachten. Für mobil sinnvolle Atlas-Größen (z. B. 512–2048, nach Sichtgröße und Speicherbudget), komprimierte Texturen; keine überflüssigen 4K/8K-Maps.
+
+**Bake/Lookdev:** Optional Marmoset Toolbag für Material-Lookdev/Baking, Blender Cycles/Eevee als solide verfügbare Alternative. Cinema-Render („Konzept / Offline-Render“) immer eindeutig von **Godot Runtime (echtes Spiel)** trennen. Der Offline-Render ist keine Abnahme.
+
+**Prozedurale Welten:** SideFX Houdini/Indie/Labs bei Lizenz und CLI-Verfügbarkeit für art-directable Strecken, Felsinseln, Brücken, Wasserfälle, Kurven, Geländer, Fassaden, Turmhäuser, Tunnel, neonfarbene Tore, Loops, Scatter/Heightfield; alternativ Blender Geometry Nodes plus Python Generatoren/Godot MultiMesh. Optionale Terrain-Tools Gaea/World Machine nur bei Lizenz/GPU-Verfügbarkeit. SpeedTree nur bei Lizenz für Bäume; frei gestaltete Blender-Geometry-Nodes-Foliage als Fallback. Exporte als GLB/Textures/Heightmaps, Houdini-HDA ist nicht direkt mit einem Godot-Release gleichzusetzen. Realitätschecks: befahrbare Fahrbahn, Renn-Kollision, Kamerakorridor, KI-Navigation, Abkürzungen, Landmarken und Wiedererkennung aus den Originalbildern.
+
+**Referenz-/Grafikproduktionswerkzeuge:** PureRef als optionales Moodboard, Figma/Adobe Illustrator als optionale UI-Designtools, Inkscape/Krita/GIMP als Open-Source-Alternativen. Spezial-KI-Modelle für Referenzbilder/Turnarounds, einzelne Decals oder neue Props nach Qualitätskontrolle; mögliche 3D-Generierungsdienste (z. B. Meshy/Tripo) nur nach Verfügbarkeits-, Lizenz-, Kosten- und Geometrieprüfung. Keine Wasserzeichen, unklare Stock-Assets, kopierten Mario-Kart-/Nintendo-Content oder private Bilduploads an ungeprüfte Anbieter. Bildentwurf ist niemals GLB, Material oder lauffähige Szene.
+
+**Bewegung/Cinematics:** Blender NLA/Action Editor, Godot AnimationPlayer/AnimationTree, Camera3D und Timeline-Easing; optional Cascadeur, Maya oder iClone bei Lizenz. Für Fuchsbewegung Ohr-Twitch, Blickrichtung, Lächeln, blinkende Augen, Schwanz-Spring-Bone/Follow-Through, Lenkradgriffe, Turbo-Reaktion; mobileperfomantes Skeleton. Optional Intro-Sequenz, Podest-Kamerafahrt, Siegespose und Streckeneinflug, aber jederzeit überspringbar und nicht auf Kosten der Steuerbarkeit.
+
+**VFX & Audio:** Godot GPU/CPU-Partikel, Animation, Shader, Flipbooks, Flowmaps; Houdini-FX nur für Offline-gebakene Effekte. Audacity/Reaper für Sounds/Schnitt nach tatsächlicher Verfügbarkeit; FMOD/Wwise nur mit durchgängig getesteter Engine-Integration und geklärten Lizenzen; sonst Godot AudioStreamPlayer/Bus-Effekte. Originale kindgerechte Stimme und moderne lizenzierte Musik, Mute/Volume/AudioFocus.
+
+**Performance-/Profiling-Werkzeuge:** Godot Profiler/Monitors, Android Studio/ADB/Logcat, Perfetto/Android GPU Inspector wenn verfügbar, RenderDoc wenn Engine/Device kompatibel. Pillow/OpenCV/ImageMagick (je nach Installation) nur zum Vergleichen/Komprimieren von echten Screenshots; Playwright für Web-Preview, Flutter integration_test/Android emulator für reale App. Blender/Python CLI für Batch-Export, Headless Godot für Importtests und Reproduzierbarkeit, GitHub Actions für Android-Artefakte.
+
+## C.3 PROFESSIONELLE ASSET-PRODUKTIONSKETTE (NICHT NUR PROMPT-TO-IMAGE)
+Für jedes Hero-Asset (Lumo, Standardkart, Siegerpodest, Sonnenhafen-Landmarke, Looping, Eisbrücke) den vollständigen Pfad durchführen:
+1. **Originalreferenz** mit Name und eindeutigen Merkmalen (Gesicht, Brille, Farben, Silhouette, Maße) verankern.
+2. **Blockout/Proxy** maßstabsgerecht in der vorhandenen Godot-Szene; erste reale Kamera- und Gameplay-Screenshots.
+3. **High-Poly-Sculpt/Hard-Surface** unter Beachtung des originalen Stils, als editierbare Quelle abspeichern.
+4. **Low-Poly/Retopology + UV** inklusive funktionierender Collision-Proxies, Rig/Pivots und Instanzierbarkeit.
+5. **Texture Bake/PBR**: Normal/AO/Metallic/Roughness/Emission; kontrollierte Textur-Atlanten und LODs.
+6. **Animation/Technical Rig**: sauberer Bone-Rig, Rad- und Fahrwerksbewegung, Schweif, Fahrerarme; Blend-States.
+7. **Export GLB/glTF 2.0** mit allen nötigen Animationen; automatisierter Import/Material-Sanity-Test in Godot; Lizenz- und Quelleintrag ins Asset-Manifest.
+8. **Echte Runtime-Prüfung** mit repräsentativem Kamera-FOV, Helligkeit, Art-Direction und Android-GPU; JPEG/PNG/WebP-Grafik und PBR-Maps dürfen nicht falsch interpretiert werden.
+9. **Referenz-Vorher/Nachher-Screenshots öffentlich zugänglich**; vom Auftraggeber kritisierte Stellen bearbeiten, nicht ohne Review final deklarieren.
+10. **QA/Performance**: Frame-Time, Draw Calls, Geometrie, VRAM, Installationsgröße, thermische Stabilität, Offlineverhalten; richtige Quality-Tier-Zuordnung.
+
+## C.4 AAA-ART-DIRECTION IN EINER MOBILEN GODOT-RUNTIME
+Entwickle eine priorisierte Shot-/World-Bible: (A) Lumo + Standardkart 3/4-Profil im Garage-Menü, (B) Sonnenhafen-Startgerade, (C) Skyline-Looping, (D) Eisbrücke, (E) Ziel- und 1.-Platz-Sieg; je Referenz absolute Formen/Farbverhältnisse/Lichtachsen/Kamera-FOV/HUD-Abstände. Erst einen kleinen **vertikalen Qualitätsschnitt**, der nachweislich in der App läuft, bis zur Referenzqualität bringen; danach denselben Asset-/Shader-Pfad auf weitere Strecken übertragen. Keine vier halbfertigen Rennwelten statt einer vollständigen.
+
+Godot-Mobile unterstützt nicht alle Desktop-Forward+-Funktionen: SSR, SDFGI, SSIL und SSAO nicht blind im Mobile-Renderer voraussetzen. Nutze gebakene Lightmaps wo sinnvoll, ReflectionProbes, Shadow-/Light-Budget, Tonemapping, Emission/Glow, bezahlbare Wasser-/Glas-Shader, LOD, Occlusion Culling, MultiMesh/Instancing. Für Vulkan/GL Compatibility passende Shader-Fallbacks programmieren. Ziel: möglichst stabiler 60-FPS-Modus auf geeigneter Hardware; 30-FPS-Grenze nur transparent als fallback und nicht durch versteckte feste Zeitdilatation. Miss reale Frame-Times auf Zielgerät/Emulator; keine erfundenen FPS-Angaben. Regelmäßig Wärmeentwicklung, Crash-Logs, Touchflächen und Fold-Skalierung prüfen.
+
+## C.5 SPIEL-EXPERIENCE UND GRAFIK ERGÄNZEN SICH
+Nach jedem visuellen Upgrade die funktionalen Invarianten prüfen: Fahrbahn- und Collision-Kongruenz, Steuerbarkeit in der Luft, Rampen-Sprung-Landung, echtes Timing/Position, 5 Rennmodi, Gegner-KI, Boost/Item/Shield, echte Speicherstände, Sieg/Ergebnis, weiterführende Navigation und Fold-Touchtargets. Neue Details dürfen die Strecke weder visuell unlesbar noch spielerisch unfahrbar machen. Implementiere die Features in echten Godot-Szenen/GDScript, nicht nur als erzählte Teststory.
+
+## C.6 LIVE-SCREENSHOTS UND UNMITTELBARES NUTZER-REVIEW
+Das frühere LIVE-SCREENSHOT-PROTOKOLL gilt wörtlich, verschärft für große Grafikjobs:
+- Start: Originalbild + aktuelles Godot/Flutter VORHER.
+- Bei jeder sichtbaren Änderung und ungefähr alle 10–15 Minuten aktiver Grafikarbeit mit darstellbarem Fortschritt: echter Laufzeit-NACHHER-Screenshot, möglichst mehrere Frames für fahrende Kamera/Animation. Einzelbilder direkt öffnbar, Side-by-Side zusätzlich.
+- **Nicht erst nach Build und nicht nur Collagen/ZIPs**. Eingebettete Vorschaubilder im Perplexity-Chat plus dauerhafte GitHub-Dateilinks (oder korrekt zugängliche CI-Artifacts).
+- Fortschrittsmeldung nennt Kamera, feste Seed/Welt, Auflösung, Renderer, Branch/SHA, exakte Veränderung, offene Abweichung, Teststatus und verbrauchte/erwartete Credit-Kosten, soweit messbar.
+- Wenn der Nutzer etwas beanstandet, sofort Arbeit an diesem visuellen Bereich pausieren, Korrektur vornehmen, neue Runtime-Bilder zeigen; nur unabhängige Aufgaben weiterarbeiten.
+
+## C.7 CREDIT-BUDGET- UND LIZENZDISZIPLIN
+Bilde zuerst einen Arbeitsplan und Prioritäten, aber **beginne nach Baseline ohne weitere Routinefragen direkt**. Tool-Routing nach Zweck, nicht Prestige. Vor teuren Bild-/Video-/3D-Generierungen den konkreten Asset-Bedarf nachweisen und vorhandene Originale/Assets wiederverwenden. Billige Modell-Tasks für Routinecode, fokussierte teurere Analysen nur für echte Engpässe. KI-Vorschauen zunächst in geringer Auflösung und kleinem Batch, hochauflösende finale Produktion nach Art-Review. Cache Zwischenergebnisse/Buildtools/Texturen, vermeide identische Wiederholungsjobs. Nicht mehrere parallele Build-/Renderjobs ohne Anlass auslösen. Reporte gemessenen Creditverbrauch und verbleibende Credits, wenn die Plattform dies zuverlässig zugänglich macht; **niemals Abrechnung erfinden**.
+
+**Keine Käufe:** Für Autodesk Maya/3ds Max, Maxon ZBrush, Adobe Substance, SideFX Houdini, SpeedTree, Gaea, World Machine, Marmoset, kostenpflichtige 3D-Generatoren oder Cloud-GPU-Laufzeit niemals kostenpflichtige Lizenzen, Trials mit Zahlungsmethode, Konto-Neuanlagen oder externe Zahlungen ohne separate Nutzerfreigabe auslösen. Nutze zunächst Blender, Godot, Krita, GIMP, Inkscape und frei verwendbare Asset-Generatoren. Ein Lizenzname ist kein Beweis für automatisierbare Installation. Beachte Lizenzbedingungen für kommerzielle Apps, Kinderinhalte und Redistribution.
+
+## C.8 MEILENSTEINE, VERIFIKATION, LIEFERGEGENSTÄNDE
+M0: Tool-Inventar + echter alter Screenshot + Referenzen + Repo-SHA + CI-Situation.
+M1: Hochwertige Menü-Hero-Ansicht (Lumo-Gesicht/Kart/Podest, alle fünf Modi auf Fold) + echtes Vorher/Nachher.
+M2: Sonnenhafen-Spielstrecke mit Landmarken, Licht, Kart-Handling und 2–3 nachvollziehbar durchgespielten Runden; Screenshots und Kurzvideo/GIF soweit tatsächlich herstellbar.
+M3: Rampen/Looping/Air-Steer/Boost + 3D-VFX + Fahrphysiktests + Bildvergleich.
+M4: Ergebnis/1.-Platz-Lorbeer, Garage/Stats und Audio + Fold + Screenshots.
+M5: Styles für Cards/Bauwelt/4 Gewinnt ohne Lern-App-Regressions.
+M6: Flutter/Godot/Android volle Tests, tatsächlich installierte und gestartete APK, GitHub-Artefakt und protokollierte verbleibende Grafikabweichungen.
+
+In jedem Meilenstein sichtbare Nutzerkontrolle: Referenzlink, VORHER-Link, NACHHER-Link, VERGLEICH-Link, Commit und Screenshots aus echten Runtime-Fenstern. Release nur als 'fertig', wenn die Funktion vollständig läuft, keine großen unkorrigierten Abweichungen zum gewünschten Stil verbleiben, die Interaktion auf Fold nicht abgeschnitten ist und die Android-Installation verifiziert wurde.
+
+**SOFORT AUSFÜHREN:** Tool Capability Inventory, GitHub-Status und echten Kart-Menü-Vorher-Screenshot ermitteln, direkt zeigen, einen markentreuen 3D-/HUD-Fix implementieren und das erste Nachher-Bild zur Nutzerkontrolle ausgeben.
