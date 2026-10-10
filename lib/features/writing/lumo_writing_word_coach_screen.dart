@@ -29,6 +29,7 @@ import '../../widgets/fox/lumo_reaction_companion.dart';
 import '../../widgets/lumo/lumo.dart';
 import '../learning_modules/learning_module_progress.dart';
 import '../learning_modules/lumo_phrases.dart';
+import 'widgets/lumo_ink_surface.dart';
 import 'writing_engine.dart';
 import 'writing_feature_flags.dart';
 
@@ -258,11 +259,11 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   /// Fertig-Button kommt).
   bool _drawing = false;
 
-  void _onPanStart(DragStartDetails d) {
+  void _onPanStart(Offset localPosition) {
     if (_checkInFlight || _learningProgress.hasPending) return;
     setState(() {
       _drawing = true;
-      _currentPoints = [d.localPosition];
+      _currentPoints = [localPosition];
     });
     // Phase 3: Lumo guckt aktiv mit waehrend das Kind schreibt.
     if (_companionMood != LumoReactionMood.cheer) {
@@ -270,16 +271,13 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     }
   }
 
-  void _onPanUpdate(DragUpdateDetails d) {
-    if (_checkInFlight || _learningProgress.hasPending) return;
-    setState(() => _currentPoints = [..._currentPoints, d.localPosition]);
+  void _onPanUpdate(Offset localPosition) {
+    if (_checkInFlight || _learningProgress.hasPending || !_drawing) return;
+    setState(() => _currentPoints = [..._currentPoints, localPosition]);
   }
 
-  void _onPanEnd(DragEndDetails _) {
-    // Strich ist beendet -> Scroll wieder erlauben.
-    if (_drawing) {
-      _drawing = false;
-    }
+  void _onPanEnd() {
+    _drawing = false;
     if (_currentPoints.length > 1) {
       final pts = List<Offset>.of(_currentPoints);
       setState(() {
@@ -299,7 +297,14 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
           } catch (_) {}
         }
       }
+    } else if (_currentPoints.isNotEmpty) {
+      setState(() => _currentPoints = []);
     }
+  }
+
+  void _onPanCancel() {
+    _drawing = false;
+    if (_currentPoints.isNotEmpty) setState(() => _currentPoints = []);
   }
 
   void _clearCanvas() {
@@ -597,11 +602,9 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
             _buildTopBar(),
             Expanded(
               child: SingleChildScrollView(
-                // Heinz' Schreib-Bug: physics auf NeverScrollable solange
-                // ein Strich aktiv ist - sonst klaut Scroll die Pan-Geste.
-                physics: _drawing
-                    ? const NeverScrollableScrollPhysics()
-                    : const ClampingScrollPhysics(),
+                // Stable physics: switching while drawing used to relocate
+                // the page and its prompt. Ink pointers are reserved locally.
+                physics: const ClampingScrollPhysics(),
                 padding: const EdgeInsets.all(16),
                 child: AnimatedBuilder(
                   animation: _entryCtrl,
@@ -718,8 +721,9 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   Widget _buildPrompt() {
     final voiceEnabled = widget.appState.state.settings.voiceEnabled;
-    final letterPrompt = 'Schreib Buchstabe ${_letterCursor + 1} von '
-        '${_currentTask.letters.length}.';
+    final currentLetter = _currentTask.letters[_letterCursor];
+    final letterPrompt = 'Schreibe den Buchstaben $currentLetter '
+        '(${_letterCursor + 1} von ${_currentTask.letters.length}).';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -854,16 +858,12 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(17),
-          child: GestureDetector(
-            // Behavior.opaque sichert dass der Canvas die Geste
-            // wirklich packt, nicht der Scroll-Parent.
-            behavior: HitTestBehavior.opaque,
-            onPanStart: _onPanStart,
-            onPanUpdate: _onPanUpdate,
-            onPanEnd: _onPanEnd,
-            onPanCancel: () {
-              if (_drawing) setState(() => _drawing = false);
-            },
+          child: LumoInkSurface(
+            key: const ValueKey('lumo-word-ink-surface'),
+            onStart: _onPanStart,
+            onUpdate: _onPanUpdate,
+            onEnd: _onPanEnd,
+            onCancel: _onPanCancel,
             child: AnimatedBuilder(
               animation: _demoCtrl,
               builder: (ctx, child) {
