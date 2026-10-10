@@ -5,7 +5,7 @@ on:
     branches:
       - chatgpt/lumo-1926-sulafat-apk-2026-10-10
     paths:
-      - .github/workflows/lumo-1926-apk.yml
+      - .github/workflows/lumo-1926-sulafat-apk.yml
   workflow_dispatch:
 
 concurrency:
