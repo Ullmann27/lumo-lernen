@@ -96,6 +96,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   bool _currentLetterHadMistake = false;
   bool _currentLetterHintUsed = false;
   bool _wordHintUsed = false;
+  bool _showCurrentLetterHint = false;
   bool _finishShown = false;
   bool _finishDismissed = false;
 
@@ -448,6 +449,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
         _letterCursor++;
         _currentLetterHadMistake = false;
         _currentLetterHintUsed = false;
+        _showCurrentLetterHint = false;
         _strokes.clear();
         _currentPoints = [];
         _lastFeedback = null;
@@ -468,6 +470,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
       _currentLetterHadMistake = false;
       _currentLetterHintUsed = false;
       _wordHintUsed = false;
+      _showCurrentLetterHint = false;
       _completedSlots.clear();
       _strokes.clear();
       _currentPoints = [];
@@ -722,8 +725,11 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   Widget _buildPrompt() {
     final voiceEnabled = widget.appState.state.settings.voiceEnabled;
     final currentLetter = _currentTask.letters[_letterCursor];
-    final letterPrompt = 'Schreibe den Buchstaben $currentLetter '
-        '(${_letterCursor + 1} von ${_currentTask.letters.length}).';
+    final letterPrompt = _showCurrentLetterHint
+        ? 'Schreibe den Buchstaben $currentLetter '
+            '(${_letterCursor + 1} von ${_currentTask.letters.length}).'
+        : 'Schreibe Buchstabe ${_letterCursor + 1} von '
+            '${_currentTask.letters.length} nach Gehör.';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -738,6 +744,22 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
           leading: const LumoIdleFox(size: 44),
           onSpeakerTap: voiceEnabled ? _speakPrompt : null,
         ),
+        if (voiceEnabled && !_showCurrentLetterHint) ...[
+          const SizedBox(height: 6),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              onPressed: _checkInFlight || _learningProgress.hasPending
+                  ? null
+                  : () {
+                      _markHintUsed();
+                      setState(() => _showCurrentLetterHint = true);
+                    },
+              icon: const Icon(Icons.help_outline_rounded),
+              label: const Text('Buchstabenhilfe anzeigen'),
+            ),
+          ),
+        ],
         if (!voiceEnabled) ...[
           const SizedBox(height: 8),
           Text(letterPrompt,
