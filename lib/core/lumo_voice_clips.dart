@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-/// Vorproduzierte Lumo-Sprachclips (Piper, CC0) für häufige feste Sätze.
+/// Pre-produced German Lumo speech. Runtime is entirely offline; no child's
+/// text is submitted to the generation service.
 ///
 /// Der Katalog `assets/audio/voice/lumo/catalog.json` wird von
 /// `tools/voice/lumo_voice_gen.py` erzeugt. Variable Texte (Aufgaben,
@@ -14,6 +15,7 @@ class LumoVoiceClips {
   static const String catalogAsset = 'assets/audio/voice/lumo/catalog.json';
 
   static Map<String, LumoVoiceClip>? _clips;
+  static Map<String, String> _aliases = const {};
   static Future<void>? _loading;
 
   /// Gleiche Normalisierung wie `normalize_key` im Generator.
@@ -32,6 +34,9 @@ class LumoVoiceClips {
     try {
       final raw = await bundle.loadString(catalogAsset);
       _clips = parseCatalog(raw);
+      final catalog = jsonDecode(raw) as Map<String, dynamic>;
+      final aliases = catalog['aliases'] as Map<String, dynamic>? ?? const {};
+      _aliases = aliases.map((key, value) => MapEntry(key, value as String));
     } catch (e) {
       _clips = const {};
       if (kDebugMode) debugPrint('[LumoVoiceClips] kein Katalog: $e');
@@ -61,11 +66,15 @@ class LumoVoiceClips {
   @visibleForTesting
   static void debugSetCatalog(Map<String, LumoVoiceClip>? clips) {
     _clips = clips;
+    _aliases = const {};
     _loading = clips == null ? null : Future<void>.value();
   }
 
   /// Clip für genau diesen Text, falls vorhanden und geladen.
-  static LumoVoiceClip? lookup(String text) => _clips?[keyFor(text)];
+  static LumoVoiceClip? lookup(String text) {
+    final key = keyFor(text);
+    return _clips?[key] ?? _clips?[_aliases[key]];
+  }
 
   static int get count => _clips?.length ?? 0;
 }

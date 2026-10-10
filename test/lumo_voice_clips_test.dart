@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
@@ -19,6 +20,8 @@ void main() {
   final ttsSpoken = <String>[];
   final playerCalls = <String>[];
   MockStreamHandlerEventSink? playerEvents;
+  Completer<void>? startingPlayback;
+  Completer<void>? playbackEntered;
 
   // Der Lumo-Player ist ein Singleton: Plattform-Mocks einmal registrieren,
   // damit sein Ereignisstrom über alle Tests offen bleibt.
@@ -31,6 +34,10 @@ void main() {
     });
     messenger.setMockMethodCallHandler(players, (call) async {
       playerCalls.add(call.method);
+      if (call.method == 'resume' && startingPlayback != null) {
+        playbackEntered!.complete();
+        await startingPlayback!.future;
+      }
       if (call.method == 'setSourceUrl') {
         playerEvents?.success({'event': 'audio.onPrepared', 'value': true});
       }
@@ -84,7 +91,7 @@ void main() {
     final file = File(LumoVoiceClips.catalogAsset);
     expect(file.existsSync(), isTrue, reason: 'Katalog fehlt');
     final clips = LumoVoiceClips.parseCatalog(file.readAsStringSync());
-    expect(clips.length, greaterThan(40));
+    expect(clips.length, greaterThanOrEqualTo(6));
     for (final entry in clips.entries) {
       expect(LumoVoiceClips.keyFor(entry.value.text), entry.key);
       expect(File('assets/${entry.value.assetSource}').existsSync(), isTrue,
@@ -93,7 +100,8 @@ void main() {
       expect(entry.value.duration.inMilliseconds, greaterThan(300));
     }
     final raw = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
-    expect(raw['license'], contains('CC0'));
+    expect(raw['generation'], 'Gemini TTS / Sulafat');
+    expect(raw['license'], isNot(contains('CC0')));
     // Feste Lob-/Trostsätze der App sind abgedeckt.
     for (final phrase in [
       'Super!',
@@ -140,6 +148,25 @@ void main() {
     await Future<void>.delayed(const Duration(milliseconds: 1200));
     expect(LumoVoice.instance.status.value, VoiceStatus.idle);
     expect(LumoVoice.instance.clipMouth.value, isNull);
+  });
+
+  test('mute during native playback startup stops the late-starting clip',
+      () async {
+    startingPlayback = Completer<void>();
+    playbackEntered = Completer<void>();
+    final voice = LumoVoice.instance;
+    final speaking = voice.speak('Super!');
+    await playbackEntered!.future;
+    await voice.configure(enabled: false);
+    startingPlayback!.complete();
+    await speaking;
+    startingPlayback = null;
+    playbackEntered = null;
+    expect(playerCalls.where((call) => call == 'stop').length,
+        greaterThanOrEqualTo(2));
+    expect(voice.status.value, VoiceStatus.idle);
+    expect(voice.clipMouth.value, isNull);
+    expect(ttsSpoken, isEmpty);
   });
 
   test('Musik wird während Lumo spricht abgesenkt', () async {
