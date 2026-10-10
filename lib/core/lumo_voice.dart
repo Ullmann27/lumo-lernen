@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' show Platform;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
@@ -16,9 +17,10 @@ import 'lumo_voice_policy.dart';
 /// - emotionale Sprechmodi statt immer gleicher TTS-Ausgabe
 /// - stabiler Fallback ohne neue Build-Risiken
 ///
-/// Dieselbe einstellbare deutsche TTS-Stimme wird für Vorschau und Lern-App
-/// verwendet. Historische vorproduzierte Clips sind standardmäßig deaktiviert,
-/// damit sie die gewählte Stimme und Frequenz nicht mehr überschreiben.
+/// Die Original-Lumo-Stimme (vorproduzierte Sulafat-Aufnahmen) hat Vorrang.
+/// Bekannte Saetze verwenden die Originalaufnahme und bewegen den Mund;
+/// dynamische Lerntexte werden vorerst mit lokaler deutscher TTS gesprochen.
+/// Die Eltern-Stimmprobe spielt dieselbe Originalaufnahme wie die Lern-App.
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
@@ -46,12 +48,10 @@ class LumoVoice {
   /// null, wenn kein Clip spricht (dann gelten Wortgrenzen der TTS).
   final ValueNotifier<double?> clipMouth = ValueNotifier<double?>(null);
 
-  /// The parents' `Stimme testen` preview uses native German TTS. Always
-  /// use that SAME device voice, tempo and pitch throughout the app by
-  /// default. Previously automatic canned audio clips bypassed all sliders
-  /// and unexpectedly sounded like an entirely different Lumo.
-  /// Explicit test/legacy preview callers may still opt in to clip playback.
-  bool clipsEnabled = false;
+  /// Original-Lumo-Aufnahmen in der App verwenden, auch bei `Stimme testen`.
+  /// Nur in Flutter-Unit-Tests ohne Audio-Plugin standardmaessig deaktiviert.
+  bool clipsEnabled =
+      kIsWeb || !Platform.environment.containsKey('FLUTTER_TEST');
 
   AudioPlayer? _clipPlayer;
   StreamSubscription<void>? _clipDone;
@@ -253,7 +253,7 @@ class LumoVoice {
         await _tts.stop();
         await _stopClip();
         if (!_enabled || generation != _speechGeneration) return;
-        if (clipsEnabled && await _speakClip(text, generation)) return;
+        if (await _speakClip(text, generation)) return;
         if (!_enabled || generation != _speechGeneration) return;
         await _applyStyle(style);
         if (!_enabled || generation != _speechGeneration) return;
