@@ -67,7 +67,8 @@ class _LumoInkSurfaceState extends State<LumoInkSurface> {
           _activePointer = null;
           widget.onCancel();
         },
-        child: widget.child,
+        // Preserve the entire bounded canvas as a pointer hit target.
+        child: SizedBox.expand(child: widget.child),
       ),
     );
   }
