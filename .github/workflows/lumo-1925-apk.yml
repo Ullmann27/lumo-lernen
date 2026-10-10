@@ -1,4 +1,5 @@
 name: LUMO 1925 verified Android APK (voice and writing)
+# Build includes repaired compiler errors and the full-size pointer ink target.
 on:
   push:
     branches:
