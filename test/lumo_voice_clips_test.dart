@@ -135,6 +135,23 @@ void main() {
     expect(playerCalls, isNot(contains('resume')));
   });
 
+  test('parents voice preview and normal lessons use the same native TTS', () async {
+    final voice = LumoVoice.instance;
+    // The legacy clip catalog contains this exact utterance. The regular
+    // app must nevertheless honour the pitch/tempo from parents settings.
+    voice.clipsEnabled = false;
+    await voice.configure(enabled: true, rate: 0.50, pitch: 1.15);
+    await voice.speak('Super!');
+    expect(ttsSpoken.single, contains('Super!'));
+    expect(playerCalls, isNot(contains('resume')),
+        reason: 'Recorded voice cannot override chosen TTS');
+    ttsSpoken.clear();
+    await voice.test();
+    expect(ttsSpoken.single, contains('Ich bin Lumo'));
+    expect(playerCalls, isNot(contains('resume')));
+    await voice.configure(rate: 0.35, pitch: 1.0);
+  });
+
   test('stumm geschaltet spricht weder Clip noch Synthese', () async {
     LumoVoice.instance.isEnabled = false;
     await LumoVoice.instance.speak('Super!');
