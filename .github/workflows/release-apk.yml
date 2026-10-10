@@ -4,8 +4,9 @@ on:
   pull_request:
     branches: ['claude/lumo-gesamt']
   push:
-    branches: ['copilot/5979796457-update-integrationsaudit']
-    paths: ['.github/workflows/release-apk.yml']
+    # One isolated, already validated Godot->Flutter recovery candidate.
+    branches: ['copilot/5979796457-update-integrationsaudit', 'chatgpt/lumo-aaa-kart-integration-2026-10-10']
+    paths: ['.github/workflows/release-apk.yml', 'config/godot-source.json', 'pubspec.yaml']
 permissions:
   contents: write
 concurrency:
