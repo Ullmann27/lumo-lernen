@@ -371,39 +371,41 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       );
 
   Widget _companion({required bool wide}) {
-    final compact = wide && MediaQuery.sizeOf(context).height < 440;
-    final fox = RepaintBoundary(
-      child: Image.asset('assets/lumo_design/fox/fox_thumb_wink.png',
-          height: wide
-              ? compact
-                  ? 64
-                  : 210
-              : 80,
-          fit: BoxFit.contain),
-    );
-    return wide
-        ? SingleChildScrollView(
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              _modes(compact: compact),
-              SizedBox(height: compact ? 4 : 12),
-              _turnLabel(),
-              const SizedBox(height: 8),
-              fox,
-              const SizedBox(height: 4),
-              const Text('Waagrecht, senkrecht oder diagonal.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 14)),
-            ]),
-          )
-        : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            fox,
-            const SizedBox(width: 12),
-            const Flexible(
-              child: Text(
-                  'Vier Steine. Eine Reihe.\nJeder Zug ist ein neuer Versuch!',
-                  style: TextStyle(color: Colors.white, fontSize: 14)),
-            ),
-          ]);
+    Widget fox(double height) => RepaintBoundary(
+          child: Image.asset('assets/lumo_design/fox/fox_thumb_wink.png',
+              key: const ValueKey('connect-companion-fox'),
+              height: height,
+              fit: BoxFit.contain),
+        );
+    if (wide) {
+      return LayoutBuilder(builder: (context, constraints) {
+        // An embedded/foldable viewport may be smaller than MediaQuery.
+        // Size the mascot from the space this panel actually receives.
+        final compact = constraints.maxHeight < 360;
+        return SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            _modes(compact: compact),
+            SizedBox(height: compact ? 4 : 12),
+            _turnLabel(),
+            const SizedBox(height: 8),
+            fox(compact ? 64 : 210),
+            const SizedBox(height: 4),
+            const Text('Waagrecht, senkrecht oder diagonal.',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 14)),
+          ]),
+        );
+      });
+    }
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      fox(80),
+      const SizedBox(width: 12),
+      const Flexible(
+        child: Text(
+            'Vier Steine. Eine Reihe.\nJeder Zug ist ein neuer Versuch!',
+            style: TextStyle(color: Colors.white, fontSize: 14)),
+      ),
+    ]);
   }
 
   Widget _columnControls() => Center(

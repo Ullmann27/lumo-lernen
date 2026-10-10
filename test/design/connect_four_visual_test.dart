@@ -63,6 +63,15 @@ void main() {
         await tester.pump(const Duration(milliseconds: 400));
         await tester.pump();
       }
+      if (size.width > size.height) {
+        final fox =
+            tester.getRect(find.byKey(const ValueKey('connect-companion-fox')));
+        final controls =
+            tester.getRect(find.byKey(const ValueKey('connect-column-3')));
+        expect(fox.top, greaterThanOrEqualTo(0));
+        expect(fox.bottom, lessThanOrEqualTo(controls.top),
+            reason: 'The complete mascot must fit above the game controls.');
+      }
       final folder = Platform.environment['LUMO_CONNECT_CAPTURES'];
       if (folder != null) {
         final boundary =
