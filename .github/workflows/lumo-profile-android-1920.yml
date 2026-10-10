@@ -1,0 +1,241 @@
+name: Lumo 1920 actual Android profile migration
+
+on:
+  push:
+    branches: [codex/lumo-profile-android-1920-2026-10-10]
+    paths:
+      - .github/workflows/lumo-profile-android-1920.yml
+      - .github/probes/profile_assignment_android_probe.py
+      - tools/android_qa/tests/test_profile_assignment_android_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-profile-android-1920-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android-profile:
+    name: Android 15 profile update from 1919 to 1920
+    if: github.ref == 'refs/heads/codex/lumo-profile-android-1920-2026-10-10'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LUMO_EXPECT_SOURCE: 554c2b6a0a12e36a2b5497c787acb14f6f6d85fd
+      LUMO_EXPECT_GODOT: 6b40153126171a5b3193c830855f42c9c597f0a1
+      LUMO_EXPECT_VERSION: '1920'
+      LUMO_EXPECT_ANDROID_API: '35'
+      LUMO_BASE_DIGEST: 8e2ea31fed333fd8e89becd073b100c53ce9449017badb43ab4bc28022cc51aa
+      # Measured from the actual candidate APK in artifact 11664202388.
+      LUMO_CANDIDATE_SHA256: 5849e95675adbaad1fdd3a526c53606f6192a2ce66d22d88d13cf71323ed60c8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Preserve run identity before artifact downloads
+        run: |
+          mkdir -p profile-proof
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          Path('profile-proof/QA-RUN.json').write_text(json.dumps({
+              'qa_commit': os.environ['GITHUB_SHA'],
+              'qa_run': os.environ['GITHUB_RUN_ID'],
+              'qa_run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'qa_ref': os.environ['GITHUB_REF'],
+              'apk_source_commit': os.environ['LUMO_EXPECT_SOURCE'],
+              'candidate_apk_sha256': os.environ['LUMO_CANDIDATE_SHA256'],
+              'baseline_apk_sha256': os.environ['LUMO_BASE_DIGEST'],
+              'status': 'INITIALIZED_NOT_VERIFIED',
+          }, indent=2) + '\n')
+          PY
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37975946198
+          name: lumo-visual-apk-37975946198
+          path: baseline/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38033953828
+          name: lumo-visual-apk-38033953828
+          path: candidate/
+      - name: Bind both actual APK files before starting Android
+        run: |
+          set -euo pipefail
+          mkdir -p profile-proof/artifact-inputs
+          python3 - <<'PY'
+          import hashlib, json, os, re, shutil
+          from pathlib import Path
+          expected = os.environ['LUMO_CANDIDATE_SHA256']
+          assert re.fullmatch(r'[0-9a-f]{64}', expected), 'Candidate APK digest is not pinned'
+          rows = []
+          for directory, commit, version, code, digest, run in (
+              ('baseline', 'd07b2b48593b939a2a0446fcb83a25a2b2a59db6', '0.12.12', 1919,
+               os.environ['LUMO_BASE_DIGEST'], 37975946198),
+              ('candidate', os.environ['LUMO_EXPECT_SOURCE'], '0.12.13', 1920,
+               expected, 38033953828),
+          ):
+              root = Path(directory)
+              apk = root / 'Lumo-Lernen-Neu.apk'
+              with apk.open('rb') as stream:
+                  actual = hashlib.file_digest(stream, 'sha256').hexdigest()
+              assert actual == digest, directory
+              provenance = json.loads((root / 'BUILD-PROVENANCE.json').read_text())
+              assert provenance['flutter_source_commit'] == commit
+              assert provenance['tracked_source_clean'] is True
+              for name in ('BUILD-PROVENANCE.json', 'APK-VERIFICATION.json'):
+                  report = json.loads((root / name).read_text())
+                  assert report['sha256'] == actual and report['bytes'] == apk.stat().st_size
+                  assert report['versionName'] == version and report['versionCode'] == code
+                  assert report['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+                  assert report['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+                  assert report['godot']['engine'] == '4.6.3'
+                  assert report['godot']['revision'] == (
+                      'd140e5b05cb5afacfe675559b78da4254cb1daed' if directory == 'baseline'
+                      else os.environ['LUMO_EXPECT_GODOT'])
+                  shutil.copyfile(root / name, Path('profile-proof/artifact-inputs') / f'{directory}-{name}')
+              rows.append({'role': directory, 'source_commit': commit, 'artifact_run': run,
+                           'apk_sha256': actual, 'apk_bytes': apk.stat().st_size,
+                           'version_name': version, 'version_code': code})
+          Path('profile-proof/artifact-inputs/INPUTS.json').write_text(json.dumps({
+              'qa_commit': os.environ['GITHUB_SHA'], 'qa_run': os.environ['GITHUB_RUN_ID'],
+              'apk_source_commit': os.environ['LUMO_EXPECT_SOURCE'], 'inputs': rows,
+              'scope': 'Real UI-created learning data and children; in-place APK update; read-only stored-state evidence',
+          }, indent=2) + '\n')
+          PY
+      - name: Prepare existing independent live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > profile-proof/dependencies.txt
+          python3 -m py_compile .github/probes/profile_assignment_android_probe.py
+          test -f tools/android_qa/tests/test_profile_assignment_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_profile_assignment_android_probe.py -v 2>&1 | tee profile-proof/profile-parser-tests.log
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > profile-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > profile-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' profile-proof/mesa-renderer.txt
+      - name: Prepare the exact API 35 system image
+        timeout-minutes: 11
+        run: |
+          set -euo pipefail
+          mkdir -p profile-proof/system-image
+          echo '8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51  tools/android_qa/prepare_system_image.py' | sha256sum -c -
+          python3 tools/android_qa/prepare_system_image.py --api 35 --out profile-proof/system-image --timeout 600
+      - name: Exercise real old-data assignment and A/B storage through the app
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/profile_assignment_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out profile-proof
+      - name: Log saved profile evidence for remote review
+        if: always()
+        # Diagnostic logging cannot turn a failed app probe into a passing job.
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, json, struct
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          root = Path('profile-proof').resolve()
+          result_path = root / 'result.json'
+          if not result_path.is_file():
+              print('LUMO_PROFILE_NO_RESULT: probe did not produce a result')
+              raise SystemExit(0)
+          def read(path, limit):
+              assert path.resolve().parent == root and not path.is_symlink(), path.name
+              raw = path.read_bytes()
+              assert len(raw) <= limit, (path.name, len(raw))
+              print('LUMO_PROFILE_FILE ' + json.dumps({'name':path.name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}))
+              return raw
+          result = json.loads(read(result_path, 4000000))
+          print('LUMO_PROFILE_RESULT ' + json.dumps(result, ensure_ascii=False))
+          if result.get('status') != 'PASS':
+              files = sorted(root.glob('failure-ui-*.xml'))[-1:]
+              for path in files:
+                  for node in ET.fromstring(read(path, 2000000)).iter('node'):
+                      if node.get('text') or node.get('content-desc') or node.get('focused') == 'true':
+                          keys = ('text','content-desc','class','package','bounds','enabled','clickable','focused','scrollable','visible-to-user')
+                          print('LUMO_PROFILE_NODE ' + json.dumps({k:node.get(k) for k in keys}, ensure_ascii=False))
+          names = (('assignment-success-no-test-scroll.png', 'final-B-has-one.png')
+                   if result.get('status') == 'PASS' else ('failure.png',))
+          for name in names:
+              path = root / name
+              if not path.is_file():
+                  print('LUMO_PROFILE_IMAGE_MISSING ' + name)
+                  continue
+              png = read(path, 4000000)
+              assert png[:8] == b'\x89PNG\r\n\x1a\n' and png[12:16] == b'IHDR'
+              width, height = struct.unpack('>II', png[16:24])
+              print('LUMO_PROFILE_PNG_BEGIN ' + json.dumps({'name':name,'bytes':len(png),'sha256':hashlib.sha256(png).hexdigest(),'width':width,'height':height}))
+              encoded = base64.b64encode(png).decode('ascii')
+              for offset in range(0, len(encoded), 1000):
+                  print('LUMO_PROFILE_PNG_DATA ' + encoded[offset:offset+1000])
+              print('LUMO_PROFILE_PNG_END ' + name)
+          PY
+      - name: Preserve final workflow status
+        if: always()
+        env:
+          LUMO_QA_JOB_STATUS: ${{ job.status }}
+        run: |
+          mkdir -p profile-proof
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          Path('profile-proof/WORKFLOW-STATUS.json').write_text(json.dumps({
+              'qa_commit': os.environ['GITHUB_SHA'],
+              'qa_run': os.environ['GITHUB_RUN_ID'],
+              'job_status_before_artifact_upload': os.environ['LUMO_QA_JOB_STATUS'],
+              'probe_result_exists': Path('profile-proof/result.json').is_file(),
+              'note': 'Workflow status is not a substitute for the probe result.',
+          }, indent=2) + '\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1920-android-profile-${{ github.run_id }}
+          path: profile-proof/
+          if-no-files-found: error
+          retention-days: 30
