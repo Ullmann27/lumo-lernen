@@ -1,25 +1,4 @@
-// ════════════════════════════════════════════════════════════════════════
-// LUMO VIER GEWINNT — klassisches Brettspiel, Lumo als KI-Gegner
-// ════════════════════════════════════════════════════════════════════════
-// Heinz' Wunsch: kindbekannte Brettspiele mit Lumo als aktivem Gegner.
-//
-// Spielregeln:
-//   - 7 Spalten x 6 Reihen
-//   - Kind und Lumo wechseln sich ab, jeder wirft eine Spielsteine in
-//     eine Spalte
-//   - Stein fallt nach unten, bis er auf einen anderen Stein oder den
-//     Boden trifft
-//   - Wer zuerst 4 Steine in Reihe hat (waagrecht, senkrecht, diagonal)
-//     gewinnt
-//   - Volles Brett ohne Sieger -> Unentschieden
-//
-// Lumo-KI:
-//   - Schwierigkeit "leicht" (Klasse-1-freundlich): 70% sieht Lumo nur
-//     einen Zug voraus, 30% spielt zufaellig
-//   - Score-Funktion zaehlt 2er und 3er Reihen + blockiert offensichtliche
-//     Bedrohungen
-// ════════════════════════════════════════════════════════════════════════
-
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -27,569 +6,560 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
+import '../../../widgets/design/lumo_motion.dart';
 import '../shared/lumo_game_pause_scope.dart';
+import 'connect_four_engine.dart';
 
-enum _Cell { empty, kind, lumo }
-
-const int _cols = 7;
-const int _rows = 6;
-const int _winLength = 4;
+const _cyan = Color(0xFF53DDFD);
+const _gold = Color(0xFFFFD166);
+const _ink = Color(0xFF071A3D);
+const _panel = Color(0xEB0C2C58);
 
 class LumoConnectFourScreen extends StatefulWidget {
   const LumoConnectFourScreen({super.key, required this.appState, this.seed});
-  final int? seed;
+
   final LumoAppState appState;
+  final int? seed;
 
   @override
   State<LumoConnectFourScreen> createState() => _LumoConnectFourScreenState();
 }
 
-class _LumoConnectFourScreenState extends State<LumoConnectFourScreen> {
-  late List<List<_Cell>> _board;
-  _Cell _turn = _Cell.kind;
-  bool _busy = false;
-  List<List<int>>? _winLine; // Liste von [row, col] der Gewinnsteine
-  late final math.Random _rng;
+class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
+    with SingleTickerProviderStateMixin {
+  ConnectFourEngine _game = ConnectFourEngine();
   final _clock = LumoGameTurnClock();
+  late final math.Random _random;
+  late final AnimationController _fall;
+  ConnectPosition? _fallPosition;
+  ConnectPiece _fallPiece = ConnectPiece.empty;
+  bool _busy = false;
+  bool _rewarded = false;
+  bool _twoPlayers = false;
+  int _round = 0;
+  String _message = 'Vier in einer Reihe. Du fängst an!';
+
+  bool get _reduced =>
+      widget.appState.state.settings.reduceAnimations ||
+      widget.appState.state.settings.calmMode ||
+      LumoMotion.reduced(context);
 
   @override
   void initState() {
     super.initState();
-    _rng = widget.seed == null ? math.Random() : math.Random(widget.seed);
-    _resetBoard();
+    _random = widget.seed == null ? math.Random() : math.Random(widget.seed);
+    _fall = AnimationController(vsync: this);
+    _clock.addListener(_pauseChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _say('Vier gewinnt! Du bist Gelb, ich bin Rot. Du faengst an.');
+      if (mounted) {
+        unawaited(LumoVoice.instance.speak(
+          'Vier gewinnt! Du spielst mit Cyan, Lumo mit Gold. Du fängst an!',
+          style: VoiceStyle.greeting,
+        ));
+      }
     });
+  }
+
+  void _pauseChanged() {
+    if (_clock.value) {
+      _fall.stop();
+      unawaited(LumoVoice.instance.stop());
+    } else if (_fallPosition != null && !_reduced) {
+      _fall.forward();
+    }
+    if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
+    _round++;
+    _clock.removeListener(_pauseChanged);
     _clock.dispose();
+    _fall.dispose();
+    unawaited(LumoVoice.instance.stop());
     super.dispose();
   }
 
-  void _say(String text) {
-    try {
-      LumoVoice.instance.speak(text);
-    } catch (_) {}
-  }
-
-  void _resetBoard() {
+  void _restart() {
+    _round++;
     _clock.cancel();
-    _board = List.generate(
-      _rows,
-      (_) => List<_Cell>.filled(_cols, _Cell.empty),
-    );
-    _turn = _Cell.kind;
-    _busy = false;
-    _winLine = null;
-  }
-
-  void _tapColumn(int col) {
-    if (_clock.value || _busy || _turn != _Cell.kind || _winLine != null) {
-      return;
-    }
-    if (!_dropPiece(col, _Cell.kind)) return;
-    HapticFeedback.lightImpact();
-    setState(() {});
-    final won = _checkWinner(_Cell.kind);
-    if (won != null) {
-      _onWin(_Cell.kind, won);
-      return;
-    }
-    if (_isBoardFull()) {
-      _onDraw();
-      return;
-    }
-    _turn = _Cell.lumo;
-    _busy = true;
-    setState(() {});
-    _clock.schedule(const Duration(milliseconds: 900), _lumoMove);
-  }
-
-  /// Wirft einen Stein in die Spalte. Gibt false zurueck, wenn die
-  /// Spalte voll ist.
-  bool _dropPiece(int col, _Cell who) {
-    for (var row = _rows - 1; row >= 0; row--) {
-      if (_board[row][col] == _Cell.empty) {
-        _board[row][col] = who;
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /// Macht den Zug rueckgaengig (fuer KI-Suche).
-  void _undoTopOf(int col) {
-    for (var row = 0; row < _rows; row++) {
-      if (_board[row][col] != _Cell.empty) {
-        _board[row][col] = _Cell.empty;
-        return;
-      }
-    }
-  }
-
-  bool _isBoardFull() {
-    for (var c = 0; c < _cols; c++) {
-      if (_board[0][c] == _Cell.empty) return false;
-    }
-    return true;
-  }
-
-  // ──────────────────────────────────────────────────────────────────
-  // LUMO-KI
-  // ──────────────────────────────────────────────────────────────────
-
-  void _lumoMove() {
-    if (!mounted || _turn != _Cell.lumo || _winLine != null) return;
-    final col = _pickBestColumnForLumo();
-    if (col == null) {
-      _onDraw();
-      return;
-    }
-    _dropPiece(col, _Cell.lumo);
-    HapticFeedback.lightImpact();
-    setState(() {});
-    final won = _checkWinner(_Cell.lumo);
-    if (won != null) {
-      _onWin(_Cell.lumo, won);
-      return;
-    }
-    if (_isBoardFull()) {
-      _onDraw();
-      return;
-    }
-    _turn = _Cell.kind;
-    _busy = false;
-    setState(() {});
-    _say('Du bist dran!');
-  }
-
-  /// Klasse-1-freundliche KI: 70% strategisch (blocken / gewinnen),
-  /// 30% zufaellig. So gewinnt das Kind oft genug, hat aber Lerneffekt.
-  int? _pickBestColumnForLumo() {
-    final validCols = <int>[
-      for (var c = 0; c < _cols; c++)
-        if (_board[0][c] == _Cell.empty) c
-    ];
-    if (validCols.isEmpty) return null;
-
-    // 1. Kann Lumo SOFORT gewinnen?
-    for (final c in validCols) {
-      if (_dropPiece(c, _Cell.lumo)) {
-        final win = _checkWinner(_Cell.lumo);
-        _undoTopOf(c);
-        if (win != null) return c;
-      }
-    }
-    // 2. Muss Lumo das Kind BLOCKEN, sonst gewinnt es?
-    for (final c in validCols) {
-      if (_dropPiece(c, _Cell.kind)) {
-        final win = _checkWinner(_Cell.kind);
-        _undoTopOf(c);
-        if (win != null) return c;
-      }
-    }
-    // 3. 30% zufaellig (Klasse-1-Fairness)
-    if (_rng.nextDouble() < 0.30) {
-      return validCols[_rng.nextInt(validCols.length)];
-    }
-    // 4. Score-basierte Wahl (Mitte ist besser als Rand)
-    final scores = <int, int>{};
-    for (final c in validCols) {
-      // Bonus fuer Mitte (Spalte 3 ist optimal in 7-col Brett)
-      final centerBonus = -((c - 3).abs() * 2);
-      // Pluspunkte fuer "macht 3er Reihe"
-      if (_dropPiece(c, _Cell.lumo)) {
-        var ownPotential = _countPotentialLines(_Cell.lumo);
-        _undoTopOf(c);
-        scores[c] = centerBonus + ownPotential;
-      } else {
-        scores[c] = centerBonus;
-      }
-    }
-    final sortedCols = validCols.toList()
-      ..sort((a, b) => (scores[b] ?? 0).compareTo(scores[a] ?? 0));
-    return sortedCols.first;
-  }
-
-  /// Zaehlt unbesetzte 4er-Linien fuer die Farbe (Heuristik).
-  int _countPotentialLines(_Cell who) {
-    final other = who == _Cell.lumo ? _Cell.kind : _Cell.lumo;
-    var count = 0;
-    for (var r = 0; r < _rows; r++) {
-      for (var c = 0; c < _cols; c++) {
-        for (final dir in const [
-          [0, 1],
-          [1, 0],
-          [1, 1],
-          [1, -1]
-        ]) {
-          final dr = dir[0];
-          final dc = dir[1];
-          final endR = r + dr * (_winLength - 1);
-          final endC = c + dc * (_winLength - 1);
-          if (endR < 0 || endR >= _rows || endC < 0 || endC >= _cols) continue;
-          var mine = 0;
-          var opp = 0;
-          for (var k = 0; k < _winLength; k++) {
-            final cell = _board[r + dr * k][c + dc * k];
-            if (cell == who) mine++;
-            if (cell == other) opp++;
-          }
-          if (opp == 0) count += mine * mine; // 3er > 2er
-        }
-      }
-    }
-    return count;
-  }
-
-  // ──────────────────────────────────────────────────────────────────
-  // GEWINN-PRUEFUNG
-  // ──────────────────────────────────────────────────────────────────
-
-  /// Gibt die Linie zurueck wenn `who` gewonnen hat, sonst null.
-  List<List<int>>? _checkWinner(_Cell who) {
-    for (var r = 0; r < _rows; r++) {
-      for (var c = 0; c < _cols; c++) {
-        for (final dir in const [
-          [0, 1],
-          [1, 0],
-          [1, 1],
-          [1, -1]
-        ]) {
-          final dr = dir[0];
-          final dc = dir[1];
-          final endR = r + dr * (_winLength - 1);
-          final endC = c + dc * (_winLength - 1);
-          if (endR < 0 || endR >= _rows || endC < 0 || endC >= _cols) continue;
-          var ok = true;
-          for (var k = 0; k < _winLength; k++) {
-            if (_board[r + dr * k][c + dc * k] != who) {
-              ok = false;
-              break;
-            }
-          }
-          if (ok) {
-            return [
-              for (var k = 0; k < _winLength; k++) [r + dr * k, c + dc * k]
-            ];
-          }
-        }
-      }
-    }
-    return null;
-  }
-
-  // ──────────────────────────────────────────────────────────────────
-  // SPIEL-ENDE
-  // ──────────────────────────────────────────────────────────────────
-
-  void _onWin(_Cell who, List<List<int>> line) {
+    _fall.stop();
+    _fall.reset();
+    unawaited(LumoVoice.instance.stop());
     setState(() {
-      _winLine = line;
-      _busy = true;
+      _game = ConnectFourEngine();
+      _fallPosition = null;
+      _fallPiece = ConnectPiece.empty;
+      _busy = false;
+      _rewarded = false;
+      _message = 'Neues Spiel. Du fängst an!';
     });
-    HapticFeedback.heavyImpact();
-    final kindWon = who == _Cell.kind;
-    final stars = kindWon ? 5 : 2;
+  }
+
+  void _setMode(bool twoPlayers) {
+    if (_twoPlayers == twoPlayers) return;
+    _twoPlayers = twoPlayers;
+    _restart();
+  }
+
+  void _tapColumn(int column) {
+    if (_clock.value || _busy || _game.phase != ConnectPhase.playing) return;
+    if (!_twoPlayers && _game.turn == ConnectPiece.lumo) return;
+    _place(column);
+  }
+
+  void _place(int column) {
+    final piece = _game.turn;
+    final position = _game.drop(column);
+    if (position == null) return;
+    final round = _round;
+    final duration = _reduced
+        ? Duration.zero
+        : Duration(milliseconds: 210 + position.row * 30);
+    _fall.duration = duration;
+    _fall.value = 0;
+    setState(() {
+      _busy = true;
+      _fallPiece = piece;
+      _fallPosition = position;
+      _message = piece == ConnectPiece.child
+          ? 'Dein Stein fällt!'
+          : _twoPlayers
+              ? 'Gold ist am Zug.'
+              : 'Lumo setzt seinen Stein.';
+    });
+    if (!_reduced) _fall.forward();
+    unawaited(HapticFeedback.lightImpact().catchError((_) {}));
+    // The same pausable clock controls landing and the bot. An animation
+    // callback from an abandoned round can never advance a new game.
+    _clock.schedule(duration, () {
+      if (!mounted || round != _round) return;
+      _fall.value = 1;
+      setState(() => _fallPosition = null);
+      if (_game.phase != ConnectPhase.playing) {
+        _finish();
+      } else if (!_twoPlayers && _game.turn == ConnectPiece.lumo) {
+        setState(() => _message = 'Lumo denkt nach …');
+        _clock.schedule(const Duration(milliseconds: 540), () {
+          if (!mounted || round != _round) return;
+          final next = _game.chooseLumoColumn(_random);
+          if (next != null) _place(next);
+        });
+      } else {
+        setState(() {
+          _busy = false;
+          _message = _game.turn == ConnectPiece.child
+              ? 'Du bist dran!'
+              : 'Gold ist dran!';
+        });
+        if (_game.turn == ConnectPiece.child) {
+          unawaited(LumoVoice.instance.speak('Du bist dran!'));
+        }
+      }
+    });
+  }
+
+  void _finish() {
+    if (_rewarded) return;
+    _rewarded = true;
+    final drawn = _game.phase == ConnectPhase.draw;
+    final childWon = !drawn && _game.turn == ConnectPiece.child;
+    final stars = drawn
+        ? 3
+        : childWon || _twoPlayers
+            ? 5
+            : 2;
     widget.appState.addStars(stars);
-    widget.appState.addXp(stars * 8);
-    _say(kindWon
-        ? 'Du hast vier in Reihe! $stars Sterne fuer dich!'
-        : 'Ich habe vier in Reihe! Nochmal probieren?');
-    _showFinishDialog(
-        kindWon: kindWon, drawn: false, stars: stars, lumoWon: !kindWon);
-  }
-
-  void _onDraw() {
-    setState(() => _busy = true);
-    HapticFeedback.mediumImpact();
-    widget.appState.addStars(3);
-    widget.appState.addXp(20);
-    _say('Unentschieden! Beide waren gleich gut. 3 Sterne!');
-    _showFinishDialog(kindWon: false, drawn: true, stars: 3, lumoWon: false);
-  }
-
-  void _showFinishDialog({
-    required bool kindWon,
-    required bool drawn,
-    required int stars,
-    required bool lumoWon,
-  }) {
+    widget.appState.addXp(drawn ? 20 : stars * 8);
+    setState(() {
+      _busy = true;
+      _message = drawn
+          ? 'Unentschieden. Stark gespielt!'
+          : childWon
+              ? 'Vier in einer Reihe. Du gewinnst!'
+              : _twoPlayers
+                  ? 'Gold gewinnt!'
+                  : 'Lumo gewinnt. Noch eine Runde?';
+    });
+    unawaited(LumoVoice.instance.speak(_message,
+        style: childWon || drawn ? VoiceStyle.celebrate : VoiceStyle.comfort));
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => LumoGameResultBack(
-          child: AlertDialog(
-        backgroundColor: const Color(0xFFFFFBEB),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        title: Text(
-          kindWon
-              ? '🎉 Du gewinnst!'
-              : drawn
-                  ? '🤝 Unentschieden'
-                  : '🦊 Lumo gewinnt',
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-              fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 22),
-        ),
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
-            5,
-            (i) => Padding(
-              padding: const EdgeInsets.all(2),
-              child: Icon(Icons.star_rounded,
-                  size: 38,
-                  color: i < stars
-                      ? const Color(0xFFFCD34D)
-                      : const Color(0xFFD1D5DB)),
+      builder: (dialogContext) => LumoGameResultBack(
+        child: AlertDialog(
+          backgroundColor: _panel,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(28),
+            side: const BorderSide(color: _cyan),
+          ),
+          title: Text(_message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900)),
+          content: Column(mainAxisSize: MainAxisSize.min, children: [
+            Image.asset('assets/lumo_design/fox/fox_cheer.png', height: 100),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                  5,
+                  (i) => Icon(Icons.star_rounded,
+                      size: 34, color: i < stars ? _gold : Colors.white24)),
             ),
-          ),
+            Text('+$stars Sterne',
+                style: const TextStyle(color: _gold, fontSize: 18)),
+          ]),
+          actions: [
+            LumoPressable(
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.of(dialogContext).pop();
+                    _restart();
+                  },
+                  child: const Text('Nochmal!')),
+            ),
+            LumoPressable(
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.of(dialogContext).pop();
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Zur Spielewelt')),
+            ),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              setState(_resetBoard);
-            },
-            child: const Text('Nochmal!',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.w900,
-                    fontSize: 16)),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-            },
-            child: const Text('Zur Spielewelt',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.w900,
-                    fontSize: 16)),
-          ),
-        ],
-      )),
+      ),
     );
   }
-
-  // ──────────────────────────────────────────────────────────────────
-  // UI
-  // ──────────────────────────────────────────────────────────────────
 
   @override
-  Widget build(BuildContext context) {
-    return LumoGamePauseScope(
+  Widget build(BuildContext context) => LumoGamePauseScope(
         clock: _clock,
-        onRestart: () => setState(_resetBoard),
+        onRestart: _restart,
         child: Scaffold(
-          backgroundColor: const Color(0xFFEFF6FF),
-          body: SafeArea(
-            child: Column(
-              children: [
-                _buildTopBar(),
-                _buildTurnIndicator(),
-                Expanded(child: Center(child: _buildBoard())),
-                const SizedBox(height: 14),
-              ],
+          backgroundColor: _ink,
+          body: Stack(fit: StackFit.expand, children: [
+            Image.asset('assets/lumo_design/bg/bg_glass_islands.png',
+                fit: BoxFit.cover),
+            const ColoredBox(color: Color(0x6603193F)),
+            SafeArea(
+              child: LayoutBuilder(builder: (context, constraints) {
+                final wide = constraints.maxWidth > constraints.maxHeight;
+                return Column(children: [
+                  _header(),
+                  if (!wide) _modes(),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: wide ? 20 : 12, vertical: 8),
+                      child: wide
+                          ? Row(children: [
+                              Expanded(flex: 3, child: _board()),
+                              const SizedBox(width: 20),
+                              Expanded(flex: 2, child: _companion(wide: true)),
+                            ])
+                          : Column(children: [
+                              _turnLabel(),
+                              const SizedBox(height: 12),
+                              Expanded(child: _board()),
+                              const SizedBox(height: 8),
+                              _companion(wide: false),
+                            ]),
+                    ),
+                  ),
+                  _columnControls(),
+                  const SizedBox(height: 8),
+                ]);
+              }),
+            ),
+          ]),
+        ),
+      );
+
+  Widget _header() => Container(
+        color: const Color(0xAA071A3D),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Row(children: [
+          LumoPressable(
+            radius: 14,
+            child: IconButton(
+              tooltip: 'Pausieren / Zurück',
+              onPressed: _clock.pause,
+              icon: const Icon(Icons.arrow_back_rounded, color: _cyan),
             ),
           ),
-        ));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: const BoxDecoration(
-        gradient:
-            LinearGradient(colors: [Color(0xFF60A5FA), Color(0xFF3B82F6)]),
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      child: Row(children: [
-        IconButton(
-          icon: const Icon(Icons.close_rounded, color: Colors.white),
-          tooltip: 'Pausieren / Zurück',
-          onPressed: _clock.pause,
-        ),
-        const Expanded(
-          child: Center(
-            child: Text('Vier gewinnt mit Lumo 🦊',
+          const Expanded(
+            child: Text('LUMO 4 GEWINNT',
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w900,
-                    color: Colors.white)),
+                    color: Color(0xFFFFF0C6))),
           ),
-        ),
-        IconButton(
-          icon: const Icon(Icons.refresh_rounded, color: Colors.white),
-          tooltip: 'Neu starten',
-          onPressed: _clock.pause,
-        ),
-      ]),
-    );
-  }
-
-  Widget _buildTurnIndicator() {
-    final isKind = _turn == _Cell.kind;
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
-      child: Row(
-        children: [
-          Expanded(
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              decoration: BoxDecoration(
-                color: isKind ? const Color(0xFFFCD34D) : Colors.white,
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: const Color(0xFFEAB308), width: 2.4),
-              ),
-              child: const Center(
-                child: Text('Du 🟡',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                        color: Color(0xFF78350F))),
-              ),
+          LumoPressable(
+            radius: 14,
+            child: IconButton(
+              tooltip: 'Neu starten',
+              onPressed: _restart,
+              icon: const Icon(Icons.refresh_rounded, color: _cyan),
             ),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              decoration: BoxDecoration(
-                color: !isKind ? const Color(0xFFF87171) : Colors.white,
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: const Color(0xFFEF4444), width: 2.4),
-              ),
-              child: Center(
-                child: Text(_busy && !isKind ? 'Lumo denkt... 🦊' : 'Lumo 🔴',
-                    style: TextStyle(
+        ]),
+      );
+
+  Widget _modes() => Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Wrap(alignment: WrapAlignment.center, runSpacing: 8, children: [
+          for (final mode in [(false, 'Mit Lumo'), (true, 'Zu zweit')])
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: LumoPressable(
+                glowColor: _twoPlayers == mode.$1 ? _gold : _cyan,
+                child: FilledButton(
+                  key: ValueKey('connect-mode-${mode.$1}'),
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size(116, 44),
+                    textStyle: const TextStyle(
                         fontFamily: 'Nunito',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                        color:
-                            !isKind ? Colors.white : const Color(0xFF7F1D1D))),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    backgroundColor: _twoPlayers == mode.$1 ? _gold : _panel,
+                    foregroundColor:
+                        _twoPlayers == mode.$1 ? _ink : Colors.white,
+                  ),
+                  onPressed: () => _setMode(mode.$1),
+                  child: Text(mode.$2),
+                ),
               ),
             ),
+        ]),
+      );
+
+  Widget _turnLabel() => Semantics(
+        liveRegion: true,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          decoration: BoxDecoration(
+            color: _panel,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: _cyan.withValues(alpha: .55)),
           ),
-        ],
-      ),
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            Icon(Icons.circle,
+                color: _game.turn == ConnectPiece.child ? _cyan : _gold,
+                size: 14),
+            const SizedBox(width: 8),
+            Flexible(
+              child: Text(_message,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
+                      fontSize: 16)),
+            ),
+          ]),
+        ),
+      );
+
+  Widget _companion({required bool wide}) {
+    final fox = RepaintBoundary(
+      child: Image.asset('assets/lumo_design/fox/fox_thumb_wink.png',
+          height: wide
+              ? MediaQuery.sizeOf(context).height > 600 ? 210 : 100
+              : 80,
+          fit: BoxFit.contain),
     );
+    return wide
+        ? SingleChildScrollView(
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              _modes(),
+              const SizedBox(height: 12),
+              _turnLabel(),
+              const SizedBox(height: 8),
+              fox,
+              const SizedBox(height: 4),
+              const Text('Waagrecht, senkrecht oder diagonal.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 14)),
+            ]),
+          )
+        : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            fox,
+            const SizedBox(width: 12),
+            const Flexible(
+              child: Text(
+                  'Vier Steine. Eine Reihe.\nJeder Zug ist ein neuer Versuch!',
+                  style: TextStyle(color: Colors.white, fontSize: 14)),
+            ),
+          ]);
   }
 
-  Widget _buildBoard() {
-    return AspectRatio(
-      aspectRatio: _cols / (_rows + 1.2),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: LayoutBuilder(builder: (_, constraints) {
-          final cellSize = constraints.maxWidth / _cols;
-          return Column(
-            children: [
-              // Spalten-Tap-Buttons
-              Row(
-                children: List.generate(_cols, (c) {
-                  final disabled = _busy ||
-                      _turn != _Cell.kind ||
-                      _winLine != null ||
-                      _board[0][c] != _Cell.empty;
-                  return SizedBox(
-                    width: cellSize,
-                    height: 48,
+  Widget _columnControls() => Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 560),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: Row(children: [
+              for (var c = 0; c < ConnectFourEngine.columns; c++)
+                Expanded(
+                  child: LumoPressable(
+                    enabled: !_busy && !_clock.value,
+                    radius: 12,
                     child: IconButton(
                       key: ValueKey('connect-column-$c'),
                       tooltip: 'Stein in Spalte ${c + 1}',
-                      onPressed: disabled ? null : () => _tapColumn(c),
-                      icon: Icon(
-                        Icons.arrow_drop_down_rounded,
-                        color: disabled
-                            ? const Color(0xFFD1D5DB)
-                            : const Color(0xFFFCD34D),
-                        size: cellSize * 0.7,
-                      ),
-                    ),
-                  );
-                }),
-              ),
-              // Brett
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1D4ED8),
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.16),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4)),
-                    ],
-                  ),
-                  padding: const EdgeInsets.all(6),
-                  child: Column(
-                    children: List.generate(_rows, (r) {
-                      return Expanded(
-                        child: Row(
-                          children: List.generate(_cols, (c) {
-                            return Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(3),
-                                child: _buildCell(r, c),
-                              ),
-                            );
-                          }),
+                      style: IconButton.styleFrom(
+                        backgroundColor: _panel,
+                        minimumSize: const Size(44, 48),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: BorderSide(color: _cyan.withValues(alpha: .5)),
                         ),
-                      );
-                    }),
+                      ),
+                      onPressed: !_busy &&
+                              !_clock.value &&
+                              _game.phase == ConnectPhase.playing &&
+                              _game.validColumns.contains(c)
+                          ? () => _tapColumn(c)
+                          : null,
+                      icon: Icon(Icons.arrow_downward_rounded,
+                          size: 24,
+                          color: _busy
+                              ? Colors.white24
+                              : _game.turn == ConnectPiece.child
+                                  ? _cyan
+                                  : _gold),
+                    ),
+                  ),
+                ),
+            ]),
+          ),
+        ),
+      );
+
+  Widget _board() => Center(
+        child: AspectRatio(
+          aspectRatio: 7 / 6,
+          child: RepaintBoundary(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: const Color(0xEF153E78),
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(color: _cyan, width: 2),
+                boxShadow: const [
+                  BoxShadow(color: Color(0x7053DDFD), blurRadius: 24),
+                  BoxShadow(
+                      color: Color(0x90051633),
+                      blurRadius: 14,
+                      offset: Offset(0, 8)),
+                ],
+              ),
+              child: LayoutBuilder(builder: (context, constraints) {
+                final w = constraints.maxWidth / 7;
+                final h = constraints.maxHeight / 6;
+                final diameter = math.min(w, h) * .80;
+                return Stack(clipBehavior: Clip.none, children: [
+                  for (var r = 0; r < 6; r++)
+                    for (var c = 0; c < 7; c++)
+                      Positioned(
+                        left: c * w + (w - diameter) / 2,
+                        top: r * h + (h - diameter) / 2,
+                        width: diameter,
+                        height: diameter,
+                        child: Semantics(
+                          label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
+                              '${_game.at(r, c).name}',
+                          child: _disc(
+                            _fallPosition == (row: r, column: c)
+                                ? ConnectPiece.empty
+                                : _game.at(r, c),
+                            winner:
+                                _game.winningLine.contains((row: r, column: c)),
+                          ),
+                        ),
+                      ),
+                  if (_fallPosition case final position?)
+                    AnimatedBuilder(
+                      animation: _fall,
+                      builder: (context, _) {
+                        final progress =
+                            Curves.bounceOut.transform(_fall.value.clamp(0, 1));
+                        final top = -diameter +
+                            (position.row * h + (h - diameter) / 2 + diameter) *
+                                progress;
+                        return Positioned(
+                          left: position.column * w + (w - diameter) / 2,
+                          top: top,
+                          width: diameter,
+                          height: diameter,
+                          child: _disc(_fallPiece),
+                        );
+                      },
+                    ),
+                ]);
+              }),
+            ),
+          ),
+        ),
+      );
+
+  Widget _disc(ConnectPiece piece, {bool winner = false}) {
+    final empty = piece == ConnectPiece.empty;
+    final color = piece == ConnectPiece.child ? _cyan : _gold;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: empty ? const Color(0xFF081F4A) : null,
+        gradient: empty
+            ? null
+            : RadialGradient(center: const Alignment(-.4, -.5), colors: [
+                Color.lerp(color, Colors.white, .7)!,
+                color,
+                Color.lerp(color, _ink, .35)!,
+              ], stops: const [
+                0,
+                .45,
+                1
+              ]),
+        border: Border.all(
+            color: winner
+                ? Colors.white
+                : empty
+                    ? const Color(0xFF5387BA)
+                    : color,
+            width: winner ? 3 : 1.5),
+        boxShadow: [
+          if (!empty)
+            BoxShadow(
+                color: color.withValues(alpha: winner ? .8 : .35),
+                blurRadius: winner ? 16 : 5),
+        ],
+      ),
+      child: empty
+          ? null
+          : Center(
+              child: FractionallySizedBox(
+                widthFactor: .42,
+                heightFactor: .42,
+                child: FittedBox(
+                  child: Icon(
+                    piece == ConnectPiece.child
+                        ? Icons.auto_awesome_rounded
+                        : Icons.circle_outlined,
+                    color: _ink.withValues(alpha: .35),
                   ),
                 ),
               ),
-            ],
-          );
-        }),
-      ),
-    );
-  }
-
-  Widget _buildCell(int r, int c) {
-    final cell = _board[r][c];
-    final isWin =
-        _winLine != null && _winLine!.any((p) => p[0] == r && p[1] == c);
-    final Color color;
-    switch (cell) {
-      case _Cell.empty:
-        color = const Color(0xFF1E40AF);
-        break;
-      case _Cell.kind:
-        color = const Color(0xFFFCD34D);
-        break;
-      case _Cell.lumo:
-        color = const Color(0xFFF87171);
-        break;
-    }
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 220),
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-        border:
-            isWin ? Border.all(color: const Color(0xFF22C55E), width: 3) : null,
-        boxShadow: cell != _Cell.empty
-            ? [
-                BoxShadow(
-                    color: Colors.black.withOpacity(0.22),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2))
-              ]
-            : null,
-      ),
+            ),
     );
   }
 }

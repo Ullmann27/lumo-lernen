@@ -144,6 +144,8 @@ void main() {
       expect(enabled, isNotEmpty);
       await tester.tap(enabled.first);
       await tester.pump(const Duration(milliseconds: 1000));
+      await tester.pump(const Duration(milliseconds: 600));
+      await tester.pump(const Duration(milliseconds: 400));
       turns++;
     }
     expect(find.byType(AlertDialog), findsOneWidget);
