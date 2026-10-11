@@ -102,8 +102,9 @@ String _correct(WidgetTester tester, String unit) {
     final hour = (painter as dynamic).hour as int;
     final minute = (painter as dynamic).minute as int;
     if (minute == 0) return '$hour Uhr';
-    if (minute == 30) return 'halb ${hour + 1}';
-    return minute == 15 ? 'Viertel nach $hour' : 'Viertel vor ${hour + 1}';
+    final nextHour = hour == 12 ? 1 : hour + 1;
+    if (minute == 30) return 'halb $nextHour';
+    return minute == 15 ? 'Viertel nach $hour' : 'Viertel vor $nextHour';
   }
   if (unit == 'Geld') {
     final question = labels.singleWhere((value) =>

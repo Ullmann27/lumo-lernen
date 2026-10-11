@@ -238,6 +238,7 @@ class LumoGlassCard extends StatelessWidget {
     this.radius = 24,
     this.color,
     this.borderColor,
+    this.surfaceOpacity = .68,
   });
 
   final Widget child;
@@ -245,12 +246,14 @@ class LumoGlassCard extends StatelessWidget {
   final double radius;
   final Color? color;
   final Color? borderColor;
+  final double surfaceOpacity;
 
   @override
   Widget build(BuildContext context) => Container(
         padding: padding,
         decoration: BoxDecoration(
-          color: (color ?? LumoVisualTokens.glass).withOpacity(.68),
+          color: (color ?? LumoVisualTokens.glass)
+              .withValues(alpha: surfaceOpacity),
           borderRadius: BorderRadius.circular(radius),
           border: Border.all(
             color: borderColor ?? LumoVisualTokens.cyan.withOpacity(.52),
