@@ -1,3 +1,4 @@
+import 'discovery_progress.dart';
 import 'progress_repository.dart';
 import 'recommendation_engine.dart';
 import 'weakness_detection_engine.dart';
@@ -41,15 +42,100 @@ class LearningProfileEngine {
   bool _loaded = false;
   Future<void>? _loading;
   bool _dirty = false;
+  DiscoveryProgress _discovery = DiscoveryProgress();
+  bool _discoveryLoaded = false;
+  Future<void>? _discoveryLoading;
+  bool _discoveryDirty = false;
+  int _discoveryRevision = 0;
 
   Future<String> get studentId => _repo.studentId;
-  bool get hasUnsavedChanges => _dirty;
+  bool get hasUnsavedChanges => _dirty || _discoveryDirty;
   Future<void> _saveTail = Future<void>.value();
 
   bool get isLoaded => _loaded;
   Map<String, SkillRecord> get skills => Map.unmodifiable(_skills);
   Map<String, int> get daily => Map.unmodifiable(_daily);
   Map<String, String> get lastTopics => Map.unmodifiable(_lastTopics);
+  bool get isDiscoveryLoaded => _discoveryLoaded;
+  DiscoveryProgress get discovery => _discovery;
+
+  Future<void> loadDiscovery() {
+    if (_discoveryLoaded) return Future<void>.value();
+    return _discoveryLoading ??= _loadDiscovery();
+  }
+
+  Future<void> _loadDiscovery() async {
+    try {
+      final loaded = await _repo.loadDiscovery();
+      _discovery = loaded;
+      _discoveryLoaded = true;
+    } finally {
+      _discoveryLoading = null;
+    }
+  }
+
+  void requireDiscoveryAllowed(DiscoveryLearningTarget target) {
+    target.validate();
+    if (!_discoveryLoaded || !_discovery.allows(target.grade)) {
+      throw const DiscoveryNotAllowed();
+    }
+    final existing = _discovery.topics[target.topicId];
+    if (existing != null && existing.grade != target.grade) {
+      throw const FormatException('Discovery topic stage changed');
+    }
+  }
+
+  Future<void> setDiscoveryPermission(
+      {required bool enabled, required int maxGrade}) async {
+    if (maxGrade < 1 || maxGrade > 4) {
+      throw ArgumentError('Invalid discovery limit');
+    }
+    await loadDiscovery();
+    _discovery = _discovery.permission(enabled: enabled, maxGrade: maxGrade);
+    _discoveryRevision++;
+    _discoveryDirty = true;
+    await _persistDiscovery();
+  }
+
+  Future<void> introduceDiscovery(DiscoveryLearningTarget target) async {
+    await loadDiscovery();
+    requireDiscoveryAllowed(target);
+    final previous = _discovery.topics[target.topicId] ??
+        DiscoveryTopicProgress(grade: target.grade);
+    _discovery = _discovery.withTopic(target.topicId, previous.introduction());
+    _discoveryRevision++;
+    _discoveryDirty = true;
+    await _persistDiscovery();
+  }
+
+  Future<void> recordDiscoveryAnswer({
+    required DiscoveryLearningTarget target,
+    required DiscoveryStepKind step,
+    required bool correct,
+    bool hintUsed = false,
+  }) async {
+    await loadDiscovery();
+    requireDiscoveryAllowed(target);
+    final previous = _discovery.topics[target.topicId] ??
+        DiscoveryTopicProgress(grade: target.grade);
+    _discovery = _discovery.withTopic(
+        target.topicId, previous.answer(step, correct, hintUsed));
+    _discoveryRevision++;
+    _discoveryDirty = true;
+    await _persistDiscovery();
+  }
+
+  /// Retry the same accepted discovery write, without counting an answer again.
+  /// Does not write uninitialized regular skills, daily goals or last topics.
+  Future<void> flushDiscovery() => _persistDiscovery();
+
+  Future<void> _persistDiscovery() => _enqueueSave(() async {
+        if (!_discoveryLoaded || !_discoveryDirty) return;
+        final revision = _discoveryRevision;
+        final snapshot = _discovery;
+        await _repo.saveDiscovery(snapshot);
+        if (revision == _discoveryRevision) _discoveryDirty = false;
+      });
 
   /// Lädt alle Daten aus dem lokalen Speicher.
   Future<void> load() {
@@ -156,6 +242,7 @@ class LearningProfileEngine {
   /// Setzt alle Lerndaten zurück. Vorher ausdrücklich bestätigen lassen.
   Future<void> reset() async {
     if (_loading != null) await _loading;
+    if (_discoveryLoading != null) await _discoveryLoading;
     try {
       await _saveTail;
     } catch (_) {}
@@ -165,10 +252,18 @@ class LearningProfileEngine {
     _lastTopics = {};
     _dirty = false;
     _loaded = true;
+    _discovery = DiscoveryProgress();
+    _discoveryLoaded = true;
+    _discoveryDirty = false;
+    _discoveryRevision++;
   }
 
   // ── interne helpers ───────────────────────────────────────
-  Future<void> flush() => _persist();
+  Future<void> flush() async {
+    // A discovery-only engine must not overwrite unloaded school progress.
+    if (_loaded || _dirty) await _persist();
+    await _persistDiscovery();
+  }
 
   Future<void> _persist() {
     Future<void> save() async {
@@ -181,6 +276,10 @@ class LearningProfileEngine {
     // A failed write remains visible to its caller but does not poison retry.
     // Serialize all three writes so concurrent answers cannot overwrite a
     // newer daily/skill entry with an older, late completion.
+    return _enqueueSave(save);
+  }
+
+  Future<void> _enqueueSave(Future<void> Function() save) {
     final pending = _saveTail.then((_) => save(),
         onError: (Object _, StackTrace __) => save());
     _saveTail = pending;

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
+import '../../core/discovery_progress.dart';
 
 /// Durable answer/reward boundary shared by the direct Akademie modules.
 /// A failed write keeps the accepted answer locked until Retry flushes it.
@@ -12,6 +13,7 @@ class LearningModuleProgress extends ChangeNotifier
     required this.appState,
     required this.subject,
     required this.unit,
+    this.discoveryTarget,
   }) {
     WidgetsBinding.instance.addObserver(this);
     _foreground = WidgetsBinding.instance.lifecycleState == null ||
@@ -21,6 +23,7 @@ class LearningModuleProgress extends ChangeNotifier
   final LumoAppState appState;
   final String subject;
   final String unit;
+  final DiscoveryLearningTarget? discoveryTarget;
   _PendingModuleSave? _pending;
   bool _saving = false;
   bool _disposed = false;
@@ -35,9 +38,11 @@ class LearningModuleProgress extends ChangeNotifier
   bool get hasPending => !_disposed && _pending != null;
   bool get saving => _saving;
   String? get error => _error;
-  String get savingText => _pending?.correct == null
-      ? 'Wir speichern deine Belohnung…'
-      : 'Wir speichern deine Antwort…';
+  String get savingText => discoveryTarget != null
+      ? 'Dein Entdeckungsweg wird gespeichert…'
+      : _pending?.correct == null
+          ? 'Wir speichern deine Belohnung…'
+          : 'Wir speichern deine Antwort…';
 
   /// Zeitpunkt der letzten Antwort (oder des Starts); daraus ergibt sich die
   /// Bearbeitungszeit der nächsten Aufgabe fürs Aufgabenprotokoll.
@@ -54,6 +59,7 @@ class LearningModuleProgress extends ChangeNotifier
     String? cosmosSubjectId,
     bool cosmosIsMath = false,
     bool cosmosIsPerfect = false,
+    DiscoveryStepKind discoveryStep = DiscoveryStepKind.independent,
   }) {
     if (_disposed || appState.resetting) return Future<bool>.value(false);
     if (_pending != null) return _pending!.completion.future;
@@ -74,11 +80,29 @@ class LearningModuleProgress extends ChangeNotifier
       given: given,
       expected: expected,
       durationMs: ms,
+      discoveryStep: discoveryStep,
+    ));
+  }
+
+  Future<bool> saveDiscoveryIntroduction() {
+    if (discoveryTarget == null) {
+      throw StateError('This is a regular learning module');
+    }
+    if (_disposed || appState.resetting) return Future<bool>.value(false);
+    if (_pending != null) return _pending!.completion.future;
+    return _enqueue(_PendingModuleSave(
+      stars: 0,
+      xp: 0,
+      owner: appState.beginLearningAction(),
+      discoveryIntroduction: true,
     ));
   }
 
   /// Session bonuses affect only the wallet, never Daily or skill answers.
   Future<bool> saveBonus({required int stars, required int xp}) {
+    if (discoveryTarget != null) {
+      throw StateError('Discovery does not award school or wallet bonuses');
+    }
     if (_disposed || appState.resetting) return Future<bool>.value(false);
     if (_pending != null) return _pending!.completion.future;
     if (_bonusSaved) return Future<bool>.value(true);
@@ -92,6 +116,9 @@ class LearningModuleProgress extends ChangeNotifier
 
   /// Intermediate rewards (for example a letter) do not count as answers.
   Future<bool> saveReward({required int stars, required int xp}) {
+    if (discoveryTarget != null) {
+      throw StateError('Discovery does not award school or wallet rewards');
+    }
     if (_disposed || appState.resetting) return Future<bool>.value(false);
     if (_pending != null) return _pending!.completion.future;
     return _enqueue(_PendingModuleSave(
@@ -134,6 +161,39 @@ class LearningModuleProgress extends ChangeNotifier
       final owner = await pending.owner.resolve();
       if (!appState.canUseLearningLease(owner)) {
         _complete(pending, false);
+        return;
+      }
+      if (discoveryTarget != null) {
+        await appState.prepareLearningLease(owner);
+        await owner.profile.loadDiscovery();
+        if (!appState.canUseLearningLease(owner)) {
+          _complete(pending, false);
+          return;
+        }
+        if (!pending.profileRecorded) {
+          owner.profile.requireDiscoveryAllowed(discoveryTarget!);
+          pending.profileRecorded = true;
+          if (pending.discoveryIntroduction) {
+            await owner.profile.introduceDiscovery(discoveryTarget!);
+          } else if (pending.correct != null) {
+            await owner.profile.recordDiscoveryAnswer(
+              target: discoveryTarget!,
+              step: pending.discoveryStep,
+              correct: pending.correct!,
+              hintUsed: pending.hintUsed,
+            );
+          } else {
+            throw StateError('Discovery has no wallet-only reward action');
+          }
+        } else {
+          await owner.profile.flushDiscovery();
+        }
+        // Voluntary learning never calls regular rewards, Daily, attempts,
+        // Cosmos or recordLearningAnswer. Reuse the existing owner/retry guard.
+        _complete(
+            pending,
+            appState.isCurrentLearningLease(owner) &&
+                owner.profile.discovery.allows(discoveryTarget!.grade));
         return;
       }
       // Flags precede writes: both services mutate before persistence and a
@@ -201,15 +261,19 @@ class LearningModuleProgress extends ChangeNotifier
               ? owner.generation == appState.profileGeneration &&
                   appState.canUseLearningLease(owner)
               : appState.isCurrentLearningLease(owner));
+    } on DiscoveryNotAllowed {
+      _complete(pending, false);
     } catch (_) {
       if (pending.owner.invalidated) {
         _complete(pending, false);
         return;
       }
       _saving = false;
-      _error = pending.correct == null
-          ? 'Deine Belohnung wartet noch aufs Speichern.'
-          : 'Deine Antwort wartet noch aufs Speichern.';
+      _error = discoveryTarget != null
+          ? 'Dein Entdeckungsweg wartet noch aufs Speichern.'
+          : pending.correct == null
+              ? 'Deine Belohnung wartet noch aufs Speichern.'
+              : 'Deine Antwort wartet noch aufs Speichern.';
       if (!_disposed) notifyListeners();
       if (_disposed) pending.owner.close();
     }
@@ -306,12 +370,16 @@ class _PendingModuleSave {
     this.given = '',
     this.expected = '',
     this.durationMs,
+    this.discoveryIntroduction = false,
+    this.discoveryStep = DiscoveryStepKind.independent,
   });
 
   final String prompt;
   final String given;
   final String expected;
   final int? durationMs;
+  final bool discoveryIntroduction;
+  final DiscoveryStepKind discoveryStep;
 
   final bool? correct;
   final bool hintUsed;
