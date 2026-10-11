@@ -192,7 +192,13 @@ def main() -> int:
         if protected(existing.prefs(out, "after-update")) != before_profile:
             raise RuntimeError("Stored profile/progress/rewards changed during update")
         speech.parents(out)
-        existing.flutter_tap(out, "App und lokale Stimme prüfen", "local-diagnosis")
+        result["parents"] = existing.capture(out, "00_actual_android_phone_parents")
+        # Twelve forward swipes did not reach speech in the actual long phone
+        # parent view. Keep the real phone entry proof, then use the existing
+        # roomy viewport and an explicitly bounded, forward-first search.
+        existing.base.display(1200, 896, 160)
+        existing.flutter_tap(out, "App und lokale Stimme prüfen", "local-diagnosis",
+                             scroll_attempts=48, direction_order=(1, -1))
         text = status(out, "actual-model-diagnosis",
                       ("Build 1929", existing.PACKAGE, existing.CERT,
                        "Das lokale Lumo-Sprachmodell", "Native Abschlussmeldungen:"))
