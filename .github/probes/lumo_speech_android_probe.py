@@ -64,16 +64,46 @@ def playback_count(text):
     return int(values[-1])
 
 
+def _observed_parent_label(nodes, label, *, tap=True):
+    """Match an actual Lumo control, including its real multiline caption."""
+    normalized = " ".join(label.split())
+    for node in nodes:
+        if (node.get("package") != existing.PACKAGE
+                or node.get("enabled") == "false"
+                or node.get("visible-to-user") == "false"):
+            continue
+        if (node.get("clickable") == "true") != tap:
+            continue
+        for key in ("text", "content-desc"):
+            value = node.get(key, "")
+            if label in value.splitlines():
+                return label
+            if value and " ".join(value.split()) == normalized:
+                return value
+    return None
+
+
 def parents(out):
-    for attempt in range(8):
+    visited = set()
+    for attempt in range(10):
         nodes = existing.live.live_nodes(out, f"parents-entry-{attempt}")
-        for label in ("Eltern", "Elternbereich", "Elternbereich öffnen", "Einstellungen"):
-            if any(label in (n.get("text", ""), n.get("content-desc", "")) for n in nodes):
-                existing.flutter_tap(out, label, "parents-entry")
-                return
-        existing.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
-        time.sleep(1)
-    raise RuntimeError("No observed parent navigation control")
+        # A non-tappable page heading confirms the destination. A button with
+        # the same name is only an entry control, not proof of navigation.
+        if _observed_parent_label(nodes, "Elternbereich", tap=False):
+            return
+        for label in ("Eltern", "Elternbereich", "Elternbereich öffnen",
+                      "Einstellungen", "Profil bearbeiten", "Profil"):
+            observed = _observed_parent_label(nodes, label)
+            if observed and label not in visited:
+                existing.flutter_tap(out, observed, f"parents-entry-{attempt}")
+                visited.add(label)
+                break
+        # The mobile route is Profil -> Profil/bearbeiten -> Elternbereich.
+        # Never issue blind Android Back events, which previously closed Lumo
+        # at its actual home page and left the probe on the Pixel Launcher.
+        time.sleep(.4)
+    existing.capture(out, "parents-navigation-missing")
+    raise RuntimeError("No observed parent navigation control or parent page")
 
 
 def main():
