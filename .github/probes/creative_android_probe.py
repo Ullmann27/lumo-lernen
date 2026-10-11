@@ -163,12 +163,17 @@ def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
     return True
 
 
-def flutter_tap(out: Path, label: str, tag: str) -> None:
+def flutter_tap(out: Path, label: str, tag: str, *,
+                scroll_attempts: int = 12, direction_order=(-1, 1)) -> None:
     # Search both ends of the actual responsive scroll view. Named controls are
     # tapped only when their enabled live accessibility bounds have been read.
+    if type(scroll_attempts) is not int or not 1 <= scroll_attempts <= 64:
+        raise ValueError('Live control search requires a bounded scroll budget')
+    if direction_order not in ((-1, 1), (1, -1)):
+        raise ValueError('Live control search requires known scroll directions')
     settle_waits = 0
-    for direction in (-1, 1):
-        for attempt in range(12):
+    for direction in direction_order:
+        for attempt in range(scroll_attempts):
             nodes = live.live_nodes(out, f'{tag}-{direction}-{attempt}')
             if recover_launcher_dialog(out, nodes, tag):
                 continue
