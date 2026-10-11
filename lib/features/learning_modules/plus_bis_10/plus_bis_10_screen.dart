@@ -535,11 +535,14 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     return PopScope<void>(
         canPop: _canLeave,
         child: LayoutBuilder(builder: (context, layout) {
-          if (layout.maxWidth >= 760) {
+          if (layout.maxWidth >= 760 ||
+              LumoLessonStyle.shortLandscape(context)) {
             return LumoLearningModuleFrame(
               appState: widget.appState,
               title: 'Mathe-Abenteuer',
               moduleTitle: 'Plus bis 10',
+              guidance: 'Zähle beide Gruppen zusammen.',
+              mistakeGuidance: 'Zähle jeden Apfel einmal.',
               icon: Icons.calculate_rounded,
               taskIndex: _taskIdx,
               totalTasks: _totalTasks,
@@ -548,16 +551,18 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
               hasMistake: _answered && _selectedAnswer != _correct,
               characterController: _lumo,
               canLeave: () => _canLeave,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _buildTaskCard(),
-                  const SizedBox(height: 8),
-                  _buildHelpCard(),
-                  if (_saving || _saveError != null) _buildSaveStatus(),
-                  const SizedBox(height: 8),
-                  _buildAnswerButtons(wide: true),
-                ],
+              child: LumoLessonTaskLayout(
+                spacing: 8,
+                task: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _buildTaskCard(),
+                    const SizedBox(height: 8),
+                    _buildHelpCard(),
+                    if (_saving || _saveError != null) _buildSaveStatus(),
+                  ],
+                ),
+                answers: _buildAnswerButtons(wide: true),
               ),
             );
           }
@@ -670,6 +675,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: LumoGlassCard(
+        surfaceOpacity: LumoLessonStyle.glassOpacity,
         padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
         radius: 26,
         child: Column(
@@ -916,6 +922,31 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   /// Hilfe-Karte aus Bild 02: zwei Apfel-Mengen, „= ?“ und Lumo mit
   /// Zeigestab. Nach zwei Fehlversuchen oder auf „Tipp“ zählt Lumo vor.
   Widget _buildHelpCard() {
+    if (LumoLessonStyle.shortLandscape(context) &&
+        MediaQuery.textScalerOf(context).scale(1) <= 1.35) {
+      return LumoLessonSurface(
+        padding: const EdgeInsets.all(8),
+        child: Column(children: [
+          const Text('Zähle beide Gruppen zusammen.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  color: LumoVisualTokens.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700)),
+          const SizedBox(height: 8),
+          Row(children: [
+            Expanded(child: _appleBox(_a)),
+            _operator('+'),
+            Expanded(child: _appleBox(_b)),
+          ]),
+          if (_showHint)
+            Text('$_a und noch $_b. Zähle weiter.',
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: LumoVisualTokens.white)),
+        ]),
+      );
+    }
     final bubble = _showHint
         ? 'Zähle alle Äpfel zusammen: $_a und $_b.'
         : 'Erst $_a … und noch $_b … Wie viele sind es insgesamt?';
@@ -1121,15 +1152,16 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   Widget _buildAnswerButtons({bool wide = false}) {
     final canContinue = _answered && _pendingAnswer == null && !_saving;
     final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.35;
+    final landscape = LumoLessonStyle.shortLandscape(context);
     return Column(children: [
       LumoLessonAnswerGrid(
-        crossAxisCount: largeText ? 2 : 4,
+        crossAxisCount: largeText || landscape ? 2 : 4,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
         childAspectRatio: wide ? 2.2 : 1.5,
-        minimumHeight: wide ? 72 : 56,
+        minimumHeight: wide && !landscape ? 72 : 56,
         children: _answers.map((ans) {
           final isSelected = _selectedAnswer == ans;
           final isCorrect = _answered && ans == _correct;
@@ -1191,10 +1223,13 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       ),
       const SizedBox(height: 12),
       Flex(
-        direction: largeText ? Axis.vertical : Axis.horizontal,
+        direction: largeText || LumoLessonStyle.shortLandscape(context)
+            ? Axis.vertical
+            : Axis.horizontal,
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment:
-            largeText ? CrossAxisAlignment.stretch : CrossAxisAlignment.center,
+        crossAxisAlignment: largeText || LumoLessonStyle.shortLandscape(context)
+            ? CrossAxisAlignment.stretch
+            : CrossAxisAlignment.center,
         children: [
           _pillButton(
             label: 'Tipp',
@@ -1206,7 +1241,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             colors: const [Color(0xFF123F7C), Color(0xFF0B2A5A)],
             border: LumoVisualTokens.cyan.withOpacity(.6),
           ),
-          if (largeText) const SizedBox(height: 8) else const Spacer(),
+          if (largeText || LumoLessonStyle.shortLandscape(context))
+            const SizedBox(height: 8)
+          else
+            const Spacer(),
           _pillButton(
             label: 'Weiter',
             onPressed: canContinue ? _continueAfterCorrect : null,

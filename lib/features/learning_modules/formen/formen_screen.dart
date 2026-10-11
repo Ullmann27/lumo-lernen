@@ -237,6 +237,8 @@ class _FormenScreenState extends State<FormenScreen>
         appState: widget.appState,
         title: 'Mathe-Abenteuer',
         moduleTitle: 'Formen erkennen',
+        guidance: 'Schau auf Ecken und Seiten.',
+        mistakeGuidance: 'Vergleiche Ecken und Seiten.',
         icon: Icons.category_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
@@ -253,13 +255,14 @@ class _FormenScreenState extends State<FormenScreen>
                     : _entryCtrl.value,
                 child: child);
           },
-          child: Column(children: [
-            _buildTaskHeader(),
-            const SizedBox(height: 12),
-            _buildShapeVisualization(),
-            const SizedBox(height: 16),
-            _buildAnswerGrid(),
-          ]),
+          child: LumoLessonTaskLayout(
+            task: Column(children: [
+              _buildTaskHeader(),
+              const SizedBox(height: 12),
+              _buildShapeVisualization(),
+            ]),
+            answers: _buildAnswerGrid(),
+          ),
         ),
       ),
     );
@@ -325,13 +328,15 @@ class _FormenScreenState extends State<FormenScreen>
   }
 
   Widget _buildAnswerGrid() {
+    final landscape = LumoLessonStyle.shortLandscape(context);
     return LumoLessonAnswerGrid(
-      crossAxisCount: 2,
+      crossAxisCount: landscape ? 1 : 2,
+      minimumHeight: landscape ? 48 : 68,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 12,
+      mainAxisSpacing: landscape ? 8 : 12,
       crossAxisSpacing: 12,
-      childAspectRatio: 2.4,
+      childAspectRatio: landscape ? 6 : 2.4,
       children: _answers.map((s) => _buildAnswerButton(s)).toList(),
     );
   }
@@ -378,6 +383,7 @@ class _FormenScreenState extends State<FormenScreen>
               LumoLessonStyle.answer(background: bgColor, border: borderColor),
           child: Center(
             child: Text(s.displayName,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 22,

@@ -19,8 +19,9 @@ import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
 
 class UhrLernenScreen extends StatefulWidget {
-  const UhrLernenScreen({super.key, required this.appState});
+  const UhrLernenScreen({super.key, required this.appState, this.taskRandom});
   final LumoAppState appState;
+  final math.Random? taskRandom;
 
   @override
   State<UhrLernenScreen> createState() => _UhrLernenScreenState();
@@ -38,14 +39,14 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   late final LearningModuleProgress _progress;
-  final _rng = math.Random();
+  late final _rng = widget.taskRandom ?? math.Random();
 
   int _taskIdx = 0;
   int _correctCount = 0;
   bool _answered = false;
   String? _selectedAnswer;
 
-  // Aktuelle Uhrzeit: 0-11 Stunde, Minute: 0|15|30|45
+  // Zifferblatt: Stunden 1–12, Minuten 0|15|30|45.
   late int _hour;
   late int _minute;
   late List<String> _answers;
@@ -53,10 +54,11 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   String get _correctText => _formatTime(_hour, _minute);
 
   String _formatTime(int h, int m) {
+    final nextHour = h % 12 + 1;
     if (m == 0) return '$h Uhr';
-    if (m == 30) return 'halb ${h + 1}';
+    if (m == 30) return 'halb $nextHour';
     if (m == 15) return 'Viertel nach $h';
-    if (m == 45) return 'Viertel vor ${h + 1}';
+    if (m == 45) return 'Viertel vor $nextHour';
     return '$h:${m.toString().padLeft(2, '0')}';
   }
 
@@ -101,14 +103,16 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
         : difficulty == 1
             ? [0, 30]
             : [0, 15, 30, 45];
-    _hour = 1 + _rng.nextInt(11); // 1..11
+    _hour = 1 + _rng.nextInt(12); // 1..12, einschließlich des Übergangs 12 → 1
     _minute = minuteOptions[_rng.nextInt(minuteOptions.length)];
 
     final correctTxt = _correctText;
     final wrongOptions = <String>{};
     final possibles = <List<int>>[];
-    for (int hh = 1; hh <= 11; hh++) {
-      for (final mm in [0, 15, 30, 45]) {
+    for (int hh = 1; hh <= 12; hh++) {
+      // Ablenkantworten üben dieselbe Stufe. Sonst verrät bereits die
+      // einzige Antwort mit „Uhr“ die Lösung der leichten Aufgaben.
+      for (final mm in minuteOptions) {
         if (hh == _hour && mm == _minute) continue;
         possibles.add([hh, mm]);
       }
@@ -256,6 +260,8 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
         appState: widget.appState,
         title: 'Mathe-Abenteuer',
         moduleTitle: 'Die Uhr',
+        guidance: 'Kurz: Stunden. Lang: Minuten.',
+        mistakeGuidance: 'Vergleiche die beiden Zeiger.',
         icon: Icons.schedule_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
@@ -272,18 +278,21 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
                     : _entryCtrl.value,
                 child: child);
           },
-          child: Column(children: [
-            const Text('Wie spät ist es?',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                    color: LumoVisualTokens.white)),
-            const SizedBox(height: 8),
-            _buildClockFace(),
-            const SizedBox(height: 8),
-            _buildAnswerGrid(),
-          ]),
+          child: LumoLessonTaskLayout(
+            spacing: 8,
+            task: Column(children: [
+              const Text('Wie spät ist es?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 22,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white)),
+              const SizedBox(height: 8),
+              _buildClockFace(),
+            ]),
+            answers: _buildAnswerGrid(),
+          ),
         ),
       ),
     );
@@ -333,13 +342,15 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   }
 
   Widget _buildAnswerGrid() {
+    final landscape = LumoLessonStyle.shortLandscape(context);
     return LumoLessonAnswerGrid(
-      crossAxisCount: 2,
+      crossAxisCount: landscape ? 1 : 2,
+      minimumHeight: landscape ? 56 : 68,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 12,
+      mainAxisSpacing: landscape ? 8 : 12,
       crossAxisSpacing: 12,
-      childAspectRatio: 2.5,
+      childAspectRatio: landscape ? 6 : 2.5,
       children: _answers.map((a) => _buildAnswerButton(a)).toList(),
     );
   }
@@ -468,7 +479,7 @@ class _ClockPainter extends CustomPainter {
         Offset(math.cos(minuteAngle) * radius * .65,
             math.sin(minuteAngle) * radius * .65);
     final minutePaint = Paint()
-      ..color = color.withOpacity(0.85)
+      ..color = const Color(0xFF00758A)
       ..strokeWidth = (size.width * .018).clamp(2.8, 5.0)
       ..strokeCap = StrokeCap.round;
     canvas.drawLine(center, minuteEnd, minutePaint);
