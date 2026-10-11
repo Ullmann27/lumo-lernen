@@ -87,3 +87,19 @@ gesichert. Der runtime-only Workflow prüft, dass keine App-, Modell-, Asset-,
 Signatur- oder Verpackungsdateien gegenüber der gebauten Quelle verändert wurden.
 Er prüft dieselbe APK nach, ohne Neubau oder künstlich eingespeiste Lernfortschritte.
 Sein vollständiges Laufzeitergebnis ist bei diesem Reparaturcommit noch offen.
+
+Die erneute Laufzeitprüfung bestätigt den reparierten Einstieg, die erste echte
+Antwort und die Erklärung „Sieben und fünf“ samt Player-Pause/Fortsetzen
+([erneuter Android-Lauf](https://github.com/Ullmann27/lumo-lernen/actions/runs/38149620562)).
+Der nächste Abbruch ist ebenfalls konkret eingegrenzt: Die Antwort `1` ist in der
+gespeicherten aktuellen Hierarchie tatsächlich als `1, richtig` markiert.
+Rückmeldung und Weiter-Taste liegen jedoch unterhalb des sichtbaren Ausschnitts.
+Der Prüfer hat `Weiter` als Teil von `Weiterkommen` im Logo akzeptiert und danach
+eine noch nicht sichtbare Rückmeldung geprüft.
+
+Der Helfer verlangt jetzt gleichzeitig im aktuellen echten Frame die als richtig
+markierte abgegebene Antwort, die korrekte Rückmeldung und eine aktivierte
+Weiter-Taste. Er scrollt ausschließlich innerhalb des aktuell beobachteten
+App-Viewports. Getrennte alte Frames werden nicht zusammengemischt.
+Ein weiterer native-only Nachtest derselben APK ist erforderlich; ein kompletter
+Kursabschluss wird weiterhin nicht behauptet.

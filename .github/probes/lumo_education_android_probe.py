@@ -27,13 +27,20 @@ def current_text(out: Path, tag: str) -> str:
         [node for node in nodes if node.get("package") == existing.PACKAGE])
 
 
-def wait_text(out: Path, marker: str, tag: str, timeout: float = 30) -> str:
+def wait_text(out: Path, marker: str, tag: str, timeout: float = 30,
+              scroll: bool = False) -> str:
     deadline = time.monotonic() + timeout
     attempt = 0
     while time.monotonic() < deadline:
-        text = current_text(out, f"{tag}-{attempt}")
+        nodes = existing.live.live_nodes(out, f"{tag}-{attempt}")
+        text = existing.base.accessible_text(
+            [node for node in nodes if node.get("package") == existing.PACKAGE])
         if marker in text:
             return text
+        if scroll:
+            box = _scroll_bounds(nodes)
+            if box is not None:
+                _swipe_content(box, 1 if (attempt // 8) % 2 == 0 else -1)
         attempt += 1
         time.sleep(.5)
     existing.capture(out, f"{tag}-missing")
@@ -62,6 +69,73 @@ def _enabled_control_bounds(nodes: list[dict], caption: str) -> list[int] | None
                 and bounds[3] > bounds[1]):
             choices.append(bounds)
     return min(choices, key=lambda b: (b[2]-b[0])*(b[3]-b[1]), default=None)
+
+
+def _scroll_bounds(nodes: list[dict]) -> list[int] | None:
+    choices = []
+    for node in nodes:
+        if (node.get("package") != existing.PACKAGE
+                or node.get("scrollable") != "true"):
+            continue
+        box = list(map(int, re.findall(r"\d+", node.get("bounds", ""))))
+        if len(box) == 4 and box[2] > box[0] and box[3] > box[1]:
+            choices.append(box)
+    return max(choices, key=lambda b: (b[2]-b[0])*(b[3]-b[1]), default=None)
+
+
+def _swipe_content(box: list[int], direction: int) -> None:
+    x = str((box[0]+box[2])//2)
+    low, high = round(box[1]+.2*(box[3]-box[1])), round(box[1]+.8*(box[3]-box[1]))
+    start, end = (high, low) if direction == 1 else (low, high)
+    existing.base.adb("shell", "input", "swipe", x, str(start), x, str(end), "400")
+
+
+def _answer_accepted(nodes: list[dict], value: str) -> bool:
+    """Require correct answer, feedback and enabled continue in ONE live frame.
+
+    "Weiterkommen" in the logo is not the Weiter button. A correct answer alone
+    is not a visible feedback check: the saved landscape hierarchy shows its
+    feedback below the current viewport until a real content swipe.
+    """
+    values = []
+    for node in nodes:
+        if (node.get("package") != existing.PACKAGE
+                or node.get("visible-to-user") == "false"):
+            continue
+        box = list(map(int, re.findall(r"\d+", node.get("bounds", ""))))
+        if len(box) == 4 and box[2] > box[0] and box[3] > box[1]:
+            values.extend(caption for caption in
+                          (node.get("text", ""), node.get("content-desc", "")) if caption)
+    correct_choice = value + ", richtig"
+    correct_feedback = (
+        "Das passt! Weiter geht es in deinem Tempo.",
+        "Du hast selbst gerechnet. Gut gemacht!",
+    )
+    return (
+        any(correct_choice == text or correct_choice in text.splitlines() for text in values)
+        and any(message in text for message in correct_feedback for text in values)
+        and _enabled_control_bounds(nodes, "Weiter") is not None
+    )
+
+
+def wait_answer_accepted(out: Path, value: str, tag: str) -> None:
+    for direction in (1, -1):
+        for attempt in range(12):
+            frame = f"{tag}-{direction}-{attempt}"
+            nodes = existing.live.live_nodes(out, frame)
+            if _answer_accepted(nodes, value):
+                (out / (tag + "-actual-acceptance.json")).write_text(json.dumps({
+                    "submitted_answer": value, "actual_current_frame": frame + ".xml",
+                    "correct_answer_feedback_enabled_continue_in_same_frame": True,
+                    "continue_bounds": _enabled_control_bounds(nodes, "Weiter"),
+                }, indent=2) + "\n")
+                return
+            box = _scroll_bounds(nodes)
+            if box is not None:
+                _swipe_content(box, direction)
+            time.sleep(.5)
+    existing.capture(out, tag + "-missing")
+    raise RuntimeError("Actual correct answer, feedback and enabled Weiter not observed: " + value)
 
 
 def tap(out: Path, caption: str, tag: str) -> None:
@@ -123,11 +197,7 @@ def discoveries(out: Path, tag: str) -> list[dict]:
 def answer(out: Path, title: str, value: str, tag: str) -> None:
     wait_text(out, title, tag + "-question")
     tap(out, value, tag + "-answer")
-    wait_text(out, "Weiter", tag + "-accepted")
-    text = current_text(out, tag + "-feedback")
-    if not any(message in text for message in
-               ("Das passt!", "Du hast selbst gerechnet.")):
-        raise RuntimeError("Actual correct feedback not observed for " + title)
+    wait_answer_accepted(out, value, tag + "-accepted")
     tap(out, "Weiter", tag + "-continue")
 
 
@@ -160,12 +230,12 @@ def school_course(out: Path) -> dict:
     answer(out, "Was bleibt übrig?", "3", "school-remainder")
     wait_text(out, "Jetzt probierst du", "school-independent-question")
     tap(out, "13", "school-real-incorrect-answer")
-    wait_text(out, "Fast! Probiere es noch einmal", "school-incorrect-feedback")
+    wait_text(out, "Fast! Probiere es noch einmal", "school-incorrect-feedback", scroll=True)
     tap(out, "Tipp", "school-real-hint-request")
-    wait_text(out, "Fülle zuerst den Zehner", "school-real-hint")
+    wait_text(out, "Fülle zuerst den Zehner", "school-real-hint", scroll=True)
     hint = existing.capture(out, "11_actual_android_learning_hint_after_error")
     tap(out, "14", "school-correct-after-hint")
-    wait_text(out, "Du hast selbst gerechnet.", "school-correct-feedback")
+    wait_answer_accepted(out, "14", "school-correct-feedback")
     tap(out, "Weiter", "school-independent-next")
     answer(out, "Ein neues Beispiel", "11", "school-independent-check")
     wait_text(out, "2 neue Aufgaben selbst gelöst", "school-complete-recap")

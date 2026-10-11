@@ -10,6 +10,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / ".github/probes/lumo_education_android_probe.py"
 FIXTURE = ROOT / "scripts/tests/fixtures/android_1930_header_navigation.xml"
+SCROLL_FIXTURE = ROOT / "scripts/tests/fixtures/android_1930_scroll_feedback.xml"
 PACKAGE = "dev.ullmann.lumo.lumo_lernen.coachpreview"
 
 
@@ -26,7 +27,7 @@ class CourseNavigationTest(unittest.TestCase):
     def setUp(self):
         helpers = [node for node in ast.parse(SOURCE.read_text()).body
                    if isinstance(node, ast.FunctionDef)
-                   and node.name in ("_enabled_control_bounds", "tap")]
+                   and node.name in ("_enabled_control_bounds", "_answer_accepted", "tap")]
         self.reader = Mock()
         self.adb = Mock()
         self.capture = Mock()
@@ -41,6 +42,7 @@ class CourseNavigationTest(unittest.TestCase):
                  "time": types.SimpleNamespace(sleep=Mock())}
         exec(compile(ast.Module(body=helpers, type_ignores=[]), str(SOURCE), "exec"), scope)
         self.select = scope["_enabled_control_bounds"]
+        self.accepted = scope["_answer_accepted"]
         self.tap = scope["tap"]
 
     def test_saved_real_android_hierarchy_selects_navigation_not_logo(self):
@@ -90,6 +92,33 @@ class CourseNavigationTest(unittest.TestCase):
             self.tap(Path("/unit-fixture"), "Lernen", "static-only")
         self.adb.assert_not_called()
         self.capture.assert_called_once()
+
+    def test_actual_offscreen_feedback_is_not_a_pass_from_weiterkommen(self):
+        nodes = [node.attrib for node in ET.parse(SCROLL_FIXTURE).iter("node")]
+        values = [n.get("content-desc", "") or n.get("text", "") for n in nodes]
+        self.assertIn("Lernen. Spielen. Weiterkommen.", values)
+        self.assertIn("1, richtig", values)
+        self.assertFalse(self.accepted(nodes, "1"))
+
+    def test_correct_answer_feedback_and_continue_must_share_current_frame(self):
+        right = control("1, richtig", clickable=False, enabled=False)
+        feedback = control("Das passt! Weiter geht es in deinem Tempo.", clickable=False)
+        proceed = control("Weiter")
+        self.assertTrue(self.accepted([right, feedback, proceed], "1"))
+        for partial in ([right, feedback], [right, proceed], [feedback, proceed]):
+            self.assertFalse(self.accepted(partial, "1"))
+
+    def test_wrong_answer_or_disabled_continue_cannot_pass(self):
+        feedback = control("Du hast selbst gerechnet. Gut gemacht!", clickable=False)
+        proceed = control("Weiter")
+        self.assertFalse(self.accepted([
+            control("2, richtig", clickable=False), feedback, proceed], "1"))
+        self.assertFalse(self.accepted([
+            control("1, richtig", clickable=False), feedback,
+            control("Weiter", enabled=False)], "1"))
+        self.assertFalse(self.accepted([
+            control("1, richtig", clickable=False),
+            control("Fast! Probiere es noch einmal.", clickable=False), proceed], "1"))
 
 
 if __name__ == "__main__":

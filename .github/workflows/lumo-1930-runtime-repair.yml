@@ -56,6 +56,7 @@ jobs:
               '.github/workflows/lumo-1930-runtime-repair.yml',
               'scripts/tests/test_android_1930_navigation.py',
               'scripts/tests/fixtures/android_1930_header_navigation.xml',
+              'scripts/tests/fixtures/android_1930_scroll_feedback.xml',
               'docs/education/2026-10-11-android-1930/README.md'
             ]);
             if (changed.some(path => !allowed.has(path))) {
@@ -68,6 +69,7 @@ jobs:
               qa_source: context.sha, changed_files: changed,
               application_inputs_unchanged: true, rebuilt: false, published: false,
               original_runtime_failure: 'Static Lernen heading chosen before enabled navigation control',
+              subsequent_probe_failure: 'Weiter substring matched Weiterkommen while correct feedback remained below the viewport',
               original_runtime_evidence_artifact: 11706571103
             }, null, 2));
       - uses: actions/setup-java@v4
