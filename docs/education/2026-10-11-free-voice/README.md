@@ -60,6 +60,12 @@ Der Android-16-Emulatorlauf verwendet das unveränderte, zuvor erfolgreich verif
 
 Dieser Emulator ist absichtlich ohne akustische Ausgabe gestartet. Ein erfolgreicher nativer Playerabschluss beweist deshalb keine wahrgenommene Klangfarbe. Auch ein erfolgreicher Build allein beweist keine Geräteinstallation. Ergebnisse und tatsächliche Dateien dürfen erst nach Abschluss des jeweiligen Laufs als vorhanden gemeldet werden.
 
+### Tatsächlich festgestellte CI-Abhängigkeit
+
+Der erste neue [Artefaktlauf 38131705925](https://github.com/Ullmann27/lumo-lernen/actions/runs/38131705925) führte die vollständige Flutter-Suite erfolgreich aus, wurde anschließend aber durch drei bestehende Python-Guardtests gestoppt. Das Protokoll zeigt eindeutig `Real ripgrep is required for scan tests`: der neue Ubuntu-Buildjob hatte das reale Programm `rg` noch nicht installiert. Damit ist dieser komplette CI-Lauf fehlgeschlagen, nicht bestanden; ein Android-Bau wurde darin noch nicht begonnen.
+
+Die Workflow-Reparatur installiert ausschließlich das fehlende kostenlose Build-Prüfwerkzeug vor der unveränderten Suite und protokolliert seine tatsächliche Version. Kein Guardtest, keine Assertion und kein Fehlersignal werden entfernt. Die bereits gesicherten Sprachaufnahmen, Java-/Kotlin-Implementierung, Aufgabenlogik, Profile und Signatur bleiben unverändert.
+
 ## Reproduzierbare Fortsetzung
 
 ```bash

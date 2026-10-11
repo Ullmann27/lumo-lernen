@@ -52,6 +52,15 @@ jobs:
           set -euo pipefail
           flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analyze.log
+      - name: Install required real guard-scan tool
+        run: |
+          set -euo pipefail
+          if ! command -v rg >/dev/null 2>&1; then
+            sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+            sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep
+          fi
+          command -v rg
+          rg --version | tee proof/ripgrep-version.txt
       - name: Complete Flutter suite, public speech matrix and actual UI renders
         env:
           LUMO_POLISH_CAPTURES: ${{ github.workspace }}/proof/app-renders
