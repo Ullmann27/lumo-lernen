@@ -7,7 +7,8 @@
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -191,7 +192,7 @@ class _WortartenScreenState extends State<WortartenScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -289,91 +290,39 @@ class _WortartenScreenState extends State<WortartenScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildTaskHeader(),
-                      const SizedBox(height: 24),
-                      if (_typ == _WortartenFrageTyp.wortKategorisieren) ...[
-                        _buildWortAnzeige(),
-                        const SizedBox(height: 24),
-                        _buildWortartGrid(),
-                      ] else ...[
-                        _buildWortGrid(),
-                      ],
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Wortarten',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Wörter-Abenteuer',
+        moduleTitle: 'Wortarten',
+        icon: Icons.menu_book_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
+          child: Column(children: [
+            _buildTaskHeader(),
+            const SizedBox(height: 12),
+            if (_typ == _WortartenFrageTyp.wortKategorisieren) ...[
+              _buildWortAnzeige(),
+              const SizedBox(height: 12),
+              _buildWortartGrid(),
+            ] else ...[
+              _buildWortGrid(),
             ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
           ]),
         ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -388,15 +337,18 @@ class _WortartenScreenState extends State<WortartenScreen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
         ),
         child: Text(text,
             textAlign: TextAlign.center,
@@ -404,7 +356,7 @@ class _WortartenScreenState extends State<WortartenScreen>
                 fontFamily: 'Nunito',
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       ),
     );
   }
@@ -413,9 +365,10 @@ class _WortartenScreenState extends State<WortartenScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 28),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: _gradient[0].withOpacity(0.4), width: 3),
+        border: Border.all(
+            color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 3),
         boxShadow: [
           BoxShadow(
               color: _gradient[0].withOpacity(0.2),
@@ -428,7 +381,7 @@ class _WortartenScreenState extends State<WortartenScreen>
               fontFamily: 'Nunito',
               fontSize: 48,
               fontWeight: FontWeight.w900,
-              color: _gradient[1])),
+              color: LumoVisualTokens.white)),
     );
   }
 
@@ -438,9 +391,9 @@ class _WortartenScreenState extends State<WortartenScreen>
         final art = _wortartOptions[idx];
         final isCorrect = art == _korrektWort.art;
         final isSelected = _selectedIdx == idx;
-        Color bgColor = Colors.white;
-        Color borderColor = _gradient[0].withOpacity(0.3);
-        Color textColor = _gradient[1];
+        Color bgColor = LumoVisualTokens.lessonAnswer;
+        Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
+        Color textColor = LumoVisualTokens.white;
         if (_answered && isSelected) {
           if (isCorrect) {
             bgColor = const Color(0xFFD1FAE5);
@@ -453,6 +406,7 @@ class _WortartenScreenState extends State<WortartenScreen>
           }
         } else if (_answered && isCorrect) {
           bgColor = const Color(0xFFFEF3C7);
+          textColor = const Color(0xFF713F12);
           borderColor = const Color(0xFFFCD34D);
         }
         return Padding(
@@ -460,22 +414,25 @@ class _WortartenScreenState extends State<WortartenScreen>
           child: AnimatedBuilder(
             animation: _bounceCtrl,
             builder: (_, child) {
-              final scale = isSelected && isCorrect
+              final scale = isSelected &&
+                      isCorrect &&
+                      !LumoLessonStyle.reducedMotion(context, widget.appState)
                   ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.06
                   : 1.0;
               return Transform.scale(scale: scale, child: child);
             },
-            child: GestureDetector(
+            child: LumoLessonAnswerTap(
+              correct: _answered && isSelected ? isCorrect : null,
               onTap: _answered ? null : () => _onAnswer(idx, isCorrect),
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration:
+                    LumoLessonStyle.reducedMotion(context, widget.appState)
+                        ? Duration.zero
+                        : const Duration(milliseconds: 200),
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: bgColor,
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: borderColor, width: 3),
-                ),
+                decoration: LumoLessonStyle.answer(
+                    background: bgColor, border: borderColor),
                 child: Row(children: [
                   Container(
                     width: 36,
@@ -522,7 +479,7 @@ class _WortartenScreenState extends State<WortartenScreen>
   }
 
   Widget _buildWortGrid() {
-    return GridView.count(
+    return LumoLessonAnswerGrid(
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -534,9 +491,9 @@ class _WortartenScreenState extends State<WortartenScreen>
         final w = entry.value;
         final isCorrect = w.art == _gefragteArt;
         final isSelected = _selectedIdx == idx;
-        Color bgColor = Colors.white;
-        Color textColor = _gradient[1];
-        Color borderColor = _gradient[0].withOpacity(0.3);
+        Color bgColor = LumoVisualTokens.lessonAnswer;
+        Color textColor = LumoVisualTokens.white;
+        Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
         if (_answered && isSelected) {
           if (isCorrect) {
             bgColor = const Color(0xFFD1FAE5);
@@ -549,25 +506,28 @@ class _WortartenScreenState extends State<WortartenScreen>
           }
         } else if (_answered && isCorrect) {
           bgColor = const Color(0xFFFEF3C7);
+          textColor = const Color(0xFF713F12);
           borderColor = const Color(0xFFFCD34D);
         }
         return AnimatedBuilder(
           animation: _bounceCtrl,
           builder: (_, child) {
-            final scale = isSelected && isCorrect
+            final scale = isSelected &&
+                    isCorrect &&
+                    !LumoLessonStyle.reducedMotion(context, widget.appState)
                 ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.08
                 : 1.0;
             return Transform.scale(scale: scale, child: child);
           },
-          child: GestureDetector(
+          child: LumoLessonAnswerTap(
+            correct: _answered && isSelected ? isCorrect : null,
             onTap: _answered ? null : () => _onAnswer(idx, isCorrect),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: borderColor, width: 3),
-              ),
+              duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+                  ? Duration.zero
+                  : const Duration(milliseconds: 200),
+              decoration: LumoLessonStyle.answer(
+                  background: bgColor, border: borderColor),
               child: Center(
                 child: Text(w.wort,
                     style: TextStyle(

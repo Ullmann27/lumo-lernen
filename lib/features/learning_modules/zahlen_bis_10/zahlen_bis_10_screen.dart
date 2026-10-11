@@ -8,7 +8,8 @@
 // 12 Aufgaben pro Session, Multiple-Choice.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -22,8 +23,14 @@ import '../learning_module_progress.dart';
 enum _ZahlAufgabenTyp { zaehlen, nachfolger, groesser }
 
 class ZahlenBis10Screen extends StatefulWidget {
-  const ZahlenBis10Screen({super.key, required this.appState});
+  const ZahlenBis10Screen({
+    super.key,
+    required this.appState,
+    this.taskRandom,
+  });
   final LumoAppState appState;
+  // Optional reproducible samples; the normal route retains Random().
+  final math.Random? taskRandom;
 
   @override
   State<ZahlenBis10Screen> createState() => _ZahlenBis10ScreenState();
@@ -41,7 +48,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   late final LearningModuleProgress _progress;
-  final _rng = math.Random();
+  late final _rng = widget.taskRandom ?? math.Random();
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -153,7 +160,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -249,87 +256,36 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildTaskHeader(),
-                      const SizedBox(height: 24),
-                      _buildVisualization(),
-                      const SizedBox(height: 32),
-                      _buildAnswerGrid(),
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Zahlen bis 10',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Mathe-Abenteuer',
+        moduleTitle: 'Zahlen bis 10',
+        icon: Icons.pin_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        hasMistake: _answered && _selectedAnswer != _correctAnswer,
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
+          child: Column(children: [
+            _buildTaskHeader(),
+            const SizedBox(height: 12),
+            _buildVisualization(),
+            const SizedBox(height: 16),
+            _buildAnswerGrid(),
           ]),
         ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -349,23 +305,26 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
         ),
         child: Text(text,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: 'Nunito',
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.w900,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       ),
     );
   }
@@ -375,40 +334,27 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
       case _ZahlAufgabenTyp.zaehlen:
         return _buildDots(_zahl1);
       case _ZahlAufgabenTyp.nachfolger:
-        return Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: _gradient[0].withOpacity(0.1),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Text('$_zahl1   →   ?',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 48,
-                  fontWeight: FontWeight.w900,
-                  color: _gradient[1])),
-        );
+        return LumoLessonNumberFlow(before: '$_zahl1', after: '?');
       case _ZahlAufgabenTyp.groesser:
         // Schmal oder mit großer Schrift wird die Zeile verkleinert statt
         // über den Rand zu laufen.
         return FittedBox(
           fit: BoxFit.scaleDown,
           child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildBigNumber(_zahl1),
-            const SizedBox(width: 16),
-            const Text('oder',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF6B7280))),
-            const SizedBox(width: 16),
-            _buildBigNumber(_zahl2),
-          ],
-        ),
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildBigNumber(_zahl1),
+              const SizedBox(width: 16),
+              const Text('oder',
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: LumoVisualTokens.muted)),
+              const SizedBox(width: 16),
+              _buildBigNumber(_zahl2),
+            ],
+          ),
         );
     }
   }
@@ -417,26 +363,27 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+        border: Border.all(
+            color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
       ),
       child: Text('$n',
           style: TextStyle(
               fontFamily: 'Nunito',
               fontSize: 56,
               fontWeight: FontWeight.w900,
-              color: _gradient[1])),
+              color: LumoVisualTokens.white)),
     );
   }
 
   Widget _buildDots(int count) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _gradient[0].withOpacity(0.3)),
+        border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .55)),
       ),
       child: Wrap(
         alignment: WrapAlignment.center,
@@ -445,6 +392,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
         children: List.generate(
           count,
           (i) => Container(
+            key: ValueKey('zahlen-dot-$i'),
             width: 36,
             height: 36,
             decoration: BoxDecoration(
@@ -452,7 +400,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                    color: _gradient[0].withOpacity(0.3),
+                    color: LumoVisualTokens.cyan.withValues(alpha: .55),
                     blurRadius: 6,
                     offset: const Offset(0, 2)),
               ],
@@ -464,7 +412,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   }
 
   Widget _buildAnswerGrid() {
-    return GridView.count(
+    return LumoLessonAnswerGrid(
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -478,9 +426,9 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   Widget _buildAnswerButton(int value) {
     final isSelected = _selectedAnswer == value;
     final isCorrect = value == _correctAnswer;
-    Color bgColor = Colors.white;
-    Color textColor = _gradient[1];
-    Color borderColor = _gradient[0].withOpacity(0.3);
+    Color bgColor = LumoVisualTokens.lessonAnswer;
+    Color textColor = LumoVisualTokens.white;
+    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
     if (_answered && isSelected) {
       if (isCorrect) {
         bgColor = const Color(0xFFD1FAE5);
@@ -495,20 +443,22 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) {
-        final s = isSelected && isCorrect
+        final s = isSelected &&
+                isCorrect &&
+                !LumoLessonStyle.reducedMotion(context, widget.appState)
             ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
             : 1.0;
         return Transform.scale(scale: s, child: child);
       },
-      child: GestureDetector(
+      child: LumoLessonAnswerTap(
+        correct: _answered && isSelected ? isCorrect : null,
         onTap: _answered ? null : () => _onAnswer(value),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: borderColor, width: 3),
-          ),
+          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? Duration.zero
+              : const Duration(milliseconds: 200),
+          decoration:
+              LumoLessonStyle.answer(background: bgColor, border: borderColor),
           child: Center(
             child: Text('$value',
                 style: TextStyle(
