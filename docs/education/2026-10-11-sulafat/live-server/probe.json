@@ -1,0 +1,28 @@
+{
+  "checked_utc": "2026-10-11T08:28:50Z",
+  "requests": [
+    {
+      "method": "GET",
+      "url": "https://lumo-ai-proxy.onrender.com/health",
+      "status": 200,
+      "response": "health-response.json"
+    },
+    {
+      "method": "GET",
+      "url": "https://lumo-ai-proxy.onrender.com/speech/status",
+      "status": 404,
+      "response": "speech-status-response.json"
+    },
+    {
+      "method": "POST",
+      "url": "https://lumo-ai-proxy.onrender.com/speech",
+      "status": 404,
+      "body": {},
+      "response": "empty-speech-response.json"
+    }
+  ],
+  "real_child_text_sent": false,
+  "valid_synthesis_requested": false,
+  "configuration_changed": false,
+  "render_connection": "DISCONNECTED"
+}
