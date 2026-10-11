@@ -192,7 +192,13 @@ def main() -> int:
         if protected(existing.prefs(out, "after-update")) != before_profile:
             raise RuntimeError("Stored profile/progress/rewards changed during update")
         speech.parents(out)
-        existing.flutter_tap(out, "App und lokale Stimme prüfen", "local-diagnosis")
+        result["parents"] = existing.capture(out, "00_actual_android_phone_parents")
+        # Twelve forward swipes did not reach speech in the actual long phone
+        # parent view. Keep the real phone entry proof, then use the existing
+        # roomy viewport and an explicitly bounded, forward-first search.
+        existing.base.display(1200, 896, 160)
+        existing.flutter_tap(out, "App und lokale Stimme prüfen", "local-diagnosis",
+                             scroll_attempts=48, direction_order=(1, -1))
         text = status(out, "actual-model-diagnosis",
                       ("Build 1929", existing.PACKAGE, existing.CERT,
                        "Das lokale Lumo-Sprachmodell", "Native Abschlussmeldungen:"))
@@ -272,6 +278,27 @@ def main() -> int:
             "source": "Lumo Frei / F2 / lokale Synthese",
             "audio_content_human_review": "NOT TESTED",
         }
+        # Stop a genuinely started local clip; stopping must not manufacture
+        # a natural completion or restart it afterwards.
+        starts, ends = stats(completed)
+        existing.flutter_tap(out, "Stimme testen", "greeting-for-stop")
+        existing.flutter_tap(out, "Stopp", "stop-actual-greeting")
+        stopped = status(out, "greeting-stopped",
+                         ("Sprachstatus: Ruhe", GREETING,
+                          "Native Abschlussmeldungen:"))
+        if stats(stopped) != (starts + 1, ends):
+            raise RuntimeError("Stop did not interrupt exactly one real native start")
+        time.sleep(1)
+        stable = status(out, "greeting-stays-stopped",
+                        ("Sprachstatus: Ruhe", GREETING,
+                         "Native Abschlussmeldungen:"))
+        if stats(stable) != stats(stopped):
+            raise RuntimeError("Stopped greeting completed or restarted later")
+        result["stop_control"] = {
+            "before": [starts, ends], "after": list(stats(stopped)),
+            "natural_completion_not_faked": True,
+        }
+        existing.capture(out, "04b_actual_android_greeting_stopped")
         result["layouts"] = []
         for name, width, height, density in [
             ("phone", 360, 800, 160), ("fold-target", 2176, 1812, 225),
@@ -286,9 +313,11 @@ def main() -> int:
         existing.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
         existing.flutter_tap(out, "Spielen", "home-games")
         existing.base.display(1200, 896, 160)
-        existing.enter(out, "Lumo Kart", "LUMO KART", "preserved-kart")
+        existing.enter(out, "Lumo Kart", "Einzelrennen", "preserved-kart",
+                       launch_label="Losfahren")
         result["kart_menu"] = existing.capture(out, "06_preserved_kart_menu")
-        existing.leave(out, "preserved-kart", already_menu=True)
+        existing.leave(out, "preserved-kart", already_menu=True,
+                       return_label="Zum Lernen")
         result["kart_return"] = existing.flutter_return_capture(out, "07_preserved_kart_return")
 
         existing.base.adb("shell", "am", "force-stop", existing.PACKAGE)
