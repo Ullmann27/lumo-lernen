@@ -250,10 +250,21 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     neutral = ImageChops.subtract(lightest, darkest).point(
         lambda value: 255 if value <= 45 else 0)
     white_text = ImageChops.invert(ImageChops.multiply(bright, neutral))
+    # The original gold action uses dark navy lettering. White-letter masks
+    # cannot read it. Filter that colour across the ENTIRE current screenshot,
+    # never an assumed button region, glyph shape or fabricated caption.
+    navy_neutral = ImageChops.difference(red, green).point(
+        lambda value: 255 if value <= 12 else 0)
+    navy_dark = red.point(lambda value: 255 if 18 <= value <= 85 else 0)
+    navy_blue = ImageChops.subtract(blue, red).point(
+        lambda value: 255 if 20 <= value <= 75 else 0)
+    navy_text = ImageChops.invert(ImageChops.multiply(
+        ImageChops.multiply(navy_neutral, navy_dark), navy_blue))
     # The German model can miss short UI phrases that the Latin/English model
     # reads correctly. Keep both reads, with independent observed word bounds.
     variants = [('contrast',contrast,'deu+eng'),('raw',image,'deu+eng'),
-                ('white-text',white_text,'deu+eng'),('white-latin',white_text,'eng')]
+                ('white-text',white_text,'deu+eng'),('white-latin',white_text,'eng'),
+                ('navy-latin',navy_text,'eng')]
     for variant, pixels, language in variants:
         remaining = deadline - time.monotonic()
         if remaining <= 0:
@@ -402,6 +413,32 @@ def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool
             return
         time.sleep(2)
     raise RuntimeError('Current native screenshot lacks '+label)
+
+
+def flutter_return_capture(out: Path, tag: str) -> dict:
+    """Do not label a compositor's last Godot buffer as a Flutter return."""
+    foreground = ''
+    for _ in range(15):
+        try:
+            foreground = base.foreground()
+        except RuntimeError:
+            foreground = ''
+        if PACKAGE in foreground and 'LumoGameActivity' not in foreground:
+            break
+        time.sleep(1)
+    else:
+        raise RuntimeError('Flutter activity did not resume after the native game')
+    # A resumed component alone does not prove a new frame was rendered.
+    # Observe an exact current Flutter navigation caption, not the native
+    # pause action "Zur Spieleauswahl" or a saved accessibility snapshot.
+    native_text(out, 'Spielen', tag+'-flutter-visible', exact=True)
+    shot = capture(out, tag)
+    (out/(tag+'-flutter-return.json')).write_text(json.dumps({
+        'status': 'PASS', 'foreground': foreground,
+        'exact_visible_caption': 'Spielen', 'capture': shot,
+        'scope': 'Observed current Flutter frame after private game exit',
+    }, indent=2, ensure_ascii=False)+'\n')
+    return shot
 
 
 def enter(out: Path, title: str, header: str, tag: str, launch_label: str = '') -> None:
@@ -749,7 +786,25 @@ def main() -> int:
             result['treasure'] = {'status':'PASS','inventory_visible':True,'save_and_relaunch':True}
 
         if 'kart' in selected:
-            enter(out,'Lumo Kart','LUMO / KART','14_kart',launch_label='Losfahren')
+            # The real production wordmark is two independently rendered
+            # lines, not the obsolete single-line "LUMO / KART" caption.
+            # Observe the actual mode card, then retain untouched screenshots.
+            enter(out,'Lumo Kart','Einzelrennen','14_kart',launch_label='Losfahren')
+            native_text(out,'Weiter','kart-phone-menu-ready')
+            capture(out,'14_kart_phone_menu')
+            if os.environ.get('LUMO_FOLD_PROBE') == '1':
+                base.display(1812,2176,420)
+                device_rotation(out, 'kart-menu-fold-landscape', 1)
+                for label in ('Einzelrennen','Zeitfahren','Sternen-Cup','Freies Training','Weiter'):
+                    native_text(out,label,'kart-fold-menu-'+normalized(label))
+                menu_fold = capture(out,'14_kart_fold_menu')
+                if menu_fold['width'] != 2176 or menu_fold['height'] != 1812:
+                    raise RuntimeError('Actual Kart menu did not use the Fold inner surface')
+                base.display(1080,1920,300)
+                native_text(out,'Weiter','kart-menu-phone-restored')
+                result['fold_menu'] = {'status':'PASS','surface':[2176,1812],
+                                       'observed_mode_cards_and_continue':True,
+                                       'scope':'Android emulator; not a physical Samsung device'}
             for step in range(4):
                 native_text(out,'Weiter',f'kart-setup-{step+1}',tap=True)
             native_text(out,'Rennen starten','kart-start-race',tap=True)
@@ -802,12 +857,13 @@ def main() -> int:
                 time.sleep(1)
             else:
                 raise RuntimeError('Kart private process remained after return')
-            base.foreground()
-            capture(out,'16_kart_returned_to_app')
+            returned = flutter_return_capture(out,'16_kart_returned_to_app')
             result['kart']={'status':'PASS','actual_setup_steps':5,
                             'phone_surface':[1920,1080], 'compact_surface':[640,320],
                             'five_action_labels_on_phone':True,
-                            'compact_hud_and_capture':True,'pause_return':True}
+                            'compact_hud_and_capture':True,'pause_return':True,
+                            'flutter_return_frame_confirmed':True,
+                            'flutter_return_capture':returned}
         if wallet(out,'after-unfinished-games') != first_wallet:
             raise RuntimeError('An unfinished creative game incorrectly awarded a reward')
 

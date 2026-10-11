@@ -58,6 +58,16 @@ class EmbeddedAndroidTest(unittest.TestCase):
             self.assertIn('org.godotengine:godot:4.6.3.stable', gradle.read_text())
             self.assertIn('.coachpreview', gradle.read_text())
             self.assertIn('noCompress += "pck"', gradle.read_text())
+            self.assertIn('if (project.findProperty("split-per-abi") != "true") {', gradle.read_text())
+            self.assertIn('abiFilters.addAll(listOf("arm64-v8a", "x86_64"))', gradle.read_text())
+            self.assertNotIn('ndk { abiFilters.clear(); abiFilters.addAll', gradle.read_text())
+            self.assertIn('android.applicationVariants.configureEach {', gradle.read_text())
+            self.assertIn('apkOutput.versionCodeOverride = flutter.versionCode', gradle.read_text())
+            self.assertEqual(gradle.read_text().count('apkOutput.versionCodeOverride = flutter.versionCode'), 1)
+            self.assertNotIn('afterEvaluate {', gradle.read_text())
+            self.assertNotIn('androidComponents {', gradle.read_text())
+            self.assertIn('tasks.register("verifyLumoSplitVersionCodes")', gradle.read_text())
+            self.assertIn('apkOutput.versionCodeOverride == expected', gradle.read_text())
 
 
 if __name__ == '__main__':

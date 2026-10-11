@@ -12,9 +12,18 @@ import zipfile
 from verify_android_apk import verify_apk, find_apksigner
 
 ROOT = Path(__file__).resolve().parents[1]
+SUPPORTED_ABIS = {'arm64-v8a', 'x86_64'}
 
 
-def verify(path: Path):
+def validate_abis(actual: set[str], expected: set[str] | None = None) -> None:
+    wanted = SUPPORTED_ABIS if expected is None else expected
+    if not wanted or not wanted <= SUPPORTED_ABIS:
+        raise RuntimeError(f'Unsupported expected native architectures: {wanted}')
+    if actual != wanted:
+        raise RuntimeError(f'Unexpected native architectures: {actual}, expected {wanted}')
+
+
+def verify(path: Path, expected_abis: set[str] | None = None):
     certificate = verify_apk(path)
     tools = Path(find_apksigner()).parent
     badging = subprocess.check_output([str(tools / 'aapt'), 'dump', 'badging', str(path)], text=True)
@@ -28,7 +37,9 @@ def verify(path: Path):
     expected_code = os.environ.get('LUMO_BUILD_NUMBER', version.group(2))
     expected_name = os.environ.get('LUMO_VERSION_NAME', version.group(1))
     if package.group(2) != expected_code or package.group(3) != expected_name:
-        raise RuntimeError('Wrong Android version')
+        raise RuntimeError(
+            f'Wrong Android version: {package.group(3)}+{package.group(2)}, '
+            f'expected {expected_name}+{expected_code}')
     if "sdkVersion:'24'" not in badging:
         raise RuntimeError('Unexpected minimum Android version')
     if "targetSdkVersion:'36'" not in badging:
@@ -39,8 +50,7 @@ def verify(path: Path):
             raise RuntimeError('APK ZIP integrity failed')
         names = archive.namelist()
         abis = {name.split('/')[1] for name in names if name.startswith('lib/') and name.endswith('.so')}
-        if abis != {'arm64-v8a', 'x86_64'}:
-            raise RuntimeError(f'Unexpected native architectures: {abis}')
+        validate_abis(abis, expected_abis)
         for abi in abis:
             for library in ('libflutter.so', 'libapp.so', 'libgodot_android.so'):
                 if f'lib/{abi}/{library}' not in names:
@@ -95,4 +105,7 @@ def verify(path: Path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('apk', type=Path)
-    verify(parser.parse_args().apk)
+    parser.add_argument('--abi', action='append', choices=sorted(SUPPORTED_ABIS),
+                        help='Exact expected ABI; repeat for multiple. Default checks both.')
+    args = parser.parse_args()
+    verify(args.apk, set(args.abi) if args.abi else None)

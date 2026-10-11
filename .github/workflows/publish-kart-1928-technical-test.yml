@@ -1,0 +1,37 @@
+name: Deliver explicitly authorized Lumo Kart 1928 technical prerelease
+
+on:
+  push:
+    branches: ['computer/lumo-kart-android-1928-2026-10-11']
+    paths: ['.github/workflows/publish-kart-1928-technical-test.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: lumo-exact-authorized-1928-publication
+  cancel-in-progress: false
+
+jobs:
+  publish-exact-existing-apk:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/computer/lumo-kart-android-1928-2026-10-11'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify narrow authorization guard counterexamples
+        run: python3 -m unittest discover -s tools/android_qa/tests -p 'test_authorized_1928_publication.py' -v
+      - name: Verify exact root-level Android proof, approved sources and uploaded bytes before publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/android_qa/publish_authorized_1928.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1928-authorized-publication-proof-${{ github.run_id }}
+          path: delivery-proof/
+          if-no-files-found: error
+          retention-days: 30
