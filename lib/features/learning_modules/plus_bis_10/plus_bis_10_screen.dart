@@ -27,6 +27,7 @@ import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/design/lumo_quantity_art.dart';
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/fox/lumo_companion_requests.dart';
 import '../lumo_phrases.dart';
 
 class PlusBis10Screen extends StatefulWidget {
@@ -56,6 +57,16 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   /// Lumo freut sich bei richtigen Antworten und tröstet bei falschen.
   final _lumo = LumoCharacterController();
+  static int _nextLessonSerial = 0;
+  final _lessonId = 'plus10-${++_nextLessonSerial}';
+  late final int _profileGeneration;
+  LumoCompanionTaskContext? _publishedContext;
+  int _taskSerial = 0;
+  int _submittedAttempts = 0;
+  int _helpLevel = 0;
+  bool? _lastCorrect;
+  bool _scopeExpired = false;
+  bool _lessonEventRecorded = false;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -87,6 +98,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   @override
   void initState() {
     super.initState();
+    _profileGeneration = widget.appState.profileGeneration;
+    widget.appState.addListener(_profileChanged);
+    LumoCompanionRequests.instance.helpRequested.addListener(_requestTaskHelp);
     WidgetsBinding.instance.addObserver(this);
     _bounceCtrl = AnimationController(
       vsync: this,
@@ -109,6 +123,13 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   @override
   void dispose() {
+    widget.appState.removeListener(_profileChanged);
+    LumoCompanionRequests.instance.helpRequested
+        .removeListener(_requestTaskHelp);
+    final owned = _publishedContext;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      LumoCompanionRequests.instance.clearTask(owned);
+    });
     if (!_saving) _pendingLease?.close();
     WidgetsBinding.instance.removeObserver(this);
     _feedbackTimer?.cancel();
@@ -120,6 +141,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   }
 
   void _generateTask() {
+    _taskSerial++;
+    _submittedAttempts = 0;
+    _helpLevel = 0;
+    _lastCorrect = null;
     // a + b mit a+b <= 10, a >= 1, b >= 1
     _a = 1 + _rng.nextInt(5); // 1-5
     _b = 1 + _rng.nextInt(10 - _a); // mind. 1, max. 10 - a
@@ -159,6 +184,85 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _rewardBooked = false;
     _profileRecorded = false;
     _saveError = null;
+    _publishTaskContext();
+  }
+
+  void _profileChanged() {
+    if (_scopeExpired ||
+        widget.appState.profileGeneration == _profileGeneration) {
+      return;
+    }
+    _feedbackTimer?.cancel();
+    _afterFeedback = null;
+    if (mounted) setState(() => _scopeExpired = true);
+  }
+
+  String get _localHelp => switch (_helpLevel) {
+        0 || 1 => 'Schau auf die erste Gruppe mit $_a Äpfeln. '
+            'Zähle die $_b Äpfel der zweiten Gruppe dazu. '
+            'Zähle jeden Apfel nur einmal.',
+        2 => 'Beginne bei $_a. Zähle dann $_b Schritte weiter. '
+            'Tippe bei jedem Schritt auf einen Apfel der zweiten Gruppe.',
+        _ => 'Wir machen es anders: Lege beide Apfelgruppen nebeneinander. '
+            'Zeige zuerst auf die $_a Äpfel und dann auf die $_b Äpfel. '
+            'Zähle alle Äpfel langsam von eins an.',
+      };
+
+  void _publishTaskContext() {
+    if (_scopeExpired ||
+        widget.appState.profileGeneration != _profileGeneration) {
+      return;
+    }
+    final task = LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      prompt: '$_a + $_b = ?',
+      taskId: '$_lessonId-$_taskSerial',
+      ownerSection: 'learn',
+      profileGeneration: _profileGeneration,
+      answering: !_answered && _pendingAnswer == null && !_finishSavePending,
+      attempts: _submittedAttempts,
+      helpLevel: _helpLevel,
+      lastAnswer: _selectedAnswer?.toString(),
+      lastCorrect: _lastCorrect,
+      previousHelp: _showHint ? _localHelp : null,
+      localHelp: _localHelp,
+    );
+    _publishedContext = task;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && !_scopeExpired && identical(_publishedContext, task)) {
+        LumoCompanionRequests.instance.publishTask(task);
+      }
+    });
+  }
+
+  void _event(LumoLearningEventKind kind) => LumoCompanionRequests.instance
+      .recordLearningEvent(kind, context: _publishedContext);
+
+  void _requestTaskHelp() {
+    if (!mounted ||
+        _scopeExpired ||
+        _answered ||
+        _saving ||
+        _pendingAnswer != null) {
+      return;
+    }
+    // A covered/previous lesson must not consume another lesson's request.
+    final route = ModalRoute.of(context);
+    if (route != null && !route.isCurrent) return;
+    if (widget.appState.profileGeneration != _profileGeneration) return;
+    _event(LumoLearningEventKind.hintRequested);
+    setState(() {
+      _showHint = true;
+      _helpLevel = (_helpLevel + 1).clamp(1, 3);
+    });
+    _publishTaskContext();
+    _event(LumoLearningEventKind.hintAccepted);
+    _lumo.think();
+    if (widget.appState.state.settings.voiceEnabled) {
+      unawaited(
+          LumoVoice.instance.speak(_localHelp, style: VoiceStyle.explain));
+    }
   }
 
   @override
@@ -184,13 +288,23 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   }
 
   void _speakTask() {
+    if (_scopeExpired ||
+        widget.appState.profileGeneration != _profileGeneration) {
+      return;
+    }
     try {
       LumoVoice.instance.speak('$_a plus $_b - wie viel ist das?');
     } catch (_) {}
   }
 
   void _handleAnswer(int answer) {
-    if (_answered || _pendingAnswer != null || _afterFeedback != null) return;
+    if (_scopeExpired ||
+        _answered ||
+        _pendingAnswer != null ||
+        _afterFeedback != null) {
+      return;
+    }
+    if (widget.appState.profileGeneration != _profileGeneration) return;
     if (widget.appState.resetting) return;
     _pendingLease = widget.appState.beginLearningAction();
     _cosmosRecorded = false;
@@ -198,11 +312,15 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     setState(() {
       _selectedAnswer = answer;
       _pendingAnswer = answer;
+      _submittedAttempts++;
       _pendingHintUsed = _showHint;
       _saving = true;
       _answered = answer == _correct;
       if (!_answered) _wrongAttempts++;
     });
+    _publishTaskContext();
+    if (_submittedAttempts > 1) _event(LumoLearningEventKind.taskRepeated);
+    _event(LumoLearningEventKind.answerSubmitted);
     unawaited(_saveAnswer());
   }
 
@@ -286,6 +404,11 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       } else {
         _handleWrong(answer);
       }
+      _lastCorrect = correct;
+      _publishTaskContext();
+      _event(correct
+          ? LumoLearningEventKind.answerCorrect
+          : LumoLearningEventKind.answerIncorrect);
     } catch (_) {
       if (_pendingLease?.invalidated ?? true) {
         _cancelPendingAnswer();
@@ -358,13 +481,15 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
     // Nach 2 Fehlversuchen: Hint zeigen
     if (_wrongAttempts >= 2 && !_showHint) {
-      _scheduleFeedback(
-          const Duration(milliseconds: 800),
-          () => setState(() {
-                _showHint = true;
-                _selectedAnswer = null;
-                _profileRecorded = false;
-              }));
+      _scheduleFeedback(const Duration(milliseconds: 800), () {
+        setState(() {
+          _showHint = true;
+          _helpLevel = 1;
+          _selectedAnswer = null;
+          _profileRecorded = false;
+        });
+        _publishTaskContext();
+      });
     } else {
       _scheduleFeedback(
           const Duration(milliseconds: 600),
@@ -415,6 +540,11 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         _saving = false;
         _saveError = null;
       });
+      _publishTaskContext();
+      if (!_lessonEventRecorded) {
+        _lessonEventRecorded = true;
+        _event(LumoLearningEventKind.lessonCompleted);
+      }
     } catch (_) {
       if (mounted) {
         setState(() {
@@ -494,6 +624,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                     _taskIdx = 0;
                     _correctCount = 0;
                     _finishRewardBooked = false;
+                    _lessonEventRecorded = false;
                     _generateTask();
                   });
                   _entryCtrl.reset();
@@ -532,6 +663,29 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   @override
   Widget build(BuildContext context) {
+    if (_scopeExpired) {
+      return Scaffold(
+        backgroundColor: LumoVisualTokens.night,
+        body: SafeArea(
+            child: Center(
+                child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            const Text('Das Kinderprofil wurde gewechselt.',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 22)),
+            const SizedBox(height: 16),
+            const Text('Öffne die Aufgabe für das neue Profil erneut.',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 17)),
+            const SizedBox(height: 20),
+            FilledButton(
+                onPressed: () => Navigator.of(context).maybePop(),
+                child: const Text('Zurück zum Lernen')),
+          ]),
+        ))),
+      );
+    }
     return PopScope<void>(
         canPop: _canLeave,
         child: LayoutBuilder(builder: (context, layout) {
@@ -558,7 +712,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                   children: [
                     _buildTaskCard(),
                     const SizedBox(height: 8),
-                    _buildHelpCard(),
+                    _buildLearningHelp(),
                     if (_saving || _saveError != null) _buildSaveStatus(),
                   ],
                 ),
@@ -687,7 +841,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             const SizedBox(height: 8),
             _buildTaskCard(),
             const SizedBox(height: 8),
-            _buildHelpCard(),
+            _buildLearningHelp(),
             if (_saving || _saveError != null) _buildSaveStatus(),
             const SizedBox(height: 8),
             _buildAnswerButtons(),
@@ -918,6 +1072,26 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       ]),
     );
   }
+
+  Widget _buildLearningHelp() => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _buildHelpCard(),
+          if (_showHint && _helpLevel > 0) ...[
+            const SizedBox(height: 8),
+            LumoLessonSurface(
+              child: Text(_localHelp,
+                  key: const ValueKey('plus10-actual-companion-hint'),
+                  style: const TextStyle(
+                      color: LumoVisualTokens.white,
+                      fontFamily: 'Nunito',
+                      fontSize: 16,
+                      height: 1.4,
+                      fontWeight: FontWeight.w700)),
+            ),
+          ],
+        ],
+      );
 
   /// Hilfe-Karte aus Bild 02: zwei Apfel-Mengen, „= ?“ und Lumo mit
   /// Zeigestab. Nach zwei Fehlversuchen oder auf „Tipp“ zählt Lumo vor.
@@ -1153,6 +1327,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     final canContinue = _answered && _pendingAnswer == null && !_saving;
     final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.35;
     final landscape = LumoLessonStyle.shortLandscape(context);
+    final stackActions = largeText ||
+        landscape ||
+        (_showHint && !wide && MediaQuery.sizeOf(context).width < 500);
     return Column(children: [
       LumoLessonAnswerGrid(
         crossAxisCount: largeText || landscape ? 2 : 4,
@@ -1223,25 +1400,21 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       ),
       const SizedBox(height: 12),
       Flex(
-        direction: largeText || LumoLessonStyle.shortLandscape(context)
-            ? Axis.vertical
-            : Axis.horizontal,
+        direction: stackActions ? Axis.vertical : Axis.horizontal,
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: largeText || LumoLessonStyle.shortLandscape(context)
+        crossAxisAlignment: stackActions
             ? CrossAxisAlignment.stretch
             : CrossAxisAlignment.center,
         children: [
           _pillButton(
-            label: 'Tipp',
-            onPressed: _showHint || _answered
-                ? null
-                : () => setState(() => _showHint = true),
+            label: _showHint ? 'Anderer Tipp' : 'Tipp',
+            onPressed: _answered || _saving ? null : _requestTaskHelp,
             leading: const Icon(Icons.lightbulb_rounded,
                 color: LumoVisualTokens.gold, size: 24),
             colors: const [Color(0xFF123F7C), Color(0xFF0B2A5A)],
             border: LumoVisualTokens.cyan.withOpacity(.6),
           ),
-          if (largeText || LumoLessonStyle.shortLandscape(context))
+          if (stackActions)
             const SizedBox(height: 8)
           else
             const Spacer(),

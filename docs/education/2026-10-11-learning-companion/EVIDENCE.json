@@ -1,0 +1,112 @@
+{
+  "captured_at": "2026-10-11T12:17:13.020Z",
+  "integration_parent": "d7caa65591c810fa3daf343600d158ebe6fcc9ed",
+  "app_inputs": [
+    {
+      "path": "lib/app/app_state.dart",
+      "sha256": "7b3cb39cdde308c6b7942577e8250c4d75e512fd5b536d64f0cd7c8947a58f28"
+    },
+    {
+      "path": "lib/app/lumo_companion_host.dart",
+      "sha256": "e384f6473afd5c4e9d621e56c53fd9288bce1d1d9a5ce6b88d1a12f8ddcf3ee2"
+    },
+    {
+      "path": "lib/core/lumo_context_engine.dart",
+      "sha256": "ff57ea4fda69c696b8142bc8e50d3d26e2cf79832570fa80aacf5a0fc3356a16"
+    },
+    {
+      "path": "lib/core/lumo_conversation_controller.dart",
+      "sha256": "656171ce219e5c9dbec46d15b9e18205358b1b03fe7bccb4033e359117972d6c"
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "sha256": "ed0f1a2da24be3ba9302897c13ab6c77f72dff5d4b8926b3a2d88c3ff9afb371"
+    },
+    {
+      "path": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+      "sha256": "78a8b3299526c7dd31a37733db8a56eccf86cb61ddd369b3e725841663edbd65"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_companion_requests.dart",
+      "sha256": "d0f564fdedba303171ea0646b624bf583edee6a7e868839a908906ea88c2b2a8"
+    },
+    {
+      "path": "test/lumo_companion_host_test.dart",
+      "sha256": "0d5f62f6d54cc16cf4143c842323c8a9ec02b9953b9ce517ba68462aa59c6256"
+    },
+    {
+      "path": "test/lumo_learning_events_test.dart",
+      "sha256": "848b3c718b0f4139f9c7bdde7fe29a8a9bfea29d90815d706af48f3e45041d45"
+    },
+    {
+      "path": "test/learning_modules/plus_bis_10_companion_test.dart",
+      "sha256": "939d7f6f43e669969ebc72097d6c70679fab6a71a10f63ba81dfd8e190a778d4"
+    },
+    {
+      "path": "test/design/lumo_companion_runtime_capture_test.dart",
+      "sha256": "36dc42700bcb4f426cdfa7fe55242b69a95b5192e0cc08541966f5fa8e575618"
+    }
+  ],
+  "runtime": {
+    "type": "Flutter test runtime with real app assets and taps",
+    "physical_android": false,
+    "physical_samsung": false,
+    "voice_audible": false,
+    "phone": {
+      "logical_width": 360,
+      "logical_height": 800,
+      "density": 1
+    },
+    "fold_target": {
+      "physical_target_width": 2176,
+      "physical_target_height": 1812,
+      "density": 2.25,
+      "logical_width": 967.1111111111111,
+      "logical_height": 805.3333333333334
+    }
+  },
+  "tests": {
+    "targeted_passed": 114,
+    "full_flutter_suite": false,
+    "analyze_changed_items": 11,
+    "analyze_issues": 0
+  },
+  "images": [
+    {
+      "path": "images/Plus-bis-10-Vorher-Originalreferenz-Nachher.png",
+      "sha256": "004eb8cba728b14ab055f670d9e734c60149d97ed49e3d47b4341c8c983703ae"
+    },
+    {
+      "path": "images/fold-target-actual-help.png",
+      "sha256": "f8b2018b8f154346fa4cdc9cfb85b0d3ad9f22de1a541eb0fe862057e85e130a"
+    },
+    {
+      "path": "images/phone-360x800-actual-help.png",
+      "sha256": "3f214166386631e76cd1701bd3cf91937fef890754a1e8d13bc25fc4407a0414"
+    },
+    {
+      "path": "images/phone-360x800-alternative-help.png",
+      "sha256": "fdb2178264585a23b705a84fe987b63680716a67d274d01902695d6d70477b68"
+    },
+    {
+      "path": "images/phone-360x800-task.png",
+      "sha256": "893f9a3655d5ffcca37b7829f0204f3e03a48437cf6ded7823f80c324fde1085"
+    }
+  ],
+  "comparison": {
+    "before_git_path": "docs/design/2026-10-11-astra-learning-quality/images/after/plus-bis-10-reference-phone-360x800.png",
+    "before_integration_source": "d7caa65591c810fa3daf343600d158ebe6fcc9ed",
+    "before_sha256": "73162a550f4ae76aa14bfc3c30a7968f33e5c76269593626adb6ddc9574e61c4",
+    "original_reference": "user-uploaded 51024.jpg",
+    "original_sha256": "af204f949809a876427b84b3e26488552fd80f16d0ca9b7e6253f5469303f9be",
+    "state_difference": "After frame deliberately shows a genuinely requested alternative hint, not the original unanswered state."
+  },
+  "not_complete": [
+    "guided instruction",
+    "separate discovery progress and parental permission",
+    "full pedagogical audit",
+    "Android verification of these new learning changes",
+    "physical hearing review",
+    "Google Play release"
+  ]
+}

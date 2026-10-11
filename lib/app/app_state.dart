@@ -19,6 +19,7 @@ import '../domain/school/attempt.dart';
 import '../domain/school/competency.dart';
 import '../core/scanned_work_analysis.dart';
 import '../core/settings_repository.dart';
+import '../widgets/fox/lumo_companion_requests.dart';
 
 enum LumoSection {
   home,
@@ -181,7 +182,7 @@ class LearningProfileLease {
 
 class _LearningSession {
   _LearningSession(this.studentId, this.profile)
-    : cosmos = CosmosWorld(studentId: studentId);
+      : cosmos = CosmosWorld(studentId: studentId);
   final String studentId;
   final LearningProfileEngine profile;
   final CosmosWorld cosmos;
@@ -192,11 +193,11 @@ class _LearningSession {
 /// retries and reserves that child's destination until the action settles.
 class LearningProfileAction {
   LearningProfileAction._(this._app)
-    : _generation = _app._profileGeneration,
-      _resetEpoch = _app._learningResetEpoch,
-      _selection = _app.school.activeStudentId(),
-      _selectionKnown = _app.school.hasLoadedSelection,
-      _schoolStudentId = _app.school.cachedActiveStudentId;
+      : _generation = _app._profileGeneration,
+        _resetEpoch = _app._learningResetEpoch,
+        _selection = _app.school.activeStudentId(),
+        _selectionKnown = _app.school.hasLoadedSelection,
+        _schoolStudentId = _app.school.cachedActiveStudentId;
 
   final LumoAppState _app;
   final int _generation;
@@ -233,8 +234,8 @@ class LearningProfileAction {
     try {
       if (!_selectionKnown) {
         try {
-          _schoolStudentId = await (_selection ??= _app.school
-              .activeStudentId());
+          _schoolStudentId =
+              await (_selection ??= _app.school.activeStudentId());
           _selectionKnown = true;
         } catch (_) {
           _selection = null;
@@ -290,7 +291,8 @@ class LumoAppState extends ChangeNotifier {
   LearningProfileEngine _learningProfile;
   late LearningProfileEngine _localProfileSeed;
   final LearningProfileEngine Function(String)? _learningProfileFactory;
-  final LegacyLearningDataRepository legacyLearningData = LegacyLearningDataRepository();
+  final LegacyLearningDataRepository legacyLearningData =
+      LegacyLearningDataRepository();
   final Map<String, _LearningSession> _learningSessions = {};
   final Set<Future<dynamic>> _learningOperations = {};
   final Set<LearningProfileAction> _learningActions = {};
@@ -563,6 +565,10 @@ class LumoAppState extends ChangeNotifier {
   }
 
   void _clearLearningDisplay() {
+    final requests = LumoCompanionRequests.instance;
+    if (requests.taskContext.value?.profileGeneration != _profileGeneration) {
+      requests.clearLearningScope();
+    }
     _state = _state.copyWith(
       solved: {},
       weakSkills: {},
@@ -917,8 +923,7 @@ class LumoAppState extends ChangeNotifier {
         weakSkills: newWeak,
         mood: analysis.hasWeaknesses ? LumoMood.comfort : LumoMood.point,
         lumoMessage: analysis.childSummary,
-        sessionKind:
-            analysis.workType == ScannedWorkType.schoolwork ||
+        sessionKind: analysis.workType == ScannedWorkType.schoolwork ||
                 analysis.workType == ScannedWorkType.test
             ? LumoSessionKind.test
             : LumoSessionKind.quickPractice,
@@ -1039,8 +1044,12 @@ class LumoAppState extends ChangeNotifier {
       if (_settingsLoad != null) await _settingsLoad;
       await _walletRepository.reset();
       for (final session in _learningSessions.values) {
-        try { await session.profile.reset(); } catch (_) {}
-        try { await session.cosmos.reset(); } catch (_) {}
+        try {
+          await session.profile.reset();
+        } catch (_) {}
+        try {
+          await session.cosmos.reset();
+        } catch (_) {}
         session.epoch++;
       }
       final prefs = await SharedPreferences.getInstance();
