@@ -4,6 +4,16 @@ import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 import 'package:lumo_lernen/domain/tutoring/tutoring_session_planner.dart';
 
 void main() {
+  test(
+      'minus introduction offers an actual explanation and independent practice',
+      () {
+    final lesson = GuidedLessonCatalog.schoolIntroduction(
+        subject: 'Mathematik', unit: 'Minus bis 20', grade: 1);
+    expect(lesson, isNotNull);
+    expect(lesson!.steps.any((s) => s.type == TutoringStepType.showExample),
+        isTrue);
+    expect(lesson.steps.where((s) => s.isIndependent).length, 2);
+  });
   for (final lesson in GuidedLessonCatalog.all) {
     test('${lesson.id}: complete example, guided practice and real check', () {
       lesson.discoveryTarget.validate();
@@ -45,6 +55,12 @@ void main() {
           expect(int.parse(step.expected) + (10 - step.a), step.b);
         case GuidedAnswerKind.sum:
           expect(int.parse(step.expected) - step.a, step.b);
+        case GuidedAnswerKind.toPreviousTen:
+          expect(step.a - int.parse(step.expected), 10);
+        case GuidedAnswerKind.subtractRemainder:
+          expect(int.parse(step.expected) + step.a % 10, step.b);
+        case GuidedAnswerKind.difference:
+          expect(int.parse(step.expected) + step.b, step.a);
         case GuidedAnswerKind.groups:
           expect(List.filled(step.a, step.b).reduce((a, b) => a + b),
               int.parse(step.expected));
@@ -61,6 +77,45 @@ void main() {
     expect(addition.a + addition.b, 12);
     final groups = GuidedLessonCatalog.equalGroups.steps[2];
     expect(groups.a * groups.b, 6);
+    final minus = GuidedLessonCatalog.subtractTen.steps[2];
+    expect(minus.a - minus.b, 7);
+  });
+
+  test('subtraction steps and zero answers have unique correct choices', () {
+    var cases = 0;
+    for (var a = 11; a < 20; a++) {
+      for (var b = a % 10 + 1; b <= a; b++) {
+        for (final kind in [
+          GuidedAnswerKind.toPreviousTen,
+          GuidedAnswerKind.subtractRemainder,
+          GuidedAnswerKind.difference,
+        ]) {
+          final step = GuidedLessonStep(
+              type: TutoringStepType.guidedTask,
+              title: 'Prüfung',
+              instruction: 'Prüfung',
+              a: a,
+              b: b,
+              answerKind: kind,
+              observation: DiscoveryStepKind.guided);
+          final result = int.parse(step.expected);
+          switch (kind) {
+            case GuidedAnswerKind.toPreviousTen:
+              expect(a - result, 10);
+            case GuidedAnswerKind.subtractRemainder:
+              expect(result + a % 10, b);
+            default:
+              expect(result + b, a);
+          }
+          expect(step.choices.length, 4);
+          expect(step.choices.toSet().length, 4);
+          expect(step.choices.where(step.accepts).length, 1);
+          expect(step.choices.map(int.parse), everyElement(isNonNegative));
+          cases++;
+        }
+      }
+    }
+    expect(cases, 270);
   });
 
   test('bounded arithmetic sweep checks strategy steps without an AI judge',

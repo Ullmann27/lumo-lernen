@@ -563,11 +563,17 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
             const SizedBox(height: 10),
             Text(
                 step.type == TutoringStepType.showExample
-                    ? widget.lesson.concept == GuidedMathConcept.bridgeTen
-                        ? 'Fülle zuerst den Zehner. Dann zähle die übrigen '
-                            'Äpfel dazu.'
-                        : 'Gleiche Gruppen lassen sich als Plusrechnung '
-                            'und als Malrechnung beschreiben.'
+                    ? switch (widget.lesson.concept) {
+                        GuidedMathConcept.bridgeTen =>
+                          'Fülle zuerst den Zehner. Dann zähle die übrigen '
+                              'Äpfel dazu.',
+                        GuidedMathConcept.equalGroups =>
+                          'Gleiche Gruppen lassen sich als Plusrechnung '
+                              'und als Malrechnung beschreiben.',
+                        GuidedMathConcept.subtractTen =>
+                          'Nimm zuerst bis zehn weg. Nimm dann den Rest weg. '
+                              'Zusammen sind es genau ${step.b} Äpfel.',
+                      }
                     : step.instruction,
                 style: _body),
             const SizedBox(height: 16),

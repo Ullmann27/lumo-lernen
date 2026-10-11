@@ -124,6 +124,9 @@ void main() {
         GuidedAnswerKind.gapToTen => '${10 - step.a}',
         GuidedAnswerKind.remainder => '${step.a + step.b - 10}',
         GuidedAnswerKind.sum => '${step.a + step.b}',
+        GuidedAnswerKind.toPreviousTen => '${step.a - (step.a ~/ 10) * 10}',
+        GuidedAnswerKind.subtractRemainder => '${step.b - (step.a - 10)}',
+        GuidedAnswerKind.difference => '${step.a - step.b}',
         GuidedAnswerKind.groups =>
           '${List.filled(step.a, step.b).fold<int>(0, (a, b) => a + b)}',
         GuidedAnswerKind.repeatedAddition => [

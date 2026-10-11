@@ -3,7 +3,7 @@ import 'tutoring_session_planner.dart';
 
 /// Small reviewed local lessons inside the existing tutoring architecture.
 /// No generated answer, provider request, new profile or second database.
-enum GuidedMathConcept { bridgeTen, equalGroups }
+enum GuidedMathConcept { bridgeTen, equalGroups, subtractTen }
 
 enum GuidedAnswerKind {
   count,
@@ -11,7 +11,10 @@ enum GuidedAnswerKind {
   remainder,
   sum,
   groups,
-  repeatedAddition
+  repeatedAddition,
+  toPreviousTen,
+  subtractRemainder,
+  difference
 }
 
 class GuidedLessonStep {
@@ -47,6 +50,9 @@ class GuidedLessonStep {
         GuidedAnswerKind.sum => '${a + b}',
         GuidedAnswerKind.groups => '${a * b}',
         GuidedAnswerKind.repeatedAddition => List.filled(a, '$b').join(' + '),
+        GuidedAnswerKind.toPreviousTen => '${a % 10}',
+        GuidedAnswerKind.subtractRemainder => '${b - a % 10}',
+        GuidedAnswerKind.difference => '${a - b}',
         null => throw StateError('This step has no answer'),
       };
 
@@ -55,17 +61,41 @@ class GuidedLessonStep {
       return ['$a + $b', expected, List.filled(a + 1, '$b').join(' + ')];
     }
     final number = int.parse(expected);
-    return [
+    final values = <String>{
       '${(number - 1).clamp(0, 100)}',
       expected,
       '${number + 2}',
       '${number + 1}',
-    ];
+    };
+    // Zero is a valid answer, but must appear only once.
+    for (var next = number + 3; values.length < 4; next++) {
+      values.add('$next');
+    }
+    return values.toList();
   }
 
   bool accepts(String value) => isQuestion && value == expected;
 
   String help({required int level}) {
+    if (answerKind == GuidedAnswerKind.toPreviousTen) {
+      return level < 2
+          ? 'Zähle von $a rückwärts bis zehn. Wie viele Schritte brauchst du?'
+          : 'Lass zehn Äpfel liegen. Wie viele liegen über diesen zehn?';
+    }
+    if (answerKind == GuidedAnswerKind.subtractRemainder) {
+      return level < 2
+          ? 'Insgesamt nehmen wir $b weg. ${a % 10} sind schon weg. '
+              'Wie viele fehlen noch?'
+          : 'Stell dir $b Finger vor. Klappe ${a % 10} ein. '
+              'Die übrigen Finger zeigen den zweiten Schritt.';
+    }
+    if (answerKind == GuidedAnswerKind.difference) {
+      return level < 2
+          ? 'Nimm zuerst ${a % 10} weg, bis zehn bleiben. '
+              'Nimm dann die übrigen ${b - a % 10} weg. Wo landest du?'
+          : 'Zähle von $a genau $b Schritte rückwärts. '
+              'Prüfe danach: Deine Antwort plus $b muss wieder $a sein.';
+    }
     if (answerKind == GuidedAnswerKind.count) {
       return level < 2
           ? 'Tippe gedanklich auf jeden Apfel. Zähle ihn nur einmal.'
@@ -289,7 +319,86 @@ abstract final class GuidedLessonCatalog {
     ],
   );
 
-  static const all = [bridgeTen, equalGroups];
+  static const subtractTen = GuidedLesson(
+    id: 'subtract_ten',
+    title: 'Minus über den Zehner',
+    description: 'Erst bis zehn zurück, dann den Rest wegnehmen.',
+    grade: 1,
+    schoolUnit: 'Minus bis 20',
+    concept: GuidedMathConcept.subtractTen,
+    steps: [
+      GuidedLessonStep(
+        type: TutoringStepType.greeting,
+        title: 'Mit Lumo zurückrechnen',
+        instruction: 'Bei Minus nehmen wir etwas weg. Heute gehen wir '
+            'zuerst bis zehn zurück und dann noch ein Stück weiter.',
+      ),
+      GuidedLessonStep(
+        type: TutoringStepType.guidedTask,
+        title: 'Unsere Startmenge',
+        instruction: 'Zähle die Äpfel. Wie viele sind am Anfang da?',
+        a: 12,
+        answerKind: GuidedAnswerKind.count,
+        observation: DiscoveryStepKind.foundation,
+      ),
+      GuidedLessonStep(
+        type: TutoringStepType.showExample,
+        title: 'Zwölf minus fünf',
+        instruction: 'Von zwölf nehmen wir zuerst zwei weg. Dann bleiben '
+            'zehn. Von den fünf fehlen noch drei. Wir nehmen drei weitere '
+            'weg. Jetzt bleiben sieben. Zwei und drei zusammen sind fünf.',
+        a: 12,
+        b: 5,
+      ),
+      GuidedLessonStep(
+        type: TutoringStepType.guidedTask,
+        title: 'Gemeinsam zurück bis zehn',
+        instruction: 'Dreizehn minus sechs: Wie viele nehmen wir zuerst '
+            'weg, damit zehn bleiben?',
+        a: 13,
+        b: 6,
+        answerKind: GuidedAnswerKind.toPreviousTen,
+        observation: DiscoveryStepKind.guided,
+      ),
+      GuidedLessonStep(
+        type: TutoringStepType.guidedTask,
+        title: 'Noch ein Stück zurück',
+        instruction: 'Drei Äpfel sind schon weg. Insgesamt sollen sechs '
+            'weg. Wie viele nehmen wir noch weg?',
+        a: 13,
+        b: 6,
+        answerKind: GuidedAnswerKind.subtractRemainder,
+        observation: DiscoveryStepKind.guided,
+      ),
+      GuidedLessonStep(
+        type: TutoringStepType.independentTask,
+        title: 'Du rechnest selbst zurück',
+        instruction: 'Vierzehn minus acht. Wie viele bleiben?',
+        a: 14,
+        b: 8,
+        answerKind: GuidedAnswerKind.difference,
+        observation: DiscoveryStepKind.independent,
+      ),
+      GuidedLessonStep(
+        type: TutoringStepType.independentTask,
+        title: 'Dein neuer Minusversuch',
+        instruction: 'Elf minus vier. Welche Antwort passt?',
+        a: 11,
+        b: 4,
+        answerKind: GuidedAnswerKind.difference,
+        observation: DiscoveryStepKind.check,
+      ),
+      GuidedLessonStep(
+        type: TutoringStepType.recap,
+        title: 'Du kannst in zwei Schritten rechnen',
+        instruction: 'Du hast zuerst bis zehn zurückgerechnet und dann '
+            'den Rest weggenommen. Mit Plus kannst du deine Minusrechnung '
+            'prüfen. Wenn du magst, üben wir später weiter.',
+      ),
+    ],
+  );
+
+  static const all = [bridgeTen, equalGroups, subtractTen];
 
   /// Map only explicit, compatible mathematical topics to actual introductions.
   /// A German/science recommendation must never silently become a maths lesson.
@@ -301,6 +410,7 @@ abstract final class GuidedLessonCatalog {
     if (subject != 'Mathematik') return null;
     final lesson = switch (unit) {
       'Plus bis 20' => bridgeTen,
+      'Minus bis 20' => subtractTen,
       'Einmaleins' || 'Kleines 1×1' => equalGroups,
       _ => null,
     };

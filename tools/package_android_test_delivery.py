@@ -18,10 +18,11 @@ def digest(path: Path) -> str:
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def validate(provenance: dict, android: dict, outcomes: dict, run: dict, log: str) -> dict:
+def validate(provenance: dict, android: dict, outcomes: dict, run: dict, log: str,
+             *, version_code: int = 1930, version_name: str = "0.12.23") -> dict:
     source = provenance["flutter_source_commit"]
     if (not re.fullmatch(r"[a-f0-9]{40}", source)
-            or provenance["versionCode"] != 1930 or provenance["versionName"] != "0.12.23"
+            or provenance["versionCode"] != version_code or provenance["versionName"] != version_name
             or provenance["package"] != "dev.ullmann.lumo.lumo_lernen.coachpreview"
             or provenance["abis"] != ["arm64-v8a"]
             or provenance["tracked_source_clean"] is not True
@@ -36,6 +37,8 @@ def validate(provenance: dict, android: dict, outcomes: dict, run: dict, log: st
             or android.get("discovery_course", {}).get("status") != "PASS"
             or android.get("restart_school_discovery_wallet") != "PASS"):
         raise ValueError("Actual complete Android acceptance of this APK source is required")
+    if version_code >= 1931 and android.get("subtraction_course", {}).get("status") != "PASS":
+        raise ValueError("Complete real Android subtraction course acceptance is required")
     if (outcomes.get("SOURCE_SHA") != source
             or any(outcomes.get(key) != "success" for key in
                    ("DEPENDENCIES", "ANALYSIS", "TESTS"))
@@ -56,13 +59,16 @@ def main() -> int:
     parser.add_argument("--ci-proof", type=Path, required=True)
     parser.add_argument("--ci-run", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--version-code", type=int, default=1930)
+    parser.add_argument("--version-name", default="0.12.23")
     args = parser.parse_args()
     provenance = json.loads((args.arm64 / "BUILD-PROVENANCE.json").read_text())
     android = json.loads((args.android_proof / "education-android-result.json").read_text())
     outcomes = json.loads((args.ci_proof / "outcomes.json").read_text())
     run = json.loads(args.ci_run.read_text())
     log = (args.ci_proof / "tests.log").read_text()
-    checked = validate(provenance, android, outcomes, run, log)
+    checked = validate(provenance, android, outcomes, run, log,
+                       version_code=args.version_code, version_name=args.version_name)
     apk = args.arm64 / "Lumo-Lernen-Neu.apk"
     if apk.stat().st_size != provenance["bytes"] or digest(apk) != provenance["sha256"]:
         raise ValueError("Downloaded ARM64 APK size/digest differs from the verified build")
@@ -75,7 +81,11 @@ def main() -> int:
             raise ValueError("Actual downloaded APK is not the verified ARM64 variant")
     args.output.mkdir(parents=True, exist_ok=True)
     source = checked["source"]
-    instructions = f"""# Lumo Lernen Neu 0.12.23 (1930)
+    version_name, version_code = args.version_name, args.version_code
+    new_course = (' sowie „Minus über den Zehner“' if version_code >= 1931 else '')
+    baseline_code = android['voice_update_kart']['baseline']['versionCode']
+    course_count = 'drei' if version_code >= 1931 else 'beide'
+    instructions = f"""# Lumo Lernen Neu {version_name} ({version_code})
 
 Diese ZIP enthält die vollständige ARM64-Test-APK der bestehenden Lumo-App.
 Sie ist keine zweite Ersatz-App und keine Google-Play-Produktionsfreigabe.
@@ -101,23 +111,23 @@ dadurch nicht freigegeben. Es wurden keine kostenpflichtigen Sprachanfragen ausg
 
 Unter Lernen stehen „Lumo erklärt es mir“ und „Mit Lumo Neues entdecken“ zur Verfügung.
 Tatsächlich enthalten sind die Einführungen „Über den Zehner“ und
-„Das Einmaleins entdecken“. Für freiwilliges Vorlernen zuerst im Elternbereich
+„Das Einmaleins entdecken“{new_course}. Für freiwilliges Vorlernen zuerst im Elternbereich
 „Vorlernen erlauben“ und die erlaubte Schulstufe wählen. Regulärer Schulfortschritt
 und Entdeckungsfortschritt bleiben getrennt. Weitere Unterrichtseinführungen fehlen
 noch; es wird keine vollständige Lehrplanabdeckung behauptet.
 
 ## Tatsächliche Prüfung und Quellzuordnung
 
-- **Version:** 0.12.23+1930, ARM64, minSdk 24, targetSdk 36.
+- **Version:** {version_name}+{version_code}, ARM64, minSdk 24, targetSdk 36.
 - **Flutter-Quelle:** `{source}`.
 - **Godot-Quelle:** `{GODOT}`, Engine 4.6.3.
 - **APK SHA-256:** `{provenance["sha256"]}`.
 - **Testsignatur SHA-256:** `{CERTIFICATE}`.
 - **Komplette Flutter-Prüfung:** {checked["passed"]} bestanden,
   {checked["skipped"]} optionale Aufnahmefälle übersprungen, 0 fehlgeschlagen.
-- **Android-Laufzeit:** Android 16/API 36 x86_64-Emulator. Update 1929→1930
+- **Android-Laufzeit:** Android 16/API 36 x86_64-Emulator. Update {baseline_code}→{version_code}
   ohne Deinstallation, tatsächliche Offline-Synthese/Wiedergabe, Pause/Fortsetzen/Stopp,
-  Elternbereich, Godot-Menü/Rückkehr, beide vollständigen Unterrichtskurse,
+  Elternbereich, Godot-Menü/Rückkehr, {course_count} vollständige Unterrichtskurse,
   getrennte Fortschritte und Neustart bestanden.
 
 Die gebaute ARM64-APK und die tatsächlich installierte x86_64-Prüf-APK stammen aus
@@ -149,7 +159,13 @@ nicht aus Konzeptbildern oder einem Flutter-Testbild als angeblicher Android-Auf
         "15_actual_android_higher_grade_equal_groups.png",
         "16_actual_android_complete_discovery_course.png",
     ]
-    target = args.output / "Lumo-Lernen-Neu-0.12.23-1930.zip"
+    if version_code >= 1931:
+        screenshots.extend([
+            "17_actual_android_subtraction_example.png",
+            "18_actual_android_subtraction_alternative_hint.png",
+            "19_actual_android_complete_subtraction_course.png",
+        ])
+    target = args.output / f"Lumo-Lernen-Neu-{version_name}-{version_code}.zip"
     with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED, compresslevel=1) as archive:
         archive.write(apk, "Lumo-Lernen-Neu.apk")
         archive.write(notes, notes.name)

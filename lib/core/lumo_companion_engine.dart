@@ -2,6 +2,8 @@ import '../app/app_state.dart';
 import '../domain/companion/lumo_companion_core.dart' as companion;
 import '../domain/learning/lumo_learning_domain.dart' as learning;
 import '../widgets/fox/lumo_companion_requests.dart';
+import 'school_exercise_generator.dart';
+import 'task_hint_service.dart';
 
 class LumoCompanionEngine {
   const LumoCompanionEngine();
@@ -72,7 +74,27 @@ class LumoCompanionEngine {
                 'Mit Weiter öffnest du die nächste Aufgabe.',
             mood: LumoMood.point);
       }
-      final hint = task.localHelp?.trim();
+      var hint = task.localHelp?.trim();
+      // Keep a lesson's deliberately changed explanation. If it still offers
+      // the same hint after repeated errors, use the existing local hint
+      // service with the visible task instead of repeating that text.
+      if (task.lastCorrect == false &&
+          task.attempts >= 2 &&
+          (hint == null || hint.isEmpty || hint == task.previousHelp?.trim())) {
+        hint = const TaskHintService().explain(
+          LumoTask(
+            id: task.taskId,
+            grade: state.grade,
+            subject: task.subject,
+            unit: task.unit,
+            prompt: task.prompt,
+            answer: '',
+            choices: const [],
+            explanation: '',
+          ),
+          level: task.attempts == 2 ? 2 : 3,
+        );
+      }
       final opening = task.lastCorrect == false
           ? task.attempts >= 2
               ? 'Wir versuchen einen kleinen anderen Schritt.'

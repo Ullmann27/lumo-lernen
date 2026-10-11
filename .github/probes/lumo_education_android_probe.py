@@ -325,6 +325,71 @@ def discovery_course(out: Path) -> dict:
     }
 
 
+def subtraction_course(out: Path) -> dict:
+    """New local lesson: true taps, wrong/correct feedback, exact durable totals."""
+    before_discovery = discoveries(out, "before-minus-discovery")
+    before = existing.prefs(out, "before-minus-regular")
+    before_wallet = existing.wallet(out, "before-minus-wallet")
+    tap_named_course(out, "Minus über den Zehner", "minus-named-start")
+    wait_text(out, "Mit Lumo zurückrechnen", "minus-introduction")
+    tap(out, "Weiter", "minus-introduction-next")
+    answer(out, "Unsere Startmenge", "12", "minus-foundation")
+    wait_text(out, "Zwölf minus fünf", "minus-example")
+    tap(out, "Erklärung lesen", "minus-explanation-open")
+    wait_text(out, "Jetzt bleiben sieben", "minus-actual-explanation", scroll=True)
+    # Let automatic narration finish before testing an explicit new read.
+    wait_text(out, "Vorlesen", "minus-auto-read-finished", timeout=120, scroll=True)
+    example = existing.capture(out, "17_actual_android_subtraction_example")
+    tap(out, "Vorlesen", "minus-local-explanation-read")
+    wait_text(out, "Pause", "minus-local-voice-start", timeout=120)
+    tap(out, "Pause", "minus-local-voice-pause")
+    wait_text(out, "Fortsetzen", "minus-local-voice-paused")
+    tap(out, "Fortsetzen", "minus-local-voice-resume")
+    wait_text(out, "Vorlesen", "minus-local-voice-complete", timeout=120)
+    tap(out, "Weiter", "minus-example-next")
+    answer(out, "Gemeinsam zurück bis zehn", "3", "minus-to-ten")
+    answer(out, "Noch ein Stück zurück", "3", "minus-remainder")
+    wait_text(out, "Du rechnest selbst zurück", "minus-independent")
+    tap(out, "5", "minus-actual-wrong-answer")
+    wait_text(out, "Fast! Probiere es noch einmal", "minus-wrong-feedback", scroll=True)
+    tap(out, "Tipp", "minus-first-help")
+    wait_text(out, "Nimm zuerst 4 weg", "minus-first-help-visible", scroll=True)
+    tap(out, "Anderer Tipp", "minus-different-help")
+    wait_text(out, "Prüfe danach", "minus-second-help-visible", scroll=True)
+    hint = existing.capture(out, "18_actual_android_subtraction_alternative_hint")
+    tap(out, "6", "minus-correct-answer")
+    wait_answer_accepted(out, "6", "minus-correct-feedback")
+    tap(out, "Weiter", "minus-independent-next")
+    answer(out, "Dein neuer Minusversuch", "7", "minus-independent-check")
+    wait_text(out, "2 neue Aufgaben selbst gelöst", "minus-actual-complete", scroll=True)
+    recap = existing.capture(out, "19_actual_android_complete_subtraction_course")
+    tap(out, "Zur Lernübersicht", "minus-return")
+    after = existing.prefs(out, "after-minus-regular")
+    records = [record for key, raw in after.items() if "lumo_progress_skills::" in key
+               for record in json.loads(raw).values() if record.get("unit") == "Minus bis 20"]
+    if (len(records) != 1 or records[0].get("correct") != 2
+            or records[0].get("wrong") != 1 or records[0].get("hintCount") != 1):
+        raise RuntimeError("Actual minus independent answers/hint were not saved exactly once")
+    # Compare pre-existing skills independently; adding a new unit must not
+    # overwrite the earlier Plus record or any unrelated persisted key.
+    for key, raw in before.items():
+        if "lumo_progress_skills::" in key:
+            old, new = json.loads(raw), json.loads(after[key])
+            if any(new.get(unit) != record for unit, record in old.items()):
+                raise RuntimeError("Minus course overwrote an existing regular skill")
+    if discoveries(out, "after-minus-discovery") != before_discovery:
+        raise RuntimeError("Regular minus lesson changed discovery progress")
+    after_wallet = existing.wallet(out, "after-minus-wallet")
+    if after_wallet != before_wallet:
+        raise RuntimeError("Guided minus course unexpectedly changed the existing wallet")
+    return {"status": "PASS", "complete_eight_step_course": True,
+            "school_record": records[0], "existing_skills_preserved": True,
+            "discovery_unchanged": True, "different_child_requested_help": True,
+            "wallet_unchanged": True,
+            "actual_local_voice_pause_resume": True,
+            "screenshots": [example, hint, recap]}
+
+
 def tap_named_course(out: Path, title: str, tag: str) -> None:
     # Read real, unmodified accessibility rows; never guess a fixed screen area.
     for attempt in range(20):
@@ -393,6 +458,11 @@ def main() -> int:
         result["candidate_apk_sha256"] = previous["candidate"]["sha256"]
         existing.base.display(1200, 896, 160)
         result["school_course"] = school_course(out)
+        if voice.CANDIDATE_VERSION >= 1931:
+            tap(out, "Lernen", "minus-learning-navigation")
+            tap(out, "Lumo erklärt es mir", "minus-school-hub")
+            result["subtraction_course"] = subtraction_course(out)
+            existing.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
         result["discovery_course"] = discovery_course(out)
         tap(out, "Zur Lernübersicht", "discovery-return")
         existing.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
