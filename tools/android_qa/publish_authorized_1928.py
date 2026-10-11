@@ -39,9 +39,10 @@ def digest(path):
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def member(archive, name):
+def member(archive, name, *, exact=False):
     matches = [item for item in archive.infolist()
-               if not item.is_dir() and Path(item.filename).name == name]
+               if not item.is_dir()
+               and (item.filename == name if exact else Path(item.filename).name == name)]
     require(len(matches) == 1, f"Ambiguous or missing artifact member: {name}")
     return matches[0]
 
@@ -114,13 +115,13 @@ def main():
                           "lumo-1928-android16-kart-proof-38099853608",
                           HARNESS, root / "runtime.zip")
         with zipfile.ZipFile(root / "runtime.zip") as archive:
-            result = json.loads(archive.read(member(archive, "result.json")))
+            result = json.loads(archive.read(member(archive, "result.json", exact=True)))
             check_return(result)
             frame = json.loads(archive.read(
-                member(archive, "16_kart_returned_to_app-flutter-return.json")))
+                member(archive, "16_kart_returned_to_app-flutter-return.json", exact=True)))
             require(frame["status"] == "PASS" and frame["exact_visible_caption"] == "Spielen",
                     "Current visible Flutter frame proof is missing")
-            picture = archive.read(member(archive, "16_kart_returned_to_app.png"))
+            picture = archive.read(member(archive, "16_kart_returned_to_app.png", exact=True))
             require(hashlib.sha256(picture).hexdigest() ==
                     result["kart"]["flutter_return_capture"]["sha256"] ==
                     frame["capture"]["sha256"],

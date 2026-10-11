@@ -25,7 +25,7 @@ jobs:
           persist-credentials: false
       - name: Verify narrow authorization guard counterexamples
         run: python3 -m unittest discover -s tools/android_qa/tests -p 'test_authorized_1928_publication.py' -v
-      - name: Verify approved sources, current Flutter return and uploaded bytes before publication
+      - name: Verify exact root-level Android proof, approved sources and uploaded bytes before publication
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 tools/android_qa/publish_authorized_1928.py

@@ -1,9 +1,11 @@
 import copy
 import hashlib
 import importlib.util
+import io
 from pathlib import Path
 import unittest
 from unittest.mock import patch
+import zipfile
 
 
 SOURCE = Path(__file__).resolve().parents[1] / "publish_authorized_1928.py"
@@ -13,6 +15,21 @@ SPEC.loader.exec_module(MODULE)
 
 
 class AuthorizedPublicationTests(unittest.TestCase):
+    def test_root_app_proof_is_distinct_from_nested_system_result(self):
+        stream = io.BytesIO()
+        with zipfile.ZipFile(stream, "w") as archive:
+            archive.writestr("result.json", '{"status":"PASS"}')
+            archive.writestr("system-image/other/result.json", '{"status":"other"}')
+        stream.seek(0)
+        with zipfile.ZipFile(stream) as archive:
+            with self.assertRaises(ValueError):
+                MODULE.member(archive, "result.json")
+            item = MODULE.member(archive, "result.json", exact=True)
+            self.assertEqual(item.filename, "result.json")
+            self.assertEqual(archive.read(item), b'{"status":"PASS"}')
+            with self.assertRaises(ValueError):
+                MODULE.member(archive, "missing.json", exact=True)
+
     def release(self):
         return {"id": MODULE.RELEASE_ID, "draft": True, "prerelease": True,
                 "tag_name": MODULE.TAG, "name": MODULE.TITLE,
