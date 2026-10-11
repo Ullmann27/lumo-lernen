@@ -42,7 +42,7 @@ Die PNGs stammen aus den bestehenden echten Modul-Widgets im Flutter-Testrendere
 - Vollständige Suite: **1006 bestanden, 107 übersprungen, keine Fehler**. Darunter 80 optionale Capture-Cases, die separat sämtlich ausgeführt wurden; 27 bestehende weitere Skips bleiben bestehen.
 - 80 Aufnahmen: 20 Module × Phone, Querformat, breites Layout und Fold; sämtliche Renderprüfungen bestanden. Dadurch ist der gemeinsame Baustein auch auf den übrigen Modulen geprüft. Die 30 ausgewählten Vorher-/Nachher-PNGs oben zeigen die Prioritätsmodule.
 - Analyse: **0 Errors, 0 Warnings, 20 bestehende Info-Lints**. Keine neuen Pakete, keine Änderung an Wallet, Profilverwaltung, Stimme, Schreibcoach oder Buildkonfiguration.
-- Uhr-Grenzfälle: vollständiger Ablauf mit 12 Uhr, halb 1, Viertel nach 12 und Viertel vor 1; vier unterschiedliche Antwortmöglichkeiten pro Aufgabe.
+- Uhr-Grenzfälle: alle acht Aufgabenanzeigen und sieben Übergänge mit 12 Uhr, halb 1, Viertel nach 12 und Viertel vor 1 geprüft; vier unterschiedliche Antwortmöglichkeiten pro Aufgabe. Der vollständige Sitzungsabschluss wird separat durch die bestehenden Fortschrittstests geprüft.
 - Layout: alle fünf Module mit Safe Areas, Fold, großer Schrift (Faktor 2) und kurzen Querformaten; Antworten mindestens 48 × 48. Bestehende Tests für gespeicherte Antworten, Wiederholung bei Speicherfehlern, gesperrte Navigation während Speicherung und einmaligen Abschlussbonus bestehen weiter.
 
 Reproduktion:
@@ -54,7 +54,7 @@ flutter test --reporter expanded
 LUMO_LEARNING_CAPTURE_DIR=/tmp/lumo-learning-captures flutter test test/design/learning_adventure_capture_test.dart --reporter expanded
 ```
 
-Quellstände, Prüfzahlen und Datei-Hashes: [EVIDENCE.json](EVIDENCE.json). Der zusätzlich angeforderte unabhängige Agentenreview konnte wegen eines gemeldeten Nutzungslimits nicht ausgeführt werden; er wird nicht als bestanden gezählt. Eigene Diff-/Bildprüfung und die ausgeführten Tests sind oben getrennt belegt.
+Quellstände, Prüfzahlen und Datei-Hashes: [EVIDENCE.json](EVIDENCE.json). Der unabhängige Agentenreview des App-Diffs `5f2f32f..59f7f3a` fand keine wesentlichen Codeprobleme. Sein Hinweis zur präzisen Beschreibung des Uhr-Grenzfalltests ist oben eingearbeitet. Der Review war lesend und führte keine zusätzlichen Tests aus; eigene Bildprüfung und ausgeführte Tests sind getrennt belegt.
 
 ## Konkrete Inhaltslücken / nächste pädagogische Etappe
 
