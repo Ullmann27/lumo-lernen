@@ -83,6 +83,91 @@ def _observed_parent_label(nodes, label, *, tap=True):
     return None
 
 
+def _merged_profile_edit_visible(nodes):
+    """Identify the actual Android-merged profile card, not invented bounds."""
+    for node in nodes:
+        if (node.get("package") != existing.PACKAGE
+                or node.get("enabled") == "false"
+                or node.get("visible-to-user") == "false"
+                or node.get("clickable") != "true"):
+            continue
+        for key in ("text", "content-desc"):
+            lines = [line.strip() for line in node.get(key, "").splitlines()]
+            if ("Profil bearbeiten" in lines
+                    or any(first == "Profil" and second == "bearbeiten"
+                           for first, second in zip(lines, lines[1:]))):
+                return node
+    return None
+
+
+def _tap_merged_profile_edit(out, tag):
+    """Read the visible button twice; never press its merged card midpoint.
+
+    The existing native Godot reader correctly requires a landscape surface.
+    This Flutter profile control is portrait: reuse its full-frame OCR and
+    target geometry checks, without changing those native landscape guards.
+    """
+    deadline = time.monotonic() + 75
+    previous = None
+    journal = {"scope": "Actual portrait Flutter caption, not adult authentication",
+               "status": "WAITING", "frames": []}
+    try:
+        for attempt in range(6):
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                break
+            if existing.PACKAGE not in existing.base.foreground():
+                raise RuntimeError("Lumo is not foreground for observed profile edit")
+            nodes = existing.live.live_nodes(out, f"{tag}-caption-{attempt}")
+            card = _merged_profile_edit_visible(nodes)
+            if not card:
+                raise RuntimeError("Actual merged profile edit caption disappeared")
+            card_bounds = list(map(int, re.findall(r"\d+", card.get("bounds", ""))))
+            if len(card_bounds) != 4:
+                raise RuntimeError("Actual merged profile card has invalid bounds")
+            snapshot = existing.capture(out, f"{tag}-pixels-{attempt}", timeout=remaining)
+            source = out / snapshot["file"]
+            frame = {"source": source.name, "source_sha256": existing.digest(source),
+                     "pixels": [snapshot["width"], snapshot["height"]],
+                     "reasons": [], "card_bounds": card_bounds}
+            lines = existing.image_lines(
+                out, f"{tag}-read-{attempt}", existing.normalized("bearbeiten"),
+                source_path=source, timeout=max(.1, deadline - time.monotonic()),
+                exact=True,
+            )
+            x0, y0, x1, y1 = card_bounds
+            bounds = {tuple(line["bounds"]) for line in lines
+                      if existing.normalized(line["text"]) == "bearbeiten"
+                      and len(line["bounds"]) == 4
+                      and x0 <= line["bounds"][0] < line["bounds"][2] <= x1
+                      and y0 <= line["bounds"][1] < line["bounds"][3] <= y1}
+            journal["frames"].append(frame)
+            if len(bounds) != 1:
+                previous = None
+                time.sleep(.3)
+                continue
+            observed = existing.target_observation(frame, list(bounds.pop()), previous)
+            frame["target"] = observed
+            previous = observed
+            if observed["stable_observed_target"]:
+                if existing.digest(source) != frame["source_sha256"]:
+                    raise RuntimeError("Profile edit screenshot changed before touch")
+                left, top, right, bottom = observed["bounds"]
+                x, y = str(round((left + right) / 2)), str(round((top + bottom) / 2))
+                existing.base.adb("shell", "input", "swipe", x, y, x, y, "120")
+                journal.update(status="TOUCH_SENT", touch=[int(x), int(y)])
+                time.sleep(1)
+                return
+            time.sleep(.3)
+        raise TimeoutError("Actual profile edit button was not observed twice")
+    except Exception as error:
+        journal.update(status="FAIL", error=str(error))
+        raise
+    finally:
+        (out / (tag + "-observed-touch.json")).write_text(
+            json.dumps(journal, ensure_ascii=False, indent=2) + "\n")
+
+
 def parents(out):
     visited = set()
     for attempt in range(10):
@@ -91,6 +176,13 @@ def parents(out):
         # the same name is only an entry control, not proof of navigation.
         if _observed_parent_label(nodes, "Elternbereich", tap=False):
             return
+        if ("Profil bearbeiten" not in visited
+                and _merged_profile_edit_visible(nodes)
+                and not _observed_parent_label(nodes, "Profil bearbeiten")):
+            _tap_merged_profile_edit(out, f"parents-merged-edit-{attempt}")
+            visited.add("Profil bearbeiten")
+            time.sleep(.4)
+            continue
         for label in ("Eltern", "Elternbereich", "Elternbereich öffnen",
                       "Einstellungen", "Profil bearbeiten", "Profil"):
             observed = _observed_parent_label(nodes, label)
