@@ -1,0 +1,68 @@
+name: Lumo verified single direct APK ZIP, no build or publication
+on:
+  push:
+    branches: [sol/lumo-direct-download-2026-10-11]
+    paths: [.github/workflows/lumo-direct-download.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  direct-file:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      VERSION: '1930'
+      SOURCE: '5f3a47a676477ddaec05c11e31311001a015cb11'
+      APK_SHA: 'd416c74de0b61bc363a426c80056c86156f19306239c95309d8e5e2dd7fe5b73'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38150844811
+          name: lumo-education-1930-chat-download-38150844811
+          path: verified-delivery/
+      - name: Extract the already verified complete ZIP without changing the APK
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, zipfile
+          from pathlib import Path
+          original = Path('verified-delivery')
+          report = json.loads((original / 'ZIP-VERIFICATION.json').read_text())
+          bundle = original / report['archive']
+          digest = lambda p: hashlib.file_digest(p.open('rb'), 'sha256').hexdigest()
+          assert report['source'] == os.environ['SOURCE']
+          assert report['actual_android_result'] == 'PASS'
+          assert report['zip_crc'] == report['embedded_apk_sha256'] == 'PASS'
+          assert report['full_flutter_ci']['source'] == os.environ['SOURCE']
+          assert bundle.stat().st_size == report['bytes']
+          assert digest(bundle) == report['sha256']
+          target = Path('direct-apk').resolve()
+          target.mkdir()
+          with zipfile.ZipFile(bundle) as archive:
+              assert archive.testzip() is None
+              for name in archive.namelist():
+                  assert (target / name).resolve().is_relative_to(target)
+              archive.extractall(target)
+          provenance = json.loads((target / 'pruefbelege/BUILD-PROVENANCE.json').read_text())
+          assert provenance['versionCode'] == int(os.environ['VERSION'])
+          assert provenance['flutter_source_commit'] == os.environ['SOURCE']
+          assert provenance['abis'] == ['arm64-v8a']
+          assert provenance['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          assert digest(target / 'Lumo-Lernen-Neu.apk') == report['apk']['sha256'] == os.environ['APK_SHA']
+          with zipfile.ZipFile(target / 'Lumo-Lernen-Neu.apk') as apk:
+              assert apk.testzip() is None
+          report['source_archive'] = report.pop('archive')
+          report['scope'] = 'Same verified APK and evidence in one direct ZIP; no rebuild'
+          (target / 'pruefbelege/DIRECT-DOWNLOAD-PROVENANCE.json').write_text(
+              json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+          print('Verified complete single ZIP payload:', len(list(target.rglob('*'))), 'entries')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-${{ env.VERSION }}-direct-apk-zip-${{ github.run_id }}
+          path: direct-apk/
+          if-no-files-found: error
+          compression-level: 1
+          retention-days: 30
