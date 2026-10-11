@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math' as math;
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import '../../core/lumo_companion_guide.dart';
 import '../../core/lumo_voice.dart';
@@ -24,6 +25,7 @@ class LumoFreeCompanion extends StatefulWidget {
       this.message,
       this.compact = false,
       this.floating = false,
+      this.offerOnly = false,
       this.proactive = true});
   final LumoCompanionScene scene;
   final ValueChanged<LumoCompanionAction> onAction;
@@ -37,13 +39,15 @@ class LumoFreeCompanion extends StatefulWidget {
   /// vollflächigen Zielbild-Seiten. Das Menü bietet dieselben Hilfen.
   final bool floating;
   final bool proactive;
+  final bool offerOnly;
   @override
   State<LumoFreeCompanion> createState() => _LumoFreeCompanionState();
 }
 
 class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
-  late final _guide = LumoCompanionGuide(now: DateTime.now());
+  final _time = clock;
+  late var _guide = LumoCompanionGuide(now: _time.now());
   late final AnimationController _walk = AnimationController(
       vsync: this, duration: const Duration(milliseconds: 1500))
     ..addStatusListener((s) {
@@ -53,13 +57,14 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   Timer? _turnTimer;
   Timer? _reactionTimer;
   LumoFoxExpression? _reaction;
-  DateTime _lastActivity = DateTime.now();
-  DateTime _lastWalk = DateTime.now();
+  late DateTime _lastActivity = _time.now();
+  late DateTime _lastWalk = _time.now();
   DateTime? _restUntil;
   int _nextStation = 0;
   LumoCompanionProposal? _proposal;
   double _from = 1, _to = 1;
   bool _right = true, _sheetOpen = false, _foreground = true;
+  BuildContext? _sheetContext;
   double get _position =>
       _from + (_to - _from) * Curves.easeInOutCubic.transform(_walk.value);
   bool get _quiet =>
@@ -80,7 +85,10 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    setState(() => _foreground = state == AppLifecycleState.resumed);
+    setState(() {
+      _foreground = state == AppLifecycleState.resumed;
+      if (!_foreground) _proposal = null;
+    });
     if (!_foreground) {
       _turnTimer?.cancel();
       _walk.stop();
@@ -100,15 +108,24 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   @override
   void didUpdateWidget(covariant LumoFreeCompanion oldWidget) {
     super.didUpdateWidget(oldWidget);
+    final scopeChanged = !widget.scene.sameLearningScope(oldWidget.scene);
+    if (widget.scene.profileGeneration != oldWidget.scene.profileGeneration) {
+      _guide = LumoCompanionGuide(now: _time.now());
+      _reactionTimer?.cancel();
+      _reaction = null;
+    }
+    if (scopeChanged) _closeStaleSheet();
     if (widget.scene.solvedTasks > oldWidget.scene.solvedTasks) {
       _react(LumoFoxExpression.celebrate);
     } else if (widget.scene.consecutiveWrong >
         oldWidget.scene.consecutiveWrong) {
       _react(LumoFoxExpression.comfort);
     }
-    if (oldWidget.scene.section != widget.scene.section ||
+    if (scopeChanged ||
         oldWidget.scene.schoolwork != widget.scene.schoolwork ||
-        oldWidget.scene.taskInProgress != widget.scene.taskInProgress) {
+        oldWidget.scene.taskInProgress != widget.scene.taskInProgress ||
+        oldWidget.scene.consecutiveWrong != widget.scene.consecutiveWrong ||
+        oldWidget.scene.helpLevel != widget.scene.helpLevel) {
       _proposal = null;
       _noteActivity();
       if (widget.scene.section != oldWidget.scene.section) {
@@ -125,6 +142,17 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     }
   }
 
+  void _closeStaleSheet() {
+    final sheetContext = _sheetContext;
+    if (sheetContext == null) return;
+    unawaited(LumoVoice.instance.stop());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!sheetContext.mounted) return;
+      final route = ModalRoute.of(sheetContext);
+      if (route != null && route.isCurrent) Navigator.of(sheetContext).pop();
+    });
+  }
+
   void _react(LumoFoxExpression expression) {
     _reactionTimer?.cancel();
     _reaction = expression;
@@ -134,7 +162,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   }
 
   void _noteActivity() {
-    _lastActivity = DateTime.now();
+    _lastActivity = _time.now();
     _guide.noteInteraction(_lastActivity);
   }
 
@@ -145,7 +173,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
       return;
     }
     final proposal = _guide.maybeSuggest(widget.scene,
-        now: DateTime.now(), routeVisible: _visible);
+        now: _time.now(), routeVisible: _visible);
     if (proposal != null) {
       setState(() => _proposal = proposal);
       _moveTo(proposal.action == LumoCompanionAction.explainTask ||
@@ -158,7 +186,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   }
 
   void _considerQuietWalk() {
-    final now = DateTime.now();
+    if (widget.offerOnly) return;
+    final now = _time.now();
     if (!_visible ||
         _quiet ||
         widget.scene.taskInProgress ||
@@ -181,13 +210,14 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   void _moveTo(int index) => _moveToFraction(index / 2);
 
   void _moveToFraction(double target) {
+    if (widget.offerOnly) return;
     _turnTimer?.cancel();
     final current = _position;
     final clamped = target.clamp(0.0, 1.0);
     final newRight = clamped >= current;
     _walk.stop();
     _from = _to = current;
-    _lastWalk = DateTime.now();
+    _lastWalk = _time.now();
     if (_quiet) {
       _from = _to = clamped;
       _walk.value = 0;
@@ -218,8 +248,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   }
 
   void _dismiss() {
-    _guide.dismiss(DateTime.now());
-    _restUntil = DateTime.now().add(const Duration(minutes: 10));
+    _guide.dismiss(_time.now());
+    _restUntil = _time.now().add(const Duration(minutes: 10));
     setState(() => _proposal = null);
     _moveTo(2);
   }
@@ -233,54 +263,64 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
 
   Future<void> _showText(String title, String text,
       {bool pause = false}) async {
+    final scene = widget.scene;
     _noteActivity();
     setState(() => _sheetOpen = true);
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
-      builder: (sheetContext) => SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(children: [
-                  Expanded(
-                      child: Text(title,
-                          style: Theme.of(context).textTheme.headlineSmall)),
-                  const SizedBox(width: 12),
-                  LumoAnimatedFox(
-                      moving: false,
-                      size: 66,
-                      reducedMotion: _quiet,
-                      voiceEnabled: widget.voiceEnabled,
-                      expression: LumoFoxExpression.explain),
+      builder: (sheetContext) {
+        _sheetContext = sheetContext;
+        return SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(children: [
+                    Expanded(
+                        child: Text(title,
+                            style: Theme.of(context).textTheme.headlineSmall)),
+                    const SizedBox(width: 12),
+                    LumoAnimatedFox(
+                        moving: false,
+                        size: 66,
+                        reducedMotion: _quiet,
+                        voiceEnabled: widget.voiceEnabled,
+                        expression: LumoFoxExpression.explain),
+                  ]),
+                  const SizedBox(height: 16),
+                  Text(text,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(height: 1.5)),
+                  const SizedBox(height: 20),
+                  Wrap(spacing: 12, runSpacing: 8, children: [
+                    if (widget.voiceEnabled)
+                      LumoSpeechControls(
+                        onRead: () {
+                          if (_foreground &&
+                              scene.sameLearningScope(widget.scene)) {
+                            unawaited(_say(text));
+                          }
+                        },
+                        showUnavailableNotice: true,
+                      ),
+                    FilledButton(
+                        onPressed: () => Navigator.pop(sheetContext),
+                        child: Text(
+                            pause ? 'Ich bin wieder bereit' : 'Alles klar')),
+                  ]),
                 ]),
-                const SizedBox(height: 16),
-                Text(text,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge
-                        ?.copyWith(height: 1.5)),
-                const SizedBox(height: 20),
-                Wrap(spacing: 12, runSpacing: 8, children: [
-                  if (widget.voiceEnabled)
-                    LumoSpeechControls(
-                      onRead: () => unawaited(_say(text)),
-                      showUnavailableNotice: true,
-                    ),
-                  FilledButton(
-                      onPressed: () => Navigator.pop(sheetContext),
-                      child:
-                          Text(pause ? 'Ich bin wieder bereit' : 'Alles klar')),
-                ]),
-              ]),
-        ),
-      ),
+          ),
+        );
+      },
     );
     if (!mounted) return;
+    _sheetContext = null;
     setState(() => _sheetOpen = false);
     await LumoVoice.instance.stop();
     _noteActivity();
@@ -291,6 +331,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   }
 
   Future<void> _perform(LumoCompanionAction action) async {
+    final scene = widget.scene;
     _noteActivity();
     if (widget.scene.schoolwork &&
         (action == LumoCompanionAction.explainTask ||
@@ -319,7 +360,9 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                 'in die Ferne. Wenn du wieder lernen möchtest, machst du in deinem '
                 'Tempo weiter.',
             pause: true);
-        if (mounted) widget.onAction(action);
+        if (mounted && scene.sameLearningScope(widget.scene)) {
+          widget.onAction(action);
+        }
       case LumoCompanionAction.suggestTask:
       case LumoCompanionAction.explainTask:
       case LumoCompanionAction.askLumo:
@@ -329,54 +372,61 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
 
   Future<void> _showMenu({LumoCompanionProposal? proposal}) async {
     if (_sheetOpen) return;
+    final scene = widget.scene;
     _noteActivity();
     setState(() => _sheetOpen = true);
     final action = await showModalBottomSheet<LumoCompanionAction>(
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
-      builder: (sheetContext) => SafeArea(
-          child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text('Was möchtest du machen?',
-              style: Theme.of(context).textTheme.titleLarge),
-          if (proposal != null) ...[
-            Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text(proposal.text,
-                    style: Theme.of(context).textTheme.bodyLarge)),
-            FilledButton.icon(
-                onPressed: () => Navigator.pop(sheetContext, proposal.action),
-                icon: const Icon(Icons.play_arrow_rounded),
-                label: Text(proposal.acceptLabel)),
-            TextButton(
-                onPressed: () {
-                  _dismiss();
-                  Navigator.pop(sheetContext);
-                },
-                child: const Text('Später – lass mich selbst entdecken')),
-            const Divider(),
-          ],
-          if (widget.scene.hasTask && !widget.scene.schoolwork)
-            _menuItem(sheetContext, Icons.lightbulb_outline, 'Aufgabe erklären',
-                LumoCompanionAction.explainTask),
-          _menuItem(sheetContext, Icons.explore_outlined,
-              'Diese Seite erklären', LumoCompanionAction.explainView),
-          _menuItem(sheetContext, Icons.help_outline, 'Die ganze App erklären',
-              LumoCompanionAction.explainApp),
-          if (!widget.scene.schoolwork)
-            _menuItem(sheetContext, Icons.chat_bubble_outline,
-                'Lumo eine Frage stellen', LumoCompanionAction.askLumo),
-          _menuItem(sheetContext, Icons.spa_outlined, 'Ich brauche eine Pause',
-              LumoCompanionAction.takeBreak),
-        ]),
-      )),
+      builder: (sheetContext) {
+        _sheetContext = sheetContext;
+        return SafeArea(
+            child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Text('Was möchtest du machen?',
+                style: Theme.of(context).textTheme.titleLarge),
+            if (proposal != null) ...[
+              Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(proposal.text,
+                      style: Theme.of(context).textTheme.bodyLarge)),
+              FilledButton.icon(
+                  onPressed: () => Navigator.pop(sheetContext, proposal.action),
+                  icon: const Icon(Icons.play_arrow_rounded),
+                  label: Text(proposal.acceptLabel)),
+              TextButton(
+                  onPressed: () {
+                    _dismiss();
+                    Navigator.pop(sheetContext);
+                  },
+                  child: const Text('Später – lass mich selbst entdecken')),
+              const Divider(),
+            ],
+            if (widget.scene.hasTask && !widget.scene.schoolwork)
+              _menuItem(sheetContext, Icons.lightbulb_outline,
+                  'Aufgabe erklären', LumoCompanionAction.explainTask),
+            _menuItem(sheetContext, Icons.explore_outlined,
+                'Diese Seite erklären', LumoCompanionAction.explainView),
+            _menuItem(sheetContext, Icons.help_outline,
+                'Die ganze App erklären', LumoCompanionAction.explainApp),
+            if (!widget.scene.schoolwork)
+              _menuItem(sheetContext, Icons.chat_bubble_outline,
+                  'Lumo eine Frage stellen', LumoCompanionAction.askLumo),
+            _menuItem(sheetContext, Icons.spa_outlined,
+                'Ich brauche eine Pause', LumoCompanionAction.takeBreak),
+          ]),
+        ));
+      },
     );
     if (!mounted) return;
+    _sheetContext = null;
     setState(() => _sheetOpen = false);
     _noteActivity();
-    if (action != null) await _perform(action);
+    if (action != null && scene.sameLearningScope(widget.scene)) {
+      await _perform(action);
+    }
   }
 
   Widget _menuItem(BuildContext sheetContext, IconData icon, String title,
@@ -400,6 +450,40 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.offerOnly) {
+      final proposal = _proposal;
+      if (proposal == null) return const SizedBox.shrink();
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Text('Lumo: ${proposal.text}',
+              style: const TextStyle(
+                  color: LumoVisualTokens.white,
+                  fontFamily: 'Nunito',
+                  fontSize: 16,
+                  height: 1.3)),
+          const SizedBox(height: 8),
+          Wrap(spacing: 8, runSpacing: 8, children: [
+            FilledButton.icon(
+              key: const ValueKey('lumo-inline-help-accept'),
+              style: FilledButton.styleFrom(minimumSize: const Size(48, 48)),
+              onPressed: () {
+                if (_visible &&
+                    proposal.taskId == widget.scene.taskId &&
+                    proposal.profileGeneration ==
+                        widget.scene.profileGeneration) {
+                  _perform(LumoCompanionAction.explainTask);
+                }
+              },
+              icon: const Icon(Icons.lightbulb_outline),
+              label: Text(proposal.acceptLabel),
+            ),
+            TextButton(onPressed: _dismiss, child: const Text('Später')),
+          ]),
+        ]),
+      );
+    }
     if (widget.floating) return _buildFloating();
     final foxSize = widget.compact ? 52.0 : 72.0;
     final trackHeight = widget.compact ? 56.0 : 76.0;

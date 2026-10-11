@@ -20,6 +20,9 @@ class LumoCompanionScene {
     this.taskInProgress = false,
     this.schoolwork = false,
     this.hasTask = false,
+    this.taskId = '',
+    this.profileGeneration = 0,
+    this.helpLevel = 0,
   });
 
   final String section;
@@ -31,6 +34,18 @@ class LumoCompanionScene {
   final bool taskInProgress;
   final bool schoolwork;
   final bool hasTask;
+  final String taskId;
+  final int profileGeneration;
+  final int helpLevel;
+
+  bool sameLearningScope(LumoCompanionScene other) =>
+      section == other.section &&
+      taskId == other.taskId &&
+      profileGeneration == other.profileGeneration &&
+      schoolwork == other.schoolwork &&
+      taskInProgress == other.taskInProgress &&
+      recommendedSubject == other.recommendedSubject &&
+      recommendedUnit == other.recommendedUnit;
 
   String get topic {
     final unit = recommendedUnit;
@@ -88,12 +103,16 @@ class LumoCompanionProposal {
     required this.text,
     required this.action,
     required this.acceptLabel,
+    this.taskId = '',
+    this.profileGeneration = 0,
   });
 
   final String id;
   final String text;
   final LumoCompanionAction action;
   final String acceptLabel;
+  final String taskId;
+  final int profileGeneration;
 }
 
 class LumoCompanionGuide {
@@ -130,11 +149,13 @@ class LumoCompanionGuide {
       );
     }
     if (scene.hasTask && scene.consecutiveWrong >= 2) {
-      return const LumoCompanionProposal(
-        id: 'help',
+      return LumoCompanionProposal(
+        id: 'help:${scene.profileGeneration}:${scene.taskId}',
         text: 'Sollen wir die Aufgabe gemeinsam in kleine Schritte teilen?',
         action: LumoCompanionAction.explainTask,
         acceptLabel: 'Zeig mir wie',
+        taskId: scene.taskId,
+        profileGeneration: scene.profileGeneration,
       );
     }
     if (scene.solvedTasks - (_initialSolved ?? scene.solvedTasks) >= 5) {
@@ -167,7 +188,13 @@ class LumoCompanionGuide {
     bool routeVisible = true,
   }) {
     _initialSolved ??= scene.solvedTasks;
-    if (!routeVisible || scene.taskInProgress || scene.schoolwork) return null;
+    if (!routeVisible || scene.schoolwork) return null;
+    final needsHelp = scene.hasTask &&
+        scene.taskInProgress &&
+        scene.taskId.isNotEmpty &&
+        scene.consecutiveWrong >= 2;
+    if ((scene.taskInProgress && !needsHelp) ||
+        (scene.hasTask && !scene.taskInProgress)) return null;
     if (scene.section == 'settings' ||
         scene.section == 'profile' ||
         scene.section == 'agent') {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
+import '../../app/lumo_companion_host.dart';
+import '../fox/lumo_companion_requests.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../fox/lumo_character.dart';
 import 'lumo_design_system.dart';
@@ -31,6 +33,7 @@ class LumoLearningModuleFrame extends StatefulWidget {
     this.footer,
     this.guidance = 'Gemeinsam schaffen wir das!',
     this.mistakeGuidance = 'Fehler helfen beim Lernen.',
+    this.companionUnit,
   });
 
   final LumoAppState appState;
@@ -51,6 +54,7 @@ class LumoLearningModuleFrame extends StatefulWidget {
   final Widget? footer;
   final String guidance;
   final String mistakeGuidance;
+  final String? companionUnit;
   final bool Function() canLeave;
   final Widget child;
 
@@ -141,7 +145,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
               size: (constraints.maxWidth * .84).clamp(150.0, 300.0),
               reduceMotion: quiet,
               idleHops: false,
-              onTap: () {},
+              onTap: _requestHelp,
             ),
             const SizedBox(height: 12),
             LumoGlassCard(
@@ -210,7 +214,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                 size: foxSize,
                 reduceMotion: quiet,
                 idleHops: false,
-                onTap: () {},
+                onTap: _requestHelp,
               ),
             ),
             Positioned(
@@ -236,6 +240,24 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
       );
     });
   }
+
+  void _requestHelp() {
+    final task = LumoCompanionRequests.instance.taskContext.value;
+    if (task == null ||
+        task.unit != (widget.companionUnit ?? widget.moduleTitle) ||
+        !task.answering ||
+        task.isExam ||
+        task.profileGeneration != widget.appState.profileGeneration ||
+        !(ModalRoute.of(context)?.isCurrent ?? true)) return;
+    LumoCompanionRequests.instance.requestTaskHelp();
+  }
+
+  Widget _helpOffer() => LumoCompanionHost(
+      appState: widget.appState,
+      section: 'learn',
+      taskUnit: widget.companionUnit ?? widget.moduleTitle,
+      offerOnly: true,
+      onSection: _leaveTo);
 
   Widget _progress() {
     final index = widget.taskIndex.clamp(0, widget.totalTasks - 1);
@@ -354,6 +376,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
       const SizedBox(height: 8),
       _progress(),
       const SizedBox(height: 10),
+      _helpOffer(),
       if (fill) Expanded(child: widget.child) else widget.child,
     ];
     return LumoGlassCard(
@@ -432,9 +455,12 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                       surfaceOpacity: LumoLessonStyle.glassOpacity,
                       padding: const EdgeInsets.all(12),
                       radius: 26,
-                      child: widget.scrollable
-                          ? widget.child
-                          : SizedBox(height: 440, child: widget.child),
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        _helpOffer(),
+                        widget.scrollable
+                            ? widget.child
+                            : SizedBox(height: 440, child: widget.child),
+                      ]),
                     ),
                   ),
                 ),

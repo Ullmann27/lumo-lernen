@@ -77,6 +77,25 @@ class DeliveryGateTest(unittest.TestCase):
             self.provenance, self.android, self.outcomes, self.run, self.log,
             version_code=1931, version_name="0.12.24")["source"], self.source)
 
+    def test_1932_requires_accepted_help_after_two_real_wrong_answers(self):
+        self.provenance.update(versionCode=1932, versionName="0.12.25")
+        self.android["subtraction_course"] = {"status": "PASS"}
+        def verify():
+            return PACKAGE.validate(self.provenance, self.android, self.outcomes,
+                                    self.run, self.log, version_code=1932,
+                                    version_name="0.12.25")
+        with self.assertRaises(ValueError):
+            verify()
+        self.android["subtraction_course"]["active_help"] = {
+            "status": "PASS", "real_wrong_taps": 2,
+            "no_hint_before_acceptance": True,
+            "actual_accept_button_tapped": True,
+        }
+        self.assertEqual(verify()["source"], self.source)
+        self.android["subtraction_course"]["active_help"]["actual_accept_button_tapped"] = False
+        with self.assertRaises(ValueError):
+            verify()
+
 
 class DeliveryWorkflowTest(unittest.TestCase):
     def setUp(self):

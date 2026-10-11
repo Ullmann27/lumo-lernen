@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:clock/clock.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
@@ -30,7 +32,7 @@ Finder _answer(int value) =>
 
 Future<LumoAppState> _open(WidgetTester tester) async {
   await tester.binding.setSurfaceSize(const Size(480, 1100));
-  final app = LumoAppState();
+  final app = LumoAppState(walletRepository: RewardWalletRepository());
   app.setSection(LumoSection.learn);
   app.updateSettings(
       const AppSettings(voiceEnabled: false, reduceAnimations: true));
@@ -71,6 +73,42 @@ void main() {
     requests.clearLearningScope();
   });
   tearDown(requests.clearLearningScope);
+
+  testWidgets(
+      'two real wrong taps offer help without explaining before acceptance',
+      (tester) => withClock(tester.binding.clock, () async {
+            final app = await _open(tester);
+            final original = _prompt(tester);
+            final taskId = requests.taskContext.value!.taskId;
+            final correct = _correct(tester);
+            final wrong = tester
+                .widgetList<Text>(find.descendant(
+                    of: find.byType(GridView), matching: find.byType(Text)))
+                .map((text) => int.parse(text.data!))
+                .firstWhere((v) => v != correct);
+            for (var i = 0; i < 2; i++) {
+              await tester.ensureVisible(_answer(wrong));
+              await tester.tap(_answer(wrong));
+              await _frames(tester);
+            }
+            expect(find.byKey(const ValueKey('plus10-actual-companion-hint')),
+                findsNothing);
+            expect(requests.taskContext.value!.helpLevel, 0);
+            await tester.pump(const Duration(seconds: 18));
+            final offer = find.byKey(const ValueKey('lumo-inline-help-accept'));
+            expect(offer, findsOneWidget);
+            expect(_prompt(tester), original);
+            await tester.ensureVisible(offer);
+            await tester.tap(offer);
+            await _frames(tester, 10);
+            expect(requests.taskContext.value!.taskId, taskId);
+            expect(requests.taskContext.value!.helpLevel, 1);
+            expect(find.byKey(const ValueKey('plus10-actual-companion-hint')),
+                findsOneWidget);
+            expect(app.learningDailyDone(), 0);
+            expect(app.learningSkills()['mathematik::plus bis 10']!.wrong, 2);
+            await _close(tester, app);
+          }));
 
   testWidgets(
       'actual Plus controls report answers and offer alternative local hints',

@@ -16,12 +16,11 @@ import '../../../widgets/fox/lumo_character.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
-import '../../../core/lumo_companion_state.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
+import '../../../app/lumo_companion_host.dart';
 import '../../../core/lumo_voice.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
@@ -219,6 +218,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       prompt: '$_a + $_b = ?',
       taskId: '$_lessonId-$_taskSerial',
       ownerSection: 'learn',
+      activity: 'learning_module',
       profileGeneration: _profileGeneration,
       answering: !_answered && _pendingAnswer == null && !_finishSavePending,
       attempts: _submittedAttempts,
@@ -463,7 +463,6 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _bounceCtrl.forward(from: 0);
     _lumo.cheer();
     HapticFeedback.mediumImpact();
-    LumoCompanionState.instance.recordCorrect(topic: 'math');
     try {
       LumoVoice.instance.speak(LumoPhrases.correct());
     } catch (_) {}
@@ -479,25 +478,14 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       LumoVoice.instance.speak(LumoPhrases.wrongGentle());
     } catch (_) {}
 
-    // Nach 2 Fehlversuchen: Hint zeigen
-    if (_wrongAttempts >= 2 && !_showHint) {
-      _scheduleFeedback(const Duration(milliseconds: 800), () {
-        setState(() {
-          _showHint = true;
-          _helpLevel = 1;
-          _selectedAnswer = null;
-          _profileRecorded = false;
-        });
-        _publishTaskContext();
-      });
-    } else {
-      _scheduleFeedback(
-          const Duration(milliseconds: 600),
-          () => setState(() {
-                _selectedAnswer = null;
-                _profileRecorded = false;
-              }));
-    }
+    // The existing frame offers help after repeated errors. The child accepts
+    // it or taps Tipp; do not reveal an explanation before that choice.
+    _scheduleFeedback(
+        const Duration(milliseconds: 600),
+        () => setState(() {
+              _selectedAnswer = null;
+              _profileRecorded = false;
+            }));
   }
 
   void _nextTask() {
@@ -839,6 +827,13 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             const SizedBox(height: 8),
             _buildProgressRow(),
             const SizedBox(height: 8),
+            LumoCompanionHost(
+              appState: widget.appState,
+              section: 'learn',
+              taskUnit: 'Plus bis 10',
+              offerOnly: true,
+              onSection: (section) => widget.appState.setSection(section),
+            ),
             _buildTaskCard(),
             const SizedBox(height: 8),
             _buildLearningHelp(),
@@ -1094,7 +1089,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       );
 
   /// Hilfe-Karte aus Bild 02: zwei Apfel-Mengen, „= ?“ und Lumo mit
-  /// Zeigestab. Nach zwei Fehlversuchen oder auf „Tipp“ zählt Lumo vor.
+  /// Zeigestab. Erst nach angenommener Hilfe oder „Tipp“ erklärt Lumo.
   Widget _buildHelpCard() {
     if (MediaQuery.sizeOf(context).width < 600 ||
         MediaQuery.textScalerOf(context).scale(1) > 1.35) {
