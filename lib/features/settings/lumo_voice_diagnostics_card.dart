@@ -31,11 +31,24 @@ class _DiagnosticsState extends State<LumoVoiceDiagnosticsCard> {
     } catch (_) {
       identity = 'App-Identität ist außerhalb der Android-App nicht verfügbar.';
     }
-    final readiness = await LumoSpeechReadiness.check(widget.serverUrl);
+    final voice = LumoVoice.instance;
+    final String readiness;
+    if (voice.identity == LumoVoiceIdentity.freeOffline) {
+      final available = await voice.localSpeechAvailable();
+      readiness = available
+          ? 'Das lokale Lumo-Sprachmodell ist in dieser Android-Version enthalten. '
+              'Neue Sätze benötigen die Modell-Freigabe. '
+              'Die hörbare Ausgabe prüfst du mit der Stimm- und Rechenprobe.'
+          : 'Diese Laufzeit enthält kein bestätigtes lokales Sprachmodell. '
+              'Mitgelieferte Lumo-Frei-Aufnahmen bleiben verfügbar. '
+              'Keine Sprachserver-Anfrage und keine Ersatzstimme.';
+    } else {
+      readiness = (await LumoSpeechReadiness.check(widget.serverUrl)).message;
+    }
     if (!mounted) return;
     setState(() {
       _identity = identity;
-      _server = readiness.message;
+      _server = readiness;
       _checking = false;
     });
   }
@@ -49,10 +62,10 @@ class _DiagnosticsState extends State<LumoVoiceDiagnosticsCard> {
             icon: const Icon(Icons.fact_check_outlined),
             label: Text(_checking
                 ? 'Diagnose läuft ...'
-                : 'App und Sprachserver prüfen'),
+                : 'App und lokale Stimme prüfen'),
           ),
           const Text(
-              'Prüft nur App-Identität und Serverkonfiguration. '
+              'Prüft App-Identität und das enthaltene lokale Sprachmodell. '
               'Keine Kindertexte, Mikrofonaufnahme oder kostenpflichtige Synthese.',
               style: TextStyle(fontSize: 12)),
           ValueListenableBuilder<VoiceStatus>(
@@ -62,12 +75,14 @@ class _DiagnosticsState extends State<LumoVoiceDiagnosticsCard> {
               child: Text(
                 'Sprachstatus: ${switch (status) {
                   VoiceStatus.idle => 'Ruhe',
-                  VoiceStatus.preparing => 'Sulafat wird vorbereitet',
+                  VoiceStatus.preparing => 'Lumo-Stimme wird vorbereitet',
                   VoiceStatus.speaking => 'Sprachausgabe läuft',
+                  VoiceStatus.paused => 'Sprachausgabe pausiert',
                   VoiceStatus.error => 'Keine Sprachausgabe verfügbar',
                 }}'
                 '${LumoVoice.instance.lastStartedAudioIdentity == null ? '' : '\nZuletzt gestartete Quelle: ${LumoVoice.instance.lastStartedAudioIdentity}'}'
-                '\nBestätigte Wiedergabestarts: ${LumoVoice.instance.startedPlaybackCount}',
+                '\nBestätigte Wiedergabestarts: ${LumoVoice.instance.startedPlaybackCount}'
+                '\nNative Abschlussmeldungen: ${LumoVoice.instance.completedPlaybackCount}',
                 style: const TextStyle(fontSize: 12),
               ),
             ),

@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../core/lumo_companion_guide.dart';
 import '../../core/lumo_voice.dart';
+import '../lumo_speech_controls.dart';
 import 'lumo_animated_fox.dart';
 import 'lumo_companion_requests.dart';
 import '../design/lumo_design_system.dart';
@@ -266,18 +267,9 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
                 const SizedBox(height: 20),
                 Wrap(spacing: 12, runSpacing: 8, children: [
                   if (widget.voiceEnabled)
-                    ValueListenableBuilder<VoiceStatus>(
-                      valueListenable: LumoVoice.instance.status,
-                      builder: (context, status, _) => OutlinedButton.icon(
-                          onPressed: () => status == VoiceStatus.speaking
-                              ? LumoVoice.instance.stop()
-                              : _say(text),
-                          icon: Icon(status == VoiceStatus.speaking
-                              ? Icons.volume_off_rounded
-                              : Icons.volume_up_rounded),
-                          label: Text(status == VoiceStatus.speaking
-                              ? 'Vorlesen stoppen'
-                              : 'Vorlesen')),
+                    LumoSpeechControls(
+                      onRead: () => unawaited(_say(text)),
+                      showUnavailableNotice: true,
                     ),
                   FilledButton(
                       onPressed: () => Navigator.pop(sheetContext),

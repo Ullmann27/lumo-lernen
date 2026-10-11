@@ -52,6 +52,12 @@ class LumoSpeechReadiness {
         return const LumoSpeechReadiness(
             'Der Server bestätigt nicht das Original-Sulafat-Profil.');
       }
+      if (data['parentAuthorizationRequired'] == true &&
+          data['authorizationConfigured'] != true) {
+        return const LumoSpeechReadiness(
+            'Die geprüfte Elternautorisierung des Sprachservers fehlt noch. '
+            'Ein Gemini-Zugang allein darf die Online-Stimme nicht aktivieren.');
+      }
       final configured = data['configured'] == true;
       return LumoSpeechReadiness(
           configured

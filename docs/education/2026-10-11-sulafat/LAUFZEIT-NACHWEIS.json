@@ -1,0 +1,266 @@
+{
+  "schema": 1,
+  "checked_utc": "2026-10-11T08:35:31.519Z",
+  "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d",
+  "source_branch": "computer/lumo-education-excellence-2026-10-11",
+  "base_commit": "5f2f32f09abce3750c02d3a532217479329944a3",
+  "runtime": "Flutter 3.44.9 Linux test runner",
+  "android_installed": false,
+  "android_audible_acceptance": "NOT TESTED",
+  "new_apk_built": false,
+  "measured_fps": null,
+  "screenshots": [
+    {
+      "file": "screenshots/sulafat-playing-phone-360x800.png",
+      "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d",
+      "viewport": "phone-360x800",
+      "logical_size": [
+        360,
+        800
+      ],
+      "physical_target_pixels": null,
+      "raster_factor": 2,
+      "png_pixels": [
+        720,
+        1600
+      ],
+      "bytes": 1043304,
+      "sha256": "7a622de66c779a5ac48ae776c33fdbf529766968ea402415980005b9423ea54b",
+      "state": "playing",
+      "native_audio": "MethodChannel mock; not an audible Android playback",
+      "retouched": false,
+      "product_widget": "SettingsContent / Ton und Stimme",
+      "animations": "reduced/calm test settings",
+      "buttons_full_viewport_bounds_checked": true
+    },
+    {
+      "file": "screenshots/sulafat-paused-phone-360x800.png",
+      "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d",
+      "viewport": "phone-360x800",
+      "logical_size": [
+        360,
+        800
+      ],
+      "physical_target_pixels": null,
+      "raster_factor": 2,
+      "png_pixels": [
+        720,
+        1600
+      ],
+      "bytes": 1028229,
+      "sha256": "2087bde68a59ddb10309b8e998dfe6fdddf0662dd8761305b9676d93d86b3820",
+      "state": "paused",
+      "native_audio": "MethodChannel mock; not an audible Android playback",
+      "retouched": false,
+      "product_widget": "SettingsContent / Ton und Stimme",
+      "animations": "reduced/calm test settings",
+      "buttons_full_viewport_bounds_checked": true
+    },
+    {
+      "file": "screenshots/sulafat-playing-fold-2176x1812-density-225.png",
+      "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d",
+      "viewport": "fold-2176x1812-density-225",
+      "logical_size": [
+        967.1111111111111,
+        805.3333333333334
+      ],
+      "physical_target_pixels": [
+        2176,
+        1812
+      ],
+      "raster_factor": 2,
+      "png_pixels": [
+        1935,
+        1611
+      ],
+      "bytes": 1927331,
+      "sha256": "f26e55e0ac94a6161257d735e5bd8bfec70bedddf9a560ff3e5e7e72de2a4257",
+      "state": "playing",
+      "native_audio": "MethodChannel mock; not an audible Android playback",
+      "retouched": false,
+      "product_widget": "SettingsContent / Ton und Stimme",
+      "animations": "reduced/calm test settings",
+      "buttons_full_viewport_bounds_checked": true
+    },
+    {
+      "file": "screenshots/sulafat-paused-fold-2176x1812-density-225.png",
+      "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d",
+      "viewport": "fold-2176x1812-density-225",
+      "logical_size": [
+        967.1111111111111,
+        805.3333333333334
+      ],
+      "physical_target_pixels": [
+        2176,
+        1812
+      ],
+      "raster_factor": 2,
+      "png_pixels": [
+        1935,
+        1611
+      ],
+      "bytes": 1915114,
+      "sha256": "b3a9ea97ef3a18e14be9d0a5498f9ae451cf456affeb84004d093406bb718b02",
+      "state": "paused",
+      "native_audio": "MethodChannel mock; not an audible Android playback",
+      "retouched": false,
+      "product_widget": "SettingsContent / Ton und Stimme",
+      "animations": "reduced/calm test settings",
+      "buttons_full_viewport_bounds_checked": true
+    },
+    {
+      "file": "screenshots/sulafat-playing-tablet-1024x768.png",
+      "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d",
+      "viewport": "tablet-1024x768",
+      "logical_size": [
+        1024,
+        768
+      ],
+      "physical_target_pixels": null,
+      "raster_factor": 2,
+      "png_pixels": [
+        2048,
+        1536
+      ],
+      "bytes": 1915720,
+      "sha256": "c3a3907c92cbc46eb2f112f9f8c77c488992a372b6be6573ae2e5e8461dd91c1",
+      "state": "playing",
+      "native_audio": "MethodChannel mock; not an audible Android playback",
+      "retouched": false,
+      "product_widget": "SettingsContent / Ton und Stimme",
+      "animations": "reduced/calm test settings",
+      "buttons_full_viewport_bounds_checked": true
+    },
+    {
+      "file": "screenshots/sulafat-paused-tablet-1024x768.png",
+      "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d",
+      "viewport": "tablet-1024x768",
+      "logical_size": [
+        1024,
+        768
+      ],
+      "physical_target_pixels": null,
+      "raster_factor": 2,
+      "png_pixels": [
+        2048,
+        1536
+      ],
+      "bytes": 1902413,
+      "sha256": "50ccfd4898540ab064e39c34d8eb186a532752f3a913276d481cfce5bb13afc4",
+      "state": "paused",
+      "native_audio": "MethodChannel mock; not an audible Android playback",
+      "retouched": false,
+      "product_widget": "SettingsContent / Ton und Stimme",
+      "animations": "reduced/calm test settings",
+      "buttons_full_viewport_bounds_checked": true
+    }
+  ],
+  "protected_files": [
+    {
+      "file": "lib/app/app_state.dart",
+      "sha256": "28716fb86fcc8ff51452dcf2c69dfe44f8340370cbebfc2e262121c6ebf8c987",
+      "unchanged_from": "5f2f32f09abce3750c02d3a532217479329944a3"
+    },
+    {
+      "file": "lib/features/learning_modules/learning_module_progress.dart",
+      "sha256": "01ca4ce671d93d9ded1e1315924948535595649ebf8418f2079ab5611e264da4",
+      "unchanged_from": "5f2f32f09abce3750c02d3a532217479329944a3"
+    },
+    {
+      "file": "lib/core/settings_repository.dart",
+      "sha256": "7ded536f1674c0e12d965046a3b471805f5253be70c1fa887084b104a470f256",
+      "unchanged_from": "5f2f32f09abce3750c02d3a532217479329944a3"
+    },
+    {
+      "file": "lib/core/progress_recommendation_service.dart",
+      "sha256": "03540c3e1eca62418fe5271c62a854f12765f4207d748c9f984357cc3c4fc7db",
+      "unchanged_from": "5f2f32f09abce3750c02d3a532217479329944a3"
+    },
+    {
+      "file": "lib/features/teacher_mode/topic_curriculum.dart",
+      "sha256": "5dd8a2e909c59d07b3f4ee6f4294504523a5cae9a77094827eb095e44bd6b2c0",
+      "unchanged_from": "5f2f32f09abce3750c02d3a532217479329944a3"
+    },
+    {
+      "file": "lib/features/tutoring/tutoring_flow_card.dart",
+      "sha256": "bf8e45b3cf2c4f97f16837427608359c71ce85fdb7571ddb903d8419021a8934",
+      "unchanged_from": "5f2f32f09abce3750c02d3a532217479329944a3"
+    },
+    {
+      "file": "pubspec.yaml",
+      "sha256": "280e38aeb7aeb82671481c625744c44c871e27c8126287ed5a4afdc980c3d9bc",
+      "unchanged_from": "5f2f32f09abce3750c02d3a532217479329944a3"
+    },
+    {
+      "file": "pubspec.lock",
+      "sha256": "ae8a0cd3bdaae0f2fff25b26ab95017ff5c63c513cfec983d392451f9c8264a8",
+      "unchanged_from": "5f2f32f09abce3750c02d3a532217479329944a3"
+    }
+  ],
+  "full_suite": {
+    "log": "logs/flutter-suite-final.log.gz",
+    "passed": 1073,
+    "skipped": 107,
+    "failed": 0,
+    "duration_marker": "05:35",
+    "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d"
+  },
+  "targeted_speech": {
+    "log": "logs/speech-core-auth-final.log.gz",
+    "passed": 67,
+    "skipped": 0,
+    "failed": 0,
+    "duration_marker": "00:14",
+    "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d"
+  },
+  "source_associated_matrix_and_ui": {
+    "log": "logs/source-associated-evidence.log.gz",
+    "passed": 57,
+    "skipped": 0,
+    "failed": 0,
+    "duration_marker": "00:09",
+    "source_commit": "f4c32c5e46c90103160c584f35723a068af7320d"
+  },
+  "backend": {
+    "passed": 35,
+    "failed": 0,
+    "skipped": 0,
+    "provider": "local fake; no paid synthesis",
+    "log": "logs/backend-auth-final.log.gz"
+  },
+  "analysis": {
+    "errors": 0,
+    "warnings": 0,
+    "inherited_info_lints": 17,
+    "log": "logs/analyze-full-final.log.gz"
+  },
+  "content_baseline": {
+    "generated_tasks": 40960,
+    "script_unchanged": true,
+    "full_curriculum_coverage": false,
+    "external_teacher_approval": false,
+    "log": "logs/content-baseline-current.log.gz"
+  },
+  "speech_matrix": {
+    "distinct_requested_texts": 50,
+    "original_routes": 34,
+    "missing_offline_routes": 16,
+    "network_attempts": 0,
+    "provider_calls": 0,
+    "native_contract": "mock; not 50 heard situations"
+  },
+  "listening_sample": {
+    "file": "Lumo-Sulafat-Originalaufnahmen-Hoerprobe.wav",
+    "bytes": 4606054,
+    "sha256": "bfcb4fdb837238f1593b35d0dffbc4e6beddcc9bcae3b0a54cf91b70ba889897",
+    "decoded_duration_seconds": 23.989333333333335,
+    "origin": "six unchanged existing clips, not a recording of app output"
+  },
+  "excluded_captures": [
+    {
+      "file": "sulafat-unavailable-320x700-text-200.png",
+      "reason": "isolated control fixture with default test glyphs, not a full product screen; excluded from visual evidence"
+    }
+  ],
+  "release_status": "NOT PRODUCTION READY; real parent authentication, live /speech, device listening and broader app acceptance remain open"
+}

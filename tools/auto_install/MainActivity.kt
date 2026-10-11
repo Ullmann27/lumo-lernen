@@ -19,6 +19,7 @@ import android.content.pm.PackageManager
 import android.speech.SpeechRecognizer
 
 class MainActivity : FlutterActivity() {
+    private var offlineSpeech: LumoOfflineSpeechBridge? = null
     private val installerChannel = "lumo_lernen/installer"
     private var pendingGame: MethodChannel.Result? = null
     private val gameRequest = 8201
@@ -31,6 +32,9 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        offlineSpeech = LumoOfflineSpeechBridge(applicationContext).also {
+            it.attach(flutterEngine)
+        }
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "lumo_lernen/diagnostics")
             .setMethodCallHandler { call, result ->
                 when (call.method) {
@@ -209,5 +213,18 @@ class MainActivity : FlutterActivity() {
             }
             completeWhenStopped(0)
         }
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_BACKGROUND) {
+            offlineSpeech?.release()
+        }
+    }
+
+    override fun onDestroy() {
+        offlineSpeech?.destroy()
+        offlineSpeech = null
+        super.onDestroy()
     }
 }

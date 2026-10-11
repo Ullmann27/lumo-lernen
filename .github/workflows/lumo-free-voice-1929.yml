@@ -1,0 +1,222 @@
+name: Lumo 1929 local voice verified test APK, no publication
+on:
+  push:
+    branches: [computer/lumo-education-excellence-2026-10-11]
+    paths: [.github/workflows/lumo-free-voice-1929.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-free-voice-1929-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  verify-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    outputs:
+      source: ${{ steps.provenance.outputs.source }}
+      emulator-sha: ${{ steps.provenance.outputs.emulator-sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Record source and explicit test-only delivery
+        run: |
+          set -euo pipefail
+          mkdir -p proof/app-renders
+          git rev-parse HEAD > proof/source-sha.txt
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = '0.12.22+1929'
+          test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = '6063f56fd4ff13afef61509f52d1d4fdab012654'
+          git diff --exit-code HEAD --
+          printf '%s\n' 'Only workflow artifacts. No release, store publication, payment or speech API invocation.' > proof/delivery-scope.txt
+      - name: Exact dependencies and analysis
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analyze.log
+      - name: Install required real guard-scan tool
+        run: |
+          set -euo pipefail
+          if ! command -v rg >/dev/null 2>&1; then
+            sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+            sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep
+          fi
+          command -v rg
+          rg --version | tee proof/ripgrep-version.txt
+      - name: Complete Flutter suite, public speech matrix and actual UI renders
+        env:
+          LUMO_POLISH_CAPTURES: ${{ github.workspace }}/proof/app-renders
+          LUMO_SPEECH_AUDIT_DIR: ${{ github.workspace }}/proof
+          LUMO_AUDIT_SOURCE_COMMIT: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=75s --concurrency=2 \
+            2>&1 | tee proof/flutter-tests.log
+          python3 -m unittest discover -s scripts/tests -v 2>&1 | tee proof/python-tests.log
+          node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee proof/backend-tests.log
+          dart scripts/audit_content.dart 2>&1 | tee proof/content-audit.log
+      - name: Install matching engines and prepare NDK
+        run: |
+          set -euo pipefail
+          bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
+          bash scripts/install_godot_for_build.sh
+      - name: Build the existing integrated Flutter and Godot host
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/android-build.log
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          (cd dist/x86_64 && sha256sum -c SHA256SUMS.txt)
+      - name: Confirm source, signature, architecture and packaged speech
+        id: provenance
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import json, os
+          from pathlib import Path
+          for folder, abi in [('dist', 'arm64-v8a'), ('dist/x86_64', 'x86_64')]:
+              data = json.loads(Path(folder, 'BUILD-PROVENANCE.json').read_text())
+              assert data['flutter_source_commit'] == os.environ['GITHUB_SHA']
+              assert data['tracked_source_clean'] is True
+              assert data['versionCode'] == 1929 and data['versionName'] == '0.12.22'
+              assert data['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+              assert data['abis'] == [abi]
+              assert data['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+              assert data['offlineVoice']['preset'] == 'F2'
+              assert data['offlineVoice']['clipCount'] == 155
+          emulator = json.loads(Path('dist/x86_64/BUILD-PROVENANCE.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('source=' + os.environ['GITHUB_SHA'] + '\n')
+              output.write('emulator-sha=' + emulator['sha256'] + '\n')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-free-voice-arm64-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-free-voice-emulator-${{ github.run_id }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-free-voice-build-evidence-${{ github.run_id }}
+          path: proof/
+          if-no-files-found: error
+          retention-days: 30
+
+  android-offline:
+    needs: verify-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      LUMO_EXPECT_SOURCE: ${{ needs.verify-build.outputs.source }}
+      LUMO_EXPECT_APK_SHA: ${{ needs.verify-build.outputs.emulator-sha }}
+      LUMO_EXPECT_VERSION: '1929'
+      LUMO_EXPECT_ANDROID_API: '36'
+      LUMO_EXPECT_GODOT: '6063f56fd4ff13afef61509f52d1d4fdab012654'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-free-voice-emulator-${{ github.run_id }}
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38097768063
+          name: lumo-emulator-apk-38097768063-1
+          path: baseline/
+      - name: Prepare independent live accessibility reader
+        run: |
+          set -euo pipefail
+          mkdir -p android-proof
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y \
+            ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > android-proof/dependencies.txt
+          python3 -m py_compile .github/probes/lumo_free_voice_android_probe.py
+      - name: Enable disposable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified software renderer
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > android-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > android-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' android-proof/mesa-renderer.txt
+      - name: Prepare existing Android 16 image
+        timeout-minutes: 11
+        run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
+      - name: Update 1928 in place and test real offline synthesis and playback
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_free_voice_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-free-voice-android16-evidence-${{ github.run_id }}
+          path: android-proof/
+          if-no-files-found: error
+          retention-days: 30

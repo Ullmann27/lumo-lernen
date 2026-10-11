@@ -33,4 +33,27 @@ void main() {
     expect(current.message, contains('noch nicht bestätigt'));
     expect(paths, ['GET /speech/status', 'GET /speech/status']);
   });
+
+  test('a configured provider without parent authorization is not ready',
+      () async {
+    final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+    addTearDown(() => server.close(force: true));
+    server.listen((request) async {
+      request.response.write(jsonEncode({
+        'voice': 'Sulafat',
+        'profile': LumoSulafatClient.referenceProfile,
+        'model': LumoSulafatClient.referenceModel,
+        'configured': false,
+        'providerConfigured': true,
+        'parentAuthorizationRequired': true,
+        'authorizationConfigured': false,
+        'providerVerified': false,
+      }));
+      await request.response.close();
+    });
+    final result =
+        await LumoSpeechReadiness.check('http://127.0.0.1:${server.port}');
+    expect(result.configured, isFalse);
+    expect(result.message, contains('Elternautorisierung'));
+  });
 }

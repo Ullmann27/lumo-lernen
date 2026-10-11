@@ -19,10 +19,10 @@ function modelOptions(selected, tokens) {
 }
 const maxBodyBytes = 16 * 1024;
 
-function json(res, status, payload) {
+function json(res, status, payload, closeConnection = false) {
   // An oversized client may keep streaming forever. Flush the error response,
   // then close the connection without waiting for the request's final chunk.
-  if (status === 413) {
+  if (status === 413 || closeConnection) {
     const socket = res.socket;
     res.shouldKeepAlive = false;
     res.setHeader('connection', 'close');
@@ -38,7 +38,7 @@ function json(res, status, payload) {
     'cache-control': 'no-store',
     'access-control-allow-origin': process.env.ALLOWED_ORIGIN || '*',
     'access-control-allow-methods': 'GET, POST, OPTIONS',
-    'access-control-allow-headers': 'content-type, x-lumo-parent-token',
+    'access-control-allow-headers': 'content-type, authorization, x-lumo-parent-token',
   });
   res.end(JSON.stringify(payload));
 }
@@ -364,28 +364,70 @@ export function createLumoServer({
   ttsApiKey = process.env.GEMINI_API_KEY || '',
   ttsEnabled = process.env.LUMO_TTS_ENABLED === '1',
   ttsModel = process.env.GEMINI_TTS_MODEL || DEFAULT_TTS_MODEL,
+  // Integration seam for the EXISTING authorized parent identity service.
+  // No verifier is installed by default. A provider key or a flag alone
+  // can never enable an unauthenticated, billable speech endpoint.
+  authorizeSpeech = null,
+  ttsPerParentDay = Number(process.env.LUMO_TTS_PER_PARENT_DAY || process.env.LUMO_TTS_PER_IP_DAY || 200),
+  ttsTotalDay = Number(process.env.LUMO_TTS_TOTAL_DAY || 1600),
 } = {}) {
 let upstreamStatus = 'not_checked';
 const taskHistory = new Map();
 const batchInFlight = new Map();
-// In-memory hard daily budget + per-IP guard; an endpoint without a persistent
-// authenticated identity MUST be disabled by default at deployment.
+// Per-process daily budgets over verified opaque parent identities.
+// Persistent/distributed accounting is still a separate public-release gate.
 const speechBudgets = new Map();
 let speechDay = '';
 let speechTotal = 0;
-function speechBudgetFor(req) {
+function speechStatus() {
+  const providerConfigured = Boolean(ttsEnabled && ttsApiKey);
+  const authorizationConfigured = typeof authorizeSpeech === 'function';
+  return {
+    voice: 'Sulafat', profile: SULAFAT_PROFILE, model: ttsModel,
+    configured: providerConfigured && authorizationConfigured,
+    providerConfigured, authorizationConfigured,
+    parentAuthorizationRequired: true, providerVerified: false,
+  };
+}
+async function parentSpeechAuthorization(req) {
+  const header = req.headers.authorization;
+  if (typeof header !== 'string' || header.length > 4096 ||
+      !/^Bearer [A-Za-z0-9._~+/-]+=*$/i.test(header)) return null;
+  const bearer = header.slice(7);
+  let timeout;
+  try {
+    const identity = await Promise.race([
+      Promise.resolve().then(() => authorizeSpeech(bearer)),
+      new Promise((resolve) => {
+        timeout = setTimeout(() => resolve(null), 5000);
+        timeout.unref();
+      }),
+    ]);
+    if (!identity || identity.parentVerified !== true ||
+        typeof identity.principalId !== 'string' ||
+        identity.principalId.length < 1 || identity.principalId.length > 120) return null;
+    return identity;
+  } catch (_) {
+    // Never expose verifier errors, tokens or child details.
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+function speechBudgetFor(principalId) {
   const today = new Date().toISOString().slice(0, 10);
   if (speechDay !== today) {
     speechDay = today;
     speechTotal = 0;
     speechBudgets.clear();
   }
-  const clientIp = req.socket?.remoteAddress || 'unknown';
-  const current = speechBudgets.get(clientIp) || 0;
-  const perIpCap = Math.max(1, Math.min(1000, Number(process.env.LUMO_TTS_PER_IP_DAY) || 200));
-  const totalCap = Math.max(1, Math.min(20000, Number(process.env.LUMO_TTS_TOTAL_DAY) || 1600));
-  if (current >= perIpCap || speechTotal >= totalCap) return false;
-  speechBudgets.set(clientIp, current + 1);
+  const current = speechBudgets.get(principalId) || 0;
+  const parentCap = Number.isFinite(ttsPerParentDay)
+    ? Math.max(1, Math.min(1000, Math.floor(ttsPerParentDay))) : 200;
+  const totalCap = Number.isFinite(ttsTotalDay)
+    ? Math.max(1, Math.min(20000, Math.floor(ttsTotalDay))) : 1600;
+  if (current >= parentCap || speechTotal >= totalCap) return false;
+  speechBudgets.set(principalId, current + 1);
   speechTotal++;
   return true;
 }
@@ -395,27 +437,34 @@ return createServer(async (req, res) => {
   if (req.method === 'GET' && (path === '/' || path === '/health')) {
     return json(res, 200, {
       ...healthPayload(apiKey, upstreamStatus),
-      speech: { voice: 'Sulafat', profile: SULAFAT_PROFILE, model: ttsModel,
-        configured: Boolean(ttsEnabled && ttsApiKey), providerVerified: false },
+      speech: speechStatus(),
     });
   }
   if (req.method === 'GET' && path === '/speech/status') {
     // Configuration only; never spend a synthesis call or claim audibility.
-    return json(res, 200, { voice: 'Sulafat', profile: SULAFAT_PROFILE,
-      model: ttsModel, configured: Boolean(ttsEnabled && ttsApiKey),
-      providerVerified: false });
+    return json(res, 200, speechStatus());
   }
   if (req.method === 'POST' && path === '/speech') {
     // Opt-in server flag AND an API key are mandatory. Without both,
     // report unavailability; NEVER substitute another voice.
     if (!ttsEnabled || !ttsApiKey) return json(res, 503, {
       error: 'sulafat_not_configured', voice: 'Sulafat',
-    });
+    }, true);
+    if (typeof authorizeSpeech !== 'function') return json(res, 503, {
+      error: 'sulafat_authorization_not_configured', voice: 'Sulafat',
+    }, true);
+    const identity = await parentSpeechAuthorization(req);
+    if (!identity) return json(res, 401, {
+      error: 'parent_authorization_required', voice: 'Sulafat',
+    }, true);
+    if (identity.speechConsent !== true) return json(res, 403, {
+      error: 'parent_speech_consent_required', voice: 'Sulafat',
+    }, true);
     try {
       const body = await readJson(req);
       const checked = validateSpeechRequest(body);
       if (!checked) return json(res, 400, { error: 'invalid_speech_text' });
-      if (!speechBudgetFor(req)) return json(res, 429, { error: 'sulafat_quota_exceeded' });
+      if (!speechBudgetFor(identity.principalId)) return json(res, 429, { error: 'sulafat_quota_exceeded' });
       const abort = new AbortController();
       const onClose = () => { if (!res.writableEnded) abort.abort(); };
       res.once('close', onClose);

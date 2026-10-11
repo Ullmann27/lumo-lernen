@@ -157,6 +157,7 @@ class LumoConversationController extends ChangeNotifier {
     }
     _setPhase(switch (LumoVoice.instance.status.value) {
       VoiceStatus.speaking => LumoConversationPhase.speaking,
+      VoiceStatus.paused => LumoConversationPhase.paused,
       VoiceStatus.preparing => LumoConversationPhase.thinking,
       VoiceStatus.error => LumoConversationPhase.error,
       VoiceStatus.idle => LumoConversationPhase.idle,

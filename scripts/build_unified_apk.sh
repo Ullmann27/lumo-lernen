@@ -27,6 +27,7 @@ fi
 require_clean_sources
 python3 scripts/prepare_android.py --side-by-side
 python3 scripts/prepare_embedded_games.py
+python3 scripts/prepare_offline_voice.py
 # Isolated build-only image tooling; no global pip or app dependency changes.
 python3 -m venv build/lumo-icon-tools
 build/lumo-icon-tools/bin/python -m pip install --disable-pip-version-check \

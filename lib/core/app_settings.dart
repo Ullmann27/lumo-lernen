@@ -12,6 +12,7 @@ class AppSettings {
     this.voiceEnabled = true,
     this.autoReadEnabled = true,
     this.cloudVoiceEnabled = false,
+    this.localVoiceLicenseAccepted = false,
     this.microphoneEnabled = false,
     this.scannerEnabled = false,
     this.aiProxyEnabled = false,
@@ -28,8 +29,13 @@ class AppSettings {
   final bool soundEnabled;
   final bool voiceEnabled;
   final bool autoReadEnabled;
+
   /// Parent-controlled transfer of the currently spoken text to the Sulafat TTS server.
   final bool cloudVoiceEnabled;
+
+  /// Adult assent to the local model's use terms. Never grants cloud, camera,
+  /// microphone or premium consent; older saved settings safely default false.
+  final bool localVoiceLicenseAccepted;
   final bool microphoneEnabled;
   final bool scannerEnabled;
   final bool aiProxyEnabled;
@@ -48,6 +54,7 @@ class AppSettings {
     bool? voiceEnabled,
     bool? autoReadEnabled,
     bool? cloudVoiceEnabled,
+    bool? localVoiceLicenseAccepted,
     bool? microphoneEnabled,
     bool? scannerEnabled,
     bool? aiProxyEnabled,
@@ -66,6 +73,8 @@ class AppSettings {
       voiceEnabled: voiceEnabled ?? this.voiceEnabled,
       autoReadEnabled: autoReadEnabled ?? this.autoReadEnabled,
       cloudVoiceEnabled: cloudVoiceEnabled ?? this.cloudVoiceEnabled,
+      localVoiceLicenseAccepted:
+          localVoiceLicenseAccepted ?? this.localVoiceLicenseAccepted,
       microphoneEnabled: microphoneEnabled ?? this.microphoneEnabled,
       scannerEnabled: scannerEnabled ?? this.scannerEnabled,
       aiProxyEnabled: aiProxyEnabled ?? this.aiProxyEnabled,
@@ -86,6 +95,7 @@ class AppSettings {
         'voiceEnabled': voiceEnabled,
         'autoReadEnabled': autoReadEnabled,
         'cloudVoiceEnabled': cloudVoiceEnabled,
+        'localVoiceLicenseAccepted': localVoiceLicenseAccepted,
         'microphoneEnabled': microphoneEnabled,
         'scannerEnabled': scannerEnabled,
         'aiProxyEnabled': aiProxyEnabled,
@@ -110,6 +120,8 @@ class AppSettings {
       voiceEnabled: _bool(json['voiceEnabled'], fallback: true),
       autoReadEnabled: _bool(json['autoReadEnabled'], fallback: true),
       cloudVoiceEnabled: _bool(json['cloudVoiceEnabled'], fallback: false),
+      localVoiceLicenseAccepted:
+          _bool(json['localVoiceLicenseAccepted'], fallback: false),
       microphoneEnabled: _bool(json['microphoneEnabled'], fallback: false),
       scannerEnabled: _bool(json['scannerEnabled'], fallback: false),
       aiProxyEnabled: _bool(json['aiProxyEnabled'], fallback: false),
