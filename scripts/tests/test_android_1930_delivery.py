@@ -64,6 +64,19 @@ class DeliveryGateTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.validate()
 
+    def test_1931_requires_new_version_and_actual_subtraction_acceptance(self):
+        with self.assertRaises(ValueError):
+            PACKAGE.validate(self.provenance, self.android, self.outcomes, self.run,
+                             self.log, version_code=1931, version_name="0.12.24")
+        self.provenance.update(versionCode=1931, versionName="0.12.24")
+        with self.assertRaises(ValueError):
+            PACKAGE.validate(self.provenance, self.android, self.outcomes, self.run,
+                             self.log, version_code=1931, version_name="0.12.24")
+        self.android["subtraction_course"] = {"status": "PASS"}
+        self.assertEqual(PACKAGE.validate(
+            self.provenance, self.android, self.outcomes, self.run, self.log,
+            version_code=1931, version_name="0.12.24")["source"], self.source)
+
 
 class DeliveryWorkflowTest(unittest.TestCase):
     def setUp(self):
@@ -85,6 +98,17 @@ class DeliveryWorkflowTest(unittest.TestCase):
         self.assertNotIn("contents: write", self.workflow)
         self.assertNotIn("gh release create", self.workflow)
         self.assertNotIn("flutter test --", self.workflow)
+
+    def test_1931_pins_existing_1930_update_and_its_own_package_version(self):
+        workflow = (ROOT / ".github/workflows/lumo-education-1931.yml").read_text()
+        self.assertIn("LUMO_BASE_VERSION: '1930'", workflow)
+        self.assertIn("LUMO_EXPECT_VERSION: '1931'", workflow)
+        self.assertIn("--version-code 1931 --version-name 0.12.24", workflow)
+        self.assertIn("run-id: 38147910017", workflow)
+        self.assertIn("lumo-education-1930-emulator-38147910017", workflow)
+        self.assertIn("needs: [verify-build, android-learning]", workflow)
+        self.assertNotIn("contents: write", workflow)
+        self.assertNotIn("gh release create", workflow)
 
 
 if __name__ == "__main__":

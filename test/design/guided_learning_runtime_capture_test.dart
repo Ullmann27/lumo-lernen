@@ -162,6 +162,7 @@ void main() {
     for (final (lesson, discovery) in [
       (GuidedLessonCatalog.bridgeTen, false),
       (GuidedLessonCatalog.equalGroups, true),
+      (GuidedLessonCatalog.subtractTen, false),
     ]) {
       testWidgets('actual ${lesson.id} example and controls: $name',
           (tester) async {
@@ -184,7 +185,7 @@ void main() {
         expect(find.text(lesson.steps[2].title), findsOneWidget);
         await _frames(tester, 110);
         await _capture(tester, '$name-actual-${lesson.id}-example');
-        if (!discovery && name == 'fold-target') {
+        if (lesson.id == 'bridge_ten' && name == 'fold-target') {
           // The video consists only of frames captured from the actual running
           // TweenAnimationBuilder after the child's real Replay button tap.
           await _tap(tester, find.text('Beispiel noch einmal'), frames: 1);

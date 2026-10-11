@@ -36,9 +36,11 @@ class GuidedMathIllustration extends StatelessWidget {
       return LumoLessonSurface(
         child: Column(children: [
           Icon(
-              lesson.concept == GuidedMathConcept.bridgeTen
-                  ? Icons.grid_view_rounded
-                  : Icons.workspaces_rounded,
+              switch (lesson.concept) {
+                GuidedMathConcept.bridgeTen => Icons.grid_view_rounded,
+                GuidedMathConcept.equalGroups => Icons.workspaces_rounded,
+                GuidedMathConcept.subtractTen => Icons.remove_circle_outline,
+              },
               color: LumoVisualTokens.gold,
               size: 48),
           const SizedBox(height: 12),
@@ -65,9 +67,114 @@ class GuidedMathIllustration extends StatelessWidget {
         ),
       );
     }
-    return lesson.concept == GuidedMathConcept.equalGroups
-        ? _groups()
-        : _tenFrame(context);
+    return switch (lesson.concept) {
+      GuidedMathConcept.equalGroups => _groups(),
+      GuidedMathConcept.bridgeTen => _tenFrame(context),
+      GuidedMathConcept.subtractTen => _subtraction(),
+    };
+  }
+
+  Widget _subtraction() => LumoLessonSurface(
+        padding: const EdgeInsets.all(10),
+        child: LayoutBuilder(builder: (context, constraints) {
+          final cell = math.min(
+              54.0, (constraints.maxWidth - 20) / (5 + _sourceColumns));
+          final trayX = cell * 5 + 12;
+          final height = math.max((step.a / 5).ceil() * cell,
+                  (step.b / _sourceColumns).ceil() * cell) +
+              6;
+          final example = step.type == TutoringStepType.showExample;
+          // An independent question retains the full starting quantity:
+          // the completed animation must never reveal its answer.
+          final removal = example
+              ? step.b
+              : step.answerKind == GuidedAnswerKind.subtractRemainder
+                  ? step.a % 10
+                  : 0;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text('${step.a} − ${step.b}',
+                  style: _text.copyWith(fontSize: 26),
+                  textAlign: TextAlign.center),
+              const SizedBox(height: 12),
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                SizedBox(width: trayX, child: const Text('Da', style: _text)),
+                const Expanded(child: Text('Weg', style: _text)),
+              ]),
+              const SizedBox(height: 8),
+              Semantics(
+                label: '${step.a} Äpfel am Anfang. '
+                    '${step.b} sollen weggenommen werden.',
+                excludeSemantics: true,
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween(begin: 0, end: removal > 0 ? 1 : 0),
+                  duration: reduceMotion
+                      ? Duration.zero
+                      : const Duration(milliseconds: 1600),
+                  builder: (context, fraction, _) => SizedBox(
+                    height: height,
+                    child: Stack(children: [
+                      for (var i = 0; i < 10; i++)
+                        Positioned(
+                          left: (i % 5) * cell,
+                          top: (i ~/ 5) * cell,
+                          width: cell - 3,
+                          height: cell - 3,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF103966),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  color: LumoVisualTokens.cyan
+                                      .withValues(alpha: .55)),
+                            ),
+                          ),
+                        ),
+                      for (var i = 0; i < step.a; i++)
+                        _subtractionApple(i, cell, trayX, removal, fraction),
+                    ]),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                  example
+                      ? '${step.a} − ${step.a % 10} = 10. '
+                          '10 − ${step.b - step.a % 10} = ${step.a - step.b}.'
+                      : removal > 0
+                          ? 'Bis zehn sind wir schon zurück. '
+                              'Welcher Teil fehlt noch?'
+                          : 'Erst bis zehn zurück, dann den Rest wegnehmen.',
+                  style: _text),
+            ],
+          );
+        }),
+      );
+
+  Widget _subtractionApple(
+      int index, double cell, double trayX, int removal, double fraction) {
+    final order = step.a - 1 - index;
+    final initial = Offset((index % 5) * cell, (index ~/ 5) * cell);
+    final destination = Offset(trayX + (order % _sourceColumns) * cell,
+        (order ~/ _sourceColumns) * cell);
+    // Show the first subtraction to ten before moving the remaining apples.
+    final firstPart = order < step.a % 10;
+    final progress = order >= removal
+        ? 0.0
+        : firstPart
+            ? (fraction / .45).clamp(0.0, 1.0)
+            : ((fraction - .55) / .45).clamp(0.0, 1.0);
+    final position = Offset.lerp(
+        initial, destination, Curves.easeInOutCubic.transform(progress))!;
+    return Positioned(
+      key: ValueKey('guided-subtract-apple-$index'),
+      left: position.dx,
+      top: position.dy,
+      width: cell - 3,
+      height: cell - 3,
+      child: LumoQuantityArt.apple(size: cell - 3),
+    );
   }
 
   Widget _groups() => LumoLessonSurface(

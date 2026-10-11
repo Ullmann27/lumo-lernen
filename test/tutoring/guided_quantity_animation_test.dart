@@ -29,9 +29,11 @@ void main() {
           ));
           final count = step.b == 0
               ? step.a
-              : lesson.concept == GuidedMathConcept.bridgeTen
-                  ? step.a + step.b
-                  : step.a * step.b;
+              : switch (lesson.concept) {
+                  GuidedMathConcept.bridgeTen => step.a + step.b,
+                  GuidedMathConcept.equalGroups => step.a * step.b,
+                  GuidedMathConcept.subtractTen => step.a,
+                };
           expect(find.byType(LumoQuantityArt), findsNWidgets(count));
           await tester.pump(const Duration(milliseconds: 700));
           expect(find.byType(LumoQuantityArt), findsNWidgets(count));
@@ -55,6 +57,26 @@ void main() {
             expect(insideTen, moved ? 10 : step.a,
                 reason: 'The explanation and remainder show a real full ten');
           }
+          if (lesson.concept == GuidedMathConcept.subtractTen && step.b > 0) {
+            var kept = 0;
+            for (var i = 0; i < count; i++) {
+              final key = ValueKey('guided-subtract-apple-$i');
+              final apple = tester.widget<Positioned>(find.byKey(key));
+              if (apple.left! < (apple.width! + 3) * 5) kept++;
+              final rect = tester.getRect(find.byKey(key));
+              expect(rect.left, greaterThanOrEqualTo(0));
+              expect(rect.right, lessThanOrEqualTo(width));
+            }
+            expect(
+                kept,
+                step.type == TutoringStepType.showExample
+                    ? step.a - step.b
+                    : step.answerKind == GuidedAnswerKind.subtractRemainder
+                        ? 10
+                        : step.a,
+                reason: 'Only an explanation removes the final quantity; '
+                    'independent questions keep their starting amount');
+          }
           await tester.pumpWidget(const SizedBox.shrink());
         });
       }
@@ -76,6 +98,35 @@ void main() {
         find.byKey(const ValueKey('guided-bridge-apple-7')));
     expect(moved.left, (moved.width! + 3) * 2);
     expect(moved.top, moved.width! + 3);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+  testWidgets('subtraction first reaches ten, then removes the rest',
+      (tester) async {
+    const lesson = GuidedLessonCatalog.subtractTen;
+    Future<void> show(bool reduced) => tester.pumpWidget(MaterialApp(
+        key: ValueKey(reduced),
+        home: Scaffold(
+            body: GuidedMathIllustration(
+                lesson: lesson,
+                step: lesson.steps[2],
+                reduceMotion: reduced))));
+    int kept() => [
+          for (var i = 0; i < 12; i++)
+            tester.widget<Positioned>(
+                find.byKey(ValueKey('guided-subtract-apple-$i')))
+        ].where((apple) => apple.left! < (apple.width! + 3) * 5).length;
+    await show(false);
+    expect(kept(), 12);
+    await tester.pump(const Duration(milliseconds: 800));
+    expect(kept(), 10);
+    expect(find.byType(LumoQuantityArt), findsNWidgets(12));
+    await tester.pump(const Duration(milliseconds: 800));
+    expect(kept(), 7);
+    await show(true);
+    await tester.pump();
+    expect(kept(), 7);
+    expect(find.byType(LumoQuantityArt), findsNWidgets(12));
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });

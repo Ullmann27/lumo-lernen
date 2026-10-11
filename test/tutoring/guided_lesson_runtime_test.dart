@@ -146,9 +146,17 @@ Future<void> _finish(WidgetTester tester, GuidedLesson lesson,
       expect(
           LumoCompanionRequests.instance.taskContext.value!.lastCorrect, true);
     } else if (step.type == TutoringStepType.showExample) {
-      final total = lesson.concept == GuidedMathConcept.equalGroups
-          ? step.a * step.b
-          : step.a + step.b;
+      if (lesson.concept == GuidedMathConcept.subtractTen) {
+        expect(
+            find.textContaining('Nimm zuerst bis zehn weg.'), findsOneWidget);
+        expect(
+            find.textContaining('Gleiche Gruppen lassen sich'), findsNothing);
+      }
+      final total = switch (lesson.concept) {
+        GuidedMathConcept.equalGroups => step.a * step.b,
+        GuidedMathConcept.bridgeTen => step.a + step.b,
+        GuidedMathConcept.subtractTen => step.a,
+      };
       expect(find.byType(LumoQuantityArt), findsNWidgets(total));
       await _tap(tester, find.text('Erklärung lesen'));
       expect(find.text(step.instruction), findsOneWidget);
@@ -190,34 +198,37 @@ void main() {
   });
   tearDown(LumoCompanionRequests.instance.clearLearningScope);
 
-  testWidgets('school instruction counts only actual independent answers',
-      (tester) async {
-    final app = await _app(tester);
-    await tester.pumpWidget(MaterialApp(
-        theme: LumoAppTheme.light(),
-        home: GuidedLessonScreen(
-            appState: app,
-            lesson: GuidedLessonCatalog.bridgeTen,
-            discovery: false)));
-    await _frames(tester);
-    await _finish(tester, GuidedLessonCatalog.bridgeTen,
-        wrongIndependent: true);
-    expect(app.state.grade, 1);
-    expect(app.learningDailyDone(), 2);
-    final record = app.learningSkills()['mathematik::plus bis 20']!;
-    expect(record.correct, 2);
-    expect(record.wrong, 1);
-    expect(record.hintCount, 1);
-    expect(LumoCompanionRequests.instance.learningEvents.value.last.kind,
-        LumoLearningEventKind.lessonCompleted);
-    expect(
-        (await tester.runAsync(() =>
-                ProgressRepository(studentId: 'learning-test-a')
-                    .loadDiscovery()))!
-            .topics,
-        isEmpty);
-    await _close(tester, app);
-  });
+  for (final lesson in [
+    GuidedLessonCatalog.bridgeTen,
+    GuidedLessonCatalog.subtractTen
+  ]) {
+    testWidgets('${lesson.id}: school counts only actual independent answers',
+        (tester) async {
+      final app = await _app(tester);
+      await tester.pumpWidget(MaterialApp(
+          theme: LumoAppTheme.light(),
+          home: GuidedLessonScreen(
+              appState: app, lesson: lesson, discovery: false)));
+      await _frames(tester);
+      await _finish(tester, lesson, wrongIndependent: true);
+      expect(app.state.grade, 1);
+      expect(app.learningDailyDone(), 2);
+      final record = app
+          .learningSkills()['mathematik::${lesson.schoolUnit.toLowerCase()}']!;
+      expect(record.correct, 2);
+      expect(record.wrong, 1);
+      expect(record.hintCount, 1);
+      expect(LumoCompanionRequests.instance.learningEvents.value.last.kind,
+          LumoLearningEventKind.lessonCompleted);
+      expect(
+          (await tester.runAsync(() =>
+                  ProgressRepository(studentId: 'learning-test-a')
+                      .loadDiscovery()))!
+              .topics,
+          isEmpty);
+      await _close(tester, app);
+    });
+  }
 
   testWidgets(
       'actual adult choice and complete higher-stage discovery stay separate',

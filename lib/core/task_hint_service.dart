@@ -141,18 +141,36 @@ class TaskHintService {
   String _guidedHint(LumoTask task, int level) {
     final unit = task.unit.toLowerCase();
     if (task.subject == 'Mathematik') {
-      final expression =
-          RegExp(r'(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*=').firstMatch(task.prompt);
+      final expression = RegExp(r'(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*=')
+              .firstMatch(task.prompt) ??
+          RegExp(r'^\s*(?:Rechne\s+)?(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*[.?]?\s*$',
+                  caseSensitive: false)
+              .firstMatch(task.prompt);
       if (expression != null) {
         final left = int.parse(expression.group(1)!);
         final right = int.parse(expression.group(3)!);
         final op = expression.group(2)!;
         if (op == '+') {
+          final nextTen = (left ~/ 10 + 1) * 10;
+          final missing = nextTen - left;
+          if (level >= 3 && left % 10 != 0 && right > missing) {
+            return 'Von $left bis $nextTen fehlen $missing. '
+                'Teile $right in $missing und ${right - missing}. '
+                'Gehe zuerst bis $nextTen und dann die übrigen '
+                '${right - missing} Schritte weiter. Wo landest du?';
+          }
           return level == 2
               ? 'Starte bei $left. Zähle $right weiter. Du kannst dir die zweite Menge als Punkte legen.'
               : 'Teile $right in kleine Schritte. Gehe zuerst bis zum nächsten Zehner, wenn du ihn erreichst, und zähle dann den Rest weiter. Prüfe durch Zurückzählen.';
         }
         if (op == '-' || op == '−') {
+          final toTen = left % 10;
+          if (level >= 3 && toTen > 0 && right > toTen && right <= left) {
+            return 'Gehe von $left zuerst $toTen Schritte bis ${left - toTen} zurück. '
+                'Von den $right Schritten bleiben noch ${right - toTen}. '
+                'Gehe auch diese zurück. Wo landest du? '
+                'Prüfe danach durch Dazuzählen.';
+          }
           return level == 2
               ? 'Starte bei $left. Nimm $right weg oder gehe $right Schritte zurück.'
               : 'Zerlege die weggenommene Menge in kleinere Schritte. Nimm sie nacheinander weg. Prüfe: Wenn du $right wieder dazuzählst, musst du bei $left ankommen.';
