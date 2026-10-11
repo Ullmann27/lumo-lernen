@@ -1,0 +1,787 @@
+{
+  "source": "0dc3b1f30d7d885cc0c9914d1f557fad8655d762",
+  "scope": "Existing app content inventory; not a full official curriculum or external pedagogical approval",
+  "automatic_quality_audit": {
+    "checked": 40974,
+    "status": "PASS"
+  },
+  "rows": [
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "available_units": [
+        "Textaufgaben",
+        "Plus bis 10",
+        "Minus bis 10",
+        "Plus bis 20",
+        "Minus bis 20",
+        "Zahlenstrahl",
+        "Mengenvergleich",
+        "Zahl in Worten",
+        "Geometrie Formen",
+        "Geld",
+        "Zeit",
+        "Symmetrie",
+        "Formen Nachzeichnen",
+        "Rechengeschichten",
+        "Zahlenmauer",
+        "Zahlenrätsel",
+        "Marktstand",
+        "Platzhalter-Rätsel",
+        "Größer, kleiner, gleich"
+      ],
+      "guided_introductions": [
+        {
+          "unit": "Plus bis 20",
+          "course": "bridge_ten"
+        },
+        {
+          "unit": "Minus bis 20",
+          "course": "subtract_ten"
+        }
+      ],
+      "without_guided_introduction": [
+        "Textaufgaben",
+        "Plus bis 10",
+        "Minus bis 10",
+        "Zahlenstrahl",
+        "Mengenvergleich",
+        "Zahl in Worten",
+        "Geometrie Formen",
+        "Geld",
+        "Zeit",
+        "Symmetrie",
+        "Formen Nachzeichnen",
+        "Rechengeschichten",
+        "Zahlenmauer",
+        "Zahlenrätsel",
+        "Marktstand",
+        "Platzhalter-Rätsel",
+        "Größer, kleiner, gleich"
+      ]
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "available_units": [
+        "Buchstaben-Lautierung",
+        "Reime",
+        "Anfangslaute",
+        "Endlaute",
+        "Wort-Bild-Zuordnung",
+        "Erste Sätze",
+        "Silben",
+        "Artikel",
+        "Wortdetektiv",
+        "Silbenrätsel",
+        "Begleiter-Rätsel",
+        "Gegenteil-Geschichten"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Buchstaben-Lautierung",
+        "Reime",
+        "Anfangslaute",
+        "Endlaute",
+        "Wort-Bild-Zuordnung",
+        "Erste Sätze",
+        "Silben",
+        "Artikel",
+        "Wortdetektiv",
+        "Silbenrätsel",
+        "Begleiter-Rätsel",
+        "Gegenteil-Geschichten"
+      ]
+    },
+    {
+      "grade": 1,
+      "subject": "Lesen",
+      "available_units": [
+        "Woerter lesen",
+        "Sätze lesen",
+        "Lesesinn",
+        "Bild und Wort",
+        "Reihenfolge"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Woerter lesen",
+        "Sätze lesen",
+        "Lesesinn",
+        "Bild und Wort",
+        "Reihenfolge"
+      ]
+    },
+    {
+      "grade": 1,
+      "subject": "Rechtschreibung",
+      "available_units": [
+        "Haeufige Woerter",
+        "Gross und klein",
+        "Doppelmitlaut",
+        "Dehnungen",
+        "Satzzeichen",
+        "Wortende",
+        "St oder Sp"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Haeufige Woerter",
+        "Gross und klein",
+        "Doppelmitlaut",
+        "Dehnungen",
+        "Satzzeichen",
+        "Wortende",
+        "St oder Sp"
+      ]
+    },
+    {
+      "grade": 1,
+      "subject": "Schreiben",
+      "available_units": [
+        "Buchstaben nachspuren",
+        "Wort schreiben",
+        "Satz abschreiben",
+        "Schwunguebung",
+        "Zahlen schreiben"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Buchstaben nachspuren",
+        "Wort schreiben",
+        "Satz abschreiben",
+        "Schwunguebung",
+        "Zahlen schreiben"
+      ]
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "available_units": [
+        "Tiere",
+        "Jahreszeiten",
+        "Wetter",
+        "Pflanzen",
+        "Tag und Nacht",
+        "Körper",
+        "Verkehr",
+        "Familie und Gemeinschaft",
+        "Zeit und Kalender",
+        "Wer bin ich?",
+        "Monate und Wochentage"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Tiere",
+        "Jahreszeiten",
+        "Wetter",
+        "Pflanzen",
+        "Tag und Nacht",
+        "Körper",
+        "Verkehr",
+        "Familie und Gemeinschaft",
+        "Zeit und Kalender",
+        "Wer bin ich?",
+        "Monate und Wochentage"
+      ]
+    },
+    {
+      "grade": 1,
+      "subject": "Englisch",
+      "available_units": [
+        "Farben",
+        "Tiere",
+        "Begruessung",
+        "Familie",
+        "Zahlen",
+        "Körper",
+        "Schulsachen"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Farben",
+        "Tiere",
+        "Begruessung",
+        "Familie",
+        "Zahlen",
+        "Körper",
+        "Schulsachen"
+      ]
+    },
+    {
+      "grade": 1,
+      "subject": "Logik",
+      "available_units": [
+        "Muster",
+        "Reihenfolgen",
+        "Was passt nicht?"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Muster",
+        "Reihenfolgen",
+        "Was passt nicht?"
+      ]
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "available_units": [
+        "Textaufgaben",
+        "Plus bis 20",
+        "Minus bis 20",
+        "Plus bis 100",
+        "Minus bis 100",
+        "Einmaleins",
+        "Einmaleins Vorbereitung",
+        "Geld wechseln",
+        "Uhrzeit",
+        "Längen",
+        "Gerade und ungerade",
+        "Verdoppeln und Halbieren",
+        "Zehner und Einer",
+        "Formen Nachzeichnen",
+        "Uhr-Abenteuer"
+      ],
+      "guided_introductions": [
+        {
+          "unit": "Plus bis 20",
+          "course": "bridge_ten"
+        },
+        {
+          "unit": "Minus bis 20",
+          "course": "subtract_ten"
+        },
+        {
+          "unit": "Einmaleins",
+          "course": "equal_groups"
+        }
+      ],
+      "without_guided_introduction": [
+        "Textaufgaben",
+        "Plus bis 100",
+        "Minus bis 100",
+        "Einmaleins Vorbereitung",
+        "Geld wechseln",
+        "Uhrzeit",
+        "Längen",
+        "Gerade und ungerade",
+        "Verdoppeln und Halbieren",
+        "Zehner und Einer",
+        "Formen Nachzeichnen",
+        "Uhr-Abenteuer"
+      ]
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "available_units": [
+        "Wortfamilien",
+        "Einzahl und Mehrzahl",
+        "Verkleinerungsform",
+        "Gegenteile",
+        "Oberbegriffe",
+        "Namenwoerter",
+        "Tunwoerter",
+        "Wiewoerter",
+        "Wörter zusammensetzen",
+        "Wortarten-Jagd",
+        "Satzbaustelle"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Wortfamilien",
+        "Einzahl und Mehrzahl",
+        "Verkleinerungsform",
+        "Gegenteile",
+        "Oberbegriffe",
+        "Namenwoerter",
+        "Tunwoerter",
+        "Wiewoerter",
+        "Wörter zusammensetzen",
+        "Wortarten-Jagd",
+        "Satzbaustelle"
+      ]
+    },
+    {
+      "grade": 2,
+      "subject": "Lesen",
+      "available_units": [
+        "Woerter lesen",
+        "Sätze lesen",
+        "Lesesinn",
+        "Bild und Wort",
+        "Reihenfolge"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Woerter lesen",
+        "Sätze lesen",
+        "Lesesinn",
+        "Bild und Wort",
+        "Reihenfolge"
+      ]
+    },
+    {
+      "grade": 2,
+      "subject": "Rechtschreibung",
+      "available_units": [
+        "Haeufige Woerter",
+        "Gross und klein",
+        "Doppelmitlaut",
+        "Dehnungen",
+        "Satzzeichen",
+        "Wortende",
+        "St oder Sp"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Haeufige Woerter",
+        "Gross und klein",
+        "Doppelmitlaut",
+        "Dehnungen",
+        "Satzzeichen",
+        "Wortende",
+        "St oder Sp"
+      ]
+    },
+    {
+      "grade": 2,
+      "subject": "Schreiben",
+      "available_units": [
+        "Buchstaben nachspuren",
+        "Wort schreiben",
+        "Satz abschreiben",
+        "Schwunguebung",
+        "Zahlen schreiben"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Buchstaben nachspuren",
+        "Wort schreiben",
+        "Satz abschreiben",
+        "Schwunguebung",
+        "Zahlen schreiben"
+      ]
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "available_units": [
+        "Tiere",
+        "Pflanzen",
+        "Verkehr",
+        "Berufe",
+        "Wetter",
+        "Jahreszeiten",
+        "Zeit und Kalender",
+        "Körper",
+        "Familie und Gemeinschaft"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Tiere",
+        "Pflanzen",
+        "Verkehr",
+        "Berufe",
+        "Wetter",
+        "Jahreszeiten",
+        "Zeit und Kalender",
+        "Körper",
+        "Familie und Gemeinschaft"
+      ]
+    },
+    {
+      "grade": 2,
+      "subject": "Englisch",
+      "available_units": [
+        "Zahlen",
+        "Körper",
+        "Spielzeug",
+        "Tiere"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Zahlen",
+        "Körper",
+        "Spielzeug",
+        "Tiere"
+      ]
+    },
+    {
+      "grade": 2,
+      "subject": "Logik",
+      "available_units": [
+        "Zahlenmuster",
+        "Geheimcode"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Zahlenmuster",
+        "Geheimcode"
+      ]
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "available_units": [
+        "Einmaleins",
+        "Schriftliche Addition",
+        "Schriftliche Subtraktion",
+        "Brüche Vorbereitung",
+        "Sachaufgaben zwei Schritte",
+        "Umfang",
+        "Plus bis 100",
+        "Minus bis 100",
+        "Plus bis 1000",
+        "Minus bis 1000",
+        "Division einstellig",
+        "Geld bis 100 Euro",
+        "Massen Kilogramm und Gramm"
+      ],
+      "guided_introductions": [
+        {
+          "unit": "Einmaleins",
+          "course": "equal_groups"
+        }
+      ],
+      "without_guided_introduction": [
+        "Schriftliche Addition",
+        "Schriftliche Subtraktion",
+        "Brüche Vorbereitung",
+        "Sachaufgaben zwei Schritte",
+        "Umfang",
+        "Plus bis 100",
+        "Minus bis 100",
+        "Plus bis 1000",
+        "Minus bis 1000",
+        "Division einstellig",
+        "Geld bis 100 Euro",
+        "Massen Kilogramm und Gramm"
+      ]
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "available_units": [
+        "Synonyme",
+        "Wortarten",
+        "Zeitformen",
+        "Steigerung",
+        "Verbformen",
+        "Wer-Fall und Wen-Fall",
+        "Großschreibung",
+        "ie oder i"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Synonyme",
+        "Wortarten",
+        "Zeitformen",
+        "Steigerung",
+        "Verbformen",
+        "Wer-Fall und Wen-Fall",
+        "Großschreibung",
+        "ie oder i"
+      ]
+    },
+    {
+      "grade": 3,
+      "subject": "Lesen",
+      "available_units": [
+        "Woerter lesen",
+        "Sätze lesen",
+        "Lesesinn",
+        "Bild und Wort",
+        "Reihenfolge"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Woerter lesen",
+        "Sätze lesen",
+        "Lesesinn",
+        "Bild und Wort",
+        "Reihenfolge"
+      ]
+    },
+    {
+      "grade": 3,
+      "subject": "Rechtschreibung",
+      "available_units": [
+        "Haeufige Woerter",
+        "Gross und klein",
+        "Doppelmitlaut",
+        "Dehnungen",
+        "Satzzeichen",
+        "Wortende",
+        "St oder Sp"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Haeufige Woerter",
+        "Gross und klein",
+        "Doppelmitlaut",
+        "Dehnungen",
+        "Satzzeichen",
+        "Wortende",
+        "St oder Sp"
+      ]
+    },
+    {
+      "grade": 3,
+      "subject": "Schreiben",
+      "available_units": [
+        "Buchstaben nachspuren",
+        "Wort schreiben",
+        "Satz abschreiben",
+        "Schwunguebung",
+        "Zahlen schreiben"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Buchstaben nachspuren",
+        "Wort schreiben",
+        "Satz abschreiben",
+        "Schwunguebung",
+        "Zahlen schreiben"
+      ]
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "available_units": [
+        "Körper",
+        "Ernährung",
+        "Wasserkreislauf",
+        "Tiere",
+        "Bundesländer Österreichs",
+        "Verkehr",
+        "Zeit und Kalender",
+        "Pflanzen",
+        "Wetter",
+        "Familie und Gemeinschaft",
+        "Berufe",
+        "Österreich-Reise"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Körper",
+        "Ernährung",
+        "Wasserkreislauf",
+        "Tiere",
+        "Bundesländer Österreichs",
+        "Verkehr",
+        "Zeit und Kalender",
+        "Pflanzen",
+        "Wetter",
+        "Familie und Gemeinschaft",
+        "Berufe",
+        "Österreich-Reise"
+      ]
+    },
+    {
+      "grade": 3,
+      "subject": "Englisch",
+      "available_units": [
+        "Schulsachen",
+        "Wetter",
+        "Essen",
+        "Tageszeit"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Schulsachen",
+        "Wetter",
+        "Essen",
+        "Tageszeit"
+      ]
+    },
+    {
+      "grade": 3,
+      "subject": "Logik",
+      "available_units": [
+        "Schlussfolgern"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Schlussfolgern"
+      ]
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "available_units": [
+        "Schriftliche Multiplikation",
+        "Schriftliche Division",
+        "Bruchrechnen einfach",
+        "Dezimalzahlen",
+        "Sachaufgaben drei Schritte",
+        "Diagramme lesen",
+        "Vergleichen",
+        "Plus bis 10000",
+        "Minus bis 10000",
+        "Zahlenraum bis 1 Million",
+        "Zeit Minuten und Stunden",
+        "Hohlmaße Liter und Milliliter",
+        "Brüche erweitern",
+        "Mittelwert",
+        "Flächeninhalt",
+        "Symmetrieachsen"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Schriftliche Multiplikation",
+        "Schriftliche Division",
+        "Bruchrechnen einfach",
+        "Dezimalzahlen",
+        "Sachaufgaben drei Schritte",
+        "Diagramme lesen",
+        "Vergleichen",
+        "Plus bis 10000",
+        "Minus bis 10000",
+        "Zahlenraum bis 1 Million",
+        "Zeit Minuten und Stunden",
+        "Hohlmaße Liter und Milliliter",
+        "Brüche erweitern",
+        "Mittelwert",
+        "Flächeninhalt",
+        "Symmetrieachsen"
+      ]
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "available_units": [
+        "Satzglieder",
+        "Direkte Rede",
+        "Kommas in Aufzählungen",
+        "Zusammensetzungen",
+        "Die 4 Fälle",
+        "dass oder das",
+        "Umstandswörter",
+        "Vorvergangenheit"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Satzglieder",
+        "Direkte Rede",
+        "Kommas in Aufzählungen",
+        "Zusammensetzungen",
+        "Die 4 Fälle",
+        "dass oder das",
+        "Umstandswörter",
+        "Vorvergangenheit"
+      ]
+    },
+    {
+      "grade": 4,
+      "subject": "Lesen",
+      "available_units": [
+        "Woerter lesen",
+        "Sätze lesen",
+        "Lesesinn",
+        "Bild und Wort",
+        "Reihenfolge"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Woerter lesen",
+        "Sätze lesen",
+        "Lesesinn",
+        "Bild und Wort",
+        "Reihenfolge"
+      ]
+    },
+    {
+      "grade": 4,
+      "subject": "Rechtschreibung",
+      "available_units": [
+        "Haeufige Woerter",
+        "Gross und klein",
+        "Doppelmitlaut",
+        "Dehnungen",
+        "Satzzeichen",
+        "Wortende",
+        "St oder Sp"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Haeufige Woerter",
+        "Gross und klein",
+        "Doppelmitlaut",
+        "Dehnungen",
+        "Satzzeichen",
+        "Wortende",
+        "St oder Sp"
+      ]
+    },
+    {
+      "grade": 4,
+      "subject": "Schreiben",
+      "available_units": [
+        "Buchstaben nachspuren",
+        "Wort schreiben",
+        "Satz abschreiben",
+        "Schwunguebung",
+        "Zahlen schreiben"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Buchstaben nachspuren",
+        "Wort schreiben",
+        "Satz abschreiben",
+        "Schwunguebung",
+        "Zahlen schreiben"
+      ]
+    },
+    {
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "available_units": [
+        "Geografie Österreich",
+        "Geschichte",
+        "Kontinente und Ozeane",
+        "Ökosysteme",
+        "Stromkreise",
+        "Diagramme lesen"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Geografie Österreich",
+        "Geschichte",
+        "Kontinente und Ozeane",
+        "Ökosysteme",
+        "Stromkreise",
+        "Diagramme lesen"
+      ]
+    },
+    {
+      "grade": 4,
+      "subject": "Englisch",
+      "available_units": [
+        "Verben",
+        "Wochentage",
+        "Hobbys",
+        "Länder"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Verben",
+        "Wochentage",
+        "Hobbys",
+        "Länder"
+      ]
+    },
+    {
+      "grade": 4,
+      "subject": "Logik",
+      "available_units": [
+        "Regeln kombinieren"
+      ],
+      "guided_introductions": [],
+      "without_guided_introduction": [
+        "Regeln kombinieren"
+      ]
+    }
+  ]
+}

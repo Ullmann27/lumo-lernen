@@ -1,0 +1,25 @@
+{
+  "archive": "Lumo-Lernen-Neu-0.12.24-1931.zip",
+  "bytes": 313644816,
+  "sha256": "16d73185acd90b2cbe8e0d2bec1d89eca8f1ffa324e812d9c206a34b8aaa7ab6",
+  "apk": {
+    "name": "Lumo-Lernen-Neu.apk",
+    "bytes": 302322803,
+    "sha256": "622e33fc624212ec5fef97b295f9b53f08ea469b483f3c8c3b77059203dc8683"
+  },
+  "source": "0dc3b1f30d7d885cc0c9914d1f557fad8655d762",
+  "godot": "853175c634dcb62c325fbd9b272e2ebc791830ad",
+  "full_flutter_ci": {
+    "source": "0dc3b1f30d7d885cc0c9914d1f557fad8655d762",
+    "passed": 1302,
+    "skipped": 117,
+    "failed": 0,
+    "ci_run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/38154592604"
+  },
+  "actual_android_result": "PASS",
+  "apk_built": true,
+  "zip_crc": "PASS",
+  "embedded_apk_sha256": "PASS",
+  "physical_android_test": false,
+  "production_release": false
+}

@@ -12,15 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      VERSION: '1930'
-      SOURCE: '5f3a47a676477ddaec05c11e31311001a015cb11'
-      APK_SHA: 'd416c74de0b61bc363a426c80056c86156f19306239c95309d8e5e2dd7fe5b73'
+      VERSION: '1931'
+      SOURCE: '0dc3b1f30d7d885cc0c9914d1f557fad8655d762'
+      APK_SHA: '622e33fc624212ec5fef97b295f9b53f08ea469b483f3c8c3b77059203dc8683'
     steps:
       - uses: actions/download-artifact@v4
         with:
           github-token: ${{ github.token }}
-          run-id: 38150844811
-          name: lumo-education-1930-chat-download-38150844811
+          run-id: 38154543561
+          name: lumo-education-1931-chat-download-38154543561
           path: verified-delivery/
       - name: Extract the already verified complete ZIP without changing the APK
         run: |

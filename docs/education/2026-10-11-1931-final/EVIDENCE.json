@@ -1,0 +1,36 @@
+{
+  "product_source": "0dc3b1f30d7d885cc0c9914d1f557fad8655d762",
+  "complete_ci_run": 38154592604,
+  "passed": 1302,
+  "skipped_optional_captures": 117,
+  "failed": 0,
+  "physical_android": false,
+  "android_1931_runtime_status": "PASS",
+  "derived_qa": [
+    {
+      "original": "test/tutoring/guided_lesson_runtime_test.dart",
+      "operation": "replace GuidedLessonCatalog.bridgeTen with GuidedLessonCatalog.subtractTen; select existing complete school course tests",
+      "passed": 6
+    },
+    {
+      "original": "test/design/guided_learning_runtime_capture_test.dart",
+      "operation": "record existing replay loop for subtract_ten instead of bridge_ten; rename output directory",
+      "passed": 2,
+      "recorded_frames": 64,
+      "video_duration_seconds": 3.2,
+      "measured_device_fps": false
+    }
+  ],
+  "file_sha256": {
+    "minus-animation-capture.log": "f7c950bd7a72fe939a0fa5abdfc03c027ec657f99f037d5ec9564c4497993f12",
+    "device-matrix.log": "f8e2211a1b9a5bb107830f52a7d4ab45fe39270e11aa5c859e323daac4af578d",
+    "independent-signature-check.log": "ade17ff1bfcc6c5abc1856fc3a7762c8b60101319468b472e07f1d3ec76d44b5",
+    "minus_animation_capture_test.dart": "adb2816a61c29472876b9a86fa08d3e6dea8cd98a5c61ba516ae899ad9cdbb3f",
+    "curriculum_inventory.dart": "b0dc3262b8fec03fe614a43e9a7b3a05670bb51dfb57a0d06866a74e1850bd71",
+    "curriculum-inventory.json": "3bed6e504c3376cd99d9dbbd4e173e766c524f1d82e387d8f5615913b8f89bf3",
+    "minus_device_matrix_test.dart": "92c11834b9777e8234c92af084bc3457a0732ae7fa68443b35160151a6f77746",
+    "minus-actual-flutter-animation.mp4": "30b18bfba0ef9b2c7f4e4d9be69ae96fb05f642d341ef4e81a6384842b3dd8c7"
+  },
+  "android_run": 38154543561,
+  "actual_answer_feedback_continue_frames_rechecked": 14
+}
