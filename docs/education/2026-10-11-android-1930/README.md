@@ -2,8 +2,9 @@
 
 Dieser eigene Integrationsbranch bündelt den bestehenden geprüften Lumo-Stand.
 Er ist keine Fertigmeldung für die Lern-App und keine Freigabe für Google Play.
-Der Bau und die neue Android-Laufzeitprüfung sind beim Anlegen dieses Meilensteins
-noch nicht abgeschlossen; ihre tatsächlichen Ergebnisse folgen in den Artefakten.
+Die Testversion ist gebaut. Der vollständige Android-16-Nachtest und das geprüfte
+Download-ZIP sind abgeschlossen; Quellzuordnung, Ergebnisse und Download stehen
+im Abschlussnachweis am Ende dieses Dokuments.
 
 ## Zusammenführung ohne Projektneustart
 
@@ -25,7 +26,7 @@ noch nicht abgeschlossen; ihre tatsächlichen Ergebnisse folgen in den Artefakte
 - **Parallelentwicklung:** Ungesicherte Cards-/Gegnerarbeiten anderer Checkouts
   werden weder kopiert noch überschrieben. Die bestehende Spielewelt bleibt erhalten.
 
-## Geplanter tatsächlicher Build und Prüfpfad
+## Bau und Prüfpfad
 
 Version `0.12.23+1930`, Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`,
 separate Variante „Lumo Lernen Neu“, gleiche bestehende Testsignatur. Eine
@@ -103,3 +104,65 @@ Weiter-Taste. Er scrollt ausschließlich innerhalb des aktuell beobachteten
 App-Viewports. Getrennte alte Frames werden nicht zusammengemischt.
 Ein weiterer native-only Nachtest derselben APK ist erforderlich; ein kompletter
 Kursabschluss wird weiterhin nicht behauptet.
+
+
+## Abgeschlossener Nachtest und überprüftes Downloadpaket
+
+Der übernommene Prüfstand `bfbd26b1c96f4ed7a1c261b3a80d383e963fcaf4` besteht den
+vollständigen [Android-Nachtest und Paketlauf](https://github.com/Ullmann27/lumo-lernen/actions/runs/38150844811).
+Beide Jobs `android-runtime` und `package-download` sind erfolgreich. Auch die
+[vollständige Flutter-CI dieses Prüfstands](https://github.com/Ullmann27/lumo-lernen/actions/runs/38150848835)
+ist erfolgreich. Die oben beschriebenen Abbrüche bleiben als historische
+Fehlernachweise erhalten; die folgende Abnahme löst den zuletzt offenen Prüfblock.
+
+Tatsächlich abgeschlossen auf Android 16/API 36 im x86_64-Emulator:
+
+- Update 1929 → 1930 ohne Deinstallation, erhaltenes fiktives Testprofil und Wallet,
+  Offline-Synthese/Wiedergabe mit Pause/Fortsetzen/Stopp, Elternbereich, Godot-Menü
+  und Rückkehr. Keine kostenpflichtigen Sprachanfragen.
+- Acht Schritte „Über den Zehner“ einschließlich echter falscher Antwort,
+  angefordertem Tipp, zwei selbstständigen richtigen Antworten und einmaliger
+  Speicherung: `correct=2`, `wrong=1`, `hintCount=1`.
+- Sieben Schritte „Das Einmaleins entdecken“: gesperrter Einstieg ohne Freigabe,
+  ausdrückliche lokale Elternwahl für Klasse 2, vollständig gespeicherte separate
+  Entdeckungsaufgaben; reguläre Klasse 1, Schulfortschritt und Wallet unverändert.
+- Gespeicherte Schul-/Entdeckungsfortschritte und Wallet nach vollständigem
+  App-Neustart unverändert. Die lokale Elternwahl ist keine Erwachsenenidentitätsprüfung.
+
+Die heruntergeladenen Nachweise wurden zusätzlich geprüft: Alle neun gespeicherten
+aktuellen Antwortframes enthalten gleichzeitig die markierte richtige Antwort,
+korrekte Rückmeldung und aktivierte Weiter-Taste; die neun Kursbild-Hashes stimmen
+mit dem Android-Ergebnis überein. Der lokale gesamte Python-Testlauf besteht
+95 Tests ohne Fehler. Die echte Fold-Aufnahme zeigt die Erklärung 7 + 5, zwölf
+Äpfel, Zehnerzerlegung und bedienbare Vorlesen-/Stopp-Aktionen.
+
+### Download und Identität
+
+[Downloadartefakt des erfolgreichen Laufs](https://github.com/Ullmann27/lumo-lernen/actions/runs/38150844811/artifacts/11706732005)
+enthält `Lumo-Lernen-Neu-0.12.23-1930.zip`, Installationshinweise und
+`ZIP-VERIFICATION.json`. Das GitHub-Artefakt und anschließend das darin enthaltene
+Installations-ZIP entpacken; danach `Lumo-Lernen-Neu.apk` als Update öffnen.
+Die vorhandene Test-App behalten und nicht deinstallieren. Die GitHub-Artefakte
+haben 30 Tage Aufbewahrung ab Erstellung.
+
+- APK-Quellstand: `5f3a47a676477ddaec05c11e31311001a015cb11`; unveränderte
+  App-/Asset-/Modell-/Signatur-/Verpackungseingaben gegenüber dieser Bauquelle.
+- ARM64-APK: 302.317.647 Bytes, SHA-256
+  `d416c74de0b61bc363a426c80056c86156f19306239c95309d8e5e2dd7fe5b73`.
+- x86_64-Prüf-APK: SHA-256
+  `db66de1fcb58d80b76c982b96e71deba3c24c1797495106dd8bb63f68bedfe44`.
+- Installations-ZIP: 311.147.474 Bytes, SHA-256
+  `19a78c8c576a48b2650f8bf71f70d6f13f449b89d2d7ce1e9b89d6ea5300bd9b`.
+- ZIP erneut heruntergeladen: Gesamt-CRC, ZIP-Hash, eingebetteter APK-Hash
+  und ARM64-Architektur stimmen; 18 Dateien einschließlich zehn echter Android-PNGs.
+- Komplette CI der tatsächlichen APK-Bauquelle: 1.272 bestanden, 115 optionale
+  Tests übersprungen, keine Fehler. Paketkennung und Testsignatur bleiben gleich.
+
+[Originale Android-Nachweise](https://github.com/Ullmann27/lumo-lernen/actions/runs/38150844811/artifacts/11706766679)
+enthalten die echten PNGs/XMLs, `education-android-result.json`,
+`EXISTING-APK-SOURCE.json` und native Laufzeitprotokolle.
+
+Die Prüfung gilt für den Emulator. Physisches Samsung/Fold, echtes Scharnier,
+ARM64-Hörprüfung, vollständiges Kart-Rennen und die oben genannten fachlichen/
+kommerziellen Abnahmen bleiben offen. Kein Neubau war erforderlich und kein
+Merge nach main oder Store-Release wurde durchgeführt.
