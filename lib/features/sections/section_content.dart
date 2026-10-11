@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
@@ -10,6 +12,9 @@ import '../rewards/reward_shop_content.dart';
 import '../shared/widgets/lumo_subject_dashboard.dart';
 import '../shared/widgets/lumo_subject_tile.dart';
 import '../tutoring/tutoring_flow_card.dart';
+import '../tutoring/guided_learning_hub.dart';
+import '../tutoring/guided_lesson_screen.dart';
+import '../../domain/tutoring/guided_lesson_catalog.dart';
 
 typedef _StartSession = void Function({
   required String subject,
@@ -24,7 +29,7 @@ class SectionContent extends StatelessWidget {
 
   final LumoAppState appState;
   final LumoSection section;
-  final ValueChanged<LumoSection> onSection;
+  final FutureOr<void> Function(LumoSection) onSection;
 
   void _startSession({
     required String subject,
@@ -549,7 +554,7 @@ class _MissionsPage extends StatelessWidget {
     required this.startReading,
   });
   final LumoAppState appState;
-  final ValueChanged<LumoSection> onSection;
+  final FutureOr<void> Function(LumoSection) onSection;
   final _StartSession startSession;
   final VoidCallback startReading;
 
@@ -560,11 +565,15 @@ class _MissionsPage extends StatelessWidget {
       children: [
         TutoringFlowCard(
           appState: appState,
-          onStartTutoring: () => startSession(
-            subject: 'Alle',
-            message: 'Lumo-Nachhilfe\nstartet jetzt.\nWir machen das\nzusammen.',
-            sessionKind: LumoSessionKind.tutoring,
+          onStartTutoring: (recommendation) => startSession(
+            subject: recommendation.subject,
+            unit: recommendation.unit,
+            message: recommendation.message,
+            sessionKind: recommendation.isTutoring
+                ? LumoSessionKind.tutoring
+                : LumoSessionKind.quickPractice,
           ),
+          onStartGuidedLearning: (lesson) => _openGuided(context, lesson),
         ),
         const SizedBox(height: 22),
         _ReadingMissionCard(onTap: startReading),
@@ -598,6 +607,25 @@ class _MissionsPage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> _openGuided(BuildContext context, GuidedLesson? lesson) async {
+    // Capture navigation before the Missions page is unmounted. Set the actual
+    // learning section first so the existing CompanionHost owns the real task.
+    final navigator = Navigator.of(context);
+    final generation = appState.profileGeneration;
+    await onSection(LumoSection.learn);
+    if (!navigator.mounted ||
+        generation != appState.profileGeneration ||
+        appState.state.section != LumoSection.learn) {
+      return;
+    }
+    await navigator.push<void>(MaterialPageRoute(
+      builder: (_) => lesson == null
+          ? GuidedLearningHub(appState: appState, discovery: false)
+          : GuidedLessonScreen(
+              appState: appState, lesson: lesson, discovery: false),
+    ));
   }
 
   List<_ActionData> _missionCards() => [
@@ -648,8 +676,14 @@ class _ReadingMissionCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(LumoRadius.lg),
               border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45)),
               ),
-            child: const Center(child: Text('📖', style: TextStyle(fontSize: 34)),
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Image.asset(
+                'assets/lumo_design/icons/book_open.png',
+                fit: BoxFit.contain,
+                semanticLabel: 'Lesen mit Lumo',
               ),
+            ),
           ),
           const SizedBox(width: 14),
           Expanded(

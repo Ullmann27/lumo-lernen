@@ -70,8 +70,11 @@ wirklichen selbstständigen Antworten, nicht das bloße Anschauen eines Beispiel
   tatsächlich falscher Antwort, angenommener Hilfe und anderem Tipp. Die
   Smartphone-Hilfe hat lesbare größere Mengengrafiken statt winziger Sprechblasen.
 - **118 bestehende Modul-/Speicher-/Profilregressionen bestanden:** zusätzlich
-  vor den letzten optionalen Unterrichts-Scroll-/Footerergänzungen; die endgültige
-  vollständige Suite wird nach dem Push für den exakten Integrationskopf geprüft.
+  vor den letzten optionalen Unterrichts-Scroll-/Footerergänzungen. Danach besteht
+  die vollständige Suite am exakten Produktkopf `9b8b7c86b4b4137c625d2e4fa727a9669a4962f5`:
+  **1.232 bestanden, 113 optionale Capture-Fälle übersprungen, null Fehler**
+  im tatsächlichen [CI-Lauf 38143393481](https://github.com/Ullmann27/lumo-lernen/actions/runs/38143393481).
+  Analyse: null Errors, null Warnings, 16 bestehende Info-Lints.
 - **40.969 erzeugte und geführte Aufgabenproben bestanden:** der bestehende
   `scripts/audit_content.dart` prüft jetzt auch die neun konkreten neuen
   Antwortschritte. Keine Behauptung vollständiger fachlicher Begutachtung.
@@ -111,8 +114,8 @@ Neue Aufnahmen sind Flutter-Testlaufzeit, nicht Android oder physisches Fold.
 Das Animationsvideo verwendet echte Flutter-Frames ohne Audio, nicht
 gemessene Geräte-FPS oder eine menschliche Hörabnahme.
 
-Als Nächstes den exakten GitHub-Integrationskopf mit vollständiger Suite prüfen
-und die vorhandene ältere Nachhilfe-Karte an tatsächlich verfügbare Lernwege
+Die vollständige Suite für den exakten Produktkopf ist jetzt tatsächlich geprüft.
+Als Nächstes die vorhandene ältere Nachhilfe-Karte an tatsächlich verfügbare Lernwege
 und reale `learningSkills()`-Daten anschließen. Keine erfundenen Versuchszahlen,
 keine pauschale Fremdfach-Zuordnung und keine fiktiven Kurs-/Belohnungsversprechen.
 Danach systematisch weitere Inhalte und Eltern-/Release-Gates bearbeiten.

@@ -143,7 +143,10 @@ jobs:
         with:
           name: lumo-change-review-${{ github.run_id }}-${{ github.run_attempt }}
           path: .ci-results/
-          if-no-files-found: warn
+          # Only this explicitly generated evidence directory is included.
+          # upload-artifact otherwise ignores its hidden parent by default.
+          include-hidden-files: true
+          if-no-files-found: error
           retention-days: 7
 
   report:

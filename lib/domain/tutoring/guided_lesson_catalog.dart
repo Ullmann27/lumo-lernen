@@ -290,4 +290,20 @@ abstract final class GuidedLessonCatalog {
   );
 
   static const all = [bridgeTen, equalGroups];
+
+  /// Map only explicit, compatible mathematical topics to actual introductions.
+  /// A German/science recommendation must never silently become a maths lesson.
+  static GuidedLesson? schoolIntroduction({
+    required String subject,
+    required String unit,
+    required int grade,
+  }) {
+    if (subject != 'Mathematik') return null;
+    final lesson = switch (unit) {
+      'Plus bis 20' => bridgeTen,
+      'Einmaleins' || 'Kleines 1×1' => equalGroups,
+      _ => null,
+    };
+    return lesson != null && lesson.grade <= grade ? lesson : null;
+  }
 }
