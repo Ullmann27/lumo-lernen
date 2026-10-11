@@ -80,5 +80,37 @@ class LongParentScrollTest(unittest.TestCase):
         self.assertEqual(self.nodes.call_count, 0)
 
 
+class PreservedKartEntryTest(unittest.TestCase):
+    def test_voice_probe_uses_the_observed_kart_launch_control(self):
+        """The real 38135805251 hierarchy exports Losfahren, not the default."""
+        probe = SOURCE.with_name("lumo_free_voice_android_probe.py")
+        tree = ast.parse(probe.read_text())
+        call = next(node for node in ast.walk(tree)
+                    if isinstance(node, ast.Call)
+                    and isinstance(node.func, ast.Attribute)
+                    and node.func.attr == "enter"
+                    and len(node.args) > 3
+                    and isinstance(node.args[3], ast.Constant)
+                    and node.args[3].value == "preserved-kart")
+        helper = next(node for node in ast.parse(SOURCE.read_text()).body
+                      if isinstance(node, ast.FunctionDef) and node.name == "enter")
+        tap = Mock()
+        header = Mock()
+        scope = {
+            "Path": Path, "PACKAGE": PACKAGE, "flutter_tap": tap,
+            "base": types.SimpleNamespace(
+                foreground=Mock(return_value=PACKAGE + "/LumoGameActivity"),
+                adb=Mock(return_value="1234")),
+            "time": types.SimpleNamespace(sleep=Mock()), "native_text": header,
+        }
+        exec(compile(ast.Module(body=[helper], type_ignores=[]), str(SOURCE), "exec"),
+             scope)
+        out = Path("/unit-fixture")
+        eval(compile(ast.Expression(body=call), str(probe), "eval"), {
+            "existing": types.SimpleNamespace(enter=scope["enter"]), "out": out})
+        tap.assert_called_once_with(out, "Losfahren", "preserved-kart-launch")
+        header.assert_called_once_with(out, "Einzelrennen", "preserved-kart-header")
+
+
 if __name__ == "__main__":
     unittest.main()
