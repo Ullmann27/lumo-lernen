@@ -316,7 +316,8 @@ def main() -> int:
         existing.enter(out, "Lumo Kart", "Einzelrennen", "preserved-kart",
                        launch_label="Losfahren")
         result["kart_menu"] = existing.capture(out, "06_preserved_kart_menu")
-        existing.leave(out, "preserved-kart", already_menu=True)
+        existing.leave(out, "preserved-kart", already_menu=True,
+                       return_label="Zum Lernen")
         result["kart_return"] = existing.flutter_return_capture(out, "07_preserved_kart_return")
 
         existing.base.adb("shell", "am", "force-stop", existing.PACKAGE)
