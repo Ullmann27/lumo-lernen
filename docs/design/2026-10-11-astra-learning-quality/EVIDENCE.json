@@ -1,0 +1,170 @@
+{
+  "baseline_commit": "5f2f32f09abce3750c02d3a532217479329944a3",
+  "implementation_commit": "dc708ea8aa9e1f692d4a41fa9d9c494ee474d31c",
+  "flutter": "3.44.9",
+  "dart": "3.12.2",
+  "capture_kind": "Flutter widget test runtime; not Android emulator or physical Fold",
+  "random_tasks": "Real randomly generated exercises; before/after are not necessarily the same exercise.",
+  "full_suite": {
+    "passed": 1006,
+    "skipped": 107,
+    "failed": 0,
+    "optional_capture_cases_executed_separately": 80,
+    "other_existing_skips": 27
+  },
+  "analysis": {
+    "errors": 0,
+    "warnings": 0,
+    "existing_infos": 20
+  },
+  "files": [
+    {
+      "path": "images/after/formen-fold-2176x1812-density-225.png",
+      "sha256": "e29363effcab81eb2e7c63b8810e706fc915c46af19bdd2db610d9a483481ae2"
+    },
+    {
+      "path": "images/after/formen-landscape-640x360.png",
+      "sha256": "cbb682d79284f066f3e37077ff213e7343910a47438de70ced1876644125f0bf"
+    },
+    {
+      "path": "images/after/formen-phone-360x800.png",
+      "sha256": "8ba57b322c35177962b865f829a373d464fe5ce84d93bdffc165948f535fca20"
+    },
+    {
+      "path": "images/after/minus-bis-10-fold-2176x1812-density-225.png",
+      "sha256": "0f76af6e1480d9f0ebb3d73ae15148e6a2411c7300997404512abdbdb0dc455d"
+    },
+    {
+      "path": "images/after/minus-bis-10-landscape-640x360.png",
+      "sha256": "ed5ef5599ce30f3b24435f27901b5b855c33e61d0a7fd90be3d958d87e119b7a"
+    },
+    {
+      "path": "images/after/minus-bis-10-phone-360x800.png",
+      "sha256": "2126cf4f1d6ebd31139b5771c381d9b1ba8b94a2f0aa3aec1295d4efae41d152"
+    },
+    {
+      "path": "images/after/plus-bis-10-reference-fold-2176x1812-density-225.png",
+      "sha256": "7bfef8d0141bf1d66c5b03042ef04ac689e621ab118ac1851049d5d34ada26a7"
+    },
+    {
+      "path": "images/after/plus-bis-10-reference-landscape-640x360.png",
+      "sha256": "c0ea33b01ca089063b8d68cde6233c88bda8b64a906dee20e0c81b251a0b648c"
+    },
+    {
+      "path": "images/after/plus-bis-10-reference-phone-360x800.png",
+      "sha256": "73162a550f4ae76aa14bfc3c30a7968f33e5c76269593626adb6ddc9574e61c4"
+    },
+    {
+      "path": "images/after/uhr-fold-2176x1812-density-225.png",
+      "sha256": "3e87eeefc4186ed0d9d9e54dcfeb5127b03892821163a86f130e72235978a07c"
+    },
+    {
+      "path": "images/after/uhr-landscape-640x360.png",
+      "sha256": "167834f00e5b103871bc3da4babba85a999ad044b5d812d4fe2ab27fd1e091e5"
+    },
+    {
+      "path": "images/after/uhr-phone-360x800.png",
+      "sha256": "e16236d44c2eb2b2f924b71a82710e7dd85b19950f0bed2c7d55993b49f8a5a5"
+    },
+    {
+      "path": "images/after/zahlen-bis-10-fold-2176x1812-density-225.png",
+      "sha256": "246d761edcb8f65dcdab6ce14617dc72cc2f185ad4a0d529f047b59fc482c929"
+    },
+    {
+      "path": "images/after/zahlen-bis-10-landscape-640x360.png",
+      "sha256": "bfbe21d66e94b4fdb9752a4a7bb558daf91a2a050db7eac6f0edc40cbb8e473d"
+    },
+    {
+      "path": "images/after/zahlen-bis-10-phone-360x800.png",
+      "sha256": "56660ca15413e4c3a1874332a4f75dfb5c6fa3bba886cd9f12a9beb3c98ed65d"
+    },
+    {
+      "path": "images/before/formen-fold-2176x1812-density-225.png",
+      "sha256": "4b0e402194c5f9433526fece2e5c77773d997a45bd3c111d7456c22545fbd2f9"
+    },
+    {
+      "path": "images/before/formen-landscape-640x360.png",
+      "sha256": "ea862ccbfd29e5ddbe835e3fd3f617c929b85f1235ed8d5cf577532397f47d3a"
+    },
+    {
+      "path": "images/before/formen-phone-360x800.png",
+      "sha256": "68013b4696cc387d90be4e5f08a7e2423c721b7c39b61f9781864271bbc2ca34"
+    },
+    {
+      "path": "images/before/minus-bis-10-fold-2176x1812-density-225.png",
+      "sha256": "d14b5caeb80996f48213afad246b6a313d9623933d5896dc127181a4af345b63"
+    },
+    {
+      "path": "images/before/minus-bis-10-landscape-640x360.png",
+      "sha256": "abf74c403e59dd1cc1750c6e56554f299516ecb2d5a24ad0e3f06627bb04f480"
+    },
+    {
+      "path": "images/before/minus-bis-10-phone-360x800.png",
+      "sha256": "bf4cb2e2ab9101434237f9df06507da17db1f9db9faaf08255716f7c7accc4f1"
+    },
+    {
+      "path": "images/before/plus-bis-10-reference-fold-2176x1812-density-225.png",
+      "sha256": "67a6bb356b71c0a417d277d7233789b87fed3722ce84d6a58f1da4ca85cd3efd"
+    },
+    {
+      "path": "images/before/plus-bis-10-reference-landscape-640x360.png",
+      "sha256": "d0483bc91346c017a561bf2d588afd0c140713da4b6105d278e68d7a03531f8a"
+    },
+    {
+      "path": "images/before/plus-bis-10-reference-phone-360x800.png",
+      "sha256": "fc0aced2b08c2d308cfc9d305169c8313e899ec85e3854d20e83acfdb5bb9e33"
+    },
+    {
+      "path": "images/before/uhr-fold-2176x1812-density-225.png",
+      "sha256": "911954f8ab2b8e2a6ccd8dbb1157f51bdd0c977dc3f37143fcedf03dd6d28d03"
+    },
+    {
+      "path": "images/before/uhr-landscape-640x360.png",
+      "sha256": "8f3ea5198e2517c61c6ffe396b8d72d393780da735f04f0faa532c5a821a7db5"
+    },
+    {
+      "path": "images/before/uhr-phone-360x800.png",
+      "sha256": "4de47ec9be29d7c7ce2a6ff3235243a571d4ced1bd06af4457b9470d1e3eb981"
+    },
+    {
+      "path": "images/before/zahlen-bis-10-fold-2176x1812-density-225.png",
+      "sha256": "7f04067f4df46f369bc9938de263db63a4da3ffa895b125476e38514e05fda46"
+    },
+    {
+      "path": "images/before/zahlen-bis-10-landscape-640x360.png",
+      "sha256": "7353ad5216100a845335f9a11ecc182eff088f5031995c28ede3947a42228631"
+    },
+    {
+      "path": "images/before/zahlen-bis-10-phone-360x800.png",
+      "sha256": "892d642fc0c85baa169c1edc3c28ddbddf37ad59f77aa8b4e750667b9fa326ec"
+    },
+    {
+      "path": "logs/after-all-captures.log.gz",
+      "sha256": "c70ab6c45f07944a326f17126902c1cd37b87b268c68a55ef55a04a8a282930b"
+    },
+    {
+      "path": "logs/analyze-final.log.gz",
+      "sha256": "da1cd15a31d911e66851d9a664e99f84582b129f1de3ae43ed7e87b55f389e2a"
+    },
+    {
+      "path": "logs/baseline-tests.log.gz",
+      "sha256": "9d417c48986750cb9be30db2edd49f0f48f67fc7c86d4cc2ff0a63df6173788e"
+    },
+    {
+      "path": "logs/before-captures.log.gz",
+      "sha256": "247c0cc55d5d6ed8898f381c4a92489b08bf4b94c26e964300354780d86773e0"
+    },
+    {
+      "path": "logs/clock-final.log.gz",
+      "sha256": "e57fa65cee8e1728aa2a85ca239d41f78e9939ca5ba185da7475847eda861af0"
+    },
+    {
+      "path": "logs/flutter-full-suite.log.gz",
+      "sha256": "224e9681ac8a917b7071768a46589957f0feee18795f909198be0844200204d3"
+    },
+    {
+      "path": "logs/quality-red.log.gz",
+      "sha256": "6e9b410bcff827803e974238561fc7c618c730d49a2e5899f0ecbefac54202d8"
+    }
+  ]
+}

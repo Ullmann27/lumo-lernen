@@ -24,7 +24,10 @@ class LumoContextEngine extends ChangeNotifier {
 
   LumoCompanionTaskContext? get task {
     final current = requests.taskContext.value;
-    return current?.ownerSection == appState.state.section.name
+    return current?.belongsTo(
+                section: appState.state.section.name,
+                generation: appState.profileGeneration) ==
+            true
         ? current
         : null;
   }
@@ -99,8 +102,11 @@ class LumoContextEngine extends ChangeNotifier {
   }
 
   void _taskChanged() {
-    if (appState.state.section != LumoSection.exercises &&
-        appState.state.section != LumoSection.reading) return;
+    if (appState.state.section != LumoSection.learn &&
+        appState.state.section != LumoSection.exercises &&
+        appState.state.section != LumoSection.reading) {
+      return;
+    }
     revision++;
     notifyListeners();
   }

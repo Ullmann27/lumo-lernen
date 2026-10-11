@@ -24,6 +24,7 @@ import 'parent_report_card.dart';
 import 'writing_report_card.dart';
 import 'lumo_voice_diagnostics_card.dart';
 import 'local_voice_license_dialog.dart';
+import 'discovery_settings_card.dart';
 
 /// All settings, sheets and dialogs share the same night surface.
 /// The State must live below the scope so showDialog captures this Theme.
@@ -488,6 +489,14 @@ class _SettingsContentState extends State<_SettingsContentBody> {
                 ),
         ],
             ),
+        const SizedBox(height: 14),
+        AnimatedBuilder(
+          animation: widget.appState,
+          builder: (context, _) => DiscoverySettingsCard(
+            key: ValueKey('discovery-settings-${widget.appState.profileGeneration}'),
+            appState: widget.appState,
+          ),
+        ),
         const SizedBox(height: 14),
         _SettingsCard(title: 'Ton und Stimme', children: [
           _SwitchRow(title: 'Lumo-Stimme', subtitle: 'Lumo darf Antworten laut sprechen.', value: _settings.voiceEnabled, onChanged: (v) => _save(_settings.copyWith(voiceEnabled: v)),

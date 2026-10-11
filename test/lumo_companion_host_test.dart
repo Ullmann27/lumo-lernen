@@ -8,7 +8,11 @@ import 'package:lumo_lernen/features/agent/lumo_agent_content.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 void main() {
-  setUp(() => SharedPreferences.setMockInitialValues({}));
+  setUp(() {
+    SharedPreferences.setMockInitialValues({});
+    LumoCompanionRequests.instance.clearLearningScope();
+  });
+  tearDown(() => LumoCompanionRequests.instance.clearLearningScope());
 
   Future<void> mount(WidgetTester tester, LumoAppState state,
       ValueChanged<LumoSection> onSection) async {
@@ -66,6 +70,31 @@ void main() {
     expect(LumoCompanionRequests.instance.helpRequested.value, before + 1);
     expect(sections, isEmpty);
     expect(state.state.unit, 'Silben');
+    expect(tester.takeException(), isNull);
+    await unmount(tester, state);
+  });
+
+  testWidgets(
+      'a genuine learning-module task enables help without changing topic',
+      (tester) async {
+    final state = LumoAppState();
+    state.setSection(LumoSection.learn);
+    LumoCompanionRequests.instance.publishTask(LumoCompanionTaskContext(
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      prompt: '4 + 3 = ?',
+      taskId: 'plus10-actual-module',
+      ownerSection: 'learn',
+      profileGeneration: state.profileGeneration,
+    ));
+    final sections = <LumoSection>[];
+    final before = LumoCompanionRequests.instance.helpRequested.value;
+    await mount(tester, state, sections.add);
+    await tester.tap(find.text('Erklären'));
+    await tester.pump();
+    expect(LumoCompanionRequests.instance.helpRequested.value, before + 1);
+    expect(sections, isEmpty);
+    expect(state.state.section, LumoSection.learn);
     expect(tester.takeException(), isNull);
     await unmount(tester, state);
   });

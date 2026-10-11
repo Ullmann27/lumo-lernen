@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'discovery_progress.dart';
 import 'legacy_learning_data.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
@@ -14,6 +15,18 @@ class ProgressRepository {
   static const _skillsKey = 'lumo_progress_skills';
   static const _dailyKey = 'lumo_progress_daily';
   static const _lastKey = 'lumo_progress_last';
+  static const _discoveryKey = 'lumo_progress_discovery_v1';
+
+  /// A new per-child field in this repository, never a second database.
+  /// Bad/newer bytes are not normalized, overwritten or deleted on read.
+  Future<DiscoveryProgress> loadDiscovery() async {
+    final raw = await _namespace.read(_discoveryKey);
+    if (raw == null) return DiscoveryProgress();
+    return DiscoveryProgress.fromJson(jsonDecode(raw));
+  }
+
+  Future<void> saveDiscovery(DiscoveryProgress value) =>
+      _namespace.write(_discoveryKey, jsonEncode(value.toJson()));
 
   Future<Map<String, SkillRecord>> loadSkills() async {
     final raw = await _namespace.read(_skillsKey);
@@ -123,6 +136,7 @@ class ProgressRepository {
     await _namespace.write(_skillsKey, '{}');
     await _namespace.write(_dailyKey, '{}');
     await _namespace.write(_lastKey, '{}');
+    await saveDiscovery(DiscoveryProgress());
   }
 }
 

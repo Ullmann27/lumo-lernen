@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import '../widgets/fox/lumo_companion_requests.dart';
 
 import 'lumo_ai_proxy_client.dart';
 import 'lumo_companion_engine.dart';
@@ -65,6 +66,11 @@ class LumoConversationController extends ChangeNotifier {
     final local = const LumoCompanionEngine()
         .answer(input: question, state: state, task: context.task);
     final safeInput = LumoChildSafetyFilter.inspect(question).allowed;
+    if (safeInput && !context.isAssessment) {
+      context.requests.recordLearningEvent(
+          LumoLearningEventKind.childAskedQuestion,
+          context: context.task);
+    }
     var response = LumoAiProxyResponse(
         reply: context.isAssessment
             ? 'Im Test löst du die Aufgabe selbst. Danach üben wir gemeinsam.'
