@@ -6,17 +6,21 @@ import 'package:flutter/services.dart';
 /// Pre-produced German Lumo speech. Runtime is entirely offline; no child's
 /// text is submitted to the generation service.
 ///
-/// Der bestehende Sulafat-Katalog ist die Offline-Quelle. Variable Texte
-/// dürfen ausschließlich über den freigegebenen Sulafat-Server gesprochen
-/// werden, niemals durch eine Geräte-Ersatzstimme.
+/// Lumo Frei has a separate verified local catalog. The earlier Sulafat
+/// catalog remains intact for explicit legacy tests; it is never silently
+/// mixed into the selected voice. Neither catalog enables system TTS.
 class LumoVoiceClips {
   LumoVoiceClips._();
 
   static const String catalogAsset = 'assets/audio/voice/lumo/catalog.json';
+  static const String freeCatalogAsset =
+      'assets/audio/voice/lumo_free/catalog.json';
 
   static Map<String, LumoVoiceClip>? _clips;
   static Map<String, String> _aliases = const {};
   static Future<void>? _loading;
+  static Map<String, LumoVoiceClip>? _freeClips;
+  static Future<void>? _freeLoading;
 
   /// Gleiche Normalisierung wie `normalize_key` im Generator.
   static String keyFor(String text) => text
@@ -43,11 +47,42 @@ class LumoVoiceClips {
     }
   }
 
+  static Future<void> ensureFreeLoaded([AssetBundle? bundle]) =>
+      _freeLoading ??= _loadFree(bundle ?? rootBundle);
+
+  static Future<void> _loadFree(AssetBundle bundle) async {
+    try {
+      final raw = await bundle.loadString(freeCatalogAsset);
+      final catalog = jsonDecode(raw) as Map<String, dynamic>;
+      if (catalog['variant'] != 'lumo-free-supertonic-de-v1' ||
+          catalog['preset'] != 'F2' ||
+          catalog['speaker_id'] != 1 ||
+          catalog['machine_generated'] != true ||
+          catalog['asset_directory'] != 'audio/voice/lumo_free') {
+        throw const FormatException('Unverified free voice catalog');
+      }
+      _freeClips = parseCatalog(raw);
+    } catch (e) {
+      _freeClips = const {};
+      if (kDebugMode) debugPrint('[LumoVoiceClips] kein freier Katalog: $e');
+    }
+  }
+
   @visibleForTesting
   static Map<String, LumoVoiceClip> parseCatalog(String raw) {
     final json = jsonDecode(raw) as Map<String, dynamic>;
     final fps = (json['fps'] as num?)?.toInt() ?? 20;
     final clips = json['clips'] as Map<String, dynamic>;
+    final directory = json['asset_directory'] as String? ?? 'audio/voice/lumo';
+    if (directory != 'audio/voice/lumo' &&
+        directory != 'audio/voice/lumo_free') {
+      throw const FormatException('Untrusted voice asset directory');
+    }
+    for (final data in clips.values) {
+      if (!RegExp(r'^[a-zA-Z0-9_-]{1,80}$').hasMatch(data['id'] as String)) {
+        throw const FormatException('Untrusted voice asset identifier');
+      }
+    }
     return {
       for (final e in clips.entries)
         e.key: LumoVoiceClip(
@@ -59,6 +94,7 @@ class LumoVoiceClips {
               .map((c) => (c - 48).clamp(0, 9) / 9)
               .toList(growable: false),
           fps: fps,
+          assetDirectory: directory,
         ),
     };
   }
@@ -77,6 +113,14 @@ class LumoVoiceClips {
   }
 
   static int get count => _clips?.length ?? 0;
+  static LumoVoiceClip? freeLookup(String text) => _freeClips?[keyFor(text)];
+  static int get freeCount => _freeClips?.length ?? 0;
+
+  @visibleForTesting
+  static void debugSetFreeCatalog(Map<String, LumoVoiceClip>? clips) {
+    _freeClips = clips;
+    _freeLoading = clips == null ? null : Future<void>.value();
+  }
 }
 
 class LumoVoiceClip {
@@ -86,6 +130,7 @@ class LumoVoiceClip {
     required this.duration,
     required this.envelope,
     required this.fps,
+    this.assetDirectory = 'audio/voice/lumo',
   });
 
   final String id;
@@ -95,9 +140,10 @@ class LumoVoiceClip {
   /// Lautstärke 0–1 je 1/[fps] Sekunde, steuert Lumos Mund.
   final List<double> envelope;
   final int fps;
+  final String assetDirectory;
 
   /// Pfad relativ zu `assets/` (audioplayers AssetSource).
-  String get assetSource => 'audio/voice/lumo/$id.m4a';
+  String get assetSource => '$assetDirectory/$id.m4a';
 
   double mouthAt(Duration position) {
     if (envelope.isEmpty) return 0;

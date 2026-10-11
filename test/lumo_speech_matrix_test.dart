@@ -100,9 +100,12 @@ void main() {
     HttpOverrides.global = noNetwork;
     LumoVoiceClips.debugSetCatalog(null);
     await LumoVoiceClips.ensureLoaded();
+    await LumoVoice.instance
+        .configure(identity: LumoVoiceIdentity.sulafatOriginal);
   });
   tearDownAll(() async {
     await LumoVoice.instance.stop();
+    await LumoVoice.instance.configure(identity: LumoVoiceIdentity.freeOffline);
     HttpOverrides.global = previousHttp;
     final directory = Platform.environment['LUMO_SPEECH_AUDIT_DIR'];
     if (directory != null) {

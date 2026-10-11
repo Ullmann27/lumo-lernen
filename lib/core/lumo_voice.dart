@@ -1,23 +1,28 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
 
 import 'lumo_sulafat_client.dart';
+import 'lumo_offline_voice_client.dart';
 import 'lumo_voice_clips.dart';
 import 'lumo_voice_policy.dart';
 import 'lumo_wav_audio.dart';
 
-/// Einheitliche Lumo-Sprecheridentitaet: Gemini TTS / Sulafat.
-/// Die Begruessungs-Stimmprobe bleibt die originale M4A-Datei.
-/// Andere Saetze kommen ausschliesslich aus demselben Sulafat-Clipkatalog
-/// oder (nach aktiver Elternfreigabe) aus der Sulafat-Server-Synthese.
+/// Default: Lumo Frei, German F2, local clips and local Android synthesis.
+/// The earlier Sulafat recordings and their explicitly selected legacy path
+/// are preserved, but never mixed into the free voice or called as a fallback.
 /// Keine Android-TTS-Stimme, kein heimlicher Ersatz bei Netzfehlern.
 class LumoVoice {
   LumoVoice._internal();
   static final LumoVoice instance = LumoVoice._internal();
 
   final LumoSulafatClient _client = const LumoSulafatClient();
+  final LumoOfflineVoiceClient _offline = const LumoOfflineVoiceClient();
+  LumoVoiceIdentity _identity = LumoVoiceIdentity.freeOffline;
+  bool _localVoiceLicenseAccepted = false;
+  VoiceStyle? _playingStyle;
   bool _enabled = true;
   bool _cloudVoiceEnabled = false;
   String _serverUrl = 'https://lumo-ai-proxy.onrender.com';
@@ -28,6 +33,7 @@ class LumoVoice {
   int _completedPlaybackCount = 0;
   int _speechGeneration = 0;
   int _requestRevision = 0;
+  int? _localInferenceGeneration;
 
   AudioPlayer? _player;
   StreamSubscription<void>? _doneSubscription;
@@ -60,7 +66,11 @@ class LumoVoice {
 
   /// Only a native completion event increments this, never stop or a timeout.
   int get completedPlaybackCount => _completedPlaybackCount;
-  String get selectedVoiceName => 'Sulafat';
+  String get selectedVoiceName =>
+      _identity == LumoVoiceIdentity.freeOffline ? 'Lumo Frei' : 'Sulafat';
+  bool get localVoiceLicenseAccepted => _localVoiceLicenseAccepted;
+  LumoVoiceIdentity get identity => _identity;
+  Future<bool> localSpeechAvailable() => _offline.available();
   String get selectedLocale => 'de-DE';
 
   set isEnabled(bool value) {
@@ -75,7 +85,18 @@ class LumoVoice {
     bool? cloudVoiceEnabled,
     String? voiceServerUrl,
     LumoParentSpeechAuthorization? parentSpeechAuthorization,
+    bool? localVoiceLicenseAccepted,
+    LumoVoiceIdentity? identity,
   }) async {
+    if (identity != null && identity != _identity) {
+      await stop();
+      _identity = identity;
+    }
+    if (localVoiceLicenseAccepted != null) {
+      final revoked = _localVoiceLicenseAccepted && !localVoiceLicenseAccepted;
+      _localVoiceLicenseAccepted = localVoiceLicenseAccepted;
+      if (revoked) await stop();
+    }
     if (enabled != null) {
       _enabled = enabled;
       if (!enabled) await stop();
@@ -97,7 +118,7 @@ class LumoVoice {
       // must not stop an original recording. Actual revocation cancels audio.
       if (revoked) {
         _parentSpeechAuthorization = null;
-        await stop();
+        if (_identity == LumoVoiceIdentity.sulafatOriginal) await stop();
       }
     }
     if (voiceServerUrl != null && voiceServerUrl.trim().isNotEmpty) {
@@ -111,7 +132,9 @@ class LumoVoice {
   /// Call on parent logout/revocation. No credential survives as a preference.
   Future<void> clearParentSpeechAuthorization() async {
     _parentSpeechAuthorization = null;
-    if (_cloudVoiceEnabled) await stop();
+    if (_cloudVoiceEnabled && _identity == LumoVoiceIdentity.sulafatOriginal) {
+      await stop();
+    }
   }
 
   @visibleForTesting
@@ -163,17 +186,41 @@ class LumoVoice {
     String text, {
     VoiceStyle style = VoiceStyle.warm,
     bool waitForCompletion = false,
+    bool freshLocalAudio = false,
   }) async {
     if (!_enabled || text.trim().isEmpty) return;
     // Preflight is independent of the playing generation. Missing offline
     // task audio must not cut a valid praise/welcome recording in mid-sentence.
     final revision = ++_requestRevision;
+    final profile = _identity;
+    final effectiveStyle =
+        style == VoiceStyle.warm ? suggestedStyle(text) : style;
     int? generation;
     try {
-      await LumoVoiceClips.ensureLoaded();
-      final original = clipsEnabled ? LumoVoiceClips.lookup(text) : null;
+      if (profile == LumoVoiceIdentity.freeOffline) {
+        await LumoVoiceClips.ensureFreeLoaded();
+      } else {
+        await LumoVoiceClips.ensureLoaded();
+      }
+      final original = clipsEnabled && !freshLocalAudio
+          ? (profile == LumoVoiceIdentity.freeOffline
+              ? LumoVoiceClips.freeLookup(text)
+              : LumoVoiceClips.lookup(text))
+          : null;
       if (!_enabled || revision != _requestRevision) return;
-      if (original == null && !_cloudVoiceEnabled) {
+      if (profile == LumoVoiceIdentity.freeOffline &&
+          original == null &&
+          !_localVoiceLicenseAccepted) {
+        _reportUnavailable(
+          'Für diesen Satz gibt es noch keine passende lokale Aufnahme. '
+          'Neue Texte können nach Bestätigung der kostenlosen Sprachlizenz '
+          'im Elternbereich direkt auf diesem Gerät gesprochen werden.',
+        );
+        return;
+      }
+      if (profile == LumoVoiceIdentity.sulafatOriginal &&
+          original == null &&
+          !_cloudVoiceEnabled) {
         _reportUnavailable(
           'Für diesen Satz gibt es noch keine Originalaufnahme. '
           'Der Text bleibt lesbar. Neue Sulafat-Sätze benötigen eine '
@@ -182,7 +229,7 @@ class LumoVoice {
         return;
       }
       String? parentAuthorization;
-      if (original == null) {
+      if (profile == LumoVoiceIdentity.sulafatOriginal && original == null) {
         final authorize = _parentSpeechAuthorization;
         if (authorize != null) {
           try {
@@ -203,9 +250,23 @@ class LumoVoice {
           return;
         }
       }
+      // An automatically advancing lesson may ask its next question before
+      // the previous feedback has finished. Do not cut praise/comfort/welcome.
+      // stop(), navigation, mute or a newer request invalidate this wait.
+      if (profile == LumoVoiceIdentity.freeOffline &&
+          effectiveStyle == VoiceStyle.question &&
+          const {VoiceStyle.celebrate, VoiceStyle.comfort, VoiceStyle.greeting}
+              .contains(_playingStyle)) {
+        final finished = _playbackFinished;
+        if (finished != null) await finished.future;
+        if (!_enabled || profile != _identity || revision != _requestRevision) {
+          return;
+        }
+      }
       generation = ++_speechGeneration;
       await _stopPlayback();
       if (!_enabled || generation != _speechGeneration) return;
+      _playingStyle = effectiveStyle;
       lastError.value = null;
       status.value = VoiceStatus.preparing;
       if (original != null) {
@@ -216,13 +277,17 @@ class LumoVoice {
           duration: original.duration,
           mouth: original.mouthAt,
           onFinished: end,
+          identity: profile == LumoVoiceIdentity.freeOffline
+              ? 'Lumo Frei / F2 / lokale Aufnahme ${original.id}.m4a'
+              : null,
         );
         if (waitForCompletion) await end.future;
         return;
       }
-      final operation = _speakDynamic(text,
-          style == VoiceStyle.warm ? suggestedStyle(text) : style, generation,
-          parentAuthorization: parentAuthorization!);
+      final operation = profile == LumoVoiceIdentity.freeOffline
+          ? _speakLocal(text, effectiveStyle, generation)
+          : _speakDynamic(text, effectiveStyle, generation,
+              parentAuthorization: parentAuthorization!);
       if (waitForCompletion) {
         await operation;
       } else {
@@ -235,7 +300,55 @@ class LumoVoice {
               : generation != _speechGeneration)) {
         return;
       }
-      _reportUnavailable('Sulafat-Audio konnte nicht gestartet werden.');
+      _reportUnavailable(
+          '$selectedVoiceName-Audio konnte nicht gestartet werden.');
+    }
+  }
+
+  Future<void> _speakLocal(
+      String text, VoiceStyle style, int generation) async {
+    final cleaned = LumoVoicePolicy.prepare(text);
+    // Segmentation is a pure shared helper, not a Sulafat/provider call.
+    final fragments = LumoSulafatClient.segments(cleaned, limit: 180);
+    for (final fragment in fragments) {
+      if (!_enabled ||
+          !_localVoiceLicenseAccepted ||
+          _identity != LumoVoiceIdentity.freeOffline ||
+          generation != _speechGeneration) {
+        return;
+      }
+      try {
+        _localInferenceGeneration = generation;
+        late final Uint8List audio;
+        try {
+          audio = await _offline.synthesize(
+            text: fragment,
+            style: style.name,
+            localLicenseAccepted: _localVoiceLicenseAccepted,
+          );
+        } finally {
+          if (_localInferenceGeneration == generation) {
+            _localInferenceGeneration = null;
+          }
+        }
+        if (!_enabled || generation != _speechGeneration) return;
+        final pcm = LumoWavAudio.parse(audio);
+        final end = Completer<void>();
+        await _play(BytesSource(audio), generation,
+            duration: pcm.duration,
+            mouth: pcm.mouthAt,
+            onFinished: end,
+            identity: 'Lumo Frei / F2 / lokale Synthese');
+        await end.future;
+        if (lastError.value != null) return;
+      } catch (error) {
+        if (!_enabled || generation != _speechGeneration) return;
+        _reportUnavailable(error is LumoOfflineSpeechException
+            ? error.userMessage
+            : 'Die lokale Lumo-Stimme konnte diesen Satz nicht vorlesen. '
+                'Der Text bleibt lesbar.');
+        return;
+      }
     }
   }
 
@@ -307,11 +420,15 @@ class LumoVoice {
     required Duration duration,
     double Function(Duration)? mouth,
     Completer<void>? onFinished,
+    String? identity,
   }) async {
     await _serializeNative(() async {
       try {
         await _playReady(source, generation,
-            duration: duration, mouth: mouth, onFinished: onFinished);
+            duration: duration,
+            mouth: mouth,
+            onFinished: onFinished,
+            identity: identity);
       } catch (_) {
         if (onFinished != null && !onFinished.isCompleted) {
           onFinished.complete();
@@ -342,6 +459,7 @@ class LumoVoice {
     required Duration duration,
     double Function(Duration)? mouth,
     Completer<void>? onFinished,
+    String? identity,
   }) async {
     void completeCancelled() {
       if (onFinished != null && !onFinished.isCompleted) {
@@ -380,9 +498,10 @@ class LumoVoice {
       _finishAudio(generation: generation);
       return;
     }
-    lastStartedAudioIdentity = source is AssetSource
-        ? 'Originalaufnahme ${source.path.split('/').last}'
-        : 'Sulafat / ${LumoSulafatClient.referenceProfile} / ${LumoSulafatClient.referenceModel}';
+    lastStartedAudioIdentity = identity ??
+        (source is AssetSource
+            ? 'Originalaufnahme ${source.path.split('/').last}'
+            : 'Sulafat / ${LumoSulafatClient.referenceProfile} / ${LumoSulafatClient.referenceModel}');
     ++_startedPlaybackCount;
     status.value = VoiceStatus.speaking;
     clipMouth.value = 0;
@@ -492,6 +611,7 @@ class LumoVoice {
     if (generation != null && generation != _playingGeneration) return;
     if (completed && _playingGeneration != null) ++_completedPlaybackCount;
     _playingGeneration = null;
+    _playingStyle = null;
     _mouthTicker?.cancel();
     _mouthTicker = null;
     _playbackWatch?.stop();
@@ -512,11 +632,16 @@ class LumoVoice {
   Future<void> _stopPlayback() async {
     _pendingRequest?.cancel();
     _pendingRequest = null;
+    final cancelLocal = _localInferenceGeneration != null;
+    _localInferenceGeneration = null;
+    final localCancellation =
+        cancelLocal ? _offline.cancel() : Future<void>.value();
     _finishAudio();
     try {
       await _player?.stop();
     } catch (_) {}
     if (status.value != VoiceStatus.error) status.value = VoiceStatus.idle;
+    await localCancellation;
   }
 
   Future<void> stop() async {
@@ -526,7 +651,7 @@ class LumoVoice {
     status.value = VoiceStatus.idle;
   }
 
-  /// Keinesfalls aendern: genau die Originalaufnahme des Nutzerwunsches.
+  /// The active identity supplies this sample; old original binaries stay intact.
   Future<void> test() => speak(
         'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!',
         style: VoiceStyle.greeting,
@@ -568,5 +693,7 @@ class LumoVoiceRouteObserver extends NavigatorObserver {
 }
 
 enum VoiceStyle { warm, greeting, explain, celebrate, comfort, question }
+
+enum LumoVoiceIdentity { freeOffline, sulafatOriginal }
 
 enum VoiceStatus { idle, preparing, speaking, paused, error }

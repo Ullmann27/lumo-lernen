@@ -4,11 +4,13 @@ import 'dart:typed_data';
 /// Validated PCM speech and a mouth envelope derived from real samples.
 /// RIFF chunks may include metadata; no fixed 44-byte-header assumption.
 class LumoWavAudio {
-  LumoWavAudio._(this.duration, this.envelope, this.framesPerSecond);
+  LumoWavAudio._(
+      this.duration, this.envelope, this.framesPerSecond, this.sampleRate);
 
   final Duration duration;
   final List<double> envelope;
   final int framesPerSecond;
+  final int sampleRate;
 
   static LumoWavAudio parse(Uint8List bytes, {int framesPerSecond = 20}) {
     if (bytes.length < 44 ||
@@ -91,6 +93,7 @@ class LumoWavAudio {
             (value) => value < 0.003 ? 0.0 : (value / peak).clamp(0.0, 1.0)),
       ),
       framesPerSecond,
+      sampleRate,
     );
   }
 

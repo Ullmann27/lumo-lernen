@@ -69,7 +69,11 @@ void main() {
         MockStreamHandler.inline(onListen: (_, __) {}));
   });
 
-  setUp(() {
+  setUp(() async {
+    await LumoVoice.instance.configure(
+      identity: LumoVoiceIdentity.sulafatOriginal,
+      localVoiceLicenseAccepted: false,
+    );
     ttsSpoken.clear();
     playerCalls.clear();
     playbackRates.clear();
@@ -104,6 +108,7 @@ void main() {
     await LumoVoice.instance.configure(cloudVoiceEnabled: false);
     LumoVoice.instance.clipsEnabled = false;
     LumoVoiceClips.debugSetCatalog(null);
+    await LumoVoice.instance.configure(identity: LumoVoiceIdentity.freeOffline);
   });
 
   test('Schlüssel ignorieren Satzzeichen, Groß-/Kleinschreibung und Abstände',

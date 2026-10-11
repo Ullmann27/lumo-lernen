@@ -75,27 +75,30 @@ class LumoSulafatClient {
       token.length <= 4089 &&
       RegExp(r'^[A-Za-z0-9._~+/-]+=*$').hasMatch(token);
 
-  static List<String> segments(String input) {
+  static List<String> segments(String input, {int? limit}) {
+    final maximum = limit ?? maxSegmentCharacters;
+    if (maximum < 16 || maximum > maxSegmentCharacters) {
+      throw ArgumentError.value(
+          limit, 'limit', 'Unsupported speech segment size');
+    }
     final words = input.trim().split(RegExp(r'\s+'));
     final result = <String>[];
     var buffer = '';
     for (final word in words) {
       if (word.isEmpty) continue;
-      if (word.length > maxSegmentCharacters) {
+      if (word.length > maximum) {
         if (buffer.isNotEmpty) {
           result.add(buffer);
           buffer = '';
         }
-        for (var i = 0; i < word.length; i += maxSegmentCharacters) {
-          final end = i + maxSegmentCharacters < word.length
-              ? i + maxSegmentCharacters
-              : word.length;
+        for (var i = 0; i < word.length; i += maximum) {
+          final end = i + maximum < word.length ? i + maximum : word.length;
           result.add(word.substring(i, end));
         }
         continue;
       }
       final candidate = buffer.isEmpty ? word : '$buffer $word';
-      if (candidate.length > maxSegmentCharacters) {
+      if (candidate.length > maximum) {
         result.add(buffer);
         buffer = word;
       } else {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../core/lumo_voice.dart';
 
-/// Controls the existing central Sulafat player, never another audio path.
+/// Controls the existing central Lumo player, never another audio path.
 /// Pausing preserves the native source/position. Stop intentionally does not.
 class LumoSpeechControls extends StatelessWidget {
   const LumoSpeechControls({

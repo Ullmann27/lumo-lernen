@@ -221,6 +221,8 @@ class _AppShellState extends State<AppShell>
       pitch: settings.voicePitch,
       cloudVoiceEnabled: settings.cloudVoiceEnabled,
       voiceServerUrl: settings.aiProxyUrl,
+      localVoiceLicenseAccepted: settings.localVoiceLicenseAccepted,
+      identity: LumoVoiceIdentity.freeOffline,
     );
     try {
       await _appState.loadLearningProfile();

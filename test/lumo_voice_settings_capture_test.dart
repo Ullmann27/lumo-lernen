@@ -24,7 +24,7 @@ void main() {
     LumoVoice.instance.isEnabled = false;
     final state = await capture.stateFor(tester);
     await capture.mount(tester, SettingsContent(appState: state));
-    await tester.ensureVisible(find.text('Online-Lumo-Stimme (Sulafat)'));
+    await tester.ensureVisible(find.text('Neue Sätze offline vorlesen'));
     await tester.pump();
     expect(find.text('Stimme testen'), findsOneWidget);
     expect(state.state.settings.cloudVoiceEnabled, isFalse);

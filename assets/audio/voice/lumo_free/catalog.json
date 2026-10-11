@@ -1,0 +1,1571 @@
+{
+  "version": 1,
+  "fps": 20,
+  "variant": "lumo-free-supertonic-de-v1",
+  "generation": "Local Supertonic 3 / ONNX CPU; zero synthesis API calls",
+  "voice": "Lumo Frei / F2",
+  "license": "Open RAIL-M model; locally generated audio",
+  "machine_generated": true,
+  "preset": "F2",
+  "speaker_id": 1,
+  "asset_directory": "audio/voice/lumo_free",
+  "clips": {
+    "1 plus 1 wie viel ist das": {
+      "id": "free_32f9340af218eb41",
+      "text": "1 plus 1 - wie viel ist das?",
+      "spoken_text": "1 plus 1 - wie viel ist das?",
+      "ms": 2688,
+      "env": "000000000000255126225774111311443129721000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "78c932e6c9a36a683d3abef66b326380d6df473fdfb3a80f8d259eb01956a802"
+    },
+    "1 plus 2 wie viel ist das": {
+      "id": "free_78f673086b73a98c",
+      "text": "1 plus 2 - wie viel ist das?",
+      "spoken_text": "1 plus 2 - wie viel ist das?",
+      "ms": 2645,
+      "env": "00000000000066410531118994230146314731000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "af662051eafad8963f36b66f749f293d48884f0087679f321b01b6c1b6dd9915"
+    },
+    "1 plus 3 wie viel ist das": {
+      "id": "free_9df1fe228456d141",
+      "text": "1 plus 3 - wie viel ist das?",
+      "spoken_text": "1 plus 3 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000005776201721298733302221159311000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "16d6117be084a6fdf693aced0104c5315bc970223d1586b2f4b923b631b2dbc5"
+    },
+    "1 plus 4 wie viel ist das": {
+      "id": "free_6c21e3b3d76498b7",
+      "text": "1 plus 4 - wie viel ist das?",
+      "spoken_text": "1 plus 4 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000288701642127984005615331058321000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "78a8a2ac9c6da14bbab7c887dd973669b7f51d2fd400de1891b242d298a2bf81"
+    },
+    "1 plus 5 wie viel ist das": {
+      "id": "free_588bd0d6edc8664c",
+      "text": "1 plus 5 - wie viel ist das?",
+      "spoken_text": "1 plus 5 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000036651017211651002202323109831100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "125cf6a121970f117e4e64514bd9f666071d8bfe6b537936b8579bff58eb27b6"
+    },
+    "1 plus 6 wie viel ist das": {
+      "id": "free_9865f53d4de62d17",
+      "text": "1 plus 6 - wie viel ist das?",
+      "spoken_text": "1 plus 6 - wie viel ist das?",
+      "ms": 2731,
+      "env": "0000000000005541043139401101302422115511000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3b753322491b6924b6436c0c08aed0fd66afe44a84b797891d33dfd2fd0d1729"
+    },
+    "1 plus 7 wie viel ist das": {
+      "id": "free_c25aa9d381a6a306",
+      "text": "1 plus 7 - wie viel ist das?",
+      "spoken_text": "1 plus 7 - wie viel ist das?",
+      "ms": 2816,
+      "env": "000000000005785035234895730241233212892100000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "6d89cba154d300cda3dd4e17b70c7bfcf297d0979726b6ae2d7b6d4615d408b2"
+    },
+    "1 plus 8 wie viel ist das": {
+      "id": "free_01eff8929a7e87e6",
+      "text": "1 plus 8 - wie viel ist das?",
+      "spoken_text": "1 plus 8 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000366401621491100000331446106631000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "f06e4b73b667a11bdea2c8c62de0a129dea2e6cdc2d287ed4cd9978114a8181b"
+    },
+    "1 plus 9 wie viel ist das": {
+      "id": "free_52dd2fde052e6043",
+      "text": "1 plus 9 - wie viel ist das?",
+      "spoken_text": "1 plus 9 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000465400351158963102310434117611000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "2e4845d6c51a10f492ed00ebeac6e7dd062700e59d5559aa773efedde349d478"
+    },
+    "10 minus 1 wie viele bleiben": {
+      "id": "free_f3485444561a8937",
+      "text": "10 minus 1. Wie viele bleiben?",
+      "spoken_text": "10 minus 1. Wie viele bleiben?",
+      "ms": 2901,
+      "env": "00000000000115556879223954111000311445169894331000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "bbc4df7a9af63daf7ca2618acb6f84b38a576b07e499edf76f71c9fbac5c6486"
+    },
+    "10 minus 2 wie viele bleiben": {
+      "id": "free_1a5f55dd8e1f5fa9",
+      "text": "10 minus 2. Wie viele bleiben?",
+      "spoken_text": "10 minus 2. Wie viele bleiben?",
+      "ms": 2859,
+      "env": "0000000000001376879920139662251156627875352000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "0467e1d16f04bf0062badf1e7e1e6a256873223bce96fb2fda89d07a6a7e7ce6"
+    },
+    "10 minus 3 wie viele bleiben": {
+      "id": "free_cc82de5df2cac63f",
+      "text": "10 minus 3. Wie viele bleiben?",
+      "spoken_text": "10 minus 3. Wie viele bleiben?",
+      "ms": 3029,
+      "env": "0000000000135545687210239733100002412471265422210000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "04656f9cd9c6ec27e50ab341752a9290d009e3116fd45fcbef79b1eb14cae35c"
+    },
+    "10 minus 4 wie viele bleiben": {
+      "id": "free_300fc160617a9efc",
+      "text": "10 minus 4. Wie viele bleiben?",
+      "spoken_text": "10 minus 4. Wie viele bleiben?",
+      "ms": 3072,
+      "env": "00000000000127767798220257410001521693597774210000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "02970956553f82a762abea4169662b847bfee7d65f03df96964d431a01844452"
+    },
+    "10 minus 5 wie viele bleiben": {
+      "id": "free_09e37d4de061ae65",
+      "text": "10 minus 5. Wie viele bleiben?",
+      "spoken_text": "10 minus 5. Wie viele bleiben?",
+      "ms": 3072,
+      "env": "00000000000026555693213631000000531683475515510000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "96119965a26dbaa7c333d49c303504c25ea83db4a8381749ce9d91c0d1e7d0d8"
+    },
+    "10 minus 6 wie viele bleiben": {
+      "id": "free_3a8b1afc446c546c",
+      "text": "10 minus 6. Wie viele bleiben?",
+      "spoken_text": "10 minus 6. Wie viele bleiben?",
+      "ms": 3029,
+      "env": "0000000000001365568962286012111431776376874410000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "bd0a5b211286e0c429df2e62735dced7dc0d71a0ed7c5f9080b2fc945bd7539c"
+    },
+    "10 minus 7 wie viele bleiben": {
+      "id": "free_f4940501b94d37b1",
+      "text": "10 minus 7. Wie viele bleiben?",
+      "spoken_text": "10 minus 7. Wie viele bleiben?",
+      "ms": 2987,
+      "env": "000000000000125556694213763221032144613667241000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "c82de454a87d01a2066044997fb4fbbd692f4b4ab789905cb24e779e5391387b"
+    },
+    "10 minus 8 wie viele bleiben": {
+      "id": "free_36578651f9cf4849",
+      "text": "10 minus 8. Wie viele bleiben?",
+      "spoken_text": "10 minus 8. Wie viele bleiben?",
+      "ms": 3029,
+      "env": "0000000011554567821046111010000016315591465622110000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "073b52f1dfa0d558bc4cbea212b6b6978b937d7f1f346b6f255388149423e3f4"
+    },
+    "10 minus 9 wie viele bleiben": {
+      "id": "free_d93aa375419b6882",
+      "text": "10 minus 9. Wie viele bleiben?",
+      "spoken_text": "10 minus 9. Wie viele bleiben?",
+      "ms": 3029,
+      "env": "0000000000001276458893269873210033136813655121000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "44d56a8e7716d137771dfad75712766c7f2c1bccd518acf5ec3fa4e8e34129b8"
+    },
+    "2 plus 1 wie viel ist das": {
+      "id": "free_cd78a8b7633d70a9",
+      "text": "2 plus 1 - wie viel ist das?",
+      "spoken_text": "2 plus 1 - wie viel ist das?",
+      "ms": 2688,
+      "env": "000000000000118941432266641241144410851100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3b71ac7e804a4ed7f1860ee7f6eadb5b0652e1c9d62449a0b78fa8a71b8ebde0"
+    },
+    "2 plus 2 wie viel ist das": {
+      "id": "free_038754d8bcd5aa0a",
+      "text": "2 plus 2 - wie viel ist das?",
+      "spoken_text": "2 plus 2 - wie viel ist das?",
+      "ms": 2688,
+      "env": "000000000000117870161012976241044610762100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "571547b2a974da6a649788d9e4891a74c2853974828cf7a1f135cdf5806d9626"
+    },
+    "2 plus 3 wie viel ist das": {
+      "id": "free_28df43db04bf81e4",
+      "text": "2 plus 3 - wie viel ist das?",
+      "spoken_text": "2 plus 3 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000169602520219979623303331068311000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "dffe4eae3493fc99a0dc048eea5a9b9c13b10b92f642439b252e358694c87aef"
+    },
+    "2 plus 4 wie viel ist das": {
+      "id": "free_b6ff44fb3b1050fa",
+      "text": "2 plus 4 - wie viel ist das?",
+      "spoken_text": "2 plus 4 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000002586205211179614313341077511000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "41351e72b7dcd00ce924c14735e2a747ab10824761552556e16f9ab9a328419d"
+    },
+    "2 plus 5 wie viel ist das": {
+      "id": "free_92135c558386b319",
+      "text": "2 plus 5 - wie viel ist das?",
+      "spoken_text": "2 plus 5 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000027970162116310002412634106731000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "45a7fc9266d424ea3de98d059afacdf1a6c2e4e20b442b7e7a5436e016c057d5"
+    },
+    "2 plus 6 wie viel ist das": {
+      "id": "free_5c820ccd3b78b8a8",
+      "text": "2 plus 6 - wie viel ist das?",
+      "spoken_text": "2 plus 6 - wie viel ist das?",
+      "ms": 2731,
+      "env": "0000000000002596206218501102302334108621100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "6554ef7cebc833541fef81c9e2ed1579d9e21bce521526355810940d5d7ec0c7"
+    },
+    "2 plus 7 wie viel ist das": {
+      "id": "free_b0745bc7873dd541",
+      "text": "2 plus 7 - wie viel ist das?",
+      "spoken_text": "2 plus 7 - wie viel ist das?",
+      "ms": 2816,
+      "env": "000000000000139640331222432230132310662100000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3aacf0b13d95c7c1629fe71bd4c1905e711243e3a6d2ea71dad348e8e5fa2bc7"
+    },
+    "2 plus 8 wie viel ist das": {
+      "id": "free_98ff6596fdc00e93",
+      "text": "2 plus 8 - wie viel ist das?",
+      "spoken_text": "2 plus 8 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000118750431295100033022211036411000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "b9c681658946d7bba212c1daf4109fc1fcb0e4385a1b4e93df04f16db6ab2313"
+    },
+    "3 mal 2 wie viel ist das": {
+      "id": "free_0eb34225e9098f0b",
+      "text": "3 mal 2. Wie viel ist das?",
+      "spoken_text": "3 mal 2. Wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000124666860219977213114451045310000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "a206b94f602590f24488ff7f90db4337ed45438d2d6c3cac1b60b43a7df2c9bb"
+    },
+    "3 minus 1 wie viele bleiben": {
+      "id": "free_fff0c8f7e9456d9a",
+      "text": "3 minus 1. Wie viele bleiben?",
+      "spoken_text": "3 minus 1. Wie viele bleiben?",
+      "ms": 2944,
+      "env": "00000000000002886677832465511002403563488935200000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3a76501c339f5769d5f1554b45024541bdaedd8591eceecfcb695a9e0c08fc42"
+    },
+    "3 minus 2 wie viele bleiben": {
+      "id": "free_6586c91113e9ec4a",
+      "text": "3 minus 2. Wie viele bleiben?",
+      "spoken_text": "3 minus 2. Wie viele bleiben?",
+      "ms": 2901,
+      "env": "00000000000129767776101275441220155703655143000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "9d9e4f1fabde0f146ceb6ab53ead4a52b9caedbb208e53c7654f0e1a9795b1b4"
+    },
+    "3 plus 1 wie viel ist das": {
+      "id": "free_45b9ef61ad449625",
+      "text": "3 plus 1 - wie viel ist das?",
+      "spoken_text": "3 plus 1 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000003888019324787112621559207942100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "7d74b0bcb4f302a82af0a6e1eaf25739a742334d8a18eabe8ddde939e013de85"
+    },
+    "3 plus 2 wie viel ist das": {
+      "id": "free_7bacc87de1cc9c96",
+      "text": "3 plus 2 - wie viel ist das?",
+      "spoken_text": "3 plus 2 - wie viel ist das?",
+      "ms": 2773,
+      "env": "00000000000378602511013976420330345213951100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "11594191f8aca97ebd82922326779390fa65e2ec5b4717a81d01bbb6b3a26d79"
+    },
+    "3 plus 3 wie viel ist das": {
+      "id": "free_c7178b131da63792",
+      "text": "3 plus 3 - wie viel ist das?",
+      "spoken_text": "3 plus 3 - wie viel ist das?",
+      "ms": 2859,
+      "env": "0000000000003876402911158783340244510673110000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "6e76905c2933cf3efd20e0622f1da0e583c5bcfa12b57f3fe3575cbeff68353e"
+    },
+    "3 plus 4 wie viel ist das": {
+      "id": "free_93be75059975918a",
+      "text": "3 plus 4 - wie viel ist das?",
+      "spoken_text": "3 plus 4 - wie viel ist das?",
+      "ms": 2901,
+      "env": "00000000000046981073110367620241244411575110000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "ae11593098ce58966d4ac9b2bda40c7fb6a48e85fddfdc363af455d4ef87d793"
+    },
+    "3 plus 5 wie viel ist das": {
+      "id": "free_011aa70e60a9dd28",
+      "text": "3 plus 5 - wie viel ist das?",
+      "spoken_text": "3 plus 5 - wie viel ist das?",
+      "ms": 2901,
+      "env": "00000000000006897601941148311000061355209711000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "ee74cfdb588ca4f4a2894ab803186519def21885d3fb8288da80614747af57b8"
+    },
+    "3 plus 6 wie viel ist das": {
+      "id": "free_cca773b099d40466",
+      "text": "3 plus 6 - wie viel ist das?",
+      "spoken_text": "3 plus 6 - wie viel ist das?",
+      "ms": 2859,
+      "env": "0000000000000288711532980121022032210473100000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "ef41d3d2c02c58640c8fbb04fa85c41ec194e623272904b9e5676c28a8e3b8ee"
+    },
+    "3 plus 7 wie viel ist das": {
+      "id": "free_94d4f3f1a5bdf11b",
+      "text": "3 plus 7 - wie viel ist das?",
+      "spoken_text": "3 plus 7 - wie viel ist das?",
+      "ms": 2901,
+      "env": "00000000000054988016223454351004513561587110000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3f029837addca3b6e5057f761ff903e1de9ed3269100f8ec6008de19ab61c5b9"
+    },
+    "4 minus 1 wie viele bleiben": {
+      "id": "free_a2cbcf4e9f2eae96",
+      "text": "4 minus 1. Wie viele bleiben?",
+      "spoken_text": "4 minus 1. Wie viele bleiben?",
+      "ms": 3029,
+      "env": "0000000000000026967988226731100034135627872300000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "a93af552df915be3b6b2f58fb33f95ff1e4d5838ab59dbb217a0592d2b20ceec"
+    },
+    "4 minus 2 wie viele bleiben": {
+      "id": "free_abd6ae2a993b0b0e",
+      "text": "4 minus 2. Wie viele bleiben?",
+      "spoken_text": "4 minus 2. Wie viele bleiben?",
+      "ms": 2987,
+      "env": "000000000000157853446420229763124135733878354100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "d8237fd78e78bd2dc9b51906df23faf318805c66d54da72ef1e4fb111dbc513f"
+    },
+    "4 minus 3 wie viele bleiben": {
+      "id": "free_57f304b36d1f9f67",
+      "text": "4 minus 3. Wie viele bleiben?",
+      "spoken_text": "4 minus 3. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000000166744454212276653043156691685641110000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "bca7854e000739fb4e76594bd109d411fb5347469b81abfb267dff9a25a80084"
+    },
+    "4 plus 1 wie viel ist das": {
+      "id": "free_c3ecca9e0c8ff15a",
+      "text": "4 plus 1 - wie viel ist das?",
+      "spoken_text": "4 plus 1 - wie viel ist das?",
+      "ms": 2816,
+      "env": "000000000000149701941255641110220222116841000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "6b9f326bf2e2c5ba0f6add3fd5086c3cf62e56b488bff903fd3caef9962a4db4"
+    },
+    "4 plus 2 wie viel ist das": {
+      "id": "free_4850b67063d3d5ef",
+      "text": "4 plus 2 - wie viel ist das?",
+      "spoken_text": "4 plus 2 - wie viel ist das?",
+      "ms": 2816,
+      "env": "000000000000267018511229775242133311276210000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "ef8f615521a4820d770ba3ddce20f3f6cb0c8f608cfc5892e35195a6af474b49"
+    },
+    "4 plus 3 wie viel ist das": {
+      "id": "free_dce0507a56c89df6",
+      "text": "4 plus 3 - wie viel ist das?",
+      "spoken_text": "4 plus 3 - wie viel ist das?",
+      "ms": 2901,
+      "env": "00000000000000178413920378771003113221254100000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "da2181a6907b2e95b3081c3dc29cfa079d131bf6c52ea74135e6d77b435a4594"
+    },
+    "4 plus 4 wie viel ist das": {
+      "id": "free_ae298cdb8e1588e2",
+      "text": "4 plus 4 - wie viel ist das?",
+      "spoken_text": "4 plus 4 - wie viel ist das?",
+      "ms": 2944,
+      "env": "00000000000003650173210359951014114561148611000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "0f2b21412434b9edb9f610f92b9bb5ec683fb5baaff75245061bed7d91bc6c4e"
+    },
+    "4 plus 5 wie viel ist das": {
+      "id": "free_0dbdeb7e680923aa",
+      "text": "4 plus 5 - wie viel ist das?",
+      "spoken_text": "4 plus 5 - wie viel ist das?",
+      "ms": 2944,
+      "env": "00000000000001567216621694200350132531195110000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "407a6cd9671495f5a90cc934f0bd9da1800a5c09cc2bf2dc571776b117ffadad"
+    },
+    "4 plus 6 wie viel ist das": {
+      "id": "free_b6b32cdfad1eb57e",
+      "text": "4 plus 6 - wie viel ist das?",
+      "spoken_text": "4 plus 6 - wie viel ist das?",
+      "ms": 2901,
+      "env": "00000000000000376501742960122101311453137411000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "c097dd0279039ea87fea2e49eee27c6f899a401e273e01225ea8c5ec7a84363e"
+    },
+    "5 minus 1 wie viele bleiben": {
+      "id": "free_f21c5a300f0faa57",
+      "text": "5 minus 1. Wie viele bleiben?",
+      "spoken_text": "5 minus 1. Wie viele bleiben?",
+      "ms": 3029,
+      "env": "0000000000009741048996225643110252145713867444100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "6f64ab5913c11f27bd063db5e4c5f6067451027f77e64de86f0402d6db353457"
+    },
+    "5 minus 2 wie viele bleiben": {
+      "id": "free_e550a1b7344c41c3",
+      "text": "5 minus 2. Wie viele bleiben?",
+      "spoken_text": "5 minus 2. Wie viele bleiben?",
+      "ms": 2987,
+      "env": "000000000000485103898311275531431349238963211000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "72fc5b3bec09e1c0cd3e3b7e8051e6251fa085db1dd7575b841de66b013fbe35"
+    },
+    "5 minus 3 wie viele bleiben": {
+      "id": "free_02cec2719eeaf75d",
+      "text": "5 minus 3. Wie viele bleiben?",
+      "spoken_text": "5 minus 3. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000000663069852035543100000055135752776433100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "c6a12ab7231e493bac4c5678cac3d0cddc81964a0d9d4b6547a2ea926ae37c27"
+    },
+    "5 minus 4 wie viele bleiben": {
+      "id": "free_45cbf1dd630fe4de",
+      "text": "5 minus 4. Wie viele bleiben?",
+      "spoken_text": "5 minus 4. Wie viele bleiben?",
+      "ms": 3200,
+      "env": "0000000000019621058897210145641000321346326755341000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "5853aad3239cfd6d742a174976ee698dfd8c9718a4bdb7576a3fc93e547e0efc"
+    },
+    "5 plus 1 wie viel ist das": {
+      "id": "free_f35b2e780f6178ca",
+      "text": "5 plus 1 - wie viel ist das?",
+      "spoken_text": "5 plus 1 - wie viel ist das?",
+      "ms": 2859,
+      "env": "0000000000001962006522776521023114332118711000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3d8277094f9c33c5bb2fe2f5ca7e3a260c880d511dd0732a2c97d74ddbe29b57"
+    },
+    "5 plus 2 wie viel ist das": {
+      "id": "free_bdac4addc4eb4737",
+      "text": "5 plus 2 - wie viel ist das?",
+      "spoken_text": "5 plus 2 - wie viel ist das?",
+      "ms": 2859,
+      "env": "0000000000004410441012298554100231022321064100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "0e4d88d88f28da3865e919877110c80a3e35f8d216f07feefb13c522d5fd2f6a"
+    },
+    "5 plus 3 wie viel ist das": {
+      "id": "free_0b535e4c44178aca",
+      "text": "5 plus 3 - wie viel ist das?",
+      "spoken_text": "5 plus 3 - wie viel ist das?",
+      "ms": 2944,
+      "env": "00000000000003730047213899510272155642098411100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "e806bff37beb5cb0dae262e3f7fb0b6c0ced78ff28fee9ce9185815dab4cff92"
+    },
+    "5 plus 4 wie viel ist das": {
+      "id": "free_62edd7d6d822f73b",
+      "text": "5 plus 4 - wie viel ist das?",
+      "spoken_text": "5 plus 4 - wie viel ist das?",
+      "ms": 2987,
+      "env": "000000000000079510182100345421131033232068211000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "eb56e08eb3f61b75c68bf678d69325aefc3116809afe0c00a19279dbfbf609a0"
+    },
+    "5 plus 5 wie viel ist das": {
+      "id": "free_453776457937f72a",
+      "text": "5 plus 5 - wie viel ist das?",
+      "spoken_text": "5 plus 5 - wie viel ist das?",
+      "ms": 2987,
+      "env": "000000000000069410363117410000002414342048420000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "24e0049a5469a7a9c35487161594beaf0e92087ef1ca61f0610f666bb4beb36e"
+    },
+    "6 minus 1 wie viele bleiben": {
+      "id": "free_82334448bbcfa1f1",
+      "text": "6 minus 1. Wie viele bleiben?",
+      "spoken_text": "6 minus 1. Wie viele bleiben?",
+      "ms": 2987,
+      "env": "000000000017902188842146521112411558167762420000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "fa081dedf52f7770c9b16a9490c20ccaeef1f261df8be00a81f4eb2391d66913"
+    },
+    "6 minus 2 wie viele bleiben": {
+      "id": "free_9ec983776f98a532",
+      "text": "6 minus 2. Wie viele bleiben?",
+      "spoken_text": "6 minus 2. Wie viele bleiben?",
+      "ms": 2944,
+      "env": "00000000000013822299941216655203215571787834200000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "0d13af3ce66be44550800861ae58a4b68c3f73fc21189963234972bc181aa7f5"
+    },
+    "6 minus 3 wie viele bleiben": {
+      "id": "free_9009c48ade5784f0",
+      "text": "6 minus 3. Wie viele bleiben?",
+      "spoken_text": "6 minus 3. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000000159211478972103665531331268506765052000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "4791d3726ec8c6582ca557f035afea871d66cdf0496b7c17cd0c38208ad4b987"
+    },
+    "6 minus 4 wie viele bleiben": {
+      "id": "free_f90ef0b2f8466354",
+      "text": "6 minus 4. Wie viele bleiben?",
+      "spoken_text": "6 minus 4. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000001293115877210034521000003104541576322100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "ad7cdd5e8e9d6c23de505c0bc977222a9d089948c64f05fe70dd80ceef205423"
+    },
+    "6 minus 5 wie viele bleiben": {
+      "id": "free_7675088cbc7e3772",
+      "text": "6 minus 5. Wie viele bleiben?",
+      "spoken_text": "6 minus 5. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000015812289962106511000002414581365512100000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "c9559c25ced395a2302e3bc8a7aad6bfba15a5c1fdf17309637918f632b9daff"
+    },
+    "7 minus 1 wie viele bleiben": {
+      "id": "free_f6a8ece65f5a95c5",
+      "text": "7 minus 1. Wie viele bleiben?",
+      "spoken_text": "7 minus 1. Wie viele bleiben?",
+      "ms": 2987,
+      "env": "000000000001135644445421475311014114691676411100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "8b7a8b8ab9c7cecf9793dedc4ece7b890a9a85c345c6e7bf2193688036e3b755"
+    },
+    "7 minus 2 wie viele bleiben": {
+      "id": "free_5c11ef5ff09b0de1",
+      "text": "7 minus 2. Wie viele bleiben?",
+      "spoken_text": "7 minus 2. Wie viele bleiben?",
+      "ms": 2944,
+      "env": "00000000001235657998920209854203413472277734510000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "270c1eea74146da3d1d6ae350028e536e95affa5e97a0c76c528965921cc4e84"
+    },
+    "7 minus 3 wie viele bleiben": {
+      "id": "free_77ef20a42e1af4ac",
+      "text": "7 minus 3. Wie viele bleiben?",
+      "spoken_text": "7 minus 3. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000000122693578831035555303312458046662232000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "a139cc8a98859e18221203557c99c7a2f1162b9a0f526cf97f96d79a0d4cb34d"
+    },
+    "7 minus 4 wie viele bleiben": {
+      "id": "free_b66b7aaf4dc744c5",
+      "text": "7 minus 4. Wie viele bleiben?",
+      "spoken_text": "7 minus 4. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000013645988722025852000002302382376654410000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "06e74ba5ebb372506a07af30b8153cf344391cb69262f5c851cc78ca4769ff9b"
+    },
+    "7 minus 5 wie viele bleiben": {
+      "id": "free_ed9399a6bfe91b62",
+      "text": "7 minus 5. Wie viele bleiben?",
+      "spoken_text": "7 minus 5. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000022452778989631066210000231466277754530000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "a669c42344ca57908855c3fb9d92d77239555337ac0de2e52113020f8f85ea01"
+    },
+    "7 minus 6 wie viele bleiben": {
+      "id": "free_38d510ee010c4cf2",
+      "text": "7 minus 6. Wie viele bleiben?",
+      "spoken_text": "7 minus 6. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000001246567898224920122110044145942875544100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "4ee9cd63f54475c93c0cb435a57d5dd62bde138e610c7d3f45b0204ad7d5be3c"
+    },
+    "8 minus 1 wie viele bleiben": {
+      "id": "free_a522cda4615c003d",
+      "text": "8 minus 1. Wie viele bleiben?",
+      "spoken_text": "8 minus 1. Wie viele bleiben?",
+      "ms": 3029,
+      "env": "0000000000000951027886136531100321447278763200000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "7d73a7efdb7cf3978397a0b4dca51ddae2356151631834b44258b1a4abdaec07"
+    },
+    "8 minus 2 wie viele bleiben": {
+      "id": "free_be61952d82b3bea7",
+      "text": "8 minus 2. Wie viele bleiben?",
+      "spoken_text": "8 minus 2. Wie viele bleiben?",
+      "ms": 2987,
+      "env": "000000000000761017996111775410033134612667332100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "8eec492855c76fe2f3ed2bc0d881f45cdda47e8bfa82213a942f87488ea154de"
+    },
+    "8 minus 3 wie viele bleiben": {
+      "id": "free_1c7271a93afab2a2",
+      "text": "8 minus 3. Wie viele bleiben?",
+      "spoken_text": "8 minus 3. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000005511048885102554210000341359236563221000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "9087cdb16bb67afdf61a7d016cd67d5a699fd11ba7aab7cdbfc6f54a83c16100"
+    },
+    "8 minus 4 wie viele bleiben": {
+      "id": "free_8bc44d2199e8c210",
+      "text": "8 minus 4. Wie viele bleiben?",
+      "spoken_text": "8 minus 4. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000001530104988421023431000042044603655141000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "5a2cbc1ff385564bf336fe1433b802b326926e41a2fa961c56c3c0c058df8451"
+    },
+    "8 minus 5 wie viele bleiben": {
+      "id": "free_fba3424123df234b",
+      "text": "8 minus 5. Wie viele bleiben?",
+      "spoken_text": "8 minus 5. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000005311289762116721000000240278716868142100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "d5961b1c21e589fade9aef9b72928fa6280d707795785b58c35d8af139f2a243"
+    },
+    "8 minus 6 wie viele bleiben": {
+      "id": "free_94bd70dfd8caeaf0",
+      "text": "8 minus 6. Wie viele bleiben?",
+      "spoken_text": "8 minus 6. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000004610027998215920111014215571565612200000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3cc022d87319bd7b5b01463f38d47334a5727919500b771d73575b297a1a5244"
+    },
+    "8 minus 7 wie viele bleiben": {
+      "id": "free_118d451c4c8164a4",
+      "text": "8 minus 7. Wie viele bleiben?",
+      "spoken_text": "8 minus 7. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000000541102568942235511100014314470465612110000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "ebaf05cdf393960876a24db209368f1101252b4d55c59f1efc50e02d07d9762e"
+    },
+    "9 minus 1 wie viele bleiben": {
+      "id": "free_8e14d99f20abd6be",
+      "text": "9 minus 1. Wie viele bleiben?",
+      "spoken_text": "9 minus 1. Wie viele bleiben?",
+      "ms": 2987,
+      "env": "000000000000698744564216786110152144712778353100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "58f23c666df9c79cdc440459098239d485bd89ea88b9b19ba524a06478f20023"
+    },
+    "9 minus 2 wie viele bleiben": {
+      "id": "free_4e9ff3a12eafa98b",
+      "text": "9 minus 2. Wie viele bleiben?",
+      "spoken_text": "9 minus 2. Wie viele bleiben?",
+      "ms": 2944,
+      "env": "00000000000026975554521105421022023512655434200000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "7c031e20c8acd9aaa4c5d837197bc9a59f9280d7079054b1be7a962b2653748e"
+    },
+    "9 minus 3 wie viele bleiben": {
+      "id": "free_f065db17634a6448",
+      "text": "9 minus 3. Wie viele bleiben?",
+      "spoken_text": "9 minus 3. Wie viele bleiben?",
+      "ms": 3072,
+      "env": "00000000000035975446662112654310002303464266461211000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "d5f5929260c092edc5dcf7961547d72613ee62321928b103a19388f564207c07"
+    },
+    "9 minus 4 wie viele bleiben": {
+      "id": "free_5f4ab7919ce43d06",
+      "text": "9 minus 4. Wie viele bleiben?",
+      "spoken_text": "9 minus 4. Wie viele bleiben?",
+      "ms": 3157,
+      "env": "0000000000003697566664210234410000431446147551220000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "bfe69382e07e9245060dd4681d5fe304d3043ca7ffd255ac324fdddacef124cf"
+    },
+    "9 minus 5 wie viele bleiben": {
+      "id": "free_fc60775d7bfb3508",
+      "text": "9 minus 5. Wie viele bleiben?",
+      "spoken_text": "9 minus 5. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000003799764467852116521000005415581366623320000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3d73c8cc7f7e94645f4acb7c4867ec77a16ba72543c3b6fc93818e3fb6fde55e"
+    },
+    "9 minus 6 wie viele bleiben": {
+      "id": "free_817247d46e7be3eb",
+      "text": "9 minus 6. Wie viele bleiben?",
+      "spoken_text": "9 minus 6. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000000479865567832267212102213371266663520000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "6dcc83a4059711baec1f1423a9aaa3471d58a2b28a50a586bc2128da43175888"
+    },
+    "9 minus 7 wie viele bleiben": {
+      "id": "free_0c5d8e0429b252ab",
+      "text": "9 minus 7. Wie viele bleiben?",
+      "spoken_text": "9 minus 7. Wie viele bleiben?",
+      "ms": 3072,
+      "env": "00000000000048975566832124412100241247047571420000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "1d2fa995c9c810e88f94bb79ecac87723ca63feeb6825a9a35a990e69d3be98c"
+    },
+    "9 minus 8 wie viele bleiben": {
+      "id": "free_0184d3784cc92404",
+      "text": "9 minus 8. Wie viele bleiben?",
+      "spoken_text": "9 minus 8. Wie viele bleiben?",
+      "ms": 3115,
+      "env": "000000000027987676554112621110000034144613664121000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "60216bb88267d22d26227b2718b9bfe00fad7497c73fbaae53297626c70fdee9"
+    },
+    "auf gehts du schaffst das": {
+      "id": "free_d91a4b601dac6b6d",
+      "text": "Auf gehts! Du schaffst das.",
+      "spoken_text": "Auf gehts! Du schaffst das.",
+      "ms": 2731,
+      "env": "0000000000019401886023210001421931104421100000000000000",
+      "preset": "F2",
+      "style": "greeting",
+      "asset_sha256": "bbceb3a758aaea03c3443618003dc2c966e426e8da2bb8e06055e476e769639c"
+    },
+    "bravo": {
+      "id": "free_0dab21404b86dcbc",
+      "text": "Bravo!",
+      "spoken_text": "Bravo!",
+      "ms": 1323,
+      "env": "000000035991265300000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "499a4565397e9f1a1213d0c685a8081b10a9cd756e8f483ae61ca06e7d6aa065"
+    },
+    "das war fast richtig probier nochmal": {
+      "id": "free_f8d67c4cef1f5de8",
+      "text": "Das war fast richtig. Probier nochmal!",
+      "spoken_text": "Das war fast richtig. Probier nochmal!",
+      "ms": 3285,
+      "env": "000000000007921497305421220021000000017168846988610000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "2ecc72ad023205a59da105a58c0b2d93150f1598dcb3b99adf55746420068557"
+    },
+    "das war schwierig versuchen wir es einfacher": {
+      "id": "free_e267718edd6360bd",
+      "text": "Das war schwierig. Versuchen wir es einfacher.",
+      "spoken_text": "Das war schwierig. Versuchen wir es einfacher.",
+      "ms": 3669,
+      "env": "00000000000038218621267142100000000001936567932441051132100000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "e6ef33caf57e95d683c28cd09a7de5ca5cf479dc13bc639958aa62cb65d59c9c"
+    },
+    "der kurze zeiger zeigt die stunden der lange zeiger zeigt die minuten": {
+      "id": "free_e1e2885929765827",
+      "text": "Der kurze Zeiger zeigt die Stunden. Der lange Zeiger zeigt die Minuten.",
+      "spoken_text": "Der kurze Zeiger zeigt die Stunden. Der lange Zeiger zeigt die Minuten.",
+      "ms": 5077,
+      "env": "000000000000185186165117645921175002211465303530000000057674560155516501175002455432011100000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "74cfc734c458d2d3bd794f6b64563d2d456f4c9e7c9ed73822aba46b7c1947e8"
+    },
+    "du bist ein lern profi": {
+      "id": "free_ca35ecd4616bd789",
+      "text": "Du bist ein Lern-Profi!",
+      "spoken_text": "Du bist ein Lern-Profi!",
+      "ms": 1963,
+      "env": "0000000242514488631292031000000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "fa28277f385798a39f7d43e554e73c3446944603fab05d37c2356765cb8d9cfb"
+    },
+    "du schaffst das wir probieren es gemeinsam zuerst schauen wir genau hin": {
+      "id": "free_650d5b527a9d134f",
+      "text": "Du schaffst das! Wir probieren es gemeinsam. Zuerst schauen wir genau hin.",
+      "spoken_text": "Du schaffst das! Wir probieren es gemeinsam. Zuerst schauen wir genau hin.",
+      "ms": 6400,
+      "env": "00000000000006733960221952332000000000000000000006901825654421777643214521100000000001378400116765464344774243110000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "2a39d129c6fada1e7986ab61136129e5cbb135ee9e146518e8e3edd9bc9b4cb4"
+    },
+    "du wirst das bald können": {
+      "id": "free_721405afba0877c0",
+      "text": "Du wirst das bald können!",
+      "spoken_text": "Du wirst das bald können!",
+      "ms": 2133,
+      "env": "0000000003629214410553003321110000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "3415902921e03819b771822f56faafca85193ba0569d0430732ca644724d138f"
+    },
+    "ein dreieck hat drei ecken": {
+      "id": "free_34f0597cc2fc2739",
+      "text": "Ein Dreieck hat drei Ecken.",
+      "spoken_text": "Ein Dreieck hat drei Ecken.",
+      "ms": 2176,
+      "env": "00000000037833995035029653021000000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "4a4da22de5c901ea52329cae41668e3563dc63d4807287de839506e8906cc55a"
+    },
+    "ein kreis ist rund er hat keine ecken": {
+      "id": "free_e00c7f4b81690f4b",
+      "text": "Ein Kreis ist rund. Er hat keine Ecken.",
+      "spoken_text": "Ein Kreis ist rund. Er hat keine Ecken.",
+      "ms": 3243,
+      "env": "00000000000004651145622310597400005760026441620221000000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "536cad6d1bc10c6d6c2e0952fb700b6242d991b11297761e62d5c1a6356b3102"
+    },
+    "ein quadrat hat vier gleich lange seiten": {
+      "id": "free_0bb290380f2ea3c6",
+      "text": "Ein Quadrat hat vier gleich lange Seiten.",
+      "spoken_text": "Ein Quadrat hat vier gleich lange Seiten.",
+      "ms": 2901,
+      "env": "00000000047611875268226100734941264341554011100000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "4196537fdf1c617f330aa39e63d1428ee9d6e6118b728c03c4fbcf0face43b36"
+    },
+    "fast schau nochmal": {
+      "id": "free_35ef73b1f35d39a7",
+      "text": "Fast! Schau nochmal.",
+      "spoken_text": "Fast! Schau nochmal.",
+      "ms": 2261,
+      "env": "0000000000197320000013955513652000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "f4c70ece270fc9a20cdba0dfafcfe5ae9e652ae1905b394211f05506ae3a7c9e"
+    },
+    "genau richtig": {
+      "id": "free_ed45b630ba8032f3",
+      "text": "Genau richtig!",
+      "spoken_text": "Genau richtig!",
+      "ms": 1579,
+      "env": "00000019687854721023110000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "70af0b99c961600c7ec2835c44c67e76af602d4b7382ea061f280f8fbbb7efa8"
+    },
+    "genial": {
+      "id": "free_000f30d9ed650ea8",
+      "text": "Genial!",
+      "spoken_text": "Genial!",
+      "ms": 1323,
+      "env": "000000048966764200000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "ecba261b3656573f4084e115c21c1dc19e052902fc875c8771663de8a83b9d3b"
+    },
+    "hallo heute lernen wir etwas tolles": {
+      "id": "free_b0b3718a58ad44d2",
+      "text": "Hallo! Heute lernen wir etwas Tolles.",
+      "spoken_text": "Hallo! Heute lernen wir etwas Tolles.",
+      "ms": 3243,
+      "env": "00000000000075795531000000097075875455115100743211000000000000000",
+      "preset": "F2",
+      "style": "greeting",
+      "asset_sha256": "f678374e6ed0dda4d386b412b21f122006bcc00f7f23f87644daef92d22c723f"
+    },
+    "hallo schön dass du da bist ich bin lumo komm wir entdecken zusammen etwas neues": {
+      "id": "free_b5e456b1bd716ab4",
+      "text": "Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!",
+      "spoken_text": "Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!",
+      "ms": 7253,
+      "env": "00000000000055898865331000000112545610247761342110000000000024000035676566533210000000013842210145640550360132653232034124665321110000000000000000",
+      "preset": "F2",
+      "style": "greeting",
+      "asset_sha256": "35820e387b1d1cb377ff0192dfb29aa9ad9fb46cbde88eb560ba557676797c32"
+    },
+    "hammer geht doch": {
+      "id": "free_482f4e5070089870",
+      "text": "Hammer! Geht doch!",
+      "spoken_text": "Hammer! Geht doch!",
+      "ms": 2261,
+      "env": "0000000000029465410000017903960000000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "d2741180fd787a358eb400e8dcb5cce2b3e0a92a886007946e5956a052951f09"
+    },
+    "hi lass uns gemeinsam üben": {
+      "id": "free_50d561a9aa8d6136",
+      "text": "Hi! Lass uns gemeinsam üben!",
+      "spoken_text": "Hi! Lass uns gemeinsam üben!",
+      "ms": 2987,
+      "env": "000000000000572000000000395134116666526213111000000000000000",
+      "preset": "F2",
+      "style": "greeting",
+      "asset_sha256": "fb26dba81038a3bade1f7940490a0d2c2d90835efb64605c3d105a7ad919f7b7"
+    },
+    "hier ist ein kleiner tipp": {
+      "id": "free_9bdcd6a96218662a",
+      "text": "Hier ist ein kleiner Tipp:",
+      "spoken_text": "Hier ist ein kleiner Tipp:",
+      "ms": 2219,
+      "env": "000000000005663076169657311830000000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "a1f177099441d0e1990dd30d346dc9ae067ac37b57fa718e0e7ff076c44b4e3b"
+    },
+    "hier sind drei gruppen in jeder gruppe liegen zwei äpfel wie viele äpfel sind es zusammen": {
+      "id": "free_e5fc12624e7cf887",
+      "text": "Hier sind drei Gruppen. In jeder Gruppe liegen zwei Äpfel. Wie viele Äpfel sind es zusammen?",
+      "spoken_text": "Hier sind drei Gruppen. In jeder Gruppe liegen zwei Äpfel. Wie viele Äpfel sind es zusammen?",
+      "ms": 6912,
+      "env": "0000000000586389227762143012211000000000158846969751128038455355311275416600025210000000001266104586275002732531101315644320000000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "e2c69b81ebf24ed8c0d647cc61080c40070032424cc394cc2938e0a9b16083d1"
+    },
+    "hmm nochmal probieren": {
+      "id": "free_1c7638e4beb30337",
+      "text": "Hmm, nochmal probieren?",
+      "spoken_text": "Hmm, nochmal probieren?",
+      "ms": 2005,
+      "env": "00000000056663382994052348632000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "966f191a4f877057e3e66a0bf17398e564a164ae9713b7d0de571566411323fc"
+    },
+    "ich bin stolz auf dich": {
+      "id": "free_3197e372bcd20d7c",
+      "text": "Ich bin stolz auf dich!",
+      "spoken_text": "Ich bin stolz auf dich!",
+      "ms": 2176,
+      "env": "00000000003105731697215420032100000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "50f938cd54fb40cfa66c06a4a532d98d56a0874cfdeaf860cd5a43ab1a208bf2"
+    },
+    "in welcher zeit steht der satz": {
+      "id": "free_109381da8affa339",
+      "text": "In welcher Zeit steht der Satz?",
+      "spoken_text": "In welcher Zeit steht der Satz?",
+      "ms": 2304,
+      "env": "00000000049585164117511432633860110000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "d4f8fc07fdd0f865a21722393fa9e2f06af7f66b3fb76109fbebfb22b9021ffe"
+    },
+    "ist haus ein nomen verb oder adjektiv": {
+      "id": "free_329b44c013a6195a",
+      "text": "Ist \"Haus\" ein Nomen, Verb oder Adjektiv?",
+      "spoken_text": "Ist das Wort Haus ein Nomen, ein Verb oder ein Adjektiv?",
+      "producer_input": "Ist das Wort Haus ein Nomen, ein Werb oder ein Adjektiv?",
+      "ms": 4139,
+      "env": "00000000000033086107871167722567887342113552589406595423403301174000000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "3620754beb97c7ee2fc40f9a2c08f4cd1d3baf3595a37a33a461f022056b12b2",
+      "synthesis_steps": 16,
+      "synthesis_speed": 0.94
+    },
+    "kein problem jeder fängt mal an": {
+      "id": "free_a4a5934451622e1c",
+      "text": "Kein Problem - jeder fängt mal an.",
+      "spoken_text": "Kein Problem - jeder fängt mal an.",
+      "ms": 2517,
+      "env": "000000000001986183674477614412435321000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "38f2288c8740285fddd18c70d42247e22a359e2068ff1cd9f136aeecaa82682e"
+    },
+    "kein problem wir schaffen das zusammen": {
+      "id": "free_30b44da6b080bb4a",
+      "text": "Kein Problem, wir schaffen das zusammen.",
+      "spoken_text": "Kein Problem, wir schaffen das zusammen.",
+      "ms": 2901,
+      "env": "00000000000029641824985472182135511232642211000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "4c87d749c23ec7a82e3401004ae4c200f55a3876b547b8039cd43584678118fe"
+    },
+    "klasse": {
+      "id": "free_fc981905951cdf15",
+      "text": "Klasse!",
+      "spoken_text": "Klasse!",
+      "ms": 1365,
+      "env": "0000000149611252000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "fe84e74a5e5409687ed57bd69a348ee27205d84b7d039995f99a34c2815199e3"
+    },
+    "knapp daneben versuchen wir es nochmal": {
+      "id": "free_6cb096a155c1761d",
+      "text": "Knapp daneben, versuchen wir es nochmal!",
+      "spoken_text": "Knapp daneben, versuchen wir es nochmal!",
+      "ms": 2987,
+      "env": "000000000000148105845563840935447924928995310000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "4ee54db12879cc87ced28fcade8da03486f91df0dea02c68b3edaf0cd4ddc899"
+    },
+    "komm wir machen das zusammen": {
+      "id": "free_a485491ff4e4ef31",
+      "text": "Komm, wir machen das zusammen!",
+      "spoken_text": "Komm, wir machen das zusammen!",
+      "ms": 2475,
+      "env": "00000000000001942564922361114485211000000000000000",
+      "preset": "F2",
+      "style": "greeting",
+      "asset_sha256": "dd76973f5969fe30e40e1655b8a37b3035b7b2c1d7a4a88f40d387d493946c25"
+    },
+    "lass mich dir helfen": {
+      "id": "free_7879dac67b6891c9",
+      "text": "Lass mich dir helfen:",
+      "spoken_text": "Lass mich dir helfen:",
+      "ms": 1963,
+      "env": "0000000001971152035276101110000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "05566b7c655bc4eacf1beba5747ddf53dd84884c1c144f7d3f8aa5f5f329eb26"
+    },
+    "mega du hast es geschafft": {
+      "id": "free_dd79baee771402f5",
+      "text": "Mega! Du hast es geschafft!",
+      "spoken_text": "Mega! Du hast es geschafft!",
+      "ms": 2603,
+      "env": "00000000013593977510000586302213417730000000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "d5b9a08347290a441073ff4c2cf96c03dd61b1cf3f718d8459b431a90d963874"
+    },
+    "nicht ganz aber du bist nah dran": {
+      "id": "free_e96563f724f2c9cd",
+      "text": "Nicht ganz - aber du bist nah dran!",
+      "spoken_text": "Nicht ganz - aber du bist nah dran!",
+      "ms": 2816,
+      "env": "000000000001650055311034553235114661159521000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "8418c0916f2c0ad299f3067dbce05812181c46cae95abd8fb3c1e2c24034ec14"
+    },
+    "perfekt": {
+      "id": "free_971397e97e4aa4df",
+      "text": "Perfekt!",
+      "spoken_text": "Perfekt!",
+      "ms": 1323,
+      "env": "000000002740492001000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "365d1b5a893f2aecf68c62240233d2301e759e600fff67495e8d1cc6b91b5099"
+    },
+    "probier es so": {
+      "id": "free_0f0fa15b5f7ac1d5",
+      "text": "Probier es so:",
+      "spoken_text": "Probiere es so.",
+      "producer_input": "Probiere es so.",
+      "ms": 1621,
+      "env": "000001018779983326420000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "215d4820d217d6c6db334414d44b05817c56ccc1746a42d3f31e8ccfed4dc0df",
+      "synthesis_steps": 16,
+      "synthesis_speed": 0.94
+    },
+    "ruhig wir machen einen kleinen schritt": {
+      "id": "free_56ef527f3c80ecec",
+      "text": "Ruhig - wir machen einen kleinen Schritt.",
+      "spoken_text": "Ruhig - wir machen einen kleinen Schritt.",
+      "ms": 2816,
+      "env": "000000000000179940005355234321454221133000000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "270b5a883ef137c0b13616706d532b491e0076e28a450511897e6ca8774e9708"
+    },
+    "schau mal so": {
+      "id": "free_cb071cce13fbb7d5",
+      "text": "Schau mal so:",
+      "spoken_text": "Schau mal so:",
+      "ms": 1536,
+      "env": "0000000011897997226510000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "ab1936bff1b7c46ce449dd2282655d8b0d52f6cecd80d6fd0a305d5f1bed5a42"
+    },
+    "schau noch einmal genau hin": {
+      "id": "free_d3f7b5463059450c",
+      "text": "Schau noch einmal genau hin.",
+      "spoken_text": "Schau noch einmal genau hin.",
+      "ms": 2133,
+      "env": "0000000000001789244674436634210000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "ad08729195f3b914e80b1be74ff381ce46ec67efaf79a9c78b9dfcb9c930ef83"
+    },
+    "schreib ein a": {
+      "id": "free_9081071f1ce419b2",
+      "text": "Schreib ein A!",
+      "spoken_text": "Schreib ein A!",
+      "ms": 1536,
+      "env": "0000000119932377610000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "025fc6cf1b75b2014dd5ff7dcbffb2fe5c0170edbf12e006eef8d0295be12545"
+    },
+    "schön dich zu sehen bereit": {
+      "id": "free_6d30043d0e792bc7",
+      "text": "Schön dich zu sehen! Bereit?",
+      "spoken_text": "Schön dich zu sehen! Bereit?",
+      "ms": 2645,
+      "env": "00000000000001875201427876200062975000000000000000000",
+      "preset": "F2",
+      "style": "greeting",
+      "asset_sha256": "b73e4242b799921849f6325bbfbdbe4feccff28616d1718c9ff0cc7b158c36f8"
+    },
+    "spitze weiter so": {
+      "id": "free_e51e3f6cf592cc1c",
+      "text": "Spitze, weiter so!",
+      "spoken_text": "Spitze, weiter so!",
+      "ms": 1920,
+      "env": "000000000113601569455277720000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "c5c513784789d07e884433cffd025465a4ae7217a3b4dbf196ac07d0158dfa95"
+    },
+    "stark": {
+      "id": "free_b094ab5e50b34ac0",
+      "text": "Stark!",
+      "spoken_text": "Stark!",
+      "ms": 1323,
+      "env": "000000011199970000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "de6fdade2d882b50662ff975b1e35d6093adf6e15e4188d6a4e4fa692b4092a9"
+    },
+    "super": {
+      "id": "free_f3297ed9f41804eb",
+      "text": "Super!",
+      "spoken_text": "Super!",
+      "ms": 1323,
+      "env": "000000001891863000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "521ad9cbd482958d485adbda99c550eb8e4235e378a108f1984d1115a6854071"
+    },
+    "super das hast du toll gemacht": {
+      "id": "free_c38b3fad32064dea",
+      "text": "Super! Das hast du toll gemacht!",
+      "spoken_text": "Super! Das hast du toll gemacht!",
+      "ms": 3029,
+      "env": "0000000000000249812752000004615512313875566751110000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "a52018d0285e0100a1271340136133fe3b7a4b5d8139f085a750858afc3da144"
+    },
+    "tipp": {
+      "id": "free_cea6e09e4b0edcf4",
+      "text": "Tipp:",
+      "spoken_text": "Tipp:",
+      "ms": 1323,
+      "env": "000000000189011000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "d4d3bdd07f4ec5d2c97a7d6c62313f1b767ce2f60ee94011c51dbf87851ee02b"
+    },
+    "toll gemacht": {
+      "id": "free_1d91440958381892",
+      "text": "Toll gemacht!",
+      "spoken_text": "Toll gemacht!",
+      "ms": 1493,
+      "env": "000000014952657711000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "faa7f0cc628e86e23299efba8b23586b80365eebc4d4d957035b92d2f22fd1ff"
+    },
+    "voll richtig": {
+      "id": "free_2e63dfbdbb17d34c",
+      "text": "Voll richtig!",
+      "spoken_text": "Voll richtig!",
+      "ms": 1536,
+      "env": "0000000003982810131100000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "01bdf18cb6639b131c5d05758de3ce9930f5b8dce7ffe9bdff476f926c766991"
+    },
+    "von acht bis zehn fehlen zwei wie viele bleiben von sechs übrig": {
+      "id": "free_e9dec1a5e95262ea",
+      "text": "Von acht bis zehn fehlen zwei. Wie viele bleiben von sechs übrig?",
+      "spoken_text": "Von acht bis zehn fehlen zwei. Wie viele bleiben von sechs übrig?",
+      "ms": 4565,
+      "env": "00000000000009486110521279811775321157743100000000551388617773404747712131141000000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "1aade9dbf0705ac54f58aad0eae55cbf86f706ca5cfe34ac9608d9d8136cd037"
+    },
+    "von sieben bis zehn fehlen drei von den fünf bleiben dann zwei übrig zehn plus zwei ist zwölf": {
+      "id": "free_81e1229b227be798",
+      "text": "Von sieben bis zehn fehlen drei. Von den fünf bleiben dann zwei übrig. Zehn plus zwei ist zwölf.",
+      "spoken_text": "Von sieben bis zehn fehlen drei. Von den fünf bleiben dann zwei übrig. Zehn plus zwei ist zwölf.",
+      "ms": 6869,
+      "env": "000000000068846935553210125565211665433166432000000000478851573006866232652116623511220000000000026861185101185221113743000000000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "2663647b6762558f6f07694b9a84bd915fd5eb62704e55d9bfa254d65f1a3e22"
+    },
+    "wahnsinn weiter so": {
+      "id": "free_fada50abaf507531",
+      "text": "Wahnsinn, weiter so!",
+      "spoken_text": "Wahnsinn, weiter so!",
+      "ms": 1920,
+      "env": "000000000298631654563164158520000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "d2d0559cc691338f206bd63056ff2a398c1ea3b117d174ed828b8196aa1d46e3"
+    },
+    "welche farbe ist das": {
+      "id": "free_ca65d3946d8e1f83",
+      "text": "Welche Farbe ist das?",
+      "spoken_text": "Welche Farbe ist das?",
+      "ms": 1877,
+      "env": "00000000039534066321056110000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "e613415d43910fa1090fc893ed08e9eb83d625ff472b17891d912da4321f22bd"
+    },
+    "welche form ist das": {
+      "id": "free_7b91d0103b44677e",
+      "text": "Welche Form ist das?",
+      "spoken_text": "Welche Form ist das?",
+      "ms": 1835,
+      "env": "0000000086150385531597111000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "461b2a33452381ffeb9d6294fc4b50bc07eb6800cd494a9d2ad6868f3b8442a4"
+    },
+    "welche jahreszeit zeigt das bild": {
+      "id": "free_91e19753444acacd",
+      "text": "Welche Jahreszeit zeigt das Bild?",
+      "spoken_text": "Welche Jahreszeit zeigt das Bild?",
+      "ms": 2560,
+      "env": "0000000000009924887340297015620631275300000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "93118498bbda88dcd5ba4240d6dce127907a1620a6d785fab96a52ba754b0607"
+    },
+    "welche zahl kommt nach 10": {
+      "id": "free_c64cb59dc975494e",
+      "text": "Welche Zahl kommt nach 10?",
+      "spoken_text": "Welche Zahl kommt nach 10?",
+      "ms": 2091,
+      "env": "000000000196140178415223013654000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "285ead732ee8942d211cc7f1655bfd57bf89b6b6e99b3c4715f3fa1fe61d5e7e"
+    },
+    "welche zahl kommt nach 1": {
+      "id": "free_dbaad4c64c5c5f52",
+      "text": "Welche Zahl kommt nach 1?",
+      "spoken_text": "Welche Zahl kommt nach 1?",
+      "ms": 2048,
+      "env": "00000000592621497602521511366621000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "08450daf11a2edb8c24a94e7d0dbb32cbffd4d70a96d156239876fea5cf2f04c"
+    },
+    "welche zahl kommt nach 2": {
+      "id": "free_0d7bc2d930580163",
+      "text": "Welche Zahl kommt nach 2?",
+      "spoken_text": "Welche Zahl kommt nach 2?",
+      "ms": 2048,
+      "env": "00000000978428951634401077520000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "4a48bd0d358645e9bd128ea8a5198b23b76609f49dd2114fabc1950684e33678"
+    },
+    "welche zahl kommt nach 3": {
+      "id": "free_d9afd4dc436f7753",
+      "text": "Welche Zahl kommt nach 3?",
+      "spoken_text": "Welche Zahl kommt nach 3?",
+      "ms": 2091,
+      "env": "000000000037424119941655411687400000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "2adaf716d84ea9cad9642fe5da3aafe212cf055c76a69ad818d767163668b7b6"
+    },
+    "welche zahl kommt nach 4": {
+      "id": "free_2d47d02eee0eb087",
+      "text": "Welche Zahl kommt nach 4?",
+      "spoken_text": "Welche Zahl kommt nach 4?",
+      "ms": 2133,
+      "env": "0000000049243147612413210377300000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "90465745f0c67df28211e3538c434c069a52988f67e060b41dfe540e9b8913d8"
+    },
+    "welche zahl kommt nach 5": {
+      "id": "free_4d2c9f04753c808c",
+      "text": "Welche Zahl kommt nach 5?",
+      "spoken_text": "Welche Zahl kommt nach 5?",
+      "ms": 2176,
+      "env": "00000005951601687126342015310000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "a1ee3b03eb961e4c0a8c7c347c162b57c6fb875c64104b7c3eacee3f4ee2e272"
+    },
+    "welche zahl kommt nach 6": {
+      "id": "free_ffa331c35d1ee73c",
+      "text": "Welche Zahl kommt nach 6?",
+      "spoken_text": "Welche Zahl kommt nach 6?",
+      "ms": 2176,
+      "env": "00000000694261178811622521430121100000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "088e1a00f19597e05df37930c40f072b15884a06ed3629a2679a915b386ccffe"
+    },
+    "welche zahl kommt nach 7": {
+      "id": "free_42377ef91359847d",
+      "text": "Welche Zahl kommt nach 7?",
+      "spoken_text": "Welche Zahl kommt nach 7?",
+      "ms": 2176,
+      "env": "00000000188181259841422521143730000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "99e8646266516607708110dca23c7d413d671a470351e02452402a3314a0f4e9"
+    },
+    "welche zahl kommt nach 8": {
+      "id": "free_144cd3d10e10d0df",
+      "text": "Welche Zahl kommt nach 8?",
+      "spoken_text": "Welche Zahl kommt nach 8?",
+      "ms": 2133,
+      "env": "0000000000003944218941521321141100000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "ff33a404b60000f112fec9f43fcf4120397eb58663a8db3beedf7f5fdbf1e7f5"
+    },
+    "welche zahl kommt nach 9": {
+      "id": "free_871ba286b4ab9635",
+      "text": "Welche Zahl kommt nach 9?",
+      "spoken_text": "Welche Zahl kommt nach 9?",
+      "ms": 2133,
+      "env": "0000000098150199713434125521000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "28d3848f0e9468ae32e09cd07bbe94cf5828a80d501712b7505ba41853c9cb2b"
+    },
+    "welcher artikel passt zu sonne": {
+      "id": "free_f3f108ce72424622",
+      "text": "Welcher Artikel passt zu Sonne?",
+      "spoken_text": "Welcher Artikel passt zu Sonne?",
+      "ms": 2432,
+      "env": "0000000000495145441231721521013156554200000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "1c4f242e003ff4845b524bfd289a064a8ec6c509b2330e71979401994c1c09c4"
+    },
+    "welcher bruch wurde gegessen": {
+      "id": "free_360937ec7ffc96fc",
+      "text": "Welcher Bruch wurde gegessen?",
+      "spoken_text": "Welcher Bruch wurde gegessen?",
+      "ms": 2133,
+      "env": "0000000029819712760075413163112100000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "bcbce8f0675c5d9ae4621426c3c568a12a40953308c15b51015fe55371d467ac"
+    },
+    "welches tier ist das": {
+      "id": "free_dd5e12c2f3f3966b",
+      "text": "Welches Tier ist das?",
+      "spoken_text": "Welches Tier ist das?",
+      "ms": 1920,
+      "env": "000000000593141014521231100000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "c5411f41b50d9d7997a0b2a390e6b026aee3b4534b8c17ae706df4e444e8565b"
+    },
+    "welches verkehrszeichen ist das": {
+      "id": "free_eee7c177036108ef",
+      "text": "Welches Verkehrszeichen ist das?",
+      "spoken_text": "Welches Verkehrszeichen ist das?",
+      "ms": 2432,
+      "env": "0000000049615104058114431211133211000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "6832e70d1f9bace0f3eaaaed0cbe011b07c447a95b6fc7d48bf9a682721eacee"
+    },
+    "welches wetter siehst du": {
+      "id": "free_9d09f7fc87f21327",
+      "text": "Welches Wetter siehst du?",
+      "spoken_text": "Welches Wetter siehst du?",
+      "ms": 2005,
+      "env": "00000000008912214527334213940000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "8adaa02f86f90f07aedef9a72d71a2a6e3d4364ebecc1d5f42c8c170f0ab9571"
+    },
+    "wie heißt die mehrzahl von haus": {
+      "id": "free_f07005ffe67020be",
+      "text": "Wie heißt die Mehrzahl von Haus?",
+      "spoken_text": "Wie heißt die Mehrzahl von Haus?",
+      "ms": 2304,
+      "env": "00000000399910588615850442475311000000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "87dc3b0479845e27366f0f9accd6758bbb75e49cbae9a3d95094ab09940306e5"
+    },
+    "wie spät ist es": {
+      "id": "free_67a0647fd1bbfd59",
+      "text": "Wie spät ist es?",
+      "spoken_text": "Wie spät ist es?",
+      "ms": 1749,
+      "env": "00000000395216912322311000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "e5fbc10e74b21bd561eb6adb194782c09a5be5da680f5fd5e2b53e89af801760"
+    },
+    "wie viel geld siehst du": {
+      "id": "free_4dc5758c1f01622b",
+      "text": "Wie viel Geld siehst du?",
+      "spoken_text": "Wie viel Geld siehst du?",
+      "ms": 2005,
+      "env": "00000000026136259721231106540000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "aa25aa03ef19722712b6f3421bc86a2a63ac7a02d2cb4a988d1307080b66aa22"
+    },
+    "wie viele punkte siehst du": {
+      "id": "free_cc840a6da6f07595",
+      "text": "Wie viele Punkte siehst du?",
+      "spoken_text": "Wie viele Punkte siehst du?",
+      "ms": 2048,
+      "env": "00000000025159611771434421342000000000000",
+      "preset": "F2",
+      "style": "question",
+      "asset_sha256": "58b8076d25c5579ade62ce345ebe845d835127ee2575b3931a94bdae60f7fa18"
+    },
+    "wir können zuerst bis zehn rechnen dann wird der zweite schritt leichter": {
+      "id": "free_a7990c589420b0a3",
+      "text": "Wir können zuerst bis zehn rechnen. Dann wird der zweite Schritt leichter.",
+      "spoken_text": "Wir können zuerst bis zehn rechnen. Dann wird der zweite Schritt leichter.",
+      "ms": 5248,
+      "env": "000000000001841594441185751044201143322461012211000000005534360450114640421330032003320021000000000000000",
+      "preset": "F2",
+      "style": "explain",
+      "asset_sha256": "ae9b3cea192a44049775fb6d7799256456d3a29a571f8b9aca6377511674966e"
+    },
+    "wir lernen zusammen kein stress": {
+      "id": "free_3445da7697653b4c",
+      "text": "Wir lernen zusammen. Kein Stress.",
+      "spoken_text": "Wir lernen zusammen. Kein Stress.",
+      "ms": 2944,
+      "env": "00000000000004759733112143111000153211155111000000000000000",
+      "preset": "F2",
+      "style": "comfort",
+      "asset_sha256": "aa634db3550a1346e1b53f75b79718cd3c4c3ab1702e3846223362857cee0234"
+    },
+    "wow du bist gut": {
+      "id": "free_31afa8f5059e9c4d",
+      "text": "Wow, du bist gut!",
+      "spoken_text": "Wow, du bist gut!",
+      "ms": 1707,
+      "env": "00000000589863217210553000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "94814ebcafc1ca132c15ef5fd50346c67cd6757cc20ea853b813f5275494a652"
+    },
+    "wow was für eine leistung": {
+      "id": "free_b185fc60100b7eb0",
+      "text": "Wow, was für eine Leistung!",
+      "spoken_text": "Wow, was für eine Leistung!",
+      "ms": 2261,
+      "env": "0000000000179863710656587411652100000000000000",
+      "preset": "F2",
+      "style": "celebrate",
+      "asset_sha256": "ef383ef4b05cf220ce543ee346ebd8ec2735dcef55aa9c1917e87ebc83bcaf06"
+    }
+  },
+  "aliases": {}
+}

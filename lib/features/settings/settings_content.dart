@@ -23,6 +23,7 @@ import 'legacy_learning_data_card.dart';
 import 'parent_report_card.dart';
 import 'writing_report_card.dart';
 import 'lumo_voice_diagnostics_card.dart';
+import 'local_voice_license_dialog.dart';
 
 /// All settings, sheets and dialogs share the same night surface.
 /// The State must live below the scope so showDialog captures this Theme.
@@ -109,6 +110,8 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       pitch: next.voicePitch,
       cloudVoiceEnabled: next.cloudVoiceEnabled,
       voiceServerUrl: next.aiProxyUrl,
+      localVoiceLicenseAccepted: next.localVoiceLicenseAccepted,
+      identity: LumoVoiceIdentity.freeOffline,
     );
     await SettingsRepository.save(next);
     if (mounted) setState(() => _saving = false);
@@ -118,6 +121,13 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     const defaults = AppSettings();
     await SettingsRepository.save(defaults);
     await _save(defaults);
+  }
+
+  Future<void> _setLocalVoiceLicense(bool enabled) async {
+    if (enabled && !_settings.localVoiceLicenseAccepted) {
+      if (!await LocalVoiceLicenseDialog.show(context) || !mounted) return;
+    }
+    await _save(_settings.copyWith(localVoiceLicenseAccepted: enabled));
   }
 
   Future<void> _runHealthCheck() async {
@@ -488,24 +498,35 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.55, onChanged: (v) => _save(_settings.copyWith(voiceRate: v)),
                 ),
           const SizedBox(height: 6),
-          const Text('Original-Lumo-Stimme: Sulafat. Die Stimmhöhe bleibt zur Wahrung des Originalklangs fest eingestellt. Das Sprechtempo gilt auch für die Stimmprobe.',
+          const Text('Lumo Frei: eine helle deutsche Charakterstimme. Die Stimme ist KI-erzeugt. Begrüßung, Lob und Lernaufgaben verwenden dieselbe lokale Stimme; das Sprechtempo gilt auch für die Stimmprobe.',
               style: TextStyle(fontSize: 12)),
           const SizedBox(height: 10),
           _SwitchRow(
-            title: 'Online-Lumo-Stimme (Sulafat)',
-            subtitle: 'Für neue, individuelle Sätze wird ausschließlich der vorzulesende Text über deinen Lumo-Server an Google Gemini TTS gesendet. Elternfreigabe erforderlich. Ohne diese Freigabe spricht Lumo nur vorhandene Originalaufnahmen, niemals die alte Android-Stimme.',
-            value: _settings.cloudVoiceEnabled,
-            onChanged: (v) => _save(_settings.copyWith(cloudVoiceEnabled: v)),
+            title: 'Neue Sätze offline vorlesen',
+            subtitle: 'Neue Erklärungen direkt auf diesem Gerät vertonen. Kostenloser Sprachdienst ohne Internet, Mikrofon oder Übertragung an einen Sprachserver. Für das lokale Modell gelten die angezeigten Nutzungsbedingungen. Ohne Freigabe bleiben die mitgelieferten Lernaufnahmen verfügbar.',
+            value: _settings.localVoiceLicenseAccepted,
+            onChanged: _setLocalVoiceLicense,
           ),
           const SizedBox(height: 10),
           Wrap(spacing: 10, runSpacing: 10, children: [
             FilledButton.icon(onPressed: _settings.voiceEnabled ? () => LumoVoice.instance.test() : null, icon: const Icon(Icons.volume_up_rounded), label: const Text('Stimme testen'),
                     ),
+            OutlinedButton.icon(
+              onPressed: _settings.voiceEnabled && _settings.localVoiceLicenseAccepted
+                  ? () => LumoVoice.instance.speak(
+                        'Sieben plus fünf sind zwölf. Ich teile die fünf in drei und zwei. Sieben plus drei sind zehn. Zehn plus zwei sind zwölf.',
+                        style: VoiceStyle.explain,
+                        freshLocalAudio: true,
+                      )
+                  : null,
+              icon: const Icon(Icons.auto_stories_rounded),
+              label: const Text('Neue Rechenhilfe anhören'),
+            ),
             const LumoSpeechControls(showStopWhenIdle: true),
           ],
                 ),
           const SizedBox(height: 8),
-          Text('Aktuelle Stimme: Sulafat (Originalaufnahme + freigegebene Sulafat-Synthese). Bei Verbindungsfehlern wird keine andere Stimme eingesetzt.',
+          Text('Aktuelle Stimme: Lumo Frei, lokal. Kein automatischer Wechsel zu Google Gemini oder zur Android-Systemstimme. Die bisherigen Sulafat-Originalaufnahmen bleiben unverändert erhalten.',
               style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
           const SizedBox(height: 12),
           LumoVoiceDiagnosticsCard(serverUrl: _settings.aiProxyUrl),

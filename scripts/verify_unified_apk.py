@@ -23,6 +23,58 @@ def validate_abis(actual: set[str], expected: set[str] | None = None) -> None:
         raise RuntimeError(f'Unexpected native architectures: {actual}, expected {wanted}')
 
 
+def validate_offline_voice(archive: zipfile.ZipFile, abis: set[str],
+                           config: dict, catalog: dict) -> dict:
+    """Check the actual packaged weights, license, clips and native libraries."""
+    names = archive.namelist()
+    model_prefix = 'assets/lumo_offline_voice/'
+    flutter_prefix = 'assets/flutter_assets/assets/audio/voice/lumo_free/'
+
+    def payload(name: str) -> bytes:
+        if names.count(name) != 1:
+            raise RuntimeError(f'Missing or duplicated local voice asset: {name}')
+        return archive.read(name)
+
+    manifest = json.loads(payload(model_prefix + 'model-manifest.json'))
+    if manifest != config:
+        raise RuntimeError('Packaged local voice identity or model pin differs from source')
+    for name, expected in config['file_sha256'].items():
+        if hashlib.sha256(payload(model_prefix + name)).hexdigest() != expected:
+            raise RuntimeError(f'Packaged local voice weight digest mismatch: {name}')
+    for prefix in (model_prefix, flutter_prefix):
+        if hashlib.sha256(payload(prefix + 'LICENSE-MODEL.txt')).hexdigest() != config['model_license_sha256']:
+            raise RuntimeError('Original local voice model license missing or changed')
+        payload(prefix + 'LICENSE-CODE.txt')
+    packaged_catalog = json.loads(payload(flutter_prefix + 'catalog.json'))
+    if packaged_catalog != catalog:
+        raise RuntimeError('Packaged local voice clip catalog differs from source')
+    if (catalog.get('variant') != config['profile']
+            or catalog.get('preset') != config['preset']
+            or catalog.get('speaker_id') != config['speaker_id']
+            or catalog.get('machine_generated') is not True
+            or catalog.get('aliases')):
+        raise RuntimeError('Invalid free local voice clip identity or aliases')
+    clips = catalog['clips']
+    if len(clips) < 150:
+        raise RuntimeError('Free local voice public clip inventory is incomplete')
+    for clip in clips.values():
+        if not re.fullmatch(r'free_[0-9a-f]{16}', clip['id']):
+            raise RuntimeError('Invalid packaged local voice clip path')
+        if hashlib.sha256(payload(flutter_prefix + clip['id'] + '.m4a')).hexdigest() != clip['asset_sha256']:
+            raise RuntimeError(f'Packaged free voice clip digest mismatch: {clip["id"]}')
+    for abi in abis:
+        for library in ('libonnxruntime.so', 'libonnxruntime4j_jni.so'):
+            payload(f'lib/{abi}/{library}')
+    return {
+        'profile': config['profile'], 'preset': config['preset'],
+        'speakerId': config['speaker_id'], 'sampleRate': config['sample_rate'],
+        'onnxruntimeVersion': config['onnxruntime_version'],
+        'clipCount': len(clips), 'modelSha256': config['file_sha256'],
+        'modelLicenseSha256': config['model_license_sha256'],
+        'scope': 'Actual APK package validation, not audible playback acceptance',
+    }
+
+
 def verify(path: Path, expected_abis: set[str] | None = None):
     certificate = verify_apk(path)
     tools = Path(find_apksigner()).parent
@@ -55,6 +107,11 @@ def verify(path: Path, expected_abis: set[str] | None = None):
             for library in ('libflutter.so', 'libapp.so', 'libgodot_android.so'):
                 if f'lib/{abi}/{library}' not in names:
                     raise RuntimeError(f'Missing {abi}/{library}')
+        offline_voice = validate_offline_voice(
+            archive, abis,
+            json.loads((ROOT / 'config/lumo-offline-voice.json').read_text()),
+            json.loads((ROOT / 'assets/audio/voice/lumo_free/catalog.json').read_text()),
+        )
         info = archive.getinfo('resources.arsc')
         if info.compress_type != zipfile.ZIP_STORED:
             raise RuntimeError('Android 11 requires uncompressed resources.arsc')
@@ -97,7 +154,8 @@ def verify(path: Path, expected_abis: set[str] | None = None):
               'minSdk': 24, 'targetSdk': 36, 'abis': sorted(abis),
               'elf16KiBAligned': True, 'resourcesArscAligned': True, 'bytes': path.stat().st_size,
               'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
-              'signingCertificateSha256': certificate, 'godot': provenance}
+              'signingCertificateSha256': certificate, 'godot': provenance,
+              'offlineVoice': offline_voice}
     print(json.dumps(result, indent=2))
     return result
 

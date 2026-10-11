@@ -32,7 +32,12 @@ void main() {
     // out of a widget's fake animation clock; UI still starts its own clip.
     final voice = LumoVoice.instance;
     voice.clipsEnabled = true;
-    await voice.configure(enabled: true, cloudVoiceEnabled: false, rate: .35);
+    await voice.configure(
+        enabled: true,
+        cloudVoiceEnabled: false,
+        localVoiceLicenseAccepted: false,
+        identity: LumoVoiceIdentity.freeOffline,
+        rate: .35);
     await voice.test();
     await voice.stop();
   });
@@ -43,7 +48,7 @@ void main() {
     ('fold-2176x1812-density-225', const Size(2176 / 2.25, 1812 / 2.25)),
     ('tablet-1024x768', const Size(1024, 768)),
   ]) {
-    testWidgets('real parent Sulafat controls on $name', (tester) async {
+    testWidgets('real parent free offline controls on $name', (tester) async {
       SharedPreferences.setMockInitialValues({});
       final app = await capture.stateFor(tester, size: size);
       app.updateSettings(app.state.settings.copyWith(voiceEnabled: true));
@@ -70,8 +75,10 @@ void main() {
         await speaking;
       });
       await tester.pump();
+      final greeting = LumoVoiceClips.freeLookup(
+          'Hallo! Schön, dass du da bist. Ich bin Lumo. Komm, wir entdecken zusammen etwas Neues!');
       expect(LumoVoice.instance.lastStartedAudioIdentity,
-          'Originalaufnahme c3034465f7dd.m4a');
+          'Lumo Frei / F2 / lokale Aufnahme ${greeting!.id}.m4a');
       expect(LumoVoice.instance.startedPlaybackCount, startsBeforeTap + 1,
           reason: 'The actual parent button must start this clip itself.');
       expect(find.text('Pause'), findsOneWidget);
@@ -84,7 +91,7 @@ void main() {
         expect(rect.right, lessThanOrEqualTo(size.width));
         expect(rect.bottom, lessThanOrEqualTo(size.height));
       }
-      await capture.capture(tester, 'sulafat-playing-$name');
+      await capture.capture(tester, 'lumo-free-playing-$name');
 
       final starts = LumoVoice.instance.startedPlaybackCount;
       await tester.runAsync(() async {
@@ -101,7 +108,7 @@ void main() {
       expect(resume.top, greaterThanOrEqualTo(0));
       expect(resume.right, lessThanOrEqualTo(size.width));
       expect(resume.bottom, lessThanOrEqualTo(size.height));
-      await capture.capture(tester, 'sulafat-paused-$name');
+      await capture.capture(tester, 'lumo-free-paused-$name');
 
       await tester.runAsync(() async {
         final speaking = _waitFor(VoiceStatus.speaking);
@@ -159,7 +166,7 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(LumoVoice.instance.cloudVoiceEnabled, false);
     expect(harness.retiredTtsCalls, isEmpty);
-    await capture.capture(tester, 'sulafat-unavailable-320x700-text-200');
+    await capture.capture(tester, 'lumo-free-unavailable-320x700-text-200');
     await tester.pumpWidget(const SizedBox());
   }, timeout: const Timeout(Duration(seconds: 40)));
 }
