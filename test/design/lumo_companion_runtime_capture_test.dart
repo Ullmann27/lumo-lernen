@@ -11,6 +11,7 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
@@ -26,8 +27,8 @@ Future<void> _frames(WidgetTester tester, [int count = 90]) async {
 
 Future<void> _capture(WidgetTester tester, String name) async {
   await tester.runAsync(() async {
-    await Future.wait(find.byType(Image).evaluate().map((element) =>
-        precacheImage((element.widget as Image).image, element)));
+    await Future.wait(find.byType(Image).evaluate().map(
+        (element) => precacheImage((element.widget as Image).image, element)));
   });
   await tester.pump();
   expect(tester.takeException(), isNull);
@@ -77,15 +78,18 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(() => tester.binding.setSurfaceSize(null));
-      final app = LumoAppState();
-      addTearDown(app.dispose);
-      app.setSection(LumoSection.learn);
-      app.updateSettings(const AppSettings(
-          voiceEnabled: false, autoReadEnabled: false, reduceAnimations: true));
+      late LumoAppState app;
       await tester.runAsync(() async {
+        app = LumoAppState(walletRepository: RewardWalletRepository());
+        app.setSection(LumoSection.learn);
         await app.hydrateFromWallet();
         await app.loadLearningProfile();
+        app.updateSettings(const AppSettings(
+            voiceEnabled: false,
+            autoReadEnabled: false,
+            reduceAnimations: true));
       });
+      addTearDown(app.dispose);
       await tester.pumpWidget(MaterialApp(
           theme: LumoAppTheme.light(),
           home: RepaintBoundary(
@@ -93,17 +97,22 @@ void main() {
       await _frames(tester, 30);
       await _capture(tester, '$name-task');
       final prompt = LumoCompanionRequests.instance.taskContext.value!.prompt;
-      final correct = RegExp(r'\d+').allMatches(prompt)
-          .map((match) => int.parse(match[0]!)).reduce((a, b) => a + b);
-      final wrong = tester.widgetList<Text>(find.descendant(
-          of: find.byType(GridView), matching: find.byType(Text)))
-          .map((text) => int.parse(text.data!)).firstWhere((value) => value != correct);
+      final correct = RegExp(r'\d+')
+          .allMatches(prompt)
+          .map((match) => int.parse(match[0]!))
+          .reduce((a, b) => a + b);
+      final wrong = tester
+          .widgetList<Text>(find.descendant(
+              of: find.byType(GridView), matching: find.byType(Text)))
+          .map((text) => int.parse(text.data!))
+          .firstWhere((value) => value != correct);
       final choice = find.descendant(
           of: find.byType(GridView), matching: find.text('$wrong'));
       await tester.ensureVisible(choice);
       await tester.tap(choice);
       await _frames(tester);
-      expect(LumoCompanionRequests.instance.taskContext.value!.lastCorrect, false);
+      expect(
+          LumoCompanionRequests.instance.taskContext.value!.lastCorrect, false);
       await tester.ensureVisible(find.text('Tipp'));
       await tester.tap(find.text('Tipp'));
       await _frames(tester, 10);

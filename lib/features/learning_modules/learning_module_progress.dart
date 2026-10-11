@@ -38,11 +38,13 @@ class LearningModuleProgress extends ChangeNotifier
   bool get hasPending => !_disposed && _pending != null;
   bool get saving => _saving;
   String? get error => _error;
-  String get savingText => discoveryTarget != null
-      ? 'Dein Entdeckungsweg wird gespeichert…'
-      : _pending?.correct == null
-          ? 'Wir speichern deine Belohnung…'
-          : 'Wir speichern deine Antwort…';
+  String get savingText => _pending?.discoveryPermission != null
+      ? 'Die Entdeckungsfreigabe wird gespeichert…'
+      : discoveryTarget != null
+          ? 'Dein Entdeckungsweg wird gespeichert…'
+          : _pending?.correct == null
+              ? 'Wir speichern deine Belohnung…'
+              : 'Wir speichern deine Antwort…';
 
   /// Zeitpunkt der letzten Antwort (oder des Starts); daraus ergibt sich die
   /// Bearbeitungszeit der nächsten Aufgabe fürs Aufgabenprotokoll.
@@ -95,6 +97,23 @@ class LearningModuleProgress extends ChangeNotifier
       xp: 0,
       owner: appState.beginLearningAction(),
       discoveryIntroduction: true,
+    ));
+  }
+
+  /// Explicit local parent choice through the same captured owner and retry
+  /// boundary. This never grants cloud, microphone, camera or premium access.
+  Future<bool> saveDiscoveryPermission(
+      {required bool enabled, required int maxGrade}) {
+    if (maxGrade < 1 || maxGrade > 4) {
+      throw ArgumentError('Invalid discovery limit');
+    }
+    if (_disposed || appState.resetting) return Future<bool>.value(false);
+    if (_pending != null) return _pending!.completion.future;
+    return _enqueue(_PendingModuleSave(
+      stars: 0,
+      xp: 0,
+      owner: appState.beginLearningAction(),
+      discoveryPermission: (enabled: enabled, maxGrade: maxGrade),
     ));
   }
 
@@ -163,7 +182,7 @@ class LearningModuleProgress extends ChangeNotifier
         _complete(pending, false);
         return;
       }
-      if (discoveryTarget != null) {
+      if (discoveryTarget != null || pending.discoveryPermission != null) {
         await appState.prepareLearningLease(owner);
         await owner.profile.loadDiscovery();
         if (!appState.canUseLearningLease(owner)) {
@@ -171,9 +190,15 @@ class LearningModuleProgress extends ChangeNotifier
           return;
         }
         if (!pending.profileRecorded) {
-          owner.profile.requireDiscoveryAllowed(discoveryTarget!);
+          if (pending.discoveryPermission == null) {
+            owner.profile.requireDiscoveryAllowed(discoveryTarget!);
+          }
           pending.profileRecorded = true;
-          if (pending.discoveryIntroduction) {
+          final permission = pending.discoveryPermission;
+          if (permission != null) {
+            await owner.profile.setDiscoveryPermission(
+                enabled: permission.enabled, maxGrade: permission.maxGrade);
+          } else if (pending.discoveryIntroduction) {
             await owner.profile.introduceDiscovery(discoveryTarget!);
           } else if (pending.correct != null) {
             await owner.profile.recordDiscoveryAnswer(
@@ -193,7 +218,8 @@ class LearningModuleProgress extends ChangeNotifier
         _complete(
             pending,
             appState.isCurrentLearningLease(owner) &&
-                owner.profile.discovery.allows(discoveryTarget!.grade));
+                (pending.discoveryPermission != null ||
+                    owner.profile.canDiscover(discoveryTarget!.grade)));
         return;
       }
       // Flags precede writes: both services mutate before persistence and a
@@ -269,11 +295,13 @@ class LearningModuleProgress extends ChangeNotifier
         return;
       }
       _saving = false;
-      _error = discoveryTarget != null
-          ? 'Dein Entdeckungsweg wartet noch aufs Speichern.'
-          : pending.correct == null
-              ? 'Deine Belohnung wartet noch aufs Speichern.'
-              : 'Deine Antwort wartet noch aufs Speichern.';
+      _error = pending.discoveryPermission != null
+          ? 'Die Entdeckungsfreigabe wartet noch aufs Speichern.'
+          : discoveryTarget != null
+              ? 'Dein Entdeckungsweg wartet noch aufs Speichern.'
+              : pending.correct == null
+                  ? 'Deine Belohnung wartet noch aufs Speichern.'
+                  : 'Deine Antwort wartet noch aufs Speichern.';
       if (!_disposed) notifyListeners();
       if (_disposed) pending.owner.close();
     }
@@ -372,6 +400,7 @@ class _PendingModuleSave {
     this.durationMs,
     this.discoveryIntroduction = false,
     this.discoveryStep = DiscoveryStepKind.independent,
+    this.discoveryPermission,
   });
 
   final String prompt;
@@ -380,6 +409,7 @@ class _PendingModuleSave {
   final int? durationMs;
   final bool discoveryIntroduction;
   final DiscoveryStepKind discoveryStep;
+  final ({bool enabled, int maxGrade})? discoveryPermission;
 
   final bool? correct;
   final bool hintUsed;

@@ -28,6 +28,7 @@ import '../writing/lumo_writing_word_coach_screen.dart';
 import '../writing/writing_feature_flags.dart';
 import 'lumo_teacher_screen.dart';
 import 'letter_writing_screen.dart';
+import '../tutoring/guided_learning_hub.dart';
 
 // Datenstruktur für Lehrpläne
 class LearningTopic {
@@ -687,6 +688,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           SliverToBoxAdapter(child: _buildGradePicker()),
           SliverToBoxAdapter(child: _buildLearningAreas()),
           SliverToBoxAdapter(child: _buildContinueBanner()),
+          SliverToBoxAdapter(child: _buildGuidedLearningEntries()),
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
             sliver: SliverToBoxAdapter(
@@ -1047,6 +1049,44 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       ),
     );
   }
+
+  Widget _buildGuidedLearningEntries() => Padding(
+    padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
+    child: LumoGlassCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text('Mit Lumo verstehen und entdecken',
+              style: TextStyle(fontFamily: 'Nunito',
+                  color: LumoVisualTokens.white, fontSize: 20,
+                  fontWeight: FontWeight.w900)),
+          const SizedBox(height: 12),
+          FilledButton.icon(
+            key: const ValueKey('akademie-guided-learning'),
+            onPressed: () => Navigator.of(context).push<void>(
+                MaterialPageRoute(builder: (_) => GuidedLearningHub(
+                    appState: widget.appState, discovery: false))),
+            style: FilledButton.styleFrom(minimumSize: const Size(64, 56)),
+            icon: const Icon(Icons.school_rounded),
+            label: const Text('Lumo erklärt es mir',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+          ),
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            key: const ValueKey('akademie-voluntary-discovery'),
+            onPressed: () => Navigator.of(context).push<void>(
+                MaterialPageRoute(builder: (_) => GuidedLearningHub(
+                    appState: widget.appState, discovery: true))),
+            style: OutlinedButton.styleFrom(minimumSize: const Size(64, 56)),
+            icon: const Icon(Icons.explore_rounded),
+            label: const Text('Mit Lumo Neues entdecken',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+          ),
+        ],
+      ),
+    ),
+  );
 
   /// Deutsch öffnet den Bereich aus Bild 04; zurück zeigt die Akademie
   /// die Deutsch-Themen der gewählten Klasse („Wörter“).
@@ -1589,6 +1629,18 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openTopic(LearningTopic t, LearningSubject s) {
+    // Browsing a higher class must not secretly turn its tasks into regular
+    // school progress or change the enrolled grade. New concepts need an
+    // introduction and their own explicitly allowed discovery writer.
+    if (_selectedGrade > widget.appState.state.grade) {
+      Navigator.of(context).push<void>(MaterialPageRoute(
+          builder: (_) => GuidedLearningHub(
+              appState: widget.appState, discovery: true,
+              requestedTopicTitle: t.title,
+              preferredLessonId: t.id == 'm2_einmaleins'
+                  ? 'equal_groups' : null)));
+      return;
+    }
     // 0) Schreibcoach LIVE (Heinz' Premium-Feature)
     if (t.id == 'd1_schreibcoach') {
       Navigator.of(context).push(

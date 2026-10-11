@@ -4,6 +4,7 @@ import 'package:lumo_lernen/core/math_task_templates.dart';
 import 'package:lumo_lernen/core/german_task_templates.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/task_quality_guard.dart';
+import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 
 void main() {
   var checked = 0;
@@ -110,8 +111,41 @@ void main() {
       }
     }
   }
-  stdout.writeln(
-      'Checked $checked generated tasks across all subjects, templates and grades.');
+  // Guided instruction is real product content too. Check its local answer
+  // representations independently, not just a language model's assurance.
+  var guidedChecked = 0;
+  for (final lesson in GuidedLessonCatalog.all) {
+    lesson.discoveryTarget.validate();
+    for (final step in lesson.steps.where((step) => step.isQuestion)) {
+      checked++;
+      guidedChecked++;
+      final expected = switch (step.answerKind!) {
+        GuidedAnswerKind.count => '${step.a}',
+        GuidedAnswerKind.gapToTen => '${10 - step.a}',
+        GuidedAnswerKind.remainder => '${step.a + step.b - 10}',
+        GuidedAnswerKind.sum => '${step.a + step.b}',
+        GuidedAnswerKind.groups =>
+          '${List.filled(step.a, step.b).fold<int>(0, (a, b) => a + b)}',
+        GuidedAnswerKind.repeatedAddition => [
+            for (var group = 0; group < step.a; group++) '${step.b}'
+          ].join(' + '),
+      };
+      if (step.expected != expected ||
+          !step.choices.contains(expected) ||
+          step.choices.toSet().length != step.choices.length) {
+        errors.add('${lesson.id}: invalid guided answer for ${step.title}');
+      }
+      if (step.answerKind == GuidedAnswerKind.repeatedAddition) {
+        final sums = step.choices.map((choice) =>
+            choice.split(' + ').map(int.parse).fold<int>(0, (a, b) => a + b));
+        if (sums.where((sum) => sum == step.a * step.b).length != 1) {
+          errors.add('${lesson.id}: ambiguous equal-group representations');
+        }
+      }
+    }
+  }
+  stdout.writeln('Checked $checked generated and guided tasks across '
+      'all subjects, templates and grades; $guidedChecked guided answer steps.');
   if (errors.isNotEmpty) {
     throw StateError(
         '${errors.length} failures: ${errors.take(12).join('\n')}');

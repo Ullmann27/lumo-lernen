@@ -225,6 +225,40 @@ void main() {
     expect(() => progress.saveReward(stars: 9, xp: 9), throwsStateError);
     expect(app.state.grade, 1);
   });
+
+  test('a rejected grant stays ineffective until the same permission is saved',
+      () async {
+    final store = _FalseDiscoveryStore();
+    SharedPreferencesStorePlatform.instance = store;
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+    await app.school.setActiveStudent('a');
+    final lease = await app.captureLearningProfile();
+    await app.prepareLearningLease(lease);
+    final writer = LearningModuleProgress(
+        appState: app, subject: 'Eltern', unit: 'Entdeckungen');
+    addTearDown(writer.dispose);
+    store.rejectedKey = 'flutter.${LearningDataNamespace.keyFor(_base, 'a')}';
+    final completion =
+        writer.saveDiscoveryPermission(enabled: true, maxGrade: 2);
+    for (var i = 0; i < 40 && writer.error == null; i++) {
+      await Future<void>.delayed(Duration.zero);
+    }
+    expect(writer.error, isNotNull);
+    expect(lease.profile.discoveryPermissionPending, true);
+    expect(lease.profile.canDiscover(2), false);
+    await expectLater(lease.profile.introduceDiscovery(_target),
+        throwsA(isA<DiscoveryNotAllowed>()));
+    store.rejectedKey = null;
+    writer.retry();
+    expect(await completion.timeout(const Duration(seconds: 5)), true);
+    expect(lease.profile.canDiscover(2), true);
+    expect(app.state.settings.aiProxyEnabled, false);
+    expect(app.state.settings.cloudVoiceEnabled, false);
+    expect(app.state.settings.microphoneEnabled, false);
+    expect(app.state.settings.scannerEnabled, false);
+    expect(app.learningDailyDone(), 0);
+  });
 }
 
 extension _OnlyRecord on Map<String, SkillRecord> {

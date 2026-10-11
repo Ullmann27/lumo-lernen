@@ -1096,6 +1096,49 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   /// Hilfe-Karte aus Bild 02: zwei Apfel-Mengen, „= ?“ und Lumo mit
   /// Zeigestab. Nach zwei Fehlversuchen oder auf „Tipp“ zählt Lumo vor.
   Widget _buildHelpCard() {
+    if (MediaQuery.sizeOf(context).width < 600 ||
+        MediaQuery.textScalerOf(context).scale(1) > 1.35) {
+      // The original phone reference remains the visual basis, but a second
+      // tiny fox/bubble must not compete with the actual readable explanation.
+      // Intrinsic height preserves every object even with larger type.
+      return LumoLessonSurface(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Row(children: [
+              Icon(Icons.lightbulb_rounded,
+                  color: LumoVisualTokens.gold, size: 24),
+              SizedBox(width: 8),
+              Expanded(
+                child: Text('Zähle mit Lumo',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        color: LumoVisualTokens.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w900)),
+              ),
+            ]),
+            const SizedBox(height: 8),
+            const Text('Zwei Gruppen. Wie viele Äpfel sind es zusammen?',
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    color: LumoVisualTokens.white,
+                    fontSize: 16,
+                    height: 1.35,
+                    fontWeight: FontWeight.w700)),
+            const SizedBox(height: 12),
+            Row(children: [
+              Expanded(child: _appleBox(_a, size: 26)),
+              _operator('+'),
+              Expanded(child: _appleBox(_b, size: 26)),
+              _operator('='),
+              _questionBox(),
+            ]),
+          ],
+        ),
+      );
+    }
     if (LumoLessonStyle.shortLandscape(context) &&
         MediaQuery.textScalerOf(context).scale(1) <= 1.35) {
       return LumoLessonSurface(
@@ -1106,7 +1149,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
               style: TextStyle(
                   fontFamily: 'Nunito',
                   color: LumoVisualTokens.white,
-                  fontSize: 13,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700)),
           const SizedBox(height: 8),
           Row(children: [
@@ -1242,7 +1285,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     });
   }
 
-  Widget _appleBox(int count) {
+  Widget _appleBox(int count, {double size = 18}) {
     return Container(
       constraints: const BoxConstraints(minHeight: 46),
       padding: const EdgeInsets.all(4),
@@ -1260,8 +1303,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
           spacing: 1,
           runSpacing: 1,
           children: [
-            for (var i = 0; i < count; i++)
-              const LumoQuantityArt.apple(size: 18),
+            for (var i = 0; i < count; i++) LumoQuantityArt.apple(size: size),
           ],
         ),
       ),
@@ -1414,10 +1456,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             colors: const [Color(0xFF123F7C), Color(0xFF0B2A5A)],
             border: LumoVisualTokens.cyan.withOpacity(.6),
           ),
-          if (stackActions)
-            const SizedBox(height: 8)
-          else
-            const Spacer(),
+          if (stackActions) const SizedBox(height: 8) else const Spacer(),
           _pillButton(
             label: 'Weiter',
             onPressed: canContinue ? _continueAfterCorrect : null,
@@ -1447,7 +1486,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         button: true,
         enabled: enabled,
         child: Material(
-          color: Colors.transparent,
+          // An opaque base prevents the night scenery from washing out the
+          // white hint-button label under the existing glass composition.
+          color: colors.last,
+          borderRadius: BorderRadius.circular(99),
           child: InkWell(
             borderRadius: BorderRadius.circular(99),
             onTap: onPressed,

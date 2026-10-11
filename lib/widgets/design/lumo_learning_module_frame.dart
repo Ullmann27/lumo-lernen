@@ -25,6 +25,10 @@ class LumoLearningModuleFrame extends StatefulWidget {
     this.scrollable = true,
     this.characterController,
     this.correctCaption = 'richtig',
+    this.progressComplete = false,
+    this.onNavigate,
+    this.scrollResetKey,
+    this.footer,
     this.guidance = 'Gemeinsam schaffen wir das!',
     this.mistakeGuidance = 'Fehler helfen beim Lernen.',
   });
@@ -41,6 +45,10 @@ class LumoLearningModuleFrame extends StatefulWidget {
   final bool scrollable;
   final LumoCharacterController? characterController;
   final String correctCaption;
+  final bool progressComplete;
+  final Future<void> Function(LumoSection section)? onNavigate;
+  final Object? scrollResetKey;
+  final Widget? footer;
   final String guidance;
   final String mistakeGuidance;
   final bool Function() canLeave;
@@ -53,6 +61,9 @@ class LumoLearningModuleFrame extends StatefulWidget {
 
 class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
   late final _lumo = widget.characterController ?? LumoCharacterController();
+  final _taskScroll = ScrollController();
+  ScrollController? get _scrollController =>
+      widget.scrollResetKey == null ? null : _taskScroll;
   String get _guidance =>
       widget.hasMistake ? widget.mistakeGuidance : widget.guidance;
 
@@ -70,6 +81,12 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
   @override
   void didUpdateWidget(covariant LumoLearningModuleFrame oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (widget.scrollResetKey != null &&
+        widget.scrollResetKey != oldWidget.scrollResetKey) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _taskScroll.hasClients) _taskScroll.jumpTo(0);
+      });
+    }
     // Plus already emits its genuine answer reactions through this controller.
     // Do not create a second success/error stream for that established module.
     if (widget.characterController != null) return;
@@ -91,12 +108,18 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
 
   @override
   void dispose() {
+    _taskScroll.dispose();
     if (widget.characterController == null) _lumo.dispose();
     super.dispose();
   }
 
   Future<void> _leaveTo(LumoSection section) async {
     if (!widget.canLeave()) return;
+    final navigate = widget.onNavigate;
+    if (navigate != null) {
+      await navigate(section);
+      return;
+    }
     final app = widget.appState;
     final popped = await Navigator.of(context).maybePop();
     if (popped && section != LumoSection.learn) {
@@ -216,7 +239,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
 
   Widget _progress() {
     final index = widget.taskIndex.clamp(0, widget.totalTasks - 1);
-    final complete = index / widget.totalTasks;
+    final complete = widget.progressComplete ? 1.0 : index / widget.totalTasks;
     final quiet = LumoLessonStyle.reducedMotion(context, widget.appState);
     return Semantics(
       label: '${widget.progressLabel} ${index + 1} von ${widget.totalTasks}, '
@@ -403,6 +426,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: SingleChildScrollView(
+                    controller: _scrollController,
                     child: LumoGlassCard(
                       key: const ValueKey('learning-module-adventure-card'),
                       surfaceOpacity: LumoLessonStyle.glassOpacity,
@@ -477,6 +501,8 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                                               flex: compactLandscape ? 3 : 5,
                                               child: widget.scrollable
                                                   ? SingleChildScrollView(
+                                                      controller:
+                                                          _scrollController,
                                                       child: _card())
                                                   : _fixedCard(
                                                       constraints.maxHeight -
@@ -497,6 +523,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                                   );
                                 }
                                 return SingleChildScrollView(
+                                  controller: _scrollController,
                                   padding: const EdgeInsets.only(bottom: 16),
                                   child: Column(
                                     children: [
@@ -515,6 +542,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
                               }));
                         }),
                       ),
+                      if (widget.footer != null) widget.footer!,
                       LumoBottomNavigation(
                         active: LumoSection.learn,
                         onSelect: _leaveTo,

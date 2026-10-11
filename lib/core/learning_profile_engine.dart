@@ -47,6 +47,7 @@ class LearningProfileEngine {
   Future<void>? _discoveryLoading;
   bool _discoveryDirty = false;
   int _discoveryRevision = 0;
+  bool _discoveryPermissionPending = false;
 
   Future<String> get studentId => _repo.studentId;
   bool get hasUnsavedChanges => _dirty || _discoveryDirty;
@@ -58,6 +59,14 @@ class LearningProfileEngine {
   Map<String, String> get lastTopics => Map.unmodifiable(_lastTopics);
   bool get isDiscoveryLoaded => _discoveryLoaded;
   DiscoveryProgress get discovery => _discovery;
+  bool get discoveryPermissionPending => _discoveryPermissionPending;
+
+  /// An in-memory grant after a rejected native write is not an effective
+  /// permission. A pending revocation blocks immediately as well.
+  bool canDiscover(int grade) =>
+      _discoveryLoaded &&
+      !_discoveryPermissionPending &&
+      _discovery.allows(grade);
 
   Future<void> loadDiscovery() {
     if (_discoveryLoaded) return Future<void>.value();
@@ -69,6 +78,7 @@ class LearningProfileEngine {
       final loaded = await _repo.loadDiscovery();
       _discovery = loaded;
       _discoveryLoaded = true;
+      _discoveryPermissionPending = false;
     } finally {
       _discoveryLoading = null;
     }
@@ -76,7 +86,7 @@ class LearningProfileEngine {
 
   void requireDiscoveryAllowed(DiscoveryLearningTarget target) {
     target.validate();
-    if (!_discoveryLoaded || !_discovery.allows(target.grade)) {
+    if (!canDiscover(target.grade)) {
       throw const DiscoveryNotAllowed();
     }
     final existing = _discovery.topics[target.topicId];
@@ -94,6 +104,7 @@ class LearningProfileEngine {
     _discovery = _discovery.permission(enabled: enabled, maxGrade: maxGrade);
     _discoveryRevision++;
     _discoveryDirty = true;
+    _discoveryPermissionPending = true;
     await _persistDiscovery();
   }
 
@@ -134,7 +145,10 @@ class LearningProfileEngine {
         final revision = _discoveryRevision;
         final snapshot = _discovery;
         await _repo.saveDiscovery(snapshot);
-        if (revision == _discoveryRevision) _discoveryDirty = false;
+        if (revision == _discoveryRevision) {
+          _discoveryDirty = false;
+          _discoveryPermissionPending = false;
+        }
       });
 
   /// Lädt alle Daten aus dem lokalen Speicher.
@@ -255,6 +269,7 @@ class LearningProfileEngine {
     _discovery = DiscoveryProgress();
     _discoveryLoaded = true;
     _discoveryDirty = false;
+    _discoveryPermissionPending = false;
     _discoveryRevision++;
   }
 
