@@ -51,3 +51,14 @@ Offen: physisches Samsung/Fold/ARM64, echte Scharnierereignisse, menschliche
 Sprachqualität, komplette Android-Mehrprofil-/Widerrufsmatrix, vollständiges
 Kart-Rennen, externe Lehrplan-/Erwachsenen-/Lizenz-/Google-Play-Abnahme.
 Testversion; keine öffentliche Releasefreigabe oder echten Zahlungen.
+
+## Tatsächlich heruntergeladene einzelne direkte ZIP
+
+Workflow38156252433/artifact11708558071:313750734Bytes,22Dateien,
+APK direkt im Archiv,keine verschachtelten Archive. Tatsächlich über den
+Dateidienst heruntergeladen,geöffnet und erneut vollständig geprüft.
+ZIP-SHA256:`0408ba0e5d409e683477cddafd4160bb807858bca518a44654f5dcb504941701`.
+Exakte eingebettete APK-SHA256:
+`622e33fc624212ec5fef97b295f9b53f08ea469b483f3c8c3b77059203dc8683`.
+Installationsanleitung,Version,Quellcommit,Prüfsummen und ehrlicher Testbericht
+sind im Archiv enthalten. Dieser Nachweis löst keinen APK-Bau aus.
