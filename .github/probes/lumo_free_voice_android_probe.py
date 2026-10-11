@@ -272,6 +272,27 @@ def main() -> int:
             "source": "Lumo Frei / F2 / lokale Synthese",
             "audio_content_human_review": "NOT TESTED",
         }
+        # Stop a genuinely started local clip; stopping must not manufacture
+        # a natural completion or restart it afterwards.
+        starts, ends = stats(completed)
+        existing.flutter_tap(out, "Stimme testen", "greeting-for-stop")
+        existing.flutter_tap(out, "Stopp", "stop-actual-greeting")
+        stopped = status(out, "greeting-stopped",
+                         ("Sprachstatus: Ruhe", GREETING,
+                          "Native Abschlussmeldungen:"))
+        if stats(stopped) != (starts + 1, ends):
+            raise RuntimeError("Stop did not interrupt exactly one real native start")
+        time.sleep(1)
+        stable = status(out, "greeting-stays-stopped",
+                        ("Sprachstatus: Ruhe", GREETING,
+                         "Native Abschlussmeldungen:"))
+        if stats(stable) != stats(stopped):
+            raise RuntimeError("Stopped greeting completed or restarted later")
+        result["stop_control"] = {
+            "before": [starts, ends], "after": list(stats(stopped)),
+            "natural_completion_not_faked": True,
+        }
+        existing.capture(out, "04b_actual_android_greeting_stopped")
         result["layouts"] = []
         for name, width, height, density in [
             ("phone", 360, 800, 160), ("fold-target", 2176, 1812, 225),

@@ -119,7 +119,7 @@ jobs:
       - name: Prepare existing Android 16 image
         timeout-minutes: 11
         run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
-      - name: Update without uninstall and verify actual offline playback
+      - name: Update without uninstall, read actual merged parent caption and verify offline playback
         uses: reactivecircus/android-emulator-runner@v2
         env:
           DISPLAY: ':99'
