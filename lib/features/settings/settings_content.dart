@@ -5,6 +5,7 @@ import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/design/lumo_night_scope.dart';
+import '../../widgets/lumo_speech_controls.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/app_settings.dart';
 import '../../core/app_update_service.dart';
@@ -500,8 +501,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           Wrap(spacing: 10, runSpacing: 10, children: [
             FilledButton.icon(onPressed: _settings.voiceEnabled ? () => LumoVoice.instance.test() : null, icon: const Icon(Icons.volume_up_rounded), label: const Text('Stimme testen'),
                     ),
-            OutlinedButton.icon(onPressed: () => LumoVoice.instance.stop(), icon: const Icon(Icons.stop_rounded), label: const Text('Stopp'),
-                    ),
+            const LumoSpeechControls(showStopWhenIdle: true),
           ],
                 ),
           const SizedBox(height: 8),

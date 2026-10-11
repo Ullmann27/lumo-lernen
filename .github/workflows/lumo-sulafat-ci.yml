@@ -3,13 +3,23 @@ on:
   push:
     branches:
       - chatgpt/lumo-sulafat-everywhere-2026-10-10
+      - computer/lumo-education-excellence-2026-10-11
     paths:
       - .github/workflows/lumo-sulafat-ci.yml
+      - assets/audio/voice/lumo/**
       - lib/core/lumo_voice.dart
       - lib/core/lumo_sulafat_client.dart
+      - lib/core/lumo_speech_readiness.dart
+      - lib/widgets/lumo_speech_controls.dart
       - lib/features/settings/settings_content.dart
+      - lib/features/settings/lumo_voice_diagnostics_card.dart
       - lib/features/games/mini_games/lesson_trail_game.dart
       - test/lumo_sulafat_client_test.dart
+      - test/lumo_voice_clips_test.dart
+      - test/lumo_speech_readiness_test.dart
+      - test/lumo_speech_matrix_test.dart
+      - test/design/lumo_sulafat_controls_capture_test.dart
+      - test/helpers/lumo_native_audio_harness.dart
       - server/lumo-ai-proxy/**
   workflow_dispatch:
 
@@ -58,4 +68,7 @@ jobs:
             test/voice_mute_regression_test.dart \
             test/lumo_voice_word_boundary_test.dart \
             test/lumo_sulafat_client_test.dart \
+            test/lumo_speech_readiness_test.dart \
+            test/lumo_speech_matrix_test.dart \
+            test/design/lumo_sulafat_controls_capture_test.dart \
             test/writing_word_progress_test.dart

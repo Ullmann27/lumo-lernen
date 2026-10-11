@@ -7,6 +7,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_sulafat_client.dart';
 
+const fakeParentSession = 'fake-parent-session-only-in-local-tests';
+
 Uint8List validSpeechWav() {
   final wav = Uint8List(48);
   final data = ByteData.sublistView(wav);
@@ -28,6 +30,34 @@ Uint8List validSpeechWav() {
 }
 
 void main() {
+  for (final (index, token) in [
+    null,
+    '',
+    'Bearer no-double-prefix',
+    'fake\r\nx-injected-header: anything',
+    List.filled(4090, 'x').join(),
+  ].indexed) {
+    test('parent session boundary ${index + 1} prevents any connection',
+        () async {
+      var connectionAttempts = 0;
+      final operation = HttpOverrides.runZoned(
+        () => const LumoSulafatClient().synthesize(
+          text: 'Eine lokale Rechenhilfe.',
+          style: 'explain',
+          baseUrl: 'https://example.invalid',
+          parentAuthorization: token,
+        ),
+        createHttpClient: (_) {
+          connectionAttempts++;
+          throw StateError('Learning text must not reach a connection.');
+        },
+      );
+      await expectLater(
+          operation, throwsA(isA<LumoSpeechAuthorizationUnavailable>()));
+      expect(connectionAttempts, 0);
+    });
+  }
+
   test('long learning text is segmented without losing any word', () {
     final original =
         List<String>.generate(120, (i) => 'Buchstabe${i + 1}').join(' ');
@@ -52,8 +82,11 @@ void main() {
     final wav = validSpeechWav();
     final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
     final bodySeen = <String>[];
+    final authorizationSeen = <String?>[];
     var wrongVoice = true;
     server.listen((request) async {
+      authorizationSeen
+          .add(request.headers.value(HttpHeaders.authorizationHeader));
       bodySeen.add(await utf8.decoder.bind(request).join());
       request.response.headers.contentType = ContentType.json;
       request.response.write(jsonEncode({
@@ -73,6 +106,7 @@ void main() {
           text: 'Schreibe ein A.',
           style: 'explain',
           baseUrl: url,
+          parentAuthorization: fakeParentSession,
         ),
         throwsA(isA<FormatException>()));
     wrongVoice = false;
@@ -80,10 +114,12 @@ void main() {
       text: 'Schreibe ein A.',
       style: 'explain',
       baseUrl: url,
+      parentAuthorization: fakeParentSession,
     );
     expect(accepted, wav);
     expect(bodySeen.length, 2);
     expect(bodySeen.last, contains('Schreibe ein A.'));
+    expect(authorizationSeen, everyElement('Bearer $fakeParentSession'));
   });
 
   test('cancel closes an in-flight request before any late audio arrives',
@@ -101,11 +137,68 @@ void main() {
       text: 'Schau die Zahlen an.',
       style: 'explain',
       baseUrl: 'http://127.0.0.1:${server.port}',
+      parentAuthorization: fakeParentSession,
       cancellation: cancellation,
     );
     final checked = expectLater(result, throwsA(isA<Exception>()));
     await entered.future;
     cancellation.cancel();
     await checked.timeout(const Duration(seconds: 2));
+  });
+
+  for (final status in [401, 403, 404, 429, 503, 502]) {
+    test('HTTP $status remains actionable without exposing provider details',
+        () async {
+      final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+      addTearDown(() => server.close(force: true));
+      server.listen((request) async {
+        await request.drain<void>();
+        request.response.statusCode = status;
+        request.response.write('secret-provider-reply-must-not-leak');
+        await request.response.close();
+      });
+      await expectLater(
+        const LumoSulafatClient().synthesize(
+          text: 'Schreibe ein A.',
+          style: 'explain',
+          baseUrl: 'http://127.0.0.1:${server.port}',
+          parentAuthorization: fakeParentSession,
+        ),
+        throwsA(isA<LumoSpeechHttpException>()
+            .having((e) => e.statusCode, 'HTTP status', status)
+            .having((e) => e.userMessage, 'safe error', isNotEmpty)
+            .having((e) => e.toString(), 'no raw provider data',
+                isNot(contains('secret-provider-reply')))),
+      );
+    });
+  }
+
+  test('redirects cannot forward a lesson text to another destination',
+      () async {
+    final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+    addTearDown(() => server.close(force: true));
+    var forwarded = 0;
+    server.listen((request) async {
+      await request.drain<void>();
+      if (request.uri.path == '/forwarded') {
+        forwarded++;
+      } else {
+        request.response.statusCode = 307;
+        request.response.headers.set(HttpHeaders.locationHeader,
+            'http://127.0.0.1:${server.port}/forwarded');
+      }
+      await request.response.close();
+    });
+    await expectLater(
+      const LumoSulafatClient().synthesize(
+        text: 'Lies das Wort Sonne.',
+        style: 'explain',
+        baseUrl: 'http://127.0.0.1:${server.port}',
+        parentAuthorization: fakeParentSession,
+      ),
+      throwsA(isA<LumoSpeechHttpException>()
+          .having((e) => e.statusCode, 'redirect HTTP status', 307)),
+    );
+    expect(forwarded, 0);
   });
 }

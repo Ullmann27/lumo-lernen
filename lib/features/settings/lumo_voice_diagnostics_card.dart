@@ -64,10 +64,12 @@ class _DiagnosticsState extends State<LumoVoiceDiagnosticsCard> {
                   VoiceStatus.idle => 'Ruhe',
                   VoiceStatus.preparing => 'Sulafat wird vorbereitet',
                   VoiceStatus.speaking => 'Sprachausgabe läuft',
+                  VoiceStatus.paused => 'Sprachausgabe pausiert',
                   VoiceStatus.error => 'Keine Sprachausgabe verfügbar',
                 }}'
                 '${LumoVoice.instance.lastStartedAudioIdentity == null ? '' : '\nZuletzt gestartete Quelle: ${LumoVoice.instance.lastStartedAudioIdentity}'}'
-                '\nBestätigte Wiedergabestarts: ${LumoVoice.instance.startedPlaybackCount}',
+                '\nBestätigte Wiedergabestarts: ${LumoVoice.instance.startedPlaybackCount}'
+                '\nNative Abschlussmeldungen: ${LumoVoice.instance.completedPlaybackCount}',
                 style: const TextStyle(fontSize: 12),
               ),
             ),
