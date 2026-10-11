@@ -1,6 +1,21 @@
 # Android 1929: tatsächlicher Bau und gezielte Laufzeitreparatur
 
-Die APK aus [Build 38132054824](https://github.com/Ullmann27/lumo-lernen/actions/runs/38132054824) ist gebaut, aber der anschließende Android-Lauf wurde nicht bestanden. Sie ist keine vollständig freigegebene Testversion und keine produktionsbereite App. APK-Quelle ist `e4756bbcb6890d5054b5eb14ac4ef3ecd2cafa94`; große Kart-Erweiterungen und weitere Stimmexperimente bleiben zurückgestellt.
+Die APK aus [Build 38132054824](https://github.com/Ullmann27/lumo-lernen/actions/runs/38132054824) ist gebaut. Nach gezielter Reparatur der Testnavigation besteht die tatsächliche Nachprüfung [38138064509](https://github.com/Ullmann27/lumo-lernen/actions/runs/38138064509) mit unveränderten APK-Bytes. Das ist eine bestandene Android-16-x86_64-Laufzeitprüfung im unten genau beschriebenen Umfang, keine vollständige Geräte-/Hörfreigabe und keine produktionsbereite App. APK-Quelle bleibt `e4756bbcb6890d5054b5eb14ac4ef3ecd2cafa94`; große Kart-Erweiterungen und weitere Stimmexperimente bleiben zurückgestellt.
+
+## Maßgeblicher abgeschlossener Nachweis: PASS
+
+Der erfolgreiche Lauf verwendet QA-Commit `2daecd59255cbac243b148b62f4a0622de8fe680`. Alle Workflow-Schritte, der ursprüngliche Build-/Quellguard und der tatsächliche Android-Prüfschritt sind erfolgreich. `free-voice-android-result.json` meldet `PASS`; `EXISTING-APK-SOURCE.json` bestätigt `application_inputs_unchanged: true`, `rebuilt: false` und `published: false`. Das heruntergeladene Originalartefakt `11701358052` hat 26.394.612 Bytes, ZIP-SHA-256 `92d4324fbff900881a55a6a545951fc7aba5648d56797481e75e65d70e1b89dd`; sämtliche ZIP-CRC-Prüfungen sind bestanden.
+
+- **Update:** 1928 → 1929 mit `adb install -r`, ohne Deinstallation. UID `10216` und Erstinstallation `2026-10-11 12:10:21` bleiben gleich. Es handelt sich um das fiktive Wegwerfprofil „LumoTest“, nicht um eine Aussage zur vollständigen Migration aller realen Kinderdaten.
+- **Eltern-Einstieg:** tatsächliche Android-Aufnahme `00_actual_android_phone_parents.png`, 1080 × 2400. Der ursprüngliche Fehler betraf die Navigation der Probe; kein Elternzugang oder Sicherheitssystem wurde für den Test umgangen.
+- **Begrüßung:** derselbe lokale F2-Clip startet im nativen Player, pausiert bei Zählerstand `[1,0]`, läuft nach Fortsetzen vollständig bis `[1,1]`. Kein Wechsel zu Google oder Android-System-TTS.
+- **Neue Erklärung offline:** bei deaktiviertem Netz und deaktivierter Cloud wird die neue Rechenhilfe zu sieben plus fünf tatsächlich lokal synthetisiert; nativer Start und natürlicher Abschluss sind bestätigt.
+- **Stopp:** Zähler `[2,2]` → `[3,2]`. Die gestartete Aufnahme wird unterbrochen, ohne natürlichen Abschluss oder späteren Wiederstart zu erfinden.
+- **Layouts:** tatsächliche Android-Viewportaufnahmen bei 360 × 800, 2176 × 1812 / Dichte 225 und Rückkehr zum Handyviewport. Keine physische Fold-/Scharnierbehauptung.
+- **Kart-Rückkehr:** echtes Godot-Menü, exakter Button „Zum Lernen“, anschließend tatsächliche `MainActivity`, sichtbare Flutter-Navigation und beendeter privater Spielprozess. `07_preserved_kart_return.png` hat 1200 × 896 Pixel und SHA-256 `2df3f8eaec363959f29662ecffb5f3c72fff5d02e7d0cf0b4f09507b4c836ad6`.
+- **Datenerhalt:** die geprüften Profil-/Fortschritts-, Wallet- und Einstellungseinträge bleiben nach Sprachbedienung, Kart und Neustart erhalten. Die lokale Modellfreigabe bleibt gespeichert; fremde Online-/Mikrofon-/Kamerafreigaben bleiben ausgeschaltet.
+
+Der Emulator ist akustisch stumm. Menschliche Beurteilung von Klang, Aussprache und Emotionalität, physisches Samsung/ARM64, echte Scharnierereignisse, 50 Sprachsituationen auf Android und ein vollständiges Kart-Rennen bleiben offen. Die danach auf dem eigenen Lern-App-Branch implementierten Lernbegleiter-/Grafikänderungen sind nicht in dieser unveränderten 1929-APK enthalten. Die folgenden Abschnitte bewahren die tatsächliche Fehler- und Reparaturgeschichte und sind keine neue Aussage, dass dieser abgeschlossene Nachprüflauf noch scheitert.
 
 ## Tatsächlich gesichert
 
