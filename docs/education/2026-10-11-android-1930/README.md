@@ -62,3 +62,28 @@ Bei einem erneuten reinen Prüf-Navigationsfehler wird nur der Prüfhelfer repar
 und dieselbe bereits gebaute APK nachgeprüft. Kein unnötiger Neubau.
 Keine Main-Merges, echten Kinderprofiländerungen, kostenpflichtigen Sprachabfragen,
 öffentliche Veröffentlichung oder Aktivierung echter Zahlungen.
+
+## Tatsächlich isolierter Android-Prüfhelferfehler
+
+Die APK aus `5f3a47a676477ddaec05c11e31311001a015cb11` wurde erfolgreich gebaut;
+ihre vollständige CI hat 1.272 bestandene und 115 optionale übersprungene Tests
+([exakter CI-Lauf](https://github.com/Ullmann27/lumo-lernen/actions/runs/38147913894)).
+Die native Prüfung hat Update 1929→1930, erhaltenes Testprofil und Wallet,
+Offline-Synthese, Pause/Fortsetzen/Stopp, Elternbereich, Godot-Menü und Rückkehr
+bestanden, ist aber anschließend in der Navigation zum Lernkurs abgebrochen
+([tatsächlicher Android-Lauf](https://github.com/Ullmann27/lumo-lernen/actions/runs/38147910017/job/114496762865)).
+
+Die unveränderte gespeicherte Hierarchie zeigt die Ursache: „Lernen“ im Logo
+liegt bei `[31,109][113,135]` und ist `clickable=false`; die tatsächliche
+Navigation bei `[47,230][121,298]` ist `clickable=true`. Der alte Helfer hat
+zuerst das kleinere Textrechteck gewählt und danach die nicht bedienbare
+Überschrift angetippt. Das anschließende echte Laufzeitbild zeigt weiterhin
+den Startbildschirm. Dies ist keine bestandene Kursprüfung.
+
+Nur der neue Kurs-Prüfhelfer wird korrigiert: Ausgewählt werden ausschließlich
+aktuelle, aktivierte, anklickbare App-Knoten mit exaktem zugänglichem Text
+und gültigen Bounds. Die Originalhierarchie ist als fiktive Testdatenfixture
+gesichert. Der runtime-only Workflow prüft, dass keine App-, Modell-, Asset-,
+Signatur- oder Verpackungsdateien gegenüber der gebauten Quelle verändert wurden.
+Er prüft dieselbe APK nach, ohne Neubau oder künstlich eingespeiste Lernfortschritte.
+Sein vollständiges Laufzeitergebnis ist bei diesem Reparaturcommit noch offen.

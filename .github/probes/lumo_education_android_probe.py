@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 import time
@@ -39,9 +40,74 @@ def wait_text(out: Path, marker: str, tag: str, timeout: float = 30) -> str:
     raise RuntimeError("Current real app state not observed: " + marker)
 
 
+def _enabled_control_bounds(nodes: list[dict], caption: str) -> list[int] | None:
+    """Select a real enabled tap action, never a same-named static heading.
+
+    The saved 1930 hierarchy contains a small non-clickable "Lernen" logo and
+    larger clickable navigation controls. Choosing the smallest text rectangle
+    first silently tapped the logo instead of navigating.
+    """
+    choices = []
+    for node in nodes:
+        if (node.get("package") != existing.PACKAGE
+                or node.get("enabled") != "true"
+                or node.get("clickable") != "true"):
+            continue
+        values = (node.get("text", ""), node.get("content-desc", ""))
+        if not any(caption == value or caption in value.splitlines()
+                   for value in values):
+            continue
+        bounds = list(map(int, re.findall(r"\d+", node.get("bounds", ""))))
+        if (len(bounds) == 4 and bounds[2] > bounds[0]
+                and bounds[3] > bounds[1]):
+            choices.append(bounds)
+    return min(choices, key=lambda b: (b[2]-b[0])*(b[3]-b[1]), default=None)
+
+
 def tap(out: Path, caption: str, tag: str) -> None:
-    existing.flutter_tap(out, caption, tag,
-                         scroll_attempts=32, direction_order=(1, -1))
+    # Scope the correction to this new course probe. The already passed native
+    # voice/update/Kart probe and the application itself remain unchanged.
+    settling = 0
+    for direction in (1, -1):
+        for attempt in range(32):
+            nodes = existing.live.live_nodes(out, f"{tag}-{direction}-{attempt}")
+            if existing.recover_launcher_dialog(out, nodes, tag):
+                continue
+            bounds = _enabled_control_bounds(nodes, caption)
+            if bounds is not None:
+                x, y = str((bounds[0]+bounds[2])//2), str((bounds[1]+bounds[3])//2)
+                existing.base.adb("shell", "input", "swipe", x, y, x, y, "120")
+                time.sleep(2)
+                return
+            visible_label = any(
+                node.get("package") == existing.PACKAGE
+                and any(caption == value or caption in value.splitlines()
+                        for value in (node.get("text", ""), node.get("content-desc", "")))
+                for node in nodes
+            )
+            if visible_label and settling < 10:
+                settling += 1
+                time.sleep(.6)
+                continue
+            scrolls = []
+            for node in nodes:
+                if (node.get("package") != existing.PACKAGE
+                        or node.get("scrollable") != "true"):
+                    continue
+                box = list(map(int, re.findall(r"\d+", node.get("bounds", ""))))
+                if len(box) == 4 and box[2] > box[0] and box[3] > box[1]:
+                    scrolls.append(box)
+            if not scrolls:
+                time.sleep(.5)
+                continue
+            box = max(scrolls, key=lambda b: (b[2]-b[0])*(b[3]-b[1]))
+            x = str((box[0]+box[2])//2)
+            low, high = round(box[1]+.2*(box[3]-box[1])), round(box[1]+.8*(box[3]-box[1]))
+            start, end = (high, low) if direction == 1 else (low, high)
+            existing.base.adb("shell", "input", "swipe", x, str(start), x, str(end), "400")
+            time.sleep(.4)
+    existing.capture(out, tag + "-missing")
+    raise RuntimeError("No enabled live Flutter course control: " + caption)
 
 
 def school_data(data: dict) -> dict:
@@ -246,7 +312,8 @@ def main() -> int:
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
     result = {"status": "RUNNING", "test_profile": "Fictional disposable LumoTest",
-              "physical_device": False, "paid_api_calls": 0}
+              "physical_device": False, "paid_api_calls": 0,
+              "qa_source": os.environ.get("LUMO_QA_SOURCE")}
     try:
         if voice.main() != 0:
             raise RuntimeError("Existing native update/voice/Kart acceptance failed")
