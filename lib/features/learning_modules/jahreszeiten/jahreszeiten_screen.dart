@@ -1,13 +1,14 @@
 // ════════════════════════════════════════════════════════════════════════
-// JAHRESZEITEN — Klasse 2 Sachkunde (mit Live-Bildern)
+// JAHRESZEITEN — Klasse 2 Sachkunde (mit lokalen Originalillustrationen)
 // ════════════════════════════════════════════════════════════════════════
 // Aufgabentypen:
 //   - 'Welche Jahreszeit zeigt das Bild?' (Bild -> Jahreszeit)
 //   - 'In welcher Jahreszeit passiert X?' (Aktivitaet/Wetter -> Jahreszeit)
-// 10 Aufgaben pro Session.
+// 30 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -15,7 +16,6 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_companion_state.dart';
-import '../../../core/lumo_image_generator.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
@@ -36,46 +36,30 @@ extension _JahreszeitName on _Jahreszeit {
     }
   }
 
-  String get pollinationsPrompt {
+  String get asset {
     switch (this) {
       case _Jahreszeit.fruehling:
-        return 'spring meadow with flowers and butterflies';
+        return 'assets/lumo_design/icons/season_spring.png';
       case _Jahreszeit.sommer:
-        return 'sunny summer beach with sun';
+        return 'assets/lumo_design/icons/season_summer.png';
       case _Jahreszeit.herbst:
-        return 'autumn forest with colorful leaves';
+        return 'assets/lumo_design/icons/season_autumn.png';
       case _Jahreszeit.winter:
-        return 'snowy winter landscape with snowman';
+        return 'assets/lumo_design/icons/season_winter.png';
     }
   }
 
-  Color get themeColor {
+  // Describe what is visible, rather than giving away the answer to a reader.
+  String get sceneDescription {
     switch (this) {
       case _Jahreszeit.fruehling:
-        return const Color(0xFF10B981);
+        return 'Bäume mit rosa Blüten und Blumen auf einer grünen Wiese';
       case _Jahreszeit.sommer:
-        // Dunkleres Sonnengelb: auf weißen Knöpfen gut lesbar.
-        return const Color(0xFFD97706);
+        return 'Grüne Bäume, gelbe Blumen und eine helle Sonne';
       case _Jahreszeit.herbst:
-        return const Color(0xFFEA580C);
+        return 'Bäume mit orangefarbenen Blättern, gefallene Blätter und Kürbisse';
       case _Jahreszeit.winter:
-        return const Color(0xFF3B82F6);
-    }
-  }
-
-  /// Fallback-Emoji wenn Pollinations-Bild nicht laedt.
-  /// Heinz-Scan: vorher zeigte der Fallback IMMER 🌸 (Blume), auch
-  /// im Winter - inhaltlich falsch. Jetzt passt das Emoji zur Saison.
-  String get fallbackEmoji {
-    switch (this) {
-      case _Jahreszeit.fruehling:
-        return '🌸';
-      case _Jahreszeit.sommer:
-        return '☀️';
-      case _Jahreszeit.herbst:
-        return '🍂';
-      case _Jahreszeit.winter:
-        return '❄️';
+        return 'Schnee, kahle Äste und ein Schneemann mit blauem Schal';
     }
   }
 }
@@ -222,7 +206,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
         LumoVoice.instance.speak('Richtig! Das ist ${_correctJz.label}!');
@@ -321,88 +305,38 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildTaskHeader(),
-                      const SizedBox(height: 20),
-                      if (_typ == _JahreszeitFrageTyp.bildErraten)
-                        _buildSeasonImage()
-                      else
-                        _buildHinweisBox(),
-                      const SizedBox(height: 24),
-                      _buildOptions(),
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Welt-Abenteuer',
+        moduleTitle: 'Jahreszeiten',
+        icon: Icons.nature_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
           child: Column(children: [
-            Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 1.2)),
-            const Text('Jahreszeiten',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900)),
+            _buildTaskHeader(),
+            const SizedBox(height: 12),
+            if (_typ == _JahreszeitFrageTyp.bildErraten)
+              _buildSeasonImage()
+            else
+              _buildHinweisBox(),
+            const SizedBox(height: 12),
+            _buildOptions(),
           ]),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
-          ]),
-        ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -413,15 +347,18 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
         ),
         child: Text(text,
             textAlign: TextAlign.center,
@@ -429,68 +366,41 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
                 fontFamily: 'Nunito',
                 fontSize: 18,
                 fontWeight: FontWeight.w900,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       ),
     );
   }
 
   Widget _buildSeasonImage() {
-    final url = LumoImageGenerator.instance
-        .buildSafeImageUrl(_correctJz.pollinationsPrompt);
-    return Container(
-      width: 240,
-      height: 240,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-              color: _gradient[0].withOpacity(0.25),
-              blurRadius: 16,
-              offset: const Offset(0, 6))
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(24),
-        // Heinz-Scan: gleicher Stack-Fallback wie Wetter/Tiere - das
-        // saison-passende Emoji ist IMMER sichtbar, Pollinations-Bild
-        // legt sich drueber wenn fertig. Vorher: bei Fehler stand
-        // IMMER '🌸' (Bluete) - auch im Winter inhaltlich falsch.
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Container(
-              color: _correctJz.themeColor.withOpacity(0.18),
-              alignment: Alignment.center,
-              child: Text(_correctJz.fallbackEmoji,
-                  style: const TextStyle(fontSize: 96)),
-            ),
-            if (url != null)
-              Image.network(
-                url,
-                fit: BoxFit.cover,
-                loadingBuilder: (ctx, child, progress) {
-                  if (progress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(
-                        color: _gradient[0], strokeWidth: 3),
-                  );
-                },
-                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-              ),
-          ],
+    return LayoutBuilder(builder: (context, constraints) {
+      final extent = constraints.maxWidth >= 500 ? 224.0 : 160.0;
+      return Semantics(
+        label: _correctJz.sceneDescription,
+        image: true,
+        child: SizedBox(
+          width: extent,
+          height: extent,
+          child: Image.asset(
+            _correctJz.asset,
+            key: const ValueKey('learning-season-illustration'),
+            fit: BoxFit.contain,
+            cacheWidth: 512,
+            excludeFromSemantics: true,
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _buildHinweisBox() {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(28),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: _gradient[0].withOpacity(0.4), width: 3),
+        border: Border.all(
+            color: LumoVisualTokens.cyan.withValues(alpha: .6), width: 2),
         boxShadow: [
           BoxShadow(
               color: _gradient[0].withOpacity(0.2),
@@ -502,14 +412,14 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
           textAlign: TextAlign.center,
           style: TextStyle(
               fontFamily: 'Nunito',
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: FontWeight.w900,
-              color: _gradient[1])),
+              color: LumoVisualTokens.white)),
     );
   }
 
   Widget _buildOptions() {
-    return GridView.count(
+    return LumoLessonAnswerGrid(
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -521,9 +431,9 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
         final jz = entry.value;
         final isCorrect = jz == _correctJz;
         final isSelected = _selectedIdx == idx;
-        Color bgColor = Colors.white;
-        Color borderColor = jz.themeColor.withOpacity(0.5);
-        Color textColor = jz.themeColor;
+        Color bgColor = LumoVisualTokens.lessonAnswer;
+        Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
+        Color textColor = LumoVisualTokens.white;
         if (_answered && isSelected) {
           if (isCorrect) {
             bgColor = const Color(0xFFD1FAE5);
@@ -536,25 +446,28 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
           }
         } else if (_answered && isCorrect) {
           bgColor = const Color(0xFFFEF3C7);
+          textColor = const Color(0xFF713F12);
           borderColor = const Color(0xFFFCD34D);
         }
         return AnimatedBuilder(
           animation: _bounceCtrl,
           builder: (_, child) {
-            final scale = isSelected && isCorrect
+            final scale = isSelected &&
+                    isCorrect &&
+                    !LumoLessonStyle.reducedMotion(context, widget.appState)
                 ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.08
                 : 1.0;
             return Transform.scale(scale: scale, child: child);
           },
-          child: GestureDetector(
+          child: LumoLessonAnswerTap(
+            correct: _answered && isSelected ? isCorrect : null,
             onTap: _answered ? null : () => _onAnswer(idx, isCorrect),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: borderColor, width: 3),
-              ),
+              duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+                  ? Duration.zero
+                  : const Duration(milliseconds: 200),
+              decoration: LumoLessonStyle.answer(
+                  background: bgColor, border: borderColor),
               child: Center(
                 child: Text(jz.label,
                     style: TextStyle(

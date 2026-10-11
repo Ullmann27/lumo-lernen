@@ -6,7 +6,8 @@
 // 8 Aufgaben pro Session, progressive Schwierigkeit.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -18,8 +19,8 @@ import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
 
 String? _fractionValue(String answer) {
-  final match = RegExp(r'^([+-]?\d+)\s*/\s*([+-]?\d+)$')
-      .firstMatch(answer.trim());
+  final match =
+      RegExp(r'^([+-]?\d+)\s*/\s*([+-]?\d+)$').firstMatch(answer.trim());
   if (match == null) return null;
   var numerator = int.tryParse(match[1]!);
   var denominator = int.tryParse(match[2]!);
@@ -145,15 +146,16 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
     });
     final isCorrect = areEquivalentFractionAnswers(answer, _correctText);
     if (!await _progress.saveAnswer(
-      correct: isCorrect,
-      stars: isCorrect ? 1 : 0,
-      xp: isCorrect ? 10 : 0,
-    ) || !mounted) {
+          correct: isCorrect,
+          stars: isCorrect ? 1 : 0,
+          xp: isCorrect ? 10 : 0,
+        ) ||
+        !mounted) {
       return;
     }
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -201,12 +203,11 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
       barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: const Color(0xFFFFFBEB),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🍕 Geschafft!',
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks Brüche richtig!',
               style: const TextStyle(
@@ -251,131 +252,75 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
       progress: _progress,
-      child: LumoModuleBackdrop(
-          child: Scaffold(
-      backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: Column(children: [
-          _buildTopBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: AnimatedBuilder(
-                animation: _entryCtrl,
-                builder: (_, child) =>
-                    Opacity(opacity: _entryCtrl.value, child: child),
-                child: Column(children: [
-                  const Text('Welcher Bruch wurde gegessen?',
-                      style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: Color(0xFFB45309))),
-                  const SizedBox(height: 16),
-                  _buildPizzaVisualization(),
-                  const SizedBox(height: 12),
-                  Text('Von $_nenner Stücken ${_gegessen == 1 ? 'wurde' : 'wurden'} $_gegessen gegessen.',
-                      style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF92400E))),
-                  const SizedBox(height: 24),
-                  _buildAnswerGrid(),
-                ]),
-              ),
-            ),
-          ),
-        ]),
-      ),
-      )),
-    );
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(24)),
-        boxShadow: [
-          BoxShadow(
-              color: _gradient[0].withOpacity(0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4))
-        ],
-      ),
-      child: Row(children: [
-        IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Bruch ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Bruchrechnen',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded,
-                color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Mathe-Abenteuer',
+        moduleTitle: 'Bruchrechnen',
+        icon: Icons.pie_chart_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Bruch',
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) => Opacity(
+              opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                  ? 1
+                  : _entryCtrl.value,
+              child: child),
+          child: Column(children: [
+            const Text('Welcher Bruch wurde gegessen?',
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white)),
+            const SizedBox(height: 8),
+            _buildPizzaVisualization(),
+            const SizedBox(height: 8),
+            Text(
+                'Von $_nenner Stücken ${_gegessen == 1 ? 'wurde' : 'wurden'} $_gegessen gegessen.',
                 style: const TextStyle(
                     fontFamily: 'Nunito',
-                    color: Colors.white,
                     fontSize: 14,
-                    fontWeight: FontWeight.w900)),
+                    fontWeight: FontWeight.w700,
+                    color: LumoVisualTokens.white)),
+            const SizedBox(height: 8),
+            _buildAnswerGrid(),
           ]),
         ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
   Widget _buildPizzaVisualization() {
-    return AnimatedBuilder(
-      animation: _shakeCtrl,
-      builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 6) * 5;
-        return Transform.translate(offset: Offset(shake, 0), child: child);
-      },
-      child: SizedBox(
-        width: 240,
-        height: 240,
-        child: CustomPaint(
-          painter: _PizzaPainter(
-            slices: _nenner,
-            eatenSlices: _gegessen,
+    return LayoutBuilder(builder: (context, constraints) {
+      final diameter = constraints.maxWidth >= 500 ? 192.0 : 156.0;
+      return AnimatedBuilder(
+        animation: _shakeCtrl,
+        builder: (_, child) {
+          final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? 0.0
+              : math.sin(_shakeCtrl.value * math.pi * 6) * 5;
+          return Transform.translate(offset: Offset(shake, 0), child: child);
+        },
+        child: SizedBox(
+          width: diameter,
+          height: diameter,
+          child: CustomPaint(
+            painter: _PizzaPainter(
+              slices: _nenner,
+              eatenSlices: _gegessen,
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _buildAnswerGrid() {
-    return GridView.count(
+    return LumoLessonAnswerGrid(
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -389,9 +334,9 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   Widget _buildAnswerButton(String value) {
     final isSelected = _selectedAnswer == value;
     final isCorrect = areEquivalentFractionAnswers(value, _correctText);
-    Color bgColor = Colors.white;
-    Color textColor = _gradient[1];
-    Color borderColor = _gradient[0].withOpacity(0.3);
+    Color bgColor = LumoVisualTokens.lessonAnswer;
+    Color textColor = LumoVisualTokens.white;
+    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
     if (_answered) {
       if (isSelected && isCorrect) {
         bgColor = const Color(0xFFD1FAE5);
@@ -403,32 +348,29 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
         borderColor = const Color(0xFFEF4444);
       } else if (!isSelected && isCorrect) {
         bgColor = const Color(0xFFFEF3C7);
+        textColor = const Color(0xFF713F12);
         borderColor = const Color(0xFFFCD34D);
       }
     }
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) {
-        final s = isSelected && isCorrect
+        final s = isSelected &&
+                isCorrect &&
+                !LumoLessonStyle.reducedMotion(context, widget.appState)
             ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
             : 1.0;
         return Transform.scale(scale: s, child: child);
       },
-      child: GestureDetector(
+      child: LumoLessonAnswerTap(
+        correct: _answered && isSelected ? isCorrect : null,
         onTap: _answered ? null : () => _onAnswer(value),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: borderColor, width: 3),
-            boxShadow: [
-              BoxShadow(
-                  color: borderColor.withOpacity(0.2),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3))
-            ],
-          ),
+          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? Duration.zero
+              : const Duration(milliseconds: 200),
+          decoration:
+              LumoLessonStyle.answer(background: bgColor, border: borderColor),
           child: Center(
             child: Text(value,
                 style: TextStyle(
@@ -491,11 +433,8 @@ class _PizzaPainter extends CustomPainter {
       canvas.drawPath(
         Path()
           ..moveTo(center.dx, center.dy)
-          ..arcTo(
-              Rect.fromCircle(center: center, radius: radius * 0.92),
-              startAngle,
-              sliceAngle,
-              false)
+          ..arcTo(Rect.fromCircle(center: center, radius: radius * 0.92),
+              startAngle, sliceAngle, false)
           ..close(),
         Paint()
           ..color = const Color(0xFFF3F4F6)
@@ -517,10 +456,10 @@ class _PizzaPainter extends CustomPainter {
         final a = midAngle + (pepRng.nextDouble() - 0.5) * sliceAngle * 0.7;
         final cx = center.dx + math.cos(a) * dist;
         final cy = center.dy + math.sin(a) * dist;
-        canvas.drawCircle(Offset(cx, cy), 6,
-            Paint()..color = const Color(0xFFDC2626));
-        canvas.drawCircle(Offset(cx, cy), 4,
-            Paint()..color = const Color(0xFFB91C1C));
+        canvas.drawCircle(
+            Offset(cx, cy), 6, Paint()..color = const Color(0xFFDC2626));
+        canvas.drawCircle(
+            Offset(cx, cy), 4, Paint()..color = const Color(0xFFB91C1C));
       }
     }
 
@@ -533,8 +472,8 @@ class _PizzaPainter extends CustomPainter {
       final a = -math.pi / 2 + i * sliceAngle;
       canvas.drawLine(
         center,
-        Offset(center.dx + math.cos(a) * radius,
-            center.dy + math.sin(a) * radius),
+        Offset(
+            center.dx + math.cos(a) * radius, center.dy + math.sin(a) * radius),
         linePaint,
       );
     }
@@ -557,8 +496,8 @@ class _PizzaPainter extends CustomPainter {
     // Pfad fuer den Stueck-Bereich
     final path = Path()
       ..moveTo(center.dx, center.dy)
-      ..arcTo(Rect.fromCircle(center: center, radius: radius),
-          startAngle, sliceAngle, false)
+      ..arcTo(Rect.fromCircle(center: center, radius: radius), startAngle,
+          sliceAngle, false)
       ..close();
     canvas.save();
     canvas.clipPath(path);

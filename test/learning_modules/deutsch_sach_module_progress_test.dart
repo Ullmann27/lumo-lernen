@@ -14,6 +14,7 @@ import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_registry.dart';
 import 'package:lumo_lernen/features/teacher_mode/topic_curriculum.dart';
+import 'package:lumo_lernen/widgets/design/lumo_learning_module_frame.dart';
 
 class _ControlledWallet extends RewardWalletRepository {
   bool reject = false;
@@ -172,9 +173,10 @@ Future<void> _tapText(
 
 Finder _firstVisibleAnswer() => find
     .byWidgetPredicate((widget) =>
-        widget is GestureDetector &&
-        widget.onTap != null &&
-        widget.child is AnimatedContainer)
+        (widget is LumoLessonAnswerTap && widget.onTap != null) ||
+        (widget is GestureDetector &&
+            widget.onTap != null &&
+            widget.child is AnimatedContainer))
     .first;
 
 Future<void> _revealWrittenWord(WidgetTester tester) async {
@@ -192,10 +194,13 @@ Future<void> _revealWrittenWord(WidgetTester tester) async {
   expect(find.text('Wie war dein Wort?'), findsOneWidget);
 }
 
-String _revealedWord(WidgetTester tester) => tester
-    .widgetList<Text>(find.byType(Text))
-    .map((text) => text.data ?? '')
-    .singleWhere((text) => RegExp(r'^[A-ZÄÖÜ]{2,}$').hasMatch(text));
+String _revealedWord(WidgetTester tester) {
+  final word = find.byKey(const ValueKey('diktat-revealed-word'));
+  expect(word, findsOneWidget);
+  final text = tester.widget<Text>(word).data!;
+  expect(text, matches(RegExp(r'^[A-ZÄÖÜ]{2,}$')));
+  return text;
+}
 
 Future<void> _assertStored(
   WidgetTester tester, {
@@ -350,8 +355,8 @@ void main() {
     await _frames(tester, 20);
     expect(find.byType(screen), findsOneWidget);
     // The pending scope intentionally absorbs the toolbar's pointer event.
-    await tester
-        .tapAt(tester.getCenter(find.byIcon(Icons.arrow_back_ios_new_rounded)));
+    await tester.tapAt(
+        tester.getCenter(find.byKey(const ValueKey('learning-module-back'))));
     await _frames(tester, 20);
     expect(find.byType(screen), findsOneWidget);
     wallet.reject = false;

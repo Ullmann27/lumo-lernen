@@ -1,0 +1,45 @@
+{
+  "base": "bef1403ed5d0243f8c6daca2717e998081cab15e",
+  "generated": "/home/user/workspace/lumo-lernen-kart-release/test/design/learning_adventure_baseline_1928_test.dart",
+  "manifest": {
+    "commit": "bef1403ed5d0243f8c6daca2717e998081cab15e",
+    "sourceKind": "original Git widget source",
+    "modules": [
+      {
+        "module": "plus-bis-10-reference",
+        "type": "PlusBis10Screen",
+        "sourcePath": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+        "originalSha256": "7996a8e5c95ef6f72959cbe490eb95e80454acf21fe036697922fba5782d0813",
+        "mechanicalChanges": "relative import URI resolution only"
+      },
+      {
+        "module": "minus-bis-10",
+        "type": "MinusBis10Screen",
+        "sourcePath": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+        "originalSha256": "0f6e7d3d2acc19d8f552f5bb302a1050b7cbe0749cc2e7f016695c38f2785ab5",
+        "mechanicalChanges": "relative import URI resolution only"
+      },
+      {
+        "module": "zahlen-bis-10",
+        "type": "ZahlenBis10Screen",
+        "sourcePath": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+        "originalSha256": "3f2de2a2d8c2b39b7fe991fc64ae79b79cc4d47084f24fca831a85d3e7287c34",
+        "mechanicalChanges": "relative import URI resolution only"
+      },
+      {
+        "module": "formen",
+        "type": "FormenScreen",
+        "sourcePath": "lib/features/learning_modules/formen/formen_screen.dart",
+        "originalSha256": "5a75cb2c2e0edb4f2216a96d24c45397ee7ad77745428f86ac2580e74f29d093",
+        "mechanicalChanges": "relative import URI resolution only"
+      },
+      {
+        "module": "uhr",
+        "type": "UhrLernenScreen",
+        "sourcePath": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+        "originalSha256": "268a758d2c1ba7dca3551c02df08d862ce32d864606531334ca41f715ee0cd22",
+        "mechanicalChanges": "relative import URI resolution only"
+      }
+    ]
+  }
+}

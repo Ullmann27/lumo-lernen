@@ -6,7 +6,8 @@
 // Mit Emoji-Visualisierung fuer jedes Nomen.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -126,7 +127,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance
             .speak('${LumoPhrases.correct()} $_correctArticle $_word.');
@@ -228,98 +229,41 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildWordCard(),
-                      const SizedBox(height: 28),
-                      const Text('Welcher Artikel?',
-                          style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
-                              color: Color(0xFF7C3AED))),
-                      const SizedBox(height: 16),
-                      _buildAnswerColumn(),
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-        boxShadow: [
-          BoxShadow(
-              color: _gradient[0].withOpacity(0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4))
-        ],
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Wort ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Der / Die / Das',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Wörter-Abenteuer',
+        moduleTitle: 'Der / Die / Das',
+        icon: Icons.menu_book_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Wort',
+        hasMistake: _answered && _selectedAnswer != _correctArticle,
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
+          child: Column(children: [
+            _buildWordCard(),
+            const SizedBox(height: 12),
+            const Text('Welcher Artikel?',
+                style: TextStyle(
                     fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white)),
+            const SizedBox(height: 16),
+            _buildAnswerColumn(),
           ]),
         ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -327,15 +271,18 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 6) * 5;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 6) * 5;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(28),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
           boxShadow: [
             BoxShadow(
                 color: _gradient[0].withOpacity(0.18),
@@ -351,7 +298,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
                   fontFamily: 'Nunito',
                   fontSize: 36,
                   fontWeight: FontWeight.w900,
-                  color: _gradient[1])),
+                  color: LumoVisualTokens.white)),
         ]),
       ),
     );
@@ -369,9 +316,9 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
   Widget _buildAnswerButton(String article) {
     final isSelected = _selectedAnswer == article;
     final isCorrect = article == _correctArticle;
-    Color bgColor = Colors.white;
-    Color textColor = _gradient[1];
-    Color borderColor = _gradient[0].withOpacity(0.3);
+    Color bgColor = LumoVisualTokens.lessonAnswer;
+    Color textColor = LumoVisualTokens.white;
+    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
     if (_answered) {
       if (isSelected && isCorrect) {
         bgColor = const Color(0xFFD1FAE5);
@@ -383,34 +330,31 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
         borderColor = const Color(0xFFEF4444);
       } else if (!isSelected && isCorrect) {
         bgColor = const Color(0xFFFEF3C7);
+        textColor = const Color(0xFF713F12);
         borderColor = const Color(0xFFFCD34D);
       }
     }
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) {
-        final s = isSelected && isCorrect
+        final s = isSelected &&
+                isCorrect &&
+                !LumoLessonStyle.reducedMotion(context, widget.appState)
             ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.08
             : 1.0;
         return Transform.scale(scale: s, child: child);
       },
-      child: GestureDetector(
+      child: LumoLessonAnswerTap(
+        correct: _answered && isSelected ? isCorrect : null,
         onTap: _answered ? null : () => _onAnswer(article),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? Duration.zero
+              : const Duration(milliseconds: 200),
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 18),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: borderColor, width: 3),
-            boxShadow: [
-              BoxShadow(
-                  color: borderColor.withOpacity(0.2),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3))
-            ],
-          ),
+          decoration:
+              LumoLessonStyle.answer(background: bgColor, border: borderColor),
           child: Center(
             child: Text(article,
                 style: TextStyle(

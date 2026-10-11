@@ -10,6 +10,9 @@ class LumoVisualTokens {
   static const cyan = Color(0xFF37D2FD);
   static const cyanBright = Color(0xFF53DDFD);
   static const learning = Color(0xFF328DFF);
+  static const lessonPanel = Color(0xFF0A3A78);
+  static const lessonAnswer = Color(0xFF185FB4);
+  static const lessonAnswerDeep = Color(0xFF123D86);
   static const games = Color(0xFF5F2FBE);
   static const tests = Color(0xFF167A84);
   static const rewards = Color(0xFFB52E73);
