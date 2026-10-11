@@ -122,7 +122,7 @@ jobs:
       - name: Prepare existing Android 16 image
         timeout-minutes: 11
         run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
-      - name: Reach actual long parent view and verify offline playback without rebuilding
+      - name: Verify offline voice and observed Losfahren entry with the unchanged APK
         uses: reactivecircus/android-emulator-runner@v2
         env:
           DISPLAY: ':99'

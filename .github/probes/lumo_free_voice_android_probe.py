@@ -313,7 +313,8 @@ def main() -> int:
         existing.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
         existing.flutter_tap(out, "Spielen", "home-games")
         existing.base.display(1200, 896, 160)
-        existing.enter(out, "Lumo Kart", "LUMO KART", "preserved-kart")
+        existing.enter(out, "Lumo Kart", "Einzelrennen", "preserved-kart",
+                       launch_label="Losfahren")
         result["kart_menu"] = existing.capture(out, "06_preserved_kart_menu")
         existing.leave(out, "preserved-kart", already_menu=True)
         result["kart_return"] = existing.flutter_return_capture(out, "07_preserved_kart_return")
