@@ -415,6 +415,32 @@ def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool
     raise RuntimeError('Current native screenshot lacks '+label)
 
 
+def flutter_return_capture(out: Path, tag: str) -> dict:
+    """Do not label a compositor's last Godot buffer as a Flutter return."""
+    foreground = ''
+    for _ in range(15):
+        try:
+            foreground = base.foreground()
+        except RuntimeError:
+            foreground = ''
+        if PACKAGE in foreground and 'LumoGameActivity' not in foreground:
+            break
+        time.sleep(1)
+    else:
+        raise RuntimeError('Flutter activity did not resume after the native game')
+    # A resumed component alone does not prove a new frame was rendered.
+    # Observe an exact current Flutter navigation caption, not the native
+    # pause action "Zur Spieleauswahl" or a saved accessibility snapshot.
+    native_text(out, 'Spielen', tag+'-flutter-visible', exact=True)
+    shot = capture(out, tag)
+    (out/(tag+'-flutter-return.json')).write_text(json.dumps({
+        'status': 'PASS', 'foreground': foreground,
+        'exact_visible_caption': 'Spielen', 'capture': shot,
+        'scope': 'Observed current Flutter frame after private game exit',
+    }, indent=2, ensure_ascii=False)+'\n')
+    return shot
+
+
 def enter(out: Path, title: str, header: str, tag: str, launch_label: str = '') -> None:
     flutter_tap(out, launch_label or title+' spielen', tag+'-launch')
     for _ in range(60):
@@ -831,12 +857,13 @@ def main() -> int:
                 time.sleep(1)
             else:
                 raise RuntimeError('Kart private process remained after return')
-            base.foreground()
-            capture(out,'16_kart_returned_to_app')
+            returned = flutter_return_capture(out,'16_kart_returned_to_app')
             result['kart']={'status':'PASS','actual_setup_steps':5,
                             'phone_surface':[1920,1080], 'compact_surface':[640,320],
                             'five_action_labels_on_phone':True,
-                            'compact_hud_and_capture':True,'pause_return':True}
+                            'compact_hud_and_capture':True,'pause_return':True,
+                            'flutter_return_frame_confirmed':True,
+                            'flutter_return_capture':returned}
         if wallet(out,'after-unfinished-games') != first_wallet:
             raise RuntimeError('An unfinished creative game incorrectly awarded a reward')
 

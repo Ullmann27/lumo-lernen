@@ -107,6 +107,56 @@ class NativeSurfaceReadinessTests(unittest.TestCase):
             spec.loader.exec_module(probe)
         return probe
 
+    def test_flutter_return_waits_for_real_component_and_exact_current_frame(self):
+        probe = self.load_probe()
+        events = []
+        foregrounds = iter(['', probe.PACKAGE+'/LumoGameActivity',
+                           probe.PACKAGE+'/MainActivity'])
+        shot = {'file': 'returned.png', 'width': 1080, 'height': 1920, 'sha256': 'fixture'}
+
+        def read(*args, **kwargs):
+            events.append(('read', args, kwargs))
+
+        def capture(*args):
+            events.append(('capture', args))
+            return shot
+
+        with patch.object(probe.base, 'foreground', side_effect=lambda: next(foregrounds)), \
+                patch.object(probe.time, 'sleep'), \
+                patch.object(probe, 'native_text', read), \
+                patch.object(probe, 'capture', capture):
+            self.assertEqual(probe.flutter_return_capture(self.out, 'returned'), shot)
+        self.assertEqual(events[0], ('read', (self.out, 'Spielen', 'returned-flutter-visible'),
+                                    {'exact': True}))
+        self.assertEqual(events[1], ('capture', (self.out, 'returned')))
+        proof = json.loads((self.out/'returned-flutter-return.json').read_text())
+        self.assertEqual(proof['foreground'], probe.PACKAGE+'/MainActivity')
+        self.assertEqual(proof['capture'], shot)
+
+    def test_native_or_launcher_foreground_cannot_be_return_evidence(self):
+        probe = self.load_probe()
+        for foreground in (probe.PACKAGE+'/LumoGameActivity', 'launcher/Home'):
+            with self.subTest(foreground=foreground), \
+                    patch.object(probe.base, 'foreground', return_value=foreground), \
+                    patch.object(probe.time, 'sleep'), \
+                    patch.object(probe, 'native_text') as reader, \
+                    patch.object(probe, 'capture') as capture:
+                with self.assertRaisesRegex(RuntimeError, 'Flutter activity did not resume'):
+                    probe.flutter_return_capture(self.out, 'rejected')
+                reader.assert_not_called()
+                capture.assert_not_called()
+        self.assertFalse((self.out/'rejected-flutter-return.json').exists())
+
+    def test_resumed_flutter_with_stale_pause_frame_cannot_pass_return(self):
+        probe = self.load_probe()
+        with patch.object(probe.base, 'foreground', return_value=probe.PACKAGE+'/MainActivity'), \
+                patch.object(probe, 'native_text', side_effect=RuntimeError('caption missing')), \
+                patch.object(probe, 'capture') as capture:
+            with self.assertRaisesRegex(RuntimeError, 'caption missing'):
+                probe.flutter_return_capture(self.out, 'stale')
+            capture.assert_not_called()
+        self.assertFalse((self.out/'stale-flutter-return.json').exists())
+
     def test_generic_puzzle_start_waits_past_two_stale_frames_and_ten_seconds(self):
         probe = self.load_probe()
         now = [0.0]
