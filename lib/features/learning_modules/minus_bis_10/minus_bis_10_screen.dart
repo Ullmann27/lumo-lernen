@@ -261,6 +261,8 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
         appState: widget.appState,
         title: 'Mathe-Abenteuer',
         moduleTitle: 'Minus bis 10',
+        guidance: 'Zähle, was übrig bleibt.',
+        mistakeGuidance: 'Die übrigen Bonbons zählen.',
         icon: Icons.calculate_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
@@ -277,17 +279,20 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
                     : _entryCtrl.value,
                 child: child);
           },
-          child: Column(children: [
-            _buildTaskHeader(),
-            const SizedBox(height: 12),
-            _buildBonbonsVisualization(),
-            const SizedBox(height: 16),
-            _buildAnswerGrid(),
-            if (_showHint) ...[
-              const SizedBox(height: 20),
-              _buildHintCard(),
-            ],
-          ]),
+          child: LumoLessonTaskLayout(
+            task: Column(children: [
+              _buildTaskHeader(),
+              const SizedBox(height: 12),
+              _buildBonbonsVisualization(),
+            ]),
+            answers: Column(children: [
+              _buildAnswerGrid(),
+              if (_showHint) ...[
+                const SizedBox(height: 20),
+                _buildHintCard(),
+              ],
+            ]),
+          ),
         ),
       ),
     );

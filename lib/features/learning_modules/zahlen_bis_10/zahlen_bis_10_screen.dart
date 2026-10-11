@@ -98,7 +98,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
         _correctAnswer = _zahl1;
         break;
       case _ZahlAufgabenTyp.nachfolger:
-        _zahl1 = _rng.nextInt(9); // 0..8
+        _zahl1 = _rng.nextInt(10); // 0..9, damit auch 9 → 10 geübt wird.
         _correctAnswer = _zahl1 + 1;
         break;
       case _ZahlAufgabenTyp.groesser:
@@ -261,6 +261,12 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
         appState: widget.appState,
         title: 'Mathe-Abenteuer',
         moduleTitle: 'Zahlen bis 10',
+        guidance: switch (_typ) {
+          _ZahlAufgabenTyp.zaehlen => 'Zähle jeden Punkt einmal.',
+          _ZahlAufgabenTyp.nachfolger => 'Zähle einen Schritt weiter.',
+          _ZahlAufgabenTyp.groesser => 'Vergleiche die beiden Zahlen.',
+        },
+        mistakeGuidance: 'Wir lernen Schritt für Schritt.',
         icon: Icons.pin_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
@@ -277,13 +283,14 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
                     : _entryCtrl.value,
                 child: child);
           },
-          child: Column(children: [
-            _buildTaskHeader(),
-            const SizedBox(height: 12),
-            _buildVisualization(),
-            const SizedBox(height: 16),
-            _buildAnswerGrid(),
-          ]),
+          child: LumoLessonTaskLayout(
+            task: Column(children: [
+              _buildTaskHeader(),
+              const SizedBox(height: 12),
+              _buildVisualization(),
+            ]),
+            answers: _buildAnswerGrid(),
+          ),
         ),
       ),
     );

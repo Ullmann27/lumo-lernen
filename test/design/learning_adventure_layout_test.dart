@@ -90,7 +90,7 @@ int _numberSeedFor(int kind, int first, {int? second}) {
   for (var seed = 0; seed < 10000; seed++) {
     final random = math.Random(seed);
     if (random.nextInt(3) != kind) continue;
-    final number = kind == 1 ? random.nextInt(9) : 1 + random.nextInt(10);
+    final number = kind == 1 ? random.nextInt(10) : 1 + random.nextInt(10);
     if (number != first) continue;
     if (second != null) {
       var other = 1 + random.nextInt(10);
@@ -165,6 +165,41 @@ void main() {
     'm1_formen',
     'm2_uhr'
   ]) {
+    testWidgets('$topic short landscape shows the task and every answer',
+        (tester) async {
+      await _viewport(tester, const Size(640, 360), systemBars: true);
+      await _open(tester, topic,
+          minusSeed: _minusSeedForAmount(10),
+          numberSeed: _numberSeedFor(0, 10));
+      final choices = _answers(topic);
+      expect(choices, findsNWidgets(_choiceCount(topic)));
+      for (final element in choices.evaluate()) {
+        final choice = find.byWidget(element.widget);
+        expect(choice.hitTestable(), findsOneWidget);
+        final bounds = tester.getRect(choice);
+        expect(bounds.top, greaterThanOrEqualTo(24));
+        expect(bounds.bottom, lessThanOrEqualTo(336));
+        expect(bounds.height, greaterThanOrEqualTo(48));
+        expect(bounds.width, greaterThanOrEqualTo(48));
+      }
+      expect(find.byTooltip('Zur Lernübersicht').hitTestable(), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    });
+    testWidgets('$topic large text landscape keeps answers reachable',
+        (tester) async {
+      await _viewport(tester, const Size(640, 360), systemBars: true);
+      await _open(tester, topic, textScale: 2);
+      for (final element in _answers(topic).evaluate()) {
+        final choice = find.byWidget(element.widget);
+        await tester.ensureVisible(choice);
+        await tester.pump();
+        expect(choice.hitTestable(), findsOneWidget);
+      }
+      expect(find.byTooltip('Zur Lernübersicht').hitTestable(), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    });
     for (final layout in [
       ('phone', const Size(360, 800), 1.0, false),
       ('phone-safe', const Size(360, 800), 1.0, true),
@@ -285,7 +320,7 @@ void main() {
         await tester.pumpWidget(const SizedBox());
       });
     }
-    for (final number in [0, 8]) {
+    for (final number in [0, 8, 9]) {
       testWidgets('Zahlen successor of $number in ${layout.$1}',
           (tester) async {
         await _viewport(tester, layout.$2,
