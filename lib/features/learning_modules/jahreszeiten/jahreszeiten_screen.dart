@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
-import '../../../core/lumo_companion_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
@@ -207,7 +206,6 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       setState(() => _correctCount++);
-      LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
         LumoVoice.instance.speak('Richtig! Das ist ${_correctJz.label}!');
       } catch (_) {}

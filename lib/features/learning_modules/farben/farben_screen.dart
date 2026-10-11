@@ -11,7 +11,6 @@ import '../../../widgets/design/lumo_learning_module_frame.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
-import '../../../core/lumo_companion_state.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -202,7 +201,6 @@ class _FarbenScreenState extends State<FarbenScreen>
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       setState(() => _correctCount++);
-      LumoCompanionState.instance.recordCorrect(topic: 'sachk');
       try {
         LumoVoice.instance.speak('Richtig! Das ist ${_correctFarbe.name}!');
       } catch (_) {}
