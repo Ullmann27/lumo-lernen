@@ -60,7 +60,8 @@ def contain(canvas: Image.Image, path: Path, box: tuple[int, int, int, int]) -> 
 
 
 def comparison(
-    before: Path, after: Path, reference: Path, output: Path, title: str, fold: bool
+    before: Path, after: Path, reference: Path, output: Path, title: str, fold: bool,
+    footer_lines: tuple[str, str] | None = None,
 ) -> None:
     # Both runtime images retain their complete aspect ratio and framing.
     widths = (968, 360, 968) if fold else (360, 360, 360)
@@ -84,15 +85,19 @@ def comparison(
         draw.text((x, 94), label, font=font(20, True), fill="#123351")
         contain(canvas, path, (x, 126, column, image_height))
         x += column + gap
+    footer = footer_lines or (
+        "Vollständige Frames; nur proportional skaliert. Aufgaben zufällig, nicht identisch.",
+        "Altversion: mögliche fehlende Emoji-Schrift im Linux-Testhost. Rohbilder im ZIP.",
+    )
     draw.text(
         (margin, image_height + 144),
-        "Vollständige Frames; nur proportional skaliert. Aufgaben zufällig, nicht identisch.",
+        footer[0],
         font=font(16),
         fill="#37546a",
     )
     draw.text(
         (margin, image_height + 170),
-        "Altversion: mögliche fehlende Emoji-Schrift im Linux-Testhost. Rohbilder im ZIP.",
+        footer[1],
         font=font(16),
         fill="#37546a",
     )

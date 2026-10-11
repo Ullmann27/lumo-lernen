@@ -20,8 +20,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import creative_android_probe as existing
 import lumo_speech_android_probe as speech
 
-BASE_SOURCE = "8ba6b1fc9791ede5977d7b624fe692405fd44277"
-BASE_SHA = "ce4a72cb2831067401799c7e15f0649057f487b89fb40a54c23db5f52b8d4dd7"
+BASE_SOURCE = os.environ.get(
+    "LUMO_BASE_SOURCE", "8ba6b1fc9791ede5977d7b624fe692405fd44277")
+BASE_SHA = os.environ.get(
+    "LUMO_BASE_SHA", "ce4a72cb2831067401799c7e15f0649057f487b89fb40a54c23db5f52b8d4dd7")
+BASE_VERSION = int(os.environ.get("LUMO_BASE_VERSION", "1928"))
+CANDIDATE_VERSION = int(os.environ.get("LUMO_EXPECT_VERSION", "1929"))
 PROFILE = "lumo-free-supertonic-de-v1"
 GREETING = "Lumo Frei / F2 / lokale Aufnahme free_b5e456b1bd716ab4.m4a"
 ASSENT = ("Als erwachsene Person akzeptiere ich für die lokale Sprachfunktion "
@@ -36,7 +40,7 @@ def delivery(path: Path, version: int, source: str) -> dict:
             or data["signingCertificateSha256"] != existing.CERT
             or data["sha256"] != existing.digest(path)):
         raise RuntimeError("Actual APK does not match the verified test artifact")
-    if version == 1929:
+    if version >= 1929:
         voice = data["offlineVoice"]
         if (voice["profile"] != PROFILE or voice["preset"] != "F2"
                 or voice["speakerId"] != 1 or voice["clipCount"] != 155):
@@ -151,10 +155,11 @@ def main() -> int:
         "paid_speech_calls": 0, "microphone_recording": False,
     }
     try:
-        candidate = delivery(args.candidate, 1929, os.environ["LUMO_EXPECT_SOURCE"])
-        baseline = delivery(args.baseline, 1928, BASE_SOURCE)
+        candidate = delivery(args.candidate, CANDIDATE_VERSION,
+                             os.environ["LUMO_EXPECT_SOURCE"])
+        baseline = delivery(args.baseline, BASE_VERSION, BASE_SOURCE)
         if baseline["sha256"] != BASE_SHA:
-            raise RuntimeError("Baseline APK is not the original verified 1928 x86_64 artifact")
+            raise RuntimeError("Baseline APK is not the explicitly pinned verified artifact")
         if candidate["sha256"] != os.environ["LUMO_EXPECT_APK_SHA"]:
             raise RuntimeError("Candidate digest differs from build job output")
         result["candidate"] = candidate
@@ -180,7 +185,8 @@ def main() -> int:
         update = existing.base.adb("install", "-r", "--no-streaming",
                                   str(args.candidate), timeout=240)
         after_identity = existing.package_identity(out, "after-update")
-        if ("Success" not in update or not after_identity["versionCode"].startswith("1929")
+        if ("Success" not in update
+                or int(after_identity["versionCode"].split()[0]) != CANDIDATE_VERSION
                 or after_identity["userId"] != before_identity["userId"]
                 or after_identity["firstInstallTime"] != before_identity["firstInstallTime"]):
             raise RuntimeError("Update failed or changed installation identity")
@@ -200,7 +206,7 @@ def main() -> int:
         existing.flutter_tap(out, "App und lokale Stimme prüfen", "local-diagnosis",
                              scroll_attempts=48, direction_order=(1, -1))
         text = status(out, "actual-model-diagnosis",
-                      ("Build 1929", existing.PACKAGE, existing.CERT,
+                      (f"Build {CANDIDATE_VERSION}", existing.PACKAGE, existing.CERT,
                        "Das lokale Lumo-Sprachmodell", "Native Abschlussmeldungen:"))
         starts, ends = stats(text)
         if settings(out, "before-local-assent").get("localVoiceLicenseAccepted", False) is not False:
