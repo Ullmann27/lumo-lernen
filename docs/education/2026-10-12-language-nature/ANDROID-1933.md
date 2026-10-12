@@ -74,3 +74,42 @@ anderen Kursprüfungen. Eine Regression mit der originalen Hierarchie
 Der echte Plus-Knopf bei `[35,377][1165,433]` wird getroffen, nicht der Silben-Knopf
 bei `[35,825][1165,872]`. 14 Navigationsprüfungen bestanden. Die unveränderte
 APK wird erneut geprüft; es gibt weder Neubau noch abgeschwächte Abnahme.
+
+## Abnahme und geprüfte Auslieferung abgeschlossen
+
+Der Wiederholungslauf [38196123083](https://github.com/Ullmann27/lumo-lernen/actions/runs/38196123083)
+ist vollständig erfolgreich: tatsächlicher Android-Lauf und ZIP-Paketierung.
+Produktquelle bleibt `65009c4115d6674e730f15b145671c9a87ae1de7`; geprüfte
+QA-Quelle ist `1c415ceefb14dc1fc82624a84e1b320cc608d93a`. Keine App-Reparatur
+oder erneuter APK-Bau war für den falschen Kurseinstieg erforderlich.
+
+Update1932→1933, lokale Stimme mit Pause/Fortsetzen/Stopp, Kart-Menü/Rückkehr,
+Plus-/Minus-/Silben-/Pflanzen-/Entdeckungskurs, freiwillige Elternfreigabe,
+getrennte Fortschritte und Neustart bestanden. Jeder neue Fachkurs hat den
+wirklich gespeicherten Befund correct2/wrong1/hintCount1, täglichen Fortschritt
+plus2 und genau3 neue Versuche. Bisherige Mathematik-/Profil-/Wallet- und
+Elternfreigabedaten bleiben erhalten. Native A/B-Profilwechsel sind damit nicht
+zusätzlich geprüft; die separate Flutter-A/B-Abnahme bleibt eigenständig.
+
+- ARM64-APK-SHA256: `39081e73aa71a8d29f449b2daa3c24ac0d60f8aeb80f6421c09a49641981cff2`.
+- x86_64-APK-SHA256: `cf8b941088258615a8f9a1c049a212dd31c60079117e5985cd267b11a5e5e972`.
+- Einzige direkte ZIP: `Lumo-Lernen-Neu-0.12.26-1933-Direkt.zip`,320805406Bytes,
+  28Einträge, ARM64-APK im Hauptverzeichnis, keine verschachtelte ZIP.
+- ZIP-SHA256: `47cc7e58c3c38f4094029d4a976ab3eaebbbb1d049fb152cd7cfeed992230abe`.
+- Actions-Artefakt11723896251 wurde tatsächlich erneut heruntergeladen, geöffnet,
+  CRC-geprüft und auf die identische APK geprüft; derselbe lokale Download wurde
+  nochmals geöffnet und geprüft. Nachweise und echte Android-Bilder hier in
+  `android-runtime/`; die vollständige ZIP enthält Anleitung, Prüfsummen,
+  Quellzuordnung und ehrlichen Testbericht.
+- Unveröffentlichter privater Draft410090222,Asset632652076,Uploadworkflow
+  [38203726464](https://github.com/Ullmann27/lumo-lernen/actions/runs/38203726464)
+  erfolgreich. Der authentifizierte private API-Dateidownload antwortet200 mit
+  passendem Dateinamen und exakter Länge. Der Browserdownload erfordert eine
+  tatsächlich angemeldete GitHub-Websitzung des Eigentümers; ein API-Token im
+  Browser-Header ist dafür kein Ersatz.
+- [Privater Ersatzdownload im GitHub-Entwurf](https://github.com/Ullmann27/lumo-lernen/releases/tag/untagged-6db1ba6deb498f674b1c).
+
+Diese Auslieferung bleibt eine Android-Testversion. Physische ARM64-/Fold-
+Laufzeit, menschliche Klangprüfung und externe pädagogische Abnahme bleiben
+getrennt offen. Der spätere Elternbericht-Datenschutz-/Kopfleistenfix aus
+PR270 ist ausdrücklich nicht in der eingefrorenen 1933-APK enthalten.

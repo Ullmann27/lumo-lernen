@@ -1,0 +1,911 @@
+{
+  "status": "PASS",
+  "test_profile": "Fictional disposable LumoTest",
+  "physical_device": false,
+  "paid_api_calls": 0,
+  "qa_source": "1c415ceefb14dc1fc82624a84e1b320cc608d93a",
+  "voice_update_kart": {
+    "status": "PASS",
+    "scope": "Actual Android16 x86_64 test APK",
+    "not_tested": [
+      "audible timbre/emotional acceptance",
+      "physical Samsung",
+      "physical hinge events",
+      "ARM64 device playback",
+      "50 spoken situations on Android",
+      "full Kart race"
+    ],
+    "paid_speech_calls": 0,
+    "microphone_recording": false,
+    "candidate": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 1933,
+      "versionName": "0.12.26",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "x86_64"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 305480708,
+      "sha256": "cf8b941088258615a8f9a1c049a212dd31c60079117e5985cd267b11a5e5e972",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "853175c634dcb62c325fbd9b272e2ebc791830ad",
+        "engine": "4.6.3",
+        "pck_sha256": "4ae91f0567fa57bf4942e4bd85d960ef7d781baa719cb45cb7b42794fa3242f1",
+        "bytes": 47321820
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      },
+      "flutter_source_commit": "65009c4115d6674e730f15b145671c9a87ae1de7",
+      "tracked_source_clean": true,
+      "launcher": {
+        "source": "assets/lumo_design/fox/fox_avatar.png",
+        "source_sha256": "8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f",
+        "source_size": [
+          512,
+          512
+        ],
+        "pillow_version": "12.3.0",
+        "canvas_dp": 108,
+        "artwork_dp": 60,
+        "background": "#081B43",
+        "files": [
+          {
+            "path": "mipmap-mdpi/ic_lumo.png",
+            "bytes": 3843,
+            "sha256": "5e95fafc9e809afb346e07b768058ed5a12928cc21c54910178479899eb14b2b",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "path": "mipmap-mdpi/ic_lumo_round.png",
+            "bytes": 4113,
+            "sha256": "f3a92a3b8c533d71de1bd9257b5f8f5d69a008c8ae16d48781a9c592d8a25453",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "path": "mipmap-mdpi/lumo_foreground.png",
+            "bytes": 9157,
+            "sha256": "398346110f8817cac9a9abda07dfb7d01201c1d3dc574ac4a88bc8f143d29f0e",
+            "width": 108,
+            "height": 108
+          },
+          {
+            "path": "mipmap-mdpi/lumo_monochrome.png",
+            "bytes": 2372,
+            "sha256": "26a2d463c1f77a69f92139ef855667aa6d8c34f43853bba4f808e8205decf94e",
+            "width": 108,
+            "height": 108
+          },
+          {
+            "path": "mipmap-hdpi/ic_lumo.png",
+            "bytes": 7803,
+            "sha256": "b89d700b144a1ac6144cdb62fb6104dea9d99fb91c4f4af323d307dc6db72281",
+            "width": 72,
+            "height": 72
+          },
+          {
+            "path": "mipmap-hdpi/ic_lumo_round.png",
+            "bytes": 7735,
+            "sha256": "eb52a5827cb86d8ea9b27259e62a17e2825145e7dc32522b45cd175d816f3ced",
+            "width": 72,
+            "height": 72
+          },
+          {
+            "path": "mipmap-hdpi/lumo_foreground.png",
+            "bytes": 18024,
+            "sha256": "7b4cd4abd7c13704d6bf8e4858613e1a415e340b94f0b71845a43dcbc23566fd",
+            "width": 162,
+            "height": 162
+          },
+          {
+            "path": "mipmap-hdpi/lumo_monochrome.png",
+            "bytes": 4123,
+            "sha256": "1ea519d2b0b21860d1ba8ea57908ca7d83248f08ae78828435816d8ce770745d",
+            "width": 162,
+            "height": 162
+          },
+          {
+            "path": "mipmap-xhdpi/ic_lumo.png",
+            "bytes": 12509,
+            "sha256": "b9f4baf7dd999ab517cab29e7744b4e789926997246d94e4b76e230827c7ef64",
+            "width": 96,
+            "height": 96
+          },
+          {
+            "path": "mipmap-xhdpi/ic_lumo_round.png",
+            "bytes": 12358,
+            "sha256": "83cb74d546e2188480d40dc729424f7bab6f1eec7facebb4f903bb62462ea147",
+            "width": 96,
+            "height": 96
+          },
+          {
+            "path": "mipmap-xhdpi/lumo_foreground.png",
+            "bytes": 29585,
+            "sha256": "85b40d37c65a150b5d49e0bbe136f947e0482b7aad2289324139e899769f4020",
+            "width": 216,
+            "height": 216
+          },
+          {
+            "path": "mipmap-xhdpi/lumo_monochrome.png",
+            "bytes": 6082,
+            "sha256": "9ed857cdefabb4f4196a9332189cbeace25031b4dac9a15dfaa079b240a68109",
+            "width": 216,
+            "height": 216
+          },
+          {
+            "path": "mipmap-xxhdpi/ic_lumo.png",
+            "bytes": 24975,
+            "sha256": "2c49f1c5940b6b25ad99bce838a0208a5c70354413c4a5b5a7c9c30b75e5aff6",
+            "width": 144,
+            "height": 144
+          },
+          {
+            "path": "mipmap-xxhdpi/ic_lumo_round.png",
+            "bytes": 24069,
+            "sha256": "d52e8b1ac7b2706182ddf29c7b589e4a98d68b2a6830bf7e1dbec51a6454b69f",
+            "width": 144,
+            "height": 144
+          },
+          {
+            "path": "mipmap-xxhdpi/lumo_foreground.png",
+            "bytes": 59699,
+            "sha256": "071284c29a0a21f1038b81d18b12d7a330a7c5caaa1c966b2e48922ca1118881",
+            "width": 324,
+            "height": 324
+          },
+          {
+            "path": "mipmap-xxhdpi/lumo_monochrome.png",
+            "bytes": 10525,
+            "sha256": "66a42f3aba32c0b3901be224fcb459110a552596749cf492d30e8e2c7a9e4baf",
+            "width": 324,
+            "height": 324
+          },
+          {
+            "path": "mipmap-xxxhdpi/ic_lumo.png",
+            "bytes": 41896,
+            "sha256": "1204f68ffbb0ac10e6e6d322458cf7ca94d2142fcdb699951163fc7077857974",
+            "width": 192,
+            "height": 192
+          },
+          {
+            "path": "mipmap-xxxhdpi/ic_lumo_round.png",
+            "bytes": 38614,
+            "sha256": "5a50dcd6bf1ca5a7507e9283e0e51704633e89ca30dacba5d3973a3b7abb5e25",
+            "width": 192,
+            "height": 192
+          },
+          {
+            "path": "mipmap-xxxhdpi/lumo_foreground.png",
+            "bytes": 99819,
+            "sha256": "7536c353c28cd61c272075c842282abab7501362ab397afeafbdc5144ab9bf7d",
+            "width": 432,
+            "height": 432
+          },
+          {
+            "path": "mipmap-xxxhdpi/lumo_monochrome.png",
+            "bytes": 15588,
+            "sha256": "7a611951973671e9974345c52536d8c3c532a358d9b55f38301ef7ff548408fb",
+            "width": 432,
+            "height": 432
+          },
+          {
+            "path": "values/lumo_launcher_colors.xml",
+            "bytes": 84,
+            "sha256": "acc76a73321417fc9d0b3dd06de352773cec1e1449573adf6d3aedde81ed5db4"
+          },
+          {
+            "path": "mipmap-anydpi-v26/ic_lumo.xml",
+            "bytes": 263,
+            "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+          },
+          {
+            "path": "mipmap-anydpi-v26/ic_lumo_round.xml",
+            "bytes": 263,
+            "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+          },
+          {
+            "path": "mipmap-anydpi-v33/ic_lumo.xml",
+            "bytes": 325,
+            "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+          },
+          {
+            "path": "mipmap-anydpi-v33/ic_lumo_round.xml",
+            "bytes": 325,
+            "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+          }
+        ],
+        "scope": "Generated resources only; APK and installed launcher must be checked separately"
+      }
+    },
+    "baseline": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 1932,
+      "versionName": "0.12.25",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "x86_64"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 305471556,
+      "sha256": "da895ef2cff6aceca5ff3986757a966754ac080a1ff4041ac5e25c0cb8b0af6a",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "853175c634dcb62c325fbd9b272e2ebc791830ad",
+        "engine": "4.6.3",
+        "pck_sha256": "aae93738cd7c60cbcb4adae6686cff56b14a501c36f3f66d1ab8c4b3d537e652",
+        "bytes": 47321820
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      },
+      "flutter_source_commit": "d20501476243e3a016c2574a9016c07e2ebe8f85",
+      "tracked_source_clean": true,
+      "launcher": {
+        "source": "assets/lumo_design/fox/fox_avatar.png",
+        "source_sha256": "8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f",
+        "source_size": [
+          512,
+          512
+        ],
+        "pillow_version": "12.3.0",
+        "canvas_dp": 108,
+        "artwork_dp": 60,
+        "background": "#081B43",
+        "files": [
+          {
+            "path": "mipmap-mdpi/ic_lumo.png",
+            "bytes": 3843,
+            "sha256": "5e95fafc9e809afb346e07b768058ed5a12928cc21c54910178479899eb14b2b",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "path": "mipmap-mdpi/ic_lumo_round.png",
+            "bytes": 4113,
+            "sha256": "f3a92a3b8c533d71de1bd9257b5f8f5d69a008c8ae16d48781a9c592d8a25453",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "path": "mipmap-mdpi/lumo_foreground.png",
+            "bytes": 9157,
+            "sha256": "398346110f8817cac9a9abda07dfb7d01201c1d3dc574ac4a88bc8f143d29f0e",
+            "width": 108,
+            "height": 108
+          },
+          {
+            "path": "mipmap-mdpi/lumo_monochrome.png",
+            "bytes": 2372,
+            "sha256": "26a2d463c1f77a69f92139ef855667aa6d8c34f43853bba4f808e8205decf94e",
+            "width": 108,
+            "height": 108
+          },
+          {
+            "path": "mipmap-hdpi/ic_lumo.png",
+            "bytes": 7803,
+            "sha256": "b89d700b144a1ac6144cdb62fb6104dea9d99fb91c4f4af323d307dc6db72281",
+            "width": 72,
+            "height": 72
+          },
+          {
+            "path": "mipmap-hdpi/ic_lumo_round.png",
+            "bytes": 7735,
+            "sha256": "eb52a5827cb86d8ea9b27259e62a17e2825145e7dc32522b45cd175d816f3ced",
+            "width": 72,
+            "height": 72
+          },
+          {
+            "path": "mipmap-hdpi/lumo_foreground.png",
+            "bytes": 18024,
+            "sha256": "7b4cd4abd7c13704d6bf8e4858613e1a415e340b94f0b71845a43dcbc23566fd",
+            "width": 162,
+            "height": 162
+          },
+          {
+            "path": "mipmap-hdpi/lumo_monochrome.png",
+            "bytes": 4123,
+            "sha256": "1ea519d2b0b21860d1ba8ea57908ca7d83248f08ae78828435816d8ce770745d",
+            "width": 162,
+            "height": 162
+          },
+          {
+            "path": "mipmap-xhdpi/ic_lumo.png",
+            "bytes": 12509,
+            "sha256": "b9f4baf7dd999ab517cab29e7744b4e789926997246d94e4b76e230827c7ef64",
+            "width": 96,
+            "height": 96
+          },
+          {
+            "path": "mipmap-xhdpi/ic_lumo_round.png",
+            "bytes": 12358,
+            "sha256": "83cb74d546e2188480d40dc729424f7bab6f1eec7facebb4f903bb62462ea147",
+            "width": 96,
+            "height": 96
+          },
+          {
+            "path": "mipmap-xhdpi/lumo_foreground.png",
+            "bytes": 29585,
+            "sha256": "85b40d37c65a150b5d49e0bbe136f947e0482b7aad2289324139e899769f4020",
+            "width": 216,
+            "height": 216
+          },
+          {
+            "path": "mipmap-xhdpi/lumo_monochrome.png",
+            "bytes": 6082,
+            "sha256": "9ed857cdefabb4f4196a9332189cbeace25031b4dac9a15dfaa079b240a68109",
+            "width": 216,
+            "height": 216
+          },
+          {
+            "path": "mipmap-xxhdpi/ic_lumo.png",
+            "bytes": 24975,
+            "sha256": "2c49f1c5940b6b25ad99bce838a0208a5c70354413c4a5b5a7c9c30b75e5aff6",
+            "width": 144,
+            "height": 144
+          },
+          {
+            "path": "mipmap-xxhdpi/ic_lumo_round.png",
+            "bytes": 24069,
+            "sha256": "d52e8b1ac7b2706182ddf29c7b589e4a98d68b2a6830bf7e1dbec51a6454b69f",
+            "width": 144,
+            "height": 144
+          },
+          {
+            "path": "mipmap-xxhdpi/lumo_foreground.png",
+            "bytes": 59699,
+            "sha256": "071284c29a0a21f1038b81d18b12d7a330a7c5caaa1c966b2e48922ca1118881",
+            "width": 324,
+            "height": 324
+          },
+          {
+            "path": "mipmap-xxhdpi/lumo_monochrome.png",
+            "bytes": 10525,
+            "sha256": "66a42f3aba32c0b3901be224fcb459110a552596749cf492d30e8e2c7a9e4baf",
+            "width": 324,
+            "height": 324
+          },
+          {
+            "path": "mipmap-xxxhdpi/ic_lumo.png",
+            "bytes": 41896,
+            "sha256": "1204f68ffbb0ac10e6e6d322458cf7ca94d2142fcdb699951163fc7077857974",
+            "width": 192,
+            "height": 192
+          },
+          {
+            "path": "mipmap-xxxhdpi/ic_lumo_round.png",
+            "bytes": 38614,
+            "sha256": "5a50dcd6bf1ca5a7507e9283e0e51704633e89ca30dacba5d3973a3b7abb5e25",
+            "width": 192,
+            "height": 192
+          },
+          {
+            "path": "mipmap-xxxhdpi/lumo_foreground.png",
+            "bytes": 99819,
+            "sha256": "7536c353c28cd61c272075c842282abab7501362ab397afeafbdc5144ab9bf7d",
+            "width": 432,
+            "height": 432
+          },
+          {
+            "path": "mipmap-xxxhdpi/lumo_monochrome.png",
+            "bytes": 15588,
+            "sha256": "7a611951973671e9974345c52536d8c3c532a358d9b55f38301ef7ff548408fb",
+            "width": 432,
+            "height": 432
+          },
+          {
+            "path": "values/lumo_launcher_colors.xml",
+            "bytes": 84,
+            "sha256": "acc76a73321417fc9d0b3dd06de352773cec1e1449573adf6d3aedde81ed5db4"
+          },
+          {
+            "path": "mipmap-anydpi-v26/ic_lumo.xml",
+            "bytes": 263,
+            "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+          },
+          {
+            "path": "mipmap-anydpi-v26/ic_lumo_round.xml",
+            "bytes": 263,
+            "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+          },
+          {
+            "path": "mipmap-anydpi-v33/ic_lumo.xml",
+            "bytes": 325,
+            "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+          },
+          {
+            "path": "mipmap-anydpi-v33/ic_lumo_round.xml",
+            "bytes": 325,
+            "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+          }
+        ],
+        "scope": "Generated resources only; APK and installed launcher must be checked separately"
+      }
+    },
+    "root": {
+      "status": "PASS",
+      "attempts": [
+        {
+          "arguments": [
+            "get-serialno"
+          ],
+          "elapsed_seconds": 0.0,
+          "status": "PASS",
+          "return_code": 0,
+          "output": "emulator-5554"
+        },
+        {
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "root"
+          ],
+          "elapsed_seconds": 0.004,
+          "status": "PASS",
+          "return_code": 0,
+          "output": ""
+        },
+        {
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "wait-for-device"
+          ],
+          "elapsed_seconds": 1.704,
+          "status": "PASS",
+          "return_code": 0,
+          "output": ""
+        },
+        {
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "shell",
+            "id",
+            "-u"
+          ],
+          "elapsed_seconds": 1.953,
+          "status": "PASS",
+          "return_code": 0,
+          "output": "0"
+        },
+        {
+          "arguments": [
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop",
+            "sys.boot_completed"
+          ],
+          "elapsed_seconds": 2.228,
+          "status": "PASS",
+          "return_code": 0,
+          "output": "1"
+        }
+      ],
+      "root_transport_recovered": false,
+      "initial_offline_recovered": false,
+      "initial_missing_recovered": false,
+      "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+      "scope": "disposable emulator setup; this does not pass installation or gameplay",
+      "serial": "emulator-5554",
+      "last_shell_uid": "0",
+      "last_boot_completed": "1",
+      "shell_uid": 0,
+      "boot_completed": true,
+      "elapsed_seconds": 2.335
+    },
+    "android_api": 36,
+    "onboarding": {
+      "status": "PASS",
+      "profile_name": "LumoTest",
+      "captures": [
+        {
+          "file": "07_home_after_onboarding.png",
+          "width": 1080,
+          "height": 2400,
+          "sha256": "4a2104f44727b9bd40363fa7ed2c9b487b4a22192ad258f04a967246931f53d6"
+        },
+        {
+          "file": "08_games_after_navigation.png",
+          "width": 1080,
+          "height": 2400,
+          "sha256": "3295137fb679c618cc878de33692d4e1dee09bbe9ee03a7e52f47d86c195e321"
+        }
+      ]
+    },
+    "in_place_update": {
+      "before": {
+        "userId": "10216",
+        "firstInstallTime": "2026-10-12 02:34:47",
+        "versionCode": "1932 minSdk=24 targetSdk=36",
+        "versionName": "0.12.25"
+      },
+      "after": {
+        "userId": "10216",
+        "firstInstallTime": "2026-10-12 02:34:47",
+        "versionCode": "1933 minSdk=24 targetSdk=36",
+        "versionName": "0.12.26"
+      }
+    },
+    "parents": {
+      "file": "00_actual_android_phone_parents.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "dbf955735109b0f7c9a1fada5386ec91683de062b604c43961c12b91580ae2f0"
+    },
+    "greeting_player": {
+      "before": [
+        0,
+        0
+      ],
+      "paused": [
+        1,
+        0
+      ],
+      "completed": [
+        1,
+        1
+      ],
+      "source": "Lumo Frei / F2 / lokale Aufnahme free_b5e456b1bd716ab4.m4a",
+      "audible_timbre": "NOT TESTED: silent emulator"
+    },
+    "local_assent": {
+      "explicit_ui_action": true,
+      "unrelated_permissions": "all false",
+      "scope": "Fictional disposable test configuration, no identity verification claim"
+    },
+    "fresh_local_math": {
+      "confirmed_native_start": true,
+      "confirmed_native_completion": true,
+      "cloud_disabled": true,
+      "network_disabled": true,
+      "source": "Lumo Frei / F2 / lokale Synthese",
+      "audio_content_human_review": "NOT TESTED"
+    },
+    "stop_control": {
+      "before": [
+        2,
+        2
+      ],
+      "after": [
+        3,
+        2
+      ],
+      "natural_completion_not_faked": true
+    },
+    "layouts": [
+      {
+        "file": "05_local_voice_phone.png",
+        "width": 360,
+        "height": 800,
+        "sha256": "f03013841251807505172748717e9704451e29e710ea75d0469e01bcafda3b69"
+      },
+      {
+        "file": "05_local_voice_fold-target.png",
+        "width": 2176,
+        "height": 1812,
+        "sha256": "6115f9dc99d834c02d1939d13deb6f7556aa747a0c4836630c37e225dec5f204"
+      },
+      {
+        "file": "05_local_voice_phone-return.png",
+        "width": 360,
+        "height": 800,
+        "sha256": "047ec5403dadf6bc87693044df60e0fd061b68e411e0a955000f112a27bfb16d"
+      }
+    ],
+    "kart_menu": {
+      "file": "06_preserved_kart_menu.png",
+      "width": 1200,
+      "height": 896,
+      "sha256": "fb7a856b62977baf4b5570d9780c3e8984e42f223c3d59303ec4d75555e7aa58"
+    },
+    "kart_return": {
+      "file": "07_preserved_kart_return.png",
+      "width": 1200,
+      "height": 896,
+      "sha256": "a1ac68a246b8ee09aacc7a1983c9d350fccba9a0c25e6ad3ef2ea3d1e03d0623"
+    },
+    "profile_retained": true,
+    "wallet_retained": true,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702"
+  },
+  "candidate_source": "65009c4115d6674e730f15b145671c9a87ae1de7",
+  "candidate_apk_sha256": "cf8b941088258615a8f9a1c049a212dd31c60079117e5985cd267b11a5e5e972",
+  "school_course": {
+    "status": "PASS",
+    "complete_eight_step_course": true,
+    "actual_wrong_answer_and_child_requested_hint": true,
+    "school_record": {
+      "skillId": "mathematik::plus bis 20",
+      "subject": "Mathematik",
+      "unit": "Plus bis 20",
+      "correct": 2,
+      "wrong": 1,
+      "hintCount": 1,
+      "currentStreak": 2,
+      "currentMisses": 0,
+      "difficulty": 1,
+      "lastSeen": "2026-10-12T02:42:06.539453"
+    },
+    "course_player": {
+      "explicit_real_read_pause_resume": true,
+      "returned_to_read_after_playback": true,
+      "audible_semantic_or_emotional_review": "NOT TESTED: silent emulator"
+    },
+    "screenshots": [
+      {
+        "file": "08_actual_android_school_introduction.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "2197b357ee0c270e6c4e7239d94471f199a2e6e9b28b3b4cf1609118c0db58bc"
+      },
+      {
+        "file": "09_actual_android_course_voice_paused.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "2d075d9cf662b78090ecd73871b6eb1ca9169b4ec8fe7bf3d1189f171a27fe7f"
+      },
+      {
+        "file": "10_actual_android_fold_target_seven_plus_five.png",
+        "width": 2176,
+        "height": 1812,
+        "sha256": "f6c61f85aa014497c74367fc47dfe739a17e14aff2d61560d465954eb8708bd8"
+      },
+      {
+        "file": "11_actual_android_learning_hint_after_error.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "2d1756b2d2e072e5c610ea204e7fad96f6e364dd0c25b3a700d8a73cbe74f658"
+      },
+      {
+        "file": "12_actual_android_complete_school_course.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "ef517052eeca91c651b1f8bea9bcf3be657da494a3524478f54b4ea7c7728e4a"
+      }
+    ]
+  },
+  "subtraction_course": {
+    "status": "PASS",
+    "complete_eight_step_course": true,
+    "school_record": {
+      "skillId": "mathematik::minus bis 20",
+      "subject": "Mathematik",
+      "unit": "Minus bis 20",
+      "correct": 2,
+      "wrong": 2,
+      "hintCount": 1,
+      "currentStreak": 2,
+      "currentMisses": 0,
+      "difficulty": 1,
+      "lastSeen": "2026-10-12T02:44:07.418729"
+    },
+    "existing_skills_preserved": true,
+    "discovery_unchanged": true,
+    "different_child_requested_help": true,
+    "wallet_unchanged": true,
+    "actual_local_voice_pause_resume": true,
+    "active_help": {
+      "status": "PASS",
+      "real_wrong_taps": 2,
+      "no_hint_before_acceptance": true,
+      "actual_accept_button_tapped": true
+    },
+    "screenshots": [
+      {
+        "file": "17_actual_android_subtraction_example.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "800f2f700cd29ed8eb5810c8dca5ebe837f25567cad98f11a3916ab742ea239d"
+      },
+      {
+        "file": "18_actual_android_subtraction_alternative_hint.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "0b5efdc310cdca5260a3ab3708cc641bfac667a0a065d88ac86e209cc59f117e"
+      },
+      {
+        "file": "19_actual_android_complete_subtraction_course.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "a608839ce096ff28a8ca1cb825dba318764287aaac6498c3284a4d07e5093667"
+      }
+    ]
+  },
+  "syllables_course": {
+    "status": "PASS",
+    "complete_eight_step_course": true,
+    "school_record": {
+      "skillId": "deutsch::silben",
+      "subject": "Deutsch",
+      "unit": "Silben",
+      "correct": 2,
+      "wrong": 1,
+      "hintCount": 1,
+      "currentStreak": 2,
+      "currentMisses": 0,
+      "difficulty": 1,
+      "lastSeen": "2026-10-12T02:44:52.116877"
+    },
+    "actual_wrong_tap": true,
+    "different_child_requested_help": true,
+    "correct_answer_feedback_enabled_continue_in_same_frame": true,
+    "daily_correct_delta": 2,
+    "actual_attempts_added": 3,
+    "existing_skills_preserved": true,
+    "other_profiles_unchanged": true,
+    "discovery_unchanged": true,
+    "wallet_unchanged": true,
+    "screenshots": [
+      {
+        "file": "21_actual_android_syllables_example.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "028b3d04069c054235d5c97fbd27ff31630f4122cfa818caef781b1144448ff2"
+      },
+      {
+        "file": "22_actual_android_syllables_alternative_hint.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "59d3c42d50ecd9183007248f23fe55638445edfa2db0ba427e05f6bd59e16f8a"
+      },
+      {
+        "file": "23_actual_android_complete_syllables_course.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "c04d33f768dbd11d69548ff03df9db56a3f0039d5e8e9faa564092a042632af5"
+      }
+    ]
+  },
+  "plant_parts_course": {
+    "status": "PASS",
+    "complete_eight_step_course": true,
+    "school_record": {
+      "skillId": "sachunterricht::pflanzen",
+      "subject": "Sachunterricht",
+      "unit": "Pflanzen",
+      "correct": 2,
+      "wrong": 1,
+      "hintCount": 1,
+      "currentStreak": 2,
+      "currentMisses": 0,
+      "difficulty": 1,
+      "lastSeen": "2026-10-12T02:45:38.408803"
+    },
+    "actual_wrong_tap": true,
+    "different_child_requested_help": true,
+    "correct_answer_feedback_enabled_continue_in_same_frame": true,
+    "daily_correct_delta": 2,
+    "actual_attempts_added": 3,
+    "existing_skills_preserved": true,
+    "other_profiles_unchanged": true,
+    "discovery_unchanged": true,
+    "wallet_unchanged": true,
+    "screenshots": [
+      {
+        "file": "24_actual_android_plant_example.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "0394af61dccdb336174da1d615f0202db91bb42cc7405fe926b2ca3d46bc86c6"
+      },
+      {
+        "file": "25_actual_android_plant_alternative_hint.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "7bca9d959466491be8707193f384c17aeb9c5c32b714019ab0c433ad65c0c24f"
+      },
+      {
+        "file": "26_actual_android_complete_plant_course.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "42f564ef1e8ce7b4e5edc940854bbf1cfc083d42e17fcdef02f2a9f6fd8e1d11"
+      }
+    ]
+  },
+  "discovery_course": {
+    "status": "PASS",
+    "complete_seven_step_course": true,
+    "default_parent_gate": true,
+    "explicit_local_parent_choice": true,
+    "verified_adult_identity": false,
+    "regular_school_and_wallet_unchanged": true,
+    "higher_grade": 2,
+    "regular_grade": 1,
+    "separate_topic": {
+      "grade": 2,
+      "interested": true,
+      "introduced": true,
+      "foundationCorrect": 1,
+      "foundationWrong": 0,
+      "guidedCorrect": 1,
+      "guidedWrong": 0,
+      "independentCorrect": 1,
+      "independentWrong": 0,
+      "checkCorrect": 1,
+      "checkWrong": 0,
+      "hintsUsed": 0,
+      "currentMisses": 0
+    },
+    "screenshots": [
+      {
+        "file": "13_actual_android_discovery_parent_gate.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "8304d0be1a3065a2b0061eef5adbbe924120b768a27fc17417b57c8cb06299fe"
+      },
+      {
+        "file": "14_actual_android_discovery_explicit_parent_choice.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "e2366fdb8b89c9688924a441d7a8a5cf7223137d7b6e1e1305f710b808454cbf"
+      },
+      {
+        "file": "15_actual_android_higher_grade_equal_groups.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "e37bce13b40a1e783b4182a683768d572f230a6c48e8bc8257a21cb77aebd445"
+      },
+      {
+        "file": "16_actual_android_complete_discovery_course.png",
+        "width": 1200,
+        "height": 896,
+        "sha256": "d293a7a6066478eaff64583ea8df9954493240af752f97167bafbdd4eeefe00e"
+      }
+    ]
+  },
+  "restart_school_discovery_wallet": "PASS",
+  "limitations": [
+    "audible timbre/emotional acceptance",
+    "physical Samsung",
+    "physical hinge events",
+    "ARM64 device playback",
+    "50 spoken situations on Android",
+    "full Kart race",
+    "Full curriculum and external Austrian pedagogical sign-off",
+    "Production adult identity/security approval",
+    "Google Play publication, payments and commercial voice license approval"
+  ]
+}
