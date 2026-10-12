@@ -1,18 +1,14 @@
-/// "Wer wird Lumo-Champion" - Quiz-Show fuer Kinder.
+/// "Wer wird Lumo-Meister?" - Quiz-Show fuer Kinder.
 ///
-/// Heinz' Konzept:
-///   - 15 Fragen, steigende Schwierigkeit
-///   - Schwellen wie bei "Wer wird Millionaer":
-///       Frage 5  -> kleiner Coupon (Eis, Schoki)
-///       Frage 10 -> mittlerer Coupon (Kino, Family Park)
-///       Frage 15 -> grosser Coupon (Spielzeug, Lego)
-///   - 3 Joker: 50:50, Publikum, Lumo-Anruf
-///   - Falsche Antwort = zurueck auf letzte Schwelle
+/// Produktregeln:
+///   - 20 Fragen mit steigender, schulstufengerechter Schwierigkeit
+///   - sichere Stern-Stufen: 50 / 200 / 800 / 5.000
+///   - Frage 20 ist die Finalfrage
+///   - 3 Joker: 50:50, Publikum, Lumo-Hinweis
+///   - falsche Antwort sichert die zuletzt erreichte Stern-Stufe
 library;
 
 import 'package:flutter/foundation.dart';
-
-import 'quiz_rewards.dart';
 
 /// Schwierigkeit einer Quiz-Frage.
 enum QuizDifficulty {
@@ -21,15 +17,15 @@ enum QuizDifficulty {
   hard,
 }
 
-/// Joker-Typen wie bei "Wer wird Millionaer".
+/// Joker der Lumo-Quizshow.
 enum QuizJoker {
   /// Zwei falsche Antworten werden ausgegraut.
   fiftyFifty,
 
-  /// Publikums-Statistik wird angezeigt (Balkendiagramm).
+  /// Publikums-Statistik wird angezeigt.
   audience,
 
-  /// Lumo-Fuchs gibt einen kindgerechten Hinweis.
+  /// Lumo gibt einen kindgerechten Hinweis.
   callLumo,
 }
 
@@ -47,33 +43,17 @@ class QuizQuestion {
     this.hint,
   });
 
-  /// Eindeutige ID fuer Anti-Wiederholung.
   final String id;
-
-  /// Die Frage-Text (kindgerecht formuliert).
   final String prompt;
-
-  /// Genau 4 Antwort-Optionen.
   final List<String> options;
-
-  /// Index 0-3, welche Option richtig ist.
   final int correctIndex;
-
   final QuizDifficulty difficulty;
-
-  /// 'Mathe' / 'Deutsch' / 'Sachunterricht' / 'Mix'.
   final String subject;
-
-  /// Optional: Erklaerung nach Antwort.
   final String? explanation;
-
-  /// Optional: Hinweis fuer Lumo-Anruf-Joker.
   final String? hint;
 
-  /// Liefert die richtige Antwort als String.
   String get correctAnswer => options[correctIndex];
 
-  /// Validitaets-Check.
   bool get isValid =>
       options.length == 4 &&
       correctIndex >= 0 &&
@@ -91,53 +71,40 @@ class QuizShowState {
     this.revealed = false,
     this.usedJokers = const <QuizJoker>{},
     this.fiftyFiftyHiddenOptions = const <int>{},
-    this.earnedCoupons = const <QuizCoupon>[],
+    this.securedStars = 0,
+    this.awardedStars = 0,
     this.gameOver = false,
     this.won = false,
     this.audienceVotes,
     this.lumoHint,
   });
 
-  /// Alle 15 Fragen dieses Spiels.
+  /// Alle 20 Fragen dieses Spiels.
   final List<QuizQuestion> questions;
 
-  /// Aktuelle Frage (0-14).
+  /// Aktuelle Frage (0-19).
   final int currentQuestionIndex;
 
-  /// Vom Kind gewaehlte Option (null wenn noch nicht gewaehlt).
   final int? selectedOption;
-
-  /// Ob die Aufloesung schon gezeigt wurde.
   final bool revealed;
-
-  /// Welche Joker bereits verwendet wurden.
   final Set<QuizJoker> usedJokers;
-
-  /// Bei 50:50-Joker: welche 2 Optionen versteckt sind.
   final Set<int> fiftyFiftyHiddenOptions;
 
-  /// Bei Schwellen gesicherte Coupons.
-  final List<QuizCoupon> earnedCoupons;
+  /// Zuletzt gesicherte Stern-Stufe.
+  final int securedStars;
 
-  /// Spiel zu Ende (entweder gewonnen oder verloren).
+  /// Sterne, die bei Spielende tatsaechlich gutgeschrieben werden.
+  ///
+  /// Vor Spielende immer 0. Dadurch kann die UI exakt einmal buchen.
+  final int awardedStars;
+
   final bool gameOver;
-
-  /// Hat das Kind alle 15 Fragen geschafft?
   final bool won;
-
-  /// Bei Publikum-Joker: Prozent-Verteilung [opt0, opt1, opt2, opt3].
   final List<int>? audienceVotes;
-
-  /// Bei Lumo-Anruf-Joker: aktueller Hinweis-Text.
   final String? lumoHint;
 
-  /// Aktuelle Frage als bequeme Property.
   QuizQuestion get currentQuestion => questions[currentQuestionIndex];
-
-  /// Frage-Nummer fuer UI (1-15).
   int get displayQuestionNumber => currentQuestionIndex + 1;
-
-  /// Wie viele Joker noch verfuegbar.
   int get remainingJokers => QuizJoker.values.length - usedJokers.length;
 
   QuizShowState copyWith({
@@ -147,7 +114,8 @@ class QuizShowState {
     bool? revealed,
     Set<QuizJoker>? usedJokers,
     Set<int>? fiftyFiftyHiddenOptions,
-    List<QuizCoupon>? earnedCoupons,
+    int? securedStars,
+    int? awardedStars,
     bool? gameOver,
     bool? won,
     List<int>? audienceVotes,
@@ -163,8 +131,11 @@ class QuizShowState {
       selectedOption: clearSelection ? null : (selectedOption ?? this.selectedOption),
       revealed: revealed ?? this.revealed,
       usedJokers: usedJokers ?? this.usedJokers,
-      fiftyFiftyHiddenOptions: clearFiftyFifty ? const <int>{} : (fiftyFiftyHiddenOptions ?? this.fiftyFiftyHiddenOptions),
-      earnedCoupons: earnedCoupons ?? this.earnedCoupons,
+      fiftyFiftyHiddenOptions: clearFiftyFifty
+          ? const <int>{}
+          : (fiftyFiftyHiddenOptions ?? this.fiftyFiftyHiddenOptions),
+      securedStars: securedStars ?? this.securedStars,
+      awardedStars: awardedStars ?? this.awardedStars,
       gameOver: gameOver ?? this.gameOver,
       won: won ?? this.won,
       audienceVotes: clearAudience ? null : (audienceVotes ?? this.audienceVotes),
@@ -177,19 +148,23 @@ class QuizShowState {
 class QuizShowEngine {
   const QuizShowEngine();
 
-  /// Die Frage-Indizes (0-indexed) NACH denen eine Schwelle gesichert wird.
-  /// Frage 5 = Index 4, Frage 10 = Index 9, Frage 15 = Index 14.
-  static const List<int> safeSpotsAfterIndex = <int>[4, 9, 14];
+  /// Stern-Stufen nach Frage 5, 10, 15 und 20.
+  static const Map<int, int> securedStarsAfterIndex = <int, int>{
+    4: 50,
+    9: 200,
+    14: 800,
+    19: 5000,
+  };
 
-  /// Startet ein neues Spiel mit 15 vorab generierten Fragen.
   QuizShowState start({required List<QuizQuestion> questions}) {
-    assert(questions.length == 15, 'Quiz braucht GENAU 15 Fragen, bekam ${questions.length}');
+    assert(
+      questions.length == 20,
+      'Quiz braucht GENAU 20 Fragen, bekam ${questions.length}',
+    );
     assert(questions.every((q) => q.isValid), 'Mindestens eine Frage ist invalid');
     return QuizShowState(questions: questions);
   }
 
-  /// Kind waehlt eine Antwort-Option.
-  /// Wenn bereits revealed: ignoriert.
   QuizShowState selectAnswer(QuizShowState s, int optionIndex) {
     if (s.revealed || s.gameOver) return s;
     if (optionIndex < 0 || optionIndex > 3) return s;
@@ -197,35 +172,39 @@ class QuizShowEngine {
     return s.copyWith(selectedOption: optionIndex);
   }
 
-  /// Aufloesung der gewaehlten Antwort.
-  QuizShowState reveal(
-    QuizShowState s, {
-    required QuizCoupon Function(int milestoneLevel) drawCouponForMilestone,
-  }) {
+  /// Loest die aktuelle Antwort auf.
+  ///
+  /// Bei einer falschen Antwort endet das Spiel und die zuletzt gesicherte
+  /// Stern-Stufe wird ausgezahlt. Bei der Finalfrage werden 5.000 Sterne
+  /// gesichert und ausgezahlt.
+  QuizShowState reveal(QuizShowState s) {
     if (s.revealed || s.gameOver || s.selectedOption == null) return s;
 
     final question = s.currentQuestion;
     final correct = s.selectedOption == question.correctIndex;
+
     if (!correct) {
-      return s.copyWith(revealed: true, gameOver: true, won: false);
+      return s.copyWith(
+        revealed: true,
+        gameOver: true,
+        won: false,
+        awardedStars: s.securedStars,
+      );
     }
 
-    final earned = List<QuizCoupon>.from(s.earnedCoupons);
-    final milestone = safeSpotTierForIndex(s.currentQuestionIndex);
-    if (milestone > 0) {
-      earned.add(drawCouponForMilestone(milestone));
-    }
-
+    final newlySecured =
+        securedStarsAfterIndex[s.currentQuestionIndex] ?? s.securedStars;
     final completedAll = s.currentQuestionIndex >= s.questions.length - 1;
+
     return s.copyWith(
       revealed: true,
-      earnedCoupons: earned,
+      securedStars: newlySecured,
+      awardedStars: completedAll ? newlySecured : 0,
       gameOver: completedAll,
       won: completedAll,
     );
   }
 
-  /// Weiter zur naechsten Frage. Reset selection, fiftyFifty, audience, lumoHint.
   QuizShowState nextQuestion(QuizShowState s) {
     if (s.gameOver || !s.revealed) return s;
     if (s.currentQuestionIndex >= s.questions.length - 1) return s;
@@ -239,14 +218,15 @@ class QuizShowEngine {
     );
   }
 
-  /// Joker einsetzen.
   QuizShowState useJoker(QuizShowState s, QuizJoker joker) {
     if (s.revealed || s.gameOver || s.usedJokers.contains(joker)) return s;
 
     final used = Set<QuizJoker>.from(s.usedJokers)..add(joker);
     switch (joker) {
       case QuizJoker.fiftyFifty:
-        final wrong = <int>[0, 1, 2, 3].where((i) => i != s.currentQuestion.correctIndex).toList();
+        final wrong = <int>[0, 1, 2, 3]
+            .where((i) => i != s.currentQuestion.correctIndex)
+            .toList();
         final seed = _stableSeed('${s.currentQuestion.id}|5050');
         wrong.sort((a, b) => ((a + seed) % 7).compareTo((b + seed) % 7));
         return s.copyWith(
@@ -266,23 +246,19 @@ class QuizShowEngine {
     }
   }
 
-  /// Gibt zurueck welcher Coupon-Tier nach diesem Frage-Index gesichert wird.
-  /// Returns 0 wenn keine Schwelle.
-  int safeSpotTierForIndex(int questionIndex) {
-    if (questionIndex == 4) return 1;
-    if (questionIndex == 9) return 2;
-    if (questionIndex == 14) return 3;
-    return 0;
-  }
+  int safeSpotStarsForIndex(int questionIndex) =>
+      securedStarsAfterIndex[questionIndex] ?? 0;
 
-  /// True wenn der aktuelle Frage-Index eine Schwelle ist.
-  bool isAtSafeSpot(int questionIndex) => safeSpotTierForIndex(questionIndex) > 0;
+  bool isAtSafeSpot(int questionIndex) =>
+      securedStarsAfterIndex.containsKey(questionIndex);
 
   List<int> _audienceVotesFor(QuizQuestion question) {
     final seed = _stableSeed('${question.id}|audience');
     final correctPercent = 64 + (seed % 18);
     final remaining = 100 - correctPercent;
-    final wrong = <int>[0, 1, 2, 3].where((i) => i != question.correctIndex).toList();
+    final wrong = <int>[0, 1, 2, 3]
+        .where((i) => i != question.correctIndex)
+        .toList();
     wrong.sort((a, b) => ((a + seed) % 11).compareTo((b + seed) % 11));
 
     final votes = List<int>.filled(4, 0);
@@ -295,10 +271,14 @@ class QuizShowEngine {
 
   String _genericHintFor(QuizQuestion question) {
     return switch (question.subject.toLowerCase()) {
-      'mathe' => 'Rechne langsam. Erst die Zahlen anschauen, dann Schritt für Schritt lösen.',
-      'deutsch' => 'Lies die Frage laut. Achte auf Wortanfang, Wortende und Bedeutung.',
-      'sachunterricht' => 'Denk an das, was du aus Alltag, Natur und Schule kennst.',
-      _ => 'Schau dir jede Antwort ruhig an. Eine passt besser als die anderen.',
+      'mathe' =>
+        'Rechne langsam. Erst die Zahlen anschauen, dann Schritt für Schritt lösen.',
+      'deutsch' =>
+        'Lies die Frage laut. Achte auf Wortanfang, Wortende und Bedeutung.',
+      'sachunterricht' =>
+        'Denk an das, was du aus Alltag, Natur und Schule kennst.',
+      _ =>
+        'Schau dir jede Antwort ruhig an. Eine passt besser als die anderen.',
     };
   }
 
