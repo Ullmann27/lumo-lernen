@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_story_library.dart';
+import '../../core/lumo_story_generator.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
@@ -71,6 +72,23 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
         builder: (_) => LumoStorySetupScreen(
           appState: widget.appState,
           initialGrade: widget.gradeLevel,
+        ),
+      ),
+    ).then((_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  void _startReadingNow() {
+    final grade = (widget.gradeLevel ?? widget.appState.state.grade).clamp(1, 4);
+    final story =
+        LumoStoryGenerator.instance.generateRandom(gradeLevel: grade);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LumoStoryReaderScreen(
+          story: story,
+          appState: widget.appState,
         ),
       ),
     ).then((_) {
@@ -182,7 +200,10 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Meine Geschichten',
+                Text(
+                    widget.gradeLevel == null
+                        ? 'Meine Geschichten'
+                        : 'Geschichten · Lesen & verstehen',
                     style: LumoTokens.typo.headlineLarge),
                 Text(
                     widget.gradeLevel == null
@@ -254,6 +275,7 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   }
 
   Widget _buildEmpty() {
+    final learningPath = widget.gradeLevel != null;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(LumoTokens.space24),
@@ -262,26 +284,53 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
           children: [
             const Text('📚', style: TextStyle(fontSize: 80)),
             const SizedBox(height: 16),
-            Text('Noch keine Geschichten',
-                style: LumoTokens.typo.headlineMedium),
+            Text(
+                learningPath
+                    ? 'Bereit für deine Lesegeschichte?'
+                    : 'Noch keine Geschichten',
+                style: LumoTokens.typo.headlineMedium,
+                textAlign: TextAlign.center),
             const SizedBox(height: 8),
             Text(
-                'Erstelle dein erstes magisches Lese-Heft!',
+                learningPath
+                    ? 'Starte sofort eine Geschichte für die ${widget.gradeLevel}. Klasse und beantworte danach Verständnisfragen.'
+                    : 'Erstelle dein erstes magisches Lese-Heft!',
                 style: LumoTokens.typo.bodyLarge,
                 textAlign: TextAlign.center),
             const SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: _createNew,
-              icon: const Icon(Icons.auto_stories_rounded),
-              label: const Text('Erste Geschichte!'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: LumoTokens.colors.lumoOrange,
-                foregroundColor: Colors.white,
-                textStyle: LumoTokens.typo.titleLarge,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 24, vertical: 14),
+            if (learningPath) ...[
+              ElevatedButton.icon(
+                key: const ValueKey('story-start-reading-now'),
+                onPressed: _startReadingNow,
+                icon: const Icon(Icons.play_arrow_rounded),
+                label: const Text('Lesegeschichte starten'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: LumoTokens.colors.lumoOrange,
+                  foregroundColor: Colors.white,
+                  textStyle: LumoTokens.typo.titleLarge,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                ),
               ),
-            ),
+              const SizedBox(height: 12),
+              OutlinedButton.icon(
+                onPressed: _createNew,
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: const Text('Eigene Geschichte erstellen'),
+              ),
+            ] else
+              ElevatedButton.icon(
+                onPressed: _createNew,
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: const Text('Erste Geschichte!'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: LumoTokens.colors.lumoOrange,
+                  foregroundColor: Colors.white,
+                  textStyle: LumoTokens.typo.titleLarge,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                ),
+              ),
           ],
         ),
       ),
