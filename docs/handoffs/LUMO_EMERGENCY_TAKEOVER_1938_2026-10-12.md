@@ -14,10 +14,11 @@ Do not overwrite or merge the active Sol branches. On takeover, first refresh th
 
 ## Sol work already seen after 1937
 
-At snapshot time:
+At latest confirmed snapshot:
 
-- `sol/lumo-curriculum-depth-1938-2026-10-12` at `9848b0a568a147f5da69d12346dae4c953724d68`
-  - adds deeper spelling, English and grammar banks.
+- `sol/lumo-curriculum-depth-1938-2026-10-12` at `de7bcd0a27d813ccc816090b5ca4c4e1fe07be1f`
+  - first commit expands spelling, English and grammar banks;
+  - second commit safely secures the advanced guided-learning block: new guided courses, fraction/quantity visuals, shape-question data, runtime/progress coverage and related tests.
 - `sol/lumo-1937-android-acceptance-2026-10-12`
   - acceptance-only work; product source remains the frozen 1937 commit.
   - previous failures reached real Kart runtime/screenshots but failed strict probe conditions.
