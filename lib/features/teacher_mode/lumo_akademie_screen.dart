@@ -671,6 +671,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   late final AnimationController _heroCtrl;
   int _selectedGrade = 1;
   int _selectedSubjectIndex = 0;
+  final GlobalKey _subjectSectionKey = GlobalKey();
 
   @override
   void initState() {
@@ -1139,6 +1140,17 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     final curriculumIndex = area.curriculumIndex;
     if (curriculumIndex != null) {
       setState(() => _selectedSubjectIndex = curriculumIndex);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        final targetContext = _subjectSectionKey.currentContext;
+        if (targetContext == null) return;
+        Scrollable.ensureVisible(
+          targetContext,
+          duration: const Duration(milliseconds: 480),
+          curve: Curves.easeOutCubic,
+          alignment: 0.08,
+        );
+      });
       return;
     }
     final section = area.section!;
@@ -1418,6 +1430,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
 
   Widget _buildSubjectSection(LearningSubject s, int idx) {
     return Padding(
+      key: _subjectSectionKey,
       padding: const EdgeInsets.only(bottom: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
