@@ -12,8 +12,14 @@ import '../../widgets/premium/lumo_magic_background.dart';
 import 'lumo_story_reader_screen.dart';
 
 class LumoStorySetupScreen extends StatefulWidget {
-  const LumoStorySetupScreen({super.key, required this.appState});
+  const LumoStorySetupScreen({
+    super.key,
+    required this.appState,
+    this.initialGrade,
+  });
+
   final LumoAppState appState;
+  final int? initialGrade;
 
   @override
   State<LumoStorySetupScreen> createState() => _LumoStorySetupScreenState();
@@ -23,7 +29,14 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
   String? _hero;
   String? _location;
   String? _theme;
-  int _gradeLevel = 1;
+  late int _gradeLevel;
+
+  @override
+  void initState() {
+    super.initState();
+    final requested = widget.initialGrade ?? widget.appState.state.grade;
+    _gradeLevel = requested.clamp(1, 4).toInt();
+  }
 
   bool get _canStart => _hero != null && _location != null && _theme != null;
 
