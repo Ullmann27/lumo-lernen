@@ -1,0 +1,78 @@
+name: Lumo 1936 runtime screenshots
+on:
+  push:
+    branches: [sol/lumo-1936-runtime-screenshots-2026-10-12]
+    paths: [.github/workflows/lumo-1936-screenshots.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      LUMO_PRODUCT_SOURCE: '2dedb4045c6daea1de8af19052d51003191df8c8'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: '2dedb4045c6daea1de8af19052d51003191df8c8'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Freeze exact 1936 product source
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$LUMO_PRODUCT_SOURCE"
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = '0.12.29+1936'
+          mkdir -p screenshots
+
+      - name: Resolve dependencies
+        run: flutter pub get --enforce-lockfile
+
+      - name: Capture games and parent runtime
+        env:
+          LUMO_POLISH_CAPTURES: screenshots/polish
+        run: flutter test --no-pub test/design/parent_games_polish_test.dart
+
+      - name: Capture learning and Fold runtime
+        env:
+          LUMO_LEARNING_CAPTURES: screenshots/learning
+        run: flutter test --no-pub test/design/lumo_learning_tree_fold_visual_test.dart
+
+      - name: Capture creative learning worlds
+        env:
+          LUMO_POLISH_CAPTURES: screenshots/creative
+        run: flutter test --no-pub test/design/creative_learning_visual_test.dart
+
+      - name: Capture Connect Four gameplay
+        env:
+          LUMO_CONNECT_CAPTURES: screenshots/connect-four
+        run: flutter test --no-pub test/design/connect_four_visual_test.dart
+
+      - name: Capture guided learning examples
+        env:
+          LUMO_GUIDED_CAPTURE_DIR: screenshots/guided
+        run: flutter test --no-pub test/design/guided_learning_runtime_capture_test.dart
+
+      - name: Inventory screenshots
+        run: |
+          set -euo pipefail
+          find screenshots -type f -name '*.png' -printf '%p %s bytes\n' | sort | tee screenshots/MANIFEST.txt
+          test "$(find screenshots -type f -name '*.png' | wc -l)" -ge 15
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1936-runtime-screenshots
+          path: screenshots/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
