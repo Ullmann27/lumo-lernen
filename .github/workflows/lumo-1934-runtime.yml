@@ -1,0 +1,281 @@
+name: Lumo 1934 complete actual courses and verified direct ZIP, no rebuild
+on:
+  push:
+    branches: [sol/lumo-1934-android-delivery-2026-10-12]
+    paths: [.github/workflows/lumo-1934-runtime.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-1934-runtime-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  LUMO_EXPECT_SOURCE: 'ed17826ea89d285f77630bed426b06017028f379'
+  LUMO_EXPECT_VERSION: '1934'
+  LUMO_EXPECT_ANDROID_API: '36'
+  LUMO_EXPECT_GODOT: '82b53fc02b9f2ad7e025433499c4c23f256fe734'
+  LUMO_BASE_VERSION: '1933'
+  LUMO_BASE_SOURCE: '65009c4115d6674e730f15b145671c9a87ae1de7'
+  LUMO_BASE_SHA: 'cf8b941088258615a8f9a1c049a212dd31c60079117e5985cd267b11a5e5e972'
+  LUMO_QA_SOURCE: ${{ github.sha }}
+
+jobs:
+  android-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 20
+      - name: Require successful original build and unchanged application inputs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const params = {owner: context.repo.owner, repo: context.repo.repo, run_id: 38209201884};
+            const run = (await github.rest.actions.getWorkflowRun(params)).data;
+            if (run.head_sha !== 'ce244678e4d49902b56b3910c67971d28c119d8b' ||
+                run.status !== 'completed' || run.conclusion !== 'success' ||
+                run.head_branch !== 'sol/lumo-1934-android-delivery-2026-10-12' ||
+                run.path !== '.github/workflows/lumo-education-1934.yml') {
+              throw new Error('Unexpected original 1934 APK source');
+            }
+            const jobs = (await github.rest.actions.listJobsForWorkflowRun({...params, per_page: 100})).data.jobs;
+            if (!jobs.some(j => j.name === 'verify-build' && j.conclusion === 'success' &&
+                                j.status === 'completed')) {
+              throw new Error('Actual original APK build and package checks did not succeed');
+            }
+            const {execFileSync} = require('child_process');
+            const changed = execFileSync('git', ['diff', '--name-only',
+              process.env.LUMO_EXPECT_SOURCE, context.sha, '--'], {encoding: 'utf8'})
+              .trim().split('\n').filter(Boolean);
+            const allowed = new Set([
+              '.github/probes/lumo_education_android_probe.py',
+              '.github/workflows/lumo-1934-runtime.yml',
+              'scripts/tests/test_android_1930_navigation.py',
+              'scripts/tests/test_android_1930_delivery.py',
+              'scripts/tests/test_android_1934_pilot_storage.py',
+              'tools/package_android_test_delivery.py',
+              '.github/workflows/lumo-education-1934.yml',
+              'scripts/tests/fixtures/android_1931_minus_wrong.xml',
+              'scripts/tests/fixtures/android_1934_course_hub.xml',
+              'docs/design/2026-10-12-board-games/ANDROID-1934.md',
+              '.github/probes/lumo_games_android_probe.py',
+              '.github/probes/lumo_1934_android_acceptance.py',
+              'scripts/tests/test_android_1934_games_delivery.py',
+              '.github/workflows/lumo-1934-direct-download.yml'
+            ]);
+            if (changed.some(path => !allowed.has(path))) {
+              throw new Error('Application or packaging inputs changed: runtime-only test is invalid');
+            }
+            const fs = require('fs');
+            fs.mkdirSync('android-proof', {recursive: true});
+            fs.writeFileSync('android-proof/EXISTING-APK-SOURCE.json', JSON.stringify({
+              build_run: run.id, build_url: run.html_url, build_workflow_source: run.head_sha,
+              build_source: process.env.LUMO_EXPECT_SOURCE,
+              qa_source: context.sha, changed_files: changed,
+              application_inputs_unchanged: true, rebuilt: false, published: false,
+              scope: 'Real Plus/Minus/Deutsch/Sachunterricht/Discovery courses; no app changes or rebuild',
+              exact_product_ci_run: 38208710911
+            }, null, 2));
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38209201884
+          name: lumo-education-1934-emulator-38209201884
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38194565555
+          name: lumo-education-1933-emulator-38194565555
+          path: baseline/
+      - name: Exact artifacts and independent live Android readers
+        run: |
+          set -euo pipefail
+          python3 - <<'PYSOURCE'
+          import hashlib, json, os
+          from pathlib import Path
+          data = json.loads(Path('candidate/BUILD-PROVENANCE.json').read_text())
+          assert data['flutter_source_commit'] == os.environ['LUMO_EXPECT_SOURCE']
+          assert data['versionCode'] == 1934 and data['versionName'] == '0.12.27'
+          assert data['tracked_source_clean'] is True
+          assert data['abis'] == ['x86_64']
+          assert data['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+          assert data['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          with Path('candidate/Lumo-Lernen-Neu.apk').open('rb') as stream:
+              assert hashlib.file_digest(stream, 'sha256').hexdigest() == data['sha256']
+          with open(os.environ['GITHUB_ENV'], 'a') as target:
+              target.write('LUMO_EXPECT_APK_SHA=' + data['sha256'] + '\n')
+          PYSOURCE
+          printf '%s  baseline/Lumo-Lernen-Neu.apk\n' "$LUMO_BASE_SHA" | sha256sum -c -
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > android-proof/dependencies.txt
+          python3 -m py_compile .github/probes/lumo_education_android_probe.py
+          python3 -m unittest discover -s scripts/tests -p 'test_android_193*.py' -v 2>&1 | tee android-proof/course-navigation-regressions.log
+      - name: Disposable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Verified software renderer
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 2500x2200x24 -nolisten tcp +extension GLX > android-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > android-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' android-proof/mesa-renderer.txt
+      - name: Existing Android 16 image
+        timeout-minutes: 11
+        run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
+      - name: Recheck same APK with real current controls, answers and parent choices
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_1934_android_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-education-1934-android16-evidence-${{ github.run_id }}
+          path: android-proof/
+          if-no-files-found: error
+          retention-days: 30
+
+  package-download:
+    needs: android-runtime
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38209201884
+          name: lumo-education-1934-arm64-38209201884
+          path: arm64/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-education-1934-android16-evidence-${{ github.run_id }}
+          path: android-proof/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38208710911
+          name: lumo-change-review-38208710911-1
+          path: complete-ci/evidence/
+      - name: Require existing successful full CI of the actual APK source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${{ github.repository }}/actions/runs/38208710911" > complete-ci/run.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run = json.loads(Path('complete-ci/run.json').read_text())
+          assert run['head_sha'] == os.environ['LUMO_EXPECT_SOURCE']
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          PY
+      - name: Create one complete genuinely checked APK ZIP
+        run: |
+          set -euo pipefail
+          python3 tools/package_android_test_delivery.py --arm64 arm64 --android-proof android-proof \
+            --ci-proof complete-ci/evidence --ci-run complete-ci/run.json --output delivery --version-code 1934 --version-name 0.12.27 --godot-revision "$LUMO_EXPECT_GODOT"
+      - name: Prepare a single direct ZIP artifact with APK at its root
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import zipfile
+          from pathlib import Path
+          source = Path('delivery/Lumo-Lernen-Neu-0.12.27-1934.zip')
+          with zipfile.ZipFile(source) as z:
+              assert z.testzip() is None
+              assert 'Lumo-Lernen-Neu.apk' in z.namelist()
+              assert not any(n.lower().endswith('.zip') for n in z.namelist())
+              assert all(not Path(n).is_absolute() and '..' not in Path(n).parts for n in z.namelist())
+              z.extractall('direct')
+          PY
+      - uses: actions/upload-artifact@v4
+        id: direct
+        with:
+          name: lumo-education-1934-direct-download-${{ github.run_id }}
+          path: direct/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - name: Download and open the actual final attachment, require exact APK and source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DIRECT_ARTIFACT: ${{ steps.direct.outputs.artifact-id }}
+        run: |
+          set -euo pipefail
+          mkdir -p transfer-proof
+          curl --fail --location --retry 2 --max-time 600 \
+            -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$DIRECT_ARTIFACT/zip" \
+            --output Lumo-Lernen-Neu-0.12.27-1934-Direkt.zip
+          python3 - <<'PY'
+          import hashlib, json, os, zipfile
+          from pathlib import Path
+          p = Path('Lumo-Lernen-Neu-0.12.27-1934-Direkt.zip')
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              assert 'Lumo-Lernen-Neu.apk' in z.namelist()
+              assert not any(n.lower().endswith('.zip') for n in z.namelist())
+              data = json.loads(z.read('pruefbelege/BUILD-PROVENANCE.json'))
+              assert data['flutter_source_commit'] == os.environ['LUMO_EXPECT_SOURCE']
+              assert data['versionCode'] == 1934 and data['abis'] == ['arm64-v8a']
+              with z.open('Lumo-Lernen-Neu.apk') as stream:
+                  apk_sha = hashlib.file_digest(stream, 'sha256').hexdigest()
+              assert apk_sha == data['sha256']
+          with p.open('rb') as stream:
+              sha = hashlib.file_digest(stream, 'sha256').hexdigest()
+          Path('transfer-proof/DOWNLOAD-VERIFIED.json').write_text(json.dumps({
+              'artifact_id': int(os.environ['DIRECT_ARTIFACT']), 'file': p.name,
+              'bytes': p.stat().st_size, 'sha256': sha, 'apk_sha256': apk_sha,
+              'source': os.environ['LUMO_EXPECT_SOURCE'], 'crc': 'PASS',
+              'apk_unchanged': True, 'publicly_published': False,
+          }, indent=2) + '\n')
+          print('Downloaded complete direct ZIP opened and exact APK verified:', sha)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1934-direct-transfer-proof-${{ github.run_id }}
+          path: transfer-proof/
+          if-no-files-found: error
+          retention-days: 30

@@ -200,7 +200,34 @@ nicht aus Konzeptbildern oder einem Flutter-Testbild als angeblicher Android-Auf
     if version_code >= 1933:
         instructions += "\nBekannter kleiner Bedienpunkt: „Erklärung lesen“ wiederholt in den neuen Beispielen den bereits angezeigten Erklärungstext. Die Übung, unterschiedliche Tipps und gespeicherten Antworten sind davon unabhängig.\n"
     if version_code >= 1934:
-        instructions += '\n## Spiele-Reparaturen1934\n\nFold-Garage: echteWischgesten auf Auswahlkarten, angepassteFahrzeugspalten; Würfelspiel mit Original-/Blendergrafik und kurzerQuerformatbedienung; Mengen-/Buchstabenaufgaben scrollbar bei großerSchrift. Truhe/Laterne sind echteGodot-GLBs; dieFlutter-Würfelgrafiken sind vorgerenderte3D-Objekte.\n\nZusätzlicherAndroid16-Emulatorlauf: echterWürfelzug mitPause/Fortsetzen, großesSchriftbild, nativeGarage beiLive-Displaywechsel ohneProzessneustart, gemesseneVerschiebung realerKart-/Welttitel, AuswahlGeckoVelo/Zauberwald im tatsächlichenRennsave, Profile/Lernfortschritt/Wallet undNeustart unverändert. Androidtest wählt verfügbarenLumo; Nova mit verdienterFreigabe wurde in isolierterDesktop-GUI-Fixture geprüft, keinSternestand imAndroidtest erfunden.\n\nNichtphysischerFold, keine vollständigeNeuentwicklung allerSpiele. FünfneueGegner-Rigs, weitergehendeGesichts-/Lippenanimation undvollständigeLehrplanabnahme bleibenoffen.\n'
+        instructions += """
+## Spiele-Reparaturen in1934
+
+Die Fold-Garage verarbeitet Wischgesten auf den Auswahlkarten; Fahrzeugspalten
+passen sich der verfügbaren Breite an. Würfel-Wettlauf erhält eigene Blender-
+Grafiken und seitliche Bedienung im kurzen Querformat. Mengen-Anmalen und
+Buchstaben-Lücke bleiben bei großer Schrift scrollbar. Rechenhaus und Sternepfad
+verwenden die Originalwelt; das Cards-Intro zeigt den originalen Lumo.
+
+Laterne und Truhe sind tatsächlich integrierte Godot-GLB-Modelle mit UVs und
+PBR-Materialien. Die Flutter-Würfelgrafiken sind vorgerenderte3D-Objekte.
+Bearbeitbare Blender-Quellen bleiben im GitHub-Projekt erhalten.
+
+Der zusätzliche Android16-Emulatorlauf prüft einen tatsächlichen Würfelzug mit
+Pause/Fortsetzen und großer Schrift, den Displaywechsel der nativen Garage ohne
+Prozessneustart, die gemessene Verschiebung echter Kart-/Welttitel sowie die
+Auswahl von Gecko Velo und Zauberwald im tatsächlichen Rennsave. Profile,
+Lernfortschritt, Wallet und Neustart bleiben unverändert.
+
+Auf Android wurde der verfügbare Lumo gewählt. Der Wechsel zum freigeschalteten
+Nova wurde in einer ausdrücklich isolierten Desktop-GUI-Fixture geprüft; im
+Androidtest wurde kein Sternestand erfunden. Dies ist keine Prüfung auf einem
+physischen Fold und keine vollständige Neuentwicklung aller Spiele.
+
+Die fünf neuen Gegner-Rigs, weitere Gesichts-/Lippenanimation und vollständige
+Lehrplanabnahme bleiben offen.
+"""
+
     notes = args.output / "INSTALLATION-UND-PRUEFSTAND.md"
     notes.write_text(instructions)
     screenshots = [
@@ -231,6 +258,15 @@ nicht aus Konzeptbildern oder einem Flutter-Testbild als angeblicher Android-Auf
             '24_actual_android_plant_example.png',
             '25_actual_android_plant_alternative_hint.png',
             '26_actual_android_complete_plant_course.png',
+        ])
+    if version_code >= 1934:
+        screenshots.extend([
+            '30_actual_android_dice_large_text_before.png',
+            '31_actual_android_dice_paused.png',
+            '32_actual_android_dice_large_text_after.png',
+            '33_actual_android_fold_driver_selection.png',
+            '34_actual_android_fold_scrolled_kart.png',
+            '35_actual_android_fold_scrolled_world.png',
         ])
     target = args.output / f"Lumo-Lernen-Neu-{version_name}-{version_code}.zip"
     with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED, compresslevel=1) as archive:
