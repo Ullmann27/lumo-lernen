@@ -248,6 +248,30 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
   Future<void> _speakPrompt() =>
       _speak(_currentTask.spokenPrompt, style: VoiceStyle.explain);
 
+  Future<void> _onSpeakerTap() async {
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted) return;
+    final settings = widget.appState.state.settings;
+    if (!settings.voiceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Die Lumo-Stimme ist im Elternbereich ausgeschaltet.'),
+        ),
+      );
+      return;
+    }
+    if (!settings.localVoiceLicenseAccepted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Für Wortansagen: Elternbereich → Ton und Stimme → „Neue Sätze offline vorlesen“ freigeben.',
+          ),
+        ),
+      );
+    }
+    await _speakPrompt();
+  }
+
   Future<void> _speak(String msg,
       {VoiceStyle style = VoiceStyle.warm}) async {
     await widget.appState.ensureSettingsLoaded();
@@ -751,7 +775,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
           accent: _gradient[1],
           leading: const LumoIdleFox(size: 44),
           onSpeakerTap:
-              voiceEnabled ? () => unawaited(_speakPrompt()) : null,
+              voiceEnabled ? () => unawaited(_onSpeakerTap()) : null,
         ),
         if (voiceEnabled && !_showCurrentLetterHint) ...[
           const SizedBox(height: 6),
