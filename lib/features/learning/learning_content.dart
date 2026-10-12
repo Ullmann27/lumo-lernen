@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../app/app_design.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
@@ -937,24 +939,69 @@ class _LearningContentState extends State<LearningContent> {
   Widget build(BuildContext context) {
     final st = widget.appState.state;
     if (_sessionFinished) {
-      return Center(child: Padding(
-        padding: const EdgeInsets.all(28),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Icon(Icons.check_circle_outline, size: 64, color: LumoColors.orange),
-          const SizedBox(height: 16),
-          const Text('Einheit beendet', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800)),
-          const SizedBox(height: 12),
-          Text('Du hast $_totalQuestions Aufgaben bearbeitet. Zeit für eine kurze Pause!',
-              textAlign: TextAlign.center, style: const TextStyle(fontSize: 18)),
-          const SizedBox(height: 20),
-          FilledButton(onPressed: () => setState(() {
-            _sessionTaskKeys.clear();
-            _loadNextTask(resetCounter: true);
-          }), child: const Text('Neue Einheit starten')),
-          const SizedBox(height: 10),
-          const Text('Du kannst im Menü auch ein anderes Thema auswählen.', textAlign: TextAlign.center),
-        ]),
-      ));
+      return LumoSceneBackground(
+        scene: LumoScene.learning,
+        showPlaceholderLabel: false,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 620),
+              child: LumoGlassCard(
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  const LumoFoxPose(
+                    pose: LumoDesignFoxPose.cheer,
+                    size: 110,
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Einheit geschafft!',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 28,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Du hast $_totalQuestions Aufgaben bearbeitet. Zeit für eine kurze Pause!',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: LumoVisualTokens.muted,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  FilledButton.icon(
+                    onPressed: () => setState(() {
+                      _sessionTaskKeys.clear();
+                      _loadNextTask(resetCounter: true);
+                    }),
+                    icon: const Icon(Icons.replay_rounded),
+                    label: const Text('Neue Einheit starten'),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: LumoVisualTokens.cyan,
+                      foregroundColor: LumoVisualTokens.night,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Oder wähle im Lernmenü ein anderes Thema.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.muted,
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          ),
+        ),
+      );
     }
     final title = st.subject == 'Alle' ? 'Gemischte Übung' : st.subject;
     // prettifyUnit setzt Umlaute in Code-stabilen Unit-Namen wieder ein
@@ -965,7 +1012,10 @@ class _LearningContentState extends State<LearningContent> {
         ? 'Klasse ${st.grade} • adaptiv'
         : '${st.subject} • $unitDisplay';
 
-    return LayoutBuilder(builder: (context, constraints) {
+    return LumoSceneBackground(
+      scene: LumoScene.learning,
+      showPlaceholderLabel: false,
+      child: LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 560;
       // Stack mit Confetti-Overlay: bei richtigen Antworten regnet es
       // physikalisch korrektes Konfetti (Newton-Schwerkraft + Luftwiderstand)
@@ -983,25 +1033,25 @@ class _LearningContentState extends State<LearningContent> {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(
                       title,
-                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.05,
+                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 34, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, height: 1.05,
                                   ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       _welcomeForKind,
-                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w800, color: LumoColors.ink500, height: 1.35,
+                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w800, color: LumoVisualTokens.muted, height: 1.35,
                                   ),
                     ),
                   ],
                             ),
                 ),
                 Container(
-                  decoration: BoxDecoration(color: LumoColors.orangeSurface, shape: BoxShape.circle, boxShadow: [BoxShadow(color: LumoColors.orange.withOpacity(.20), blurRadius: 14, offset: const Offset(0, 6),
+                  decoration: BoxDecoration(color: LumoVisualTokens.glassRow.withOpacity(.88), shape: BoxShape.circle, border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45)), boxShadow: [BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.16), blurRadius: 14, offset: const Offset(0, 6),
                                 ),
                               ],
                             ),
                   child: IconButton(
-                    icon: const Icon(Icons.volume_up_rounded, color: LumoColors.orange, size: 26,
+                    icon: const Icon(Icons.volume_up_rounded, color: LumoVisualTokens.cyanBright, size: 26,
                               ),
                     onPressed: () => LumoVoice.instance.speak('Aufgabe ${_task.prompt}',
                               ),
@@ -1097,6 +1147,7 @@ class _LearningContentState extends State<LearningContent> {
         ],
       );
     },
+    ),
     );
   }
 }
