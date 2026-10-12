@@ -1,21 +1,17 @@
-/// Fragenbank fuer den Quiz-Modus.
+/// Fragenbank fuer "Wer wird Lumo-Meister?".
 ///
-/// CODEX TODO:
-/// Implementiere generateGameQuestions() das 15 Fragen mit der richtigen
-/// Verteilung produziert:
-///   - 4 easy (Frage 1-4)
-///   - 5 medium (Frage 5-9)
-///   - 6 hard (Frage 10-15)
+/// Jede Runde hat exakt 20 Fragen. Die Schwierigkeit steigt innerhalb der
+/// Schulstufe an, ohne juengere Kinder mit Stoff aus hoeheren Klassen zu
+/// konfrontieren.
 ///
-/// Themen-Mix pro Spiel:
-///   - 5 Mathe + 5 Deutsch + 5 Sachunterricht (zufaellig durchmischt)
+/// Verteilung:
+///   - Klasse 1: 14 easy + 6 passende medium-Challenges
+///   - Klasse 2: 6 easy + 14 medium
+///   - Klasse 3: 4 easy + 8 medium + 8 hard
+///   - Klasse 4: 2 easy + 6 medium + 12 hard
 ///
-/// Anti-Wiederholung: seenIds aus Repository nutzen.
-///
-/// Quellen:
-///   - lib/core/math_task_templates.dart (33 Templates, NICHT MODIFIZIEREN)
-///   - lib/core/german_task_templates.dart (40 Templates, NICHT MODIFIZIEREN)
-///   - lib/core/primary_school_word_data.dart (800+ Woerter, NICHT MODIFIZIEREN)
+/// Anti-Wiederholung: seenIds werden bevorzugt ausgeschlossen. Reicht ein
+/// frischer Teilpool nicht aus, wird nur dieser Teilpool sauber zurueckgesetzt.
 library;
 
 import 'dart:math' as math;
@@ -25,12 +21,6 @@ import 'quiz_show.dart';
 class QuizQuestionBank {
   const QuizQuestionBank();
 
-  /// CODEX TODO: Generiere 15 Fragen fuer ein Spiel.
-  ///
-  /// Parameter:
-  ///   - grade: Schulklasse (1-4) - beeinflusst Schwierigkeit der hard-Fragen
-  ///   - seenIds: bereits verwendete Frage-IDs zum Filtern
-  ///   - random: optionaler Seed fuer reproduzierbare Tests
   List<QuizQuestion> generateGameQuestions({
     required int grade,
     Set<String> seenIds = const <String>{},
@@ -38,21 +28,75 @@ class QuizQuestionBank {
   }) {
     final rng = random ?? math.Random();
     final allQuestions = _buildStaticPool(grade);
+    final safeGrade = grade.clamp(1, 4);
 
-    // Filtere bereits gesehene Fragen
-    final available = allQuestions.where((q) => !seenIds.contains(q.id)).toList();
-    // Wenn weniger als 15 verfuegbar: Reset
-    final pool = available.length >= 15 ? available : allQuestions;
+    List<QuizQuestion> pick(
+      int count,
+      bool Function(QuizQuestion q) predicate,
+    ) {
+      final all = allQuestions.where(predicate).toList();
+      final fresh = all.where((q) => !seenIds.contains(q.id)).toList();
+      final source = fresh.length >= count ? fresh : all;
+      source.shuffle(rng);
+      return source.take(count).toList();
+    }
 
-    final easyPool = pool.where((q) => q.difficulty == QuizDifficulty.easy).toList()..shuffle(rng);
-    final mediumPool = pool.where((q) => q.difficulty == QuizDifficulty.medium).toList()..shuffle(rng);
-    final hardPool = pool.where((q) => q.difficulty == QuizDifficulty.hard).toList()..shuffle(rng);
+    bool grade1Medium(QuizQuestion q) {
+      if (q.difficulty != QuizDifficulty.medium) return false;
+      const allowedIds = <String>{
+        'm_math_add_1',
+        'm_math_add_2',
+        'm_math_sub_1',
+        'm_math_sub_2',
+        'm_math_sub_3',
+        'm_math_time_2',
+        'm_de_opp_1',
+        'm_de_opp_2',
+        'm_de_opp_3',
+        'm_de_verb_1',
+        'm_de_verb_2',
+        'm_sk_plant_1',
+        'm_sk_plant_2',
+        'm_sk_season_1',
+        'm_sk_season_2',
+        'm_sk_anim_1',
+        'm_sk_anim_2',
+        'm_sk_traffic_1',
+      };
+      return allowedIds.contains(q.id);
+    }
 
-    return <QuizQuestion>[
-      ...easyPool.take(4),
-      ...mediumPool.take(5),
-      ...hardPool.take(6),
-    ];
+    final List<QuizQuestion> questions;
+    switch (safeGrade) {
+      case 1:
+        questions = <QuizQuestion>[
+          ...pick(14, (q) => q.difficulty == QuizDifficulty.easy),
+          ...pick(6, grade1Medium),
+        ];
+      case 2:
+        questions = <QuizQuestion>[
+          ...pick(6, (q) => q.difficulty == QuizDifficulty.easy),
+          ...pick(14, (q) => q.difficulty == QuizDifficulty.medium),
+        ];
+      case 3:
+        questions = <QuizQuestion>[
+          ...pick(4, (q) => q.difficulty == QuizDifficulty.easy),
+          ...pick(8, (q) => q.difficulty == QuizDifficulty.medium),
+          ...pick(8, (q) => q.difficulty == QuizDifficulty.hard),
+        ];
+      default:
+        questions = <QuizQuestion>[
+          ...pick(2, (q) => q.difficulty == QuizDifficulty.easy),
+          ...pick(6, (q) => q.difficulty == QuizDifficulty.medium),
+          ...pick(12, (q) => q.difficulty == QuizDifficulty.hard),
+        ];
+    }
+
+    assert(
+      questions.length == 20,
+      'Quizgenerator muss exakt 20 Fragen liefern, bekam ${questions.length}',
+    );
+    return questions;
   }
 
   /// Statischer Frage-Pool — kategorisiert nach Schwierigkeit + Fach.
