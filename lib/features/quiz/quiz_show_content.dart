@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
+import '../../core/lumo_sound.dart';
 import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_show.dart';
@@ -27,6 +29,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   @override
   void initState() {
     super.initState();
+    unawaited(LumoSound.instance.init());
     _startNewGame();
   }
 
@@ -39,10 +42,19 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _select(int index) {
-    setState(() => _state = _engine.selectAnswer(_state, index));
+    final next = _engine.selectAnswer(_state, index);
+    if (next.selectedOption != _state.selectedOption) {
+      unawaited(LumoSound.instance.play(SoundEffect.click));
+    }
+    setState(() => _state = next);
   }
 
   void _reveal() {
+    final before = _state;
+    final selected = before.selectedOption;
+    final correct = selected != null &&
+        selected == before.currentQuestion.correctIndex;
+
     setState(() {
       final wasGameOver = _state.gameOver;
       final next = _engine.reveal(_state);
@@ -55,17 +67,29 @@ class _QuizShowContentState extends State<QuizShowContent> {
         widget.appState.addStars(next.awardedStars);
       }
     });
+
+    if (!correct) {
+      unawaited(LumoSound.instance.play(SoundEffect.error));
+    } else if (_state.won || _state.securedStars > before.securedStars) {
+      unawaited(LumoSound.instance.play(SoundEffect.win));
+    }
   }
 
   void _next() {
+    unawaited(LumoSound.instance.play(SoundEffect.click));
     setState(() => _state = _engine.nextQuestion(_state));
   }
 
   void _joker(QuizJoker joker) {
-    setState(() => _state = _engine.useJoker(_state, joker));
+    final next = _engine.useJoker(_state, joker);
+    if (next.usedJokers.length > _state.usedJokers.length) {
+      unawaited(LumoSound.instance.play(SoundEffect.click));
+    }
+    setState(() => _state = next);
   }
 
   void _restart() {
+    unawaited(LumoSound.instance.play(SoundEffect.click));
     setState(_startNewGame);
   }
 
