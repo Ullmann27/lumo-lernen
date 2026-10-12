@@ -1,0 +1,88 @@
+name: Lumo 1933 private draft download, same verified ZIP, no build
+on:
+  push:
+    branches: [sol/lumo-1933-android-delivery-2026-10-12]
+    paths: [.github/workflows/lumo-1933-direct-download.yml]
+permissions:
+  actions: read
+  contents: write
+jobs:
+  private-download:
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: Ullmann27/lumo-lernen
+      RELEASE_ID: '410090222'
+      RELEASE_TAG: lumo-0.12.26-1933-download-draft
+      SOURCE: 65009c4115d6674e730f15b145671c9a87ae1de7
+      ZIP_NAME: Lumo-Lernen-Neu-0.12.26-1933-Direkt.zip
+      ZIP_SHA: 47cc7e58c3c38f4094029d4a976ab3eaebbbb1d049fb152cd7cfeed992230abe
+    steps:
+      - name: Require the existing unpublished owner-only draft
+        run: |
+          set -euo pipefail
+          gh api "repos/$GH_REPO/releases/$RELEASE_ID" > draft.json
+          python3 - <<'PY'
+          import json, os
+          r = json.load(open('draft.json'))
+          assert r['draft'] is True and r['published_at'] is None
+          assert r['prerelease'] is True
+          assert r['tag_name'] == os.environ['RELEASE_TAG']
+          assert r['target_commitish'] == os.environ['SOURCE']
+          assert not r['assets'], 'Do not overwrite existing parallel uploads'
+          print('Existing unpublished draft verified; no publishing operation is permitted.')
+          PY
+      - name: Fetch the exact already verified complete ZIP, without rebuilding
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 2 --max-time 600 \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/$GH_REPO/actions/artifacts/11723896251/zip" \
+            --output "$ZIP_NAME"
+          python3 - <<'PY'
+          import hashlib, json, os, zipfile
+          from pathlib import Path
+          p = Path(os.environ['ZIP_NAME'])
+          digest = hashlib.file_digest(p.open('rb'), 'sha256').hexdigest()
+          assert digest == os.environ['ZIP_SHA']
+          assert p.stat().st_size == 320805406
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              assert 'Lumo-Lernen-Neu.apk' in z.namelist()
+              assert not any(n.lower().endswith('.zip') for n in z.namelist())
+              assert hashlib.sha256(z.read('Lumo-Lernen-Neu.apk')).hexdigest() == '39081e73aa71a8d29f449b2daa3c24ac0d60f8aeb80f6421c09a49641981cff2'
+          Path('DOWNLOAD-VERIFIED.json').write_text(json.dumps({
+              'file': p.name, 'bytes': p.stat().st_size, 'sha256': digest,
+              'crc': 'PASS', 'source': os.environ['SOURCE'],
+              'apk_unchanged': True, 'publicly_published': False,
+          }, indent=2) + '\n')
+          print('Exact complete ZIP and embedded APK verified; no new APK.')
+          PY
+      - name: Upload only to the existing unpublished draft
+        run: |
+          set -euo pipefail
+          gh release upload "$RELEASE_TAG" "$ZIP_NAME" DOWNLOAD-VERIFIED.json
+          gh api "repos/$GH_REPO/releases/$RELEASE_ID" > uploaded-draft.json
+          python3 - <<'PY'
+          import json, os
+          r = json.load(open('uploaded-draft.json'))
+          assert r['draft'] is True and r['published_at'] is None
+          a = next(a for a in r['assets'] if a['name'] == os.environ['ZIP_NAME'])
+          assert a['state'] == 'uploaded' and a['size'] == 320805406
+          assert a['digest'] == 'sha256:' + os.environ['ZIP_SHA']
+          print('Unpublished draft upload verified:', r['html_url'])
+          print('ZIP asset:', a['browser_download_url'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1933-private-download-proof-${{ github.run_id }}
+          path: |
+            draft.json
+            uploaded-draft.json
+            DOWNLOAD-VERIFIED.json
+          if-no-files-found: error
+          retention-days: 30
