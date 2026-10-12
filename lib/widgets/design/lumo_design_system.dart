@@ -251,10 +251,10 @@ class LumoGlassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final base = color ?? LumoVisualTokens.glass;
-    final highlightAlpha = (surfaceOpacity + .20).clamp(0.0, 1.0);
-    final upperAlpha = (surfaceOpacity + .14).clamp(0.0, 1.0);
-    final lowerAlpha = (surfaceOpacity + .08).clamp(0.0, 1.0);
-    final deepAlpha = (surfaceOpacity + .17).clamp(0.0, 1.0);
+    final highlightAlpha = (surfaceOpacity + .20).clamp(0.0, 1.0).toDouble();
+    final upperAlpha = (surfaceOpacity + .14).clamp(0.0, 1.0).toDouble();
+    final lowerAlpha = (surfaceOpacity + .08).clamp(0.0, 1.0).toDouble();
+    final deepAlpha = (surfaceOpacity + .17).clamp(0.0, 1.0).toDouble();
     return Container(
       padding: padding,
       decoration: BoxDecoration(
