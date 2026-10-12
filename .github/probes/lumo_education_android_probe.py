@@ -214,7 +214,7 @@ def school_course(out: Path) -> dict:
     tap(out, "Lernen", "school-overview")
     tap(out, "Lumo erklärt es mir", "school-hub")
     wait_text(out, "Über den Zehner", "school-hub-visible")
-    tap(out, "Mit Lumo anfangen", "school-course-start")
+    tap_named_course(out, "Über den Zehner", "school-course-start")
     wait_text(out, "Heute lernen wir einen Rechentrick", "school-introduction")
     intro = existing.capture(out, "08_actual_android_school_introduction")
     tap(out, "Weiter", "school-introduction-next")

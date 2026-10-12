@@ -58,3 +58,19 @@ werden aktiviert.
 Offen bleiben physische ARM64-/Fold-Laufzeit, menschliche Sprachqualität,
 externe Fachprüfung und Play-Produktionsfreigabe. Der native Gesamtlauf und die
 Dateiauslieferung werden erst nach tatsächlich fertigen Belegen bestätigt.
+
+## Erster Android-Lauf: Prüfhelferfehler bewiesen
+
+Run [38195153458](https://github.com/Ullmann27/lumo-lernen/actions/runs/38195153458)
+bestand Update, lokale Stimme und Kart-Rückkehr, scheiterte anschließend im
+Plus-Einstieg. Die gespeicherte echte Hierarchie zeigt drei gleich benannte
+Startknöpfe: Der angeschnittene Silben-Knopf am unteren Rand ist kleiner als
+der vollständig sichtbare Plus-Knopf und wurde deshalb fälschlich gewählt.
+Der tatsächliche Android-Screenshot zeigt folgerichtig den Silben-Einstieg.
+
+`school_course` verwendet jetzt dieselbe ausdrückliche Kurszuordnung wie die
+anderen Kursprüfungen. Eine Regression mit der originalen Hierarchie
+`android_1933_course_hub.xml` scheitert vor der Reparatur und besteht danach:
+Der echte Plus-Knopf bei `[35,377][1165,433]` wird getroffen, nicht der Silben-Knopf
+bei `[35,825][1165,872]`. 14 Navigationsprüfungen bestanden. Die unveränderte
+APK wird erneut geprüft; es gibt weder Neubau noch abgeschwächte Abnahme.

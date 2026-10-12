@@ -1,8 +1,10 @@
 """Actual saved hierarchy regressions, not a substitute for Android acceptance."""
 import ast
+import json
 from pathlib import Path
 import re
 import types
+import tempfile
 import unittest
 from unittest.mock import Mock
 import xml.etree.ElementTree as ET
@@ -27,7 +29,7 @@ class CourseNavigationTest(unittest.TestCase):
     def setUp(self):
         helpers = [node for node in ast.parse(SOURCE.read_text()).body
                    if isinstance(node, ast.FunctionDef)
-                   and node.name in ("_enabled_control_bounds", "_answer_accepted", "tap", "wait_proactive_help_offer")]
+                   and node.name in ("_enabled_control_bounds", "_answer_accepted", "tap", "wait_proactive_help_offer", "tap_named_course")]
         self.reader = Mock()
         self.adb = Mock()
         self.capture = Mock()
@@ -40,7 +42,7 @@ class CourseNavigationTest(unittest.TestCase):
         )
         self.events = []
         self.wait_text = Mock(side_effect=lambda *args, **kwargs: self.events.append('scan'))
-        scope = {"existing": existing, "re": re, "Path": Path,
+        scope = {"existing": existing, "re": re, "Path": Path, "json": json,
                  "time": types.SimpleNamespace(sleep=lambda seconds: self.events.append(('quiet', seconds))),
                  "wait_text": self.wait_text}
         exec(compile(ast.Module(body=helpers, type_ignores=[]), str(SOURCE), "exec"), scope)
@@ -48,6 +50,28 @@ class CourseNavigationTest(unittest.TestCase):
         self.accepted = scope["_answer_accepted"]
         self.tap = scope["tap"]
         self.help_offer = scope.get('wait_proactive_help_offer')
+        self.scope = scope
+
+    def test_school_course_uses_actual_named_plus_button_not_clipped_syllables_button(self):
+        fixture = ROOT / 'scripts/tests/fixtures/android_1933_course_hub.xml'
+        self.reader.return_value = [n.attrib for n in ET.parse(fixture).iter('node')]
+        self.assertEqual(self.select(self.reader.return_value, 'Mit Lumo anfangen'),
+                         [35, 825, 1165, 872])
+        function = next(n for n in ast.parse(SOURCE.read_text()).body
+                        if isinstance(n, ast.FunctionDef) and n.name == 'school_course')
+        class ObservedStart(Exception):
+            pass
+        def wait(_out, marker, _tag):
+            if marker == 'Heute lernen wir einen Rechentrick':
+                raise ObservedStart()
+            return ''
+        self.scope.update(tap=Mock(), wait_text=wait)
+        exec(compile(ast.Module(body=[function], type_ignores=[]), str(SOURCE), 'exec'), self.scope)
+        with tempfile.TemporaryDirectory() as folder:
+            with self.assertRaises(ObservedStart):
+                self.scope['school_course'](Path(folder))
+        self.adb.assert_called_once_with('shell', 'input', 'swipe',
+                                        '600', '405', '600', '405', '120')
 
     def test_help_probe_waits_quietly_before_any_scrolling_scan(self):
         self.assertIsNotNone(self.help_offer)

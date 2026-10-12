@@ -40,7 +40,7 @@ jobs:
                 run.status !== 'completed' || run.conclusion !== 'success' ||
                 run.head_branch !== 'sol/lumo-1933-android-delivery-2026-10-12' ||
                 run.path !== '.github/workflows/lumo-education-1933.yml') {
-              throw new Error('Unexpected original 1932 APK source');
+              throw new Error('Unexpected original 1933 APK source');
             }
             const jobs = (await github.rest.actions.listJobsForWorkflowRun({...params, per_page: 100})).data.jobs;
             if (!jobs.some(j => j.name === 'verify-build' && j.conclusion === 'success' &&
@@ -60,6 +60,7 @@ jobs:
               'tools/package_android_test_delivery.py',
               '.github/workflows/lumo-education-1933.yml',
               'scripts/tests/fixtures/android_1931_minus_wrong.xml',
+              'scripts/tests/fixtures/android_1933_course_hub.xml',
               'docs/education/2026-10-12-language-nature/ANDROID-1933.md'
             ]);
             if (changed.some(path => !allowed.has(path))) {
