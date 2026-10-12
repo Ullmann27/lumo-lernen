@@ -448,12 +448,12 @@ class _PrizeColumn extends StatelessWidget {
           ),
           _Milestone(
             label: 'Frage 20  •  5.000 Sterne',
-            emoji: '🎢',
+            emoji: '🦓',
             active: state.securedStars >= 5000,
           ),
           const SizedBox(height: 8),
           Text(
-            'Finalziel: 5.000 Sterne – Family-Park-Stufe',
+            'Finalziel: 5.000 Sterne – Tiergarten-Stufe',
             style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900),
           ),
         ],
