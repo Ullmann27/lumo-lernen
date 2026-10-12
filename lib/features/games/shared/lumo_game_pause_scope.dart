@@ -179,90 +179,119 @@ class LumoPausePanel extends StatelessWidget {
           ),
         ),
         SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 420),
-                child: Container(
-                  key: const ValueKey('lumo-pause-panel'),
-                  padding: const EdgeInsets.fromLTRB(22, 18, 22, 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(28),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xF2123F86), Color(0xF2071A3E)],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final scaled16 = MediaQuery.textScalerOf(context).scale(16);
+              final compact = constraints.maxHeight < 500 || scaled16 >= 22;
+              final panelPadding = compact
+                  ? const EdgeInsets.fromLTRB(16, 10, 16, 12)
+                  : const EdgeInsets.fromLTRB(22, 18, 22, 20);
+              final outerPadding =
+                  compact ? const EdgeInsets.all(8) : const EdgeInsets.all(20);
+              final actionGap = compact ? 6.0 : 10.0;
+              return Center(
+                child: SingleChildScrollView(
+                  padding: outerPadding,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 420),
+                    child: Container(
+                      key: const ValueKey('lumo-pause-panel'),
+                      padding: panelPadding,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(compact ? 22 : 28),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0xF2123F86), Color(0xF2071A3E)],
+                        ),
+                        border: Border.all(
+                            color: const Color(0xCC53DDFD), width: 2),
+                        boxShadow: const [
+                          BoxShadow(color: Color(0x6637D2FD), blurRadius: 26),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (!compact) ...[
+                            const Center(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Color(0xFFFFE08A),
+                                        Color(0xFFF5A623)
+                                      ]),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Color(0x88FFD86B),
+                                        blurRadius: 18),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(12),
+                                  child: Icon(Icons.pause_rounded,
+                                      color: Color(0xFF0B2A5C), size: 34),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                          ],
+                          Text('Spiel pausiert',
+                              textAlign: TextAlign.center,
+                              style:
+                                  _label.copyWith(fontSize: compact ? 20 : 26)),
+                          SizedBox(height: compact ? 2 : 6),
+                          Text('Dein aktueller Zug wartet auf dich.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: compact ? 12 : 15,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xFFD6E8FF))),
+                          SizedBox(height: compact ? 8 : 18),
+                          _PauseButton(
+                            icon: Icons.play_arrow_rounded,
+                            label: 'Fortsetzen',
+                            primary: true,
+                            compact: compact,
+                            onTap: onResume,
+                          ),
+                          SizedBox(height: actionGap),
+                          TextButton.icon(
+                            key: const ValueKey('pause-leave-games'),
+                            style: TextButton.styleFrom(
+                              minimumSize:
+                                  Size.fromHeight(compact ? 44 : 48),
+                              foregroundColor: Colors.white,
+                              visualDensity: compact
+                                  ? VisualDensity.compact
+                                  : VisualDensity.standard,
+                            ),
+                            onPressed: onLeave,
+                            icon: const Icon(Icons.arrow_back_rounded),
+                            label: Text('Zur Spieleauswahl',
+                                style: _label.copyWith(
+                                    fontSize: compact ? 14 : 15)),
+                          ),
+                          SizedBox(height: compact ? 2 : 4),
+                          _PauseButton(
+                            icon: Icons.replay_rounded,
+                            label: 'Neu starten',
+                            compact: compact,
+                            onTap: onRestart,
+                          ),
+                        ],
+                      ),
                     ),
-                    border: Border.all(color: const Color(0xCC53DDFD), width: 2),
-                    boxShadow: const [
-                      BoxShadow(color: Color(0x6637D2FD), blurRadius: 26),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Center(
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [Color(0xFFFFE08A), Color(0xFFF5A623)]),
-                            boxShadow: [
-                              BoxShadow(color: Color(0x88FFD86B), blurRadius: 18),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(12),
-                            child: Icon(Icons.pause_rounded,
-                                color: Color(0xFF0B2A5C), size: 34),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text('Spiel pausiert',
-                          textAlign: TextAlign.center,
-                          style: _label.copyWith(fontSize: 26)),
-                      const SizedBox(height: 6),
-                      const Text('Dein aktueller Zug wartet auf dich.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFFD6E8FF))),
-                      const SizedBox(height: 18),
-                      _PauseButton(
-                        icon: Icons.play_arrow_rounded,
-                        label: 'Fortsetzen',
-                        primary: true,
-                        onTap: onResume,
-                      ),
-                      const SizedBox(height: 10),
-                      _PauseButton(
-                        icon: Icons.replay_rounded,
-                        label: 'Neu starten',
-                        onTap: onRestart,
-                      ),
-                      const SizedBox(height: 4),
-                      TextButton.icon(
-                        style: TextButton.styleFrom(
-                          minimumSize: const Size.fromHeight(48),
-                          foregroundColor: Colors.white,
-                        ),
-                        onPressed: onLeave,
-                        icon: const Icon(Icons.arrow_back_rounded),
-                        label: Text('Zur Spieleauswahl',
-                            style: _label.copyWith(fontSize: 15)),
-                      ),
-                    ],
                   ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ),
       ]),
@@ -276,12 +305,14 @@ class _PauseButton extends StatelessWidget {
     required this.label,
     required this.onTap,
     this.primary = false,
+    this.compact = false,
   });
 
   final IconData icon;
   final String label;
   final VoidCallback onTap;
   final bool primary;
+  final bool compact;
 
   @override
   Widget build(BuildContext context) => Semantics(
@@ -294,7 +325,7 @@ class _PauseButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(99),
             onTap: onTap,
             child: Ink(
-              height: 54,
+              height: compact ? 46 : 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(99),
                 gradient: primary
@@ -316,7 +347,8 @@ class _PauseButton extends StatelessWidget {
                 Flexible(
                   child: Text(label,
                       overflow: TextOverflow.ellipsis,
-                      style: LumoPausePanel._label.copyWith(fontSize: 17)),
+                      style: LumoPausePanel._label.copyWith(
+                          fontSize: compact ? 15 : 17)),
                 ),
               ]),
             ),
