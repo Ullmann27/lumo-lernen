@@ -1152,7 +1152,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       ),
     );
   }
-
+}
 
 class _LearningArea {
   const _LearningArea({
