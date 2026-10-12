@@ -161,17 +161,18 @@ def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
                and n.get('clickable') == 'true']
     if len(buttons) != 1:
         raise RuntimeError('Observed Android system dialog lacks one enabled ' + action + ' control')
-    bounds = list(map(int, re.findall(r'\\d+', buttons[0].get('bounds', ''))))
+    bounds = list(map(int, re.findall(r'\d+', buttons[0].get('bounds', ''))))
     if len(bounds) != 4 or bounds[2] <= bounds[0] or bounds[3] <= bounds[1]:
         raise RuntimeError('Android system dialog control has invalid observed bounds')
     evidence = capture(out, tag + '-emulator-system-dialog')
     records.append({'dialog': dialog, 'action': action,
                     'observed_bounds': bounds, 'capture': evidence['file']})
-    records_path.write_text(json.dumps(records, indent=2) + '\\n')
+    records_path.write_text(json.dumps(records, indent=2) + '\n')
     x0, y0, x1, y1 = bounds
     base.adb('shell', 'input', 'tap', str((x0 + x1) // 2), str((y0 + y1) // 2))
     time.sleep(2 if dialog == launcher else 4)
     return True
+
 
 def flutter_tap(out: Path, label: str, tag: str, *,
                 scroll_attempts: int = 12, direction_order=(-1, 1)) -> None:
