@@ -45,6 +45,60 @@ SCALAR_FIELDS = {
     'player_heading', 'previous_road_distance',
 }
 
+def observe_garage_modes(creative, adb, out: Path, tag: str, labels: tuple[str, ...]) -> dict:
+    """Observe each real card through real scrolling, then restore the top.
+
+    Cover-landscape has a short scroll viewport: all five cards cannot be
+    visible simultaneously. Reading a hidden card without scrolling was an
+    invalid navigation sequence (run 38245369726), not a passed scroll check.
+    """
+    observations, swipes, seen = [], [], set()
+    first = labels[0]
+    x = None
+    width = height = 0
+    for attempt in range(8):
+        capture = creative.capture(out, f'{tag}-scan-{attempt}')
+        source = out / capture['file']
+        frame = creative.inspect_surface(source)
+        if not frame['acceptable_for_target_sampling']:
+            raise RuntimeError('Garage scroll requires a complete current native surface')
+        width, height = capture['width'], capture['height']
+        lines = creative.image_lines(out, f'{tag}-scan-{attempt}', source_path=source)
+        visible = {label for label in labels if any(
+            creative.normalized(label) == creative.normalized(row['text']) for row in lines)}
+        observations.append({'capture': capture, 'visible_captions': sorted(visible)})
+        seen.update(visible)
+        candidates = [row for row in lines if any(creative.normalized(row['text']) == creative.normalized(label)
+            for label in labels) and row['bounds'][0] < width * .45]
+        if candidates:
+            bounds = candidates[0]['bounds']
+            x = round((bounds[0] + bounds[2]) / 2)
+        if seen == set(labels):
+            break
+        if x is None:
+            raise RuntimeError('No actual garage mode caption establishes the scroll column')
+        gesture = [x, round(height * .65), x, round(height * .4), 700]
+        adb('shell', 'input', 'swipe', *(str(v) for v in gesture))
+        swipes.append({'direction': 'down', 'coordinates': gesture, 'source_capture': capture})
+        time.sleep(.5)
+    else:
+        raise RuntimeError('Garage cards remain unobserved after real scrolling: ' + ', '.join(set(labels) - seen))
+    for attempt in range(8):
+        capture = creative.capture(out, f'{tag}-restore-top-{attempt}')
+        source = out / capture['file']
+        lines = creative.image_lines(out, f'{tag}-restore-top-{attempt}',
+            creative.normalized(first), source_path=source, exact=True)
+        if any(creative.normalized(row['text']) == creative.normalized(first) for row in lines):
+            return {'status':'PASS', 'observed_captions': sorted(seen),
+                'observations': observations, 'actual_swipes': swipes,
+                'restored_first_card': first, 'restored_capture': capture,
+                'scope':'All captions observed in actual scroll frames; no card selection or app-state injection'}
+        gesture = [x, round(height * .4), x, round(height * .65), 700]
+        adb('shell', 'input', 'swipe', *(str(v) for v in gesture))
+        swipes.append({'direction': 'up', 'coordinates': gesture, 'source_capture': capture})
+        time.sleep(.5)
+    raise RuntimeError('Garage did not restore its first card after real scrolling')
+
 
 def require_resource_snapshots(result: dict) -> None:
     """Require both existing read-only captures before declaring the race PASS.
@@ -747,6 +801,7 @@ def main() -> int:
     def fold_cycle(tag: str, labels: tuple[str, ...], saved_before: dict | None = None) -> dict:
         """Observed outer→inner→outer emulator surfaces, then the normal phone."""
         captures = []
+        scroll_checks = []
         for stage, width, height, density, expected in (
             ('outer-before', 904, 2316, 420, [2316, 904]),
             ('inner', 1812, 2176, 420, [2176, 1812]),
@@ -755,7 +810,12 @@ def main() -> int:
         ):
             base.display(width, height, density)
             creative.device_rotation(out, tag + '-' + stage + '-landscape', 1)
-            for label in labels:
+            current_labels = labels
+            if tag == '01-garage-resize':
+                scroll_checks.append({'stage': stage, **observe_garage_modes(
+                    creative, base.adb, out, tag + '-' + stage, labels[:-1])})
+                current_labels = (labels[-1],)
+            for label in current_labels:
                 creative.native_text(out, label, tag + '-' + stage + '-' + creative.normalized(label))
             snapshot = creative.capture(out, tag + '-' + stage)
             if [snapshot['width'], snapshot['height']] != expected:
@@ -764,6 +824,7 @@ def main() -> int:
             if saved_before is not None:
                 require_saved_progress_unchanged(saved_before, session(tag + '-' + stage), tag)
         return {'status': 'PASS', 'sequence': 'outer → inner → outer → phone',
+                'actual_garage_scroll_checks': scroll_checks,
                 'observed_labels': list(labels), 'captures': captures,
                 'saved_progress_stable': saved_before is not None,
                 'scope': 'actual emulator surfaces and explicit rotation; physical Samsung/Fold hinge NOT EXECUTED'}
