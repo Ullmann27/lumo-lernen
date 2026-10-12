@@ -231,6 +231,30 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   Future<void> _speakPrompt() =>
       _speak('Schreib ein $_currentLetter!', style: VoiceStyle.explain);
 
+  Future<void> _onSpeakerTap() async {
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted) return;
+    final settings = widget.appState.state.settings;
+    if (!settings.voiceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Die Lumo-Stimme ist im Elternbereich ausgeschaltet.'),
+        ),
+      );
+      return;
+    }
+    if (!settings.localVoiceLicenseAccepted && _currentLetter != 'A') {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Für neue Ansagen: Elternbereich → Ton und Stimme → „Neue Sätze offline vorlesen“ freigeben.',
+          ),
+        ),
+      );
+    }
+    await _speakPrompt();
+  }
+
   void _onPanStart(Offset localPosition) {
     setState(() => _currentPoints = [localPosition]);
   }
@@ -507,7 +531,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
       label: 'Fingerfreundlich · keine Schönschrift nötig',
       title: 'Schreibe den Buchstaben $_currentLetter.',
       accent: _gradient[1],
-      onSpeakerTap: () => unawaited(_speakPrompt()),
+      onSpeakerTap: () => unawaited(_onSpeakerTap()),
     );
   }
 
