@@ -102,7 +102,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       body: LumoMagicBackground(
         intensity: 1.0,
         starCount: 22,
-        child: _loading
+        child: SafeArea(child: _loading
           ? const Center(child: CircularProgressIndicator(color: LumoColors.orange))
           : SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
@@ -135,7 +135,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                   ],
                 ],
               ),
-            ),
+            )),
       ), // close LumoMagicBackground
     );
   }
@@ -447,7 +447,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         .map((e) => '${e.key}(${e.value}x)')
         .join(', ');
     final payload = StringBuffer()
-      ..writeln('Wochenanalyse fuer ${state.childName.isEmpty ? "das Kind" : state.childName} (Klasse ${state.grade}) bitte:')
+      ..writeln('Wochenanalyse fuer das Kind (Klasse ${state.grade}) bitte:')
       ..writeln('Staerken: ${strengths.isEmpty ? "noch wenig Daten" : strengths}')
       ..writeln('Foerderbedarf: ${weaknesses.isEmpty ? "noch wenig Daten" : weaknesses}')
       ..writeln('Haeufigste Fehlertypen: ${errors.isEmpty ? "keine" : errors}')
