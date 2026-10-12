@@ -14,8 +14,17 @@ import 'lumo_story_reader_screen.dart';
 import 'lumo_story_setup_screen.dart';
 
 class LumoStoryLibraryScreen extends StatefulWidget {
-  const LumoStoryLibraryScreen({super.key, required this.appState});
+  const LumoStoryLibraryScreen({
+    super.key,
+    required this.appState,
+    this.gradeLevel,
+  });
+
   final LumoAppState appState;
+
+  /// Wenn aus dem Lernpfad geoeffnet, nur Geschichten dieser Schulstufe.
+  /// Ohne Filter bleibt die Zauberwelt-Bibliothek unveraendert.
+  final int? gradeLevel;
 
   @override
   State<LumoStoryLibraryScreen> createState() =>
@@ -59,7 +68,10 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => LumoStorySetupScreen(appState: widget.appState),
+        builder: (_) => LumoStorySetupScreen(
+          appState: widget.appState,
+          initialGrade: widget.gradeLevel,
+        ),
       ),
     ).then((_) {
       if (mounted) setState(() {});
@@ -74,6 +86,11 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     }
     final lib = LumoStoryLibrary.instance;
     var stories = _showFavOnly ? lib.favorites : lib.all.toList();
+    if (widget.gradeLevel != null) {
+      stories = stories
+          .where((stored) => stored.story.gradeLevel == widget.gradeLevel)
+          .toList();
+    }
     // Filter via Suche (Titel, Held, Ort, Thema)
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
@@ -148,6 +165,11 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   }
 
   Widget _buildTopBar(LumoStoryLibrary lib) {
+    final visibleCount = widget.gradeLevel == null
+        ? lib.count
+        : lib.all
+            .where((stored) => stored.story.gradeLevel == widget.gradeLevel)
+            .length;
     return Padding(
       padding: const EdgeInsets.all(LumoTokens.space12),
       child: Row(
@@ -162,7 +184,10 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
               children: [
                 Text('Meine Geschichten',
                     style: LumoTokens.typo.headlineLarge),
-                Text('${lib.count} Hefte erschaffen',
+                Text(
+                    widget.gradeLevel == null
+                        ? '$visibleCount Hefte erschaffen'
+                        : '${widget.gradeLevel}. Klasse · $visibleCount Hefte',
                     style: LumoTokens.typo.bodyMedium.copyWith(
                         color: LumoTokens.colors.textMuted)),
               ],
