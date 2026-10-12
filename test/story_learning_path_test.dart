@@ -5,6 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/deutsch/lumo_deutsch_screen.dart';
 import 'package:lumo_lernen/features/story/lumo_story_setup_screen.dart';
+import 'package:lumo_lernen/features/story/lumo_story_library_screen.dart';
+import 'package:lumo_lernen/features/story/lumo_story_reader_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 
 void main() {
@@ -45,6 +48,34 @@ void main() {
     expect(find.text('1. Klasse'), findsNothing);
     expect(find.text('2. Klasse'), findsNothing);
     expect(find.text('4. Klasse'), findsNothing);
+  });
+
+  testWidgets('Lernpfad startet auch ohne gespeicherte Hefte direkt ins Lesen',
+      (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final appState = LumoAppState();
+    addTearDown(appState.dispose);
+    appState.update(appState.state.copyWith(grade: 2));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: LumoStoryLibraryScreen(
+          appState: appState,
+          gradeLevel: 2,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Geschichten · Lesen & verstehen'), findsOneWidget);
+    expect(find.text('Lesegeschichte starten'), findsOneWidget);
+    expect(find.textContaining('Verständnisfragen'), findsOneWidget);
+
+    await tester.tap(find.byKey(const ValueKey('story-start-reading-now')));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(LumoStoryReaderScreen), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('Deutsch-Bereich zeigt Geschichten direkt sichtbar an',
