@@ -210,9 +210,14 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       _selectedAnswer = answer;
       _exerciseDone = true;
     });
+    final arithmetic = ex.type == StoryExerciseType.mathPlus ||
+        ex.type == StoryExerciseType.mathMinus;
+    final learningSubject = arithmetic ? 'Mathematik' : 'Deutsch';
+    final learningUnit =
+        arithmetic ? 'Rechnen in Geschichten' : 'Wörter in Geschichten';
     unawaited(widget.appState.recordLearningAnswer(
-      subject: 'Lesen',
-      unit: _learningUnit,
+      subject: learningSubject,
+      unit: learningUnit,
       correct: correct,
       prompt: ex.prompt,
       given: answer,
