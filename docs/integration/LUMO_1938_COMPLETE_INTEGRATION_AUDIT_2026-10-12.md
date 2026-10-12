@@ -8,7 +8,7 @@ Base product:
 
 - 52 Lumo production boards, manifests and agent handoffs from the 100+ asset production line.
 - 42 Astra learning-quality evidence / Kart asset handoff files.
-- 142 missing runtime design assets from claude/design-tafeln. These directories were already declared in pubspec and current runtime code already references recovered Kart assets.
+- The 142-file claude/design-tafeln set was re-audited tree-to-tree after GitHub's divergent compare proved misleading. Sol 1938 already contains these runtime assets (238 lumo_design blobs versus 177 on the old design branch), including the exact blobs referenced by LumoGameSpotlights and the integration test. No older asset tree was overlaid.
 - Android profile edit-button semantics from the later computer voice-runtime fix, with its regression test.
 - Fold renderer guard preventing wide measurement/fraction visuals from being squeezed into half-width columns, with regression coverage.
 - Market-start and Lumo game reference packages.
@@ -27,3 +27,7 @@ Base product:
 - Old Godot visual-fidelity/premium-menu/touch branches: current runtime contains newer equivalents and stronger multi-touch/brake/label behavior.
 
 Rule used throughout: never wholesale-merge a branch that is behind the product line; port only a demonstrably missing higher-quality delta.
+
+## Tree-based correction
+
+Divergent GitHub compare file status is not used as proof that a file is missing from the modern product tree. Direct tree/file verification is required before copying an asset or source file. This caught the design-tafeln case above and prevented a false downgrade.
