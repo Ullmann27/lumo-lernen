@@ -1,0 +1,95 @@
+name: Publish Lumo Meister verified APK
+
+on:
+  push:
+    branches:
+      - sol/lumo-meister-apk-2026-10-12
+    paths:
+      - .github/workflows/lumo-meister-publish.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: lumo-meister-publish-2026-10-12
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_RUN_ID: '38282708774'
+      SOURCE_PACKAGING_SHA: 'ff0e90789a18463b49b2b92e759500ec8be6b2c1'
+      TAG: 'lumo-meister-2026-10-12-preview1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Download already verified APK artifact
+        run: |
+          set -euo pipefail
+          mkdir -p release_payload
+          gh run download "$SOURCE_RUN_ID" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name LUMO-Meister-Android-APK \
+            --dir release_payload
+          find release_payload -maxdepth 4 -type f -print
+          test -s release_payload/dist/Lumo-Lernen-Neu.apk
+          test -s release_payload/dist/SHA256SUMS.txt
+          (cd release_payload/dist && sha256sum -c SHA256SUMS.txt)
+
+      - name: Prove artifact provenance
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          expected = 'ff0e90789a18463b49b2b92e759500ec8be6b2c1'
+          provenance = json.loads(
+              Path('release_payload/dist/BUILD-PROVENANCE.json').read_text()
+          )
+          actual = provenance.get('flutter_source_commit')
+          if actual != expected:
+              raise SystemExit(f'Unexpected APK source: {actual} != {expected}')
+          if provenance.get('tracked_source_clean') is not True:
+              raise SystemExit('APK provenance does not prove a clean tracked source.')
+          print('Verified APK source:', actual)
+          PY
+
+      - name: Publish direct-download prerelease
+        run: |
+          set -euo pipefail
+          test ! "$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json tagName 2>/dev/null || true)"
+          cat > /tmp/release-notes.md <<'EOF'
+          Verifizierter Lumo-Lernen Android-Kandidat mit:
+          - Wer wird Lumo-Meister: 20 Fragen, 50/200/800/5.000 Sterne
+          - 5.000 Sterne = Family-Park-Stufe mit Elternfreigabe
+          - schulstufenspezifische Logik-Finalfrage 20
+          - Lumo Studio-Quizshow mit Lumo-Moderator und Lumo-SFX
+          - Geschichten / Lesen & verstehen in Klasse 1-4
+          - schulstufengefilterte Geschichten und korrektes Lernfortschritts-Logging
+
+          Quellstand der App: 1a90b2d32cd1685be72dd21492a0b55c4775de26
+          Packaging-Quellstand: ff0e90789a18463b49b2b92e759500ec8be6b2c1
+          GitHub Actions Build: 38282708774
+          EOF
+          gh release create "$TAG" \
+            release_payload/dist/Lumo-Lernen-Neu.apk \
+            release_payload/dist/SHA256SUMS.txt \
+            release_payload/dist/APK-VERIFICATION.json \
+            release_payload/dist/BUILD-PROVENANCE.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$SOURCE_PACKAGING_SHA" \
+            --title "Lumo Meister – Android Preview 2026-10-12" \
+            --notes-file /tmp/release-notes.md \
+            --prerelease
+
+      - name: Print direct asset URL
+        run: |
+          echo "https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG/Lumo-Lernen-Neu.apk"
