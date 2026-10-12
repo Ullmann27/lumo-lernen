@@ -8,6 +8,7 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_learning_module_frame.dart';
 import '../../widgets/design/lumo_quantity_art.dart';
 import 'guided_language_nature_illustration.dart';
+import 'guided_advanced_math_illustration.dart';
 
 /// Actual countable original assets. Moving apples remain single widgets:
 /// no duplicated "animation" objects that could falsify a quantity.
@@ -33,6 +34,11 @@ class GuidedMathIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (lesson.concept == GuidedLessonConcept.bridgeHundred ||
+        lesson.concept == GuidedLessonConcept.fractionParts) {
+      return GuidedAdvancedMathIllustration(
+          lesson: lesson, step: step, reduceMotion: reduceMotion);
+    }
     if (lesson.subject != 'Mathematik') {
       return GuidedLanguageNatureIllustration(
           lesson: lesson, step: step, reduceMotion: reduceMotion);
@@ -47,6 +53,9 @@ class GuidedMathIllustration extends StatelessWidget {
                 GuidedLessonConcept.subtractTen => Icons.remove_circle_outline,
                 GuidedLessonConcept.syllables => Icons.hearing_rounded,
                 GuidedLessonConcept.plantParts => Icons.local_florist_rounded,
+                GuidedLessonConcept.bridgeHundred => Icons.grid_on_rounded,
+                GuidedLessonConcept.fractionParts =>
+                  Icons.pie_chart_outline_rounded,
               },
               color: LumoVisualTokens.gold,
               size: 48),

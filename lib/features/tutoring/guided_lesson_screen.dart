@@ -580,6 +580,10 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                         GuidedLessonConcept.syllables ||
                         GuidedLessonConcept.plantParts =>
                           step.instruction,
+                        GuidedLessonConcept.bridgeHundred =>
+                          'Ergänze zuerst zum nächsten Hunderter. Bündle zehn Zehner und gib den Rest dazu.',
+                        GuidedLessonConcept.fractionParts =>
+                          'Zähle gleich große Teile zusammen. Die Teilgröße und die untere Zahl bleiben gleich.',
                       }
                     : step.instruction,
                 style: _body),

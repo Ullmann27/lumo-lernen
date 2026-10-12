@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:clock/clock.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,6 +20,7 @@ import 'package:lumo_lernen/domain/tutoring/tutoring_session_planner.dart';
 import 'package:lumo_lernen/features/settings/discovery_settings_card.dart';
 import 'package:lumo_lernen/features/tutoring/guided_learning_hub.dart';
 import 'package:lumo_lernen/features/tutoring/guided_lesson_screen.dart';
+import 'package:lumo_lernen/features/tutoring/guided_advanced_math_illustration.dart';
 import 'package:lumo_lernen/widgets/design/lumo_quantity_art.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
@@ -128,8 +132,10 @@ Future<void> _finish(WidgetTester tester, GuidedLesson lesson,
       }
       if (wrongIndependent &&
           step.observation == DiscoveryStepKind.independent) {
-        await _tap(tester,
-            find.byKey(ValueKey('guided-answer-${step.choices.first}')));
+        await _tap(
+            tester,
+            find.byKey(ValueKey(
+                'guided-answer-${step.choices.firstWhere((v) => v != step.expected)}')));
         expect(find.textContaining('Fast!'), findsOneWidget);
         expect(LumoCompanionRequests.instance.taskContext.value!.lastCorrect,
             false);
@@ -153,19 +159,55 @@ Future<void> _finish(WidgetTester tester, GuidedLesson lesson,
         expect(
             find.textContaining('Gleiche Gruppen lassen sich'), findsNothing);
       }
+      final advanced = lesson.concept == GuidedLessonConcept.bridgeHundred ||
+          lesson.concept == GuidedLessonConcept.fractionParts;
       final total = switch (lesson.concept) {
         GuidedLessonConcept.equalGroups => step.a * step.b,
         GuidedLessonConcept.bridgeTen => step.a + step.b,
         GuidedLessonConcept.subtractTen => step.a,
+        GuidedLessonConcept.bridgeHundred ||
+        GuidedLessonConcept.fractionParts =>
+          0,
         _ => throw StateError('Non-mathematical quantity fixture'),
       };
-      expect(find.byType(LumoQuantityArt), findsNWidgets(total));
+      void requireIllustration() {
+        if (lesson.concept == GuidedLessonConcept.bridgeHundred) {
+          final values = tester
+              .widgetList<BaseTenBlocks>(find.byType(BaseTenBlocks))
+              .map((w) => w.value);
+          expect(values.reduce((a, b) => a + b), step.a + step.b);
+        } else if (lesson.concept == GuidedLessonConcept.fractionParts) {
+          for (var i = 0; i < step.b; i++) {
+            expect(find.byKey(ValueKey('fraction-part-$i')), findsOneWidget);
+          }
+        } else {
+          expect(find.byType(LumoQuantityArt), findsNWidgets(total));
+        }
+      }
+
+      requireIllustration();
+      final folder = Platform.environment['LUMO_ADVANCED_CAPTURES'];
+      if (advanced && folder != null) {
+        final capture = find.byKey(const ValueKey('advanced-lesson-runtime'));
+        await tester.runAsync(() async {
+          final image = await tester
+              .renderObject<RenderRepaintBoundary>(capture)
+              .toImage(pixelRatio: 1.5);
+          final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+          final name =
+              '${lesson.id}-${tester.view.physicalSize.width.round()}x${tester.view.physicalSize.height.round()}';
+          final file = File('$folder/$name.png');
+          await file.parent.create(recursive: true);
+          await file.writeAsBytes(bytes!.buffer.asUint8List());
+          image.dispose();
+        });
+      }
       await _tap(tester, find.text('Erklärung lesen'));
       expect(find.text(step.instruction), findsOneWidget);
       await _tap(tester, find.text('Erklärung einklappen'));
       expect(find.text(step.instruction), findsNothing);
       await _tap(tester, find.text('Beispiel noch einmal'));
-      expect(find.byType(LumoQuantityArt), findsNWidgets(total));
+      requireIllustration();
     }
     if (checkTargets &&
         tester.view.physicalSize.width / tester.view.devicePixelRatio < 600) {
@@ -199,6 +241,130 @@ void main() {
     LumoCompanionRequests.instance.clearLearningScope();
   });
   tearDown(LumoCompanionRequests.instance.clearLearningScope);
+
+  for (final lesson in [
+    GuidedLessonCatalog.bridgeHundred,
+    GuidedLessonCatalog.fractionParts
+  ]) {
+    testWidgets(
+        '${lesson.id}: real parent grant, discovery separation and persisted restart',
+        (tester) async {
+      final app = await _app(tester);
+      await tester.runAsync(() => app.recordLearningAnswer(
+          subject: 'Mathematik',
+          unit: 'Plus bis 10',
+          correct: true,
+          requireSaved: true));
+      await tester.pumpWidget(_shell(app));
+      await _frames(tester);
+      await _tap(tester, find.text('Elternfreigabe öffnen'));
+      await _tap(tester, find.byType(DropdownButtonFormField<int>));
+      await _tap(tester, find.text('Bis zur 4. Schulstufe').last);
+      await _tap(tester, find.byType(Switch));
+      await _tap(tester, find.text('Als Erwachsene:r freigeben'));
+      final owner = await tester.runAsync(app.captureLearningProfile);
+      expect(owner!.profile.canDiscover(lesson.grade), true);
+      await tester.pageBack();
+      await _frames(tester);
+      final prefs = await tester.runAsync(SharedPreferences.getInstance);
+      final before = {
+        for (final key in prefs!.getKeys())
+          if (!key.contains('lumo_progress_discovery_v1')) key: prefs.get(key)
+      };
+      await _tap(tester, find.text('Entdecken öffnen'));
+      await _tap(tester, find.byKey(ValueKey('guided-open-${lesson.id}')));
+      await _finish(tester, lesson, wrongIndependent: true);
+      expect(app.state.grade, 1);
+      expect(app.learningDailyDone(), 1);
+      expect(app.learningSkills().length, 1);
+      await tester.runAsync(prefs.reload);
+      expect({
+        for (final key in prefs.getKeys())
+          if (!key.contains('lumo_progress_discovery_v1')) key: prefs.get(key)
+      }, before);
+      final topic = owner.profile.discovery.topics[lesson.id]!;
+      expect(topic.introduced, true);
+      expect(topic.foundationCorrect, 1);
+      expect(topic.guidedCorrect,
+          lesson.concept == GuidedLessonConcept.bridgeHundred ? 2 : 1);
+      expect(topic.independentWrong, 1);
+      expect(topic.independentCorrect, 1);
+      expect(topic.checkCorrect, 1);
+      await _close(tester, app);
+      final restored = await _app(tester);
+      await tester.pumpWidget(_shell(restored));
+      await _frames(tester);
+      // Discovery loads lazily when its real hub is opened, independently
+      // of regular school hydration. Resume that route before reading it.
+      await _tap(tester, find.text('Entdecken öffnen'));
+      await tester.runAsync(() async {
+        final lease = await restored.captureLearningProfile();
+        expect(lease.profile.discovery.topics[lesson.id]!.checkCorrect, 1);
+        expect(restored.learningDailyDone(), 1);
+        expect(restored.state.grade, 1);
+        await restored.school.setActiveStudent('learning-test-b');
+        await restored.loadLearningProfile();
+        expect(
+            (await restored.captureLearningProfile()).profile.discovery.topics,
+            isEmpty);
+      });
+      await _close(tester, restored);
+    });
+  }
+
+  for (final lesson in [
+    GuidedLessonCatalog.bridgeHundred,
+    GuidedLessonCatalog.fractionParts
+  ]) {
+    for (final target in [
+      (const Size(360, 800), 1.0, 'phone'),
+      (const Size(967, 805), 1.6, 'fold'),
+      (const Size(640, 360), 1.6, 'landscape')
+    ]) {
+      testWidgets(
+          '${lesson.id}: actual course, error, hint, retry, save ${target.$3}',
+          (tester) async {
+        final app = await _app(tester, grade: lesson.grade, size: target.$1);
+        await tester.pumpWidget(MaterialApp(
+            theme: LumoAppTheme.light(),
+            builder: (context, child) => MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: TextScaler.linear(target.$2)),
+                child: RepaintBoundary(
+                    key: const ValueKey('advanced-lesson-runtime'),
+                    child: child!)),
+            home: GuidedLessonScreen(
+                appState: app, lesson: lesson, discovery: false)));
+        await _frames(tester);
+        await _finish(tester, lesson,
+            wrongIndependent: true, checkTargets: true);
+        expect(app.state.grade, lesson.grade);
+        expect(app.learningDailyDone(), 2);
+        final key = 'mathematik::${lesson.schoolUnit.toLowerCase()}';
+        final record = app.learningSkills()[key]!;
+        expect(record.correct, 2);
+        expect(record.wrong, 1);
+        expect(record.hintCount, 1);
+        expect(LumoCompanionRequests.instance.learningEvents.value.last.kind,
+            LumoLearningEventKind.lessonCompleted);
+        await tester.runAsync(() async {
+          expect(
+              (await ProgressRepository(studentId: 'learning-test-a')
+                      .loadDiscovery())
+                  .topics,
+              isEmpty);
+          await app.school.setActiveStudent('learning-test-b');
+          await app.loadLearningProfile();
+          expect(app.learningSkills().containsKey(key), false);
+          await app.school.setActiveStudent('learning-test-a');
+          await app.loadLearningProfile();
+          expect(app.learningSkills()[key]!.correct, 2);
+          expect(app.learningSkills()[key]!.wrong, 1);
+        });
+        await _close(tester, app);
+      });
+    }
+  }
 
   testWidgets(
       'pending second wrong answer cannot consume offered help',

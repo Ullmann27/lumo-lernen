@@ -567,7 +567,7 @@ class ExerciseFactory {
       final pool = wordEndingContexts.where((q) => grade >= 2 || q.$1.length <= 5).toList();
       final q = pool[_random.nextInt(pool.length)];
       return _choiceTask('rs-verlaengern', grade, 'Rechtschreibung', unit,
-          'Sprich die längere Form: ${q.$3}. Welcher Buchstabe fehlt in „${q.$1}_“?', q.$2,
+          'Verlängere das Wort: ${q.$3}. Welcher Buchstabe fehlt in „${q.$1}_“?', q.$2,
           'In ${q.$3} kannst du den Buchstaben hören. Das kurze Wort schreibt man ${q.$1}${q.$2}.',
           customChoices: [q.$2, ...['d','t','b','p','g','k'].where((v) => v != q.$2).take(3)]);
     }

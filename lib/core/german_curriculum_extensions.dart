@@ -542,10 +542,10 @@ const List<_SentenceMcItem> _adverbItemsExtension = <_SentenceMcItem>[
   _SentenceMcItem(
       "Das Kind wartet drinnen.", "drinnen", <String>["Das", "Kind", "wartet"]),
   _SentenceMcItem("Lena liest gern.", "gern", <String>["Lena", "liest"]),
-  _SentenceMcItem("Opa kommt später.", "später", <String>["Opa", "kommt"]),
+  _SentenceMcItem("Opa kommt jetzt.", "jetzt", <String>["Opa", "kommt"]),
   _SentenceMcItem("Gestern regnete es.", "Gestern", <String>["regnete", "es"]),
-  _SentenceMcItem(
-      "Hier wächst eine Blume.", "Hier", <String>["wächst", "eine", "Blume"]),
+  _SentenceMcItem("Bereits im Frühling blüht diese Blume.", "Bereits",
+      <String>["wächst", "eine", "Blume"]),
   _SentenceMcItem(
       "Die Katze sitzt oben.", "oben", <String>["Die", "Katze", "sitzt"]),
   _SentenceMcItem(
@@ -553,13 +553,13 @@ const List<_SentenceMcItem> _adverbItemsExtension = <_SentenceMcItem>[
   _SentenceMcItem("Paul besucht uns manchmal.", "manchmal",
       <String>["Paul", "besucht", "uns"]),
   _SentenceMcItem("Mia kommt immer.", "immer", <String>["Mia", "kommt"]),
-  _SentenceMcItem("Wir üben täglich.", "täglich", <String>["Wir", "üben"]),
-  _SentenceMcItem("Das Team trainiert regelmäßig.", "regelmäßig",
+  _SentenceMcItem("Wir vergessen dich nie.", "nie", <String>["Wir", "üben"]),
+  _SentenceMcItem("Im Garten wachsen überall Blumen.", "überall",
       <String>["Das", "Team", "trainiert"]),
   _SentenceMcItem("Die Familie ist unterwegs.", "unterwegs",
       <String>["Die", "Familie", "ist"]),
-  _SentenceMcItem("Ich habe gestern gekocht.", "gestern",
-      <String>["Ich", "habe", "gekocht"]),
+  _SentenceMcItem(
+      "Ich habe vorhin gekocht.", "vorhin", <String>["Ich", "habe", "gekocht"]),
 ];
 
 const List<_VerbFormMcItem> _plusquamItemsExtension = <_VerbFormMcItem>[

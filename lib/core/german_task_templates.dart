@@ -866,7 +866,6 @@ const List<_LetterSound> _letterSounds = <_LetterSound>[
 ];
 
 const List<_FamilyItem> _families = <_FamilyItem>[
-  ..._familiesExtension,
   _FamilyItem('fahr', 'fahren, Fahrrad, Fahrer', <String>[
     'malen, Maler, Bild',
     'lesen, Buch, leise',
@@ -887,10 +886,10 @@ const List<_FamilyItem> _families = <_FamilyItem>[
     'essen, Teller, Suppe',
     'gehen, Weg, Schuh'
   ]),
+  ..._familiesExtension,
 ];
 
 const List<_PluralItem> _plurals = <_PluralItem>[
-  ..._pluralsExtension,
   _PluralItem(
       'der Hund', 'die Hunde', <String>['die Hunden', 'die Hund', 'der Hunde']),
   _PluralItem('die Katze', 'die Katzen',
@@ -907,30 +906,30 @@ const List<_PluralItem> _plurals = <_PluralItem>[
       'der Baum', 'die Bäume', <String>['die Baume', 'die Baums', 'der Bäume']),
   _PluralItem('die Schule', 'die Schulen',
       <String>['die Schules', 'der Schulen', 'die Schule']),
+  ..._pluralsExtension,
 ];
 
 const List<_DiminutiveItem> _diminutives = <_DiminutiveItem>[
-  ..._diminutivesExtension,
   _DiminutiveItem('Buch', 'Büchlein', <String>['Bucher', 'Buchig', 'Buchung']),
   _DiminutiveItem('Haus', 'Häuschen', <String>['Hauser', 'Hauslein', 'Häuser']),
   _DiminutiveItem('Maus', 'Mäuschen', <String>['Mäuser', 'Mausen', 'Mauslein']),
   _DiminutiveItem(
       'Katze', 'Kätzchen', <String>['Katzen', 'Katzlein', 'Katzung']),
   _DiminutiveItem('Hund', 'Hündchen', <String>['Hunde', 'Hundchen', 'Hundung']),
+  ..._diminutivesExtension,
 ];
 
 const List<_PairItem> _opposites = <_PairItem>[
-  ..._oppositesExtension,
   _PairItem('groß', 'klein', <String>['warm', 'rund', 'schnell']),
   _PairItem('hell', 'dunkel', <String>['weich', 'laut', 'neu']),
   _PairItem('warm', 'kalt', <String>['klein', 'glatt', 'bunt']),
   _PairItem('laut', 'leise', <String>['hell', 'lang', 'rot']),
   _PairItem('schnell', 'langsam', <String>['hoch', 'frisch', 'voll']),
   _PairItem('voll', 'leer', <String>['spitz', 'rund', 'süß']),
+  ..._oppositesExtension,
 ];
 
 const List<_CategoryItem> _categories = <_CategoryItem>[
-  ..._categoriesExtension,
   _CategoryItem(<String>['Apfel', 'Banane', 'Birne'], 'Obst',
       <String>['Werkzeug', 'Kleidung', 'Verkehr']),
   _CategoryItem(<String>['Hund', 'Katze', 'Hase'], 'Tiere',
@@ -943,20 +942,20 @@ const List<_CategoryItem> _categories = <_CategoryItem>[
       <String>['Blumen', 'Körperteile', 'Berufe']),
   _CategoryItem(<String>['Semmel', 'Topfen', 'Marille'], 'Lebensmittel',
       <String>['Werkzeuge', 'Verkehrszeichen', 'Formen']),
+  ..._categoriesExtension,
 ];
 
 const List<_PairItem> _synonyms = <_PairItem>[
-  ..._synonymsExtension,
   _PairItem('schnell', 'rasch', <String>['langsam', 'klein', 'rund']),
   _PairItem('schön', 'hübsch', <String>['schwer', 'traurig', 'spitz']),
   _PairItem('sprechen', 'reden', <String>['laufen', 'essen', 'schlafen']),
   _PairItem('beginnen', 'anfangen', <String>['enden', 'verlieren', 'fallen']),
   _PairItem('klug', 'gescheit', <String>['müde', 'nass', 'leer']),
   _PairItem('fröhlich', 'lustig', <String>['wütend', 'hart', 'gerade']),
+  ..._synonymsExtension,
 ];
 
 const List<_PairItem> _pastTenses = <_PairItem>[
-  ..._pastTensesExtension,
   _PairItem('gehen', 'ging', <String>['gehte', 'geht', 'gehen']),
   _PairItem('laufen', 'lief', <String>['laufte', 'läuft', 'gelauft']),
   _PairItem('sehen', 'sah', <String>['sehte', 'sieht', 'geseht']),
@@ -964,10 +963,10 @@ const List<_PairItem> _pastTenses = <_PairItem>[
   _PairItem('essen', 'aß', <String>['esste', 'isst', 'geesst']),
   _PairItem(
       'schreiben', 'schrieb', <String>['schreibte', 'schreibt', 'geschreibt']),
+  ..._pastTensesExtension,
 ];
 
 const List<_ComparisonItem> _comparisons = <_ComparisonItem>[
-  ..._comparisonsExtension,
   _ComparisonItem('schön', 'schöner, am schönsten',
       <String>['schön, am schöner', 'schönste, schöner', 'schöner, am schön']),
   _ComparisonItem('schnell', 'schneller, am schnellsten', <String>[
@@ -984,10 +983,10 @@ const List<_ComparisonItem> _comparisons = <_ComparisonItem>[
     'mehr, am vielsten',
     'viele, am meisten'
   ]),
+  ..._comparisonsExtension,
 ];
 
 const List<_VerbFormItem> _verbForms = <_VerbFormItem>[
-  ..._verbFormsExtension,
   _VerbFormItem('Wir _____ (gehen) in die Schule.', 'gehen',
       <String>['geht', 'gehe', 'gehst']),
   _VerbFormItem(
@@ -998,10 +997,10 @@ const List<_VerbFormItem> _verbForms = <_VerbFormItem>[
       <String>['rechne', 'rechnen', 'rechnest']),
   _VerbFormItem('Ihr _____ (singen) ein Lied.', 'singt',
       <String>['singe', 'singen', 'singst']),
+  ..._verbFormsExtension,
 ];
 
 const List<_SentencePartItem> _sentenceParts = <_SentencePartItem>[
-  ..._sentencePartsExtension,
   _SentencePartItem('Lena liest am Nachmittag ein Buch.', 'Wer?', 'Lena',
       <String>['liest', 'am Nachmittag', 'ein Buch']),
   _SentencePartItem('Der Hund bellt im Garten.', 'Was tut er?', 'bellt',
@@ -1010,10 +1009,10 @@ const List<_SentencePartItem> _sentenceParts = <_SentencePartItem>[
       <String>['Opa', 'fährt', 'mit dem Zug']),
   _SentencePartItem('Im Winter rodeln die Kinder am Hügel.', 'Wann?',
       'Im Winter', <String>['die Kinder', 'am Hügel', 'rodeln']),
+  ..._sentencePartsExtension,
 ];
 
 const List<_DirectSpeechItem> _directSpeech = <_DirectSpeechItem>[
-  ..._directSpeechExtension,
   _DirectSpeechItem('Lena sagt: „Ich komme gleich.“', <String>[
     'Lena sagt Ich komme gleich.',
     '„Lena sagt: Ich komme gleich.“',
@@ -1029,10 +1028,10 @@ const List<_DirectSpeechItem> _directSpeech = <_DirectSpeechItem>[
     '„Mama fragt: Kommst du mit?“',
     'Mama fragt: Kommst du mit?'
   ]),
+  ..._directSpeechExtension,
 ];
 
 const List<_CommaItem> _commas = <_CommaItem>[
-  ..._commasExtension,
   _CommaItem('Ich packe Heft, Stift, Buch und Jause ein.', <String>[
     'Ich packe Heft Stift Buch und Jause ein.',
     'Ich packe Heft, Stift Buch und Jause ein.',
@@ -1049,10 +1048,10 @@ const List<_CommaItem> _commas = <_CommaItem>[
     'Im Federpennal sind Bleistift, Schere Kleber und Lineal.',
     'Im Federpennal sind Bleistift Schere, Kleber, und Lineal.'
   ]),
+  ..._commasExtension,
 ];
 
 const List<_CompoundItem> _compounds = <_CompoundItem>[
-  ..._compoundsExtension,
   _CompoundItem(
       'Sonnenblume', 'eine Pflanze mit großen gelben Blüten', <String>[
     'eine Sonne aus Blumen',
@@ -1079,6 +1078,7 @@ const List<_CompoundItem> _compounds = <_CompoundItem>[
     'ein Schild im Garten',
     'ein Spielplan'
   ]),
+  ..._compoundsExtension,
 ];
 
 List<String> _nouns(int seed, int grade,
@@ -1150,7 +1150,6 @@ int _positive(int seed, int length) =>
 // AT-Lehrplan-Erweiterungen 2026-06-03 - Klasse 3+4 Daten:
 
 const List<_CaseItem> _caseNomAkkItems = <_CaseItem>[
-  ..._caseNomAkkItemsExtension,
   _CaseItem('Der Hund bellt im Garten.', 'Der Hund', 'Wer-Fall',
       <String>['Wen-Fall', 'Wem-Fall']),
   _CaseItem('Lisa füttert die Katze.', 'die Katze', 'Wen-Fall',
@@ -1163,10 +1162,10 @@ const List<_CaseItem> _caseNomAkkItems = <_CaseItem>[
       <String>['Wen-Fall', 'Wem-Fall']),
   _CaseItem('Mama bäckt einen Kuchen.', 'einen Kuchen', 'Wen-Fall',
       <String>['Wer-Fall', 'Wem-Fall']),
+  ..._caseNomAkkItemsExtension,
 ];
 
 const List<_SentenceMcItem> _capitalizationItems = <_SentenceMcItem>[
-  ..._capitalizationItemsExtension,
   _SentenceMcItem('Die kinder spielen im Garten.', 'Kinder',
       <String>['spielen', 'im', 'Die']),
   _SentenceMcItem(
@@ -1179,10 +1178,10 @@ const List<_SentenceMcItem> _capitalizationItems = <_SentenceMcItem>[
       'Der hund jagt eine Katze.', 'Hund', <String>['jagt', 'eine', 'Der']),
   _SentenceMcItem('Ich male einen schönen baum.', 'Baum',
       <String>['male', 'einen', 'schönen']),
+  ..._capitalizationItemsExtension,
 ];
 
 const List<_SimpleMcItem> _ieOrIItems = <_SimpleMcItem>[
-  ..._ieOrIItemsExtension,
   _SimpleMcItem('Fisch', <String>['Fiesch', 'Fihsch', 'Fysch']),
   _SimpleMcItem('Kind', <String>['Kiend', 'Kihnd', 'Kynd']),
   _SimpleMcItem('Winter', <String>['Wienter', 'Wihnter', 'Wynter']),
@@ -1195,10 +1194,10 @@ const List<_SimpleMcItem> _ieOrIItems = <_SimpleMcItem>[
   _SimpleMcItem('Knie', <String>['Kni', 'Knih', 'Kniee']),
   _SimpleMcItem('Sieg', <String>['Sig', 'Siegk', 'Siegge']),
   _SimpleMcItem('hier', <String>['hir', 'hihr', 'hiher']),
+  ..._ieOrIItemsExtension,
 ];
 
 const List<_CaseItem> _fourCasesItems = <_CaseItem>[
-  ..._fourCasesItemsExtension,
   _CaseItem('Der Fuchs läuft durch den Wald.', 'Der Fuchs', 'Wer-Fall (1.)',
       <String>['Wessen-Fall (2.)', 'Wem-Fall (3.)', 'Wen-Fall (4.)']),
   _CaseItem('Das Kind zeichnet ein Haus.', 'Das Kind', 'Wer-Fall (1.)',
@@ -1215,10 +1214,10 @@ const List<_CaseItem> _fourCasesItems = <_CaseItem>[
       <String>['Wer-Fall (1.)', 'Wen-Fall (4.)']),
   _CaseItem('Die Lehrerin lobt den Schüler.', 'den Schüler', 'Wen-Fall (4.)',
       <String>['Wer-Fall (1.)', 'Wem-Fall (3.)']),
+  ..._fourCasesItemsExtension,
 ];
 
 const List<_SentenceMcItem> _dassDasItems = <_SentenceMcItem>[
-  ..._dassDasItemsExtension,
   _SentenceMcItem('Ich weiß, ___ du gewinnst.', 'dass', <String>['das', 'daß']),
   _SentenceMcItem('___ Buch liegt am Tisch.', 'Das', <String>['Dass', 'Daß']),
   _SentenceMcItem(
@@ -1227,10 +1226,10 @@ const List<_SentenceMcItem> _dassDasItems = <_SentenceMcItem>[
   _SentenceMcItem('Er sagt, ___ er müde ist.', 'dass', <String>['das', 'daß']),
   _SentenceMcItem(
       'Ich sehe, ___ Lumo dort schläft.', 'dass', <String>['das', 'daß']),
+  ..._dassDasItemsExtension,
 ];
 
 const List<_SentenceMcItem> _adverbItems = <_SentenceMcItem>[
-  ..._adverbItemsExtension,
   _SentenceMcItem('Wir spielen heute Fußball.', 'heute',
       <String>['Wir', 'spielen', 'Fußball']),
   _SentenceMcItem(
@@ -1242,10 +1241,10 @@ const List<_SentenceMcItem> _adverbItems = <_SentenceMcItem>[
   _SentenceMcItem(
       'Wir gehen oft schwimmen.', 'oft', <String>['Wir', 'gehen', 'schwimmen']),
   _SentenceMcItem('Anna bleibt hier.', 'hier', <String>['Anna', 'bleibt']),
+  ..._adverbItemsExtension,
 ];
 
 const List<_VerbFormMcItem> _plusquamItems = <_VerbFormMcItem>[
-  ..._plusquamItemsExtension,
   _VerbFormMcItem(
       'lesen', 'hatte gelesen', <String>['liest', 'las', 'wird lesen']),
   _VerbFormMcItem(
@@ -1258,4 +1257,5 @@ const List<_VerbFormMcItem> _plusquamItems = <_VerbFormMcItem>[
       <String>['spielt', 'spielte', 'wird spielen']),
   _VerbFormMcItem(
       'singen', 'hatte gesungen', <String>['singt', 'sang', 'wird singen']),
+  ..._plusquamItemsExtension,
 ];

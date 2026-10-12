@@ -8,7 +8,9 @@ enum GuidedLessonConcept {
   equalGroups,
   subtractTen,
   syllables,
-  plantParts
+  plantParts,
+  bridgeHundred,
+  fractionParts,
 }
 
 enum GuidedPlantPart {
@@ -33,6 +35,11 @@ enum GuidedAnswerKind {
   difference,
   syllableCount,
   plantPart,
+  tensValue,
+  gapToHundred,
+  hundredRemainder,
+  hundredSum,
+  fractionParts,
 }
 
 class GuidedLessonStep {
@@ -48,6 +55,7 @@ class GuidedLessonStep {
     this.syllables = const [],
     this.plantPart,
     this.plantVariant = 0,
+    this.fractionExtra = 0,
   });
 
   final TutoringStepType type;
@@ -61,6 +69,8 @@ class GuidedLessonStep {
   final List<String> syllables;
   final GuidedPlantPart? plantPart;
   final int plantVariant;
+  final int fractionExtra;
+  int get nextHundred => (a ~/ 100 + 1) * 100;
 
   bool get isQuestion => answerKind != null;
   bool get isIndependent =>
@@ -81,10 +91,24 @@ class GuidedLessonStep {
         GuidedAnswerKind.difference => '${a - b}',
         GuidedAnswerKind.syllableCount => '${syllables.length}',
         GuidedAnswerKind.plantPart => plantPart!.label,
+        GuidedAnswerKind.tensValue => '${a * 10}',
+        GuidedAnswerKind.gapToHundred => '${nextHundred - a}',
+        GuidedAnswerKind.hundredRemainder => '${b - (nextHundred - a)}',
+        GuidedAnswerKind.hundredSum => '${a + b}',
+        GuidedAnswerKind.fractionParts => '${a + fractionExtra}/$b',
         null => throw StateError('This step has no answer'),
       };
 
   List<String> get choices {
+    if (answerKind == GuidedAnswerKind.fractionParts) {
+      final numerator = a + fractionExtra;
+      return [
+        expected,
+        '${numerator - 1}/$b',
+        '${numerator + 1}/$b',
+        '$numerator/${b + 1}'
+      ];
+    }
     if (answerKind == GuidedAnswerKind.plantPart) {
       return GuidedPlantPart.values.map((part) => part.label).toList();
     }
@@ -93,7 +117,7 @@ class GuidedLessonStep {
     }
     final number = int.parse(expected);
     final values = <String>{
-      '${(number - 1).clamp(0, 100)}',
+      '${number > 0 ? number - 1 : 0}',
       expected,
       '${number + 2}',
       '${number + 1}',
@@ -108,6 +132,33 @@ class GuidedLessonStep {
   bool accepts(String value) => isQuestion && value == expected;
 
   String help({required int level}) {
+    if (answerKind == GuidedAnswerKind.tensValue) {
+      return level < 2
+          ? 'Jeder Streifen besteht aus zehn Feldern. Zähle in Zehnerschritten.'
+          : 'Lege für jeden Streifen zehn Plättchen. Wie viele hast du insgesamt?';
+    }
+    if (answerKind == GuidedAnswerKind.gapToHundred) {
+      return level < 2
+          ? 'Gehe von $a in Zehnerschritten zum nächsten Hunderter $nextHundred. Wie viel kommt dazu?'
+          : 'Betrachte nur die Zehner neben den ganzen Hunderterfeldern. Wie viele Zehner fehlen zum Bündeln von zehn Zehnern?';
+    }
+    if (answerKind == GuidedAnswerKind.hundredRemainder) {
+      return level < 2
+          ? 'Von den $b kommen zuerst ${nextHundred - a} dazu. Welcher Teil der $b bleibt übrig?'
+          : 'Zerlege $b in zwei Teile: Ergänzung zum Hunderter und übrige Zehner. Beide Teile müssen zusammen wieder $b ergeben.';
+    }
+    if (answerKind == GuidedAnswerKind.hundredSum) {
+      return level < 2
+          ? 'Ergänze zuerst $a auf $nextHundred. Füge danach die übrigen Zehner hinzu.'
+          : 'Rechne die Hunderter und die Zehner getrennt. Bündle zehn Zehner zu einem Hunderter.';
+    }
+    if (answerKind == GuidedAnswerKind.fractionParts) {
+      return level < 2
+          ? 'Die untere Zahl zählt alle gleich großen Teile des Ganzen. Die obere Zahl zählt die markierten Teile.'
+          : fractionExtra > 0
+              ? 'Zähle die orangefarbenen und die blauen Teile zusammen. Die Größe der Teile und die untere Zahl ändern sich nicht.'
+              : 'Stell dir vor, du schneidest ein Papier in gleich große Streifen. Zähle erst alle Streifen, dann nur die markierten.';
+    }
     if (answerKind == GuidedAnswerKind.syllableCount) {
       return level < 2
           ? 'Sprich „$word“ langsam. Klatsche bei jedem Sprechstück einmal. '
@@ -220,6 +271,23 @@ class GuidedLesson {
       DiscoveryLearningTarget(topicId: id, grade: grade);
 
   GuidedLessonStep get easierPractice => switch (concept) {
+        GuidedLessonConcept.bridgeHundred => const GuidedLessonStep(
+            type: TutoringStepType.guidedTask,
+            title: 'Zehner statt Einer',
+            instruction:
+                'Jeder Streifen hat zehn Felder. Wie viel sind zwei Zehner?',
+            a: 2,
+            answerKind: GuidedAnswerKind.tensValue,
+            observation: DiscoveryStepKind.foundation),
+        GuidedLessonConcept.fractionParts => const GuidedLessonStep(
+            type: TutoringStepType.guidedTask,
+            title: 'Ein Ganzes teilen',
+            instruction:
+                'Ein Ganzes hat zwei gleich große Teile. Einer ist markiert. Welcher Bruch passt?',
+            a: 1,
+            b: 2,
+            answerKind: GuidedAnswerKind.fractionParts,
+            observation: DiscoveryStepKind.foundation),
         GuidedLessonConcept.syllables => const GuidedLessonStep(
             type: TutoringStepType.guidedTask,
             title: 'Ein kurzes Wort',
@@ -612,12 +680,153 @@ abstract final class GuidedLessonCatalog {
     ],
   );
 
+  static const bridgeHundred = GuidedLesson(
+    id: 'bridge_hundred',
+    title: 'Zum nächsten Hunderter',
+    description:
+        'Zehner bündeln und eine Addition über den Hunderter verstehen.',
+    grade: 3,
+    schoolUnit: 'Plus bis 1000',
+    concept: GuidedLessonConcept.bridgeHundred,
+    steps: [
+      GuidedLessonStep(
+          type: TutoringStepType.greeting,
+          title: 'Größere Zahlen, vertrauter Trick',
+          instruction:
+              'Heute arbeiten wir mit Hunderterfeldern und Zehnerstreifen. Zehn Zehner ergeben einen Hunderter. Du gibst das Tempo vor.'),
+      GuidedLessonStep(
+          type: TutoringStepType.guidedTask,
+          title: 'Zehner erkennen',
+          instruction:
+              'Jeder Streifen hat zehn Felder. Welche Zahl zeigen vier Zehner?',
+          a: 4,
+          answerKind: GuidedAnswerKind.tensValue,
+          observation: DiscoveryStepKind.foundation),
+      GuidedLessonStep(
+          type: TutoringStepType.showExample,
+          title: '240 plus 70',
+          instruction:
+              '240 plus 70: Von den 70 nehmen wir zuerst 60. Damit werden aus 240 genau 300. Dann bleiben 10. 300 plus 10 ist 310. Es bleiben insgesamt gleich viele Felder; wir ordnen sie nur neu.',
+          a: 240,
+          b: 70),
+      GuidedLessonStep(
+          type: TutoringStepType.guidedTask,
+          title: 'Gemeinsam zum Hunderter',
+          instruction: '270 plus 50: Wie viel fehlt von 270 bis 300?',
+          a: 270,
+          b: 50,
+          answerKind: GuidedAnswerKind.gapToHundred,
+          observation: DiscoveryStepKind.guided),
+      GuidedLessonStep(
+          type: TutoringStepType.guidedTask,
+          title: 'Den zweiten Teil finden',
+          instruction:
+              'Von den 50 haben wir 30 verwendet. Wie viel bleibt noch übrig?',
+          a: 270,
+          b: 50,
+          answerKind: GuidedAnswerKind.hundredRemainder,
+          observation: DiscoveryStepKind.guided),
+      GuidedLessonStep(
+          type: TutoringStepType.independentTask,
+          title: 'Jetzt probierst du',
+          instruction:
+              '360 plus 80: Ergänze zuerst zum nächsten Hunderter. Wie lautet das Ergebnis?',
+          a: 360,
+          b: 80,
+          answerKind: GuidedAnswerKind.hundredSum,
+          observation: DiscoveryStepKind.independent),
+      GuidedLessonStep(
+          type: TutoringStepType.independentTask,
+          title: 'Ein neuer Hunderter',
+          instruction: '580 plus 60: Wie viel ist es zusammen?',
+          a: 580,
+          b: 60,
+          answerKind: GuidedAnswerKind.hundredSum,
+          observation: DiscoveryStepKind.check),
+      GuidedLessonStep(
+          type: TutoringStepType.recap,
+          title: 'Bündeln hilft',
+          instruction:
+              'Erst zum nächsten Hunderter ergänzen, dann den Rest dazugeben. Prüfe deine Antwort auch, indem du Hunderter und Zehner getrennt rechnest.'),
+    ],
+  );
+
+  static const fractionParts = GuidedLesson(
+    id: 'fraction_parts',
+    title: 'Gleiche Teile und Brüche',
+    description:
+        'Ein Ganzes gleichmäßig teilen und gleichnamige Bruchteile zusammenzählen.',
+    grade: 4,
+    schoolUnit: 'Bruchrechnen einfach',
+    concept: GuidedLessonConcept.fractionParts,
+    steps: [
+      GuidedLessonStep(
+          type: TutoringStepType.greeting,
+          title: 'Teile müssen gleich groß sein',
+          instruction:
+              'Mit Brüchen beschreiben wir Teile eines Ganzen. Wir teilen ein Rechteck gleichmäßig. Unten steht die Anzahl aller Teile, oben die Anzahl der markierten Teile.'),
+      GuidedLessonStep(
+          type: TutoringStepType.guidedTask,
+          title: 'Eine Hälfte',
+          instruction:
+              'Einer von zwei gleich großen Teilen ist markiert. Welcher Bruch passt?',
+          a: 1,
+          b: 2,
+          answerKind: GuidedAnswerKind.fractionParts,
+          observation: DiscoveryStepKind.foundation),
+      GuidedLessonStep(
+          type: TutoringStepType.showExample,
+          title: 'Viertel zusammenlegen',
+          instruction:
+              'Ein Viertel ist orange, zwei weitere Viertel sind blau. Zusammen sind drei von vier Teilen markiert: 1/4 plus 2/4 ist 3/4. Die Teile bleiben Viertel. Deshalb ändern wir die untere Zahl nicht.',
+          a: 1,
+          b: 4,
+          fractionExtra: 2),
+      GuidedLessonStep(
+          type: TutoringStepType.guidedTask,
+          title: 'Teile als Bruch schreiben',
+          instruction:
+              'Zwei von vier gleich großen Teilen sind markiert. Schreibe den Bruch hier mit der unteren Zahl 4.',
+          a: 2,
+          b: 4,
+          answerKind: GuidedAnswerKind.fractionParts,
+          observation: DiscoveryStepKind.guided),
+      GuidedLessonStep(
+          type: TutoringStepType.independentTask,
+          title: 'Deine Viertelrechnung',
+          instruction:
+              '1/4 plus 1/4: Welcher Bruch mit der unteren Zahl 4 beschreibt beide Teile zusammen?',
+          a: 1,
+          b: 4,
+          fractionExtra: 1,
+          answerKind: GuidedAnswerKind.fractionParts,
+          observation: DiscoveryStepKind.independent),
+      GuidedLessonStep(
+          type: TutoringStepType.independentTask,
+          title: 'Andere Teile, gleicher Trick',
+          instruction:
+              '1/6 plus 2/6: Welcher Bruch mit der unteren Zahl 6 beschreibt die Summe?',
+          a: 1,
+          b: 6,
+          fractionExtra: 2,
+          answerKind: GuidedAnswerKind.fractionParts,
+          observation: DiscoveryStepKind.check),
+      GuidedLessonStep(
+          type: TutoringStepType.recap,
+          title: 'Die Teilgröße bleibt gleich',
+          instruction:
+              'Bei gleichnamigen Brüchen addieren wir die oberen Zahlen. Die untere Zahl bleibt gleich, weil sich die Größe der Teile nicht ändert. 2/4 ist genauso viel wie 1/2; heute haben wir zum Zählen die Viertelschreibweise behalten.'),
+    ],
+  );
+
   static const all = [
     bridgeTen,
     equalGroups,
     subtractTen,
     syllables,
-    plantParts
+    plantParts,
+    bridgeHundred,
+    fractionParts,
   ];
 
   /// Map only explicit, compatible mathematical topics to actual introductions.
@@ -633,6 +842,8 @@ abstract final class GuidedLessonCatalog {
       ('Mathematik', 'Einmaleins' || 'Kleines 1×1') => equalGroups,
       ('Deutsch', 'Silben') => syllables,
       ('Sachunterricht', 'Pflanzen') => plantParts,
+      ('Mathematik', 'Plus bis 1000') => bridgeHundred,
+      ('Mathematik', 'Bruchrechnen einfach') => fractionParts,
       _ => null,
     };
     return lesson != null && lesson.grade <= grade ? lesson : null;

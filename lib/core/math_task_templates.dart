@@ -1,3 +1,5 @@
+import 'shape_question_data.dart';
+
 /// Deterministische Mathe-Templates für Volksschule 1-4.
 ///
 /// Der Generator wählt nur noch ein Template und konkretisiert es über Seed.
@@ -264,11 +266,8 @@ class MathTaskTemplate {
         return _choice('Wie schreibt man die Zahl $a als Wort?', answer, _numberWordChoices(a), 'Zahlwörter liest man wie normale Wörter.', 'word_number',
         );
       case MathTemplateKind.shapeRecognition:
-        final shapes = <String, String>{'Welche Form hat 3 Ecken?': 'Dreieck', 'Welche Form ist ganz rund?': 'Kreis', 'Welche Form hat 4 gleich lange Seiten?': 'Quadrat', 'Welche Form hat keine Ecke?': 'Kreis', 'Welche Form sieht aus wie ein Ei?': 'Oval', 'Welche Form hat 4 Ecken und zwei längere Seiten?': 'Rechteck',
-        };
-        final entry = shapes.entries.elementAt(_positive(seed, shapes.length));
-        return _choice(entry.key, entry.value, <String>['Dreieck', 'Kreis', 'Quadrat', 'Rechteck', 'Oval'], 'Schau auf Ecken, Seiten und Rundungen.', 'shape',
-        );
+        final entry = shapeQuestions[_positive(seed, shapeQuestions.length)];
+        return _choice(entry.$1, entry.$2, entry.$3, entry.$4, 'shape');
       case MathTemplateKind.moneyCompare:
         final left = a;
         final right = b;

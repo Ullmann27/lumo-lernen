@@ -1283,12 +1283,14 @@ class _ShapeVisual extends StatelessWidget {
       'Kreis': _ShapeKind.circle,
       'Quadrat': _ShapeKind.square,
       'Rechteck': _ShapeKind.rectangle,
+      'Oval': _ShapeKind.oval,
     };
     const colors = <String, Color>{
       'Dreieck': Color(0xFFFFB800),
       'Kreis': Color(0xFF60A5FA),
       'Quadrat': Color(0xFFF472B6),
       'Rechteck': Color(0xFF34D399),
+      'Oval': Color(0xFFA78BFA),
     };
     return SchoolbookTaskCard(
       title: 'Formenhilfe',
@@ -1298,11 +1300,12 @@ class _ShapeVisual extends StatelessWidget {
         spacing: 12,
         runSpacing: 12,
         alignment: WrapAlignment.center,
-        children: shapes.entries.map((entry) {
+        children: shapes.entries.where((entry) => task.options.any((option) => option.label == entry.key)).map((entry) {
           final selected = '$picked' == entry.key;
           final correct = solved && '${task.correctAnswer}' == entry.key;
           final shapeColor = colors[entry.key] ?? LumoColors.orange;
           return Container(
+            key: ValueKey('shape-help-${entry.key}'),
             width: 110,
             padding: const EdgeInsets.fromLTRB(10, 14, 10, 12),
             decoration: BoxDecoration(
@@ -1368,7 +1371,7 @@ class _ShapeVisual extends StatelessWidget {
   }
 }
 
-enum _ShapeKind { triangle, circle, square, rectangle }
+enum _ShapeKind { triangle, circle, square, rectangle, oval }
 
 class _ShapePainter extends CustomPainter {
   _ShapePainter({required this.kind, required this.color});
@@ -1405,21 +1408,20 @@ class _ShapePainter extends CustomPainter {
         canvas.drawCircle(Offset(w / 2, h / 2), w * 0.40, paint);
         canvas.drawCircle(Offset(w / 2, h / 2), w * 0.40, stroke);
         break;
+      case _ShapeKind.oval:
+        final rect = Rect.fromLTWH(w * 0.08, h * 0.25, w * 0.84, h * 0.50);
+        canvas.drawOval(rect, paint);
+        canvas.drawOval(rect, stroke);
+        break;
       case _ShapeKind.square:
-        final rect = RRect.fromRectAndRadius(
-          Rect.fromLTWH(w * 0.14, h * 0.14, w * 0.72, h * 0.72),
-          const Radius.circular(6),
-        );
-        canvas.drawRRect(rect, paint);
-        canvas.drawRRect(rect, stroke);
+        final rect = Rect.fromLTWH(w * 0.14, h * 0.14, w * 0.72, h * 0.72);
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect, stroke);
         break;
       case _ShapeKind.rectangle:
-        final rect = RRect.fromRectAndRadius(
-          Rect.fromLTWH(w * 0.08, h * 0.25, w * 0.84, h * 0.50),
-          const Radius.circular(6),
-        );
-        canvas.drawRRect(rect, paint);
-        canvas.drawRRect(rect, stroke);
+        final rect = Rect.fromLTWH(w * 0.08, h * 0.25, w * 0.84, h * 0.50);
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect, stroke);
         break;
     }
   }

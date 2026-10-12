@@ -120,6 +120,12 @@ void main() {
       checked++;
       guidedChecked++;
       final expected = switch (step.answerKind!) {
+        GuidedAnswerKind.tensValue => '${10 * step.a}',
+        GuidedAnswerKind.gapToHundred => '${100 - step.a % 100}',
+        GuidedAnswerKind.hundredRemainder => '${step.b - (100 - step.a % 100)}',
+        GuidedAnswerKind.hundredSum => '${step.a + step.b}',
+        GuidedAnswerKind.fractionParts =>
+          '${step.a + step.fractionExtra}/${step.b}',
         GuidedAnswerKind.count => '${step.a}',
         GuidedAnswerKind.gapToTen => '${10 - step.a}',
         GuidedAnswerKind.remainder => '${step.a + step.b - 10}',

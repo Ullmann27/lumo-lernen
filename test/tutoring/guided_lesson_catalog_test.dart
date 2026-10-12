@@ -4,6 +4,21 @@ import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 import 'package:lumo_lernen/domain/tutoring/tutoring_session_planner.dart';
 
 void main() {
+  test('grades three and four have explicit matching guided introductions', () {
+    for (final pair in [(3, 'Plus bis 1000'), (4, 'Bruchrechnen einfach')]) {
+      final lesson = GuidedLessonCatalog.schoolIntroduction(
+          subject: 'Mathematik', unit: pair.$2, grade: pair.$1);
+      expect(lesson, isNotNull);
+      expect(lesson!.grade, pair.$1);
+      expect(lesson.schoolUnit, pair.$2);
+      expect(lesson.steps.where((s) => s.isIndependent).length, 2);
+      expect(lesson.easierPractice.isQuestion, true);
+      expect(
+          GuidedLessonCatalog.schoolIntroduction(
+              subject: 'Mathematik', unit: pair.$2, grade: pair.$1 - 1),
+          isNull);
+    }
+  });
   test(
       'minus introduction offers an actual explanation and independent practice',
       () {
@@ -47,6 +62,27 @@ void main() {
     final steps = GuidedLessonCatalog.all.expand((lesson) => lesson.steps);
     for (final step in steps.where((step) => step.isQuestion)) {
       switch (step.answerKind!) {
+        case GuidedAnswerKind.tensValue:
+          expect(int.parse(step.expected), step.a * 10);
+        case GuidedAnswerKind.gapToHundred:
+          final result = step.a + int.parse(step.expected);
+          expect(result % 100, 0);
+          expect(result, greaterThan(step.a));
+          expect(result - step.a, lessThanOrEqualTo(100));
+        case GuidedAnswerKind.hundredRemainder:
+          expect(int.parse(step.expected) + step.nextHundred - step.a, step.b);
+        case GuidedAnswerKind.hundredSum:
+          expect(int.parse(step.expected) - step.a, step.b);
+        case GuidedAnswerKind.fractionParts:
+          final parts = step.expected.split('/').map(int.parse).toList();
+          expect(parts, [step.a + step.fractionExtra, step.b]);
+          expect(parts[0], inInclusiveRange(1, parts[1]));
+          final equalAnswers = step.choices.where((c) {
+            final v = c.split('/').map(int.parse).toList();
+            return v[0] * parts[1] == parts[0] * v[1];
+          });
+          expect(equalAnswers.toList(), [step.expected],
+              reason: 'No second mathematically equivalent correct choice');
         case GuidedAnswerKind.count:
           expect(int.parse(step.expected), step.a);
         case GuidedAnswerKind.syllableCount:

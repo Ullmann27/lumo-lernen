@@ -3,6 +3,21 @@ import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/task_quality_guard.dart';
 
 void main() {
+  test('shape bank has 20 genuine questions and no circle/oval ambiguity', () {
+    final f = ExerciseFactory(seed: 1938);
+    final tasks = List.generate(
+        400,
+        (_) =>
+            f.next(grade: 1, subject: 'Mathematik', unit: 'Geometrie Formen'));
+    expect(tasks.map((t) => '${t.prompt}|${t.answer}').toSet().length,
+        greaterThanOrEqualTo(20));
+    for (final t in tasks) {
+      expect(const TaskQualityGuard().problems(t), isEmpty);
+      if (t.prompt.contains('keine Ecke')) {
+        expect(t.choices.where((c) => c == 'Kreis' || c == 'Oval').length, 1);
+      }
+    }
+  });
   const grammarUnits = {
     2: [
       'Wortfamilien',

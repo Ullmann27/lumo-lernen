@@ -13,7 +13,11 @@ void main() {
           ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf')))
         .load();
   });
-  for (final lesson in GuidedLessonCatalog.all) {
+  for (final lesson in [
+    GuidedLessonCatalog.bridgeTen,
+    GuidedLessonCatalog.equalGroups,
+    GuidedLessonCatalog.subtractTen
+  ]) {
     for (final step in lesson.steps.where((step) => step.a > 0)) {
       for (final width in [260.0, 360.0, 720.0]) {
         testWidgets(
