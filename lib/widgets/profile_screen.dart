@@ -876,31 +876,39 @@ class _OutlineButton extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16),
-          onTap: onTap,
-          child: Ink(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: const Color(0xFF0E3D86).withOpacity(.7),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: LumoVisualTokens.cyanBright),
-            ),
-            child: Row(mainAxisSize: MainAxisSize.min, children: [
-              Text(
-                label,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  color: LumoVisualTokens.white,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800,
-                ),
+  Widget build(BuildContext context) => Semantics(
+        container: true,
+        button: true,
+        label: label.replaceAll('\n', ' '),
+        onTap: onTap,
+        excludeSemantics: true,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            excludeFromSemantics: true,
+            borderRadius: BorderRadius.circular(16),
+            onTap: onTap,
+            child: Ink(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                color: const Color(0xFF0E3D86).withOpacity(.7),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: LumoVisualTokens.cyanBright),
               ),
-              const Icon(Icons.chevron_right_rounded,
-                  color: LumoVisualTokens.white, size: 20),
-            ]),
+              child: Row(mainAxisSize: MainAxisSize.min, children: [
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    color: LumoVisualTokens.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const Icon(Icons.chevron_right_rounded,
+                    color: LumoVisualTokens.white, size: 20),
+              ]),
+            ),
           ),
         ),
       );
