@@ -416,17 +416,6 @@ class _GamesContentState extends State<GamesContent> {
                 ),
               ),
               SliverToBoxAdapter(
-                child: LumoCreativeGameShelf(
-                  busy: _launchingGame,
-                  unlocked: (id) => _unlockOf(id).unlocked,
-                  onOpen: (id) => _openGame(id, () => _launch3D(switch (id) {
-                    GameId.build => 'build', GameId.puzzle => 'puzzle',
-                    GameId.treasure => 'treasure', GameId.rhythm => 'rhythm',
-                    _ => 'kart',
-                  })),
-                ),
-              ),
-              SliverToBoxAdapter(
                 child: LumoNightScope(child: ExpansionTile(
                   key: const PageStorageKey('extra-spielwelten'),
                   title: const Text('Weitere Spielwelten entdecken'),
@@ -443,6 +432,17 @@ class _GamesContentState extends State<GamesContent> {
                     onSettings: () => widget.onSection?.call(LumoSection.settings),
                   )],
                 )),
+              ),
+              SliverToBoxAdapter(
+                child: LumoCreativeGameShelf(
+                  busy: _launchingGame,
+                  unlocked: (id) => _unlockOf(id).unlocked,
+                  onOpen: (id) => _openGame(id, () => _launch3D(switch (id) {
+                    GameId.build => 'build', GameId.puzzle => 'puzzle',
+                    GameId.treasure => 'treasure', GameId.rhythm => 'rhythm',
+                    _ => 'kart',
+                  })),
+                ),
               ),
               const SliverToBoxAdapter(
                 child: Padding(
