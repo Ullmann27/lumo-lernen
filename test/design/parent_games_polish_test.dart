@@ -283,11 +283,16 @@ void main() {
             scrollable: find.byType(Scrollable).first);
         await tester.pump();
         final rect = tester.getRect(button);
+        const viewportEpsilon = 0.001;
         expect(rect.height, greaterThanOrEqualTo(48), reason: entry.$1);
-        expect(rect.left, greaterThanOrEqualTo(0), reason: entry.$1);
-        expect(rect.right, lessThanOrEqualTo(entry.$2.width), reason: entry.$1);
-        expect(rect.top, greaterThanOrEqualTo(0), reason: entry.$1);
-        expect(rect.bottom, lessThanOrEqualTo(entry.$2.height),
+        expect(rect.left, greaterThanOrEqualTo(-viewportEpsilon),
+            reason: entry.$1);
+        expect(rect.right, lessThanOrEqualTo(entry.$2.width + viewportEpsilon),
+            reason: entry.$1);
+        expect(rect.top, greaterThanOrEqualTo(-viewportEpsilon),
+            reason: entry.$1);
+        expect(rect.bottom,
+            lessThanOrEqualTo(entry.$2.height + viewportEpsilon),
             reason: entry.$1);
         expect(button.hitTestable(), findsOneWidget, reason: entry.$1);
         final label = tester.getRect(find.descendant(

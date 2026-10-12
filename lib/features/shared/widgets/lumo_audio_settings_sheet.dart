@@ -28,6 +28,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/lumo_music.dart';
 import '../../../core/lumo_sound.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 
 class LumoAudioSettingsSheet extends StatefulWidget {
   const LumoAudioSettingsSheet({
@@ -87,7 +88,7 @@ class _LumoAudioSettingsSheetState extends State<LumoAudioSettingsSheet> {
                   fontFamily: 'Nunito',
                   fontSize: 22,
                   fontWeight: FontWeight.w900,
-                  color: Color(0xFF1F2937),
+                  color: LumoVisualTokens.white,
                 ),
               ),
             ),
@@ -98,7 +99,7 @@ class _LumoAudioSettingsSheetState extends State<LumoAudioSettingsSheet> {
               sublabel: 'Ruhige Hintergrund-Musik im Spiel',
               value: _musicOn,
               onChanged: _toggleMusic,
-              activeColor: const Color(0xFF7C3AED),
+              activeColor: LumoVisualTokens.cyanBright,
             ),
             const SizedBox(height: 4),
             _AudioRow(
@@ -107,7 +108,7 @@ class _LumoAudioSettingsSheetState extends State<LumoAudioSettingsSheet> {
               sublabel: 'Klick, Karten-Whoosh, Sieg-Fanfare',
               value: _sfxOn,
               onChanged: _toggleSfx,
-              activeColor: const Color(0xFFFF7A2F),
+              activeColor: LumoVisualTokens.cyan,
             ),
             const SizedBox(height: 14),
             Align(
@@ -120,7 +121,7 @@ class _LumoAudioSettingsSheetState extends State<LumoAudioSettingsSheet> {
                     fontFamily: 'Nunito',
                     fontSize: 15,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFFFF7A2F),
+                    color: LumoVisualTokens.cyanBright,
                   ),
                 ),
               ),
@@ -160,10 +161,14 @@ class _AudioRow extends StatelessWidget {
       borderRadius: BorderRadius.circular(14),
       child: Container(
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF0),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF103B6A), Color(0xFF05254B)],
+        ),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: const Color(0xFFFF7A2F).withOpacity(0.18),
+          color: LumoVisualTokens.cyan.withOpacity(0.42),
           width: 1.4,
         ),
       ),
@@ -175,7 +180,7 @@ class _AudioRow extends StatelessWidget {
           height: 40,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: activeColor.withOpacity(value ? 1.0 : 0.35),
+            color: activeColor.withOpacity(value ? 0.80 : 0.24),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(icon, color: Colors.white, size: 22),
@@ -186,7 +191,7 @@ class _AudioRow extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 16,
             fontWeight: FontWeight.w900,
-            color: Color(0xFF1F2937),
+            color: LumoVisualTokens.white,
           ),
         ),
         subtitle: Text(
@@ -195,7 +200,7 @@ class _AudioRow extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 12,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF6B7280),
+            color: LumoVisualTokens.muted,
           ),
         ),
         value: value,
