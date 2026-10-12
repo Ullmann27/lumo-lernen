@@ -1,0 +1,107 @@
+name: Lumo Meister reproducible Android APK
+
+on:
+  push:
+    branches:
+      - sol/lumo-meister-apk-2026-10-12
+    paths:
+      - lib/**
+      - test/**
+      - assets/**
+      - scripts/**
+      - config/**
+      - pubspec.yaml
+      - pubspec.lock
+      - .github/workflows/lumo-meister-apk.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-meister-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_NDK_DISPOSABLE_RUNNER: '1'
+
+jobs:
+  verify-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+
+      - name: Prove packaging source
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          git rev-parse HEAD | tee proof/packaging-head-sha.txt
+          git rev-parse HEAD^ | tee proof/integration-source-sha.txt
+          test "$(git rev-parse HEAD^)" = "1a90b2d32cd1685be72dd21492a0b55c4775de26"
+          git diff --name-only HEAD^..HEAD | tee proof/packaging-diff.txt
+          test "$(git diff --name-only HEAD^..HEAD)" = ".github/workflows/lumo-meister-apk.yml"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Prepare Android NDK
+        run: bash scripts/install_ndk_for_build.sh proof/ndk-preflight
+
+      - name: Resolve locked dependencies
+        run: flutter pub get --enforce-lockfile
+
+      - name: Analyze exact candidate
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Verify Lumo Meister and stories regressions
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=65s \
+            test/quiz_show_meister_test.dart \
+            test/lumo_meister_reward_alignment_test.dart \
+            test/story_learning_path_test.dart \
+            2>&1 | tee proof/lumo-meister-tests.txt
+
+      - name: Install pinned Godot engine
+        run: bash scripts/install_godot_for_build.sh
+
+      - name: Build and verify unified release APK
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/apk-build.log
+          test -s dist/Lumo-Lernen-Neu.apk
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk \
+            | tee proof/apk-post-verify.json
+          cp dist/SHA256SUMS.txt proof/SHA256SUMS.txt
+          cp dist/APK-VERIFICATION.json proof/APK-VERIFICATION.json
+          cp dist/BUILD-PROVENANCE.json proof/BUILD-PROVENANCE.json
+
+      - name: Upload installable APK and provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-Meister-Android-APK
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            proof/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
