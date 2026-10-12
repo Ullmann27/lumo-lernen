@@ -1,0 +1,136 @@
+name: Lumo1937 exact APK courses, complete Android race and six mandatory views
+on:
+  push:
+    branches: [sol/lumo-1937-android-acceptance-2026-10-12]
+    paths: [.github/workflows/lumo-1937-android.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo1937-android
+  cancel-in-progress: false
+env:
+  LUMO_EXPECT_SOURCE: 'a71c1cdea21af202d71273da19bb4d00988fc970'
+  LUMO_EXPECT_GODOT: 'ec96515a2e359d21e9591120fc81dfd15116e81e'
+  LUMO_EXPECT_VERSION: '1937'
+  LUMO_EXPECT_ANDROID_API: '36'
+  LUMO_BASE_SOURCE: '2dedb4045c6daea1de8af19052d51003191df8c8'
+  LUMO_BASE_VERSION: '1936'
+  LUMO_QA_SOURCE: ${{ github.sha }}
+  LUMO_BUILD_RUN: '38238926882'
+  LUMO_FOLD_PROBE: '1'
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 10
+      - name: Require exact successful unified build
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const run=(await github.rest.actions.getWorkflowRun({...context.repo,run_id:Number(process.env.LUMO_BUILD_RUN)})).data;
+            if (run.status!=='completed' || run.conclusion!=='success' || run.head_sha!==process.env.LUMO_EXPECT_SOURCE || run.path!=='.github/workflows/lumo-education-1937.yml') throw new Error('Exact1937 unified build must pass first');
+            const {execFileSync}=require('child_process');
+            const changes=execFileSync('git',['diff','--name-only',process.env.LUMO_EXPECT_SOURCE,context.sha,'--'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+            const allowed=new Set(['.github/probes/lumo_1937_android_acceptance.py','.github/workflows/lumo-1937-android.yml','tools/package_android_1937_delivery.py']);
+            if (changes.some(x=>!allowed.has(x))) throw new Error('QA changed product inputs: '+changes.join(','));
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38238926882
+          name: lumo-education-1937-emulator-38238926882
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38238926882
+          name: lumo-education-1937-arm64-38238926882
+          path: arm64/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38230588380
+          name: lumo-education-1936-emulator-38230588380
+          path: baseline/
+      - name: Verify APK bytes and prepare independent readers
+        run: |
+          set -euo pipefail
+          mkdir -p android-proof
+          python3 - <<'PYSOURCE'
+          import hashlib,json,os
+          from pathlib import Path
+          for name,source,code,abi in [('candidate',os.environ['LUMO_EXPECT_SOURCE'],1937,'x86_64'),('arm64',os.environ['LUMO_EXPECT_SOURCE'],1937,'arm64-v8a'),('baseline',os.environ['LUMO_BASE_SOURCE'],1936,'x86_64')]:
+              p=Path(name);d=json.loads((p/'BUILD-PROVENANCE.json').read_text())
+              assert d['flutter_source_commit']==source and d['versionCode']==code and d['abis']==[abi]
+              assert d['tracked_source_clean'] is True
+              assert d['signingCertificateSha256']=='a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+              assert hashlib.file_digest((p/'Lumo-Lernen-Neu.apk').open('rb'),'sha256').hexdigest()==d['sha256']
+              if name!='baseline':assert d['godot']['revision']==os.environ['LUMO_EXPECT_GODOT']
+              if name in ['candidate','baseline']:
+                  key='LUMO_EXPECT_APK_SHA' if name=='candidate' else 'LUMO_BASE_SHA'
+                  with open(os.environ['GITHUB_ENV'],'a') as f:f.write(key+'='+d['sha256']+'\n')
+          PYSOURCE
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m unittest discover -s scripts/tests -p 'test_android_193*.py' -v > android-proof/probe-regressions.log 2>&1
+          .probe-venv/bin/python -m py_compile .github/probes/lumo_1937_android_acceptance.py
+      - name: Disposable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Actual software OpenGL surface
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 2500x2200x24 -nolisten tcp +extension GLX > android-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > android-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' android-proof/mesa-renderer.txt
+      - name: Existing Android16 image
+        timeout-minutes: 11
+        run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
+      - name: Actual1936 update, offline voice, courses, full race and required screenshots
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_1937_android_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --arm64 arm64/Lumo-Lernen-Neu.apk --out android-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo1937-actual-android-38238926882-${{ github.run_id }}
+          path: android-proof/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
