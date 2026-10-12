@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
@@ -111,7 +112,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                 padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFFFF8ED), Color(0xFFFFFEFA)],
+                    colors: [
+                      LumoVisualTokens.glass,
+                      LumoVisualTokens.navigation,
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -152,7 +156,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                       fontFamily: 'Nunito',
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
-                      color: LumoColors.ink900,
+                      color: LumoVisualTokens.white,
                       height: 1.12,
                     ),
                   ),
@@ -179,7 +183,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         _wrongAnswers.length >= 2 && !_solved
             ? 'Versuch es nochmal mit Lumos Hilfe:'
             : 'Wähle die richtige Antwort:',
-        style: LumoTextStyles.label.copyWith(color: LumoColors.ink500, fontSize: 14,
+        style: LumoTextStyles.label.copyWith(color: LumoVisualTokens.muted, fontSize: 14,
           ),
       ),
       const SizedBox(height: 12),
@@ -620,13 +624,13 @@ class _AnswerButtonState extends State<_AnswerButton>
       border = const Color(0xFFF43F5E);
       textColor = const Color(0xFF881337);
     } else if (widget.solved) {
-      bg = Colors.white;
-      border = LumoColors.ink100;
-      textColor = LumoColors.ink300;
+      bg = LumoVisualTokens.navigation;
+      border = LumoVisualTokens.glassRow;
+      textColor = LumoVisualTokens.muted;
     } else {
-      bg = Colors.white;
-      border = LumoColors.ink100;
-      textColor = LumoColors.ink900;
+      bg = LumoVisualTokens.glassRow;
+      border = LumoVisualTokens.cyan.withOpacity(.38);
+      textColor = LumoVisualTokens.white;
     }
 
     // 2026-06-05 Iter 17/A5: LumoTiltCard 3D-Neigung um die Antwort-Cards.
@@ -653,7 +657,7 @@ class _AnswerButtonState extends State<_AnswerButton>
             end: Alignment.bottomRight,
             colors: [
               bg,
-              Color.alphaBlend(Colors.white.withOpacity(0.4), bg)],
+              Color.alphaBlend(LumoVisualTokens.cyan.withOpacity(0.08), bg)],
           ),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
           border: Border.all(color: border, width: 2),
@@ -667,7 +671,7 @@ class _AnswerButtonState extends State<_AnswerButton>
             ),
             // Subtiler Inner-Glow oben (Glas-Shine) ueber zweite Box-Shadow
             BoxShadow(
-              color: Colors.white.withOpacity(0.7),
+              color: LumoVisualTokens.cyan.withOpacity(0.12),
               blurRadius: 1,
               offset: const Offset(0, 1),
               spreadRadius: 0,
