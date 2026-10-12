@@ -27,7 +27,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 1
-          ref: ${{ env.LUMO_EXPECT_SOURCE }}
+          ref: ${{ github.sha }}
 
       - name: Wait for exact final 1938 build
         uses: actions/github-script@v7
