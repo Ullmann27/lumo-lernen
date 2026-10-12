@@ -1,0 +1,89 @@
+name: Publish Lumo Meister APK draft
+
+on:
+  push:
+    branches:
+      - sol/lumo-meister-apk-2026-10-12
+    paths:
+      - .github/workflows/lumo-meister-release.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish-draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Download already verified APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: LUMO-Meister-Android-APK
+          path: artifact
+          run-id: 38282708774
+          github-token: ${{ github.token }}
+
+      - name: Prove exact APK payload exists
+        run: |
+          set -euo pipefail
+          test -s artifact/dist/Lumo-Lernen-Neu.apk
+          test -s artifact/dist/SHA256SUMS.txt
+          test -s artifact/dist/APK-VERIFICATION.json
+          test -s artifact/dist/BUILD-PROVENANCE.json
+          (cd artifact/dist && sha256sum -c SHA256SUMS.txt)
+          sha256sum artifact/dist/Lumo-Lernen-Neu.apk | tee artifact/LUMO-MEISTER-APK-SHA256.txt
+
+      - name: Create private-owner draft release and upload exact verified files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="lumo-meister-test-2026-10-12"
+          TITLE="Lumo Meister + Geschichten – Android Test-APK"
+          NOTES_FILE="$RUNNER_TEMP/release-notes.md"
+          cat > "$NOTES_FILE" <<'EOF'
+          Geprüfte Android-Testversion für den Lumo-Meister-/Geschichten-Integrationsstand.
+
+          App-Quellstand: 1a90b2d32cd1685be72dd21492a0b55c4775de26
+          Packaging-Commit: ff0e90789a18463b49b2b92e759500ec8be6b2c1
+          Build-Run: 38282708774
+
+          Enthalten:
+          - „Wer wird Lumo-Meister?“ mit 20 Fragen
+          - sichere Sternstufen 50 / 200 / 800 / 5.000
+          - 5.000 Sterne = Family Park mit Elternfreigabe
+          - schulstufenspezifische Logik-Finalfrage auf Frage 20
+          - Lumo-Studio-Quizshow mit Lumo-Moderator und Lumo-SFX
+          - Geschichten – Lesen & verstehen im Deutsch-Lernpfad Klasse 1–4
+          - Schulstufenfilter und korrektes Lernfortschritts-Logging
+
+          Prüfung:
+          - vollständiger Flutter-Analyse- und Testlauf auf dem Integrations-Head: erfolgreich
+          - APK-Workflow: Herkunftscheck, NDK, Analyse, gezielte Regressionstests, gepinnte Godot-Engine,
+            unified Release-APK-Bau und APK-Verifikation: erfolgreich
+
+          Testbuild, keine Google-Play-Produktionsfreigabe. Bestehende App nicht deinstallieren,
+          wenn lokale Daten erhalten bleiben sollen.
+          EOF
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release delete "$TAG" --yes
+          fi
+
+          gh release create "$TAG" \
+            --target ff0e90789a18463b49b2b92e759500ec8be6b2c1 \
+            --title "$TITLE" \
+            --notes-file "$NOTES_FILE" \
+            --draft \
+            --prerelease \
+            artifact/dist/Lumo-Lernen-Neu.apk \
+            artifact/dist/SHA256SUMS.txt \
+            artifact/dist/APK-VERIFICATION.json \
+            artifact/dist/BUILD-PROVENANCE.json \
+            artifact/LUMO-MEISTER-APK-SHA256.txt
