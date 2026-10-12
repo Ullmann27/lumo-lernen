@@ -386,7 +386,7 @@ class _ResultPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = correct ? Colors.green : Colors.redAccent;
     final text = won
-        ? '🏆 Lumo-Meister! 20 von 20 geschafft – 5.000 Sterne gewonnen!'
+        ? '🏆 Lumo-Meister! 20 von 20 geschafft – 5.000 Sterne gewonnen! Family-Park-Stufe erreicht!'
         : correct
             ? securedStars > 0
                 ? '✅ Richtig! Sichere Stufe: $securedStars Sterne.'
@@ -448,12 +448,12 @@ class _PrizeColumn extends StatelessWidget {
           ),
           _Milestone(
             label: 'Frage 20  •  5.000 Sterne',
-            emoji: '🦓',
+            emoji: '🎢',
             active: state.securedStars >= 5000,
           ),
           const SizedBox(height: 8),
           Text(
-            'Finalziel: 5.000 Sterne – Tiergarten-Stufe',
+            'Finalziel: 5.000 Sterne – Family-Park-Stufe',
             style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900),
           ),
         ],
