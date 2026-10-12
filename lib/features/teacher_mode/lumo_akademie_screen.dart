@@ -16,13 +16,10 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../learning/learning_content.dart';
 import '../learning_modules/learning_module_registry.dart';
-import '../writing/lumo_writing_coach_screen.dart';
-import '../writing/lumo_writing_word_coach_screen.dart';
-import '../writing/writing_feature_flags.dart';
-import 'lumo_teacher_screen.dart';
-import 'letter_writing_screen.dart';
 
 // Datenstruktur für Lehrpläne
 class LearningTopic {
@@ -40,6 +37,8 @@ class LearningTopic {
     this.coreVocabulary = const [],
     this.forbiddenContent = '',
     this.complexityHint = '',
+    this.subjectKey = '',
+    this.unitKey = '',
   });
   final String id;
   final String title;
@@ -65,6 +64,11 @@ class LearningTopic {
 
   /// Hinweis zur Klassenstufe.
   final String complexityHint;
+
+  /// Lokaler Generator-Schluessel. Themen ohne Spezialmodul werden damit
+  /// direkt als echte Aufgabenserie gestartet – niemals als Chat-Fallback.
+  final String subjectKey;
+  final String unitKey;
 }
 
 class LearningSubject {
@@ -101,418 +105,181 @@ class GradeLevel {
 
 // ── LEHRPLAN-DEFINITIONEN ──────────────────────────────────────────────
 class LumoCurriculum {
-  static List<GradeLevel> get grades => [
-        // KLASSE 1
-        GradeLevel(
-          grade: 1,
-          title: '1. Klasse',
-          subtitle: 'Erste Schritte',
-          ageRange: '6-7 Jahre',
-          color: LumoColors.teal,
-          subjects: [
-            LearningSubject(
-              id: 'mathe1',
-              name: 'Mathematik',
-              color: LumoColors.math,
-              icon: Icons.calculate_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 'm1_zahlen10',
-                  title: 'Zahlen 1-10',
-                  icon: Icons.format_list_numbered_rounded,
-                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                  shortDesc: 'Zählen, vergleichen, sortieren',
-                ),
-                LearningTopic(
-                  id: 'm1_plus10',
-                  title: 'Plus bis 10',
-                  icon: Icons.add_circle_rounded,
-                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: '2+3, 5+4 ...',
-                ),
-                LearningTopic(
-                  id: 'm1_minus10',
-                  title: 'Minus bis 10',
-                  icon: Icons.remove_circle_rounded,
-                  gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
-                  shortDesc: '7-3, 10-6 ...',
-                ),
-                LearningTopic(
-                  id: 'm1_formen',
-                  title: 'Formen',
-                  icon: Icons.category_rounded,
-                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Kreis, Quadrat, Dreieck',
-                ),
-              ],
-            ),
-            LearningSubject(
-              id: 'deutsch1',
-              name: 'Deutsch',
-              color: LumoColors.german,
-              icon: Icons.menu_book_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 'd1_schreibcoach',
-                  title: '✨ Schreibcoach LIVE',
-                  icon: Icons.draw_rounded,
-                  gradient: [Color(0xFFEC4899), Color(0xFFDB2777)],
-                  shortDesc: 'Lumo schaut beim Schreiben zu!',
-                ),
-                LearningTopic(
-                  id: 'd1_buchstaben_alle',
-                  title: 'Alle Buchstaben A-Z',
-                  icon: Icons.edit_rounded,
-                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Alle 26 Buchstaben üben',
-                  isWriting: true,
-                  writingChars: [
-                    'A',
-                    'B',
-                    'C',
-                    'D',
-                    'E',
-                    'F',
-                    'G',
-                    'H',
-                    'I',
-                    'J',
-                    'K',
-                    'L',
-                    'M',
-                    'N',
-                    'O',
-                    'P',
-                    'Q',
-                    'R',
-                    'S',
-                    'T',
-                    'U',
-                    'V',
-                    'W',
-                    'X',
-                    'Y',
-                    'Z',
-                  ],
-                ),
-                LearningTopic(
-                  id: 'd1_woerter',
-                  title: 'Erste Wörter',
-                  icon: Icons.text_fields_rounded,
-                  gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                  shortDesc: 'MAMA, PAPA, OMA...',
-                ),
-              ],
-            ),
-            LearningSubject(
-              id: 'sachk1',
-              name: 'Sachkunde',
-              color: LumoColors.teal,
-              icon: Icons.eco_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 's1_tiere',
-                  title: 'Tiere',
-                  icon: Icons.pets_rounded,
-                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Bauernhof, Wald, Zoo',
-                ),
-                LearningTopic(
-                  id: 's1_farben',
-                  title: 'Farben',
-                  icon: Icons.palette_rounded,
-                  gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                  shortDesc: 'Rot, Blau, Grün...',
-                ),
-                LearningTopic(
-                  id: 's1_koerper',
-                  title: 'Mein Körper',
-                  icon: Icons.accessibility_new_rounded,
-                  gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
-                  shortDesc: 'Augen, Hände, Füße',
-                ),
-              ],
-            ),
-          ],
-        ),
-        // KLASSE 2
-        GradeLevel(
-          grade: 2,
-          title: '2. Klasse',
-          subtitle: 'Aufbau',
-          ageRange: '7-8 Jahre',
-          color: LumoColors.purple,
-          subjects: [
-            LearningSubject(
-              id: 'mathe2',
-              name: 'Mathematik',
-              color: LumoColors.math,
-              icon: Icons.calculate_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 'm2_zahlen100',
-                  title: 'Zahlen bis 100',
-                  icon: Icons.format_list_numbered_rounded,
-                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                  shortDesc: 'Zehner & Einer',
-                ),
-                LearningTopic(
-                  id: 'm2_einmaleins',
-                  title: 'Kleines 1×1',
-                  icon: Icons.close_rounded,
-                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: '2er, 5er, 10er-Reihe',
-                ),
-                LearningTopic(
-                  id: 'm2_uhr',
-                  title: 'Die Uhr',
-                  icon: Icons.access_time_rounded,
-                  gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                  shortDesc: 'Stunden & Minuten',
-                ),
-                LearningTopic(
-                  id: 'm2_geld',
-                  title: 'Geld',
-                  icon: Icons.euro_rounded,
-                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Euro & Cent',
-                ),
-              ],
-            ),
-            LearningSubject(
-              id: 'deutsch2',
-              name: 'Deutsch',
-              color: LumoColors.german,
-              icon: Icons.menu_book_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 'd2_saetze',
-                  title: 'Sätze bilden',
-                  icon: Icons.format_quote_rounded,
-                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Subjekt + Prädikat',
-                ),
-                LearningTopic(
-                  id: 'd2_artikel',
-                  title: 'Der/Die/Das',
-                  icon: Icons.text_format_rounded,
-                  gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                  shortDesc: 'Artikel finden',
-                ),
-                LearningTopic(
-                  id: 'd2_mehrzahl',
-                  title: 'Mehrzahl',
-                  icon: Icons.numbers_rounded,
-                  gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                  shortDesc: 'Ein Hund - viele Hunde',
-                ),
-              ],
-            ),
-            LearningSubject(
-              id: 'sachk2',
-              name: 'Sachkunde',
-              color: LumoColors.teal,
-              icon: Icons.eco_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 's2_jahreszeiten',
-                  title: 'Jahreszeiten',
-                  icon: Icons.wb_sunny_rounded,
-                  gradient: [Color(0xFFFFB800), Color(0xFFFCD34D)],
-                  shortDesc: 'Frühling bis Winter',
-                ),
-                LearningTopic(
-                  id: 's2_wetter',
-                  title: 'Wetter',
-                  icon: Icons.cloud_rounded,
-                  gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                  shortDesc: 'Regen, Sonne, Schnee',
-                ),
-                LearningTopic(
-                  id: 's2_verkehr',
-                  title: 'Verkehr',
-                  icon: Icons.directions_walk_rounded,
-                  gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
-                  shortDesc: 'Sicher auf der Straße',
-                ),
-              ],
-            ),
-          ],
-        ),
-        // KLASSE 3
-        GradeLevel(
-          grade: 3,
-          title: '3. Klasse',
-          subtitle: 'Vertiefung',
-          ageRange: '8-9 Jahre',
-          color: LumoColors.blue,
-          subjects: [
-            LearningSubject(
-              id: 'mathe3',
-              name: 'Mathematik',
-              color: LumoColors.math,
-              icon: Icons.calculate_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 'm3_zahlen1000',
-                  title: 'Zahlen bis 1000',
-                  icon: Icons.format_list_numbered_rounded,
-                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                  shortDesc: 'Hunderter, Zehner, Einer',
-                ),
-                LearningTopic(
-                  id: 'm3_einmaleins_voll',
-                  title: 'Großes 1×1',
-                  icon: Icons.close_rounded,
-                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Alle Reihen bis 10',
-                ),
-                LearningTopic(
-                  id: 'm3_geometrie',
-                  title: 'Geometrie',
-                  icon: Icons.architecture_rounded,
-                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Umfang, Fläche',
-                ),
-              ],
-            ),
-            LearningSubject(
-              id: 'deutsch3',
-              name: 'Deutsch',
-              color: LumoColors.german,
-              icon: Icons.menu_book_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 'd3_wortarten',
-                  title: 'Wortarten',
-                  icon: Icons.category_rounded,
-                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Nomen, Verb, Adjektiv',
-                ),
-                LearningTopic(
-                  id: 'd3_zeitformen',
-                  title: 'Zeitformen',
-                  icon: Icons.timer_rounded,
-                  gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                  shortDesc: 'Gestern, Heute, Morgen',
-                ),
-                LearningTopic(
-                  id: 'd3_geschichten',
-                  title: 'Geschichten',
-                  icon: Icons.auto_stories_rounded,
-                  gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                  shortDesc: 'Lesen & Verstehen',
-                ),
-              ],
-            ),
-            LearningSubject(
-              id: 'sachk3',
-              name: 'Sachkunde',
-              color: LumoColors.teal,
-              icon: Icons.eco_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 's3_oesterreich',
-                  title: 'Österreich',
-                  icon: Icons.map_rounded,
-                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Bundesländer & Hauptstädte',
-                ),
-                LearningTopic(
-                  id: 's3_natur',
-                  title: 'Natur',
-                  icon: Icons.park_rounded,
-                  gradient: [Color(0xFF059669), Color(0xFF34D399)],
-                  shortDesc: 'Pflanzen & Tiere',
-                ),
-              ],
-            ),
-          ],
-        ),
-        // KLASSE 4
-        GradeLevel(
-          grade: 4,
-          title: '4. Klasse',
-          subtitle: 'Meister',
-          ageRange: '9-10 Jahre',
-          color: LumoColors.orange,
-          subjects: [
-            LearningSubject(
-              id: 'mathe4',
-              name: 'Mathematik',
-              color: LumoColors.math,
-              icon: Icons.calculate_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 'm4_million',
-                  title: 'Zahlen bis 1 Million',
-                  icon: Icons.format_list_numbered_rounded,
-                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                  shortDesc: 'Große Zahlen',
-                ),
-                LearningTopic(
-                  id: 'm4_bruch',
-                  title: 'Bruchrechnen',
-                  icon: Icons.pie_chart_rounded,
-                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: '1/2, 1/4, 1/3',
-                ),
-                LearningTopic(
-                  id: 'm4_textaufgaben',
-                  title: 'Textaufgaben',
-                  icon: Icons.notes_rounded,
-                  gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                  shortDesc: 'Sachrechnen',
-                ),
-              ],
-            ),
-            LearningSubject(
-              id: 'deutsch4',
-              name: 'Deutsch',
-              color: LumoColors.german,
-              icon: Icons.menu_book_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 'd4_grammatik',
-                  title: 'Grammatik',
-                  icon: Icons.psychology_rounded,
-                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Fälle, Satzglieder',
-                ),
-                LearningTopic(
-                  id: 'd4_aufsatz',
-                  title: 'Aufsätze',
-                  icon: Icons.edit_note_rounded,
-                  gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
-                  shortDesc: 'Erzählen & Beschreiben',
-                ),
-              ],
-            ),
-            LearningSubject(
-              id: 'sachk4',
-              name: 'Sachkunde',
-              color: LumoColors.teal,
-              icon: Icons.eco_rounded,
-              topics: const [
-                LearningTopic(
-                  id: 's4_europa',
-                  title: 'Europa',
-                  icon: Icons.public_rounded,
-                  gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                  shortDesc: 'Länder & Hauptstädte',
-                ),
-                LearningTopic(
-                  id: 's4_geschichte',
-                  title: 'Geschichte',
-                  icon: Icons.castle_rounded,
-                  gradient: [Color(0xFF7C2D12), Color(0xFFB45309)],
-                  shortDesc: 'Vom Mittelalter bis heute',
-                ),
-              ],
-            ),
-          ],
-        ),
-      ];
+  static List<GradeLevel> get grades =>
+      <GradeLevel>[for (var grade = 1; grade <= 4; grade++) _grade(grade)];
+
+  static GradeLevel _grade(int grade) => GradeLevel(
+        grade: grade,
+        title: '$grade. Klasse',
+        subtitle: switch (grade) {
+          1 => 'Grundlagen entdecken',
+          2 => 'Sicher aufbauen',
+          3 => 'Wissen vertiefen',
+          _ => 'Volksschule meistern',
+        },
+        ageRange: switch (grade) {
+          1 => '6–7 Jahre',
+          2 => '7–8 Jahre',
+          3 => '8–9 Jahre',
+          _ => '9–10 Jahre',
+        },
+        color: switch (grade) {
+          1 => LumoColors.teal,
+          2 => LumoColors.purple,
+          3 => LumoColors.blue,
+          _ => LumoColors.orange,
+        },
+        subjects: <LearningSubject>[
+          _subject(grade, 'Mathematik', 'Mathematik', LumoColors.math,
+              Icons.calculate_rounded),
+          _subject(grade, 'Deutsch', 'Deutsch', LumoColors.german,
+              Icons.menu_book_rounded),
+          _subject(grade, 'Lesen', 'Lesen', LumoColors.teal,
+              Icons.auto_stories_rounded),
+          _subject(grade, 'Schreiben', 'Schreiben', LumoColors.purple,
+              Icons.draw_rounded),
+          _subject(grade, 'Rechtschreibung', 'Rechtschreibung',
+              const Color(0xFFB52E73), Icons.spellcheck_rounded),
+          _subject(grade, 'Englisch', 'Englisch', const Color(0xFF167BC0),
+              Icons.public_rounded),
+          _subject(grade, 'Sachunterricht', 'Sachkunde',
+              const Color(0xFF167A84), Icons.eco_rounded),
+          _subject(grade, 'Logik', 'Logik', const Color(0xFF6D4CC7),
+              Icons.psychology_alt_rounded),
+        ],
+      );
+
+  static LearningSubject _subject(
+    int grade,
+    String subjectKey,
+    String displayName,
+    Color color,
+    IconData icon,
+  ) {
+    final units = Curriculum.unitsForGrade(
+      subjectKey,
+      grade,
+      currentGradeOnly: true,
+    );
+    return LearningSubject(
+      id: '${_slug(subjectKey)}$grade',
+      name: displayName,
+      color: color,
+      icon: icon,
+      topics: <LearningTopic>[
+        for (final unit in units)
+          LearningTopic(
+            id: _topicId(grade, subjectKey, unit),
+            title: Curriculum.prettifyUnit(unit),
+            icon: _topicIcon(subjectKey, unit),
+            gradient: _topicGradient(subjectKey),
+            shortDesc: _topicDescription(grade, subjectKey, unit),
+            subjectKey: subjectKey,
+            unitKey: unit,
+          ),
+      ],
+    );
+  }
+
+  static String _topicId(int grade, String subject, String unit) {
+    final key = '$grade|$subject|$unit';
+    const special = <String, String>{
+      '1|Mathematik|Plus bis 10': 'm1_plus10',
+      '1|Mathematik|Minus bis 10': 'm1_minus10',
+      '1|Mathematik|Geometrie Formen': 'm1_formen',
+      '1|Sachunterricht|Tiere': 's1_tiere',
+      '2|Mathematik|Einmaleins Vorbereitung': 'm2_einmaleins',
+      '2|Mathematik|Geld': 'm2_geld',
+      '2|Mathematik|Zeit': 'm2_uhr',
+      '2|Mathematik|Uhrzeit': 'm2_uhr',
+      '2|Deutsch|Artikel': 'd2_artikel',
+      '2|Deutsch|Einzahl und Mehrzahl': 'd2_mehrzahl',
+      '2|Sachunterricht|Jahreszeiten': 's2_jahreszeiten',
+      '2|Sachunterricht|Wetter': 's2_wetter',
+      '2|Sachunterricht|Verkehr': 's2_verkehr',
+      '3|Mathematik|Einmaleins': 'm3_einmaleins_voll',
+      '3|Deutsch|Wortarten': 'd3_wortarten',
+      '3|Deutsch|Zeitformen': 'd3_zeitformen',
+      '4|Mathematik|Bruchrechnen einfach': 'm4_bruch',
+    };
+    return special[key] ?? 'task_${grade}_${_slug(subject)}_${_slug(unit)}';
+  }
+
+  static String _slug(String value) => value
+      .toLowerCase()
+      .replaceAll('ä', 'ae')
+      .replaceAll('ö', 'oe')
+      .replaceAll('ü', 'ue')
+      .replaceAll('ß', 'ss')
+      .replaceAll(RegExp(r'[^a-z0-9]+'), '_')
+      .replaceAll(RegExp(r'^_|_$'), '');
+
+  static List<Color> _topicGradient(String subject) => switch (subject) {
+        'Mathematik' => const <Color>[Color(0xFFD67920), Color(0xFFF3A43B)],
+        'Deutsch' => const <Color>[Color(0xFF5F2FBE), Color(0xFF8A63E6)],
+        'Lesen' => const <Color>[Color(0xFF167A84), Color(0xFF35A7B0)],
+        'Schreiben' => const <Color>[Color(0xFF8E3D9D), Color(0xFFB85FC7)],
+        'Rechtschreibung' =>
+          const <Color>[Color(0xFFB52E73), Color(0xFFE35A9B)],
+        'Englisch' => const <Color>[Color(0xFF167BC0), Color(0xFF43A7E8)],
+        'Sachunterricht' =>
+          const <Color>[Color(0xFF16845D), Color(0xFF43B889)],
+        _ => const <Color>[Color(0xFF6D4CC7), Color(0xFF9278E2)],
+      };
+
+  static IconData _topicIcon(String subject, String unit) {
+    final u = unit.toLowerCase();
+    if (u.contains('plus')) return Icons.add_circle_rounded;
+    if (u.contains('minus')) return Icons.remove_circle_rounded;
+    if (u.contains('mal') || u.contains('einmaleins')) {
+      return Icons.close_rounded;
+    }
+    if (u.contains('division') || u.contains('teilen')) {
+      return Icons.percent_rounded;
+    }
+    if (u.contains('bruch')) return Icons.pie_chart_rounded;
+    if (u.contains('geld')) return Icons.euro_rounded;
+    if (u.contains('zeit') || u.contains('uhr')) return Icons.schedule_rounded;
+    if (u.contains('geometr') || u.contains('form')) {
+      return Icons.category_rounded;
+    }
+    if (u.contains('lesen') || subject == 'Lesen') {
+      return Icons.auto_stories_rounded;
+    }
+    if (u.contains('schreib') || subject == 'Schreiben') {
+      return Icons.edit_rounded;
+    }
+    if (subject == 'Englisch') return Icons.language_rounded;
+    if (subject == 'Sachunterricht') return Icons.explore_rounded;
+    if (subject == 'Logik') return Icons.extension_rounded;
+    return Icons.school_rounded;
+  }
+
+  static String _topicDescription(int grade, String subject, String unit) {
+    final pretty = Curriculum.prettifyUnit(unit);
+    if (subject == 'Mathematik') {
+      return '$grade. Klasse · $pretty gezielt üben';
+    }
+    if (subject == 'Lesen') {
+      return '$grade. Klasse · lesen, verstehen und antworten';
+    }
+    if (subject == 'Schreiben') {
+      return '$grade. Klasse · sicher schreiben und festigen';
+    }
+    if (subject == 'Rechtschreibung') {
+      return '$grade. Klasse · Rechtschreibung Schritt für Schritt';
+    }
+    if (subject == 'Englisch') {
+      return '$grade. Klasse · Wortschatz spielerisch trainieren';
+    }
+    if (subject == 'Sachunterricht') {
+      return '$grade. Klasse · Wissen entdecken und prüfen';
+    }
+    if (subject == 'Logik') {
+      return '$grade. Klasse · denken, ordnen und kombinieren';
+    }
+    return '$grade. Klasse · $pretty mit echten Aufgaben';
+  }
 }
 
 // ════════════════════════════════════════════════════════════════════════
@@ -533,7 +300,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     _LearningArea(
       title: 'Mathe',
       subject: 'Mathematik',
-      subtitle: 'Zahlen und Rechnen',
+      subtitle: 'Rechnen, Größen und Geometrie',
       icon: Icons.calculate_rounded,
       color: LumoVisualTokens.learning,
       curriculumIndex: 0,
@@ -541,7 +308,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     _LearningArea(
       title: 'Deutsch',
       subject: 'Deutsch',
-      subtitle: 'Wörter und Sätze',
+      subtitle: 'Grammatik, Wörter und Sätze',
       icon: Icons.menu_book_rounded,
       color: LumoVisualTokens.games,
       curriculumIndex: 1,
@@ -549,34 +316,50 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     _LearningArea(
       title: 'Lesen',
       subject: 'Lesen',
-      subtitle: 'Laut vorlesen',
+      subtitle: 'Lesen und wirklich verstehen',
       icon: Icons.auto_stories_rounded,
       color: LumoVisualTokens.tests,
-      section: LumoSection.reading,
+      curriculumIndex: 2,
     ),
     _LearningArea(
       title: 'Schreiben',
       subject: 'Schreiben',
-      subtitle: 'Schreiben und nachspuren',
+      subtitle: 'Schreiben sicher aufbauen',
       icon: Icons.draw_rounded,
       color: LumoVisualTokens.rewards,
-      section: LumoSection.exercises,
+      curriculumIndex: 3,
+    ),
+    _LearningArea(
+      title: 'Rechtschreibung',
+      subject: 'Rechtschreibung',
+      subtitle: 'Wörter und Regeln festigen',
+      icon: Icons.spellcheck_rounded,
+      color: Color(0xFFB52E73),
+      curriculumIndex: 4,
     ),
     _LearningArea(
       title: 'Englisch',
       subject: 'Englisch',
-      subtitle: 'Farben, Tiere und Wörter',
+      subtitle: 'Wortschatz passend zur Klasse',
       icon: Icons.public_rounded,
       color: Color(0xFF167BC0),
-      section: LumoSection.exercises,
+      curriculumIndex: 5,
     ),
     _LearningArea(
       title: 'Sachkunde',
       subject: 'Sachunterricht',
-      subtitle: 'Tiere, Natur und Welt',
+      subtitle: 'Natur, Österreich und Welt',
       icon: Icons.eco_rounded,
       color: Color(0xFF167A84),
-      curriculumIndex: 2,
+      curriculumIndex: 6,
+    ),
+    _LearningArea(
+      title: 'Logik',
+      subject: 'Logik',
+      subtitle: 'Muster und Denken',
+      icon: Icons.psychology_alt_rounded,
+      color: Color(0xFF6D4CC7),
+      curriculumIndex: 7,
     ),
   ];
 
@@ -1286,16 +1069,19 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFEDE9FE),
+                      color: LumoVisualTokens.cyan.withOpacity(.16),
                       borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: LumoVisualTokens.cyan.withOpacity(.45),
+                      ),
                     ),
                     child: const Text(
-                      '💬 Chat',
+                      '✦ Aufgaben',
                       style: TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF5B21B6),
+                        fontWeight: FontWeight.w900,
+                        color: LumoVisualTokens.cyanBright,
                       ),
                     ),
                   ),
@@ -1314,61 +1100,59 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openTopic(LearningTopic t, LearningSubject s) {
-    // 0) Schreibcoach LIVE (Heinz' Premium-Feature)
-    if (t.id == 'd1_schreibcoach') {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => LumoWritingCoachScreen(appState: widget.appState),
-        ),
-      );
-      return;
-    }
-    // 0b) Wortdiktat (Phase 5): Buchstabenfelder + WritingProgressRepo.
-    if (t.id == 'd1_woerter' && WritingFeatureFlags.enableWordMode) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => LumoWritingWordCoachScreen(appState: widget.appState),
-        ),
-      );
-      return;
-    }
-    // 1) Buchstaben-Schreiben (eigenes echtes Modul)
-    if (t.isWriting && t.writingChars.isNotEmpty) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => LetterWritingScreen(
-            appState: widget.appState,
-            topic: t,
-            subject: s,
-          ),
-        ),
-      );
-      return;
-    }
-    // 2) Pruefe ob Topic ein registriertes echtes Modul hat
-    final moduleBuilder = LearningModuleRegistry.builderFor(
-      t.id,
-      widget.appState,
-    );
+    // Bestehende hochwertige Spezialmodule bleiben erhalten.
+    final moduleBuilder =
+        LearningModuleRegistry.builderFor(t.id, widget.appState);
     if (moduleBuilder != null) {
-      Navigator.of(
-        context,
-      ).push(MaterialPageRoute(builder: (_) => moduleBuilder));
+      widget.appState.update(widget.appState.state.copyWith(
+        grade: _selectedGrade,
+        subject: t.subjectKey.isEmpty ? s.name : t.subjectKey,
+        unit: t.unitKey.isEmpty ? t.title : t.unitKey,
+        sessionKind: LumoSessionKind.quickPractice,
+        mood: LumoMood.point,
+      ));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => moduleBuilder));
       return;
     }
-    // 3) Fallback: ChatGPT-Lernchat
+
+    // Alle anderen Themen laufen als echte lokale Aufgabenserie im gleichen
+    // Renderer wie die normalen Lernaufgaben. Kein Chat, keine Cloud-Pflicht.
+    final subject = t.subjectKey.isEmpty
+        ? (s.name == 'Sachkunde' ? 'Sachunterricht' : s.name)
+        : t.subjectKey;
+    final unit = t.unitKey.isEmpty ? t.title : t.unitKey;
+    widget.appState.update(widget.appState.state.copyWith(
+      grade: _selectedGrade,
+      subject: subject,
+      unit: unit,
+      sessionKind: LumoSessionKind.quickPractice,
+      mood: LumoMood.point,
+      lumoMessage:
+          '${Curriculum.prettifyUnit(unit)}\\n${_selectedGrade}. Klasse\\nLos geht’s!',
+    ));
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => LumoTeacherScreen(
-          appState: widget.appState,
-          topic: t,
-          subject: s,
-          grade: _selectedGrade,
+        builder: (_) => Scaffold(
+          backgroundColor: LumoVisualTokens.night,
+          appBar: AppBar(
+            backgroundColor: LumoVisualTokens.navigation.withOpacity(.96),
+            foregroundColor: LumoVisualTokens.white,
+            elevation: 0,
+            title: Text(
+              Curriculum.prettifyUnit(unit),
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          body: LearningContent(appState: widget.appState),
         ),
       ),
     );
   }
-}
+
 
 class _LearningArea {
   const _LearningArea({
