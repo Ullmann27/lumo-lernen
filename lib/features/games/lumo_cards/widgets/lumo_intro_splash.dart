@@ -107,9 +107,9 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
           decoration: const BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color(0xFF3D2270),
-                Color(0xFF1E1240),
-                Color(0xFF0A0420),
+                Color(0xFF1E6580),
+                Color(0xFF152C50),
+                Color(0xFF07172E),
               ],
               radius: 1.2,
             ),
@@ -152,14 +152,27 @@ class _LumoIntroSplashState extends State<LumoIntroSplash>
                               ),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(24),
-                                child: Image.asset(
-                                  LumoCardsAssets.cardBack,
-                                  width: 220,
-                                  height: 308,
-                                  fit: BoxFit.cover,
-                                  cacheWidth: 440,
-                                  errorBuilder: (_, __, ___) => _fallbackCard(),
-                                ),
+                                child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Image.asset(
+                                        LumoCardsAssets.cardBack,
+                                        width: 220,
+                                        height: 308,
+                                        fit: BoxFit.cover,
+                                        cacheWidth: 440,
+                                        errorBuilder: (_, __, ___) =>
+                                            _fallbackCard(),
+                                      ),
+                                      Positioned(
+                                          bottom: 14,
+                                          child: ExcludeSemantics(
+                                              child: Image.asset(
+                                                  'assets/lumo_design/fox/fox_thumb_wink.png',
+                                                  width: 142,
+                                                  height: 158,
+                                                  fit: BoxFit.contain))),
+                                    ]),
                               ),
                             ),
                             const SizedBox(height: 26),

@@ -7,6 +7,7 @@ import '../../../core/game_progress_repository.dart';
 import '../../../core/math_task_templates.dart';
 import '../../../domain/games/game_level_model.dart';
 import '../shared/lumo_game_pause_scope.dart';
+import '../shared/lumo_board_game_stage.dart';
 import '../../../domain/games/game_math_tasks.dart';
 import '../../shared/widgets/lumo_companion_avatar.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
@@ -208,7 +209,8 @@ class _StarsPathGameState extends State<StarsPathGame> {
               ),
             ),
           ),
-          body: Stack(
+          body: LumoBoardGameStage(
+              child: Stack(
             children: [
               SafeArea(
                 child: Padding(
@@ -234,7 +236,7 @@ class _StarsPathGameState extends State<StarsPathGame> {
                   ),
                 ),
             ],
-          ),
+          )),
         ));
   }
 

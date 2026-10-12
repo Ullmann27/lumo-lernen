@@ -6,6 +6,7 @@ import '../../../app/app_theme.dart';
 import '../../../core/game_progress_repository.dart';
 import '../../../domain/games/game_level_model.dart';
 import '../shared/lumo_game_pause_scope.dart';
+import '../shared/lumo_board_game_stage.dart';
 import '../../../domain/games/game_math_tasks.dart';
 import '../../learning/widgets/lumo_math_visuals.dart';
 import '../../shared/widgets/lumo_companion_avatar.dart';
@@ -201,7 +202,8 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
               ),
             ),
           ),
-          body: Stack(
+          body: LumoBoardGameStage(
+              child: Stack(
             children: [
               SafeArea(
                 child: Padding(
@@ -227,7 +229,7 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
                   ),
                 ),
             ],
-          ),
+          )),
         ));
   }
 

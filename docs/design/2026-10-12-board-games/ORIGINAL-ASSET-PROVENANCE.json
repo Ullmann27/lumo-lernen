@@ -1,0 +1,57 @@
+{
+  "source_repository": "Ullmann27/lumo-lernen",
+  "original_pr": 183,
+  "source_commit": "8344c10f1401d6516194e45e565695e968c9b47e",
+  "author": "Heinz, 4. Oktober 2026: zehn transparente Bildtafeln (RGBA, 1448x1086)",
+  "used_original_crops": [
+    {
+      "datei": "assets/lumo_design/ui/trophy.webp",
+      "motiv": "Pokal (Tests/Erfolge)",
+      "tafel": "t04_ui_symbole",
+      "nr": 4,
+      "pixel": [
+        256,
+        256
+      ],
+      "bytes": 31656,
+      "sha256": "5ea77a8d5b03041607c9ecba4f9b24490a592aac69e11f2728f4f44d4eb0f710"
+    },
+    {
+      "datei": "assets/lumo_design/ui/avatar_fox.webp",
+      "motiv": "Lumo-Avatar rund (Profil)",
+      "tafel": "t04_ui_symbole",
+      "nr": 5,
+      "pixel": [
+        256,
+        256
+      ],
+      "bytes": 27370,
+      "sha256": "d88f75b892b0e9dd3848e28ee1c46517c3feba6adf62c1f63e63f6ac58a725d2"
+    },
+    {
+      "datei": "assets/lumo_design/ui/star.webp",
+      "motiv": "Stern (Sterne-Anzeige)",
+      "tafel": "t04_ui_symbole",
+      "nr": 7,
+      "pixel": [
+        256,
+        256
+      ],
+      "bytes": 22882,
+      "sha256": "4bd601e547d924313a505f46d09b3eb497db17e045adcdbad5b9944597967bd4"
+    },
+    {
+      "datei": "assets/lumo_design/icons/flag_checkered.webp",
+      "motiv": "Zielflagge",
+      "tafel": "t06_strecken_deko",
+      "nr": 12,
+      "pixel": [
+        256,
+        256
+      ],
+      "bytes": 19026,
+      "sha256": "cddaecddbe3cbeb0a2e7e7e5055497beb66b300a1f645667cf3279f076f22ae0"
+    }
+  ],
+  "license_note": "User original artwork; no invented CC0/CC-BY license"
+}

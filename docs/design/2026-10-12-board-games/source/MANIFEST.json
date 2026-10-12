@@ -1,0 +1,29 @@
+{
+  "author": "Lumo project / Ullmann27",
+  "source": "Original procedural Blender geometry, no external assets",
+  "license": "Project-owned source, no third-party attribution required",
+  "renderer": "Blender 4.3 / Cycles CPU / 24 samples / transparent 384px",
+  "runtime": "Flutter uses pre-rendered PNGs; these are not a new 3D game runtime",
+  "models": [
+    {
+      "file": "die.glb",
+      "objects": 22,
+      "mesh_vertices": 4758
+    },
+    {
+      "file": "pawn_child.glb",
+      "objects": 5,
+      "mesh_vertices": 636
+    },
+    {
+      "file": "pawn_lumo.glb",
+      "objects": 5,
+      "mesh_vertices": 636
+    },
+    {
+      "file": "tile.glb",
+      "objects": 3,
+      "mesh_vertices": 288
+    }
+  ]
+}
