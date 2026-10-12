@@ -249,31 +249,49 @@ class LumoGlassCard extends StatelessWidget {
   final double surfaceOpacity;
 
   @override
-  Widget build(BuildContext context) => Container(
-        padding: padding,
-        decoration: BoxDecoration(
-          color: (color ?? LumoVisualTokens.glass)
-              .withValues(alpha: surfaceOpacity),
-          borderRadius: BorderRadius.circular(radius),
-          border: Border.all(
-            color: borderColor ?? LumoVisualTokens.cyan.withOpacity(.52),
-            width: 1.2,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(.12),
-              blurRadius: 22,
-              spreadRadius: -4,
-            ),
-            const BoxShadow(
-              color: Color(0x33000000),
-              blurRadius: 18,
-              offset: Offset(0, 9),
-            ),
+  Widget build(BuildContext context) {
+    final base = color ?? LumoVisualTokens.glass;
+    final highlightAlpha = (surfaceOpacity + .20).clamp(0.0, 1.0);
+    final upperAlpha = (surfaceOpacity + .14).clamp(0.0, 1.0);
+    final lowerAlpha = (surfaceOpacity + .08).clamp(0.0, 1.0);
+    final deepAlpha = (surfaceOpacity + .17).clamp(0.0, 1.0);
+    return Container(
+      padding: padding,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          stops: const [0.0, .12, .48, 1.0],
+          colors: [
+            Color.lerp(base, LumoVisualTokens.cyanBright, .19)!
+                .withValues(alpha: highlightAlpha),
+            base.withValues(alpha: upperAlpha),
+            base.withValues(alpha: lowerAlpha),
+            LumoVisualTokens.navigation.withValues(alpha: deepAlpha),
           ],
         ),
-        child: child,
-      );
+        borderRadius: BorderRadius.circular(radius),
+        border: Border.all(
+          color: borderColor ??
+              LumoVisualTokens.cyanBright.withValues(alpha: .60),
+          width: 1.25,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withValues(alpha: .16),
+            blurRadius: 22,
+            spreadRadius: -5,
+          ),
+          const BoxShadow(
+            color: Color(0x44000000),
+            blurRadius: 19,
+            offset: Offset(0, 9),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
 }
 
 /// One calm glass treatment across learning, games, tests and rewards.
@@ -328,8 +346,8 @@ class LumoColorTile extends StatelessWidget {
                         stops: const [0.0, 0.18, 1.0],
                         colors: [
                           // Leichter Glanz an der oberen Kante für Tiefe.
-                          Color.lerp(const Color(0xF0215A8F), color, .22)!,
-                          Color.lerp(const Color(0xEE123A68), color, .16)!,
+                          Color.lerp(const Color(0xF0215A8F), color, .68)!,
+                          Color.lerp(const Color(0xEE123A68), color, .42)!,
                           const Color(0xF0081D3D)
                         ]),
                     border: Border.all(
