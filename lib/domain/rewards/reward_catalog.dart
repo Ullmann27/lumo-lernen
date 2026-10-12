@@ -249,18 +249,31 @@ abstract class RewardCatalog {
       estimatedTasksNeeded: 250,
     ),
 
-    // ─────────────────── TIER 4: BIG (5000-12000 Sterne) ───────────────────
+    // ─────────────────── TIER 4: BIG (4500-12000 Sterne) ───────────────────
 
     RewardItem(
       id: 'tiergarten',
       title: 'Tiergarten-Besuch',
       emoji: '🦓',
       description: 'Schönbrunn Tiergarten – ein ganzer Tag mit Mama und Papa.',
+      cost: 4500,
+      currency: RewardCurrency.stars,
+      seasons: <Season>[Season.spring, Season.summer, Season.autumn],
+      tier: RewardTier.big,
+      parentApprovalRequired: true,
+      estimatedTasksNeeded: 450,
+    ),
+    RewardItem(
+      id: 'family_park',
+      title: 'Family Park',
+      emoji: '🎢',
+      description: 'Ein ganzer Tag im Family Park – die 5.000-Sterne-Meisterbelohnung!',
       cost: 5000,
       currency: RewardCurrency.stars,
       seasons: <Season>[Season.spring, Season.summer, Season.autumn],
       tier: RewardTier.big,
       parentApprovalRequired: true,
+      isPremiumReward: true,
       estimatedTasksNeeded: 500,
     ),
     RewardItem(
@@ -376,19 +389,6 @@ abstract class RewardCatalog {
       parentApprovalRequired: true,
       isPremiumReward: true,
       estimatedTasksNeeded: 2500,
-    ),
-    RewardItem(
-      id: 'family_park',
-      title: 'Family Park',
-      emoji: '🎢',
-      description: 'Ein ganzer Tag im Family Park – das ultimative Abenteuer!',
-      cost: 30000,
-      currency: RewardCurrency.stars,
-      seasons: <Season>[Season.spring, Season.summer, Season.autumn],
-      tier: RewardTier.premium,
-      parentApprovalRequired: true,
-      isPremiumReward: true,
-      estimatedTasksNeeded: 3000,
     ),
     RewardItem(
       id: 'grosser_erlebnisgutschein',
