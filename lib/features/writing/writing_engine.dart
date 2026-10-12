@@ -1806,6 +1806,20 @@ class LetterShapeAnalyzer {
 class FingerWritingRecognizer {
   FingerWritingRecognizer._();
 
+  static bool contradictsTarget({
+    required LetterTemplate template,
+    required List<WritingStroke> userStrokes,
+  }) {
+    // Ein C darf mit dem Finger sehr rund und wackelig sein, bleibt aber
+    // offen. Ein geschlossener Ring ist ein O/0 und darf nicht als C
+    // durchgewunken werden.
+    if ((template.letter == 'C' || template.letter == 'c') &&
+        _hasClosedLoop(userStrokes)) {
+      return true;
+    }
+    return false;
+  }
+
   static bool recognizesTarget({
     required LetterTemplate template,
     required List<WritingStroke> userStrokes,
@@ -1852,6 +1866,18 @@ class FingerWritingRecognizer {
   static const Set<String> _fingerSensitive = {
     'S', 's', 'C', 'c', 'H', 'h',
   };
+
+  static bool _hasClosedLoop(List<WritingStroke> strokes) {
+    for (final stroke in strokes) {
+      if (stroke.points.length < 5) continue;
+      final bounds = stroke.bounds;
+      if (bounds.width < 16 || bounds.height < 16) continue;
+      final gap = (stroke.points.first - stroke.points.last).distance;
+      final scale = (bounds.width + bounds.height) / 2;
+      if (gap <= scale * 0.22) return true;
+    }
+    return false;
+  }
 
   static List<String> _familyFor(String symbol) {
     if (RegExp(r'^[A-Z]$').hasMatch(symbol)) {
@@ -1917,7 +1943,12 @@ class WritingFeedbackEngine {
       template: template,
     );
 
-    if (result.matched && result.score >= 0.85) {
+    final shapeContradiction = FingerWritingRecognizer.contradictsTarget(
+      template: template,
+      userStrokes: userStrokes,
+    );
+
+    if (result.matched && result.score >= 0.85 && !shapeContradiction) {
       return WritingFeedback(
         type: FeedbackType.correct,
         message: _lobMessages[_rng.nextInt(_lobMessages.length)],
@@ -1926,14 +1957,15 @@ class WritingFeedbackEngine {
       );
     }
 
-    final recognizedByShape = !result.matched &&
+    final recognizedByShape = !shapeContradiction &&
+        !result.matched &&
         FingerWritingRecognizer.recognizesTarget(
           template: template,
           userStrokes: userStrokes,
           structuralScore: result.score,
         );
 
-    if (result.matched || recognizedByShape) {
+    if (!shapeContradiction && (result.matched || recognizedByShape)) {
       return WritingFeedback(
         type: FeedbackType.almost,
         message: recognizedByShape
