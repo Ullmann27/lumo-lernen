@@ -103,44 +103,70 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                 onTap: _surprise,
               ),
               const SizedBox(height: LumoTokens.space24),
-              // Klassenstufe
-              _SectionLabel('Welche Klasse?'),
+              // Klassenstufe: Im regulaeren Lernpfad ist die gewaehlte
+              // Schulstufe bindend. In der freien Zauberwelt bleibt sie waehlbar.
+              _SectionLabel(widget.initialGrade == null
+                  ? 'Welche Klasse?'
+                  : 'Deine Schulstufe'),
               const SizedBox(height: 8),
-              Row(
-                children: [1, 2, 3, 4].map((g) {
-                  final active = _gradeLevel == g;
-                  return Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                      child: GestureDetector(
-                        onTap: () => setState(() => _gradeLevel = g),
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          decoration: BoxDecoration(
-                            gradient: active
-                                ? LumoTokens.colors.heroOrange
-                                : null,
-                            color: active ? null : Colors.white,
-                            borderRadius: LumoTokens.brMedium,
-                            border: Border.all(
-                                color: active
-                                    ? Colors.transparent
-                                    : LumoTokens.colors.outline,
-                                width: 2),
-                          ),
-                          child: Text('$g. Klasse',
-                              style: LumoTokens.typo.titleMedium.copyWith(
+              if (widget.initialGrade != null)
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  decoration: BoxDecoration(
+                    gradient: LumoTokens.colors.heroOrange,
+                    borderRadius: LumoTokens.brMedium,
+                    border: Border.all(color: Colors.white.withOpacity(.55)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.lock_rounded, color: Colors.white),
+                      const SizedBox(width: 8),
+                      Text(
+                        '$_gradeLevel. Klasse · Lernpfad',
+                        style: LumoTokens.typo.titleMedium
+                            .copyWith(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                )
+              else
+                Row(
+                  children: [1, 2, 3, 4].map((g) {
+                    final active = _gradeLevel == g;
+                    return Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        child: GestureDetector(
+                          onTap: () => setState(() => _gradeLevel = g),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            decoration: BoxDecoration(
+                              gradient: active
+                                  ? LumoTokens.colors.heroOrange
+                                  : null,
+                              color: active ? null : Colors.white,
+                              borderRadius: LumoTokens.brMedium,
+                              border: Border.all(
                                   color: active
-                                      ? Colors.white
-                                      : LumoTokens.colors.textDark),
-                              textAlign: TextAlign.center),
+                                      ? Colors.transparent
+                                      : LumoTokens.colors.outline,
+                                  width: 2),
+                            ),
+                            child: Text('$g. Klasse',
+                                style: LumoTokens.typo.titleMedium.copyWith(
+                                    color: active
+                                        ? Colors.white
+                                        : LumoTokens.colors.textDark),
+                                textAlign: TextAlign.center),
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
-              ),
+                    );
+                  }).toList(),
+                ),
               const SizedBox(height: LumoTokens.space20),
               // Held
               _SectionLabel('1. Wer ist der Held?'),
