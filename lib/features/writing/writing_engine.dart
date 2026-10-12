@@ -1796,6 +1796,358 @@ class LetterShapeAnalyzer {
   }
 }
 
+/// Zweite, kindgerechte Erkennungsebene fuer Fingerhandschrift.
+///
+/// Der ShapeAnalyzer bleibt fuer konkrete Schreibhinweise zustaendig. Diese
+/// Erkennung beantwortet eine andere Frage: Ist der gezeichnete Buchstabe
+/// trotz wackeliger Fingerlinie noch eindeutig als Zielzeichen erkennbar?
+/// Dazu wird die normalisierte Form gegen alle Buchstaben derselben Familie
+/// verglichen. Schoenschrift ist damit keine Voraussetzung fuer "richtig".
+class FingerWritingRecognizer {
+  FingerWritingRecognizer._();
+
+  static bool recognizesTarget({
+    required LetterTemplate template,
+    required List<WritingStroke> userStrokes,
+    required double structuralScore,
+  }) {
+    if (userStrokes.isEmpty || _inkLength(userStrokes) < 20) return false;
+
+    final targetDistance =
+        LetterShapeAnalyzer.shapeDistance(userStrokes, template);
+    final sensitive = _fingerSensitive.contains(template.letter);
+    final maxDistance = sensitive ? 0.21 : 0.18;
+    if (targetDistance > maxDistance) return false;
+
+    final family = _familyFor(template.letter);
+    var bestDistance = targetDistance;
+    var bestSymbol = template.letter;
+    for (final symbol in family) {
+      if (symbol == template.letter) continue;
+      final candidate = LetterTemplates.all[symbol];
+      if (candidate == null) continue;
+      final distance =
+          LetterShapeAnalyzer.shapeDistance(userStrokes, candidate);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestSymbol = symbol;
+      }
+    }
+
+    // S/C/H (und die Kleinbuchstaben) sind mit dem Finger besonders
+    // empfindlich. Hier darf die Zielvorlage knapp hinter einer sehr
+    // aehnlichen Alternativform liegen, aber niemals deutlich schlechter.
+    final ambiguityMargin = sensitive ? 0.022 : 0.012;
+    final targetCompetitive = bestSymbol == template.letter ||
+        targetDistance <= bestDistance + ambiguityMargin;
+    if (!targetCompetitive) return false;
+
+    // Ein Kind darf mehrere Schul-Stiftstriche in einem Fingerzug verbinden.
+    // Deshalb ist die Struktur nur ein Plausibilitaetsfilter, kein
+    // Schoenschrift-Gate.
+    final minimumStructure = sensitive ? 0.25 : 0.40;
+    return structuralScore >= minimumStructure;
+  }
+
+  static const Set<String> _fingerSensitive = {
+    'S', 's', 'C', 'c', 'H', 'h',
+  };
+
+  static List<String> _familyFor(String symbol) {
+    if (RegExp(r'^[A-Z]
+class WritingFeedback {
+  const WritingFeedback({
+    required this.type,
+    required this.message,
+    required this.showDemo,
+    required this.matched,
+  });
+  final FeedbackType type;
+  final String message;
+  final bool showDemo;
+  final bool matched;
+}
+
+enum FeedbackType { correct, almost, missingStroke, retry, demo }
+
+class WritingFeedbackEngine {
+  WritingFeedbackEngine._();
+  static final _rng = math.Random();
+
+  static const _lobMessages = [
+    'Super gemacht! ⭐',
+    'Wow, das ist toll!',
+    'Lumo ist stolz auf dich!',
+    'Genau richtig!',
+    'Klasse geschrieben!',
+  ];
+
+  static WritingFeedback generate({
+    required LetterTemplate template,
+    required List<WritingStroke> userStrokes,
+  }) {
+    final result = LetterShapeAnalyzer.analyze(
+      userStrokes: userStrokes,
+      template: template,
+    );
+
+    if (result.matched && result.score >= 0.85) {
+      return WritingFeedback(
+        type: FeedbackType.correct,
+        message: _lobMessages[_rng.nextInt(_lobMessages.length)],
+        showDemo: false,
+        matched: true,
+      );
+    }
+
+    final recognizedByShape = !result.matched &&
+        FingerWritingRecognizer.recognizesTarget(
+          template: template,
+          userStrokes: userStrokes,
+          structuralScore: result.score,
+        );
+
+    if (result.matched || recognizedByShape) {
+      return WritingFeedback(
+        type: FeedbackType.almost,
+        message: recognizedByShape
+            ? 'Ja, ich erkenne dein ${template.letter}! Mit dem Finger darf es ein bisschen wackeln.'
+            : 'Ja, das ist ein ${template.letter}! Es muss nicht perfekt aussehen.',
+        showDemo: false,
+        matched: true,
+      );
+    }
+    // Nicht matched - spezifischer Hinweis
+    String msg;
+    switch (result.issue) {
+      case WritingAnalysisIssue.zuWenigStrokes:
+        msg = 'Da fehlt noch etwas. Schreib das ${template.letter} ganz - '
+            '${template.description}';
+        break;
+      case WritingAnalysisIssue.vertikalFehlt:
+        msg = 'Da fehlt ein gerader Strich von oben nach unten. '
+            '${template.description}';
+        break;
+      case WritingAnalysisIssue.horizontalFehlt:
+        msg = 'Da fehlt ein Querstrich. ${template.description}';
+        break;
+      case WritingAnalysisIssue.rundungFehlt:
+        msg = 'Versuch es runder zu zeichnen! ${template.description}';
+        break;
+      case WritingAnalysisIssue.diagonaleFehlt:
+        msg = 'Da fehlt ein schraeger Strich. ${template.description}';
+        break;
+      case WritingAnalysisIssue.zuVieleStrokes:
+        msg = 'Das sind zu viele Striche. ${template.description}';
+        break;
+      default:
+        msg = 'Schau nochmal: ${template.description}';
+    }
+    return WritingFeedback(
+      type: FeedbackType.missingStroke,
+      message: msg,
+      showDemo: true,
+      matched: false,
+    );
+  }
+}
+).hasMatch(symbol)) {
+      return LetterTemplates.uppercaseLetters;
+    }
+    if (RegExp(r'^[a-z]
+class WritingFeedback {
+  const WritingFeedback({
+    required this.type,
+    required this.message,
+    required this.showDemo,
+    required this.matched,
+  });
+  final FeedbackType type;
+  final String message;
+  final bool showDemo;
+  final bool matched;
+}
+
+enum FeedbackType { correct, almost, missingStroke, retry, demo }
+
+class WritingFeedbackEngine {
+  WritingFeedbackEngine._();
+  static final _rng = math.Random();
+
+  static const _lobMessages = [
+    'Super gemacht! ⭐',
+    'Wow, das ist toll!',
+    'Lumo ist stolz auf dich!',
+    'Genau richtig!',
+    'Klasse geschrieben!',
+  ];
+
+  static WritingFeedback generate({
+    required LetterTemplate template,
+    required List<WritingStroke> userStrokes,
+  }) {
+    final result = LetterShapeAnalyzer.analyze(
+      userStrokes: userStrokes,
+      template: template,
+    );
+
+    if (result.matched && result.score >= 0.85) {
+      return WritingFeedback(
+        type: FeedbackType.correct,
+        message: _lobMessages[_rng.nextInt(_lobMessages.length)],
+        showDemo: false,
+        matched: true,
+      );
+    }
+    if (result.matched && result.score >= 0.6) {
+      return WritingFeedback(
+        type: FeedbackType.almost,
+        message: 'Fast! Das sieht schon gut aus. Probier es nochmal!',
+        showDemo: false,
+        matched: true,
+      );
+    }
+    // Nicht matched - spezifischer Hinweis
+    String msg;
+    switch (result.issue) {
+      case WritingAnalysisIssue.zuWenigStrokes:
+        msg = 'Da fehlt noch etwas. Schreib das ${template.letter} ganz - '
+            '${template.description}';
+        break;
+      case WritingAnalysisIssue.vertikalFehlt:
+        msg = 'Da fehlt ein gerader Strich von oben nach unten. '
+            '${template.description}';
+        break;
+      case WritingAnalysisIssue.horizontalFehlt:
+        msg = 'Da fehlt ein Querstrich. ${template.description}';
+        break;
+      case WritingAnalysisIssue.rundungFehlt:
+        msg = 'Versuch es runder zu zeichnen! ${template.description}';
+        break;
+      case WritingAnalysisIssue.diagonaleFehlt:
+        msg = 'Da fehlt ein schraeger Strich. ${template.description}';
+        break;
+      case WritingAnalysisIssue.zuVieleStrokes:
+        msg = 'Das sind zu viele Striche. ${template.description}';
+        break;
+      default:
+        msg = 'Schau nochmal: ${template.description}';
+    }
+    return WritingFeedback(
+      type: FeedbackType.missingStroke,
+      message: msg,
+      showDemo: true,
+      matched: false,
+    );
+  }
+}
+).hasMatch(symbol)) {
+      return LetterTemplates.lowercaseLetters;
+    }
+    if (RegExp(r'^[0-9]
+class WritingFeedback {
+  const WritingFeedback({
+    required this.type,
+    required this.message,
+    required this.showDemo,
+    required this.matched,
+  });
+  final FeedbackType type;
+  final String message;
+  final bool showDemo;
+  final bool matched;
+}
+
+enum FeedbackType { correct, almost, missingStroke, retry, demo }
+
+class WritingFeedbackEngine {
+  WritingFeedbackEngine._();
+  static final _rng = math.Random();
+
+  static const _lobMessages = [
+    'Super gemacht! ⭐',
+    'Wow, das ist toll!',
+    'Lumo ist stolz auf dich!',
+    'Genau richtig!',
+    'Klasse geschrieben!',
+  ];
+
+  static WritingFeedback generate({
+    required LetterTemplate template,
+    required List<WritingStroke> userStrokes,
+  }) {
+    final result = LetterShapeAnalyzer.analyze(
+      userStrokes: userStrokes,
+      template: template,
+    );
+
+    if (result.matched && result.score >= 0.85) {
+      return WritingFeedback(
+        type: FeedbackType.correct,
+        message: _lobMessages[_rng.nextInt(_lobMessages.length)],
+        showDemo: false,
+        matched: true,
+      );
+    }
+    if (result.matched && result.score >= 0.6) {
+      return WritingFeedback(
+        type: FeedbackType.almost,
+        message: 'Fast! Das sieht schon gut aus. Probier es nochmal!',
+        showDemo: false,
+        matched: true,
+      );
+    }
+    // Nicht matched - spezifischer Hinweis
+    String msg;
+    switch (result.issue) {
+      case WritingAnalysisIssue.zuWenigStrokes:
+        msg = 'Da fehlt noch etwas. Schreib das ${template.letter} ganz - '
+            '${template.description}';
+        break;
+      case WritingAnalysisIssue.vertikalFehlt:
+        msg = 'Da fehlt ein gerader Strich von oben nach unten. '
+            '${template.description}';
+        break;
+      case WritingAnalysisIssue.horizontalFehlt:
+        msg = 'Da fehlt ein Querstrich. ${template.description}';
+        break;
+      case WritingAnalysisIssue.rundungFehlt:
+        msg = 'Versuch es runder zu zeichnen! ${template.description}';
+        break;
+      case WritingAnalysisIssue.diagonaleFehlt:
+        msg = 'Da fehlt ein schraeger Strich. ${template.description}';
+        break;
+      case WritingAnalysisIssue.zuVieleStrokes:
+        msg = 'Das sind zu viele Striche. ${template.description}';
+        break;
+      default:
+        msg = 'Schau nochmal: ${template.description}';
+    }
+    return WritingFeedback(
+      type: FeedbackType.missingStroke,
+      message: msg,
+      showDemo: true,
+      matched: false,
+    );
+  }
+}
+).hasMatch(symbol)) {
+      return LetterTemplates.numbers;
+    }
+    return <String>[symbol];
+  }
+
+  static double _inkLength(List<WritingStroke> strokes) {
+    var total = 0.0;
+    for (final stroke in strokes) {
+      for (var i = 1; i < stroke.points.length; i++) {
+        total += (stroke.points[i] - stroke.points[i - 1]).distance;
+      }
+    }
+    return total;
+  }
+}
+
 // ════════════════════════════════════════════════════════════════════════
 // FEEDBACK ENGINE
 // ════════════════════════════════════════════════════════════════════════
