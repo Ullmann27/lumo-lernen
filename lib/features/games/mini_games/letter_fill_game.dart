@@ -26,6 +26,7 @@ import '../../../app/app_theme.dart';
 import '../../../core/game_progress_repository.dart';
 import '../../../domain/games/game_level_model.dart';
 import '../shared/lumo_game_pause_scope.dart';
+import '../shared/lumo_board_game_stage.dart';
 
 class LetterFillGame extends StatefulWidget {
   const LetterFillGame({
@@ -242,7 +243,7 @@ class _LetterFillGameState extends State<LetterFillGame> {
                 style: const TextStyle(
                     fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
           ),
-          body: SafeArea(
+          body: LumoScrollableBoardPage(
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(children: [
@@ -271,7 +272,7 @@ class _LetterFillGameState extends State<LetterFillGame> {
                 const SizedBox(height: 20),
                 // Wort mit Luecke
                 _buildWord(),
-                const Spacer(),
+                const SizedBox(height: 24),
                 // 4 Buchstaben-Choices
                 GridView.builder(
                   shrinkWrap: true,
@@ -302,6 +303,7 @@ class _LetterFillGameState extends State<LetterFillGame> {
                       border = const Color(0xFF059669);
                     }
                     return GestureDetector(
+                      key: ValueKey('letter-choice-$letter'),
                       onTap: () => _pickLetter(letter),
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 220),
@@ -317,12 +319,15 @@ class _LetterFillGameState extends State<LetterFillGame> {
                           ],
                         ),
                         child: Center(
-                          child: Text(letter,
-                              style: TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontSize: 38,
-                                  fontWeight: FontWeight.w900,
-                                  color: border)),
+                          child: Semantics(
+                              button: true,
+                              label: 'Buchstabe $letter',
+                              child: Text(letter,
+                                  style: TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontSize: 38,
+                                      fontWeight: FontWeight.w900,
+                                      color: border))),
                         ),
                       ),
                     );

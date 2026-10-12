@@ -1,8 +1,10 @@
 """Actual saved hierarchy regressions, not a substitute for Android acceptance."""
 import ast
+import json
 from pathlib import Path
 import re
 import types
+import tempfile
 import unittest
 from unittest.mock import Mock
 import xml.etree.ElementTree as ET
@@ -27,7 +29,7 @@ class CourseNavigationTest(unittest.TestCase):
     def setUp(self):
         helpers = [node for node in ast.parse(SOURCE.read_text()).body
                    if isinstance(node, ast.FunctionDef)
-                   and node.name in ("_enabled_control_bounds", "_answer_accepted", "tap")]
+                   and node.name in ("_enabled_control_bounds", "_answer_accepted", "tap", "wait_proactive_help_offer", "tap_named_course")]
         self.reader = Mock()
         self.adb = Mock()
         self.capture = Mock()
@@ -38,12 +40,46 @@ class CourseNavigationTest(unittest.TestCase):
             recover_launcher_dialog=Mock(return_value=False),
             capture=self.capture,
         )
-        scope = {"existing": existing, "re": re, "Path": Path,
-                 "time": types.SimpleNamespace(sleep=Mock())}
+        self.events = []
+        self.wait_text = Mock(side_effect=lambda *args, **kwargs: self.events.append('scan'))
+        scope = {"existing": existing, "re": re, "Path": Path, "json": json,
+                 "time": types.SimpleNamespace(sleep=lambda seconds: self.events.append(('quiet', seconds))),
+                 "wait_text": self.wait_text}
         exec(compile(ast.Module(body=helpers, type_ignores=[]), str(SOURCE), "exec"), scope)
         self.select = scope["_enabled_control_bounds"]
         self.accepted = scope["_answer_accepted"]
         self.tap = scope["tap"]
+        self.help_offer = scope.get('wait_proactive_help_offer')
+        self.scope = scope
+
+    def test_school_course_uses_actual_named_plus_button_not_clipped_syllables_button(self):
+        fixture = ROOT / 'scripts/tests/fixtures/android_1933_course_hub.xml'
+        self.reader.return_value = [n.attrib for n in ET.parse(fixture).iter('node')]
+        self.assertEqual(self.select(self.reader.return_value, 'Mit Lumo anfangen'),
+                         [35, 825, 1165, 872])
+        function = next(n for n in ast.parse(SOURCE.read_text()).body
+                        if isinstance(n, ast.FunctionDef) and n.name == 'school_course')
+        class ObservedStart(Exception):
+            pass
+        def wait(_out, marker, _tag):
+            if marker == 'Heute lernen wir einen Rechentrick':
+                raise ObservedStart()
+            return ''
+        self.scope.update(tap=Mock(), wait_text=wait)
+        exec(compile(ast.Module(body=[function], type_ignores=[]), str(SOURCE), 'exec'), self.scope)
+        with tempfile.TemporaryDirectory() as folder:
+            with self.assertRaises(ObservedStart):
+                self.scope['school_course'](Path(folder))
+        self.adb.assert_called_once_with('shell', 'input', 'swipe',
+                                        '600', '405', '600', '405', '120')
+
+    def test_help_probe_waits_quietly_before_any_scrolling_scan(self):
+        self.assertIsNotNone(self.help_offer)
+        self.help_offer(Path('/tmp/unit-fixture'))
+        self.assertGreaterEqual(self.events[0][1], 15)
+        self.assertEqual(self.events[0][0], 'quiet')
+        self.assertEqual(self.events[1], 'scan')
+        self.assertEqual(self.wait_text.call_args.args[1], 'Zeig mir wie')
 
     def test_saved_real_android_hierarchy_selects_navigation_not_logo(self):
         nodes = [node.attrib for node in ET.parse(FIXTURE).iter("node")]
@@ -133,6 +169,21 @@ class CourseNavigationTest(unittest.TestCase):
         self.assertFalse(self.accepted([
             control("1, richtig", clickable=False),
             control("Fast! Probiere es noch einmal.", clickable=False), proceed], "1"))
+
+    def test_non_math_feedback_is_exact_and_keeps_same_frame_requirement(self):
+        feedback = 'Das hast du selbst herausgefunden. Gut gemacht!'
+        right = control('Blüte, richtig', clickable=False, enabled=False)
+        message = control(feedback, clickable=False)
+        proceed = control('Weiter')
+        self.assertFalse(self.accepted([right, message, proceed], 'Blüte'))
+        self.assertTrue(self.accepted([right, message, proceed], 'Blüte',
+                                     correct_feedback=(feedback,)))
+        for partial in ([right, message], [right, proceed], [message, proceed]):
+            self.assertFalse(self.accepted(partial, 'Blüte',
+                                          correct_feedback=(feedback,)))
+        self.assertFalse(self.accepted([
+            right, control('Du hast selbst gerechnet. Gut gemacht!', clickable=False),
+            proceed], 'Blüte', correct_feedback=(feedback,)))
 
 
 if __name__ == "__main__":

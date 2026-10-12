@@ -1,0 +1,127 @@
+00:00 +0: loading /workspace/lumo-games-1934/test/games/game_math_tasks_test.dart
+00:00 +0: /workspace/lumo-games-1934/test/games/game_math_tasks_test.dart: All 50 actual routes appear and unlock in curriculum order
+00:00 +1: /workspace/lumo-games-1934/test/games/game_math_tasks_test.dart: Every StarsPath level has correct answers matching its advertised operation
+00:00 +2: /workspace/lumo-games-1934/test/games/game_math_tasks_test.dart: Rechenhaus keeps fixed decomposition, crossing ten, doubling and cap100
+00:00 +3: /workspace/lumo-games-1934/test/games/game_math_tasks_test.dart: Completion stars persist and never downgrade on a replay
+00:00 +4: /workspace/lumo-games-1934/test/games/game_math_tasks_test.dart: StarsPath written-arithmetic levels do not always put the answer first
+00:01 +5: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: (setUpAll)
+00:01 +5: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:01 +6: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:01 +7: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:01 +8: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:01 +9: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:01 +10: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:01 +11: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:01 +12: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:01 +13: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:03 +14: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:03 +15: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:03 +16: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:04 +17: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:04 +18: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: Android Back preserves actual adventure collision reward after pause and return
+00:04 +19: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: X preserves actual adventure collision reward after pause and return
+00:05 +20: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: X preserves actual adventure collision reward after pause and return
+00:06 +21: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: boxes on Size(360.0, 640.0) with large text remains playable
+00:07 +22: /workspace/lumo-games-1934/test/games/flame_adventure_flow_test.dart: failed adventure storage stays open and retries once before returning
+00:07 +23: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: letters on Size(360.0, 640.0) with large text remains playable
+00:07 +24: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: house on Size(360.0, 640.0) with large text remains playable
+00:07 +25: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: stars on Size(360.0, 640.0) with large text remains playable
+00:08 +26: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: boxes on Size(967.0, 805.0) with large text remains playable
+00:08 +27: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: letters on Size(967.0, 805.0) with large text remains playable
+00:08 +28: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: house on Size(967.0, 805.0) with large text remains playable
+00:08 +29: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: stars on Size(967.0, 805.0) with large text remains playable
+00:08 +30: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Recycling keeps exactly one copy and the newly played penalty on top
+00:08 +31: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: boxes on Size(926.0, 362.0) with large text remains playable
+00:08 +32: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: 16 complete solo Cards rounds handle bot color and learning phases
+00:08 +33: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: 16 complete solo Cards rounds handle bot color and learning phases
+00:08 +34: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: 16 complete solo Cards rounds handle bot color and learning phases
+00:08 +35: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: 16 complete solo Cards rounds handle bot color and learning phases
+00:09 +36: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Cards bot waits on pause; restart cancels the pending old turn
+00:09 +37: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Memory complete 12-pair game rewards once, persists, and restarts
+00:10 +38: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Memory complete 12-pair game rewards once, persists, and restarts
+00:10 +39: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Memory complete 12-pair game rewards once, persists, and restarts
+00:11 +40: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Memory complete 12-pair game rewards once, persists, and restarts
+00:12 +41: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Memory complete 12-pair game rewards once, persists, and restarts
+00:12 +42: /workspace/lumo-games-1934/test/games/cards_color_consistency_test.dart: Discard, picker and real PNG agree for purple
+00:12 +43: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Memory Fold resize and restart during a mismatch cancel old actions
+00:12 +44: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Memory Fold resize and restart during a mismatch cancel old actions
+00:12 +45: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Memory Fold resize and restart during a mismatch cancel old actions
+00:12 +46: /workspace/lumo-games-1934/test/games/game_round_regression_test.dart: Android back and background pause preserve an unfinished Memory turn
+00:13 +47: /workspace/lumo-games-1934/test/games/lesson_trail_completion_test.dart: A full lesson retries a failed combined reward exactly once
+00:14 +48: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +49: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +50: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +51: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +52: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +53: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +54: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +55: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +56: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +57: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +58: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +59: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +60: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:15 +61: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:17 +62: /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart: Sternepfad all five tasks, answer feedback, saved completion
+00:17 +63: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Four in a row completes a full touch game and restart cancels old bot
+00:18 +64: /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart: Rechenhaus all five tasks, answer feedback, saved completion
+00:18 +65: /workspace/lumo-games-1934/test/games/games_screen_flow_test.dart: Dice full touch game, saved result, restart and pause during rolling
+00:18 +66: /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart: Color boxes complete all five targets and save level 2
+00:19 +67: /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart: Letter gaps complete six different words and save level 25
+00:19 +68: /workspace/lumo-games-1934/test/games/memory_screen_test.dart: Tippen dreht die Karte um (3D-Flip) und zeigt das Motiv
+00:20 +69: /workspace/lumo-games-1934/test/games/games_world_layout_test.dart: Spielewelt zeigt die vier Spiele und Lumo Kart
+00:21 +70: /workspace/lumo-games-1934/test/games/games_world_layout_test.dart: Spielewelt zeigt die vier Spiele und Lumo Kart
+00:21 +71: /workspace/lumo-games-1934/test/games/games_world_layout_test.dart: Spielewelt zeigt die vier Spiele und Lumo Kart
+00:21 +72: /workspace/lumo-games-1934/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:22 +73: /workspace/lumo-games-1934/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:24 +74: /workspace/lumo-games-1934/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:24 +75: /workspace/lumo-games-1934/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:25 +76: /workspace/lumo-games-1934/test/games/connect_four_interaction_test.dart: local two-player win rewards once and replay preserves wallet
+00:25 +77: /workspace/lumo-games-1934/test/games/connect_four_interaction_test.dart: local two-player win rewards once and replay preserves wallet
+00:25 +78: /workspace/lumo-games-1934/test/games/memory_screen_test.dart: Pausenfenster im Lumo-Stil passt auch auf 280 px mit großer Schrift
+00:26 +79: /workspace/lumo-games-1934/test/games/memory_screen_test.dart: Pausenfenster im Lumo-Stil passt auch auf 280 px mit großer Schrift
+00:27 +80: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: (setUpAll)
+00:27 +80: /workspace/lumo-games-1934/test/games/game_lesson_tasks_test.dart: Every new curriculum route has complete, unique, answerable tasks
+00:27 +81: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:27 +82: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:27 +83: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:27 +84: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:27 +85: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:28 +86: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:28 +87: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:28 +88: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:28 +89: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+00:28 +90: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+RUN frame=0 x=727.0119018554688 y=254.0 vx=0.0 vy=0.0 ground=true questions=0/3 stars=1 jumps=0 falls=0
+VISIBLE QUESTION Welches Wort passt zum Bild: 🍌? -> Banane (choices: [Deutsch-Frageblock 🦊, Welches Wort passt zum Bild: 🍌?, Banane, Birne, Karotte, Baum, Tippe auf die richtige Antwort., Antwort prüfen])
+RUN frame=120 x=1262.5224609375 y=68.38880920410156 vx=270.0 vy=-36.65080000000006 ground=false questions=1/3 stars=8 jumps=2 falls=0
+RUN frame=240 x=1802.537109375 y=9.098689079284668 vx=270.0 vy=895.2103000000004 ground=false questions=1/3 stars=8 jumps=2 falls=0
+00:33 +91: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+RUN frame=360 x=2342.543701171875 y=130.25709533691406 vx=270.0 vy=445.02550000000014 ground=false questions=1/3 stars=10 jumps=3 falls=0
+VISIBLE QUESTION 🍎🍎 oder 🍎🍎 – wo ist mehr? -> gleich (choices: [Mathe-Frageblock 🔢, 🍎🍎 oder 🍎🍎 – wo ist mehr?, gleich, links, rechts, Tippe auf die richtige Antwort., Antwort prüfen])
+RUN frame=480 x=2856.550048828125 y=120.14657592773438 vx=270.0 vy=473.35940000000016 ground=false questions=2/3 stars=16 jumps=5 falls=0
+RUN frame=600 x=3396.550048828125 y=210.0 vx=270.0 vy=0.0 ground=true questions=2/3 stars=18 jumps=6 falls=0
+VISIBLE QUESTION Mit welchem Laut endet Ball? -> L (choices: [Deutsch-Frageblock 🦊, Mit welchem Laut endet Ball?, L, S, Au, E, Tippe auf die richtige Antwort., Antwort prüfen])
+RUN frame=720 x=3932.050048828125 y=228.0 vx=270.0 vy=0.0 ground=true questions=3/3 stars=25 jumps=7 falls=0
+VISIBLE QUESTION Welche Zahl fehlt? 13, 14, _, 16 -> 15 (choices: [🔒 Boss-Truhe, Serie: 0 / 3, Welche Zahl fehlt? 13, 14, _, 16, 15, 16, 14, 17, Beantworte 3 Aufgaben hintereinander richtig., Antwort prüfen])
+VISIBLE QUESTION 2 + 5 = ? -> 7 (choices: [🔒 Boss-Truhe, Serie: 1 / 3, 2 + 5 = ?, 7, 8, 6, 9, Stark! Noch 2 richtige Aufgaben., Antwort prüfen])
+VISIBLE QUESTION 9 - 6 = ? -> 3 (choices: [🔒 Boss-Truhe, Serie: 2 / 3, 9 - 6 = ?, 3, 4, 2, 5, Stark! Noch 1 richtige Aufgabe., Antwort prüfen])
+00:37 +92: /workspace/lumo-games-1934/test/games/flame_adventure_round_test.dart: Full adventure actual joystick and 60 Hz collision physics
+COMPLETE actual physics stars=76 questions=6 jumps=8 falls=0 time=17.650353000000166
+00:39 +93: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog landscape
+00:40 +94: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog tablet
+00:44 +95: /workspace/lumo-games-1934/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0
+00:44 +96: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-phone
+00:46 +97: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-phone
+00:46 +98: /workspace/lumo-games-1934/test/design/connect_four_visual_test.dart: Connect Four layout 1280.0x720.0
+00:47 +99: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-compact
+00:48 +100: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-compact
+00:48 +101: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-compact
+00:48 +102: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-wide
+00:51 +103: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-wide
+00:51 +104: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-wide
+00:51 +105: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-wide
+00:51 +106: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-wide
+00:52 +107: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: render actual Cards and avatar dialog reference-fold
+00:55 +108: /workspace/lumo-games-1934/test/lumo_cards_session_visual_test.dart: (tearDownAll)
+00:55 +108: All tests passed!

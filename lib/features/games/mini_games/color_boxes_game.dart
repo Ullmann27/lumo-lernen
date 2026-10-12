@@ -26,6 +26,7 @@ import '../../../app/app_theme.dart';
 import '../../../core/game_progress_repository.dart';
 import '../../../domain/games/game_level_model.dart';
 import '../shared/lumo_game_pause_scope.dart';
+import '../shared/lumo_board_game_stage.dart';
 
 class ColorBoxesGame extends StatefulWidget {
   const ColorBoxesGame({
@@ -244,7 +245,7 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
                 style: const TextStyle(
                     fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
           ),
-          body: SafeArea(
+          body: LumoScrollableBoardPage(
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(children: [
@@ -270,17 +271,7 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
                 // Aufgabe
                 Container(
                   padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: LumoColors.orange, width: 2),
-                    boxShadow: [
-                      BoxShadow(
-                          color: LumoColors.orange.withOpacity(0.20),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4))
-                    ],
-                  ),
+                  decoration: lumoBoardGlass(accent: LumoColors.orange),
                   child: Column(children: [
                     const Text('Male so viele Kaestchen an:',
                         style: TextStyle(
@@ -308,31 +299,29 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
                 ),
                 const SizedBox(height: 28),
                 // 10 Kaestchen in 2x5 Raster
-                Expanded(
-                  child: Center(
-                    child: SizedBox(
-                      width: 360,
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _totalBoxes,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 5,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                          childAspectRatio: 1.0,
-                        ),
-                        itemBuilder: (context, i) => Semantics(
-                            key: ValueKey('color-box-$i'),
-                            label:
-                                'Kästchen ${i + 1}, ${_boxes[i] ? 'angemalt' : 'leer'}',
-                            button: true,
-                            child: _BoxTile(
-                              filled: _boxes[i],
-                              onTap: () => _toggleBox(i),
-                            )),
+                Center(
+                  child: SizedBox(
+                    width: 360,
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: _totalBoxes,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: 1.0,
                       ),
+                      itemBuilder: (context, i) => Semantics(
+                          key: ValueKey('color-box-$i'),
+                          label:
+                              'Kästchen ${i + 1}, ${_boxes[i] ? 'angemalt' : 'leer'}',
+                          button: true,
+                          child: _BoxTile(
+                            filled: _boxes[i],
+                            onTap: () => _toggleBox(i),
+                          )),
                     ),
                   ),
                 ),
@@ -398,8 +387,9 @@ class _BoxTile extends StatelessWidget {
               : null,
         ),
         child: filled
-            ? const Center(
-                child: Icon(Icons.star_rounded, color: Colors.white, size: 32))
+            ? Center(
+                child: Image.asset('assets/lumo_design/ui/star.webp',
+                    width: 32, height: 32, excludeFromSemantics: true))
             : null,
       ),
     );
