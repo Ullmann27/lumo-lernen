@@ -7,6 +7,7 @@ import '../../domain/tutoring/tutoring_session_planner.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_learning_module_frame.dart';
 import '../../widgets/design/lumo_quantity_art.dart';
+import 'guided_language_nature_illustration.dart';
 
 /// Actual countable original assets. Moving apples remain single widgets:
 /// no duplicated "animation" objects that could falsify a quantity.
@@ -32,14 +33,20 @@ class GuidedMathIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (lesson.subject != 'Mathematik') {
+      return GuidedLanguageNatureIllustration(
+          lesson: lesson, step: step, reduceMotion: reduceMotion);
+    }
     if (step.a == 0) {
       return LumoLessonSurface(
         child: Column(children: [
           Icon(
               switch (lesson.concept) {
-                GuidedMathConcept.bridgeTen => Icons.grid_view_rounded,
-                GuidedMathConcept.equalGroups => Icons.workspaces_rounded,
-                GuidedMathConcept.subtractTen => Icons.remove_circle_outline,
+                GuidedLessonConcept.bridgeTen => Icons.grid_view_rounded,
+                GuidedLessonConcept.equalGroups => Icons.workspaces_rounded,
+                GuidedLessonConcept.subtractTen => Icons.remove_circle_outline,
+                GuidedLessonConcept.syllables => Icons.hearing_rounded,
+                GuidedLessonConcept.plantParts => Icons.local_florist_rounded,
               },
               color: LumoVisualTokens.gold,
               size: 48),
@@ -68,9 +75,11 @@ class GuidedMathIllustration extends StatelessWidget {
       );
     }
     return switch (lesson.concept) {
-      GuidedMathConcept.equalGroups => _groups(),
-      GuidedMathConcept.bridgeTen => _tenFrame(context),
-      GuidedMathConcept.subtractTen => _subtraction(),
+      GuidedLessonConcept.equalGroups => _groups(),
+      GuidedLessonConcept.bridgeTen => _tenFrame(context),
+      GuidedLessonConcept.subtractTen => _subtraction(),
+      _ =>
+        throw StateError('Non-mathematical lesson routed to math illustration'),
     };
   }
 

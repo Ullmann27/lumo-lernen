@@ -207,7 +207,8 @@ class _GuidedLearningHubState extends State<GuidedLearningHub> {
                         const SizedBox(height: 8),
                         Text(lesson.description, style: _text),
                         const SizedBox(height: 8),
-                        Text('Einführung ab der ${lesson.grade}. Schulstufe',
+                        Text(
+                            '${lesson.subject} · Einführung ab der ${lesson.grade}. Schulstufe',
                             style: _text),
                         if (widget.discovery &&
                             _owner?.profile.discovery.topics[lesson.id]
@@ -247,7 +248,7 @@ class _GuidedLearningHubState extends State<GuidedLearningHub> {
                 const SizedBox(height: 20),
                 const Text(
                     'Weitere geführte Einführungen werden noch ergänzt. '
-                    'Diese zwei Lernwege sind keine vollständige '
+                    'Diese Lernwege sind keine vollständige '
                     'Abdeckung aller vier Schulstufen.',
                     style: _text),
               ],

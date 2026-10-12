@@ -147,16 +147,17 @@ Future<void> _finish(WidgetTester tester, GuidedLesson lesson,
       expect(
           LumoCompanionRequests.instance.taskContext.value!.lastCorrect, true);
     } else if (step.type == TutoringStepType.showExample) {
-      if (lesson.concept == GuidedMathConcept.subtractTen) {
+      if (lesson.concept == GuidedLessonConcept.subtractTen) {
         expect(
             find.textContaining('Nimm zuerst bis zehn weg.'), findsOneWidget);
         expect(
             find.textContaining('Gleiche Gruppen lassen sich'), findsNothing);
       }
       final total = switch (lesson.concept) {
-        GuidedMathConcept.equalGroups => step.a * step.b,
-        GuidedMathConcept.bridgeTen => step.a + step.b,
-        GuidedMathConcept.subtractTen => step.a,
+        GuidedLessonConcept.equalGroups => step.a * step.b,
+        GuidedLessonConcept.bridgeTen => step.a + step.b,
+        GuidedLessonConcept.subtractTen => step.a,
+        _ => throw StateError('Non-mathematical quantity fixture'),
       };
       expect(find.byType(LumoQuantityArt), findsNWidgets(total));
       await _tap(tester, find.text('Erklärung lesen'));

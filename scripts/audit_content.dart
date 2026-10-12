@@ -127,6 +127,19 @@ void main() {
         GuidedAnswerKind.toPreviousTen => '${step.a - (step.a ~/ 10) * 10}',
         GuidedAnswerKind.subtractRemainder => '${step.b - (step.a - 10)}',
         GuidedAnswerKind.difference => '${step.a - step.b}',
+        GuidedAnswerKind.syllableCount => '${const {
+              'Sonne': 2,
+              'Tomate': 3,
+              'Blume': 2,
+              'Rakete': 3,
+            }[step.word] ?? -1}',
+        GuidedAnswerKind.plantPart => switch (step.plantPart) {
+            GuidedPlantPart.root => 'Wurzel',
+            GuidedPlantPart.stem => 'Stängel',
+            GuidedPlantPart.leaf => 'Blatt',
+            GuidedPlantPart.flower => 'Blüte',
+            null => 'invalid plant part',
+          },
         GuidedAnswerKind.groups =>
           '${List.filled(step.a, step.b).fold<int>(0, (a, b) => a + b)}',
         GuidedAnswerKind.repeatedAddition => [
@@ -137,6 +150,12 @@ void main() {
           !step.choices.contains(expected) ||
           step.choices.toSet().length != step.choices.length) {
         errors.add('${lesson.id}: invalid guided answer for ${step.title}');
+      }
+      if (step.answerKind == GuidedAnswerKind.syllableCount &&
+          (step.syllables.join() != step.word ||
+              step.syllables.any((piece) => piece.isEmpty))) {
+        errors
+            .add('${lesson.id}: invalid spoken segmentation for ${step.word}');
       }
       if (step.answerKind == GuidedAnswerKind.repeatedAddition) {
         final sums = step.choices.map((choice) =>

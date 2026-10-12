@@ -472,13 +472,13 @@ class _TutoringFlowCardState extends State<TutoringFlowCard> {
             label: const Text('Empfohlenes Thema üben'),
           ),
           const SizedBox(height: 18),
-          const Text('Mathematik mit Bildern verstehen', style: _body),
+          const Text('Geführte Themen entdecken', style: _body),
           const SizedBox(height: 8),
           Text(
               available == 1
-                  ? 'Eine geführte Mathematik-Einführung ist für deinen '
+                  ? 'Eine geführte Einführung ist für deinen '
                       'Schulstoff verfügbar.'
-                  : '$available geführte Mathematik-Einführungen sind für '
+                  : '$available geführte Einführungen sind für '
                       'deinen Schulstoff verfügbar.',
               style: _body.copyWith(fontSize: 16)),
           const SizedBox(height: 12),
