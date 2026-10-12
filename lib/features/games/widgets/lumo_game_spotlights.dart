@@ -240,9 +240,7 @@ class _Spotlight extends StatelessWidget {
               const _RecoveredKartArtStrip(),
               const SizedBox(height: 14),
             ],
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: .5),
-              child: SizedBox(
+            SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
                   key: ValueKey(actionKey),
@@ -264,9 +262,7 @@ class _Spotlight extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
                   ),
-                ),
-              ),
-            ),
+                )),
           ]),
         ),
       );
@@ -314,10 +310,15 @@ class _RecoveredKartArtStrip extends StatelessWidget {
       ('assets/lumo_design/deco/finish_gate.webp', 'Zieltor'),
       ('assets/lumo_design/rewards/reward_trophy.webp', 'Pokal'),
     ];
+    final compact = MediaQuery.sizeOf(context).width <= 360;
+    final gap = compact ? 4.0 : 6.0;
     return Semantics(
       label: 'Lumo Kart Vorschau mit Fahrer, Turbo, Zieltor und Pokal',
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        padding: EdgeInsets.symmetric(
+          horizontal: compact ? 6 : 8,
+          vertical: compact ? 5 : 8,
+        ),
         decoration: BoxDecoration(
           color: const Color(0x44123863),
           borderRadius: BorderRadius.circular(16),
@@ -329,10 +330,12 @@ class _RecoveredKartArtStrip extends StatelessWidget {
             for (var index = 0; index < items.length; index++) ...[
               Expanded(
                 child: AspectRatio(
-                  aspectRatio: 1.18,
+                  // Keep the recovered art visible on the narrow cover display
+                  // without pushing the real launch control against the viewport.
+                  aspectRatio: compact ? 1.75 : 1.18,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(compact ? 9 : 12),
                       gradient: const LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -340,7 +343,7 @@ class _RecoveredKartArtStrip extends StatelessWidget {
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(5),
+                      padding: EdgeInsets.all(compact ? 3 : 5),
                       child: Image.asset(
                         items[index].$1,
                         fit: BoxFit.contain,
@@ -350,7 +353,7 @@ class _RecoveredKartArtStrip extends StatelessWidget {
                   ),
                 ),
               ),
-              if (index != items.length - 1) const SizedBox(width: 6),
+              if (index != items.length - 1) SizedBox(width: gap),
             ],
           ],
         ),
