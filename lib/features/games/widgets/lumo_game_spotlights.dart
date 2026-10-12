@@ -240,7 +240,9 @@ class _Spotlight extends StatelessWidget {
               const _RecoveredKartArtStrip(),
               const SizedBox(height: 14),
             ],
-            SizedBox(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: .5),
+              child: SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
                   key: ValueKey(actionKey),
@@ -262,7 +264,9 @@ class _Spotlight extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
                   ),
-                )),
+                ),
+              ),
+            ),
           ]),
         ),
       );
