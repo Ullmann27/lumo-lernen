@@ -65,14 +65,18 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await tester.runAsync(() async {
+      await Future<void>.delayed(const Duration(milliseconds: 60));
+    });
+    await tester.pump(const Duration(milliseconds: 120));
 
     expect(find.text('Geschichten · Lesen & verstehen'), findsOneWidget);
     expect(find.text('Lesegeschichte starten'), findsOneWidget);
     expect(find.textContaining('Verständnisfragen'), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey('story-start-reading-now')));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 700));
 
     expect(find.byType(LumoStoryReaderScreen), findsOneWidget);
     expect(tester.takeException(), isNull);
