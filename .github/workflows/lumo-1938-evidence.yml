@@ -1,0 +1,89 @@
+name: Lumo 1938 exact product screenshot evidence
+on:
+  push:
+    branches: [chatgpt/lumo-1938-evidence-2026-10-12]
+    paths: [.github/workflows/lumo-1938-evidence.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_PRODUCT_SOURCE: '5fe56eb111f5d44a69ba98ef5424033afa6f417b'
+  LUMO_GODOT_SOURCE: 'ec96515a2e359d21e9591120fc81dfd15116e81e'
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: ${{ env.LUMO_PRODUCT_SOURCE }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Freeze exact 1938 product source
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$LUMO_PRODUCT_SOURCE"
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = '0.12.31+1938'
+          test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = "$LUMO_GODOT_SOURCE"
+          mkdir -p screenshots/{polish,learning,creative,connect-four,guided,advanced}
+
+      - name: Resolve locked dependencies
+        run: flutter pub get --enforce-lockfile
+
+      - name: Capture games and parent runtime
+        env:
+          LUMO_POLISH_CAPTURES: screenshots/polish
+        run: flutter test --no-pub test/design/parent_games_polish_test.dart
+
+      - name: Capture learning and Fold runtime
+        env:
+          LUMO_LEARNING_CAPTURES: screenshots/learning
+        run: flutter test --no-pub test/design/lumo_learning_tree_fold_visual_test.dart
+
+      - name: Capture creative learning worlds
+        env:
+          LUMO_POLISH_CAPTURES: screenshots/creative
+        run: flutter test --no-pub test/design/creative_learning_visual_test.dart
+
+      - name: Capture Connect Four gameplay
+        env:
+          LUMO_CONNECT_CAPTURES: screenshots/connect-four
+        run: flutter test --no-pub test/design/connect_four_visual_test.dart
+
+      - name: Capture guided learning examples
+        env:
+          LUMO_GUIDED_CAPTURE_DIR: screenshots/guided
+        run: flutter test --no-pub test/design/guided_learning_runtime_capture_test.dart
+
+      - name: Capture only the six 1938 advanced runtime fixtures
+        env:
+          LUMO_ADVANCED_CAPTURES: screenshots/advanced
+        run: |
+          flutter test --no-pub test/tutoring/guided_lesson_runtime_test.dart             --plain-name 'actual course, error, hint, retry, save'
+
+      - name: Verify screenshot inventory and provenance
+        run: |
+          set -euo pipefail
+          find screenshots -type f -name '*.png' -printf '%p %s bytes\n' | sort | tee screenshots/MANIFEST.txt
+          test "$(find screenshots -type f -name '*.png' | wc -l)" -ge 15
+          test "$(find screenshots/advanced -type f -name '*.png' | wc -l)" -ge 6
+          printf 'flutter_source=%s\ngodot_source=%s\nversion=0.12.31+1938\n'             "$LUMO_PRODUCT_SOURCE" "$LUMO_GODOT_SOURCE" > screenshots/PROVENANCE.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1938-exact-product-screenshots-${{ github.run_id }}
+          path: screenshots/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
