@@ -102,3 +102,23 @@ class EmulatorSystemDialogTest(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'enabled Wait'):
                 self.recover(Path(directory), nodes, 'disabled')
             self.adb.assert_not_called()
+
+
+class CombinedDiceTileTest(unittest.TestCase):
+    def test_dice_tile_uses_actual_combined_semantics(self):
+        # Real Android 16 hierarchy from run 38216769933: the title and
+        # subtitle are ONE accessibility label, never the short title alone.
+        observed = {
+            'package': PACKAGE, 'enabled': 'true',
+            'content-desc': 'Würfel-Wettlauf. Wer ist zuerst am Stern?',
+            'bounds': '[232,326][700,432]',
+        }
+        requested = 'Würfel-Wettlauf. Wer ist zuerst am Stern?'
+        values = (observed.get('text', ''), observed['content-desc'])
+        self.assertTrue(any(requested == v or requested in v.split('\\n')
+                            for v in values))
+        self.assertFalse(any('Würfel-Wettlauf' == v or
+                             'Würfel-Wettlauf' in v.split('\\n')
+                             for v in values))
+        source = (ROOT / '.github/probes/lumo_games_android_probe.py').read_text()
+        self.assertIn("existing.flutter_tap(out, 'Würfel-Wettlauf. Wer ist zuerst am Stern?'", source)
