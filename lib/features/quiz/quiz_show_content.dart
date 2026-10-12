@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
-import '../../domain/quiz/quiz_rewards.dart';
 import '../../domain/quiz/quiz_show.dart';
 
 class QuizShowContent extends StatefulWidget {
@@ -20,8 +19,6 @@ class QuizShowContent extends StatefulWidget {
 class _QuizShowContentState extends State<QuizShowContent> {
   static const _engine = QuizShowEngine();
   static const _bank = QuizQuestionBank();
-  final _rng = math.Random();
-
   late QuizShowState _state;
 
   @override
@@ -38,27 +35,22 @@ class _QuizShowContentState extends State<QuizShowContent> {
     _state = _engine.start(questions: questions);
   }
 
-  QuizCoupon _drawCoupon(int level) {
-    final pool = QuizRewardCatalog.poolForLevel(level);
-    if (pool.isEmpty) {
-      return const QuizCoupon(
-        id: 'lumo_stern',
-        title: 'Lumo-Stern',
-        emoji: '⭐',
-        description: 'Du hast eine sichere Quiz-Stufe geschafft.',
-        milestoneLevel: 1,
-      );
-    }
-    return pool[_rng.nextInt(pool.length)];
-  }
-
   void _select(int index) {
     setState(() => _state = _engine.selectAnswer(_state, index));
   }
 
   void _reveal() {
     setState(() {
-      _state = _engine.reveal(_state, drawCouponForMilestone: _drawCoupon);
+      final wasGameOver = _state.gameOver;
+      final next = _engine.reveal(_state);
+      _state = next;
+
+      // Die Engine liefert die Auszahlung nur beim ersten Spielende.
+      // Dadurch werden Sterne weder bei Meilensteinen doppelt gebucht noch
+      // beim erneuten Rendern des Ergebnisbildschirms nochmals vergeben.
+      if (!wasGameOver && next.gameOver && next.awardedStars > 0) {
+        widget.appState.addStars(next.awardedStars);
+      }
     });
   }
 
@@ -80,7 +72,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF7ED),
       appBar: AppBar(
-        title: const Text('Wer wird Lumo-Champion?'),
+        title: const Text('Wer wird Lumo-Meister?'),
         backgroundColor: Colors.white,
         foregroundColor: LumoColors.ink900,
         elevation: 0,
@@ -205,7 +197,7 @@ class _QuizCard extends StatelessWidget {
             FilledButton.icon(
               onPressed: onRestart,
               icon: const Icon(Icons.refresh_rounded),
-              label: Text(state.won ? 'Nochmal Champion werden' : 'Neue Quizrunde starten'),
+              label: Text(state.won ? 'Nochmal Lumo-Meister werden' : 'Neue Quizrunde starten'),
             )
           else if (!answered)
             FilledButton.icon(
@@ -221,7 +213,13 @@ class _QuizCard extends StatelessWidget {
             ),
           if (answered) ...[
             const SizedBox(height: 14),
-            _ResultPanel(correct: isCorrect, answer: question.correctAnswer, won: state.won),
+            _ResultPanel(
+              correct: isCorrect,
+              answer: question.correctAnswer,
+              won: state.won,
+              securedStars: state.securedStars,
+              awardedStars: state.awardedStars,
+            ),
           ],
         ],
       ),
@@ -370,19 +368,32 @@ class _AudienceVotes extends StatelessWidget {
 }
 
 class _ResultPanel extends StatelessWidget {
-  const _ResultPanel({required this.correct, required this.answer, required this.won});
+  const _ResultPanel({
+    required this.correct,
+    required this.answer,
+    required this.won,
+    required this.securedStars,
+    required this.awardedStars,
+  });
+
   final bool correct;
   final String answer;
   final bool won;
+  final int securedStars;
+  final int awardedStars;
 
   @override
   Widget build(BuildContext context) {
     final color = correct ? Colors.green : Colors.redAccent;
     final text = won
-        ? '🏆 Lumo-Champion! Du hast alle Fragen geschafft.'
+        ? '🏆 Lumo-Meister! 20 von 20 geschafft – 5.000 Sterne gewonnen!'
         : correct
-            ? '✅ Richtig! Weiter geht’s.'
-            : '💡 Richtig wäre: $answer';
+            ? securedStars > 0
+                ? '✅ Richtig! Sichere Stufe: $securedStars Sterne.'
+                : '✅ Richtig! Weiter geht’s.'
+            : awardedStars > 0
+                ? '💡 Richtig wäre: $answer\n⭐ Du sicherst $awardedStars Sterne.'
+                : '💡 Richtig wäre: $answer\nBeim nächsten Versuch schaffst du die erste Stern-Stufe!';
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -390,7 +401,13 @@ class _ResultPanel extends StatelessWidget {
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(color: color.withOpacity(.25)),
       ),
-      child: Text(text, style: LumoTextStyles.body.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w800)),
+      child: Text(
+        text,
+        style: LumoTextStyles.body.copyWith(
+          color: LumoColors.ink900,
+          fontWeight: FontWeight.w800,
+        ),
+      ),
     );
   }
 }
@@ -407,23 +424,38 @@ class _PrizeColumn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Sichere Stufen', style: LumoTextStyles.heading3),
+          Text('Deine Stern-Leiter', style: LumoTextStyles.heading3),
+          const SizedBox(height: 6),
+          Text(
+            'Bei einer falschen Antwort bleiben die zuletzt gesicherten Sterne erhalten.',
+            style: LumoTextStyles.caption,
+          ),
           const SizedBox(height: 10),
-          _Milestone(label: 'Frage 5', emoji: '🍦', active: state.currentQuestionIndex >= 4),
-          _Milestone(label: 'Frage 10', emoji: '🎬', active: state.currentQuestionIndex >= 9),
-          _Milestone(label: 'Frage 15', emoji: '🧸', active: state.currentQuestionIndex >= 14),
-          if (state.earnedCoupons.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            Text('Gewonnen', style: LumoTextStyles.heading3),
-            const SizedBox(height: 8),
-            for (final c in state.earnedCoupons)
-              Container(
-                margin: const EdgeInsets.only(bottom: 8),
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(color: const Color(0xFFFFF7ED), borderRadius: BorderRadius.circular(LumoRadius.md)),
-                child: Text('${c.emoji} ${c.title}', style: LumoTextStyles.body),
-              ),
-          ],
+          _Milestone(
+            label: 'Frage 5  •  50 Sterne',
+            emoji: '⭐',
+            active: state.securedStars >= 50,
+          ),
+          _Milestone(
+            label: 'Frage 10  •  200 Sterne',
+            emoji: '🌟',
+            active: state.securedStars >= 200,
+          ),
+          _Milestone(
+            label: 'Frage 15  •  800 Sterne',
+            emoji: '🏅',
+            active: state.securedStars >= 800,
+          ),
+          _Milestone(
+            label: 'Frage 20  •  5.000 Sterne',
+            emoji: '🎢',
+            active: state.securedStars >= 5000,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Finalziel: 5.000 Sterne – Family-Park-Stufe',
+            style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900),
+          ),
         ],
       ),
     );
