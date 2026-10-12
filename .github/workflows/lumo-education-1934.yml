@@ -1,5 +1,8 @@
 name: Lumo 1934 exact validated source APK build, no publication
 on:
+  push:
+    branches: [sol/lumo-1934-android-delivery-2026-10-12]
+    paths: [.github/workflows/lumo-education-1934.yml]
   workflow_dispatch:
 
 permissions:
@@ -14,7 +17,7 @@ env:
 
 jobs:
   verify-build:
-    # Manual one-off exact source build. QA/documentation pushes never rebuild.
+    # One-off exact source build. Other QA/documentation paths never rebuild.
     if: github.ref == 'refs/heads/sol/lumo-1934-android-delivery-2026-10-12'
     runs-on: ubuntu-latest
     timeout-minutes: 65
