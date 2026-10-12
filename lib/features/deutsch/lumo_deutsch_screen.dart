@@ -11,11 +11,12 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../learning_modules/lumo_phrases.dart';
 import '../learning_modules/wort_diktat/wort_diktat_screen.dart';
+import '../story/lumo_story_library_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import 'deutsch_gap_sentences.dart';
 
 /// Deutsch nach Heinz' Bild 04: Lückensatz mit Vorlesen, vier Bereiche
-/// (Lesen, Wörter, Diktat, Schreibcoach) und der echte Tagesfortschritt.
+/// (Lesen, Geschichten, Wörter, Diktat, Schreibcoach) und der echte Tagesfortschritt.
 class LumoDeutschScreen extends StatefulWidget {
   const LumoDeutschScreen({super.key, required this.appState, this.random});
 
@@ -149,6 +150,13 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
       unit: 'Aktives Lesen',
       mood: LumoMood.think,
       lumoMessage: 'Lies laut vor.\nIch höre dir zu\nund helfe freundlich.',
+    ));
+  }
+
+  void _openStories() {
+    _open(LumoStoryLibraryScreen(
+      appState: widget.appState,
+      gradeLevel: widget.appState.state.grade,
     ));
   }
 
@@ -537,6 +545,13 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
         Icons.auto_stories_rounded,
         const Color(0xFFE08A26),
         _openReading,
+      ),
+      (
+        'Geschichten',
+        'Lesen & verstehen',
+        Icons.library_books_rounded,
+        const Color(0xFF2F80ED),
+        _openStories,
       ),
       (
         'Wörter',
