@@ -35,10 +35,21 @@ class QuizQuestionBank {
       bool Function(QuizQuestion q) predicate,
     ) {
       final all = allQuestions.where(predicate).toList();
-      final fresh = all.where((q) => !seenIds.contains(q.id)).toList();
-      final source = fresh.length >= count ? fresh : all;
-      source.shuffle(rng);
-      return source.take(count).toList();
+      final fresh = all.where((q) => !seenIds.contains(q.id)).toList()
+        ..shuffle(rng);
+
+      if (fresh.length >= count) {
+        return fresh.take(count).toList();
+      }
+
+      // Frische Fragen niemals verwerfen: zuerst alle ungesehenen nutzen,
+      // danach nur den fehlenden Rest aus bereits gesehenen Fragen auffuellen.
+      final seen = all.where((q) => seenIds.contains(q.id)).toList()
+        ..shuffle(rng);
+      return <QuizQuestion>[
+        ...fresh,
+        ...seen.take(count - fresh.length),
+      ];
     }
 
     bool grade1Medium(QuizQuestion q) {
