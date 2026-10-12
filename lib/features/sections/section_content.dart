@@ -576,9 +576,11 @@ class _MissionsPage extends StatelessWidget {
       children: [
         TutoringFlowCard(
           appState: appState,
-          onStartTutoring: () => startSession(
-            subject: 'Alle',
-            message: 'Lumo-Nachhilfe\nstartet jetzt.\nWir machen das\nzusammen.',
+          onStartTutoring: (subject, unit) => startSession(
+            subject: subject,
+            unit: unit,
+            message:
+                'Nachhilfe:\n${Curriculum.prettifyUnit(unit)}\nWir machen das zusammen.',
             sessionKind: LumoSessionKind.tutoring,
           ),
         ),
