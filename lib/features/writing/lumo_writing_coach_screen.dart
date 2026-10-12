@@ -428,7 +428,9 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
                   _buildPrompt(),
                   const SizedBox(height: 12),
                   _buildModePicker(),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
+                  _buildRecognitionHint(),
+                  const SizedBox(height: 12),
                   _buildCanvas(),
                   const SizedBox(height: 12),
                   if (_lastFeedback != null) _buildFeedback(),
@@ -502,7 +504,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
     // Konsistente Hierarchie mit WordCoach: Label oben (klein),
     // Title unten (gross + Akzentfarbe). Speaker-Icon rechts.
     return LumoPromptCard(
-      label: 'Mit dem Finger - keine Eile!',
+      label: 'Fingerfreundlich · keine Schönschrift nötig',
       title: 'Schreibe den Buchstaben $_currentLetter.',
       accent: _gradient[1],
       onSpeakerTap: () => unawaited(_speakPrompt()),
@@ -577,6 +579,51 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
             ),
           );
         }).toList(),
+      ),
+    );
+  }
+
+  Widget _buildRecognitionHint() {
+    return Container(
+      key: const ValueKey('writing-finger-friendly-badge'),
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+      decoration: BoxDecoration(
+        color: _gradient[0].withOpacity(0.08),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: _gradient[0].withOpacity(0.24)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.auto_awesome_rounded, color: _gradient[1], size: 21),
+          const SizedBox(width: 9),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Erkennen statt Schönschrift',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.w900,
+                    fontSize: 13,
+                    color: _gradient[1],
+                  ),
+                ),
+                const SizedBox(height: 1),
+                const Text(
+                  'Lumo prüft, ob der Buchstabe erkennbar ist. Wackelige Fingerlinien sind okay.',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 11.5,
+                    color: Color(0xFF4B5563),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
