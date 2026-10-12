@@ -355,8 +355,8 @@ def subtraction_course(out: Path) -> dict:
     active_help = None
     expected_wrong = 1
     if voice.CANDIDATE_VERSION >= 1932:
-        tap(out, "5", "minus-second-real-wrong-answer")
-        wait_text(out, "Fast! Probiere es noch einmal", "minus-second-wrong-feedback", scroll=True)
+        tap(out, "5, noch einmal versuchen", "minus-second-real-wrong-answer")
+        wait_text(out, "Wir können es mit kleineren Schritten probieren", "minus-second-wrong-feedback", scroll=True)
         # Waiting and scrolling must never accept an explanation on behalf of
         # the child. Require the visible offer and its actual enabled action.
         wait_text(out, "Zeig mir wie", "minus-active-help-offer", timeout=60, scroll=True)

@@ -49,6 +49,45 @@ Future<void> _capture(WidgetTester tester, String name) async {
   });
 }
 
+Future<LumoAppState> _twoWrong(WidgetTester tester) async {
+  const size = Size(360, 800);
+  await tester.binding.setSurfaceSize(size);
+  tester.view.devicePixelRatio = 1;
+  tester.view.physicalSize = size;
+  addTearDown(tester.view.resetDevicePixelRatio);
+  addTearDown(tester.view.resetPhysicalSize);
+  addTearDown(() => tester.binding.setSurfaceSize(null));
+  late LumoAppState app;
+  await tester.runAsync(() async {
+    app = LumoAppState(walletRepository: RewardWalletRepository());
+    app.setSection(LumoSection.learn);
+    await app.hydrateFromWallet();
+    await app.loadLearningProfile();
+    app.updateSettings(
+        const AppSettings(voiceEnabled: false, reduceAnimations: true));
+  });
+  addTearDown(app.dispose);
+  await tester.pumpWidget(MaterialApp(home: PlusBis10Screen(appState: app)));
+  await _frames(tester);
+  final correct = RegExp(r'\d+')
+      .allMatches(LumoCompanionRequests.instance.taskContext.value!.prompt)
+      .map((m) => int.parse(m[0]!))
+      .reduce((a, b) => a + b);
+  final wrong = tester
+      .widgetList<Text>(find.descendant(
+          of: find.byType(GridView), matching: find.byType(Text)))
+      .map((t) => int.parse(t.data!))
+      .firstWhere((v) => v != correct);
+  final choice =
+      find.descendant(of: find.byType(GridView), matching: find.text('$wrong'));
+  for (var i = 0; i < 2; i++) {
+    await tester.ensureVisible(choice);
+    await tester.tap(choice);
+    await _frames(tester);
+  }
+  return app;
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(() async {
@@ -147,6 +186,50 @@ void main() {
               await tester.pump();
             }));
   }
+
+  testWidgets(
+      'dismissal survives unfolding into the shared layout',
+      (tester) => withClock(tester.binding.clock, () async {
+            await _twoWrong(tester);
+            await tester.pump(const Duration(seconds: 18));
+            final dismiss = find.text('Später');
+            expect(dismiss, findsOneWidget);
+            await tester.ensureVisible(dismiss);
+            await tester.tap(dismiss);
+            await tester.pump();
+            const folded = Size(967, 805);
+            tester.view.physicalSize = folded;
+            await tester.binding.setSurfaceSize(folded);
+            await tester.pump();
+            await tester.pump(const Duration(seconds: 18));
+            expect(find.byKey(const ValueKey('lumo-inline-help-accept')),
+                findsNothing);
+            expect(
+                LumoCompanionRequests.instance.taskContext.value!.attempts, 2);
+            await tester.pumpWidget(const SizedBox.shrink());
+            await tester.pump();
+          }));
+
+  testWidgets(
+      'a real lesson touch starts a new quiet period',
+      (tester) => withClock(tester.binding.clock, () async {
+            await _twoWrong(tester);
+            // _twoWrong already advances ~1.4s after the last persisted tap.
+            await tester.pump(const Duration(seconds: 12));
+            expect(find.byKey(const ValueKey('lumo-inline-help-accept')),
+                findsNothing);
+            final heading = find.text('Zähle mit Lumo');
+            await tester.ensureVisible(heading);
+            await tester.tap(heading);
+            await tester.pump(const Duration(seconds: 2));
+            expect(find.byKey(const ValueKey('lumo-inline-help-accept')),
+                findsNothing);
+            await tester.pump(const Duration(seconds: 18));
+            expect(find.byKey(const ValueKey('lumo-inline-help-accept')),
+                findsOneWidget);
+            await tester.pumpWidget(const SizedBox.shrink());
+            await tester.pump();
+          }));
 
   testWidgets(
       'actual guided Minus offers help without changing the task',

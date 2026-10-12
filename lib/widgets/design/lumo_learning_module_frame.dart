@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:clock/clock.dart';
 
 import '../../app/app_state.dart';
 import '../../app/lumo_companion_host.dart';
+import '../../core/lumo_companion_guide.dart';
 import '../fox/lumo_companion_requests.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../fox/lumo_character.dart';
@@ -34,6 +36,7 @@ class LumoLearningModuleFrame extends StatefulWidget {
     this.guidance = 'Gemeinsam schaffen wir das!',
     this.mistakeGuidance = 'Fehler helfen beim Lernen.',
     this.companionUnit,
+    this.companionGuide,
   });
 
   final LumoAppState appState;
@@ -55,6 +58,7 @@ class LumoLearningModuleFrame extends StatefulWidget {
   final String guidance;
   final String mistakeGuidance;
   final String? companionUnit;
+  final LumoCompanionGuide? companionGuide;
   final bool Function() canLeave;
   final Widget child;
 
@@ -64,6 +68,8 @@ class LumoLearningModuleFrame extends StatefulWidget {
 }
 
 class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
+  late final _guide =
+      widget.companionGuide ?? LumoCompanionGuide(now: clock.now());
   late final _lumo = widget.characterController ?? LumoCharacterController();
   final _taskScroll = ScrollController();
   ScrollController? get _scrollController =>
@@ -253,6 +259,7 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
   }
 
   Widget _helpOffer() => LumoCompanionHost(
+      guide: _guide,
       appState: widget.appState,
       section: 'learn',
       taskUnit: widget.companionUnit ?? widget.moduleTitle,
@@ -473,108 +480,113 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
   @override
   Widget build(BuildContext context) {
     final quiet = LumoLessonStyle.reducedMotion(context, widget.appState);
-    return MediaQuery(
-      data: MediaQuery.of(context).copyWith(disableAnimations: quiet),
-      child: Scaffold(
-        backgroundColor: LumoVisualTokens.night,
-        body: LumoSceneBackground(
-          scene: LumoScene.library,
-          dimmed: true,
-          child: SafeArea(
-            child: LumoLessonStyle.shortLandscape(context)
-                ? _landscape()
-                : Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 900),
-                            child: LumoTopBar(appState: widget.appState),
+    return Listener(
+      onPointerDown: (_) => LumoCompanionRequests.instance.noteActivity(),
+      onPointerMove: (_) => LumoCompanionRequests.instance.noteActivity(),
+      onPointerSignal: (_) => LumoCompanionRequests.instance.noteActivity(),
+      child: MediaQuery(
+        data: MediaQuery.of(context).copyWith(disableAnimations: quiet),
+        child: Scaffold(
+          backgroundColor: LumoVisualTokens.night,
+          body: LumoSceneBackground(
+            scene: LumoScene.library,
+            dimmed: true,
+            child: SafeArea(
+              child: LumoLessonStyle.shortLandscape(context)
+                  ? _landscape()
+                  : Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 900),
+                              child: LumoTopBar(appState: widget.appState),
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: LayoutBuilder(builder: (context, constraints) {
-                          return _LumoLessonViewport(
-                              height: constraints.maxHeight - 28,
-                              child: Builder(builder: (context) {
-                                final wide = constraints.maxWidth >= 760;
-                                final compactLandscape =
-                                    constraints.maxHeight < 400 &&
-                                        constraints.maxWidth >= 560;
-                                if (wide || compactLandscape) {
-                                  return Center(
-                                    child: ConstrainedBox(
-                                      constraints:
-                                          const BoxConstraints(maxWidth: 1240),
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 12, 20, 16),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              flex: compactLandscape ? 1 : 2,
-                                              child: SingleChildScrollView(
-                                                child: _hero(wide: true),
+                        Expanded(
+                          child: LayoutBuilder(builder: (context, constraints) {
+                            return _LumoLessonViewport(
+                                height: constraints.maxHeight - 28,
+                                child: Builder(builder: (context) {
+                                  final wide = constraints.maxWidth >= 760;
+                                  final compactLandscape =
+                                      constraints.maxHeight < 400 &&
+                                          constraints.maxWidth >= 560;
+                                  if (wide || compactLandscape) {
+                                    return Center(
+                                      child: ConstrainedBox(
+                                        constraints: const BoxConstraints(
+                                            maxWidth: 1240),
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              20, 12, 20, 16),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                flex: compactLandscape ? 1 : 2,
+                                                child: SingleChildScrollView(
+                                                  child: _hero(wide: true),
+                                                ),
                                               ),
-                                            ),
-                                            const SizedBox(width: 24),
-                                            Expanded(
-                                              flex: compactLandscape ? 3 : 5,
-                                              child: widget.scrollable
-                                                  ? SingleChildScrollView(
-                                                      controller:
-                                                          _scrollController,
-                                                      child: _card())
-                                                  : _fixedCard(
-                                                      constraints.maxHeight -
-                                                          28),
-                                            ),
-                                          ],
+                                              const SizedBox(width: 24),
+                                              Expanded(
+                                                flex: compactLandscape ? 3 : 5,
+                                                child: widget.scrollable
+                                                    ? SingleChildScrollView(
+                                                        controller:
+                                                            _scrollController,
+                                                        child: _card())
+                                                    : _fixedCard(
+                                                        constraints.maxHeight -
+                                                            28),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
+                                    );
+                                  }
+                                  if (!widget.scrollable) {
+                                    return Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          12, 8, 12, 12),
+                                      child: _fixedCard(
+                                          constraints.maxHeight - 20),
+                                    );
+                                  }
+                                  return SingleChildScrollView(
+                                    controller: _scrollController,
+                                    padding: const EdgeInsets.only(bottom: 16),
+                                    child: Column(
+                                      children: [
+                                        _hero(
+                                            wide: false,
+                                            availableHeight:
+                                                constraints.maxHeight),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12),
+                                          child: _card(),
+                                        ),
+                                      ],
                                     ),
                                   );
-                                }
-                                if (!widget.scrollable) {
-                                  return Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        12, 8, 12, 12),
-                                    child:
-                                        _fixedCard(constraints.maxHeight - 20),
-                                  );
-                                }
-                                return SingleChildScrollView(
-                                  controller: _scrollController,
-                                  padding: const EdgeInsets.only(bottom: 16),
-                                  child: Column(
-                                    children: [
-                                      _hero(
-                                          wide: false,
-                                          availableHeight:
-                                              constraints.maxHeight),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12),
-                                        child: _card(),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }));
-                        }),
-                      ),
-                      if (widget.footer != null) widget.footer!,
-                      LumoBottomNavigation(
-                        active: LumoSection.learn,
-                        onSelect: _leaveTo,
-                      ),
-                    ],
-                  ),
+                                }));
+                          }),
+                        ),
+                        if (widget.footer != null) widget.footer!,
+                        LumoBottomNavigation(
+                          active: LumoSection.learn,
+                          onSelect: _leaveTo,
+                        ),
+                      ],
+                    ),
+            ),
           ),
         ),
       ),

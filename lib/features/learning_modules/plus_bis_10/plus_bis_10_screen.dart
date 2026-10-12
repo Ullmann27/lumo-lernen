@@ -17,10 +17,12 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:clock/clock.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../app/lumo_companion_host.dart';
+import '../../../core/lumo_companion_guide.dart';
 import '../../../core/lumo_voice.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
@@ -43,6 +45,7 @@ class PlusBis10Screen extends StatefulWidget {
 
 class _PlusBis10ScreenState extends State<PlusBis10Screen>
     with TickerProviderStateMixin, WidgetsBindingObserver {
+  late final _companionGuide = LumoCompanionGuide(now: clock.now());
   static const int _totalTasks = 30;
   static const List<Color> _gradient = [
     Color(0xFFFB923C),
@@ -674,92 +677,100 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         ))),
       );
     }
-    return PopScope<void>(
-        canPop: _canLeave,
-        child: LayoutBuilder(builder: (context, layout) {
-          if (layout.maxWidth >= 760 ||
-              LumoLessonStyle.shortLandscape(context)) {
-            return LumoLearningModuleFrame(
-              appState: widget.appState,
-              title: 'Mathe-Abenteuer',
-              moduleTitle: 'Plus bis 10',
-              guidance: 'Zähle beide Gruppen zusammen.',
-              mistakeGuidance: 'Zähle jeden Apfel einmal.',
-              icon: Icons.calculate_rounded,
-              taskIndex: _taskIdx,
-              totalTasks: _totalTasks,
-              correctAnswers: _correctCount,
-              correctCaption: 'beim ersten Versuch',
-              hasMistake: _answered && _selectedAnswer != _correct,
-              characterController: _lumo,
-              canLeave: () => _canLeave,
-              child: LumoLessonTaskLayout(
-                spacing: 8,
-                task: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _buildTaskCard(),
-                    const SizedBox(height: 8),
-                    _buildLearningHelp(),
-                    if (_saving || _saveError != null) _buildSaveStatus(),
-                  ],
+    return Listener(
+      onPointerDown: (_) => LumoCompanionRequests.instance.noteActivity(),
+      onPointerMove: (_) => LumoCompanionRequests.instance.noteActivity(),
+      onPointerSignal: (_) => LumoCompanionRequests.instance.noteActivity(),
+      child: PopScope<void>(
+          canPop: _canLeave,
+          child: LayoutBuilder(builder: (context, layout) {
+            if (layout.maxWidth >= 760 ||
+                LumoLessonStyle.shortLandscape(context)) {
+              return LumoLearningModuleFrame(
+                appState: widget.appState,
+                title: 'Mathe-Abenteuer',
+                moduleTitle: 'Plus bis 10',
+                companionGuide: _companionGuide,
+                guidance: 'Zähle beide Gruppen zusammen.',
+                mistakeGuidance: 'Zähle jeden Apfel einmal.',
+                icon: Icons.calculate_rounded,
+                taskIndex: _taskIdx,
+                totalTasks: _totalTasks,
+                correctAnswers: _correctCount,
+                correctCaption: 'beim ersten Versuch',
+                hasMistake: _answered && _selectedAnswer != _correct,
+                characterController: _lumo,
+                canLeave: () => _canLeave,
+                child: LumoLessonTaskLayout(
+                  spacing: 8,
+                  task: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _buildTaskCard(),
+                      const SizedBox(height: 8),
+                      _buildLearningHelp(),
+                      if (_saving || _saveError != null) _buildSaveStatus(),
+                    ],
+                  ),
+                  answers: _buildAnswerButtons(wide: true),
                 ),
-                answers: _buildAnswerButtons(wide: true),
-              ),
-            );
-          }
-          return Scaffold(
-            backgroundColor: LumoVisualTokens.night,
-            body: LumoSceneBackground(
-              scene: LumoScene.library,
-              showPlaceholderLabel: false,
-              dimmed: true,
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
-                      child: LumoTopBar(appState: widget.appState),
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: Column(
-                          children: [
-                            _buildHero(),
-                            AnimatedBuilder(
-                              animation:
-                                  Listenable.merge([_entryCtrl, _shakeCtrl]),
-                              builder: (_, child) {
-                                final shake = !_reduceMotion &&
-                                        _shakeCtrl.value < 1.0
-                                    ? math.sin(_shakeCtrl.value * math.pi * 4) *
-                                        8
-                                    : 0.0;
-                                return Transform.translate(
-                                  offset: Offset(shake, 0),
-                                  child: Opacity(
-                                      opacity:
-                                          _reduceMotion ? 1 : _entryCtrl.value,
-                                      child: child),
-                                );
-                              },
-                              child: _buildAdventureCard(),
-                            ),
-                          ],
+              );
+            }
+            return Scaffold(
+              backgroundColor: LumoVisualTokens.night,
+              body: LumoSceneBackground(
+                scene: LumoScene.library,
+                showPlaceholderLabel: false,
+                dimmed: true,
+                child: SafeArea(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+                        child: LumoTopBar(appState: widget.appState),
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Column(
+                            children: [
+                              _buildHero(),
+                              AnimatedBuilder(
+                                animation:
+                                    Listenable.merge([_entryCtrl, _shakeCtrl]),
+                                builder: (_, child) {
+                                  final shake = !_reduceMotion &&
+                                          _shakeCtrl.value < 1.0
+                                      ? math.sin(
+                                              _shakeCtrl.value * math.pi * 4) *
+                                          8
+                                      : 0.0;
+                                  return Transform.translate(
+                                    offset: Offset(shake, 0),
+                                    child: Opacity(
+                                        opacity: _reduceMotion
+                                            ? 1
+                                            : _entryCtrl.value,
+                                        child: child),
+                                  );
+                                },
+                                child: _buildAdventureCard(),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    LumoBottomNavigation(
-                      active: LumoSection.learn,
-                      onSelect: _leaveTo,
-                    ),
-                  ],
+                      LumoBottomNavigation(
+                        active: LumoSection.learn,
+                        onSelect: _leaveTo,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        }));
+            );
+          })),
+    );
   }
 
   /// Lumo zeigt auf das Buch, links seine Sprechblase, rechts der Spruch.
@@ -828,6 +839,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             _buildProgressRow(),
             const SizedBox(height: 8),
             LumoCompanionHost(
+              guide: _companionGuide,
               appState: widget.appState,
               section: 'learn',
               taskUnit: 'Plus bis 10',

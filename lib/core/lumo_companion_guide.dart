@@ -130,7 +130,21 @@ class LumoCompanionGuide {
   DateTime? _lastProposal;
   DateTime? _mutedUntil;
   int? _initialSolved;
+  int? _profileGeneration;
   final Set<String> _offered = <String>{};
+
+  /// A lesson owns pacing across layout changes; a different child starts a
+  /// separate scope rather than inheriting another child's dismissal.
+  void bindProfile(int generation, DateTime now) {
+    if (_profileGeneration == generation) return;
+    if (_profileGeneration != null) {
+      _lastInteraction = now;
+      _lastProposal = _mutedUntil = null;
+      _initialSolved = null;
+      _offered.clear();
+    }
+    _profileGeneration = generation;
+  }
 
   void noteInteraction(DateTime now) => _lastInteraction = now;
 
@@ -187,6 +201,7 @@ class LumoCompanionGuide {
     required DateTime now,
     bool routeVisible = true,
   }) {
+    bindProfile(scene.profileGeneration, now);
     _initialSolved ??= scene.solvedTasks;
     if (!routeVisible || scene.schoolwork) return null;
     final needsHelp = scene.hasTask &&

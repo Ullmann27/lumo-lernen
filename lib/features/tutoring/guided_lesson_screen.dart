@@ -204,7 +204,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       subject: 'Mathematik',
       unit: widget.lesson.schoolUnit,
       prompt: _step.instruction,
-      answering: _step.isQuestion && !_passed,
+      answering:
+          _step.isQuestion && !_passed && !_busy && !_progress.hasPending,
       attempts: _attempts,
       helpLevel: _helpLevel,
       lastAnswer: _lastAnswer,

@@ -47,6 +47,7 @@ jobs:
           test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = '853175c634dcb62c325fbd9b272e2ebc791830ad'
           git diff --exit-code HEAD --
           printf '%s\n' 'Test artifacts only: no store release, payment, public publication or speech API call.' > proof/scope.txt
+          printf '%s\n' 'Reviewed candidate: pending-answer help blocked; lesson pacing survives layout changes; actual lesson touches restart the quiet period; invisible-helper ticker initialized safely.' > proof/review-repairs.txt
       - name: Exact dependencies and current analysis
         run: |
           set -euo pipefail

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:clock/clock.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -197,6 +198,58 @@ void main() {
     LumoCompanionRequests.instance.clearLearningScope();
   });
   tearDown(LumoCompanionRequests.instance.clearLearningScope);
+
+  testWidgets(
+      'pending second wrong answer cannot consume offered help',
+      (tester) => withClock(tester.binding.clock, () async {
+            final store = _RejectableDiscoveryStore();
+            SharedPreferencesStorePlatform.instance = store;
+            final app = await _app(tester);
+            const lesson = GuidedLessonCatalog.subtractTen;
+            await tester.pumpWidget(MaterialApp(
+                home: GuidedLessonScreen(
+                    appState: app, lesson: lesson, discovery: false)));
+            await _frames(tester);
+            for (final step in lesson.steps) {
+              if (step.isIndependent && step.isQuestion) {
+                final wrong =
+                    step.choices.firstWhere((v) => v != step.expected);
+                final choice = find.byKey(ValueKey('guided-answer-$wrong'));
+                await _tap(tester, choice);
+                store.rejectedKey =
+                    'flutter.${LearningDataNamespace.keyFor("lumo_progress_skills", "learning-test-a")}';
+                await _tap(tester, choice);
+                expect(find.text('Erneut speichern'), findsOneWidget);
+                await tester.pump(const Duration(seconds: 18));
+                expect(find.byKey(const ValueKey('lumo-inline-help-accept')),
+                    findsNothing);
+                expect(
+                    LumoCompanionRequests.instance.taskContext.value!.answering,
+                    isFalse);
+                store.rejectedKey = null;
+                await _tap(tester, find.text('Erneut speichern'));
+                await tester.pump(const Duration(seconds: 18));
+                final offer =
+                    find.byKey(const ValueKey('lumo-inline-help-accept'));
+                expect(offer, findsOneWidget);
+                await _tap(tester, offer);
+                expect(find.byKey(const ValueKey('guided-actual-hint')),
+                    findsOneWidget);
+                final record =
+                    app.learningSkills()['mathematik::minus bis 20']!;
+                expect(record.wrong, 2);
+                expect(record.correct, 0);
+                expect(app.learningDailyDone(), 0);
+                break;
+              }
+              if (step.isQuestion) {
+                await _tap(tester,
+                    find.byKey(ValueKey('guided-answer-${step.expected}')));
+              }
+              await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+            }
+            await _close(tester, app);
+          }));
 
   for (final lesson in [
     GuidedLessonCatalog.bridgeTen,

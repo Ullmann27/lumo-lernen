@@ -26,6 +26,7 @@ class LumoFreeCompanion extends StatefulWidget {
       this.compact = false,
       this.floating = false,
       this.offerOnly = false,
+      this.guide,
       this.proactive = true});
   final LumoCompanionScene scene;
   final ValueChanged<LumoCompanionAction> onAction;
@@ -40,6 +41,7 @@ class LumoFreeCompanion extends StatefulWidget {
   final bool floating;
   final bool proactive;
   final bool offerOnly;
+  final LumoCompanionGuide? guide;
   @override
   State<LumoFreeCompanion> createState() => _LumoFreeCompanionState();
 }
@@ -47,12 +49,8 @@ class LumoFreeCompanion extends StatefulWidget {
 class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   final _time = clock;
-  late var _guide = LumoCompanionGuide(now: _time.now());
-  late final AnimationController _walk = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 1500))
-    ..addStatusListener((s) {
-      if (s == AnimationStatus.completed && mounted) setState(() {});
-    });
+  late var _guide = widget.guide ?? LumoCompanionGuide(now: _time.now());
+  late final AnimationController _walk;
   Timer? _initiative;
   Timer? _turnTimer;
   Timer? _reactionTimer;
@@ -75,7 +73,16 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   @override
   void initState() {
     super.initState();
+    // Offer-only mode may remain invisible for its entire lifetime. Create
+    // the ticker while this element is active, never lazily from dispose.
+    _walk = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1500))
+      ..addStatusListener((s) {
+        if (s == AnimationStatus.completed && mounted) setState(() {});
+      });
     WidgetsBinding.instance.addObserver(this);
+    _guide.bindProfile(widget.scene.profileGeneration, _time.now());
+    LumoCompanionRequests.instance.activity.addListener(_noteActivity);
     LumoCompanionRequests.instance.moveTarget.addListener(_noteActivity);
     LumoCompanionRequests.instance.appExplanationRequested
         .addListener(_explainAppRequested);
@@ -110,7 +117,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     super.didUpdateWidget(oldWidget);
     final scopeChanged = !widget.scene.sameLearningScope(oldWidget.scene);
     if (widget.scene.profileGeneration != oldWidget.scene.profileGeneration) {
-      _guide = LumoCompanionGuide(now: _time.now());
+      _guide = widget.guide ?? LumoCompanionGuide(now: _time.now());
+      _guide.bindProfile(widget.scene.profileGeneration, _time.now());
       _reactionTimer?.cancel();
       _reaction = null;
     }
@@ -438,6 +446,7 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    LumoCompanionRequests.instance.activity.removeListener(_noteActivity);
     LumoCompanionRequests.instance.moveTarget.removeListener(_noteActivity);
     LumoCompanionRequests.instance.appExplanationRequested
         .removeListener(_explainAppRequested);

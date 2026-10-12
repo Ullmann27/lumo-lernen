@@ -20,6 +20,21 @@ void main() {
   });
   tearDown(() => LumoCompanionRequests.instance.clearLearningScope());
 
+  testWidgets(
+      'an invisible inline helper closes without creating a late ticker',
+      (tester) async {
+    final state = LumoAppState();
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: LumoCompanionHost(
+                appState: state, onSection: (_) {}, offerOnly: true))));
+    expect(find.byKey(const ValueKey('lumo-inline-help-accept')), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+    state.dispose();
+  });
+
   Future<void> mount(WidgetTester tester, LumoAppState state,
       ValueChanged<LumoSection> onSection) async {
     await tester.binding.setSurfaceSize(const Size(390, 844));

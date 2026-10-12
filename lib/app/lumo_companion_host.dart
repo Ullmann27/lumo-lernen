@@ -25,6 +25,7 @@ class LumoCompanionHost extends StatelessWidget {
     this.onAskLumo,
     this.offerOnly = false,
     this.taskUnit,
+    this.guide,
   });
 
   final LumoAppState appState;
@@ -39,6 +40,7 @@ class LumoCompanionHost extends StatelessWidget {
   final VoidCallback? onAskLumo;
   final bool offerOnly;
   final String? taskUnit;
+  final LumoCompanionGuide? guide;
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +79,7 @@ class LumoCompanionHost extends StatelessWidget {
           preferredSubject: subject,
         );
         return LumoFreeCompanion(
+          guide: guide,
           offerOnly: offerOnly,
           proactive: offerOnly
               ? taskContext != null && taskContext.lastCorrect == false
