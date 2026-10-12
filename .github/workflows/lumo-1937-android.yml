@@ -2,7 +2,10 @@ name: Lumo1937 exact APK courses, complete Android race and six mandatory views
 on:
   push:
     branches: [sol/lumo-1937-android-acceptance-2026-10-12]
-    paths: [.github/workflows/lumo-1937-android.yml]
+    paths:
+      - .github/workflows/lumo-1937-android.yml
+      - .github/probes/lumo_1937_android_acceptance.py
+      - .github/probes/kart_complete_android_probe.py
   workflow_dispatch:
 permissions:
   contents: read
