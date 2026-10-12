@@ -12,7 +12,26 @@ import traceback
 
 import lumo_free_voice_android_probe as voice
 from kart_complete_android_probe import parse_session
+from lumo_games_android_controls import enabled_button_bounds, navigation_scroll_bounds
 existing = voice.existing
+
+
+def navigation_tap(out, caption):
+    for attempt in range(10):
+        nodes = existing.live.live_nodes(out, 'games-targeted-navigation-' + str(attempt))
+        box = enabled_button_bounds(nodes, existing.PACKAGE, caption)
+        if box:
+            existing.base.adb('shell', 'input', 'tap', str((box[0]+box[2])//2), str((box[1]+box[3])//2))
+            time.sleep(1)
+            return
+        scroll = navigation_scroll_bounds(nodes, existing.PACKAGE)
+        if scroll is None:
+            raise RuntimeError('No actual navigation scroll for ' + caption)
+        x = (scroll[0]+scroll[2])//2
+        low, high = round(scroll[1]+.2*(scroll[3]-scroll[1])), round(scroll[1]+.8*(scroll[3]-scroll[1]))
+        existing.base.adb('shell', 'input', 'swipe', str(x), str(high), str(x), str(low), '400')
+        time.sleep(.5)
+    raise RuntimeError('No fully visible enabled navigation button: ' + caption)
 
 
 def observed_label(out, label, tag):
@@ -58,7 +77,7 @@ def main():
         before_wallet = existing.wallet(out, 'games-before-wallet')
         existing.base.display(926, 362, 160)
         existing.base.adb('shell', 'settings', 'put', 'system', 'font_scale', '1.6')
-        existing.flutter_tap(out, 'Spielen', 'games-navigation')
+        navigation_tap(out, 'Spielen')
         existing.flutter_tap(out, 'Würfel-Wettlauf', 'actual-dice-entry', scroll_attempts=32)
         existing.capture(out, '30_actual_android_dice_large_text_before')
         existing.flutter_tap(out, 'Würfeln!', 'actual-dice-roll')

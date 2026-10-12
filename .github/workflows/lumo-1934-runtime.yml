@@ -63,6 +63,9 @@ jobs:
               'scripts/tests/fixtures/android_1934_course_hub.xml',
               'docs/design/2026-10-12-board-games/ANDROID-1934.md',
               '.github/probes/lumo_games_android_probe.py',
+              '.github/probes/lumo_games_android_controls.py',
+              'scripts/tests/test_android_1934_games_navigation.py',
+              'scripts/tests/fixtures/android_1934_short_landscape_navigation.xml',
               '.github/probes/lumo_1934_android_acceptance.py',
               'scripts/tests/test_android_1934_games_delivery.py',
               '.github/workflows/lumo-1934-direct-download.yml'
@@ -96,6 +99,13 @@ jobs:
           run-id: 38194565555
           name: lumo-education-1933-emulator-38194565555
           path: baseline/
+      - name: Retain prior actual complete education evidence for the identical APK
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38210068691
+          name: lumo-education-1934-android16-evidence-38210068691
+          path: android-proof/
       - name: Exact artifacts and independent live Android readers
         run: |
           set -euo pipefail
@@ -146,7 +156,7 @@ jobs:
       - name: Existing Android 16 image
         timeout-minutes: 11
         run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
-      - name: Recheck same APK with real current controls, answers and parent choices
+      - name: Recheck only actual games; retain proved same APK courses and seed real learning via taps
         uses: reactivecircus/android-emulator-runner@v2
         env:
           DISPLAY: ':99'
@@ -164,7 +174,7 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python .github/probes/lumo_1934_android_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof
+          script: .probe-venv/bin/python .github/probes/lumo_1934_android_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof --reuse-education-proof
       - uses: actions/upload-artifact@v4
         if: always()
         with:
