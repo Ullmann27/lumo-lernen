@@ -5,10 +5,12 @@
 /// konfrontieren.
 ///
 /// Verteilung:
-///   - Klasse 1: 14 easy + 6 passende medium-Challenges
-///   - Klasse 2: 6 easy + 14 medium
-///   - Klasse 3: 4 easy + 8 medium + 8 hard
-///   - Klasse 4: 2 easy + 6 medium + 12 hard
+///   - Fragen 1-19 steigen innerhalb der Schulstufe an.
+///   - Frage 20 ist immer eine eigene, altersgerechte Logik-Finalfrage.
+///   - Klasse 1: 14 easy + 5 passende medium-Challenges + Finale
+///   - Klasse 2: 6 easy + 13 medium + Finale
+///   - Klasse 3: 4 easy + 8 medium + 7 hard + Finale
+///   - Klasse 4: 2 easy + 6 medium + 11 hard + Finale
 ///
 /// Anti-Wiederholung: seenIds werden bevorzugt ausgeschlossen. Reicht ein
 /// frischer Teilpool nicht aus, wird nur dieser Teilpool sauber zurueckgesetzt.
@@ -77,29 +79,36 @@ class QuizQuestionBank {
       return allowedIds.contains(q.id);
     }
 
+    final finalQuestion =
+        _finalQuestionForGrade(safeGrade, seenIds: seenIds, random: rng);
+
     final List<QuizQuestion> questions;
     switch (safeGrade) {
       case 1:
         questions = <QuizQuestion>[
           ...pick(14, (q) => q.difficulty == QuizDifficulty.easy),
-          ...pick(6, grade1Medium),
+          ...pick(5, grade1Medium),
+          finalQuestion,
         ];
       case 2:
         questions = <QuizQuestion>[
           ...pick(6, (q) => q.difficulty == QuizDifficulty.easy),
-          ...pick(14, (q) => q.difficulty == QuizDifficulty.medium),
+          ...pick(13, (q) => q.difficulty == QuizDifficulty.medium),
+          finalQuestion,
         ];
       case 3:
         questions = <QuizQuestion>[
           ...pick(4, (q) => q.difficulty == QuizDifficulty.easy),
           ...pick(8, (q) => q.difficulty == QuizDifficulty.medium),
-          ...pick(8, (q) => q.difficulty == QuizDifficulty.hard),
+          ...pick(7, (q) => q.difficulty == QuizDifficulty.hard),
+          finalQuestion,
         ];
       default:
         questions = <QuizQuestion>[
           ...pick(2, (q) => q.difficulty == QuizDifficulty.easy),
           ...pick(6, (q) => q.difficulty == QuizDifficulty.medium),
-          ...pick(12, (q) => q.difficulty == QuizDifficulty.hard),
+          ...pick(11, (q) => q.difficulty == QuizDifficulty.hard),
+          finalQuestion,
         ];
     }
 
@@ -108,6 +117,146 @@ class QuizQuestionBank {
       'Quizgenerator muss exakt 20 Fragen liefern, bekam ${questions.length}',
     );
     return questions;
+  }
+
+  QuizQuestion _finalQuestionForGrade(
+    int grade, {
+    required Set<String> seenIds,
+    required math.Random random,
+  }) {
+    final candidates = switch (grade) {
+      1 => const <QuizQuestion>[
+          QuizQuestion(
+            id: 'final_g1_order_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Lumo steht vor Mia. Mia steht vor Tom. Wer steht ganz vorne?',
+            options: ['Tom', 'Mia', 'Lumo', 'Alle gleich'],
+            correctIndex: 2,
+            hint: 'Stell dir die drei hintereinander in einer Reihe vor.',
+          ),
+          QuizQuestion(
+            id: 'final_g1_age_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Mia ist älter als Tom. Tom ist älter als Lea. Wer ist am jüngsten?',
+            options: ['Mia', 'Tom', 'Lea', 'Alle gleich alt'],
+            correctIndex: 2,
+            hint: 'Gehe Satz für Satz von älter zu jünger.',
+          ),
+          QuizQuestion(
+            id: 'final_g1_count_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Im Korb liegen 6 Äpfel. Zwei Kinder nehmen je einen Apfel. Wie viele bleiben?',
+            options: ['2', '3', '4', '5'],
+            correctIndex: 2,
+            hint: 'Von 6 werden zweimal je 1 Apfel weggenommen.',
+          ),
+        ],
+      2 => const <QuizQuestion>[
+          QuizQuestion(
+            id: 'final_g2_unknown_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Lumo denkt an eine Zahl. Plus 5 ergibt 17. Welche Zahl meint Lumo?',
+            options: ['10', '11', '12', '13'],
+            correctIndex: 2,
+            hint: 'Rechne rückwärts: 17 minus 5.',
+          ),
+          QuizQuestion(
+            id: 'final_g2_share_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                '12 Karten werden gleich auf 4 Kinder verteilt. Wie viele Karten bekommt jedes Kind?',
+            options: ['2', '3', '4', '6'],
+            correctIndex: 1,
+            hint: 'Verteile immer eine Karte an jedes der vier Kinder.',
+          ),
+          QuizQuestion(
+            id: 'final_g2_number_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Welche Zahl ist größer als 20, kleiner als 30 und gerade?',
+            options: ['19', '23', '26', '31'],
+            correctIndex: 2,
+            hint: 'Prüfe zuerst den Zahlenbereich und dann, ob die Zahl gerade ist.',
+          ),
+        ],
+      3 => const <QuizQuestion>[
+          QuizQuestion(
+            id: 'final_g3_money_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt:
+                'Drei Hefte kosten je 4 Euro. Du bezahlst mit 20 Euro. Wie viel Geld bekommst du zurück?',
+            options: ['6 Euro', '8 Euro', '10 Euro', '12 Euro'],
+            correctIndex: 1,
+            hint: 'Berechne zuerst den Gesamtpreis der drei Hefte.',
+          ),
+          QuizQuestion(
+            id: 'final_g3_pattern_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt: 'Welche Zahl setzt die Reihe fort: 2, 4, 8, 16, ...?',
+            options: ['18', '24', '30', '32'],
+            correctIndex: 3,
+            hint: 'Jede Zahl ist doppelt so groß wie die vorherige.',
+          ),
+          QuizQuestion(
+            id: 'final_g3_steps_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt:
+                'Lumo liest morgens 8 Seiten und abends 7 Seiten. Wie viele Seiten liest er in 3 Tagen?',
+            options: ['30', '35', '45', '48'],
+            correctIndex: 2,
+            hint: 'Erst die Seiten pro Tag, dann mal 3 Tage.',
+          ),
+        ],
+      _ => const <QuizQuestion>[
+          QuizQuestion(
+            id: 'final_g4_perimeter_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt:
+                'Ein Rechteck ist 8 cm lang und 5 cm breit. Wie groß ist sein Umfang?',
+            options: ['13 cm', '26 cm', '40 cm', '64 cm'],
+            correctIndex: 1,
+            hint: 'Beim Umfang werden alle vier Seiten zusammengezählt.',
+          ),
+          QuizQuestion(
+            id: 'final_g4_pattern_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt: 'Welche Zahl setzt die Reihe fort: 3, 6, 12, 24, ...?',
+            options: ['30', '36', '42', '48'],
+            correctIndex: 3,
+            hint: 'Achte darauf, was mit jeder Zahl zur nächsten passiert.',
+          ),
+          QuizQuestion(
+            id: 'final_g4_route_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt:
+                'Ein Bus fährt dreimal 18 km und danach noch 6 km. Wie viele Kilometer sind es insgesamt?',
+            options: ['54 km', '58 km', '60 km', '66 km'],
+            correctIndex: 2,
+            hint: 'Berechne zuerst 3 mal 18 und addiere danach 6.',
+          ),
+        ],
+    };
+
+    final fresh =
+        candidates.where((question) => !seenIds.contains(question.id)).toList();
+    final source = fresh.isNotEmpty ? fresh : candidates;
+    return source[random.nextInt(source.length)];
   }
 
   /// Statischer Frage-Pool — kategorisiert nach Schwierigkeit + Fach.
