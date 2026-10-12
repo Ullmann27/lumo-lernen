@@ -495,21 +495,35 @@ def kart_primary_tap(out: Path, tag: str) -> None:
 
 
 def kart_advance_setup(out: Path, current_step: int, next_step: int, tag: str) -> None:
-    """Advance exactly one setup page, retrying a lost touch but never skipping."""
+    """Advance exactly one setup page without double-tapping a slow renderer.
+
+    The software Android/Godot renderer can accept a touch several seconds
+    before the cyan selected-tab surface visibly updates. After every single
+    touch we therefore observe multiple fresh frames and send no second touch
+    while the current page may still be transitioning.
+    """
     if kart_setup_step(out, tag + '-before') != current_step:
         raise RuntimeError(
             f'Kart setup expected step {current_step + 1} before {tag}')
-    for attempt in range(3):
+    for attempt in range(2):
         kart_primary_tap(out, f'{tag}-tap-{attempt}')
-        observed = kart_setup_step(out, f'{tag}-after-{attempt}')
-        if observed == next_step:
-            return
-        if observed != current_step:
-            raise RuntimeError(
-                f'Kart setup jumped from {current_step + 1} to {observed + 1}')
+        for settle in range(4):
+            # capture() itself waits for a complete current frame; the extra
+            # pause prevents a queued first touch from being followed by a
+            # second touch before Godot presents the new setup page.
+            time.sleep(1.5)
+            observed = kart_setup_step(
+                out, f'{tag}-after-{attempt}-settle-{settle}')
+            if observed == next_step:
+                return
+            if observed != current_step:
+                raise RuntimeError(
+                    f'Kart setup jumped from {current_step + 1} '
+                    f'to {observed + 1}')
+        # Only after four complete, still-current frames is one retry allowed.
     raise RuntimeError(
         f'Kart setup primary action did not advance from {current_step + 1} '
-        f'to {next_step + 1} after three visually verified touches')
+        f'to {next_step + 1} after two isolated visually verified touches')
 
 
 def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool = False,
