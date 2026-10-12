@@ -1,0 +1,204 @@
+name: Lumo 1932 same APK quiet-help acceptance repair and tested ZIP, no rebuild
+on:
+  push:
+    branches: [sol/lumo-1932-verified-bundle-2026-10-12]
+    paths: [.github/workflows/lumo-1932-runtime-repair.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-1932-runtime-repair-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  LUMO_EXPECT_SOURCE: 'd20501476243e3a016c2574a9016c07e2ebe8f85'
+  LUMO_EXPECT_APK_SHA: 'da895ef2cff6aceca5ff3986757a966754ac080a1ff4041ac5e25c0cb8b0af6a'
+  LUMO_EXPECT_VERSION: '1932'
+  LUMO_EXPECT_ANDROID_API: '36'
+  LUMO_EXPECT_GODOT: '853175c634dcb62c325fbd9b272e2ebc791830ad'
+  LUMO_BASE_VERSION: '1931'
+  LUMO_BASE_SOURCE: '0dc3b1f30d7d885cc0c9914d1f557fad8655d762'
+  LUMO_BASE_SHA: 'c79a62631f84d33f87a3eac390d9bd619b206437efb95544b783afce054f442b'
+  LUMO_QA_SOURCE: ${{ github.sha }}
+
+jobs:
+  android-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 42
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 20
+      - name: Require successful original build and unchanged application inputs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const params = {owner: context.repo.owner, repo: context.repo.repo, run_id: 38190879913};
+            const run = (await github.rest.actions.getWorkflowRun(params)).data;
+            if (run.head_sha !== process.env.LUMO_EXPECT_SOURCE ||
+                run.head_branch !== 'sol/lumo-active-companion-2026-10-11' ||
+                run.path !== '.github/workflows/lumo-education-1932.yml') {
+              throw new Error('Unexpected original 1932 APK source');
+            }
+            const jobs = (await github.rest.actions.listJobsForWorkflowRun({...params, per_page: 100})).data.jobs;
+            if (!jobs.some(j => j.name === 'verify-build' && j.conclusion === 'success' &&
+                                j.status === 'completed')) {
+              throw new Error('Actual original APK build and package checks did not succeed');
+            }
+            const {execFileSync} = require('child_process');
+            const changed = execFileSync('git', ['diff', '--name-only',
+              process.env.LUMO_EXPECT_SOURCE, context.sha, '--'], {encoding: 'utf8'})
+              .trim().split('\n').filter(Boolean);
+            const allowed = new Set([
+              '.github/probes/lumo_education_android_probe.py',
+              '.github/workflows/lumo-1932-runtime-repair.yml',
+              'scripts/tests/test_android_1930_navigation.py',
+              'scripts/tests/fixtures/android_1931_minus_wrong.xml',
+              'docs/education/2026-10-11-active-companion/ANDROID-RUNTIME-REPAIR.md'
+            ]);
+            if (changed.some(path => !allowed.has(path))) {
+              throw new Error('Application or packaging inputs changed: runtime-only test is invalid');
+            }
+            const fs = require('fs');
+            fs.mkdirSync('android-proof', {recursive: true});
+            fs.writeFileSync('android-proof/EXISTING-APK-SOURCE.json', JSON.stringify({
+              build_run: run.id, build_url: run.html_url, build_source: run.head_sha,
+              qa_source: context.sha, changed_files: changed,
+              application_inputs_unchanged: true, rebuilt: false, published: false,
+              original_runtime_failure: 'Continuous probe scrolling reset the actual quiet period',
+              subsequent_probe_failure: 'Wait quietly before scanning; keep actual answer and feedback assertions',
+              original_runtime_evidence_artifact: 11721798934
+            }, null, 2));
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38190879913
+          artifact-ids: 11721648424
+          merge-multiple: true
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38154543561
+          name: lumo-education-1931-emulator-38154543561
+          path: baseline/
+      - name: Exact artifacts and independent live Android readers
+        run: |
+          set -euo pipefail
+          printf '%s  candidate/Lumo-Lernen-Neu.apk\n' "$LUMO_EXPECT_APK_SHA" | sha256sum -c -
+          printf '%s  baseline/Lumo-Lernen-Neu.apk\n' "$LUMO_BASE_SHA" | sha256sum -c -
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > android-proof/dependencies.txt
+          python3 -m py_compile .github/probes/lumo_education_android_probe.py
+          python3 -m unittest discover -s scripts/tests -p test_android_1930_navigation.py -v 2>&1 | tee android-proof/course-navigation-regressions.log
+      - name: Disposable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Verified software renderer
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 2500x2200x24 -nolisten tcp +extension GLX > android-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > android-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' android-proof/mesa-renderer.txt
+      - name: Existing Android 16 image
+        timeout-minutes: 11
+        run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
+      - name: Recheck same APK with real current controls, answers and parent choices
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_education_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-education-1932-android16-evidence-${{ github.run_id }}
+          path: android-proof/
+          if-no-files-found: error
+          retention-days: 30
+
+  package-download:
+    needs: android-runtime
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38190879913
+          artifact-ids: 11721079857
+          merge-multiple: true
+          path: arm64/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-education-1932-android16-evidence-${{ github.run_id }}
+          path: android-proof/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38190883778
+          artifact-ids: 11720988128
+          merge-multiple: true
+          path: complete-ci/evidence/
+      - name: Require existing successful full CI of the actual APK source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${{ github.repository }}/actions/runs/38190883778" > complete-ci/run.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run = json.loads(Path('complete-ci/run.json').read_text())
+          assert run['head_sha'] == os.environ['LUMO_EXPECT_SOURCE']
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          PY
+      - name: Create one complete genuinely checked APK ZIP
+        run: |
+          set -euo pipefail
+          python3 tools/package_android_test_delivery.py --arm64 arm64 --android-proof android-proof \
+            --ci-proof complete-ci/evidence --ci-run complete-ci/run.json --output delivery --version-code 1932 --version-name 0.12.25
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1932-chat-download-${{ github.run_id }}
+          path: delivery/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30

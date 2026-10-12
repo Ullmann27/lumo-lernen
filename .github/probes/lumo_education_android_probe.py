@@ -47,6 +47,13 @@ def wait_text(out: Path, marker: str, tag: str, timeout: float = 30,
     raise RuntimeError("Current real app state not observed: " + marker)
 
 
+def wait_proactive_help_offer(out: Path) -> str:
+    # Actual scrolling is child activity and resets the app's quiet period.
+    # Let the existing scene become quiet before looking outside the viewport.
+    time.sleep(18)
+    return wait_text(out, "Zeig mir wie", "minus-active-help-offer", timeout=60, scroll=True)
+
+
 def _enabled_control_bounds(nodes: list[dict], caption: str) -> list[int] | None:
     """Select a real enabled tap action, never a same-named static heading.
 
@@ -359,7 +366,7 @@ def subtraction_course(out: Path) -> dict:
         wait_text(out, "Wir können es mit kleineren Schritten probieren", "minus-second-wrong-feedback", scroll=True)
         # Waiting and scrolling must never accept an explanation on behalf of
         # the child. Require the visible offer and its actual enabled action.
-        wait_text(out, "Zeig mir wie", "minus-active-help-offer", timeout=60, scroll=True)
+        wait_proactive_help_offer(out)
         text = current_text(out, "minus-before-help-acceptance")
         if "Nimm zuerst 4 weg" in text:
             raise RuntimeError("Hint was shown before the real child accepted help")
