@@ -1,4 +1,5 @@
 name: Lumo 1934 complete actual courses and verified direct ZIP, no rebuild
+# QA rerun: actual combined dice tile accessibility label from Android run 38216769933.
 on:
   push:
     branches: [sol/lumo-1934-android-delivery-2026-10-12]
