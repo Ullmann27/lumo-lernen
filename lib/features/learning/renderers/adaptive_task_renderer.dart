@@ -263,7 +263,20 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       ],
     );
     return LayoutBuilder(builder: (context, constraints) {
-      final wide = constraints.maxWidth >= 610 &&
+      // Wide comparison visuals (for example measurements and fractions)
+      // need the complete Fold width. Splitting those into two ~300dp
+      // columns causes clipping even though simple visuals are safe there.
+      final simpleVisual = switch (task.visualPayload.type) {
+        VisualType.none ||
+        VisualType.dots ||
+        VisualType.tenOnes ||
+        VisualType.numberLine ||
+        VisualType.syllables ||
+        VisualType.shape ||
+        VisualType.quantityCompare => true,
+        _ => false,
+      };
+      final wide = constraints.maxWidth >= (simpleVisual ? 610 : 1260) &&
           MediaQuery.textScalerOf(context).scale(1) <= 1.25;
       if (wide) {
         return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
