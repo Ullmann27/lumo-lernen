@@ -1,0 +1,146 @@
+name: Lumo 1934 exact validated source APK build, no publication
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-education-1934-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  verify-build:
+    # Manual one-off exact source build. QA/documentation pushes never rebuild.
+    if: github.ref == 'refs/heads/sol/lumo-1934-android-delivery-2026-10-12'
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      LUMO_BUILD_SOURCE: 'ed17826ea89d285f77630bed426b06017028f379'
+    outputs:
+      source: ${{ steps.provenance.outputs.source }}
+      emulator-sha: ${{ steps.provenance.outputs.emulator-sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: 'ed17826ea89d285f77630bed426b06017028f379'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Exact test-only source and protected model
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          git rev-parse HEAD | tee proof/source-sha.txt
+          test "$(git rev-parse HEAD)" = "$LUMO_BUILD_SOURCE"
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = '0.12.27+1934'
+          test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = '82b53fc02b9f2ad7e025433499c4c23f256fe734'
+          git diff --exit-code HEAD --
+          printf '%s\n' 'Test artifacts only: no store release, payment, public publication or speech API call.' > proof/scope.txt
+          printf '%s\n' 'Reviewed candidate: Fold touch propagation and one-column vehicle panes, responsive small games, original Blender assets, learning/voice/profile/parent integration preserved.' > proof/review-repairs.txt
+      - name: Require successful complete CI of the exact frozen product source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${{ github.repository }}/actions/runs/38208710911" > proof/EXACT-FULL-CI.json
+          python3 - <<'PYCI'
+          import json, os
+          from pathlib import Path
+          run = json.loads(Path('proof/EXACT-FULL-CI.json').read_text())
+          assert run['head_sha'] == os.environ['LUMO_BUILD_SOURCE']
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          assert run['path'] == '.github/workflows/lumo-change-review.yml'
+          PYCI
+          printf '%s\n' 'Exact product CI already succeeded: actual complete Flutter cases and analysis. Content audit and relevant Python guards have separate local evidence; unchanged backend retains prior build evidence. No product change or repeated full suite.' > proof/flutter-suite-scope.txt
+      - name: Require successful real Fold/GLB validation of the pinned Godot source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/Ullmann27/lumo-godot/actions/runs/38208534554 > proof/EXACT-GODOT-CI.json
+          python3 - <<'PYGODOT'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('proof/EXACT-GODOT-CI.json').read_text())
+          assert data['head_sha']=='82b53fc02b9f2ad7e025433499c4c23f256fe734'
+          assert data['status']=='completed' and data['conclusion']=='success'
+          assert data['path']=='.github/workflows/lumo-fold-games-1934.yml'
+          PYGODOT
+      - name: Exact locked dependencies and native build prerequisite
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+      - name: Existing matching engine and native toolchain
+        run: |
+          set -euo pipefail
+          bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
+          bash scripts/install_godot_for_build.sh
+      - name: Build the preserved Flutter, native voice and Godot integration once
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/android-build.log
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          (cd dist/x86_64 && sha256sum -c SHA256SUMS.txt)
+      - name: Verify actual version, package, signature, sources and architectures
+        id: provenance
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          for folder, abi in [('dist', 'arm64-v8a'), ('dist/x86_64', 'x86_64')]:
+              data = json.loads(Path(folder, 'BUILD-PROVENANCE.json').read_text())
+              assert data['flutter_source_commit'] == os.environ['LUMO_BUILD_SOURCE']
+              assert data['tracked_source_clean'] is True
+              assert data['versionCode'] == 1934 and data['versionName'] == '0.12.27'
+              assert data['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+              assert data['abis'] == [abi]
+              assert data['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+              assert data['offlineVoice']['preset'] == 'F2'
+              assert data['offlineVoice']['clipCount'] == 155
+              assert data['godot']['revision'] == '82b53fc02b9f2ad7e025433499c4c23f256fe734'
+          emulator = json.loads(Path('dist/x86_64/BUILD-PROVENANCE.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('source=' + os.environ['LUMO_BUILD_SOURCE'] + '\n')
+              output.write('emulator-sha=' + emulator['sha256'] + '\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1934-arm64-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1934-emulator-${{ github.run_id }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-education-1934-build-evidence-${{ github.run_id }}
+          path: proof/
+          if-no-files-found: error
+          retention-days: 30

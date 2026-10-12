@@ -18,6 +18,23 @@ def digest(path: Path) -> str:
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
+def validate_games(games: dict, *, source: str, godot_revision: str) -> None:
+    if (games.get('status') != 'PASS' or games.get('candidate_source') != source
+            or games.get('godot_revision') != godot_revision
+            or any(games.get(key) is not True for key in
+                   ('profiles_unchanged', 'wallet_unchanged', 'restart_unchanged'))
+            or games.get('dice', {}).get('real_roll_pause_resume') is not True
+            or games.get('fold_driver', {}).get('native_process_retained') is not True
+            or games.get('saved_setup', {}).get('driver') != 'fox'
+            or games.get('saved_setup', {}).get('kart') != 'gecko_velo'
+            or games.get('saved_setup', {}).get('track') != 'zauberwald'):
+        raise ValueError('Actual matching game input, persisted setup and untouched profiles required')
+    for name in ('kart_scroll', 'track_scroll'):
+        shift = games.get(name, {}).get('movement_pixels')
+        if type(shift) not in (int, float) or not 40 <= shift <= 2176:
+            raise ValueError('Real measured native card scroll required: ' + name)
+
+
 def validate(provenance: dict, android: dict, outcomes: dict, run: dict, log: str,
              *, version_code: int = 1930, version_name: str = "0.12.23",
              godot_revision: str = GODOT) -> dict:
@@ -99,6 +116,9 @@ def main() -> int:
     checked = validate(provenance, android, outcomes, run, log,
                        version_code=args.version_code, version_name=args.version_name,
                        godot_revision=args.godot_revision)
+    if args.version_code >= 1934:
+        games = json.loads((args.android_proof / 'games-android-result.json').read_text())
+        validate_games(games, source=checked['source'], godot_revision=args.godot_revision)
     apk = args.arm64 / "Lumo-Lernen-Neu.apk"
     if apk.stat().st_size != provenance["bytes"] or digest(apk) != provenance["sha256"]:
         raise ValueError("Downloaded ARM64 APK size/digest differs from the verified build")
@@ -179,6 +199,8 @@ nicht aus Konzeptbildern oder einem Flutter-Testbild als angeblicher Android-Auf
 """
     if version_code >= 1933:
         instructions += "\nBekannter kleiner Bedienpunkt: „Erklärung lesen“ wiederholt in den neuen Beispielen den bereits angezeigten Erklärungstext. Die Übung, unterschiedliche Tipps und gespeicherten Antworten sind davon unabhängig.\n"
+    if version_code >= 1934:
+        instructions += '\n## Spiele-Reparaturen1934\n\nFold-Garage: echteWischgesten auf Auswahlkarten, angepassteFahrzeugspalten; Würfelspiel mit Original-/Blendergrafik und kurzerQuerformatbedienung; Mengen-/Buchstabenaufgaben scrollbar bei großerSchrift. Truhe/Laterne sind echteGodot-GLBs; dieFlutter-Würfelgrafiken sind vorgerenderte3D-Objekte.\n\nZusätzlicherAndroid16-Emulatorlauf: echterWürfelzug mitPause/Fortsetzen, großesSchriftbild, nativeGarage beiLive-Displaywechsel ohneProzessneustart, gemesseneVerschiebung realerKart-/Welttitel, AuswahlGeckoVelo/Zauberwald im tatsächlichenRennsave, Profile/Lernfortschritt/Wallet undNeustart unverändert. Androidtest wählt verfügbarenLumo; Nova mit verdienterFreigabe wurde in isolierterDesktop-GUI-Fixture geprüft, keinSternestand imAndroidtest erfunden.\n\nNichtphysischerFold, keine vollständigeNeuentwicklung allerSpiele. FünfneueGegner-Rigs, weitergehendeGesichts-/Lippenanimation undvollständigeLehrplanabnahme bleibenoffen.\n'
     notes = args.output / "INSTALLATION-UND-PRUEFSTAND.md"
     notes.write_text(instructions)
     screenshots = [
@@ -218,6 +240,11 @@ nicht aus Konzeptbildern oder einem Flutter-Testbild als angeblicher Android-Auf
             archive.write(args.arm64 / name, "pruefbelege/" + name)
         archive.write(args.android_proof / "education-android-result.json",
                       "pruefbelege/ANDROID-LAUFZEITPRUEFUNG.json")
+        if version_code >= 1934:
+            archive.write(args.android_proof / 'games-android-result.json',
+                          'pruefbelege/ANDROID-SPIELE-FOLD-PRUEFUNG.json')
+            archive.write(args.android_proof / 'actual-fold-selected-session.cfg',
+                          'pruefbelege/ANDROID-ECHTE-RENN-AUSWAHL.cfg')
         archive.write(args.ci_proof / "outcomes.json", "pruefbelege/FLUTTER-CI-OUTCOMES.json")
         archive.write(args.ci_run, "pruefbelege/FLUTTER-CI-RUN.json")
         for name in screenshots:
