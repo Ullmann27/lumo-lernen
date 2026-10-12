@@ -81,7 +81,7 @@ def main():
         existing.base.display(1200, 896, 160)
         existing.base.adb('shell', 'settings', 'put', 'system', 'font_scale', '1.0')
         navigation_tap(out, 'Spielen')
-        existing.flutter_tap(out, 'Würfel-Wettlauf', 'actual-dice-entry', scroll_attempts=32)
+        existing.flutter_tap(out, 'Würfel-Wettlauf. Wer ist zuerst am Stern?', 'actual-dice-entry', scroll_attempts=32)
         existing.base.display(926, 362, 160)
         existing.base.adb('shell', 'settings', 'put', 'system', 'font_scale', '1.6')
         existing.capture(out, '30_actual_android_dice_large_text_before')
