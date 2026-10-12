@@ -53,6 +53,7 @@ jobs:
               .trim().split('\n').filter(Boolean);
             const allowed = new Set([
               '.github/probes/lumo_education_android_probe.py',
+              '.github/probes/creative_android_probe.py',
               '.github/workflows/lumo-1934-runtime.yml',
               'scripts/tests/test_android_1930_navigation.py',
               'scripts/tests/test_android_1930_delivery.py',
