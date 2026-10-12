@@ -1,0 +1,57 @@
+name: Lumo learning repair verification
+
+on:
+  push:
+    branches:
+      - sol/lumo-learning-repair-check-2026-10-12
+    paths:
+      - .github/workflows/lumo-learning-repair-check.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+
+      - name: Prove source
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "aca531b12159bf69f3f6283ed60eec19496538c4"
+          test "$(git diff --name-only HEAD^..HEAD)" = ".github/workflows/lumo-learning-repair-check.yml"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Resolve dependencies
+        run: flutter pub get --enforce-lockfile
+
+      - name: Analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Run repaired learning and games regressions
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=65s \
+            test/writing_coach_finger_recognition_test.dart \
+            test/akademie_subject_navigation_test.dart \
+            test/curriculum_integrity_test.dart \
+            test/story_learning_path_test.dart \
+            test/games/games_world_layout_test.dart \
+            test/games/lumo_meister_portal_test.dart \
+            test/quiz_show_meister_test.dart \
+            test/lumo_meister_reward_alignment_test.dart
