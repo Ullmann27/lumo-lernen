@@ -55,6 +55,30 @@ void main() {
       );
     });
 
+    test('Anti-Wiederholung behält frische Fragen bei Teilpool-Fallback', () {
+      final baseline = bank.generateGameQuestions(
+        grade: 1,
+        random: math.Random(11),
+      );
+      final easyIds = baseline
+          .where((q) => q.difficulty == QuizDifficulty.easy)
+          .map((q) => q.id)
+          .toSet();
+
+      // 13 der 14 zuvor gezogenen Easy-Fragen gelten als gesehen.
+      // Die eine frische Frage muss in der nächsten Runde erhalten bleiben.
+      final seen = easyIds.take(13).toSet();
+      final freshId = easyIds.difference(seen).single;
+
+      final next = bank.generateGameQuestions(
+        grade: 1,
+        seenIds: seen,
+        random: math.Random(12),
+      );
+
+      expect(next.map((q) => q.id), contains(freshId));
+    });
+
     test('Stern-Leiter ist 50, 200, 800 und 5000', () {
       expect(engine.safeSpotStarsForIndex(4), 50);
       expect(engine.safeSpotStarsForIndex(9), 200);
