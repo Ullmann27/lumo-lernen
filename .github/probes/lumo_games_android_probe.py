@@ -75,10 +75,15 @@ def main():
             raise RuntimeError('Games probe is not running the declared new APK')
         before_profiles = voice.protected(existing.prefs(out, 'games-before-profiles'))
         before_wallet = existing.wallet(out, 'games-before-wallet')
-        existing.base.display(926, 362, 160)
-        existing.base.adb('shell', 'settings', 'put', 'system', 'font_scale', '1.6')
+        # Enter through the actual normal overview before testing the standalone
+        # game's short enlarged-text layout. The shell's 90px content viewport
+        # needs far more list movement than the independent game under test.
+        existing.base.display(1200, 896, 160)
+        existing.base.adb('shell', 'settings', 'put', 'system', 'font_scale', '1.0')
         navigation_tap(out, 'Spielen')
         existing.flutter_tap(out, 'Würfel-Wettlauf', 'actual-dice-entry', scroll_attempts=32)
+        existing.base.display(926, 362, 160)
+        existing.base.adb('shell', 'settings', 'put', 'system', 'font_scale', '1.6')
         existing.capture(out, '30_actual_android_dice_large_text_before')
         existing.flutter_tap(out, 'Würfeln!', 'actual-dice-roll')
         existing.flutter_tap(out, 'Pausieren / Zurück', 'actual-dice-pause')

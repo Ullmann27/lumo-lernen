@@ -156,7 +156,7 @@ jobs:
       - name: Existing Android 16 image
         timeout-minutes: 11
         run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
-      - name: Recheck only actual games; retain proved same APK courses and seed real learning via taps
+      - name: Recheck games entered from normal overview, then short large-text and live Fold input
         uses: reactivecircus/android-emulator-runner@v2
         env:
           DISPLAY: ':99'
