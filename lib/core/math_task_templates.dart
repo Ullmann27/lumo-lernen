@@ -276,8 +276,58 @@ class MathTaskTemplate {
         return _choice('Was kostet mehr: $left € oder $right €?', answer, <String>['$left €', '$right €', 'gleich viel'], 'Mehr Euro bedeutet höherer Preis.', 'money',
         );
       case MathTemplateKind.dayHours:
-        return _choice('Wie viele Stunden hat ein Tag?', '24', <String>['12', '24', '30'], 'Ein Tag hat 24 Stunden: Tag und Nacht zusammen.', 'clock',
-        );
+        const facts = <(String, String, List<String>, String)>[
+          (
+            'Wie viele Stunden hat ein ganzer Tag?',
+            '24',
+            ['12', '24', '30'],
+            'Ein ganzer Tag hat 24 Stunden: der helle und der dunkle Teil zusammen.'
+          ),
+          (
+            'Wie viele Tage hat eine Woche?',
+            '7',
+            ['5', '7', '10'],
+            'Zähle Montag bis Sonntag. Es sind sieben Tage.'
+          ),
+          (
+            'Welche Tageszeit kommt nach dem Morgen und vor dem Nachmittag?',
+            'Mittag',
+            ['Abend', 'Nacht', 'Mittag'],
+            'Die Reihenfolge ist Morgen, Mittag, Nachmittag und Abend.'
+          ),
+          (
+            'Welche Tageszeit folgt auf den Nachmittag?',
+            'Abend',
+            ['Morgen', 'Mittag', 'Abend'],
+            'Nach dem Nachmittag kommt der Abend.'
+          ),
+          (
+            'Was dauert normalerweise länger: Zähneputzen oder eine Nacht schlafen?',
+            'eine Nacht schlafen',
+            ['Zähneputzen', 'eine Nacht schlafen', 'beides gleich lang'],
+            'Zähneputzen dauert wenige Minuten. Eine Nacht schlafen dauert viele Stunden.'
+          ),
+          (
+            'Was dauert normalerweise kürzer: einmal klatschen oder die ganze Jause essen?',
+            'einmal klatschen',
+            ['die ganze Jause essen', 'einmal klatschen', 'beides gleich lang'],
+            'Ein einzelner Klatscher dauert nur einen kurzen Moment.'
+          ),
+          (
+            'Was bedeutet morgen?',
+            'der Tag nach heute',
+            ['der Tag vor heute', 'der Tag nach heute', 'der heutige Tag'],
+            'Gehe von heute einen Tag weiter. Dann ist morgen.'
+          ),
+          (
+            'Was bedeutet gestern?',
+            'der Tag vor heute',
+            ['der Tag vor heute', 'der Tag nach morgen', 'der heutige Tag'],
+            'Gehe von heute einen Tag zurück. Dann ist gestern.'
+          ),
+        ];
+        final fact = facts[_positive(_mixSeed(seed), facts.length)];
+        return _choice(fact.$1, fact.$2, fact.$3, fact.$4, 'clock');
       case MathTemplateKind.symmetry:
         if (unit == 'Symmetrieachsen') {
           const examples = <(String, int)>[

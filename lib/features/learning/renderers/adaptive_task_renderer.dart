@@ -10,6 +10,7 @@ import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
 import 'shape_trace_task_renderer.dart';
 import 'writing_task_renderer.dart';
+import 'reading_passage_card.dart';
 
 class AdaptiveTaskAnswer {
   const AdaptiveTaskAnswer({
@@ -168,7 +169,11 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text(
+                  if (task.subject == LearningSubject.deutsch &&
+                      const ['Sätze lesen', 'Lesesinn', 'Reihenfolge'].contains(task.parameters['unit']) &&
+                      task.prompt.contains('\n'))
+                    ReadingPassageCard(prompt: task.prompt)
+                  else Text(
                     task.prompt,
                     // Kurze Rechnungen groß, lange Geschichten gut lesbar
                     // ohne dass die Antworten aus dem Bild rutschen.

@@ -1,0 +1,98 @@
+{
+  "source_repository": "Ullmann27/lumo-lernen",
+  "source_branch": "claude/design-tafeln",
+  "source_commit": "8344c10f1401d6516194e45e565695e968c9b47e",
+  "licensing": "Existing original project artwork; no new third-party license asserted. See original design provenance.",
+  "files": [
+    {
+      "path": "assets/lumo_design/icons/gift_box.webp",
+      "sha256": "460d46097093adbdf568c78391fcdba49dcd5119aecd1c8e442959ac794c7398",
+      "bytes": 37256,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/icons/lightning.webp",
+      "sha256": "354564f1a2ff3ed843e517be682deab771a7e2fa8bb71a7b801ec2550fa69d64",
+      "bytes": 19450,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/icons/ticket_star.webp",
+      "sha256": "3b39b718419c7bc618ed7e807baac4e2bd10b770ced45e6d94b0c18599b83a12",
+      "bytes": 35316,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/icons/wrench.webp",
+      "sha256": "e37a061bcc790ed04d2dcd5dbed81870f50f8641f394b3ebf46a8ac424238b1b",
+      "bytes": 33322,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/back.webp",
+      "sha256": "ad6ec9b3408dce146dedc82a3d4db123b92e257aa6f59cf3d33bd7e966cecbe1",
+      "bytes": 18228,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/book.webp",
+      "sha256": "21ff6f85538cf74e533238b051de35e318d9eccdca5a2ccea36670b5f15cc41d",
+      "bytes": 24322,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/check.webp",
+      "sha256": "2b50250606473f5389cf8e6c8ffa6eae240656e2d745dceef699b6c9fa5e46af",
+      "bytes": 21290,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/diamond.webp",
+      "sha256": "98e0c694ba9e4540714ca34f4dc22359b257ebba3a8023470288818329edf6bd",
+      "bytes": 24730,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/gamepad.webp",
+      "sha256": "713bd1238b6505375878ac503a504adbd6fb2c53db9e12aa74ca7db5357d129b",
+      "bytes": 22734,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/heart.webp",
+      "sha256": "d56555dbb0acd6433ecc63c642b201a4f7fb25af06ab7323a4246e837e595b0f",
+      "bytes": 19906,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/home.webp",
+      "sha256": "ade0ed7a613e2ed8bdbb99b0820611d6de09a3a09cbba7d6670c6092967bd33c",
+      "bytes": 27416,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/lock.webp",
+      "sha256": "5c4fa7354c943d3aff8db980da8a35ada562248e0ccf809ff760990f879fb515",
+      "bytes": 25266,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/play.webp",
+      "sha256": "96de6a271ab0b4f2190e897d0d11b76940fdeb6bac28b3ae09d3e1baad2c4d3c",
+      "bytes": 23884,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/settings.webp",
+      "sha256": "1af93d8b6fc4e9aa7e8f8b37534715fd59ff0bd6d2c34079cdfbd2458999b3a4",
+      "bytes": 25722,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    },
+    {
+      "path": "assets/lumo_design/ui/shield.webp",
+      "sha256": "4c9474a47f04f579d99459db029d5dbf8a215a7d9c1c1d44d220f81b03fb5f52",
+      "bytes": 22754,
+      "original_commit": "8344c10f1401d6516194e45e565695e968c9b47e"
+    }
+  ]
+}
