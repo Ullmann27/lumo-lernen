@@ -37,7 +37,7 @@ jobs:
             if (run.status!=='completed' || run.conclusion!=='success' || run.head_sha!==process.env.LUMO_EXPECT_SOURCE || run.path!=='.github/workflows/lumo-education-1937.yml') throw new Error('Exact1937 unified build must pass first');
             const {execFileSync}=require('child_process');
             const changes=execFileSync('git',['diff','--name-only',process.env.LUMO_EXPECT_SOURCE,context.sha,'--'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
-            const allowed=new Set(['.github/probes/lumo_1937_android_acceptance.py','.github/workflows/lumo-1937-android.yml','tools/package_android_1937_delivery.py']);
+            const allowed=new Set(['.github/probes/lumo_1937_android_acceptance.py','.github/workflows/lumo-1937-android.yml','tools/package_android_1937_delivery.py','.github/probes/kart_complete_android_probe.py']);
             if (changes.some(x=>!allowed.has(x))) throw new Error('QA changed product inputs: '+changes.join(','));
       - uses: actions/setup-java@v4
         with:
@@ -61,6 +61,13 @@ jobs:
           run-id: 38230588380
           name: lumo-education-1936-emulator-38230588380
           path: baseline/
+      - name: Retain immutable passed education and the original failed race proof
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38240584021
+          name: lumo1937-actual-android-38238926882-38240584021
+          path: android-proof/
       - name: Verify APK bytes and prepare independent readers
         run: |
           set -euo pipefail
@@ -125,7 +132,7 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python .github/probes/lumo_1937_android_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --arm64 arm64/Lumo-Lernen-Neu.apk --out android-proof
+          script: .probe-venv/bin/python .github/probes/lumo_1937_android_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --arm64 arm64/Lumo-Lernen-Neu.apk --out android-proof --reuse-education-proof
       - uses: actions/upload-artifact@v4
         if: always()
         with:

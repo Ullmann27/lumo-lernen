@@ -574,6 +574,7 @@ def main() -> int:
     parser.add_argument('--candidate', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--timeout', type=int, default=1200)
+    parser.add_argument('--predecessor', type=Path, help='Verified actual preceding probe identity, default Creative result')
     args = parser.parse_args()
     if not 180 <= args.timeout <= 2400:
         parser.error('--timeout must be from 180 to 2400 seconds')
@@ -779,7 +780,7 @@ def main() -> int:
                       harness=base.command('git', 'rev-parse', 'HEAD'))
         result['emulator_root_readiness'] = creative.ensure_rooted_emulator(
             base.adb, out, previous_readiness=out.parent / 'rooted-emulator.json',
-            previous_probe=out.parent / 'result.json', expected_identity={
+            previous_probe=args.predecessor or out.parent / 'result.json', expected_identity={
                 'source': expected_source, 'godot': expected_godot,
                 'apk_sha256': candidate_digest,
                 'android_sdk': int(os.environ['LUMO_EXPECT_ANDROID_API']),

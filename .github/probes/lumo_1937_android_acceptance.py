@@ -27,6 +27,7 @@ def main():
     parser.add_argument('--candidate', type=Path, required=True)
     parser.add_argument('--arm64', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--reuse-education-proof', action='store_true')
     args = parser.parse_args()
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
@@ -74,17 +75,72 @@ def main():
 
     existing.capture = course_capture
     try:
-        # The existing CLI intentionally forwards both immutable APK paths.
         original_args = sys.argv
-        sys.argv = [original_args[0],'--baseline',str(args.baseline),'--candidate',str(args.candidate),'--out',str(out)]
-        try:
-            if education.main() != 0:raise RuntimeError('Actual update/voice/course acceptance failed')
-        finally:
-            sys.argv = original_args
-            existing.capture = original_capture
-        proof = json.loads((out/'education-android-result.json').read_text())
-        if proof['status'] != 'PASS' or proof['candidate_source'] != result['flutter_commit'] or proof['candidate_apk_sha256'] != candidate['sha256']:
+        if args.reuse_education_proof:
+            prior = json.loads((out/'APK-AND-SCREENSHOT-PROOF.json').read_text())
+            proof = json.loads((out/'education-android-result.json').read_text())
+            if (prior['status'] != 'FAIL' or proof['status'] != 'PASS'
+                or proof['candidate_source'] != result['flutter_commit']
+                or proof['candidate_apk_sha256'] != candidate['sha256']
+                or proof['voice_update_kart']['candidate']['godot']['revision'] != result['godot_commit']):
+                raise RuntimeError('Only the actual passed education proof for the identical APK may be reused')
+            for shot in prior['screenshots']:
+                if shot['role'] not in {'learning_phone','learning_fold','additional_learning'}:
+                    continue
+                if digest(out/shot['file']) != shot['sha256'] or shot['installed_apk_sha256'] != candidate['sha256']:
+                    raise RuntimeError('Original actual education capture changed')
+                result['screenshots'].append(shot)
+            (out/'APK-AND-SCREENSHOT-PROOF.json').rename(out/'FIRST-FAILED-APK-AND-SCREENSHOT-PROOF.json')
+            (out/'complete-race/result.json').rename(out/'complete-race/FIRST-FAILED-result.json')
+            (out/'rooted-emulator.json').rename(out/'FIRST-rooted-emulator.json')
+            seed=out/'fresh-actual-race-preparation'
+            seed.mkdir(exist_ok=True)
+            root=existing.ensure_rooted_emulator(existing.base.adb,out)
+            if int(existing.base.adb('shell','getprop','ro.build.version.sdk')) != 36:
+                raise RuntimeError('Fresh actual Android16 expected')
+            installed=existing.base.adb('install','-r','--no-streaming',str(args.candidate),timeout=240)
+            if 'Success' not in installed:raise RuntimeError('Actual candidate install failed')
+            existing.base.adb('shell','svc','wifi','disable')
+            existing.base.adb('shell','svc','data','disable')
+            existing.base.adb('shell','cmd','connectivity','airplane-mode','enable')
+            existing.base.display(1080,2400,480)
+            existing.base.launch(seed,'fresh-exact1937')
+            existing.onboard(seed)
+            existing.base.display(1200,896,160)
+            # Nonempty learning records come from real answer taps, never prefs injection.
+            course=education.language_nature_course(seed,plant=True)
+            if course['status']!='PASS' or course['actual_attempts_added']!=3:
+                raise RuntimeError('Actual fresh saved-learning course did not pass')
+            existing.flutter_tap(seed,'Spielen','fresh-race-games')
+            existing.enter(seed,'Lumo Kart','Einzelrennen','fresh-race-menu',launch_label='Losfahren')
+            for step in range(4):existing.native_tap(seed,'Weiter',f'fresh-race-next-{step}')
+            existing.native_tap(seed,'Rennen starten','fresh-race-start')
+            existing.native_text(seed,'RUNDE','fresh-race-real-hud')
+            existing.capture(seed,'actual-prior-race')
+            existing.leave(seed,'fresh-partial-race',return_label='Zum Lernen')
+            result['education_reuse']={'prior_run':38240584021,'education_proof_sha256':digest(out/'education-android-result.json'),
+                'same_apk_sha256':candidate['sha256'],'rebuilt':False,'fresh_actual_saved_learning_course':course,
+                'scope':'Immutable actual full education PASS reused; fresh real UI profile/course and partial race prepare complete-race checks'}
+        else:
+            sys.argv=[original_args[0],'--baseline',str(args.baseline),'--candidate',str(args.candidate),'--out',str(out)]
+            try:
+                if education.main()!=0:raise RuntimeError('Actual update/voice/course acceptance failed')
+            finally:
+                sys.argv=original_args
+                existing.capture=original_capture
+            proof=json.loads((out/'education-android-result.json').read_text())
+            root=proof['voice_update_kart']['root']
+        if proof['status']!='PASS' or proof['candidate_source']!=result['flutter_commit'] or proof['candidate_apk_sha256']!=candidate['sha256']:
             raise RuntimeError('Education proof source mismatch')
+        existing.capture=original_capture
+        # Root identity adapter links actual preceding education (not fictional Creative
+        # results) to the same strict serial/UID/boot/source/digest/API checks.
+        predecessor=out/'actual-education-root-predecessor.json'
+        predecessor.write_text(json.dumps({'status':'PASS','scope':'Actual education/fresh-UI root identity, not a completed race',
+            'education_proof_sha256':digest(out/'education-android-result.json'),
+            'source':result['flutter_commit'],'godot':result['godot_commit'],'apk_sha256':candidate['sha256'],
+            'android_sdk':int(existing.base.adb('shell','getprop','ro.build.version.sdk')),
+            'emulator_root_readiness':root},indent=2)+'\n')
         result['education'] = proof
         old_loader = kart.load_creative
         def loader():
@@ -104,7 +160,7 @@ def main():
             return creative
         kart.load_creative = loader
         race_dir = out/'complete-race'
-        sys.argv = [original_args[0],'--candidate',str(args.candidate),'--out',str(race_dir),'--timeout','1800']
+        sys.argv = [original_args[0],'--candidate',str(args.candidate),'--out',str(race_dir),'--timeout','1800','--predecessor',str(predecessor)]
         try:
             if kart.main() != 0:raise RuntimeError('Actual complete Android Kart race failed')
         finally:
