@@ -53,6 +53,30 @@ void main() {
         grade4.where((q) => q.difficulty == QuizDifficulty.hard),
         hasLength(12),
       );
+
+      expect(grade1.last.id, startsWith('final_g1_'));
+      expect(grade2.last.id, startsWith('final_g2_'));
+      expect(grade3.last.id, startsWith('final_g3_'));
+      expect(grade4.last.id, startsWith('final_g4_'));
+      expect(grade1.last.subject, 'Logik-Finale');
+      expect(grade4.last.subject, 'Logik-Finale');
+    });
+
+    test('Finalfrage wiederholt sich nicht solange eine frische Variante existiert', () {
+      final first = bank.generateGameQuestions(
+        grade: 4,
+        random: math.Random(21),
+      );
+      final firstFinal = first.last;
+
+      final second = bank.generateGameQuestions(
+        grade: 4,
+        seenIds: <String>{firstFinal.id},
+        random: math.Random(21),
+      );
+
+      expect(second.last.id, startsWith('final_g4_'));
+      expect(second.last.id, isNot(firstFinal.id));
     });
 
     test('Anti-Wiederholung behält frische Fragen bei Teilpool-Fallback', () {
