@@ -137,7 +137,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
     //   (confident=false) - dann erst ChatGPT.
     // -> spart Render-Tokens, schneller fuer das Kind, funktioniert offline.
     final brainReply =
-        LumoBrain.instance.ask(trimmed, topicId: widget.topic.id);
+        LumoBrain.instance.ask(trimmed, topicId: widget.topic.id, grade: widget.appState.state.grade);
     if (!_ai.isConfigured(widget.appState.state.settings) &&
         brainReply.confident &&
         brainReply.text.isNotEmpty) {
@@ -257,7 +257,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   String _buildLocalFallback(String question) {
     // 1. LumoBrain probieren - vielleicht weiss er die Antwort doch
     final brainReply =
-        LumoBrain.instance.ask(question, topicId: widget.topic.id);
+        LumoBrain.instance.ask(question, topicId: widget.topic.id, grade: widget.appState.state.grade);
     if (brainReply.confident && brainReply.text.isNotEmpty) {
       return brainReply.text;
     }
