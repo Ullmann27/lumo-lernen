@@ -47,6 +47,13 @@ def wait_text(out: Path, marker: str, tag: str, timeout: float = 30,
     raise RuntimeError("Current real app state not observed: " + marker)
 
 
+def wait_proactive_help_offer(out: Path) -> str:
+    # Actual scrolling is child activity and resets the app's quiet period.
+    # Let the existing scene become quiet before looking outside the viewport.
+    time.sleep(18)
+    return wait_text(out, "Zeig mir wie", "minus-active-help-offer", timeout=60, scroll=True)
+
+
 def _enabled_control_bounds(nodes: list[dict], caption: str) -> list[int] | None:
     """Select a real enabled tap action, never a same-named static heading.
 
@@ -90,7 +97,9 @@ def _swipe_content(box: list[int], direction: int) -> None:
     existing.base.adb("shell", "input", "swipe", x, str(start), x, str(end), "400")
 
 
-def _answer_accepted(nodes: list[dict], value: str) -> bool:
+def _answer_accepted(nodes: list[dict], value: str, *, correct_feedback: tuple[str, ...] = (
+        "Das passt! Weiter geht es in deinem Tempo.",
+        "Du hast selbst gerechnet. Gut gemacht!")) -> bool:
     """Require correct answer, feedback and enabled continue in ONE live frame.
 
     "Weiterkommen" in the logo is not the Weiter button. A correct answer alone
@@ -107,10 +116,6 @@ def _answer_accepted(nodes: list[dict], value: str) -> bool:
             values.extend(caption for caption in
                           (node.get("text", ""), node.get("content-desc", "")) if caption)
     correct_choice = value + ", richtig"
-    correct_feedback = (
-        "Das passt! Weiter geht es in deinem Tempo.",
-        "Du hast selbst gerechnet. Gut gemacht!",
-    )
     return (
         any(correct_choice == text or correct_choice in text.splitlines() for text in values)
         and any(message in text for message in correct_feedback for text in values)
@@ -118,16 +123,19 @@ def _answer_accepted(nodes: list[dict], value: str) -> bool:
     )
 
 
-def wait_answer_accepted(out: Path, value: str, tag: str) -> None:
+def wait_answer_accepted(out: Path, value: str, tag: str, *,
+                         correct_feedback: tuple[str, ...] | None = None) -> None:
     for direction in (1, -1):
         for attempt in range(12):
             frame = f"{tag}-{direction}-{attempt}"
             nodes = existing.live.live_nodes(out, frame)
-            if _answer_accepted(nodes, value):
+            feedback = {} if correct_feedback is None else {'correct_feedback': correct_feedback}
+            if _answer_accepted(nodes, value, **feedback):
                 (out / (tag + "-actual-acceptance.json")).write_text(json.dumps({
                     "submitted_answer": value, "actual_current_frame": frame + ".xml",
                     "correct_answer_feedback_enabled_continue_in_same_frame": True,
                     "continue_bounds": _enabled_control_bounds(nodes, "Weiter"),
+                    "required_feedback": correct_feedback,
                 }, indent=2) + "\n")
                 return
             box = _scroll_bounds(nodes)
@@ -194,10 +202,11 @@ def discoveries(out: Path, tag: str) -> list[dict]:
             if "lumo_progress_discovery_v1::" in key]
 
 
-def answer(out: Path, title: str, value: str, tag: str) -> None:
+def answer(out: Path, title: str, value: str, tag: str, *,
+           correct_feedback: tuple[str, ...] | None = None) -> None:
     wait_text(out, title, tag + "-question")
     tap(out, value, tag + "-answer")
-    wait_answer_accepted(out, value, tag + "-accepted")
+    wait_answer_accepted(out, value, tag + "-accepted", correct_feedback=correct_feedback)
     tap(out, "Weiter", tag + "-continue")
 
 
@@ -359,7 +368,7 @@ def subtraction_course(out: Path) -> dict:
         wait_text(out, "Wir können es mit kleineren Schritten probieren", "minus-second-wrong-feedback", scroll=True)
         # Waiting and scrolling must never accept an explanation on behalf of
         # the child. Require the visible offer and its actual enabled action.
-        wait_text(out, "Zeig mir wie", "minus-active-help-offer", timeout=60, scroll=True)
+        wait_proactive_help_offer(out)
         text = current_text(out, "minus-before-help-acceptance")
         if "Nimm zuerst 4 weg" in text:
             raise RuntimeError("Hint was shown before the real child accepted help")
@@ -407,6 +416,107 @@ def subtraction_course(out: Path) -> dict:
             "actual_local_voice_pause_resume": True,
             "active_help": active_help,
             "screenshots": [example, hint, recap]}
+
+
+def _verify_pilot_storage(before: dict, after: dict, subject: str, unit: str) -> dict:
+    """Read actual durable state; reject duplicate answers or cross-profile writes."""
+    child = before.get('flutter.lumo_learning_local_student_id_v1')
+    if not child:
+        raise RuntimeError('Actual canonical local child is missing')
+    skills = 'flutter.lumo_progress_skills::' + child
+    daily = 'flutter.lumo_progress_daily::' + child
+    last = 'flutter.lumo_progress_last::' + child
+    attempts = 'flutter.lumo_attempt_log_v1'
+    identifier = subject.lower() + '::' + unit.lower()
+    old_skills, new_skills = json.loads(before.get(skills, '{}')), json.loads(after.get(skills, '{}'))
+    record = new_skills.get(identifier, {})
+    if (identifier in old_skills or set(new_skills) != set(old_skills) | {identifier}
+            or any(new_skills.get(key) != value for key, value in old_skills.items())
+            or record.get('skillId') != identifier or record.get('subject') != subject
+            or record.get('unit') != unit or record.get('correct') != 2
+            or record.get('wrong') != 1 or record.get('hintCount') != 1):
+        raise RuntimeError('Pilot answers, subject or existing skills were not saved exactly once')
+    old_daily, new_daily = json.loads(before.get(daily, '{}')), json.loads(after.get(daily, '{}'))
+    changes = [new_daily.get(day, 0) - old_daily.get(day, 0)
+               for day in set(old_daily) | set(new_daily)]
+    if sum(changes) != 2 or any(change < 0 for change in changes):
+        raise RuntimeError('Only two independent correct pilot answers may increase the daily total')
+    old_last, new_last = json.loads(before.get(last, '{}')), json.loads(after.get(last, '{}'))
+    if new_last != {**old_last, subject: unit}:
+        raise RuntimeError('Pilot replaced an unrelated last-visited subject')
+    old_log, new_log = json.loads(before.get(attempts, '[]')), json.loads(after.get(attempts, '[]'))
+    added = new_log[len(old_log):]
+    if (new_log[:len(old_log)] != old_log or len(added) != 3
+            or len({event.get('id') for event in added}) != 3
+            or sum(event.get('ok') is True for event in added) != 2
+            or sum(event.get('ok') is False for event in added) != 1
+            or any(event.get('sub') != subject or event.get('unit') != unit
+                   or (event.get('a') == event.get('e')) != event.get('ok') for event in added)):
+        raise RuntimeError('Actual pilot attempt history was replaced, mixed or counted twice')
+    allowed = {skills, daily, last, attempts}
+    if any(before.get(key) != after.get(key) for key in set(before) | set(after) if key not in allowed):
+        raise RuntimeError('Pilot modified another child, wallet, discovery grant or unrelated preference')
+    return record
+
+
+def language_nature_course(out: Path, *, plant: bool) -> dict:
+    """Both new courses: actual controls and independently read saved subject data."""
+    prefix = 'plant' if plant else 'syllables'
+    subject, unit = ('Sachunterricht', 'Pflanzen') if plant else ('Deutsch', 'Silben')
+    title = 'Eine Blütenpflanze entdecken' if plant else 'Wörter in Silben hören'
+    tap(out, 'Lernen', prefix + '-overview')
+    tap(out, 'Lumo erklärt es mir', prefix + '-hub')
+    before = existing.prefs(out, prefix + '-before-regular')
+    tap_named_course(out, title, prefix + '-named-start')
+    wait_text(out, 'Was wächst da?' if plant else 'Wir hören genau hin', prefix + '-greeting')
+    tap(out, 'Weiter', prefix + '-greeting-next')
+    wait_text(out, 'Von unten nach oben' if plant else 'Sprechen statt Buchstaben zählen',
+              prefix + '-foundation', scroll=True)
+    tap(out, 'Weiter', prefix + '-foundation-next')
+    wait_text(out, 'Das Blatt nutzt Licht' if plant else 'Ba – na – ne', prefix + '-example', scroll=True)
+    example = existing.capture(out, '24_actual_android_plant_example' if plant
+                               else '21_actual_android_syllables_example')
+    tap(out, 'Weiter', prefix + '-example-next')
+    answer(out, 'Gemeinsam unter die Erde schauen' if plant else 'Gemeinsam mitklatschen',
+           'Wurzel' if plant else '2', prefix + '-guided-first')
+    answer(out, 'Der Weg nach oben' if plant else 'Noch ein Wort zusammen',
+           'Stängel' if plant else '3', prefix + '-guided-second')
+    wait_text(out, 'Du erkennst den Pflanzenteil' if plant else 'Ein neues Wort für dich',
+              prefix + '-independent')
+    text = current_text(out, prefix + '-before-independent-answer')
+    if not plant and any(leak in text for leak in ('Blu – me', 'Blu-me', 'Blume hat zwei Silben')):
+        raise RuntimeError('Independent syllable task revealed its answer before the child asked for help')
+    tap(out, 'Wurzel' if plant else '1', prefix + '-actual-wrong')
+    wait_text(out, 'Fast! Probiere es noch einmal', prefix + '-actual-wrong-feedback', scroll=True)
+    tap(out, 'Tipp', prefix + '-actual-first-help')
+    first_help = 'Suche den bunten Teil oben' if plant else 'Zähle deine Klatscher, nicht die Buchstaben'
+    wait_text(out, first_help, prefix + '-first-help-visible', scroll=True)
+    tap(out, 'Anderer Tipp', prefix + '-actual-different-help')
+    second_help = 'Welchen bunten Teil besuchen sie?' if plant else 'Lege für jedes Sprechstück einen Finger'
+    wait_text(out, second_help, prefix + '-different-help-visible', scroll=True)
+    hint = existing.capture(out, '25_actual_android_plant_alternative_hint' if plant
+                            else '22_actual_android_syllables_alternative_hint')
+    feedback = ('Das hast du selbst herausgefunden. Gut gemacht!',)
+    tap(out, 'Blüte' if plant else '2', prefix + '-actual-correct')
+    wait_answer_accepted(out, 'Blüte' if plant else '2', prefix + '-independent-accepted',
+                         correct_feedback=feedback)
+    tap(out, 'Weiter', prefix + '-independent-next')
+    answer(out, 'Eine andere Blütenpflanze' if plant else 'Dein eigener Silbenversuch',
+           'Blatt' if plant else '3', prefix + '-independent-check', correct_feedback=feedback)
+    wait_text(out, '2 neue Aufgaben selbst gelöst', prefix + '-complete', scroll=True)
+    recap = existing.capture(out, '26_actual_android_complete_plant_course' if plant
+                             else '23_actual_android_complete_syllables_course')
+    tap(out, 'Zur Lernübersicht', prefix + '-return')
+    after = existing.prefs(out, prefix + '-after-regular')
+    record = _verify_pilot_storage(before, after, subject, unit)
+    existing.base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
+    return {'status': 'PASS', 'complete_eight_step_course': True, 'school_record': record,
+            'actual_wrong_tap': True, 'different_child_requested_help': True,
+            'correct_answer_feedback_enabled_continue_in_same_frame': True,
+            'daily_correct_delta': 2, 'actual_attempts_added': 3,
+            'existing_skills_preserved': True, 'other_profiles_unchanged': True,
+            'discovery_unchanged': True, 'wallet_unchanged': True,
+            'screenshots': [example, hint, recap]}
 
 
 def tap_named_course(out: Path, title: str, tag: str) -> None:
@@ -482,6 +592,9 @@ def main() -> int:
             tap(out, "Lumo erklärt es mir", "minus-school-hub")
             result["subtraction_course"] = subtraction_course(out)
             existing.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
+        if voice.CANDIDATE_VERSION >= 1933:
+            result['syllables_course'] = language_nature_course(out, plant=False)
+            result['plant_parts_course'] = language_nature_course(out, plant=True)
         result["discovery_course"] = discovery_course(out)
         tap(out, "Zur Lernübersicht", "discovery-return")
         existing.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")

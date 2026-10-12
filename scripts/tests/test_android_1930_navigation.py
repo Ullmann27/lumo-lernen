@@ -27,7 +27,7 @@ class CourseNavigationTest(unittest.TestCase):
     def setUp(self):
         helpers = [node for node in ast.parse(SOURCE.read_text()).body
                    if isinstance(node, ast.FunctionDef)
-                   and node.name in ("_enabled_control_bounds", "_answer_accepted", "tap")]
+                   and node.name in ("_enabled_control_bounds", "_answer_accepted", "tap", "wait_proactive_help_offer")]
         self.reader = Mock()
         self.adb = Mock()
         self.capture = Mock()
@@ -38,12 +38,24 @@ class CourseNavigationTest(unittest.TestCase):
             recover_launcher_dialog=Mock(return_value=False),
             capture=self.capture,
         )
+        self.events = []
+        self.wait_text = Mock(side_effect=lambda *args, **kwargs: self.events.append('scan'))
         scope = {"existing": existing, "re": re, "Path": Path,
-                 "time": types.SimpleNamespace(sleep=Mock())}
+                 "time": types.SimpleNamespace(sleep=lambda seconds: self.events.append(('quiet', seconds))),
+                 "wait_text": self.wait_text}
         exec(compile(ast.Module(body=helpers, type_ignores=[]), str(SOURCE), "exec"), scope)
         self.select = scope["_enabled_control_bounds"]
         self.accepted = scope["_answer_accepted"]
         self.tap = scope["tap"]
+        self.help_offer = scope.get('wait_proactive_help_offer')
+
+    def test_help_probe_waits_quietly_before_any_scrolling_scan(self):
+        self.assertIsNotNone(self.help_offer)
+        self.help_offer(Path('/tmp/unit-fixture'))
+        self.assertGreaterEqual(self.events[0][1], 15)
+        self.assertEqual(self.events[0][0], 'quiet')
+        self.assertEqual(self.events[1], 'scan')
+        self.assertEqual(self.wait_text.call_args.args[1], 'Zeig mir wie')
 
     def test_saved_real_android_hierarchy_selects_navigation_not_logo(self):
         nodes = [node.attrib for node in ET.parse(FIXTURE).iter("node")]
@@ -133,6 +145,21 @@ class CourseNavigationTest(unittest.TestCase):
         self.assertFalse(self.accepted([
             control("1, richtig", clickable=False),
             control("Fast! Probiere es noch einmal.", clickable=False), proceed], "1"))
+
+    def test_non_math_feedback_is_exact_and_keeps_same_frame_requirement(self):
+        feedback = 'Das hast du selbst herausgefunden. Gut gemacht!'
+        right = control('Blüte, richtig', clickable=False, enabled=False)
+        message = control(feedback, clickable=False)
+        proceed = control('Weiter')
+        self.assertFalse(self.accepted([right, message, proceed], 'Blüte'))
+        self.assertTrue(self.accepted([right, message, proceed], 'Blüte',
+                                     correct_feedback=(feedback,)))
+        for partial in ([right, message], [right, proceed], [message, proceed]):
+            self.assertFalse(self.accepted(partial, 'Blüte',
+                                          correct_feedback=(feedback,)))
+        self.assertFalse(self.accepted([
+            right, control('Du hast selbst gerechnet. Gut gemacht!', clickable=False),
+            proceed], 'Blüte', correct_feedback=(feedback,)))
 
 
 if __name__ == "__main__":

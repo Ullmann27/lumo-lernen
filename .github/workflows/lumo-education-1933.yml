@@ -17,6 +17,8 @@ env:
 
 jobs:
   verify-build:
+    # This one-off source build is already running; later QA-only commits never rebuild it.
+    if: github.sha == '40282205f61897af3a08aee2ecd542feabd99df0'
     runs-on: ubuntu-latest
     timeout-minutes: 65
     env:
@@ -65,7 +67,7 @@ jobs:
           assert run['status'] == 'completed' and run['conclusion'] == 'success'
           assert run['path'] == '.github/workflows/lumo-change-review.yml'
           PYCI
-          printf '%s\n' 'Exact product CI already succeeded: 1338 Flutter cases, content audit, Python/backend guards and analysis. No product change or repeated full suite.' > proof/flutter-suite-scope.txt
+          printf '%s\n' 'Exact product CI already succeeded: 1338 Flutter cases and analysis. Content audit and relevant Python guards have separate local evidence; unchanged backend retains prior build evidence. No product change or repeated full suite.' > proof/flutter-suite-scope.txt
       - name: Exact locked dependencies and native build prerequisite
         run: |
           set -euo pipefail

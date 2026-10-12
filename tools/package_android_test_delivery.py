@@ -46,6 +46,25 @@ def validate(provenance: dict, android: dict, outcomes: dict, run: dict, log: st
                 or help_result.get("no_hint_before_acceptance") is not True
                 or help_result.get("actual_accept_button_tapped") is not True):
             raise ValueError("Actual accepted task-bound active help is required")
+    if version_code >= 1933:
+        for name, subject, unit in [('syllables_course', 'Deutsch', 'Silben'),
+                                    ('plant_parts_course', 'Sachunterricht', 'Pflanzen')]:
+            course = android.get(name, {})
+            record = course.get('school_record', {})
+            if (course.get('status') != 'PASS'
+                    or any(course.get(key) is not True for key in (
+                        'complete_eight_step_course', 'actual_wrong_tap',
+                        'different_child_requested_help',
+                        'correct_answer_feedback_enabled_continue_in_same_frame',
+                        'existing_skills_preserved', 'other_profiles_unchanged',
+                        'discovery_unchanged', 'wallet_unchanged'))
+                    or course.get('daily_correct_delta') != 2
+                    or course.get('actual_attempts_added') != 3
+                    or record.get('skillId') != subject.lower() + '::' + unit.lower()
+                    or record.get('subject') != subject or record.get('unit') != unit
+                    or record.get('correct') != 2 or record.get('wrong') != 1
+                    or record.get('hintCount') != 1):
+                raise ValueError('Complete real Android pilot and exact subject-specific storage required: ' + name)
     if (outcomes.get("SOURCE_SHA") != source
             or any(outcomes.get(key) != "success" for key in
                    ("DEPENDENCIES", "ANALYSIS", "TESTS"))
@@ -90,8 +109,10 @@ def main() -> int:
     source = checked["source"]
     version_name, version_code = args.version_name, args.version_code
     new_course = (' sowie „Minus über den Zehner“' if version_code >= 1931 else '')
+    if version_code >= 1933:
+        new_course += ', „Wörter in Silben hören“ (Deutsch) und „Eine Blütenpflanze entdecken“ (Sachunterricht)'
     baseline_code = android['voice_update_kart']['baseline']['versionCode']
-    course_count = 'drei' if version_code >= 1931 else 'beide'
+    course_count = 'fünf' if version_code >= 1933 else 'drei' if version_code >= 1931 else 'beide'
     instructions = f"""# Lumo Lernen Neu {version_name} ({version_code})
 
 Diese ZIP enthält die vollständige ARM64-Test-APK der bestehenden Lumo-App.
@@ -152,6 +173,8 @@ wurden aktiviert.
 Die beigefügten Android-Bilder stammen aus der tatsächlich laufenden App im Emulator,
 nicht aus Konzeptbildern oder einem Flutter-Testbild als angeblicher Android-Aufnahme.
 """
+    if version_code >= 1933:
+        instructions += "\nBekannter kleiner Bedienpunkt: „Erklärung lesen“ wiederholt in den neuen Beispielen den bereits angezeigten Erklärungstext. Die Übung, unterschiedliche Tipps und gespeicherten Antworten sind davon unabhängig.\n"
     notes = args.output / "INSTALLATION-UND-PRUEFSTAND.md"
     notes.write_text(instructions)
     screenshots = [
@@ -174,6 +197,15 @@ nicht aus Konzeptbildern oder einem Flutter-Testbild als angeblicher Android-Auf
         ])
     if version_code >= 1932:
         screenshots.append("20_actual_android_active_help_offer.png")
+    if version_code >= 1933:
+        screenshots.extend([
+            '21_actual_android_syllables_example.png',
+            '22_actual_android_syllables_alternative_hint.png',
+            '23_actual_android_complete_syllables_course.png',
+            '24_actual_android_plant_example.png',
+            '25_actual_android_plant_alternative_hint.png',
+            '26_actual_android_complete_plant_course.png',
+        ])
     target = args.output / f"Lumo-Lernen-Neu-{version_name}-{version_code}.zip"
     with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED, compresslevel=1) as archive:
         archive.write(apk, "Lumo-Lernen-Neu.apk")
