@@ -52,21 +52,67 @@ void main() {
     expect(Curriculum.unitsForGrade('Mathematik', 1), contains(task.unit));
   });
 
-  test('mixed fourth-grade practice predominantly selects current-grade topics',
+  test('mixed fourth-grade practice stays strictly in current-grade topics',
       () {
-    for (final subject in ['Mathematik', 'Deutsch', 'Sachunterricht']) {
+    for (final subject in [
+      'Mathematik',
+      'Deutsch',
+      'Sachunterricht',
+      'Englisch',
+    ]) {
       final current =
           Curriculum.unitsForGrade(subject, 4, currentGradeOnly: true).toSet();
       final factory = ExerciseFactory(seed: 42);
-      var currentCount = 0;
       for (var i = 0; i < 300; i++) {
         final task = factory.next(grade: 4, subject: subject);
-        if (current.contains(task.unit)) {
-          currentCount++;
-        }
+        expect(
+          current,
+          contains(task.unit),
+          reason:
+              '$subject Klasse 4 darf ohne bewusste Wiederholung kein altes Thema liefern: ${task.unit}',
+        );
       }
-      expect(currentCount, greaterThan(180),
-          reason: '$subject: $currentCount / 300');
+    }
+  });
+
+  test('fourth-grade math menu does not expose grade-one arithmetic', () {
+    final grade4 = Curriculum.unitsForGrade(
+      'Mathematik',
+      4,
+      currentGradeOnly: true,
+    );
+    expect(grade4, isNot(contains('Plus bis 10')));
+    expect(grade4, isNot(contains('Minus bis 10')));
+    expect(grade4, isNot(contains('Plus bis 20')));
+    expect(grade4, contains('Schriftliche Multiplikation'));
+    expect(grade4, contains('Schriftliche Division'));
+  });
+
+  test('reading writing and spelling have their own grade menus', () {
+    final reading1 =
+        Curriculum.unitsForGrade('Lesen', 1, currentGradeOnly: true);
+    final reading4 =
+        Curriculum.unitsForGrade('Lesen', 4, currentGradeOnly: true);
+    final writing1 =
+        Curriculum.unitsForGrade('Schreiben', 1, currentGradeOnly: true);
+    final writing4 =
+        Curriculum.unitsForGrade('Schreiben', 4, currentGradeOnly: true);
+
+    expect(reading1, contains('Woerter lesen'));
+    expect(reading4, isNot(contains('Woerter lesen')));
+    expect(writing1, contains('Buchstaben nachspuren'));
+    expect(writing4, isNot(contains('Buchstaben nachspuren')));
+
+    for (var grade = 1; grade <= 4; grade++) {
+      expect(
+        Curriculum.unitsForGrade(
+          'Rechtschreibung',
+          grade,
+          currentGradeOnly: true,
+        ),
+        isNotEmpty,
+        reason: 'Rechtschreibung braucht Themen fuer Klasse $grade',
+      );
     }
   });
 
