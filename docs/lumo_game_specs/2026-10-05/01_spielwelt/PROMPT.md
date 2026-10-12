@@ -1,0 +1,2 @@
+# Spielwelt Prompt
+Nutze `lumo_spielwelt_technical_world_board.webp`, `lumo_spielwelt_key_art.webp` und den Master-Charakter. Baue einen echten 3D-Hub mit zentralem Lumo, sieben klaren Spielportalen, echter Orbit-/Soft-Follow-Kamera, schwebenden Inseln, Wasserfällen, Schloss, Mond, Sternen, warmen Laternen und Cyan/Gold-VFX. Portale sind Runtime-Komponenten, keine Screenshot-Hotspots. Vor Implementierung bestehende Hub-/Navigation-/Godot-Struktur prüfen. Erst eine perfekte Hub-Welt; keine sieben Spiele gleichzeitig neu schreiben.
