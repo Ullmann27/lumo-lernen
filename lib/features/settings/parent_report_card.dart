@@ -9,6 +9,8 @@ import '../../core/reading_progress_repository.dart';
 import '../../core/settings_repository.dart';
 import '../../domain/analysis/daily_recommendation_engine.dart';
 import '../../domain/analysis/lumo_analysis_domain.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../parents/lumo_insight_dashboard.dart';
 import '../parents/widgets/lumo_ai_policy_selector.dart';
 
@@ -131,10 +133,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
         }
         final report = snapshot.data!;
         final settings = widget.appState.state.settings;
-        return Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(18),
-          decoration: lumoCard(gradient: const LinearGradient(colors: [Color(0xFFFFFFFF), Color(0xFFFFF7ED)])),
+        return LumoGlassCard(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             // 2026-06-03: prominenter CTA zum neuen Lumo-Insight-Dashboard
             // (visuelle Kompetenz-Heatmap, das echte Game-Changer-Feature
@@ -150,13 +149,13 @@ class _ParentReportCardState extends State<ParentReportCard> {
               ),
               const SizedBox(width: 12),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Elternbericht MVP', style: LumoTextStyles.heading2.copyWith(color: LumoColors.ink900)),
+                Text('Elternbericht', style: LumoTextStyles.heading2.copyWith(color: LumoVisualTokens.white)),
                 const SizedBox(height: 4),
-                Text('Lokal erzeugt · ${_date(report.generatedAt)}', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink600)),
+                Text('Lokal erzeugt · ${_date(report.generatedAt)}', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
               ])),
             ]),
             const SizedBox(height: 12),
-            Text(report.summary, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
+            Text(report.summary, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted)),
             const SizedBox(height: 14),
             Wrap(spacing: 12, runSpacing: 12, children: [
               _SubjectReportMini(block: report.reading, color: LumoColors.blue),
@@ -184,13 +183,13 @@ class _ParentReportCardState extends State<ParentReportCard> {
               onModeChanged: _saveAiMode,
             ),
             const SizedBox(height: 14),
-            Text('Nächste sinnvolle Schritte', style: LumoTextStyles.heading3),
+            Text('Nächste sinnvolle Schritte', style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white)),
             const SizedBox(height: 8),
             ...report.nextSteps.map((step) => Padding(
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     const Text('• ', style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, color: LumoColors.orange)),
-                    Expanded(child: Text(step, style: LumoTextStyles.body.copyWith(color: LumoColors.ink700))),
+                    Expanded(child: Text(step, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted))),
                   ]),
                 )),
             const SizedBox(height: 18),
@@ -207,12 +206,12 @@ class _ParentReportCardState extends State<ParentReportCard> {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFEFF6FF), Color(0xFFF5F3FF)],
+          colors: [LumoVisualTokens.glass, LumoVisualTokens.navigation],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFFC7D2FE)),
+        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.42)),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
@@ -221,25 +220,26 @@ class _ParentReportCardState extends State<ParentReportCard> {
           Expanded(
               child: Text('KI-Wochenanalyse',
                   style: LumoTextStyles.heading3
-                      .copyWith(color: const Color(0xFF4338CA)))),
+                      .copyWith(color: LumoVisualTokens.cyanBright))),
         ]),
         const SizedBox(height: 6),
         Text(
           aiEnabled
               ? 'Lumo-Berater fasst Lernfortschritt + Foerder-Tipp in 3-5 Saetzen zusammen.'
               : 'Lumo-KI-Server im Elternbereich noch nicht aktiviert.',
-          style: LumoTextStyles.caption.copyWith(color: LumoColors.ink600),
+          style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
         ),
         const SizedBox(height: 10),
         if (_aiInsight != null) ...[
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: LumoVisualTokens.navigation.withOpacity(.82),
               borderRadius: BorderRadius.circular(LumoRadius.md),
+              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.3)),
             ),
             child: Text(_aiInsight!,
-                style: LumoTextStyles.body.copyWith(color: LumoColors.ink900)),
+                style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
           ),
           const SizedBox(height: 8),
         ],
@@ -266,8 +266,8 @@ class _ParentReportCardState extends State<ParentReportCard> {
                 ? 'KI-Analyse anfordern'
                 : 'Neu generieren'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF4F46E5),
-              foregroundColor: Colors.white,
+              backgroundColor: LumoVisualTokens.cyan,
+              foregroundColor: LumoVisualTokens.night,
               padding:
                   const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
               shape: RoundedRectangleBorder(
@@ -298,9 +298,9 @@ class _SubjectReportMini extends StatelessWidget {
       width: 250,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.82),
+        color: LumoVisualTokens.glassRow.withOpacity(.72),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: color.withOpacity(.18)),
+        border: Border.all(color: color.withOpacity(.42)),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(block.subject, style: LumoTextStyles.heading3.copyWith(color: color)),
@@ -308,16 +308,16 @@ class _SubjectReportMini extends StatelessWidget {
         if (block.strengths.isNotEmpty) ...[
           Text('Stärken', style: LumoTextStyles.label.copyWith(color: LumoColors.teal)),
           const SizedBox(height: 3),
-          ...block.strengths.take(3).map((item) => Text('✓ $item', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700))),
+          ...block.strengths.take(3).map((item) => Text('✓ $item', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted))),
           const SizedBox(height: 8),
         ],
         if (block.weaknesses.isNotEmpty) ...[
           Text('Förderbedarf', style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
           const SizedBox(height: 3),
-          ...block.weaknesses.take(3).map((item) => Text('• $item', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700))),
+          ...block.weaknesses.take(3).map((item) => Text('• $item', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted))),
           const SizedBox(height: 8),
         ],
-        Text(block.recommendedAction, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w900)),
+        Text(block.recommendedAction, style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.white, fontWeight: FontWeight.w900)),
       ]),
     );
   }
@@ -348,14 +348,15 @@ class _LumoInsightCta extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+              colors: [LumoVisualTokens.glassRow, LumoVisualTokens.glass],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
+            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.52)),
             borderRadius: BorderRadius.circular(LumoRadius.lg),
             boxShadow: [
               BoxShadow(
-                color: LumoColors.orange.withOpacity(0.36),
+                color: LumoVisualTokens.cyan.withOpacity(0.18),
                 blurRadius: 16,
                 offset: const Offset(0, 6),
                 spreadRadius: -3,
@@ -427,12 +428,17 @@ class _LumoKiMasterToggle extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: enabled
-              ? const [Color(0xFFFFB96B), Color(0xFFFF7A2F)]
-              : const [Color(0xFFE5E7EB), Color(0xFFD1D5DB)],
+              ? const [LumoVisualTokens.glassRow, LumoVisualTokens.glass]
+              : const [LumoVisualTokens.navigation, LumoVisualTokens.glass],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(
+          color: enabled
+              ? LumoVisualTokens.cyan.withOpacity(.55)
+              : LumoVisualTokens.muted.withOpacity(.22),
+        ),
         boxShadow: enabled
             ? [
                 BoxShadow(
