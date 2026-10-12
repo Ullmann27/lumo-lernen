@@ -1,0 +1,154 @@
+name: Lumo 1932 direct single ZIP and private draft, same tested APK
+on:
+  push:
+    branches: [sol/lumo-1932-download-2026-10-12]
+    paths: [.github/workflows/lumo-1932-direct-download.yml]
+permissions:
+  actions: read
+  contents: write
+jobs:
+  direct-download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: Ullmann27/lumo-lernen
+      SOURCE: d20501476243e3a016c2574a9016c07e2ebe8f85
+      PACKAGE_RUN: '38192560244'
+      QA_SOURCE: 8843498dd7bc7d1161094ff2dff81b9d9c0e9b4d
+      ZIP_NAME: Lumo-Lernen-Neu-0.12.25-1932-Direkt.zip
+      RELEASE_TAG: lumo-0.12.25-1932-download-draft
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+          persist-credentials: false
+      - name: Require completed exact-source Android acceptance and unchanged application
+        run: |
+          set -euo pipefail
+          gh api "repos/$GH_REPO/actions/runs/$PACKAGE_RUN" > build-run.json
+          python3 - <<'PY'
+          import json, os
+          r=json.load(open('build-run.json'))
+          assert r['head_sha']==os.environ['QA_SOURCE']
+          assert r['status']=='completed' and r['conclusion']=='success'
+          assert r['path']=='.github/workflows/lumo-1932-runtime-repair.yml'
+          PY
+          python3 - <<'PY'
+          import os,subprocess
+          allowed={'.github/probes/lumo_education_android_probe.py',
+              '.github/workflows/lumo-1932-runtime-repair.yml',
+              '.github/workflows/lumo-1932-direct-download.yml',
+              'scripts/tests/test_android_1930_navigation.py',
+              'scripts/tests/fixtures/android_1931_minus_wrong.xml',
+              'docs/education/2026-10-11-active-companion/ANDROID-RUNTIME-REPAIR.md'}
+          changed=subprocess.check_output(['git','diff','--name-only',os.environ['SOURCE'],'HEAD','--'],text=True).splitlines()
+          assert set(changed)<=allowed, changed
+          PY
+          gh run download "$PACKAGE_RUN" --repo "$GH_REPO" \
+            --name "lumo-education-1932-chat-download-$PACKAGE_RUN" --dir incoming
+      - name: Open and verify the complete tested bundle, preserve the exact APK
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os,zipfile
+          from pathlib import Path,PurePosixPath
+          p=Path('incoming/Lumo-Lernen-Neu-0.12.25-1932.zip')
+          proof=json.load(open('incoming/ZIP-VERIFICATION.json'))
+          assert proof['source']==os.environ['SOURCE'] and proof['production_release'] is False
+          assert proof['actual_android_result']=='PASS' and proof['zip_crc']=='PASS'
+          assert hashlib.file_digest(p.open('rb'),'sha256').hexdigest()==proof['sha256']
+          assert p.stat().st_size==proof['bytes']
+          dest=Path('direct-files');dest.mkdir()
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              assert 'Lumo-Lernen-Neu.apk' in z.namelist()
+              assert not any(n.lower().endswith('.zip') for n in z.namelist())
+              for n in z.namelist():
+                  name=PurePosixPath(n)
+                  assert not name.is_absolute() and '..' not in name.parts
+              z.extractall(dest)
+          apk=dest/'Lumo-Lernen-Neu.apk'
+          assert hashlib.file_digest(apk.open('rb'),'sha256').hexdigest()==proof['apk']['sha256']
+          provenance=json.load(open(dest/'pruefbelege/BUILD-PROVENANCE.json'))
+          assert provenance['flutter_source_commit']==os.environ['SOURCE']
+          assert provenance['versionCode']==1932 and provenance['versionName']=='0.12.25'
+          assert provenance['signingCertificateSha256']=='a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          assert provenance['abis']==['arm64-v8a']
+          with zipfile.ZipFile(apk) as z: assert z.testzip() is None
+          Path('original-package-proof.json').write_text(json.dumps(proof,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        id: single
+        with:
+          name: lumo-1932-direct-single-zip-${{ github.run_id }}
+          path: direct-files/
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+      - name: Actually download and open the direct single-file archive
+        env:
+          ARTIFACT_ID: ${{ steps.single.outputs.artifact-id }}
+          ZIP_SHA: ${{ steps.single.outputs.artifact-digest }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 2 --max-time 600 \
+            -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/$GH_REPO/actions/artifacts/$ARTIFACT_ID/zip" --output "$ZIP_NAME"
+          python3 - <<'PY'
+          import hashlib,json,os,zipfile
+          from pathlib import Path
+          p=Path(os.environ['ZIP_NAME']);proof=json.load(open('original-package-proof.json'))
+          sha=hashlib.file_digest(p.open('rb'),'sha256').hexdigest()
+          assert sha==os.environ['ZIP_SHA']
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None and 'Lumo-Lernen-Neu.apk' in z.namelist()
+              assert not any(n.lower().endswith('.zip') for n in z.namelist())
+              with z.open('Lumo-Lernen-Neu.apk') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==proof['apk']['sha256']
+          Path('DOWNLOAD-VERIFIED.json').write_text(json.dumps({
+              'file':p.name,'bytes':p.stat().st_size,'sha256':sha,'source':os.environ['SOURCE'],
+              'artifact_id':int(os.environ['ARTIFACT_ID']),'apk_sha256':proof['apk']['sha256'],
+              'crc':'PASS','actually_downloaded_and_opened':True,'rebuilt':False,
+              'publicly_published':False,
+          },indent=2)+'\n')
+          PY
+      - name: Preserve a durable owner download in an unpublished draft only
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" --draft --prerelease --target "$SOURCE" \
+            --title 'Lumo Lernen 1932 — geprüfter Testdownload' \
+            --notes-file direct-files/INSTALLATION-UND-PRUEFSTAND.md
+          gh api "repos/$GH_REPO/releases?per_page=100" > drafts.json
+          python3 - <<'PY'
+          import json,os
+          matches=[r for r in json.load(open('drafts.json')) if r['tag_name']==os.environ['RELEASE_TAG']]
+          assert len(matches)==1
+          r=matches[0]
+          with open('before-draft.json','w') as f: json.dump(r,f)
+          
+          assert r['draft'] is True and r['published_at'] is None
+          assert r['target_commitish']==os.environ['SOURCE'] and not r['assets']
+          PY
+          gh release upload "$RELEASE_TAG" "$ZIP_NAME" DOWNLOAD-VERIFIED.json
+          RELEASE_ID="$(python3 -c 'import json; print(json.load(open("before-draft.json"))["id"])')"
+          gh api "repos/$GH_REPO/releases/$RELEASE_ID" > uploaded-draft.json
+          python3 - <<'PY'
+          import json,os
+          r=json.load(open('uploaded-draft.json'));p=json.load(open('DOWNLOAD-VERIFIED.json'))
+          assert r['draft'] is True and r['published_at'] is None
+          a=next(a for a in r['assets'] if a['name']==os.environ['ZIP_NAME'])
+          assert a['state']=='uploaded' and a['size']==p['bytes']
+          assert a['digest']=='sha256:'+p['sha256']
+          print('Unpublished verified direct ZIP:',a['browser_download_url'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1932-direct-download-proof-${{ github.run_id }}
+          path: |
+            build-run.json
+            original-package-proof.json
+            DOWNLOAD-VERIFIED.json
+            before-draft.json
+            uploaded-draft.json
+          retention-days: 30
