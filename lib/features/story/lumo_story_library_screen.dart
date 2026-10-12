@@ -80,7 +80,8 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   }
 
   void _startReadingNow() {
-    final grade = (widget.gradeLevel ?? widget.appState.state.grade).clamp(1, 4);
+    final grade =
+        (widget.gradeLevel ?? widget.appState.state.grade).clamp(1, 4).toInt();
     final story =
         LumoStoryGenerator.instance.generateRandom(gradeLevel: grade);
     Navigator.push(
