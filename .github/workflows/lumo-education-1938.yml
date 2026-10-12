@@ -1,0 +1,182 @@
+name: Lumo 1938 complete protected integration APK build, no publication
+on:
+  push:
+    branches: [chatgpt/lumo-1938-complete-integration-2026-10-12]
+    paths: [.github/workflows/lumo-education-1938.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-education-1938-protected-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  verify-build:
+    if: github.ref == 'refs/heads/chatgpt/lumo-1938-complete-integration-2026-10-12'
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      LUMO_BUILD_SOURCE: ${{ github.sha }}
+      LUMO_GODOT_SOURCE: 'ec96515a2e359d21e9591120fc81dfd15116e81e'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Freeze exact 1938 protected source
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          test "$(git rev-parse HEAD)" = "$LUMO_BUILD_SOURCE"
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = '0.12.31+1938'
+          test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = "$LUMO_GODOT_SOURCE"
+          test -f docs/integration/LUMO_1938_COMPLETE_INTEGRATION_AUDIT_2026-10-12.md
+          git rev-parse HEAD | tee proof/source-sha.txt
+
+      - name: Resolve locked dependencies
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+
+      - name: Analyze exact source
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos 2>&1 | tee proof/flutter-analyze.log
+
+      - name: Run 1938 integration gates
+        run: |
+          set -o pipefail
+          flutter test --no-pub \
+            test/curriculum_depth_test.dart \
+            test/tutoring/guided_advanced_quantity_test.dart \
+            test/tutoring/guided_lesson_catalog_test.dart \
+            test/tutoring/guided_lesson_runtime_test.dart \
+            test/design/lumo_1936_unified_integration_test.dart \
+            test/design/lumo_learning_tree_fold_visual_test.dart \
+            test/profile_screen_test.dart \
+            --reporter=expanded 2>&1 | tee proof/1938-integration-gates.log
+
+      - name: Verify recovered runtime assets
+        run: |
+          set -euo pipefail
+          for f in \
+            assets/lumo_design/characters/fox_kart_front.webp \
+            assets/lumo_design/kart_items/turbo_pad.webp \
+            assets/lumo_design/deco/finish_gate.webp \
+            assets/lumo_design/rewards/reward_trophy.webp \
+            assets/lumo_design/garage/steering_wheel.webp \
+            assets/lumo_design/track/ramp.webp \
+            assets/lumo_design/buildings/observatory.webp \
+            assets/lumo_design/nature/rainbow_waterfall.webp
+          do
+            test -s "$f"
+          done
+          git diff --check
+
+      - name: Run complete Flutter test suite
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=45s --concurrency=2 2>&1 | tee proof/flutter-test.log
+
+      - name: Verify Godot runtime source has passing Stage2
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runs=(await github.rest.actions.listWorkflowRunsForRepo({
+              owner:'Ullmann27',repo:'lumo-godot',
+              head_sha:process.env.LUMO_GODOT_SOURCE,per_page:30
+            })).data.workflow_runs;
+            const passed=runs.find(r =>
+              r.path==='.github/workflows/kart-stage2-regression.yml' &&
+              r.status==='completed' &&
+              r.conclusion==='success' &&
+              r.head_sha===process.env.LUMO_GODOT_SOURCE);
+            if (!passed) throw new Error('Pinned Godot source must pass complete Stage2 before APK build');
+            require('fs').writeFileSync(
+              'proof/GODOT-CI.json',
+              JSON.stringify({source:process.env.LUMO_GODOT_SOURCE,run_id:passed.id,url:passed.html_url},null,2)
+            );
+
+      - name: Install native toolchain and Godot
+        run: |
+          set -euo pipefail
+          bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
+          bash scripts/install_godot_for_build.sh
+
+      - name: Build unified Flutter + Godot APK
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/android-build.log
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          (cd dist/x86_64 && sha256sum -c SHA256SUMS.txt)
+
+      - name: Verify actual 1938 package and provenance
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          for folder, abi in [('dist', 'arm64-v8a'), ('dist/x86_64', 'x86_64')]:
+              data = json.loads(Path(folder, 'BUILD-PROVENANCE.json').read_text())
+              assert data['flutter_source_commit'] == os.environ['LUMO_BUILD_SOURCE']
+              assert data['tracked_source_clean'] is True
+              assert data['versionCode'] == 1938
+              assert data['versionName'] == '0.12.31'
+              assert data['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+              assert data['abis'] == [abi]
+              assert data['godot']['revision'] == os.environ['LUMO_GODOT_SOURCE']
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1938-arm64-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1938-emulator-${{ github.run_id }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-education-1938-build-evidence-${{ github.run_id }}
+          path: proof/
+          if-no-files-found: error
+          retention-days: 30
+
+# synchronized final 1938 build + screenshots
