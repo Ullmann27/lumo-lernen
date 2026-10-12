@@ -177,22 +177,36 @@ class ExerciseFactory {
   }) {
     final cappedGrade = grade.clamp(1, 4).toInt();
     final chosenSubject = _chooseSubject(subject, weakSkills);
-    final units = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
-    final availableUnit = units.contains(unit) ||
-        (chosenSubject == 'Mathematik' && MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
-        (chosenSubject == 'Deutsch' && GermanTaskTemplates.supportsUnit(cappedGrade, unit));
-    var selectionPool = units;
-    if ((unit == 'Alle' || !availableUnit) && _random.nextInt(4) != 0) {
-      final currentUnits = Curriculum.unitsForGrade(chosenSubject, cappedGrade, currentGradeOnly: true);
-      if (currentUnits.isNotEmpty) selectionPool = currentUnits;
-    }
+    // Normaler Lernmodus bleibt strikt in der aktuell gewählten Schulstufe.
+    // Frühere Inhalte sind weiterhin als bewusst gewählte Wiederholung erlaubt,
+    // werden aber nie mehr zufällig in eine neue Einheit gemischt.
+    final allUnits = Curriculum.unitsForGrade(
+      chosenSubject,
+      cappedGrade,
+      currentGradeOnly: false,
+    );
+    final currentUnits = Curriculum.unitsForGrade(
+      chosenSubject,
+      cappedGrade,
+      currentGradeOnly: true,
+    );
+    final availableUnit = allUnits.contains(unit) ||
+        (chosenSubject == 'Mathematik' &&
+            MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
+        (chosenSubject == 'Deutsch' &&
+            GermanTaskTemplates.supportsUnit(cappedGrade, unit));
+    final selectionPool =
+        currentUnits.isNotEmpty ? currentUnits : allUnits;
     var candidateUnits = unit == 'Alle' || !availableUnit
         ? selectionPool.where((u) => !avoidUnits.contains(u)).toList()
         : <String>[unit];
     if (candidateUnits.isEmpty) {
-      candidateUnits = units.where((u) => !avoidUnits.contains(u)).toList();
+      candidateUnits =
+          selectionPool.where((u) => !avoidUnits.contains(u)).toList();
     }
-    final chosenUnit = candidateUnits.isEmpty ? units[_random.nextInt(units.length)] : _weightedUnit(candidateUnits, weakSkills);
+    final chosenUnit = candidateUnits.isEmpty
+        ? selectionPool[_random.nextInt(selectionPool.length)]
+        : _weightedUnit(candidateUnits, weakSkills);
     return _build(grade: cappedGrade, subject: chosenSubject, unit: chosenUnit);
   }
 
