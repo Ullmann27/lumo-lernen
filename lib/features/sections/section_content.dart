@@ -645,6 +645,7 @@ class _MissionsPage extends StatelessWidget {
     ),
       ];
   }
+}
 
 class _ReadingMissionCard extends StatelessWidget {
   const _ReadingMissionCard({required this.onTap});
