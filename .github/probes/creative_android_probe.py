@@ -136,32 +136,42 @@ base.ui_nodes = read_live_nodes
 
 
 def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
-    # The disposable emulator can show a Pixel Launcher ANR over Lumo's welcome
-    # screen. Dismiss only that exact observed system dialog. A Lumo ANR must
-    # remain a failure, and no application data is cleared.
-    if not any(n.get('package') == 'android' and
-               n.get('text') == "Pixel Launcher isn't responding" for n in nodes):
+    """Recover only an observed Android emulator system-process ANR dialog.
+
+    A real Lumo app ANR must remain a failure. Never clear app data, never
+    tap an unobserved coordinate, and stop after at most two recoveries.
+    """
+    launcher = "Pixel Launcher isn't responding"
+    system_ui = "System UI isn't responding"
+    dialogs = [name for name in (launcher, system_ui)
+               if any(n.get('package') == 'android' and
+                      n.get('text') == name for n in nodes)]
+    if not dialogs:
         return False
+    if len(dialogs) != 1:
+        raise RuntimeError('Ambiguous Android emulator system dialog')
+    dialog = dialogs[0]
+    action = 'Close app' if dialog == launcher else 'Wait'
     records_path = out / 'launcher-recovery.json'
     records = json.loads(records_path.read_text()) if records_path.exists() else []
     if len(records) >= 2:
-        raise RuntimeError('Disposable Pixel Launcher repeatedly stopped responding')
-    buttons = [n for n in nodes if n.get('package') == 'android' and
-               n.get('text') == 'Close app' and n.get('enabled') == 'true']
+        raise RuntimeError('Disposable Android emulator repeatedly stopped responding')
+    buttons = [n for n in nodes if n.get('package') == 'android'
+               and n.get('text') == action and n.get('enabled') == 'true'
+               and n.get('clickable') == 'true']
     if len(buttons) != 1:
-        raise RuntimeError('Observed Pixel Launcher dialog lacks one enabled Close app control')
-    bounds = list(map(int, re.findall(r'\d+', buttons[0].get('bounds', ''))))
+        raise RuntimeError('Observed Android system dialog lacks one enabled ' + action + ' control')
+    bounds = list(map(int, re.findall(r'\\d+', buttons[0].get('bounds', ''))))
     if len(bounds) != 4 or bounds[2] <= bounds[0] or bounds[3] <= bounds[1]:
-        raise RuntimeError('Pixel Launcher dialog control has invalid observed bounds')
-    evidence = capture(out, tag+'-pixel-launcher-dialog')
-    records.append({'dialog':"Pixel Launcher isn't responding", 'action':'Close app',
-                    'observed_bounds':bounds, 'capture':evidence['file']})
-    records_path.write_text(json.dumps(records, indent=2)+'\n')
-    x0,y0,x1,y1 = bounds
-    base.adb('shell','input','tap',str((x0+x1)//2),str((y0+y1)//2))
-    time.sleep(2)
+        raise RuntimeError('Android system dialog control has invalid observed bounds')
+    evidence = capture(out, tag + '-emulator-system-dialog')
+    records.append({'dialog': dialog, 'action': action,
+                    'observed_bounds': bounds, 'capture': evidence['file']})
+    records_path.write_text(json.dumps(records, indent=2) + '\\n')
+    x0, y0, x1, y1 = bounds
+    base.adb('shell', 'input', 'tap', str((x0 + x1) // 2), str((y0 + y1) // 2))
+    time.sleep(2 if dialog == launcher else 4)
     return True
-
 
 def flutter_tap(out: Path, label: str, tag: str, *,
                 scroll_attempts: int = 12, direction_order=(-1, 1)) -> None:
