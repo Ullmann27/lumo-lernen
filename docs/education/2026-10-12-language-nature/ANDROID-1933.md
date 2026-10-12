@@ -113,3 +113,16 @@ Diese Auslieferung bleibt eine Android-Testversion. Physische ARM64-/Fold-
 Laufzeit, menschliche Klangprüfung und externe pädagogische Abnahme bleiben
 getrennt offen. Der spätere Elternbericht-Datenschutz-/Kopfleistenfix aus
 PR270 ist ausdrücklich nicht in der eingefrorenen 1933-APK enthalten.
+
+## Nach der Auslieferung bestätigter weiterer Elternbereich-Befund
+
+Der ältere Insight-DNA-Generator setzt drei feste positive Stärkenwerte78/82/74
+auch ohne beantwortete Aufgaben ein. Die Ursache steht in
+`lib/domain/learning/learning_dna_engine.dart::_buildStrengthsFromState`. Diese
+Werte sind keine fachlich bestätigten Kompetenzen. Sie ändern die gespeicherten
+Lernstände nicht, können aber im Eltern-Dashboard irreführen. Der Befund bleibt
+in1933 offen und ist auch durch den separaten Namens-/KopfleistenfixPR270 nicht
+behoben. Die nächste Reparatur muss beobachtete kanonische SkillRecords nutzen
+und leere sowie gewechselte Profile prüfen. Die obige erfolgreiche Abnahme
+bezieht sich auf die genannten tatsächlichen Kurse, Speicherungen und
+Bedienelemente; sie bestätigt nicht sämtliche älteren Elternanalysewerte.
