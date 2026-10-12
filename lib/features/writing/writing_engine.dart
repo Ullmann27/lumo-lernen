@@ -1854,7 +1854,33 @@ class FingerWritingRecognizer {
   };
 
   static List<String> _familyFor(String symbol) {
-    if (RegExp(r'^[A-Z]
+    if (RegExp(r'^[A-Z]$').hasMatch(symbol)) {
+      return LetterTemplates.uppercaseLetters;
+    }
+    if (RegExp(r'^[a-z]$').hasMatch(symbol)) {
+      return LetterTemplates.lowercaseLetters;
+    }
+    if (RegExp(r'^[0-9]$').hasMatch(symbol)) {
+      return LetterTemplates.numbers;
+    }
+    return <String>[symbol];
+  }
+
+  static double _inkLength(List<WritingStroke> strokes) {
+    var total = 0.0;
+    for (final stroke in strokes) {
+      for (var i = 1; i < stroke.points.length; i++) {
+        total += (stroke.points[i] - stroke.points[i - 1]).distance;
+      }
+    }
+    return total;
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// FEEDBACK ENGINE
+// ════════════════════════════════════════════════════════════════════════
+
 class WritingFeedback {
   const WritingFeedback({
     required this.type,
