@@ -329,9 +329,9 @@ class HomeContent extends StatelessWidget {
                         _extra('Lesen mit Lumo', 'Geschichten Satz für Satz',
                             Icons.menu_book_rounded, _startReading),
                         _extra(
-                            'Quizshow',
-                            'Fragen mit Jokern beantworten',
-                            Icons.quiz_rounded,
+                            'Wer wird Lumo-Meister?',
+                            '20 Fragen · Joker · bis 5.000 Sterne',
+                            Icons.emoji_events_rounded,
                             () => _open(
                                 context, QuizShowContent(appState: appState))),
                         _extra(
