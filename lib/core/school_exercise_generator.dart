@@ -4,6 +4,8 @@ import 'adventure/lumo_adventure_tasks.dart';
 import 'german_task_templates.dart';
 import 'math_task_templates.dart';
 import 'primary_school_word_data.dart';
+import 'reading_comprehension_data.dart';
+import 'science_task_data.dart';
 
 class LumoTask {
   const LumoTask({
@@ -235,6 +237,34 @@ class ExerciseFactory {
   ExerciseFactory({int? seed}) : _random = Random(seed);
   final Random _random;
   int _serial = 0;
+  // Local generator memory complements the existing persisted SessionVarietyGuard.
+  // No progress, profile fields, answer attempts or rewards are written here.
+  final Map<String, List<String>> _recentProblems = {};
+
+  LumoTask _variedTask(int grade, String subject, String unit) {
+    final scope = '$grade|$subject|$unit';
+    final recent = _recentProblems.remove(scope) ?? <String>[];
+    final candidates = <String, LumoTask>{};
+    for (var attempt = 0; attempt < 24; attempt++) {
+      final task = _build(grade: grade, subject: subject, unit: unit);
+      final key = '${task.prompt}|${task.answer}';
+      candidates[key] = task;
+      if (!recent.contains(key)) break;
+    }
+    // Exhausting a finite bank is normal. Revisit its least recent problem;
+    // changing IDs or distractor order must never masquerade as new content.
+    final key = candidates.keys
+        .reduce((a, b) => recent.indexOf(a) <= recent.indexOf(b) ? a : b);
+    recent.remove(key);
+    recent.add(key);
+    if (recent.length > 12) recent.removeAt(0);
+    _recentProblems[scope] = recent;
+    if (_recentProblems.length > 32) {
+      _recentProblems.remove(_recentProblems.keys.first);
+    }
+    return candidates[key]!;
+  }
+
   String? _childName;
 
   LumoTask next({
@@ -267,10 +297,10 @@ class ExerciseFactory {
     // spielerisch bleibt (Geschichten, Rätsel, Zahlenmauern …).
     final adventures = candidateUnits.where((u) => LumoAdventureTasks.handles(chosenSubject, u)).toList();
     if ((unit == 'Alle' || !availableUnit) && adventures.isNotEmpty && _random.nextInt(10) < 4) {
-      return _build(grade: cappedGrade, subject: chosenSubject, unit: adventures[_random.nextInt(adventures.length)]);
+      return _variedTask(cappedGrade, chosenSubject, adventures[_random.nextInt(adventures.length)]);
     }
     final chosenUnit = candidateUnits.isEmpty ? units[_random.nextInt(units.length)] : _weightedUnit(candidateUnits, weakSkills);
-    return _build(grade: cappedGrade, subject: chosenSubject, unit: chosenUnit);
+    return _variedTask(cappedGrade, chosenSubject, chosenUnit);
   }
 
   List<LumoTask> buildSession({
@@ -832,29 +862,11 @@ class ExerciseFactory {
       prompt = 'Schreibe: ∿';
       explanation = 'Ziehe eine fließende Wellenlinie von links nach rechts.';
     } else if (unit == 'Satz abschreiben') {
-      const sentences = <int, List<String>>{
-        1: ['Lumo liest.', 'Mia malt.', 'Oma lacht.', 'Der Hund ruht.'],
-        2: [
-          'Lumo liest ein Buch.',
-          'Mia malt eine Blume.',
-          'Der Ball liegt im Gras.',
-          'Wir gehen zur Schule.'
-        ],
-        3: [
-          'Nach der Schule spiele ich im Garten.',
-          'Lumo sucht ein spannendes Buch.',
-          'Heute besuchen wir unsere Oma.',
-          'Die Kinder teilen ihre Jause.'
-        ],
-        4: [
-          'Wenn es regnet, nehme ich meinen Schirm mit.',
-          'Lumo erklärt, warum Pflanzen Wasser brauchen.',
-          'Nach dem Lesen räumt Mia ihre Bücher auf.',
-          'Wir üben gemeinsam, damit es leichter wird.'
-        ],
-      };
-      final options = sentences[grade.clamp(1, 4)]!;
-      prompt = 'Schreibe: ${options[_random.nextInt(options.length)]}';
+      final options = readingPassages[grade.clamp(1, 4)]!;
+      final passage = options[_random.nextInt(options.length)];
+      // Copy one complete sentence. Avoid long multi-sentence writing targets.
+      final sentence = passage.text.split('.').first;
+      prompt = 'Schreibe: $sentence.';
       explanation =
           'Schreibe den ganzen Satz. Achte auf Abstände, den großen Anfang und das Satzzeichen.';
     } else {
@@ -925,175 +937,34 @@ class ExerciseFactory {
           customChoices: item.sublist(1));
     }
     if (unit == 'Reihenfolge') {
-      const sequences = <List<String>>[
-        [
-          'Mia zieht Schuhe an.',
-          'Mia geht zur Schule.',
-          'Mia sitzt in der Klasse.'
-        ],
-        [
-          'Lumo holt ein Buch.',
-          'Lumo liest das Buch.',
-          'Lumo stellt das Buch zurück.'
-        ],
-        [
-          'Oma wäscht den Apfel.',
-          'Oma schneidet den Apfel.',
-          'Oma isst ein Stück.'
-        ],
-        [
-          'Wir säen einen Samen.',
-          'Wir gießen die Erde.',
-          'Eine Pflanze wächst.'
-        ],
-      ];
-      final sequence = sequences[_random.nextInt(sequences.length)];
-      final askLast = _random.nextBool();
-      final answer = askLast ? sequence.last : sequence.first;
+      final sequence =
+          readingSequences[_random.nextInt(readingSequences.length)];
+      final position = _random.nextInt(3);
+      final asked = ['zuerst', 'als Zweites', 'zuletzt'][position];
+      final answer = sequence[position];
       return _choiceTask(
           'lese-reihenfolge',
           grade,
           'Lesen',
           unit,
-          '${sequence.join(' ')}\nWas passiert ${askLast ? 'zuletzt' : 'zuerst'}?',
+          '${sequence.join(' ')}\nWas passiert $asked?',
           answer,
-          '${askLast ? 'Am Ende' : 'Am Anfang'} der Geschichte steht: $answer',
+          'Lies die Schritte von Anfang bis Ende. $asked passiert: $answer',
           customChoices: sequence);
     }
-    // Every answer is grounded in visible text; no absent image or article quiz.
-    const passages = <int, List<List<String>>>{
-      1: [
-        [
-          'Mia malt eine Blume.',
-          'Was malt Mia?',
-          'eine Blume',
-          'ein Haus',
-          'einen Hund'
-        ],
-        [
-          'Lumo liest ein Buch.',
-          'Was macht Lumo?',
-          'Er liest.',
-          'Er schläft.',
-          'Er kocht.'
-        ],
-        [
-          'Der Ball ist rot.',
-          'Welche Farbe hat der Ball?',
-          'rot',
-          'blau',
-          'gelb'
-        ],
-        [
-          'Oma sitzt im Garten.',
-          'Wo sitzt Oma?',
-          'im Garten',
-          'in der Schule',
-          'im Bus'
-        ],
-      ],
-      2: [
-        [
-          'Es regnet. Mia öffnet ihren Schirm.',
-          'Warum öffnet Mia den Schirm?',
-          'Weil es regnet.',
-          'Weil sie schläft.',
-          'Weil es Nacht ist.'
-        ],
-        [
-          'Lumo sucht den Ball. Er findet ihn unter dem Tisch.',
-          'Wo liegt der Ball?',
-          'unter dem Tisch',
-          'auf dem Dach',
-          'im Kühlschrank'
-        ],
-        [
-          'Ben hat Hunger. Er isst seine Jause.',
-          'Warum isst Ben?',
-          'Er hat Hunger.',
-          'Er ist müde.',
-          'Er friert.'
-        ],
-        [
-          'Oma pflanzt eine Blume. Dann gießt sie die Erde.',
-          'Was macht Oma nach dem Pflanzen?',
-          'Sie gießt.',
-          'Sie liest.',
-          'Sie backt.'
-        ],
-      ],
-      3: [
-        [
-          'Mia vergisst ihre Trinkflasche. Ben hat zwei Flaschen dabei und gibt ihr eine.',
-          'Wie hilft Ben?',
-          'Er teilt sein Wasser.',
-          'Er versteckt die Flaschen.',
-          'Er geht ohne Mia weiter.'
-        ],
-        [
-          'Am Morgen ist der Schulweg glatt. Lumo geht langsam, damit er nicht ausrutscht.',
-          'Warum geht Lumo langsam?',
-          'Der Weg ist glatt.',
-          'Er sucht einen Ball.',
-          'Er zählt Wolken.'
-        ],
-        [
-          'Die Pflanzen lassen die Blätter hängen. Nach dem Gießen richten sie sich wieder auf.',
-          'Was brauchten die Pflanzen?',
-          'Wasser',
-          'Musik',
-          'Steine'
-        ],
-        [
-          'Im Bus steht eine ältere Frau. Mia steht auf und bietet ihr den Sitzplatz an.',
-          'Wie verhält sich Mia?',
-          'hilfsbereit',
-          'ungeduldig',
-          'unaufmerksam'
-        ],
-      ],
-      4: [
-        [
-          'Die Klasse will draußen lesen. Als dunkle Wolken aufziehen, schlägt Mia die Bücherei vor. Dort können alle trocken weiterlesen.',
-          'Warum ist Mias Vorschlag sinnvoll?',
-          'Die Klasse ist vor Regen geschützt.',
-          'In der Bücherei gibt es keine Bücher.',
-          'Draußen ist Lesen verboten.'
-        ],
-        [
-          'Lumo findet zwei widersprüchliche Antworten. Er vergleicht beide mit einem Sachbuch und entdeckt, welche Erklärung zur Beobachtung passt.',
-          'Wie klärt Lumo den Widerspruch?',
-          'Er prüft die Angaben mit einer weiteren Quelle.',
-          'Er nimmt immer die erste Antwort.',
-          'Er rät ohne nachzusehen.'
-        ],
-        [
-          'Ben gießt eine Pflanze jeden Tag zu viel. Die Erde bleibt nass und die Wurzeln faulen. Er lernt, erst die Feuchtigkeit zu prüfen.',
-          'Was lernt Ben?',
-          'Die Wassermenge muss zum Bedarf passen.',
-          'Jede Pflanze braucht ständig mehr Wasser.',
-          'Erde soll immer im Wasser schwimmen.'
-        ],
-        [
-          'Für das Fest verteilt die Klasse die Aufgaben. Mia gestaltet Plakate, Ben bereitet Spiele vor und Lumo prüft den Zeitplan. So wird alles rechtzeitig fertig.',
-          'Was hilft der Klasse?',
-          'Die Aufgaben werden aufgeteilt.',
-          'Alle machen nur dieselbe Aufgabe.',
-          'Niemand spricht miteinander.'
-        ],
-      ],
-    };
-    final choices = passages[grade.clamp(1, 4)]!;
-    final item = choices[_random.nextInt(choices.length)];
+    final passages = readingPassages[grade.clamp(1, 4)]!;
+    final passage = passages[_random.nextInt(passages.length)];
+    final check = passage.checks[_random.nextInt(passage.checks.length)];
     return _choiceTask(
         'lese-text',
         grade,
         'Lesen',
         unit,
-        '${item[0]}\n${item[1]}',
-        item[2],
-        'Die Antwort ergibt sich aus dem Text: ${item[0]}',
-        customChoices: item.sublist(2));
+        '${passage.text}\n${check.question}',
+        check.answer,
+        'Lies die passende Stelle noch einmal: ${passage.text} '
+            'Daraus ergibt sich: ${check.answer}',
+        customChoices: [check.answer, ...check.wrong]);
   }
 
   LumoTask _english(int grade, String unit) {
@@ -1302,16 +1173,6 @@ const _englishVocabulary = <int, Map<String, Map<String, String>>>{
   },
 };
 
-class _ScienceQuestion {
-  const _ScienceQuestion({required this.grade, required this.unit, required this.prompt, required this.answer, required this.choices, required this.explanation});
-  final int grade;
-  final String unit;
-  final String prompt;
-  final String answer;
-  final List<String> choices;
-  final String explanation;
-}
-
 const Map<String, List<String>> _scienceAliases = <String, List<String>>{
   'Pflanzen': <String>['Pflanzen'],
   'Tiere': <String>['Tiere'],
@@ -1321,141 +1182,142 @@ const Map<String, List<String>> _scienceAliases = <String, List<String>>{
   'Jahreszeiten': <String>['Jahreszeiten'],
 };
 
-const List<_ScienceQuestion> _scienceQuestions = <_ScienceQuestion>[
-  _ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Vogel?', answer: 'Spatz', choices: <String>['Spatz', 'Kuh', 'Fisch', 'Ameise'], explanation: 'Ein Spatz hat Federn und Flügel.'),
-  _ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Fisch?', answer: 'Forelle', choices: <String>['Forelle', 'Hund', 'Biene', 'Hase'], explanation: 'Fische leben im Wasser und haben Flossen.'),
-  _ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Insekt?', answer: 'Biene', choices: <String>['Biene', 'Katze', 'Frosch', 'Schaf'], explanation: 'Insekten haben sechs Beine.'),
-  _ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Säugetier?', answer: 'Hund', choices: <String>['Hund', 'Ente', 'Forelle', 'Käfer'], explanation: 'Säugetiere säugen ihre Jungen.'),
-  _ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier lebt am Bauernhof?', answer: 'Kuh', choices: <String>['Kuh', 'Wal', 'Pinguin', 'Koralle'], explanation: 'Kühe leben häufig am Bauernhof.'),
-  _ScienceQuestion(grade: 1, unit: 'Jahreszeiten', prompt: 'In welcher Jahreszeit fällt oft Schnee?', answer: 'Winter', choices: <String>['Winter', 'Sommer', 'Frühling', 'Herbst'], explanation: 'Im Winter ist es kalt, oft schneit es.'),
-  _ScienceQuestion(grade: 1, unit: 'Jahreszeiten', prompt: 'Wann blühen viele Blumen neu?', answer: 'Frühling', choices: <String>['Frühling', 'Winter', 'Herbst', 'Nacht'], explanation: 'Im Frühling beginnen viele Pflanzen zu blühen.'),
-  _ScienceQuestion(grade: 1, unit: 'Jahreszeiten', prompt: 'Wann sind die Tage oft heiß?', answer: 'Sommer', choices: <String>['Sommer', 'Winter', 'Herbst', 'Morgen'], explanation: 'Im Sommer ist es oft warm bis heiß.'),
-  _ScienceQuestion(grade: 1, unit: 'Jahreszeiten', prompt: 'Wann fallen viele bunte Blätter?', answer: 'Herbst', choices: <String>['Herbst', 'Sommer', 'Frühling', 'Mittag'], explanation: 'Im Herbst verfärben sich viele Blätter.'),
-  _ScienceQuestion(grade: 1, unit: 'Wetter', prompt: 'Was fällt aus Wolken als Wasser?', answer: 'Regen', choices: <String>['Regen', 'Wind', 'Sonne', 'Nebel'], explanation: 'Regen besteht aus Wassertropfen.'),
-  _ScienceQuestion(grade: 1, unit: 'Wetter', prompt: 'Was hörst du bei einem Gewitter?', answer: 'Donner', choices: <String>['Donner', 'Schnee', 'Nebel', 'Regenbogen'], explanation: 'Donner ist das laute Geräusch beim Gewitter.'),
-  _ScienceQuestion(grade: 1, unit: 'Wetter', prompt: 'Was sieht man nach Regen und Sonne manchmal?', answer: 'Regenbogen', choices: <String>['Regenbogen', 'Frost', 'Nacht', 'Stein'], explanation: 'Ein Regenbogen entsteht durch Sonne und Regentropfen.'),
-  _ScienceQuestion(grade: 1, unit: 'Wetter', prompt: 'Was bewegt Blätter in der Luft?', answer: 'Wind', choices: <String>['Wind', 'Mond', 'Sand', 'Eis'], explanation: 'Wind ist bewegte Luft.'),
-  _ScienceQuestion(grade: 1, unit: 'Pflanzen', prompt: 'Was hat einen Stamm und Äste?', answer: 'Baum', choices: <String>['Baum', 'Blume', 'Stein', 'Fisch'], explanation: 'Ein Baum hat Stamm, Äste und Blätter.'),
-  _ScienceQuestion(grade: 1, unit: 'Pflanzen', prompt: 'Was wächst oft bunt im Garten?', answer: 'Blume', choices: <String>['Blume', 'Auto', 'Hund', 'Sackerl'], explanation: 'Blumen blühen oft bunt.'),
-  _ScienceQuestion(grade: 1, unit: 'Pflanzen', prompt: 'Welcher Teil einer Pflanze ist meist grün?', answer: 'Blatt', choices: <String>['Blatt', 'Rad', 'Schuh', 'Ball'], explanation: 'Blätter sind oft grün und fangen Licht ein.'),
-  _ScienceQuestion(grade: 1, unit: 'Pflanzen', prompt: 'Was braucht eine Pflanze zum Wachsen?', answer: 'Wasser', choices: <String>['Wasser', 'Fernseher', 'Schere', 'Helm'], explanation: 'Pflanzen brauchen Wasser, Licht und Erde.'),
-  _ScienceQuestion(grade: 1, unit: 'Tag und Nacht', prompt: 'Wann ist es meistens dunkel?', answer: 'Nacht', choices: <String>['Nacht', 'Mittag', 'Sommer', 'Pause'], explanation: 'In der Nacht ist die Sonne nicht zu sehen.'),
-  _ScienceQuestion(grade: 1, unit: 'Tag und Nacht', prompt: 'Was leuchtet am Tag hell am Himmel?', answer: 'Sonne', choices: <String>['Sonne', 'Tisch', 'Kuh', 'Schuh'], explanation: 'Die Sonne gibt Licht und Wärme.'),
-  _ScienceQuestion(grade: 1, unit: 'Körper', prompt: 'Womit siehst du?', answer: 'Auge', choices: <String>['Auge', 'Ohr', 'Hand', 'Fuß'], explanation: 'Mit den Augen sehen wir.'),
-  _ScienceQuestion(grade: 1, unit: 'Körper', prompt: 'Womit hörst du?', answer: 'Ohr', choices: <String>['Ohr', 'Nase', 'Knie', 'Bauch'], explanation: 'Mit den Ohren hören wir.'),
-  _ScienceQuestion(grade: 1, unit: 'Verkehr', prompt: 'Bei welcher Ampelfarbe darf man gehen?', answer: 'Grün', choices: <String>['Grün', 'Rot', 'Blau', 'Schwarz'], explanation: 'Grün bedeutet: gehen, wenn der Weg frei ist.'),
-  _ScienceQuestion(grade: 1, unit: 'Familie und Gemeinschaft', prompt: 'Was sagt man, wenn man Hilfe bekommt?', answer: 'Danke', choices: <String>['Danke', 'Stopp', 'Aua', 'Nein'], explanation: 'Danke ist höflich und freundlich.'),
-  _ScienceQuestion(grade: 1, unit: 'Zeit und Kalender', prompt: 'Welcher Tag kommt nach Montag?', answer: 'Dienstag', choices: <String>['Dienstag', 'Sonntag', 'Freitag', 'Jänner'], explanation: 'Nach Montag kommt Dienstag.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wie heißt das Baby vom Schwein?', answer: 'Ferkel', choices: <String>['Ferkel', 'Kalb', 'Fohlen', 'Lamm'], explanation: 'Ein junges Schwein heißt Ferkel.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wie heißt das Baby von der Kuh?', answer: 'Kalb', choices: <String>['Kalb', 'Ferkel', 'Küken', 'Fohlen'], explanation: 'Ein junges Rind heißt Kalb.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wie heißt das Baby vom Pferd?', answer: 'Fohlen', choices: <String>['Fohlen', 'Kalb', 'Lamm', 'Küken'], explanation: 'Ein junges Pferd heißt Fohlen.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wie heißt das Baby vom Huhn?', answer: 'Küken', choices: <String>['Küken', 'Ferkel', 'Kalb', 'Welpe'], explanation: 'Ein junges Huhn heißt Küken.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wo lebt ein Fisch meistens?', answer: 'im Wasser', choices: <String>['im Wasser', 'im Baum', 'im Nest', 'im Heft'], explanation: 'Fische leben im Wasser.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wo bauen viele Vögel ihr Nest?', answer: 'im Baum', choices: <String>['im Baum', 'im Schuh', 'im Topfen', 'im Bus'], explanation: 'Viele Vögel bauen Nester auf Bäumen.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wo lebt der Fuchs häufig?', answer: 'im Wald', choices: <String>['im Wald', 'im Meer', 'im Federpennal', 'im Glas'], explanation: 'Füchse leben häufig im Wald.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Welches Tier sammelt Nektar?', answer: 'Biene', choices: <String>['Biene', 'Kuh', 'Hund', 'Forelle'], explanation: 'Bienen besuchen Blüten und sammeln Nektar.'),
-  _ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Welcher Pflanzenteil nimmt Wasser auf?', answer: 'Wurzel', choices: <String>['Wurzel', 'Blüte', 'Frucht', 'Ast'], explanation: 'Wurzeln nehmen Wasser aus der Erde auf.'),
-  _ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Welcher Teil trägt Blätter und Blüten?', answer: 'Stamm', choices: <String>['Stamm', 'Schuh', 'Kabel', 'Topf'], explanation: 'Der Stamm oder Stängel trägt andere Pflanzenteile.'),
-  _ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Woraus kann eine neue Pflanze wachsen?', answer: 'Samen', choices: <String>['Samen', 'Stein', 'Münze', 'Knopf'], explanation: 'Aus Samen können neue Pflanzen wachsen.'),
-  _ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Was lockt oft Bienen an?', answer: 'Blüte', choices: <String>['Blüte', 'Reifen', 'Buch', 'Helm'], explanation: 'Blüten locken Insekten an.'),
-  _ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Was bedeutet eine rote Ampel?', answer: 'stehen bleiben', choices: <String>['stehen bleiben', 'laufen', 'singen', 'springen'], explanation: 'Rot bedeutet Halt.'),
-  _ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Was bedeutet ein Stoppschild?', answer: 'anhalten', choices: <String>['anhalten', 'schneller fahren', 'hupen', 'umdrehen'], explanation: 'Bei Stopp muss man anhalten.'),
-  _ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Wo überquert man sicherer die Straße?', answer: 'Zebrastreifen', choices: <String>['Zebrastreifen', 'Spielplatz', 'Wiese', 'Küche'], explanation: 'Ein Zebrastreifen hilft beim sicheren Überqueren.'),
-  _ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Was trägt man beim Radfahren zum Schutz?', answer: 'Helm', choices: <String>['Helm', 'Haube', 'Schal', 'Sackerl'], explanation: 'Ein Helm schützt den Kopf.'),
-  _ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer löscht Brände?', answer: 'Feuerwehr', choices: <String>['Feuerwehr', 'Bäcker', 'Gärtner', 'Pilot'], explanation: 'Die Feuerwehr hilft bei Bränden.'),
-  _ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer backt Semmeln und Brot?', answer: 'Bäckerin oder Bäcker', choices: <String>['Bäckerin oder Bäcker', 'Ärztin', 'Postler', 'Tischler'], explanation: 'Bäckerinnen und Bäcker backen Brot und Semmeln.'),
-  _ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer hilft kranken Menschen?', answer: 'Ärztin oder Arzt', choices: <String>['Ärztin oder Arzt', 'Maurer', 'Pilotin', 'Schneider'], explanation: 'Ärztinnen und Ärzte behandeln kranke Menschen.'),
-  _ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer bringt Briefe und Pakete?', answer: 'Postlerin oder Postler', choices: <String>['Postlerin oder Postler', 'Friseur', 'Koch', 'Lehrer'], explanation: 'Die Post stellt Briefe und Pakete zu.'),
-  _ScienceQuestion(grade: 2, unit: 'Wetter', prompt: 'Was misst ein Thermometer?', answer: 'Temperatur', choices: <String>['Temperatur', 'Länge', 'Geld', 'Lautstärke'], explanation: 'Ein Thermometer zeigt warm oder kalt an.'),
-  _ScienceQuestion(grade: 2, unit: 'Wetter', prompt: 'Was ist Nebel?', answer: 'Wolken nahe am Boden', choices: <String>['Wolken nahe am Boden', 'Sand im Glas', 'heißer Wind', 'lauter Donner'], explanation: 'Nebel besteht aus kleinen Wassertröpfchen in Bodennähe.'),
-  _ScienceQuestion(grade: 2, unit: 'Jahreszeiten', prompt: 'Wie viele Jahreszeiten hat ein Jahr?', answer: '4', choices: <String>['4', '2', '7', '12'], explanation: 'Frühling, Sommer, Herbst und Winter sind vier Jahreszeiten.'),
-  _ScienceQuestion(grade: 2, unit: 'Zeit und Kalender', prompt: 'Wie viele Monate hat ein Jahr?', answer: '12', choices: <String>['12', '7', '4', '24'], explanation: 'Ein Jahr hat zwölf Monate.'),
-  _ScienceQuestion(grade: 2, unit: 'Körper', prompt: 'Womit riechst du?', answer: 'Nase', choices: <String>['Nase', 'Ohr', 'Knie', 'Hand'], explanation: 'Mit der Nase riechen wir.'),
-  _ScienceQuestion(grade: 2, unit: 'Körper', prompt: 'Womit schmeckst du?', answer: 'Zunge', choices: <String>['Zunge', 'Auge', 'Fuß', 'Haar'], explanation: 'Mit der Zunge schmecken wir.'),
-  _ScienceQuestion(grade: 2, unit: 'Familie und Gemeinschaft', prompt: 'Was hilft bei Streit?', answer: 'ruhig reden', choices: <String>['ruhig reden', 'schubsen', 'weglaufen ohne Erklärung', 'auslachen'], explanation: 'Ruhiges Reden hilft beim Lösen von Streit.'),
-  _ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Welche Frucht ist typisch österreichisch als Marille bekannt?', answer: 'Aprikose heißt in Österreich Marille', choices: <String>['Aprikose heißt in Österreich Marille', 'Banane heißt Marille', 'Topfen heißt Marille', 'Semmel heißt Marille'], explanation: 'In Österreich sagt man Marille.'),
-  _ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Welches Tier ist nachtaktiv?', answer: 'Eule', choices: <String>['Eule', 'Huhn', 'Kuh', 'Schaf'], explanation: 'Eulen sind oft nachts unterwegs.'),
-  _ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Auf welcher Seite geht man am Gehsteig besonders aufmerksam?', answer: 'weg von der Fahrbahn', choices: <String>['weg von der Fahrbahn', 'mitten auf der Straße', 'auf Schienen', 'im Kreisverkehr'], explanation: 'Am Gehsteig bleibt man weg von der Fahrbahn.'),
-  _ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer baut Mauern?', answer: 'Maurer', choices: <String>['Maurer', 'Bäcker', 'Ärztin', 'Pilot'], explanation: 'Maurer bauen Mauern und Gebäude.'),
-  _ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer arbeitet mit Metall?', answer: 'Schlosser', choices: <String>['Schlosser', 'Gärtner', 'Lehrer', 'Postler'], explanation: 'Schlosser arbeiten oft mit Metall.'),
-  _ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Welches Organ pumpt Blut?', answer: 'Herz', choices: <String>['Herz', 'Magen', 'Lunge', 'Haut'], explanation: 'Das Herz pumpt Blut durch den Körper.'),
-  _ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Welches Organ hilft beim Atmen?', answer: 'Lunge', choices: <String>['Lunge', 'Herz', 'Darm', 'Knochen'], explanation: 'Die Lunge nimmt Sauerstoff auf.'),
-  _ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Womit verdauen wir Nahrung weiter?', answer: 'Magen und Darm', choices: <String>['Magen und Darm', 'Auge und Ohr', 'Hand und Fuß', 'Haut und Haar'], explanation: 'Magen und Darm helfen bei der Verdauung.'),
-  _ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Welche fünf Sinne haben wir?', answer: 'sehen, hören, riechen, schmecken, fühlen', choices: <String>['sehen, hören, riechen, schmecken, fühlen', 'laufen, springen, sitzen, stehen, liegen', 'essen, trinken, schlafen, malen, rechnen', 'rot, blau, grün, gelb, weiß'], explanation: 'Die Sinne helfen uns, die Umwelt wahrzunehmen.'),
-  _ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was sollte man oft trinken?', answer: 'Wasser', choices: <String>['Wasser', 'Limo', 'Sirup', 'Eistee'], explanation: 'Wasser ist ein gesundes Getränk.'),
-  _ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was gehört zur Obstgruppe?', answer: 'Apfel', choices: <String>['Apfel', 'Hammer', 'Schuh', 'Kabel'], explanation: 'Äpfel sind Obst.'),
-  _ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was gibt Energie, soll aber nicht zu viel gegessen werden?', answer: 'Zucker', choices: <String>['Zucker', 'Wasser', 'Salat', 'Luft'], explanation: 'Zu viel Zucker ist ungesund.'),
-  _ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was enthält viele Vitamine?', answer: 'Gemüse und Obst', choices: <String>['Gemüse und Obst', 'Steine', 'Plastik', 'Batterien'], explanation: 'Obst und Gemüse enthalten viele Vitamine.'),
-  _ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Was passiert, wenn Wasser durch Sonne gasförmig wird?', answer: 'Verdunstung', choices: <String>['Verdunstung', 'Gefrieren', 'Schneiden', 'Messen'], explanation: 'Verdunstung macht aus Wasser Wasserdampf.'),
-  _ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Wie nennt man Regen, Schnee oder Hagel zusammen?', answer: 'Niederschlag', choices: <String>['Niederschlag', 'Stromkreis', 'Nahrungskette', 'Hauptstadt'], explanation: 'Niederschlag fällt aus Wolken.'),
-  _ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Wohin fließt ein Bach oft?', answer: 'in einen Fluss', choices: <String>['in einen Fluss', 'in ein Heft', 'in eine Lampe', 'in ein Sackerl'], explanation: 'Bäche fließen oft in größere Gewässer.'),
-  _ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Was sammelt sich zu Wolken?', answer: 'Wasserdampf', choices: <String>['Wasserdampf', 'Sand', 'Holz', 'Metall'], explanation: 'Wasserdampf kann Wolken bilden.'),
-  _ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Welche Tierklasse hat Federn?', answer: 'Vögel', choices: <String>['Vögel', 'Fische', 'Insekten', 'Säugetiere'], explanation: 'Vögel haben Federn.'),
-  _ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Welche Tierklasse hat Schuppen und lebt im Wasser?', answer: 'Fische', choices: <String>['Fische', 'Vögel', 'Spinnen', 'Säugetiere'], explanation: 'Viele Fische haben Schuppen und Kiemen.'),
-  _ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Welche Tiere haben sechs Beine?', answer: 'Insekten', choices: <String>['Insekten', 'Säugetiere', 'Fische', 'Vögel'], explanation: 'Insekten haben sechs Beine.'),
-  _ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Welche Tiere säugen ihre Jungen?', answer: 'Säugetiere', choices: <String>['Säugetiere', 'Fische', 'Insekten', 'Vögel'], explanation: 'Säugetiere geben den Jungen Milch.'),
-  _ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Wie viele Bundesländer hat Österreich?', answer: '9', choices: <String>['9', '7', '10', '12'], explanation: 'Österreich hat neun Bundesländer.'),
-  _ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'In welchem Bundesland liegt Gänserndorf?', answer: 'Niederösterreich', choices: <String>['Niederösterreich', 'Tirol', 'Kärnten', 'Vorarlberg'], explanation: 'Gänserndorf liegt in Niederösterreich.'),
-  _ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Wie heißt die Bundeshauptstadt von Österreich?', answer: 'Wien', choices: <String>['Wien', 'Berlin', 'Graz', 'St. Pölten'], explanation: 'Die Bundeshauptstadt Österreichs ist Wien.'),
-  _ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welche Stadt ist Hauptstadt von Niederösterreich?', answer: 'St. Pölten', choices: <String>['St. Pölten', 'Wien', 'Linz', 'Eisenstadt'], explanation: 'St. Pölten ist Landeshauptstadt von Niederösterreich.'),
-  _ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welches Bundesland liegt ganz im Osten Österreichs?', answer: 'Burgenland', choices: <String>['Burgenland', 'Tirol', 'Vorarlberg', 'Salzburg'], explanation: 'Das Burgenland liegt im Osten.'),
-  _ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welche Bundesländer grenzen an Niederösterreich?', answer: 'Wien, Oberösterreich, Steiermark, Burgenland', choices: <String>['Wien, Oberösterreich, Steiermark, Burgenland', 'Tirol und Vorarlberg', 'Kärnten und Salzburg', 'nur Wien'], explanation: 'Niederösterreich umgibt Wien und grenzt an mehrere Bundesländer.'),
-  _ScienceQuestion(grade: 3, unit: 'Verkehr', prompt: 'Was bedeutet Vorrang?', answer: 'jemand darf zuerst fahren oder gehen', choices: <String>['jemand darf zuerst fahren oder gehen', 'alle fahren gleichzeitig', 'niemand schaut', 'nur Autos zählen'], explanation: 'Vorrang regelt, wer zuerst darf.'),
-  _ScienceQuestion(grade: 3, unit: 'Zeit und Kalender', prompt: 'Was ist ein Kalender?', answer: 'eine Übersicht über Tage, Wochen und Monate', choices: <String>['eine Übersicht über Tage, Wochen und Monate', 'ein Werkzeug zum Sägen', 'ein Tierbuch', 'ein Verkehrsschild'], explanation: 'Ein Kalender ordnet Zeit.'),
-  _ScienceQuestion(grade: 3, unit: 'Pflanzen', prompt: 'Welche Aufgabe hat die Blüte?', answer: 'sie hilft bei der Fortpflanzung', choices: <String>['sie hilft bei der Fortpflanzung', 'sie bremst Autos', 'sie pumpt Blut', 'sie misst Wärme'], explanation: 'Aus Blüten können Früchte und Samen entstehen.'),
-  _ScienceQuestion(grade: 3, unit: 'Pflanzen', prompt: 'Was schützt den Boden und wird aus Pflanzenresten?', answer: 'Humus', choices: <String>['Humus', 'Plastik', 'Glas', 'Metall'], explanation: 'Humus entsteht aus zersetzten Pflanzenresten.'),
-  _ScienceQuestion(grade: 3, unit: 'Wetter', prompt: 'Was zeigt die Windrichtung?', answer: 'woher der Wind kommt', choices: <String>['woher der Wind kommt', 'wie alt der Wind ist', 'welche Farbe Wind hat', 'wie schwer Sonne ist'], explanation: 'Windrichtung beschreibt, woher Wind weht.'),
-  _ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Warum putzen wir Zähne?', answer: 'damit sie gesund bleiben', choices: <String>['damit sie gesund bleiben', 'damit sie wachsen wie Haare', 'damit sie hören', 'damit sie leuchten'], explanation: 'Zähneputzen schützt vor Karies.'),
-  _ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was ist eine ausgewogene Jause?', answer: 'Semmel, Käse, Gemüse und Wasser', choices: <String>['Semmel, Käse, Gemüse und Wasser', 'nur Zuckerln', 'nur Limo', 'nur Schlagobers'], explanation: 'Eine gute Jause hat verschiedene gesunde Teile.'),
-  _ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Warum brauchen Tiere einen Lebensraum?', answer: 'für Nahrung, Schutz und Nachwuchs', choices: <String>['für Nahrung, Schutz und Nachwuchs', 'für Hefte', 'für Ampeln', 'für Geld'], explanation: 'Ein Lebensraum deckt wichtige Bedürfnisse.'),
-  _ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Was ist Grundwasser?', answer: 'Wasser unter der Erde', choices: <String>['Wasser unter der Erde', 'Wasser im Fernseher', 'Wasser in der Sonne', 'Wasser aus Metall'], explanation: 'Grundwasser befindet sich im Boden.'),
-  _ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welche Farbe hat die österreichische Flagge?', answer: 'rot-weiß-rot', choices: <String>['rot-weiß-rot', 'schwarz-rot-gold', 'blau-gelb', 'grün-weiß-grün'], explanation: 'Österreichs Flagge ist rot-weiß-rot.'),
-  _ScienceQuestion(grade: 3, unit: 'Familie und Gemeinschaft', prompt: 'Was ist eine Regel?', answer: 'eine Vereinbarung, wie man handelt', choices: <String>['eine Vereinbarung, wie man handelt', 'ein Tier', 'ein Möbelstück', 'ein Fluss'], explanation: 'Regeln helfen beim Zusammenleben.'),
-  _ScienceQuestion(grade: 3, unit: 'Berufe', prompt: 'Wer hilft bei einem Unfall?', answer: 'Rettung', choices: <String>['Rettung', 'Bäckerei', 'Bibliothek', 'Schneiderei'], explanation: 'Die Rettung hilft medizinisch.'),
-  _ScienceQuestion(grade: 3, unit: 'Pflanzen', prompt: 'Welche Pflanze trägt Äpfel?', answer: 'Apfelbaum', choices: <String>['Apfelbaum', 'Tanne', 'Rose', 'Gras'], explanation: 'Äpfel wachsen auf Apfelbäumen.'),
-  _ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Was schützt unsere inneren Organe außen?', answer: 'Haut', choices: <String>['Haut', 'Schuh', 'Heft', 'Sackerl'], explanation: 'Die Haut schützt den Körper.'),
-  _ScienceQuestion(grade: 3, unit: 'Wetter', prompt: 'Was ist Frost?', answer: 'gefrorene Feuchtigkeit bei Kälte', choices: <String>['gefrorene Feuchtigkeit bei Kälte', 'heißer Regen', 'lauter Wind', 'bunter Nebel'], explanation: 'Frost entsteht bei Kälte.'),
-  _ScienceQuestion(grade: 3, unit: 'Verkehr', prompt: 'Warum sind Reflektoren wichtig?', answer: 'man wird besser gesehen', choices: <String>['man wird besser gesehen', 'man fährt schneller', 'man hört besser', 'man spart Geld'], explanation: 'Reflektoren machen im Dunkeln sichtbar.'),
-  _ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was ist Topfen?', answer: 'ein Milchprodukt', choices: <String>['ein Milchprodukt', 'ein Werkzeug', 'ein Fahrzeug', 'ein Bundesland'], explanation: 'Topfen ist ein österreichisches Milchprodukt.'),
-  _ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welches Bundesland hat Eisenstadt als Hauptstadt?', answer: 'Burgenland', choices: <String>['Burgenland', 'Tirol', 'Wien', 'Salzburg'], explanation: 'Eisenstadt ist Hauptstadt des Burgenlands.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Wie heißt der höchste Berg Österreichs?', answer: 'Großglockner', choices: <String>['Großglockner', 'Ötscher', 'Schneeberg', 'Rax'], explanation: 'Der Großglockner ist Österreichs höchster Berg.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welcher große Fluss fließt durch Wien?', answer: 'Donau', choices: <String>['Donau', 'Rhein', 'Elbe', 'Themse'], explanation: 'Die Donau fließt durch Wien.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Wie heißt Österreichs Bundeshauptstadt?', answer: 'Wien', choices: <String>['Wien', 'Berlin', 'Graz', 'Linz'], explanation: 'Wien ist die Bundeshauptstadt.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Wie viele Bundesländer hat Österreich?', answer: '9', choices: <String>['9', '8', '10', '11'], explanation: 'Österreich hat neun Bundesländer.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welcher See liegt im Osten Österreichs?', answer: 'Neusiedler See', choices: <String>['Neusiedler See', 'Bodensee', 'Attersee', 'Wörthersee'], explanation: 'Der Neusiedler See liegt im Burgenland und in Ungarn.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'An welches Land grenzt Niederösterreich im Norden?', answer: 'Tschechien', choices: <String>['Tschechien', 'Italien', 'Schweiz', 'Slowenien'], explanation: 'Niederösterreich grenzt im Norden an Tschechien.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Landeshauptstadt gehört zur Steiermark?', answer: 'Graz', choices: <String>['Graz', 'Linz', 'Innsbruck', 'Bregenz'], explanation: 'Graz ist die Hauptstadt der Steiermark.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Landeshauptstadt gehört zu Tirol?', answer: 'Innsbruck', choices: <String>['Innsbruck', 'Klagenfurt', 'St. Pölten', 'Eisenstadt'], explanation: 'Innsbruck ist die Hauptstadt von Tirol.'),
-  _ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'In welcher Zeit lebten Menschen als Jäger und Sammler?', answer: 'Steinzeit', choices: <String>['Steinzeit', 'Mittelalter', 'Neuzeit', 'Zukunft'], explanation: 'In der Steinzeit jagten und sammelten viele Menschen.'),
-  _ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was war im Mittelalter oft auf einem Hügel gebaut?', answer: 'Burg', choices: <String>['Burg', 'Flughafen', 'U-Bahn', 'Computerraum'], explanation: 'Burgen boten Schutz.'),
-  _ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Wer trug im Mittelalter oft Rüstung?', answer: 'Ritter', choices: <String>['Ritter', 'Pilot', 'Programmierer', 'Schaffner'], explanation: 'Ritter trugen Rüstungen.'),
-  _ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was hilft uns, Vergangenes zu verstehen?', answer: 'Quellen', choices: <String>['Quellen', 'Ampeln', 'Batterien', 'Jausenboxen'], explanation: 'Historische Quellen erzählen über früher.'),
-  _ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was ist Archäologie?', answer: 'Wissenschaft von alten Funden', choices: <String>['Wissenschaft von alten Funden', 'Sport im Schnee', 'Kochen mit Topfen', 'Fahren mit Bus'], explanation: 'Archäologie untersucht Funde aus der Vergangenheit.'),
-  _ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Wie viele Kontinente lernen viele Schulkarten?', answer: '7', choices: <String>['7', '3', '9', '12'], explanation: 'Oft werden sieben Kontinente unterschieden.'),
-  _ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Auf welchem Kontinent liegt Österreich?', answer: 'Europa', choices: <String>['Europa', 'Afrika', 'Asien', 'Australien'], explanation: 'Österreich liegt in Europa.'),
-  _ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Welcher Ozean ist der größte?', answer: 'Pazifik', choices: <String>['Pazifik', 'Atlantik', 'Indischer Ozean', 'Arktischer Ozean'], explanation: 'Der Pazifik ist der größte Ozean.'),
-  _ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Was ist ein Ozean?', answer: 'ein sehr großes Meer', choices: <String>['ein sehr großes Meer', 'ein kleiner Bach', 'ein Berg', 'ein Bundesland'], explanation: 'Ozeane sind riesige Meere.'),
-  _ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was zeigt eine Nahrungskette?', answer: 'wer wen frisst', choices: <String>['wer wen frisst', 'wer welches Heft hat', 'wer zuerst fährt', 'wer lauter singt'], explanation: 'Nahrungsketten zeigen Energiefluss.'),
-  _ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was machen Zersetzer?', answer: 'sie bauen tote Reste ab', choices: <String>['sie bauen tote Reste ab', 'sie bauen Straßen', 'sie schreiben Briefe', 'sie löschen Brände'], explanation: 'Zersetzer helfen, Stoffe zurück in den Boden zu bringen.'),
-  _ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was ist ein Lebensraum?', answer: 'Ort, an dem Lebewesen leben', choices: <String>['Ort, an dem Lebewesen leben', 'ein Rechenzeichen', 'ein Kleidungsstück', 'eine Uhrzeit'], explanation: 'Lebensräume bieten Nahrung und Schutz.'),
-  _ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Warum sind Bienen wichtig?', answer: 'sie bestäuben viele Pflanzen', choices: <String>['sie bestäuben viele Pflanzen', 'sie fahren Bus', 'sie drucken Bücher', 'sie bauen Mauern'], explanation: 'Bestäubung hilft Pflanzen bei Früchten und Samen.'),
-  _ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was braucht ein einfacher Stromkreis?', answer: 'Batterie, Kabel, Lampe und Schalter', choices: <String>['Batterie, Kabel, Lampe und Schalter', 'Semmel, Topfen und Saft', 'Buch, Heft und Lineal', 'Apfel, Birne und Banane'], explanation: 'Ein geschlossener Stromkreis lässt Strom fließen.'),
-  _ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Wann leuchtet die Lampe im Stromkreis?', answer: 'wenn der Kreis geschlossen ist', choices: <String>['wenn der Kreis geschlossen ist', 'wenn das Kabel fehlt', 'wenn die Batterie leer ist', 'wenn der Schalter offen ist'], explanation: 'Strom fließt nur im geschlossenen Kreis.'),
-  _ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was leitet Strom gut?', answer: 'Metall', choices: <String>['Metall', 'Holz', 'Plastik', 'Papier'], explanation: 'Metalle leiten Strom meist gut.'),
-  _ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was ist ein Nichtleiter?', answer: 'Plastik', choices: <String>['Plastik', 'Kupfer', 'Eisen', 'Aluminium'], explanation: 'Plastik leitet Strom schlecht.'),
-  _ScienceQuestion(grade: 4, unit: 'Diagramme lesen', prompt: 'Was zeigt ein Säulendiagramm?', answer: 'Werte als Balken', choices: <String>['Werte als Balken', 'nur Wörter', 'nur Landkarten', 'nur Uhrzeiten'], explanation: 'Balken machen Mengen vergleichbar.'),
-  _ScienceQuestion(grade: 4, unit: 'Diagramme lesen', prompt: 'Welche Säule zeigt den größten Wert?', answer: 'die höchste Säule', choices: <String>['die höchste Säule', 'die kürzeste Säule', 'die linke immer', 'die bunte immer'], explanation: 'Höhere Säule bedeutet größerer Wert.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Hymne gehört zu Österreich?', answer: 'Bundeshymne', choices: <String>['Bundeshymne', 'Vereinshymne', 'Schullied', 'Geburtstagslied'], explanation: 'Österreich hat eine Bundeshymne.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Stadt ist Hauptstadt von Oberösterreich?', answer: 'Linz', choices: <String>['Linz', 'Graz', 'Bregenz', 'Klagenfurt'], explanation: 'Linz ist Hauptstadt von Oberösterreich.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Stadt ist Hauptstadt von Kärnten?', answer: 'Klagenfurt', choices: <String>['Klagenfurt', 'Salzburg', 'Wien', 'Eisenstadt'], explanation: 'Klagenfurt ist Kärntens Landeshauptstadt.'),
-  _ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Was ist der Äquator?', answer: 'gedachte Linie um die Erde', choices: <String>['gedachte Linie um die Erde', 'ein Fluss in Wien', 'ein Berg in Tirol', 'ein Werkzeug'], explanation: 'Der Äquator teilt die Erde in Nord und Süd.'),
-  _ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was ist eine Zeitleiste?', answer: 'eine geordnete Darstellung von Ereignissen', choices: <String>['eine geordnete Darstellung von Ereignissen', 'ein Messbecher', 'ein Stromkabel', 'ein Verkehrsschild'], explanation: 'Zeitleisten ordnen Ereignisse nach Zeit.'),
-  _ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was bedeutet nachhaltig?', answer: 'so handeln, dass die Zukunft geschützt wird', choices: <String>['so handeln, dass die Zukunft geschützt wird', 'alles sofort verbrauchen', 'Müll in den Bach werfen', 'Licht immer brennen lassen'], explanation: 'Nachhaltigkeit denkt an morgen.'),
-  _ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Warum soll man nicht an Steckdosen spielen?', answer: 'Strom kann gefährlich sein', choices: <String>['Strom kann gefährlich sein', 'Steckdosen sind essbar', 'Steckdosen machen Musik', 'Strom ist immer kalt'], explanation: 'Strom aus Steckdosen ist gefährlich.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Hauptstadt gehört zu Vorarlberg?', answer: 'Bregenz', choices: <String>['Bregenz', 'Innsbruck', 'Linz', 'St. Pölten'], explanation: 'Bregenz ist Hauptstadt von Vorarlberg.'),
-  _ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Hauptstadt gehört zu Salzburg?', answer: 'Salzburg', choices: <String>['Salzburg', 'Graz', 'Wien', 'Klagenfurt'], explanation: 'Salzburg ist Stadt und Bundesland-Hauptstadt.'),
-  _ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Welcher Kontinent ist sehr kalt und am Südpol?', answer: 'Antarktis', choices: <String>['Antarktis', 'Afrika', 'Europa', 'Asien'], explanation: 'Die Antarktis liegt am Südpol.'),
-  _ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was war ein Handwerk im Mittelalter?', answer: 'Schmieden', choices: <String>['Schmieden', 'Programmieren', 'Fernsehen', 'Autofahren'], explanation: 'Schmiede stellten Dinge aus Metall her.'),
-  _ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was schützt ein Wald?', answer: 'Boden, Tiere und Klima', choices: <String>['Boden, Tiere und Klima', 'nur Autos', 'nur Computer', 'nur Ampeln'], explanation: 'Wälder sind wichtige Lebensräume.'),
-  _ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was macht ein Schalter?', answer: 'er öffnet oder schließt den Stromkreis', choices: <String>['er öffnet oder schließt den Stromkreis', 'er kocht Suppe', 'er misst Zeit', 'er schreibt Wörter'], explanation: 'Schalter steuern, ob Strom fließt.'),
+const List<ScienceQuestion> _scienceQuestions = <ScienceQuestion>[
+  ...scienceExtensionQuestions,
+  ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Vogel?', answer: 'Spatz', choices: <String>['Spatz', 'Kuh', 'Fisch', 'Ameise'], explanation: 'Ein Spatz hat Federn und Flügel.'),
+  ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Fisch?', answer: 'Forelle', choices: <String>['Forelle', 'Hund', 'Biene', 'Hase'], explanation: 'Fische leben im Wasser und haben Flossen.'),
+  ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Insekt?', answer: 'Biene', choices: <String>['Biene', 'Katze', 'Frosch', 'Schaf'], explanation: 'Insekten haben sechs Beine.'),
+  ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Säugetier?', answer: 'Hund', choices: <String>['Hund', 'Ente', 'Forelle', 'Käfer'], explanation: 'Säugetiere säugen ihre Jungen.'),
+  ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier lebt am Bauernhof?', answer: 'Kuh', choices: <String>['Kuh', 'Wal', 'Pinguin', 'Koralle'], explanation: 'Kühe leben häufig am Bauernhof.'),
+  ScienceQuestion(grade: 1, unit: 'Jahreszeiten', prompt: 'In welcher Jahreszeit fällt oft Schnee?', answer: 'Winter', choices: <String>['Winter', 'Sommer', 'Frühling', 'Herbst'], explanation: 'Im Winter ist es kalt, oft schneit es.'),
+  ScienceQuestion(grade: 1, unit: 'Jahreszeiten', prompt: 'Wann blühen viele Blumen neu?', answer: 'Frühling', choices: <String>['Frühling', 'Winter', 'Herbst', 'Nacht'], explanation: 'Im Frühling beginnen viele Pflanzen zu blühen.'),
+  ScienceQuestion(grade: 1, unit: 'Jahreszeiten', prompt: 'Wann sind die Tage oft heiß?', answer: 'Sommer', choices: <String>['Sommer', 'Winter', 'Herbst', 'Morgen'], explanation: 'Im Sommer ist es oft warm bis heiß.'),
+  ScienceQuestion(grade: 1, unit: 'Jahreszeiten', prompt: 'Wann fallen viele bunte Blätter?', answer: 'Herbst', choices: <String>['Herbst', 'Sommer', 'Frühling', 'Mittag'], explanation: 'Im Herbst verfärben sich viele Blätter.'),
+  ScienceQuestion(grade: 1, unit: 'Wetter', prompt: 'Was fällt aus Wolken als Wasser?', answer: 'Regen', choices: <String>['Regen', 'Wind', 'Sonne', 'Nebel'], explanation: 'Regen besteht aus Wassertropfen.'),
+  ScienceQuestion(grade: 1, unit: 'Wetter', prompt: 'Was hörst du bei einem Gewitter?', answer: 'Donner', choices: <String>['Donner', 'Schnee', 'Nebel', 'Regenbogen'], explanation: 'Donner ist das laute Geräusch beim Gewitter.'),
+  ScienceQuestion(grade: 1, unit: 'Wetter', prompt: 'Was sieht man nach Regen und Sonne manchmal?', answer: 'Regenbogen', choices: <String>['Regenbogen', 'Frost', 'Nacht', 'Stein'], explanation: 'Ein Regenbogen entsteht durch Sonne und Regentropfen.'),
+  ScienceQuestion(grade: 1, unit: 'Wetter', prompt: 'Was bewegt Blätter in der Luft?', answer: 'Wind', choices: <String>['Wind', 'Mond', 'Sand', 'Eis'], explanation: 'Wind ist bewegte Luft.'),
+  ScienceQuestion(grade: 1, unit: 'Pflanzen', prompt: 'Was hat einen Stamm und Äste?', answer: 'Baum', choices: <String>['Baum', 'Blume', 'Stein', 'Fisch'], explanation: 'Ein Baum hat Stamm, Äste und Blätter.'),
+  ScienceQuestion(grade: 1, unit: 'Pflanzen', prompt: 'Was wächst oft bunt im Garten?', answer: 'Blume', choices: <String>['Blume', 'Auto', 'Hund', 'Sackerl'], explanation: 'Blumen blühen oft bunt.'),
+  ScienceQuestion(grade: 1, unit: 'Pflanzen', prompt: 'Welcher Teil einer Pflanze ist meist grün?', answer: 'Blatt', choices: <String>['Blatt', 'Rad', 'Schuh', 'Ball'], explanation: 'Blätter sind oft grün und fangen Licht ein.'),
+  ScienceQuestion(grade: 1, unit: 'Pflanzen', prompt: 'Was braucht eine Pflanze zum Wachsen?', answer: 'Wasser', choices: <String>['Wasser', 'Fernseher', 'Schere', 'Helm'], explanation: 'Pflanzen brauchen Wasser, Licht und Erde.'),
+  ScienceQuestion(grade: 1, unit: 'Tag und Nacht', prompt: 'Wann ist es meistens dunkel?', answer: 'Nacht', choices: <String>['Nacht', 'Mittag', 'Sommer', 'Pause'], explanation: 'In der Nacht ist die Sonne nicht zu sehen.'),
+  ScienceQuestion(grade: 1, unit: 'Tag und Nacht', prompt: 'Was leuchtet am Tag hell am Himmel?', answer: 'Sonne', choices: <String>['Sonne', 'Tisch', 'Kuh', 'Schuh'], explanation: 'Die Sonne gibt Licht und Wärme.'),
+  ScienceQuestion(grade: 1, unit: 'Körper', prompt: 'Womit siehst du?', answer: 'Auge', choices: <String>['Auge', 'Ohr', 'Hand', 'Fuß'], explanation: 'Mit den Augen sehen wir.'),
+  ScienceQuestion(grade: 1, unit: 'Körper', prompt: 'Womit hörst du?', answer: 'Ohr', choices: <String>['Ohr', 'Nase', 'Knie', 'Bauch'], explanation: 'Mit den Ohren hören wir.'),
+  ScienceQuestion(grade: 1, unit: 'Verkehr', prompt: 'Bei welcher Ampelfarbe darf man gehen?', answer: 'Grün', choices: <String>['Grün', 'Rot', 'Blau', 'Schwarz'], explanation: 'Grün bedeutet: gehen, wenn der Weg frei ist.'),
+  ScienceQuestion(grade: 1, unit: 'Familie und Gemeinschaft', prompt: 'Was sagt man, wenn man Hilfe bekommt?', answer: 'Danke', choices: <String>['Danke', 'Stopp', 'Aua', 'Nein'], explanation: 'Danke ist höflich und freundlich.'),
+  ScienceQuestion(grade: 1, unit: 'Zeit und Kalender', prompt: 'Welcher Tag kommt nach Montag?', answer: 'Dienstag', choices: <String>['Dienstag', 'Sonntag', 'Freitag', 'Jänner'], explanation: 'Nach Montag kommt Dienstag.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wie heißt das Baby vom Schwein?', answer: 'Ferkel', choices: <String>['Ferkel', 'Kalb', 'Fohlen', 'Lamm'], explanation: 'Ein junges Schwein heißt Ferkel.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wie heißt das Baby von der Kuh?', answer: 'Kalb', choices: <String>['Kalb', 'Ferkel', 'Küken', 'Fohlen'], explanation: 'Ein junges Rind heißt Kalb.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wie heißt das Baby vom Pferd?', answer: 'Fohlen', choices: <String>['Fohlen', 'Kalb', 'Lamm', 'Küken'], explanation: 'Ein junges Pferd heißt Fohlen.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wie heißt das Baby vom Huhn?', answer: 'Küken', choices: <String>['Küken', 'Ferkel', 'Kalb', 'Welpe'], explanation: 'Ein junges Huhn heißt Küken.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wo lebt ein Fisch meistens?', answer: 'im Wasser', choices: <String>['im Wasser', 'im Baum', 'im Nest', 'im Heft'], explanation: 'Fische leben im Wasser.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wo bauen viele Vögel ihr Nest?', answer: 'im Baum', choices: <String>['im Baum', 'im Schuh', 'im Topfen', 'im Bus'], explanation: 'Viele Vögel bauen Nester auf Bäumen.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Wo lebt der Fuchs häufig?', answer: 'im Wald', choices: <String>['im Wald', 'im Meer', 'im Federpennal', 'im Glas'], explanation: 'Füchse leben häufig im Wald.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Welches Tier sammelt Nektar?', answer: 'Biene', choices: <String>['Biene', 'Kuh', 'Hund', 'Forelle'], explanation: 'Bienen besuchen Blüten und sammeln Nektar.'),
+  ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Welcher Pflanzenteil nimmt Wasser auf?', answer: 'Wurzel', choices: <String>['Wurzel', 'Blüte', 'Frucht', 'Ast'], explanation: 'Wurzeln nehmen Wasser aus der Erde auf.'),
+  ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Welcher Teil trägt Blätter und Blüten?', answer: 'Stamm', choices: <String>['Stamm', 'Schuh', 'Kabel', 'Topf'], explanation: 'Der Stamm oder Stängel trägt andere Pflanzenteile.'),
+  ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Woraus kann eine neue Pflanze wachsen?', answer: 'Samen', choices: <String>['Samen', 'Stein', 'Münze', 'Knopf'], explanation: 'Aus Samen können neue Pflanzen wachsen.'),
+  ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Was lockt oft Bienen an?', answer: 'Blüte', choices: <String>['Blüte', 'Reifen', 'Buch', 'Helm'], explanation: 'Blüten locken Insekten an.'),
+  ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Was bedeutet eine rote Ampel?', answer: 'stehen bleiben', choices: <String>['stehen bleiben', 'laufen', 'singen', 'springen'], explanation: 'Rot bedeutet Halt.'),
+  ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Was bedeutet ein Stoppschild?', answer: 'anhalten', choices: <String>['anhalten', 'schneller fahren', 'hupen', 'umdrehen'], explanation: 'Bei Stopp muss man anhalten.'),
+  ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Wo überquert man sicherer die Straße?', answer: 'Zebrastreifen', choices: <String>['Zebrastreifen', 'Spielplatz', 'Wiese', 'Küche'], explanation: 'Ein Zebrastreifen hilft beim sicheren Überqueren.'),
+  ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Was trägt man beim Radfahren zum Schutz?', answer: 'Helm', choices: <String>['Helm', 'Haube', 'Schal', 'Sackerl'], explanation: 'Ein Helm schützt den Kopf.'),
+  ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer löscht Brände?', answer: 'Feuerwehr', choices: <String>['Feuerwehr', 'Bäcker', 'Gärtner', 'Pilot'], explanation: 'Die Feuerwehr hilft bei Bränden.'),
+  ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer backt Semmeln und Brot?', answer: 'Bäckerin oder Bäcker', choices: <String>['Bäckerin oder Bäcker', 'Ärztin', 'Postler', 'Tischler'], explanation: 'Bäckerinnen und Bäcker backen Brot und Semmeln.'),
+  ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer hilft kranken Menschen?', answer: 'Ärztin oder Arzt', choices: <String>['Ärztin oder Arzt', 'Maurer', 'Pilotin', 'Schneider'], explanation: 'Ärztinnen und Ärzte behandeln kranke Menschen.'),
+  ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer bringt Briefe und Pakete?', answer: 'Postlerin oder Postler', choices: <String>['Postlerin oder Postler', 'Friseur', 'Koch', 'Lehrer'], explanation: 'Die Post stellt Briefe und Pakete zu.'),
+  ScienceQuestion(grade: 2, unit: 'Wetter', prompt: 'Was misst ein Thermometer?', answer: 'Temperatur', choices: <String>['Temperatur', 'Länge', 'Geld', 'Lautstärke'], explanation: 'Ein Thermometer zeigt warm oder kalt an.'),
+  ScienceQuestion(grade: 2, unit: 'Wetter', prompt: 'Was ist Nebel?', answer: 'Wolken nahe am Boden', choices: <String>['Wolken nahe am Boden', 'Sand im Glas', 'heißer Wind', 'lauter Donner'], explanation: 'Nebel besteht aus kleinen Wassertröpfchen in Bodennähe.'),
+  ScienceQuestion(grade: 2, unit: 'Jahreszeiten', prompt: 'Wie viele Jahreszeiten hat ein Jahr?', answer: '4', choices: <String>['4', '2', '7', '12'], explanation: 'Frühling, Sommer, Herbst und Winter sind vier Jahreszeiten.'),
+  ScienceQuestion(grade: 2, unit: 'Zeit und Kalender', prompt: 'Wie viele Monate hat ein Jahr?', answer: '12', choices: <String>['12', '7', '4', '24'], explanation: 'Ein Jahr hat zwölf Monate.'),
+  ScienceQuestion(grade: 2, unit: 'Körper', prompt: 'Womit riechst du?', answer: 'Nase', choices: <String>['Nase', 'Ohr', 'Knie', 'Hand'], explanation: 'Mit der Nase riechen wir.'),
+  ScienceQuestion(grade: 2, unit: 'Körper', prompt: 'Womit schmeckst du?', answer: 'Zunge', choices: <String>['Zunge', 'Auge', 'Fuß', 'Haar'], explanation: 'Mit der Zunge schmecken wir.'),
+  ScienceQuestion(grade: 2, unit: 'Familie und Gemeinschaft', prompt: 'Was hilft bei Streit?', answer: 'ruhig reden', choices: <String>['ruhig reden', 'schubsen', 'weglaufen ohne Erklärung', 'auslachen'], explanation: 'Ruhiges Reden hilft beim Lösen von Streit.'),
+  ScienceQuestion(grade: 2, unit: 'Pflanzen', prompt: 'Welche Frucht ist typisch österreichisch als Marille bekannt?', answer: 'Aprikose heißt in Österreich Marille', choices: <String>['Aprikose heißt in Österreich Marille', 'Banane heißt Marille', 'Topfen heißt Marille', 'Semmel heißt Marille'], explanation: 'In Österreich sagt man Marille.'),
+  ScienceQuestion(grade: 2, unit: 'Tiere', prompt: 'Welches Tier ist nachtaktiv?', answer: 'Eule', choices: <String>['Eule', 'Huhn', 'Kuh', 'Schaf'], explanation: 'Eulen sind oft nachts unterwegs.'),
+  ScienceQuestion(grade: 2, unit: 'Verkehr', prompt: 'Auf welcher Seite geht man am Gehsteig besonders aufmerksam?', answer: 'weg von der Fahrbahn', choices: <String>['weg von der Fahrbahn', 'mitten auf der Straße', 'auf Schienen', 'im Kreisverkehr'], explanation: 'Am Gehsteig bleibt man weg von der Fahrbahn.'),
+  ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer baut Mauern?', answer: 'Maurer', choices: <String>['Maurer', 'Bäcker', 'Ärztin', 'Pilot'], explanation: 'Maurer bauen Mauern und Gebäude.'),
+  ScienceQuestion(grade: 2, unit: 'Berufe', prompt: 'Wer arbeitet mit Metall?', answer: 'Schlosser', choices: <String>['Schlosser', 'Gärtner', 'Lehrer', 'Postler'], explanation: 'Schlosser arbeiten oft mit Metall.'),
+  ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Welches Organ pumpt Blut?', answer: 'Herz', choices: <String>['Herz', 'Magen', 'Lunge', 'Haut'], explanation: 'Das Herz pumpt Blut durch den Körper.'),
+  ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Welches Organ hilft beim Atmen?', answer: 'Lunge', choices: <String>['Lunge', 'Herz', 'Darm', 'Knochen'], explanation: 'Die Lunge nimmt Sauerstoff auf.'),
+  ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Womit verdauen wir Nahrung weiter?', answer: 'Magen und Darm', choices: <String>['Magen und Darm', 'Auge und Ohr', 'Hand und Fuß', 'Haut und Haar'], explanation: 'Magen und Darm helfen bei der Verdauung.'),
+  ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Welche fünf Sinne haben wir?', answer: 'sehen, hören, riechen, schmecken, fühlen', choices: <String>['sehen, hören, riechen, schmecken, fühlen', 'laufen, springen, sitzen, stehen, liegen', 'essen, trinken, schlafen, malen, rechnen', 'rot, blau, grün, gelb, weiß'], explanation: 'Die Sinne helfen uns, die Umwelt wahrzunehmen.'),
+  ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was sollte man oft trinken?', answer: 'Wasser', choices: <String>['Wasser', 'Limo', 'Sirup', 'Eistee'], explanation: 'Wasser ist ein gesundes Getränk.'),
+  ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was gehört zur Obstgruppe?', answer: 'Apfel', choices: <String>['Apfel', 'Hammer', 'Schuh', 'Kabel'], explanation: 'Äpfel sind Obst.'),
+  ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was gibt Energie, soll aber nicht zu viel gegessen werden?', answer: 'Zucker', choices: <String>['Zucker', 'Wasser', 'Salat', 'Luft'], explanation: 'Zu viel Zucker ist ungesund.'),
+  ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was enthält viele Vitamine?', answer: 'Gemüse und Obst', choices: <String>['Gemüse und Obst', 'Steine', 'Plastik', 'Batterien'], explanation: 'Obst und Gemüse enthalten viele Vitamine.'),
+  ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Was passiert, wenn Wasser durch Sonne gasförmig wird?', answer: 'Verdunstung', choices: <String>['Verdunstung', 'Gefrieren', 'Schneiden', 'Messen'], explanation: 'Verdunstung macht aus Wasser Wasserdampf.'),
+  ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Wie nennt man Regen, Schnee oder Hagel zusammen?', answer: 'Niederschlag', choices: <String>['Niederschlag', 'Stromkreis', 'Nahrungskette', 'Hauptstadt'], explanation: 'Niederschlag fällt aus Wolken.'),
+  ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Wohin fließt ein Bach oft?', answer: 'in einen Fluss', choices: <String>['in einen Fluss', 'in ein Heft', 'in eine Lampe', 'in ein Sackerl'], explanation: 'Bäche fließen oft in größere Gewässer.'),
+  ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Was sammelt sich zu Wolken?', answer: 'Wasserdampf', choices: <String>['Wasserdampf', 'Sand', 'Holz', 'Metall'], explanation: 'Wasserdampf kann Wolken bilden.'),
+  ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Welche Tierklasse hat Federn?', answer: 'Vögel', choices: <String>['Vögel', 'Fische', 'Insekten', 'Säugetiere'], explanation: 'Vögel haben Federn.'),
+  ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Welche Tierklasse hat Schuppen und lebt im Wasser?', answer: 'Fische', choices: <String>['Fische', 'Vögel', 'Spinnen', 'Säugetiere'], explanation: 'Viele Fische haben Schuppen und Kiemen.'),
+  ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Welche Tiere haben sechs Beine?', answer: 'Insekten', choices: <String>['Insekten', 'Säugetiere', 'Fische', 'Vögel'], explanation: 'Insekten haben sechs Beine.'),
+  ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Welche Tiere säugen ihre Jungen?', answer: 'Säugetiere', choices: <String>['Säugetiere', 'Fische', 'Insekten', 'Vögel'], explanation: 'Säugetiere geben den Jungen Milch.'),
+  ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Wie viele Bundesländer hat Österreich?', answer: '9', choices: <String>['9', '7', '10', '12'], explanation: 'Österreich hat neun Bundesländer.'),
+  ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'In welchem Bundesland liegt Gänserndorf?', answer: 'Niederösterreich', choices: <String>['Niederösterreich', 'Tirol', 'Kärnten', 'Vorarlberg'], explanation: 'Gänserndorf liegt in Niederösterreich.'),
+  ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Wie heißt die Bundeshauptstadt von Österreich?', answer: 'Wien', choices: <String>['Wien', 'Berlin', 'Graz', 'St. Pölten'], explanation: 'Die Bundeshauptstadt Österreichs ist Wien.'),
+  ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welche Stadt ist Hauptstadt von Niederösterreich?', answer: 'St. Pölten', choices: <String>['St. Pölten', 'Wien', 'Linz', 'Eisenstadt'], explanation: 'St. Pölten ist Landeshauptstadt von Niederösterreich.'),
+  ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welches Bundesland liegt ganz im Osten Österreichs?', answer: 'Burgenland', choices: <String>['Burgenland', 'Tirol', 'Vorarlberg', 'Salzburg'], explanation: 'Das Burgenland liegt im Osten.'),
+  ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welche Bundesländer grenzen an Niederösterreich?', answer: 'Wien, Oberösterreich, Steiermark, Burgenland', choices: <String>['Wien, Oberösterreich, Steiermark, Burgenland', 'Tirol und Vorarlberg', 'Kärnten und Salzburg', 'nur Wien'], explanation: 'Niederösterreich umgibt Wien und grenzt an mehrere Bundesländer.'),
+  ScienceQuestion(grade: 3, unit: 'Verkehr', prompt: 'Was bedeutet Vorrang?', answer: 'jemand darf zuerst fahren oder gehen', choices: <String>['jemand darf zuerst fahren oder gehen', 'alle fahren gleichzeitig', 'niemand schaut', 'nur Autos zählen'], explanation: 'Vorrang regelt, wer zuerst darf.'),
+  ScienceQuestion(grade: 3, unit: 'Zeit und Kalender', prompt: 'Was ist ein Kalender?', answer: 'eine Übersicht über Tage, Wochen und Monate', choices: <String>['eine Übersicht über Tage, Wochen und Monate', 'ein Werkzeug zum Sägen', 'ein Tierbuch', 'ein Verkehrsschild'], explanation: 'Ein Kalender ordnet Zeit.'),
+  ScienceQuestion(grade: 3, unit: 'Pflanzen', prompt: 'Welche Aufgabe hat die Blüte?', answer: 'sie hilft bei der Fortpflanzung', choices: <String>['sie hilft bei der Fortpflanzung', 'sie bremst Autos', 'sie pumpt Blut', 'sie misst Wärme'], explanation: 'Aus Blüten können Früchte und Samen entstehen.'),
+  ScienceQuestion(grade: 3, unit: 'Pflanzen', prompt: 'Was schützt den Boden und wird aus Pflanzenresten?', answer: 'Humus', choices: <String>['Humus', 'Plastik', 'Glas', 'Metall'], explanation: 'Humus entsteht aus zersetzten Pflanzenresten.'),
+  ScienceQuestion(grade: 3, unit: 'Wetter', prompt: 'Was zeigt die Windrichtung?', answer: 'woher der Wind kommt', choices: <String>['woher der Wind kommt', 'wie alt der Wind ist', 'welche Farbe Wind hat', 'wie schwer Sonne ist'], explanation: 'Windrichtung beschreibt, woher Wind weht.'),
+  ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Warum putzen wir Zähne?', answer: 'damit sie gesund bleiben', choices: <String>['damit sie gesund bleiben', 'damit sie wachsen wie Haare', 'damit sie hören', 'damit sie leuchten'], explanation: 'Zähneputzen schützt vor Karies.'),
+  ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was ist eine ausgewogene Jause?', answer: 'Semmel, Käse, Gemüse und Wasser', choices: <String>['Semmel, Käse, Gemüse und Wasser', 'nur Zuckerln', 'nur Limo', 'nur Schlagobers'], explanation: 'Eine gute Jause hat verschiedene gesunde Teile.'),
+  ScienceQuestion(grade: 3, unit: 'Tiere', prompt: 'Warum brauchen Tiere einen Lebensraum?', answer: 'für Nahrung, Schutz und Nachwuchs', choices: <String>['für Nahrung, Schutz und Nachwuchs', 'für Hefte', 'für Ampeln', 'für Geld'], explanation: 'Ein Lebensraum deckt wichtige Bedürfnisse.'),
+  ScienceQuestion(grade: 3, unit: 'Wasserkreislauf', prompt: 'Was ist Grundwasser?', answer: 'Wasser unter der Erde', choices: <String>['Wasser unter der Erde', 'Wasser im Fernseher', 'Wasser in der Sonne', 'Wasser aus Metall'], explanation: 'Grundwasser befindet sich im Boden.'),
+  ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welche Farbe hat die österreichische Flagge?', answer: 'rot-weiß-rot', choices: <String>['rot-weiß-rot', 'schwarz-rot-gold', 'blau-gelb', 'grün-weiß-grün'], explanation: 'Österreichs Flagge ist rot-weiß-rot.'),
+  ScienceQuestion(grade: 3, unit: 'Familie und Gemeinschaft', prompt: 'Was ist eine Regel?', answer: 'eine Vereinbarung, wie man handelt', choices: <String>['eine Vereinbarung, wie man handelt', 'ein Tier', 'ein Möbelstück', 'ein Fluss'], explanation: 'Regeln helfen beim Zusammenleben.'),
+  ScienceQuestion(grade: 3, unit: 'Berufe', prompt: 'Wer hilft bei einem Unfall?', answer: 'Rettung', choices: <String>['Rettung', 'Bäckerei', 'Bibliothek', 'Schneiderei'], explanation: 'Die Rettung hilft medizinisch.'),
+  ScienceQuestion(grade: 3, unit: 'Pflanzen', prompt: 'Welche Pflanze trägt Äpfel?', answer: 'Apfelbaum', choices: <String>['Apfelbaum', 'Tanne', 'Rose', 'Gras'], explanation: 'Äpfel wachsen auf Apfelbäumen.'),
+  ScienceQuestion(grade: 3, unit: 'Körper', prompt: 'Was schützt unsere inneren Organe außen?', answer: 'Haut', choices: <String>['Haut', 'Schuh', 'Heft', 'Sackerl'], explanation: 'Die Haut schützt den Körper.'),
+  ScienceQuestion(grade: 3, unit: 'Wetter', prompt: 'Was ist Frost?', answer: 'gefrorene Feuchtigkeit bei Kälte', choices: <String>['gefrorene Feuchtigkeit bei Kälte', 'heißer Regen', 'lauter Wind', 'bunter Nebel'], explanation: 'Frost entsteht bei Kälte.'),
+  ScienceQuestion(grade: 3, unit: 'Verkehr', prompt: 'Warum sind Reflektoren wichtig?', answer: 'man wird besser gesehen', choices: <String>['man wird besser gesehen', 'man fährt schneller', 'man hört besser', 'man spart Geld'], explanation: 'Reflektoren machen im Dunkeln sichtbar.'),
+  ScienceQuestion(grade: 3, unit: 'Ernährung', prompt: 'Was ist Topfen?', answer: 'ein Milchprodukt', choices: <String>['ein Milchprodukt', 'ein Werkzeug', 'ein Fahrzeug', 'ein Bundesland'], explanation: 'Topfen ist ein österreichisches Milchprodukt.'),
+  ScienceQuestion(grade: 3, unit: 'Bundesländer Österreichs', prompt: 'Welches Bundesland hat Eisenstadt als Hauptstadt?', answer: 'Burgenland', choices: <String>['Burgenland', 'Tirol', 'Wien', 'Salzburg'], explanation: 'Eisenstadt ist Hauptstadt des Burgenlands.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Wie heißt der höchste Berg Österreichs?', answer: 'Großglockner', choices: <String>['Großglockner', 'Ötscher', 'Schneeberg', 'Rax'], explanation: 'Der Großglockner ist Österreichs höchster Berg.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welcher große Fluss fließt durch Wien?', answer: 'Donau', choices: <String>['Donau', 'Rhein', 'Elbe', 'Themse'], explanation: 'Die Donau fließt durch Wien.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Wie heißt Österreichs Bundeshauptstadt?', answer: 'Wien', choices: <String>['Wien', 'Berlin', 'Graz', 'Linz'], explanation: 'Wien ist die Bundeshauptstadt.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Wie viele Bundesländer hat Österreich?', answer: '9', choices: <String>['9', '8', '10', '11'], explanation: 'Österreich hat neun Bundesländer.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welcher See liegt im Osten Österreichs?', answer: 'Neusiedler See', choices: <String>['Neusiedler See', 'Bodensee', 'Attersee', 'Wörthersee'], explanation: 'Der Neusiedler See liegt im Burgenland und in Ungarn.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'An welches Land grenzt Niederösterreich im Norden?', answer: 'Tschechien', choices: <String>['Tschechien', 'Italien', 'Schweiz', 'Slowenien'], explanation: 'Niederösterreich grenzt im Norden an Tschechien.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Landeshauptstadt gehört zur Steiermark?', answer: 'Graz', choices: <String>['Graz', 'Linz', 'Innsbruck', 'Bregenz'], explanation: 'Graz ist die Hauptstadt der Steiermark.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Landeshauptstadt gehört zu Tirol?', answer: 'Innsbruck', choices: <String>['Innsbruck', 'Klagenfurt', 'St. Pölten', 'Eisenstadt'], explanation: 'Innsbruck ist die Hauptstadt von Tirol.'),
+  ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'In welcher Zeit lebten Menschen als Jäger und Sammler?', answer: 'Steinzeit', choices: <String>['Steinzeit', 'Mittelalter', 'Neuzeit', 'Zukunft'], explanation: 'In der Steinzeit jagten und sammelten viele Menschen.'),
+  ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was war im Mittelalter oft auf einem Hügel gebaut?', answer: 'Burg', choices: <String>['Burg', 'Flughafen', 'U-Bahn', 'Computerraum'], explanation: 'Burgen boten Schutz.'),
+  ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Wer trug im Mittelalter oft Rüstung?', answer: 'Ritter', choices: <String>['Ritter', 'Pilot', 'Programmierer', 'Schaffner'], explanation: 'Ritter trugen Rüstungen.'),
+  ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was hilft uns, Vergangenes zu verstehen?', answer: 'Quellen', choices: <String>['Quellen', 'Ampeln', 'Batterien', 'Jausenboxen'], explanation: 'Historische Quellen erzählen über früher.'),
+  ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was ist Archäologie?', answer: 'Wissenschaft von alten Funden', choices: <String>['Wissenschaft von alten Funden', 'Sport im Schnee', 'Kochen mit Topfen', 'Fahren mit Bus'], explanation: 'Archäologie untersucht Funde aus der Vergangenheit.'),
+  ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Wie viele Kontinente lernen viele Schulkarten?', answer: '7', choices: <String>['7', '3', '9', '12'], explanation: 'Oft werden sieben Kontinente unterschieden.'),
+  ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Auf welchem Kontinent liegt Österreich?', answer: 'Europa', choices: <String>['Europa', 'Afrika', 'Asien', 'Australien'], explanation: 'Österreich liegt in Europa.'),
+  ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Welcher Ozean ist der größte?', answer: 'Pazifik', choices: <String>['Pazifik', 'Atlantik', 'Indischer Ozean', 'Arktischer Ozean'], explanation: 'Der Pazifik ist der größte Ozean.'),
+  ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Was ist ein Ozean?', answer: 'ein sehr großes Meer', choices: <String>['ein sehr großes Meer', 'ein kleiner Bach', 'ein Berg', 'ein Bundesland'], explanation: 'Ozeane sind riesige Meere.'),
+  ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was zeigt eine Nahrungskette?', answer: 'wer wen frisst', choices: <String>['wer wen frisst', 'wer welches Heft hat', 'wer zuerst fährt', 'wer lauter singt'], explanation: 'Nahrungsketten zeigen Energiefluss.'),
+  ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was machen Zersetzer?', answer: 'sie bauen tote Reste ab', choices: <String>['sie bauen tote Reste ab', 'sie bauen Straßen', 'sie schreiben Briefe', 'sie löschen Brände'], explanation: 'Zersetzer helfen, Stoffe zurück in den Boden zu bringen.'),
+  ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was ist ein Lebensraum?', answer: 'Ort, an dem Lebewesen leben', choices: <String>['Ort, an dem Lebewesen leben', 'ein Rechenzeichen', 'ein Kleidungsstück', 'eine Uhrzeit'], explanation: 'Lebensräume bieten Nahrung und Schutz.'),
+  ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Warum sind Bienen wichtig?', answer: 'sie bestäuben viele Pflanzen', choices: <String>['sie bestäuben viele Pflanzen', 'sie fahren Bus', 'sie drucken Bücher', 'sie bauen Mauern'], explanation: 'Bestäubung hilft Pflanzen bei Früchten und Samen.'),
+  ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was braucht ein einfacher Stromkreis?', answer: 'Batterie, Kabel, Lampe und Schalter', choices: <String>['Batterie, Kabel, Lampe und Schalter', 'Semmel, Topfen und Saft', 'Buch, Heft und Lineal', 'Apfel, Birne und Banane'], explanation: 'Ein geschlossener Stromkreis lässt Strom fließen.'),
+  ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Wann leuchtet die Lampe im Stromkreis?', answer: 'wenn der Kreis geschlossen ist', choices: <String>['wenn der Kreis geschlossen ist', 'wenn das Kabel fehlt', 'wenn die Batterie leer ist', 'wenn der Schalter offen ist'], explanation: 'Strom fließt nur im geschlossenen Kreis.'),
+  ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was leitet Strom gut?', answer: 'Metall', choices: <String>['Metall', 'Holz', 'Plastik', 'Papier'], explanation: 'Metalle leiten Strom meist gut.'),
+  ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was ist ein Nichtleiter?', answer: 'Plastik', choices: <String>['Plastik', 'Kupfer', 'Eisen', 'Aluminium'], explanation: 'Plastik leitet Strom schlecht.'),
+  ScienceQuestion(grade: 4, unit: 'Diagramme lesen', prompt: 'Was zeigt ein Säulendiagramm?', answer: 'Werte als Balken', choices: <String>['Werte als Balken', 'nur Wörter', 'nur Landkarten', 'nur Uhrzeiten'], explanation: 'Balken machen Mengen vergleichbar.'),
+  ScienceQuestion(grade: 4, unit: 'Diagramme lesen', prompt: 'Welche Säule zeigt den größten Wert?', answer: 'die höchste Säule', choices: <String>['die höchste Säule', 'die kürzeste Säule', 'die linke immer', 'die bunte immer'], explanation: 'Höhere Säule bedeutet größerer Wert.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Hymne gehört zu Österreich?', answer: 'Bundeshymne', choices: <String>['Bundeshymne', 'Vereinshymne', 'Schullied', 'Geburtstagslied'], explanation: 'Österreich hat eine Bundeshymne.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Stadt ist Hauptstadt von Oberösterreich?', answer: 'Linz', choices: <String>['Linz', 'Graz', 'Bregenz', 'Klagenfurt'], explanation: 'Linz ist Hauptstadt von Oberösterreich.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Stadt ist Hauptstadt von Kärnten?', answer: 'Klagenfurt', choices: <String>['Klagenfurt', 'Salzburg', 'Wien', 'Eisenstadt'], explanation: 'Klagenfurt ist Kärntens Landeshauptstadt.'),
+  ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Was ist der Äquator?', answer: 'gedachte Linie um die Erde', choices: <String>['gedachte Linie um die Erde', 'ein Fluss in Wien', 'ein Berg in Tirol', 'ein Werkzeug'], explanation: 'Der Äquator teilt die Erde in Nord und Süd.'),
+  ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was ist eine Zeitleiste?', answer: 'eine geordnete Darstellung von Ereignissen', choices: <String>['eine geordnete Darstellung von Ereignissen', 'ein Messbecher', 'ein Stromkabel', 'ein Verkehrsschild'], explanation: 'Zeitleisten ordnen Ereignisse nach Zeit.'),
+  ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was bedeutet nachhaltig?', answer: 'so handeln, dass die Zukunft geschützt wird', choices: <String>['so handeln, dass die Zukunft geschützt wird', 'alles sofort verbrauchen', 'Müll in den Bach werfen', 'Licht immer brennen lassen'], explanation: 'Nachhaltigkeit denkt an morgen.'),
+  ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Warum soll man nicht an Steckdosen spielen?', answer: 'Strom kann gefährlich sein', choices: <String>['Strom kann gefährlich sein', 'Steckdosen sind essbar', 'Steckdosen machen Musik', 'Strom ist immer kalt'], explanation: 'Strom aus Steckdosen ist gefährlich.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Hauptstadt gehört zu Vorarlberg?', answer: 'Bregenz', choices: <String>['Bregenz', 'Innsbruck', 'Linz', 'St. Pölten'], explanation: 'Bregenz ist Hauptstadt von Vorarlberg.'),
+  ScienceQuestion(grade: 4, unit: 'Geografie Österreich', prompt: 'Welche Hauptstadt gehört zu Salzburg?', answer: 'Salzburg', choices: <String>['Salzburg', 'Graz', 'Wien', 'Klagenfurt'], explanation: 'Salzburg ist Stadt und Bundesland-Hauptstadt.'),
+  ScienceQuestion(grade: 4, unit: 'Kontinente und Ozeane', prompt: 'Welcher Kontinent ist sehr kalt und am Südpol?', answer: 'Antarktis', choices: <String>['Antarktis', 'Afrika', 'Europa', 'Asien'], explanation: 'Die Antarktis liegt am Südpol.'),
+  ScienceQuestion(grade: 4, unit: 'Geschichte', prompt: 'Was war ein Handwerk im Mittelalter?', answer: 'Schmieden', choices: <String>['Schmieden', 'Programmieren', 'Fernsehen', 'Autofahren'], explanation: 'Schmiede stellten Dinge aus Metall her.'),
+  ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was schützt ein Wald?', answer: 'Boden, Tiere und Klima', choices: <String>['Boden, Tiere und Klima', 'nur Autos', 'nur Computer', 'nur Ampeln'], explanation: 'Wälder sind wichtige Lebensräume.'),
+  ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was macht ein Schalter?', answer: 'er öffnet oder schließt den Stromkreis', choices: <String>['er öffnet oder schließt den Stromkreis', 'er kocht Suppe', 'er misst Zeit', 'er schreibt Wörter'], explanation: 'Schalter steuern, ob Strom fließt.'),
 ];
