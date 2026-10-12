@@ -10,10 +10,13 @@
   },
   "sol_active_work_snapshot": {
     "curriculum_branch": "sol/lumo-curriculum-depth-1938-2026-10-12",
-    "curriculum_head": "9848b0a568a147f5da69d12346dae4c953724d68",
+    "curriculum_head": "de7bcd0a27d813ccc816090b5ca4c4e1fe07be1f",
     "android_acceptance_branch": "sol/lumo-1937-android-acceptance-2026-10-12",
     "latest_seen_acceptance_head": "4c3ec5dbbf8a96198e1a4ca12411576e32fa3c72",
-    "note": "Refresh these heads before takeover; never overwrite them."
+    "note": "Refresh these heads before takeover; never overwrite them.",
+    "curriculum_commit_message": "feat(education): secure advanced guided courses, fraction visuals and runtime progress coverage",
+    "curriculum_status": "Product work safely pushed to GitHub; 20-file advanced guided-learning block secured.",
+    "snapshot_updated": "2026-10-12T14:37+02:00"
   },
   "fallback_branches": {
     "flutter": "chatgpt/lumo-1938-emergency-fallback-2026-10-12",
