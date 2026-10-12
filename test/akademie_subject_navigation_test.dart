@@ -29,7 +29,8 @@ void main() {
         find.byKey(const ValueKey('learning-area-sachkunde'));
     await tester.ensureVisible(sachkunde);
     await tester.tap(sachkunde);
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 700));
 
     expect(find.text('Jahreszeiten'), findsOneWidget);
     expect(find.text('Wetter'), findsOneWidget);
