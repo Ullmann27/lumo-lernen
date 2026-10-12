@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'adventure/lumo_adventure_tasks.dart';
 import 'german_task_templates.dart';
+import 'english_vocabulary_extensions.dart';
 import 'math_task_templates.dart';
 import 'primary_school_word_data.dart';
 import 'reading_comprehension_data.dart';
 import 'science_task_data.dart';
+import 'spelling_context_data.dart';
 
 class LumoTask {
   const LumoTask({
@@ -561,6 +563,24 @@ class ExerciseFactory {
   }
 
   LumoTask _spelling(int grade, String unit) {
+    if (unit == 'Wortende') {
+      final pool = wordEndingContexts.where((q) => grade >= 2 || q.$1.length <= 5).toList();
+      final q = pool[_random.nextInt(pool.length)];
+      return _choiceTask('rs-verlaengern', grade, 'Rechtschreibung', unit,
+          'Sprich die längere Form: ${q.$3}. Welcher Buchstabe fehlt in „${q.$1}_“?', q.$2,
+          'In ${q.$3} kannst du den Buchstaben hören. Das kurze Wort schreibt man ${q.$1}${q.$2}.',
+          customChoices: [q.$2, ...['d','t','b','p','g','k'].where((v) => v != q.$2).take(3)]);
+    }
+    final contexts = spellingContexts.where((q) => q.unit == unit && q.grade <= grade).toList();
+    if (contexts.isNotEmpty && _random.nextInt(4) != 0) {
+      final q = contexts[_random.nextInt(contexts.length)];
+      final sentenceType = q.answer == '.' ? 'Aussagesatz' : q.answer == '?' ? 'Fragesatz' : 'Ausruf';
+      final prompt = unit == 'Satzzeichen'
+          ? 'Setze das übliche Satzzeichen für diesen $sentenceType: „${q.sentence}“'
+          : '${q.sentence}\nWelche Schreibweise passt in die Lücke?';
+      return _choiceTask('rs-kontext', grade, 'Rechtschreibung', unit, prompt, q.answer, q.rule,
+          customChoices:[q.answer, ...q.wrong]);
+    }
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Rechtschreibung');
     if (unit == 'Gross und klein') {
       final noun = PrimarySchoolWordData.nounForGrade(
@@ -988,6 +1008,7 @@ class ExerciseFactory {
       map = levelMaps[outputUnit];
     }
     final entry = map!.entries.elementAt(_random.nextInt(map.length));
+    final distractors = map.values.where((v) => v != entry.value).toSet().toList()..shuffle(_random);
     return _choiceTask(
         'englisch',
         grade,
@@ -996,7 +1017,7 @@ class ExerciseFactory {
         'Was bedeutet „${entry.key}“?',
         entry.value,
         'Das englische Wort „${entry.key}“ bedeutet ${entry.value}.',
-        customChoices: map.values.toList(growable: false));
+        customChoices: [entry.value, ...distractors.take(3)]);
   }
 
   LumoTask _choiceTask(String prefix, int grade, String subject, String unit, String prompt, String answer, String explanation, {String visual = 'auto', List<String>? customChoices}) {
@@ -1038,7 +1059,15 @@ class ExerciseFactory {
   String _normalizeChoice(String value) => value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 }
 
-const _englishVocabulary = <int, Map<String, Map<String, String>>>{
+final _englishVocabulary = <int, Map<String, Map<String, String>>>{
+  for (var grade = 1; grade <= 4; grade++)
+    grade: {
+      for (final unit in {..._baseEnglishVocabulary[grade]!.keys, ...englishVocabularyExtensions[grade]!.keys})
+        unit: {...?_baseEnglishVocabulary[grade]![unit], ...?englishVocabularyExtensions[grade]![unit]},
+    },
+};
+
+const _baseEnglishVocabulary = <int, Map<String, Map<String, String>>>{
   1: <String, Map<String, String>>{
     'Farben': <String, String>{
       'red': 'rot',
