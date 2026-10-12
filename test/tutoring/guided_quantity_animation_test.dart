@@ -30,9 +30,10 @@ void main() {
           final count = step.b == 0
               ? step.a
               : switch (lesson.concept) {
-                  GuidedMathConcept.bridgeTen => step.a + step.b,
-                  GuidedMathConcept.equalGroups => step.a * step.b,
-                  GuidedMathConcept.subtractTen => step.a,
+                  GuidedLessonConcept.bridgeTen => step.a + step.b,
+                  GuidedLessonConcept.equalGroups => step.a * step.b,
+                  GuidedLessonConcept.subtractTen => step.a,
+                  _ => throw StateError('Non-mathematical quantity fixture'),
                 };
           expect(find.byType(LumoQuantityArt), findsNWidgets(count));
           await tester.pump(const Duration(milliseconds: 700));
@@ -40,7 +41,7 @@ void main() {
           await tester.pump(const Duration(milliseconds: 1600));
           expect(find.byType(LumoQuantityArt), findsNWidgets(count));
           expect(tester.takeException(), isNull);
-          if (lesson.concept == GuidedMathConcept.bridgeTen && step.b > 0) {
+          if (lesson.concept == GuidedLessonConcept.bridgeTen && step.b > 0) {
             final moved = step.type == TutoringStepType.showExample ||
                 step.answerKind == GuidedAnswerKind.remainder;
             var insideTen = 0;
@@ -57,7 +58,7 @@ void main() {
             expect(insideTen, moved ? 10 : step.a,
                 reason: 'The explanation and remainder show a real full ten');
           }
-          if (lesson.concept == GuidedMathConcept.subtractTen && step.b > 0) {
+          if (lesson.concept == GuidedLessonConcept.subtractTen && step.b > 0) {
             var kept = 0;
             for (var i = 0; i < count; i++) {
               final key = ValueKey('guided-subtract-apple-$i');

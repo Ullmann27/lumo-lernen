@@ -17,7 +17,6 @@ import 'package:lumo_lernen/core/legacy_learning_data.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 import 'package:lumo_lernen/features/sections/section_content.dart';
-import 'package:lumo_lernen/features/tutoring/guided_learning_hub.dart';
 import 'package:lumo_lernen/features/tutoring/guided_lesson_screen.dart';
 import 'package:lumo_lernen/features/tutoring/tutoring_flow_card.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
@@ -324,23 +323,23 @@ void main() {
     await _close(tester);
   });
 
-  testWidgets(
-      'a German suggestion labels maths separately and opens real courses',
+  testWidgets('a German suggestion opens the matching real syllable course',
       (tester) async {
     final app = await _app(tester, grade: 1);
     await _recordFive(tester, app, 'Deutsch', 'Silben');
     await tester.pumpWidget(_shell(app));
     await _frames(tester);
-    expect(find.text('Mathematik mit Bildern verstehen'), findsOneWidget);
+    expect(find.text('Bildkurs: Wörter in Silben hören'), findsOneWidget);
     await _tap(tester, find.byKey(const ValueKey('tutoring-guided-start')));
-    expect(find.byType(GuidedLearningHub), findsOneWidget);
+    expect(find.byType(GuidedLessonScreen), findsOneWidget);
     expect(
-        find.byKey(ValueKey('guided-open-${GuidedLessonCatalog.bridgeTen.id}')),
-        findsOneWidget);
+        tester
+            .widget<GuidedLessonScreen>(find.byType(GuidedLessonScreen))
+            .lesson,
+        GuidedLessonCatalog.syllables);
     expect(
-        find.byKey(
-            ValueKey('guided-open-${GuidedLessonCatalog.equalGroups.id}')),
-        findsNothing);
+        LumoCompanionRequests.instance.taskContext.value!.subject, 'Deutsch');
+    expect(LumoCompanionRequests.instance.taskContext.value!.unit, 'Silben');
     expect(app.state.grade, 1);
     final owner = await tester.runAsync(app.captureLearningProfile);
     expect(owner!.profile.canDiscover(2), false);
@@ -477,7 +476,7 @@ void main() {
     await tester.pumpWidget(_shell(app, sections: sections));
     await _frames(tester);
     final oldAction = tester
-        .widget<FilledButton>(
+        .widget<ButtonStyleButton>(
             find.byKey(const ValueKey('tutoring-practice-start')))
         .onPressed!;
     await tester

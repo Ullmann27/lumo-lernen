@@ -41,7 +41,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
   late final int _generation;
   late final _progress = LearningModuleProgress(
     appState: widget.appState,
-    subject: 'Mathematik',
+    subject: widget.lesson.subject,
     unit: widget.lesson.schoolUnit,
     discoveryTarget: widget.discovery ? widget.lesson.discoveryTarget : null,
   );
@@ -201,7 +201,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     if (!_current || !_ready || _blocked != null) return;
     _published = LumoCompanionTaskContext(
       taskId: 'guided-$_session-$_serial',
-      subject: 'Mathematik',
+      subject: widget.lesson.subject,
       unit: widget.lesson.schoolUnit,
       prompt: _step.instruction,
       answering:
@@ -264,7 +264,9 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
         _solved++;
         if (step.isIndependent) _independentSolved++;
         _feedback = step.isIndependent
-            ? 'Du hast selbst gerechnet. Gut gemacht!'
+            ? widget.lesson.subject == 'Mathematik'
+                ? 'Du hast selbst gerechnet. Gut gemacht!'
+                : 'Das hast du selbst herausgefunden. Gut gemacht!'
             : 'Das passt! Weiter geht es in deinem Tempo.';
       } else {
         _feedback = _attempts == 1
@@ -566,15 +568,18 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
             Text(
                 step.type == TutoringStepType.showExample
                     ? switch (widget.lesson.concept) {
-                        GuidedMathConcept.bridgeTen =>
+                        GuidedLessonConcept.bridgeTen =>
                           'Fülle zuerst den Zehner. Dann zähle die übrigen '
                               'Äpfel dazu.',
-                        GuidedMathConcept.equalGroups =>
+                        GuidedLessonConcept.equalGroups =>
                           'Gleiche Gruppen lassen sich als Plusrechnung '
                               'und als Malrechnung beschreiben.',
-                        GuidedMathConcept.subtractTen =>
+                        GuidedLessonConcept.subtractTen =>
                           'Nimm zuerst bis zehn weg. Nimm dann den Rest weg. '
                               'Zusammen sind es genau ${step.b} Äpfel.',
+                        GuidedLessonConcept.syllables ||
+                        GuidedLessonConcept.plantParts =>
+                          step.instruction,
                       }
                     : step.instruction,
                 style: _body),

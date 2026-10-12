@@ -49,6 +49,12 @@ void main() {
       switch (step.answerKind!) {
         case GuidedAnswerKind.count:
           expect(int.parse(step.expected), step.a);
+        case GuidedAnswerKind.syllableCount:
+          expect(step.syllables.join(), step.word);
+          expect(step.expected, '${step.syllables.length}');
+        case GuidedAnswerKind.plantPart:
+          expect(GuidedPlantPart.values.map((p) => p.label),
+              contains(step.expected));
         case GuidedAnswerKind.gapToTen:
           expect(step.a + int.parse(step.expected), 10);
         case GuidedAnswerKind.remainder:
