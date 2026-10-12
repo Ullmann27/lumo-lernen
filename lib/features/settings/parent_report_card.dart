@@ -82,7 +82,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
     }
 
     final payload = StringBuffer()
-      ..writeln('Wochenanalyse fuer ${report.childName} bitte:')
+      ..writeln('Wochenanalyse fuer das Kind bitte:')
       ..writeln(fmtBlock(report.reading))
       ..writeln(fmtBlock(report.math))
       ..writeln(fmtBlock(report.german))
