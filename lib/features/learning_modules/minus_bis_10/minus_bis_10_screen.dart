@@ -11,7 +11,6 @@ import '../../../widgets/design/lumo_quantity_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
-import '../../../core/lumo_companion_state.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -139,7 +138,6 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
       setState(() => _correctCount++);
-      LumoCompanionState.instance.recordCorrect(topic: 'math');
       final phrase = LumoPhrases.correct();
       try {
         LumoVoice.instance.speak(phrase);

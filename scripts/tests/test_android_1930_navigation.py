@@ -52,6 +52,20 @@ class CourseNavigationTest(unittest.TestCase):
                   if n.get("content-desc") == "Lernen" and n.get("clickable") == "false"]
         self.assertTrue(any(n["bounds"] == "[31,109][113,135]" for n in static))
 
+    def test_second_wrong_tap_uses_actual_selected_answer_and_feedback(self):
+        fixture = ROOT / 'scripts/tests/fixtures/android_1931_minus_wrong.xml'
+        nodes = [node.attrib for node in ET.parse(fixture).iter('node')]
+        function = next(node for node in ast.parse(SOURCE.read_text()).body
+                        if isinstance(node, ast.FunctionDef) and node.name == 'subtraction_course')
+        calls = [node for node in ast.walk(function) if isinstance(node, ast.Call)]
+        def argument(tag, index):
+            return next(node.args[index].value for node in calls
+                        if any(isinstance(arg, ast.Constant) and arg.value == tag
+                               for arg in node.args))
+        self.assertIsNotNone(self.select(nodes, argument('minus-second-real-wrong-answer', 1)))
+        self.assertEqual(argument('minus-second-wrong-feedback', 1),
+                         'Wir können es mit kleineren Schritten probieren')
+
     def test_smaller_static_label_never_becomes_a_touch_target(self):
         nodes = [
             control("Lernen", clickable=False, bounds="[31,109][113,135]"),

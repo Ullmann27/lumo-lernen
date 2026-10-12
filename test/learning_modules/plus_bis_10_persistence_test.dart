@@ -192,6 +192,10 @@ void main() {
     expect(app.learningDailyDone(), 0);
     await _tap(tester, wrong);
     expect(_prompt(tester), prompt);
+    expect(find.byKey(const ValueKey('plus10-actual-companion-hint')), findsNothing);
+    await tester.ensureVisible(find.text('Tipp'));
+    await tester.tap(find.text('Tipp'));
+    await _frames(tester, 10);
     expect(find.textContaining('Zähle alle Äpfel zusammen:'), findsOneWidget);
     await _tap(tester, correct);
     expect(find.text('Aufgabe 2 / 30'), findsOneWidget);

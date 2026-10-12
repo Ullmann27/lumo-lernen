@@ -112,6 +112,11 @@ class LumoCompanionRequests {
   /// Wenn null = keine aktive Anfrage. Nach Verarbeitung wieder auf null.
   final ValueNotifier<Offset?> moveTarget = ValueNotifier<Offset?>(null);
 
+  /// Ephemeral activity only: no coordinates, child identity or progress.
+  /// A touch/scroll always resets quiet pacing, even at the same position.
+  final ValueNotifier<int> activity = ValueNotifier<int>(0);
+  void noteActivity() => activity.value++;
+
   /// The active lesson handles this request in place, keeping its answer state.
   final ValueNotifier<int> helpRequested = ValueNotifier<int>(0);
   final ValueNotifier<LumoCompanionTaskContext?> taskContext =

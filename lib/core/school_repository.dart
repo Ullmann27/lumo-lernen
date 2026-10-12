@@ -70,6 +70,21 @@ class SchoolRepository extends ChangeNotifier {
     }
   }
 
+  /// Read-only name lookup for an already captured profile. A damaged directory
+  /// stays intact, and an unknown student never inherits the local child's name.
+  Future<String?> studentName(String studentId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_key);
+    if (raw == null || raw.isEmpty) return null;
+    try {
+      return SchoolDirectory.fromJson(jsonDecode(raw))
+          .studentById(studentId)
+          ?.name;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<void> save(SchoolDirectory d) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_key, jsonEncode(d.toJson()));

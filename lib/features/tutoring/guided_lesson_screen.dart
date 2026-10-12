@@ -204,7 +204,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       subject: 'Mathematik',
       unit: widget.lesson.schoolUnit,
       prompt: _step.instruction,
-      answering: _step.isQuestion && !_passed,
+      answering:
+          _step.isQuestion && !_passed && !_busy && !_progress.hasPending,
       attempts: _attempts,
       helpLevel: _helpLevel,
       lastAnswer: _lastAnswer,
@@ -533,6 +534,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
         appState: widget.appState,
         title: widget.discovery ? 'Neues entdecken' : 'Lumo erklärt es mir',
         moduleTitle: widget.lesson.title,
+        companionUnit: widget.lesson.schoolUnit,
         icon: widget.discovery ? Icons.explore_rounded : Icons.school_rounded,
         taskIndex: _index,
         totalTasks: widget.lesson.steps.length,

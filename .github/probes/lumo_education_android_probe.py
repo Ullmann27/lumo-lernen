@@ -352,7 +352,25 @@ def subtraction_course(out: Path) -> dict:
     wait_text(out, "Du rechnest selbst zurück", "minus-independent")
     tap(out, "5", "minus-actual-wrong-answer")
     wait_text(out, "Fast! Probiere es noch einmal", "minus-wrong-feedback", scroll=True)
-    tap(out, "Tipp", "minus-first-help")
+    active_help = None
+    expected_wrong = 1
+    if voice.CANDIDATE_VERSION >= 1932:
+        tap(out, "5, noch einmal versuchen", "minus-second-real-wrong-answer")
+        wait_text(out, "Wir können es mit kleineren Schritten probieren", "minus-second-wrong-feedback", scroll=True)
+        # Waiting and scrolling must never accept an explanation on behalf of
+        # the child. Require the visible offer and its actual enabled action.
+        wait_text(out, "Zeig mir wie", "minus-active-help-offer", timeout=60, scroll=True)
+        text = current_text(out, "minus-before-help-acceptance")
+        if "Nimm zuerst 4 weg" in text:
+            raise RuntimeError("Hint was shown before the real child accepted help")
+        existing.capture(out, "20_actual_android_active_help_offer")
+        tap(out, "Zeig mir wie", "minus-active-help-accept")
+        active_help = {"status": "PASS", "real_wrong_taps": 2,
+                       "no_hint_before_acceptance": True,
+                       "actual_accept_button_tapped": True}
+        expected_wrong = 2
+    else:
+        tap(out, "Tipp", "minus-first-help")
     wait_text(out, "Nimm zuerst 4 weg", "minus-first-help-visible", scroll=True)
     tap(out, "Anderer Tipp", "minus-different-help")
     wait_text(out, "Prüfe danach", "minus-second-help-visible", scroll=True)
@@ -368,7 +386,7 @@ def subtraction_course(out: Path) -> dict:
     records = [record for key, raw in after.items() if "lumo_progress_skills::" in key
                for record in json.loads(raw).values() if record.get("unit") == "Minus bis 20"]
     if (len(records) != 1 or records[0].get("correct") != 2
-            or records[0].get("wrong") != 1 or records[0].get("hintCount") != 1):
+            or records[0].get("wrong") != expected_wrong or records[0].get("hintCount") != 1):
         raise RuntimeError("Actual minus independent answers/hint were not saved exactly once")
     # Compare pre-existing skills independently; adding a new unit must not
     # overwrite the earlier Plus record or any unrelated persisted key.
@@ -387,6 +405,7 @@ def subtraction_course(out: Path) -> dict:
             "discovery_unchanged": True, "different_child_requested_help": True,
             "wallet_unchanged": True,
             "actual_local_voice_pause_resume": True,
+            "active_help": active_help,
             "screenshots": [example, hint, recap]}
 
 

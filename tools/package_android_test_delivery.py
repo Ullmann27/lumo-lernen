@@ -39,6 +39,13 @@ def validate(provenance: dict, android: dict, outcomes: dict, run: dict, log: st
         raise ValueError("Actual complete Android acceptance of this APK source is required")
     if version_code >= 1931 and android.get("subtraction_course", {}).get("status") != "PASS":
         raise ValueError("Complete real Android subtraction course acceptance is required")
+    if version_code >= 1932:
+        help_result = android.get("subtraction_course", {}).get("active_help", {})
+        if (help_result.get("status") != "PASS"
+                or help_result.get("real_wrong_taps") != 2
+                or help_result.get("no_hint_before_acceptance") is not True
+                or help_result.get("actual_accept_button_tapped") is not True):
+            raise ValueError("Actual accepted task-bound active help is required")
     if (outcomes.get("SOURCE_SHA") != source
             or any(outcomes.get(key) != "success" for key in
                    ("DEPENDENCIES", "ANALYSIS", "TESTS"))
@@ -165,6 +172,8 @@ nicht aus Konzeptbildern oder einem Flutter-Testbild als angeblicher Android-Auf
             "18_actual_android_subtraction_alternative_hint.png",
             "19_actual_android_complete_subtraction_course.png",
         ])
+    if version_code >= 1932:
+        screenshots.append("20_actual_android_active_help_offer.png")
     target = args.output / f"Lumo-Lernen-Neu-{version_name}-{version_code}.zip"
     with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED, compresslevel=1) as archive:
         archive.write(apk, "Lumo-Lernen-Neu.apk")

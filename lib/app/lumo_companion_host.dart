@@ -23,6 +23,9 @@ class LumoCompanionHost extends StatelessWidget {
     this.onExplainTask,
     this.onSuggestTask,
     this.onAskLumo,
+    this.offerOnly = false,
+    this.taskUnit,
+    this.guide,
   });
 
   final LumoAppState appState;
@@ -35,6 +38,9 @@ class LumoCompanionHost extends StatelessWidget {
   final VoidCallback? onExplainTask;
   final VoidCallback? onSuggestTask;
   final VoidCallback? onAskLumo;
+  final bool offerOnly;
+  final String? taskUnit;
+  final LumoCompanionGuide? guide;
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +58,10 @@ class LumoCompanionHost extends StatelessWidget {
         final currentSection = reading ? 'reading' : requestedSection;
         final published = LumoCompanionRequests.instance.taskContext.value;
         final taskContext = published?.belongsTo(
-                    section: currentSection,
-                    generation: appState.profileGeneration) ==
-                true
+                        section: currentSection,
+                        generation: appState.profileGeneration) ==
+                    true &&
+                (taskUnit == null || published?.unit == taskUnit)
             ? published
             : null;
         final assessment = currentSection == 'tests' ||
@@ -72,6 +79,12 @@ class LumoCompanionHost extends StatelessWidget {
           preferredSubject: subject,
         );
         return LumoFreeCompanion(
+          guide: guide,
+          offerOnly: offerOnly,
+          proactive: offerOnly
+              ? taskContext != null && taskContext.lastCorrect == false
+              : !const ['learning_module', 'guided_lesson', 'discovery']
+                  .contains(taskContext?.activity),
           compact: compact,
           floating: floating,
           reducedMotion: state.settings.reduceAnimations ||
@@ -103,6 +116,9 @@ class LumoCompanionHost extends StatelessWidget {
                 (hasTask && (taskContext?.answering ?? true)) || reading,
             schoolwork: assessment,
             hasTask: hasTask,
+            taskId: taskContext?.taskId ?? '',
+            profileGeneration: appState.profileGeneration,
+            helpLevel: taskContext?.helpLevel ?? 0,
           ),
           onAction: (action) {
             switch (action) {
