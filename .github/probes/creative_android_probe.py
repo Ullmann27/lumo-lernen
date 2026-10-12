@@ -22,7 +22,7 @@ import traceback
 import unicodedata
 import xml.etree.ElementTree as ET
 
-from PIL import Image, ImageChops
+from PIL import Image, ImageChops, ImageStat
 
 # Keep screenshot recognition from oversubscribing the same software-rendered
 # emulator host. This changes only the independent OCR reader, not the app.
@@ -411,6 +411,105 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
     finally:
         evidence['elapsed_seconds'] = round(time.monotonic() - started, 6)
         journal.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + '\n')
+
+
+
+def kart_setup_step(out: Path, tag: str) -> int:
+    """Read the selected 1..5 setup tab from the actual current screenshot.
+
+    This avoids OCR for the setup-state assertion. The selected tab uses the
+    bright cyan surface while all other tabs remain dark navy. Ratios are used
+    so the check follows the actual 1920x1080 landscape surface.
+    """
+    shot = capture(out, tag)
+    image = Image.open(out / shot['file']).convert('RGB')
+    width, height = image.size
+    centers = (0.105, 0.30, 0.50, 0.695, 0.895)
+    y = round(height * 0.187)
+    half_w = max(24, round(width * 0.031))
+    half_h = max(10, round(height * 0.019))
+    scores = []
+    means = []
+    for ratio in centers:
+        x = round(width * ratio)
+        box = (max(0, x-half_w), max(0, y-half_h),
+               min(width, x+half_w), min(height, y+half_h))
+        mean = ImageStat.Stat(image.crop(box)).mean[:3]
+        # Cyan selection is both much brighter and much more blue/green than
+        # the inactive navy pills.
+        score = mean[1] + mean[2] - mean[0]
+        scores.append(score)
+        means.append([round(v, 3) for v in mean])
+    order = sorted(range(5), key=lambda i: scores[i], reverse=True)
+    selected, runner_up = order[0], order[1]
+    evidence = {
+        'capture': shot['file'],
+        'scores': [round(v, 3) for v in scores],
+        'means_rgb': means,
+        'selected_step': selected + 1,
+        'score_gap': round(scores[selected] - scores[runner_up], 3),
+    }
+    (out / (tag + '-setup-step.json')).write_text(
+        json.dumps(evidence, indent=2) + '\n')
+    if scores[selected] - scores[runner_up] < 80:
+        raise RuntimeError('Kart setup selected tab is not visually unambiguous')
+    return selected
+
+
+def kart_primary_tap(out: Path, tag: str) -> None:
+    """Tap only a visually observed yellow primary action on the live frame."""
+    shot = capture(out, tag + '-primary')
+    image = Image.open(out / shot['file']).convert('RGB')
+    width, height = image.size
+    x0, y0, x1, y1 = (round(width * 0.76), round(height * 0.72),
+                      round(width * 0.995), round(height * 0.965))
+    crop = image.crop((x0, y0, x1, y1))
+    pixels = crop.load()
+    min_x = crop.width
+    min_y = crop.height
+    max_x = max_y = -1
+    count = 0
+    for y in range(crop.height):
+        for x in range(crop.width):
+            r, g, b = pixels[x, y]
+            if r >= 190 and g >= 135 and b <= 150 and r >= g:
+                count += 1
+                min_x = min(min_x, x)
+                min_y = min(min_y, y)
+                max_x = max(max_x, x)
+                max_y = max(max_y, y)
+    if count < 1200 or max_x <= min_x or max_y <= min_y:
+        raise RuntimeError('Kart yellow primary action was not visibly observed')
+    bounds = [x0 + min_x, y0 + min_y, x0 + max_x, y0 + max_y]
+    tap_x = round((bounds[0] + bounds[2]) / 2)
+    tap_y = round((bounds[1] + bounds[3]) / 2)
+    (out / (tag + '-primary-touch.json')).write_text(json.dumps({
+        'capture': shot['file'],
+        'yellow_pixels': count,
+        'observed_bounds': bounds,
+        'touch': [tap_x, tap_y],
+    }, indent=2) + '\n')
+    base.adb('shell', 'input', 'swipe', str(tap_x), str(tap_y),
+             str(tap_x), str(tap_y), '160')
+    time.sleep(2)
+
+
+def kart_advance_setup(out: Path, current_step: int, next_step: int, tag: str) -> None:
+    """Advance exactly one setup page, retrying a lost touch but never skipping."""
+    if kart_setup_step(out, tag + '-before') != current_step:
+        raise RuntimeError(
+            f'Kart setup expected step {current_step + 1} before {tag}')
+    for attempt in range(3):
+        kart_primary_tap(out, f'{tag}-tap-{attempt}')
+        observed = kart_setup_step(out, f'{tag}-after-{attempt}')
+        if observed == next_step:
+            return
+        if observed != current_step:
+            raise RuntimeError(
+                f'Kart setup jumped from {current_step + 1} to {observed + 1}')
+    raise RuntimeError(
+        f'Kart setup primary action did not advance from {current_step + 1} '
+        f'to {next_step + 1} after three visually verified touches')
 
 
 def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool = False,
@@ -824,9 +923,14 @@ def main() -> int:
                 result['fold_menu'] = {'status':'PASS','surface':[2176,1812],
                                        'observed_mode_cards_and_continue':True,
                                        'scope':'Android emulator; not a physical Samsung device'}
+            # Advance only when the cyan selected-tab state proves that the
+            # actual native menu moved exactly one page. This is resilient to a
+            # software-emulator touch being dropped between rendered frames.
             for step in range(4):
-                native_text(out,'Weiter',f'kart-setup-{step+1}',tap=True)
-            native_text(out,'Rennen starten','kart-start-race',tap=True)
+                kart_advance_setup(out, step, step + 1, f'kart-setup-{step+1}')
+            if kart_setup_step(out, 'kart-tempo-ready') != 4:
+                raise RuntimeError('Kart tempo page was not actually reached')
+            kart_primary_tap(out, 'kart-start-race')
             # Read all five controls on the actual 1920x1080 phone surface.
             # The tiny 640x320 surface is captured separately below: text OCR
             # is not a dependable visibility assertion for its small icons.
