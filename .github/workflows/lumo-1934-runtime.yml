@@ -174,7 +174,23 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python .github/probes/lumo_1934_android_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof --reuse-education-proof
+          script: |
+            set +e
+            .probe-venv/bin/python .github/probes/lumo_1934_android_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof --reuse-education-proof
+            acceptance_status=$?
+            echo "acceptance_exit=$acceptance_status"
+            for report in android-proof/games-android-result.json android-proof/education-android-result.json; do
+              if [ -f "$report" ]; then
+                echo "===== $report ====="
+                cat "$report"
+                if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+                  printf '\n## %s\n\n```json\n' "$report" >> "$GITHUB_STEP_SUMMARY"
+                  cat "$report" >> "$GITHUB_STEP_SUMMARY"
+                  printf '\n```\n' >> "$GITHUB_STEP_SUMMARY"
+                fi
+              fi
+            done
+            exit "$acceptance_status"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
