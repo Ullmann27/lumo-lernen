@@ -29,7 +29,7 @@ import '../../domain/learning/error_detective.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
 import '../../domain/learning/lumo_learning_feedback_engine.dart';
 import '../../domain/learning/reward_engine.dart';
-import '../shared/widgets/lumo_premium_effects.dart';
+import '../shared/widgets/lumo_premium_effects.dart' hide LumoGlassCard;
 import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/adaptive_task_renderer.dart';
 import 'renderers/shape_trace_task_renderer.dart';
