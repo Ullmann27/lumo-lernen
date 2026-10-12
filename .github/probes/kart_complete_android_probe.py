@@ -738,7 +738,11 @@ def main() -> int:
     def open_kart(tag: str):
         creative.flutter_tap(out, 'Spielen', tag + '-games')
         base.display(1080, 1920, 300)
-        creative.enter(out, 'Lumo Kart', 'LUMO / KART', tag, launch_label='Losfahren')
+        # Observe actual current mode controls, like the creative probe. The
+        # original raster wordmark is two lines; a single OCR line "LUMO / KART"
+        # and the old subtitle are not captions in this APK (see failed run).
+        creative.enter(out, 'Lumo Kart', 'Einzelrennen', tag, launch_label='Losfahren')
+        creative.native_text(out, 'Weiter', tag + '-mode-ready')
 
     def fold_cycle(tag: str, labels: tuple[str, ...], saved_before: dict | None = None) -> dict:
         """Observed outer→inner→outer emulator surfaces, then the normal phone."""
@@ -818,8 +822,9 @@ def main() -> int:
         base.launch(out, 'full-race-start')
         open_kart('01-garage')
         if os.environ.get('LUMO_FOLD_PROBE') == '1':
-            result['menu_resize'] = fold_cycle('01-garage-resize', ('LUMO / KART', 'Dein nächstes Abenteuer', 'Weiter'))
-            result['menu_resize']['preserved_garage_step'] = 'Dein nächstes Abenteuer (step 1 / 5)'
+            result['menu_resize'] = fold_cycle('01-garage-resize',
+                ('Einzelrennen', 'Zeitfahren', 'Sternen-Cup', 'Freies Training', 'Weiter'))
+            result['menu_resize']['preserved_garage_step'] = 'Actual mode controls (step 1 / 5)'
         for step in range(4):
             tap_native('Weiter', f'garage-next-{step + 1}')
         tap_native('Rennen starten', 'garage-start')
