@@ -1,0 +1,36 @@
+{
+  "snapshot_date": "2026-10-12",
+  "purpose": "Emergency takeover baseline only; does not modify Sol 6.1 work.",
+  "stable_product": {
+    "flutter_commit": "a71c1cdea21af202d71273da19bb4d00988fc970",
+    "godot_commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+    "version": "0.12.30+1937",
+    "successful_unified_build_run": 38238926882,
+    "arm64_artifact_id": 11742812420
+  },
+  "sol_active_work_snapshot": {
+    "curriculum_branch": "sol/lumo-curriculum-depth-1938-2026-10-12",
+    "curriculum_head": "9848b0a568a147f5da69d12346dae4c953724d68",
+    "android_acceptance_branch": "sol/lumo-1937-android-acceptance-2026-10-12",
+    "latest_seen_acceptance_head": "4c3ec5dbbf8a96198e1a4ca12411576e32fa3c72",
+    "note": "Refresh these heads before takeover; never overwrite them."
+  },
+  "fallback_branches": {
+    "flutter": "chatgpt/lumo-1938-emergency-fallback-2026-10-12",
+    "godot": "chatgpt/lumo-godot-1938-emergency-fallback-2026-10-12"
+  },
+  "high_value_sources_to_reaudit": [
+    "chatgpt/lumo-kart-assets-handoff-2026-10-10",
+    "chatgpt/puzzle-3d-core-2026-10-07 (lumo-godot)",
+    "claude/lumo-kart-premium-A9oBr",
+    "claude/tier4-3d-optics",
+    "astra/lumo-learning-quality-2026-10-11",
+    "sol/lumo-guided-language-nature-2026-10-12"
+  ],
+  "known_product_facts": [
+    "Guided subtraction animation exists in product code; no committed MP4 found in 1937.",
+    "Many generated key-art/technical boards are references only and not runtime 3D.",
+    "1937 Godot contains current terrain grain/shader and newer menu/character code; do not regress by wholesale merging old branches.",
+    "Android acceptance failures after successful unified build are QA/probe failures until proven otherwise."
+  ]
+}
