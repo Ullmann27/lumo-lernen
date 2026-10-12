@@ -91,6 +91,32 @@ class Curriculum {
     ],
   };
 
+  // Lokale Lernbereiche, die nicht ueber eigene Template-Klassen laufen,
+  // brauchen trotzdem eine echte Schulstufen-Zuordnung. Dadurch sieht z.B.
+  // eine 4. Klasse nicht mehr automatisch "Woerter lesen" oder
+  // "Buchstaben nachspuren" als normalen neuen Lernstoff.
+  static const Map<String, Map<int, List<String>>> _localUnitsByGrade =
+      <String, Map<int, List<String>>>{
+    'Lesen': <int, List<String>>{
+      1: <String>['Woerter lesen', 'Bild und Wort'],
+      2: <String>['Sätze lesen', 'Lesesinn', 'Reihenfolge'],
+      3: <String>['Lesesinn', 'Reihenfolge', 'Sätze lesen'],
+      4: <String>['Lesesinn', 'Reihenfolge'],
+    },
+    'Schreiben': <int, List<String>>{
+      1: <String>['Buchstaben nachspuren', 'Schwunguebung', 'Zahlen schreiben'],
+      2: <String>['Wort schreiben', 'Satz abschreiben'],
+      3: <String>['Wort schreiben', 'Satz abschreiben'],
+      4: <String>['Satz abschreiben'],
+    },
+    'Rechtschreibung': <int, List<String>>{
+      1: <String>['Haeufige Woerter', 'Wortende'],
+      2: <String>['Gross und klein', 'Satzzeichen', 'St oder Sp'],
+      3: <String>['Doppelmitlaut', 'Dehnungen', 'Wortende'],
+      4: <String>['Doppelmitlaut', 'Dehnungen', 'Satzzeichen', 'Gross und klein'],
+    },
+  };
+
   /// Selectable topics backed by real task data for this grade. Topics from
   /// the current grade come first; earlier topics remain available to review.
   /// This describes app content availability, not an official curriculum.
@@ -118,6 +144,13 @@ class Curriculum {
           for (final template in GermanTaskTemplates.templates)
             if (template.grade == level) template.unit,
         if (!currentGradeOnly) 'St oder Sp',
+      }.toList(growable: false);
+    }
+    final localByGrade = _localUnitsByGrade[subject];
+    if (localByGrade != null) {
+      return <String>{
+        for (var level = capped; level >= lowestGrade; level--)
+          ...?localByGrade[level],
       }.toList(growable: false);
     }
     if (subject == 'Sachunterricht') {
