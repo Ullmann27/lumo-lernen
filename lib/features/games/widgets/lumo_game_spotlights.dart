@@ -82,6 +82,7 @@ class LumoGameSpotlights extends StatelessWidget {
                       previewAsset:
                           'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
                       showWorldTags: true,
+                      showRecoveredKartArt: true,
                       action: 'Losfahren',
                       actionKey: 'launch-lumo-kart',
                       pose: LumoDesignFoxPose.kartRear,
@@ -121,10 +122,12 @@ class _Spotlight extends StatelessWidget {
     required this.reduceMotion,
     this.previewAsset,
     this.showWorldTags = false,
+    this.showRecoveredKartArt = false,
   });
 
   final String? previewAsset;
   final bool showWorldTags;
+  final bool showRecoveredKartArt;
   final String title, eyebrow, description, action, actionKey;
   final LumoDesignFoxPose pose;
   final Color accent;
@@ -233,6 +236,10 @@ class _Spotlight extends StatelessWidget {
               ]),
               const SizedBox(height: 14),
             ],
+            if (showRecoveredKartArt) ...[
+              const _RecoveredKartArtStrip(),
+              const SizedBox(height: 14),
+            ],
             SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
@@ -289,4 +296,61 @@ class _WorldTag extends StatelessWidget {
           ]),
         ),
       );
+}
+
+
+class _RecoveredKartArtStrip extends StatelessWidget {
+  const _RecoveredKartArtStrip();
+
+  @override
+  Widget build(BuildContext context) {
+    const items = [
+      ('assets/lumo_design/characters/fox_kart_front.webp', 'Lumo im Kart'),
+      ('assets/lumo_design/kart_items/turbo_pad.webp', 'Turbo'),
+      ('assets/lumo_design/deco/finish_gate.webp', 'Zieltor'),
+      ('assets/lumo_design/rewards/reward_trophy.webp', 'Pokal'),
+    ];
+    return Semantics(
+      label: 'Lumo Kart Vorschau mit Fahrer, Turbo, Zieltor und Pokal',
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+          color: const Color(0x44123863),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+              color: LumoVisualTokens.cyanBright.withValues(alpha: .26)),
+        ),
+        child: Row(
+          children: [
+            for (var index = 0; index < items.length; index++) ...[
+              Expanded(
+                child: AspectRatio(
+                  aspectRatio: 1.18,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0x6637D2FD), Color(0x22113355)],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Image.asset(
+                        items[index].$1,
+                        fit: BoxFit.contain,
+                        semanticLabel: items[index].$2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              if (index != items.length - 1) const SizedBox(width: 6),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
 }
