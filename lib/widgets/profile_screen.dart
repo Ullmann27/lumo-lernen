@@ -49,6 +49,8 @@ class ProfileScreen extends StatelessWidget {
           childName: childName,
           totalCorrect: _totalSolved,
           stars: stars,
+          grade: grade,
+          solved: solved,
         ),
         const SizedBox(height: 18),
 
@@ -661,25 +663,65 @@ class _ChildDnaSlot extends StatelessWidget {
     required this.childName,
     required this.totalCorrect,
     required this.stars,
+    required this.grade,
+    required this.solved,
   });
   final String childName;
   final int totalCorrect;
   final int stars;
+  final int grade;
+  final Map<String, int> solved;
 
   @override
   Widget build(BuildContext context) {
-    // Minimal-DNA fuer Kind-Anzeige.
+    final current = <({String subject, String unit, int count})>[];
+    for (final subject in Curriculum.subjects.keys) {
+      final units = Curriculum.unitsForGrade(
+        subject,
+        grade,
+        currentGradeOnly: true,
+      ).toSet();
+      for (final entry in solved.entries) {
+        if (entry.value > 0 && units.contains(entry.key)) {
+          current.add(
+            (subject: subject, unit: entry.key, count: entry.value),
+          );
+        }
+      }
+    }
+    current.sort((a, b) => b.count.compareTo(a.count));
+
+    final strengths = <DnaSkillEntry>[
+      for (final item in current.take(2))
+        DnaSkillEntry(
+          subject: item.subject,
+          skillLabel: Curriculum.prettifyUnit(item.unit),
+          score: (0.55 + item.count * 0.06).clamp(0.55, 0.95).toDouble(),
+          confidence:
+              (0.35 + item.count * 0.08).clamp(0.35, 0.95).toDouble(),
+        ),
+    ];
+
+    final mathUnits = Curriculum.unitsForGrade(
+      'Mathematik',
+      grade,
+      currentGradeOnly: true,
+    );
+    final nextUnit = mathUnits.isEmpty
+        ? ''
+        : mathUnits.firstWhere(
+            (unit) => (solved[unit] ?? 0) < 3,
+            orElse: () => mathUnits.first,
+          );
+
     final dna = LearningDna(
       childName: childName,
       lastUpdated: DateTime.now(),
       totalCorrect: totalCorrect,
       totalIncorrect: 0,
-      nextRubric: totalCorrect < 5 ? '' : 'Plus bis 10 mit Zaehlbild',
-      strengths: totalCorrect >= 10
-          ? const <DnaSkillEntry>[
-              DnaSkillEntry(subject: 'Mathe', skillLabel: 'Plus bis 10', score: 0.8),
-            ]
-          : const <DnaSkillEntry>[],
+      nextRubric:
+          nextUnit.isEmpty ? '' : Curriculum.prettifyUnit(nextUnit),
+      strengths: strengths,
     );
     return LearningDnaChildCard(dna: dna);
   }
