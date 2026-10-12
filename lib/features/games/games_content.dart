@@ -245,6 +245,19 @@ class _GamesContentState extends State<GamesContent> {
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
+
+    // Level 50 ist das echte Finale der Spielewelt und muss deshalb in die
+    // vollwertige 20-Fragen-Lumo-Meister-Show führen, nicht ins alte Trail-Quiz.
+    if (level.id == 50) {
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute<void>(
+          builder: (_) => QuizShowContent(appState: widget.appState),
+        ),
+      );
+      if (mounted) await _load();
+      return;
+    }
+
     switch (level.miniType) {
       case GameMiniType.starsPath:
         await Navigator.of(context).push(
