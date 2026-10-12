@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/app_settings.dart';
 import '../../core/app_update_service.dart';
@@ -371,9 +373,9 @@ class _SettingsContentState extends State<SettingsContent> {
     final state = widget.appState.state;
     // Modernisierung 2026-06-03: Settings auf LumoMagicBackground wie Home.
     // Niedrige Intensitaet damit der Settings-Fokus erhalten bleibt.
-    return LumoMagicBackground(
-      intensity: 0.85,
-      starCount: 18,
+    return LumoSceneBackground(
+      scene: LumoScene.profile,
+      showPlaceholderLabel: false,
       child: SingleChildScrollView(
       padding: const EdgeInsets.all(26),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -625,7 +627,11 @@ class _SettingsContentState extends State<SettingsContent> {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({required this.title, required this.subtitle, required this.emoji, required this.accent,
+  const _Header({
+    required this.title,
+    required this.subtitle,
+    required this.emoji,
+    required this.accent,
   });
   final String title;
   final String subtitle;
@@ -634,101 +640,68 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final compact = constraints.maxWidth < 360;
-        final avatarSize = compact ? 52.0 : 72.0;
-        return Container(
-          padding: EdgeInsets.fromLTRB(
-            compact ? 14 : 20,
-            compact ? 16 : 22,
-            compact ? 14 : 20,
-            compact ? 16 : 22,
-          ),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFFFFF7ED), Color(0xFFFFE4CC), Color(0xFFFFD1A8)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+    return LumoGlassCard(
+      borderColor: LumoVisualTokens.cyan.withOpacity(.55),
+      child: Row(
+        children: [
+          Container(
+            width: 58,
+            height: 58,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: LumoVisualTokens.glassRow.withOpacity(.9),
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(
+                color: LumoVisualTokens.cyan.withOpacity(.42),
+              ),
             ),
-            borderRadius: BorderRadius.circular(LumoRadius.lg),
-            border: Border.all(color: const Color(0xFFFFB96B), width: 1.4),
-            boxShadow: [
-              BoxShadow(
-                color: LumoColors.orange.withOpacity(0.25),
-                blurRadius: 24,
-                offset: const Offset(0, 8),
-                spreadRadius: -4,
-              ),
-              BoxShadow(
-                color: Colors.white.withOpacity(0.6),
-                blurRadius: 6,
-                offset: const Offset(-2, -2),
-                spreadRadius: -2,
-              ),
-            ],
+            child: Text(emoji, style: const TextStyle(fontSize: 30)),
           ),
-          child: Row(
-            children: [
-              Container(
-                width: avatarSize,
-                height: avatarSize,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'LUMO · ELTERN',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 10,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.1,
+                    color: LumoVisualTokens.cyanBright,
                   ),
-                  borderRadius: BorderRadius.circular(compact ? 16 : 20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFFFF7A2F).withOpacity(0.45),
-                      blurRadius: 14,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
                 ),
-                child: Text(
-                  emoji,
-                  style: TextStyle(fontSize: compact ? 30 : 38, height: 1.0),
+                const SizedBox(height: 3),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                  ),
                 ),
-              ),
-              SizedBox(width: compact ? 10 : 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: compact ? 18 : 22,
-                        fontWeight: FontWeight.w900,
-                        color: const Color(0xFF7C2D12),
-                        letterSpacing: -0.2,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: compact ? 12 : 13,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFF92400E),
-                        height: 1.35,
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: 3),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: LumoVisualTokens.muted,
+                    height: 1.35,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        );
-      },
+          const LumoFoxPose(
+            pose: LumoDesignFoxPose.avatar,
+            size: 58,
+          ),
+        ],
+      ),
     );
   }
 }
@@ -740,15 +713,22 @@ class _SettingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(18),
-      decoration: lumoCard(),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(title, style: LumoTextStyles.heading3),
-        const SizedBox(height: 12),
-        ...children,
-      ],
+    return LumoGlassCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 17,
+              fontWeight: FontWeight.w900,
+              color: LumoVisualTokens.white,
+            ),
+          ),
+          const SizedBox(height: 12),
+          ...children,
+        ],
       ),
     );
   }
@@ -768,21 +748,43 @@ class _InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
-      padding: const EdgeInsets.all(16),
-      decoration: lumoCard(),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [Text(emoji, style: const TextStyle(fontSize: 28)), const SizedBox(width: 8), Expanded(child: Text(title, style: LumoTextStyles.heading3)),
-            ],
-          ),
-        const SizedBox(height: 10),
-        ...lines.map((line) => Padding(padding: const EdgeInsets.only(bottom: 4), child: Text('• $line', style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700,
+      child: LumoGlassCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              Text(emoji, style: const TextStyle(fontSize: 26)),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                  ),
                 ),
               ),
-            ),
-          ),
-      ],
+            ]),
+            const SizedBox(height: 10),
+            for (final line in lines)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Text(
+                  '• $line',
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: LumoVisualTokens.muted,
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -810,10 +812,15 @@ class _SwitchRow extends StatelessWidget {
           title,
           style: LumoTextStyles.body.copyWith(
             fontWeight: FontWeight.w900,
-            color: LumoColors.ink900,
+            color: LumoVisualTokens.white,
           ),
         ),
-        subtitle: Text(subtitle, style: LumoTextStyles.caption),
+        subtitle: Text(
+          subtitle,
+          style: LumoTextStyles.caption.copyWith(
+            color: LumoVisualTokens.muted,
+          ),
+        ),
         value: value,
         onChanged: onChanged,
       ),
@@ -1730,18 +1737,23 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
       padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFF0F9FF), Color(0xFFE0F2FE)],
+          colors: [
+            LumoVisualTokens.glass,
+            LumoVisualTokens.navigation,
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFF7DD3FC), width: 1.4),
+        border: Border.all(
+          color: LumoVisualTokens.cyan.withOpacity(.48),
+          width: 1.4,
+        ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0EA5E9).withOpacity(0.15),
+            color: LumoVisualTokens.cyan.withOpacity(.12),
             blurRadius: 18,
             offset: const Offset(0, 6),
-            spreadRadius: -3,
           ),
         ],
       ),
@@ -1780,7 +1792,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                         fontFamily: 'Nunito',
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF0C4A6E),
+                        color: LumoVisualTokens.white,
                       ),
                     ),
                     Text(
@@ -1789,7 +1801,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF075985),
+                        color: LumoVisualTokens.muted,
                       ),
                     ),
                   ],
@@ -1818,7 +1830,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                     hintText: 'Eigene Frage stellen…',
                     border: OutlineInputBorder(borderSide: BorderSide.none),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: LumoVisualTokens.navigation,
                     contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 12,
                     ),
                   ),
@@ -1856,9 +1868,12 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: LumoVisualTokens.navigation.withOpacity(.88),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFF7DD3FC), width: 1),
+                border: Border.all(
+                  color: LumoVisualTokens.cyan.withOpacity(.42),
+                  width: 1,
+                ),
               ),
               child: Text(
                 widget.reply!,
@@ -1866,7 +1881,7 @@ class _AiParentAdvisorCardState extends State<_AiParentAdvisorCard> {
                   fontFamily: 'Nunito',
                   fontSize: 13.5,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF0F172A),
+                  color: LumoVisualTokens.white,
                   height: 1.45,
                 ),
               ),
