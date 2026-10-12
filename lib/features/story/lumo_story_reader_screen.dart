@@ -214,7 +214,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       subject: 'Lesen',
       unit: _learningUnit,
       correct: correct,
-      prompt: ex.question,
+      prompt: ex.prompt,
       given: answer,
       expected: ex.correctAnswer,
     ));
