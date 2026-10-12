@@ -1,8 +1,33 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'dart:ui' as ui;
+import 'package:flutter/material.dart';
+import 'package:lumo_lernen/features/tutoring/guided_language_nature_illustration.dart';
 import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 import 'package:lumo_lernen/domain/tutoring/tutoring_session_planner.dart';
 
 void main() {
+  test('the targeted leaf retains the green surface described in its hint',
+      () async {
+    final recorder = ui.PictureRecorder();
+    const painter = GuidedFlowerPainter(
+        target: GuidedPlantPart.leaf, variant: 1, highlight: 1);
+    painter.paint(Canvas(recorder), const Size(280, 230));
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(280, 230);
+    try {
+      final bytes = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+      final offset = (115 * 280 + 105) * 4;
+      expect(bytes!.buffer.asUint8List().sublist(offset, offset + 3),
+          [0x43, 0xBA, 0x77]);
+      final step = GuidedLessonCatalog.plantParts.steps.firstWhere(
+          (s) => s.isIndependent && s.plantPart == GuidedPlantPart.leaf);
+      expect(step.help(level: 1), contains('grünen Flächen'));
+      expect(step.help(level: 1), isNot(contains('Blatt')));
+    } finally {
+      image.dispose();
+      picture.dispose();
+    }
+  });
   test('syllable answers have independently checked spoken segmentation', () {
     const expected = {'Sonne': 2, 'Tomate': 3, 'Blume': 2, 'Rakete': 3};
     for (final step

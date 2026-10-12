@@ -112,6 +112,13 @@ class GuidedLanguageNatureIllustration extends StatelessWidget {
                 color: LumoVisualTokens.gold,
                 fontWeight: FontWeight.w900)),
       ],
+      if (step.isQuestion) ...[
+        const SizedBox(height: 8),
+        const Text('Der goldene Rand zeigt den gesuchten Teil.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontFamily: 'Nunito', color: Colors.white, fontSize: 16)),
+      ],
     ]));
   }
 }
@@ -134,19 +141,31 @@ class GuidedFlowerPainter extends CustomPainter {
             const Rect.fromLTWH(12, 170, 256, 55), const Radius.circular(12)),
         soil);
     Paint part(GuidedPlantPart part, Color color, {double width = 5}) => Paint()
-      ..color = target == part
-          ? Color.lerp(color, LumoVisualTokens.gold, highlight)!
-          : color
+      ..color = color
       ..strokeWidth = width
       ..strokeCap = StrokeCap.round;
+    Paint marker(double width) => Paint()
+      ..color = LumoVisualTokens.gold.withValues(alpha: highlight)
+      ..strokeWidth = width
+      ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.stroke;
+    void line(Offset from, Offset to, Paint color, GuidedPlantPart part) {
+      if (target == part)
+        canvas.drawLine(from, to, marker(color.strokeWidth + 6));
+      canvas.drawLine(from, to, color);
+    }
+
     final root = part(GuidedPlantPart.root, const Color(0xFFDCA889));
     for (final x in [105.0, 125.0, 145.0, 169.0]) {
-      canvas.drawLine(const Offset(140, 171), Offset(x, 216), root);
+      line(const Offset(140, 171), Offset(x, 216), root, GuidedPlantPart.root);
     }
-    canvas.drawLine(const Offset(140, 185), const Offset(93, 192), root);
-    canvas.drawLine(const Offset(140, 191), const Offset(179, 203), root);
+    line(const Offset(140, 185), const Offset(93, 192), root,
+        GuidedPlantPart.root);
+    line(const Offset(140, 191), const Offset(179, 203), root,
+        GuidedPlantPart.root);
     final stem = part(GuidedPlantPart.stem, const Color(0xFF50BA79), width: 9);
-    canvas.drawLine(const Offset(140, 174), const Offset(140, 55), stem);
+    line(const Offset(140, 174), const Offset(140, 55), stem,
+        GuidedPlantPart.stem);
     final leaf = part(GuidedPlantPart.leaf, const Color(0xFF43BA77));
     final left = Path()
       ..moveTo(140, 137)
@@ -160,15 +179,17 @@ class GuidedFlowerPainter extends CustomPainter {
       ..close();
     canvas.drawPath(left, leaf);
     canvas.drawPath(right, leaf);
+    if (target == GuidedPlantPart.leaf) canvas.drawPath(left, marker(5));
     final petals = part(GuidedPlantPart.flower,
         variant == 0 ? const Color(0xFFFF83B5) : const Color(0xFFA999FF));
     final count = variant == 0 ? 6 : 8;
     for (var i = 0; i < count; i++) {
       final angle = i * math.pi * 2 / count;
-      canvas.drawCircle(
-          Offset(140 + math.cos(angle) * 24, 46 + math.sin(angle) * 24),
-          17,
-          petals);
+      final center =
+          Offset(140 + math.cos(angle) * 24, 46 + math.sin(angle) * 24);
+      canvas.drawCircle(center, 17, petals);
+      if (target == GuidedPlantPart.flower)
+        canvas.drawCircle(center, 17, marker(5));
     }
     canvas.drawCircle(
         const Offset(140, 46), 16, Paint()..color = const Color(0xFFFFD96B));

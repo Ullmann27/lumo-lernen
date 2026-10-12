@@ -17,3 +17,9 @@ Bilder sind echte Flutter-Testlaufzeitaufnahmen, keine Android-, physischen Fold
 Offen: vollständige exakte CI, unabhängiger Review, neues Android-Update/Unterrichtsprüfung und APK-ZIP, physische Geräte, menschliche Sprachausgabe- und externe österreichische pädagogische Fachabnahme. Die zwei Piloten sind keine vollständige Lehrplanabdeckung.
 
 Ruling: unabhängige Folgearbeit im isolierten Branch während der unveränderte 1932-Kandidat gebaut/geprüft wird. Die Auslieferung1932 behält Priorität und wird durch diesen Branch nicht verändert. Enumbezeichnung GuidedLessonConcept ist jetzt fachneutral; vorhandene mathematische Themen, IDs, Mengen und Speicherfelder bleiben erhalten.
+
+## Unabhängiger Review und gezielte Reparatur
+
+Astra hat den gesamten Pilot-Diff read-only geprüft. Ein wichtiger Befund: Ein Blatt wurde gold eingefärbt, während Hilfe/Zugänglichkeit eine grüne Fläche beschrieben. Der echteRastertest reproduzierte gold statt grün; jetzt bleiben die natürlichen Farben erhalten und ein goldenerRand markiert das Ziel. Rasterregression plus sechs echte responsive Unterrichtsabläufe bestehen (11Prüfungen). Aussagen in Hinweisen, Diagramm und zugänglicher Beschreibung stimmen überein.
+
+Deferred minor: Bei den beiden neuen Beispielen wiederholt „Erklärung lesen“ derzeit den bereits angezeigten Erklärungstext. Das wird beim weiteren Unterrichtsfeinschliff bereinigt; es ist keine Lösungsvorgabe in selbstständigen Aufgaben.
