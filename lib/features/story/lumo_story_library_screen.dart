@@ -86,6 +86,7 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
           .where((stored) => stored.story.gradeLevel == widget.gradeLevel)
           .toList();
     }
+    // Filter via Suche (Titel, Held, Ort, Thema)
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
       stories = stories.where((s) {
@@ -96,6 +97,7 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
             st.theme.toLowerCase().contains(q);
       }).toList();
     }
+    // Sortierung
     switch (_sort) {
       case _StorySort.newest:
         stories.sort((a, b) => b.createdAt.compareTo(a.createdAt));
