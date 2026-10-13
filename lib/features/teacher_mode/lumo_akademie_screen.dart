@@ -582,7 +582,25 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
 
   Widget _buildContinueBanner() {
     final subject = _currentGrade.subjects[_selectedSubjectIndex];
-    final topic = subject.topics.first;
+    if (subject.topics.isEmpty) return const SizedBox.shrink();
+
+    final subjectKey = subject.topics.first.subjectKey.isEmpty
+        ? (subject.name == 'Sachkunde' ? 'Sachunterricht' : subject.name)
+        : subject.topics.first.subjectKey;
+    final lastUnit = widget.appState.learningProfile.lastTopics[subjectKey];
+    final lastIndex = lastUnit == null
+        ? -1
+        : subject.topics.indexWhere((topic) => topic.unitKey == lastUnit);
+    final hasCurrentHistory = lastIndex >= 0;
+    final topic = hasCurrentHistory
+        ? subject.topics[lastIndex]
+        : subject.topics.first;
+
+    final title = hasCurrentHistory ? 'Weiterlernen' : 'Lumo empfiehlt';
+    final subtitle = hasCurrentHistory
+        ? '${topic.title} · $_selectedGrade. Klasse'
+        : 'Starte mit ${topic.title} · passend zur $_selectedGrade. Klasse';
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
       child: Material(
@@ -592,26 +610,33 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           onTap: () => _openTopic(topic, subject),
           child: LumoGlassCard(
             padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+            borderColor: LumoVisualTokens.cyan.withOpacity(.55),
             child: Row(
               children: [
-                const LumoFoxPose(pose: LumoDesignFoxPose.cheer, size: 82),
+                LumoFoxPose(
+                  pose: hasCurrentHistory
+                      ? LumoDesignFoxPose.cheer
+                      : LumoDesignFoxPose.teacherStick,
+                  size: 82,
+                ),
                 const SizedBox(width: 8),
-                const Expanded(
+                Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Super gemacht!',
-                        style: TextStyle(
+                        title,
+                        style: const TextStyle(
                           fontFamily: 'Nunito',
                           color: LumoVisualTokens.white,
                           fontSize: 18,
                           fontWeight: FontWeight.w900,
                         ),
                       ),
+                      const SizedBox(height: 3),
                       Text(
-                        'Du lernst fleißig und machst tolle Fortschritte!',
-                        style: TextStyle(
+                        subtitle,
+                        style: const TextStyle(
                           fontFamily: 'Nunito',
                           color: LumoVisualTokens.muted,
                           fontSize: 12,
@@ -622,8 +647,10 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   ),
                 ),
                 const SizedBox(width: 8),
-                const Icon(Icons.arrow_forward_rounded,
-                    color: LumoVisualTokens.cyanBright),
+                const Icon(
+                  Icons.arrow_forward_rounded,
+                  color: LumoVisualTokens.cyanBright,
+                ),
               ],
             ),
           ),
