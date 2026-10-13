@@ -213,14 +213,13 @@ void main() {
     // The expanded discovery list exceeds the viewport. Scroll the actual
     // target into the center before tapping: tapping a tile outside the
     // screen would silently miss and obscure a genuine navigation regression.
+    // Immediate ensureVisible must not await a 250ms animation inside
+    // testWidgets without a concurrent frame pump: that leaves the Future
+    // pending and the test eventually times out after ten minutes.
     await Scrollable.ensureVisible(
       tester.element(kartEntry),
       alignment: 0.5,
-      duration: const Duration(milliseconds: 250),
     );
-    // Do not pumpAndSettle here: Lumo's background animations are perpetual.
-    // A bounded frame advance completes only the explicit 250 ms scroll.
-    await tester.pump(const Duration(milliseconds: 300));
     await tester.pump();
     expect(tester.getCenter(kartEntry).dy, inInclusiveRange(0, 1599));
     await tester.tap(kartEntry);
