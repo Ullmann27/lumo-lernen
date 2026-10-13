@@ -236,6 +236,57 @@ void main() {
     }
   });
 
+  test('every visible current-grade topic generates a task in that grade', () {
+    const subjects = <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Schreiben',
+      'Rechtschreibung',
+      'Englisch',
+      'Sachunterricht',
+      'Logik',
+    ];
+
+    for (var grade = 1; grade <= 4; grade++) {
+      for (final subject in subjects) {
+        final units = Curriculum.unitsForGrade(
+          subject,
+          grade,
+          currentGradeOnly: true,
+        );
+        final factory = ExerciseFactory(seed: grade * 1000 + subject.hashCode);
+        for (final unit in units) {
+          for (var attempt = 0; attempt < 8; attempt++) {
+            final task = factory.next(
+              grade: grade,
+              subject: subject,
+              unit: unit,
+            );
+            expect(
+              task.grade,
+              grade,
+              reason: '$subject / Klasse $grade / $unit',
+            );
+            expect(
+              task.subject,
+              subject,
+              reason: '$subject / Klasse $grade / $unit',
+            );
+            expect(
+              task.unit,
+              unit,
+              reason:
+                  '$subject / Klasse $grade: sichtbares Thema $unit darf nicht auf ${task.unit} umspringen',
+            );
+            expect(task.prompt.trim(), isNotEmpty);
+            expect(task.answer.trim(), isNotEmpty);
+          }
+        }
+      }
+    }
+  });
+
   test('stale legacy topics cannot bypass the selected grade', () {
     final factory = ExerciseFactory(seed: 2);
     final currentGerman =
