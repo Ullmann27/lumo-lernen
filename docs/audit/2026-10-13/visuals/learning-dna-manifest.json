@@ -1,0 +1,20 @@
+{
+  "source_sha": "fe3778847c88c35a40e99ae5012c1f160680b908",
+  "run": 38394508328,
+  "artifact": 11811830843,
+  "artifact_sha256": "08869c9a14b77e9257f9bd1e93906ed28e1ab9df140f476dccb76871847b3f75",
+  "engine": "Flutter3.44.9 / Dart3.12.2",
+  "runtime": "Flutter widget renderer, not Android",
+  "frames": [
+    {
+      "file": "fe377884-observations-800-large-text.png",
+      "sha256": "8c147412f130b347abee5d51aead8be3a992b6aea62d0c1e1b9b08efad1676b6",
+      "bytes": 181335
+    },
+    {
+      "file": "fe377884-observations-360-large-text.png",
+      "sha256": "a4b79bd227badbb3cc603fdfb6df217f276ba8b6bf023188b31641f4d68e8d8b",
+      "bytes": 107275
+    }
+  ]
+}
