@@ -95,8 +95,11 @@ class Curriculum {
       'Diagramme lesen',
     ],
     'Logik': <String>[
-      'Muster', 'Reihenfolgen', 'Zahlenmuster', 'Schlussfolgern',
-      'Regeln kombinieren',
+      'Muster', 'Reihenfolgen', 'Sortieren und Ordnen',
+      'Zahlenmuster', 'Logische Reihenfolgen', 'Paare und Gruppen',
+      'Schlussfolgern', 'Wenn-dann', 'Ausschlussverfahren',
+      'Regeln kombinieren', 'Mehrschritt-Logik', 'Zahlenrätsel',
+      'Aussagen prüfen',
     ],
   };
 
@@ -194,12 +197,33 @@ class Curriculum {
     final capped = grade.clamp(1, 4).toInt();
     final lowestGrade = currentGradeOnly ? capped : 1;
     if (subject == 'Logik') {
-      return <String>[
-        if (!currentGradeOnly || capped == 1) ...['Muster', 'Reihenfolgen'],
-        if (capped >= 2 && (!currentGradeOnly || capped == 2)) 'Zahlenmuster',
-        if (capped >= 3 && (!currentGradeOnly || capped == 3)) 'Schlussfolgern',
-        if (capped >= 4) 'Regeln kombinieren',
-      ];
+      const byGrade = <int, List<String>>{
+        1: <String>[
+          'Muster',
+          'Reihenfolgen',
+          'Sortieren und Ordnen',
+        ],
+        2: <String>[
+          'Zahlenmuster',
+          'Logische Reihenfolgen',
+          'Paare und Gruppen',
+        ],
+        3: <String>[
+          'Schlussfolgern',
+          'Wenn-dann',
+          'Ausschlussverfahren',
+        ],
+        4: <String>[
+          'Regeln kombinieren',
+          'Mehrschritt-Logik',
+          'Zahlenrätsel',
+          'Aussagen prüfen',
+        ],
+      };
+      return <String>{
+        for (var level = capped; level >= lowestGrade; level--)
+          ...?byGrade[level],
+      }.toList(growable: false);
     }
     if (subject == 'Mathematik') {
       return <String>{
@@ -452,6 +476,194 @@ class ExerciseFactory {
             '${lower + 8}'
           ]);
     }
+    if (unit == 'Sortieren und Ordnen') {
+      const sets = <List<String>>[
+        <String>['Maus', 'Hund', 'Pferd', 'vom kleinsten zum größten'],
+        <String>['1', '5', '9', 'von der kleinsten zur größten Zahl'],
+        <String>['Montag', 'Mittwoch', 'Freitag', 'in zeitlicher Reihenfolge'],
+      ];
+      final set = sets[_random.nextInt(sets.length)];
+      final answer = '${set[0]} – ${set[1]} – ${set[2]}';
+      return _choiceTask(
+        'logik-sortieren',
+        grade,
+        'Logik',
+        unit,
+        'Welche Reihenfolge passt ${set[3]}?',
+        answer,
+        'Ordne nach genau dem Merkmal, das in der Aufgabe genannt ist.',
+        customChoices: <String>[
+          answer,
+          '${set[2]} – ${set[1]} – ${set[0]}',
+          '${set[1]} – ${set[0]} – ${set[2]}',
+        ],
+      );
+    }
+
+    if (unit == 'Paare und Gruppen') {
+      const items = <List<String>>[
+        <String>['Apfel', 'Birne', 'Banane', 'Obst'],
+        <String>['Hund', 'Katze', 'Pferd', 'Tiere'],
+        <String>['Rot', 'Blau', 'Gelb', 'Farben'],
+        <String>['Montag', 'Dienstag', 'Freitag', 'Wochentage'],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'logik-gruppen',
+        grade,
+        'Logik',
+        unit,
+        'Welche Gruppe passt zu ${item[0]}, ${item[1]} und ${item[2]}?',
+        item[3],
+        'Alle drei Begriffe gehören zur Gruppe „${item[3]}“.',
+        customChoices: <String>[item[3], 'Fahrzeuge', 'Möbel', 'Werkzeuge'],
+      );
+    }
+
+    if (unit == 'Wenn-dann') {
+      const items = <List<String>>[
+        <String>[
+          'Wenn es regnet, nimmt Mia einen Schirm. Es regnet.',
+          'Mia nimmt einen Schirm.',
+          'Mia braucht sicher Sonnencreme.',
+          'Mia bleibt immer zu Hause.',
+        ],
+        <String>[
+          'Wenn eine Zahl gerade ist, kann man sie ohne Rest durch 2 teilen. 18 ist gerade.',
+          '18 ist ohne Rest durch 2 teilbar.',
+          '18 ist kleiner als 2.',
+          '18 ist ungerade.',
+        ],
+        <String>[
+          'Wenn Lumo seine Aufgabe beendet, darf er spielen. Die Aufgabe ist beendet.',
+          'Lumo darf spielen.',
+          'Lumo muss die Aufgabe noch beginnen.',
+          'Lumo darf nie spielen.',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'logik-wenn-dann',
+        grade,
+        'Logik',
+        unit,
+        '${item[0]} Was folgt daraus?',
+        item[1],
+        'Nutze nur die gegebene Wenn-dann-Regel und die Information aus der Aufgabe.',
+        customChoices: item.sublist(1),
+      );
+    }
+
+    if (unit == 'Ausschlussverfahren') {
+      const items = <List<String>>[
+        <String>[
+          'Das gesuchte Tier kann fliegen. Es ist kein Insekt.',
+          'Vogel',
+          'Hund',
+          'Biene',
+        ],
+        <String>[
+          'Die gesuchte Zahl ist größer als 20, kleiner als 30 und gerade.',
+          '24',
+          '19',
+          '31',
+        ],
+        <String>[
+          'Der Gegenstand ist aus Papier, hat Seiten und man kann darin lesen.',
+          'Buch',
+          'Ball',
+          'Tasse',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'logik-ausschluss',
+        grade,
+        'Logik',
+        unit,
+        '${item[0]} Was bleibt übrig?',
+        item[1],
+        'Streiche Antworten, die mindestens eine Bedingung nicht erfüllen.',
+        customChoices: item.sublist(1),
+      );
+    }
+
+    if (unit == 'Mehrschritt-Logik') {
+      final start = 2 + _random.nextInt(8);
+      final doubled = start * 2;
+      final answer = doubled + 3;
+      return _choiceTask(
+        'logik-mehrschritt',
+        grade,
+        'Logik',
+        unit,
+        'Starte mit $start. Verdopple die Zahl und addiere danach 3. Wo landest du?',
+        '$answer',
+        'Erster Schritt: $start × 2 = $doubled. Zweiter Schritt: $doubled + 3 = $answer.',
+        customChoices: <String>[
+          '$answer',
+          '${answer - 2}',
+          '${answer + 2}',
+          '${start + 3}',
+        ],
+      );
+    }
+
+    if (unit == 'Zahlenrätsel') {
+      final answer = 20 + _random.nextInt(60);
+      final half = answer ~/ 2;
+      final adjusted = half * 2;
+      return _choiceTask(
+        'logik-zahlenraetsel',
+        grade,
+        'Logik',
+        unit,
+        'Ich denke an eine gerade Zahl. Ihre Hälfte ist $half. Welche Zahl ist gemeint?',
+        '$adjusted',
+        'Wenn die Hälfte $half ist, ist die ganze Zahl $half × 2 = $adjusted.',
+        customChoices: <String>[
+          '$adjusted',
+          '${adjusted + 2}',
+          '${adjusted - 2}',
+          '$half',
+        ],
+      );
+    }
+
+    if (unit == 'Aussagen prüfen') {
+      const items = <List<String>>[
+        <String>[
+          'Alle Quadrate haben vier Seiten. Diese Figur ist ein Quadrat.',
+          'Die Figur hat vier Seiten.',
+          'Die Figur hat drei Seiten.',
+          'Man kann nichts folgern.',
+        ],
+        <String>[
+          'Kein Fisch lebt an Land. Nemo ist ein Fisch.',
+          'Nemo lebt nicht an Land.',
+          'Nemo ist ein Vogel.',
+          'Nemo lebt sicher auf einem Baum.',
+        ],
+        <String>[
+          'Alle Kinder in Team Blau tragen ein blaues Band. Mia ist in Team Blau.',
+          'Mia trägt ein blaues Band.',
+          'Mia trägt sicher ein rotes Band.',
+          'Mia ist nicht im Team.',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'logik-aussagen',
+        grade,
+        'Logik',
+        unit,
+        '${item[0]} Welche Aussage folgt sicher?',
+        item[1],
+        'Die richtige Antwort muss aus den gegebenen Aussagen zwingend folgen.',
+        customChoices: item.sublist(1),
+      );
+    }
+
     final names = <String>['Lumo', 'Mia', 'Ben', 'Ali', 'Lea']
       ..shuffle(_random);
     final first = names[0], middle = names[1], last = names[2];
