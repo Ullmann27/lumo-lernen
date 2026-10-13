@@ -14,8 +14,15 @@ import 'lumo_story_reader_screen.dart';
 import 'lumo_story_setup_screen.dart';
 
 class LumoStoryLibraryScreen extends StatefulWidget {
-  const LumoStoryLibraryScreen({super.key, required this.appState});
+  const LumoStoryLibraryScreen({
+    super.key,
+    required this.appState,
+    this.gradeLevel,
+  });
   final LumoAppState appState;
+
+  /// Optionaler Lernpfadfilter; ohne Filter bleiben alle Hefte sichtbar.
+  final int? gradeLevel;
 
   @override
   State<LumoStoryLibraryScreen> createState() =>
@@ -74,7 +81,11 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     }
     final lib = LumoStoryLibrary.instance;
     var stories = _showFavOnly ? lib.favorites : lib.all.toList();
-    // Filter via Suche (Titel, Held, Ort, Thema)
+    if (widget.gradeLevel != null) {
+      stories = stories
+          .where((stored) => stored.story.gradeLevel == widget.gradeLevel)
+          .toList();
+    }
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
       stories = stories.where((s) {
@@ -85,7 +96,6 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
             st.theme.toLowerCase().contains(q);
       }).toList();
     }
-    // Sortierung
     switch (_sort) {
       case _StorySort.newest:
         stories.sort((a, b) => b.createdAt.compareTo(a.createdAt));
@@ -148,6 +158,11 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   }
 
   Widget _buildTopBar(LumoStoryLibrary lib) {
+    final visibleCount = widget.gradeLevel == null
+        ? lib.count
+        : lib.all
+            .where((stored) => stored.story.gradeLevel == widget.gradeLevel)
+            .length;
     return Padding(
       padding: const EdgeInsets.all(LumoTokens.space12),
       child: Row(
@@ -160,9 +175,15 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Meine Geschichten',
+                Text(
+                    widget.gradeLevel == null
+                        ? 'Meine Geschichten'
+                        : 'Geschichten · Lesen & verstehen',
                     style: LumoTokens.typo.headlineLarge),
-                Text('${lib.count} Hefte erschaffen',
+                Text(
+                    widget.gradeLevel == null
+                        ? '$visibleCount Hefte erschaffen'
+                        : '${widget.gradeLevel}. Klasse · $visibleCount Hefte',
                     style: LumoTokens.typo.bodyMedium.copyWith(
                         color: LumoTokens.colors.textMuted)),
               ],
