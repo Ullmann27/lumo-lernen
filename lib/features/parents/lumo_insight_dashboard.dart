@@ -23,7 +23,6 @@ import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../widgets/premium/lumo_empty_error_state.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../learning/learning_dna_card.dart';
