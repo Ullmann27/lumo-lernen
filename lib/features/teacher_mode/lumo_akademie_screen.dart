@@ -450,12 +450,15 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
                 sliver: SliverToBoxAdapter(
-                  child: KeyedSubtree(
-                    key: _topicSectionKey,
-                    child: _buildSubjectSection(
-                      _currentGrade.subjects[_selectedSubjectIndex],
-                      _selectedSubjectIndex,
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(key: _topicSectionKey, height: 1),
+                      _buildSubjectSection(
+                        _currentGrade.subjects[_selectedSubjectIndex],
+                        _selectedSubjectIndex,
+                      ),
+                    ],
                   ),
                 ),
               ),
