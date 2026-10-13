@@ -33,7 +33,7 @@ class MathTaskTemplates {
     ),
     MathTaskTemplate(id: 'g2_times_prep', grade: 2, unit: 'Einmaleins Vorbereitung', kind: MathTemplateKind.multiplicationPrep, validRangeA: <int>[2, 5], validRangeB: <int>[2, 10], promptPattern: 'wie-oft-in-zahl',
     ),
-    MathTaskTemplate(id: 'g2_word_problem', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[4, 18], validRangeB: <int>[2, 12], promptPattern: 'sachaufgabe-ein-schritt',
+    MathTaskTemplate(id: 'g2_word_problem', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[4, 18], validRangeB: <int>[2, 12], promptPattern: 'sachaufgabe-ein-schritt-klasse2',
     ),
     MathTaskTemplate(id: 'g2_money_change', grade: 2, unit: 'Geld wechseln', kind: MathTemplateKind.moneyChange, validRangeA: <int>[2, 20], validRangeB: <int>[1, 5], promptPattern: 'geld-wechseln',
     ),
