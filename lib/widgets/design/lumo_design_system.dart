@@ -403,7 +403,10 @@ class LumoColorTile extends StatelessWidget {
                                 height: 1.05,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white)),
-                        if (!largeText && constraints.maxHeight > 130) ...[
+                        // Symbol + zweizeiliger Titel brauchen auf flachen
+                        // Fold-/Tablet-Kacheln bereits fast die volle Höhe.
+                        // Den Untertitel nur zeigen, wenn dafür real Platz bleibt.
+                        if (!largeText && constraints.maxHeight >= 155) ...[
                           const SizedBox(height: 5),
                           Text(subtitle,
                               maxLines: 2,
