@@ -124,11 +124,16 @@ class _ParentReportCardState extends State<ParentReportCard> {
       future: _future,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(18),
-            decoration: lumoCard(),
-            child: const Text('Elternbericht wird erstellt …', style: LumoTextStyles.heading3),
+          return const LumoGlassCard(
+            child: Text(
+              'Elternbericht wird erstellt …',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 16,
+                fontWeight: FontWeight.w900,
+                color: LumoVisualTokens.white,
+              ),
+            ),
           );
         }
         final report = snapshot.data!;
@@ -144,8 +149,16 @@ class _ParentReportCardState extends State<ParentReportCard> {
               Container(
                 width: 52,
                 height: 52,
-                decoration: BoxDecoration(color: LumoColors.orangeSurface, borderRadius: BorderRadius.circular(LumoRadius.lg)),
-                child: const Center(child: Text('📄', style: TextStyle(fontSize: 30))),
+                decoration: BoxDecoration(
+                  color: LumoVisualTokens.glassRow.withOpacity(.86),
+                  borderRadius: BorderRadius.circular(LumoRadius.lg),
+                  border: Border.all(
+                    color: LumoVisualTokens.cyan.withOpacity(.42),
+                  ),
+                ),
+                child: const Center(
+                  child: Text('📄', style: TextStyle(fontSize: 30)),
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -188,7 +201,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
             ...report.nextSteps.map((step) => Padding(
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    const Text('• ', style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, color: LumoColors.orange)),
+                    const Text('• ', style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, color: LumoVisualTokens.gold)),
                     Expanded(child: Text(step, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted))),
                   ]),
                 )),
@@ -246,7 +259,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
         if (_aiError != null) ...[
           Text(_aiError!,
               style:
-                  LumoTextStyles.caption.copyWith(color: LumoColors.orange)),
+                  LumoTextStyles.caption.copyWith(color: LumoVisualTokens.gold)),
           const SizedBox(height: 8),
         ],
         Align(
@@ -312,7 +325,7 @@ class _SubjectReportMini extends StatelessWidget {
           const SizedBox(height: 8),
         ],
         if (block.weaknesses.isNotEmpty) ...[
-          Text('Förderbedarf', style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
+          Text('Förderbedarf', style: LumoTextStyles.label.copyWith(color: LumoVisualTokens.gold)),
           const SizedBox(height: 3),
           ...block.weaknesses.take(3).map((item) => Text('• $item', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted))),
           const SizedBox(height: 8),
@@ -442,7 +455,7 @@ class _LumoKiMasterToggle extends StatelessWidget {
         boxShadow: enabled
             ? [
                 BoxShadow(
-                  color: LumoColors.orange.withOpacity(0.36),
+                  color: LumoVisualTokens.cyan.withOpacity(0.20),
                   blurRadius: 16,
                   offset: const Offset(0, 6),
                   spreadRadius: -3,
