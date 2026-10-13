@@ -118,9 +118,19 @@ void main() {
             expect(payload['context'], 'parent_advisor');
             expect(payload['childProfile'], {'grade': 2});
             expect(payload['history'], isEmpty);
-            expect(payload['message'], contains('Wochenanalyse'));
-            expect(payload['message'], contains('Staerken'));
-            expect(payload['message'], contains('Foerderbedarf'));
+            if (dashboard) {
+              expect(payload['message'], contains('Gesamt: 0 Antworten'));
+              expect(
+                  payload['message'], contains('ohne abgegrenzten Zeitraum'));
+              expect(payload['message'],
+                  contains('Keine Aussagen über heute, diese Woche'));
+              expect(payload['message'],
+                  contains('Keine Stärken oder Schwierigkeiten erfinden'));
+            } else {
+              expect(payload['message'], contains('Wochenanalyse'));
+              expect(payload['message'], contains('Staerken'));
+              expect(payload['message'], contains('Foerderbedarf'));
+            }
             expect(jsonEncode(payload), isNot(contains(_name)),
                 reason:
                     'The profile name belongs only in the local parent UI.');
