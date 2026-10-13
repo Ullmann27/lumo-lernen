@@ -75,6 +75,59 @@ void main() {
     }
   });
 
+  test('template engines never inject an earlier grade into normal Alle practice', () {
+    for (var grade = 1; grade <= 4; grade++) {
+      for (var seed = 0; seed < 200; seed++) {
+        final math = MathTaskTemplates.generate(
+          grade: grade,
+          unit: 'Alle',
+          seed: seed,
+        );
+        expect(
+          math.difficulty,
+          grade,
+          reason: 'Mathe Klasse $grade / Seed $seed: ${math.unit}',
+        );
+
+        final german = GermanTaskTemplates.generate(
+          grade: grade,
+          unit: 'Alle',
+          seed: seed,
+        );
+        expect(
+          german.difficulty,
+          grade,
+          reason: 'Deutsch Klasse $grade / Seed $seed: ${german.unit}',
+        );
+      }
+
+      final scienceFactory = ExerciseFactory(seed: 100 + grade);
+      for (var i = 0; i < 120; i++) {
+        final science = scienceFactory.next(
+          grade: grade,
+          subject: 'Sachunterricht',
+        );
+        expect(
+          science.difficulty,
+          grade,
+          reason:
+              'Sachunterricht Klasse $grade darf nicht aus einer frueheren Stufe stammen: ${science.unit}',
+        );
+      }
+    }
+  });
+
+  test('shared math units use the exact selected grade', () {
+    for (var seed = 0; seed < 100; seed++) {
+      final grade2 = MathTaskTemplates.generate(
+        grade: 2,
+        unit: 'Textaufgaben',
+        seed: seed,
+      );
+      expect(grade2.difficulty, 2);
+    }
+  });
+
   test('fourth-grade math menu does not expose grade-one arithmetic', () {
     final grade4 = Curriculum.unitsForGrade(
       'Mathematik',
