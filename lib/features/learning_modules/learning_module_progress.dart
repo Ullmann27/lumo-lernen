@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
 
 /// Durable answer/reward boundary shared by the direct Akademie modules.
 /// A failed write keeps the accepted answer locked until Retry flushes it.
@@ -269,44 +271,80 @@ class LearningModuleProgressScope extends StatelessWidget {
         child: child,
         builder: (context, child) => PopScope<void>(
           canPop: !progress.hasPending,
-          child: Column(children: [
-            if (progress.hasPending)
-              Material(
-                color: const Color(0xFFFFF5D9),
-                child: SafeArea(
-                  bottom: false,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Column(mainAxisSize: MainAxisSize.min, children: [
-                      Semantics(
-                        liveRegion: true,
-                        child: Text(progress.error ?? progress.savingText,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                color: Color(0xFF332B20), fontSize: 16)),
-                      ),
-                      if (progress.error != null)
-                        FilledButton(
-                          onPressed: progress.saving ? null : progress.retry,
-                          child: const Text('Erneut versuchen'),
-                        )
-                      else
-                        const Padding(
-                          padding: EdgeInsets.only(top: 6),
-                          child: LinearProgressIndicator(),
+          child: LumoSceneBackground(
+            scene: LumoScene.learning,
+            showPlaceholderLabel: false,
+            child: Column(
+              children: [
+                if (progress.hasPending)
+                  Material(
+                    color: LumoVisualTokens.navigation.withOpacity(.94),
+                    child: SafeArea(
+                      bottom: false,
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 9,
                         ),
-                    ]),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: LumoVisualTokens.cyan.withOpacity(.38),
+                            ),
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Semantics(
+                              liveRegion: true,
+                              child: Text(
+                                progress.error ?? progress.savingText,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  color: LumoVisualTokens.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ),
+                            if (progress.error != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: FilledButton(
+                                  onPressed:
+                                      progress.saving ? null : progress.retry,
+                                  style: FilledButton.styleFrom(
+                                    backgroundColor: LumoVisualTokens.cyan,
+                                    foregroundColor: LumoVisualTokens.night,
+                                  ),
+                                  child: const Text('Erneut versuchen'),
+                                ),
+                              )
+                            else
+                              const Padding(
+                                padding: EdgeInsets.only(top: 7),
+                                child: LinearProgressIndicator(
+                                  color: LumoVisualTokens.cyanBright,
+                                  backgroundColor: LumoVisualTokens.glassRow,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                Expanded(
+                  child: AbsorbPointer(
+                    absorbing: progress.hasPending,
+                    child: child!,
                   ),
                 ),
-              ),
-            Expanded(
-              child: AbsorbPointer(
-                absorbing: progress.hasPending,
-                child: child!,
-              ),
+              ],
             ),
-          ]),
+          ),
         ),
       );
 }
