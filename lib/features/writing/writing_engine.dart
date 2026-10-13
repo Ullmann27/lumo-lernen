@@ -1810,6 +1810,17 @@ class FingerWritingRecognizer {
     required LetterTemplate template,
     required List<WritingStroke> userStrokes,
   }) {
+    // Ein einziger nahezu gerader Strich kann kein H sein. Die tolerante
+    // Fingererkennung darf verbundene H-Zuege akzeptieren, aber keine
+    // horizontalen/vertikalen Linien als kompletten Buchstaben bewerten.
+    if ((template.letter == 'H' || template.letter == 'h') &&
+        userStrokes.length == 1) {
+      final bounds = userStrokes.single.bounds;
+      if (bounds.width < bounds.height * 0.20 ||
+          bounds.height < bounds.width * 0.20) {
+        return true;
+      }
+    }
     // Ein C darf mit dem Finger sehr rund und wackelig sein, bleibt aber
     // offen. Ein geschlossener Ring ist ein O/0 und darf nicht als C
     // durchgewunken werden.
