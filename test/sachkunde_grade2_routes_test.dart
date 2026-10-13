@@ -40,7 +40,12 @@ void main() {
   ) async {
     final topic = find.text(label);
     expect(topic, findsOneWidget, reason: label);
-    await tester.ensureVisible(topic);
+    await tester.dragUntilVisible(
+      topic,
+      find.byType(Scrollable).first,
+      const Offset(0, -240),
+    );
+    await tester.pump();
     await tester.tap(topic);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
