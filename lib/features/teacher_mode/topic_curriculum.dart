@@ -558,8 +558,8 @@ class TopicCurriculum {
           'Steiermark, Tirol, Salzburg, Kaernten, Vorarlberg, Burgenland. '
           'Hauptstadt = Wien. Berge (Alpen), Donau.',
       exampleTask:
-          'Oesterreich hat 9 Bundeslaender. Die Hauptstadt ist Wien. In welchem Bundesland wohnt ihr? '
-          'Heinz wohnt in Niederoesterreich (Gaenserndorf).',
+          'Oesterreich hat 9 Bundeslaender. Die Hauptstadt ist Wien. '
+          'Nenne ein Bundesland und seine Landeshauptstadt.',
       vocabulary: ['Bundesland', 'Hauptstadt', 'Wien', 'Alpen', 'Donau'],
       forbidden: 'KEIN Rechnen. NICHT Politik. NICHT Geschichte vertieft.',
       complexityHint: 'Klasse 3 - Bundeslaender Oesterreich',
@@ -610,6 +610,11 @@ class TopicCurriculum {
           'Es geht um Zahlen ueber 1000!',
       complexityHint:
           'Klasse 4 - GROSSE Zahlen ueber 1000! Schueler kann Einmaleins + Zahlenraum 1000.',
+      quickQuestions: [
+        'Wie liest man die Zahl 234.567?',
+        'Was ist der Unterschied zwischen Zehntausender und Hunderttausender?',
+        'Welche Zahl ist um 100.000 groesser als 350.000?',
+      ],
     ),
     'm4_bruch': TopicContext(
       grade: 4,
@@ -644,9 +649,9 @@ class TopicCurriculum {
       forbidden: 'KEINE einfachen Aufgaben mit 3 Aepfeln. Es muss eine richtige Textaufgabe sein.',
       complexityHint: 'Klasse 4 - Komplexe Textaufgaben mit mehreren Schritten',
       quickQuestions: [
-        'Wie schreibt man eine Million?',
-        'Welche Zahl kommt nach 99999?',
-        'Was sind 10 Tausender?',
+        'Wie finde ich in einer Textaufgabe zuerst die wichtige Frage?',
+        'Anna kauft 3 Hefte zu je 4 Euro. Welchen Rechenweg brauche ich?',
+        'Wie formuliere ich nach dem Rechnen einen Antwortsatz?',
       ],
     ),
 
@@ -671,9 +676,9 @@ class TopicCurriculum {
       complexityHint:
           'Klasse 4 - Die 4 Faelle (Nom/Gen/Dat/Akk). Schueler kennt schon Wortarten + Zeitformen.',
       quickQuestions: [
-        'Was ist der erste Fall?',
-        'Wo steht das Komma?',
-        'Was ist ein Beistrich?',
+        'Wie frage ich nach dem Nominativ, Dativ und Akkusativ?',
+        'Was sind Subjekt und Praedikat in einem Satz?',
+        'Welcher Fall passt zu der Frage „Wem?“?',
       ],
     ),
     'd4_aufsatz': TopicContext(
@@ -691,9 +696,9 @@ class TopicCurriculum {
       forbidden: 'KEIN Rechnen. NICHT Grammatik analysieren.',
       complexityHint: 'Klasse 4 - Texte schreiben',
       quickQuestions: [
-        'Was ist die Haelfte von 8?',
-        'Was bedeutet 1 Drittel?',
-        'Wie viel ist ein Viertel von 12?',
+        'Wie baue ich Einleitung, Hauptteil und Schluss auf?',
+        'Was gehoert in eine gute Beschreibung?',
+        'Wie mache ich eine Erzaehlung spannend und trotzdem verstaendlich?',
       ],
     ),
 
@@ -717,7 +722,7 @@ class TopicCurriculum {
       quickQuestions: [
         'Welche Laender grenzen an Oesterreich?',
         'Was ist die Hauptstadt von Italien?',
-        'Was ist die EU?',
+        'Auf welchem Kontinent liegt Oesterreich und welche Nachbarlaender kennst du?',
       ],
     ),
     's4_geschichte': TopicContext(
@@ -726,22 +731,22 @@ class TopicCurriculum {
       title: 'Geschichte',
       detailedScope:
           'Zeitreise durch Oesterreichs Geschichte: Roemer in Carnuntum, '
-          'Ritter und Burgen im Mittelalter, Kaiserzeit (Maria Theresia, Franz Joseph), '
-          'Zweiter Weltkrieg, heute Republik Oesterreich.',
+          'Ritter und Burgen im Mittelalter, Alltag in der Kaiserzeit '
+          '(Maria Theresia, Franz Joseph) und der Wandel bis zum heutigen Oesterreich.',
       exampleTask:
-          'Im Mittelalter lebten Ritter in Burgen. Sie hatten Schwerter und Ruestungen. '
-          'Die Burg Kreuzenstein in Niederoesterreich kannst du heute noch besichtigen! '
-          'Wer regiert heute in Oesterreich? Der Bundespraesident.',
+          'Im Mittelalter boten Burgen Schutz und waren Wohn- und Arbeitsorte. '
+          'Die Burg Kreuzenstein in Niederoesterreich kann man heute noch besichtigen. '
+          'Vergleiche: Was war an einer Burg anders als an einem heutigen Wohnhaus?',
       vocabulary: ['Mittelalter', 'Ritter', 'Burg', 'Kaiser', 'Maria Theresia', 'Republik'],
       forbidden:
-          'AUF KEINEN FALL Mathe-Aufgaben! '
-          'AUF KEINEN FALL fragen "Was moechtest du lernen - Mathe oder Tiere?" - das hier ist GESCHICHTE!',
+          'AUF KEINEN FALL Mathe-Aufgaben! Keine Gewalt- oder Waffendetails. '
+          'Keine parteipolitischen Fragen. Bleibe bei altersgerechter Alltags- und Kulturgeschichte.',
       complexityHint:
           'Klasse 4 - Oesterreichs Geschichte. Steig direkt mit einem konkreten Geschichts-Thema ein!',
       quickQuestions: [
-        'Wer war Maria Theresia?',
-        'Was ist eine Burg?',
-        'Wann lebten die Ritter?',
+        'Was war eine Burg und wozu diente sie?',
+        'Was kann man ueber den Alltag im Mittelalter lernen?',
+        'Wer war Maria Theresia in der Geschichte Oesterreichs?',
       ],
     ),
   };
