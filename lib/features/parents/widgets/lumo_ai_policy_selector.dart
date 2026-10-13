@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../core/lumo_ai_learning_access.dart';
-import '../../shared/widgets/lumo_modern_card.dart';
+import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_design_system.dart';
 
 class LumoAiPolicySelector extends StatelessWidget {
   const LumoAiPolicySelector({
@@ -43,16 +44,24 @@ class LumoAiPolicySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LumoModernCard(
+    return LumoGlassCard(
       padding: const EdgeInsets.all(20),
+      borderColor: LumoVisualTokens.cyan.withOpacity(.42),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Lumo KI-Assistent', style: LumoTextStyles.heading2),
+          Text(
+            'Lumo KI-Assistent',
+            style: LumoTextStyles.heading2.copyWith(
+              color: LumoVisualTokens.white,
+            ),
+          ),
           const SizedBox(height: 6),
           Text(
             'Wähle, wie Lumo dein Kind beim Lernen unterstützen darf.',
-            style: LumoTextStyles.body.copyWith(color: LumoColors.ink600),
+            style: LumoTextStyles.body.copyWith(
+              color: LumoVisualTokens.muted,
+            ),
           ),
           const SizedBox(height: 16),
           Column(
@@ -86,8 +95,12 @@ class _AiPolicyOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = selected ? LumoColors.orange : LumoColors.ink100;
-    final background = selected ? LumoColors.orange.withOpacity(.10) : Colors.white;
+    final borderColor = selected
+        ? LumoVisualTokens.cyanBright
+        : LumoVisualTokens.cyan.withOpacity(.28);
+    final background = selected
+        ? LumoVisualTokens.cyan.withOpacity(.13)
+        : LumoVisualTokens.navigation.withOpacity(.72);
 
     return Material(
       color: background,
@@ -115,14 +128,16 @@ class _AiPolicyOptionTile extends StatelessWidget {
                     Text(
                       option.title,
                       style: LumoTextStyles.heading3.copyWith(
-                        color: selected ? LumoColors.orange : LumoColors.ink900,
+                        color: selected
+                            ? LumoVisualTokens.cyanBright
+                            : LumoVisualTokens.white,
                       ),
                     ),
                     const SizedBox(height: 3),
                     Text(
                       option.description,
                       style: LumoTextStyles.body.copyWith(
-                        color: selected ? LumoColors.ink700 : LumoColors.ink500,
+                        color: LumoVisualTokens.muted,
                       ),
                     ),
                   ],
@@ -131,7 +146,9 @@ class _AiPolicyOptionTile extends StatelessWidget {
               const SizedBox(width: 10),
               Icon(
                 selected ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
-                color: selected ? LumoColors.orange : LumoColors.ink300,
+                color: selected
+                    ? LumoVisualTokens.cyanBright
+                    : LumoVisualTokens.muted,
                 size: 26,
               ),
             ],
@@ -159,9 +176,23 @@ class _AiPolicyIcon extends StatelessWidget {
       height: 48,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: selected ? Colors.white : LumoColors.orangeSurface,
+        color: selected
+            ? LumoVisualTokens.cyan.withOpacity(.20)
+            : LumoVisualTokens.glassRow.withOpacity(.72),
         borderRadius: BorderRadius.circular(LumoRadius.md),
-        boxShadow: selected ? LumoShadow.pill : null,
+        border: Border.all(
+          color: selected
+              ? LumoVisualTokens.cyanBright.withOpacity(.70)
+              : LumoVisualTokens.cyan.withOpacity(.24),
+        ),
+        boxShadow: selected
+            ? [
+                BoxShadow(
+                  color: LumoVisualTokens.cyan.withOpacity(.20),
+                  blurRadius: 12,
+                ),
+              ]
+            : null,
       ),
       child: Text(
         icon,
