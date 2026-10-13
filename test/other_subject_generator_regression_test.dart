@@ -18,7 +18,11 @@ void main() {
         'Lesen',
         'Englisch'
       ]) {
-        for (final unit in Curriculum.unitsForGrade(subject, grade)) {
+        for (final unit in Curriculum.unitsForGrade(
+          subject,
+          grade,
+          currentGradeOnly: true,
+        )) {
           for (var seed = 0; seed < 20; seed++) {
             final task = ExerciseFactory(seed: seed)
                 .next(grade: grade, subject: subject, unit: unit);
@@ -40,6 +44,52 @@ void main() {
         }
       }
     }
+  });
+
+  test('upper grades expose substantive reading and writing choices', () {
+    final reading3 =
+        Curriculum.unitsForGrade('Lesen', 3, currentGradeOnly: true);
+    final reading4 =
+        Curriculum.unitsForGrade('Lesen', 4, currentGradeOnly: true);
+    final writing3 =
+        Curriculum.unitsForGrade('Schreiben', 3, currentGradeOnly: true);
+    final writing4 =
+        Curriculum.unitsForGrade('Schreiben', 4, currentGradeOnly: true);
+
+    expect(
+      reading3,
+      containsAll(<String>[
+        'Informationen finden',
+        'Schlussfolgern',
+        'Kernaussage',
+      ]),
+    );
+    expect(
+      reading4,
+      containsAll(<String>[
+        'Informationen finden',
+        'Schlussfolgern',
+        'Kernaussage',
+        'Textart erkennen',
+      ]),
+    );
+    expect(
+      writing3,
+      containsAll(<String>[
+        'Beschreibung schreiben',
+        'Geschichte fortsetzen',
+        'Text planen',
+      ]),
+    );
+    expect(
+      writing4,
+      containsAll(<String>[
+        'Text planen',
+        'Meinung begründen',
+        'Informationstext',
+      ]),
+    );
+    expect(writing4, isNot(contains('Buchstaben nachspuren')));
   });
 
   test('first-grade English school supplies stay within school supplies', () {
