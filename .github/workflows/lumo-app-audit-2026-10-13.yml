@@ -1,5 +1,5 @@
 name: Lumo app audit 2026-10-13
-# revision: exact-tile-height-and-fully-visible-route-taps
+# revision: full-home-design-sachkunde-story-audit
 
 on:
   push:
@@ -59,6 +59,9 @@ jobs:
             test/story_persistence_race_test.dart \
             test/home_story_entry_test.dart \
             test/home_lumo_meister_entry_test.dart \
+            test/home_navigation_progress_test.dart \
+            test/lumo_design_system_test.dart \
+            test/lumo_color_tile_compact_test.dart \
             test/games/lumo_meister_portal_test.dart \
             test/quiz_show_meister_test.dart \
             test/lumo_meister_reward_alignment_test.dart \
