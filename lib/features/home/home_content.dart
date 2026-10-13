@@ -55,16 +55,6 @@ class HomeContent extends StatelessWidget {
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
   }
 
-  void _startReading() {
-    appState.update(appState.state.copyWith(
-      subject: 'Lesen',
-      unit: 'Aktives Lesen',
-      mood: LumoMood.think,
-      lumoMessage: 'Wir lesen gemeinsam, Satz für Satz.',
-    ));
-    onSection(LumoSection.reading);
-  }
-
   int _correctFor(String subject) => appState
       .learningSkills()
       .values
