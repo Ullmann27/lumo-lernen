@@ -1120,8 +1120,64 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       add(group, topic);
     }
 
-    return <_TopicBucket>[
+    final preferredOrder = switch (subject.name) {
+      'Mathematik' => const <String>[
+          'Zahlen & Rechnen',
+          'Mal & Teilen',
+          'Größen & Alltag',
+          'Formen & Daten',
+          'Brüche & Dezimalzahlen',
+          'Sachaufgaben',
+        ],
+      'Deutsch' => const <String>[
+          'Wörter & Wortschatz',
+          'Grammatik',
+          'Rechtschreibung',
+          'Sätze & Sprache',
+        ],
+      'Lesen' => const <String>[
+          'Lesen & Verstehen',
+          'Informationen & Schlüsse',
+          'Textaufbau verstehen',
+        ],
+      'Schreiben' => const <String>[
+          'Schreib-Grundlagen',
+          'Sätze & Nachrichten',
+          'Texte planen & verfassen',
+        ],
+      'Rechtschreibung' => const <String>[
+          'Wortbilder & Großschreibung',
+          'Rechtschreib-Regeln',
+          'Sätze richtig schreiben',
+        ],
+      'Englisch' => const <String>[
+          'Basics & Menschen',
+          'Schule & Alltag',
+          'Natur & Freizeit',
+        ],
+      'Sachkunde' => const <String>[
+          'Natur & Körper',
+          'Alltag & Gemeinschaft',
+          'Forschen & Technik',
+          'Österreich & Welt',
+        ],
+      'Logik' => const <String>[
+          'Muster & Ordnen',
+          'Folgern & Ausschließen',
+          'Mehrschritt & Rätsel',
+        ],
+      _ => const <String>['Themen'],
+    };
+
+    final sorted = <String>[
+      for (final title in preferredOrder)
+        if (grouped.containsKey(title)) title,
       for (final title in order)
+        if (!preferredOrder.contains(title)) title,
+    ];
+
+    return <_TopicBucket>[
+      for (final title in sorted)
         _TopicBucket(title: title, topics: grouped[title]!),
     ];
   }
