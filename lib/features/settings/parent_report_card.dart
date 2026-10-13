@@ -10,6 +10,7 @@ import '../../core/reading_progress_repository.dart';
 import '../../core/settings_repository.dart';
 import '../../domain/analysis/daily_recommendation_engine.dart';
 import '../../domain/analysis/lumo_analysis_domain.dart';
+import '../../domain/learning/learning_dna_engine.dart';
 import '../parents/lumo_insight_dashboard.dart';
 import '../parents/widgets/lumo_ai_policy_selector.dart';
 
@@ -27,6 +28,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
   final _engine = const ParentReportEngine();
   final _aiProxy = const LumoAiProxyClient();
   late Future<ParentReportSummary> _future;
+  int _dataRevision = 0;
 
   // KI-Wochenreport - optional, ergaenzt den lokalen Bericht durch
   // eine paedagogische Analyse vom parentAdvisor-Kontext.
@@ -38,10 +40,40 @@ class _ParentReportCardState extends State<ParentReportCard> {
   void initState() {
     super.initState();
     _future = _buildReport();
+    widget.appState.addListener(_profileDataChanged);
   }
 
-  Future<ParentReportSummary> _buildReport() async {
-    if (!widget.appState.learningProfileLoaded) {
+  @override
+  void didUpdateWidget(covariant ParentReportCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.appState != widget.appState) {
+      oldWidget.appState.removeListener(_profileDataChanged);
+      widget.appState.addListener(_profileDataChanged);
+      _profileDataChanged();
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.appState.removeListener(_profileDataChanged);
+    super.dispose();
+  }
+
+  void _profileDataChanged() {
+    if (!mounted) return;
+    setState(() {
+      _dataRevision++;
+      _aiInsight = null;
+      _aiError = null;
+      _aiLoading = false;
+      _future = _buildReport(loadProfile: false);
+    });
+  }
+
+  Future<ParentReportSummary> _buildReport({bool loadProfile = true}) async {
+    // Notifications also arrive after a failed load. Rebuilding a report is
+    // not permission to retry storage repeatedly; explicit caller retries win.
+    if (loadProfile && !widget.appState.learningProfileLoaded) {
       try {
         await widget.appState.loadLearningProfile();
       } catch (_) {}
@@ -73,32 +105,22 @@ class _ParentReportCardState extends State<ParentReportCard> {
       _aiLoading = true;
       _aiError = null;
     });
-    String fmtBlock(SubjectAnalysisBlock b) {
-      final s = b.strengths.take(3).join(', ');
-      final w = b.weaknesses.take(3).join(', ');
-      return '${b.subject}: Staerken [${s.isEmpty ? "keine erkannt" : s}], '
-          'Foerderbedarf [${w.isEmpty ? "keiner" : w}], '
-          'naechster Schritt [${b.recommendedAction}]';
-    }
-
-    final payload = StringBuffer()
-      ..writeln('Wochenanalyse fuer das Kind bitte:')
-      ..writeln(fmtBlock(report.reading))
-      ..writeln(fmtBlock(report.math))
-      ..writeln(fmtBlock(report.german))
-      ..writeln('Gib mir 3-5 Saetze als Elternteil: Was lief gut diese '
-          'Woche, woran sollten wir zuhause arbeiten, ein konkreter '
-          'Foerder-Tipp fuer die kommende Woche. Keine Floskeln, '
-          'praktisch.');
+    final revision = _dataRevision;
+    final state = widget.appState.state.copyWith();
+    final dna = const LearningDnaEngine().compute(
+      state: state,
+      skills: widget.appState.learningSkills(),
+    );
+    final payload = dna.parentAnalysisPrompt(grade: state.grade);
 
     try {
       final response = await _aiProxy.ask(
-        settings: widget.appState.state.settings,
-        state: widget.appState.state,
-        message: payload.toString(),
+        settings: state.settings,
+        state: state,
+        message: payload,
         context: LumoAiContext.parentAdvisor,
       );
-      if (!mounted) return;
+      if (!mounted || revision != _dataRevision) return;
       setState(() {
         _aiInsight = response.reply;
         _aiLoading = false;
@@ -109,7 +131,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
         }
       });
     } catch (_) {
-      if (!mounted) return;
+      if (!mounted || revision != _dataRevision) return;
       setState(() {
         _aiLoading = false;
         _aiError = 'KI-Berater gerade nicht erreichbar. Spaeter erneut.';
@@ -122,7 +144,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
     return FutureBuilder<ParentReportSummary>(
       future: _future,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) {
+        if (!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting) {
           return Container(
             width: double.infinity,
             padding: const EdgeInsets.all(18),
@@ -246,14 +268,14 @@ class _ParentReportCardState extends State<ParentReportCard> {
           const Text('✨', style: TextStyle(fontSize: 22)),
           const SizedBox(width: 8),
           Expanded(
-              child: Text('KI-Wochenanalyse',
+              child: Text('KI-Lernanalyse',
                   style: LumoTextStyles.heading3
                       .copyWith(color: LumoVisualTokens.white))),
         ]),
         const SizedBox(height: 6),
         Text(
           aiEnabled
-              ? 'Lumo-Berater fasst Lernfortschritt + Foerder-Tipp in 3-5 Saetzen zusammen.'
+              ? 'Lumo-Berater ordnet gespeicherte Gesamtwerte vorsichtig ein. Keine Wochenentwicklung ohne Zeitdaten.'
               : 'Lumo-KI-Server im Elternbereich noch nicht aktiviert.',
           style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
         ),

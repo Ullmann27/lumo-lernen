@@ -45,6 +45,15 @@ class LearningDnaParentCard extends StatelessWidget {
             const SizedBox(height: 14),
             _weaknessesBlock(),
           ],
+          if (dna.skillObservations.any((entry) =>
+              !dna.strengths.contains(entry) &&
+              !dna.weaknesses.contains(entry))) ...[
+            const SizedBox(height: 14),
+            for (final entry in dna.skillObservations.where((entry) =>
+                !dna.strengths.contains(entry) &&
+                !dna.weaknesses.contains(entry)))
+              _skillRow(entry, positive: entry.isStrength),
+          ],
           if (dna.errorBreakdown.isNotEmpty) ...[
             const SizedBox(height: 14),
             _errorBreakdownBlock(),
@@ -122,7 +131,7 @@ class LearningDnaParentCard extends StatelessWidget {
 
   Widget _recentProgressBlock() {
     return _SectionBox(
-      title: 'Letzter Fortschritt',
+      title: 'Gespeicherte Gesamtwerte',
       emoji: '📈',
       child: Text(
         dna.recentProgress,
@@ -143,7 +152,8 @@ class LearningDnaParentCard extends StatelessWidget {
       emoji: '💪',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: dna.strengths.map((s) => _skillRow(s, positive: true)).toList(),
+        children:
+            dna.strengths.map((s) => _skillRow(s, positive: true)).toList(),
       ),
     );
   }
@@ -154,62 +164,51 @@ class LearningDnaParentCard extends StatelessWidget {
       emoji: '🎯',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: dna.weaknesses.map((s) => _skillRow(s, positive: false)).toList(),
+        children:
+            dna.weaknesses.map((s) => _skillRow(s, positive: false)).toList(),
       ),
     );
   }
 
   Widget _skillRow(DnaSkillEntry entry, {required bool positive}) {
-    final color = positive ? const Color(0xFF10B981) : const Color(0xFFEA580C);
+    final color = entry.hasEnoughAnswersForGrouping
+        ? (positive ? const Color(0xFF10B981) : const Color(0xFFEA580C))
+        : LumoVisualTokens.muted;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(6),
-            ),
-            child: Text(
-              entry.subject,
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 10,
-                fontWeight: FontWeight.w900,
-                color: color,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              entry.skillLabel,
+          Wrap(spacing: 8, runSpacing: 4, children: [
+            Text(entry.subject,
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w900,
+                    color: color)),
+            Text(entry.skillLabel,
+                style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                    color: LumoVisualTokens.white)),
+          ]),
+          const SizedBox(height: 4),
+          Text(entry.answerSummary,
               style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 13,
-                fontWeight: FontWeight.w800,
-                color: LumoVisualTokens.white,
-              ),
-            ),
-          ),
-          Container(
-            width: 60,
-            height: 6,
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.15),
-              borderRadius: BorderRadius.circular(99),
-            ),
-            child: FractionallySizedBox(
-              alignment: Alignment.centerLeft,
-              widthFactor: entry.score.clamp(0.05, 1.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(99),
-                ),
-              ),
-            ),
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  color: LumoVisualTokens.white)),
+          Text(entry.sampleNote,
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 11,
+                  color: LumoVisualTokens.muted)),
+          const SizedBox(height: 4),
+          LinearProgressIndicator(
+            value: entry.score.clamp(0.0, 1.0),
+            color: color,
+            backgroundColor: color.withOpacity(0.15),
           ),
         ],
       ),
@@ -225,7 +224,8 @@ class LearningDnaParentCard extends StatelessWidget {
       child: Wrap(
         spacing: 6,
         runSpacing: 6,
-        children: entries.take(6).map((e) => _errorChip(e.key, e.value)).toList(),
+        children:
+            entries.take(6).map((e) => _errorChip(e.key, e.value)).toList(),
       ),
     );
   }

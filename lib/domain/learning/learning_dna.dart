@@ -19,7 +19,9 @@ class DnaSkillEntry {
     required this.subject,
     required this.skillLabel,
     required this.score,
-    this.confidence = 0.5,
+    this.confidence = 0,
+    this.correctAnswers = 0,
+    this.wrongAnswers = 0,
   });
 
   /// 'Mathe', 'Deutsch', 'Sachunterricht'.
@@ -28,14 +30,29 @@ class DnaSkillEntry {
   /// z.B. 'Plus bis 10', 'Reime', 'Artikel der/die/das'.
   final String skillLabel;
 
-  /// 0.0 (sehr schwach) bis 1.0 (sehr stark).
+  /// Observed correct-answer ratio, not a competency or diagnosis score.
   final double score;
 
-  /// Wie sicher der Wert ist (0.0-1.0). Niedrig bei wenig Daten.
+  /// Legacy compatibility field; no diagnostic confidence is inferred or shown.
   final double confidence;
+  final int correctAnswers;
+  final int wrongAnswers;
+  int get answerCount => correctAnswers + wrongAnswers;
 
-  bool get isStrength => score >= 0.70;
-  bool get isWeakness => score <= 0.45;
+  /// Conservative display grouping only; not a validated diagnostic threshold.
+  bool get hasEnoughAnswersForGrouping => answerCount >= 10;
+  bool get isSmallSample => answerCount > 0 && !hasEnoughAnswersForGrouping;
+  String get answerSummary => answerCount == 0
+      ? 'Noch keine Antworten'
+      : '${(score * 100).round()}% · $correctAnswers von $answerCount Antworten richtig';
+  String get sampleNote => answerCount == 0
+      ? 'Keine Datengrundlage'
+      : isSmallSample
+          ? 'Kleine Stichprobe – noch keine Einordnung'
+          : 'Übungsbeobachtung, keine Kompetenzdiagnose';
+
+  bool get isStrength => hasEnoughAnswersForGrouping && score >= 0.70;
+  bool get isWeakness => hasEnoughAnswersForGrouping && score <= 0.45;
 }
 
 /// Bevorzugte Aufgabenart fuer ein Kind.
@@ -65,25 +82,39 @@ enum DnaPreferredTaskType {
 extension DnaPreferredTaskTypeLabel on DnaPreferredTaskType {
   String get germanLabel {
     switch (this) {
-      case DnaPreferredTaskType.multipleChoice: return 'Antworten auswaehlen';
-      case DnaPreferredTaskType.directInput: return 'Selber eintippen';
-      case DnaPreferredTaskType.writing: return 'Schreiben mit Finger';
-      case DnaPreferredTaskType.visual: return 'Mit Bildern lernen';
-      case DnaPreferredTaskType.auditory: return 'Zuhoeren';
-      case DnaPreferredTaskType.gamified: return 'Lernspiele';
-      case DnaPreferredTaskType.unknown: return 'Wir finden es heraus';
+      case DnaPreferredTaskType.multipleChoice:
+        return 'Antworten auswaehlen';
+      case DnaPreferredTaskType.directInput:
+        return 'Selber eintippen';
+      case DnaPreferredTaskType.writing:
+        return 'Schreiben mit Finger';
+      case DnaPreferredTaskType.visual:
+        return 'Mit Bildern lernen';
+      case DnaPreferredTaskType.auditory:
+        return 'Zuhoeren';
+      case DnaPreferredTaskType.gamified:
+        return 'Lernspiele';
+      case DnaPreferredTaskType.unknown:
+        return 'Wir finden es heraus';
     }
   }
 
   String get emoji {
     switch (this) {
-      case DnaPreferredTaskType.multipleChoice: return '☑️';
-      case DnaPreferredTaskType.directInput: return '⌨️';
-      case DnaPreferredTaskType.writing: return '✏️';
-      case DnaPreferredTaskType.visual: return '🖼️';
-      case DnaPreferredTaskType.auditory: return '🔊';
-      case DnaPreferredTaskType.gamified: return '🎯';
-      case DnaPreferredTaskType.unknown: return '🔍';
+      case DnaPreferredTaskType.multipleChoice:
+        return '☑️';
+      case DnaPreferredTaskType.directInput:
+        return '⌨️';
+      case DnaPreferredTaskType.writing:
+        return '✏️';
+      case DnaPreferredTaskType.visual:
+        return '🖼️';
+      case DnaPreferredTaskType.auditory:
+        return '🔊';
+      case DnaPreferredTaskType.gamified:
+        return '🎯';
+      case DnaPreferredTaskType.unknown:
+        return '🔍';
     }
   }
 }
@@ -99,8 +130,10 @@ class DnaFrustrationSignal {
   });
 
   final DnaFrustrationType type;
+
   /// 0.0 (mild) bis 1.0 (hoch).
   final double severity;
+
   /// Kindgerechte Beschreibung fuer Eltern.
   final String message;
   final DateTime? lastSeen;
@@ -136,10 +169,13 @@ class DnaRecommendation {
 
   final String title;
   final String subject;
+
   /// Warum diese Empfehlung gegeben wird (eltern-tauglich).
   final String reason;
+
   /// 'hoch' / 'mittel' / 'niedrig'.
   final String priority;
+
   /// Konkretes Unit innerhalb des Subjects (z.B. 'Plus bis 10').
   final String? suggestedUnit;
 }
@@ -152,13 +188,14 @@ class LearningDna {
     this.lastUpdated,
     this.strengths = const <DnaSkillEntry>[],
     this.weaknesses = const <DnaSkillEntry>[],
+    this.skillObservations = const <DnaSkillEntry>[],
     this.errorBreakdown = const <String, int>{},
     this.preferredTaskType = DnaPreferredTaskType.unknown,
     this.nextRecommendation,
     this.recentProgress = '',
     this.frustrationSignals = const <DnaFrustrationSignal>[],
     this.nextRubric = '',
-    this.totalSessions = 0,
+    this.totalSessions,
     this.totalCorrect = 0,
     this.totalIncorrect = 0,
   });
@@ -171,6 +208,7 @@ class LearningDna {
 
   /// Top-3 Schwaechen (sortiert).
   final List<DnaSkillEntry> weaknesses;
+  final List<DnaSkillEntry> skillObservations;
 
   /// Wie viele Fehler pro Fehlertyp gezaehlt wurden.
   /// Keys aus ErrorDetective: 'countingError', 'plusMinusSwap', etc.
@@ -181,8 +219,7 @@ class LearningDna {
   /// Die naechste empfohlene Aktion.
   final DnaRecommendation? nextRecommendation;
 
-  /// Kurze Eltern-taugliche Zusammenfassung der letzten Tage.
-  /// z.B. "Heute 12 Aufgaben, davon 9 richtig. Streak: 7 Tage."
+  /// Stored answer totals. No time window or improvement is inferred.
   final String recentProgress;
 
   /// Aktuelle Frustrations-Signale (ggf. leer).
@@ -192,7 +229,8 @@ class LearningDna {
   /// z.B. "Plus bis 10 mit Zaehlbild".
   final String nextRubric;
 
-  final int totalSessions;
+  /// Unknown unless recorded explicitly; never fabricated from answer totals.
+  final int? totalSessions;
   final int totalCorrect;
   final int totalIncorrect;
 
@@ -203,6 +241,45 @@ class LearningDna {
   }
 
   bool get hasFrustrationSignals => frustrationSignals.isNotEmpty;
+
+  String parentAnalysisPrompt({required int grade}) {
+    final out = StringBuffer()
+      ..writeln('Lernanalyse für das aktuelle Profil (Klasse $grade).')
+      ..writeln(
+          'Datengrundlage: gespeicherte Antwort-Einträge, Gesamtwerte ohne abgegrenzten Zeitraum.')
+      ..writeln(
+          'Gesamt: ${totalCorrect + totalIncorrect} Antworten, $totalCorrect richtig, $totalIncorrect falsch.')
+      ..writeln(
+          'Keine Aussagen über heute, diese Woche, Verbesserung, Sitzungsanzahl oder Diagnosesicherheit ableiten.');
+    if (skillObservations.isEmpty || totalCorrect + totalIncorrect == 0) {
+      out.writeln(
+          'Noch keine Antwortdaten. Keine Stärken oder Schwierigkeiten erfinden.');
+    }
+    const footer =
+        'Gib 3–5 praktische Sätze für Eltern und eine sinnvolle nächste Übung. '
+        'Kleine Stichproben ausdrücklich vorsichtig einordnen; keine Kompetenzdiagnose.\n';
+    var omitted = 0;
+    // The existing transport rejects messages over 1200 characters. Keep whole
+    // observations and all data-quality instructions; never truncate a claim.
+    for (final entry in skillObservations) {
+      final line = '${entry.subject} / ${entry.skillLabel}: '
+          '${entry.answerSummary}. '
+          '${entry.isSmallSample || entry.answerCount == 0 ? entry.sampleNote : "Übungsbeobachtung"}.\n';
+      final omissionReserve =
+          '\nWeitere ${skillObservations.length} Themen nicht einzeln aufgeführt.\n'
+              .length;
+      if (out.length + line.length + footer.length + omissionReserve <= 1200) {
+        out.write(line);
+      } else {
+        omitted++;
+      }
+    }
+    if (omitted > 0) {
+      out.writeln('Weitere $omitted Themen nicht einzeln aufgeführt.');
+    }
+    out.write(footer);
+    return out.toString();
+  }
 
   /// Liefert eine drei-Wort-Zusammenfassung fuer das Kind.
   /// z.B. "Stark in Plus".

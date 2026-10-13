@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/core/learning_profile_engine.dart';
 import 'package:lumo_lernen/features/parents/lumo_insight_dashboard.dart';
 import 'package:lumo_lernen/features/settings/parent_report_card.dart';
 
@@ -49,7 +50,9 @@ void main() {
           tester.view.devicePixelRatio = 1;
           addTearDown(tester.view.resetPhysicalSize);
           addTearDown(tester.view.resetDevicePixelRatio);
-          final app = LumoAppState();
+          // ProfileEngine's initial save tail must be created in the same real
+          // async zone as the persisted fixture, not in the paused widget zone.
+          final app = (await tester.runAsync(() async => LumoAppState()))!;
           addTearDown(app.dispose);
           await tester.runAsync(() async {
             app.update(app.state.copyWith(childName: _name, grade: 2));
@@ -62,6 +65,17 @@ void main() {
                 reduceAnimations: true,
                 calmMode: true));
             await app.loadLearningProfile();
+            if (enabled) {
+              for (var topic = 0; topic < 8; topic++) {
+                for (var answer = 0; answer < 10; answer++) {
+                  await app.recordLearningAnswer(
+                      subject: 'Mathematik',
+                      unit: 'Thema $topic',
+                      correct: answer < 7,
+                      requireSaved: true);
+                }
+              }
+            }
           });
           await tester.pumpWidget(MaterialApp(
               home: RepaintBoundary(
@@ -118,9 +132,19 @@ void main() {
             expect(payload['context'], 'parent_advisor');
             expect(payload['childProfile'], {'grade': 2});
             expect(payload['history'], isEmpty);
-            expect(payload['message'], contains('Wochenanalyse'));
-            expect(payload['message'], contains('Staerken'));
-            expect(payload['message'], contains('Foerderbedarf'));
+            expect(payload['message'],
+                contains('Gesamt: 80 Antworten, 56 richtig, 24 falsch'));
+            expect(payload['message'], contains('ohne abgegrenzten Zeitraum'));
+            expect(payload['message'],
+                contains('Keine Aussagen über heute, diese Woche'));
+            for (var topic = 0; topic < 8; topic++) {
+              expect(
+                  payload['message'],
+                  contains(
+                      'Mathematik / Thema $topic: 70% · 7 von 10 Antworten richtig'));
+            }
+            expect(
+                (payload['message'] as String).length, lessThanOrEqualTo(1200));
             expect(jsonEncode(payload), isNot(contains(_name)),
                 reason:
                     'The profile name belongs only in the local parent UI.');
@@ -133,10 +157,80 @@ void main() {
       });
     }
   }
+  for (final dashboard in [true, false]) {
+    testWidgets(
+        '${dashboard ? 'Insight' : 'Elternbericht'} discards a delayed AI reply after profile switch',
+        (tester) async {
+      final requests = <Map<String, dynamic>>[];
+      final gate = Completer<void>();
+      addTearDown(() {
+        if (!gate.isCompleted) gate.complete();
+      });
+      await HttpOverrides.runZoned(() async {
+        final app = LumoAppState();
+        addTearDown(app.dispose);
+        await tester.runAsync(() async {
+          app.updateSettings(AppSettings(
+              aiProxyEnabled: true,
+              aiProxyUrl: 'https://offline.invalid',
+              voiceEnabled: false,
+              reduceAnimations: true));
+          await app.school.setActiveStudent('delayed-dna-a');
+          await app.loadLearningProfile();
+        });
+        await tester.pumpWidget(MaterialApp(
+            home: dashboard
+                ? LumoInsightDashboard(appState: app)
+                : Scaffold(
+                    body: SingleChildScrollView(
+                        child: ParentReportCard(appState: app)))));
+        await _frames(tester);
+        await tester.ensureVisible(
+            find.text(dashboard ? 'KI fragen' : 'KI-Analyse anfordern'));
+        await tester
+            .tap(find.text(dashboard ? 'KI fragen' : 'KI-Analyse anfordern'));
+        await _frames(tester);
+        expect(requests, hasLength(1));
+        expect(find.text('Gemeinsam kurze Aufgaben üben.'), findsNothing);
+        await tester.runAsync(() async {
+          await app.school.setActiveStudent('delayed-dna-b');
+          await app.loadLearningProfile();
+          gate.complete();
+        });
+        await _frames(tester);
+        expect(find.text('Gemeinsam kurze Aufgaben üben.'), findsNothing,
+            reason:
+                'A reply for the previous child must never appear in the current report.');
+        expect(find.text(dashboard ? 'KI fragen' : 'KI-Analyse anfordern'),
+            findsOneWidget);
+        expect(tester.takeException(), isNull);
+      }, createHttpClient: (_) => _Client(requests, gate: gate));
+    });
+  }
+  testWidgets(
+      'parent report does not automatically retry a failed profile load',
+      (tester) async {
+    final profile = _FailOnceProfile();
+    final app = LumoAppState(learningProfile: profile);
+    addTearDown(app.dispose);
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: SingleChildScrollView(
+                child: ParentReportCard(appState: app)))));
+    await _frames(tester);
+    expect(profile.loads, 1,
+        reason:
+            'A failed load notification must not trigger another automatic load.');
+    expect(app.learningProfileLoaded, false);
+    expect(find.text('KI-Analyse anfordern'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 }
 
 class _Client implements HttpClient {
-  _Client(this.requests);
+  _Client(this.requests, {this.gate});
+  final Completer<void>? gate;
   final List<Map<String, dynamic>> requests;
   @override
   Future<HttpClientRequest> postUrl(Uri url) async {
@@ -145,7 +239,7 @@ class _Client implements HttpClient {
         url.path != '/chat') {
       throw StateError('Unexpected endpoint: $url');
     }
-    return _Request(requests);
+    return _Request(requests, gate: gate);
   }
 
   @override
@@ -157,7 +251,8 @@ class _Client implements HttpClient {
 }
 
 class _Request implements HttpClientRequest {
-  _Request(this.requests);
+  _Request(this.requests, {this.gate});
+  final Completer<void>? gate;
   final List<Map<String, dynamic>> requests;
   final _body = StringBuffer();
   @override
@@ -167,6 +262,7 @@ class _Request implements HttpClientRequest {
   @override
   Future<HttpClientResponse> close() async {
     requests.add(jsonDecode(_body.toString()) as Map<String, dynamic>);
+    if (gate != null) await gate!.future;
     return _Response();
   }
 
@@ -192,4 +288,17 @@ class _Response extends Stream<List<int>> implements HttpClientResponse {
           onError: onError, onDone: onDone, cancelOnError: cancelOnError);
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+// Bound the regression even on a broken implementation: the second load stays
+// pending instead of starving the runner with an infinite error/notify loop.
+class _FailOnceProfile extends LearningProfileEngine {
+  int loads = 0;
+  @override
+  Future<void> load() {
+    loads++;
+    return loads == 1
+        ? Future<void>.error(StateError('Synthetic profile storage failure'))
+        : Completer<void>().future;
+  }
 }

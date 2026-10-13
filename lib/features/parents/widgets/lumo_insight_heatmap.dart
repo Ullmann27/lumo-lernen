@@ -7,7 +7,7 @@
 //   - Zeilen = Schulfach (Mathe, Deutsch, Sachunterricht, ...)
 //   - Spalten = Kompetenzen ('Plus bis 10', 'Reime', ...)
 //   - Farbe = Score (rot=schwach, gelb=mittel, gruen=stark, grau=neu)
-// Confidence wirkt als Saettigung: niedrige Sicherheit -> blasser, hohe -> kraeftig.
+// Antwortanzahl steuert die neutrale Darstellung kleiner Stichproben; keine Diagnosesicherheit.
 //
 // Datenquelle: DnaSkillEntry-Liste aus LearningDnaEngine.
 
@@ -45,7 +45,8 @@ class LumoInsightHeatmap extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoColors.orange.withOpacity(0.28), width: 1.4),
+        border:
+            Border.all(color: LumoColors.orange.withOpacity(0.28), width: 1.4),
         boxShadow: [
           BoxShadow(
             color: LumoColors.orange.withOpacity(0.14),
@@ -102,7 +103,7 @@ class LumoInsightHeatmap extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  'Sobald dein Kind ein paar Aufgaben loest, fuelle ich diese\nKompetenz-Karte automatisch mit echten Daten.',
+                  'Sobald dein Kind ein paar Aufgaben loest, fuelle ich diese\nLernbeobachtungen automatisch mit echten Daten.',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 13,
@@ -125,7 +126,10 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
+      spacing: 10,
+      runSpacing: 8,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -147,15 +151,13 @@ class _Header extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        const Expanded(
-          child: Text(
-            'Kompetenz-Karte',
-            style: TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
-              color: Color(0xFF7C2D12),
-            ),
+        const Text(
+          'Lernen im Überblick',
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 20,
+            fontWeight: FontWeight.w900,
+            color: Color(0xFF7C2D12),
           ),
         ),
       ],
@@ -188,7 +190,8 @@ class _SubjectRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final icon = _subjectIcons[subject] ?? '📚';
-    final sorted = [...entries]..sort((a, b) => a.skillLabel.compareTo(b.skillLabel));
+    final sorted = [...entries]
+      ..sort((a, b) => a.skillLabel.compareTo(b.skillLabel));
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
       decoration: BoxDecoration(
@@ -206,7 +209,10 @@ class _SubjectRow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Text(icon, style: const TextStyle(fontSize: 22)),
               const SizedBox(width: 8),
@@ -219,9 +225,8 @@ class _SubjectRow extends StatelessWidget {
                   color: Color(0xFF7C2D12),
                 ),
               ),
-              const Spacer(),
               Text(
-                '${sorted.length} ${sorted.length == 1 ? "Kompetenz" : "Kompetenzen"}',
+                '${sorted.length} ${sorted.length == 1 ? "Thema" : "Themen"}',
                 style: TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 11,
@@ -236,8 +241,7 @@ class _SubjectRow extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              for (final e in sorted)
-                _Cell(entry: e, onTap: onTap),
+              for (final e in sorted) _Cell(entry: e, onTap: onTap),
             ],
           ),
         ],
@@ -251,20 +255,16 @@ class _Cell extends StatelessWidget {
   final DnaSkillEntry entry;
   final void Function(DnaSkillEntry)? onTap;
 
-  /// Score 0..1 + Confidence 0..1 -> Farbe + Saettigung.
-  ///   score < 0.45 -> rot
-  ///   0.45..0.70   -> gelb
-  ///   > 0.70       -> gruen
-  /// Niedrige Confidence (<0.3) -> grau-blass (zu wenig Daten).
+  /// Observed answer ratio grouped only after ten answers; otherwise neutral.
   Color _cellColor() {
-    if (entry.confidence < 0.30) return const Color(0xFFF3F4F6);
+    if (!entry.hasEnoughAnswersForGrouping) return const Color(0xFFF3F4F6);
     if (entry.score < 0.45) return const Color(0xFFFCA5A5);
     if (entry.score < 0.70) return const Color(0xFFFCD34D);
     return const Color(0xFF86EFAC);
   }
 
   Color _borderColor() {
-    if (entry.confidence < 0.30) return const Color(0xFFD1D5DB);
+    if (!entry.hasEnoughAnswersForGrouping) return const Color(0xFFD1D5DB);
     if (entry.score < 0.45) return const Color(0xFFDC2626);
     if (entry.score < 0.70) return const Color(0xFFCA8A04);
     return const Color(0xFF15803D);
@@ -272,8 +272,6 @@ class _Cell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final percent = (entry.score * 100).round();
-    final showPercent = entry.confidence >= 0.30;
     return GestureDetector(
       onTap: onTap == null ? null : () => onTap!(entry),
       child: Container(
@@ -283,37 +281,28 @@ class _Cell extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: _borderColor(), width: 1.2),
         ),
-        child: Row(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              entry.skillLabel,
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
-                color: _borderColor(),
-              ),
-            ),
-            if (showPercent) ...[
-              const SizedBox(width: 6),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.80),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  '$percent%',
-                  style: TextStyle(
+            Text(entry.skillLabel,
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                    color: const Color(0xFF374151))),
+            const SizedBox(height: 4),
+            Text(entry.answerSummary,
+                style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 11,
-                    fontWeight: FontWeight.w900,
-                    color: _borderColor(),
-                  ),
-                ),
-              ),
-            ],
+                    fontWeight: FontWeight.w800,
+                    color: const Color(0xFF374151))),
+            Text(entry.sampleNote,
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 11,
+                    color: const Color(0xFF374151))),
           ],
         ),
       ),
@@ -326,13 +315,13 @@ class _Legend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
       children: [
-        _legendDot(const Color(0xFFFCA5A5), 'Schwach'),
+        _legendDot(const Color(0xFFFCA5A5), 'Mehr üben'),
         const SizedBox(width: 10),
         _legendDot(const Color(0xFFFCD34D), 'Im Aufbau'),
         const SizedBox(width: 10),
-        _legendDot(const Color(0xFF86EFAC), 'Sicher'),
+        _legendDot(const Color(0xFF86EFAC), 'Häufig richtig'),
         const SizedBox(width: 10),
         _legendDot(const Color(0xFFF3F4F6), 'Noch zu wenig Daten'),
       ],
