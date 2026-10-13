@@ -12,10 +12,11 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../learning_modules/lumo_phrases.dart';
 import '../learning_modules/wort_diktat/wort_diktat_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
+import '../story/lumo_story_library_screen.dart';
 import 'deutsch_gap_sentences.dart';
 
-/// Deutsch nach Heinz' Bild 04: Lückensatz mit Vorlesen, vier Bereiche
-/// (Lesen, Wörter, Diktat, Schreibcoach) und der echte Tagesfortschritt.
+/// Deutsch mit Lückensätzen, Lesen, Wörter, Diktat, Schreibcoach,
+/// Geschichtenbibliothek und dem echten Tagesfortschritt.
 class LumoDeutschScreen extends StatefulWidget {
   const LumoDeutschScreen({super.key, required this.appState, this.random});
 
@@ -560,6 +561,16 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
         const Color(0xFFC63A86),
         () => _open(LumoWritingCoachScreen(appState: widget.appState)),
       ),
+      (
+        'Geschichten',
+        'Lesen und selbst erfinden',
+        Icons.auto_stories_rounded,
+        LumoVisualTokens.cyan,
+        () {
+          if (ModalRoute.of(context)?.isCurrent != true) return;
+          _open(LumoStoryLibraryScreen(appState: widget.appState));
+        },
+      ),
     ];
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
@@ -572,6 +583,9 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
         return Wrap(spacing: gap, runSpacing: gap, children: [
           for (final area in areas)
             SizedBox(
+              key: area.$1 == 'Geschichten'
+                  ? const ValueKey('deutsch-stories')
+                  : null,
               width: width,
               height: 128 * textScale,
               child: _AreaTile(

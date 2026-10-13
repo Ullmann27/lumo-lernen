@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:ui' as ui;
+import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -159,4 +162,66 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await frames(tester);
   }, timeout: const Timeout(Duration(seconds: 45)));
+  testWidgets('story entries survive display resize and large text', (tester) async {
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    final app = await profile(tester, 2);
+    for (final entry in ['home', 'deutsch', 'reading', 'academy']) {
+      final Widget source = switch (entry) {
+        'home' => HomeContent(appState: app, onSection: (_) {}),
+        'deutsch' => LumoDeutschScreen(appState: app),
+        'academy' => LumoAkademieScreen(appState: app),
+        _ => ReadingContent(appState: app, onBack: () {}),
+      };
+      for (final width in [360.0, 800.0]) {
+        tester.view.physicalSize = Size(width, 1200);
+        await tester.pumpWidget(MaterialApp(
+          theme: LumoAppTheme.light(),
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              textScaler: const TextScaler.linear(1.5)),
+            child: child!,
+          ),
+          home: RepaintBoundary(
+            key: ValueKey('capture-$entry'), child: Scaffold(body: source)),
+        ));
+        await frames(tester);
+        final action = find.byKey(ValueKey('$entry-stories'));
+        if (action.evaluate().isEmpty) {
+          await tester.scrollUntilVisible(action, 250,
+            scrollable: find.byType(Scrollable).first);
+        }
+        await tester.ensureVisible(action);
+        await frames(tester);
+        expect(action, findsOneWidget);
+        expect(tester.getSize(action).height, greaterThanOrEqualTo(48));
+        expect(tester.takeException(), isNull);
+        final boundary = tester.renderObject<RenderRepaintBoundary>(
+          find.byKey(ValueKey('capture-$entry')));
+        await tester.runAsync(() async {
+          final image = await boundary.toImage(pixelRatio: 1);
+          try {
+            final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+            final file = File(
+              '.ci-results/story-entry/$entry-${width.toInt()}-large-text.png');
+            await file.parent.create(recursive: true);
+            await file.writeAsBytes(bytes!.buffer.asUint8List());
+          } finally { image.dispose(); }
+        });
+        await tester.runAsync(() => tester.tap(action));
+        await frames(tester);
+        expect(find.byType(LumoStoryLibraryScreen), findsOneWidget);
+        expect(app.state.grade, 2);
+        Navigator.of(tester.element(find.byType(LumoStoryLibraryScreen))).pop();
+        await frames(tester);
+        expect(find.byType(LumoStoryLibraryScreen), findsNothing);
+        expect(action, findsOneWidget);
+        expect(tester.takeException(), isNull);
+      }
+      await tester.pumpWidget(const SizedBox.shrink());
+      await frames(tester);
+    }
+  }, timeout: const Timeout(Duration(seconds: 45)));
+
 }
