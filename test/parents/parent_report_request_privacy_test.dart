@@ -50,7 +50,9 @@ void main() {
           tester.view.devicePixelRatio = 1;
           addTearDown(tester.view.resetPhysicalSize);
           addTearDown(tester.view.resetDevicePixelRatio);
-          final app = LumoAppState();
+          // ProfileEngine's initial save tail must be created in the same real
+          // async zone as the persisted fixture, not in the paused widget zone.
+          final app = (await tester.runAsync(() async => LumoAppState()))!;
           addTearDown(app.dispose);
           await tester.runAsync(() async {
             app.update(app.state.copyWith(childName: _name, grade: 2));
