@@ -24,6 +24,9 @@ class LumoStoryLibraryScreen extends StatefulWidget {
 
 class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   bool _loaded = false;
+
+  String get _gradeTitle =>
+      '${widget.appState.state.grade.clamp(1, 4).toInt()}. Klasse';
   bool _showFavOnly = false;
   String _searchQuery = '';
   _StorySort _sort = _StorySort.newest;
@@ -73,7 +76,10 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
           body: Center(child: CircularProgressIndicator()));
     }
     final lib = LumoStoryLibrary.instance;
-    var stories = _showFavOnly ? lib.favorites : lib.all.toList();
+    final grade = widget.appState.state.grade.clamp(1, 4).toInt();
+    var stories = (_showFavOnly ? lib.favorites : lib.all)
+        .where((stored) => stored.story.gradeLevel == grade)
+        .toList();
     // Filter via Suche (Titel, Held, Ort, Thema)
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
@@ -122,7 +128,7 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
                             onTap: _createNew,
                           ),
                           const SizedBox(height: LumoTokens.space20),
-                          Text('Deine Bibliothek (${stories.length})',
+                          Text('$_gradeTitle · ${stories.length} Geschichten',
                               style: LumoTokens.typo.headlineMedium),
                           const SizedBox(height: LumoTokens.space12),
                           ...stories.map((s) => Padding(
