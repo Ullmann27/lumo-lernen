@@ -1275,7 +1275,6 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       padding: const EdgeInsets.only(bottom: 10),
       child: Material(
         color: LumoVisualTokens.glass.withOpacity(.72),
-        borderRadius: BorderRadius.circular(20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
