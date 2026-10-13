@@ -218,7 +218,10 @@ void main() {
       alignment: 0.5,
       duration: const Duration(milliseconds: 250),
     );
-    await tester.pumpAndSettle();
+    // Do not pumpAndSettle here: Lumo's background animations are perpetual.
+    // A bounded frame advance completes only the explicit 250 ms scroll.
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.pump();
     expect(tester.getCenter(kartEntry).dy, inInclusiveRange(0, 1599));
     await tester.tap(kartEntry);
     expect(sections, [LumoSection.games]);
