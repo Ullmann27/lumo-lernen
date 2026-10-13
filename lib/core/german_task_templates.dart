@@ -247,23 +247,18 @@ class GermanTaskTemplates {
     return templatesForGrade(grade, unit: unit);
   }
 
-  static GermanConcreteTask generate(
-      {required int grade, required String unit, required int seed}) {
-    // Die Auswahl der Familie muss unabhängig vom Wiederholungsviertel sein.
-    // seed % pool.length ließ bei Pools mit acht Familien manche nie zu.
-    final available = templatesForGrade(grade, unit: unit);
-    final current =
-        available.where((item) => item.grade == grade.clamp(1, 4)).toList();
-    final earlier =
-        available.where((item) => item.grade < grade.clamp(1, 4)).toList();
-    final pool = seed.abs() % 4 == 0 && earlier.isNotEmpty
-        ? earlier
-        : current.isNotEmpty
-            ? current
-            : available;
-    final template = pool[_positive(seed ~/ 4, pool.length)];
+  static GermanConcreteTask generate({
+    required int grade,
+    required String unit,
+    required int seed,
+  }) {
+    // Regulaerer Lernpfad: nur Stoff der exakten Schulstufe.
+    // Ein bewusst direkt angefordertes altes Thema kann weiterhin ueber den
+    // Strict-Fallback erzeugt werden, wird aber nie zufaellig beigemischt.
+    final pool = templatesForGradeStrict(grade, unit: unit);
+    final template = pool[_positive(seed, pool.length)];
     return template.concretize(
-      seed ~/ (4 * pool.length) + (seed % 4) * 997 + template.id.hashCode,
+      seed ~/ pool.length + template.id.hashCode,
     );
   }
 
