@@ -20,6 +20,10 @@ import '../../core/school_exercise_generator.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../learning/learning_content.dart';
 import '../learning_modules/learning_module_registry.dart';
+import '../story/lumo_story_library_screen.dart';
+import '../writing/lumo_writing_coach_screen.dart';
+import '../writing/lumo_writing_word_coach_screen.dart';
+import '../writing/writing_feature_flags.dart';
 
 // Datenstruktur für Lehrpläne
 class LearningTopic {
@@ -167,6 +171,46 @@ class LumoCurriculum {
       color: color,
       icon: icon,
       topics: <LearningTopic>[
+        if (subjectKey == 'Deutsch')
+          LearningTopic(
+            id: 'special_story_$grade',
+            title: 'Geschichten · Lesen & verstehen',
+            icon: Icons.auto_stories_rounded,
+            gradient: const <Color>[
+              Color(0xFF5F2FBE),
+              Color(0xFF8A63E6),
+            ],
+            shortDesc:
+                '$grade. Klasse · Geschichten lesen, verstehen und entdecken',
+            subjectKey: 'Deutsch',
+            unitKey: '__stories__',
+          ),
+        if (subjectKey == 'Schreiben' && grade == 1)
+          const LearningTopic(
+            id: 'special_writing_coach',
+            title: 'Schreibcoach LIVE',
+            icon: Icons.gesture_rounded,
+            gradient: <Color>[
+              Color(0xFF8E3D9D),
+              Color(0xFFB85FC7),
+            ],
+            shortDesc: 'Buchstaben und Zahlen mit Lumo schreiben',
+            subjectKey: 'Schreiben',
+            unitKey: '__writing_coach__',
+          ),
+        if (subjectKey == 'Schreiben' && WritingFeatureFlags.enableWordMode)
+          LearningTopic(
+            id: 'special_word_coach_$grade',
+            title: 'Wörter schreiben',
+            icon: Icons.edit_note_rounded,
+            gradient: const <Color>[
+              Color(0xFF8E3D9D),
+              Color(0xFFB85FC7),
+            ],
+            shortDesc: '$grade. Klasse · Wörter hören und selbst schreiben',
+            subjectKey: 'Schreiben',
+            unitKey: '__word_coach__',
+          ),
         for (final unit in units)
           LearningTopic(
             id: _topicId(grade, subjectKey, unit),
@@ -1461,6 +1505,60 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openTopic(LearningTopic t, LearningSubject s) {
+    if (t.unitKey == '__stories__') {
+      widget.appState.update(widget.appState.state.copyWith(
+        grade: _selectedGrade,
+        subject: 'Deutsch',
+        unit: 'Geschichten',
+        mood: LumoMood.think,
+        lumoMessage:
+            'Geschichten für die $_selectedGrade. Klasse.\nLies mit mir!',
+      ));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => LumoStoryLibraryScreen(
+            appState: widget.appState,
+          ),
+        ),
+      );
+      return;
+    }
+
+    if (t.unitKey == '__writing_coach__') {
+      widget.appState.update(widget.appState.state.copyWith(
+        grade: _selectedGrade,
+        subject: 'Schreiben',
+        unit: 'Schreibcoach',
+        mood: LumoMood.point,
+      ));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => LumoWritingCoachScreen(
+            appState: widget.appState,
+          ),
+        ),
+      );
+      return;
+    }
+
+    if (t.unitKey == '__word_coach__' &&
+        WritingFeatureFlags.enableWordMode) {
+      widget.appState.update(widget.appState.state.copyWith(
+        grade: _selectedGrade,
+        subject: 'Schreiben',
+        unit: 'Wörter schreiben',
+        mood: LumoMood.point,
+      ));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => LumoWritingWordCoachScreen(
+            appState: widget.appState,
+          ),
+        ),
+      );
+      return;
+    }
+
     // Bestehende hochwertige Spezialmodule bleiben erhalten.
     final moduleBuilder =
         LearningModuleRegistry.builderFor(t.id, widget.appState);
