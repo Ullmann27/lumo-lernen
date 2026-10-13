@@ -245,9 +245,12 @@ void main() {
       await app.ensureSettingsLoaded();
     });
     const speechChannel = MethodChannel('plugin.csdcorp.com/speech_to_text');
-    var speechCalls = 0;
+    final speechMethods = <String>[];
     tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
-      speechChannel, (call) async { speechCalls++; return false; });
+      speechChannel, (call) async {
+        speechMethods.add(call.method);
+        return false;
+      });
     addTearDown(() => tester.binding.defaultBinaryMessenger
         .setMockMethodCallHandler(speechChannel, null));
     await tester.pumpWidget(MaterialApp(
@@ -267,8 +270,13 @@ void main() {
     expect(find.byType(LumoStoryLibraryScreen), findsOneWidget);
     app.settingsGate!.complete();
     await frames(tester);
-    expect(speechCalls, 0,
-        reason: 'A delayed start must not initialize speech behind another route.');
+    // Route cleanup may cancel or stop speech; every other call is forbidden.
+    expect(
+      speechMethods.where((method) => method != 'cancel' && method != 'stop'),
+      isEmpty,
+      reason: 'A delayed start must not initialize or listen behind another '
+          'route. Observed speech methods: $speechMethods',
+    );
     expect(app.learningSkills(), isEmpty);
     Navigator.of(tester.element(find.byType(LumoStoryLibraryScreen))).pop();
     await frames(tester);
