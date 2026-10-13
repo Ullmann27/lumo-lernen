@@ -224,10 +224,10 @@ class ProgressRecommendationService {
   // Wiederholung erreichbar und werden nicht als neues Thema vorgeschlagen.
   Map<String, List<String>> _catalog(int grade) {
     const starters = <int, String>{
-      1: 'Plus bis 10',
-      2: 'Plus bis 20',
-      3: 'Einmaleins',
-      4: 'Schriftliche Multiplikation'
+      1: 'Plus bis 20',
+      2: 'Plus bis 100',
+      3: 'Plus bis 1000',
+      4: 'Zahlenraum bis 1 Million',
     };
     return <String, List<String>>{
       for (final subject in Curriculum.subjects.keys)
