@@ -33,6 +33,7 @@ void main() {
         containsAll([
           'Massen Kilogramm und Gramm',
           'Plus bis 10000',
+          'Plus bis 1000000',
           'Hohlmaße Liter und Milliliter',
           'Brüche erweitern'
         ]));
@@ -128,6 +129,43 @@ void main() {
     }
   });
 
+  test('math number ranges progress with the Austrian school grades', () {
+    final g1 = Curriculum.unitsForGrade(
+      'Mathematik',
+      1,
+      currentGradeOnly: true,
+    );
+    final g2 = Curriculum.unitsForGrade(
+      'Mathematik',
+      2,
+      currentGradeOnly: true,
+    );
+    final g3 = Curriculum.unitsForGrade(
+      'Mathematik',
+      3,
+      currentGradeOnly: true,
+    );
+    final g4 = Curriculum.unitsForGrade(
+      'Mathematik',
+      4,
+      currentGradeOnly: true,
+    );
+
+    expect(g1, containsAll(<String>['Plus bis 20', 'Minus bis 20']));
+    expect(g2, containsAll(<String>['Plus bis 100', 'Minus bis 100']));
+    expect(g2, isNot(contains('Plus bis 20')));
+    expect(g3, containsAll(<String>['Plus bis 1000', 'Minus bis 1000']));
+    expect(g3, isNot(contains('Plus bis 100')));
+    expect(
+      g4,
+      containsAll(<String>[
+        'Plus bis 1000000',
+        'Minus bis 1000000',
+        'Zahlenraum bis 1 Million',
+      ]),
+    );
+  });
+
   test('fourth-grade math menu does not expose grade-one arithmetic', () {
     final grade4 = Curriculum.unitsForGrade(
       'Mathematik',
@@ -169,14 +207,20 @@ void main() {
     }
   });
 
-  test('a requested available legacy alias remains usable', () {
+  test('stale legacy topics cannot bypass the selected grade', () {
     final factory = ExerciseFactory(seed: 2);
+    final currentGerman =
+        Curriculum.unitsForGrade('Deutsch', 2, currentGradeOnly: true);
     final noun =
         factory.next(grade: 2, subject: 'Deutsch', unit: 'Namenswoerter');
-    expect(noun.unit, 'Namenswoerter');
+    expect(currentGerman, contains(noun.unit));
+
+    final currentMath =
+        Curriculum.unitsForGrade('Mathematik', 2, currentGradeOnly: true);
     final house =
         factory.next(grade: 2, subject: 'Mathematik', unit: 'Rechenhaeuser');
     expect(house.subject, 'Mathematik');
-    expect(house.unit, 'Plus bis 20');
+    expect(currentMath, contains(house.unit));
+    expect(house.unit, isNot('Plus bis 20'));
   });
 }
