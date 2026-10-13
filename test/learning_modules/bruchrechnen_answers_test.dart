@@ -152,6 +152,9 @@ void main() {
     await tester.ensureVisible(find.text('Mathe'));
     await tester.tap(find.text('Mathe'));
     await _frames(tester);
+    await tester.ensureVisible(find.text('Brüche & Dezimalzahlen'));
+    await tester.tap(find.text('Brüche & Dezimalzahlen'));
+    await _frames(tester);
     await tester.ensureVisible(find.text('Bruchrechnen'));
     await tester.tap(find.text('Bruchrechnen'));
     await _frames(tester);
