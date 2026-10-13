@@ -66,12 +66,14 @@ class _ParentReportCardState extends State<ParentReportCard> {
       _aiInsight = null;
       _aiError = null;
       _aiLoading = false;
-      _future = _buildReport();
+      _future = _buildReport(loadProfile: false);
     });
   }
 
-  Future<ParentReportSummary> _buildReport() async {
-    if (!widget.appState.learningProfileLoaded) {
+  Future<ParentReportSummary> _buildReport({bool loadProfile = true}) async {
+    // Notifications also arrive after a failed load. Rebuilding a report is
+    // not permission to retry storage repeatedly; explicit caller retries win.
+    if (loadProfile && !widget.appState.learningProfileLoaded) {
       try {
         await widget.appState.loadLearningProfile();
       } catch (_) {}

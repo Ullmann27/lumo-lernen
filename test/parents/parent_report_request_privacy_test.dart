@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/core/learning_profile_engine.dart';
 import 'package:lumo_lernen/features/parents/lumo_insight_dashboard.dart';
 import 'package:lumo_lernen/features/settings/parent_report_card.dart';
 
@@ -204,6 +205,25 @@ void main() {
       }, createHttpClient: (_) => _Client(requests, gate: gate));
     });
   }
+  testWidgets(
+      'parent report does not automatically retry a failed profile load',
+      (tester) async {
+    final profile = _FailOnceProfile();
+    final app = LumoAppState(learningProfile: profile);
+    addTearDown(app.dispose);
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: SingleChildScrollView(
+                child: ParentReportCard(appState: app)))));
+    await _frames(tester);
+    expect(profile.loads, 1,
+        reason:
+            'A failed load notification must not trigger another automatic load.');
+    expect(app.learningProfileLoaded, false);
+    expect(find.text('KI-Analyse anfordern'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 }
 
 class _Client implements HttpClient {
@@ -266,4 +286,17 @@ class _Response extends Stream<List<int>> implements HttpClientResponse {
           onError: onError, onDone: onDone, cancelOnError: cancelOnError);
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+// Bound the regression even on a broken implementation: the second load stays
+// pending instead of starving the runner with an infinite error/notify loop.
+class _FailOnceProfile extends LearningProfileEngine {
+  int loads = 0;
+  @override
+  Future<void> load() {
+    loads++;
+    return loads == 1
+        ? Future<void>.error(StateError('Synthetic profile storage failure'))
+        : Completer<void>().future;
+  }
 }
