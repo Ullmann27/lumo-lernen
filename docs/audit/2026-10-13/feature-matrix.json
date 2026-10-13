@@ -1,0 +1,1903 @@
+[
+  {
+    "1_function_and_purpose": "App-Start, Profile, adaptive Shell",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/main.dart"
+    },
+    "3_development_status": "integriert; Gesamt-Androidabnahme ungeprüft",
+    "4_home_reachability": "main → LumoApp → AppShell → HomeContent",
+    "5_navigation_data_dependencies": "ProfileRepository/Wallet/Settings; AppShell baut Bereiche aus LumoSection",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/logic_learning_regression_test.dart",
+        "test/shape_trace_retry_test.dart",
+        "test/reading_active_sentence_view_test.dart",
+        "test/reward_engine_test.dart",
+        "test/lumo_learning_feedback_engine_test.dart",
+        "test/reading_writing_content_test.dart",
+        "test/restart_regression_test.dart",
+        "test/other_subject_generator_regression_test.dart",
+        "test/premium_visual_renderer_test.dart",
+        "test/writing_accuracy_regression_test.dart",
+        "test/widget_test.dart",
+        "test/visual_payload_data_test.dart",
+        "test/design/lumo_learning_tree_fold_visual_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Keine aktuelle Gesamt-APK-Abnahme; breite/kompakte Layouts einzeln testen",
+    "9_integration_risk": "hoch bei Ersetzen der Shell/Profilarchitektur",
+    "10_next_implementation": "Bestehende Architektur erhalten; Update-/Resize-/Relaunchtest"
+  },
+  {
+    "1_function_and_purpose": "Akademie und Klassenwahl",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/teacher_mode/lumo_akademie_screen.dart"
+    },
+    "3_development_status": "teilweise integriert",
+    "4_home_reachability": "Home Lernen → AppShell.learn → Akademie → _openTopic",
+    "5_navigation_data_dependencies": "Ausgewählte Klasse lokal; höhere Klasse → GuidedLearningHub discovery; normale Spezialmodule/Chatfallback",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/lumo_shell_layout_test.dart",
+        "test/smoke_main_screens_test.dart",
+        "test/learning_modules/bruchrechnen_answers_test.dart",
+        "test/learning_modules/plus_bis_10_persistence_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht jedes Topic hat echte Aufgabenroute; PR281 enthält Spenderdeltas",
+    "9_integration_risk": "mittel; Schulstufen-/Profiltrennung",
+    "10_next_implementation": "Jedes Topic mit tatsächlichem Navigations- und Generatorfall prüfen"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul m1_formen: FormenScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/formen/formen_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic m1_formen → LearningModuleRegistry → FormenScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/design/learning_adventure_capture_test.dart",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul s1_tiere: TiereScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/tiere/tiere_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic s1_tiere → LearningModuleRegistry → TiereScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul s1_farben: FarbenScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/farben/farben_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic s1_farben → LearningModuleRegistry → FarbenScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul m2_uhr: UhrLernenScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic m2_uhr → LearningModuleRegistry → UhrLernenScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/learning_modules/math_module_progress_test.dart",
+        "test/learning_modules/clock_and_number_quality_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul m2_geld: GeldScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/geld/geld_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic m2_geld → LearningModuleRegistry → GeldScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul d2_artikel: ArtikelLernenScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic d2_artikel → LearningModuleRegistry → ArtikelLernenScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul d2_mehrzahl: MehrzahlScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic d2_mehrzahl → LearningModuleRegistry → MehrzahlScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul s2_jahreszeiten: JahreszeitenScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/jahreszeiten/jahreszeiten_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic s2_jahreszeiten → LearningModuleRegistry → JahreszeitenScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul s2_wetter: WetterScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/wetter/wetter_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic s2_wetter → LearningModuleRegistry → WetterScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul s2_verkehr: VerkehrScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/verkehr/verkehr_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic s2_verkehr → LearningModuleRegistry → VerkehrScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul d3_wortarten: WortartenScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/wortarten/wortarten_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic d3_wortarten → LearningModuleRegistry → WortartenScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul d3_zeitformen: ZeitformenScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/zeitformen/zeitformen_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic d3_zeitformen → LearningModuleRegistry → ZeitformenScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul d1_woerter: WortDiktatScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic d1_woerter → LearningModuleRegistry → WortDiktatScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul m2_einmaleins: EinmaleinsScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic m2_einmaleins → LearningModuleRegistry → EinmaleinsScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul m3_einmaleins_voll: EinmaleinsScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic m3_einmaleins_voll → LearningModuleRegistry → EinmaleinsScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Spezialmodul m4_bruch: BruchrechnenScreen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart"
+    },
+    "3_development_status": "entwickelt und über Registry angeschlossen; Runtime-Abnahme ungeprüft",
+    "4_home_reachability": "Home Lernen → Akademie → Topic m4_bruch → LearningModuleRegistry → BruchrechnenScreen",
+    "5_navigation_data_dependencies": "LumoAppState; eigene grafische Aufgaben/Hilfen; LearningModuleProgress. Für höhere als Profilklasse wird vorher Discovery gewählt. d1_woerter nutzt bei aktivem Flag vorher Wortcoach.",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/learning_modules/bruchrechnen_answers_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein neues belegtes Moduldefizit durch Inventur; Klasse/Hilfe/Antwort/Speicher für jeden Aufruf prüfen",
+    "9_integration_risk": "mittel; didaktischen Spezialrenderer erhalten",
+    "10_next_implementation": "Kein generisches Ersatzmodul; gezielte Aufgaben-/Foldregression"
+  },
+  {
+    "1_function_and_purpose": "Generische Mathematik/Deutsch/Sachunterricht/Logik-Aufgaben",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning/learning_content.dart"
+    },
+    "3_development_status": "integriert, Themenvollständigkeit ungeprüft",
+    "4_home_reachability": "Home Fach → _startPractice → AppShell.exercises → LearningContent",
+    "5_navigation_data_dependencies": "SchoolExerciseGenerator/Renderer; recordLearningAnswer und profile lease",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/learning_test_session_result_test.dart",
+        "test/learning_answer_reward_test.dart",
+        "test/task_help_integration_test.dart",
+        "test/design/lumo_learning_tree_fold_visual_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Schulstufen-/Themenkonformität und Wiederholungsfreiheit einzeln prüfen",
+    "9_integration_risk": "mittel",
+    "10_next_implementation": "Generatorfälle Klasse1–4 mit offiziellen Kompetenzen vergleichen"
+  },
+  {
+    "1_function_and_purpose": "Deutsch-Übersicht und Lernen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/deutsch/lumo_deutsch_screen.dart"
+    },
+    "3_development_status": "integriert; Geschichtenanschluss fehlt",
+    "4_home_reachability": "Home Lernen → Akademie Deutsch → LumoDeutschScreen",
+    "5_navigation_data_dependencies": "Lokaler Deutschbereich; ReadingContent für Lesen",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/deutsch_gap_sentence_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Keine direkte freie Geschichtenbibliothek in dieser Basis",
+    "9_integration_risk": "niedrig für Navigationsdelta",
+    "10_next_implementation": "Vorhandenen Story-Einstieg aus Spender selektiv anschließen"
+  },
+  {
+    "1_function_and_purpose": "Aktives Lesen mit Sprachanalyse",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/reading/reading_content.dart"
+    },
+    "3_development_status": "integriert; aktuelle Stimme/Android ungeprüft",
+    "4_home_reachability": "Home Mehr entdecken → Lesen mit Lumo → AppShell.reading → ReadingContent",
+    "5_navigation_data_dependencies": "StoryEngine, ReadingAttemptHistory, mikrofonabhängiges aktives Lesen, profilgebundene Erinnerungen",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Eigene Vorleseroute ist kein Ersatz für frei erstellte Bibliotheksgeschichten",
+    "9_integration_risk": "mittel",
+    "10_next_implementation": "Lesebibliothek separat anschließen; Mikrofon-/Offline-/Berechtigungsfälle prüfen"
+  },
+  {
+    "1_function_and_purpose": "Freie Geschichtenbibliothek/Favoriten/Filter",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/story/lumo_story_library_screen.dart"
+    },
+    "3_development_status": "integriert mit indirektem Home-Einstieg",
+    "4_home_reachability": "Home Mehr entdecken → Magic Hub → Geschichten → Bibliothek → _createNew/_openStory",
+    "5_navigation_data_dependencies": "LumoStoryLibrary; globaler v1-Speicherschlüssel; Filter nur im Speicher; initialGrade von gradeLevel",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/story_setup_learning_path_grade_test.dart",
+        "test/story_library_grade_filter_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Direkter Home-/Deutsch-/Lernpfadeinstieg fehlt; Profilisolierung globaler Bibliothek ungeprüft",
+    "9_integration_risk": "niedrig Navigation, hoch neue Speicherzuordnung",
+    "10_next_implementation": "Direktrouten testen; bestehende JSON-Hefte/Metadaten unverändert erhalten"
+  },
+  {
+    "1_function_and_purpose": "Geschichten-Setup freie/feste Klasse",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/story/lumo_story_setup_screen.dart"
+    },
+    "3_development_status": "PR284/285 integriert und baseline-getestet",
+    "4_home_reachability": "Bibliothek → erste/neue Geschichte → Setup → Überraschung/manuell → Reader",
+    "5_navigation_data_dependencies": "initialGrade ?? Profilklasse, clamp1–4; Lernpfadklasse gesperrt; freie Klasse lokal änderbar",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/story_setup_profile_grade_test.dart",
+        "test/story_setup_learning_path_grade_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Feste Lernpfadklasse vorhanden, Akademieroute noch nicht angeschlossen",
+    "9_integration_risk": "niedrig",
+    "10_next_implementation": "Original Profilklassen-/Lernpfad-/Filtertests unverändert behalten"
+  },
+  {
+    "1_function_and_purpose": "Geschichten lesen, Übungen, Abschluss",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/story/lumo_story_reader_screen.dart"
+    },
+    "3_development_status": "technisch fehlerhaft: Speichern vor Erfolg nicht gesichert",
+    "4_home_reachability": "Bibliothek/Setup/Quest → Reader → _nextPage/_showFinish",
+    "5_navigation_data_dependencies": "LumoStoryGenerator, Bibliothek, Voice, Sterne/XP; Zusammenfassung mit heuristischem Stamm-Matching",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/story_setup_learning_path_grade_test.dart",
+        "test/story_completion_storage_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein await, Doppelfinishschutz, zuverlässiger Fehlerzustand oder SkillRecord für Verständnisantworten",
+    "9_integration_risk": "niedrig für Speichersynchronisierung; mittel für Antwortfachlichkeit/Wallet",
+    "10_next_implementation": "Task1 kontrollierte Speichertests und minimale Reparatur; danach Antwortdaten separat"
+  },
+  {
+    "1_function_and_purpose": "Lumo Quest",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/story/lumo_quest_hub_screen.dart"
+    },
+    "3_development_status": "angeschlossen; Design/Antwortfachlichkeit teilweise",
+    "4_home_reachability": "Home Mehr entdecken → Lumo Quest → Quest-Karte → StoryReader",
+    "5_navigation_data_dependencies": "LumoQuestLibrary.forGrade; bestehende narrative Aufgaben",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Gleiche Reader-Speicher-/Antwortlücken; Design noch cremefarben",
+    "9_integration_risk": "mittel",
+    "10_next_implementation": "Reader reparieren, vorhandene Questinhalte erhalten"
+  },
+  {
+    "1_function_and_purpose": "Lern-DNA",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/domain/learning/learning_dna_engine.dart"
+    },
+    "3_development_status": "technisch/fachlich fehlerhaft",
+    "4_home_reachability": "Home Einstellungen → Elternbericht → Insight → LearningDnaEngine.compute",
+    "5_navigation_data_dependencies": "Aktuell SessionState statt profilgebundener SkillRecord-Daten",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Feste positive Werte, künstliche Confidence/Fehlerscores, Heute-Gesamtwert, Sterne als Streak",
+    "9_integration_risk": "mittel; Eltern dürfen keine erfundene Diagnose erhalten",
+    "10_next_implementation": "SkillRecord-Zähler/Antwortanzahl benutzen, Null-/kleine Stichproben klar benennen"
+  },
+  {
+    "1_function_and_purpose": "Lumo Insight und KI-Auswertung",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/parents/lumo_insight_dashboard.dart"
+    },
+    "3_development_status": "angeschlossen, Dateninterpretation fehlerhaft",
+    "4_home_reachability": "Einstellungen → ParentReportCard → LumoInsightDashboard",
+    "5_navigation_data_dependencies": "ErrorBreakdownRepository namensgebunden; AI-Proxy mit Elternsettings",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/parents/parent_report_request_privacy_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "solved als recentCorrect, Help0/Sessions1, unbelegte Wochenereignisse; async Profilwechsel prüfen",
+    "9_integration_risk": "mittel/hoch bei Profilvermischung",
+    "10_next_implementation": "Profilgebundene SkillRecord-Gesamtwerte; Elternfreigabe erhalten; Prompt ohne Zeitbehauptungen"
+  },
+  {
+    "1_function_and_purpose": "Kompetenz-Heatmap",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/parents/widgets/lumo_insight_heatmap.dart"
+    },
+    "3_development_status": "entwickelt/angeschlossen; Darstellung korrigieren",
+    "4_home_reachability": "Insight → LumoInsightHeatmap(entries)",
+    "5_navigation_data_dependencies": "DnaSkillEntry score/confidence",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Prozente ohne Antwortanzahl; helles älteres Design; kleine Stichprobe",
+    "9_integration_risk": "niedrig Design, mittel Semantik",
+    "10_next_implementation": "Nach Datenreparatur gezielte dunkle PR281-Optik und echte Stichprobentexte"
+  },
+  {
+    "1_function_and_purpose": "Finger-Schreibcoach",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart"
+    },
+    "3_development_status": "entwickelt/angeschlossen; S/C/H/O-Spender ungeprüft",
+    "4_home_reachability": "Akademie d1_schreibcoach / Magic Hub / Story-Ende → WritingCoach",
+    "5_navigation_data_dependencies": "WritingEngine, geometrische Stroke-Analyse, ProgressRepo, Voice",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "PR282 bietet tolerant(er)e Erkennung/Fortschaltung; nicht pauschal übertragen",
+    "9_integration_risk": "mittel; falsch akzeptierte Buchstaben",
+    "10_next_implementation": "Reale Stroke-Fixtures S/C/H/O und Navigation/Belohnung vor Delta"
+  },
+  {
+    "1_function_and_purpose": "Wort-Schreibcoach/Diktat",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart"
+    },
+    "3_development_status": "aktiv hinter enableWordMode=true",
+    "4_home_reachability": "Akademie d1_woerter → WordCoach vor Registry",
+    "5_navigation_data_dependencies": "WritingEngine und Schreibfortschritt; Buchstabenfelder",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/writing_word_progress_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Handschrift-Toleranz darf Rechtschreibung nicht aufweichen",
+    "9_integration_risk": "mittel",
+    "10_next_implementation": "Spenderdelta getrennt mit richtigen/falschen Wörtern testen"
+  },
+  {
+    "1_function_and_purpose": "ML Kit Digital Ink/Blatt-OCR",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/writing/writing_feature_flags.dart"
+    },
+    "3_development_status": "nicht aktiviert; keine fertige ML-Abnahme",
+    "4_home_reachability": "enableDigitalInkRecognition=false, enableSheetOcr=false; geometrischer Coach läuft unabhängig",
+    "5_navigation_data_dependencies": "Bestehende Flags; kein automatisches Modell-/Online-Aktivieren",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "ML/OCR-Fertigstellung durch Flag allein nicht belegt",
+    "9_integration_risk": "hoch bei Datenschutz-/Berechtigungsänderung",
+    "10_next_implementation": "Vorhandenen Coach erhalten; ML-Pfad erst eigenes Prüfprojekt"
+  },
+  {
+    "1_function_and_purpose": "Lumo-Meister",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/domain/quiz/quiz_show.dart"
+    },
+    "3_development_status": "Basis15Fragen; Spender20Fragen entwickelt, nicht integriert",
+    "4_home_reachability": "Home Mehr entdecken → Quiz → QuizShowContent; Spielewelt-Direktportal als Spender",
+    "5_navigation_data_dependencies": "QuizQuestionBank, QuizShowState, Joker/Fragen/Sicherheitsstufen",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Basis15Fragen; PR28220Fragen; Belohnung/Deduplizierung separat prüfen",
+    "9_integration_risk": "mittel/hoch Wallet/Regeländerung",
+    "10_next_implementation": "Exakte 20-Fragen-Deltas und vollständige Runde testen"
+  },
+  {
+    "1_function_and_purpose": "Family-Park-Regel/Elternfreigabe",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/domain/rewards/reward_catalog.dart"
+    },
+    "3_development_status": "technisch integriert, Produktregel widersprüchlich",
+    "4_home_reachability": "Home Belohnungen → RewardShop → family_park",
+    "5_navigation_data_dependencies": "RewardCatalog, Wallet, Elternfreigabe",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "family_park cost30000 an Basis; Auftrag fordert5000",
+    "9_integration_risk": "mittel; Ausgabe-/Updatekompatibilität",
+    "10_next_implementation": "PR282-Preisdelta mit Grenzwerten4999/5000 und Elternfreigabe/Dedupe testen"
+  },
+  {
+    "1_function_and_purpose": "Offline-Stimme/ONNX und Sulafat",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/core/lumo_voice.dart"
+    },
+    "3_development_status": "vorhanden/angeschlossen; Hörqualität nicht neu abgenommen",
+    "4_home_reachability": "main init / Shell Settings / Lernmodule sprechen über LumoVoice.instance",
+    "5_navigation_data_dependencies": "Native offlineClient, VoicePolicy, Clips, AudioCache, getrennte LegacySulafat-Elternautorisierung",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/lumo_voice_word_boundary_test.dart",
+        "test/lumo_shell_layout_test.dart",
+        "test/lumo_voice_clips_test.dart",
+        "test/voice_mute_regression_test.dart",
+        "test/lumo_context_conversation_test.dart",
+        "test/lumo_speech_matrix_test.dart",
+        "test/photo_lesson_subject_flow_test.dart",
+        "test/lumo_cards_session_ui_test.dart",
+        "test/lumo_free_speech_matrix_test.dart",
+        "test/lumo_animated_fox_motion_test.dart",
+        "test/feature_permission_regression_test.dart",
+        "test/learning_test_session_result_test.dart",
+        "test/lumo_learning_events_test.dart",
+        "test/lumo_cards_controller_lifecycle_test.dart",
+        "test/learning_answer_reward_test.dart",
+        "test/lumo_cards_layout_foundation_test.dart",
+        "test/task_help_integration_test.dart",
+        "test/lumo_cards_session_visual_test.dart",
+        "test/lumo_voice_settings_capture_test.dart",
+        "test/writing_word_progress_test.dart",
+        "test/lumo_free_voice_test.dart",
+        "test/deutsch_gap_sentence_test.dart",
+        "test/story_completion_storage_test.dart",
+        "test/lumo_header_semantics_test.dart",
+        "test/iq/iq_test_support.dart",
+        "test/games/flame_adventure_round_test.dart",
+        "test/games/flame_adventure_flow_test.dart",
+        "test/games/games_screen_flow_test.dart",
+        "test/games/connect_four_interaction_test.dart",
+        "test/games/game_round_regression_test.dart",
+        "test/tutoring/guided_lesson_runtime_test.dart",
+        "test/tutoring/tutoring_flow_connection_test.dart",
+        "test/design/connect_four_visual_test.dart",
+        "test/design/guided_learning_runtime_capture_test.dart",
+        "test/design/legacy_learning_assignment_test.dart",
+        "test/design/lumo_learning_tree_fold_visual_test.dart",
+        "test/design/lumo_sulafat_controls_capture_test.dart",
+        "test/design/lumo_active_help_runtime_test.dart",
+        "test/design/lumo_companion_runtime_capture_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/design/app_tour_capture_test.dart",
+        "test/design/parent_games_polish_test.dart",
+        "test/design/learning_adventure_capture_test.dart",
+        "test/learning_modules/math_module_progress_test.dart",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart",
+        "test/learning_modules/plus_bis_10_companion_test.dart",
+        "test/learning_modules/clock_and_number_quality_test.dart",
+        "test/learning_modules/bruchrechnen_answers_test.dart",
+        "test/learning_modules/plus_bis_10_persistence_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Fehlerstatus/lastError vorhanden; jeder Bildschirm muss ihn verständlich anzeigen; Stimmhörtest offen",
+    "9_integration_risk": "hoch bei Provider-/Identityersatz",
+    "10_next_implementation": "Wiederholte/offline Aufgaben plus sichtbare Berechtigungs-/Modellfehler testen; keine neuen Dienste"
+  },
+  {
+    "1_function_and_purpose": "KI/Foto-Hilfe und Elternberechtigungen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/core/lumo_ai_proxy_client.dart"
+    },
+    "3_development_status": "vorhanden/angeschlossen; App-/Serververtragsdelta prüfen",
+    "4_home_reachability": "Home optionale KI-/Foto-/Live-Einstiege; Elternsettings → FeaturePermission",
+    "5_navigation_data_dependencies": "LumoAiProxyClient + server/lumo-ai-proxy; FeaturePermissions; kein Backgroundcall im Insight",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/lumo_context_conversation_test.dart",
+        "test/ai_transport_regression_test.dart",
+        "test/ai_health_regression_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Auditzweig besitzt getrennte Transportfixes; nicht mit Story-Speichern bündeln",
+    "9_integration_risk": "hoch Kinderdaten/Onlinekosten",
+    "10_next_implementation": "Eigene KI-Transport- und Consenttests, kein kostenpflichtiges Aktivieren"
+  },
+  {
+    "1_function_and_purpose": "Spielewelt/Freischaltungen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/games/games_content.dart"
+    },
+    "3_development_status": "entwickelt/angeschlossen; Profilidentität prüfen",
+    "4_home_reachability": "Home Spielen → AppShell.games → GamesContent → Spieleportale",
+    "5_navigation_data_dependencies": "GameUnlockService/RewardWallet; GameProgressRepository; _childId aus Name+Klasse",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/games/flame_adventure_round_test.dart",
+        "test/games/flame_adventure_flow_test.dart",
+        "test/games/games_world_layout_test.dart",
+        "test/design/parent_games_polish_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Namens-/Klassenidentität kann zwei Kinder/Wechsel berühren; keine neue Migration ohne Test",
+    "9_integration_risk": "hoch bei Speicherzuordnung",
+    "10_next_implementation": "Gleichnamige Kinder/Klassenwechsel und vorhandene Unlocks testen"
+  },
+  {
+    "1_function_and_purpose": "Lumo Cards",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/games/lumo_cards/lumo_cards_screen.dart"
+    },
+    "3_development_status": "vorhanden und über Spieleportale erreichbar; Gesamtrunde neu ungeprüft",
+    "4_home_reachability": "Home Spielen → GamesContent → GamePortalSection → gewähltes Spiel",
+    "5_navigation_data_dependencies": "Bestehende Regeln, Gegner/Animationen, Progress/Wallet; Cards hat Session-Recovery",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/lumo_cards_session_ui_test.dart",
+        "test/lumo_cards_layout_foundation_test.dart",
+        "test/lumo_cards_widget_test.dart",
+        "test/lumo_cards_session_visual_test.dart",
+        "test/games/games_screen_flow_test.dart",
+        "test/design/parent_games_polish_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Keine neue Fehlfunktion allein durch Inventur behauptet; Relaunch/Zurück/Doppelauszahlung separat",
+    "9_integration_risk": "mittel",
+    "10_next_implementation": "Vorhandene vollständige Runde und Recoverytests prüfen statt Neuentwicklung"
+  },
+  {
+    "1_function_and_purpose": "Vier Gewinnt",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart"
+    },
+    "3_development_status": "vorhanden und über Spieleportale erreichbar; Gesamtrunde neu ungeprüft",
+    "4_home_reachability": "Home Spielen → GamesContent → GamePortalSection → gewähltes Spiel",
+    "5_navigation_data_dependencies": "Bestehende Regeln, Gegner/Animationen, Progress/Wallet; Cards hat Session-Recovery",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/games/games_screen_flow_test.dart",
+        "test/games/connect_four_interaction_test.dart",
+        "test/design/connect_four_visual_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Keine neue Fehlfunktion allein durch Inventur behauptet; Relaunch/Zurück/Doppelauszahlung separat",
+    "9_integration_risk": "mittel",
+    "10_next_implementation": "Vorhandene vollständige Runde und Recoverytests prüfen statt Neuentwicklung"
+  },
+  {
+    "1_function_and_purpose": "Memory",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/games/memory/lumo_memory_game.dart"
+    },
+    "3_development_status": "vorhanden und über Spieleportale erreichbar; Gesamtrunde neu ungeprüft",
+    "4_home_reachability": "Home Spielen → GamesContent → GamePortalSection → gewähltes Spiel",
+    "5_navigation_data_dependencies": "Bestehende Regeln, Gegner/Animationen, Progress/Wallet; Cards hat Session-Recovery",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/games/memory_screen_test.dart",
+        "test/games/game_round_regression_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Keine neue Fehlfunktion allein durch Inventur behauptet; Relaunch/Zurück/Doppelauszahlung separat",
+    "9_integration_risk": "mittel",
+    "10_next_implementation": "Vorhandene vollständige Runde und Recoverytests prüfen statt Neuentwicklung"
+  },
+  {
+    "1_function_and_purpose": "Embedded Godot Start/Rückkehr",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/app/scene_router.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Flutter Spielportal → nativer Host → boot → SceneRouter; goto home/games/learn → HostBridge.return_to_app",
+    "5_navigation_data_dependencies": "HostBridge, SceneRouter, LaunchOptions, ACK/Walletvertrag",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Kart Rennablauf/Physik/Drift/Items/Finish",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/games/kart_island.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Flutter Kart → eingebetteter Godot boot → kart_island → Rennen/Resultat → HostBridge",
+    "5_navigation_data_dependencies": "Powertrain/Fleet/Katalog/World; aktuelle Rückwärts-/Finish-Reparatur aus Pin65 erhalten",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/kart_finish_coast_fixtures.gd",
+        "scripts/tests/kart_finish_coast_regression.gd",
+        "scripts/tests/kart_handoff_lifecycle_fixtures.gd",
+        "scripts/tests/kart_first_active_snapshot_engine_probe.gd",
+        "scripts/tests/kart_first_active_snapshot_recording_fixture.gd",
+        "scripts/tests/kart_complete_flow_regression.gd",
+        "scripts/tests/kart_time_format_regression.gd",
+        "scripts/tests/kart_sky_islands_showcase.gd",
+        "scripts/tests/kart_race_continuity_regression.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Kart Flotte und Garage",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/games/kart_garage_menu.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Kart-Menü → Garage → Auswahlkarte/Werkstatt → zurück zum Rennstart",
+    "5_navigation_data_dependencies": "KartVehicle/Fleet/Workshop, Touch-Dragweiterleitung und responsive Spalten",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/kart_start_hero_regression.gd",
+        "scripts/tests/kart_fleet_regression.gd",
+        "scripts/tests/kart_pause_layout_regression.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Lumo-Fahrer/Fell und Rig",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/games/kart_vehicle.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Garage/Rennszene → KartVehicle → LumoAnimationAdapter → RiggedActor",
+    "5_navigation_data_dependencies": "Lumo-Animated-Mobile.glb, CharacterFinish, FurGeometry, Animationsadapter",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/kart_holo_city_showcase.gd",
+        "scripts/tests/lumo_kart_animation_review.gd",
+        "scripts/tests/kart_sheet_capture.gd",
+        "scripts/tests/kart_fleet_movie.gd",
+        "scripts/tests/lumo_gesture_contact_regression.gd",
+        "scripts/tests/kart_finish_coast_regression.gd",
+        "scripts/tests/kart_sonnenhafen_showcase.gd",
+        "scripts/tests/kart_fleet_regression.gd",
+        "scripts/tests/lumo_rival_lineup_capture.gd",
+        "scripts/tests/kart_vehicle_detail_regression.gd",
+        "scripts/tests/kart_steering_grip_capture.gd",
+        "scripts/tests/kart_fleet_capture.gd",
+        "scripts/tests/kart_sky_islands_showcase.gd",
+        "scripts/tests/holographic_companion_export.gd",
+        "scripts/tests/kart_world_showcase.gd",
+        "scripts/tests/kart_garage_art_capture.gd",
+        "scripts/tests/kart_fox_eye_proportions_regression.gd",
+        "scripts/tests/kart_zauberwald_showcase.gd",
+        "scripts/tests/kart_reference_capture.gd",
+        "scripts/tests/kart_lineup_capture.gd",
+        "scripts/tests/kart_face_depth_regression.gd",
+        "scripts/tests/kart_steering_grip_regression.gd",
+        "scripts/tests/kart_fox_cheek_capture.gd",
+        "scripts/tests/kart_vehicle_regression.gd",
+        "scripts/tests/lumo_animation_cpu_benchmark.gd",
+        "scripts/tests/kart_fox_cheek_regression.gd",
+        "scripts/tests/kart_driver_portrait.gd",
+        "scripts/tests/kart_character_pose_regression.gd",
+        "scripts/tests/kart_track_pack_48_view_capture.gd",
+        "scripts/tests/kart_thumbnail_capture.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Räumliche Kartwelt/Streckendetails",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/games/kart_world.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "KartIsland → KartWorld/Katalog/Stage",
+    "5_navigation_data_dependencies": "Geometrie/Multimesh/Licht/Aquarium/Partikel; keine statische Artworkstrecke als Runtime ausgeben",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/kart_holo_city_showcase.gd",
+        "scripts/tests/kart_world_regression.gd",
+        "scripts/tests/kart_track_detail_regression.gd",
+        "scripts/tests/kart_finish_coast_regression.gd",
+        "scripts/tests/kart_sonnenhafen_showcase.gd",
+        "scripts/tests/kart_fleet_regression.gd",
+        "scripts/tests/kart_aaa_visual_regression.gd",
+        "scripts/tests/kart_harbor_regression.gd",
+        "scripts/tests/kart_track_contract.gd",
+        "scripts/tests/kart_fleet_capture.gd",
+        "scripts/tests/kart_sky_islands_showcase.gd",
+        "scripts/tests/kart_action_course_regression.gd",
+        "scripts/tests/kart_world_showcase.gd",
+        "scripts/tests/kart_zauberwald_showcase.gd",
+        "scripts/tests/kart_aquarium_clearance_regression.gd",
+        "scripts/tests/kart_track_pack_geometry_export.gd",
+        "scripts/tests/kart_fleet_prop_export.gd",
+        "scripts/tests/kart_track_pack_48_view_capture.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Fold Touchsteuerung",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/games/kart_touch_action.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "KartIsland HUD → TouchAction/Gas/Bremse/Drift/Item",
+    "5_navigation_data_dependencies": "Mehrfingerinput, SafeArea, Resize; Smartphone/Fold getrennte Touchgrößen",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Kreative Bauwelt",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/creative/build_world.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Flutter Spieleportal → native SceneRouter build → build_world.tscn",
+    "5_navigation_data_dependencies": "Originale kreative Laternen-/KistenGLBs und Bau-/Speicher-/Rewardvertrag",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/creative_scene_smoke.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Schatzsuche",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/creative/treasure_world.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Flutter Spieleportal → native SceneRouter treasure → treasure_world.tscn",
+    "5_navigation_data_dependencies": "Kreative Welt, Quests, Treffer-/Abschluss-/Hostvertrag",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/creative_scene_smoke.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Puzzle",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/creative/puzzle_world.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Flutter Spieleportal → native SceneRouter puzzle → puzzle_world.tscn",
+    "5_navigation_data_dependencies": "Vorhandene Puzzleassets/Bewegung/Ergebnis/Rücknavigation",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/creative_scene_smoke.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Rhythmus",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/creative/rhythm_world.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Flutter Spieleportal → native SceneRouter rhythm → rhythm_world.tscn",
+    "5_navigation_data_dependencies": "Audio-/Timing-/Ergebnisvertrag",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/creative_scene_smoke.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Jump/Stars",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/games/jump_islands.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Flutter Spieleportal → native jump/stars; lokale Flamealternativen separat",
+    "5_navigation_data_dependencies": "Vorhandene Physik/Hindernisse/Hostresultate",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Godot Stimme",
+    "2_source": {
+      "repository": "Ullmann27/lumo-godot",
+      "branch": "sol/lumo-1937-kart-quality-2026-10-12",
+      "commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+      "path": "scripts/systems/audio_manager.gd"
+    },
+    "3_development_status": "am geschützten Pin entwickelt/verdrahtet; neue Runtime ungeprüft",
+    "4_home_reachability": "Autoload AudioManager → Spiel-/Lernereignisse/Hostvoice",
+    "5_navigation_data_dependencies": "Vorhandene Sulafat-/WAV-Manifeste, Hash-/Modellprüfung; alte Branches kein Komplettspender",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "scripts/tests/lumo_voice_reference_regression.gd"
+      ],
+      "execution": "Godot: in dieser Sitzung nicht ausgeführt; alte Nachweise nicht übertragen."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Nicht in dieser Sitzung neu gestartet; vollständige Laufzeit/Referenzbewegung/Gerätleistung offen",
+    "9_integration_risk": "hoch bei Runtime-Pin-/Physik-/Hostwechsel",
+    "10_next_implementation": "Godot4.6.3-Szenen-/Headless-/GLprüfungen separat, dann ausdrückliche Pinintegration"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_agent_content",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/agent/lumo_agent_content.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/lumo_companion_host_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_cosmos_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/cosmos/lumo_cosmos_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: home_content",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/home/home_content.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/home_navigation_progress_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_journal_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/journal/lumo_journal_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: curriculum_activities_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning/curriculum_activities_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_abc_tafel_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning/lumo_abc_tafel_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_rechentricks_poster_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning/lumo_rechentricks_poster_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: minus_bis_10_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/design/learning_adventure_layout_test.dart",
+        "test/design/learning_adventure_capture_test.dart",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: plus_bis_10_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/design/lumo_active_help_runtime_test.dart",
+        "test/design/lumo_companion_runtime_capture_test.dart",
+        "test/design/learning_adventure_capture_test.dart",
+        "test/learning_modules/plus_bis_10_companion_test.dart",
+        "test/learning_modules/plus_bis_10_persistence_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: zahlen_bis_10_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/design/learning_adventure_layout_test.dart",
+        "test/design/learning_adventure_capture_test.dart",
+        "test/learning_modules/math_module_progress_test.dart",
+        "test/learning_modules/clock_and_number_quality_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: zahlen_bis_100_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_live_pro_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/live/lumo_live_pro_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/feature_permission_regression_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_welt_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/lumo_welt/lumo_welt_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_magic_hub_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/magic_hub/lumo_magic_hub_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/lumo_companion_profile_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_onboarding_holo_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/onboarding/lumo_onboarding_holo_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/onboarding_visual_capture_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_photo_lesson_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/photo_lesson/lumo_photo_lesson_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/photo_lesson_subject_flow_test.dart",
+        "test/feature_permission_regression_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: quiz_show_content",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/quiz/quiz_show_content.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_reading_buddy_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/reading/lumo_reading_buddy_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lernbericht_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/report/lernbericht_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/features/report_screen_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: achievements_wall_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/rewards/achievements_wall_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: reward_shop_content",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/rewards/reward_shop_content.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/state_persistence_regression_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: section_content",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/sections/section_content.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/tutoring/tutoring_flow_connection_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: settings_content",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/settings/settings_content.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/state_persistence_regression_test.dart",
+        "test/lumo_voice_settings_capture_test.dart",
+        "test/design/guided_learning_runtime_capture_test.dart",
+        "test/design/legacy_learning_assignment_test.dart",
+        "test/design/lumo_sulafat_controls_capture_test.dart",
+        "test/design/parent_games_polish_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: teacher_dashboard_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/teacher/teacher_dashboard_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/features/teacher_flow_test.dart",
+        "test/features/teacher_layout_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: teacher_student_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/teacher/teacher_student_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/features/teacher_cognitive_profile_test.dart",
+        "test/features/teacher_layout_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: letter_writing_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_teacher_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/teacher_mode/lumo_teacher_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: cognitive_profile_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/tests/cognitive_profile_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: iq_test_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/tests/iq_test_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/iq/iq_test_screen_test.dart",
+        "test/iq/iq_test_support.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: lumo_tests_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/tests/lumo_tests_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/lumo_tests_screen_test.dart",
+        "test/iq/iq_test_screen_test.dart",
+        "test/design/iq_capture_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  },
+  {
+    "1_function_and_purpose": "Weitere vorhandene Oberfläche: guided_lesson_screen",
+    "2_source": {
+      "repository": "Ullmann27/lumo-lernen",
+      "branch": "copilot/lumo-1938-integration-follow-up",
+      "commit": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+      "path": "lib/features/tutoring/guided_lesson_screen.dart"
+    },
+    "3_development_status": "ungeprüft; Datei-/Importbestand belegt",
+    "4_home_reachability": "Konkrete Klick-/Callbackkette noch einzeln abnehmen; Importindex allein genügt nicht",
+    "5_navigation_data_dependencies": "Abhängigkeiten siehe aktueller Quellcode/Importindex",
+    "6_existing_tests_execution": {
+      "direct_references": [
+        "test/tutoring/language_nature_runtime_test.dart",
+        "test/tutoring/guided_lesson_runtime_test.dart",
+        "test/tutoring/tutoring_flow_connection_test.dart",
+        "test/design/lumo_active_help_runtime_test.dart"
+      ],
+      "execution": "Baseline-Suite d7440be: 1456 PASS/117 SKIP; einzelne Auswahl/Skips im Originalprotokoll prüfen. Neue Deltas brauchen neue Ausführung."
+    },
+    "7_android_runtime": "Für diesen aktuellen Auftrag nicht neu ausgeführt. Keine APK-/Fold-Freigabe aus Quelle/Widgettest ableiten.",
+    "8_missing_connections_bugs": "Kein Fehler oder verlorenes Feature ohne Navigationstest behauptet",
+    "9_integration_risk": "noch zu bestimmen",
+    "10_next_implementation": "Konkreten Hauptmenüaufruf bis zur Aktion verfolgen, Widget-/Runtimebeleg nachtragen"
+  }
+]

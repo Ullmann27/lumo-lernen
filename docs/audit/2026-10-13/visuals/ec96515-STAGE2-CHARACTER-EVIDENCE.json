@@ -1,0 +1,188 @@
+{
+  "status": "PASS",
+  "tested_godot_commit": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "measured_checks": {
+    "character-pose": 2325,
+    "face-depth": 23,
+    "start-hero": 225
+  },
+  "aquarium": {
+    "runs": {
+      "headless": {
+        "LOW": {
+          "batched_props": 292,
+          "fish": 12
+        },
+        "HIGH": {
+          "batched_props": 324,
+          "fish": 40
+        }
+      },
+      "rendered": {
+        "LOW": {
+          "batched_props": 292,
+          "fish": 12
+        },
+        "HIGH": {
+          "batched_props": 324,
+          "fish": 40
+        }
+      }
+    },
+    "gpu_instance_clearance_verified": true,
+    "capture_driven_metres": {
+      "01-low-entry": 6.24,
+      "02-low-middle": 6.25,
+      "03-low-exit": 6.25,
+      "04-high-entry": 6.24,
+      "05-high-middle": 6.25,
+      "06-high-exit": 6.25
+    }
+  },
+  "captures": [
+    {
+      "file": "lumo-driver-4views.png",
+      "source_path": "exports/face-showroom/lumo-driver-4views.png",
+      "width": 1280,
+      "height": 1280,
+      "bytes": 660116,
+      "sha256": "417efc75f77a958e2e483e45056936ea660445a18eca0d036e93f18822b69e08"
+    },
+    {
+      "file": "lumo-face-1280x720.png",
+      "source_path": "exports/face-showroom/lumo-face-1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 1221555,
+      "sha256": "ec89da1357cbbbf63f3daebfc7621b07f8236e945bde5d7dd2024edb3646cfb2"
+    },
+    {
+      "file": "lumo-face-800x480.png",
+      "source_path": "exports/face-showroom/lumo-face-800x480.png",
+      "width": 800,
+      "height": 480,
+      "bytes": 616298,
+      "sha256": "3541ac6cee635ba598f2da802729406324948a703a18e494e2f078d7c16ec7d5"
+    },
+    {
+      "file": "lumo-face-412x915.png",
+      "source_path": "exports/face-showroom/lumo-face-412x915.png",
+      "width": 412,
+      "height": 915,
+      "bytes": 527242,
+      "sha256": "36bdfc10596e5208d9759d2b1dc1254d4d1084941a31038498fc5f5097c076c9"
+    },
+    {
+      "file": "start-1280x720.png",
+      "source_path": "exports/start-review/start-1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 1234688,
+      "sha256": "3e3e2ca2f9a161f65c2b71ac5896af0870e4e5e8d18f8a59acf64f36cc21308e"
+    },
+    {
+      "file": "start-800x480.png",
+      "source_path": "exports/start-review/start-800x480.png",
+      "width": 800,
+      "height": 480,
+      "bytes": 626999,
+      "sha256": "2241dedb4237f9710598f043e3b58561db466d78a2b6ee2a1a8601f5635cab1f"
+    },
+    {
+      "file": "start-412x915.png",
+      "source_path": "exports/start-review/start-412x915.png",
+      "width": 412,
+      "height": 915,
+      "bytes": 534181,
+      "sha256": "f79e7de9f2093885f1dccef40eb457e1b15c278e190aad5bd5cafd838cbb4219"
+    },
+    {
+      "file": "start-saved-320x568.png",
+      "source_path": "exports/start-review/start-saved-320x568.png",
+      "width": 320,
+      "height": 568,
+      "bytes": 302663,
+      "sha256": "f926365d448fac5f806da01e805aa8e50f2683b94304c04d51cb01bd0dbc64ea"
+    },
+    {
+      "file": "01-low-entry.png",
+      "source_path": "exports/aquarium-proof/01-low-entry.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 652871,
+      "sha256": "c8ab34a5ac3e5230cb51ba2d2698f6d5d0a0cb76cb15afbf2929134725aae2f9"
+    },
+    {
+      "file": "02-low-middle.png",
+      "source_path": "exports/aquarium-proof/02-low-middle.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 620349,
+      "sha256": "33c4adc7de866e5a065f303ba4ca854ea6cbdd262901af110155a1c0b88ad549"
+    },
+    {
+      "file": "03-low-exit.png",
+      "source_path": "exports/aquarium-proof/03-low-exit.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 634390,
+      "sha256": "12efadf553c3f43133a42d2f5f51f5ccbd0133e7574d2e8a7e3ea650b46f8a7d"
+    },
+    {
+      "file": "04-high-entry.png",
+      "source_path": "exports/aquarium-proof/04-high-entry.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 959382,
+      "sha256": "02ffdd09f3d1cb189c0f32f6ce1b58f01aac009d83a34f84d593db4addc47f32"
+    },
+    {
+      "file": "05-high-middle.png",
+      "source_path": "exports/aquarium-proof/05-high-middle.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 930374,
+      "sha256": "54ecb4c1af32e2eb21191075f2aacfddec990dd9f67d6c90a2fd45c3db0f9c34"
+    },
+    {
+      "file": "06-high-exit.png",
+      "source_path": "exports/aquarium-proof/06-high-exit.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 883797,
+      "sha256": "355d2527393f52f380ab0134fdae814c2cec4bb4b588b4e1fb460c265940923f"
+    }
+  ],
+  "source_sha256": {
+    "scripts/games/kart_vehicle.gd": "655f391e8c78058a267e080065bf3678d6392f20b97741cf11401389f500f99f",
+    "scripts/games/kart_character_finish.gd": "42182df326361dcce398f1a8e3210bce53c760db467cb4b64ed59df4b5da16ef",
+    "scripts/games/kart_garage_menu.gd": "8c8c2a25504358080ce626f8aaa59b3b517b46bbea1efbf08a3954f665c7b021",
+    "scripts/games/kart_stage.gd": "2a137dfd4750a9d5dfdc2be2e370f3ab1c258c32b044a2018641822662d579e5",
+    "scripts/games/kart_harbor_aquarium.gd": "39c60998613d6206c7a6182a99bf90084a281a429120449df675e79280a795e0",
+    "assets/shaders/kart_aquarium.gdshader": "88b002617763986a880bf190a2c3424ec8c906eb47ba7814943d00698caf18c6",
+    "scripts/tests/kart_aquarium_clearance_regression.gd": "1d70117e4564fcea555f09b84dad0e4c572110a69c841a9249ff6453610eaddb",
+    "scripts/tests/kart_aquarium_capture.gd": "86a58fa50dfe576ffd7cd2e2f7ef158a1a38b92b9f81362300817287434e99f0",
+    "scripts/tests/kart_character_pose_regression.gd": "478cfd0147b8279e68b1067ae8b4f10295dc18cc09ad24dc6d3f439a6125b009",
+    "scripts/tests/kart_face_depth_regression.gd": "72578d7dffb4abde7cc2cba16fb6500714d420cb5f3a00f86b57be6d745ec9a2",
+    "scripts/tests/kart_fox_eye_proportions_regression.gd": "64ce85f2f130f9b5cdcf45619bf8292a5c6a3de9a94383d2b4884e01e19a29a3",
+    "scripts/tests/kart_stage_visual_regression.gd": "01ed448befe77ab7ba5f9890070c2597be40bf954c12086401f65e5e2019d987",
+    "scripts/tests/kart_start_hero_regression.gd": "e83b7686662b00ded2e076c27f184ac606fa77e71e613028afdf82ef335ce1d4",
+    "scripts/tests/kart_garage_face_capture.gd": "b6e15c0e5fc34c27d24cb31de4d36744deca01fd52754f2a37c594de146282e3",
+    "scripts/tests/kart_driver_portrait.gd": "c09be8f2367241c4efb4dda20430d98bcb9046183386c922516ac80b7c4439a1"
+  },
+  "log_sha256": {
+    "aquarium-capture.log": "583689a5b8ede8e6bbb35d3784f5f5beae38269386d8a78a461dee360c341b2b",
+    "aquarium-headless.log": "fde642b7939a41a9ae2940470e5e3cf1cf3b16981143ce0d5918c2aa9885ac5c",
+    "aquarium-rendered.log": "1bc404458d86c6c730067b0d3131565db0d36885bb11f5c64452a454f91468c2",
+    "character-pose.log": "71f6243d6ac2bea63acded42828a6f7add788f79ef744353f1ae527824fc0511",
+    "face-depth.log": "2b2ea5f799fd024b43c171c3dd727c0a41168486e0ff996fa8f542ceb0bf9a64",
+    "face-studio.log": "358d071824efa50185aaa29e4ad84e7a548b579730284801591f64cccb048c5d",
+    "fox-eyes.log": "c19e7c54123bdc3e7dea29507ae8c67484fe0ca778d570ad3b73eaa8df955ae5",
+    "lumo-driver-4views.log": "908e36b4cbef042c1839ab6037a9f450970bd21b564d43e3932b6317e2cd52f1",
+    "lumo-face-capture.log": "ebd683691449b06cfcca2ac4a41fe52c4d6beaaa7b4dbabe272f2e7a5582fa97",
+    "start-hero.log": "554f1db9c7f5ec8163dfbfba019033ee76214b4ef57d2a21e78c71cb31bceedd"
+  },
+  "capture_scope": "Actual X11/gl_compatibility software renders of the checked-out Stage 2 source",
+  "physical_device_performance": "NOT EXECUTED"
+}

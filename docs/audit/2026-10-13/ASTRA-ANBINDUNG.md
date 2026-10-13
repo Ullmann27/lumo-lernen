@@ -1,0 +1,10 @@
+# Astra-Arbeiten: erneuter Quellvergleich · 13.10.2026
+
+Die neue Anweisung verlangt auch die Anbindung vorhandener Astra-Arbeiten. Es gibt nachweisbar zwei zentrale Quellen:
+
+- App PR #263, `astra/lumo-learning-quality-2026-10-11`, Head `4b7a063d4a1484deb62c5cd8c4422788c5f50578`. Formen-, Uhr- und Zahlenscreens sowie Layout-, Uhr-/Zahlen- und Speicherregressionstests sind blob-identisch an der geschützten PR285-Linie. Plus, Minus, Designsystem und Modulrahmen sind abweichend; gezielter Diff zeigt spätere aktive Begleiter-/Lifecyclereparaturen, Footer/Scrollschutz und Mengenlayouts. Daraus folgt kein fehlendes Astra-Feature und kein Anlass für eine alte Dateiüberlagerung. Astras kurze Querformatkomposition, Glasdeckkraft und fachliche Uhrgrenzen bleiben erhalten. Die alten Capture-/Testzahlen werden nicht als neue Androidfreigabe übernommen.
+- Godot PR #57, `astra/lumo-animation-quality-2026-10-11`, Head `853175c634dcb62c325fbd9b272e2ebc791830ad`. Ist Vorfahr des geschützten Pins `ec96515…`. Animationsadapter, Lenkradkontaktregression und Rig-Capture sind blob-identisch. Fold-Garage und folgende Rennreparaturen bleiben erhalten; kein Pinwechsel erforderlich, um diese Astra-Arbeit einzubetten.
+
+Der maschinenlesbare Vergleich `astra-source-comparison.json` hält SHA/Pfad/Blobgleichheit fest. Die ursprünglichen Design-/Animationsberichte liegen unter `docs/design/2026-10-11-astra-learning-quality` beziehungsweise im Godotprojekt`docs/design/2026-10-11-astra-animation-quality`. Design-/Übergabereferenzen sind nicht automatisch zusätzliche Runtime-Assets.
+
+Nächste sichtbare Integrationskandidaten: Geschichten-Einstiege und fehlende Illustration, vorhandener PR281-Heatmap-Look, selektive Unterrichtsrouten. Das globale Design und sämtliche Spiele sind weiterhin nicht vollständig visuell/auf Android abgenommen. Der Nutzer hat am 13.10.2026 die spätere Gesamt-APK ausdrücklich freigegeben und wünscht APK/ZIP als direkten Chatdownload. Vorher muss die konkrete Kandidatenlinie mit realen Tests, Paket-/Signatur-/Updateprüfung, Stimmen und Godot-Pin abgesichert werden; kein Main-Merge/Release.
