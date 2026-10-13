@@ -152,7 +152,7 @@ class _Header extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         const Text(
-          'Lernbeobachtungen',
+          'Lernen im Überblick',
           style: TextStyle(
             fontFamily: 'Nunito',
             fontSize: 20,

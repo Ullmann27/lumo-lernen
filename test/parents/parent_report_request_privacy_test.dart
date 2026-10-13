@@ -134,8 +134,12 @@ void main() {
             expect(payload['message'], contains('ohne abgegrenzten Zeitraum'));
             expect(payload['message'],
                 contains('Keine Aussagen über heute, diese Woche'));
-            expect(payload['message'],
-                contains('Themen nicht einzeln aufgeführt'));
+            for (var topic = 0; topic < 8; topic++) {
+              expect(
+                  payload['message'],
+                  contains(
+                      'Mathematik / Thema $topic: 70% · 7 von 10 Antworten richtig'));
+            }
             expect(
                 (payload['message'] as String).length, lessThanOrEqualTo(1200));
             expect(jsonEncode(payload), isNot(contains(_name)),
