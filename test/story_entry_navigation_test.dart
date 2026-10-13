@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/rendering.dart';
@@ -25,9 +26,10 @@ Future<void> frames(WidgetTester tester) async {
   }
 }
 
-Future<LumoAppState> profile(WidgetTester tester, int grade) async {
+Future<LumoAppState> profile(WidgetTester tester, int grade,
+    {LumoAppState Function()? create}) async {
   final app = (await tester.runAsync(() async {
-    final app = LumoAppState();
+    final app = create?.call() ?? LumoAppState();
     app.update(app.state.copyWith(grade: grade));
     app.updateSettings(const AppSettings(
         voiceEnabled: false,
@@ -43,6 +45,14 @@ Future<LumoAppState> profile(WidgetTester tester, int grade) async {
   }))!;
   addTearDown(app.dispose);
   return app;
+}
+
+
+class DelayedSettingsApp extends LumoAppState {
+  Completer<void>? settingsGate;
+  @override
+  Future<void> ensureSettingsLoaded() =>
+      settingsGate?.future ?? super.ensureSettingsLoaded();
 }
 
 void main() {
@@ -222,6 +232,50 @@ void main() {
       await tester.pumpWidget(const SizedBox.shrink());
       await frames(tester);
     }
+  }, timeout: const Timeout(Duration(seconds: 45)));
+
+  testWidgets('a pending microphone start cannot restart behind the library',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final app = await profile(tester, 2, create: DelayedSettingsApp.new)
+        as DelayedSettingsApp;
+    await tester.runAsync(() async {
+      app.updateSettings(app.state.settings.copyWith(microphoneEnabled: true));
+      await app.ensureSettingsLoaded();
+    });
+    const speechChannel = MethodChannel('plugin.csdcorp.com/speech_to_text');
+    var speechCalls = 0;
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+      speechChannel, (call) async { speechCalls++; return false; });
+    addTearDown(() => tester.binding.defaultBinaryMessenger
+        .setMockMethodCallHandler(speechChannel, null));
+    await tester.pumpWidget(MaterialApp(
+      theme: LumoAppTheme.light(),
+      home: Scaffold(body: ReadingContent(appState: app, onBack: () {}))));
+    await frames(tester);
+    expect(app.state.settings.microphoneEnabled, true);
+    app.settingsGate = Completer<void>();
+    final microphone = find.byKey(const ValueKey('reading-microphone'));
+    await tester.ensureVisible(microphone);
+    await tester.tap(microphone);
+    await tester.pump();
+    final library = find.byKey(const ValueKey('reading-stories'));
+    await tester.ensureVisible(library);
+    await tester.runAsync(() => tester.tap(library));
+    await frames(tester);
+    expect(find.byType(LumoStoryLibraryScreen), findsOneWidget);
+    app.settingsGate!.complete();
+    await frames(tester);
+    expect(speechCalls, 0,
+        reason: 'A delayed start must not initialize speech behind another route.');
+    expect(app.learningSkills(), isEmpty);
+    Navigator.of(tester.element(find.byType(LumoStoryLibraryScreen))).pop();
+    await frames(tester);
+    expect(tester.widget<GestureDetector>(microphone).onTap, isNotNull);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await frames(tester);
   }, timeout: const Timeout(Duration(seconds: 45)));
 
 }

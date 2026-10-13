@@ -211,6 +211,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   }
 
   Future<void> _toggleListening() async {
+    if (_openingLibrary || ModalRoute.of(context)?.isCurrent != true) return;
     if (_speech.listening) {
       await _speech.stopListening();
       return;
@@ -220,9 +221,11 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   }
 
   Future<void> _startListening() async {
-    if (_progress == null) return;
+    if (_progress == null || _openingLibrary ||
+        ModalRoute.of(context)?.isCurrent != true) return;
     await widget.appState.ensureSettingsLoaded();
-    if (!mounted) return;
+    if (!mounted || _openingLibrary ||
+        ModalRoute.of(context)?.isCurrent != true) return;
     if (!widget.appState.state.settings.microphoneEnabled) {
       setState(() => _lumoLine = 'Das Mikrofon ist im Elternbereich ausgeschaltet.');
       return;
@@ -231,6 +234,8 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
 
     _listenTimer?.cancel();
     await LumoVoice.instance.stop();
+    if (!mounted || _openingLibrary ||
+        ModalRoute.of(context)?.isCurrent != true) return;
 
     setState(() {
       _lastTranscript = '';
@@ -608,7 +613,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
                         lastTranscript: _lastTranscript,
                         error: _speech.error,
                         showNotHeardHint: _showNotHeardHint,
-                        onTap: _finished ? null : _toggleListening,
+                        onTap: _finished || _openingLibrary ? null : _toggleListening,
                       ),
                       if (progress.problemWords.isNotEmpty) ...[
                         const SizedBox(height: 12),
@@ -1011,6 +1016,7 @@ class _MicrophonePanel extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               GestureDetector(
+                key: const ValueKey('reading-microphone'),
                 onTap: enabled ? onTap : null,
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
