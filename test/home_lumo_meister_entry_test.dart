@@ -32,6 +32,7 @@ void main() {
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
+    expect(tester.takeException(), isNull, reason: 'Home initial layout');
 
     final discover =
         find.byKey(const PageStorageKey<String>('home-discover'));
@@ -47,6 +48,8 @@ void main() {
     await tester.tap(discover);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 350));
+    expect(tester.takeException(), isNull,
+        reason: 'Home expanded discover layout');
 
     final meister = find.text('Wer wird Lumo-Meister?');
     expect(meister, findsOneWidget);
@@ -56,9 +59,12 @@ void main() {
       scrollable: find.byType(Scrollable).first,
     );
     await tester.pump();
+    expect(tester.takeException(), isNull,
+        reason: 'Home scrolled Meister entry');
     await tester.tap(meister);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
+    expect(tester.takeException(), isNull, reason: 'Quiz initial layout');
 
     expect(find.byType(QuizShowContent), findsOneWidget);
     expect(find.text('Wer wird Lumo-Meister?'), findsWidgets);
