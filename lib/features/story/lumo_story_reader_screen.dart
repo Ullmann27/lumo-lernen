@@ -37,11 +37,10 @@ class LumoStoryReaderScreen extends StatefulWidget {
 }
 
 class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
-    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+    with WidgetsBindingObserver {
   int _pageIdx = 0;
   bool _exerciseDone = false;
   String? _selectedAnswer;
-  late final PageController _pageCtrl;
   // Zusammenfassungs-Phase nach der letzten Seite (Heinz' Wunsch:
   // "Am Schluss wird gefragt um was es geht und das Kind kann erklaeren,
   //  dann bewertet Lumo die Zusammenfassung").
@@ -51,18 +50,19 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   bool _summaryEvaluated = false;
   int _summaryHits = 0;
   int _summaryStars = 0;
+  bool _finishing = false;
+  String? _savedStoryId;
 
   @override
   void initState() {
     super.initState();
-    _pageCtrl = PageController();
+    _savedStoryId = widget.storyId;
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) => _speak());
   }
 
   @override
   void dispose() {
-    _pageCtrl.dispose();
     _summaryCtrl.dispose();
     _speech.cancel();
     _speech.dispose();
@@ -97,9 +97,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       _exerciseDone = false;
       _selectedAnswer = null;
     });
-    _pageCtrl.nextPage(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeOutCubic);
+    // Pages are rendered directly by _buildPage, not by a PageView.
+    // The page index above is the actual navigation state.
     _speak();
   }
 
@@ -205,13 +204,33 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     }
   }
 
-  void _showFinish() {
-    // Bei abgeschlossener Story: auto in Bibliothek speichern wenn neu
-    if (widget.storyId == null) {
-      LumoStoryLibrary.instance.addStory(widget.story);
+  Future<void> _showFinish() async {
+    if (_finishing) return;
+    setState(() => _finishing = true);
+    try {
+      if (_savedStoryId == null) {
+        final saved = await LumoStoryLibrary.instance.addStory(widget.story);
+        _savedStoryId = saved.id;
+      }
+      if (!mounted) return;
+      await _showFinishDialog();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.fromLTRB(16, 0, 16, 88),
+        content: Text(
+            'Dein Heft konnte nicht gespeichert werden. Bitte versuche es noch einmal.'),
+      ));
+    } finally {
+      if (mounted) setState(() => _finishing = false);
     }
-    showDialog(
+  }
+
+  Future<void> _showFinishDialog() {
+    return showDialog<void>(
       context: context,
+      barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: LumoTokens.colors.surface,
         title: Text('🎉 ${widget.story.title} — Geschafft!',
@@ -258,10 +277,10 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Dialog
-              Navigator.pop(context); // Reader
-              Navigator.push(
-                context,
+              final navigator = Navigator.of(context);
+              navigator.pop(); // Dialog
+              navigator.pop(true); // Reader: successfully saved completion
+              navigator.push(
                 MaterialPageRoute(
                   builder: (_) => LumoWritingCoachScreen(
                     appState: widget.appState,
@@ -276,7 +295,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pop(context);
+              Navigator.pop(context, true);
             },
             child: const Text('Fertig'),
           ),
@@ -288,19 +307,22 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   @override
   Widget build(BuildContext context) {
     final page = widget.story.pages[_pageIdx];
-    return Scaffold(
-      backgroundColor: LumoTokens.colors.creme,
-      body: LumoMagicBackground(
-        intensity: 0.6,
-        child: SafeArea(
-          child: Column(
-            children: [
-              _buildTopBar(),
-              Expanded(
-                child: _inSummaryMode ? _buildSummaryPage() : _buildPage(page),
-              ),
-              _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
-            ],
+    return PopScope(
+      canPop: !_finishing,
+      child: Scaffold(
+        backgroundColor: LumoTokens.colors.creme,
+        body: LumoMagicBackground(
+          intensity: 0.6,
+          child: SafeArea(
+            child: Column(
+              children: [
+                _buildTopBar(),
+                Expanded(
+                  child: _inSummaryMode ? _buildSummaryPage() : _buildPage(page),
+                ),
+                _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
+              ],
+            ),
           ),
         ),
       ),
@@ -315,7 +337,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         children: [
           IconButton(
             icon: const Icon(Icons.close_rounded),
-            onPressed: () => Navigator.pop(context),
+            onPressed: _finishing ? null : () => Navigator.pop(context),
           ),
           Expanded(
             child: Column(
@@ -501,7 +523,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         width: double.infinity,
         height: 56,
         child: ElevatedButton.icon(
-          onPressed: canContinue ? _nextPage : null,
+          onPressed: canContinue && !_finishing ? _nextPage : null,
           icon: Icon(_pageIdx + 1 >= widget.story.pages.length
               ? Icons.celebration_rounded
               : Icons.arrow_forward_rounded),
@@ -688,7 +710,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         height: 56,
         child: _summaryEvaluated
             ? ElevatedButton.icon(
-                onPressed: _showFinish,
+                onPressed: _finishing ? null : _showFinish,
                 icon: const Icon(Icons.celebration_rounded),
                 label: const Text('Fertig!'),
                 style: ElevatedButton.styleFrom(

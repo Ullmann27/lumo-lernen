@@ -40,36 +40,41 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
 
   bool get _canStart => _hero != null && _location != null && _theme != null;
 
-  void _startStory() {
+  Future<void> _startStory() async {
     final story = LumoStoryGenerator.instance.generate(
       hero: _hero!,
       location: _location!,
       theme: _theme!,
       gradeLevel: _gradeLevel,
     );
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => LumoStoryReaderScreen(
-          story: story,
-          appState: widget.appState,
-        ),
-      ),
-    );
+    await _openReader(story);
   }
 
-  void _surprise() {
-    final story = LumoStoryGenerator.instance
-        .generateRandom(gradeLevel: _gradeLevel);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
+  Future<void> _surprise() async {
+    final story =
+        LumoStoryGenerator.instance.generateRandom(gradeLevel: _gradeLevel);
+    await _openReader(story);
+  }
+
+  Future<void> _openReader(LumoStory story) async {
+    final navigator = Navigator.of(context);
+    final setupRoute = ModalRoute.of(context);
+    final completed = await navigator.push<bool>(
+      MaterialPageRoute<bool>(
         builder: (_) => LumoStoryReaderScreen(
           story: story,
           appState: widget.appState,
         ),
       ),
     );
+    if (completed == true &&
+        mounted &&
+        setupRoute != null &&
+        setupRoute.isActive) {
+      // Remove only this setup route. The reader may already have opened its
+      // writing coach; popping the top route would incorrectly close that.
+      navigator.removeRoute(setupRoute);
+    }
   }
 
   @override
@@ -231,14 +236,12 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
           onTap: () => onTap(o),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 180),
-            padding: const EdgeInsets.symmetric(
-                horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
               color: sel ? accent : Colors.white,
               borderRadius: LumoTokens.brPill,
               border: Border.all(
-                  color: sel ? accent : accent.withOpacity(0.3),
-                  width: 2),
+                  color: sel ? accent : accent.withOpacity(0.3), width: 2),
               boxShadow: sel
                   ? [
                       BoxShadow(
@@ -265,7 +268,7 @@ class _SectionLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: LumoTokens.typo.titleLarge.copyWith(
-            color: LumoTokens.colors.textDark));
+        style: LumoTokens.typo.titleLarge
+            .copyWith(color: LumoTokens.colors.textDark));
   }
 }
