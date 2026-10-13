@@ -18,6 +18,8 @@
 
 import 'dart:math' as math;
 
+import 'school_exercise_generator.dart';
+
 /// Antwort vom LumoBrain.
 class LumoBrainReply {
   const LumoBrainReply({
@@ -321,18 +323,35 @@ class LumoBrain {
   // ────────────────────────────────────────────────────────────────
   // LERN-TIPPS (selbst-vorschlagende KI)
   // ────────────────────────────────────────────────────────────────
-  static const List<String> _lernTipps = [
-    'Wie waere es heute mit Plus-Rechnen? Probier doch "Plus bis 10" im Lernen-Bereich!',
-    'Heute koennten wir Tiere lernen - es gibt 12 spannende Tiere zu entdecken!',
-    'Magst du die Uhr lesen ueben? Das Modul "Die Uhr" hilft dir dabei!',
-    'Heute koennten wir Buchstaben schreiben ueben - das macht richtig Spass!',
-    'Wie waere es mit Wortarten? Nomen, Verben und Adjektive sind cool zu lernen!',
-    'Heute koennten wir Farben lernen - mit echten Bildern!',
-    'Magst du Geld zaehlen lernen? Euro und Cent sind wichtig fuer Einkaufen!',
-    'Wie waere es mit Einmaleins? Die 2er-Reihe ist ein guter Anfang!',
-    'Heute koennten wir Mehrzahl bilden ueben - aus Hund wird Hunde!',
-    'Magst du was ueber Jahreszeiten lernen? Fruehling, Sommer, Herbst, Winter!',
-  ];
+  String _learningTipForGrade(int? grade) {
+    if (grade == null || grade < 1 || grade > 4) {
+      return 'Öffne den Lernen-Bereich und wähle ein Thema deiner Klasse aus. '
+          'Dort findest du passende Aufgaben statt zufälliger Wiederholungen.';
+    }
+
+    const subjects = <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Sachunterricht',
+    ];
+    final available = <({String subject, String unit})>[];
+    for (final subject in subjects) {
+      for (final unit in Curriculum.unitsForGrade(
+        subject,
+        grade,
+        currentGradeOnly: true,
+      )) {
+        available.add((subject: subject, unit: unit));
+      }
+    }
+    if (available.isEmpty) {
+      return 'Wähle im Lernen-Bereich ein Thema der $grade. Klasse aus.';
+    }
+    final pick = available[_rng.nextInt(available.length)];
+    return 'Wie wäre es mit ${Curriculum.prettifyUnit(pick.unit)}? '
+        'Das passt zur $grade. Klasse und wartet im Lernen-Bereich auf dich.';
+  }
 
   static const Map<String, String> _buchstabenLaut = {
     'a': 'A wie Apfel oder Auto!',
@@ -462,7 +481,7 @@ class LumoBrain {
   /// Versucht eine Antwort zu generieren.
   /// Gibt confident=true zurueck wenn die Antwort verlaesslich ist
   /// (-> kein ChatGPT noetig), sonst confident=false (-> ChatGPT besser).
-  LumoBrainReply ask(String question, {String? topicId}) {
+  LumoBrainReply ask(String question, {String? topicId, int? grade}) {
     final q = question.toLowerCase().trim();
 
     // 1. Math-Calculator
@@ -565,7 +584,7 @@ class LumoBrain {
     if (q.contains('was soll ich lernen') || q.contains('was kann ich lernen') ||
         q.contains('was sollen wir') || q.contains('gib mir einen tipp') ||
         q.contains('was machen wir heute') || q.contains('tipp fuer heute')) {
-      final tipp = _lernTipps[_rng.nextInt(_lernTipps.length)];
+      final tipp = _learningTipForGrade(grade);
       return LumoBrainReply(text: '💡 Lumo-Tipp: $tipp', confident: true);
     }
 
@@ -949,8 +968,8 @@ class LumoBrain {
   // ────────────────────────────────────────────────────────────────
   /// Lumo's KI-Vorschlag: was sollte das Kind als naechstes lernen?
   /// Wird in der Akademie oder im Greeting genutzt.
-  String suggestNextTopic() {
-    return _lernTipps[_rng.nextInt(_lernTipps.length)];
+  String suggestNextTopic({int? grade}) {
+    return _learningTipForGrade(grade);
   }
 }
 

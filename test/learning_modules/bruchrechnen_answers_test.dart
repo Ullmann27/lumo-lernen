@@ -65,6 +65,28 @@ Future<void> _frames(WidgetTester tester, [int count = 90]) async {
   }
 }
 
+Future<void> _scrollAcademyTo(
+  WidgetTester tester,
+  Finder target,
+) async {
+  final verticalScrollable = find.descendant(
+    of: find.byType(CustomScrollView),
+    matching: find.byWidgetPredicate(
+      (widget) =>
+          widget is Scrollable &&
+          widget.axisDirection == AxisDirection.down,
+    ),
+  );
+  expect(verticalScrollable, findsOneWidget);
+  await tester.scrollUntilVisible(
+    target,
+    320,
+    scrollable: verticalScrollable,
+    maxScrolls: 20,
+  );
+  await tester.pump();
+}
+
 Future<void> _stored(WidgetTester tester,
         {required int correct,
         required int wrong,
@@ -149,10 +171,13 @@ void main() {
     await tester
         .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
     await _frames(tester);
-    await tester.ensureVisible(find.text('Mathe'));
+    await _scrollAcademyTo(tester, find.text('Mathe'));
     await tester.tap(find.text('Mathe'));
     await _frames(tester);
-    await tester.ensureVisible(find.text('Bruchrechnen'));
+    await _scrollAcademyTo(tester, find.text('Brüche & Dezimalzahlen'));
+    await tester.tap(find.text('Brüche & Dezimalzahlen'));
+    await _frames(tester);
+    await _scrollAcademyTo(tester, find.text('Bruchrechnen'));
     await tester.tap(find.text('Bruchrechnen'));
     await _frames(tester);
     expect(find.byType(BruchrechnenScreen), findsOneWidget);

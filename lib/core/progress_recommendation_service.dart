@@ -219,21 +219,30 @@ class ProgressRecommendationService {
 
   static String _label(String unit) => Curriculum.prettifyUnit(unit);
 
-  // Exact template keys avoid legacy aliases silently routing to an unrelated
-  // generator fallback. Lower-grade topics remain available for reinforcement.
+  // Empfehlungen fuer "weiterlernen" bleiben strikt in der aktuellen Klasse.
+  // Grundlagen aus frueheren Klassen sind nur noch ueber bewusst gewaehlte
+  // Wiederholung erreichbar und werden nicht als neues Thema vorgeschlagen.
   Map<String, List<String>> _catalog(int grade) {
     const starters = <int, String>{
-      1: 'Plus bis 10',
-      2: 'Plus bis 20',
-      3: 'Einmaleins',
-      4: 'Schriftliche Multiplikation'
+      1: 'Plus bis 20',
+      2: 'Plus bis 100',
+      3: 'Plus bis 1000',
+      4: 'Zahlenraum bis 1 Million',
     };
     return <String, List<String>>{
       for (final subject in Curriculum.subjects.keys)
-        subject: Curriculum.unitsForGrade(subject, grade),
+        subject: Curriculum.unitsForGrade(
+          subject,
+          grade,
+          currentGradeOnly: true,
+        ),
       'Mathematik': <String>{
         starters[grade]!,
-        ...Curriculum.unitsForGrade('Mathematik', grade),
+        ...Curriculum.unitsForGrade(
+          'Mathematik',
+          grade,
+          currentGradeOnly: true,
+        ),
       }.toList(),
     };
   }

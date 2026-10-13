@@ -8,6 +8,7 @@
 /// KEINE neuen Daten-Streams - nur Aggregation aus bestehenden.
 
 import '../../app/app_state.dart';
+import '../../core/school_exercise_generator.dart';
 import 'learning_dna.dart';
 
 class LearningDnaEngine {
@@ -79,44 +80,46 @@ class LearningDnaEngine {
     }).toList(growable: false);
   }
 
-  // ─── Staerken aus weakSkills-Inverse + bekannten Solid-Skills ───
+  // ─── Staerken nur aus tatsaechlich geloesten Aufgaben ───
   List<DnaSkillEntry> _buildStrengthsFromState(
     LumoSessionState state,
     List<DnaSkillEntry> knownWeaknesses,
   ) {
-    final weakSubjects = knownWeaknesses.map((w) => '${w.subject}:${w.skillLabel}').toSet();
-    final result = <DnaSkillEntry>[];
+    final weakLabels =
+        knownWeaknesses.map((entry) => entry.skillLabel).toSet();
+    final candidates = <({String subject, String unit, int count})>[];
 
-    // Heuristik: solved-counts pro Subject geben Indiz fuer Staerke.
-    // weakSkills sind die negativen Ankern.
-    final commonStrongSkills = <DnaSkillEntry>[
-      DnaSkillEntry(
-        subject: 'Mathe',
-        skillLabel: state.grade == 1 ? 'Plus bis 10' : 'Plus bis 20',
-        score: 0.78,
-        confidence: 0.6,
-      ),
-      const DnaSkillEntry(
-        subject: 'Deutsch',
-        skillLabel: 'Buchstaben erkennen',
-        score: 0.82,
-        confidence: 0.5,
-      ),
-      const DnaSkillEntry(
-        subject: 'Lesen',
-        skillLabel: 'Kurze Woerter',
-        score: 0.74,
-        confidence: 0.5,
-      ),
-    ];
-
-    for (final s in commonStrongSkills) {
-      final key = '${s.subject}:${s.skillLabel}';
-      if (weakSubjects.contains(key)) continue;
-      result.add(s);
-      if (result.length >= 3) break;
+    for (final subject in Curriculum.subjects.keys) {
+      final currentUnits = Curriculum.unitsForGrade(
+        subject,
+        state.grade,
+        currentGradeOnly: true,
+      ).toSet();
+      for (final entry in state.solved.entries) {
+        if (entry.value <= 0 ||
+            !currentUnits.contains(entry.key) ||
+            weakLabels.contains(entry.key)) {
+          continue;
+        }
+        candidates.add(
+          (subject: subject, unit: entry.key, count: entry.value),
+        );
+      }
     }
-    return result;
+
+    candidates.sort((a, b) => b.count.compareTo(a.count));
+    return candidates.take(3).map((entry) {
+      final score =
+          (0.55 + entry.count * 0.06).clamp(0.55, 0.95).toDouble();
+      final confidence =
+          (0.35 + entry.count * 0.08).clamp(0.35, 0.95).toDouble();
+      return DnaSkillEntry(
+        subject: entry.subject,
+        skillLabel: Curriculum.prettifyUnit(entry.unit),
+        score: score,
+        confidence: confidence,
+      );
+    }).toList(growable: false);
   }
 
   // ─── Frustrations-Signale aus Verhalten ───
@@ -157,12 +160,24 @@ class LearningDnaEngine {
     List<DnaSkillEntry> weaknesses,
   ) {
     if (weaknesses.isEmpty) {
-      // Keine Schwaechen erkannt - neue Rubrik vorschlagen.
+      final subject = Curriculum.subjects.containsKey(state.subject)
+          ? state.subject
+          : 'Mathematik';
+      final units = Curriculum.unitsForGrade(
+        subject,
+        state.grade,
+        currentGradeOnly: true,
+      );
+      final nextUnit = units.isEmpty ? null : units.first;
       return DnaRecommendation(
-        title: 'Neues Thema entdecken',
-        subject: state.subject == 'Alle' ? 'Mathe' : state.subject,
-        reason: 'Bisher gibt es noch keine Schwaeche. Probieren wir ein neues Thema?',
+        title: nextUnit == null
+            ? 'Neues Thema entdecken'
+            : '${Curriculum.prettifyUnit(nextUnit)} entdecken',
+        subject: subject,
+        reason:
+            'Keine aktuelle Schwäche erkannt. Als Nächstes passt Stoff der ${state.grade}. Klasse.',
         priority: 'mittel',
+        suggestedUnit: nextUnit,
       );
     }
     final top = weaknesses.first;
@@ -180,10 +195,20 @@ class LearningDnaEngine {
     if (weaknesses.isNotEmpty) {
       return '${weaknesses.first.skillLabel} (${weaknesses.first.subject})';
     }
-    // Fallback nach Klasse
-    if (state.grade == 1) return 'Plus bis 10 mit Zaehlbild';
-    if (state.grade == 2) return 'Einmaleins-Reihe 2er';
-    return 'Schriftliches Plus';
+    final subject = Curriculum.subjects.containsKey(state.subject)
+        ? state.subject
+        : 'Mathematik';
+    final units = Curriculum.unitsForGrade(
+      subject,
+      state.grade,
+      currentGradeOnly: true,
+    );
+    if (units.isEmpty) return '';
+    final unsolved = units.firstWhere(
+      (unit) => (state.solved[unit] ?? 0) < 3,
+      orElse: () => units.first,
+    );
+    return Curriculum.prettifyUnit(unsolved);
   }
 
   // ─── Fortschritts-Text ───

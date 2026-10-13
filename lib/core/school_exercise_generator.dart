@@ -52,7 +52,8 @@ class Curriculum {
       'Blitzlicht',
       'Plus bis 1000', 'Minus bis 1000', 'Division einstellig',
       'Geld bis 100 Euro', 'Massen Kilogramm und Gramm', 'Plus bis 10000',
-      'Minus bis 10000', 'Zahlenraum bis 1 Million', 'Zeit Minuten und Stunden',
+      'Minus bis 10000', 'Plus bis 1000000', 'Minus bis 1000000',
+      'Zahlenraum bis 1 Million', 'Zeit Minuten und Stunden',
       'Hohlmaße Liter und Milliliter', 'Brüche erweitern', 'Mittelwert',
       'Symmetrieachsen',
     ],
@@ -70,25 +71,123 @@ class Curriculum {
     ],
     'Rechtschreibung': <String>[
       'Haeufige Woerter', 'Gross und klein', 'Doppelmitlaut', 'Dehnungen',
-      'Satzzeichen', 'Wortende', 'St oder Sp',
+      'Satzzeichen', 'Wortende', 'St oder Sp', 'Wortstamm',
+      'Großschreibung', 'ie oder i', 'dass oder das',
+      'Kommas in Aufzählungen',
     ],
     'Schreiben': <String>[
       'Buchstaben nachspuren', 'Wort schreiben', 'Satz abschreiben',
-      'Schwunguebung', 'Zahlen schreiben',
+      'Schwunguebung', 'Zahlen schreiben', 'Satz ergänzen', 'Kurze Nachricht',
+      'Sätze verbinden', 'Beschreibung schreiben', 'Geschichte fortsetzen',
+      'Text planen', 'Meinung begründen', 'Informationstext',
     ],
-    'Lesen': <String>['Woerter lesen', 'Sätze lesen', 'Lesesinn', 'Bild und Wort', 'Reihenfolge'],
+    'Lesen': <String>[
+      'Woerter lesen', 'Sätze lesen', 'Lesesinn', 'Bild und Wort',
+      'Reihenfolge', 'Informationen finden', 'Schlussfolgern',
+      'Kernaussage', 'Textart erkennen',
+    ],
     'Englisch': <String>['Farben', 'Zahlen', 'Tiere', 'Schulsachen', 'Begruessung', 'Familie', 'Körper', 'Spielzeug', 'Wetter', 'Essen', 'Tageszeit', 'Verben', 'Wochentage', 'Hobbys', 'Länder'],
     'Sachunterricht': <String>[
-      'Tiere', 'Pflanzen', 'Jahreszeiten', 'Körper', 'Verkehr', 'Wetter',
+      'Tiere', 'Pflanzen', 'Jahreszeiten', 'Tag und Nacht', 'Körper', 'Verkehr', 'Wetter',
       'Familie und Gemeinschaft', 'Zeit und Kalender', 'Berufe', 'Ernährung',
       'Wasserkreislauf', 'Bundesländer Österreichs', 'Geografie Österreich',
       'Geschichte', 'Kontinente und Ozeane', 'Ökosysteme', 'Stromkreise',
       'Diagramme lesen',
     ],
     'Logik': <String>[
-      'Muster', 'Reihenfolgen', 'Zahlenmuster', 'Schlussfolgern',
-      'Regeln kombinieren',
+      'Muster', 'Reihenfolgen', 'Sortieren und Ordnen',
+      'Zahlenmuster', 'Logische Reihenfolgen', 'Paare und Gruppen',
+      'Schlussfolgern', 'Wenn-dann', 'Ausschlussverfahren',
+      'Regeln kombinieren', 'Mehrschritt-Logik', 'Zahlenrätsel',
+      'Aussagen prüfen',
     ],
+  };
+
+  // Lokale Lernbereiche, die nicht ueber eigene Template-Klassen laufen,
+  // brauchen trotzdem eine echte Schulstufen-Zuordnung. Dadurch sieht z.B.
+  // eine 4. Klasse nicht mehr automatisch "Woerter lesen" oder
+  // "Buchstaben nachspuren" als normalen neuen Lernstoff.
+  static const Map<String, Map<int, List<String>>> _localUnitsByGrade =
+      <String, Map<int, List<String>>>{
+    'Lesen': <int, List<String>>{
+      1: <String>[
+        'Woerter lesen',
+        'Bild und Wort',
+        'Sätze lesen',
+        'Lesesinn',
+      ],
+      2: <String>[
+        'Sätze lesen',
+        'Lesesinn',
+        'Reihenfolge',
+        'Informationen finden',
+      ],
+      3: <String>[
+        'Lesesinn',
+        'Reihenfolge',
+        'Informationen finden',
+        'Schlussfolgern',
+        'Kernaussage',
+      ],
+      4: <String>[
+        'Lesesinn',
+        'Informationen finden',
+        'Schlussfolgern',
+        'Kernaussage',
+        'Textart erkennen',
+      ],
+    },
+    'Schreiben': <int, List<String>>{
+      1: <String>[
+        'Buchstaben nachspuren',
+        'Schwunguebung',
+        'Wort schreiben',
+        'Satz abschreiben',
+      ],
+      2: <String>[
+        'Wort schreiben',
+        'Satz abschreiben',
+        'Satz ergänzen',
+        'Kurze Nachricht',
+      ],
+      3: <String>[
+        'Sätze verbinden',
+        'Beschreibung schreiben',
+        'Geschichte fortsetzen',
+        'Text planen',
+      ],
+      4: <String>[
+        'Text planen',
+        'Beschreibung schreiben',
+        'Geschichte fortsetzen',
+        'Meinung begründen',
+        'Informationstext',
+      ],
+    },
+    'Rechtschreibung': <int, List<String>>{
+      1: <String>['Haeufige Woerter', 'Wortende', 'Gross und klein'],
+      2: <String>[
+        'Gross und klein',
+        'Satzzeichen',
+        'St oder Sp',
+        'Wortstamm',
+      ],
+      3: <String>[
+        'Doppelmitlaut',
+        'Dehnungen',
+        'Wortende',
+        'Großschreibung',
+        'ie oder i',
+      ],
+      4: <String>[
+        'Doppelmitlaut',
+        'Dehnungen',
+        'Satzzeichen',
+        'Gross und klein',
+        'dass oder das',
+        'Kommas in Aufzählungen',
+      ],
+    },
   };
 
   /// Selectable topics backed by real task data for this grade. Topics from
@@ -98,12 +197,33 @@ class Curriculum {
     final capped = grade.clamp(1, 4).toInt();
     final lowestGrade = currentGradeOnly ? capped : 1;
     if (subject == 'Logik') {
-      return <String>[
-        if (!currentGradeOnly || capped == 1) ...['Muster', 'Reihenfolgen'],
-        if (capped >= 2 && (!currentGradeOnly || capped == 2)) 'Zahlenmuster',
-        if (capped >= 3 && (!currentGradeOnly || capped == 3)) 'Schlussfolgern',
-        if (capped >= 4) 'Regeln kombinieren',
-      ];
+      const byGrade = <int, List<String>>{
+        1: <String>[
+          'Muster',
+          'Reihenfolgen',
+          'Sortieren und Ordnen',
+        ],
+        2: <String>[
+          'Zahlenmuster',
+          'Logische Reihenfolgen',
+          'Paare und Gruppen',
+        ],
+        3: <String>[
+          'Schlussfolgern',
+          'Wenn-dann',
+          'Ausschlussverfahren',
+        ],
+        4: <String>[
+          'Regeln kombinieren',
+          'Mehrschritt-Logik',
+          'Zahlenrätsel',
+          'Aussagen prüfen',
+        ],
+      };
+      return <String>{
+        for (var level = capped; level >= lowestGrade; level--)
+          ...?byGrade[level],
+      }.toList(growable: false);
     }
     if (subject == 'Mathematik') {
       return <String>{
@@ -118,6 +238,13 @@ class Curriculum {
           for (final template in GermanTaskTemplates.templates)
             if (template.grade == level) template.unit,
         if (!currentGradeOnly) 'St oder Sp',
+      }.toList(growable: false);
+    }
+    final localByGrade = _localUnitsByGrade[subject];
+    if (localByGrade != null) {
+      return <String>{
+        for (var level = capped; level >= lowestGrade; level--)
+          ...?localByGrade[level],
       }.toList(growable: false);
     }
     if (subject == 'Sachunterricht') {
@@ -158,6 +285,10 @@ class Curriculum {
       'Woerter lesen': 'Wörter lesen',
       'Namenswoerter': 'Namenswörter',
       'Hauptwoerter': 'Hauptwörter',
+      'Sätze verbinden': 'Sätze verbinden',
+      'Bruchrechnen einfach': 'Bruchrechnen',
+      'Plus bis 1000000': 'Plus bis 1 Million',
+      'Minus bis 1000000': 'Minus bis 1 Million',
     };
     return map[key] ?? key;
   }
@@ -177,22 +308,32 @@ class ExerciseFactory {
   }) {
     final cappedGrade = grade.clamp(1, 4).toInt();
     final chosenSubject = _chooseSubject(subject, weakSkills);
-    final units = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
-    final availableUnit = units.contains(unit) ||
-        (chosenSubject == 'Mathematik' && MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
-        (chosenSubject == 'Deutsch' && GermanTaskTemplates.supportsUnit(cappedGrade, unit));
-    var selectionPool = units;
-    if ((unit == 'Alle' || !availableUnit) && _random.nextInt(4) != 0) {
-      final currentUnits = Curriculum.unitsForGrade(chosenSubject, cappedGrade, currentGradeOnly: true);
-      if (currentUnits.isNotEmpty) selectionPool = currentUnits;
-    }
-    var candidateUnits = unit == 'Alle' || !availableUnit
+    // Normaler Lernmodus bleibt strikt in der aktuell gewählten Schulstufe.
+    // Frühere Inhalte sind weiterhin als bewusst gewählte Wiederholung erlaubt,
+    // werden aber nie mehr zufällig in eine neue Einheit gemischt.
+    final allUnits = Curriculum.unitsForGrade(
+      chosenSubject,
+      cappedGrade,
+      currentGradeOnly: false,
+    );
+    final currentUnits = Curriculum.unitsForGrade(
+      chosenSubject,
+      cappedGrade,
+      currentGradeOnly: true,
+    );
+    final currentUnitAvailable = currentUnits.contains(unit);
+    final selectionPool =
+        currentUnits.isNotEmpty ? currentUnits : allUnits;
+    var candidateUnits = unit == 'Alle' || !currentUnitAvailable
         ? selectionPool.where((u) => !avoidUnits.contains(u)).toList()
         : <String>[unit];
     if (candidateUnits.isEmpty) {
-      candidateUnits = units.where((u) => !avoidUnits.contains(u)).toList();
+      candidateUnits =
+          selectionPool.where((u) => !avoidUnits.contains(u)).toList();
     }
-    final chosenUnit = candidateUnits.isEmpty ? units[_random.nextInt(units.length)] : _weightedUnit(candidateUnits, weakSkills);
+    final chosenUnit = candidateUnits.isEmpty
+        ? selectionPool[_random.nextInt(selectionPool.length)]
+        : _weightedUnit(candidateUnits, weakSkills);
     return _build(grade: cappedGrade, subject: chosenSubject, unit: chosenUnit);
   }
 
@@ -336,6 +477,194 @@ class ExerciseFactory {
             '${lower + 8}'
           ]);
     }
+    if (unit == 'Sortieren und Ordnen') {
+      const sets = <List<String>>[
+        <String>['Maus', 'Hund', 'Pferd', 'vom kleinsten zum größten'],
+        <String>['1', '5', '9', 'von der kleinsten zur größten Zahl'],
+        <String>['Montag', 'Mittwoch', 'Freitag', 'in zeitlicher Reihenfolge'],
+      ];
+      final set = sets[_random.nextInt(sets.length)];
+      final answer = '${set[0]} – ${set[1]} – ${set[2]}';
+      return _choiceTask(
+        'logik-sortieren',
+        grade,
+        'Logik',
+        unit,
+        'Welche Reihenfolge passt ${set[3]}?',
+        answer,
+        'Ordne nach genau dem Merkmal, das in der Aufgabe genannt ist.',
+        customChoices: <String>[
+          answer,
+          '${set[2]} – ${set[1]} – ${set[0]}',
+          '${set[1]} – ${set[0]} – ${set[2]}',
+        ],
+      );
+    }
+
+    if (unit == 'Paare und Gruppen') {
+      const items = <List<String>>[
+        <String>['Apfel', 'Birne', 'Banane', 'Obst'],
+        <String>['Hund', 'Katze', 'Pferd', 'Tiere'],
+        <String>['Rot', 'Blau', 'Gelb', 'Farben'],
+        <String>['Montag', 'Dienstag', 'Freitag', 'Wochentage'],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'logik-gruppen',
+        grade,
+        'Logik',
+        unit,
+        'Welche Gruppe passt zu ${item[0]}, ${item[1]} und ${item[2]}?',
+        item[3],
+        'Alle drei Begriffe gehören zur Gruppe „${item[3]}“.',
+        customChoices: <String>[item[3], 'Fahrzeuge', 'Möbel', 'Werkzeuge'],
+      );
+    }
+
+    if (unit == 'Wenn-dann') {
+      const items = <List<String>>[
+        <String>[
+          'Wenn es regnet, nimmt Mia einen Schirm. Es regnet.',
+          'Mia nimmt einen Schirm.',
+          'Mia braucht sicher Sonnencreme.',
+          'Mia bleibt immer zu Hause.',
+        ],
+        <String>[
+          'Wenn eine Zahl gerade ist, kann man sie ohne Rest durch 2 teilen. 18 ist gerade.',
+          '18 ist ohne Rest durch 2 teilbar.',
+          '18 ist kleiner als 2.',
+          '18 ist ungerade.',
+        ],
+        <String>[
+          'Wenn Lumo seine Aufgabe beendet, darf er spielen. Die Aufgabe ist beendet.',
+          'Lumo darf spielen.',
+          'Lumo muss die Aufgabe noch beginnen.',
+          'Lumo darf nie spielen.',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'logik-wenn-dann',
+        grade,
+        'Logik',
+        unit,
+        '${item[0]} Was folgt daraus?',
+        item[1],
+        'Nutze nur die gegebene Wenn-dann-Regel und die Information aus der Aufgabe.',
+        customChoices: item.sublist(1),
+      );
+    }
+
+    if (unit == 'Ausschlussverfahren') {
+      const items = <List<String>>[
+        <String>[
+          'Das gesuchte Tier kann fliegen. Es ist kein Insekt.',
+          'Vogel',
+          'Hund',
+          'Biene',
+        ],
+        <String>[
+          'Die gesuchte Zahl ist größer als 20, kleiner als 30 und gerade.',
+          '24',
+          '19',
+          '31',
+        ],
+        <String>[
+          'Der Gegenstand ist aus Papier, hat Seiten und man kann darin lesen.',
+          'Buch',
+          'Ball',
+          'Tasse',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'logik-ausschluss',
+        grade,
+        'Logik',
+        unit,
+        '${item[0]} Was bleibt übrig?',
+        item[1],
+        'Streiche Antworten, die mindestens eine Bedingung nicht erfüllen.',
+        customChoices: item.sublist(1),
+      );
+    }
+
+    if (unit == 'Mehrschritt-Logik') {
+      final start = 2 + _random.nextInt(8);
+      final doubled = start * 2;
+      final answer = doubled + 3;
+      return _choiceTask(
+        'logik-mehrschritt',
+        grade,
+        'Logik',
+        unit,
+        'Starte mit $start. Verdopple die Zahl und addiere danach 3. Wo landest du?',
+        '$answer',
+        'Erster Schritt: $start × 2 = $doubled. Zweiter Schritt: $doubled + 3 = $answer.',
+        customChoices: <String>[
+          '$answer',
+          '${answer - 2}',
+          '${answer + 2}',
+          '${start + 3}',
+        ],
+      );
+    }
+
+    if (unit == 'Zahlenrätsel') {
+      final answer = 20 + _random.nextInt(60);
+      final half = answer ~/ 2;
+      final adjusted = half * 2;
+      return _choiceTask(
+        'logik-zahlenraetsel',
+        grade,
+        'Logik',
+        unit,
+        'Ich denke an eine gerade Zahl. Ihre Hälfte ist $half. Welche Zahl ist gemeint?',
+        '$adjusted',
+        'Wenn die Hälfte $half ist, ist die ganze Zahl $half × 2 = $adjusted.',
+        customChoices: <String>[
+          '$adjusted',
+          '${adjusted + 2}',
+          '${adjusted - 2}',
+          '$half',
+        ],
+      );
+    }
+
+    if (unit == 'Aussagen prüfen') {
+      const items = <List<String>>[
+        <String>[
+          'Alle Quadrate haben vier Seiten. Diese Figur ist ein Quadrat.',
+          'Die Figur hat vier Seiten.',
+          'Die Figur hat drei Seiten.',
+          'Man kann nichts folgern.',
+        ],
+        <String>[
+          'Kein Fisch lebt an Land. Nemo ist ein Fisch.',
+          'Nemo lebt nicht an Land.',
+          'Nemo ist ein Vogel.',
+          'Nemo lebt sicher auf einem Baum.',
+        ],
+        <String>[
+          'Alle Kinder in Team Blau tragen ein blaues Band. Mia ist in Team Blau.',
+          'Mia trägt ein blaues Band.',
+          'Mia trägt sicher ein rotes Band.',
+          'Mia ist nicht im Team.',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'logik-aussagen',
+        grade,
+        'Logik',
+        unit,
+        '${item[0]} Welche Aussage folgt sicher?',
+        item[1],
+        'Die richtige Antwort muss aus den gegebenen Aussagen zwingend folgen.',
+        customChoices: item.sublist(1),
+      );
+    }
+
     final names = <String>['Lumo', 'Mia', 'Ben', 'Ali', 'Lea']
       ..shuffle(_random);
     final first = names[0], middle = names[1], last = names[2];
@@ -378,7 +707,10 @@ class ExerciseFactory {
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Deutsch');
     final seed = _serial + _random.nextInt(9999);
     final generated = GermanTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
-    final outputUnit = unit == 'Namenswoerter' || unit == 'Hauptwoerter' ? unit : generated.unit;
+    // The UI topic is the contract. Alias-backed templates (for example
+    // "Anfangslaute" -> "Buchstaben-Lautierung") may reuse the same generator,
+    // but must not silently rename the selected topic in progress/history.
+    final outputUnit = unit == 'Alle' ? generated.unit : unit;
     return LumoTask(
       id: _id('deutsch-${generated.promptPattern}'),
       grade: grade,
@@ -396,20 +728,23 @@ class ExerciseFactory {
   LumoTask _science(int grade, String unit) {
     final seed = _serial + _random.nextInt(9999);
     final capped = grade.clamp(1, 4).toInt();
-    // 75% strict (exakte Klassenstufe), 25% Wiederholung aus Vorjahren -
-    // gleiche Strategie wie Math/German seit 2026-06-03.
-    final useStrict = seed.abs() % 4 != 0;
     final strictPool = _scienceQuestions.where((question) {
-      final unitMatches = unit == 'Alle' || question.unit == unit || _scienceAliases[unit]?.contains(question.unit) == true;
+      final unitMatches = unit == 'Alle' ||
+          question.unit == unit ||
+          _scienceAliases[unit]?.contains(question.unit) == true;
       return question.grade == capped && unitMatches;
     }).toList(growable: false);
-    final loosePool = _scienceQuestions.where((question) {
-      final unitMatches = unit == 'Alle' || question.unit == unit || _scienceAliases[unit]?.contains(question.unit) == true;
-      return question.grade <= capped && unitMatches;
+    final explicitReviewPool = _scienceQuestions.where((question) {
+      final unitMatches = question.unit == unit ||
+          _scienceAliases[unit]?.contains(question.unit) == true;
+      return unit != 'Alle' && question.grade <= capped && unitMatches;
     }).toList(growable: false);
-    var source = useStrict && strictPool.isNotEmpty ? strictPool : loosePool;
+    var source =
+        strictPool.isNotEmpty ? strictPool : explicitReviewPool;
     if (source.isEmpty) {
-      source = _scienceQuestions.where((question) => question.grade <= capped).toList(growable: false);
+      source = _scienceQuestions
+          .where((question) => question.grade == capped)
+          .toList(growable: false);
     }
     final question = source[_positive(seed, source.length)];
     return LumoTask(
@@ -428,6 +763,49 @@ class ExerciseFactory {
 
   LumoTask _spelling(int grade, String unit) {
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Rechtschreibung');
+
+    if (unit == 'Wortstamm') {
+      final generated = GermanTaskTemplates.generate(
+        grade: 2,
+        unit: 'Wortfamilien',
+        seed: _serial + _random.nextInt(9999),
+      );
+      return LumoTask(
+        id: _id('rechtschreib-wortstamm'),
+        grade: grade,
+        subject: 'Rechtschreibung',
+        unit: unit,
+        prompt: generated.prompt,
+        choices: _shuffledChoices(generated.choices),
+        answer: generated.answer,
+        explanation: generated.explanation,
+        visual: generated.visual,
+        difficulty: grade,
+      );
+    }
+
+    if (unit == 'Großschreibung' ||
+        unit == 'ie oder i' ||
+        unit == 'dass oder das' ||
+        unit == 'Kommas in Aufzählungen') {
+      final generated = GermanTaskTemplates.generate(
+        grade: grade,
+        unit: unit,
+        seed: _serial + _random.nextInt(9999),
+      );
+      return LumoTask(
+        id: _id('rechtschreib-${generated.promptPattern}'),
+        grade: grade,
+        subject: 'Rechtschreibung',
+        unit: unit,
+        prompt: generated.prompt,
+        choices: _shuffledChoices(generated.choices),
+        answer: generated.answer,
+        explanation: generated.explanation,
+        visual: generated.visual,
+        difficulty: grade,
+      );
+    }
     if (unit == 'Gross und klein') {
       final noun = PrimarySchoolWordData.nounForGrade(
           grade, _serial + _random.nextInt(9999));
@@ -753,6 +1131,95 @@ class ExerciseFactory {
       prompt = 'Schreibe: ${options[_random.nextInt(options.length)]}';
       explanation =
           'Schreibe den ganzen Satz. Achte auf Abstände, den großen Anfang und das Satzzeichen.';
+    } else if (unit == 'Satz ergänzen') {
+      const starts = <String>[
+        'Nach der Schule ...',
+        'Heute freue ich mich, weil ...',
+        'Im Garten sehe ich ...',
+        'Wenn es regnet, ...',
+      ];
+      prompt =
+          'Ergänze den Satz sinnvoll: „${starts[_random.nextInt(starts.length)]}“';
+      explanation =
+          'Schreibe einen vollständigen Satz mit großem Anfang und passendem Satzzeichen.';
+    } else if (unit == 'Kurze Nachricht') {
+      const situations = <String>[
+        'Du willst einem Freund sagen, dass du heute um 15 Uhr am Spielplatz bist.',
+        'Du möchtest Oma für ein Geschenk danken.',
+        'Du bist krank und möchtest der Lehrerin kurz Bescheid geben.',
+        'Du lädst ein Kind aus deiner Klasse zum Spielen ein.',
+      ];
+      prompt =
+          'Schreibe eine kurze Nachricht: ${situations[_random.nextInt(situations.length)]}';
+      explanation =
+          'Eine gute Nachricht sagt kurz: An wen? Was ist wichtig? Von wem kommt sie?';
+    } else if (unit == 'Sätze verbinden') {
+      const pairs = <List<String>>[
+        <String>['Es regnet.', 'Mia nimmt einen Schirm.', 'deshalb'],
+        <String>['Lumo liest.', 'Ben baut ein Modell.', 'während'],
+        <String>['Die Pflanze wächst.', 'Sie bekommt Licht und Wasser.', 'weil'],
+        <String>['Wir gehen hinaus.', 'Es ist kalt.', 'obwohl'],
+      ];
+      final pair = pairs[_random.nextInt(pairs.length)];
+      prompt =
+          'Verbinde diese Sätze mit „${pair[2]}“ zu einem guten Satz:\n${pair[0]} ${pair[1]}';
+      explanation =
+          'Achte darauf, dass der verbundene Satz verständlich ist und die Satzzeichen stimmen.';
+    } else if (unit == 'Beschreibung schreiben') {
+      const topics = <String>[
+        'Beschreibe deinen Schulweg so, dass ein anderes Kind ihn verstehen kann.',
+        'Beschreibe einen Gegenstand in deinem Zimmer, ohne seinen Namen zu nennen.',
+        'Beschreibe ein Tier: Aussehen, Lebensraum und eine Besonderheit.',
+        'Beschreibe einen Ort, an dem du dich wohlfühlst.',
+      ];
+      prompt = topics[_random.nextInt(topics.length)];
+      explanation =
+          'Ordne deine Beschreibung: zuerst Überblick, dann wichtige Merkmale und Details.';
+    } else if (unit == 'Geschichte fortsetzen') {
+      const starts = <String>[
+        'Lumo findet vor der Schule einen kleinen Schlüssel. Plötzlich ...',
+        'Beim Wandertag entdeckt die Klasse eine Spur im Wald. Dann ...',
+        'In der Bücherei fällt aus einem alten Buch eine Karte. Darauf ...',
+        'Am Morgen steht vor der Tür eine geheimnisvolle Schachtel. Als Mia sie öffnet ...',
+      ];
+      prompt =
+          'Schreibe die Geschichte in mindestens drei Sätzen weiter:\n„${starts[_random.nextInt(starts.length)]}“';
+      explanation =
+          'Überlege zuerst: Was passiert? Wer handelt? Wie endet die Szene?';
+    } else if (unit == 'Text planen') {
+      const topics = <String>[
+        'Ein Ausflug mit der Klasse',
+        'Mein Lieblingstier',
+        'So sparen wir Wasser',
+        'Ein spannender Nachmittag',
+      ];
+      final topic = topics[_random.nextInt(topics.length)];
+      prompt =
+          'Plane einen Text zum Thema „$topic“. Schreibe zuerst 3 Stichpunkte: Anfang – Mitte – Ende.';
+      explanation =
+          'Ein Plan hilft dir, die Reihenfolge festzulegen, bevor du den Text schreibst.';
+    } else if (unit == 'Meinung begründen') {
+      const questions = <String>[
+        'Soll es in jeder Klasse eine tägliche Lesezeit geben?',
+        'Sollten Kinder bei der Planung eines Schulfests mitentscheiden?',
+        'Ist ein gemeinsamer Pausengarten eine gute Idee?',
+        'Soll man in der Schule öfter draußen lernen?',
+      ];
+      prompt =
+          'Was meinst du? ${questions[_random.nextInt(questions.length)]} Schreibe deine Meinung und mindestens zwei Gründe.';
+      explanation =
+          'Nenne zuerst deine Meinung. Begründe sie anschließend mit „weil“, „denn“ oder einem Beispiel.';
+    } else if (unit == 'Informationstext') {
+      const topics = <String>[
+        'Wie entsteht ein Regenbogen?',
+        'Warum brauchen Pflanzen Wasser und Licht?',
+        'Wie funktioniert sicheres Überqueren einer Straße?',
+        'Was gehört zu einem gesunden Schultag?',
+      ];
+      prompt =
+          'Schreibe einen kurzen Informationstext mit Überschrift und 3–5 Sätzen: ${topics[_random.nextInt(topics.length)]}';
+      explanation =
+          'Ein Informationstext bleibt sachlich, ordnet wichtige Fakten und verwendet eine passende Überschrift.';
     } else {
       final word = PrimarySchoolWordData.nounForGrade(
           grade, _serial + _random.nextInt(9999));
@@ -856,6 +1323,194 @@ class ExerciseFactory {
           '${askLast ? 'Am Ende' : 'Am Anfang'} der Geschichte steht: $answer',
           customChoices: sequence);
     }
+    if (unit == 'Informationen finden') {
+      const items = <int, List<List<String>>>{
+        2: <List<String>>[
+          <String>[
+            'Der Bus fährt um 7:35 Uhr ab. Mia steigt bei der Schule aus.',
+            'Wann fährt der Bus ab?',
+            'um 7:35 Uhr',
+            'um 8:35 Uhr',
+            'nach der Schule',
+          ],
+          <String>[
+            'Ben braucht für den Turntag Sportschuhe, eine Trinkflasche und ein T-Shirt.',
+            'Was soll Ben zum Turntag mitnehmen?',
+            'eine Trinkflasche',
+            'einen Kochtopf',
+            'ein Kissen',
+          ],
+        ],
+        3: <List<String>>[
+          <String>[
+            'Die Bücherei ist am Dienstag und Donnerstag bis 17 Uhr geöffnet. Am Freitag schließt sie um 13 Uhr.',
+            'An welchem Tag ist die Bücherei nur bis 13 Uhr geöffnet?',
+            'Freitag',
+            'Dienstag',
+            'Donnerstag',
+          ],
+          <String>[
+            'Für das Experiment werden ein Glas, Wasser, Salz und ein Löffel benötigt.',
+            'Welcher Gegenstand wird zum Umrühren gebraucht?',
+            'ein Löffel',
+            'ein Lineal',
+            'eine Schere',
+          ],
+        ],
+        4: <List<String>>[
+          <String>[
+            'Der Naturpark bittet Besucher, auf den Wegen zu bleiben, Hunde an der Leine zu führen und Abfälle wieder mitzunehmen.',
+            'Welche Regel betrifft Abfälle?',
+            'Abfälle wieder mitnehmen.',
+            'Abfälle neben den Weg legen.',
+            'Nur Papier liegen lassen.',
+          ],
+          <String>[
+            'Die Ausstellung beginnt um 10 Uhr. Die Führung dauert 45 Minuten, danach sind 30 Minuten für eigene Erkundungen vorgesehen.',
+            'Wie lange dauert die Führung?',
+            '45 Minuten',
+            '30 Minuten',
+            '75 Minuten',
+          ],
+        ],
+      };
+      final bank = items[grade.clamp(2, 4)] ?? items[2]!;
+      final item = bank[_random.nextInt(bank.length)];
+      return _choiceTask(
+        'lese-info',
+        grade,
+        'Lesen',
+        unit,
+        '${item[0]}\n${item[1]}',
+        item[2],
+        'Die gesuchte Information steht direkt im Text.',
+        customChoices: item.sublist(2),
+      );
+    }
+
+    if (unit == 'Schlussfolgern') {
+      const items = <int, List<List<String>>>{
+        3: <List<String>>[
+          <String>[
+            'Mia kommt mit nassen Schuhen und einem geschlossenen Regenschirm ins Schulhaus.',
+            'Was ist wahrscheinlich draußen?',
+            'Es regnet.',
+            'Es schneit sicher.',
+            'Es ist völlig trocken.',
+          ],
+          <String>[
+            'Ben stellt die leere Futterschüssel hin. Der Hund läuft sofort zur Küche.',
+            'Was erwartet der Hund wahrscheinlich?',
+            'Futter',
+            'ein Buch',
+            'einen Ballon',
+          ],
+        ],
+        4: <List<String>>[
+          <String>[
+            'Auf dem Weg liegen viele kleine Äste. Die Bäume bewegen sich stark und Mia hält ihre Haube fest.',
+            'Welche Wetterlage passt am besten?',
+            'Es ist windig.',
+            'Es ist windstill.',
+            'Es ist sehr heiß ohne Wind.',
+          ],
+          <String>[
+            'Lumo vergleicht zwei Quellen. Beide nennen dasselbe Datum, aber nur eine erklärt, woher die Information stammt.',
+            'Welche Quelle ist besser überprüfbar?',
+            'Die Quelle mit Herkunftsangabe.',
+            'Immer die kürzere Quelle.',
+            'Beide sind automatisch gleich sicher.',
+          ],
+        ],
+      };
+      final bank = items[grade.clamp(3, 4)] ?? items[3]!;
+      final item = bank[_random.nextInt(bank.length)];
+      return _choiceTask(
+        'lese-schluss',
+        grade,
+        'Lesen',
+        unit,
+        '${item[0]}\n${item[1]}',
+        item[2],
+        'Verbinde Hinweise aus dem Text und ziehe daraus eine begründete Schlussfolgerung.',
+        customChoices: item.sublist(2),
+      );
+    }
+
+    if (unit == 'Kernaussage') {
+      const items = <List<String>>[
+        <String>[
+          'Bäume spenden Schatten, bieten Tieren Lebensraum und helfen, die Luft zu verbessern. Deshalb sind Bäume in Städten besonders wertvoll.',
+          'Bäume erfüllen in Städten mehrere wichtige Aufgaben.',
+          'Bäume stehen nur im Wald.',
+          'Schatten ist die einzige Aufgabe von Bäumen.',
+        ],
+        <String>[
+          'Regelmäßiges Lesen erweitert den Wortschatz. Wer oft liest, versteht außerdem längere Texte leichter und entdeckt neue Themen.',
+          'Regelmäßiges Lesen stärkt mehrere Fähigkeiten.',
+          'Lesen ist nur für schwierige Wörter nützlich.',
+          'Lange Texte sollte man vermeiden.',
+        ],
+        <String>[
+          'Wer eine Aufgabe plant, teilt sie in kleinere Schritte. Dadurch erkennt man leichter, was zuerst und was danach zu tun ist.',
+          'Ein Plan ordnet eine Aufgabe in sinnvolle Schritte.',
+          'Planen macht Aufgaben immer länger.',
+          'Man sollte alle Schritte gleichzeitig machen.',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'lese-kern',
+        grade,
+        'Lesen',
+        unit,
+        '${item[0]}\nWelche Aussage fasst den Text am besten zusammen?',
+        item[1],
+        'Die Kernaussage nennt die wichtigste gemeinsame Aussage des ganzen Textes.',
+        customChoices: item.sublist(1),
+      );
+    }
+
+    if (unit == 'Textart erkennen') {
+      const items = <List<String>>[
+        <String>[
+          'Zuerst gibst du Erde in den Topf. Dann setzt du den Samen hinein und gießt vorsichtig.',
+          'Anleitung',
+          'Erzählung',
+          'Einladung',
+        ],
+        <String>[
+          'Liebe Klasse, unser Fest beginnt am Freitag um 15 Uhr im Schulgarten. Wir freuen uns auf euch!',
+          'Einladung',
+          'Anleitung',
+          'Sachtext',
+        ],
+        <String>[
+          'Der Igel ist ein Säugetier. Er ist vor allem in der Dämmerung und in der Nacht aktiv.',
+          'Sachtext',
+          'Einladung',
+          'Märchen',
+        ],
+        <String>[
+          'Als Lumo die Tür öffnete, glitzerte plötzlich ein winziger Stern mitten im Zimmer.',
+          'Erzählung',
+          'Anleitung',
+          'Fahrplan',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'lese-textart',
+        grade,
+        'Lesen',
+        unit,
+        '${item[0]}\nWelche Textart passt am besten?',
+        item[1],
+        'Achte auf Zweck, Aufbau und typische Formulierungen des Textes.',
+        customChoices: item.sublist(1),
+      );
+    }
+
     // Every answer is grounded in visible text; no absent image or article quiz.
     const passages = <int, List<List<String>>>{
       1: [

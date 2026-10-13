@@ -27,13 +27,13 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g1_symmetry', grade: 1, unit: 'Symmetrie', kind: MathTemplateKind.symmetry, validRangeA: <int>[0, 7], validRangeB: <int>[0, 7], promptPattern: 'symmetrie-form',
     ),
 
-    MathTaskTemplate(id: 'g2_add_20', grade: 2, unit: 'Plus bis 20', kind: MathTemplateKind.addition, validRangeA: <int>[2, 18], validRangeB: <int>[1, 12], promptPattern: 'plus-bis-20',
+    MathTaskTemplate(id: 'g1_add_20', grade: 1, unit: 'Plus bis 20', kind: MathTemplateKind.addition, validRangeA: <int>[2, 18], validRangeB: <int>[1, 12], promptPattern: 'plus-bis-20',
     ),
-    MathTaskTemplate(id: 'g2_sub_20', grade: 2, unit: 'Minus bis 20', kind: MathTemplateKind.subtraction, validRangeA: <int>[8, 20], validRangeB: <int>[1, 14], promptPattern: 'minus-bis-20',
+    MathTaskTemplate(id: 'g1_sub_20', grade: 1, unit: 'Minus bis 20', kind: MathTemplateKind.subtraction, validRangeA: <int>[8, 20], validRangeB: <int>[1, 14], promptPattern: 'minus-bis-20',
     ),
     MathTaskTemplate(id: 'g2_times_prep', grade: 2, unit: 'Einmaleins Vorbereitung', kind: MathTemplateKind.multiplicationPrep, validRangeA: <int>[2, 5], validRangeB: <int>[2, 10], promptPattern: 'wie-oft-in-zahl',
     ),
-    MathTaskTemplate(id: 'g2_word_problem', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[4, 18], validRangeB: <int>[2, 12], promptPattern: 'sachaufgabe-ein-schritt',
+    MathTaskTemplate(id: 'g2_word_problem', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[4, 18], validRangeB: <int>[2, 12], promptPattern: 'sachaufgabe-ein-schritt-klasse2',
     ),
     MathTaskTemplate(id: 'g2_money_change', grade: 2, unit: 'Geld wechseln', kind: MathTemplateKind.moneyChange, validRangeA: <int>[2, 20], validRangeB: <int>[1, 5], promptPattern: 'geld-wechseln',
     ),
@@ -46,6 +46,8 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g2_half_double', grade: 2, unit: 'Verdoppeln und Halbieren', kind: MathTemplateKind.halfDouble, validRangeA: <int>[2, 50], validRangeB: <int>[0, 1], promptPattern: 'halb-doppelt-groesser',
     ),
     MathTaskTemplate(id: 'g2_tens_ones', grade: 2, unit: 'Zehner und Einer', kind: MathTemplateKind.tensOnes, validRangeA: <int>[10, 99], validRangeB: <int>[0, 1], promptPattern: 'zehner-einer',
+    ),
+    MathTaskTemplate(id: 'g2_chart', grade: 2, unit: 'Diagramme lesen', kind: MathTemplateKind.chartRead, validRangeA: <int>[2, 18], validRangeB: <int>[2, 18], promptPattern: 'diagramm-lesen-einfach',
     ),
 
     MathTaskTemplate(id: 'g3_tables', grade: 3, unit: 'Einmaleins', kind: MathTemplateKind.multiplication, validRangeA: <int>[2, 10], validRangeB: <int>[2, 10], promptPattern: 'einmaleins',
@@ -63,9 +65,9 @@ class MathTaskTemplates {
     // AT-Lehrplan-Korrektur 2026-06-03: Flaecheninhalt ist Klasse-4-Stoff
     // (BMBWF Mathe-Lehrplan VS). Vorher faelschlich als g3_area gefuehrt
     // -> Klasse 3 sah eine Aufgabe die laut Lehrplan erst Klasse 4 dran ist.
-    MathTaskTemplate(id: 'g3_add_100', grade: 3, unit: 'Plus bis 100', kind: MathTemplateKind.addition, validRangeA: <int>[10, 90], validRangeB: <int>[5, 80], promptPattern: 'plus-bis-100',
+    MathTaskTemplate(id: 'g2_add_100', grade: 2, unit: 'Plus bis 100', kind: MathTemplateKind.addition, validRangeA: <int>[10, 90], validRangeB: <int>[5, 80], promptPattern: 'plus-bis-100',
     ),
-    MathTaskTemplate(id: 'g3_sub_100', grade: 3, unit: 'Minus bis 100', kind: MathTemplateKind.subtraction, validRangeA: <int>[20, 100], validRangeB: <int>[5, 70], promptPattern: 'minus-bis-100',
+    MathTaskTemplate(id: 'g2_sub_100', grade: 2, unit: 'Minus bis 100', kind: MathTemplateKind.subtraction, validRangeA: <int>[20, 100], validRangeB: <int>[5, 70], promptPattern: 'minus-bis-100',
     ),
     // Neue Klasse-3-Lehrplan-Templates (AT Lehrplan 2023):
     MathTaskTemplate(id: 'g3_add_1000', grade: 3, unit: 'Plus bis 1000', kind: MathTemplateKind.addition, validRangeA: <int>[120, 600], validRangeB: <int>[80, 400], promptPattern: 'plus-bis-1000',
@@ -79,9 +81,13 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g3_mass', grade: 3, unit: 'Massen Kilogramm und Gramm', kind: MathTemplateKind.massConversion, validRangeA: <int>[1, 50], validRangeB: <int>[1, 4], promptPattern: 'kg-zu-g',
     ),
 
-    MathTaskTemplate(id: 'g4_written_mul', grade: 4, unit: 'Schriftliche Multiplikation', kind: MathTemplateKind.writtenMultiplication, validRangeA: <int>[12, 999], validRangeB: <int>[2, 12], promptPattern: 'schriftliche-multiplikation',
+    MathTaskTemplate(id: 'g4_add_1m', grade: 4, unit: 'Plus bis 1000000', kind: MathTemplateKind.addition, validRangeA: <int>[10000, 800000], validRangeB: <int>[1000, 400000], promptPattern: 'plus-bis-eine-million',
     ),
-    MathTaskTemplate(id: 'g4_written_div', grade: 4, unit: 'Schriftliche Division', kind: MathTemplateKind.division, validRangeA: <int>[20, 999], validRangeB: <int>[2, 12], promptPattern: 'schriftliche-division',
+    MathTaskTemplate(id: 'g4_sub_1m', grade: 4, unit: 'Minus bis 1000000', kind: MathTemplateKind.subtraction, validRangeA: <int>[10000, 999999], validRangeB: <int>[1000, 500000], promptPattern: 'minus-bis-eine-million',
+    ),
+    MathTaskTemplate(id: 'g4_written_mul', grade: 4, unit: 'Schriftliche Multiplikation', kind: MathTemplateKind.writtenMultiplication, validRangeA: <int>[100, 99999], validRangeB: <int>[2, 99], promptPattern: 'schriftliche-multiplikation',
+    ),
+    MathTaskTemplate(id: 'g4_written_div', grade: 4, unit: 'Schriftliche Division', kind: MathTemplateKind.division, validRangeA: <int>[100, 999999], validRangeB: <int>[2, 99], promptPattern: 'schriftliche-division',
     ),
     MathTaskTemplate(id: 'g4_fraction_add', grade: 4, unit: 'Bruchrechnen einfach', kind: MathTemplateKind.simpleFractionAdd, validRangeA: <int>[1, 8], validRangeB: <int>[1, 8], promptPattern: 'gleichnamige-brueche-addieren',
     ),
@@ -163,15 +169,15 @@ class MathTaskTemplates {
     return templatesForGrade(grade, unit: unit);
   }
 
-  static MathConcreteTask generate({required int grade, required String unit, required int seed,
+  static MathConcreteTask generate({
+    required int grade,
+    required String unit,
+    required int seed,
   }) {
-    // 75% aktuelle Klassenstufe (strict), 25% Wiederholung aus Vorjahren.
-    final useStrict = seed.abs() % 4 != 0;
-    final pool = useStrict
-        ? templatesForGradeStrict(grade, unit: unit)
-        : templatesForGrade(grade, unit: unit);
-    // Auswahl und Wiederholungsquote dürfen nicht denselben Modulo nutzen:
-    // Bei 16 Templates wären sonst ganze Familien nie erreichbar.
+    // Regulaerer Lernpfad: immer exakte Schulstufe.
+    // Ein explizit angefordertes altes Thema bleibt ueber den Fallback in
+    // templatesForGradeStrict moeglich, wird aber niemals zufaellig gemischt.
+    final pool = templatesForGradeStrict(grade, unit: unit);
     final template = pool[_positive(_mixSeed(seed + 101), pool.length)];
     return template.concretize(_mixSeed(seed + 809));
   }
@@ -385,8 +391,10 @@ class MathTaskTemplate {
         return _numberTask('Schriftlich: $a × $b = ?', answer, 'Multipliziere jede Stelle von $a mit $b.', 'written_mul',
         );
       case MathTemplateKind.division:
-        final divisor = b.clamp(2, 12).toInt();
-        final quotient = (a ~/ divisor).clamp(2, 99).toInt();
+        final divisor =
+            b.clamp(2, grade >= 4 ? 99 : 12).toInt();
+        final quotient =
+            (a ~/ divisor).clamp(2, grade >= 4 ? 99999 : 99).toInt();
         final dividend = quotient * divisor;
         return _numberTask('$dividend : $divisor = ?', quotient, 'Teile $dividend in $divisor gleich große Gruppen.', 'division',
         );

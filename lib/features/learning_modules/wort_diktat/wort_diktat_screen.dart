@@ -221,7 +221,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
-        backgroundColor: const Color(0xFFFFFBEB),
+        backgroundColor: const Color(0xFFEAFBFF),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🎉 Diktat fertig!',
             textAlign: TextAlign.center,
@@ -279,7 +279,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
     return LearningModuleProgressScope(
         progress: _progress,
         child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+          backgroundColor: Colors.transparent,
           body: Column(
             children: [
               _buildTopBar(),

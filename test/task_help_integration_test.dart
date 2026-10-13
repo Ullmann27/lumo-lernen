@@ -136,7 +136,7 @@ void main() {
       await tester.pump(const Duration(seconds: 7));
       await tester.pump(const Duration(milliseconds: 400));
     }
-    expect(find.text('Einheit beendet'), findsOneWidget);
+    expect(find.text('Einheit geschafft!'), findsOneWidget);
     expect(find.byType(AdaptiveTaskRenderer), findsNothing);
     expect(
         LumoCompanionRequests.instance.taskContext.value?.answering, isFalse);

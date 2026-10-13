@@ -33,6 +33,7 @@ void main() {
         containsAll([
           'Massen Kilogramm und Gramm',
           'Plus bis 10000',
+          'Plus bis 1000000',
           'Hohlmaße Liter und Milliliter',
           'Brüche erweitern'
         ]));
@@ -52,32 +53,254 @@ void main() {
     expect(Curriculum.unitsForGrade('Mathematik', 1), contains(task.unit));
   });
 
-  test('mixed fourth-grade practice predominantly selects current-grade topics',
+  test('mixed fourth-grade practice stays strictly in current-grade topics',
       () {
-    for (final subject in ['Mathematik', 'Deutsch', 'Sachunterricht']) {
+    for (final subject in [
+      'Mathematik',
+      'Deutsch',
+      'Sachunterricht',
+      'Englisch',
+    ]) {
       final current =
           Curriculum.unitsForGrade(subject, 4, currentGradeOnly: true).toSet();
       final factory = ExerciseFactory(seed: 42);
-      var currentCount = 0;
       for (var i = 0; i < 300; i++) {
         final task = factory.next(grade: 4, subject: subject);
-        if (current.contains(task.unit)) {
-          currentCount++;
-        }
+        expect(
+          current,
+          contains(task.unit),
+          reason:
+              '$subject Klasse 4 darf ohne bewusste Wiederholung kein altes Thema liefern: ${task.unit}',
+        );
       }
-      expect(currentCount, greaterThan(180),
-          reason: '$subject: $currentCount / 300');
     }
   });
 
-  test('a requested available legacy alias remains usable', () {
+  test('template engines never inject an earlier grade into normal Alle practice', () {
+    for (var grade = 1; grade <= 4; grade++) {
+      for (var seed = 0; seed < 200; seed++) {
+        final math = MathTaskTemplates.generate(
+          grade: grade,
+          unit: 'Alle',
+          seed: seed,
+        );
+        expect(
+          math.difficulty,
+          grade,
+          reason: 'Mathe Klasse $grade / Seed $seed: ${math.unit}',
+        );
+
+        final german = GermanTaskTemplates.generate(
+          grade: grade,
+          unit: 'Alle',
+          seed: seed,
+        );
+        expect(
+          german.difficulty,
+          grade,
+          reason: 'Deutsch Klasse $grade / Seed $seed: ${german.unit}',
+        );
+      }
+
+      final scienceFactory = ExerciseFactory(seed: 100 + grade);
+      for (var i = 0; i < 120; i++) {
+        final science = scienceFactory.next(
+          grade: grade,
+          subject: 'Sachunterricht',
+        );
+        expect(
+          science.difficulty,
+          grade,
+          reason:
+              'Sachunterricht Klasse $grade darf nicht aus einer frueheren Stufe stammen: ${science.unit}',
+        );
+      }
+    }
+  });
+
+  test('shared math units use the exact selected grade', () {
+    for (var seed = 0; seed < 100; seed++) {
+      final grade2 = MathTaskTemplates.generate(
+        grade: 2,
+        unit: 'Textaufgaben',
+        seed: seed,
+      );
+      expect(grade2.difficulty, 2);
+    }
+  });
+
+  test('math number ranges progress with the Austrian school grades', () {
+    final g1 = Curriculum.unitsForGrade(
+      'Mathematik',
+      1,
+      currentGradeOnly: true,
+    );
+    final g2 = Curriculum.unitsForGrade(
+      'Mathematik',
+      2,
+      currentGradeOnly: true,
+    );
+    final g3 = Curriculum.unitsForGrade(
+      'Mathematik',
+      3,
+      currentGradeOnly: true,
+    );
+    final g4 = Curriculum.unitsForGrade(
+      'Mathematik',
+      4,
+      currentGradeOnly: true,
+    );
+
+    expect(g1, containsAll(<String>['Plus bis 20', 'Minus bis 20']));
+    expect(g2, containsAll(<String>['Plus bis 100', 'Minus bis 100']));
+    expect(g2, isNot(contains('Plus bis 20')));
+    expect(g3, containsAll(<String>['Plus bis 1000', 'Minus bis 1000']));
+    expect(g3, isNot(contains('Plus bis 100')));
+    expect(
+      g4,
+      containsAll(<String>[
+        'Plus bis 1000000',
+        'Minus bis 1000000',
+        'Zahlenraum bis 1 Million',
+      ]),
+    );
+  });
+
+  test('fourth-grade math menu does not expose grade-one arithmetic', () {
+    final grade4 = Curriculum.unitsForGrade(
+      'Mathematik',
+      4,
+      currentGradeOnly: true,
+    );
+    expect(grade4, isNot(contains('Plus bis 10')));
+    expect(grade4, isNot(contains('Minus bis 10')));
+    expect(grade4, isNot(contains('Plus bis 20')));
+    expect(grade4, contains('Schriftliche Multiplikation'));
+    expect(grade4, contains('Schriftliche Division'));
+  });
+
+  test('every grade exposes a useful number of choices per learning area', () {
+    const minimums = <String, int>{
+      'Mathematik': 8,
+      'Deutsch': 5,
+      'Lesen': 4,
+      'Schreiben': 4,
+      'Rechtschreibung': 3,
+      'Englisch': 4,
+      'Sachunterricht': 6,
+      'Logik': 3,
+    };
+
+    for (var grade = 1; grade <= 4; grade++) {
+      for (final entry in minimums.entries) {
+        final units = Curriculum.unitsForGrade(
+          entry.key,
+          grade,
+          currentGradeOnly: true,
+        );
+        expect(
+          units.length,
+          greaterThanOrEqualTo(entry.value),
+          reason:
+              '${entry.key} Klasse $grade braucht genug echte Auswahl statt eines Mini-Menüs: $units',
+        );
+      }
+    }
+  });
+
+  test('reading writing and spelling have their own grade menus', () {
+    final reading1 =
+        Curriculum.unitsForGrade('Lesen', 1, currentGradeOnly: true);
+    final reading4 =
+        Curriculum.unitsForGrade('Lesen', 4, currentGradeOnly: true);
+    final writing1 =
+        Curriculum.unitsForGrade('Schreiben', 1, currentGradeOnly: true);
+    final writing4 =
+        Curriculum.unitsForGrade('Schreiben', 4, currentGradeOnly: true);
+
+    expect(reading1, contains('Woerter lesen'));
+    expect(reading4, isNot(contains('Woerter lesen')));
+    expect(writing1, contains('Buchstaben nachspuren'));
+    expect(writing4, isNot(contains('Buchstaben nachspuren')));
+
+    for (var grade = 1; grade <= 4; grade++) {
+      expect(
+        Curriculum.unitsForGrade(
+          'Rechtschreibung',
+          grade,
+          currentGradeOnly: true,
+        ),
+        isNotEmpty,
+        reason: 'Rechtschreibung braucht Themen fuer Klasse $grade',
+      );
+    }
+  });
+
+  test('every visible current-grade topic generates a task in that grade', () {
+    const subjects = <String>[
+      'Mathematik',
+      'Deutsch',
+      'Lesen',
+      'Schreiben',
+      'Rechtschreibung',
+      'Englisch',
+      'Sachunterricht',
+      'Logik',
+    ];
+
+    for (var grade = 1; grade <= 4; grade++) {
+      for (final subject in subjects) {
+        final units = Curriculum.unitsForGrade(
+          subject,
+          grade,
+          currentGradeOnly: true,
+        );
+        final factory = ExerciseFactory(seed: grade * 1000 + subject.hashCode);
+        for (final unit in units) {
+          for (var attempt = 0; attempt < 8; attempt++) {
+            final task = factory.next(
+              grade: grade,
+              subject: subject,
+              unit: unit,
+            );
+            expect(
+              task.grade,
+              grade,
+              reason: '$subject / Klasse $grade / $unit',
+            );
+            expect(
+              task.subject,
+              subject,
+              reason: '$subject / Klasse $grade / $unit',
+            );
+            expect(
+              task.unit,
+              unit,
+              reason:
+                  '$subject / Klasse $grade: sichtbares Thema $unit darf nicht auf ${task.unit} umspringen',
+            );
+            expect(task.prompt.trim(), isNotEmpty);
+            expect(task.answer.trim(), isNotEmpty);
+          }
+        }
+      }
+    }
+  });
+
+  test('stale legacy topics cannot bypass the selected grade', () {
     final factory = ExerciseFactory(seed: 2);
+    final currentGerman =
+        Curriculum.unitsForGrade('Deutsch', 2, currentGradeOnly: true);
     final noun =
         factory.next(grade: 2, subject: 'Deutsch', unit: 'Namenswoerter');
-    expect(noun.unit, 'Namenswoerter');
+    expect(currentGerman, contains(noun.unit));
+
+    final currentMath =
+        Curriculum.unitsForGrade('Mathematik', 2, currentGradeOnly: true);
     final house =
         factory.next(grade: 2, subject: 'Mathematik', unit: 'Rechenhaeuser');
     expect(house.subject, 'Mathematik');
-    expect(house.unit, 'Plus bis 20');
+    expect(currentMath, contains(house.unit));
+    expect(house.unit, isNot('Plus bis 20'));
   });
 }

@@ -10,7 +10,7 @@ List<int> numbers(String text) => RegExp(r'\d+')
     .toList();
 
 void main() {
-  test('all mathematical families can actually be selected at every grade', () {
+  test('all current-grade mathematical families can actually be selected', () {
     for (var grade = 1; grade <= 4; grade++) {
       final reached = <String>{};
       for (var seed = 0; seed < 5000; seed++) {
@@ -19,11 +19,20 @@ void main() {
           unit: 'Alle',
           seed: seed,
         );
-        expect(task.difficulty, lessThanOrEqualTo(grade));
+        expect(task.difficulty, grade);
         reached.add(task.promptPattern);
       }
-      for (final item in MathTaskTemplates.templatesForGrade(grade)) {
+      for (final item in MathTaskTemplates.templatesForGradeStrict(grade)) {
         expect(reached, contains(item.promptPattern), reason: item.id);
+      }
+      for (final older in MathTaskTemplates.templates.where(
+        (item) => item.grade < grade,
+      )) {
+        expect(
+          reached,
+          isNot(contains(older.promptPattern)),
+          reason: 'Klasse $grade darf ${older.id} nicht zufaellig mischen',
+        );
       }
     }
   });

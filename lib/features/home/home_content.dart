@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../journal/lumo_journal_screen.dart';
@@ -32,10 +33,18 @@ class HomeContent extends StatelessWidget {
   final ValueChanged<LumoSection> onSection;
 
   void _startPractice(String subject, {String? unit}) {
+    final grade = appState.state.grade.clamp(1, 4).toInt();
     final lastUnit = appState.learningProfile.lastTopics[subject];
+    final currentUnits = Curriculum.unitsForGrade(
+      subject,
+      grade,
+      currentGradeOnly: true,
+    );
+    final safeLastUnit =
+        lastUnit != null && currentUnits.contains(lastUnit) ? lastUnit : null;
     appState.update(appState.state.copyWith(
       subject: subject,
-      unit: unit ?? lastUnit ?? 'Alle',
+      unit: unit ?? safeLastUnit ?? 'Alle',
       mood: LumoMood.point,
       lumoMessage: 'Wir üben $subject. Ich helfe dir Schritt für Schritt.',
       sessionKind: LumoSessionKind.quickPractice,

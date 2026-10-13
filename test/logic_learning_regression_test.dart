@@ -15,11 +15,38 @@ void main() {
     const guard = TaskQualityGuard();
     for (var grade = 1; grade <= 4; grade++) {
       final factory = ExerciseFactory(seed: grade);
-      final units = Curriculum.unitsForGrade('Logik', grade);
+      final units = Curriculum.unitsForGrade(
+        'Logik',
+        grade,
+        currentGradeOnly: true,
+      );
       expect(units, isNotEmpty);
-      expect(units.contains('Regeln kombinieren'), grade == 4);
-      expect(units.contains('Schlussfolgern'), grade >= 3);
-      expect(units.contains('Zahlenmuster'), grade >= 2);
+      if (grade == 1) {
+        expect(units, containsAll(<String>[
+          'Muster',
+          'Reihenfolgen',
+          'Sortieren und Ordnen',
+        ]));
+      } else if (grade == 2) {
+        expect(units, containsAll(<String>[
+          'Zahlenmuster',
+          'Logische Reihenfolgen',
+          'Paare und Gruppen',
+        ]));
+      } else if (grade == 3) {
+        expect(units, containsAll(<String>[
+          'Schlussfolgern',
+          'Wenn-dann',
+          'Ausschlussverfahren',
+        ]));
+      } else {
+        expect(units, containsAll(<String>[
+          'Regeln kombinieren',
+          'Mehrschritt-Logik',
+          'Zahlenrätsel',
+          'Aussagen prüfen',
+        ]));
+      }
       for (final unit in units) {
         for (var i = 0; i < 100; i++) {
           final task = factory.next(grade: grade, subject: 'Logik', unit: unit);

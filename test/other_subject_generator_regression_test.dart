@@ -12,19 +12,26 @@ void main() {
       'all listed non-math/German tasks survive actual validation without relabelling',
       () {
     for (var grade = 1; grade <= 4; grade++) {
-      for (final subject in [
+      for (final subject in <String>[
         'Rechtschreibung',
         'Schreiben',
         'Lesen',
-        'Englisch'
+        'Englisch',
       ]) {
-        for (final unit in Curriculum.unitsForGrade(subject, grade)) {
+        for (final unit in Curriculum.unitsForGrade(
+          subject,
+          grade,
+          currentGradeOnly: true,
+        )) {
           for (var seed = 0; seed < 20; seed++) {
             final task = ExerciseFactory(seed: seed)
                 .next(grade: grade, subject: subject, unit: unit);
             final label = '$grade/$subject/$unit seed=$seed';
-            expect(guard.problems(task), isEmpty,
-                reason: '$label ${task.prompt} ${task.choices}');
+            expect(
+              guard.problems(task),
+              isEmpty,
+              reason: '$label ${task.prompt} ${task.choices}',
+            );
             final checked = adapter.qualityCheckedTask(task);
             expect(checked.subject, subject, reason: label);
             expect(checked.unit, unit, reason: label);
@@ -42,15 +49,68 @@ void main() {
     }
   });
 
+  test('upper grades expose substantive reading and writing choices', () {
+    final reading3 =
+        Curriculum.unitsForGrade('Lesen', 3, currentGradeOnly: true);
+    final reading4 =
+        Curriculum.unitsForGrade('Lesen', 4, currentGradeOnly: true);
+    final writing3 =
+        Curriculum.unitsForGrade('Schreiben', 3, currentGradeOnly: true);
+    final writing4 =
+        Curriculum.unitsForGrade('Schreiben', 4, currentGradeOnly: true);
+
+    expect(
+      reading3,
+      containsAll(<String>[
+        'Informationen finden',
+        'Schlussfolgern',
+        'Kernaussage',
+      ]),
+    );
+    expect(
+      reading4,
+      containsAll(<String>[
+        'Informationen finden',
+        'Schlussfolgern',
+        'Kernaussage',
+        'Textart erkennen',
+      ]),
+    );
+    expect(
+      writing3,
+      containsAll(<String>[
+        'Beschreibung schreiben',
+        'Geschichte fortsetzen',
+        'Text planen',
+      ]),
+    );
+    expect(
+      writing4,
+      containsAll(<String>[
+        'Text planen',
+        'Meinung begründen',
+        'Informationstext',
+      ]),
+    );
+    expect(writing4, isNot(contains('Buchstaben nachspuren')));
+  });
+
   test('first-grade English school supplies stay within school supplies', () {
     final observed = <String>{};
     for (var seed = 0; seed < 40; seed++) {
       final task = ExerciseFactory(seed: seed)
           .next(grade: 1, subject: 'Englisch', unit: 'Schulsachen');
       observed.add(task.answer);
-      expect(['Buch', 'Stift', 'Tasche', 'Lineal'], contains(task.answer));
-      expect(task.choices.every(['Buch', 'Stift', 'Tasche', 'Lineal'].contains),
-          isTrue);
+      expect(
+        <String>['Buch', 'Stift', 'Tasche', 'Lineal'],
+        contains(task.answer),
+      );
+      expect(
+        task.choices.every(
+          <String>['Buch', 'Stift', 'Tasche', 'Lineal'].contains,
+        ),
+        isTrue,
+      );
     }
     expect(observed.length, greaterThan(1));
   });
@@ -67,7 +127,11 @@ void main() {
       'reading tasks contain their evidence and never ask about an absent picture',
       () {
     for (var grade = 1; grade <= 4; grade++) {
-      for (final unit in Curriculum.subjects['Lesen']!) {
+      for (final unit in Curriculum.unitsForGrade(
+        'Lesen',
+        grade,
+        currentGradeOnly: true,
+      )) {
         final task = ExerciseFactory(seed: 13)
             .next(grade: grade, subject: 'Lesen', unit: unit);
         expect(task.prompt, isNot(contains('Welcher Artikel')));
@@ -82,28 +146,41 @@ void main() {
     }
   });
 
-  test('writing target matches the chosen activity and available number range',
-      () {
+  test('grade-one handwriting targets stay concrete and traceable', () {
     final factory = ExerciseFactory(seed: 33);
-    for (var grade = 1; grade <= 4; grade++) {
-      for (var i = 0; i < 25; i++) {
-        final letter = factory.next(
-            grade: grade, subject: 'Schreiben', unit: 'Buchstaben nachspuren');
-        expect(WritingTargetParser.parse(letter.prompt),
-            matches(RegExp(r'^[A-Z]$')));
-        final number = factory.next(
-            grade: grade, subject: 'Schreiben', unit: 'Zahlen schreiben');
-        expect(int.parse(WritingTargetParser.parse(number.prompt)),
-            inInclusiveRange(0, 20));
-        final sentence = factory.next(
-            grade: grade, subject: 'Schreiben', unit: 'Satz abschreiben');
-        expect(WritingTargetParser.parse(sentence.prompt).split(' ').length,
-            greaterThanOrEqualTo(2));
-      }
-      final wave = factory.next(
-          grade: grade, subject: 'Schreiben', unit: 'Schwunguebung');
-      expect(WritingTargetParser.parse(wave.prompt), '∿');
+    final current =
+        Curriculum.unitsForGrade('Schreiben', 1, currentGradeOnly: true);
+    expect(current, contains('Buchstaben nachspuren'));
+    expect(current, contains('Schwunguebung'));
+
+    for (var i = 0; i < 25; i++) {
+      final letter = factory.next(
+        grade: 1,
+        subject: 'Schreiben',
+        unit: 'Buchstaben nachspuren',
+      );
+      expect(
+        WritingTargetParser.parse(letter.prompt),
+        matches(RegExp(r'^[A-Z]$')),
+      );
+
+      final sentence = factory.next(
+        grade: 1,
+        subject: 'Schreiben',
+        unit: 'Satz abschreiben',
+      );
+      expect(
+        WritingTargetParser.parse(sentence.prompt).split(' ').length,
+        greaterThanOrEqualTo(2),
+      );
     }
+
+    final wave = factory.next(
+      grade: 1,
+      subject: 'Schreiben',
+      unit: 'Schwunguebung',
+    );
+    expect(WritingTargetParser.parse(wave.prompt), '∿');
   });
 
   test(
@@ -112,23 +189,38 @@ void main() {
     final task = ExerciseFactory(seed: 11)
         .next(grade: 1, subject: 'Rechtschreibung', unit: 'Gross und klein');
     expect(task.answer, startsWith('Großer Anfang:'));
-    expect(task.choices.any((choice) => choice.startsWith('Alles klein:')),
-        isTrue);
     expect(
-        task.choices.any((choice) => choice.startsWith('Alles groß:')), isTrue);
-    expect(task.choices.any(['ja', 'nein', 'vielleicht', 'anderes'].contains),
-        isFalse);
+      task.choices.any((choice) => choice.startsWith('Alles klein:')),
+      isTrue,
+    );
+    expect(
+      task.choices.any((choice) => choice.startsWith('Alles groß:')),
+      isTrue,
+    );
+    expect(
+      task.choices.any(<String>['ja', 'nein', 'vielleicht', 'anderes'].contains),
+      isFalse,
+    );
   });
 
   test('Dehnungen and Wortende teach their named spelling pattern', () {
     final factory = ExerciseFactory(seed: 45);
     for (var i = 0; i < 20; i++) {
-      final dehnung =
-          factory.next(grade: 2, subject: 'Rechtschreibung', unit: 'Dehnungen');
-      expect(dehnung.answer.contains('h') || dehnung.answer.contains('ie'),
-          isTrue);
-      final ending =
-          factory.next(grade: 2, subject: 'Rechtschreibung', unit: 'Wortende');
+      final dehnung = factory.next(
+        grade: 3,
+        subject: 'Rechtschreibung',
+        unit: 'Dehnungen',
+      );
+      expect(
+        dehnung.answer.contains('h') || dehnung.answer.contains('ie'),
+        isTrue,
+      );
+
+      final ending = factory.next(
+        grade: 3,
+        subject: 'Rechtschreibung',
+        unit: 'Wortende',
+      );
       expect(ending.prompt, startsWith('Verlängere das Wort:'));
       expect(ending.answer.length, 1);
     }

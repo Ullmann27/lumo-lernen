@@ -5,6 +5,7 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../rewards/reward_shop_content.dart';
@@ -575,9 +576,11 @@ class _MissionsPage extends StatelessWidget {
       children: [
         TutoringFlowCard(
           appState: appState,
-          onStartTutoring: () => startSession(
-            subject: 'Alle',
-            message: 'Lumo-Nachhilfe\nstartet jetzt.\nWir machen das\nzusammen.',
+          onStartTutoring: (subject, unit) => startSession(
+            subject: subject,
+            unit: unit,
+            message:
+                'Nachhilfe:\n${Curriculum.prettifyUnit(unit)}\nWir machen das zusammen.',
             sessionKind: LumoSessionKind.tutoring,
           ),
         ),
@@ -615,11 +618,19 @@ class _MissionsPage extends StatelessWidget {
     );
   }
 
-  List<_ActionData> _missionCards() => [
-        _ActionData('3 Aufgaben lösen', 'Schließe drei einfache Aufgaben ab.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Mission:\n3 Aufgaben\nlösen!',
+  List<_ActionData> _missionCards() {
+    final grade = appState.state.grade.clamp(1, 4).toInt();
+    final mathUnits = Curriculum.unitsForGrade(
+      'Mathematik',
+      grade,
+      currentGradeOnly: true,
+    );
+    final mathUnit = mathUnits.isEmpty ? 'Alle' : mathUnits.first;
+    return [
+        _ActionData('3 Aufgaben lösen', 'Schließe drei Aufgaben deiner Klasse ab.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Mission:\n3 Aufgaben\nlösen!',
       ),
     ),
-        _ActionData('Mathe-Insel', 'Zahlen und Plus/Minus üben.', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: 'Plus bis 20', message: 'Mathe-Insel\nstartet jetzt.',
+        _ActionData('Mathe-Insel', '${Curriculum.prettifyUnit(mathUnit)} · ${grade}. Klasse', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: mathUnit, message: 'Mathe-Insel\nfür die ${grade}. Klasse.',
       ),
     ),
         _ActionData('Lesemut', 'Lumo hört beim Lesen aktiv zu.', 'Starten', Icons.record_voice_over_rounded, startReading,
@@ -633,6 +644,7 @@ class _MissionsPage extends StatelessWidget {
       ),
     ),
       ];
+  }
 }
 
 class _ReadingMissionCard extends StatelessWidget {
