@@ -71,13 +71,21 @@ class Curriculum {
     ],
     'Rechtschreibung': <String>[
       'Haeufige Woerter', 'Gross und klein', 'Doppelmitlaut', 'Dehnungen',
-      'Satzzeichen', 'Wortende', 'St oder Sp',
+      'Satzzeichen', 'Wortende', 'St oder Sp', 'Wortstamm',
+      'Großschreibung', 'ie oder i', 'dass oder das',
+      'Kommas in Aufzählungen',
     ],
     'Schreiben': <String>[
       'Buchstaben nachspuren', 'Wort schreiben', 'Satz abschreiben',
-      'Schwunguebung', 'Zahlen schreiben',
+      'Schwunguebung', 'Zahlen schreiben', 'Satz ergänzen', 'Kurze Nachricht',
+      'Sätze verbinden', 'Beschreibung schreiben', 'Geschichte fortsetzen',
+      'Text planen', 'Meinung begründen', 'Informationstext',
     ],
-    'Lesen': <String>['Woerter lesen', 'Sätze lesen', 'Lesesinn', 'Bild und Wort', 'Reihenfolge'],
+    'Lesen': <String>[
+      'Woerter lesen', 'Sätze lesen', 'Lesesinn', 'Bild und Wort',
+      'Reihenfolge', 'Informationen finden', 'Schlussfolgern',
+      'Kernaussage', 'Textart erkennen',
+    ],
     'Englisch': <String>['Farben', 'Zahlen', 'Tiere', 'Schulsachen', 'Begruessung', 'Familie', 'Körper', 'Spielzeug', 'Wetter', 'Essen', 'Tageszeit', 'Verben', 'Wochentage', 'Hobbys', 'Länder'],
     'Sachunterricht': <String>[
       'Tiere', 'Pflanzen', 'Jahreszeiten', 'Körper', 'Verkehr', 'Wetter',
@@ -99,22 +107,83 @@ class Curriculum {
   static const Map<String, Map<int, List<String>>> _localUnitsByGrade =
       <String, Map<int, List<String>>>{
     'Lesen': <int, List<String>>{
-      1: <String>['Woerter lesen', 'Bild und Wort'],
-      2: <String>['Sätze lesen', 'Lesesinn', 'Reihenfolge'],
-      3: <String>['Lesesinn', 'Reihenfolge', 'Sätze lesen'],
-      4: <String>['Lesesinn', 'Reihenfolge'],
+      1: <String>[
+        'Woerter lesen',
+        'Bild und Wort',
+        'Sätze lesen',
+        'Lesesinn',
+      ],
+      2: <String>[
+        'Sätze lesen',
+        'Lesesinn',
+        'Reihenfolge',
+        'Informationen finden',
+      ],
+      3: <String>[
+        'Lesesinn',
+        'Reihenfolge',
+        'Informationen finden',
+        'Schlussfolgern',
+        'Kernaussage',
+      ],
+      4: <String>[
+        'Lesesinn',
+        'Informationen finden',
+        'Schlussfolgern',
+        'Kernaussage',
+        'Textart erkennen',
+      ],
     },
     'Schreiben': <int, List<String>>{
-      1: <String>['Buchstaben nachspuren', 'Schwunguebung', 'Zahlen schreiben'],
-      2: <String>['Wort schreiben', 'Satz abschreiben'],
-      3: <String>['Wort schreiben', 'Satz abschreiben'],
-      4: <String>['Satz abschreiben'],
+      1: <String>[
+        'Buchstaben nachspuren',
+        'Schwunguebung',
+        'Wort schreiben',
+        'Satz abschreiben',
+      ],
+      2: <String>[
+        'Wort schreiben',
+        'Satz abschreiben',
+        'Satz ergänzen',
+        'Kurze Nachricht',
+      ],
+      3: <String>[
+        'Sätze verbinden',
+        'Beschreibung schreiben',
+        'Geschichte fortsetzen',
+        'Text planen',
+      ],
+      4: <String>[
+        'Text planen',
+        'Beschreibung schreiben',
+        'Geschichte fortsetzen',
+        'Meinung begründen',
+        'Informationstext',
+      ],
     },
     'Rechtschreibung': <int, List<String>>{
       1: <String>['Haeufige Woerter', 'Wortende'],
-      2: <String>['Gross und klein', 'Satzzeichen', 'St oder Sp'],
-      3: <String>['Doppelmitlaut', 'Dehnungen', 'Wortende'],
-      4: <String>['Doppelmitlaut', 'Dehnungen', 'Satzzeichen', 'Gross und klein'],
+      2: <String>[
+        'Gross und klein',
+        'Satzzeichen',
+        'St oder Sp',
+        'Wortstamm',
+      ],
+      3: <String>[
+        'Doppelmitlaut',
+        'Dehnungen',
+        'Wortende',
+        'Großschreibung',
+        'ie oder i',
+      ],
+      4: <String>[
+        'Doppelmitlaut',
+        'Dehnungen',
+        'Satzzeichen',
+        'Gross und klein',
+        'dass oder das',
+        'Kommas in Aufzählungen',
+      ],
     },
   };
 
@@ -192,6 +261,7 @@ class Curriculum {
       'Woerter lesen': 'Wörter lesen',
       'Namenswoerter': 'Namenswörter',
       'Hauptwoerter': 'Hauptwörter',
+      'Sätze verbinden': 'Sätze verbinden',
       'Plus bis 1000000': 'Plus bis 1 Million',
       'Minus bis 1000000': 'Minus bis 1 Million',
     };
