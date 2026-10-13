@@ -23,7 +23,13 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
   String? _hero;
   String? _location;
   String? _theme;
-  int _gradeLevel = 1;
+  late int _gradeLevel;
+
+  @override
+  void initState() {
+    super.initState();
+    _gradeLevel = widget.appState.state.grade.clamp(1, 4).toInt();
+  }
 
   bool get _canStart => _hero != null && _location != null && _theme != null;
 
