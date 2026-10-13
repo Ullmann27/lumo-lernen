@@ -547,6 +547,49 @@ class ExerciseFactory {
 
   LumoTask _spelling(int grade, String unit) {
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Rechtschreibung');
+
+    if (unit == 'Wortstamm') {
+      final generated = GermanTaskTemplates.generate(
+        grade: 2,
+        unit: 'Wortfamilien',
+        seed: _serial + _random.nextInt(9999),
+      );
+      return LumoTask(
+        id: _id('rechtschreib-wortstamm'),
+        grade: grade,
+        subject: 'Rechtschreibung',
+        unit: unit,
+        prompt: generated.prompt,
+        choices: _shuffledChoices(generated.choices),
+        answer: generated.answer,
+        explanation: generated.explanation,
+        visual: generated.visual,
+        difficulty: grade,
+      );
+    }
+
+    if (unit == 'Großschreibung' ||
+        unit == 'ie oder i' ||
+        unit == 'dass oder das' ||
+        unit == 'Kommas in Aufzählungen') {
+      final generated = GermanTaskTemplates.generate(
+        grade: grade,
+        unit: unit,
+        seed: _serial + _random.nextInt(9999),
+      );
+      return LumoTask(
+        id: _id('rechtschreib-${generated.promptPattern}'),
+        grade: grade,
+        subject: 'Rechtschreibung',
+        unit: unit,
+        prompt: generated.prompt,
+        choices: _shuffledChoices(generated.choices),
+        answer: generated.answer,
+        explanation: generated.explanation,
+        visual: generated.visual,
+        difficulty: grade,
+      );
+    }
     if (unit == 'Gross und klein') {
       final noun = PrimarySchoolWordData.nounForGrade(
           grade, _serial + _random.nextInt(9999));
@@ -872,6 +915,95 @@ class ExerciseFactory {
       prompt = 'Schreibe: ${options[_random.nextInt(options.length)]}';
       explanation =
           'Schreibe den ganzen Satz. Achte auf Abstände, den großen Anfang und das Satzzeichen.';
+    } else if (unit == 'Satz ergänzen') {
+      const starts = <String>[
+        'Nach der Schule ...',
+        'Heute freue ich mich, weil ...',
+        'Im Garten sehe ich ...',
+        'Wenn es regnet, ...',
+      ];
+      prompt =
+          'Ergänze den Satz sinnvoll: „${starts[_random.nextInt(starts.length)]}“';
+      explanation =
+          'Schreibe einen vollständigen Satz mit großem Anfang und passendem Satzzeichen.';
+    } else if (unit == 'Kurze Nachricht') {
+      const situations = <String>[
+        'Du willst einem Freund sagen, dass du heute um 15 Uhr am Spielplatz bist.',
+        'Du möchtest Oma für ein Geschenk danken.',
+        'Du bist krank und möchtest der Lehrerin kurz Bescheid geben.',
+        'Du lädst ein Kind aus deiner Klasse zum Spielen ein.',
+      ];
+      prompt =
+          'Schreibe eine kurze Nachricht: ${situations[_random.nextInt(situations.length)]}';
+      explanation =
+          'Eine gute Nachricht sagt kurz: An wen? Was ist wichtig? Von wem kommt sie?';
+    } else if (unit == 'Sätze verbinden') {
+      const pairs = <List<String>>[
+        <String>['Es regnet.', 'Mia nimmt einen Schirm.', 'deshalb'],
+        <String>['Lumo liest.', 'Ben baut ein Modell.', 'während'],
+        <String>['Die Pflanze wächst.', 'Sie bekommt Licht und Wasser.', 'weil'],
+        <String>['Wir gehen hinaus.', 'Es ist kalt.', 'obwohl'],
+      ];
+      final pair = pairs[_random.nextInt(pairs.length)];
+      prompt =
+          'Verbinde diese Sätze mit „${pair[2]}“ zu einem guten Satz:\n${pair[0]} ${pair[1]}';
+      explanation =
+          'Achte darauf, dass der verbundene Satz verständlich ist und die Satzzeichen stimmen.';
+    } else if (unit == 'Beschreibung schreiben') {
+      const topics = <String>[
+        'Beschreibe deinen Schulweg so, dass ein anderes Kind ihn verstehen kann.',
+        'Beschreibe einen Gegenstand in deinem Zimmer, ohne seinen Namen zu nennen.',
+        'Beschreibe ein Tier: Aussehen, Lebensraum und eine Besonderheit.',
+        'Beschreibe einen Ort, an dem du dich wohlfühlst.',
+      ];
+      prompt = topics[_random.nextInt(topics.length)];
+      explanation =
+          'Ordne deine Beschreibung: zuerst Überblick, dann wichtige Merkmale und Details.';
+    } else if (unit == 'Geschichte fortsetzen') {
+      const starts = <String>[
+        'Lumo findet vor der Schule einen kleinen Schlüssel. Plötzlich ...',
+        'Beim Wandertag entdeckt die Klasse eine Spur im Wald. Dann ...',
+        'In der Bücherei fällt aus einem alten Buch eine Karte. Darauf ...',
+        'Am Morgen steht vor der Tür eine geheimnisvolle Schachtel. Als Mia sie öffnet ...',
+      ];
+      prompt =
+          'Schreibe die Geschichte in mindestens drei Sätzen weiter:\n„${starts[_random.nextInt(starts.length)]}“';
+      explanation =
+          'Überlege zuerst: Was passiert? Wer handelt? Wie endet die Szene?';
+    } else if (unit == 'Text planen') {
+      const topics = <String>[
+        'Ein Ausflug mit der Klasse',
+        'Mein Lieblingstier',
+        'So sparen wir Wasser',
+        'Ein spannender Nachmittag',
+      ];
+      final topic = topics[_random.nextInt(topics.length)];
+      prompt =
+          'Plane einen Text zum Thema „$topic“. Schreibe zuerst 3 Stichpunkte: Anfang – Mitte – Ende.';
+      explanation =
+          'Ein Plan hilft dir, die Reihenfolge festzulegen, bevor du den Text schreibst.';
+    } else if (unit == 'Meinung begründen') {
+      const questions = <String>[
+        'Soll es in jeder Klasse eine tägliche Lesezeit geben?',
+        'Sollten Kinder bei der Planung eines Schulfests mitentscheiden?',
+        'Ist ein gemeinsamer Pausengarten eine gute Idee?',
+        'Soll man in der Schule öfter draußen lernen?',
+      ];
+      prompt =
+          'Was meinst du? ${questions[_random.nextInt(questions.length)]} Schreibe deine Meinung und mindestens zwei Gründe.';
+      explanation =
+          'Nenne zuerst deine Meinung. Begründe sie anschließend mit „weil“, „denn“ oder einem Beispiel.';
+    } else if (unit == 'Informationstext') {
+      const topics = <String>[
+        'Wie entsteht ein Regenbogen?',
+        'Warum brauchen Pflanzen Wasser und Licht?',
+        'Wie funktioniert sicheres Überqueren einer Straße?',
+        'Was gehört zu einem gesunden Schultag?',
+      ];
+      prompt =
+          'Schreibe einen kurzen Informationstext mit Überschrift und 3–5 Sätzen: ${topics[_random.nextInt(topics.length)]}';
+      explanation =
+          'Ein Informationstext bleibt sachlich, ordnet wichtige Fakten und verwendet eine passende Überschrift.';
     } else {
       final word = PrimarySchoolWordData.nounForGrade(
           grade, _serial + _random.nextInt(9999));
@@ -975,6 +1107,194 @@ class ExerciseFactory {
           '${askLast ? 'Am Ende' : 'Am Anfang'} der Geschichte steht: $answer',
           customChoices: sequence);
     }
+    if (unit == 'Informationen finden') {
+      const items = <int, List<List<String>>>{
+        2: <List<String>>[
+          <String>[
+            'Der Bus fährt um 7:35 Uhr ab. Mia steigt bei der Schule aus.',
+            'Wann fährt der Bus ab?',
+            'um 7:35 Uhr',
+            'um 8:35 Uhr',
+            'nach der Schule',
+          ],
+          <String>[
+            'Ben braucht für den Turntag Sportschuhe, eine Trinkflasche und ein T-Shirt.',
+            'Was soll Ben zum Turntag mitnehmen?',
+            'eine Trinkflasche',
+            'einen Kochtopf',
+            'ein Kissen',
+          ],
+        ],
+        3: <List<String>>[
+          <String>[
+            'Die Bücherei ist am Dienstag und Donnerstag bis 17 Uhr geöffnet. Am Freitag schließt sie um 13 Uhr.',
+            'An welchem Tag ist die Bücherei nur bis 13 Uhr geöffnet?',
+            'Freitag',
+            'Dienstag',
+            'Donnerstag',
+          ],
+          <String>[
+            'Für das Experiment werden ein Glas, Wasser, Salz und ein Löffel benötigt.',
+            'Welcher Gegenstand wird zum Umrühren gebraucht?',
+            'ein Löffel',
+            'ein Lineal',
+            'eine Schere',
+          ],
+        ],
+        4: <List<String>>[
+          <String>[
+            'Der Naturpark bittet Besucher, auf den Wegen zu bleiben, Hunde an der Leine zu führen und Abfälle wieder mitzunehmen.',
+            'Welche Regel betrifft Abfälle?',
+            'Abfälle wieder mitnehmen.',
+            'Abfälle neben den Weg legen.',
+            'Nur Papier liegen lassen.',
+          ],
+          <String>[
+            'Die Ausstellung beginnt um 10 Uhr. Die Führung dauert 45 Minuten, danach sind 30 Minuten für eigene Erkundungen vorgesehen.',
+            'Wie lange dauert die Führung?',
+            '45 Minuten',
+            '30 Minuten',
+            '75 Minuten',
+          ],
+        ],
+      };
+      final bank = items[grade.clamp(2, 4)] ?? items[2]!;
+      final item = bank[_random.nextInt(bank.length)];
+      return _choiceTask(
+        'lese-info',
+        grade,
+        'Lesen',
+        unit,
+        '${item[0]}\n${item[1]}',
+        item[2],
+        'Die gesuchte Information steht direkt im Text.',
+        customChoices: item.sublist(2),
+      );
+    }
+
+    if (unit == 'Schlussfolgern') {
+      const items = <int, List<List<String>>>{
+        3: <List<String>>[
+          <String>[
+            'Mia kommt mit nassen Schuhen und einem geschlossenen Regenschirm ins Schulhaus.',
+            'Was ist wahrscheinlich draußen?',
+            'Es regnet.',
+            'Es schneit sicher.',
+            'Es ist völlig trocken.',
+          ],
+          <String>[
+            'Ben stellt die leere Futterschüssel hin. Der Hund läuft sofort zur Küche.',
+            'Was erwartet der Hund wahrscheinlich?',
+            'Futter',
+            'ein Buch',
+            'einen Ballon',
+          ],
+        ],
+        4: <List<String>>[
+          <String>[
+            'Auf dem Weg liegen viele kleine Äste. Die Bäume bewegen sich stark und Mia hält ihre Haube fest.',
+            'Welche Wetterlage passt am besten?',
+            'Es ist windig.',
+            'Es ist windstill.',
+            'Es ist sehr heiß ohne Wind.',
+          ],
+          <String>[
+            'Lumo vergleicht zwei Quellen. Beide nennen dasselbe Datum, aber nur eine erklärt, woher die Information stammt.',
+            'Welche Quelle ist besser überprüfbar?',
+            'Die Quelle mit Herkunftsangabe.',
+            'Immer die kürzere Quelle.',
+            'Beide sind automatisch gleich sicher.',
+          ],
+        ],
+      };
+      final bank = items[grade.clamp(3, 4)] ?? items[3]!;
+      final item = bank[_random.nextInt(bank.length)];
+      return _choiceTask(
+        'lese-schluss',
+        grade,
+        'Lesen',
+        unit,
+        '${item[0]}\n${item[1]}',
+        item[2],
+        'Verbinde Hinweise aus dem Text und ziehe daraus eine begründete Schlussfolgerung.',
+        customChoices: item.sublist(2),
+      );
+    }
+
+    if (unit == 'Kernaussage') {
+      const items = <List<String>>[
+        <String>[
+          'Bäume spenden Schatten, bieten Tieren Lebensraum und helfen, die Luft zu verbessern. Deshalb sind Bäume in Städten besonders wertvoll.',
+          'Bäume erfüllen in Städten mehrere wichtige Aufgaben.',
+          'Bäume stehen nur im Wald.',
+          'Schatten ist die einzige Aufgabe von Bäumen.',
+        ],
+        <String>[
+          'Regelmäßiges Lesen erweitert den Wortschatz. Wer oft liest, versteht außerdem längere Texte leichter und entdeckt neue Themen.',
+          'Regelmäßiges Lesen stärkt mehrere Fähigkeiten.',
+          'Lesen ist nur für schwierige Wörter nützlich.',
+          'Lange Texte sollte man vermeiden.',
+        ],
+        <String>[
+          'Wer eine Aufgabe plant, teilt sie in kleinere Schritte. Dadurch erkennt man leichter, was zuerst und was danach zu tun ist.',
+          'Ein Plan ordnet eine Aufgabe in sinnvolle Schritte.',
+          'Planen macht Aufgaben immer länger.',
+          'Man sollte alle Schritte gleichzeitig machen.',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'lese-kern',
+        grade,
+        'Lesen',
+        unit,
+        '${item[0]}\nWelche Aussage fasst den Text am besten zusammen?',
+        item[1],
+        'Die Kernaussage nennt die wichtigste gemeinsame Aussage des ganzen Textes.',
+        customChoices: item.sublist(1),
+      );
+    }
+
+    if (unit == 'Textart erkennen') {
+      const items = <List<String>>[
+        <String>[
+          'Zuerst gibst du Erde in den Topf. Dann setzt du den Samen hinein und gießt vorsichtig.',
+          'Anleitung',
+          'Erzählung',
+          'Einladung',
+        ],
+        <String>[
+          'Liebe Klasse, unser Fest beginnt am Freitag um 15 Uhr im Schulgarten. Wir freuen uns auf euch!',
+          'Einladung',
+          'Anleitung',
+          'Sachtext',
+        ],
+        <String>[
+          'Der Igel ist ein Säugetier. Er ist vor allem in der Dämmerung und in der Nacht aktiv.',
+          'Sachtext',
+          'Einladung',
+          'Märchen',
+        ],
+        <String>[
+          'Als Lumo die Tür öffnete, glitzerte plötzlich ein winziger Stern mitten im Zimmer.',
+          'Erzählung',
+          'Anleitung',
+          'Fahrplan',
+        ],
+      ];
+      final item = items[_random.nextInt(items.length)];
+      return _choiceTask(
+        'lese-textart',
+        grade,
+        'Lesen',
+        unit,
+        '${item[0]}\nWelche Textart passt am besten?',
+        item[1],
+        'Achte auf Zweck, Aufbau und typische Formulierungen des Textes.',
+        customChoices: item.sublist(1),
+      );
+    }
+
     // Every answer is grounded in visible text; no absent image or article quiz.
     const passages = <int, List<List<String>>>{
       1: [
