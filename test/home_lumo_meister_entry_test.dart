@@ -50,7 +50,12 @@ void main() {
 
     final meister = find.text('Wer wird Lumo-Meister?');
     expect(meister, findsOneWidget);
-    await tester.ensureVisible(meister);
+    await tester.scrollUntilVisible(
+      meister,
+      260,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pump();
     await tester.tap(meister);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
