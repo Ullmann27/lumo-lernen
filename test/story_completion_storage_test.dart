@@ -5,11 +5,13 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 
 import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/lumo_story_generator.dart';
 import 'package:lumo_lernen/core/lumo_story_library.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
@@ -46,7 +48,7 @@ LumoStory _story(String title) => LumoStory(
 const _captureKey = ValueKey('story-storage-runtime');
 
 Future<void> _capture(WidgetTester tester, String name) async {
-  await tester.pump();
+  await tester.pump(const Duration(milliseconds: 300));
   final boundary = tester.renderObject<RenderRepaintBoundary>(
     find.byKey(_captureKey),
   );
@@ -64,6 +66,18 @@ Future<void> _capture(WidgetTester tester, String name) async {
 }
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(() async {
+    await (FontLoader('Nunito')
+          ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
+          ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'))
+          ..addFont(rootBundle.load('assets/fonts/Nunito-ExtraBold.ttf'))
+          ..addFont(rootBundle.load('assets/fonts/Nunito-Black.ttf')))
+        .load();
+    await (FontLoader('MaterialIcons')
+          ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf')))
+        .load();
+  });
   testWidgets(
     'story completion waits for disk, rejects failed writes and retries once',
     (tester) async {
@@ -85,6 +99,7 @@ void main() {
           RepaintBoundary(
             key: _captureKey,
             child: MaterialApp(
+              theme: LumoAppTheme.light(),
               home: Builder(
                 builder: (context) => TextButton(
                   onPressed: () => Navigator.of(context).push(
